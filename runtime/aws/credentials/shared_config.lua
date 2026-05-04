@@ -1,7 +1,7 @@
 -- Shared config/credentials file credential provider.
 -- Reads aws_access_key_id / aws_secret_access_key from the resolved profile.
 
-local auth = require("auth")
+local auth = require("smithy.auth")
 
 local M = {}
 

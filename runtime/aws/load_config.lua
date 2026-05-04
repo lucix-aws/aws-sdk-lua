@@ -1,8 +1,8 @@
 -- Top-level AWS configuration resolver.
 -- Precedence: explicit config > environment variables > shared config files.
 
-local env_mod = require("env")
-local config_mod = require("config")
+local env_mod = require("aws.env")
+local config_mod = require("aws.config")
 
 local M = {}
 

@@ -1,7 +1,7 @@
 -- Static credential provider.
 -- Returns credentials from explicitly provided access key / secret key.
 
-local auth = require("auth")
+local auth = require("smithy.auth")
 
 local M = {}
 

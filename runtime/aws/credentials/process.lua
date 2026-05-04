@@ -2,8 +2,8 @@
 -- Runs a credential_process command and parses the JSON output.
 -- Expected JSON: { Version: 1, AccessKeyId, SecretAccessKey, SessionToken?, Expiration? }
 
-local auth = require("auth")
-local json_decoder = require("json.decoder")
+local auth = require("smithy.auth")
+local json_decoder = require("smithy.json.decoder")
 
 local M = {}
 
