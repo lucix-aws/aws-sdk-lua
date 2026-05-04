@@ -1,0 +1,27 @@
+local types = require("ivschat.types")
+
+local record Client
+    createChatToken: function(Client, types.CreateChatTokenInput): types.CreateChatTokenOutput, table
+    createLoggingConfiguration: function(Client, types.CreateLoggingConfigurationInput): types.CreateLoggingConfigurationOutput, table
+    createRoom: function(Client, types.CreateRoomInput): types.CreateRoomOutput, table
+    deleteLoggingConfiguration: function(Client, types.DeleteLoggingConfigurationInput): types.DeleteLoggingConfigurationOutput, table
+    deleteMessage: function(Client, types.DeleteMessageInput): types.DeleteMessageOutput, table
+    deleteRoom: function(Client, types.DeleteRoomInput): types.DeleteRoomOutput, table
+    disconnectUser: function(Client, types.DisconnectUserInput): types.DisconnectUserOutput, table
+    getLoggingConfiguration: function(Client, types.GetLoggingConfigurationInput): types.GetLoggingConfigurationOutput, table
+    getRoom: function(Client, types.GetRoomInput): types.GetRoomOutput, table
+    listLoggingConfigurations: function(Client, types.ListLoggingConfigurationsInput): types.ListLoggingConfigurationsOutput, table
+    listRooms: function(Client, types.ListRoomsInput): types.ListRoomsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    sendEvent: function(Client, types.SendEventInput): types.SendEventOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateLoggingConfiguration: function(Client, types.UpdateLoggingConfigurationInput): types.UpdateLoggingConfigurationOutput, table
+    updateRoom: function(Client, types.UpdateRoomInput): types.UpdateRoomOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

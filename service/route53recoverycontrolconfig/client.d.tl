@@ -1,0 +1,35 @@
+local types = require("route53recoverycontrolconfig.types")
+
+local record Client
+    createCluster: function(Client, types.CreateClusterInput): types.CreateClusterOutput, table
+    createControlPanel: function(Client, types.CreateControlPanelInput): types.CreateControlPanelOutput, table
+    createRoutingControl: function(Client, types.CreateRoutingControlInput): types.CreateRoutingControlOutput, table
+    createSafetyRule: function(Client, types.CreateSafetyRuleInput): types.CreateSafetyRuleOutput, table
+    deleteCluster: function(Client, types.DeleteClusterInput): types.DeleteClusterOutput, table
+    deleteControlPanel: function(Client, types.DeleteControlPanelInput): types.DeleteControlPanelOutput, table
+    deleteRoutingControl: function(Client, types.DeleteRoutingControlInput): types.DeleteRoutingControlOutput, table
+    deleteSafetyRule: function(Client, types.DeleteSafetyRuleInput): types.DeleteSafetyRuleOutput, table
+    describeCluster: function(Client, types.DescribeClusterInput): types.DescribeClusterOutput, table
+    describeControlPanel: function(Client, types.DescribeControlPanelInput): types.DescribeControlPanelOutput, table
+    describeRoutingControl: function(Client, types.DescribeRoutingControlInput): types.DescribeRoutingControlOutput, table
+    describeSafetyRule: function(Client, types.DescribeSafetyRuleInput): types.DescribeSafetyRuleOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    listAssociatedRoute53HealthChecks: function(Client, types.ListAssociatedRoute53HealthChecksInput): types.ListAssociatedRoute53HealthChecksOutput, table
+    listClusters: function(Client, types.ListClustersInput): types.ListClustersOutput, table
+    listControlPanels: function(Client, types.ListControlPanelsInput): types.ListControlPanelsOutput, table
+    listRoutingControls: function(Client, types.ListRoutingControlsInput): types.ListRoutingControlsOutput, table
+    listSafetyRules: function(Client, types.ListSafetyRulesInput): types.ListSafetyRulesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateCluster: function(Client, types.UpdateClusterInput): types.UpdateClusterOutput, table
+    updateControlPanel: function(Client, types.UpdateControlPanelInput): types.UpdateControlPanelOutput, table
+    updateRoutingControl: function(Client, types.UpdateRoutingControlInput): types.UpdateRoutingControlOutput, table
+    updateSafetyRule: function(Client, types.UpdateSafetyRuleInput): types.UpdateSafetyRuleOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

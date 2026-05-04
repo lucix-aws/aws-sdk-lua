@@ -1,0 +1,114 @@
+local types = require("iotsitewise.types")
+
+local record Client
+    associateAssets: function(Client, types.AssociateAssetsInput): types.AssociateAssetsOutput, table
+    associateTimeSeriesToAssetProperty: function(Client, types.AssociateTimeSeriesToAssetPropertyInput): types.AssociateTimeSeriesToAssetPropertyOutput, table
+    batchAssociateProjectAssets: function(Client, types.BatchAssociateProjectAssetsInput): types.BatchAssociateProjectAssetsOutput, table
+    batchDisassociateProjectAssets: function(Client, types.BatchDisassociateProjectAssetsInput): types.BatchDisassociateProjectAssetsOutput, table
+    batchGetAssetPropertyAggregates: function(Client, types.BatchGetAssetPropertyAggregatesInput): types.BatchGetAssetPropertyAggregatesOutput, table
+    batchGetAssetPropertyValue: function(Client, types.BatchGetAssetPropertyValueInput): types.BatchGetAssetPropertyValueOutput, table
+    batchGetAssetPropertyValueHistory: function(Client, types.BatchGetAssetPropertyValueHistoryInput): types.BatchGetAssetPropertyValueHistoryOutput, table
+    batchPutAssetPropertyValue: function(Client, types.BatchPutAssetPropertyValueInput): types.BatchPutAssetPropertyValueOutput, table
+    createAccessPolicy: function(Client, types.CreateAccessPolicyInput): types.CreateAccessPolicyOutput, table
+    createAsset: function(Client, types.CreateAssetInput): types.CreateAssetOutput, table
+    createAssetModel: function(Client, types.CreateAssetModelInput): types.CreateAssetModelOutput, table
+    createAssetModelCompositeModel: function(Client, types.CreateAssetModelCompositeModelInput): types.CreateAssetModelCompositeModelOutput, table
+    createBulkImportJob: function(Client, types.CreateBulkImportJobInput): types.CreateBulkImportJobOutput, table
+    createComputationModel: function(Client, types.CreateComputationModelInput): types.CreateComputationModelOutput, table
+    createDashboard: function(Client, types.CreateDashboardInput): types.CreateDashboardOutput, table
+    createDataset: function(Client, types.CreateDatasetInput): types.CreateDatasetOutput, table
+    createGateway: function(Client, types.CreateGatewayInput): types.CreateGatewayOutput, table
+    createPortal: function(Client, types.CreatePortalInput): types.CreatePortalOutput, table
+    createProject: function(Client, types.CreateProjectInput): types.CreateProjectOutput, table
+    deleteAccessPolicy: function(Client, types.DeleteAccessPolicyInput): types.DeleteAccessPolicyOutput, table
+    deleteAsset: function(Client, types.DeleteAssetInput): types.DeleteAssetOutput, table
+    deleteAssetModel: function(Client, types.DeleteAssetModelInput): types.DeleteAssetModelOutput, table
+    deleteAssetModelCompositeModel: function(Client, types.DeleteAssetModelCompositeModelInput): types.DeleteAssetModelCompositeModelOutput, table
+    deleteAssetModelInterfaceRelationship: function(Client, types.DeleteAssetModelInterfaceRelationshipInput): types.DeleteAssetModelInterfaceRelationshipOutput, table
+    deleteComputationModel: function(Client, types.DeleteComputationModelInput): types.DeleteComputationModelOutput, table
+    deleteDashboard: function(Client, types.DeleteDashboardInput): types.DeleteDashboardOutput, table
+    deleteDataset: function(Client, types.DeleteDatasetInput): types.DeleteDatasetOutput, table
+    deleteGateway: function(Client, types.DeleteGatewayInput): types.DeleteGatewayOutput, table
+    deletePortal: function(Client, types.DeletePortalInput): types.DeletePortalOutput, table
+    deleteProject: function(Client, types.DeleteProjectInput): types.DeleteProjectOutput, table
+    deleteTimeSeries: function(Client, types.DeleteTimeSeriesInput): types.DeleteTimeSeriesOutput, table
+    describeAccessPolicy: function(Client, types.DescribeAccessPolicyInput): types.DescribeAccessPolicyOutput, table
+    describeAction: function(Client, types.DescribeActionInput): types.DescribeActionOutput, table
+    describeAsset: function(Client, types.DescribeAssetInput): types.DescribeAssetOutput, table
+    describeAssetCompositeModel: function(Client, types.DescribeAssetCompositeModelInput): types.DescribeAssetCompositeModelOutput, table
+    describeAssetModel: function(Client, types.DescribeAssetModelInput): types.DescribeAssetModelOutput, table
+    describeAssetModelCompositeModel: function(Client, types.DescribeAssetModelCompositeModelInput): types.DescribeAssetModelCompositeModelOutput, table
+    describeAssetModelInterfaceRelationship: function(Client, types.DescribeAssetModelInterfaceRelationshipInput): types.DescribeAssetModelInterfaceRelationshipOutput, table
+    describeAssetProperty: function(Client, types.DescribeAssetPropertyInput): types.DescribeAssetPropertyOutput, table
+    describeBulkImportJob: function(Client, types.DescribeBulkImportJobInput): types.DescribeBulkImportJobOutput, table
+    describeComputationModel: function(Client, types.DescribeComputationModelInput): types.DescribeComputationModelOutput, table
+    describeComputationModelExecutionSummary: function(Client, types.DescribeComputationModelExecutionSummaryInput): types.DescribeComputationModelExecutionSummaryOutput, table
+    describeDashboard: function(Client, types.DescribeDashboardInput): types.DescribeDashboardOutput, table
+    describeDataset: function(Client, types.DescribeDatasetInput): types.DescribeDatasetOutput, table
+    describeDefaultEncryptionConfiguration: function(Client, types.DescribeDefaultEncryptionConfigurationInput): types.DescribeDefaultEncryptionConfigurationOutput, table
+    describeExecution: function(Client, types.DescribeExecutionInput): types.DescribeExecutionOutput, table
+    describeGateway: function(Client, types.DescribeGatewayInput): types.DescribeGatewayOutput, table
+    describeGatewayCapabilityConfiguration: function(Client, types.DescribeGatewayCapabilityConfigurationInput): types.DescribeGatewayCapabilityConfigurationOutput, table
+    describeLoggingOptions: function(Client, types.DescribeLoggingOptionsInput): types.DescribeLoggingOptionsOutput, table
+    describePortal: function(Client, types.DescribePortalInput): types.DescribePortalOutput, table
+    describeProject: function(Client, types.DescribeProjectInput): types.DescribeProjectOutput, table
+    describeStorageConfiguration: function(Client, types.DescribeStorageConfigurationInput): types.DescribeStorageConfigurationOutput, table
+    describeTimeSeries: function(Client, types.DescribeTimeSeriesInput): types.DescribeTimeSeriesOutput, table
+    disassociateAssets: function(Client, types.DisassociateAssetsInput): types.DisassociateAssetsOutput, table
+    disassociateTimeSeriesFromAssetProperty: function(Client, types.DisassociateTimeSeriesFromAssetPropertyInput): types.DisassociateTimeSeriesFromAssetPropertyOutput, table
+    executeAction: function(Client, types.ExecuteActionInput): types.ExecuteActionOutput, table
+    executeQuery: function(Client, types.ExecuteQueryInput): types.ExecuteQueryOutput, table
+    getAssetPropertyAggregates: function(Client, types.GetAssetPropertyAggregatesInput): types.GetAssetPropertyAggregatesOutput, table
+    getAssetPropertyValue: function(Client, types.GetAssetPropertyValueInput): types.GetAssetPropertyValueOutput, table
+    getAssetPropertyValueHistory: function(Client, types.GetAssetPropertyValueHistoryInput): types.GetAssetPropertyValueHistoryOutput, table
+    getInterpolatedAssetPropertyValues: function(Client, types.GetInterpolatedAssetPropertyValuesInput): types.GetInterpolatedAssetPropertyValuesOutput, table
+    invokeAssistant: function(Client, types.InvokeAssistantInput): types.InvokeAssistantOutput, table
+    listAccessPolicies: function(Client, types.ListAccessPoliciesInput): types.ListAccessPoliciesOutput, table
+    listActions: function(Client, types.ListActionsInput): types.ListActionsOutput, table
+    listAssetModelCompositeModels: function(Client, types.ListAssetModelCompositeModelsInput): types.ListAssetModelCompositeModelsOutput, table
+    listAssetModelProperties: function(Client, types.ListAssetModelPropertiesInput): types.ListAssetModelPropertiesOutput, table
+    listAssetModels: function(Client, types.ListAssetModelsInput): types.ListAssetModelsOutput, table
+    listAssetProperties: function(Client, types.ListAssetPropertiesInput): types.ListAssetPropertiesOutput, table
+    listAssetRelationships: function(Client, types.ListAssetRelationshipsInput): types.ListAssetRelationshipsOutput, table
+    listAssets: function(Client, types.ListAssetsInput): types.ListAssetsOutput, table
+    listAssociatedAssets: function(Client, types.ListAssociatedAssetsInput): types.ListAssociatedAssetsOutput, table
+    listBulkImportJobs: function(Client, types.ListBulkImportJobsInput): types.ListBulkImportJobsOutput, table
+    listCompositionRelationships: function(Client, types.ListCompositionRelationshipsInput): types.ListCompositionRelationshipsOutput, table
+    listComputationModelDataBindingUsages: function(Client, types.ListComputationModelDataBindingUsagesInput): types.ListComputationModelDataBindingUsagesOutput, table
+    listComputationModelResolveToResources: function(Client, types.ListComputationModelResolveToResourcesInput): types.ListComputationModelResolveToResourcesOutput, table
+    listComputationModels: function(Client, types.ListComputationModelsInput): types.ListComputationModelsOutput, table
+    listDashboards: function(Client, types.ListDashboardsInput): types.ListDashboardsOutput, table
+    listDatasets: function(Client, types.ListDatasetsInput): types.ListDatasetsOutput, table
+    listExecutions: function(Client, types.ListExecutionsInput): types.ListExecutionsOutput, table
+    listGateways: function(Client, types.ListGatewaysInput): types.ListGatewaysOutput, table
+    listInterfaceRelationships: function(Client, types.ListInterfaceRelationshipsInput): types.ListInterfaceRelationshipsOutput, table
+    listPortals: function(Client, types.ListPortalsInput): types.ListPortalsOutput, table
+    listProjectAssets: function(Client, types.ListProjectAssetsInput): types.ListProjectAssetsOutput, table
+    listProjects: function(Client, types.ListProjectsInput): types.ListProjectsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTimeSeries: function(Client, types.ListTimeSeriesInput): types.ListTimeSeriesOutput, table
+    putAssetModelInterfaceRelationship: function(Client, types.PutAssetModelInterfaceRelationshipInput): types.PutAssetModelInterfaceRelationshipOutput, table
+    putDefaultEncryptionConfiguration: function(Client, types.PutDefaultEncryptionConfigurationInput): types.PutDefaultEncryptionConfigurationOutput, table
+    putLoggingOptions: function(Client, types.PutLoggingOptionsInput): types.PutLoggingOptionsOutput, table
+    putStorageConfiguration: function(Client, types.PutStorageConfigurationInput): types.PutStorageConfigurationOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAccessPolicy: function(Client, types.UpdateAccessPolicyInput): types.UpdateAccessPolicyOutput, table
+    updateAsset: function(Client, types.UpdateAssetInput): types.UpdateAssetOutput, table
+    updateAssetModel: function(Client, types.UpdateAssetModelInput): types.UpdateAssetModelOutput, table
+    updateAssetModelCompositeModel: function(Client, types.UpdateAssetModelCompositeModelInput): types.UpdateAssetModelCompositeModelOutput, table
+    updateAssetProperty: function(Client, types.UpdateAssetPropertyInput): types.UpdateAssetPropertyOutput, table
+    updateComputationModel: function(Client, types.UpdateComputationModelInput): types.UpdateComputationModelOutput, table
+    updateDashboard: function(Client, types.UpdateDashboardInput): types.UpdateDashboardOutput, table
+    updateDataset: function(Client, types.UpdateDatasetInput): types.UpdateDatasetOutput, table
+    updateGateway: function(Client, types.UpdateGatewayInput): types.UpdateGatewayOutput, table
+    updateGatewayCapabilityConfiguration: function(Client, types.UpdateGatewayCapabilityConfigurationInput): types.UpdateGatewayCapabilityConfigurationOutput, table
+    updatePortal: function(Client, types.UpdatePortalInput): types.UpdatePortalOutput, table
+    updateProject: function(Client, types.UpdateProjectInput): types.UpdateProjectOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

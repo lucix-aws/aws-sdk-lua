@@ -1,0 +1,39 @@
+local types = require("elasticloadbalancing.types")
+
+local record Client
+    addTags: function(Client, types.AddTagsInput): types.AddTagsOutput, table
+    applySecurityGroupsToLoadBalancer: function(Client, types.ApplySecurityGroupsToLoadBalancerInput): types.ApplySecurityGroupsToLoadBalancerOutput, table
+    attachLoadBalancerToSubnets: function(Client, types.AttachLoadBalancerToSubnetsInput): types.AttachLoadBalancerToSubnetsOutput, table
+    configureHealthCheck: function(Client, types.ConfigureHealthCheckInput): types.ConfigureHealthCheckOutput, table
+    createAppCookieStickinessPolicy: function(Client, types.CreateAppCookieStickinessPolicyInput): types.CreateAppCookieStickinessPolicyOutput, table
+    createLBCookieStickinessPolicy: function(Client, types.CreateLBCookieStickinessPolicyInput): types.CreateLBCookieStickinessPolicyOutput, table
+    createLoadBalancer: function(Client, types.CreateLoadBalancerInput): types.CreateLoadBalancerOutput, table
+    createLoadBalancerListeners: function(Client, types.CreateLoadBalancerListenersInput): types.CreateLoadBalancerListenersOutput, table
+    createLoadBalancerPolicy: function(Client, types.CreateLoadBalancerPolicyInput): types.CreateLoadBalancerPolicyOutput, table
+    deleteLoadBalancer: function(Client, types.DeleteLoadBalancerInput): types.DeleteLoadBalancerOutput, table
+    deleteLoadBalancerListeners: function(Client, types.DeleteLoadBalancerListenersInput): types.DeleteLoadBalancerListenersOutput, table
+    deleteLoadBalancerPolicy: function(Client, types.DeleteLoadBalancerPolicyInput): types.DeleteLoadBalancerPolicyOutput, table
+    deregisterInstancesFromLoadBalancer: function(Client, types.DeregisterInstancesFromLoadBalancerInput): types.DeregisterInstancesFromLoadBalancerOutput, table
+    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput): types.DescribeAccountLimitsOutput, table
+    describeInstanceHealth: function(Client, types.DescribeInstanceHealthInput): types.DescribeInstanceHealthOutput, table
+    describeLoadBalancerAttributes: function(Client, types.DescribeLoadBalancerAttributesInput): types.DescribeLoadBalancerAttributesOutput, table
+    describeLoadBalancerPolicies: function(Client, types.DescribeLoadBalancerPoliciesInput): types.DescribeLoadBalancerPoliciesOutput, table
+    describeLoadBalancerPolicyTypes: function(Client, types.DescribeLoadBalancerPolicyTypesInput): types.DescribeLoadBalancerPolicyTypesOutput, table
+    describeLoadBalancers: function(Client, types.DescribeLoadBalancersInput): types.DescribeLoadBalancersOutput, table
+    describeTags: function(Client, types.DescribeTagsInput): types.DescribeTagsOutput, table
+    detachLoadBalancerFromSubnets: function(Client, types.DetachLoadBalancerFromSubnetsInput): types.DetachLoadBalancerFromSubnetsOutput, table
+    disableAvailabilityZonesForLoadBalancer: function(Client, types.DisableAvailabilityZonesForLoadBalancerInput): types.DisableAvailabilityZonesForLoadBalancerOutput, table
+    enableAvailabilityZonesForLoadBalancer: function(Client, types.EnableAvailabilityZonesForLoadBalancerInput): types.EnableAvailabilityZonesForLoadBalancerOutput, table
+    modifyLoadBalancerAttributes: function(Client, types.ModifyLoadBalancerAttributesInput): types.ModifyLoadBalancerAttributesOutput, table
+    registerInstancesWithLoadBalancer: function(Client, types.RegisterInstancesWithLoadBalancerInput): types.RegisterInstancesWithLoadBalancerOutput, table
+    removeTags: function(Client, types.RemoveTagsInput): types.RemoveTagsOutput, table
+    setLoadBalancerListenerSSLCertificate: function(Client, types.SetLoadBalancerListenerSSLCertificateInput): types.SetLoadBalancerListenerSSLCertificateOutput, table
+    setLoadBalancerPoliciesForBackendServer: function(Client, types.SetLoadBalancerPoliciesForBackendServerInput): types.SetLoadBalancerPoliciesForBackendServerOutput, table
+    setLoadBalancerPoliciesOfListener: function(Client, types.SetLoadBalancerPoliciesOfListenerInput): types.SetLoadBalancerPoliciesOfListenerOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

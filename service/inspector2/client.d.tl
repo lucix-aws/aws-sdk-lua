@@ -1,0 +1,85 @@
+local types = require("inspector2.types")
+
+local record Client
+    associateMember: function(Client, types.AssociateMemberInput): types.AssociateMemberOutput, table
+    batchAssociateCodeSecurityScanConfiguration: function(Client, types.BatchAssociateCodeSecurityScanConfigurationInput): types.BatchAssociateCodeSecurityScanConfigurationOutput, table
+    batchDisassociateCodeSecurityScanConfiguration: function(Client, types.BatchDisassociateCodeSecurityScanConfigurationInput): types.BatchDisassociateCodeSecurityScanConfigurationOutput, table
+    batchGetAccountStatus: function(Client, types.BatchGetAccountStatusInput): types.BatchGetAccountStatusOutput, table
+    batchGetCodeSnippet: function(Client, types.BatchGetCodeSnippetInput): types.BatchGetCodeSnippetOutput, table
+    batchGetFindingDetails: function(Client, types.BatchGetFindingDetailsInput): types.BatchGetFindingDetailsOutput, table
+    batchGetFreeTrialInfo: function(Client, types.BatchGetFreeTrialInfoInput): types.BatchGetFreeTrialInfoOutput, table
+    batchGetMemberEc2DeepInspectionStatus: function(Client, types.BatchGetMemberEc2DeepInspectionStatusInput): types.BatchGetMemberEc2DeepInspectionStatusOutput, table
+    batchUpdateMemberEc2DeepInspectionStatus: function(Client, types.BatchUpdateMemberEc2DeepInspectionStatusInput): types.BatchUpdateMemberEc2DeepInspectionStatusOutput, table
+    cancelFindingsReport: function(Client, types.CancelFindingsReportInput): types.CancelFindingsReportOutput, table
+    cancelSbomExport: function(Client, types.CancelSbomExportInput): types.CancelSbomExportOutput, table
+    createCisScanConfiguration: function(Client, types.CreateCisScanConfigurationInput): types.CreateCisScanConfigurationOutput, table
+    createCodeSecurityIntegration: function(Client, types.CreateCodeSecurityIntegrationInput): types.CreateCodeSecurityIntegrationOutput, table
+    createCodeSecurityScanConfiguration: function(Client, types.CreateCodeSecurityScanConfigurationInput): types.CreateCodeSecurityScanConfigurationOutput, table
+    createFilter: function(Client, types.CreateFilterInput): types.CreateFilterOutput, table
+    createFindingsReport: function(Client, types.CreateFindingsReportInput): types.CreateFindingsReportOutput, table
+    createSbomExport: function(Client, types.CreateSbomExportInput): types.CreateSbomExportOutput, table
+    deleteCisScanConfiguration: function(Client, types.DeleteCisScanConfigurationInput): types.DeleteCisScanConfigurationOutput, table
+    deleteCodeSecurityIntegration: function(Client, types.DeleteCodeSecurityIntegrationInput): types.DeleteCodeSecurityIntegrationOutput, table
+    deleteCodeSecurityScanConfiguration: function(Client, types.DeleteCodeSecurityScanConfigurationInput): types.DeleteCodeSecurityScanConfigurationOutput, table
+    deleteFilter: function(Client, types.DeleteFilterInput): types.DeleteFilterOutput, table
+    describeOrganizationConfiguration: function(Client, types.DescribeOrganizationConfigurationInput): types.DescribeOrganizationConfigurationOutput, table
+    disable: function(Client, types.DisableInput): types.DisableOutput, table
+    disableDelegatedAdminAccount: function(Client, types.DisableDelegatedAdminAccountInput): types.DisableDelegatedAdminAccountOutput, table
+    disassociateMember: function(Client, types.DisassociateMemberInput): types.DisassociateMemberOutput, table
+    enable: function(Client, types.EnableInput): types.EnableOutput, table
+    enableDelegatedAdminAccount: function(Client, types.EnableDelegatedAdminAccountInput): types.EnableDelegatedAdminAccountOutput, table
+    getCisScanReport: function(Client, types.GetCisScanReportInput): types.GetCisScanReportOutput, table
+    getCisScanResultDetails: function(Client, types.GetCisScanResultDetailsInput): types.GetCisScanResultDetailsOutput, table
+    getClustersForImage: function(Client, types.GetClustersForImageInput): types.GetClustersForImageOutput, table
+    getCodeSecurityIntegration: function(Client, types.GetCodeSecurityIntegrationInput): types.GetCodeSecurityIntegrationOutput, table
+    getCodeSecurityScan: function(Client, types.GetCodeSecurityScanInput): types.GetCodeSecurityScanOutput, table
+    getCodeSecurityScanConfiguration: function(Client, types.GetCodeSecurityScanConfigurationInput): types.GetCodeSecurityScanConfigurationOutput, table
+    getConfiguration: function(Client, types.GetConfigurationInput): types.GetConfigurationOutput, table
+    getDelegatedAdminAccount: function(Client, types.GetDelegatedAdminAccountInput): types.GetDelegatedAdminAccountOutput, table
+    getEc2DeepInspectionConfiguration: function(Client, types.GetEc2DeepInspectionConfigurationInput): types.GetEc2DeepInspectionConfigurationOutput, table
+    getEncryptionKey: function(Client, types.GetEncryptionKeyInput): types.GetEncryptionKeyOutput, table
+    getFindingsReportStatus: function(Client, types.GetFindingsReportStatusInput): types.GetFindingsReportStatusOutput, table
+    getMember: function(Client, types.GetMemberInput): types.GetMemberOutput, table
+    getSbomExport: function(Client, types.GetSbomExportInput): types.GetSbomExportOutput, table
+    listAccountPermissions: function(Client, types.ListAccountPermissionsInput): types.ListAccountPermissionsOutput, table
+    listCisScanConfigurations: function(Client, types.ListCisScanConfigurationsInput): types.ListCisScanConfigurationsOutput, table
+    listCisScanResultsAggregatedByChecks: function(Client, types.ListCisScanResultsAggregatedByChecksInput): types.ListCisScanResultsAggregatedByChecksOutput, table
+    listCisScanResultsAggregatedByTargetResource: function(Client, types.ListCisScanResultsAggregatedByTargetResourceInput): types.ListCisScanResultsAggregatedByTargetResourceOutput, table
+    listCisScans: function(Client, types.ListCisScansInput): types.ListCisScansOutput, table
+    listCodeSecurityIntegrations: function(Client, types.ListCodeSecurityIntegrationsInput): types.ListCodeSecurityIntegrationsOutput, table
+    listCodeSecurityScanConfigurationAssociations: function(Client, types.ListCodeSecurityScanConfigurationAssociationsInput): types.ListCodeSecurityScanConfigurationAssociationsOutput, table
+    listCodeSecurityScanConfigurations: function(Client, types.ListCodeSecurityScanConfigurationsInput): types.ListCodeSecurityScanConfigurationsOutput, table
+    listCoverage: function(Client, types.ListCoverageInput): types.ListCoverageOutput, table
+    listCoverageStatistics: function(Client, types.ListCoverageStatisticsInput): types.ListCoverageStatisticsOutput, table
+    listDelegatedAdminAccounts: function(Client, types.ListDelegatedAdminAccountsInput): types.ListDelegatedAdminAccountsOutput, table
+    listFilters: function(Client, types.ListFiltersInput): types.ListFiltersOutput, table
+    listFindingAggregations: function(Client, types.ListFindingAggregationsInput): types.ListFindingAggregationsOutput, table
+    listFindings: function(Client, types.ListFindingsInput): types.ListFindingsOutput, table
+    listMembers: function(Client, types.ListMembersInput): types.ListMembersOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listUsageTotals: function(Client, types.ListUsageTotalsInput): types.ListUsageTotalsOutput, table
+    resetEncryptionKey: function(Client, types.ResetEncryptionKeyInput): types.ResetEncryptionKeyOutput, table
+    searchVulnerabilities: function(Client, types.SearchVulnerabilitiesInput): types.SearchVulnerabilitiesOutput, table
+    sendCisSessionHealth: function(Client, types.SendCisSessionHealthInput): types.SendCisSessionHealthOutput, table
+    sendCisSessionTelemetry: function(Client, types.SendCisSessionTelemetryInput): types.SendCisSessionTelemetryOutput, table
+    startCisSession: function(Client, types.StartCisSessionInput): types.StartCisSessionOutput, table
+    startCodeSecurityScan: function(Client, types.StartCodeSecurityScanInput): types.StartCodeSecurityScanOutput, table
+    stopCisSession: function(Client, types.StopCisSessionInput): types.StopCisSessionOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateCisScanConfiguration: function(Client, types.UpdateCisScanConfigurationInput): types.UpdateCisScanConfigurationOutput, table
+    updateCodeSecurityIntegration: function(Client, types.UpdateCodeSecurityIntegrationInput): types.UpdateCodeSecurityIntegrationOutput, table
+    updateCodeSecurityScanConfiguration: function(Client, types.UpdateCodeSecurityScanConfigurationInput): types.UpdateCodeSecurityScanConfigurationOutput, table
+    updateConfiguration: function(Client, types.UpdateConfigurationInput): types.UpdateConfigurationOutput, table
+    updateEc2DeepInspectionConfiguration: function(Client, types.UpdateEc2DeepInspectionConfigurationInput): types.UpdateEc2DeepInspectionConfigurationOutput, table
+    updateEncryptionKey: function(Client, types.UpdateEncryptionKeyInput): types.UpdateEncryptionKeyOutput, table
+    updateFilter: function(Client, types.UpdateFilterInput): types.UpdateFilterOutput, table
+    updateOrganizationConfiguration: function(Client, types.UpdateOrganizationConfigurationInput): types.UpdateOrganizationConfigurationOutput, table
+    updateOrgEc2DeepInspectionConfiguration: function(Client, types.UpdateOrgEc2DeepInspectionConfigurationInput): types.UpdateOrgEc2DeepInspectionConfigurationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

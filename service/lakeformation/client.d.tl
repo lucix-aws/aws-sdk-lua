@@ -1,0 +1,71 @@
+local types = require("lakeformation.types")
+
+local record Client
+    addLFTagsToResource: function(Client, types.AddLFTagsToResourceInput): types.AddLFTagsToResourceOutput, table
+    assumeDecoratedRoleWithSAML: function(Client, types.AssumeDecoratedRoleWithSAMLInput): types.AssumeDecoratedRoleWithSAMLOutput, table
+    batchGrantPermissions: function(Client, types.BatchGrantPermissionsInput): types.BatchGrantPermissionsOutput, table
+    batchRevokePermissions: function(Client, types.BatchRevokePermissionsInput): types.BatchRevokePermissionsOutput, table
+    cancelTransaction: function(Client, types.CancelTransactionInput): types.CancelTransactionOutput, table
+    commitTransaction: function(Client, types.CommitTransactionInput): types.CommitTransactionOutput, table
+    createDataCellsFilter: function(Client, types.CreateDataCellsFilterInput): types.CreateDataCellsFilterOutput, table
+    createLakeFormationIdentityCenterConfiguration: function(Client, types.CreateLakeFormationIdentityCenterConfigurationInput): types.CreateLakeFormationIdentityCenterConfigurationOutput, table
+    createLakeFormationOptIn: function(Client, types.CreateLakeFormationOptInInput): types.CreateLakeFormationOptInOutput, table
+    createLFTag: function(Client, types.CreateLFTagInput): types.CreateLFTagOutput, table
+    createLFTagExpression: function(Client, types.CreateLFTagExpressionInput): types.CreateLFTagExpressionOutput, table
+    deleteDataCellsFilter: function(Client, types.DeleteDataCellsFilterInput): types.DeleteDataCellsFilterOutput, table
+    deleteLakeFormationIdentityCenterConfiguration: function(Client, types.DeleteLakeFormationIdentityCenterConfigurationInput): types.DeleteLakeFormationIdentityCenterConfigurationOutput, table
+    deleteLakeFormationOptIn: function(Client, types.DeleteLakeFormationOptInInput): types.DeleteLakeFormationOptInOutput, table
+    deleteLFTag: function(Client, types.DeleteLFTagInput): types.DeleteLFTagOutput, table
+    deleteLFTagExpression: function(Client, types.DeleteLFTagExpressionInput): types.DeleteLFTagExpressionOutput, table
+    deleteObjectsOnCancel: function(Client, types.DeleteObjectsOnCancelInput): types.DeleteObjectsOnCancelOutput, table
+    deregisterResource: function(Client, types.DeregisterResourceInput): types.DeregisterResourceOutput, table
+    describeLakeFormationIdentityCenterConfiguration: function(Client, types.DescribeLakeFormationIdentityCenterConfigurationInput): types.DescribeLakeFormationIdentityCenterConfigurationOutput, table
+    describeResource: function(Client, types.DescribeResourceInput): types.DescribeResourceOutput, table
+    describeTransaction: function(Client, types.DescribeTransactionInput): types.DescribeTransactionOutput, table
+    extendTransaction: function(Client, types.ExtendTransactionInput): types.ExtendTransactionOutput, table
+    getDataCellsFilter: function(Client, types.GetDataCellsFilterInput): types.GetDataCellsFilterOutput, table
+    getDataLakePrincipal: function(Client, types.GetDataLakePrincipalInput): types.GetDataLakePrincipalOutput, table
+    getDataLakeSettings: function(Client, types.GetDataLakeSettingsInput): types.GetDataLakeSettingsOutput, table
+    getEffectivePermissionsForPath: function(Client, types.GetEffectivePermissionsForPathInput): types.GetEffectivePermissionsForPathOutput, table
+    getLFTag: function(Client, types.GetLFTagInput): types.GetLFTagOutput, table
+    getLFTagExpression: function(Client, types.GetLFTagExpressionInput): types.GetLFTagExpressionOutput, table
+    getQueryState: function(Client, types.GetQueryStateInput): types.GetQueryStateOutput, table
+    getQueryStatistics: function(Client, types.GetQueryStatisticsInput): types.GetQueryStatisticsOutput, table
+    getResourceLFTags: function(Client, types.GetResourceLFTagsInput): types.GetResourceLFTagsOutput, table
+    getTableObjects: function(Client, types.GetTableObjectsInput): types.GetTableObjectsOutput, table
+    getTemporaryDataLocationCredentials: function(Client, types.GetTemporaryDataLocationCredentialsInput): types.GetTemporaryDataLocationCredentialsOutput, table
+    getTemporaryGluePartitionCredentials: function(Client, types.GetTemporaryGluePartitionCredentialsInput): types.GetTemporaryGluePartitionCredentialsOutput, table
+    getTemporaryGlueTableCredentials: function(Client, types.GetTemporaryGlueTableCredentialsInput): types.GetTemporaryGlueTableCredentialsOutput, table
+    getWorkUnitResults: function(Client, types.GetWorkUnitResultsInput): types.GetWorkUnitResultsOutput, table
+    getWorkUnits: function(Client, types.GetWorkUnitsInput): types.GetWorkUnitsOutput, table
+    grantPermissions: function(Client, types.GrantPermissionsInput): types.GrantPermissionsOutput, table
+    listDataCellsFilter: function(Client, types.ListDataCellsFilterInput): types.ListDataCellsFilterOutput, table
+    listLakeFormationOptIns: function(Client, types.ListLakeFormationOptInsInput): types.ListLakeFormationOptInsOutput, table
+    listLFTagExpressions: function(Client, types.ListLFTagExpressionsInput): types.ListLFTagExpressionsOutput, table
+    listLFTags: function(Client, types.ListLFTagsInput): types.ListLFTagsOutput, table
+    listPermissions: function(Client, types.ListPermissionsInput): types.ListPermissionsOutput, table
+    listResources: function(Client, types.ListResourcesInput): types.ListResourcesOutput, table
+    listTableStorageOptimizers: function(Client, types.ListTableStorageOptimizersInput): types.ListTableStorageOptimizersOutput, table
+    listTransactions: function(Client, types.ListTransactionsInput): types.ListTransactionsOutput, table
+    putDataLakeSettings: function(Client, types.PutDataLakeSettingsInput): types.PutDataLakeSettingsOutput, table
+    registerResource: function(Client, types.RegisterResourceInput): types.RegisterResourceOutput, table
+    removeLFTagsFromResource: function(Client, types.RemoveLFTagsFromResourceInput): types.RemoveLFTagsFromResourceOutput, table
+    revokePermissions: function(Client, types.RevokePermissionsInput): types.RevokePermissionsOutput, table
+    searchDatabasesByLFTags: function(Client, types.SearchDatabasesByLFTagsInput): types.SearchDatabasesByLFTagsOutput, table
+    searchTablesByLFTags: function(Client, types.SearchTablesByLFTagsInput): types.SearchTablesByLFTagsOutput, table
+    startQueryPlanning: function(Client, types.StartQueryPlanningInput): types.StartQueryPlanningOutput, table
+    startTransaction: function(Client, types.StartTransactionInput): types.StartTransactionOutput, table
+    updateDataCellsFilter: function(Client, types.UpdateDataCellsFilterInput): types.UpdateDataCellsFilterOutput, table
+    updateLakeFormationIdentityCenterConfiguration: function(Client, types.UpdateLakeFormationIdentityCenterConfigurationInput): types.UpdateLakeFormationIdentityCenterConfigurationOutput, table
+    updateLFTag: function(Client, types.UpdateLFTagInput): types.UpdateLFTagOutput, table
+    updateLFTagExpression: function(Client, types.UpdateLFTagExpressionInput): types.UpdateLFTagExpressionOutput, table
+    updateResource: function(Client, types.UpdateResourceInput): types.UpdateResourceOutput, table
+    updateTableObjects: function(Client, types.UpdateTableObjectsInput): types.UpdateTableObjectsOutput, table
+    updateTableStorageOptimizer: function(Client, types.UpdateTableStorageOptimizerInput): types.UpdateTableStorageOptimizerOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

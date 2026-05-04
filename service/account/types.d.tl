@@ -1,0 +1,547 @@
+local record AcceptPrimaryEmailUpdateInput
+    AccountId: string
+    PrimaryEmail: string
+    Otp: string
+end
+
+local record AcceptPrimaryEmailUpdateOutput
+    Status: string
+end
+
+local record DeleteAlternateContactInput
+    AlternateContactType: string
+    AccountId: string
+end
+
+local record DeleteAlternateContactOutput
+end
+
+local record DisableRegionInput
+    AccountId: string
+    RegionName: string
+end
+
+local record DisableRegionOutput
+end
+
+local record EnableRegionInput
+    AccountId: string
+    RegionName: string
+end
+
+local record EnableRegionOutput
+end
+
+local record GetAccountInformationInput
+    AccountId: string
+end
+
+local record GetAccountInformationOutput
+    AccountId: string
+    AccountName: string
+    AccountCreatedDate: number
+    AccountState: string
+end
+
+local record GetAlternateContactInput
+    AlternateContactType: string
+    AccountId: string
+end
+
+local record GetAlternateContactOutput
+    AlternateContact: AlternateContact
+end
+
+local record GetContactInformationInput
+    AccountId: string
+end
+
+local record GetContactInformationOutput
+    ContactInformation: ContactInformation
+end
+
+local record GetGovCloudAccountInformationInput
+    StandardAccountId: string
+end
+
+local record GetGovCloudAccountInformationOutput
+    GovCloudAccountId: string
+    AccountState: string
+end
+
+local record GetPrimaryEmailInput
+    AccountId: string
+end
+
+local record GetPrimaryEmailOutput
+    PrimaryEmail: string
+end
+
+local record GetRegionOptStatusInput
+    AccountId: string
+    RegionName: string
+end
+
+local record GetRegionOptStatusOutput
+    RegionName: string
+    RegionOptStatus: string
+end
+
+local record ListRegionsInput
+    AccountId: string
+    MaxResults: number
+    NextToken: string
+    RegionOptStatusContains: {string}
+end
+
+local record ListRegionsOutput
+    NextToken: string
+    Regions: {Region}
+end
+
+local record PutAccountNameInput
+    AccountName: string
+    AccountId: string
+end
+
+local record PutAccountNameOutput
+end
+
+local record PutAlternateContactInput
+    Name: string
+    Title: string
+    EmailAddress: string
+    PhoneNumber: string
+    AlternateContactType: string
+    AccountId: string
+end
+
+local record PutAlternateContactOutput
+end
+
+local record PutContactInformationInput
+    ContactInformation: ContactInformation
+    AccountId: string
+end
+
+local record PutContactInformationOutput
+end
+
+local record StartPrimaryEmailUpdateInput
+    AccountId: string
+    PrimaryEmail: string
+end
+
+local record StartPrimaryEmailUpdateOutput
+    Status: string
+end
+
+local record AccessDeniedException
+    message: string
+    errorType: string
+end
+
+local record ConflictException
+    message: string
+    errorType: string
+end
+
+local record InternalServerException
+    message: string
+    errorType: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorType: string
+end
+
+local record TooManyRequestsException
+    message: string
+    errorType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    errorType: string
+end
+
+local record InternalServerException
+    message: string
+    errorType: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorType: string
+end
+
+local record TooManyRequestsException
+    message: string
+    errorType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    errorType: string
+end
+
+local record ConflictException
+    message: string
+    errorType: string
+end
+
+local record InternalServerException
+    message: string
+    errorType: string
+end
+
+local record TooManyRequestsException
+    message: string
+    errorType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    errorType: string
+end
+
+local record ConflictException
+    message: string
+    errorType: string
+end
+
+local record InternalServerException
+    message: string
+    errorType: string
+end
+
+local record TooManyRequestsException
+    message: string
+    errorType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    errorType: string
+end
+
+local record InternalServerException
+    message: string
+    errorType: string
+end
+
+local record TooManyRequestsException
+    message: string
+    errorType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    errorType: string
+end
+
+local record InternalServerException
+    message: string
+    errorType: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorType: string
+end
+
+local record TooManyRequestsException
+    message: string
+    errorType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    errorType: string
+end
+
+local record InternalServerException
+    message: string
+    errorType: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorType: string
+end
+
+local record TooManyRequestsException
+    message: string
+    errorType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    errorType: string
+end
+
+local record InternalServerException
+    message: string
+    errorType: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorType: string
+end
+
+local record ResourceUnavailableException
+    message: string
+    errorType: string
+end
+
+local record TooManyRequestsException
+    message: string
+    errorType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    errorType: string
+end
+
+local record InternalServerException
+    message: string
+    errorType: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorType: string
+end
+
+local record TooManyRequestsException
+    message: string
+    errorType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    errorType: string
+end
+
+local record InternalServerException
+    message: string
+    errorType: string
+end
+
+local record TooManyRequestsException
+    message: string
+    errorType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    errorType: string
+end
+
+local record InternalServerException
+    message: string
+    errorType: string
+end
+
+local record TooManyRequestsException
+    message: string
+    errorType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    errorType: string
+end
+
+local record InternalServerException
+    message: string
+    errorType: string
+end
+
+local record TooManyRequestsException
+    message: string
+    errorType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    errorType: string
+end
+
+local record InternalServerException
+    message: string
+    errorType: string
+end
+
+local record TooManyRequestsException
+    message: string
+    errorType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    errorType: string
+end
+
+local record InternalServerException
+    message: string
+    errorType: string
+end
+
+local record TooManyRequestsException
+    message: string
+    errorType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    errorType: string
+end
+
+local record ConflictException
+    message: string
+    errorType: string
+end
+
+local record InternalServerException
+    message: string
+    errorType: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorType: string
+end
+
+local record TooManyRequestsException
+    message: string
+    errorType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record M
+    AcceptPrimaryEmailUpdateInput: AcceptPrimaryEmailUpdateInput
+    AcceptPrimaryEmailUpdateOutput: AcceptPrimaryEmailUpdateOutput
+    DeleteAlternateContactInput: DeleteAlternateContactInput
+    DeleteAlternateContactOutput: DeleteAlternateContactOutput
+    DisableRegionInput: DisableRegionInput
+    DisableRegionOutput: DisableRegionOutput
+    EnableRegionInput: EnableRegionInput
+    EnableRegionOutput: EnableRegionOutput
+    GetAccountInformationInput: GetAccountInformationInput
+    GetAccountInformationOutput: GetAccountInformationOutput
+    GetAlternateContactInput: GetAlternateContactInput
+    GetAlternateContactOutput: GetAlternateContactOutput
+    GetContactInformationInput: GetContactInformationInput
+    GetContactInformationOutput: GetContactInformationOutput
+    GetGovCloudAccountInformationInput: GetGovCloudAccountInformationInput
+    GetGovCloudAccountInformationOutput: GetGovCloudAccountInformationOutput
+    GetPrimaryEmailInput: GetPrimaryEmailInput
+    GetPrimaryEmailOutput: GetPrimaryEmailOutput
+    GetRegionOptStatusInput: GetRegionOptStatusInput
+    GetRegionOptStatusOutput: GetRegionOptStatusOutput
+    ListRegionsInput: ListRegionsInput
+    ListRegionsOutput: ListRegionsOutput
+    PutAccountNameInput: PutAccountNameInput
+    PutAccountNameOutput: PutAccountNameOutput
+    PutAlternateContactInput: PutAlternateContactInput
+    PutAlternateContactOutput: PutAlternateContactOutput
+    PutContactInformationInput: PutContactInformationInput
+    PutContactInformationOutput: PutContactInformationOutput
+    StartPrimaryEmailUpdateInput: StartPrimaryEmailUpdateInput
+    StartPrimaryEmailUpdateOutput: StartPrimaryEmailUpdateOutput
+end
+
+return M

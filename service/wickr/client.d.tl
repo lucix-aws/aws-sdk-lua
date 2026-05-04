@@ -1,0 +1,54 @@
+local types = require("wickr.types")
+
+local record Client
+    batchCreateUser: function(Client, types.BatchCreateUserInput): types.BatchCreateUserOutput, table
+    batchDeleteUser: function(Client, types.BatchDeleteUserInput): types.BatchDeleteUserOutput, table
+    batchLookupUserUname: function(Client, types.BatchLookupUserUnameInput): types.BatchLookupUserUnameOutput, table
+    batchReinviteUser: function(Client, types.BatchReinviteUserInput): types.BatchReinviteUserOutput, table
+    batchResetDevicesForUser: function(Client, types.BatchResetDevicesForUserInput): types.BatchResetDevicesForUserOutput, table
+    batchToggleUserSuspendStatus: function(Client, types.BatchToggleUserSuspendStatusInput): types.BatchToggleUserSuspendStatusOutput, table
+    createBot: function(Client, types.CreateBotInput): types.CreateBotOutput, table
+    createDataRetentionBot: function(Client, types.CreateDataRetentionBotInput): types.CreateDataRetentionBotOutput, table
+    createDataRetentionBotChallenge: function(Client, types.CreateDataRetentionBotChallengeInput): types.CreateDataRetentionBotChallengeOutput, table
+    createNetwork: function(Client, types.CreateNetworkInput): types.CreateNetworkOutput, table
+    createSecurityGroup: function(Client, types.CreateSecurityGroupInput): types.CreateSecurityGroupOutput, table
+    deleteBot: function(Client, types.DeleteBotInput): types.DeleteBotOutput, table
+    deleteDataRetentionBot: function(Client, types.DeleteDataRetentionBotInput): types.DeleteDataRetentionBotOutput, table
+    deleteNetwork: function(Client, types.DeleteNetworkInput): types.DeleteNetworkOutput, table
+    deleteSecurityGroup: function(Client, types.DeleteSecurityGroupInput): types.DeleteSecurityGroupOutput, table
+    getBot: function(Client, types.GetBotInput): types.GetBotOutput, table
+    getBotsCount: function(Client, types.GetBotsCountInput): types.GetBotsCountOutput, table
+    getDataRetentionBot: function(Client, types.GetDataRetentionBotInput): types.GetDataRetentionBotOutput, table
+    getGuestUserHistoryCount: function(Client, types.GetGuestUserHistoryCountInput): types.GetGuestUserHistoryCountOutput, table
+    getNetwork: function(Client, types.GetNetworkInput): types.GetNetworkOutput, table
+    getNetworkSettings: function(Client, types.GetNetworkSettingsInput): types.GetNetworkSettingsOutput, table
+    getOidcInfo: function(Client, types.GetOidcInfoInput): types.GetOidcInfoOutput, table
+    getOpentdfConfig: function(Client, types.GetOpentdfConfigInput): types.GetOpentdfConfigOutput, table
+    getSecurityGroup: function(Client, types.GetSecurityGroupInput): types.GetSecurityGroupOutput, table
+    getUser: function(Client, types.GetUserInput): types.GetUserOutput, table
+    getUsersCount: function(Client, types.GetUsersCountInput): types.GetUsersCountOutput, table
+    listBlockedGuestUsers: function(Client, types.ListBlockedGuestUsersInput): types.ListBlockedGuestUsersOutput, table
+    listBots: function(Client, types.ListBotsInput): types.ListBotsOutput, table
+    listDevicesForUser: function(Client, types.ListDevicesForUserInput): types.ListDevicesForUserOutput, table
+    listGuestUsers: function(Client, types.ListGuestUsersInput): types.ListGuestUsersOutput, table
+    listNetworks: function(Client, types.ListNetworksInput): types.ListNetworksOutput, table
+    listSecurityGroups: function(Client, types.ListSecurityGroupsInput): types.ListSecurityGroupsOutput, table
+    listSecurityGroupUsers: function(Client, types.ListSecurityGroupUsersInput): types.ListSecurityGroupUsersOutput, table
+    listUsers: function(Client, types.ListUsersInput): types.ListUsersOutput, table
+    registerOidcConfig: function(Client, types.RegisterOidcConfigInput): types.RegisterOidcConfigOutput, table
+    registerOidcConfigTest: function(Client, types.RegisterOidcConfigTestInput): types.RegisterOidcConfigTestOutput, table
+    registerOpentdfConfig: function(Client, types.RegisterOpentdfConfigInput): types.RegisterOpentdfConfigOutput, table
+    updateBot: function(Client, types.UpdateBotInput): types.UpdateBotOutput, table
+    updateDataRetention: function(Client, types.UpdateDataRetentionInput): types.UpdateDataRetentionOutput, table
+    updateGuestUser: function(Client, types.UpdateGuestUserInput): types.UpdateGuestUserOutput, table
+    updateNetwork: function(Client, types.UpdateNetworkInput): types.UpdateNetworkOutput, table
+    updateNetworkSettings: function(Client, types.UpdateNetworkSettingsInput): types.UpdateNetworkSettingsOutput, table
+    updateSecurityGroup: function(Client, types.UpdateSecurityGroupInput): types.UpdateSecurityGroupOutput, table
+    updateUser: function(Client, types.UpdateUserInput): types.UpdateUserOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

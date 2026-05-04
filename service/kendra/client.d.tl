@@ -1,0 +1,76 @@
+local types = require("kendra.types")
+
+local record Client
+    associateEntitiesToExperience: function(Client, types.AssociateEntitiesToExperienceInput): types.AssociateEntitiesToExperienceOutput, table
+    associatePersonasToEntities: function(Client, types.AssociatePersonasToEntitiesInput): types.AssociatePersonasToEntitiesOutput, table
+    batchDeleteDocument: function(Client, types.BatchDeleteDocumentInput): types.BatchDeleteDocumentOutput, table
+    batchDeleteFeaturedResultsSet: function(Client, types.BatchDeleteFeaturedResultsSetInput): types.BatchDeleteFeaturedResultsSetOutput, table
+    batchGetDocumentStatus: function(Client, types.BatchGetDocumentStatusInput): types.BatchGetDocumentStatusOutput, table
+    batchPutDocument: function(Client, types.BatchPutDocumentInput): types.BatchPutDocumentOutput, table
+    clearQuerySuggestions: function(Client, types.ClearQuerySuggestionsInput): types.ClearQuerySuggestionsOutput, table
+    createAccessControlConfiguration: function(Client, types.CreateAccessControlConfigurationInput): types.CreateAccessControlConfigurationOutput, table
+    createDataSource: function(Client, types.CreateDataSourceInput): types.CreateDataSourceOutput, table
+    createExperience: function(Client, types.CreateExperienceInput): types.CreateExperienceOutput, table
+    createFaq: function(Client, types.CreateFaqInput): types.CreateFaqOutput, table
+    createFeaturedResultsSet: function(Client, types.CreateFeaturedResultsSetInput): types.CreateFeaturedResultsSetOutput, table
+    createIndex: function(Client, types.CreateIndexInput): types.CreateIndexOutput, table
+    createQuerySuggestionsBlockList: function(Client, types.CreateQuerySuggestionsBlockListInput): types.CreateQuerySuggestionsBlockListOutput, table
+    createThesaurus: function(Client, types.CreateThesaurusInput): types.CreateThesaurusOutput, table
+    deleteAccessControlConfiguration: function(Client, types.DeleteAccessControlConfigurationInput): types.DeleteAccessControlConfigurationOutput, table
+    deleteDataSource: function(Client, types.DeleteDataSourceInput): types.DeleteDataSourceOutput, table
+    deleteExperience: function(Client, types.DeleteExperienceInput): types.DeleteExperienceOutput, table
+    deleteFaq: function(Client, types.DeleteFaqInput): types.DeleteFaqOutput, table
+    deleteIndex: function(Client, types.DeleteIndexInput): types.DeleteIndexOutput, table
+    deletePrincipalMapping: function(Client, types.DeletePrincipalMappingInput): types.DeletePrincipalMappingOutput, table
+    deleteQuerySuggestionsBlockList: function(Client, types.DeleteQuerySuggestionsBlockListInput): types.DeleteQuerySuggestionsBlockListOutput, table
+    deleteThesaurus: function(Client, types.DeleteThesaurusInput): types.DeleteThesaurusOutput, table
+    describeAccessControlConfiguration: function(Client, types.DescribeAccessControlConfigurationInput): types.DescribeAccessControlConfigurationOutput, table
+    describeDataSource: function(Client, types.DescribeDataSourceInput): types.DescribeDataSourceOutput, table
+    describeExperience: function(Client, types.DescribeExperienceInput): types.DescribeExperienceOutput, table
+    describeFaq: function(Client, types.DescribeFaqInput): types.DescribeFaqOutput, table
+    describeFeaturedResultsSet: function(Client, types.DescribeFeaturedResultsSetInput): types.DescribeFeaturedResultsSetOutput, table
+    describeIndex: function(Client, types.DescribeIndexInput): types.DescribeIndexOutput, table
+    describePrincipalMapping: function(Client, types.DescribePrincipalMappingInput): types.DescribePrincipalMappingOutput, table
+    describeQuerySuggestionsBlockList: function(Client, types.DescribeQuerySuggestionsBlockListInput): types.DescribeQuerySuggestionsBlockListOutput, table
+    describeQuerySuggestionsConfig: function(Client, types.DescribeQuerySuggestionsConfigInput): types.DescribeQuerySuggestionsConfigOutput, table
+    describeThesaurus: function(Client, types.DescribeThesaurusInput): types.DescribeThesaurusOutput, table
+    disassociateEntitiesFromExperience: function(Client, types.DisassociateEntitiesFromExperienceInput): types.DisassociateEntitiesFromExperienceOutput, table
+    disassociatePersonasFromEntities: function(Client, types.DisassociatePersonasFromEntitiesInput): types.DisassociatePersonasFromEntitiesOutput, table
+    getQuerySuggestions: function(Client, types.GetQuerySuggestionsInput): types.GetQuerySuggestionsOutput, table
+    getSnapshots: function(Client, types.GetSnapshotsInput): types.GetSnapshotsOutput, table
+    listAccessControlConfigurations: function(Client, types.ListAccessControlConfigurationsInput): types.ListAccessControlConfigurationsOutput, table
+    listDataSources: function(Client, types.ListDataSourcesInput): types.ListDataSourcesOutput, table
+    listDataSourceSyncJobs: function(Client, types.ListDataSourceSyncJobsInput): types.ListDataSourceSyncJobsOutput, table
+    listEntityPersonas: function(Client, types.ListEntityPersonasInput): types.ListEntityPersonasOutput, table
+    listExperienceEntities: function(Client, types.ListExperienceEntitiesInput): types.ListExperienceEntitiesOutput, table
+    listExperiences: function(Client, types.ListExperiencesInput): types.ListExperiencesOutput, table
+    listFaqs: function(Client, types.ListFaqsInput): types.ListFaqsOutput, table
+    listFeaturedResultsSets: function(Client, types.ListFeaturedResultsSetsInput): types.ListFeaturedResultsSetsOutput, table
+    listGroupsOlderThanOrderingId: function(Client, types.ListGroupsOlderThanOrderingIdInput): types.ListGroupsOlderThanOrderingIdOutput, table
+    listIndices: function(Client, types.ListIndicesInput): types.ListIndicesOutput, table
+    listQuerySuggestionsBlockLists: function(Client, types.ListQuerySuggestionsBlockListsInput): types.ListQuerySuggestionsBlockListsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listThesauri: function(Client, types.ListThesauriInput): types.ListThesauriOutput, table
+    putPrincipalMapping: function(Client, types.PutPrincipalMappingInput): types.PutPrincipalMappingOutput, table
+    query: function(Client, types.QueryInput): types.QueryOutput, table
+    retrieve: function(Client, types.RetrieveInput): types.RetrieveOutput, table
+    startDataSourceSyncJob: function(Client, types.StartDataSourceSyncJobInput): types.StartDataSourceSyncJobOutput, table
+    stopDataSourceSyncJob: function(Client, types.StopDataSourceSyncJobInput): types.StopDataSourceSyncJobOutput, table
+    submitFeedback: function(Client, types.SubmitFeedbackInput): types.SubmitFeedbackOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAccessControlConfiguration: function(Client, types.UpdateAccessControlConfigurationInput): types.UpdateAccessControlConfigurationOutput, table
+    updateDataSource: function(Client, types.UpdateDataSourceInput): types.UpdateDataSourceOutput, table
+    updateExperience: function(Client, types.UpdateExperienceInput): types.UpdateExperienceOutput, table
+    updateFeaturedResultsSet: function(Client, types.UpdateFeaturedResultsSetInput): types.UpdateFeaturedResultsSetOutput, table
+    updateIndex: function(Client, types.UpdateIndexInput): types.UpdateIndexOutput, table
+    updateQuerySuggestionsBlockList: function(Client, types.UpdateQuerySuggestionsBlockListInput): types.UpdateQuerySuggestionsBlockListOutput, table
+    updateQuerySuggestionsConfig: function(Client, types.UpdateQuerySuggestionsConfigInput): types.UpdateQuerySuggestionsConfigOutput, table
+    updateThesaurus: function(Client, types.UpdateThesaurusInput): types.UpdateThesaurusOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

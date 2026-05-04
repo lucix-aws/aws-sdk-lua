@@ -1,0 +1,53 @@
+local types = require("neptunedata.types")
+
+local record Client
+    cancelGremlinQuery: function(Client, types.CancelGremlinQueryInput): types.CancelGremlinQueryOutput, table
+    cancelLoaderJob: function(Client, types.CancelLoaderJobInput): types.CancelLoaderJobOutput, table
+    cancelMLDataProcessingJob: function(Client, types.CancelMLDataProcessingJobInput): types.CancelMLDataProcessingJobOutput, table
+    cancelMLModelTrainingJob: function(Client, types.CancelMLModelTrainingJobInput): types.CancelMLModelTrainingJobOutput, table
+    cancelMLModelTransformJob: function(Client, types.CancelMLModelTransformJobInput): types.CancelMLModelTransformJobOutput, table
+    cancelOpenCypherQuery: function(Client, types.CancelOpenCypherQueryInput): types.CancelOpenCypherQueryOutput, table
+    createMLEndpoint: function(Client, types.CreateMLEndpointInput): types.CreateMLEndpointOutput, table
+    deleteMLEndpoint: function(Client, types.DeleteMLEndpointInput): types.DeleteMLEndpointOutput, table
+    deletePropertygraphStatistics: function(Client, types.DeletePropertygraphStatisticsInput): types.DeletePropertygraphStatisticsOutput, table
+    deleteSparqlStatistics: function(Client, types.DeleteSparqlStatisticsInput): types.DeleteSparqlStatisticsOutput, table
+    executeFastReset: function(Client, types.ExecuteFastResetInput): types.ExecuteFastResetOutput, table
+    executeGremlinExplainQuery: function(Client, types.ExecuteGremlinExplainQueryInput): types.ExecuteGremlinExplainQueryOutput, table
+    executeGremlinProfileQuery: function(Client, types.ExecuteGremlinProfileQueryInput): types.ExecuteGremlinProfileQueryOutput, table
+    executeGremlinQuery: function(Client, types.ExecuteGremlinQueryInput): types.ExecuteGremlinQueryOutput, table
+    executeOpenCypherExplainQuery: function(Client, types.ExecuteOpenCypherExplainQueryInput): types.ExecuteOpenCypherExplainQueryOutput, table
+    executeOpenCypherQuery: function(Client, types.ExecuteOpenCypherQueryInput): types.ExecuteOpenCypherQueryOutput, table
+    getEngineStatus: function(Client, types.GetEngineStatusInput): types.GetEngineStatusOutput, table
+    getGremlinQueryStatus: function(Client, types.GetGremlinQueryStatusInput): types.GetGremlinQueryStatusOutput, table
+    getLoaderJobStatus: function(Client, types.GetLoaderJobStatusInput): types.GetLoaderJobStatusOutput, table
+    getMLDataProcessingJob: function(Client, types.GetMLDataProcessingJobInput): types.GetMLDataProcessingJobOutput, table
+    getMLEndpoint: function(Client, types.GetMLEndpointInput): types.GetMLEndpointOutput, table
+    getMLModelTrainingJob: function(Client, types.GetMLModelTrainingJobInput): types.GetMLModelTrainingJobOutput, table
+    getMLModelTransformJob: function(Client, types.GetMLModelTransformJobInput): types.GetMLModelTransformJobOutput, table
+    getOpenCypherQueryStatus: function(Client, types.GetOpenCypherQueryStatusInput): types.GetOpenCypherQueryStatusOutput, table
+    getPropertygraphStatistics: function(Client, types.GetPropertygraphStatisticsInput): types.GetPropertygraphStatisticsOutput, table
+    getPropertygraphStream: function(Client, types.GetPropertygraphStreamInput): types.GetPropertygraphStreamOutput, table
+    getPropertygraphSummary: function(Client, types.GetPropertygraphSummaryInput): types.GetPropertygraphSummaryOutput, table
+    getRDFGraphSummary: function(Client, types.GetRDFGraphSummaryInput): types.GetRDFGraphSummaryOutput, table
+    getSparqlStatistics: function(Client, types.GetSparqlStatisticsInput): types.GetSparqlStatisticsOutput, table
+    getSparqlStream: function(Client, types.GetSparqlStreamInput): types.GetSparqlStreamOutput, table
+    listGremlinQueries: function(Client, types.ListGremlinQueriesInput): types.ListGremlinQueriesOutput, table
+    listLoaderJobs: function(Client, types.ListLoaderJobsInput): types.ListLoaderJobsOutput, table
+    listMLDataProcessingJobs: function(Client, types.ListMLDataProcessingJobsInput): types.ListMLDataProcessingJobsOutput, table
+    listMLEndpoints: function(Client, types.ListMLEndpointsInput): types.ListMLEndpointsOutput, table
+    listMLModelTrainingJobs: function(Client, types.ListMLModelTrainingJobsInput): types.ListMLModelTrainingJobsOutput, table
+    listMLModelTransformJobs: function(Client, types.ListMLModelTransformJobsInput): types.ListMLModelTransformJobsOutput, table
+    listOpenCypherQueries: function(Client, types.ListOpenCypherQueriesInput): types.ListOpenCypherQueriesOutput, table
+    managePropertygraphStatistics: function(Client, types.ManagePropertygraphStatisticsInput): types.ManagePropertygraphStatisticsOutput, table
+    manageSparqlStatistics: function(Client, types.ManageSparqlStatisticsInput): types.ManageSparqlStatisticsOutput, table
+    startLoaderJob: function(Client, types.StartLoaderJobInput): types.StartLoaderJobOutput, table
+    startMLDataProcessingJob: function(Client, types.StartMLDataProcessingJobInput): types.StartMLDataProcessingJobOutput, table
+    startMLModelTrainingJob: function(Client, types.StartMLModelTrainingJobInput): types.StartMLModelTrainingJobOutput, table
+    startMLModelTransformJob: function(Client, types.StartMLModelTransformJobInput): types.StartMLModelTransformJobOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,1498 @@
+local record CreateAccessTokenInput
+    name: string
+    expiresTime: number
+end
+
+local record CreateAccessTokenOutput
+    secret: string
+    name: string
+    expiresTime: number
+    accessTokenId: string
+end
+
+local record CreateDevEnvironmentInput
+    spaceName: string
+    projectName: string
+    repositories: {RepositoryInput}
+    clientToken: string
+    alias: string
+    ides: {IdeConfiguration}
+    instanceType: string
+    inactivityTimeoutMinutes: number
+    persistentStorage: PersistentStorageConfiguration
+    vpcConnectionName: string
+end
+
+local record CreateDevEnvironmentOutput
+    spaceName: string
+    projectName: string
+    id: string
+    vpcConnectionName: string
+end
+
+local record CreateProjectInput
+    spaceName: string
+    displayName: string
+    description: string
+end
+
+local record CreateProjectOutput
+    spaceName: string
+    name: string
+    displayName: string
+    description: string
+end
+
+local record CreateSourceRepositoryInput
+    spaceName: string
+    projectName: string
+    name: string
+    description: string
+end
+
+local record CreateSourceRepositoryOutput
+    spaceName: string
+    projectName: string
+    name: string
+    description: string
+end
+
+local record CreateSourceRepositoryBranchInput
+    spaceName: string
+    projectName: string
+    sourceRepositoryName: string
+    name: string
+    headCommitId: string
+end
+
+local record CreateSourceRepositoryBranchOutput
+    ref: string
+    name: string
+    lastUpdatedTime: number
+    headCommitId: string
+end
+
+local record DeleteAccessTokenInput
+    id: string
+end
+
+local record DeleteAccessTokenOutput
+end
+
+local record DeleteDevEnvironmentInput
+    spaceName: string
+    projectName: string
+    id: string
+end
+
+local record DeleteDevEnvironmentOutput
+    spaceName: string
+    projectName: string
+    id: string
+end
+
+local record DeleteProjectInput
+    spaceName: string
+    name: string
+end
+
+local record DeleteProjectOutput
+    spaceName: string
+    name: string
+    displayName: string
+end
+
+local record DeleteSourceRepositoryInput
+    spaceName: string
+    projectName: string
+    name: string
+end
+
+local record DeleteSourceRepositoryOutput
+    spaceName: string
+    projectName: string
+    name: string
+end
+
+local record DeleteSpaceInput
+    name: string
+end
+
+local record DeleteSpaceOutput
+    name: string
+    displayName: string
+end
+
+local record GetDevEnvironmentInput
+    spaceName: string
+    projectName: string
+    id: string
+end
+
+local record GetDevEnvironmentOutput
+    spaceName: string
+    projectName: string
+    id: string
+    lastUpdatedTime: number
+    creatorId: string
+    status: string
+    statusReason: string
+    repositories: {DevEnvironmentRepositorySummary}
+    alias: string
+    ides: {Ide}
+    instanceType: string
+    inactivityTimeoutMinutes: number
+    persistentStorage: PersistentStorage
+    vpcConnectionName: string
+end
+
+local record GetProjectInput
+    spaceName: string
+    name: string
+end
+
+local record GetProjectOutput
+    spaceName: string
+    name: string
+    displayName: string
+    description: string
+end
+
+local record GetSourceRepositoryInput
+    spaceName: string
+    projectName: string
+    name: string
+end
+
+local record GetSourceRepositoryOutput
+    spaceName: string
+    projectName: string
+    name: string
+    description: string
+    lastUpdatedTime: number
+    createdTime: number
+end
+
+local record GetSourceRepositoryCloneUrlsInput
+    spaceName: string
+    projectName: string
+    sourceRepositoryName: string
+end
+
+local record GetSourceRepositoryCloneUrlsOutput
+    https: string
+end
+
+local record GetSpaceInput
+    name: string
+end
+
+local record GetSpaceOutput
+    name: string
+    regionName: string
+    displayName: string
+    description: string
+end
+
+local record GetSubscriptionInput
+    spaceName: string
+end
+
+local record GetSubscriptionOutput
+    subscriptionType: string
+    awsAccountName: string
+    pendingSubscriptionType: string
+    pendingSubscriptionStartTime: number
+end
+
+local record GetUserDetailsInput
+    id: string
+    userName: string
+end
+
+local record GetUserDetailsOutput
+    userId: string
+    userName: string
+    displayName: string
+    primaryEmail: EmailAddress
+    version: string
+end
+
+local record GetWorkflowInput
+    spaceName: string
+    id: string
+    projectName: string
+end
+
+local record GetWorkflowOutput
+    spaceName: string
+    projectName: string
+    id: string
+    name: string
+    sourceRepositoryName: string
+    sourceBranchName: string
+    definition: WorkflowDefinition
+    createdTime: number
+    lastUpdatedTime: number
+    runMode: string
+    status: string
+end
+
+local record GetWorkflowRunInput
+    spaceName: string
+    id: string
+    projectName: string
+end
+
+local record GetWorkflowRunOutput
+    spaceName: string
+    projectName: string
+    id: string
+    workflowId: string
+    status: string
+    statusReasons: {WorkflowRunStatusReason}
+    startTime: number
+    endTime: number
+    lastUpdatedTime: number
+end
+
+local record ListAccessTokensInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListAccessTokensOutput
+    items: {AccessTokenSummary}
+    nextToken: string
+end
+
+local record ListDevEnvironmentsInput
+    spaceName: string
+    projectName: string
+    filters: {Filter}
+    nextToken: string
+    maxResults: number
+end
+
+local record ListDevEnvironmentsOutput
+    items: {DevEnvironmentSummary}
+    nextToken: string
+end
+
+local record ListDevEnvironmentSessionsInput
+    spaceName: string
+    projectName: string
+    devEnvironmentId: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListDevEnvironmentSessionsOutput
+    items: {DevEnvironmentSessionSummary}
+    nextToken: string
+end
+
+local record ListEventLogsInput
+    spaceName: string
+    startTime: number
+    endTime: number
+    eventName: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListEventLogsOutput
+    nextToken: string
+    items: {EventLogEntry}
+end
+
+local record ListProjectsInput
+    spaceName: string
+    nextToken: string
+    maxResults: number
+    filters: {ProjectListFilter}
+end
+
+local record ListProjectsOutput
+    nextToken: string
+    items: {ProjectSummary}
+end
+
+local record ListSourceRepositoriesInput
+    spaceName: string
+    projectName: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListSourceRepositoriesOutput
+    items: {ListSourceRepositoriesItem}
+    nextToken: string
+end
+
+local record ListSourceRepositoryBranchesInput
+    spaceName: string
+    projectName: string
+    sourceRepositoryName: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListSourceRepositoryBranchesOutput
+    nextToken: string
+    items: {ListSourceRepositoryBranchesItem}
+end
+
+local record ListSpacesInput
+    nextToken: string
+end
+
+local record ListSpacesOutput
+    nextToken: string
+    items: {SpaceSummary}
+end
+
+local record ListWorkflowRunsInput
+    spaceName: string
+    workflowId: string
+    projectName: string
+    nextToken: string
+    maxResults: number
+    sortBy: {WorkflowRunSortCriteria}
+end
+
+local record ListWorkflowRunsOutput
+    nextToken: string
+    items: {WorkflowRunSummary}
+end
+
+local record ListWorkflowsInput
+    spaceName: string
+    projectName: string
+    nextToken: string
+    maxResults: number
+    sortBy: {WorkflowSortCriteria}
+end
+
+local record ListWorkflowsOutput
+    nextToken: string
+    items: {WorkflowSummary}
+end
+
+local record StartDevEnvironmentInput
+    spaceName: string
+    projectName: string
+    id: string
+    ides: {IdeConfiguration}
+    instanceType: string
+    inactivityTimeoutMinutes: number
+end
+
+local record StartDevEnvironmentOutput
+    spaceName: string
+    projectName: string
+    id: string
+    status: string
+end
+
+local record StartDevEnvironmentSessionInput
+    spaceName: string
+    projectName: string
+    id: string
+    sessionConfiguration: DevEnvironmentSessionConfiguration
+end
+
+local record StartDevEnvironmentSessionOutput
+    accessDetails: DevEnvironmentAccessDetails
+    sessionId: string
+    spaceName: string
+    projectName: string
+    id: string
+end
+
+local record StartWorkflowRunInput
+    spaceName: string
+    projectName: string
+    workflowId: string
+    clientToken: string
+end
+
+local record StartWorkflowRunOutput
+    spaceName: string
+    projectName: string
+    id: string
+    workflowId: string
+end
+
+local record StopDevEnvironmentInput
+    spaceName: string
+    projectName: string
+    id: string
+end
+
+local record StopDevEnvironmentOutput
+    spaceName: string
+    projectName: string
+    id: string
+    status: string
+end
+
+local record StopDevEnvironmentSessionInput
+    spaceName: string
+    projectName: string
+    id: string
+    sessionId: string
+end
+
+local record StopDevEnvironmentSessionOutput
+    spaceName: string
+    projectName: string
+    id: string
+    sessionId: string
+end
+
+local record UpdateDevEnvironmentInput
+    spaceName: string
+    projectName: string
+    id: string
+    alias: string
+    ides: {IdeConfiguration}
+    instanceType: string
+    inactivityTimeoutMinutes: number
+    clientToken: string
+end
+
+local record UpdateDevEnvironmentOutput
+    id: string
+    spaceName: string
+    projectName: string
+    alias: string
+    ides: {IdeConfiguration}
+    instanceType: string
+    inactivityTimeoutMinutes: number
+    clientToken: string
+end
+
+local record UpdateProjectInput
+    spaceName: string
+    name: string
+    description: string
+end
+
+local record UpdateProjectOutput
+    spaceName: string
+    name: string
+    displayName: string
+    description: string
+end
+
+local record UpdateSpaceInput
+    name: string
+    description: string
+end
+
+local record UpdateSpaceOutput
+    name: string
+    displayName: string
+    description: string
+end
+
+local record VerifySessionInput
+end
+
+local record VerifySessionOutput
+    identity: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    CreateAccessTokenInput: CreateAccessTokenInput
+    CreateAccessTokenOutput: CreateAccessTokenOutput
+    CreateDevEnvironmentInput: CreateDevEnvironmentInput
+    CreateDevEnvironmentOutput: CreateDevEnvironmentOutput
+    CreateProjectInput: CreateProjectInput
+    CreateProjectOutput: CreateProjectOutput
+    CreateSourceRepositoryInput: CreateSourceRepositoryInput
+    CreateSourceRepositoryOutput: CreateSourceRepositoryOutput
+    CreateSourceRepositoryBranchInput: CreateSourceRepositoryBranchInput
+    CreateSourceRepositoryBranchOutput: CreateSourceRepositoryBranchOutput
+    DeleteAccessTokenInput: DeleteAccessTokenInput
+    DeleteAccessTokenOutput: DeleteAccessTokenOutput
+    DeleteDevEnvironmentInput: DeleteDevEnvironmentInput
+    DeleteDevEnvironmentOutput: DeleteDevEnvironmentOutput
+    DeleteProjectInput: DeleteProjectInput
+    DeleteProjectOutput: DeleteProjectOutput
+    DeleteSourceRepositoryInput: DeleteSourceRepositoryInput
+    DeleteSourceRepositoryOutput: DeleteSourceRepositoryOutput
+    DeleteSpaceInput: DeleteSpaceInput
+    DeleteSpaceOutput: DeleteSpaceOutput
+    GetDevEnvironmentInput: GetDevEnvironmentInput
+    GetDevEnvironmentOutput: GetDevEnvironmentOutput
+    GetProjectInput: GetProjectInput
+    GetProjectOutput: GetProjectOutput
+    GetSourceRepositoryInput: GetSourceRepositoryInput
+    GetSourceRepositoryOutput: GetSourceRepositoryOutput
+    GetSourceRepositoryCloneUrlsInput: GetSourceRepositoryCloneUrlsInput
+    GetSourceRepositoryCloneUrlsOutput: GetSourceRepositoryCloneUrlsOutput
+    GetSpaceInput: GetSpaceInput
+    GetSpaceOutput: GetSpaceOutput
+    GetSubscriptionInput: GetSubscriptionInput
+    GetSubscriptionOutput: GetSubscriptionOutput
+    GetUserDetailsInput: GetUserDetailsInput
+    GetUserDetailsOutput: GetUserDetailsOutput
+    GetWorkflowInput: GetWorkflowInput
+    GetWorkflowOutput: GetWorkflowOutput
+    GetWorkflowRunInput: GetWorkflowRunInput
+    GetWorkflowRunOutput: GetWorkflowRunOutput
+    ListAccessTokensInput: ListAccessTokensInput
+    ListAccessTokensOutput: ListAccessTokensOutput
+    ListDevEnvironmentsInput: ListDevEnvironmentsInput
+    ListDevEnvironmentsOutput: ListDevEnvironmentsOutput
+    ListDevEnvironmentSessionsInput: ListDevEnvironmentSessionsInput
+    ListDevEnvironmentSessionsOutput: ListDevEnvironmentSessionsOutput
+    ListEventLogsInput: ListEventLogsInput
+    ListEventLogsOutput: ListEventLogsOutput
+    ListProjectsInput: ListProjectsInput
+    ListProjectsOutput: ListProjectsOutput
+    ListSourceRepositoriesInput: ListSourceRepositoriesInput
+    ListSourceRepositoriesOutput: ListSourceRepositoriesOutput
+    ListSourceRepositoryBranchesInput: ListSourceRepositoryBranchesInput
+    ListSourceRepositoryBranchesOutput: ListSourceRepositoryBranchesOutput
+    ListSpacesInput: ListSpacesInput
+    ListSpacesOutput: ListSpacesOutput
+    ListWorkflowRunsInput: ListWorkflowRunsInput
+    ListWorkflowRunsOutput: ListWorkflowRunsOutput
+    ListWorkflowsInput: ListWorkflowsInput
+    ListWorkflowsOutput: ListWorkflowsOutput
+    StartDevEnvironmentInput: StartDevEnvironmentInput
+    StartDevEnvironmentOutput: StartDevEnvironmentOutput
+    StartDevEnvironmentSessionInput: StartDevEnvironmentSessionInput
+    StartDevEnvironmentSessionOutput: StartDevEnvironmentSessionOutput
+    StartWorkflowRunInput: StartWorkflowRunInput
+    StartWorkflowRunOutput: StartWorkflowRunOutput
+    StopDevEnvironmentInput: StopDevEnvironmentInput
+    StopDevEnvironmentOutput: StopDevEnvironmentOutput
+    StopDevEnvironmentSessionInput: StopDevEnvironmentSessionInput
+    StopDevEnvironmentSessionOutput: StopDevEnvironmentSessionOutput
+    UpdateDevEnvironmentInput: UpdateDevEnvironmentInput
+    UpdateDevEnvironmentOutput: UpdateDevEnvironmentOutput
+    UpdateProjectInput: UpdateProjectInput
+    UpdateProjectOutput: UpdateProjectOutput
+    UpdateSpaceInput: UpdateSpaceInput
+    UpdateSpaceOutput: UpdateSpaceOutput
+    VerifySessionInput: VerifySessionInput
+    VerifySessionOutput: VerifySessionOutput
+end
+
+return M

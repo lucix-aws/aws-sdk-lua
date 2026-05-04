@@ -1,0 +1,29 @@
+local types = require("keyspaces.types")
+
+local record Client
+    createKeyspace: function(Client, types.CreateKeyspaceInput): types.CreateKeyspaceOutput, table
+    createTable: function(Client, types.CreateTableInput): types.CreateTableOutput, table
+    createType: function(Client, types.CreateTypeInput): types.CreateTypeOutput, table
+    deleteKeyspace: function(Client, types.DeleteKeyspaceInput): types.DeleteKeyspaceOutput, table
+    deleteTable: function(Client, types.DeleteTableInput): types.DeleteTableOutput, table
+    deleteType: function(Client, types.DeleteTypeInput): types.DeleteTypeOutput, table
+    getKeyspace: function(Client, types.GetKeyspaceInput): types.GetKeyspaceOutput, table
+    getTable: function(Client, types.GetTableInput): types.GetTableOutput, table
+    getTableAutoScalingSettings: function(Client, types.GetTableAutoScalingSettingsInput): types.GetTableAutoScalingSettingsOutput, table
+    getType: function(Client, types.GetTypeInput): types.GetTypeOutput, table
+    listKeyspaces: function(Client, types.ListKeyspacesInput): types.ListKeyspacesOutput, table
+    listTables: function(Client, types.ListTablesInput): types.ListTablesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTypes: function(Client, types.ListTypesInput): types.ListTypesOutput, table
+    restoreTable: function(Client, types.RestoreTableInput): types.RestoreTableOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateKeyspace: function(Client, types.UpdateKeyspaceInput): types.UpdateKeyspaceOutput, table
+    updateTable: function(Client, types.UpdateTableInput): types.UpdateTableOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

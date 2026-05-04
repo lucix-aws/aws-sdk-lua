@@ -1,0 +1,38 @@
+local record GetRevocationStatusInput
+    signatureTimestamp: number
+    platformId: string
+    profileVersionArn: string
+    jobArn: string
+    certificateHashes: {string}
+end
+
+local record GetRevocationStatusOutput
+    revokedEntities: {string}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServiceErrorException
+    message: string
+    code: string
+end
+
+local record TooManyRequestsException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+end
+
+local record M
+    GetRevocationStatusInput: GetRevocationStatusInput
+    GetRevocationStatusOutput: GetRevocationStatusOutput
+end
+
+return M

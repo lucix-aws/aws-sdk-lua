@@ -1,0 +1,47 @@
+local types = require("inspector.types")
+
+local record Client
+    addAttributesToFindings: function(Client, types.AddAttributesToFindingsInput): types.AddAttributesToFindingsOutput, table
+    createAssessmentTarget: function(Client, types.CreateAssessmentTargetInput): types.CreateAssessmentTargetOutput, table
+    createAssessmentTemplate: function(Client, types.CreateAssessmentTemplateInput): types.CreateAssessmentTemplateOutput, table
+    createExclusionsPreview: function(Client, types.CreateExclusionsPreviewInput): types.CreateExclusionsPreviewOutput, table
+    createResourceGroup: function(Client, types.CreateResourceGroupInput): types.CreateResourceGroupOutput, table
+    deleteAssessmentRun: function(Client, types.DeleteAssessmentRunInput): types.DeleteAssessmentRunOutput, table
+    deleteAssessmentTarget: function(Client, types.DeleteAssessmentTargetInput): types.DeleteAssessmentTargetOutput, table
+    deleteAssessmentTemplate: function(Client, types.DeleteAssessmentTemplateInput): types.DeleteAssessmentTemplateOutput, table
+    describeAssessmentRuns: function(Client, types.DescribeAssessmentRunsInput): types.DescribeAssessmentRunsOutput, table
+    describeAssessmentTargets: function(Client, types.DescribeAssessmentTargetsInput): types.DescribeAssessmentTargetsOutput, table
+    describeAssessmentTemplates: function(Client, types.DescribeAssessmentTemplatesInput): types.DescribeAssessmentTemplatesOutput, table
+    describeCrossAccountAccessRole: function(Client, types.DescribeCrossAccountAccessRoleInput): types.DescribeCrossAccountAccessRoleOutput, table
+    describeExclusions: function(Client, types.DescribeExclusionsInput): types.DescribeExclusionsOutput, table
+    describeFindings: function(Client, types.DescribeFindingsInput): types.DescribeFindingsOutput, table
+    describeResourceGroups: function(Client, types.DescribeResourceGroupsInput): types.DescribeResourceGroupsOutput, table
+    describeRulesPackages: function(Client, types.DescribeRulesPackagesInput): types.DescribeRulesPackagesOutput, table
+    getAssessmentReport: function(Client, types.GetAssessmentReportInput): types.GetAssessmentReportOutput, table
+    getExclusionsPreview: function(Client, types.GetExclusionsPreviewInput): types.GetExclusionsPreviewOutput, table
+    getTelemetryMetadata: function(Client, types.GetTelemetryMetadataInput): types.GetTelemetryMetadataOutput, table
+    listAssessmentRunAgents: function(Client, types.ListAssessmentRunAgentsInput): types.ListAssessmentRunAgentsOutput, table
+    listAssessmentRuns: function(Client, types.ListAssessmentRunsInput): types.ListAssessmentRunsOutput, table
+    listAssessmentTargets: function(Client, types.ListAssessmentTargetsInput): types.ListAssessmentTargetsOutput, table
+    listAssessmentTemplates: function(Client, types.ListAssessmentTemplatesInput): types.ListAssessmentTemplatesOutput, table
+    listEventSubscriptions: function(Client, types.ListEventSubscriptionsInput): types.ListEventSubscriptionsOutput, table
+    listExclusions: function(Client, types.ListExclusionsInput): types.ListExclusionsOutput, table
+    listFindings: function(Client, types.ListFindingsInput): types.ListFindingsOutput, table
+    listRulesPackages: function(Client, types.ListRulesPackagesInput): types.ListRulesPackagesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    previewAgents: function(Client, types.PreviewAgentsInput): types.PreviewAgentsOutput, table
+    registerCrossAccountAccessRole: function(Client, types.RegisterCrossAccountAccessRoleInput): types.RegisterCrossAccountAccessRoleOutput, table
+    removeAttributesFromFindings: function(Client, types.RemoveAttributesFromFindingsInput): types.RemoveAttributesFromFindingsOutput, table
+    setTagsForResource: function(Client, types.SetTagsForResourceInput): types.SetTagsForResourceOutput, table
+    startAssessmentRun: function(Client, types.StartAssessmentRunInput): types.StartAssessmentRunOutput, table
+    stopAssessmentRun: function(Client, types.StopAssessmentRunInput): types.StopAssessmentRunOutput, table
+    subscribeToEvent: function(Client, types.SubscribeToEventInput): types.SubscribeToEventOutput, table
+    unsubscribeFromEvent: function(Client, types.UnsubscribeFromEventInput): types.UnsubscribeFromEventOutput, table
+    updateAssessmentTarget: function(Client, types.UpdateAssessmentTargetInput): types.UpdateAssessmentTargetOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,15 @@
+local types = require("freetier.types")
+
+local record Client
+    getAccountActivity: function(Client, types.GetAccountActivityInput): types.GetAccountActivityOutput, table
+    getAccountPlanState: function(Client, types.GetAccountPlanStateInput): types.GetAccountPlanStateOutput, table
+    getFreeTierUsage: function(Client, types.GetFreeTierUsageInput): types.GetFreeTierUsageOutput, table
+    listAccountActivities: function(Client, types.ListAccountActivitiesInput): types.ListAccountActivitiesOutput, table
+    upgradeAccountPlan: function(Client, types.UpgradeAccountPlanInput): types.UpgradeAccountPlanOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

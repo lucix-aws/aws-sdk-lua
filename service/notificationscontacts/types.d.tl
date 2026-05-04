@@ -1,0 +1,359 @@
+local record ActivateEmailContactInput
+    arn: string
+    code: string
+end
+
+local record ActivateEmailContactOutput
+end
+
+local record CreateEmailContactInput
+    name: string
+    emailAddress: string
+    tags: {string : string}
+end
+
+local record CreateEmailContactOutput
+    arn: string
+end
+
+local record DeleteEmailContactInput
+    arn: string
+end
+
+local record DeleteEmailContactOutput
+end
+
+local record GetEmailContactInput
+    arn: string
+end
+
+local record GetEmailContactOutput
+    emailContact: EmailContact
+end
+
+local record ListEmailContactsInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListEmailContactsOutput
+    nextToken: string
+    emailContacts: {EmailContact}
+end
+
+local record ListTagsForResourceInput
+    arn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record SendActivationCodeInput
+    arn: string
+end
+
+local record SendActivationCodeOutput
+end
+
+local record TagResourceInput
+    arn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    arn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record M
+    ActivateEmailContactInput: ActivateEmailContactInput
+    ActivateEmailContactOutput: ActivateEmailContactOutput
+    CreateEmailContactInput: CreateEmailContactInput
+    CreateEmailContactOutput: CreateEmailContactOutput
+    DeleteEmailContactInput: DeleteEmailContactInput
+    DeleteEmailContactOutput: DeleteEmailContactOutput
+    GetEmailContactInput: GetEmailContactInput
+    GetEmailContactOutput: GetEmailContactOutput
+    ListEmailContactsInput: ListEmailContactsInput
+    ListEmailContactsOutput: ListEmailContactsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    SendActivationCodeInput: SendActivationCodeInput
+    SendActivationCodeOutput: SendActivationCodeOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+end
+
+return M

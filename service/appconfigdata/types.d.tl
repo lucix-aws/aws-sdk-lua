@@ -1,0 +1,71 @@
+local record GetLatestConfigurationInput
+    ConfigurationToken: string
+end
+
+local record GetLatestConfigurationOutput
+    NextPollConfigurationToken: string
+    NextPollIntervalInSeconds: number
+    ContentType: string
+    Configuration: string
+    VersionLabel: string
+end
+
+local record StartConfigurationSessionInput
+    ApplicationIdentifier: string
+    EnvironmentIdentifier: string
+    ConfigurationProfileIdentifier: string
+    RequiredMinimumPollIntervalInSeconds: number
+end
+
+local record StartConfigurationSessionOutput
+    InitialConfigurationToken: string
+end
+
+local record BadRequestException
+    Message: string
+    Reason: string
+    Details: BadRequestDetails
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+    ReferencedBy: {string : string}
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+    Reason: string
+    Details: BadRequestDetails
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+    ReferencedBy: {string : string}
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record M
+    GetLatestConfigurationInput: GetLatestConfigurationInput
+    GetLatestConfigurationOutput: GetLatestConfigurationOutput
+    StartConfigurationSessionInput: StartConfigurationSessionInput
+    StartConfigurationSessionOutput: StartConfigurationSessionOutput
+end
+
+return M

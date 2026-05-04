@@ -1,0 +1,35 @@
+local record ListRecommendedActionsInput
+    filter: RequestFilter
+    maxResults: number
+    nextToken: string
+end
+
+local record ListRecommendedActionsOutput
+    recommendedActions: {RecommendedAction}
+    nextToken: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record M
+    ListRecommendedActionsInput: ListRecommendedActionsInput
+    ListRecommendedActionsOutput: ListRecommendedActionsOutput
+end
+
+return M

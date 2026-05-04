@@ -1,0 +1,44 @@
+local record GetRawMessageContentInput
+    messageId: string
+end
+
+local record GetRawMessageContentOutput
+    messageContent: string
+end
+
+local record PutRawMessageContentInput
+    messageId: string
+    content: RawMessageContent
+end
+
+local record PutRawMessageContentOutput
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record InvalidContentLocation
+    message: string
+end
+
+local record MessageFrozen
+    message: string
+end
+
+local record MessageRejected
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record M
+    GetRawMessageContentInput: GetRawMessageContentInput
+    GetRawMessageContentOutput: GetRawMessageContentOutput
+    PutRawMessageContentInput: PutRawMessageContentInput
+    PutRawMessageContentOutput: PutRawMessageContentOutput
+end
+
+return M

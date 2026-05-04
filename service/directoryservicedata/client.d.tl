@@ -1,0 +1,27 @@
+local types = require("directoryservicedata.types")
+
+local record Client
+    addGroupMember: function(Client, types.AddGroupMemberInput): types.AddGroupMemberOutput, table
+    createGroup: function(Client, types.CreateGroupInput): types.CreateGroupOutput, table
+    createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    deleteGroup: function(Client, types.DeleteGroupInput): types.DeleteGroupOutput, table
+    deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    describeGroup: function(Client, types.DescribeGroupInput): types.DescribeGroupOutput, table
+    describeUser: function(Client, types.DescribeUserInput): types.DescribeUserOutput, table
+    disableUser: function(Client, types.DisableUserInput): types.DisableUserOutput, table
+    listGroupMembers: function(Client, types.ListGroupMembersInput): types.ListGroupMembersOutput, table
+    listGroups: function(Client, types.ListGroupsInput): types.ListGroupsOutput, table
+    listGroupsForMember: function(Client, types.ListGroupsForMemberInput): types.ListGroupsForMemberOutput, table
+    listUsers: function(Client, types.ListUsersInput): types.ListUsersOutput, table
+    removeGroupMember: function(Client, types.RemoveGroupMemberInput): types.RemoveGroupMemberOutput, table
+    searchGroups: function(Client, types.SearchGroupsInput): types.SearchGroupsOutput, table
+    searchUsers: function(Client, types.SearchUsersInput): types.SearchUsersOutput, table
+    updateGroup: function(Client, types.UpdateGroupInput): types.UpdateGroupOutput, table
+    updateUser: function(Client, types.UpdateUserInput): types.UpdateUserOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

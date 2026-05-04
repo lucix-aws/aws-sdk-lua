@@ -1,0 +1,437 @@
+local record BatchExecuteStatementInput
+    Sqls: {string}
+    ClusterIdentifier: string
+    SecretArn: string
+    DbUser: string
+    Database: string
+    WithEvent: boolean
+    StatementName: string
+    Parameters: {SqlParameter}
+    WorkgroupName: string
+    ClientToken: string
+    ResultFormat: string
+    SessionKeepAliveSeconds: number
+    SessionId: string
+end
+
+local record BatchExecuteStatementOutput
+    Id: string
+    CreatedAt: number
+    ClusterIdentifier: string
+    DbUser: string
+    DbGroups: {string}
+    Database: string
+    SecretArn: string
+    WorkgroupName: string
+    SessionId: string
+end
+
+local record CancelStatementInput
+    Id: string
+end
+
+local record CancelStatementOutput
+    Status: boolean
+end
+
+local record DescribeStatementInput
+    Id: string
+end
+
+local record DescribeStatementOutput
+    Id: string
+    SecretArn: string
+    DbUser: string
+    Database: string
+    ClusterIdentifier: string
+    Duration: number
+    Error: string
+    Status: string
+    CreatedAt: number
+    UpdatedAt: number
+    RedshiftPid: number
+    HasResultSet: boolean
+    QueryString: string
+    ResultRows: number
+    ResultSize: number
+    RedshiftQueryId: number
+    QueryParameters: {SqlParameter}
+    SubStatements: {SubStatementData}
+    WorkgroupName: string
+    ResultFormat: string
+    SessionId: string
+end
+
+local record DescribeTableInput
+    ClusterIdentifier: string
+    SecretArn: string
+    DbUser: string
+    Database: string
+    ConnectedDatabase: string
+    Schema: string
+    Table: string
+    NextToken: string
+    MaxResults: number
+    WorkgroupName: string
+end
+
+local record DescribeTableOutput
+    TableName: string
+    ColumnList: {ColumnMetadata}
+    NextToken: string
+end
+
+local record ExecuteStatementInput
+    Sql: string
+    ClusterIdentifier: string
+    SecretArn: string
+    DbUser: string
+    Database: string
+    WithEvent: boolean
+    StatementName: string
+    Parameters: {SqlParameter}
+    WorkgroupName: string
+    ClientToken: string
+    ResultFormat: string
+    SessionKeepAliveSeconds: number
+    SessionId: string
+end
+
+local record ExecuteStatementOutput
+    Id: string
+    CreatedAt: number
+    ClusterIdentifier: string
+    DbUser: string
+    DbGroups: {string}
+    Database: string
+    SecretArn: string
+    WorkgroupName: string
+    SessionId: string
+end
+
+local record GetStatementResultInput
+    Id: string
+    NextToken: string
+end
+
+local record GetStatementResultOutput
+    Records: {{Field}}
+    ColumnMetadata: {ColumnMetadata}
+    TotalNumRows: number
+    NextToken: string
+end
+
+local record GetStatementResultV2Input
+    Id: string
+    NextToken: string
+end
+
+local record GetStatementResultV2Output
+    Records: {QueryRecords}
+    ColumnMetadata: {ColumnMetadata}
+    TotalNumRows: number
+    ResultFormat: string
+    NextToken: string
+end
+
+local record ListDatabasesInput
+    ClusterIdentifier: string
+    Database: string
+    SecretArn: string
+    DbUser: string
+    NextToken: string
+    MaxResults: number
+    WorkgroupName: string
+end
+
+local record ListDatabasesOutput
+    Databases: {string}
+    NextToken: string
+end
+
+local record ListSchemasInput
+    ClusterIdentifier: string
+    SecretArn: string
+    DbUser: string
+    Database: string
+    ConnectedDatabase: string
+    SchemaPattern: string
+    NextToken: string
+    MaxResults: number
+    WorkgroupName: string
+end
+
+local record ListSchemasOutput
+    Schemas: {string}
+    NextToken: string
+end
+
+local record ListStatementsInput
+    NextToken: string
+    MaxResults: number
+    StatementName: string
+    Status: string
+    RoleLevel: boolean
+    Database: string
+    ClusterIdentifier: string
+    WorkgroupName: string
+end
+
+local record ListStatementsOutput
+    Statements: {StatementData}
+    NextToken: string
+end
+
+local record ListTablesInput
+    ClusterIdentifier: string
+    SecretArn: string
+    DbUser: string
+    Database: string
+    ConnectedDatabase: string
+    SchemaPattern: string
+    TablePattern: string
+    NextToken: string
+    MaxResults: number
+    WorkgroupName: string
+end
+
+local record ListTablesOutput
+    Tables: {TableMember}
+    NextToken: string
+end
+
+local record ActiveSessionsExceededException
+    Message: string
+end
+
+local record ActiveStatementsExceededException
+    Message: string
+end
+
+local record BatchExecuteStatementException
+    Message: string
+    StatementId: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record DatabaseConnectionException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record QueryTimeoutException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record DatabaseConnectionException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record QueryTimeoutException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record ActiveSessionsExceededException
+    Message: string
+end
+
+local record ActiveStatementsExceededException
+    Message: string
+end
+
+local record ExecuteStatementException
+    Message: string
+    StatementId: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record DatabaseConnectionException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record QueryTimeoutException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record DatabaseConnectionException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record QueryTimeoutException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record DatabaseConnectionException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record QueryTimeoutException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record M
+    BatchExecuteStatementInput: BatchExecuteStatementInput
+    BatchExecuteStatementOutput: BatchExecuteStatementOutput
+    CancelStatementInput: CancelStatementInput
+    CancelStatementOutput: CancelStatementOutput
+    DescribeStatementInput: DescribeStatementInput
+    DescribeStatementOutput: DescribeStatementOutput
+    DescribeTableInput: DescribeTableInput
+    DescribeTableOutput: DescribeTableOutput
+    ExecuteStatementInput: ExecuteStatementInput
+    ExecuteStatementOutput: ExecuteStatementOutput
+    GetStatementResultInput: GetStatementResultInput
+    GetStatementResultOutput: GetStatementResultOutput
+    GetStatementResultV2Input: GetStatementResultV2Input
+    GetStatementResultV2Output: GetStatementResultV2Output
+    ListDatabasesInput: ListDatabasesInput
+    ListDatabasesOutput: ListDatabasesOutput
+    ListSchemasInput: ListSchemasInput
+    ListSchemasOutput: ListSchemasOutput
+    ListStatementsInput: ListStatementsInput
+    ListStatementsOutput: ListStatementsOutput
+    ListTablesInput: ListTablesInput
+    ListTablesOutput: ListTablesOutput
+end
+
+return M

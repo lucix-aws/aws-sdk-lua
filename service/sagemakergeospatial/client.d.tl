@@ -1,0 +1,29 @@
+local types = require("sagemakergeospatial.types")
+
+local record Client
+    deleteEarthObservationJob: function(Client, types.DeleteEarthObservationJobInput): types.DeleteEarthObservationJobOutput, table
+    deleteVectorEnrichmentJob: function(Client, types.DeleteVectorEnrichmentJobInput): types.DeleteVectorEnrichmentJobOutput, table
+    exportEarthObservationJob: function(Client, types.ExportEarthObservationJobInput): types.ExportEarthObservationJobOutput, table
+    exportVectorEnrichmentJob: function(Client, types.ExportVectorEnrichmentJobInput): types.ExportVectorEnrichmentJobOutput, table
+    getEarthObservationJob: function(Client, types.GetEarthObservationJobInput): types.GetEarthObservationJobOutput, table
+    getRasterDataCollection: function(Client, types.GetRasterDataCollectionInput): types.GetRasterDataCollectionOutput, table
+    getTile: function(Client, types.GetTileInput): types.GetTileOutput, table
+    getVectorEnrichmentJob: function(Client, types.GetVectorEnrichmentJobInput): types.GetVectorEnrichmentJobOutput, table
+    listEarthObservationJobs: function(Client, types.ListEarthObservationJobsInput): types.ListEarthObservationJobsOutput, table
+    listRasterDataCollections: function(Client, types.ListRasterDataCollectionsInput): types.ListRasterDataCollectionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listVectorEnrichmentJobs: function(Client, types.ListVectorEnrichmentJobsInput): types.ListVectorEnrichmentJobsOutput, table
+    searchRasterDataCollection: function(Client, types.SearchRasterDataCollectionInput): types.SearchRasterDataCollectionOutput, table
+    startEarthObservationJob: function(Client, types.StartEarthObservationJobInput): types.StartEarthObservationJobOutput, table
+    startVectorEnrichmentJob: function(Client, types.StartVectorEnrichmentJobInput): types.StartVectorEnrichmentJobOutput, table
+    stopEarthObservationJob: function(Client, types.StopEarthObservationJobInput): types.StopEarthObservationJobOutput, table
+    stopVectorEnrichmentJob: function(Client, types.StopVectorEnrichmentJobInput): types.StopVectorEnrichmentJobOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

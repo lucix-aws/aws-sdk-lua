@@ -1,0 +1,395 @@
+local record GetAccountSettingsInput
+end
+
+local record GetAccountSettingsOutput
+    accountSettings: AccountSettings
+end
+
+local record GetReportInput
+    reportId: string
+    reportVersion: number
+    termToken: string
+end
+
+local record GetReportOutput
+    documentPresignedUrl: string
+end
+
+local record GetReportMetadataInput
+    reportId: string
+    reportVersion: number
+end
+
+local record GetReportMetadataOutput
+    reportDetails: ReportDetail
+end
+
+local record GetTermForReportInput
+    reportId: string
+    reportVersion: number
+end
+
+local record GetTermForReportOutput
+    documentPresignedUrl: string
+    termToken: string
+end
+
+local record ListCustomerAgreementsInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListCustomerAgreementsOutput
+    customerAgreements: {CustomerAgreementSummary}
+    nextToken: string
+end
+
+local record ListReportsInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListReportsOutput
+    reports: {ReportSummary}
+    nextToken: string
+end
+
+local record ListReportVersionsInput
+    reportId: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListReportVersionsOutput
+    reports: {ReportSummary}
+    nextToken: string
+end
+
+local record PutAccountSettingsInput
+    notificationSubscriptionStatus: string
+end
+
+local record PutAccountSettingsOutput
+    accountSettings: AccountSettings
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local type NotificationSubscriptionStatus = "SUBSCRIBED" | "NOT_SUBSCRIBED"
+
+local record M
+    GetAccountSettingsInput: GetAccountSettingsInput
+    GetAccountSettingsOutput: GetAccountSettingsOutput
+    GetReportInput: GetReportInput
+    GetReportOutput: GetReportOutput
+    GetReportMetadataInput: GetReportMetadataInput
+    GetReportMetadataOutput: GetReportMetadataOutput
+    GetTermForReportInput: GetTermForReportInput
+    GetTermForReportOutput: GetTermForReportOutput
+    ListCustomerAgreementsInput: ListCustomerAgreementsInput
+    ListCustomerAgreementsOutput: ListCustomerAgreementsOutput
+    ListReportsInput: ListReportsInput
+    ListReportsOutput: ListReportsOutput
+    ListReportVersionsInput: ListReportVersionsInput
+    ListReportVersionsOutput: ListReportVersionsOutput
+    PutAccountSettingsInput: PutAccountSettingsInput
+    PutAccountSettingsOutput: PutAccountSettingsOutput
+end
+
+return M

@@ -1,0 +1,93 @@
+local types = require("qbusiness.types")
+
+local record Client
+    associatePermission: function(Client, types.AssociatePermissionInput): types.AssociatePermissionOutput, table
+    batchDeleteDocument: function(Client, types.BatchDeleteDocumentInput): types.BatchDeleteDocumentOutput, table
+    batchPutDocument: function(Client, types.BatchPutDocumentInput): types.BatchPutDocumentOutput, table
+    cancelSubscription: function(Client, types.CancelSubscriptionInput): types.CancelSubscriptionOutput, table
+    chat: function(Client, types.ChatInput): types.ChatOutput, table
+    chatSync: function(Client, types.ChatSyncInput): types.ChatSyncOutput, table
+    checkDocumentAccess: function(Client, types.CheckDocumentAccessInput): types.CheckDocumentAccessOutput, table
+    createAnonymousWebExperienceUrl: function(Client, types.CreateAnonymousWebExperienceUrlInput): types.CreateAnonymousWebExperienceUrlOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createChatResponseConfiguration: function(Client, types.CreateChatResponseConfigurationInput): types.CreateChatResponseConfigurationOutput, table
+    createDataAccessor: function(Client, types.CreateDataAccessorInput): types.CreateDataAccessorOutput, table
+    createDataSource: function(Client, types.CreateDataSourceInput): types.CreateDataSourceOutput, table
+    createIndex: function(Client, types.CreateIndexInput): types.CreateIndexOutput, table
+    createPlugin: function(Client, types.CreatePluginInput): types.CreatePluginOutput, table
+    createRetriever: function(Client, types.CreateRetrieverInput): types.CreateRetrieverOutput, table
+    createSubscription: function(Client, types.CreateSubscriptionInput): types.CreateSubscriptionOutput, table
+    createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    createWebExperience: function(Client, types.CreateWebExperienceInput): types.CreateWebExperienceOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    deleteAttachment: function(Client, types.DeleteAttachmentInput): types.DeleteAttachmentOutput, table
+    deleteChatControlsConfiguration: function(Client, types.DeleteChatControlsConfigurationInput): types.DeleteChatControlsConfigurationOutput, table
+    deleteChatResponseConfiguration: function(Client, types.DeleteChatResponseConfigurationInput): types.DeleteChatResponseConfigurationOutput, table
+    deleteConversation: function(Client, types.DeleteConversationInput): types.DeleteConversationOutput, table
+    deleteDataAccessor: function(Client, types.DeleteDataAccessorInput): types.DeleteDataAccessorOutput, table
+    deleteDataSource: function(Client, types.DeleteDataSourceInput): types.DeleteDataSourceOutput, table
+    deleteGroup: function(Client, types.DeleteGroupInput): types.DeleteGroupOutput, table
+    deleteIndex: function(Client, types.DeleteIndexInput): types.DeleteIndexOutput, table
+    deletePlugin: function(Client, types.DeletePluginInput): types.DeletePluginOutput, table
+    deleteRetriever: function(Client, types.DeleteRetrieverInput): types.DeleteRetrieverOutput, table
+    deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    deleteWebExperience: function(Client, types.DeleteWebExperienceInput): types.DeleteWebExperienceOutput, table
+    disassociatePermission: function(Client, types.DisassociatePermissionInput): types.DisassociatePermissionOutput, table
+    getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    getChatControlsConfiguration: function(Client, types.GetChatControlsConfigurationInput): types.GetChatControlsConfigurationOutput, table
+    getChatResponseConfiguration: function(Client, types.GetChatResponseConfigurationInput): types.GetChatResponseConfigurationOutput, table
+    getDataAccessor: function(Client, types.GetDataAccessorInput): types.GetDataAccessorOutput, table
+    getDataSource: function(Client, types.GetDataSourceInput): types.GetDataSourceOutput, table
+    getDocumentContent: function(Client, types.GetDocumentContentInput): types.GetDocumentContentOutput, table
+    getGroup: function(Client, types.GetGroupInput): types.GetGroupOutput, table
+    getIndex: function(Client, types.GetIndexInput): types.GetIndexOutput, table
+    getMedia: function(Client, types.GetMediaInput): types.GetMediaOutput, table
+    getPlugin: function(Client, types.GetPluginInput): types.GetPluginOutput, table
+    getPolicy: function(Client, types.GetPolicyInput): types.GetPolicyOutput, table
+    getRetriever: function(Client, types.GetRetrieverInput): types.GetRetrieverOutput, table
+    getUser: function(Client, types.GetUserInput): types.GetUserOutput, table
+    getWebExperience: function(Client, types.GetWebExperienceInput): types.GetWebExperienceOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listAttachments: function(Client, types.ListAttachmentsInput): types.ListAttachmentsOutput, table
+    listChatResponseConfigurations: function(Client, types.ListChatResponseConfigurationsInput): types.ListChatResponseConfigurationsOutput, table
+    listConversations: function(Client, types.ListConversationsInput): types.ListConversationsOutput, table
+    listDataAccessors: function(Client, types.ListDataAccessorsInput): types.ListDataAccessorsOutput, table
+    listDataSources: function(Client, types.ListDataSourcesInput): types.ListDataSourcesOutput, table
+    listDataSourceSyncJobs: function(Client, types.ListDataSourceSyncJobsInput): types.ListDataSourceSyncJobsOutput, table
+    listDocuments: function(Client, types.ListDocumentsInput): types.ListDocumentsOutput, table
+    listGroups: function(Client, types.ListGroupsInput): types.ListGroupsOutput, table
+    listIndices: function(Client, types.ListIndicesInput): types.ListIndicesOutput, table
+    listMessages: function(Client, types.ListMessagesInput): types.ListMessagesOutput, table
+    listPluginActions: function(Client, types.ListPluginActionsInput): types.ListPluginActionsOutput, table
+    listPlugins: function(Client, types.ListPluginsInput): types.ListPluginsOutput, table
+    listPluginTypeActions: function(Client, types.ListPluginTypeActionsInput): types.ListPluginTypeActionsOutput, table
+    listPluginTypeMetadata: function(Client, types.ListPluginTypeMetadataInput): types.ListPluginTypeMetadataOutput, table
+    listRetrievers: function(Client, types.ListRetrieversInput): types.ListRetrieversOutput, table
+    listSubscriptions: function(Client, types.ListSubscriptionsInput): types.ListSubscriptionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listWebExperiences: function(Client, types.ListWebExperiencesInput): types.ListWebExperiencesOutput, table
+    putFeedback: function(Client, types.PutFeedbackInput): types.PutFeedbackOutput, table
+    putGroup: function(Client, types.PutGroupInput): types.PutGroupOutput, table
+    searchRelevantContent: function(Client, types.SearchRelevantContentInput): types.SearchRelevantContentOutput, table
+    startDataSourceSyncJob: function(Client, types.StartDataSourceSyncJobInput): types.StartDataSourceSyncJobOutput, table
+    stopDataSourceSyncJob: function(Client, types.StopDataSourceSyncJobInput): types.StopDataSourceSyncJobOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateChatControlsConfiguration: function(Client, types.UpdateChatControlsConfigurationInput): types.UpdateChatControlsConfigurationOutput, table
+    updateChatResponseConfiguration: function(Client, types.UpdateChatResponseConfigurationInput): types.UpdateChatResponseConfigurationOutput, table
+    updateDataAccessor: function(Client, types.UpdateDataAccessorInput): types.UpdateDataAccessorOutput, table
+    updateDataSource: function(Client, types.UpdateDataSourceInput): types.UpdateDataSourceOutput, table
+    updateIndex: function(Client, types.UpdateIndexInput): types.UpdateIndexOutput, table
+    updatePlugin: function(Client, types.UpdatePluginInput): types.UpdatePluginOutput, table
+    updateRetriever: function(Client, types.UpdateRetrieverInput): types.UpdateRetrieverOutput, table
+    updateSubscription: function(Client, types.UpdateSubscriptionInput): types.UpdateSubscriptionOutput, table
+    updateUser: function(Client, types.UpdateUserInput): types.UpdateUserOutput, table
+    updateWebExperience: function(Client, types.UpdateWebExperienceInput): types.UpdateWebExperienceOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

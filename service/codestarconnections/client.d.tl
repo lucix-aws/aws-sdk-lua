@@ -1,0 +1,37 @@
+local types = require("codestarconnections.types")
+
+local record Client
+    createConnection: function(Client, types.CreateConnectionInput): types.CreateConnectionOutput, table
+    createHost: function(Client, types.CreateHostInput): types.CreateHostOutput, table
+    createRepositoryLink: function(Client, types.CreateRepositoryLinkInput): types.CreateRepositoryLinkOutput, table
+    createSyncConfiguration: function(Client, types.CreateSyncConfigurationInput): types.CreateSyncConfigurationOutput, table
+    deleteConnection: function(Client, types.DeleteConnectionInput): types.DeleteConnectionOutput, table
+    deleteHost: function(Client, types.DeleteHostInput): types.DeleteHostOutput, table
+    deleteRepositoryLink: function(Client, types.DeleteRepositoryLinkInput): types.DeleteRepositoryLinkOutput, table
+    deleteSyncConfiguration: function(Client, types.DeleteSyncConfigurationInput): types.DeleteSyncConfigurationOutput, table
+    getConnection: function(Client, types.GetConnectionInput): types.GetConnectionOutput, table
+    getHost: function(Client, types.GetHostInput): types.GetHostOutput, table
+    getRepositoryLink: function(Client, types.GetRepositoryLinkInput): types.GetRepositoryLinkOutput, table
+    getRepositorySyncStatus: function(Client, types.GetRepositorySyncStatusInput): types.GetRepositorySyncStatusOutput, table
+    getResourceSyncStatus: function(Client, types.GetResourceSyncStatusInput): types.GetResourceSyncStatusOutput, table
+    getSyncBlockerSummary: function(Client, types.GetSyncBlockerSummaryInput): types.GetSyncBlockerSummaryOutput, table
+    getSyncConfiguration: function(Client, types.GetSyncConfigurationInput): types.GetSyncConfigurationOutput, table
+    listConnections: function(Client, types.ListConnectionsInput): types.ListConnectionsOutput, table
+    listHosts: function(Client, types.ListHostsInput): types.ListHostsOutput, table
+    listRepositoryLinks: function(Client, types.ListRepositoryLinksInput): types.ListRepositoryLinksOutput, table
+    listRepositorySyncDefinitions: function(Client, types.ListRepositorySyncDefinitionsInput): types.ListRepositorySyncDefinitionsOutput, table
+    listSyncConfigurations: function(Client, types.ListSyncConfigurationsInput): types.ListSyncConfigurationsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateHost: function(Client, types.UpdateHostInput): types.UpdateHostOutput, table
+    updateRepositoryLink: function(Client, types.UpdateRepositoryLinkInput): types.UpdateRepositoryLinkOutput, table
+    updateSyncBlocker: function(Client, types.UpdateSyncBlockerInput): types.UpdateSyncBlockerOutput, table
+    updateSyncConfiguration: function(Client, types.UpdateSyncConfigurationInput): types.UpdateSyncConfigurationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

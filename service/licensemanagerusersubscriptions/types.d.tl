@@ -1,0 +1,629 @@
+local record AssociateUserInput
+    Username: string
+    InstanceId: string
+    IdentityProvider: IdentityProvider
+    Domain: string
+    Tags: {string : string}
+end
+
+local record AssociateUserOutput
+    InstanceUserSummary: InstanceUserSummary
+end
+
+local record CreateLicenseServerEndpointInput
+    IdentityProviderArn: string
+    LicenseServerSettings: LicenseServerSettings
+    Tags: {string : string}
+end
+
+local record CreateLicenseServerEndpointOutput
+    IdentityProviderArn: string
+    LicenseServerEndpointArn: string
+end
+
+local record DeleteLicenseServerEndpointInput
+    LicenseServerEndpointArn: string
+    ServerType: string
+end
+
+local record DeleteLicenseServerEndpointOutput
+    LicenseServerEndpoint: LicenseServerEndpoint
+end
+
+local record DeregisterIdentityProviderInput
+    IdentityProvider: IdentityProvider
+    Product: string
+    IdentityProviderArn: string
+end
+
+local record DeregisterIdentityProviderOutput
+    IdentityProviderSummary: IdentityProviderSummary
+end
+
+local record DisassociateUserInput
+    Username: string
+    InstanceId: string
+    IdentityProvider: IdentityProvider
+    InstanceUserArn: string
+    Domain: string
+end
+
+local record DisassociateUserOutput
+    InstanceUserSummary: InstanceUserSummary
+end
+
+local record ListIdentityProvidersInput
+    MaxResults: number
+    Filters: {Filter}
+    NextToken: string
+end
+
+local record ListIdentityProvidersOutput
+    IdentityProviderSummaries: {IdentityProviderSummary}
+    NextToken: string
+end
+
+local record ListInstancesInput
+    MaxResults: number
+    NextToken: string
+    Filters: {Filter}
+end
+
+local record ListInstancesOutput
+    InstanceSummaries: {InstanceSummary}
+    NextToken: string
+end
+
+local record ListLicenseServerEndpointsInput
+    MaxResults: number
+    Filters: {Filter}
+    NextToken: string
+end
+
+local record ListLicenseServerEndpointsOutput
+    LicenseServerEndpoints: {LicenseServerEndpoint}
+    NextToken: string
+end
+
+local record ListProductSubscriptionsInput
+    Product: string
+    IdentityProvider: IdentityProvider
+    MaxResults: number
+    Filters: {Filter}
+    NextToken: string
+end
+
+local record ListProductSubscriptionsOutput
+    ProductUserSummaries: {ProductUserSummary}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {string : string}
+end
+
+local record ListUserAssociationsInput
+    InstanceId: string
+    IdentityProvider: IdentityProvider
+    MaxResults: number
+    Filters: {Filter}
+    NextToken: string
+end
+
+local record ListUserAssociationsOutput
+    InstanceUserSummaries: {InstanceUserSummary}
+    NextToken: string
+end
+
+local record RegisterIdentityProviderInput
+    IdentityProvider: IdentityProvider
+    Product: string
+    Settings: Settings
+    Tags: {string : string}
+end
+
+local record RegisterIdentityProviderOutput
+    IdentityProviderSummary: IdentityProviderSummary
+end
+
+local record StartProductSubscriptionInput
+    Username: string
+    IdentityProvider: IdentityProvider
+    Product: string
+    Domain: string
+    Tags: {string : string}
+end
+
+local record StartProductSubscriptionOutput
+    ProductUserSummary: ProductUserSummary
+end
+
+local record StopProductSubscriptionInput
+    Username: string
+    IdentityProvider: IdentityProvider
+    Product: string
+    ProductUserArn: string
+    Domain: string
+end
+
+local record StopProductSubscriptionOutput
+    ProductUserSummary: ProductUserSummary
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateIdentityProviderSettingsInput
+    IdentityProvider: IdentityProvider
+    Product: string
+    IdentityProviderArn: string
+    UpdateSettings: UpdateSettings
+end
+
+local record UpdateIdentityProviderSettingsOutput
+    IdentityProviderSummary: IdentityProviderSummary
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    AssociateUserInput: AssociateUserInput
+    AssociateUserOutput: AssociateUserOutput
+    CreateLicenseServerEndpointInput: CreateLicenseServerEndpointInput
+    CreateLicenseServerEndpointOutput: CreateLicenseServerEndpointOutput
+    DeleteLicenseServerEndpointInput: DeleteLicenseServerEndpointInput
+    DeleteLicenseServerEndpointOutput: DeleteLicenseServerEndpointOutput
+    DeregisterIdentityProviderInput: DeregisterIdentityProviderInput
+    DeregisterIdentityProviderOutput: DeregisterIdentityProviderOutput
+    DisassociateUserInput: DisassociateUserInput
+    DisassociateUserOutput: DisassociateUserOutput
+    ListIdentityProvidersInput: ListIdentityProvidersInput
+    ListIdentityProvidersOutput: ListIdentityProvidersOutput
+    ListInstancesInput: ListInstancesInput
+    ListInstancesOutput: ListInstancesOutput
+    ListLicenseServerEndpointsInput: ListLicenseServerEndpointsInput
+    ListLicenseServerEndpointsOutput: ListLicenseServerEndpointsOutput
+    ListProductSubscriptionsInput: ListProductSubscriptionsInput
+    ListProductSubscriptionsOutput: ListProductSubscriptionsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListUserAssociationsInput: ListUserAssociationsInput
+    ListUserAssociationsOutput: ListUserAssociationsOutput
+    RegisterIdentityProviderInput: RegisterIdentityProviderInput
+    RegisterIdentityProviderOutput: RegisterIdentityProviderOutput
+    StartProductSubscriptionInput: StartProductSubscriptionInput
+    StartProductSubscriptionOutput: StartProductSubscriptionOutput
+    StopProductSubscriptionInput: StopProductSubscriptionInput
+    StopProductSubscriptionOutput: StopProductSubscriptionOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateIdentityProviderSettingsInput: UpdateIdentityProviderSettingsInput
+    UpdateIdentityProviderSettingsOutput: UpdateIdentityProviderSettingsOutput
+end
+
+return M

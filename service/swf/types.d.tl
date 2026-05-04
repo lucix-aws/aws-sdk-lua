@@ -1,0 +1,925 @@
+local record CountClosedWorkflowExecutionsInput
+    domain: string
+    startTimeFilter: ExecutionTimeFilter
+    closeTimeFilter: ExecutionTimeFilter
+    executionFilter: WorkflowExecutionFilter
+    typeFilter: WorkflowTypeFilter
+    tagFilter: TagFilter
+    closeStatusFilter: CloseStatusFilter
+end
+
+local record CountClosedWorkflowExecutionsOutput
+    count: number
+    truncated: boolean
+end
+
+local record CountOpenWorkflowExecutionsInput
+    domain: string
+    startTimeFilter: ExecutionTimeFilter
+    typeFilter: WorkflowTypeFilter
+    tagFilter: TagFilter
+    executionFilter: WorkflowExecutionFilter
+end
+
+local record CountOpenWorkflowExecutionsOutput
+    count: number
+    truncated: boolean
+end
+
+local record CountPendingActivityTasksInput
+    domain: string
+    taskList: TaskList
+end
+
+local record CountPendingActivityTasksOutput
+    count: number
+    truncated: boolean
+end
+
+local record CountPendingDecisionTasksInput
+    domain: string
+    taskList: TaskList
+end
+
+local record CountPendingDecisionTasksOutput
+    count: number
+    truncated: boolean
+end
+
+local record DeleteActivityTypeInput
+    domain: string
+    activityType: ActivityType
+end
+
+local record DeleteActivityTypeOutput
+end
+
+local record DeleteWorkflowTypeInput
+    domain: string
+    workflowType: WorkflowType
+end
+
+local record DeleteWorkflowTypeOutput
+end
+
+local record DeprecateActivityTypeInput
+    domain: string
+    activityType: ActivityType
+end
+
+local record DeprecateActivityTypeOutput
+end
+
+local record DeprecateDomainInput
+    name: string
+end
+
+local record DeprecateDomainOutput
+end
+
+local record DeprecateWorkflowTypeInput
+    domain: string
+    workflowType: WorkflowType
+end
+
+local record DeprecateWorkflowTypeOutput
+end
+
+local record DescribeActivityTypeInput
+    domain: string
+    activityType: ActivityType
+end
+
+local record DescribeActivityTypeOutput
+    typeInfo: ActivityTypeInfo
+    configuration: ActivityTypeConfiguration
+end
+
+local record DescribeDomainInput
+    name: string
+end
+
+local record DescribeDomainOutput
+    domainInfo: DomainInfo
+    configuration: DomainConfiguration
+end
+
+local record DescribeWorkflowExecutionInput
+    domain: string
+    execution: WorkflowExecution
+end
+
+local record DescribeWorkflowExecutionOutput
+    executionInfo: WorkflowExecutionInfo
+    executionConfiguration: WorkflowExecutionConfiguration
+    openCounts: WorkflowExecutionOpenCounts
+    latestActivityTaskTimestamp: number
+    latestExecutionContext: string
+end
+
+local record DescribeWorkflowTypeInput
+    domain: string
+    workflowType: WorkflowType
+end
+
+local record DescribeWorkflowTypeOutput
+    typeInfo: WorkflowTypeInfo
+    configuration: WorkflowTypeConfiguration
+end
+
+local record GetWorkflowExecutionHistoryInput
+    domain: string
+    execution: WorkflowExecution
+    nextPageToken: string
+    maximumPageSize: number
+    reverseOrder: boolean
+end
+
+local record GetWorkflowExecutionHistoryOutput
+    events: {HistoryEvent}
+    nextPageToken: string
+end
+
+local record ListActivityTypesInput
+    domain: string
+    name: string
+    registrationStatus: string
+    nextPageToken: string
+    maximumPageSize: number
+    reverseOrder: boolean
+end
+
+local record ListActivityTypesOutput
+    typeInfos: {ActivityTypeInfo}
+    nextPageToken: string
+end
+
+local record ListClosedWorkflowExecutionsInput
+    domain: string
+    startTimeFilter: ExecutionTimeFilter
+    closeTimeFilter: ExecutionTimeFilter
+    executionFilter: WorkflowExecutionFilter
+    closeStatusFilter: CloseStatusFilter
+    typeFilter: WorkflowTypeFilter
+    tagFilter: TagFilter
+    nextPageToken: string
+    maximumPageSize: number
+    reverseOrder: boolean
+end
+
+local record ListClosedWorkflowExecutionsOutput
+    executionInfos: {WorkflowExecutionInfo}
+    nextPageToken: string
+end
+
+local record ListDomainsInput
+    nextPageToken: string
+    registrationStatus: string
+    maximumPageSize: number
+    reverseOrder: boolean
+end
+
+local record ListDomainsOutput
+    domainInfos: {DomainInfo}
+    nextPageToken: string
+end
+
+local record ListOpenWorkflowExecutionsInput
+    domain: string
+    startTimeFilter: ExecutionTimeFilter
+    typeFilter: WorkflowTypeFilter
+    tagFilter: TagFilter
+    nextPageToken: string
+    maximumPageSize: number
+    reverseOrder: boolean
+    executionFilter: WorkflowExecutionFilter
+end
+
+local record ListOpenWorkflowExecutionsOutput
+    executionInfos: {WorkflowExecutionInfo}
+    nextPageToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {ResourceTag}
+end
+
+local record ListWorkflowTypesInput
+    domain: string
+    name: string
+    registrationStatus: string
+    nextPageToken: string
+    maximumPageSize: number
+    reverseOrder: boolean
+end
+
+local record ListWorkflowTypesOutput
+    typeInfos: {WorkflowTypeInfo}
+    nextPageToken: string
+end
+
+local record PollForActivityTaskInput
+    domain: string
+    taskList: TaskList
+    identity: string
+end
+
+local record PollForActivityTaskOutput
+    taskToken: string
+    activityId: string
+    startedEventId: number
+    workflowExecution: WorkflowExecution
+    activityType: ActivityType
+    input: string
+end
+
+local record PollForDecisionTaskInput
+    domain: string
+    taskList: TaskList
+    identity: string
+    nextPageToken: string
+    maximumPageSize: number
+    reverseOrder: boolean
+    startAtPreviousStartedEvent: boolean
+end
+
+local record PollForDecisionTaskOutput
+    taskToken: string
+    startedEventId: number
+    workflowExecution: WorkflowExecution
+    workflowType: WorkflowType
+    events: {HistoryEvent}
+    nextPageToken: string
+    previousStartedEventId: number
+end
+
+local record RecordActivityTaskHeartbeatInput
+    taskToken: string
+    details: string
+end
+
+local record RecordActivityTaskHeartbeatOutput
+    cancelRequested: boolean
+end
+
+local record RegisterActivityTypeInput
+    domain: string
+    name: string
+    version: string
+    description: string
+    defaultTaskStartToCloseTimeout: string
+    defaultTaskHeartbeatTimeout: string
+    defaultTaskList: TaskList
+    defaultTaskPriority: string
+    defaultTaskScheduleToStartTimeout: string
+    defaultTaskScheduleToCloseTimeout: string
+end
+
+local record RegisterActivityTypeOutput
+end
+
+local record RegisterDomainInput
+    name: string
+    description: string
+    workflowExecutionRetentionPeriodInDays: string
+    tags: {ResourceTag}
+end
+
+local record RegisterDomainOutput
+end
+
+local record RegisterWorkflowTypeInput
+    domain: string
+    name: string
+    version: string
+    description: string
+    defaultTaskStartToCloseTimeout: string
+    defaultExecutionStartToCloseTimeout: string
+    defaultTaskList: TaskList
+    defaultTaskPriority: string
+    defaultChildPolicy: string
+    defaultLambdaRole: string
+end
+
+local record RegisterWorkflowTypeOutput
+end
+
+local record RequestCancelWorkflowExecutionInput
+    domain: string
+    workflowId: string
+    runId: string
+end
+
+local record RequestCancelWorkflowExecutionOutput
+end
+
+local record RespondActivityTaskCanceledInput
+    taskToken: string
+    details: string
+end
+
+local record RespondActivityTaskCanceledOutput
+end
+
+local record RespondActivityTaskCompletedInput
+    taskToken: string
+    result: string
+end
+
+local record RespondActivityTaskCompletedOutput
+end
+
+local record RespondActivityTaskFailedInput
+    taskToken: string
+    reason: string
+    details: string
+end
+
+local record RespondActivityTaskFailedOutput
+end
+
+local record RespondDecisionTaskCompletedInput
+    taskToken: string
+    decisions: {Decision}
+    executionContext: string
+    taskList: TaskList
+    taskListScheduleToStartTimeout: string
+end
+
+local record RespondDecisionTaskCompletedOutput
+end
+
+local record SignalWorkflowExecutionInput
+    domain: string
+    workflowId: string
+    runId: string
+    signalName: string
+    input: string
+end
+
+local record SignalWorkflowExecutionOutput
+end
+
+local record StartWorkflowExecutionInput
+    domain: string
+    workflowId: string
+    workflowType: WorkflowType
+    taskList: TaskList
+    taskPriority: string
+    input: string
+    executionStartToCloseTimeout: string
+    tagList: {string}
+    taskStartToCloseTimeout: string
+    childPolicy: string
+    lambdaRole: string
+end
+
+local record StartWorkflowExecutionOutput
+    runId: string
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {ResourceTag}
+end
+
+local record TagResourceOutput
+end
+
+local record TerminateWorkflowExecutionInput
+    domain: string
+    workflowId: string
+    runId: string
+    reason: string
+    details: string
+    childPolicy: string
+end
+
+local record TerminateWorkflowExecutionOutput
+end
+
+local record UndeprecateActivityTypeInput
+    domain: string
+    activityType: ActivityType
+end
+
+local record UndeprecateActivityTypeOutput
+end
+
+local record UndeprecateDomainInput
+    name: string
+end
+
+local record UndeprecateDomainOutput
+end
+
+local record UndeprecateWorkflowTypeInput
+    domain: string
+    workflowType: WorkflowType
+end
+
+local record UndeprecateWorkflowTypeOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record TypeNotDeprecatedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record TypeNotDeprecatedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record TypeDeprecatedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record DomainDeprecatedFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record TypeDeprecatedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record LimitExceededFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record LimitExceededFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record LimitExceededFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record LimitExceededFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record TypeAlreadyExistsFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record DomainAlreadyExistsFault
+    message: string
+end
+
+local record LimitExceededFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record TooManyTagsFault
+    message: string
+end
+
+local record LimitExceededFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record TypeAlreadyExistsFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record DefaultUndefinedFault
+    message: string
+end
+
+local record LimitExceededFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record TypeDeprecatedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record WorkflowExecutionAlreadyStartedFault
+    message: string
+end
+
+local record LimitExceededFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record TooManyTagsFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record TypeAlreadyExistsFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record DomainAlreadyExistsFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record TypeAlreadyExistsFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local record LimitExceededFault
+    message: string
+end
+
+local record OperationNotPermittedFault
+    message: string
+end
+
+local record UnknownResourceFault
+    message: string
+end
+
+local type RegistrationStatus = "REGISTERED" | "DEPRECATED"
+
+local type ChildPolicy = "TERMINATE" | "REQUEST_CANCEL" | "ABANDON"
+
+local record M
+    CountClosedWorkflowExecutionsInput: CountClosedWorkflowExecutionsInput
+    CountClosedWorkflowExecutionsOutput: CountClosedWorkflowExecutionsOutput
+    CountOpenWorkflowExecutionsInput: CountOpenWorkflowExecutionsInput
+    CountOpenWorkflowExecutionsOutput: CountOpenWorkflowExecutionsOutput
+    CountPendingActivityTasksInput: CountPendingActivityTasksInput
+    CountPendingActivityTasksOutput: CountPendingActivityTasksOutput
+    CountPendingDecisionTasksInput: CountPendingDecisionTasksInput
+    CountPendingDecisionTasksOutput: CountPendingDecisionTasksOutput
+    DeleteActivityTypeInput: DeleteActivityTypeInput
+    DeleteActivityTypeOutput: DeleteActivityTypeOutput
+    DeleteWorkflowTypeInput: DeleteWorkflowTypeInput
+    DeleteWorkflowTypeOutput: DeleteWorkflowTypeOutput
+    DeprecateActivityTypeInput: DeprecateActivityTypeInput
+    DeprecateActivityTypeOutput: DeprecateActivityTypeOutput
+    DeprecateDomainInput: DeprecateDomainInput
+    DeprecateDomainOutput: DeprecateDomainOutput
+    DeprecateWorkflowTypeInput: DeprecateWorkflowTypeInput
+    DeprecateWorkflowTypeOutput: DeprecateWorkflowTypeOutput
+    DescribeActivityTypeInput: DescribeActivityTypeInput
+    DescribeActivityTypeOutput: DescribeActivityTypeOutput
+    DescribeDomainInput: DescribeDomainInput
+    DescribeDomainOutput: DescribeDomainOutput
+    DescribeWorkflowExecutionInput: DescribeWorkflowExecutionInput
+    DescribeWorkflowExecutionOutput: DescribeWorkflowExecutionOutput
+    DescribeWorkflowTypeInput: DescribeWorkflowTypeInput
+    DescribeWorkflowTypeOutput: DescribeWorkflowTypeOutput
+    GetWorkflowExecutionHistoryInput: GetWorkflowExecutionHistoryInput
+    GetWorkflowExecutionHistoryOutput: GetWorkflowExecutionHistoryOutput
+    ListActivityTypesInput: ListActivityTypesInput
+    ListActivityTypesOutput: ListActivityTypesOutput
+    ListClosedWorkflowExecutionsInput: ListClosedWorkflowExecutionsInput
+    ListClosedWorkflowExecutionsOutput: ListClosedWorkflowExecutionsOutput
+    ListDomainsInput: ListDomainsInput
+    ListDomainsOutput: ListDomainsOutput
+    ListOpenWorkflowExecutionsInput: ListOpenWorkflowExecutionsInput
+    ListOpenWorkflowExecutionsOutput: ListOpenWorkflowExecutionsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListWorkflowTypesInput: ListWorkflowTypesInput
+    ListWorkflowTypesOutput: ListWorkflowTypesOutput
+    PollForActivityTaskInput: PollForActivityTaskInput
+    PollForActivityTaskOutput: PollForActivityTaskOutput
+    PollForDecisionTaskInput: PollForDecisionTaskInput
+    PollForDecisionTaskOutput: PollForDecisionTaskOutput
+    RecordActivityTaskHeartbeatInput: RecordActivityTaskHeartbeatInput
+    RecordActivityTaskHeartbeatOutput: RecordActivityTaskHeartbeatOutput
+    RegisterActivityTypeInput: RegisterActivityTypeInput
+    RegisterActivityTypeOutput: RegisterActivityTypeOutput
+    RegisterDomainInput: RegisterDomainInput
+    RegisterDomainOutput: RegisterDomainOutput
+    RegisterWorkflowTypeInput: RegisterWorkflowTypeInput
+    RegisterWorkflowTypeOutput: RegisterWorkflowTypeOutput
+    RequestCancelWorkflowExecutionInput: RequestCancelWorkflowExecutionInput
+    RequestCancelWorkflowExecutionOutput: RequestCancelWorkflowExecutionOutput
+    RespondActivityTaskCanceledInput: RespondActivityTaskCanceledInput
+    RespondActivityTaskCanceledOutput: RespondActivityTaskCanceledOutput
+    RespondActivityTaskCompletedInput: RespondActivityTaskCompletedInput
+    RespondActivityTaskCompletedOutput: RespondActivityTaskCompletedOutput
+    RespondActivityTaskFailedInput: RespondActivityTaskFailedInput
+    RespondActivityTaskFailedOutput: RespondActivityTaskFailedOutput
+    RespondDecisionTaskCompletedInput: RespondDecisionTaskCompletedInput
+    RespondDecisionTaskCompletedOutput: RespondDecisionTaskCompletedOutput
+    SignalWorkflowExecutionInput: SignalWorkflowExecutionInput
+    SignalWorkflowExecutionOutput: SignalWorkflowExecutionOutput
+    StartWorkflowExecutionInput: StartWorkflowExecutionInput
+    StartWorkflowExecutionOutput: StartWorkflowExecutionOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    TerminateWorkflowExecutionInput: TerminateWorkflowExecutionInput
+    TerminateWorkflowExecutionOutput: TerminateWorkflowExecutionOutput
+    UndeprecateActivityTypeInput: UndeprecateActivityTypeInput
+    UndeprecateActivityTypeOutput: UndeprecateActivityTypeOutput
+    UndeprecateDomainInput: UndeprecateDomainInput
+    UndeprecateDomainOutput: UndeprecateDomainOutput
+    UndeprecateWorkflowTypeInput: UndeprecateWorkflowTypeInput
+    UndeprecateWorkflowTypeOutput: UndeprecateWorkflowTypeOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+end
+
+return M

@@ -1,0 +1,55 @@
+local types = require("batch.types")
+
+local record Client
+    cancelJob: function(Client, types.CancelJobInput): types.CancelJobOutput, table
+    createComputeEnvironment: function(Client, types.CreateComputeEnvironmentInput): types.CreateComputeEnvironmentOutput, table
+    createConsumableResource: function(Client, types.CreateConsumableResourceInput): types.CreateConsumableResourceOutput, table
+    createJobQueue: function(Client, types.CreateJobQueueInput): types.CreateJobQueueOutput, table
+    createQuotaShare: function(Client, types.CreateQuotaShareInput): types.CreateQuotaShareOutput, table
+    createSchedulingPolicy: function(Client, types.CreateSchedulingPolicyInput): types.CreateSchedulingPolicyOutput, table
+    createServiceEnvironment: function(Client, types.CreateServiceEnvironmentInput): types.CreateServiceEnvironmentOutput, table
+    deleteComputeEnvironment: function(Client, types.DeleteComputeEnvironmentInput): types.DeleteComputeEnvironmentOutput, table
+    deleteConsumableResource: function(Client, types.DeleteConsumableResourceInput): types.DeleteConsumableResourceOutput, table
+    deleteJobQueue: function(Client, types.DeleteJobQueueInput): types.DeleteJobQueueOutput, table
+    deleteQuotaShare: function(Client, types.DeleteQuotaShareInput): types.DeleteQuotaShareOutput, table
+    deleteSchedulingPolicy: function(Client, types.DeleteSchedulingPolicyInput): types.DeleteSchedulingPolicyOutput, table
+    deleteServiceEnvironment: function(Client, types.DeleteServiceEnvironmentInput): types.DeleteServiceEnvironmentOutput, table
+    deregisterJobDefinition: function(Client, types.DeregisterJobDefinitionInput): types.DeregisterJobDefinitionOutput, table
+    describeComputeEnvironments: function(Client, types.DescribeComputeEnvironmentsInput): types.DescribeComputeEnvironmentsOutput, table
+    describeConsumableResource: function(Client, types.DescribeConsumableResourceInput): types.DescribeConsumableResourceOutput, table
+    describeJobDefinitions: function(Client, types.DescribeJobDefinitionsInput): types.DescribeJobDefinitionsOutput, table
+    describeJobQueues: function(Client, types.DescribeJobQueuesInput): types.DescribeJobQueuesOutput, table
+    describeJobs: function(Client, types.DescribeJobsInput): types.DescribeJobsOutput, table
+    describeQuotaShare: function(Client, types.DescribeQuotaShareInput): types.DescribeQuotaShareOutput, table
+    describeSchedulingPolicies: function(Client, types.DescribeSchedulingPoliciesInput): types.DescribeSchedulingPoliciesOutput, table
+    describeServiceEnvironments: function(Client, types.DescribeServiceEnvironmentsInput): types.DescribeServiceEnvironmentsOutput, table
+    describeServiceJob: function(Client, types.DescribeServiceJobInput): types.DescribeServiceJobOutput, table
+    getJobQueueSnapshot: function(Client, types.GetJobQueueSnapshotInput): types.GetJobQueueSnapshotOutput, table
+    listConsumableResources: function(Client, types.ListConsumableResourcesInput): types.ListConsumableResourcesOutput, table
+    listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    listJobsByConsumableResource: function(Client, types.ListJobsByConsumableResourceInput): types.ListJobsByConsumableResourceOutput, table
+    listQuotaShares: function(Client, types.ListQuotaSharesInput): types.ListQuotaSharesOutput, table
+    listSchedulingPolicies: function(Client, types.ListSchedulingPoliciesInput): types.ListSchedulingPoliciesOutput, table
+    listServiceJobs: function(Client, types.ListServiceJobsInput): types.ListServiceJobsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    registerJobDefinition: function(Client, types.RegisterJobDefinitionInput): types.RegisterJobDefinitionOutput, table
+    submitJob: function(Client, types.SubmitJobInput): types.SubmitJobOutput, table
+    submitServiceJob: function(Client, types.SubmitServiceJobInput): types.SubmitServiceJobOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    terminateJob: function(Client, types.TerminateJobInput): types.TerminateJobOutput, table
+    terminateServiceJob: function(Client, types.TerminateServiceJobInput): types.TerminateServiceJobOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateComputeEnvironment: function(Client, types.UpdateComputeEnvironmentInput): types.UpdateComputeEnvironmentOutput, table
+    updateConsumableResource: function(Client, types.UpdateConsumableResourceInput): types.UpdateConsumableResourceOutput, table
+    updateJobQueue: function(Client, types.UpdateJobQueueInput): types.UpdateJobQueueOutput, table
+    updateQuotaShare: function(Client, types.UpdateQuotaShareInput): types.UpdateQuotaShareOutput, table
+    updateSchedulingPolicy: function(Client, types.UpdateSchedulingPolicyInput): types.UpdateSchedulingPolicyOutput, table
+    updateServiceEnvironment: function(Client, types.UpdateServiceEnvironmentInput): types.UpdateServiceEnvironmentOutput, table
+    updateServiceJob: function(Client, types.UpdateServiceJobInput): types.UpdateServiceJobOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

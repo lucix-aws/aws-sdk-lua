@@ -1,0 +1,22 @@
+local types = require("networkmonitor.types")
+
+local record Client
+    createMonitor: function(Client, types.CreateMonitorInput): types.CreateMonitorOutput, table
+    createProbe: function(Client, types.CreateProbeInput): types.CreateProbeOutput, table
+    deleteMonitor: function(Client, types.DeleteMonitorInput): types.DeleteMonitorOutput, table
+    deleteProbe: function(Client, types.DeleteProbeInput): types.DeleteProbeOutput, table
+    getMonitor: function(Client, types.GetMonitorInput): types.GetMonitorOutput, table
+    getProbe: function(Client, types.GetProbeInput): types.GetProbeOutput, table
+    listMonitors: function(Client, types.ListMonitorsInput): types.ListMonitorsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateMonitor: function(Client, types.UpdateMonitorInput): types.UpdateMonitorOutput, table
+    updateProbe: function(Client, types.UpdateProbeInput): types.UpdateProbeOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

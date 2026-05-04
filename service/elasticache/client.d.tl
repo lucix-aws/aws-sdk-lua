@@ -1,0 +1,85 @@
+local types = require("elasticache.types")
+
+local record Client
+    addTagsToResource: function(Client, types.AddTagsToResourceInput): types.AddTagsToResourceOutput, table
+    authorizeCacheSecurityGroupIngress: function(Client, types.AuthorizeCacheSecurityGroupIngressInput): types.AuthorizeCacheSecurityGroupIngressOutput, table
+    batchApplyUpdateAction: function(Client, types.BatchApplyUpdateActionInput): types.BatchApplyUpdateActionOutput, table
+    batchStopUpdateAction: function(Client, types.BatchStopUpdateActionInput): types.BatchStopUpdateActionOutput, table
+    completeMigration: function(Client, types.CompleteMigrationInput): types.CompleteMigrationOutput, table
+    copyServerlessCacheSnapshot: function(Client, types.CopyServerlessCacheSnapshotInput): types.CopyServerlessCacheSnapshotOutput, table
+    copySnapshot: function(Client, types.CopySnapshotInput): types.CopySnapshotOutput, table
+    createCacheCluster: function(Client, types.CreateCacheClusterInput): types.CreateCacheClusterOutput, table
+    createCacheParameterGroup: function(Client, types.CreateCacheParameterGroupInput): types.CreateCacheParameterGroupOutput, table
+    createCacheSecurityGroup: function(Client, types.CreateCacheSecurityGroupInput): types.CreateCacheSecurityGroupOutput, table
+    createCacheSubnetGroup: function(Client, types.CreateCacheSubnetGroupInput): types.CreateCacheSubnetGroupOutput, table
+    createGlobalReplicationGroup: function(Client, types.CreateGlobalReplicationGroupInput): types.CreateGlobalReplicationGroupOutput, table
+    createReplicationGroup: function(Client, types.CreateReplicationGroupInput): types.CreateReplicationGroupOutput, table
+    createServerlessCache: function(Client, types.CreateServerlessCacheInput): types.CreateServerlessCacheOutput, table
+    createServerlessCacheSnapshot: function(Client, types.CreateServerlessCacheSnapshotInput): types.CreateServerlessCacheSnapshotOutput, table
+    createSnapshot: function(Client, types.CreateSnapshotInput): types.CreateSnapshotOutput, table
+    createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    createUserGroup: function(Client, types.CreateUserGroupInput): types.CreateUserGroupOutput, table
+    decreaseNodeGroupsInGlobalReplicationGroup: function(Client, types.DecreaseNodeGroupsInGlobalReplicationGroupInput): types.DecreaseNodeGroupsInGlobalReplicationGroupOutput, table
+    decreaseReplicaCount: function(Client, types.DecreaseReplicaCountInput): types.DecreaseReplicaCountOutput, table
+    deleteCacheCluster: function(Client, types.DeleteCacheClusterInput): types.DeleteCacheClusterOutput, table
+    deleteCacheParameterGroup: function(Client, types.DeleteCacheParameterGroupInput): types.DeleteCacheParameterGroupOutput, table
+    deleteCacheSecurityGroup: function(Client, types.DeleteCacheSecurityGroupInput): types.DeleteCacheSecurityGroupOutput, table
+    deleteCacheSubnetGroup: function(Client, types.DeleteCacheSubnetGroupInput): types.DeleteCacheSubnetGroupOutput, table
+    deleteGlobalReplicationGroup: function(Client, types.DeleteGlobalReplicationGroupInput): types.DeleteGlobalReplicationGroupOutput, table
+    deleteReplicationGroup: function(Client, types.DeleteReplicationGroupInput): types.DeleteReplicationGroupOutput, table
+    deleteServerlessCache: function(Client, types.DeleteServerlessCacheInput): types.DeleteServerlessCacheOutput, table
+    deleteServerlessCacheSnapshot: function(Client, types.DeleteServerlessCacheSnapshotInput): types.DeleteServerlessCacheSnapshotOutput, table
+    deleteSnapshot: function(Client, types.DeleteSnapshotInput): types.DeleteSnapshotOutput, table
+    deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    deleteUserGroup: function(Client, types.DeleteUserGroupInput): types.DeleteUserGroupOutput, table
+    describeCacheClusters: function(Client, types.DescribeCacheClustersInput): types.DescribeCacheClustersOutput, table
+    describeCacheEngineVersions: function(Client, types.DescribeCacheEngineVersionsInput): types.DescribeCacheEngineVersionsOutput, table
+    describeCacheParameterGroups: function(Client, types.DescribeCacheParameterGroupsInput): types.DescribeCacheParameterGroupsOutput, table
+    describeCacheParameters: function(Client, types.DescribeCacheParametersInput): types.DescribeCacheParametersOutput, table
+    describeCacheSecurityGroups: function(Client, types.DescribeCacheSecurityGroupsInput): types.DescribeCacheSecurityGroupsOutput, table
+    describeCacheSubnetGroups: function(Client, types.DescribeCacheSubnetGroupsInput): types.DescribeCacheSubnetGroupsOutput, table
+    describeEngineDefaultParameters: function(Client, types.DescribeEngineDefaultParametersInput): types.DescribeEngineDefaultParametersOutput, table
+    describeEvents: function(Client, types.DescribeEventsInput): types.DescribeEventsOutput, table
+    describeGlobalReplicationGroups: function(Client, types.DescribeGlobalReplicationGroupsInput): types.DescribeGlobalReplicationGroupsOutput, table
+    describeReplicationGroups: function(Client, types.DescribeReplicationGroupsInput): types.DescribeReplicationGroupsOutput, table
+    describeReservedCacheNodes: function(Client, types.DescribeReservedCacheNodesInput): types.DescribeReservedCacheNodesOutput, table
+    describeReservedCacheNodesOfferings: function(Client, types.DescribeReservedCacheNodesOfferingsInput): types.DescribeReservedCacheNodesOfferingsOutput, table
+    describeServerlessCaches: function(Client, types.DescribeServerlessCachesInput): types.DescribeServerlessCachesOutput, table
+    describeServerlessCacheSnapshots: function(Client, types.DescribeServerlessCacheSnapshotsInput): types.DescribeServerlessCacheSnapshotsOutput, table
+    describeServiceUpdates: function(Client, types.DescribeServiceUpdatesInput): types.DescribeServiceUpdatesOutput, table
+    describeSnapshots: function(Client, types.DescribeSnapshotsInput): types.DescribeSnapshotsOutput, table
+    describeUpdateActions: function(Client, types.DescribeUpdateActionsInput): types.DescribeUpdateActionsOutput, table
+    describeUserGroups: function(Client, types.DescribeUserGroupsInput): types.DescribeUserGroupsOutput, table
+    describeUsers: function(Client, types.DescribeUsersInput): types.DescribeUsersOutput, table
+    disassociateGlobalReplicationGroup: function(Client, types.DisassociateGlobalReplicationGroupInput): types.DisassociateGlobalReplicationGroupOutput, table
+    exportServerlessCacheSnapshot: function(Client, types.ExportServerlessCacheSnapshotInput): types.ExportServerlessCacheSnapshotOutput, table
+    failoverGlobalReplicationGroup: function(Client, types.FailoverGlobalReplicationGroupInput): types.FailoverGlobalReplicationGroupOutput, table
+    increaseNodeGroupsInGlobalReplicationGroup: function(Client, types.IncreaseNodeGroupsInGlobalReplicationGroupInput): types.IncreaseNodeGroupsInGlobalReplicationGroupOutput, table
+    increaseReplicaCount: function(Client, types.IncreaseReplicaCountInput): types.IncreaseReplicaCountOutput, table
+    listAllowedNodeTypeModifications: function(Client, types.ListAllowedNodeTypeModificationsInput): types.ListAllowedNodeTypeModificationsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    modifyCacheCluster: function(Client, types.ModifyCacheClusterInput): types.ModifyCacheClusterOutput, table
+    modifyCacheParameterGroup: function(Client, types.ModifyCacheParameterGroupInput): types.ModifyCacheParameterGroupOutput, table
+    modifyCacheSubnetGroup: function(Client, types.ModifyCacheSubnetGroupInput): types.ModifyCacheSubnetGroupOutput, table
+    modifyGlobalReplicationGroup: function(Client, types.ModifyGlobalReplicationGroupInput): types.ModifyGlobalReplicationGroupOutput, table
+    modifyReplicationGroup: function(Client, types.ModifyReplicationGroupInput): types.ModifyReplicationGroupOutput, table
+    modifyReplicationGroupShardConfiguration: function(Client, types.ModifyReplicationGroupShardConfigurationInput): types.ModifyReplicationGroupShardConfigurationOutput, table
+    modifyServerlessCache: function(Client, types.ModifyServerlessCacheInput): types.ModifyServerlessCacheOutput, table
+    modifyUser: function(Client, types.ModifyUserInput): types.ModifyUserOutput, table
+    modifyUserGroup: function(Client, types.ModifyUserGroupInput): types.ModifyUserGroupOutput, table
+    purchaseReservedCacheNodesOffering: function(Client, types.PurchaseReservedCacheNodesOfferingInput): types.PurchaseReservedCacheNodesOfferingOutput, table
+    rebalanceSlotsInGlobalReplicationGroup: function(Client, types.RebalanceSlotsInGlobalReplicationGroupInput): types.RebalanceSlotsInGlobalReplicationGroupOutput, table
+    rebootCacheCluster: function(Client, types.RebootCacheClusterInput): types.RebootCacheClusterOutput, table
+    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): types.RemoveTagsFromResourceOutput, table
+    resetCacheParameterGroup: function(Client, types.ResetCacheParameterGroupInput): types.ResetCacheParameterGroupOutput, table
+    revokeCacheSecurityGroupIngress: function(Client, types.RevokeCacheSecurityGroupIngressInput): types.RevokeCacheSecurityGroupIngressOutput, table
+    startMigration: function(Client, types.StartMigrationInput): types.StartMigrationOutput, table
+    testFailover: function(Client, types.TestFailoverInput): types.TestFailoverOutput, table
+    testMigration: function(Client, types.TestMigrationInput): types.TestMigrationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

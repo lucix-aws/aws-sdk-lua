@@ -1,0 +1,25 @@
+local record BatchGetMetricsInput
+    MetricQueries: {MetricQuery}
+end
+
+local record BatchGetMetricsOutput
+    MetricQueryResults: {MetricQueryResult}
+end
+
+local record BatchPutMetricsInput
+    TrialComponentName: string
+    MetricData: {RawMetricData}
+end
+
+local record BatchPutMetricsOutput
+    Errors: {BatchPutMetricsError}
+end
+
+local record M
+    BatchGetMetricsInput: BatchGetMetricsInput
+    BatchGetMetricsOutput: BatchGetMetricsOutput
+    BatchPutMetricsInput: BatchPutMetricsInput
+    BatchPutMetricsOutput: BatchPutMetricsOutput
+end
+
+return M

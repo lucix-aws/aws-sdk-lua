@@ -1,0 +1,33 @@
+local types = require("computeoptimizerautomation.types")
+
+local record Client
+    associateAccounts: function(Client, types.AssociateAccountsInput): types.AssociateAccountsOutput, table
+    createAutomationRule: function(Client, types.CreateAutomationRuleInput): types.CreateAutomationRuleOutput, table
+    deleteAutomationRule: function(Client, types.DeleteAutomationRuleInput): types.DeleteAutomationRuleOutput, table
+    disassociateAccounts: function(Client, types.DisassociateAccountsInput): types.DisassociateAccountsOutput, table
+    getAutomationEvent: function(Client, types.GetAutomationEventInput): types.GetAutomationEventOutput, table
+    getAutomationRule: function(Client, types.GetAutomationRuleInput): types.GetAutomationRuleOutput, table
+    getEnrollmentConfiguration: function(Client, types.GetEnrollmentConfigurationInput): types.GetEnrollmentConfigurationOutput, table
+    listAccounts: function(Client, types.ListAccountsInput): types.ListAccountsOutput, table
+    listAutomationEvents: function(Client, types.ListAutomationEventsInput): types.ListAutomationEventsOutput, table
+    listAutomationEventSteps: function(Client, types.ListAutomationEventStepsInput): types.ListAutomationEventStepsOutput, table
+    listAutomationEventSummaries: function(Client, types.ListAutomationEventSummariesInput): types.ListAutomationEventSummariesOutput, table
+    listAutomationRulePreview: function(Client, types.ListAutomationRulePreviewInput): types.ListAutomationRulePreviewOutput, table
+    listAutomationRulePreviewSummaries: function(Client, types.ListAutomationRulePreviewSummariesInput): types.ListAutomationRulePreviewSummariesOutput, table
+    listAutomationRules: function(Client, types.ListAutomationRulesInput): types.ListAutomationRulesOutput, table
+    listRecommendedActions: function(Client, types.ListRecommendedActionsInput): types.ListRecommendedActionsOutput, table
+    listRecommendedActionSummaries: function(Client, types.ListRecommendedActionSummariesInput): types.ListRecommendedActionSummariesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    rollbackAutomationEvent: function(Client, types.RollbackAutomationEventInput): types.RollbackAutomationEventOutput, table
+    startAutomationEvent: function(Client, types.StartAutomationEventInput): types.StartAutomationEventOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAutomationRule: function(Client, types.UpdateAutomationRuleInput): types.UpdateAutomationRuleOutput, table
+    updateEnrollmentConfiguration: function(Client, types.UpdateEnrollmentConfigurationInput): types.UpdateEnrollmentConfigurationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

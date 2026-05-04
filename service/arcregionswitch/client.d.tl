@@ -1,0 +1,31 @@
+local types = require("arcregionswitch.types")
+
+local record Client
+    approvePlanExecutionStep: function(Client, types.ApprovePlanExecutionStepInput): types.ApprovePlanExecutionStepOutput, table
+    cancelPlanExecution: function(Client, types.CancelPlanExecutionInput): types.CancelPlanExecutionOutput, table
+    createPlan: function(Client, types.CreatePlanInput): types.CreatePlanOutput, table
+    deletePlan: function(Client, types.DeletePlanInput): types.DeletePlanOutput, table
+    getPlan: function(Client, types.GetPlanInput): types.GetPlanOutput, table
+    getPlanEvaluationStatus: function(Client, types.GetPlanEvaluationStatusInput): types.GetPlanEvaluationStatusOutput, table
+    getPlanExecution: function(Client, types.GetPlanExecutionInput): types.GetPlanExecutionOutput, table
+    getPlanInRegion: function(Client, types.GetPlanInRegionInput): types.GetPlanInRegionOutput, table
+    listPlanExecutionEvents: function(Client, types.ListPlanExecutionEventsInput): types.ListPlanExecutionEventsOutput, table
+    listPlanExecutions: function(Client, types.ListPlanExecutionsInput): types.ListPlanExecutionsOutput, table
+    listPlans: function(Client, types.ListPlansInput): types.ListPlansOutput, table
+    listPlansInRegion: function(Client, types.ListPlansInRegionInput): types.ListPlansInRegionOutput, table
+    listRoute53HealthChecks: function(Client, types.ListRoute53HealthChecksInput): types.ListRoute53HealthChecksOutput, table
+    listRoute53HealthChecksInRegion: function(Client, types.ListRoute53HealthChecksInRegionInput): types.ListRoute53HealthChecksInRegionOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    startPlanExecution: function(Client, types.StartPlanExecutionInput): types.StartPlanExecutionOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updatePlan: function(Client, types.UpdatePlanInput): types.UpdatePlanOutput, table
+    updatePlanExecution: function(Client, types.UpdatePlanExecutionInput): types.UpdatePlanExecutionOutput, table
+    updatePlanExecutionStep: function(Client, types.UpdatePlanExecutionStepInput): types.UpdatePlanExecutionStepOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

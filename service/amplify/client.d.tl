@@ -1,0 +1,47 @@
+local types = require("amplify.types")
+
+local record Client
+    createApp: function(Client, types.CreateAppInput): types.CreateAppOutput, table
+    createBackendEnvironment: function(Client, types.CreateBackendEnvironmentInput): types.CreateBackendEnvironmentOutput, table
+    createBranch: function(Client, types.CreateBranchInput): types.CreateBranchOutput, table
+    createDeployment: function(Client, types.CreateDeploymentInput): types.CreateDeploymentOutput, table
+    createDomainAssociation: function(Client, types.CreateDomainAssociationInput): types.CreateDomainAssociationOutput, table
+    createWebhook: function(Client, types.CreateWebhookInput): types.CreateWebhookOutput, table
+    deleteApp: function(Client, types.DeleteAppInput): types.DeleteAppOutput, table
+    deleteBackendEnvironment: function(Client, types.DeleteBackendEnvironmentInput): types.DeleteBackendEnvironmentOutput, table
+    deleteBranch: function(Client, types.DeleteBranchInput): types.DeleteBranchOutput, table
+    deleteDomainAssociation: function(Client, types.DeleteDomainAssociationInput): types.DeleteDomainAssociationOutput, table
+    deleteJob: function(Client, types.DeleteJobInput): types.DeleteJobOutput, table
+    deleteWebhook: function(Client, types.DeleteWebhookInput): types.DeleteWebhookOutput, table
+    generateAccessLogs: function(Client, types.GenerateAccessLogsInput): types.GenerateAccessLogsOutput, table
+    getApp: function(Client, types.GetAppInput): types.GetAppOutput, table
+    getArtifactUrl: function(Client, types.GetArtifactUrlInput): types.GetArtifactUrlOutput, table
+    getBackendEnvironment: function(Client, types.GetBackendEnvironmentInput): types.GetBackendEnvironmentOutput, table
+    getBranch: function(Client, types.GetBranchInput): types.GetBranchOutput, table
+    getDomainAssociation: function(Client, types.GetDomainAssociationInput): types.GetDomainAssociationOutput, table
+    getJob: function(Client, types.GetJobInput): types.GetJobOutput, table
+    getWebhook: function(Client, types.GetWebhookInput): types.GetWebhookOutput, table
+    listApps: function(Client, types.ListAppsInput): types.ListAppsOutput, table
+    listArtifacts: function(Client, types.ListArtifactsInput): types.ListArtifactsOutput, table
+    listBackendEnvironments: function(Client, types.ListBackendEnvironmentsInput): types.ListBackendEnvironmentsOutput, table
+    listBranches: function(Client, types.ListBranchesInput): types.ListBranchesOutput, table
+    listDomainAssociations: function(Client, types.ListDomainAssociationsInput): types.ListDomainAssociationsOutput, table
+    listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listWebhooks: function(Client, types.ListWebhooksInput): types.ListWebhooksOutput, table
+    startDeployment: function(Client, types.StartDeploymentInput): types.StartDeploymentOutput, table
+    startJob: function(Client, types.StartJobInput): types.StartJobOutput, table
+    stopJob: function(Client, types.StopJobInput): types.StopJobOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateApp: function(Client, types.UpdateAppInput): types.UpdateAppOutput, table
+    updateBranch: function(Client, types.UpdateBranchInput): types.UpdateBranchOutput, table
+    updateDomainAssociation: function(Client, types.UpdateDomainAssociationInput): types.UpdateDomainAssociationOutput, table
+    updateWebhook: function(Client, types.UpdateWebhookInput): types.UpdateWebhookOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

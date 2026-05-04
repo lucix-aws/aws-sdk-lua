@@ -1,0 +1,129 @@
+local M = {}
+
+M.ClientLimitExceededException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+        },
+    },
+}
+
+M.ConnectionLimitExceededException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+        },
+    },
+}
+
+M.StartSelectorType = {
+    FRAGMENT_NUMBER = "FRAGMENT_NUMBER",
+    SERVER_TIMESTAMP = "SERVER_TIMESTAMP",
+    PRODUCER_TIMESTAMP = "PRODUCER_TIMESTAMP",
+    NOW = "NOW",
+    EARLIEST = "EARLIEST",
+    CONTINUATION_TOKEN = "CONTINUATION_TOKEN",
+}
+
+M.StartSelector = {
+    type = "structure",
+    members = {
+        StartSelectorType = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        AfterFragmentNumber = {
+            type = "string",
+        },
+        StartTimestamp = {
+            type = "timestamp",
+        },
+        ContinuationToken = {
+            type = "string",
+        },
+    },
+}
+
+M.GetMediaInput = {
+    type = "structure",
+    members = {
+        StreamName = {
+            type = "string",
+        },
+        StreamARN = {
+            type = "string",
+        },
+        StartSelector = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.GetMediaOutput = {
+    type = "structure",
+    members = {
+        ContentType = {
+            type = "string",
+            traits = {
+                http_header = "Content-Type",
+            },
+        },
+        Payload = {
+            type = "blob",
+            traits = {
+                http_payload = true,
+            },
+        },
+    },
+}
+
+M.InvalidArgumentException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+        },
+    },
+}
+
+M.InvalidEndpointException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+        },
+    },
+}
+
+M.NotAuthorizedException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+        },
+    },
+}
+
+M.ResourceNotFoundException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+        },
+    },
+}
+
+return M

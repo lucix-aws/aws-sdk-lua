@@ -1,0 +1,19 @@
+local types = require("notificationscontacts.types")
+
+local record Client
+    activateEmailContact: function(Client, types.ActivateEmailContactInput): types.ActivateEmailContactOutput, table
+    createEmailContact: function(Client, types.CreateEmailContactInput): types.CreateEmailContactOutput, table
+    deleteEmailContact: function(Client, types.DeleteEmailContactInput): types.DeleteEmailContactOutput, table
+    getEmailContact: function(Client, types.GetEmailContactInput): types.GetEmailContactOutput, table
+    listEmailContacts: function(Client, types.ListEmailContactsInput): types.ListEmailContactsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    sendActivationCode: function(Client, types.SendActivationCodeInput): types.SendActivationCodeOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,106 @@
+local types = require("chimesdkvoice.types")
+
+local record Client
+    associatePhoneNumbersWithVoiceConnector: function(Client, types.AssociatePhoneNumbersWithVoiceConnectorInput): types.AssociatePhoneNumbersWithVoiceConnectorOutput, table
+    associatePhoneNumbersWithVoiceConnectorGroup: function(Client, types.AssociatePhoneNumbersWithVoiceConnectorGroupInput): types.AssociatePhoneNumbersWithVoiceConnectorGroupOutput, table
+    batchDeletePhoneNumber: function(Client, types.BatchDeletePhoneNumberInput): types.BatchDeletePhoneNumberOutput, table
+    batchUpdatePhoneNumber: function(Client, types.BatchUpdatePhoneNumberInput): types.BatchUpdatePhoneNumberOutput, table
+    createPhoneNumberOrder: function(Client, types.CreatePhoneNumberOrderInput): types.CreatePhoneNumberOrderOutput, table
+    createProxySession: function(Client, types.CreateProxySessionInput): types.CreateProxySessionOutput, table
+    createSipMediaApplication: function(Client, types.CreateSipMediaApplicationInput): types.CreateSipMediaApplicationOutput, table
+    createSipMediaApplicationCall: function(Client, types.CreateSipMediaApplicationCallInput): types.CreateSipMediaApplicationCallOutput, table
+    createSipRule: function(Client, types.CreateSipRuleInput): types.CreateSipRuleOutput, table
+    createVoiceConnector: function(Client, types.CreateVoiceConnectorInput): types.CreateVoiceConnectorOutput, table
+    createVoiceConnectorGroup: function(Client, types.CreateVoiceConnectorGroupInput): types.CreateVoiceConnectorGroupOutput, table
+    createVoiceProfile: function(Client, types.CreateVoiceProfileInput): types.CreateVoiceProfileOutput, table
+    createVoiceProfileDomain: function(Client, types.CreateVoiceProfileDomainInput): types.CreateVoiceProfileDomainOutput, table
+    deletePhoneNumber: function(Client, types.DeletePhoneNumberInput): types.DeletePhoneNumberOutput, table
+    deleteProxySession: function(Client, types.DeleteProxySessionInput): types.DeleteProxySessionOutput, table
+    deleteSipMediaApplication: function(Client, types.DeleteSipMediaApplicationInput): types.DeleteSipMediaApplicationOutput, table
+    deleteSipRule: function(Client, types.DeleteSipRuleInput): types.DeleteSipRuleOutput, table
+    deleteVoiceConnector: function(Client, types.DeleteVoiceConnectorInput): types.DeleteVoiceConnectorOutput, table
+    deleteVoiceConnectorEmergencyCallingConfiguration: function(Client, types.DeleteVoiceConnectorEmergencyCallingConfigurationInput): types.DeleteVoiceConnectorEmergencyCallingConfigurationOutput, table
+    deleteVoiceConnectorExternalSystemsConfiguration: function(Client, types.DeleteVoiceConnectorExternalSystemsConfigurationInput): types.DeleteVoiceConnectorExternalSystemsConfigurationOutput, table
+    deleteVoiceConnectorGroup: function(Client, types.DeleteVoiceConnectorGroupInput): types.DeleteVoiceConnectorGroupOutput, table
+    deleteVoiceConnectorOrigination: function(Client, types.DeleteVoiceConnectorOriginationInput): types.DeleteVoiceConnectorOriginationOutput, table
+    deleteVoiceConnectorProxy: function(Client, types.DeleteVoiceConnectorProxyInput): types.DeleteVoiceConnectorProxyOutput, table
+    deleteVoiceConnectorStreamingConfiguration: function(Client, types.DeleteVoiceConnectorStreamingConfigurationInput): types.DeleteVoiceConnectorStreamingConfigurationOutput, table
+    deleteVoiceConnectorTermination: function(Client, types.DeleteVoiceConnectorTerminationInput): types.DeleteVoiceConnectorTerminationOutput, table
+    deleteVoiceConnectorTerminationCredentials: function(Client, types.DeleteVoiceConnectorTerminationCredentialsInput): types.DeleteVoiceConnectorTerminationCredentialsOutput, table
+    deleteVoiceProfile: function(Client, types.DeleteVoiceProfileInput): types.DeleteVoiceProfileOutput, table
+    deleteVoiceProfileDomain: function(Client, types.DeleteVoiceProfileDomainInput): types.DeleteVoiceProfileDomainOutput, table
+    disassociatePhoneNumbersFromVoiceConnector: function(Client, types.DisassociatePhoneNumbersFromVoiceConnectorInput): types.DisassociatePhoneNumbersFromVoiceConnectorOutput, table
+    disassociatePhoneNumbersFromVoiceConnectorGroup: function(Client, types.DisassociatePhoneNumbersFromVoiceConnectorGroupInput): types.DisassociatePhoneNumbersFromVoiceConnectorGroupOutput, table
+    getGlobalSettings: function(Client, types.GetGlobalSettingsInput): types.GetGlobalSettingsOutput, table
+    getPhoneNumber: function(Client, types.GetPhoneNumberInput): types.GetPhoneNumberOutput, table
+    getPhoneNumberOrder: function(Client, types.GetPhoneNumberOrderInput): types.GetPhoneNumberOrderOutput, table
+    getPhoneNumberSettings: function(Client, types.GetPhoneNumberSettingsInput): types.GetPhoneNumberSettingsOutput, table
+    getProxySession: function(Client, types.GetProxySessionInput): types.GetProxySessionOutput, table
+    getSipMediaApplication: function(Client, types.GetSipMediaApplicationInput): types.GetSipMediaApplicationOutput, table
+    getSipMediaApplicationAlexaSkillConfiguration: function(Client, types.GetSipMediaApplicationAlexaSkillConfigurationInput): types.GetSipMediaApplicationAlexaSkillConfigurationOutput, table
+    getSipMediaApplicationLoggingConfiguration: function(Client, types.GetSipMediaApplicationLoggingConfigurationInput): types.GetSipMediaApplicationLoggingConfigurationOutput, table
+    getSipRule: function(Client, types.GetSipRuleInput): types.GetSipRuleOutput, table
+    getSpeakerSearchTask: function(Client, types.GetSpeakerSearchTaskInput): types.GetSpeakerSearchTaskOutput, table
+    getVoiceConnector: function(Client, types.GetVoiceConnectorInput): types.GetVoiceConnectorOutput, table
+    getVoiceConnectorEmergencyCallingConfiguration: function(Client, types.GetVoiceConnectorEmergencyCallingConfigurationInput): types.GetVoiceConnectorEmergencyCallingConfigurationOutput, table
+    getVoiceConnectorExternalSystemsConfiguration: function(Client, types.GetVoiceConnectorExternalSystemsConfigurationInput): types.GetVoiceConnectorExternalSystemsConfigurationOutput, table
+    getVoiceConnectorGroup: function(Client, types.GetVoiceConnectorGroupInput): types.GetVoiceConnectorGroupOutput, table
+    getVoiceConnectorLoggingConfiguration: function(Client, types.GetVoiceConnectorLoggingConfigurationInput): types.GetVoiceConnectorLoggingConfigurationOutput, table
+    getVoiceConnectorOrigination: function(Client, types.GetVoiceConnectorOriginationInput): types.GetVoiceConnectorOriginationOutput, table
+    getVoiceConnectorProxy: function(Client, types.GetVoiceConnectorProxyInput): types.GetVoiceConnectorProxyOutput, table
+    getVoiceConnectorStreamingConfiguration: function(Client, types.GetVoiceConnectorStreamingConfigurationInput): types.GetVoiceConnectorStreamingConfigurationOutput, table
+    getVoiceConnectorTermination: function(Client, types.GetVoiceConnectorTerminationInput): types.GetVoiceConnectorTerminationOutput, table
+    getVoiceConnectorTerminationHealth: function(Client, types.GetVoiceConnectorTerminationHealthInput): types.GetVoiceConnectorTerminationHealthOutput, table
+    getVoiceProfile: function(Client, types.GetVoiceProfileInput): types.GetVoiceProfileOutput, table
+    getVoiceProfileDomain: function(Client, types.GetVoiceProfileDomainInput): types.GetVoiceProfileDomainOutput, table
+    getVoiceToneAnalysisTask: function(Client, types.GetVoiceToneAnalysisTaskInput): types.GetVoiceToneAnalysisTaskOutput, table
+    listAvailableVoiceConnectorRegions: function(Client, types.ListAvailableVoiceConnectorRegionsInput): types.ListAvailableVoiceConnectorRegionsOutput, table
+    listPhoneNumberOrders: function(Client, types.ListPhoneNumberOrdersInput): types.ListPhoneNumberOrdersOutput, table
+    listPhoneNumbers: function(Client, types.ListPhoneNumbersInput): types.ListPhoneNumbersOutput, table
+    listProxySessions: function(Client, types.ListProxySessionsInput): types.ListProxySessionsOutput, table
+    listSipMediaApplications: function(Client, types.ListSipMediaApplicationsInput): types.ListSipMediaApplicationsOutput, table
+    listSipRules: function(Client, types.ListSipRulesInput): types.ListSipRulesOutput, table
+    listSupportedPhoneNumberCountries: function(Client, types.ListSupportedPhoneNumberCountriesInput): types.ListSupportedPhoneNumberCountriesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listVoiceConnectorGroups: function(Client, types.ListVoiceConnectorGroupsInput): types.ListVoiceConnectorGroupsOutput, table
+    listVoiceConnectors: function(Client, types.ListVoiceConnectorsInput): types.ListVoiceConnectorsOutput, table
+    listVoiceConnectorTerminationCredentials: function(Client, types.ListVoiceConnectorTerminationCredentialsInput): types.ListVoiceConnectorTerminationCredentialsOutput, table
+    listVoiceProfileDomains: function(Client, types.ListVoiceProfileDomainsInput): types.ListVoiceProfileDomainsOutput, table
+    listVoiceProfiles: function(Client, types.ListVoiceProfilesInput): types.ListVoiceProfilesOutput, table
+    putSipMediaApplicationAlexaSkillConfiguration: function(Client, types.PutSipMediaApplicationAlexaSkillConfigurationInput): types.PutSipMediaApplicationAlexaSkillConfigurationOutput, table
+    putSipMediaApplicationLoggingConfiguration: function(Client, types.PutSipMediaApplicationLoggingConfigurationInput): types.PutSipMediaApplicationLoggingConfigurationOutput, table
+    putVoiceConnectorEmergencyCallingConfiguration: function(Client, types.PutVoiceConnectorEmergencyCallingConfigurationInput): types.PutVoiceConnectorEmergencyCallingConfigurationOutput, table
+    putVoiceConnectorExternalSystemsConfiguration: function(Client, types.PutVoiceConnectorExternalSystemsConfigurationInput): types.PutVoiceConnectorExternalSystemsConfigurationOutput, table
+    putVoiceConnectorLoggingConfiguration: function(Client, types.PutVoiceConnectorLoggingConfigurationInput): types.PutVoiceConnectorLoggingConfigurationOutput, table
+    putVoiceConnectorOrigination: function(Client, types.PutVoiceConnectorOriginationInput): types.PutVoiceConnectorOriginationOutput, table
+    putVoiceConnectorProxy: function(Client, types.PutVoiceConnectorProxyInput): types.PutVoiceConnectorProxyOutput, table
+    putVoiceConnectorStreamingConfiguration: function(Client, types.PutVoiceConnectorStreamingConfigurationInput): types.PutVoiceConnectorStreamingConfigurationOutput, table
+    putVoiceConnectorTermination: function(Client, types.PutVoiceConnectorTerminationInput): types.PutVoiceConnectorTerminationOutput, table
+    putVoiceConnectorTerminationCredentials: function(Client, types.PutVoiceConnectorTerminationCredentialsInput): types.PutVoiceConnectorTerminationCredentialsOutput, table
+    restorePhoneNumber: function(Client, types.RestorePhoneNumberInput): types.RestorePhoneNumberOutput, table
+    searchAvailablePhoneNumbers: function(Client, types.SearchAvailablePhoneNumbersInput): types.SearchAvailablePhoneNumbersOutput, table
+    startSpeakerSearchTask: function(Client, types.StartSpeakerSearchTaskInput): types.StartSpeakerSearchTaskOutput, table
+    startVoiceToneAnalysisTask: function(Client, types.StartVoiceToneAnalysisTaskInput): types.StartVoiceToneAnalysisTaskOutput, table
+    stopSpeakerSearchTask: function(Client, types.StopSpeakerSearchTaskInput): types.StopSpeakerSearchTaskOutput, table
+    stopVoiceToneAnalysisTask: function(Client, types.StopVoiceToneAnalysisTaskInput): types.StopVoiceToneAnalysisTaskOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateGlobalSettings: function(Client, types.UpdateGlobalSettingsInput): types.UpdateGlobalSettingsOutput, table
+    updatePhoneNumber: function(Client, types.UpdatePhoneNumberInput): types.UpdatePhoneNumberOutput, table
+    updatePhoneNumberSettings: function(Client, types.UpdatePhoneNumberSettingsInput): types.UpdatePhoneNumberSettingsOutput, table
+    updateProxySession: function(Client, types.UpdateProxySessionInput): types.UpdateProxySessionOutput, table
+    updateSipMediaApplication: function(Client, types.UpdateSipMediaApplicationInput): types.UpdateSipMediaApplicationOutput, table
+    updateSipMediaApplicationCall: function(Client, types.UpdateSipMediaApplicationCallInput): types.UpdateSipMediaApplicationCallOutput, table
+    updateSipRule: function(Client, types.UpdateSipRuleInput): types.UpdateSipRuleOutput, table
+    updateVoiceConnector: function(Client, types.UpdateVoiceConnectorInput): types.UpdateVoiceConnectorOutput, table
+    updateVoiceConnectorGroup: function(Client, types.UpdateVoiceConnectorGroupInput): types.UpdateVoiceConnectorGroupOutput, table
+    updateVoiceProfile: function(Client, types.UpdateVoiceProfileInput): types.UpdateVoiceProfileOutput, table
+    updateVoiceProfileDomain: function(Client, types.UpdateVoiceProfileDomainInput): types.UpdateVoiceProfileDomainOutput, table
+    validateE911Address: function(Client, types.ValidateE911AddressInput): types.ValidateE911AddressOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

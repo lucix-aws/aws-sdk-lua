@@ -1,0 +1,1384 @@
+local record CreateApplicationInstanceInput
+    Name: string
+    Description: string
+    ManifestPayload: ManifestPayload
+    ManifestOverridesPayload: ManifestOverridesPayload
+    ApplicationInstanceIdToReplace: string
+    RuntimeRoleArn: string
+    DefaultRuntimeContextDevice: string
+    Tags: {string : string}
+end
+
+local record CreateApplicationInstanceOutput
+    ApplicationInstanceId: string
+end
+
+local record CreateJobForDevicesInput
+    DeviceIds: {string}
+    DeviceJobConfig: DeviceJobConfig
+    JobType: string
+end
+
+local record CreateJobForDevicesOutput
+    Jobs: {Job}
+end
+
+local record CreateNodeFromTemplateJobInput
+    TemplateType: string
+    OutputPackageName: string
+    OutputPackageVersion: string
+    NodeName: string
+    NodeDescription: string
+    TemplateParameters: {string : string}
+    JobTags: {JobResourceTags}
+end
+
+local record CreateNodeFromTemplateJobOutput
+    JobId: string
+end
+
+local record CreatePackageInput
+    PackageName: string
+    Tags: {string : string}
+end
+
+local record CreatePackageOutput
+    PackageId: string
+    Arn: string
+    StorageLocation: StorageLocation
+end
+
+local record CreatePackageImportJobInput
+    JobType: string
+    InputConfig: PackageImportJobInputConfig
+    OutputConfig: PackageImportJobOutputConfig
+    ClientToken: string
+    JobTags: {JobResourceTags}
+end
+
+local record CreatePackageImportJobOutput
+    JobId: string
+end
+
+local record DeleteDeviceInput
+    DeviceId: string
+end
+
+local record DeleteDeviceOutput
+    DeviceId: string
+end
+
+local record DeletePackageInput
+    PackageId: string
+    ForceDelete: boolean
+end
+
+local record DeletePackageOutput
+end
+
+local record DeregisterPackageVersionInput
+    OwnerAccount: string
+    PackageId: string
+    PackageVersion: string
+    PatchVersion: string
+    UpdatedLatestPatchVersion: string
+end
+
+local record DeregisterPackageVersionOutput
+end
+
+local record DescribeApplicationInstanceInput
+    ApplicationInstanceId: string
+end
+
+local record DescribeApplicationInstanceOutput
+    Name: string
+    Description: string
+    DefaultRuntimeContextDevice: string
+    DefaultRuntimeContextDeviceName: string
+    ApplicationInstanceIdToReplace: string
+    RuntimeRoleArn: string
+    Status: string
+    HealthStatus: string
+    StatusDescription: string
+    CreatedTime: number
+    LastUpdatedTime: number
+    ApplicationInstanceId: string
+    Arn: string
+    Tags: {string : string}
+    RuntimeContextStates: {ReportedRuntimeContextState}
+end
+
+local record DescribeApplicationInstanceDetailsInput
+    ApplicationInstanceId: string
+end
+
+local record DescribeApplicationInstanceDetailsOutput
+    Name: string
+    Description: string
+    DefaultRuntimeContextDevice: string
+    ManifestPayload: ManifestPayload
+    ManifestOverridesPayload: ManifestOverridesPayload
+    ApplicationInstanceIdToReplace: string
+    CreatedTime: number
+    ApplicationInstanceId: string
+end
+
+local record DescribeDeviceInput
+    DeviceId: string
+end
+
+local record DescribeDeviceOutput
+    DeviceId: string
+    Name: string
+    Arn: string
+    Description: string
+    Type: string
+    DeviceConnectionStatus: string
+    CreatedTime: number
+    ProvisioningStatus: string
+    LatestSoftware: string
+    CurrentSoftware: string
+    SerialNumber: string
+    Tags: {string : string}
+    NetworkingConfiguration: NetworkPayload
+    CurrentNetworkingStatus: NetworkStatus
+    LeaseExpirationTime: number
+    AlternateSoftwares: {AlternateSoftwareMetadata}
+    LatestAlternateSoftware: string
+    Brand: string
+    LatestDeviceJob: LatestDeviceJob
+    DeviceAggregatedStatus: string
+end
+
+local record DescribeDeviceJobInput
+    JobId: string
+end
+
+local record DescribeDeviceJobOutput
+    JobId: string
+    DeviceId: string
+    DeviceArn: string
+    DeviceName: string
+    DeviceType: string
+    ImageVersion: string
+    Status: string
+    CreatedTime: number
+    JobType: string
+end
+
+local record DescribeNodeInput
+    NodeId: string
+    OwnerAccount: string
+end
+
+local record DescribeNodeOutput
+    NodeId: string
+    Name: string
+    Category: string
+    OwnerAccount: string
+    PackageName: string
+    PackageId: string
+    PackageArn: string
+    PackageVersion: string
+    PatchVersion: string
+    NodeInterface: NodeInterface
+    AssetName: string
+    Description: string
+    CreatedTime: number
+    LastUpdatedTime: number
+end
+
+local record DescribeNodeFromTemplateJobInput
+    JobId: string
+end
+
+local record DescribeNodeFromTemplateJobOutput
+    JobId: string
+    Status: string
+    StatusMessage: string
+    CreatedTime: number
+    LastUpdatedTime: number
+    OutputPackageName: string
+    OutputPackageVersion: string
+    NodeName: string
+    NodeDescription: string
+    TemplateType: string
+    TemplateParameters: {string : string}
+    JobTags: {JobResourceTags}
+end
+
+local record DescribePackageInput
+    PackageId: string
+end
+
+local record DescribePackageOutput
+    PackageId: string
+    PackageName: string
+    Arn: string
+    StorageLocation: StorageLocation
+    ReadAccessPrincipalArns: {string}
+    WriteAccessPrincipalArns: {string}
+    CreatedTime: number
+    Tags: {string : string}
+end
+
+local record DescribePackageImportJobInput
+    JobId: string
+end
+
+local record DescribePackageImportJobOutput
+    JobId: string
+    ClientToken: string
+    JobType: string
+    InputConfig: PackageImportJobInputConfig
+    OutputConfig: PackageImportJobOutputConfig
+    Output: PackageImportJobOutput
+    CreatedTime: number
+    LastUpdatedTime: number
+    Status: string
+    StatusMessage: string
+    JobTags: {JobResourceTags}
+end
+
+local record DescribePackageVersionInput
+    OwnerAccount: string
+    PackageId: string
+    PackageVersion: string
+    PatchVersion: string
+end
+
+local record DescribePackageVersionOutput
+    OwnerAccount: string
+    PackageId: string
+    PackageArn: string
+    PackageName: string
+    PackageVersion: string
+    PatchVersion: string
+    IsLatestPatch: boolean
+    Status: string
+    StatusDescription: string
+    RegisteredTime: number
+end
+
+local record ListApplicationInstanceDependenciesInput
+    ApplicationInstanceId: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListApplicationInstanceDependenciesOutput
+    PackageObjects: {PackageObject}
+    NextToken: string
+end
+
+local record ListApplicationInstanceNodeInstancesInput
+    ApplicationInstanceId: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListApplicationInstanceNodeInstancesOutput
+    NodeInstances: {NodeInstance}
+    NextToken: string
+end
+
+local record ListApplicationInstancesInput
+    DeviceId: string
+    StatusFilter: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListApplicationInstancesOutput
+    ApplicationInstances: {ApplicationInstance}
+    NextToken: string
+end
+
+local record ListDevicesInput
+    NextToken: string
+    MaxResults: number
+    SortBy: string
+    SortOrder: string
+    NameFilter: string
+    DeviceAggregatedStatusFilter: string
+end
+
+local record ListDevicesOutput
+    Devices: {Device}
+    NextToken: string
+end
+
+local record ListDevicesJobsInput
+    DeviceId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListDevicesJobsOutput
+    DeviceJobs: {DeviceJob}
+    NextToken: string
+end
+
+local record ListNodeFromTemplateJobsInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListNodeFromTemplateJobsOutput
+    NodeFromTemplateJobs: {NodeFromTemplateJob}
+    NextToken: string
+end
+
+local record ListNodesInput
+    Category: string
+    OwnerAccount: string
+    PackageName: string
+    PackageVersion: string
+    PatchVersion: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListNodesOutput
+    Nodes: {Node}
+    NextToken: string
+end
+
+local record ListPackageImportJobsInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListPackageImportJobsOutput
+    PackageImportJobs: {PackageImportJob}
+    NextToken: string
+end
+
+local record ListPackagesInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListPackagesOutput
+    Packages: {PackageListItem}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {string : string}
+end
+
+local record ProvisionDeviceInput
+    Name: string
+    Description: string
+    Tags: {string : string}
+    NetworkingConfiguration: NetworkPayload
+end
+
+local record ProvisionDeviceOutput
+    DeviceId: string
+    Arn: string
+    Status: string
+    Certificates: string
+    IotThingName: string
+end
+
+local record RegisterPackageVersionInput
+    OwnerAccount: string
+    PackageId: string
+    PackageVersion: string
+    PatchVersion: string
+    MarkLatest: boolean
+end
+
+local record RegisterPackageVersionOutput
+end
+
+local record RemoveApplicationInstanceInput
+    ApplicationInstanceId: string
+end
+
+local record RemoveApplicationInstanceOutput
+end
+
+local record SignalApplicationInstanceNodeInstancesInput
+    ApplicationInstanceId: string
+    NodeSignals: {NodeSignal}
+end
+
+local record SignalApplicationInstanceNodeInstancesOutput
+    ApplicationInstanceId: string
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateDeviceMetadataInput
+    DeviceId: string
+    Description: string
+end
+
+local record UpdateDeviceMetadataOutput
+    DeviceId: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    QuotaCode: string
+    ServiceCode: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    QuotaCode: string
+    ServiceCode: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    QuotaCode: string
+    ServiceCode: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    ErrorId: string
+    ErrorArguments: {ConflictExceptionErrorArgument}
+end
+
+local record InternalServerException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    ErrorId: string
+    ErrorArguments: {ValidationExceptionErrorArgument}
+    Fields: {ValidationExceptionField}
+end
+
+local record M
+    CreateApplicationInstanceInput: CreateApplicationInstanceInput
+    CreateApplicationInstanceOutput: CreateApplicationInstanceOutput
+    CreateJobForDevicesInput: CreateJobForDevicesInput
+    CreateJobForDevicesOutput: CreateJobForDevicesOutput
+    CreateNodeFromTemplateJobInput: CreateNodeFromTemplateJobInput
+    CreateNodeFromTemplateJobOutput: CreateNodeFromTemplateJobOutput
+    CreatePackageInput: CreatePackageInput
+    CreatePackageOutput: CreatePackageOutput
+    CreatePackageImportJobInput: CreatePackageImportJobInput
+    CreatePackageImportJobOutput: CreatePackageImportJobOutput
+    DeleteDeviceInput: DeleteDeviceInput
+    DeleteDeviceOutput: DeleteDeviceOutput
+    DeletePackageInput: DeletePackageInput
+    DeletePackageOutput: DeletePackageOutput
+    DeregisterPackageVersionInput: DeregisterPackageVersionInput
+    DeregisterPackageVersionOutput: DeregisterPackageVersionOutput
+    DescribeApplicationInstanceInput: DescribeApplicationInstanceInput
+    DescribeApplicationInstanceOutput: DescribeApplicationInstanceOutput
+    DescribeApplicationInstanceDetailsInput: DescribeApplicationInstanceDetailsInput
+    DescribeApplicationInstanceDetailsOutput: DescribeApplicationInstanceDetailsOutput
+    DescribeDeviceInput: DescribeDeviceInput
+    DescribeDeviceOutput: DescribeDeviceOutput
+    DescribeDeviceJobInput: DescribeDeviceJobInput
+    DescribeDeviceJobOutput: DescribeDeviceJobOutput
+    DescribeNodeInput: DescribeNodeInput
+    DescribeNodeOutput: DescribeNodeOutput
+    DescribeNodeFromTemplateJobInput: DescribeNodeFromTemplateJobInput
+    DescribeNodeFromTemplateJobOutput: DescribeNodeFromTemplateJobOutput
+    DescribePackageInput: DescribePackageInput
+    DescribePackageOutput: DescribePackageOutput
+    DescribePackageImportJobInput: DescribePackageImportJobInput
+    DescribePackageImportJobOutput: DescribePackageImportJobOutput
+    DescribePackageVersionInput: DescribePackageVersionInput
+    DescribePackageVersionOutput: DescribePackageVersionOutput
+    ListApplicationInstanceDependenciesInput: ListApplicationInstanceDependenciesInput
+    ListApplicationInstanceDependenciesOutput: ListApplicationInstanceDependenciesOutput
+    ListApplicationInstanceNodeInstancesInput: ListApplicationInstanceNodeInstancesInput
+    ListApplicationInstanceNodeInstancesOutput: ListApplicationInstanceNodeInstancesOutput
+    ListApplicationInstancesInput: ListApplicationInstancesInput
+    ListApplicationInstancesOutput: ListApplicationInstancesOutput
+    ListDevicesInput: ListDevicesInput
+    ListDevicesOutput: ListDevicesOutput
+    ListDevicesJobsInput: ListDevicesJobsInput
+    ListDevicesJobsOutput: ListDevicesJobsOutput
+    ListNodeFromTemplateJobsInput: ListNodeFromTemplateJobsInput
+    ListNodeFromTemplateJobsOutput: ListNodeFromTemplateJobsOutput
+    ListNodesInput: ListNodesInput
+    ListNodesOutput: ListNodesOutput
+    ListPackageImportJobsInput: ListPackageImportJobsInput
+    ListPackageImportJobsOutput: ListPackageImportJobsOutput
+    ListPackagesInput: ListPackagesInput
+    ListPackagesOutput: ListPackagesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ProvisionDeviceInput: ProvisionDeviceInput
+    ProvisionDeviceOutput: ProvisionDeviceOutput
+    RegisterPackageVersionInput: RegisterPackageVersionInput
+    RegisterPackageVersionOutput: RegisterPackageVersionOutput
+    RemoveApplicationInstanceInput: RemoveApplicationInstanceInput
+    RemoveApplicationInstanceOutput: RemoveApplicationInstanceOutput
+    SignalApplicationInstanceNodeInstancesInput: SignalApplicationInstanceNodeInstancesInput
+    SignalApplicationInstanceNodeInstancesOutput: SignalApplicationInstanceNodeInstancesOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateDeviceMetadataInput: UpdateDeviceMetadataInput
+    UpdateDeviceMetadataOutput: UpdateDeviceMetadataOutput
+end
+
+return M

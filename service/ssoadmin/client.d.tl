@@ -1,0 +1,89 @@
+local types = require("ssoadmin.types")
+
+local record Client
+    addRegion: function(Client, types.AddRegionInput): types.AddRegionOutput, table
+    attachCustomerManagedPolicyReferenceToPermissionSet: function(Client, types.AttachCustomerManagedPolicyReferenceToPermissionSetInput): types.AttachCustomerManagedPolicyReferenceToPermissionSetOutput, table
+    attachManagedPolicyToPermissionSet: function(Client, types.AttachManagedPolicyToPermissionSetInput): types.AttachManagedPolicyToPermissionSetOutput, table
+    createAccountAssignment: function(Client, types.CreateAccountAssignmentInput): types.CreateAccountAssignmentOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createApplicationAssignment: function(Client, types.CreateApplicationAssignmentInput): types.CreateApplicationAssignmentOutput, table
+    createInstance: function(Client, types.CreateInstanceInput): types.CreateInstanceOutput, table
+    createInstanceAccessControlAttributeConfiguration: function(Client, types.CreateInstanceAccessControlAttributeConfigurationInput): types.CreateInstanceAccessControlAttributeConfigurationOutput, table
+    createPermissionSet: function(Client, types.CreatePermissionSetInput): types.CreatePermissionSetOutput, table
+    createTrustedTokenIssuer: function(Client, types.CreateTrustedTokenIssuerInput): types.CreateTrustedTokenIssuerOutput, table
+    deleteAccountAssignment: function(Client, types.DeleteAccountAssignmentInput): types.DeleteAccountAssignmentOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    deleteApplicationAccessScope: function(Client, types.DeleteApplicationAccessScopeInput): types.DeleteApplicationAccessScopeOutput, table
+    deleteApplicationAssignment: function(Client, types.DeleteApplicationAssignmentInput): types.DeleteApplicationAssignmentOutput, table
+    deleteApplicationAuthenticationMethod: function(Client, types.DeleteApplicationAuthenticationMethodInput): types.DeleteApplicationAuthenticationMethodOutput, table
+    deleteApplicationGrant: function(Client, types.DeleteApplicationGrantInput): types.DeleteApplicationGrantOutput, table
+    deleteInlinePolicyFromPermissionSet: function(Client, types.DeleteInlinePolicyFromPermissionSetInput): types.DeleteInlinePolicyFromPermissionSetOutput, table
+    deleteInstance: function(Client, types.DeleteInstanceInput): types.DeleteInstanceOutput, table
+    deleteInstanceAccessControlAttributeConfiguration: function(Client, types.DeleteInstanceAccessControlAttributeConfigurationInput): types.DeleteInstanceAccessControlAttributeConfigurationOutput, table
+    deletePermissionsBoundaryFromPermissionSet: function(Client, types.DeletePermissionsBoundaryFromPermissionSetInput): types.DeletePermissionsBoundaryFromPermissionSetOutput, table
+    deletePermissionSet: function(Client, types.DeletePermissionSetInput): types.DeletePermissionSetOutput, table
+    deleteTrustedTokenIssuer: function(Client, types.DeleteTrustedTokenIssuerInput): types.DeleteTrustedTokenIssuerOutput, table
+    describeAccountAssignmentCreationStatus: function(Client, types.DescribeAccountAssignmentCreationStatusInput): types.DescribeAccountAssignmentCreationStatusOutput, table
+    describeAccountAssignmentDeletionStatus: function(Client, types.DescribeAccountAssignmentDeletionStatusInput): types.DescribeAccountAssignmentDeletionStatusOutput, table
+    describeApplication: function(Client, types.DescribeApplicationInput): types.DescribeApplicationOutput, table
+    describeApplicationAssignment: function(Client, types.DescribeApplicationAssignmentInput): types.DescribeApplicationAssignmentOutput, table
+    describeApplicationProvider: function(Client, types.DescribeApplicationProviderInput): types.DescribeApplicationProviderOutput, table
+    describeInstance: function(Client, types.DescribeInstanceInput): types.DescribeInstanceOutput, table
+    describeInstanceAccessControlAttributeConfiguration: function(Client, types.DescribeInstanceAccessControlAttributeConfigurationInput): types.DescribeInstanceAccessControlAttributeConfigurationOutput, table
+    describePermissionSet: function(Client, types.DescribePermissionSetInput): types.DescribePermissionSetOutput, table
+    describePermissionSetProvisioningStatus: function(Client, types.DescribePermissionSetProvisioningStatusInput): types.DescribePermissionSetProvisioningStatusOutput, table
+    describeRegion: function(Client, types.DescribeRegionInput): types.DescribeRegionOutput, table
+    describeTrustedTokenIssuer: function(Client, types.DescribeTrustedTokenIssuerInput): types.DescribeTrustedTokenIssuerOutput, table
+    detachCustomerManagedPolicyReferenceFromPermissionSet: function(Client, types.DetachCustomerManagedPolicyReferenceFromPermissionSetInput): types.DetachCustomerManagedPolicyReferenceFromPermissionSetOutput, table
+    detachManagedPolicyFromPermissionSet: function(Client, types.DetachManagedPolicyFromPermissionSetInput): types.DetachManagedPolicyFromPermissionSetOutput, table
+    getApplicationAccessScope: function(Client, types.GetApplicationAccessScopeInput): types.GetApplicationAccessScopeOutput, table
+    getApplicationAssignmentConfiguration: function(Client, types.GetApplicationAssignmentConfigurationInput): types.GetApplicationAssignmentConfigurationOutput, table
+    getApplicationAuthenticationMethod: function(Client, types.GetApplicationAuthenticationMethodInput): types.GetApplicationAuthenticationMethodOutput, table
+    getApplicationGrant: function(Client, types.GetApplicationGrantInput): types.GetApplicationGrantOutput, table
+    getApplicationSessionConfiguration: function(Client, types.GetApplicationSessionConfigurationInput): types.GetApplicationSessionConfigurationOutput, table
+    getInlinePolicyForPermissionSet: function(Client, types.GetInlinePolicyForPermissionSetInput): types.GetInlinePolicyForPermissionSetOutput, table
+    getPermissionsBoundaryForPermissionSet: function(Client, types.GetPermissionsBoundaryForPermissionSetInput): types.GetPermissionsBoundaryForPermissionSetOutput, table
+    listAccountAssignmentCreationStatus: function(Client, types.ListAccountAssignmentCreationStatusInput): types.ListAccountAssignmentCreationStatusOutput, table
+    listAccountAssignmentDeletionStatus: function(Client, types.ListAccountAssignmentDeletionStatusInput): types.ListAccountAssignmentDeletionStatusOutput, table
+    listAccountAssignments: function(Client, types.ListAccountAssignmentsInput): types.ListAccountAssignmentsOutput, table
+    listAccountAssignmentsForPrincipal: function(Client, types.ListAccountAssignmentsForPrincipalInput): types.ListAccountAssignmentsForPrincipalOutput, table
+    listAccountsForProvisionedPermissionSet: function(Client, types.ListAccountsForProvisionedPermissionSetInput): types.ListAccountsForProvisionedPermissionSetOutput, table
+    listApplicationAccessScopes: function(Client, types.ListApplicationAccessScopesInput): types.ListApplicationAccessScopesOutput, table
+    listApplicationAssignments: function(Client, types.ListApplicationAssignmentsInput): types.ListApplicationAssignmentsOutput, table
+    listApplicationAssignmentsForPrincipal: function(Client, types.ListApplicationAssignmentsForPrincipalInput): types.ListApplicationAssignmentsForPrincipalOutput, table
+    listApplicationAuthenticationMethods: function(Client, types.ListApplicationAuthenticationMethodsInput): types.ListApplicationAuthenticationMethodsOutput, table
+    listApplicationGrants: function(Client, types.ListApplicationGrantsInput): types.ListApplicationGrantsOutput, table
+    listApplicationProviders: function(Client, types.ListApplicationProvidersInput): types.ListApplicationProvidersOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listCustomerManagedPolicyReferencesInPermissionSet: function(Client, types.ListCustomerManagedPolicyReferencesInPermissionSetInput): types.ListCustomerManagedPolicyReferencesInPermissionSetOutput, table
+    listInstances: function(Client, types.ListInstancesInput): types.ListInstancesOutput, table
+    listManagedPoliciesInPermissionSet: function(Client, types.ListManagedPoliciesInPermissionSetInput): types.ListManagedPoliciesInPermissionSetOutput, table
+    listPermissionSetProvisioningStatus: function(Client, types.ListPermissionSetProvisioningStatusInput): types.ListPermissionSetProvisioningStatusOutput, table
+    listPermissionSets: function(Client, types.ListPermissionSetsInput): types.ListPermissionSetsOutput, table
+    listPermissionSetsProvisionedToAccount: function(Client, types.ListPermissionSetsProvisionedToAccountInput): types.ListPermissionSetsProvisionedToAccountOutput, table
+    listRegions: function(Client, types.ListRegionsInput): types.ListRegionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTrustedTokenIssuers: function(Client, types.ListTrustedTokenIssuersInput): types.ListTrustedTokenIssuersOutput, table
+    provisionPermissionSet: function(Client, types.ProvisionPermissionSetInput): types.ProvisionPermissionSetOutput, table
+    putApplicationAccessScope: function(Client, types.PutApplicationAccessScopeInput): types.PutApplicationAccessScopeOutput, table
+    putApplicationAssignmentConfiguration: function(Client, types.PutApplicationAssignmentConfigurationInput): types.PutApplicationAssignmentConfigurationOutput, table
+    putApplicationAuthenticationMethod: function(Client, types.PutApplicationAuthenticationMethodInput): types.PutApplicationAuthenticationMethodOutput, table
+    putApplicationGrant: function(Client, types.PutApplicationGrantInput): types.PutApplicationGrantOutput, table
+    putApplicationSessionConfiguration: function(Client, types.PutApplicationSessionConfigurationInput): types.PutApplicationSessionConfigurationOutput, table
+    putInlinePolicyToPermissionSet: function(Client, types.PutInlinePolicyToPermissionSetInput): types.PutInlinePolicyToPermissionSetOutput, table
+    putPermissionsBoundaryToPermissionSet: function(Client, types.PutPermissionsBoundaryToPermissionSetInput): types.PutPermissionsBoundaryToPermissionSetOutput, table
+    removeRegion: function(Client, types.RemoveRegionInput): types.RemoveRegionOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateInstance: function(Client, types.UpdateInstanceInput): types.UpdateInstanceOutput, table
+    updateInstanceAccessControlAttributeConfiguration: function(Client, types.UpdateInstanceAccessControlAttributeConfigurationInput): types.UpdateInstanceAccessControlAttributeConfigurationOutput, table
+    updatePermissionSet: function(Client, types.UpdatePermissionSetInput): types.UpdatePermissionSetOutput, table
+    updateTrustedTokenIssuer: function(Client, types.UpdateTrustedTokenIssuerInput): types.UpdateTrustedTokenIssuerOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

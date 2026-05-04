@@ -1,0 +1,60 @@
+local types = require("finspace.types")
+
+local record Client
+    createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    createKxChangeset: function(Client, types.CreateKxChangesetInput): types.CreateKxChangesetOutput, table
+    createKxCluster: function(Client, types.CreateKxClusterInput): types.CreateKxClusterOutput, table
+    createKxDatabase: function(Client, types.CreateKxDatabaseInput): types.CreateKxDatabaseOutput, table
+    createKxDataview: function(Client, types.CreateKxDataviewInput): types.CreateKxDataviewOutput, table
+    createKxEnvironment: function(Client, types.CreateKxEnvironmentInput): types.CreateKxEnvironmentOutput, table
+    createKxScalingGroup: function(Client, types.CreateKxScalingGroupInput): types.CreateKxScalingGroupOutput, table
+    createKxUser: function(Client, types.CreateKxUserInput): types.CreateKxUserOutput, table
+    createKxVolume: function(Client, types.CreateKxVolumeInput): types.CreateKxVolumeOutput, table
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    deleteKxCluster: function(Client, types.DeleteKxClusterInput): types.DeleteKxClusterOutput, table
+    deleteKxClusterNode: function(Client, types.DeleteKxClusterNodeInput): types.DeleteKxClusterNodeOutput, table
+    deleteKxDatabase: function(Client, types.DeleteKxDatabaseInput): types.DeleteKxDatabaseOutput, table
+    deleteKxDataview: function(Client, types.DeleteKxDataviewInput): types.DeleteKxDataviewOutput, table
+    deleteKxEnvironment: function(Client, types.DeleteKxEnvironmentInput): types.DeleteKxEnvironmentOutput, table
+    deleteKxScalingGroup: function(Client, types.DeleteKxScalingGroupInput): types.DeleteKxScalingGroupOutput, table
+    deleteKxUser: function(Client, types.DeleteKxUserInput): types.DeleteKxUserOutput, table
+    deleteKxVolume: function(Client, types.DeleteKxVolumeInput): types.DeleteKxVolumeOutput, table
+    getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    getKxChangeset: function(Client, types.GetKxChangesetInput): types.GetKxChangesetOutput, table
+    getKxCluster: function(Client, types.GetKxClusterInput): types.GetKxClusterOutput, table
+    getKxConnectionString: function(Client, types.GetKxConnectionStringInput): types.GetKxConnectionStringOutput, table
+    getKxDatabase: function(Client, types.GetKxDatabaseInput): types.GetKxDatabaseOutput, table
+    getKxDataview: function(Client, types.GetKxDataviewInput): types.GetKxDataviewOutput, table
+    getKxEnvironment: function(Client, types.GetKxEnvironmentInput): types.GetKxEnvironmentOutput, table
+    getKxScalingGroup: function(Client, types.GetKxScalingGroupInput): types.GetKxScalingGroupOutput, table
+    getKxUser: function(Client, types.GetKxUserInput): types.GetKxUserOutput, table
+    getKxVolume: function(Client, types.GetKxVolumeInput): types.GetKxVolumeOutput, table
+    listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    listKxChangesets: function(Client, types.ListKxChangesetsInput): types.ListKxChangesetsOutput, table
+    listKxClusterNodes: function(Client, types.ListKxClusterNodesInput): types.ListKxClusterNodesOutput, table
+    listKxClusters: function(Client, types.ListKxClustersInput): types.ListKxClustersOutput, table
+    listKxDatabases: function(Client, types.ListKxDatabasesInput): types.ListKxDatabasesOutput, table
+    listKxDataviews: function(Client, types.ListKxDataviewsInput): types.ListKxDataviewsOutput, table
+    listKxEnvironments: function(Client, types.ListKxEnvironmentsInput): types.ListKxEnvironmentsOutput, table
+    listKxScalingGroups: function(Client, types.ListKxScalingGroupsInput): types.ListKxScalingGroupsOutput, table
+    listKxUsers: function(Client, types.ListKxUsersInput): types.ListKxUsersOutput, table
+    listKxVolumes: function(Client, types.ListKxVolumesInput): types.ListKxVolumesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput): types.UpdateEnvironmentOutput, table
+    updateKxClusterCodeConfiguration: function(Client, types.UpdateKxClusterCodeConfigurationInput): types.UpdateKxClusterCodeConfigurationOutput, table
+    updateKxClusterDatabases: function(Client, types.UpdateKxClusterDatabasesInput): types.UpdateKxClusterDatabasesOutput, table
+    updateKxDatabase: function(Client, types.UpdateKxDatabaseInput): types.UpdateKxDatabaseOutput, table
+    updateKxDataview: function(Client, types.UpdateKxDataviewInput): types.UpdateKxDataviewOutput, table
+    updateKxEnvironment: function(Client, types.UpdateKxEnvironmentInput): types.UpdateKxEnvironmentOutput, table
+    updateKxEnvironmentNetwork: function(Client, types.UpdateKxEnvironmentNetworkInput): types.UpdateKxEnvironmentNetworkOutput, table
+    updateKxUser: function(Client, types.UpdateKxUserInput): types.UpdateKxUserOutput, table
+    updateKxVolume: function(Client, types.UpdateKxVolumeInput): types.UpdateKxVolumeOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,51 @@
+local types = require("wisdom.types")
+
+local record Client
+    createAssistant: function(Client, types.CreateAssistantInput): types.CreateAssistantOutput, table
+    createAssistantAssociation: function(Client, types.CreateAssistantAssociationInput): types.CreateAssistantAssociationOutput, table
+    createContent: function(Client, types.CreateContentInput): types.CreateContentOutput, table
+    createKnowledgeBase: function(Client, types.CreateKnowledgeBaseInput): types.CreateKnowledgeBaseOutput, table
+    createQuickResponse: function(Client, types.CreateQuickResponseInput): types.CreateQuickResponseOutput, table
+    createSession: function(Client, types.CreateSessionInput): types.CreateSessionOutput, table
+    deleteAssistant: function(Client, types.DeleteAssistantInput): types.DeleteAssistantOutput, table
+    deleteAssistantAssociation: function(Client, types.DeleteAssistantAssociationInput): types.DeleteAssistantAssociationOutput, table
+    deleteContent: function(Client, types.DeleteContentInput): types.DeleteContentOutput, table
+    deleteImportJob: function(Client, types.DeleteImportJobInput): types.DeleteImportJobOutput, table
+    deleteKnowledgeBase: function(Client, types.DeleteKnowledgeBaseInput): types.DeleteKnowledgeBaseOutput, table
+    deleteQuickResponse: function(Client, types.DeleteQuickResponseInput): types.DeleteQuickResponseOutput, table
+    getAssistant: function(Client, types.GetAssistantInput): types.GetAssistantOutput, table
+    getAssistantAssociation: function(Client, types.GetAssistantAssociationInput): types.GetAssistantAssociationOutput, table
+    getContent: function(Client, types.GetContentInput): types.GetContentOutput, table
+    getContentSummary: function(Client, types.GetContentSummaryInput): types.GetContentSummaryOutput, table
+    getImportJob: function(Client, types.GetImportJobInput): types.GetImportJobOutput, table
+    getKnowledgeBase: function(Client, types.GetKnowledgeBaseInput): types.GetKnowledgeBaseOutput, table
+    getQuickResponse: function(Client, types.GetQuickResponseInput): types.GetQuickResponseOutput, table
+    getRecommendations: function(Client, types.GetRecommendationsInput): types.GetRecommendationsOutput, table
+    getSession: function(Client, types.GetSessionInput): types.GetSessionOutput, table
+    listAssistantAssociations: function(Client, types.ListAssistantAssociationsInput): types.ListAssistantAssociationsOutput, table
+    listAssistants: function(Client, types.ListAssistantsInput): types.ListAssistantsOutput, table
+    listContents: function(Client, types.ListContentsInput): types.ListContentsOutput, table
+    listImportJobs: function(Client, types.ListImportJobsInput): types.ListImportJobsOutput, table
+    listKnowledgeBases: function(Client, types.ListKnowledgeBasesInput): types.ListKnowledgeBasesOutput, table
+    listQuickResponses: function(Client, types.ListQuickResponsesInput): types.ListQuickResponsesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    notifyRecommendationsReceived: function(Client, types.NotifyRecommendationsReceivedInput): types.NotifyRecommendationsReceivedOutput, table
+    queryAssistant: function(Client, types.QueryAssistantInput): types.QueryAssistantOutput, table
+    removeKnowledgeBaseTemplateUri: function(Client, types.RemoveKnowledgeBaseTemplateUriInput): types.RemoveKnowledgeBaseTemplateUriOutput, table
+    searchContent: function(Client, types.SearchContentInput): types.SearchContentOutput, table
+    searchQuickResponses: function(Client, types.SearchQuickResponsesInput): types.SearchQuickResponsesOutput, table
+    searchSessions: function(Client, types.SearchSessionsInput): types.SearchSessionsOutput, table
+    startContentUpload: function(Client, types.StartContentUploadInput): types.StartContentUploadOutput, table
+    startImportJob: function(Client, types.StartImportJobInput): types.StartImportJobOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateContent: function(Client, types.UpdateContentInput): types.UpdateContentOutput, table
+    updateKnowledgeBaseTemplateUri: function(Client, types.UpdateKnowledgeBaseTemplateUriInput): types.UpdateKnowledgeBaseTemplateUriOutput, table
+    updateQuickResponse: function(Client, types.UpdateQuickResponseInput): types.UpdateQuickResponseOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

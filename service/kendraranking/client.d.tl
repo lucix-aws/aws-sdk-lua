@@ -1,0 +1,19 @@
+local types = require("kendraranking.types")
+
+local record Client
+    createRescoreExecutionPlan: function(Client, types.CreateRescoreExecutionPlanInput): types.CreateRescoreExecutionPlanOutput, table
+    deleteRescoreExecutionPlan: function(Client, types.DeleteRescoreExecutionPlanInput): types.DeleteRescoreExecutionPlanOutput, table
+    describeRescoreExecutionPlan: function(Client, types.DescribeRescoreExecutionPlanInput): types.DescribeRescoreExecutionPlanOutput, table
+    listRescoreExecutionPlans: function(Client, types.ListRescoreExecutionPlansInput): types.ListRescoreExecutionPlansOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    rescore: function(Client, types.RescoreInput): types.RescoreOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateRescoreExecutionPlan: function(Client, types.UpdateRescoreExecutionPlanInput): types.UpdateRescoreExecutionPlanOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

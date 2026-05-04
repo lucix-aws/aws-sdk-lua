@@ -1,0 +1,23 @@
+local types = require("codegurusecurity.types")
+
+local record Client
+    batchGetFindings: function(Client, types.BatchGetFindingsInput): types.BatchGetFindingsOutput, table
+    createScan: function(Client, types.CreateScanInput): types.CreateScanOutput, table
+    createUploadUrl: function(Client, types.CreateUploadUrlInput): types.CreateUploadUrlOutput, table
+    getAccountConfiguration: function(Client, types.GetAccountConfigurationInput): types.GetAccountConfigurationOutput, table
+    getFindings: function(Client, types.GetFindingsInput): types.GetFindingsOutput, table
+    getMetricsSummary: function(Client, types.GetMetricsSummaryInput): types.GetMetricsSummaryOutput, table
+    getScan: function(Client, types.GetScanInput): types.GetScanOutput, table
+    listFindingsMetrics: function(Client, types.ListFindingsMetricsInput): types.ListFindingsMetricsOutput, table
+    listScans: function(Client, types.ListScansInput): types.ListScansOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAccountConfiguration: function(Client, types.UpdateAccountConfigurationInput): types.UpdateAccountConfigurationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

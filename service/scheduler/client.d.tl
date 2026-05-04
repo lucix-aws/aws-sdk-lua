@@ -1,0 +1,22 @@
+local types = require("scheduler.types")
+
+local record Client
+    createSchedule: function(Client, types.CreateScheduleInput): types.CreateScheduleOutput, table
+    createScheduleGroup: function(Client, types.CreateScheduleGroupInput): types.CreateScheduleGroupOutput, table
+    deleteSchedule: function(Client, types.DeleteScheduleInput): types.DeleteScheduleOutput, table
+    deleteScheduleGroup: function(Client, types.DeleteScheduleGroupInput): types.DeleteScheduleGroupOutput, table
+    getSchedule: function(Client, types.GetScheduleInput): types.GetScheduleOutput, table
+    getScheduleGroup: function(Client, types.GetScheduleGroupInput): types.GetScheduleGroupOutput, table
+    listScheduleGroups: function(Client, types.ListScheduleGroupsInput): types.ListScheduleGroupsOutput, table
+    listSchedules: function(Client, types.ListSchedulesInput): types.ListSchedulesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateSchedule: function(Client, types.UpdateScheduleInput): types.UpdateScheduleOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

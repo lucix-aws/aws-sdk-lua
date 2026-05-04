@@ -1,0 +1,34 @@
+local types = require("securityir.types")
+
+local record Client
+    batchGetMemberAccountDetails: function(Client, types.BatchGetMemberAccountDetailsInput): types.BatchGetMemberAccountDetailsOutput, table
+    cancelMembership: function(Client, types.CancelMembershipInput): types.CancelMembershipOutput, table
+    closeCase: function(Client, types.CloseCaseInput): types.CloseCaseOutput, table
+    createCase: function(Client, types.CreateCaseInput): types.CreateCaseOutput, table
+    createCaseComment: function(Client, types.CreateCaseCommentInput): types.CreateCaseCommentOutput, table
+    createMembership: function(Client, types.CreateMembershipInput): types.CreateMembershipOutput, table
+    getCase: function(Client, types.GetCaseInput): types.GetCaseOutput, table
+    getCaseAttachmentDownloadUrl: function(Client, types.GetCaseAttachmentDownloadUrlInput): types.GetCaseAttachmentDownloadUrlOutput, table
+    getCaseAttachmentUploadUrl: function(Client, types.GetCaseAttachmentUploadUrlInput): types.GetCaseAttachmentUploadUrlOutput, table
+    getMembership: function(Client, types.GetMembershipInput): types.GetMembershipOutput, table
+    listCaseEdits: function(Client, types.ListCaseEditsInput): types.ListCaseEditsOutput, table
+    listCases: function(Client, types.ListCasesInput): types.ListCasesOutput, table
+    listComments: function(Client, types.ListCommentsInput): types.ListCommentsOutput, table
+    listInvestigations: function(Client, types.ListInvestigationsInput): types.ListInvestigationsOutput, table
+    listMemberships: function(Client, types.ListMembershipsInput): types.ListMembershipsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    sendFeedback: function(Client, types.SendFeedbackInput): types.SendFeedbackOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateCase: function(Client, types.UpdateCaseInput): types.UpdateCaseOutput, table
+    updateCaseComment: function(Client, types.UpdateCaseCommentInput): types.UpdateCaseCommentOutput, table
+    updateCaseStatus: function(Client, types.UpdateCaseStatusInput): types.UpdateCaseStatusOutput, table
+    updateMembership: function(Client, types.UpdateMembershipInput): types.UpdateMembershipOutput, table
+    updateResolverType: function(Client, types.UpdateResolverTypeInput): types.UpdateResolverTypeOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

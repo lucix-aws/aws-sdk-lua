@@ -1,0 +1,445 @@
+local record CreateChallengeInput
+    ConnectorArn: string
+    ClientToken: string
+    Tags: {string : string}
+end
+
+local record CreateChallengeOutput
+    Challenge: Challenge
+end
+
+local record CreateConnectorInput
+    CertificateAuthorityArn: string
+    MobileDeviceManagement: MobileDeviceManagement
+    VpcEndpointId: string
+    ClientToken: string
+    Tags: {string : string}
+end
+
+local record CreateConnectorOutput
+    ConnectorArn: string
+end
+
+local record DeleteChallengeInput
+    ChallengeArn: string
+end
+
+local record DeleteChallengeOutput
+end
+
+local record DeleteConnectorInput
+    ConnectorArn: string
+end
+
+local record DeleteConnectorOutput
+end
+
+local record GetChallengeMetadataInput
+    ChallengeArn: string
+end
+
+local record GetChallengeMetadataOutput
+    ChallengeMetadata: ChallengeMetadata
+end
+
+local record GetChallengePasswordInput
+    ChallengeArn: string
+end
+
+local record GetChallengePasswordOutput
+    Password: string
+end
+
+local record GetConnectorInput
+    ConnectorArn: string
+end
+
+local record GetConnectorOutput
+    Connector: Connector
+end
+
+local record ListChallengeMetadataInput
+    MaxResults: number
+    NextToken: string
+    ConnectorArn: string
+end
+
+local record ListChallengeMetadataOutput
+    Challenges: {ChallengeMetadataSummary}
+    NextToken: string
+end
+
+local record ListConnectorsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListConnectorsOutput
+    Connectors: {ConnectorSummary}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {string : string}
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+    ResourceType: string
+    ServiceCode: string
+    QuotaCode: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+    ResourceType: string
+    ServiceCode: string
+    QuotaCode: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+end
+
+local record M
+    CreateChallengeInput: CreateChallengeInput
+    CreateChallengeOutput: CreateChallengeOutput
+    CreateConnectorInput: CreateConnectorInput
+    CreateConnectorOutput: CreateConnectorOutput
+    DeleteChallengeInput: DeleteChallengeInput
+    DeleteChallengeOutput: DeleteChallengeOutput
+    DeleteConnectorInput: DeleteConnectorInput
+    DeleteConnectorOutput: DeleteConnectorOutput
+    GetChallengeMetadataInput: GetChallengeMetadataInput
+    GetChallengeMetadataOutput: GetChallengeMetadataOutput
+    GetChallengePasswordInput: GetChallengePasswordInput
+    GetChallengePasswordOutput: GetChallengePasswordOutput
+    GetConnectorInput: GetConnectorInput
+    GetConnectorOutput: GetConnectorOutput
+    ListChallengeMetadataInput: ListChallengeMetadataInput
+    ListChallengeMetadataOutput: ListChallengeMetadataOutput
+    ListConnectorsInput: ListConnectorsInput
+    ListConnectorsOutput: ListConnectorsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+end
+
+return M

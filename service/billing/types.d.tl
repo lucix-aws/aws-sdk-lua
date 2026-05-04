@@ -1,0 +1,495 @@
+local record AssociateSourceViewsInput
+    arn: string
+    sourceViews: {string}
+end
+
+local record AssociateSourceViewsOutput
+    arn: string
+end
+
+local record CreateBillingViewInput
+    name: string
+    description: string
+    sourceViews: {string}
+    dataFilterExpression: Expression
+    clientToken: string
+    resourceTags: {ResourceTag}
+end
+
+local record CreateBillingViewOutput
+    arn: string
+    createdAt: number
+end
+
+local record DeleteBillingViewInput
+    arn: string
+    force: boolean
+end
+
+local record DeleteBillingViewOutput
+    arn: string
+end
+
+local record DisassociateSourceViewsInput
+    arn: string
+    sourceViews: {string}
+end
+
+local record DisassociateSourceViewsOutput
+    arn: string
+end
+
+local record GetBillingViewInput
+    arn: string
+end
+
+local record GetBillingViewOutput
+    billingView: BillingViewElement
+end
+
+local record GetResourcePolicyInput
+    resourceArn: string
+end
+
+local record GetResourcePolicyOutput
+    resourceArn: string
+    policy: string
+end
+
+local record ListBillingViewsInput
+    activeTimeRange: ActiveTimeRange
+    arns: {string}
+    billingViewTypes: {string}
+    names: {StringSearch}
+    ownerAccountId: string
+    sourceAccountId: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListBillingViewsOutput
+    billingViews: {BillingViewListElement}
+    nextToken: string
+end
+
+local record ListSourceViewsForBillingViewInput
+    arn: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListSourceViewsForBillingViewOutput
+    sourceViews: {string}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    resourceTags: {ResourceTag}
+end
+
+local record TagResourceInput
+    resourceArn: string
+    resourceTags: {ResourceTag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    resourceTagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateBillingViewInput
+    arn: string
+    name: string
+    description: string
+    dataFilterExpression: Expression
+end
+
+local record UpdateBillingViewOutput
+    arn: string
+    updatedAt: number
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record BillingViewHealthStatusException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record BillingViewHealthStatusException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record BillingViewHealthStatusException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record BillingViewHealthStatusException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record M
+    AssociateSourceViewsInput: AssociateSourceViewsInput
+    AssociateSourceViewsOutput: AssociateSourceViewsOutput
+    CreateBillingViewInput: CreateBillingViewInput
+    CreateBillingViewOutput: CreateBillingViewOutput
+    DeleteBillingViewInput: DeleteBillingViewInput
+    DeleteBillingViewOutput: DeleteBillingViewOutput
+    DisassociateSourceViewsInput: DisassociateSourceViewsInput
+    DisassociateSourceViewsOutput: DisassociateSourceViewsOutput
+    GetBillingViewInput: GetBillingViewInput
+    GetBillingViewOutput: GetBillingViewOutput
+    GetResourcePolicyInput: GetResourcePolicyInput
+    GetResourcePolicyOutput: GetResourcePolicyOutput
+    ListBillingViewsInput: ListBillingViewsInput
+    ListBillingViewsOutput: ListBillingViewsOutput
+    ListSourceViewsForBillingViewInput: ListSourceViewsForBillingViewInput
+    ListSourceViewsForBillingViewOutput: ListSourceViewsForBillingViewOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateBillingViewInput: UpdateBillingViewInput
+    UpdateBillingViewOutput: UpdateBillingViewOutput
+end
+
+return M

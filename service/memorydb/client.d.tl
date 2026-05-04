@@ -1,0 +1,55 @@
+local types = require("memorydb.types")
+
+local record Client
+    batchUpdateCluster: function(Client, types.BatchUpdateClusterInput): types.BatchUpdateClusterOutput, table
+    copySnapshot: function(Client, types.CopySnapshotInput): types.CopySnapshotOutput, table
+    createACL: function(Client, types.CreateACLInput): types.CreateACLOutput, table
+    createCluster: function(Client, types.CreateClusterInput): types.CreateClusterOutput, table
+    createMultiRegionCluster: function(Client, types.CreateMultiRegionClusterInput): types.CreateMultiRegionClusterOutput, table
+    createParameterGroup: function(Client, types.CreateParameterGroupInput): types.CreateParameterGroupOutput, table
+    createSnapshot: function(Client, types.CreateSnapshotInput): types.CreateSnapshotOutput, table
+    createSubnetGroup: function(Client, types.CreateSubnetGroupInput): types.CreateSubnetGroupOutput, table
+    createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    deleteACL: function(Client, types.DeleteACLInput): types.DeleteACLOutput, table
+    deleteCluster: function(Client, types.DeleteClusterInput): types.DeleteClusterOutput, table
+    deleteMultiRegionCluster: function(Client, types.DeleteMultiRegionClusterInput): types.DeleteMultiRegionClusterOutput, table
+    deleteParameterGroup: function(Client, types.DeleteParameterGroupInput): types.DeleteParameterGroupOutput, table
+    deleteSnapshot: function(Client, types.DeleteSnapshotInput): types.DeleteSnapshotOutput, table
+    deleteSubnetGroup: function(Client, types.DeleteSubnetGroupInput): types.DeleteSubnetGroupOutput, table
+    deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    describeACLs: function(Client, types.DescribeACLsInput): types.DescribeACLsOutput, table
+    describeClusters: function(Client, types.DescribeClustersInput): types.DescribeClustersOutput, table
+    describeEngineVersions: function(Client, types.DescribeEngineVersionsInput): types.DescribeEngineVersionsOutput, table
+    describeEvents: function(Client, types.DescribeEventsInput): types.DescribeEventsOutput, table
+    describeMultiRegionClusters: function(Client, types.DescribeMultiRegionClustersInput): types.DescribeMultiRegionClustersOutput, table
+    describeMultiRegionParameterGroups: function(Client, types.DescribeMultiRegionParameterGroupsInput): types.DescribeMultiRegionParameterGroupsOutput, table
+    describeMultiRegionParameters: function(Client, types.DescribeMultiRegionParametersInput): types.DescribeMultiRegionParametersOutput, table
+    describeParameterGroups: function(Client, types.DescribeParameterGroupsInput): types.DescribeParameterGroupsOutput, table
+    describeParameters: function(Client, types.DescribeParametersInput): types.DescribeParametersOutput, table
+    describeReservedNodes: function(Client, types.DescribeReservedNodesInput): types.DescribeReservedNodesOutput, table
+    describeReservedNodesOfferings: function(Client, types.DescribeReservedNodesOfferingsInput): types.DescribeReservedNodesOfferingsOutput, table
+    describeServiceUpdates: function(Client, types.DescribeServiceUpdatesInput): types.DescribeServiceUpdatesOutput, table
+    describeSnapshots: function(Client, types.DescribeSnapshotsInput): types.DescribeSnapshotsOutput, table
+    describeSubnetGroups: function(Client, types.DescribeSubnetGroupsInput): types.DescribeSubnetGroupsOutput, table
+    describeUsers: function(Client, types.DescribeUsersInput): types.DescribeUsersOutput, table
+    failoverShard: function(Client, types.FailoverShardInput): types.FailoverShardOutput, table
+    listAllowedMultiRegionClusterUpdates: function(Client, types.ListAllowedMultiRegionClusterUpdatesInput): types.ListAllowedMultiRegionClusterUpdatesOutput, table
+    listAllowedNodeTypeUpdates: function(Client, types.ListAllowedNodeTypeUpdatesInput): types.ListAllowedNodeTypeUpdatesOutput, table
+    listTags: function(Client, types.ListTagsInput): types.ListTagsOutput, table
+    purchaseReservedNodesOffering: function(Client, types.PurchaseReservedNodesOfferingInput): types.PurchaseReservedNodesOfferingOutput, table
+    resetParameterGroup: function(Client, types.ResetParameterGroupInput): types.ResetParameterGroupOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateACL: function(Client, types.UpdateACLInput): types.UpdateACLOutput, table
+    updateCluster: function(Client, types.UpdateClusterInput): types.UpdateClusterOutput, table
+    updateMultiRegionCluster: function(Client, types.UpdateMultiRegionClusterInput): types.UpdateMultiRegionClusterOutput, table
+    updateParameterGroup: function(Client, types.UpdateParameterGroupInput): types.UpdateParameterGroupOutput, table
+    updateSubnetGroup: function(Client, types.UpdateSubnetGroupInput): types.UpdateSubnetGroupOutput, table
+    updateUser: function(Client, types.UpdateUserInput): types.UpdateUserOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

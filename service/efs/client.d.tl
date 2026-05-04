@@ -1,0 +1,41 @@
+local types = require("efs.types")
+
+local record Client
+    createAccessPoint: function(Client, types.CreateAccessPointInput): types.CreateAccessPointOutput, table
+    createFileSystem: function(Client, types.CreateFileSystemInput): types.CreateFileSystemOutput, table
+    createMountTarget: function(Client, types.CreateMountTargetInput): types.CreateMountTargetOutput, table
+    createReplicationConfiguration: function(Client, types.CreateReplicationConfigurationInput): types.CreateReplicationConfigurationOutput, table
+    createTags: function(Client, types.CreateTagsInput): types.CreateTagsOutput, table
+    deleteAccessPoint: function(Client, types.DeleteAccessPointInput): types.DeleteAccessPointOutput, table
+    deleteFileSystem: function(Client, types.DeleteFileSystemInput): types.DeleteFileSystemOutput, table
+    deleteFileSystemPolicy: function(Client, types.DeleteFileSystemPolicyInput): types.DeleteFileSystemPolicyOutput, table
+    deleteMountTarget: function(Client, types.DeleteMountTargetInput): types.DeleteMountTargetOutput, table
+    deleteReplicationConfiguration: function(Client, types.DeleteReplicationConfigurationInput): types.DeleteReplicationConfigurationOutput, table
+    deleteTags: function(Client, types.DeleteTagsInput): types.DeleteTagsOutput, table
+    describeAccessPoints: function(Client, types.DescribeAccessPointsInput): types.DescribeAccessPointsOutput, table
+    describeAccountPreferences: function(Client, types.DescribeAccountPreferencesInput): types.DescribeAccountPreferencesOutput, table
+    describeBackupPolicy: function(Client, types.DescribeBackupPolicyInput): types.DescribeBackupPolicyOutput, table
+    describeFileSystemPolicy: function(Client, types.DescribeFileSystemPolicyInput): types.DescribeFileSystemPolicyOutput, table
+    describeFileSystems: function(Client, types.DescribeFileSystemsInput): types.DescribeFileSystemsOutput, table
+    describeLifecycleConfiguration: function(Client, types.DescribeLifecycleConfigurationInput): types.DescribeLifecycleConfigurationOutput, table
+    describeMountTargets: function(Client, types.DescribeMountTargetsInput): types.DescribeMountTargetsOutput, table
+    describeMountTargetSecurityGroups: function(Client, types.DescribeMountTargetSecurityGroupsInput): types.DescribeMountTargetSecurityGroupsOutput, table
+    describeReplicationConfigurations: function(Client, types.DescribeReplicationConfigurationsInput): types.DescribeReplicationConfigurationsOutput, table
+    describeTags: function(Client, types.DescribeTagsInput): types.DescribeTagsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    modifyMountTargetSecurityGroups: function(Client, types.ModifyMountTargetSecurityGroupsInput): types.ModifyMountTargetSecurityGroupsOutput, table
+    putAccountPreferences: function(Client, types.PutAccountPreferencesInput): types.PutAccountPreferencesOutput, table
+    putBackupPolicy: function(Client, types.PutBackupPolicyInput): types.PutBackupPolicyOutput, table
+    putFileSystemPolicy: function(Client, types.PutFileSystemPolicyInput): types.PutFileSystemPolicyOutput, table
+    putLifecycleConfiguration: function(Client, types.PutLifecycleConfigurationInput): types.PutLifecycleConfigurationOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateFileSystem: function(Client, types.UpdateFileSystemInput): types.UpdateFileSystemOutput, table
+    updateFileSystemProtection: function(Client, types.UpdateFileSystemProtectionInput): types.UpdateFileSystemProtectionOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,1120 @@
+local record CreateApplicationInput
+    Name: string
+    EnvironmentIdentifier: string
+    VpcId: string
+    ProxyType: string
+    ApiGatewayProxy: ApiGatewayProxyInput
+    Tags: {string : string}
+    ClientToken: string
+end
+
+local record CreateApplicationOutput
+    Name: string
+    Arn: string
+    OwnerAccountId: string
+    CreatedByAccountId: string
+    ApplicationId: string
+    EnvironmentId: string
+    VpcId: string
+    ProxyType: string
+    ApiGatewayProxy: ApiGatewayProxyInput
+    State: string
+    Tags: {string : string}
+    LastUpdatedTime: number
+    CreatedTime: number
+end
+
+local record CreateEnvironmentInput
+    Name: string
+    Description: string
+    NetworkFabricType: string
+    Tags: {string : string}
+    ClientToken: string
+end
+
+local record CreateEnvironmentOutput
+    Name: string
+    Arn: string
+    Description: string
+    EnvironmentId: string
+    NetworkFabricType: string
+    OwnerAccountId: string
+    State: string
+    Tags: {string : string}
+    LastUpdatedTime: number
+    CreatedTime: number
+end
+
+local record CreateRouteInput
+    EnvironmentIdentifier: string
+    ApplicationIdentifier: string
+    ServiceIdentifier: string
+    RouteType: string
+    DefaultRoute: DefaultRouteInput
+    UriPathRoute: UriPathRouteInput
+    Tags: {string : string}
+    ClientToken: string
+end
+
+local record CreateRouteOutput
+    RouteId: string
+    Arn: string
+    OwnerAccountId: string
+    CreatedByAccountId: string
+    RouteType: string
+    ServiceId: string
+    ApplicationId: string
+    UriPathRoute: UriPathRouteInput
+    State: string
+    Tags: {string : string}
+    LastUpdatedTime: number
+    CreatedTime: number
+end
+
+local record CreateServiceInput
+    Name: string
+    Description: string
+    EnvironmentIdentifier: string
+    ApplicationIdentifier: string
+    VpcId: string
+    EndpointType: string
+    UrlEndpoint: UrlEndpointInput
+    LambdaEndpoint: LambdaEndpointInput
+    Tags: {string : string}
+    ClientToken: string
+end
+
+local record CreateServiceOutput
+    ServiceId: string
+    Name: string
+    Arn: string
+    OwnerAccountId: string
+    CreatedByAccountId: string
+    Description: string
+    EnvironmentId: string
+    ApplicationId: string
+    VpcId: string
+    EndpointType: string
+    UrlEndpoint: UrlEndpointInput
+    LambdaEndpoint: LambdaEndpointInput
+    State: string
+    Tags: {string : string}
+    LastUpdatedTime: number
+    CreatedTime: number
+end
+
+local record DeleteApplicationInput
+    EnvironmentIdentifier: string
+    ApplicationIdentifier: string
+end
+
+local record DeleteApplicationOutput
+    Name: string
+    Arn: string
+    ApplicationId: string
+    EnvironmentId: string
+    State: string
+    LastUpdatedTime: number
+end
+
+local record DeleteEnvironmentInput
+    EnvironmentIdentifier: string
+end
+
+local record DeleteEnvironmentOutput
+    Name: string
+    Arn: string
+    EnvironmentId: string
+    State: string
+    LastUpdatedTime: number
+end
+
+local record DeleteResourcePolicyInput
+    Identifier: string
+end
+
+local record DeleteResourcePolicyOutput
+end
+
+local record DeleteRouteInput
+    EnvironmentIdentifier: string
+    ApplicationIdentifier: string
+    RouteIdentifier: string
+end
+
+local record DeleteRouteOutput
+    RouteId: string
+    Arn: string
+    ServiceId: string
+    ApplicationId: string
+    State: string
+    LastUpdatedTime: number
+end
+
+local record DeleteServiceInput
+    EnvironmentIdentifier: string
+    ApplicationIdentifier: string
+    ServiceIdentifier: string
+end
+
+local record DeleteServiceOutput
+    ServiceId: string
+    Name: string
+    Arn: string
+    EnvironmentId: string
+    ApplicationId: string
+    State: string
+    LastUpdatedTime: number
+end
+
+local record GetApplicationInput
+    EnvironmentIdentifier: string
+    ApplicationIdentifier: string
+end
+
+local record GetApplicationOutput
+    Name: string
+    Arn: string
+    OwnerAccountId: string
+    CreatedByAccountId: string
+    ApplicationId: string
+    EnvironmentId: string
+    VpcId: string
+    ProxyType: string
+    ApiGatewayProxy: ApiGatewayProxyConfig
+    State: string
+    Tags: {string : string}
+    Error: ErrorResponse
+    LastUpdatedTime: number
+    CreatedTime: number
+end
+
+local record GetEnvironmentInput
+    EnvironmentIdentifier: string
+end
+
+local record GetEnvironmentOutput
+    Name: string
+    Arn: string
+    Description: string
+    EnvironmentId: string
+    NetworkFabricType: string
+    OwnerAccountId: string
+    TransitGatewayId: string
+    State: string
+    Tags: {string : string}
+    Error: ErrorResponse
+    LastUpdatedTime: number
+    CreatedTime: number
+end
+
+local record GetResourcePolicyInput
+    Identifier: string
+end
+
+local record GetResourcePolicyOutput
+    Policy: string
+end
+
+local record GetRouteInput
+    EnvironmentIdentifier: string
+    ApplicationIdentifier: string
+    RouteIdentifier: string
+end
+
+local record GetRouteOutput
+    RouteId: string
+    Arn: string
+    OwnerAccountId: string
+    CreatedByAccountId: string
+    RouteType: string
+    ServiceId: string
+    ApplicationId: string
+    EnvironmentId: string
+    SourcePath: string
+    Methods: {string}
+    IncludeChildPaths: boolean
+    PathResourceToId: {string : string}
+    State: string
+    Tags: {string : string}
+    Error: ErrorResponse
+    LastUpdatedTime: number
+    CreatedTime: number
+    AppendSourcePath: boolean
+end
+
+local record GetServiceInput
+    EnvironmentIdentifier: string
+    ApplicationIdentifier: string
+    ServiceIdentifier: string
+end
+
+local record GetServiceOutput
+    ServiceId: string
+    Name: string
+    Arn: string
+    OwnerAccountId: string
+    CreatedByAccountId: string
+    Description: string
+    EnvironmentId: string
+    ApplicationId: string
+    VpcId: string
+    EndpointType: string
+    UrlEndpoint: UrlEndpointConfig
+    LambdaEndpoint: LambdaEndpointConfig
+    State: string
+    Tags: {string : string}
+    Error: ErrorResponse
+    LastUpdatedTime: number
+    CreatedTime: number
+end
+
+local record ListApplicationsInput
+    EnvironmentIdentifier: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListApplicationsOutput
+    ApplicationSummaryList: {ApplicationSummary}
+    NextToken: string
+end
+
+local record ListEnvironmentsInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListEnvironmentsOutput
+    EnvironmentSummaryList: {EnvironmentSummary}
+    NextToken: string
+end
+
+local record ListEnvironmentVpcsInput
+    EnvironmentIdentifier: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListEnvironmentVpcsOutput
+    EnvironmentVpcList: {EnvironmentVpc}
+    NextToken: string
+end
+
+local record ListRoutesInput
+    EnvironmentIdentifier: string
+    ApplicationIdentifier: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListRoutesOutput
+    RouteSummaryList: {RouteSummary}
+    NextToken: string
+end
+
+local record ListServicesInput
+    EnvironmentIdentifier: string
+    ApplicationIdentifier: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListServicesOutput
+    ServiceSummaryList: {ServiceSummary}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {string : string}
+end
+
+local record PutResourcePolicyInput
+    ResourceArn: string
+    Policy: string
+end
+
+local record PutResourcePolicyOutput
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateRouteInput
+    EnvironmentIdentifier: string
+    ApplicationIdentifier: string
+    RouteIdentifier: string
+    ActivationState: string
+end
+
+local record UpdateRouteOutput
+    RouteId: string
+    Arn: string
+    ServiceId: string
+    ApplicationId: string
+    State: string
+    LastUpdatedTime: number
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    QuotaCode: string
+    ServiceCode: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    QuotaCode: string
+    ServiceCode: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    QuotaCode: string
+    ServiceCode: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    QuotaCode: string
+    ServiceCode: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    QuotaCode: string
+    ServiceCode: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    QuotaCode: string
+    ServiceCode: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+    QuotaCode: string
+    ServiceCode: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidResourcePolicyException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceId: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+    QuotaCode: string
+    ServiceCode: string
+    RetryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record M
+    CreateApplicationInput: CreateApplicationInput
+    CreateApplicationOutput: CreateApplicationOutput
+    CreateEnvironmentInput: CreateEnvironmentInput
+    CreateEnvironmentOutput: CreateEnvironmentOutput
+    CreateRouteInput: CreateRouteInput
+    CreateRouteOutput: CreateRouteOutput
+    CreateServiceInput: CreateServiceInput
+    CreateServiceOutput: CreateServiceOutput
+    DeleteApplicationInput: DeleteApplicationInput
+    DeleteApplicationOutput: DeleteApplicationOutput
+    DeleteEnvironmentInput: DeleteEnvironmentInput
+    DeleteEnvironmentOutput: DeleteEnvironmentOutput
+    DeleteResourcePolicyInput: DeleteResourcePolicyInput
+    DeleteResourcePolicyOutput: DeleteResourcePolicyOutput
+    DeleteRouteInput: DeleteRouteInput
+    DeleteRouteOutput: DeleteRouteOutput
+    DeleteServiceInput: DeleteServiceInput
+    DeleteServiceOutput: DeleteServiceOutput
+    GetApplicationInput: GetApplicationInput
+    GetApplicationOutput: GetApplicationOutput
+    GetEnvironmentInput: GetEnvironmentInput
+    GetEnvironmentOutput: GetEnvironmentOutput
+    GetResourcePolicyInput: GetResourcePolicyInput
+    GetResourcePolicyOutput: GetResourcePolicyOutput
+    GetRouteInput: GetRouteInput
+    GetRouteOutput: GetRouteOutput
+    GetServiceInput: GetServiceInput
+    GetServiceOutput: GetServiceOutput
+    ListApplicationsInput: ListApplicationsInput
+    ListApplicationsOutput: ListApplicationsOutput
+    ListEnvironmentsInput: ListEnvironmentsInput
+    ListEnvironmentsOutput: ListEnvironmentsOutput
+    ListEnvironmentVpcsInput: ListEnvironmentVpcsInput
+    ListEnvironmentVpcsOutput: ListEnvironmentVpcsOutput
+    ListRoutesInput: ListRoutesInput
+    ListRoutesOutput: ListRoutesOutput
+    ListServicesInput: ListServicesInput
+    ListServicesOutput: ListServicesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PutResourcePolicyInput: PutResourcePolicyInput
+    PutResourcePolicyOutput: PutResourcePolicyOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateRouteInput: UpdateRouteInput
+    UpdateRouteOutput: UpdateRouteOutput
+end
+
+return M

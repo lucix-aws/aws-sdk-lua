@@ -1,0 +1,578 @@
+local record BatchGetServiceLevelObjectiveBudgetReportInput
+    Timestamp: number
+    SloIds: {string}
+end
+
+local record BatchGetServiceLevelObjectiveBudgetReportOutput
+    Timestamp: number
+    Reports: {ServiceLevelObjectiveBudgetReport}
+    Errors: {ServiceLevelObjectiveBudgetReportError}
+end
+
+local record BatchUpdateExclusionWindowsInput
+    SloIds: {string}
+    AddExclusionWindows: {ExclusionWindow}
+    RemoveExclusionWindows: {ExclusionWindow}
+end
+
+local record BatchUpdateExclusionWindowsOutput
+    SloIds: {string}
+    Errors: {BatchUpdateExclusionWindowsError}
+end
+
+local record CreateServiceLevelObjectiveInput
+    Name: string
+    Description: string
+    SliConfig: ServiceLevelIndicatorConfig
+    RequestBasedSliConfig: RequestBasedServiceLevelIndicatorConfig
+    Goal: Goal
+    Tags: {Tag}
+    BurnRateConfigurations: {BurnRateConfiguration}
+    CreateRecommendedSlo: boolean
+    AutoInvestigationEnabled: boolean
+end
+
+local record CreateServiceLevelObjectiveOutput
+    Slo: ServiceLevelObjective
+end
+
+local record DeleteGroupingConfigurationInput
+end
+
+local record DeleteGroupingConfigurationOutput
+end
+
+local record DeleteServiceLevelObjectiveInput
+    Id: string
+end
+
+local record DeleteServiceLevelObjectiveOutput
+end
+
+local record GetServiceInput
+    StartTime: number
+    EndTime: number
+    KeyAttributes: {string : string}
+end
+
+local record GetServiceOutput
+    Service: Service
+    StartTime: number
+    EndTime: number
+    LogGroupReferences: {{string : string}}
+end
+
+local record GetServiceLevelObjectiveInput
+    Id: string
+end
+
+local record GetServiceLevelObjectiveOutput
+    Slo: ServiceLevelObjective
+end
+
+local record ListAuditFindingsInput
+    StartTime: number
+    EndTime: number
+    Auditors: {string}
+    AuditTargets: {AuditTarget}
+    DetailLevel: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListAuditFindingsOutput
+    StartTime: number
+    EndTime: number
+    AuditFindings: {AuditFinding}
+    NextToken: string
+end
+
+local record ListEntityEventsInput
+    Entity: {string : string}
+    StartTime: number
+    EndTime: number
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListEntityEventsOutput
+    StartTime: number
+    EndTime: number
+    ChangeEvents: {ChangeEvent}
+    NextToken: string
+end
+
+local record ListGroupingAttributeDefinitionsInput
+    NextToken: string
+    AwsAccountId: string
+    IncludeLinkedAccounts: boolean
+end
+
+local record ListGroupingAttributeDefinitionsOutput
+    GroupingAttributeDefinitions: {GroupingAttributeDefinition}
+    UpdatedAt: number
+    NextToken: string
+end
+
+local record ListServiceDependenciesInput
+    StartTime: number
+    EndTime: number
+    KeyAttributes: {string : string}
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListServiceDependenciesOutput
+    StartTime: number
+    EndTime: number
+    ServiceDependencies: {ServiceDependency}
+    NextToken: string
+end
+
+local record ListServiceDependentsInput
+    StartTime: number
+    EndTime: number
+    KeyAttributes: {string : string}
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListServiceDependentsOutput
+    StartTime: number
+    EndTime: number
+    ServiceDependents: {ServiceDependent}
+    NextToken: string
+end
+
+local record ListServiceLevelObjectiveExclusionWindowsInput
+    Id: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListServiceLevelObjectiveExclusionWindowsOutput
+    ExclusionWindows: {ExclusionWindow}
+    NextToken: string
+end
+
+local record ListServiceLevelObjectivesInput
+    KeyAttributes: {string : string}
+    OperationName: string
+    DependencyConfig: DependencyConfig
+    MaxResults: number
+    NextToken: string
+    MetricSourceTypes: {string}
+    IncludeLinkedAccounts: boolean
+    SloOwnerAwsAccountId: string
+    MetricSource: MetricSource
+end
+
+local record ListServiceLevelObjectivesOutput
+    SloSummaries: {ServiceLevelObjectiveSummary}
+    NextToken: string
+end
+
+local record ListServiceOperationsInput
+    StartTime: number
+    EndTime: number
+    KeyAttributes: {string : string}
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListServiceOperationsOutput
+    StartTime: number
+    EndTime: number
+    ServiceOperations: {ServiceOperation}
+    NextToken: string
+end
+
+local record ListServicesInput
+    StartTime: number
+    EndTime: number
+    MaxResults: number
+    NextToken: string
+    IncludeLinkedAccounts: boolean
+    AwsAccountId: string
+end
+
+local record ListServicesOutput
+    StartTime: number
+    EndTime: number
+    ServiceSummaries: {ServiceSummary}
+    NextToken: string
+end
+
+local record ListServiceStatesInput
+    StartTime: number
+    EndTime: number
+    MaxResults: number
+    NextToken: string
+    IncludeLinkedAccounts: boolean
+    AwsAccountId: string
+    AttributeFilters: {AttributeFilter}
+end
+
+local record ListServiceStatesOutput
+    StartTime: number
+    EndTime: number
+    ServiceStates: {ServiceState}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+end
+
+local record PutGroupingConfigurationInput
+    GroupingAttributeDefinitions: {GroupingAttributeDefinition}
+end
+
+local record PutGroupingConfigurationOutput
+    GroupingConfiguration: GroupingConfiguration
+end
+
+local record StartDiscoveryInput
+end
+
+local record StartDiscoveryOutput
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateServiceLevelObjectiveInput
+    Id: string
+    Description: string
+    SliConfig: ServiceLevelIndicatorConfig
+    RequestBasedSliConfig: RequestBasedServiceLevelIndicatorConfig
+    Goal: Goal
+    BurnRateConfigurations: {BurnRateConfiguration}
+    AutoInvestigationEnabled: boolean
+end
+
+local record UpdateServiceLevelObjectiveOutput
+    Slo: ServiceLevelObjective
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    ResourceType: string
+    ResourceId: string
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    ResourceType: string
+    ResourceId: string
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    ResourceType: string
+    ResourceId: string
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    ResourceType: string
+    ResourceId: string
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    ResourceType: string
+    ResourceId: string
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    ResourceType: string
+    ResourceId: string
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceType: string
+    ResourceId: string
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceType: string
+    ResourceId: string
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local type DetailLevel = "BRIEF" | "DETAILED"
+
+local record M
+    BatchGetServiceLevelObjectiveBudgetReportInput: BatchGetServiceLevelObjectiveBudgetReportInput
+    BatchGetServiceLevelObjectiveBudgetReportOutput: BatchGetServiceLevelObjectiveBudgetReportOutput
+    BatchUpdateExclusionWindowsInput: BatchUpdateExclusionWindowsInput
+    BatchUpdateExclusionWindowsOutput: BatchUpdateExclusionWindowsOutput
+    CreateServiceLevelObjectiveInput: CreateServiceLevelObjectiveInput
+    CreateServiceLevelObjectiveOutput: CreateServiceLevelObjectiveOutput
+    DeleteGroupingConfigurationInput: DeleteGroupingConfigurationInput
+    DeleteGroupingConfigurationOutput: DeleteGroupingConfigurationOutput
+    DeleteServiceLevelObjectiveInput: DeleteServiceLevelObjectiveInput
+    DeleteServiceLevelObjectiveOutput: DeleteServiceLevelObjectiveOutput
+    GetServiceInput: GetServiceInput
+    GetServiceOutput: GetServiceOutput
+    GetServiceLevelObjectiveInput: GetServiceLevelObjectiveInput
+    GetServiceLevelObjectiveOutput: GetServiceLevelObjectiveOutput
+    ListAuditFindingsInput: ListAuditFindingsInput
+    ListAuditFindingsOutput: ListAuditFindingsOutput
+    ListEntityEventsInput: ListEntityEventsInput
+    ListEntityEventsOutput: ListEntityEventsOutput
+    ListGroupingAttributeDefinitionsInput: ListGroupingAttributeDefinitionsInput
+    ListGroupingAttributeDefinitionsOutput: ListGroupingAttributeDefinitionsOutput
+    ListServiceDependenciesInput: ListServiceDependenciesInput
+    ListServiceDependenciesOutput: ListServiceDependenciesOutput
+    ListServiceDependentsInput: ListServiceDependentsInput
+    ListServiceDependentsOutput: ListServiceDependentsOutput
+    ListServiceLevelObjectiveExclusionWindowsInput: ListServiceLevelObjectiveExclusionWindowsInput
+    ListServiceLevelObjectiveExclusionWindowsOutput: ListServiceLevelObjectiveExclusionWindowsOutput
+    ListServiceLevelObjectivesInput: ListServiceLevelObjectivesInput
+    ListServiceLevelObjectivesOutput: ListServiceLevelObjectivesOutput
+    ListServiceOperationsInput: ListServiceOperationsInput
+    ListServiceOperationsOutput: ListServiceOperationsOutput
+    ListServicesInput: ListServicesInput
+    ListServicesOutput: ListServicesOutput
+    ListServiceStatesInput: ListServiceStatesInput
+    ListServiceStatesOutput: ListServiceStatesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PutGroupingConfigurationInput: PutGroupingConfigurationInput
+    PutGroupingConfigurationOutput: PutGroupingConfigurationOutput
+    StartDiscoveryInput: StartDiscoveryInput
+    StartDiscoveryOutput: StartDiscoveryOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateServiceLevelObjectiveInput: UpdateServiceLevelObjectiveInput
+    UpdateServiceLevelObjectiveOutput: UpdateServiceLevelObjectiveOutput
+end
+
+return M

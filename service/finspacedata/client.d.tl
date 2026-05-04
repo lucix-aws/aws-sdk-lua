@@ -1,0 +1,41 @@
+local types = require("finspacedata.types")
+
+local record Client
+    associateUserToPermissionGroup: function(Client, types.AssociateUserToPermissionGroupInput): types.AssociateUserToPermissionGroupOutput, table
+    createChangeset: function(Client, types.CreateChangesetInput): types.CreateChangesetOutput, table
+    createDataset: function(Client, types.CreateDatasetInput): types.CreateDatasetOutput, table
+    createDataView: function(Client, types.CreateDataViewInput): types.CreateDataViewOutput, table
+    createPermissionGroup: function(Client, types.CreatePermissionGroupInput): types.CreatePermissionGroupOutput, table
+    createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    deleteDataset: function(Client, types.DeleteDatasetInput): types.DeleteDatasetOutput, table
+    deletePermissionGroup: function(Client, types.DeletePermissionGroupInput): types.DeletePermissionGroupOutput, table
+    disableUser: function(Client, types.DisableUserInput): types.DisableUserOutput, table
+    disassociateUserFromPermissionGroup: function(Client, types.DisassociateUserFromPermissionGroupInput): types.DisassociateUserFromPermissionGroupOutput, table
+    enableUser: function(Client, types.EnableUserInput): types.EnableUserOutput, table
+    getChangeset: function(Client, types.GetChangesetInput): types.GetChangesetOutput, table
+    getDataset: function(Client, types.GetDatasetInput): types.GetDatasetOutput, table
+    getDataView: function(Client, types.GetDataViewInput): types.GetDataViewOutput, table
+    getExternalDataViewAccessDetails: function(Client, types.GetExternalDataViewAccessDetailsInput): types.GetExternalDataViewAccessDetailsOutput, table
+    getPermissionGroup: function(Client, types.GetPermissionGroupInput): types.GetPermissionGroupOutput, table
+    getProgrammaticAccessCredentials: function(Client, types.GetProgrammaticAccessCredentialsInput): types.GetProgrammaticAccessCredentialsOutput, table
+    getUser: function(Client, types.GetUserInput): types.GetUserOutput, table
+    getWorkingLocation: function(Client, types.GetWorkingLocationInput): types.GetWorkingLocationOutput, table
+    listChangesets: function(Client, types.ListChangesetsInput): types.ListChangesetsOutput, table
+    listDatasets: function(Client, types.ListDatasetsInput): types.ListDatasetsOutput, table
+    listDataViews: function(Client, types.ListDataViewsInput): types.ListDataViewsOutput, table
+    listPermissionGroups: function(Client, types.ListPermissionGroupsInput): types.ListPermissionGroupsOutput, table
+    listPermissionGroupsByUser: function(Client, types.ListPermissionGroupsByUserInput): types.ListPermissionGroupsByUserOutput, table
+    listUsers: function(Client, types.ListUsersInput): types.ListUsersOutput, table
+    listUsersByPermissionGroup: function(Client, types.ListUsersByPermissionGroupInput): types.ListUsersByPermissionGroupOutput, table
+    resetUserPassword: function(Client, types.ResetUserPasswordInput): types.ResetUserPasswordOutput, table
+    updateChangeset: function(Client, types.UpdateChangesetInput): types.UpdateChangesetOutput, table
+    updateDataset: function(Client, types.UpdateDatasetInput): types.UpdateDatasetOutput, table
+    updatePermissionGroup: function(Client, types.UpdatePermissionGroupInput): types.UpdatePermissionGroupOutput, table
+    updateUser: function(Client, types.UpdateUserInput): types.UpdateUserOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

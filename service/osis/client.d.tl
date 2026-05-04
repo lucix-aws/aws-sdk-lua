@@ -1,0 +1,32 @@
+local types = require("osis.types")
+
+local record Client
+    createPipeline: function(Client, types.CreatePipelineInput): types.CreatePipelineOutput, table
+    createPipelineEndpoint: function(Client, types.CreatePipelineEndpointInput): types.CreatePipelineEndpointOutput, table
+    deletePipeline: function(Client, types.DeletePipelineInput): types.DeletePipelineOutput, table
+    deletePipelineEndpoint: function(Client, types.DeletePipelineEndpointInput): types.DeletePipelineEndpointOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    getPipeline: function(Client, types.GetPipelineInput): types.GetPipelineOutput, table
+    getPipelineBlueprint: function(Client, types.GetPipelineBlueprintInput): types.GetPipelineBlueprintOutput, table
+    getPipelineChangeProgress: function(Client, types.GetPipelineChangeProgressInput): types.GetPipelineChangeProgressOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    listPipelineBlueprints: function(Client, types.ListPipelineBlueprintsInput): types.ListPipelineBlueprintsOutput, table
+    listPipelineEndpointConnections: function(Client, types.ListPipelineEndpointConnectionsInput): types.ListPipelineEndpointConnectionsOutput, table
+    listPipelineEndpoints: function(Client, types.ListPipelineEndpointsInput): types.ListPipelineEndpointsOutput, table
+    listPipelines: function(Client, types.ListPipelinesInput): types.ListPipelinesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    revokePipelineEndpointConnections: function(Client, types.RevokePipelineEndpointConnectionsInput): types.RevokePipelineEndpointConnectionsOutput, table
+    startPipeline: function(Client, types.StartPipelineInput): types.StartPipelineOutput, table
+    stopPipeline: function(Client, types.StopPipelineInput): types.StopPipelineOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updatePipeline: function(Client, types.UpdatePipelineInput): types.UpdatePipelineOutput, table
+    validatePipeline: function(Client, types.ValidatePipelineInput): types.ValidatePipelineOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

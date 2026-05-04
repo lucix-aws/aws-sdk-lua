@@ -1,0 +1,71 @@
+local record GetIceServerConfigInput
+    ChannelARN: string
+    ClientId: string
+    Service: string
+    Username: string
+end
+
+local record GetIceServerConfigOutput
+    IceServerList: {IceServer}
+end
+
+local record SendAlexaOfferToMasterInput
+    ChannelARN: string
+    SenderClientId: string
+    MessagePayload: string
+end
+
+local record SendAlexaOfferToMasterOutput
+    Answer: string
+end
+
+local record ClientLimitExceededException
+    Message: string
+end
+
+local record InvalidArgumentException
+    Message: string
+end
+
+local record InvalidClientException
+    message: string
+end
+
+local record NotAuthorizedException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record SessionExpiredException
+    message: string
+end
+
+local record ClientLimitExceededException
+    Message: string
+end
+
+local record InvalidArgumentException
+    Message: string
+end
+
+local record NotAuthorizedException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local type Service = "TURN"
+
+local record M
+    GetIceServerConfigInput: GetIceServerConfigInput
+    GetIceServerConfigOutput: GetIceServerConfigOutput
+    SendAlexaOfferToMasterInput: SendAlexaOfferToMasterInput
+    SendAlexaOfferToMasterOutput: SendAlexaOfferToMasterOutput
+end
+
+return M

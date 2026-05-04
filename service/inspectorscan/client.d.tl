@@ -1,0 +1,11 @@
+local types = require("inspectorscan.types")
+
+local record Client
+    scanSbom: function(Client, types.ScanSbomInput): types.ScanSbomOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

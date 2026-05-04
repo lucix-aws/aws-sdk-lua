@@ -1,0 +1,112 @@
+local record GetRoleCredentialsInput
+    roleName: string
+    accountId: string
+    accessToken: string
+end
+
+local record GetRoleCredentialsOutput
+    roleCredentials: RoleCredentials
+end
+
+local record ListAccountRolesInput
+    nextToken: string
+    maxResults: number
+    accessToken: string
+    accountId: string
+end
+
+local record ListAccountRolesOutput
+    nextToken: string
+    roleList: {RoleInfo}
+end
+
+local record ListAccountsInput
+    nextToken: string
+    maxResults: number
+    accessToken: string
+end
+
+local record ListAccountsOutput
+    nextToken: string
+    accountList: {AccountInfo}
+end
+
+local record LogoutInput
+    accessToken: string
+end
+
+local record LogoutOutput
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record M
+    GetRoleCredentialsInput: GetRoleCredentialsInput
+    GetRoleCredentialsOutput: GetRoleCredentialsOutput
+    ListAccountRolesInput: ListAccountRolesInput
+    ListAccountRolesOutput: ListAccountRolesOutput
+    ListAccountsInput: ListAccountsInput
+    ListAccountsOutput: ListAccountsOutput
+    LogoutInput: LogoutInput
+    LogoutOutput: LogoutOutput
+end
+
+return M

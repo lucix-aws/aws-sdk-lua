@@ -1,0 +1,668 @@
+local record CreateBatchLoadTaskInput
+    ClientToken: string
+    DataModelConfiguration: DataModelConfiguration
+    DataSourceConfiguration: DataSourceConfiguration
+    ReportConfiguration: ReportConfiguration
+    TargetDatabaseName: string
+    TargetTableName: string
+    RecordVersion: number
+end
+
+local record CreateBatchLoadTaskOutput
+    TaskId: string
+end
+
+local record CreateDatabaseInput
+    DatabaseName: string
+    KmsKeyId: string
+    Tags: {Tag}
+end
+
+local record CreateDatabaseOutput
+    Database: Database
+end
+
+local record CreateTableInput
+    DatabaseName: string
+    TableName: string
+    RetentionProperties: RetentionProperties
+    Tags: {Tag}
+    MagneticStoreWriteProperties: MagneticStoreWriteProperties
+    Schema: Schema
+end
+
+local record CreateTableOutput
+    Table: Table
+end
+
+local record DeleteDatabaseInput
+    DatabaseName: string
+end
+
+local record DeleteDatabaseOutput
+end
+
+local record DeleteTableInput
+    DatabaseName: string
+    TableName: string
+end
+
+local record DeleteTableOutput
+end
+
+local record DescribeBatchLoadTaskInput
+    TaskId: string
+end
+
+local record DescribeBatchLoadTaskOutput
+    BatchLoadTaskDescription: BatchLoadTaskDescription
+end
+
+local record DescribeDatabaseInput
+    DatabaseName: string
+end
+
+local record DescribeDatabaseOutput
+    Database: Database
+end
+
+local record DescribeEndpointsInput
+end
+
+local record DescribeEndpointsOutput
+    Endpoints: {Endpoint}
+end
+
+local record DescribeTableInput
+    DatabaseName: string
+    TableName: string
+end
+
+local record DescribeTableOutput
+    Table: Table
+end
+
+local record ListBatchLoadTasksInput
+    NextToken: string
+    MaxResults: number
+    TaskStatus: string
+end
+
+local record ListBatchLoadTasksOutput
+    NextToken: string
+    BatchLoadTasks: {BatchLoadTask}
+end
+
+local record ListDatabasesInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListDatabasesOutput
+    Databases: {Database}
+    NextToken: string
+end
+
+local record ListTablesInput
+    DatabaseName: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListTablesOutput
+    Tables: {Table}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceARN: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+end
+
+local record ResumeBatchLoadTaskInput
+    TaskId: string
+end
+
+local record ResumeBatchLoadTaskOutput
+end
+
+local record TagResourceInput
+    ResourceARN: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceARN: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateDatabaseInput
+    DatabaseName: string
+    KmsKeyId: string
+end
+
+local record UpdateDatabaseOutput
+    Database: Database
+end
+
+local record UpdateTableInput
+    DatabaseName: string
+    TableName: string
+    RetentionProperties: RetentionProperties
+    MagneticStoreWriteProperties: MagneticStoreWriteProperties
+    Schema: Schema
+end
+
+local record UpdateTableOutput
+    Table: Table
+end
+
+local record WriteRecordsInput
+    DatabaseName: string
+    TableName: string
+    CommonAttributes: Record
+    Records: {Record}
+end
+
+local record WriteRecordsOutput
+    RecordsIngested: RecordsIngested
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record RejectedRecordsException
+    Message: string
+    RejectedRecords: {RejectedRecord}
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local type BatchLoadStatus = "CREATED" | "IN_PROGRESS" | "FAILED" | "SUCCEEDED" | "PROGRESS_STOPPED" | "PENDING_RESUME"
+
+local record M
+    CreateBatchLoadTaskInput: CreateBatchLoadTaskInput
+    CreateBatchLoadTaskOutput: CreateBatchLoadTaskOutput
+    CreateDatabaseInput: CreateDatabaseInput
+    CreateDatabaseOutput: CreateDatabaseOutput
+    CreateTableInput: CreateTableInput
+    CreateTableOutput: CreateTableOutput
+    DeleteDatabaseInput: DeleteDatabaseInput
+    DeleteDatabaseOutput: DeleteDatabaseOutput
+    DeleteTableInput: DeleteTableInput
+    DeleteTableOutput: DeleteTableOutput
+    DescribeBatchLoadTaskInput: DescribeBatchLoadTaskInput
+    DescribeBatchLoadTaskOutput: DescribeBatchLoadTaskOutput
+    DescribeDatabaseInput: DescribeDatabaseInput
+    DescribeDatabaseOutput: DescribeDatabaseOutput
+    DescribeEndpointsInput: DescribeEndpointsInput
+    DescribeEndpointsOutput: DescribeEndpointsOutput
+    DescribeTableInput: DescribeTableInput
+    DescribeTableOutput: DescribeTableOutput
+    ListBatchLoadTasksInput: ListBatchLoadTasksInput
+    ListBatchLoadTasksOutput: ListBatchLoadTasksOutput
+    ListDatabasesInput: ListDatabasesInput
+    ListDatabasesOutput: ListDatabasesOutput
+    ListTablesInput: ListTablesInput
+    ListTablesOutput: ListTablesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ResumeBatchLoadTaskInput: ResumeBatchLoadTaskInput
+    ResumeBatchLoadTaskOutput: ResumeBatchLoadTaskOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateDatabaseInput: UpdateDatabaseInput
+    UpdateDatabaseOutput: UpdateDatabaseOutput
+    UpdateTableInput: UpdateTableInput
+    UpdateTableOutput: UpdateTableOutput
+    WriteRecordsInput: WriteRecordsInput
+    WriteRecordsOutput: WriteRecordsOutput
+end
+
+return M

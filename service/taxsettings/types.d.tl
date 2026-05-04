@@ -1,0 +1,457 @@
+local record BatchDeleteTaxRegistrationInput
+    accountIds: {string}
+end
+
+local record BatchDeleteTaxRegistrationOutput
+    errors: {BatchDeleteTaxRegistrationError}
+end
+
+local record BatchGetTaxExemptionsInput
+    accountIds: {string}
+end
+
+local record BatchGetTaxExemptionsOutput
+    taxExemptionDetailsMap: {string : TaxExemptionDetails}
+    failedAccounts: {string}
+end
+
+local record BatchPutTaxRegistrationInput
+    accountIds: {string}
+    taxRegistrationEntry: TaxRegistrationEntry
+end
+
+local record BatchPutTaxRegistrationOutput
+    status: string
+    errors: {BatchPutTaxRegistrationError}
+end
+
+local record DeleteSupplementalTaxRegistrationInput
+    authorityId: string
+end
+
+local record DeleteSupplementalTaxRegistrationOutput
+end
+
+local record DeleteTaxRegistrationInput
+    accountId: string
+end
+
+local record DeleteTaxRegistrationOutput
+end
+
+local record GetTaxExemptionTypesInput
+end
+
+local record GetTaxExemptionTypesOutput
+    taxExemptionTypes: {TaxExemptionType}
+end
+
+local record GetTaxInheritanceInput
+end
+
+local record GetTaxInheritanceOutput
+    heritageStatus: string
+end
+
+local record GetTaxRegistrationInput
+    accountId: string
+end
+
+local record GetTaxRegistrationOutput
+    taxRegistration: TaxRegistration
+end
+
+local record GetTaxRegistrationDocumentInput
+    destinationS3Location: DestinationS3Location
+    taxDocumentMetadata: TaxDocumentMetadata
+end
+
+local record GetTaxRegistrationDocumentOutput
+    destinationFilePath: string
+    presignedS3Url: string
+end
+
+local record ListSupplementalTaxRegistrationsInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListSupplementalTaxRegistrationsOutput
+    taxRegistrations: {SupplementalTaxRegistration}
+    nextToken: string
+end
+
+local record ListTaxExemptionsInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListTaxExemptionsOutput
+    nextToken: string
+    taxExemptionDetailsMap: {string : TaxExemptionDetails}
+end
+
+local record ListTaxRegistrationsInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListTaxRegistrationsOutput
+    accountDetails: {AccountDetails}
+    nextToken: string
+end
+
+local record PutSupplementalTaxRegistrationInput
+    taxRegistrationEntry: SupplementalTaxRegistrationEntry
+end
+
+local record PutSupplementalTaxRegistrationOutput
+    authorityId: string
+    status: string
+end
+
+local record PutTaxExemptionInput
+    accountIds: {string}
+    authority: Authority
+    exemptionType: string
+    exemptionCertificate: ExemptionCertificate
+end
+
+local record PutTaxExemptionOutput
+    caseId: string
+end
+
+local record PutTaxInheritanceInput
+    heritageStatus: string
+end
+
+local record PutTaxInheritanceOutput
+end
+
+local record PutTaxRegistrationInput
+    accountId: string
+    taxRegistrationEntry: TaxRegistrationEntry
+end
+
+local record PutTaxRegistrationOutput
+    status: string
+end
+
+local record ConflictException
+    message: string
+    errorCode: string
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    errorCode: string
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    errorCode: string
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    errorCode: string
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    errorCode: string
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record AttachmentUploadException
+    message: string
+end
+
+local record CaseCreationLimitExceededException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    errorCode: string
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    errorCode: string
+end
+
+local record InternalServerException
+    message: string
+    errorCode: string
+end
+
+local record ValidationException
+    message: string
+    errorCode: string
+    fieldList: {ValidationExceptionField}
+end
+
+local type HeritageStatus = "OptIn" | "OptOut"
+
+local type TaxRegistrationStatus = "Verified" | "Pending" | "Deleted" | "Rejected"
+
+local record M
+    BatchDeleteTaxRegistrationInput: BatchDeleteTaxRegistrationInput
+    BatchDeleteTaxRegistrationOutput: BatchDeleteTaxRegistrationOutput
+    BatchGetTaxExemptionsInput: BatchGetTaxExemptionsInput
+    BatchGetTaxExemptionsOutput: BatchGetTaxExemptionsOutput
+    BatchPutTaxRegistrationInput: BatchPutTaxRegistrationInput
+    BatchPutTaxRegistrationOutput: BatchPutTaxRegistrationOutput
+    DeleteSupplementalTaxRegistrationInput: DeleteSupplementalTaxRegistrationInput
+    DeleteSupplementalTaxRegistrationOutput: DeleteSupplementalTaxRegistrationOutput
+    DeleteTaxRegistrationInput: DeleteTaxRegistrationInput
+    DeleteTaxRegistrationOutput: DeleteTaxRegistrationOutput
+    GetTaxExemptionTypesInput: GetTaxExemptionTypesInput
+    GetTaxExemptionTypesOutput: GetTaxExemptionTypesOutput
+    GetTaxInheritanceInput: GetTaxInheritanceInput
+    GetTaxInheritanceOutput: GetTaxInheritanceOutput
+    GetTaxRegistrationInput: GetTaxRegistrationInput
+    GetTaxRegistrationOutput: GetTaxRegistrationOutput
+    GetTaxRegistrationDocumentInput: GetTaxRegistrationDocumentInput
+    GetTaxRegistrationDocumentOutput: GetTaxRegistrationDocumentOutput
+    ListSupplementalTaxRegistrationsInput: ListSupplementalTaxRegistrationsInput
+    ListSupplementalTaxRegistrationsOutput: ListSupplementalTaxRegistrationsOutput
+    ListTaxExemptionsInput: ListTaxExemptionsInput
+    ListTaxExemptionsOutput: ListTaxExemptionsOutput
+    ListTaxRegistrationsInput: ListTaxRegistrationsInput
+    ListTaxRegistrationsOutput: ListTaxRegistrationsOutput
+    PutSupplementalTaxRegistrationInput: PutSupplementalTaxRegistrationInput
+    PutSupplementalTaxRegistrationOutput: PutSupplementalTaxRegistrationOutput
+    PutTaxExemptionInput: PutTaxExemptionInput
+    PutTaxExemptionOutput: PutTaxExemptionOutput
+    PutTaxInheritanceInput: PutTaxInheritanceInput
+    PutTaxInheritanceOutput: PutTaxInheritanceOutput
+    PutTaxRegistrationInput: PutTaxRegistrationInput
+    PutTaxRegistrationOutput: PutTaxRegistrationOutput
+end
+
+return M

@@ -1,0 +1,100 @@
+local types = require("cloudformation.types")
+
+local record Client
+    activateOrganizationsAccess: function(Client, types.ActivateOrganizationsAccessInput): types.ActivateOrganizationsAccessOutput, table
+    activateType: function(Client, types.ActivateTypeInput): types.ActivateTypeOutput, table
+    batchDescribeTypeConfigurations: function(Client, types.BatchDescribeTypeConfigurationsInput): types.BatchDescribeTypeConfigurationsOutput, table
+    cancelUpdateStack: function(Client, types.CancelUpdateStackInput): types.CancelUpdateStackOutput, table
+    continueUpdateRollback: function(Client, types.ContinueUpdateRollbackInput): types.ContinueUpdateRollbackOutput, table
+    createChangeSet: function(Client, types.CreateChangeSetInput): types.CreateChangeSetOutput, table
+    createGeneratedTemplate: function(Client, types.CreateGeneratedTemplateInput): types.CreateGeneratedTemplateOutput, table
+    createStack: function(Client, types.CreateStackInput): types.CreateStackOutput, table
+    createStackInstances: function(Client, types.CreateStackInstancesInput): types.CreateStackInstancesOutput, table
+    createStackRefactor: function(Client, types.CreateStackRefactorInput): types.CreateStackRefactorOutput, table
+    createStackSet: function(Client, types.CreateStackSetInput): types.CreateStackSetOutput, table
+    deactivateOrganizationsAccess: function(Client, types.DeactivateOrganizationsAccessInput): types.DeactivateOrganizationsAccessOutput, table
+    deactivateType: function(Client, types.DeactivateTypeInput): types.DeactivateTypeOutput, table
+    deleteChangeSet: function(Client, types.DeleteChangeSetInput): types.DeleteChangeSetOutput, table
+    deleteGeneratedTemplate: function(Client, types.DeleteGeneratedTemplateInput): types.DeleteGeneratedTemplateOutput, table
+    deleteStack: function(Client, types.DeleteStackInput): types.DeleteStackOutput, table
+    deleteStackInstances: function(Client, types.DeleteStackInstancesInput): types.DeleteStackInstancesOutput, table
+    deleteStackSet: function(Client, types.DeleteStackSetInput): types.DeleteStackSetOutput, table
+    deregisterType: function(Client, types.DeregisterTypeInput): types.DeregisterTypeOutput, table
+    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput): types.DescribeAccountLimitsOutput, table
+    describeChangeSet: function(Client, types.DescribeChangeSetInput): types.DescribeChangeSetOutput, table
+    describeChangeSetHooks: function(Client, types.DescribeChangeSetHooksInput): types.DescribeChangeSetHooksOutput, table
+    describeEvents: function(Client, types.DescribeEventsInput): types.DescribeEventsOutput, table
+    describeGeneratedTemplate: function(Client, types.DescribeGeneratedTemplateInput): types.DescribeGeneratedTemplateOutput, table
+    describeOrganizationsAccess: function(Client, types.DescribeOrganizationsAccessInput): types.DescribeOrganizationsAccessOutput, table
+    describePublisher: function(Client, types.DescribePublisherInput): types.DescribePublisherOutput, table
+    describeResourceScan: function(Client, types.DescribeResourceScanInput): types.DescribeResourceScanOutput, table
+    describeStackDriftDetectionStatus: function(Client, types.DescribeStackDriftDetectionStatusInput): types.DescribeStackDriftDetectionStatusOutput, table
+    describeStackEvents: function(Client, types.DescribeStackEventsInput): types.DescribeStackEventsOutput, table
+    describeStackInstance: function(Client, types.DescribeStackInstanceInput): types.DescribeStackInstanceOutput, table
+    describeStackRefactor: function(Client, types.DescribeStackRefactorInput): types.DescribeStackRefactorOutput, table
+    describeStackResource: function(Client, types.DescribeStackResourceInput): types.DescribeStackResourceOutput, table
+    describeStackResourceDrifts: function(Client, types.DescribeStackResourceDriftsInput): types.DescribeStackResourceDriftsOutput, table
+    describeStackResources: function(Client, types.DescribeStackResourcesInput): types.DescribeStackResourcesOutput, table
+    describeStacks: function(Client, types.DescribeStacksInput): types.DescribeStacksOutput, table
+    describeStackSet: function(Client, types.DescribeStackSetInput): types.DescribeStackSetOutput, table
+    describeStackSetOperation: function(Client, types.DescribeStackSetOperationInput): types.DescribeStackSetOperationOutput, table
+    describeType: function(Client, types.DescribeTypeInput): types.DescribeTypeOutput, table
+    describeTypeRegistration: function(Client, types.DescribeTypeRegistrationInput): types.DescribeTypeRegistrationOutput, table
+    detectStackDrift: function(Client, types.DetectStackDriftInput): types.DetectStackDriftOutput, table
+    detectStackResourceDrift: function(Client, types.DetectStackResourceDriftInput): types.DetectStackResourceDriftOutput, table
+    detectStackSetDrift: function(Client, types.DetectStackSetDriftInput): types.DetectStackSetDriftOutput, table
+    estimateTemplateCost: function(Client, types.EstimateTemplateCostInput): types.EstimateTemplateCostOutput, table
+    executeChangeSet: function(Client, types.ExecuteChangeSetInput): types.ExecuteChangeSetOutput, table
+    executeStackRefactor: function(Client, types.ExecuteStackRefactorInput): types.ExecuteStackRefactorOutput, table
+    getGeneratedTemplate: function(Client, types.GetGeneratedTemplateInput): types.GetGeneratedTemplateOutput, table
+    getHookResult: function(Client, types.GetHookResultInput): types.GetHookResultOutput, table
+    getStackPolicy: function(Client, types.GetStackPolicyInput): types.GetStackPolicyOutput, table
+    getTemplate: function(Client, types.GetTemplateInput): types.GetTemplateOutput, table
+    getTemplateSummary: function(Client, types.GetTemplateSummaryInput): types.GetTemplateSummaryOutput, table
+    importStacksToStackSet: function(Client, types.ImportStacksToStackSetInput): types.ImportStacksToStackSetOutput, table
+    listChangeSets: function(Client, types.ListChangeSetsInput): types.ListChangeSetsOutput, table
+    listExports: function(Client, types.ListExportsInput): types.ListExportsOutput, table
+    listGeneratedTemplates: function(Client, types.ListGeneratedTemplatesInput): types.ListGeneratedTemplatesOutput, table
+    listHookResults: function(Client, types.ListHookResultsInput): types.ListHookResultsOutput, table
+    listImports: function(Client, types.ListImportsInput): types.ListImportsOutput, table
+    listResourceScanRelatedResources: function(Client, types.ListResourceScanRelatedResourcesInput): types.ListResourceScanRelatedResourcesOutput, table
+    listResourceScanResources: function(Client, types.ListResourceScanResourcesInput): types.ListResourceScanResourcesOutput, table
+    listResourceScans: function(Client, types.ListResourceScansInput): types.ListResourceScansOutput, table
+    listStackInstanceResourceDrifts: function(Client, types.ListStackInstanceResourceDriftsInput): types.ListStackInstanceResourceDriftsOutput, table
+    listStackInstances: function(Client, types.ListStackInstancesInput): types.ListStackInstancesOutput, table
+    listStackRefactorActions: function(Client, types.ListStackRefactorActionsInput): types.ListStackRefactorActionsOutput, table
+    listStackRefactors: function(Client, types.ListStackRefactorsInput): types.ListStackRefactorsOutput, table
+    listStackResources: function(Client, types.ListStackResourcesInput): types.ListStackResourcesOutput, table
+    listStacks: function(Client, types.ListStacksInput): types.ListStacksOutput, table
+    listStackSetAutoDeploymentTargets: function(Client, types.ListStackSetAutoDeploymentTargetsInput): types.ListStackSetAutoDeploymentTargetsOutput, table
+    listStackSetOperationResults: function(Client, types.ListStackSetOperationResultsInput): types.ListStackSetOperationResultsOutput, table
+    listStackSetOperations: function(Client, types.ListStackSetOperationsInput): types.ListStackSetOperationsOutput, table
+    listStackSets: function(Client, types.ListStackSetsInput): types.ListStackSetsOutput, table
+    listTypeRegistrations: function(Client, types.ListTypeRegistrationsInput): types.ListTypeRegistrationsOutput, table
+    listTypes: function(Client, types.ListTypesInput): types.ListTypesOutput, table
+    listTypeVersions: function(Client, types.ListTypeVersionsInput): types.ListTypeVersionsOutput, table
+    publishType: function(Client, types.PublishTypeInput): types.PublishTypeOutput, table
+    recordHandlerProgress: function(Client, types.RecordHandlerProgressInput): types.RecordHandlerProgressOutput, table
+    registerPublisher: function(Client, types.RegisterPublisherInput): types.RegisterPublisherOutput, table
+    registerType: function(Client, types.RegisterTypeInput): types.RegisterTypeOutput, table
+    rollbackStack: function(Client, types.RollbackStackInput): types.RollbackStackOutput, table
+    setStackPolicy: function(Client, types.SetStackPolicyInput): types.SetStackPolicyOutput, table
+    setTypeConfiguration: function(Client, types.SetTypeConfigurationInput): types.SetTypeConfigurationOutput, table
+    setTypeDefaultVersion: function(Client, types.SetTypeDefaultVersionInput): types.SetTypeDefaultVersionOutput, table
+    signalResource: function(Client, types.SignalResourceInput): types.SignalResourceOutput, table
+    startResourceScan: function(Client, types.StartResourceScanInput): types.StartResourceScanOutput, table
+    stopStackSetOperation: function(Client, types.StopStackSetOperationInput): types.StopStackSetOperationOutput, table
+    testType: function(Client, types.TestTypeInput): types.TestTypeOutput, table
+    updateGeneratedTemplate: function(Client, types.UpdateGeneratedTemplateInput): types.UpdateGeneratedTemplateOutput, table
+    updateStack: function(Client, types.UpdateStackInput): types.UpdateStackOutput, table
+    updateStackInstances: function(Client, types.UpdateStackInstancesInput): types.UpdateStackInstancesOutput, table
+    updateStackSet: function(Client, types.UpdateStackSetInput): types.UpdateStackSetOutput, table
+    updateTerminationProtection: function(Client, types.UpdateTerminationProtectionInput): types.UpdateTerminationProtectionOutput, table
+    validateTemplate: function(Client, types.ValidateTemplateInput): types.ValidateTemplateOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,47 @@
+local types = require("accessanalyzer.types")
+
+local record Client
+    applyArchiveRule: function(Client, types.ApplyArchiveRuleInput): types.ApplyArchiveRuleOutput, table
+    cancelPolicyGeneration: function(Client, types.CancelPolicyGenerationInput): types.CancelPolicyGenerationOutput, table
+    checkAccessNotGranted: function(Client, types.CheckAccessNotGrantedInput): types.CheckAccessNotGrantedOutput, table
+    checkNoNewAccess: function(Client, types.CheckNoNewAccessInput): types.CheckNoNewAccessOutput, table
+    checkNoPublicAccess: function(Client, types.CheckNoPublicAccessInput): types.CheckNoPublicAccessOutput, table
+    createAccessPreview: function(Client, types.CreateAccessPreviewInput): types.CreateAccessPreviewOutput, table
+    createAnalyzer: function(Client, types.CreateAnalyzerInput): types.CreateAnalyzerOutput, table
+    createArchiveRule: function(Client, types.CreateArchiveRuleInput): types.CreateArchiveRuleOutput, table
+    deleteAnalyzer: function(Client, types.DeleteAnalyzerInput): types.DeleteAnalyzerOutput, table
+    deleteArchiveRule: function(Client, types.DeleteArchiveRuleInput): types.DeleteArchiveRuleOutput, table
+    generateFindingRecommendation: function(Client, types.GenerateFindingRecommendationInput): types.GenerateFindingRecommendationOutput, table
+    getAccessPreview: function(Client, types.GetAccessPreviewInput): types.GetAccessPreviewOutput, table
+    getAnalyzedResource: function(Client, types.GetAnalyzedResourceInput): types.GetAnalyzedResourceOutput, table
+    getAnalyzer: function(Client, types.GetAnalyzerInput): types.GetAnalyzerOutput, table
+    getArchiveRule: function(Client, types.GetArchiveRuleInput): types.GetArchiveRuleOutput, table
+    getFinding: function(Client, types.GetFindingInput): types.GetFindingOutput, table
+    getFindingRecommendation: function(Client, types.GetFindingRecommendationInput): types.GetFindingRecommendationOutput, table
+    getFindingsStatistics: function(Client, types.GetFindingsStatisticsInput): types.GetFindingsStatisticsOutput, table
+    getFindingV2: function(Client, types.GetFindingV2Input): types.GetFindingV2Output, table
+    getGeneratedPolicy: function(Client, types.GetGeneratedPolicyInput): types.GetGeneratedPolicyOutput, table
+    listAccessPreviewFindings: function(Client, types.ListAccessPreviewFindingsInput): types.ListAccessPreviewFindingsOutput, table
+    listAccessPreviews: function(Client, types.ListAccessPreviewsInput): types.ListAccessPreviewsOutput, table
+    listAnalyzedResources: function(Client, types.ListAnalyzedResourcesInput): types.ListAnalyzedResourcesOutput, table
+    listAnalyzers: function(Client, types.ListAnalyzersInput): types.ListAnalyzersOutput, table
+    listArchiveRules: function(Client, types.ListArchiveRulesInput): types.ListArchiveRulesOutput, table
+    listFindings: function(Client, types.ListFindingsInput): types.ListFindingsOutput, table
+    listFindingsV2: function(Client, types.ListFindingsV2Input): types.ListFindingsV2Output, table
+    listPolicyGenerations: function(Client, types.ListPolicyGenerationsInput): types.ListPolicyGenerationsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    startPolicyGeneration: function(Client, types.StartPolicyGenerationInput): types.StartPolicyGenerationOutput, table
+    startResourceScan: function(Client, types.StartResourceScanInput): types.StartResourceScanOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAnalyzer: function(Client, types.UpdateAnalyzerInput): types.UpdateAnalyzerOutput, table
+    updateArchiveRule: function(Client, types.UpdateArchiveRuleInput): types.UpdateArchiveRuleOutput, table
+    updateFindings: function(Client, types.UpdateFindingsInput): types.UpdateFindingsOutput, table
+    validatePolicy: function(Client, types.ValidatePolicyInput): types.ValidatePolicyOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

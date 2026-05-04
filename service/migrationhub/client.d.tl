@@ -1,0 +1,31 @@
+local types = require("migrationhub.types")
+
+local record Client
+    associateCreatedArtifact: function(Client, types.AssociateCreatedArtifactInput): types.AssociateCreatedArtifactOutput, table
+    associateDiscoveredResource: function(Client, types.AssociateDiscoveredResourceInput): types.AssociateDiscoveredResourceOutput, table
+    associateSourceResource: function(Client, types.AssociateSourceResourceInput): types.AssociateSourceResourceOutput, table
+    createProgressUpdateStream: function(Client, types.CreateProgressUpdateStreamInput): types.CreateProgressUpdateStreamOutput, table
+    deleteProgressUpdateStream: function(Client, types.DeleteProgressUpdateStreamInput): types.DeleteProgressUpdateStreamOutput, table
+    describeApplicationState: function(Client, types.DescribeApplicationStateInput): types.DescribeApplicationStateOutput, table
+    describeMigrationTask: function(Client, types.DescribeMigrationTaskInput): types.DescribeMigrationTaskOutput, table
+    disassociateCreatedArtifact: function(Client, types.DisassociateCreatedArtifactInput): types.DisassociateCreatedArtifactOutput, table
+    disassociateDiscoveredResource: function(Client, types.DisassociateDiscoveredResourceInput): types.DisassociateDiscoveredResourceOutput, table
+    disassociateSourceResource: function(Client, types.DisassociateSourceResourceInput): types.DisassociateSourceResourceOutput, table
+    importMigrationTask: function(Client, types.ImportMigrationTaskInput): types.ImportMigrationTaskOutput, table
+    listApplicationStates: function(Client, types.ListApplicationStatesInput): types.ListApplicationStatesOutput, table
+    listCreatedArtifacts: function(Client, types.ListCreatedArtifactsInput): types.ListCreatedArtifactsOutput, table
+    listDiscoveredResources: function(Client, types.ListDiscoveredResourcesInput): types.ListDiscoveredResourcesOutput, table
+    listMigrationTasks: function(Client, types.ListMigrationTasksInput): types.ListMigrationTasksOutput, table
+    listMigrationTaskUpdates: function(Client, types.ListMigrationTaskUpdatesInput): types.ListMigrationTaskUpdatesOutput, table
+    listProgressUpdateStreams: function(Client, types.ListProgressUpdateStreamsInput): types.ListProgressUpdateStreamsOutput, table
+    listSourceResources: function(Client, types.ListSourceResourcesInput): types.ListSourceResourcesOutput, table
+    notifyApplicationState: function(Client, types.NotifyApplicationStateInput): types.NotifyApplicationStateOutput, table
+    notifyMigrationTaskState: function(Client, types.NotifyMigrationTaskStateInput): types.NotifyMigrationTaskStateOutput, table
+    putResourceAttributes: function(Client, types.PutResourceAttributesInput): types.PutResourceAttributesOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

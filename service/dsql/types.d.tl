@@ -1,0 +1,544 @@
+local record CreateClusterInput
+    deletionProtectionEnabled: boolean
+    kmsEncryptionKey: string
+    tags: {string : string}
+    clientToken: string
+    multiRegionProperties: MultiRegionProperties
+    policy: string
+    bypassPolicyLockoutSafetyCheck: boolean
+end
+
+local record CreateClusterOutput
+    identifier: string
+    arn: string
+    status: string
+    creationTime: number
+    multiRegionProperties: MultiRegionProperties
+    encryptionDetails: EncryptionDetails
+    deletionProtectionEnabled: boolean
+    endpoint: string
+end
+
+local record DeleteClusterInput
+    identifier: string
+    clientToken: string
+end
+
+local record DeleteClusterOutput
+    identifier: string
+    arn: string
+    status: string
+    creationTime: number
+end
+
+local record DeleteClusterPolicyInput
+    identifier: string
+    expectedPolicyVersion: string
+    clientToken: string
+end
+
+local record DeleteClusterPolicyOutput
+    policyVersion: string
+end
+
+local record GetClusterInput
+    identifier: string
+end
+
+local record GetClusterOutput
+    identifier: string
+    arn: string
+    status: string
+    creationTime: number
+    deletionProtectionEnabled: boolean
+    multiRegionProperties: MultiRegionProperties
+    tags: {string : string}
+    encryptionDetails: EncryptionDetails
+    endpoint: string
+end
+
+local record GetClusterPolicyInput
+    identifier: string
+end
+
+local record GetClusterPolicyOutput
+    policy: string
+    policyVersion: string
+end
+
+local record GetVpcEndpointServiceNameInput
+    identifier: string
+end
+
+local record GetVpcEndpointServiceNameOutput
+    serviceName: string
+    clusterVpcEndpoint: string
+end
+
+local record ListClustersInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListClustersOutput
+    nextToken: string
+    clusters: {ClusterSummary}
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record PutClusterPolicyInput
+    identifier: string
+    policy: string
+    bypassPolicyLockoutSafetyCheck: boolean
+    expectedPolicyVersion: string
+    clientToken: string
+end
+
+local record PutClusterPolicyOutput
+    policyVersion: string
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateClusterInput
+    identifier: string
+    deletionProtectionEnabled: boolean
+    kmsEncryptionKey: string
+    clientToken: string
+    multiRegionProperties: MultiRegionProperties
+end
+
+local record UpdateClusterOutput
+    identifier: string
+    arn: string
+    status: string
+    creationTime: number
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local type ClusterStatus = "CREATING" | "ACTIVE" | "IDLE" | "INACTIVE" | "UPDATING" | "DELETING" | "DELETED" | "FAILED" | "PENDING_SETUP" | "PENDING_DELETE"
+
+local record M
+    CreateClusterInput: CreateClusterInput
+    CreateClusterOutput: CreateClusterOutput
+    DeleteClusterInput: DeleteClusterInput
+    DeleteClusterOutput: DeleteClusterOutput
+    DeleteClusterPolicyInput: DeleteClusterPolicyInput
+    DeleteClusterPolicyOutput: DeleteClusterPolicyOutput
+    GetClusterInput: GetClusterInput
+    GetClusterOutput: GetClusterOutput
+    GetClusterPolicyInput: GetClusterPolicyInput
+    GetClusterPolicyOutput: GetClusterPolicyOutput
+    GetVpcEndpointServiceNameInput: GetVpcEndpointServiceNameInput
+    GetVpcEndpointServiceNameOutput: GetVpcEndpointServiceNameOutput
+    ListClustersInput: ListClustersInput
+    ListClustersOutput: ListClustersOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PutClusterPolicyInput: PutClusterPolicyInput
+    PutClusterPolicyOutput: PutClusterPolicyOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateClusterInput: UpdateClusterInput
+    UpdateClusterOutput: UpdateClusterOutput
+end
+
+return M

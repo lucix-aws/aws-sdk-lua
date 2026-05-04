@@ -1,0 +1,587 @@
+local record AddApplicationCloudWatchLoggingOptionInput
+    ApplicationName: string
+    CurrentApplicationVersionId: number
+    CloudWatchLoggingOption: CloudWatchLoggingOption
+end
+
+local record AddApplicationCloudWatchLoggingOptionOutput
+end
+
+local record AddApplicationInputInput
+    ApplicationName: string
+    CurrentApplicationVersionId: number
+    Input: Input
+end
+
+local record AddApplicationInputOutput
+end
+
+local record AddApplicationInputProcessingConfigurationInput
+    ApplicationName: string
+    CurrentApplicationVersionId: number
+    InputId: string
+    InputProcessingConfiguration: InputProcessingConfiguration
+end
+
+local record AddApplicationInputProcessingConfigurationOutput
+end
+
+local record AddApplicationOutputInput
+    ApplicationName: string
+    CurrentApplicationVersionId: number
+    Output: Output
+end
+
+local record AddApplicationOutputOutput
+end
+
+local record AddApplicationReferenceDataSourceInput
+    ApplicationName: string
+    CurrentApplicationVersionId: number
+    ReferenceDataSource: ReferenceDataSource
+end
+
+local record AddApplicationReferenceDataSourceOutput
+end
+
+local record CreateApplicationInput
+    ApplicationName: string
+    ApplicationDescription: string
+    Inputs: {Input}
+    Outputs: {Output}
+    CloudWatchLoggingOptions: {CloudWatchLoggingOption}
+    ApplicationCode: string
+    Tags: {Tag}
+end
+
+local record CreateApplicationOutput
+    ApplicationSummary: ApplicationSummary
+end
+
+local record DeleteApplicationInput
+    ApplicationName: string
+    CreateTimestamp: number
+end
+
+local record DeleteApplicationOperationOutput
+end
+
+local record DeleteApplicationCloudWatchLoggingOptionInput
+    ApplicationName: string
+    CurrentApplicationVersionId: number
+    CloudWatchLoggingOptionId: string
+end
+
+local record DeleteApplicationCloudWatchLoggingOptionOutput
+end
+
+local record DeleteApplicationInputProcessingConfigurationInput
+    ApplicationName: string
+    CurrentApplicationVersionId: number
+    InputId: string
+end
+
+local record DeleteApplicationInputProcessingConfigurationOutput
+end
+
+local record DeleteApplicationOutputInput
+    ApplicationName: string
+    CurrentApplicationVersionId: number
+    OutputId: string
+end
+
+local record DeleteApplicationOutputOutput
+end
+
+local record DeleteApplicationReferenceDataSourceInput
+    ApplicationName: string
+    CurrentApplicationVersionId: number
+    ReferenceId: string
+end
+
+local record DeleteApplicationReferenceDataSourceOutput
+end
+
+local record DescribeApplicationInput
+    ApplicationName: string
+end
+
+local record DescribeApplicationOutput
+    ApplicationDetail: ApplicationDetail
+end
+
+local record DiscoverInputSchemaInput
+    ResourceARN: string
+    RoleARN: string
+    InputStartingPositionConfiguration: InputStartingPositionConfiguration
+    S3Configuration: S3Configuration
+    InputProcessingConfiguration: InputProcessingConfiguration
+end
+
+local record DiscoverInputSchemaOutput
+    InputSchema: SourceSchema
+    ParsedInputRecords: {{string}}
+    ProcessedInputRecords: {string}
+    RawInputRecords: {string}
+end
+
+local record ListApplicationsInput
+    Limit: number
+    ExclusiveStartApplicationName: string
+end
+
+local record ListApplicationsOutput
+    ApplicationSummaries: {ApplicationSummary}
+    HasMoreApplications: boolean
+end
+
+local record ListTagsForResourceInput
+    ResourceARN: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+end
+
+local record StartApplicationInput
+    ApplicationName: string
+    InputConfigurations: {InputConfiguration}
+end
+
+local record StartApplicationOutput
+end
+
+local record StopApplicationInput
+    ApplicationName: string
+end
+
+local record StopApplicationOutput
+end
+
+local record TagResourceInput
+    ResourceARN: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceARN: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateApplicationInput
+    ApplicationName: string
+    CurrentApplicationVersionId: number
+    ApplicationUpdate: ApplicationUpdate
+end
+
+local record UpdateApplicationOutput
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record CodeValidationException
+    message: string
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record CodeValidationException
+    message: string
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record TooManyTagsException
+    message: string
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record ResourceProvisionedThroughputExceededException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record UnableToDetectSchemaException
+    message: string
+    RawInputRecords: {string}
+    ProcessedInputRecords: {string}
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record InvalidApplicationConfigurationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyTagsException
+    message: string
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyTagsException
+    message: string
+end
+
+local record CodeValidationException
+    message: string
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InvalidArgumentException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record M
+    AddApplicationCloudWatchLoggingOptionInput: AddApplicationCloudWatchLoggingOptionInput
+    AddApplicationCloudWatchLoggingOptionOutput: AddApplicationCloudWatchLoggingOptionOutput
+    AddApplicationInputInput: AddApplicationInputInput
+    AddApplicationInputOutput: AddApplicationInputOutput
+    AddApplicationInputProcessingConfigurationInput: AddApplicationInputProcessingConfigurationInput
+    AddApplicationInputProcessingConfigurationOutput: AddApplicationInputProcessingConfigurationOutput
+    AddApplicationOutputInput: AddApplicationOutputInput
+    AddApplicationOutputOutput: AddApplicationOutputOutput
+    AddApplicationReferenceDataSourceInput: AddApplicationReferenceDataSourceInput
+    AddApplicationReferenceDataSourceOutput: AddApplicationReferenceDataSourceOutput
+    CreateApplicationInput: CreateApplicationInput
+    CreateApplicationOutput: CreateApplicationOutput
+    DeleteApplicationInput: DeleteApplicationInput
+    DeleteApplicationOperationOutput: DeleteApplicationOperationOutput
+    DeleteApplicationCloudWatchLoggingOptionInput: DeleteApplicationCloudWatchLoggingOptionInput
+    DeleteApplicationCloudWatchLoggingOptionOutput: DeleteApplicationCloudWatchLoggingOptionOutput
+    DeleteApplicationInputProcessingConfigurationInput: DeleteApplicationInputProcessingConfigurationInput
+    DeleteApplicationInputProcessingConfigurationOutput: DeleteApplicationInputProcessingConfigurationOutput
+    DeleteApplicationOutputInput: DeleteApplicationOutputInput
+    DeleteApplicationOutputOutput: DeleteApplicationOutputOutput
+    DeleteApplicationReferenceDataSourceInput: DeleteApplicationReferenceDataSourceInput
+    DeleteApplicationReferenceDataSourceOutput: DeleteApplicationReferenceDataSourceOutput
+    DescribeApplicationInput: DescribeApplicationInput
+    DescribeApplicationOutput: DescribeApplicationOutput
+    DiscoverInputSchemaInput: DiscoverInputSchemaInput
+    DiscoverInputSchemaOutput: DiscoverInputSchemaOutput
+    ListApplicationsInput: ListApplicationsInput
+    ListApplicationsOutput: ListApplicationsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    StartApplicationInput: StartApplicationInput
+    StartApplicationOutput: StartApplicationOutput
+    StopApplicationInput: StopApplicationInput
+    StopApplicationOutput: StopApplicationOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateApplicationInput: UpdateApplicationInput
+    UpdateApplicationOutput: UpdateApplicationOutput
+end
+
+return M

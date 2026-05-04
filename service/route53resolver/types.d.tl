@@ -1,0 +1,2543 @@
+local record AssociateFirewallRuleGroupInput
+    CreatorRequestId: string
+    FirewallRuleGroupId: string
+    VpcId: string
+    Priority: number
+    Name: string
+    MutationProtection: string
+    Tags: {Tag}
+end
+
+local record AssociateFirewallRuleGroupOutput
+    FirewallRuleGroupAssociation: FirewallRuleGroupAssociation
+end
+
+local record AssociateResolverEndpointIpAddressInput
+    ResolverEndpointId: string
+    IpAddress: IpAddressUpdate
+end
+
+local record AssociateResolverEndpointIpAddressOutput
+    ResolverEndpoint: ResolverEndpoint
+end
+
+local record AssociateResolverQueryLogConfigInput
+    ResolverQueryLogConfigId: string
+    ResourceId: string
+end
+
+local record AssociateResolverQueryLogConfigOutput
+    ResolverQueryLogConfigAssociation: ResolverQueryLogConfigAssociation
+end
+
+local record AssociateResolverRuleInput
+    ResolverRuleId: string
+    Name: string
+    VPCId: string
+end
+
+local record AssociateResolverRuleOutput
+    ResolverRuleAssociation: ResolverRuleAssociation
+end
+
+local record CreateFirewallDomainListInput
+    CreatorRequestId: string
+    Name: string
+    Tags: {Tag}
+end
+
+local record CreateFirewallDomainListOutput
+    FirewallDomainList: FirewallDomainList
+end
+
+local record CreateFirewallRuleInput
+    CreatorRequestId: string
+    FirewallRuleGroupId: string
+    FirewallDomainListId: string
+    Priority: number
+    Action: string
+    BlockResponse: string
+    BlockOverrideDomain: string
+    BlockOverrideDnsType: string
+    BlockOverrideTtl: number
+    Name: string
+    FirewallDomainRedirectionAction: string
+    Qtype: string
+    DnsThreatProtection: string
+    ConfidenceThreshold: string
+end
+
+local record CreateFirewallRuleOutput
+    FirewallRule: FirewallRule
+end
+
+local record CreateFirewallRuleGroupInput
+    CreatorRequestId: string
+    Name: string
+    Tags: {Tag}
+end
+
+local record CreateFirewallRuleGroupOutput
+    FirewallRuleGroup: FirewallRuleGroup
+end
+
+local record CreateOutpostResolverInput
+    CreatorRequestId: string
+    Name: string
+    InstanceCount: number
+    PreferredInstanceType: string
+    OutpostArn: string
+    Tags: {Tag}
+end
+
+local record CreateOutpostResolverOutput
+    OutpostResolver: OutpostResolver
+end
+
+local record CreateResolverEndpointInput
+    CreatorRequestId: string
+    Name: string
+    SecurityGroupIds: {string}
+    Direction: string
+    IpAddresses: {IpAddressRequest}
+    OutpostArn: string
+    PreferredInstanceType: string
+    Tags: {Tag}
+    ResolverEndpointType: string
+    Protocols: {string}
+    RniEnhancedMetricsEnabled: boolean
+    TargetNameServerMetricsEnabled: boolean
+end
+
+local record CreateResolverEndpointOutput
+    ResolverEndpoint: ResolverEndpoint
+end
+
+local record CreateResolverQueryLogConfigInput
+    Name: string
+    DestinationArn: string
+    CreatorRequestId: string
+    Tags: {Tag}
+end
+
+local record CreateResolverQueryLogConfigOutput
+    ResolverQueryLogConfig: ResolverQueryLogConfig
+end
+
+local record CreateResolverRuleInput
+    CreatorRequestId: string
+    Name: string
+    RuleType: string
+    DomainName: string
+    TargetIps: {TargetAddress}
+    ResolverEndpointId: string
+    Tags: {Tag}
+    DelegationRecord: string
+end
+
+local record CreateResolverRuleOutput
+    ResolverRule: ResolverRule
+end
+
+local record DeleteFirewallDomainListInput
+    FirewallDomainListId: string
+end
+
+local record DeleteFirewallDomainListOutput
+    FirewallDomainList: FirewallDomainList
+end
+
+local record DeleteFirewallRuleInput
+    FirewallRuleGroupId: string
+    FirewallDomainListId: string
+    FirewallThreatProtectionId: string
+    Qtype: string
+end
+
+local record DeleteFirewallRuleOutput
+    FirewallRule: FirewallRule
+end
+
+local record DeleteFirewallRuleGroupInput
+    FirewallRuleGroupId: string
+end
+
+local record DeleteFirewallRuleGroupOutput
+    FirewallRuleGroup: FirewallRuleGroup
+end
+
+local record DeleteOutpostResolverInput
+    Id: string
+end
+
+local record DeleteOutpostResolverOutput
+    OutpostResolver: OutpostResolver
+end
+
+local record DeleteResolverEndpointInput
+    ResolverEndpointId: string
+end
+
+local record DeleteResolverEndpointOutput
+    ResolverEndpoint: ResolverEndpoint
+end
+
+local record DeleteResolverQueryLogConfigInput
+    ResolverQueryLogConfigId: string
+end
+
+local record DeleteResolverQueryLogConfigOutput
+    ResolverQueryLogConfig: ResolverQueryLogConfig
+end
+
+local record DeleteResolverRuleInput
+    ResolverRuleId: string
+end
+
+local record DeleteResolverRuleOutput
+    ResolverRule: ResolverRule
+end
+
+local record DisassociateFirewallRuleGroupInput
+    FirewallRuleGroupAssociationId: string
+end
+
+local record DisassociateFirewallRuleGroupOutput
+    FirewallRuleGroupAssociation: FirewallRuleGroupAssociation
+end
+
+local record DisassociateResolverEndpointIpAddressInput
+    ResolverEndpointId: string
+    IpAddress: IpAddressUpdate
+end
+
+local record DisassociateResolverEndpointIpAddressOutput
+    ResolverEndpoint: ResolverEndpoint
+end
+
+local record DisassociateResolverQueryLogConfigInput
+    ResolverQueryLogConfigId: string
+    ResourceId: string
+end
+
+local record DisassociateResolverQueryLogConfigOutput
+    ResolverQueryLogConfigAssociation: ResolverQueryLogConfigAssociation
+end
+
+local record DisassociateResolverRuleInput
+    VPCId: string
+    ResolverRuleId: string
+end
+
+local record DisassociateResolverRuleOutput
+    ResolverRuleAssociation: ResolverRuleAssociation
+end
+
+local record GetFirewallConfigInput
+    ResourceId: string
+end
+
+local record GetFirewallConfigOutput
+    FirewallConfig: FirewallConfig
+end
+
+local record GetFirewallDomainListInput
+    FirewallDomainListId: string
+end
+
+local record GetFirewallDomainListOutput
+    FirewallDomainList: FirewallDomainList
+end
+
+local record GetFirewallRuleGroupInput
+    FirewallRuleGroupId: string
+end
+
+local record GetFirewallRuleGroupOutput
+    FirewallRuleGroup: FirewallRuleGroup
+end
+
+local record GetFirewallRuleGroupAssociationInput
+    FirewallRuleGroupAssociationId: string
+end
+
+local record GetFirewallRuleGroupAssociationOutput
+    FirewallRuleGroupAssociation: FirewallRuleGroupAssociation
+end
+
+local record GetFirewallRuleGroupPolicyInput
+    Arn: string
+end
+
+local record GetFirewallRuleGroupPolicyOutput
+    FirewallRuleGroupPolicy: string
+end
+
+local record GetOutpostResolverInput
+    Id: string
+end
+
+local record GetOutpostResolverOutput
+    OutpostResolver: OutpostResolver
+end
+
+local record GetResolverConfigInput
+    ResourceId: string
+end
+
+local record GetResolverConfigOutput
+    ResolverConfig: ResolverConfig
+end
+
+local record GetResolverDnssecConfigInput
+    ResourceId: string
+end
+
+local record GetResolverDnssecConfigOutput
+    ResolverDNSSECConfig: ResolverDnssecConfig
+end
+
+local record GetResolverEndpointInput
+    ResolverEndpointId: string
+end
+
+local record GetResolverEndpointOutput
+    ResolverEndpoint: ResolverEndpoint
+end
+
+local record GetResolverQueryLogConfigInput
+    ResolverQueryLogConfigId: string
+end
+
+local record GetResolverQueryLogConfigOutput
+    ResolverQueryLogConfig: ResolverQueryLogConfig
+end
+
+local record GetResolverQueryLogConfigAssociationInput
+    ResolverQueryLogConfigAssociationId: string
+end
+
+local record GetResolverQueryLogConfigAssociationOutput
+    ResolverQueryLogConfigAssociation: ResolverQueryLogConfigAssociation
+end
+
+local record GetResolverQueryLogConfigPolicyInput
+    Arn: string
+end
+
+local record GetResolverQueryLogConfigPolicyOutput
+    ResolverQueryLogConfigPolicy: string
+end
+
+local record GetResolverRuleInput
+    ResolverRuleId: string
+end
+
+local record GetResolverRuleOutput
+    ResolverRule: ResolverRule
+end
+
+local record GetResolverRuleAssociationInput
+    ResolverRuleAssociationId: string
+end
+
+local record GetResolverRuleAssociationOutput
+    ResolverRuleAssociation: ResolverRuleAssociation
+end
+
+local record GetResolverRulePolicyInput
+    Arn: string
+end
+
+local record GetResolverRulePolicyOutput
+    ResolverRulePolicy: string
+end
+
+local record ImportFirewallDomainsInput
+    FirewallDomainListId: string
+    Operation: string
+    DomainFileUrl: string
+end
+
+local record ImportFirewallDomainsOutput
+    Id: string
+    Name: string
+    Status: string
+    StatusMessage: string
+end
+
+local record ListFirewallConfigsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListFirewallConfigsOutput
+    NextToken: string
+    FirewallConfigs: {FirewallConfig}
+end
+
+local record ListFirewallDomainListsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListFirewallDomainListsOutput
+    NextToken: string
+    FirewallDomainLists: {FirewallDomainListMetadata}
+end
+
+local record ListFirewallDomainsInput
+    FirewallDomainListId: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListFirewallDomainsOutput
+    NextToken: string
+    Domains: {string}
+end
+
+local record ListFirewallRuleGroupAssociationsInput
+    FirewallRuleGroupId: string
+    VpcId: string
+    Priority: number
+    Status: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListFirewallRuleGroupAssociationsOutput
+    NextToken: string
+    FirewallRuleGroupAssociations: {FirewallRuleGroupAssociation}
+end
+
+local record ListFirewallRuleGroupsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListFirewallRuleGroupsOutput
+    NextToken: string
+    FirewallRuleGroups: {FirewallRuleGroupMetadata}
+end
+
+local record ListFirewallRulesInput
+    FirewallRuleGroupId: string
+    Priority: number
+    Action: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListFirewallRulesOutput
+    NextToken: string
+    FirewallRules: {FirewallRule}
+end
+
+local record ListOutpostResolversInput
+    OutpostArn: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListOutpostResolversOutput
+    OutpostResolvers: {OutpostResolver}
+    NextToken: string
+end
+
+local record ListResolverConfigsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListResolverConfigsOutput
+    NextToken: string
+    ResolverConfigs: {ResolverConfig}
+end
+
+local record ListResolverDnssecConfigsInput
+    MaxResults: number
+    NextToken: string
+    Filters: {Filter}
+end
+
+local record ListResolverDnssecConfigsOutput
+    NextToken: string
+    ResolverDnssecConfigs: {ResolverDnssecConfig}
+end
+
+local record ListResolverEndpointIpAddressesInput
+    ResolverEndpointId: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListResolverEndpointIpAddressesOutput
+    NextToken: string
+    MaxResults: number
+    IpAddresses: {IpAddressResponse}
+end
+
+local record ListResolverEndpointsInput
+    MaxResults: number
+    NextToken: string
+    Filters: {Filter}
+end
+
+local record ListResolverEndpointsOutput
+    NextToken: string
+    MaxResults: number
+    ResolverEndpoints: {ResolverEndpoint}
+end
+
+local record ListResolverQueryLogConfigAssociationsInput
+    MaxResults: number
+    NextToken: string
+    Filters: {Filter}
+    SortBy: string
+    SortOrder: string
+end
+
+local record ListResolverQueryLogConfigAssociationsOutput
+    NextToken: string
+    TotalCount: number
+    TotalFilteredCount: number
+    ResolverQueryLogConfigAssociations: {ResolverQueryLogConfigAssociation}
+end
+
+local record ListResolverQueryLogConfigsInput
+    MaxResults: number
+    NextToken: string
+    Filters: {Filter}
+    SortBy: string
+    SortOrder: string
+end
+
+local record ListResolverQueryLogConfigsOutput
+    NextToken: string
+    TotalCount: number
+    TotalFilteredCount: number
+    ResolverQueryLogConfigs: {ResolverQueryLogConfig}
+end
+
+local record ListResolverRuleAssociationsInput
+    MaxResults: number
+    NextToken: string
+    Filters: {Filter}
+end
+
+local record ListResolverRuleAssociationsOutput
+    NextToken: string
+    MaxResults: number
+    ResolverRuleAssociations: {ResolverRuleAssociation}
+end
+
+local record ListResolverRulesInput
+    MaxResults: number
+    NextToken: string
+    Filters: {Filter}
+end
+
+local record ListResolverRulesOutput
+    NextToken: string
+    MaxResults: number
+    ResolverRules: {ResolverRule}
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+    NextToken: string
+end
+
+local record PutFirewallRuleGroupPolicyInput
+    Arn: string
+    FirewallRuleGroupPolicy: string
+end
+
+local record PutFirewallRuleGroupPolicyOutput
+    ReturnValue: boolean
+end
+
+local record PutResolverQueryLogConfigPolicyInput
+    Arn: string
+    ResolverQueryLogConfigPolicy: string
+end
+
+local record PutResolverQueryLogConfigPolicyOutput
+    ReturnValue: boolean
+end
+
+local record PutResolverRulePolicyInput
+    Arn: string
+    ResolverRulePolicy: string
+end
+
+local record PutResolverRulePolicyOutput
+    ReturnValue: boolean
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateFirewallConfigInput
+    ResourceId: string
+    FirewallFailOpen: string
+end
+
+local record UpdateFirewallConfigOutput
+    FirewallConfig: FirewallConfig
+end
+
+local record UpdateFirewallDomainsInput
+    FirewallDomainListId: string
+    Operation: string
+    Domains: {string}
+end
+
+local record UpdateFirewallDomainsOutput
+    Id: string
+    Name: string
+    Status: string
+    StatusMessage: string
+end
+
+local record UpdateFirewallRuleInput
+    FirewallRuleGroupId: string
+    FirewallDomainListId: string
+    FirewallThreatProtectionId: string
+    Priority: number
+    Action: string
+    BlockResponse: string
+    BlockOverrideDomain: string
+    BlockOverrideDnsType: string
+    BlockOverrideTtl: number
+    Name: string
+    FirewallDomainRedirectionAction: string
+    Qtype: string
+    DnsThreatProtection: string
+    ConfidenceThreshold: string
+end
+
+local record UpdateFirewallRuleOutput
+    FirewallRule: FirewallRule
+end
+
+local record UpdateFirewallRuleGroupAssociationInput
+    FirewallRuleGroupAssociationId: string
+    Priority: number
+    MutationProtection: string
+    Name: string
+end
+
+local record UpdateFirewallRuleGroupAssociationOutput
+    FirewallRuleGroupAssociation: FirewallRuleGroupAssociation
+end
+
+local record UpdateOutpostResolverInput
+    Id: string
+    Name: string
+    InstanceCount: number
+    PreferredInstanceType: string
+end
+
+local record UpdateOutpostResolverOutput
+    OutpostResolver: OutpostResolver
+end
+
+local record UpdateResolverConfigInput
+    ResourceId: string
+    AutodefinedReverseFlag: string
+end
+
+local record UpdateResolverConfigOutput
+    ResolverConfig: ResolverConfig
+end
+
+local record UpdateResolverDnssecConfigInput
+    ResourceId: string
+    Validation: string
+end
+
+local record UpdateResolverDnssecConfigOutput
+    ResolverDNSSECConfig: ResolverDnssecConfig
+end
+
+local record UpdateResolverEndpointInput
+    ResolverEndpointId: string
+    Name: string
+    ResolverEndpointType: string
+    UpdateIpAddresses: {UpdateIpAddress}
+    Protocols: {string}
+    RniEnhancedMetricsEnabled: boolean
+    TargetNameServerMetricsEnabled: boolean
+end
+
+local record UpdateResolverEndpointOutput
+    ResolverEndpoint: ResolverEndpoint
+end
+
+local record UpdateResolverRuleInput
+    ResolverRuleId: string
+    Config: ResolverRuleConfig
+end
+
+local record UpdateResolverRuleOutput
+    ResolverRule: ResolverRule
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceExistsException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceExistsException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceExistsException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceExistsException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceExistsException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceExistsException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record ResourceInUseException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceExistsException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record UnknownResourceException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record UnknownResourceException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidPolicyDocument
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record UnknownResourceException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidPolicyDocument
+    Message: string
+end
+
+local record UnknownResourceException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InvalidTagException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+    FieldName: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+    ResourceType: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local type FirewallDomainUpdateOperation = "ADD" | "REMOVE" | "REPLACE"
+
+local type Validation = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
+
+local type SortOrder = "ASCENDING" | "DESCENDING"
+
+local type DnsThreatProtection = "DGA" | "DNS_TUNNELING" | "DICTIONARY_DGA"
+
+local type ResolverEndpointType = "IPV6" | "IPV4" | "DUALSTACK"
+
+local type FirewallDomainImportOperation = "REPLACE"
+
+local type RuleTypeOption = "FORWARD" | "SYSTEM" | "RECURSIVE" | "DELEGATE"
+
+local type FirewallDomainRedirectionAction = "INSPECT_REDIRECTION_DOMAIN" | "TRUST_REDIRECTION_DOMAIN"
+
+local type BlockResponse = "NODATA" | "NXDOMAIN" | "OVERRIDE"
+
+local type ConfidenceThreshold = "LOW" | "MEDIUM" | "HIGH"
+
+local type Action = "ALLOW" | "BLOCK" | "ALERT"
+
+local type AutodefinedReverseFlag = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
+
+local type BlockOverrideDnsType = "CNAME"
+
+local type FirewallFailOpenStatus = "ENABLED" | "DISABLED" | "USE_LOCAL_RESOURCE_SETTING"
+
+local type FirewallDomainListStatus = "COMPLETE" | "COMPLETE_IMPORT_FAILED" | "IMPORTING" | "DELETING" | "UPDATING"
+
+local type MutationProtectionStatus = "ENABLED" | "DISABLED"
+
+local type FirewallRuleGroupAssociationStatus = "COMPLETE" | "DELETING" | "UPDATING"
+
+local type ResolverEndpointDirection = "INBOUND" | "OUTBOUND" | "INBOUND_DELEGATION"
+
+local record M
+    AssociateFirewallRuleGroupInput: AssociateFirewallRuleGroupInput
+    AssociateFirewallRuleGroupOutput: AssociateFirewallRuleGroupOutput
+    AssociateResolverEndpointIpAddressInput: AssociateResolverEndpointIpAddressInput
+    AssociateResolverEndpointIpAddressOutput: AssociateResolverEndpointIpAddressOutput
+    AssociateResolverQueryLogConfigInput: AssociateResolverQueryLogConfigInput
+    AssociateResolverQueryLogConfigOutput: AssociateResolverQueryLogConfigOutput
+    AssociateResolverRuleInput: AssociateResolverRuleInput
+    AssociateResolverRuleOutput: AssociateResolverRuleOutput
+    CreateFirewallDomainListInput: CreateFirewallDomainListInput
+    CreateFirewallDomainListOutput: CreateFirewallDomainListOutput
+    CreateFirewallRuleInput: CreateFirewallRuleInput
+    CreateFirewallRuleOutput: CreateFirewallRuleOutput
+    CreateFirewallRuleGroupInput: CreateFirewallRuleGroupInput
+    CreateFirewallRuleGroupOutput: CreateFirewallRuleGroupOutput
+    CreateOutpostResolverInput: CreateOutpostResolverInput
+    CreateOutpostResolverOutput: CreateOutpostResolverOutput
+    CreateResolverEndpointInput: CreateResolverEndpointInput
+    CreateResolverEndpointOutput: CreateResolverEndpointOutput
+    CreateResolverQueryLogConfigInput: CreateResolverQueryLogConfigInput
+    CreateResolverQueryLogConfigOutput: CreateResolverQueryLogConfigOutput
+    CreateResolverRuleInput: CreateResolverRuleInput
+    CreateResolverRuleOutput: CreateResolverRuleOutput
+    DeleteFirewallDomainListInput: DeleteFirewallDomainListInput
+    DeleteFirewallDomainListOutput: DeleteFirewallDomainListOutput
+    DeleteFirewallRuleInput: DeleteFirewallRuleInput
+    DeleteFirewallRuleOutput: DeleteFirewallRuleOutput
+    DeleteFirewallRuleGroupInput: DeleteFirewallRuleGroupInput
+    DeleteFirewallRuleGroupOutput: DeleteFirewallRuleGroupOutput
+    DeleteOutpostResolverInput: DeleteOutpostResolverInput
+    DeleteOutpostResolverOutput: DeleteOutpostResolverOutput
+    DeleteResolverEndpointInput: DeleteResolverEndpointInput
+    DeleteResolverEndpointOutput: DeleteResolverEndpointOutput
+    DeleteResolverQueryLogConfigInput: DeleteResolverQueryLogConfigInput
+    DeleteResolverQueryLogConfigOutput: DeleteResolverQueryLogConfigOutput
+    DeleteResolverRuleInput: DeleteResolverRuleInput
+    DeleteResolverRuleOutput: DeleteResolverRuleOutput
+    DisassociateFirewallRuleGroupInput: DisassociateFirewallRuleGroupInput
+    DisassociateFirewallRuleGroupOutput: DisassociateFirewallRuleGroupOutput
+    DisassociateResolverEndpointIpAddressInput: DisassociateResolverEndpointIpAddressInput
+    DisassociateResolverEndpointIpAddressOutput: DisassociateResolverEndpointIpAddressOutput
+    DisassociateResolverQueryLogConfigInput: DisassociateResolverQueryLogConfigInput
+    DisassociateResolverQueryLogConfigOutput: DisassociateResolverQueryLogConfigOutput
+    DisassociateResolverRuleInput: DisassociateResolverRuleInput
+    DisassociateResolverRuleOutput: DisassociateResolverRuleOutput
+    GetFirewallConfigInput: GetFirewallConfigInput
+    GetFirewallConfigOutput: GetFirewallConfigOutput
+    GetFirewallDomainListInput: GetFirewallDomainListInput
+    GetFirewallDomainListOutput: GetFirewallDomainListOutput
+    GetFirewallRuleGroupInput: GetFirewallRuleGroupInput
+    GetFirewallRuleGroupOutput: GetFirewallRuleGroupOutput
+    GetFirewallRuleGroupAssociationInput: GetFirewallRuleGroupAssociationInput
+    GetFirewallRuleGroupAssociationOutput: GetFirewallRuleGroupAssociationOutput
+    GetFirewallRuleGroupPolicyInput: GetFirewallRuleGroupPolicyInput
+    GetFirewallRuleGroupPolicyOutput: GetFirewallRuleGroupPolicyOutput
+    GetOutpostResolverInput: GetOutpostResolverInput
+    GetOutpostResolverOutput: GetOutpostResolverOutput
+    GetResolverConfigInput: GetResolverConfigInput
+    GetResolverConfigOutput: GetResolverConfigOutput
+    GetResolverDnssecConfigInput: GetResolverDnssecConfigInput
+    GetResolverDnssecConfigOutput: GetResolverDnssecConfigOutput
+    GetResolverEndpointInput: GetResolverEndpointInput
+    GetResolverEndpointOutput: GetResolverEndpointOutput
+    GetResolverQueryLogConfigInput: GetResolverQueryLogConfigInput
+    GetResolverQueryLogConfigOutput: GetResolverQueryLogConfigOutput
+    GetResolverQueryLogConfigAssociationInput: GetResolverQueryLogConfigAssociationInput
+    GetResolverQueryLogConfigAssociationOutput: GetResolverQueryLogConfigAssociationOutput
+    GetResolverQueryLogConfigPolicyInput: GetResolverQueryLogConfigPolicyInput
+    GetResolverQueryLogConfigPolicyOutput: GetResolverQueryLogConfigPolicyOutput
+    GetResolverRuleInput: GetResolverRuleInput
+    GetResolverRuleOutput: GetResolverRuleOutput
+    GetResolverRuleAssociationInput: GetResolverRuleAssociationInput
+    GetResolverRuleAssociationOutput: GetResolverRuleAssociationOutput
+    GetResolverRulePolicyInput: GetResolverRulePolicyInput
+    GetResolverRulePolicyOutput: GetResolverRulePolicyOutput
+    ImportFirewallDomainsInput: ImportFirewallDomainsInput
+    ImportFirewallDomainsOutput: ImportFirewallDomainsOutput
+    ListFirewallConfigsInput: ListFirewallConfigsInput
+    ListFirewallConfigsOutput: ListFirewallConfigsOutput
+    ListFirewallDomainListsInput: ListFirewallDomainListsInput
+    ListFirewallDomainListsOutput: ListFirewallDomainListsOutput
+    ListFirewallDomainsInput: ListFirewallDomainsInput
+    ListFirewallDomainsOutput: ListFirewallDomainsOutput
+    ListFirewallRuleGroupAssociationsInput: ListFirewallRuleGroupAssociationsInput
+    ListFirewallRuleGroupAssociationsOutput: ListFirewallRuleGroupAssociationsOutput
+    ListFirewallRuleGroupsInput: ListFirewallRuleGroupsInput
+    ListFirewallRuleGroupsOutput: ListFirewallRuleGroupsOutput
+    ListFirewallRulesInput: ListFirewallRulesInput
+    ListFirewallRulesOutput: ListFirewallRulesOutput
+    ListOutpostResolversInput: ListOutpostResolversInput
+    ListOutpostResolversOutput: ListOutpostResolversOutput
+    ListResolverConfigsInput: ListResolverConfigsInput
+    ListResolverConfigsOutput: ListResolverConfigsOutput
+    ListResolverDnssecConfigsInput: ListResolverDnssecConfigsInput
+    ListResolverDnssecConfigsOutput: ListResolverDnssecConfigsOutput
+    ListResolverEndpointIpAddressesInput: ListResolverEndpointIpAddressesInput
+    ListResolverEndpointIpAddressesOutput: ListResolverEndpointIpAddressesOutput
+    ListResolverEndpointsInput: ListResolverEndpointsInput
+    ListResolverEndpointsOutput: ListResolverEndpointsOutput
+    ListResolverQueryLogConfigAssociationsInput: ListResolverQueryLogConfigAssociationsInput
+    ListResolverQueryLogConfigAssociationsOutput: ListResolverQueryLogConfigAssociationsOutput
+    ListResolverQueryLogConfigsInput: ListResolverQueryLogConfigsInput
+    ListResolverQueryLogConfigsOutput: ListResolverQueryLogConfigsOutput
+    ListResolverRuleAssociationsInput: ListResolverRuleAssociationsInput
+    ListResolverRuleAssociationsOutput: ListResolverRuleAssociationsOutput
+    ListResolverRulesInput: ListResolverRulesInput
+    ListResolverRulesOutput: ListResolverRulesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PutFirewallRuleGroupPolicyInput: PutFirewallRuleGroupPolicyInput
+    PutFirewallRuleGroupPolicyOutput: PutFirewallRuleGroupPolicyOutput
+    PutResolverQueryLogConfigPolicyInput: PutResolverQueryLogConfigPolicyInput
+    PutResolverQueryLogConfigPolicyOutput: PutResolverQueryLogConfigPolicyOutput
+    PutResolverRulePolicyInput: PutResolverRulePolicyInput
+    PutResolverRulePolicyOutput: PutResolverRulePolicyOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateFirewallConfigInput: UpdateFirewallConfigInput
+    UpdateFirewallConfigOutput: UpdateFirewallConfigOutput
+    UpdateFirewallDomainsInput: UpdateFirewallDomainsInput
+    UpdateFirewallDomainsOutput: UpdateFirewallDomainsOutput
+    UpdateFirewallRuleInput: UpdateFirewallRuleInput
+    UpdateFirewallRuleOutput: UpdateFirewallRuleOutput
+    UpdateFirewallRuleGroupAssociationInput: UpdateFirewallRuleGroupAssociationInput
+    UpdateFirewallRuleGroupAssociationOutput: UpdateFirewallRuleGroupAssociationOutput
+    UpdateOutpostResolverInput: UpdateOutpostResolverInput
+    UpdateOutpostResolverOutput: UpdateOutpostResolverOutput
+    UpdateResolverConfigInput: UpdateResolverConfigInput
+    UpdateResolverConfigOutput: UpdateResolverConfigOutput
+    UpdateResolverDnssecConfigInput: UpdateResolverDnssecConfigInput
+    UpdateResolverDnssecConfigOutput: UpdateResolverDnssecConfigOutput
+    UpdateResolverEndpointInput: UpdateResolverEndpointInput
+    UpdateResolverEndpointOutput: UpdateResolverEndpointOutput
+    UpdateResolverRuleInput: UpdateResolverRuleInput
+    UpdateResolverRuleOutput: UpdateResolverRuleOutput
+end
+
+return M

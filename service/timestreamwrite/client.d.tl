@@ -1,0 +1,29 @@
+local types = require("timestreamwrite.types")
+
+local record Client
+    createBatchLoadTask: function(Client, types.CreateBatchLoadTaskInput): types.CreateBatchLoadTaskOutput, table
+    createDatabase: function(Client, types.CreateDatabaseInput): types.CreateDatabaseOutput, table
+    createTable: function(Client, types.CreateTableInput): types.CreateTableOutput, table
+    deleteDatabase: function(Client, types.DeleteDatabaseInput): types.DeleteDatabaseOutput, table
+    deleteTable: function(Client, types.DeleteTableInput): types.DeleteTableOutput, table
+    describeBatchLoadTask: function(Client, types.DescribeBatchLoadTaskInput): types.DescribeBatchLoadTaskOutput, table
+    describeDatabase: function(Client, types.DescribeDatabaseInput): types.DescribeDatabaseOutput, table
+    describeEndpoints: function(Client, types.DescribeEndpointsInput): types.DescribeEndpointsOutput, table
+    describeTable: function(Client, types.DescribeTableInput): types.DescribeTableOutput, table
+    listBatchLoadTasks: function(Client, types.ListBatchLoadTasksInput): types.ListBatchLoadTasksOutput, table
+    listDatabases: function(Client, types.ListDatabasesInput): types.ListDatabasesOutput, table
+    listTables: function(Client, types.ListTablesInput): types.ListTablesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    resumeBatchLoadTask: function(Client, types.ResumeBatchLoadTaskInput): types.ResumeBatchLoadTaskOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateDatabase: function(Client, types.UpdateDatabaseInput): types.UpdateDatabaseOutput, table
+    updateTable: function(Client, types.UpdateTableInput): types.UpdateTableOutput, table
+    writeRecords: function(Client, types.WriteRecordsInput): types.WriteRecordsOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

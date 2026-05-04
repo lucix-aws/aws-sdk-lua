@@ -1,0 +1,38 @@
+local types = require("applicationdiscoveryservice.types")
+
+local record Client
+    associateConfigurationItemsToApplication: function(Client, types.AssociateConfigurationItemsToApplicationInput): types.AssociateConfigurationItemsToApplicationOutput, table
+    batchDeleteAgents: function(Client, types.BatchDeleteAgentsInput): types.BatchDeleteAgentsOutput, table
+    batchDeleteImportData: function(Client, types.BatchDeleteImportDataInput): types.BatchDeleteImportDataOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createTags: function(Client, types.CreateTagsInput): types.CreateTagsOutput, table
+    deleteApplications: function(Client, types.DeleteApplicationsInput): types.DeleteApplicationsOutput, table
+    deleteTags: function(Client, types.DeleteTagsInput): types.DeleteTagsOutput, table
+    describeAgents: function(Client, types.DescribeAgentsInput): types.DescribeAgentsOutput, table
+    describeBatchDeleteConfigurationTask: function(Client, types.DescribeBatchDeleteConfigurationTaskInput): types.DescribeBatchDeleteConfigurationTaskOutput, table
+    describeConfigurations: function(Client, types.DescribeConfigurationsInput): types.DescribeConfigurationsOutput, table
+    describeContinuousExports: function(Client, types.DescribeContinuousExportsInput): types.DescribeContinuousExportsOutput, table
+    describeExportConfigurations: function(Client, types.DescribeExportConfigurationsInput): types.DescribeExportConfigurationsOutput, table
+    describeExportTasks: function(Client, types.DescribeExportTasksInput): types.DescribeExportTasksOutput, table
+    describeImportTasks: function(Client, types.DescribeImportTasksInput): types.DescribeImportTasksOutput, table
+    describeTags: function(Client, types.DescribeTagsInput): types.DescribeTagsOutput, table
+    disassociateConfigurationItemsFromApplication: function(Client, types.DisassociateConfigurationItemsFromApplicationInput): types.DisassociateConfigurationItemsFromApplicationOutput, table
+    exportConfigurations: function(Client, types.ExportConfigurationsInput): types.ExportConfigurationsOutput, table
+    getDiscoverySummary: function(Client, types.GetDiscoverySummaryInput): types.GetDiscoverySummaryOutput, table
+    listConfigurations: function(Client, types.ListConfigurationsInput): types.ListConfigurationsOutput, table
+    listServerNeighbors: function(Client, types.ListServerNeighborsInput): types.ListServerNeighborsOutput, table
+    startBatchDeleteConfigurationTask: function(Client, types.StartBatchDeleteConfigurationTaskInput): types.StartBatchDeleteConfigurationTaskOutput, table
+    startContinuousExport: function(Client, types.StartContinuousExportInput): types.StartContinuousExportOutput, table
+    startDataCollectionByAgentIds: function(Client, types.StartDataCollectionByAgentIdsInput): types.StartDataCollectionByAgentIdsOutput, table
+    startExportTask: function(Client, types.StartExportTaskInput): types.StartExportTaskOutput, table
+    startImportTask: function(Client, types.StartImportTaskInput): types.StartImportTaskOutput, table
+    stopContinuousExport: function(Client, types.StopContinuousExportInput): types.StopContinuousExportOutput, table
+    stopDataCollectionByAgentIds: function(Client, types.StopDataCollectionByAgentIdsInput): types.StopDataCollectionByAgentIdsOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

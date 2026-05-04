@@ -1,0 +1,35 @@
+local types = require("networkflowmonitor.types")
+
+local record Client
+    createMonitor: function(Client, types.CreateMonitorInput): types.CreateMonitorOutput, table
+    createScope: function(Client, types.CreateScopeInput): types.CreateScopeOutput, table
+    deleteMonitor: function(Client, types.DeleteMonitorInput): types.DeleteMonitorOutput, table
+    deleteScope: function(Client, types.DeleteScopeInput): types.DeleteScopeOutput, table
+    getMonitor: function(Client, types.GetMonitorInput): types.GetMonitorOutput, table
+    getQueryResultsMonitorTopContributors: function(Client, types.GetQueryResultsMonitorTopContributorsInput): types.GetQueryResultsMonitorTopContributorsOutput, table
+    getQueryResultsWorkloadInsightsTopContributors: function(Client, types.GetQueryResultsWorkloadInsightsTopContributorsInput): types.GetQueryResultsWorkloadInsightsTopContributorsOutput, table
+    getQueryResultsWorkloadInsightsTopContributorsData: function(Client, types.GetQueryResultsWorkloadInsightsTopContributorsDataInput): types.GetQueryResultsWorkloadInsightsTopContributorsDataOutput, table
+    getQueryStatusMonitorTopContributors: function(Client, types.GetQueryStatusMonitorTopContributorsInput): types.GetQueryStatusMonitorTopContributorsOutput, table
+    getQueryStatusWorkloadInsightsTopContributors: function(Client, types.GetQueryStatusWorkloadInsightsTopContributorsInput): types.GetQueryStatusWorkloadInsightsTopContributorsOutput, table
+    getQueryStatusWorkloadInsightsTopContributorsData: function(Client, types.GetQueryStatusWorkloadInsightsTopContributorsDataInput): types.GetQueryStatusWorkloadInsightsTopContributorsDataOutput, table
+    getScope: function(Client, types.GetScopeInput): types.GetScopeOutput, table
+    listMonitors: function(Client, types.ListMonitorsInput): types.ListMonitorsOutput, table
+    listScopes: function(Client, types.ListScopesInput): types.ListScopesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    startQueryMonitorTopContributors: function(Client, types.StartQueryMonitorTopContributorsInput): types.StartQueryMonitorTopContributorsOutput, table
+    startQueryWorkloadInsightsTopContributors: function(Client, types.StartQueryWorkloadInsightsTopContributorsInput): types.StartQueryWorkloadInsightsTopContributorsOutput, table
+    startQueryWorkloadInsightsTopContributorsData: function(Client, types.StartQueryWorkloadInsightsTopContributorsDataInput): types.StartQueryWorkloadInsightsTopContributorsDataOutput, table
+    stopQueryMonitorTopContributors: function(Client, types.StopQueryMonitorTopContributorsInput): types.StopQueryMonitorTopContributorsOutput, table
+    stopQueryWorkloadInsightsTopContributors: function(Client, types.StopQueryWorkloadInsightsTopContributorsInput): types.StopQueryWorkloadInsightsTopContributorsOutput, table
+    stopQueryWorkloadInsightsTopContributorsData: function(Client, types.StopQueryWorkloadInsightsTopContributorsDataInput): types.StopQueryWorkloadInsightsTopContributorsDataOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateMonitor: function(Client, types.UpdateMonitorInput): types.UpdateMonitorOutput, table
+    updateScope: function(Client, types.UpdateScopeInput): types.UpdateScopeOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,1442 @@
+local record AbortMultipartUploadInput
+    accountId: string
+    vaultName: string
+    uploadId: string
+end
+
+local record AbortMultipartUploadOutput
+end
+
+local record AbortVaultLockInput
+    accountId: string
+    vaultName: string
+end
+
+local record AbortVaultLockOutput
+end
+
+local record AddTagsToVaultInput
+    accountId: string
+    vaultName: string
+    Tags: {string : string}
+end
+
+local record AddTagsToVaultOutput
+end
+
+local record CompleteMultipartUploadInput
+    accountId: string
+    vaultName: string
+    uploadId: string
+    archiveSize: string
+    checksum: string
+end
+
+local record CompleteMultipartUploadOutput
+    location: string
+    checksum: string
+    archiveId: string
+end
+
+local record CompleteVaultLockInput
+    accountId: string
+    vaultName: string
+    lockId: string
+end
+
+local record CompleteVaultLockOutput
+end
+
+local record CreateVaultInput
+    accountId: string
+    vaultName: string
+end
+
+local record CreateVaultOutput
+    location: string
+end
+
+local record DeleteArchiveInput
+    accountId: string
+    vaultName: string
+    archiveId: string
+end
+
+local record DeleteArchiveOutput
+end
+
+local record DeleteVaultInput
+    accountId: string
+    vaultName: string
+end
+
+local record DeleteVaultOutput
+end
+
+local record DeleteVaultAccessPolicyInput
+    accountId: string
+    vaultName: string
+end
+
+local record DeleteVaultAccessPolicyOutput
+end
+
+local record DeleteVaultNotificationsInput
+    accountId: string
+    vaultName: string
+end
+
+local record DeleteVaultNotificationsOutput
+end
+
+local record DescribeJobInput
+    accountId: string
+    vaultName: string
+    jobId: string
+end
+
+local record DescribeJobOutput
+    JobId: string
+    JobDescription: string
+    Action: string
+    ArchiveId: string
+    VaultARN: string
+    CreationDate: string
+    Completed: boolean
+    StatusCode: string
+    StatusMessage: string
+    ArchiveSizeInBytes: number
+    InventorySizeInBytes: number
+    SNSTopic: string
+    CompletionDate: string
+    SHA256TreeHash: string
+    ArchiveSHA256TreeHash: string
+    RetrievalByteRange: string
+    Tier: string
+    InventoryRetrievalParameters: InventoryRetrievalJobDescription
+    JobOutputPath: string
+    SelectParameters: SelectParameters
+    OutputLocation: OutputLocation
+end
+
+local record DescribeVaultInput
+    accountId: string
+    vaultName: string
+end
+
+local record DescribeVaultOperationOutput
+    VaultARN: string
+    VaultName: string
+    CreationDate: string
+    LastInventoryDate: string
+    NumberOfArchives: number
+    SizeInBytes: number
+end
+
+local record GetDataRetrievalPolicyInput
+    accountId: string
+end
+
+local record GetDataRetrievalPolicyOutput
+    Policy: DataRetrievalPolicy
+end
+
+local record GetJobOutputInput
+    accountId: string
+    vaultName: string
+    jobId: string
+    range: string
+end
+
+local record GetJobOutputOutput
+    body: string
+    checksum: string
+    status: number
+    contentRange: string
+    acceptRanges: string
+    contentType: string
+    archiveDescription: string
+end
+
+local record GetVaultAccessPolicyInput
+    accountId: string
+    vaultName: string
+end
+
+local record GetVaultAccessPolicyOutput
+    policy: VaultAccessPolicy
+end
+
+local record GetVaultLockInput
+    accountId: string
+    vaultName: string
+end
+
+local record GetVaultLockOutput
+    Policy: string
+    State: string
+    ExpirationDate: string
+    CreationDate: string
+end
+
+local record GetVaultNotificationsInput
+    accountId: string
+    vaultName: string
+end
+
+local record GetVaultNotificationsOutput
+    vaultNotificationConfig: VaultNotificationConfig
+end
+
+local record InitiateJobInput
+    accountId: string
+    vaultName: string
+    jobParameters: JobParameters
+end
+
+local record InitiateJobOutput
+    location: string
+    jobId: string
+    jobOutputPath: string
+end
+
+local record InitiateMultipartUploadInput
+    accountId: string
+    vaultName: string
+    archiveDescription: string
+    partSize: string
+end
+
+local record InitiateMultipartUploadOutput
+    location: string
+    uploadId: string
+end
+
+local record InitiateVaultLockInput
+    accountId: string
+    vaultName: string
+    policy: VaultLockPolicy
+end
+
+local record InitiateVaultLockOutput
+    lockId: string
+end
+
+local record ListJobsInput
+    accountId: string
+    vaultName: string
+    limit: number
+    marker: string
+    statuscode: string
+    completed: string
+end
+
+local record ListJobsOutput
+    JobList: {GlacierJobDescription}
+    Marker: string
+end
+
+local record ListMultipartUploadsInput
+    accountId: string
+    vaultName: string
+    limit: number
+    marker: string
+end
+
+local record ListMultipartUploadsOutput
+    UploadsList: {UploadListElement}
+    Marker: string
+end
+
+local record ListPartsInput
+    accountId: string
+    vaultName: string
+    uploadId: string
+    marker: string
+    limit: number
+end
+
+local record ListPartsOutput
+    MultipartUploadId: string
+    VaultARN: string
+    ArchiveDescription: string
+    PartSizeInBytes: number
+    CreationDate: string
+    Parts: {PartListElement}
+    Marker: string
+end
+
+local record ListProvisionedCapacityInput
+    accountId: string
+end
+
+local record ListProvisionedCapacityOutput
+    ProvisionedCapacityList: {ProvisionedCapacityDescription}
+end
+
+local record ListTagsForVaultInput
+    accountId: string
+    vaultName: string
+end
+
+local record ListTagsForVaultOutput
+    Tags: {string : string}
+end
+
+local record ListVaultsInput
+    accountId: string
+    marker: string
+    limit: number
+end
+
+local record ListVaultsOutput
+    VaultList: {DescribeVaultOutput}
+    Marker: string
+end
+
+local record PurchaseProvisionedCapacityInput
+    accountId: string
+end
+
+local record PurchaseProvisionedCapacityOutput
+    capacityId: string
+end
+
+local record RemoveTagsFromVaultInput
+    accountId: string
+    vaultName: string
+    TagKeys: {string}
+end
+
+local record RemoveTagsFromVaultOutput
+end
+
+local record SetDataRetrievalPolicyInput
+    accountId: string
+    Policy: DataRetrievalPolicy
+end
+
+local record SetDataRetrievalPolicyOutput
+end
+
+local record SetVaultAccessPolicyInput
+    accountId: string
+    vaultName: string
+    policy: VaultAccessPolicy
+end
+
+local record SetVaultAccessPolicyOutput
+end
+
+local record SetVaultNotificationsInput
+    accountId: string
+    vaultName: string
+    vaultNotificationConfig: VaultNotificationConfig
+end
+
+local record SetVaultNotificationsOutput
+end
+
+local record UploadArchiveInput
+    vaultName: string
+    accountId: string
+    archiveDescription: string
+    checksum: string
+    body: string
+end
+
+local record UploadArchiveOutput
+    location: string
+    checksum: string
+    archiveId: string
+end
+
+local record UploadMultipartPartInput
+    accountId: string
+    vaultName: string
+    uploadId: string
+    checksum: string
+    range: string
+    body: string
+end
+
+local record UploadMultipartPartOutput
+    checksum: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record LimitExceededException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record LimitExceededException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InsufficientCapacityException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record PolicyEnforcedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record LimitExceededException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record RequestTimeoutException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local record InvalidParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record MissingParameterValueException
+    type: string
+    code: string
+    message: string
+end
+
+local record NoLongerSupportedException
+    type: string
+    code: string
+    message: string
+end
+
+local record RequestTimeoutException
+    type: string
+    code: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    type: string
+    code: string
+    message: string
+end
+
+local record ServiceUnavailableException
+    type: string
+    code: string
+    message: string
+end
+
+local type ActionCode = "ArchiveRetrieval" | "InventoryRetrieval" | "Select"
+
+local type StatusCode = "InProgress" | "Succeeded" | "Failed"
+
+local record M
+    AbortMultipartUploadInput: AbortMultipartUploadInput
+    AbortMultipartUploadOutput: AbortMultipartUploadOutput
+    AbortVaultLockInput: AbortVaultLockInput
+    AbortVaultLockOutput: AbortVaultLockOutput
+    AddTagsToVaultInput: AddTagsToVaultInput
+    AddTagsToVaultOutput: AddTagsToVaultOutput
+    CompleteMultipartUploadInput: CompleteMultipartUploadInput
+    CompleteMultipartUploadOutput: CompleteMultipartUploadOutput
+    CompleteVaultLockInput: CompleteVaultLockInput
+    CompleteVaultLockOutput: CompleteVaultLockOutput
+    CreateVaultInput: CreateVaultInput
+    CreateVaultOutput: CreateVaultOutput
+    DeleteArchiveInput: DeleteArchiveInput
+    DeleteArchiveOutput: DeleteArchiveOutput
+    DeleteVaultInput: DeleteVaultInput
+    DeleteVaultOutput: DeleteVaultOutput
+    DeleteVaultAccessPolicyInput: DeleteVaultAccessPolicyInput
+    DeleteVaultAccessPolicyOutput: DeleteVaultAccessPolicyOutput
+    DeleteVaultNotificationsInput: DeleteVaultNotificationsInput
+    DeleteVaultNotificationsOutput: DeleteVaultNotificationsOutput
+    DescribeJobInput: DescribeJobInput
+    DescribeJobOutput: DescribeJobOutput
+    DescribeVaultInput: DescribeVaultInput
+    DescribeVaultOperationOutput: DescribeVaultOperationOutput
+    GetDataRetrievalPolicyInput: GetDataRetrievalPolicyInput
+    GetDataRetrievalPolicyOutput: GetDataRetrievalPolicyOutput
+    GetJobOutputInput: GetJobOutputInput
+    GetJobOutputOutput: GetJobOutputOutput
+    GetVaultAccessPolicyInput: GetVaultAccessPolicyInput
+    GetVaultAccessPolicyOutput: GetVaultAccessPolicyOutput
+    GetVaultLockInput: GetVaultLockInput
+    GetVaultLockOutput: GetVaultLockOutput
+    GetVaultNotificationsInput: GetVaultNotificationsInput
+    GetVaultNotificationsOutput: GetVaultNotificationsOutput
+    InitiateJobInput: InitiateJobInput
+    InitiateJobOutput: InitiateJobOutput
+    InitiateMultipartUploadInput: InitiateMultipartUploadInput
+    InitiateMultipartUploadOutput: InitiateMultipartUploadOutput
+    InitiateVaultLockInput: InitiateVaultLockInput
+    InitiateVaultLockOutput: InitiateVaultLockOutput
+    ListJobsInput: ListJobsInput
+    ListJobsOutput: ListJobsOutput
+    ListMultipartUploadsInput: ListMultipartUploadsInput
+    ListMultipartUploadsOutput: ListMultipartUploadsOutput
+    ListPartsInput: ListPartsInput
+    ListPartsOutput: ListPartsOutput
+    ListProvisionedCapacityInput: ListProvisionedCapacityInput
+    ListProvisionedCapacityOutput: ListProvisionedCapacityOutput
+    ListTagsForVaultInput: ListTagsForVaultInput
+    ListTagsForVaultOutput: ListTagsForVaultOutput
+    ListVaultsInput: ListVaultsInput
+    ListVaultsOutput: ListVaultsOutput
+    PurchaseProvisionedCapacityInput: PurchaseProvisionedCapacityInput
+    PurchaseProvisionedCapacityOutput: PurchaseProvisionedCapacityOutput
+    RemoveTagsFromVaultInput: RemoveTagsFromVaultInput
+    RemoveTagsFromVaultOutput: RemoveTagsFromVaultOutput
+    SetDataRetrievalPolicyInput: SetDataRetrievalPolicyInput
+    SetDataRetrievalPolicyOutput: SetDataRetrievalPolicyOutput
+    SetVaultAccessPolicyInput: SetVaultAccessPolicyInput
+    SetVaultAccessPolicyOutput: SetVaultAccessPolicyOutput
+    SetVaultNotificationsInput: SetVaultNotificationsInput
+    SetVaultNotificationsOutput: SetVaultNotificationsOutput
+    UploadArchiveInput: UploadArchiveInput
+    UploadArchiveOutput: UploadArchiveOutput
+    UploadMultipartPartInput: UploadMultipartPartInput
+    UploadMultipartPartOutput: UploadMultipartPartOutput
+end
+
+return M

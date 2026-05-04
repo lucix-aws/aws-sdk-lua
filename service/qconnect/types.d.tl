@@ -1,0 +1,3104 @@
+local record ActivateMessageTemplateInput
+    knowledgeBaseId: string
+    messageTemplateId: string
+    versionNumber: number
+end
+
+local record ActivateMessageTemplateOutput
+    messageTemplateArn: string
+    messageTemplateId: string
+    versionNumber: number
+end
+
+local record CreateAIAgentInput
+    clientToken: string
+    assistantId: string
+    name: string
+    type: string
+    configuration: AIAgentConfiguration
+    visibilityStatus: string
+    tags: {string : string}
+    description: string
+end
+
+local record CreateAIAgentOutput
+    aiAgent: AIAgentData
+end
+
+local record CreateAIAgentVersionInput
+    assistantId: string
+    aiAgentId: string
+    modifiedTime: number
+    clientToken: string
+end
+
+local record CreateAIAgentVersionOutput
+    aiAgent: AIAgentData
+    versionNumber: number
+end
+
+local record CreateAIGuardrailInput
+    clientToken: string
+    assistantId: string
+    name: string
+    blockedInputMessaging: string
+    blockedOutputsMessaging: string
+    visibilityStatus: string
+    description: string
+    topicPolicyConfig: AIGuardrailTopicPolicyConfig
+    contentPolicyConfig: AIGuardrailContentPolicyConfig
+    wordPolicyConfig: AIGuardrailWordPolicyConfig
+    sensitiveInformationPolicyConfig: AIGuardrailSensitiveInformationPolicyConfig
+    contextualGroundingPolicyConfig: AIGuardrailContextualGroundingPolicyConfig
+    tags: {string : string}
+end
+
+local record CreateAIGuardrailOutput
+    aiGuardrail: AIGuardrailData
+end
+
+local record CreateAIGuardrailVersionInput
+    assistantId: string
+    aiGuardrailId: string
+    modifiedTime: number
+    clientToken: string
+end
+
+local record CreateAIGuardrailVersionOutput
+    aiGuardrail: AIGuardrailData
+    versionNumber: number
+end
+
+local record CreateAIPromptInput
+    clientToken: string
+    assistantId: string
+    name: string
+    type: string
+    templateConfiguration: AIPromptTemplateConfiguration
+    visibilityStatus: string
+    templateType: string
+    modelId: string
+    apiFormat: string
+    tags: {string : string}
+    description: string
+    inferenceConfiguration: AIPromptInferenceConfiguration
+end
+
+local record CreateAIPromptOutput
+    aiPrompt: AIPromptData
+end
+
+local record CreateAIPromptVersionInput
+    assistantId: string
+    aiPromptId: string
+    modifiedTime: number
+    clientToken: string
+end
+
+local record CreateAIPromptVersionOutput
+    aiPrompt: AIPromptData
+    versionNumber: number
+end
+
+local record CreateAssistantInput
+    clientToken: string
+    name: string
+    type: string
+    description: string
+    tags: {string : string}
+    serverSideEncryptionConfiguration: ServerSideEncryptionConfiguration
+end
+
+local record CreateAssistantOutput
+    assistant: AssistantData
+end
+
+local record CreateAssistantAssociationInput
+    assistantId: string
+    associationType: string
+    association: AssistantAssociationInputData
+    clientToken: string
+    tags: {string : string}
+end
+
+local record CreateAssistantAssociationOutput
+    assistantAssociation: AssistantAssociationData
+end
+
+local record CreateContentInput
+    knowledgeBaseId: string
+    name: string
+    title: string
+    overrideLinkOutUri: string
+    metadata: {string : string}
+    uploadId: string
+    clientToken: string
+    tags: {string : string}
+end
+
+local record CreateContentOutput
+    content: ContentData
+end
+
+local record CreateContentAssociationInput
+    clientToken: string
+    knowledgeBaseId: string
+    contentId: string
+    associationType: string
+    association: ContentAssociationContents
+    tags: {string : string}
+end
+
+local record CreateContentAssociationOutput
+    contentAssociation: ContentAssociationData
+end
+
+local record CreateKnowledgeBaseInput
+    clientToken: string
+    name: string
+    knowledgeBaseType: string
+    sourceConfiguration: SourceConfiguration
+    renderingConfiguration: RenderingConfiguration
+    vectorIngestionConfiguration: VectorIngestionConfiguration
+    serverSideEncryptionConfiguration: ServerSideEncryptionConfiguration
+    description: string
+    tags: {string : string}
+end
+
+local record CreateKnowledgeBaseOutput
+    knowledgeBase: KnowledgeBaseData
+end
+
+local record CreateMessageTemplateInput
+    knowledgeBaseId: string
+    name: string
+    content: MessageTemplateContentProvider
+    description: string
+    channelSubtype: string
+    language: string
+    sourceConfiguration: MessageTemplateSourceConfiguration
+    defaultAttributes: MessageTemplateAttributes
+    groupingConfiguration: GroupingConfiguration
+    clientToken: string
+    tags: {string : string}
+end
+
+local record CreateMessageTemplateOutput
+    messageTemplate: MessageTemplateData
+end
+
+local record CreateMessageTemplateAttachmentInput
+    knowledgeBaseId: string
+    messageTemplateId: string
+    contentDisposition: string
+    name: string
+    body: string
+    clientToken: string
+end
+
+local record CreateMessageTemplateAttachmentOutput
+    attachment: MessageTemplateAttachment
+end
+
+local record CreateMessageTemplateVersionInput
+    knowledgeBaseId: string
+    messageTemplateId: string
+    messageTemplateContentSha256: string
+end
+
+local record CreateMessageTemplateVersionOutput
+    messageTemplate: ExtendedMessageTemplateData
+end
+
+local record CreateQuickResponseInput
+    knowledgeBaseId: string
+    name: string
+    content: QuickResponseDataProvider
+    contentType: string
+    groupingConfiguration: GroupingConfiguration
+    description: string
+    shortcutKey: string
+    isActive: boolean
+    channels: {string}
+    language: string
+    clientToken: string
+    tags: {string : string}
+end
+
+local record CreateQuickResponseOutput
+    quickResponse: QuickResponseData
+end
+
+local record CreateSessionInput
+    clientToken: string
+    assistantId: string
+    name: string
+    description: string
+    tags: {string : string}
+    tagFilter: TagFilter
+    aiAgentConfiguration: {string : AIAgentConfigurationData}
+    contactArn: string
+    orchestratorConfigurationList: {OrchestratorConfigurationEntry}
+    removeOrchestratorConfigurationList: boolean
+end
+
+local record CreateSessionOutput
+    session: SessionData
+end
+
+local record DeactivateMessageTemplateInput
+    knowledgeBaseId: string
+    messageTemplateId: string
+    versionNumber: number
+end
+
+local record DeactivateMessageTemplateOutput
+    messageTemplateArn: string
+    messageTemplateId: string
+    versionNumber: number
+end
+
+local record DeleteAIAgentInput
+    assistantId: string
+    aiAgentId: string
+end
+
+local record DeleteAIAgentOutput
+end
+
+local record DeleteAIAgentVersionInput
+    assistantId: string
+    aiAgentId: string
+    versionNumber: number
+end
+
+local record DeleteAIAgentVersionOutput
+end
+
+local record DeleteAIGuardrailInput
+    assistantId: string
+    aiGuardrailId: string
+end
+
+local record DeleteAIGuardrailOutput
+end
+
+local record DeleteAIGuardrailVersionInput
+    assistantId: string
+    aiGuardrailId: string
+    versionNumber: number
+end
+
+local record DeleteAIGuardrailVersionOutput
+end
+
+local record DeleteAIPromptInput
+    assistantId: string
+    aiPromptId: string
+end
+
+local record DeleteAIPromptOutput
+end
+
+local record DeleteAIPromptVersionInput
+    assistantId: string
+    aiPromptId: string
+    versionNumber: number
+end
+
+local record DeleteAIPromptVersionOutput
+end
+
+local record DeleteAssistantInput
+    assistantId: string
+end
+
+local record DeleteAssistantOutput
+end
+
+local record DeleteAssistantAssociationInput
+    assistantAssociationId: string
+    assistantId: string
+end
+
+local record DeleteAssistantAssociationOutput
+end
+
+local record DeleteContentInput
+    knowledgeBaseId: string
+    contentId: string
+end
+
+local record DeleteContentOutput
+end
+
+local record DeleteContentAssociationInput
+    knowledgeBaseId: string
+    contentId: string
+    contentAssociationId: string
+end
+
+local record DeleteContentAssociationOutput
+end
+
+local record DeleteImportJobInput
+    knowledgeBaseId: string
+    importJobId: string
+end
+
+local record DeleteImportJobOutput
+end
+
+local record DeleteKnowledgeBaseInput
+    knowledgeBaseId: string
+end
+
+local record DeleteKnowledgeBaseOutput
+end
+
+local record DeleteMessageTemplateInput
+    knowledgeBaseId: string
+    messageTemplateId: string
+end
+
+local record DeleteMessageTemplateOutput
+end
+
+local record DeleteMessageTemplateAttachmentInput
+    knowledgeBaseId: string
+    messageTemplateId: string
+    attachmentId: string
+end
+
+local record DeleteMessageTemplateAttachmentOutput
+end
+
+local record DeleteQuickResponseInput
+    knowledgeBaseId: string
+    quickResponseId: string
+end
+
+local record DeleteQuickResponseOutput
+end
+
+local record GetAIAgentInput
+    assistantId: string
+    aiAgentId: string
+end
+
+local record GetAIAgentOutput
+    aiAgent: AIAgentData
+    versionNumber: number
+end
+
+local record GetAIGuardrailInput
+    assistantId: string
+    aiGuardrailId: string
+end
+
+local record GetAIGuardrailOutput
+    aiGuardrail: AIGuardrailData
+    versionNumber: number
+end
+
+local record GetAIPromptInput
+    assistantId: string
+    aiPromptId: string
+end
+
+local record GetAIPromptOutput
+    aiPrompt: AIPromptData
+    versionNumber: number
+end
+
+local record GetAssistantInput
+    assistantId: string
+end
+
+local record GetAssistantOutput
+    assistant: AssistantData
+end
+
+local record GetAssistantAssociationInput
+    assistantAssociationId: string
+    assistantId: string
+end
+
+local record GetAssistantAssociationOutput
+    assistantAssociation: AssistantAssociationData
+end
+
+local record GetContentInput
+    contentId: string
+    knowledgeBaseId: string
+end
+
+local record GetContentOutput
+    content: ContentData
+end
+
+local record GetContentAssociationInput
+    knowledgeBaseId: string
+    contentId: string
+    contentAssociationId: string
+end
+
+local record GetContentAssociationOutput
+    contentAssociation: ContentAssociationData
+end
+
+local record GetContentSummaryInput
+    contentId: string
+    knowledgeBaseId: string
+end
+
+local record GetContentSummaryOutput
+    contentSummary: ContentSummary
+end
+
+local record GetImportJobInput
+    importJobId: string
+    knowledgeBaseId: string
+end
+
+local record GetImportJobOutput
+    importJob: ImportJobData
+end
+
+local record GetKnowledgeBaseInput
+    knowledgeBaseId: string
+end
+
+local record GetKnowledgeBaseOutput
+    knowledgeBase: KnowledgeBaseData
+end
+
+local record GetMessageTemplateInput
+    messageTemplateId: string
+    knowledgeBaseId: string
+end
+
+local record GetMessageTemplateOutput
+    messageTemplate: ExtendedMessageTemplateData
+end
+
+local record GetNextMessageInput
+    assistantId: string
+    sessionId: string
+    nextMessageToken: string
+end
+
+local record GetNextMessageOutput
+    type: string
+    response: MessageOutput
+    requestMessageId: string
+    conversationState: ConversationState
+    nextMessageToken: string
+    conversationSessionData: {RuntimeSessionData}
+    chunkedResponseTerminated: boolean
+end
+
+local record GetQuickResponseInput
+    quickResponseId: string
+    knowledgeBaseId: string
+end
+
+local record GetQuickResponseOutput
+    quickResponse: QuickResponseData
+end
+
+local record GetRecommendationsInput
+    assistantId: string
+    sessionId: string
+    maxResults: number
+    waitTimeSeconds: number
+    nextChunkToken: string
+    recommendationType: string
+end
+
+local record GetRecommendationsOutput
+    recommendations: {RecommendationData}
+    triggers: {RecommendationTrigger}
+end
+
+local record GetSessionInput
+    assistantId: string
+    sessionId: string
+end
+
+local record GetSessionOutput
+    session: SessionData
+end
+
+local record ListAIAgentsInput
+    assistantId: string
+    nextToken: string
+    maxResults: number
+    origin: string
+end
+
+local record ListAIAgentsOutput
+    aiAgentSummaries: {AIAgentSummary}
+    nextToken: string
+end
+
+local record ListAIAgentVersionsInput
+    assistantId: string
+    aiAgentId: string
+    nextToken: string
+    maxResults: number
+    origin: string
+end
+
+local record ListAIAgentVersionsOutput
+    aiAgentVersionSummaries: {AIAgentVersionSummary}
+    nextToken: string
+end
+
+local record ListAIGuardrailsInput
+    assistantId: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListAIGuardrailsOutput
+    aiGuardrailSummaries: {AIGuardrailSummary}
+    nextToken: string
+end
+
+local record ListAIGuardrailVersionsInput
+    assistantId: string
+    aiGuardrailId: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListAIGuardrailVersionsOutput
+    aiGuardrailVersionSummaries: {AIGuardrailVersionSummary}
+    nextToken: string
+end
+
+local record ListAIPromptsInput
+    assistantId: string
+    nextToken: string
+    maxResults: number
+    origin: string
+end
+
+local record ListAIPromptsOutput
+    aiPromptSummaries: {AIPromptSummary}
+    nextToken: string
+end
+
+local record ListAIPromptVersionsInput
+    assistantId: string
+    aiPromptId: string
+    nextToken: string
+    maxResults: number
+    origin: string
+end
+
+local record ListAIPromptVersionsOutput
+    aiPromptVersionSummaries: {AIPromptVersionSummary}
+    nextToken: string
+end
+
+local record ListAssistantAssociationsInput
+    nextToken: string
+    maxResults: number
+    assistantId: string
+end
+
+local record ListAssistantAssociationsOutput
+    assistantAssociationSummaries: {AssistantAssociationSummary}
+    nextToken: string
+end
+
+local record ListAssistantsInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListAssistantsOutput
+    assistantSummaries: {AssistantSummary}
+    nextToken: string
+end
+
+local record ListContentAssociationsInput
+    nextToken: string
+    maxResults: number
+    knowledgeBaseId: string
+    contentId: string
+end
+
+local record ListContentAssociationsOutput
+    contentAssociationSummaries: {ContentAssociationSummary}
+    nextToken: string
+end
+
+local record ListContentsInput
+    nextToken: string
+    maxResults: number
+    knowledgeBaseId: string
+end
+
+local record ListContentsOutput
+    contentSummaries: {ContentSummary}
+    nextToken: string
+end
+
+local record ListImportJobsInput
+    nextToken: string
+    maxResults: number
+    knowledgeBaseId: string
+end
+
+local record ListImportJobsOutput
+    importJobSummaries: {ImportJobSummary}
+    nextToken: string
+end
+
+local record ListKnowledgeBasesInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListKnowledgeBasesOutput
+    knowledgeBaseSummaries: {KnowledgeBaseSummary}
+    nextToken: string
+end
+
+local record ListMessagesInput
+    assistantId: string
+    sessionId: string
+    nextToken: string
+    maxResults: number
+    filter: string
+end
+
+local record ListMessagesOutput
+    messages: {MessageOutput}
+    nextToken: string
+end
+
+local record ListMessageTemplatesInput
+    nextToken: string
+    maxResults: number
+    knowledgeBaseId: string
+end
+
+local record ListMessageTemplatesOutput
+    messageTemplateSummaries: {MessageTemplateSummary}
+    nextToken: string
+end
+
+local record ListMessageTemplateVersionsInput
+    knowledgeBaseId: string
+    messageTemplateId: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListMessageTemplateVersionsOutput
+    messageTemplateVersionSummaries: {MessageTemplateVersionSummary}
+    nextToken: string
+end
+
+local record ListQuickResponsesInput
+    nextToken: string
+    maxResults: number
+    knowledgeBaseId: string
+end
+
+local record ListQuickResponsesOutput
+    quickResponseSummaries: {QuickResponseSummary}
+    nextToken: string
+end
+
+local record ListSpansInput
+    assistantId: string
+    sessionId: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListSpansOutput
+    spans: {Span}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record NotifyRecommendationsReceivedInput
+    assistantId: string
+    sessionId: string
+    recommendationIds: {string}
+end
+
+local record NotifyRecommendationsReceivedOutput
+    recommendationIds: {string}
+    errors: {NotifyRecommendationsReceivedError}
+end
+
+local record PutFeedbackInput
+    assistantId: string
+    targetId: string
+    targetType: string
+    contentFeedback: ContentFeedbackData
+end
+
+local record PutFeedbackOutput
+    assistantId: string
+    assistantArn: string
+    targetId: string
+    targetType: string
+    contentFeedback: ContentFeedbackData
+end
+
+local record QueryAssistantInput
+    assistantId: string
+    queryText: string
+    nextToken: string
+    maxResults: number
+    sessionId: string
+    queryCondition: {QueryCondition}
+    queryInputData: QueryInputData
+    overrideKnowledgeBaseSearchType: string
+end
+
+local record QueryAssistantOutput
+    results: {ResultData}
+    nextToken: string
+end
+
+local record RemoveAssistantAIAgentInput
+    assistantId: string
+    aiAgentType: string
+    orchestratorUseCase: string
+end
+
+local record RemoveAssistantAIAgentOutput
+end
+
+local record RemoveKnowledgeBaseTemplateUriInput
+    knowledgeBaseId: string
+end
+
+local record RemoveKnowledgeBaseTemplateUriOutput
+end
+
+local record RenderMessageTemplateInput
+    knowledgeBaseId: string
+    messageTemplateId: string
+    attributes: MessageTemplateAttributes
+end
+
+local record RenderMessageTemplateOutput
+    content: MessageTemplateContentProvider
+    sourceConfigurationSummary: MessageTemplateSourceConfigurationSummary
+    attributesNotInterpolated: {string}
+    attachments: {MessageTemplateAttachment}
+end
+
+local record RetrieveInput
+    assistantId: string
+    retrievalConfiguration: RetrievalConfiguration
+    retrievalQuery: string
+end
+
+local record RetrieveOutput
+    results: {RetrieveResult}
+end
+
+local record SearchContentInput
+    nextToken: string
+    maxResults: number
+    knowledgeBaseId: string
+    searchExpression: SearchExpression
+end
+
+local record SearchContentOutput
+    contentSummaries: {ContentSummary}
+    nextToken: string
+end
+
+local record SearchMessageTemplatesInput
+    knowledgeBaseId: string
+    searchExpression: MessageTemplateSearchExpression
+    nextToken: string
+    maxResults: number
+end
+
+local record SearchMessageTemplatesOutput
+    results: {MessageTemplateSearchResultData}
+    nextToken: string
+end
+
+local record SearchQuickResponsesInput
+    knowledgeBaseId: string
+    searchExpression: QuickResponseSearchExpression
+    nextToken: string
+    maxResults: number
+    attributes: {string : string}
+end
+
+local record SearchQuickResponsesOutput
+    results: {QuickResponseSearchResultData}
+    nextToken: string
+end
+
+local record SearchSessionsInput
+    nextToken: string
+    maxResults: number
+    assistantId: string
+    searchExpression: SearchExpression
+end
+
+local record SearchSessionsOutput
+    sessionSummaries: {SessionSummary}
+    nextToken: string
+end
+
+local record SendMessageInput
+    assistantId: string
+    sessionId: string
+    type: string
+    message: MessageInput
+    aiAgentId: string
+    conversationContext: ConversationContext
+    configuration: MessageConfiguration
+    clientToken: string
+    orchestratorUseCase: string
+    metadata: {string : string}
+    originRequestId: string
+end
+
+local record SendMessageOutput
+    requestMessageId: string
+    configuration: MessageConfiguration
+    nextMessageToken: string
+end
+
+local record StartContentUploadInput
+    knowledgeBaseId: string
+    contentType: string
+    presignedUrlTimeToLive: number
+end
+
+local record StartContentUploadOutput
+    uploadId: string
+    url: string
+    urlExpiry: number
+    headersToInclude: {string : string}
+end
+
+local record StartImportJobInput
+    knowledgeBaseId: string
+    importJobType: string
+    uploadId: string
+    clientToken: string
+    metadata: {string : string}
+    externalSourceConfiguration: ExternalSourceConfiguration
+end
+
+local record StartImportJobOutput
+    importJob: ImportJobData
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateAIAgentInput
+    clientToken: string
+    assistantId: string
+    aiAgentId: string
+    visibilityStatus: string
+    configuration: AIAgentConfiguration
+    description: string
+end
+
+local record UpdateAIAgentOutput
+    aiAgent: AIAgentData
+end
+
+local record UpdateAIGuardrailInput
+    clientToken: string
+    assistantId: string
+    aiGuardrailId: string
+    visibilityStatus: string
+    blockedInputMessaging: string
+    blockedOutputsMessaging: string
+    description: string
+    topicPolicyConfig: AIGuardrailTopicPolicyConfig
+    contentPolicyConfig: AIGuardrailContentPolicyConfig
+    wordPolicyConfig: AIGuardrailWordPolicyConfig
+    sensitiveInformationPolicyConfig: AIGuardrailSensitiveInformationPolicyConfig
+    contextualGroundingPolicyConfig: AIGuardrailContextualGroundingPolicyConfig
+end
+
+local record UpdateAIGuardrailOutput
+    aiGuardrail: AIGuardrailData
+end
+
+local record UpdateAIPromptInput
+    clientToken: string
+    assistantId: string
+    aiPromptId: string
+    visibilityStatus: string
+    templateConfiguration: AIPromptTemplateConfiguration
+    description: string
+    modelId: string
+    inferenceConfiguration: AIPromptInferenceConfiguration
+end
+
+local record UpdateAIPromptOutput
+    aiPrompt: AIPromptData
+end
+
+local record UpdateAssistantAIAgentInput
+    assistantId: string
+    aiAgentType: string
+    configuration: AIAgentConfigurationData
+    orchestratorUseCase: string
+end
+
+local record UpdateAssistantAIAgentOutput
+    assistant: AssistantData
+end
+
+local record UpdateContentInput
+    knowledgeBaseId: string
+    contentId: string
+    revisionId: string
+    title: string
+    overrideLinkOutUri: string
+    removeOverrideLinkOutUri: boolean
+    metadata: {string : string}
+    uploadId: string
+end
+
+local record UpdateContentOutput
+    content: ContentData
+end
+
+local record UpdateKnowledgeBaseTemplateUriInput
+    knowledgeBaseId: string
+    templateUri: string
+end
+
+local record UpdateKnowledgeBaseTemplateUriOutput
+    knowledgeBase: KnowledgeBaseData
+end
+
+local record UpdateMessageTemplateInput
+    knowledgeBaseId: string
+    messageTemplateId: string
+    content: MessageTemplateContentProvider
+    language: string
+    sourceConfiguration: MessageTemplateSourceConfiguration
+    defaultAttributes: MessageTemplateAttributes
+end
+
+local record UpdateMessageTemplateOutput
+    messageTemplate: MessageTemplateData
+end
+
+local record UpdateMessageTemplateMetadataInput
+    knowledgeBaseId: string
+    messageTemplateId: string
+    name: string
+    description: string
+    groupingConfiguration: GroupingConfiguration
+end
+
+local record UpdateMessageTemplateMetadataOutput
+    messageTemplate: MessageTemplateData
+end
+
+local record UpdateQuickResponseInput
+    knowledgeBaseId: string
+    quickResponseId: string
+    name: string
+    content: QuickResponseDataProvider
+    contentType: string
+    groupingConfiguration: GroupingConfiguration
+    removeGroupingConfiguration: boolean
+    description: string
+    removeDescription: boolean
+    shortcutKey: string
+    removeShortcutKey: boolean
+    isActive: boolean
+    channels: {string}
+    language: string
+end
+
+local record UpdateQuickResponseOutput
+    quickResponse: QuickResponseData
+end
+
+local record UpdateSessionInput
+    assistantId: string
+    sessionId: string
+    description: string
+    tagFilter: TagFilter
+    aiAgentConfiguration: {string : AIAgentConfigurationData}
+    orchestratorConfigurationList: {OrchestratorConfigurationEntry}
+    removeOrchestratorConfigurationList: boolean
+end
+
+local record UpdateSessionOutput
+    session: SessionData
+end
+
+local record UpdateSessionDataInput
+    assistantId: string
+    sessionId: string
+    namespace: string
+    data: {RuntimeSessionData}
+end
+
+local record UpdateSessionDataOutput
+    sessionArn: string
+    sessionId: string
+    namespace: string
+    data: {RuntimeSessionData}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record DependencyFailedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnprocessableContentException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record RequestTimeoutException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record DependencyFailedException
+    message: string
+end
+
+local record RequestTimeoutException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record RequestTimeoutException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record DependencyFailedException
+    message: string
+end
+
+local record RequestTimeoutException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record TooManyTagsException
+    message: string
+    resourceName: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record PreconditionFailedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record PreconditionFailedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+end
+
+local record UnauthorizedException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    ActivateMessageTemplateInput: ActivateMessageTemplateInput
+    ActivateMessageTemplateOutput: ActivateMessageTemplateOutput
+    CreateAIAgentInput: CreateAIAgentInput
+    CreateAIAgentOutput: CreateAIAgentOutput
+    CreateAIAgentVersionInput: CreateAIAgentVersionInput
+    CreateAIAgentVersionOutput: CreateAIAgentVersionOutput
+    CreateAIGuardrailInput: CreateAIGuardrailInput
+    CreateAIGuardrailOutput: CreateAIGuardrailOutput
+    CreateAIGuardrailVersionInput: CreateAIGuardrailVersionInput
+    CreateAIGuardrailVersionOutput: CreateAIGuardrailVersionOutput
+    CreateAIPromptInput: CreateAIPromptInput
+    CreateAIPromptOutput: CreateAIPromptOutput
+    CreateAIPromptVersionInput: CreateAIPromptVersionInput
+    CreateAIPromptVersionOutput: CreateAIPromptVersionOutput
+    CreateAssistantInput: CreateAssistantInput
+    CreateAssistantOutput: CreateAssistantOutput
+    CreateAssistantAssociationInput: CreateAssistantAssociationInput
+    CreateAssistantAssociationOutput: CreateAssistantAssociationOutput
+    CreateContentInput: CreateContentInput
+    CreateContentOutput: CreateContentOutput
+    CreateContentAssociationInput: CreateContentAssociationInput
+    CreateContentAssociationOutput: CreateContentAssociationOutput
+    CreateKnowledgeBaseInput: CreateKnowledgeBaseInput
+    CreateKnowledgeBaseOutput: CreateKnowledgeBaseOutput
+    CreateMessageTemplateInput: CreateMessageTemplateInput
+    CreateMessageTemplateOutput: CreateMessageTemplateOutput
+    CreateMessageTemplateAttachmentInput: CreateMessageTemplateAttachmentInput
+    CreateMessageTemplateAttachmentOutput: CreateMessageTemplateAttachmentOutput
+    CreateMessageTemplateVersionInput: CreateMessageTemplateVersionInput
+    CreateMessageTemplateVersionOutput: CreateMessageTemplateVersionOutput
+    CreateQuickResponseInput: CreateQuickResponseInput
+    CreateQuickResponseOutput: CreateQuickResponseOutput
+    CreateSessionInput: CreateSessionInput
+    CreateSessionOutput: CreateSessionOutput
+    DeactivateMessageTemplateInput: DeactivateMessageTemplateInput
+    DeactivateMessageTemplateOutput: DeactivateMessageTemplateOutput
+    DeleteAIAgentInput: DeleteAIAgentInput
+    DeleteAIAgentOutput: DeleteAIAgentOutput
+    DeleteAIAgentVersionInput: DeleteAIAgentVersionInput
+    DeleteAIAgentVersionOutput: DeleteAIAgentVersionOutput
+    DeleteAIGuardrailInput: DeleteAIGuardrailInput
+    DeleteAIGuardrailOutput: DeleteAIGuardrailOutput
+    DeleteAIGuardrailVersionInput: DeleteAIGuardrailVersionInput
+    DeleteAIGuardrailVersionOutput: DeleteAIGuardrailVersionOutput
+    DeleteAIPromptInput: DeleteAIPromptInput
+    DeleteAIPromptOutput: DeleteAIPromptOutput
+    DeleteAIPromptVersionInput: DeleteAIPromptVersionInput
+    DeleteAIPromptVersionOutput: DeleteAIPromptVersionOutput
+    DeleteAssistantInput: DeleteAssistantInput
+    DeleteAssistantOutput: DeleteAssistantOutput
+    DeleteAssistantAssociationInput: DeleteAssistantAssociationInput
+    DeleteAssistantAssociationOutput: DeleteAssistantAssociationOutput
+    DeleteContentInput: DeleteContentInput
+    DeleteContentOutput: DeleteContentOutput
+    DeleteContentAssociationInput: DeleteContentAssociationInput
+    DeleteContentAssociationOutput: DeleteContentAssociationOutput
+    DeleteImportJobInput: DeleteImportJobInput
+    DeleteImportJobOutput: DeleteImportJobOutput
+    DeleteKnowledgeBaseInput: DeleteKnowledgeBaseInput
+    DeleteKnowledgeBaseOutput: DeleteKnowledgeBaseOutput
+    DeleteMessageTemplateInput: DeleteMessageTemplateInput
+    DeleteMessageTemplateOutput: DeleteMessageTemplateOutput
+    DeleteMessageTemplateAttachmentInput: DeleteMessageTemplateAttachmentInput
+    DeleteMessageTemplateAttachmentOutput: DeleteMessageTemplateAttachmentOutput
+    DeleteQuickResponseInput: DeleteQuickResponseInput
+    DeleteQuickResponseOutput: DeleteQuickResponseOutput
+    GetAIAgentInput: GetAIAgentInput
+    GetAIAgentOutput: GetAIAgentOutput
+    GetAIGuardrailInput: GetAIGuardrailInput
+    GetAIGuardrailOutput: GetAIGuardrailOutput
+    GetAIPromptInput: GetAIPromptInput
+    GetAIPromptOutput: GetAIPromptOutput
+    GetAssistantInput: GetAssistantInput
+    GetAssistantOutput: GetAssistantOutput
+    GetAssistantAssociationInput: GetAssistantAssociationInput
+    GetAssistantAssociationOutput: GetAssistantAssociationOutput
+    GetContentInput: GetContentInput
+    GetContentOutput: GetContentOutput
+    GetContentAssociationInput: GetContentAssociationInput
+    GetContentAssociationOutput: GetContentAssociationOutput
+    GetContentSummaryInput: GetContentSummaryInput
+    GetContentSummaryOutput: GetContentSummaryOutput
+    GetImportJobInput: GetImportJobInput
+    GetImportJobOutput: GetImportJobOutput
+    GetKnowledgeBaseInput: GetKnowledgeBaseInput
+    GetKnowledgeBaseOutput: GetKnowledgeBaseOutput
+    GetMessageTemplateInput: GetMessageTemplateInput
+    GetMessageTemplateOutput: GetMessageTemplateOutput
+    GetNextMessageInput: GetNextMessageInput
+    GetNextMessageOutput: GetNextMessageOutput
+    GetQuickResponseInput: GetQuickResponseInput
+    GetQuickResponseOutput: GetQuickResponseOutput
+    GetRecommendationsInput: GetRecommendationsInput
+    GetRecommendationsOutput: GetRecommendationsOutput
+    GetSessionInput: GetSessionInput
+    GetSessionOutput: GetSessionOutput
+    ListAIAgentsInput: ListAIAgentsInput
+    ListAIAgentsOutput: ListAIAgentsOutput
+    ListAIAgentVersionsInput: ListAIAgentVersionsInput
+    ListAIAgentVersionsOutput: ListAIAgentVersionsOutput
+    ListAIGuardrailsInput: ListAIGuardrailsInput
+    ListAIGuardrailsOutput: ListAIGuardrailsOutput
+    ListAIGuardrailVersionsInput: ListAIGuardrailVersionsInput
+    ListAIGuardrailVersionsOutput: ListAIGuardrailVersionsOutput
+    ListAIPromptsInput: ListAIPromptsInput
+    ListAIPromptsOutput: ListAIPromptsOutput
+    ListAIPromptVersionsInput: ListAIPromptVersionsInput
+    ListAIPromptVersionsOutput: ListAIPromptVersionsOutput
+    ListAssistantAssociationsInput: ListAssistantAssociationsInput
+    ListAssistantAssociationsOutput: ListAssistantAssociationsOutput
+    ListAssistantsInput: ListAssistantsInput
+    ListAssistantsOutput: ListAssistantsOutput
+    ListContentAssociationsInput: ListContentAssociationsInput
+    ListContentAssociationsOutput: ListContentAssociationsOutput
+    ListContentsInput: ListContentsInput
+    ListContentsOutput: ListContentsOutput
+    ListImportJobsInput: ListImportJobsInput
+    ListImportJobsOutput: ListImportJobsOutput
+    ListKnowledgeBasesInput: ListKnowledgeBasesInput
+    ListKnowledgeBasesOutput: ListKnowledgeBasesOutput
+    ListMessagesInput: ListMessagesInput
+    ListMessagesOutput: ListMessagesOutput
+    ListMessageTemplatesInput: ListMessageTemplatesInput
+    ListMessageTemplatesOutput: ListMessageTemplatesOutput
+    ListMessageTemplateVersionsInput: ListMessageTemplateVersionsInput
+    ListMessageTemplateVersionsOutput: ListMessageTemplateVersionsOutput
+    ListQuickResponsesInput: ListQuickResponsesInput
+    ListQuickResponsesOutput: ListQuickResponsesOutput
+    ListSpansInput: ListSpansInput
+    ListSpansOutput: ListSpansOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    NotifyRecommendationsReceivedInput: NotifyRecommendationsReceivedInput
+    NotifyRecommendationsReceivedOutput: NotifyRecommendationsReceivedOutput
+    PutFeedbackInput: PutFeedbackInput
+    PutFeedbackOutput: PutFeedbackOutput
+    QueryAssistantInput: QueryAssistantInput
+    QueryAssistantOutput: QueryAssistantOutput
+    RemoveAssistantAIAgentInput: RemoveAssistantAIAgentInput
+    RemoveAssistantAIAgentOutput: RemoveAssistantAIAgentOutput
+    RemoveKnowledgeBaseTemplateUriInput: RemoveKnowledgeBaseTemplateUriInput
+    RemoveKnowledgeBaseTemplateUriOutput: RemoveKnowledgeBaseTemplateUriOutput
+    RenderMessageTemplateInput: RenderMessageTemplateInput
+    RenderMessageTemplateOutput: RenderMessageTemplateOutput
+    RetrieveInput: RetrieveInput
+    RetrieveOutput: RetrieveOutput
+    SearchContentInput: SearchContentInput
+    SearchContentOutput: SearchContentOutput
+    SearchMessageTemplatesInput: SearchMessageTemplatesInput
+    SearchMessageTemplatesOutput: SearchMessageTemplatesOutput
+    SearchQuickResponsesInput: SearchQuickResponsesInput
+    SearchQuickResponsesOutput: SearchQuickResponsesOutput
+    SearchSessionsInput: SearchSessionsInput
+    SearchSessionsOutput: SearchSessionsOutput
+    SendMessageInput: SendMessageInput
+    SendMessageOutput: SendMessageOutput
+    StartContentUploadInput: StartContentUploadInput
+    StartContentUploadOutput: StartContentUploadOutput
+    StartImportJobInput: StartImportJobInput
+    StartImportJobOutput: StartImportJobOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateAIAgentInput: UpdateAIAgentInput
+    UpdateAIAgentOutput: UpdateAIAgentOutput
+    UpdateAIGuardrailInput: UpdateAIGuardrailInput
+    UpdateAIGuardrailOutput: UpdateAIGuardrailOutput
+    UpdateAIPromptInput: UpdateAIPromptInput
+    UpdateAIPromptOutput: UpdateAIPromptOutput
+    UpdateAssistantAIAgentInput: UpdateAssistantAIAgentInput
+    UpdateAssistantAIAgentOutput: UpdateAssistantAIAgentOutput
+    UpdateContentInput: UpdateContentInput
+    UpdateContentOutput: UpdateContentOutput
+    UpdateKnowledgeBaseTemplateUriInput: UpdateKnowledgeBaseTemplateUriInput
+    UpdateKnowledgeBaseTemplateUriOutput: UpdateKnowledgeBaseTemplateUriOutput
+    UpdateMessageTemplateInput: UpdateMessageTemplateInput
+    UpdateMessageTemplateOutput: UpdateMessageTemplateOutput
+    UpdateMessageTemplateMetadataInput: UpdateMessageTemplateMetadataInput
+    UpdateMessageTemplateMetadataOutput: UpdateMessageTemplateMetadataOutput
+    UpdateQuickResponseInput: UpdateQuickResponseInput
+    UpdateQuickResponseOutput: UpdateQuickResponseOutput
+    UpdateSessionInput: UpdateSessionInput
+    UpdateSessionOutput: UpdateSessionOutput
+    UpdateSessionDataInput: UpdateSessionDataInput
+    UpdateSessionDataOutput: UpdateSessionDataOutput
+end
+
+return M

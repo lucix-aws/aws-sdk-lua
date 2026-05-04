@@ -1,0 +1,85 @@
+local types = require("rekognition.types")
+
+local record Client
+    associateFaces: function(Client, types.AssociateFacesInput): types.AssociateFacesOutput, table
+    compareFaces: function(Client, types.CompareFacesInput): types.CompareFacesOutput, table
+    copyProjectVersion: function(Client, types.CopyProjectVersionInput): types.CopyProjectVersionOutput, table
+    createCollection: function(Client, types.CreateCollectionInput): types.CreateCollectionOutput, table
+    createDataset: function(Client, types.CreateDatasetInput): types.CreateDatasetOutput, table
+    createFaceLivenessSession: function(Client, types.CreateFaceLivenessSessionInput): types.CreateFaceLivenessSessionOutput, table
+    createProject: function(Client, types.CreateProjectInput): types.CreateProjectOutput, table
+    createProjectVersion: function(Client, types.CreateProjectVersionInput): types.CreateProjectVersionOutput, table
+    createStreamProcessor: function(Client, types.CreateStreamProcessorInput): types.CreateStreamProcessorOutput, table
+    createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    deleteCollection: function(Client, types.DeleteCollectionInput): types.DeleteCollectionOutput, table
+    deleteDataset: function(Client, types.DeleteDatasetInput): types.DeleteDatasetOutput, table
+    deleteFaces: function(Client, types.DeleteFacesInput): types.DeleteFacesOutput, table
+    deleteProject: function(Client, types.DeleteProjectInput): types.DeleteProjectOutput, table
+    deleteProjectPolicy: function(Client, types.DeleteProjectPolicyInput): types.DeleteProjectPolicyOutput, table
+    deleteProjectVersion: function(Client, types.DeleteProjectVersionInput): types.DeleteProjectVersionOutput, table
+    deleteStreamProcessor: function(Client, types.DeleteStreamProcessorInput): types.DeleteStreamProcessorOutput, table
+    deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    describeCollection: function(Client, types.DescribeCollectionInput): types.DescribeCollectionOutput, table
+    describeDataset: function(Client, types.DescribeDatasetInput): types.DescribeDatasetOutput, table
+    describeProjects: function(Client, types.DescribeProjectsInput): types.DescribeProjectsOutput, table
+    describeProjectVersions: function(Client, types.DescribeProjectVersionsInput): types.DescribeProjectVersionsOutput, table
+    describeStreamProcessor: function(Client, types.DescribeStreamProcessorInput): types.DescribeStreamProcessorOutput, table
+    detectCustomLabels: function(Client, types.DetectCustomLabelsInput): types.DetectCustomLabelsOutput, table
+    detectFaces: function(Client, types.DetectFacesInput): types.DetectFacesOutput, table
+    detectLabels: function(Client, types.DetectLabelsInput): types.DetectLabelsOutput, table
+    detectModerationLabels: function(Client, types.DetectModerationLabelsInput): types.DetectModerationLabelsOutput, table
+    detectProtectiveEquipment: function(Client, types.DetectProtectiveEquipmentInput): types.DetectProtectiveEquipmentOutput, table
+    detectText: function(Client, types.DetectTextInput): types.DetectTextOutput, table
+    disassociateFaces: function(Client, types.DisassociateFacesInput): types.DisassociateFacesOutput, table
+    distributeDatasetEntries: function(Client, types.DistributeDatasetEntriesInput): types.DistributeDatasetEntriesOutput, table
+    getCelebrityInfo: function(Client, types.GetCelebrityInfoInput): types.GetCelebrityInfoOutput, table
+    getCelebrityRecognition: function(Client, types.GetCelebrityRecognitionInput): types.GetCelebrityRecognitionOutput, table
+    getContentModeration: function(Client, types.GetContentModerationInput): types.GetContentModerationOutput, table
+    getFaceDetection: function(Client, types.GetFaceDetectionInput): types.GetFaceDetectionOutput, table
+    getFaceLivenessSessionResults: function(Client, types.GetFaceLivenessSessionResultsInput): types.GetFaceLivenessSessionResultsOutput, table
+    getFaceSearch: function(Client, types.GetFaceSearchInput): types.GetFaceSearchOutput, table
+    getLabelDetection: function(Client, types.GetLabelDetectionInput): types.GetLabelDetectionOutput, table
+    getMediaAnalysisJob: function(Client, types.GetMediaAnalysisJobInput): types.GetMediaAnalysisJobOutput, table
+    getPersonTracking: function(Client, types.GetPersonTrackingInput): types.GetPersonTrackingOutput, table
+    getSegmentDetection: function(Client, types.GetSegmentDetectionInput): types.GetSegmentDetectionOutput, table
+    getTextDetection: function(Client, types.GetTextDetectionInput): types.GetTextDetectionOutput, table
+    indexFaces: function(Client, types.IndexFacesInput): types.IndexFacesOutput, table
+    listCollections: function(Client, types.ListCollectionsInput): types.ListCollectionsOutput, table
+    listDatasetEntries: function(Client, types.ListDatasetEntriesInput): types.ListDatasetEntriesOutput, table
+    listDatasetLabels: function(Client, types.ListDatasetLabelsInput): types.ListDatasetLabelsOutput, table
+    listFaces: function(Client, types.ListFacesInput): types.ListFacesOutput, table
+    listMediaAnalysisJobs: function(Client, types.ListMediaAnalysisJobsInput): types.ListMediaAnalysisJobsOutput, table
+    listProjectPolicies: function(Client, types.ListProjectPoliciesInput): types.ListProjectPoliciesOutput, table
+    listStreamProcessors: function(Client, types.ListStreamProcessorsInput): types.ListStreamProcessorsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listUsers: function(Client, types.ListUsersInput): types.ListUsersOutput, table
+    putProjectPolicy: function(Client, types.PutProjectPolicyInput): types.PutProjectPolicyOutput, table
+    recognizeCelebrities: function(Client, types.RecognizeCelebritiesInput): types.RecognizeCelebritiesOutput, table
+    searchFaces: function(Client, types.SearchFacesInput): types.SearchFacesOutput, table
+    searchFacesByImage: function(Client, types.SearchFacesByImageInput): types.SearchFacesByImageOutput, table
+    searchUsers: function(Client, types.SearchUsersInput): types.SearchUsersOutput, table
+    searchUsersByImage: function(Client, types.SearchUsersByImageInput): types.SearchUsersByImageOutput, table
+    startCelebrityRecognition: function(Client, types.StartCelebrityRecognitionInput): types.StartCelebrityRecognitionOutput, table
+    startContentModeration: function(Client, types.StartContentModerationInput): types.StartContentModerationOutput, table
+    startFaceDetection: function(Client, types.StartFaceDetectionInput): types.StartFaceDetectionOutput, table
+    startFaceSearch: function(Client, types.StartFaceSearchInput): types.StartFaceSearchOutput, table
+    startLabelDetection: function(Client, types.StartLabelDetectionInput): types.StartLabelDetectionOutput, table
+    startMediaAnalysisJob: function(Client, types.StartMediaAnalysisJobInput): types.StartMediaAnalysisJobOutput, table
+    startPersonTracking: function(Client, types.StartPersonTrackingInput): types.StartPersonTrackingOutput, table
+    startProjectVersion: function(Client, types.StartProjectVersionInput): types.StartProjectVersionOutput, table
+    startSegmentDetection: function(Client, types.StartSegmentDetectionInput): types.StartSegmentDetectionOutput, table
+    startStreamProcessor: function(Client, types.StartStreamProcessorInput): types.StartStreamProcessorOutput, table
+    startTextDetection: function(Client, types.StartTextDetectionInput): types.StartTextDetectionOutput, table
+    stopProjectVersion: function(Client, types.StopProjectVersionInput): types.StopProjectVersionOutput, table
+    stopStreamProcessor: function(Client, types.StopStreamProcessorInput): types.StopStreamProcessorOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateDatasetEntries: function(Client, types.UpdateDatasetEntriesInput): types.UpdateDatasetEntriesOutput, table
+    updateStreamProcessor: function(Client, types.UpdateStreamProcessorInput): types.UpdateStreamProcessorOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

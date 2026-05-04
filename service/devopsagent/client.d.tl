@@ -1,0 +1,54 @@
+local types = require("devopsagent.types")
+
+local record Client
+    associateService: function(Client, types.AssociateServiceInput): types.AssociateServiceOutput, table
+    createAgentSpace: function(Client, types.CreateAgentSpaceInput): types.CreateAgentSpaceOutput, table
+    createBacklogTask: function(Client, types.CreateBacklogTaskInput): types.CreateBacklogTaskOutput, table
+    createChat: function(Client, types.CreateChatInput): types.CreateChatOutput, table
+    createPrivateConnection: function(Client, types.CreatePrivateConnectionInput): types.CreatePrivateConnectionOutput, table
+    deleteAgentSpace: function(Client, types.DeleteAgentSpaceInput): types.DeleteAgentSpaceOutput, table
+    deletePrivateConnection: function(Client, types.DeletePrivateConnectionInput): types.DeletePrivateConnectionOutput, table
+    deregisterService: function(Client, types.DeregisterServiceInput): types.DeregisterServiceOutput, table
+    describePrivateConnection: function(Client, types.DescribePrivateConnectionInput): types.DescribePrivateConnectionOutput, table
+    disableOperatorApp: function(Client, types.DisableOperatorAppInput): types.DisableOperatorAppOutput, table
+    disassociateService: function(Client, types.DisassociateServiceInput): types.DisassociateServiceOutput, table
+    enableOperatorApp: function(Client, types.EnableOperatorAppInput): types.EnableOperatorAppOutput, table
+    getAccountUsage: function(Client, types.GetAccountUsageInput): types.GetAccountUsageOutput, table
+    getAgentSpace: function(Client, types.GetAgentSpaceInput): types.GetAgentSpaceOutput, table
+    getAssociation: function(Client, types.GetAssociationInput): types.GetAssociationOutput, table
+    getBacklogTask: function(Client, types.GetBacklogTaskInput): types.GetBacklogTaskOutput, table
+    getOperatorApp: function(Client, types.GetOperatorAppInput): types.GetOperatorAppOutput, table
+    getRecommendation: function(Client, types.GetRecommendationInput): types.GetRecommendationOutput, table
+    getService: function(Client, types.GetServiceInput): types.GetServiceOutput, table
+    listAgentSpaces: function(Client, types.ListAgentSpacesInput): types.ListAgentSpacesOutput, table
+    listAssociations: function(Client, types.ListAssociationsInput): types.ListAssociationsOutput, table
+    listBacklogTasks: function(Client, types.ListBacklogTasksInput): types.ListBacklogTasksOutput, table
+    listChats: function(Client, types.ListChatsInput): types.ListChatsOutput, table
+    listExecutions: function(Client, types.ListExecutionsInput): types.ListExecutionsOutput, table
+    listGoals: function(Client, types.ListGoalsInput): types.ListGoalsOutput, table
+    listJournalRecords: function(Client, types.ListJournalRecordsInput): types.ListJournalRecordsOutput, table
+    listPendingMessages: function(Client, types.ListPendingMessagesInput): types.ListPendingMessagesOutput, table
+    listPrivateConnections: function(Client, types.ListPrivateConnectionsInput): types.ListPrivateConnectionsOutput, table
+    listRecommendations: function(Client, types.ListRecommendationsInput): types.ListRecommendationsOutput, table
+    listServices: function(Client, types.ListServicesInput): types.ListServicesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listWebhooks: function(Client, types.ListWebhooksInput): types.ListWebhooksOutput, table
+    registerService: function(Client, types.RegisterServiceInput): types.RegisterServiceOutput, table
+    sendMessage: function(Client, types.SendMessageInput): types.SendMessageOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAgentSpace: function(Client, types.UpdateAgentSpaceInput): types.UpdateAgentSpaceOutput, table
+    updateAssociation: function(Client, types.UpdateAssociationInput): types.UpdateAssociationOutput, table
+    updateBacklogTask: function(Client, types.UpdateBacklogTaskInput): types.UpdateBacklogTaskOutput, table
+    updateGoal: function(Client, types.UpdateGoalInput): types.UpdateGoalOutput, table
+    updateOperatorAppIdpConfig: function(Client, types.UpdateOperatorAppIdpConfigInput): types.UpdateOperatorAppIdpConfigOutput, table
+    updatePrivateConnectionCertificate: function(Client, types.UpdatePrivateConnectionCertificateInput): types.UpdatePrivateConnectionCertificateOutput, table
+    updateRecommendation: function(Client, types.UpdateRecommendationInput): types.UpdateRecommendationOutput, table
+    validateAwsAssociations: function(Client, types.ValidateAwsAssociationsInput): types.ValidateAwsAssociationsOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

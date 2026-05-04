@@ -1,0 +1,15 @@
+local types = require("pricing.types")
+
+local record Client
+    describeServices: function(Client, types.DescribeServicesInput): types.DescribeServicesOutput, table
+    getAttributeValues: function(Client, types.GetAttributeValuesInput): types.GetAttributeValuesOutput, table
+    getPriceListFileUrl: function(Client, types.GetPriceListFileUrlInput): types.GetPriceListFileUrlOutput, table
+    getProducts: function(Client, types.GetProductsInput): types.GetProductsOutput, table
+    listPriceLists: function(Client, types.ListPriceListsInput): types.ListPriceListsOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,643 @@
+local record CancelClusterInput
+    ClusterId: string
+end
+
+local record CancelClusterOutput
+end
+
+local record CancelJobInput
+    JobId: string
+end
+
+local record CancelJobOutput
+end
+
+local record CreateAddressInput
+    Address: Address
+end
+
+local record CreateAddressOutput
+    AddressId: string
+end
+
+local record CreateClusterInput
+    JobType: string
+    Resources: JobResource
+    OnDeviceServiceConfiguration: OnDeviceServiceConfiguration
+    Description: string
+    AddressId: string
+    KmsKeyARN: string
+    RoleARN: string
+    SnowballType: string
+    ShippingOption: string
+    Notification: Notification
+    ForwardingAddressId: string
+    TaxDocuments: TaxDocuments
+    RemoteManagement: string
+    InitialClusterSize: number
+    ForceCreateJobs: boolean
+    LongTermPricingIds: {string}
+    SnowballCapacityPreference: string
+end
+
+local record CreateClusterOutput
+    ClusterId: string
+    JobListEntries: {JobListEntry}
+end
+
+local record CreateJobInput
+    JobType: string
+    Resources: JobResource
+    OnDeviceServiceConfiguration: OnDeviceServiceConfiguration
+    Description: string
+    AddressId: string
+    KmsKeyARN: string
+    RoleARN: string
+    SnowballCapacityPreference: string
+    ShippingOption: string
+    Notification: Notification
+    ClusterId: string
+    SnowballType: string
+    ForwardingAddressId: string
+    TaxDocuments: TaxDocuments
+    DeviceConfiguration: DeviceConfiguration
+    RemoteManagement: string
+    LongTermPricingId: string
+    ImpactLevel: string
+    PickupDetails: PickupDetails
+end
+
+local record CreateJobOutput
+    JobId: string
+end
+
+local record CreateLongTermPricingInput
+    LongTermPricingType: string
+    IsLongTermPricingAutoRenew: boolean
+    SnowballType: string
+end
+
+local record CreateLongTermPricingOutput
+    LongTermPricingId: string
+end
+
+local record CreateReturnShippingLabelInput
+    JobId: string
+    ShippingOption: string
+end
+
+local record CreateReturnShippingLabelOutput
+    Status: string
+end
+
+local record DescribeAddressInput
+    AddressId: string
+end
+
+local record DescribeAddressOutput
+    Address: Address
+end
+
+local record DescribeAddressesInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record DescribeAddressesOutput
+    Addresses: {Address}
+    NextToken: string
+end
+
+local record DescribeClusterInput
+    ClusterId: string
+end
+
+local record DescribeClusterOutput
+    ClusterMetadata: ClusterMetadata
+end
+
+local record DescribeJobInput
+    JobId: string
+end
+
+local record DescribeJobOutput
+    JobMetadata: JobMetadata
+    SubJobMetadata: {JobMetadata}
+end
+
+local record DescribeReturnShippingLabelInput
+    JobId: string
+end
+
+local record DescribeReturnShippingLabelOutput
+    Status: string
+    ExpirationDate: number
+    ReturnShippingLabelURI: string
+end
+
+local record GetJobManifestInput
+    JobId: string
+end
+
+local record GetJobManifestOutput
+    ManifestURI: string
+end
+
+local record GetJobUnlockCodeInput
+    JobId: string
+end
+
+local record GetJobUnlockCodeOutput
+    UnlockCode: string
+end
+
+local record GetSnowballUsageInput
+end
+
+local record GetSnowballUsageOutput
+    SnowballLimit: number
+    SnowballsInUse: number
+end
+
+local record GetSoftwareUpdatesInput
+    JobId: string
+end
+
+local record GetSoftwareUpdatesOutput
+    UpdatesURI: string
+end
+
+local record ListClusterJobsInput
+    ClusterId: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListClusterJobsOutput
+    JobListEntries: {JobListEntry}
+    NextToken: string
+end
+
+local record ListClustersInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListClustersOutput
+    ClusterListEntries: {ClusterListEntry}
+    NextToken: string
+end
+
+local record ListCompatibleImagesInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListCompatibleImagesOutput
+    CompatibleImages: {CompatibleImage}
+    NextToken: string
+end
+
+local record ListJobsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListJobsOutput
+    JobListEntries: {JobListEntry}
+    NextToken: string
+end
+
+local record ListLongTermPricingInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListLongTermPricingOutput
+    LongTermPricingEntries: {LongTermPricingListEntry}
+    NextToken: string
+end
+
+local record ListPickupLocationsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListPickupLocationsOutput
+    Addresses: {Address}
+    NextToken: string
+end
+
+local record ListServiceVersionsInput
+    ServiceName: string
+    DependentServices: {DependentService}
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListServiceVersionsOutput
+    ServiceVersions: {ServiceVersion}
+    ServiceName: string
+    DependentServices: {DependentService}
+    NextToken: string
+end
+
+local record UpdateClusterInput
+    ClusterId: string
+    RoleARN: string
+    Description: string
+    Resources: JobResource
+    OnDeviceServiceConfiguration: OnDeviceServiceConfiguration
+    AddressId: string
+    ShippingOption: string
+    Notification: Notification
+    ForwardingAddressId: string
+end
+
+local record UpdateClusterOutput
+end
+
+local record UpdateJobInput
+    JobId: string
+    RoleARN: string
+    Notification: Notification
+    Resources: JobResource
+    OnDeviceServiceConfiguration: OnDeviceServiceConfiguration
+    AddressId: string
+    ShippingOption: string
+    Description: string
+    SnowballCapacityPreference: string
+    ForwardingAddressId: string
+    PickupDetails: PickupDetails
+end
+
+local record UpdateJobOutput
+end
+
+local record UpdateJobShipmentStateInput
+    JobId: string
+    ShipmentState: string
+end
+
+local record UpdateJobShipmentStateOutput
+end
+
+local record UpdateLongTermPricingInput
+    LongTermPricingId: string
+    ReplacementJob: string
+    IsLongTermPricingAutoRenew: boolean
+end
+
+local record UpdateLongTermPricingOutput
+end
+
+local record InvalidJobStateException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record KMSRequestFailedException
+    Message: string
+end
+
+local record InvalidJobStateException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record KMSRequestFailedException
+    Message: string
+end
+
+local record InvalidAddressException
+    Message: string
+end
+
+local record UnsupportedAddressException
+    Message: string
+end
+
+local record Ec2RequestFailedException
+    Message: string
+end
+
+local record InvalidInputCombinationException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record KMSRequestFailedException
+    Message: string
+end
+
+local record ClusterLimitExceededException
+    Message: string
+end
+
+local record Ec2RequestFailedException
+    Message: string
+end
+
+local record InvalidInputCombinationException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record KMSRequestFailedException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record ConflictException
+    ConflictResource: string
+    Message: string
+end
+
+local record InvalidInputCombinationException
+    Message: string
+end
+
+local record InvalidJobStateException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record ReturnShippingLabelAlreadyExistsException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record ConflictException
+    ConflictResource: string
+    Message: string
+end
+
+local record InvalidJobStateException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record InvalidJobStateException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record InvalidJobStateException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record InvalidJobStateException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record Ec2RequestFailedException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record Ec2RequestFailedException
+    Message: string
+end
+
+local record InvalidInputCombinationException
+    Message: string
+end
+
+local record InvalidJobStateException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record KMSRequestFailedException
+    Message: string
+end
+
+local record ClusterLimitExceededException
+    Message: string
+end
+
+local record Ec2RequestFailedException
+    Message: string
+end
+
+local record InvalidInputCombinationException
+    Message: string
+end
+
+local record InvalidJobStateException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record KMSRequestFailedException
+    Message: string
+end
+
+local record InvalidJobStateException
+    Message: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local record InvalidResourceException
+    Message: string
+    ResourceType: string
+end
+
+local type ImpactLevel = "IL2" | "IL4" | "IL5" | "IL6" | "IL99"
+
+local type SnowballType = "STANDARD" | "EDGE" | "EDGE_C" | "EDGE_CG" | "EDGE_S" | "SNC1_HDD" | "SNC1_SSD" | "V3_5C" | "V3_5S" | "RACK_5U_C"
+
+local type SnowballCapacity = "T50" | "T80" | "T100" | "T42" | "T98" | "T8" | "T14" | "T32" | "NoPreference" | "T240" | "T13"
+
+local type ShippingLabelStatus = "InProgress" | "TimedOut" | "Succeeded" | "Failed"
+
+local type ShippingOption = "SECOND_DAY" | "NEXT_DAY" | "EXPRESS" | "STANDARD"
+
+local type ServiceName = "KUBERNETES" | "EKS_ANYWHERE"
+
+local type ShipmentState = "RECEIVED" | "RETURNED"
+
+local type RemoteManagement = "INSTALLED_ONLY" | "INSTALLED_AUTOSTART" | "NOT_INSTALLED"
+
+local type LongTermPricingType = "OneYear" | "ThreeYear" | "OneMonth"
+
+local type JobType = "IMPORT" | "EXPORT" | "LOCAL_USE"
+
+local record M
+    CancelClusterInput: CancelClusterInput
+    CancelClusterOutput: CancelClusterOutput
+    CancelJobInput: CancelJobInput
+    CancelJobOutput: CancelJobOutput
+    CreateAddressInput: CreateAddressInput
+    CreateAddressOutput: CreateAddressOutput
+    CreateClusterInput: CreateClusterInput
+    CreateClusterOutput: CreateClusterOutput
+    CreateJobInput: CreateJobInput
+    CreateJobOutput: CreateJobOutput
+    CreateLongTermPricingInput: CreateLongTermPricingInput
+    CreateLongTermPricingOutput: CreateLongTermPricingOutput
+    CreateReturnShippingLabelInput: CreateReturnShippingLabelInput
+    CreateReturnShippingLabelOutput: CreateReturnShippingLabelOutput
+    DescribeAddressInput: DescribeAddressInput
+    DescribeAddressOutput: DescribeAddressOutput
+    DescribeAddressesInput: DescribeAddressesInput
+    DescribeAddressesOutput: DescribeAddressesOutput
+    DescribeClusterInput: DescribeClusterInput
+    DescribeClusterOutput: DescribeClusterOutput
+    DescribeJobInput: DescribeJobInput
+    DescribeJobOutput: DescribeJobOutput
+    DescribeReturnShippingLabelInput: DescribeReturnShippingLabelInput
+    DescribeReturnShippingLabelOutput: DescribeReturnShippingLabelOutput
+    GetJobManifestInput: GetJobManifestInput
+    GetJobManifestOutput: GetJobManifestOutput
+    GetJobUnlockCodeInput: GetJobUnlockCodeInput
+    GetJobUnlockCodeOutput: GetJobUnlockCodeOutput
+    GetSnowballUsageInput: GetSnowballUsageInput
+    GetSnowballUsageOutput: GetSnowballUsageOutput
+    GetSoftwareUpdatesInput: GetSoftwareUpdatesInput
+    GetSoftwareUpdatesOutput: GetSoftwareUpdatesOutput
+    ListClusterJobsInput: ListClusterJobsInput
+    ListClusterJobsOutput: ListClusterJobsOutput
+    ListClustersInput: ListClustersInput
+    ListClustersOutput: ListClustersOutput
+    ListCompatibleImagesInput: ListCompatibleImagesInput
+    ListCompatibleImagesOutput: ListCompatibleImagesOutput
+    ListJobsInput: ListJobsInput
+    ListJobsOutput: ListJobsOutput
+    ListLongTermPricingInput: ListLongTermPricingInput
+    ListLongTermPricingOutput: ListLongTermPricingOutput
+    ListPickupLocationsInput: ListPickupLocationsInput
+    ListPickupLocationsOutput: ListPickupLocationsOutput
+    ListServiceVersionsInput: ListServiceVersionsInput
+    ListServiceVersionsOutput: ListServiceVersionsOutput
+    UpdateClusterInput: UpdateClusterInput
+    UpdateClusterOutput: UpdateClusterOutput
+    UpdateJobInput: UpdateJobInput
+    UpdateJobOutput: UpdateJobOutput
+    UpdateJobShipmentStateInput: UpdateJobShipmentStateInput
+    UpdateJobShipmentStateOutput: UpdateJobShipmentStateOutput
+    UpdateLongTermPricingInput: UpdateLongTermPricingInput
+    UpdateLongTermPricingOutput: UpdateLongTermPricingOutput
+end
+
+return M

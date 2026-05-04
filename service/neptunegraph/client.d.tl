@@ -1,0 +1,44 @@
+local types = require("neptunegraph.types")
+
+local record Client
+    cancelExportTask: function(Client, types.CancelExportTaskInput): types.CancelExportTaskOutput, table
+    cancelImportTask: function(Client, types.CancelImportTaskInput): types.CancelImportTaskOutput, table
+    cancelQuery: function(Client, types.CancelQueryInput): types.CancelQueryOutput, table
+    createGraph: function(Client, types.CreateGraphInput): types.CreateGraphOutput, table
+    createGraphSnapshot: function(Client, types.CreateGraphSnapshotInput): types.CreateGraphSnapshotOutput, table
+    createGraphUsingImportTask: function(Client, types.CreateGraphUsingImportTaskInput): types.CreateGraphUsingImportTaskOutput, table
+    createPrivateGraphEndpoint: function(Client, types.CreatePrivateGraphEndpointInput): types.CreatePrivateGraphEndpointOutput, table
+    deleteGraph: function(Client, types.DeleteGraphInput): types.DeleteGraphOutput, table
+    deleteGraphSnapshot: function(Client, types.DeleteGraphSnapshotInput): types.DeleteGraphSnapshotOutput, table
+    deletePrivateGraphEndpoint: function(Client, types.DeletePrivateGraphEndpointInput): types.DeletePrivateGraphEndpointOutput, table
+    executeQuery: function(Client, types.ExecuteQueryInput): types.ExecuteQueryOutput, table
+    getExportTask: function(Client, types.GetExportTaskInput): types.GetExportTaskOutput, table
+    getGraph: function(Client, types.GetGraphInput): types.GetGraphOutput, table
+    getGraphSnapshot: function(Client, types.GetGraphSnapshotInput): types.GetGraphSnapshotOutput, table
+    getGraphSummary: function(Client, types.GetGraphSummaryInput): types.GetGraphSummaryOutput, table
+    getImportTask: function(Client, types.GetImportTaskInput): types.GetImportTaskOutput, table
+    getPrivateGraphEndpoint: function(Client, types.GetPrivateGraphEndpointInput): types.GetPrivateGraphEndpointOutput, table
+    getQuery: function(Client, types.GetQueryInput): types.GetQueryOutput, table
+    listExportTasks: function(Client, types.ListExportTasksInput): types.ListExportTasksOutput, table
+    listGraphs: function(Client, types.ListGraphsInput): types.ListGraphsOutput, table
+    listGraphSnapshots: function(Client, types.ListGraphSnapshotsInput): types.ListGraphSnapshotsOutput, table
+    listImportTasks: function(Client, types.ListImportTasksInput): types.ListImportTasksOutput, table
+    listPrivateGraphEndpoints: function(Client, types.ListPrivateGraphEndpointsInput): types.ListPrivateGraphEndpointsOutput, table
+    listQueries: function(Client, types.ListQueriesInput): types.ListQueriesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    resetGraph: function(Client, types.ResetGraphInput): types.ResetGraphOutput, table
+    restoreGraphFromSnapshot: function(Client, types.RestoreGraphFromSnapshotInput): types.RestoreGraphFromSnapshotOutput, table
+    startExportTask: function(Client, types.StartExportTaskInput): types.StartExportTaskOutput, table
+    startGraph: function(Client, types.StartGraphInput): types.StartGraphOutput, table
+    startImportTask: function(Client, types.StartImportTaskInput): types.StartImportTaskOutput, table
+    stopGraph: function(Client, types.StopGraphInput): types.StopGraphOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateGraph: function(Client, types.UpdateGraphInput): types.UpdateGraphOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

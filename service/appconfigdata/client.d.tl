@@ -1,0 +1,12 @@
+local types = require("appconfigdata.types")
+
+local record Client
+    getLatestConfiguration: function(Client, types.GetLatestConfigurationInput): types.GetLatestConfigurationOutput, table
+    startConfigurationSession: function(Client, types.StartConfigurationSessionInput): types.StartConfigurationSessionOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

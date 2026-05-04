@@ -1,0 +1,279 @@
+local record DeleteSessionInput
+    botId: string
+    botAliasId: string
+    localeId: string
+    sessionId: string
+end
+
+local record DeleteSessionOutput
+    botId: string
+    botAliasId: string
+    localeId: string
+    sessionId: string
+end
+
+local record GetSessionInput
+    botId: string
+    botAliasId: string
+    localeId: string
+    sessionId: string
+end
+
+local record GetSessionOutput
+    sessionId: string
+    messages: {Message}
+    interpretations: {Interpretation}
+    sessionState: SessionState
+end
+
+local record PutSessionInput
+    botId: string
+    botAliasId: string
+    localeId: string
+    sessionId: string
+    messages: {Message}
+    sessionState: SessionState
+    requestAttributes: {string : string}
+    responseContentType: string
+end
+
+local record PutSessionOutput
+    contentType: string
+    messages: string
+    sessionState: string
+    requestAttributes: string
+    sessionId: string
+    audioStream: string
+end
+
+local record RecognizeTextInput
+    botId: string
+    botAliasId: string
+    localeId: string
+    sessionId: string
+    text: string
+    sessionState: SessionState
+    requestAttributes: {string : string}
+end
+
+local record RecognizeTextOutput
+    messages: {Message}
+    sessionState: SessionState
+    interpretations: {Interpretation}
+    requestAttributes: {string : string}
+    sessionId: string
+    recognizedBotMember: RecognizedBotMember
+end
+
+local record RecognizeUtteranceInput
+    botId: string
+    botAliasId: string
+    localeId: string
+    sessionId: string
+    sessionState: string
+    requestAttributes: string
+    requestContentType: string
+    responseContentType: string
+    inputStream: string
+end
+
+local record RecognizeUtteranceOutput
+    inputMode: string
+    contentType: string
+    messages: string
+    interpretations: string
+    sessionState: string
+    requestAttributes: string
+    sessionId: string
+    inputTranscript: string
+    audioStream: string
+    recognizedBotMember: string
+end
+
+local record StartConversationInput
+    botId: string
+    botAliasId: string
+    localeId: string
+    sessionId: string
+    conversationMode: string
+    requestEventStream: StartConversationRequestEventStream
+end
+
+local record StartConversationOutput
+    responseEventStream: StartConversationResponseEventStream
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record BadGatewayException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record DependencyFailedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record BadGatewayException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record DependencyFailedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record BadGatewayException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record DependencyFailedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local type ConversationMode = "AUDIO" | "TEXT"
+
+local record M
+    DeleteSessionInput: DeleteSessionInput
+    DeleteSessionOutput: DeleteSessionOutput
+    GetSessionInput: GetSessionInput
+    GetSessionOutput: GetSessionOutput
+    PutSessionInput: PutSessionInput
+    PutSessionOutput: PutSessionOutput
+    RecognizeTextInput: RecognizeTextInput
+    RecognizeTextOutput: RecognizeTextOutput
+    RecognizeUtteranceInput: RecognizeUtteranceInput
+    RecognizeUtteranceOutput: RecognizeUtteranceOutput
+    StartConversationInput: StartConversationInput
+    StartConversationOutput: StartConversationOutput
+end
+
+return M

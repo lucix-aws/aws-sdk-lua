@@ -1,0 +1,120 @@
+local record DeleteConnectionRecordingPreferencesInput
+    ClientToken: string
+end
+
+local record DeleteConnectionRecordingPreferencesOutput
+    ClientToken: string
+end
+
+local record GetConnectionRecordingPreferencesInput
+end
+
+local record GetConnectionRecordingPreferencesOutput
+    ClientToken: string
+    ConnectionRecordingPreferences: ConnectionRecordingPreferences
+end
+
+local record UpdateConnectionRecordingPreferencesInput
+    ConnectionRecordingPreferences: ConnectionRecordingPreferences
+    ClientToken: string
+end
+
+local record UpdateConnectionRecordingPreferencesOutput
+    ClientToken: string
+    ConnectionRecordingPreferences: ConnectionRecordingPreferences
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    DeleteConnectionRecordingPreferencesInput: DeleteConnectionRecordingPreferencesInput
+    DeleteConnectionRecordingPreferencesOutput: DeleteConnectionRecordingPreferencesOutput
+    GetConnectionRecordingPreferencesInput: GetConnectionRecordingPreferencesInput
+    GetConnectionRecordingPreferencesOutput: GetConnectionRecordingPreferencesOutput
+    UpdateConnectionRecordingPreferencesInput: UpdateConnectionRecordingPreferencesInput
+    UpdateConnectionRecordingPreferencesOutput: UpdateConnectionRecordingPreferencesOutput
+end
+
+return M

@@ -1,0 +1,2954 @@
+local record AcceptHandshakeInput
+    HandshakeId: string
+end
+
+local record AcceptHandshakeOutput
+    Handshake: Handshake
+end
+
+local record AttachPolicyInput
+    PolicyId: string
+    TargetId: string
+end
+
+local record AttachPolicyOutput
+end
+
+local record CancelHandshakeInput
+    HandshakeId: string
+end
+
+local record CancelHandshakeOutput
+    Handshake: Handshake
+end
+
+local record CloseAccountInput
+    AccountId: string
+end
+
+local record CloseAccountOutput
+end
+
+local record CreateAccountInput
+    Email: string
+    AccountName: string
+    RoleName: string
+    IamUserAccessToBilling: string
+    Tags: {Tag}
+end
+
+local record CreateAccountOutput
+    CreateAccountStatus: CreateAccountStatus
+end
+
+local record CreateGovCloudAccountInput
+    Email: string
+    AccountName: string
+    RoleName: string
+    IamUserAccessToBilling: string
+    Tags: {Tag}
+end
+
+local record CreateGovCloudAccountOutput
+    CreateAccountStatus: CreateAccountStatus
+end
+
+local record CreateOrganizationInput
+    FeatureSet: string
+end
+
+local record CreateOrganizationOutput
+    Organization: Organization
+end
+
+local record CreateOrganizationalUnitInput
+    ParentId: string
+    Name: string
+    Tags: {Tag}
+end
+
+local record CreateOrganizationalUnitOutput
+    OrganizationalUnit: OrganizationalUnit
+end
+
+local record CreatePolicyInput
+    Content: string
+    Description: string
+    Name: string
+    Type: string
+    Tags: {Tag}
+end
+
+local record CreatePolicyOutput
+    Policy: Policy
+end
+
+local record DeclineHandshakeInput
+    HandshakeId: string
+end
+
+local record DeclineHandshakeOutput
+    Handshake: Handshake
+end
+
+local record DeleteOrganizationInput
+end
+
+local record DeleteOrganizationOutput
+end
+
+local record DeleteOrganizationalUnitInput
+    OrganizationalUnitId: string
+end
+
+local record DeleteOrganizationalUnitOutput
+end
+
+local record DeletePolicyInput
+    PolicyId: string
+end
+
+local record DeletePolicyOutput
+end
+
+local record DeleteResourcePolicyInput
+end
+
+local record DeleteResourcePolicyOutput
+end
+
+local record DeregisterDelegatedAdministratorInput
+    AccountId: string
+    ServicePrincipal: string
+end
+
+local record DeregisterDelegatedAdministratorOutput
+end
+
+local record DescribeAccountInput
+    AccountId: string
+end
+
+local record DescribeAccountOutput
+    Account: Account
+end
+
+local record DescribeCreateAccountStatusInput
+    CreateAccountRequestId: string
+end
+
+local record DescribeCreateAccountStatusOutput
+    CreateAccountStatus: CreateAccountStatus
+end
+
+local record DescribeEffectivePolicyInput
+    PolicyType: string
+    TargetId: string
+end
+
+local record DescribeEffectivePolicyOutput
+    EffectivePolicy: EffectivePolicy
+end
+
+local record DescribeHandshakeInput
+    HandshakeId: string
+end
+
+local record DescribeHandshakeOutput
+    Handshake: Handshake
+end
+
+local record DescribeOrganizationInput
+end
+
+local record DescribeOrganizationOutput
+    Organization: Organization
+end
+
+local record DescribeOrganizationalUnitInput
+    OrganizationalUnitId: string
+end
+
+local record DescribeOrganizationalUnitOutput
+    OrganizationalUnit: OrganizationalUnit
+end
+
+local record DescribePolicyInput
+    PolicyId: string
+end
+
+local record DescribePolicyOutput
+    Policy: Policy
+end
+
+local record DescribeResourcePolicyInput
+end
+
+local record DescribeResourcePolicyOutput
+    ResourcePolicy: ResourcePolicy
+end
+
+local record DescribeResponsibilityTransferInput
+    Id: string
+end
+
+local record DescribeResponsibilityTransferOutput
+    ResponsibilityTransfer: ResponsibilityTransfer
+end
+
+local record DetachPolicyInput
+    PolicyId: string
+    TargetId: string
+end
+
+local record DetachPolicyOutput
+end
+
+local record DisableAWSServiceAccessInput
+    ServicePrincipal: string
+end
+
+local record DisableAWSServiceAccessOutput
+end
+
+local record DisablePolicyTypeInput
+    RootId: string
+    PolicyType: string
+end
+
+local record DisablePolicyTypeOutput
+    Root: Root
+end
+
+local record EnableAllFeaturesInput
+end
+
+local record EnableAllFeaturesOutput
+    Handshake: Handshake
+end
+
+local record EnableAWSServiceAccessInput
+    ServicePrincipal: string
+end
+
+local record EnableAWSServiceAccessOutput
+end
+
+local record EnablePolicyTypeInput
+    RootId: string
+    PolicyType: string
+end
+
+local record EnablePolicyTypeOutput
+    Root: Root
+end
+
+local record InviteAccountToOrganizationInput
+    Target: HandshakeParty
+    Notes: string
+    Tags: {Tag}
+end
+
+local record InviteAccountToOrganizationOutput
+    Handshake: Handshake
+end
+
+local record InviteOrganizationToTransferResponsibilityInput
+    Type: string
+    Target: HandshakeParty
+    Notes: string
+    StartTimestamp: number
+    SourceName: string
+    Tags: {Tag}
+end
+
+local record InviteOrganizationToTransferResponsibilityOutput
+    Handshake: Handshake
+end
+
+local record LeaveOrganizationInput
+end
+
+local record LeaveOrganizationOutput
+end
+
+local record ListAccountsInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListAccountsOutput
+    Accounts: {Account}
+    NextToken: string
+end
+
+local record ListAccountsForParentInput
+    ParentId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListAccountsForParentOutput
+    Accounts: {Account}
+    NextToken: string
+end
+
+local record ListAccountsWithInvalidEffectivePolicyInput
+    PolicyType: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListAccountsWithInvalidEffectivePolicyOutput
+    Accounts: {Account}
+    PolicyType: string
+    NextToken: string
+end
+
+local record ListAWSServiceAccessForOrganizationInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListAWSServiceAccessForOrganizationOutput
+    EnabledServicePrincipals: {EnabledServicePrincipal}
+    NextToken: string
+end
+
+local record ListChildrenInput
+    ParentId: string
+    ChildType: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListChildrenOutput
+    Children: {Child}
+    NextToken: string
+end
+
+local record ListCreateAccountStatusInput
+    States: {string}
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListCreateAccountStatusOutput
+    CreateAccountStatuses: {CreateAccountStatus}
+    NextToken: string
+end
+
+local record ListDelegatedAdministratorsInput
+    ServicePrincipal: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListDelegatedAdministratorsOutput
+    DelegatedAdministrators: {DelegatedAdministrator}
+    NextToken: string
+end
+
+local record ListDelegatedServicesForAccountInput
+    AccountId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListDelegatedServicesForAccountOutput
+    DelegatedServices: {DelegatedService}
+    NextToken: string
+end
+
+local record ListEffectivePolicyValidationErrorsInput
+    AccountId: string
+    PolicyType: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListEffectivePolicyValidationErrorsOutput
+    AccountId: string
+    PolicyType: string
+    Path: string
+    EvaluationTimestamp: number
+    NextToken: string
+    EffectivePolicyValidationErrors: {EffectivePolicyValidationError}
+end
+
+local record ListHandshakesForAccountInput
+    Filter: HandshakeFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListHandshakesForAccountOutput
+    Handshakes: {Handshake}
+    NextToken: string
+end
+
+local record ListHandshakesForOrganizationInput
+    Filter: HandshakeFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListHandshakesForOrganizationOutput
+    Handshakes: {Handshake}
+    NextToken: string
+end
+
+local record ListInboundResponsibilityTransfersInput
+    Type: string
+    Id: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListInboundResponsibilityTransfersOutput
+    ResponsibilityTransfers: {ResponsibilityTransfer}
+    NextToken: string
+end
+
+local record ListOrganizationalUnitsForParentInput
+    ParentId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListOrganizationalUnitsForParentOutput
+    OrganizationalUnits: {OrganizationalUnit}
+    NextToken: string
+end
+
+local record ListOutboundResponsibilityTransfersInput
+    Type: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListOutboundResponsibilityTransfersOutput
+    ResponsibilityTransfers: {ResponsibilityTransfer}
+    NextToken: string
+end
+
+local record ListParentsInput
+    ChildId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListParentsOutput
+    Parents: {Parent}
+    NextToken: string
+end
+
+local record ListPoliciesInput
+    Filter: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListPoliciesOutput
+    Policies: {PolicySummary}
+    NextToken: string
+end
+
+local record ListPoliciesForTargetInput
+    TargetId: string
+    Filter: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListPoliciesForTargetOutput
+    Policies: {PolicySummary}
+    NextToken: string
+end
+
+local record ListRootsInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListRootsOutput
+    Roots: {Root}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceId: string
+    NextToken: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+    NextToken: string
+end
+
+local record ListTargetsForPolicyInput
+    PolicyId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListTargetsForPolicyOutput
+    Targets: {PolicyTargetSummary}
+    NextToken: string
+end
+
+local record MoveAccountInput
+    AccountId: string
+    SourceParentId: string
+    DestinationParentId: string
+end
+
+local record MoveAccountOutput
+end
+
+local record PutResourcePolicyInput
+    Content: string
+    Tags: {Tag}
+end
+
+local record PutResourcePolicyOutput
+    ResourcePolicy: ResourcePolicy
+end
+
+local record RegisterDelegatedAdministratorInput
+    AccountId: string
+    ServicePrincipal: string
+end
+
+local record RegisterDelegatedAdministratorOutput
+end
+
+local record RemoveAccountFromOrganizationInput
+    AccountId: string
+end
+
+local record RemoveAccountFromOrganizationOutput
+end
+
+local record TagResourceInput
+    ResourceId: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record TerminateResponsibilityTransferInput
+    Id: string
+    EndTimestamp: number
+end
+
+local record TerminateResponsibilityTransferOutput
+    ResponsibilityTransfer: ResponsibilityTransfer
+end
+
+local record UntagResourceInput
+    ResourceId: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateOrganizationalUnitInput
+    OrganizationalUnitId: string
+    Name: string
+end
+
+local record UpdateOrganizationalUnitOutput
+    OrganizationalUnit: OrganizationalUnit
+end
+
+local record UpdatePolicyInput
+    PolicyId: string
+    Name: string
+    Description: string
+    Content: string
+end
+
+local record UpdatePolicyOutput
+    Policy: Policy
+end
+
+local record UpdateResponsibilityTransferInput
+    Id: string
+    Name: string
+end
+
+local record UpdateResponsibilityTransferOutput
+    ResponsibilityTransfer: ResponsibilityTransfer
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AccessDeniedForDependencyException
+    Message: string
+    Reason: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record HandshakeAlreadyInStateException
+    Message: string
+end
+
+local record HandshakeConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record HandshakeNotFoundException
+    Message: string
+end
+
+local record InvalidHandshakeTransitionException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record MasterCannotLeaveOrganizationException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record DuplicatePolicyAttachmentException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record PolicyChangesInProgressException
+    Message: string
+end
+
+local record PolicyNotFoundException
+    Message: string
+end
+
+local record PolicyTypeNotEnabledException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TargetNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record HandshakeAlreadyInStateException
+    Message: string
+end
+
+local record HandshakeNotFoundException
+    Message: string
+end
+
+local record InvalidHandshakeTransitionException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AccountAlreadyClosedException
+    Message: string
+end
+
+local record AccountNotFoundException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record FinalizingOrganizationException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record FinalizingOrganizationException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AccessDeniedForDependencyException
+    Message: string
+    Reason: string
+end
+
+local record AlreadyInOrganizationException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record DuplicateOrganizationalUnitException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ParentNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record DuplicatePolicyException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record MalformedPolicyDocumentException
+    Message: string
+end
+
+local record PolicyTypeNotAvailableForOrganizationException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record HandshakeAlreadyInStateException
+    Message: string
+end
+
+local record HandshakeNotFoundException
+    Message: string
+end
+
+local record InvalidHandshakeTransitionException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record OrganizationNotEmptyException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record OrganizationalUnitNotEmptyException
+    Message: string
+end
+
+local record OrganizationalUnitNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record PolicyInUseException
+    Message: string
+end
+
+local record PolicyNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record ResourcePolicyNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AccountNotFoundException
+    Message: string
+end
+
+local record AccountNotRegisteredException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AccountNotFoundException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record CreateAccountStatusNotFoundException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record EffectivePolicyNotFoundException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TargetNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record HandshakeNotFoundException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record OrganizationalUnitNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record PolicyNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record ResourcePolicyNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ResponsibilityTransferNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record PolicyChangesInProgressException
+    Message: string
+end
+
+local record PolicyNotAttachedException
+    Message: string
+end
+
+local record PolicyNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TargetNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record PolicyChangesInProgressException
+    Message: string
+end
+
+local record PolicyTypeNotEnabledException
+    Message: string
+end
+
+local record RootNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record HandshakeConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record PolicyChangesInProgressException
+    Message: string
+end
+
+local record PolicyTypeAlreadyEnabledException
+    Message: string
+end
+
+local record PolicyTypeNotAvailableForOrganizationException
+    Message: string
+end
+
+local record RootNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AccountOwnerNotVerifiedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record DuplicateHandshakeException
+    Message: string
+end
+
+local record FinalizingOrganizationException
+    Message: string
+end
+
+local record HandshakeConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record DuplicateHandshakeException
+    Message: string
+end
+
+local record HandshakeConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AccountNotFoundException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record MasterCannotLeaveOrganizationException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ParentNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record EffectivePolicyNotFoundException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ParentNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AccountNotFoundException
+    Message: string
+end
+
+local record AccountNotRegisteredException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AccountNotFoundException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record EffectivePolicyNotFoundException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ResponsibilityTransferNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ParentNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ChildNotFoundException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TargetNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TargetNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record PolicyNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AccountNotFoundException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record DestinationParentNotFoundException
+    Message: string
+end
+
+local record DuplicateAccountException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record SourceParentNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AccountAlreadyRegisteredException
+    Message: string
+end
+
+local record AccountNotFoundException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AccountNotFoundException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record MasterCannotLeaveOrganizationException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TargetNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record InvalidResponsibilityTransferTransitionException
+    Message: string
+end
+
+local record ResponsibilityTransferAlreadyInStatusException
+    Message: string
+end
+
+local record ResponsibilityTransferNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TargetNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record DuplicateOrganizationalUnitException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record OrganizationalUnitNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record DuplicatePolicyException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record MalformedPolicyDocumentException
+    Message: string
+end
+
+local record PolicyChangesInProgressException
+    Message: string
+end
+
+local record PolicyNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record AWSOrganizationsNotInUseException
+    Message: string
+end
+
+local record ConstraintViolationException
+    Message: string
+    Reason: string
+end
+
+local record InvalidInputException
+    Message: string
+    Reason: string
+end
+
+local record ResponsibilityTransferNotFoundException
+    Message: string
+end
+
+local record ServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Type: string
+    Message: string
+end
+
+local record UnsupportedAPIEndpointException
+    Message: string
+end
+
+local type IAMUserAccessToBilling = "ALLOW" | "DENY"
+
+local type ResponsibilityTransferType = "BILLING"
+
+local type ChildType = "ACCOUNT" | "ORGANIZATIONAL_UNIT"
+
+local type PolicyType = "SERVICE_CONTROL_POLICY" | "RESOURCE_CONTROL_POLICY" | "TAG_POLICY" | "BACKUP_POLICY" | "AISERVICES_OPT_OUT_POLICY" | "CHATBOT_POLICY" | "DECLARATIVE_POLICY_EC2" | "SECURITYHUB_POLICY" | "INSPECTOR_POLICY" | "UPGRADE_ROLLOUT_POLICY" | "BEDROCK_POLICY" | "S3_POLICY" | "NETWORK_SECURITY_DIRECTOR_POLICY"
+
+local type OrganizationFeatureSet = "ALL" | "CONSOLIDATED_BILLING"
+
+local type EffectivePolicyType = "TAG_POLICY" | "BACKUP_POLICY" | "AISERVICES_OPT_OUT_POLICY" | "CHATBOT_POLICY" | "DECLARATIVE_POLICY_EC2" | "SECURITYHUB_POLICY" | "INSPECTOR_POLICY" | "UPGRADE_ROLLOUT_POLICY" | "BEDROCK_POLICY" | "S3_POLICY" | "NETWORK_SECURITY_DIRECTOR_POLICY"
+
+local record M
+    AcceptHandshakeInput: AcceptHandshakeInput
+    AcceptHandshakeOutput: AcceptHandshakeOutput
+    AttachPolicyInput: AttachPolicyInput
+    AttachPolicyOutput: AttachPolicyOutput
+    CancelHandshakeInput: CancelHandshakeInput
+    CancelHandshakeOutput: CancelHandshakeOutput
+    CloseAccountInput: CloseAccountInput
+    CloseAccountOutput: CloseAccountOutput
+    CreateAccountInput: CreateAccountInput
+    CreateAccountOutput: CreateAccountOutput
+    CreateGovCloudAccountInput: CreateGovCloudAccountInput
+    CreateGovCloudAccountOutput: CreateGovCloudAccountOutput
+    CreateOrganizationInput: CreateOrganizationInput
+    CreateOrganizationOutput: CreateOrganizationOutput
+    CreateOrganizationalUnitInput: CreateOrganizationalUnitInput
+    CreateOrganizationalUnitOutput: CreateOrganizationalUnitOutput
+    CreatePolicyInput: CreatePolicyInput
+    CreatePolicyOutput: CreatePolicyOutput
+    DeclineHandshakeInput: DeclineHandshakeInput
+    DeclineHandshakeOutput: DeclineHandshakeOutput
+    DeleteOrganizationInput: DeleteOrganizationInput
+    DeleteOrganizationOutput: DeleteOrganizationOutput
+    DeleteOrganizationalUnitInput: DeleteOrganizationalUnitInput
+    DeleteOrganizationalUnitOutput: DeleteOrganizationalUnitOutput
+    DeletePolicyInput: DeletePolicyInput
+    DeletePolicyOutput: DeletePolicyOutput
+    DeleteResourcePolicyInput: DeleteResourcePolicyInput
+    DeleteResourcePolicyOutput: DeleteResourcePolicyOutput
+    DeregisterDelegatedAdministratorInput: DeregisterDelegatedAdministratorInput
+    DeregisterDelegatedAdministratorOutput: DeregisterDelegatedAdministratorOutput
+    DescribeAccountInput: DescribeAccountInput
+    DescribeAccountOutput: DescribeAccountOutput
+    DescribeCreateAccountStatusInput: DescribeCreateAccountStatusInput
+    DescribeCreateAccountStatusOutput: DescribeCreateAccountStatusOutput
+    DescribeEffectivePolicyInput: DescribeEffectivePolicyInput
+    DescribeEffectivePolicyOutput: DescribeEffectivePolicyOutput
+    DescribeHandshakeInput: DescribeHandshakeInput
+    DescribeHandshakeOutput: DescribeHandshakeOutput
+    DescribeOrganizationInput: DescribeOrganizationInput
+    DescribeOrganizationOutput: DescribeOrganizationOutput
+    DescribeOrganizationalUnitInput: DescribeOrganizationalUnitInput
+    DescribeOrganizationalUnitOutput: DescribeOrganizationalUnitOutput
+    DescribePolicyInput: DescribePolicyInput
+    DescribePolicyOutput: DescribePolicyOutput
+    DescribeResourcePolicyInput: DescribeResourcePolicyInput
+    DescribeResourcePolicyOutput: DescribeResourcePolicyOutput
+    DescribeResponsibilityTransferInput: DescribeResponsibilityTransferInput
+    DescribeResponsibilityTransferOutput: DescribeResponsibilityTransferOutput
+    DetachPolicyInput: DetachPolicyInput
+    DetachPolicyOutput: DetachPolicyOutput
+    DisableAWSServiceAccessInput: DisableAWSServiceAccessInput
+    DisableAWSServiceAccessOutput: DisableAWSServiceAccessOutput
+    DisablePolicyTypeInput: DisablePolicyTypeInput
+    DisablePolicyTypeOutput: DisablePolicyTypeOutput
+    EnableAllFeaturesInput: EnableAllFeaturesInput
+    EnableAllFeaturesOutput: EnableAllFeaturesOutput
+    EnableAWSServiceAccessInput: EnableAWSServiceAccessInput
+    EnableAWSServiceAccessOutput: EnableAWSServiceAccessOutput
+    EnablePolicyTypeInput: EnablePolicyTypeInput
+    EnablePolicyTypeOutput: EnablePolicyTypeOutput
+    InviteAccountToOrganizationInput: InviteAccountToOrganizationInput
+    InviteAccountToOrganizationOutput: InviteAccountToOrganizationOutput
+    InviteOrganizationToTransferResponsibilityInput: InviteOrganizationToTransferResponsibilityInput
+    InviteOrganizationToTransferResponsibilityOutput: InviteOrganizationToTransferResponsibilityOutput
+    LeaveOrganizationInput: LeaveOrganizationInput
+    LeaveOrganizationOutput: LeaveOrganizationOutput
+    ListAccountsInput: ListAccountsInput
+    ListAccountsOutput: ListAccountsOutput
+    ListAccountsForParentInput: ListAccountsForParentInput
+    ListAccountsForParentOutput: ListAccountsForParentOutput
+    ListAccountsWithInvalidEffectivePolicyInput: ListAccountsWithInvalidEffectivePolicyInput
+    ListAccountsWithInvalidEffectivePolicyOutput: ListAccountsWithInvalidEffectivePolicyOutput
+    ListAWSServiceAccessForOrganizationInput: ListAWSServiceAccessForOrganizationInput
+    ListAWSServiceAccessForOrganizationOutput: ListAWSServiceAccessForOrganizationOutput
+    ListChildrenInput: ListChildrenInput
+    ListChildrenOutput: ListChildrenOutput
+    ListCreateAccountStatusInput: ListCreateAccountStatusInput
+    ListCreateAccountStatusOutput: ListCreateAccountStatusOutput
+    ListDelegatedAdministratorsInput: ListDelegatedAdministratorsInput
+    ListDelegatedAdministratorsOutput: ListDelegatedAdministratorsOutput
+    ListDelegatedServicesForAccountInput: ListDelegatedServicesForAccountInput
+    ListDelegatedServicesForAccountOutput: ListDelegatedServicesForAccountOutput
+    ListEffectivePolicyValidationErrorsInput: ListEffectivePolicyValidationErrorsInput
+    ListEffectivePolicyValidationErrorsOutput: ListEffectivePolicyValidationErrorsOutput
+    ListHandshakesForAccountInput: ListHandshakesForAccountInput
+    ListHandshakesForAccountOutput: ListHandshakesForAccountOutput
+    ListHandshakesForOrganizationInput: ListHandshakesForOrganizationInput
+    ListHandshakesForOrganizationOutput: ListHandshakesForOrganizationOutput
+    ListInboundResponsibilityTransfersInput: ListInboundResponsibilityTransfersInput
+    ListInboundResponsibilityTransfersOutput: ListInboundResponsibilityTransfersOutput
+    ListOrganizationalUnitsForParentInput: ListOrganizationalUnitsForParentInput
+    ListOrganizationalUnitsForParentOutput: ListOrganizationalUnitsForParentOutput
+    ListOutboundResponsibilityTransfersInput: ListOutboundResponsibilityTransfersInput
+    ListOutboundResponsibilityTransfersOutput: ListOutboundResponsibilityTransfersOutput
+    ListParentsInput: ListParentsInput
+    ListParentsOutput: ListParentsOutput
+    ListPoliciesInput: ListPoliciesInput
+    ListPoliciesOutput: ListPoliciesOutput
+    ListPoliciesForTargetInput: ListPoliciesForTargetInput
+    ListPoliciesForTargetOutput: ListPoliciesForTargetOutput
+    ListRootsInput: ListRootsInput
+    ListRootsOutput: ListRootsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListTargetsForPolicyInput: ListTargetsForPolicyInput
+    ListTargetsForPolicyOutput: ListTargetsForPolicyOutput
+    MoveAccountInput: MoveAccountInput
+    MoveAccountOutput: MoveAccountOutput
+    PutResourcePolicyInput: PutResourcePolicyInput
+    PutResourcePolicyOutput: PutResourcePolicyOutput
+    RegisterDelegatedAdministratorInput: RegisterDelegatedAdministratorInput
+    RegisterDelegatedAdministratorOutput: RegisterDelegatedAdministratorOutput
+    RemoveAccountFromOrganizationInput: RemoveAccountFromOrganizationInput
+    RemoveAccountFromOrganizationOutput: RemoveAccountFromOrganizationOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    TerminateResponsibilityTransferInput: TerminateResponsibilityTransferInput
+    TerminateResponsibilityTransferOutput: TerminateResponsibilityTransferOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateOrganizationalUnitInput: UpdateOrganizationalUnitInput
+    UpdateOrganizationalUnitOutput: UpdateOrganizationalUnitOutput
+    UpdatePolicyInput: UpdatePolicyInput
+    UpdatePolicyOutput: UpdatePolicyOutput
+    UpdateResponsibilityTransferInput: UpdateResponsibilityTransferInput
+    UpdateResponsibilityTransferOutput: UpdateResponsibilityTransferOutput
+end
+
+return M

@@ -1,0 +1,291 @@
+local record AssumeRoleInput
+    RoleArn: string
+    RoleSessionName: string
+    PolicyArns: {PolicyDescriptorType}
+    Policy: string
+    DurationSeconds: number
+    Tags: {Tag}
+    TransitiveTagKeys: {string}
+    ExternalId: string
+    SerialNumber: string
+    TokenCode: string
+    SourceIdentity: string
+    ProvidedContexts: {ProvidedContext}
+end
+
+local record AssumeRoleOutput
+    Credentials: Credentials
+    AssumedRoleUser: AssumedRoleUser
+    PackedPolicySize: number
+    SourceIdentity: string
+end
+
+local record AssumeRoleWithSAMLInput
+    RoleArn: string
+    PrincipalArn: string
+    SAMLAssertion: string
+    PolicyArns: {PolicyDescriptorType}
+    Policy: string
+    DurationSeconds: number
+end
+
+local record AssumeRoleWithSAMLOutput
+    Credentials: Credentials
+    AssumedRoleUser: AssumedRoleUser
+    PackedPolicySize: number
+    Subject: string
+    SubjectType: string
+    Issuer: string
+    Audience: string
+    NameQualifier: string
+    SourceIdentity: string
+end
+
+local record AssumeRoleWithWebIdentityInput
+    RoleArn: string
+    RoleSessionName: string
+    WebIdentityToken: string
+    ProviderId: string
+    PolicyArns: {PolicyDescriptorType}
+    Policy: string
+    DurationSeconds: number
+end
+
+local record AssumeRoleWithWebIdentityOutput
+    Credentials: Credentials
+    SubjectFromWebIdentityToken: string
+    AssumedRoleUser: AssumedRoleUser
+    PackedPolicySize: number
+    Provider: string
+    Audience: string
+    SourceIdentity: string
+end
+
+local record AssumeRootInput
+    TargetPrincipal: string
+    TaskPolicyArn: PolicyDescriptorType
+    DurationSeconds: number
+end
+
+local record AssumeRootOutput
+    Credentials: Credentials
+    SourceIdentity: string
+end
+
+local record DecodeAuthorizationMessageInput
+    EncodedMessage: string
+end
+
+local record DecodeAuthorizationMessageOutput
+    DecodedMessage: string
+end
+
+local record GetAccessKeyInfoInput
+    AccessKeyId: string
+end
+
+local record GetAccessKeyInfoOutput
+    Account: string
+end
+
+local record GetCallerIdentityInput
+end
+
+local record GetCallerIdentityOutput
+    UserId: string
+    Account: string
+    Arn: string
+end
+
+local record GetDelegatedAccessTokenInput
+    TradeInToken: string
+end
+
+local record GetDelegatedAccessTokenOutput
+    Credentials: Credentials
+    PackedPolicySize: number
+    AssumedPrincipal: string
+end
+
+local record GetFederationTokenInput
+    Name: string
+    Policy: string
+    PolicyArns: {PolicyDescriptorType}
+    DurationSeconds: number
+    Tags: {Tag}
+end
+
+local record GetFederationTokenOutput
+    Credentials: Credentials
+    FederatedUser: FederatedUser
+    PackedPolicySize: number
+end
+
+local record GetSessionTokenInput
+    DurationSeconds: number
+    SerialNumber: string
+    TokenCode: string
+end
+
+local record GetSessionTokenOutput
+    Credentials: Credentials
+end
+
+local record GetWebIdentityTokenInput
+    Audience: {string}
+    DurationSeconds: number
+    SigningAlgorithm: string
+    Tags: {Tag}
+end
+
+local record GetWebIdentityTokenOutput
+    WebIdentityToken: string
+    Expiration: number
+end
+
+local record ExpiredTokenException
+    message: string
+end
+
+local record MalformedPolicyDocumentException
+    message: string
+end
+
+local record PackedPolicyTooLargeException
+    message: string
+end
+
+local record RegionDisabledException
+    message: string
+end
+
+local record ExpiredTokenException
+    message: string
+end
+
+local record IDPRejectedClaimException
+    message: string
+end
+
+local record InvalidIdentityTokenException
+    message: string
+end
+
+local record MalformedPolicyDocumentException
+    message: string
+end
+
+local record PackedPolicyTooLargeException
+    message: string
+end
+
+local record RegionDisabledException
+    message: string
+end
+
+local record ExpiredTokenException
+    message: string
+end
+
+local record IDPCommunicationErrorException
+    message: string
+end
+
+local record IDPRejectedClaimException
+    message: string
+end
+
+local record InvalidIdentityTokenException
+    message: string
+end
+
+local record MalformedPolicyDocumentException
+    message: string
+end
+
+local record PackedPolicyTooLargeException
+    message: string
+end
+
+local record RegionDisabledException
+    message: string
+end
+
+local record ExpiredTokenException
+    message: string
+end
+
+local record RegionDisabledException
+    message: string
+end
+
+local record InvalidAuthorizationMessageException
+    message: string
+end
+
+local record ExpiredTradeInTokenException
+    message: string
+end
+
+local record PackedPolicyTooLargeException
+    message: string
+end
+
+local record RegionDisabledException
+    message: string
+end
+
+local record MalformedPolicyDocumentException
+    message: string
+end
+
+local record PackedPolicyTooLargeException
+    message: string
+end
+
+local record RegionDisabledException
+    message: string
+end
+
+local record RegionDisabledException
+    message: string
+end
+
+local record JWTPayloadSizeExceededException
+    message: string
+end
+
+local record OutboundWebIdentityFederationDisabledException
+    message: string
+end
+
+local record SessionDurationEscalationException
+    message: string
+end
+
+local record M
+    AssumeRoleInput: AssumeRoleInput
+    AssumeRoleOutput: AssumeRoleOutput
+    AssumeRoleWithSAMLInput: AssumeRoleWithSAMLInput
+    AssumeRoleWithSAMLOutput: AssumeRoleWithSAMLOutput
+    AssumeRoleWithWebIdentityInput: AssumeRoleWithWebIdentityInput
+    AssumeRoleWithWebIdentityOutput: AssumeRoleWithWebIdentityOutput
+    AssumeRootInput: AssumeRootInput
+    AssumeRootOutput: AssumeRootOutput
+    DecodeAuthorizationMessageInput: DecodeAuthorizationMessageInput
+    DecodeAuthorizationMessageOutput: DecodeAuthorizationMessageOutput
+    GetAccessKeyInfoInput: GetAccessKeyInfoInput
+    GetAccessKeyInfoOutput: GetAccessKeyInfoOutput
+    GetCallerIdentityInput: GetCallerIdentityInput
+    GetCallerIdentityOutput: GetCallerIdentityOutput
+    GetDelegatedAccessTokenInput: GetDelegatedAccessTokenInput
+    GetDelegatedAccessTokenOutput: GetDelegatedAccessTokenOutput
+    GetFederationTokenInput: GetFederationTokenInput
+    GetFederationTokenOutput: GetFederationTokenOutput
+    GetSessionTokenInput: GetSessionTokenInput
+    GetSessionTokenOutput: GetSessionTokenOutput
+    GetWebIdentityTokenInput: GetWebIdentityTokenInput
+    GetWebIdentityTokenOutput: GetWebIdentityTokenOutput
+end
+
+return M

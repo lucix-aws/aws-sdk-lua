@@ -1,0 +1,33 @@
+local types = require("emrcontainers.types")
+
+local record Client
+    cancelJobRun: function(Client, types.CancelJobRunInput): types.CancelJobRunOutput, table
+    createJobTemplate: function(Client, types.CreateJobTemplateInput): types.CreateJobTemplateOutput, table
+    createManagedEndpoint: function(Client, types.CreateManagedEndpointInput): types.CreateManagedEndpointOutput, table
+    createSecurityConfiguration: function(Client, types.CreateSecurityConfigurationInput): types.CreateSecurityConfigurationOutput, table
+    createVirtualCluster: function(Client, types.CreateVirtualClusterInput): types.CreateVirtualClusterOutput, table
+    deleteJobTemplate: function(Client, types.DeleteJobTemplateInput): types.DeleteJobTemplateOutput, table
+    deleteManagedEndpoint: function(Client, types.DeleteManagedEndpointInput): types.DeleteManagedEndpointOutput, table
+    deleteVirtualCluster: function(Client, types.DeleteVirtualClusterInput): types.DeleteVirtualClusterOutput, table
+    describeJobRun: function(Client, types.DescribeJobRunInput): types.DescribeJobRunOutput, table
+    describeJobTemplate: function(Client, types.DescribeJobTemplateInput): types.DescribeJobTemplateOutput, table
+    describeManagedEndpoint: function(Client, types.DescribeManagedEndpointInput): types.DescribeManagedEndpointOutput, table
+    describeSecurityConfiguration: function(Client, types.DescribeSecurityConfigurationInput): types.DescribeSecurityConfigurationOutput, table
+    describeVirtualCluster: function(Client, types.DescribeVirtualClusterInput): types.DescribeVirtualClusterOutput, table
+    getManagedEndpointSessionCredentials: function(Client, types.GetManagedEndpointSessionCredentialsInput): types.GetManagedEndpointSessionCredentialsOutput, table
+    listJobRuns: function(Client, types.ListJobRunsInput): types.ListJobRunsOutput, table
+    listJobTemplates: function(Client, types.ListJobTemplatesInput): types.ListJobTemplatesOutput, table
+    listManagedEndpoints: function(Client, types.ListManagedEndpointsInput): types.ListManagedEndpointsOutput, table
+    listSecurityConfigurations: function(Client, types.ListSecurityConfigurationsInput): types.ListSecurityConfigurationsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listVirtualClusters: function(Client, types.ListVirtualClustersInput): types.ListVirtualClustersOutput, table
+    startJobRun: function(Client, types.StartJobRunInput): types.StartJobRunOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

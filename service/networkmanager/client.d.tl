@@ -1,0 +1,105 @@
+local types = require("networkmanager.types")
+
+local record Client
+    acceptAttachment: function(Client, types.AcceptAttachmentInput): types.AcceptAttachmentOutput, table
+    associateConnectPeer: function(Client, types.AssociateConnectPeerInput): types.AssociateConnectPeerOutput, table
+    associateCustomerGateway: function(Client, types.AssociateCustomerGatewayInput): types.AssociateCustomerGatewayOutput, table
+    associateLink: function(Client, types.AssociateLinkInput): types.AssociateLinkOutput, table
+    associateTransitGatewayConnectPeer: function(Client, types.AssociateTransitGatewayConnectPeerInput): types.AssociateTransitGatewayConnectPeerOutput, table
+    createConnectAttachment: function(Client, types.CreateConnectAttachmentInput): types.CreateConnectAttachmentOutput, table
+    createConnection: function(Client, types.CreateConnectionInput): types.CreateConnectionOutput, table
+    createConnectPeer: function(Client, types.CreateConnectPeerInput): types.CreateConnectPeerOutput, table
+    createCoreNetwork: function(Client, types.CreateCoreNetworkInput): types.CreateCoreNetworkOutput, table
+    createCoreNetworkPrefixListAssociation: function(Client, types.CreateCoreNetworkPrefixListAssociationInput): types.CreateCoreNetworkPrefixListAssociationOutput, table
+    createDevice: function(Client, types.CreateDeviceInput): types.CreateDeviceOutput, table
+    createDirectConnectGatewayAttachment: function(Client, types.CreateDirectConnectGatewayAttachmentInput): types.CreateDirectConnectGatewayAttachmentOutput, table
+    createGlobalNetwork: function(Client, types.CreateGlobalNetworkInput): types.CreateGlobalNetworkOutput, table
+    createLink: function(Client, types.CreateLinkInput): types.CreateLinkOutput, table
+    createSite: function(Client, types.CreateSiteInput): types.CreateSiteOutput, table
+    createSiteToSiteVpnAttachment: function(Client, types.CreateSiteToSiteVpnAttachmentInput): types.CreateSiteToSiteVpnAttachmentOutput, table
+    createTransitGatewayPeering: function(Client, types.CreateTransitGatewayPeeringInput): types.CreateTransitGatewayPeeringOutput, table
+    createTransitGatewayRouteTableAttachment: function(Client, types.CreateTransitGatewayRouteTableAttachmentInput): types.CreateTransitGatewayRouteTableAttachmentOutput, table
+    createVpcAttachment: function(Client, types.CreateVpcAttachmentInput): types.CreateVpcAttachmentOutput, table
+    deleteAttachment: function(Client, types.DeleteAttachmentInput): types.DeleteAttachmentOutput, table
+    deleteConnection: function(Client, types.DeleteConnectionInput): types.DeleteConnectionOutput, table
+    deleteConnectPeer: function(Client, types.DeleteConnectPeerInput): types.DeleteConnectPeerOutput, table
+    deleteCoreNetwork: function(Client, types.DeleteCoreNetworkInput): types.DeleteCoreNetworkOutput, table
+    deleteCoreNetworkPolicyVersion: function(Client, types.DeleteCoreNetworkPolicyVersionInput): types.DeleteCoreNetworkPolicyVersionOutput, table
+    deleteCoreNetworkPrefixListAssociation: function(Client, types.DeleteCoreNetworkPrefixListAssociationInput): types.DeleteCoreNetworkPrefixListAssociationOutput, table
+    deleteDevice: function(Client, types.DeleteDeviceInput): types.DeleteDeviceOutput, table
+    deleteGlobalNetwork: function(Client, types.DeleteGlobalNetworkInput): types.DeleteGlobalNetworkOutput, table
+    deleteLink: function(Client, types.DeleteLinkInput): types.DeleteLinkOutput, table
+    deletePeering: function(Client, types.DeletePeeringInput): types.DeletePeeringOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteSite: function(Client, types.DeleteSiteInput): types.DeleteSiteOutput, table
+    deregisterTransitGateway: function(Client, types.DeregisterTransitGatewayInput): types.DeregisterTransitGatewayOutput, table
+    describeGlobalNetworks: function(Client, types.DescribeGlobalNetworksInput): types.DescribeGlobalNetworksOutput, table
+    disassociateConnectPeer: function(Client, types.DisassociateConnectPeerInput): types.DisassociateConnectPeerOutput, table
+    disassociateCustomerGateway: function(Client, types.DisassociateCustomerGatewayInput): types.DisassociateCustomerGatewayOutput, table
+    disassociateLink: function(Client, types.DisassociateLinkInput): types.DisassociateLinkOutput, table
+    disassociateTransitGatewayConnectPeer: function(Client, types.DisassociateTransitGatewayConnectPeerInput): types.DisassociateTransitGatewayConnectPeerOutput, table
+    executeCoreNetworkChangeSet: function(Client, types.ExecuteCoreNetworkChangeSetInput): types.ExecuteCoreNetworkChangeSetOutput, table
+    getConnectAttachment: function(Client, types.GetConnectAttachmentInput): types.GetConnectAttachmentOutput, table
+    getConnections: function(Client, types.GetConnectionsInput): types.GetConnectionsOutput, table
+    getConnectPeer: function(Client, types.GetConnectPeerInput): types.GetConnectPeerOutput, table
+    getConnectPeerAssociations: function(Client, types.GetConnectPeerAssociationsInput): types.GetConnectPeerAssociationsOutput, table
+    getCoreNetwork: function(Client, types.GetCoreNetworkInput): types.GetCoreNetworkOutput, table
+    getCoreNetworkChangeEvents: function(Client, types.GetCoreNetworkChangeEventsInput): types.GetCoreNetworkChangeEventsOutput, table
+    getCoreNetworkChangeSet: function(Client, types.GetCoreNetworkChangeSetInput): types.GetCoreNetworkChangeSetOutput, table
+    getCoreNetworkPolicy: function(Client, types.GetCoreNetworkPolicyInput): types.GetCoreNetworkPolicyOutput, table
+    getCustomerGatewayAssociations: function(Client, types.GetCustomerGatewayAssociationsInput): types.GetCustomerGatewayAssociationsOutput, table
+    getDevices: function(Client, types.GetDevicesInput): types.GetDevicesOutput, table
+    getDirectConnectGatewayAttachment: function(Client, types.GetDirectConnectGatewayAttachmentInput): types.GetDirectConnectGatewayAttachmentOutput, table
+    getLinkAssociations: function(Client, types.GetLinkAssociationsInput): types.GetLinkAssociationsOutput, table
+    getLinks: function(Client, types.GetLinksInput): types.GetLinksOutput, table
+    getNetworkResourceCounts: function(Client, types.GetNetworkResourceCountsInput): types.GetNetworkResourceCountsOutput, table
+    getNetworkResourceRelationships: function(Client, types.GetNetworkResourceRelationshipsInput): types.GetNetworkResourceRelationshipsOutput, table
+    getNetworkResources: function(Client, types.GetNetworkResourcesInput): types.GetNetworkResourcesOutput, table
+    getNetworkRoutes: function(Client, types.GetNetworkRoutesInput): types.GetNetworkRoutesOutput, table
+    getNetworkTelemetry: function(Client, types.GetNetworkTelemetryInput): types.GetNetworkTelemetryOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getRouteAnalysis: function(Client, types.GetRouteAnalysisInput): types.GetRouteAnalysisOutput, table
+    getSites: function(Client, types.GetSitesInput): types.GetSitesOutput, table
+    getSiteToSiteVpnAttachment: function(Client, types.GetSiteToSiteVpnAttachmentInput): types.GetSiteToSiteVpnAttachmentOutput, table
+    getTransitGatewayConnectPeerAssociations: function(Client, types.GetTransitGatewayConnectPeerAssociationsInput): types.GetTransitGatewayConnectPeerAssociationsOutput, table
+    getTransitGatewayPeering: function(Client, types.GetTransitGatewayPeeringInput): types.GetTransitGatewayPeeringOutput, table
+    getTransitGatewayRegistrations: function(Client, types.GetTransitGatewayRegistrationsInput): types.GetTransitGatewayRegistrationsOutput, table
+    getTransitGatewayRouteTableAttachment: function(Client, types.GetTransitGatewayRouteTableAttachmentInput): types.GetTransitGatewayRouteTableAttachmentOutput, table
+    getVpcAttachment: function(Client, types.GetVpcAttachmentInput): types.GetVpcAttachmentOutput, table
+    listAttachmentRoutingPolicyAssociations: function(Client, types.ListAttachmentRoutingPolicyAssociationsInput): types.ListAttachmentRoutingPolicyAssociationsOutput, table
+    listAttachments: function(Client, types.ListAttachmentsInput): types.ListAttachmentsOutput, table
+    listConnectPeers: function(Client, types.ListConnectPeersInput): types.ListConnectPeersOutput, table
+    listCoreNetworkPolicyVersions: function(Client, types.ListCoreNetworkPolicyVersionsInput): types.ListCoreNetworkPolicyVersionsOutput, table
+    listCoreNetworkPrefixListAssociations: function(Client, types.ListCoreNetworkPrefixListAssociationsInput): types.ListCoreNetworkPrefixListAssociationsOutput, table
+    listCoreNetworkRoutingInformation: function(Client, types.ListCoreNetworkRoutingInformationInput): types.ListCoreNetworkRoutingInformationOutput, table
+    listCoreNetworks: function(Client, types.ListCoreNetworksInput): types.ListCoreNetworksOutput, table
+    listOrganizationServiceAccessStatus: function(Client, types.ListOrganizationServiceAccessStatusInput): types.ListOrganizationServiceAccessStatusOutput, table
+    listPeerings: function(Client, types.ListPeeringsInput): types.ListPeeringsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putAttachmentRoutingPolicyLabel: function(Client, types.PutAttachmentRoutingPolicyLabelInput): types.PutAttachmentRoutingPolicyLabelOutput, table
+    putCoreNetworkPolicy: function(Client, types.PutCoreNetworkPolicyInput): types.PutCoreNetworkPolicyOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    registerTransitGateway: function(Client, types.RegisterTransitGatewayInput): types.RegisterTransitGatewayOutput, table
+    rejectAttachment: function(Client, types.RejectAttachmentInput): types.RejectAttachmentOutput, table
+    removeAttachmentRoutingPolicyLabel: function(Client, types.RemoveAttachmentRoutingPolicyLabelInput): types.RemoveAttachmentRoutingPolicyLabelOutput, table
+    restoreCoreNetworkPolicyVersion: function(Client, types.RestoreCoreNetworkPolicyVersionInput): types.RestoreCoreNetworkPolicyVersionOutput, table
+    startOrganizationServiceAccessUpdate: function(Client, types.StartOrganizationServiceAccessUpdateInput): types.StartOrganizationServiceAccessUpdateOutput, table
+    startRouteAnalysis: function(Client, types.StartRouteAnalysisInput): types.StartRouteAnalysisOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateConnection: function(Client, types.UpdateConnectionInput): types.UpdateConnectionOutput, table
+    updateCoreNetwork: function(Client, types.UpdateCoreNetworkInput): types.UpdateCoreNetworkOutput, table
+    updateDevice: function(Client, types.UpdateDeviceInput): types.UpdateDeviceOutput, table
+    updateDirectConnectGatewayAttachment: function(Client, types.UpdateDirectConnectGatewayAttachmentInput): types.UpdateDirectConnectGatewayAttachmentOutput, table
+    updateGlobalNetwork: function(Client, types.UpdateGlobalNetworkInput): types.UpdateGlobalNetworkOutput, table
+    updateLink: function(Client, types.UpdateLinkInput): types.UpdateLinkOutput, table
+    updateNetworkResourceMetadata: function(Client, types.UpdateNetworkResourceMetadataInput): types.UpdateNetworkResourceMetadataOutput, table
+    updateSite: function(Client, types.UpdateSiteInput): types.UpdateSiteOutput, table
+    updateVpcAttachment: function(Client, types.UpdateVpcAttachmentInput): types.UpdateVpcAttachmentOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

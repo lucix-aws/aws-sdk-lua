@@ -1,0 +1,52 @@
+local types = require("partnercentralselling.types")
+
+local record Client
+    acceptEngagementInvitation: function(Client, types.AcceptEngagementInvitationInput): types.AcceptEngagementInvitationOutput, table
+    assignOpportunity: function(Client, types.AssignOpportunityInput): types.AssignOpportunityOutput, table
+    associateOpportunity: function(Client, types.AssociateOpportunityInput): types.AssociateOpportunityOutput, table
+    createEngagement: function(Client, types.CreateEngagementInput): types.CreateEngagementOutput, table
+    createEngagementContext: function(Client, types.CreateEngagementContextInput): types.CreateEngagementContextOutput, table
+    createEngagementInvitation: function(Client, types.CreateEngagementInvitationInput): types.CreateEngagementInvitationOutput, table
+    createOpportunity: function(Client, types.CreateOpportunityInput): types.CreateOpportunityOutput, table
+    createResourceSnapshot: function(Client, types.CreateResourceSnapshotInput): types.CreateResourceSnapshotOutput, table
+    createResourceSnapshotJob: function(Client, types.CreateResourceSnapshotJobInput): types.CreateResourceSnapshotJobOutput, table
+    deleteResourceSnapshotJob: function(Client, types.DeleteResourceSnapshotJobInput): types.DeleteResourceSnapshotJobOutput, table
+    disassociateOpportunity: function(Client, types.DisassociateOpportunityInput): types.DisassociateOpportunityOutput, table
+    getAwsOpportunitySummary: function(Client, types.GetAwsOpportunitySummaryInput): types.GetAwsOpportunitySummaryOutput, table
+    getEngagement: function(Client, types.GetEngagementInput): types.GetEngagementOutput, table
+    getEngagementInvitation: function(Client, types.GetEngagementInvitationInput): types.GetEngagementInvitationOutput, table
+    getOpportunity: function(Client, types.GetOpportunityInput): types.GetOpportunityOutput, table
+    getResourceSnapshot: function(Client, types.GetResourceSnapshotInput): types.GetResourceSnapshotOutput, table
+    getResourceSnapshotJob: function(Client, types.GetResourceSnapshotJobInput): types.GetResourceSnapshotJobOutput, table
+    getSellingSystemSettings: function(Client, types.GetSellingSystemSettingsInput): types.GetSellingSystemSettingsOutput, table
+    listEngagementByAcceptingInvitationTasks: function(Client, types.ListEngagementByAcceptingInvitationTasksInput): types.ListEngagementByAcceptingInvitationTasksOutput, table
+    listEngagementFromOpportunityTasks: function(Client, types.ListEngagementFromOpportunityTasksInput): types.ListEngagementFromOpportunityTasksOutput, table
+    listEngagementInvitations: function(Client, types.ListEngagementInvitationsInput): types.ListEngagementInvitationsOutput, table
+    listEngagementMembers: function(Client, types.ListEngagementMembersInput): types.ListEngagementMembersOutput, table
+    listEngagementResourceAssociations: function(Client, types.ListEngagementResourceAssociationsInput): types.ListEngagementResourceAssociationsOutput, table
+    listEngagements: function(Client, types.ListEngagementsInput): types.ListEngagementsOutput, table
+    listOpportunities: function(Client, types.ListOpportunitiesInput): types.ListOpportunitiesOutput, table
+    listOpportunityFromEngagementTasks: function(Client, types.ListOpportunityFromEngagementTasksInput): types.ListOpportunityFromEngagementTasksOutput, table
+    listResourceSnapshotJobs: function(Client, types.ListResourceSnapshotJobsInput): types.ListResourceSnapshotJobsOutput, table
+    listResourceSnapshots: function(Client, types.ListResourceSnapshotsInput): types.ListResourceSnapshotsOutput, table
+    listSolutions: function(Client, types.ListSolutionsInput): types.ListSolutionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putSellingSystemSettings: function(Client, types.PutSellingSystemSettingsInput): types.PutSellingSystemSettingsOutput, table
+    rejectEngagementInvitation: function(Client, types.RejectEngagementInvitationInput): types.RejectEngagementInvitationOutput, table
+    startEngagementByAcceptingInvitationTask: function(Client, types.StartEngagementByAcceptingInvitationTaskInput): types.StartEngagementByAcceptingInvitationTaskOutput, table
+    startEngagementFromOpportunityTask: function(Client, types.StartEngagementFromOpportunityTaskInput): types.StartEngagementFromOpportunityTaskOutput, table
+    startOpportunityFromEngagementTask: function(Client, types.StartOpportunityFromEngagementTaskInput): types.StartOpportunityFromEngagementTaskOutput, table
+    startResourceSnapshotJob: function(Client, types.StartResourceSnapshotJobInput): types.StartResourceSnapshotJobOutput, table
+    stopResourceSnapshotJob: function(Client, types.StopResourceSnapshotJobInput): types.StopResourceSnapshotJobOutput, table
+    submitOpportunity: function(Client, types.SubmitOpportunityInput): types.SubmitOpportunityOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateEngagementContext: function(Client, types.UpdateEngagementContextInput): types.UpdateEngagementContextOutput, table
+    updateOpportunity: function(Client, types.UpdateOpportunityInput): types.UpdateOpportunityOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,30 @@
+local types = require("rum.types")
+
+local record Client
+    batchCreateRumMetricDefinitions: function(Client, types.BatchCreateRumMetricDefinitionsInput): types.BatchCreateRumMetricDefinitionsOutput, table
+    batchDeleteRumMetricDefinitions: function(Client, types.BatchDeleteRumMetricDefinitionsInput): types.BatchDeleteRumMetricDefinitionsOutput, table
+    batchGetRumMetricDefinitions: function(Client, types.BatchGetRumMetricDefinitionsInput): types.BatchGetRumMetricDefinitionsOutput, table
+    createAppMonitor: function(Client, types.CreateAppMonitorInput): types.CreateAppMonitorOutput, table
+    deleteAppMonitor: function(Client, types.DeleteAppMonitorInput): types.DeleteAppMonitorOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteRumMetricsDestination: function(Client, types.DeleteRumMetricsDestinationInput): types.DeleteRumMetricsDestinationOutput, table
+    getAppMonitor: function(Client, types.GetAppMonitorInput): types.GetAppMonitorOutput, table
+    getAppMonitorData: function(Client, types.GetAppMonitorDataInput): types.GetAppMonitorDataOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    listAppMonitors: function(Client, types.ListAppMonitorsInput): types.ListAppMonitorsOutput, table
+    listRumMetricsDestinations: function(Client, types.ListRumMetricsDestinationsInput): types.ListRumMetricsDestinationsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putRumEvents: function(Client, types.PutRumEventsInput): types.PutRumEventsOutput, table
+    putRumMetricsDestination: function(Client, types.PutRumMetricsDestinationInput): types.PutRumMetricsDestinationOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAppMonitor: function(Client, types.UpdateAppMonitorInput): types.UpdateAppMonitorOutput, table
+    updateRumMetricDefinition: function(Client, types.UpdateRumMetricDefinitionInput): types.UpdateRumMetricDefinitionOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

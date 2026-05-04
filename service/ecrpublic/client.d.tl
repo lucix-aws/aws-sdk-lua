@@ -1,0 +1,33 @@
+local types = require("ecrpublic.types")
+
+local record Client
+    batchCheckLayerAvailability: function(Client, types.BatchCheckLayerAvailabilityInput): types.BatchCheckLayerAvailabilityOutput, table
+    batchDeleteImage: function(Client, types.BatchDeleteImageInput): types.BatchDeleteImageOutput, table
+    completeLayerUpload: function(Client, types.CompleteLayerUploadInput): types.CompleteLayerUploadOutput, table
+    createRepository: function(Client, types.CreateRepositoryInput): types.CreateRepositoryOutput, table
+    deleteRepository: function(Client, types.DeleteRepositoryInput): types.DeleteRepositoryOutput, table
+    deleteRepositoryPolicy: function(Client, types.DeleteRepositoryPolicyInput): types.DeleteRepositoryPolicyOutput, table
+    describeImages: function(Client, types.DescribeImagesInput): types.DescribeImagesOutput, table
+    describeImageTags: function(Client, types.DescribeImageTagsInput): types.DescribeImageTagsOutput, table
+    describeRegistries: function(Client, types.DescribeRegistriesInput): types.DescribeRegistriesOutput, table
+    describeRepositories: function(Client, types.DescribeRepositoriesInput): types.DescribeRepositoriesOutput, table
+    getAuthorizationToken: function(Client, types.GetAuthorizationTokenInput): types.GetAuthorizationTokenOutput, table
+    getRegistryCatalogData: function(Client, types.GetRegistryCatalogDataInput): types.GetRegistryCatalogDataOutput, table
+    getRepositoryCatalogData: function(Client, types.GetRepositoryCatalogDataInput): types.GetRepositoryCatalogDataOutput, table
+    getRepositoryPolicy: function(Client, types.GetRepositoryPolicyInput): types.GetRepositoryPolicyOutput, table
+    initiateLayerUpload: function(Client, types.InitiateLayerUploadInput): types.InitiateLayerUploadOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putImage: function(Client, types.PutImageInput): types.PutImageOutput, table
+    putRegistryCatalogData: function(Client, types.PutRegistryCatalogDataInput): types.PutRegistryCatalogDataOutput, table
+    putRepositoryCatalogData: function(Client, types.PutRepositoryCatalogDataInput): types.PutRepositoryCatalogDataOutput, table
+    setRepositoryPolicy: function(Client, types.SetRepositoryPolicyInput): types.SetRepositoryPolicyOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    uploadLayerPart: function(Client, types.UploadLayerPartInput): types.UploadLayerPartOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

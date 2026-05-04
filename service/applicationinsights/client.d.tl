@@ -1,0 +1,43 @@
+local types = require("applicationinsights.types")
+
+local record Client
+    addWorkload: function(Client, types.AddWorkloadInput): types.AddWorkloadOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createComponent: function(Client, types.CreateComponentInput): types.CreateComponentOutput, table
+    createLogPattern: function(Client, types.CreateLogPatternInput): types.CreateLogPatternOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    deleteComponent: function(Client, types.DeleteComponentInput): types.DeleteComponentOutput, table
+    deleteLogPattern: function(Client, types.DeleteLogPatternInput): types.DeleteLogPatternOutput, table
+    describeApplication: function(Client, types.DescribeApplicationInput): types.DescribeApplicationOutput, table
+    describeComponent: function(Client, types.DescribeComponentInput): types.DescribeComponentOutput, table
+    describeComponentConfiguration: function(Client, types.DescribeComponentConfigurationInput): types.DescribeComponentConfigurationOutput, table
+    describeComponentConfigurationRecommendation: function(Client, types.DescribeComponentConfigurationRecommendationInput): types.DescribeComponentConfigurationRecommendationOutput, table
+    describeLogPattern: function(Client, types.DescribeLogPatternInput): types.DescribeLogPatternOutput, table
+    describeObservation: function(Client, types.DescribeObservationInput): types.DescribeObservationOutput, table
+    describeProblem: function(Client, types.DescribeProblemInput): types.DescribeProblemOutput, table
+    describeProblemObservations: function(Client, types.DescribeProblemObservationsInput): types.DescribeProblemObservationsOutput, table
+    describeWorkload: function(Client, types.DescribeWorkloadInput): types.DescribeWorkloadOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listComponents: function(Client, types.ListComponentsInput): types.ListComponentsOutput, table
+    listConfigurationHistory: function(Client, types.ListConfigurationHistoryInput): types.ListConfigurationHistoryOutput, table
+    listLogPatterns: function(Client, types.ListLogPatternsInput): types.ListLogPatternsOutput, table
+    listLogPatternSets: function(Client, types.ListLogPatternSetsInput): types.ListLogPatternSetsOutput, table
+    listProblems: function(Client, types.ListProblemsInput): types.ListProblemsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listWorkloads: function(Client, types.ListWorkloadsInput): types.ListWorkloadsOutput, table
+    removeWorkload: function(Client, types.RemoveWorkloadInput): types.RemoveWorkloadOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateComponent: function(Client, types.UpdateComponentInput): types.UpdateComponentOutput, table
+    updateComponentConfiguration: function(Client, types.UpdateComponentConfigurationInput): types.UpdateComponentConfigurationOutput, table
+    updateLogPattern: function(Client, types.UpdateLogPatternInput): types.UpdateLogPatternOutput, table
+    updateProblem: function(Client, types.UpdateProblemInput): types.UpdateProblemOutput, table
+    updateWorkload: function(Client, types.UpdateWorkloadInput): types.UpdateWorkloadOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

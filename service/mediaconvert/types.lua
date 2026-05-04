@@ -1,0 +1,14202 @@
+local M = {}
+
+M.RequiredFlag = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.AllowedRenditionSize = {
+    type = "structure",
+    members = {
+        Height = {
+            type = "number",
+            traits = {
+                json_name = "height",
+            },
+        },
+        Required = {
+            type = "string",
+            traits = {
+                json_name = "required",
+            },
+        },
+        Width = {
+            type = "number",
+            traits = {
+                json_name = "width",
+            },
+        },
+    },
+}
+
+M.AudioChannelTag = {
+    L = "L",
+    R = "R",
+    C = "C",
+    LFE = "LFE",
+    LS = "LS",
+    RS = "RS",
+    LC = "LC",
+    RC = "RC",
+    CS = "CS",
+    LSD = "LSD",
+    RSD = "RSD",
+    TCS = "TCS",
+    VHL = "VHL",
+    VHC = "VHC",
+    VHR = "VHR",
+    TBL = "TBL",
+    TBC = "TBC",
+    TBR = "TBR",
+    RSL = "RSL",
+    RSR = "RSR",
+    LW = "LW",
+    RW = "RW",
+    LFE2 = "LFE2",
+    LT = "LT",
+    RT = "RT",
+    HI = "HI",
+    NAR = "NAR",
+    M = "M",
+}
+
+M.AudioChannelTaggingSettings = {
+    type = "structure",
+    members = {
+        ChannelTag = {
+            type = "string",
+            traits = {
+                json_name = "channelTag",
+            },
+        },
+        ChannelTags = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "channelTags",
+            },
+        },
+    },
+}
+
+M.AudioNormalizationAlgorithm = {
+    ITU_BS_1770_1 = "ITU_BS_1770_1",
+    ITU_BS_1770_2 = "ITU_BS_1770_2",
+    ITU_BS_1770_3 = "ITU_BS_1770_3",
+    ITU_BS_1770_4 = "ITU_BS_1770_4",
+}
+
+M.AudioNormalizationAlgorithmControl = {
+    CORRECT_AUDIO = "CORRECT_AUDIO",
+    MEASURE_ONLY = "MEASURE_ONLY",
+}
+
+M.AudioNormalizationLoudnessLogging = {
+    LOG = "LOG",
+    DONT_LOG = "DONT_LOG",
+}
+
+M.AudioNormalizationPeakCalculation = {
+    TRUE_PEAK = "TRUE_PEAK",
+    NONE = "NONE",
+}
+
+M.AudioNormalizationSettings = {
+    type = "structure",
+    members = {
+        Algorithm = {
+            type = "string",
+            traits = {
+                json_name = "algorithm",
+            },
+        },
+        AlgorithmControl = {
+            type = "string",
+            traits = {
+                json_name = "algorithmControl",
+            },
+        },
+        CorrectionGateLevel = {
+            type = "number",
+            traits = {
+                json_name = "correctionGateLevel",
+            },
+        },
+        LoudnessLogging = {
+            type = "string",
+            traits = {
+                json_name = "loudnessLogging",
+            },
+        },
+        PeakCalculation = {
+            type = "string",
+            traits = {
+                json_name = "peakCalculation",
+            },
+        },
+        TargetLkfs = {
+            type = "number",
+            traits = {
+                json_name = "targetLkfs",
+            },
+        },
+        TruePeakLimiterThreshold = {
+            type = "number",
+            traits = {
+                json_name = "truePeakLimiterThreshold",
+            },
+        },
+    },
+}
+
+M.SlowPalPitchCorrection = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.AudioPitchCorrectionSettings = {
+    type = "structure",
+    members = {
+        SlowPalPitchCorrection = {
+            type = "string",
+            traits = {
+                json_name = "slowPalPitchCorrection",
+            },
+        },
+    },
+}
+
+M.AudioTypeControl = {
+    FOLLOW_INPUT = "FOLLOW_INPUT",
+    USE_CONFIGURED = "USE_CONFIGURED",
+}
+
+M.AacAudioDescriptionBroadcasterMix = {
+    BROADCASTER_MIXED_AD = "BROADCASTER_MIXED_AD",
+    NORMAL = "NORMAL",
+}
+
+M.AacCodecProfile = {
+    LC = "LC",
+    HEV1 = "HEV1",
+    HEV2 = "HEV2",
+    XHE = "XHE",
+}
+
+M.AacCodingMode = {
+    AD_RECEIVER_MIX = "AD_RECEIVER_MIX",
+    CODING_MODE_1_0 = "CODING_MODE_1_0",
+    CODING_MODE_1_1 = "CODING_MODE_1_1",
+    CODING_MODE_2_0 = "CODING_MODE_2_0",
+    CODING_MODE_5_1 = "CODING_MODE_5_1",
+    CODING_MODE_AUTO = "CODING_MODE_AUTO",
+}
+
+M.AacLoudnessMeasurementMode = {
+    PROGRAM = "PROGRAM",
+    ANCHOR = "ANCHOR",
+}
+
+M.AacRateControlMode = {
+    CBR = "CBR",
+    VBR = "VBR",
+}
+
+M.AacRawFormat = {
+    LATM_LOAS = "LATM_LOAS",
+    NONE = "NONE",
+}
+
+M.AacSpecification = {
+    MPEG2 = "MPEG2",
+    MPEG4 = "MPEG4",
+}
+
+M.AacVbrQuality = {
+    LOW = "LOW",
+    MEDIUM_LOW = "MEDIUM_LOW",
+    MEDIUM_HIGH = "MEDIUM_HIGH",
+    HIGH = "HIGH",
+}
+
+M.AacSettings = {
+    type = "structure",
+    members = {
+        AudioDescriptionBroadcasterMix = {
+            type = "string",
+            traits = {
+                json_name = "audioDescriptionBroadcasterMix",
+            },
+        },
+        Bitrate = {
+            type = "number",
+            traits = {
+                json_name = "bitrate",
+            },
+        },
+        CodecProfile = {
+            type = "string",
+            traits = {
+                json_name = "codecProfile",
+            },
+        },
+        CodingMode = {
+            type = "string",
+            traits = {
+                json_name = "codingMode",
+            },
+        },
+        LoudnessMeasurementMode = {
+            type = "string",
+            traits = {
+                json_name = "loudnessMeasurementMode",
+            },
+        },
+        RapInterval = {
+            type = "number",
+            traits = {
+                json_name = "rapInterval",
+            },
+        },
+        RateControlMode = {
+            type = "string",
+            traits = {
+                json_name = "rateControlMode",
+            },
+        },
+        RawFormat = {
+            type = "string",
+            traits = {
+                json_name = "rawFormat",
+            },
+        },
+        SampleRate = {
+            type = "number",
+            traits = {
+                json_name = "sampleRate",
+            },
+        },
+        Specification = {
+            type = "string",
+            traits = {
+                json_name = "specification",
+            },
+        },
+        TargetLoudnessRange = {
+            type = "number",
+            traits = {
+                json_name = "targetLoudnessRange",
+            },
+        },
+        VbrQuality = {
+            type = "string",
+            traits = {
+                json_name = "vbrQuality",
+            },
+        },
+    },
+}
+
+M.Ac3BitstreamMode = {
+    COMPLETE_MAIN = "COMPLETE_MAIN",
+    COMMENTARY = "COMMENTARY",
+    DIALOGUE = "DIALOGUE",
+    EMERGENCY = "EMERGENCY",
+    HEARING_IMPAIRED = "HEARING_IMPAIRED",
+    MUSIC_AND_EFFECTS = "MUSIC_AND_EFFECTS",
+    VISUALLY_IMPAIRED = "VISUALLY_IMPAIRED",
+    VOICE_OVER = "VOICE_OVER",
+}
+
+M.Ac3CodingMode = {
+    CODING_MODE_1_0 = "CODING_MODE_1_0",
+    CODING_MODE_1_1 = "CODING_MODE_1_1",
+    CODING_MODE_2_0 = "CODING_MODE_2_0",
+    CODING_MODE_3_2_LFE = "CODING_MODE_3_2_LFE",
+    CODING_MODE_AUTO = "CODING_MODE_AUTO",
+}
+
+M.Ac3DynamicRangeCompressionLine = {
+    FILM_STANDARD = "FILM_STANDARD",
+    FILM_LIGHT = "FILM_LIGHT",
+    MUSIC_STANDARD = "MUSIC_STANDARD",
+    MUSIC_LIGHT = "MUSIC_LIGHT",
+    SPEECH = "SPEECH",
+    NONE = "NONE",
+}
+
+M.Ac3DynamicRangeCompressionProfile = {
+    FILM_STANDARD = "FILM_STANDARD",
+    NONE = "NONE",
+}
+
+M.Ac3DynamicRangeCompressionRf = {
+    FILM_STANDARD = "FILM_STANDARD",
+    FILM_LIGHT = "FILM_LIGHT",
+    MUSIC_STANDARD = "MUSIC_STANDARD",
+    MUSIC_LIGHT = "MUSIC_LIGHT",
+    SPEECH = "SPEECH",
+    NONE = "NONE",
+}
+
+M.Ac3LfeFilter = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.Ac3MetadataControl = {
+    FOLLOW_INPUT = "FOLLOW_INPUT",
+    USE_CONFIGURED = "USE_CONFIGURED",
+}
+
+M.Ac3Settings = {
+    type = "structure",
+    members = {
+        Bitrate = {
+            type = "number",
+            traits = {
+                json_name = "bitrate",
+            },
+        },
+        BitstreamMode = {
+            type = "string",
+            traits = {
+                json_name = "bitstreamMode",
+            },
+        },
+        CodingMode = {
+            type = "string",
+            traits = {
+                json_name = "codingMode",
+            },
+        },
+        Dialnorm = {
+            type = "number",
+            traits = {
+                json_name = "dialnorm",
+            },
+        },
+        DynamicRangeCompressionLine = {
+            type = "string",
+            traits = {
+                json_name = "dynamicRangeCompressionLine",
+            },
+        },
+        DynamicRangeCompressionProfile = {
+            type = "string",
+            traits = {
+                json_name = "dynamicRangeCompressionProfile",
+            },
+        },
+        DynamicRangeCompressionRf = {
+            type = "string",
+            traits = {
+                json_name = "dynamicRangeCompressionRf",
+            },
+        },
+        LfeFilter = {
+            type = "string",
+            traits = {
+                json_name = "lfeFilter",
+            },
+        },
+        MetadataControl = {
+            type = "string",
+            traits = {
+                json_name = "metadataControl",
+            },
+        },
+        SampleRate = {
+            type = "number",
+            traits = {
+                json_name = "sampleRate",
+            },
+        },
+    },
+}
+
+M.Ac4BitstreamMode = {
+    COMPLETE_MAIN = "COMPLETE_MAIN",
+    EMERGENCY = "EMERGENCY",
+}
+
+M.Ac4CodingMode = {
+    CODING_MODE_2_0 = "CODING_MODE_2_0",
+    CODING_MODE_3_2_LFE = "CODING_MODE_3_2_LFE",
+    CODING_MODE_5_1_4 = "CODING_MODE_5_1_4",
+}
+
+M.Ac4DynamicRangeCompressionDrcProfile = {
+    NONE = "NONE",
+    FILM_STANDARD = "FILM_STANDARD",
+    FILM_LIGHT = "FILM_LIGHT",
+    MUSIC_STANDARD = "MUSIC_STANDARD",
+    MUSIC_LIGHT = "MUSIC_LIGHT",
+    SPEECH = "SPEECH",
+}
+
+M.Ac4StereoDownmix = {
+    NOT_INDICATED = "NOT_INDICATED",
+    LO_RO = "LO_RO",
+    LT_RT = "LT_RT",
+    DPL2 = "DPL2",
+}
+
+M.Ac4Settings = {
+    type = "structure",
+    members = {
+        Bitrate = {
+            type = "number",
+            traits = {
+                json_name = "bitrate",
+            },
+        },
+        BitstreamMode = {
+            type = "string",
+            traits = {
+                json_name = "bitstreamMode",
+            },
+        },
+        CodingMode = {
+            type = "string",
+            traits = {
+                json_name = "codingMode",
+            },
+        },
+        DynamicRangeCompressionFlatPanelTv = {
+            type = "string",
+            traits = {
+                json_name = "dynamicRangeCompressionFlatPanelTv",
+            },
+        },
+        DynamicRangeCompressionHomeTheater = {
+            type = "string",
+            traits = {
+                json_name = "dynamicRangeCompressionHomeTheater",
+            },
+        },
+        DynamicRangeCompressionPortableHeadphones = {
+            type = "string",
+            traits = {
+                json_name = "dynamicRangeCompressionPortableHeadphones",
+            },
+        },
+        DynamicRangeCompressionPortableSpeakers = {
+            type = "string",
+            traits = {
+                json_name = "dynamicRangeCompressionPortableSpeakers",
+            },
+        },
+        LoRoCenterMixLevel = {
+            type = "number",
+            traits = {
+                json_name = "loRoCenterMixLevel",
+            },
+        },
+        LoRoSurroundMixLevel = {
+            type = "number",
+            traits = {
+                json_name = "loRoSurroundMixLevel",
+            },
+        },
+        LtRtCenterMixLevel = {
+            type = "number",
+            traits = {
+                json_name = "ltRtCenterMixLevel",
+            },
+        },
+        LtRtSurroundMixLevel = {
+            type = "number",
+            traits = {
+                json_name = "ltRtSurroundMixLevel",
+            },
+        },
+        SampleRate = {
+            type = "number",
+            traits = {
+                json_name = "sampleRate",
+            },
+        },
+        StereoDownmix = {
+            type = "string",
+            traits = {
+                json_name = "stereoDownmix",
+            },
+        },
+    },
+}
+
+M.AiffSettings = {
+    type = "structure",
+    members = {
+        BitDepth = {
+            type = "number",
+            traits = {
+                json_name = "bitDepth",
+            },
+        },
+        Channels = {
+            type = "number",
+            traits = {
+                json_name = "channels",
+            },
+        },
+        SampleRate = {
+            type = "number",
+            traits = {
+                json_name = "sampleRate",
+            },
+        },
+    },
+}
+
+M.AudioCodec = {
+    AAC = "AAC",
+    MP2 = "MP2",
+    MP3 = "MP3",
+    WAV = "WAV",
+    AIFF = "AIFF",
+    AC3 = "AC3",
+    AC4 = "AC4",
+    EAC3 = "EAC3",
+    EAC3_ATMOS = "EAC3_ATMOS",
+    VORBIS = "VORBIS",
+    OPUS = "OPUS",
+    PASSTHROUGH = "PASSTHROUGH",
+    FLAC = "FLAC",
+}
+
+M.Eac3AtmosBitstreamMode = {
+    COMPLETE_MAIN = "COMPLETE_MAIN",
+}
+
+M.Eac3AtmosCodingMode = {
+    CODING_MODE_AUTO = "CODING_MODE_AUTO",
+    CODING_MODE_5_1_4 = "CODING_MODE_5_1_4",
+    CODING_MODE_7_1_4 = "CODING_MODE_7_1_4",
+    CODING_MODE_9_1_6 = "CODING_MODE_9_1_6",
+}
+
+M.Eac3AtmosDialogueIntelligence = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.Eac3AtmosDownmixControl = {
+    SPECIFIED = "SPECIFIED",
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+}
+
+M.Eac3AtmosDynamicRangeCompressionLine = {
+    NONE = "NONE",
+    FILM_STANDARD = "FILM_STANDARD",
+    FILM_LIGHT = "FILM_LIGHT",
+    MUSIC_STANDARD = "MUSIC_STANDARD",
+    MUSIC_LIGHT = "MUSIC_LIGHT",
+    SPEECH = "SPEECH",
+}
+
+M.Eac3AtmosDynamicRangeCompressionRf = {
+    NONE = "NONE",
+    FILM_STANDARD = "FILM_STANDARD",
+    FILM_LIGHT = "FILM_LIGHT",
+    MUSIC_STANDARD = "MUSIC_STANDARD",
+    MUSIC_LIGHT = "MUSIC_LIGHT",
+    SPEECH = "SPEECH",
+}
+
+M.Eac3AtmosDynamicRangeControl = {
+    SPECIFIED = "SPECIFIED",
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+}
+
+M.Eac3AtmosMeteringMode = {
+    LEQ_A = "LEQ_A",
+    ITU_BS_1770_1 = "ITU_BS_1770_1",
+    ITU_BS_1770_2 = "ITU_BS_1770_2",
+    ITU_BS_1770_3 = "ITU_BS_1770_3",
+    ITU_BS_1770_4 = "ITU_BS_1770_4",
+}
+
+M.Eac3AtmosStereoDownmix = {
+    NOT_INDICATED = "NOT_INDICATED",
+    STEREO = "STEREO",
+    SURROUND = "SURROUND",
+    DPL2 = "DPL2",
+}
+
+M.Eac3AtmosSurroundExMode = {
+    NOT_INDICATED = "NOT_INDICATED",
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.Eac3AtmosSettings = {
+    type = "structure",
+    members = {
+        Bitrate = {
+            type = "number",
+            traits = {
+                json_name = "bitrate",
+            },
+        },
+        BitstreamMode = {
+            type = "string",
+            traits = {
+                json_name = "bitstreamMode",
+            },
+        },
+        CodingMode = {
+            type = "string",
+            traits = {
+                json_name = "codingMode",
+            },
+        },
+        DialogueIntelligence = {
+            type = "string",
+            traits = {
+                json_name = "dialogueIntelligence",
+            },
+        },
+        DownmixControl = {
+            type = "string",
+            traits = {
+                json_name = "downmixControl",
+            },
+        },
+        DynamicRangeCompressionLine = {
+            type = "string",
+            traits = {
+                json_name = "dynamicRangeCompressionLine",
+            },
+        },
+        DynamicRangeCompressionRf = {
+            type = "string",
+            traits = {
+                json_name = "dynamicRangeCompressionRf",
+            },
+        },
+        DynamicRangeControl = {
+            type = "string",
+            traits = {
+                json_name = "dynamicRangeControl",
+            },
+        },
+        LoRoCenterMixLevel = {
+            type = "number",
+            traits = {
+                json_name = "loRoCenterMixLevel",
+            },
+        },
+        LoRoSurroundMixLevel = {
+            type = "number",
+            traits = {
+                json_name = "loRoSurroundMixLevel",
+            },
+        },
+        LtRtCenterMixLevel = {
+            type = "number",
+            traits = {
+                json_name = "ltRtCenterMixLevel",
+            },
+        },
+        LtRtSurroundMixLevel = {
+            type = "number",
+            traits = {
+                json_name = "ltRtSurroundMixLevel",
+            },
+        },
+        MeteringMode = {
+            type = "string",
+            traits = {
+                json_name = "meteringMode",
+            },
+        },
+        SampleRate = {
+            type = "number",
+            traits = {
+                json_name = "sampleRate",
+            },
+        },
+        SpeechThreshold = {
+            type = "number",
+            traits = {
+                json_name = "speechThreshold",
+            },
+        },
+        StereoDownmix = {
+            type = "string",
+            traits = {
+                json_name = "stereoDownmix",
+            },
+        },
+        SurroundExMode = {
+            type = "string",
+            traits = {
+                json_name = "surroundExMode",
+            },
+        },
+    },
+}
+
+M.Eac3AttenuationControl = {
+    ATTENUATE_3_DB = "ATTENUATE_3_DB",
+    NONE = "NONE",
+}
+
+M.Eac3BitstreamMode = {
+    COMPLETE_MAIN = "COMPLETE_MAIN",
+    COMMENTARY = "COMMENTARY",
+    EMERGENCY = "EMERGENCY",
+    HEARING_IMPAIRED = "HEARING_IMPAIRED",
+    VISUALLY_IMPAIRED = "VISUALLY_IMPAIRED",
+}
+
+M.Eac3CodingMode = {
+    CODING_MODE_1_0 = "CODING_MODE_1_0",
+    CODING_MODE_2_0 = "CODING_MODE_2_0",
+    CODING_MODE_3_2 = "CODING_MODE_3_2",
+    CODING_MODE_AUTO = "CODING_MODE_AUTO",
+}
+
+M.Eac3DcFilter = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.Eac3DynamicRangeCompressionLine = {
+    NONE = "NONE",
+    FILM_STANDARD = "FILM_STANDARD",
+    FILM_LIGHT = "FILM_LIGHT",
+    MUSIC_STANDARD = "MUSIC_STANDARD",
+    MUSIC_LIGHT = "MUSIC_LIGHT",
+    SPEECH = "SPEECH",
+}
+
+M.Eac3DynamicRangeCompressionRf = {
+    NONE = "NONE",
+    FILM_STANDARD = "FILM_STANDARD",
+    FILM_LIGHT = "FILM_LIGHT",
+    MUSIC_STANDARD = "MUSIC_STANDARD",
+    MUSIC_LIGHT = "MUSIC_LIGHT",
+    SPEECH = "SPEECH",
+}
+
+M.Eac3LfeControl = {
+    LFE = "LFE",
+    NO_LFE = "NO_LFE",
+}
+
+M.Eac3LfeFilter = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.Eac3MetadataControl = {
+    FOLLOW_INPUT = "FOLLOW_INPUT",
+    USE_CONFIGURED = "USE_CONFIGURED",
+}
+
+M.Eac3PassthroughControl = {
+    WHEN_POSSIBLE = "WHEN_POSSIBLE",
+    NO_PASSTHROUGH = "NO_PASSTHROUGH",
+}
+
+M.Eac3PhaseControl = {
+    SHIFT_90_DEGREES = "SHIFT_90_DEGREES",
+    NO_SHIFT = "NO_SHIFT",
+}
+
+M.Eac3StereoDownmix = {
+    NOT_INDICATED = "NOT_INDICATED",
+    LO_RO = "LO_RO",
+    LT_RT = "LT_RT",
+    DPL2 = "DPL2",
+}
+
+M.Eac3SurroundExMode = {
+    NOT_INDICATED = "NOT_INDICATED",
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.Eac3SurroundMode = {
+    NOT_INDICATED = "NOT_INDICATED",
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.Eac3Settings = {
+    type = "structure",
+    members = {
+        AttenuationControl = {
+            type = "string",
+            traits = {
+                json_name = "attenuationControl",
+            },
+        },
+        Bitrate = {
+            type = "number",
+            traits = {
+                json_name = "bitrate",
+            },
+        },
+        BitstreamMode = {
+            type = "string",
+            traits = {
+                json_name = "bitstreamMode",
+            },
+        },
+        CodingMode = {
+            type = "string",
+            traits = {
+                json_name = "codingMode",
+            },
+        },
+        DcFilter = {
+            type = "string",
+            traits = {
+                json_name = "dcFilter",
+            },
+        },
+        Dialnorm = {
+            type = "number",
+            traits = {
+                json_name = "dialnorm",
+            },
+        },
+        DynamicRangeCompressionLine = {
+            type = "string",
+            traits = {
+                json_name = "dynamicRangeCompressionLine",
+            },
+        },
+        DynamicRangeCompressionRf = {
+            type = "string",
+            traits = {
+                json_name = "dynamicRangeCompressionRf",
+            },
+        },
+        LfeControl = {
+            type = "string",
+            traits = {
+                json_name = "lfeControl",
+            },
+        },
+        LfeFilter = {
+            type = "string",
+            traits = {
+                json_name = "lfeFilter",
+            },
+        },
+        LoRoCenterMixLevel = {
+            type = "number",
+            traits = {
+                json_name = "loRoCenterMixLevel",
+            },
+        },
+        LoRoSurroundMixLevel = {
+            type = "number",
+            traits = {
+                json_name = "loRoSurroundMixLevel",
+            },
+        },
+        LtRtCenterMixLevel = {
+            type = "number",
+            traits = {
+                json_name = "ltRtCenterMixLevel",
+            },
+        },
+        LtRtSurroundMixLevel = {
+            type = "number",
+            traits = {
+                json_name = "ltRtSurroundMixLevel",
+            },
+        },
+        MetadataControl = {
+            type = "string",
+            traits = {
+                json_name = "metadataControl",
+            },
+        },
+        PassthroughControl = {
+            type = "string",
+            traits = {
+                json_name = "passthroughControl",
+            },
+        },
+        PhaseControl = {
+            type = "string",
+            traits = {
+                json_name = "phaseControl",
+            },
+        },
+        SampleRate = {
+            type = "number",
+            traits = {
+                json_name = "sampleRate",
+            },
+        },
+        StereoDownmix = {
+            type = "string",
+            traits = {
+                json_name = "stereoDownmix",
+            },
+        },
+        SurroundExMode = {
+            type = "string",
+            traits = {
+                json_name = "surroundExMode",
+            },
+        },
+        SurroundMode = {
+            type = "string",
+            traits = {
+                json_name = "surroundMode",
+            },
+        },
+    },
+}
+
+M.FlacSettings = {
+    type = "structure",
+    members = {
+        BitDepth = {
+            type = "number",
+            traits = {
+                json_name = "bitDepth",
+            },
+        },
+        Channels = {
+            type = "number",
+            traits = {
+                json_name = "channels",
+            },
+        },
+        SampleRate = {
+            type = "number",
+            traits = {
+                json_name = "sampleRate",
+            },
+        },
+    },
+}
+
+M.Mp2AudioDescriptionMix = {
+    BROADCASTER_MIXED_AD = "BROADCASTER_MIXED_AD",
+    NONE = "NONE",
+}
+
+M.Mp2Settings = {
+    type = "structure",
+    members = {
+        AudioDescriptionMix = {
+            type = "string",
+            traits = {
+                json_name = "audioDescriptionMix",
+            },
+        },
+        Bitrate = {
+            type = "number",
+            traits = {
+                json_name = "bitrate",
+            },
+        },
+        Channels = {
+            type = "number",
+            traits = {
+                json_name = "channels",
+            },
+        },
+        SampleRate = {
+            type = "number",
+            traits = {
+                json_name = "sampleRate",
+            },
+        },
+    },
+}
+
+M.Mp3RateControlMode = {
+    CBR = "CBR",
+    VBR = "VBR",
+}
+
+M.Mp3Settings = {
+    type = "structure",
+    members = {
+        Bitrate = {
+            type = "number",
+            traits = {
+                json_name = "bitrate",
+            },
+        },
+        Channels = {
+            type = "number",
+            traits = {
+                json_name = "channels",
+            },
+        },
+        RateControlMode = {
+            type = "string",
+            traits = {
+                json_name = "rateControlMode",
+            },
+        },
+        SampleRate = {
+            type = "number",
+            traits = {
+                json_name = "sampleRate",
+            },
+        },
+        VbrQuality = {
+            type = "number",
+            traits = {
+                json_name = "vbrQuality",
+            },
+        },
+    },
+}
+
+M.OpusSettings = {
+    type = "structure",
+    members = {
+        Bitrate = {
+            type = "number",
+            traits = {
+                json_name = "bitrate",
+            },
+        },
+        Channels = {
+            type = "number",
+            traits = {
+                json_name = "channels",
+            },
+        },
+        SampleRate = {
+            type = "number",
+            traits = {
+                json_name = "sampleRate",
+            },
+        },
+    },
+}
+
+M.VorbisSettings = {
+    type = "structure",
+    members = {
+        Channels = {
+            type = "number",
+            traits = {
+                json_name = "channels",
+            },
+        },
+        SampleRate = {
+            type = "number",
+            traits = {
+                json_name = "sampleRate",
+            },
+        },
+        VbrQuality = {
+            type = "number",
+            traits = {
+                json_name = "vbrQuality",
+            },
+        },
+    },
+}
+
+M.WavFormat = {
+    RIFF = "RIFF",
+    RF64 = "RF64",
+    EXTENSIBLE = "EXTENSIBLE",
+}
+
+M.WavSettings = {
+    type = "structure",
+    members = {
+        BitDepth = {
+            type = "number",
+            traits = {
+                json_name = "bitDepth",
+            },
+        },
+        Channels = {
+            type = "number",
+            traits = {
+                json_name = "channels",
+            },
+        },
+        Format = {
+            type = "string",
+            traits = {
+                json_name = "format",
+            },
+        },
+        SampleRate = {
+            type = "number",
+            traits = {
+                json_name = "sampleRate",
+            },
+        },
+    },
+}
+
+M.AudioCodecSettings = {
+    type = "structure",
+    members = {
+        AacSettings = {
+            type = "structure",
+            traits = {
+                json_name = "aacSettings",
+            },
+        },
+        Ac3Settings = {
+            type = "structure",
+            traits = {
+                json_name = "ac3Settings",
+            },
+        },
+        Ac4Settings = {
+            type = "structure",
+            traits = {
+                json_name = "ac4Settings",
+            },
+        },
+        AiffSettings = {
+            type = "structure",
+            traits = {
+                json_name = "aiffSettings",
+            },
+        },
+        Codec = {
+            type = "string",
+            traits = {
+                json_name = "codec",
+            },
+        },
+        Eac3AtmosSettings = {
+            type = "structure",
+            traits = {
+                json_name = "eac3AtmosSettings",
+            },
+        },
+        Eac3Settings = {
+            type = "structure",
+            traits = {
+                json_name = "eac3Settings",
+            },
+        },
+        FlacSettings = {
+            type = "structure",
+            traits = {
+                json_name = "flacSettings",
+            },
+        },
+        Mp2Settings = {
+            type = "structure",
+            traits = {
+                json_name = "mp2Settings",
+            },
+        },
+        Mp3Settings = {
+            type = "structure",
+            traits = {
+                json_name = "mp3Settings",
+            },
+        },
+        OpusSettings = {
+            type = "structure",
+            traits = {
+                json_name = "opusSettings",
+            },
+        },
+        VorbisSettings = {
+            type = "structure",
+            traits = {
+                json_name = "vorbisSettings",
+            },
+        },
+        WavSettings = {
+            type = "structure",
+            traits = {
+                json_name = "wavSettings",
+            },
+        },
+    },
+}
+
+M.LanguageCode = {
+    ENG = "ENG",
+    SPA = "SPA",
+    FRA = "FRA",
+    DEU = "DEU",
+    GER = "GER",
+    ZHO = "ZHO",
+    ARA = "ARA",
+    HIN = "HIN",
+    JPN = "JPN",
+    RUS = "RUS",
+    POR = "POR",
+    ITA = "ITA",
+    URD = "URD",
+    VIE = "VIE",
+    KOR = "KOR",
+    PAN = "PAN",
+    ABK = "ABK",
+    AAR = "AAR",
+    AFR = "AFR",
+    AKA = "AKA",
+    SQI = "SQI",
+    AMH = "AMH",
+    ARG = "ARG",
+    HYE = "HYE",
+    ASM = "ASM",
+    AVA = "AVA",
+    AVE = "AVE",
+    AYM = "AYM",
+    AZE = "AZE",
+    BAM = "BAM",
+    BAK = "BAK",
+    EUS = "EUS",
+    BEL = "BEL",
+    BEN = "BEN",
+    BIH = "BIH",
+    BIS = "BIS",
+    BOS = "BOS",
+    BRE = "BRE",
+    BUL = "BUL",
+    MYA = "MYA",
+    CAT = "CAT",
+    KHM = "KHM",
+    CHA = "CHA",
+    CHE = "CHE",
+    NYA = "NYA",
+    CHU = "CHU",
+    CHV = "CHV",
+    COR = "COR",
+    COS = "COS",
+    CRE = "CRE",
+    HRV = "HRV",
+    CES = "CES",
+    DAN = "DAN",
+    DIV = "DIV",
+    NLD = "NLD",
+    DZO = "DZO",
+    ENM = "ENM",
+    EPO = "EPO",
+    EST = "EST",
+    EWE = "EWE",
+    FAO = "FAO",
+    FIJ = "FIJ",
+    FIN = "FIN",
+    FRM = "FRM",
+    FUL = "FUL",
+    GLA = "GLA",
+    GLG = "GLG",
+    LUG = "LUG",
+    KAT = "KAT",
+    ELL = "ELL",
+    GRN = "GRN",
+    GUJ = "GUJ",
+    HAT = "HAT",
+    HAU = "HAU",
+    HEB = "HEB",
+    HER = "HER",
+    HMO = "HMO",
+    HUN = "HUN",
+    ISL = "ISL",
+    IDO = "IDO",
+    IBO = "IBO",
+    IND = "IND",
+    INA = "INA",
+    ILE = "ILE",
+    IKU = "IKU",
+    IPK = "IPK",
+    GLE = "GLE",
+    JAV = "JAV",
+    KAL = "KAL",
+    KAN = "KAN",
+    KAU = "KAU",
+    KAS = "KAS",
+    KAZ = "KAZ",
+    KIK = "KIK",
+    KIN = "KIN",
+    KIR = "KIR",
+    KOM = "KOM",
+    KON = "KON",
+    KUA = "KUA",
+    KUR = "KUR",
+    LAO = "LAO",
+    LAT = "LAT",
+    LAV = "LAV",
+    LIM = "LIM",
+    LIN = "LIN",
+    LIT = "LIT",
+    LUB = "LUB",
+    LTZ = "LTZ",
+    MKD = "MKD",
+    MLG = "MLG",
+    MSA = "MSA",
+    MAL = "MAL",
+    MLT = "MLT",
+    GLV = "GLV",
+    MRI = "MRI",
+    MAR = "MAR",
+    MAH = "MAH",
+    MON = "MON",
+    NAU = "NAU",
+    NAV = "NAV",
+    NDE = "NDE",
+    NBL = "NBL",
+    NDO = "NDO",
+    NEP = "NEP",
+    SME = "SME",
+    NOR = "NOR",
+    NOB = "NOB",
+    NNO = "NNO",
+    OCI = "OCI",
+    OJI = "OJI",
+    ORI = "ORI",
+    ORM = "ORM",
+    OSS = "OSS",
+    PLI = "PLI",
+    FAS = "FAS",
+    POL = "POL",
+    PUS = "PUS",
+    QUE = "QUE",
+    QAA = "QAA",
+    RON = "RON",
+    ROH = "ROH",
+    RUN = "RUN",
+    SMO = "SMO",
+    SAG = "SAG",
+    SAN = "SAN",
+    SRD = "SRD",
+    SRB = "SRB",
+    SNA = "SNA",
+    III = "III",
+    SND = "SND",
+    SIN = "SIN",
+    SLK = "SLK",
+    SLV = "SLV",
+    SOM = "SOM",
+    SOT = "SOT",
+    SUN = "SUN",
+    SWA = "SWA",
+    SSW = "SSW",
+    SWE = "SWE",
+    TGL = "TGL",
+    TAH = "TAH",
+    TGK = "TGK",
+    TAM = "TAM",
+    TAT = "TAT",
+    TEL = "TEL",
+    THA = "THA",
+    BOD = "BOD",
+    TIR = "TIR",
+    TON = "TON",
+    TSO = "TSO",
+    TSN = "TSN",
+    TUR = "TUR",
+    TUK = "TUK",
+    TWI = "TWI",
+    UIG = "UIG",
+    UKR = "UKR",
+    UZB = "UZB",
+    VEN = "VEN",
+    VOL = "VOL",
+    WLN = "WLN",
+    CYM = "CYM",
+    FRY = "FRY",
+    WOL = "WOL",
+    XHO = "XHO",
+    YID = "YID",
+    YOR = "YOR",
+    ZHA = "ZHA",
+    ZUL = "ZUL",
+    ORJ = "ORJ",
+    QPC = "QPC",
+    TNG = "TNG",
+    SRP = "SRP",
+}
+
+M.AudioLanguageCodeControl = {
+    FOLLOW_INPUT = "FOLLOW_INPUT",
+    USE_CONFIGURED = "USE_CONFIGURED",
+}
+
+M.OutputChannelMapping = {
+    type = "structure",
+    members = {
+        InputChannels = {
+            type = "list",
+            member_type = "number",
+            traits = {
+                json_name = "inputChannels",
+            },
+        },
+        InputChannelsFineTune = {
+            type = "list",
+            member_type = "number",
+            traits = {
+                json_name = "inputChannelsFineTune",
+            },
+        },
+    },
+}
+
+M.ChannelMapping = {
+    type = "structure",
+    members = {
+        OutputChannels = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "outputChannels",
+            },
+        },
+    },
+}
+
+M.RemixSettings = {
+    type = "structure",
+    members = {
+        AudioDescriptionAudioChannel = {
+            type = "number",
+            traits = {
+                json_name = "audioDescriptionAudioChannel",
+            },
+        },
+        AudioDescriptionDataChannel = {
+            type = "number",
+            traits = {
+                json_name = "audioDescriptionDataChannel",
+            },
+        },
+        ChannelMapping = {
+            type = "structure",
+            traits = {
+                json_name = "channelMapping",
+            },
+        },
+        ChannelsIn = {
+            type = "number",
+            traits = {
+                json_name = "channelsIn",
+            },
+        },
+        ChannelsOut = {
+            type = "number",
+            traits = {
+                json_name = "channelsOut",
+            },
+        },
+    },
+}
+
+M.AudioDescription = {
+    type = "structure",
+    members = {
+        AudioChannelTaggingSettings = {
+            type = "structure",
+            traits = {
+                json_name = "audioChannelTaggingSettings",
+            },
+        },
+        AudioNormalizationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "audioNormalizationSettings",
+            },
+        },
+        AudioPitchCorrectionSettings = {
+            type = "structure",
+            traits = {
+                json_name = "audioPitchCorrectionSettings",
+            },
+        },
+        AudioSourceName = {
+            type = "string",
+            traits = {
+                json_name = "audioSourceName",
+            },
+        },
+        AudioType = {
+            type = "number",
+            traits = {
+                json_name = "audioType",
+            },
+        },
+        AudioTypeControl = {
+            type = "string",
+            traits = {
+                json_name = "audioTypeControl",
+            },
+        },
+        CodecSettings = {
+            type = "structure",
+            traits = {
+                json_name = "codecSettings",
+            },
+        },
+        CustomLanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "customLanguageCode",
+            },
+        },
+        LanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "languageCode",
+            },
+        },
+        LanguageCodeControl = {
+            type = "string",
+            traits = {
+                json_name = "languageCodeControl",
+            },
+        },
+        RemixSettings = {
+            type = "structure",
+            traits = {
+                json_name = "remixSettings",
+            },
+        },
+        StreamName = {
+            type = "string",
+            traits = {
+                json_name = "streamName",
+            },
+        },
+    },
+}
+
+M.ForceIncludeRenditionSize = {
+    type = "structure",
+    members = {
+        Height = {
+            type = "number",
+            traits = {
+                json_name = "height",
+            },
+        },
+        Width = {
+            type = "number",
+            traits = {
+                json_name = "width",
+            },
+        },
+    },
+}
+
+M.MinBottomRenditionSize = {
+    type = "structure",
+    members = {
+        Height = {
+            type = "number",
+            traits = {
+                json_name = "height",
+            },
+        },
+        Width = {
+            type = "number",
+            traits = {
+                json_name = "width",
+            },
+        },
+    },
+}
+
+M.MinTopRenditionSize = {
+    type = "structure",
+    members = {
+        Height = {
+            type = "number",
+            traits = {
+                json_name = "height",
+            },
+        },
+        Width = {
+            type = "number",
+            traits = {
+                json_name = "width",
+            },
+        },
+    },
+}
+
+M.RuleType = {
+    MIN_TOP_RENDITION_SIZE = "MIN_TOP_RENDITION_SIZE",
+    MIN_BOTTOM_RENDITION_SIZE = "MIN_BOTTOM_RENDITION_SIZE",
+    FORCE_INCLUDE_RENDITIONS = "FORCE_INCLUDE_RENDITIONS",
+    ALLOWED_RENDITIONS = "ALLOWED_RENDITIONS",
+}
+
+M.AutomatedAbrRule = {
+    type = "structure",
+    members = {
+        AllowedRenditions = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "allowedRenditions",
+            },
+        },
+        ForceIncludeRenditions = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "forceIncludeRenditions",
+            },
+        },
+        MinBottomRenditionSize = {
+            type = "structure",
+            traits = {
+                json_name = "minBottomRenditionSize",
+            },
+        },
+        MinTopRenditionSize = {
+            type = "structure",
+            traits = {
+                json_name = "minTopRenditionSize",
+            },
+        },
+        Type = {
+            type = "string",
+            traits = {
+                json_name = "type",
+            },
+        },
+    },
+}
+
+M.BurninSubtitleAlignment = {
+    CENTERED = "CENTERED",
+    LEFT = "LEFT",
+    AUTO = "AUTO",
+}
+
+M.BurninSubtitleApplyFontColor = {
+    WHITE_TEXT_ONLY = "WHITE_TEXT_ONLY",
+    ALL_TEXT = "ALL_TEXT",
+}
+
+M.BurninSubtitleBackgroundColor = {
+    NONE = "NONE",
+    BLACK = "BLACK",
+    WHITE = "WHITE",
+    AUTO = "AUTO",
+}
+
+M.BurninSubtitleFallbackFont = {
+    BEST_MATCH = "BEST_MATCH",
+    MONOSPACED_SANSSERIF = "MONOSPACED_SANSSERIF",
+    MONOSPACED_SERIF = "MONOSPACED_SERIF",
+    PROPORTIONAL_SANSSERIF = "PROPORTIONAL_SANSSERIF",
+    PROPORTIONAL_SERIF = "PROPORTIONAL_SERIF",
+}
+
+M.BurninSubtitleFontColor = {
+    WHITE = "WHITE",
+    BLACK = "BLACK",
+    YELLOW = "YELLOW",
+    RED = "RED",
+    GREEN = "GREEN",
+    BLUE = "BLUE",
+    HEX = "HEX",
+    AUTO = "AUTO",
+}
+
+M.FontScript = {
+    AUTOMATIC = "AUTOMATIC",
+    HANS = "HANS",
+    HANT = "HANT",
+}
+
+M.BurninSubtitleOutlineColor = {
+    BLACK = "BLACK",
+    WHITE = "WHITE",
+    YELLOW = "YELLOW",
+    RED = "RED",
+    GREEN = "GREEN",
+    BLUE = "BLUE",
+    AUTO = "AUTO",
+}
+
+M.RemoveRubyReserveAttributes = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.BurninSubtitleShadowColor = {
+    NONE = "NONE",
+    BLACK = "BLACK",
+    WHITE = "WHITE",
+    AUTO = "AUTO",
+}
+
+M.BurnInSubtitleStylePassthrough = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.BurninSubtitleTeletextSpacing = {
+    FIXED_GRID = "FIXED_GRID",
+    PROPORTIONAL = "PROPORTIONAL",
+    AUTO = "AUTO",
+}
+
+M.BurninDestinationSettings = {
+    type = "structure",
+    members = {
+        Alignment = {
+            type = "string",
+            traits = {
+                json_name = "alignment",
+            },
+        },
+        ApplyFontColor = {
+            type = "string",
+            traits = {
+                json_name = "applyFontColor",
+            },
+        },
+        BackgroundColor = {
+            type = "string",
+            traits = {
+                json_name = "backgroundColor",
+            },
+        },
+        BackgroundOpacity = {
+            type = "number",
+            traits = {
+                json_name = "backgroundOpacity",
+            },
+        },
+        FallbackFont = {
+            type = "string",
+            traits = {
+                json_name = "fallbackFont",
+            },
+        },
+        FontColor = {
+            type = "string",
+            traits = {
+                json_name = "fontColor",
+            },
+        },
+        FontFileBold = {
+            type = "string",
+            traits = {
+                json_name = "fontFileBold",
+            },
+        },
+        FontFileBoldItalic = {
+            type = "string",
+            traits = {
+                json_name = "fontFileBoldItalic",
+            },
+        },
+        FontFileItalic = {
+            type = "string",
+            traits = {
+                json_name = "fontFileItalic",
+            },
+        },
+        FontFileRegular = {
+            type = "string",
+            traits = {
+                json_name = "fontFileRegular",
+            },
+        },
+        FontOpacity = {
+            type = "number",
+            traits = {
+                json_name = "fontOpacity",
+            },
+        },
+        FontResolution = {
+            type = "number",
+            traits = {
+                json_name = "fontResolution",
+            },
+        },
+        FontScript = {
+            type = "string",
+            traits = {
+                json_name = "fontScript",
+            },
+        },
+        FontSize = {
+            type = "number",
+            traits = {
+                json_name = "fontSize",
+            },
+        },
+        HexFontColor = {
+            type = "string",
+            traits = {
+                json_name = "hexFontColor",
+            },
+        },
+        OutlineColor = {
+            type = "string",
+            traits = {
+                json_name = "outlineColor",
+            },
+        },
+        OutlineSize = {
+            type = "number",
+            traits = {
+                json_name = "outlineSize",
+            },
+        },
+        RemoveRubyReserveAttributes = {
+            type = "string",
+            traits = {
+                json_name = "removeRubyReserveAttributes",
+            },
+        },
+        ShadowColor = {
+            type = "string",
+            traits = {
+                json_name = "shadowColor",
+            },
+        },
+        ShadowOpacity = {
+            type = "number",
+            traits = {
+                json_name = "shadowOpacity",
+            },
+        },
+        ShadowXOffset = {
+            type = "number",
+            traits = {
+                json_name = "shadowXOffset",
+            },
+        },
+        ShadowYOffset = {
+            type = "number",
+            traits = {
+                json_name = "shadowYOffset",
+            },
+        },
+        StylePassthrough = {
+            type = "string",
+            traits = {
+                json_name = "stylePassthrough",
+            },
+        },
+        TeletextSpacing = {
+            type = "string",
+            traits = {
+                json_name = "teletextSpacing",
+            },
+        },
+        XPosition = {
+            type = "number",
+            traits = {
+                json_name = "xPosition",
+            },
+        },
+        YPosition = {
+            type = "number",
+            traits = {
+                json_name = "yPosition",
+            },
+        },
+    },
+}
+
+M.CaptionDestinationType = {
+    BURN_IN = "BURN_IN",
+    DVB_SUB = "DVB_SUB",
+    EMBEDDED = "EMBEDDED",
+    EMBEDDED_PLUS_SCTE20 = "EMBEDDED_PLUS_SCTE20",
+    IMSC = "IMSC",
+    SCTE20_PLUS_EMBEDDED = "SCTE20_PLUS_EMBEDDED",
+    SCC = "SCC",
+    SRT = "SRT",
+    SMI = "SMI",
+    TELETEXT = "TELETEXT",
+    TTML = "TTML",
+    WEBVTT = "WEBVTT",
+}
+
+M.DvbSubtitleAlignment = {
+    CENTERED = "CENTERED",
+    LEFT = "LEFT",
+    AUTO = "AUTO",
+}
+
+M.DvbSubtitleApplyFontColor = {
+    WHITE_TEXT_ONLY = "WHITE_TEXT_ONLY",
+    ALL_TEXT = "ALL_TEXT",
+}
+
+M.DvbSubtitleBackgroundColor = {
+    NONE = "NONE",
+    BLACK = "BLACK",
+    WHITE = "WHITE",
+    AUTO = "AUTO",
+}
+
+M.DvbddsHandling = {
+    NONE = "NONE",
+    SPECIFIED = "SPECIFIED",
+    NO_DISPLAY_WINDOW = "NO_DISPLAY_WINDOW",
+    SPECIFIED_OPTIMAL = "SPECIFIED_OPTIMAL",
+}
+
+M.DvbSubSubtitleFallbackFont = {
+    BEST_MATCH = "BEST_MATCH",
+    MONOSPACED_SANSSERIF = "MONOSPACED_SANSSERIF",
+    MONOSPACED_SERIF = "MONOSPACED_SERIF",
+    PROPORTIONAL_SANSSERIF = "PROPORTIONAL_SANSSERIF",
+    PROPORTIONAL_SERIF = "PROPORTIONAL_SERIF",
+}
+
+M.DvbSubtitleFontColor = {
+    WHITE = "WHITE",
+    BLACK = "BLACK",
+    YELLOW = "YELLOW",
+    RED = "RED",
+    GREEN = "GREEN",
+    BLUE = "BLUE",
+    HEX = "HEX",
+    AUTO = "AUTO",
+}
+
+M.DvbSubtitleOutlineColor = {
+    BLACK = "BLACK",
+    WHITE = "WHITE",
+    YELLOW = "YELLOW",
+    RED = "RED",
+    GREEN = "GREEN",
+    BLUE = "BLUE",
+    AUTO = "AUTO",
+}
+
+M.DvbSubtitleShadowColor = {
+    NONE = "NONE",
+    BLACK = "BLACK",
+    WHITE = "WHITE",
+    AUTO = "AUTO",
+}
+
+M.DvbSubtitleStylePassthrough = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.DvbSubtitlingType = {
+    HEARING_IMPAIRED = "HEARING_IMPAIRED",
+    STANDARD = "STANDARD",
+}
+
+M.DvbSubtitleTeletextSpacing = {
+    FIXED_GRID = "FIXED_GRID",
+    PROPORTIONAL = "PROPORTIONAL",
+    AUTO = "AUTO",
+}
+
+M.DvbSubDestinationSettings = {
+    type = "structure",
+    members = {
+        Alignment = {
+            type = "string",
+            traits = {
+                json_name = "alignment",
+            },
+        },
+        ApplyFontColor = {
+            type = "string",
+            traits = {
+                json_name = "applyFontColor",
+            },
+        },
+        BackgroundColor = {
+            type = "string",
+            traits = {
+                json_name = "backgroundColor",
+            },
+        },
+        BackgroundOpacity = {
+            type = "number",
+            traits = {
+                json_name = "backgroundOpacity",
+            },
+        },
+        DdsHandling = {
+            type = "string",
+            traits = {
+                json_name = "ddsHandling",
+            },
+        },
+        DdsXCoordinate = {
+            type = "number",
+            traits = {
+                json_name = "ddsXCoordinate",
+            },
+        },
+        DdsYCoordinate = {
+            type = "number",
+            traits = {
+                json_name = "ddsYCoordinate",
+            },
+        },
+        FallbackFont = {
+            type = "string",
+            traits = {
+                json_name = "fallbackFont",
+            },
+        },
+        FontColor = {
+            type = "string",
+            traits = {
+                json_name = "fontColor",
+            },
+        },
+        FontFileBold = {
+            type = "string",
+            traits = {
+                json_name = "fontFileBold",
+            },
+        },
+        FontFileBoldItalic = {
+            type = "string",
+            traits = {
+                json_name = "fontFileBoldItalic",
+            },
+        },
+        FontFileItalic = {
+            type = "string",
+            traits = {
+                json_name = "fontFileItalic",
+            },
+        },
+        FontFileRegular = {
+            type = "string",
+            traits = {
+                json_name = "fontFileRegular",
+            },
+        },
+        FontOpacity = {
+            type = "number",
+            traits = {
+                json_name = "fontOpacity",
+            },
+        },
+        FontResolution = {
+            type = "number",
+            traits = {
+                json_name = "fontResolution",
+            },
+        },
+        FontScript = {
+            type = "string",
+            traits = {
+                json_name = "fontScript",
+            },
+        },
+        FontSize = {
+            type = "number",
+            traits = {
+                json_name = "fontSize",
+            },
+        },
+        Height = {
+            type = "number",
+            traits = {
+                json_name = "height",
+            },
+        },
+        HexFontColor = {
+            type = "string",
+            traits = {
+                json_name = "hexFontColor",
+            },
+        },
+        OutlineColor = {
+            type = "string",
+            traits = {
+                json_name = "outlineColor",
+            },
+        },
+        OutlineSize = {
+            type = "number",
+            traits = {
+                json_name = "outlineSize",
+            },
+        },
+        ShadowColor = {
+            type = "string",
+            traits = {
+                json_name = "shadowColor",
+            },
+        },
+        ShadowOpacity = {
+            type = "number",
+            traits = {
+                json_name = "shadowOpacity",
+            },
+        },
+        ShadowXOffset = {
+            type = "number",
+            traits = {
+                json_name = "shadowXOffset",
+            },
+        },
+        ShadowYOffset = {
+            type = "number",
+            traits = {
+                json_name = "shadowYOffset",
+            },
+        },
+        StylePassthrough = {
+            type = "string",
+            traits = {
+                json_name = "stylePassthrough",
+            },
+        },
+        SubtitlingType = {
+            type = "string",
+            traits = {
+                json_name = "subtitlingType",
+            },
+        },
+        TeletextSpacing = {
+            type = "string",
+            traits = {
+                json_name = "teletextSpacing",
+            },
+        },
+        Width = {
+            type = "number",
+            traits = {
+                json_name = "width",
+            },
+        },
+        XPosition = {
+            type = "number",
+            traits = {
+                json_name = "xPosition",
+            },
+        },
+        YPosition = {
+            type = "number",
+            traits = {
+                json_name = "yPosition",
+            },
+        },
+    },
+}
+
+M.EmbeddedDestinationSettings = {
+    type = "structure",
+    members = {
+        Destination608ChannelNumber = {
+            type = "number",
+            traits = {
+                json_name = "destination608ChannelNumber",
+            },
+        },
+        Destination708ServiceNumber = {
+            type = "number",
+            traits = {
+                json_name = "destination708ServiceNumber",
+            },
+        },
+    },
+}
+
+M.ImscAccessibilitySubs = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.ImscStylePassthrough = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.ImscDestinationSettings = {
+    type = "structure",
+    members = {
+        Accessibility = {
+            type = "string",
+            traits = {
+                json_name = "accessibility",
+            },
+        },
+        StylePassthrough = {
+            type = "string",
+            traits = {
+                json_name = "stylePassthrough",
+            },
+        },
+    },
+}
+
+M.SccDestinationFramerate = {
+    FRAMERATE_23_97 = "FRAMERATE_23_97",
+    FRAMERATE_24 = "FRAMERATE_24",
+    FRAMERATE_25 = "FRAMERATE_25",
+    FRAMERATE_29_97_DROPFRAME = "FRAMERATE_29_97_DROPFRAME",
+    FRAMERATE_29_97_NON_DROPFRAME = "FRAMERATE_29_97_NON_DROPFRAME",
+}
+
+M.SccDestinationSettings = {
+    type = "structure",
+    members = {
+        Framerate = {
+            type = "string",
+            traits = {
+                json_name = "framerate",
+            },
+        },
+    },
+}
+
+M.SrtStylePassthrough = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.SrtDestinationSettings = {
+    type = "structure",
+    members = {
+        StylePassthrough = {
+            type = "string",
+            traits = {
+                json_name = "stylePassthrough",
+            },
+        },
+    },
+}
+
+M.TeletextPageType = {
+    PAGE_TYPE_INITIAL = "PAGE_TYPE_INITIAL",
+    PAGE_TYPE_SUBTITLE = "PAGE_TYPE_SUBTITLE",
+    PAGE_TYPE_ADDL_INFO = "PAGE_TYPE_ADDL_INFO",
+    PAGE_TYPE_PROGRAM_SCHEDULE = "PAGE_TYPE_PROGRAM_SCHEDULE",
+    PAGE_TYPE_HEARING_IMPAIRED_SUBTITLE = "PAGE_TYPE_HEARING_IMPAIRED_SUBTITLE",
+}
+
+M.TeletextDestinationSettings = {
+    type = "structure",
+    members = {
+        PageNumber = {
+            type = "string",
+            traits = {
+                json_name = "pageNumber",
+            },
+        },
+        PageTypes = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "pageTypes",
+            },
+        },
+    },
+}
+
+M.TtmlStylePassthrough = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.TtmlDestinationSettings = {
+    type = "structure",
+    members = {
+        StylePassthrough = {
+            type = "string",
+            traits = {
+                json_name = "stylePassthrough",
+            },
+        },
+    },
+}
+
+M.WebvttAccessibilitySubs = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.WebvttStylePassthrough = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+    STRICT = "STRICT",
+    MERGE = "MERGE",
+}
+
+M.WebvttDestinationSettings = {
+    type = "structure",
+    members = {
+        Accessibility = {
+            type = "string",
+            traits = {
+                json_name = "accessibility",
+            },
+        },
+        StylePassthrough = {
+            type = "string",
+            traits = {
+                json_name = "stylePassthrough",
+            },
+        },
+    },
+}
+
+M.CaptionDestinationSettings = {
+    type = "structure",
+    members = {
+        BurninDestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "burninDestinationSettings",
+            },
+        },
+        DestinationType = {
+            type = "string",
+            traits = {
+                json_name = "destinationType",
+            },
+        },
+        DvbSubDestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "dvbSubDestinationSettings",
+            },
+        },
+        EmbeddedDestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "embeddedDestinationSettings",
+            },
+        },
+        ImscDestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "imscDestinationSettings",
+            },
+        },
+        SccDestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "sccDestinationSettings",
+            },
+        },
+        SrtDestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "srtDestinationSettings",
+            },
+        },
+        TeletextDestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "teletextDestinationSettings",
+            },
+        },
+        TtmlDestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "ttmlDestinationSettings",
+            },
+        },
+        WebvttDestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "webvttDestinationSettings",
+            },
+        },
+    },
+}
+
+M.CaptionDescription = {
+    type = "structure",
+    members = {
+        CaptionSelectorName = {
+            type = "string",
+            traits = {
+                json_name = "captionSelectorName",
+            },
+        },
+        CustomLanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "customLanguageCode",
+            },
+        },
+        DestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "destinationSettings",
+            },
+        },
+        LanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "languageCode",
+            },
+        },
+        LanguageDescription = {
+            type = "string",
+            traits = {
+                json_name = "languageDescription",
+            },
+        },
+    },
+}
+
+M.CaptionDescriptionPreset = {
+    type = "structure",
+    members = {
+        CustomLanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "customLanguageCode",
+            },
+        },
+        DestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "destinationSettings",
+            },
+        },
+        LanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "languageCode",
+            },
+        },
+        LanguageDescription = {
+            type = "string",
+            traits = {
+                json_name = "languageDescription",
+            },
+        },
+    },
+}
+
+M.CmafAdditionalManifest = {
+    type = "structure",
+    members = {
+        ManifestNameModifier = {
+            type = "string",
+            traits = {
+                json_name = "manifestNameModifier",
+            },
+        },
+        SelectedOutputs = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "selectedOutputs",
+            },
+        },
+    },
+}
+
+M.ColorSpace = {
+    FOLLOW = "FOLLOW",
+    REC_601 = "REC_601",
+    REC_709 = "REC_709",
+    HDR10 = "HDR10",
+    HLG_2020 = "HLG_2020",
+    P3DCI = "P3DCI",
+    P3D65_SDR = "P3D65_SDR",
+    P3D65_HDR = "P3D65_HDR",
+}
+
+M.ColorConversion3DLUTSetting = {
+    type = "structure",
+    members = {
+        FileInput = {
+            type = "string",
+            traits = {
+                json_name = "fileInput",
+            },
+        },
+        InputColorSpace = {
+            type = "string",
+            traits = {
+                json_name = "inputColorSpace",
+            },
+        },
+        InputMasteringLuminance = {
+            type = "number",
+            traits = {
+                json_name = "inputMasteringLuminance",
+            },
+        },
+        OutputColorSpace = {
+            type = "string",
+            traits = {
+                json_name = "outputColorSpace",
+            },
+        },
+        OutputMasteringLuminance = {
+            type = "number",
+            traits = {
+                json_name = "outputMasteringLuminance",
+            },
+        },
+    },
+}
+
+M.DashAdditionalManifest = {
+    type = "structure",
+    members = {
+        ManifestNameModifier = {
+            type = "string",
+            traits = {
+                json_name = "manifestNameModifier",
+            },
+        },
+        SelectedOutputs = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "selectedOutputs",
+            },
+        },
+    },
+}
+
+M.ElementalInferenceFeature = {
+    SMART_CROP = "SMART_CROP",
+}
+
+M.ElementalInferenceFeedManagementState = {
+    CREATED = "CREATED",
+    ASSOCIATED = "ASSOCIATED",
+    PENDING_DELETION = "PENDING_DELETION",
+    DELETED = "DELETED",
+}
+
+M.ElementalInferenceFeed = {
+    type = "structure",
+    members = {
+        Arn = {
+            type = "string",
+            traits = {
+                json_name = "arn",
+            },
+        },
+        FeedManagementState = {
+            type = "string",
+            traits = {
+                json_name = "feedManagementState",
+            },
+        },
+    },
+}
+
+M.Endpoint = {
+    type = "structure",
+    members = {
+        Url = {
+            type = "string",
+            traits = {
+                json_name = "url",
+            },
+        },
+    },
+}
+
+M.FrameMetricType = {
+    PSNR = "PSNR",
+    SSIM = "SSIM",
+    MS_SSIM = "MS_SSIM",
+    PSNR_HVS = "PSNR_HVS",
+    VMAF = "VMAF",
+    QVBR = "QVBR",
+    SHOT_CHANGE = "SHOT_CHANGE",
+}
+
+M.HlsAdditionalManifest = {
+    type = "structure",
+    members = {
+        ManifestNameModifier = {
+            type = "string",
+            traits = {
+                json_name = "manifestNameModifier",
+            },
+        },
+        SelectedOutputs = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "selectedOutputs",
+            },
+        },
+    },
+}
+
+M.HlsAdMarkers = {
+    ELEMENTAL = "ELEMENTAL",
+    ELEMENTAL_SCTE35 = "ELEMENTAL_SCTE35",
+}
+
+M.HlsCaptionLanguageMapping = {
+    type = "structure",
+    members = {
+        CaptionChannel = {
+            type = "number",
+            traits = {
+                json_name = "captionChannel",
+            },
+        },
+        CustomLanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "customLanguageCode",
+            },
+        },
+        LanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "languageCode",
+            },
+        },
+        LanguageDescription = {
+            type = "string",
+            traits = {
+                json_name = "languageDescription",
+            },
+        },
+    },
+}
+
+M.HopDestination = {
+    type = "structure",
+    members = {
+        Priority = {
+            type = "number",
+            traits = {
+                json_name = "priority",
+            },
+        },
+        Queue = {
+            type = "string",
+            traits = {
+                json_name = "queue",
+            },
+        },
+        WaitMinutes = {
+            type = "number",
+            traits = {
+                json_name = "waitMinutes",
+            },
+        },
+    },
+}
+
+M.Id3Insertion = {
+    type = "structure",
+    members = {
+        Id3 = {
+            type = "string",
+            traits = {
+                json_name = "id3",
+            },
+        },
+        Timecode = {
+            type = "string",
+            traits = {
+                json_name = "timecode",
+            },
+        },
+    },
+}
+
+M.AdvancedInputFilter = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.AdvancedInputFilterAddTexture = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.AdvancedInputFilterSharpen = {
+    OFF = "OFF",
+    LOW = "LOW",
+    HIGH = "HIGH",
+}
+
+M.AdvancedInputFilterSettings = {
+    type = "structure",
+    members = {
+        AddTexture = {
+            type = "string",
+            traits = {
+                json_name = "addTexture",
+            },
+        },
+        Sharpening = {
+            type = "string",
+            traits = {
+                json_name = "sharpening",
+            },
+        },
+    },
+}
+
+M.AudioSelectorGroup = {
+    type = "structure",
+    members = {
+        AudioSelectorNames = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "audioSelectorNames",
+            },
+        },
+    },
+}
+
+M.AudioDurationCorrection = {
+    DISABLED = "DISABLED",
+    AUTO = "AUTO",
+    TRACK = "TRACK",
+    FRAME = "FRAME",
+    FORCE = "FORCE",
+}
+
+M.AudioDefaultSelection = {
+    DEFAULT = "DEFAULT",
+    NOT_DEFAULT = "NOT_DEFAULT",
+}
+
+M.HlsRenditionGroupSettings = {
+    type = "structure",
+    members = {
+        RenditionGroupId = {
+            type = "string",
+            traits = {
+                json_name = "renditionGroupId",
+            },
+        },
+        RenditionLanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "renditionLanguageCode",
+            },
+        },
+        RenditionName = {
+            type = "string",
+            traits = {
+                json_name = "renditionName",
+            },
+        },
+    },
+}
+
+M.AudioSelectorType = {
+    PID = "PID",
+    TRACK = "TRACK",
+    LANGUAGE_CODE = "LANGUAGE_CODE",
+    HLS_RENDITION_GROUP = "HLS_RENDITION_GROUP",
+    ALL_PCM = "ALL_PCM",
+    STREAM = "STREAM",
+}
+
+M.AudioSelector = {
+    type = "structure",
+    members = {
+        AudioDurationCorrection = {
+            type = "string",
+            traits = {
+                json_name = "audioDurationCorrection",
+            },
+        },
+        CustomLanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "customLanguageCode",
+            },
+        },
+        DefaultSelection = {
+            type = "string",
+            traits = {
+                json_name = "defaultSelection",
+            },
+        },
+        ExternalAudioFileInput = {
+            type = "string",
+            traits = {
+                json_name = "externalAudioFileInput",
+            },
+        },
+        HlsRenditionGroupSettings = {
+            type = "structure",
+            traits = {
+                json_name = "hlsRenditionGroupSettings",
+            },
+        },
+        LanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "languageCode",
+            },
+        },
+        Offset = {
+            type = "number",
+            traits = {
+                json_name = "offset",
+            },
+        },
+        Pids = {
+            type = "list",
+            member_type = "number",
+            traits = {
+                json_name = "pids",
+            },
+        },
+        ProgramSelection = {
+            type = "number",
+            traits = {
+                json_name = "programSelection",
+            },
+        },
+        RemixSettings = {
+            type = "structure",
+            traits = {
+                json_name = "remixSettings",
+            },
+        },
+        SelectorType = {
+            type = "string",
+            traits = {
+                json_name = "selectorType",
+            },
+        },
+        Streams = {
+            type = "list",
+            member_type = "number",
+            traits = {
+                json_name = "streams",
+            },
+        },
+        Tracks = {
+            type = "list",
+            member_type = "number",
+            traits = {
+                json_name = "tracks",
+            },
+        },
+    },
+}
+
+M.AncillaryConvert608To708 = {
+    UPCONVERT = "UPCONVERT",
+    DISABLED = "DISABLED",
+}
+
+M.AncillaryTerminateCaptions = {
+    END_OF_INPUT = "END_OF_INPUT",
+    DISABLED = "DISABLED",
+}
+
+M.AncillarySourceSettings = {
+    type = "structure",
+    members = {
+        Convert608To708 = {
+            type = "string",
+            traits = {
+                json_name = "convert608To708",
+            },
+        },
+        SourceAncillaryChannelNumber = {
+            type = "number",
+            traits = {
+                json_name = "sourceAncillaryChannelNumber",
+            },
+        },
+        TerminateCaptions = {
+            type = "string",
+            traits = {
+                json_name = "terminateCaptions",
+            },
+        },
+    },
+}
+
+M.DvbSubSourceSettings = {
+    type = "structure",
+    members = {
+        Pid = {
+            type = "number",
+            traits = {
+                json_name = "pid",
+            },
+        },
+    },
+}
+
+M.EmbeddedConvert608To708 = {
+    UPCONVERT = "UPCONVERT",
+    DISABLED = "DISABLED",
+}
+
+M.EmbeddedTerminateCaptions = {
+    END_OF_INPUT = "END_OF_INPUT",
+    DISABLED = "DISABLED",
+}
+
+M.EmbeddedSourceSettings = {
+    type = "structure",
+    members = {
+        Convert608To708 = {
+            type = "string",
+            traits = {
+                json_name = "convert608To708",
+            },
+        },
+        Source608ChannelNumber = {
+            type = "number",
+            traits = {
+                json_name = "source608ChannelNumber",
+            },
+        },
+        Source608TrackNumber = {
+            type = "number",
+            traits = {
+                json_name = "source608TrackNumber",
+            },
+        },
+        TerminateCaptions = {
+            type = "string",
+            traits = {
+                json_name = "terminateCaptions",
+            },
+        },
+    },
+}
+
+M.CaptionSourceByteRateLimit = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.FileSourceConvert608To708 = {
+    UPCONVERT = "UPCONVERT",
+    DISABLED = "DISABLED",
+}
+
+M.CaptionSourceConvertPaintOnToPopOn = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.CaptionSourceFramerate = {
+    type = "structure",
+    members = {
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+    },
+}
+
+M.FileSourceTimeDeltaUnits = {
+    SECONDS = "SECONDS",
+    MILLISECONDS = "MILLISECONDS",
+}
+
+M.CaptionSourceUpconvertSTLToTeletext = {
+    UPCONVERT = "UPCONVERT",
+    DISABLED = "DISABLED",
+}
+
+M.FileSourceSettings = {
+    type = "structure",
+    members = {
+        ByteRateLimit = {
+            type = "string",
+            traits = {
+                json_name = "byteRateLimit",
+            },
+        },
+        Convert608To708 = {
+            type = "string",
+            traits = {
+                json_name = "convert608To708",
+            },
+        },
+        ConvertPaintToPop = {
+            type = "string",
+            traits = {
+                json_name = "convertPaintToPop",
+            },
+        },
+        Framerate = {
+            type = "structure",
+            traits = {
+                json_name = "framerate",
+            },
+        },
+        SourceFile = {
+            type = "string",
+            traits = {
+                json_name = "sourceFile",
+            },
+        },
+        TimeDelta = {
+            type = "number",
+            traits = {
+                json_name = "timeDelta",
+            },
+        },
+        TimeDeltaUnits = {
+            type = "string",
+            traits = {
+                json_name = "timeDeltaUnits",
+            },
+        },
+        UpconvertSTLToTeletext = {
+            type = "string",
+            traits = {
+                json_name = "upconvertSTLToTeletext",
+            },
+        },
+    },
+}
+
+M.CaptionSourceType = {
+    ANCILLARY = "ANCILLARY",
+    DVB_SUB = "DVB_SUB",
+    EMBEDDED = "EMBEDDED",
+    SCTE20 = "SCTE20",
+    SCC = "SCC",
+    TTML = "TTML",
+    STL = "STL",
+    SRT = "SRT",
+    SMI = "SMI",
+    SMPTE_TT = "SMPTE_TT",
+    TELETEXT = "TELETEXT",
+    NULL_SOURCE = "NULL_SOURCE",
+    IMSC = "IMSC",
+    WEBVTT = "WEBVTT",
+    TT_3GPP = "TT_3GPP",
+}
+
+M.TeletextSourceSettings = {
+    type = "structure",
+    members = {
+        PageNumber = {
+            type = "string",
+            traits = {
+                json_name = "pageNumber",
+            },
+        },
+    },
+}
+
+M.TrackSourceSettings = {
+    type = "structure",
+    members = {
+        StreamNumber = {
+            type = "number",
+            traits = {
+                json_name = "streamNumber",
+            },
+        },
+        TrackNumber = {
+            type = "number",
+            traits = {
+                json_name = "trackNumber",
+            },
+        },
+    },
+}
+
+M.WebvttHlsSourceSettings = {
+    type = "structure",
+    members = {
+        RenditionGroupId = {
+            type = "string",
+            traits = {
+                json_name = "renditionGroupId",
+            },
+        },
+        RenditionLanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "renditionLanguageCode",
+            },
+        },
+        RenditionName = {
+            type = "string",
+            traits = {
+                json_name = "renditionName",
+            },
+        },
+    },
+}
+
+M.CaptionSourceSettings = {
+    type = "structure",
+    members = {
+        AncillarySourceSettings = {
+            type = "structure",
+            traits = {
+                json_name = "ancillarySourceSettings",
+            },
+        },
+        DvbSubSourceSettings = {
+            type = "structure",
+            traits = {
+                json_name = "dvbSubSourceSettings",
+            },
+        },
+        EmbeddedSourceSettings = {
+            type = "structure",
+            traits = {
+                json_name = "embeddedSourceSettings",
+            },
+        },
+        FileSourceSettings = {
+            type = "structure",
+            traits = {
+                json_name = "fileSourceSettings",
+            },
+        },
+        SourceType = {
+            type = "string",
+            traits = {
+                json_name = "sourceType",
+            },
+        },
+        TeletextSourceSettings = {
+            type = "structure",
+            traits = {
+                json_name = "teletextSourceSettings",
+            },
+        },
+        TrackSourceSettings = {
+            type = "structure",
+            traits = {
+                json_name = "trackSourceSettings",
+            },
+        },
+        WebvttHlsSourceSettings = {
+            type = "structure",
+            traits = {
+                json_name = "webvttHlsSourceSettings",
+            },
+        },
+    },
+}
+
+M.CaptionSelector = {
+    type = "structure",
+    members = {
+        CustomLanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "customLanguageCode",
+            },
+        },
+        LanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "languageCode",
+            },
+        },
+        SourceSettings = {
+            type = "structure",
+            traits = {
+                json_name = "sourceSettings",
+            },
+        },
+    },
+}
+
+M.Rectangle = {
+    type = "structure",
+    members = {
+        Height = {
+            type = "number",
+            traits = {
+                json_name = "height",
+            },
+        },
+        Width = {
+            type = "number",
+            traits = {
+                json_name = "width",
+            },
+        },
+        X = {
+            type = "number",
+            traits = {
+                json_name = "x",
+            },
+        },
+        Y = {
+            type = "number",
+            traits = {
+                json_name = "y",
+            },
+        },
+    },
+}
+
+M.InputDeblockFilter = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.DecryptionMode = {
+    AES_CTR = "AES_CTR",
+    AES_CBC = "AES_CBC",
+    AES_GCM = "AES_GCM",
+}
+
+M.InputDecryptionSettings = {
+    type = "structure",
+    members = {
+        DecryptionMode = {
+            type = "string",
+            traits = {
+                json_name = "decryptionMode",
+            },
+        },
+        EncryptedDecryptionKey = {
+            type = "string",
+            traits = {
+                json_name = "encryptedDecryptionKey",
+            },
+        },
+        InitializationVector = {
+            type = "string",
+            traits = {
+                json_name = "initializationVector",
+            },
+        },
+        KmsKeyRegion = {
+            type = "string",
+            traits = {
+                json_name = "kmsKeyRegion",
+            },
+        },
+    },
+}
+
+M.InputDenoiseFilter = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.DynamicAudioSelectorType = {
+    ALL_TRACKS = "ALL_TRACKS",
+    LANGUAGE_CODE = "LANGUAGE_CODE",
+}
+
+M.DynamicAudioSelector = {
+    type = "structure",
+    members = {
+        AudioDurationCorrection = {
+            type = "string",
+            traits = {
+                json_name = "audioDurationCorrection",
+            },
+        },
+        ExternalAudioFileInput = {
+            type = "string",
+            traits = {
+                json_name = "externalAudioFileInput",
+            },
+        },
+        LanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "languageCode",
+            },
+        },
+        Offset = {
+            type = "number",
+            traits = {
+                json_name = "offset",
+            },
+        },
+        SelectorType = {
+            type = "string",
+            traits = {
+                json_name = "selectorType",
+            },
+        },
+    },
+}
+
+M.InputFilterEnable = {
+    AUTO = "AUTO",
+    DISABLE = "DISABLE",
+    FORCE = "FORCE",
+}
+
+M.InsertableImage = {
+    type = "structure",
+    members = {
+        Duration = {
+            type = "number",
+            traits = {
+                json_name = "duration",
+            },
+        },
+        FadeIn = {
+            type = "number",
+            traits = {
+                json_name = "fadeIn",
+            },
+        },
+        FadeOut = {
+            type = "number",
+            traits = {
+                json_name = "fadeOut",
+            },
+        },
+        Height = {
+            type = "number",
+            traits = {
+                json_name = "height",
+            },
+        },
+        ImageInserterInput = {
+            type = "string",
+            traits = {
+                json_name = "imageInserterInput",
+            },
+        },
+        ImageX = {
+            type = "number",
+            traits = {
+                json_name = "imageX",
+            },
+        },
+        ImageY = {
+            type = "number",
+            traits = {
+                json_name = "imageY",
+            },
+        },
+        Layer = {
+            type = "number",
+            traits = {
+                json_name = "layer",
+            },
+        },
+        Opacity = {
+            type = "number",
+            traits = {
+                json_name = "opacity",
+            },
+        },
+        StartTime = {
+            type = "string",
+            traits = {
+                json_name = "startTime",
+            },
+        },
+        Width = {
+            type = "number",
+            traits = {
+                json_name = "width",
+            },
+        },
+    },
+}
+
+M.ImageInserter = {
+    type = "structure",
+    members = {
+        InsertableImages = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "insertableImages",
+            },
+        },
+        SdrReferenceWhiteLevel = {
+            type = "number",
+            traits = {
+                json_name = "sdrReferenceWhiteLevel",
+            },
+        },
+    },
+}
+
+M.InputClipping = {
+    type = "structure",
+    members = {
+        EndTimecode = {
+            type = "string",
+            traits = {
+                json_name = "endTimecode",
+            },
+        },
+        StartTimecode = {
+            type = "string",
+            traits = {
+                json_name = "startTimecode",
+            },
+        },
+    },
+}
+
+M.InputScanType = {
+    AUTO = "AUTO",
+    PSF = "PSF",
+}
+
+M.MultiViewInput = {
+    type = "structure",
+    members = {
+        FileInput = {
+            type = "string",
+            traits = {
+                json_name = "fileInput",
+            },
+        },
+    },
+}
+
+M.MultiViewSettings = {
+    type = "structure",
+    members = {
+        Input = {
+            type = "structure",
+            traits = {
+                json_name = "input",
+            },
+        },
+    },
+}
+
+M.InputPsiControl = {
+    IGNORE_PSI = "IGNORE_PSI",
+    USE_PSI = "USE_PSI",
+}
+
+M.TamsGapHandling = {
+    SKIP_GAPS = "SKIP_GAPS",
+    FILL_WITH_BLACK = "FILL_WITH_BLACK",
+    HOLD_LAST_FRAME = "HOLD_LAST_FRAME",
+}
+
+M.InputTamsSettings = {
+    type = "structure",
+    members = {
+        AuthConnectionArn = {
+            type = "string",
+            traits = {
+                json_name = "authConnectionArn",
+            },
+        },
+        GapHandling = {
+            type = "string",
+            traits = {
+                json_name = "gapHandling",
+            },
+        },
+        SourceId = {
+            type = "string",
+            traits = {
+                json_name = "sourceId",
+            },
+        },
+        Timerange = {
+            type = "string",
+            traits = {
+                json_name = "timerange",
+            },
+        },
+    },
+}
+
+M.InputTimecodeSource = {
+    EMBEDDED = "EMBEDDED",
+    ZEROBASED = "ZEROBASED",
+    SPECIFIEDSTART = "SPECIFIEDSTART",
+}
+
+M.InputVideoGenerator = {
+    type = "structure",
+    members = {
+        Channels = {
+            type = "number",
+            traits = {
+                json_name = "channels",
+            },
+        },
+        Duration = {
+            type = "number",
+            traits = {
+                json_name = "duration",
+            },
+        },
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+        Height = {
+            type = "number",
+            traits = {
+                json_name = "height",
+            },
+        },
+        ImageInput = {
+            type = "string",
+            traits = {
+                json_name = "imageInput",
+            },
+        },
+        SampleRate = {
+            type = "number",
+            traits = {
+                json_name = "sampleRate",
+            },
+        },
+        Width = {
+            type = "number",
+            traits = {
+                json_name = "width",
+            },
+        },
+    },
+}
+
+M.VideoOverlayUnit = {
+    PIXELS = "PIXELS",
+    PERCENTAGE = "PERCENTAGE",
+}
+
+M.VideoOverlayCrop = {
+    type = "structure",
+    members = {
+        Height = {
+            type = "number",
+            traits = {
+                json_name = "height",
+            },
+        },
+        Unit = {
+            type = "string",
+            traits = {
+                json_name = "unit",
+            },
+        },
+        Width = {
+            type = "number",
+            traits = {
+                json_name = "width",
+            },
+        },
+        X = {
+            type = "number",
+            traits = {
+                json_name = "x",
+            },
+        },
+        Y = {
+            type = "number",
+            traits = {
+                json_name = "y",
+            },
+        },
+    },
+}
+
+M.VideoOverlayPosition = {
+    type = "structure",
+    members = {
+        Height = {
+            type = "number",
+            traits = {
+                json_name = "height",
+            },
+        },
+        Opacity = {
+            type = "number",
+            traits = {
+                json_name = "opacity",
+            },
+        },
+        Unit = {
+            type = "string",
+            traits = {
+                json_name = "unit",
+            },
+        },
+        Width = {
+            type = "number",
+            traits = {
+                json_name = "width",
+            },
+        },
+        XPosition = {
+            type = "number",
+            traits = {
+                json_name = "xPosition",
+            },
+        },
+        YPosition = {
+            type = "number",
+            traits = {
+                json_name = "yPosition",
+            },
+        },
+    },
+}
+
+M.VideoOverlayInputClipping = {
+    type = "structure",
+    members = {
+        EndTimecode = {
+            type = "string",
+            traits = {
+                json_name = "endTimecode",
+            },
+        },
+        StartTimecode = {
+            type = "string",
+            traits = {
+                json_name = "startTimecode",
+            },
+        },
+    },
+}
+
+M.VideoOverlayInput = {
+    type = "structure",
+    members = {
+        AudioSelectors = {
+            type = "map",
+            key_type = "string",
+            value_type = "structure",
+            traits = {
+                json_name = "audioSelectors",
+            },
+        },
+        FileInput = {
+            type = "string",
+            traits = {
+                json_name = "fileInput",
+            },
+        },
+        InputClippings = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "inputClippings",
+            },
+        },
+        TimecodeSource = {
+            type = "string",
+            traits = {
+                json_name = "timecodeSource",
+            },
+        },
+        TimecodeStart = {
+            type = "string",
+            traits = {
+                json_name = "timecodeStart",
+            },
+        },
+    },
+}
+
+M.VideoOverlayPlayBackMode = {
+    ONCE = "ONCE",
+    REPEAT = "REPEAT",
+}
+
+M.VideoOverlayTransition = {
+    type = "structure",
+    members = {
+        EndPosition = {
+            type = "structure",
+            traits = {
+                json_name = "endPosition",
+            },
+        },
+        EndTimecode = {
+            type = "string",
+            traits = {
+                json_name = "endTimecode",
+            },
+        },
+        StartTimecode = {
+            type = "string",
+            traits = {
+                json_name = "startTimecode",
+            },
+        },
+    },
+}
+
+M.VideoOverlay = {
+    type = "structure",
+    members = {
+        Crop = {
+            type = "structure",
+            traits = {
+                json_name = "crop",
+            },
+        },
+        EndTimecode = {
+            type = "string",
+            traits = {
+                json_name = "endTimecode",
+            },
+        },
+        InitialPosition = {
+            type = "structure",
+            traits = {
+                json_name = "initialPosition",
+            },
+        },
+        Input = {
+            type = "structure",
+            traits = {
+                json_name = "input",
+            },
+        },
+        Playback = {
+            type = "string",
+            traits = {
+                json_name = "playback",
+            },
+        },
+        StartTimecode = {
+            type = "string",
+            traits = {
+                json_name = "startTimecode",
+            },
+        },
+        Transitions = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "transitions",
+            },
+        },
+    },
+}
+
+M.AlphaBehavior = {
+    DISCARD = "DISCARD",
+    REMAP_TO_LUMA = "REMAP_TO_LUMA",
+}
+
+M.ColorSpaceUsage = {
+    FORCE = "FORCE",
+    FALLBACK = "FALLBACK",
+}
+
+M.EmbeddedTimecodeOverride = {
+    NONE = "NONE",
+    USE_MDPM = "USE_MDPM",
+}
+
+M.Hdr10Metadata = {
+    type = "structure",
+    members = {
+        BluePrimaryX = {
+            type = "number",
+            traits = {
+                json_name = "bluePrimaryX",
+            },
+        },
+        BluePrimaryY = {
+            type = "number",
+            traits = {
+                json_name = "bluePrimaryY",
+            },
+        },
+        GreenPrimaryX = {
+            type = "number",
+            traits = {
+                json_name = "greenPrimaryX",
+            },
+        },
+        GreenPrimaryY = {
+            type = "number",
+            traits = {
+                json_name = "greenPrimaryY",
+            },
+        },
+        MaxContentLightLevel = {
+            type = "number",
+            traits = {
+                json_name = "maxContentLightLevel",
+            },
+        },
+        MaxFrameAverageLightLevel = {
+            type = "number",
+            traits = {
+                json_name = "maxFrameAverageLightLevel",
+            },
+        },
+        MaxLuminance = {
+            type = "number",
+            traits = {
+                json_name = "maxLuminance",
+            },
+        },
+        MinLuminance = {
+            type = "number",
+            traits = {
+                json_name = "minLuminance",
+            },
+        },
+        RedPrimaryX = {
+            type = "number",
+            traits = {
+                json_name = "redPrimaryX",
+            },
+        },
+        RedPrimaryY = {
+            type = "number",
+            traits = {
+                json_name = "redPrimaryY",
+            },
+        },
+        WhitePointX = {
+            type = "number",
+            traits = {
+                json_name = "whitePointX",
+            },
+        },
+        WhitePointY = {
+            type = "number",
+            traits = {
+                json_name = "whitePointY",
+            },
+        },
+    },
+}
+
+M.PadVideo = {
+    DISABLED = "DISABLED",
+    BLACK = "BLACK",
+}
+
+M.InputRotate = {
+    DEGREE_0 = "DEGREE_0",
+    DEGREES_90 = "DEGREES_90",
+    DEGREES_180 = "DEGREES_180",
+    DEGREES_270 = "DEGREES_270",
+    AUTO = "AUTO",
+}
+
+M.InputSampleRange = {
+    FOLLOW = "FOLLOW",
+    FULL_RANGE = "FULL_RANGE",
+    LIMITED_RANGE = "LIMITED_RANGE",
+}
+
+M.VideoSelectorType = {
+    AUTO = "AUTO",
+    STREAM = "STREAM",
+}
+
+M.VideoSelector = {
+    type = "structure",
+    members = {
+        AlphaBehavior = {
+            type = "string",
+            traits = {
+                json_name = "alphaBehavior",
+            },
+        },
+        ColorSpace = {
+            type = "string",
+            traits = {
+                json_name = "colorSpace",
+            },
+        },
+        ColorSpaceUsage = {
+            type = "string",
+            traits = {
+                json_name = "colorSpaceUsage",
+            },
+        },
+        EmbeddedTimecodeOverride = {
+            type = "string",
+            traits = {
+                json_name = "embeddedTimecodeOverride",
+            },
+        },
+        Hdr10Metadata = {
+            type = "structure",
+            traits = {
+                json_name = "hdr10Metadata",
+            },
+        },
+        MaxLuminance = {
+            type = "number",
+            traits = {
+                json_name = "maxLuminance",
+            },
+        },
+        PadVideo = {
+            type = "string",
+            traits = {
+                json_name = "padVideo",
+            },
+        },
+        Pid = {
+            type = "number",
+            traits = {
+                json_name = "pid",
+            },
+        },
+        ProgramNumber = {
+            type = "number",
+            traits = {
+                json_name = "programNumber",
+            },
+        },
+        Rotate = {
+            type = "string",
+            traits = {
+                json_name = "rotate",
+            },
+        },
+        SampleRange = {
+            type = "string",
+            traits = {
+                json_name = "sampleRange",
+            },
+        },
+        SelectorType = {
+            type = "string",
+            traits = {
+                json_name = "selectorType",
+            },
+        },
+        Streams = {
+            type = "list",
+            member_type = "number",
+            traits = {
+                json_name = "streams",
+            },
+        },
+    },
+}
+
+M.Input = {
+    type = "structure",
+    members = {
+        AdvancedInputFilter = {
+            type = "string",
+            traits = {
+                json_name = "advancedInputFilter",
+            },
+        },
+        AdvancedInputFilterSettings = {
+            type = "structure",
+            traits = {
+                json_name = "advancedInputFilterSettings",
+            },
+        },
+        AudioSelectorGroups = {
+            type = "map",
+            key_type = "string",
+            value_type = "structure",
+            traits = {
+                json_name = "audioSelectorGroups",
+            },
+        },
+        AudioSelectors = {
+            type = "map",
+            key_type = "string",
+            value_type = "structure",
+            traits = {
+                json_name = "audioSelectors",
+            },
+        },
+        CaptionSelectors = {
+            type = "map",
+            key_type = "string",
+            value_type = "structure",
+            traits = {
+                json_name = "captionSelectors",
+            },
+        },
+        Crop = {
+            type = "structure",
+            traits = {
+                json_name = "crop",
+            },
+        },
+        DeblockFilter = {
+            type = "string",
+            traits = {
+                json_name = "deblockFilter",
+            },
+        },
+        DecryptionSettings = {
+            type = "structure",
+            traits = {
+                json_name = "decryptionSettings",
+            },
+        },
+        DenoiseFilter = {
+            type = "string",
+            traits = {
+                json_name = "denoiseFilter",
+            },
+        },
+        DolbyVisionMetadataXml = {
+            type = "string",
+            traits = {
+                json_name = "dolbyVisionMetadataXml",
+            },
+        },
+        DynamicAudioSelectors = {
+            type = "map",
+            key_type = "string",
+            value_type = "structure",
+            traits = {
+                json_name = "dynamicAudioSelectors",
+            },
+        },
+        FileInput = {
+            type = "string",
+            traits = {
+                json_name = "fileInput",
+            },
+        },
+        FilterEnable = {
+            type = "string",
+            traits = {
+                json_name = "filterEnable",
+            },
+        },
+        FilterStrength = {
+            type = "number",
+            traits = {
+                json_name = "filterStrength",
+            },
+        },
+        ImageInserter = {
+            type = "structure",
+            traits = {
+                json_name = "imageInserter",
+            },
+        },
+        InputClippings = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "inputClippings",
+            },
+        },
+        InputScanType = {
+            type = "string",
+            traits = {
+                json_name = "inputScanType",
+            },
+        },
+        MultiViewSettings = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "multiViewSettings",
+            },
+        },
+        Position = {
+            type = "structure",
+            traits = {
+                json_name = "position",
+            },
+        },
+        ProgramNumber = {
+            type = "number",
+            traits = {
+                json_name = "programNumber",
+            },
+        },
+        PsiControl = {
+            type = "string",
+            traits = {
+                json_name = "psiControl",
+            },
+        },
+        SupplementalImps = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "supplementalImps",
+            },
+        },
+        TamsSettings = {
+            type = "structure",
+            traits = {
+                json_name = "tamsSettings",
+            },
+        },
+        TimecodeSource = {
+            type = "string",
+            traits = {
+                json_name = "timecodeSource",
+            },
+        },
+        TimecodeStart = {
+            type = "string",
+            traits = {
+                json_name = "timecodeStart",
+            },
+        },
+        VideoGenerator = {
+            type = "structure",
+            traits = {
+                json_name = "videoGenerator",
+            },
+        },
+        VideoOverlays = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "videoOverlays",
+            },
+        },
+        VideoSelector = {
+            type = "structure",
+            traits = {
+                json_name = "videoSelector",
+            },
+        },
+    },
+}
+
+M.InputTemplate = {
+    type = "structure",
+    members = {
+        AdvancedInputFilter = {
+            type = "string",
+            traits = {
+                json_name = "advancedInputFilter",
+            },
+        },
+        AdvancedInputFilterSettings = {
+            type = "structure",
+            traits = {
+                json_name = "advancedInputFilterSettings",
+            },
+        },
+        AudioSelectorGroups = {
+            type = "map",
+            key_type = "string",
+            value_type = "structure",
+            traits = {
+                json_name = "audioSelectorGroups",
+            },
+        },
+        AudioSelectors = {
+            type = "map",
+            key_type = "string",
+            value_type = "structure",
+            traits = {
+                json_name = "audioSelectors",
+            },
+        },
+        CaptionSelectors = {
+            type = "map",
+            key_type = "string",
+            value_type = "structure",
+            traits = {
+                json_name = "captionSelectors",
+            },
+        },
+        Crop = {
+            type = "structure",
+            traits = {
+                json_name = "crop",
+            },
+        },
+        DeblockFilter = {
+            type = "string",
+            traits = {
+                json_name = "deblockFilter",
+            },
+        },
+        DenoiseFilter = {
+            type = "string",
+            traits = {
+                json_name = "denoiseFilter",
+            },
+        },
+        DolbyVisionMetadataXml = {
+            type = "string",
+            traits = {
+                json_name = "dolbyVisionMetadataXml",
+            },
+        },
+        DynamicAudioSelectors = {
+            type = "map",
+            key_type = "string",
+            value_type = "structure",
+            traits = {
+                json_name = "dynamicAudioSelectors",
+            },
+        },
+        FilterEnable = {
+            type = "string",
+            traits = {
+                json_name = "filterEnable",
+            },
+        },
+        FilterStrength = {
+            type = "number",
+            traits = {
+                json_name = "filterStrength",
+            },
+        },
+        ImageInserter = {
+            type = "structure",
+            traits = {
+                json_name = "imageInserter",
+            },
+        },
+        InputClippings = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "inputClippings",
+            },
+        },
+        InputScanType = {
+            type = "string",
+            traits = {
+                json_name = "inputScanType",
+            },
+        },
+        MultiViewSettings = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "multiViewSettings",
+            },
+        },
+        Position = {
+            type = "structure",
+            traits = {
+                json_name = "position",
+            },
+        },
+        ProgramNumber = {
+            type = "number",
+            traits = {
+                json_name = "programNumber",
+            },
+        },
+        PsiControl = {
+            type = "string",
+            traits = {
+                json_name = "psiControl",
+            },
+        },
+        TimecodeSource = {
+            type = "string",
+            traits = {
+                json_name = "timecodeSource",
+            },
+        },
+        TimecodeStart = {
+            type = "string",
+            traits = {
+                json_name = "timecodeStart",
+            },
+        },
+        VideoOverlays = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "videoOverlays",
+            },
+        },
+        VideoSelector = {
+            type = "structure",
+            traits = {
+                json_name = "videoSelector",
+            },
+        },
+    },
+}
+
+M.AccelerationMode = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+    PREFERRED = "PREFERRED",
+}
+
+M.AccelerationSettings = {
+    type = "structure",
+    members = {
+        Mode = {
+            type = "string",
+            traits = {
+                json_name = "mode",
+                required = true,
+            },
+        },
+    },
+}
+
+M.AccelerationStatus = {
+    NOT_APPLICABLE = "NOT_APPLICABLE",
+    IN_PROGRESS = "IN_PROGRESS",
+    ACCELERATED = "ACCELERATED",
+    NOT_ACCELERATED = "NOT_ACCELERATED",
+}
+
+M.BillingTagsSource = {
+    QUEUE = "QUEUE",
+    PRESET = "PRESET",
+    JOB_TEMPLATE = "JOB_TEMPLATE",
+    JOB = "JOB",
+}
+
+M.JobPhase = {
+    PROBING = "PROBING",
+    TRANSCODING = "TRANSCODING",
+    UPLOADING = "UPLOADING",
+}
+
+M.ElementalInferenceConfiguration = {
+    type = "structure",
+    members = {
+        Features = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "features",
+            },
+        },
+        Feeds = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "feeds",
+            },
+        },
+    },
+}
+
+M.JobMessages = {
+    type = "structure",
+    members = {
+        Info = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "info",
+            },
+        },
+        Warning = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "warning",
+            },
+        },
+    },
+}
+
+M.VideoDetail = {
+    type = "structure",
+    members = {
+        HeightInPx = {
+            type = "number",
+            traits = {
+                json_name = "heightInPx",
+            },
+        },
+        WidthInPx = {
+            type = "number",
+            traits = {
+                json_name = "widthInPx",
+            },
+        },
+    },
+}
+
+M.OutputDetail = {
+    type = "structure",
+    members = {
+        DurationInMs = {
+            type = "number",
+            traits = {
+                json_name = "durationInMs",
+            },
+        },
+        VideoDetails = {
+            type = "structure",
+            traits = {
+                json_name = "videoDetails",
+            },
+        },
+    },
+}
+
+M.OutputGroupDetail = {
+    type = "structure",
+    members = {
+        OutputDetails = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "outputDetails",
+            },
+        },
+    },
+}
+
+M.QueueTransition = {
+    type = "structure",
+    members = {
+        DestinationQueue = {
+            type = "string",
+            traits = {
+                json_name = "destinationQueue",
+            },
+        },
+        SourceQueue = {
+            type = "string",
+            traits = {
+                json_name = "sourceQueue",
+            },
+        },
+        Timestamp = {
+            type = "timestamp",
+            traits = {
+                json_name = "timestamp",
+            },
+        },
+    },
+}
+
+M.AvailBlanking = {
+    type = "structure",
+    members = {
+        AvailBlankingImage = {
+            type = "string",
+            traits = {
+                json_name = "availBlankingImage",
+            },
+        },
+    },
+}
+
+M.EsamManifestConfirmConditionNotification = {
+    type = "structure",
+    members = {
+        MccXml = {
+            type = "string",
+            traits = {
+                json_name = "mccXml",
+            },
+        },
+    },
+}
+
+M.EsamSignalProcessingNotification = {
+    type = "structure",
+    members = {
+        SccXml = {
+            type = "string",
+            traits = {
+                json_name = "sccXml",
+            },
+        },
+    },
+}
+
+M.EsamSettings = {
+    type = "structure",
+    members = {
+        ManifestConfirmConditionNotification = {
+            type = "structure",
+            traits = {
+                json_name = "manifestConfirmConditionNotification",
+            },
+        },
+        ResponseSignalPreroll = {
+            type = "number",
+            traits = {
+                json_name = "responseSignalPreroll",
+            },
+        },
+        SignalProcessingNotification = {
+            type = "structure",
+            traits = {
+                json_name = "signalProcessingNotification",
+            },
+        },
+    },
+}
+
+M.CopyProtectionAction = {
+    PASSTHROUGH = "PASSTHROUGH",
+    STRIP = "STRIP",
+}
+
+M.VchipAction = {
+    PASSTHROUGH = "PASSTHROUGH",
+    STRIP = "STRIP",
+}
+
+M.ExtendedDataServices = {
+    type = "structure",
+    members = {
+        CopyProtectionAction = {
+            type = "string",
+            traits = {
+                json_name = "copyProtectionAction",
+            },
+        },
+        VchipAction = {
+            type = "string",
+            traits = {
+                json_name = "vchipAction",
+            },
+        },
+    },
+}
+
+M.KantarWatermarkSettings = {
+    type = "structure",
+    members = {
+        ChannelName = {
+            type = "string",
+            traits = {
+                json_name = "channelName",
+            },
+        },
+        ContentReference = {
+            type = "string",
+            traits = {
+                json_name = "contentReference",
+            },
+        },
+        CredentialsSecretName = {
+            type = "string",
+            traits = {
+                json_name = "credentialsSecretName",
+            },
+        },
+        FileOffset = {
+            type = "number",
+            traits = {
+                json_name = "fileOffset",
+            },
+        },
+        KantarLicenseId = {
+            type = "number",
+            traits = {
+                json_name = "kantarLicenseId",
+            },
+        },
+        KantarServerUrl = {
+            type = "string",
+            traits = {
+                json_name = "kantarServerUrl",
+            },
+        },
+        LogDestination = {
+            type = "string",
+            traits = {
+                json_name = "logDestination",
+            },
+        },
+        Metadata3 = {
+            type = "string",
+            traits = {
+                json_name = "metadata3",
+            },
+        },
+        Metadata4 = {
+            type = "string",
+            traits = {
+                json_name = "metadata4",
+            },
+        },
+        Metadata5 = {
+            type = "string",
+            traits = {
+                json_name = "metadata5",
+            },
+        },
+        Metadata6 = {
+            type = "string",
+            traits = {
+                json_name = "metadata6",
+            },
+        },
+        Metadata7 = {
+            type = "string",
+            traits = {
+                json_name = "metadata7",
+            },
+        },
+        Metadata8 = {
+            type = "string",
+            traits = {
+                json_name = "metadata8",
+            },
+        },
+    },
+}
+
+M.MotionImageInsertionFramerate = {
+    type = "structure",
+    members = {
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+    },
+}
+
+M.MotionImageInsertionMode = {
+    MOV = "MOV",
+    PNG = "PNG",
+}
+
+M.MotionImageInsertionOffset = {
+    type = "structure",
+    members = {
+        ImageX = {
+            type = "number",
+            traits = {
+                json_name = "imageX",
+            },
+        },
+        ImageY = {
+            type = "number",
+            traits = {
+                json_name = "imageY",
+            },
+        },
+    },
+}
+
+M.MotionImagePlayback = {
+    ONCE = "ONCE",
+    REPEAT = "REPEAT",
+}
+
+M.MotionImageInserter = {
+    type = "structure",
+    members = {
+        Framerate = {
+            type = "structure",
+            traits = {
+                json_name = "framerate",
+            },
+        },
+        Input = {
+            type = "string",
+            traits = {
+                json_name = "input",
+            },
+        },
+        InsertionMode = {
+            type = "string",
+            traits = {
+                json_name = "insertionMode",
+            },
+        },
+        Offset = {
+            type = "structure",
+            traits = {
+                json_name = "offset",
+            },
+        },
+        Playback = {
+            type = "string",
+            traits = {
+                json_name = "playback",
+            },
+        },
+        StartTime = {
+            type = "string",
+            traits = {
+                json_name = "startTime",
+            },
+        },
+    },
+}
+
+M.NielsenConfiguration = {
+    type = "structure",
+    members = {
+        BreakoutCode = {
+            type = "number",
+            traits = {
+                json_name = "breakoutCode",
+            },
+        },
+        DistributorId = {
+            type = "string",
+            traits = {
+                json_name = "distributorId",
+            },
+        },
+    },
+}
+
+M.NielsenActiveWatermarkProcessType = {
+    NAES2_AND_NW = "NAES2_AND_NW",
+    CBET = "CBET",
+    NAES2_AND_NW_AND_CBET = "NAES2_AND_NW_AND_CBET",
+}
+
+M.NielsenSourceWatermarkStatusType = {
+    CLEAN = "CLEAN",
+    WATERMARKED = "WATERMARKED",
+}
+
+M.NielsenUniqueTicPerAudioTrackType = {
+    RESERVE_UNIQUE_TICS_PER_TRACK = "RESERVE_UNIQUE_TICS_PER_TRACK",
+    SAME_TICS_PER_TRACK = "SAME_TICS_PER_TRACK",
+}
+
+M.NielsenNonLinearWatermarkSettings = {
+    type = "structure",
+    members = {
+        ActiveWatermarkProcess = {
+            type = "string",
+            traits = {
+                json_name = "activeWatermarkProcess",
+            },
+        },
+        AdiFilename = {
+            type = "string",
+            traits = {
+                json_name = "adiFilename",
+            },
+        },
+        AssetId = {
+            type = "string",
+            traits = {
+                json_name = "assetId",
+            },
+        },
+        AssetName = {
+            type = "string",
+            traits = {
+                json_name = "assetName",
+            },
+        },
+        CbetSourceId = {
+            type = "string",
+            traits = {
+                json_name = "cbetSourceId",
+            },
+        },
+        EpisodeId = {
+            type = "string",
+            traits = {
+                json_name = "episodeId",
+            },
+        },
+        MetadataDestination = {
+            type = "string",
+            traits = {
+                json_name = "metadataDestination",
+            },
+        },
+        SourceId = {
+            type = "number",
+            traits = {
+                json_name = "sourceId",
+            },
+        },
+        SourceWatermarkStatus = {
+            type = "string",
+            traits = {
+                json_name = "sourceWatermarkStatus",
+            },
+        },
+        TicServerUrl = {
+            type = "string",
+            traits = {
+                json_name = "ticServerUrl",
+            },
+        },
+        UniqueTicPerAudioTrack = {
+            type = "string",
+            traits = {
+                json_name = "uniqueTicPerAudioTrack",
+            },
+        },
+    },
+}
+
+M.AutomatedAbrSettings = {
+    type = "structure",
+    members = {
+        MaxAbrBitrate = {
+            type = "number",
+            traits = {
+                json_name = "maxAbrBitrate",
+            },
+        },
+        MaxQualityLevel = {
+            type = "number",
+            traits = {
+                json_name = "maxQualityLevel",
+            },
+        },
+        MaxRenditions = {
+            type = "number",
+            traits = {
+                json_name = "maxRenditions",
+            },
+        },
+        MinAbrBitrate = {
+            type = "number",
+            traits = {
+                json_name = "minAbrBitrate",
+            },
+        },
+        Rules = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "rules",
+            },
+        },
+    },
+}
+
+M.AutomatedEncodingSettings = {
+    type = "structure",
+    members = {
+        AbrSettings = {
+            type = "structure",
+            traits = {
+                json_name = "abrSettings",
+            },
+        },
+    },
+}
+
+M.CmafClientCache = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.CmafCodecSpecification = {
+    RFC_6381 = "RFC_6381",
+    RFC_4281 = "RFC_4281",
+}
+
+M.DashManifestStyle = {
+    BASIC = "BASIC",
+    COMPACT = "COMPACT",
+    DISTINCT = "DISTINCT",
+    FULL = "FULL",
+}
+
+M.S3ObjectCannedAcl = {
+    PUBLIC_READ = "PUBLIC_READ",
+    AUTHENTICATED_READ = "AUTHENTICATED_READ",
+    BUCKET_OWNER_READ = "BUCKET_OWNER_READ",
+    BUCKET_OWNER_FULL_CONTROL = "BUCKET_OWNER_FULL_CONTROL",
+}
+
+M.S3DestinationAccessControl = {
+    type = "structure",
+    members = {
+        CannedAcl = {
+            type = "string",
+            traits = {
+                json_name = "cannedAcl",
+            },
+        },
+    },
+}
+
+M.S3ServerSideEncryptionType = {
+    SERVER_SIDE_ENCRYPTION_S3 = "SERVER_SIDE_ENCRYPTION_S3",
+    SERVER_SIDE_ENCRYPTION_KMS = "SERVER_SIDE_ENCRYPTION_KMS",
+}
+
+M.S3EncryptionSettings = {
+    type = "structure",
+    members = {
+        EncryptionType = {
+            type = "string",
+            traits = {
+                json_name = "encryptionType",
+            },
+        },
+        KmsEncryptionContext = {
+            type = "string",
+            traits = {
+                json_name = "kmsEncryptionContext",
+            },
+        },
+        KmsKeyArn = {
+            type = "string",
+            traits = {
+                json_name = "kmsKeyArn",
+            },
+        },
+    },
+}
+
+M.S3StorageClass = {
+    STANDARD = "STANDARD",
+    REDUCED_REDUNDANCY = "REDUCED_REDUNDANCY",
+    STANDARD_IA = "STANDARD_IA",
+    ONEZONE_IA = "ONEZONE_IA",
+    INTELLIGENT_TIERING = "INTELLIGENT_TIERING",
+    GLACIER = "GLACIER",
+    DEEP_ARCHIVE = "DEEP_ARCHIVE",
+}
+
+M.S3DestinationSettings = {
+    type = "structure",
+    members = {
+        AccessControl = {
+            type = "structure",
+            traits = {
+                json_name = "accessControl",
+            },
+        },
+        Encryption = {
+            type = "structure",
+            traits = {
+                json_name = "encryption",
+            },
+        },
+        StorageClass = {
+            type = "string",
+            traits = {
+                json_name = "storageClass",
+            },
+        },
+    },
+}
+
+M.DestinationSettings = {
+    type = "structure",
+    members = {
+        S3Settings = {
+            type = "structure",
+            traits = {
+                json_name = "s3Settings",
+            },
+        },
+    },
+}
+
+M.HlsClearLead = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.CmafEncryptionType = {
+    SAMPLE_AES = "SAMPLE_AES",
+    AES_CTR = "AES_CTR",
+}
+
+M.CmafInitializationVectorInManifest = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.PresetSpeke20Audio = {
+    PRESET_AUDIO_1 = "PRESET_AUDIO_1",
+    PRESET_AUDIO_2 = "PRESET_AUDIO_2",
+    PRESET_AUDIO_3 = "PRESET_AUDIO_3",
+    SHARED = "SHARED",
+    UNENCRYPTED = "UNENCRYPTED",
+}
+
+M.PresetSpeke20Video = {
+    PRESET_VIDEO_1 = "PRESET_VIDEO_1",
+    PRESET_VIDEO_2 = "PRESET_VIDEO_2",
+    PRESET_VIDEO_3 = "PRESET_VIDEO_3",
+    PRESET_VIDEO_4 = "PRESET_VIDEO_4",
+    PRESET_VIDEO_5 = "PRESET_VIDEO_5",
+    PRESET_VIDEO_6 = "PRESET_VIDEO_6",
+    PRESET_VIDEO_7 = "PRESET_VIDEO_7",
+    PRESET_VIDEO_8 = "PRESET_VIDEO_8",
+    SHARED = "SHARED",
+    UNENCRYPTED = "UNENCRYPTED",
+}
+
+M.EncryptionContractConfiguration = {
+    type = "structure",
+    members = {
+        SpekeAudioPreset = {
+            type = "string",
+            traits = {
+                json_name = "spekeAudioPreset",
+            },
+        },
+        SpekeVideoPreset = {
+            type = "string",
+            traits = {
+                json_name = "spekeVideoPreset",
+            },
+        },
+    },
+}
+
+M.SpekeKeyProviderCmaf = {
+    type = "structure",
+    members = {
+        CertificateArn = {
+            type = "string",
+            traits = {
+                json_name = "certificateArn",
+            },
+        },
+        DashSignaledSystemIds = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "dashSignaledSystemIds",
+            },
+        },
+        EncryptionContractConfiguration = {
+            type = "structure",
+            traits = {
+                json_name = "encryptionContractConfiguration",
+            },
+        },
+        HlsSignaledSystemIds = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "hlsSignaledSystemIds",
+            },
+        },
+        ResourceId = {
+            type = "string",
+            traits = {
+                json_name = "resourceId",
+            },
+        },
+        Url = {
+            type = "string",
+            traits = {
+                json_name = "url",
+            },
+        },
+    },
+}
+
+M.StaticKeyProvider = {
+    type = "structure",
+    members = {
+        KeyFormat = {
+            type = "string",
+            traits = {
+                json_name = "keyFormat",
+            },
+        },
+        KeyFormatVersions = {
+            type = "string",
+            traits = {
+                json_name = "keyFormatVersions",
+            },
+        },
+        StaticKeyValue = {
+            type = "string",
+            traits = {
+                json_name = "staticKeyValue",
+            },
+        },
+        Url = {
+            type = "string",
+            traits = {
+                json_name = "url",
+            },
+        },
+    },
+}
+
+M.CmafKeyProviderType = {
+    SPEKE = "SPEKE",
+    STATIC_KEY = "STATIC_KEY",
+}
+
+M.CmafEncryptionSettings = {
+    type = "structure",
+    members = {
+        ClearLead = {
+            type = "string",
+            traits = {
+                json_name = "clearLead",
+            },
+        },
+        ConstantInitializationVector = {
+            type = "string",
+            traits = {
+                json_name = "constantInitializationVector",
+            },
+        },
+        EncryptionMethod = {
+            type = "string",
+            traits = {
+                json_name = "encryptionMethod",
+            },
+        },
+        InitializationVectorInManifest = {
+            type = "string",
+            traits = {
+                json_name = "initializationVectorInManifest",
+            },
+        },
+        SpekeKeyProvider = {
+            type = "structure",
+            traits = {
+                json_name = "spekeKeyProvider",
+            },
+        },
+        StaticKeyProvider = {
+            type = "structure",
+            traits = {
+                json_name = "staticKeyProvider",
+            },
+        },
+        Type = {
+            type = "string",
+            traits = {
+                json_name = "type",
+            },
+        },
+    },
+}
+
+M.CmafImageBasedTrickPlay = {
+    NONE = "NONE",
+    THUMBNAIL = "THUMBNAIL",
+    THUMBNAIL_AND_FULLFRAME = "THUMBNAIL_AND_FULLFRAME",
+    ADVANCED = "ADVANCED",
+}
+
+M.CmafIntervalCadence = {
+    FOLLOW_IFRAME = "FOLLOW_IFRAME",
+    FOLLOW_CUSTOM = "FOLLOW_CUSTOM",
+    FOLLOW_SEGMENTATION = "FOLLOW_SEGMENTATION",
+}
+
+M.CmafImageBasedTrickPlaySettings = {
+    type = "structure",
+    members = {
+        IntervalCadence = {
+            type = "string",
+            traits = {
+                json_name = "intervalCadence",
+            },
+        },
+        ThumbnailHeight = {
+            type = "number",
+            traits = {
+                json_name = "thumbnailHeight",
+            },
+        },
+        ThumbnailInterval = {
+            type = "number",
+            traits = {
+                json_name = "thumbnailInterval",
+            },
+        },
+        ThumbnailWidth = {
+            type = "number",
+            traits = {
+                json_name = "thumbnailWidth",
+            },
+        },
+        TileHeight = {
+            type = "number",
+            traits = {
+                json_name = "tileHeight",
+            },
+        },
+        TileWidth = {
+            type = "number",
+            traits = {
+                json_name = "tileWidth",
+            },
+        },
+    },
+}
+
+M.CmafManifestCompression = {
+    GZIP = "GZIP",
+    NONE = "NONE",
+}
+
+M.CmafManifestDurationFormat = {
+    FLOATING_POINT = "FLOATING_POINT",
+    INTEGER = "INTEGER",
+}
+
+M.CmafMpdManifestBandwidthType = {
+    AVERAGE = "AVERAGE",
+    MAX = "MAX",
+}
+
+M.CmafMpdProfile = {
+    MAIN_PROFILE = "MAIN_PROFILE",
+    ON_DEMAND_PROFILE = "ON_DEMAND_PROFILE",
+}
+
+M.CmafPtsOffsetHandlingForBFrames = {
+    ZERO_BASED = "ZERO_BASED",
+    MATCH_INITIAL_PTS = "MATCH_INITIAL_PTS",
+}
+
+M.CmafSegmentControl = {
+    SINGLE_FILE = "SINGLE_FILE",
+    SEGMENTED_FILES = "SEGMENTED_FILES",
+}
+
+M.CmafSegmentLengthControl = {
+    EXACT = "EXACT",
+    GOP_MULTIPLE = "GOP_MULTIPLE",
+    MATCH = "MATCH",
+}
+
+M.CmafStreamInfResolution = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.CmafTargetDurationCompatibilityMode = {
+    LEGACY = "LEGACY",
+    SPEC_COMPLIANT = "SPEC_COMPLIANT",
+}
+
+M.CmafVideoCompositionOffsets = {
+    SIGNED = "SIGNED",
+    UNSIGNED = "UNSIGNED",
+}
+
+M.CmafWriteDASHManifest = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.CmafWriteHLSManifest = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.CmafWriteSegmentTimelineInRepresentation = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.CmafGroupSettings = {
+    type = "structure",
+    members = {
+        AdditionalManifests = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "additionalManifests",
+            },
+        },
+        BaseUrl = {
+            type = "string",
+            traits = {
+                json_name = "baseUrl",
+            },
+        },
+        ClientCache = {
+            type = "string",
+            traits = {
+                json_name = "clientCache",
+            },
+        },
+        CodecSpecification = {
+            type = "string",
+            traits = {
+                json_name = "codecSpecification",
+            },
+        },
+        DashIFrameTrickPlayNameModifier = {
+            type = "string",
+            traits = {
+                json_name = "dashIFrameTrickPlayNameModifier",
+            },
+        },
+        DashManifestStyle = {
+            type = "string",
+            traits = {
+                json_name = "dashManifestStyle",
+            },
+        },
+        Destination = {
+            type = "string",
+            traits = {
+                json_name = "destination",
+            },
+        },
+        DestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "destinationSettings",
+            },
+        },
+        Encryption = {
+            type = "structure",
+            traits = {
+                json_name = "encryption",
+            },
+        },
+        FragmentLength = {
+            type = "number",
+            traits = {
+                json_name = "fragmentLength",
+            },
+        },
+        ImageBasedTrickPlay = {
+            type = "string",
+            traits = {
+                json_name = "imageBasedTrickPlay",
+            },
+        },
+        ImageBasedTrickPlaySettings = {
+            type = "structure",
+            traits = {
+                json_name = "imageBasedTrickPlaySettings",
+            },
+        },
+        ManifestCompression = {
+            type = "string",
+            traits = {
+                json_name = "manifestCompression",
+            },
+        },
+        ManifestDurationFormat = {
+            type = "string",
+            traits = {
+                json_name = "manifestDurationFormat",
+            },
+        },
+        MinBufferTime = {
+            type = "number",
+            traits = {
+                json_name = "minBufferTime",
+            },
+        },
+        MinFinalSegmentLength = {
+            type = "number",
+            traits = {
+                json_name = "minFinalSegmentLength",
+            },
+        },
+        MpdManifestBandwidthType = {
+            type = "string",
+            traits = {
+                json_name = "mpdManifestBandwidthType",
+            },
+        },
+        MpdProfile = {
+            type = "string",
+            traits = {
+                json_name = "mpdProfile",
+            },
+        },
+        PtsOffsetHandlingForBFrames = {
+            type = "string",
+            traits = {
+                json_name = "ptsOffsetHandlingForBFrames",
+            },
+        },
+        SegmentControl = {
+            type = "string",
+            traits = {
+                json_name = "segmentControl",
+            },
+        },
+        SegmentLength = {
+            type = "number",
+            traits = {
+                json_name = "segmentLength",
+            },
+        },
+        SegmentLengthControl = {
+            type = "string",
+            traits = {
+                json_name = "segmentLengthControl",
+            },
+        },
+        StreamInfResolution = {
+            type = "string",
+            traits = {
+                json_name = "streamInfResolution",
+            },
+        },
+        TargetDurationCompatibilityMode = {
+            type = "string",
+            traits = {
+                json_name = "targetDurationCompatibilityMode",
+            },
+        },
+        VideoCompositionOffsets = {
+            type = "string",
+            traits = {
+                json_name = "videoCompositionOffsets",
+            },
+        },
+        WriteDashManifest = {
+            type = "string",
+            traits = {
+                json_name = "writeDashManifest",
+            },
+        },
+        WriteHlsManifest = {
+            type = "string",
+            traits = {
+                json_name = "writeHlsManifest",
+            },
+        },
+        WriteSegmentTimelineInRepresentation = {
+            type = "string",
+            traits = {
+                json_name = "writeSegmentTimelineInRepresentation",
+            },
+        },
+    },
+}
+
+M.DashIsoGroupAudioChannelConfigSchemeIdUri = {
+    MPEG_CHANNEL_CONFIGURATION = "MPEG_CHANNEL_CONFIGURATION",
+    DOLBY_CHANNEL_CONFIGURATION = "DOLBY_CHANNEL_CONFIGURATION",
+}
+
+M.DashIsoPlaybackDeviceCompatibility = {
+    CENC_V1 = "CENC_V1",
+    UNENCRYPTED_SEI = "UNENCRYPTED_SEI",
+}
+
+M.SpekeKeyProvider = {
+    type = "structure",
+    members = {
+        CertificateArn = {
+            type = "string",
+            traits = {
+                json_name = "certificateArn",
+            },
+        },
+        EncryptionContractConfiguration = {
+            type = "structure",
+            traits = {
+                json_name = "encryptionContractConfiguration",
+            },
+        },
+        ResourceId = {
+            type = "string",
+            traits = {
+                json_name = "resourceId",
+            },
+        },
+        SystemIds = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "systemIds",
+            },
+        },
+        Url = {
+            type = "string",
+            traits = {
+                json_name = "url",
+            },
+        },
+    },
+}
+
+M.DashIsoEncryptionSettings = {
+    type = "structure",
+    members = {
+        PlaybackDeviceCompatibility = {
+            type = "string",
+            traits = {
+                json_name = "playbackDeviceCompatibility",
+            },
+        },
+        SpekeKeyProvider = {
+            type = "structure",
+            traits = {
+                json_name = "spekeKeyProvider",
+            },
+        },
+    },
+}
+
+M.DashIsoHbbtvCompliance = {
+    HBBTV_1_5 = "HBBTV_1_5",
+    NONE = "NONE",
+}
+
+M.DashIsoImageBasedTrickPlay = {
+    NONE = "NONE",
+    THUMBNAIL = "THUMBNAIL",
+    THUMBNAIL_AND_FULLFRAME = "THUMBNAIL_AND_FULLFRAME",
+    ADVANCED = "ADVANCED",
+}
+
+M.DashIsoIntervalCadence = {
+    FOLLOW_IFRAME = "FOLLOW_IFRAME",
+    FOLLOW_CUSTOM = "FOLLOW_CUSTOM",
+    FOLLOW_SEGMENTATION = "FOLLOW_SEGMENTATION",
+}
+
+M.DashIsoImageBasedTrickPlaySettings = {
+    type = "structure",
+    members = {
+        IntervalCadence = {
+            type = "string",
+            traits = {
+                json_name = "intervalCadence",
+            },
+        },
+        ThumbnailHeight = {
+            type = "number",
+            traits = {
+                json_name = "thumbnailHeight",
+            },
+        },
+        ThumbnailInterval = {
+            type = "number",
+            traits = {
+                json_name = "thumbnailInterval",
+            },
+        },
+        ThumbnailWidth = {
+            type = "number",
+            traits = {
+                json_name = "thumbnailWidth",
+            },
+        },
+        TileHeight = {
+            type = "number",
+            traits = {
+                json_name = "tileHeight",
+            },
+        },
+        TileWidth = {
+            type = "number",
+            traits = {
+                json_name = "tileWidth",
+            },
+        },
+    },
+}
+
+M.DashIsoMpdManifestBandwidthType = {
+    AVERAGE = "AVERAGE",
+    MAX = "MAX",
+}
+
+M.DashIsoMpdProfile = {
+    MAIN_PROFILE = "MAIN_PROFILE",
+    ON_DEMAND_PROFILE = "ON_DEMAND_PROFILE",
+}
+
+M.DashIsoPtsOffsetHandlingForBFrames = {
+    ZERO_BASED = "ZERO_BASED",
+    MATCH_INITIAL_PTS = "MATCH_INITIAL_PTS",
+}
+
+M.DashIsoSegmentControl = {
+    SINGLE_FILE = "SINGLE_FILE",
+    SEGMENTED_FILES = "SEGMENTED_FILES",
+}
+
+M.DashIsoSegmentLengthControl = {
+    EXACT = "EXACT",
+    GOP_MULTIPLE = "GOP_MULTIPLE",
+    MATCH = "MATCH",
+}
+
+M.DashIsoVideoCompositionOffsets = {
+    SIGNED = "SIGNED",
+    UNSIGNED = "UNSIGNED",
+}
+
+M.DashIsoWriteSegmentTimelineInRepresentation = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.DashIsoGroupSettings = {
+    type = "structure",
+    members = {
+        AdditionalManifests = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "additionalManifests",
+            },
+        },
+        AudioChannelConfigSchemeIdUri = {
+            type = "string",
+            traits = {
+                json_name = "audioChannelConfigSchemeIdUri",
+            },
+        },
+        BaseUrl = {
+            type = "string",
+            traits = {
+                json_name = "baseUrl",
+            },
+        },
+        DashIFrameTrickPlayNameModifier = {
+            type = "string",
+            traits = {
+                json_name = "dashIFrameTrickPlayNameModifier",
+            },
+        },
+        DashManifestStyle = {
+            type = "string",
+            traits = {
+                json_name = "dashManifestStyle",
+            },
+        },
+        Destination = {
+            type = "string",
+            traits = {
+                json_name = "destination",
+            },
+        },
+        DestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "destinationSettings",
+            },
+        },
+        Encryption = {
+            type = "structure",
+            traits = {
+                json_name = "encryption",
+            },
+        },
+        FragmentLength = {
+            type = "number",
+            traits = {
+                json_name = "fragmentLength",
+            },
+        },
+        HbbtvCompliance = {
+            type = "string",
+            traits = {
+                json_name = "hbbtvCompliance",
+            },
+        },
+        ImageBasedTrickPlay = {
+            type = "string",
+            traits = {
+                json_name = "imageBasedTrickPlay",
+            },
+        },
+        ImageBasedTrickPlaySettings = {
+            type = "structure",
+            traits = {
+                json_name = "imageBasedTrickPlaySettings",
+            },
+        },
+        MinBufferTime = {
+            type = "number",
+            traits = {
+                json_name = "minBufferTime",
+            },
+        },
+        MinFinalSegmentLength = {
+            type = "number",
+            traits = {
+                json_name = "minFinalSegmentLength",
+            },
+        },
+        MpdManifestBandwidthType = {
+            type = "string",
+            traits = {
+                json_name = "mpdManifestBandwidthType",
+            },
+        },
+        MpdProfile = {
+            type = "string",
+            traits = {
+                json_name = "mpdProfile",
+            },
+        },
+        PtsOffsetHandlingForBFrames = {
+            type = "string",
+            traits = {
+                json_name = "ptsOffsetHandlingForBFrames",
+            },
+        },
+        SegmentControl = {
+            type = "string",
+            traits = {
+                json_name = "segmentControl",
+            },
+        },
+        SegmentLength = {
+            type = "number",
+            traits = {
+                json_name = "segmentLength",
+            },
+        },
+        SegmentLengthControl = {
+            type = "string",
+            traits = {
+                json_name = "segmentLengthControl",
+            },
+        },
+        VideoCompositionOffsets = {
+            type = "string",
+            traits = {
+                json_name = "videoCompositionOffsets",
+            },
+        },
+        WriteSegmentTimelineInRepresentation = {
+            type = "string",
+            traits = {
+                json_name = "writeSegmentTimelineInRepresentation",
+            },
+        },
+    },
+}
+
+M.FileGroupSettings = {
+    type = "structure",
+    members = {
+        Destination = {
+            type = "string",
+            traits = {
+                json_name = "destination",
+            },
+        },
+        DestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "destinationSettings",
+            },
+        },
+    },
+}
+
+M.HlsAudioOnlyHeader = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.HlsCaptionLanguageSetting = {
+    INSERT = "INSERT",
+    OMIT = "OMIT",
+    NONE = "NONE",
+}
+
+M.HlsCaptionSegmentLengthControl = {
+    LARGE_SEGMENTS = "LARGE_SEGMENTS",
+    MATCH_VIDEO = "MATCH_VIDEO",
+}
+
+M.HlsClientCache = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.HlsCodecSpecification = {
+    RFC_6381 = "RFC_6381",
+    RFC_4281 = "RFC_4281",
+}
+
+M.HlsDirectoryStructure = {
+    SINGLE_DIRECTORY = "SINGLE_DIRECTORY",
+    SUBDIRECTORY_PER_STREAM = "SUBDIRECTORY_PER_STREAM",
+}
+
+M.HlsEncryptionType = {
+    AES128 = "AES128",
+    SAMPLE_AES = "SAMPLE_AES",
+}
+
+M.HlsInitializationVectorInManifest = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.HlsOfflineEncrypted = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.HlsKeyProviderType = {
+    SPEKE = "SPEKE",
+    STATIC_KEY = "STATIC_KEY",
+}
+
+M.HlsEncryptionSettings = {
+    type = "structure",
+    members = {
+        ConstantInitializationVector = {
+            type = "string",
+            traits = {
+                json_name = "constantInitializationVector",
+            },
+        },
+        EncryptionMethod = {
+            type = "string",
+            traits = {
+                json_name = "encryptionMethod",
+            },
+        },
+        InitializationVectorInManifest = {
+            type = "string",
+            traits = {
+                json_name = "initializationVectorInManifest",
+            },
+        },
+        OfflineEncrypted = {
+            type = "string",
+            traits = {
+                json_name = "offlineEncrypted",
+            },
+        },
+        SpekeKeyProvider = {
+            type = "structure",
+            traits = {
+                json_name = "spekeKeyProvider",
+            },
+        },
+        StaticKeyProvider = {
+            type = "structure",
+            traits = {
+                json_name = "staticKeyProvider",
+            },
+        },
+        Type = {
+            type = "string",
+            traits = {
+                json_name = "type",
+            },
+        },
+    },
+}
+
+M.HlsImageBasedTrickPlay = {
+    NONE = "NONE",
+    THUMBNAIL = "THUMBNAIL",
+    THUMBNAIL_AND_FULLFRAME = "THUMBNAIL_AND_FULLFRAME",
+    ADVANCED = "ADVANCED",
+}
+
+M.HlsIntervalCadence = {
+    FOLLOW_IFRAME = "FOLLOW_IFRAME",
+    FOLLOW_CUSTOM = "FOLLOW_CUSTOM",
+    FOLLOW_SEGMENTATION = "FOLLOW_SEGMENTATION",
+}
+
+M.HlsImageBasedTrickPlaySettings = {
+    type = "structure",
+    members = {
+        IntervalCadence = {
+            type = "string",
+            traits = {
+                json_name = "intervalCadence",
+            },
+        },
+        ThumbnailHeight = {
+            type = "number",
+            traits = {
+                json_name = "thumbnailHeight",
+            },
+        },
+        ThumbnailInterval = {
+            type = "number",
+            traits = {
+                json_name = "thumbnailInterval",
+            },
+        },
+        ThumbnailWidth = {
+            type = "number",
+            traits = {
+                json_name = "thumbnailWidth",
+            },
+        },
+        TileHeight = {
+            type = "number",
+            traits = {
+                json_name = "tileHeight",
+            },
+        },
+        TileWidth = {
+            type = "number",
+            traits = {
+                json_name = "tileWidth",
+            },
+        },
+    },
+}
+
+M.HlsManifestCompression = {
+    GZIP = "GZIP",
+    NONE = "NONE",
+}
+
+M.HlsManifestDurationFormat = {
+    FLOATING_POINT = "FLOATING_POINT",
+    INTEGER = "INTEGER",
+}
+
+M.HlsOutputSelection = {
+    MANIFESTS_AND_SEGMENTS = "MANIFESTS_AND_SEGMENTS",
+    SEGMENTS_ONLY = "SEGMENTS_ONLY",
+}
+
+M.HlsProgramDateTime = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.HlsProgressiveWriteHlsManifest = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.HlsSegmentControl = {
+    SINGLE_FILE = "SINGLE_FILE",
+    SEGMENTED_FILES = "SEGMENTED_FILES",
+}
+
+M.HlsSegmentLengthControl = {
+    EXACT = "EXACT",
+    GOP_MULTIPLE = "GOP_MULTIPLE",
+    MATCH = "MATCH",
+}
+
+M.HlsStreamInfResolution = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.HlsTargetDurationCompatibilityMode = {
+    LEGACY = "LEGACY",
+    SPEC_COMPLIANT = "SPEC_COMPLIANT",
+}
+
+M.HlsTimedMetadataId3Frame = {
+    NONE = "NONE",
+    PRIV = "PRIV",
+    TDRL = "TDRL",
+}
+
+M.HlsGroupSettings = {
+    type = "structure",
+    members = {
+        AdMarkers = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "adMarkers",
+            },
+        },
+        AdditionalManifests = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "additionalManifests",
+            },
+        },
+        AudioOnlyHeader = {
+            type = "string",
+            traits = {
+                json_name = "audioOnlyHeader",
+            },
+        },
+        BaseUrl = {
+            type = "string",
+            traits = {
+                json_name = "baseUrl",
+            },
+        },
+        CaptionLanguageMappings = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "captionLanguageMappings",
+            },
+        },
+        CaptionLanguageSetting = {
+            type = "string",
+            traits = {
+                json_name = "captionLanguageSetting",
+            },
+        },
+        CaptionSegmentLengthControl = {
+            type = "string",
+            traits = {
+                json_name = "captionSegmentLengthControl",
+            },
+        },
+        ClientCache = {
+            type = "string",
+            traits = {
+                json_name = "clientCache",
+            },
+        },
+        CodecSpecification = {
+            type = "string",
+            traits = {
+                json_name = "codecSpecification",
+            },
+        },
+        Destination = {
+            type = "string",
+            traits = {
+                json_name = "destination",
+            },
+        },
+        DestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "destinationSettings",
+            },
+        },
+        DirectoryStructure = {
+            type = "string",
+            traits = {
+                json_name = "directoryStructure",
+            },
+        },
+        Encryption = {
+            type = "structure",
+            traits = {
+                json_name = "encryption",
+            },
+        },
+        ImageBasedTrickPlay = {
+            type = "string",
+            traits = {
+                json_name = "imageBasedTrickPlay",
+            },
+        },
+        ImageBasedTrickPlaySettings = {
+            type = "structure",
+            traits = {
+                json_name = "imageBasedTrickPlaySettings",
+            },
+        },
+        ManifestCompression = {
+            type = "string",
+            traits = {
+                json_name = "manifestCompression",
+            },
+        },
+        ManifestDurationFormat = {
+            type = "string",
+            traits = {
+                json_name = "manifestDurationFormat",
+            },
+        },
+        MinFinalSegmentLength = {
+            type = "number",
+            traits = {
+                json_name = "minFinalSegmentLength",
+            },
+        },
+        MinSegmentLength = {
+            type = "number",
+            traits = {
+                json_name = "minSegmentLength",
+            },
+        },
+        OutputSelection = {
+            type = "string",
+            traits = {
+                json_name = "outputSelection",
+            },
+        },
+        ProgramDateTime = {
+            type = "string",
+            traits = {
+                json_name = "programDateTime",
+            },
+        },
+        ProgramDateTimePeriod = {
+            type = "number",
+            traits = {
+                json_name = "programDateTimePeriod",
+            },
+        },
+        ProgressiveWriteHlsManifest = {
+            type = "string",
+            traits = {
+                json_name = "progressiveWriteHlsManifest",
+            },
+        },
+        SegmentControl = {
+            type = "string",
+            traits = {
+                json_name = "segmentControl",
+            },
+        },
+        SegmentLength = {
+            type = "number",
+            traits = {
+                json_name = "segmentLength",
+            },
+        },
+        SegmentLengthControl = {
+            type = "string",
+            traits = {
+                json_name = "segmentLengthControl",
+            },
+        },
+        SegmentsPerSubdirectory = {
+            type = "number",
+            traits = {
+                json_name = "segmentsPerSubdirectory",
+            },
+        },
+        StreamInfResolution = {
+            type = "string",
+            traits = {
+                json_name = "streamInfResolution",
+            },
+        },
+        TargetDurationCompatibilityMode = {
+            type = "string",
+            traits = {
+                json_name = "targetDurationCompatibilityMode",
+            },
+        },
+        TimedMetadataId3Frame = {
+            type = "string",
+            traits = {
+                json_name = "timedMetadataId3Frame",
+            },
+        },
+        TimedMetadataId3Period = {
+            type = "number",
+            traits = {
+                json_name = "timedMetadataId3Period",
+            },
+        },
+        TimestampDeltaMilliseconds = {
+            type = "number",
+            traits = {
+                json_name = "timestampDeltaMilliseconds",
+            },
+        },
+    },
+}
+
+M.MsSmoothAdditionalManifest = {
+    type = "structure",
+    members = {
+        ManifestNameModifier = {
+            type = "string",
+            traits = {
+                json_name = "manifestNameModifier",
+            },
+        },
+        SelectedOutputs = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "selectedOutputs",
+            },
+        },
+    },
+}
+
+M.MsSmoothAudioDeduplication = {
+    COMBINE_DUPLICATE_STREAMS = "COMBINE_DUPLICATE_STREAMS",
+    NONE = "NONE",
+}
+
+M.MsSmoothEncryptionSettings = {
+    type = "structure",
+    members = {
+        SpekeKeyProvider = {
+            type = "structure",
+            traits = {
+                json_name = "spekeKeyProvider",
+            },
+        },
+    },
+}
+
+M.MsSmoothFragmentLengthControl = {
+    EXACT = "EXACT",
+    GOP_MULTIPLE = "GOP_MULTIPLE",
+}
+
+M.MsSmoothManifestEncoding = {
+    UTF8 = "UTF8",
+    UTF16 = "UTF16",
+}
+
+M.MsSmoothGroupSettings = {
+    type = "structure",
+    members = {
+        AdditionalManifests = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "additionalManifests",
+            },
+        },
+        AudioDeduplication = {
+            type = "string",
+            traits = {
+                json_name = "audioDeduplication",
+            },
+        },
+        Destination = {
+            type = "string",
+            traits = {
+                json_name = "destination",
+            },
+        },
+        DestinationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "destinationSettings",
+            },
+        },
+        Encryption = {
+            type = "structure",
+            traits = {
+                json_name = "encryption",
+            },
+        },
+        FragmentLength = {
+            type = "number",
+            traits = {
+                json_name = "fragmentLength",
+            },
+        },
+        FragmentLengthControl = {
+            type = "string",
+            traits = {
+                json_name = "fragmentLengthControl",
+            },
+        },
+        ManifestEncoding = {
+            type = "string",
+            traits = {
+                json_name = "manifestEncoding",
+            },
+        },
+    },
+}
+
+M.OutputGroupType = {
+    HLS_GROUP_SETTINGS = "HLS_GROUP_SETTINGS",
+    DASH_ISO_GROUP_SETTINGS = "DASH_ISO_GROUP_SETTINGS",
+    FILE_GROUP_SETTINGS = "FILE_GROUP_SETTINGS",
+    MS_SMOOTH_GROUP_SETTINGS = "MS_SMOOTH_GROUP_SETTINGS",
+    CMAF_GROUP_SETTINGS = "CMAF_GROUP_SETTINGS",
+}
+
+M.OutputGroupSettings = {
+    type = "structure",
+    members = {
+        CmafGroupSettings = {
+            type = "structure",
+            traits = {
+                json_name = "cmafGroupSettings",
+            },
+        },
+        DashIsoGroupSettings = {
+            type = "structure",
+            traits = {
+                json_name = "dashIsoGroupSettings",
+            },
+        },
+        FileGroupSettings = {
+            type = "structure",
+            traits = {
+                json_name = "fileGroupSettings",
+            },
+        },
+        HlsGroupSettings = {
+            type = "structure",
+            traits = {
+                json_name = "hlsGroupSettings",
+            },
+        },
+        MsSmoothGroupSettings = {
+            type = "structure",
+            traits = {
+                json_name = "msSmoothGroupSettings",
+            },
+        },
+        PerFrameMetrics = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "perFrameMetrics",
+            },
+        },
+        Type = {
+            type = "string",
+            traits = {
+                json_name = "type",
+            },
+        },
+    },
+}
+
+M.CmfcAudioDuration = {
+    DEFAULT_CODEC_DURATION = "DEFAULT_CODEC_DURATION",
+    MATCH_VIDEO_DURATION = "MATCH_VIDEO_DURATION",
+}
+
+M.CmfcAudioTrackType = {
+    ALTERNATE_AUDIO_AUTO_SELECT_DEFAULT = "ALTERNATE_AUDIO_AUTO_SELECT_DEFAULT",
+    ALTERNATE_AUDIO_AUTO_SELECT = "ALTERNATE_AUDIO_AUTO_SELECT",
+    ALTERNATE_AUDIO_NOT_AUTO_SELECT = "ALTERNATE_AUDIO_NOT_AUTO_SELECT",
+    AUDIO_ONLY_VARIANT_STREAM = "AUDIO_ONLY_VARIANT_STREAM",
+}
+
+M.CmfcC2paManifest = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.CmfcDescriptiveVideoServiceFlag = {
+    DONT_FLAG = "DONT_FLAG",
+    FLAG = "FLAG",
+}
+
+M.CmfcIFrameOnlyManifest = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.CmfcKlvMetadata = {
+    PASSTHROUGH = "PASSTHROUGH",
+    NONE = "NONE",
+}
+
+M.CmfcManifestMetadataSignaling = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.CmfcScte35Esam = {
+    INSERT = "INSERT",
+    NONE = "NONE",
+}
+
+M.CmfcScte35Source = {
+    PASSTHROUGH = "PASSTHROUGH",
+    NONE = "NONE",
+}
+
+M.CmfcTimedMetadata = {
+    PASSTHROUGH = "PASSTHROUGH",
+    NONE = "NONE",
+}
+
+M.CmfcTimedMetadataBoxVersion = {
+    VERSION_0 = "VERSION_0",
+    VERSION_1 = "VERSION_1",
+}
+
+M.CmfcSettings = {
+    type = "structure",
+    members = {
+        AudioDuration = {
+            type = "string",
+            traits = {
+                json_name = "audioDuration",
+            },
+        },
+        AudioGroupId = {
+            type = "string",
+            traits = {
+                json_name = "audioGroupId",
+            },
+        },
+        AudioRenditionSets = {
+            type = "string",
+            traits = {
+                json_name = "audioRenditionSets",
+            },
+        },
+        AudioTrackType = {
+            type = "string",
+            traits = {
+                json_name = "audioTrackType",
+            },
+        },
+        C2paManifest = {
+            type = "string",
+            traits = {
+                json_name = "c2paManifest",
+            },
+        },
+        CertificateSecret = {
+            type = "string",
+            traits = {
+                json_name = "certificateSecret",
+            },
+        },
+        DescriptiveVideoServiceFlag = {
+            type = "string",
+            traits = {
+                json_name = "descriptiveVideoServiceFlag",
+            },
+        },
+        IFrameOnlyManifest = {
+            type = "string",
+            traits = {
+                json_name = "iFrameOnlyManifest",
+            },
+        },
+        KlvMetadata = {
+            type = "string",
+            traits = {
+                json_name = "klvMetadata",
+            },
+        },
+        ManifestMetadataSignaling = {
+            type = "string",
+            traits = {
+                json_name = "manifestMetadataSignaling",
+            },
+        },
+        Scte35Esam = {
+            type = "string",
+            traits = {
+                json_name = "scte35Esam",
+            },
+        },
+        Scte35Source = {
+            type = "string",
+            traits = {
+                json_name = "scte35Source",
+            },
+        },
+        SigningKmsKey = {
+            type = "string",
+            traits = {
+                json_name = "signingKmsKey",
+            },
+        },
+        TimedMetadata = {
+            type = "string",
+            traits = {
+                json_name = "timedMetadata",
+            },
+        },
+        TimedMetadataBoxVersion = {
+            type = "string",
+            traits = {
+                json_name = "timedMetadataBoxVersion",
+            },
+        },
+        TimedMetadataSchemeIdUri = {
+            type = "string",
+            traits = {
+                json_name = "timedMetadataSchemeIdUri",
+            },
+        },
+        TimedMetadataValue = {
+            type = "string",
+            traits = {
+                json_name = "timedMetadataValue",
+            },
+        },
+    },
+}
+
+M.ContainerType = {
+    F4V = "F4V",
+    GIF = "GIF",
+    ISMV = "ISMV",
+    M2TS = "M2TS",
+    M3U8 = "M3U8",
+    CMFC = "CMFC",
+    MOV = "MOV",
+    MP4 = "MP4",
+    MPD = "MPD",
+    MXF = "MXF",
+    OGG = "OGG",
+    WEBM = "WEBM",
+    RAW = "RAW",
+    Y4M = "Y4M",
+}
+
+M.F4vMoovPlacement = {
+    PROGRESSIVE_DOWNLOAD = "PROGRESSIVE_DOWNLOAD",
+    NORMAL = "NORMAL",
+}
+
+M.F4vSettings = {
+    type = "structure",
+    members = {
+        MoovPlacement = {
+            type = "string",
+            traits = {
+                json_name = "moovPlacement",
+            },
+        },
+    },
+}
+
+M.M2tsAudioBufferModel = {
+    DVB = "DVB",
+    ATSC = "ATSC",
+}
+
+M.M2tsAudioDuration = {
+    DEFAULT_CODEC_DURATION = "DEFAULT_CODEC_DURATION",
+    MATCH_VIDEO_DURATION = "MATCH_VIDEO_DURATION",
+}
+
+M.M2tsBufferModel = {
+    MULTIPLEX = "MULTIPLEX",
+    NONE = "NONE",
+}
+
+M.M2tsDataPtsControl = {
+    AUTO = "AUTO",
+    ALIGN_TO_VIDEO = "ALIGN_TO_VIDEO",
+}
+
+M.DvbNitSettings = {
+    type = "structure",
+    members = {
+        NetworkId = {
+            type = "number",
+            traits = {
+                json_name = "networkId",
+            },
+        },
+        NetworkName = {
+            type = "string",
+            traits = {
+                json_name = "networkName",
+            },
+        },
+        NitInterval = {
+            type = "number",
+            traits = {
+                json_name = "nitInterval",
+            },
+        },
+    },
+}
+
+M.OutputSdt = {
+    SDT_FOLLOW = "SDT_FOLLOW",
+    SDT_FOLLOW_IF_PRESENT = "SDT_FOLLOW_IF_PRESENT",
+    SDT_MANUAL = "SDT_MANUAL",
+    SDT_NONE = "SDT_NONE",
+}
+
+M.DvbSdtSettings = {
+    type = "structure",
+    members = {
+        OutputSdt = {
+            type = "string",
+            traits = {
+                json_name = "outputSdt",
+            },
+        },
+        SdtInterval = {
+            type = "number",
+            traits = {
+                json_name = "sdtInterval",
+            },
+        },
+        ServiceName = {
+            type = "string",
+            traits = {
+                json_name = "serviceName",
+            },
+        },
+        ServiceProviderName = {
+            type = "string",
+            traits = {
+                json_name = "serviceProviderName",
+            },
+        },
+    },
+}
+
+M.DvbTdtSettings = {
+    type = "structure",
+    members = {
+        TdtInterval = {
+            type = "number",
+            traits = {
+                json_name = "tdtInterval",
+            },
+        },
+    },
+}
+
+M.M2tsEbpAudioInterval = {
+    VIDEO_AND_FIXED_INTERVALS = "VIDEO_AND_FIXED_INTERVALS",
+    VIDEO_INTERVAL = "VIDEO_INTERVAL",
+}
+
+M.M2tsEbpPlacement = {
+    VIDEO_AND_AUDIO_PIDS = "VIDEO_AND_AUDIO_PIDS",
+    VIDEO_PID = "VIDEO_PID",
+}
+
+M.M2tsEsRateInPes = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.M2tsForceTsVideoEbpOrder = {
+    FORCE = "FORCE",
+    DEFAULT = "DEFAULT",
+}
+
+M.M2tsKlvMetadata = {
+    PASSTHROUGH = "PASSTHROUGH",
+    NONE = "NONE",
+}
+
+M.M2tsNielsenId3 = {
+    INSERT = "INSERT",
+    NONE = "NONE",
+}
+
+M.M2tsPcrControl = {
+    PCR_EVERY_PES_PACKET = "PCR_EVERY_PES_PACKET",
+    CONFIGURED_PCR_PERIOD = "CONFIGURED_PCR_PERIOD",
+}
+
+M.M2tsPreventBufferUnderflow = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.TsPtsOffset = {
+    AUTO = "AUTO",
+    SECONDS = "SECONDS",
+    MILLISECONDS = "MILLISECONDS",
+}
+
+M.M2tsRateMode = {
+    VBR = "VBR",
+    CBR = "CBR",
+}
+
+M.M2tsScte35Esam = {
+    type = "structure",
+    members = {
+        Scte35EsamPid = {
+            type = "number",
+            traits = {
+                json_name = "scte35EsamPid",
+            },
+        },
+    },
+}
+
+M.M2tsScte35Source = {
+    PASSTHROUGH = "PASSTHROUGH",
+    NONE = "NONE",
+}
+
+M.M2tsSegmentationMarkers = {
+    NONE = "NONE",
+    RAI_SEGSTART = "RAI_SEGSTART",
+    RAI_ADAPT = "RAI_ADAPT",
+    PSI_SEGSTART = "PSI_SEGSTART",
+    EBP = "EBP",
+    EBP_LEGACY = "EBP_LEGACY",
+}
+
+M.M2tsSegmentationStyle = {
+    MAINTAIN_CADENCE = "MAINTAIN_CADENCE",
+    RESET_CADENCE = "RESET_CADENCE",
+}
+
+M.M2tsSettings = {
+    type = "structure",
+    members = {
+        AudioBufferModel = {
+            type = "string",
+            traits = {
+                json_name = "audioBufferModel",
+            },
+        },
+        AudioDuration = {
+            type = "string",
+            traits = {
+                json_name = "audioDuration",
+            },
+        },
+        AudioFramesPerPes = {
+            type = "number",
+            traits = {
+                json_name = "audioFramesPerPes",
+            },
+        },
+        AudioPids = {
+            type = "list",
+            member_type = "number",
+            traits = {
+                json_name = "audioPids",
+            },
+        },
+        AudioPtsOffsetDelta = {
+            type = "number",
+            traits = {
+                json_name = "audioPtsOffsetDelta",
+            },
+        },
+        Bitrate = {
+            type = "number",
+            traits = {
+                json_name = "bitrate",
+            },
+        },
+        BufferModel = {
+            type = "string",
+            traits = {
+                json_name = "bufferModel",
+            },
+        },
+        DataPTSControl = {
+            type = "string",
+            traits = {
+                json_name = "dataPTSControl",
+            },
+        },
+        DvbNitSettings = {
+            type = "structure",
+            traits = {
+                json_name = "dvbNitSettings",
+            },
+        },
+        DvbSdtSettings = {
+            type = "structure",
+            traits = {
+                json_name = "dvbSdtSettings",
+            },
+        },
+        DvbSubPids = {
+            type = "list",
+            member_type = "number",
+            traits = {
+                json_name = "dvbSubPids",
+            },
+        },
+        DvbTdtSettings = {
+            type = "structure",
+            traits = {
+                json_name = "dvbTdtSettings",
+            },
+        },
+        DvbTeletextPid = {
+            type = "number",
+            traits = {
+                json_name = "dvbTeletextPid",
+            },
+        },
+        EbpAudioInterval = {
+            type = "string",
+            traits = {
+                json_name = "ebpAudioInterval",
+            },
+        },
+        EbpPlacement = {
+            type = "string",
+            traits = {
+                json_name = "ebpPlacement",
+            },
+        },
+        EsRateInPes = {
+            type = "string",
+            traits = {
+                json_name = "esRateInPes",
+            },
+        },
+        ForceTsVideoEbpOrder = {
+            type = "string",
+            traits = {
+                json_name = "forceTsVideoEbpOrder",
+            },
+        },
+        FragmentTime = {
+            type = "number",
+            traits = {
+                json_name = "fragmentTime",
+            },
+        },
+        KlvMetadata = {
+            type = "string",
+            traits = {
+                json_name = "klvMetadata",
+            },
+        },
+        MaxPcrInterval = {
+            type = "number",
+            traits = {
+                json_name = "maxPcrInterval",
+            },
+        },
+        MinEbpInterval = {
+            type = "number",
+            traits = {
+                json_name = "minEbpInterval",
+            },
+        },
+        NielsenId3 = {
+            type = "string",
+            traits = {
+                json_name = "nielsenId3",
+            },
+        },
+        NullPacketBitrate = {
+            type = "number",
+            traits = {
+                json_name = "nullPacketBitrate",
+            },
+        },
+        PatInterval = {
+            type = "number",
+            traits = {
+                json_name = "patInterval",
+            },
+        },
+        PcrControl = {
+            type = "string",
+            traits = {
+                json_name = "pcrControl",
+            },
+        },
+        PcrPid = {
+            type = "number",
+            traits = {
+                json_name = "pcrPid",
+            },
+        },
+        PmtInterval = {
+            type = "number",
+            traits = {
+                json_name = "pmtInterval",
+            },
+        },
+        PmtPid = {
+            type = "number",
+            traits = {
+                json_name = "pmtPid",
+            },
+        },
+        PreventBufferUnderflow = {
+            type = "string",
+            traits = {
+                json_name = "preventBufferUnderflow",
+            },
+        },
+        PrivateMetadataPid = {
+            type = "number",
+            traits = {
+                json_name = "privateMetadataPid",
+            },
+        },
+        ProgramNumber = {
+            type = "number",
+            traits = {
+                json_name = "programNumber",
+            },
+        },
+        PtsOffset = {
+            type = "number",
+            traits = {
+                json_name = "ptsOffset",
+            },
+        },
+        PtsOffsetMode = {
+            type = "string",
+            traits = {
+                json_name = "ptsOffsetMode",
+            },
+        },
+        RateMode = {
+            type = "string",
+            traits = {
+                json_name = "rateMode",
+            },
+        },
+        Scte35Esam = {
+            type = "structure",
+            traits = {
+                json_name = "scte35Esam",
+            },
+        },
+        Scte35Pid = {
+            type = "number",
+            traits = {
+                json_name = "scte35Pid",
+            },
+        },
+        Scte35Source = {
+            type = "string",
+            traits = {
+                json_name = "scte35Source",
+            },
+        },
+        SegmentationMarkers = {
+            type = "string",
+            traits = {
+                json_name = "segmentationMarkers",
+            },
+        },
+        SegmentationStyle = {
+            type = "string",
+            traits = {
+                json_name = "segmentationStyle",
+            },
+        },
+        SegmentationTime = {
+            type = "number",
+            traits = {
+                json_name = "segmentationTime",
+            },
+        },
+        TimedMetadataPid = {
+            type = "number",
+            traits = {
+                json_name = "timedMetadataPid",
+            },
+        },
+        TransportStreamId = {
+            type = "number",
+            traits = {
+                json_name = "transportStreamId",
+            },
+        },
+        VideoPid = {
+            type = "number",
+            traits = {
+                json_name = "videoPid",
+            },
+        },
+    },
+}
+
+M.M3u8AudioDuration = {
+    DEFAULT_CODEC_DURATION = "DEFAULT_CODEC_DURATION",
+    MATCH_VIDEO_DURATION = "MATCH_VIDEO_DURATION",
+}
+
+M.M3u8DataPtsControl = {
+    AUTO = "AUTO",
+    ALIGN_TO_VIDEO = "ALIGN_TO_VIDEO",
+}
+
+M.M3u8NielsenId3 = {
+    INSERT = "INSERT",
+    NONE = "NONE",
+}
+
+M.M3u8PcrControl = {
+    PCR_EVERY_PES_PACKET = "PCR_EVERY_PES_PACKET",
+    CONFIGURED_PCR_PERIOD = "CONFIGURED_PCR_PERIOD",
+}
+
+M.M3u8Scte35Source = {
+    PASSTHROUGH = "PASSTHROUGH",
+    NONE = "NONE",
+}
+
+M.TimedMetadata = {
+    PASSTHROUGH = "PASSTHROUGH",
+    NONE = "NONE",
+}
+
+M.M3u8Settings = {
+    type = "structure",
+    members = {
+        AudioDuration = {
+            type = "string",
+            traits = {
+                json_name = "audioDuration",
+            },
+        },
+        AudioFramesPerPes = {
+            type = "number",
+            traits = {
+                json_name = "audioFramesPerPes",
+            },
+        },
+        AudioPids = {
+            type = "list",
+            member_type = "number",
+            traits = {
+                json_name = "audioPids",
+            },
+        },
+        AudioPtsOffsetDelta = {
+            type = "number",
+            traits = {
+                json_name = "audioPtsOffsetDelta",
+            },
+        },
+        DataPTSControl = {
+            type = "string",
+            traits = {
+                json_name = "dataPTSControl",
+            },
+        },
+        MaxPcrInterval = {
+            type = "number",
+            traits = {
+                json_name = "maxPcrInterval",
+            },
+        },
+        NielsenId3 = {
+            type = "string",
+            traits = {
+                json_name = "nielsenId3",
+            },
+        },
+        PatInterval = {
+            type = "number",
+            traits = {
+                json_name = "patInterval",
+            },
+        },
+        PcrControl = {
+            type = "string",
+            traits = {
+                json_name = "pcrControl",
+            },
+        },
+        PcrPid = {
+            type = "number",
+            traits = {
+                json_name = "pcrPid",
+            },
+        },
+        PmtInterval = {
+            type = "number",
+            traits = {
+                json_name = "pmtInterval",
+            },
+        },
+        PmtPid = {
+            type = "number",
+            traits = {
+                json_name = "pmtPid",
+            },
+        },
+        PrivateMetadataPid = {
+            type = "number",
+            traits = {
+                json_name = "privateMetadataPid",
+            },
+        },
+        ProgramNumber = {
+            type = "number",
+            traits = {
+                json_name = "programNumber",
+            },
+        },
+        PtsOffset = {
+            type = "number",
+            traits = {
+                json_name = "ptsOffset",
+            },
+        },
+        PtsOffsetMode = {
+            type = "string",
+            traits = {
+                json_name = "ptsOffsetMode",
+            },
+        },
+        Scte35Pid = {
+            type = "number",
+            traits = {
+                json_name = "scte35Pid",
+            },
+        },
+        Scte35Source = {
+            type = "string",
+            traits = {
+                json_name = "scte35Source",
+            },
+        },
+        TimedMetadata = {
+            type = "string",
+            traits = {
+                json_name = "timedMetadata",
+            },
+        },
+        TimedMetadataPid = {
+            type = "number",
+            traits = {
+                json_name = "timedMetadataPid",
+            },
+        },
+        TransportStreamId = {
+            type = "number",
+            traits = {
+                json_name = "transportStreamId",
+            },
+        },
+        VideoPid = {
+            type = "number",
+            traits = {
+                json_name = "videoPid",
+            },
+        },
+    },
+}
+
+M.MovClapAtom = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.MovCslgAtom = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.MovMpeg2FourCCControl = {
+    XDCAM = "XDCAM",
+    MPEG = "MPEG",
+}
+
+M.MovPaddingControl = {
+    OMNEON = "OMNEON",
+    NONE = "NONE",
+}
+
+M.MovReference = {
+    SELF_CONTAINED = "SELF_CONTAINED",
+    EXTERNAL = "EXTERNAL",
+}
+
+M.MovSettings = {
+    type = "structure",
+    members = {
+        ClapAtom = {
+            type = "string",
+            traits = {
+                json_name = "clapAtom",
+            },
+        },
+        CslgAtom = {
+            type = "string",
+            traits = {
+                json_name = "cslgAtom",
+            },
+        },
+        Mpeg2FourCCControl = {
+            type = "string",
+            traits = {
+                json_name = "mpeg2FourCCControl",
+            },
+        },
+        PaddingControl = {
+            type = "string",
+            traits = {
+                json_name = "paddingControl",
+            },
+        },
+        Reference = {
+            type = "string",
+            traits = {
+                json_name = "reference",
+            },
+        },
+    },
+}
+
+M.Mp4C2paManifest = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.Mp4CslgAtom = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.Mp4FreeSpaceBox = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.Mp4MoovPlacement = {
+    PROGRESSIVE_DOWNLOAD = "PROGRESSIVE_DOWNLOAD",
+    NORMAL = "NORMAL",
+}
+
+M.Mp4Settings = {
+    type = "structure",
+    members = {
+        AudioDuration = {
+            type = "string",
+            traits = {
+                json_name = "audioDuration",
+            },
+        },
+        C2paManifest = {
+            type = "string",
+            traits = {
+                json_name = "c2paManifest",
+            },
+        },
+        CertificateSecret = {
+            type = "string",
+            traits = {
+                json_name = "certificateSecret",
+            },
+        },
+        CslgAtom = {
+            type = "string",
+            traits = {
+                json_name = "cslgAtom",
+            },
+        },
+        CttsVersion = {
+            type = "number",
+            traits = {
+                json_name = "cttsVersion",
+            },
+        },
+        FreeSpaceBox = {
+            type = "string",
+            traits = {
+                json_name = "freeSpaceBox",
+            },
+        },
+        MoovPlacement = {
+            type = "string",
+            traits = {
+                json_name = "moovPlacement",
+            },
+        },
+        Mp4MajorBrand = {
+            type = "string",
+            traits = {
+                json_name = "mp4MajorBrand",
+            },
+        },
+        SigningKmsKey = {
+            type = "string",
+            traits = {
+                json_name = "signingKmsKey",
+            },
+        },
+    },
+}
+
+M.MpdAccessibilityCaptionHints = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.MpdAudioDuration = {
+    DEFAULT_CODEC_DURATION = "DEFAULT_CODEC_DURATION",
+    MATCH_VIDEO_DURATION = "MATCH_VIDEO_DURATION",
+}
+
+M.MpdC2paManifest = {
+    INCLUDE = "INCLUDE",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.MpdCaptionContainerType = {
+    RAW = "RAW",
+    FRAGMENTED_MP4 = "FRAGMENTED_MP4",
+}
+
+M.MpdKlvMetadata = {
+    NONE = "NONE",
+    PASSTHROUGH = "PASSTHROUGH",
+}
+
+M.MpdManifestMetadataSignaling = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.MpdScte35Esam = {
+    INSERT = "INSERT",
+    NONE = "NONE",
+}
+
+M.MpdScte35Source = {
+    PASSTHROUGH = "PASSTHROUGH",
+    NONE = "NONE",
+}
+
+M.MpdTimedMetadata = {
+    PASSTHROUGH = "PASSTHROUGH",
+    NONE = "NONE",
+}
+
+M.MpdTimedMetadataBoxVersion = {
+    VERSION_0 = "VERSION_0",
+    VERSION_1 = "VERSION_1",
+}
+
+M.MpdSettings = {
+    type = "structure",
+    members = {
+        AccessibilityCaptionHints = {
+            type = "string",
+            traits = {
+                json_name = "accessibilityCaptionHints",
+            },
+        },
+        AudioDuration = {
+            type = "string",
+            traits = {
+                json_name = "audioDuration",
+            },
+        },
+        C2paManifest = {
+            type = "string",
+            traits = {
+                json_name = "c2paManifest",
+            },
+        },
+        CaptionContainerType = {
+            type = "string",
+            traits = {
+                json_name = "captionContainerType",
+            },
+        },
+        CertificateSecret = {
+            type = "string",
+            traits = {
+                json_name = "certificateSecret",
+            },
+        },
+        KlvMetadata = {
+            type = "string",
+            traits = {
+                json_name = "klvMetadata",
+            },
+        },
+        ManifestMetadataSignaling = {
+            type = "string",
+            traits = {
+                json_name = "manifestMetadataSignaling",
+            },
+        },
+        Scte35Esam = {
+            type = "string",
+            traits = {
+                json_name = "scte35Esam",
+            },
+        },
+        Scte35Source = {
+            type = "string",
+            traits = {
+                json_name = "scte35Source",
+            },
+        },
+        SigningKmsKey = {
+            type = "string",
+            traits = {
+                json_name = "signingKmsKey",
+            },
+        },
+        TimedMetadata = {
+            type = "string",
+            traits = {
+                json_name = "timedMetadata",
+            },
+        },
+        TimedMetadataBoxVersion = {
+            type = "string",
+            traits = {
+                json_name = "timedMetadataBoxVersion",
+            },
+        },
+        TimedMetadataSchemeIdUri = {
+            type = "string",
+            traits = {
+                json_name = "timedMetadataSchemeIdUri",
+            },
+        },
+        TimedMetadataValue = {
+            type = "string",
+            traits = {
+                json_name = "timedMetadataValue",
+            },
+        },
+    },
+}
+
+M.MxfAfdSignaling = {
+    NO_COPY = "NO_COPY",
+    COPY_FROM_VIDEO = "COPY_FROM_VIDEO",
+}
+
+M.MxfProfile = {
+    D_10 = "D_10",
+    XDCAM = "XDCAM",
+    OP1A = "OP1A",
+    XAVC = "XAVC",
+    XDCAM_RDD9 = "XDCAM_RDD9",
+}
+
+M.MxfUncompressedAudioWrapping = {
+    AUTO = "AUTO",
+    AES3 = "AES3",
+}
+
+M.MxfXavcDurationMode = {
+    ALLOW_ANY_DURATION = "ALLOW_ANY_DURATION",
+    DROP_FRAMES_FOR_COMPLIANCE = "DROP_FRAMES_FOR_COMPLIANCE",
+}
+
+M.MxfXavcProfileSettings = {
+    type = "structure",
+    members = {
+        DurationMode = {
+            type = "string",
+            traits = {
+                json_name = "durationMode",
+            },
+        },
+        MaxAncDataSize = {
+            type = "number",
+            traits = {
+                json_name = "maxAncDataSize",
+            },
+        },
+    },
+}
+
+M.MxfSettings = {
+    type = "structure",
+    members = {
+        AfdSignaling = {
+            type = "string",
+            traits = {
+                json_name = "afdSignaling",
+            },
+        },
+        Profile = {
+            type = "string",
+            traits = {
+                json_name = "profile",
+            },
+        },
+        UncompressedAudioWrapping = {
+            type = "string",
+            traits = {
+                json_name = "uncompressedAudioWrapping",
+            },
+        },
+        XavcProfileSettings = {
+            type = "structure",
+            traits = {
+                json_name = "xavcProfileSettings",
+            },
+        },
+    },
+}
+
+M.ContainerSettings = {
+    type = "structure",
+    members = {
+        CmfcSettings = {
+            type = "structure",
+            traits = {
+                json_name = "cmfcSettings",
+            },
+        },
+        Container = {
+            type = "string",
+            traits = {
+                json_name = "container",
+            },
+        },
+        F4vSettings = {
+            type = "structure",
+            traits = {
+                json_name = "f4vSettings",
+            },
+        },
+        M2tsSettings = {
+            type = "structure",
+            traits = {
+                json_name = "m2tsSettings",
+            },
+        },
+        M3u8Settings = {
+            type = "structure",
+            traits = {
+                json_name = "m3u8Settings",
+            },
+        },
+        MovSettings = {
+            type = "structure",
+            traits = {
+                json_name = "movSettings",
+            },
+        },
+        Mp4Settings = {
+            type = "structure",
+            traits = {
+                json_name = "mp4Settings",
+            },
+        },
+        MpdSettings = {
+            type = "structure",
+            traits = {
+                json_name = "mpdSettings",
+            },
+        },
+        MxfSettings = {
+            type = "structure",
+            traits = {
+                json_name = "mxfSettings",
+            },
+        },
+    },
+}
+
+M.HlsAudioOnlyContainer = {
+    AUTOMATIC = "AUTOMATIC",
+    M2TS = "M2TS",
+}
+
+M.HlsAudioTrackType = {
+    ALTERNATE_AUDIO_AUTO_SELECT_DEFAULT = "ALTERNATE_AUDIO_AUTO_SELECT_DEFAULT",
+    ALTERNATE_AUDIO_AUTO_SELECT = "ALTERNATE_AUDIO_AUTO_SELECT",
+    ALTERNATE_AUDIO_NOT_AUTO_SELECT = "ALTERNATE_AUDIO_NOT_AUTO_SELECT",
+    AUDIO_ONLY_VARIANT_STREAM = "AUDIO_ONLY_VARIANT_STREAM",
+}
+
+M.HlsDescriptiveVideoServiceFlag = {
+    DONT_FLAG = "DONT_FLAG",
+    FLAG = "FLAG",
+}
+
+M.HlsIFrameOnlyManifest = {
+    INCLUDE = "INCLUDE",
+    INCLUDE_AS_TS = "INCLUDE_AS_TS",
+    EXCLUDE = "EXCLUDE",
+}
+
+M.HlsSettings = {
+    type = "structure",
+    members = {
+        AudioGroupId = {
+            type = "string",
+            traits = {
+                json_name = "audioGroupId",
+            },
+        },
+        AudioOnlyContainer = {
+            type = "string",
+            traits = {
+                json_name = "audioOnlyContainer",
+            },
+        },
+        AudioRenditionSets = {
+            type = "string",
+            traits = {
+                json_name = "audioRenditionSets",
+            },
+        },
+        AudioTrackType = {
+            type = "string",
+            traits = {
+                json_name = "audioTrackType",
+            },
+        },
+        DescriptiveVideoServiceFlag = {
+            type = "string",
+            traits = {
+                json_name = "descriptiveVideoServiceFlag",
+            },
+        },
+        IFrameOnlyManifest = {
+            type = "string",
+            traits = {
+                json_name = "iFrameOnlyManifest",
+            },
+        },
+        SegmentModifier = {
+            type = "string",
+            traits = {
+                json_name = "segmentModifier",
+            },
+        },
+    },
+}
+
+M.OutputSettings = {
+    type = "structure",
+    members = {
+        HlsSettings = {
+            type = "structure",
+            traits = {
+                json_name = "hlsSettings",
+            },
+        },
+    },
+}
+
+M.AfdSignaling = {
+    NONE = "NONE",
+    AUTO = "AUTO",
+    FIXED = "FIXED",
+}
+
+M.AntiAlias = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.ChromaPositionMode = {
+    AUTO = "AUTO",
+    FORCE_CENTER = "FORCE_CENTER",
+    FORCE_TOP_LEFT = "FORCE_TOP_LEFT",
+}
+
+M.Av1AdaptiveQuantization = {
+    OFF = "OFF",
+    LOW = "LOW",
+    MEDIUM = "MEDIUM",
+    HIGH = "HIGH",
+    HIGHER = "HIGHER",
+    MAX = "MAX",
+}
+
+M.Av1BitDepth = {
+    BIT_8 = "BIT_8",
+    BIT_10 = "BIT_10",
+}
+
+M.Av1FilmGrainSynthesis = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.Av1FramerateControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.Av1FramerateConversionAlgorithm = {
+    DUPLICATE_DROP = "DUPLICATE_DROP",
+    INTERPOLATE = "INTERPOLATE",
+    FRAMEFORMER = "FRAMEFORMER",
+    MAINTAIN_FRAME_COUNT = "MAINTAIN_FRAME_COUNT",
+}
+
+M.Av1QvbrSettings = {
+    type = "structure",
+    members = {
+        QvbrQualityLevel = {
+            type = "number",
+            traits = {
+                json_name = "qvbrQualityLevel",
+            },
+        },
+        QvbrQualityLevelFineTune = {
+            type = "number",
+            traits = {
+                json_name = "qvbrQualityLevelFineTune",
+            },
+        },
+    },
+}
+
+M.Av1RateControlMode = {
+    QVBR = "QVBR",
+}
+
+M.Av1SpatialAdaptiveQuantization = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.Av1Settings = {
+    type = "structure",
+    members = {
+        AdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "adaptiveQuantization",
+            },
+        },
+        BitDepth = {
+            type = "string",
+            traits = {
+                json_name = "bitDepth",
+            },
+        },
+        FilmGrainSynthesis = {
+            type = "string",
+            traits = {
+                json_name = "filmGrainSynthesis",
+            },
+        },
+        FramerateControl = {
+            type = "string",
+            traits = {
+                json_name = "framerateControl",
+            },
+        },
+        FramerateConversionAlgorithm = {
+            type = "string",
+            traits = {
+                json_name = "framerateConversionAlgorithm",
+            },
+        },
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+        GopSize = {
+            type = "number",
+            traits = {
+                json_name = "gopSize",
+            },
+        },
+        MaxBitrate = {
+            type = "number",
+            traits = {
+                json_name = "maxBitrate",
+            },
+        },
+        NumberBFramesBetweenReferenceFrames = {
+            type = "number",
+            traits = {
+                json_name = "numberBFramesBetweenReferenceFrames",
+            },
+        },
+        PerFrameMetrics = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "perFrameMetrics",
+            },
+        },
+        QvbrSettings = {
+            type = "structure",
+            traits = {
+                json_name = "qvbrSettings",
+            },
+        },
+        RateControlMode = {
+            type = "string",
+            traits = {
+                json_name = "rateControlMode",
+            },
+        },
+        Slices = {
+            type = "number",
+            traits = {
+                json_name = "slices",
+            },
+        },
+        SpatialAdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "spatialAdaptiveQuantization",
+            },
+        },
+    },
+}
+
+M.AvcIntraClass = {
+    CLASS_50 = "CLASS_50",
+    CLASS_100 = "CLASS_100",
+    CLASS_200 = "CLASS_200",
+    CLASS_4K_2K = "CLASS_4K_2K",
+}
+
+M.AvcIntraUhdQualityTuningLevel = {
+    SINGLE_PASS = "SINGLE_PASS",
+    MULTI_PASS = "MULTI_PASS",
+}
+
+M.AvcIntraUhdSettings = {
+    type = "structure",
+    members = {
+        QualityTuningLevel = {
+            type = "string",
+            traits = {
+                json_name = "qualityTuningLevel",
+            },
+        },
+    },
+}
+
+M.AvcIntraFramerateControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.AvcIntraFramerateConversionAlgorithm = {
+    DUPLICATE_DROP = "DUPLICATE_DROP",
+    INTERPOLATE = "INTERPOLATE",
+    FRAMEFORMER = "FRAMEFORMER",
+    MAINTAIN_FRAME_COUNT = "MAINTAIN_FRAME_COUNT",
+}
+
+M.AvcIntraInterlaceMode = {
+    PROGRESSIVE = "PROGRESSIVE",
+    TOP_FIELD = "TOP_FIELD",
+    BOTTOM_FIELD = "BOTTOM_FIELD",
+    FOLLOW_TOP_FIELD = "FOLLOW_TOP_FIELD",
+    FOLLOW_BOTTOM_FIELD = "FOLLOW_BOTTOM_FIELD",
+}
+
+M.AvcIntraScanTypeConversionMode = {
+    INTERLACED = "INTERLACED",
+    INTERLACED_OPTIMIZE = "INTERLACED_OPTIMIZE",
+}
+
+M.AvcIntraSlowPal = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.AvcIntraTelecine = {
+    NONE = "NONE",
+    HARD = "HARD",
+}
+
+M.AvcIntraSettings = {
+    type = "structure",
+    members = {
+        AvcIntraClass = {
+            type = "string",
+            traits = {
+                json_name = "avcIntraClass",
+            },
+        },
+        AvcIntraUhdSettings = {
+            type = "structure",
+            traits = {
+                json_name = "avcIntraUhdSettings",
+            },
+        },
+        FramerateControl = {
+            type = "string",
+            traits = {
+                json_name = "framerateControl",
+            },
+        },
+        FramerateConversionAlgorithm = {
+            type = "string",
+            traits = {
+                json_name = "framerateConversionAlgorithm",
+            },
+        },
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+        InterlaceMode = {
+            type = "string",
+            traits = {
+                json_name = "interlaceMode",
+            },
+        },
+        PerFrameMetrics = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "perFrameMetrics",
+            },
+        },
+        ScanTypeConversionMode = {
+            type = "string",
+            traits = {
+                json_name = "scanTypeConversionMode",
+            },
+        },
+        SlowPal = {
+            type = "string",
+            traits = {
+                json_name = "slowPal",
+            },
+        },
+        Telecine = {
+            type = "string",
+            traits = {
+                json_name = "telecine",
+            },
+        },
+    },
+}
+
+M.VideoCodec = {
+    AV1 = "AV1",
+    AVC_INTRA = "AVC_INTRA",
+    FRAME_CAPTURE = "FRAME_CAPTURE",
+    GIF = "GIF",
+    H_264 = "H_264",
+    H_265 = "H_265",
+    MPEG2 = "MPEG2",
+    PASSTHROUGH = "PASSTHROUGH",
+    PRORES = "PRORES",
+    UNCOMPRESSED = "UNCOMPRESSED",
+    VC3 = "VC3",
+    VP8 = "VP8",
+    VP9 = "VP9",
+    XAVC = "XAVC",
+}
+
+M.FrameCaptureSettings = {
+    type = "structure",
+    members = {
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+        MaxCaptures = {
+            type = "number",
+            traits = {
+                json_name = "maxCaptures",
+            },
+        },
+        Quality = {
+            type = "number",
+            traits = {
+                json_name = "quality",
+            },
+        },
+    },
+}
+
+M.GifFramerateControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.GifFramerateConversionAlgorithm = {
+    DUPLICATE_DROP = "DUPLICATE_DROP",
+    INTERPOLATE = "INTERPOLATE",
+}
+
+M.GifSettings = {
+    type = "structure",
+    members = {
+        FramerateControl = {
+            type = "string",
+            traits = {
+                json_name = "framerateControl",
+            },
+        },
+        FramerateConversionAlgorithm = {
+            type = "string",
+            traits = {
+                json_name = "framerateConversionAlgorithm",
+            },
+        },
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+    },
+}
+
+M.H264AdaptiveQuantization = {
+    OFF = "OFF",
+    AUTO = "AUTO",
+    LOW = "LOW",
+    MEDIUM = "MEDIUM",
+    HIGH = "HIGH",
+    HIGHER = "HIGHER",
+    MAX = "MAX",
+}
+
+M.BandwidthReductionFilterSharpening = {
+    LOW = "LOW",
+    MEDIUM = "MEDIUM",
+    HIGH = "HIGH",
+    OFF = "OFF",
+}
+
+M.BandwidthReductionFilterStrength = {
+    LOW = "LOW",
+    MEDIUM = "MEDIUM",
+    HIGH = "HIGH",
+    AUTO = "AUTO",
+    OFF = "OFF",
+}
+
+M.BandwidthReductionFilter = {
+    type = "structure",
+    members = {
+        Sharpening = {
+            type = "string",
+            traits = {
+                json_name = "sharpening",
+            },
+        },
+        Strength = {
+            type = "string",
+            traits = {
+                json_name = "strength",
+            },
+        },
+    },
+}
+
+M.H264CodecLevel = {
+    AUTO = "AUTO",
+    LEVEL_1 = "LEVEL_1",
+    LEVEL_1_1 = "LEVEL_1_1",
+    LEVEL_1_2 = "LEVEL_1_2",
+    LEVEL_1_3 = "LEVEL_1_3",
+    LEVEL_2 = "LEVEL_2",
+    LEVEL_2_1 = "LEVEL_2_1",
+    LEVEL_2_2 = "LEVEL_2_2",
+    LEVEL_3 = "LEVEL_3",
+    LEVEL_3_1 = "LEVEL_3_1",
+    LEVEL_3_2 = "LEVEL_3_2",
+    LEVEL_4 = "LEVEL_4",
+    LEVEL_4_1 = "LEVEL_4_1",
+    LEVEL_4_2 = "LEVEL_4_2",
+    LEVEL_5 = "LEVEL_5",
+    LEVEL_5_1 = "LEVEL_5_1",
+    LEVEL_5_2 = "LEVEL_5_2",
+}
+
+M.H264CodecProfile = {
+    BASELINE = "BASELINE",
+    HIGH = "HIGH",
+    HIGH_10BIT = "HIGH_10BIT",
+    HIGH_422 = "HIGH_422",
+    HIGH_422_10BIT = "HIGH_422_10BIT",
+    MAIN = "MAIN",
+}
+
+M.H264DynamicSubGop = {
+    ADAPTIVE = "ADAPTIVE",
+    STATIC = "STATIC",
+}
+
+M.H264EndOfStreamMarkers = {
+    INCLUDE = "INCLUDE",
+    SUPPRESS = "SUPPRESS",
+}
+
+M.H264EntropyEncoding = {
+    CABAC = "CABAC",
+    CAVLC = "CAVLC",
+}
+
+M.H264FieldEncoding = {
+    PAFF = "PAFF",
+    FORCE_FIELD = "FORCE_FIELD",
+    MBAFF = "MBAFF",
+}
+
+M.H264FlickerAdaptiveQuantization = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H264FramerateControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.H264FramerateConversionAlgorithm = {
+    DUPLICATE_DROP = "DUPLICATE_DROP",
+    INTERPOLATE = "INTERPOLATE",
+    FRAMEFORMER = "FRAMEFORMER",
+    MAINTAIN_FRAME_COUNT = "MAINTAIN_FRAME_COUNT",
+}
+
+M.H264GopBReference = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H264GopSizeUnits = {
+    FRAMES = "FRAMES",
+    SECONDS = "SECONDS",
+    AUTO = "AUTO",
+}
+
+M.H264InterlaceMode = {
+    PROGRESSIVE = "PROGRESSIVE",
+    TOP_FIELD = "TOP_FIELD",
+    BOTTOM_FIELD = "BOTTOM_FIELD",
+    FOLLOW_TOP_FIELD = "FOLLOW_TOP_FIELD",
+    FOLLOW_BOTTOM_FIELD = "FOLLOW_BOTTOM_FIELD",
+}
+
+M.H264ParControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.H264QualityTuningLevel = {
+    SINGLE_PASS = "SINGLE_PASS",
+    SINGLE_PASS_HQ = "SINGLE_PASS_HQ",
+    MULTI_PASS_HQ = "MULTI_PASS_HQ",
+}
+
+M.H264QvbrSettings = {
+    type = "structure",
+    members = {
+        MaxAverageBitrate = {
+            type = "number",
+            traits = {
+                json_name = "maxAverageBitrate",
+            },
+        },
+        QvbrQualityLevel = {
+            type = "number",
+            traits = {
+                json_name = "qvbrQualityLevel",
+            },
+        },
+        QvbrQualityLevelFineTune = {
+            type = "number",
+            traits = {
+                json_name = "qvbrQualityLevelFineTune",
+            },
+        },
+    },
+}
+
+M.H264RateControlMode = {
+    VBR = "VBR",
+    CBR = "CBR",
+    QVBR = "QVBR",
+}
+
+M.H264RepeatPps = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H264SaliencyAwareEncoding = {
+    DISABLED = "DISABLED",
+    PREFERRED = "PREFERRED",
+}
+
+M.H264ScanTypeConversionMode = {
+    INTERLACED = "INTERLACED",
+    INTERLACED_OPTIMIZE = "INTERLACED_OPTIMIZE",
+}
+
+M.H264SceneChangeDetect = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+    TRANSITION_DETECTION = "TRANSITION_DETECTION",
+}
+
+M.H264SlowPal = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H264SpatialAdaptiveQuantization = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H264Syntax = {
+    DEFAULT = "DEFAULT",
+    RP2027 = "RP2027",
+}
+
+M.H264Telecine = {
+    NONE = "NONE",
+    SOFT = "SOFT",
+    HARD = "HARD",
+}
+
+M.H264TemporalAdaptiveQuantization = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H264UnregisteredSeiTimecode = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H264WriteMp4PackagingType = {
+    AVC1 = "AVC1",
+    AVC3 = "AVC3",
+}
+
+M.H264Settings = {
+    type = "structure",
+    members = {
+        AdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "adaptiveQuantization",
+            },
+        },
+        BandwidthReductionFilter = {
+            type = "structure",
+            traits = {
+                json_name = "bandwidthReductionFilter",
+            },
+        },
+        Bitrate = {
+            type = "number",
+            traits = {
+                json_name = "bitrate",
+            },
+        },
+        CodecLevel = {
+            type = "string",
+            traits = {
+                json_name = "codecLevel",
+            },
+        },
+        CodecProfile = {
+            type = "string",
+            traits = {
+                json_name = "codecProfile",
+            },
+        },
+        DynamicSubGop = {
+            type = "string",
+            traits = {
+                json_name = "dynamicSubGop",
+            },
+        },
+        EndOfStreamMarkers = {
+            type = "string",
+            traits = {
+                json_name = "endOfStreamMarkers",
+            },
+        },
+        EntropyEncoding = {
+            type = "string",
+            traits = {
+                json_name = "entropyEncoding",
+            },
+        },
+        FieldEncoding = {
+            type = "string",
+            traits = {
+                json_name = "fieldEncoding",
+            },
+        },
+        FlickerAdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "flickerAdaptiveQuantization",
+            },
+        },
+        FramerateControl = {
+            type = "string",
+            traits = {
+                json_name = "framerateControl",
+            },
+        },
+        FramerateConversionAlgorithm = {
+            type = "string",
+            traits = {
+                json_name = "framerateConversionAlgorithm",
+            },
+        },
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+        GopBReference = {
+            type = "string",
+            traits = {
+                json_name = "gopBReference",
+            },
+        },
+        GopClosedCadence = {
+            type = "number",
+            traits = {
+                json_name = "gopClosedCadence",
+            },
+        },
+        GopSize = {
+            type = "number",
+            traits = {
+                json_name = "gopSize",
+            },
+        },
+        GopSizeUnits = {
+            type = "string",
+            traits = {
+                json_name = "gopSizeUnits",
+            },
+        },
+        HrdBufferFinalFillPercentage = {
+            type = "number",
+            traits = {
+                json_name = "hrdBufferFinalFillPercentage",
+            },
+        },
+        HrdBufferInitialFillPercentage = {
+            type = "number",
+            traits = {
+                json_name = "hrdBufferInitialFillPercentage",
+            },
+        },
+        HrdBufferSize = {
+            type = "number",
+            traits = {
+                json_name = "hrdBufferSize",
+            },
+        },
+        InterlaceMode = {
+            type = "string",
+            traits = {
+                json_name = "interlaceMode",
+            },
+        },
+        MaxBitrate = {
+            type = "number",
+            traits = {
+                json_name = "maxBitrate",
+            },
+        },
+        MinIInterval = {
+            type = "number",
+            traits = {
+                json_name = "minIInterval",
+            },
+        },
+        NumberBFramesBetweenReferenceFrames = {
+            type = "number",
+            traits = {
+                json_name = "numberBFramesBetweenReferenceFrames",
+            },
+        },
+        NumberReferenceFrames = {
+            type = "number",
+            traits = {
+                json_name = "numberReferenceFrames",
+            },
+        },
+        ParControl = {
+            type = "string",
+            traits = {
+                json_name = "parControl",
+            },
+        },
+        ParDenominator = {
+            type = "number",
+            traits = {
+                json_name = "parDenominator",
+            },
+        },
+        ParNumerator = {
+            type = "number",
+            traits = {
+                json_name = "parNumerator",
+            },
+        },
+        PerFrameMetrics = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "perFrameMetrics",
+            },
+        },
+        QualityTuningLevel = {
+            type = "string",
+            traits = {
+                json_name = "qualityTuningLevel",
+            },
+        },
+        QvbrSettings = {
+            type = "structure",
+            traits = {
+                json_name = "qvbrSettings",
+            },
+        },
+        RateControlMode = {
+            type = "string",
+            traits = {
+                json_name = "rateControlMode",
+            },
+        },
+        RepeatPps = {
+            type = "string",
+            traits = {
+                json_name = "repeatPps",
+            },
+        },
+        SaliencyAwareEncoding = {
+            type = "string",
+            traits = {
+                json_name = "saliencyAwareEncoding",
+            },
+        },
+        ScanTypeConversionMode = {
+            type = "string",
+            traits = {
+                json_name = "scanTypeConversionMode",
+            },
+        },
+        SceneChangeDetect = {
+            type = "string",
+            traits = {
+                json_name = "sceneChangeDetect",
+            },
+        },
+        Slices = {
+            type = "number",
+            traits = {
+                json_name = "slices",
+            },
+        },
+        SlowPal = {
+            type = "string",
+            traits = {
+                json_name = "slowPal",
+            },
+        },
+        Softness = {
+            type = "number",
+            traits = {
+                json_name = "softness",
+            },
+        },
+        SpatialAdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "spatialAdaptiveQuantization",
+            },
+        },
+        Syntax = {
+            type = "string",
+            traits = {
+                json_name = "syntax",
+            },
+        },
+        Telecine = {
+            type = "string",
+            traits = {
+                json_name = "telecine",
+            },
+        },
+        TemporalAdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "temporalAdaptiveQuantization",
+            },
+        },
+        UnregisteredSeiTimecode = {
+            type = "string",
+            traits = {
+                json_name = "unregisteredSeiTimecode",
+            },
+        },
+        WriteMp4PackagingType = {
+            type = "string",
+            traits = {
+                json_name = "writeMp4PackagingType",
+            },
+        },
+    },
+}
+
+M.H265AdaptiveQuantization = {
+    OFF = "OFF",
+    LOW = "LOW",
+    MEDIUM = "MEDIUM",
+    HIGH = "HIGH",
+    HIGHER = "HIGHER",
+    MAX = "MAX",
+    AUTO = "AUTO",
+}
+
+M.H265AlternateTransferFunctionSei = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H265CodecLevel = {
+    AUTO = "AUTO",
+    LEVEL_1 = "LEVEL_1",
+    LEVEL_2 = "LEVEL_2",
+    LEVEL_2_1 = "LEVEL_2_1",
+    LEVEL_3 = "LEVEL_3",
+    LEVEL_3_1 = "LEVEL_3_1",
+    LEVEL_4 = "LEVEL_4",
+    LEVEL_4_1 = "LEVEL_4_1",
+    LEVEL_5 = "LEVEL_5",
+    LEVEL_5_1 = "LEVEL_5_1",
+    LEVEL_5_2 = "LEVEL_5_2",
+    LEVEL_6 = "LEVEL_6",
+    LEVEL_6_1 = "LEVEL_6_1",
+    LEVEL_6_2 = "LEVEL_6_2",
+}
+
+M.H265CodecProfile = {
+    MAIN_MAIN = "MAIN_MAIN",
+    MAIN_HIGH = "MAIN_HIGH",
+    MAIN10_MAIN = "MAIN10_MAIN",
+    MAIN10_HIGH = "MAIN10_HIGH",
+    MAIN_422_8BIT_MAIN = "MAIN_422_8BIT_MAIN",
+    MAIN_422_8BIT_HIGH = "MAIN_422_8BIT_HIGH",
+    MAIN_422_10BIT_MAIN = "MAIN_422_10BIT_MAIN",
+    MAIN_422_10BIT_HIGH = "MAIN_422_10BIT_HIGH",
+}
+
+M.H265Deblocking = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.H265DynamicSubGop = {
+    ADAPTIVE = "ADAPTIVE",
+    STATIC = "STATIC",
+}
+
+M.H265EndOfStreamMarkers = {
+    INCLUDE = "INCLUDE",
+    SUPPRESS = "SUPPRESS",
+}
+
+M.H265FlickerAdaptiveQuantization = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H265FramerateControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.H265FramerateConversionAlgorithm = {
+    DUPLICATE_DROP = "DUPLICATE_DROP",
+    INTERPOLATE = "INTERPOLATE",
+    FRAMEFORMER = "FRAMEFORMER",
+    MAINTAIN_FRAME_COUNT = "MAINTAIN_FRAME_COUNT",
+}
+
+M.H265GopBReference = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H265GopSizeUnits = {
+    FRAMES = "FRAMES",
+    SECONDS = "SECONDS",
+    AUTO = "AUTO",
+}
+
+M.H265InterlaceMode = {
+    PROGRESSIVE = "PROGRESSIVE",
+    TOP_FIELD = "TOP_FIELD",
+    BOTTOM_FIELD = "BOTTOM_FIELD",
+    FOLLOW_TOP_FIELD = "FOLLOW_TOP_FIELD",
+    FOLLOW_BOTTOM_FIELD = "FOLLOW_BOTTOM_FIELD",
+}
+
+M.H265MvOverPictureBoundaries = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.H265MvTemporalPredictor = {
+    ENABLED = "ENABLED",
+    DISABLED = "DISABLED",
+}
+
+M.H265ParControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.H265QualityTuningLevel = {
+    SINGLE_PASS = "SINGLE_PASS",
+    SINGLE_PASS_HQ = "SINGLE_PASS_HQ",
+    MULTI_PASS_HQ = "MULTI_PASS_HQ",
+}
+
+M.H265QvbrSettings = {
+    type = "structure",
+    members = {
+        MaxAverageBitrate = {
+            type = "number",
+            traits = {
+                json_name = "maxAverageBitrate",
+            },
+        },
+        QvbrQualityLevel = {
+            type = "number",
+            traits = {
+                json_name = "qvbrQualityLevel",
+            },
+        },
+        QvbrQualityLevelFineTune = {
+            type = "number",
+            traits = {
+                json_name = "qvbrQualityLevelFineTune",
+            },
+        },
+    },
+}
+
+M.H265RateControlMode = {
+    VBR = "VBR",
+    CBR = "CBR",
+    QVBR = "QVBR",
+}
+
+M.H265SampleAdaptiveOffsetFilterMode = {
+    DEFAULT = "DEFAULT",
+    ADAPTIVE = "ADAPTIVE",
+    OFF = "OFF",
+}
+
+M.H265ScanTypeConversionMode = {
+    INTERLACED = "INTERLACED",
+    INTERLACED_OPTIMIZE = "INTERLACED_OPTIMIZE",
+}
+
+M.H265SceneChangeDetect = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+    TRANSITION_DETECTION = "TRANSITION_DETECTION",
+}
+
+M.H265SlowPal = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H265SpatialAdaptiveQuantization = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H265Telecine = {
+    NONE = "NONE",
+    SOFT = "SOFT",
+    HARD = "HARD",
+}
+
+M.H265TemporalAdaptiveQuantization = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H265TemporalIds = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H265TilePadding = {
+    NONE = "NONE",
+    PADDED = "PADDED",
+}
+
+M.H265Tiles = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H265TreeBlockSize = {
+    AUTO = "AUTO",
+    TREE_SIZE_32X32 = "TREE_SIZE_32X32",
+}
+
+M.H265UnregisteredSeiTimecode = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.H265WriteMp4PackagingType = {
+    HVC1 = "HVC1",
+    HEV1 = "HEV1",
+}
+
+M.H265Settings = {
+    type = "structure",
+    members = {
+        AdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "adaptiveQuantization",
+            },
+        },
+        AlternateTransferFunctionSei = {
+            type = "string",
+            traits = {
+                json_name = "alternateTransferFunctionSei",
+            },
+        },
+        BandwidthReductionFilter = {
+            type = "structure",
+            traits = {
+                json_name = "bandwidthReductionFilter",
+            },
+        },
+        Bitrate = {
+            type = "number",
+            traits = {
+                json_name = "bitrate",
+            },
+        },
+        CodecLevel = {
+            type = "string",
+            traits = {
+                json_name = "codecLevel",
+            },
+        },
+        CodecProfile = {
+            type = "string",
+            traits = {
+                json_name = "codecProfile",
+            },
+        },
+        Deblocking = {
+            type = "string",
+            traits = {
+                json_name = "deblocking",
+            },
+        },
+        DynamicSubGop = {
+            type = "string",
+            traits = {
+                json_name = "dynamicSubGop",
+            },
+        },
+        EndOfStreamMarkers = {
+            type = "string",
+            traits = {
+                json_name = "endOfStreamMarkers",
+            },
+        },
+        FlickerAdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "flickerAdaptiveQuantization",
+            },
+        },
+        FramerateControl = {
+            type = "string",
+            traits = {
+                json_name = "framerateControl",
+            },
+        },
+        FramerateConversionAlgorithm = {
+            type = "string",
+            traits = {
+                json_name = "framerateConversionAlgorithm",
+            },
+        },
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+        GopBReference = {
+            type = "string",
+            traits = {
+                json_name = "gopBReference",
+            },
+        },
+        GopClosedCadence = {
+            type = "number",
+            traits = {
+                json_name = "gopClosedCadence",
+            },
+        },
+        GopSize = {
+            type = "number",
+            traits = {
+                json_name = "gopSize",
+            },
+        },
+        GopSizeUnits = {
+            type = "string",
+            traits = {
+                json_name = "gopSizeUnits",
+            },
+        },
+        HrdBufferFinalFillPercentage = {
+            type = "number",
+            traits = {
+                json_name = "hrdBufferFinalFillPercentage",
+            },
+        },
+        HrdBufferInitialFillPercentage = {
+            type = "number",
+            traits = {
+                json_name = "hrdBufferInitialFillPercentage",
+            },
+        },
+        HrdBufferSize = {
+            type = "number",
+            traits = {
+                json_name = "hrdBufferSize",
+            },
+        },
+        InterlaceMode = {
+            type = "string",
+            traits = {
+                json_name = "interlaceMode",
+            },
+        },
+        MaxBitrate = {
+            type = "number",
+            traits = {
+                json_name = "maxBitrate",
+            },
+        },
+        MinIInterval = {
+            type = "number",
+            traits = {
+                json_name = "minIInterval",
+            },
+        },
+        MvOverPictureBoundaries = {
+            type = "string",
+            traits = {
+                json_name = "mvOverPictureBoundaries",
+            },
+        },
+        MvTemporalPredictor = {
+            type = "string",
+            traits = {
+                json_name = "mvTemporalPredictor",
+            },
+        },
+        NumberBFramesBetweenReferenceFrames = {
+            type = "number",
+            traits = {
+                json_name = "numberBFramesBetweenReferenceFrames",
+            },
+        },
+        NumberReferenceFrames = {
+            type = "number",
+            traits = {
+                json_name = "numberReferenceFrames",
+            },
+        },
+        ParControl = {
+            type = "string",
+            traits = {
+                json_name = "parControl",
+            },
+        },
+        ParDenominator = {
+            type = "number",
+            traits = {
+                json_name = "parDenominator",
+            },
+        },
+        ParNumerator = {
+            type = "number",
+            traits = {
+                json_name = "parNumerator",
+            },
+        },
+        PerFrameMetrics = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "perFrameMetrics",
+            },
+        },
+        QualityTuningLevel = {
+            type = "string",
+            traits = {
+                json_name = "qualityTuningLevel",
+            },
+        },
+        QvbrSettings = {
+            type = "structure",
+            traits = {
+                json_name = "qvbrSettings",
+            },
+        },
+        RateControlMode = {
+            type = "string",
+            traits = {
+                json_name = "rateControlMode",
+            },
+        },
+        SampleAdaptiveOffsetFilterMode = {
+            type = "string",
+            traits = {
+                json_name = "sampleAdaptiveOffsetFilterMode",
+            },
+        },
+        ScanTypeConversionMode = {
+            type = "string",
+            traits = {
+                json_name = "scanTypeConversionMode",
+            },
+        },
+        SceneChangeDetect = {
+            type = "string",
+            traits = {
+                json_name = "sceneChangeDetect",
+            },
+        },
+        Slices = {
+            type = "number",
+            traits = {
+                json_name = "slices",
+            },
+        },
+        SlowPal = {
+            type = "string",
+            traits = {
+                json_name = "slowPal",
+            },
+        },
+        SpatialAdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "spatialAdaptiveQuantization",
+            },
+        },
+        Telecine = {
+            type = "string",
+            traits = {
+                json_name = "telecine",
+            },
+        },
+        TemporalAdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "temporalAdaptiveQuantization",
+            },
+        },
+        TemporalIds = {
+            type = "string",
+            traits = {
+                json_name = "temporalIds",
+            },
+        },
+        TileHeight = {
+            type = "number",
+            traits = {
+                json_name = "tileHeight",
+            },
+        },
+        TilePadding = {
+            type = "string",
+            traits = {
+                json_name = "tilePadding",
+            },
+        },
+        TileWidth = {
+            type = "number",
+            traits = {
+                json_name = "tileWidth",
+            },
+        },
+        Tiles = {
+            type = "string",
+            traits = {
+                json_name = "tiles",
+            },
+        },
+        TreeBlockSize = {
+            type = "string",
+            traits = {
+                json_name = "treeBlockSize",
+            },
+        },
+        UnregisteredSeiTimecode = {
+            type = "string",
+            traits = {
+                json_name = "unregisteredSeiTimecode",
+            },
+        },
+        WriteMp4PackagingType = {
+            type = "string",
+            traits = {
+                json_name = "writeMp4PackagingType",
+            },
+        },
+    },
+}
+
+M.Mpeg2AdaptiveQuantization = {
+    OFF = "OFF",
+    LOW = "LOW",
+    MEDIUM = "MEDIUM",
+    HIGH = "HIGH",
+}
+
+M.Mpeg2CodecLevel = {
+    AUTO = "AUTO",
+    LOW = "LOW",
+    MAIN = "MAIN",
+    HIGH1440 = "HIGH1440",
+    HIGH = "HIGH",
+}
+
+M.Mpeg2CodecProfile = {
+    MAIN = "MAIN",
+    PROFILE_422 = "PROFILE_422",
+}
+
+M.Mpeg2DynamicSubGop = {
+    ADAPTIVE = "ADAPTIVE",
+    STATIC = "STATIC",
+}
+
+M.Mpeg2FramerateControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.Mpeg2FramerateConversionAlgorithm = {
+    DUPLICATE_DROP = "DUPLICATE_DROP",
+    INTERPOLATE = "INTERPOLATE",
+    FRAMEFORMER = "FRAMEFORMER",
+    MAINTAIN_FRAME_COUNT = "MAINTAIN_FRAME_COUNT",
+}
+
+M.Mpeg2GopSizeUnits = {
+    FRAMES = "FRAMES",
+    SECONDS = "SECONDS",
+}
+
+M.Mpeg2InterlaceMode = {
+    PROGRESSIVE = "PROGRESSIVE",
+    TOP_FIELD = "TOP_FIELD",
+    BOTTOM_FIELD = "BOTTOM_FIELD",
+    FOLLOW_TOP_FIELD = "FOLLOW_TOP_FIELD",
+    FOLLOW_BOTTOM_FIELD = "FOLLOW_BOTTOM_FIELD",
+}
+
+M.Mpeg2IntraDcPrecision = {
+    AUTO = "AUTO",
+    INTRA_DC_PRECISION_8 = "INTRA_DC_PRECISION_8",
+    INTRA_DC_PRECISION_9 = "INTRA_DC_PRECISION_9",
+    INTRA_DC_PRECISION_10 = "INTRA_DC_PRECISION_10",
+    INTRA_DC_PRECISION_11 = "INTRA_DC_PRECISION_11",
+}
+
+M.Mpeg2ParControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.Mpeg2QualityTuningLevel = {
+    SINGLE_PASS = "SINGLE_PASS",
+    MULTI_PASS = "MULTI_PASS",
+}
+
+M.Mpeg2RateControlMode = {
+    VBR = "VBR",
+    CBR = "CBR",
+}
+
+M.Mpeg2ScanTypeConversionMode = {
+    INTERLACED = "INTERLACED",
+    INTERLACED_OPTIMIZE = "INTERLACED_OPTIMIZE",
+}
+
+M.Mpeg2SceneChangeDetect = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.Mpeg2SlowPal = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.Mpeg2SpatialAdaptiveQuantization = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.Mpeg2Syntax = {
+    DEFAULT = "DEFAULT",
+    D_10 = "D_10",
+}
+
+M.Mpeg2Telecine = {
+    NONE = "NONE",
+    SOFT = "SOFT",
+    HARD = "HARD",
+}
+
+M.Mpeg2TemporalAdaptiveQuantization = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.Mpeg2Settings = {
+    type = "structure",
+    members = {
+        AdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "adaptiveQuantization",
+            },
+        },
+        Bitrate = {
+            type = "number",
+            traits = {
+                json_name = "bitrate",
+            },
+        },
+        CodecLevel = {
+            type = "string",
+            traits = {
+                json_name = "codecLevel",
+            },
+        },
+        CodecProfile = {
+            type = "string",
+            traits = {
+                json_name = "codecProfile",
+            },
+        },
+        DynamicSubGop = {
+            type = "string",
+            traits = {
+                json_name = "dynamicSubGop",
+            },
+        },
+        FramerateControl = {
+            type = "string",
+            traits = {
+                json_name = "framerateControl",
+            },
+        },
+        FramerateConversionAlgorithm = {
+            type = "string",
+            traits = {
+                json_name = "framerateConversionAlgorithm",
+            },
+        },
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+        GopClosedCadence = {
+            type = "number",
+            traits = {
+                json_name = "gopClosedCadence",
+            },
+        },
+        GopSize = {
+            type = "number",
+            traits = {
+                json_name = "gopSize",
+            },
+        },
+        GopSizeUnits = {
+            type = "string",
+            traits = {
+                json_name = "gopSizeUnits",
+            },
+        },
+        HrdBufferFinalFillPercentage = {
+            type = "number",
+            traits = {
+                json_name = "hrdBufferFinalFillPercentage",
+            },
+        },
+        HrdBufferInitialFillPercentage = {
+            type = "number",
+            traits = {
+                json_name = "hrdBufferInitialFillPercentage",
+            },
+        },
+        HrdBufferSize = {
+            type = "number",
+            traits = {
+                json_name = "hrdBufferSize",
+            },
+        },
+        InterlaceMode = {
+            type = "string",
+            traits = {
+                json_name = "interlaceMode",
+            },
+        },
+        IntraDcPrecision = {
+            type = "string",
+            traits = {
+                json_name = "intraDcPrecision",
+            },
+        },
+        MaxBitrate = {
+            type = "number",
+            traits = {
+                json_name = "maxBitrate",
+            },
+        },
+        MinIInterval = {
+            type = "number",
+            traits = {
+                json_name = "minIInterval",
+            },
+        },
+        NumberBFramesBetweenReferenceFrames = {
+            type = "number",
+            traits = {
+                json_name = "numberBFramesBetweenReferenceFrames",
+            },
+        },
+        ParControl = {
+            type = "string",
+            traits = {
+                json_name = "parControl",
+            },
+        },
+        ParDenominator = {
+            type = "number",
+            traits = {
+                json_name = "parDenominator",
+            },
+        },
+        ParNumerator = {
+            type = "number",
+            traits = {
+                json_name = "parNumerator",
+            },
+        },
+        PerFrameMetrics = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "perFrameMetrics",
+            },
+        },
+        QualityTuningLevel = {
+            type = "string",
+            traits = {
+                json_name = "qualityTuningLevel",
+            },
+        },
+        RateControlMode = {
+            type = "string",
+            traits = {
+                json_name = "rateControlMode",
+            },
+        },
+        ScanTypeConversionMode = {
+            type = "string",
+            traits = {
+                json_name = "scanTypeConversionMode",
+            },
+        },
+        SceneChangeDetect = {
+            type = "string",
+            traits = {
+                json_name = "sceneChangeDetect",
+            },
+        },
+        SlowPal = {
+            type = "string",
+            traits = {
+                json_name = "slowPal",
+            },
+        },
+        Softness = {
+            type = "number",
+            traits = {
+                json_name = "softness",
+            },
+        },
+        SpatialAdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "spatialAdaptiveQuantization",
+            },
+        },
+        Syntax = {
+            type = "string",
+            traits = {
+                json_name = "syntax",
+            },
+        },
+        Telecine = {
+            type = "string",
+            traits = {
+                json_name = "telecine",
+            },
+        },
+        TemporalAdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "temporalAdaptiveQuantization",
+            },
+        },
+    },
+}
+
+M.FrameControl = {
+    NEAREST_IDRFRAME = "NEAREST_IDRFRAME",
+    NEAREST_IFRAME = "NEAREST_IFRAME",
+}
+
+M.VideoSelectorMode = {
+    AUTO = "AUTO",
+    REMUX_ALL = "REMUX_ALL",
+}
+
+M.PassthroughSettings = {
+    type = "structure",
+    members = {
+        FrameControl = {
+            type = "string",
+            traits = {
+                json_name = "frameControl",
+            },
+        },
+        VideoSelectorMode = {
+            type = "string",
+            traits = {
+                json_name = "videoSelectorMode",
+            },
+        },
+    },
+}
+
+M.ProresChromaSampling = {
+    PRESERVE_444_SAMPLING = "PRESERVE_444_SAMPLING",
+    SUBSAMPLE_TO_422 = "SUBSAMPLE_TO_422",
+}
+
+M.ProresCodecProfile = {
+    APPLE_PRORES_422 = "APPLE_PRORES_422",
+    APPLE_PRORES_422_HQ = "APPLE_PRORES_422_HQ",
+    APPLE_PRORES_422_LT = "APPLE_PRORES_422_LT",
+    APPLE_PRORES_422_PROXY = "APPLE_PRORES_422_PROXY",
+    APPLE_PRORES_4444 = "APPLE_PRORES_4444",
+    APPLE_PRORES_4444_XQ = "APPLE_PRORES_4444_XQ",
+}
+
+M.ProresFramerateControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.ProresFramerateConversionAlgorithm = {
+    DUPLICATE_DROP = "DUPLICATE_DROP",
+    INTERPOLATE = "INTERPOLATE",
+    FRAMEFORMER = "FRAMEFORMER",
+    MAINTAIN_FRAME_COUNT = "MAINTAIN_FRAME_COUNT",
+}
+
+M.ProresInterlaceMode = {
+    PROGRESSIVE = "PROGRESSIVE",
+    TOP_FIELD = "TOP_FIELD",
+    BOTTOM_FIELD = "BOTTOM_FIELD",
+    FOLLOW_TOP_FIELD = "FOLLOW_TOP_FIELD",
+    FOLLOW_BOTTOM_FIELD = "FOLLOW_BOTTOM_FIELD",
+}
+
+M.ProresParControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.ProresScanTypeConversionMode = {
+    INTERLACED = "INTERLACED",
+    INTERLACED_OPTIMIZE = "INTERLACED_OPTIMIZE",
+}
+
+M.ProresSlowPal = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.ProresTelecine = {
+    NONE = "NONE",
+    HARD = "HARD",
+}
+
+M.ProresSettings = {
+    type = "structure",
+    members = {
+        ChromaSampling = {
+            type = "string",
+            traits = {
+                json_name = "chromaSampling",
+            },
+        },
+        CodecProfile = {
+            type = "string",
+            traits = {
+                json_name = "codecProfile",
+            },
+        },
+        FramerateControl = {
+            type = "string",
+            traits = {
+                json_name = "framerateControl",
+            },
+        },
+        FramerateConversionAlgorithm = {
+            type = "string",
+            traits = {
+                json_name = "framerateConversionAlgorithm",
+            },
+        },
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+        InterlaceMode = {
+            type = "string",
+            traits = {
+                json_name = "interlaceMode",
+            },
+        },
+        ParControl = {
+            type = "string",
+            traits = {
+                json_name = "parControl",
+            },
+        },
+        ParDenominator = {
+            type = "number",
+            traits = {
+                json_name = "parDenominator",
+            },
+        },
+        ParNumerator = {
+            type = "number",
+            traits = {
+                json_name = "parNumerator",
+            },
+        },
+        PerFrameMetrics = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "perFrameMetrics",
+            },
+        },
+        ScanTypeConversionMode = {
+            type = "string",
+            traits = {
+                json_name = "scanTypeConversionMode",
+            },
+        },
+        SlowPal = {
+            type = "string",
+            traits = {
+                json_name = "slowPal",
+            },
+        },
+        Telecine = {
+            type = "string",
+            traits = {
+                json_name = "telecine",
+            },
+        },
+    },
+}
+
+M.UncompressedFourcc = {
+    I420 = "I420",
+    I422 = "I422",
+    I444 = "I444",
+}
+
+M.UncompressedFramerateControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.UncompressedFramerateConversionAlgorithm = {
+    DUPLICATE_DROP = "DUPLICATE_DROP",
+    INTERPOLATE = "INTERPOLATE",
+    FRAMEFORMER = "FRAMEFORMER",
+    MAINTAIN_FRAME_COUNT = "MAINTAIN_FRAME_COUNT",
+}
+
+M.UncompressedInterlaceMode = {
+    INTERLACED = "INTERLACED",
+    PROGRESSIVE = "PROGRESSIVE",
+}
+
+M.UncompressedScanTypeConversionMode = {
+    INTERLACED = "INTERLACED",
+    INTERLACED_OPTIMIZE = "INTERLACED_OPTIMIZE",
+}
+
+M.UncompressedSlowPal = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.UncompressedTelecine = {
+    NONE = "NONE",
+    HARD = "HARD",
+}
+
+M.UncompressedSettings = {
+    type = "structure",
+    members = {
+        Fourcc = {
+            type = "string",
+            traits = {
+                json_name = "fourcc",
+            },
+        },
+        FramerateControl = {
+            type = "string",
+            traits = {
+                json_name = "framerateControl",
+            },
+        },
+        FramerateConversionAlgorithm = {
+            type = "string",
+            traits = {
+                json_name = "framerateConversionAlgorithm",
+            },
+        },
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+        InterlaceMode = {
+            type = "string",
+            traits = {
+                json_name = "interlaceMode",
+            },
+        },
+        ScanTypeConversionMode = {
+            type = "string",
+            traits = {
+                json_name = "scanTypeConversionMode",
+            },
+        },
+        SlowPal = {
+            type = "string",
+            traits = {
+                json_name = "slowPal",
+            },
+        },
+        Telecine = {
+            type = "string",
+            traits = {
+                json_name = "telecine",
+            },
+        },
+    },
+}
+
+M.Vc3FramerateControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.Vc3FramerateConversionAlgorithm = {
+    DUPLICATE_DROP = "DUPLICATE_DROP",
+    INTERPOLATE = "INTERPOLATE",
+    FRAMEFORMER = "FRAMEFORMER",
+    MAINTAIN_FRAME_COUNT = "MAINTAIN_FRAME_COUNT",
+}
+
+M.Vc3InterlaceMode = {
+    INTERLACED = "INTERLACED",
+    PROGRESSIVE = "PROGRESSIVE",
+}
+
+M.Vc3ScanTypeConversionMode = {
+    INTERLACED = "INTERLACED",
+    INTERLACED_OPTIMIZE = "INTERLACED_OPTIMIZE",
+}
+
+M.Vc3SlowPal = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.Vc3Telecine = {
+    NONE = "NONE",
+    HARD = "HARD",
+}
+
+M.Vc3Class = {
+    CLASS_145_8BIT = "CLASS_145_8BIT",
+    CLASS_220_8BIT = "CLASS_220_8BIT",
+    CLASS_220_10BIT = "CLASS_220_10BIT",
+}
+
+M.Vc3Settings = {
+    type = "structure",
+    members = {
+        FramerateControl = {
+            type = "string",
+            traits = {
+                json_name = "framerateControl",
+            },
+        },
+        FramerateConversionAlgorithm = {
+            type = "string",
+            traits = {
+                json_name = "framerateConversionAlgorithm",
+            },
+        },
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+        InterlaceMode = {
+            type = "string",
+            traits = {
+                json_name = "interlaceMode",
+            },
+        },
+        ScanTypeConversionMode = {
+            type = "string",
+            traits = {
+                json_name = "scanTypeConversionMode",
+            },
+        },
+        SlowPal = {
+            type = "string",
+            traits = {
+                json_name = "slowPal",
+            },
+        },
+        Telecine = {
+            type = "string",
+            traits = {
+                json_name = "telecine",
+            },
+        },
+        Vc3Class = {
+            type = "string",
+            traits = {
+                json_name = "vc3Class",
+            },
+        },
+    },
+}
+
+M.Vp8FramerateControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.Vp8FramerateConversionAlgorithm = {
+    DUPLICATE_DROP = "DUPLICATE_DROP",
+    INTERPOLATE = "INTERPOLATE",
+    FRAMEFORMER = "FRAMEFORMER",
+    MAINTAIN_FRAME_COUNT = "MAINTAIN_FRAME_COUNT",
+}
+
+M.Vp8ParControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.Vp8QualityTuningLevel = {
+    MULTI_PASS = "MULTI_PASS",
+    MULTI_PASS_HQ = "MULTI_PASS_HQ",
+}
+
+M.Vp8RateControlMode = {
+    VBR = "VBR",
+}
+
+M.Vp8Settings = {
+    type = "structure",
+    members = {
+        Bitrate = {
+            type = "number",
+            traits = {
+                json_name = "bitrate",
+            },
+        },
+        FramerateControl = {
+            type = "string",
+            traits = {
+                json_name = "framerateControl",
+            },
+        },
+        FramerateConversionAlgorithm = {
+            type = "string",
+            traits = {
+                json_name = "framerateConversionAlgorithm",
+            },
+        },
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+        GopSize = {
+            type = "number",
+            traits = {
+                json_name = "gopSize",
+            },
+        },
+        HrdBufferSize = {
+            type = "number",
+            traits = {
+                json_name = "hrdBufferSize",
+            },
+        },
+        MaxBitrate = {
+            type = "number",
+            traits = {
+                json_name = "maxBitrate",
+            },
+        },
+        ParControl = {
+            type = "string",
+            traits = {
+                json_name = "parControl",
+            },
+        },
+        ParDenominator = {
+            type = "number",
+            traits = {
+                json_name = "parDenominator",
+            },
+        },
+        ParNumerator = {
+            type = "number",
+            traits = {
+                json_name = "parNumerator",
+            },
+        },
+        QualityTuningLevel = {
+            type = "string",
+            traits = {
+                json_name = "qualityTuningLevel",
+            },
+        },
+        RateControlMode = {
+            type = "string",
+            traits = {
+                json_name = "rateControlMode",
+            },
+        },
+    },
+}
+
+M.Vp9FramerateControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.Vp9FramerateConversionAlgorithm = {
+    DUPLICATE_DROP = "DUPLICATE_DROP",
+    INTERPOLATE = "INTERPOLATE",
+    FRAMEFORMER = "FRAMEFORMER",
+    MAINTAIN_FRAME_COUNT = "MAINTAIN_FRAME_COUNT",
+}
+
+M.Vp9ParControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.Vp9QualityTuningLevel = {
+    MULTI_PASS = "MULTI_PASS",
+    MULTI_PASS_HQ = "MULTI_PASS_HQ",
+}
+
+M.Vp9RateControlMode = {
+    VBR = "VBR",
+}
+
+M.Vp9Settings = {
+    type = "structure",
+    members = {
+        Bitrate = {
+            type = "number",
+            traits = {
+                json_name = "bitrate",
+            },
+        },
+        FramerateControl = {
+            type = "string",
+            traits = {
+                json_name = "framerateControl",
+            },
+        },
+        FramerateConversionAlgorithm = {
+            type = "string",
+            traits = {
+                json_name = "framerateConversionAlgorithm",
+            },
+        },
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+        GopSize = {
+            type = "number",
+            traits = {
+                json_name = "gopSize",
+            },
+        },
+        HrdBufferSize = {
+            type = "number",
+            traits = {
+                json_name = "hrdBufferSize",
+            },
+        },
+        MaxBitrate = {
+            type = "number",
+            traits = {
+                json_name = "maxBitrate",
+            },
+        },
+        ParControl = {
+            type = "string",
+            traits = {
+                json_name = "parControl",
+            },
+        },
+        ParDenominator = {
+            type = "number",
+            traits = {
+                json_name = "parDenominator",
+            },
+        },
+        ParNumerator = {
+            type = "number",
+            traits = {
+                json_name = "parNumerator",
+            },
+        },
+        QualityTuningLevel = {
+            type = "string",
+            traits = {
+                json_name = "qualityTuningLevel",
+            },
+        },
+        RateControlMode = {
+            type = "string",
+            traits = {
+                json_name = "rateControlMode",
+            },
+        },
+    },
+}
+
+M.XavcAdaptiveQuantization = {
+    OFF = "OFF",
+    AUTO = "AUTO",
+    LOW = "LOW",
+    MEDIUM = "MEDIUM",
+    HIGH = "HIGH",
+    HIGHER = "HIGHER",
+    MAX = "MAX",
+}
+
+M.XavcEntropyEncoding = {
+    AUTO = "AUTO",
+    CABAC = "CABAC",
+    CAVLC = "CAVLC",
+}
+
+M.XavcFramerateControl = {
+    INITIALIZE_FROM_SOURCE = "INITIALIZE_FROM_SOURCE",
+    SPECIFIED = "SPECIFIED",
+}
+
+M.XavcFramerateConversionAlgorithm = {
+    DUPLICATE_DROP = "DUPLICATE_DROP",
+    INTERPOLATE = "INTERPOLATE",
+    FRAMEFORMER = "FRAMEFORMER",
+    MAINTAIN_FRAME_COUNT = "MAINTAIN_FRAME_COUNT",
+}
+
+M.XavcProfile = {
+    XAVC_HD_INTRA_CBG = "XAVC_HD_INTRA_CBG",
+    XAVC_4K_INTRA_CBG = "XAVC_4K_INTRA_CBG",
+    XAVC_4K_INTRA_VBR = "XAVC_4K_INTRA_VBR",
+    XAVC_HD = "XAVC_HD",
+    XAVC_4K = "XAVC_4K",
+}
+
+M.XavcSlowPal = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.XavcSpatialAdaptiveQuantization = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.XavcTemporalAdaptiveQuantization = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.Xavc4kIntraCbgProfileClass = {
+    CLASS_100 = "CLASS_100",
+    CLASS_300 = "CLASS_300",
+    CLASS_480 = "CLASS_480",
+}
+
+M.Xavc4kIntraCbgProfileSettings = {
+    type = "structure",
+    members = {
+        XavcClass = {
+            type = "string",
+            traits = {
+                json_name = "xavcClass",
+            },
+        },
+    },
+}
+
+M.Xavc4kIntraVbrProfileClass = {
+    CLASS_100 = "CLASS_100",
+    CLASS_300 = "CLASS_300",
+    CLASS_480 = "CLASS_480",
+}
+
+M.Xavc4kIntraVbrProfileSettings = {
+    type = "structure",
+    members = {
+        XavcClass = {
+            type = "string",
+            traits = {
+                json_name = "xavcClass",
+            },
+        },
+    },
+}
+
+M.Xavc4kProfileBitrateClass = {
+    BITRATE_CLASS_100 = "BITRATE_CLASS_100",
+    BITRATE_CLASS_140 = "BITRATE_CLASS_140",
+    BITRATE_CLASS_200 = "BITRATE_CLASS_200",
+}
+
+M.Xavc4kProfileCodecProfile = {
+    HIGH = "HIGH",
+    HIGH_422 = "HIGH_422",
+}
+
+M.XavcFlickerAdaptiveQuantization = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.XavcGopBReference = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.Xavc4kProfileQualityTuningLevel = {
+    SINGLE_PASS = "SINGLE_PASS",
+    SINGLE_PASS_HQ = "SINGLE_PASS_HQ",
+    MULTI_PASS_HQ = "MULTI_PASS_HQ",
+}
+
+M.Xavc4kProfileSettings = {
+    type = "structure",
+    members = {
+        BitrateClass = {
+            type = "string",
+            traits = {
+                json_name = "bitrateClass",
+            },
+        },
+        CodecProfile = {
+            type = "string",
+            traits = {
+                json_name = "codecProfile",
+            },
+        },
+        FlickerAdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "flickerAdaptiveQuantization",
+            },
+        },
+        GopBReference = {
+            type = "string",
+            traits = {
+                json_name = "gopBReference",
+            },
+        },
+        GopClosedCadence = {
+            type = "number",
+            traits = {
+                json_name = "gopClosedCadence",
+            },
+        },
+        HrdBufferSize = {
+            type = "number",
+            traits = {
+                json_name = "hrdBufferSize",
+            },
+        },
+        QualityTuningLevel = {
+            type = "string",
+            traits = {
+                json_name = "qualityTuningLevel",
+            },
+        },
+        Slices = {
+            type = "number",
+            traits = {
+                json_name = "slices",
+            },
+        },
+    },
+}
+
+M.XavcHdIntraCbgProfileClass = {
+    CLASS_50 = "CLASS_50",
+    CLASS_100 = "CLASS_100",
+    CLASS_200 = "CLASS_200",
+}
+
+M.XavcHdIntraCbgProfileSettings = {
+    type = "structure",
+    members = {
+        XavcClass = {
+            type = "string",
+            traits = {
+                json_name = "xavcClass",
+            },
+        },
+    },
+}
+
+M.XavcHdProfileBitrateClass = {
+    BITRATE_CLASS_25 = "BITRATE_CLASS_25",
+    BITRATE_CLASS_35 = "BITRATE_CLASS_35",
+    BITRATE_CLASS_50 = "BITRATE_CLASS_50",
+}
+
+M.XavcInterlaceMode = {
+    PROGRESSIVE = "PROGRESSIVE",
+    TOP_FIELD = "TOP_FIELD",
+    BOTTOM_FIELD = "BOTTOM_FIELD",
+    FOLLOW_TOP_FIELD = "FOLLOW_TOP_FIELD",
+    FOLLOW_BOTTOM_FIELD = "FOLLOW_BOTTOM_FIELD",
+}
+
+M.XavcHdProfileQualityTuningLevel = {
+    SINGLE_PASS = "SINGLE_PASS",
+    SINGLE_PASS_HQ = "SINGLE_PASS_HQ",
+    MULTI_PASS_HQ = "MULTI_PASS_HQ",
+}
+
+M.XavcHdProfileTelecine = {
+    NONE = "NONE",
+    HARD = "HARD",
+}
+
+M.XavcHdProfileSettings = {
+    type = "structure",
+    members = {
+        BitrateClass = {
+            type = "string",
+            traits = {
+                json_name = "bitrateClass",
+            },
+        },
+        FlickerAdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "flickerAdaptiveQuantization",
+            },
+        },
+        GopBReference = {
+            type = "string",
+            traits = {
+                json_name = "gopBReference",
+            },
+        },
+        GopClosedCadence = {
+            type = "number",
+            traits = {
+                json_name = "gopClosedCadence",
+            },
+        },
+        HrdBufferSize = {
+            type = "number",
+            traits = {
+                json_name = "hrdBufferSize",
+            },
+        },
+        InterlaceMode = {
+            type = "string",
+            traits = {
+                json_name = "interlaceMode",
+            },
+        },
+        QualityTuningLevel = {
+            type = "string",
+            traits = {
+                json_name = "qualityTuningLevel",
+            },
+        },
+        Slices = {
+            type = "number",
+            traits = {
+                json_name = "slices",
+            },
+        },
+        Telecine = {
+            type = "string",
+            traits = {
+                json_name = "telecine",
+            },
+        },
+    },
+}
+
+M.XavcSettings = {
+    type = "structure",
+    members = {
+        AdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "adaptiveQuantization",
+            },
+        },
+        EntropyEncoding = {
+            type = "string",
+            traits = {
+                json_name = "entropyEncoding",
+            },
+        },
+        FramerateControl = {
+            type = "string",
+            traits = {
+                json_name = "framerateControl",
+            },
+        },
+        FramerateConversionAlgorithm = {
+            type = "string",
+            traits = {
+                json_name = "framerateConversionAlgorithm",
+            },
+        },
+        FramerateDenominator = {
+            type = "number",
+            traits = {
+                json_name = "framerateDenominator",
+            },
+        },
+        FramerateNumerator = {
+            type = "number",
+            traits = {
+                json_name = "framerateNumerator",
+            },
+        },
+        PerFrameMetrics = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "perFrameMetrics",
+            },
+        },
+        Profile = {
+            type = "string",
+            traits = {
+                json_name = "profile",
+            },
+        },
+        SlowPal = {
+            type = "string",
+            traits = {
+                json_name = "slowPal",
+            },
+        },
+        Softness = {
+            type = "number",
+            traits = {
+                json_name = "softness",
+            },
+        },
+        SpatialAdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "spatialAdaptiveQuantization",
+            },
+        },
+        TemporalAdaptiveQuantization = {
+            type = "string",
+            traits = {
+                json_name = "temporalAdaptiveQuantization",
+            },
+        },
+        Xavc4kIntraCbgProfileSettings = {
+            type = "structure",
+            traits = {
+                json_name = "xavc4kIntraCbgProfileSettings",
+            },
+        },
+        Xavc4kIntraVbrProfileSettings = {
+            type = "structure",
+            traits = {
+                json_name = "xavc4kIntraVbrProfileSettings",
+            },
+        },
+        Xavc4kProfileSettings = {
+            type = "structure",
+            traits = {
+                json_name = "xavc4kProfileSettings",
+            },
+        },
+        XavcHdIntraCbgProfileSettings = {
+            type = "structure",
+            traits = {
+                json_name = "xavcHdIntraCbgProfileSettings",
+            },
+        },
+        XavcHdProfileSettings = {
+            type = "structure",
+            traits = {
+                json_name = "xavcHdProfileSettings",
+            },
+        },
+    },
+}
+
+M.VideoCodecSettings = {
+    type = "structure",
+    members = {
+        Av1Settings = {
+            type = "structure",
+            traits = {
+                json_name = "av1Settings",
+            },
+        },
+        AvcIntraSettings = {
+            type = "structure",
+            traits = {
+                json_name = "avcIntraSettings",
+            },
+        },
+        Codec = {
+            type = "string",
+            traits = {
+                json_name = "codec",
+            },
+        },
+        FrameCaptureSettings = {
+            type = "structure",
+            traits = {
+                json_name = "frameCaptureSettings",
+            },
+        },
+        GifSettings = {
+            type = "structure",
+            traits = {
+                json_name = "gifSettings",
+            },
+        },
+        H264Settings = {
+            type = "structure",
+            traits = {
+                json_name = "h264Settings",
+            },
+        },
+        H265Settings = {
+            type = "structure",
+            traits = {
+                json_name = "h265Settings",
+            },
+        },
+        Mpeg2Settings = {
+            type = "structure",
+            traits = {
+                json_name = "mpeg2Settings",
+            },
+        },
+        PassthroughSettings = {
+            type = "structure",
+            traits = {
+                json_name = "passthroughSettings",
+            },
+        },
+        ProresSettings = {
+            type = "structure",
+            traits = {
+                json_name = "proresSettings",
+            },
+        },
+        UncompressedSettings = {
+            type = "structure",
+            traits = {
+                json_name = "uncompressedSettings",
+            },
+        },
+        Vc3Settings = {
+            type = "structure",
+            traits = {
+                json_name = "vc3Settings",
+            },
+        },
+        Vp8Settings = {
+            type = "structure",
+            traits = {
+                json_name = "vp8Settings",
+            },
+        },
+        Vp9Settings = {
+            type = "structure",
+            traits = {
+                json_name = "vp9Settings",
+            },
+        },
+        XavcSettings = {
+            type = "structure",
+            traits = {
+                json_name = "xavcSettings",
+            },
+        },
+    },
+}
+
+M.ColorMetadata = {
+    IGNORE = "IGNORE",
+    INSERT = "INSERT",
+}
+
+M.DropFrameTimecode = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.RespondToAfd = {
+    NONE = "NONE",
+    RESPOND = "RESPOND",
+    PASSTHROUGH = "PASSTHROUGH",
+}
+
+M.ScalingBehavior = {
+    DEFAULT = "DEFAULT",
+    STRETCH_TO_OUTPUT = "STRETCH_TO_OUTPUT",
+    FIT = "FIT",
+    FIT_NO_UPSCALE = "FIT_NO_UPSCALE",
+    FILL = "FILL",
+    SMART_CROP = "SMART_CROP",
+}
+
+M.VideoTimecodeInsertion = {
+    DISABLED = "DISABLED",
+    PIC_TIMING_SEI = "PIC_TIMING_SEI",
+}
+
+M.TimecodeTrack = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.ClipLimits = {
+    type = "structure",
+    members = {
+        MaximumRGBTolerance = {
+            type = "number",
+            traits = {
+                json_name = "maximumRGBTolerance",
+            },
+        },
+        MaximumYUV = {
+            type = "number",
+            traits = {
+                json_name = "maximumYUV",
+            },
+        },
+        MinimumRGBTolerance = {
+            type = "number",
+            traits = {
+                json_name = "minimumRGBTolerance",
+            },
+        },
+        MinimumYUV = {
+            type = "number",
+            traits = {
+                json_name = "minimumYUV",
+            },
+        },
+    },
+}
+
+M.ColorSpaceConversion = {
+    NONE = "NONE",
+    FORCE_601 = "FORCE_601",
+    FORCE_709 = "FORCE_709",
+    FORCE_HDR10 = "FORCE_HDR10",
+    FORCE_HLG_2020 = "FORCE_HLG_2020",
+    FORCE_P3DCI = "FORCE_P3DCI",
+    FORCE_P3D65_SDR = "FORCE_P3D65_SDR",
+    FORCE_P3D65_HDR = "FORCE_P3D65_HDR",
+}
+
+M.HDRToSDRToneMapper = {
+    PRESERVE_DETAILS = "PRESERVE_DETAILS",
+    VIBRANT = "VIBRANT",
+}
+
+M.SampleRangeConversion = {
+    LIMITED_RANGE_SQUEEZE = "LIMITED_RANGE_SQUEEZE",
+    NONE = "NONE",
+    LIMITED_RANGE_CLIP = "LIMITED_RANGE_CLIP",
+}
+
+M.ColorCorrector = {
+    type = "structure",
+    members = {
+        Brightness = {
+            type = "number",
+            traits = {
+                json_name = "brightness",
+            },
+        },
+        ClipLimits = {
+            type = "structure",
+            traits = {
+                json_name = "clipLimits",
+            },
+        },
+        ColorSpaceConversion = {
+            type = "string",
+            traits = {
+                json_name = "colorSpaceConversion",
+            },
+        },
+        Contrast = {
+            type = "number",
+            traits = {
+                json_name = "contrast",
+            },
+        },
+        Hdr10Metadata = {
+            type = "structure",
+            traits = {
+                json_name = "hdr10Metadata",
+            },
+        },
+        HdrToSdrToneMapper = {
+            type = "string",
+            traits = {
+                json_name = "hdrToSdrToneMapper",
+            },
+        },
+        Hue = {
+            type = "number",
+            traits = {
+                json_name = "hue",
+            },
+        },
+        MaxLuminance = {
+            type = "number",
+            traits = {
+                json_name = "maxLuminance",
+            },
+        },
+        SampleRangeConversion = {
+            type = "string",
+            traits = {
+                json_name = "sampleRangeConversion",
+            },
+        },
+        Saturation = {
+            type = "number",
+            traits = {
+                json_name = "saturation",
+            },
+        },
+        SdrReferenceWhiteLevel = {
+            type = "number",
+            traits = {
+                json_name = "sdrReferenceWhiteLevel",
+            },
+        },
+    },
+}
+
+M.DeinterlaceAlgorithm = {
+    INTERPOLATE = "INTERPOLATE",
+    INTERPOLATE_TICKER = "INTERPOLATE_TICKER",
+    BLEND = "BLEND",
+    BLEND_TICKER = "BLEND_TICKER",
+    LINEAR_INTERPOLATION = "LINEAR_INTERPOLATION",
+}
+
+M.DeinterlacerControl = {
+    FORCE_ALL_FRAMES = "FORCE_ALL_FRAMES",
+    NORMAL = "NORMAL",
+}
+
+M.DeinterlacerMode = {
+    DEINTERLACE = "DEINTERLACE",
+    INVERSE_TELECINE = "INVERSE_TELECINE",
+    ADAPTIVE = "ADAPTIVE",
+}
+
+M.Deinterlacer = {
+    type = "structure",
+    members = {
+        Algorithm = {
+            type = "string",
+            traits = {
+                json_name = "algorithm",
+            },
+        },
+        Control = {
+            type = "string",
+            traits = {
+                json_name = "control",
+            },
+        },
+        Mode = {
+            type = "string",
+            traits = {
+                json_name = "mode",
+            },
+        },
+    },
+}
+
+M.DolbyVisionCompatibility = {
+    DUPLICATE_STREAM = "DUPLICATE_STREAM",
+    SUPPLEMENTAL_CODECS = "SUPPLEMENTAL_CODECS",
+}
+
+M.DolbyVisionLevel6Metadata = {
+    type = "structure",
+    members = {
+        MaxCll = {
+            type = "number",
+            traits = {
+                json_name = "maxCll",
+            },
+        },
+        MaxFall = {
+            type = "number",
+            traits = {
+                json_name = "maxFall",
+            },
+        },
+    },
+}
+
+M.DolbyVisionLevel6Mode = {
+    PASSTHROUGH = "PASSTHROUGH",
+    RECALCULATE = "RECALCULATE",
+    SPECIFY = "SPECIFY",
+}
+
+M.DolbyVisionMapping = {
+    HDR10_NOMAP = "HDR10_NOMAP",
+    HDR10_1000 = "HDR10_1000",
+}
+
+M.DolbyVisionProfile = {
+    PROFILE_5 = "PROFILE_5",
+    PROFILE_8_1 = "PROFILE_8_1",
+}
+
+M.DolbyVision = {
+    type = "structure",
+    members = {
+        Compatibility = {
+            type = "string",
+            traits = {
+                json_name = "compatibility",
+            },
+        },
+        L6Metadata = {
+            type = "structure",
+            traits = {
+                json_name = "l6Metadata",
+            },
+        },
+        L6Mode = {
+            type = "string",
+            traits = {
+                json_name = "l6Mode",
+            },
+        },
+        Mapping = {
+            type = "string",
+            traits = {
+                json_name = "mapping",
+            },
+        },
+        Profile = {
+            type = "string",
+            traits = {
+                json_name = "profile",
+            },
+        },
+    },
+}
+
+M.Hdr10Plus = {
+    type = "structure",
+    members = {
+        MasteringMonitorNits = {
+            type = "number",
+            traits = {
+                json_name = "masteringMonitorNits",
+            },
+        },
+        TargetMonitorNits = {
+            type = "number",
+            traits = {
+                json_name = "targetMonitorNits",
+            },
+        },
+    },
+}
+
+M.NoiseReducerFilter = {
+    BILATERAL = "BILATERAL",
+    MEAN = "MEAN",
+    GAUSSIAN = "GAUSSIAN",
+    LANCZOS = "LANCZOS",
+    SHARPEN = "SHARPEN",
+    CONSERVE = "CONSERVE",
+    SPATIAL = "SPATIAL",
+    TEMPORAL = "TEMPORAL",
+}
+
+M.NoiseReducerFilterSettings = {
+    type = "structure",
+    members = {
+        Strength = {
+            type = "number",
+            traits = {
+                json_name = "strength",
+            },
+        },
+    },
+}
+
+M.NoiseReducerSpatialFilterSettings = {
+    type = "structure",
+    members = {
+        PostFilterSharpenStrength = {
+            type = "number",
+            traits = {
+                json_name = "postFilterSharpenStrength",
+            },
+        },
+        Speed = {
+            type = "number",
+            traits = {
+                json_name = "speed",
+            },
+        },
+        Strength = {
+            type = "number",
+            traits = {
+                json_name = "strength",
+            },
+        },
+    },
+}
+
+M.NoiseFilterPostTemporalSharpening = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+    AUTO = "AUTO",
+}
+
+M.NoiseFilterPostTemporalSharpeningStrength = {
+    LOW = "LOW",
+    MEDIUM = "MEDIUM",
+    HIGH = "HIGH",
+}
+
+M.NoiseReducerTemporalFilterSettings = {
+    type = "structure",
+    members = {
+        AggressiveMode = {
+            type = "number",
+            traits = {
+                json_name = "aggressiveMode",
+            },
+        },
+        PostTemporalSharpening = {
+            type = "string",
+            traits = {
+                json_name = "postTemporalSharpening",
+            },
+        },
+        PostTemporalSharpeningStrength = {
+            type = "string",
+            traits = {
+                json_name = "postTemporalSharpeningStrength",
+            },
+        },
+        Speed = {
+            type = "number",
+            traits = {
+                json_name = "speed",
+            },
+        },
+        Strength = {
+            type = "number",
+            traits = {
+                json_name = "strength",
+            },
+        },
+    },
+}
+
+M.NoiseReducer = {
+    type = "structure",
+    members = {
+        Filter = {
+            type = "string",
+            traits = {
+                json_name = "filter",
+            },
+        },
+        FilterSettings = {
+            type = "structure",
+            traits = {
+                json_name = "filterSettings",
+            },
+        },
+        SpatialFilterSettings = {
+            type = "structure",
+            traits = {
+                json_name = "spatialFilterSettings",
+            },
+        },
+        TemporalFilterSettings = {
+            type = "structure",
+            traits = {
+                json_name = "temporalFilterSettings",
+            },
+        },
+    },
+}
+
+M.WatermarkingStrength = {
+    LIGHTEST = "LIGHTEST",
+    LIGHTER = "LIGHTER",
+    DEFAULT = "DEFAULT",
+    STRONGER = "STRONGER",
+    STRONGEST = "STRONGEST",
+}
+
+M.NexGuardFileMarkerSettings = {
+    type = "structure",
+    members = {
+        License = {
+            type = "string",
+            traits = {
+                json_name = "license",
+            },
+        },
+        Payload = {
+            type = "number",
+            traits = {
+                json_name = "payload",
+            },
+        },
+        Preset = {
+            type = "string",
+            traits = {
+                json_name = "preset",
+            },
+        },
+        Strength = {
+            type = "string",
+            traits = {
+                json_name = "strength",
+            },
+        },
+    },
+}
+
+M.PartnerWatermarking = {
+    type = "structure",
+    members = {
+        NexguardFileMarkerSettings = {
+            type = "structure",
+            traits = {
+                json_name = "nexguardFileMarkerSettings",
+            },
+        },
+    },
+}
+
+M.TimecodeBurninPosition = {
+    TOP_CENTER = "TOP_CENTER",
+    TOP_LEFT = "TOP_LEFT",
+    TOP_RIGHT = "TOP_RIGHT",
+    MIDDLE_LEFT = "MIDDLE_LEFT",
+    MIDDLE_CENTER = "MIDDLE_CENTER",
+    MIDDLE_RIGHT = "MIDDLE_RIGHT",
+    BOTTOM_LEFT = "BOTTOM_LEFT",
+    BOTTOM_CENTER = "BOTTOM_CENTER",
+    BOTTOM_RIGHT = "BOTTOM_RIGHT",
+}
+
+M.TimecodeBurnin = {
+    type = "structure",
+    members = {
+        FontSize = {
+            type = "number",
+            traits = {
+                json_name = "fontSize",
+            },
+        },
+        Position = {
+            type = "string",
+            traits = {
+                json_name = "position",
+            },
+        },
+        Prefix = {
+            type = "string",
+            traits = {
+                json_name = "prefix",
+            },
+        },
+    },
+}
+
+M.VideoPreprocessor = {
+    type = "structure",
+    members = {
+        ColorCorrector = {
+            type = "structure",
+            traits = {
+                json_name = "colorCorrector",
+            },
+        },
+        Deinterlacer = {
+            type = "structure",
+            traits = {
+                json_name = "deinterlacer",
+            },
+        },
+        DolbyVision = {
+            type = "structure",
+            traits = {
+                json_name = "dolbyVision",
+            },
+        },
+        Hdr10Plus = {
+            type = "structure",
+            traits = {
+                json_name = "hdr10Plus",
+            },
+        },
+        ImageInserter = {
+            type = "structure",
+            traits = {
+                json_name = "imageInserter",
+            },
+        },
+        NoiseReducer = {
+            type = "structure",
+            traits = {
+                json_name = "noiseReducer",
+            },
+        },
+        PartnerWatermarking = {
+            type = "structure",
+            traits = {
+                json_name = "partnerWatermarking",
+            },
+        },
+        TimecodeBurnin = {
+            type = "structure",
+            traits = {
+                json_name = "timecodeBurnin",
+            },
+        },
+    },
+}
+
+M.VideoDescription = {
+    type = "structure",
+    members = {
+        AfdSignaling = {
+            type = "string",
+            traits = {
+                json_name = "afdSignaling",
+            },
+        },
+        AntiAlias = {
+            type = "string",
+            traits = {
+                json_name = "antiAlias",
+            },
+        },
+        ChromaPositionMode = {
+            type = "string",
+            traits = {
+                json_name = "chromaPositionMode",
+            },
+        },
+        CodecSettings = {
+            type = "structure",
+            traits = {
+                json_name = "codecSettings",
+            },
+        },
+        ColorMetadata = {
+            type = "string",
+            traits = {
+                json_name = "colorMetadata",
+            },
+        },
+        Crop = {
+            type = "structure",
+            traits = {
+                json_name = "crop",
+            },
+        },
+        DropFrameTimecode = {
+            type = "string",
+            traits = {
+                json_name = "dropFrameTimecode",
+            },
+        },
+        FixedAfd = {
+            type = "number",
+            traits = {
+                json_name = "fixedAfd",
+            },
+        },
+        Height = {
+            type = "number",
+            traits = {
+                json_name = "height",
+            },
+        },
+        Position = {
+            type = "structure",
+            traits = {
+                json_name = "position",
+            },
+        },
+        RespondToAfd = {
+            type = "string",
+            traits = {
+                json_name = "respondToAfd",
+            },
+        },
+        ScalingBehavior = {
+            type = "string",
+            traits = {
+                json_name = "scalingBehavior",
+            },
+        },
+        Sharpness = {
+            type = "number",
+            traits = {
+                json_name = "sharpness",
+            },
+        },
+        TimecodeInsertion = {
+            type = "string",
+            traits = {
+                json_name = "timecodeInsertion",
+            },
+        },
+        TimecodeTrack = {
+            type = "string",
+            traits = {
+                json_name = "timecodeTrack",
+            },
+        },
+        VideoPreprocessors = {
+            type = "structure",
+            traits = {
+                json_name = "videoPreprocessors",
+            },
+        },
+        Width = {
+            type = "number",
+            traits = {
+                json_name = "width",
+            },
+        },
+    },
+}
+
+M.Output = {
+    type = "structure",
+    members = {
+        AudioDescriptions = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "audioDescriptions",
+            },
+        },
+        CaptionDescriptions = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "captionDescriptions",
+            },
+        },
+        ContainerSettings = {
+            type = "structure",
+            traits = {
+                json_name = "containerSettings",
+            },
+        },
+        Extension = {
+            type = "string",
+            traits = {
+                json_name = "extension",
+            },
+        },
+        NameModifier = {
+            type = "string",
+            traits = {
+                json_name = "nameModifier",
+            },
+        },
+        OutputSettings = {
+            type = "structure",
+            traits = {
+                json_name = "outputSettings",
+            },
+        },
+        Preset = {
+            type = "string",
+            traits = {
+                json_name = "preset",
+            },
+        },
+        VideoDescription = {
+            type = "structure",
+            traits = {
+                json_name = "videoDescription",
+            },
+        },
+    },
+}
+
+M.OutputGroup = {
+    type = "structure",
+    members = {
+        AutomatedEncodingSettings = {
+            type = "structure",
+            traits = {
+                json_name = "automatedEncodingSettings",
+            },
+        },
+        CustomName = {
+            type = "string",
+            traits = {
+                json_name = "customName",
+            },
+        },
+        Name = {
+            type = "string",
+            traits = {
+                json_name = "name",
+            },
+        },
+        OutputGroupSettings = {
+            type = "structure",
+            traits = {
+                json_name = "outputGroupSettings",
+            },
+        },
+        Outputs = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "outputs",
+            },
+        },
+    },
+}
+
+M.TimecodeSource = {
+    EMBEDDED = "EMBEDDED",
+    ZEROBASED = "ZEROBASED",
+    SPECIFIEDSTART = "SPECIFIEDSTART",
+}
+
+M.TimecodeConfig = {
+    type = "structure",
+    members = {
+        Anchor = {
+            type = "string",
+            traits = {
+                json_name = "anchor",
+            },
+        },
+        Source = {
+            type = "string",
+            traits = {
+                json_name = "source",
+            },
+        },
+        Start = {
+            type = "string",
+            traits = {
+                json_name = "start",
+            },
+        },
+        TimestampOffset = {
+            type = "string",
+            traits = {
+                json_name = "timestampOffset",
+            },
+        },
+    },
+}
+
+M.TimedMetadataInsertion = {
+    type = "structure",
+    members = {
+        Id3Insertions = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "id3Insertions",
+            },
+        },
+    },
+}
+
+M.JobSettings = {
+    type = "structure",
+    members = {
+        AdAvailOffset = {
+            type = "number",
+            traits = {
+                json_name = "adAvailOffset",
+            },
+        },
+        AvailBlanking = {
+            type = "structure",
+            traits = {
+                json_name = "availBlanking",
+            },
+        },
+        ColorConversion3DLUTSettings = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "colorConversion3DLUTSettings",
+            },
+        },
+        Esam = {
+            type = "structure",
+            traits = {
+                json_name = "esam",
+            },
+        },
+        ExtendedDataServices = {
+            type = "structure",
+            traits = {
+                json_name = "extendedDataServices",
+            },
+        },
+        FollowSource = {
+            type = "number",
+            traits = {
+                json_name = "followSource",
+            },
+        },
+        Inputs = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "inputs",
+            },
+        },
+        KantarWatermark = {
+            type = "structure",
+            traits = {
+                json_name = "kantarWatermark",
+            },
+        },
+        MotionImageInserter = {
+            type = "structure",
+            traits = {
+                json_name = "motionImageInserter",
+            },
+        },
+        NielsenConfiguration = {
+            type = "structure",
+            traits = {
+                json_name = "nielsenConfiguration",
+            },
+        },
+        NielsenNonLinearWatermark = {
+            type = "structure",
+            traits = {
+                json_name = "nielsenNonLinearWatermark",
+            },
+        },
+        OutputGroups = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "outputGroups",
+            },
+        },
+        TimecodeConfig = {
+            type = "structure",
+            traits = {
+                json_name = "timecodeConfig",
+            },
+        },
+        TimedMetadataInsertion = {
+            type = "structure",
+            traits = {
+                json_name = "timedMetadataInsertion",
+            },
+        },
+    },
+}
+
+M.ShareStatus = {
+    NOT_SHARED = "NOT_SHARED",
+    INITIATED = "INITIATED",
+    SHARED = "SHARED",
+}
+
+M.SimulateReservedQueue = {
+    DISABLED = "DISABLED",
+    ENABLED = "ENABLED",
+}
+
+M.JobStatus = {
+    SUBMITTED = "SUBMITTED",
+    PROGRESSING = "PROGRESSING",
+    COMPLETE = "COMPLETE",
+    CANCELED = "CANCELED",
+    ERROR = "ERROR",
+}
+
+M.StatusUpdateInterval = {
+    SECONDS_10 = "SECONDS_10",
+    SECONDS_12 = "SECONDS_12",
+    SECONDS_15 = "SECONDS_15",
+    SECONDS_20 = "SECONDS_20",
+    SECONDS_30 = "SECONDS_30",
+    SECONDS_60 = "SECONDS_60",
+    SECONDS_120 = "SECONDS_120",
+    SECONDS_180 = "SECONDS_180",
+    SECONDS_240 = "SECONDS_240",
+    SECONDS_300 = "SECONDS_300",
+    SECONDS_360 = "SECONDS_360",
+    SECONDS_420 = "SECONDS_420",
+    SECONDS_480 = "SECONDS_480",
+    SECONDS_540 = "SECONDS_540",
+    SECONDS_600 = "SECONDS_600",
+}
+
+M.Timing = {
+    type = "structure",
+    members = {
+        FinishTime = {
+            type = "timestamp",
+            traits = {
+                json_name = "finishTime",
+            },
+        },
+        StartTime = {
+            type = "timestamp",
+            traits = {
+                json_name = "startTime",
+            },
+        },
+        SubmitTime = {
+            type = "timestamp",
+            traits = {
+                json_name = "submitTime",
+            },
+        },
+    },
+}
+
+M.WarningGroup = {
+    type = "structure",
+    members = {
+        Code = {
+            type = "number",
+            traits = {
+                json_name = "code",
+                required = true,
+            },
+        },
+        Count = {
+            type = "number",
+            traits = {
+                json_name = "count",
+                required = true,
+            },
+        },
+    },
+}
+
+M.Job = {
+    type = "structure",
+    members = {
+        AccelerationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "accelerationSettings",
+            },
+        },
+        AccelerationStatus = {
+            type = "string",
+            traits = {
+                json_name = "accelerationStatus",
+            },
+        },
+        Arn = {
+            type = "string",
+            traits = {
+                json_name = "arn",
+            },
+        },
+        BillingTagsSource = {
+            type = "string",
+            traits = {
+                json_name = "billingTagsSource",
+            },
+        },
+        ClientRequestToken = {
+            type = "string",
+            traits = {
+                json_name = "clientRequestToken",
+            },
+        },
+        CreatedAt = {
+            type = "timestamp",
+            traits = {
+                json_name = "createdAt",
+            },
+        },
+        CurrentPhase = {
+            type = "string",
+            traits = {
+                json_name = "currentPhase",
+            },
+        },
+        ElementalInferenceConfiguration = {
+            type = "structure",
+            traits = {
+                json_name = "elementalInferenceConfiguration",
+            },
+        },
+        ErrorCode = {
+            type = "number",
+            traits = {
+                json_name = "errorCode",
+            },
+        },
+        ErrorMessage = {
+            type = "string",
+            traits = {
+                json_name = "errorMessage",
+            },
+        },
+        HopDestinations = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "hopDestinations",
+            },
+        },
+        Id = {
+            type = "string",
+            traits = {
+                json_name = "id",
+            },
+        },
+        JobEngineVersionRequested = {
+            type = "string",
+            traits = {
+                json_name = "jobEngineVersionRequested",
+            },
+        },
+        JobEngineVersionUsed = {
+            type = "string",
+            traits = {
+                json_name = "jobEngineVersionUsed",
+            },
+        },
+        JobPercentComplete = {
+            type = "number",
+            traits = {
+                json_name = "jobPercentComplete",
+            },
+        },
+        JobTemplate = {
+            type = "string",
+            traits = {
+                json_name = "jobTemplate",
+            },
+        },
+        LastShareDetails = {
+            type = "string",
+            traits = {
+                json_name = "lastShareDetails",
+            },
+        },
+        Messages = {
+            type = "structure",
+            traits = {
+                json_name = "messages",
+            },
+        },
+        OutputGroupDetails = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "outputGroupDetails",
+            },
+        },
+        Priority = {
+            type = "number",
+            traits = {
+                json_name = "priority",
+            },
+        },
+        Queue = {
+            type = "string",
+            traits = {
+                json_name = "queue",
+            },
+        },
+        QueueTransitions = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "queueTransitions",
+            },
+        },
+        RetryCount = {
+            type = "number",
+            traits = {
+                json_name = "retryCount",
+            },
+        },
+        Role = {
+            type = "string",
+            traits = {
+                json_name = "role",
+                required = true,
+            },
+        },
+        Settings = {
+            type = "structure",
+            traits = {
+                json_name = "settings",
+                required = true,
+            },
+        },
+        ShareStatus = {
+            type = "string",
+            traits = {
+                json_name = "shareStatus",
+            },
+        },
+        SimulateReservedQueue = {
+            type = "string",
+            traits = {
+                json_name = "simulateReservedQueue",
+            },
+        },
+        Status = {
+            type = "string",
+            traits = {
+                json_name = "status",
+            },
+        },
+        StatusUpdateInterval = {
+            type = "string",
+            traits = {
+                json_name = "statusUpdateInterval",
+            },
+        },
+        Timing = {
+            type = "structure",
+            traits = {
+                json_name = "timing",
+            },
+        },
+        UserMetadata = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+            traits = {
+                json_name = "userMetadata",
+            },
+        },
+        Warnings = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "warnings",
+            },
+        },
+    },
+}
+
+M.JobEngineVersion = {
+    type = "structure",
+    members = {
+        ExpirationDate = {
+            type = "timestamp",
+            traits = {
+                json_name = "expirationDate",
+            },
+        },
+        Version = {
+            type = "string",
+            traits = {
+                json_name = "version",
+            },
+        },
+    },
+}
+
+M.JobsQueryFilterKey = {
+    queue = "queue",
+    status = "status",
+    fileInput = "fileInput",
+    jobEngineVersionRequested = "jobEngineVersionRequested",
+    jobEngineVersionUsed = "jobEngineVersionUsed",
+    audioCodec = "audioCodec",
+    videoCodec = "videoCodec",
+}
+
+M.JobsQueryFilter = {
+    type = "structure",
+    members = {
+        Key = {
+            type = "string",
+            traits = {
+                json_name = "key",
+            },
+        },
+        Values = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "values",
+            },
+        },
+    },
+}
+
+M.JobTemplateSettings = {
+    type = "structure",
+    members = {
+        AdAvailOffset = {
+            type = "number",
+            traits = {
+                json_name = "adAvailOffset",
+            },
+        },
+        AvailBlanking = {
+            type = "structure",
+            traits = {
+                json_name = "availBlanking",
+            },
+        },
+        ColorConversion3DLUTSettings = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "colorConversion3DLUTSettings",
+            },
+        },
+        Esam = {
+            type = "structure",
+            traits = {
+                json_name = "esam",
+            },
+        },
+        ExtendedDataServices = {
+            type = "structure",
+            traits = {
+                json_name = "extendedDataServices",
+            },
+        },
+        FollowSource = {
+            type = "number",
+            traits = {
+                json_name = "followSource",
+            },
+        },
+        Inputs = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "inputs",
+            },
+        },
+        KantarWatermark = {
+            type = "structure",
+            traits = {
+                json_name = "kantarWatermark",
+            },
+        },
+        MotionImageInserter = {
+            type = "structure",
+            traits = {
+                json_name = "motionImageInserter",
+            },
+        },
+        NielsenConfiguration = {
+            type = "structure",
+            traits = {
+                json_name = "nielsenConfiguration",
+            },
+        },
+        NielsenNonLinearWatermark = {
+            type = "structure",
+            traits = {
+                json_name = "nielsenNonLinearWatermark",
+            },
+        },
+        OutputGroups = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "outputGroups",
+            },
+        },
+        TimecodeConfig = {
+            type = "structure",
+            traits = {
+                json_name = "timecodeConfig",
+            },
+        },
+        TimedMetadataInsertion = {
+            type = "structure",
+            traits = {
+                json_name = "timedMetadataInsertion",
+            },
+        },
+    },
+}
+
+M.Type = {
+    SYSTEM = "SYSTEM",
+    CUSTOM = "CUSTOM",
+}
+
+M.JobTemplate = {
+    type = "structure",
+    members = {
+        AccelerationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "accelerationSettings",
+            },
+        },
+        Arn = {
+            type = "string",
+            traits = {
+                json_name = "arn",
+            },
+        },
+        Category = {
+            type = "string",
+            traits = {
+                json_name = "category",
+            },
+        },
+        CreatedAt = {
+            type = "timestamp",
+            traits = {
+                json_name = "createdAt",
+            },
+        },
+        Description = {
+            type = "string",
+            traits = {
+                json_name = "description",
+            },
+        },
+        HopDestinations = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "hopDestinations",
+            },
+        },
+        LastUpdated = {
+            type = "timestamp",
+            traits = {
+                json_name = "lastUpdated",
+            },
+        },
+        Name = {
+            type = "string",
+            traits = {
+                json_name = "name",
+                required = true,
+            },
+        },
+        Priority = {
+            type = "number",
+            traits = {
+                json_name = "priority",
+            },
+        },
+        Queue = {
+            type = "string",
+            traits = {
+                json_name = "queue",
+            },
+        },
+        Settings = {
+            type = "structure",
+            traits = {
+                json_name = "settings",
+                required = true,
+            },
+        },
+        StatusUpdateInterval = {
+            type = "string",
+            traits = {
+                json_name = "statusUpdateInterval",
+            },
+        },
+        Type = {
+            type = "string",
+            traits = {
+                json_name = "type",
+            },
+        },
+    },
+}
+
+M.PresetSettings = {
+    type = "structure",
+    members = {
+        AudioDescriptions = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "audioDescriptions",
+            },
+        },
+        CaptionDescriptions = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "captionDescriptions",
+            },
+        },
+        ContainerSettings = {
+            type = "structure",
+            traits = {
+                json_name = "containerSettings",
+            },
+        },
+        VideoDescription = {
+            type = "structure",
+            traits = {
+                json_name = "videoDescription",
+            },
+        },
+    },
+}
+
+M.Preset = {
+    type = "structure",
+    members = {
+        Arn = {
+            type = "string",
+            traits = {
+                json_name = "arn",
+            },
+        },
+        Category = {
+            type = "string",
+            traits = {
+                json_name = "category",
+            },
+        },
+        CreatedAt = {
+            type = "timestamp",
+            traits = {
+                json_name = "createdAt",
+            },
+        },
+        Description = {
+            type = "string",
+            traits = {
+                json_name = "description",
+            },
+        },
+        LastUpdated = {
+            type = "timestamp",
+            traits = {
+                json_name = "lastUpdated",
+            },
+        },
+        Name = {
+            type = "string",
+            traits = {
+                json_name = "name",
+                required = true,
+            },
+        },
+        Settings = {
+            type = "structure",
+            traits = {
+                json_name = "settings",
+                required = true,
+            },
+        },
+        Type = {
+            type = "string",
+            traits = {
+                json_name = "type",
+            },
+        },
+    },
+}
+
+M.ProbeInputFile = {
+    type = "structure",
+    members = {
+        FileUrl = {
+            type = "string",
+            traits = {
+                json_name = "fileUrl",
+            },
+        },
+    },
+}
+
+M.Format = {
+    mp4 = "mp4",
+    quicktime = "quicktime",
+    matroska = "matroska",
+    webm = "webm",
+    mxf = "mxf",
+    wave = "wave",
+    avi = "avi",
+    mpegts = "mpegts",
+}
+
+M.FrameRate = {
+    type = "structure",
+    members = {
+        Denominator = {
+            type = "number",
+            traits = {
+                json_name = "denominator",
+            },
+        },
+        Numerator = {
+            type = "number",
+            traits = {
+                json_name = "numerator",
+            },
+        },
+    },
+}
+
+M.AudioProperties = {
+    type = "structure",
+    members = {
+        BitDepth = {
+            type = "number",
+            traits = {
+                json_name = "bitDepth",
+            },
+        },
+        BitRate = {
+            type = "number",
+            traits = {
+                json_name = "bitRate",
+            },
+        },
+        Channels = {
+            type = "number",
+            traits = {
+                json_name = "channels",
+            },
+        },
+        FrameRate = {
+            type = "structure",
+            traits = {
+                json_name = "frameRate",
+            },
+        },
+        LanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "languageCode",
+            },
+        },
+        SampleRate = {
+            type = "number",
+            traits = {
+                json_name = "sampleRate",
+            },
+        },
+    },
+}
+
+M.Codec = {
+    UNKNOWN = "UNKNOWN",
+    AAC = "AAC",
+    AC3 = "AC3",
+    EAC3 = "EAC3",
+    FLAC = "FLAC",
+    MP3 = "MP3",
+    OPUS = "OPUS",
+    PCM = "PCM",
+    VORBIS = "VORBIS",
+    AV1 = "AV1",
+    AVC = "AVC",
+    HEVC = "HEVC",
+    JPEG2000 = "JPEG2000",
+    MJPEG = "MJPEG",
+    MPEG1 = "MPEG1",
+    MP4V = "MP4V",
+    MPEG2 = "MPEG2",
+    PRORES = "PRORES",
+    QTRLE = "QTRLE",
+    THEORA = "THEORA",
+    UNCOMPRESSED = "UNCOMPRESSED",
+    VFW = "VFW",
+    VP8 = "VP8",
+    VP9 = "VP9",
+    C608 = "C608",
+    C708 = "C708",
+    WEBVTT = "WEBVTT",
+}
+
+M.DataProperties = {
+    type = "structure",
+    members = {
+        LanguageCode = {
+            type = "string",
+            traits = {
+                json_name = "languageCode",
+            },
+        },
+    },
+}
+
+M.TrackType = {
+    video = "video",
+    audio = "audio",
+    data = "data",
+}
+
+M.ColorPrimaries = {
+    ITU_709 = "ITU_709",
+    UNSPECIFIED = "UNSPECIFIED",
+    RESERVED = "RESERVED",
+    ITU_470M = "ITU_470M",
+    ITU_470BG = "ITU_470BG",
+    SMPTE_170M = "SMPTE_170M",
+    SMPTE_240M = "SMPTE_240M",
+    GENERIC_FILM = "GENERIC_FILM",
+    ITU_2020 = "ITU_2020",
+    SMPTE_428_1 = "SMPTE_428_1",
+    SMPTE_431_2 = "SMPTE_431_2",
+    SMPTE_EG_432_1 = "SMPTE_EG_432_1",
+    IPT = "IPT",
+    SMPTE_2067XYZ = "SMPTE_2067XYZ",
+    EBU_3213_E = "EBU_3213_E",
+    LAST = "LAST",
+}
+
+M.MatrixCoefficients = {
+    RGB = "RGB",
+    ITU_709 = "ITU_709",
+    UNSPECIFIED = "UNSPECIFIED",
+    RESERVED = "RESERVED",
+    FCC = "FCC",
+    ITU_470BG = "ITU_470BG",
+    SMPTE_170M = "SMPTE_170M",
+    SMPTE_240M = "SMPTE_240M",
+    YCgCo = "YCgCo",
+    ITU_2020_NCL = "ITU_2020_NCL",
+    ITU_2020_CL = "ITU_2020_CL",
+    SMPTE_2085 = "SMPTE_2085",
+    CD_NCL = "CD_NCL",
+    CD_CL = "CD_CL",
+    ITU_2100ICtCp = "ITU_2100ICtCp",
+    IPT = "IPT",
+    EBU3213 = "EBU3213",
+    LAST = "LAST",
+}
+
+M.TransferCharacteristics = {
+    ITU_709 = "ITU_709",
+    UNSPECIFIED = "UNSPECIFIED",
+    RESERVED = "RESERVED",
+    ITU_470M = "ITU_470M",
+    ITU_470BG = "ITU_470BG",
+    SMPTE_170M = "SMPTE_170M",
+    SMPTE_240M = "SMPTE_240M",
+    LINEAR = "LINEAR",
+    LOG10_2 = "LOG10_2",
+    LOC10_2_5 = "LOC10_2_5",
+    IEC_61966_2_4 = "IEC_61966_2_4",
+    ITU_1361 = "ITU_1361",
+    IEC_61966_2_1 = "IEC_61966_2_1",
+    ITU_2020_10bit = "ITU_2020_10bit",
+    ITU_2020_12bit = "ITU_2020_12bit",
+    SMPTE_2084 = "SMPTE_2084",
+    SMPTE_428_1 = "SMPTE_428_1",
+    ARIB_B67 = "ARIB_B67",
+    LAST = "LAST",
+}
+
+M.CodecMetadata = {
+    type = "structure",
+    members = {
+        BitDepth = {
+            type = "number",
+            traits = {
+                json_name = "bitDepth",
+            },
+        },
+        ChromaSubsampling = {
+            type = "string",
+            traits = {
+                json_name = "chromaSubsampling",
+            },
+        },
+        CodedFrameRate = {
+            type = "structure",
+            traits = {
+                json_name = "codedFrameRate",
+            },
+        },
+        ColorPrimaries = {
+            type = "string",
+            traits = {
+                json_name = "colorPrimaries",
+            },
+        },
+        Height = {
+            type = "number",
+            traits = {
+                json_name = "height",
+            },
+        },
+        Level = {
+            type = "string",
+            traits = {
+                json_name = "level",
+            },
+        },
+        MatrixCoefficients = {
+            type = "string",
+            traits = {
+                json_name = "matrixCoefficients",
+            },
+        },
+        Profile = {
+            type = "string",
+            traits = {
+                json_name = "profile",
+            },
+        },
+        ScanType = {
+            type = "string",
+            traits = {
+                json_name = "scanType",
+            },
+        },
+        TransferCharacteristics = {
+            type = "string",
+            traits = {
+                json_name = "transferCharacteristics",
+            },
+        },
+        Width = {
+            type = "number",
+            traits = {
+                json_name = "width",
+            },
+        },
+    },
+}
+
+M.VideoProperties = {
+    type = "structure",
+    members = {
+        BitDepth = {
+            type = "number",
+            traits = {
+                json_name = "bitDepth",
+            },
+        },
+        BitRate = {
+            type = "number",
+            traits = {
+                json_name = "bitRate",
+            },
+        },
+        CodecMetadata = {
+            type = "structure",
+            traits = {
+                json_name = "codecMetadata",
+            },
+        },
+        ColorPrimaries = {
+            type = "string",
+            traits = {
+                json_name = "colorPrimaries",
+            },
+        },
+        FrameRate = {
+            type = "structure",
+            traits = {
+                json_name = "frameRate",
+            },
+        },
+        Height = {
+            type = "number",
+            traits = {
+                json_name = "height",
+            },
+        },
+        MatrixCoefficients = {
+            type = "string",
+            traits = {
+                json_name = "matrixCoefficients",
+            },
+        },
+        TransferCharacteristics = {
+            type = "string",
+            traits = {
+                json_name = "transferCharacteristics",
+            },
+        },
+        Width = {
+            type = "number",
+            traits = {
+                json_name = "width",
+            },
+        },
+    },
+}
+
+M.Track = {
+    type = "structure",
+    members = {
+        AudioProperties = {
+            type = "structure",
+            traits = {
+                json_name = "audioProperties",
+            },
+        },
+        Codec = {
+            type = "string",
+            traits = {
+                json_name = "codec",
+            },
+        },
+        DataProperties = {
+            type = "structure",
+            traits = {
+                json_name = "dataProperties",
+            },
+        },
+        Duration = {
+            type = "number",
+            traits = {
+                json_name = "duration",
+            },
+        },
+        Index = {
+            type = "number",
+            traits = {
+                json_name = "index",
+            },
+        },
+        TrackType = {
+            type = "string",
+            traits = {
+                json_name = "trackType",
+            },
+        },
+        VideoProperties = {
+            type = "structure",
+            traits = {
+                json_name = "videoProperties",
+            },
+        },
+    },
+}
+
+M.Container = {
+    type = "structure",
+    members = {
+        Duration = {
+            type = "number",
+            traits = {
+                json_name = "duration",
+            },
+        },
+        Format = {
+            type = "string",
+            traits = {
+                json_name = "format",
+            },
+        },
+        StartTimecode = {
+            type = "string",
+            traits = {
+                json_name = "startTimecode",
+            },
+        },
+        Tracks = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "tracks",
+            },
+        },
+    },
+}
+
+M.Metadata = {
+    type = "structure",
+    members = {
+        ETag = {
+            type = "string",
+            traits = {
+                json_name = "eTag",
+            },
+        },
+        FileSize = {
+            type = "number",
+            traits = {
+                json_name = "fileSize",
+            },
+        },
+        LastModified = {
+            type = "timestamp",
+            traits = {
+                json_name = "lastModified",
+            },
+        },
+        MimeType = {
+            type = "string",
+            traits = {
+                json_name = "mimeType",
+            },
+        },
+    },
+}
+
+M.TrackMapping = {
+    type = "structure",
+    members = {
+        AudioTrackIndexes = {
+            type = "list",
+            member_type = "number",
+            traits = {
+                json_name = "audioTrackIndexes",
+            },
+        },
+        DataTrackIndexes = {
+            type = "list",
+            member_type = "number",
+            traits = {
+                json_name = "dataTrackIndexes",
+            },
+        },
+        VideoTrackIndexes = {
+            type = "list",
+            member_type = "number",
+            traits = {
+                json_name = "videoTrackIndexes",
+            },
+        },
+    },
+}
+
+M.ProbeResult = {
+    type = "structure",
+    members = {
+        Container = {
+            type = "structure",
+            traits = {
+                json_name = "container",
+            },
+        },
+        Metadata = {
+            type = "structure",
+            traits = {
+                json_name = "metadata",
+            },
+        },
+        TrackMappings = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "trackMappings",
+            },
+        },
+    },
+}
+
+M.PricingPlan = {
+    ON_DEMAND = "ON_DEMAND",
+    RESERVED = "RESERVED",
+}
+
+M.Commitment = {
+    ONE_YEAR = "ONE_YEAR",
+}
+
+M.RenewalType = {
+    AUTO_RENEW = "AUTO_RENEW",
+    EXPIRE = "EXPIRE",
+}
+
+M.ReservationPlanStatus = {
+    ACTIVE = "ACTIVE",
+    EXPIRED = "EXPIRED",
+}
+
+M.ReservationPlan = {
+    type = "structure",
+    members = {
+        Commitment = {
+            type = "string",
+            traits = {
+                json_name = "commitment",
+            },
+        },
+        ExpiresAt = {
+            type = "timestamp",
+            traits = {
+                json_name = "expiresAt",
+            },
+        },
+        PurchasedAt = {
+            type = "timestamp",
+            traits = {
+                json_name = "purchasedAt",
+            },
+        },
+        RenewalType = {
+            type = "string",
+            traits = {
+                json_name = "renewalType",
+            },
+        },
+        ReservedSlots = {
+            type = "number",
+            traits = {
+                json_name = "reservedSlots",
+            },
+        },
+        Status = {
+            type = "string",
+            traits = {
+                json_name = "status",
+            },
+        },
+    },
+}
+
+M.ServiceOverride = {
+    type = "structure",
+    members = {
+        Message = {
+            type = "string",
+            traits = {
+                json_name = "message",
+            },
+        },
+        Name = {
+            type = "string",
+            traits = {
+                json_name = "name",
+            },
+        },
+        OverrideValue = {
+            type = "string",
+            traits = {
+                json_name = "overrideValue",
+            },
+        },
+        Value = {
+            type = "string",
+            traits = {
+                json_name = "value",
+            },
+        },
+    },
+}
+
+M.QueueStatus = {
+    ACTIVE = "ACTIVE",
+    PAUSED = "PAUSED",
+}
+
+M.Queue = {
+    type = "structure",
+    members = {
+        Arn = {
+            type = "string",
+            traits = {
+                json_name = "arn",
+            },
+        },
+        ConcurrentJobs = {
+            type = "number",
+            traits = {
+                json_name = "concurrentJobs",
+            },
+        },
+        CreatedAt = {
+            type = "timestamp",
+            traits = {
+                json_name = "createdAt",
+            },
+        },
+        Description = {
+            type = "string",
+            traits = {
+                json_name = "description",
+            },
+        },
+        LastUpdated = {
+            type = "timestamp",
+            traits = {
+                json_name = "lastUpdated",
+            },
+        },
+        MaximumConcurrentFeeds = {
+            type = "number",
+            traits = {
+                json_name = "maximumConcurrentFeeds",
+            },
+        },
+        Name = {
+            type = "string",
+            traits = {
+                json_name = "name",
+                required = true,
+            },
+        },
+        PricingPlan = {
+            type = "string",
+            traits = {
+                json_name = "pricingPlan",
+            },
+        },
+        ProgressingJobsCount = {
+            type = "number",
+            traits = {
+                json_name = "progressingJobsCount",
+            },
+        },
+        ReservationPlan = {
+            type = "structure",
+            traits = {
+                json_name = "reservationPlan",
+            },
+        },
+        ServiceOverrides = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "serviceOverrides",
+            },
+        },
+        Status = {
+            type = "string",
+            traits = {
+                json_name = "status",
+            },
+        },
+        SubmittedJobsCount = {
+            type = "number",
+            traits = {
+                json_name = "submittedJobsCount",
+            },
+        },
+        Type = {
+            type = "string",
+            traits = {
+                json_name = "type",
+            },
+        },
+    },
+}
+
+M.AssociateCertificateInput = {
+    type = "structure",
+    members = {
+        Arn = {
+            type = "string",
+            traits = {
+                json_name = "arn",
+                required = true,
+            },
+        },
+    },
+}
+
+M.AssociateCertificateOutput = {
+    type = "structure",
+}
+
+M.BadRequestException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+            traits = {
+                json_name = "message",
+            },
+        },
+    },
+}
+
+M.ConflictException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+            traits = {
+                json_name = "message",
+            },
+        },
+    },
+}
+
+M.ForbiddenException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+            traits = {
+                json_name = "message",
+            },
+        },
+    },
+}
+
+M.InternalServerErrorException = {
+    type = "structure",
+    error = "server",
+    members = {
+        Message = {
+            type = "string",
+            traits = {
+                json_name = "message",
+            },
+        },
+    },
+}
+
+M.NotFoundException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+            traits = {
+                json_name = "message",
+            },
+        },
+    },
+}
+
+M.ServiceQuotaExceededException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+            traits = {
+                json_name = "message",
+            },
+        },
+    },
+}
+
+M.TooManyRequestsException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+            traits = {
+                json_name = "message",
+            },
+        },
+    },
+}
+
+M.CancelJobInput = {
+    type = "structure",
+    members = {
+        Id = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.CancelJobOutput = {
+    type = "structure",
+}
+
+M.CreateJobInput = {
+    type = "structure",
+    members = {
+        AccelerationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "accelerationSettings",
+            },
+        },
+        BillingTagsSource = {
+            type = "string",
+            traits = {
+                json_name = "billingTagsSource",
+            },
+        },
+        ClientRequestToken = {
+            type = "string",
+            traits = {
+                json_name = "clientRequestToken",
+            },
+        },
+        HopDestinations = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "hopDestinations",
+            },
+        },
+        JobEngineVersion = {
+            type = "string",
+            traits = {
+                json_name = "jobEngineVersion",
+            },
+        },
+        JobTemplate = {
+            type = "string",
+            traits = {
+                json_name = "jobTemplate",
+            },
+        },
+        Priority = {
+            type = "number",
+            traits = {
+                json_name = "priority",
+            },
+        },
+        Queue = {
+            type = "string",
+            traits = {
+                json_name = "queue",
+            },
+        },
+        Role = {
+            type = "string",
+            traits = {
+                json_name = "role",
+                required = true,
+            },
+        },
+        Settings = {
+            type = "structure",
+            traits = {
+                json_name = "settings",
+                required = true,
+            },
+        },
+        SimulateReservedQueue = {
+            type = "string",
+            traits = {
+                json_name = "simulateReservedQueue",
+            },
+        },
+        StatusUpdateInterval = {
+            type = "string",
+            traits = {
+                json_name = "statusUpdateInterval",
+            },
+        },
+        Tags = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+            traits = {
+                json_name = "tags",
+            },
+        },
+        UserMetadata = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+            traits = {
+                json_name = "userMetadata",
+            },
+        },
+    },
+}
+
+M.CreateJobOutput = {
+    type = "structure",
+    members = {
+        Job = {
+            type = "structure",
+            traits = {
+                json_name = "job",
+            },
+        },
+    },
+}
+
+M.CreateJobTemplateInput = {
+    type = "structure",
+    members = {
+        AccelerationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "accelerationSettings",
+            },
+        },
+        Category = {
+            type = "string",
+            traits = {
+                json_name = "category",
+            },
+        },
+        Description = {
+            type = "string",
+            traits = {
+                json_name = "description",
+            },
+        },
+        HopDestinations = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "hopDestinations",
+            },
+        },
+        Name = {
+            type = "string",
+            traits = {
+                json_name = "name",
+                required = true,
+            },
+        },
+        Priority = {
+            type = "number",
+            traits = {
+                json_name = "priority",
+            },
+        },
+        Queue = {
+            type = "string",
+            traits = {
+                json_name = "queue",
+            },
+        },
+        Settings = {
+            type = "structure",
+            traits = {
+                json_name = "settings",
+                required = true,
+            },
+        },
+        StatusUpdateInterval = {
+            type = "string",
+            traits = {
+                json_name = "statusUpdateInterval",
+            },
+        },
+        Tags = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+            traits = {
+                json_name = "tags",
+            },
+        },
+    },
+}
+
+M.CreateJobTemplateOutput = {
+    type = "structure",
+    members = {
+        JobTemplate = {
+            type = "structure",
+            traits = {
+                json_name = "jobTemplate",
+            },
+        },
+    },
+}
+
+M.CreatePresetInput = {
+    type = "structure",
+    members = {
+        Category = {
+            type = "string",
+            traits = {
+                json_name = "category",
+            },
+        },
+        Description = {
+            type = "string",
+            traits = {
+                json_name = "description",
+            },
+        },
+        Name = {
+            type = "string",
+            traits = {
+                json_name = "name",
+                required = true,
+            },
+        },
+        Settings = {
+            type = "structure",
+            traits = {
+                json_name = "settings",
+                required = true,
+            },
+        },
+        Tags = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+            traits = {
+                json_name = "tags",
+            },
+        },
+    },
+}
+
+M.CreatePresetOutput = {
+    type = "structure",
+    members = {
+        Preset = {
+            type = "structure",
+            traits = {
+                json_name = "preset",
+            },
+        },
+    },
+}
+
+M.ReservationPlanSettings = {
+    type = "structure",
+    members = {
+        Commitment = {
+            type = "string",
+            traits = {
+                json_name = "commitment",
+                required = true,
+            },
+        },
+        RenewalType = {
+            type = "string",
+            traits = {
+                json_name = "renewalType",
+                required = true,
+            },
+        },
+        ReservedSlots = {
+            type = "number",
+            traits = {
+                json_name = "reservedSlots",
+                required = true,
+            },
+        },
+    },
+}
+
+M.CreateQueueInput = {
+    type = "structure",
+    members = {
+        ConcurrentJobs = {
+            type = "number",
+            traits = {
+                json_name = "concurrentJobs",
+            },
+        },
+        Description = {
+            type = "string",
+            traits = {
+                json_name = "description",
+            },
+        },
+        MaximumConcurrentFeeds = {
+            type = "number",
+            traits = {
+                json_name = "maximumConcurrentFeeds",
+            },
+        },
+        Name = {
+            type = "string",
+            traits = {
+                json_name = "name",
+                required = true,
+            },
+        },
+        PricingPlan = {
+            type = "string",
+            traits = {
+                json_name = "pricingPlan",
+            },
+        },
+        ReservationPlanSettings = {
+            type = "structure",
+            traits = {
+                json_name = "reservationPlanSettings",
+            },
+        },
+        Status = {
+            type = "string",
+            traits = {
+                json_name = "status",
+            },
+        },
+        Tags = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+            traits = {
+                json_name = "tags",
+            },
+        },
+    },
+}
+
+M.CreateQueueOutput = {
+    type = "structure",
+    members = {
+        Queue = {
+            type = "structure",
+            traits = {
+                json_name = "queue",
+            },
+        },
+    },
+}
+
+M.CreateResourceShareInput = {
+    type = "structure",
+    members = {
+        JobId = {
+            type = "string",
+            traits = {
+                json_name = "jobId",
+                required = true,
+            },
+        },
+        SupportCaseId = {
+            type = "string",
+            traits = {
+                json_name = "supportCaseId",
+                required = true,
+            },
+        },
+    },
+}
+
+M.CreateResourceShareOutput = {
+    type = "structure",
+}
+
+M.DeleteJobTemplateInput = {
+    type = "structure",
+    members = {
+        Name = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.DeleteJobTemplateOutput = {
+    type = "structure",
+}
+
+M.DeletePolicyInput = {
+    type = "structure",
+}
+
+M.DeletePolicyOutput = {
+    type = "structure",
+}
+
+M.DeletePresetInput = {
+    type = "structure",
+    members = {
+        Name = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.DeletePresetOutput = {
+    type = "structure",
+}
+
+M.DeleteQueueInput = {
+    type = "structure",
+    members = {
+        Name = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.DeleteQueueOutput = {
+    type = "structure",
+}
+
+M.DescribeEndpointsMode = {
+    DEFAULT = "DEFAULT",
+    GET_ONLY = "GET_ONLY",
+}
+
+M.DescribeEndpointsInput = {
+    type = "structure",
+    members = {
+        MaxResults = {
+            type = "number",
+            traits = {
+                json_name = "maxResults",
+            },
+        },
+        Mode = {
+            type = "string",
+            traits = {
+                json_name = "mode",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                json_name = "nextToken",
+            },
+        },
+    },
+}
+
+M.DescribeEndpointsOutput = {
+    type = "structure",
+    members = {
+        Endpoints = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "endpoints",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                json_name = "nextToken",
+            },
+        },
+    },
+}
+
+M.DisassociateCertificateInput = {
+    type = "structure",
+    members = {
+        Arn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.DisassociateCertificateOutput = {
+    type = "structure",
+}
+
+M.GetJobInput = {
+    type = "structure",
+    members = {
+        Id = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.GetJobOutput = {
+    type = "structure",
+    members = {
+        Job = {
+            type = "structure",
+            traits = {
+                json_name = "job",
+            },
+        },
+    },
+}
+
+M.GetJobsQueryResultsInput = {
+    type = "structure",
+    members = {
+        Id = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.JobsQueryStatus = {
+    SUBMITTED = "SUBMITTED",
+    PROGRESSING = "PROGRESSING",
+    COMPLETE = "COMPLETE",
+    ERROR = "ERROR",
+}
+
+M.GetJobsQueryResultsOutput = {
+    type = "structure",
+    members = {
+        Jobs = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "jobs",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                json_name = "nextToken",
+            },
+        },
+        Status = {
+            type = "string",
+            traits = {
+                json_name = "status",
+            },
+        },
+    },
+}
+
+M.GetJobTemplateInput = {
+    type = "structure",
+    members = {
+        Name = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.GetJobTemplateOutput = {
+    type = "structure",
+    members = {
+        JobTemplate = {
+            type = "structure",
+            traits = {
+                json_name = "jobTemplate",
+            },
+        },
+    },
+}
+
+M.GetPolicyInput = {
+    type = "structure",
+}
+
+M.InputPolicy = {
+    ALLOWED = "ALLOWED",
+    DISALLOWED = "DISALLOWED",
+}
+
+M.Policy = {
+    type = "structure",
+    members = {
+        HttpInputs = {
+            type = "string",
+            traits = {
+                json_name = "httpInputs",
+            },
+        },
+        HttpsInputs = {
+            type = "string",
+            traits = {
+                json_name = "httpsInputs",
+            },
+        },
+        S3Inputs = {
+            type = "string",
+            traits = {
+                json_name = "s3Inputs",
+            },
+        },
+    },
+}
+
+M.GetPolicyOutput = {
+    type = "structure",
+    members = {
+        Policy = {
+            type = "structure",
+            traits = {
+                json_name = "policy",
+            },
+        },
+    },
+}
+
+M.GetPresetInput = {
+    type = "structure",
+    members = {
+        Name = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.GetPresetOutput = {
+    type = "structure",
+    members = {
+        Preset = {
+            type = "structure",
+            traits = {
+                json_name = "preset",
+            },
+        },
+    },
+}
+
+M.GetQueueInput = {
+    type = "structure",
+    members = {
+        Name = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.GetQueueOutput = {
+    type = "structure",
+    members = {
+        Queue = {
+            type = "structure",
+            traits = {
+                json_name = "queue",
+            },
+        },
+    },
+}
+
+M.JobTemplateListBy = {
+    NAME = "NAME",
+    CREATION_DATE = "CREATION_DATE",
+    SYSTEM = "SYSTEM",
+}
+
+M.Order = {
+    ASCENDING = "ASCENDING",
+    DESCENDING = "DESCENDING",
+}
+
+M.ListJobsInput = {
+    type = "structure",
+    members = {
+        MaxResults = {
+            type = "number",
+            traits = {
+                http_query = "maxResults",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                http_query = "nextToken",
+            },
+        },
+        Order = {
+            type = "string",
+            traits = {
+                http_query = "order",
+            },
+        },
+        Queue = {
+            type = "string",
+            traits = {
+                http_query = "queue",
+            },
+        },
+        Status = {
+            type = "string",
+            traits = {
+                http_query = "status",
+            },
+        },
+    },
+}
+
+M.ListJobsOutput = {
+    type = "structure",
+    members = {
+        Jobs = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "jobs",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                json_name = "nextToken",
+            },
+        },
+    },
+}
+
+M.ListJobTemplatesInput = {
+    type = "structure",
+    members = {
+        Category = {
+            type = "string",
+            traits = {
+                http_query = "category",
+            },
+        },
+        ListBy = {
+            type = "string",
+            traits = {
+                http_query = "listBy",
+            },
+        },
+        MaxResults = {
+            type = "number",
+            traits = {
+                http_query = "maxResults",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                http_query = "nextToken",
+            },
+        },
+        Order = {
+            type = "string",
+            traits = {
+                http_query = "order",
+            },
+        },
+    },
+}
+
+M.ListJobTemplatesOutput = {
+    type = "structure",
+    members = {
+        JobTemplates = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "jobTemplates",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                json_name = "nextToken",
+            },
+        },
+    },
+}
+
+M.PresetListBy = {
+    NAME = "NAME",
+    CREATION_DATE = "CREATION_DATE",
+    SYSTEM = "SYSTEM",
+}
+
+M.ListPresetsInput = {
+    type = "structure",
+    members = {
+        Category = {
+            type = "string",
+            traits = {
+                http_query = "category",
+            },
+        },
+        ListBy = {
+            type = "string",
+            traits = {
+                http_query = "listBy",
+            },
+        },
+        MaxResults = {
+            type = "number",
+            traits = {
+                http_query = "maxResults",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                http_query = "nextToken",
+            },
+        },
+        Order = {
+            type = "string",
+            traits = {
+                http_query = "order",
+            },
+        },
+    },
+}
+
+M.ListPresetsOutput = {
+    type = "structure",
+    members = {
+        NextToken = {
+            type = "string",
+            traits = {
+                json_name = "nextToken",
+            },
+        },
+        Presets = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "presets",
+            },
+        },
+    },
+}
+
+M.QueueListBy = {
+    NAME = "NAME",
+    CREATION_DATE = "CREATION_DATE",
+}
+
+M.ListQueuesInput = {
+    type = "structure",
+    members = {
+        ListBy = {
+            type = "string",
+            traits = {
+                http_query = "listBy",
+            },
+        },
+        MaxResults = {
+            type = "number",
+            traits = {
+                http_query = "maxResults",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                http_query = "nextToken",
+            },
+        },
+        Order = {
+            type = "string",
+            traits = {
+                http_query = "order",
+            },
+        },
+    },
+}
+
+M.ListQueuesOutput = {
+    type = "structure",
+    members = {
+        NextToken = {
+            type = "string",
+            traits = {
+                json_name = "nextToken",
+            },
+        },
+        Queues = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "queues",
+            },
+        },
+        TotalConcurrentJobs = {
+            type = "number",
+            traits = {
+                json_name = "totalConcurrentJobs",
+            },
+        },
+        UnallocatedConcurrentJobs = {
+            type = "number",
+            traits = {
+                json_name = "unallocatedConcurrentJobs",
+            },
+        },
+    },
+}
+
+M.ListTagsForResourceInput = {
+    type = "structure",
+    members = {
+        Arn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.ResourceTags = {
+    type = "structure",
+    members = {
+        Arn = {
+            type = "string",
+            traits = {
+                json_name = "arn",
+            },
+        },
+        Tags = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+            traits = {
+                json_name = "tags",
+            },
+        },
+    },
+}
+
+M.ListTagsForResourceOutput = {
+    type = "structure",
+    members = {
+        ResourceTags = {
+            type = "structure",
+            traits = {
+                json_name = "resourceTags",
+            },
+        },
+    },
+}
+
+M.ListVersionsInput = {
+    type = "structure",
+    members = {
+        MaxResults = {
+            type = "number",
+            traits = {
+                http_query = "maxResults",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                http_query = "nextToken",
+            },
+        },
+    },
+}
+
+M.ListVersionsOutput = {
+    type = "structure",
+    members = {
+        NextToken = {
+            type = "string",
+            traits = {
+                json_name = "nextToken",
+            },
+        },
+        Versions = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "versions",
+            },
+        },
+    },
+}
+
+M.ProbeInput = {
+    type = "structure",
+    members = {
+        InputFiles = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "inputFiles",
+            },
+        },
+    },
+}
+
+M.ProbeOutput = {
+    type = "structure",
+    members = {
+        ProbeResults = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "probeResults",
+            },
+        },
+    },
+}
+
+M.PutPolicyInput = {
+    type = "structure",
+    members = {
+        Policy = {
+            type = "structure",
+            traits = {
+                json_name = "policy",
+                required = true,
+            },
+        },
+    },
+}
+
+M.PutPolicyOutput = {
+    type = "structure",
+    members = {
+        Policy = {
+            type = "structure",
+            traits = {
+                json_name = "policy",
+            },
+        },
+    },
+}
+
+M.SearchJobsInput = {
+    type = "structure",
+    members = {
+        InputFile = {
+            type = "string",
+            traits = {
+                http_query = "inputFile",
+            },
+        },
+        MaxResults = {
+            type = "number",
+            traits = {
+                http_query = "maxResults",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                http_query = "nextToken",
+            },
+        },
+        Order = {
+            type = "string",
+            traits = {
+                http_query = "order",
+            },
+        },
+        Queue = {
+            type = "string",
+            traits = {
+                http_query = "queue",
+            },
+        },
+        Status = {
+            type = "string",
+            traits = {
+                http_query = "status",
+            },
+        },
+    },
+}
+
+M.SearchJobsOutput = {
+    type = "structure",
+    members = {
+        Jobs = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "jobs",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                json_name = "nextToken",
+            },
+        },
+    },
+}
+
+M.StartJobsQueryInput = {
+    type = "structure",
+    members = {
+        FilterList = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "filterList",
+            },
+        },
+        MaxResults = {
+            type = "number",
+            traits = {
+                json_name = "maxResults",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                json_name = "nextToken",
+            },
+        },
+        Order = {
+            type = "string",
+            traits = {
+                json_name = "order",
+            },
+        },
+    },
+}
+
+M.StartJobsQueryOutput = {
+    type = "structure",
+    members = {
+        Id = {
+            type = "string",
+            traits = {
+                json_name = "id",
+            },
+        },
+    },
+}
+
+M.TagResourceInput = {
+    type = "structure",
+    members = {
+        Arn = {
+            type = "string",
+            traits = {
+                json_name = "arn",
+                required = true,
+            },
+        },
+        Tags = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+            traits = {
+                json_name = "tags",
+                required = true,
+            },
+        },
+    },
+}
+
+M.TagResourceOutput = {
+    type = "structure",
+}
+
+M.UntagResourceInput = {
+    type = "structure",
+    members = {
+        Arn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        TagKeys = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                json_name = "tagKeys",
+            },
+        },
+    },
+}
+
+M.UntagResourceOutput = {
+    type = "structure",
+}
+
+M.UpdateJobTemplateInput = {
+    type = "structure",
+    members = {
+        AccelerationSettings = {
+            type = "structure",
+            traits = {
+                json_name = "accelerationSettings",
+            },
+        },
+        Category = {
+            type = "string",
+            traits = {
+                json_name = "category",
+            },
+        },
+        Description = {
+            type = "string",
+            traits = {
+                json_name = "description",
+            },
+        },
+        HopDestinations = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                json_name = "hopDestinations",
+            },
+        },
+        Name = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        Priority = {
+            type = "number",
+            traits = {
+                json_name = "priority",
+            },
+        },
+        Queue = {
+            type = "string",
+            traits = {
+                json_name = "queue",
+            },
+        },
+        Settings = {
+            type = "structure",
+            traits = {
+                json_name = "settings",
+            },
+        },
+        StatusUpdateInterval = {
+            type = "string",
+            traits = {
+                json_name = "statusUpdateInterval",
+            },
+        },
+    },
+}
+
+M.UpdateJobTemplateOutput = {
+    type = "structure",
+    members = {
+        JobTemplate = {
+            type = "structure",
+            traits = {
+                json_name = "jobTemplate",
+            },
+        },
+    },
+}
+
+M.UpdatePresetInput = {
+    type = "structure",
+    members = {
+        Category = {
+            type = "string",
+            traits = {
+                json_name = "category",
+            },
+        },
+        Description = {
+            type = "string",
+            traits = {
+                json_name = "description",
+            },
+        },
+        Name = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        Settings = {
+            type = "structure",
+            traits = {
+                json_name = "settings",
+            },
+        },
+    },
+}
+
+M.UpdatePresetOutput = {
+    type = "structure",
+    members = {
+        Preset = {
+            type = "structure",
+            traits = {
+                json_name = "preset",
+            },
+        },
+    },
+}
+
+M.UpdateQueueInput = {
+    type = "structure",
+    members = {
+        ConcurrentJobs = {
+            type = "number",
+            traits = {
+                json_name = "concurrentJobs",
+            },
+        },
+        Description = {
+            type = "string",
+            traits = {
+                json_name = "description",
+            },
+        },
+        MaximumConcurrentFeeds = {
+            type = "number",
+            traits = {
+                json_name = "maximumConcurrentFeeds",
+            },
+        },
+        Name = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        ReservationPlanSettings = {
+            type = "structure",
+            traits = {
+                json_name = "reservationPlanSettings",
+            },
+        },
+        Status = {
+            type = "string",
+            traits = {
+                json_name = "status",
+            },
+        },
+    },
+}
+
+M.UpdateQueueOutput = {
+    type = "structure",
+    members = {
+        Queue = {
+            type = "structure",
+            traits = {
+                json_name = "queue",
+            },
+        },
+    },
+}
+
+return M

@@ -1,0 +1,238 @@
+local record CalculateIsolinesInput
+    Allow: IsolineAllowOptions
+    ArrivalTime: string
+    Avoid: IsolineAvoidanceOptions
+    DepartNow: boolean
+    DepartureTime: string
+    Destination: {number}
+    DestinationOptions: IsolineDestinationOptions
+    IsolineGeometryFormat: string
+    IsolineGranularity: IsolineGranularityOptions
+    Key: string
+    OptimizeIsolineFor: string
+    OptimizeRoutingFor: string
+    Origin: {number}
+    OriginOptions: IsolineOriginOptions
+    Thresholds: IsolineThresholds
+    Traffic: IsolineTrafficOptions
+    TravelMode: string
+    TravelModeOptions: IsolineTravelModeOptions
+end
+
+local record CalculateIsolinesOutput
+    ArrivalTime: string
+    DepartureTime: string
+    IsolineGeometryFormat: string
+    Isolines: {Isoline}
+    PricingBucket: string
+    SnappedDestination: {number}
+    SnappedOrigin: {number}
+end
+
+local record CalculateRouteMatrixInput
+    Allow: RouteMatrixAllowOptions
+    Avoid: RouteMatrixAvoidanceOptions
+    DepartNow: boolean
+    DepartureTime: string
+    Destinations: {RouteMatrixDestination}
+    Exclude: RouteMatrixExclusionOptions
+    Key: string
+    OptimizeRoutingFor: string
+    Origins: {RouteMatrixOrigin}
+    RoutingBoundary: RouteMatrixBoundary
+    Traffic: RouteMatrixTrafficOptions
+    TravelMode: string
+    TravelModeOptions: RouteMatrixTravelModeOptions
+end
+
+local record CalculateRouteMatrixOutput
+    ErrorCount: number
+    PricingBucket: string
+    RouteMatrix: {{RouteMatrixEntry}}
+    RoutingBoundary: RouteMatrixBoundary
+end
+
+local record CalculateRoutesInput
+    Allow: RouteAllowOptions
+    ArrivalTime: string
+    Avoid: RouteAvoidanceOptions
+    DepartNow: boolean
+    DepartureTime: string
+    Destination: {number}
+    DestinationOptions: RouteDestinationOptions
+    Driver: RouteDriverOptions
+    Exclude: RouteExclusionOptions
+    InstructionsMeasurementSystem: string
+    Key: string
+    Languages: {string}
+    LegAdditionalFeatures: {string}
+    LegGeometryFormat: string
+    MaxAlternatives: number
+    OptimizeRoutingFor: string
+    Origin: {number}
+    OriginOptions: RouteOriginOptions
+    SpanAdditionalFeatures: {string}
+    Tolls: RouteTollOptions
+    Traffic: RouteTrafficOptions
+    TravelMode: string
+    TravelModeOptions: RouteTravelModeOptions
+    TravelStepType: string
+    Waypoints: {RouteWaypoint}
+end
+
+local record CalculateRoutesOutput
+    LegGeometryFormat: string
+    Notices: {RouteResponseNotice}
+    PricingBucket: string
+    Routes: {Route}
+end
+
+local record OptimizeWaypointsInput
+    Avoid: WaypointOptimizationAvoidanceOptions
+    Clustering: WaypointOptimizationClusteringOptions
+    DepartureTime: string
+    Destination: {number}
+    DestinationOptions: WaypointOptimizationDestinationOptions
+    Driver: WaypointOptimizationDriverOptions
+    Exclude: WaypointOptimizationExclusionOptions
+    Key: string
+    OptimizeSequencingFor: string
+    Origin: {number}
+    OriginOptions: WaypointOptimizationOriginOptions
+    Traffic: WaypointOptimizationTrafficOptions
+    TravelMode: string
+    TravelModeOptions: WaypointOptimizationTravelModeOptions
+    Waypoints: {WaypointOptimizationWaypoint}
+end
+
+local record OptimizeWaypointsOutput
+    Connections: {WaypointOptimizationConnection}
+    Distance: number
+    Duration: number
+    ImpedingWaypoints: {WaypointOptimizationImpedingWaypoint}
+    OptimizedWaypoints: {WaypointOptimizationOptimizedWaypoint}
+    PricingBucket: string
+    TimeBreakdown: WaypointOptimizationTimeBreakdown
+end
+
+local record SnapToRoadsInput
+    Key: string
+    SnappedGeometryFormat: string
+    SnapRadius: number
+    TracePoints: {RoadSnapTracePoint}
+    TravelMode: string
+    TravelModeOptions: RoadSnapTravelModeOptions
+end
+
+local record SnapToRoadsOutput
+    Notices: {RoadSnapNotice}
+    PricingBucket: string
+    SnappedGeometry: RoadSnapSnappedGeometry
+    SnappedGeometryFormat: string
+    SnappedTracePoints: {RoadSnapSnappedTracePoint}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    FieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    FieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    FieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    FieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    FieldList: {ValidationExceptionField}
+end
+
+local record M
+    CalculateIsolinesInput: CalculateIsolinesInput
+    CalculateIsolinesOutput: CalculateIsolinesOutput
+    CalculateRouteMatrixInput: CalculateRouteMatrixInput
+    CalculateRouteMatrixOutput: CalculateRouteMatrixOutput
+    CalculateRoutesInput: CalculateRoutesInput
+    CalculateRoutesOutput: CalculateRoutesOutput
+    OptimizeWaypointsInput: OptimizeWaypointsInput
+    OptimizeWaypointsOutput: OptimizeWaypointsOutput
+    SnapToRoadsInput: SnapToRoadsInput
+    SnapToRoadsOutput: SnapToRoadsOutput
+end
+
+return M

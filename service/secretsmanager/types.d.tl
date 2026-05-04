@@ -1,0 +1,802 @@
+local record BatchGetSecretValueInput
+    SecretIdList: {string}
+    Filters: {Filter}
+    MaxResults: number
+    NextToken: string
+end
+
+local record BatchGetSecretValueOutput
+    SecretValues: {SecretValueEntry}
+    NextToken: string
+    Errors: {APIErrorType}
+end
+
+local record CancelRotateSecretInput
+    SecretId: string
+end
+
+local record CancelRotateSecretOutput
+    ARN: string
+    Name: string
+    VersionId: string
+end
+
+local record CreateSecretInput
+    Name: string
+    ClientRequestToken: string
+    Description: string
+    KmsKeyId: string
+    SecretBinary: string
+    SecretString: string
+    Tags: {Tag}
+    AddReplicaRegions: {ReplicaRegionType}
+    ForceOverwriteReplicaSecret: boolean
+    Type: string
+end
+
+local record CreateSecretOutput
+    ARN: string
+    Name: string
+    VersionId: string
+    ReplicationStatus: {ReplicationStatusType}
+end
+
+local record DeleteResourcePolicyInput
+    SecretId: string
+end
+
+local record DeleteResourcePolicyOutput
+    ARN: string
+    Name: string
+end
+
+local record DeleteSecretInput
+    SecretId: string
+    RecoveryWindowInDays: number
+    ForceDeleteWithoutRecovery: boolean
+end
+
+local record DeleteSecretOutput
+    ARN: string
+    Name: string
+    DeletionDate: number
+end
+
+local record DescribeSecretInput
+    SecretId: string
+end
+
+local record DescribeSecretOutput
+    ARN: string
+    Name: string
+    Type: string
+    Description: string
+    KmsKeyId: string
+    RotationEnabled: boolean
+    RotationLambdaARN: string
+    RotationRules: RotationRulesType
+    ExternalSecretRotationMetadata: {ExternalSecretRotationMetadataItem}
+    ExternalSecretRotationRoleArn: string
+    LastRotatedDate: number
+    LastChangedDate: number
+    LastAccessedDate: number
+    DeletedDate: number
+    NextRotationDate: number
+    Tags: {Tag}
+    VersionIdsToStages: {string : {string}}
+    OwningService: string
+    CreatedDate: number
+    PrimaryRegion: string
+    ReplicationStatus: {ReplicationStatusType}
+end
+
+local record GetRandomPasswordInput
+    PasswordLength: number
+    ExcludeCharacters: string
+    ExcludeNumbers: boolean
+    ExcludePunctuation: boolean
+    ExcludeUppercase: boolean
+    ExcludeLowercase: boolean
+    IncludeSpace: boolean
+    RequireEachIncludedType: boolean
+end
+
+local record GetRandomPasswordOutput
+    RandomPassword: string
+end
+
+local record GetResourcePolicyInput
+    SecretId: string
+end
+
+local record GetResourcePolicyOutput
+    ARN: string
+    Name: string
+    ResourcePolicy: string
+end
+
+local record GetSecretValueInput
+    SecretId: string
+    VersionId: string
+    VersionStage: string
+end
+
+local record GetSecretValueOutput
+    ARN: string
+    Name: string
+    VersionId: string
+    SecretBinary: string
+    SecretString: string
+    VersionStages: {string}
+    CreatedDate: number
+end
+
+local record ListSecretsInput
+    IncludePlannedDeletion: boolean
+    MaxResults: number
+    NextToken: string
+    Filters: {Filter}
+    SortOrder: string
+    SortBy: string
+end
+
+local record ListSecretsOutput
+    SecretList: {SecretListEntry}
+    NextToken: string
+end
+
+local record ListSecretVersionIdsInput
+    SecretId: string
+    MaxResults: number
+    NextToken: string
+    IncludeDeprecated: boolean
+end
+
+local record ListSecretVersionIdsOutput
+    Versions: {SecretVersionsListEntry}
+    NextToken: string
+    ARN: string
+    Name: string
+end
+
+local record PutResourcePolicyInput
+    SecretId: string
+    ResourcePolicy: string
+    BlockPublicPolicy: boolean
+end
+
+local record PutResourcePolicyOutput
+    ARN: string
+    Name: string
+end
+
+local record PutSecretValueInput
+    SecretId: string
+    ClientRequestToken: string
+    SecretBinary: string
+    SecretString: string
+    VersionStages: {string}
+    RotationToken: string
+end
+
+local record PutSecretValueOutput
+    ARN: string
+    Name: string
+    VersionId: string
+    VersionStages: {string}
+end
+
+local record RemoveRegionsFromReplicationInput
+    SecretId: string
+    RemoveReplicaRegions: {string}
+end
+
+local record RemoveRegionsFromReplicationOutput
+    ARN: string
+    ReplicationStatus: {ReplicationStatusType}
+end
+
+local record ReplicateSecretToRegionsInput
+    SecretId: string
+    AddReplicaRegions: {ReplicaRegionType}
+    ForceOverwriteReplicaSecret: boolean
+end
+
+local record ReplicateSecretToRegionsOutput
+    ARN: string
+    ReplicationStatus: {ReplicationStatusType}
+end
+
+local record RestoreSecretInput
+    SecretId: string
+end
+
+local record RestoreSecretOutput
+    ARN: string
+    Name: string
+end
+
+local record RotateSecretInput
+    SecretId: string
+    ClientRequestToken: string
+    RotationLambdaARN: string
+    RotationRules: RotationRulesType
+    ExternalSecretRotationMetadata: {ExternalSecretRotationMetadataItem}
+    ExternalSecretRotationRoleArn: string
+    RotateImmediately: boolean
+end
+
+local record RotateSecretOutput
+    ARN: string
+    Name: string
+    VersionId: string
+end
+
+local record StopReplicationToReplicaInput
+    SecretId: string
+end
+
+local record StopReplicationToReplicaOutput
+    ARN: string
+end
+
+local record TagResourceInput
+    SecretId: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    SecretId: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateSecretInput
+    SecretId: string
+    ClientRequestToken: string
+    Description: string
+    KmsKeyId: string
+    SecretBinary: string
+    SecretString: string
+    Type: string
+end
+
+local record UpdateSecretOutput
+    ARN: string
+    Name: string
+    VersionId: string
+end
+
+local record UpdateSecretVersionStageInput
+    SecretId: string
+    VersionStage: string
+    RemoveFromVersionId: string
+    MoveToVersionId: string
+end
+
+local record UpdateSecretVersionStageOutput
+    ARN: string
+    Name: string
+end
+
+local record ValidateResourcePolicyInput
+    SecretId: string
+    ResourcePolicy: string
+end
+
+local record ValidateResourcePolicyOutput
+    PolicyValidationPassed: boolean
+    ValidationErrors: {ValidationErrorsEntry}
+end
+
+local record DecryptionFailure
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record DecryptionFailure
+    Message: string
+end
+
+local record EncryptionFailure
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record MalformedPolicyDocumentException
+    Message: string
+end
+
+local record PreconditionNotMetException
+    Message: string
+end
+
+local record ResourceExistsException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record DecryptionFailure
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record MalformedPolicyDocumentException
+    Message: string
+end
+
+local record PublicPolicyException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record DecryptionFailure
+    Message: string
+end
+
+local record EncryptionFailure
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record ResourceExistsException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record DecryptionFailure
+    Message: string
+end
+
+local record EncryptionFailure
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record MalformedPolicyDocumentException
+    Message: string
+end
+
+local record PreconditionNotMetException
+    Message: string
+end
+
+local record ResourceExistsException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceError
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record MalformedPolicyDocumentException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local type SortOrderType = "asc" | "desc"
+
+local type SortByType = "created-date" | "last-accessed-date" | "last-changed-date" | "name"
+
+local record M
+    BatchGetSecretValueInput: BatchGetSecretValueInput
+    BatchGetSecretValueOutput: BatchGetSecretValueOutput
+    CancelRotateSecretInput: CancelRotateSecretInput
+    CancelRotateSecretOutput: CancelRotateSecretOutput
+    CreateSecretInput: CreateSecretInput
+    CreateSecretOutput: CreateSecretOutput
+    DeleteResourcePolicyInput: DeleteResourcePolicyInput
+    DeleteResourcePolicyOutput: DeleteResourcePolicyOutput
+    DeleteSecretInput: DeleteSecretInput
+    DeleteSecretOutput: DeleteSecretOutput
+    DescribeSecretInput: DescribeSecretInput
+    DescribeSecretOutput: DescribeSecretOutput
+    GetRandomPasswordInput: GetRandomPasswordInput
+    GetRandomPasswordOutput: GetRandomPasswordOutput
+    GetResourcePolicyInput: GetResourcePolicyInput
+    GetResourcePolicyOutput: GetResourcePolicyOutput
+    GetSecretValueInput: GetSecretValueInput
+    GetSecretValueOutput: GetSecretValueOutput
+    ListSecretsInput: ListSecretsInput
+    ListSecretsOutput: ListSecretsOutput
+    ListSecretVersionIdsInput: ListSecretVersionIdsInput
+    ListSecretVersionIdsOutput: ListSecretVersionIdsOutput
+    PutResourcePolicyInput: PutResourcePolicyInput
+    PutResourcePolicyOutput: PutResourcePolicyOutput
+    PutSecretValueInput: PutSecretValueInput
+    PutSecretValueOutput: PutSecretValueOutput
+    RemoveRegionsFromReplicationInput: RemoveRegionsFromReplicationInput
+    RemoveRegionsFromReplicationOutput: RemoveRegionsFromReplicationOutput
+    ReplicateSecretToRegionsInput: ReplicateSecretToRegionsInput
+    ReplicateSecretToRegionsOutput: ReplicateSecretToRegionsOutput
+    RestoreSecretInput: RestoreSecretInput
+    RestoreSecretOutput: RestoreSecretOutput
+    RotateSecretInput: RotateSecretInput
+    RotateSecretOutput: RotateSecretOutput
+    StopReplicationToReplicaInput: StopReplicationToReplicaInput
+    StopReplicationToReplicaOutput: StopReplicationToReplicaOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateSecretInput: UpdateSecretInput
+    UpdateSecretOutput: UpdateSecretOutput
+    UpdateSecretVersionStageInput: UpdateSecretVersionStageInput
+    UpdateSecretVersionStageOutput: UpdateSecretVersionStageOutput
+    ValidateResourcePolicyInput: ValidateResourcePolicyInput
+    ValidateResourcePolicyOutput: ValidateResourcePolicyOutput
+end
+
+return M

@@ -1,0 +1,311 @@
+local record CreateRescoreExecutionPlanInput
+    Name: string
+    Description: string
+    CapacityUnits: CapacityUnitsConfiguration
+    Tags: {Tag}
+    ClientToken: string
+end
+
+local record CreateRescoreExecutionPlanOutput
+    Id: string
+    Arn: string
+end
+
+local record DeleteRescoreExecutionPlanInput
+    Id: string
+end
+
+local record DeleteRescoreExecutionPlanOutput
+end
+
+local record DescribeRescoreExecutionPlanInput
+    Id: string
+end
+
+local record DescribeRescoreExecutionPlanOutput
+    Id: string
+    Arn: string
+    Name: string
+    Description: string
+    CapacityUnits: CapacityUnitsConfiguration
+    CreatedAt: number
+    UpdatedAt: number
+    Status: string
+    ErrorMessage: string
+end
+
+local record ListRescoreExecutionPlansInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListRescoreExecutionPlansOutput
+    SummaryItems: {RescoreExecutionPlanSummary}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceARN: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+end
+
+local record RescoreInput
+    RescoreExecutionPlanId: string
+    SearchQuery: string
+    Documents: {Document}
+end
+
+local record RescoreOutput
+    RescoreId: string
+    ResultItems: {RescoreResultItem}
+end
+
+local record TagResourceInput
+    ResourceARN: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceARN: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateRescoreExecutionPlanInput
+    Id: string
+    Name: string
+    Description: string
+    CapacityUnits: CapacityUnitsConfiguration
+end
+
+local record UpdateRescoreExecutionPlanOutput
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local type RescoreExecutionPlanStatus = "CREATING" | "UPDATING" | "ACTIVE" | "DELETING" | "FAILED"
+
+local record M
+    CreateRescoreExecutionPlanInput: CreateRescoreExecutionPlanInput
+    CreateRescoreExecutionPlanOutput: CreateRescoreExecutionPlanOutput
+    DeleteRescoreExecutionPlanInput: DeleteRescoreExecutionPlanInput
+    DeleteRescoreExecutionPlanOutput: DeleteRescoreExecutionPlanOutput
+    DescribeRescoreExecutionPlanInput: DescribeRescoreExecutionPlanInput
+    DescribeRescoreExecutionPlanOutput: DescribeRescoreExecutionPlanOutput
+    ListRescoreExecutionPlansInput: ListRescoreExecutionPlansInput
+    ListRescoreExecutionPlansOutput: ListRescoreExecutionPlansOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    RescoreInput: RescoreInput
+    RescoreOutput: RescoreOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateRescoreExecutionPlanInput: UpdateRescoreExecutionPlanInput
+    UpdateRescoreExecutionPlanOutput: UpdateRescoreExecutionPlanOutput
+end
+
+return M

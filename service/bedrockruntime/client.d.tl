@@ -1,0 +1,20 @@
+local types = require("bedrockruntime.types")
+
+local record Client
+    applyGuardrail: function(Client, types.ApplyGuardrailInput): types.ApplyGuardrailOutput, table
+    converse: function(Client, types.ConverseInput): types.ConverseOperationOutput, table
+    converseStream: function(Client, types.ConverseStreamInput): types.ConverseStreamOperationOutput, table
+    countTokens: function(Client, types.CountTokensOperationInput): types.CountTokensOutput, table
+    getAsyncInvoke: function(Client, types.GetAsyncInvokeInput): types.GetAsyncInvokeOutput, table
+    invokeModel: function(Client, types.InvokeModelInput): types.InvokeModelOutput, table
+    invokeModelWithBidirectionalStream: function(Client, types.InvokeModelWithBidirectionalStreamOperationInput): types.InvokeModelWithBidirectionalStreamOperationOutput, table
+    invokeModelWithResponseStream: function(Client, types.InvokeModelWithResponseStreamInput): types.InvokeModelWithResponseStreamOutput, table
+    listAsyncInvokes: function(Client, types.ListAsyncInvokesInput): types.ListAsyncInvokesOutput, table
+    startAsyncInvoke: function(Client, types.StartAsyncInvokeInput): types.StartAsyncInvokeOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

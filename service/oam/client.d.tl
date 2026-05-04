@@ -1,0 +1,25 @@
+local types = require("oam.types")
+
+local record Client
+    createLink: function(Client, types.CreateLinkInput): types.CreateLinkOutput, table
+    createSink: function(Client, types.CreateSinkInput): types.CreateSinkOutput, table
+    deleteLink: function(Client, types.DeleteLinkInput): types.DeleteLinkOutput, table
+    deleteSink: function(Client, types.DeleteSinkInput): types.DeleteSinkOutput, table
+    getLink: function(Client, types.GetLinkInput): types.GetLinkOutput, table
+    getSink: function(Client, types.GetSinkInput): types.GetSinkOutput, table
+    getSinkPolicy: function(Client, types.GetSinkPolicyInput): types.GetSinkPolicyOutput, table
+    listAttachedLinks: function(Client, types.ListAttachedLinksInput): types.ListAttachedLinksOutput, table
+    listLinks: function(Client, types.ListLinksInput): types.ListLinksOutput, table
+    listSinks: function(Client, types.ListSinksInput): types.ListSinksOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putSinkPolicy: function(Client, types.PutSinkPolicyInput): types.PutSinkPolicyOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateLink: function(Client, types.UpdateLinkInput): types.UpdateLinkOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

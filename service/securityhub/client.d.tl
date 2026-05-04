@@ -1,0 +1,117 @@
+local types = require("securityhub.types")
+
+local record Client
+    acceptAdministratorInvitation: function(Client, types.AcceptAdministratorInvitationInput): types.AcceptAdministratorInvitationOutput, table
+    acceptInvitation: function(Client, types.AcceptInvitationInput): types.AcceptInvitationOutput, table
+    batchDeleteAutomationRules: function(Client, types.BatchDeleteAutomationRulesInput): types.BatchDeleteAutomationRulesOutput, table
+    batchDisableStandards: function(Client, types.BatchDisableStandardsInput): types.BatchDisableStandardsOutput, table
+    batchEnableStandards: function(Client, types.BatchEnableStandardsInput): types.BatchEnableStandardsOutput, table
+    batchGetAutomationRules: function(Client, types.BatchGetAutomationRulesInput): types.BatchGetAutomationRulesOutput, table
+    batchGetConfigurationPolicyAssociations: function(Client, types.BatchGetConfigurationPolicyAssociationsInput): types.BatchGetConfigurationPolicyAssociationsOutput, table
+    batchGetSecurityControls: function(Client, types.BatchGetSecurityControlsInput): types.BatchGetSecurityControlsOutput, table
+    batchGetStandardsControlAssociations: function(Client, types.BatchGetStandardsControlAssociationsInput): types.BatchGetStandardsControlAssociationsOutput, table
+    batchImportFindings: function(Client, types.BatchImportFindingsInput): types.BatchImportFindingsOutput, table
+    batchUpdateAutomationRules: function(Client, types.BatchUpdateAutomationRulesInput): types.BatchUpdateAutomationRulesOutput, table
+    batchUpdateFindings: function(Client, types.BatchUpdateFindingsInput): types.BatchUpdateFindingsOutput, table
+    batchUpdateFindingsV2: function(Client, types.BatchUpdateFindingsV2Input): types.BatchUpdateFindingsV2Output, table
+    batchUpdateStandardsControlAssociations: function(Client, types.BatchUpdateStandardsControlAssociationsInput): types.BatchUpdateStandardsControlAssociationsOutput, table
+    createActionTarget: function(Client, types.CreateActionTargetInput): types.CreateActionTargetOutput, table
+    createAggregatorV2: function(Client, types.CreateAggregatorV2Input): types.CreateAggregatorV2Output, table
+    createAutomationRule: function(Client, types.CreateAutomationRuleInput): types.CreateAutomationRuleOutput, table
+    createAutomationRuleV2: function(Client, types.CreateAutomationRuleV2Input): types.CreateAutomationRuleV2Output, table
+    createConfigurationPolicy: function(Client, types.CreateConfigurationPolicyInput): types.CreateConfigurationPolicyOutput, table
+    createConnectorV2: function(Client, types.CreateConnectorV2Input): types.CreateConnectorV2Output, table
+    createFindingAggregator: function(Client, types.CreateFindingAggregatorInput): types.CreateFindingAggregatorOutput, table
+    createInsight: function(Client, types.CreateInsightInput): types.CreateInsightOutput, table
+    createMembers: function(Client, types.CreateMembersInput): types.CreateMembersOutput, table
+    createTicketV2: function(Client, types.CreateTicketV2Input): types.CreateTicketV2Output, table
+    declineInvitations: function(Client, types.DeclineInvitationsInput): types.DeclineInvitationsOutput, table
+    deleteActionTarget: function(Client, types.DeleteActionTargetInput): types.DeleteActionTargetOutput, table
+    deleteAggregatorV2: function(Client, types.DeleteAggregatorV2Input): types.DeleteAggregatorV2Output, table
+    deleteAutomationRuleV2: function(Client, types.DeleteAutomationRuleV2Input): types.DeleteAutomationRuleV2Output, table
+    deleteConfigurationPolicy: function(Client, types.DeleteConfigurationPolicyInput): types.DeleteConfigurationPolicyOutput, table
+    deleteConnectorV2: function(Client, types.DeleteConnectorV2Input): types.DeleteConnectorV2Output, table
+    deleteFindingAggregator: function(Client, types.DeleteFindingAggregatorInput): types.DeleteFindingAggregatorOutput, table
+    deleteInsight: function(Client, types.DeleteInsightInput): types.DeleteInsightOutput, table
+    deleteInvitations: function(Client, types.DeleteInvitationsInput): types.DeleteInvitationsOutput, table
+    deleteMembers: function(Client, types.DeleteMembersInput): types.DeleteMembersOutput, table
+    describeActionTargets: function(Client, types.DescribeActionTargetsInput): types.DescribeActionTargetsOutput, table
+    describeHub: function(Client, types.DescribeHubInput): types.DescribeHubOutput, table
+    describeOrganizationConfiguration: function(Client, types.DescribeOrganizationConfigurationInput): types.DescribeOrganizationConfigurationOutput, table
+    describeProducts: function(Client, types.DescribeProductsInput): types.DescribeProductsOutput, table
+    describeProductsV2: function(Client, types.DescribeProductsV2Input): types.DescribeProductsV2Output, table
+    describeSecurityHubV2: function(Client, types.DescribeSecurityHubV2Input): types.DescribeSecurityHubV2Output, table
+    describeStandards: function(Client, types.DescribeStandardsInput): types.DescribeStandardsOutput, table
+    describeStandardsControls: function(Client, types.DescribeStandardsControlsInput): types.DescribeStandardsControlsOutput, table
+    disableImportFindingsForProduct: function(Client, types.DisableImportFindingsForProductInput): types.DisableImportFindingsForProductOutput, table
+    disableOrganizationAdminAccount: function(Client, types.DisableOrganizationAdminAccountInput): types.DisableOrganizationAdminAccountOutput, table
+    disableSecurityHub: function(Client, types.DisableSecurityHubInput): types.DisableSecurityHubOutput, table
+    disableSecurityHubV2: function(Client, types.DisableSecurityHubV2Input): types.DisableSecurityHubV2Output, table
+    disassociateFromAdministratorAccount: function(Client, types.DisassociateFromAdministratorAccountInput): types.DisassociateFromAdministratorAccountOutput, table
+    disassociateFromMasterAccount: function(Client, types.DisassociateFromMasterAccountInput): types.DisassociateFromMasterAccountOutput, table
+    disassociateMembers: function(Client, types.DisassociateMembersInput): types.DisassociateMembersOutput, table
+    enableImportFindingsForProduct: function(Client, types.EnableImportFindingsForProductInput): types.EnableImportFindingsForProductOutput, table
+    enableOrganizationAdminAccount: function(Client, types.EnableOrganizationAdminAccountInput): types.EnableOrganizationAdminAccountOutput, table
+    enableSecurityHub: function(Client, types.EnableSecurityHubInput): types.EnableSecurityHubOutput, table
+    enableSecurityHubV2: function(Client, types.EnableSecurityHubV2Input): types.EnableSecurityHubV2Output, table
+    getAdministratorAccount: function(Client, types.GetAdministratorAccountInput): types.GetAdministratorAccountOutput, table
+    getAggregatorV2: function(Client, types.GetAggregatorV2Input): types.GetAggregatorV2Output, table
+    getAutomationRuleV2: function(Client, types.GetAutomationRuleV2Input): types.GetAutomationRuleV2Output, table
+    getConfigurationPolicy: function(Client, types.GetConfigurationPolicyInput): types.GetConfigurationPolicyOutput, table
+    getConfigurationPolicyAssociation: function(Client, types.GetConfigurationPolicyAssociationInput): types.GetConfigurationPolicyAssociationOutput, table
+    getConnectorV2: function(Client, types.GetConnectorV2Input): types.GetConnectorV2Output, table
+    getEnabledStandards: function(Client, types.GetEnabledStandardsInput): types.GetEnabledStandardsOutput, table
+    getFindingAggregator: function(Client, types.GetFindingAggregatorInput): types.GetFindingAggregatorOutput, table
+    getFindingHistory: function(Client, types.GetFindingHistoryInput): types.GetFindingHistoryOutput, table
+    getFindings: function(Client, types.GetFindingsInput): types.GetFindingsOutput, table
+    getFindingStatisticsV2: function(Client, types.GetFindingStatisticsV2Input): types.GetFindingStatisticsV2Output, table
+    getFindingsTrendsV2: function(Client, types.GetFindingsTrendsV2Input): types.GetFindingsTrendsV2Output, table
+    getFindingsV2: function(Client, types.GetFindingsV2Input): types.GetFindingsV2Output, table
+    getInsightResults: function(Client, types.GetInsightResultsInput): types.GetInsightResultsOutput, table
+    getInsights: function(Client, types.GetInsightsInput): types.GetInsightsOutput, table
+    getInvitationsCount: function(Client, types.GetInvitationsCountInput): types.GetInvitationsCountOutput, table
+    getMasterAccount: function(Client, types.GetMasterAccountInput): types.GetMasterAccountOutput, table
+    getMembers: function(Client, types.GetMembersInput): types.GetMembersOutput, table
+    getResourcesStatisticsV2: function(Client, types.GetResourcesStatisticsV2Input): types.GetResourcesStatisticsV2Output, table
+    getResourcesTrendsV2: function(Client, types.GetResourcesTrendsV2Input): types.GetResourcesTrendsV2Output, table
+    getResourcesV2: function(Client, types.GetResourcesV2Input): types.GetResourcesV2Output, table
+    getSecurityControlDefinition: function(Client, types.GetSecurityControlDefinitionInput): types.GetSecurityControlDefinitionOutput, table
+    inviteMembers: function(Client, types.InviteMembersInput): types.InviteMembersOutput, table
+    listAggregatorsV2: function(Client, types.ListAggregatorsV2Input): types.ListAggregatorsV2Output, table
+    listAutomationRules: function(Client, types.ListAutomationRulesInput): types.ListAutomationRulesOutput, table
+    listAutomationRulesV2: function(Client, types.ListAutomationRulesV2Input): types.ListAutomationRulesV2Output, table
+    listConfigurationPolicies: function(Client, types.ListConfigurationPoliciesInput): types.ListConfigurationPoliciesOutput, table
+    listConfigurationPolicyAssociations: function(Client, types.ListConfigurationPolicyAssociationsInput): types.ListConfigurationPolicyAssociationsOutput, table
+    listConnectorsV2: function(Client, types.ListConnectorsV2Input): types.ListConnectorsV2Output, table
+    listEnabledProductsForImport: function(Client, types.ListEnabledProductsForImportInput): types.ListEnabledProductsForImportOutput, table
+    listFindingAggregators: function(Client, types.ListFindingAggregatorsInput): types.ListFindingAggregatorsOutput, table
+    listInvitations: function(Client, types.ListInvitationsInput): types.ListInvitationsOutput, table
+    listMembers: function(Client, types.ListMembersInput): types.ListMembersOutput, table
+    listOrganizationAdminAccounts: function(Client, types.ListOrganizationAdminAccountsInput): types.ListOrganizationAdminAccountsOutput, table
+    listSecurityControlDefinitions: function(Client, types.ListSecurityControlDefinitionsInput): types.ListSecurityControlDefinitionsOutput, table
+    listStandardsControlAssociations: function(Client, types.ListStandardsControlAssociationsInput): types.ListStandardsControlAssociationsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    registerConnectorV2: function(Client, types.RegisterConnectorV2Input): types.RegisterConnectorV2Output, table
+    startConfigurationPolicyAssociation: function(Client, types.StartConfigurationPolicyAssociationInput): types.StartConfigurationPolicyAssociationOutput, table
+    startConfigurationPolicyDisassociation: function(Client, types.StartConfigurationPolicyDisassociationInput): types.StartConfigurationPolicyDisassociationOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateActionTarget: function(Client, types.UpdateActionTargetInput): types.UpdateActionTargetOutput, table
+    updateAggregatorV2: function(Client, types.UpdateAggregatorV2Input): types.UpdateAggregatorV2Output, table
+    updateAutomationRuleV2: function(Client, types.UpdateAutomationRuleV2Input): types.UpdateAutomationRuleV2Output, table
+    updateConfigurationPolicy: function(Client, types.UpdateConfigurationPolicyInput): types.UpdateConfigurationPolicyOutput, table
+    updateConnectorV2: function(Client, types.UpdateConnectorV2Input): types.UpdateConnectorV2Output, table
+    updateFindingAggregator: function(Client, types.UpdateFindingAggregatorInput): types.UpdateFindingAggregatorOutput, table
+    updateFindings: function(Client, types.UpdateFindingsInput): types.UpdateFindingsOutput, table
+    updateInsight: function(Client, types.UpdateInsightInput): types.UpdateInsightOutput, table
+    updateOrganizationConfiguration: function(Client, types.UpdateOrganizationConfigurationInput): types.UpdateOrganizationConfigurationOutput, table
+    updateSecurityControl: function(Client, types.UpdateSecurityControlInput): types.UpdateSecurityControlOutput, table
+    updateSecurityHubConfiguration: function(Client, types.UpdateSecurityHubConfigurationInput): types.UpdateSecurityHubConfigurationOutput, table
+    updateStandardsControl: function(Client, types.UpdateStandardsControlInput): types.UpdateStandardsControlOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

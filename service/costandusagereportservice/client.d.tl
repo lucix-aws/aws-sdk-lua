@@ -1,0 +1,17 @@
+local types = require("costandusagereportservice.types")
+
+local record Client
+    deleteReportDefinition: function(Client, types.DeleteReportDefinitionInput): types.DeleteReportDefinitionOutput, table
+    describeReportDefinitions: function(Client, types.DescribeReportDefinitionsInput): types.DescribeReportDefinitionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    modifyReportDefinition: function(Client, types.ModifyReportDefinitionInput): types.ModifyReportDefinitionOutput, table
+    putReportDefinition: function(Client, types.PutReportDefinitionInput): types.PutReportDefinitionOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

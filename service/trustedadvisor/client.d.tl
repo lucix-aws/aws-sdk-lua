@@ -1,0 +1,21 @@
+local types = require("trustedadvisor.types")
+
+local record Client
+    batchUpdateRecommendationResourceExclusion: function(Client, types.BatchUpdateRecommendationResourceExclusionInput): types.BatchUpdateRecommendationResourceExclusionOutput, table
+    getOrganizationRecommendation: function(Client, types.GetOrganizationRecommendationInput): types.GetOrganizationRecommendationOutput, table
+    getRecommendation: function(Client, types.GetRecommendationInput): types.GetRecommendationOutput, table
+    listChecks: function(Client, types.ListChecksInput): types.ListChecksOutput, table
+    listOrganizationRecommendationAccounts: function(Client, types.ListOrganizationRecommendationAccountsInput): types.ListOrganizationRecommendationAccountsOutput, table
+    listOrganizationRecommendationResources: function(Client, types.ListOrganizationRecommendationResourcesInput): types.ListOrganizationRecommendationResourcesOutput, table
+    listOrganizationRecommendations: function(Client, types.ListOrganizationRecommendationsInput): types.ListOrganizationRecommendationsOutput, table
+    listRecommendationResources: function(Client, types.ListRecommendationResourcesInput): types.ListRecommendationResourcesOutput, table
+    listRecommendations: function(Client, types.ListRecommendationsInput): types.ListRecommendationsOutput, table
+    updateOrganizationRecommendationLifecycle: function(Client, types.UpdateOrganizationRecommendationLifecycleInput): types.UpdateOrganizationRecommendationLifecycleOutput, table
+    updateRecommendationLifecycle: function(Client, types.UpdateRecommendationLifecycleInput): types.UpdateRecommendationLifecycleOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

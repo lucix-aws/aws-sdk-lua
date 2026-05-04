@@ -1,0 +1,98 @@
+local types = require("opensearch.types")
+
+local record Client
+    acceptInboundConnection: function(Client, types.AcceptInboundConnectionInput): types.AcceptInboundConnectionOutput, table
+    addDataSource: function(Client, types.AddDataSourceInput): types.AddDataSourceOutput, table
+    addDirectQueryDataSource: function(Client, types.AddDirectQueryDataSourceInput): types.AddDirectQueryDataSourceOutput, table
+    addTags: function(Client, types.AddTagsInput): types.AddTagsOutput, table
+    associatePackage: function(Client, types.AssociatePackageInput): types.AssociatePackageOutput, table
+    associatePackages: function(Client, types.AssociatePackagesInput): types.AssociatePackagesOutput, table
+    authorizeVpcEndpointAccess: function(Client, types.AuthorizeVpcEndpointAccessInput): types.AuthorizeVpcEndpointAccessOutput, table
+    cancelDomainConfigChange: function(Client, types.CancelDomainConfigChangeInput): types.CancelDomainConfigChangeOutput, table
+    cancelServiceSoftwareUpdate: function(Client, types.CancelServiceSoftwareUpdateInput): types.CancelServiceSoftwareUpdateOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createDomain: function(Client, types.CreateDomainInput): types.CreateDomainOutput, table
+    createIndex: function(Client, types.CreateIndexInput): types.CreateIndexOutput, table
+    createOutboundConnection: function(Client, types.CreateOutboundConnectionInput): types.CreateOutboundConnectionOutput, table
+    createPackage: function(Client, types.CreatePackageInput): types.CreatePackageOutput, table
+    createVpcEndpoint: function(Client, types.CreateVpcEndpointInput): types.CreateVpcEndpointOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    deleteDataSource: function(Client, types.DeleteDataSourceInput): types.DeleteDataSourceOutput, table
+    deleteDirectQueryDataSource: function(Client, types.DeleteDirectQueryDataSourceInput): types.DeleteDirectQueryDataSourceOutput, table
+    deleteDomain: function(Client, types.DeleteDomainInput): types.DeleteDomainOutput, table
+    deleteInboundConnection: function(Client, types.DeleteInboundConnectionInput): types.DeleteInboundConnectionOutput, table
+    deleteIndex: function(Client, types.DeleteIndexInput): types.DeleteIndexOutput, table
+    deleteOutboundConnection: function(Client, types.DeleteOutboundConnectionInput): types.DeleteOutboundConnectionOutput, table
+    deletePackage: function(Client, types.DeletePackageInput): types.DeletePackageOutput, table
+    deleteVpcEndpoint: function(Client, types.DeleteVpcEndpointInput): types.DeleteVpcEndpointOutput, table
+    deregisterCapability: function(Client, types.DeregisterCapabilityInput): types.DeregisterCapabilityOutput, table
+    describeDomain: function(Client, types.DescribeDomainInput): types.DescribeDomainOutput, table
+    describeDomainAutoTunes: function(Client, types.DescribeDomainAutoTunesInput): types.DescribeDomainAutoTunesOutput, table
+    describeDomainChangeProgress: function(Client, types.DescribeDomainChangeProgressInput): types.DescribeDomainChangeProgressOutput, table
+    describeDomainConfig: function(Client, types.DescribeDomainConfigInput): types.DescribeDomainConfigOutput, table
+    describeDomainHealth: function(Client, types.DescribeDomainHealthInput): types.DescribeDomainHealthOutput, table
+    describeDomainNodes: function(Client, types.DescribeDomainNodesInput): types.DescribeDomainNodesOutput, table
+    describeDomains: function(Client, types.DescribeDomainsInput): types.DescribeDomainsOutput, table
+    describeDryRunProgress: function(Client, types.DescribeDryRunProgressInput): types.DescribeDryRunProgressOutput, table
+    describeInboundConnections: function(Client, types.DescribeInboundConnectionsInput): types.DescribeInboundConnectionsOutput, table
+    describeInsightDetails: function(Client, types.DescribeInsightDetailsInput): types.DescribeInsightDetailsOutput, table
+    describeInstanceTypeLimits: function(Client, types.DescribeInstanceTypeLimitsInput): types.DescribeInstanceTypeLimitsOutput, table
+    describeOutboundConnections: function(Client, types.DescribeOutboundConnectionsInput): types.DescribeOutboundConnectionsOutput, table
+    describePackages: function(Client, types.DescribePackagesInput): types.DescribePackagesOutput, table
+    describeReservedInstanceOfferings: function(Client, types.DescribeReservedInstanceOfferingsInput): types.DescribeReservedInstanceOfferingsOutput, table
+    describeReservedInstances: function(Client, types.DescribeReservedInstancesInput): types.DescribeReservedInstancesOutput, table
+    describeVpcEndpoints: function(Client, types.DescribeVpcEndpointsInput): types.DescribeVpcEndpointsOutput, table
+    dissociatePackage: function(Client, types.DissociatePackageInput): types.DissociatePackageOutput, table
+    dissociatePackages: function(Client, types.DissociatePackagesInput): types.DissociatePackagesOutput, table
+    getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    getCapability: function(Client, types.GetCapabilityInput): types.GetCapabilityOutput, table
+    getCompatibleVersions: function(Client, types.GetCompatibleVersionsInput): types.GetCompatibleVersionsOutput, table
+    getDataSource: function(Client, types.GetDataSourceInput): types.GetDataSourceOutput, table
+    getDefaultApplicationSetting: function(Client, types.GetDefaultApplicationSettingInput): types.GetDefaultApplicationSettingOutput, table
+    getDirectQueryDataSource: function(Client, types.GetDirectQueryDataSourceInput): types.GetDirectQueryDataSourceOutput, table
+    getDomainMaintenanceStatus: function(Client, types.GetDomainMaintenanceStatusInput): types.GetDomainMaintenanceStatusOutput, table
+    getIndex: function(Client, types.GetIndexInput): types.GetIndexOutput, table
+    getPackageVersionHistory: function(Client, types.GetPackageVersionHistoryInput): types.GetPackageVersionHistoryOutput, table
+    getUpgradeHistory: function(Client, types.GetUpgradeHistoryInput): types.GetUpgradeHistoryOutput, table
+    getUpgradeStatus: function(Client, types.GetUpgradeStatusInput): types.GetUpgradeStatusOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listDataSources: function(Client, types.ListDataSourcesInput): types.ListDataSourcesOutput, table
+    listDirectQueryDataSources: function(Client, types.ListDirectQueryDataSourcesInput): types.ListDirectQueryDataSourcesOutput, table
+    listDomainMaintenances: function(Client, types.ListDomainMaintenancesInput): types.ListDomainMaintenancesOutput, table
+    listDomainNames: function(Client, types.ListDomainNamesInput): types.ListDomainNamesOutput, table
+    listDomainsForPackage: function(Client, types.ListDomainsForPackageInput): types.ListDomainsForPackageOutput, table
+    listInsights: function(Client, types.ListInsightsInput): types.ListInsightsOutput, table
+    listInstanceTypeDetails: function(Client, types.ListInstanceTypeDetailsInput): types.ListInstanceTypeDetailsOutput, table
+    listPackagesForDomain: function(Client, types.ListPackagesForDomainInput): types.ListPackagesForDomainOutput, table
+    listScheduledActions: function(Client, types.ListScheduledActionsInput): types.ListScheduledActionsOutput, table
+    listTags: function(Client, types.ListTagsInput): types.ListTagsOutput, table
+    listVersions: function(Client, types.ListVersionsInput): types.ListVersionsOutput, table
+    listVpcEndpointAccess: function(Client, types.ListVpcEndpointAccessInput): types.ListVpcEndpointAccessOutput, table
+    listVpcEndpoints: function(Client, types.ListVpcEndpointsInput): types.ListVpcEndpointsOutput, table
+    listVpcEndpointsForDomain: function(Client, types.ListVpcEndpointsForDomainInput): types.ListVpcEndpointsForDomainOutput, table
+    purchaseReservedInstanceOffering: function(Client, types.PurchaseReservedInstanceOfferingInput): types.PurchaseReservedInstanceOfferingOutput, table
+    putDefaultApplicationSetting: function(Client, types.PutDefaultApplicationSettingInput): types.PutDefaultApplicationSettingOutput, table
+    registerCapability: function(Client, types.RegisterCapabilityInput): types.RegisterCapabilityOutput, table
+    rejectInboundConnection: function(Client, types.RejectInboundConnectionInput): types.RejectInboundConnectionOutput, table
+    removeTags: function(Client, types.RemoveTagsInput): types.RemoveTagsOutput, table
+    revokeVpcEndpointAccess: function(Client, types.RevokeVpcEndpointAccessInput): types.RevokeVpcEndpointAccessOutput, table
+    rollbackServiceSoftwareUpdate: function(Client, types.RollbackServiceSoftwareUpdateInput): types.RollbackServiceSoftwareUpdateOutput, table
+    startDomainMaintenance: function(Client, types.StartDomainMaintenanceInput): types.StartDomainMaintenanceOutput, table
+    startServiceSoftwareUpdate: function(Client, types.StartServiceSoftwareUpdateInput): types.StartServiceSoftwareUpdateOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateDataSource: function(Client, types.UpdateDataSourceInput): types.UpdateDataSourceOutput, table
+    updateDirectQueryDataSource: function(Client, types.UpdateDirectQueryDataSourceInput): types.UpdateDirectQueryDataSourceOutput, table
+    updateDomainConfig: function(Client, types.UpdateDomainConfigInput): types.UpdateDomainConfigOutput, table
+    updateIndex: function(Client, types.UpdateIndexInput): types.UpdateIndexOutput, table
+    updatePackage: function(Client, types.UpdatePackageInput): types.UpdatePackageOutput, table
+    updatePackageScope: function(Client, types.UpdatePackageScopeInput): types.UpdatePackageScopeOutput, table
+    updateScheduledAction: function(Client, types.UpdateScheduledActionInput): types.UpdateScheduledActionOutput, table
+    updateVpcEndpoint: function(Client, types.UpdateVpcEndpointInput): types.UpdateVpcEndpointOutput, table
+    upgradeDomain: function(Client, types.UpgradeDomainInput): types.UpgradeDomainOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

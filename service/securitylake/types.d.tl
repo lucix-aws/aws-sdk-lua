@@ -1,0 +1,1329 @@
+local record CreateAwsLogSourceInput
+    sources: {AwsLogSourceConfiguration}
+end
+
+local record CreateAwsLogSourceOutput
+    failed: {string}
+end
+
+local record CreateCustomLogSourceInput
+    sourceName: string
+    sourceVersion: string
+    eventClasses: {string}
+    configuration: CustomLogSourceConfiguration
+end
+
+local record CreateCustomLogSourceOutput
+    source: CustomLogSourceResource
+end
+
+local record CreateDataLakeInput
+    configurations: {DataLakeConfiguration}
+    metaStoreManagerRoleArn: string
+    tags: {Tag}
+end
+
+local record CreateDataLakeOutput
+    dataLakes: {DataLakeResource}
+end
+
+local record CreateDataLakeExceptionSubscriptionInput
+    subscriptionProtocol: string
+    notificationEndpoint: string
+    exceptionTimeToLive: number
+end
+
+local record CreateDataLakeExceptionSubscriptionOutput
+end
+
+local record CreateDataLakeOrganizationConfigurationInput
+    autoEnableNewAccount: {DataLakeAutoEnableNewAccountConfiguration}
+end
+
+local record CreateDataLakeOrganizationConfigurationOutput
+end
+
+local record CreateSubscriberInput
+    subscriberIdentity: AwsIdentity
+    subscriberName: string
+    subscriberDescription: string
+    sources: {LogSourceResource}
+    accessTypes: {string}
+    tags: {Tag}
+end
+
+local record CreateSubscriberOutput
+    subscriber: SubscriberResource
+end
+
+local record CreateSubscriberNotificationInput
+    subscriberId: string
+    configuration: NotificationConfiguration
+end
+
+local record CreateSubscriberNotificationOutput
+    subscriberEndpoint: string
+end
+
+local record DeleteAwsLogSourceInput
+    sources: {AwsLogSourceConfiguration}
+end
+
+local record DeleteAwsLogSourceOutput
+    failed: {string}
+end
+
+local record DeleteCustomLogSourceInput
+    sourceName: string
+    sourceVersion: string
+end
+
+local record DeleteCustomLogSourceOutput
+end
+
+local record DeleteDataLakeInput
+    regions: {string}
+end
+
+local record DeleteDataLakeOutput
+end
+
+local record DeleteDataLakeExceptionSubscriptionInput
+end
+
+local record DeleteDataLakeExceptionSubscriptionOutput
+end
+
+local record DeleteDataLakeOrganizationConfigurationInput
+    autoEnableNewAccount: {DataLakeAutoEnableNewAccountConfiguration}
+end
+
+local record DeleteDataLakeOrganizationConfigurationOutput
+end
+
+local record DeleteSubscriberInput
+    subscriberId: string
+end
+
+local record DeleteSubscriberOutput
+end
+
+local record DeleteSubscriberNotificationInput
+    subscriberId: string
+end
+
+local record DeleteSubscriberNotificationOutput
+end
+
+local record DeregisterDataLakeDelegatedAdministratorInput
+end
+
+local record DeregisterDataLakeDelegatedAdministratorOutput
+end
+
+local record GetDataLakeExceptionSubscriptionInput
+end
+
+local record GetDataLakeExceptionSubscriptionOutput
+    subscriptionProtocol: string
+    notificationEndpoint: string
+    exceptionTimeToLive: number
+end
+
+local record GetDataLakeOrganizationConfigurationInput
+end
+
+local record GetDataLakeOrganizationConfigurationOutput
+    autoEnableNewAccount: {DataLakeAutoEnableNewAccountConfiguration}
+end
+
+local record GetDataLakeSourcesInput
+    accounts: {string}
+    maxResults: number
+    nextToken: string
+end
+
+local record GetDataLakeSourcesOutput
+    dataLakeArn: string
+    dataLakeSources: {DataLakeSource}
+    nextToken: string
+end
+
+local record GetSubscriberInput
+    subscriberId: string
+end
+
+local record GetSubscriberOutput
+    subscriber: SubscriberResource
+end
+
+local record ListDataLakeExceptionsInput
+    regions: {string}
+    maxResults: number
+    nextToken: string
+end
+
+local record ListDataLakeExceptionsOutput
+    exceptions: {DataLakeException}
+    nextToken: string
+end
+
+local record ListDataLakesInput
+    regions: {string}
+end
+
+local record ListDataLakesOutput
+    dataLakes: {DataLakeResource}
+end
+
+local record ListLogSourcesInput
+    accounts: {string}
+    regions: {string}
+    sources: {LogSourceResource}
+    maxResults: number
+    nextToken: string
+end
+
+local record ListLogSourcesOutput
+    sources: {LogSource}
+    nextToken: string
+end
+
+local record ListSubscribersInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListSubscribersOutput
+    subscribers: {SubscriberResource}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {Tag}
+end
+
+local record RegisterDataLakeDelegatedAdministratorInput
+    accountId: string
+end
+
+local record RegisterDataLakeDelegatedAdministratorOutput
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateDataLakeInput
+    configurations: {DataLakeConfiguration}
+    metaStoreManagerRoleArn: string
+end
+
+local record UpdateDataLakeOutput
+    dataLakes: {DataLakeResource}
+end
+
+local record UpdateDataLakeExceptionSubscriptionInput
+    subscriptionProtocol: string
+    notificationEndpoint: string
+    exceptionTimeToLive: number
+end
+
+local record UpdateDataLakeExceptionSubscriptionOutput
+end
+
+local record UpdateSubscriberInput
+    subscriberId: string
+    subscriberIdentity: AwsIdentity
+    subscriberName: string
+    subscriberDescription: string
+    sources: {LogSourceResource}
+end
+
+local record UpdateSubscriberOutput
+    subscriber: SubscriberResource
+end
+
+local record UpdateSubscriberNotificationInput
+    subscriberId: string
+    configuration: NotificationConfiguration
+end
+
+local record UpdateSubscriberNotificationOutput
+    subscriberEndpoint: string
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+    errorCode: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record M
+    CreateAwsLogSourceInput: CreateAwsLogSourceInput
+    CreateAwsLogSourceOutput: CreateAwsLogSourceOutput
+    CreateCustomLogSourceInput: CreateCustomLogSourceInput
+    CreateCustomLogSourceOutput: CreateCustomLogSourceOutput
+    CreateDataLakeInput: CreateDataLakeInput
+    CreateDataLakeOutput: CreateDataLakeOutput
+    CreateDataLakeExceptionSubscriptionInput: CreateDataLakeExceptionSubscriptionInput
+    CreateDataLakeExceptionSubscriptionOutput: CreateDataLakeExceptionSubscriptionOutput
+    CreateDataLakeOrganizationConfigurationInput: CreateDataLakeOrganizationConfigurationInput
+    CreateDataLakeOrganizationConfigurationOutput: CreateDataLakeOrganizationConfigurationOutput
+    CreateSubscriberInput: CreateSubscriberInput
+    CreateSubscriberOutput: CreateSubscriberOutput
+    CreateSubscriberNotificationInput: CreateSubscriberNotificationInput
+    CreateSubscriberNotificationOutput: CreateSubscriberNotificationOutput
+    DeleteAwsLogSourceInput: DeleteAwsLogSourceInput
+    DeleteAwsLogSourceOutput: DeleteAwsLogSourceOutput
+    DeleteCustomLogSourceInput: DeleteCustomLogSourceInput
+    DeleteCustomLogSourceOutput: DeleteCustomLogSourceOutput
+    DeleteDataLakeInput: DeleteDataLakeInput
+    DeleteDataLakeOutput: DeleteDataLakeOutput
+    DeleteDataLakeExceptionSubscriptionInput: DeleteDataLakeExceptionSubscriptionInput
+    DeleteDataLakeExceptionSubscriptionOutput: DeleteDataLakeExceptionSubscriptionOutput
+    DeleteDataLakeOrganizationConfigurationInput: DeleteDataLakeOrganizationConfigurationInput
+    DeleteDataLakeOrganizationConfigurationOutput: DeleteDataLakeOrganizationConfigurationOutput
+    DeleteSubscriberInput: DeleteSubscriberInput
+    DeleteSubscriberOutput: DeleteSubscriberOutput
+    DeleteSubscriberNotificationInput: DeleteSubscriberNotificationInput
+    DeleteSubscriberNotificationOutput: DeleteSubscriberNotificationOutput
+    DeregisterDataLakeDelegatedAdministratorInput: DeregisterDataLakeDelegatedAdministratorInput
+    DeregisterDataLakeDelegatedAdministratorOutput: DeregisterDataLakeDelegatedAdministratorOutput
+    GetDataLakeExceptionSubscriptionInput: GetDataLakeExceptionSubscriptionInput
+    GetDataLakeExceptionSubscriptionOutput: GetDataLakeExceptionSubscriptionOutput
+    GetDataLakeOrganizationConfigurationInput: GetDataLakeOrganizationConfigurationInput
+    GetDataLakeOrganizationConfigurationOutput: GetDataLakeOrganizationConfigurationOutput
+    GetDataLakeSourcesInput: GetDataLakeSourcesInput
+    GetDataLakeSourcesOutput: GetDataLakeSourcesOutput
+    GetSubscriberInput: GetSubscriberInput
+    GetSubscriberOutput: GetSubscriberOutput
+    ListDataLakeExceptionsInput: ListDataLakeExceptionsInput
+    ListDataLakeExceptionsOutput: ListDataLakeExceptionsOutput
+    ListDataLakesInput: ListDataLakesInput
+    ListDataLakesOutput: ListDataLakesOutput
+    ListLogSourcesInput: ListLogSourcesInput
+    ListLogSourcesOutput: ListLogSourcesOutput
+    ListSubscribersInput: ListSubscribersInput
+    ListSubscribersOutput: ListSubscribersOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    RegisterDataLakeDelegatedAdministratorInput: RegisterDataLakeDelegatedAdministratorInput
+    RegisterDataLakeDelegatedAdministratorOutput: RegisterDataLakeDelegatedAdministratorOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateDataLakeInput: UpdateDataLakeInput
+    UpdateDataLakeOutput: UpdateDataLakeOutput
+    UpdateDataLakeExceptionSubscriptionInput: UpdateDataLakeExceptionSubscriptionInput
+    UpdateDataLakeExceptionSubscriptionOutput: UpdateDataLakeExceptionSubscriptionOutput
+    UpdateSubscriberInput: UpdateSubscriberInput
+    UpdateSubscriberOutput: UpdateSubscriberOutput
+    UpdateSubscriberNotificationInput: UpdateSubscriberNotificationInput
+    UpdateSubscriberNotificationOutput: UpdateSubscriberNotificationOutput
+end
+
+return M

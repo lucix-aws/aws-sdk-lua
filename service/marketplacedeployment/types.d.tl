@@ -1,0 +1,156 @@
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record PutDeploymentParameterInput
+    catalog: string
+    productId: string
+    agreementId: string
+    deploymentParameter: DeploymentParameterInput
+    tags: {string : string}
+    expirationDate: number
+    clientToken: string
+end
+
+local record PutDeploymentParameterOutput
+    resourceArn: string
+    agreementId: string
+    deploymentParameterId: string
+    tags: {string : string}
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    fieldName: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    fieldName: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    fieldName: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    fieldName: string
+end
+
+local record M
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PutDeploymentParameterInput: PutDeploymentParameterInput
+    PutDeploymentParameterOutput: PutDeploymentParameterOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+end
+
+return M

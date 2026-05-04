@@ -1,0 +1,3736 @@
+local base_client = require("client")
+local defaults = require("defaults")
+local endpoint = require("endpoint")
+local endpoint_rules = require("connect.endpoint_rules")
+local restjson_protocol = require("protocol.restjson")
+local sdk_defaults = require("sdk_defaults")
+local types = require("connect.types")
+
+local M = {}
+
+local Client = {}
+Client.__index = Client
+
+Client.invokeOperation = base_client.invokeOperation
+
+function M.new(cfg)
+    cfg = cfg or {}
+    cfg.service_id = "AmazonConnectService"
+    cfg.signing_name = "amazonconnectservice"
+    if not cfg.protocol then
+        cfg.protocol = restjson_protocol.new()
+    end
+    if not cfg.endpoint_provider then
+        cfg.endpoint_provider = function(params)
+            return endpoint.resolve(endpoint_rules, params)
+        end
+    end
+    defaults.resolve_signer(cfg)
+    defaults.resolve_http_client(cfg)
+    defaults.resolve_retry_strategy(cfg)
+    sdk_defaults.resolve_identity_resolver(cfg)
+    local self = setmetatable(base_client.new(cfg), Client)
+    return self
+end
+
+function Client:activateEvaluationForm(input, options)
+    return self:invokeOperation(input, {
+        name = "ActivateEvaluationForm",
+        input_schema = types.ActivateEvaluationFormInput,
+        output_schema = types.ActivateEvaluationFormOutput,
+        http_method = "POST",
+        http_path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}/activate",
+    }, options)
+end
+
+function Client:associateAnalyticsDataSet(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateAnalyticsDataSet",
+        input_schema = types.AssociateAnalyticsDataSetInput,
+        output_schema = types.AssociateAnalyticsDataSetOutput,
+        http_method = "PUT",
+        http_path = "/analytics-data/instance/{InstanceId}/association",
+    }, options)
+end
+
+function Client:associateApprovedOrigin(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateApprovedOrigin",
+        input_schema = types.AssociateApprovedOriginInput,
+        output_schema = types.AssociateApprovedOriginOutput,
+        http_method = "PUT",
+        http_path = "/instance/{InstanceId}/approved-origin",
+    }, options)
+end
+
+function Client:associateBot(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateBot",
+        input_schema = types.AssociateBotInput,
+        output_schema = types.AssociateBotOutput,
+        http_method = "PUT",
+        http_path = "/instance/{InstanceId}/bot",
+    }, options)
+end
+
+function Client:associateContactWithUser(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateContactWithUser",
+        input_schema = types.AssociateContactWithUserInput,
+        output_schema = types.AssociateContactWithUserOutput,
+        http_method = "POST",
+        http_path = "/contacts/{InstanceId}/{ContactId}/associate-user",
+    }, options)
+end
+
+function Client:associateDefaultVocabulary(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateDefaultVocabulary",
+        input_schema = types.AssociateDefaultVocabularyInput,
+        output_schema = types.AssociateDefaultVocabularyOutput,
+        http_method = "PUT",
+        http_path = "/default-vocabulary/{InstanceId}/{LanguageCode}",
+    }, options)
+end
+
+function Client:associateEmailAddressAlias(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateEmailAddressAlias",
+        input_schema = types.AssociateEmailAddressAliasInput,
+        output_schema = types.AssociateEmailAddressAliasOutput,
+        http_method = "POST",
+        http_path = "/email-addresses/{InstanceId}/{EmailAddressId}/associate-alias",
+    }, options)
+end
+
+function Client:associateFlow(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateFlow",
+        input_schema = types.AssociateFlowInput,
+        output_schema = types.AssociateFlowOutput,
+        http_method = "PUT",
+        http_path = "/flow-associations/{InstanceId}",
+    }, options)
+end
+
+function Client:associateHoursOfOperations(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateHoursOfOperations",
+        input_schema = types.AssociateHoursOfOperationsInput,
+        output_schema = types.AssociateHoursOfOperationsOutput,
+        http_method = "POST",
+        http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/associate-hours",
+    }, options)
+end
+
+function Client:associateInstanceStorageConfig(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateInstanceStorageConfig",
+        input_schema = types.AssociateInstanceStorageConfigInput,
+        output_schema = types.AssociateInstanceStorageConfigOutput,
+        http_method = "PUT",
+        http_path = "/instance/{InstanceId}/storage-config",
+    }, options)
+end
+
+function Client:associateLambdaFunction(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateLambdaFunction",
+        input_schema = types.AssociateLambdaFunctionInput,
+        output_schema = types.AssociateLambdaFunctionOutput,
+        http_method = "PUT",
+        http_path = "/instance/{InstanceId}/lambda-function",
+    }, options)
+end
+
+function Client:associateLexBot(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateLexBot",
+        input_schema = types.AssociateLexBotInput,
+        output_schema = types.AssociateLexBotOutput,
+        http_method = "PUT",
+        http_path = "/instance/{InstanceId}/lex-bot",
+    }, options)
+end
+
+function Client:associatePhoneNumberContactFlow(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociatePhoneNumberContactFlow",
+        input_schema = types.AssociatePhoneNumberContactFlowInput,
+        output_schema = types.AssociatePhoneNumberContactFlowOutput,
+        http_method = "PUT",
+        http_path = "/phone-number/{PhoneNumberId}/contact-flow",
+    }, options)
+end
+
+function Client:associateQueueEmailAddresses(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateQueueEmailAddresses",
+        input_schema = types.AssociateQueueEmailAddressesInput,
+        output_schema = types.AssociateQueueEmailAddressesOutput,
+        http_method = "POST",
+        http_path = "/queues/{InstanceId}/{QueueId}/associate-email-addresses",
+    }, options)
+end
+
+function Client:associateQueueQuickConnects(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateQueueQuickConnects",
+        input_schema = types.AssociateQueueQuickConnectsInput,
+        output_schema = types.AssociateQueueQuickConnectsOutput,
+        http_method = "POST",
+        http_path = "/queues/{InstanceId}/{QueueId}/associate-quick-connects",
+    }, options)
+end
+
+function Client:associateRoutingProfileQueues(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateRoutingProfileQueues",
+        input_schema = types.AssociateRoutingProfileQueuesInput,
+        output_schema = types.AssociateRoutingProfileQueuesOutput,
+        http_method = "POST",
+        http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/associate-queues",
+    }, options)
+end
+
+function Client:associateSecurityKey(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateSecurityKey",
+        input_schema = types.AssociateSecurityKeyInput,
+        output_schema = types.AssociateSecurityKeyOutput,
+        http_method = "PUT",
+        http_path = "/instance/{InstanceId}/security-key",
+    }, options)
+end
+
+function Client:associateSecurityProfiles(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateSecurityProfiles",
+        input_schema = types.AssociateSecurityProfilesInput,
+        output_schema = types.AssociateSecurityProfilesOutput,
+        http_method = "POST",
+        http_path = "/associate-security-profiles/{InstanceId}",
+    }, options)
+end
+
+function Client:associateTrafficDistributionGroupUser(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateTrafficDistributionGroupUser",
+        input_schema = types.AssociateTrafficDistributionGroupUserInput,
+        output_schema = types.AssociateTrafficDistributionGroupUserOutput,
+        http_method = "PUT",
+        http_path = "/traffic-distribution-group/{TrafficDistributionGroupId}/user",
+    }, options)
+end
+
+function Client:associateUserProficiencies(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateUserProficiencies",
+        input_schema = types.AssociateUserProficienciesInput,
+        output_schema = types.AssociateUserProficienciesOutput,
+        http_method = "POST",
+        http_path = "/users/{InstanceId}/{UserId}/associate-proficiencies",
+    }, options)
+end
+
+function Client:associateWorkspace(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateWorkspace",
+        input_schema = types.AssociateWorkspaceInput,
+        output_schema = types.AssociateWorkspaceOutput,
+        http_method = "POST",
+        http_path = "/workspaces/{InstanceId}/{WorkspaceId}/associate",
+    }, options)
+end
+
+function Client:batchAssociateAnalyticsDataSet(input, options)
+    return self:invokeOperation(input, {
+        name = "BatchAssociateAnalyticsDataSet",
+        input_schema = types.BatchAssociateAnalyticsDataSetInput,
+        output_schema = types.BatchAssociateAnalyticsDataSetOutput,
+        http_method = "PUT",
+        http_path = "/analytics-data/instance/{InstanceId}/associations",
+    }, options)
+end
+
+function Client:batchCreateDataTableValue(input, options)
+    return self:invokeOperation(input, {
+        name = "BatchCreateDataTableValue",
+        input_schema = types.BatchCreateDataTableValueInput,
+        output_schema = types.BatchCreateDataTableValueOutput,
+        http_method = "POST",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}/values/create",
+    }, options)
+end
+
+function Client:batchDeleteDataTableValue(input, options)
+    return self:invokeOperation(input, {
+        name = "BatchDeleteDataTableValue",
+        input_schema = types.BatchDeleteDataTableValueInput,
+        output_schema = types.BatchDeleteDataTableValueOutput,
+        http_method = "POST",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}/values/delete",
+    }, options)
+end
+
+function Client:batchDescribeDataTableValue(input, options)
+    return self:invokeOperation(input, {
+        name = "BatchDescribeDataTableValue",
+        input_schema = types.BatchDescribeDataTableValueInput,
+        output_schema = types.BatchDescribeDataTableValueOutput,
+        http_method = "POST",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}/values/describe",
+    }, options)
+end
+
+function Client:batchDisassociateAnalyticsDataSet(input, options)
+    return self:invokeOperation(input, {
+        name = "BatchDisassociateAnalyticsDataSet",
+        input_schema = types.BatchDisassociateAnalyticsDataSetInput,
+        output_schema = types.BatchDisassociateAnalyticsDataSetOutput,
+        http_method = "POST",
+        http_path = "/analytics-data/instance/{InstanceId}/associations",
+    }, options)
+end
+
+function Client:batchGetAttachedFileMetadata(input, options)
+    return self:invokeOperation(input, {
+        name = "BatchGetAttachedFileMetadata",
+        input_schema = types.BatchGetAttachedFileMetadataInput,
+        output_schema = types.BatchGetAttachedFileMetadataOutput,
+        http_method = "POST",
+        http_path = "/attached-files/{InstanceId}",
+    }, options)
+end
+
+function Client:batchGetFlowAssociation(input, options)
+    return self:invokeOperation(input, {
+        name = "BatchGetFlowAssociation",
+        input_schema = types.BatchGetFlowAssociationInput,
+        output_schema = types.BatchGetFlowAssociationOutput,
+        http_method = "POST",
+        http_path = "/flow-associations-batch/{InstanceId}",
+    }, options)
+end
+
+function Client:batchPutContact(input, options)
+    return self:invokeOperation(input, {
+        name = "BatchPutContact",
+        input_schema = types.BatchPutContactInput,
+        output_schema = types.BatchPutContactOutput,
+        http_method = "PUT",
+        http_path = "/contact/batch/{InstanceId}",
+    }, options)
+end
+
+function Client:batchUpdateDataTableValue(input, options)
+    return self:invokeOperation(input, {
+        name = "BatchUpdateDataTableValue",
+        input_schema = types.BatchUpdateDataTableValueInput,
+        output_schema = types.BatchUpdateDataTableValueOutput,
+        http_method = "POST",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}/values/update",
+    }, options)
+end
+
+function Client:claimPhoneNumber(input, options)
+    return self:invokeOperation(input, {
+        name = "ClaimPhoneNumber",
+        input_schema = types.ClaimPhoneNumberInput,
+        output_schema = types.ClaimPhoneNumberOutput,
+        http_method = "POST",
+        http_path = "/phone-number/claim",
+    }, options)
+end
+
+function Client:completeAttachedFileUpload(input, options)
+    return self:invokeOperation(input, {
+        name = "CompleteAttachedFileUpload",
+        input_schema = types.CompleteAttachedFileUploadInput,
+        output_schema = types.CompleteAttachedFileUploadOutput,
+        http_method = "POST",
+        http_path = "/attached-files/{InstanceId}/{FileId}",
+    }, options)
+end
+
+function Client:createAgentStatus(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateAgentStatus",
+        input_schema = types.CreateAgentStatusInput,
+        output_schema = types.CreateAgentStatusOutput,
+        http_method = "PUT",
+        http_path = "/agent-status/{InstanceId}",
+    }, options)
+end
+
+function Client:createContact(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateContact",
+        input_schema = types.CreateContactInput,
+        output_schema = types.CreateContactOutput,
+        http_method = "PUT",
+        http_path = "/contact/create-contact",
+    }, options)
+end
+
+function Client:createContactFlow(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateContactFlow",
+        input_schema = types.CreateContactFlowInput,
+        output_schema = types.CreateContactFlowOutput,
+        http_method = "PUT",
+        http_path = "/contact-flows/{InstanceId}",
+    }, options)
+end
+
+function Client:createContactFlowModule(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateContactFlowModule",
+        input_schema = types.CreateContactFlowModuleInput,
+        output_schema = types.CreateContactFlowModuleOutput,
+        http_method = "PUT",
+        http_path = "/contact-flow-modules/{InstanceId}",
+    }, options)
+end
+
+function Client:createContactFlowModuleAlias(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateContactFlowModuleAlias",
+        input_schema = types.CreateContactFlowModuleAliasInput,
+        output_schema = types.CreateContactFlowModuleAliasOutput,
+        http_method = "PUT",
+        http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/alias",
+    }, options)
+end
+
+function Client:createContactFlowModuleVersion(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateContactFlowModuleVersion",
+        input_schema = types.CreateContactFlowModuleVersionInput,
+        output_schema = types.CreateContactFlowModuleVersionOutput,
+        http_method = "PUT",
+        http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/version",
+    }, options)
+end
+
+function Client:createContactFlowVersion(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateContactFlowVersion",
+        input_schema = types.CreateContactFlowVersionInput,
+        output_schema = types.CreateContactFlowVersionOutput,
+        http_method = "PUT",
+        http_path = "/contact-flows/{InstanceId}/{ContactFlowId}/version",
+    }, options)
+end
+
+function Client:createDataTable(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateDataTable",
+        input_schema = types.CreateDataTableInput,
+        output_schema = types.CreateDataTableOutput,
+        http_method = "PUT",
+        http_path = "/data-tables/{InstanceId}",
+    }, options)
+end
+
+function Client:createDataTableAttribute(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateDataTableAttribute",
+        input_schema = types.CreateDataTableAttributeInput,
+        output_schema = types.CreateDataTableAttributeOutput,
+        http_method = "PUT",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}/attributes",
+    }, options)
+end
+
+function Client:createEmailAddress(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateEmailAddress",
+        input_schema = types.CreateEmailAddressInput,
+        output_schema = types.CreateEmailAddressOutput,
+        http_method = "PUT",
+        http_path = "/email-addresses/{InstanceId}",
+    }, options)
+end
+
+function Client:createEvaluationForm(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateEvaluationForm",
+        input_schema = types.CreateEvaluationFormInput,
+        output_schema = types.CreateEvaluationFormOutput,
+        http_method = "PUT",
+        http_path = "/evaluation-forms/{InstanceId}",
+    }, options)
+end
+
+function Client:createHoursOfOperation(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateHoursOfOperation",
+        input_schema = types.CreateHoursOfOperationInput,
+        output_schema = types.CreateHoursOfOperationOutput,
+        http_method = "PUT",
+        http_path = "/hours-of-operations/{InstanceId}",
+    }, options)
+end
+
+function Client:createHoursOfOperationOverride(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateHoursOfOperationOverride",
+        input_schema = types.CreateHoursOfOperationOverrideInput,
+        output_schema = types.CreateHoursOfOperationOverrideOutput,
+        http_method = "PUT",
+        http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides",
+    }, options)
+end
+
+function Client:createInstance(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateInstance",
+        input_schema = types.CreateInstanceInput,
+        output_schema = types.CreateInstanceOutput,
+        http_method = "PUT",
+        http_path = "/instance",
+    }, options)
+end
+
+function Client:createIntegrationAssociation(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateIntegrationAssociation",
+        input_schema = types.CreateIntegrationAssociationInput,
+        output_schema = types.CreateIntegrationAssociationOutput,
+        http_method = "PUT",
+        http_path = "/instance/{InstanceId}/integration-associations",
+    }, options)
+end
+
+function Client:createNotification(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateNotification",
+        input_schema = types.CreateNotificationInput,
+        output_schema = types.CreateNotificationOutput,
+        http_method = "PUT",
+        http_path = "/notifications/{InstanceId}",
+    }, options)
+end
+
+function Client:createParticipant(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateParticipant",
+        input_schema = types.CreateParticipantInput,
+        output_schema = types.CreateParticipantOutput,
+        http_method = "POST",
+        http_path = "/contact/create-participant",
+    }, options)
+end
+
+function Client:createPersistentContactAssociation(input, options)
+    return self:invokeOperation(input, {
+        name = "CreatePersistentContactAssociation",
+        input_schema = types.CreatePersistentContactAssociationInput,
+        output_schema = types.CreatePersistentContactAssociationOutput,
+        http_method = "POST",
+        http_path = "/contact/persistent-contact-association/{InstanceId}/{InitialContactId}",
+    }, options)
+end
+
+function Client:createPredefinedAttribute(input, options)
+    return self:invokeOperation(input, {
+        name = "CreatePredefinedAttribute",
+        input_schema = types.CreatePredefinedAttributeInput,
+        output_schema = types.CreatePredefinedAttributeOutput,
+        http_method = "PUT",
+        http_path = "/predefined-attributes/{InstanceId}",
+    }, options)
+end
+
+function Client:createPrompt(input, options)
+    return self:invokeOperation(input, {
+        name = "CreatePrompt",
+        input_schema = types.CreatePromptInput,
+        output_schema = types.CreatePromptOutput,
+        http_method = "PUT",
+        http_path = "/prompts/{InstanceId}",
+    }, options)
+end
+
+function Client:createPushNotificationRegistration(input, options)
+    return self:invokeOperation(input, {
+        name = "CreatePushNotificationRegistration",
+        input_schema = types.CreatePushNotificationRegistrationInput,
+        output_schema = types.CreatePushNotificationRegistrationOutput,
+        http_method = "PUT",
+        http_path = "/push-notification/{InstanceId}/registrations",
+    }, options)
+end
+
+function Client:createQueue(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateQueue",
+        input_schema = types.CreateQueueInput,
+        output_schema = types.CreateQueueOutput,
+        http_method = "PUT",
+        http_path = "/queues/{InstanceId}",
+    }, options)
+end
+
+function Client:createQuickConnect(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateQuickConnect",
+        input_schema = types.CreateQuickConnectInput,
+        output_schema = types.CreateQuickConnectOutput,
+        http_method = "PUT",
+        http_path = "/quick-connects/{InstanceId}",
+    }, options)
+end
+
+function Client:createRoutingProfile(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateRoutingProfile",
+        input_schema = types.CreateRoutingProfileInput,
+        output_schema = types.CreateRoutingProfileOutput,
+        http_method = "PUT",
+        http_path = "/routing-profiles/{InstanceId}",
+    }, options)
+end
+
+function Client:createRule(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateRule",
+        input_schema = types.CreateRuleInput,
+        output_schema = types.CreateRuleOutput,
+        http_method = "POST",
+        http_path = "/rules/{InstanceId}",
+    }, options)
+end
+
+function Client:createSecurityProfile(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateSecurityProfile",
+        input_schema = types.CreateSecurityProfileInput,
+        output_schema = types.CreateSecurityProfileOutput,
+        http_method = "PUT",
+        http_path = "/security-profiles/{InstanceId}",
+    }, options)
+end
+
+function Client:createTaskTemplate(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateTaskTemplate",
+        input_schema = types.CreateTaskTemplateInput,
+        output_schema = types.CreateTaskTemplateOutput,
+        http_method = "PUT",
+        http_path = "/instance/{InstanceId}/task/template",
+    }, options)
+end
+
+function Client:createTestCase(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateTestCase",
+        input_schema = types.CreateTestCaseInput,
+        output_schema = types.CreateTestCaseOutput,
+        http_method = "PUT",
+        http_path = "/test-cases/{InstanceId}",
+    }, options)
+end
+
+function Client:createTrafficDistributionGroup(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateTrafficDistributionGroup",
+        input_schema = types.CreateTrafficDistributionGroupInput,
+        output_schema = types.CreateTrafficDistributionGroupOutput,
+        http_method = "PUT",
+        http_path = "/traffic-distribution-group",
+    }, options)
+end
+
+function Client:createUseCase(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateUseCase",
+        input_schema = types.CreateUseCaseInput,
+        output_schema = types.CreateUseCaseOutput,
+        http_method = "PUT",
+        http_path = "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}/use-cases",
+    }, options)
+end
+
+function Client:createUser(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateUser",
+        input_schema = types.CreateUserInput,
+        output_schema = types.CreateUserOutput,
+        http_method = "PUT",
+        http_path = "/users/{InstanceId}",
+    }, options)
+end
+
+function Client:createUserHierarchyGroup(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateUserHierarchyGroup",
+        input_schema = types.CreateUserHierarchyGroupInput,
+        output_schema = types.CreateUserHierarchyGroupOutput,
+        http_method = "PUT",
+        http_path = "/user-hierarchy-groups/{InstanceId}",
+    }, options)
+end
+
+function Client:createView(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateView",
+        input_schema = types.CreateViewInput,
+        output_schema = types.CreateViewOutput,
+        http_method = "PUT",
+        http_path = "/views/{InstanceId}",
+    }, options)
+end
+
+function Client:createViewVersion(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateViewVersion",
+        input_schema = types.CreateViewVersionInput,
+        output_schema = types.CreateViewVersionOutput,
+        http_method = "PUT",
+        http_path = "/views/{InstanceId}/{ViewId}/versions",
+    }, options)
+end
+
+function Client:createVocabulary(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateVocabulary",
+        input_schema = types.CreateVocabularyInput,
+        output_schema = types.CreateVocabularyOutput,
+        http_method = "POST",
+        http_path = "/vocabulary/{InstanceId}",
+    }, options)
+end
+
+function Client:createWorkspace(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateWorkspace",
+        input_schema = types.CreateWorkspaceInput,
+        output_schema = types.CreateWorkspaceOutput,
+        http_method = "PUT",
+        http_path = "/workspaces/{InstanceId}",
+    }, options)
+end
+
+function Client:createWorkspacePage(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateWorkspacePage",
+        input_schema = types.CreateWorkspacePageInput,
+        output_schema = types.CreateWorkspacePageOutput,
+        http_method = "PUT",
+        http_path = "/workspaces/{InstanceId}/{WorkspaceId}/pages",
+    }, options)
+end
+
+function Client:deactivateEvaluationForm(input, options)
+    return self:invokeOperation(input, {
+        name = "DeactivateEvaluationForm",
+        input_schema = types.DeactivateEvaluationFormInput,
+        output_schema = types.DeactivateEvaluationFormOutput,
+        http_method = "POST",
+        http_path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}/deactivate",
+    }, options)
+end
+
+function Client:deleteAttachedFile(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteAttachedFile",
+        input_schema = types.DeleteAttachedFileInput,
+        output_schema = types.DeleteAttachedFileOutput,
+        http_method = "DELETE",
+        http_path = "/attached-files/{InstanceId}/{FileId}",
+    }, options)
+end
+
+function Client:deleteContactEvaluation(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteContactEvaluation",
+        input_schema = types.DeleteContactEvaluationInput,
+        output_schema = types.DeleteContactEvaluationOutput,
+        http_method = "DELETE",
+        http_path = "/contact-evaluations/{InstanceId}/{EvaluationId}",
+    }, options)
+end
+
+function Client:deleteContactFlow(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteContactFlow",
+        input_schema = types.DeleteContactFlowInput,
+        output_schema = types.DeleteContactFlowOutput,
+        http_method = "DELETE",
+        http_path = "/contact-flows/{InstanceId}/{ContactFlowId}",
+    }, options)
+end
+
+function Client:deleteContactFlowModule(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteContactFlowModule",
+        input_schema = types.DeleteContactFlowModuleInput,
+        output_schema = types.DeleteContactFlowModuleOutput,
+        http_method = "DELETE",
+        http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}",
+    }, options)
+end
+
+function Client:deleteContactFlowModuleAlias(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteContactFlowModuleAlias",
+        input_schema = types.DeleteContactFlowModuleAliasInput,
+        output_schema = types.DeleteContactFlowModuleAliasOutput,
+        http_method = "DELETE",
+        http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/alias/{AliasId}",
+    }, options)
+end
+
+function Client:deleteContactFlowModuleVersion(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteContactFlowModuleVersion",
+        input_schema = types.DeleteContactFlowModuleVersionInput,
+        output_schema = types.DeleteContactFlowModuleVersionOutput,
+        http_method = "DELETE",
+        http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/version/{ContactFlowModuleVersion}",
+    }, options)
+end
+
+function Client:deleteContactFlowVersion(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteContactFlowVersion",
+        input_schema = types.DeleteContactFlowVersionInput,
+        output_schema = types.DeleteContactFlowVersionOutput,
+        http_method = "DELETE",
+        http_path = "/contact-flows/{InstanceId}/{ContactFlowId}/version/{ContactFlowVersion}",
+    }, options)
+end
+
+function Client:deleteDataTable(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteDataTable",
+        input_schema = types.DeleteDataTableInput,
+        output_schema = types.DeleteDataTableOutput,
+        http_method = "DELETE",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}",
+    }, options)
+end
+
+function Client:deleteDataTableAttribute(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteDataTableAttribute",
+        input_schema = types.DeleteDataTableAttributeInput,
+        output_schema = types.DeleteDataTableAttributeOutput,
+        http_method = "DELETE",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}/attributes/{AttributeName}",
+    }, options)
+end
+
+function Client:deleteEmailAddress(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteEmailAddress",
+        input_schema = types.DeleteEmailAddressInput,
+        output_schema = types.DeleteEmailAddressOutput,
+        http_method = "DELETE",
+        http_path = "/email-addresses/{InstanceId}/{EmailAddressId}",
+    }, options)
+end
+
+function Client:deleteEvaluationForm(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteEvaluationForm",
+        input_schema = types.DeleteEvaluationFormInput,
+        output_schema = types.DeleteEvaluationFormOutput,
+        http_method = "DELETE",
+        http_path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}",
+    }, options)
+end
+
+function Client:deleteHoursOfOperation(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteHoursOfOperation",
+        input_schema = types.DeleteHoursOfOperationInput,
+        output_schema = types.DeleteHoursOfOperationOutput,
+        http_method = "DELETE",
+        http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}",
+    }, options)
+end
+
+function Client:deleteHoursOfOperationOverride(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteHoursOfOperationOverride",
+        input_schema = types.DeleteHoursOfOperationOverrideInput,
+        output_schema = types.DeleteHoursOfOperationOverrideOutput,
+        http_method = "DELETE",
+        http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides/{HoursOfOperationOverrideId}",
+    }, options)
+end
+
+function Client:deleteInstance(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteInstance",
+        input_schema = types.DeleteInstanceInput,
+        output_schema = types.DeleteInstanceOutput,
+        http_method = "DELETE",
+        http_path = "/instance/{InstanceId}",
+    }, options)
+end
+
+function Client:deleteIntegrationAssociation(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteIntegrationAssociation",
+        input_schema = types.DeleteIntegrationAssociationInput,
+        output_schema = types.DeleteIntegrationAssociationOutput,
+        http_method = "DELETE",
+        http_path = "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}",
+    }, options)
+end
+
+function Client:deleteNotification(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteNotification",
+        input_schema = types.DeleteNotificationInput,
+        output_schema = types.DeleteNotificationOutput,
+        http_method = "DELETE",
+        http_path = "/notifications/{InstanceId}/{NotificationId}",
+    }, options)
+end
+
+function Client:deletePredefinedAttribute(input, options)
+    return self:invokeOperation(input, {
+        name = "DeletePredefinedAttribute",
+        input_schema = types.DeletePredefinedAttributeInput,
+        output_schema = types.DeletePredefinedAttributeOutput,
+        http_method = "DELETE",
+        http_path = "/predefined-attributes/{InstanceId}/{Name}",
+    }, options)
+end
+
+function Client:deletePrompt(input, options)
+    return self:invokeOperation(input, {
+        name = "DeletePrompt",
+        input_schema = types.DeletePromptInput,
+        output_schema = types.DeletePromptOutput,
+        http_method = "DELETE",
+        http_path = "/prompts/{InstanceId}/{PromptId}",
+    }, options)
+end
+
+function Client:deletePushNotificationRegistration(input, options)
+    return self:invokeOperation(input, {
+        name = "DeletePushNotificationRegistration",
+        input_schema = types.DeletePushNotificationRegistrationInput,
+        output_schema = types.DeletePushNotificationRegistrationOutput,
+        http_method = "DELETE",
+        http_path = "/push-notification/{InstanceId}/registrations/{RegistrationId}",
+    }, options)
+end
+
+function Client:deleteQueue(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteQueue",
+        input_schema = types.DeleteQueueInput,
+        output_schema = types.DeleteQueueOutput,
+        http_method = "DELETE",
+        http_path = "/queues/{InstanceId}/{QueueId}",
+    }, options)
+end
+
+function Client:deleteQuickConnect(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteQuickConnect",
+        input_schema = types.DeleteQuickConnectInput,
+        output_schema = types.DeleteQuickConnectOutput,
+        http_method = "DELETE",
+        http_path = "/quick-connects/{InstanceId}/{QuickConnectId}",
+    }, options)
+end
+
+function Client:deleteRoutingProfile(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteRoutingProfile",
+        input_schema = types.DeleteRoutingProfileInput,
+        output_schema = types.DeleteRoutingProfileOutput,
+        http_method = "DELETE",
+        http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}",
+    }, options)
+end
+
+function Client:deleteRule(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteRule",
+        input_schema = types.DeleteRuleInput,
+        output_schema = types.DeleteRuleOutput,
+        http_method = "DELETE",
+        http_path = "/rules/{InstanceId}/{RuleId}",
+    }, options)
+end
+
+function Client:deleteSecurityProfile(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteSecurityProfile",
+        input_schema = types.DeleteSecurityProfileInput,
+        output_schema = types.DeleteSecurityProfileOutput,
+        http_method = "DELETE",
+        http_path = "/security-profiles/{InstanceId}/{SecurityProfileId}",
+    }, options)
+end
+
+function Client:deleteTaskTemplate(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteTaskTemplate",
+        input_schema = types.DeleteTaskTemplateInput,
+        output_schema = types.DeleteTaskTemplateOutput,
+        http_method = "DELETE",
+        http_path = "/instance/{InstanceId}/task/template/{TaskTemplateId}",
+    }, options)
+end
+
+function Client:deleteTestCase(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteTestCase",
+        input_schema = types.DeleteTestCaseInput,
+        output_schema = types.DeleteTestCaseOutput,
+        http_method = "DELETE",
+        http_path = "/test-cases/{InstanceId}/{TestCaseId}",
+    }, options)
+end
+
+function Client:deleteTrafficDistributionGroup(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteTrafficDistributionGroup",
+        input_schema = types.DeleteTrafficDistributionGroupInput,
+        output_schema = types.DeleteTrafficDistributionGroupOutput,
+        http_method = "DELETE",
+        http_path = "/traffic-distribution-group/{TrafficDistributionGroupId}",
+    }, options)
+end
+
+function Client:deleteUseCase(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteUseCase",
+        input_schema = types.DeleteUseCaseInput,
+        output_schema = types.DeleteUseCaseOutput,
+        http_method = "DELETE",
+        http_path = "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}/use-cases/{UseCaseId}",
+    }, options)
+end
+
+function Client:deleteUser(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteUser",
+        input_schema = types.DeleteUserInput,
+        output_schema = types.DeleteUserOutput,
+        http_method = "DELETE",
+        http_path = "/users/{InstanceId}/{UserId}",
+    }, options)
+end
+
+function Client:deleteUserHierarchyGroup(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteUserHierarchyGroup",
+        input_schema = types.DeleteUserHierarchyGroupInput,
+        output_schema = types.DeleteUserHierarchyGroupOutput,
+        http_method = "DELETE",
+        http_path = "/user-hierarchy-groups/{InstanceId}/{HierarchyGroupId}",
+    }, options)
+end
+
+function Client:deleteView(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteView",
+        input_schema = types.DeleteViewInput,
+        output_schema = types.DeleteViewOutput,
+        http_method = "DELETE",
+        http_path = "/views/{InstanceId}/{ViewId}",
+    }, options)
+end
+
+function Client:deleteViewVersion(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteViewVersion",
+        input_schema = types.DeleteViewVersionInput,
+        output_schema = types.DeleteViewVersionOutput,
+        http_method = "DELETE",
+        http_path = "/views/{InstanceId}/{ViewId}/versions/{ViewVersion}",
+    }, options)
+end
+
+function Client:deleteVocabulary(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteVocabulary",
+        input_schema = types.DeleteVocabularyInput,
+        output_schema = types.DeleteVocabularyOutput,
+        http_method = "POST",
+        http_path = "/vocabulary-remove/{InstanceId}/{VocabularyId}",
+    }, options)
+end
+
+function Client:deleteWorkspace(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteWorkspace",
+        input_schema = types.DeleteWorkspaceInput,
+        output_schema = types.DeleteWorkspaceOutput,
+        http_method = "DELETE",
+        http_path = "/workspaces/{InstanceId}/{WorkspaceId}",
+    }, options)
+end
+
+function Client:deleteWorkspaceMedia(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteWorkspaceMedia",
+        input_schema = types.DeleteWorkspaceMediaInput,
+        output_schema = types.DeleteWorkspaceMediaOutput,
+        http_method = "DELETE",
+        http_path = "/workspaces/{InstanceId}/{WorkspaceId}/media",
+    }, options)
+end
+
+function Client:deleteWorkspacePage(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteWorkspacePage",
+        input_schema = types.DeleteWorkspacePageInput,
+        output_schema = types.DeleteWorkspacePageOutput,
+        http_method = "DELETE",
+        http_path = "/workspaces/{InstanceId}/{WorkspaceId}/pages/{Page}",
+    }, options)
+end
+
+function Client:describeAgentStatus(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeAgentStatus",
+        input_schema = types.DescribeAgentStatusInput,
+        output_schema = types.DescribeAgentStatusOutput,
+        http_method = "GET",
+        http_path = "/agent-status/{InstanceId}/{AgentStatusId}",
+    }, options)
+end
+
+function Client:describeAttachedFilesConfiguration(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeAttachedFilesConfiguration",
+        input_schema = types.DescribeAttachedFilesConfigurationInput,
+        output_schema = types.DescribeAttachedFilesConfigurationOutput,
+        http_method = "GET",
+        http_path = "/attached-files-configurations/{InstanceId}/{AttachmentScope}",
+    }, options)
+end
+
+function Client:describeAuthenticationProfile(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeAuthenticationProfile",
+        input_schema = types.DescribeAuthenticationProfileInput,
+        output_schema = types.DescribeAuthenticationProfileOutput,
+        http_method = "GET",
+        http_path = "/authentication-profiles/{InstanceId}/{AuthenticationProfileId}",
+    }, options)
+end
+
+function Client:describeContact(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeContact",
+        input_schema = types.DescribeContactInput,
+        output_schema = types.DescribeContactOutput,
+        http_method = "GET",
+        http_path = "/contacts/{InstanceId}/{ContactId}",
+    }, options)
+end
+
+function Client:describeContactEvaluation(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeContactEvaluation",
+        input_schema = types.DescribeContactEvaluationInput,
+        output_schema = types.DescribeContactEvaluationOutput,
+        http_method = "GET",
+        http_path = "/contact-evaluations/{InstanceId}/{EvaluationId}",
+    }, options)
+end
+
+function Client:describeContactFlow(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeContactFlow",
+        input_schema = types.DescribeContactFlowInput,
+        output_schema = types.DescribeContactFlowOutput,
+        http_method = "GET",
+        http_path = "/contact-flows/{InstanceId}/{ContactFlowId}",
+    }, options)
+end
+
+function Client:describeContactFlowModule(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeContactFlowModule",
+        input_schema = types.DescribeContactFlowModuleInput,
+        output_schema = types.DescribeContactFlowModuleOutput,
+        http_method = "GET",
+        http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}",
+    }, options)
+end
+
+function Client:describeContactFlowModuleAlias(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeContactFlowModuleAlias",
+        input_schema = types.DescribeContactFlowModuleAliasInput,
+        output_schema = types.DescribeContactFlowModuleAliasOutput,
+        http_method = "GET",
+        http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/alias/{AliasId}",
+    }, options)
+end
+
+function Client:describeDataTable(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeDataTable",
+        input_schema = types.DescribeDataTableInput,
+        output_schema = types.DescribeDataTableOutput,
+        http_method = "GET",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}",
+    }, options)
+end
+
+function Client:describeDataTableAttribute(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeDataTableAttribute",
+        input_schema = types.DescribeDataTableAttributeInput,
+        output_schema = types.DescribeDataTableAttributeOutput,
+        http_method = "GET",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}/attributes/{AttributeName}",
+    }, options)
+end
+
+function Client:describeEmailAddress(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeEmailAddress",
+        input_schema = types.DescribeEmailAddressInput,
+        output_schema = types.DescribeEmailAddressOutput,
+        http_method = "GET",
+        http_path = "/email-addresses/{InstanceId}/{EmailAddressId}",
+    }, options)
+end
+
+function Client:describeEvaluationForm(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeEvaluationForm",
+        input_schema = types.DescribeEvaluationFormInput,
+        output_schema = types.DescribeEvaluationFormOutput,
+        http_method = "GET",
+        http_path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}",
+    }, options)
+end
+
+function Client:describeHoursOfOperation(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeHoursOfOperation",
+        input_schema = types.DescribeHoursOfOperationInput,
+        output_schema = types.DescribeHoursOfOperationOutput,
+        http_method = "GET",
+        http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}",
+    }, options)
+end
+
+function Client:describeHoursOfOperationOverride(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeHoursOfOperationOverride",
+        input_schema = types.DescribeHoursOfOperationOverrideInput,
+        output_schema = types.DescribeHoursOfOperationOverrideOutput,
+        http_method = "GET",
+        http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides/{HoursOfOperationOverrideId}",
+    }, options)
+end
+
+function Client:describeInstance(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeInstance",
+        input_schema = types.DescribeInstanceInput,
+        output_schema = types.DescribeInstanceOutput,
+        http_method = "GET",
+        http_path = "/instance/{InstanceId}",
+    }, options)
+end
+
+function Client:describeInstanceAttribute(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeInstanceAttribute",
+        input_schema = types.DescribeInstanceAttributeInput,
+        output_schema = types.DescribeInstanceAttributeOutput,
+        http_method = "GET",
+        http_path = "/instance/{InstanceId}/attribute/{AttributeType}",
+    }, options)
+end
+
+function Client:describeInstanceStorageConfig(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeInstanceStorageConfig",
+        input_schema = types.DescribeInstanceStorageConfigInput,
+        output_schema = types.DescribeInstanceStorageConfigOutput,
+        http_method = "GET",
+        http_path = "/instance/{InstanceId}/storage-config/{AssociationId}",
+    }, options)
+end
+
+function Client:describeNotification(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeNotification",
+        input_schema = types.DescribeNotificationInput,
+        output_schema = types.DescribeNotificationOutput,
+        http_method = "GET",
+        http_path = "/notifications/{InstanceId}/{NotificationId}",
+    }, options)
+end
+
+function Client:describePhoneNumber(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribePhoneNumber",
+        input_schema = types.DescribePhoneNumberInput,
+        output_schema = types.DescribePhoneNumberOutput,
+        http_method = "GET",
+        http_path = "/phone-number/{PhoneNumberId}",
+    }, options)
+end
+
+function Client:describePredefinedAttribute(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribePredefinedAttribute",
+        input_schema = types.DescribePredefinedAttributeInput,
+        output_schema = types.DescribePredefinedAttributeOutput,
+        http_method = "GET",
+        http_path = "/predefined-attributes/{InstanceId}/{Name}",
+    }, options)
+end
+
+function Client:describePrompt(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribePrompt",
+        input_schema = types.DescribePromptInput,
+        output_schema = types.DescribePromptOutput,
+        http_method = "GET",
+        http_path = "/prompts/{InstanceId}/{PromptId}",
+    }, options)
+end
+
+function Client:describeQueue(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeQueue",
+        input_schema = types.DescribeQueueInput,
+        output_schema = types.DescribeQueueOutput,
+        http_method = "GET",
+        http_path = "/queues/{InstanceId}/{QueueId}",
+    }, options)
+end
+
+function Client:describeQuickConnect(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeQuickConnect",
+        input_schema = types.DescribeQuickConnectInput,
+        output_schema = types.DescribeQuickConnectOutput,
+        http_method = "GET",
+        http_path = "/quick-connects/{InstanceId}/{QuickConnectId}",
+    }, options)
+end
+
+function Client:describeRoutingProfile(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeRoutingProfile",
+        input_schema = types.DescribeRoutingProfileInput,
+        output_schema = types.DescribeRoutingProfileOutput,
+        http_method = "GET",
+        http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}",
+    }, options)
+end
+
+function Client:describeRule(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeRule",
+        input_schema = types.DescribeRuleInput,
+        output_schema = types.DescribeRuleOutput,
+        http_method = "GET",
+        http_path = "/rules/{InstanceId}/{RuleId}",
+    }, options)
+end
+
+function Client:describeSecurityProfile(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeSecurityProfile",
+        input_schema = types.DescribeSecurityProfileInput,
+        output_schema = types.DescribeSecurityProfileOutput,
+        http_method = "GET",
+        http_path = "/security-profiles/{InstanceId}/{SecurityProfileId}",
+    }, options)
+end
+
+function Client:describeTestCase(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeTestCase",
+        input_schema = types.DescribeTestCaseInput,
+        output_schema = types.DescribeTestCaseOutput,
+        http_method = "GET",
+        http_path = "/test-cases/{InstanceId}/{TestCaseId}",
+    }, options)
+end
+
+function Client:describeTrafficDistributionGroup(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeTrafficDistributionGroup",
+        input_schema = types.DescribeTrafficDistributionGroupInput,
+        output_schema = types.DescribeTrafficDistributionGroupOutput,
+        http_method = "GET",
+        http_path = "/traffic-distribution-group/{TrafficDistributionGroupId}",
+    }, options)
+end
+
+function Client:describeUser(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeUser",
+        input_schema = types.DescribeUserInput,
+        output_schema = types.DescribeUserOutput,
+        http_method = "GET",
+        http_path = "/users/{InstanceId}/{UserId}",
+    }, options)
+end
+
+function Client:describeUserHierarchyGroup(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeUserHierarchyGroup",
+        input_schema = types.DescribeUserHierarchyGroupInput,
+        output_schema = types.DescribeUserHierarchyGroupOutput,
+        http_method = "GET",
+        http_path = "/user-hierarchy-groups/{InstanceId}/{HierarchyGroupId}",
+    }, options)
+end
+
+function Client:describeUserHierarchyStructure(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeUserHierarchyStructure",
+        input_schema = types.DescribeUserHierarchyStructureInput,
+        output_schema = types.DescribeUserHierarchyStructureOutput,
+        http_method = "GET",
+        http_path = "/user-hierarchy-structure/{InstanceId}",
+    }, options)
+end
+
+function Client:describeView(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeView",
+        input_schema = types.DescribeViewInput,
+        output_schema = types.DescribeViewOutput,
+        http_method = "GET",
+        http_path = "/views/{InstanceId}/{ViewId}",
+    }, options)
+end
+
+function Client:describeVocabulary(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeVocabulary",
+        input_schema = types.DescribeVocabularyInput,
+        output_schema = types.DescribeVocabularyOutput,
+        http_method = "GET",
+        http_path = "/vocabulary/{InstanceId}/{VocabularyId}",
+    }, options)
+end
+
+function Client:describeWorkspace(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeWorkspace",
+        input_schema = types.DescribeWorkspaceInput,
+        output_schema = types.DescribeWorkspaceOutput,
+        http_method = "GET",
+        http_path = "/workspaces/{InstanceId}/{WorkspaceId}",
+    }, options)
+end
+
+function Client:disassociateAnalyticsDataSet(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateAnalyticsDataSet",
+        input_schema = types.DisassociateAnalyticsDataSetInput,
+        output_schema = types.DisassociateAnalyticsDataSetOutput,
+        http_method = "POST",
+        http_path = "/analytics-data/instance/{InstanceId}/association",
+    }, options)
+end
+
+function Client:disassociateApprovedOrigin(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateApprovedOrigin",
+        input_schema = types.DisassociateApprovedOriginInput,
+        output_schema = types.DisassociateApprovedOriginOutput,
+        http_method = "DELETE",
+        http_path = "/instance/{InstanceId}/approved-origin",
+    }, options)
+end
+
+function Client:disassociateBot(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateBot",
+        input_schema = types.DisassociateBotInput,
+        output_schema = types.DisassociateBotOutput,
+        http_method = "POST",
+        http_path = "/instance/{InstanceId}/bot",
+    }, options)
+end
+
+function Client:disassociateEmailAddressAlias(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateEmailAddressAlias",
+        input_schema = types.DisassociateEmailAddressAliasInput,
+        output_schema = types.DisassociateEmailAddressAliasOutput,
+        http_method = "POST",
+        http_path = "/email-addresses/{InstanceId}/{EmailAddressId}/disassociate-alias",
+    }, options)
+end
+
+function Client:disassociateFlow(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateFlow",
+        input_schema = types.DisassociateFlowInput,
+        output_schema = types.DisassociateFlowOutput,
+        http_method = "DELETE",
+        http_path = "/flow-associations/{InstanceId}/{ResourceId}/{ResourceType}",
+    }, options)
+end
+
+function Client:disassociateHoursOfOperations(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateHoursOfOperations",
+        input_schema = types.DisassociateHoursOfOperationsInput,
+        output_schema = types.DisassociateHoursOfOperationsOutput,
+        http_method = "POST",
+        http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/disassociate-hours",
+    }, options)
+end
+
+function Client:disassociateInstanceStorageConfig(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateInstanceStorageConfig",
+        input_schema = types.DisassociateInstanceStorageConfigInput,
+        output_schema = types.DisassociateInstanceStorageConfigOutput,
+        http_method = "DELETE",
+        http_path = "/instance/{InstanceId}/storage-config/{AssociationId}",
+    }, options)
+end
+
+function Client:disassociateLambdaFunction(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateLambdaFunction",
+        input_schema = types.DisassociateLambdaFunctionInput,
+        output_schema = types.DisassociateLambdaFunctionOutput,
+        http_method = "DELETE",
+        http_path = "/instance/{InstanceId}/lambda-function",
+    }, options)
+end
+
+function Client:disassociateLexBot(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateLexBot",
+        input_schema = types.DisassociateLexBotInput,
+        output_schema = types.DisassociateLexBotOutput,
+        http_method = "DELETE",
+        http_path = "/instance/{InstanceId}/lex-bot",
+    }, options)
+end
+
+function Client:disassociatePhoneNumberContactFlow(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociatePhoneNumberContactFlow",
+        input_schema = types.DisassociatePhoneNumberContactFlowInput,
+        output_schema = types.DisassociatePhoneNumberContactFlowOutput,
+        http_method = "DELETE",
+        http_path = "/phone-number/{PhoneNumberId}/contact-flow",
+    }, options)
+end
+
+function Client:disassociateQueueEmailAddresses(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateQueueEmailAddresses",
+        input_schema = types.DisassociateQueueEmailAddressesInput,
+        output_schema = types.DisassociateQueueEmailAddressesOutput,
+        http_method = "POST",
+        http_path = "/queues/{InstanceId}/{QueueId}/disassociate-email-addresses",
+    }, options)
+end
+
+function Client:disassociateQueueQuickConnects(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateQueueQuickConnects",
+        input_schema = types.DisassociateQueueQuickConnectsInput,
+        output_schema = types.DisassociateQueueQuickConnectsOutput,
+        http_method = "POST",
+        http_path = "/queues/{InstanceId}/{QueueId}/disassociate-quick-connects",
+    }, options)
+end
+
+function Client:disassociateRoutingProfileQueues(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateRoutingProfileQueues",
+        input_schema = types.DisassociateRoutingProfileQueuesInput,
+        output_schema = types.DisassociateRoutingProfileQueuesOutput,
+        http_method = "POST",
+        http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/disassociate-queues",
+    }, options)
+end
+
+function Client:disassociateSecurityKey(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateSecurityKey",
+        input_schema = types.DisassociateSecurityKeyInput,
+        output_schema = types.DisassociateSecurityKeyOutput,
+        http_method = "DELETE",
+        http_path = "/instance/{InstanceId}/security-key/{AssociationId}",
+    }, options)
+end
+
+function Client:disassociateSecurityProfiles(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateSecurityProfiles",
+        input_schema = types.DisassociateSecurityProfilesInput,
+        output_schema = types.DisassociateSecurityProfilesOutput,
+        http_method = "POST",
+        http_path = "/disassociate-security-profiles/{InstanceId}",
+    }, options)
+end
+
+function Client:disassociateTrafficDistributionGroupUser(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateTrafficDistributionGroupUser",
+        input_schema = types.DisassociateTrafficDistributionGroupUserInput,
+        output_schema = types.DisassociateTrafficDistributionGroupUserOutput,
+        http_method = "DELETE",
+        http_path = "/traffic-distribution-group/{TrafficDistributionGroupId}/user",
+    }, options)
+end
+
+function Client:disassociateUserProficiencies(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateUserProficiencies",
+        input_schema = types.DisassociateUserProficienciesInput,
+        output_schema = types.DisassociateUserProficienciesOutput,
+        http_method = "POST",
+        http_path = "/users/{InstanceId}/{UserId}/disassociate-proficiencies",
+    }, options)
+end
+
+function Client:disassociateWorkspace(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateWorkspace",
+        input_schema = types.DisassociateWorkspaceInput,
+        output_schema = types.DisassociateWorkspaceOutput,
+        http_method = "POST",
+        http_path = "/workspaces/{InstanceId}/{WorkspaceId}/disassociate",
+    }, options)
+end
+
+function Client:dismissUserContact(input, options)
+    return self:invokeOperation(input, {
+        name = "DismissUserContact",
+        input_schema = types.DismissUserContactInput,
+        output_schema = types.DismissUserContactOutput,
+        http_method = "POST",
+        http_path = "/users/{InstanceId}/{UserId}/contact",
+    }, options)
+end
+
+function Client:evaluateDataTableValues(input, options)
+    return self:invokeOperation(input, {
+        name = "EvaluateDataTableValues",
+        input_schema = types.EvaluateDataTableValuesInput,
+        output_schema = types.EvaluateDataTableValuesOutput,
+        http_method = "POST",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}/values/evaluate",
+    }, options)
+end
+
+function Client:getAttachedFile(input, options)
+    return self:invokeOperation(input, {
+        name = "GetAttachedFile",
+        input_schema = types.GetAttachedFileInput,
+        output_schema = types.GetAttachedFileOutput,
+        http_method = "GET",
+        http_path = "/attached-files/{InstanceId}/{FileId}",
+    }, options)
+end
+
+function Client:getContactAttributes(input, options)
+    return self:invokeOperation(input, {
+        name = "GetContactAttributes",
+        input_schema = types.GetContactAttributesInput,
+        output_schema = types.GetContactAttributesOutput,
+        http_method = "GET",
+        http_path = "/contact/attributes/{InstanceId}/{InitialContactId}",
+    }, options)
+end
+
+function Client:getContactMetrics(input, options)
+    return self:invokeOperation(input, {
+        name = "GetContactMetrics",
+        input_schema = types.GetContactMetricsInput,
+        output_schema = types.GetContactMetricsOutput,
+        http_method = "POST",
+        http_path = "/metrics/contact",
+    }, options)
+end
+
+function Client:getCurrentMetricData(input, options)
+    return self:invokeOperation(input, {
+        name = "GetCurrentMetricData",
+        input_schema = types.GetCurrentMetricDataInput,
+        output_schema = types.GetCurrentMetricDataOutput,
+        http_method = "POST",
+        http_path = "/metrics/current/{InstanceId}",
+    }, options)
+end
+
+function Client:getCurrentUserData(input, options)
+    return self:invokeOperation(input, {
+        name = "GetCurrentUserData",
+        input_schema = types.GetCurrentUserDataInput,
+        output_schema = types.GetCurrentUserDataOutput,
+        http_method = "POST",
+        http_path = "/metrics/userdata/{InstanceId}",
+    }, options)
+end
+
+function Client:getEffectiveHoursOfOperations(input, options)
+    return self:invokeOperation(input, {
+        name = "GetEffectiveHoursOfOperations",
+        input_schema = types.GetEffectiveHoursOfOperationsInput,
+        output_schema = types.GetEffectiveHoursOfOperationsOutput,
+        http_method = "GET",
+        http_path = "/effective-hours-of-operations/{InstanceId}/{HoursOfOperationId}",
+    }, options)
+end
+
+function Client:getFederationToken(input, options)
+    return self:invokeOperation(input, {
+        name = "GetFederationToken",
+        input_schema = types.GetFederationTokenInput,
+        output_schema = types.GetFederationTokenOutput,
+        http_method = "GET",
+        http_path = "/user/federate/{InstanceId}",
+    }, options)
+end
+
+function Client:getFlowAssociation(input, options)
+    return self:invokeOperation(input, {
+        name = "GetFlowAssociation",
+        input_schema = types.GetFlowAssociationInput,
+        output_schema = types.GetFlowAssociationOutput,
+        http_method = "GET",
+        http_path = "/flow-associations/{InstanceId}/{ResourceId}/{ResourceType}",
+    }, options)
+end
+
+function Client:getMetricData(input, options)
+    return self:invokeOperation(input, {
+        name = "GetMetricData",
+        input_schema = types.GetMetricDataInput,
+        output_schema = types.GetMetricDataOutput,
+        http_method = "POST",
+        http_path = "/metrics/historical/{InstanceId}",
+    }, options)
+end
+
+function Client:getMetricDataV2(input, options)
+    return self:invokeOperation(input, {
+        name = "GetMetricDataV2",
+        input_schema = types.GetMetricDataV2Input,
+        output_schema = types.GetMetricDataV2Output,
+        http_method = "POST",
+        http_path = "/metrics/data",
+    }, options)
+end
+
+function Client:getPromptFile(input, options)
+    return self:invokeOperation(input, {
+        name = "GetPromptFile",
+        input_schema = types.GetPromptFileInput,
+        output_schema = types.GetPromptFileOutput,
+        http_method = "GET",
+        http_path = "/prompts/{InstanceId}/{PromptId}/file",
+    }, options)
+end
+
+function Client:getTaskTemplate(input, options)
+    return self:invokeOperation(input, {
+        name = "GetTaskTemplate",
+        input_schema = types.GetTaskTemplateInput,
+        output_schema = types.GetTaskTemplateOutput,
+        http_method = "GET",
+        http_path = "/instance/{InstanceId}/task/template/{TaskTemplateId}",
+    }, options)
+end
+
+function Client:getTestCaseExecutionSummary(input, options)
+    return self:invokeOperation(input, {
+        name = "GetTestCaseExecutionSummary",
+        input_schema = types.GetTestCaseExecutionSummaryInput,
+        output_schema = types.GetTestCaseExecutionSummaryOutput,
+        http_method = "GET",
+        http_path = "/test-cases/{InstanceId}/{TestCaseId}/{TestCaseExecutionId}/summary",
+    }, options)
+end
+
+function Client:getTrafficDistribution(input, options)
+    return self:invokeOperation(input, {
+        name = "GetTrafficDistribution",
+        input_schema = types.GetTrafficDistributionInput,
+        output_schema = types.GetTrafficDistributionOutput,
+        http_method = "GET",
+        http_path = "/traffic-distribution/{Id}",
+    }, options)
+end
+
+function Client:importPhoneNumber(input, options)
+    return self:invokeOperation(input, {
+        name = "ImportPhoneNumber",
+        input_schema = types.ImportPhoneNumberInput,
+        output_schema = types.ImportPhoneNumberOutput,
+        http_method = "POST",
+        http_path = "/phone-number/import",
+    }, options)
+end
+
+function Client:importWorkspaceMedia(input, options)
+    return self:invokeOperation(input, {
+        name = "ImportWorkspaceMedia",
+        input_schema = types.ImportWorkspaceMediaInput,
+        output_schema = types.ImportWorkspaceMediaOutput,
+        http_method = "POST",
+        http_path = "/workspaces/{InstanceId}/{WorkspaceId}/media",
+    }, options)
+end
+
+function Client:listAgentStatuses(input, options)
+    return self:invokeOperation(input, {
+        name = "ListAgentStatuses",
+        input_schema = types.ListAgentStatusesInput,
+        output_schema = types.ListAgentStatusesOutput,
+        http_method = "GET",
+        http_path = "/agent-status/{InstanceId}",
+    }, options)
+end
+
+function Client:listAnalyticsDataAssociations(input, options)
+    return self:invokeOperation(input, {
+        name = "ListAnalyticsDataAssociations",
+        input_schema = types.ListAnalyticsDataAssociationsInput,
+        output_schema = types.ListAnalyticsDataAssociationsOutput,
+        http_method = "GET",
+        http_path = "/analytics-data/instance/{InstanceId}/association",
+    }, options)
+end
+
+function Client:listAnalyticsDataLakeDataSets(input, options)
+    return self:invokeOperation(input, {
+        name = "ListAnalyticsDataLakeDataSets",
+        input_schema = types.ListAnalyticsDataLakeDataSetsInput,
+        output_schema = types.ListAnalyticsDataLakeDataSetsOutput,
+        http_method = "GET",
+        http_path = "/analytics-data/instance/{InstanceId}/datasets",
+    }, options)
+end
+
+function Client:listApprovedOrigins(input, options)
+    return self:invokeOperation(input, {
+        name = "ListApprovedOrigins",
+        input_schema = types.ListApprovedOriginsInput,
+        output_schema = types.ListApprovedOriginsOutput,
+        http_method = "GET",
+        http_path = "/instance/{InstanceId}/approved-origins",
+    }, options)
+end
+
+function Client:listAssociatedContacts(input, options)
+    return self:invokeOperation(input, {
+        name = "ListAssociatedContacts",
+        input_schema = types.ListAssociatedContactsInput,
+        output_schema = types.ListAssociatedContactsOutput,
+        http_method = "GET",
+        http_path = "/contact/associated/{InstanceId}",
+    }, options)
+end
+
+function Client:listAttachedFilesConfigurations(input, options)
+    return self:invokeOperation(input, {
+        name = "ListAttachedFilesConfigurations",
+        input_schema = types.ListAttachedFilesConfigurationsInput,
+        output_schema = types.ListAttachedFilesConfigurationsOutput,
+        http_method = "GET",
+        http_path = "/attached-files-configurations/{InstanceId}",
+    }, options)
+end
+
+function Client:listAuthenticationProfiles(input, options)
+    return self:invokeOperation(input, {
+        name = "ListAuthenticationProfiles",
+        input_schema = types.ListAuthenticationProfilesInput,
+        output_schema = types.ListAuthenticationProfilesOutput,
+        http_method = "GET",
+        http_path = "/authentication-profiles-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:listBots(input, options)
+    return self:invokeOperation(input, {
+        name = "ListBots",
+        input_schema = types.ListBotsInput,
+        output_schema = types.ListBotsOutput,
+        http_method = "GET",
+        http_path = "/instance/{InstanceId}/bots",
+    }, options)
+end
+
+function Client:listChildHoursOfOperations(input, options)
+    return self:invokeOperation(input, {
+        name = "ListChildHoursOfOperations",
+        input_schema = types.ListChildHoursOfOperationsInput,
+        output_schema = types.ListChildHoursOfOperationsOutput,
+        http_method = "GET",
+        http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/hours",
+    }, options)
+end
+
+function Client:listContactEvaluations(input, options)
+    return self:invokeOperation(input, {
+        name = "ListContactEvaluations",
+        input_schema = types.ListContactEvaluationsInput,
+        output_schema = types.ListContactEvaluationsOutput,
+        http_method = "GET",
+        http_path = "/contact-evaluations/{InstanceId}",
+    }, options)
+end
+
+function Client:listContactFlowModuleAliases(input, options)
+    return self:invokeOperation(input, {
+        name = "ListContactFlowModuleAliases",
+        input_schema = types.ListContactFlowModuleAliasesInput,
+        output_schema = types.ListContactFlowModuleAliasesOutput,
+        http_method = "GET",
+        http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/aliases",
+    }, options)
+end
+
+function Client:listContactFlowModules(input, options)
+    return self:invokeOperation(input, {
+        name = "ListContactFlowModules",
+        input_schema = types.ListContactFlowModulesInput,
+        output_schema = types.ListContactFlowModulesOutput,
+        http_method = "GET",
+        http_path = "/contact-flow-modules-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:listContactFlowModuleVersions(input, options)
+    return self:invokeOperation(input, {
+        name = "ListContactFlowModuleVersions",
+        input_schema = types.ListContactFlowModuleVersionsInput,
+        output_schema = types.ListContactFlowModuleVersionsOutput,
+        http_method = "GET",
+        http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/versions",
+    }, options)
+end
+
+function Client:listContactFlows(input, options)
+    return self:invokeOperation(input, {
+        name = "ListContactFlows",
+        input_schema = types.ListContactFlowsInput,
+        output_schema = types.ListContactFlowsOutput,
+        http_method = "GET",
+        http_path = "/contact-flows-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:listContactFlowVersions(input, options)
+    return self:invokeOperation(input, {
+        name = "ListContactFlowVersions",
+        input_schema = types.ListContactFlowVersionsInput,
+        output_schema = types.ListContactFlowVersionsOutput,
+        http_method = "GET",
+        http_path = "/contact-flows/{InstanceId}/{ContactFlowId}/versions",
+    }, options)
+end
+
+function Client:listContactReferences(input, options)
+    return self:invokeOperation(input, {
+        name = "ListContactReferences",
+        input_schema = types.ListContactReferencesInput,
+        output_schema = types.ListContactReferencesOutput,
+        http_method = "GET",
+        http_path = "/contact/references/{InstanceId}/{ContactId}",
+    }, options)
+end
+
+function Client:listDataTableAttributes(input, options)
+    return self:invokeOperation(input, {
+        name = "ListDataTableAttributes",
+        input_schema = types.ListDataTableAttributesInput,
+        output_schema = types.ListDataTableAttributesOutput,
+        http_method = "POST",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}/attributes",
+    }, options)
+end
+
+function Client:listDataTablePrimaryValues(input, options)
+    return self:invokeOperation(input, {
+        name = "ListDataTablePrimaryValues",
+        input_schema = types.ListDataTablePrimaryValuesInput,
+        output_schema = types.ListDataTablePrimaryValuesOutput,
+        http_method = "POST",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}/values/list-primary",
+    }, options)
+end
+
+function Client:listDataTables(input, options)
+    return self:invokeOperation(input, {
+        name = "ListDataTables",
+        input_schema = types.ListDataTablesInput,
+        output_schema = types.ListDataTablesOutput,
+        http_method = "GET",
+        http_path = "/data-tables/{InstanceId}",
+    }, options)
+end
+
+function Client:listDataTableValues(input, options)
+    return self:invokeOperation(input, {
+        name = "ListDataTableValues",
+        input_schema = types.ListDataTableValuesInput,
+        output_schema = types.ListDataTableValuesOutput,
+        http_method = "POST",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}/values/list",
+    }, options)
+end
+
+function Client:listDefaultVocabularies(input, options)
+    return self:invokeOperation(input, {
+        name = "ListDefaultVocabularies",
+        input_schema = types.ListDefaultVocabulariesInput,
+        output_schema = types.ListDefaultVocabulariesOutput,
+        http_method = "POST",
+        http_path = "/default-vocabulary-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:listEntitySecurityProfiles(input, options)
+    return self:invokeOperation(input, {
+        name = "ListEntitySecurityProfiles",
+        input_schema = types.ListEntitySecurityProfilesInput,
+        output_schema = types.ListEntitySecurityProfilesOutput,
+        http_method = "POST",
+        http_path = "/entity-security-profiles-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:listEvaluationForms(input, options)
+    return self:invokeOperation(input, {
+        name = "ListEvaluationForms",
+        input_schema = types.ListEvaluationFormsInput,
+        output_schema = types.ListEvaluationFormsOutput,
+        http_method = "GET",
+        http_path = "/evaluation-forms/{InstanceId}",
+    }, options)
+end
+
+function Client:listEvaluationFormVersions(input, options)
+    return self:invokeOperation(input, {
+        name = "ListEvaluationFormVersions",
+        input_schema = types.ListEvaluationFormVersionsInput,
+        output_schema = types.ListEvaluationFormVersionsOutput,
+        http_method = "GET",
+        http_path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}/versions",
+    }, options)
+end
+
+function Client:listFlowAssociations(input, options)
+    return self:invokeOperation(input, {
+        name = "ListFlowAssociations",
+        input_schema = types.ListFlowAssociationsInput,
+        output_schema = types.ListFlowAssociationsOutput,
+        http_method = "GET",
+        http_path = "/flow-associations-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:listHoursOfOperationOverrides(input, options)
+    return self:invokeOperation(input, {
+        name = "ListHoursOfOperationOverrides",
+        input_schema = types.ListHoursOfOperationOverridesInput,
+        output_schema = types.ListHoursOfOperationOverridesOutput,
+        http_method = "GET",
+        http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides",
+    }, options)
+end
+
+function Client:listHoursOfOperations(input, options)
+    return self:invokeOperation(input, {
+        name = "ListHoursOfOperations",
+        input_schema = types.ListHoursOfOperationsInput,
+        output_schema = types.ListHoursOfOperationsOutput,
+        http_method = "GET",
+        http_path = "/hours-of-operations-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:listInstanceAttributes(input, options)
+    return self:invokeOperation(input, {
+        name = "ListInstanceAttributes",
+        input_schema = types.ListInstanceAttributesInput,
+        output_schema = types.ListInstanceAttributesOutput,
+        http_method = "GET",
+        http_path = "/instance/{InstanceId}/attributes",
+    }, options)
+end
+
+function Client:listInstances(input, options)
+    return self:invokeOperation(input, {
+        name = "ListInstances",
+        input_schema = types.ListInstancesInput,
+        output_schema = types.ListInstancesOutput,
+        http_method = "GET",
+        http_path = "/instance",
+    }, options)
+end
+
+function Client:listInstanceStorageConfigs(input, options)
+    return self:invokeOperation(input, {
+        name = "ListInstanceStorageConfigs",
+        input_schema = types.ListInstanceStorageConfigsInput,
+        output_schema = types.ListInstanceStorageConfigsOutput,
+        http_method = "GET",
+        http_path = "/instance/{InstanceId}/storage-configs",
+    }, options)
+end
+
+function Client:listIntegrationAssociations(input, options)
+    return self:invokeOperation(input, {
+        name = "ListIntegrationAssociations",
+        input_schema = types.ListIntegrationAssociationsInput,
+        output_schema = types.ListIntegrationAssociationsOutput,
+        http_method = "GET",
+        http_path = "/instance/{InstanceId}/integration-associations",
+    }, options)
+end
+
+function Client:listLambdaFunctions(input, options)
+    return self:invokeOperation(input, {
+        name = "ListLambdaFunctions",
+        input_schema = types.ListLambdaFunctionsInput,
+        output_schema = types.ListLambdaFunctionsOutput,
+        http_method = "GET",
+        http_path = "/instance/{InstanceId}/lambda-functions",
+    }, options)
+end
+
+function Client:listLexBots(input, options)
+    return self:invokeOperation(input, {
+        name = "ListLexBots",
+        input_schema = types.ListLexBotsInput,
+        output_schema = types.ListLexBotsOutput,
+        http_method = "GET",
+        http_path = "/instance/{InstanceId}/lex-bots",
+    }, options)
+end
+
+function Client:listNotifications(input, options)
+    return self:invokeOperation(input, {
+        name = "ListNotifications",
+        input_schema = types.ListNotificationsInput,
+        output_schema = types.ListNotificationsOutput,
+        http_method = "GET",
+        http_path = "/notifications/{InstanceId}",
+    }, options)
+end
+
+function Client:listPhoneNumbers(input, options)
+    return self:invokeOperation(input, {
+        name = "ListPhoneNumbers",
+        input_schema = types.ListPhoneNumbersInput,
+        output_schema = types.ListPhoneNumbersOutput,
+        http_method = "GET",
+        http_path = "/phone-numbers-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:listPhoneNumbersV2(input, options)
+    return self:invokeOperation(input, {
+        name = "ListPhoneNumbersV2",
+        input_schema = types.ListPhoneNumbersV2Input,
+        output_schema = types.ListPhoneNumbersV2Output,
+        http_method = "POST",
+        http_path = "/phone-number/list",
+    }, options)
+end
+
+function Client:listPredefinedAttributes(input, options)
+    return self:invokeOperation(input, {
+        name = "ListPredefinedAttributes",
+        input_schema = types.ListPredefinedAttributesInput,
+        output_schema = types.ListPredefinedAttributesOutput,
+        http_method = "GET",
+        http_path = "/predefined-attributes/{InstanceId}",
+    }, options)
+end
+
+function Client:listPrompts(input, options)
+    return self:invokeOperation(input, {
+        name = "ListPrompts",
+        input_schema = types.ListPromptsInput,
+        output_schema = types.ListPromptsOutput,
+        http_method = "GET",
+        http_path = "/prompts-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:listQueueEmailAddresses(input, options)
+    return self:invokeOperation(input, {
+        name = "ListQueueEmailAddresses",
+        input_schema = types.ListQueueEmailAddressesInput,
+        output_schema = types.ListQueueEmailAddressesOutput,
+        http_method = "GET",
+        http_path = "/queues/{InstanceId}/{QueueId}/email-addresses",
+    }, options)
+end
+
+function Client:listQueueQuickConnects(input, options)
+    return self:invokeOperation(input, {
+        name = "ListQueueQuickConnects",
+        input_schema = types.ListQueueQuickConnectsInput,
+        output_schema = types.ListQueueQuickConnectsOutput,
+        http_method = "GET",
+        http_path = "/queues/{InstanceId}/{QueueId}/quick-connects",
+    }, options)
+end
+
+function Client:listQueues(input, options)
+    return self:invokeOperation(input, {
+        name = "ListQueues",
+        input_schema = types.ListQueuesInput,
+        output_schema = types.ListQueuesOutput,
+        http_method = "GET",
+        http_path = "/queues-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:listQuickConnects(input, options)
+    return self:invokeOperation(input, {
+        name = "ListQuickConnects",
+        input_schema = types.ListQuickConnectsInput,
+        output_schema = types.ListQuickConnectsOutput,
+        http_method = "GET",
+        http_path = "/quick-connects/{InstanceId}",
+    }, options)
+end
+
+function Client:listRealtimeContactAnalysisSegmentsV2(input, options)
+    return self:invokeOperation(input, {
+        name = "ListRealtimeContactAnalysisSegmentsV2",
+        input_schema = types.ListRealtimeContactAnalysisSegmentsV2Input,
+        output_schema = types.ListRealtimeContactAnalysisSegmentsV2Output,
+        http_method = "POST",
+        http_path = "/contact/list-real-time-analysis-segments-v2/{InstanceId}/{ContactId}",
+    }, options)
+end
+
+function Client:listRoutingProfileManualAssignmentQueues(input, options)
+    return self:invokeOperation(input, {
+        name = "ListRoutingProfileManualAssignmentQueues",
+        input_schema = types.ListRoutingProfileManualAssignmentQueuesInput,
+        output_schema = types.ListRoutingProfileManualAssignmentQueuesOutput,
+        http_method = "GET",
+        http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/manual-assignment-queues",
+    }, options)
+end
+
+function Client:listRoutingProfileQueues(input, options)
+    return self:invokeOperation(input, {
+        name = "ListRoutingProfileQueues",
+        input_schema = types.ListRoutingProfileQueuesInput,
+        output_schema = types.ListRoutingProfileQueuesOutput,
+        http_method = "GET",
+        http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/queues",
+    }, options)
+end
+
+function Client:listRoutingProfiles(input, options)
+    return self:invokeOperation(input, {
+        name = "ListRoutingProfiles",
+        input_schema = types.ListRoutingProfilesInput,
+        output_schema = types.ListRoutingProfilesOutput,
+        http_method = "GET",
+        http_path = "/routing-profiles-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:listRules(input, options)
+    return self:invokeOperation(input, {
+        name = "ListRules",
+        input_schema = types.ListRulesInput,
+        output_schema = types.ListRulesOutput,
+        http_method = "GET",
+        http_path = "/rules/{InstanceId}",
+    }, options)
+end
+
+function Client:listSecurityKeys(input, options)
+    return self:invokeOperation(input, {
+        name = "ListSecurityKeys",
+        input_schema = types.ListSecurityKeysInput,
+        output_schema = types.ListSecurityKeysOutput,
+        http_method = "GET",
+        http_path = "/instance/{InstanceId}/security-keys",
+    }, options)
+end
+
+function Client:listSecurityProfileApplications(input, options)
+    return self:invokeOperation(input, {
+        name = "ListSecurityProfileApplications",
+        input_schema = types.ListSecurityProfileApplicationsInput,
+        output_schema = types.ListSecurityProfileApplicationsOutput,
+        http_method = "GET",
+        http_path = "/security-profiles-applications/{InstanceId}/{SecurityProfileId}",
+    }, options)
+end
+
+function Client:listSecurityProfileFlowModules(input, options)
+    return self:invokeOperation(input, {
+        name = "ListSecurityProfileFlowModules",
+        input_schema = types.ListSecurityProfileFlowModulesInput,
+        output_schema = types.ListSecurityProfileFlowModulesOutput,
+        http_method = "GET",
+        http_path = "/security-profiles-flow-modules/{InstanceId}/{SecurityProfileId}",
+    }, options)
+end
+
+function Client:listSecurityProfilePermissions(input, options)
+    return self:invokeOperation(input, {
+        name = "ListSecurityProfilePermissions",
+        input_schema = types.ListSecurityProfilePermissionsInput,
+        output_schema = types.ListSecurityProfilePermissionsOutput,
+        http_method = "GET",
+        http_path = "/security-profiles-permissions/{InstanceId}/{SecurityProfileId}",
+    }, options)
+end
+
+function Client:listSecurityProfiles(input, options)
+    return self:invokeOperation(input, {
+        name = "ListSecurityProfiles",
+        input_schema = types.ListSecurityProfilesInput,
+        output_schema = types.ListSecurityProfilesOutput,
+        http_method = "GET",
+        http_path = "/security-profiles-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:listTagsForResource(input, options)
+    return self:invokeOperation(input, {
+        name = "ListTagsForResource",
+        input_schema = types.ListTagsForResourceInput,
+        output_schema = types.ListTagsForResourceOutput,
+        http_method = "GET",
+        http_path = "/tags/{resourceArn}",
+    }, options)
+end
+
+function Client:listTaskTemplates(input, options)
+    return self:invokeOperation(input, {
+        name = "ListTaskTemplates",
+        input_schema = types.ListTaskTemplatesInput,
+        output_schema = types.ListTaskTemplatesOutput,
+        http_method = "GET",
+        http_path = "/instance/{InstanceId}/task/template",
+    }, options)
+end
+
+function Client:listTestCaseExecutionRecords(input, options)
+    return self:invokeOperation(input, {
+        name = "ListTestCaseExecutionRecords",
+        input_schema = types.ListTestCaseExecutionRecordsInput,
+        output_schema = types.ListTestCaseExecutionRecordsOutput,
+        http_method = "GET",
+        http_path = "/test-cases/{InstanceId}/{TestCaseId}/{TestCaseExecutionId}/records",
+    }, options)
+end
+
+function Client:listTestCaseExecutions(input, options)
+    return self:invokeOperation(input, {
+        name = "ListTestCaseExecutions",
+        input_schema = types.ListTestCaseExecutionsInput,
+        output_schema = types.ListTestCaseExecutionsOutput,
+        http_method = "GET",
+        http_path = "/test-case-executions/{InstanceId}",
+    }, options)
+end
+
+function Client:listTestCases(input, options)
+    return self:invokeOperation(input, {
+        name = "ListTestCases",
+        input_schema = types.ListTestCasesInput,
+        output_schema = types.ListTestCasesOutput,
+        http_method = "GET",
+        http_path = "/test-cases-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:listTrafficDistributionGroups(input, options)
+    return self:invokeOperation(input, {
+        name = "ListTrafficDistributionGroups",
+        input_schema = types.ListTrafficDistributionGroupsInput,
+        output_schema = types.ListTrafficDistributionGroupsOutput,
+        http_method = "GET",
+        http_path = "/traffic-distribution-groups",
+    }, options)
+end
+
+function Client:listTrafficDistributionGroupUsers(input, options)
+    return self:invokeOperation(input, {
+        name = "ListTrafficDistributionGroupUsers",
+        input_schema = types.ListTrafficDistributionGroupUsersInput,
+        output_schema = types.ListTrafficDistributionGroupUsersOutput,
+        http_method = "GET",
+        http_path = "/traffic-distribution-group/{TrafficDistributionGroupId}/user",
+    }, options)
+end
+
+function Client:listUseCases(input, options)
+    return self:invokeOperation(input, {
+        name = "ListUseCases",
+        input_schema = types.ListUseCasesInput,
+        output_schema = types.ListUseCasesOutput,
+        http_method = "GET",
+        http_path = "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}/use-cases",
+    }, options)
+end
+
+function Client:listUserHierarchyGroups(input, options)
+    return self:invokeOperation(input, {
+        name = "ListUserHierarchyGroups",
+        input_schema = types.ListUserHierarchyGroupsInput,
+        output_schema = types.ListUserHierarchyGroupsOutput,
+        http_method = "GET",
+        http_path = "/user-hierarchy-groups-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:listUserNotifications(input, options)
+    return self:invokeOperation(input, {
+        name = "ListUserNotifications",
+        input_schema = types.ListUserNotificationsInput,
+        output_schema = types.ListUserNotificationsOutput,
+        http_method = "GET",
+        http_path = "/users/{InstanceId}/{UserId}/notifications",
+    }, options)
+end
+
+function Client:listUserProficiencies(input, options)
+    return self:invokeOperation(input, {
+        name = "ListUserProficiencies",
+        input_schema = types.ListUserProficienciesInput,
+        output_schema = types.ListUserProficienciesOutput,
+        http_method = "GET",
+        http_path = "/users/{InstanceId}/{UserId}/proficiencies",
+    }, options)
+end
+
+function Client:listUsers(input, options)
+    return self:invokeOperation(input, {
+        name = "ListUsers",
+        input_schema = types.ListUsersInput,
+        output_schema = types.ListUsersOutput,
+        http_method = "GET",
+        http_path = "/users-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:listViews(input, options)
+    return self:invokeOperation(input, {
+        name = "ListViews",
+        input_schema = types.ListViewsInput,
+        output_schema = types.ListViewsOutput,
+        http_method = "GET",
+        http_path = "/views/{InstanceId}",
+    }, options)
+end
+
+function Client:listViewVersions(input, options)
+    return self:invokeOperation(input, {
+        name = "ListViewVersions",
+        input_schema = types.ListViewVersionsInput,
+        output_schema = types.ListViewVersionsOutput,
+        http_method = "GET",
+        http_path = "/views/{InstanceId}/{ViewId}/versions",
+    }, options)
+end
+
+function Client:listWorkspaceMedia(input, options)
+    return self:invokeOperation(input, {
+        name = "ListWorkspaceMedia",
+        input_schema = types.ListWorkspaceMediaInput,
+        output_schema = types.ListWorkspaceMediaOutput,
+        http_method = "GET",
+        http_path = "/workspaces/{InstanceId}/{WorkspaceId}/media",
+    }, options)
+end
+
+function Client:listWorkspacePages(input, options)
+    return self:invokeOperation(input, {
+        name = "ListWorkspacePages",
+        input_schema = types.ListWorkspacePagesInput,
+        output_schema = types.ListWorkspacePagesOutput,
+        http_method = "GET",
+        http_path = "/workspaces/{InstanceId}/{WorkspaceId}/pages",
+    }, options)
+end
+
+function Client:listWorkspaces(input, options)
+    return self:invokeOperation(input, {
+        name = "ListWorkspaces",
+        input_schema = types.ListWorkspacesInput,
+        output_schema = types.ListWorkspacesOutput,
+        http_method = "GET",
+        http_path = "/workspaces/{InstanceId}",
+    }, options)
+end
+
+function Client:monitorContact(input, options)
+    return self:invokeOperation(input, {
+        name = "MonitorContact",
+        input_schema = types.MonitorContactInput,
+        output_schema = types.MonitorContactOutput,
+        http_method = "POST",
+        http_path = "/contact/monitor",
+    }, options)
+end
+
+function Client:pauseContact(input, options)
+    return self:invokeOperation(input, {
+        name = "PauseContact",
+        input_schema = types.PauseContactInput,
+        output_schema = types.PauseContactOutput,
+        http_method = "POST",
+        http_path = "/contact/pause",
+    }, options)
+end
+
+function Client:putUserStatus(input, options)
+    return self:invokeOperation(input, {
+        name = "PutUserStatus",
+        input_schema = types.PutUserStatusInput,
+        output_schema = types.PutUserStatusOutput,
+        http_method = "PUT",
+        http_path = "/users/{InstanceId}/{UserId}/status",
+    }, options)
+end
+
+function Client:releasePhoneNumber(input, options)
+    return self:invokeOperation(input, {
+        name = "ReleasePhoneNumber",
+        input_schema = types.ReleasePhoneNumberInput,
+        output_schema = types.ReleasePhoneNumberOutput,
+        http_method = "DELETE",
+        http_path = "/phone-number/{PhoneNumberId}",
+    }, options)
+end
+
+function Client:replicateInstance(input, options)
+    return self:invokeOperation(input, {
+        name = "ReplicateInstance",
+        input_schema = types.ReplicateInstanceInput,
+        output_schema = types.ReplicateInstanceOutput,
+        http_method = "POST",
+        http_path = "/instance/{InstanceId}/replicate",
+    }, options)
+end
+
+function Client:resumeContact(input, options)
+    return self:invokeOperation(input, {
+        name = "ResumeContact",
+        input_schema = types.ResumeContactInput,
+        output_schema = types.ResumeContactOutput,
+        http_method = "POST",
+        http_path = "/contact/resume",
+    }, options)
+end
+
+function Client:resumeContactRecording(input, options)
+    return self:invokeOperation(input, {
+        name = "ResumeContactRecording",
+        input_schema = types.ResumeContactRecordingInput,
+        output_schema = types.ResumeContactRecordingOutput,
+        http_method = "POST",
+        http_path = "/contact/resume-recording",
+    }, options)
+end
+
+function Client:searchAgentStatuses(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchAgentStatuses",
+        input_schema = types.SearchAgentStatusesInput,
+        output_schema = types.SearchAgentStatusesOutput,
+        http_method = "POST",
+        http_path = "/search-agent-statuses",
+    }, options)
+end
+
+function Client:searchAvailablePhoneNumbers(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchAvailablePhoneNumbers",
+        input_schema = types.SearchAvailablePhoneNumbersInput,
+        output_schema = types.SearchAvailablePhoneNumbersOutput,
+        http_method = "POST",
+        http_path = "/phone-number/search-available",
+    }, options)
+end
+
+function Client:searchContactEvaluations(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchContactEvaluations",
+        input_schema = types.SearchContactEvaluationsInput,
+        output_schema = types.SearchContactEvaluationsOutput,
+        http_method = "POST",
+        http_path = "/search-contact-evaluations",
+    }, options)
+end
+
+function Client:searchContactFlowModules(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchContactFlowModules",
+        input_schema = types.SearchContactFlowModulesInput,
+        output_schema = types.SearchContactFlowModulesOutput,
+        http_method = "POST",
+        http_path = "/search-contact-flow-modules",
+    }, options)
+end
+
+function Client:searchContactFlows(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchContactFlows",
+        input_schema = types.SearchContactFlowsInput,
+        output_schema = types.SearchContactFlowsOutput,
+        http_method = "POST",
+        http_path = "/search-contact-flows",
+    }, options)
+end
+
+function Client:searchContacts(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchContacts",
+        input_schema = types.SearchContactsInput,
+        output_schema = types.SearchContactsOutput,
+        http_method = "POST",
+        http_path = "/search-contacts",
+    }, options)
+end
+
+function Client:searchDataTables(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchDataTables",
+        input_schema = types.SearchDataTablesInput,
+        output_schema = types.SearchDataTablesOutput,
+        http_method = "POST",
+        http_path = "/search-data-tables",
+    }, options)
+end
+
+function Client:searchEmailAddresses(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchEmailAddresses",
+        input_schema = types.SearchEmailAddressesInput,
+        output_schema = types.SearchEmailAddressesOutput,
+        http_method = "POST",
+        http_path = "/search-email-addresses",
+    }, options)
+end
+
+function Client:searchEvaluationForms(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchEvaluationForms",
+        input_schema = types.SearchEvaluationFormsInput,
+        output_schema = types.SearchEvaluationFormsOutput,
+        http_method = "POST",
+        http_path = "/search-evaluation-forms",
+    }, options)
+end
+
+function Client:searchHoursOfOperationOverrides(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchHoursOfOperationOverrides",
+        input_schema = types.SearchHoursOfOperationOverridesInput,
+        output_schema = types.SearchHoursOfOperationOverridesOutput,
+        http_method = "POST",
+        http_path = "/search-hours-of-operation-overrides",
+    }, options)
+end
+
+function Client:searchHoursOfOperations(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchHoursOfOperations",
+        input_schema = types.SearchHoursOfOperationsInput,
+        output_schema = types.SearchHoursOfOperationsOutput,
+        http_method = "POST",
+        http_path = "/search-hours-of-operations",
+    }, options)
+end
+
+function Client:searchNotifications(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchNotifications",
+        input_schema = types.SearchNotificationsInput,
+        output_schema = types.SearchNotificationsOutput,
+        http_method = "POST",
+        http_path = "/search-notifications",
+    }, options)
+end
+
+function Client:searchPredefinedAttributes(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchPredefinedAttributes",
+        input_schema = types.SearchPredefinedAttributesInput,
+        output_schema = types.SearchPredefinedAttributesOutput,
+        http_method = "POST",
+        http_path = "/search-predefined-attributes",
+    }, options)
+end
+
+function Client:searchPrompts(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchPrompts",
+        input_schema = types.SearchPromptsInput,
+        output_schema = types.SearchPromptsOutput,
+        http_method = "POST",
+        http_path = "/search-prompts",
+    }, options)
+end
+
+function Client:searchQueues(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchQueues",
+        input_schema = types.SearchQueuesInput,
+        output_schema = types.SearchQueuesOutput,
+        http_method = "POST",
+        http_path = "/search-queues",
+    }, options)
+end
+
+function Client:searchQuickConnects(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchQuickConnects",
+        input_schema = types.SearchQuickConnectsInput,
+        output_schema = types.SearchQuickConnectsOutput,
+        http_method = "POST",
+        http_path = "/search-quick-connects",
+    }, options)
+end
+
+function Client:searchResourceTags(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchResourceTags",
+        input_schema = types.SearchResourceTagsInput,
+        output_schema = types.SearchResourceTagsOutput,
+        http_method = "POST",
+        http_path = "/search-resource-tags",
+    }, options)
+end
+
+function Client:searchRoutingProfiles(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchRoutingProfiles",
+        input_schema = types.SearchRoutingProfilesInput,
+        output_schema = types.SearchRoutingProfilesOutput,
+        http_method = "POST",
+        http_path = "/search-routing-profiles",
+    }, options)
+end
+
+function Client:searchSecurityProfiles(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchSecurityProfiles",
+        input_schema = types.SearchSecurityProfilesInput,
+        output_schema = types.SearchSecurityProfilesOutput,
+        http_method = "POST",
+        http_path = "/search-security-profiles",
+    }, options)
+end
+
+function Client:searchTestCases(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchTestCases",
+        input_schema = types.SearchTestCasesInput,
+        output_schema = types.SearchTestCasesOutput,
+        http_method = "POST",
+        http_path = "/search-test-cases",
+    }, options)
+end
+
+function Client:searchUserHierarchyGroups(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchUserHierarchyGroups",
+        input_schema = types.SearchUserHierarchyGroupsInput,
+        output_schema = types.SearchUserHierarchyGroupsOutput,
+        http_method = "POST",
+        http_path = "/search-user-hierarchy-groups",
+    }, options)
+end
+
+function Client:searchUsers(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchUsers",
+        input_schema = types.SearchUsersInput,
+        output_schema = types.SearchUsersOutput,
+        http_method = "POST",
+        http_path = "/search-users",
+    }, options)
+end
+
+function Client:searchViews(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchViews",
+        input_schema = types.SearchViewsInput,
+        output_schema = types.SearchViewsOutput,
+        http_method = "POST",
+        http_path = "/search-views",
+    }, options)
+end
+
+function Client:searchVocabularies(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchVocabularies",
+        input_schema = types.SearchVocabulariesInput,
+        output_schema = types.SearchVocabulariesOutput,
+        http_method = "POST",
+        http_path = "/vocabulary-summary/{InstanceId}",
+    }, options)
+end
+
+function Client:searchWorkspaceAssociations(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchWorkspaceAssociations",
+        input_schema = types.SearchWorkspaceAssociationsInput,
+        output_schema = types.SearchWorkspaceAssociationsOutput,
+        http_method = "POST",
+        http_path = "/search-workspace-associations",
+    }, options)
+end
+
+function Client:searchWorkspaces(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchWorkspaces",
+        input_schema = types.SearchWorkspacesInput,
+        output_schema = types.SearchWorkspacesOutput,
+        http_method = "POST",
+        http_path = "/search-workspaces",
+    }, options)
+end
+
+function Client:sendChatIntegrationEvent(input, options)
+    return self:invokeOperation(input, {
+        name = "SendChatIntegrationEvent",
+        input_schema = types.SendChatIntegrationEventInput,
+        output_schema = types.SendChatIntegrationEventOutput,
+        http_method = "POST",
+        http_path = "/chat-integration-event",
+    }, options)
+end
+
+function Client:sendOutboundEmail(input, options)
+    return self:invokeOperation(input, {
+        name = "SendOutboundEmail",
+        input_schema = types.SendOutboundEmailInput,
+        output_schema = types.SendOutboundEmailOutput,
+        http_method = "PUT",
+        http_path = "/instance/{InstanceId}/outbound-email",
+    }, options)
+end
+
+function Client:startAttachedFileUpload(input, options)
+    return self:invokeOperation(input, {
+        name = "StartAttachedFileUpload",
+        input_schema = types.StartAttachedFileUploadInput,
+        output_schema = types.StartAttachedFileUploadOutput,
+        http_method = "PUT",
+        http_path = "/attached-files/{InstanceId}",
+    }, options)
+end
+
+function Client:startChatContact(input, options)
+    return self:invokeOperation(input, {
+        name = "StartChatContact",
+        input_schema = types.StartChatContactInput,
+        output_schema = types.StartChatContactOutput,
+        http_method = "PUT",
+        http_path = "/contact/chat",
+    }, options)
+end
+
+function Client:startContactEvaluation(input, options)
+    return self:invokeOperation(input, {
+        name = "StartContactEvaluation",
+        input_schema = types.StartContactEvaluationInput,
+        output_schema = types.StartContactEvaluationOutput,
+        http_method = "PUT",
+        http_path = "/contact-evaluations/{InstanceId}",
+    }, options)
+end
+
+function Client:startContactMediaProcessing(input, options)
+    return self:invokeOperation(input, {
+        name = "StartContactMediaProcessing",
+        input_schema = types.StartContactMediaProcessingInput,
+        output_schema = types.StartContactMediaProcessingOutput,
+        http_method = "POST",
+        http_path = "/contact/start-contact-media-processing",
+    }, options)
+end
+
+function Client:startContactRecording(input, options)
+    return self:invokeOperation(input, {
+        name = "StartContactRecording",
+        input_schema = types.StartContactRecordingInput,
+        output_schema = types.StartContactRecordingOutput,
+        http_method = "POST",
+        http_path = "/contact/start-recording",
+    }, options)
+end
+
+function Client:startContactStreaming(input, options)
+    return self:invokeOperation(input, {
+        name = "StartContactStreaming",
+        input_schema = types.StartContactStreamingInput,
+        output_schema = types.StartContactStreamingOutput,
+        http_method = "POST",
+        http_path = "/contact/start-streaming",
+    }, options)
+end
+
+function Client:startEmailContact(input, options)
+    return self:invokeOperation(input, {
+        name = "StartEmailContact",
+        input_schema = types.StartEmailContactInput,
+        output_schema = types.StartEmailContactOutput,
+        http_method = "PUT",
+        http_path = "/contact/email",
+    }, options)
+end
+
+function Client:startOutboundChatContact(input, options)
+    return self:invokeOperation(input, {
+        name = "StartOutboundChatContact",
+        input_schema = types.StartOutboundChatContactInput,
+        output_schema = types.StartOutboundChatContactOutput,
+        http_method = "PUT",
+        http_path = "/contact/outbound-chat",
+    }, options)
+end
+
+function Client:startOutboundEmailContact(input, options)
+    return self:invokeOperation(input, {
+        name = "StartOutboundEmailContact",
+        input_schema = types.StartOutboundEmailContactInput,
+        output_schema = types.StartOutboundEmailContactOutput,
+        http_method = "PUT",
+        http_path = "/contact/outbound-email",
+    }, options)
+end
+
+function Client:startOutboundVoiceContact(input, options)
+    return self:invokeOperation(input, {
+        name = "StartOutboundVoiceContact",
+        input_schema = types.StartOutboundVoiceContactInput,
+        output_schema = types.StartOutboundVoiceContactOutput,
+        http_method = "PUT",
+        http_path = "/contact/outbound-voice",
+    }, options)
+end
+
+function Client:startScreenSharing(input, options)
+    return self:invokeOperation(input, {
+        name = "StartScreenSharing",
+        input_schema = types.StartScreenSharingInput,
+        output_schema = types.StartScreenSharingOutput,
+        http_method = "PUT",
+        http_path = "/contact/screen-sharing",
+    }, options)
+end
+
+function Client:startTaskContact(input, options)
+    return self:invokeOperation(input, {
+        name = "StartTaskContact",
+        input_schema = types.StartTaskContactInput,
+        output_schema = types.StartTaskContactOutput,
+        http_method = "PUT",
+        http_path = "/contact/task",
+    }, options)
+end
+
+function Client:startTestCaseExecution(input, options)
+    return self:invokeOperation(input, {
+        name = "StartTestCaseExecution",
+        input_schema = types.StartTestCaseExecutionInput,
+        output_schema = types.StartTestCaseExecutionOutput,
+        http_method = "PUT",
+        http_path = "/test-cases/{InstanceId}/{TestCaseId}/start-execution",
+    }, options)
+end
+
+function Client:startWebRTCContact(input, options)
+    return self:invokeOperation(input, {
+        name = "StartWebRTCContact",
+        input_schema = types.StartWebRTCContactInput,
+        output_schema = types.StartWebRTCContactOutput,
+        http_method = "PUT",
+        http_path = "/contact/webrtc",
+    }, options)
+end
+
+function Client:stopContact(input, options)
+    return self:invokeOperation(input, {
+        name = "StopContact",
+        input_schema = types.StopContactInput,
+        output_schema = types.StopContactOutput,
+        http_method = "POST",
+        http_path = "/contact/stop",
+    }, options)
+end
+
+function Client:stopContactMediaProcessing(input, options)
+    return self:invokeOperation(input, {
+        name = "StopContactMediaProcessing",
+        input_schema = types.StopContactMediaProcessingInput,
+        output_schema = types.StopContactMediaProcessingOutput,
+        http_method = "POST",
+        http_path = "/contact/stop-contact-media-processing",
+    }, options)
+end
+
+function Client:stopContactRecording(input, options)
+    return self:invokeOperation(input, {
+        name = "StopContactRecording",
+        input_schema = types.StopContactRecordingInput,
+        output_schema = types.StopContactRecordingOutput,
+        http_method = "POST",
+        http_path = "/contact/stop-recording",
+    }, options)
+end
+
+function Client:stopContactStreaming(input, options)
+    return self:invokeOperation(input, {
+        name = "StopContactStreaming",
+        input_schema = types.StopContactStreamingInput,
+        output_schema = types.StopContactStreamingOutput,
+        http_method = "POST",
+        http_path = "/contact/stop-streaming",
+    }, options)
+end
+
+function Client:stopTestCaseExecution(input, options)
+    return self:invokeOperation(input, {
+        name = "StopTestCaseExecution",
+        input_schema = types.StopTestCaseExecutionInput,
+        output_schema = types.StopTestCaseExecutionOutput,
+        http_method = "POST",
+        http_path = "/test-cases/{InstanceId}/{TestCaseId}/{TestCaseExecutionId}/stop-execution",
+    }, options)
+end
+
+function Client:submitContactEvaluation(input, options)
+    return self:invokeOperation(input, {
+        name = "SubmitContactEvaluation",
+        input_schema = types.SubmitContactEvaluationInput,
+        output_schema = types.SubmitContactEvaluationOutput,
+        http_method = "POST",
+        http_path = "/contact-evaluations/{InstanceId}/{EvaluationId}/submit",
+    }, options)
+end
+
+function Client:suspendContactRecording(input, options)
+    return self:invokeOperation(input, {
+        name = "SuspendContactRecording",
+        input_schema = types.SuspendContactRecordingInput,
+        output_schema = types.SuspendContactRecordingOutput,
+        http_method = "POST",
+        http_path = "/contact/suspend-recording",
+    }, options)
+end
+
+function Client:tagContact(input, options)
+    return self:invokeOperation(input, {
+        name = "TagContact",
+        input_schema = types.TagContactInput,
+        output_schema = types.TagContactOutput,
+        http_method = "POST",
+        http_path = "/contact/tags",
+    }, options)
+end
+
+function Client:tagResource(input, options)
+    return self:invokeOperation(input, {
+        name = "TagResource",
+        input_schema = types.TagResourceInput,
+        output_schema = types.TagResourceOutput,
+        http_method = "POST",
+        http_path = "/tags/{resourceArn}",
+    }, options)
+end
+
+function Client:transferContact(input, options)
+    return self:invokeOperation(input, {
+        name = "TransferContact",
+        input_schema = types.TransferContactInput,
+        output_schema = types.TransferContactOutput,
+        http_method = "POST",
+        http_path = "/contact/transfer",
+    }, options)
+end
+
+function Client:untagContact(input, options)
+    return self:invokeOperation(input, {
+        name = "UntagContact",
+        input_schema = types.UntagContactInput,
+        output_schema = types.UntagContactOutput,
+        http_method = "DELETE",
+        http_path = "/contact/tags/{InstanceId}/{ContactId}",
+    }, options)
+end
+
+function Client:untagResource(input, options)
+    return self:invokeOperation(input, {
+        name = "UntagResource",
+        input_schema = types.UntagResourceInput,
+        output_schema = types.UntagResourceOutput,
+        http_method = "DELETE",
+        http_path = "/tags/{resourceArn}",
+    }, options)
+end
+
+function Client:updateAgentStatus(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateAgentStatus",
+        input_schema = types.UpdateAgentStatusInput,
+        output_schema = types.UpdateAgentStatusOutput,
+        http_method = "POST",
+        http_path = "/agent-status/{InstanceId}/{AgentStatusId}",
+    }, options)
+end
+
+function Client:updateAttachedFilesConfiguration(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateAttachedFilesConfiguration",
+        input_schema = types.UpdateAttachedFilesConfigurationInput,
+        output_schema = types.UpdateAttachedFilesConfigurationOutput,
+        http_method = "POST",
+        http_path = "/attached-files-configurations/{InstanceId}/{AttachmentScope}",
+    }, options)
+end
+
+function Client:updateAuthenticationProfile(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateAuthenticationProfile",
+        input_schema = types.UpdateAuthenticationProfileInput,
+        output_schema = types.UpdateAuthenticationProfileOutput,
+        http_method = "POST",
+        http_path = "/authentication-profiles/{InstanceId}/{AuthenticationProfileId}",
+    }, options)
+end
+
+function Client:updateContact(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateContact",
+        input_schema = types.UpdateContactInput,
+        output_schema = types.UpdateContactOutput,
+        http_method = "POST",
+        http_path = "/contacts/{InstanceId}/{ContactId}",
+    }, options)
+end
+
+function Client:updateContactAttributes(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateContactAttributes",
+        input_schema = types.UpdateContactAttributesInput,
+        output_schema = types.UpdateContactAttributesOutput,
+        http_method = "POST",
+        http_path = "/contact/attributes",
+    }, options)
+end
+
+function Client:updateContactEvaluation(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateContactEvaluation",
+        input_schema = types.UpdateContactEvaluationInput,
+        output_schema = types.UpdateContactEvaluationOutput,
+        http_method = "POST",
+        http_path = "/contact-evaluations/{InstanceId}/{EvaluationId}",
+    }, options)
+end
+
+function Client:updateContactFlowContent(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateContactFlowContent",
+        input_schema = types.UpdateContactFlowContentInput,
+        output_schema = types.UpdateContactFlowContentOutput,
+        http_method = "POST",
+        http_path = "/contact-flows/{InstanceId}/{ContactFlowId}/content",
+    }, options)
+end
+
+function Client:updateContactFlowMetadata(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateContactFlowMetadata",
+        input_schema = types.UpdateContactFlowMetadataInput,
+        output_schema = types.UpdateContactFlowMetadataOutput,
+        http_method = "POST",
+        http_path = "/contact-flows/{InstanceId}/{ContactFlowId}/metadata",
+    }, options)
+end
+
+function Client:updateContactFlowModuleAlias(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateContactFlowModuleAlias",
+        input_schema = types.UpdateContactFlowModuleAliasInput,
+        output_schema = types.UpdateContactFlowModuleAliasOutput,
+        http_method = "POST",
+        http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/alias/{AliasId}",
+    }, options)
+end
+
+function Client:updateContactFlowModuleContent(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateContactFlowModuleContent",
+        input_schema = types.UpdateContactFlowModuleContentInput,
+        output_schema = types.UpdateContactFlowModuleContentOutput,
+        http_method = "POST",
+        http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/content",
+    }, options)
+end
+
+function Client:updateContactFlowModuleMetadata(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateContactFlowModuleMetadata",
+        input_schema = types.UpdateContactFlowModuleMetadataInput,
+        output_schema = types.UpdateContactFlowModuleMetadataOutput,
+        http_method = "POST",
+        http_path = "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/metadata",
+    }, options)
+end
+
+function Client:updateContactFlowName(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateContactFlowName",
+        input_schema = types.UpdateContactFlowNameInput,
+        output_schema = types.UpdateContactFlowNameOutput,
+        http_method = "POST",
+        http_path = "/contact-flows/{InstanceId}/{ContactFlowId}/name",
+    }, options)
+end
+
+function Client:updateContactRoutingData(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateContactRoutingData",
+        input_schema = types.UpdateContactRoutingDataInput,
+        output_schema = types.UpdateContactRoutingDataOutput,
+        http_method = "POST",
+        http_path = "/contacts/{InstanceId}/{ContactId}/routing-data",
+    }, options)
+end
+
+function Client:updateContactSchedule(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateContactSchedule",
+        input_schema = types.UpdateContactScheduleInput,
+        output_schema = types.UpdateContactScheduleOutput,
+        http_method = "POST",
+        http_path = "/contact/schedule",
+    }, options)
+end
+
+function Client:updateDataTableAttribute(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateDataTableAttribute",
+        input_schema = types.UpdateDataTableAttributeInput,
+        output_schema = types.UpdateDataTableAttributeOutput,
+        http_method = "POST",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}/attributes/{AttributeName}",
+    }, options)
+end
+
+function Client:updateDataTableMetadata(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateDataTableMetadata",
+        input_schema = types.UpdateDataTableMetadataInput,
+        output_schema = types.UpdateDataTableMetadataOutput,
+        http_method = "POST",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}",
+    }, options)
+end
+
+function Client:updateDataTablePrimaryValues(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateDataTablePrimaryValues",
+        input_schema = types.UpdateDataTablePrimaryValuesInput,
+        output_schema = types.UpdateDataTablePrimaryValuesOutput,
+        http_method = "POST",
+        http_path = "/data-tables/{InstanceId}/{DataTableId}/values/update-primary",
+    }, options)
+end
+
+function Client:updateEmailAddressMetadata(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateEmailAddressMetadata",
+        input_schema = types.UpdateEmailAddressMetadataInput,
+        output_schema = types.UpdateEmailAddressMetadataOutput,
+        http_method = "POST",
+        http_path = "/email-addresses/{InstanceId}/{EmailAddressId}",
+    }, options)
+end
+
+function Client:updateEvaluationForm(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateEvaluationForm",
+        input_schema = types.UpdateEvaluationFormInput,
+        output_schema = types.UpdateEvaluationFormOutput,
+        http_method = "PUT",
+        http_path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}",
+    }, options)
+end
+
+function Client:updateHoursOfOperation(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateHoursOfOperation",
+        input_schema = types.UpdateHoursOfOperationInput,
+        output_schema = types.UpdateHoursOfOperationOutput,
+        http_method = "POST",
+        http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}",
+    }, options)
+end
+
+function Client:updateHoursOfOperationOverride(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateHoursOfOperationOverride",
+        input_schema = types.UpdateHoursOfOperationOverrideInput,
+        output_schema = types.UpdateHoursOfOperationOverrideOutput,
+        http_method = "POST",
+        http_path = "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides/{HoursOfOperationOverrideId}",
+    }, options)
+end
+
+function Client:updateInstanceAttribute(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateInstanceAttribute",
+        input_schema = types.UpdateInstanceAttributeInput,
+        output_schema = types.UpdateInstanceAttributeOutput,
+        http_method = "POST",
+        http_path = "/instance/{InstanceId}/attribute/{AttributeType}",
+    }, options)
+end
+
+function Client:updateInstanceStorageConfig(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateInstanceStorageConfig",
+        input_schema = types.UpdateInstanceStorageConfigInput,
+        output_schema = types.UpdateInstanceStorageConfigOutput,
+        http_method = "POST",
+        http_path = "/instance/{InstanceId}/storage-config/{AssociationId}",
+    }, options)
+end
+
+function Client:updateNotificationContent(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateNotificationContent",
+        input_schema = types.UpdateNotificationContentInput,
+        output_schema = types.UpdateNotificationContentOutput,
+        http_method = "POST",
+        http_path = "/notifications/{InstanceId}/{NotificationId}",
+    }, options)
+end
+
+function Client:updateParticipantAuthentication(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateParticipantAuthentication",
+        input_schema = types.UpdateParticipantAuthenticationInput,
+        output_schema = types.UpdateParticipantAuthenticationOutput,
+        http_method = "POST",
+        http_path = "/contact/update-participant-authentication",
+    }, options)
+end
+
+function Client:updateParticipantRoleConfig(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateParticipantRoleConfig",
+        input_schema = types.UpdateParticipantRoleConfigInput,
+        output_schema = types.UpdateParticipantRoleConfigOutput,
+        http_method = "PUT",
+        http_path = "/contact/participant-role-config/{InstanceId}/{ContactId}",
+    }, options)
+end
+
+function Client:updatePhoneNumber(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdatePhoneNumber",
+        input_schema = types.UpdatePhoneNumberInput,
+        output_schema = types.UpdatePhoneNumberOutput,
+        http_method = "PUT",
+        http_path = "/phone-number/{PhoneNumberId}",
+    }, options)
+end
+
+function Client:updatePhoneNumberMetadata(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdatePhoneNumberMetadata",
+        input_schema = types.UpdatePhoneNumberMetadataInput,
+        output_schema = types.UpdatePhoneNumberMetadataOutput,
+        http_method = "PUT",
+        http_path = "/phone-number/{PhoneNumberId}/metadata",
+    }, options)
+end
+
+function Client:updatePredefinedAttribute(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdatePredefinedAttribute",
+        input_schema = types.UpdatePredefinedAttributeInput,
+        output_schema = types.UpdatePredefinedAttributeOutput,
+        http_method = "POST",
+        http_path = "/predefined-attributes/{InstanceId}/{Name}",
+    }, options)
+end
+
+function Client:updatePrompt(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdatePrompt",
+        input_schema = types.UpdatePromptInput,
+        output_schema = types.UpdatePromptOutput,
+        http_method = "POST",
+        http_path = "/prompts/{InstanceId}/{PromptId}",
+    }, options)
+end
+
+function Client:updateQueueHoursOfOperation(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateQueueHoursOfOperation",
+        input_schema = types.UpdateQueueHoursOfOperationInput,
+        output_schema = types.UpdateQueueHoursOfOperationOutput,
+        http_method = "POST",
+        http_path = "/queues/{InstanceId}/{QueueId}/hours-of-operation",
+    }, options)
+end
+
+function Client:updateQueueMaxContacts(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateQueueMaxContacts",
+        input_schema = types.UpdateQueueMaxContactsInput,
+        output_schema = types.UpdateQueueMaxContactsOutput,
+        http_method = "POST",
+        http_path = "/queues/{InstanceId}/{QueueId}/max-contacts",
+    }, options)
+end
+
+function Client:updateQueueName(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateQueueName",
+        input_schema = types.UpdateQueueNameInput,
+        output_schema = types.UpdateQueueNameOutput,
+        http_method = "POST",
+        http_path = "/queues/{InstanceId}/{QueueId}/name",
+    }, options)
+end
+
+function Client:updateQueueOutboundCallerConfig(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateQueueOutboundCallerConfig",
+        input_schema = types.UpdateQueueOutboundCallerConfigInput,
+        output_schema = types.UpdateQueueOutboundCallerConfigOutput,
+        http_method = "POST",
+        http_path = "/queues/{InstanceId}/{QueueId}/outbound-caller-config",
+    }, options)
+end
+
+function Client:updateQueueOutboundEmailConfig(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateQueueOutboundEmailConfig",
+        input_schema = types.UpdateQueueOutboundEmailConfigInput,
+        output_schema = types.UpdateQueueOutboundEmailConfigOutput,
+        http_method = "POST",
+        http_path = "/queues/{InstanceId}/{QueueId}/outbound-email-config",
+    }, options)
+end
+
+function Client:updateQueueStatus(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateQueueStatus",
+        input_schema = types.UpdateQueueStatusInput,
+        output_schema = types.UpdateQueueStatusOutput,
+        http_method = "POST",
+        http_path = "/queues/{InstanceId}/{QueueId}/status",
+    }, options)
+end
+
+function Client:updateQuickConnectConfig(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateQuickConnectConfig",
+        input_schema = types.UpdateQuickConnectConfigInput,
+        output_schema = types.UpdateQuickConnectConfigOutput,
+        http_method = "POST",
+        http_path = "/quick-connects/{InstanceId}/{QuickConnectId}/config",
+    }, options)
+end
+
+function Client:updateQuickConnectName(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateQuickConnectName",
+        input_schema = types.UpdateQuickConnectNameInput,
+        output_schema = types.UpdateQuickConnectNameOutput,
+        http_method = "POST",
+        http_path = "/quick-connects/{InstanceId}/{QuickConnectId}/name",
+    }, options)
+end
+
+function Client:updateRoutingProfileAgentAvailabilityTimer(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateRoutingProfileAgentAvailabilityTimer",
+        input_schema = types.UpdateRoutingProfileAgentAvailabilityTimerInput,
+        output_schema = types.UpdateRoutingProfileAgentAvailabilityTimerOutput,
+        http_method = "POST",
+        http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/agent-availability-timer",
+    }, options)
+end
+
+function Client:updateRoutingProfileConcurrency(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateRoutingProfileConcurrency",
+        input_schema = types.UpdateRoutingProfileConcurrencyInput,
+        output_schema = types.UpdateRoutingProfileConcurrencyOutput,
+        http_method = "POST",
+        http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/concurrency",
+    }, options)
+end
+
+function Client:updateRoutingProfileDefaultOutboundQueue(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateRoutingProfileDefaultOutboundQueue",
+        input_schema = types.UpdateRoutingProfileDefaultOutboundQueueInput,
+        output_schema = types.UpdateRoutingProfileDefaultOutboundQueueOutput,
+        http_method = "POST",
+        http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/default-outbound-queue",
+    }, options)
+end
+
+function Client:updateRoutingProfileName(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateRoutingProfileName",
+        input_schema = types.UpdateRoutingProfileNameInput,
+        output_schema = types.UpdateRoutingProfileNameOutput,
+        http_method = "POST",
+        http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/name",
+    }, options)
+end
+
+function Client:updateRoutingProfileQueues(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateRoutingProfileQueues",
+        input_schema = types.UpdateRoutingProfileQueuesInput,
+        output_schema = types.UpdateRoutingProfileQueuesOutput,
+        http_method = "POST",
+        http_path = "/routing-profiles/{InstanceId}/{RoutingProfileId}/queues",
+    }, options)
+end
+
+function Client:updateRule(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateRule",
+        input_schema = types.UpdateRuleInput,
+        output_schema = types.UpdateRuleOutput,
+        http_method = "PUT",
+        http_path = "/rules/{InstanceId}/{RuleId}",
+    }, options)
+end
+
+function Client:updateSecurityProfile(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateSecurityProfile",
+        input_schema = types.UpdateSecurityProfileInput,
+        output_schema = types.UpdateSecurityProfileOutput,
+        http_method = "POST",
+        http_path = "/security-profiles/{InstanceId}/{SecurityProfileId}",
+    }, options)
+end
+
+function Client:updateTaskTemplate(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateTaskTemplate",
+        input_schema = types.UpdateTaskTemplateInput,
+        output_schema = types.UpdateTaskTemplateOutput,
+        http_method = "POST",
+        http_path = "/instance/{InstanceId}/task/template/{TaskTemplateId}",
+    }, options)
+end
+
+function Client:updateTestCase(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateTestCase",
+        input_schema = types.UpdateTestCaseInput,
+        output_schema = types.UpdateTestCaseOutput,
+        http_method = "POST",
+        http_path = "/test-cases/{InstanceId}/{TestCaseId}",
+    }, options)
+end
+
+function Client:updateTrafficDistribution(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateTrafficDistribution",
+        input_schema = types.UpdateTrafficDistributionInput,
+        output_schema = types.UpdateTrafficDistributionOutput,
+        http_method = "PUT",
+        http_path = "/traffic-distribution/{Id}",
+    }, options)
+end
+
+function Client:updateUserConfig(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateUserConfig",
+        input_schema = types.UpdateUserConfigInput,
+        output_schema = types.UpdateUserConfigOutput,
+        http_method = "POST",
+        http_path = "/users/{InstanceId}/{UserId}/config",
+    }, options)
+end
+
+function Client:updateUserHierarchy(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateUserHierarchy",
+        input_schema = types.UpdateUserHierarchyInput,
+        output_schema = types.UpdateUserHierarchyOutput,
+        http_method = "POST",
+        http_path = "/users/{InstanceId}/{UserId}/hierarchy",
+    }, options)
+end
+
+function Client:updateUserHierarchyGroupName(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateUserHierarchyGroupName",
+        input_schema = types.UpdateUserHierarchyGroupNameInput,
+        output_schema = types.UpdateUserHierarchyGroupNameOutput,
+        http_method = "POST",
+        http_path = "/user-hierarchy-groups/{InstanceId}/{HierarchyGroupId}/name",
+    }, options)
+end
+
+function Client:updateUserHierarchyStructure(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateUserHierarchyStructure",
+        input_schema = types.UpdateUserHierarchyStructureInput,
+        output_schema = types.UpdateUserHierarchyStructureOutput,
+        http_method = "POST",
+        http_path = "/user-hierarchy-structure/{InstanceId}",
+    }, options)
+end
+
+function Client:updateUserIdentityInfo(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateUserIdentityInfo",
+        input_schema = types.UpdateUserIdentityInfoInput,
+        output_schema = types.UpdateUserIdentityInfoOutput,
+        http_method = "POST",
+        http_path = "/users/{InstanceId}/{UserId}/identity-info",
+    }, options)
+end
+
+function Client:updateUserNotificationStatus(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateUserNotificationStatus",
+        input_schema = types.UpdateUserNotificationStatusInput,
+        output_schema = types.UpdateUserNotificationStatusOutput,
+        http_method = "POST",
+        http_path = "/users/{InstanceId}/{UserId}/notifications/{NotificationId}",
+    }, options)
+end
+
+function Client:updateUserPhoneConfig(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateUserPhoneConfig",
+        input_schema = types.UpdateUserPhoneConfigInput,
+        output_schema = types.UpdateUserPhoneConfigOutput,
+        http_method = "POST",
+        http_path = "/users/{InstanceId}/{UserId}/phone-config",
+    }, options)
+end
+
+function Client:updateUserProficiencies(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateUserProficiencies",
+        input_schema = types.UpdateUserProficienciesInput,
+        output_schema = types.UpdateUserProficienciesOutput,
+        http_method = "POST",
+        http_path = "/users/{InstanceId}/{UserId}/proficiencies",
+    }, options)
+end
+
+function Client:updateUserRoutingProfile(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateUserRoutingProfile",
+        input_schema = types.UpdateUserRoutingProfileInput,
+        output_schema = types.UpdateUserRoutingProfileOutput,
+        http_method = "POST",
+        http_path = "/users/{InstanceId}/{UserId}/routing-profile",
+    }, options)
+end
+
+function Client:updateUserSecurityProfiles(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateUserSecurityProfiles",
+        input_schema = types.UpdateUserSecurityProfilesInput,
+        output_schema = types.UpdateUserSecurityProfilesOutput,
+        http_method = "POST",
+        http_path = "/users/{InstanceId}/{UserId}/security-profiles",
+    }, options)
+end
+
+function Client:updateViewContent(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateViewContent",
+        input_schema = types.UpdateViewContentInput,
+        output_schema = types.UpdateViewContentOutput,
+        http_method = "POST",
+        http_path = "/views/{InstanceId}/{ViewId}",
+    }, options)
+end
+
+function Client:updateViewMetadata(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateViewMetadata",
+        input_schema = types.UpdateViewMetadataInput,
+        output_schema = types.UpdateViewMetadataOutput,
+        http_method = "POST",
+        http_path = "/views/{InstanceId}/{ViewId}/metadata",
+    }, options)
+end
+
+function Client:updateWorkspaceMetadata(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateWorkspaceMetadata",
+        input_schema = types.UpdateWorkspaceMetadataInput,
+        output_schema = types.UpdateWorkspaceMetadataOutput,
+        http_method = "POST",
+        http_path = "/workspaces/{InstanceId}/{WorkspaceId}/metadata",
+    }, options)
+end
+
+function Client:updateWorkspacePage(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateWorkspacePage",
+        input_schema = types.UpdateWorkspacePageInput,
+        output_schema = types.UpdateWorkspacePageOutput,
+        http_method = "POST",
+        http_path = "/workspaces/{InstanceId}/{WorkspaceId}/pages/{Page}",
+    }, options)
+end
+
+function Client:updateWorkspaceTheme(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateWorkspaceTheme",
+        input_schema = types.UpdateWorkspaceThemeInput,
+        output_schema = types.UpdateWorkspaceThemeOutput,
+        http_method = "POST",
+        http_path = "/workspaces/{InstanceId}/{WorkspaceId}/theme",
+    }, options)
+end
+
+function Client:updateWorkspaceVisibility(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateWorkspaceVisibility",
+        input_schema = types.UpdateWorkspaceVisibilityInput,
+        output_schema = types.UpdateWorkspaceVisibilityOutput,
+        http_method = "POST",
+        http_path = "/workspaces/{InstanceId}/{WorkspaceId}/visibility",
+    }, options)
+end
+
+return M

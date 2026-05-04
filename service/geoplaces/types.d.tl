@@ -1,0 +1,289 @@
+local record AutocompleteInput
+    QueryText: string
+    MaxResults: number
+    BiasPosition: {number}
+    Filter: AutocompleteFilter
+    PostalCodeMode: string
+    AdditionalFeatures: {string}
+    Language: string
+    PoliticalView: string
+    IntendedUse: string
+    Key: string
+end
+
+local record AutocompleteOutput
+    PricingBucket: string
+    ResultItems: {AutocompleteResultItem}
+end
+
+local record GeocodeInput
+    QueryText: string
+    QueryComponents: GeocodeQueryComponents
+    MaxResults: number
+    BiasPosition: {number}
+    Filter: GeocodeFilter
+    AdditionalFeatures: {string}
+    Language: string
+    PoliticalView: string
+    IntendedUse: string
+    Key: string
+end
+
+local record GeocodeOutput
+    PricingBucket: string
+    ResultItems: {GeocodeResultItem}
+end
+
+local record GetPlaceInput
+    PlaceId: string
+    AdditionalFeatures: {string}
+    Language: string
+    PoliticalView: string
+    IntendedUse: string
+    Key: string
+end
+
+local record GetPlaceOutput
+    PlaceId: string
+    PlaceType: string
+    Title: string
+    PricingBucket: string
+    Address: Address
+    AddressNumberCorrected: boolean
+    PostalCodeDetails: {PostalCodeDetails}
+    Position: {number}
+    MapView: {number}
+    Categories: {Category}
+    FoodTypes: {FoodType}
+    BusinessChains: {BusinessChain}
+    Contacts: Contacts
+    OpeningHours: {OpeningHours}
+    AccessPoints: {AccessPoint}
+    AccessRestrictions: {AccessRestriction}
+    TimeZone: TimeZone
+    PoliticalView: string
+    Phonemes: PhonemeDetails
+    MainAddress: RelatedPlace
+    SecondaryAddresses: {RelatedPlace}
+end
+
+local record ReverseGeocodeInput
+    QueryPosition: {number}
+    QueryRadius: number
+    MaxResults: number
+    Filter: ReverseGeocodeFilter
+    AdditionalFeatures: {string}
+    Language: string
+    PoliticalView: string
+    IntendedUse: string
+    Key: string
+    Heading: number
+end
+
+local record ReverseGeocodeOutput
+    PricingBucket: string
+    ResultItems: {ReverseGeocodeResultItem}
+end
+
+local record SearchNearbyInput
+    QueryPosition: {number}
+    QueryRadius: number
+    MaxResults: number
+    Filter: SearchNearbyFilter
+    AdditionalFeatures: {string}
+    Language: string
+    PoliticalView: string
+    IntendedUse: string
+    NextToken: string
+    Key: string
+end
+
+local record SearchNearbyOutput
+    PricingBucket: string
+    ResultItems: {SearchNearbyResultItem}
+    NextToken: string
+end
+
+local record SearchTextInput
+    QueryText: string
+    QueryId: string
+    MaxResults: number
+    BiasPosition: {number}
+    Filter: SearchTextFilter
+    AdditionalFeatures: {string}
+    Language: string
+    PoliticalView: string
+    IntendedUse: string
+    NextToken: string
+    Key: string
+end
+
+local record SearchTextOutput
+    PricingBucket: string
+    ResultItems: {SearchTextResultItem}
+    NextToken: string
+end
+
+local record SuggestInput
+    QueryText: string
+    MaxResults: number
+    MaxQueryRefinements: number
+    BiasPosition: {number}
+    Filter: SuggestFilter
+    AdditionalFeatures: {string}
+    Language: string
+    PoliticalView: string
+    IntendedUse: string
+    Key: string
+end
+
+local record SuggestOutput
+    PricingBucket: string
+    ResultItems: {SuggestResultItem}
+    QueryRefinements: {QueryRefinement}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    FieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    FieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    FieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    FieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    FieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    FieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+    Reason: string
+    FieldList: {ValidationExceptionField}
+end
+
+local record M
+    AutocompleteInput: AutocompleteInput
+    AutocompleteOutput: AutocompleteOutput
+    GeocodeInput: GeocodeInput
+    GeocodeOutput: GeocodeOutput
+    GetPlaceInput: GetPlaceInput
+    GetPlaceOutput: GetPlaceOutput
+    ReverseGeocodeInput: ReverseGeocodeInput
+    ReverseGeocodeOutput: ReverseGeocodeOutput
+    SearchNearbyInput: SearchNearbyInput
+    SearchNearbyOutput: SearchNearbyOutput
+    SearchTextInput: SearchTextInput
+    SearchTextOutput: SearchTextOutput
+    SuggestInput: SuggestInput
+    SuggestOutput: SuggestOutput
+end
+
+return M

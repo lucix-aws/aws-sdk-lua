@@ -1,0 +1,81 @@
+local types = require("personalize.types")
+
+local record Client
+    createBatchInferenceJob: function(Client, types.CreateBatchInferenceJobInput): types.CreateBatchInferenceJobOutput, table
+    createBatchSegmentJob: function(Client, types.CreateBatchSegmentJobInput): types.CreateBatchSegmentJobOutput, table
+    createCampaign: function(Client, types.CreateCampaignInput): types.CreateCampaignOutput, table
+    createDataDeletionJob: function(Client, types.CreateDataDeletionJobInput): types.CreateDataDeletionJobOutput, table
+    createDataset: function(Client, types.CreateDatasetInput): types.CreateDatasetOutput, table
+    createDatasetExportJob: function(Client, types.CreateDatasetExportJobInput): types.CreateDatasetExportJobOutput, table
+    createDatasetGroup: function(Client, types.CreateDatasetGroupInput): types.CreateDatasetGroupOutput, table
+    createDatasetImportJob: function(Client, types.CreateDatasetImportJobInput): types.CreateDatasetImportJobOutput, table
+    createEventTracker: function(Client, types.CreateEventTrackerInput): types.CreateEventTrackerOutput, table
+    createFilter: function(Client, types.CreateFilterInput): types.CreateFilterOutput, table
+    createMetricAttribution: function(Client, types.CreateMetricAttributionInput): types.CreateMetricAttributionOutput, table
+    createRecommender: function(Client, types.CreateRecommenderInput): types.CreateRecommenderOutput, table
+    createSchema: function(Client, types.CreateSchemaInput): types.CreateSchemaOutput, table
+    createSolution: function(Client, types.CreateSolutionInput): types.CreateSolutionOutput, table
+    createSolutionVersion: function(Client, types.CreateSolutionVersionInput): types.CreateSolutionVersionOutput, table
+    deleteCampaign: function(Client, types.DeleteCampaignInput): types.DeleteCampaignOutput, table
+    deleteDataset: function(Client, types.DeleteDatasetInput): types.DeleteDatasetOutput, table
+    deleteDatasetGroup: function(Client, types.DeleteDatasetGroupInput): types.DeleteDatasetGroupOutput, table
+    deleteEventTracker: function(Client, types.DeleteEventTrackerInput): types.DeleteEventTrackerOutput, table
+    deleteFilter: function(Client, types.DeleteFilterInput): types.DeleteFilterOutput, table
+    deleteMetricAttribution: function(Client, types.DeleteMetricAttributionInput): types.DeleteMetricAttributionOutput, table
+    deleteRecommender: function(Client, types.DeleteRecommenderInput): types.DeleteRecommenderOutput, table
+    deleteSchema: function(Client, types.DeleteSchemaInput): types.DeleteSchemaOutput, table
+    deleteSolution: function(Client, types.DeleteSolutionInput): types.DeleteSolutionOutput, table
+    describeAlgorithm: function(Client, types.DescribeAlgorithmInput): types.DescribeAlgorithmOutput, table
+    describeBatchInferenceJob: function(Client, types.DescribeBatchInferenceJobInput): types.DescribeBatchInferenceJobOutput, table
+    describeBatchSegmentJob: function(Client, types.DescribeBatchSegmentJobInput): types.DescribeBatchSegmentJobOutput, table
+    describeCampaign: function(Client, types.DescribeCampaignInput): types.DescribeCampaignOutput, table
+    describeDataDeletionJob: function(Client, types.DescribeDataDeletionJobInput): types.DescribeDataDeletionJobOutput, table
+    describeDataset: function(Client, types.DescribeDatasetInput): types.DescribeDatasetOutput, table
+    describeDatasetExportJob: function(Client, types.DescribeDatasetExportJobInput): types.DescribeDatasetExportJobOutput, table
+    describeDatasetGroup: function(Client, types.DescribeDatasetGroupInput): types.DescribeDatasetGroupOutput, table
+    describeDatasetImportJob: function(Client, types.DescribeDatasetImportJobInput): types.DescribeDatasetImportJobOutput, table
+    describeEventTracker: function(Client, types.DescribeEventTrackerInput): types.DescribeEventTrackerOutput, table
+    describeFeatureTransformation: function(Client, types.DescribeFeatureTransformationInput): types.DescribeFeatureTransformationOutput, table
+    describeFilter: function(Client, types.DescribeFilterInput): types.DescribeFilterOutput, table
+    describeMetricAttribution: function(Client, types.DescribeMetricAttributionInput): types.DescribeMetricAttributionOutput, table
+    describeRecipe: function(Client, types.DescribeRecipeInput): types.DescribeRecipeOutput, table
+    describeRecommender: function(Client, types.DescribeRecommenderInput): types.DescribeRecommenderOutput, table
+    describeSchema: function(Client, types.DescribeSchemaInput): types.DescribeSchemaOutput, table
+    describeSolution: function(Client, types.DescribeSolutionInput): types.DescribeSolutionOutput, table
+    describeSolutionVersion: function(Client, types.DescribeSolutionVersionInput): types.DescribeSolutionVersionOutput, table
+    getSolutionMetrics: function(Client, types.GetSolutionMetricsInput): types.GetSolutionMetricsOutput, table
+    listBatchInferenceJobs: function(Client, types.ListBatchInferenceJobsInput): types.ListBatchInferenceJobsOutput, table
+    listBatchSegmentJobs: function(Client, types.ListBatchSegmentJobsInput): types.ListBatchSegmentJobsOutput, table
+    listCampaigns: function(Client, types.ListCampaignsInput): types.ListCampaignsOutput, table
+    listDataDeletionJobs: function(Client, types.ListDataDeletionJobsInput): types.ListDataDeletionJobsOutput, table
+    listDatasetExportJobs: function(Client, types.ListDatasetExportJobsInput): types.ListDatasetExportJobsOutput, table
+    listDatasetGroups: function(Client, types.ListDatasetGroupsInput): types.ListDatasetGroupsOutput, table
+    listDatasetImportJobs: function(Client, types.ListDatasetImportJobsInput): types.ListDatasetImportJobsOutput, table
+    listDatasets: function(Client, types.ListDatasetsInput): types.ListDatasetsOutput, table
+    listEventTrackers: function(Client, types.ListEventTrackersInput): types.ListEventTrackersOutput, table
+    listFilters: function(Client, types.ListFiltersInput): types.ListFiltersOutput, table
+    listMetricAttributionMetrics: function(Client, types.ListMetricAttributionMetricsInput): types.ListMetricAttributionMetricsOutput, table
+    listMetricAttributions: function(Client, types.ListMetricAttributionsInput): types.ListMetricAttributionsOutput, table
+    listRecipes: function(Client, types.ListRecipesInput): types.ListRecipesOutput, table
+    listRecommenders: function(Client, types.ListRecommendersInput): types.ListRecommendersOutput, table
+    listSchemas: function(Client, types.ListSchemasInput): types.ListSchemasOutput, table
+    listSolutions: function(Client, types.ListSolutionsInput): types.ListSolutionsOutput, table
+    listSolutionVersions: function(Client, types.ListSolutionVersionsInput): types.ListSolutionVersionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    startRecommender: function(Client, types.StartRecommenderInput): types.StartRecommenderOutput, table
+    stopRecommender: function(Client, types.StopRecommenderInput): types.StopRecommenderOutput, table
+    stopSolutionVersionCreation: function(Client, types.StopSolutionVersionCreationInput): types.StopSolutionVersionCreationOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateCampaign: function(Client, types.UpdateCampaignInput): types.UpdateCampaignOutput, table
+    updateDataset: function(Client, types.UpdateDatasetInput): types.UpdateDatasetOutput, table
+    updateMetricAttribution: function(Client, types.UpdateMetricAttributionInput): types.UpdateMetricAttributionOutput, table
+    updateRecommender: function(Client, types.UpdateRecommenderInput): types.UpdateRecommenderOutput, table
+    updateSolution: function(Client, types.UpdateSolutionInput): types.UpdateSolutionOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

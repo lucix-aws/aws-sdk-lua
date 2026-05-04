@@ -1,0 +1,1129 @@
+local record AssociateLicenseInput
+    workspaceId: string
+    licenseType: string
+    grafanaToken: string
+end
+
+local record AssociateLicenseOutput
+    workspace: WorkspaceDescription
+end
+
+local record CreateWorkspaceInput
+    accountAccessType: string
+    clientToken: string
+    organizationRoleName: string
+    permissionType: string
+    stackSetName: string
+    workspaceDataSources: {string}
+    workspaceDescription: string
+    workspaceName: string
+    workspaceNotificationDestinations: {string}
+    workspaceOrganizationalUnits: {string}
+    workspaceRoleArn: string
+    authenticationProviders: {string}
+    tags: {string : string}
+    vpcConfiguration: VpcConfiguration
+    configuration: string
+    networkAccessControl: NetworkAccessConfiguration
+    grafanaVersion: string
+    kmsKeyId: string
+end
+
+local record CreateWorkspaceOutput
+    workspace: WorkspaceDescription
+end
+
+local record CreateWorkspaceApiKeyInput
+    keyName: string
+    keyRole: string
+    secondsToLive: number
+    workspaceId: string
+end
+
+local record CreateWorkspaceApiKeyOutput
+    keyName: string
+    key: string
+    workspaceId: string
+end
+
+local record CreateWorkspaceServiceAccountInput
+    name: string
+    grafanaRole: string
+    workspaceId: string
+end
+
+local record CreateWorkspaceServiceAccountOutput
+    id: string
+    name: string
+    grafanaRole: string
+    workspaceId: string
+end
+
+local record CreateWorkspaceServiceAccountTokenInput
+    name: string
+    secondsToLive: number
+    serviceAccountId: string
+    workspaceId: string
+end
+
+local record CreateWorkspaceServiceAccountTokenOutput
+    serviceAccountToken: ServiceAccountTokenSummaryWithKey
+    serviceAccountId: string
+    workspaceId: string
+end
+
+local record DeleteWorkspaceInput
+    workspaceId: string
+end
+
+local record DeleteWorkspaceOutput
+    workspace: WorkspaceDescription
+end
+
+local record DeleteWorkspaceApiKeyInput
+    keyName: string
+    workspaceId: string
+end
+
+local record DeleteWorkspaceApiKeyOutput
+    keyName: string
+    workspaceId: string
+end
+
+local record DeleteWorkspaceServiceAccountInput
+    serviceAccountId: string
+    workspaceId: string
+end
+
+local record DeleteWorkspaceServiceAccountOutput
+    serviceAccountId: string
+    workspaceId: string
+end
+
+local record DeleteWorkspaceServiceAccountTokenInput
+    tokenId: string
+    serviceAccountId: string
+    workspaceId: string
+end
+
+local record DeleteWorkspaceServiceAccountTokenOutput
+    tokenId: string
+    serviceAccountId: string
+    workspaceId: string
+end
+
+local record DescribeWorkspaceInput
+    workspaceId: string
+end
+
+local record DescribeWorkspaceOutput
+    workspace: WorkspaceDescription
+end
+
+local record DescribeWorkspaceAuthenticationInput
+    workspaceId: string
+end
+
+local record DescribeWorkspaceAuthenticationOutput
+    authentication: AuthenticationDescription
+end
+
+local record DescribeWorkspaceConfigurationInput
+    workspaceId: string
+end
+
+local record DescribeWorkspaceConfigurationOutput
+    configuration: string
+    grafanaVersion: string
+end
+
+local record DisassociateLicenseInput
+    workspaceId: string
+    licenseType: string
+end
+
+local record DisassociateLicenseOutput
+    workspace: WorkspaceDescription
+end
+
+local record ListPermissionsInput
+    maxResults: number
+    nextToken: string
+    userType: string
+    userId: string
+    groupId: string
+    workspaceId: string
+end
+
+local record ListPermissionsOutput
+    nextToken: string
+    permissions: {PermissionEntry}
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record ListVersionsInput
+    maxResults: number
+    nextToken: string
+    workspaceId: string
+end
+
+local record ListVersionsOutput
+    nextToken: string
+    grafanaVersions: {string}
+end
+
+local record ListWorkspacesInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListWorkspacesOutput
+    workspaces: {WorkspaceSummary}
+    nextToken: string
+end
+
+local record ListWorkspaceServiceAccountsInput
+    maxResults: number
+    nextToken: string
+    workspaceId: string
+end
+
+local record ListWorkspaceServiceAccountsOutput
+    nextToken: string
+    serviceAccounts: {ServiceAccountSummary}
+    workspaceId: string
+end
+
+local record ListWorkspaceServiceAccountTokensInput
+    maxResults: number
+    nextToken: string
+    serviceAccountId: string
+    workspaceId: string
+end
+
+local record ListWorkspaceServiceAccountTokensOutput
+    nextToken: string
+    serviceAccountTokens: {ServiceAccountTokenSummary}
+    serviceAccountId: string
+    workspaceId: string
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdatePermissionsInput
+    updateInstructionBatch: {UpdateInstruction}
+    workspaceId: string
+end
+
+local record UpdatePermissionsOutput
+    errors: {UpdateError}
+end
+
+local record UpdateWorkspaceInput
+    accountAccessType: string
+    organizationRoleName: string
+    permissionType: string
+    stackSetName: string
+    workspaceDataSources: {string}
+    workspaceDescription: string
+    workspaceId: string
+    workspaceName: string
+    workspaceNotificationDestinations: {string}
+    workspaceOrganizationalUnits: {string}
+    workspaceRoleArn: string
+    vpcConfiguration: VpcConfiguration
+    removeVpcConfiguration: boolean
+    networkAccessControl: NetworkAccessConfiguration
+    removeNetworkAccessConfiguration: boolean
+end
+
+local record UpdateWorkspaceOutput
+    workspace: WorkspaceDescription
+end
+
+local record UpdateWorkspaceAuthenticationInput
+    workspaceId: string
+    authenticationProviders: {string}
+    samlConfiguration: SamlConfiguration
+end
+
+local record UpdateWorkspaceAuthenticationOutput
+    authentication: AuthenticationDescription
+end
+
+local record UpdateWorkspaceConfigurationInput
+    configuration: string
+    workspaceId: string
+    grafanaVersion: string
+end
+
+local record UpdateWorkspaceConfigurationOutput
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record M
+    AssociateLicenseInput: AssociateLicenseInput
+    AssociateLicenseOutput: AssociateLicenseOutput
+    CreateWorkspaceInput: CreateWorkspaceInput
+    CreateWorkspaceOutput: CreateWorkspaceOutput
+    CreateWorkspaceApiKeyInput: CreateWorkspaceApiKeyInput
+    CreateWorkspaceApiKeyOutput: CreateWorkspaceApiKeyOutput
+    CreateWorkspaceServiceAccountInput: CreateWorkspaceServiceAccountInput
+    CreateWorkspaceServiceAccountOutput: CreateWorkspaceServiceAccountOutput
+    CreateWorkspaceServiceAccountTokenInput: CreateWorkspaceServiceAccountTokenInput
+    CreateWorkspaceServiceAccountTokenOutput: CreateWorkspaceServiceAccountTokenOutput
+    DeleteWorkspaceInput: DeleteWorkspaceInput
+    DeleteWorkspaceOutput: DeleteWorkspaceOutput
+    DeleteWorkspaceApiKeyInput: DeleteWorkspaceApiKeyInput
+    DeleteWorkspaceApiKeyOutput: DeleteWorkspaceApiKeyOutput
+    DeleteWorkspaceServiceAccountInput: DeleteWorkspaceServiceAccountInput
+    DeleteWorkspaceServiceAccountOutput: DeleteWorkspaceServiceAccountOutput
+    DeleteWorkspaceServiceAccountTokenInput: DeleteWorkspaceServiceAccountTokenInput
+    DeleteWorkspaceServiceAccountTokenOutput: DeleteWorkspaceServiceAccountTokenOutput
+    DescribeWorkspaceInput: DescribeWorkspaceInput
+    DescribeWorkspaceOutput: DescribeWorkspaceOutput
+    DescribeWorkspaceAuthenticationInput: DescribeWorkspaceAuthenticationInput
+    DescribeWorkspaceAuthenticationOutput: DescribeWorkspaceAuthenticationOutput
+    DescribeWorkspaceConfigurationInput: DescribeWorkspaceConfigurationInput
+    DescribeWorkspaceConfigurationOutput: DescribeWorkspaceConfigurationOutput
+    DisassociateLicenseInput: DisassociateLicenseInput
+    DisassociateLicenseOutput: DisassociateLicenseOutput
+    ListPermissionsInput: ListPermissionsInput
+    ListPermissionsOutput: ListPermissionsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListVersionsInput: ListVersionsInput
+    ListVersionsOutput: ListVersionsOutput
+    ListWorkspacesInput: ListWorkspacesInput
+    ListWorkspacesOutput: ListWorkspacesOutput
+    ListWorkspaceServiceAccountsInput: ListWorkspaceServiceAccountsInput
+    ListWorkspaceServiceAccountsOutput: ListWorkspaceServiceAccountsOutput
+    ListWorkspaceServiceAccountTokensInput: ListWorkspaceServiceAccountTokensInput
+    ListWorkspaceServiceAccountTokensOutput: ListWorkspaceServiceAccountTokensOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdatePermissionsInput: UpdatePermissionsInput
+    UpdatePermissionsOutput: UpdatePermissionsOutput
+    UpdateWorkspaceInput: UpdateWorkspaceInput
+    UpdateWorkspaceOutput: UpdateWorkspaceOutput
+    UpdateWorkspaceAuthenticationInput: UpdateWorkspaceAuthenticationInput
+    UpdateWorkspaceAuthenticationOutput: UpdateWorkspaceAuthenticationOutput
+    UpdateWorkspaceConfigurationInput: UpdateWorkspaceConfigurationInput
+    UpdateWorkspaceConfigurationOutput: UpdateWorkspaceConfigurationOutput
+end
+
+return M

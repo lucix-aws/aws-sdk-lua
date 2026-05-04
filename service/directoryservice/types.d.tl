@@ -1,0 +1,3227 @@
+local record AcceptSharedDirectoryInput
+    SharedDirectoryId: string
+end
+
+local record AcceptSharedDirectoryOutput
+    SharedDirectory: SharedDirectory
+end
+
+local record AddIpRoutesInput
+    DirectoryId: string
+    IpRoutes: {IpRoute}
+    UpdateSecurityGroupForDirectoryControllers: boolean
+end
+
+local record AddIpRoutesOutput
+end
+
+local record AddRegionInput
+    DirectoryId: string
+    RegionName: string
+    VPCSettings: DirectoryVpcSettings
+end
+
+local record AddRegionOutput
+end
+
+local record AddTagsToResourceInput
+    ResourceId: string
+    Tags: {Tag}
+end
+
+local record AddTagsToResourceOutput
+end
+
+local record CancelSchemaExtensionInput
+    DirectoryId: string
+    SchemaExtensionId: string
+end
+
+local record CancelSchemaExtensionOutput
+end
+
+local record ConnectDirectoryInput
+    Name: string
+    ShortName: string
+    Password: string
+    Description: string
+    Size: string
+    ConnectSettings: DirectoryConnectSettings
+    Tags: {Tag}
+    NetworkType: string
+end
+
+local record ConnectDirectoryOutput
+    DirectoryId: string
+end
+
+local record CreateAliasInput
+    DirectoryId: string
+    Alias: string
+end
+
+local record CreateAliasOutput
+    DirectoryId: string
+    Alias: string
+end
+
+local record CreateComputerInput
+    DirectoryId: string
+    ComputerName: string
+    Password: string
+    OrganizationalUnitDistinguishedName: string
+    ComputerAttributes: {Attribute}
+end
+
+local record CreateComputerOutput
+    Computer: Computer
+end
+
+local record CreateConditionalForwarderInput
+    DirectoryId: string
+    RemoteDomainName: string
+    DnsIpAddrs: {string}
+    DnsIpv6Addrs: {string}
+end
+
+local record CreateConditionalForwarderOutput
+end
+
+local record CreateDirectoryInput
+    Name: string
+    ShortName: string
+    Password: string
+    Description: string
+    Size: string
+    VpcSettings: DirectoryVpcSettings
+    Tags: {Tag}
+    NetworkType: string
+end
+
+local record CreateDirectoryOutput
+    DirectoryId: string
+end
+
+local record CreateHybridADInput
+    SecretArn: string
+    AssessmentId: string
+    Tags: {Tag}
+end
+
+local record CreateHybridADOutput
+    DirectoryId: string
+end
+
+local record CreateLogSubscriptionInput
+    DirectoryId: string
+    LogGroupName: string
+end
+
+local record CreateLogSubscriptionOutput
+end
+
+local record CreateMicrosoftADInput
+    Name: string
+    ShortName: string
+    Password: string
+    Description: string
+    VpcSettings: DirectoryVpcSettings
+    Edition: string
+    Tags: {Tag}
+    NetworkType: string
+end
+
+local record CreateMicrosoftADOutput
+    DirectoryId: string
+end
+
+local record CreateSnapshotInput
+    DirectoryId: string
+    Name: string
+end
+
+local record CreateSnapshotOutput
+    SnapshotId: string
+end
+
+local record CreateTrustInput
+    DirectoryId: string
+    RemoteDomainName: string
+    TrustPassword: string
+    TrustDirection: string
+    TrustType: string
+    ConditionalForwarderIpAddrs: {string}
+    ConditionalForwarderIpv6Addrs: {string}
+    SelectiveAuth: string
+end
+
+local record CreateTrustOutput
+    TrustId: string
+end
+
+local record DeleteADAssessmentInput
+    AssessmentId: string
+end
+
+local record DeleteADAssessmentOutput
+    AssessmentId: string
+end
+
+local record DeleteConditionalForwarderInput
+    DirectoryId: string
+    RemoteDomainName: string
+end
+
+local record DeleteConditionalForwarderOutput
+end
+
+local record DeleteDirectoryInput
+    DirectoryId: string
+end
+
+local record DeleteDirectoryOutput
+    DirectoryId: string
+end
+
+local record DeleteLogSubscriptionInput
+    DirectoryId: string
+end
+
+local record DeleteLogSubscriptionOutput
+end
+
+local record DeleteSnapshotInput
+    SnapshotId: string
+end
+
+local record DeleteSnapshotOutput
+    SnapshotId: string
+end
+
+local record DeleteTrustInput
+    TrustId: string
+    DeleteAssociatedConditionalForwarder: boolean
+end
+
+local record DeleteTrustOutput
+    TrustId: string
+end
+
+local record DeregisterCertificateInput
+    DirectoryId: string
+    CertificateId: string
+end
+
+local record DeregisterCertificateOutput
+end
+
+local record DeregisterEventTopicInput
+    DirectoryId: string
+    TopicName: string
+end
+
+local record DeregisterEventTopicOutput
+end
+
+local record DescribeADAssessmentInput
+    AssessmentId: string
+end
+
+local record DescribeADAssessmentOutput
+    Assessment: Assessment
+    AssessmentReports: {AssessmentReport}
+end
+
+local record DescribeCAEnrollmentPolicyInput
+    DirectoryId: string
+end
+
+local record DescribeCAEnrollmentPolicyOutput
+    DirectoryId: string
+    PcaConnectorArn: string
+    CaEnrollmentPolicyStatus: string
+    LastUpdatedDateTime: number
+    CaEnrollmentPolicyStatusReason: string
+end
+
+local record DescribeCertificateInput
+    DirectoryId: string
+    CertificateId: string
+end
+
+local record DescribeCertificateOutput
+    Certificate: Certificate
+end
+
+local record DescribeClientAuthenticationSettingsInput
+    DirectoryId: string
+    Type: string
+    NextToken: string
+    Limit: number
+end
+
+local record DescribeClientAuthenticationSettingsOutput
+    ClientAuthenticationSettingsInfo: {ClientAuthenticationSettingInfo}
+    NextToken: string
+end
+
+local record DescribeConditionalForwardersInput
+    DirectoryId: string
+    RemoteDomainNames: {string}
+end
+
+local record DescribeConditionalForwardersOutput
+    ConditionalForwarders: {ConditionalForwarder}
+end
+
+local record DescribeDirectoriesInput
+    DirectoryIds: {string}
+    NextToken: string
+    Limit: number
+end
+
+local record DescribeDirectoriesOutput
+    DirectoryDescriptions: {DirectoryDescription}
+    NextToken: string
+end
+
+local record DescribeDirectoryDataAccessInput
+    DirectoryId: string
+end
+
+local record DescribeDirectoryDataAccessOutput
+    DataAccessStatus: string
+end
+
+local record DescribeDomainControllersInput
+    DirectoryId: string
+    DomainControllerIds: {string}
+    NextToken: string
+    Limit: number
+end
+
+local record DescribeDomainControllersOutput
+    DomainControllers: {DomainController}
+    NextToken: string
+end
+
+local record DescribeEventTopicsInput
+    DirectoryId: string
+    TopicNames: {string}
+end
+
+local record DescribeEventTopicsOutput
+    EventTopics: {EventTopic}
+end
+
+local record DescribeHybridADUpdateInput
+    DirectoryId: string
+    UpdateType: string
+    NextToken: string
+end
+
+local record DescribeHybridADUpdateOutput
+    UpdateActivities: HybridUpdateActivities
+    NextToken: string
+end
+
+local record DescribeLDAPSSettingsInput
+    DirectoryId: string
+    Type: string
+    NextToken: string
+    Limit: number
+end
+
+local record DescribeLDAPSSettingsOutput
+    LDAPSSettingsInfo: {LDAPSSettingInfo}
+    NextToken: string
+end
+
+local record DescribeRegionsInput
+    DirectoryId: string
+    RegionName: string
+    NextToken: string
+end
+
+local record DescribeRegionsOutput
+    RegionsDescription: {RegionDescription}
+    NextToken: string
+end
+
+local record DescribeSettingsInput
+    DirectoryId: string
+    Status: string
+    NextToken: string
+end
+
+local record DescribeSettingsOutput
+    DirectoryId: string
+    SettingEntries: {SettingEntry}
+    NextToken: string
+end
+
+local record DescribeSharedDirectoriesInput
+    OwnerDirectoryId: string
+    SharedDirectoryIds: {string}
+    NextToken: string
+    Limit: number
+end
+
+local record DescribeSharedDirectoriesOutput
+    SharedDirectories: {SharedDirectory}
+    NextToken: string
+end
+
+local record DescribeSnapshotsInput
+    DirectoryId: string
+    SnapshotIds: {string}
+    NextToken: string
+    Limit: number
+end
+
+local record DescribeSnapshotsOutput
+    Snapshots: {Snapshot}
+    NextToken: string
+end
+
+local record DescribeTrustsInput
+    DirectoryId: string
+    TrustIds: {string}
+    NextToken: string
+    Limit: number
+end
+
+local record DescribeTrustsOutput
+    Trusts: {Trust}
+    NextToken: string
+end
+
+local record DescribeUpdateDirectoryInput
+    DirectoryId: string
+    UpdateType: string
+    RegionName: string
+    NextToken: string
+end
+
+local record DescribeUpdateDirectoryOutput
+    UpdateActivities: {UpdateInfoEntry}
+    NextToken: string
+end
+
+local record DisableCAEnrollmentPolicyInput
+    DirectoryId: string
+end
+
+local record DisableCAEnrollmentPolicyOutput
+end
+
+local record DisableClientAuthenticationInput
+    DirectoryId: string
+    Type: string
+end
+
+local record DisableClientAuthenticationOutput
+end
+
+local record DisableDirectoryDataAccessInput
+    DirectoryId: string
+end
+
+local record DisableDirectoryDataAccessOutput
+end
+
+local record DisableLDAPSInput
+    DirectoryId: string
+    Type: string
+end
+
+local record DisableLDAPSOutput
+end
+
+local record DisableRadiusInput
+    DirectoryId: string
+end
+
+local record DisableRadiusOutput
+end
+
+local record DisableSsoInput
+    DirectoryId: string
+    UserName: string
+    Password: string
+end
+
+local record DisableSsoOutput
+end
+
+local record EnableCAEnrollmentPolicyInput
+    DirectoryId: string
+    PcaConnectorArn: string
+end
+
+local record EnableCAEnrollmentPolicyOutput
+end
+
+local record EnableClientAuthenticationInput
+    DirectoryId: string
+    Type: string
+end
+
+local record EnableClientAuthenticationOutput
+end
+
+local record EnableDirectoryDataAccessInput
+    DirectoryId: string
+end
+
+local record EnableDirectoryDataAccessOutput
+end
+
+local record EnableLDAPSInput
+    DirectoryId: string
+    Type: string
+end
+
+local record EnableLDAPSOutput
+end
+
+local record EnableRadiusInput
+    DirectoryId: string
+    RadiusSettings: RadiusSettings
+end
+
+local record EnableRadiusOutput
+end
+
+local record EnableSsoInput
+    DirectoryId: string
+    UserName: string
+    Password: string
+end
+
+local record EnableSsoOutput
+end
+
+local record GetDirectoryLimitsInput
+end
+
+local record GetDirectoryLimitsOutput
+    DirectoryLimits: DirectoryLimits
+end
+
+local record GetSnapshotLimitsInput
+    DirectoryId: string
+end
+
+local record GetSnapshotLimitsOutput
+    SnapshotLimits: SnapshotLimits
+end
+
+local record ListADAssessmentsInput
+    DirectoryId: string
+    NextToken: string
+    Limit: number
+end
+
+local record ListADAssessmentsOutput
+    Assessments: {AssessmentSummary}
+    NextToken: string
+end
+
+local record ListCertificatesInput
+    DirectoryId: string
+    NextToken: string
+    Limit: number
+end
+
+local record ListCertificatesOutput
+    NextToken: string
+    CertificatesInfo: {CertificateInfo}
+end
+
+local record ListIpRoutesInput
+    DirectoryId: string
+    NextToken: string
+    Limit: number
+end
+
+local record ListIpRoutesOutput
+    IpRoutesInfo: {IpRouteInfo}
+    NextToken: string
+end
+
+local record ListLogSubscriptionsInput
+    DirectoryId: string
+    NextToken: string
+    Limit: number
+end
+
+local record ListLogSubscriptionsOutput
+    LogSubscriptions: {LogSubscription}
+    NextToken: string
+end
+
+local record ListSchemaExtensionsInput
+    DirectoryId: string
+    NextToken: string
+    Limit: number
+end
+
+local record ListSchemaExtensionsOutput
+    SchemaExtensionsInfo: {SchemaExtensionInfo}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceId: string
+    NextToken: string
+    Limit: number
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+    NextToken: string
+end
+
+local record RegisterCertificateInput
+    DirectoryId: string
+    CertificateData: string
+    Type: string
+    ClientCertAuthSettings: ClientCertAuthSettings
+end
+
+local record RegisterCertificateOutput
+    CertificateId: string
+end
+
+local record RegisterEventTopicInput
+    DirectoryId: string
+    TopicName: string
+end
+
+local record RegisterEventTopicOutput
+end
+
+local record RejectSharedDirectoryInput
+    SharedDirectoryId: string
+end
+
+local record RejectSharedDirectoryOutput
+    SharedDirectoryId: string
+end
+
+local record RemoveIpRoutesInput
+    DirectoryId: string
+    CidrIps: {string}
+    CidrIpv6s: {string}
+end
+
+local record RemoveIpRoutesOutput
+end
+
+local record RemoveRegionInput
+    DirectoryId: string
+end
+
+local record RemoveRegionOutput
+end
+
+local record RemoveTagsFromResourceInput
+    ResourceId: string
+    TagKeys: {string}
+end
+
+local record RemoveTagsFromResourceOutput
+end
+
+local record ResetUserPasswordInput
+    DirectoryId: string
+    UserName: string
+    NewPassword: string
+end
+
+local record ResetUserPasswordOutput
+end
+
+local record RestoreFromSnapshotInput
+    SnapshotId: string
+end
+
+local record RestoreFromSnapshotOutput
+end
+
+local record ShareDirectoryInput
+    DirectoryId: string
+    ShareNotes: string
+    ShareTarget: ShareTarget
+    ShareMethod: string
+end
+
+local record ShareDirectoryOutput
+    SharedDirectoryId: string
+end
+
+local record StartADAssessmentInput
+    AssessmentConfiguration: AssessmentConfiguration
+    DirectoryId: string
+end
+
+local record StartADAssessmentOutput
+    AssessmentId: string
+end
+
+local record StartSchemaExtensionInput
+    DirectoryId: string
+    CreateSnapshotBeforeSchemaExtension: boolean
+    LdifContent: string
+    Description: string
+end
+
+local record StartSchemaExtensionOutput
+    SchemaExtensionId: string
+end
+
+local record UnshareDirectoryInput
+    DirectoryId: string
+    UnshareTarget: UnshareTarget
+end
+
+local record UnshareDirectoryOutput
+    SharedDirectoryId: string
+end
+
+local record UpdateConditionalForwarderInput
+    DirectoryId: string
+    RemoteDomainName: string
+    DnsIpAddrs: {string}
+    DnsIpv6Addrs: {string}
+end
+
+local record UpdateConditionalForwarderOutput
+end
+
+local record UpdateDirectorySetupInput
+    DirectoryId: string
+    UpdateType: string
+    OSUpdateSettings: OSUpdateSettings
+    DirectorySizeUpdateSettings: DirectorySizeUpdateSettings
+    NetworkUpdateSettings: NetworkUpdateSettings
+    CreateSnapshotBeforeUpdate: boolean
+end
+
+local record UpdateDirectorySetupOutput
+end
+
+local record UpdateHybridADInput
+    DirectoryId: string
+    HybridAdministratorAccountUpdate: HybridAdministratorAccountUpdate
+    SelfManagedInstancesSettings: HybridCustomerInstancesSettings
+end
+
+local record UpdateHybridADOutput
+    DirectoryId: string
+    AssessmentId: string
+end
+
+local record UpdateNumberOfDomainControllersInput
+    DirectoryId: string
+    DesiredNumber: number
+end
+
+local record UpdateNumberOfDomainControllersOutput
+end
+
+local record UpdateRadiusInput
+    DirectoryId: string
+    RadiusSettings: RadiusSettings
+end
+
+local record UpdateRadiusOutput
+end
+
+local record UpdateSettingsInput
+    DirectoryId: string
+    Settings: {Setting}
+end
+
+local record UpdateSettingsOutput
+    DirectoryId: string
+end
+
+local record UpdateTrustInput
+    TrustId: string
+    SelectiveAuth: string
+end
+
+local record UpdateTrustOutput
+    RequestId: string
+    TrustId: string
+end
+
+local record VerifyTrustInput
+    TrustId: string
+end
+
+local record VerifyTrustOutput
+    TrustId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryAlreadySharedException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record EntityAlreadyExistsException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record IpRouteLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record AccessDeniedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryAlreadyInRegionException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record RegionLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record TagLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityAlreadyExistsException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record AuthenticationFailedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record EntityAlreadyExistsException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record EntityAlreadyExistsException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ADAssessmentLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityAlreadyExistsException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InsufficientPermissionsException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record SnapshotLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityAlreadyExistsException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record CertificateDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record CertificateInUseException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record CertificateDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record AccessDeniedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record AccessDeniedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record AccessDeniedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record AccessDeniedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record AccessDeniedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record DisableAlreadyInProgressException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record AccessDeniedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidClientAuthStatusException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record AccessDeniedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryInDesiredStateException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidLDAPSStatusException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record AuthenticationFailedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InsufficientPermissionsException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record AccessDeniedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record EnableAlreadyInProgressException
+    Message: string
+    RequestId: string
+end
+
+local record EntityAlreadyExistsException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record AccessDeniedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidClientAuthStatusException
+    Message: string
+    RequestId: string
+end
+
+local record NoAvailableCertificateException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record AccessDeniedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryInDesiredStateException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidLDAPSStatusException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record NoAvailableCertificateException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityAlreadyExistsException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record AuthenticationFailedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InsufficientPermissionsException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record CertificateAlreadyExistsException
+    Message: string
+    RequestId: string
+end
+
+local record CertificateLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidCertificateException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryAlreadySharedException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record AccessDeniedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidPasswordException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record UserDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record AccessDeniedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryAlreadySharedException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidTargetException
+    Message: string
+    RequestId: string
+end
+
+local record OrganizationsException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ShareLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ADAssessmentLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record SnapshotLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryNotSharedException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidTargetException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record AccessDeniedException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryInDesiredStateException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record SnapshotLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ADAssessmentLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record DomainControllerLimitExceededException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+    RequestId: string
+end
+
+local record IncompatibleSettingsException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedSettingsException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record ClientException
+    Message: string
+    RequestId: string
+end
+
+local record EntityDoesNotExistException
+    Message: string
+    RequestId: string
+end
+
+local record InvalidParameterException
+    Message: string
+    RequestId: string
+end
+
+local record ServiceException
+    Message: string
+    RequestId: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+    RequestId: string
+end
+
+local type ClientAuthenticationType = "SmartCard" | "SmartCardOrPassword"
+
+local type DirectoryConfigurationStatus = "Requested" | "Updating" | "Updated" | "Failed" | "Default"
+
+local type TrustDirection = "One-Way: Outgoing" | "One-Way: Incoming" | "Two-Way"
+
+local type DirectorySize = "Small" | "Large"
+
+local type CaEnrollmentPolicyStatus = "InProgress" | "Success" | "Failed" | "Disabling" | "Disabled" | "Impaired"
+
+local type CertificateType = "ClientCertAuth" | "ClientLDAPS"
+
+local type LDAPSType = "Client"
+
+local type TrustType = "Forest" | "External"
+
+local type NetworkType = "Dual-stack" | "IPv4" | "IPv6"
+
+local type HybridUpdateType = "SelfManagedInstances" | "HybridAdministratorAccount"
+
+local type UpdateType = "OS" | "NETWORK" | "SIZE"
+
+local type DataAccessStatus = "Disabled" | "Disabling" | "Enabled" | "Enabling" | "Failed"
+
+local type DirectoryEdition = "Enterprise" | "Standard" | "Hybrid"
+
+local type SelectiveAuth = "Enabled" | "Disabled"
+
+local type ShareMethod = "ORGANIZATIONS" | "HANDSHAKE"
+
+local record M
+    AcceptSharedDirectoryInput: AcceptSharedDirectoryInput
+    AcceptSharedDirectoryOutput: AcceptSharedDirectoryOutput
+    AddIpRoutesInput: AddIpRoutesInput
+    AddIpRoutesOutput: AddIpRoutesOutput
+    AddRegionInput: AddRegionInput
+    AddRegionOutput: AddRegionOutput
+    AddTagsToResourceInput: AddTagsToResourceInput
+    AddTagsToResourceOutput: AddTagsToResourceOutput
+    CancelSchemaExtensionInput: CancelSchemaExtensionInput
+    CancelSchemaExtensionOutput: CancelSchemaExtensionOutput
+    ConnectDirectoryInput: ConnectDirectoryInput
+    ConnectDirectoryOutput: ConnectDirectoryOutput
+    CreateAliasInput: CreateAliasInput
+    CreateAliasOutput: CreateAliasOutput
+    CreateComputerInput: CreateComputerInput
+    CreateComputerOutput: CreateComputerOutput
+    CreateConditionalForwarderInput: CreateConditionalForwarderInput
+    CreateConditionalForwarderOutput: CreateConditionalForwarderOutput
+    CreateDirectoryInput: CreateDirectoryInput
+    CreateDirectoryOutput: CreateDirectoryOutput
+    CreateHybridADInput: CreateHybridADInput
+    CreateHybridADOutput: CreateHybridADOutput
+    CreateLogSubscriptionInput: CreateLogSubscriptionInput
+    CreateLogSubscriptionOutput: CreateLogSubscriptionOutput
+    CreateMicrosoftADInput: CreateMicrosoftADInput
+    CreateMicrosoftADOutput: CreateMicrosoftADOutput
+    CreateSnapshotInput: CreateSnapshotInput
+    CreateSnapshotOutput: CreateSnapshotOutput
+    CreateTrustInput: CreateTrustInput
+    CreateTrustOutput: CreateTrustOutput
+    DeleteADAssessmentInput: DeleteADAssessmentInput
+    DeleteADAssessmentOutput: DeleteADAssessmentOutput
+    DeleteConditionalForwarderInput: DeleteConditionalForwarderInput
+    DeleteConditionalForwarderOutput: DeleteConditionalForwarderOutput
+    DeleteDirectoryInput: DeleteDirectoryInput
+    DeleteDirectoryOutput: DeleteDirectoryOutput
+    DeleteLogSubscriptionInput: DeleteLogSubscriptionInput
+    DeleteLogSubscriptionOutput: DeleteLogSubscriptionOutput
+    DeleteSnapshotInput: DeleteSnapshotInput
+    DeleteSnapshotOutput: DeleteSnapshotOutput
+    DeleteTrustInput: DeleteTrustInput
+    DeleteTrustOutput: DeleteTrustOutput
+    DeregisterCertificateInput: DeregisterCertificateInput
+    DeregisterCertificateOutput: DeregisterCertificateOutput
+    DeregisterEventTopicInput: DeregisterEventTopicInput
+    DeregisterEventTopicOutput: DeregisterEventTopicOutput
+    DescribeADAssessmentInput: DescribeADAssessmentInput
+    DescribeADAssessmentOutput: DescribeADAssessmentOutput
+    DescribeCAEnrollmentPolicyInput: DescribeCAEnrollmentPolicyInput
+    DescribeCAEnrollmentPolicyOutput: DescribeCAEnrollmentPolicyOutput
+    DescribeCertificateInput: DescribeCertificateInput
+    DescribeCertificateOutput: DescribeCertificateOutput
+    DescribeClientAuthenticationSettingsInput: DescribeClientAuthenticationSettingsInput
+    DescribeClientAuthenticationSettingsOutput: DescribeClientAuthenticationSettingsOutput
+    DescribeConditionalForwardersInput: DescribeConditionalForwardersInput
+    DescribeConditionalForwardersOutput: DescribeConditionalForwardersOutput
+    DescribeDirectoriesInput: DescribeDirectoriesInput
+    DescribeDirectoriesOutput: DescribeDirectoriesOutput
+    DescribeDirectoryDataAccessInput: DescribeDirectoryDataAccessInput
+    DescribeDirectoryDataAccessOutput: DescribeDirectoryDataAccessOutput
+    DescribeDomainControllersInput: DescribeDomainControllersInput
+    DescribeDomainControllersOutput: DescribeDomainControllersOutput
+    DescribeEventTopicsInput: DescribeEventTopicsInput
+    DescribeEventTopicsOutput: DescribeEventTopicsOutput
+    DescribeHybridADUpdateInput: DescribeHybridADUpdateInput
+    DescribeHybridADUpdateOutput: DescribeHybridADUpdateOutput
+    DescribeLDAPSSettingsInput: DescribeLDAPSSettingsInput
+    DescribeLDAPSSettingsOutput: DescribeLDAPSSettingsOutput
+    DescribeRegionsInput: DescribeRegionsInput
+    DescribeRegionsOutput: DescribeRegionsOutput
+    DescribeSettingsInput: DescribeSettingsInput
+    DescribeSettingsOutput: DescribeSettingsOutput
+    DescribeSharedDirectoriesInput: DescribeSharedDirectoriesInput
+    DescribeSharedDirectoriesOutput: DescribeSharedDirectoriesOutput
+    DescribeSnapshotsInput: DescribeSnapshotsInput
+    DescribeSnapshotsOutput: DescribeSnapshotsOutput
+    DescribeTrustsInput: DescribeTrustsInput
+    DescribeTrustsOutput: DescribeTrustsOutput
+    DescribeUpdateDirectoryInput: DescribeUpdateDirectoryInput
+    DescribeUpdateDirectoryOutput: DescribeUpdateDirectoryOutput
+    DisableCAEnrollmentPolicyInput: DisableCAEnrollmentPolicyInput
+    DisableCAEnrollmentPolicyOutput: DisableCAEnrollmentPolicyOutput
+    DisableClientAuthenticationInput: DisableClientAuthenticationInput
+    DisableClientAuthenticationOutput: DisableClientAuthenticationOutput
+    DisableDirectoryDataAccessInput: DisableDirectoryDataAccessInput
+    DisableDirectoryDataAccessOutput: DisableDirectoryDataAccessOutput
+    DisableLDAPSInput: DisableLDAPSInput
+    DisableLDAPSOutput: DisableLDAPSOutput
+    DisableRadiusInput: DisableRadiusInput
+    DisableRadiusOutput: DisableRadiusOutput
+    DisableSsoInput: DisableSsoInput
+    DisableSsoOutput: DisableSsoOutput
+    EnableCAEnrollmentPolicyInput: EnableCAEnrollmentPolicyInput
+    EnableCAEnrollmentPolicyOutput: EnableCAEnrollmentPolicyOutput
+    EnableClientAuthenticationInput: EnableClientAuthenticationInput
+    EnableClientAuthenticationOutput: EnableClientAuthenticationOutput
+    EnableDirectoryDataAccessInput: EnableDirectoryDataAccessInput
+    EnableDirectoryDataAccessOutput: EnableDirectoryDataAccessOutput
+    EnableLDAPSInput: EnableLDAPSInput
+    EnableLDAPSOutput: EnableLDAPSOutput
+    EnableRadiusInput: EnableRadiusInput
+    EnableRadiusOutput: EnableRadiusOutput
+    EnableSsoInput: EnableSsoInput
+    EnableSsoOutput: EnableSsoOutput
+    GetDirectoryLimitsInput: GetDirectoryLimitsInput
+    GetDirectoryLimitsOutput: GetDirectoryLimitsOutput
+    GetSnapshotLimitsInput: GetSnapshotLimitsInput
+    GetSnapshotLimitsOutput: GetSnapshotLimitsOutput
+    ListADAssessmentsInput: ListADAssessmentsInput
+    ListADAssessmentsOutput: ListADAssessmentsOutput
+    ListCertificatesInput: ListCertificatesInput
+    ListCertificatesOutput: ListCertificatesOutput
+    ListIpRoutesInput: ListIpRoutesInput
+    ListIpRoutesOutput: ListIpRoutesOutput
+    ListLogSubscriptionsInput: ListLogSubscriptionsInput
+    ListLogSubscriptionsOutput: ListLogSubscriptionsOutput
+    ListSchemaExtensionsInput: ListSchemaExtensionsInput
+    ListSchemaExtensionsOutput: ListSchemaExtensionsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    RegisterCertificateInput: RegisterCertificateInput
+    RegisterCertificateOutput: RegisterCertificateOutput
+    RegisterEventTopicInput: RegisterEventTopicInput
+    RegisterEventTopicOutput: RegisterEventTopicOutput
+    RejectSharedDirectoryInput: RejectSharedDirectoryInput
+    RejectSharedDirectoryOutput: RejectSharedDirectoryOutput
+    RemoveIpRoutesInput: RemoveIpRoutesInput
+    RemoveIpRoutesOutput: RemoveIpRoutesOutput
+    RemoveRegionInput: RemoveRegionInput
+    RemoveRegionOutput: RemoveRegionOutput
+    RemoveTagsFromResourceInput: RemoveTagsFromResourceInput
+    RemoveTagsFromResourceOutput: RemoveTagsFromResourceOutput
+    ResetUserPasswordInput: ResetUserPasswordInput
+    ResetUserPasswordOutput: ResetUserPasswordOutput
+    RestoreFromSnapshotInput: RestoreFromSnapshotInput
+    RestoreFromSnapshotOutput: RestoreFromSnapshotOutput
+    ShareDirectoryInput: ShareDirectoryInput
+    ShareDirectoryOutput: ShareDirectoryOutput
+    StartADAssessmentInput: StartADAssessmentInput
+    StartADAssessmentOutput: StartADAssessmentOutput
+    StartSchemaExtensionInput: StartSchemaExtensionInput
+    StartSchemaExtensionOutput: StartSchemaExtensionOutput
+    UnshareDirectoryInput: UnshareDirectoryInput
+    UnshareDirectoryOutput: UnshareDirectoryOutput
+    UpdateConditionalForwarderInput: UpdateConditionalForwarderInput
+    UpdateConditionalForwarderOutput: UpdateConditionalForwarderOutput
+    UpdateDirectorySetupInput: UpdateDirectorySetupInput
+    UpdateDirectorySetupOutput: UpdateDirectorySetupOutput
+    UpdateHybridADInput: UpdateHybridADInput
+    UpdateHybridADOutput: UpdateHybridADOutput
+    UpdateNumberOfDomainControllersInput: UpdateNumberOfDomainControllersInput
+    UpdateNumberOfDomainControllersOutput: UpdateNumberOfDomainControllersOutput
+    UpdateRadiusInput: UpdateRadiusInput
+    UpdateRadiusOutput: UpdateRadiusOutput
+    UpdateSettingsInput: UpdateSettingsInput
+    UpdateSettingsOutput: UpdateSettingsOutput
+    UpdateTrustInput: UpdateTrustInput
+    UpdateTrustOutput: UpdateTrustOutput
+    VerifyTrustInput: VerifyTrustInput
+    VerifyTrustOutput: VerifyTrustOutput
+end
+
+return M

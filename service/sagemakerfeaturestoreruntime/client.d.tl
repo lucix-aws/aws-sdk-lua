@@ -1,0 +1,14 @@
+local types = require("sagemakerfeaturestoreruntime.types")
+
+local record Client
+    batchGetRecord: function(Client, types.BatchGetRecordInput): types.BatchGetRecordOutput, table
+    deleteRecord: function(Client, types.DeleteRecordInput): types.DeleteRecordOutput, table
+    getRecord: function(Client, types.GetRecordInput): types.GetRecordOutput, table
+    putRecord: function(Client, types.PutRecordInput): types.PutRecordOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

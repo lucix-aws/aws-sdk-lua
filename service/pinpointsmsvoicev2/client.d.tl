@@ -1,0 +1,116 @@
+local types = require("pinpointsmsvoicev2.types")
+
+local record Client
+    associateOriginationIdentity: function(Client, types.AssociateOriginationIdentityInput): types.AssociateOriginationIdentityOutput, table
+    associateProtectConfiguration: function(Client, types.AssociateProtectConfigurationInput): types.AssociateProtectConfigurationOutput, table
+    carrierLookup: function(Client, types.CarrierLookupInput): types.CarrierLookupOutput, table
+    createConfigurationSet: function(Client, types.CreateConfigurationSetInput): types.CreateConfigurationSetOutput, table
+    createEventDestination: function(Client, types.CreateEventDestinationInput): types.CreateEventDestinationOutput, table
+    createNotifyConfiguration: function(Client, types.CreateNotifyConfigurationInput): types.CreateNotifyConfigurationOutput, table
+    createOptOutList: function(Client, types.CreateOptOutListInput): types.CreateOptOutListOutput, table
+    createPool: function(Client, types.CreatePoolInput): types.CreatePoolOutput, table
+    createProtectConfiguration: function(Client, types.CreateProtectConfigurationInput): types.CreateProtectConfigurationOutput, table
+    createRcsAgent: function(Client, types.CreateRcsAgentInput): types.CreateRcsAgentOutput, table
+    createRegistration: function(Client, types.CreateRegistrationInput): types.CreateRegistrationOutput, table
+    createRegistrationAssociation: function(Client, types.CreateRegistrationAssociationInput): types.CreateRegistrationAssociationOutput, table
+    createRegistrationAttachment: function(Client, types.CreateRegistrationAttachmentInput): types.CreateRegistrationAttachmentOutput, table
+    createRegistrationVersion: function(Client, types.CreateRegistrationVersionInput): types.CreateRegistrationVersionOutput, table
+    createVerifiedDestinationNumber: function(Client, types.CreateVerifiedDestinationNumberInput): types.CreateVerifiedDestinationNumberOutput, table
+    deleteAccountDefaultProtectConfiguration: function(Client, types.DeleteAccountDefaultProtectConfigurationInput): types.DeleteAccountDefaultProtectConfigurationOutput, table
+    deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput): types.DeleteConfigurationSetOutput, table
+    deleteDefaultMessageType: function(Client, types.DeleteDefaultMessageTypeInput): types.DeleteDefaultMessageTypeOutput, table
+    deleteDefaultSenderId: function(Client, types.DeleteDefaultSenderIdInput): types.DeleteDefaultSenderIdOutput, table
+    deleteEventDestination: function(Client, types.DeleteEventDestinationInput): types.DeleteEventDestinationOutput, table
+    deleteKeyword: function(Client, types.DeleteKeywordInput): types.DeleteKeywordOutput, table
+    deleteMediaMessageSpendLimitOverride: function(Client, types.DeleteMediaMessageSpendLimitOverrideInput): types.DeleteMediaMessageSpendLimitOverrideOutput, table
+    deleteNotifyConfiguration: function(Client, types.DeleteNotifyConfigurationInput): types.DeleteNotifyConfigurationOutput, table
+    deleteNotifyMessageSpendLimitOverride: function(Client, types.DeleteNotifyMessageSpendLimitOverrideInput): types.DeleteNotifyMessageSpendLimitOverrideOutput, table
+    deleteOptedOutNumber: function(Client, types.DeleteOptedOutNumberInput): types.DeleteOptedOutNumberOutput, table
+    deleteOptOutList: function(Client, types.DeleteOptOutListInput): types.DeleteOptOutListOutput, table
+    deletePool: function(Client, types.DeletePoolInput): types.DeletePoolOutput, table
+    deleteProtectConfiguration: function(Client, types.DeleteProtectConfigurationInput): types.DeleteProtectConfigurationOutput, table
+    deleteProtectConfigurationRuleSetNumberOverride: function(Client, types.DeleteProtectConfigurationRuleSetNumberOverrideInput): types.DeleteProtectConfigurationRuleSetNumberOverrideOutput, table
+    deleteRcsAgent: function(Client, types.DeleteRcsAgentInput): types.DeleteRcsAgentOutput, table
+    deleteRegistration: function(Client, types.DeleteRegistrationInput): types.DeleteRegistrationOutput, table
+    deleteRegistrationAttachment: function(Client, types.DeleteRegistrationAttachmentInput): types.DeleteRegistrationAttachmentOutput, table
+    deleteRegistrationFieldValue: function(Client, types.DeleteRegistrationFieldValueInput): types.DeleteRegistrationFieldValueOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteTextMessageSpendLimitOverride: function(Client, types.DeleteTextMessageSpendLimitOverrideInput): types.DeleteTextMessageSpendLimitOverrideOutput, table
+    deleteVerifiedDestinationNumber: function(Client, types.DeleteVerifiedDestinationNumberInput): types.DeleteVerifiedDestinationNumberOutput, table
+    deleteVoiceMessageSpendLimitOverride: function(Client, types.DeleteVoiceMessageSpendLimitOverrideInput): types.DeleteVoiceMessageSpendLimitOverrideOutput, table
+    describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput): types.DescribeAccountAttributesOutput, table
+    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput): types.DescribeAccountLimitsOutput, table
+    describeConfigurationSets: function(Client, types.DescribeConfigurationSetsInput): types.DescribeConfigurationSetsOutput, table
+    describeKeywords: function(Client, types.DescribeKeywordsInput): types.DescribeKeywordsOutput, table
+    describeNotifyConfigurations: function(Client, types.DescribeNotifyConfigurationsInput): types.DescribeNotifyConfigurationsOutput, table
+    describeNotifyTemplates: function(Client, types.DescribeNotifyTemplatesInput): types.DescribeNotifyTemplatesOutput, table
+    describeOptedOutNumbers: function(Client, types.DescribeOptedOutNumbersInput): types.DescribeOptedOutNumbersOutput, table
+    describeOptOutLists: function(Client, types.DescribeOptOutListsInput): types.DescribeOptOutListsOutput, table
+    describePhoneNumbers: function(Client, types.DescribePhoneNumbersInput): types.DescribePhoneNumbersOutput, table
+    describePools: function(Client, types.DescribePoolsInput): types.DescribePoolsOutput, table
+    describeProtectConfigurations: function(Client, types.DescribeProtectConfigurationsInput): types.DescribeProtectConfigurationsOutput, table
+    describeRcsAgentCountryLaunchStatus: function(Client, types.DescribeRcsAgentCountryLaunchStatusInput): types.DescribeRcsAgentCountryLaunchStatusOutput, table
+    describeRcsAgents: function(Client, types.DescribeRcsAgentsInput): types.DescribeRcsAgentsOutput, table
+    describeRegistrationAttachments: function(Client, types.DescribeRegistrationAttachmentsInput): types.DescribeRegistrationAttachmentsOutput, table
+    describeRegistrationFieldDefinitions: function(Client, types.DescribeRegistrationFieldDefinitionsInput): types.DescribeRegistrationFieldDefinitionsOutput, table
+    describeRegistrationFieldValues: function(Client, types.DescribeRegistrationFieldValuesInput): types.DescribeRegistrationFieldValuesOutput, table
+    describeRegistrations: function(Client, types.DescribeRegistrationsInput): types.DescribeRegistrationsOutput, table
+    describeRegistrationSectionDefinitions: function(Client, types.DescribeRegistrationSectionDefinitionsInput): types.DescribeRegistrationSectionDefinitionsOutput, table
+    describeRegistrationTypeDefinitions: function(Client, types.DescribeRegistrationTypeDefinitionsInput): types.DescribeRegistrationTypeDefinitionsOutput, table
+    describeRegistrationVersions: function(Client, types.DescribeRegistrationVersionsInput): types.DescribeRegistrationVersionsOutput, table
+    describeSenderIds: function(Client, types.DescribeSenderIdsInput): types.DescribeSenderIdsOutput, table
+    describeSpendLimits: function(Client, types.DescribeSpendLimitsInput): types.DescribeSpendLimitsOutput, table
+    describeVerifiedDestinationNumbers: function(Client, types.DescribeVerifiedDestinationNumbersInput): types.DescribeVerifiedDestinationNumbersOutput, table
+    disassociateOriginationIdentity: function(Client, types.DisassociateOriginationIdentityInput): types.DisassociateOriginationIdentityOutput, table
+    disassociateProtectConfiguration: function(Client, types.DisassociateProtectConfigurationInput): types.DisassociateProtectConfigurationOutput, table
+    discardRegistrationVersion: function(Client, types.DiscardRegistrationVersionInput): types.DiscardRegistrationVersionOutput, table
+    getProtectConfigurationCountryRuleSet: function(Client, types.GetProtectConfigurationCountryRuleSetInput): types.GetProtectConfigurationCountryRuleSetOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    listNotifyCountries: function(Client, types.ListNotifyCountriesInput): types.ListNotifyCountriesOutput, table
+    listPoolOriginationIdentities: function(Client, types.ListPoolOriginationIdentitiesInput): types.ListPoolOriginationIdentitiesOutput, table
+    listProtectConfigurationRuleSetNumberOverrides: function(Client, types.ListProtectConfigurationRuleSetNumberOverridesInput): types.ListProtectConfigurationRuleSetNumberOverridesOutput, table
+    listRegistrationAssociations: function(Client, types.ListRegistrationAssociationsInput): types.ListRegistrationAssociationsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putKeyword: function(Client, types.PutKeywordInput): types.PutKeywordOutput, table
+    putMessageFeedback: function(Client, types.PutMessageFeedbackInput): types.PutMessageFeedbackOutput, table
+    putOptedOutNumber: function(Client, types.PutOptedOutNumberInput): types.PutOptedOutNumberOutput, table
+    putProtectConfigurationRuleSetNumberOverride: function(Client, types.PutProtectConfigurationRuleSetNumberOverrideInput): types.PutProtectConfigurationRuleSetNumberOverrideOutput, table
+    putRegistrationFieldValue: function(Client, types.PutRegistrationFieldValueInput): types.PutRegistrationFieldValueOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    releasePhoneNumber: function(Client, types.ReleasePhoneNumberInput): types.ReleasePhoneNumberOutput, table
+    releaseSenderId: function(Client, types.ReleaseSenderIdInput): types.ReleaseSenderIdOutput, table
+    requestPhoneNumber: function(Client, types.RequestPhoneNumberInput): types.RequestPhoneNumberOutput, table
+    requestSenderId: function(Client, types.RequestSenderIdInput): types.RequestSenderIdOutput, table
+    sendDestinationNumberVerificationCode: function(Client, types.SendDestinationNumberVerificationCodeInput): types.SendDestinationNumberVerificationCodeOutput, table
+    sendMediaMessage: function(Client, types.SendMediaMessageInput): types.SendMediaMessageOutput, table
+    sendNotifyTextMessage: function(Client, types.SendNotifyTextMessageInput): types.SendNotifyTextMessageOutput, table
+    sendNotifyVoiceMessage: function(Client, types.SendNotifyVoiceMessageInput): types.SendNotifyVoiceMessageOutput, table
+    sendTextMessage: function(Client, types.SendTextMessageInput): types.SendTextMessageOutput, table
+    sendVoiceMessage: function(Client, types.SendVoiceMessageInput): types.SendVoiceMessageOutput, table
+    setAccountDefaultProtectConfiguration: function(Client, types.SetAccountDefaultProtectConfigurationInput): types.SetAccountDefaultProtectConfigurationOutput, table
+    setDefaultMessageFeedbackEnabled: function(Client, types.SetDefaultMessageFeedbackEnabledInput): types.SetDefaultMessageFeedbackEnabledOutput, table
+    setDefaultMessageType: function(Client, types.SetDefaultMessageTypeInput): types.SetDefaultMessageTypeOutput, table
+    setDefaultSenderId: function(Client, types.SetDefaultSenderIdInput): types.SetDefaultSenderIdOutput, table
+    setMediaMessageSpendLimitOverride: function(Client, types.SetMediaMessageSpendLimitOverrideInput): types.SetMediaMessageSpendLimitOverrideOutput, table
+    setNotifyMessageSpendLimitOverride: function(Client, types.SetNotifyMessageSpendLimitOverrideInput): types.SetNotifyMessageSpendLimitOverrideOutput, table
+    setTextMessageSpendLimitOverride: function(Client, types.SetTextMessageSpendLimitOverrideInput): types.SetTextMessageSpendLimitOverrideOutput, table
+    setVoiceMessageSpendLimitOverride: function(Client, types.SetVoiceMessageSpendLimitOverrideInput): types.SetVoiceMessageSpendLimitOverrideOutput, table
+    submitRegistrationVersion: function(Client, types.SubmitRegistrationVersionInput): types.SubmitRegistrationVersionOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateEventDestination: function(Client, types.UpdateEventDestinationInput): types.UpdateEventDestinationOutput, table
+    updateNotifyConfiguration: function(Client, types.UpdateNotifyConfigurationInput): types.UpdateNotifyConfigurationOutput, table
+    updatePhoneNumber: function(Client, types.UpdatePhoneNumberInput): types.UpdatePhoneNumberOutput, table
+    updatePool: function(Client, types.UpdatePoolInput): types.UpdatePoolOutput, table
+    updateProtectConfiguration: function(Client, types.UpdateProtectConfigurationInput): types.UpdateProtectConfigurationOutput, table
+    updateProtectConfigurationCountryRuleSet: function(Client, types.UpdateProtectConfigurationCountryRuleSetInput): types.UpdateProtectConfigurationCountryRuleSetOutput, table
+    updateRcsAgent: function(Client, types.UpdateRcsAgentInput): types.UpdateRcsAgentOutput, table
+    updateSenderId: function(Client, types.UpdateSenderIdInput): types.UpdateSenderIdOutput, table
+    verifyDestinationNumber: function(Client, types.VerifyDestinationNumberInput): types.VerifyDestinationNumberOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,113 @@
+local types = require("apigatewayv2.types")
+
+local record Client
+    createApi: function(Client, types.CreateApiInput): types.CreateApiOutput, table
+    createApiMapping: function(Client, types.CreateApiMappingInput): types.CreateApiMappingOutput, table
+    createAuthorizer: function(Client, types.CreateAuthorizerInput): types.CreateAuthorizerOutput, table
+    createDeployment: function(Client, types.CreateDeploymentInput): types.CreateDeploymentOutput, table
+    createDomainName: function(Client, types.CreateDomainNameInput): types.CreateDomainNameOutput, table
+    createIntegration: function(Client, types.CreateIntegrationInput): types.CreateIntegrationOutput, table
+    createIntegrationResponse: function(Client, types.CreateIntegrationResponseInput): types.CreateIntegrationResponseOutput, table
+    createModel: function(Client, types.CreateModelInput): types.CreateModelOutput, table
+    createPortal: function(Client, types.CreatePortalInput): types.CreatePortalOutput, table
+    createPortalProduct: function(Client, types.CreatePortalProductInput): types.CreatePortalProductOutput, table
+    createProductPage: function(Client, types.CreateProductPageInput): types.CreateProductPageOutput, table
+    createProductRestEndpointPage: function(Client, types.CreateProductRestEndpointPageInput): types.CreateProductRestEndpointPageOutput, table
+    createRoute: function(Client, types.CreateRouteInput): types.CreateRouteOutput, table
+    createRouteResponse: function(Client, types.CreateRouteResponseInput): types.CreateRouteResponseOutput, table
+    createRoutingRule: function(Client, types.CreateRoutingRuleInput): types.CreateRoutingRuleOutput, table
+    createStage: function(Client, types.CreateStageInput): types.CreateStageOutput, table
+    createVpcLink: function(Client, types.CreateVpcLinkInput): types.CreateVpcLinkOutput, table
+    deleteAccessLogSettings: function(Client, types.DeleteAccessLogSettingsInput): types.DeleteAccessLogSettingsOutput, table
+    deleteApi: function(Client, types.DeleteApiInput): types.DeleteApiOutput, table
+    deleteApiMapping: function(Client, types.DeleteApiMappingInput): types.DeleteApiMappingOutput, table
+    deleteAuthorizer: function(Client, types.DeleteAuthorizerInput): types.DeleteAuthorizerOutput, table
+    deleteCorsConfiguration: function(Client, types.DeleteCorsConfigurationInput): types.DeleteCorsConfigurationOutput, table
+    deleteDeployment: function(Client, types.DeleteDeploymentInput): types.DeleteDeploymentOutput, table
+    deleteDomainName: function(Client, types.DeleteDomainNameInput): types.DeleteDomainNameOutput, table
+    deleteIntegration: function(Client, types.DeleteIntegrationInput): types.DeleteIntegrationOutput, table
+    deleteIntegrationResponse: function(Client, types.DeleteIntegrationResponseInput): types.DeleteIntegrationResponseOutput, table
+    deleteModel: function(Client, types.DeleteModelInput): types.DeleteModelOutput, table
+    deletePortal: function(Client, types.DeletePortalInput): types.DeletePortalOutput, table
+    deletePortalProduct: function(Client, types.DeletePortalProductInput): types.DeletePortalProductOutput, table
+    deletePortalProductSharingPolicy: function(Client, types.DeletePortalProductSharingPolicyInput): types.DeletePortalProductSharingPolicyOutput, table
+    deleteProductPage: function(Client, types.DeleteProductPageInput): types.DeleteProductPageOutput, table
+    deleteProductRestEndpointPage: function(Client, types.DeleteProductRestEndpointPageInput): types.DeleteProductRestEndpointPageOutput, table
+    deleteRoute: function(Client, types.DeleteRouteInput): types.DeleteRouteOutput, table
+    deleteRouteRequestParameter: function(Client, types.DeleteRouteRequestParameterInput): types.DeleteRouteRequestParameterOutput, table
+    deleteRouteResponse: function(Client, types.DeleteRouteResponseInput): types.DeleteRouteResponseOutput, table
+    deleteRouteSettings: function(Client, types.DeleteRouteSettingsInput): types.DeleteRouteSettingsOutput, table
+    deleteRoutingRule: function(Client, types.DeleteRoutingRuleInput): types.DeleteRoutingRuleOutput, table
+    deleteStage: function(Client, types.DeleteStageInput): types.DeleteStageOutput, table
+    deleteVpcLink: function(Client, types.DeleteVpcLinkInput): types.DeleteVpcLinkOutput, table
+    disablePortal: function(Client, types.DisablePortalInput): types.DisablePortalOutput, table
+    exportApi: function(Client, types.ExportApiInput): types.ExportApiOutput, table
+    getApi: function(Client, types.GetApiInput): types.GetApiOutput, table
+    getApiMapping: function(Client, types.GetApiMappingInput): types.GetApiMappingOutput, table
+    getApiMappings: function(Client, types.GetApiMappingsInput): types.GetApiMappingsOutput, table
+    getApis: function(Client, types.GetApisInput): types.GetApisOutput, table
+    getAuthorizer: function(Client, types.GetAuthorizerInput): types.GetAuthorizerOutput, table
+    getAuthorizers: function(Client, types.GetAuthorizersInput): types.GetAuthorizersOutput, table
+    getDeployment: function(Client, types.GetDeploymentInput): types.GetDeploymentOutput, table
+    getDeployments: function(Client, types.GetDeploymentsInput): types.GetDeploymentsOutput, table
+    getDomainName: function(Client, types.GetDomainNameInput): types.GetDomainNameOutput, table
+    getDomainNames: function(Client, types.GetDomainNamesInput): types.GetDomainNamesOutput, table
+    getIntegration: function(Client, types.GetIntegrationInput): types.GetIntegrationOutput, table
+    getIntegrationResponse: function(Client, types.GetIntegrationResponseInput): types.GetIntegrationResponseOutput, table
+    getIntegrationResponses: function(Client, types.GetIntegrationResponsesInput): types.GetIntegrationResponsesOutput, table
+    getIntegrations: function(Client, types.GetIntegrationsInput): types.GetIntegrationsOutput, table
+    getModel: function(Client, types.GetModelInput): types.GetModelOutput, table
+    getModels: function(Client, types.GetModelsInput): types.GetModelsOutput, table
+    getModelTemplate: function(Client, types.GetModelTemplateInput): types.GetModelTemplateOutput, table
+    getPortal: function(Client, types.GetPortalInput): types.GetPortalOutput, table
+    getPortalProduct: function(Client, types.GetPortalProductInput): types.GetPortalProductOutput, table
+    getPortalProductSharingPolicy: function(Client, types.GetPortalProductSharingPolicyInput): types.GetPortalProductSharingPolicyOutput, table
+    getProductPage: function(Client, types.GetProductPageInput): types.GetProductPageOutput, table
+    getProductRestEndpointPage: function(Client, types.GetProductRestEndpointPageInput): types.GetProductRestEndpointPageOutput, table
+    getRoute: function(Client, types.GetRouteInput): types.GetRouteOutput, table
+    getRouteResponse: function(Client, types.GetRouteResponseInput): types.GetRouteResponseOutput, table
+    getRouteResponses: function(Client, types.GetRouteResponsesInput): types.GetRouteResponsesOutput, table
+    getRoutes: function(Client, types.GetRoutesInput): types.GetRoutesOutput, table
+    getRoutingRule: function(Client, types.GetRoutingRuleInput): types.GetRoutingRuleOutput, table
+    getStage: function(Client, types.GetStageInput): types.GetStageOutput, table
+    getStages: function(Client, types.GetStagesInput): types.GetStagesOutput, table
+    getTags: function(Client, types.GetTagsInput): types.GetTagsOutput, table
+    getVpcLink: function(Client, types.GetVpcLinkInput): types.GetVpcLinkOutput, table
+    getVpcLinks: function(Client, types.GetVpcLinksInput): types.GetVpcLinksOutput, table
+    importApi: function(Client, types.ImportApiInput): types.ImportApiOutput, table
+    listPortalProducts: function(Client, types.ListPortalProductsInput): types.ListPortalProductsOutput, table
+    listPortals: function(Client, types.ListPortalsInput): types.ListPortalsOutput, table
+    listProductPages: function(Client, types.ListProductPagesInput): types.ListProductPagesOutput, table
+    listProductRestEndpointPages: function(Client, types.ListProductRestEndpointPagesInput): types.ListProductRestEndpointPagesOutput, table
+    listRoutingRules: function(Client, types.ListRoutingRulesInput): types.ListRoutingRulesOutput, table
+    previewPortal: function(Client, types.PreviewPortalInput): types.PreviewPortalOutput, table
+    publishPortal: function(Client, types.PublishPortalInput): types.PublishPortalOutput, table
+    putPortalProductSharingPolicy: function(Client, types.PutPortalProductSharingPolicyInput): types.PutPortalProductSharingPolicyOutput, table
+    putRoutingRule: function(Client, types.PutRoutingRuleInput): types.PutRoutingRuleOutput, table
+    reimportApi: function(Client, types.ReimportApiInput): types.ReimportApiOutput, table
+    resetAuthorizersCache: function(Client, types.ResetAuthorizersCacheInput): types.ResetAuthorizersCacheOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateApi: function(Client, types.UpdateApiInput): types.UpdateApiOutput, table
+    updateApiMapping: function(Client, types.UpdateApiMappingInput): types.UpdateApiMappingOutput, table
+    updateAuthorizer: function(Client, types.UpdateAuthorizerInput): types.UpdateAuthorizerOutput, table
+    updateDeployment: function(Client, types.UpdateDeploymentInput): types.UpdateDeploymentOutput, table
+    updateDomainName: function(Client, types.UpdateDomainNameInput): types.UpdateDomainNameOutput, table
+    updateIntegration: function(Client, types.UpdateIntegrationInput): types.UpdateIntegrationOutput, table
+    updateIntegrationResponse: function(Client, types.UpdateIntegrationResponseInput): types.UpdateIntegrationResponseOutput, table
+    updateModel: function(Client, types.UpdateModelInput): types.UpdateModelOutput, table
+    updatePortal: function(Client, types.UpdatePortalInput): types.UpdatePortalOutput, table
+    updatePortalProduct: function(Client, types.UpdatePortalProductInput): types.UpdatePortalProductOutput, table
+    updateProductPage: function(Client, types.UpdateProductPageInput): types.UpdateProductPageOutput, table
+    updateProductRestEndpointPage: function(Client, types.UpdateProductRestEndpointPageInput): types.UpdateProductRestEndpointPageOutput, table
+    updateRoute: function(Client, types.UpdateRouteInput): types.UpdateRouteOutput, table
+    updateRouteResponse: function(Client, types.UpdateRouteResponseInput): types.UpdateRouteResponseOutput, table
+    updateStage: function(Client, types.UpdateStageInput): types.UpdateStageOutput, table
+    updateVpcLink: function(Client, types.UpdateVpcLinkInput): types.UpdateVpcLinkOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

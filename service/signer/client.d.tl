@@ -1,0 +1,29 @@
+local types = require("signer.types")
+
+local record Client
+    addProfilePermission: function(Client, types.AddProfilePermissionInput): types.AddProfilePermissionOutput, table
+    cancelSigningProfile: function(Client, types.CancelSigningProfileInput): types.CancelSigningProfileOutput, table
+    describeSigningJob: function(Client, types.DescribeSigningJobInput): types.DescribeSigningJobOutput, table
+    getRevocationStatus: function(Client, types.GetRevocationStatusInput): types.GetRevocationStatusOutput, table
+    getSigningPlatform: function(Client, types.GetSigningPlatformInput): types.GetSigningPlatformOutput, table
+    getSigningProfile: function(Client, types.GetSigningProfileInput): types.GetSigningProfileOutput, table
+    listProfilePermissions: function(Client, types.ListProfilePermissionsInput): types.ListProfilePermissionsOutput, table
+    listSigningJobs: function(Client, types.ListSigningJobsInput): types.ListSigningJobsOutput, table
+    listSigningPlatforms: function(Client, types.ListSigningPlatformsInput): types.ListSigningPlatformsOutput, table
+    listSigningProfiles: function(Client, types.ListSigningProfilesInput): types.ListSigningProfilesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putSigningProfile: function(Client, types.PutSigningProfileInput): types.PutSigningProfileOutput, table
+    removeProfilePermission: function(Client, types.RemoveProfilePermissionInput): types.RemoveProfilePermissionOutput, table
+    revokeSignature: function(Client, types.RevokeSignatureInput): types.RevokeSignatureOutput, table
+    revokeSigningProfile: function(Client, types.RevokeSigningProfileInput): types.RevokeSigningProfileOutput, table
+    signPayload: function(Client, types.SignPayloadInput): types.SignPayloadOutput, table
+    startSigningJob: function(Client, types.StartSigningJobInput): types.StartSigningJobOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

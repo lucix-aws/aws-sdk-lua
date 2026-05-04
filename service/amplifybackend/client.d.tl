@@ -1,0 +1,41 @@
+local types = require("amplifybackend.types")
+
+local record Client
+    cloneBackend: function(Client, types.CloneBackendInput): types.CloneBackendOutput, table
+    createBackend: function(Client, types.CreateBackendInput): types.CreateBackendOutput, table
+    createBackendAPI: function(Client, types.CreateBackendAPIInput): types.CreateBackendAPIOutput, table
+    createBackendAuth: function(Client, types.CreateBackendAuthInput): types.CreateBackendAuthOutput, table
+    createBackendConfig: function(Client, types.CreateBackendConfigInput): types.CreateBackendConfigOutput, table
+    createBackendStorage: function(Client, types.CreateBackendStorageInput): types.CreateBackendStorageOutput, table
+    createToken: function(Client, types.CreateTokenInput): types.CreateTokenOutput, table
+    deleteBackend: function(Client, types.DeleteBackendInput): types.DeleteBackendOutput, table
+    deleteBackendAPI: function(Client, types.DeleteBackendAPIInput): types.DeleteBackendAPIOutput, table
+    deleteBackendAuth: function(Client, types.DeleteBackendAuthInput): types.DeleteBackendAuthOutput, table
+    deleteBackendStorage: function(Client, types.DeleteBackendStorageInput): types.DeleteBackendStorageOutput, table
+    deleteToken: function(Client, types.DeleteTokenInput): types.DeleteTokenOutput, table
+    generateBackendAPIModels: function(Client, types.GenerateBackendAPIModelsInput): types.GenerateBackendAPIModelsOutput, table
+    getBackend: function(Client, types.GetBackendInput): types.GetBackendOutput, table
+    getBackendAPI: function(Client, types.GetBackendAPIInput): types.GetBackendAPIOutput, table
+    getBackendAPIModels: function(Client, types.GetBackendAPIModelsInput): types.GetBackendAPIModelsOutput, table
+    getBackendAuth: function(Client, types.GetBackendAuthInput): types.GetBackendAuthOutput, table
+    getBackendJob: function(Client, types.GetBackendJobInput): types.GetBackendJobOutput, table
+    getBackendStorage: function(Client, types.GetBackendStorageInput): types.GetBackendStorageOutput, table
+    getToken: function(Client, types.GetTokenInput): types.GetTokenOutput, table
+    importBackendAuth: function(Client, types.ImportBackendAuthInput): types.ImportBackendAuthOutput, table
+    importBackendStorage: function(Client, types.ImportBackendStorageInput): types.ImportBackendStorageOutput, table
+    listBackendJobs: function(Client, types.ListBackendJobsInput): types.ListBackendJobsOutput, table
+    listS3Buckets: function(Client, types.ListS3BucketsInput): types.ListS3BucketsOutput, table
+    removeAllBackends: function(Client, types.RemoveAllBackendsInput): types.RemoveAllBackendsOutput, table
+    removeBackendConfig: function(Client, types.RemoveBackendConfigInput): types.RemoveBackendConfigOutput, table
+    updateBackendAPI: function(Client, types.UpdateBackendAPIInput): types.UpdateBackendAPIOutput, table
+    updateBackendAuth: function(Client, types.UpdateBackendAuthInput): types.UpdateBackendAuthOutput, table
+    updateBackendConfig: function(Client, types.UpdateBackendConfigInput): types.UpdateBackendConfigOutput, table
+    updateBackendJob: function(Client, types.UpdateBackendJobInput): types.UpdateBackendJobOutput, table
+    updateBackendStorage: function(Client, types.UpdateBackendStorageInput): types.UpdateBackendStorageOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

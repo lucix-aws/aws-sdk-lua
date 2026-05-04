@@ -1,0 +1,117 @@
+local types = require("lexmodelsv2.types")
+
+local record Client
+    batchCreateCustomVocabularyItem: function(Client, types.BatchCreateCustomVocabularyItemInput): types.BatchCreateCustomVocabularyItemOutput, table
+    batchDeleteCustomVocabularyItem: function(Client, types.BatchDeleteCustomVocabularyItemInput): types.BatchDeleteCustomVocabularyItemOutput, table
+    batchUpdateCustomVocabularyItem: function(Client, types.BatchUpdateCustomVocabularyItemInput): types.BatchUpdateCustomVocabularyItemOutput, table
+    buildBotLocale: function(Client, types.BuildBotLocaleInput): types.BuildBotLocaleOutput, table
+    createBot: function(Client, types.CreateBotInput): types.CreateBotOutput, table
+    createBotAlias: function(Client, types.CreateBotAliasInput): types.CreateBotAliasOutput, table
+    createBotLocale: function(Client, types.CreateBotLocaleInput): types.CreateBotLocaleOutput, table
+    createBotReplica: function(Client, types.CreateBotReplicaInput): types.CreateBotReplicaOutput, table
+    createBotVersion: function(Client, types.CreateBotVersionInput): types.CreateBotVersionOutput, table
+    createExport: function(Client, types.CreateExportInput): types.CreateExportOutput, table
+    createIntent: function(Client, types.CreateIntentInput): types.CreateIntentOutput, table
+    createResourcePolicy: function(Client, types.CreateResourcePolicyInput): types.CreateResourcePolicyOutput, table
+    createResourcePolicyStatement: function(Client, types.CreateResourcePolicyStatementInput): types.CreateResourcePolicyStatementOutput, table
+    createSlot: function(Client, types.CreateSlotInput): types.CreateSlotOutput, table
+    createSlotType: function(Client, types.CreateSlotTypeInput): types.CreateSlotTypeOutput, table
+    createTestSetDiscrepancyReport: function(Client, types.CreateTestSetDiscrepancyReportInput): types.CreateTestSetDiscrepancyReportOutput, table
+    createUploadUrl: function(Client, types.CreateUploadUrlInput): types.CreateUploadUrlOutput, table
+    deleteBot: function(Client, types.DeleteBotInput): types.DeleteBotOutput, table
+    deleteBotAlias: function(Client, types.DeleteBotAliasInput): types.DeleteBotAliasOutput, table
+    deleteBotAnalyzerRecommendation: function(Client, types.DeleteBotAnalyzerRecommendationInput): types.DeleteBotAnalyzerRecommendationOutput, table
+    deleteBotLocale: function(Client, types.DeleteBotLocaleInput): types.DeleteBotLocaleOutput, table
+    deleteBotReplica: function(Client, types.DeleteBotReplicaInput): types.DeleteBotReplicaOutput, table
+    deleteBotVersion: function(Client, types.DeleteBotVersionInput): types.DeleteBotVersionOutput, table
+    deleteCustomVocabulary: function(Client, types.DeleteCustomVocabularyInput): types.DeleteCustomVocabularyOutput, table
+    deleteExport: function(Client, types.DeleteExportInput): types.DeleteExportOutput, table
+    deleteImport: function(Client, types.DeleteImportInput): types.DeleteImportOutput, table
+    deleteIntent: function(Client, types.DeleteIntentInput): types.DeleteIntentOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResourcePolicyStatement: function(Client, types.DeleteResourcePolicyStatementInput): types.DeleteResourcePolicyStatementOutput, table
+    deleteSlot: function(Client, types.DeleteSlotInput): types.DeleteSlotOutput, table
+    deleteSlotType: function(Client, types.DeleteSlotTypeInput): types.DeleteSlotTypeOutput, table
+    deleteTestSet: function(Client, types.DeleteTestSetInput): types.DeleteTestSetOutput, table
+    deleteUtterances: function(Client, types.DeleteUtterancesInput): types.DeleteUtterancesOutput, table
+    describeBot: function(Client, types.DescribeBotInput): types.DescribeBotOutput, table
+    describeBotAlias: function(Client, types.DescribeBotAliasInput): types.DescribeBotAliasOutput, table
+    describeBotAnalyzerRecommendation: function(Client, types.DescribeBotAnalyzerRecommendationInput): types.DescribeBotAnalyzerRecommendationOutput, table
+    describeBotLocale: function(Client, types.DescribeBotLocaleInput): types.DescribeBotLocaleOutput, table
+    describeBotRecommendation: function(Client, types.DescribeBotRecommendationInput): types.DescribeBotRecommendationOutput, table
+    describeBotReplica: function(Client, types.DescribeBotReplicaInput): types.DescribeBotReplicaOutput, table
+    describeBotResourceGeneration: function(Client, types.DescribeBotResourceGenerationInput): types.DescribeBotResourceGenerationOutput, table
+    describeBotVersion: function(Client, types.DescribeBotVersionInput): types.DescribeBotVersionOutput, table
+    describeCustomVocabularyMetadata: function(Client, types.DescribeCustomVocabularyMetadataInput): types.DescribeCustomVocabularyMetadataOutput, table
+    describeExport: function(Client, types.DescribeExportInput): types.DescribeExportOutput, table
+    describeImport: function(Client, types.DescribeImportInput): types.DescribeImportOutput, table
+    describeIntent: function(Client, types.DescribeIntentInput): types.DescribeIntentOutput, table
+    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput): types.DescribeResourcePolicyOutput, table
+    describeSlot: function(Client, types.DescribeSlotInput): types.DescribeSlotOutput, table
+    describeSlotType: function(Client, types.DescribeSlotTypeInput): types.DescribeSlotTypeOutput, table
+    describeTestExecution: function(Client, types.DescribeTestExecutionInput): types.DescribeTestExecutionOutput, table
+    describeTestSet: function(Client, types.DescribeTestSetInput): types.DescribeTestSetOutput, table
+    describeTestSetDiscrepancyReport: function(Client, types.DescribeTestSetDiscrepancyReportInput): types.DescribeTestSetDiscrepancyReportOutput, table
+    describeTestSetGeneration: function(Client, types.DescribeTestSetGenerationInput): types.DescribeTestSetGenerationOutput, table
+    generateBotElement: function(Client, types.GenerateBotElementInput): types.GenerateBotElementOutput, table
+    getTestExecutionArtifactsUrl: function(Client, types.GetTestExecutionArtifactsUrlInput): types.GetTestExecutionArtifactsUrlOutput, table
+    listAggregatedUtterances: function(Client, types.ListAggregatedUtterancesInput): types.ListAggregatedUtterancesOutput, table
+    listBotAliases: function(Client, types.ListBotAliasesInput): types.ListBotAliasesOutput, table
+    listBotAliasReplicas: function(Client, types.ListBotAliasReplicasInput): types.ListBotAliasReplicasOutput, table
+    listBotAnalyzerHistory: function(Client, types.ListBotAnalyzerHistoryInput): types.ListBotAnalyzerHistoryOutput, table
+    listBotLocales: function(Client, types.ListBotLocalesInput): types.ListBotLocalesOutput, table
+    listBotRecommendations: function(Client, types.ListBotRecommendationsInput): types.ListBotRecommendationsOutput, table
+    listBotReplicas: function(Client, types.ListBotReplicasInput): types.ListBotReplicasOutput, table
+    listBotResourceGenerations: function(Client, types.ListBotResourceGenerationsInput): types.ListBotResourceGenerationsOutput, table
+    listBots: function(Client, types.ListBotsInput): types.ListBotsOutput, table
+    listBotVersionReplicas: function(Client, types.ListBotVersionReplicasInput): types.ListBotVersionReplicasOutput, table
+    listBotVersions: function(Client, types.ListBotVersionsInput): types.ListBotVersionsOutput, table
+    listBuiltInIntents: function(Client, types.ListBuiltInIntentsInput): types.ListBuiltInIntentsOutput, table
+    listBuiltInSlotTypes: function(Client, types.ListBuiltInSlotTypesInput): types.ListBuiltInSlotTypesOutput, table
+    listCustomVocabularyItems: function(Client, types.ListCustomVocabularyItemsInput): types.ListCustomVocabularyItemsOutput, table
+    listExports: function(Client, types.ListExportsInput): types.ListExportsOutput, table
+    listImports: function(Client, types.ListImportsInput): types.ListImportsOutput, table
+    listIntentMetrics: function(Client, types.ListIntentMetricsInput): types.ListIntentMetricsOutput, table
+    listIntentPaths: function(Client, types.ListIntentPathsInput): types.ListIntentPathsOutput, table
+    listIntents: function(Client, types.ListIntentsInput): types.ListIntentsOutput, table
+    listIntentStageMetrics: function(Client, types.ListIntentStageMetricsInput): types.ListIntentStageMetricsOutput, table
+    listRecommendedIntents: function(Client, types.ListRecommendedIntentsInput): types.ListRecommendedIntentsOutput, table
+    listSessionAnalyticsData: function(Client, types.ListSessionAnalyticsDataInput): types.ListSessionAnalyticsDataOutput, table
+    listSessionMetrics: function(Client, types.ListSessionMetricsInput): types.ListSessionMetricsOutput, table
+    listSlots: function(Client, types.ListSlotsInput): types.ListSlotsOutput, table
+    listSlotTypes: function(Client, types.ListSlotTypesInput): types.ListSlotTypesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTestExecutionResultItems: function(Client, types.ListTestExecutionResultItemsInput): types.ListTestExecutionResultItemsOutput, table
+    listTestExecutions: function(Client, types.ListTestExecutionsInput): types.ListTestExecutionsOutput, table
+    listTestSetRecords: function(Client, types.ListTestSetRecordsInput): types.ListTestSetRecordsOutput, table
+    listTestSets: function(Client, types.ListTestSetsInput): types.ListTestSetsOutput, table
+    listUtteranceAnalyticsData: function(Client, types.ListUtteranceAnalyticsDataInput): types.ListUtteranceAnalyticsDataOutput, table
+    listUtteranceMetrics: function(Client, types.ListUtteranceMetricsInput): types.ListUtteranceMetricsOutput, table
+    searchAssociatedTranscripts: function(Client, types.SearchAssociatedTranscriptsInput): types.SearchAssociatedTranscriptsOutput, table
+    startBotAnalyzer: function(Client, types.StartBotAnalyzerInput): types.StartBotAnalyzerOutput, table
+    startBotRecommendation: function(Client, types.StartBotRecommendationInput): types.StartBotRecommendationOutput, table
+    startBotResourceGeneration: function(Client, types.StartBotResourceGenerationInput): types.StartBotResourceGenerationOutput, table
+    startImport: function(Client, types.StartImportInput): types.StartImportOutput, table
+    startTestExecution: function(Client, types.StartTestExecutionInput): types.StartTestExecutionOutput, table
+    startTestSetGeneration: function(Client, types.StartTestSetGenerationInput): types.StartTestSetGenerationOutput, table
+    stopBotAnalyzer: function(Client, types.StopBotAnalyzerInput): types.StopBotAnalyzerOutput, table
+    stopBotRecommendation: function(Client, types.StopBotRecommendationInput): types.StopBotRecommendationOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateBot: function(Client, types.UpdateBotInput): types.UpdateBotOutput, table
+    updateBotAlias: function(Client, types.UpdateBotAliasInput): types.UpdateBotAliasOutput, table
+    updateBotLocale: function(Client, types.UpdateBotLocaleInput): types.UpdateBotLocaleOutput, table
+    updateBotRecommendation: function(Client, types.UpdateBotRecommendationInput): types.UpdateBotRecommendationOutput, table
+    updateExport: function(Client, types.UpdateExportInput): types.UpdateExportOutput, table
+    updateIntent: function(Client, types.UpdateIntentInput): types.UpdateIntentOutput, table
+    updateResourcePolicy: function(Client, types.UpdateResourcePolicyInput): types.UpdateResourcePolicyOutput, table
+    updateSlot: function(Client, types.UpdateSlotInput): types.UpdateSlotOutput, table
+    updateSlotType: function(Client, types.UpdateSlotTypeInput): types.UpdateSlotTypeOutput, table
+    updateTestSet: function(Client, types.UpdateTestSetInput): types.UpdateTestSetOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,44 @@
+local types = require("route53domains.types")
+
+local record Client
+    acceptDomainTransferFromAnotherAwsAccount: function(Client, types.AcceptDomainTransferFromAnotherAwsAccountInput): types.AcceptDomainTransferFromAnotherAwsAccountOutput, table
+    associateDelegationSignerToDomain: function(Client, types.AssociateDelegationSignerToDomainInput): types.AssociateDelegationSignerToDomainOutput, table
+    cancelDomainTransferToAnotherAwsAccount: function(Client, types.CancelDomainTransferToAnotherAwsAccountInput): types.CancelDomainTransferToAnotherAwsAccountOutput, table
+    checkDomainAvailability: function(Client, types.CheckDomainAvailabilityInput): types.CheckDomainAvailabilityOutput, table
+    checkDomainTransferability: function(Client, types.CheckDomainTransferabilityInput): types.CheckDomainTransferabilityOutput, table
+    deleteDomain: function(Client, types.DeleteDomainInput): types.DeleteDomainOutput, table
+    deleteTagsForDomain: function(Client, types.DeleteTagsForDomainInput): types.DeleteTagsForDomainOutput, table
+    disableDomainAutoRenew: function(Client, types.DisableDomainAutoRenewInput): types.DisableDomainAutoRenewOutput, table
+    disableDomainTransferLock: function(Client, types.DisableDomainTransferLockInput): types.DisableDomainTransferLockOutput, table
+    disassociateDelegationSignerFromDomain: function(Client, types.DisassociateDelegationSignerFromDomainInput): types.DisassociateDelegationSignerFromDomainOutput, table
+    enableDomainAutoRenew: function(Client, types.EnableDomainAutoRenewInput): types.EnableDomainAutoRenewOutput, table
+    enableDomainTransferLock: function(Client, types.EnableDomainTransferLockInput): types.EnableDomainTransferLockOutput, table
+    getContactReachabilityStatus: function(Client, types.GetContactReachabilityStatusInput): types.GetContactReachabilityStatusOutput, table
+    getDomainDetail: function(Client, types.GetDomainDetailInput): types.GetDomainDetailOutput, table
+    getDomainSuggestions: function(Client, types.GetDomainSuggestionsInput): types.GetDomainSuggestionsOutput, table
+    getOperationDetail: function(Client, types.GetOperationDetailInput): types.GetOperationDetailOutput, table
+    listDomains: function(Client, types.ListDomainsInput): types.ListDomainsOutput, table
+    listOperations: function(Client, types.ListOperationsInput): types.ListOperationsOutput, table
+    listPrices: function(Client, types.ListPricesInput): types.ListPricesOutput, table
+    listTagsForDomain: function(Client, types.ListTagsForDomainInput): types.ListTagsForDomainOutput, table
+    pushDomain: function(Client, types.PushDomainInput): types.PushDomainOutput, table
+    registerDomain: function(Client, types.RegisterDomainInput): types.RegisterDomainOutput, table
+    rejectDomainTransferFromAnotherAwsAccount: function(Client, types.RejectDomainTransferFromAnotherAwsAccountInput): types.RejectDomainTransferFromAnotherAwsAccountOutput, table
+    renewDomain: function(Client, types.RenewDomainInput): types.RenewDomainOutput, table
+    resendContactReachabilityEmail: function(Client, types.ResendContactReachabilityEmailInput): types.ResendContactReachabilityEmailOutput, table
+    resendOperationAuthorization: function(Client, types.ResendOperationAuthorizationInput): types.ResendOperationAuthorizationOutput, table
+    retrieveDomainAuthCode: function(Client, types.RetrieveDomainAuthCodeInput): types.RetrieveDomainAuthCodeOutput, table
+    transferDomain: function(Client, types.TransferDomainInput): types.TransferDomainOutput, table
+    transferDomainToAnotherAwsAccount: function(Client, types.TransferDomainToAnotherAwsAccountInput): types.TransferDomainToAnotherAwsAccountOutput, table
+    updateDomainContact: function(Client, types.UpdateDomainContactInput): types.UpdateDomainContactOutput, table
+    updateDomainContactPrivacy: function(Client, types.UpdateDomainContactPrivacyInput): types.UpdateDomainContactPrivacyOutput, table
+    updateDomainNameservers: function(Client, types.UpdateDomainNameserversInput): types.UpdateDomainNameserversOutput, table
+    updateTagsForDomain: function(Client, types.UpdateTagsForDomainInput): types.UpdateTagsForDomainOutput, table
+    viewBilling: function(Client, types.ViewBillingInput): types.ViewBillingOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

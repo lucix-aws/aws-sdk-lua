@@ -1,0 +1,19 @@
+local types = require("resourcegroupstaggingapi.types")
+
+local record Client
+    describeReportCreation: function(Client, types.DescribeReportCreationInput): types.DescribeReportCreationOutput, table
+    getComplianceSummary: function(Client, types.GetComplianceSummaryInput): types.GetComplianceSummaryOutput, table
+    getResources: function(Client, types.GetResourcesInput): types.GetResourcesOutput, table
+    getTagKeys: function(Client, types.GetTagKeysInput): types.GetTagKeysOutput, table
+    getTagValues: function(Client, types.GetTagValuesInput): types.GetTagValuesOutput, table
+    listRequiredTags: function(Client, types.ListRequiredTagsInput): types.ListRequiredTagsOutput, table
+    startReportCreation: function(Client, types.StartReportCreationInput): types.StartReportCreationOutput, table
+    tagResources: function(Client, types.TagResourcesInput): types.TagResourcesOutput, table
+    untagResources: function(Client, types.UntagResourcesInput): types.UntagResourcesOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

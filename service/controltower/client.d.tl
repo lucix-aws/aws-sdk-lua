@@ -1,0 +1,38 @@
+local types = require("controltower.types")
+
+local record Client
+    createLandingZone: function(Client, types.CreateLandingZoneInput): types.CreateLandingZoneOutput, table
+    deleteLandingZone: function(Client, types.DeleteLandingZoneInput): types.DeleteLandingZoneOutput, table
+    disableBaseline: function(Client, types.DisableBaselineInput): types.DisableBaselineOutput, table
+    disableControl: function(Client, types.DisableControlInput): types.DisableControlOutput, table
+    enableBaseline: function(Client, types.EnableBaselineInput): types.EnableBaselineOutput, table
+    enableControl: function(Client, types.EnableControlInput): types.EnableControlOutput, table
+    getBaseline: function(Client, types.GetBaselineInput): types.GetBaselineOutput, table
+    getBaselineOperation: function(Client, types.GetBaselineOperationInput): types.GetBaselineOperationOutput, table
+    getControlOperation: function(Client, types.GetControlOperationInput): types.GetControlOperationOutput, table
+    getEnabledBaseline: function(Client, types.GetEnabledBaselineInput): types.GetEnabledBaselineOutput, table
+    getEnabledControl: function(Client, types.GetEnabledControlInput): types.GetEnabledControlOutput, table
+    getLandingZone: function(Client, types.GetLandingZoneInput): types.GetLandingZoneOutput, table
+    getLandingZoneOperation: function(Client, types.GetLandingZoneOperationInput): types.GetLandingZoneOperationOutput, table
+    listBaselines: function(Client, types.ListBaselinesInput): types.ListBaselinesOutput, table
+    listControlOperations: function(Client, types.ListControlOperationsInput): types.ListControlOperationsOutput, table
+    listEnabledBaselines: function(Client, types.ListEnabledBaselinesInput): types.ListEnabledBaselinesOutput, table
+    listEnabledControls: function(Client, types.ListEnabledControlsInput): types.ListEnabledControlsOutput, table
+    listLandingZoneOperations: function(Client, types.ListLandingZoneOperationsInput): types.ListLandingZoneOperationsOutput, table
+    listLandingZones: function(Client, types.ListLandingZonesInput): types.ListLandingZonesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    resetEnabledBaseline: function(Client, types.ResetEnabledBaselineInput): types.ResetEnabledBaselineOutput, table
+    resetEnabledControl: function(Client, types.ResetEnabledControlInput): types.ResetEnabledControlOutput, table
+    resetLandingZone: function(Client, types.ResetLandingZoneInput): types.ResetLandingZoneOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateEnabledBaseline: function(Client, types.UpdateEnabledBaselineInput): types.UpdateEnabledBaselineOutput, table
+    updateEnabledControl: function(Client, types.UpdateEnabledControlInput): types.UpdateEnabledControlOutput, table
+    updateLandingZone: function(Client, types.UpdateLandingZoneInput): types.UpdateLandingZoneOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

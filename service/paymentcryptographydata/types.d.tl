@@ -1,0 +1,564 @@
+local record DecryptDataInput
+    KeyIdentifier: string
+    CipherText: string
+    DecryptionAttributes: EncryptionDecryptionAttributes
+    WrappedKey: WrappedKey
+end
+
+local record DecryptDataOutput
+    KeyArn: string
+    KeyCheckValue: string
+    PlainText: string
+end
+
+local record EncryptDataInput
+    KeyIdentifier: string
+    PlainText: string
+    EncryptionAttributes: EncryptionDecryptionAttributes
+    WrappedKey: WrappedKey
+end
+
+local record EncryptDataOutput
+    KeyArn: string
+    KeyCheckValue: string
+    CipherText: string
+end
+
+local record GenerateAs2805KekValidationInput
+    KeyIdentifier: string
+    KekValidationType: As2805KekValidationType
+    RandomKeySendVariantMask: string
+end
+
+local record GenerateAs2805KekValidationOutput
+    KeyArn: string
+    KeyCheckValue: string
+    RandomKeySend: string
+    RandomKeyReceive: string
+end
+
+local record GenerateCardValidationDataInput
+    KeyIdentifier: string
+    PrimaryAccountNumber: string
+    GenerationAttributes: CardGenerationAttributes
+    ValidationDataLength: number
+end
+
+local record GenerateCardValidationDataOutput
+    KeyArn: string
+    KeyCheckValue: string
+    ValidationData: string
+end
+
+local record GenerateMacInput
+    KeyIdentifier: string
+    MessageData: string
+    GenerationAttributes: MacAttributes
+    MacLength: number
+end
+
+local record GenerateMacOutput
+    KeyArn: string
+    KeyCheckValue: string
+    Mac: string
+end
+
+local record GenerateMacEmvPinChangeInput
+    NewPinPekIdentifier: string
+    NewEncryptedPinBlock: string
+    PinBlockFormat: string
+    SecureMessagingIntegrityKeyIdentifier: string
+    SecureMessagingConfidentialityKeyIdentifier: string
+    MessageData: string
+    DerivationMethodAttributes: DerivationMethodAttributes
+end
+
+local record GenerateMacEmvPinChangeOutput
+    NewPinPekArn: string
+    SecureMessagingIntegrityKeyArn: string
+    SecureMessagingConfidentialityKeyArn: string
+    Mac: string
+    EncryptedPinBlock: string
+    NewPinPekKeyCheckValue: string
+    SecureMessagingIntegrityKeyCheckValue: string
+    SecureMessagingConfidentialityKeyCheckValue: string
+    VisaAmexDerivationOutputs: VisaAmexDerivationOutputs
+end
+
+local record GeneratePinDataInput
+    GenerationKeyIdentifier: string
+    EncryptionKeyIdentifier: string
+    GenerationAttributes: PinGenerationAttributes
+    PinDataLength: number
+    PrimaryAccountNumber: string
+    PinBlockFormat: string
+    EncryptionWrappedKey: WrappedKey
+end
+
+local record GeneratePinDataOutput
+    GenerationKeyArn: string
+    GenerationKeyCheckValue: string
+    EncryptionKeyArn: string
+    EncryptionKeyCheckValue: string
+    EncryptedPinBlock: string
+    PinData: PinData
+end
+
+local record ReEncryptDataInput
+    IncomingKeyIdentifier: string
+    OutgoingKeyIdentifier: string
+    CipherText: string
+    IncomingEncryptionAttributes: ReEncryptionAttributes
+    OutgoingEncryptionAttributes: ReEncryptionAttributes
+    IncomingWrappedKey: WrappedKey
+    OutgoingWrappedKey: WrappedKey
+end
+
+local record ReEncryptDataOutput
+    KeyArn: string
+    KeyCheckValue: string
+    CipherText: string
+end
+
+local record TranslateKeyMaterialInput
+    IncomingKeyMaterial: IncomingKeyMaterial
+    OutgoingKeyMaterial: OutgoingKeyMaterial
+    KeyCheckValueAlgorithm: string
+end
+
+local record TranslateKeyMaterialOutput
+    WrappedKey: WrappedWorkingKey
+end
+
+local record TranslatePinDataInput
+    IncomingKeyIdentifier: string
+    OutgoingKeyIdentifier: string
+    IncomingTranslationAttributes: TranslationIsoFormats
+    OutgoingTranslationAttributes: TranslationIsoFormats
+    EncryptedPinBlock: string
+    IncomingDukptAttributes: DukptDerivationAttributes
+    OutgoingDukptAttributes: DukptDerivationAttributes
+    IncomingWrappedKey: WrappedKey
+    OutgoingWrappedKey: WrappedKey
+    IncomingAs2805Attributes: As2805PekDerivationAttributes
+end
+
+local record TranslatePinDataOutput
+    PinBlock: string
+    KeyArn: string
+    KeyCheckValue: string
+end
+
+local record VerifyAuthRequestCryptogramInput
+    KeyIdentifier: string
+    TransactionData: string
+    AuthRequestCryptogram: string
+    MajorKeyDerivationMode: string
+    SessionKeyDerivationAttributes: SessionKeyDerivation
+    AuthResponseAttributes: CryptogramAuthResponse
+end
+
+local record VerifyAuthRequestCryptogramOutput
+    KeyArn: string
+    KeyCheckValue: string
+    AuthResponseValue: string
+end
+
+local record VerifyCardValidationDataInput
+    KeyIdentifier: string
+    PrimaryAccountNumber: string
+    VerificationAttributes: CardVerificationAttributes
+    ValidationData: string
+end
+
+local record VerifyCardValidationDataOutput
+    KeyArn: string
+    KeyCheckValue: string
+end
+
+local record VerifyMacInput
+    KeyIdentifier: string
+    MessageData: string
+    Mac: string
+    VerificationAttributes: MacAttributes
+    MacLength: number
+end
+
+local record VerifyMacOutput
+    KeyArn: string
+    KeyCheckValue: string
+end
+
+local record VerifyPinDataInput
+    VerificationKeyIdentifier: string
+    EncryptionKeyIdentifier: string
+    VerificationAttributes: PinVerificationAttributes
+    EncryptedPinBlock: string
+    PrimaryAccountNumber: string
+    PinBlockFormat: string
+    PinDataLength: number
+    DukptAttributes: DukptAttributes
+    EncryptionWrappedKey: WrappedKey
+end
+
+local record VerifyPinDataOutput
+    VerificationKeyArn: string
+    VerificationKeyCheckValue: string
+    EncryptionKeyArn: string
+    EncryptionKeyCheckValue: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceId: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceId: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceId: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceId: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceId: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceId: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceId: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceId: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceId: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceId: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceId: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record VerificationFailedException
+    Reason: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceId: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record VerificationFailedException
+    Reason: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceId: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record VerificationFailedException
+    Reason: string
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ResourceId: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record VerificationFailedException
+    Reason: string
+    Message: string
+end
+
+local type MajorKeyDerivationMode = "EMV_OPTION_A" | "EMV_OPTION_B"
+
+local type PinBlockFormatForEmvPinChange = "ISO_FORMAT_0" | "ISO_FORMAT_1" | "ISO_FORMAT_3"
+
+local type PinBlockFormatForPinData = "ISO_FORMAT_0" | "ISO_FORMAT_1" | "ISO_FORMAT_3" | "ISO_FORMAT_4"
+
+local type RandomKeySendVariantMask = "VARIANT_MASK_82C0" | "VARIANT_MASK_82"
+
+local record M
+    DecryptDataInput: DecryptDataInput
+    DecryptDataOutput: DecryptDataOutput
+    EncryptDataInput: EncryptDataInput
+    EncryptDataOutput: EncryptDataOutput
+    GenerateAs2805KekValidationInput: GenerateAs2805KekValidationInput
+    GenerateAs2805KekValidationOutput: GenerateAs2805KekValidationOutput
+    GenerateCardValidationDataInput: GenerateCardValidationDataInput
+    GenerateCardValidationDataOutput: GenerateCardValidationDataOutput
+    GenerateMacInput: GenerateMacInput
+    GenerateMacOutput: GenerateMacOutput
+    GenerateMacEmvPinChangeInput: GenerateMacEmvPinChangeInput
+    GenerateMacEmvPinChangeOutput: GenerateMacEmvPinChangeOutput
+    GeneratePinDataInput: GeneratePinDataInput
+    GeneratePinDataOutput: GeneratePinDataOutput
+    ReEncryptDataInput: ReEncryptDataInput
+    ReEncryptDataOutput: ReEncryptDataOutput
+    TranslateKeyMaterialInput: TranslateKeyMaterialInput
+    TranslateKeyMaterialOutput: TranslateKeyMaterialOutput
+    TranslatePinDataInput: TranslatePinDataInput
+    TranslatePinDataOutput: TranslatePinDataOutput
+    VerifyAuthRequestCryptogramInput: VerifyAuthRequestCryptogramInput
+    VerifyAuthRequestCryptogramOutput: VerifyAuthRequestCryptogramOutput
+    VerifyCardValidationDataInput: VerifyCardValidationDataInput
+    VerifyCardValidationDataOutput: VerifyCardValidationDataOutput
+    VerifyMacInput: VerifyMacInput
+    VerifyMacOutput: VerifyMacOutput
+    VerifyPinDataInput: VerifyPinDataInput
+    VerifyPinDataOutput: VerifyPinDataOutput
+end
+
+return M

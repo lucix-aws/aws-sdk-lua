@@ -1,0 +1,774 @@
+local record CreateHttpNamespaceInput
+    Name: string
+    CreatorRequestId: string
+    Description: string
+    Tags: {Tag}
+end
+
+local record CreateHttpNamespaceOutput
+    OperationId: string
+end
+
+local record CreatePrivateDnsNamespaceInput
+    Name: string
+    CreatorRequestId: string
+    Description: string
+    Vpc: string
+    Tags: {Tag}
+    Properties: PrivateDnsNamespaceProperties
+end
+
+local record CreatePrivateDnsNamespaceOutput
+    OperationId: string
+end
+
+local record CreatePublicDnsNamespaceInput
+    Name: string
+    CreatorRequestId: string
+    Description: string
+    Tags: {Tag}
+    Properties: PublicDnsNamespaceProperties
+end
+
+local record CreatePublicDnsNamespaceOutput
+    OperationId: string
+end
+
+local record CreateServiceInput
+    Name: string
+    NamespaceId: string
+    CreatorRequestId: string
+    Description: string
+    DnsConfig: DnsConfig
+    HealthCheckConfig: HealthCheckConfig
+    HealthCheckCustomConfig: HealthCheckCustomConfig
+    Tags: {Tag}
+    Type: string
+end
+
+local record CreateServiceOutput
+    Service: Service
+end
+
+local record DeleteNamespaceInput
+    Id: string
+end
+
+local record DeleteNamespaceOutput
+    OperationId: string
+end
+
+local record DeleteServiceInput
+    Id: string
+end
+
+local record DeleteServiceOutput
+end
+
+local record DeleteServiceAttributesInput
+    ServiceId: string
+    Attributes: {string}
+end
+
+local record DeleteServiceAttributesOutput
+end
+
+local record DeregisterInstanceInput
+    ServiceId: string
+    InstanceId: string
+end
+
+local record DeregisterInstanceOutput
+    OperationId: string
+end
+
+local record DiscoverInstancesInput
+    NamespaceName: string
+    ServiceName: string
+    MaxResults: number
+    QueryParameters: {string : string}
+    OptionalParameters: {string : string}
+    HealthStatus: string
+    OwnerAccount: string
+end
+
+local record DiscoverInstancesOutput
+    Instances: {HttpInstanceSummary}
+    InstancesRevision: number
+end
+
+local record DiscoverInstancesRevisionInput
+    NamespaceName: string
+    ServiceName: string
+    OwnerAccount: string
+end
+
+local record DiscoverInstancesRevisionOutput
+    InstancesRevision: number
+end
+
+local record GetInstanceInput
+    ServiceId: string
+    InstanceId: string
+end
+
+local record GetInstanceOutput
+    ResourceOwner: string
+    Instance: Instance
+end
+
+local record GetInstancesHealthStatusInput
+    ServiceId: string
+    Instances: {string}
+    MaxResults: number
+    NextToken: string
+end
+
+local record GetInstancesHealthStatusOutput
+    Status: {string : string}
+    NextToken: string
+end
+
+local record GetNamespaceInput
+    Id: string
+end
+
+local record GetNamespaceOutput
+    Namespace: Namespace
+end
+
+local record GetOperationInput
+    OperationId: string
+    OwnerAccount: string
+end
+
+local record GetOperationOutput
+    Operation: Operation
+end
+
+local record GetServiceInput
+    Id: string
+end
+
+local record GetServiceOutput
+    Service: Service
+end
+
+local record GetServiceAttributesInput
+    ServiceId: string
+end
+
+local record GetServiceAttributesOutput
+    ServiceAttributes: ServiceAttributes
+end
+
+local record ListInstancesInput
+    ServiceId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListInstancesOutput
+    ResourceOwner: string
+    Instances: {InstanceSummary}
+    NextToken: string
+end
+
+local record ListNamespacesInput
+    NextToken: string
+    MaxResults: number
+    Filters: {NamespaceFilter}
+end
+
+local record ListNamespacesOutput
+    Namespaces: {NamespaceSummary}
+    NextToken: string
+end
+
+local record ListOperationsInput
+    NextToken: string
+    MaxResults: number
+    Filters: {OperationFilter}
+end
+
+local record ListOperationsOutput
+    Operations: {OperationSummary}
+    NextToken: string
+end
+
+local record ListServicesInput
+    NextToken: string
+    MaxResults: number
+    Filters: {ServiceFilter}
+end
+
+local record ListServicesOutput
+    Services: {ServiceSummary}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceARN: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+end
+
+local record RegisterInstanceInput
+    ServiceId: string
+    InstanceId: string
+    CreatorRequestId: string
+    Attributes: {string : string}
+end
+
+local record RegisterInstanceOutput
+    OperationId: string
+end
+
+local record TagResourceInput
+    ResourceARN: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceARN: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateHttpNamespaceInput
+    Id: string
+    UpdaterRequestId: string
+    Namespace: HttpNamespaceChange
+end
+
+local record UpdateHttpNamespaceOutput
+    OperationId: string
+end
+
+local record UpdateInstanceCustomHealthStatusInput
+    ServiceId: string
+    InstanceId: string
+    Status: string
+end
+
+local record UpdateInstanceCustomHealthStatusOutput
+end
+
+local record UpdatePrivateDnsNamespaceInput
+    Id: string
+    UpdaterRequestId: string
+    Namespace: PrivateDnsNamespaceChange
+end
+
+local record UpdatePrivateDnsNamespaceOutput
+    OperationId: string
+end
+
+local record UpdatePublicDnsNamespaceInput
+    Id: string
+    UpdaterRequestId: string
+    Namespace: PublicDnsNamespaceChange
+end
+
+local record UpdatePublicDnsNamespaceOutput
+    OperationId: string
+end
+
+local record UpdateServiceInput
+    Id: string
+    Service: ServiceChange
+end
+
+local record UpdateServiceOutput
+    OperationId: string
+end
+
+local record UpdateServiceAttributesInput
+    ServiceId: string
+    Attributes: {string : string}
+end
+
+local record UpdateServiceAttributesOutput
+end
+
+local record DuplicateRequest
+    Message: string
+    DuplicateOperationId: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record NamespaceAlreadyExists
+    Message: string
+    CreatorRequestId: string
+    NamespaceId: string
+end
+
+local record ResourceLimitExceeded
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+    ResourceName: string
+end
+
+local record DuplicateRequest
+    Message: string
+    DuplicateOperationId: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record NamespaceAlreadyExists
+    Message: string
+    CreatorRequestId: string
+    NamespaceId: string
+end
+
+local record ResourceLimitExceeded
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+    ResourceName: string
+end
+
+local record DuplicateRequest
+    Message: string
+    DuplicateOperationId: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record NamespaceAlreadyExists
+    Message: string
+    CreatorRequestId: string
+    NamespaceId: string
+end
+
+local record ResourceLimitExceeded
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+    ResourceName: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record NamespaceNotFound
+    Message: string
+end
+
+local record ResourceLimitExceeded
+    Message: string
+end
+
+local record ServiceAlreadyExists
+    Message: string
+    CreatorRequestId: string
+    ServiceId: string
+    ServiceArn: string
+end
+
+local record TooManyTagsException
+    Message: string
+    ResourceName: string
+end
+
+local record DuplicateRequest
+    Message: string
+    DuplicateOperationId: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record NamespaceNotFound
+    Message: string
+end
+
+local record ResourceInUse
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record ResourceInUse
+    Message: string
+end
+
+local record ServiceNotFound
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record ServiceNotFound
+    Message: string
+end
+
+local record DuplicateRequest
+    Message: string
+    DuplicateOperationId: string
+end
+
+local record InstanceNotFound
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record ResourceInUse
+    Message: string
+end
+
+local record ServiceNotFound
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record NamespaceNotFound
+    Message: string
+end
+
+local record RequestLimitExceeded
+    Message: string
+end
+
+local record ServiceNotFound
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record NamespaceNotFound
+    Message: string
+end
+
+local record RequestLimitExceeded
+    Message: string
+end
+
+local record ServiceNotFound
+    Message: string
+end
+
+local record InstanceNotFound
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record ServiceNotFound
+    Message: string
+end
+
+local record InstanceNotFound
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record ServiceNotFound
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record NamespaceNotFound
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record OperationNotFound
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record ServiceNotFound
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record ServiceNotFound
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record ServiceNotFound
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record DuplicateRequest
+    Message: string
+    DuplicateOperationId: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record ResourceInUse
+    Message: string
+end
+
+local record ResourceLimitExceeded
+    Message: string
+end
+
+local record ServiceNotFound
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+    ResourceName: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record DuplicateRequest
+    Message: string
+    DuplicateOperationId: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record NamespaceNotFound
+    Message: string
+end
+
+local record ResourceInUse
+    Message: string
+end
+
+local record CustomHealthNotFound
+    Message: string
+end
+
+local record InstanceNotFound
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record ServiceNotFound
+    Message: string
+end
+
+local record DuplicateRequest
+    Message: string
+    DuplicateOperationId: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record NamespaceNotFound
+    Message: string
+end
+
+local record ResourceInUse
+    Message: string
+end
+
+local record DuplicateRequest
+    Message: string
+    DuplicateOperationId: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record NamespaceNotFound
+    Message: string
+end
+
+local record ResourceInUse
+    Message: string
+end
+
+local record DuplicateRequest
+    Message: string
+    DuplicateOperationId: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record ServiceNotFound
+    Message: string
+end
+
+local record InvalidInput
+    Message: string
+end
+
+local record ServiceAttributesLimitExceededException
+    Message: string
+end
+
+local record ServiceNotFound
+    Message: string
+end
+
+local type CustomHealthStatus = "HEALTHY" | "UNHEALTHY"
+
+local type ServiceTypeOption = "HTTP"
+
+local type HealthStatusFilter = "HEALTHY" | "UNHEALTHY" | "ALL" | "HEALTHY_OR_ELSE_ALL"
+
+local record M
+    CreateHttpNamespaceInput: CreateHttpNamespaceInput
+    CreateHttpNamespaceOutput: CreateHttpNamespaceOutput
+    CreatePrivateDnsNamespaceInput: CreatePrivateDnsNamespaceInput
+    CreatePrivateDnsNamespaceOutput: CreatePrivateDnsNamespaceOutput
+    CreatePublicDnsNamespaceInput: CreatePublicDnsNamespaceInput
+    CreatePublicDnsNamespaceOutput: CreatePublicDnsNamespaceOutput
+    CreateServiceInput: CreateServiceInput
+    CreateServiceOutput: CreateServiceOutput
+    DeleteNamespaceInput: DeleteNamespaceInput
+    DeleteNamespaceOutput: DeleteNamespaceOutput
+    DeleteServiceInput: DeleteServiceInput
+    DeleteServiceOutput: DeleteServiceOutput
+    DeleteServiceAttributesInput: DeleteServiceAttributesInput
+    DeleteServiceAttributesOutput: DeleteServiceAttributesOutput
+    DeregisterInstanceInput: DeregisterInstanceInput
+    DeregisterInstanceOutput: DeregisterInstanceOutput
+    DiscoverInstancesInput: DiscoverInstancesInput
+    DiscoverInstancesOutput: DiscoverInstancesOutput
+    DiscoverInstancesRevisionInput: DiscoverInstancesRevisionInput
+    DiscoverInstancesRevisionOutput: DiscoverInstancesRevisionOutput
+    GetInstanceInput: GetInstanceInput
+    GetInstanceOutput: GetInstanceOutput
+    GetInstancesHealthStatusInput: GetInstancesHealthStatusInput
+    GetInstancesHealthStatusOutput: GetInstancesHealthStatusOutput
+    GetNamespaceInput: GetNamespaceInput
+    GetNamespaceOutput: GetNamespaceOutput
+    GetOperationInput: GetOperationInput
+    GetOperationOutput: GetOperationOutput
+    GetServiceInput: GetServiceInput
+    GetServiceOutput: GetServiceOutput
+    GetServiceAttributesInput: GetServiceAttributesInput
+    GetServiceAttributesOutput: GetServiceAttributesOutput
+    ListInstancesInput: ListInstancesInput
+    ListInstancesOutput: ListInstancesOutput
+    ListNamespacesInput: ListNamespacesInput
+    ListNamespacesOutput: ListNamespacesOutput
+    ListOperationsInput: ListOperationsInput
+    ListOperationsOutput: ListOperationsOutput
+    ListServicesInput: ListServicesInput
+    ListServicesOutput: ListServicesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    RegisterInstanceInput: RegisterInstanceInput
+    RegisterInstanceOutput: RegisterInstanceOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateHttpNamespaceInput: UpdateHttpNamespaceInput
+    UpdateHttpNamespaceOutput: UpdateHttpNamespaceOutput
+    UpdateInstanceCustomHealthStatusInput: UpdateInstanceCustomHealthStatusInput
+    UpdateInstanceCustomHealthStatusOutput: UpdateInstanceCustomHealthStatusOutput
+    UpdatePrivateDnsNamespaceInput: UpdatePrivateDnsNamespaceInput
+    UpdatePrivateDnsNamespaceOutput: UpdatePrivateDnsNamespaceOutput
+    UpdatePublicDnsNamespaceInput: UpdatePublicDnsNamespaceInput
+    UpdatePublicDnsNamespaceOutput: UpdatePublicDnsNamespaceOutput
+    UpdateServiceInput: UpdateServiceInput
+    UpdateServiceOutput: UpdateServiceOutput
+    UpdateServiceAttributesInput: UpdateServiceAttributesInput
+    UpdateServiceAttributesOutput: UpdateServiceAttributesOutput
+end
+
+return M

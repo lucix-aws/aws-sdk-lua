@@ -1,0 +1,646 @@
+local record GetApplicationComponentDetailsInput
+    applicationComponentId: string
+end
+
+local record GetApplicationComponentDetailsOutput
+    applicationComponentDetail: ApplicationComponentDetail
+    associatedApplications: {AssociatedApplication}
+    moreApplicationResource: boolean
+    associatedServerIds: {string}
+end
+
+local record GetApplicationComponentStrategiesInput
+    applicationComponentId: string
+end
+
+local record GetApplicationComponentStrategiesOutput
+    applicationComponentStrategies: {ApplicationComponentStrategy}
+end
+
+local record GetAssessmentInput
+    id: string
+end
+
+local record GetAssessmentOutput
+    id: string
+    dataCollectionDetails: DataCollectionDetails
+    assessmentTargets: {AssessmentTarget}
+end
+
+local record GetImportFileTaskInput
+    id: string
+end
+
+local record GetImportFileTaskOutput
+    id: string
+    status: string
+    startTime: number
+    inputS3Bucket: string
+    inputS3Key: string
+    statusReportS3Bucket: string
+    statusReportS3Key: string
+    completionTime: number
+    numberOfRecordsSuccess: number
+    numberOfRecordsFailed: number
+    importName: string
+end
+
+local record GetLatestAssessmentIdInput
+end
+
+local record GetLatestAssessmentIdOutput
+    id: string
+end
+
+local record GetPortfolioPreferencesInput
+end
+
+local record GetPortfolioPreferencesOutput
+    prioritizeBusinessGoals: PrioritizeBusinessGoals
+    applicationPreferences: ApplicationPreferences
+    databasePreferences: DatabasePreferences
+    applicationMode: string
+end
+
+local record GetPortfolioSummaryInput
+end
+
+local record GetPortfolioSummaryOutput
+    assessmentSummary: AssessmentSummary
+end
+
+local record GetRecommendationReportDetailsInput
+    id: string
+end
+
+local record GetRecommendationReportDetailsOutput
+    id: string
+    recommendationReportDetails: RecommendationReportDetails
+end
+
+local record GetServerDetailsInput
+    serverId: string
+    nextToken: string
+    maxResults: number
+end
+
+local record GetServerDetailsOutput
+    nextToken: string
+    serverDetail: ServerDetail
+    associatedApplications: {AssociatedApplication}
+end
+
+local record GetServerStrategiesInput
+    serverId: string
+end
+
+local record GetServerStrategiesOutput
+    serverStrategies: {ServerStrategy}
+end
+
+local record ListAnalyzableServersInput
+    sort: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListAnalyzableServersOutput
+    analyzableServers: {AnalyzableServerSummary}
+    nextToken: string
+end
+
+local record ListApplicationComponentsInput
+    applicationComponentCriteria: string
+    filterValue: string
+    sort: string
+    groupIdFilter: {Group}
+    nextToken: string
+    maxResults: number
+end
+
+local record ListApplicationComponentsOutput
+    applicationComponentInfos: {ApplicationComponentDetail}
+    nextToken: string
+end
+
+local record ListCollectorsInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListCollectorsOutput
+    Collectors: {Collector}
+    nextToken: string
+end
+
+local record ListImportFileTaskInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListImportFileTaskOutput
+    taskInfos: {ImportFileTaskInformation}
+    nextToken: string
+end
+
+local record ListServersInput
+    serverCriteria: string
+    filterValue: string
+    sort: string
+    groupIdFilter: {Group}
+    nextToken: string
+    maxResults: number
+end
+
+local record ListServersOutput
+    serverInfos: {ServerDetail}
+    nextToken: string
+end
+
+local record PutPortfolioPreferencesInput
+    prioritizeBusinessGoals: PrioritizeBusinessGoals
+    applicationPreferences: ApplicationPreferences
+    databasePreferences: DatabasePreferences
+    applicationMode: string
+end
+
+local record PutPortfolioPreferencesOutput
+end
+
+local record StartAssessmentInput
+    s3bucketForAnalysisData: string
+    s3bucketForReportData: string
+    assessmentTargets: {AssessmentTarget}
+    assessmentDataSourceType: string
+end
+
+local record StartAssessmentOutput
+    assessmentId: string
+end
+
+local record StartImportFileTaskInput
+    name: string
+    S3Bucket: string
+    s3key: string
+    dataSourceType: string
+    groupId: {Group}
+    s3bucketForReportData: string
+end
+
+local record StartImportFileTaskOutput
+    id: string
+end
+
+local record StartRecommendationReportGenerationInput
+    outputFormat: string
+    groupIdFilter: {Group}
+end
+
+local record StartRecommendationReportGenerationOutput
+    id: string
+end
+
+local record StopAssessmentInput
+    assessmentId: string
+end
+
+local record StopAssessmentOutput
+end
+
+local record UpdateApplicationComponentConfigInput
+    applicationComponentId: string
+    inclusionStatus: string
+    strategyOption: StrategyOption
+    sourceCodeList: {SourceCode}
+    secretsManagerKey: string
+    configureOnly: boolean
+    appType: string
+end
+
+local record UpdateApplicationComponentConfigOutput
+end
+
+local record UpdateServerConfigInput
+    serverId: string
+    strategyOption: StrategyOption
+end
+
+local record UpdateServerConfigOutput
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record DependencyException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceLinkedRoleLockClientException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    GetApplicationComponentDetailsInput: GetApplicationComponentDetailsInput
+    GetApplicationComponentDetailsOutput: GetApplicationComponentDetailsOutput
+    GetApplicationComponentStrategiesInput: GetApplicationComponentStrategiesInput
+    GetApplicationComponentStrategiesOutput: GetApplicationComponentStrategiesOutput
+    GetAssessmentInput: GetAssessmentInput
+    GetAssessmentOutput: GetAssessmentOutput
+    GetImportFileTaskInput: GetImportFileTaskInput
+    GetImportFileTaskOutput: GetImportFileTaskOutput
+    GetLatestAssessmentIdInput: GetLatestAssessmentIdInput
+    GetLatestAssessmentIdOutput: GetLatestAssessmentIdOutput
+    GetPortfolioPreferencesInput: GetPortfolioPreferencesInput
+    GetPortfolioPreferencesOutput: GetPortfolioPreferencesOutput
+    GetPortfolioSummaryInput: GetPortfolioSummaryInput
+    GetPortfolioSummaryOutput: GetPortfolioSummaryOutput
+    GetRecommendationReportDetailsInput: GetRecommendationReportDetailsInput
+    GetRecommendationReportDetailsOutput: GetRecommendationReportDetailsOutput
+    GetServerDetailsInput: GetServerDetailsInput
+    GetServerDetailsOutput: GetServerDetailsOutput
+    GetServerStrategiesInput: GetServerStrategiesInput
+    GetServerStrategiesOutput: GetServerStrategiesOutput
+    ListAnalyzableServersInput: ListAnalyzableServersInput
+    ListAnalyzableServersOutput: ListAnalyzableServersOutput
+    ListApplicationComponentsInput: ListApplicationComponentsInput
+    ListApplicationComponentsOutput: ListApplicationComponentsOutput
+    ListCollectorsInput: ListCollectorsInput
+    ListCollectorsOutput: ListCollectorsOutput
+    ListImportFileTaskInput: ListImportFileTaskInput
+    ListImportFileTaskOutput: ListImportFileTaskOutput
+    ListServersInput: ListServersInput
+    ListServersOutput: ListServersOutput
+    PutPortfolioPreferencesInput: PutPortfolioPreferencesInput
+    PutPortfolioPreferencesOutput: PutPortfolioPreferencesOutput
+    StartAssessmentInput: StartAssessmentInput
+    StartAssessmentOutput: StartAssessmentOutput
+    StartImportFileTaskInput: StartImportFileTaskInput
+    StartImportFileTaskOutput: StartImportFileTaskOutput
+    StartRecommendationReportGenerationInput: StartRecommendationReportGenerationInput
+    StartRecommendationReportGenerationOutput: StartRecommendationReportGenerationOutput
+    StopAssessmentInput: StopAssessmentInput
+    StopAssessmentOutput: StopAssessmentOutput
+    UpdateApplicationComponentConfigInput: UpdateApplicationComponentConfigInput
+    UpdateApplicationComponentConfigOutput: UpdateApplicationComponentConfigOutput
+    UpdateServerConfigInput: UpdateServerConfigInput
+    UpdateServerConfigOutput: UpdateServerConfigOutput
+end
+
+return M

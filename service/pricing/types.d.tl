@@ -1,0 +1,216 @@
+local record DescribeServicesInput
+    ServiceCode: string
+    FormatVersion: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record DescribeServicesOutput
+    Services: {Service}
+    FormatVersion: string
+    NextToken: string
+end
+
+local record GetAttributeValuesInput
+    ServiceCode: string
+    AttributeName: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record GetAttributeValuesOutput
+    AttributeValues: {AttributeValue}
+    NextToken: string
+end
+
+local record GetPriceListFileUrlInput
+    PriceListArn: string
+    FileFormat: string
+end
+
+local record GetPriceListFileUrlOutput
+    Url: string
+end
+
+local record GetProductsInput
+    ServiceCode: string
+    Filters: {Filter}
+    FormatVersion: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record GetProductsOutput
+    FormatVersion: string
+    PriceList: {string}
+    NextToken: string
+end
+
+local record ListPriceListsInput
+    ServiceCode: string
+    EffectiveDate: number
+    RegionCode: string
+    CurrencyCode: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListPriceListsOutput
+    PriceLists: {PriceList}
+    NextToken: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ExpiredNextTokenException
+    Message: string
+end
+
+local record InternalErrorException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ExpiredNextTokenException
+    Message: string
+end
+
+local record InternalErrorException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalErrorException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ExpiredNextTokenException
+    Message: string
+end
+
+local record InternalErrorException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ExpiredNextTokenException
+    Message: string
+end
+
+local record InternalErrorException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record M
+    DescribeServicesInput: DescribeServicesInput
+    DescribeServicesOutput: DescribeServicesOutput
+    GetAttributeValuesInput: GetAttributeValuesInput
+    GetAttributeValuesOutput: GetAttributeValuesOutput
+    GetPriceListFileUrlInput: GetPriceListFileUrlInput
+    GetPriceListFileUrlOutput: GetPriceListFileUrlOutput
+    GetProductsInput: GetProductsInput
+    GetProductsOutput: GetProductsOutput
+    ListPriceListsInput: ListPriceListsInput
+    ListPriceListsOutput: ListPriceListsOutput
+end
+
+return M

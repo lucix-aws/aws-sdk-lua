@@ -1,0 +1,1559 @@
+local record CreateGatewayRouteInput
+    gatewayRouteName: string
+    meshName: string
+    virtualGatewayName: string
+    spec: GatewayRouteSpec
+    tags: {TagRef}
+    clientToken: string
+    meshOwner: string
+end
+
+local record CreateGatewayRouteOutput
+    gatewayRoute: GatewayRouteData
+end
+
+local record CreateMeshInput
+    meshName: string
+    spec: MeshSpec
+    tags: {TagRef}
+    clientToken: string
+end
+
+local record CreateMeshOutput
+    mesh: MeshData
+end
+
+local record CreateRouteInput
+    routeName: string
+    meshName: string
+    virtualRouterName: string
+    spec: RouteSpec
+    tags: {TagRef}
+    clientToken: string
+    meshOwner: string
+end
+
+local record CreateRouteOutput
+    route: RouteData
+end
+
+local record CreateVirtualGatewayInput
+    virtualGatewayName: string
+    meshName: string
+    spec: VirtualGatewaySpec
+    tags: {TagRef}
+    clientToken: string
+    meshOwner: string
+end
+
+local record CreateVirtualGatewayOutput
+    virtualGateway: VirtualGatewayData
+end
+
+local record CreateVirtualNodeInput
+    virtualNodeName: string
+    meshName: string
+    spec: VirtualNodeSpec
+    tags: {TagRef}
+    clientToken: string
+    meshOwner: string
+end
+
+local record CreateVirtualNodeOutput
+    virtualNode: VirtualNodeData
+end
+
+local record CreateVirtualRouterInput
+    virtualRouterName: string
+    meshName: string
+    spec: VirtualRouterSpec
+    tags: {TagRef}
+    clientToken: string
+    meshOwner: string
+end
+
+local record CreateVirtualRouterOutput
+    virtualRouter: VirtualRouterData
+end
+
+local record CreateVirtualServiceInput
+    virtualServiceName: string
+    meshName: string
+    spec: VirtualServiceSpec
+    tags: {TagRef}
+    clientToken: string
+    meshOwner: string
+end
+
+local record CreateVirtualServiceOutput
+    virtualService: VirtualServiceData
+end
+
+local record DeleteGatewayRouteInput
+    gatewayRouteName: string
+    meshName: string
+    virtualGatewayName: string
+    meshOwner: string
+end
+
+local record DeleteGatewayRouteOutput
+    gatewayRoute: GatewayRouteData
+end
+
+local record DeleteMeshInput
+    meshName: string
+end
+
+local record DeleteMeshOutput
+    mesh: MeshData
+end
+
+local record DeleteRouteInput
+    routeName: string
+    meshName: string
+    virtualRouterName: string
+    meshOwner: string
+end
+
+local record DeleteRouteOutput
+    route: RouteData
+end
+
+local record DeleteVirtualGatewayInput
+    virtualGatewayName: string
+    meshName: string
+    meshOwner: string
+end
+
+local record DeleteVirtualGatewayOutput
+    virtualGateway: VirtualGatewayData
+end
+
+local record DeleteVirtualNodeInput
+    virtualNodeName: string
+    meshName: string
+    meshOwner: string
+end
+
+local record DeleteVirtualNodeOutput
+    virtualNode: VirtualNodeData
+end
+
+local record DeleteVirtualRouterInput
+    virtualRouterName: string
+    meshName: string
+    meshOwner: string
+end
+
+local record DeleteVirtualRouterOutput
+    virtualRouter: VirtualRouterData
+end
+
+local record DeleteVirtualServiceInput
+    virtualServiceName: string
+    meshName: string
+    meshOwner: string
+end
+
+local record DeleteVirtualServiceOutput
+    virtualService: VirtualServiceData
+end
+
+local record DescribeGatewayRouteInput
+    gatewayRouteName: string
+    meshName: string
+    virtualGatewayName: string
+    meshOwner: string
+end
+
+local record DescribeGatewayRouteOutput
+    gatewayRoute: GatewayRouteData
+end
+
+local record DescribeMeshInput
+    meshName: string
+    meshOwner: string
+end
+
+local record DescribeMeshOutput
+    mesh: MeshData
+end
+
+local record DescribeRouteInput
+    routeName: string
+    meshName: string
+    meshOwner: string
+    virtualRouterName: string
+end
+
+local record DescribeRouteOutput
+    route: RouteData
+end
+
+local record DescribeVirtualGatewayInput
+    virtualGatewayName: string
+    meshName: string
+    meshOwner: string
+end
+
+local record DescribeVirtualGatewayOutput
+    virtualGateway: VirtualGatewayData
+end
+
+local record DescribeVirtualNodeInput
+    virtualNodeName: string
+    meshName: string
+    meshOwner: string
+end
+
+local record DescribeVirtualNodeOutput
+    virtualNode: VirtualNodeData
+end
+
+local record DescribeVirtualRouterInput
+    virtualRouterName: string
+    meshName: string
+    meshOwner: string
+end
+
+local record DescribeVirtualRouterOutput
+    virtualRouter: VirtualRouterData
+end
+
+local record DescribeVirtualServiceInput
+    virtualServiceName: string
+    meshName: string
+    meshOwner: string
+end
+
+local record DescribeVirtualServiceOutput
+    virtualService: VirtualServiceData
+end
+
+local record ListGatewayRoutesInput
+    meshName: string
+    virtualGatewayName: string
+    nextToken: string
+    limit: number
+    meshOwner: string
+end
+
+local record ListGatewayRoutesOutput
+    gatewayRoutes: {GatewayRouteRef}
+    nextToken: string
+end
+
+local record ListMeshesInput
+    nextToken: string
+    limit: number
+end
+
+local record ListMeshesOutput
+    meshes: {MeshRef}
+    nextToken: string
+end
+
+local record ListRoutesInput
+    meshName: string
+    virtualRouterName: string
+    nextToken: string
+    limit: number
+    meshOwner: string
+end
+
+local record ListRoutesOutput
+    routes: {RouteRef}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+    nextToken: string
+    limit: number
+end
+
+local record ListTagsForResourceOutput
+    tags: {TagRef}
+    nextToken: string
+end
+
+local record ListVirtualGatewaysInput
+    meshName: string
+    nextToken: string
+    limit: number
+    meshOwner: string
+end
+
+local record ListVirtualGatewaysOutput
+    virtualGateways: {VirtualGatewayRef}
+    nextToken: string
+end
+
+local record ListVirtualNodesInput
+    meshName: string
+    nextToken: string
+    limit: number
+    meshOwner: string
+end
+
+local record ListVirtualNodesOutput
+    virtualNodes: {VirtualNodeRef}
+    nextToken: string
+end
+
+local record ListVirtualRoutersInput
+    meshName: string
+    nextToken: string
+    limit: number
+    meshOwner: string
+end
+
+local record ListVirtualRoutersOutput
+    virtualRouters: {VirtualRouterRef}
+    nextToken: string
+end
+
+local record ListVirtualServicesInput
+    meshName: string
+    nextToken: string
+    limit: number
+    meshOwner: string
+end
+
+local record ListVirtualServicesOutput
+    virtualServices: {VirtualServiceRef}
+    nextToken: string
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {TagRef}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateGatewayRouteInput
+    gatewayRouteName: string
+    meshName: string
+    virtualGatewayName: string
+    spec: GatewayRouteSpec
+    clientToken: string
+    meshOwner: string
+end
+
+local record UpdateGatewayRouteOutput
+    gatewayRoute: GatewayRouteData
+end
+
+local record UpdateMeshInput
+    meshName: string
+    spec: MeshSpec
+    clientToken: string
+end
+
+local record UpdateMeshOutput
+    mesh: MeshData
+end
+
+local record UpdateRouteInput
+    routeName: string
+    meshName: string
+    virtualRouterName: string
+    spec: RouteSpec
+    clientToken: string
+    meshOwner: string
+end
+
+local record UpdateRouteOutput
+    route: RouteData
+end
+
+local record UpdateVirtualGatewayInput
+    virtualGatewayName: string
+    meshName: string
+    spec: VirtualGatewaySpec
+    clientToken: string
+    meshOwner: string
+end
+
+local record UpdateVirtualGatewayOutput
+    virtualGateway: VirtualGatewayData
+end
+
+local record UpdateVirtualNodeInput
+    virtualNodeName: string
+    meshName: string
+    spec: VirtualNodeSpec
+    clientToken: string
+    meshOwner: string
+end
+
+local record UpdateVirtualNodeOutput
+    virtualNode: VirtualNodeData
+end
+
+local record UpdateVirtualRouterInput
+    virtualRouterName: string
+    meshName: string
+    spec: VirtualRouterSpec
+    clientToken: string
+    meshOwner: string
+end
+
+local record UpdateVirtualRouterOutput
+    virtualRouter: VirtualRouterData
+end
+
+local record UpdateVirtualServiceInput
+    virtualServiceName: string
+    meshName: string
+    spec: VirtualServiceSpec
+    clientToken: string
+    meshOwner: string
+end
+
+local record UpdateVirtualServiceOutput
+    virtualService: VirtualServiceData
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record TooManyTagsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ForbiddenException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record M
+    CreateGatewayRouteInput: CreateGatewayRouteInput
+    CreateGatewayRouteOutput: CreateGatewayRouteOutput
+    CreateMeshInput: CreateMeshInput
+    CreateMeshOutput: CreateMeshOutput
+    CreateRouteInput: CreateRouteInput
+    CreateRouteOutput: CreateRouteOutput
+    CreateVirtualGatewayInput: CreateVirtualGatewayInput
+    CreateVirtualGatewayOutput: CreateVirtualGatewayOutput
+    CreateVirtualNodeInput: CreateVirtualNodeInput
+    CreateVirtualNodeOutput: CreateVirtualNodeOutput
+    CreateVirtualRouterInput: CreateVirtualRouterInput
+    CreateVirtualRouterOutput: CreateVirtualRouterOutput
+    CreateVirtualServiceInput: CreateVirtualServiceInput
+    CreateVirtualServiceOutput: CreateVirtualServiceOutput
+    DeleteGatewayRouteInput: DeleteGatewayRouteInput
+    DeleteGatewayRouteOutput: DeleteGatewayRouteOutput
+    DeleteMeshInput: DeleteMeshInput
+    DeleteMeshOutput: DeleteMeshOutput
+    DeleteRouteInput: DeleteRouteInput
+    DeleteRouteOutput: DeleteRouteOutput
+    DeleteVirtualGatewayInput: DeleteVirtualGatewayInput
+    DeleteVirtualGatewayOutput: DeleteVirtualGatewayOutput
+    DeleteVirtualNodeInput: DeleteVirtualNodeInput
+    DeleteVirtualNodeOutput: DeleteVirtualNodeOutput
+    DeleteVirtualRouterInput: DeleteVirtualRouterInput
+    DeleteVirtualRouterOutput: DeleteVirtualRouterOutput
+    DeleteVirtualServiceInput: DeleteVirtualServiceInput
+    DeleteVirtualServiceOutput: DeleteVirtualServiceOutput
+    DescribeGatewayRouteInput: DescribeGatewayRouteInput
+    DescribeGatewayRouteOutput: DescribeGatewayRouteOutput
+    DescribeMeshInput: DescribeMeshInput
+    DescribeMeshOutput: DescribeMeshOutput
+    DescribeRouteInput: DescribeRouteInput
+    DescribeRouteOutput: DescribeRouteOutput
+    DescribeVirtualGatewayInput: DescribeVirtualGatewayInput
+    DescribeVirtualGatewayOutput: DescribeVirtualGatewayOutput
+    DescribeVirtualNodeInput: DescribeVirtualNodeInput
+    DescribeVirtualNodeOutput: DescribeVirtualNodeOutput
+    DescribeVirtualRouterInput: DescribeVirtualRouterInput
+    DescribeVirtualRouterOutput: DescribeVirtualRouterOutput
+    DescribeVirtualServiceInput: DescribeVirtualServiceInput
+    DescribeVirtualServiceOutput: DescribeVirtualServiceOutput
+    ListGatewayRoutesInput: ListGatewayRoutesInput
+    ListGatewayRoutesOutput: ListGatewayRoutesOutput
+    ListMeshesInput: ListMeshesInput
+    ListMeshesOutput: ListMeshesOutput
+    ListRoutesInput: ListRoutesInput
+    ListRoutesOutput: ListRoutesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListVirtualGatewaysInput: ListVirtualGatewaysInput
+    ListVirtualGatewaysOutput: ListVirtualGatewaysOutput
+    ListVirtualNodesInput: ListVirtualNodesInput
+    ListVirtualNodesOutput: ListVirtualNodesOutput
+    ListVirtualRoutersInput: ListVirtualRoutersInput
+    ListVirtualRoutersOutput: ListVirtualRoutersOutput
+    ListVirtualServicesInput: ListVirtualServicesInput
+    ListVirtualServicesOutput: ListVirtualServicesOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateGatewayRouteInput: UpdateGatewayRouteInput
+    UpdateGatewayRouteOutput: UpdateGatewayRouteOutput
+    UpdateMeshInput: UpdateMeshInput
+    UpdateMeshOutput: UpdateMeshOutput
+    UpdateRouteInput: UpdateRouteInput
+    UpdateRouteOutput: UpdateRouteOutput
+    UpdateVirtualGatewayInput: UpdateVirtualGatewayInput
+    UpdateVirtualGatewayOutput: UpdateVirtualGatewayOutput
+    UpdateVirtualNodeInput: UpdateVirtualNodeInput
+    UpdateVirtualNodeOutput: UpdateVirtualNodeOutput
+    UpdateVirtualRouterInput: UpdateVirtualRouterInput
+    UpdateVirtualRouterOutput: UpdateVirtualRouterOutput
+    UpdateVirtualServiceInput: UpdateVirtualServiceInput
+    UpdateVirtualServiceOutput: UpdateVirtualServiceOutput
+end
+
+return M

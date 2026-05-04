@@ -1,0 +1,52 @@
+local types = require("fms.types")
+
+local record Client
+    associateAdminAccount: function(Client, types.AssociateAdminAccountInput): types.AssociateAdminAccountOutput, table
+    associateThirdPartyFirewall: function(Client, types.AssociateThirdPartyFirewallInput): types.AssociateThirdPartyFirewallOutput, table
+    batchAssociateResource: function(Client, types.BatchAssociateResourceInput): types.BatchAssociateResourceOutput, table
+    batchDisassociateResource: function(Client, types.BatchDisassociateResourceInput): types.BatchDisassociateResourceOutput, table
+    deleteAppsList: function(Client, types.DeleteAppsListInput): types.DeleteAppsListOutput, table
+    deleteNotificationChannel: function(Client, types.DeleteNotificationChannelInput): types.DeleteNotificationChannelOutput, table
+    deletePolicy: function(Client, types.DeletePolicyInput): types.DeletePolicyOutput, table
+    deleteProtocolsList: function(Client, types.DeleteProtocolsListInput): types.DeleteProtocolsListOutput, table
+    deleteResourceSet: function(Client, types.DeleteResourceSetInput): types.DeleteResourceSetOutput, table
+    disassociateAdminAccount: function(Client, types.DisassociateAdminAccountInput): types.DisassociateAdminAccountOutput, table
+    disassociateThirdPartyFirewall: function(Client, types.DisassociateThirdPartyFirewallInput): types.DisassociateThirdPartyFirewallOutput, table
+    getAdminAccount: function(Client, types.GetAdminAccountInput): types.GetAdminAccountOutput, table
+    getAdminScope: function(Client, types.GetAdminScopeInput): types.GetAdminScopeOutput, table
+    getAppsList: function(Client, types.GetAppsListInput): types.GetAppsListOutput, table
+    getComplianceDetail: function(Client, types.GetComplianceDetailInput): types.GetComplianceDetailOutput, table
+    getNotificationChannel: function(Client, types.GetNotificationChannelInput): types.GetNotificationChannelOutput, table
+    getPolicy: function(Client, types.GetPolicyInput): types.GetPolicyOutput, table
+    getProtectionStatus: function(Client, types.GetProtectionStatusInput): types.GetProtectionStatusOutput, table
+    getProtocolsList: function(Client, types.GetProtocolsListInput): types.GetProtocolsListOutput, table
+    getResourceSet: function(Client, types.GetResourceSetInput): types.GetResourceSetOutput, table
+    getThirdPartyFirewallAssociationStatus: function(Client, types.GetThirdPartyFirewallAssociationStatusInput): types.GetThirdPartyFirewallAssociationStatusOutput, table
+    getViolationDetails: function(Client, types.GetViolationDetailsInput): types.GetViolationDetailsOutput, table
+    listAdminAccountsForOrganization: function(Client, types.ListAdminAccountsForOrganizationInput): types.ListAdminAccountsForOrganizationOutput, table
+    listAdminsManagingAccount: function(Client, types.ListAdminsManagingAccountInput): types.ListAdminsManagingAccountOutput, table
+    listAppsLists: function(Client, types.ListAppsListsInput): types.ListAppsListsOutput, table
+    listComplianceStatus: function(Client, types.ListComplianceStatusInput): types.ListComplianceStatusOutput, table
+    listDiscoveredResources: function(Client, types.ListDiscoveredResourcesInput): types.ListDiscoveredResourcesOutput, table
+    listMemberAccounts: function(Client, types.ListMemberAccountsInput): types.ListMemberAccountsOutput, table
+    listPolicies: function(Client, types.ListPoliciesInput): types.ListPoliciesOutput, table
+    listProtocolsLists: function(Client, types.ListProtocolsListsInput): types.ListProtocolsListsOutput, table
+    listResourceSetResources: function(Client, types.ListResourceSetResourcesInput): types.ListResourceSetResourcesOutput, table
+    listResourceSets: function(Client, types.ListResourceSetsInput): types.ListResourceSetsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listThirdPartyFirewallFirewallPolicies: function(Client, types.ListThirdPartyFirewallFirewallPoliciesInput): types.ListThirdPartyFirewallFirewallPoliciesOutput, table
+    putAdminAccount: function(Client, types.PutAdminAccountInput): types.PutAdminAccountOutput, table
+    putAppsList: function(Client, types.PutAppsListInput): types.PutAppsListOutput, table
+    putNotificationChannel: function(Client, types.PutNotificationChannelInput): types.PutNotificationChannelOutput, table
+    putPolicy: function(Client, types.PutPolicyInput): types.PutPolicyOutput, table
+    putProtocolsList: function(Client, types.PutProtocolsListInput): types.PutProtocolsListOutput, table
+    putResourceSet: function(Client, types.PutResourceSetInput): types.PutResourceSetOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

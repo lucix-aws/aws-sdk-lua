@@ -1,0 +1,11 @@
+local types = require("marketplacereporting.types")
+
+local record Client
+    getBuyerDashboard: function(Client, types.GetBuyerDashboardInput): types.GetBuyerDashboardOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

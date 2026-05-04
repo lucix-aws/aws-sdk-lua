@@ -1,0 +1,59 @@
+local types = require("s3tables.types")
+
+local record Client
+    createNamespace: function(Client, types.CreateNamespaceInput): types.CreateNamespaceOutput, table
+    createTable: function(Client, types.CreateTableInput): types.CreateTableOutput, table
+    createTableBucket: function(Client, types.CreateTableBucketInput): types.CreateTableBucketOutput, table
+    deleteNamespace: function(Client, types.DeleteNamespaceInput): types.DeleteNamespaceOutput, table
+    deleteTable: function(Client, types.DeleteTableInput): types.DeleteTableOutput, table
+    deleteTableBucket: function(Client, types.DeleteTableBucketInput): types.DeleteTableBucketOutput, table
+    deleteTableBucketEncryption: function(Client, types.DeleteTableBucketEncryptionInput): types.DeleteTableBucketEncryptionOutput, table
+    deleteTableBucketMetricsConfiguration: function(Client, types.DeleteTableBucketMetricsConfigurationInput): types.DeleteTableBucketMetricsConfigurationOutput, table
+    deleteTableBucketPolicy: function(Client, types.DeleteTableBucketPolicyInput): types.DeleteTableBucketPolicyOutput, table
+    deleteTableBucketReplication: function(Client, types.DeleteTableBucketReplicationInput): types.DeleteTableBucketReplicationOutput, table
+    deleteTablePolicy: function(Client, types.DeleteTablePolicyInput): types.DeleteTablePolicyOutput, table
+    deleteTableReplication: function(Client, types.DeleteTableReplicationInput): types.DeleteTableReplicationOutput, table
+    getNamespace: function(Client, types.GetNamespaceInput): types.GetNamespaceOutput, table
+    getTable: function(Client, types.GetTableInput): types.GetTableOutput, table
+    getTableBucket: function(Client, types.GetTableBucketInput): types.GetTableBucketOutput, table
+    getTableBucketEncryption: function(Client, types.GetTableBucketEncryptionInput): types.GetTableBucketEncryptionOutput, table
+    getTableBucketMaintenanceConfiguration: function(Client, types.GetTableBucketMaintenanceConfigurationInput): types.GetTableBucketMaintenanceConfigurationOutput, table
+    getTableBucketMetricsConfiguration: function(Client, types.GetTableBucketMetricsConfigurationInput): types.GetTableBucketMetricsConfigurationOutput, table
+    getTableBucketPolicy: function(Client, types.GetTableBucketPolicyInput): types.GetTableBucketPolicyOutput, table
+    getTableBucketReplication: function(Client, types.GetTableBucketReplicationInput): types.GetTableBucketReplicationOutput, table
+    getTableBucketStorageClass: function(Client, types.GetTableBucketStorageClassInput): types.GetTableBucketStorageClassOutput, table
+    getTableEncryption: function(Client, types.GetTableEncryptionInput): types.GetTableEncryptionOutput, table
+    getTableMaintenanceConfiguration: function(Client, types.GetTableMaintenanceConfigurationInput): types.GetTableMaintenanceConfigurationOutput, table
+    getTableMaintenanceJobStatus: function(Client, types.GetTableMaintenanceJobStatusInput): types.GetTableMaintenanceJobStatusOutput, table
+    getTableMetadataLocation: function(Client, types.GetTableMetadataLocationInput): types.GetTableMetadataLocationOutput, table
+    getTablePolicy: function(Client, types.GetTablePolicyInput): types.GetTablePolicyOutput, table
+    getTableRecordExpirationConfiguration: function(Client, types.GetTableRecordExpirationConfigurationInput): types.GetTableRecordExpirationConfigurationOutput, table
+    getTableRecordExpirationJobStatus: function(Client, types.GetTableRecordExpirationJobStatusInput): types.GetTableRecordExpirationJobStatusOutput, table
+    getTableReplication: function(Client, types.GetTableReplicationInput): types.GetTableReplicationOutput, table
+    getTableReplicationStatus: function(Client, types.GetTableReplicationStatusInput): types.GetTableReplicationStatusOutput, table
+    getTableStorageClass: function(Client, types.GetTableStorageClassInput): types.GetTableStorageClassOutput, table
+    listNamespaces: function(Client, types.ListNamespacesInput): types.ListNamespacesOutput, table
+    listTableBuckets: function(Client, types.ListTableBucketsInput): types.ListTableBucketsOutput, table
+    listTables: function(Client, types.ListTablesInput): types.ListTablesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putTableBucketEncryption: function(Client, types.PutTableBucketEncryptionInput): types.PutTableBucketEncryptionOutput, table
+    putTableBucketMaintenanceConfiguration: function(Client, types.PutTableBucketMaintenanceConfigurationInput): types.PutTableBucketMaintenanceConfigurationOutput, table
+    putTableBucketMetricsConfiguration: function(Client, types.PutTableBucketMetricsConfigurationInput): types.PutTableBucketMetricsConfigurationOutput, table
+    putTableBucketPolicy: function(Client, types.PutTableBucketPolicyInput): types.PutTableBucketPolicyOutput, table
+    putTableBucketReplication: function(Client, types.PutTableBucketReplicationInput): types.PutTableBucketReplicationOutput, table
+    putTableBucketStorageClass: function(Client, types.PutTableBucketStorageClassInput): types.PutTableBucketStorageClassOutput, table
+    putTableMaintenanceConfiguration: function(Client, types.PutTableMaintenanceConfigurationInput): types.PutTableMaintenanceConfigurationOutput, table
+    putTablePolicy: function(Client, types.PutTablePolicyInput): types.PutTablePolicyOutput, table
+    putTableRecordExpirationConfiguration: function(Client, types.PutTableRecordExpirationConfigurationInput): types.PutTableRecordExpirationConfigurationOutput, table
+    putTableReplication: function(Client, types.PutTableReplicationInput): types.PutTableReplicationOutput, table
+    renameTable: function(Client, types.RenameTableInput): types.RenameTableOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateTableMetadataLocation: function(Client, types.UpdateTableMetadataLocationInput): types.UpdateTableMetadataLocationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

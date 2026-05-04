@@ -1,0 +1,26 @@
+local types = require("workspacesthinclient.types")
+
+local record Client
+    createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    deleteDevice: function(Client, types.DeleteDeviceInput): types.DeleteDeviceOutput, table
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    deregisterDevice: function(Client, types.DeregisterDeviceInput): types.DeregisterDeviceOutput, table
+    getDevice: function(Client, types.GetDeviceInput): types.GetDeviceOutput, table
+    getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    getSoftwareSet: function(Client, types.GetSoftwareSetInput): types.GetSoftwareSetOutput, table
+    listDevices: function(Client, types.ListDevicesInput): types.ListDevicesOutput, table
+    listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    listSoftwareSets: function(Client, types.ListSoftwareSetsInput): types.ListSoftwareSetsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateDevice: function(Client, types.UpdateDeviceInput): types.UpdateDeviceOutput, table
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput): types.UpdateEnvironmentOutput, table
+    updateSoftwareSet: function(Client, types.UpdateSoftwareSetInput): types.UpdateSoftwareSetOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

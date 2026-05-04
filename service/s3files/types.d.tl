@@ -1,0 +1,803 @@
+local record CreateAccessPointInput
+    clientToken: string
+    tags: {Tag}
+    fileSystemId: string
+    posixUser: PosixUser
+    rootDirectory: RootDirectory
+end
+
+local record CreateAccessPointOutput
+    accessPointArn: string
+    accessPointId: string
+    clientToken: string
+    fileSystemId: string
+    status: string
+    ownerId: string
+    posixUser: PosixUser
+    rootDirectory: RootDirectory
+    tags: {Tag}
+    name: string
+end
+
+local record CreateFileSystemInput
+    bucket: string
+    prefix: string
+    clientToken: string
+    kmsKeyId: string
+    roleArn: string
+    tags: {Tag}
+    acceptBucketWarning: boolean
+end
+
+local record CreateFileSystemOutput
+    creationTime: number
+    fileSystemArn: string
+    fileSystemId: string
+    bucket: string
+    prefix: string
+    clientToken: string
+    kmsKeyId: string
+    status: string
+    statusMessage: string
+    roleArn: string
+    ownerId: string
+    tags: {Tag}
+    name: string
+end
+
+local record CreateMountTargetInput
+    fileSystemId: string
+    subnetId: string
+    ipv4Address: string
+    ipv6Address: string
+    ipAddressType: string
+    securityGroups: {string}
+end
+
+local record CreateMountTargetOutput
+    availabilityZoneId: string
+    ownerId: string
+    mountTargetId: string
+    fileSystemId: string
+    subnetId: string
+    ipv4Address: string
+    ipv6Address: string
+    networkInterfaceId: string
+    vpcId: string
+    securityGroups: {string}
+    status: string
+    statusMessage: string
+end
+
+local record DeleteAccessPointInput
+    accessPointId: string
+end
+
+local record DeleteAccessPointOutput
+end
+
+local record DeleteFileSystemInput
+    fileSystemId: string
+    forceDelete: boolean
+end
+
+local record DeleteFileSystemOutput
+end
+
+local record DeleteFileSystemPolicyInput
+    fileSystemId: string
+end
+
+local record DeleteFileSystemPolicyOutput
+end
+
+local record DeleteMountTargetInput
+    mountTargetId: string
+end
+
+local record DeleteMountTargetOutput
+end
+
+local record GetAccessPointInput
+    accessPointId: string
+end
+
+local record GetAccessPointOutput
+    accessPointArn: string
+    accessPointId: string
+    clientToken: string
+    fileSystemId: string
+    status: string
+    ownerId: string
+    posixUser: PosixUser
+    rootDirectory: RootDirectory
+    tags: {Tag}
+    name: string
+end
+
+local record GetFileSystemInput
+    fileSystemId: string
+end
+
+local record GetFileSystemOutput
+    creationTime: number
+    fileSystemArn: string
+    fileSystemId: string
+    bucket: string
+    prefix: string
+    clientToken: string
+    kmsKeyId: string
+    status: string
+    statusMessage: string
+    roleArn: string
+    ownerId: string
+    tags: {Tag}
+    name: string
+end
+
+local record GetFileSystemPolicyInput
+    fileSystemId: string
+end
+
+local record GetFileSystemPolicyOutput
+    fileSystemId: string
+    policy: string
+end
+
+local record GetMountTargetInput
+    mountTargetId: string
+end
+
+local record GetMountTargetOutput
+    availabilityZoneId: string
+    ownerId: string
+    mountTargetId: string
+    fileSystemId: string
+    subnetId: string
+    ipv4Address: string
+    ipv6Address: string
+    networkInterfaceId: string
+    vpcId: string
+    securityGroups: {string}
+    status: string
+    statusMessage: string
+end
+
+local record GetSynchronizationConfigurationInput
+    fileSystemId: string
+end
+
+local record GetSynchronizationConfigurationOutput
+    latestVersionNumber: number
+    importDataRules: {ImportDataRule}
+    expirationDataRules: {ExpirationDataRule}
+end
+
+local record ListAccessPointsInput
+    fileSystemId: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListAccessPointsOutput
+    nextToken: string
+    accessPoints: {ListAccessPointsDescription}
+end
+
+local record ListFileSystemsInput
+    bucket: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListFileSystemsOutput
+    nextToken: string
+    fileSystems: {ListFileSystemsDescription}
+end
+
+local record ListMountTargetsInput
+    fileSystemId: string
+    accessPointId: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListMountTargetsOutput
+    nextToken: string
+    mountTargets: {ListMountTargetsDescription}
+end
+
+local record ListTagsForResourceInput
+    resourceId: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {Tag}
+    nextToken: string
+end
+
+local record PutFileSystemPolicyInput
+    fileSystemId: string
+    policy: string
+end
+
+local record PutFileSystemPolicyOutput
+end
+
+local record PutSynchronizationConfigurationInput
+    fileSystemId: string
+    latestVersionNumber: number
+    importDataRules: {ImportDataRule}
+    expirationDataRules: {ExpirationDataRule}
+end
+
+local record PutSynchronizationConfigurationOutput
+end
+
+local record TagResourceInput
+    resourceId: string
+    tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceId: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateMountTargetInput
+    mountTargetId: string
+    securityGroups: {string}
+end
+
+local record UpdateMountTargetOutput
+    availabilityZoneId: string
+    ownerId: string
+    mountTargetId: string
+    fileSystemId: string
+    subnetId: string
+    ipv4Address: string
+    ipv6Address: string
+    networkInterfaceId: string
+    vpcId: string
+    securityGroups: {string}
+    status: string
+    statusMessage: string
+end
+
+local record ConflictException
+    errorCode: string
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record ConflictException
+    errorCode: string
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record ConflictException
+    errorCode: string
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record ConflictException
+    errorCode: string
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record ConflictException
+    errorCode: string
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record ConflictException
+    errorCode: string
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record ConflictException
+    errorCode: string
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local record InternalServerException
+    errorCode: string
+    message: string
+end
+
+local record ResourceNotFoundException
+    errorCode: string
+    message: string
+end
+
+local record ValidationException
+    errorCode: string
+    message: string
+end
+
+local record ThrottlingException
+    errorCode: string
+    message: string
+end
+
+local type LifeCycleState = "available" | "creating" | "deleting" | "deleted" | "error" | "updating"
+
+local type IpAddressType = "IPV4_ONLY" | "IPV6_ONLY" | "DUAL_STACK"
+
+local record M
+    CreateAccessPointInput: CreateAccessPointInput
+    CreateAccessPointOutput: CreateAccessPointOutput
+    CreateFileSystemInput: CreateFileSystemInput
+    CreateFileSystemOutput: CreateFileSystemOutput
+    CreateMountTargetInput: CreateMountTargetInput
+    CreateMountTargetOutput: CreateMountTargetOutput
+    DeleteAccessPointInput: DeleteAccessPointInput
+    DeleteAccessPointOutput: DeleteAccessPointOutput
+    DeleteFileSystemInput: DeleteFileSystemInput
+    DeleteFileSystemOutput: DeleteFileSystemOutput
+    DeleteFileSystemPolicyInput: DeleteFileSystemPolicyInput
+    DeleteFileSystemPolicyOutput: DeleteFileSystemPolicyOutput
+    DeleteMountTargetInput: DeleteMountTargetInput
+    DeleteMountTargetOutput: DeleteMountTargetOutput
+    GetAccessPointInput: GetAccessPointInput
+    GetAccessPointOutput: GetAccessPointOutput
+    GetFileSystemInput: GetFileSystemInput
+    GetFileSystemOutput: GetFileSystemOutput
+    GetFileSystemPolicyInput: GetFileSystemPolicyInput
+    GetFileSystemPolicyOutput: GetFileSystemPolicyOutput
+    GetMountTargetInput: GetMountTargetInput
+    GetMountTargetOutput: GetMountTargetOutput
+    GetSynchronizationConfigurationInput: GetSynchronizationConfigurationInput
+    GetSynchronizationConfigurationOutput: GetSynchronizationConfigurationOutput
+    ListAccessPointsInput: ListAccessPointsInput
+    ListAccessPointsOutput: ListAccessPointsOutput
+    ListFileSystemsInput: ListFileSystemsInput
+    ListFileSystemsOutput: ListFileSystemsOutput
+    ListMountTargetsInput: ListMountTargetsInput
+    ListMountTargetsOutput: ListMountTargetsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PutFileSystemPolicyInput: PutFileSystemPolicyInput
+    PutFileSystemPolicyOutput: PutFileSystemPolicyOutput
+    PutSynchronizationConfigurationInput: PutSynchronizationConfigurationInput
+    PutSynchronizationConfigurationOutput: PutSynchronizationConfigurationOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateMountTargetInput: UpdateMountTargetInput
+    UpdateMountTargetOutput: UpdateMountTargetOutput
+end
+
+return M

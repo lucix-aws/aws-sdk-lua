@@ -1,0 +1,1711 @@
+local record AcceptMarketplaceRegistrationInput
+    marketplaceRegistrationToken: string
+end
+
+local record AcceptMarketplaceRegistrationOutput
+end
+
+local record AssociateIamRoleToResourceInput
+    iamRoleArn: string
+    awsIntegration: string
+    resourceArn: string
+end
+
+local record AssociateIamRoleToResourceOutput
+end
+
+local record CreateCloudAutonomousVmClusterInput
+    cloudExadataInfrastructureId: string
+    odbNetworkId: string
+    displayName: string
+    clientToken: string
+    autonomousDataStorageSizeInTBs: number
+    cpuCoreCountPerNode: number
+    dbServers: {string}
+    description: string
+    isMtlsEnabledVmCluster: boolean
+    licenseModel: string
+    maintenanceWindow: MaintenanceWindow
+    memoryPerOracleComputeUnitInGBs: number
+    scanListenerPortNonTls: number
+    scanListenerPortTls: number
+    tags: {string : string}
+    timeZone: string
+    totalContainerDatabases: number
+end
+
+local record CreateCloudAutonomousVmClusterOutput
+    displayName: string
+    status: string
+    statusReason: string
+    cloudAutonomousVmClusterId: string
+end
+
+local record CreateCloudExadataInfrastructureInput
+    displayName: string
+    shape: string
+    availabilityZone: string
+    availabilityZoneId: string
+    tags: {string : string}
+    computeCount: number
+    customerContactsToSendToOCI: {CustomerContact}
+    maintenanceWindow: MaintenanceWindow
+    storageCount: number
+    clientToken: string
+    databaseServerType: string
+    storageServerType: string
+end
+
+local record CreateCloudExadataInfrastructureOutput
+    displayName: string
+    status: string
+    statusReason: string
+    cloudExadataInfrastructureId: string
+end
+
+local record CreateCloudVmClusterInput
+    cloudExadataInfrastructureId: string
+    cpuCoreCount: number
+    displayName: string
+    giVersion: string
+    hostname: string
+    sshPublicKeys: {string}
+    odbNetworkId: string
+    clusterName: string
+    dataCollectionOptions: DataCollectionOptions
+    dataStorageSizeInTBs: number
+    dbNodeStorageSizeInGBs: number
+    dbServers: {string}
+    tags: {string : string}
+    isLocalBackupEnabled: boolean
+    isSparseDiskgroupEnabled: boolean
+    licenseModel: string
+    memorySizeInGBs: number
+    systemVersion: string
+    timeZone: string
+    clientToken: string
+    scanListenerPortTcp: number
+end
+
+local record CreateCloudVmClusterOutput
+    displayName: string
+    status: string
+    statusReason: string
+    cloudVmClusterId: string
+end
+
+local record CreateOdbNetworkInput
+    displayName: string
+    availabilityZone: string
+    availabilityZoneId: string
+    clientSubnetCidr: string
+    backupSubnetCidr: string
+    customDomainName: string
+    defaultDnsPrefix: string
+    clientToken: string
+    s3Access: string
+    zeroEtlAccess: string
+    stsAccess: string
+    kmsAccess: string
+    s3PolicyDocument: string
+    stsPolicyDocument: string
+    kmsPolicyDocument: string
+    crossRegionS3RestoreSourcesToEnable: {string}
+    tags: {string : string}
+end
+
+local record CreateOdbNetworkOutput
+    displayName: string
+    status: string
+    statusReason: string
+    odbNetworkId: string
+end
+
+local record CreateOdbPeeringConnectionInput
+    odbNetworkId: string
+    peerNetworkId: string
+    displayName: string
+    peerNetworkCidrsToBeAdded: {string}
+    peerNetworkRouteTableIds: {string}
+    clientToken: string
+    tags: {string : string}
+end
+
+local record CreateOdbPeeringConnectionOutput
+    displayName: string
+    status: string
+    statusReason: string
+    odbPeeringConnectionId: string
+end
+
+local record DeleteCloudAutonomousVmClusterInput
+    cloudAutonomousVmClusterId: string
+end
+
+local record DeleteCloudAutonomousVmClusterOutput
+end
+
+local record DeleteCloudExadataInfrastructureInput
+    cloudExadataInfrastructureId: string
+end
+
+local record DeleteCloudExadataInfrastructureOutput
+end
+
+local record DeleteCloudVmClusterInput
+    cloudVmClusterId: string
+end
+
+local record DeleteCloudVmClusterOutput
+end
+
+local record DeleteOdbNetworkInput
+    odbNetworkId: string
+    deleteAssociatedResources: boolean
+end
+
+local record DeleteOdbNetworkOutput
+end
+
+local record DeleteOdbPeeringConnectionInput
+    odbPeeringConnectionId: string
+end
+
+local record DeleteOdbPeeringConnectionOutput
+end
+
+local record DisassociateIamRoleFromResourceInput
+    iamRoleArn: string
+    awsIntegration: string
+    resourceArn: string
+end
+
+local record DisassociateIamRoleFromResourceOutput
+end
+
+local record GetCloudAutonomousVmClusterInput
+    cloudAutonomousVmClusterId: string
+end
+
+local record GetCloudAutonomousVmClusterOutput
+    cloudAutonomousVmCluster: CloudAutonomousVmCluster
+end
+
+local record GetCloudExadataInfrastructureInput
+    cloudExadataInfrastructureId: string
+end
+
+local record GetCloudExadataInfrastructureOutput
+    cloudExadataInfrastructure: CloudExadataInfrastructure
+end
+
+local record GetCloudExadataInfrastructureUnallocatedResourcesInput
+    cloudExadataInfrastructureId: string
+    dbServers: {string}
+end
+
+local record GetCloudExadataInfrastructureUnallocatedResourcesOutput
+    cloudExadataInfrastructureUnallocatedResources: CloudExadataInfrastructureUnallocatedResources
+end
+
+local record GetCloudVmClusterInput
+    cloudVmClusterId: string
+end
+
+local record GetCloudVmClusterOutput
+    cloudVmCluster: CloudVmCluster
+end
+
+local record GetDbNodeInput
+    cloudVmClusterId: string
+    dbNodeId: string
+end
+
+local record GetDbNodeOutput
+    dbNode: DbNode
+end
+
+local record GetDbServerInput
+    cloudExadataInfrastructureId: string
+    dbServerId: string
+end
+
+local record GetDbServerOutput
+    dbServer: DbServer
+end
+
+local record GetOciOnboardingStatusInput
+end
+
+local record GetOciOnboardingStatusOutput
+    status: string
+    existingTenancyActivationLink: string
+    newTenancyActivationLink: string
+    ociIdentityDomain: OciIdentityDomain
+end
+
+local record GetOdbNetworkInput
+    odbNetworkId: string
+end
+
+local record GetOdbNetworkOutput
+    odbNetwork: OdbNetwork
+end
+
+local record GetOdbPeeringConnectionInput
+    odbPeeringConnectionId: string
+end
+
+local record GetOdbPeeringConnectionOutput
+    odbPeeringConnection: OdbPeeringConnection
+end
+
+local record InitializeServiceInput
+    ociIdentityDomain: boolean
+end
+
+local record InitializeServiceOutput
+end
+
+local record ListAutonomousVirtualMachinesInput
+    maxResults: number
+    nextToken: string
+    cloudAutonomousVmClusterId: string
+end
+
+local record ListAutonomousVirtualMachinesOutput
+    nextToken: string
+    autonomousVirtualMachines: {AutonomousVirtualMachineSummary}
+end
+
+local record ListCloudAutonomousVmClustersInput
+    maxResults: number
+    nextToken: string
+    cloudExadataInfrastructureId: string
+end
+
+local record ListCloudAutonomousVmClustersOutput
+    nextToken: string
+    cloudAutonomousVmClusters: {CloudAutonomousVmClusterSummary}
+end
+
+local record ListCloudExadataInfrastructuresInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListCloudExadataInfrastructuresOutput
+    nextToken: string
+    cloudExadataInfrastructures: {CloudExadataInfrastructureSummary}
+end
+
+local record ListCloudVmClustersInput
+    maxResults: number
+    nextToken: string
+    cloudExadataInfrastructureId: string
+end
+
+local record ListCloudVmClustersOutput
+    nextToken: string
+    cloudVmClusters: {CloudVmClusterSummary}
+end
+
+local record ListDbNodesInput
+    maxResults: number
+    nextToken: string
+    cloudVmClusterId: string
+end
+
+local record ListDbNodesOutput
+    nextToken: string
+    dbNodes: {DbNodeSummary}
+end
+
+local record ListDbServersInput
+    cloudExadataInfrastructureId: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListDbServersOutput
+    nextToken: string
+    dbServers: {DbServerSummary}
+end
+
+local record ListDbSystemShapesInput
+    maxResults: number
+    nextToken: string
+    availabilityZone: string
+    availabilityZoneId: string
+end
+
+local record ListDbSystemShapesOutput
+    nextToken: string
+    dbSystemShapes: {DbSystemShapeSummary}
+end
+
+local record ListGiVersionsInput
+    maxResults: number
+    nextToken: string
+    shape: string
+end
+
+local record ListGiVersionsOutput
+    nextToken: string
+    giVersions: {GiVersionSummary}
+end
+
+local record ListOdbNetworksInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListOdbNetworksOutput
+    nextToken: string
+    odbNetworks: {OdbNetworkSummary}
+end
+
+local record ListOdbPeeringConnectionsInput
+    maxResults: number
+    nextToken: string
+    odbNetworkId: string
+end
+
+local record ListOdbPeeringConnectionsOutput
+    nextToken: string
+    odbPeeringConnections: {OdbPeeringConnectionSummary}
+end
+
+local record ListSystemVersionsInput
+    maxResults: number
+    nextToken: string
+    giVersion: string
+    shape: string
+end
+
+local record ListSystemVersionsOutput
+    nextToken: string
+    systemVersions: {SystemVersionSummary}
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record RebootDbNodeInput
+    cloudVmClusterId: string
+    dbNodeId: string
+end
+
+local record RebootDbNodeOutput
+    dbNodeId: string
+    status: string
+    statusReason: string
+end
+
+local record StartDbNodeInput
+    cloudVmClusterId: string
+    dbNodeId: string
+end
+
+local record StartDbNodeOutput
+    dbNodeId: string
+    status: string
+    statusReason: string
+end
+
+local record StopDbNodeInput
+    cloudVmClusterId: string
+    dbNodeId: string
+end
+
+local record StopDbNodeOutput
+    dbNodeId: string
+    status: string
+    statusReason: string
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateCloudExadataInfrastructureInput
+    cloudExadataInfrastructureId: string
+    maintenanceWindow: MaintenanceWindow
+end
+
+local record UpdateCloudExadataInfrastructureOutput
+    displayName: string
+    status: string
+    statusReason: string
+    cloudExadataInfrastructureId: string
+end
+
+local record UpdateOdbNetworkInput
+    odbNetworkId: string
+    displayName: string
+    peeredCidrsToBeAdded: {string}
+    peeredCidrsToBeRemoved: {string}
+    s3Access: string
+    zeroEtlAccess: string
+    stsAccess: string
+    kmsAccess: string
+    s3PolicyDocument: string
+    stsPolicyDocument: string
+    kmsPolicyDocument: string
+    crossRegionS3RestoreSourcesToEnable: {string}
+    crossRegionS3RestoreSourcesToDisable: {string}
+end
+
+local record UpdateOdbNetworkOutput
+    displayName: string
+    status: string
+    statusReason: string
+    odbNetworkId: string
+end
+
+local record UpdateOdbPeeringConnectionInput
+    odbPeeringConnectionId: string
+    displayName: string
+    peerNetworkCidrsToBeAdded: {string}
+    peerNetworkCidrsToBeRemoved: {string}
+end
+
+local record UpdateOdbPeeringConnectionOutput
+    displayName: string
+    status: string
+    statusReason: string
+    odbPeeringConnectionId: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    quotaCode: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local type SupportedAwsIntegration = "KmsTde"
+
+local type Access = "ENABLED" | "DISABLED"
+
+local type DbNodeResourceStatus = "AVAILABLE" | "FAILED" | "PROVISIONING" | "TERMINATED" | "TERMINATING" | "UPDATING" | "STOPPING" | "STOPPED" | "STARTING"
+
+local type OciOnboardingStatus = "NOT_STARTED" | "PENDING_LINK_GENERATION" | "PENDING_CUSTOMER_ACTION" | "PENDING_INITIALIZATION" | "ACTIVATING" | "ACTIVE_IN_HOME_REGION" | "ACTIVE" | "ACTIVE_LIMITED" | "FAILED" | "PUBLIC_OFFER_UNSUPPORTED" | "SUSPENDED" | "CANCELED"
+
+local type ResourceStatus = "AVAILABLE" | "FAILED" | "PROVISIONING" | "TERMINATED" | "TERMINATING" | "UPDATING" | "MAINTENANCE_IN_PROGRESS"
+
+local type LicenseModel = "BRING_YOUR_OWN_LICENSE" | "LICENSE_INCLUDED"
+
+local record M
+    AcceptMarketplaceRegistrationInput: AcceptMarketplaceRegistrationInput
+    AcceptMarketplaceRegistrationOutput: AcceptMarketplaceRegistrationOutput
+    AssociateIamRoleToResourceInput: AssociateIamRoleToResourceInput
+    AssociateIamRoleToResourceOutput: AssociateIamRoleToResourceOutput
+    CreateCloudAutonomousVmClusterInput: CreateCloudAutonomousVmClusterInput
+    CreateCloudAutonomousVmClusterOutput: CreateCloudAutonomousVmClusterOutput
+    CreateCloudExadataInfrastructureInput: CreateCloudExadataInfrastructureInput
+    CreateCloudExadataInfrastructureOutput: CreateCloudExadataInfrastructureOutput
+    CreateCloudVmClusterInput: CreateCloudVmClusterInput
+    CreateCloudVmClusterOutput: CreateCloudVmClusterOutput
+    CreateOdbNetworkInput: CreateOdbNetworkInput
+    CreateOdbNetworkOutput: CreateOdbNetworkOutput
+    CreateOdbPeeringConnectionInput: CreateOdbPeeringConnectionInput
+    CreateOdbPeeringConnectionOutput: CreateOdbPeeringConnectionOutput
+    DeleteCloudAutonomousVmClusterInput: DeleteCloudAutonomousVmClusterInput
+    DeleteCloudAutonomousVmClusterOutput: DeleteCloudAutonomousVmClusterOutput
+    DeleteCloudExadataInfrastructureInput: DeleteCloudExadataInfrastructureInput
+    DeleteCloudExadataInfrastructureOutput: DeleteCloudExadataInfrastructureOutput
+    DeleteCloudVmClusterInput: DeleteCloudVmClusterInput
+    DeleteCloudVmClusterOutput: DeleteCloudVmClusterOutput
+    DeleteOdbNetworkInput: DeleteOdbNetworkInput
+    DeleteOdbNetworkOutput: DeleteOdbNetworkOutput
+    DeleteOdbPeeringConnectionInput: DeleteOdbPeeringConnectionInput
+    DeleteOdbPeeringConnectionOutput: DeleteOdbPeeringConnectionOutput
+    DisassociateIamRoleFromResourceInput: DisassociateIamRoleFromResourceInput
+    DisassociateIamRoleFromResourceOutput: DisassociateIamRoleFromResourceOutput
+    GetCloudAutonomousVmClusterInput: GetCloudAutonomousVmClusterInput
+    GetCloudAutonomousVmClusterOutput: GetCloudAutonomousVmClusterOutput
+    GetCloudExadataInfrastructureInput: GetCloudExadataInfrastructureInput
+    GetCloudExadataInfrastructureOutput: GetCloudExadataInfrastructureOutput
+    GetCloudExadataInfrastructureUnallocatedResourcesInput: GetCloudExadataInfrastructureUnallocatedResourcesInput
+    GetCloudExadataInfrastructureUnallocatedResourcesOutput: GetCloudExadataInfrastructureUnallocatedResourcesOutput
+    GetCloudVmClusterInput: GetCloudVmClusterInput
+    GetCloudVmClusterOutput: GetCloudVmClusterOutput
+    GetDbNodeInput: GetDbNodeInput
+    GetDbNodeOutput: GetDbNodeOutput
+    GetDbServerInput: GetDbServerInput
+    GetDbServerOutput: GetDbServerOutput
+    GetOciOnboardingStatusInput: GetOciOnboardingStatusInput
+    GetOciOnboardingStatusOutput: GetOciOnboardingStatusOutput
+    GetOdbNetworkInput: GetOdbNetworkInput
+    GetOdbNetworkOutput: GetOdbNetworkOutput
+    GetOdbPeeringConnectionInput: GetOdbPeeringConnectionInput
+    GetOdbPeeringConnectionOutput: GetOdbPeeringConnectionOutput
+    InitializeServiceInput: InitializeServiceInput
+    InitializeServiceOutput: InitializeServiceOutput
+    ListAutonomousVirtualMachinesInput: ListAutonomousVirtualMachinesInput
+    ListAutonomousVirtualMachinesOutput: ListAutonomousVirtualMachinesOutput
+    ListCloudAutonomousVmClustersInput: ListCloudAutonomousVmClustersInput
+    ListCloudAutonomousVmClustersOutput: ListCloudAutonomousVmClustersOutput
+    ListCloudExadataInfrastructuresInput: ListCloudExadataInfrastructuresInput
+    ListCloudExadataInfrastructuresOutput: ListCloudExadataInfrastructuresOutput
+    ListCloudVmClustersInput: ListCloudVmClustersInput
+    ListCloudVmClustersOutput: ListCloudVmClustersOutput
+    ListDbNodesInput: ListDbNodesInput
+    ListDbNodesOutput: ListDbNodesOutput
+    ListDbServersInput: ListDbServersInput
+    ListDbServersOutput: ListDbServersOutput
+    ListDbSystemShapesInput: ListDbSystemShapesInput
+    ListDbSystemShapesOutput: ListDbSystemShapesOutput
+    ListGiVersionsInput: ListGiVersionsInput
+    ListGiVersionsOutput: ListGiVersionsOutput
+    ListOdbNetworksInput: ListOdbNetworksInput
+    ListOdbNetworksOutput: ListOdbNetworksOutput
+    ListOdbPeeringConnectionsInput: ListOdbPeeringConnectionsInput
+    ListOdbPeeringConnectionsOutput: ListOdbPeeringConnectionsOutput
+    ListSystemVersionsInput: ListSystemVersionsInput
+    ListSystemVersionsOutput: ListSystemVersionsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    RebootDbNodeInput: RebootDbNodeInput
+    RebootDbNodeOutput: RebootDbNodeOutput
+    StartDbNodeInput: StartDbNodeInput
+    StartDbNodeOutput: StartDbNodeOutput
+    StopDbNodeInput: StopDbNodeInput
+    StopDbNodeOutput: StopDbNodeOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateCloudExadataInfrastructureInput: UpdateCloudExadataInfrastructureInput
+    UpdateCloudExadataInfrastructureOutput: UpdateCloudExadataInfrastructureOutput
+    UpdateOdbNetworkInput: UpdateOdbNetworkInput
+    UpdateOdbNetworkOutput: UpdateOdbNetworkOutput
+    UpdateOdbPeeringConnectionInput: UpdateOdbPeeringConnectionInput
+    UpdateOdbPeeringConnectionOutput: UpdateOdbPeeringConnectionOutput
+end
+
+return M

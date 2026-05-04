@@ -1,0 +1,216 @@
+local record DeleteKeyInput
+    KvsARN: string
+    Key: string
+    IfMatch: string
+end
+
+local record DeleteKeyOutput
+    ItemCount: number
+    TotalSizeInBytes: number
+    ETag: string
+end
+
+local record DescribeKeyValueStoreInput
+    KvsARN: string
+end
+
+local record DescribeKeyValueStoreOutput
+    ItemCount: number
+    TotalSizeInBytes: number
+    KvsARN: string
+    Created: number
+    ETag: string
+    LastModified: number
+    Status: string
+    FailureReason: string
+end
+
+local record GetKeyInput
+    KvsARN: string
+    Key: string
+end
+
+local record GetKeyOutput
+    Key: string
+    Value: string
+    ItemCount: number
+    TotalSizeInBytes: number
+end
+
+local record ListKeysInput
+    KvsARN: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListKeysOutput
+    NextToken: string
+    Items: {ListKeysResponseListItem}
+end
+
+local record PutKeyInput
+    Key: string
+    Value: string
+    KvsARN: string
+    IfMatch: string
+end
+
+local record PutKeyOutput
+    ItemCount: number
+    TotalSizeInBytes: number
+    ETag: string
+end
+
+local record UpdateKeysInput
+    KvsARN: string
+    IfMatch: string
+    Puts: {PutKeyRequestListItem}
+    Deletes: {DeleteKeyRequestListItem}
+end
+
+local record UpdateKeysOutput
+    ItemCount: number
+    TotalSizeInBytes: number
+    ETag: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record M
+    DeleteKeyInput: DeleteKeyInput
+    DeleteKeyOutput: DeleteKeyOutput
+    DescribeKeyValueStoreInput: DescribeKeyValueStoreInput
+    DescribeKeyValueStoreOutput: DescribeKeyValueStoreOutput
+    GetKeyInput: GetKeyInput
+    GetKeyOutput: GetKeyOutput
+    ListKeysInput: ListKeysInput
+    ListKeysOutput: ListKeysOutput
+    PutKeyInput: PutKeyInput
+    PutKeyOutput: PutKeyOutput
+    UpdateKeysInput: UpdateKeysInput
+    UpdateKeysOutput: UpdateKeysOutput
+end
+
+return M

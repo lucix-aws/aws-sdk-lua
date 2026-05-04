@@ -1,0 +1,15 @@
+local types = require("sagemakera2iruntime.types")
+
+local record Client
+    deleteHumanLoop: function(Client, types.DeleteHumanLoopInput): types.DeleteHumanLoopOutput, table
+    describeHumanLoop: function(Client, types.DescribeHumanLoopInput): types.DescribeHumanLoopOutput, table
+    listHumanLoops: function(Client, types.ListHumanLoopsInput): types.ListHumanLoopsOutput, table
+    startHumanLoop: function(Client, types.StartHumanLoopInput): types.StartHumanLoopOutput, table
+    stopHumanLoop: function(Client, types.StopHumanLoopInput): types.StopHumanLoopOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

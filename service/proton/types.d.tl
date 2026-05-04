@@ -1,0 +1,3035 @@
+local record AcceptEnvironmentAccountConnectionInput
+    id: string
+end
+
+local record AcceptEnvironmentAccountConnectionOutput
+    environmentAccountConnection: EnvironmentAccountConnection
+end
+
+local record CancelComponentDeploymentInput
+    componentName: string
+end
+
+local record CancelComponentDeploymentOutput
+    component: Component
+end
+
+local record CancelEnvironmentDeploymentInput
+    environmentName: string
+end
+
+local record CancelEnvironmentDeploymentOutput
+    environment: Environment
+end
+
+local record CancelServiceInstanceDeploymentInput
+    serviceInstanceName: string
+    serviceName: string
+end
+
+local record CancelServiceInstanceDeploymentOutput
+    serviceInstance: ServiceInstance
+end
+
+local record CancelServicePipelineDeploymentInput
+    serviceName: string
+end
+
+local record CancelServicePipelineDeploymentOutput
+    pipeline: ServicePipeline
+end
+
+local record CreateComponentInput
+    name: string
+    description: string
+    serviceName: string
+    serviceInstanceName: string
+    environmentName: string
+    templateFile: string
+    manifest: string
+    serviceSpec: string
+    tags: {Tag}
+    clientToken: string
+end
+
+local record CreateComponentOutput
+    component: Component
+end
+
+local record CreateEnvironmentInput
+    name: string
+    templateName: string
+    templateMajorVersion: string
+    templateMinorVersion: string
+    description: string
+    spec: string
+    protonServiceRoleArn: string
+    environmentAccountConnectionId: string
+    tags: {Tag}
+    provisioningRepository: RepositoryBranchInput
+    componentRoleArn: string
+    codebuildRoleArn: string
+end
+
+local record CreateEnvironmentOutput
+    environment: Environment
+end
+
+local record CreateEnvironmentAccountConnectionInput
+    clientToken: string
+    managementAccountId: string
+    roleArn: string
+    environmentName: string
+    tags: {Tag}
+    componentRoleArn: string
+    codebuildRoleArn: string
+end
+
+local record CreateEnvironmentAccountConnectionOutput
+    environmentAccountConnection: EnvironmentAccountConnection
+end
+
+local record CreateEnvironmentTemplateInput
+    name: string
+    displayName: string
+    description: string
+    encryptionKey: string
+    provisioning: string
+    tags: {Tag}
+end
+
+local record CreateEnvironmentTemplateOutput
+    environmentTemplate: EnvironmentTemplate
+end
+
+local record CreateEnvironmentTemplateVersionInput
+    clientToken: string
+    templateName: string
+    description: string
+    majorVersion: string
+    source: TemplateVersionSourceInput
+    tags: {Tag}
+end
+
+local record CreateEnvironmentTemplateVersionOutput
+    environmentTemplateVersion: EnvironmentTemplateVersion
+end
+
+local record CreateRepositoryInput
+    provider: string
+    name: string
+    connectionArn: string
+    encryptionKey: string
+    tags: {Tag}
+end
+
+local record CreateRepositoryOutput
+    repository: Repository
+end
+
+local record CreateServiceInput
+    name: string
+    description: string
+    templateName: string
+    templateMajorVersion: string
+    templateMinorVersion: string
+    spec: string
+    repositoryConnectionArn: string
+    repositoryId: string
+    branchName: string
+    tags: {Tag}
+end
+
+local record CreateServiceOutput
+    service: Service
+end
+
+local record CreateServiceInstanceInput
+    name: string
+    serviceName: string
+    spec: string
+    templateMajorVersion: string
+    templateMinorVersion: string
+    tags: {Tag}
+    clientToken: string
+end
+
+local record CreateServiceInstanceOutput
+    serviceInstance: ServiceInstance
+end
+
+local record CreateServiceSyncConfigInput
+    serviceName: string
+    repositoryProvider: string
+    repositoryName: string
+    branch: string
+    filePath: string
+end
+
+local record CreateServiceSyncConfigOutput
+    serviceSyncConfig: ServiceSyncConfig
+end
+
+local record CreateServiceTemplateInput
+    name: string
+    displayName: string
+    description: string
+    encryptionKey: string
+    pipelineProvisioning: string
+    tags: {Tag}
+end
+
+local record CreateServiceTemplateOutput
+    serviceTemplate: ServiceTemplate
+end
+
+local record CreateServiceTemplateVersionInput
+    clientToken: string
+    templateName: string
+    description: string
+    majorVersion: string
+    source: TemplateVersionSourceInput
+    compatibleEnvironmentTemplates: {CompatibleEnvironmentTemplateInput}
+    tags: {Tag}
+    supportedComponentSources: {string}
+end
+
+local record CreateServiceTemplateVersionOutput
+    serviceTemplateVersion: ServiceTemplateVersion
+end
+
+local record CreateTemplateSyncConfigInput
+    templateName: string
+    templateType: string
+    repositoryProvider: string
+    repositoryName: string
+    branch: string
+    subdirectory: string
+end
+
+local record CreateTemplateSyncConfigOutput
+    templateSyncConfig: TemplateSyncConfig
+end
+
+local record DeleteComponentInput
+    name: string
+end
+
+local record DeleteComponentOutput
+    component: Component
+end
+
+local record DeleteDeploymentInput
+    id: string
+end
+
+local record DeleteDeploymentOutput
+    deployment: Deployment
+end
+
+local record DeleteEnvironmentInput
+    name: string
+end
+
+local record DeleteEnvironmentOutput
+    environment: Environment
+end
+
+local record DeleteEnvironmentAccountConnectionInput
+    id: string
+end
+
+local record DeleteEnvironmentAccountConnectionOutput
+    environmentAccountConnection: EnvironmentAccountConnection
+end
+
+local record DeleteEnvironmentTemplateInput
+    name: string
+end
+
+local record DeleteEnvironmentTemplateOutput
+    environmentTemplate: EnvironmentTemplate
+end
+
+local record DeleteEnvironmentTemplateVersionInput
+    templateName: string
+    majorVersion: string
+    minorVersion: string
+end
+
+local record DeleteEnvironmentTemplateVersionOutput
+    environmentTemplateVersion: EnvironmentTemplateVersion
+end
+
+local record DeleteRepositoryInput
+    provider: string
+    name: string
+end
+
+local record DeleteRepositoryOutput
+    repository: Repository
+end
+
+local record DeleteServiceInput
+    name: string
+end
+
+local record DeleteServiceOutput
+    service: Service
+end
+
+local record DeleteServiceSyncConfigInput
+    serviceName: string
+end
+
+local record DeleteServiceSyncConfigOutput
+    serviceSyncConfig: ServiceSyncConfig
+end
+
+local record DeleteServiceTemplateInput
+    name: string
+end
+
+local record DeleteServiceTemplateOutput
+    serviceTemplate: ServiceTemplate
+end
+
+local record DeleteServiceTemplateVersionInput
+    templateName: string
+    majorVersion: string
+    minorVersion: string
+end
+
+local record DeleteServiceTemplateVersionOutput
+    serviceTemplateVersion: ServiceTemplateVersion
+end
+
+local record DeleteTemplateSyncConfigInput
+    templateName: string
+    templateType: string
+end
+
+local record DeleteTemplateSyncConfigOutput
+    templateSyncConfig: TemplateSyncConfig
+end
+
+local record GetAccountSettingsInput
+end
+
+local record GetAccountSettingsOutput
+    accountSettings: AccountSettings
+end
+
+local record GetComponentInput
+    name: string
+end
+
+local record GetComponentOutput
+    component: Component
+end
+
+local record GetDeploymentInput
+    id: string
+    environmentName: string
+    serviceName: string
+    serviceInstanceName: string
+    componentName: string
+end
+
+local record GetDeploymentOutput
+    deployment: Deployment
+end
+
+local record GetEnvironmentInput
+    name: string
+end
+
+local record GetEnvironmentOutput
+    environment: Environment
+end
+
+local record GetEnvironmentAccountConnectionInput
+    id: string
+end
+
+local record GetEnvironmentAccountConnectionOutput
+    environmentAccountConnection: EnvironmentAccountConnection
+end
+
+local record GetEnvironmentTemplateInput
+    name: string
+end
+
+local record GetEnvironmentTemplateOutput
+    environmentTemplate: EnvironmentTemplate
+end
+
+local record GetEnvironmentTemplateVersionInput
+    templateName: string
+    majorVersion: string
+    minorVersion: string
+end
+
+local record GetEnvironmentTemplateVersionOutput
+    environmentTemplateVersion: EnvironmentTemplateVersion
+end
+
+local record GetRepositoryInput
+    provider: string
+    name: string
+end
+
+local record GetRepositoryOutput
+    repository: Repository
+end
+
+local record GetRepositorySyncStatusInput
+    repositoryName: string
+    repositoryProvider: string
+    branch: string
+    syncType: string
+end
+
+local record GetRepositorySyncStatusOutput
+    latestSync: RepositorySyncAttempt
+end
+
+local record GetResourcesSummaryInput
+end
+
+local record GetResourcesSummaryOutput
+    counts: CountsSummary
+end
+
+local record GetServiceInput
+    name: string
+end
+
+local record GetServiceOutput
+    service: Service
+end
+
+local record GetServiceInstanceInput
+    name: string
+    serviceName: string
+end
+
+local record GetServiceInstanceOutput
+    serviceInstance: ServiceInstance
+end
+
+local record GetServiceInstanceSyncStatusInput
+    serviceName: string
+    serviceInstanceName: string
+end
+
+local record GetServiceInstanceSyncStatusOutput
+    latestSync: ResourceSyncAttempt
+    latestSuccessfulSync: ResourceSyncAttempt
+    desiredState: Revision
+end
+
+local record GetServiceSyncBlockerSummaryInput
+    serviceName: string
+    serviceInstanceName: string
+end
+
+local record GetServiceSyncBlockerSummaryOutput
+    serviceSyncBlockerSummary: ServiceSyncBlockerSummary
+end
+
+local record GetServiceSyncConfigInput
+    serviceName: string
+end
+
+local record GetServiceSyncConfigOutput
+    serviceSyncConfig: ServiceSyncConfig
+end
+
+local record GetServiceTemplateInput
+    name: string
+end
+
+local record GetServiceTemplateOutput
+    serviceTemplate: ServiceTemplate
+end
+
+local record GetServiceTemplateVersionInput
+    templateName: string
+    majorVersion: string
+    minorVersion: string
+end
+
+local record GetServiceTemplateVersionOutput
+    serviceTemplateVersion: ServiceTemplateVersion
+end
+
+local record GetTemplateSyncConfigInput
+    templateName: string
+    templateType: string
+end
+
+local record GetTemplateSyncConfigOutput
+    templateSyncConfig: TemplateSyncConfig
+end
+
+local record GetTemplateSyncStatusInput
+    templateName: string
+    templateType: string
+    templateVersion: string
+end
+
+local record GetTemplateSyncStatusOutput
+    latestSync: ResourceSyncAttempt
+    latestSuccessfulSync: ResourceSyncAttempt
+    desiredState: Revision
+end
+
+local record ListComponentOutputsInput
+    componentName: string
+    nextToken: string
+    deploymentId: string
+end
+
+local record ListComponentOutputsOutput
+    nextToken: string
+    outputs: {Output}
+end
+
+local record ListComponentProvisionedResourcesInput
+    componentName: string
+    nextToken: string
+end
+
+local record ListComponentProvisionedResourcesOutput
+    nextToken: string
+    provisionedResources: {ProvisionedResource}
+end
+
+local record ListComponentsInput
+    nextToken: string
+    environmentName: string
+    serviceName: string
+    serviceInstanceName: string
+    maxResults: number
+end
+
+local record ListComponentsOutput
+    nextToken: string
+    components: {ComponentSummary}
+end
+
+local record ListDeploymentsInput
+    nextToken: string
+    environmentName: string
+    serviceName: string
+    serviceInstanceName: string
+    componentName: string
+    maxResults: number
+end
+
+local record ListDeploymentsOutput
+    nextToken: string
+    deployments: {DeploymentSummary}
+end
+
+local record ListEnvironmentAccountConnectionsInput
+    requestedBy: string
+    environmentName: string
+    statuses: {string}
+    nextToken: string
+    maxResults: number
+end
+
+local record ListEnvironmentAccountConnectionsOutput
+    environmentAccountConnections: {EnvironmentAccountConnectionSummary}
+    nextToken: string
+end
+
+local record ListEnvironmentOutputsInput
+    environmentName: string
+    nextToken: string
+    deploymentId: string
+end
+
+local record ListEnvironmentOutputsOutput
+    nextToken: string
+    outputs: {Output}
+end
+
+local record ListEnvironmentProvisionedResourcesInput
+    environmentName: string
+    nextToken: string
+end
+
+local record ListEnvironmentProvisionedResourcesOutput
+    nextToken: string
+    provisionedResources: {ProvisionedResource}
+end
+
+local record ListEnvironmentsInput
+    nextToken: string
+    maxResults: number
+    environmentTemplates: {EnvironmentTemplateFilter}
+end
+
+local record ListEnvironmentsOutput
+    nextToken: string
+    environments: {EnvironmentSummary}
+end
+
+local record ListEnvironmentTemplatesInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListEnvironmentTemplatesOutput
+    nextToken: string
+    templates: {EnvironmentTemplateSummary}
+end
+
+local record ListEnvironmentTemplateVersionsInput
+    nextToken: string
+    maxResults: number
+    templateName: string
+    majorVersion: string
+end
+
+local record ListEnvironmentTemplateVersionsOutput
+    nextToken: string
+    templateVersions: {EnvironmentTemplateVersionSummary}
+end
+
+local record ListRepositoriesInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListRepositoriesOutput
+    nextToken: string
+    repositories: {RepositorySummary}
+end
+
+local record ListRepositorySyncDefinitionsInput
+    repositoryName: string
+    repositoryProvider: string
+    syncType: string
+    nextToken: string
+end
+
+local record ListRepositorySyncDefinitionsOutput
+    nextToken: string
+    syncDefinitions: {RepositorySyncDefinition}
+end
+
+local record ListServiceInstanceOutputsInput
+    serviceInstanceName: string
+    serviceName: string
+    nextToken: string
+    deploymentId: string
+end
+
+local record ListServiceInstanceOutputsOutput
+    nextToken: string
+    outputs: {Output}
+end
+
+local record ListServiceInstanceProvisionedResourcesInput
+    serviceName: string
+    serviceInstanceName: string
+    nextToken: string
+end
+
+local record ListServiceInstanceProvisionedResourcesOutput
+    nextToken: string
+    provisionedResources: {ProvisionedResource}
+end
+
+local record ListServiceInstancesInput
+    serviceName: string
+    nextToken: string
+    maxResults: number
+    filters: {ListServiceInstancesFilter}
+    sortBy: string
+    sortOrder: string
+end
+
+local record ListServiceInstancesOutput
+    nextToken: string
+    serviceInstances: {ServiceInstanceSummary}
+end
+
+local record ListServicePipelineOutputsInput
+    serviceName: string
+    nextToken: string
+    deploymentId: string
+end
+
+local record ListServicePipelineOutputsOutput
+    nextToken: string
+    outputs: {Output}
+end
+
+local record ListServicePipelineProvisionedResourcesInput
+    serviceName: string
+    nextToken: string
+end
+
+local record ListServicePipelineProvisionedResourcesOutput
+    nextToken: string
+    provisionedResources: {ProvisionedResource}
+end
+
+local record ListServicesInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListServicesOutput
+    nextToken: string
+    services: {ServiceSummary}
+end
+
+local record ListServiceTemplatesInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListServiceTemplatesOutput
+    nextToken: string
+    templates: {ServiceTemplateSummary}
+end
+
+local record ListServiceTemplateVersionsInput
+    nextToken: string
+    maxResults: number
+    templateName: string
+    majorVersion: string
+end
+
+local record ListServiceTemplateVersionsOutput
+    nextToken: string
+    templateVersions: {ServiceTemplateVersionSummary}
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListTagsForResourceOutput
+    tags: {Tag}
+    nextToken: string
+end
+
+local record NotifyResourceDeploymentStatusChangeInput
+    resourceArn: string
+    status: string
+    outputs: {Output}
+    deploymentId: string
+    statusMessage: string
+end
+
+local record NotifyResourceDeploymentStatusChangeOutput
+end
+
+local record RejectEnvironmentAccountConnectionInput
+    id: string
+end
+
+local record RejectEnvironmentAccountConnectionOutput
+    environmentAccountConnection: EnvironmentAccountConnection
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateAccountSettingsInput
+    pipelineServiceRoleArn: string
+    pipelineProvisioningRepository: RepositoryBranchInput
+    deletePipelineProvisioningRepository: boolean
+    pipelineCodebuildRoleArn: string
+end
+
+local record UpdateAccountSettingsOutput
+    accountSettings: AccountSettings
+end
+
+local record UpdateComponentInput
+    name: string
+    deploymentType: string
+    description: string
+    serviceName: string
+    serviceInstanceName: string
+    serviceSpec: string
+    templateFile: string
+    clientToken: string
+end
+
+local record UpdateComponentOutput
+    component: Component
+end
+
+local record UpdateEnvironmentInput
+    name: string
+    description: string
+    spec: string
+    templateMajorVersion: string
+    templateMinorVersion: string
+    protonServiceRoleArn: string
+    deploymentType: string
+    environmentAccountConnectionId: string
+    provisioningRepository: RepositoryBranchInput
+    componentRoleArn: string
+    codebuildRoleArn: string
+end
+
+local record UpdateEnvironmentOutput
+    environment: Environment
+end
+
+local record UpdateEnvironmentAccountConnectionInput
+    id: string
+    roleArn: string
+    componentRoleArn: string
+    codebuildRoleArn: string
+end
+
+local record UpdateEnvironmentAccountConnectionOutput
+    environmentAccountConnection: EnvironmentAccountConnection
+end
+
+local record UpdateEnvironmentTemplateInput
+    name: string
+    displayName: string
+    description: string
+end
+
+local record UpdateEnvironmentTemplateOutput
+    environmentTemplate: EnvironmentTemplate
+end
+
+local record UpdateEnvironmentTemplateVersionInput
+    templateName: string
+    majorVersion: string
+    minorVersion: string
+    description: string
+    status: string
+end
+
+local record UpdateEnvironmentTemplateVersionOutput
+    environmentTemplateVersion: EnvironmentTemplateVersion
+end
+
+local record UpdateServiceInput
+    name: string
+    description: string
+    spec: string
+end
+
+local record UpdateServiceOutput
+    service: Service
+end
+
+local record UpdateServiceInstanceInput
+    name: string
+    serviceName: string
+    deploymentType: string
+    spec: string
+    templateMajorVersion: string
+    templateMinorVersion: string
+    clientToken: string
+end
+
+local record UpdateServiceInstanceOutput
+    serviceInstance: ServiceInstance
+end
+
+local record UpdateServicePipelineInput
+    serviceName: string
+    spec: string
+    deploymentType: string
+    templateMajorVersion: string
+    templateMinorVersion: string
+end
+
+local record UpdateServicePipelineOutput
+    pipeline: ServicePipeline
+end
+
+local record UpdateServiceSyncBlockerInput
+    id: string
+    resolvedReason: string
+end
+
+local record UpdateServiceSyncBlockerOutput
+    serviceName: string
+    serviceInstanceName: string
+    serviceSyncBlocker: SyncBlocker
+end
+
+local record UpdateServiceSyncConfigInput
+    serviceName: string
+    repositoryProvider: string
+    repositoryName: string
+    branch: string
+    filePath: string
+end
+
+local record UpdateServiceSyncConfigOutput
+    serviceSyncConfig: ServiceSyncConfig
+end
+
+local record UpdateServiceTemplateInput
+    name: string
+    displayName: string
+    description: string
+end
+
+local record UpdateServiceTemplateOutput
+    serviceTemplate: ServiceTemplate
+end
+
+local record UpdateServiceTemplateVersionInput
+    templateName: string
+    majorVersion: string
+    minorVersion: string
+    description: string
+    status: string
+    compatibleEnvironmentTemplates: {CompatibleEnvironmentTemplateInput}
+    supportedComponentSources: {string}
+end
+
+local record UpdateServiceTemplateVersionOutput
+    serviceTemplateVersion: ServiceTemplateVersion
+end
+
+local record UpdateTemplateSyncConfigInput
+    templateName: string
+    templateType: string
+    repositoryProvider: string
+    repositoryName: string
+    branch: string
+    subdirectory: string
+end
+
+local record UpdateTemplateSyncConfigOutput
+    templateSyncConfig: TemplateSyncConfig
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    AcceptEnvironmentAccountConnectionInput: AcceptEnvironmentAccountConnectionInput
+    AcceptEnvironmentAccountConnectionOutput: AcceptEnvironmentAccountConnectionOutput
+    CancelComponentDeploymentInput: CancelComponentDeploymentInput
+    CancelComponentDeploymentOutput: CancelComponentDeploymentOutput
+    CancelEnvironmentDeploymentInput: CancelEnvironmentDeploymentInput
+    CancelEnvironmentDeploymentOutput: CancelEnvironmentDeploymentOutput
+    CancelServiceInstanceDeploymentInput: CancelServiceInstanceDeploymentInput
+    CancelServiceInstanceDeploymentOutput: CancelServiceInstanceDeploymentOutput
+    CancelServicePipelineDeploymentInput: CancelServicePipelineDeploymentInput
+    CancelServicePipelineDeploymentOutput: CancelServicePipelineDeploymentOutput
+    CreateComponentInput: CreateComponentInput
+    CreateComponentOutput: CreateComponentOutput
+    CreateEnvironmentInput: CreateEnvironmentInput
+    CreateEnvironmentOutput: CreateEnvironmentOutput
+    CreateEnvironmentAccountConnectionInput: CreateEnvironmentAccountConnectionInput
+    CreateEnvironmentAccountConnectionOutput: CreateEnvironmentAccountConnectionOutput
+    CreateEnvironmentTemplateInput: CreateEnvironmentTemplateInput
+    CreateEnvironmentTemplateOutput: CreateEnvironmentTemplateOutput
+    CreateEnvironmentTemplateVersionInput: CreateEnvironmentTemplateVersionInput
+    CreateEnvironmentTemplateVersionOutput: CreateEnvironmentTemplateVersionOutput
+    CreateRepositoryInput: CreateRepositoryInput
+    CreateRepositoryOutput: CreateRepositoryOutput
+    CreateServiceInput: CreateServiceInput
+    CreateServiceOutput: CreateServiceOutput
+    CreateServiceInstanceInput: CreateServiceInstanceInput
+    CreateServiceInstanceOutput: CreateServiceInstanceOutput
+    CreateServiceSyncConfigInput: CreateServiceSyncConfigInput
+    CreateServiceSyncConfigOutput: CreateServiceSyncConfigOutput
+    CreateServiceTemplateInput: CreateServiceTemplateInput
+    CreateServiceTemplateOutput: CreateServiceTemplateOutput
+    CreateServiceTemplateVersionInput: CreateServiceTemplateVersionInput
+    CreateServiceTemplateVersionOutput: CreateServiceTemplateVersionOutput
+    CreateTemplateSyncConfigInput: CreateTemplateSyncConfigInput
+    CreateTemplateSyncConfigOutput: CreateTemplateSyncConfigOutput
+    DeleteComponentInput: DeleteComponentInput
+    DeleteComponentOutput: DeleteComponentOutput
+    DeleteDeploymentInput: DeleteDeploymentInput
+    DeleteDeploymentOutput: DeleteDeploymentOutput
+    DeleteEnvironmentInput: DeleteEnvironmentInput
+    DeleteEnvironmentOutput: DeleteEnvironmentOutput
+    DeleteEnvironmentAccountConnectionInput: DeleteEnvironmentAccountConnectionInput
+    DeleteEnvironmentAccountConnectionOutput: DeleteEnvironmentAccountConnectionOutput
+    DeleteEnvironmentTemplateInput: DeleteEnvironmentTemplateInput
+    DeleteEnvironmentTemplateOutput: DeleteEnvironmentTemplateOutput
+    DeleteEnvironmentTemplateVersionInput: DeleteEnvironmentTemplateVersionInput
+    DeleteEnvironmentTemplateVersionOutput: DeleteEnvironmentTemplateVersionOutput
+    DeleteRepositoryInput: DeleteRepositoryInput
+    DeleteRepositoryOutput: DeleteRepositoryOutput
+    DeleteServiceInput: DeleteServiceInput
+    DeleteServiceOutput: DeleteServiceOutput
+    DeleteServiceSyncConfigInput: DeleteServiceSyncConfigInput
+    DeleteServiceSyncConfigOutput: DeleteServiceSyncConfigOutput
+    DeleteServiceTemplateInput: DeleteServiceTemplateInput
+    DeleteServiceTemplateOutput: DeleteServiceTemplateOutput
+    DeleteServiceTemplateVersionInput: DeleteServiceTemplateVersionInput
+    DeleteServiceTemplateVersionOutput: DeleteServiceTemplateVersionOutput
+    DeleteTemplateSyncConfigInput: DeleteTemplateSyncConfigInput
+    DeleteTemplateSyncConfigOutput: DeleteTemplateSyncConfigOutput
+    GetAccountSettingsInput: GetAccountSettingsInput
+    GetAccountSettingsOutput: GetAccountSettingsOutput
+    GetComponentInput: GetComponentInput
+    GetComponentOutput: GetComponentOutput
+    GetDeploymentInput: GetDeploymentInput
+    GetDeploymentOutput: GetDeploymentOutput
+    GetEnvironmentInput: GetEnvironmentInput
+    GetEnvironmentOutput: GetEnvironmentOutput
+    GetEnvironmentAccountConnectionInput: GetEnvironmentAccountConnectionInput
+    GetEnvironmentAccountConnectionOutput: GetEnvironmentAccountConnectionOutput
+    GetEnvironmentTemplateInput: GetEnvironmentTemplateInput
+    GetEnvironmentTemplateOutput: GetEnvironmentTemplateOutput
+    GetEnvironmentTemplateVersionInput: GetEnvironmentTemplateVersionInput
+    GetEnvironmentTemplateVersionOutput: GetEnvironmentTemplateVersionOutput
+    GetRepositoryInput: GetRepositoryInput
+    GetRepositoryOutput: GetRepositoryOutput
+    GetRepositorySyncStatusInput: GetRepositorySyncStatusInput
+    GetRepositorySyncStatusOutput: GetRepositorySyncStatusOutput
+    GetResourcesSummaryInput: GetResourcesSummaryInput
+    GetResourcesSummaryOutput: GetResourcesSummaryOutput
+    GetServiceInput: GetServiceInput
+    GetServiceOutput: GetServiceOutput
+    GetServiceInstanceInput: GetServiceInstanceInput
+    GetServiceInstanceOutput: GetServiceInstanceOutput
+    GetServiceInstanceSyncStatusInput: GetServiceInstanceSyncStatusInput
+    GetServiceInstanceSyncStatusOutput: GetServiceInstanceSyncStatusOutput
+    GetServiceSyncBlockerSummaryInput: GetServiceSyncBlockerSummaryInput
+    GetServiceSyncBlockerSummaryOutput: GetServiceSyncBlockerSummaryOutput
+    GetServiceSyncConfigInput: GetServiceSyncConfigInput
+    GetServiceSyncConfigOutput: GetServiceSyncConfigOutput
+    GetServiceTemplateInput: GetServiceTemplateInput
+    GetServiceTemplateOutput: GetServiceTemplateOutput
+    GetServiceTemplateVersionInput: GetServiceTemplateVersionInput
+    GetServiceTemplateVersionOutput: GetServiceTemplateVersionOutput
+    GetTemplateSyncConfigInput: GetTemplateSyncConfigInput
+    GetTemplateSyncConfigOutput: GetTemplateSyncConfigOutput
+    GetTemplateSyncStatusInput: GetTemplateSyncStatusInput
+    GetTemplateSyncStatusOutput: GetTemplateSyncStatusOutput
+    ListComponentOutputsInput: ListComponentOutputsInput
+    ListComponentOutputsOutput: ListComponentOutputsOutput
+    ListComponentProvisionedResourcesInput: ListComponentProvisionedResourcesInput
+    ListComponentProvisionedResourcesOutput: ListComponentProvisionedResourcesOutput
+    ListComponentsInput: ListComponentsInput
+    ListComponentsOutput: ListComponentsOutput
+    ListDeploymentsInput: ListDeploymentsInput
+    ListDeploymentsOutput: ListDeploymentsOutput
+    ListEnvironmentAccountConnectionsInput: ListEnvironmentAccountConnectionsInput
+    ListEnvironmentAccountConnectionsOutput: ListEnvironmentAccountConnectionsOutput
+    ListEnvironmentOutputsInput: ListEnvironmentOutputsInput
+    ListEnvironmentOutputsOutput: ListEnvironmentOutputsOutput
+    ListEnvironmentProvisionedResourcesInput: ListEnvironmentProvisionedResourcesInput
+    ListEnvironmentProvisionedResourcesOutput: ListEnvironmentProvisionedResourcesOutput
+    ListEnvironmentsInput: ListEnvironmentsInput
+    ListEnvironmentsOutput: ListEnvironmentsOutput
+    ListEnvironmentTemplatesInput: ListEnvironmentTemplatesInput
+    ListEnvironmentTemplatesOutput: ListEnvironmentTemplatesOutput
+    ListEnvironmentTemplateVersionsInput: ListEnvironmentTemplateVersionsInput
+    ListEnvironmentTemplateVersionsOutput: ListEnvironmentTemplateVersionsOutput
+    ListRepositoriesInput: ListRepositoriesInput
+    ListRepositoriesOutput: ListRepositoriesOutput
+    ListRepositorySyncDefinitionsInput: ListRepositorySyncDefinitionsInput
+    ListRepositorySyncDefinitionsOutput: ListRepositorySyncDefinitionsOutput
+    ListServiceInstanceOutputsInput: ListServiceInstanceOutputsInput
+    ListServiceInstanceOutputsOutput: ListServiceInstanceOutputsOutput
+    ListServiceInstanceProvisionedResourcesInput: ListServiceInstanceProvisionedResourcesInput
+    ListServiceInstanceProvisionedResourcesOutput: ListServiceInstanceProvisionedResourcesOutput
+    ListServiceInstancesInput: ListServiceInstancesInput
+    ListServiceInstancesOutput: ListServiceInstancesOutput
+    ListServicePipelineOutputsInput: ListServicePipelineOutputsInput
+    ListServicePipelineOutputsOutput: ListServicePipelineOutputsOutput
+    ListServicePipelineProvisionedResourcesInput: ListServicePipelineProvisionedResourcesInput
+    ListServicePipelineProvisionedResourcesOutput: ListServicePipelineProvisionedResourcesOutput
+    ListServicesInput: ListServicesInput
+    ListServicesOutput: ListServicesOutput
+    ListServiceTemplatesInput: ListServiceTemplatesInput
+    ListServiceTemplatesOutput: ListServiceTemplatesOutput
+    ListServiceTemplateVersionsInput: ListServiceTemplateVersionsInput
+    ListServiceTemplateVersionsOutput: ListServiceTemplateVersionsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    NotifyResourceDeploymentStatusChangeInput: NotifyResourceDeploymentStatusChangeInput
+    NotifyResourceDeploymentStatusChangeOutput: NotifyResourceDeploymentStatusChangeOutput
+    RejectEnvironmentAccountConnectionInput: RejectEnvironmentAccountConnectionInput
+    RejectEnvironmentAccountConnectionOutput: RejectEnvironmentAccountConnectionOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateAccountSettingsInput: UpdateAccountSettingsInput
+    UpdateAccountSettingsOutput: UpdateAccountSettingsOutput
+    UpdateComponentInput: UpdateComponentInput
+    UpdateComponentOutput: UpdateComponentOutput
+    UpdateEnvironmentInput: UpdateEnvironmentInput
+    UpdateEnvironmentOutput: UpdateEnvironmentOutput
+    UpdateEnvironmentAccountConnectionInput: UpdateEnvironmentAccountConnectionInput
+    UpdateEnvironmentAccountConnectionOutput: UpdateEnvironmentAccountConnectionOutput
+    UpdateEnvironmentTemplateInput: UpdateEnvironmentTemplateInput
+    UpdateEnvironmentTemplateOutput: UpdateEnvironmentTemplateOutput
+    UpdateEnvironmentTemplateVersionInput: UpdateEnvironmentTemplateVersionInput
+    UpdateEnvironmentTemplateVersionOutput: UpdateEnvironmentTemplateVersionOutput
+    UpdateServiceInput: UpdateServiceInput
+    UpdateServiceOutput: UpdateServiceOutput
+    UpdateServiceInstanceInput: UpdateServiceInstanceInput
+    UpdateServiceInstanceOutput: UpdateServiceInstanceOutput
+    UpdateServicePipelineInput: UpdateServicePipelineInput
+    UpdateServicePipelineOutput: UpdateServicePipelineOutput
+    UpdateServiceSyncBlockerInput: UpdateServiceSyncBlockerInput
+    UpdateServiceSyncBlockerOutput: UpdateServiceSyncBlockerOutput
+    UpdateServiceSyncConfigInput: UpdateServiceSyncConfigInput
+    UpdateServiceSyncConfigOutput: UpdateServiceSyncConfigOutput
+    UpdateServiceTemplateInput: UpdateServiceTemplateInput
+    UpdateServiceTemplateOutput: UpdateServiceTemplateOutput
+    UpdateServiceTemplateVersionInput: UpdateServiceTemplateVersionInput
+    UpdateServiceTemplateVersionOutput: UpdateServiceTemplateVersionOutput
+    UpdateTemplateSyncConfigInput: UpdateTemplateSyncConfigInput
+    UpdateTemplateSyncConfigOutput: UpdateTemplateSyncConfigOutput
+end
+
+return M

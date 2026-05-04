@@ -1,0 +1,47 @@
+local types = require("apprunner.types")
+
+local record Client
+    associateCustomDomain: function(Client, types.AssociateCustomDomainInput): types.AssociateCustomDomainOutput, table
+    createAutoScalingConfiguration: function(Client, types.CreateAutoScalingConfigurationInput): types.CreateAutoScalingConfigurationOutput, table
+    createConnection: function(Client, types.CreateConnectionInput): types.CreateConnectionOutput, table
+    createObservabilityConfiguration: function(Client, types.CreateObservabilityConfigurationInput): types.CreateObservabilityConfigurationOutput, table
+    createService: function(Client, types.CreateServiceInput): types.CreateServiceOutput, table
+    createVpcConnector: function(Client, types.CreateVpcConnectorInput): types.CreateVpcConnectorOutput, table
+    createVpcIngressConnection: function(Client, types.CreateVpcIngressConnectionInput): types.CreateVpcIngressConnectionOutput, table
+    deleteAutoScalingConfiguration: function(Client, types.DeleteAutoScalingConfigurationInput): types.DeleteAutoScalingConfigurationOutput, table
+    deleteConnection: function(Client, types.DeleteConnectionInput): types.DeleteConnectionOutput, table
+    deleteObservabilityConfiguration: function(Client, types.DeleteObservabilityConfigurationInput): types.DeleteObservabilityConfigurationOutput, table
+    deleteService: function(Client, types.DeleteServiceInput): types.DeleteServiceOutput, table
+    deleteVpcConnector: function(Client, types.DeleteVpcConnectorInput): types.DeleteVpcConnectorOutput, table
+    deleteVpcIngressConnection: function(Client, types.DeleteVpcIngressConnectionInput): types.DeleteVpcIngressConnectionOutput, table
+    describeAutoScalingConfiguration: function(Client, types.DescribeAutoScalingConfigurationInput): types.DescribeAutoScalingConfigurationOutput, table
+    describeCustomDomains: function(Client, types.DescribeCustomDomainsInput): types.DescribeCustomDomainsOutput, table
+    describeObservabilityConfiguration: function(Client, types.DescribeObservabilityConfigurationInput): types.DescribeObservabilityConfigurationOutput, table
+    describeService: function(Client, types.DescribeServiceInput): types.DescribeServiceOutput, table
+    describeVpcConnector: function(Client, types.DescribeVpcConnectorInput): types.DescribeVpcConnectorOutput, table
+    describeVpcIngressConnection: function(Client, types.DescribeVpcIngressConnectionInput): types.DescribeVpcIngressConnectionOutput, table
+    disassociateCustomDomain: function(Client, types.DisassociateCustomDomainInput): types.DisassociateCustomDomainOutput, table
+    listAutoScalingConfigurations: function(Client, types.ListAutoScalingConfigurationsInput): types.ListAutoScalingConfigurationsOutput, table
+    listConnections: function(Client, types.ListConnectionsInput): types.ListConnectionsOutput, table
+    listObservabilityConfigurations: function(Client, types.ListObservabilityConfigurationsInput): types.ListObservabilityConfigurationsOutput, table
+    listOperations: function(Client, types.ListOperationsInput): types.ListOperationsOutput, table
+    listServices: function(Client, types.ListServicesInput): types.ListServicesOutput, table
+    listServicesForAutoScalingConfiguration: function(Client, types.ListServicesForAutoScalingConfigurationInput): types.ListServicesForAutoScalingConfigurationOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listVpcConnectors: function(Client, types.ListVpcConnectorsInput): types.ListVpcConnectorsOutput, table
+    listVpcIngressConnections: function(Client, types.ListVpcIngressConnectionsInput): types.ListVpcIngressConnectionsOutput, table
+    pauseService: function(Client, types.PauseServiceInput): types.PauseServiceOutput, table
+    resumeService: function(Client, types.ResumeServiceInput): types.ResumeServiceOutput, table
+    startDeployment: function(Client, types.StartDeploymentInput): types.StartDeploymentOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateDefaultAutoScalingConfiguration: function(Client, types.UpdateDefaultAutoScalingConfigurationInput): types.UpdateDefaultAutoScalingConfigurationOutput, table
+    updateService: function(Client, types.UpdateServiceInput): types.UpdateServiceOutput, table
+    updateVpcIngressConnection: function(Client, types.UpdateVpcIngressConnectionInput): types.UpdateVpcIngressConnectionOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,21 @@
+local types = require("licensemanagerlinuxsubscriptions.types")
+
+local record Client
+    deregisterSubscriptionProvider: function(Client, types.DeregisterSubscriptionProviderInput): types.DeregisterSubscriptionProviderOutput, table
+    getRegisteredSubscriptionProvider: function(Client, types.GetRegisteredSubscriptionProviderInput): types.GetRegisteredSubscriptionProviderOutput, table
+    getServiceSettings: function(Client, types.GetServiceSettingsInput): types.GetServiceSettingsOutput, table
+    listLinuxSubscriptionInstances: function(Client, types.ListLinuxSubscriptionInstancesInput): types.ListLinuxSubscriptionInstancesOutput, table
+    listLinuxSubscriptions: function(Client, types.ListLinuxSubscriptionsInput): types.ListLinuxSubscriptionsOutput, table
+    listRegisteredSubscriptionProviders: function(Client, types.ListRegisteredSubscriptionProvidersInput): types.ListRegisteredSubscriptionProvidersOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    registerSubscriptionProvider: function(Client, types.RegisterSubscriptionProviderInput): types.RegisterSubscriptionProviderOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateServiceSettings: function(Client, types.UpdateServiceSettingsInput): types.UpdateServiceSettingsOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

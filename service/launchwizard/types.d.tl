@@ -1,0 +1,366 @@
+local record CreateDeploymentInput
+    workloadName: string
+    deploymentPatternName: string
+    name: string
+    specifications: {string : string}
+    dryRun: boolean
+    tags: {string : string}
+end
+
+local record CreateDeploymentOutput
+    deploymentId: string
+end
+
+local record DeleteDeploymentInput
+    deploymentId: string
+end
+
+local record DeleteDeploymentOutput
+    status: string
+    statusReason: string
+end
+
+local record GetDeploymentInput
+    deploymentId: string
+end
+
+local record GetDeploymentOutput
+    deployment: DeploymentData
+end
+
+local record GetDeploymentPatternVersionInput
+    workloadName: string
+    deploymentPatternName: string
+    deploymentPatternVersionName: string
+end
+
+local record GetDeploymentPatternVersionOutput
+    deploymentPatternVersion: DeploymentPatternVersionDataSummary
+end
+
+local record GetWorkloadInput
+    workloadName: string
+end
+
+local record GetWorkloadOutput
+    workload: WorkloadData
+end
+
+local record GetWorkloadDeploymentPatternInput
+    workloadName: string
+    deploymentPatternName: string
+end
+
+local record GetWorkloadDeploymentPatternOutput
+    workloadDeploymentPattern: WorkloadDeploymentPatternData
+end
+
+local record ListDeploymentEventsInput
+    deploymentId: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListDeploymentEventsOutput
+    deploymentEvents: {DeploymentEventDataSummary}
+    nextToken: string
+end
+
+local record ListDeploymentPatternVersionsInput
+    workloadName: string
+    deploymentPatternName: string
+    maxResults: number
+    nextToken: string
+    filters: {DeploymentPatternVersionFilter}
+end
+
+local record ListDeploymentPatternVersionsOutput
+    deploymentPatternVersions: {DeploymentPatternVersionDataSummary}
+    nextToken: string
+end
+
+local record ListDeploymentsInput
+    filters: {DeploymentFilter}
+    maxResults: number
+    nextToken: string
+end
+
+local record ListDeploymentsOutput
+    deployments: {DeploymentDataSummary}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record ListWorkloadDeploymentPatternsInput
+    workloadName: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListWorkloadDeploymentPatternsOutput
+    workloadDeploymentPatterns: {WorkloadDeploymentPatternDataSummary}
+    nextToken: string
+end
+
+local record ListWorkloadsInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListWorkloadsOutput
+    workloads: {WorkloadDataSummary}
+    nextToken: string
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateDeploymentInput
+    deploymentId: string
+    specifications: {string : string}
+    workloadVersionName: string
+    deploymentPatternVersionName: string
+    dryRun: boolean
+    force: boolean
+end
+
+local record UpdateDeploymentOutput
+    deployment: DeploymentDataSummary
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceLimitException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceLimitException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceLimitException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local type DeploymentStatus = "COMPLETED" | "CREATING" | "DELETE_IN_PROGRESS" | "DELETE_INITIATING" | "DELETE_FAILED" | "DELETED" | "FAILED" | "IN_PROGRESS" | "VALIDATING" | "UPDATE_IN_PROGRESS" | "UPDATE_COMPLETED" | "UPDATE_FAILED" | "UPDATE_ROLLBACK_COMPLETED" | "UPDATE_ROLLBACK_FAILED"
+
+local record M
+    CreateDeploymentInput: CreateDeploymentInput
+    CreateDeploymentOutput: CreateDeploymentOutput
+    DeleteDeploymentInput: DeleteDeploymentInput
+    DeleteDeploymentOutput: DeleteDeploymentOutput
+    GetDeploymentInput: GetDeploymentInput
+    GetDeploymentOutput: GetDeploymentOutput
+    GetDeploymentPatternVersionInput: GetDeploymentPatternVersionInput
+    GetDeploymentPatternVersionOutput: GetDeploymentPatternVersionOutput
+    GetWorkloadInput: GetWorkloadInput
+    GetWorkloadOutput: GetWorkloadOutput
+    GetWorkloadDeploymentPatternInput: GetWorkloadDeploymentPatternInput
+    GetWorkloadDeploymentPatternOutput: GetWorkloadDeploymentPatternOutput
+    ListDeploymentEventsInput: ListDeploymentEventsInput
+    ListDeploymentEventsOutput: ListDeploymentEventsOutput
+    ListDeploymentPatternVersionsInput: ListDeploymentPatternVersionsInput
+    ListDeploymentPatternVersionsOutput: ListDeploymentPatternVersionsOutput
+    ListDeploymentsInput: ListDeploymentsInput
+    ListDeploymentsOutput: ListDeploymentsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListWorkloadDeploymentPatternsInput: ListWorkloadDeploymentPatternsInput
+    ListWorkloadDeploymentPatternsOutput: ListWorkloadDeploymentPatternsOutput
+    ListWorkloadsInput: ListWorkloadsInput
+    ListWorkloadsOutput: ListWorkloadsOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateDeploymentInput: UpdateDeploymentInput
+    UpdateDeploymentOutput: UpdateDeploymentOutput
+end
+
+return M

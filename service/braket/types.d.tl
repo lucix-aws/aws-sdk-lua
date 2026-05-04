@@ -1,0 +1,622 @@
+local record CancelJobInput
+    jobArn: string
+end
+
+local record CancelJobOutput
+    jobArn: string
+    cancellationStatus: string
+end
+
+local record CancelQuantumTaskInput
+    quantumTaskArn: string
+    clientToken: string
+end
+
+local record CancelQuantumTaskOutput
+    quantumTaskArn: string
+    cancellationStatus: string
+end
+
+local record CreateJobInput
+    clientToken: string
+    algorithmSpecification: AlgorithmSpecification
+    inputDataConfig: {InputFileConfig}
+    outputDataConfig: JobOutputDataConfig
+    checkpointConfig: JobCheckpointConfig
+    jobName: string
+    roleArn: string
+    stoppingCondition: JobStoppingCondition
+    instanceConfig: InstanceConfig
+    hyperParameters: {string : string}
+    deviceConfig: DeviceConfig
+    tags: {string : string}
+    associations: {Association}
+end
+
+local record CreateJobOutput
+    jobArn: string
+end
+
+local record CreateQuantumTaskInput
+    clientToken: string
+    deviceArn: string
+    deviceParameters: string
+    shots: number
+    outputS3Bucket: string
+    outputS3KeyPrefix: string
+    action: string
+    tags: {string : string}
+    jobToken: string
+    associations: {Association}
+    experimentalCapabilities: ExperimentalCapabilities
+end
+
+local record CreateQuantumTaskOutput
+    quantumTaskArn: string
+end
+
+local record CreateSpendingLimitInput
+    clientToken: string
+    deviceArn: string
+    spendingLimit: string
+    timePeriod: TimePeriod
+    tags: {string : string}
+end
+
+local record CreateSpendingLimitOutput
+    spendingLimitArn: string
+end
+
+local record DeleteSpendingLimitInput
+    spendingLimitArn: string
+end
+
+local record DeleteSpendingLimitOutput
+end
+
+local record GetDeviceInput
+    deviceArn: string
+end
+
+local record GetDeviceOutput
+    deviceArn: string
+    deviceName: string
+    providerName: string
+    deviceType: string
+    deviceStatus: string
+    deviceCapabilities: string
+    deviceQueueInfo: {DeviceQueueInfo}
+end
+
+local record GetJobInput
+    jobArn: string
+    additionalAttributeNames: {string}
+end
+
+local record GetJobOutput
+    status: string
+    jobArn: string
+    roleArn: string
+    failureReason: string
+    jobName: string
+    hyperParameters: {string : string}
+    inputDataConfig: {InputFileConfig}
+    outputDataConfig: JobOutputDataConfig
+    stoppingCondition: JobStoppingCondition
+    checkpointConfig: JobCheckpointConfig
+    algorithmSpecification: AlgorithmSpecification
+    instanceConfig: InstanceConfig
+    createdAt: number
+    startedAt: number
+    endedAt: number
+    billableDuration: number
+    deviceConfig: DeviceConfig
+    events: {JobEventDetails}
+    tags: {string : string}
+    queueInfo: HybridJobQueueInfo
+    associations: {Association}
+end
+
+local record GetQuantumTaskInput
+    quantumTaskArn: string
+    additionalAttributeNames: {string}
+end
+
+local record GetQuantumTaskOutput
+    quantumTaskArn: string
+    status: string
+    failureReason: string
+    deviceArn: string
+    deviceParameters: string
+    shots: number
+    outputS3Bucket: string
+    outputS3Directory: string
+    createdAt: number
+    endedAt: number
+    tags: {string : string}
+    jobArn: string
+    queueInfo: QuantumTaskQueueInfo
+    associations: {Association}
+    numSuccessfulShots: number
+    actionMetadata: ActionMetadata
+    experimentalCapabilities: ExperimentalCapabilities
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record SearchDevicesInput
+    nextToken: string
+    maxResults: number
+    filters: {SearchDevicesFilter}
+end
+
+local record SearchDevicesOutput
+    devices: {DeviceSummary}
+    nextToken: string
+end
+
+local record SearchJobsInput
+    nextToken: string
+    maxResults: number
+    filters: {SearchJobsFilter}
+end
+
+local record SearchJobsOutput
+    jobs: {JobSummary}
+    nextToken: string
+end
+
+local record SearchQuantumTasksInput
+    nextToken: string
+    maxResults: number
+    filters: {SearchQuantumTasksFilter}
+end
+
+local record SearchQuantumTasksOutput
+    quantumTasks: {QuantumTaskSummary}
+    nextToken: string
+end
+
+local record SearchSpendingLimitsInput
+    nextToken: string
+    maxResults: number
+    filters: {SearchSpendingLimitsFilter}
+end
+
+local record SearchSpendingLimitsOutput
+    spendingLimits: {SpendingLimitSummary}
+    nextToken: string
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateSpendingLimitInput
+    spendingLimitArn: string
+    clientToken: string
+    spendingLimit: string
+    timePeriod: TimePeriod
+end
+
+local record UpdateSpendingLimitOutput
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record DeviceOfflineException
+    message: string
+end
+
+local record DeviceRetiredException
+    message: string
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record DeviceOfflineException
+    message: string
+end
+
+local record DeviceRetiredException
+    message: string
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record DeviceRetiredException
+    message: string
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServiceException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    programSetValidationFailures: {ProgramSetValidationFailure}
+end
+
+local record M
+    CancelJobInput: CancelJobInput
+    CancelJobOutput: CancelJobOutput
+    CancelQuantumTaskInput: CancelQuantumTaskInput
+    CancelQuantumTaskOutput: CancelQuantumTaskOutput
+    CreateJobInput: CreateJobInput
+    CreateJobOutput: CreateJobOutput
+    CreateQuantumTaskInput: CreateQuantumTaskInput
+    CreateQuantumTaskOutput: CreateQuantumTaskOutput
+    CreateSpendingLimitInput: CreateSpendingLimitInput
+    CreateSpendingLimitOutput: CreateSpendingLimitOutput
+    DeleteSpendingLimitInput: DeleteSpendingLimitInput
+    DeleteSpendingLimitOutput: DeleteSpendingLimitOutput
+    GetDeviceInput: GetDeviceInput
+    GetDeviceOutput: GetDeviceOutput
+    GetJobInput: GetJobInput
+    GetJobOutput: GetJobOutput
+    GetQuantumTaskInput: GetQuantumTaskInput
+    GetQuantumTaskOutput: GetQuantumTaskOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    SearchDevicesInput: SearchDevicesInput
+    SearchDevicesOutput: SearchDevicesOutput
+    SearchJobsInput: SearchJobsInput
+    SearchJobsOutput: SearchJobsOutput
+    SearchQuantumTasksInput: SearchQuantumTasksInput
+    SearchQuantumTasksOutput: SearchQuantumTasksOutput
+    SearchSpendingLimitsInput: SearchSpendingLimitsInput
+    SearchSpendingLimitsOutput: SearchSpendingLimitsOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateSpendingLimitInput: UpdateSpendingLimitInput
+    UpdateSpendingLimitOutput: UpdateSpendingLimitOutput
+end
+
+return M

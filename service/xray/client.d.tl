@@ -1,0 +1,48 @@
+local types = require("xray.types")
+
+local record Client
+    batchGetTraces: function(Client, types.BatchGetTracesInput): types.BatchGetTracesOutput, table
+    cancelTraceRetrieval: function(Client, types.CancelTraceRetrievalInput): types.CancelTraceRetrievalOutput, table
+    createGroup: function(Client, types.CreateGroupInput): types.CreateGroupOutput, table
+    createSamplingRule: function(Client, types.CreateSamplingRuleInput): types.CreateSamplingRuleOutput, table
+    deleteGroup: function(Client, types.DeleteGroupInput): types.DeleteGroupOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteSamplingRule: function(Client, types.DeleteSamplingRuleInput): types.DeleteSamplingRuleOutput, table
+    getEncryptionConfig: function(Client, types.GetEncryptionConfigInput): types.GetEncryptionConfigOutput, table
+    getGroup: function(Client, types.GetGroupInput): types.GetGroupOutput, table
+    getGroups: function(Client, types.GetGroupsInput): types.GetGroupsOutput, table
+    getIndexingRules: function(Client, types.GetIndexingRulesInput): types.GetIndexingRulesOutput, table
+    getInsight: function(Client, types.GetInsightInput): types.GetInsightOutput, table
+    getInsightEvents: function(Client, types.GetInsightEventsInput): types.GetInsightEventsOutput, table
+    getInsightImpactGraph: function(Client, types.GetInsightImpactGraphInput): types.GetInsightImpactGraphOutput, table
+    getInsightSummaries: function(Client, types.GetInsightSummariesInput): types.GetInsightSummariesOutput, table
+    getRetrievedTracesGraph: function(Client, types.GetRetrievedTracesGraphInput): types.GetRetrievedTracesGraphOutput, table
+    getSamplingRules: function(Client, types.GetSamplingRulesInput): types.GetSamplingRulesOutput, table
+    getSamplingStatisticSummaries: function(Client, types.GetSamplingStatisticSummariesInput): types.GetSamplingStatisticSummariesOutput, table
+    getSamplingTargets: function(Client, types.GetSamplingTargetsInput): types.GetSamplingTargetsOutput, table
+    getServiceGraph: function(Client, types.GetServiceGraphInput): types.GetServiceGraphOutput, table
+    getTimeSeriesServiceStatistics: function(Client, types.GetTimeSeriesServiceStatisticsInput): types.GetTimeSeriesServiceStatisticsOutput, table
+    getTraceGraph: function(Client, types.GetTraceGraphInput): types.GetTraceGraphOutput, table
+    getTraceSegmentDestination: function(Client, types.GetTraceSegmentDestinationInput): types.GetTraceSegmentDestinationOutput, table
+    getTraceSummaries: function(Client, types.GetTraceSummariesInput): types.GetTraceSummariesOutput, table
+    listResourcePolicies: function(Client, types.ListResourcePoliciesInput): types.ListResourcePoliciesOutput, table
+    listRetrievedTraces: function(Client, types.ListRetrievedTracesInput): types.ListRetrievedTracesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putEncryptionConfig: function(Client, types.PutEncryptionConfigInput): types.PutEncryptionConfigOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putTelemetryRecords: function(Client, types.PutTelemetryRecordsInput): types.PutTelemetryRecordsOutput, table
+    putTraceSegments: function(Client, types.PutTraceSegmentsInput): types.PutTraceSegmentsOutput, table
+    startTraceRetrieval: function(Client, types.StartTraceRetrievalInput): types.StartTraceRetrievalOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateGroup: function(Client, types.UpdateGroupInput): types.UpdateGroupOutput, table
+    updateIndexingRule: function(Client, types.UpdateIndexingRuleInput): types.UpdateIndexingRuleOutput, table
+    updateSamplingRule: function(Client, types.UpdateSamplingRuleInput): types.UpdateSamplingRuleOutput, table
+    updateTraceSegmentDestination: function(Client, types.UpdateTraceSegmentDestinationInput): types.UpdateTraceSegmentDestinationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

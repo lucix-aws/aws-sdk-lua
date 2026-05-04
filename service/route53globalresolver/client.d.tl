@@ -1,0 +1,57 @@
+local types = require("route53globalresolver.types")
+
+local record Client
+    associateHostedZone: function(Client, types.AssociateHostedZoneInput): types.AssociateHostedZoneOutput, table
+    batchCreateFirewallRule: function(Client, types.BatchCreateFirewallRuleInput): types.BatchCreateFirewallRuleOutput, table
+    batchDeleteFirewallRule: function(Client, types.BatchDeleteFirewallRuleInput): types.BatchDeleteFirewallRuleOutput, table
+    batchUpdateFirewallRule: function(Client, types.BatchUpdateFirewallRuleInput): types.BatchUpdateFirewallRuleOutput, table
+    createAccessSource: function(Client, types.CreateAccessSourceInput): types.CreateAccessSourceOutput, table
+    createAccessToken: function(Client, types.CreateAccessTokenInput): types.CreateAccessTokenOutput, table
+    createDNSView: function(Client, types.CreateDNSViewInput): types.CreateDNSViewOutput, table
+    createFirewallDomainList: function(Client, types.CreateFirewallDomainListInput): types.CreateFirewallDomainListOutput, table
+    createFirewallRule: function(Client, types.CreateFirewallRuleInput): types.CreateFirewallRuleOutput, table
+    createGlobalResolver: function(Client, types.CreateGlobalResolverInput): types.CreateGlobalResolverOutput, table
+    deleteAccessSource: function(Client, types.DeleteAccessSourceInput): types.DeleteAccessSourceOutput, table
+    deleteAccessToken: function(Client, types.DeleteAccessTokenInput): types.DeleteAccessTokenOutput, table
+    deleteDNSView: function(Client, types.DeleteDNSViewInput): types.DeleteDNSViewOutput, table
+    deleteFirewallDomainList: function(Client, types.DeleteFirewallDomainListInput): types.DeleteFirewallDomainListOutput, table
+    deleteFirewallRule: function(Client, types.DeleteFirewallRuleInput): types.DeleteFirewallRuleOutput, table
+    deleteGlobalResolver: function(Client, types.DeleteGlobalResolverInput): types.DeleteGlobalResolverOutput, table
+    disableDNSView: function(Client, types.DisableDNSViewInput): types.DisableDNSViewOutput, table
+    disassociateHostedZone: function(Client, types.DisassociateHostedZoneInput): types.DisassociateHostedZoneOutput, table
+    enableDNSView: function(Client, types.EnableDNSViewInput): types.EnableDNSViewOutput, table
+    getAccessSource: function(Client, types.GetAccessSourceInput): types.GetAccessSourceOutput, table
+    getAccessToken: function(Client, types.GetAccessTokenInput): types.GetAccessTokenOutput, table
+    getDNSView: function(Client, types.GetDNSViewInput): types.GetDNSViewOutput, table
+    getFirewallDomainList: function(Client, types.GetFirewallDomainListInput): types.GetFirewallDomainListOutput, table
+    getFirewallRule: function(Client, types.GetFirewallRuleInput): types.GetFirewallRuleOutput, table
+    getGlobalResolver: function(Client, types.GetGlobalResolverInput): types.GetGlobalResolverOutput, table
+    getHostedZoneAssociation: function(Client, types.GetHostedZoneAssociationInput): types.GetHostedZoneAssociationOutput, table
+    getManagedFirewallDomainList: function(Client, types.GetManagedFirewallDomainListInput): types.GetManagedFirewallDomainListOutput, table
+    importFirewallDomains: function(Client, types.ImportFirewallDomainsInput): types.ImportFirewallDomainsOutput, table
+    listAccessSources: function(Client, types.ListAccessSourcesInput): types.ListAccessSourcesOutput, table
+    listAccessTokens: function(Client, types.ListAccessTokensInput): types.ListAccessTokensOutput, table
+    listDNSViews: function(Client, types.ListDNSViewsInput): types.ListDNSViewsOutput, table
+    listFirewallDomainLists: function(Client, types.ListFirewallDomainListsInput): types.ListFirewallDomainListsOutput, table
+    listFirewallDomains: function(Client, types.ListFirewallDomainsInput): types.ListFirewallDomainsOutput, table
+    listFirewallRules: function(Client, types.ListFirewallRulesInput): types.ListFirewallRulesOutput, table
+    listGlobalResolvers: function(Client, types.ListGlobalResolversInput): types.ListGlobalResolversOutput, table
+    listHostedZoneAssociations: function(Client, types.ListHostedZoneAssociationsInput): types.ListHostedZoneAssociationsOutput, table
+    listManagedFirewallDomainLists: function(Client, types.ListManagedFirewallDomainListsInput): types.ListManagedFirewallDomainListsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAccessSource: function(Client, types.UpdateAccessSourceInput): types.UpdateAccessSourceOutput, table
+    updateAccessToken: function(Client, types.UpdateAccessTokenInput): types.UpdateAccessTokenOutput, table
+    updateDNSView: function(Client, types.UpdateDNSViewInput): types.UpdateDNSViewOutput, table
+    updateFirewallDomains: function(Client, types.UpdateFirewallDomainsInput): types.UpdateFirewallDomainsOutput, table
+    updateFirewallRule: function(Client, types.UpdateFirewallRuleInput): types.UpdateFirewallRuleOutput, table
+    updateGlobalResolver: function(Client, types.UpdateGlobalResolverInput): types.UpdateGlobalResolverOutput, table
+    updateHostedZoneAssociation: function(Client, types.UpdateHostedZoneAssociationInput): types.UpdateHostedZoneAssociationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

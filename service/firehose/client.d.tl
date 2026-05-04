@@ -1,0 +1,22 @@
+local types = require("firehose.types")
+
+local record Client
+    createDeliveryStream: function(Client, types.CreateDeliveryStreamInput): types.CreateDeliveryStreamOutput, table
+    deleteDeliveryStream: function(Client, types.DeleteDeliveryStreamInput): types.DeleteDeliveryStreamOutput, table
+    describeDeliveryStream: function(Client, types.DescribeDeliveryStreamInput): types.DescribeDeliveryStreamOutput, table
+    listDeliveryStreams: function(Client, types.ListDeliveryStreamsInput): types.ListDeliveryStreamsOutput, table
+    listTagsForDeliveryStream: function(Client, types.ListTagsForDeliveryStreamInput): types.ListTagsForDeliveryStreamOutput, table
+    putRecord: function(Client, types.PutRecordInput): types.PutRecordOutput, table
+    putRecordBatch: function(Client, types.PutRecordBatchInput): types.PutRecordBatchOutput, table
+    startDeliveryStreamEncryption: function(Client, types.StartDeliveryStreamEncryptionInput): types.StartDeliveryStreamEncryptionOutput, table
+    stopDeliveryStreamEncryption: function(Client, types.StopDeliveryStreamEncryptionInput): types.StopDeliveryStreamEncryptionOutput, table
+    tagDeliveryStream: function(Client, types.TagDeliveryStreamInput): types.TagDeliveryStreamOutput, table
+    untagDeliveryStream: function(Client, types.UntagDeliveryStreamInput): types.UntagDeliveryStreamOutput, table
+    updateDestination: function(Client, types.UpdateDestinationInput): types.UpdateDestinationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

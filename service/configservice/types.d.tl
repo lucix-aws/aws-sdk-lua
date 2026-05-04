@@ -1,0 +1,2373 @@
+local record AssociateResourceTypesInput
+    ConfigurationRecorderArn: string
+    ResourceTypes: {string}
+end
+
+local record AssociateResourceTypesOutput
+    ConfigurationRecorder: ConfigurationRecorder
+end
+
+local record BatchGetAggregateResourceConfigInput
+    ConfigurationAggregatorName: string
+    ResourceIdentifiers: {AggregateResourceIdentifier}
+end
+
+local record BatchGetAggregateResourceConfigOutput
+    BaseConfigurationItems: {BaseConfigurationItem}
+    UnprocessedResourceIdentifiers: {AggregateResourceIdentifier}
+end
+
+local record BatchGetResourceConfigInput
+    resourceKeys: {ResourceKey}
+end
+
+local record BatchGetResourceConfigOutput
+    baseConfigurationItems: {BaseConfigurationItem}
+    unprocessedResourceKeys: {ResourceKey}
+end
+
+local record DeleteAggregationAuthorizationInput
+    AuthorizedAccountId: string
+    AuthorizedAwsRegion: string
+end
+
+local record DeleteAggregationAuthorizationOutput
+end
+
+local record DeleteConfigRuleInput
+    ConfigRuleName: string
+end
+
+local record DeleteConfigRuleOutput
+end
+
+local record DeleteConfigurationAggregatorInput
+    ConfigurationAggregatorName: string
+end
+
+local record DeleteConfigurationAggregatorOutput
+end
+
+local record DeleteConfigurationRecorderInput
+    ConfigurationRecorderName: string
+end
+
+local record DeleteConfigurationRecorderOutput
+end
+
+local record DeleteConformancePackInput
+    ConformancePackName: string
+end
+
+local record DeleteConformancePackOutput
+end
+
+local record DeleteDeliveryChannelInput
+    DeliveryChannelName: string
+end
+
+local record DeleteDeliveryChannelOutput
+end
+
+local record DeleteEvaluationResultsInput
+    ConfigRuleName: string
+end
+
+local record DeleteEvaluationResultsOutput
+end
+
+local record DeleteOrganizationConfigRuleInput
+    OrganizationConfigRuleName: string
+end
+
+local record DeleteOrganizationConfigRuleOutput
+end
+
+local record DeleteOrganizationConformancePackInput
+    OrganizationConformancePackName: string
+end
+
+local record DeleteOrganizationConformancePackOutput
+end
+
+local record DeletePendingAggregationRequestInput
+    RequesterAccountId: string
+    RequesterAwsRegion: string
+end
+
+local record DeletePendingAggregationRequestOutput
+end
+
+local record DeleteRemediationConfigurationInput
+    ConfigRuleName: string
+    ResourceType: string
+end
+
+local record DeleteRemediationConfigurationOutput
+end
+
+local record DeleteRemediationExceptionsInput
+    ConfigRuleName: string
+    ResourceKeys: {RemediationExceptionResourceKey}
+end
+
+local record DeleteRemediationExceptionsOutput
+    FailedBatches: {FailedDeleteRemediationExceptionsBatch}
+end
+
+local record DeleteResourceConfigInput
+    ResourceType: string
+    ResourceId: string
+end
+
+local record DeleteResourceConfigOutput
+end
+
+local record DeleteRetentionConfigurationInput
+    RetentionConfigurationName: string
+end
+
+local record DeleteRetentionConfigurationOutput
+end
+
+local record DeleteServiceLinkedConfigurationRecorderInput
+    ServicePrincipal: string
+end
+
+local record DeleteServiceLinkedConfigurationRecorderOutput
+    Arn: string
+    Name: string
+end
+
+local record DeleteStoredQueryInput
+    QueryName: string
+end
+
+local record DeleteStoredQueryOutput
+end
+
+local record DeliverConfigSnapshotInput
+    deliveryChannelName: string
+end
+
+local record DeliverConfigSnapshotOutput
+    configSnapshotId: string
+end
+
+local record DescribeAggregateComplianceByConfigRulesInput
+    ConfigurationAggregatorName: string
+    Filters: ConfigRuleComplianceFilters
+    Limit: number
+    NextToken: string
+end
+
+local record DescribeAggregateComplianceByConfigRulesOutput
+    AggregateComplianceByConfigRules: {AggregateComplianceByConfigRule}
+    NextToken: string
+end
+
+local record DescribeAggregateComplianceByConformancePacksInput
+    ConfigurationAggregatorName: string
+    Filters: AggregateConformancePackComplianceFilters
+    Limit: number
+    NextToken: string
+end
+
+local record DescribeAggregateComplianceByConformancePacksOutput
+    AggregateComplianceByConformancePacks: {AggregateComplianceByConformancePack}
+    NextToken: string
+end
+
+local record DescribeAggregationAuthorizationsInput
+    Limit: number
+    NextToken: string
+end
+
+local record DescribeAggregationAuthorizationsOutput
+    AggregationAuthorizations: {AggregationAuthorization}
+    NextToken: string
+end
+
+local record DescribeComplianceByConfigRuleInput
+    ConfigRuleNames: {string}
+    ComplianceTypes: {string}
+    NextToken: string
+end
+
+local record DescribeComplianceByConfigRuleOutput
+    ComplianceByConfigRules: {ComplianceByConfigRule}
+    NextToken: string
+end
+
+local record DescribeComplianceByResourceInput
+    ResourceType: string
+    ResourceId: string
+    ComplianceTypes: {string}
+    Limit: number
+    NextToken: string
+end
+
+local record DescribeComplianceByResourceOutput
+    ComplianceByResources: {ComplianceByResource}
+    NextToken: string
+end
+
+local record DescribeConfigRuleEvaluationStatusInput
+    ConfigRuleNames: {string}
+    NextToken: string
+    Limit: number
+end
+
+local record DescribeConfigRuleEvaluationStatusOutput
+    ConfigRulesEvaluationStatus: {ConfigRuleEvaluationStatus}
+    NextToken: string
+end
+
+local record DescribeConfigRulesInput
+    ConfigRuleNames: {string}
+    NextToken: string
+    Filters: DescribeConfigRulesFilters
+end
+
+local record DescribeConfigRulesOutput
+    ConfigRules: {ConfigRule}
+    NextToken: string
+end
+
+local record DescribeConfigurationAggregatorsInput
+    ConfigurationAggregatorNames: {string}
+    NextToken: string
+    Limit: number
+end
+
+local record DescribeConfigurationAggregatorsOutput
+    ConfigurationAggregators: {ConfigurationAggregator}
+    NextToken: string
+end
+
+local record DescribeConfigurationAggregatorSourcesStatusInput
+    ConfigurationAggregatorName: string
+    UpdateStatus: {string}
+    NextToken: string
+    Limit: number
+end
+
+local record DescribeConfigurationAggregatorSourcesStatusOutput
+    AggregatedSourceStatusList: {AggregatedSourceStatus}
+    NextToken: string
+end
+
+local record DescribeConfigurationRecordersInput
+    ConfigurationRecorderNames: {string}
+    ServicePrincipal: string
+    Arn: string
+end
+
+local record DescribeConfigurationRecordersOutput
+    ConfigurationRecorders: {ConfigurationRecorder}
+end
+
+local record DescribeConfigurationRecorderStatusInput
+    ConfigurationRecorderNames: {string}
+    ServicePrincipal: string
+    Arn: string
+end
+
+local record DescribeConfigurationRecorderStatusOutput
+    ConfigurationRecordersStatus: {ConfigurationRecorderStatus}
+end
+
+local record DescribeConformancePackComplianceInput
+    ConformancePackName: string
+    Filters: ConformancePackComplianceFilters
+    Limit: number
+    NextToken: string
+end
+
+local record DescribeConformancePackComplianceOutput
+    ConformancePackName: string
+    ConformancePackRuleComplianceList: {ConformancePackRuleCompliance}
+    NextToken: string
+end
+
+local record DescribeConformancePacksInput
+    ConformancePackNames: {string}
+    Limit: number
+    NextToken: string
+end
+
+local record DescribeConformancePacksOutput
+    ConformancePackDetails: {ConformancePackDetail}
+    NextToken: string
+end
+
+local record DescribeConformancePackStatusInput
+    ConformancePackNames: {string}
+    Limit: number
+    NextToken: string
+end
+
+local record DescribeConformancePackStatusOutput
+    ConformancePackStatusDetails: {ConformancePackStatusDetail}
+    NextToken: string
+end
+
+local record DescribeDeliveryChannelsInput
+    DeliveryChannelNames: {string}
+end
+
+local record DescribeDeliveryChannelsOutput
+    DeliveryChannels: {DeliveryChannel}
+end
+
+local record DescribeDeliveryChannelStatusInput
+    DeliveryChannelNames: {string}
+end
+
+local record DescribeDeliveryChannelStatusOutput
+    DeliveryChannelsStatus: {DeliveryChannelStatus}
+end
+
+local record DescribeOrganizationConfigRulesInput
+    OrganizationConfigRuleNames: {string}
+    Limit: number
+    NextToken: string
+end
+
+local record DescribeOrganizationConfigRulesOutput
+    OrganizationConfigRules: {OrganizationConfigRule}
+    NextToken: string
+end
+
+local record DescribeOrganizationConfigRuleStatusesInput
+    OrganizationConfigRuleNames: {string}
+    Limit: number
+    NextToken: string
+end
+
+local record DescribeOrganizationConfigRuleStatusesOutput
+    OrganizationConfigRuleStatuses: {OrganizationConfigRuleStatus}
+    NextToken: string
+end
+
+local record DescribeOrganizationConformancePacksInput
+    OrganizationConformancePackNames: {string}
+    Limit: number
+    NextToken: string
+end
+
+local record DescribeOrganizationConformancePacksOutput
+    OrganizationConformancePacks: {OrganizationConformancePack}
+    NextToken: string
+end
+
+local record DescribeOrganizationConformancePackStatusesInput
+    OrganizationConformancePackNames: {string}
+    Limit: number
+    NextToken: string
+end
+
+local record DescribeOrganizationConformancePackStatusesOutput
+    OrganizationConformancePackStatuses: {OrganizationConformancePackStatus}
+    NextToken: string
+end
+
+local record DescribePendingAggregationRequestsInput
+    Limit: number
+    NextToken: string
+end
+
+local record DescribePendingAggregationRequestsOutput
+    PendingAggregationRequests: {PendingAggregationRequest}
+    NextToken: string
+end
+
+local record DescribeRemediationConfigurationsInput
+    ConfigRuleNames: {string}
+end
+
+local record DescribeRemediationConfigurationsOutput
+    RemediationConfigurations: {RemediationConfiguration}
+end
+
+local record DescribeRemediationExceptionsInput
+    ConfigRuleName: string
+    ResourceKeys: {RemediationExceptionResourceKey}
+    Limit: number
+    NextToken: string
+end
+
+local record DescribeRemediationExceptionsOutput
+    RemediationExceptions: {RemediationException}
+    NextToken: string
+end
+
+local record DescribeRemediationExecutionStatusInput
+    ConfigRuleName: string
+    ResourceKeys: {ResourceKey}
+    Limit: number
+    NextToken: string
+end
+
+local record DescribeRemediationExecutionStatusOutput
+    RemediationExecutionStatuses: {RemediationExecutionStatus}
+    NextToken: string
+end
+
+local record DescribeRetentionConfigurationsInput
+    RetentionConfigurationNames: {string}
+    NextToken: string
+end
+
+local record DescribeRetentionConfigurationsOutput
+    RetentionConfigurations: {RetentionConfiguration}
+    NextToken: string
+end
+
+local record DisassociateResourceTypesInput
+    ConfigurationRecorderArn: string
+    ResourceTypes: {string}
+end
+
+local record DisassociateResourceTypesOutput
+    ConfigurationRecorder: ConfigurationRecorder
+end
+
+local record GetAggregateComplianceDetailsByConfigRuleInput
+    ConfigurationAggregatorName: string
+    ConfigRuleName: string
+    AccountId: string
+    AwsRegion: string
+    ComplianceType: string
+    Limit: number
+    NextToken: string
+end
+
+local record GetAggregateComplianceDetailsByConfigRuleOutput
+    AggregateEvaluationResults: {AggregateEvaluationResult}
+    NextToken: string
+end
+
+local record GetAggregateConfigRuleComplianceSummaryInput
+    ConfigurationAggregatorName: string
+    Filters: ConfigRuleComplianceSummaryFilters
+    GroupByKey: string
+    Limit: number
+    NextToken: string
+end
+
+local record GetAggregateConfigRuleComplianceSummaryOutput
+    GroupByKey: string
+    AggregateComplianceCounts: {AggregateComplianceCount}
+    NextToken: string
+end
+
+local record GetAggregateConformancePackComplianceSummaryInput
+    ConfigurationAggregatorName: string
+    Filters: AggregateConformancePackComplianceSummaryFilters
+    GroupByKey: string
+    Limit: number
+    NextToken: string
+end
+
+local record GetAggregateConformancePackComplianceSummaryOutput
+    AggregateConformancePackComplianceSummaries: {AggregateConformancePackComplianceSummary}
+    GroupByKey: string
+    NextToken: string
+end
+
+local record GetAggregateDiscoveredResourceCountsInput
+    ConfigurationAggregatorName: string
+    Filters: ResourceCountFilters
+    GroupByKey: string
+    Limit: number
+    NextToken: string
+end
+
+local record GetAggregateDiscoveredResourceCountsOutput
+    TotalDiscoveredResources: number
+    GroupByKey: string
+    GroupedResourceCounts: {GroupedResourceCount}
+    NextToken: string
+end
+
+local record GetAggregateResourceConfigInput
+    ConfigurationAggregatorName: string
+    ResourceIdentifier: AggregateResourceIdentifier
+end
+
+local record GetAggregateResourceConfigOutput
+    ConfigurationItem: ConfigurationItem
+end
+
+local record GetComplianceDetailsByConfigRuleInput
+    ConfigRuleName: string
+    ComplianceTypes: {string}
+    Limit: number
+    NextToken: string
+end
+
+local record GetComplianceDetailsByConfigRuleOutput
+    EvaluationResults: {EvaluationResult}
+    NextToken: string
+end
+
+local record GetComplianceDetailsByResourceInput
+    ResourceType: string
+    ResourceId: string
+    ComplianceTypes: {string}
+    NextToken: string
+    ResourceEvaluationId: string
+end
+
+local record GetComplianceDetailsByResourceOutput
+    EvaluationResults: {EvaluationResult}
+    NextToken: string
+end
+
+local record GetComplianceSummaryByConfigRuleInput
+end
+
+local record GetComplianceSummaryByConfigRuleOutput
+    ComplianceSummary: ComplianceSummary
+end
+
+local record GetComplianceSummaryByResourceTypeInput
+    ResourceTypes: {string}
+end
+
+local record GetComplianceSummaryByResourceTypeOutput
+    ComplianceSummariesByResourceType: {ComplianceSummaryByResourceType}
+end
+
+local record GetConformancePackComplianceDetailsInput
+    ConformancePackName: string
+    Filters: ConformancePackEvaluationFilters
+    Limit: number
+    NextToken: string
+end
+
+local record GetConformancePackComplianceDetailsOutput
+    ConformancePackName: string
+    ConformancePackRuleEvaluationResults: {ConformancePackEvaluationResult}
+    NextToken: string
+end
+
+local record GetConformancePackComplianceSummaryInput
+    ConformancePackNames: {string}
+    Limit: number
+    NextToken: string
+end
+
+local record GetConformancePackComplianceSummaryOutput
+    ConformancePackComplianceSummaryList: {ConformancePackComplianceSummary}
+    NextToken: string
+end
+
+local record GetCustomRulePolicyInput
+    ConfigRuleName: string
+end
+
+local record GetCustomRulePolicyOutput
+    PolicyText: string
+end
+
+local record GetDiscoveredResourceCountsInput
+    resourceTypes: {string}
+    limit: number
+    nextToken: string
+end
+
+local record GetDiscoveredResourceCountsOutput
+    totalDiscoveredResources: number
+    resourceCounts: {ResourceCount}
+    nextToken: string
+end
+
+local record GetOrganizationConfigRuleDetailedStatusInput
+    OrganizationConfigRuleName: string
+    Filters: StatusDetailFilters
+    Limit: number
+    NextToken: string
+end
+
+local record GetOrganizationConfigRuleDetailedStatusOutput
+    OrganizationConfigRuleDetailedStatus: {MemberAccountStatus}
+    NextToken: string
+end
+
+local record GetOrganizationConformancePackDetailedStatusInput
+    OrganizationConformancePackName: string
+    Filters: OrganizationResourceDetailedStatusFilters
+    Limit: number
+    NextToken: string
+end
+
+local record GetOrganizationConformancePackDetailedStatusOutput
+    OrganizationConformancePackDetailedStatuses: {OrganizationConformancePackDetailedStatus}
+    NextToken: string
+end
+
+local record GetOrganizationCustomRulePolicyInput
+    OrganizationConfigRuleName: string
+end
+
+local record GetOrganizationCustomRulePolicyOutput
+    PolicyText: string
+end
+
+local record GetResourceConfigHistoryInput
+    resourceType: string
+    resourceId: string
+    laterTime: number
+    earlierTime: number
+    chronologicalOrder: string
+    limit: number
+    nextToken: string
+end
+
+local record GetResourceConfigHistoryOutput
+    configurationItems: {ConfigurationItem}
+    nextToken: string
+end
+
+local record GetResourceEvaluationSummaryInput
+    ResourceEvaluationId: string
+end
+
+local record GetResourceEvaluationSummaryOutput
+    ResourceEvaluationId: string
+    EvaluationMode: string
+    EvaluationStatus: EvaluationStatus
+    EvaluationStartTimestamp: number
+    Compliance: string
+    EvaluationContext: EvaluationContext
+    ResourceDetails: ResourceDetails
+end
+
+local record GetStoredQueryInput
+    QueryName: string
+end
+
+local record GetStoredQueryOutput
+    StoredQuery: StoredQuery
+end
+
+local record ListAggregateDiscoveredResourcesInput
+    ConfigurationAggregatorName: string
+    ResourceType: string
+    Filters: ResourceFilters
+    Limit: number
+    NextToken: string
+end
+
+local record ListAggregateDiscoveredResourcesOutput
+    ResourceIdentifiers: {AggregateResourceIdentifier}
+    NextToken: string
+end
+
+local record ListConfigurationRecordersInput
+    Filters: {ConfigurationRecorderFilter}
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListConfigurationRecordersOutput
+    ConfigurationRecorderSummaries: {ConfigurationRecorderSummary}
+    NextToken: string
+end
+
+local record ListConformancePackComplianceScoresInput
+    Filters: ConformancePackComplianceScoresFilters
+    SortOrder: string
+    SortBy: string
+    Limit: number
+    NextToken: string
+end
+
+local record ListConformancePackComplianceScoresOutput
+    NextToken: string
+    ConformancePackComplianceScores: {ConformancePackComplianceScore}
+end
+
+local record ListDiscoveredResourcesInput
+    resourceType: string
+    resourceIds: {string}
+    resourceName: string
+    limit: number
+    includeDeletedResources: boolean
+    nextToken: string
+end
+
+local record ListDiscoveredResourcesOutput
+    resourceIdentifiers: {ResourceIdentifier}
+    nextToken: string
+end
+
+local record ListResourceEvaluationsInput
+    Filters: ResourceEvaluationFilters
+    Limit: number
+    NextToken: string
+end
+
+local record ListResourceEvaluationsOutput
+    ResourceEvaluations: {ResourceEvaluation}
+    NextToken: string
+end
+
+local record ListStoredQueriesInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListStoredQueriesOutput
+    StoredQueryMetadata: {StoredQueryMetadata}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+    Limit: number
+    NextToken: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+    NextToken: string
+end
+
+local record PutAggregationAuthorizationInput
+    AuthorizedAccountId: string
+    AuthorizedAwsRegion: string
+    Tags: {Tag}
+end
+
+local record PutAggregationAuthorizationOutput
+    AggregationAuthorization: AggregationAuthorization
+end
+
+local record PutConfigRuleInput
+    ConfigRule: ConfigRule
+    Tags: {Tag}
+end
+
+local record PutConfigRuleOutput
+end
+
+local record PutConfigurationAggregatorInput
+    ConfigurationAggregatorName: string
+    AccountAggregationSources: {AccountAggregationSource}
+    OrganizationAggregationSource: OrganizationAggregationSource
+    Tags: {Tag}
+    AggregatorFilters: AggregatorFilters
+end
+
+local record PutConfigurationAggregatorOutput
+    ConfigurationAggregator: ConfigurationAggregator
+end
+
+local record PutConfigurationRecorderInput
+    ConfigurationRecorder: ConfigurationRecorder
+    Tags: {Tag}
+end
+
+local record PutConfigurationRecorderOutput
+end
+
+local record PutConformancePackInput
+    ConformancePackName: string
+    TemplateS3Uri: string
+    TemplateBody: string
+    DeliveryS3Bucket: string
+    DeliveryS3KeyPrefix: string
+    ConformancePackInputParameters: {ConformancePackInputParameter}
+    TemplateSSMDocumentDetails: TemplateSSMDocumentDetails
+    Tags: {Tag}
+end
+
+local record PutConformancePackOutput
+    ConformancePackArn: string
+end
+
+local record PutDeliveryChannelInput
+    DeliveryChannel: DeliveryChannel
+end
+
+local record PutDeliveryChannelOutput
+end
+
+local record PutEvaluationsInput
+    Evaluations: {Evaluation}
+    ResultToken: string
+    TestMode: boolean
+end
+
+local record PutEvaluationsOutput
+    FailedEvaluations: {Evaluation}
+end
+
+local record PutExternalEvaluationInput
+    ConfigRuleName: string
+    ExternalEvaluation: ExternalEvaluation
+end
+
+local record PutExternalEvaluationOutput
+end
+
+local record PutOrganizationConfigRuleInput
+    OrganizationConfigRuleName: string
+    OrganizationManagedRuleMetadata: OrganizationManagedRuleMetadata
+    OrganizationCustomRuleMetadata: OrganizationCustomRuleMetadata
+    ExcludedAccounts: {string}
+    OrganizationCustomPolicyRuleMetadata: OrganizationCustomPolicyRuleMetadata
+end
+
+local record PutOrganizationConfigRuleOutput
+    OrganizationConfigRuleArn: string
+end
+
+local record PutOrganizationConformancePackInput
+    OrganizationConformancePackName: string
+    TemplateS3Uri: string
+    TemplateBody: string
+    DeliveryS3Bucket: string
+    DeliveryS3KeyPrefix: string
+    ConformancePackInputParameters: {ConformancePackInputParameter}
+    ExcludedAccounts: {string}
+end
+
+local record PutOrganizationConformancePackOutput
+    OrganizationConformancePackArn: string
+end
+
+local record PutRemediationConfigurationsInput
+    RemediationConfigurations: {RemediationConfiguration}
+end
+
+local record PutRemediationConfigurationsOutput
+    FailedBatches: {FailedRemediationBatch}
+end
+
+local record PutRemediationExceptionsInput
+    ConfigRuleName: string
+    ResourceKeys: {RemediationExceptionResourceKey}
+    Message: string
+    ExpirationTime: number
+end
+
+local record PutRemediationExceptionsOutput
+    FailedBatches: {FailedRemediationExceptionBatch}
+end
+
+local record PutResourceConfigInput
+    ResourceType: string
+    SchemaVersionId: string
+    ResourceId: string
+    ResourceName: string
+    Configuration: string
+    Tags: {string : string}
+end
+
+local record PutResourceConfigOutput
+end
+
+local record PutRetentionConfigurationInput
+    RetentionPeriodInDays: number
+end
+
+local record PutRetentionConfigurationOutput
+    RetentionConfiguration: RetentionConfiguration
+end
+
+local record PutServiceLinkedConfigurationRecorderInput
+    ServicePrincipal: string
+    Tags: {Tag}
+end
+
+local record PutServiceLinkedConfigurationRecorderOutput
+    Arn: string
+    Name: string
+end
+
+local record PutStoredQueryInput
+    StoredQuery: StoredQuery
+    Tags: {Tag}
+end
+
+local record PutStoredQueryOutput
+    QueryArn: string
+end
+
+local record SelectAggregateResourceConfigInput
+    Expression: string
+    ConfigurationAggregatorName: string
+    Limit: number
+    MaxResults: number
+    NextToken: string
+end
+
+local record SelectAggregateResourceConfigOutput
+    Results: {string}
+    QueryInfo: QueryInfo
+    NextToken: string
+end
+
+local record SelectResourceConfigInput
+    Expression: string
+    Limit: number
+    NextToken: string
+end
+
+local record SelectResourceConfigOutput
+    Results: {string}
+    QueryInfo: QueryInfo
+    NextToken: string
+end
+
+local record StartConfigRulesEvaluationInput
+    ConfigRuleNames: {string}
+end
+
+local record StartConfigRulesEvaluationOutput
+end
+
+local record StartConfigurationRecorderInput
+    ConfigurationRecorderName: string
+end
+
+local record StartConfigurationRecorderOutput
+end
+
+local record StartRemediationExecutionInput
+    ConfigRuleName: string
+    ResourceKeys: {ResourceKey}
+end
+
+local record StartRemediationExecutionOutput
+    FailureMessage: string
+    FailedItems: {ResourceKey}
+end
+
+local record StartResourceEvaluationInput
+    ResourceDetails: ResourceDetails
+    EvaluationContext: EvaluationContext
+    EvaluationMode: string
+    EvaluationTimeout: number
+    ClientToken: string
+end
+
+local record StartResourceEvaluationOutput
+    ResourceEvaluationId: string
+end
+
+local record StopConfigurationRecorderInput
+    ConfigurationRecorderName: string
+end
+
+local record StopConfigurationRecorderOutput
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record ConflictException
+    message: string
+end
+
+local record NoSuchConfigurationRecorderException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record NoSuchConfigurationAggregatorException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record NoAvailableConfigurationRecorderException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchConfigRuleException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record NoSuchConfigurationAggregatorException
+    message: string
+end
+
+local record NoSuchConfigurationRecorderException
+    message: string
+end
+
+local record UnmodifiableEntityException
+    message: string
+end
+
+local record NoSuchConformancePackException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record LastDeliveryChannelDeleteFailedException
+    message: string
+end
+
+local record NoSuchDeliveryChannelException
+    message: string
+end
+
+local record NoSuchConfigRuleException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record NoSuchOrganizationConfigRuleException
+    message: string
+end
+
+local record OrganizationAccessDeniedException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record NoSuchOrganizationConformancePackException
+    message: string
+end
+
+local record OrganizationAccessDeniedException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InsufficientPermissionsException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchRemediationConfigurationException
+    message: string
+end
+
+local record RemediationInProgressException
+    message: string
+end
+
+local record NoSuchRemediationExceptionException
+    message: string
+end
+
+local record NoRunningConfigurationRecorderException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchRetentionConfigurationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record NoSuchConfigurationRecorderException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record NoAvailableConfigurationRecorderException
+    message: string
+end
+
+local record NoRunningConfigurationRecorderException
+    message: string
+end
+
+local record NoSuchDeliveryChannelException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoSuchConfigurationAggregatorException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoSuchConfigurationAggregatorException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchConfigRuleException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchConfigRuleException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchConfigRuleException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchConfigurationAggregatorException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchConfigurationAggregatorException
+    message: string
+end
+
+local record NoSuchConfigurationRecorderException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record NoSuchConfigurationRecorderException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchConfigRuleInConformancePackException
+    message: string
+end
+
+local record NoSuchConformancePackException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchConformancePackException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchDeliveryChannelException
+    message: string
+end
+
+local record NoSuchDeliveryChannelException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoSuchOrganizationConfigRuleException
+    message: string
+end
+
+local record OrganizationAccessDeniedException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoSuchOrganizationConfigRuleException
+    message: string
+end
+
+local record OrganizationAccessDeniedException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoSuchOrganizationConformancePackException
+    message: string
+end
+
+local record OrganizationAccessDeniedException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoSuchOrganizationConformancePackException
+    message: string
+end
+
+local record OrganizationAccessDeniedException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchRemediationConfigurationException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchRetentionConfigurationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record NoSuchConfigurationRecorderException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoSuchConfigurationAggregatorException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoSuchConfigurationAggregatorException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoSuchConfigurationAggregatorException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoSuchConfigurationAggregatorException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record NoSuchConfigurationAggregatorException
+    message: string
+end
+
+local record OversizedConfigurationItemException
+    message: string
+end
+
+local record ResourceNotDiscoveredException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchConfigRuleException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchConfigRuleInConformancePackException
+    message: string
+end
+
+local record NoSuchConformancePackException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoSuchConformancePackException
+    message: string
+end
+
+local record NoSuchConfigRuleException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoSuchOrganizationConfigRuleException
+    message: string
+end
+
+local record OrganizationAccessDeniedException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoSuchOrganizationConformancePackException
+    message: string
+end
+
+local record OrganizationAccessDeniedException
+    message: string
+end
+
+local record NoSuchOrganizationConfigRuleException
+    message: string
+end
+
+local record OrganizationAccessDeniedException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidTimeRangeException
+    message: string
+end
+
+local record NoAvailableConfigurationRecorderException
+    message: string
+end
+
+local record ResourceNotDiscoveredException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoSuchConfigurationAggregatorException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoAvailableConfigurationRecorderException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InvalidTimeRangeException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InsufficientPermissionsException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record MaxNumberOfConfigRulesExceededException
+    message: string
+end
+
+local record NoAvailableConfigurationRecorderException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InvalidRoleException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NoAvailableOrganizationException
+    message: string
+end
+
+local record OrganizationAccessDeniedException
+    message: string
+end
+
+local record OrganizationAllFeaturesNotEnabledException
+    message: string
+end
+
+local record InvalidConfigurationRecorderNameException
+    message: string
+end
+
+local record InvalidRecordingGroupException
+    message: string
+end
+
+local record InvalidRoleException
+    message: string
+end
+
+local record MaxNumberOfConfigurationRecordersExceededException
+    message: string
+end
+
+local record UnmodifiableEntityException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConformancePackTemplateValidationException
+    message: string
+end
+
+local record InsufficientPermissionsException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record MaxNumberOfConformancePacksExceededException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record InsufficientDeliveryPolicyException
+    message: string
+end
+
+local record InvalidDeliveryChannelNameException
+    message: string
+end
+
+local record InvalidS3KeyPrefixException
+    message: string
+end
+
+local record InvalidS3KmsKeyArnException
+    message: string
+end
+
+local record InvalidSNSTopicARNException
+    message: string
+end
+
+local record MaxNumberOfDeliveryChannelsExceededException
+    message: string
+end
+
+local record NoAvailableConfigurationRecorderException
+    message: string
+end
+
+local record NoSuchBucketException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InvalidResultTokenException
+    message: string
+end
+
+local record NoSuchConfigRuleException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchConfigRuleException
+    message: string
+end
+
+local record InsufficientPermissionsException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record MaxNumberOfOrganizationConfigRulesExceededException
+    message: string
+end
+
+local record NoAvailableOrganizationException
+    message: string
+end
+
+local record OrganizationAccessDeniedException
+    message: string
+end
+
+local record OrganizationAllFeaturesNotEnabledException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InsufficientPermissionsException
+    message: string
+end
+
+local record MaxNumberOfOrganizationConformancePacksExceededException
+    message: string
+end
+
+local record NoAvailableOrganizationException
+    message: string
+end
+
+local record OrganizationAccessDeniedException
+    message: string
+end
+
+local record OrganizationAllFeaturesNotEnabledException
+    message: string
+end
+
+local record OrganizationConformancePackTemplateValidationException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InsufficientPermissionsException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InsufficientPermissionsException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InsufficientPermissionsException
+    message: string
+end
+
+local record MaxActiveResourcesExceededException
+    message: string
+end
+
+local record NoRunningConfigurationRecorderException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record MaxNumberOfRetentionConfigurationsExceededException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InsufficientPermissionsException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceConcurrentModificationException
+    message: string
+end
+
+local record TooManyTagsException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InvalidExpressionException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record NoSuchConfigurationAggregatorException
+    message: string
+end
+
+local record InvalidExpressionException
+    message: string
+end
+
+local record InvalidLimitException
+    message: string
+end
+
+local record InvalidNextTokenException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NoSuchConfigRuleException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record NoAvailableDeliveryChannelException
+    message: string
+end
+
+local record NoSuchConfigurationRecorderException
+    message: string
+end
+
+local record UnmodifiableEntityException
+    message: string
+end
+
+local record InsufficientPermissionsException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchRemediationConfigurationException
+    message: string
+end
+
+local record IdempotentParameterMismatch
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record NoSuchConfigurationRecorderException
+    message: string
+end
+
+local record UnmodifiableEntityException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyTagsException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local type AggregateConformancePackComplianceSummaryGroupKey = "ACCOUNT_ID" | "AWS_REGION"
+
+local type ConfigRuleComplianceSummaryGroupKey = "ACCOUNT_ID" | "AWS_REGION"
+
+local type EvaluationMode = "DETECTIVE" | "PROACTIVE"
+
+local type ChronologicalOrder = "Reverse" | "Forward"
+
+local type ResourceCountGroupKey = "RESOURCE_TYPE" | "ACCOUNT_ID" | "AWS_REGION"
+
+local type SortOrder = "ASCENDING" | "DESCENDING"
+
+local type ComplianceType = "COMPLIANT" | "NON_COMPLIANT" | "NOT_APPLICABLE" | "INSUFFICIENT_DATA"
+
+local type SortBy = "SCORE"
+
+local type ResourceType = "AWS::EC2::CustomerGateway" | "AWS::EC2::EIP" | "AWS::EC2::Host" | "AWS::EC2::Instance" | "AWS::EC2::InternetGateway" | "AWS::EC2::NetworkAcl" | "AWS::EC2::NetworkInterface" | "AWS::EC2::RouteTable" | "AWS::EC2::SecurityGroup" | "AWS::EC2::Subnet" | "AWS::CloudTrail::Trail" | "AWS::EC2::Volume" | "AWS::EC2::VPC" | "AWS::EC2::VPNConnection" | "AWS::EC2::VPNGateway" | "AWS::EC2::RegisteredHAInstance" | "AWS::EC2::NatGateway" | "AWS::EC2::EgressOnlyInternetGateway" | "AWS::EC2::VPCEndpoint" | "AWS::EC2::VPCEndpointService" | "AWS::EC2::FlowLog" | "AWS::EC2::VPCPeeringConnection" | "AWS::Elasticsearch::Domain" | "AWS::IAM::Group" | "AWS::IAM::Policy" | "AWS::IAM::Role" | "AWS::IAM::User" | "AWS::ElasticLoadBalancingV2::LoadBalancer" | "AWS::ACM::Certificate" | "AWS::RDS::DBInstance" | "AWS::RDS::DBSubnetGroup" | "AWS::RDS::DBSecurityGroup" | "AWS::RDS::DBSnapshot" | "AWS::RDS::DBCluster" | "AWS::RDS::DBClusterSnapshot" | "AWS::RDS::EventSubscription" | "AWS::S3::Bucket" | "AWS::S3::AccountPublicAccessBlock" | "AWS::Redshift::Cluster" | "AWS::Redshift::ClusterSnapshot" | "AWS::Redshift::ClusterParameterGroup" | "AWS::Redshift::ClusterSecurityGroup" | "AWS::Redshift::ClusterSubnetGroup" | "AWS::Redshift::EventSubscription" | "AWS::SSM::ManagedInstanceInventory" | "AWS::CloudWatch::Alarm" | "AWS::CloudFormation::Stack" | "AWS::ElasticLoadBalancing::LoadBalancer" | "AWS::AutoScaling::AutoScalingGroup" | "AWS::AutoScaling::LaunchConfiguration" | "AWS::AutoScaling::ScalingPolicy" | "AWS::AutoScaling::ScheduledAction" | "AWS::DynamoDB::Table" | "AWS::CodeBuild::Project" | "AWS::WAF::RateBasedRule" | "AWS::WAF::Rule" | "AWS::WAF::RuleGroup" | "AWS::WAF::WebACL" | "AWS::WAFRegional::RateBasedRule" | "AWS::WAFRegional::Rule" | "AWS::WAFRegional::RuleGroup" | "AWS::WAFRegional::WebACL" | "AWS::CloudFront::Distribution" | "AWS::CloudFront::StreamingDistribution" | "AWS::Lambda::Function" | "AWS::NetworkFirewall::Firewall" | "AWS::NetworkFirewall::FirewallPolicy" | "AWS::NetworkFirewall::RuleGroup" | "AWS::ElasticBeanstalk::Application" | "AWS::ElasticBeanstalk::ApplicationVersion" | "AWS::ElasticBeanstalk::Environment" | "AWS::WAFv2::WebACL" | "AWS::WAFv2::RuleGroup" | "AWS::WAFv2::IPSet" | "AWS::WAFv2::RegexPatternSet" | "AWS::WAFv2::ManagedRuleSet" | "AWS::XRay::EncryptionConfig" | "AWS::SSM::AssociationCompliance" | "AWS::SSM::PatchCompliance" | "AWS::Shield::Protection" | "AWS::ShieldRegional::Protection" | "AWS::Config::ConformancePackCompliance" | "AWS::Config::ResourceCompliance" | "AWS::ApiGateway::Stage" | "AWS::ApiGateway::RestApi" | "AWS::ApiGatewayV2::Stage" | "AWS::ApiGatewayV2::Api" | "AWS::CodePipeline::Pipeline" | "AWS::ServiceCatalog::CloudFormationProvisionedProduct" | "AWS::ServiceCatalog::CloudFormationProduct" | "AWS::ServiceCatalog::Portfolio" | "AWS::SQS::Queue" | "AWS::KMS::Key" | "AWS::QLDB::Ledger" | "AWS::SecretsManager::Secret" | "AWS::SNS::Topic" | "AWS::SSM::FileData" | "AWS::Backup::BackupPlan" | "AWS::Backup::BackupSelection" | "AWS::Backup::BackupVault" | "AWS::Backup::RecoveryPoint" | "AWS::ECR::Repository" | "AWS::ECS::Cluster" | "AWS::ECS::Service" | "AWS::ECS::TaskDefinition" | "AWS::EFS::AccessPoint" | "AWS::EFS::FileSystem" | "AWS::EKS::Cluster" | "AWS::OpenSearch::Domain" | "AWS::EC2::TransitGateway" | "AWS::Kinesis::Stream" | "AWS::Kinesis::StreamConsumer" | "AWS::CodeDeploy::Application" | "AWS::CodeDeploy::DeploymentConfig" | "AWS::CodeDeploy::DeploymentGroup" | "AWS::EC2::LaunchTemplate" | "AWS::ECR::PublicRepository" | "AWS::GuardDuty::Detector" | "AWS::EMR::SecurityConfiguration" | "AWS::SageMaker::CodeRepository" | "AWS::Route53Resolver::ResolverEndpoint" | "AWS::Route53Resolver::ResolverRule" | "AWS::Route53Resolver::ResolverRuleAssociation" | "AWS::DMS::ReplicationSubnetGroup" | "AWS::DMS::EventSubscription" | "AWS::MSK::Cluster" | "AWS::StepFunctions::Activity" | "AWS::WorkSpaces::Workspace" | "AWS::WorkSpaces::ConnectionAlias" | "AWS::SageMaker::Model" | "AWS::ElasticLoadBalancingV2::Listener" | "AWS::StepFunctions::StateMachine" | "AWS::Batch::JobQueue" | "AWS::Batch::ComputeEnvironment" | "AWS::AccessAnalyzer::Analyzer" | "AWS::Athena::WorkGroup" | "AWS::Athena::DataCatalog" | "AWS::Detective::Graph" | "AWS::GlobalAccelerator::Accelerator" | "AWS::GlobalAccelerator::EndpointGroup" | "AWS::GlobalAccelerator::Listener" | "AWS::EC2::TransitGatewayAttachment" | "AWS::EC2::TransitGatewayRouteTable" | "AWS::DMS::Certificate" | "AWS::AppConfig::Application" | "AWS::AppSync::GraphQLApi" | "AWS::DataSync::LocationSMB" | "AWS::DataSync::LocationFSxLustre" | "AWS::DataSync::LocationS3" | "AWS::DataSync::LocationEFS" | "AWS::DataSync::Task" | "AWS::DataSync::LocationNFS" | "AWS::EC2::NetworkInsightsAccessScopeAnalysis" | "AWS::EKS::FargateProfile" | "AWS::Glue::Job" | "AWS::GuardDuty::ThreatIntelSet" | "AWS::GuardDuty::IPSet" | "AWS::SageMaker::Workteam" | "AWS::SageMaker::NotebookInstanceLifecycleConfig" | "AWS::ServiceDiscovery::Service" | "AWS::ServiceDiscovery::PublicDnsNamespace" | "AWS::SES::ContactList" | "AWS::SES::ConfigurationSet" | "AWS::Route53::HostedZone" | "AWS::IoTEvents::Input" | "AWS::IoTEvents::DetectorModel" | "AWS::IoTEvents::AlarmModel" | "AWS::ServiceDiscovery::HttpNamespace" | "AWS::Events::EventBus" | "AWS::ImageBuilder::ContainerRecipe" | "AWS::ImageBuilder::DistributionConfiguration" | "AWS::ImageBuilder::InfrastructureConfiguration" | "AWS::DataSync::LocationObjectStorage" | "AWS::DataSync::LocationHDFS" | "AWS::Glue::Classifier" | "AWS::Route53RecoveryReadiness::Cell" | "AWS::Route53RecoveryReadiness::ReadinessCheck" | "AWS::ECR::RegistryPolicy" | "AWS::Backup::ReportPlan" | "AWS::Lightsail::Certificate" | "AWS::RUM::AppMonitor" | "AWS::Events::Endpoint" | "AWS::SES::ReceiptRuleSet" | "AWS::Events::Archive" | "AWS::Events::ApiDestination" | "AWS::Lightsail::Disk" | "AWS::FIS::ExperimentTemplate" | "AWS::DataSync::LocationFSxWindows" | "AWS::SES::ReceiptFilter" | "AWS::GuardDuty::Filter" | "AWS::SES::Template" | "AWS::AmazonMQ::Broker" | "AWS::AppConfig::Environment" | "AWS::AppConfig::ConfigurationProfile" | "AWS::Cloud9::EnvironmentEC2" | "AWS::EventSchemas::Registry" | "AWS::EventSchemas::RegistryPolicy" | "AWS::EventSchemas::Discoverer" | "AWS::FraudDetector::Label" | "AWS::FraudDetector::EntityType" | "AWS::FraudDetector::Variable" | "AWS::FraudDetector::Outcome" | "AWS::IoT::Authorizer" | "AWS::IoT::SecurityProfile" | "AWS::IoT::RoleAlias" | "AWS::IoT::Dimension" | "AWS::IoTAnalytics::Datastore" | "AWS::Lightsail::Bucket" | "AWS::Lightsail::StaticIp" | "AWS::MediaPackage::PackagingGroup" | "AWS::Route53RecoveryReadiness::RecoveryGroup" | "AWS::ResilienceHub::ResiliencyPolicy" | "AWS::Transfer::Workflow" | "AWS::EKS::IdentityProviderConfig" | "AWS::EKS::Addon" | "AWS::Glue::MLTransform" | "AWS::IoT::Policy" | "AWS::IoT::MitigationAction" | "AWS::IoTTwinMaker::Workspace" | "AWS::IoTTwinMaker::Entity" | "AWS::IoTAnalytics::Dataset" | "AWS::IoTAnalytics::Pipeline" | "AWS::IoTAnalytics::Channel" | "AWS::IoTSiteWise::Dashboard" | "AWS::IoTSiteWise::Project" | "AWS::IoTSiteWise::Portal" | "AWS::IoTSiteWise::AssetModel" | "AWS::IVS::Channel" | "AWS::IVS::RecordingConfiguration" | "AWS::IVS::PlaybackKeyPair" | "AWS::KinesisAnalyticsV2::Application" | "AWS::RDS::GlobalCluster" | "AWS::S3::MultiRegionAccessPoint" | "AWS::DeviceFarm::TestGridProject" | "AWS::Budgets::BudgetsAction" | "AWS::Lex::Bot" | "AWS::CodeGuruReviewer::RepositoryAssociation" | "AWS::IoT::CustomMetric" | "AWS::Route53Resolver::FirewallDomainList" | "AWS::RoboMaker::RobotApplicationVersion" | "AWS::EC2::TrafficMirrorSession" | "AWS::IoTSiteWise::Gateway" | "AWS::Lex::BotAlias" | "AWS::LookoutMetrics::Alert" | "AWS::IoT::AccountAuditConfiguration" | "AWS::EC2::TrafficMirrorTarget" | "AWS::S3::StorageLens" | "AWS::IoT::ScheduledAudit" | "AWS::Events::Connection" | "AWS::EventSchemas::Schema" | "AWS::MediaPackage::PackagingConfiguration" | "AWS::KinesisVideo::SignalingChannel" | "AWS::AppStream::DirectoryConfig" | "AWS::LookoutVision::Project" | "AWS::Route53RecoveryControl::Cluster" | "AWS::Route53RecoveryControl::SafetyRule" | "AWS::Route53RecoveryControl::ControlPanel" | "AWS::Route53RecoveryControl::RoutingControl" | "AWS::Route53RecoveryReadiness::ResourceSet" | "AWS::RoboMaker::SimulationApplication" | "AWS::RoboMaker::RobotApplication" | "AWS::HealthLake::FHIRDatastore" | "AWS::Pinpoint::Segment" | "AWS::Pinpoint::ApplicationSettings" | "AWS::Events::Rule" | "AWS::EC2::DHCPOptions" | "AWS::EC2::NetworkInsightsPath" | "AWS::EC2::TrafficMirrorFilter" | "AWS::EC2::IPAM" | "AWS::IoTTwinMaker::Scene" | "AWS::NetworkManager::TransitGatewayRegistration" | "AWS::CustomerProfiles::Domain" | "AWS::AutoScaling::WarmPool" | "AWS::Connect::PhoneNumber" | "AWS::AppConfig::DeploymentStrategy" | "AWS::AppFlow::Flow" | "AWS::AuditManager::Assessment" | "AWS::CloudWatch::MetricStream" | "AWS::DeviceFarm::InstanceProfile" | "AWS::DeviceFarm::Project" | "AWS::EC2::EC2Fleet" | "AWS::EC2::SubnetRouteTableAssociation" | "AWS::ECR::PullThroughCacheRule" | "AWS::GroundStation::Config" | "AWS::ImageBuilder::ImagePipeline" | "AWS::IoT::FleetMetric" | "AWS::IoTWireless::ServiceProfile" | "AWS::NetworkManager::Device" | "AWS::NetworkManager::GlobalNetwork" | "AWS::NetworkManager::Link" | "AWS::NetworkManager::Site" | "AWS::Panorama::Package" | "AWS::Pinpoint::App" | "AWS::Redshift::ScheduledAction" | "AWS::Route53Resolver::FirewallRuleGroupAssociation" | "AWS::SageMaker::AppImageConfig" | "AWS::SageMaker::Image" | "AWS::ECS::TaskSet" | "AWS::Cassandra::Keyspace" | "AWS::Signer::SigningProfile" | "AWS::Amplify::App" | "AWS::AppMesh::VirtualNode" | "AWS::AppMesh::VirtualService" | "AWS::AppRunner::VpcConnector" | "AWS::AppStream::Application" | "AWS::CodeArtifact::Repository" | "AWS::EC2::PrefixList" | "AWS::EC2::SpotFleet" | "AWS::Evidently::Project" | "AWS::Forecast::Dataset" | "AWS::IAM::SAMLProvider" | "AWS::IAM::ServerCertificate" | "AWS::Pinpoint::Campaign" | "AWS::Pinpoint::InAppTemplate" | "AWS::SageMaker::Domain" | "AWS::Transfer::Agreement" | "AWS::Transfer::Connector" | "AWS::KinesisFirehose::DeliveryStream" | "AWS::Amplify::Branch" | "AWS::AppIntegrations::EventIntegration" | "AWS::AppMesh::Route" | "AWS::Athena::PreparedStatement" | "AWS::EC2::IPAMScope" | "AWS::Evidently::Launch" | "AWS::Forecast::DatasetGroup" | "AWS::GreengrassV2::ComponentVersion" | "AWS::GroundStation::MissionProfile" | "AWS::MediaConnect::FlowEntitlement" | "AWS::MediaConnect::FlowVpcInterface" | "AWS::MediaTailor::PlaybackConfiguration" | "AWS::MSK::Configuration" | "AWS::Personalize::Dataset" | "AWS::Personalize::Schema" | "AWS::Personalize::Solution" | "AWS::Pinpoint::EmailTemplate" | "AWS::Pinpoint::EventStream" | "AWS::ResilienceHub::App" | "AWS::ACMPCA::CertificateAuthority" | "AWS::AppConfig::HostedConfigurationVersion" | "AWS::AppMesh::VirtualGateway" | "AWS::AppMesh::VirtualRouter" | "AWS::AppRunner::Service" | "AWS::CustomerProfiles::ObjectType" | "AWS::DMS::Endpoint" | "AWS::EC2::CapacityReservation" | "AWS::EC2::ClientVpnEndpoint" | "AWS::Kendra::Index" | "AWS::KinesisVideo::Stream" | "AWS::Logs::Destination" | "AWS::Pinpoint::EmailChannel" | "AWS::S3::AccessPoint" | "AWS::NetworkManager::CustomerGatewayAssociation" | "AWS::NetworkManager::LinkAssociation" | "AWS::IoTWireless::MulticastGroup" | "AWS::Personalize::DatasetGroup" | "AWS::IoTTwinMaker::ComponentType" | "AWS::CodeBuild::ReportGroup" | "AWS::SageMaker::FeatureGroup" | "AWS::MSK::BatchScramSecret" | "AWS::AppStream::Stack" | "AWS::IoT::JobTemplate" | "AWS::IoTWireless::FuotaTask" | "AWS::IoT::ProvisioningTemplate" | "AWS::InspectorV2::Filter" | "AWS::Route53Resolver::ResolverQueryLoggingConfigAssociation" | "AWS::ServiceDiscovery::Instance" | "AWS::Transfer::Certificate" | "AWS::MediaConnect::FlowSource" | "AWS::APS::RuleGroupsNamespace" | "AWS::CodeGuruProfiler::ProfilingGroup" | "AWS::Route53Resolver::ResolverQueryLoggingConfig" | "AWS::Batch::SchedulingPolicy" | "AWS::ACMPCA::CertificateAuthorityActivation" | "AWS::AppMesh::GatewayRoute" | "AWS::AppMesh::Mesh" | "AWS::Connect::Instance" | "AWS::Connect::QuickConnect" | "AWS::EC2::CarrierGateway" | "AWS::EC2::IPAMPool" | "AWS::EC2::TransitGatewayConnect" | "AWS::EC2::TransitGatewayMulticastDomain" | "AWS::ECS::CapacityProvider" | "AWS::IAM::InstanceProfile" | "AWS::IoT::CACertificate" | "AWS::IoTTwinMaker::SyncJob" | "AWS::KafkaConnect::Connector" | "AWS::Lambda::CodeSigningConfig" | "AWS::NetworkManager::ConnectPeer" | "AWS::ResourceExplorer2::Index" | "AWS::AppStream::Fleet" | "AWS::Cognito::UserPool" | "AWS::Cognito::UserPoolClient" | "AWS::Cognito::UserPoolGroup" | "AWS::EC2::NetworkInsightsAccessScope" | "AWS::EC2::NetworkInsightsAnalysis" | "AWS::Grafana::Workspace" | "AWS::GroundStation::DataflowEndpointGroup" | "AWS::ImageBuilder::ImageRecipe" | "AWS::KMS::Alias" | "AWS::M2::Environment" | "AWS::QuickSight::DataSource" | "AWS::QuickSight::Template" | "AWS::QuickSight::Theme" | "AWS::RDS::OptionGroup" | "AWS::Redshift::EndpointAccess" | "AWS::Route53Resolver::FirewallRuleGroup" | "AWS::SSM::Document" | "AWS::AppConfig::ExtensionAssociation" | "AWS::AppIntegrations::Application" | "AWS::AppSync::ApiCache" | "AWS::Bedrock::Guardrail" | "AWS::Bedrock::KnowledgeBase" | "AWS::Cognito::IdentityPool" | "AWS::Connect::Rule" | "AWS::Connect::User" | "AWS::EC2::ClientVpnTargetNetworkAssociation" | "AWS::EC2::EIPAssociation" | "AWS::EC2::IPAMResourceDiscovery" | "AWS::EC2::IPAMResourceDiscoveryAssociation" | "AWS::EC2::InstanceConnectEndpoint" | "AWS::EC2::SnapshotBlockPublicAccess" | "AWS::EC2::VPCBlockPublicAccessExclusion" | "AWS::EC2::VPCBlockPublicAccessOptions" | "AWS::EC2::VPCEndpointConnectionNotification" | "AWS::EC2::VPNConnectionRoute" | "AWS::Evidently::Segment" | "AWS::IAM::OIDCProvider" | "AWS::InspectorV2::Activation" | "AWS::MSK::ClusterPolicy" | "AWS::MSK::VpcConnection" | "AWS::MediaConnect::Gateway" | "AWS::MemoryDB::SubnetGroup" | "AWS::OpenSearchServerless::Collection" | "AWS::OpenSearchServerless::VpcEndpoint" | "AWS::Redshift::EndpointAuthorization" | "AWS::Route53Profiles::Profile" | "AWS::S3::StorageLensGroup" | "AWS::S3Express::BucketPolicy" | "AWS::S3Express::DirectoryBucket" | "AWS::SageMaker::InferenceExperiment" | "AWS::SecurityHub::Standard" | "AWS::Transfer::Profile" | "AWS::CloudFormation::StackSet" | "AWS::MediaPackageV2::Channel" | "AWS::S3::AccessGrantsLocation" | "AWS::S3::AccessGrant" | "AWS::S3::AccessGrantsInstance" | "AWS::EMRServerless::Application" | "AWS::Config::AggregationAuthorization" | "AWS::Bedrock::ApplicationInferenceProfile" | "AWS::ApiGatewayV2::Integration" | "AWS::SageMaker::MlflowTrackingServer" | "AWS::SageMaker::ModelBiasJobDefinition" | "AWS::SecretsManager::RotationSchedule" | "AWS::Deadline::QueueFleetAssociation" | "AWS::ECR::RepositoryCreationTemplate" | "AWS::CloudFormation::LambdaHook" | "AWS::EC2::SubnetNetworkAclAssociation" | "AWS::ApiGateway::UsagePlan" | "AWS::AppConfig::Extension" | "AWS::Deadline::Fleet" | "AWS::EMR::Studio" | "AWS::S3Tables::TableBucket" | "AWS::CloudFront::RealtimeLogConfig" | "AWS::BackupGateway::Hypervisor" | "AWS::BCMDataExports::Export" | "AWS::CloudFormation::GuardHook" | "AWS::CloudFront::PublicKey" | "AWS::CloudTrail::EventDataStore" | "AWS::EntityResolution::IdMappingWorkflow" | "AWS::EntityResolution::SchemaMapping" | "AWS::IoT::DomainConfiguration" | "AWS::PCAConnectorAD::DirectoryRegistration" | "AWS::RDS::Integration" | "AWS::Config::ConformancePack" | "AWS::RolesAnywhere::Profile" | "AWS::CodeArtifact::Domain" | "AWS::Backup::RestoreTestingPlan" | "AWS::Config::StoredQuery" | "AWS::SageMaker::DataQualityJobDefinition" | "AWS::SageMaker::ModelExplainabilityJobDefinition" | "AWS::SageMaker::ModelQualityJobDefinition" | "AWS::SageMaker::StudioLifecycleConfig" | "AWS::SES::DedicatedIpPool" | "AWS::SES::MailManagerTrafficPolicy" | "AWS::SSM::ResourceDataSync" | "AWS::BedrockAgentCore::Runtime" | "AWS::BedrockAgentCore::BrowserCustom" | "AWS::ElasticLoadBalancingV2::TargetGroup" | "AWS::EMRContainers::VirtualCluster" | "AWS::EntityResolution::MatchingWorkflow" | "AWS::IoTCoreDeviceAdvisor::SuiteDefinition" | "AWS::EC2::SecurityGroupVpcAssociation" | "AWS::EC2::VerifiedAccessInstance" | "AWS::KafkaConnect::CustomPlugin" | "AWS::NetworkManager::TransitGatewayPeering" | "AWS::OpenSearchServerless::SecurityConfig" | "AWS::Redshift::Integration" | "AWS::RolesAnywhere::TrustAnchor" | "AWS::Route53Profiles::ProfileAssociation" | "AWS::SSMIncidents::ResponsePlan" | "AWS::Transfer::Server" | "AWS::Glue::Database" | "AWS::Organizations::OrganizationalUnit" | "AWS::EC2::IPAMPoolCidr" | "AWS::EC2::VPCGatewayAttachment" | "AWS::Bedrock::Prompt" | "AWS::Comprehend::Flywheel" | "AWS::DataSync::Agent" | "AWS::MediaTailor::LiveSource" | "AWS::MSK::ServerlessCluster" | "AWS::IoTSiteWise::Asset" | "AWS::B2BI::Capability" | "AWS::CloudFront::KeyValueStore" | "AWS::Deadline::Monitor" | "AWS::GuardDuty::MalwareProtectionPlan" | "AWS::Location::APIKey" | "AWS::MediaPackageV2::OriginEndpoint" | "AWS::PCAConnectorAD::Connector" | "AWS::S3Tables::TableBucketPolicy" | "AWS::SecretsManager::ResourcePolicy" | "AWS::SSMContacts::Contact" | "AWS::IoT::ThingGroup" | "AWS::ImageBuilder::LifecyclePolicy" | "AWS::GameLift::Build" | "AWS::ECR::ReplicationConfiguration" | "AWS::EC2::SubnetCidrBlock" | "AWS::Connect::SecurityProfile" | "AWS::CleanRoomsML::TrainingDataset" | "AWS::AppStream::AppBlockBuilder" | "AWS::Route53::DNSSEC" | "AWS::SageMaker::UserProfile" | "AWS::ApiGateway::Method"
+
+local record M
+    AssociateResourceTypesInput: AssociateResourceTypesInput
+    AssociateResourceTypesOutput: AssociateResourceTypesOutput
+    BatchGetAggregateResourceConfigInput: BatchGetAggregateResourceConfigInput
+    BatchGetAggregateResourceConfigOutput: BatchGetAggregateResourceConfigOutput
+    BatchGetResourceConfigInput: BatchGetResourceConfigInput
+    BatchGetResourceConfigOutput: BatchGetResourceConfigOutput
+    DeleteAggregationAuthorizationInput: DeleteAggregationAuthorizationInput
+    DeleteAggregationAuthorizationOutput: DeleteAggregationAuthorizationOutput
+    DeleteConfigRuleInput: DeleteConfigRuleInput
+    DeleteConfigRuleOutput: DeleteConfigRuleOutput
+    DeleteConfigurationAggregatorInput: DeleteConfigurationAggregatorInput
+    DeleteConfigurationAggregatorOutput: DeleteConfigurationAggregatorOutput
+    DeleteConfigurationRecorderInput: DeleteConfigurationRecorderInput
+    DeleteConfigurationRecorderOutput: DeleteConfigurationRecorderOutput
+    DeleteConformancePackInput: DeleteConformancePackInput
+    DeleteConformancePackOutput: DeleteConformancePackOutput
+    DeleteDeliveryChannelInput: DeleteDeliveryChannelInput
+    DeleteDeliveryChannelOutput: DeleteDeliveryChannelOutput
+    DeleteEvaluationResultsInput: DeleteEvaluationResultsInput
+    DeleteEvaluationResultsOutput: DeleteEvaluationResultsOutput
+    DeleteOrganizationConfigRuleInput: DeleteOrganizationConfigRuleInput
+    DeleteOrganizationConfigRuleOutput: DeleteOrganizationConfigRuleOutput
+    DeleteOrganizationConformancePackInput: DeleteOrganizationConformancePackInput
+    DeleteOrganizationConformancePackOutput: DeleteOrganizationConformancePackOutput
+    DeletePendingAggregationRequestInput: DeletePendingAggregationRequestInput
+    DeletePendingAggregationRequestOutput: DeletePendingAggregationRequestOutput
+    DeleteRemediationConfigurationInput: DeleteRemediationConfigurationInput
+    DeleteRemediationConfigurationOutput: DeleteRemediationConfigurationOutput
+    DeleteRemediationExceptionsInput: DeleteRemediationExceptionsInput
+    DeleteRemediationExceptionsOutput: DeleteRemediationExceptionsOutput
+    DeleteResourceConfigInput: DeleteResourceConfigInput
+    DeleteResourceConfigOutput: DeleteResourceConfigOutput
+    DeleteRetentionConfigurationInput: DeleteRetentionConfigurationInput
+    DeleteRetentionConfigurationOutput: DeleteRetentionConfigurationOutput
+    DeleteServiceLinkedConfigurationRecorderInput: DeleteServiceLinkedConfigurationRecorderInput
+    DeleteServiceLinkedConfigurationRecorderOutput: DeleteServiceLinkedConfigurationRecorderOutput
+    DeleteStoredQueryInput: DeleteStoredQueryInput
+    DeleteStoredQueryOutput: DeleteStoredQueryOutput
+    DeliverConfigSnapshotInput: DeliverConfigSnapshotInput
+    DeliverConfigSnapshotOutput: DeliverConfigSnapshotOutput
+    DescribeAggregateComplianceByConfigRulesInput: DescribeAggregateComplianceByConfigRulesInput
+    DescribeAggregateComplianceByConfigRulesOutput: DescribeAggregateComplianceByConfigRulesOutput
+    DescribeAggregateComplianceByConformancePacksInput: DescribeAggregateComplianceByConformancePacksInput
+    DescribeAggregateComplianceByConformancePacksOutput: DescribeAggregateComplianceByConformancePacksOutput
+    DescribeAggregationAuthorizationsInput: DescribeAggregationAuthorizationsInput
+    DescribeAggregationAuthorizationsOutput: DescribeAggregationAuthorizationsOutput
+    DescribeComplianceByConfigRuleInput: DescribeComplianceByConfigRuleInput
+    DescribeComplianceByConfigRuleOutput: DescribeComplianceByConfigRuleOutput
+    DescribeComplianceByResourceInput: DescribeComplianceByResourceInput
+    DescribeComplianceByResourceOutput: DescribeComplianceByResourceOutput
+    DescribeConfigRuleEvaluationStatusInput: DescribeConfigRuleEvaluationStatusInput
+    DescribeConfigRuleEvaluationStatusOutput: DescribeConfigRuleEvaluationStatusOutput
+    DescribeConfigRulesInput: DescribeConfigRulesInput
+    DescribeConfigRulesOutput: DescribeConfigRulesOutput
+    DescribeConfigurationAggregatorsInput: DescribeConfigurationAggregatorsInput
+    DescribeConfigurationAggregatorsOutput: DescribeConfigurationAggregatorsOutput
+    DescribeConfigurationAggregatorSourcesStatusInput: DescribeConfigurationAggregatorSourcesStatusInput
+    DescribeConfigurationAggregatorSourcesStatusOutput: DescribeConfigurationAggregatorSourcesStatusOutput
+    DescribeConfigurationRecordersInput: DescribeConfigurationRecordersInput
+    DescribeConfigurationRecordersOutput: DescribeConfigurationRecordersOutput
+    DescribeConfigurationRecorderStatusInput: DescribeConfigurationRecorderStatusInput
+    DescribeConfigurationRecorderStatusOutput: DescribeConfigurationRecorderStatusOutput
+    DescribeConformancePackComplianceInput: DescribeConformancePackComplianceInput
+    DescribeConformancePackComplianceOutput: DescribeConformancePackComplianceOutput
+    DescribeConformancePacksInput: DescribeConformancePacksInput
+    DescribeConformancePacksOutput: DescribeConformancePacksOutput
+    DescribeConformancePackStatusInput: DescribeConformancePackStatusInput
+    DescribeConformancePackStatusOutput: DescribeConformancePackStatusOutput
+    DescribeDeliveryChannelsInput: DescribeDeliveryChannelsInput
+    DescribeDeliveryChannelsOutput: DescribeDeliveryChannelsOutput
+    DescribeDeliveryChannelStatusInput: DescribeDeliveryChannelStatusInput
+    DescribeDeliveryChannelStatusOutput: DescribeDeliveryChannelStatusOutput
+    DescribeOrganizationConfigRulesInput: DescribeOrganizationConfigRulesInput
+    DescribeOrganizationConfigRulesOutput: DescribeOrganizationConfigRulesOutput
+    DescribeOrganizationConfigRuleStatusesInput: DescribeOrganizationConfigRuleStatusesInput
+    DescribeOrganizationConfigRuleStatusesOutput: DescribeOrganizationConfigRuleStatusesOutput
+    DescribeOrganizationConformancePacksInput: DescribeOrganizationConformancePacksInput
+    DescribeOrganizationConformancePacksOutput: DescribeOrganizationConformancePacksOutput
+    DescribeOrganizationConformancePackStatusesInput: DescribeOrganizationConformancePackStatusesInput
+    DescribeOrganizationConformancePackStatusesOutput: DescribeOrganizationConformancePackStatusesOutput
+    DescribePendingAggregationRequestsInput: DescribePendingAggregationRequestsInput
+    DescribePendingAggregationRequestsOutput: DescribePendingAggregationRequestsOutput
+    DescribeRemediationConfigurationsInput: DescribeRemediationConfigurationsInput
+    DescribeRemediationConfigurationsOutput: DescribeRemediationConfigurationsOutput
+    DescribeRemediationExceptionsInput: DescribeRemediationExceptionsInput
+    DescribeRemediationExceptionsOutput: DescribeRemediationExceptionsOutput
+    DescribeRemediationExecutionStatusInput: DescribeRemediationExecutionStatusInput
+    DescribeRemediationExecutionStatusOutput: DescribeRemediationExecutionStatusOutput
+    DescribeRetentionConfigurationsInput: DescribeRetentionConfigurationsInput
+    DescribeRetentionConfigurationsOutput: DescribeRetentionConfigurationsOutput
+    DisassociateResourceTypesInput: DisassociateResourceTypesInput
+    DisassociateResourceTypesOutput: DisassociateResourceTypesOutput
+    GetAggregateComplianceDetailsByConfigRuleInput: GetAggregateComplianceDetailsByConfigRuleInput
+    GetAggregateComplianceDetailsByConfigRuleOutput: GetAggregateComplianceDetailsByConfigRuleOutput
+    GetAggregateConfigRuleComplianceSummaryInput: GetAggregateConfigRuleComplianceSummaryInput
+    GetAggregateConfigRuleComplianceSummaryOutput: GetAggregateConfigRuleComplianceSummaryOutput
+    GetAggregateConformancePackComplianceSummaryInput: GetAggregateConformancePackComplianceSummaryInput
+    GetAggregateConformancePackComplianceSummaryOutput: GetAggregateConformancePackComplianceSummaryOutput
+    GetAggregateDiscoveredResourceCountsInput: GetAggregateDiscoveredResourceCountsInput
+    GetAggregateDiscoveredResourceCountsOutput: GetAggregateDiscoveredResourceCountsOutput
+    GetAggregateResourceConfigInput: GetAggregateResourceConfigInput
+    GetAggregateResourceConfigOutput: GetAggregateResourceConfigOutput
+    GetComplianceDetailsByConfigRuleInput: GetComplianceDetailsByConfigRuleInput
+    GetComplianceDetailsByConfigRuleOutput: GetComplianceDetailsByConfigRuleOutput
+    GetComplianceDetailsByResourceInput: GetComplianceDetailsByResourceInput
+    GetComplianceDetailsByResourceOutput: GetComplianceDetailsByResourceOutput
+    GetComplianceSummaryByConfigRuleInput: GetComplianceSummaryByConfigRuleInput
+    GetComplianceSummaryByConfigRuleOutput: GetComplianceSummaryByConfigRuleOutput
+    GetComplianceSummaryByResourceTypeInput: GetComplianceSummaryByResourceTypeInput
+    GetComplianceSummaryByResourceTypeOutput: GetComplianceSummaryByResourceTypeOutput
+    GetConformancePackComplianceDetailsInput: GetConformancePackComplianceDetailsInput
+    GetConformancePackComplianceDetailsOutput: GetConformancePackComplianceDetailsOutput
+    GetConformancePackComplianceSummaryInput: GetConformancePackComplianceSummaryInput
+    GetConformancePackComplianceSummaryOutput: GetConformancePackComplianceSummaryOutput
+    GetCustomRulePolicyInput: GetCustomRulePolicyInput
+    GetCustomRulePolicyOutput: GetCustomRulePolicyOutput
+    GetDiscoveredResourceCountsInput: GetDiscoveredResourceCountsInput
+    GetDiscoveredResourceCountsOutput: GetDiscoveredResourceCountsOutput
+    GetOrganizationConfigRuleDetailedStatusInput: GetOrganizationConfigRuleDetailedStatusInput
+    GetOrganizationConfigRuleDetailedStatusOutput: GetOrganizationConfigRuleDetailedStatusOutput
+    GetOrganizationConformancePackDetailedStatusInput: GetOrganizationConformancePackDetailedStatusInput
+    GetOrganizationConformancePackDetailedStatusOutput: GetOrganizationConformancePackDetailedStatusOutput
+    GetOrganizationCustomRulePolicyInput: GetOrganizationCustomRulePolicyInput
+    GetOrganizationCustomRulePolicyOutput: GetOrganizationCustomRulePolicyOutput
+    GetResourceConfigHistoryInput: GetResourceConfigHistoryInput
+    GetResourceConfigHistoryOutput: GetResourceConfigHistoryOutput
+    GetResourceEvaluationSummaryInput: GetResourceEvaluationSummaryInput
+    GetResourceEvaluationSummaryOutput: GetResourceEvaluationSummaryOutput
+    GetStoredQueryInput: GetStoredQueryInput
+    GetStoredQueryOutput: GetStoredQueryOutput
+    ListAggregateDiscoveredResourcesInput: ListAggregateDiscoveredResourcesInput
+    ListAggregateDiscoveredResourcesOutput: ListAggregateDiscoveredResourcesOutput
+    ListConfigurationRecordersInput: ListConfigurationRecordersInput
+    ListConfigurationRecordersOutput: ListConfigurationRecordersOutput
+    ListConformancePackComplianceScoresInput: ListConformancePackComplianceScoresInput
+    ListConformancePackComplianceScoresOutput: ListConformancePackComplianceScoresOutput
+    ListDiscoveredResourcesInput: ListDiscoveredResourcesInput
+    ListDiscoveredResourcesOutput: ListDiscoveredResourcesOutput
+    ListResourceEvaluationsInput: ListResourceEvaluationsInput
+    ListResourceEvaluationsOutput: ListResourceEvaluationsOutput
+    ListStoredQueriesInput: ListStoredQueriesInput
+    ListStoredQueriesOutput: ListStoredQueriesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PutAggregationAuthorizationInput: PutAggregationAuthorizationInput
+    PutAggregationAuthorizationOutput: PutAggregationAuthorizationOutput
+    PutConfigRuleInput: PutConfigRuleInput
+    PutConfigRuleOutput: PutConfigRuleOutput
+    PutConfigurationAggregatorInput: PutConfigurationAggregatorInput
+    PutConfigurationAggregatorOutput: PutConfigurationAggregatorOutput
+    PutConfigurationRecorderInput: PutConfigurationRecorderInput
+    PutConfigurationRecorderOutput: PutConfigurationRecorderOutput
+    PutConformancePackInput: PutConformancePackInput
+    PutConformancePackOutput: PutConformancePackOutput
+    PutDeliveryChannelInput: PutDeliveryChannelInput
+    PutDeliveryChannelOutput: PutDeliveryChannelOutput
+    PutEvaluationsInput: PutEvaluationsInput
+    PutEvaluationsOutput: PutEvaluationsOutput
+    PutExternalEvaluationInput: PutExternalEvaluationInput
+    PutExternalEvaluationOutput: PutExternalEvaluationOutput
+    PutOrganizationConfigRuleInput: PutOrganizationConfigRuleInput
+    PutOrganizationConfigRuleOutput: PutOrganizationConfigRuleOutput
+    PutOrganizationConformancePackInput: PutOrganizationConformancePackInput
+    PutOrganizationConformancePackOutput: PutOrganizationConformancePackOutput
+    PutRemediationConfigurationsInput: PutRemediationConfigurationsInput
+    PutRemediationConfigurationsOutput: PutRemediationConfigurationsOutput
+    PutRemediationExceptionsInput: PutRemediationExceptionsInput
+    PutRemediationExceptionsOutput: PutRemediationExceptionsOutput
+    PutResourceConfigInput: PutResourceConfigInput
+    PutResourceConfigOutput: PutResourceConfigOutput
+    PutRetentionConfigurationInput: PutRetentionConfigurationInput
+    PutRetentionConfigurationOutput: PutRetentionConfigurationOutput
+    PutServiceLinkedConfigurationRecorderInput: PutServiceLinkedConfigurationRecorderInput
+    PutServiceLinkedConfigurationRecorderOutput: PutServiceLinkedConfigurationRecorderOutput
+    PutStoredQueryInput: PutStoredQueryInput
+    PutStoredQueryOutput: PutStoredQueryOutput
+    SelectAggregateResourceConfigInput: SelectAggregateResourceConfigInput
+    SelectAggregateResourceConfigOutput: SelectAggregateResourceConfigOutput
+    SelectResourceConfigInput: SelectResourceConfigInput
+    SelectResourceConfigOutput: SelectResourceConfigOutput
+    StartConfigRulesEvaluationInput: StartConfigRulesEvaluationInput
+    StartConfigRulesEvaluationOutput: StartConfigRulesEvaluationOutput
+    StartConfigurationRecorderInput: StartConfigurationRecorderInput
+    StartConfigurationRecorderOutput: StartConfigurationRecorderOutput
+    StartRemediationExecutionInput: StartRemediationExecutionInput
+    StartRemediationExecutionOutput: StartRemediationExecutionOutput
+    StartResourceEvaluationInput: StartResourceEvaluationInput
+    StartResourceEvaluationOutput: StartResourceEvaluationOutput
+    StopConfigurationRecorderInput: StopConfigurationRecorderInput
+    StopConfigurationRecorderOutput: StopConfigurationRecorderOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+end
+
+return M

@@ -1,0 +1,13 @@
+local types = require("apigatewaymanagementapi.types")
+
+local record Client
+    deleteConnection: function(Client, types.DeleteConnectionInput): types.DeleteConnectionOutput, table
+    getConnection: function(Client, types.GetConnectionInput): types.GetConnectionOutput, table
+    postToConnection: function(Client, types.PostToConnectionInput): types.PostToConnectionOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

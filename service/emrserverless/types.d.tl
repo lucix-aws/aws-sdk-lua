@@ -1,0 +1,593 @@
+local record CancelJobRunInput
+    applicationId: string
+    jobRunId: string
+    shutdownGracePeriodInSeconds: number
+end
+
+local record CancelJobRunOutput
+    applicationId: string
+    jobRunId: string
+end
+
+local record CreateApplicationInput
+    name: string
+    releaseLabel: string
+    type: string
+    clientToken: string
+    initialCapacity: {string : InitialCapacityConfig}
+    maximumCapacity: MaximumAllowedResources
+    tags: {string : string}
+    autoStartConfiguration: AutoStartConfig
+    autoStopConfiguration: AutoStopConfig
+    networkConfiguration: NetworkConfiguration
+    architecture: string
+    imageConfiguration: ImageConfigurationInput
+    workerTypeSpecifications: {string : WorkerTypeSpecificationInput}
+    runtimeConfiguration: {Configuration}
+    monitoringConfiguration: MonitoringConfiguration
+    diskEncryptionConfiguration: DiskEncryptionConfiguration
+    interactiveConfiguration: InteractiveConfiguration
+    schedulerConfiguration: SchedulerConfiguration
+    identityCenterConfiguration: IdentityCenterConfigurationInput
+    jobLevelCostAllocationConfiguration: JobLevelCostAllocationConfiguration
+end
+
+local record CreateApplicationOutput
+    applicationId: string
+    name: string
+    arn: string
+end
+
+local record DeleteApplicationInput
+    applicationId: string
+end
+
+local record DeleteApplicationOutput
+end
+
+local record GetApplicationInput
+    applicationId: string
+end
+
+local record GetApplicationOutput
+    application: Application
+end
+
+local record GetDashboardForJobRunInput
+    applicationId: string
+    jobRunId: string
+    attempt: number
+    accessSystemProfileLogs: boolean
+end
+
+local record GetDashboardForJobRunOutput
+    url: string
+end
+
+local record GetJobRunInput
+    applicationId: string
+    jobRunId: string
+    attempt: number
+end
+
+local record GetJobRunOutput
+    jobRun: JobRun
+end
+
+local record GetResourceDashboardInput
+    applicationId: string
+    resourceId: string
+    resourceType: string
+end
+
+local record GetResourceDashboardOutput
+    url: string
+end
+
+local record GetSessionInput
+    applicationId: string
+    sessionId: string
+end
+
+local record GetSessionOutput
+    session: Session
+end
+
+local record GetSessionEndpointInput
+    applicationId: string
+    sessionId: string
+end
+
+local record GetSessionEndpointOutput
+    applicationId: string
+    sessionId: string
+    endpoint: string
+    authToken: string
+    authTokenExpiresAt: number
+end
+
+local record ListApplicationsInput
+    nextToken: string
+    maxResults: number
+    states: {string}
+end
+
+local record ListApplicationsOutput
+    applications: {ApplicationSummary}
+    nextToken: string
+end
+
+local record ListJobRunAttemptsInput
+    applicationId: string
+    jobRunId: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListJobRunAttemptsOutput
+    jobRunAttempts: {JobRunAttemptSummary}
+    nextToken: string
+end
+
+local record ListJobRunsInput
+    applicationId: string
+    nextToken: string
+    maxResults: number
+    createdAtAfter: number
+    createdAtBefore: number
+    states: {string}
+    mode: string
+end
+
+local record ListJobRunsOutput
+    jobRuns: {JobRunSummary}
+    nextToken: string
+end
+
+local record ListSessionsInput
+    applicationId: string
+    nextToken: string
+    maxResults: number
+    states: {string}
+    createdAtAfter: number
+    createdAtBefore: number
+end
+
+local record ListSessionsOutput
+    sessions: {SessionSummary}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record StartApplicationInput
+    applicationId: string
+end
+
+local record StartApplicationOutput
+end
+
+local record StartJobRunInput
+    applicationId: string
+    clientToken: string
+    executionRoleArn: string
+    executionIamPolicy: JobRunExecutionIamPolicy
+    jobDriver: JobDriver
+    configurationOverrides: ConfigurationOverrides
+    tags: {string : string}
+    executionTimeoutMinutes: number
+    name: string
+    mode: string
+    retryPolicy: RetryPolicy
+end
+
+local record StartJobRunOutput
+    applicationId: string
+    jobRunId: string
+    arn: string
+end
+
+local record StartSessionInput
+    applicationId: string
+    clientToken: string
+    executionRoleArn: string
+    configurationOverrides: SessionConfigurationOverrides
+    tags: {string : string}
+    idleTimeoutMinutes: number
+    name: string
+end
+
+local record StartSessionOutput
+    applicationId: string
+    sessionId: string
+    arn: string
+end
+
+local record StopApplicationInput
+    applicationId: string
+end
+
+local record StopApplicationOutput
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record TerminateSessionInput
+    applicationId: string
+    sessionId: string
+end
+
+local record TerminateSessionOutput
+    applicationId: string
+    sessionId: string
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateApplicationInput
+    applicationId: string
+    clientToken: string
+    initialCapacity: {string : InitialCapacityConfig}
+    maximumCapacity: MaximumAllowedResources
+    autoStartConfiguration: AutoStartConfig
+    autoStopConfiguration: AutoStopConfig
+    networkConfiguration: NetworkConfiguration
+    architecture: string
+    imageConfiguration: ImageConfigurationInput
+    workerTypeSpecifications: {string : WorkerTypeSpecificationInput}
+    interactiveConfiguration: InteractiveConfiguration
+    releaseLabel: string
+    runtimeConfiguration: {Configuration}
+    monitoringConfiguration: MonitoringConfiguration
+    diskEncryptionConfiguration: DiskEncryptionConfiguration
+    schedulerConfiguration: SchedulerConfiguration
+    identityCenterConfiguration: IdentityCenterConfigurationInput
+    jobLevelCostAllocationConfiguration: JobLevelCostAllocationConfiguration
+end
+
+local record UpdateApplicationOutput
+    application: Application
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    CancelJobRunInput: CancelJobRunInput
+    CancelJobRunOutput: CancelJobRunOutput
+    CreateApplicationInput: CreateApplicationInput
+    CreateApplicationOutput: CreateApplicationOutput
+    DeleteApplicationInput: DeleteApplicationInput
+    DeleteApplicationOutput: DeleteApplicationOutput
+    GetApplicationInput: GetApplicationInput
+    GetApplicationOutput: GetApplicationOutput
+    GetDashboardForJobRunInput: GetDashboardForJobRunInput
+    GetDashboardForJobRunOutput: GetDashboardForJobRunOutput
+    GetJobRunInput: GetJobRunInput
+    GetJobRunOutput: GetJobRunOutput
+    GetResourceDashboardInput: GetResourceDashboardInput
+    GetResourceDashboardOutput: GetResourceDashboardOutput
+    GetSessionInput: GetSessionInput
+    GetSessionOutput: GetSessionOutput
+    GetSessionEndpointInput: GetSessionEndpointInput
+    GetSessionEndpointOutput: GetSessionEndpointOutput
+    ListApplicationsInput: ListApplicationsInput
+    ListApplicationsOutput: ListApplicationsOutput
+    ListJobRunAttemptsInput: ListJobRunAttemptsInput
+    ListJobRunAttemptsOutput: ListJobRunAttemptsOutput
+    ListJobRunsInput: ListJobRunsInput
+    ListJobRunsOutput: ListJobRunsOutput
+    ListSessionsInput: ListSessionsInput
+    ListSessionsOutput: ListSessionsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    StartApplicationInput: StartApplicationInput
+    StartApplicationOutput: StartApplicationOutput
+    StartJobRunInput: StartJobRunInput
+    StartJobRunOutput: StartJobRunOutput
+    StartSessionInput: StartSessionInput
+    StartSessionOutput: StartSessionOutput
+    StopApplicationInput: StopApplicationInput
+    StopApplicationOutput: StopApplicationOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    TerminateSessionInput: TerminateSessionInput
+    TerminateSessionOutput: TerminateSessionOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateApplicationInput: UpdateApplicationInput
+    UpdateApplicationOutput: UpdateApplicationOutput
+end
+
+return M

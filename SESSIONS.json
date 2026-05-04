@@ -12,5 +12,23 @@
       "go for it, merge when done"
     ],
     "outcome": "Implemented AWS config loading for aws-sdk-lua. Three modules: env.lua (environment variable config), config.lua (INI parser per configuration-file SEP), load_config.lua (top-level resolver with precedence chain). Teal .d.tl declarations for all modules. 60 tests passing (31 config parser, 15 env, 14 load_config). Parser handles profile prefix rules, sub-properties, comments, case-insensitive keys, duplicate merging, credentials-file-wins-on-conflict, [profile default] override."
+  },
+  {
+    "session": 2,
+    "task": "SDK codegen project: config resolver hook, AWS integration, generate all service clients",
+    "start": "2026-05-04T13:52:00-04:00",
+    "end": "2026-05-04T14:35:00-04:00",
+    "duration_minutes": 43,
+    "branch": "sdk-codegen",
+    "prompts": [
+      "new agent task, confirm workflow and other agents",
+      "work on sdk codegen project, copy models from go sdk",
+      "design discussion: config loading and resolver pattern",
+      "how does base client construction work right now",
+      "resolvers should go in smithy-lua not sdk-lua",
+      "need codegen LuaIntegration hook for additional resolvers",
+      "go ahead and implement"
+    ],
+    "outcome": "Implemented config resolver system across both repos. smithy-lua: added ConfigResolver record, getConfigResolvers() hook on LuaIntegration, updated DirectedLuaCodegen to detect protocol traits and emit resolver calls, created defaults.lua runtime module (resolve_signer, resolve_http_client, resolve_retry_strategy), fixed enum codegen for old-style @enum string shapes (routed to types.lua explicitly), fixed service namespace to use sdkId from aws.api#service trait (eliminates collisions, produces clean names like 'dynamodb', 's3', 'sts'). aws-sdk-lua: created codegen gradle project (smithy-aws-lua-codegen + sdk-codegen), AwsSdkIntegration registers identity_resolver resolver via hook, copied 424 aws-models, dynamic smithy-build.json generation. Build produces 424 service clients in service/ with zero failures. Each client wires protocol, endpoint, signer, http_client, retry, identity_resolver."
   }
 ]

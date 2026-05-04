@@ -1,0 +1,47 @@
+local types = require("dataexchange.types")
+
+local record Client
+    acceptDataGrant: function(Client, types.AcceptDataGrantInput): types.AcceptDataGrantOutput, table
+    cancelJob: function(Client, types.CancelJobInput): types.CancelJobOutput, table
+    createDataGrant: function(Client, types.CreateDataGrantInput): types.CreateDataGrantOutput, table
+    createDataSet: function(Client, types.CreateDataSetInput): types.CreateDataSetOutput, table
+    createEventAction: function(Client, types.CreateEventActionInput): types.CreateEventActionOutput, table
+    createJob: function(Client, types.CreateJobInput): types.CreateJobOutput, table
+    createRevision: function(Client, types.CreateRevisionInput): types.CreateRevisionOutput, table
+    deleteAsset: function(Client, types.DeleteAssetInput): types.DeleteAssetOutput, table
+    deleteDataGrant: function(Client, types.DeleteDataGrantInput): types.DeleteDataGrantOutput, table
+    deleteDataSet: function(Client, types.DeleteDataSetInput): types.DeleteDataSetOutput, table
+    deleteEventAction: function(Client, types.DeleteEventActionInput): types.DeleteEventActionOutput, table
+    deleteRevision: function(Client, types.DeleteRevisionInput): types.DeleteRevisionOutput, table
+    getAsset: function(Client, types.GetAssetInput): types.GetAssetOutput, table
+    getDataGrant: function(Client, types.GetDataGrantInput): types.GetDataGrantOutput, table
+    getDataSet: function(Client, types.GetDataSetInput): types.GetDataSetOutput, table
+    getEventAction: function(Client, types.GetEventActionInput): types.GetEventActionOutput, table
+    getJob: function(Client, types.GetJobInput): types.GetJobOutput, table
+    getReceivedDataGrant: function(Client, types.GetReceivedDataGrantInput): types.GetReceivedDataGrantOutput, table
+    getRevision: function(Client, types.GetRevisionInput): types.GetRevisionOutput, table
+    listDataGrants: function(Client, types.ListDataGrantsInput): types.ListDataGrantsOutput, table
+    listDataSetRevisions: function(Client, types.ListDataSetRevisionsInput): types.ListDataSetRevisionsOutput, table
+    listDataSets: function(Client, types.ListDataSetsInput): types.ListDataSetsOutput, table
+    listEventActions: function(Client, types.ListEventActionsInput): types.ListEventActionsOutput, table
+    listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    listReceivedDataGrants: function(Client, types.ListReceivedDataGrantsInput): types.ListReceivedDataGrantsOutput, table
+    listRevisionAssets: function(Client, types.ListRevisionAssetsInput): types.ListRevisionAssetsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    revokeRevision: function(Client, types.RevokeRevisionInput): types.RevokeRevisionOutput, table
+    sendApiAsset: function(Client, types.SendApiAssetInput): types.SendApiAssetOutput, table
+    sendDataSetNotification: function(Client, types.SendDataSetNotificationInput): types.SendDataSetNotificationOutput, table
+    startJob: function(Client, types.StartJobInput): types.StartJobOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAsset: function(Client, types.UpdateAssetInput): types.UpdateAssetOutput, table
+    updateDataSet: function(Client, types.UpdateDataSetInput): types.UpdateDataSetOutput, table
+    updateEventAction: function(Client, types.UpdateEventActionInput): types.UpdateEventActionOutput, table
+    updateRevision: function(Client, types.UpdateRevisionInput): types.UpdateRevisionOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

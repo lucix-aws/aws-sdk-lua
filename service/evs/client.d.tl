@@ -1,0 +1,31 @@
+local types = require("evs.types")
+
+local record Client
+    associateEipToVlan: function(Client, types.AssociateEipToVlanInput): types.AssociateEipToVlanOutput, table
+    createEntitlement: function(Client, types.CreateEntitlementInput): types.CreateEntitlementOutput, table
+    createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    createEnvironmentConnector: function(Client, types.CreateEnvironmentConnectorInput): types.CreateEnvironmentConnectorOutput, table
+    createEnvironmentHost: function(Client, types.CreateEnvironmentHostInput): types.CreateEnvironmentHostOutput, table
+    deleteEntitlement: function(Client, types.DeleteEntitlementInput): types.DeleteEntitlementOutput, table
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    deleteEnvironmentConnector: function(Client, types.DeleteEnvironmentConnectorInput): types.DeleteEnvironmentConnectorOutput, table
+    deleteEnvironmentHost: function(Client, types.DeleteEnvironmentHostInput): types.DeleteEnvironmentHostOutput, table
+    disassociateEipFromVlan: function(Client, types.DisassociateEipFromVlanInput): types.DisassociateEipFromVlanOutput, table
+    getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    getVersions: function(Client, types.GetVersionsInput): types.GetVersionsOutput, table
+    listEnvironmentConnectors: function(Client, types.ListEnvironmentConnectorsInput): types.ListEnvironmentConnectorsOutput, table
+    listEnvironmentHosts: function(Client, types.ListEnvironmentHostsInput): types.ListEnvironmentHostsOutput, table
+    listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    listEnvironmentVlans: function(Client, types.ListEnvironmentVlansInput): types.ListEnvironmentVlansOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listVmEntitlements: function(Client, types.ListVmEntitlementsInput): types.ListVmEntitlementsOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateEnvironmentConnector: function(Client, types.UpdateEnvironmentConnectorInput): types.UpdateEnvironmentConnectorOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

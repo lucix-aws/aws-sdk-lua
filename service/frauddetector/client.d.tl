@@ -1,0 +1,83 @@
+local types = require("frauddetector.types")
+
+local record Client
+    batchCreateVariable: function(Client, types.BatchCreateVariableInput): types.BatchCreateVariableOutput, table
+    batchGetVariable: function(Client, types.BatchGetVariableInput): types.BatchGetVariableOutput, table
+    cancelBatchImportJob: function(Client, types.CancelBatchImportJobInput): types.CancelBatchImportJobOutput, table
+    cancelBatchPredictionJob: function(Client, types.CancelBatchPredictionJobInput): types.CancelBatchPredictionJobOutput, table
+    createBatchImportJob: function(Client, types.CreateBatchImportJobInput): types.CreateBatchImportJobOutput, table
+    createBatchPredictionJob: function(Client, types.CreateBatchPredictionJobInput): types.CreateBatchPredictionJobOutput, table
+    createDetectorVersion: function(Client, types.CreateDetectorVersionInput): types.CreateDetectorVersionOutput, table
+    createList: function(Client, types.CreateListInput): types.CreateListOutput, table
+    createModel: function(Client, types.CreateModelInput): types.CreateModelOutput, table
+    createModelVersion: function(Client, types.CreateModelVersionInput): types.CreateModelVersionOutput, table
+    createRule: function(Client, types.CreateRuleInput): types.CreateRuleOutput, table
+    createVariable: function(Client, types.CreateVariableInput): types.CreateVariableOutput, table
+    deleteBatchImportJob: function(Client, types.DeleteBatchImportJobInput): types.DeleteBatchImportJobOutput, table
+    deleteBatchPredictionJob: function(Client, types.DeleteBatchPredictionJobInput): types.DeleteBatchPredictionJobOutput, table
+    deleteDetector: function(Client, types.DeleteDetectorInput): types.DeleteDetectorOutput, table
+    deleteDetectorVersion: function(Client, types.DeleteDetectorVersionInput): types.DeleteDetectorVersionOutput, table
+    deleteEntityType: function(Client, types.DeleteEntityTypeInput): types.DeleteEntityTypeOutput, table
+    deleteEvent: function(Client, types.DeleteEventInput): types.DeleteEventOutput, table
+    deleteEventsByEventType: function(Client, types.DeleteEventsByEventTypeInput): types.DeleteEventsByEventTypeOutput, table
+    deleteEventType: function(Client, types.DeleteEventTypeInput): types.DeleteEventTypeOutput, table
+    deleteExternalModel: function(Client, types.DeleteExternalModelInput): types.DeleteExternalModelOutput, table
+    deleteLabel: function(Client, types.DeleteLabelInput): types.DeleteLabelOutput, table
+    deleteList: function(Client, types.DeleteListInput): types.DeleteListOutput, table
+    deleteModel: function(Client, types.DeleteModelInput): types.DeleteModelOutput, table
+    deleteModelVersion: function(Client, types.DeleteModelVersionInput): types.DeleteModelVersionOutput, table
+    deleteOutcome: function(Client, types.DeleteOutcomeInput): types.DeleteOutcomeOutput, table
+    deleteRule: function(Client, types.DeleteRuleInput): types.DeleteRuleOutput, table
+    deleteVariable: function(Client, types.DeleteVariableInput): types.DeleteVariableOutput, table
+    describeDetector: function(Client, types.DescribeDetectorInput): types.DescribeDetectorOutput, table
+    describeModelVersions: function(Client, types.DescribeModelVersionsInput): types.DescribeModelVersionsOutput, table
+    getBatchImportJobs: function(Client, types.GetBatchImportJobsInput): types.GetBatchImportJobsOutput, table
+    getBatchPredictionJobs: function(Client, types.GetBatchPredictionJobsInput): types.GetBatchPredictionJobsOutput, table
+    getDeleteEventsByEventTypeStatus: function(Client, types.GetDeleteEventsByEventTypeStatusInput): types.GetDeleteEventsByEventTypeStatusOutput, table
+    getDetectors: function(Client, types.GetDetectorsInput): types.GetDetectorsOutput, table
+    getDetectorVersion: function(Client, types.GetDetectorVersionInput): types.GetDetectorVersionOutput, table
+    getEntityTypes: function(Client, types.GetEntityTypesInput): types.GetEntityTypesOutput, table
+    getEvent: function(Client, types.GetEventInput): types.GetEventOutput, table
+    getEventPrediction: function(Client, types.GetEventPredictionInput): types.GetEventPredictionOutput, table
+    getEventPredictionMetadata: function(Client, types.GetEventPredictionMetadataInput): types.GetEventPredictionMetadataOutput, table
+    getEventTypes: function(Client, types.GetEventTypesInput): types.GetEventTypesOutput, table
+    getExternalModels: function(Client, types.GetExternalModelsInput): types.GetExternalModelsOutput, table
+    getKMSEncryptionKey: function(Client, types.GetKMSEncryptionKeyInput): types.GetKMSEncryptionKeyOutput, table
+    getLabels: function(Client, types.GetLabelsInput): types.GetLabelsOutput, table
+    getListElements: function(Client, types.GetListElementsInput): types.GetListElementsOutput, table
+    getListsMetadata: function(Client, types.GetListsMetadataInput): types.GetListsMetadataOutput, table
+    getModels: function(Client, types.GetModelsInput): types.GetModelsOutput, table
+    getModelVersion: function(Client, types.GetModelVersionInput): types.GetModelVersionOutput, table
+    getOutcomes: function(Client, types.GetOutcomesInput): types.GetOutcomesOutput, table
+    getRules: function(Client, types.GetRulesInput): types.GetRulesOutput, table
+    getVariables: function(Client, types.GetVariablesInput): types.GetVariablesOutput, table
+    listEventPredictions: function(Client, types.ListEventPredictionsInput): types.ListEventPredictionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putDetector: function(Client, types.PutDetectorInput): types.PutDetectorOutput, table
+    putEntityType: function(Client, types.PutEntityTypeInput): types.PutEntityTypeOutput, table
+    putEventType: function(Client, types.PutEventTypeInput): types.PutEventTypeOutput, table
+    putExternalModel: function(Client, types.PutExternalModelInput): types.PutExternalModelOutput, table
+    putKMSEncryptionKey: function(Client, types.PutKMSEncryptionKeyInput): types.PutKMSEncryptionKeyOutput, table
+    putLabel: function(Client, types.PutLabelInput): types.PutLabelOutput, table
+    putOutcome: function(Client, types.PutOutcomeInput): types.PutOutcomeOutput, table
+    sendEvent: function(Client, types.SendEventInput): types.SendEventOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateDetectorVersion: function(Client, types.UpdateDetectorVersionInput): types.UpdateDetectorVersionOutput, table
+    updateDetectorVersionMetadata: function(Client, types.UpdateDetectorVersionMetadataInput): types.UpdateDetectorVersionMetadataOutput, table
+    updateDetectorVersionStatus: function(Client, types.UpdateDetectorVersionStatusInput): types.UpdateDetectorVersionStatusOutput, table
+    updateEventLabel: function(Client, types.UpdateEventLabelInput): types.UpdateEventLabelOutput, table
+    updateList: function(Client, types.UpdateListInput): types.UpdateListOutput, table
+    updateModel: function(Client, types.UpdateModelInput): types.UpdateModelOutput, table
+    updateModelVersion: function(Client, types.UpdateModelVersionInput): types.UpdateModelVersionOutput, table
+    updateModelVersionStatus: function(Client, types.UpdateModelVersionStatusInput): types.UpdateModelVersionStatusOutput, table
+    updateRuleMetadata: function(Client, types.UpdateRuleMetadataInput): types.UpdateRuleMetadataOutput, table
+    updateRuleVersion: function(Client, types.UpdateRuleVersionInput): types.UpdateRuleVersionOutput, table
+    updateVariable: function(Client, types.UpdateVariableInput): types.UpdateVariableOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

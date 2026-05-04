@@ -1,0 +1,44 @@
+local types = require("verifiedpermissions.types")
+
+local record Client
+    batchGetPolicy: function(Client, types.BatchGetPolicyInput): types.BatchGetPolicyOutput, table
+    batchIsAuthorized: function(Client, types.BatchIsAuthorizedInput): types.BatchIsAuthorizedOutput, table
+    batchIsAuthorizedWithToken: function(Client, types.BatchIsAuthorizedWithTokenInput): types.BatchIsAuthorizedWithTokenOutput, table
+    createIdentitySource: function(Client, types.CreateIdentitySourceInput): types.CreateIdentitySourceOutput, table
+    createPolicy: function(Client, types.CreatePolicyInput): types.CreatePolicyOutput, table
+    createPolicyStore: function(Client, types.CreatePolicyStoreInput): types.CreatePolicyStoreOutput, table
+    createPolicyStoreAlias: function(Client, types.CreatePolicyStoreAliasInput): types.CreatePolicyStoreAliasOutput, table
+    createPolicyTemplate: function(Client, types.CreatePolicyTemplateInput): types.CreatePolicyTemplateOutput, table
+    deleteIdentitySource: function(Client, types.DeleteIdentitySourceInput): types.DeleteIdentitySourceOutput, table
+    deletePolicy: function(Client, types.DeletePolicyInput): types.DeletePolicyOutput, table
+    deletePolicyStore: function(Client, types.DeletePolicyStoreInput): types.DeletePolicyStoreOutput, table
+    deletePolicyStoreAlias: function(Client, types.DeletePolicyStoreAliasInput): types.DeletePolicyStoreAliasOutput, table
+    deletePolicyTemplate: function(Client, types.DeletePolicyTemplateInput): types.DeletePolicyTemplateOutput, table
+    getIdentitySource: function(Client, types.GetIdentitySourceInput): types.GetIdentitySourceOutput, table
+    getPolicy: function(Client, types.GetPolicyInput): types.GetPolicyOutput, table
+    getPolicyStore: function(Client, types.GetPolicyStoreInput): types.GetPolicyStoreOutput, table
+    getPolicyStoreAlias: function(Client, types.GetPolicyStoreAliasInput): types.GetPolicyStoreAliasOutput, table
+    getPolicyTemplate: function(Client, types.GetPolicyTemplateInput): types.GetPolicyTemplateOutput, table
+    getSchema: function(Client, types.GetSchemaInput): types.GetSchemaOutput, table
+    isAuthorized: function(Client, types.IsAuthorizedInput): types.IsAuthorizedOutput, table
+    isAuthorizedWithToken: function(Client, types.IsAuthorizedWithTokenInput): types.IsAuthorizedWithTokenOutput, table
+    listIdentitySources: function(Client, types.ListIdentitySourcesInput): types.ListIdentitySourcesOutput, table
+    listPolicies: function(Client, types.ListPoliciesInput): types.ListPoliciesOutput, table
+    listPolicyStoreAliases: function(Client, types.ListPolicyStoreAliasesInput): types.ListPolicyStoreAliasesOutput, table
+    listPolicyStores: function(Client, types.ListPolicyStoresInput): types.ListPolicyStoresOutput, table
+    listPolicyTemplates: function(Client, types.ListPolicyTemplatesInput): types.ListPolicyTemplatesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putSchema: function(Client, types.PutSchemaInput): types.PutSchemaOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateIdentitySource: function(Client, types.UpdateIdentitySourceInput): types.UpdateIdentitySourceOutput, table
+    updatePolicy: function(Client, types.UpdatePolicyInput): types.UpdatePolicyOutput, table
+    updatePolicyStore: function(Client, types.UpdatePolicyStoreInput): types.UpdatePolicyStoreOutput, table
+    updatePolicyTemplate: function(Client, types.UpdatePolicyTemplateInput): types.UpdatePolicyTemplateOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

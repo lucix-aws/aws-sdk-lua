@@ -1,0 +1,530 @@
+local record AcceptConnectionProposalInput
+    attachPoint: AttachPoint
+    activationKey: string
+    description: string
+    tags: {string : string}
+    clientToken: string
+end
+
+local record AcceptConnectionProposalOutput
+    connection: Connection
+end
+
+local record CreateConnectionInput
+    description: string
+    bandwidth: string
+    attachPoint: AttachPoint
+    environmentId: string
+    remoteAccount: RemoteAccountIdentifier
+    tags: {string : string}
+    clientToken: string
+end
+
+local record CreateConnectionOutput
+    connection: Connection
+end
+
+local record DeleteConnectionInput
+    identifier: string
+    clientToken: string
+end
+
+local record DeleteConnectionOutput
+    connection: Connection
+end
+
+local record DescribeConnectionProposalInput
+    activationKey: string
+end
+
+local record DescribeConnectionProposalOutput
+    bandwidth: string
+    environmentId: string
+    provider: Provider
+    location: string
+end
+
+local record GetConnectionInput
+    identifier: string
+end
+
+local record GetConnectionOutput
+    connection: Connection
+end
+
+local record GetEnvironmentInput
+    id: string
+end
+
+local record GetEnvironmentOutput
+    environment: Environment
+end
+
+local record ListAttachPointsInput
+    environmentId: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListAttachPointsOutput
+    attachPoints: {AttachPointDescriptor}
+    nextToken: string
+end
+
+local record ListConnectionsInput
+    maxResults: number
+    nextToken: string
+    state: string
+    environmentId: string
+    provider: Provider
+    attachPoint: AttachPoint
+end
+
+local record ListConnectionsOutput
+    connections: {ConnectionSummary}
+    nextToken: string
+end
+
+local record ListEnvironmentsInput
+    maxResults: number
+    nextToken: string
+    provider: Provider
+    location: string
+end
+
+local record ListEnvironmentsOutput
+    environments: {Environment}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    arn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record TagResourceInput
+    arn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    arn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateConnectionInput
+    identifier: string
+    description: string
+    bandwidth: string
+    clientToken: string
+end
+
+local record UpdateConnectionOutput
+    connection: Connection
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InterconnectClientException
+    message: string
+end
+
+local record InterconnectServerException
+    message: string
+end
+
+local record InterconnectValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InterconnectClientException
+    message: string
+end
+
+local record InterconnectServerException
+    message: string
+end
+
+local record InterconnectValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InterconnectClientException
+    message: string
+end
+
+local record InterconnectServerException
+    message: string
+end
+
+local record InterconnectValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InterconnectClientException
+    message: string
+end
+
+local record InterconnectServerException
+    message: string
+end
+
+local record InterconnectValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InterconnectClientException
+    message: string
+end
+
+local record InterconnectServerException
+    message: string
+end
+
+local record InterconnectValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InterconnectClientException
+    message: string
+end
+
+local record InterconnectServerException
+    message: string
+end
+
+local record InterconnectValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InterconnectClientException
+    message: string
+end
+
+local record InterconnectServerException
+    message: string
+end
+
+local record InterconnectValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InterconnectClientException
+    message: string
+end
+
+local record InterconnectServerException
+    message: string
+end
+
+local record InterconnectValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InterconnectClientException
+    message: string
+end
+
+local record InterconnectServerException
+    message: string
+end
+
+local record InterconnectValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InterconnectClientException
+    message: string
+end
+
+local record InterconnectServerException
+    message: string
+end
+
+local record InterconnectValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InterconnectClientException
+    message: string
+end
+
+local record InterconnectServerException
+    message: string
+end
+
+local record InterconnectValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InterconnectClientException
+    message: string
+end
+
+local record InterconnectServerException
+    message: string
+end
+
+local record InterconnectValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InterconnectClientException
+    message: string
+end
+
+local record InterconnectServerException
+    message: string
+end
+
+local record InterconnectValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local type ConnectionState = "available" | "requested" | "pending" | "down" | "deleting" | "deleted" | "failed" | "updating"
+
+local record M
+    AcceptConnectionProposalInput: AcceptConnectionProposalInput
+    AcceptConnectionProposalOutput: AcceptConnectionProposalOutput
+    CreateConnectionInput: CreateConnectionInput
+    CreateConnectionOutput: CreateConnectionOutput
+    DeleteConnectionInput: DeleteConnectionInput
+    DeleteConnectionOutput: DeleteConnectionOutput
+    DescribeConnectionProposalInput: DescribeConnectionProposalInput
+    DescribeConnectionProposalOutput: DescribeConnectionProposalOutput
+    GetConnectionInput: GetConnectionInput
+    GetConnectionOutput: GetConnectionOutput
+    GetEnvironmentInput: GetEnvironmentInput
+    GetEnvironmentOutput: GetEnvironmentOutput
+    ListAttachPointsInput: ListAttachPointsInput
+    ListAttachPointsOutput: ListAttachPointsOutput
+    ListConnectionsInput: ListConnectionsInput
+    ListConnectionsOutput: ListConnectionsOutput
+    ListEnvironmentsInput: ListEnvironmentsInput
+    ListEnvironmentsOutput: ListEnvironmentsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateConnectionInput: UpdateConnectionInput
+    UpdateConnectionOutput: UpdateConnectionOutput
+end
+
+return M

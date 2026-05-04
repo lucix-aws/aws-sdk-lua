@@ -1,0 +1,24 @@
+local types = require("iotdeviceadvisor.types")
+
+local record Client
+    createSuiteDefinition: function(Client, types.CreateSuiteDefinitionInput): types.CreateSuiteDefinitionOutput, table
+    deleteSuiteDefinition: function(Client, types.DeleteSuiteDefinitionInput): types.DeleteSuiteDefinitionOutput, table
+    getEndpoint: function(Client, types.GetEndpointInput): types.GetEndpointOutput, table
+    getSuiteDefinition: function(Client, types.GetSuiteDefinitionInput): types.GetSuiteDefinitionOutput, table
+    getSuiteRun: function(Client, types.GetSuiteRunInput): types.GetSuiteRunOutput, table
+    getSuiteRunReport: function(Client, types.GetSuiteRunReportInput): types.GetSuiteRunReportOutput, table
+    listSuiteDefinitions: function(Client, types.ListSuiteDefinitionsInput): types.ListSuiteDefinitionsOutput, table
+    listSuiteRuns: function(Client, types.ListSuiteRunsInput): types.ListSuiteRunsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    startSuiteRun: function(Client, types.StartSuiteRunInput): types.StartSuiteRunOutput, table
+    stopSuiteRun: function(Client, types.StopSuiteRunInput): types.StopSuiteRunOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateSuiteDefinition: function(Client, types.UpdateSuiteDefinitionInput): types.UpdateSuiteDefinitionOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

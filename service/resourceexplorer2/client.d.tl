@@ -1,0 +1,42 @@
+local types = require("resourceexplorer2.types")
+
+local record Client
+    associateDefaultView: function(Client, types.AssociateDefaultViewInput): types.AssociateDefaultViewOutput, table
+    batchGetView: function(Client, types.BatchGetViewInput): types.BatchGetViewOutput, table
+    createIndex: function(Client, types.CreateIndexInput): types.CreateIndexOutput, table
+    createResourceExplorerSetup: function(Client, types.CreateResourceExplorerSetupInput): types.CreateResourceExplorerSetupOutput, table
+    createView: function(Client, types.CreateViewInput): types.CreateViewOutput, table
+    deleteIndex: function(Client, types.DeleteIndexInput): types.DeleteIndexOutput, table
+    deleteResourceExplorerSetup: function(Client, types.DeleteResourceExplorerSetupInput): types.DeleteResourceExplorerSetupOutput, table
+    deleteView: function(Client, types.DeleteViewInput): types.DeleteViewOutput, table
+    disassociateDefaultView: function(Client, types.DisassociateDefaultViewInput): types.DisassociateDefaultViewOutput, table
+    getAccountLevelServiceConfiguration: function(Client, types.GetAccountLevelServiceConfigurationInput): types.GetAccountLevelServiceConfigurationOutput, table
+    getDefaultView: function(Client, types.GetDefaultViewInput): types.GetDefaultViewOutput, table
+    getIndex: function(Client, types.GetIndexInput): types.GetIndexOutput, table
+    getManagedView: function(Client, types.GetManagedViewInput): types.GetManagedViewOutput, table
+    getResourceExplorerSetup: function(Client, types.GetResourceExplorerSetupInput): types.GetResourceExplorerSetupOutput, table
+    getServiceIndex: function(Client, types.GetServiceIndexInput): types.GetServiceIndexOutput, table
+    getServiceView: function(Client, types.GetServiceViewInput): types.GetServiceViewOutput, table
+    getView: function(Client, types.GetViewInput): types.GetViewOutput, table
+    listIndexes: function(Client, types.ListIndexesInput): types.ListIndexesOutput, table
+    listIndexesForMembers: function(Client, types.ListIndexesForMembersInput): types.ListIndexesForMembersOutput, table
+    listManagedViews: function(Client, types.ListManagedViewsInput): types.ListManagedViewsOutput, table
+    listResources: function(Client, types.ListResourcesInput): types.ListResourcesOutput, table
+    listServiceIndexes: function(Client, types.ListServiceIndexesInput): types.ListServiceIndexesOutput, table
+    listServiceViews: function(Client, types.ListServiceViewsInput): types.ListServiceViewsOutput, table
+    listStreamingAccessForServices: function(Client, types.ListStreamingAccessForServicesInput): types.ListStreamingAccessForServicesOutput, table
+    listSupportedResourceTypes: function(Client, types.ListSupportedResourceTypesInput): types.ListSupportedResourceTypesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listViews: function(Client, types.ListViewsInput): types.ListViewsOutput, table
+    search: function(Client, types.SearchInput): types.SearchOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateIndexType: function(Client, types.UpdateIndexTypeInput): types.UpdateIndexTypeOutput, table
+    updateView: function(Client, types.UpdateViewInput): types.UpdateViewOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

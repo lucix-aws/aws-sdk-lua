@@ -1,0 +1,16 @@
+local types = require("autoscalingplans.types")
+
+local record Client
+    createScalingPlan: function(Client, types.CreateScalingPlanInput): types.CreateScalingPlanOutput, table
+    deleteScalingPlan: function(Client, types.DeleteScalingPlanInput): types.DeleteScalingPlanOutput, table
+    describeScalingPlanResources: function(Client, types.DescribeScalingPlanResourcesInput): types.DescribeScalingPlanResourcesOutput, table
+    describeScalingPlans: function(Client, types.DescribeScalingPlansInput): types.DescribeScalingPlansOutput, table
+    getScalingPlanResourceForecastData: function(Client, types.GetScalingPlanResourceForecastDataInput): types.GetScalingPlanResourceForecastDataOutput, table
+    updateScalingPlan: function(Client, types.UpdateScalingPlanInput): types.UpdateScalingPlanOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,40 @@
+local types = require("chimesdkidentity.types")
+
+local record Client
+    createAppInstance: function(Client, types.CreateAppInstanceInput): types.CreateAppInstanceOutput, table
+    createAppInstanceAdmin: function(Client, types.CreateAppInstanceAdminInput): types.CreateAppInstanceAdminOutput, table
+    createAppInstanceBot: function(Client, types.CreateAppInstanceBotInput): types.CreateAppInstanceBotOutput, table
+    createAppInstanceUser: function(Client, types.CreateAppInstanceUserInput): types.CreateAppInstanceUserOutput, table
+    deleteAppInstance: function(Client, types.DeleteAppInstanceInput): types.DeleteAppInstanceOutput, table
+    deleteAppInstanceAdmin: function(Client, types.DeleteAppInstanceAdminInput): types.DeleteAppInstanceAdminOutput, table
+    deleteAppInstanceBot: function(Client, types.DeleteAppInstanceBotInput): types.DeleteAppInstanceBotOutput, table
+    deleteAppInstanceUser: function(Client, types.DeleteAppInstanceUserInput): types.DeleteAppInstanceUserOutput, table
+    deregisterAppInstanceUserEndpoint: function(Client, types.DeregisterAppInstanceUserEndpointInput): types.DeregisterAppInstanceUserEndpointOutput, table
+    describeAppInstance: function(Client, types.DescribeAppInstanceInput): types.DescribeAppInstanceOutput, table
+    describeAppInstanceAdmin: function(Client, types.DescribeAppInstanceAdminInput): types.DescribeAppInstanceAdminOutput, table
+    describeAppInstanceBot: function(Client, types.DescribeAppInstanceBotInput): types.DescribeAppInstanceBotOutput, table
+    describeAppInstanceUser: function(Client, types.DescribeAppInstanceUserInput): types.DescribeAppInstanceUserOutput, table
+    describeAppInstanceUserEndpoint: function(Client, types.DescribeAppInstanceUserEndpointInput): types.DescribeAppInstanceUserEndpointOutput, table
+    getAppInstanceRetentionSettings: function(Client, types.GetAppInstanceRetentionSettingsInput): types.GetAppInstanceRetentionSettingsOutput, table
+    listAppInstanceAdmins: function(Client, types.ListAppInstanceAdminsInput): types.ListAppInstanceAdminsOutput, table
+    listAppInstanceBots: function(Client, types.ListAppInstanceBotsInput): types.ListAppInstanceBotsOutput, table
+    listAppInstances: function(Client, types.ListAppInstancesInput): types.ListAppInstancesOutput, table
+    listAppInstanceUserEndpoints: function(Client, types.ListAppInstanceUserEndpointsInput): types.ListAppInstanceUserEndpointsOutput, table
+    listAppInstanceUsers: function(Client, types.ListAppInstanceUsersInput): types.ListAppInstanceUsersOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putAppInstanceRetentionSettings: function(Client, types.PutAppInstanceRetentionSettingsInput): types.PutAppInstanceRetentionSettingsOutput, table
+    putAppInstanceUserExpirationSettings: function(Client, types.PutAppInstanceUserExpirationSettingsInput): types.PutAppInstanceUserExpirationSettingsOutput, table
+    registerAppInstanceUserEndpoint: function(Client, types.RegisterAppInstanceUserEndpointInput): types.RegisterAppInstanceUserEndpointOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAppInstance: function(Client, types.UpdateAppInstanceInput): types.UpdateAppInstanceOutput, table
+    updateAppInstanceBot: function(Client, types.UpdateAppInstanceBotInput): types.UpdateAppInstanceBotOutput, table
+    updateAppInstanceUser: function(Client, types.UpdateAppInstanceUserInput): types.UpdateAppInstanceUserOutput, table
+    updateAppInstanceUserEndpoint: function(Client, types.UpdateAppInstanceUserEndpointInput): types.UpdateAppInstanceUserEndpointOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

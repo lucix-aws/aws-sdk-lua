@@ -1,0 +1,108 @@
+local record PutActionInteractionsInput
+    trackingId: string
+    actionInteractions: {ActionInteraction}
+end
+
+local record PutActionInteractionsOutput
+end
+
+local record PutActionsInput
+    datasetArn: string
+    actions: {Action}
+end
+
+local record PutActionsOutput
+end
+
+local record PutEventsInput
+    trackingId: string
+    userId: string
+    sessionId: string
+    eventList: {Event}
+end
+
+local record PutEventsOutput
+end
+
+local record PutItemsInput
+    datasetArn: string
+    items: {Item}
+end
+
+local record PutItemsOutput
+end
+
+local record PutUsersInput
+    datasetArn: string
+    users: {User}
+end
+
+local record PutUsersOutput
+end
+
+local record InvalidInputException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record InvalidInputException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record InvalidInputException
+    message: string
+end
+
+local record InvalidInputException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record InvalidInputException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record M
+    PutActionInteractionsInput: PutActionInteractionsInput
+    PutActionInteractionsOutput: PutActionInteractionsOutput
+    PutActionsInput: PutActionsInput
+    PutActionsOutput: PutActionsOutput
+    PutEventsInput: PutEventsInput
+    PutEventsOutput: PutEventsOutput
+    PutItemsInput: PutItemsInput
+    PutItemsOutput: PutItemsOutput
+    PutUsersInput: PutUsersInput
+    PutUsersOutput: PutUsersOutput
+end
+
+return M

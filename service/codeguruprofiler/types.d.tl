@@ -1,0 +1,666 @@
+local record AddNotificationChannelsInput
+    profilingGroupName: string
+    channels: {Channel}
+end
+
+local record AddNotificationChannelsOutput
+    notificationConfiguration: NotificationConfiguration
+end
+
+local record BatchGetFrameMetricDataInput
+    profilingGroupName: string
+    startTime: number
+    endTime: number
+    period: string
+    targetResolution: string
+    frameMetrics: {FrameMetric}
+end
+
+local record BatchGetFrameMetricDataOutput
+    startTime: number
+    endTime: number
+    resolution: string
+    endTimes: {TimestampStructure}
+    unprocessedEndTimes: {string : {TimestampStructure}}
+    frameMetricData: {FrameMetricDatum}
+end
+
+local record ConfigureAgentInput
+    profilingGroupName: string
+    fleetInstanceId: string
+    metadata: {string : string}
+end
+
+local record ConfigureAgentOutput
+    configuration: AgentConfiguration
+end
+
+local record CreateProfilingGroupInput
+    profilingGroupName: string
+    computePlatform: string
+    clientToken: string
+    agentOrchestrationConfig: AgentOrchestrationConfig
+    tags: {string : string}
+end
+
+local record CreateProfilingGroupOutput
+    profilingGroup: ProfilingGroupDescription
+end
+
+local record DeleteProfilingGroupInput
+    profilingGroupName: string
+end
+
+local record DeleteProfilingGroupOutput
+end
+
+local record DescribeProfilingGroupInput
+    profilingGroupName: string
+end
+
+local record DescribeProfilingGroupOutput
+    profilingGroup: ProfilingGroupDescription
+end
+
+local record GetFindingsReportAccountSummaryInput
+    nextToken: string
+    maxResults: number
+    dailyReportsOnly: boolean
+end
+
+local record GetFindingsReportAccountSummaryOutput
+    reportSummaries: {FindingsReportSummary}
+    nextToken: string
+end
+
+local record GetNotificationConfigurationInput
+    profilingGroupName: string
+end
+
+local record GetNotificationConfigurationOutput
+    notificationConfiguration: NotificationConfiguration
+end
+
+local record GetPolicyInput
+    profilingGroupName: string
+end
+
+local record GetPolicyOutput
+    policy: string
+    revisionId: string
+end
+
+local record GetProfileInput
+    profilingGroupName: string
+    startTime: number
+    period: string
+    endTime: number
+    maxDepth: number
+    accept: string
+end
+
+local record GetProfileOutput
+    profile: string
+    contentType: string
+    contentEncoding: string
+end
+
+local record GetRecommendationsInput
+    profilingGroupName: string
+    startTime: number
+    endTime: number
+    locale: string
+end
+
+local record GetRecommendationsOutput
+    profilingGroupName: string
+    profileStartTime: number
+    profileEndTime: number
+    recommendations: {Recommendation}
+    anomalies: {Anomaly}
+end
+
+local record ListFindingsReportsInput
+    profilingGroupName: string
+    startTime: number
+    endTime: number
+    nextToken: string
+    maxResults: number
+    dailyReportsOnly: boolean
+end
+
+local record ListFindingsReportsOutput
+    findingsReportSummaries: {FindingsReportSummary}
+    nextToken: string
+end
+
+local record ListProfileTimesInput
+    profilingGroupName: string
+    startTime: number
+    endTime: number
+    period: string
+    orderBy: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListProfileTimesOutput
+    profileTimes: {ProfileTime}
+    nextToken: string
+end
+
+local record ListProfilingGroupsInput
+    nextToken: string
+    maxResults: number
+    includeDescription: boolean
+end
+
+local record ListProfilingGroupsOutput
+    profilingGroupNames: {string}
+    profilingGroups: {ProfilingGroupDescription}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record PostAgentProfileInput
+    profilingGroupName: string
+    agentProfile: string
+    profileToken: string
+    contentType: string
+end
+
+local record PostAgentProfileOutput
+end
+
+local record PutPermissionInput
+    profilingGroupName: string
+    actionGroup: string
+    principals: {string}
+    revisionId: string
+end
+
+local record PutPermissionOutput
+    policy: string
+    revisionId: string
+end
+
+local record RemoveNotificationChannelInput
+    profilingGroupName: string
+    channelId: string
+end
+
+local record RemoveNotificationChannelOutput
+    notificationConfiguration: NotificationConfiguration
+end
+
+local record RemovePermissionInput
+    profilingGroupName: string
+    actionGroup: string
+    revisionId: string
+end
+
+local record RemovePermissionOutput
+    policy: string
+    revisionId: string
+end
+
+local record SubmitFeedbackInput
+    profilingGroupName: string
+    anomalyInstanceId: string
+    type: string
+    comment: string
+end
+
+local record SubmitFeedbackOutput
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateProfilingGroupInput
+    profilingGroupName: string
+    agentOrchestrationConfig: AgentOrchestrationConfig
+end
+
+local record UpdateProfilingGroupOutput
+    profilingGroup: ProfilingGroupDescription
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    AddNotificationChannelsInput: AddNotificationChannelsInput
+    AddNotificationChannelsOutput: AddNotificationChannelsOutput
+    BatchGetFrameMetricDataInput: BatchGetFrameMetricDataInput
+    BatchGetFrameMetricDataOutput: BatchGetFrameMetricDataOutput
+    ConfigureAgentInput: ConfigureAgentInput
+    ConfigureAgentOutput: ConfigureAgentOutput
+    CreateProfilingGroupInput: CreateProfilingGroupInput
+    CreateProfilingGroupOutput: CreateProfilingGroupOutput
+    DeleteProfilingGroupInput: DeleteProfilingGroupInput
+    DeleteProfilingGroupOutput: DeleteProfilingGroupOutput
+    DescribeProfilingGroupInput: DescribeProfilingGroupInput
+    DescribeProfilingGroupOutput: DescribeProfilingGroupOutput
+    GetFindingsReportAccountSummaryInput: GetFindingsReportAccountSummaryInput
+    GetFindingsReportAccountSummaryOutput: GetFindingsReportAccountSummaryOutput
+    GetNotificationConfigurationInput: GetNotificationConfigurationInput
+    GetNotificationConfigurationOutput: GetNotificationConfigurationOutput
+    GetPolicyInput: GetPolicyInput
+    GetPolicyOutput: GetPolicyOutput
+    GetProfileInput: GetProfileInput
+    GetProfileOutput: GetProfileOutput
+    GetRecommendationsInput: GetRecommendationsInput
+    GetRecommendationsOutput: GetRecommendationsOutput
+    ListFindingsReportsInput: ListFindingsReportsInput
+    ListFindingsReportsOutput: ListFindingsReportsOutput
+    ListProfileTimesInput: ListProfileTimesInput
+    ListProfileTimesOutput: ListProfileTimesOutput
+    ListProfilingGroupsInput: ListProfilingGroupsInput
+    ListProfilingGroupsOutput: ListProfilingGroupsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PostAgentProfileInput: PostAgentProfileInput
+    PostAgentProfileOutput: PostAgentProfileOutput
+    PutPermissionInput: PutPermissionInput
+    PutPermissionOutput: PutPermissionOutput
+    RemoveNotificationChannelInput: RemoveNotificationChannelInput
+    RemoveNotificationChannelOutput: RemoveNotificationChannelOutput
+    RemovePermissionInput: RemovePermissionInput
+    RemovePermissionOutput: RemovePermissionOutput
+    SubmitFeedbackInput: SubmitFeedbackInput
+    SubmitFeedbackOutput: SubmitFeedbackOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateProfilingGroupInput: UpdateProfilingGroupInput
+    UpdateProfilingGroupOutput: UpdateProfilingGroupOutput
+end
+
+return M

@@ -1,0 +1,2169 @@
+local M = {}
+
+M.ExecutionAction = {
+    ACTIVATE = "activate",
+    DEACTIVATE = "deactivate",
+    POST_RECOVERY = "postRecovery",
+}
+
+M.ExecutionState = {
+    IN_PROGRESS = "inProgress",
+    PAUSED_BY_FAILED_STEP = "pausedByFailedStep",
+    PAUSED_BY_OPERATOR = "pausedByOperator",
+    COMPLETED = "completed",
+    COMPLETED_WITH_EXCEPTIONS = "completedWithExceptions",
+    CANCELLED = "canceled",
+    PLAN_EXECUTION_TIMED_OUT = "planExecutionTimedOut",
+    PENDING_MANUAL_APPROVAL = "pendingManualApproval",
+    FAILED = "failed",
+    PENDING = "pending",
+    COMPLETED_MONITORING_APPLICATION_HEALTH = "completedMonitoringApplicationHealth",
+}
+
+M.ExecutionMode = {
+    GRACEFUL = "graceful",
+    UNGRACEFUL = "ungraceful",
+}
+
+M.AbbreviatedExecution = {
+    type = "structure",
+    members = {
+        planArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        executionId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        version = {
+            type = "string",
+        },
+        updatedAt = {
+            type = "timestamp",
+        },
+        comment = {
+            type = "string",
+        },
+        startTime = {
+            type = "timestamp",
+            traits = {
+                required = true,
+            },
+        },
+        endTime = {
+            type = "timestamp",
+        },
+        mode = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        executionState = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        executionAction = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        executionRegion = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        recoveryExecutionId = {
+            type = "string",
+        },
+        actualRecoveryTime = {
+            type = "string",
+        },
+    },
+}
+
+M.RecoveryApproach = {
+    ACTIVE_ACTIVE = "activeActive",
+    ACTIVE_PASSIVE = "activePassive",
+}
+
+M.AbbreviatedPlan = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        owner = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        name = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        regions = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        recoveryApproach = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        primaryRegion = {
+            type = "string",
+        },
+        version = {
+            type = "string",
+        },
+        updatedAt = {
+            type = "timestamp",
+        },
+        description = {
+            type = "string",
+        },
+        executionRole = {
+            type = "string",
+        },
+        activePlanExecution = {
+            type = "string",
+        },
+        recoveryTimeObjectiveMinutes = {
+            type = "number",
+        },
+    },
+}
+
+M.AccessDeniedException = {
+    type = "structure",
+    error = "client",
+    members = {
+        message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.AlarmCondition = {
+    RED = "red",
+    GREEN = "green",
+}
+
+M.AlarmType = {
+    APPLICATION_HEALTH = "applicationHealth",
+    TRIGGER = "trigger",
+}
+
+M.Approval = {
+    APPROVE = "approve",
+    DECLINE = "decline",
+}
+
+M.ApprovePlanExecutionStepInput = {
+    type = "structure",
+    members = {
+        planArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        executionId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        stepName = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        approval = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        comment = {
+            type = "string",
+        },
+    },
+}
+
+M.ApprovePlanExecutionStepOutput = {
+    type = "structure",
+}
+
+M.ResourceNotFoundException = {
+    type = "structure",
+    error = "client",
+    members = {
+        message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.CancelPlanExecutionInput = {
+    type = "structure",
+    members = {
+        planArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        executionId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        comment = {
+            type = "string",
+        },
+    },
+}
+
+M.CancelPlanExecutionOutput = {
+    type = "structure",
+}
+
+M.GetPlanEvaluationStatusInput = {
+    type = "structure",
+    members = {
+        planArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        maxResults = {
+            type = "number",
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.EvaluationStatus = {
+    PASSED = "passed",
+    ACTION_REQUIRED = "actionRequired",
+    PENDING_EVALUATION = "pendingEvaluation",
+    UNKNOWN = "unknown",
+}
+
+M.ResourceWarningStatus = {
+    ACTIVE = "active",
+    RESOLVED = "resolved",
+}
+
+M.MinimalWorkflow = {
+    type = "structure",
+    members = {
+        action = {
+            type = "string",
+        },
+        name = {
+            type = "string",
+        },
+    },
+}
+
+M.ResourceWarning = {
+    type = "structure",
+    members = {
+        workflow = {
+            type = "structure",
+        },
+        version = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        stepName = {
+            type = "string",
+        },
+        resourceArn = {
+            type = "string",
+        },
+        warningStatus = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        warningUpdatedTime = {
+            type = "timestamp",
+            traits = {
+                required = true,
+            },
+        },
+        warningMessage = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.GetPlanEvaluationStatusOutput = {
+    type = "structure",
+    members = {
+        planArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        lastEvaluationTime = {
+            type = "timestamp",
+        },
+        lastEvaluatedVersion = {
+            type = "string",
+        },
+        region = {
+            type = "string",
+        },
+        evaluationState = {
+            type = "string",
+        },
+        warnings = {
+            type = "list",
+            member_type = "structure",
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.GetPlanExecutionInput = {
+    type = "structure",
+    members = {
+        planArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        executionId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        maxResults = {
+            type = "number",
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.FailedReportErrorCode = {
+    INSUFFICIENT_PERMISSIONS = "insufficientPermissions",
+    INVALID_RESOURCE = "invalidResource",
+    CONFIGURATION_ERROR = "configurationError",
+}
+
+M.FailedReportOutput = {
+    type = "structure",
+    members = {
+        errorCode = {
+            type = "string",
+        },
+        errorMessage = {
+            type = "string",
+        },
+    },
+}
+
+M.S3ReportOutput = {
+    type = "structure",
+    members = {
+        s3ObjectKey = {
+            type = "string",
+        },
+    },
+}
+
+M.ReportOutput = {
+    type = "union",
+    members = {
+        s3ReportOutput = {
+            type = "structure",
+        },
+        failedReportOutput = {
+            type = "structure",
+        },
+    },
+}
+
+M.GeneratedReport = {
+    type = "structure",
+    members = {
+        reportGenerationTime = {
+            type = "timestamp",
+        },
+        reportOutput = {
+            type = "union",
+        },
+    },
+}
+
+M.AssociatedAlarm = {
+    type = "structure",
+    members = {
+        crossAccountRole = {
+            type = "string",
+        },
+        externalId = {
+            type = "string",
+        },
+        resourceIdentifier = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        alarmType = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.S3ReportOutputConfiguration = {
+    type = "structure",
+    members = {
+        bucketPath = {
+            type = "string",
+        },
+        bucketOwner = {
+            type = "string",
+        },
+    },
+}
+
+M.ReportOutputConfiguration = {
+    type = "union",
+    members = {
+        s3Configuration = {
+            type = "structure",
+        },
+    },
+}
+
+M.ReportConfiguration = {
+    type = "structure",
+    members = {
+        reportOutput = {
+            type = "list",
+            member_type = "union",
+        },
+    },
+}
+
+M.WorkflowTargetAction = {
+    ACTIVATE = "activate",
+    DEACTIVATE = "deactivate",
+    POST_RECOVERY = "postRecovery",
+}
+
+M.TriggerCondition = {
+    type = "structure",
+    members = {
+        associatedAlarmName = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        condition = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.Trigger = {
+    type = "structure",
+    members = {
+        description = {
+            type = "string",
+        },
+        targetRegion = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        action = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        conditions = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        minDelayMinutesBetweenExecutions = {
+            type = "number",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.RoutingControlStateChange = {
+    ON = "On",
+    OFF = "Off",
+}
+
+M.ArcRoutingControlState = {
+    type = "structure",
+    members = {
+        routingControlArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        state = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ArcRoutingControlConfiguration = {
+    type = "structure",
+    members = {
+        timeoutMinutes = {
+            type = "number",
+        },
+        crossAccountRole = {
+            type = "string",
+        },
+        externalId = {
+            type = "string",
+        },
+        regionAndRoutingControls = {
+            type = "map",
+            key_type = "string",
+            value_type = "list",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.Lambdas = {
+    type = "structure",
+    members = {
+        crossAccountRole = {
+            type = "string",
+        },
+        externalId = {
+            type = "string",
+        },
+        arn = {
+            type = "string",
+        },
+    },
+}
+
+M.RegionToRunIn = {
+    ACTIVATING_REGION = "activatingRegion",
+    DEACTIVATING_REGION = "deactivatingRegion",
+    ACTIVE_REGION = "activeRegion",
+    INACTIVE_REGION = "inactiveRegion",
+}
+
+M.LambdaUngracefulBehavior = {
+    SKIP = "skip",
+}
+
+M.LambdaUngraceful = {
+    type = "structure",
+    members = {
+        behavior = {
+            type = "string",
+        },
+    },
+}
+
+M.CustomActionLambdaConfiguration = {
+    type = "structure",
+    members = {
+        timeoutMinutes = {
+            type = "number",
+        },
+        lambdas = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        retryIntervalMinutes = {
+            type = "number",
+            traits = {
+                required = true,
+            },
+        },
+        regionToRun = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ungraceful = {
+            type = "structure",
+        },
+    },
+}
+
+M.DocumentDbDefaultBehavior = {
+    SWITCHOVER_ONLY = "switchoverOnly",
+    FAILOVER = "failover",
+}
+
+M.DocumentDbUngracefulBehavior = {
+    FAILOVER = "failover",
+}
+
+M.DocumentDbUngraceful = {
+    type = "structure",
+    members = {
+        ungraceful = {
+            type = "string",
+        },
+    },
+}
+
+M.DocumentDbConfiguration = {
+    type = "structure",
+    members = {
+        timeoutMinutes = {
+            type = "number",
+        },
+        crossAccountRole = {
+            type = "string",
+        },
+        externalId = {
+            type = "string",
+        },
+        behavior = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ungraceful = {
+            type = "structure",
+        },
+        globalClusterIdentifier = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        databaseClusterArns = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.Asg = {
+    type = "structure",
+    members = {
+        crossAccountRole = {
+            type = "string",
+        },
+        externalId = {
+            type = "string",
+        },
+        arn = {
+            type = "string",
+        },
+    },
+}
+
+M.Ec2AsgCapacityMonitoringApproach = {
+    SAMPLED_MAX_IN_LAST_24_HOURS = "sampledMaxInLast24Hours",
+    AUTOSCALING_MAX_IN_LAST_24_HOURS = "autoscalingMaxInLast24Hours",
+}
+
+M.Ec2Ungraceful = {
+    type = "structure",
+    members = {
+        minimumSuccessPercentage = {
+            type = "number",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.Ec2AsgCapacityIncreaseConfiguration = {
+    type = "structure",
+    members = {
+        timeoutMinutes = {
+            type = "number",
+        },
+        asgs = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        ungraceful = {
+            type = "structure",
+        },
+        targetPercent = {
+            type = "number",
+        },
+        capacityMonitoringApproach = {
+            type = "string",
+        },
+    },
+}
+
+M.EcsCapacityMonitoringApproach = {
+    SAMPLED_MAX_IN_LAST_24_HOURS = "sampledMaxInLast24Hours",
+    CONTAINER_INSIGHTS_MAX_IN_LAST_24_HOURS = "containerInsightsMaxInLast24Hours",
+}
+
+M.Service = {
+    type = "structure",
+    members = {
+        crossAccountRole = {
+            type = "string",
+        },
+        externalId = {
+            type = "string",
+        },
+        clusterArn = {
+            type = "string",
+        },
+        serviceArn = {
+            type = "string",
+        },
+    },
+}
+
+M.EcsUngraceful = {
+    type = "structure",
+    members = {
+        minimumSuccessPercentage = {
+            type = "number",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.EcsCapacityIncreaseConfiguration = {
+    type = "structure",
+    members = {
+        timeoutMinutes = {
+            type = "number",
+        },
+        services = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        ungraceful = {
+            type = "structure",
+        },
+        targetPercent = {
+            type = "number",
+        },
+        capacityMonitoringApproach = {
+            type = "string",
+        },
+    },
+}
+
+M.EksCapacityMonitoringApproach = {
+    SAMPLED_MAX_IN_LAST_24_HOURS = "sampledMaxInLast24Hours",
+}
+
+M.EksCluster = {
+    type = "structure",
+    members = {
+        crossAccountRole = {
+            type = "string",
+        },
+        externalId = {
+            type = "string",
+        },
+        clusterArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.KubernetesResourceType = {
+    type = "structure",
+    members = {
+        apiVersion = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        kind = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.KubernetesScalingResource = {
+    type = "structure",
+    members = {
+        namespace = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        name = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        hpaName = {
+            type = "string",
+        },
+    },
+}
+
+M.EksResourceScalingUngraceful = {
+    type = "structure",
+    members = {
+        minimumSuccessPercentage = {
+            type = "number",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.EksResourceScalingConfiguration = {
+    type = "structure",
+    members = {
+        timeoutMinutes = {
+            type = "number",
+        },
+        kubernetesResourceType = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        scalingResources = {
+            type = "list",
+            member_type = "map",
+        },
+        eksClusters = {
+            type = "list",
+            member_type = "structure",
+        },
+        ungraceful = {
+            type = "structure",
+        },
+        targetPercent = {
+            type = "number",
+        },
+        capacityMonitoringApproach = {
+            type = "string",
+        },
+    },
+}
+
+M.ExecutionApprovalConfiguration = {
+    type = "structure",
+    members = {
+        timeoutMinutes = {
+            type = "number",
+        },
+        approvalRole = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.GlobalAuroraDefaultBehavior = {
+    SWITCHOVER_ONLY = "switchoverOnly",
+    FAILOVER = "failover",
+}
+
+M.GlobalAuroraUngracefulBehavior = {
+    FAILOVER = "failover",
+}
+
+M.GlobalAuroraUngraceful = {
+    type = "structure",
+    members = {
+        ungraceful = {
+            type = "string",
+        },
+    },
+}
+
+M.GlobalAuroraConfiguration = {
+    type = "structure",
+    members = {
+        timeoutMinutes = {
+            type = "number",
+        },
+        crossAccountRole = {
+            type = "string",
+        },
+        externalId = {
+            type = "string",
+        },
+        behavior = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ungraceful = {
+            type = "structure",
+        },
+        globalClusterIdentifier = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        databaseClusterArns = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.RdsCreateCrossRegionReplicaConfiguration = {
+    type = "structure",
+    members = {
+        timeoutMinutes = {
+            type = "number",
+        },
+        crossAccountRole = {
+            type = "string",
+        },
+        externalId = {
+            type = "string",
+        },
+        dbInstanceArnMap = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.RdsPromoteReadReplicaConfiguration = {
+    type = "structure",
+    members = {
+        timeoutMinutes = {
+            type = "number",
+        },
+        crossAccountRole = {
+            type = "string",
+        },
+        externalId = {
+            type = "string",
+        },
+        dbInstanceArnMap = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.RegionSwitchPlanConfiguration = {
+    type = "structure",
+    members = {
+        crossAccountRole = {
+            type = "string",
+        },
+        externalId = {
+            type = "string",
+        },
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.Route53ResourceRecordSet = {
+    type = "structure",
+    members = {
+        recordSetIdentifier = {
+            type = "string",
+        },
+        region = {
+            type = "string",
+        },
+    },
+}
+
+M.Route53HealthCheckConfiguration = {
+    type = "structure",
+    members = {
+        timeoutMinutes = {
+            type = "number",
+        },
+        crossAccountRole = {
+            type = "string",
+        },
+        externalId = {
+            type = "string",
+        },
+        hostedZoneId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        recordName = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        recordSets = {
+            type = "list",
+            member_type = "structure",
+        },
+    },
+}
+
+M.ExecutionBlockType = {
+    CUSTOM_ACTION_LAMBDA = "CustomActionLambda",
+    EXECUTION_APPROVAL = "ManualApproval",
+    AURORA = "AuroraGlobalDatabase",
+    EC2_ASG = "EC2AutoScaling",
+    ROUTING_CONTROL = "ARCRoutingControl",
+    REGION_SWITCH = "ARCRegionSwitchPlan",
+    PARALLEL = "Parallel",
+    ECS = "ECSServiceScaling",
+    EKS_RESOURCE_SCALING = "EKSResourceScaling",
+    ROUTE53_HEALTH_CHECK = "Route53HealthCheck",
+    DOCUMENTDB = "DocumentDb",
+    RDS_PROMOTE_READ_REPLICA = "RdsPromoteReadReplica",
+    RDS_CREATE_CROSS_REGION_REPLICA = "RdsCreateCrossRegionReplica",
+}
+
+M.StepStatus = {
+    NOT_STARTED = "notStarted",
+    RUNNING = "running",
+    FAILED = "failed",
+    COMPLETED = "completed",
+    CANCELLED = "canceled",
+    SKIPPED = "skipped",
+    PENDING_APPROVAL = "pendingApproval",
+}
+
+M.StepState = {
+    type = "structure",
+    members = {
+        name = {
+            type = "string",
+        },
+        status = {
+            type = "string",
+        },
+        startTime = {
+            type = "timestamp",
+        },
+        endTime = {
+            type = "timestamp",
+        },
+        stepMode = {
+            type = "string",
+        },
+    },
+}
+
+M.GetPlanInRegionInput = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ListPlanExecutionEventsInput = {
+    type = "structure",
+    members = {
+        planArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        executionId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        maxResults = {
+            type = "number",
+        },
+        nextToken = {
+            type = "string",
+        },
+        name = {
+            type = "string",
+        },
+    },
+}
+
+M.ExecutionEventType = {
+    UNKNOWN = "unknown",
+    EXECUTION_PENDING = "executionPending",
+    EXECUTION_STARTED = "executionStarted",
+    EXECUTION_SUCCEEDED = "executionSucceeded",
+    EXECUTION_FAILED = "executionFailed",
+    EXECUTION_PAUSING = "executionPausing",
+    EXECUTION_PAUSED = "executionPaused",
+    EXECUTION_CANCELING = "executionCanceling",
+    EXECUTION_CANCELED = "executionCanceled",
+    EXECUTION_PENDING_APPROVAL = "executionPendingApproval",
+    EXECUTION_BEHAVIOR_CHANGED_TO_UNGRACEFUL = "executionBehaviorChangedToUngraceful",
+    EXECUTION_BEHAVIOR_CHANGED_TO_GRACEFUL = "executionBehaviorChangedToGraceful",
+    EXECUTION_PENDING_CHILD_PLAN_MANUAL_APPROVAL = "executionPendingChildPlanManualApproval",
+    EXECUTION_SUCCESS_MONITORING_APPLICATION_HEALTH = "executionSuccessMonitoringApplicationHealth",
+    STEP_STARTED = "stepStarted",
+    STEP_UPDATE = "stepUpdate",
+    STEP_SUCCEEDED = "stepSucceeded",
+    STEP_FAILED = "stepFailed",
+    STEP_SKIPPED = "stepSkipped",
+    STEP_PAUSED_BY_ERROR = "stepPausedByError",
+    STEP_PAUSED_BY_OPERATOR = "stepPausedByOperator",
+    STEP_CANCELED = "stepCanceled",
+    STEP_PENDING_APPROVAL = "stepPendingApproval",
+    STEP_EXECUTION_BEHAVIOR_CHANGED_TO_UNGRACEFUL = "stepExecutionBehaviorChangedToUngraceful",
+    STEP_PENDING_APPLICATION_HEALTH_MONITOR = "stepPendingApplicationHealthMonitor",
+    PLAN_EVALUATION_WARNING = "planEvaluationWarning",
+}
+
+M.ExecutionEvent = {
+    type = "structure",
+    members = {
+        timestamp = {
+            type = "timestamp",
+        },
+        type = {
+            type = "string",
+        },
+        stepName = {
+            type = "string",
+        },
+        executionBlockType = {
+            type = "string",
+        },
+        resources = {
+            type = "list",
+            member_type = "string",
+        },
+        error = {
+            type = "string",
+        },
+        description = {
+            type = "string",
+        },
+        eventId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        previousEventId = {
+            type = "string",
+        },
+    },
+}
+
+M.ListPlanExecutionEventsOutput = {
+    type = "structure",
+    members = {
+        items = {
+            type = "list",
+            member_type = "structure",
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.ListPlanExecutionsInput = {
+    type = "structure",
+    members = {
+        planArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        maxResults = {
+            type = "number",
+        },
+        nextToken = {
+            type = "string",
+        },
+        state = {
+            type = "string",
+        },
+    },
+}
+
+M.ListPlanExecutionsOutput = {
+    type = "structure",
+    members = {
+        items = {
+            type = "list",
+            member_type = "structure",
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.ListPlansInRegionInput = {
+    type = "structure",
+    members = {
+        maxResults = {
+            type = "number",
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.ListPlansInRegionOutput = {
+    type = "structure",
+    members = {
+        plans = {
+            type = "list",
+            member_type = "structure",
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.InternalServerException = {
+    type = "structure",
+    error = "server",
+    members = {
+        message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ListRoute53HealthChecksInput = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        hostedZoneId = {
+            type = "string",
+        },
+        recordName = {
+            type = "string",
+        },
+        maxResults = {
+            type = "number",
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.Route53HealthCheckStatus = {
+    HEALTHY = "healthy",
+    UNHEALTHY = "unhealthy",
+    UNKNOWN = "unknown",
+}
+
+M.Route53HealthCheck = {
+    type = "structure",
+    members = {
+        hostedZoneId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        recordName = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        healthCheckId = {
+            type = "string",
+        },
+        status = {
+            type = "string",
+        },
+        region = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ListRoute53HealthChecksOutput = {
+    type = "structure",
+    members = {
+        healthChecks = {
+            type = "list",
+            member_type = "structure",
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.IllegalArgumentException = {
+    type = "structure",
+    error = "client",
+    members = {
+        message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ListRoute53HealthChecksInRegionInput = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        hostedZoneId = {
+            type = "string",
+        },
+        recordName = {
+            type = "string",
+        },
+        maxResults = {
+            type = "number",
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.ListRoute53HealthChecksInRegionOutput = {
+    type = "structure",
+    members = {
+        healthChecks = {
+            type = "list",
+            member_type = "structure",
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.DeletePlanInput = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.DeletePlanOutput = {
+    type = "structure",
+}
+
+M.IllegalStateException = {
+    type = "structure",
+    error = "client",
+    members = {
+        message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.GetPlanInput = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ListPlansInput = {
+    type = "structure",
+    members = {
+        maxResults = {
+            type = "number",
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.ListPlansOutput = {
+    type = "structure",
+    members = {
+        plans = {
+            type = "list",
+            member_type = "structure",
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.ListTagsForResourceInput = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ListTagsForResourceOutput = {
+    type = "structure",
+    members = {
+        resourceTags = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+        },
+    },
+}
+
+M.TagResourceInput = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        tags = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.TagResourceOutput = {
+    type = "structure",
+}
+
+M.UntagResourceInput = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        resourceTagKeys = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.UntagResourceOutput = {
+    type = "structure",
+}
+
+M.StartPlanExecutionInput = {
+    type = "structure",
+    members = {
+        planArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        targetRegion = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        action = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        mode = {
+            type = "string",
+        },
+        comment = {
+            type = "string",
+        },
+        latestVersion = {
+            type = "string",
+        },
+        recoveryExecutionId = {
+            type = "string",
+        },
+    },
+}
+
+M.StartPlanExecutionOutput = {
+    type = "structure",
+    members = {
+        executionId = {
+            type = "string",
+        },
+        plan = {
+            type = "string",
+        },
+        planVersion = {
+            type = "string",
+        },
+        activateRegion = {
+            type = "string",
+        },
+        deactivateRegion = {
+            type = "string",
+        },
+    },
+}
+
+M.UpdatePlanExecutionAction = {
+    SWITCH_TO_GRACEFUL = "switchToGraceful",
+    SWITCH_TO_UNGRACEFUL = "switchToUngraceful",
+    PAUSE = "pause",
+    RESUME = "resume",
+}
+
+M.UpdatePlanExecutionInput = {
+    type = "structure",
+    members = {
+        planArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        executionId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        action = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        comment = {
+            type = "string",
+        },
+    },
+}
+
+M.UpdatePlanExecutionOutput = {
+    type = "structure",
+}
+
+M.UpdatePlanExecutionStepAction = {
+    SWITCH_TO_UNGRACEFUL = "switchToUngraceful",
+    SKIP = "skip",
+}
+
+M.UpdatePlanExecutionStepInput = {
+    type = "structure",
+    members = {
+        planArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        executionId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        comment = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        stepName = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        actionToTake = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.UpdatePlanExecutionStepOutput = {
+    type = "structure",
+}
+
+M.ExecutionBlockConfiguration = {
+    type = "union",
+    members = {
+        customActionLambdaConfig = {
+            type = "structure",
+        },
+        ec2AsgCapacityIncreaseConfig = {
+            type = "structure",
+        },
+        executionApprovalConfig = {
+            type = "structure",
+        },
+        arcRoutingControlConfig = {
+            type = "structure",
+        },
+        globalAuroraConfig = {
+            type = "structure",
+        },
+        parallelConfig = {
+            type = "structure",
+        },
+        regionSwitchPlanConfig = {
+            type = "structure",
+        },
+        ecsCapacityIncreaseConfig = {
+            type = "structure",
+        },
+        eksResourceScalingConfig = {
+            type = "structure",
+        },
+        route53HealthCheckConfig = {
+            type = "structure",
+        },
+        documentDbConfig = {
+            type = "structure",
+        },
+        rdsPromoteReadReplicaConfig = {
+            type = "structure",
+        },
+        rdsCreateCrossRegionReadReplicaConfig = {
+            type = "structure",
+        },
+    },
+}
+
+M.ParallelExecutionBlockConfiguration = {
+    type = "structure",
+    members = {
+        steps = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.Step = {
+    type = "structure",
+    members = {
+        name = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        description = {
+            type = "string",
+        },
+        executionBlockConfiguration = {
+            type = "union",
+            traits = {
+                required = true,
+            },
+        },
+        executionBlockType = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.Workflow = {
+    type = "structure",
+    members = {
+        steps = {
+            type = "list",
+            member_type = "structure",
+        },
+        workflowTargetAction = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        workflowTargetRegion = {
+            type = "string",
+        },
+        workflowDescription = {
+            type = "string",
+        },
+    },
+}
+
+M.CreatePlanInput = {
+    type = "structure",
+    members = {
+        description = {
+            type = "string",
+        },
+        workflows = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        executionRole = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        recoveryTimeObjectiveMinutes = {
+            type = "number",
+        },
+        associatedAlarms = {
+            type = "map",
+            key_type = "string",
+            value_type = "structure",
+        },
+        triggers = {
+            type = "list",
+            member_type = "structure",
+        },
+        reportConfiguration = {
+            type = "structure",
+        },
+        name = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        regions = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        recoveryApproach = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        primaryRegion = {
+            type = "string",
+        },
+        tags = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+        },
+    },
+}
+
+M.Plan = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        description = {
+            type = "string",
+        },
+        workflows = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        executionRole = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        recoveryTimeObjectiveMinutes = {
+            type = "number",
+        },
+        associatedAlarms = {
+            type = "map",
+            key_type = "string",
+            value_type = "structure",
+        },
+        triggers = {
+            type = "list",
+            member_type = "structure",
+        },
+        reportConfiguration = {
+            type = "structure",
+        },
+        name = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        regions = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        recoveryApproach = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        primaryRegion = {
+            type = "string",
+        },
+        owner = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        version = {
+            type = "string",
+        },
+        updatedAt = {
+            type = "timestamp",
+        },
+    },
+}
+
+M.UpdatePlanInput = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        description = {
+            type = "string",
+        },
+        workflows = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        executionRole = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        recoveryTimeObjectiveMinutes = {
+            type = "number",
+        },
+        associatedAlarms = {
+            type = "map",
+            key_type = "string",
+            value_type = "structure",
+        },
+        triggers = {
+            type = "list",
+            member_type = "structure",
+        },
+        reportConfiguration = {
+            type = "structure",
+        },
+    },
+}
+
+M.CreatePlanOutput = {
+    type = "structure",
+    members = {
+        plan = {
+            type = "structure",
+        },
+    },
+}
+
+M.GetPlanExecutionOutput = {
+    type = "structure",
+    members = {
+        planArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        executionId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        version = {
+            type = "string",
+        },
+        updatedAt = {
+            type = "timestamp",
+        },
+        comment = {
+            type = "string",
+        },
+        startTime = {
+            type = "timestamp",
+            traits = {
+                required = true,
+            },
+        },
+        endTime = {
+            type = "timestamp",
+        },
+        mode = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        executionState = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        executionAction = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        executionRegion = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        recoveryExecutionId = {
+            type = "string",
+        },
+        stepStates = {
+            type = "list",
+            member_type = "structure",
+        },
+        plan = {
+            type = "structure",
+        },
+        actualRecoveryTime = {
+            type = "string",
+        },
+        generatedReportDetails = {
+            type = "list",
+            member_type = "structure",
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.GetPlanInRegionOutput = {
+    type = "structure",
+    members = {
+        plan = {
+            type = "structure",
+        },
+    },
+}
+
+M.GetPlanOutput = {
+    type = "structure",
+    members = {
+        plan = {
+            type = "structure",
+        },
+    },
+}
+
+M.UpdatePlanOutput = {
+    type = "structure",
+    members = {
+        plan = {
+            type = "structure",
+        },
+    },
+}
+
+return M

@@ -1,0 +1,12 @@
+local types = require("workmailmessageflow.types")
+
+local record Client
+    getRawMessageContent: function(Client, types.GetRawMessageContentInput): types.GetRawMessageContentOutput, table
+    putRawMessageContent: function(Client, types.PutRawMessageContentInput): types.PutRawMessageContentOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

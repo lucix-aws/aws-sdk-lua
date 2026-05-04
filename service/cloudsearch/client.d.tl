@@ -1,0 +1,36 @@
+local types = require("cloudsearch.types")
+
+local record Client
+    buildSuggesters: function(Client, types.BuildSuggestersInput): types.BuildSuggestersOutput, table
+    createDomain: function(Client, types.CreateDomainInput): types.CreateDomainOutput, table
+    defineAnalysisScheme: function(Client, types.DefineAnalysisSchemeInput): types.DefineAnalysisSchemeOutput, table
+    defineExpression: function(Client, types.DefineExpressionInput): types.DefineExpressionOutput, table
+    defineIndexField: function(Client, types.DefineIndexFieldInput): types.DefineIndexFieldOutput, table
+    defineSuggester: function(Client, types.DefineSuggesterInput): types.DefineSuggesterOutput, table
+    deleteAnalysisScheme: function(Client, types.DeleteAnalysisSchemeInput): types.DeleteAnalysisSchemeOutput, table
+    deleteDomain: function(Client, types.DeleteDomainInput): types.DeleteDomainOutput, table
+    deleteExpression: function(Client, types.DeleteExpressionInput): types.DeleteExpressionOutput, table
+    deleteIndexField: function(Client, types.DeleteIndexFieldInput): types.DeleteIndexFieldOutput, table
+    deleteSuggester: function(Client, types.DeleteSuggesterInput): types.DeleteSuggesterOutput, table
+    describeAnalysisSchemes: function(Client, types.DescribeAnalysisSchemesInput): types.DescribeAnalysisSchemesOutput, table
+    describeAvailabilityOptions: function(Client, types.DescribeAvailabilityOptionsInput): types.DescribeAvailabilityOptionsOutput, table
+    describeDomainEndpointOptions: function(Client, types.DescribeDomainEndpointOptionsInput): types.DescribeDomainEndpointOptionsOutput, table
+    describeDomains: function(Client, types.DescribeDomainsInput): types.DescribeDomainsOutput, table
+    describeExpressions: function(Client, types.DescribeExpressionsInput): types.DescribeExpressionsOutput, table
+    describeIndexFields: function(Client, types.DescribeIndexFieldsInput): types.DescribeIndexFieldsOutput, table
+    describeScalingParameters: function(Client, types.DescribeScalingParametersInput): types.DescribeScalingParametersOutput, table
+    describeServiceAccessPolicies: function(Client, types.DescribeServiceAccessPoliciesInput): types.DescribeServiceAccessPoliciesOutput, table
+    describeSuggesters: function(Client, types.DescribeSuggestersInput): types.DescribeSuggestersOutput, table
+    indexDocuments: function(Client, types.IndexDocumentsInput): types.IndexDocumentsOutput, table
+    listDomainNames: function(Client, types.ListDomainNamesInput): types.ListDomainNamesOutput, table
+    updateAvailabilityOptions: function(Client, types.UpdateAvailabilityOptionsInput): types.UpdateAvailabilityOptionsOutput, table
+    updateDomainEndpointOptions: function(Client, types.UpdateDomainEndpointOptionsInput): types.UpdateDomainEndpointOptionsOutput, table
+    updateScalingParameters: function(Client, types.UpdateScalingParametersInput): types.UpdateScalingParametersOutput, table
+    updateServiceAccessPolicies: function(Client, types.UpdateServiceAccessPoliciesInput): types.UpdateServiceAccessPoliciesOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

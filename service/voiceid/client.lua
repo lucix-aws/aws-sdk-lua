@@ -1,0 +1,326 @@
+local awsjson_protocol = require("protocol.awsjson")
+local base_client = require("client")
+local defaults = require("defaults")
+local endpoint = require("endpoint")
+local endpoint_rules = require("voiceid.endpoint_rules")
+local sdk_defaults = require("sdk_defaults")
+local types = require("voiceid.types")
+
+local M = {}
+
+local Client = {}
+Client.__index = Client
+
+Client.invokeOperation = base_client.invokeOperation
+
+function M.new(cfg)
+    cfg = cfg or {}
+    cfg.service_id = "VoiceID"
+    cfg.signing_name = "voiceid"
+    if not cfg.protocol then
+        cfg.protocol = awsjson_protocol.new("1.0")
+    end
+    if not cfg.endpoint_provider then
+        cfg.endpoint_provider = function(params)
+            return endpoint.resolve(endpoint_rules, params)
+        end
+    end
+    defaults.resolve_signer(cfg)
+    defaults.resolve_http_client(cfg)
+    defaults.resolve_retry_strategy(cfg)
+    sdk_defaults.resolve_identity_resolver(cfg)
+    local self = setmetatable(base_client.new(cfg), Client)
+    return self
+end
+
+function Client:associateFraudster(input, options)
+    return self:invokeOperation(input, {
+        name = "AssociateFraudster",
+        input_schema = types.AssociateFraudsterInput,
+        output_schema = types.AssociateFraudsterOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:createDomain(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateDomain",
+        input_schema = types.CreateDomainInput,
+        output_schema = types.CreateDomainOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:createWatchlist(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateWatchlist",
+        input_schema = types.CreateWatchlistInput,
+        output_schema = types.CreateWatchlistOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:deleteDomain(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteDomain",
+        input_schema = types.DeleteDomainInput,
+        output_schema = types.DeleteDomainOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:deleteFraudster(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteFraudster",
+        input_schema = types.DeleteFraudsterInput,
+        output_schema = types.DeleteFraudsterOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:deleteSpeaker(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteSpeaker",
+        input_schema = types.DeleteSpeakerInput,
+        output_schema = types.DeleteSpeakerOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:deleteWatchlist(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteWatchlist",
+        input_schema = types.DeleteWatchlistInput,
+        output_schema = types.DeleteWatchlistOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:describeDomain(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeDomain",
+        input_schema = types.DescribeDomainInput,
+        output_schema = types.DescribeDomainOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:describeFraudster(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeFraudster",
+        input_schema = types.DescribeFraudsterInput,
+        output_schema = types.DescribeFraudsterOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:describeFraudsterRegistrationJob(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeFraudsterRegistrationJob",
+        input_schema = types.DescribeFraudsterRegistrationJobInput,
+        output_schema = types.DescribeFraudsterRegistrationJobOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:describeSpeaker(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeSpeaker",
+        input_schema = types.DescribeSpeakerInput,
+        output_schema = types.DescribeSpeakerOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:describeSpeakerEnrollmentJob(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeSpeakerEnrollmentJob",
+        input_schema = types.DescribeSpeakerEnrollmentJobInput,
+        output_schema = types.DescribeSpeakerEnrollmentJobOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:describeWatchlist(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeWatchlist",
+        input_schema = types.DescribeWatchlistInput,
+        output_schema = types.DescribeWatchlistOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:disassociateFraudster(input, options)
+    return self:invokeOperation(input, {
+        name = "DisassociateFraudster",
+        input_schema = types.DisassociateFraudsterInput,
+        output_schema = types.DisassociateFraudsterOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:evaluateSession(input, options)
+    return self:invokeOperation(input, {
+        name = "EvaluateSession",
+        input_schema = types.EvaluateSessionInput,
+        output_schema = types.EvaluateSessionOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:listDomains(input, options)
+    return self:invokeOperation(input, {
+        name = "ListDomains",
+        input_schema = types.ListDomainsInput,
+        output_schema = types.ListDomainsOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:listFraudsterRegistrationJobs(input, options)
+    return self:invokeOperation(input, {
+        name = "ListFraudsterRegistrationJobs",
+        input_schema = types.ListFraudsterRegistrationJobsInput,
+        output_schema = types.ListFraudsterRegistrationJobsOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:listFraudsters(input, options)
+    return self:invokeOperation(input, {
+        name = "ListFraudsters",
+        input_schema = types.ListFraudstersInput,
+        output_schema = types.ListFraudstersOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:listSpeakerEnrollmentJobs(input, options)
+    return self:invokeOperation(input, {
+        name = "ListSpeakerEnrollmentJobs",
+        input_schema = types.ListSpeakerEnrollmentJobsInput,
+        output_schema = types.ListSpeakerEnrollmentJobsOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:listSpeakers(input, options)
+    return self:invokeOperation(input, {
+        name = "ListSpeakers",
+        input_schema = types.ListSpeakersInput,
+        output_schema = types.ListSpeakersOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:listTagsForResource(input, options)
+    return self:invokeOperation(input, {
+        name = "ListTagsForResource",
+        input_schema = types.ListTagsForResourceInput,
+        output_schema = types.ListTagsForResourceOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:listWatchlists(input, options)
+    return self:invokeOperation(input, {
+        name = "ListWatchlists",
+        input_schema = types.ListWatchlistsInput,
+        output_schema = types.ListWatchlistsOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:optOutSpeaker(input, options)
+    return self:invokeOperation(input, {
+        name = "OptOutSpeaker",
+        input_schema = types.OptOutSpeakerInput,
+        output_schema = types.OptOutSpeakerOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:startFraudsterRegistrationJob(input, options)
+    return self:invokeOperation(input, {
+        name = "StartFraudsterRegistrationJob",
+        input_schema = types.StartFraudsterRegistrationJobInput,
+        output_schema = types.StartFraudsterRegistrationJobOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:startSpeakerEnrollmentJob(input, options)
+    return self:invokeOperation(input, {
+        name = "StartSpeakerEnrollmentJob",
+        input_schema = types.StartSpeakerEnrollmentJobInput,
+        output_schema = types.StartSpeakerEnrollmentJobOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:tagResource(input, options)
+    return self:invokeOperation(input, {
+        name = "TagResource",
+        input_schema = types.TagResourceInput,
+        output_schema = types.TagResourceOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:untagResource(input, options)
+    return self:invokeOperation(input, {
+        name = "UntagResource",
+        input_schema = types.UntagResourceInput,
+        output_schema = types.UntagResourceOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:updateDomain(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateDomain",
+        input_schema = types.UpdateDomainInput,
+        output_schema = types.UpdateDomainOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:updateWatchlist(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateWatchlist",
+        input_schema = types.UpdateWatchlistInput,
+        output_schema = types.UpdateWatchlistOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+return M

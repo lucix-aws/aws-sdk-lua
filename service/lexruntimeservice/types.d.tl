@@ -1,0 +1,281 @@
+local record DeleteSessionInput
+    botName: string
+    botAlias: string
+    userId: string
+end
+
+local record DeleteSessionOutput
+    botName: string
+    botAlias: string
+    userId: string
+    sessionId: string
+end
+
+local record GetSessionInput
+    botName: string
+    botAlias: string
+    userId: string
+    checkpointLabelFilter: string
+end
+
+local record GetSessionOutput
+    recentIntentSummaryView: {IntentSummary}
+    sessionAttributes: {string : string}
+    sessionId: string
+    dialogAction: DialogAction
+    activeContexts: {ActiveContext}
+end
+
+local record PostContentInput
+    botName: string
+    botAlias: string
+    userId: string
+    sessionAttributes: string
+    requestAttributes: string
+    contentType: string
+    accept: string
+    inputStream: string
+    activeContexts: string
+end
+
+local record PostContentOutput
+    contentType: string
+    intentName: string
+    nluIntentConfidence: string
+    alternativeIntents: string
+    slots: string
+    sessionAttributes: string
+    sentimentResponse: string
+    message: string
+    encodedMessage: string
+    messageFormat: string
+    dialogState: string
+    slotToElicit: string
+    inputTranscript: string
+    encodedInputTranscript: string
+    audioStream: string
+    botVersion: string
+    sessionId: string
+    activeContexts: string
+end
+
+local record PostTextInput
+    botName: string
+    botAlias: string
+    userId: string
+    sessionAttributes: {string : string}
+    requestAttributes: {string : string}
+    inputText: string
+    activeContexts: {ActiveContext}
+end
+
+local record PostTextOutput
+    intentName: string
+    nluIntentConfidence: IntentConfidence
+    alternativeIntents: {PredictedIntent}
+    slots: {string : string}
+    sessionAttributes: {string : string}
+    message: string
+    sentimentResponse: SentimentResponse
+    messageFormat: string
+    dialogState: string
+    slotToElicit: string
+    responseCard: ResponseCard
+    sessionId: string
+    botVersion: string
+    activeContexts: {ActiveContext}
+end
+
+local record PutSessionInput
+    botName: string
+    botAlias: string
+    userId: string
+    sessionAttributes: {string : string}
+    dialogAction: DialogAction
+    recentIntentSummaryView: {IntentSummary}
+    accept: string
+    activeContexts: {ActiveContext}
+end
+
+local record PutSessionOutput
+    contentType: string
+    intentName: string
+    slots: string
+    sessionAttributes: string
+    message: string
+    encodedMessage: string
+    messageFormat: string
+    dialogState: string
+    slotToElicit: string
+    audioStream: string
+    sessionId: string
+    activeContexts: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record LimitExceededException
+    retryAfterSeconds: string
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record LimitExceededException
+    retryAfterSeconds: string
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record BadGatewayException
+    Message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record DependencyFailedException
+    Message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record LimitExceededException
+    retryAfterSeconds: string
+    message: string
+end
+
+local record LoopDetectedException
+    Message: string
+end
+
+local record NotAcceptableException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record RequestTimeoutException
+    message: string
+end
+
+local record UnsupportedMediaTypeException
+    message: string
+end
+
+local record BadGatewayException
+    Message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record DependencyFailedException
+    Message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record LimitExceededException
+    retryAfterSeconds: string
+    message: string
+end
+
+local record LoopDetectedException
+    Message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record BadGatewayException
+    Message: string
+end
+
+local record BadRequestException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record DependencyFailedException
+    Message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record LimitExceededException
+    retryAfterSeconds: string
+    message: string
+end
+
+local record NotAcceptableException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local type DialogState = "ElicitIntent" | "ConfirmIntent" | "ElicitSlot" | "Fulfilled" | "ReadyForFulfillment" | "Failed"
+
+local type MessageFormatType = "PlainText" | "CustomPayload" | "SSML" | "Composite"
+
+local record M
+    DeleteSessionInput: DeleteSessionInput
+    DeleteSessionOutput: DeleteSessionOutput
+    GetSessionInput: GetSessionInput
+    GetSessionOutput: GetSessionOutput
+    PostContentInput: PostContentInput
+    PostContentOutput: PostContentOutput
+    PostTextInput: PostTextInput
+    PostTextOutput: PostTextOutput
+    PutSessionInput: PutSessionInput
+    PutSessionOutput: PutSessionOutput
+end
+
+return M

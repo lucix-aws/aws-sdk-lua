@@ -1,0 +1,53 @@
+local types = require("connectcases.types")
+
+local record Client
+    batchGetCaseRule: function(Client, types.BatchGetCaseRuleInput): types.BatchGetCaseRuleOutput, table
+    batchGetField: function(Client, types.BatchGetFieldInput): types.BatchGetFieldOutput, table
+    batchPutFieldOptions: function(Client, types.BatchPutFieldOptionsInput): types.BatchPutFieldOptionsOutput, table
+    createCase: function(Client, types.CreateCaseInput): types.CreateCaseOutput, table
+    createCaseRule: function(Client, types.CreateCaseRuleInput): types.CreateCaseRuleOutput, table
+    createDomain: function(Client, types.CreateDomainInput): types.CreateDomainOutput, table
+    createField: function(Client, types.CreateFieldInput): types.CreateFieldOutput, table
+    createLayout: function(Client, types.CreateLayoutInput): types.CreateLayoutOutput, table
+    createRelatedItem: function(Client, types.CreateRelatedItemInput): types.CreateRelatedItemOutput, table
+    createTemplate: function(Client, types.CreateTemplateInput): types.CreateTemplateOutput, table
+    deleteCase: function(Client, types.DeleteCaseInput): types.DeleteCaseOutput, table
+    deleteCaseRule: function(Client, types.DeleteCaseRuleInput): types.DeleteCaseRuleOutput, table
+    deleteDomain: function(Client, types.DeleteDomainInput): types.DeleteDomainOutput, table
+    deleteField: function(Client, types.DeleteFieldInput): types.DeleteFieldOutput, table
+    deleteLayout: function(Client, types.DeleteLayoutInput): types.DeleteLayoutOutput, table
+    deleteRelatedItem: function(Client, types.DeleteRelatedItemInput): types.DeleteRelatedItemOutput, table
+    deleteTemplate: function(Client, types.DeleteTemplateInput): types.DeleteTemplateOutput, table
+    getCase: function(Client, types.GetCaseInput): types.GetCaseOutput, table
+    getCaseAuditEvents: function(Client, types.GetCaseAuditEventsInput): types.GetCaseAuditEventsOutput, table
+    getCaseEventConfiguration: function(Client, types.GetCaseEventConfigurationInput): types.GetCaseEventConfigurationOutput, table
+    getDomain: function(Client, types.GetDomainInput): types.GetDomainOutput, table
+    getLayout: function(Client, types.GetLayoutInput): types.GetLayoutOutput, table
+    getTemplate: function(Client, types.GetTemplateInput): types.GetTemplateOutput, table
+    listCaseRules: function(Client, types.ListCaseRulesInput): types.ListCaseRulesOutput, table
+    listCasesForContact: function(Client, types.ListCasesForContactInput): types.ListCasesForContactOutput, table
+    listDomains: function(Client, types.ListDomainsInput): types.ListDomainsOutput, table
+    listFieldOptions: function(Client, types.ListFieldOptionsInput): types.ListFieldOptionsOutput, table
+    listFields: function(Client, types.ListFieldsInput): types.ListFieldsOutput, table
+    listLayouts: function(Client, types.ListLayoutsInput): types.ListLayoutsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTemplates: function(Client, types.ListTemplatesInput): types.ListTemplatesOutput, table
+    putCaseEventConfiguration: function(Client, types.PutCaseEventConfigurationInput): types.PutCaseEventConfigurationOutput, table
+    searchAllRelatedItems: function(Client, types.SearchAllRelatedItemsInput): types.SearchAllRelatedItemsOutput, table
+    searchCases: function(Client, types.SearchCasesInput): types.SearchCasesOutput, table
+    searchRelatedItems: function(Client, types.SearchRelatedItemsInput): types.SearchRelatedItemsOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateCase: function(Client, types.UpdateCaseInput): types.UpdateCaseOutput, table
+    updateCaseRule: function(Client, types.UpdateCaseRuleInput): types.UpdateCaseRuleOutput, table
+    updateField: function(Client, types.UpdateFieldInput): types.UpdateFieldOutput, table
+    updateLayout: function(Client, types.UpdateLayoutInput): types.UpdateLayoutOutput, table
+    updateRelatedItem: function(Client, types.UpdateRelatedItemInput): types.UpdateRelatedItemOutput, table
+    updateTemplate: function(Client, types.UpdateTemplateInput): types.UpdateTemplateOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,53 @@
+local record GetDeploymentsInput
+    DeviceName: string
+    DeviceFleetName: string
+end
+
+local record GetDeploymentsOutput
+    Deployments: {EdgeDeployment}
+end
+
+local record GetDeviceRegistrationInput
+    DeviceName: string
+    DeviceFleetName: string
+end
+
+local record GetDeviceRegistrationOutput
+    DeviceRegistration: string
+    CacheTTL: string
+end
+
+local record SendHeartbeatInput
+    AgentMetrics: {EdgeMetric}
+    Models: {Model}
+    AgentVersion: string
+    DeviceName: string
+    DeviceFleetName: string
+    DeploymentResult: DeploymentResult
+end
+
+local record SendHeartbeatOutput
+end
+
+local record InternalServiceException
+    Message: string
+end
+
+local record InternalServiceException
+    Message: string
+end
+
+local record InternalServiceException
+    Message: string
+end
+
+local record M
+    GetDeploymentsInput: GetDeploymentsInput
+    GetDeploymentsOutput: GetDeploymentsOutput
+    GetDeviceRegistrationInput: GetDeviceRegistrationInput
+    GetDeviceRegistrationOutput: GetDeviceRegistrationOutput
+    SendHeartbeatInput: SendHeartbeatInput
+    SendHeartbeatOutput: SendHeartbeatOutput
+end
+
+return M

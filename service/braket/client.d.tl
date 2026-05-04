@@ -1,0 +1,27 @@
+local types = require("braket.types")
+
+local record Client
+    cancelJob: function(Client, types.CancelJobInput): types.CancelJobOutput, table
+    cancelQuantumTask: function(Client, types.CancelQuantumTaskInput): types.CancelQuantumTaskOutput, table
+    createJob: function(Client, types.CreateJobInput): types.CreateJobOutput, table
+    createQuantumTask: function(Client, types.CreateQuantumTaskInput): types.CreateQuantumTaskOutput, table
+    createSpendingLimit: function(Client, types.CreateSpendingLimitInput): types.CreateSpendingLimitOutput, table
+    deleteSpendingLimit: function(Client, types.DeleteSpendingLimitInput): types.DeleteSpendingLimitOutput, table
+    getDevice: function(Client, types.GetDeviceInput): types.GetDeviceOutput, table
+    getJob: function(Client, types.GetJobInput): types.GetJobOutput, table
+    getQuantumTask: function(Client, types.GetQuantumTaskInput): types.GetQuantumTaskOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    searchDevices: function(Client, types.SearchDevicesInput): types.SearchDevicesOutput, table
+    searchJobs: function(Client, types.SearchJobsInput): types.SearchJobsOutput, table
+    searchQuantumTasks: function(Client, types.SearchQuantumTasksInput): types.SearchQuantumTasksOutput, table
+    searchSpendingLimits: function(Client, types.SearchSpendingLimitsInput): types.SearchSpendingLimitsOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateSpendingLimit: function(Client, types.UpdateSpendingLimitInput): types.UpdateSpendingLimitOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

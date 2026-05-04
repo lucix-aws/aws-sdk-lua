@@ -1,0 +1,14 @@
+local types = require("dynamodbstreams.types")
+
+local record Client
+    describeStream: function(Client, types.DescribeStreamInput): types.DescribeStreamOutput, table
+    getRecords: function(Client, types.GetRecordsInput): types.GetRecordsOutput, table
+    getShardIterator: function(Client, types.GetShardIteratorInput): types.GetShardIteratorOutput, table
+    listStreams: function(Client, types.ListStreamsInput): types.ListStreamsOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

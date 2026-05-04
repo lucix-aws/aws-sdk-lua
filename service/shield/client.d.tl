@@ -1,0 +1,46 @@
+local types = require("shield.types")
+
+local record Client
+    associateDRTLogBucket: function(Client, types.AssociateDRTLogBucketInput): types.AssociateDRTLogBucketOutput, table
+    associateDRTRole: function(Client, types.AssociateDRTRoleInput): types.AssociateDRTRoleOutput, table
+    associateHealthCheck: function(Client, types.AssociateHealthCheckInput): types.AssociateHealthCheckOutput, table
+    associateProactiveEngagementDetails: function(Client, types.AssociateProactiveEngagementDetailsInput): types.AssociateProactiveEngagementDetailsOutput, table
+    createProtection: function(Client, types.CreateProtectionInput): types.CreateProtectionOutput, table
+    createProtectionGroup: function(Client, types.CreateProtectionGroupInput): types.CreateProtectionGroupOutput, table
+    createSubscription: function(Client, types.CreateSubscriptionInput): types.CreateSubscriptionOutput, table
+    deleteProtection: function(Client, types.DeleteProtectionInput): types.DeleteProtectionOutput, table
+    deleteProtectionGroup: function(Client, types.DeleteProtectionGroupInput): types.DeleteProtectionGroupOutput, table
+    deleteSubscription: function(Client, types.DeleteSubscriptionInput): types.DeleteSubscriptionOutput, table
+    describeAttack: function(Client, types.DescribeAttackInput): types.DescribeAttackOutput, table
+    describeAttackStatistics: function(Client, types.DescribeAttackStatisticsInput): types.DescribeAttackStatisticsOutput, table
+    describeDRTAccess: function(Client, types.DescribeDRTAccessInput): types.DescribeDRTAccessOutput, table
+    describeEmergencyContactSettings: function(Client, types.DescribeEmergencyContactSettingsInput): types.DescribeEmergencyContactSettingsOutput, table
+    describeProtection: function(Client, types.DescribeProtectionInput): types.DescribeProtectionOutput, table
+    describeProtectionGroup: function(Client, types.DescribeProtectionGroupInput): types.DescribeProtectionGroupOutput, table
+    describeSubscription: function(Client, types.DescribeSubscriptionInput): types.DescribeSubscriptionOutput, table
+    disableApplicationLayerAutomaticResponse: function(Client, types.DisableApplicationLayerAutomaticResponseInput): types.DisableApplicationLayerAutomaticResponseOutput, table
+    disableProactiveEngagement: function(Client, types.DisableProactiveEngagementInput): types.DisableProactiveEngagementOutput, table
+    disassociateDRTLogBucket: function(Client, types.DisassociateDRTLogBucketInput): types.DisassociateDRTLogBucketOutput, table
+    disassociateDRTRole: function(Client, types.DisassociateDRTRoleInput): types.DisassociateDRTRoleOutput, table
+    disassociateHealthCheck: function(Client, types.DisassociateHealthCheckInput): types.DisassociateHealthCheckOutput, table
+    enableApplicationLayerAutomaticResponse: function(Client, types.EnableApplicationLayerAutomaticResponseInput): types.EnableApplicationLayerAutomaticResponseOutput, table
+    enableProactiveEngagement: function(Client, types.EnableProactiveEngagementInput): types.EnableProactiveEngagementOutput, table
+    getSubscriptionState: function(Client, types.GetSubscriptionStateInput): types.GetSubscriptionStateOutput, table
+    listAttacks: function(Client, types.ListAttacksInput): types.ListAttacksOutput, table
+    listProtectionGroups: function(Client, types.ListProtectionGroupsInput): types.ListProtectionGroupsOutput, table
+    listProtections: function(Client, types.ListProtectionsInput): types.ListProtectionsOutput, table
+    listResourcesInProtectionGroup: function(Client, types.ListResourcesInProtectionGroupInput): types.ListResourcesInProtectionGroupOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateApplicationLayerAutomaticResponse: function(Client, types.UpdateApplicationLayerAutomaticResponseInput): types.UpdateApplicationLayerAutomaticResponseOutput, table
+    updateEmergencyContactSettings: function(Client, types.UpdateEmergencyContactSettingsInput): types.UpdateEmergencyContactSettingsOutput, table
+    updateProtectionGroup: function(Client, types.UpdateProtectionGroupInput): types.UpdateProtectionGroupOutput, table
+    updateSubscription: function(Client, types.UpdateSubscriptionInput): types.UpdateSubscriptionOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

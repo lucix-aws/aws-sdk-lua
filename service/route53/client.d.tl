@@ -1,0 +1,81 @@
+local types = require("route53.types")
+
+local record Client
+    activateKeySigningKey: function(Client, types.ActivateKeySigningKeyInput): types.ActivateKeySigningKeyOutput, table
+    associateVPCWithHostedZone: function(Client, types.AssociateVPCWithHostedZoneInput): types.AssociateVPCWithHostedZoneOutput, table
+    changeCidrCollection: function(Client, types.ChangeCidrCollectionInput): types.ChangeCidrCollectionOutput, table
+    changeResourceRecordSets: function(Client, types.ChangeResourceRecordSetsInput): types.ChangeResourceRecordSetsOutput, table
+    changeTagsForResource: function(Client, types.ChangeTagsForResourceInput): types.ChangeTagsForResourceOutput, table
+    createCidrCollection: function(Client, types.CreateCidrCollectionInput): types.CreateCidrCollectionOutput, table
+    createHealthCheck: function(Client, types.CreateHealthCheckInput): types.CreateHealthCheckOutput, table
+    createHostedZone: function(Client, types.CreateHostedZoneInput): types.CreateHostedZoneOutput, table
+    createKeySigningKey: function(Client, types.CreateKeySigningKeyInput): types.CreateKeySigningKeyOutput, table
+    createQueryLoggingConfig: function(Client, types.CreateQueryLoggingConfigInput): types.CreateQueryLoggingConfigOutput, table
+    createReusableDelegationSet: function(Client, types.CreateReusableDelegationSetInput): types.CreateReusableDelegationSetOutput, table
+    createTrafficPolicy: function(Client, types.CreateTrafficPolicyInput): types.CreateTrafficPolicyOutput, table
+    createTrafficPolicyInstance: function(Client, types.CreateTrafficPolicyInstanceInput): types.CreateTrafficPolicyInstanceOutput, table
+    createTrafficPolicyVersion: function(Client, types.CreateTrafficPolicyVersionInput): types.CreateTrafficPolicyVersionOutput, table
+    createVPCAssociationAuthorization: function(Client, types.CreateVPCAssociationAuthorizationInput): types.CreateVPCAssociationAuthorizationOutput, table
+    deactivateKeySigningKey: function(Client, types.DeactivateKeySigningKeyInput): types.DeactivateKeySigningKeyOutput, table
+    deleteCidrCollection: function(Client, types.DeleteCidrCollectionInput): types.DeleteCidrCollectionOutput, table
+    deleteHealthCheck: function(Client, types.DeleteHealthCheckInput): types.DeleteHealthCheckOutput, table
+    deleteHostedZone: function(Client, types.DeleteHostedZoneInput): types.DeleteHostedZoneOutput, table
+    deleteKeySigningKey: function(Client, types.DeleteKeySigningKeyInput): types.DeleteKeySigningKeyOutput, table
+    deleteQueryLoggingConfig: function(Client, types.DeleteQueryLoggingConfigInput): types.DeleteQueryLoggingConfigOutput, table
+    deleteReusableDelegationSet: function(Client, types.DeleteReusableDelegationSetInput): types.DeleteReusableDelegationSetOutput, table
+    deleteTrafficPolicy: function(Client, types.DeleteTrafficPolicyInput): types.DeleteTrafficPolicyOutput, table
+    deleteTrafficPolicyInstance: function(Client, types.DeleteTrafficPolicyInstanceInput): types.DeleteTrafficPolicyInstanceOutput, table
+    deleteVPCAssociationAuthorization: function(Client, types.DeleteVPCAssociationAuthorizationInput): types.DeleteVPCAssociationAuthorizationOutput, table
+    disableHostedZoneDNSSEC: function(Client, types.DisableHostedZoneDNSSECInput): types.DisableHostedZoneDNSSECOutput, table
+    disassociateVPCFromHostedZone: function(Client, types.DisassociateVPCFromHostedZoneInput): types.DisassociateVPCFromHostedZoneOutput, table
+    enableHostedZoneDNSSEC: function(Client, types.EnableHostedZoneDNSSECInput): types.EnableHostedZoneDNSSECOutput, table
+    getAccountLimit: function(Client, types.GetAccountLimitInput): types.GetAccountLimitOutput, table
+    getChange: function(Client, types.GetChangeInput): types.GetChangeOutput, table
+    getCheckerIpRanges: function(Client, types.GetCheckerIpRangesInput): types.GetCheckerIpRangesOutput, table
+    getDNSSEC: function(Client, types.GetDNSSECInput): types.GetDNSSECOutput, table
+    getGeoLocation: function(Client, types.GetGeoLocationInput): types.GetGeoLocationOutput, table
+    getHealthCheck: function(Client, types.GetHealthCheckInput): types.GetHealthCheckOutput, table
+    getHealthCheckCount: function(Client, types.GetHealthCheckCountInput): types.GetHealthCheckCountOutput, table
+    getHealthCheckLastFailureReason: function(Client, types.GetHealthCheckLastFailureReasonInput): types.GetHealthCheckLastFailureReasonOutput, table
+    getHealthCheckStatus: function(Client, types.GetHealthCheckStatusInput): types.GetHealthCheckStatusOutput, table
+    getHostedZone: function(Client, types.GetHostedZoneInput): types.GetHostedZoneOutput, table
+    getHostedZoneCount: function(Client, types.GetHostedZoneCountInput): types.GetHostedZoneCountOutput, table
+    getHostedZoneLimit: function(Client, types.GetHostedZoneLimitInput): types.GetHostedZoneLimitOutput, table
+    getQueryLoggingConfig: function(Client, types.GetQueryLoggingConfigInput): types.GetQueryLoggingConfigOutput, table
+    getReusableDelegationSet: function(Client, types.GetReusableDelegationSetInput): types.GetReusableDelegationSetOutput, table
+    getReusableDelegationSetLimit: function(Client, types.GetReusableDelegationSetLimitInput): types.GetReusableDelegationSetLimitOutput, table
+    getTrafficPolicy: function(Client, types.GetTrafficPolicyInput): types.GetTrafficPolicyOutput, table
+    getTrafficPolicyInstance: function(Client, types.GetTrafficPolicyInstanceInput): types.GetTrafficPolicyInstanceOutput, table
+    getTrafficPolicyInstanceCount: function(Client, types.GetTrafficPolicyInstanceCountInput): types.GetTrafficPolicyInstanceCountOutput, table
+    listCidrBlocks: function(Client, types.ListCidrBlocksInput): types.ListCidrBlocksOutput, table
+    listCidrCollections: function(Client, types.ListCidrCollectionsInput): types.ListCidrCollectionsOutput, table
+    listCidrLocations: function(Client, types.ListCidrLocationsInput): types.ListCidrLocationsOutput, table
+    listGeoLocations: function(Client, types.ListGeoLocationsInput): types.ListGeoLocationsOutput, table
+    listHealthChecks: function(Client, types.ListHealthChecksInput): types.ListHealthChecksOutput, table
+    listHostedZones: function(Client, types.ListHostedZonesInput): types.ListHostedZonesOutput, table
+    listHostedZonesByName: function(Client, types.ListHostedZonesByNameInput): types.ListHostedZonesByNameOutput, table
+    listHostedZonesByVPC: function(Client, types.ListHostedZonesByVPCInput): types.ListHostedZonesByVPCOutput, table
+    listQueryLoggingConfigs: function(Client, types.ListQueryLoggingConfigsInput): types.ListQueryLoggingConfigsOutput, table
+    listResourceRecordSets: function(Client, types.ListResourceRecordSetsInput): types.ListResourceRecordSetsOutput, table
+    listReusableDelegationSets: function(Client, types.ListReusableDelegationSetsInput): types.ListReusableDelegationSetsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForResources: function(Client, types.ListTagsForResourcesInput): types.ListTagsForResourcesOutput, table
+    listTrafficPolicies: function(Client, types.ListTrafficPoliciesInput): types.ListTrafficPoliciesOutput, table
+    listTrafficPolicyInstances: function(Client, types.ListTrafficPolicyInstancesInput): types.ListTrafficPolicyInstancesOutput, table
+    listTrafficPolicyInstancesByHostedZone: function(Client, types.ListTrafficPolicyInstancesByHostedZoneInput): types.ListTrafficPolicyInstancesByHostedZoneOutput, table
+    listTrafficPolicyInstancesByPolicy: function(Client, types.ListTrafficPolicyInstancesByPolicyInput): types.ListTrafficPolicyInstancesByPolicyOutput, table
+    listTrafficPolicyVersions: function(Client, types.ListTrafficPolicyVersionsInput): types.ListTrafficPolicyVersionsOutput, table
+    listVPCAssociationAuthorizations: function(Client, types.ListVPCAssociationAuthorizationsInput): types.ListVPCAssociationAuthorizationsOutput, table
+    testDNSAnswer: function(Client, types.TestDNSAnswerInput): types.TestDNSAnswerOutput, table
+    updateHealthCheck: function(Client, types.UpdateHealthCheckInput): types.UpdateHealthCheckOutput, table
+    updateHostedZoneComment: function(Client, types.UpdateHostedZoneCommentInput): types.UpdateHostedZoneCommentOutput, table
+    updateHostedZoneFeatures: function(Client, types.UpdateHostedZoneFeaturesInput): types.UpdateHostedZoneFeaturesOutput, table
+    updateTrafficPolicyComment: function(Client, types.UpdateTrafficPolicyCommentInput): types.UpdateTrafficPolicyCommentOutput, table
+    updateTrafficPolicyInstance: function(Client, types.UpdateTrafficPolicyInstanceInput): types.UpdateTrafficPolicyInstanceOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

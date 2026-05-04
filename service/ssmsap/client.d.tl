@@ -1,0 +1,37 @@
+local types = require("ssmsap.types")
+
+local record Client
+    deleteResourcePermission: function(Client, types.DeleteResourcePermissionInput): types.DeleteResourcePermissionOutput, table
+    deregisterApplication: function(Client, types.DeregisterApplicationInput): types.DeregisterApplicationOutput, table
+    getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    getComponent: function(Client, types.GetComponentInput): types.GetComponentOutput, table
+    getConfigurationCheckOperation: function(Client, types.GetConfigurationCheckOperationInput): types.GetConfigurationCheckOperationOutput, table
+    getDatabase: function(Client, types.GetDatabaseInput): types.GetDatabaseOutput, table
+    getOperation: function(Client, types.GetOperationInput): types.GetOperationOutput, table
+    getResourcePermission: function(Client, types.GetResourcePermissionInput): types.GetResourcePermissionOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listComponents: function(Client, types.ListComponentsInput): types.ListComponentsOutput, table
+    listConfigurationCheckDefinitions: function(Client, types.ListConfigurationCheckDefinitionsInput): types.ListConfigurationCheckDefinitionsOutput, table
+    listConfigurationCheckOperations: function(Client, types.ListConfigurationCheckOperationsInput): types.ListConfigurationCheckOperationsOutput, table
+    listDatabases: function(Client, types.ListDatabasesInput): types.ListDatabasesOutput, table
+    listOperationEvents: function(Client, types.ListOperationEventsInput): types.ListOperationEventsOutput, table
+    listOperations: function(Client, types.ListOperationsInput): types.ListOperationsOutput, table
+    listSubCheckResults: function(Client, types.ListSubCheckResultsInput): types.ListSubCheckResultsOutput, table
+    listSubCheckRuleResults: function(Client, types.ListSubCheckRuleResultsInput): types.ListSubCheckRuleResultsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putResourcePermission: function(Client, types.PutResourcePermissionInput): types.PutResourcePermissionOutput, table
+    registerApplication: function(Client, types.RegisterApplicationInput): types.RegisterApplicationOutput, table
+    startApplication: function(Client, types.StartApplicationInput): types.StartApplicationOutput, table
+    startApplicationRefresh: function(Client, types.StartApplicationRefreshInput): types.StartApplicationRefreshOutput, table
+    startConfigurationChecks: function(Client, types.StartConfigurationChecksInput): types.StartConfigurationChecksOutput, table
+    stopApplication: function(Client, types.StopApplicationInput): types.StopApplicationOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateApplicationSettings: function(Client, types.UpdateApplicationSettingsInput): types.UpdateApplicationSettingsOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

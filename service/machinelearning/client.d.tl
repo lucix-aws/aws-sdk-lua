@@ -1,0 +1,38 @@
+local types = require("machinelearning.types")
+
+local record Client
+    addTags: function(Client, types.AddTagsInput): types.AddTagsOutput, table
+    createBatchPrediction: function(Client, types.CreateBatchPredictionInput): types.CreateBatchPredictionOutput, table
+    createDataSourceFromRDS: function(Client, types.CreateDataSourceFromRDSInput): types.CreateDataSourceFromRDSOutput, table
+    createDataSourceFromRedshift: function(Client, types.CreateDataSourceFromRedshiftInput): types.CreateDataSourceFromRedshiftOutput, table
+    createDataSourceFromS3: function(Client, types.CreateDataSourceFromS3Input): types.CreateDataSourceFromS3Output, table
+    createEvaluation: function(Client, types.CreateEvaluationInput): types.CreateEvaluationOutput, table
+    createMLModel: function(Client, types.CreateMLModelInput): types.CreateMLModelOutput, table
+    createRealtimeEndpoint: function(Client, types.CreateRealtimeEndpointInput): types.CreateRealtimeEndpointOutput, table
+    deleteBatchPrediction: function(Client, types.DeleteBatchPredictionInput): types.DeleteBatchPredictionOutput, table
+    deleteDataSource: function(Client, types.DeleteDataSourceInput): types.DeleteDataSourceOutput, table
+    deleteEvaluation: function(Client, types.DeleteEvaluationInput): types.DeleteEvaluationOutput, table
+    deleteMLModel: function(Client, types.DeleteMLModelInput): types.DeleteMLModelOutput, table
+    deleteRealtimeEndpoint: function(Client, types.DeleteRealtimeEndpointInput): types.DeleteRealtimeEndpointOutput, table
+    deleteTags: function(Client, types.DeleteTagsInput): types.DeleteTagsOutput, table
+    describeBatchPredictions: function(Client, types.DescribeBatchPredictionsInput): types.DescribeBatchPredictionsOutput, table
+    describeDataSources: function(Client, types.DescribeDataSourcesInput): types.DescribeDataSourcesOutput, table
+    describeEvaluations: function(Client, types.DescribeEvaluationsInput): types.DescribeEvaluationsOutput, table
+    describeMLModels: function(Client, types.DescribeMLModelsInput): types.DescribeMLModelsOutput, table
+    describeTags: function(Client, types.DescribeTagsInput): types.DescribeTagsOutput, table
+    getBatchPrediction: function(Client, types.GetBatchPredictionInput): types.GetBatchPredictionOutput, table
+    getDataSource: function(Client, types.GetDataSourceInput): types.GetDataSourceOutput, table
+    getEvaluation: function(Client, types.GetEvaluationInput): types.GetEvaluationOutput, table
+    getMLModel: function(Client, types.GetMLModelInput): types.GetMLModelOutput, table
+    predict: function(Client, types.PredictInput): types.PredictOutput, table
+    updateBatchPrediction: function(Client, types.UpdateBatchPredictionInput): types.UpdateBatchPredictionOutput, table
+    updateDataSource: function(Client, types.UpdateDataSourceInput): types.UpdateDataSourceOutput, table
+    updateEvaluation: function(Client, types.UpdateEvaluationInput): types.UpdateEvaluationOutput, table
+    updateMLModel: function(Client, types.UpdateMLModelInput): types.UpdateMLModelOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

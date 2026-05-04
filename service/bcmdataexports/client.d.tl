@@ -1,0 +1,22 @@
+local types = require("bcmdataexports.types")
+
+local record Client
+    createExport: function(Client, types.CreateExportInput): types.CreateExportOutput, table
+    deleteExport: function(Client, types.DeleteExportInput): types.DeleteExportOutput, table
+    getExecution: function(Client, types.GetExecutionInput): types.GetExecutionOutput, table
+    getExport: function(Client, types.GetExportInput): types.GetExportOutput, table
+    getTable: function(Client, types.GetTableInput): types.GetTableOutput, table
+    listExecutions: function(Client, types.ListExecutionsInput): types.ListExecutionsOutput, table
+    listExports: function(Client, types.ListExportsInput): types.ListExportsOutput, table
+    listTables: function(Client, types.ListTablesInput): types.ListTablesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateExport: function(Client, types.UpdateExportInput): types.UpdateExportOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

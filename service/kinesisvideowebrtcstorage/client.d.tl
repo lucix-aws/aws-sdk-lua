@@ -1,0 +1,12 @@
+local types = require("kinesisvideowebrtcstorage.types")
+
+local record Client
+    joinStorageSession: function(Client, types.JoinStorageSessionInput): types.JoinStorageSessionOutput, table
+    joinStorageSessionAsViewer: function(Client, types.JoinStorageSessionAsViewerInput): types.JoinStorageSessionAsViewerOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

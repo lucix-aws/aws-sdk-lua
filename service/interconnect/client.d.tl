@@ -1,0 +1,23 @@
+local types = require("interconnect.types")
+
+local record Client
+    acceptConnectionProposal: function(Client, types.AcceptConnectionProposalInput): types.AcceptConnectionProposalOutput, table
+    createConnection: function(Client, types.CreateConnectionInput): types.CreateConnectionOutput, table
+    deleteConnection: function(Client, types.DeleteConnectionInput): types.DeleteConnectionOutput, table
+    describeConnectionProposal: function(Client, types.DescribeConnectionProposalInput): types.DescribeConnectionProposalOutput, table
+    getConnection: function(Client, types.GetConnectionInput): types.GetConnectionOutput, table
+    getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    listAttachPoints: function(Client, types.ListAttachPointsInput): types.ListAttachPointsOutput, table
+    listConnections: function(Client, types.ListConnectionsInput): types.ListConnectionsOutput, table
+    listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateConnection: function(Client, types.UpdateConnectionInput): types.UpdateConnectionOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

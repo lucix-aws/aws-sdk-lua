@@ -1,0 +1,477 @@
+local record CreateLinkInput
+    LabelTemplate: string
+    ResourceTypes: {string}
+    SinkIdentifier: string
+    Tags: {string : string}
+    LinkConfiguration: LinkConfiguration
+end
+
+local record CreateLinkOutput
+    Arn: string
+    Id: string
+    Label: string
+    LabelTemplate: string
+    ResourceTypes: {string}
+    SinkArn: string
+    Tags: {string : string}
+    LinkConfiguration: LinkConfiguration
+end
+
+local record CreateSinkInput
+    Name: string
+    Tags: {string : string}
+end
+
+local record CreateSinkOutput
+    Arn: string
+    Id: string
+    Name: string
+    Tags: {string : string}
+end
+
+local record DeleteLinkInput
+    Identifier: string
+end
+
+local record DeleteLinkOutput
+end
+
+local record DeleteSinkInput
+    Identifier: string
+end
+
+local record DeleteSinkOutput
+end
+
+local record GetLinkInput
+    Identifier: string
+    IncludeTags: boolean
+end
+
+local record GetLinkOutput
+    Arn: string
+    Id: string
+    Label: string
+    LabelTemplate: string
+    ResourceTypes: {string}
+    SinkArn: string
+    Tags: {string : string}
+    LinkConfiguration: LinkConfiguration
+end
+
+local record GetSinkInput
+    Identifier: string
+    IncludeTags: boolean
+end
+
+local record GetSinkOutput
+    Arn: string
+    Id: string
+    Name: string
+    Tags: {string : string}
+end
+
+local record GetSinkPolicyInput
+    SinkIdentifier: string
+end
+
+local record GetSinkPolicyOutput
+    SinkArn: string
+    SinkId: string
+    Policy: string
+end
+
+local record ListAttachedLinksInput
+    MaxResults: number
+    NextToken: string
+    SinkIdentifier: string
+end
+
+local record ListAttachedLinksOutput
+    Items: {ListAttachedLinksItem}
+    NextToken: string
+end
+
+local record ListLinksInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListLinksOutput
+    Items: {ListLinksItem}
+    NextToken: string
+end
+
+local record ListSinksInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListSinksOutput
+    Items: {ListSinksItem}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {string : string}
+end
+
+local record PutSinkPolicyInput
+    SinkIdentifier: string
+    Policy: string
+end
+
+local record PutSinkPolicyOutput
+    SinkArn: string
+    SinkId: string
+    Policy: string
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateLinkInput
+    Identifier: string
+    ResourceTypes: {string}
+    LinkConfiguration: LinkConfiguration
+    IncludeTags: boolean
+end
+
+local record UpdateLinkOutput
+    Arn: string
+    Id: string
+    Label: string
+    LabelTemplate: string
+    ResourceTypes: {string}
+    SinkArn: string
+    Tags: {string : string}
+    LinkConfiguration: LinkConfiguration
+end
+
+local record ConflictException
+    Message: string
+    amznErrorType: string
+end
+
+local record InternalServiceFault
+    Message: string
+    amznErrorType: string
+end
+
+local record InvalidParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record MissingRequiredParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+    amznErrorType: string
+end
+
+local record ConflictException
+    Message: string
+    amznErrorType: string
+end
+
+local record InternalServiceFault
+    Message: string
+    amznErrorType: string
+end
+
+local record InvalidParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record MissingRequiredParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+    amznErrorType: string
+end
+
+local record InternalServiceFault
+    Message: string
+    amznErrorType: string
+end
+
+local record InvalidParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record MissingRequiredParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    amznErrorType: string
+end
+
+local record ConflictException
+    Message: string
+    amznErrorType: string
+end
+
+local record InternalServiceFault
+    Message: string
+    amznErrorType: string
+end
+
+local record InvalidParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record MissingRequiredParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    amznErrorType: string
+end
+
+local record InternalServiceFault
+    Message: string
+    amznErrorType: string
+end
+
+local record InvalidParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record MissingRequiredParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    amznErrorType: string
+end
+
+local record InternalServiceFault
+    Message: string
+    amznErrorType: string
+end
+
+local record InvalidParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record MissingRequiredParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    amznErrorType: string
+end
+
+local record InternalServiceFault
+    Message: string
+    amznErrorType: string
+end
+
+local record InvalidParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record MissingRequiredParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    amznErrorType: string
+end
+
+local record InternalServiceFault
+    Message: string
+    amznErrorType: string
+end
+
+local record InvalidParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record MissingRequiredParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    amznErrorType: string
+end
+
+local record InternalServiceFault
+    Message: string
+    amznErrorType: string
+end
+
+local record InvalidParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    amznErrorType: string
+end
+
+local record InternalServiceFault
+    Message: string
+    amznErrorType: string
+end
+
+local record InvalidParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    amznErrorType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    amznErrorType: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServiceFault
+    Message: string
+    amznErrorType: string
+end
+
+local record InvalidParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record MissingRequiredParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    amznErrorType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    amznErrorType: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    amznErrorType: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServiceFault
+    Message: string
+    amznErrorType: string
+end
+
+local record InvalidParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record MissingRequiredParameterException
+    message: string
+    amznErrorType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    amznErrorType: string
+end
+
+local record M
+    CreateLinkInput: CreateLinkInput
+    CreateLinkOutput: CreateLinkOutput
+    CreateSinkInput: CreateSinkInput
+    CreateSinkOutput: CreateSinkOutput
+    DeleteLinkInput: DeleteLinkInput
+    DeleteLinkOutput: DeleteLinkOutput
+    DeleteSinkInput: DeleteSinkInput
+    DeleteSinkOutput: DeleteSinkOutput
+    GetLinkInput: GetLinkInput
+    GetLinkOutput: GetLinkOutput
+    GetSinkInput: GetSinkInput
+    GetSinkOutput: GetSinkOutput
+    GetSinkPolicyInput: GetSinkPolicyInput
+    GetSinkPolicyOutput: GetSinkPolicyOutput
+    ListAttachedLinksInput: ListAttachedLinksInput
+    ListAttachedLinksOutput: ListAttachedLinksOutput
+    ListLinksInput: ListLinksInput
+    ListLinksOutput: ListLinksOutput
+    ListSinksInput: ListSinksInput
+    ListSinksOutput: ListSinksOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PutSinkPolicyInput: PutSinkPolicyInput
+    PutSinkPolicyOutput: PutSinkPolicyOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateLinkInput: UpdateLinkInput
+    UpdateLinkOutput: UpdateLinkOutput
+end
+
+return M

@@ -1,0 +1,175 @@
+local record CreateEndpointInput
+    OutpostId: string
+    SubnetId: string
+    SecurityGroupId: string
+    AccessType: string
+    CustomerOwnedIpv4Pool: string
+end
+
+local record CreateEndpointOutput
+    EndpointArn: string
+end
+
+local record DeleteEndpointInput
+    EndpointId: string
+    OutpostId: string
+end
+
+local record DeleteEndpointOutput
+end
+
+local record ListEndpointsInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListEndpointsOutput
+    Endpoints: {Endpoint}
+    NextToken: string
+end
+
+local record ListOutpostsWithS3Input
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListOutpostsWithS3Output
+    Outposts: {Outpost}
+    NextToken: string
+end
+
+local record ListSharedEndpointsInput
+    NextToken: string
+    MaxResults: number
+    OutpostId: string
+end
+
+local record ListSharedEndpointsOutput
+    Endpoints: {Endpoint}
+    NextToken: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record OutpostOfflineException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record OutpostOfflineException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local type EndpointAccessType = "Private" | "CustomerOwnedIp"
+
+local record M
+    CreateEndpointInput: CreateEndpointInput
+    CreateEndpointOutput: CreateEndpointOutput
+    DeleteEndpointInput: DeleteEndpointInput
+    DeleteEndpointOutput: DeleteEndpointOutput
+    ListEndpointsInput: ListEndpointsInput
+    ListEndpointsOutput: ListEndpointsOutput
+    ListOutpostsWithS3Input: ListOutpostsWithS3Input
+    ListOutpostsWithS3Output: ListOutpostsWithS3Output
+    ListSharedEndpointsInput: ListSharedEndpointsInput
+    ListSharedEndpointsOutput: ListSharedEndpointsOutput
+end
+
+return M

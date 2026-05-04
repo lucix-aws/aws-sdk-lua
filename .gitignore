@@ -2,10 +2,15 @@
 .DS_Store
 
 # Gradle
-/.gradle
-build
+.gradle/
+build/
 */out/
 */*/out
+codegen/.gradle/
+codegen/build/
+codegen/smithy-aws-lua-codegen/build/
+codegen/sdk-codegen/build/
+codegen/sdk-codegen/smithy-build.json
 
 # IntelliJ
 .idea/

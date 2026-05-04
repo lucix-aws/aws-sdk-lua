@@ -1,0 +1,70 @@
+local types = require("emr.types")
+
+local record Client
+    addInstanceFleet: function(Client, types.AddInstanceFleetInput): types.AddInstanceFleetOutput, table
+    addInstanceGroups: function(Client, types.AddInstanceGroupsInput): types.AddInstanceGroupsOutput, table
+    addJobFlowSteps: function(Client, types.AddJobFlowStepsInput): types.AddJobFlowStepsOutput, table
+    addTags: function(Client, types.AddTagsInput): types.AddTagsOutput, table
+    cancelSteps: function(Client, types.CancelStepsInput): types.CancelStepsOutput, table
+    createPersistentAppUI: function(Client, types.CreatePersistentAppUIInput): types.CreatePersistentAppUIOutput, table
+    createSecurityConfiguration: function(Client, types.CreateSecurityConfigurationInput): types.CreateSecurityConfigurationOutput, table
+    createStudio: function(Client, types.CreateStudioInput): types.CreateStudioOutput, table
+    createStudioSessionMapping: function(Client, types.CreateStudioSessionMappingInput): types.CreateStudioSessionMappingOutput, table
+    deleteSecurityConfiguration: function(Client, types.DeleteSecurityConfigurationInput): types.DeleteSecurityConfigurationOutput, table
+    deleteStudio: function(Client, types.DeleteStudioInput): types.DeleteStudioOutput, table
+    deleteStudioSessionMapping: function(Client, types.DeleteStudioSessionMappingInput): types.DeleteStudioSessionMappingOutput, table
+    describeCluster: function(Client, types.DescribeClusterInput): types.DescribeClusterOutput, table
+    describeJobFlows: function(Client, types.DescribeJobFlowsInput): types.DescribeJobFlowsOutput, table
+    describeNotebookExecution: function(Client, types.DescribeNotebookExecutionInput): types.DescribeNotebookExecutionOutput, table
+    describePersistentAppUI: function(Client, types.DescribePersistentAppUIInput): types.DescribePersistentAppUIOutput, table
+    describeReleaseLabel: function(Client, types.DescribeReleaseLabelInput): types.DescribeReleaseLabelOutput, table
+    describeSecurityConfiguration: function(Client, types.DescribeSecurityConfigurationInput): types.DescribeSecurityConfigurationOutput, table
+    describeStep: function(Client, types.DescribeStepInput): types.DescribeStepOutput, table
+    describeStudio: function(Client, types.DescribeStudioInput): types.DescribeStudioOutput, table
+    getAutoTerminationPolicy: function(Client, types.GetAutoTerminationPolicyInput): types.GetAutoTerminationPolicyOutput, table
+    getBlockPublicAccessConfiguration: function(Client, types.GetBlockPublicAccessConfigurationInput): types.GetBlockPublicAccessConfigurationOutput, table
+    getClusterSessionCredentials: function(Client, types.GetClusterSessionCredentialsInput): types.GetClusterSessionCredentialsOutput, table
+    getManagedScalingPolicy: function(Client, types.GetManagedScalingPolicyInput): types.GetManagedScalingPolicyOutput, table
+    getOnClusterAppUIPresignedURL: function(Client, types.GetOnClusterAppUIPresignedURLInput): types.GetOnClusterAppUIPresignedURLOutput, table
+    getPersistentAppUIPresignedURL: function(Client, types.GetPersistentAppUIPresignedURLInput): types.GetPersistentAppUIPresignedURLOutput, table
+    getStudioSessionMapping: function(Client, types.GetStudioSessionMappingInput): types.GetStudioSessionMappingOutput, table
+    listBootstrapActions: function(Client, types.ListBootstrapActionsInput): types.ListBootstrapActionsOutput, table
+    listClusters: function(Client, types.ListClustersInput): types.ListClustersOutput, table
+    listInstanceFleets: function(Client, types.ListInstanceFleetsInput): types.ListInstanceFleetsOutput, table
+    listInstanceGroups: function(Client, types.ListInstanceGroupsInput): types.ListInstanceGroupsOutput, table
+    listInstances: function(Client, types.ListInstancesInput): types.ListInstancesOutput, table
+    listNotebookExecutions: function(Client, types.ListNotebookExecutionsInput): types.ListNotebookExecutionsOutput, table
+    listReleaseLabels: function(Client, types.ListReleaseLabelsInput): types.ListReleaseLabelsOutput, table
+    listSecurityConfigurations: function(Client, types.ListSecurityConfigurationsInput): types.ListSecurityConfigurationsOutput, table
+    listSteps: function(Client, types.ListStepsInput): types.ListStepsOutput, table
+    listStudios: function(Client, types.ListStudiosInput): types.ListStudiosOutput, table
+    listStudioSessionMappings: function(Client, types.ListStudioSessionMappingsInput): types.ListStudioSessionMappingsOutput, table
+    listSupportedInstanceTypes: function(Client, types.ListSupportedInstanceTypesInput): types.ListSupportedInstanceTypesOutput, table
+    modifyCluster: function(Client, types.ModifyClusterInput): types.ModifyClusterOutput, table
+    modifyInstanceFleet: function(Client, types.ModifyInstanceFleetInput): types.ModifyInstanceFleetOutput, table
+    modifyInstanceGroups: function(Client, types.ModifyInstanceGroupsInput): types.ModifyInstanceGroupsOutput, table
+    putAutoScalingPolicy: function(Client, types.PutAutoScalingPolicyInput): types.PutAutoScalingPolicyOutput, table
+    putAutoTerminationPolicy: function(Client, types.PutAutoTerminationPolicyInput): types.PutAutoTerminationPolicyOutput, table
+    putBlockPublicAccessConfiguration: function(Client, types.PutBlockPublicAccessConfigurationInput): types.PutBlockPublicAccessConfigurationOutput, table
+    putManagedScalingPolicy: function(Client, types.PutManagedScalingPolicyInput): types.PutManagedScalingPolicyOutput, table
+    removeAutoScalingPolicy: function(Client, types.RemoveAutoScalingPolicyInput): types.RemoveAutoScalingPolicyOutput, table
+    removeAutoTerminationPolicy: function(Client, types.RemoveAutoTerminationPolicyInput): types.RemoveAutoTerminationPolicyOutput, table
+    removeManagedScalingPolicy: function(Client, types.RemoveManagedScalingPolicyInput): types.RemoveManagedScalingPolicyOutput, table
+    removeTags: function(Client, types.RemoveTagsInput): types.RemoveTagsOutput, table
+    runJobFlow: function(Client, types.RunJobFlowInput): types.RunJobFlowOutput, table
+    setKeepJobFlowAliveWhenNoSteps: function(Client, types.SetKeepJobFlowAliveWhenNoStepsInput): types.SetKeepJobFlowAliveWhenNoStepsOutput, table
+    setTerminationProtection: function(Client, types.SetTerminationProtectionInput): types.SetTerminationProtectionOutput, table
+    setUnhealthyNodeReplacement: function(Client, types.SetUnhealthyNodeReplacementInput): types.SetUnhealthyNodeReplacementOutput, table
+    setVisibleToAllUsers: function(Client, types.SetVisibleToAllUsersInput): types.SetVisibleToAllUsersOutput, table
+    startNotebookExecution: function(Client, types.StartNotebookExecutionInput): types.StartNotebookExecutionOutput, table
+    stopNotebookExecution: function(Client, types.StopNotebookExecutionInput): types.StopNotebookExecutionOutput, table
+    terminateJobFlows: function(Client, types.TerminateJobFlowsInput): types.TerminateJobFlowsOutput, table
+    updateStudio: function(Client, types.UpdateStudioInput): types.UpdateStudioOutput, table
+    updateStudioSessionMapping: function(Client, types.UpdateStudioSessionMappingInput): types.UpdateStudioSessionMappingOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

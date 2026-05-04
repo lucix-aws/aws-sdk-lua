@@ -1,0 +1,956 @@
+local record AssociateCreatedArtifactInput
+    ProgressUpdateStream: string
+    MigrationTaskName: string
+    CreatedArtifact: CreatedArtifact
+    DryRun: boolean
+end
+
+local record AssociateCreatedArtifactOutput
+end
+
+local record AssociateDiscoveredResourceInput
+    ProgressUpdateStream: string
+    MigrationTaskName: string
+    DiscoveredResource: DiscoveredResource
+    DryRun: boolean
+end
+
+local record AssociateDiscoveredResourceOutput
+end
+
+local record AssociateSourceResourceInput
+    ProgressUpdateStream: string
+    MigrationTaskName: string
+    SourceResource: SourceResource
+    DryRun: boolean
+end
+
+local record AssociateSourceResourceOutput
+end
+
+local record CreateProgressUpdateStreamInput
+    ProgressUpdateStreamName: string
+    DryRun: boolean
+end
+
+local record CreateProgressUpdateStreamOutput
+end
+
+local record DeleteProgressUpdateStreamInput
+    ProgressUpdateStreamName: string
+    DryRun: boolean
+end
+
+local record DeleteProgressUpdateStreamOutput
+end
+
+local record DescribeApplicationStateInput
+    ApplicationId: string
+end
+
+local record DescribeApplicationStateOutput
+    ApplicationStatus: string
+    LastUpdatedTime: number
+end
+
+local record DescribeMigrationTaskInput
+    ProgressUpdateStream: string
+    MigrationTaskName: string
+end
+
+local record DescribeMigrationTaskOutput
+    MigrationTask: MigrationTask
+end
+
+local record DisassociateCreatedArtifactInput
+    ProgressUpdateStream: string
+    MigrationTaskName: string
+    CreatedArtifactName: string
+    DryRun: boolean
+end
+
+local record DisassociateCreatedArtifactOutput
+end
+
+local record DisassociateDiscoveredResourceInput
+    ProgressUpdateStream: string
+    MigrationTaskName: string
+    ConfigurationId: string
+    DryRun: boolean
+end
+
+local record DisassociateDiscoveredResourceOutput
+end
+
+local record DisassociateSourceResourceInput
+    ProgressUpdateStream: string
+    MigrationTaskName: string
+    SourceResourceName: string
+    DryRun: boolean
+end
+
+local record DisassociateSourceResourceOutput
+end
+
+local record ImportMigrationTaskInput
+    ProgressUpdateStream: string
+    MigrationTaskName: string
+    DryRun: boolean
+end
+
+local record ImportMigrationTaskOutput
+end
+
+local record ListApplicationStatesInput
+    ApplicationIds: {string}
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListApplicationStatesOutput
+    ApplicationStateList: {ApplicationState}
+    NextToken: string
+end
+
+local record ListCreatedArtifactsInput
+    ProgressUpdateStream: string
+    MigrationTaskName: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListCreatedArtifactsOutput
+    NextToken: string
+    CreatedArtifactList: {CreatedArtifact}
+end
+
+local record ListDiscoveredResourcesInput
+    ProgressUpdateStream: string
+    MigrationTaskName: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListDiscoveredResourcesOutput
+    NextToken: string
+    DiscoveredResourceList: {DiscoveredResource}
+end
+
+local record ListMigrationTasksInput
+    NextToken: string
+    MaxResults: number
+    ResourceName: string
+end
+
+local record ListMigrationTasksOutput
+    NextToken: string
+    MigrationTaskSummaryList: {MigrationTaskSummary}
+end
+
+local record ListMigrationTaskUpdatesInput
+    ProgressUpdateStream: string
+    MigrationTaskName: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListMigrationTaskUpdatesOutput
+    NextToken: string
+    MigrationTaskUpdateList: {MigrationTaskUpdate}
+end
+
+local record ListProgressUpdateStreamsInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListProgressUpdateStreamsOutput
+    ProgressUpdateStreamSummaryList: {ProgressUpdateStreamSummary}
+    NextToken: string
+end
+
+local record ListSourceResourcesInput
+    ProgressUpdateStream: string
+    MigrationTaskName: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListSourceResourcesOutput
+    NextToken: string
+    SourceResourceList: {SourceResource}
+end
+
+local record NotifyApplicationStateInput
+    ApplicationId: string
+    Status: string
+    UpdateDateTime: number
+    DryRun: boolean
+end
+
+local record NotifyApplicationStateOutput
+end
+
+local record NotifyMigrationTaskStateInput
+    ProgressUpdateStream: string
+    MigrationTaskName: string
+    Task: Task
+    UpdateDateTime: number
+    NextUpdateSeconds: number
+    DryRun: boolean
+end
+
+local record NotifyMigrationTaskStateOutput
+end
+
+local record PutResourceAttributesInput
+    ProgressUpdateStream: string
+    MigrationTaskName: string
+    ResourceAttributeList: {ResourceAttribute}
+    DryRun: boolean
+end
+
+local record PutResourceAttributesOutput
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record DryRunOperation
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record UnauthorizedOperation
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record DryRunOperation
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record PolicyErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record UnauthorizedOperation
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record DryRunOperation
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record UnauthorizedOperation
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record DryRunOperation
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record UnauthorizedOperation
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record DryRunOperation
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record UnauthorizedOperation
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record PolicyErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record DryRunOperation
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record UnauthorizedOperation
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record DryRunOperation
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record UnauthorizedOperation
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record DryRunOperation
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record UnauthorizedOperation
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record DryRunOperation
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record UnauthorizedOperation
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record PolicyErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record DryRunOperation
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record PolicyErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record UnauthorizedOperation
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record DryRunOperation
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record UnauthorizedOperation
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record DryRunOperation
+    Message: string
+end
+
+local record HomeRegionNotSetException
+    Message: string
+end
+
+local record InternalServerError
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+    RetryAfterSeconds: number
+end
+
+local record UnauthorizedOperation
+    Message: string
+end
+
+local type ApplicationStatus = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED"
+
+local record M
+    AssociateCreatedArtifactInput: AssociateCreatedArtifactInput
+    AssociateCreatedArtifactOutput: AssociateCreatedArtifactOutput
+    AssociateDiscoveredResourceInput: AssociateDiscoveredResourceInput
+    AssociateDiscoveredResourceOutput: AssociateDiscoveredResourceOutput
+    AssociateSourceResourceInput: AssociateSourceResourceInput
+    AssociateSourceResourceOutput: AssociateSourceResourceOutput
+    CreateProgressUpdateStreamInput: CreateProgressUpdateStreamInput
+    CreateProgressUpdateStreamOutput: CreateProgressUpdateStreamOutput
+    DeleteProgressUpdateStreamInput: DeleteProgressUpdateStreamInput
+    DeleteProgressUpdateStreamOutput: DeleteProgressUpdateStreamOutput
+    DescribeApplicationStateInput: DescribeApplicationStateInput
+    DescribeApplicationStateOutput: DescribeApplicationStateOutput
+    DescribeMigrationTaskInput: DescribeMigrationTaskInput
+    DescribeMigrationTaskOutput: DescribeMigrationTaskOutput
+    DisassociateCreatedArtifactInput: DisassociateCreatedArtifactInput
+    DisassociateCreatedArtifactOutput: DisassociateCreatedArtifactOutput
+    DisassociateDiscoveredResourceInput: DisassociateDiscoveredResourceInput
+    DisassociateDiscoveredResourceOutput: DisassociateDiscoveredResourceOutput
+    DisassociateSourceResourceInput: DisassociateSourceResourceInput
+    DisassociateSourceResourceOutput: DisassociateSourceResourceOutput
+    ImportMigrationTaskInput: ImportMigrationTaskInput
+    ImportMigrationTaskOutput: ImportMigrationTaskOutput
+    ListApplicationStatesInput: ListApplicationStatesInput
+    ListApplicationStatesOutput: ListApplicationStatesOutput
+    ListCreatedArtifactsInput: ListCreatedArtifactsInput
+    ListCreatedArtifactsOutput: ListCreatedArtifactsOutput
+    ListDiscoveredResourcesInput: ListDiscoveredResourcesInput
+    ListDiscoveredResourcesOutput: ListDiscoveredResourcesOutput
+    ListMigrationTasksInput: ListMigrationTasksInput
+    ListMigrationTasksOutput: ListMigrationTasksOutput
+    ListMigrationTaskUpdatesInput: ListMigrationTaskUpdatesInput
+    ListMigrationTaskUpdatesOutput: ListMigrationTaskUpdatesOutput
+    ListProgressUpdateStreamsInput: ListProgressUpdateStreamsInput
+    ListProgressUpdateStreamsOutput: ListProgressUpdateStreamsOutput
+    ListSourceResourcesInput: ListSourceResourcesInput
+    ListSourceResourcesOutput: ListSourceResourcesOutput
+    NotifyApplicationStateInput: NotifyApplicationStateInput
+    NotifyApplicationStateOutput: NotifyApplicationStateOutput
+    NotifyMigrationTaskStateInput: NotifyMigrationTaskStateInput
+    NotifyMigrationTaskStateOutput: NotifyMigrationTaskStateOutput
+    PutResourceAttributesInput: PutResourceAttributesInput
+    PutResourceAttributesOutput: PutResourceAttributesOutput
+end
+
+return M

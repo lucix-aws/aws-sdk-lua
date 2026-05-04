@@ -1,0 +1,1000 @@
+local record CreateCellInput
+    CellName: string
+    Cells: {string}
+    Tags: {string : string}
+end
+
+local record CreateCellOutput
+    CellArn: string
+    CellName: string
+    Cells: {string}
+    ParentReadinessScopes: {string}
+    Tags: {string : string}
+end
+
+local record CreateCrossAccountAuthorizationInput
+    CrossAccountAuthorization: string
+end
+
+local record CreateCrossAccountAuthorizationOutput
+    CrossAccountAuthorization: string
+end
+
+local record CreateReadinessCheckInput
+    ReadinessCheckName: string
+    ResourceSetName: string
+    Tags: {string : string}
+end
+
+local record CreateReadinessCheckOutput
+    ReadinessCheckArn: string
+    ReadinessCheckName: string
+    ResourceSet: string
+    Tags: {string : string}
+end
+
+local record CreateRecoveryGroupInput
+    Cells: {string}
+    RecoveryGroupName: string
+    Tags: {string : string}
+end
+
+local record CreateRecoveryGroupOutput
+    Cells: {string}
+    RecoveryGroupArn: string
+    RecoveryGroupName: string
+    Tags: {string : string}
+end
+
+local record CreateResourceSetInput
+    ResourceSetName: string
+    ResourceSetType: string
+    Resources: {Resource}
+    Tags: {string : string}
+end
+
+local record CreateResourceSetOutput
+    ResourceSetArn: string
+    ResourceSetName: string
+    ResourceSetType: string
+    Resources: {Resource}
+    Tags: {string : string}
+end
+
+local record DeleteCellInput
+    CellName: string
+end
+
+local record DeleteCellOutput
+end
+
+local record DeleteCrossAccountAuthorizationInput
+    CrossAccountAuthorization: string
+end
+
+local record DeleteCrossAccountAuthorizationOutput
+end
+
+local record DeleteReadinessCheckInput
+    ReadinessCheckName: string
+end
+
+local record DeleteReadinessCheckOutput
+end
+
+local record DeleteRecoveryGroupInput
+    RecoveryGroupName: string
+end
+
+local record DeleteRecoveryGroupOutput
+end
+
+local record DeleteResourceSetInput
+    ResourceSetName: string
+end
+
+local record DeleteResourceSetOutput
+end
+
+local record GetArchitectureRecommendationsInput
+    MaxResults: number
+    NextToken: string
+    RecoveryGroupName: string
+end
+
+local record GetArchitectureRecommendationsOutput
+    LastAuditTimestamp: number
+    NextToken: string
+    Recommendations: {Recommendation}
+end
+
+local record GetCellInput
+    CellName: string
+end
+
+local record GetCellOutput
+    CellArn: string
+    CellName: string
+    Cells: {string}
+    ParentReadinessScopes: {string}
+    Tags: {string : string}
+end
+
+local record GetCellReadinessSummaryInput
+    CellName: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record GetCellReadinessSummaryOutput
+    NextToken: string
+    Readiness: string
+    ReadinessChecks: {ReadinessCheckSummary}
+end
+
+local record GetReadinessCheckInput
+    ReadinessCheckName: string
+end
+
+local record GetReadinessCheckOutput
+    ReadinessCheckArn: string
+    ReadinessCheckName: string
+    ResourceSet: string
+    Tags: {string : string}
+end
+
+local record GetReadinessCheckResourceStatusInput
+    MaxResults: number
+    NextToken: string
+    ReadinessCheckName: string
+    ResourceIdentifier: string
+end
+
+local record GetReadinessCheckResourceStatusOutput
+    NextToken: string
+    Readiness: string
+    Rules: {RuleResult}
+end
+
+local record GetReadinessCheckStatusInput
+    MaxResults: number
+    NextToken: string
+    ReadinessCheckName: string
+end
+
+local record GetReadinessCheckStatusOutput
+    Messages: {Message}
+    NextToken: string
+    Readiness: string
+    Resources: {ResourceResult}
+end
+
+local record GetRecoveryGroupInput
+    RecoveryGroupName: string
+end
+
+local record GetRecoveryGroupOutput
+    Cells: {string}
+    RecoveryGroupArn: string
+    RecoveryGroupName: string
+    Tags: {string : string}
+end
+
+local record GetRecoveryGroupReadinessSummaryInput
+    MaxResults: number
+    NextToken: string
+    RecoveryGroupName: string
+end
+
+local record GetRecoveryGroupReadinessSummaryOutput
+    NextToken: string
+    Readiness: string
+    ReadinessChecks: {ReadinessCheckSummary}
+end
+
+local record GetResourceSetInput
+    ResourceSetName: string
+end
+
+local record GetResourceSetOutput
+    ResourceSetArn: string
+    ResourceSetName: string
+    ResourceSetType: string
+    Resources: {Resource}
+    Tags: {string : string}
+end
+
+local record ListCellsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListCellsOutput
+    Cells: {CellOutput}
+    NextToken: string
+end
+
+local record ListCrossAccountAuthorizationsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListCrossAccountAuthorizationsOutput
+    CrossAccountAuthorizations: {string}
+    NextToken: string
+end
+
+local record ListReadinessChecksInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListReadinessChecksOutput
+    NextToken: string
+    ReadinessChecks: {ReadinessCheckOutput}
+end
+
+local record ListRecoveryGroupsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListRecoveryGroupsOutput
+    NextToken: string
+    RecoveryGroups: {RecoveryGroupOutput}
+end
+
+local record ListResourceSetsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListResourceSetsOutput
+    NextToken: string
+    ResourceSets: {ResourceSetOutput}
+end
+
+local record ListRulesInput
+    MaxResults: number
+    NextToken: string
+    ResourceType: string
+end
+
+local record ListRulesOperationOutput
+    NextToken: string
+    Rules: {ListRulesOutput}
+end
+
+local record ListTagsForResourcesInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourcesOutput
+    Tags: {string : string}
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateCellInput
+    CellName: string
+    Cells: {string}
+end
+
+local record UpdateCellOutput
+    CellArn: string
+    CellName: string
+    Cells: {string}
+    ParentReadinessScopes: {string}
+    Tags: {string : string}
+end
+
+local record UpdateReadinessCheckInput
+    ReadinessCheckName: string
+    ResourceSetName: string
+end
+
+local record UpdateReadinessCheckOutput
+    ReadinessCheckArn: string
+    ReadinessCheckName: string
+    ResourceSet: string
+    Tags: {string : string}
+end
+
+local record UpdateRecoveryGroupInput
+    Cells: {string}
+    RecoveryGroupName: string
+end
+
+local record UpdateRecoveryGroupOutput
+    Cells: {string}
+    RecoveryGroupArn: string
+    RecoveryGroupName: string
+    Tags: {string : string}
+end
+
+local record UpdateResourceSetInput
+    ResourceSetName: string
+    ResourceSetType: string
+    Resources: {Resource}
+end
+
+local record UpdateResourceSetOutput
+    ResourceSetArn: string
+    ResourceSetName: string
+    ResourceSetType: string
+    Resources: {Resource}
+    Tags: {string : string}
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local type Readiness = "READY" | "NOT_READY" | "UNKNOWN" | "NOT_AUTHORIZED"
+
+local record M
+    CreateCellInput: CreateCellInput
+    CreateCellOutput: CreateCellOutput
+    CreateCrossAccountAuthorizationInput: CreateCrossAccountAuthorizationInput
+    CreateCrossAccountAuthorizationOutput: CreateCrossAccountAuthorizationOutput
+    CreateReadinessCheckInput: CreateReadinessCheckInput
+    CreateReadinessCheckOutput: CreateReadinessCheckOutput
+    CreateRecoveryGroupInput: CreateRecoveryGroupInput
+    CreateRecoveryGroupOutput: CreateRecoveryGroupOutput
+    CreateResourceSetInput: CreateResourceSetInput
+    CreateResourceSetOutput: CreateResourceSetOutput
+    DeleteCellInput: DeleteCellInput
+    DeleteCellOutput: DeleteCellOutput
+    DeleteCrossAccountAuthorizationInput: DeleteCrossAccountAuthorizationInput
+    DeleteCrossAccountAuthorizationOutput: DeleteCrossAccountAuthorizationOutput
+    DeleteReadinessCheckInput: DeleteReadinessCheckInput
+    DeleteReadinessCheckOutput: DeleteReadinessCheckOutput
+    DeleteRecoveryGroupInput: DeleteRecoveryGroupInput
+    DeleteRecoveryGroupOutput: DeleteRecoveryGroupOutput
+    DeleteResourceSetInput: DeleteResourceSetInput
+    DeleteResourceSetOutput: DeleteResourceSetOutput
+    GetArchitectureRecommendationsInput: GetArchitectureRecommendationsInput
+    GetArchitectureRecommendationsOutput: GetArchitectureRecommendationsOutput
+    GetCellInput: GetCellInput
+    GetCellOutput: GetCellOutput
+    GetCellReadinessSummaryInput: GetCellReadinessSummaryInput
+    GetCellReadinessSummaryOutput: GetCellReadinessSummaryOutput
+    GetReadinessCheckInput: GetReadinessCheckInput
+    GetReadinessCheckOutput: GetReadinessCheckOutput
+    GetReadinessCheckResourceStatusInput: GetReadinessCheckResourceStatusInput
+    GetReadinessCheckResourceStatusOutput: GetReadinessCheckResourceStatusOutput
+    GetReadinessCheckStatusInput: GetReadinessCheckStatusInput
+    GetReadinessCheckStatusOutput: GetReadinessCheckStatusOutput
+    GetRecoveryGroupInput: GetRecoveryGroupInput
+    GetRecoveryGroupOutput: GetRecoveryGroupOutput
+    GetRecoveryGroupReadinessSummaryInput: GetRecoveryGroupReadinessSummaryInput
+    GetRecoveryGroupReadinessSummaryOutput: GetRecoveryGroupReadinessSummaryOutput
+    GetResourceSetInput: GetResourceSetInput
+    GetResourceSetOutput: GetResourceSetOutput
+    ListCellsInput: ListCellsInput
+    ListCellsOutput: ListCellsOutput
+    ListCrossAccountAuthorizationsInput: ListCrossAccountAuthorizationsInput
+    ListCrossAccountAuthorizationsOutput: ListCrossAccountAuthorizationsOutput
+    ListReadinessChecksInput: ListReadinessChecksInput
+    ListReadinessChecksOutput: ListReadinessChecksOutput
+    ListRecoveryGroupsInput: ListRecoveryGroupsInput
+    ListRecoveryGroupsOutput: ListRecoveryGroupsOutput
+    ListResourceSetsInput: ListResourceSetsInput
+    ListResourceSetsOutput: ListResourceSetsOutput
+    ListRulesInput: ListRulesInput
+    ListRulesOperationOutput: ListRulesOperationOutput
+    ListTagsForResourcesInput: ListTagsForResourcesInput
+    ListTagsForResourcesOutput: ListTagsForResourcesOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateCellInput: UpdateCellInput
+    UpdateCellOutput: UpdateCellOutput
+    UpdateReadinessCheckInput: UpdateReadinessCheckInput
+    UpdateReadinessCheckOutput: UpdateReadinessCheckOutput
+    UpdateRecoveryGroupInput: UpdateRecoveryGroupInput
+    UpdateRecoveryGroupOutput: UpdateRecoveryGroupOutput
+    UpdateResourceSetInput: UpdateResourceSetInput
+    UpdateResourceSetOutput: UpdateResourceSetOutput
+end
+
+return M

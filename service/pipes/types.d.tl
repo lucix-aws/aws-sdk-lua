@@ -1,0 +1,398 @@
+local record CreatePipeInput
+    Name: string
+    Description: string
+    DesiredState: string
+    Source: string
+    SourceParameters: PipeSourceParameters
+    Enrichment: string
+    EnrichmentParameters: PipeEnrichmentParameters
+    Target: string
+    TargetParameters: PipeTargetParameters
+    RoleArn: string
+    Tags: {string : string}
+    LogConfiguration: PipeLogConfigurationParameters
+    KmsKeyIdentifier: string
+end
+
+local record CreatePipeOutput
+    Arn: string
+    Name: string
+    DesiredState: string
+    CurrentState: string
+    CreationTime: number
+    LastModifiedTime: number
+end
+
+local record DeletePipeInput
+    Name: string
+end
+
+local record DeletePipeOutput
+    Arn: string
+    Name: string
+    DesiredState: string
+    CurrentState: string
+    CreationTime: number
+    LastModifiedTime: number
+end
+
+local record DescribePipeInput
+    Name: string
+end
+
+local record DescribePipeOutput
+    Arn: string
+    Name: string
+    Description: string
+    DesiredState: string
+    CurrentState: string
+    StateReason: string
+    Source: string
+    SourceParameters: PipeSourceParameters
+    Enrichment: string
+    EnrichmentParameters: PipeEnrichmentParameters
+    Target: string
+    TargetParameters: PipeTargetParameters
+    RoleArn: string
+    Tags: {string : string}
+    CreationTime: number
+    LastModifiedTime: number
+    LogConfiguration: PipeLogConfiguration
+    KmsKeyIdentifier: string
+end
+
+local record ListPipesInput
+    NamePrefix: string
+    DesiredState: string
+    CurrentState: string
+    SourcePrefix: string
+    TargetPrefix: string
+    NextToken: string
+    Limit: number
+end
+
+local record ListPipesOutput
+    Pipes: {Pipe}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record StartPipeInput
+    Name: string
+end
+
+local record StartPipeOutput
+    Arn: string
+    Name: string
+    DesiredState: string
+    CurrentState: string
+    CreationTime: number
+    LastModifiedTime: number
+end
+
+local record StopPipeInput
+    Name: string
+end
+
+local record StopPipeOutput
+    Arn: string
+    Name: string
+    DesiredState: string
+    CurrentState: string
+    CreationTime: number
+    LastModifiedTime: number
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdatePipeInput
+    Name: string
+    Description: string
+    DesiredState: string
+    SourceParameters: UpdatePipeSourceParameters
+    Enrichment: string
+    EnrichmentParameters: PipeEnrichmentParameters
+    Target: string
+    TargetParameters: PipeTargetParameters
+    RoleArn: string
+    LogConfiguration: PipeLogConfigurationParameters
+    KmsKeyIdentifier: string
+end
+
+local record UpdatePipeOutput
+    Arn: string
+    Name: string
+    DesiredState: string
+    CurrentState: string
+    CreationTime: number
+    LastModifiedTime: number
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record M
+    CreatePipeInput: CreatePipeInput
+    CreatePipeOutput: CreatePipeOutput
+    DeletePipeInput: DeletePipeInput
+    DeletePipeOutput: DeletePipeOutput
+    DescribePipeInput: DescribePipeInput
+    DescribePipeOutput: DescribePipeOutput
+    ListPipesInput: ListPipesInput
+    ListPipesOutput: ListPipesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    StartPipeInput: StartPipeInput
+    StartPipeOutput: StartPipeOutput
+    StopPipeInput: StopPipeInput
+    StopPipeOutput: StopPipeOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdatePipeInput: UpdatePipeInput
+    UpdatePipeOutput: UpdatePipeOutput
+end
+
+return M

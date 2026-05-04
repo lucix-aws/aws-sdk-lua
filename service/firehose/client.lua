@@ -1,0 +1,156 @@
+local awsjson_protocol = require("protocol.awsjson")
+local base_client = require("client")
+local defaults = require("defaults")
+local endpoint = require("endpoint")
+local endpoint_rules = require("firehose.endpoint_rules")
+local sdk_defaults = require("sdk_defaults")
+local types = require("firehose.types")
+
+local M = {}
+
+local Client = {}
+Client.__index = Client
+
+Client.invokeOperation = base_client.invokeOperation
+
+function M.new(cfg)
+    cfg = cfg or {}
+    cfg.service_id = "Firehose_20150804"
+    cfg.signing_name = "firehose_20150804"
+    if not cfg.protocol then
+        cfg.protocol = awsjson_protocol.new("1.1")
+    end
+    if not cfg.endpoint_provider then
+        cfg.endpoint_provider = function(params)
+            return endpoint.resolve(endpoint_rules, params)
+        end
+    end
+    defaults.resolve_signer(cfg)
+    defaults.resolve_http_client(cfg)
+    defaults.resolve_retry_strategy(cfg)
+    sdk_defaults.resolve_identity_resolver(cfg)
+    local self = setmetatable(base_client.new(cfg), Client)
+    return self
+end
+
+function Client:createDeliveryStream(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateDeliveryStream",
+        input_schema = types.CreateDeliveryStreamInput,
+        output_schema = types.CreateDeliveryStreamOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:deleteDeliveryStream(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteDeliveryStream",
+        input_schema = types.DeleteDeliveryStreamInput,
+        output_schema = types.DeleteDeliveryStreamOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:describeDeliveryStream(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribeDeliveryStream",
+        input_schema = types.DescribeDeliveryStreamInput,
+        output_schema = types.DescribeDeliveryStreamOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:listDeliveryStreams(input, options)
+    return self:invokeOperation(input, {
+        name = "ListDeliveryStreams",
+        input_schema = types.ListDeliveryStreamsInput,
+        output_schema = types.ListDeliveryStreamsOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:listTagsForDeliveryStream(input, options)
+    return self:invokeOperation(input, {
+        name = "ListTagsForDeliveryStream",
+        input_schema = types.ListTagsForDeliveryStreamInput,
+        output_schema = types.ListTagsForDeliveryStreamOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:putRecord(input, options)
+    return self:invokeOperation(input, {
+        name = "PutRecord",
+        input_schema = types.PutRecordInput,
+        output_schema = types.PutRecordOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:putRecordBatch(input, options)
+    return self:invokeOperation(input, {
+        name = "PutRecordBatch",
+        input_schema = types.PutRecordBatchInput,
+        output_schema = types.PutRecordBatchOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:startDeliveryStreamEncryption(input, options)
+    return self:invokeOperation(input, {
+        name = "StartDeliveryStreamEncryption",
+        input_schema = types.StartDeliveryStreamEncryptionInput,
+        output_schema = types.StartDeliveryStreamEncryptionOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:stopDeliveryStreamEncryption(input, options)
+    return self:invokeOperation(input, {
+        name = "StopDeliveryStreamEncryption",
+        input_schema = types.StopDeliveryStreamEncryptionInput,
+        output_schema = types.StopDeliveryStreamEncryptionOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:tagDeliveryStream(input, options)
+    return self:invokeOperation(input, {
+        name = "TagDeliveryStream",
+        input_schema = types.TagDeliveryStreamInput,
+        output_schema = types.TagDeliveryStreamOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:untagDeliveryStream(input, options)
+    return self:invokeOperation(input, {
+        name = "UntagDeliveryStream",
+        input_schema = types.UntagDeliveryStreamInput,
+        output_schema = types.UntagDeliveryStreamOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+function Client:updateDestination(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateDestination",
+        input_schema = types.UpdateDestinationInput,
+        output_schema = types.UpdateDestinationOutput,
+        http_method = "POST",
+        http_path = "/",
+    }, options)
+end
+
+return M

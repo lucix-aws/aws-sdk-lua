@@ -1,0 +1,44 @@
+local types = require("panorama.types")
+
+local record Client
+    createApplicationInstance: function(Client, types.CreateApplicationInstanceInput): types.CreateApplicationInstanceOutput, table
+    createJobForDevices: function(Client, types.CreateJobForDevicesInput): types.CreateJobForDevicesOutput, table
+    createNodeFromTemplateJob: function(Client, types.CreateNodeFromTemplateJobInput): types.CreateNodeFromTemplateJobOutput, table
+    createPackage: function(Client, types.CreatePackageInput): types.CreatePackageOutput, table
+    createPackageImportJob: function(Client, types.CreatePackageImportJobInput): types.CreatePackageImportJobOutput, table
+    deleteDevice: function(Client, types.DeleteDeviceInput): types.DeleteDeviceOutput, table
+    deletePackage: function(Client, types.DeletePackageInput): types.DeletePackageOutput, table
+    deregisterPackageVersion: function(Client, types.DeregisterPackageVersionInput): types.DeregisterPackageVersionOutput, table
+    describeApplicationInstance: function(Client, types.DescribeApplicationInstanceInput): types.DescribeApplicationInstanceOutput, table
+    describeApplicationInstanceDetails: function(Client, types.DescribeApplicationInstanceDetailsInput): types.DescribeApplicationInstanceDetailsOutput, table
+    describeDevice: function(Client, types.DescribeDeviceInput): types.DescribeDeviceOutput, table
+    describeDeviceJob: function(Client, types.DescribeDeviceJobInput): types.DescribeDeviceJobOutput, table
+    describeNode: function(Client, types.DescribeNodeInput): types.DescribeNodeOutput, table
+    describeNodeFromTemplateJob: function(Client, types.DescribeNodeFromTemplateJobInput): types.DescribeNodeFromTemplateJobOutput, table
+    describePackage: function(Client, types.DescribePackageInput): types.DescribePackageOutput, table
+    describePackageImportJob: function(Client, types.DescribePackageImportJobInput): types.DescribePackageImportJobOutput, table
+    describePackageVersion: function(Client, types.DescribePackageVersionInput): types.DescribePackageVersionOutput, table
+    listApplicationInstanceDependencies: function(Client, types.ListApplicationInstanceDependenciesInput): types.ListApplicationInstanceDependenciesOutput, table
+    listApplicationInstanceNodeInstances: function(Client, types.ListApplicationInstanceNodeInstancesInput): types.ListApplicationInstanceNodeInstancesOutput, table
+    listApplicationInstances: function(Client, types.ListApplicationInstancesInput): types.ListApplicationInstancesOutput, table
+    listDevices: function(Client, types.ListDevicesInput): types.ListDevicesOutput, table
+    listDevicesJobs: function(Client, types.ListDevicesJobsInput): types.ListDevicesJobsOutput, table
+    listNodeFromTemplateJobs: function(Client, types.ListNodeFromTemplateJobsInput): types.ListNodeFromTemplateJobsOutput, table
+    listNodes: function(Client, types.ListNodesInput): types.ListNodesOutput, table
+    listPackageImportJobs: function(Client, types.ListPackageImportJobsInput): types.ListPackageImportJobsOutput, table
+    listPackages: function(Client, types.ListPackagesInput): types.ListPackagesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    provisionDevice: function(Client, types.ProvisionDeviceInput): types.ProvisionDeviceOutput, table
+    registerPackageVersion: function(Client, types.RegisterPackageVersionInput): types.RegisterPackageVersionOutput, table
+    removeApplicationInstance: function(Client, types.RemoveApplicationInstanceInput): types.RemoveApplicationInstanceOutput, table
+    signalApplicationInstanceNodeInstances: function(Client, types.SignalApplicationInstanceNodeInstancesInput): types.SignalApplicationInstanceNodeInstancesOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateDeviceMetadata: function(Client, types.UpdateDeviceMetadataInput): types.UpdateDeviceMetadataOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,22 @@
+local types = require("billing.types")
+
+local record Client
+    associateSourceViews: function(Client, types.AssociateSourceViewsInput): types.AssociateSourceViewsOutput, table
+    createBillingView: function(Client, types.CreateBillingViewInput): types.CreateBillingViewOutput, table
+    deleteBillingView: function(Client, types.DeleteBillingViewInput): types.DeleteBillingViewOutput, table
+    disassociateSourceViews: function(Client, types.DisassociateSourceViewsInput): types.DisassociateSourceViewsOutput, table
+    getBillingView: function(Client, types.GetBillingViewInput): types.GetBillingViewOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    listBillingViews: function(Client, types.ListBillingViewsInput): types.ListBillingViewsOutput, table
+    listSourceViewsForBillingView: function(Client, types.ListSourceViewsForBillingViewInput): types.ListSourceViewsForBillingViewOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateBillingView: function(Client, types.UpdateBillingViewInput): types.UpdateBillingViewOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

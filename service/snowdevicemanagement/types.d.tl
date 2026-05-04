@@ -1,0 +1,410 @@
+local record CancelTaskInput
+    taskId: string
+end
+
+local record CancelTaskOutput
+    taskId: string
+end
+
+local record CreateTaskInput
+    targets: {string}
+    command: Command
+    description: string
+    tags: {string : string}
+    clientToken: string
+end
+
+local record CreateTaskOutput
+    taskId: string
+    taskArn: string
+end
+
+local record DescribeDeviceInput
+    managedDeviceId: string
+end
+
+local record DescribeDeviceOutput
+    lastReachedOutAt: number
+    lastUpdatedAt: number
+    tags: {string : string}
+    managedDeviceId: string
+    managedDeviceArn: string
+    deviceType: string
+    associatedWithJob: string
+    deviceState: string
+    physicalNetworkInterfaces: {PhysicalNetworkInterface}
+    deviceCapacities: {Capacity}
+    software: SoftwareInformation
+end
+
+local record DescribeDeviceEc2InstancesInput
+    managedDeviceId: string
+    instanceIds: {string}
+end
+
+local record DescribeDeviceEc2InstancesOutput
+    instances: {InstanceSummary}
+end
+
+local record DescribeExecutionInput
+    taskId: string
+    managedDeviceId: string
+end
+
+local record DescribeExecutionOutput
+    taskId: string
+    executionId: string
+    managedDeviceId: string
+    state: string
+    startedAt: number
+    lastUpdatedAt: number
+end
+
+local record DescribeTaskInput
+    taskId: string
+end
+
+local record DescribeTaskOutput
+    taskId: string
+    taskArn: string
+    targets: {string}
+    state: string
+    createdAt: number
+    lastUpdatedAt: number
+    completedAt: number
+    description: string
+    tags: {string : string}
+end
+
+local record ListDeviceResourcesInput
+    managedDeviceId: string
+    type: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListDeviceResourcesOutput
+    resources: {ResourceSummary}
+    nextToken: string
+end
+
+local record ListDevicesInput
+    jobId: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListDevicesOutput
+    devices: {DeviceSummary}
+    nextToken: string
+end
+
+local record ListExecutionsInput
+    taskId: string
+    state: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListExecutionsOutput
+    executions: {ExecutionSummary}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record ListTasksInput
+    state: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListTasksOutput
+    tasks: {TaskSummary}
+    nextToken: string
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    CancelTaskInput: CancelTaskInput
+    CancelTaskOutput: CancelTaskOutput
+    CreateTaskInput: CreateTaskInput
+    CreateTaskOutput: CreateTaskOutput
+    DescribeDeviceInput: DescribeDeviceInput
+    DescribeDeviceOutput: DescribeDeviceOutput
+    DescribeDeviceEc2InstancesInput: DescribeDeviceEc2InstancesInput
+    DescribeDeviceEc2InstancesOutput: DescribeDeviceEc2InstancesOutput
+    DescribeExecutionInput: DescribeExecutionInput
+    DescribeExecutionOutput: DescribeExecutionOutput
+    DescribeTaskInput: DescribeTaskInput
+    DescribeTaskOutput: DescribeTaskOutput
+    ListDeviceResourcesInput: ListDeviceResourcesInput
+    ListDeviceResourcesOutput: ListDeviceResourcesOutput
+    ListDevicesInput: ListDevicesInput
+    ListDevicesOutput: ListDevicesOutput
+    ListExecutionsInput: ListExecutionsInput
+    ListExecutionsOutput: ListExecutionsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListTasksInput: ListTasksInput
+    ListTasksOutput: ListTasksOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+end
+
+return M

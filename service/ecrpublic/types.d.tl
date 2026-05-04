@@ -1,0 +1,769 @@
+local record BatchCheckLayerAvailabilityInput
+    registryId: string
+    repositoryName: string
+    layerDigests: {string}
+end
+
+local record BatchCheckLayerAvailabilityOutput
+    layers: {Layer}
+    failures: {LayerFailure}
+end
+
+local record BatchDeleteImageInput
+    registryId: string
+    repositoryName: string
+    imageIds: {ImageIdentifier}
+end
+
+local record BatchDeleteImageOutput
+    imageIds: {ImageIdentifier}
+    failures: {ImageFailure}
+end
+
+local record CompleteLayerUploadInput
+    registryId: string
+    repositoryName: string
+    uploadId: string
+    layerDigests: {string}
+end
+
+local record CompleteLayerUploadOutput
+    registryId: string
+    repositoryName: string
+    uploadId: string
+    layerDigest: string
+end
+
+local record CreateRepositoryInput
+    repositoryName: string
+    catalogData: RepositoryCatalogDataInput
+    tags: {Tag}
+end
+
+local record CreateRepositoryOutput
+    repository: Repository
+    catalogData: RepositoryCatalogData
+end
+
+local record DeleteRepositoryInput
+    registryId: string
+    repositoryName: string
+    force: boolean
+end
+
+local record DeleteRepositoryOutput
+    repository: Repository
+end
+
+local record DeleteRepositoryPolicyInput
+    registryId: string
+    repositoryName: string
+end
+
+local record DeleteRepositoryPolicyOutput
+    registryId: string
+    repositoryName: string
+    policyText: string
+end
+
+local record DescribeImagesInput
+    registryId: string
+    repositoryName: string
+    imageIds: {ImageIdentifier}
+    nextToken: string
+    maxResults: number
+end
+
+local record DescribeImagesOutput
+    imageDetails: {ImageDetail}
+    nextToken: string
+end
+
+local record DescribeImageTagsInput
+    registryId: string
+    repositoryName: string
+    nextToken: string
+    maxResults: number
+end
+
+local record DescribeImageTagsOutput
+    imageTagDetails: {ImageTagDetail}
+    nextToken: string
+end
+
+local record DescribeRegistriesInput
+    nextToken: string
+    maxResults: number
+end
+
+local record DescribeRegistriesOutput
+    registries: {Registry}
+    nextToken: string
+end
+
+local record DescribeRepositoriesInput
+    registryId: string
+    repositoryNames: {string}
+    nextToken: string
+    maxResults: number
+end
+
+local record DescribeRepositoriesOutput
+    repositories: {Repository}
+    nextToken: string
+end
+
+local record GetAuthorizationTokenInput
+end
+
+local record GetAuthorizationTokenOutput
+    authorizationData: AuthorizationData
+end
+
+local record GetRegistryCatalogDataInput
+end
+
+local record GetRegistryCatalogDataOutput
+    registryCatalogData: RegistryCatalogData
+end
+
+local record GetRepositoryCatalogDataInput
+    registryId: string
+    repositoryName: string
+end
+
+local record GetRepositoryCatalogDataOutput
+    catalogData: RepositoryCatalogData
+end
+
+local record GetRepositoryPolicyInput
+    registryId: string
+    repositoryName: string
+end
+
+local record GetRepositoryPolicyOutput
+    registryId: string
+    repositoryName: string
+    policyText: string
+end
+
+local record InitiateLayerUploadInput
+    registryId: string
+    repositoryName: string
+end
+
+local record InitiateLayerUploadOutput
+    uploadId: string
+    partSize: number
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {Tag}
+end
+
+local record PutImageInput
+    registryId: string
+    repositoryName: string
+    imageManifest: string
+    imageManifestMediaType: string
+    imageTag: string
+    imageDigest: string
+end
+
+local record PutImageOutput
+    image: Image
+end
+
+local record PutRegistryCatalogDataInput
+    displayName: string
+end
+
+local record PutRegistryCatalogDataOutput
+    registryCatalogData: RegistryCatalogData
+end
+
+local record PutRepositoryCatalogDataInput
+    registryId: string
+    repositoryName: string
+    catalogData: RepositoryCatalogDataInput
+end
+
+local record PutRepositoryCatalogDataOutput
+    catalogData: RepositoryCatalogData
+end
+
+local record SetRepositoryPolicyInput
+    registryId: string
+    repositoryName: string
+    policyText: string
+    force: boolean
+end
+
+local record SetRepositoryPolicyOutput
+    registryId: string
+    repositoryName: string
+    policyText: string
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UploadLayerPartInput
+    registryId: string
+    repositoryName: string
+    uploadId: string
+    partFirstByte: number
+    partLastByte: number
+    layerPartBlob: string
+end
+
+local record UploadLayerPartOutput
+    registryId: string
+    repositoryName: string
+    uploadId: string
+    lastByteReceived: number
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record RegistryNotFoundException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record EmptyUploadException
+    message: string
+end
+
+local record InvalidLayerException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record LayerAlreadyExistsException
+    message: string
+end
+
+local record LayerPartTooSmallException
+    message: string
+end
+
+local record RegistryNotFoundException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record UploadNotFoundException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record InvalidTagParameterException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record RepositoryAlreadyExistsException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record TooManyTagsException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record RepositoryNotEmptyException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record RepositoryPolicyNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record ImageNotFoundException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record RepositoryCatalogDataNotFoundException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record RepositoryPolicyNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record RegistryNotFoundException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record ImageAlreadyExistsException
+    message: string
+end
+
+local record ImageDigestDoesNotMatchException
+    message: string
+end
+
+local record ImageTagAlreadyExistsException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record LayersNotFoundException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record ReferencedImagesNotFoundException
+    message: string
+end
+
+local record RegistryNotFoundException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record InvalidTagParameterException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record TooManyTagsException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record InvalidTagParameterException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record TooManyTagsException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record InvalidLayerPartException
+    registryId: string
+    repositoryName: string
+    uploadId: string
+    lastValidByteReceived: number
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record RegistryNotFoundException
+    message: string
+end
+
+local record RepositoryNotFoundException
+    message: string
+end
+
+local record ServerException
+    message: string
+end
+
+local record UnsupportedCommandException
+    message: string
+end
+
+local record UploadNotFoundException
+    message: string
+end
+
+local record M
+    BatchCheckLayerAvailabilityInput: BatchCheckLayerAvailabilityInput
+    BatchCheckLayerAvailabilityOutput: BatchCheckLayerAvailabilityOutput
+    BatchDeleteImageInput: BatchDeleteImageInput
+    BatchDeleteImageOutput: BatchDeleteImageOutput
+    CompleteLayerUploadInput: CompleteLayerUploadInput
+    CompleteLayerUploadOutput: CompleteLayerUploadOutput
+    CreateRepositoryInput: CreateRepositoryInput
+    CreateRepositoryOutput: CreateRepositoryOutput
+    DeleteRepositoryInput: DeleteRepositoryInput
+    DeleteRepositoryOutput: DeleteRepositoryOutput
+    DeleteRepositoryPolicyInput: DeleteRepositoryPolicyInput
+    DeleteRepositoryPolicyOutput: DeleteRepositoryPolicyOutput
+    DescribeImagesInput: DescribeImagesInput
+    DescribeImagesOutput: DescribeImagesOutput
+    DescribeImageTagsInput: DescribeImageTagsInput
+    DescribeImageTagsOutput: DescribeImageTagsOutput
+    DescribeRegistriesInput: DescribeRegistriesInput
+    DescribeRegistriesOutput: DescribeRegistriesOutput
+    DescribeRepositoriesInput: DescribeRepositoriesInput
+    DescribeRepositoriesOutput: DescribeRepositoriesOutput
+    GetAuthorizationTokenInput: GetAuthorizationTokenInput
+    GetAuthorizationTokenOutput: GetAuthorizationTokenOutput
+    GetRegistryCatalogDataInput: GetRegistryCatalogDataInput
+    GetRegistryCatalogDataOutput: GetRegistryCatalogDataOutput
+    GetRepositoryCatalogDataInput: GetRepositoryCatalogDataInput
+    GetRepositoryCatalogDataOutput: GetRepositoryCatalogDataOutput
+    GetRepositoryPolicyInput: GetRepositoryPolicyInput
+    GetRepositoryPolicyOutput: GetRepositoryPolicyOutput
+    InitiateLayerUploadInput: InitiateLayerUploadInput
+    InitiateLayerUploadOutput: InitiateLayerUploadOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PutImageInput: PutImageInput
+    PutImageOutput: PutImageOutput
+    PutRegistryCatalogDataInput: PutRegistryCatalogDataInput
+    PutRegistryCatalogDataOutput: PutRegistryCatalogDataOutput
+    PutRepositoryCatalogDataInput: PutRepositoryCatalogDataInput
+    PutRepositoryCatalogDataOutput: PutRepositoryCatalogDataOutput
+    SetRepositoryPolicyInput: SetRepositoryPolicyInput
+    SetRepositoryPolicyOutput: SetRepositoryPolicyOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UploadLayerPartInput: UploadLayerPartInput
+    UploadLayerPartOutput: UploadLayerPartOutput
+end
+
+return M

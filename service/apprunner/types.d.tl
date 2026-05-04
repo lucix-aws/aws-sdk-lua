@@ -1,0 +1,914 @@
+local record AssociateCustomDomainInput
+    ServiceArn: string
+    DomainName: string
+    EnableWWWSubdomain: boolean
+end
+
+local record AssociateCustomDomainOutput
+    DNSTarget: string
+    ServiceArn: string
+    CustomDomain: CustomDomain
+    VpcDNSTargets: {VpcDNSTarget}
+end
+
+local record CreateAutoScalingConfigurationInput
+    AutoScalingConfigurationName: string
+    MaxConcurrency: number
+    MinSize: number
+    MaxSize: number
+    Tags: {Tag}
+end
+
+local record CreateAutoScalingConfigurationOutput
+    AutoScalingConfiguration: AutoScalingConfiguration
+end
+
+local record CreateConnectionInput
+    ConnectionName: string
+    ProviderType: string
+    Tags: {Tag}
+end
+
+local record CreateConnectionOutput
+    Connection: Connection
+end
+
+local record CreateObservabilityConfigurationInput
+    ObservabilityConfigurationName: string
+    TraceConfiguration: TraceConfiguration
+    Tags: {Tag}
+end
+
+local record CreateObservabilityConfigurationOutput
+    ObservabilityConfiguration: ObservabilityConfiguration
+end
+
+local record CreateServiceInput
+    ServiceName: string
+    SourceConfiguration: SourceConfiguration
+    InstanceConfiguration: InstanceConfiguration
+    Tags: {Tag}
+    EncryptionConfiguration: EncryptionConfiguration
+    HealthCheckConfiguration: HealthCheckConfiguration
+    AutoScalingConfigurationArn: string
+    NetworkConfiguration: NetworkConfiguration
+    ObservabilityConfiguration: ServiceObservabilityConfiguration
+end
+
+local record CreateServiceOutput
+    Service: Service
+    OperationId: string
+end
+
+local record CreateVpcConnectorInput
+    VpcConnectorName: string
+    Subnets: {string}
+    SecurityGroups: {string}
+    Tags: {Tag}
+end
+
+local record CreateVpcConnectorOutput
+    VpcConnector: VpcConnector
+end
+
+local record CreateVpcIngressConnectionInput
+    ServiceArn: string
+    VpcIngressConnectionName: string
+    IngressVpcConfiguration: IngressVpcConfiguration
+    Tags: {Tag}
+end
+
+local record CreateVpcIngressConnectionOutput
+    VpcIngressConnection: VpcIngressConnection
+end
+
+local record DeleteAutoScalingConfigurationInput
+    AutoScalingConfigurationArn: string
+    DeleteAllRevisions: boolean
+end
+
+local record DeleteAutoScalingConfigurationOutput
+    AutoScalingConfiguration: AutoScalingConfiguration
+end
+
+local record DeleteConnectionInput
+    ConnectionArn: string
+end
+
+local record DeleteConnectionOutput
+    Connection: Connection
+end
+
+local record DeleteObservabilityConfigurationInput
+    ObservabilityConfigurationArn: string
+end
+
+local record DeleteObservabilityConfigurationOutput
+    ObservabilityConfiguration: ObservabilityConfiguration
+end
+
+local record DeleteServiceInput
+    ServiceArn: string
+end
+
+local record DeleteServiceOutput
+    Service: Service
+    OperationId: string
+end
+
+local record DeleteVpcConnectorInput
+    VpcConnectorArn: string
+end
+
+local record DeleteVpcConnectorOutput
+    VpcConnector: VpcConnector
+end
+
+local record DeleteVpcIngressConnectionInput
+    VpcIngressConnectionArn: string
+end
+
+local record DeleteVpcIngressConnectionOutput
+    VpcIngressConnection: VpcIngressConnection
+end
+
+local record DescribeAutoScalingConfigurationInput
+    AutoScalingConfigurationArn: string
+end
+
+local record DescribeAutoScalingConfigurationOutput
+    AutoScalingConfiguration: AutoScalingConfiguration
+end
+
+local record DescribeCustomDomainsInput
+    ServiceArn: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record DescribeCustomDomainsOutput
+    DNSTarget: string
+    ServiceArn: string
+    CustomDomains: {CustomDomain}
+    VpcDNSTargets: {VpcDNSTarget}
+    NextToken: string
+end
+
+local record DescribeObservabilityConfigurationInput
+    ObservabilityConfigurationArn: string
+end
+
+local record DescribeObservabilityConfigurationOutput
+    ObservabilityConfiguration: ObservabilityConfiguration
+end
+
+local record DescribeServiceInput
+    ServiceArn: string
+end
+
+local record DescribeServiceOutput
+    Service: Service
+end
+
+local record DescribeVpcConnectorInput
+    VpcConnectorArn: string
+end
+
+local record DescribeVpcConnectorOutput
+    VpcConnector: VpcConnector
+end
+
+local record DescribeVpcIngressConnectionInput
+    VpcIngressConnectionArn: string
+end
+
+local record DescribeVpcIngressConnectionOutput
+    VpcIngressConnection: VpcIngressConnection
+end
+
+local record DisassociateCustomDomainInput
+    ServiceArn: string
+    DomainName: string
+end
+
+local record DisassociateCustomDomainOutput
+    DNSTarget: string
+    ServiceArn: string
+    CustomDomain: CustomDomain
+    VpcDNSTargets: {VpcDNSTarget}
+end
+
+local record ListAutoScalingConfigurationsInput
+    AutoScalingConfigurationName: string
+    LatestOnly: boolean
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListAutoScalingConfigurationsOutput
+    AutoScalingConfigurationSummaryList: {AutoScalingConfigurationSummary}
+    NextToken: string
+end
+
+local record ListConnectionsInput
+    ConnectionName: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListConnectionsOutput
+    ConnectionSummaryList: {ConnectionSummary}
+    NextToken: string
+end
+
+local record ListObservabilityConfigurationsInput
+    ObservabilityConfigurationName: string
+    LatestOnly: boolean
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListObservabilityConfigurationsOutput
+    ObservabilityConfigurationSummaryList: {ObservabilityConfigurationSummary}
+    NextToken: string
+end
+
+local record ListOperationsInput
+    ServiceArn: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListOperationsOutput
+    OperationSummaryList: {OperationSummary}
+    NextToken: string
+end
+
+local record ListServicesInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListServicesOutput
+    ServiceSummaryList: {ServiceSummary}
+    NextToken: string
+end
+
+local record ListServicesForAutoScalingConfigurationInput
+    AutoScalingConfigurationArn: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListServicesForAutoScalingConfigurationOutput
+    ServiceArnList: {string}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+end
+
+local record ListVpcConnectorsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListVpcConnectorsOutput
+    VpcConnectors: {VpcConnector}
+    NextToken: string
+end
+
+local record ListVpcIngressConnectionsInput
+    Filter: ListVpcIngressConnectionsFilter
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListVpcIngressConnectionsOutput
+    VpcIngressConnectionSummaryList: {VpcIngressConnectionSummary}
+    NextToken: string
+end
+
+local record PauseServiceInput
+    ServiceArn: string
+end
+
+local record PauseServiceOutput
+    Service: Service
+    OperationId: string
+end
+
+local record ResumeServiceInput
+    ServiceArn: string
+end
+
+local record ResumeServiceOutput
+    Service: Service
+    OperationId: string
+end
+
+local record StartDeploymentInput
+    ServiceArn: string
+end
+
+local record StartDeploymentOutput
+    OperationId: string
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateDefaultAutoScalingConfigurationInput
+    AutoScalingConfigurationArn: string
+end
+
+local record UpdateDefaultAutoScalingConfigurationOutput
+    AutoScalingConfiguration: AutoScalingConfiguration
+end
+
+local record UpdateServiceInput
+    ServiceArn: string
+    SourceConfiguration: SourceConfiguration
+    InstanceConfiguration: InstanceConfiguration
+    AutoScalingConfigurationArn: string
+    HealthCheckConfiguration: HealthCheckConfiguration
+    NetworkConfiguration: NetworkConfiguration
+    ObservabilityConfiguration: ServiceObservabilityConfiguration
+end
+
+local record UpdateServiceOutput
+    Service: Service
+    OperationId: string
+end
+
+local record UpdateVpcIngressConnectionInput
+    VpcIngressConnectionArn: string
+    IngressVpcConfiguration: IngressVpcConfiguration
+end
+
+local record UpdateVpcIngressConnectionOutput
+    VpcIngressConnection: VpcIngressConnection
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InvalidStateException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InvalidStateException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InvalidStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InvalidStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InvalidStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InvalidStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InvalidStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InvalidStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InvalidStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InvalidStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InvalidStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServiceErrorException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InvalidStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local type ProviderType = "GITHUB" | "BITBUCKET"
+
+local record M
+    AssociateCustomDomainInput: AssociateCustomDomainInput
+    AssociateCustomDomainOutput: AssociateCustomDomainOutput
+    CreateAutoScalingConfigurationInput: CreateAutoScalingConfigurationInput
+    CreateAutoScalingConfigurationOutput: CreateAutoScalingConfigurationOutput
+    CreateConnectionInput: CreateConnectionInput
+    CreateConnectionOutput: CreateConnectionOutput
+    CreateObservabilityConfigurationInput: CreateObservabilityConfigurationInput
+    CreateObservabilityConfigurationOutput: CreateObservabilityConfigurationOutput
+    CreateServiceInput: CreateServiceInput
+    CreateServiceOutput: CreateServiceOutput
+    CreateVpcConnectorInput: CreateVpcConnectorInput
+    CreateVpcConnectorOutput: CreateVpcConnectorOutput
+    CreateVpcIngressConnectionInput: CreateVpcIngressConnectionInput
+    CreateVpcIngressConnectionOutput: CreateVpcIngressConnectionOutput
+    DeleteAutoScalingConfigurationInput: DeleteAutoScalingConfigurationInput
+    DeleteAutoScalingConfigurationOutput: DeleteAutoScalingConfigurationOutput
+    DeleteConnectionInput: DeleteConnectionInput
+    DeleteConnectionOutput: DeleteConnectionOutput
+    DeleteObservabilityConfigurationInput: DeleteObservabilityConfigurationInput
+    DeleteObservabilityConfigurationOutput: DeleteObservabilityConfigurationOutput
+    DeleteServiceInput: DeleteServiceInput
+    DeleteServiceOutput: DeleteServiceOutput
+    DeleteVpcConnectorInput: DeleteVpcConnectorInput
+    DeleteVpcConnectorOutput: DeleteVpcConnectorOutput
+    DeleteVpcIngressConnectionInput: DeleteVpcIngressConnectionInput
+    DeleteVpcIngressConnectionOutput: DeleteVpcIngressConnectionOutput
+    DescribeAutoScalingConfigurationInput: DescribeAutoScalingConfigurationInput
+    DescribeAutoScalingConfigurationOutput: DescribeAutoScalingConfigurationOutput
+    DescribeCustomDomainsInput: DescribeCustomDomainsInput
+    DescribeCustomDomainsOutput: DescribeCustomDomainsOutput
+    DescribeObservabilityConfigurationInput: DescribeObservabilityConfigurationInput
+    DescribeObservabilityConfigurationOutput: DescribeObservabilityConfigurationOutput
+    DescribeServiceInput: DescribeServiceInput
+    DescribeServiceOutput: DescribeServiceOutput
+    DescribeVpcConnectorInput: DescribeVpcConnectorInput
+    DescribeVpcConnectorOutput: DescribeVpcConnectorOutput
+    DescribeVpcIngressConnectionInput: DescribeVpcIngressConnectionInput
+    DescribeVpcIngressConnectionOutput: DescribeVpcIngressConnectionOutput
+    DisassociateCustomDomainInput: DisassociateCustomDomainInput
+    DisassociateCustomDomainOutput: DisassociateCustomDomainOutput
+    ListAutoScalingConfigurationsInput: ListAutoScalingConfigurationsInput
+    ListAutoScalingConfigurationsOutput: ListAutoScalingConfigurationsOutput
+    ListConnectionsInput: ListConnectionsInput
+    ListConnectionsOutput: ListConnectionsOutput
+    ListObservabilityConfigurationsInput: ListObservabilityConfigurationsInput
+    ListObservabilityConfigurationsOutput: ListObservabilityConfigurationsOutput
+    ListOperationsInput: ListOperationsInput
+    ListOperationsOutput: ListOperationsOutput
+    ListServicesInput: ListServicesInput
+    ListServicesOutput: ListServicesOutput
+    ListServicesForAutoScalingConfigurationInput: ListServicesForAutoScalingConfigurationInput
+    ListServicesForAutoScalingConfigurationOutput: ListServicesForAutoScalingConfigurationOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListVpcConnectorsInput: ListVpcConnectorsInput
+    ListVpcConnectorsOutput: ListVpcConnectorsOutput
+    ListVpcIngressConnectionsInput: ListVpcIngressConnectionsInput
+    ListVpcIngressConnectionsOutput: ListVpcIngressConnectionsOutput
+    PauseServiceInput: PauseServiceInput
+    PauseServiceOutput: PauseServiceOutput
+    ResumeServiceInput: ResumeServiceInput
+    ResumeServiceOutput: ResumeServiceOutput
+    StartDeploymentInput: StartDeploymentInput
+    StartDeploymentOutput: StartDeploymentOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateDefaultAutoScalingConfigurationInput: UpdateDefaultAutoScalingConfigurationInput
+    UpdateDefaultAutoScalingConfigurationOutput: UpdateDefaultAutoScalingConfigurationOutput
+    UpdateServiceInput: UpdateServiceInput
+    UpdateServiceOutput: UpdateServiceOutput
+    UpdateVpcIngressConnectionInput: UpdateVpcIngressConnectionInput
+    UpdateVpcIngressConnectionOutput: UpdateVpcIngressConnectionOutput
+end
+
+return M

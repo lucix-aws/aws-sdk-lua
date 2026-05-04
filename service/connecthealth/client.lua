@@ -1,0 +1,196 @@
+local base_client = require("client")
+local defaults = require("defaults")
+local endpoint = require("endpoint")
+local endpoint_rules = require("connecthealth.endpoint_rules")
+local restjson_protocol = require("protocol.restjson")
+local sdk_defaults = require("sdk_defaults")
+local types = require("connecthealth.types")
+
+local M = {}
+
+local Client = {}
+Client.__index = Client
+
+Client.invokeOperation = base_client.invokeOperation
+
+function M.new(cfg)
+    cfg = cfg or {}
+    cfg.service_id = "ConnectHealth"
+    cfg.signing_name = "connecthealth"
+    if not cfg.protocol then
+        cfg.protocol = restjson_protocol.new()
+    end
+    if not cfg.endpoint_provider then
+        cfg.endpoint_provider = function(params)
+            return endpoint.resolve(endpoint_rules, params)
+        end
+    end
+    defaults.resolve_signer(cfg)
+    defaults.resolve_http_client(cfg)
+    defaults.resolve_retry_strategy(cfg)
+    sdk_defaults.resolve_identity_resolver(cfg)
+    local self = setmetatable(base_client.new(cfg), Client)
+    return self
+end
+
+function Client:activateSubscription(input, options)
+    return self:invokeOperation(input, {
+        name = "ActivateSubscription",
+        input_schema = types.ActivateSubscriptionInput,
+        output_schema = types.ActivateSubscriptionOutput,
+        http_method = "POST",
+        http_path = "/domains/{domainId}/subscriptions/{subscriptionId}/activate",
+    }, options)
+end
+
+function Client:createDomain(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateDomain",
+        input_schema = types.CreateDomainInput,
+        output_schema = types.CreateDomainOutput,
+        http_method = "POST",
+        http_path = "/domain",
+    }, options)
+end
+
+function Client:createSubscription(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateSubscription",
+        input_schema = types.CreateSubscriptionInput,
+        output_schema = types.CreateSubscriptionOutput,
+        http_method = "POST",
+        http_path = "/domains/{domainId}/subscriptions",
+    }, options)
+end
+
+function Client:deactivateSubscription(input, options)
+    return self:invokeOperation(input, {
+        name = "DeactivateSubscription",
+        input_schema = types.DeactivateSubscriptionInput,
+        output_schema = types.DeactivateSubscriptionOutput,
+        http_method = "POST",
+        http_path = "/domains/{domainId}/subscriptions/{subscriptionId}/deactivate",
+    }, options)
+end
+
+function Client:deleteDomain(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteDomain",
+        input_schema = types.DeleteDomainInput,
+        output_schema = types.DeleteDomainOutput,
+        http_method = "DELETE",
+        http_path = "/domain/{domainId}",
+    }, options)
+end
+
+function Client:getDomain(input, options)
+    return self:invokeOperation(input, {
+        name = "GetDomain",
+        input_schema = types.GetDomainInput,
+        output_schema = types.GetDomainOutput,
+        http_method = "GET",
+        http_path = "/domain/{domainId}",
+    }, options)
+end
+
+function Client:getMedicalScribeListeningSession(input, options)
+    return self:invokeOperation(input, {
+        name = "GetMedicalScribeListeningSession",
+        input_schema = types.GetMedicalScribeListeningSessionInput,
+        output_schema = types.GetMedicalScribeListeningSessionOutput,
+        http_method = "GET",
+        http_path = "/medical-scribe-stream/domain/{domainId}/subscription/{subscriptionId}/session/{sessionId}",
+    }, options)
+end
+
+function Client:getPatientInsightsJob(input, options)
+    return self:invokeOperation(input, {
+        name = "GetPatientInsightsJob",
+        input_schema = types.GetPatientInsightsJobInput,
+        output_schema = types.GetPatientInsightsJobOutput,
+        http_method = "GET",
+        http_path = "/domain/{domainId}/patient-insights-job/{jobId}",
+    }, options)
+end
+
+function Client:getSubscription(input, options)
+    return self:invokeOperation(input, {
+        name = "GetSubscription",
+        input_schema = types.GetSubscriptionInput,
+        output_schema = types.GetSubscriptionOutput,
+        http_method = "GET",
+        http_path = "/domains/{domainId}/subscriptions/{subscriptionId}",
+    }, options)
+end
+
+function Client:listDomains(input, options)
+    return self:invokeOperation(input, {
+        name = "ListDomains",
+        input_schema = types.ListDomainsInput,
+        output_schema = types.ListDomainsOutput,
+        http_method = "GET",
+        http_path = "/domain",
+    }, options)
+end
+
+function Client:listSubscriptions(input, options)
+    return self:invokeOperation(input, {
+        name = "ListSubscriptions",
+        input_schema = types.ListSubscriptionsInput,
+        output_schema = types.ListSubscriptionsOutput,
+        http_method = "GET",
+        http_path = "/domains/{domainId}/subscriptions",
+    }, options)
+end
+
+function Client:listTagsForResource(input, options)
+    return self:invokeOperation(input, {
+        name = "ListTagsForResource",
+        input_schema = types.ListTagsForResourceInput,
+        output_schema = types.ListTagsForResourceOutput,
+        http_method = "GET",
+        http_path = "/tags/{resourceArn}",
+    }, options)
+end
+
+function Client:startMedicalScribeListeningSession(input, options)
+    return self:invokeOperation(input, {
+        name = "StartMedicalScribeListeningSession",
+        input_schema = types.StartMedicalScribeListeningSessionInput,
+        output_schema = types.StartMedicalScribeListeningSessionOutput,
+        http_method = "POST",
+        http_path = "/medical-scribe-stream/",
+    }, options)
+end
+
+function Client:startPatientInsightsJob(input, options)
+    return self:invokeOperation(input, {
+        name = "StartPatientInsightsJob",
+        input_schema = types.StartPatientInsightsJobInput,
+        output_schema = types.StartPatientInsightsJobOutput,
+        http_method = "POST",
+        http_path = "/domain/{domainId}/patient-insights-job",
+    }, options)
+end
+
+function Client:tagResource(input, options)
+    return self:invokeOperation(input, {
+        name = "TagResource",
+        input_schema = types.TagResourceInput,
+        output_schema = types.TagResourceOutput,
+        http_method = "POST",
+        http_path = "/tags/{resourceArn}",
+    }, options)
+end
+
+function Client:untagResource(input, options)
+    return self:invokeOperation(input, {
+        name = "UntagResource",
+        input_schema = types.UntagResourceInput,
+        output_schema = types.UntagResourceOutput,
+        http_method = "DELETE",
+        http_path = "/tags/{resourceArn}",
+    }, options)
+end
+
+return M

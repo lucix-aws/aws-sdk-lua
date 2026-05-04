@@ -1,0 +1,36 @@
+local types = require("servicequotas.types")
+
+local record Client
+    associateServiceQuotaTemplate: function(Client, types.AssociateServiceQuotaTemplateInput): types.AssociateServiceQuotaTemplateOutput, table
+    createSupportCase: function(Client, types.CreateSupportCaseInput): types.CreateSupportCaseOutput, table
+    deleteServiceQuotaIncreaseRequestFromTemplate: function(Client, types.DeleteServiceQuotaIncreaseRequestFromTemplateInput): types.DeleteServiceQuotaIncreaseRequestFromTemplateOutput, table
+    disassociateServiceQuotaTemplate: function(Client, types.DisassociateServiceQuotaTemplateInput): types.DisassociateServiceQuotaTemplateOutput, table
+    getAssociationForServiceQuotaTemplate: function(Client, types.GetAssociationForServiceQuotaTemplateInput): types.GetAssociationForServiceQuotaTemplateOutput, table
+    getAutoManagementConfiguration: function(Client, types.GetAutoManagementConfigurationInput): types.GetAutoManagementConfigurationOutput, table
+    getAWSDefaultServiceQuota: function(Client, types.GetAWSDefaultServiceQuotaInput): types.GetAWSDefaultServiceQuotaOutput, table
+    getQuotaUtilizationReport: function(Client, types.GetQuotaUtilizationReportInput): types.GetQuotaUtilizationReportOutput, table
+    getRequestedServiceQuotaChange: function(Client, types.GetRequestedServiceQuotaChangeInput): types.GetRequestedServiceQuotaChangeOutput, table
+    getServiceQuota: function(Client, types.GetServiceQuotaInput): types.GetServiceQuotaOutput, table
+    getServiceQuotaIncreaseRequestFromTemplate: function(Client, types.GetServiceQuotaIncreaseRequestFromTemplateInput): types.GetServiceQuotaIncreaseRequestFromTemplateOutput, table
+    listAWSDefaultServiceQuotas: function(Client, types.ListAWSDefaultServiceQuotasInput): types.ListAWSDefaultServiceQuotasOutput, table
+    listRequestedServiceQuotaChangeHistory: function(Client, types.ListRequestedServiceQuotaChangeHistoryInput): types.ListRequestedServiceQuotaChangeHistoryOutput, table
+    listRequestedServiceQuotaChangeHistoryByQuota: function(Client, types.ListRequestedServiceQuotaChangeHistoryByQuotaInput): types.ListRequestedServiceQuotaChangeHistoryByQuotaOutput, table
+    listServiceQuotaIncreaseRequestsInTemplate: function(Client, types.ListServiceQuotaIncreaseRequestsInTemplateInput): types.ListServiceQuotaIncreaseRequestsInTemplateOutput, table
+    listServiceQuotas: function(Client, types.ListServiceQuotasInput): types.ListServiceQuotasOutput, table
+    listServices: function(Client, types.ListServicesInput): types.ListServicesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putServiceQuotaIncreaseRequestIntoTemplate: function(Client, types.PutServiceQuotaIncreaseRequestIntoTemplateInput): types.PutServiceQuotaIncreaseRequestIntoTemplateOutput, table
+    requestServiceQuotaIncrease: function(Client, types.RequestServiceQuotaIncreaseInput): types.RequestServiceQuotaIncreaseOutput, table
+    startAutoManagement: function(Client, types.StartAutoManagementInput): types.StartAutoManagementOutput, table
+    startQuotaUtilizationReport: function(Client, types.StartQuotaUtilizationReportInput): types.StartQuotaUtilizationReportOutput, table
+    stopAutoManagement: function(Client, types.StopAutoManagementInput): types.StopAutoManagementOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAutoManagement: function(Client, types.UpdateAutoManagementInput): types.UpdateAutoManagementOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

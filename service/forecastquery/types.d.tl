@@ -1,0 +1,72 @@
+local record QueryForecastInput
+    ForecastArn: string
+    StartDate: string
+    EndDate: string
+    Filters: {string : string}
+    NextToken: string
+end
+
+local record QueryForecastOutput
+    Forecast: Forecast
+end
+
+local record QueryWhatIfForecastInput
+    WhatIfForecastArn: string
+    StartDate: string
+    EndDate: string
+    Filters: {string : string}
+    NextToken: string
+end
+
+local record QueryWhatIfForecastOutput
+    Forecast: Forecast
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InvalidInputException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record M
+    QueryForecastInput: QueryForecastInput
+    QueryForecastOutput: QueryForecastOutput
+    QueryWhatIfForecastInput: QueryWhatIfForecastInput
+    QueryWhatIfForecastOutput: QueryWhatIfForecastOutput
+end
+
+return M

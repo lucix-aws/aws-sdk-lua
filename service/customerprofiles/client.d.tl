@@ -1,0 +1,116 @@
+local types = require("customerprofiles.types")
+
+local record Client
+    addProfileKey: function(Client, types.AddProfileKeyInput): types.AddProfileKeyOutput, table
+    batchGetCalculatedAttributeForProfile: function(Client, types.BatchGetCalculatedAttributeForProfileInput): types.BatchGetCalculatedAttributeForProfileOutput, table
+    batchGetProfile: function(Client, types.BatchGetProfileInput): types.BatchGetProfileOutput, table
+    createCalculatedAttributeDefinition: function(Client, types.CreateCalculatedAttributeDefinitionInput): types.CreateCalculatedAttributeDefinitionOutput, table
+    createDomain: function(Client, types.CreateDomainInput): types.CreateDomainOutput, table
+    createDomainLayout: function(Client, types.CreateDomainLayoutInput): types.CreateDomainLayoutOutput, table
+    createEventStream: function(Client, types.CreateEventStreamInput): types.CreateEventStreamOutput, table
+    createEventTrigger: function(Client, types.CreateEventTriggerInput): types.CreateEventTriggerOutput, table
+    createIntegrationWorkflow: function(Client, types.CreateIntegrationWorkflowInput): types.CreateIntegrationWorkflowOutput, table
+    createProfile: function(Client, types.CreateProfileInput): types.CreateProfileOutput, table
+    createRecommender: function(Client, types.CreateRecommenderInput): types.CreateRecommenderOutput, table
+    createRecommenderFilter: function(Client, types.CreateRecommenderFilterInput): types.CreateRecommenderFilterOutput, table
+    createRecommenderSchema: function(Client, types.CreateRecommenderSchemaInput): types.CreateRecommenderSchemaOutput, table
+    createSegmentDefinition: function(Client, types.CreateSegmentDefinitionInput): types.CreateSegmentDefinitionOutput, table
+    createSegmentEstimate: function(Client, types.CreateSegmentEstimateInput): types.CreateSegmentEstimateOutput, table
+    createSegmentSnapshot: function(Client, types.CreateSegmentSnapshotInput): types.CreateSegmentSnapshotOutput, table
+    createUploadJob: function(Client, types.CreateUploadJobInput): types.CreateUploadJobOutput, table
+    deleteCalculatedAttributeDefinition: function(Client, types.DeleteCalculatedAttributeDefinitionInput): types.DeleteCalculatedAttributeDefinitionOutput, table
+    deleteDomain: function(Client, types.DeleteDomainInput): types.DeleteDomainOutput, table
+    deleteDomainLayout: function(Client, types.DeleteDomainLayoutInput): types.DeleteDomainLayoutOutput, table
+    deleteDomainObjectType: function(Client, types.DeleteDomainObjectTypeInput): types.DeleteDomainObjectTypeOutput, table
+    deleteEventStream: function(Client, types.DeleteEventStreamInput): types.DeleteEventStreamOutput, table
+    deleteEventTrigger: function(Client, types.DeleteEventTriggerInput): types.DeleteEventTriggerOutput, table
+    deleteIntegration: function(Client, types.DeleteIntegrationInput): types.DeleteIntegrationOutput, table
+    deleteProfile: function(Client, types.DeleteProfileInput): types.DeleteProfileOutput, table
+    deleteProfileKey: function(Client, types.DeleteProfileKeyInput): types.DeleteProfileKeyOutput, table
+    deleteProfileObject: function(Client, types.DeleteProfileObjectInput): types.DeleteProfileObjectOutput, table
+    deleteProfileObjectType: function(Client, types.DeleteProfileObjectTypeInput): types.DeleteProfileObjectTypeOutput, table
+    deleteRecommender: function(Client, types.DeleteRecommenderInput): types.DeleteRecommenderOutput, table
+    deleteRecommenderFilter: function(Client, types.DeleteRecommenderFilterInput): types.DeleteRecommenderFilterOutput, table
+    deleteRecommenderSchema: function(Client, types.DeleteRecommenderSchemaInput): types.DeleteRecommenderSchemaOutput, table
+    deleteSegmentDefinition: function(Client, types.DeleteSegmentDefinitionInput): types.DeleteSegmentDefinitionOutput, table
+    deleteWorkflow: function(Client, types.DeleteWorkflowInput): types.DeleteWorkflowOutput, table
+    detectProfileObjectType: function(Client, types.DetectProfileObjectTypeInput): types.DetectProfileObjectTypeOutput, table
+    getAutoMergingPreview: function(Client, types.GetAutoMergingPreviewInput): types.GetAutoMergingPreviewOutput, table
+    getCalculatedAttributeDefinition: function(Client, types.GetCalculatedAttributeDefinitionInput): types.GetCalculatedAttributeDefinitionOutput, table
+    getCalculatedAttributeForProfile: function(Client, types.GetCalculatedAttributeForProfileInput): types.GetCalculatedAttributeForProfileOutput, table
+    getDomain: function(Client, types.GetDomainInput): types.GetDomainOutput, table
+    getDomainLayout: function(Client, types.GetDomainLayoutInput): types.GetDomainLayoutOutput, table
+    getDomainObjectType: function(Client, types.GetDomainObjectTypeInput): types.GetDomainObjectTypeOutput, table
+    getEventStream: function(Client, types.GetEventStreamInput): types.GetEventStreamOutput, table
+    getEventTrigger: function(Client, types.GetEventTriggerInput): types.GetEventTriggerOutput, table
+    getIdentityResolutionJob: function(Client, types.GetIdentityResolutionJobInput): types.GetIdentityResolutionJobOutput, table
+    getIntegration: function(Client, types.GetIntegrationInput): types.GetIntegrationOutput, table
+    getMatches: function(Client, types.GetMatchesInput): types.GetMatchesOutput, table
+    getObjectTypeAttributeStatistics: function(Client, types.GetObjectTypeAttributeStatisticsInput): types.GetObjectTypeAttributeStatisticsOutput, table
+    getProfileHistoryRecord: function(Client, types.GetProfileHistoryRecordInput): types.GetProfileHistoryRecordOutput, table
+    getProfileObjectType: function(Client, types.GetProfileObjectTypeInput): types.GetProfileObjectTypeOutput, table
+    getProfileObjectTypeTemplate: function(Client, types.GetProfileObjectTypeTemplateInput): types.GetProfileObjectTypeTemplateOutput, table
+    getProfileRecommendations: function(Client, types.GetProfileRecommendationsInput): types.GetProfileRecommendationsOutput, table
+    getRecommender: function(Client, types.GetRecommenderInput): types.GetRecommenderOutput, table
+    getRecommenderFilter: function(Client, types.GetRecommenderFilterInput): types.GetRecommenderFilterOutput, table
+    getRecommenderSchema: function(Client, types.GetRecommenderSchemaInput): types.GetRecommenderSchemaOutput, table
+    getSegmentDefinition: function(Client, types.GetSegmentDefinitionInput): types.GetSegmentDefinitionOutput, table
+    getSegmentEstimate: function(Client, types.GetSegmentEstimateInput): types.GetSegmentEstimateOutput, table
+    getSegmentMembership: function(Client, types.GetSegmentMembershipInput): types.GetSegmentMembershipOutput, table
+    getSegmentSnapshot: function(Client, types.GetSegmentSnapshotInput): types.GetSegmentSnapshotOutput, table
+    getSimilarProfiles: function(Client, types.GetSimilarProfilesInput): types.GetSimilarProfilesOutput, table
+    getUploadJob: function(Client, types.GetUploadJobInput): types.GetUploadJobOutput, table
+    getUploadJobPath: function(Client, types.GetUploadJobPathInput): types.GetUploadJobPathOutput, table
+    getWorkflow: function(Client, types.GetWorkflowInput): types.GetWorkflowOutput, table
+    getWorkflowSteps: function(Client, types.GetWorkflowStepsInput): types.GetWorkflowStepsOutput, table
+    listAccountIntegrations: function(Client, types.ListAccountIntegrationsInput): types.ListAccountIntegrationsOutput, table
+    listCalculatedAttributeDefinitions: function(Client, types.ListCalculatedAttributeDefinitionsInput): types.ListCalculatedAttributeDefinitionsOutput, table
+    listCalculatedAttributesForProfile: function(Client, types.ListCalculatedAttributesForProfileInput): types.ListCalculatedAttributesForProfileOutput, table
+    listDomainLayouts: function(Client, types.ListDomainLayoutsInput): types.ListDomainLayoutsOutput, table
+    listDomainObjectTypes: function(Client, types.ListDomainObjectTypesInput): types.ListDomainObjectTypesOutput, table
+    listDomains: function(Client, types.ListDomainsInput): types.ListDomainsOutput, table
+    listEventStreams: function(Client, types.ListEventStreamsInput): types.ListEventStreamsOutput, table
+    listEventTriggers: function(Client, types.ListEventTriggersInput): types.ListEventTriggersOutput, table
+    listIdentityResolutionJobs: function(Client, types.ListIdentityResolutionJobsInput): types.ListIdentityResolutionJobsOutput, table
+    listIntegrations: function(Client, types.ListIntegrationsInput): types.ListIntegrationsOutput, table
+    listObjectTypeAttributes: function(Client, types.ListObjectTypeAttributesInput): types.ListObjectTypeAttributesOutput, table
+    listObjectTypeAttributeValues: function(Client, types.ListObjectTypeAttributeValuesInput): types.ListObjectTypeAttributeValuesOutput, table
+    listProfileAttributeValues: function(Client, types.ListProfileAttributeValuesInput): types.ListProfileAttributeValuesOutput, table
+    listProfileHistoryRecords: function(Client, types.ListProfileHistoryRecordsInput): types.ListProfileHistoryRecordsOutput, table
+    listProfileObjects: function(Client, types.ListProfileObjectsInput): types.ListProfileObjectsOutput, table
+    listProfileObjectTypes: function(Client, types.ListProfileObjectTypesInput): types.ListProfileObjectTypesOutput, table
+    listProfileObjectTypeTemplates: function(Client, types.ListProfileObjectTypeTemplatesInput): types.ListProfileObjectTypeTemplatesOutput, table
+    listRecommenderFilters: function(Client, types.ListRecommenderFiltersInput): types.ListRecommenderFiltersOutput, table
+    listRecommenderRecipes: function(Client, types.ListRecommenderRecipesInput): types.ListRecommenderRecipesOutput, table
+    listRecommenders: function(Client, types.ListRecommendersInput): types.ListRecommendersOutput, table
+    listRecommenderSchemas: function(Client, types.ListRecommenderSchemasInput): types.ListRecommenderSchemasOutput, table
+    listRuleBasedMatches: function(Client, types.ListRuleBasedMatchesInput): types.ListRuleBasedMatchesOutput, table
+    listSegmentDefinitions: function(Client, types.ListSegmentDefinitionsInput): types.ListSegmentDefinitionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listUploadJobs: function(Client, types.ListUploadJobsInput): types.ListUploadJobsOutput, table
+    listWorkflows: function(Client, types.ListWorkflowsInput): types.ListWorkflowsOutput, table
+    mergeProfiles: function(Client, types.MergeProfilesInput): types.MergeProfilesOutput, table
+    putDomainObjectType: function(Client, types.PutDomainObjectTypeInput): types.PutDomainObjectTypeOutput, table
+    putIntegration: function(Client, types.PutIntegrationInput): types.PutIntegrationOutput, table
+    putProfileObject: function(Client, types.PutProfileObjectInput): types.PutProfileObjectOutput, table
+    putProfileObjectType: function(Client, types.PutProfileObjectTypeInput): types.PutProfileObjectTypeOutput, table
+    searchProfiles: function(Client, types.SearchProfilesInput): types.SearchProfilesOutput, table
+    startRecommender: function(Client, types.StartRecommenderInput): types.StartRecommenderOutput, table
+    startUploadJob: function(Client, types.StartUploadJobInput): types.StartUploadJobOutput, table
+    stopRecommender: function(Client, types.StopRecommenderInput): types.StopRecommenderOutput, table
+    stopUploadJob: function(Client, types.StopUploadJobInput): types.StopUploadJobOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateCalculatedAttributeDefinition: function(Client, types.UpdateCalculatedAttributeDefinitionInput): types.UpdateCalculatedAttributeDefinitionOutput, table
+    updateDomain: function(Client, types.UpdateDomainInput): types.UpdateDomainOutput, table
+    updateDomainLayout: function(Client, types.UpdateDomainLayoutInput): types.UpdateDomainLayoutOutput, table
+    updateEventTrigger: function(Client, types.UpdateEventTriggerInput): types.UpdateEventTriggerOutput, table
+    updateProfile: function(Client, types.UpdateProfileInput): types.UpdateProfileOutput, table
+    updateRecommender: function(Client, types.UpdateRecommenderInput): types.UpdateRecommenderOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

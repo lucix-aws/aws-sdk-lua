@@ -1,0 +1,91 @@
+local types = require("wafregional.types")
+
+local record Client
+    associateWebACL: function(Client, types.AssociateWebACLInput): types.AssociateWebACLOutput, table
+    createByteMatchSet: function(Client, types.CreateByteMatchSetInput): types.CreateByteMatchSetOutput, table
+    createGeoMatchSet: function(Client, types.CreateGeoMatchSetInput): types.CreateGeoMatchSetOutput, table
+    createIPSet: function(Client, types.CreateIPSetInput): types.CreateIPSetOutput, table
+    createRateBasedRule: function(Client, types.CreateRateBasedRuleInput): types.CreateRateBasedRuleOutput, table
+    createRegexMatchSet: function(Client, types.CreateRegexMatchSetInput): types.CreateRegexMatchSetOutput, table
+    createRegexPatternSet: function(Client, types.CreateRegexPatternSetInput): types.CreateRegexPatternSetOutput, table
+    createRule: function(Client, types.CreateRuleInput): types.CreateRuleOutput, table
+    createRuleGroup: function(Client, types.CreateRuleGroupInput): types.CreateRuleGroupOutput, table
+    createSizeConstraintSet: function(Client, types.CreateSizeConstraintSetInput): types.CreateSizeConstraintSetOutput, table
+    createSqlInjectionMatchSet: function(Client, types.CreateSqlInjectionMatchSetInput): types.CreateSqlInjectionMatchSetOutput, table
+    createWebACL: function(Client, types.CreateWebACLInput): types.CreateWebACLOutput, table
+    createWebACLMigrationStack: function(Client, types.CreateWebACLMigrationStackInput): types.CreateWebACLMigrationStackOutput, table
+    createXssMatchSet: function(Client, types.CreateXssMatchSetInput): types.CreateXssMatchSetOutput, table
+    deleteByteMatchSet: function(Client, types.DeleteByteMatchSetInput): types.DeleteByteMatchSetOutput, table
+    deleteGeoMatchSet: function(Client, types.DeleteGeoMatchSetInput): types.DeleteGeoMatchSetOutput, table
+    deleteIPSet: function(Client, types.DeleteIPSetInput): types.DeleteIPSetOutput, table
+    deleteLoggingConfiguration: function(Client, types.DeleteLoggingConfigurationInput): types.DeleteLoggingConfigurationOutput, table
+    deletePermissionPolicy: function(Client, types.DeletePermissionPolicyInput): types.DeletePermissionPolicyOutput, table
+    deleteRateBasedRule: function(Client, types.DeleteRateBasedRuleInput): types.DeleteRateBasedRuleOutput, table
+    deleteRegexMatchSet: function(Client, types.DeleteRegexMatchSetInput): types.DeleteRegexMatchSetOutput, table
+    deleteRegexPatternSet: function(Client, types.DeleteRegexPatternSetInput): types.DeleteRegexPatternSetOutput, table
+    deleteRule: function(Client, types.DeleteRuleInput): types.DeleteRuleOutput, table
+    deleteRuleGroup: function(Client, types.DeleteRuleGroupInput): types.DeleteRuleGroupOutput, table
+    deleteSizeConstraintSet: function(Client, types.DeleteSizeConstraintSetInput): types.DeleteSizeConstraintSetOutput, table
+    deleteSqlInjectionMatchSet: function(Client, types.DeleteSqlInjectionMatchSetInput): types.DeleteSqlInjectionMatchSetOutput, table
+    deleteWebACL: function(Client, types.DeleteWebACLInput): types.DeleteWebACLOutput, table
+    deleteXssMatchSet: function(Client, types.DeleteXssMatchSetInput): types.DeleteXssMatchSetOutput, table
+    disassociateWebACL: function(Client, types.DisassociateWebACLInput): types.DisassociateWebACLOutput, table
+    getByteMatchSet: function(Client, types.GetByteMatchSetInput): types.GetByteMatchSetOutput, table
+    getChangeToken: function(Client, types.GetChangeTokenInput): types.GetChangeTokenOutput, table
+    getChangeTokenStatus: function(Client, types.GetChangeTokenStatusInput): types.GetChangeTokenStatusOutput, table
+    getGeoMatchSet: function(Client, types.GetGeoMatchSetInput): types.GetGeoMatchSetOutput, table
+    getIPSet: function(Client, types.GetIPSetInput): types.GetIPSetOutput, table
+    getLoggingConfiguration: function(Client, types.GetLoggingConfigurationInput): types.GetLoggingConfigurationOutput, table
+    getPermissionPolicy: function(Client, types.GetPermissionPolicyInput): types.GetPermissionPolicyOutput, table
+    getRateBasedRule: function(Client, types.GetRateBasedRuleInput): types.GetRateBasedRuleOutput, table
+    getRateBasedRuleManagedKeys: function(Client, types.GetRateBasedRuleManagedKeysInput): types.GetRateBasedRuleManagedKeysOutput, table
+    getRegexMatchSet: function(Client, types.GetRegexMatchSetInput): types.GetRegexMatchSetOutput, table
+    getRegexPatternSet: function(Client, types.GetRegexPatternSetInput): types.GetRegexPatternSetOutput, table
+    getRule: function(Client, types.GetRuleInput): types.GetRuleOutput, table
+    getRuleGroup: function(Client, types.GetRuleGroupInput): types.GetRuleGroupOutput, table
+    getSampledRequests: function(Client, types.GetSampledRequestsInput): types.GetSampledRequestsOutput, table
+    getSizeConstraintSet: function(Client, types.GetSizeConstraintSetInput): types.GetSizeConstraintSetOutput, table
+    getSqlInjectionMatchSet: function(Client, types.GetSqlInjectionMatchSetInput): types.GetSqlInjectionMatchSetOutput, table
+    getWebACL: function(Client, types.GetWebACLInput): types.GetWebACLOutput, table
+    getWebACLForResource: function(Client, types.GetWebACLForResourceInput): types.GetWebACLForResourceOutput, table
+    getXssMatchSet: function(Client, types.GetXssMatchSetInput): types.GetXssMatchSetOutput, table
+    listActivatedRulesInRuleGroup: function(Client, types.ListActivatedRulesInRuleGroupInput): types.ListActivatedRulesInRuleGroupOutput, table
+    listByteMatchSets: function(Client, types.ListByteMatchSetsInput): types.ListByteMatchSetsOutput, table
+    listGeoMatchSets: function(Client, types.ListGeoMatchSetsInput): types.ListGeoMatchSetsOutput, table
+    listIPSets: function(Client, types.ListIPSetsInput): types.ListIPSetsOutput, table
+    listLoggingConfigurations: function(Client, types.ListLoggingConfigurationsInput): types.ListLoggingConfigurationsOutput, table
+    listRateBasedRules: function(Client, types.ListRateBasedRulesInput): types.ListRateBasedRulesOutput, table
+    listRegexMatchSets: function(Client, types.ListRegexMatchSetsInput): types.ListRegexMatchSetsOutput, table
+    listRegexPatternSets: function(Client, types.ListRegexPatternSetsInput): types.ListRegexPatternSetsOutput, table
+    listResourcesForWebACL: function(Client, types.ListResourcesForWebACLInput): types.ListResourcesForWebACLOutput, table
+    listRuleGroups: function(Client, types.ListRuleGroupsInput): types.ListRuleGroupsOutput, table
+    listRules: function(Client, types.ListRulesInput): types.ListRulesOutput, table
+    listSizeConstraintSets: function(Client, types.ListSizeConstraintSetsInput): types.ListSizeConstraintSetsOutput, table
+    listSqlInjectionMatchSets: function(Client, types.ListSqlInjectionMatchSetsInput): types.ListSqlInjectionMatchSetsOutput, table
+    listSubscribedRuleGroups: function(Client, types.ListSubscribedRuleGroupsInput): types.ListSubscribedRuleGroupsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listWebACLs: function(Client, types.ListWebACLsInput): types.ListWebACLsOutput, table
+    listXssMatchSets: function(Client, types.ListXssMatchSetsInput): types.ListXssMatchSetsOutput, table
+    putLoggingConfiguration: function(Client, types.PutLoggingConfigurationInput): types.PutLoggingConfigurationOutput, table
+    putPermissionPolicy: function(Client, types.PutPermissionPolicyInput): types.PutPermissionPolicyOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateByteMatchSet: function(Client, types.UpdateByteMatchSetInput): types.UpdateByteMatchSetOutput, table
+    updateGeoMatchSet: function(Client, types.UpdateGeoMatchSetInput): types.UpdateGeoMatchSetOutput, table
+    updateIPSet: function(Client, types.UpdateIPSetInput): types.UpdateIPSetOutput, table
+    updateRateBasedRule: function(Client, types.UpdateRateBasedRuleInput): types.UpdateRateBasedRuleOutput, table
+    updateRegexMatchSet: function(Client, types.UpdateRegexMatchSetInput): types.UpdateRegexMatchSetOutput, table
+    updateRegexPatternSet: function(Client, types.UpdateRegexPatternSetInput): types.UpdateRegexPatternSetOutput, table
+    updateRule: function(Client, types.UpdateRuleInput): types.UpdateRuleOutput, table
+    updateRuleGroup: function(Client, types.UpdateRuleGroupInput): types.UpdateRuleGroupOutput, table
+    updateSizeConstraintSet: function(Client, types.UpdateSizeConstraintSetInput): types.UpdateSizeConstraintSetOutput, table
+    updateSqlInjectionMatchSet: function(Client, types.UpdateSqlInjectionMatchSetInput): types.UpdateSqlInjectionMatchSetOutput, table
+    updateWebACL: function(Client, types.UpdateWebACLInput): types.UpdateWebACLOutput, table
+    updateXssMatchSet: function(Client, types.UpdateXssMatchSetInput): types.UpdateXssMatchSetOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

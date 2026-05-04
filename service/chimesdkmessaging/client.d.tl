@@ -1,0 +1,61 @@
+local types = require("chimesdkmessaging.types")
+
+local record Client
+    associateChannelFlow: function(Client, types.AssociateChannelFlowInput): types.AssociateChannelFlowOutput, table
+    batchCreateChannelMembership: function(Client, types.BatchCreateChannelMembershipInput): types.BatchCreateChannelMembershipOutput, table
+    channelFlowCallback: function(Client, types.ChannelFlowCallbackInput): types.ChannelFlowCallbackOutput, table
+    createChannel: function(Client, types.CreateChannelInput): types.CreateChannelOutput, table
+    createChannelBan: function(Client, types.CreateChannelBanInput): types.CreateChannelBanOutput, table
+    createChannelFlow: function(Client, types.CreateChannelFlowInput): types.CreateChannelFlowOutput, table
+    createChannelMembership: function(Client, types.CreateChannelMembershipInput): types.CreateChannelMembershipOutput, table
+    createChannelModerator: function(Client, types.CreateChannelModeratorInput): types.CreateChannelModeratorOutput, table
+    deleteChannel: function(Client, types.DeleteChannelInput): types.DeleteChannelOutput, table
+    deleteChannelBan: function(Client, types.DeleteChannelBanInput): types.DeleteChannelBanOutput, table
+    deleteChannelFlow: function(Client, types.DeleteChannelFlowInput): types.DeleteChannelFlowOutput, table
+    deleteChannelMembership: function(Client, types.DeleteChannelMembershipInput): types.DeleteChannelMembershipOutput, table
+    deleteChannelMessage: function(Client, types.DeleteChannelMessageInput): types.DeleteChannelMessageOutput, table
+    deleteChannelModerator: function(Client, types.DeleteChannelModeratorInput): types.DeleteChannelModeratorOutput, table
+    deleteMessagingStreamingConfigurations: function(Client, types.DeleteMessagingStreamingConfigurationsInput): types.DeleteMessagingStreamingConfigurationsOutput, table
+    describeChannel: function(Client, types.DescribeChannelInput): types.DescribeChannelOutput, table
+    describeChannelBan: function(Client, types.DescribeChannelBanInput): types.DescribeChannelBanOutput, table
+    describeChannelFlow: function(Client, types.DescribeChannelFlowInput): types.DescribeChannelFlowOutput, table
+    describeChannelMembership: function(Client, types.DescribeChannelMembershipInput): types.DescribeChannelMembershipOutput, table
+    describeChannelMembershipForAppInstanceUser: function(Client, types.DescribeChannelMembershipForAppInstanceUserInput): types.DescribeChannelMembershipForAppInstanceUserOutput, table
+    describeChannelModeratedByAppInstanceUser: function(Client, types.DescribeChannelModeratedByAppInstanceUserInput): types.DescribeChannelModeratedByAppInstanceUserOutput, table
+    describeChannelModerator: function(Client, types.DescribeChannelModeratorInput): types.DescribeChannelModeratorOutput, table
+    disassociateChannelFlow: function(Client, types.DisassociateChannelFlowInput): types.DisassociateChannelFlowOutput, table
+    getChannelMembershipPreferences: function(Client, types.GetChannelMembershipPreferencesInput): types.GetChannelMembershipPreferencesOutput, table
+    getChannelMessage: function(Client, types.GetChannelMessageInput): types.GetChannelMessageOutput, table
+    getChannelMessageStatus: function(Client, types.GetChannelMessageStatusInput): types.GetChannelMessageStatusOutput, table
+    getMessagingSessionEndpoint: function(Client, types.GetMessagingSessionEndpointInput): types.GetMessagingSessionEndpointOutput, table
+    getMessagingStreamingConfigurations: function(Client, types.GetMessagingStreamingConfigurationsInput): types.GetMessagingStreamingConfigurationsOutput, table
+    listChannelBans: function(Client, types.ListChannelBansInput): types.ListChannelBansOutput, table
+    listChannelFlows: function(Client, types.ListChannelFlowsInput): types.ListChannelFlowsOutput, table
+    listChannelMemberships: function(Client, types.ListChannelMembershipsInput): types.ListChannelMembershipsOutput, table
+    listChannelMembershipsForAppInstanceUser: function(Client, types.ListChannelMembershipsForAppInstanceUserInput): types.ListChannelMembershipsForAppInstanceUserOutput, table
+    listChannelMessages: function(Client, types.ListChannelMessagesInput): types.ListChannelMessagesOutput, table
+    listChannelModerators: function(Client, types.ListChannelModeratorsInput): types.ListChannelModeratorsOutput, table
+    listChannels: function(Client, types.ListChannelsInput): types.ListChannelsOutput, table
+    listChannelsAssociatedWithChannelFlow: function(Client, types.ListChannelsAssociatedWithChannelFlowInput): types.ListChannelsAssociatedWithChannelFlowOutput, table
+    listChannelsModeratedByAppInstanceUser: function(Client, types.ListChannelsModeratedByAppInstanceUserInput): types.ListChannelsModeratedByAppInstanceUserOutput, table
+    listSubChannels: function(Client, types.ListSubChannelsInput): types.ListSubChannelsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putChannelExpirationSettings: function(Client, types.PutChannelExpirationSettingsInput): types.PutChannelExpirationSettingsOutput, table
+    putChannelMembershipPreferences: function(Client, types.PutChannelMembershipPreferencesInput): types.PutChannelMembershipPreferencesOutput, table
+    putMessagingStreamingConfigurations: function(Client, types.PutMessagingStreamingConfigurationsInput): types.PutMessagingStreamingConfigurationsOutput, table
+    redactChannelMessage: function(Client, types.RedactChannelMessageInput): types.RedactChannelMessageOutput, table
+    searchChannels: function(Client, types.SearchChannelsInput): types.SearchChannelsOutput, table
+    sendChannelMessage: function(Client, types.SendChannelMessageInput): types.SendChannelMessageOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateChannel: function(Client, types.UpdateChannelInput): types.UpdateChannelOutput, table
+    updateChannelFlow: function(Client, types.UpdateChannelFlowInput): types.UpdateChannelFlowOutput, table
+    updateChannelMessage: function(Client, types.UpdateChannelMessageInput): types.UpdateChannelMessageOutput, table
+    updateChannelReadMarker: function(Client, types.UpdateChannelReadMarkerInput): types.UpdateChannelReadMarkerOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

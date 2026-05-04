@@ -1,0 +1,1639 @@
+local M = {}
+
+M.AccessDeniedException = {
+    type = "structure",
+    error = "client",
+    members = {
+        message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ApiKeyCredential = {
+    type = "structure",
+    members = {
+        apiKey = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.AuthType = {
+    OAUTH2 = "oauth2",
+    API_KEY = "apiKey",
+}
+
+M.Persona = {
+    ADMIN = "admin",
+    ENDUSER = "endUser",
+}
+
+M.AppAuthorizationStatus = {
+    PENDING_CONNECT = "PendingConnect",
+    CONNECTED = "Connected",
+    CONNECTION_VALIDATION_FAILED = "ConnectionValidationFailed",
+    TOKEN_AUTO_ROTATION_FAILED = "TokenAutoRotationFailed",
+}
+
+M.Tenant = {
+    type = "structure",
+    members = {
+        tenantIdentifier = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        tenantDisplayName = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.AppAuthorization = {
+    type = "structure",
+    members = {
+        appAuthorizationArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        appBundleArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        app = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        tenant = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        authType = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        status = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        createdAt = {
+            type = "timestamp",
+            traits = {
+                required = true,
+            },
+        },
+        updatedAt = {
+            type = "timestamp",
+            traits = {
+                required = true,
+            },
+        },
+        persona = {
+            type = "string",
+        },
+        authUrl = {
+            type = "string",
+        },
+    },
+}
+
+M.AppAuthorizationSummary = {
+    type = "structure",
+    members = {
+        appAuthorizationArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        appBundleArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        app = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        tenant = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        status = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        updatedAt = {
+            type = "timestamp",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.AppBundle = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        customerManagedKeyArn = {
+            type = "string",
+        },
+    },
+}
+
+M.AppBundleSummary = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.FirehoseStream = {
+    type = "structure",
+    members = {
+        streamName = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.S3Bucket = {
+    type = "structure",
+    members = {
+        bucketName = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        prefix = {
+            type = "string",
+        },
+    },
+}
+
+M.Destination = {
+    type = "union",
+    members = {
+        s3Bucket = {
+            type = "structure",
+        },
+        firehoseStream = {
+            type = "structure",
+        },
+    },
+}
+
+M.AuditLogDestinationConfiguration = {
+    type = "structure",
+    members = {
+        destination = {
+            type = "union",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.Format = {
+    JSON = "json",
+    PARQUET = "parquet",
+}
+
+M.Schema = {
+    OCSF = "ocsf",
+    RAW = "raw",
+}
+
+M.AuditLogProcessingConfiguration = {
+    type = "structure",
+    members = {
+        schema = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        format = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.AuthRequest = {
+    type = "structure",
+    members = {
+        redirectUri = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        code = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.BatchGetUserAccessTasksInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        taskIdList = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ResultStatus = {
+    IN_PROGRESS = "IN_PROGRESS",
+    COMPLETED = "COMPLETED",
+    FAILED = "FAILED",
+    EXPIRED = "EXPIRED",
+}
+
+M.TaskError = {
+    type = "structure",
+    members = {
+        errorCode = {
+            type = "string",
+        },
+        errorMessage = {
+            type = "string",
+        },
+    },
+}
+
+M.UserAccessResultItem = {
+    type = "structure",
+    members = {
+        app = {
+            type = "string",
+        },
+        tenantId = {
+            type = "string",
+        },
+        tenantDisplayName = {
+            type = "string",
+        },
+        taskId = {
+            type = "string",
+        },
+        resultStatus = {
+            type = "string",
+        },
+        email = {
+            type = "string",
+        },
+        userId = {
+            type = "string",
+        },
+        userFullName = {
+            type = "string",
+        },
+        userFirstName = {
+            type = "string",
+        },
+        userLastName = {
+            type = "string",
+        },
+        userStatus = {
+            type = "string",
+        },
+        taskError = {
+            type = "structure",
+        },
+    },
+}
+
+M.BatchGetUserAccessTasksOutput = {
+    type = "structure",
+    members = {
+        userAccessResultsList = {
+            type = "list",
+            member_type = "structure",
+        },
+    },
+}
+
+M.InternalServerException = {
+    type = "structure",
+    error = "server",
+    members = {
+        message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        retryAfterSeconds = {
+            type = "number",
+            traits = {
+                http_header = "Retry-After",
+            },
+        },
+    },
+}
+
+M.ResourceNotFoundException = {
+    type = "structure",
+    error = "client",
+    members = {
+        message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        resourceId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        resourceType = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ThrottlingException = {
+    type = "structure",
+    error = "client",
+    members = {
+        message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        serviceCode = {
+            type = "string",
+        },
+        quotaCode = {
+            type = "string",
+        },
+        retryAfterSeconds = {
+            type = "number",
+            traits = {
+                http_header = "Retry-After",
+            },
+        },
+    },
+}
+
+M.ValidationExceptionField = {
+    type = "structure",
+    members = {
+        name = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ValidationExceptionReason = {
+    UNKNOWN_OPERATION = "unknownOperation",
+    CANNOT_PARSE = "cannotParse",
+    FIELD_VALIDATION_FAILED = "fieldValidationFailed",
+    OTHER = "other",
+}
+
+M.ValidationException = {
+    type = "structure",
+    error = "client",
+    members = {
+        message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        reason = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        fieldList = {
+            type = "list",
+            member_type = "structure",
+        },
+    },
+}
+
+M.ConflictException = {
+    type = "structure",
+    error = "client",
+    members = {
+        message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        resourceId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        resourceType = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ConnectAppAuthorizationInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        appAuthorizationIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        authRequest = {
+            type = "structure",
+        },
+    },
+}
+
+M.ConnectAppAuthorizationOutput = {
+    type = "structure",
+    members = {
+        appAuthorizationSummary = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.Oauth2Credential = {
+    type = "structure",
+    members = {
+        clientId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        clientSecret = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.Credential = {
+    type = "union",
+    members = {
+        oauth2Credential = {
+            type = "structure",
+        },
+        apiKeyCredential = {
+            type = "structure",
+        },
+    },
+}
+
+M.Tag = {
+    type = "structure",
+    members = {
+        key = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        value = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.CreateAppAuthorizationInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        app = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        credential = {
+            type = "union",
+            traits = {
+                required = true,
+            },
+        },
+        tenant = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        authType = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        clientToken = {
+            type = "string",
+        },
+        tags = {
+            type = "list",
+            member_type = "structure",
+        },
+    },
+}
+
+M.CreateAppAuthorizationOutput = {
+    type = "structure",
+    members = {
+        appAuthorization = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ServiceQuotaExceededException = {
+    type = "structure",
+    error = "client",
+    members = {
+        message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        resourceId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        resourceType = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        serviceCode = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        quotaCode = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.CreateAppBundleInput = {
+    type = "structure",
+    members = {
+        clientToken = {
+            type = "string",
+        },
+        customerManagedKeyIdentifier = {
+            type = "string",
+        },
+        tags = {
+            type = "list",
+            member_type = "structure",
+        },
+    },
+}
+
+M.CreateAppBundleOutput = {
+    type = "structure",
+    members = {
+        appBundle = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.IngestionType = {
+    AUDIT_LOG = "auditLog",
+}
+
+M.CreateIngestionInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        app = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        tenantId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ingestionType = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        clientToken = {
+            type = "string",
+        },
+        tags = {
+            type = "list",
+            member_type = "structure",
+        },
+    },
+}
+
+M.IngestionState = {
+    ENABLED = "enabled",
+    DISABLED = "disabled",
+}
+
+M.Ingestion = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        appBundleArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        app = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        tenantId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        createdAt = {
+            type = "timestamp",
+            traits = {
+                required = true,
+            },
+        },
+        updatedAt = {
+            type = "timestamp",
+            traits = {
+                required = true,
+            },
+        },
+        state = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ingestionType = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.CreateIngestionOutput = {
+    type = "structure",
+    members = {
+        ingestion = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.DestinationConfiguration = {
+    type = "union",
+    members = {
+        auditLog = {
+            type = "structure",
+        },
+    },
+}
+
+M.ProcessingConfiguration = {
+    type = "union",
+    members = {
+        auditLog = {
+            type = "structure",
+        },
+    },
+}
+
+M.CreateIngestionDestinationInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        ingestionIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        processingConfiguration = {
+            type = "union",
+            traits = {
+                required = true,
+            },
+        },
+        destinationConfiguration = {
+            type = "union",
+            traits = {
+                required = true,
+            },
+        },
+        clientToken = {
+            type = "string",
+        },
+        tags = {
+            type = "list",
+            member_type = "structure",
+        },
+    },
+}
+
+M.IngestionDestinationStatus = {
+    ACTIVE = "Active",
+    FAILED = "Failed",
+}
+
+M.IngestionDestination = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ingestionArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        processingConfiguration = {
+            type = "union",
+            traits = {
+                required = true,
+            },
+        },
+        destinationConfiguration = {
+            type = "union",
+            traits = {
+                required = true,
+            },
+        },
+        status = {
+            type = "string",
+        },
+        statusReason = {
+            type = "string",
+        },
+        createdAt = {
+            type = "timestamp",
+        },
+        updatedAt = {
+            type = "timestamp",
+        },
+    },
+}
+
+M.CreateIngestionDestinationOutput = {
+    type = "structure",
+    members = {
+        ingestionDestination = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.DeleteAppAuthorizationInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        appAuthorizationIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.DeleteAppAuthorizationOutput = {
+    type = "structure",
+}
+
+M.DeleteAppBundleInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.DeleteAppBundleOutput = {
+    type = "structure",
+}
+
+M.DeleteIngestionInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        ingestionIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.DeleteIngestionOutput = {
+    type = "structure",
+}
+
+M.DeleteIngestionDestinationInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        ingestionIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        ingestionDestinationIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.DeleteIngestionDestinationOutput = {
+    type = "structure",
+}
+
+M.GetAppAuthorizationInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        appAuthorizationIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.GetAppAuthorizationOutput = {
+    type = "structure",
+    members = {
+        appAuthorization = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.GetAppBundleInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.GetAppBundleOutput = {
+    type = "structure",
+    members = {
+        appBundle = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.GetIngestionInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        ingestionIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.GetIngestionOutput = {
+    type = "structure",
+    members = {
+        ingestion = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.GetIngestionDestinationInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        ingestionIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        ingestionDestinationIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.GetIngestionDestinationOutput = {
+    type = "structure",
+    members = {
+        ingestionDestination = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ListAppAuthorizationsInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        maxResults = {
+            type = "number",
+            traits = {
+                http_query = "maxResults",
+            },
+        },
+        nextToken = {
+            type = "string",
+            traits = {
+                http_query = "nextToken",
+            },
+        },
+    },
+}
+
+M.ListAppAuthorizationsOutput = {
+    type = "structure",
+    members = {
+        appAuthorizationSummaryList = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.ListAppBundlesInput = {
+    type = "structure",
+    members = {
+        maxResults = {
+            type = "number",
+            traits = {
+                http_query = "maxResults",
+            },
+        },
+        nextToken = {
+            type = "string",
+            traits = {
+                http_query = "nextToken",
+            },
+        },
+    },
+}
+
+M.ListAppBundlesOutput = {
+    type = "structure",
+    members = {
+        appBundleSummaryList = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.ListIngestionDestinationsInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        ingestionIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        maxResults = {
+            type = "number",
+            traits = {
+                http_query = "maxResults",
+            },
+        },
+        nextToken = {
+            type = "string",
+            traits = {
+                http_query = "nextToken",
+            },
+        },
+    },
+}
+
+M.IngestionDestinationSummary = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ListIngestionDestinationsOutput = {
+    type = "structure",
+    members = {
+        ingestionDestinations = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.ListIngestionsInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        maxResults = {
+            type = "number",
+            traits = {
+                http_query = "maxResults",
+            },
+        },
+        nextToken = {
+            type = "string",
+            traits = {
+                http_query = "nextToken",
+            },
+        },
+    },
+}
+
+M.IngestionSummary = {
+    type = "structure",
+    members = {
+        arn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        app = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        tenantId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        state = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ListIngestionsOutput = {
+    type = "structure",
+    members = {
+        ingestions = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        nextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.ListTagsForResourceInput = {
+    type = "structure",
+    members = {
+        resourceArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.ListTagsForResourceOutput = {
+    type = "structure",
+    members = {
+        tags = {
+            type = "list",
+            member_type = "structure",
+        },
+    },
+}
+
+M.StartIngestionInput = {
+    type = "structure",
+    members = {
+        ingestionIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.StartIngestionOutput = {
+    type = "structure",
+}
+
+M.StartUserAccessTasksInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        email = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.UserAccessTaskItem = {
+    type = "structure",
+    members = {
+        app = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        tenantId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        taskId = {
+            type = "string",
+        },
+        error = {
+            type = "structure",
+        },
+    },
+}
+
+M.StartUserAccessTasksOutput = {
+    type = "structure",
+    members = {
+        userAccessTasksList = {
+            type = "list",
+            member_type = "structure",
+        },
+    },
+}
+
+M.StopIngestionInput = {
+    type = "structure",
+    members = {
+        ingestionIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.StopIngestionOutput = {
+    type = "structure",
+}
+
+M.TagResourceInput = {
+    type = "structure",
+    members = {
+        resourceArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        tags = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.TagResourceOutput = {
+    type = "structure",
+}
+
+M.UntagResourceInput = {
+    type = "structure",
+    members = {
+        resourceArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        tagKeys = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                http_query = "tagKeys",
+                required = true,
+            },
+        },
+    },
+}
+
+M.UntagResourceOutput = {
+    type = "structure",
+}
+
+M.UpdateAppAuthorizationInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        appAuthorizationIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        credential = {
+            type = "union",
+        },
+        tenant = {
+            type = "structure",
+        },
+    },
+}
+
+M.UpdateAppAuthorizationOutput = {
+    type = "structure",
+    members = {
+        appAuthorization = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.UpdateIngestionDestinationInput = {
+    type = "structure",
+    members = {
+        appBundleIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        ingestionIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        ingestionDestinationIdentifier = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        destinationConfiguration = {
+            type = "union",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.UpdateIngestionDestinationOutput = {
+    type = "structure",
+    members = {
+        ingestionDestination = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+return M

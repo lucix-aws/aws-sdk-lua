@@ -1,0 +1,15 @@
+local types = require("personalizeevents.types")
+
+local record Client
+    putActionInteractions: function(Client, types.PutActionInteractionsInput): types.PutActionInteractionsOutput, table
+    putActions: function(Client, types.PutActionsInput): types.PutActionsOutput, table
+    putEvents: function(Client, types.PutEventsInput): types.PutEventsOutput, table
+    putItems: function(Client, types.PutItemsInput): types.PutItemsOutput, table
+    putUsers: function(Client, types.PutUsersInput): types.PutUsersOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,13 @@
+local types = require("sagemakeredge.types")
+
+local record Client
+    getDeployments: function(Client, types.GetDeploymentsInput): types.GetDeploymentsOutput, table
+    getDeviceRegistration: function(Client, types.GetDeviceRegistrationInput): types.GetDeviceRegistrationOutput, table
+    sendHeartbeat: function(Client, types.SendHeartbeatInput): types.SendHeartbeatOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

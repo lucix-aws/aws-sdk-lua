@@ -1,0 +1,35 @@
+local types = require("appflow.types")
+
+local record Client
+    cancelFlowExecutions: function(Client, types.CancelFlowExecutionsInput): types.CancelFlowExecutionsOutput, table
+    createConnectorProfile: function(Client, types.CreateConnectorProfileInput): types.CreateConnectorProfileOutput, table
+    createFlow: function(Client, types.CreateFlowInput): types.CreateFlowOutput, table
+    deleteConnectorProfile: function(Client, types.DeleteConnectorProfileInput): types.DeleteConnectorProfileOutput, table
+    deleteFlow: function(Client, types.DeleteFlowInput): types.DeleteFlowOutput, table
+    describeConnector: function(Client, types.DescribeConnectorInput): types.DescribeConnectorOutput, table
+    describeConnectorEntity: function(Client, types.DescribeConnectorEntityInput): types.DescribeConnectorEntityOutput, table
+    describeConnectorProfiles: function(Client, types.DescribeConnectorProfilesInput): types.DescribeConnectorProfilesOutput, table
+    describeConnectors: function(Client, types.DescribeConnectorsInput): types.DescribeConnectorsOutput, table
+    describeFlow: function(Client, types.DescribeFlowInput): types.DescribeFlowOutput, table
+    describeFlowExecutionRecords: function(Client, types.DescribeFlowExecutionRecordsInput): types.DescribeFlowExecutionRecordsOutput, table
+    listConnectorEntities: function(Client, types.ListConnectorEntitiesInput): types.ListConnectorEntitiesOutput, table
+    listConnectors: function(Client, types.ListConnectorsInput): types.ListConnectorsOutput, table
+    listFlows: function(Client, types.ListFlowsInput): types.ListFlowsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    registerConnector: function(Client, types.RegisterConnectorInput): types.RegisterConnectorOutput, table
+    resetConnectorMetadataCache: function(Client, types.ResetConnectorMetadataCacheInput): types.ResetConnectorMetadataCacheOutput, table
+    startFlow: function(Client, types.StartFlowInput): types.StartFlowOutput, table
+    stopFlow: function(Client, types.StopFlowInput): types.StopFlowOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    unregisterConnector: function(Client, types.UnregisterConnectorInput): types.UnregisterConnectorOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateConnectorProfile: function(Client, types.UpdateConnectorProfileInput): types.UpdateConnectorProfileOutput, table
+    updateConnectorRegistration: function(Client, types.UpdateConnectorRegistrationInput): types.UpdateConnectorRegistrationOutput, table
+    updateFlow: function(Client, types.UpdateFlowInput): types.UpdateFlowOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

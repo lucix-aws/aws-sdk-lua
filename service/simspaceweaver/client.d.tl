@@ -1,0 +1,26 @@
+local types = require("simspaceweaver.types")
+
+local record Client
+    createSnapshot: function(Client, types.CreateSnapshotInput): types.CreateSnapshotOutput, table
+    deleteApp: function(Client, types.DeleteAppInput): types.DeleteAppOutput, table
+    deleteSimulation: function(Client, types.DeleteSimulationInput): types.DeleteSimulationOutput, table
+    describeApp: function(Client, types.DescribeAppInput): types.DescribeAppOutput, table
+    describeSimulation: function(Client, types.DescribeSimulationInput): types.DescribeSimulationOutput, table
+    listApps: function(Client, types.ListAppsInput): types.ListAppsOutput, table
+    listSimulations: function(Client, types.ListSimulationsInput): types.ListSimulationsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    startApp: function(Client, types.StartAppInput): types.StartAppOutput, table
+    startClock: function(Client, types.StartClockInput): types.StartClockOutput, table
+    startSimulation: function(Client, types.StartSimulationInput): types.StartSimulationOutput, table
+    stopApp: function(Client, types.StopAppInput): types.StopAppOutput, table
+    stopClock: function(Client, types.StopClockInput): types.StopClockOutput, table
+    stopSimulation: function(Client, types.StopSimulationInput): types.StopSimulationOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

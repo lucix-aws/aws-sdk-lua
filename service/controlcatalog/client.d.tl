@@ -1,0 +1,16 @@
+local types = require("controlcatalog.types")
+
+local record Client
+    getControl: function(Client, types.GetControlInput): types.GetControlOutput, table
+    listCommonControls: function(Client, types.ListCommonControlsInput): types.ListCommonControlsOutput, table
+    listControlMappings: function(Client, types.ListControlMappingsInput): types.ListControlMappingsOutput, table
+    listControls: function(Client, types.ListControlsInput): types.ListControlsOutput, table
+    listDomains: function(Client, types.ListDomainsInput): types.ListDomainsOutput, table
+    listObjectives: function(Client, types.ListObjectivesInput): types.ListObjectivesOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

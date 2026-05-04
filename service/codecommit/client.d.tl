@@ -1,0 +1,89 @@
+local types = require("codecommit.types")
+
+local record Client
+    associateApprovalRuleTemplateWithRepository: function(Client, types.AssociateApprovalRuleTemplateWithRepositoryInput): types.AssociateApprovalRuleTemplateWithRepositoryOutput, table
+    batchAssociateApprovalRuleTemplateWithRepositories: function(Client, types.BatchAssociateApprovalRuleTemplateWithRepositoriesInput): types.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput, table
+    batchDescribeMergeConflicts: function(Client, types.BatchDescribeMergeConflictsInput): types.BatchDescribeMergeConflictsOutput, table
+    batchDisassociateApprovalRuleTemplateFromRepositories: function(Client, types.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput): types.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput, table
+    batchGetCommits: function(Client, types.BatchGetCommitsInput): types.BatchGetCommitsOutput, table
+    batchGetRepositories: function(Client, types.BatchGetRepositoriesInput): types.BatchGetRepositoriesOutput, table
+    createApprovalRuleTemplate: function(Client, types.CreateApprovalRuleTemplateInput): types.CreateApprovalRuleTemplateOutput, table
+    createBranch: function(Client, types.CreateBranchInput): types.CreateBranchOutput, table
+    createCommit: function(Client, types.CreateCommitInput): types.CreateCommitOutput, table
+    createPullRequest: function(Client, types.CreatePullRequestInput): types.CreatePullRequestOutput, table
+    createPullRequestApprovalRule: function(Client, types.CreatePullRequestApprovalRuleInput): types.CreatePullRequestApprovalRuleOutput, table
+    createRepository: function(Client, types.CreateRepositoryInput): types.CreateRepositoryOutput, table
+    createUnreferencedMergeCommit: function(Client, types.CreateUnreferencedMergeCommitInput): types.CreateUnreferencedMergeCommitOutput, table
+    deleteApprovalRuleTemplate: function(Client, types.DeleteApprovalRuleTemplateInput): types.DeleteApprovalRuleTemplateOutput, table
+    deleteBranch: function(Client, types.DeleteBranchInput): types.DeleteBranchOutput, table
+    deleteCommentContent: function(Client, types.DeleteCommentContentInput): types.DeleteCommentContentOutput, table
+    deleteFile: function(Client, types.DeleteFileInput): types.DeleteFileOutput, table
+    deletePullRequestApprovalRule: function(Client, types.DeletePullRequestApprovalRuleInput): types.DeletePullRequestApprovalRuleOutput, table
+    deleteRepository: function(Client, types.DeleteRepositoryInput): types.DeleteRepositoryOutput, table
+    describeMergeConflicts: function(Client, types.DescribeMergeConflictsInput): types.DescribeMergeConflictsOutput, table
+    describePullRequestEvents: function(Client, types.DescribePullRequestEventsInput): types.DescribePullRequestEventsOutput, table
+    disassociateApprovalRuleTemplateFromRepository: function(Client, types.DisassociateApprovalRuleTemplateFromRepositoryInput): types.DisassociateApprovalRuleTemplateFromRepositoryOutput, table
+    evaluatePullRequestApprovalRules: function(Client, types.EvaluatePullRequestApprovalRulesInput): types.EvaluatePullRequestApprovalRulesOutput, table
+    getApprovalRuleTemplate: function(Client, types.GetApprovalRuleTemplateInput): types.GetApprovalRuleTemplateOutput, table
+    getBlob: function(Client, types.GetBlobInput): types.GetBlobOutput, table
+    getBranch: function(Client, types.GetBranchInput): types.GetBranchOutput, table
+    getComment: function(Client, types.GetCommentInput): types.GetCommentOutput, table
+    getCommentReactions: function(Client, types.GetCommentReactionsInput): types.GetCommentReactionsOutput, table
+    getCommentsForComparedCommit: function(Client, types.GetCommentsForComparedCommitInput): types.GetCommentsForComparedCommitOutput, table
+    getCommentsForPullRequest: function(Client, types.GetCommentsForPullRequestInput): types.GetCommentsForPullRequestOutput, table
+    getCommit: function(Client, types.GetCommitInput): types.GetCommitOutput, table
+    getDifferences: function(Client, types.GetDifferencesInput): types.GetDifferencesOutput, table
+    getFile: function(Client, types.GetFileInput): types.GetFileOutput, table
+    getFolder: function(Client, types.GetFolderInput): types.GetFolderOutput, table
+    getMergeCommit: function(Client, types.GetMergeCommitInput): types.GetMergeCommitOutput, table
+    getMergeConflicts: function(Client, types.GetMergeConflictsInput): types.GetMergeConflictsOutput, table
+    getMergeOptions: function(Client, types.GetMergeOptionsInput): types.GetMergeOptionsOutput, table
+    getPullRequest: function(Client, types.GetPullRequestInput): types.GetPullRequestOutput, table
+    getPullRequestApprovalStates: function(Client, types.GetPullRequestApprovalStatesInput): types.GetPullRequestApprovalStatesOutput, table
+    getPullRequestOverrideState: function(Client, types.GetPullRequestOverrideStateInput): types.GetPullRequestOverrideStateOutput, table
+    getRepository: function(Client, types.GetRepositoryInput): types.GetRepositoryOutput, table
+    getRepositoryTriggers: function(Client, types.GetRepositoryTriggersInput): types.GetRepositoryTriggersOutput, table
+    listApprovalRuleTemplates: function(Client, types.ListApprovalRuleTemplatesInput): types.ListApprovalRuleTemplatesOutput, table
+    listAssociatedApprovalRuleTemplatesForRepository: function(Client, types.ListAssociatedApprovalRuleTemplatesForRepositoryInput): types.ListAssociatedApprovalRuleTemplatesForRepositoryOutput, table
+    listBranches: function(Client, types.ListBranchesInput): types.ListBranchesOutput, table
+    listFileCommitHistory: function(Client, types.ListFileCommitHistoryInput): types.ListFileCommitHistoryOutput, table
+    listPullRequests: function(Client, types.ListPullRequestsInput): types.ListPullRequestsOutput, table
+    listRepositories: function(Client, types.ListRepositoriesInput): types.ListRepositoriesOutput, table
+    listRepositoriesForApprovalRuleTemplate: function(Client, types.ListRepositoriesForApprovalRuleTemplateInput): types.ListRepositoriesForApprovalRuleTemplateOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    mergeBranchesByFastForward: function(Client, types.MergeBranchesByFastForwardInput): types.MergeBranchesByFastForwardOutput, table
+    mergeBranchesBySquash: function(Client, types.MergeBranchesBySquashInput): types.MergeBranchesBySquashOutput, table
+    mergeBranchesByThreeWay: function(Client, types.MergeBranchesByThreeWayInput): types.MergeBranchesByThreeWayOutput, table
+    mergePullRequestByFastForward: function(Client, types.MergePullRequestByFastForwardInput): types.MergePullRequestByFastForwardOutput, table
+    mergePullRequestBySquash: function(Client, types.MergePullRequestBySquashInput): types.MergePullRequestBySquashOutput, table
+    mergePullRequestByThreeWay: function(Client, types.MergePullRequestByThreeWayInput): types.MergePullRequestByThreeWayOutput, table
+    overridePullRequestApprovalRules: function(Client, types.OverridePullRequestApprovalRulesInput): types.OverridePullRequestApprovalRulesOutput, table
+    postCommentForComparedCommit: function(Client, types.PostCommentForComparedCommitInput): types.PostCommentForComparedCommitOutput, table
+    postCommentForPullRequest: function(Client, types.PostCommentForPullRequestInput): types.PostCommentForPullRequestOutput, table
+    postCommentReply: function(Client, types.PostCommentReplyInput): types.PostCommentReplyOutput, table
+    putCommentReaction: function(Client, types.PutCommentReactionInput): types.PutCommentReactionOutput, table
+    putFile: function(Client, types.PutFileInput): types.PutFileOutput, table
+    putRepositoryTriggers: function(Client, types.PutRepositoryTriggersInput): types.PutRepositoryTriggersOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    testRepositoryTriggers: function(Client, types.TestRepositoryTriggersInput): types.TestRepositoryTriggersOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateApprovalRuleTemplateContent: function(Client, types.UpdateApprovalRuleTemplateContentInput): types.UpdateApprovalRuleTemplateContentOutput, table
+    updateApprovalRuleTemplateDescription: function(Client, types.UpdateApprovalRuleTemplateDescriptionInput): types.UpdateApprovalRuleTemplateDescriptionOutput, table
+    updateApprovalRuleTemplateName: function(Client, types.UpdateApprovalRuleTemplateNameInput): types.UpdateApprovalRuleTemplateNameOutput, table
+    updateComment: function(Client, types.UpdateCommentInput): types.UpdateCommentOutput, table
+    updateDefaultBranch: function(Client, types.UpdateDefaultBranchInput): types.UpdateDefaultBranchOutput, table
+    updatePullRequestApprovalRuleContent: function(Client, types.UpdatePullRequestApprovalRuleContentInput): types.UpdatePullRequestApprovalRuleContentOutput, table
+    updatePullRequestApprovalState: function(Client, types.UpdatePullRequestApprovalStateInput): types.UpdatePullRequestApprovalStateOutput, table
+    updatePullRequestDescription: function(Client, types.UpdatePullRequestDescriptionInput): types.UpdatePullRequestDescriptionOutput, table
+    updatePullRequestStatus: function(Client, types.UpdatePullRequestStatusInput): types.UpdatePullRequestStatusOutput, table
+    updatePullRequestTitle: function(Client, types.UpdatePullRequestTitleInput): types.UpdatePullRequestTitleOutput, table
+    updateRepositoryDescription: function(Client, types.UpdateRepositoryDescriptionInput): types.UpdateRepositoryDescriptionOutput, table
+    updateRepositoryEncryptionKey: function(Client, types.UpdateRepositoryEncryptionKeyInput): types.UpdateRepositoryEncryptionKeyOutput, table
+    updateRepositoryName: function(Client, types.UpdateRepositoryNameInput): types.UpdateRepositoryNameOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

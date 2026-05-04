@@ -1,0 +1,70 @@
+local types = require("cloudtrail.types")
+
+local record Client
+    addTags: function(Client, types.AddTagsInput): types.AddTagsOutput, table
+    cancelQuery: function(Client, types.CancelQueryInput): types.CancelQueryOutput, table
+    createChannel: function(Client, types.CreateChannelInput): types.CreateChannelOutput, table
+    createDashboard: function(Client, types.CreateDashboardInput): types.CreateDashboardOutput, table
+    createEventDataStore: function(Client, types.CreateEventDataStoreInput): types.CreateEventDataStoreOutput, table
+    createTrail: function(Client, types.CreateTrailInput): types.CreateTrailOutput, table
+    deleteChannel: function(Client, types.DeleteChannelInput): types.DeleteChannelOutput, table
+    deleteDashboard: function(Client, types.DeleteDashboardInput): types.DeleteDashboardOutput, table
+    deleteEventDataStore: function(Client, types.DeleteEventDataStoreInput): types.DeleteEventDataStoreOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteTrail: function(Client, types.DeleteTrailInput): types.DeleteTrailOutput, table
+    deregisterOrganizationDelegatedAdmin: function(Client, types.DeregisterOrganizationDelegatedAdminInput): types.DeregisterOrganizationDelegatedAdminOutput, table
+    describeQuery: function(Client, types.DescribeQueryInput): types.DescribeQueryOutput, table
+    describeTrails: function(Client, types.DescribeTrailsInput): types.DescribeTrailsOutput, table
+    disableFederation: function(Client, types.DisableFederationInput): types.DisableFederationOutput, table
+    enableFederation: function(Client, types.EnableFederationInput): types.EnableFederationOutput, table
+    generateQuery: function(Client, types.GenerateQueryInput): types.GenerateQueryOutput, table
+    getChannel: function(Client, types.GetChannelInput): types.GetChannelOutput, table
+    getDashboard: function(Client, types.GetDashboardInput): types.GetDashboardOutput, table
+    getEventConfiguration: function(Client, types.GetEventConfigurationInput): types.GetEventConfigurationOutput, table
+    getEventDataStore: function(Client, types.GetEventDataStoreInput): types.GetEventDataStoreOutput, table
+    getEventSelectors: function(Client, types.GetEventSelectorsInput): types.GetEventSelectorsOutput, table
+    getImport: function(Client, types.GetImportInput): types.GetImportOutput, table
+    getInsightSelectors: function(Client, types.GetInsightSelectorsInput): types.GetInsightSelectorsOutput, table
+    getQueryResults: function(Client, types.GetQueryResultsInput): types.GetQueryResultsOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getTrail: function(Client, types.GetTrailInput): types.GetTrailOutput, table
+    getTrailStatus: function(Client, types.GetTrailStatusInput): types.GetTrailStatusOutput, table
+    listChannels: function(Client, types.ListChannelsInput): types.ListChannelsOutput, table
+    listDashboards: function(Client, types.ListDashboardsInput): types.ListDashboardsOutput, table
+    listEventDataStores: function(Client, types.ListEventDataStoresInput): types.ListEventDataStoresOutput, table
+    listImportFailures: function(Client, types.ListImportFailuresInput): types.ListImportFailuresOutput, table
+    listImports: function(Client, types.ListImportsInput): types.ListImportsOutput, table
+    listInsightsData: function(Client, types.ListInsightsDataInput): types.ListInsightsDataOutput, table
+    listInsightsMetricData: function(Client, types.ListInsightsMetricDataInput): types.ListInsightsMetricDataOutput, table
+    listPublicKeys: function(Client, types.ListPublicKeysInput): types.ListPublicKeysOutput, table
+    listQueries: function(Client, types.ListQueriesInput): types.ListQueriesOutput, table
+    listTags: function(Client, types.ListTagsInput): types.ListTagsOutput, table
+    listTrails: function(Client, types.ListTrailsInput): types.ListTrailsOutput, table
+    lookupEvents: function(Client, types.LookupEventsInput): types.LookupEventsOutput, table
+    putEventConfiguration: function(Client, types.PutEventConfigurationInput): types.PutEventConfigurationOutput, table
+    putEventSelectors: function(Client, types.PutEventSelectorsInput): types.PutEventSelectorsOutput, table
+    putInsightSelectors: function(Client, types.PutInsightSelectorsInput): types.PutInsightSelectorsOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    registerOrganizationDelegatedAdmin: function(Client, types.RegisterOrganizationDelegatedAdminInput): types.RegisterOrganizationDelegatedAdminOutput, table
+    removeTags: function(Client, types.RemoveTagsInput): types.RemoveTagsOutput, table
+    restoreEventDataStore: function(Client, types.RestoreEventDataStoreInput): types.RestoreEventDataStoreOutput, table
+    searchSampleQueries: function(Client, types.SearchSampleQueriesInput): types.SearchSampleQueriesOutput, table
+    startDashboardRefresh: function(Client, types.StartDashboardRefreshInput): types.StartDashboardRefreshOutput, table
+    startEventDataStoreIngestion: function(Client, types.StartEventDataStoreIngestionInput): types.StartEventDataStoreIngestionOutput, table
+    startImport: function(Client, types.StartImportInput): types.StartImportOutput, table
+    startLogging: function(Client, types.StartLoggingInput): types.StartLoggingOutput, table
+    startQuery: function(Client, types.StartQueryInput): types.StartQueryOutput, table
+    stopEventDataStoreIngestion: function(Client, types.StopEventDataStoreIngestionInput): types.StopEventDataStoreIngestionOutput, table
+    stopImport: function(Client, types.StopImportInput): types.StopImportOutput, table
+    stopLogging: function(Client, types.StopLoggingInput): types.StopLoggingOutput, table
+    updateChannel: function(Client, types.UpdateChannelInput): types.UpdateChannelOutput, table
+    updateDashboard: function(Client, types.UpdateDashboardInput): types.UpdateDashboardOutput, table
+    updateEventDataStore: function(Client, types.UpdateEventDataStoreInput): types.UpdateEventDataStoreOutput, table
+    updateTrail: function(Client, types.UpdateTrailInput): types.UpdateTrailOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,101 @@
+local types = require("workspaces.types")
+
+local record Client
+    acceptAccountLinkInvitation: function(Client, types.AcceptAccountLinkInvitationInput): types.AcceptAccountLinkInvitationOutput, table
+    associateConnectionAlias: function(Client, types.AssociateConnectionAliasInput): types.AssociateConnectionAliasOutput, table
+    associateIpGroups: function(Client, types.AssociateIpGroupsInput): types.AssociateIpGroupsOutput, table
+    associateWorkspaceApplication: function(Client, types.AssociateWorkspaceApplicationInput): types.AssociateWorkspaceApplicationOutput, table
+    authorizeIpRules: function(Client, types.AuthorizeIpRulesInput): types.AuthorizeIpRulesOutput, table
+    copyWorkspaceImage: function(Client, types.CopyWorkspaceImageInput): types.CopyWorkspaceImageOutput, table
+    createAccountLinkInvitation: function(Client, types.CreateAccountLinkInvitationInput): types.CreateAccountLinkInvitationOutput, table
+    createConnectClientAddIn: function(Client, types.CreateConnectClientAddInInput): types.CreateConnectClientAddInOutput, table
+    createConnectionAlias: function(Client, types.CreateConnectionAliasInput): types.CreateConnectionAliasOutput, table
+    createIpGroup: function(Client, types.CreateIpGroupInput): types.CreateIpGroupOutput, table
+    createStandbyWorkspaces: function(Client, types.CreateStandbyWorkspacesInput): types.CreateStandbyWorkspacesOutput, table
+    createTags: function(Client, types.CreateTagsInput): types.CreateTagsOutput, table
+    createUpdatedWorkspaceImage: function(Client, types.CreateUpdatedWorkspaceImageInput): types.CreateUpdatedWorkspaceImageOutput, table
+    createWorkspaceBundle: function(Client, types.CreateWorkspaceBundleInput): types.CreateWorkspaceBundleOutput, table
+    createWorkspaceImage: function(Client, types.CreateWorkspaceImageInput): types.CreateWorkspaceImageOutput, table
+    createWorkspaces: function(Client, types.CreateWorkspacesInput): types.CreateWorkspacesOutput, table
+    createWorkspacesPool: function(Client, types.CreateWorkspacesPoolInput): types.CreateWorkspacesPoolOutput, table
+    deleteAccountLinkInvitation: function(Client, types.DeleteAccountLinkInvitationInput): types.DeleteAccountLinkInvitationOutput, table
+    deleteClientBranding: function(Client, types.DeleteClientBrandingInput): types.DeleteClientBrandingOutput, table
+    deleteConnectClientAddIn: function(Client, types.DeleteConnectClientAddInInput): types.DeleteConnectClientAddInOutput, table
+    deleteConnectionAlias: function(Client, types.DeleteConnectionAliasInput): types.DeleteConnectionAliasOutput, table
+    deleteIpGroup: function(Client, types.DeleteIpGroupInput): types.DeleteIpGroupOutput, table
+    deleteTags: function(Client, types.DeleteTagsInput): types.DeleteTagsOutput, table
+    deleteWorkspaceBundle: function(Client, types.DeleteWorkspaceBundleInput): types.DeleteWorkspaceBundleOutput, table
+    deleteWorkspaceImage: function(Client, types.DeleteWorkspaceImageInput): types.DeleteWorkspaceImageOutput, table
+    deployWorkspaceApplications: function(Client, types.DeployWorkspaceApplicationsInput): types.DeployWorkspaceApplicationsOutput, table
+    deregisterWorkspaceDirectory: function(Client, types.DeregisterWorkspaceDirectoryInput): types.DeregisterWorkspaceDirectoryOutput, table
+    describeAccount: function(Client, types.DescribeAccountInput): types.DescribeAccountOutput, table
+    describeAccountModifications: function(Client, types.DescribeAccountModificationsInput): types.DescribeAccountModificationsOutput, table
+    describeApplicationAssociations: function(Client, types.DescribeApplicationAssociationsInput): types.DescribeApplicationAssociationsOutput, table
+    describeApplications: function(Client, types.DescribeApplicationsInput): types.DescribeApplicationsOutput, table
+    describeBundleAssociations: function(Client, types.DescribeBundleAssociationsInput): types.DescribeBundleAssociationsOutput, table
+    describeClientBranding: function(Client, types.DescribeClientBrandingInput): types.DescribeClientBrandingOutput, table
+    describeClientProperties: function(Client, types.DescribeClientPropertiesInput): types.DescribeClientPropertiesOutput, table
+    describeConnectClientAddIns: function(Client, types.DescribeConnectClientAddInsInput): types.DescribeConnectClientAddInsOutput, table
+    describeConnectionAliases: function(Client, types.DescribeConnectionAliasesInput): types.DescribeConnectionAliasesOutput, table
+    describeConnectionAliasPermissions: function(Client, types.DescribeConnectionAliasPermissionsInput): types.DescribeConnectionAliasPermissionsOutput, table
+    describeCustomWorkspaceImageImport: function(Client, types.DescribeCustomWorkspaceImageImportInput): types.DescribeCustomWorkspaceImageImportOutput, table
+    describeImageAssociations: function(Client, types.DescribeImageAssociationsInput): types.DescribeImageAssociationsOutput, table
+    describeIpGroups: function(Client, types.DescribeIpGroupsInput): types.DescribeIpGroupsOutput, table
+    describeTags: function(Client, types.DescribeTagsInput): types.DescribeTagsOutput, table
+    describeWorkspaceAssociations: function(Client, types.DescribeWorkspaceAssociationsInput): types.DescribeWorkspaceAssociationsOutput, table
+    describeWorkspaceBundles: function(Client, types.DescribeWorkspaceBundlesInput): types.DescribeWorkspaceBundlesOutput, table
+    describeWorkspaceDirectories: function(Client, types.DescribeWorkspaceDirectoriesInput): types.DescribeWorkspaceDirectoriesOutput, table
+    describeWorkspaceImagePermissions: function(Client, types.DescribeWorkspaceImagePermissionsInput): types.DescribeWorkspaceImagePermissionsOutput, table
+    describeWorkspaceImages: function(Client, types.DescribeWorkspaceImagesInput): types.DescribeWorkspaceImagesOutput, table
+    describeWorkspaces: function(Client, types.DescribeWorkspacesInput): types.DescribeWorkspacesOutput, table
+    describeWorkspacesConnectionStatus: function(Client, types.DescribeWorkspacesConnectionStatusInput): types.DescribeWorkspacesConnectionStatusOutput, table
+    describeWorkspaceSnapshots: function(Client, types.DescribeWorkspaceSnapshotsInput): types.DescribeWorkspaceSnapshotsOutput, table
+    describeWorkspacesPools: function(Client, types.DescribeWorkspacesPoolsInput): types.DescribeWorkspacesPoolsOutput, table
+    describeWorkspacesPoolSessions: function(Client, types.DescribeWorkspacesPoolSessionsInput): types.DescribeWorkspacesPoolSessionsOutput, table
+    disassociateConnectionAlias: function(Client, types.DisassociateConnectionAliasInput): types.DisassociateConnectionAliasOutput, table
+    disassociateIpGroups: function(Client, types.DisassociateIpGroupsInput): types.DisassociateIpGroupsOutput, table
+    disassociateWorkspaceApplication: function(Client, types.DisassociateWorkspaceApplicationInput): types.DisassociateWorkspaceApplicationOutput, table
+    getAccountLink: function(Client, types.GetAccountLinkInput): types.GetAccountLinkOutput, table
+    importClientBranding: function(Client, types.ImportClientBrandingInput): types.ImportClientBrandingOutput, table
+    importCustomWorkspaceImage: function(Client, types.ImportCustomWorkspaceImageInput): types.ImportCustomWorkspaceImageOutput, table
+    importWorkspaceImage: function(Client, types.ImportWorkspaceImageInput): types.ImportWorkspaceImageOutput, table
+    listAccountLinks: function(Client, types.ListAccountLinksInput): types.ListAccountLinksOutput, table
+    listAvailableManagementCidrRanges: function(Client, types.ListAvailableManagementCidrRangesInput): types.ListAvailableManagementCidrRangesOutput, table
+    migrateWorkspace: function(Client, types.MigrateWorkspaceInput): types.MigrateWorkspaceOutput, table
+    modifyAccount: function(Client, types.ModifyAccountInput): types.ModifyAccountOutput, table
+    modifyCertificateBasedAuthProperties: function(Client, types.ModifyCertificateBasedAuthPropertiesInput): types.ModifyCertificateBasedAuthPropertiesOutput, table
+    modifyClientProperties: function(Client, types.ModifyClientPropertiesInput): types.ModifyClientPropertiesOutput, table
+    modifyEndpointEncryptionMode: function(Client, types.ModifyEndpointEncryptionModeInput): types.ModifyEndpointEncryptionModeOutput, table
+    modifySamlProperties: function(Client, types.ModifySamlPropertiesInput): types.ModifySamlPropertiesOutput, table
+    modifySelfservicePermissions: function(Client, types.ModifySelfservicePermissionsInput): types.ModifySelfservicePermissionsOutput, table
+    modifyStreamingProperties: function(Client, types.ModifyStreamingPropertiesInput): types.ModifyStreamingPropertiesOutput, table
+    modifyWorkspaceAccessProperties: function(Client, types.ModifyWorkspaceAccessPropertiesInput): types.ModifyWorkspaceAccessPropertiesOutput, table
+    modifyWorkspaceCreationProperties: function(Client, types.ModifyWorkspaceCreationPropertiesInput): types.ModifyWorkspaceCreationPropertiesOutput, table
+    modifyWorkspaceProperties: function(Client, types.ModifyWorkspacePropertiesInput): types.ModifyWorkspacePropertiesOutput, table
+    modifyWorkspaceState: function(Client, types.ModifyWorkspaceStateInput): types.ModifyWorkspaceStateOutput, table
+    rebootWorkspaces: function(Client, types.RebootWorkspacesInput): types.RebootWorkspacesOutput, table
+    rebuildWorkspaces: function(Client, types.RebuildWorkspacesInput): types.RebuildWorkspacesOutput, table
+    registerWorkspaceDirectory: function(Client, types.RegisterWorkspaceDirectoryInput): types.RegisterWorkspaceDirectoryOutput, table
+    rejectAccountLinkInvitation: function(Client, types.RejectAccountLinkInvitationInput): types.RejectAccountLinkInvitationOutput, table
+    restoreWorkspace: function(Client, types.RestoreWorkspaceInput): types.RestoreWorkspaceOutput, table
+    revokeIpRules: function(Client, types.RevokeIpRulesInput): types.RevokeIpRulesOutput, table
+    startWorkspaces: function(Client, types.StartWorkspacesInput): types.StartWorkspacesOutput, table
+    startWorkspacesPool: function(Client, types.StartWorkspacesPoolInput): types.StartWorkspacesPoolOutput, table
+    stopWorkspaces: function(Client, types.StopWorkspacesInput): types.StopWorkspacesOutput, table
+    stopWorkspacesPool: function(Client, types.StopWorkspacesPoolInput): types.StopWorkspacesPoolOutput, table
+    terminateWorkspaces: function(Client, types.TerminateWorkspacesInput): types.TerminateWorkspacesOutput, table
+    terminateWorkspacesPool: function(Client, types.TerminateWorkspacesPoolInput): types.TerminateWorkspacesPoolOutput, table
+    terminateWorkspacesPoolSession: function(Client, types.TerminateWorkspacesPoolSessionInput): types.TerminateWorkspacesPoolSessionOutput, table
+    updateConnectClientAddIn: function(Client, types.UpdateConnectClientAddInInput): types.UpdateConnectClientAddInOutput, table
+    updateConnectionAliasPermission: function(Client, types.UpdateConnectionAliasPermissionInput): types.UpdateConnectionAliasPermissionOutput, table
+    updateRulesOfIpGroup: function(Client, types.UpdateRulesOfIpGroupInput): types.UpdateRulesOfIpGroupOutput, table
+    updateWorkspaceBundle: function(Client, types.UpdateWorkspaceBundleInput): types.UpdateWorkspaceBundleOutput, table
+    updateWorkspaceImagePermission: function(Client, types.UpdateWorkspaceImagePermissionInput): types.UpdateWorkspaceImagePermissionOutput, table
+    updateWorkspacesPool: function(Client, types.UpdateWorkspacesPoolInput): types.UpdateWorkspacesPoolOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

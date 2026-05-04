@@ -1,0 +1,48 @@
+local types = require("entityresolution.types")
+
+local record Client
+    addPolicyStatement: function(Client, types.AddPolicyStatementInput): types.AddPolicyStatementOutput, table
+    batchDeleteUniqueId: function(Client, types.BatchDeleteUniqueIdInput): types.BatchDeleteUniqueIdOutput, table
+    createIdMappingWorkflow: function(Client, types.CreateIdMappingWorkflowInput): types.CreateIdMappingWorkflowOutput, table
+    createIdNamespace: function(Client, types.CreateIdNamespaceInput): types.CreateIdNamespaceOutput, table
+    createMatchingWorkflow: function(Client, types.CreateMatchingWorkflowInput): types.CreateMatchingWorkflowOutput, table
+    createSchemaMapping: function(Client, types.CreateSchemaMappingInput): types.CreateSchemaMappingOutput, table
+    deleteIdMappingWorkflow: function(Client, types.DeleteIdMappingWorkflowInput): types.DeleteIdMappingWorkflowOutput, table
+    deleteIdNamespace: function(Client, types.DeleteIdNamespaceInput): types.DeleteIdNamespaceOutput, table
+    deleteMatchingWorkflow: function(Client, types.DeleteMatchingWorkflowInput): types.DeleteMatchingWorkflowOutput, table
+    deletePolicyStatement: function(Client, types.DeletePolicyStatementInput): types.DeletePolicyStatementOutput, table
+    deleteSchemaMapping: function(Client, types.DeleteSchemaMappingInput): types.DeleteSchemaMappingOutput, table
+    generateMatchId: function(Client, types.GenerateMatchIdInput): types.GenerateMatchIdOutput, table
+    getIdMappingJob: function(Client, types.GetIdMappingJobInput): types.GetIdMappingJobOutput, table
+    getIdMappingWorkflow: function(Client, types.GetIdMappingWorkflowInput): types.GetIdMappingWorkflowOutput, table
+    getIdNamespace: function(Client, types.GetIdNamespaceInput): types.GetIdNamespaceOutput, table
+    getMatchId: function(Client, types.GetMatchIdInput): types.GetMatchIdOutput, table
+    getMatchingJob: function(Client, types.GetMatchingJobInput): types.GetMatchingJobOutput, table
+    getMatchingWorkflow: function(Client, types.GetMatchingWorkflowInput): types.GetMatchingWorkflowOutput, table
+    getPolicy: function(Client, types.GetPolicyInput): types.GetPolicyOutput, table
+    getProviderService: function(Client, types.GetProviderServiceInput): types.GetProviderServiceOutput, table
+    getSchemaMapping: function(Client, types.GetSchemaMappingInput): types.GetSchemaMappingOutput, table
+    listIdMappingJobs: function(Client, types.ListIdMappingJobsInput): types.ListIdMappingJobsOutput, table
+    listIdMappingWorkflows: function(Client, types.ListIdMappingWorkflowsInput): types.ListIdMappingWorkflowsOutput, table
+    listIdNamespaces: function(Client, types.ListIdNamespacesInput): types.ListIdNamespacesOutput, table
+    listMatchingJobs: function(Client, types.ListMatchingJobsInput): types.ListMatchingJobsOutput, table
+    listMatchingWorkflows: function(Client, types.ListMatchingWorkflowsInput): types.ListMatchingWorkflowsOutput, table
+    listProviderServices: function(Client, types.ListProviderServicesInput): types.ListProviderServicesOutput, table
+    listSchemaMappings: function(Client, types.ListSchemaMappingsInput): types.ListSchemaMappingsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putPolicy: function(Client, types.PutPolicyInput): types.PutPolicyOutput, table
+    startIdMappingJob: function(Client, types.StartIdMappingJobInput): types.StartIdMappingJobOutput, table
+    startMatchingJob: function(Client, types.StartMatchingJobInput): types.StartMatchingJobOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateIdMappingWorkflow: function(Client, types.UpdateIdMappingWorkflowInput): types.UpdateIdMappingWorkflowOutput, table
+    updateIdNamespace: function(Client, types.UpdateIdNamespaceInput): types.UpdateIdNamespaceOutput, table
+    updateMatchingWorkflow: function(Client, types.UpdateMatchingWorkflowInput): types.UpdateMatchingWorkflowOutput, table
+    updateSchemaMapping: function(Client, types.UpdateSchemaMappingInput): types.UpdateSchemaMappingOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

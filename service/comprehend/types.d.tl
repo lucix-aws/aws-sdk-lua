@@ -1,0 +1,2865 @@
+local record BatchDetectDominantLanguageInput
+    TextList: {string}
+end
+
+local record BatchDetectDominantLanguageOutput
+    ResultList: {BatchDetectDominantLanguageItemResult}
+    ErrorList: {BatchItemError}
+end
+
+local record BatchDetectEntitiesInput
+    TextList: {string}
+    LanguageCode: string
+end
+
+local record BatchDetectEntitiesOutput
+    ResultList: {BatchDetectEntitiesItemResult}
+    ErrorList: {BatchItemError}
+end
+
+local record BatchDetectKeyPhrasesInput
+    TextList: {string}
+    LanguageCode: string
+end
+
+local record BatchDetectKeyPhrasesOutput
+    ResultList: {BatchDetectKeyPhrasesItemResult}
+    ErrorList: {BatchItemError}
+end
+
+local record BatchDetectSentimentInput
+    TextList: {string}
+    LanguageCode: string
+end
+
+local record BatchDetectSentimentOutput
+    ResultList: {BatchDetectSentimentItemResult}
+    ErrorList: {BatchItemError}
+end
+
+local record BatchDetectSyntaxInput
+    TextList: {string}
+    LanguageCode: string
+end
+
+local record BatchDetectSyntaxOutput
+    ResultList: {BatchDetectSyntaxItemResult}
+    ErrorList: {BatchItemError}
+end
+
+local record BatchDetectTargetedSentimentInput
+    TextList: {string}
+    LanguageCode: string
+end
+
+local record BatchDetectTargetedSentimentOutput
+    ResultList: {BatchDetectTargetedSentimentItemResult}
+    ErrorList: {BatchItemError}
+end
+
+local record ClassifyDocumentInput
+    Text: string
+    EndpointArn: string
+    Bytes: string
+    DocumentReaderConfig: DocumentReaderConfig
+end
+
+local record ClassifyDocumentOutput
+    Classes: {DocumentClass}
+    Labels: {DocumentLabel}
+    DocumentMetadata: DocumentMetadata
+    DocumentType: {DocumentTypeListItem}
+    Errors: {ErrorsListItem}
+    Warnings: {WarningsListItem}
+end
+
+local record ContainsPiiEntitiesInput
+    Text: string
+    LanguageCode: string
+end
+
+local record ContainsPiiEntitiesOutput
+    Labels: {EntityLabel}
+end
+
+local record CreateDatasetInput
+    FlywheelArn: string
+    DatasetName: string
+    DatasetType: string
+    Description: string
+    InputDataConfig: DatasetInputDataConfig
+    ClientRequestToken: string
+    Tags: {Tag}
+end
+
+local record CreateDatasetOutput
+    DatasetArn: string
+end
+
+local record CreateDocumentClassifierInput
+    DocumentClassifierName: string
+    VersionName: string
+    DataAccessRoleArn: string
+    Tags: {Tag}
+    InputDataConfig: DocumentClassifierInputDataConfig
+    OutputDataConfig: DocumentClassifierOutputDataConfig
+    ClientRequestToken: string
+    LanguageCode: string
+    VolumeKmsKeyId: string
+    VpcConfig: VpcConfig
+    Mode: string
+    ModelKmsKeyId: string
+    ModelPolicy: string
+end
+
+local record CreateDocumentClassifierOutput
+    DocumentClassifierArn: string
+end
+
+local record CreateEndpointInput
+    EndpointName: string
+    ModelArn: string
+    DesiredInferenceUnits: number
+    ClientRequestToken: string
+    Tags: {Tag}
+    DataAccessRoleArn: string
+    FlywheelArn: string
+end
+
+local record CreateEndpointOutput
+    EndpointArn: string
+    ModelArn: string
+end
+
+local record CreateEntityRecognizerInput
+    RecognizerName: string
+    VersionName: string
+    DataAccessRoleArn: string
+    Tags: {Tag}
+    InputDataConfig: EntityRecognizerInputDataConfig
+    ClientRequestToken: string
+    LanguageCode: string
+    VolumeKmsKeyId: string
+    VpcConfig: VpcConfig
+    ModelKmsKeyId: string
+    ModelPolicy: string
+end
+
+local record CreateEntityRecognizerOutput
+    EntityRecognizerArn: string
+end
+
+local record CreateFlywheelInput
+    FlywheelName: string
+    ActiveModelArn: string
+    DataAccessRoleArn: string
+    TaskConfig: TaskConfig
+    ModelType: string
+    DataLakeS3Uri: string
+    DataSecurityConfig: DataSecurityConfig
+    ClientRequestToken: string
+    Tags: {Tag}
+end
+
+local record CreateFlywheelOutput
+    FlywheelArn: string
+    ActiveModelArn: string
+end
+
+local record DeleteDocumentClassifierInput
+    DocumentClassifierArn: string
+end
+
+local record DeleteDocumentClassifierOutput
+end
+
+local record DeleteEndpointInput
+    EndpointArn: string
+end
+
+local record DeleteEndpointOutput
+end
+
+local record DeleteEntityRecognizerInput
+    EntityRecognizerArn: string
+end
+
+local record DeleteEntityRecognizerOutput
+end
+
+local record DeleteFlywheelInput
+    FlywheelArn: string
+end
+
+local record DeleteFlywheelOutput
+end
+
+local record DeleteResourcePolicyInput
+    ResourceArn: string
+    PolicyRevisionId: string
+end
+
+local record DeleteResourcePolicyOutput
+end
+
+local record DescribeDatasetInput
+    DatasetArn: string
+end
+
+local record DescribeDatasetOutput
+    DatasetProperties: DatasetProperties
+end
+
+local record DescribeDocumentClassificationJobInput
+    JobId: string
+end
+
+local record DescribeDocumentClassificationJobOutput
+    DocumentClassificationJobProperties: DocumentClassificationJobProperties
+end
+
+local record DescribeDocumentClassifierInput
+    DocumentClassifierArn: string
+end
+
+local record DescribeDocumentClassifierOutput
+    DocumentClassifierProperties: DocumentClassifierProperties
+end
+
+local record DescribeDominantLanguageDetectionJobInput
+    JobId: string
+end
+
+local record DescribeDominantLanguageDetectionJobOutput
+    DominantLanguageDetectionJobProperties: DominantLanguageDetectionJobProperties
+end
+
+local record DescribeEndpointInput
+    EndpointArn: string
+end
+
+local record DescribeEndpointOutput
+    EndpointProperties: EndpointProperties
+end
+
+local record DescribeEntitiesDetectionJobInput
+    JobId: string
+end
+
+local record DescribeEntitiesDetectionJobOutput
+    EntitiesDetectionJobProperties: EntitiesDetectionJobProperties
+end
+
+local record DescribeEntityRecognizerInput
+    EntityRecognizerArn: string
+end
+
+local record DescribeEntityRecognizerOutput
+    EntityRecognizerProperties: EntityRecognizerProperties
+end
+
+local record DescribeEventsDetectionJobInput
+    JobId: string
+end
+
+local record DescribeEventsDetectionJobOutput
+    EventsDetectionJobProperties: EventsDetectionJobProperties
+end
+
+local record DescribeFlywheelInput
+    FlywheelArn: string
+end
+
+local record DescribeFlywheelOutput
+    FlywheelProperties: FlywheelProperties
+end
+
+local record DescribeFlywheelIterationInput
+    FlywheelArn: string
+    FlywheelIterationId: string
+end
+
+local record DescribeFlywheelIterationOutput
+    FlywheelIterationProperties: FlywheelIterationProperties
+end
+
+local record DescribeKeyPhrasesDetectionJobInput
+    JobId: string
+end
+
+local record DescribeKeyPhrasesDetectionJobOutput
+    KeyPhrasesDetectionJobProperties: KeyPhrasesDetectionJobProperties
+end
+
+local record DescribePiiEntitiesDetectionJobInput
+    JobId: string
+end
+
+local record DescribePiiEntitiesDetectionJobOutput
+    PiiEntitiesDetectionJobProperties: PiiEntitiesDetectionJobProperties
+end
+
+local record DescribeResourcePolicyInput
+    ResourceArn: string
+end
+
+local record DescribeResourcePolicyOutput
+    ResourcePolicy: string
+    CreationTime: number
+    LastModifiedTime: number
+    PolicyRevisionId: string
+end
+
+local record DescribeSentimentDetectionJobInput
+    JobId: string
+end
+
+local record DescribeSentimentDetectionJobOutput
+    SentimentDetectionJobProperties: SentimentDetectionJobProperties
+end
+
+local record DescribeTargetedSentimentDetectionJobInput
+    JobId: string
+end
+
+local record DescribeTargetedSentimentDetectionJobOutput
+    TargetedSentimentDetectionJobProperties: TargetedSentimentDetectionJobProperties
+end
+
+local record DescribeTopicsDetectionJobInput
+    JobId: string
+end
+
+local record DescribeTopicsDetectionJobOutput
+    TopicsDetectionJobProperties: TopicsDetectionJobProperties
+end
+
+local record DetectDominantLanguageInput
+    Text: string
+end
+
+local record DetectDominantLanguageOutput
+    Languages: {DominantLanguage}
+end
+
+local record DetectEntitiesInput
+    Text: string
+    LanguageCode: string
+    EndpointArn: string
+    Bytes: string
+    DocumentReaderConfig: DocumentReaderConfig
+end
+
+local record DetectEntitiesOutput
+    Entities: {Entity}
+    DocumentMetadata: DocumentMetadata
+    DocumentType: {DocumentTypeListItem}
+    Blocks: {Block}
+    Errors: {ErrorsListItem}
+end
+
+local record DetectKeyPhrasesInput
+    Text: string
+    LanguageCode: string
+end
+
+local record DetectKeyPhrasesOutput
+    KeyPhrases: {KeyPhrase}
+end
+
+local record DetectPiiEntitiesInput
+    Text: string
+    LanguageCode: string
+end
+
+local record DetectPiiEntitiesOutput
+    Entities: {PiiEntity}
+end
+
+local record DetectSentimentInput
+    Text: string
+    LanguageCode: string
+end
+
+local record DetectSentimentOutput
+    Sentiment: string
+    SentimentScore: SentimentScore
+end
+
+local record DetectSyntaxInput
+    Text: string
+    LanguageCode: string
+end
+
+local record DetectSyntaxOutput
+    SyntaxTokens: {SyntaxToken}
+end
+
+local record DetectTargetedSentimentInput
+    Text: string
+    LanguageCode: string
+end
+
+local record DetectTargetedSentimentOutput
+    Entities: {TargetedSentimentEntity}
+end
+
+local record DetectToxicContentInput
+    TextSegments: {TextSegment}
+    LanguageCode: string
+end
+
+local record DetectToxicContentOutput
+    ResultList: {ToxicLabels}
+end
+
+local record ImportModelInput
+    SourceModelArn: string
+    ModelName: string
+    VersionName: string
+    ModelKmsKeyId: string
+    DataAccessRoleArn: string
+    Tags: {Tag}
+end
+
+local record ImportModelOutput
+    ModelArn: string
+end
+
+local record ListDatasetsInput
+    FlywheelArn: string
+    Filter: DatasetFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListDatasetsOutput
+    DatasetPropertiesList: {DatasetProperties}
+    NextToken: string
+end
+
+local record ListDocumentClassificationJobsInput
+    Filter: DocumentClassificationJobFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListDocumentClassificationJobsOutput
+    DocumentClassificationJobPropertiesList: {DocumentClassificationJobProperties}
+    NextToken: string
+end
+
+local record ListDocumentClassifiersInput
+    Filter: DocumentClassifierFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListDocumentClassifiersOutput
+    DocumentClassifierPropertiesList: {DocumentClassifierProperties}
+    NextToken: string
+end
+
+local record ListDocumentClassifierSummariesInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListDocumentClassifierSummariesOutput
+    DocumentClassifierSummariesList: {DocumentClassifierSummary}
+    NextToken: string
+end
+
+local record ListDominantLanguageDetectionJobsInput
+    Filter: DominantLanguageDetectionJobFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListDominantLanguageDetectionJobsOutput
+    DominantLanguageDetectionJobPropertiesList: {DominantLanguageDetectionJobProperties}
+    NextToken: string
+end
+
+local record ListEndpointsInput
+    Filter: EndpointFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListEndpointsOutput
+    EndpointPropertiesList: {EndpointProperties}
+    NextToken: string
+end
+
+local record ListEntitiesDetectionJobsInput
+    Filter: EntitiesDetectionJobFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListEntitiesDetectionJobsOutput
+    EntitiesDetectionJobPropertiesList: {EntitiesDetectionJobProperties}
+    NextToken: string
+end
+
+local record ListEntityRecognizersInput
+    Filter: EntityRecognizerFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListEntityRecognizersOutput
+    EntityRecognizerPropertiesList: {EntityRecognizerProperties}
+    NextToken: string
+end
+
+local record ListEntityRecognizerSummariesInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListEntityRecognizerSummariesOutput
+    EntityRecognizerSummariesList: {EntityRecognizerSummary}
+    NextToken: string
+end
+
+local record ListEventsDetectionJobsInput
+    Filter: EventsDetectionJobFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListEventsDetectionJobsOutput
+    EventsDetectionJobPropertiesList: {EventsDetectionJobProperties}
+    NextToken: string
+end
+
+local record ListFlywheelIterationHistoryInput
+    FlywheelArn: string
+    Filter: FlywheelIterationFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListFlywheelIterationHistoryOutput
+    FlywheelIterationPropertiesList: {FlywheelIterationProperties}
+    NextToken: string
+end
+
+local record ListFlywheelsInput
+    Filter: FlywheelFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListFlywheelsOutput
+    FlywheelSummaryList: {FlywheelSummary}
+    NextToken: string
+end
+
+local record ListKeyPhrasesDetectionJobsInput
+    Filter: KeyPhrasesDetectionJobFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListKeyPhrasesDetectionJobsOutput
+    KeyPhrasesDetectionJobPropertiesList: {KeyPhrasesDetectionJobProperties}
+    NextToken: string
+end
+
+local record ListPiiEntitiesDetectionJobsInput
+    Filter: PiiEntitiesDetectionJobFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListPiiEntitiesDetectionJobsOutput
+    PiiEntitiesDetectionJobPropertiesList: {PiiEntitiesDetectionJobProperties}
+    NextToken: string
+end
+
+local record ListSentimentDetectionJobsInput
+    Filter: SentimentDetectionJobFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListSentimentDetectionJobsOutput
+    SentimentDetectionJobPropertiesList: {SentimentDetectionJobProperties}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    ResourceArn: string
+    Tags: {Tag}
+end
+
+local record ListTargetedSentimentDetectionJobsInput
+    Filter: TargetedSentimentDetectionJobFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListTargetedSentimentDetectionJobsOutput
+    TargetedSentimentDetectionJobPropertiesList: {TargetedSentimentDetectionJobProperties}
+    NextToken: string
+end
+
+local record ListTopicsDetectionJobsInput
+    Filter: TopicsDetectionJobFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListTopicsDetectionJobsOutput
+    TopicsDetectionJobPropertiesList: {TopicsDetectionJobProperties}
+    NextToken: string
+end
+
+local record PutResourcePolicyInput
+    ResourceArn: string
+    ResourcePolicy: string
+    PolicyRevisionId: string
+end
+
+local record PutResourcePolicyOutput
+    PolicyRevisionId: string
+end
+
+local record StartDocumentClassificationJobInput
+    JobName: string
+    DocumentClassifierArn: string
+    InputDataConfig: InputDataConfig
+    OutputDataConfig: OutputDataConfig
+    DataAccessRoleArn: string
+    ClientRequestToken: string
+    VolumeKmsKeyId: string
+    VpcConfig: VpcConfig
+    Tags: {Tag}
+    FlywheelArn: string
+end
+
+local record StartDocumentClassificationJobOutput
+    JobId: string
+    JobArn: string
+    JobStatus: string
+    DocumentClassifierArn: string
+end
+
+local record StartDominantLanguageDetectionJobInput
+    InputDataConfig: InputDataConfig
+    OutputDataConfig: OutputDataConfig
+    DataAccessRoleArn: string
+    JobName: string
+    ClientRequestToken: string
+    VolumeKmsKeyId: string
+    VpcConfig: VpcConfig
+    Tags: {Tag}
+end
+
+local record StartDominantLanguageDetectionJobOutput
+    JobId: string
+    JobArn: string
+    JobStatus: string
+end
+
+local record StartEntitiesDetectionJobInput
+    InputDataConfig: InputDataConfig
+    OutputDataConfig: OutputDataConfig
+    DataAccessRoleArn: string
+    JobName: string
+    EntityRecognizerArn: string
+    LanguageCode: string
+    ClientRequestToken: string
+    VolumeKmsKeyId: string
+    VpcConfig: VpcConfig
+    Tags: {Tag}
+    FlywheelArn: string
+end
+
+local record StartEntitiesDetectionJobOutput
+    JobId: string
+    JobArn: string
+    JobStatus: string
+    EntityRecognizerArn: string
+end
+
+local record StartEventsDetectionJobInput
+    InputDataConfig: InputDataConfig
+    OutputDataConfig: OutputDataConfig
+    DataAccessRoleArn: string
+    JobName: string
+    LanguageCode: string
+    ClientRequestToken: string
+    TargetEventTypes: {string}
+    Tags: {Tag}
+end
+
+local record StartEventsDetectionJobOutput
+    JobId: string
+    JobArn: string
+    JobStatus: string
+end
+
+local record StartFlywheelIterationInput
+    FlywheelArn: string
+    ClientRequestToken: string
+end
+
+local record StartFlywheelIterationOutput
+    FlywheelArn: string
+    FlywheelIterationId: string
+end
+
+local record StartKeyPhrasesDetectionJobInput
+    InputDataConfig: InputDataConfig
+    OutputDataConfig: OutputDataConfig
+    DataAccessRoleArn: string
+    JobName: string
+    LanguageCode: string
+    ClientRequestToken: string
+    VolumeKmsKeyId: string
+    VpcConfig: VpcConfig
+    Tags: {Tag}
+end
+
+local record StartKeyPhrasesDetectionJobOutput
+    JobId: string
+    JobArn: string
+    JobStatus: string
+end
+
+local record StartPiiEntitiesDetectionJobInput
+    InputDataConfig: InputDataConfig
+    OutputDataConfig: OutputDataConfig
+    Mode: string
+    RedactionConfig: RedactionConfig
+    DataAccessRoleArn: string
+    JobName: string
+    LanguageCode: string
+    ClientRequestToken: string
+    Tags: {Tag}
+end
+
+local record StartPiiEntitiesDetectionJobOutput
+    JobId: string
+    JobArn: string
+    JobStatus: string
+end
+
+local record StartSentimentDetectionJobInput
+    InputDataConfig: InputDataConfig
+    OutputDataConfig: OutputDataConfig
+    DataAccessRoleArn: string
+    JobName: string
+    LanguageCode: string
+    ClientRequestToken: string
+    VolumeKmsKeyId: string
+    VpcConfig: VpcConfig
+    Tags: {Tag}
+end
+
+local record StartSentimentDetectionJobOutput
+    JobId: string
+    JobArn: string
+    JobStatus: string
+end
+
+local record StartTargetedSentimentDetectionJobInput
+    InputDataConfig: InputDataConfig
+    OutputDataConfig: OutputDataConfig
+    DataAccessRoleArn: string
+    JobName: string
+    LanguageCode: string
+    ClientRequestToken: string
+    VolumeKmsKeyId: string
+    VpcConfig: VpcConfig
+    Tags: {Tag}
+end
+
+local record StartTargetedSentimentDetectionJobOutput
+    JobId: string
+    JobArn: string
+    JobStatus: string
+end
+
+local record StartTopicsDetectionJobInput
+    InputDataConfig: InputDataConfig
+    OutputDataConfig: OutputDataConfig
+    DataAccessRoleArn: string
+    JobName: string
+    NumberOfTopics: number
+    ClientRequestToken: string
+    VolumeKmsKeyId: string
+    VpcConfig: VpcConfig
+    Tags: {Tag}
+end
+
+local record StartTopicsDetectionJobOutput
+    JobId: string
+    JobArn: string
+    JobStatus: string
+end
+
+local record StopDominantLanguageDetectionJobInput
+    JobId: string
+end
+
+local record StopDominantLanguageDetectionJobOutput
+    JobId: string
+    JobStatus: string
+end
+
+local record StopEntitiesDetectionJobInput
+    JobId: string
+end
+
+local record StopEntitiesDetectionJobOutput
+    JobId: string
+    JobStatus: string
+end
+
+local record StopEventsDetectionJobInput
+    JobId: string
+end
+
+local record StopEventsDetectionJobOutput
+    JobId: string
+    JobStatus: string
+end
+
+local record StopKeyPhrasesDetectionJobInput
+    JobId: string
+end
+
+local record StopKeyPhrasesDetectionJobOutput
+    JobId: string
+    JobStatus: string
+end
+
+local record StopPiiEntitiesDetectionJobInput
+    JobId: string
+end
+
+local record StopPiiEntitiesDetectionJobOutput
+    JobId: string
+    JobStatus: string
+end
+
+local record StopSentimentDetectionJobInput
+    JobId: string
+end
+
+local record StopSentimentDetectionJobOutput
+    JobId: string
+    JobStatus: string
+end
+
+local record StopTargetedSentimentDetectionJobInput
+    JobId: string
+end
+
+local record StopTargetedSentimentDetectionJobOutput
+    JobId: string
+    JobStatus: string
+end
+
+local record StopTrainingDocumentClassifierInput
+    DocumentClassifierArn: string
+end
+
+local record StopTrainingDocumentClassifierOutput
+end
+
+local record StopTrainingEntityRecognizerInput
+    EntityRecognizerArn: string
+end
+
+local record StopTrainingEntityRecognizerOutput
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateEndpointInput
+    EndpointArn: string
+    DesiredModelArn: string
+    DesiredInferenceUnits: number
+    DesiredDataAccessRoleArn: string
+    FlywheelArn: string
+end
+
+local record UpdateEndpointOutput
+    DesiredModelArn: string
+end
+
+local record UpdateFlywheelInput
+    FlywheelArn: string
+    ActiveModelArn: string
+    DataAccessRoleArn: string
+    DataSecurityConfig: UpdateDataSecurityConfig
+end
+
+local record UpdateFlywheelOutput
+    FlywheelProperties: FlywheelProperties
+end
+
+local record BatchSizeLimitExceededException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record BatchSizeLimitExceededException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record BatchSizeLimitExceededException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record BatchSizeLimitExceededException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record BatchSizeLimitExceededException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record BatchSizeLimitExceededException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceUnavailableException
+    Message: string
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceLimitExceededException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record KmsKeyValidationException
+    Message: string
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceLimitExceededException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceLimitExceededException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record KmsKeyValidationException
+    Message: string
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceLimitExceededException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record KmsKeyValidationException
+    Message: string
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceLimitExceededException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceUnavailableException
+    Message: string
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record UnsupportedLanguageException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record KmsKeyValidationException
+    Message: string
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceLimitExceededException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidFilterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidFilterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidFilterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidFilterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidFilterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidFilterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidFilterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidFilterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidFilterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidFilterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidFilterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidFilterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidFilterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidFilterException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record KmsKeyValidationException
+    Message: string
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record KmsKeyValidationException
+    Message: string
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record KmsKeyValidationException
+    Message: string
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record KmsKeyValidationException
+    Message: string
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record KmsKeyValidationException
+    Message: string
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record KmsKeyValidationException
+    Message: string
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record KmsKeyValidationException
+    Message: string
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record KmsKeyValidationException
+    Message: string
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record KmsKeyValidationException
+    Message: string
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record JobNotFoundException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record ConcurrentModificationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyTagKeysException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record ResourceInUseException
+    Message: string
+end
+
+local record ResourceLimitExceededException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ResourceUnavailableException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Reason: string
+    Detail: InvalidRequestDetail
+end
+
+local record KmsKeyValidationException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local type LanguageCode = "en" | "es" | "fr" | "de" | "it" | "pt" | "ar" | "hi" | "ja" | "ko" | "zh" | "zh-TW"
+
+local type ModelType = "DOCUMENT_CLASSIFIER" | "ENTITY_RECOGNIZER"
+
+local type SentimentType = "POSITIVE" | "NEGATIVE" | "NEUTRAL" | "MIXED"
+
+local type SyntaxLanguageCode = "en" | "es" | "fr" | "de" | "it" | "pt"
+
+local type DocumentClassifierMode = "MULTI_CLASS" | "MULTI_LABEL"
+
+local type PiiEntitiesDetectionMode = "ONLY_REDACTION" | "ONLY_OFFSETS"
+
+local type DatasetType = "TRAIN" | "TEST"
+
+local type JobStatus = "SUBMITTED" | "IN_PROGRESS" | "COMPLETED" | "FAILED" | "STOP_REQUESTED" | "STOPPED"
+
+local record M
+    BatchDetectDominantLanguageInput: BatchDetectDominantLanguageInput
+    BatchDetectDominantLanguageOutput: BatchDetectDominantLanguageOutput
+    BatchDetectEntitiesInput: BatchDetectEntitiesInput
+    BatchDetectEntitiesOutput: BatchDetectEntitiesOutput
+    BatchDetectKeyPhrasesInput: BatchDetectKeyPhrasesInput
+    BatchDetectKeyPhrasesOutput: BatchDetectKeyPhrasesOutput
+    BatchDetectSentimentInput: BatchDetectSentimentInput
+    BatchDetectSentimentOutput: BatchDetectSentimentOutput
+    BatchDetectSyntaxInput: BatchDetectSyntaxInput
+    BatchDetectSyntaxOutput: BatchDetectSyntaxOutput
+    BatchDetectTargetedSentimentInput: BatchDetectTargetedSentimentInput
+    BatchDetectTargetedSentimentOutput: BatchDetectTargetedSentimentOutput
+    ClassifyDocumentInput: ClassifyDocumentInput
+    ClassifyDocumentOutput: ClassifyDocumentOutput
+    ContainsPiiEntitiesInput: ContainsPiiEntitiesInput
+    ContainsPiiEntitiesOutput: ContainsPiiEntitiesOutput
+    CreateDatasetInput: CreateDatasetInput
+    CreateDatasetOutput: CreateDatasetOutput
+    CreateDocumentClassifierInput: CreateDocumentClassifierInput
+    CreateDocumentClassifierOutput: CreateDocumentClassifierOutput
+    CreateEndpointInput: CreateEndpointInput
+    CreateEndpointOutput: CreateEndpointOutput
+    CreateEntityRecognizerInput: CreateEntityRecognizerInput
+    CreateEntityRecognizerOutput: CreateEntityRecognizerOutput
+    CreateFlywheelInput: CreateFlywheelInput
+    CreateFlywheelOutput: CreateFlywheelOutput
+    DeleteDocumentClassifierInput: DeleteDocumentClassifierInput
+    DeleteDocumentClassifierOutput: DeleteDocumentClassifierOutput
+    DeleteEndpointInput: DeleteEndpointInput
+    DeleteEndpointOutput: DeleteEndpointOutput
+    DeleteEntityRecognizerInput: DeleteEntityRecognizerInput
+    DeleteEntityRecognizerOutput: DeleteEntityRecognizerOutput
+    DeleteFlywheelInput: DeleteFlywheelInput
+    DeleteFlywheelOutput: DeleteFlywheelOutput
+    DeleteResourcePolicyInput: DeleteResourcePolicyInput
+    DeleteResourcePolicyOutput: DeleteResourcePolicyOutput
+    DescribeDatasetInput: DescribeDatasetInput
+    DescribeDatasetOutput: DescribeDatasetOutput
+    DescribeDocumentClassificationJobInput: DescribeDocumentClassificationJobInput
+    DescribeDocumentClassificationJobOutput: DescribeDocumentClassificationJobOutput
+    DescribeDocumentClassifierInput: DescribeDocumentClassifierInput
+    DescribeDocumentClassifierOutput: DescribeDocumentClassifierOutput
+    DescribeDominantLanguageDetectionJobInput: DescribeDominantLanguageDetectionJobInput
+    DescribeDominantLanguageDetectionJobOutput: DescribeDominantLanguageDetectionJobOutput
+    DescribeEndpointInput: DescribeEndpointInput
+    DescribeEndpointOutput: DescribeEndpointOutput
+    DescribeEntitiesDetectionJobInput: DescribeEntitiesDetectionJobInput
+    DescribeEntitiesDetectionJobOutput: DescribeEntitiesDetectionJobOutput
+    DescribeEntityRecognizerInput: DescribeEntityRecognizerInput
+    DescribeEntityRecognizerOutput: DescribeEntityRecognizerOutput
+    DescribeEventsDetectionJobInput: DescribeEventsDetectionJobInput
+    DescribeEventsDetectionJobOutput: DescribeEventsDetectionJobOutput
+    DescribeFlywheelInput: DescribeFlywheelInput
+    DescribeFlywheelOutput: DescribeFlywheelOutput
+    DescribeFlywheelIterationInput: DescribeFlywheelIterationInput
+    DescribeFlywheelIterationOutput: DescribeFlywheelIterationOutput
+    DescribeKeyPhrasesDetectionJobInput: DescribeKeyPhrasesDetectionJobInput
+    DescribeKeyPhrasesDetectionJobOutput: DescribeKeyPhrasesDetectionJobOutput
+    DescribePiiEntitiesDetectionJobInput: DescribePiiEntitiesDetectionJobInput
+    DescribePiiEntitiesDetectionJobOutput: DescribePiiEntitiesDetectionJobOutput
+    DescribeResourcePolicyInput: DescribeResourcePolicyInput
+    DescribeResourcePolicyOutput: DescribeResourcePolicyOutput
+    DescribeSentimentDetectionJobInput: DescribeSentimentDetectionJobInput
+    DescribeSentimentDetectionJobOutput: DescribeSentimentDetectionJobOutput
+    DescribeTargetedSentimentDetectionJobInput: DescribeTargetedSentimentDetectionJobInput
+    DescribeTargetedSentimentDetectionJobOutput: DescribeTargetedSentimentDetectionJobOutput
+    DescribeTopicsDetectionJobInput: DescribeTopicsDetectionJobInput
+    DescribeTopicsDetectionJobOutput: DescribeTopicsDetectionJobOutput
+    DetectDominantLanguageInput: DetectDominantLanguageInput
+    DetectDominantLanguageOutput: DetectDominantLanguageOutput
+    DetectEntitiesInput: DetectEntitiesInput
+    DetectEntitiesOutput: DetectEntitiesOutput
+    DetectKeyPhrasesInput: DetectKeyPhrasesInput
+    DetectKeyPhrasesOutput: DetectKeyPhrasesOutput
+    DetectPiiEntitiesInput: DetectPiiEntitiesInput
+    DetectPiiEntitiesOutput: DetectPiiEntitiesOutput
+    DetectSentimentInput: DetectSentimentInput
+    DetectSentimentOutput: DetectSentimentOutput
+    DetectSyntaxInput: DetectSyntaxInput
+    DetectSyntaxOutput: DetectSyntaxOutput
+    DetectTargetedSentimentInput: DetectTargetedSentimentInput
+    DetectTargetedSentimentOutput: DetectTargetedSentimentOutput
+    DetectToxicContentInput: DetectToxicContentInput
+    DetectToxicContentOutput: DetectToxicContentOutput
+    ImportModelInput: ImportModelInput
+    ImportModelOutput: ImportModelOutput
+    ListDatasetsInput: ListDatasetsInput
+    ListDatasetsOutput: ListDatasetsOutput
+    ListDocumentClassificationJobsInput: ListDocumentClassificationJobsInput
+    ListDocumentClassificationJobsOutput: ListDocumentClassificationJobsOutput
+    ListDocumentClassifiersInput: ListDocumentClassifiersInput
+    ListDocumentClassifiersOutput: ListDocumentClassifiersOutput
+    ListDocumentClassifierSummariesInput: ListDocumentClassifierSummariesInput
+    ListDocumentClassifierSummariesOutput: ListDocumentClassifierSummariesOutput
+    ListDominantLanguageDetectionJobsInput: ListDominantLanguageDetectionJobsInput
+    ListDominantLanguageDetectionJobsOutput: ListDominantLanguageDetectionJobsOutput
+    ListEndpointsInput: ListEndpointsInput
+    ListEndpointsOutput: ListEndpointsOutput
+    ListEntitiesDetectionJobsInput: ListEntitiesDetectionJobsInput
+    ListEntitiesDetectionJobsOutput: ListEntitiesDetectionJobsOutput
+    ListEntityRecognizersInput: ListEntityRecognizersInput
+    ListEntityRecognizersOutput: ListEntityRecognizersOutput
+    ListEntityRecognizerSummariesInput: ListEntityRecognizerSummariesInput
+    ListEntityRecognizerSummariesOutput: ListEntityRecognizerSummariesOutput
+    ListEventsDetectionJobsInput: ListEventsDetectionJobsInput
+    ListEventsDetectionJobsOutput: ListEventsDetectionJobsOutput
+    ListFlywheelIterationHistoryInput: ListFlywheelIterationHistoryInput
+    ListFlywheelIterationHistoryOutput: ListFlywheelIterationHistoryOutput
+    ListFlywheelsInput: ListFlywheelsInput
+    ListFlywheelsOutput: ListFlywheelsOutput
+    ListKeyPhrasesDetectionJobsInput: ListKeyPhrasesDetectionJobsInput
+    ListKeyPhrasesDetectionJobsOutput: ListKeyPhrasesDetectionJobsOutput
+    ListPiiEntitiesDetectionJobsInput: ListPiiEntitiesDetectionJobsInput
+    ListPiiEntitiesDetectionJobsOutput: ListPiiEntitiesDetectionJobsOutput
+    ListSentimentDetectionJobsInput: ListSentimentDetectionJobsInput
+    ListSentimentDetectionJobsOutput: ListSentimentDetectionJobsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListTargetedSentimentDetectionJobsInput: ListTargetedSentimentDetectionJobsInput
+    ListTargetedSentimentDetectionJobsOutput: ListTargetedSentimentDetectionJobsOutput
+    ListTopicsDetectionJobsInput: ListTopicsDetectionJobsInput
+    ListTopicsDetectionJobsOutput: ListTopicsDetectionJobsOutput
+    PutResourcePolicyInput: PutResourcePolicyInput
+    PutResourcePolicyOutput: PutResourcePolicyOutput
+    StartDocumentClassificationJobInput: StartDocumentClassificationJobInput
+    StartDocumentClassificationJobOutput: StartDocumentClassificationJobOutput
+    StartDominantLanguageDetectionJobInput: StartDominantLanguageDetectionJobInput
+    StartDominantLanguageDetectionJobOutput: StartDominantLanguageDetectionJobOutput
+    StartEntitiesDetectionJobInput: StartEntitiesDetectionJobInput
+    StartEntitiesDetectionJobOutput: StartEntitiesDetectionJobOutput
+    StartEventsDetectionJobInput: StartEventsDetectionJobInput
+    StartEventsDetectionJobOutput: StartEventsDetectionJobOutput
+    StartFlywheelIterationInput: StartFlywheelIterationInput
+    StartFlywheelIterationOutput: StartFlywheelIterationOutput
+    StartKeyPhrasesDetectionJobInput: StartKeyPhrasesDetectionJobInput
+    StartKeyPhrasesDetectionJobOutput: StartKeyPhrasesDetectionJobOutput
+    StartPiiEntitiesDetectionJobInput: StartPiiEntitiesDetectionJobInput
+    StartPiiEntitiesDetectionJobOutput: StartPiiEntitiesDetectionJobOutput
+    StartSentimentDetectionJobInput: StartSentimentDetectionJobInput
+    StartSentimentDetectionJobOutput: StartSentimentDetectionJobOutput
+    StartTargetedSentimentDetectionJobInput: StartTargetedSentimentDetectionJobInput
+    StartTargetedSentimentDetectionJobOutput: StartTargetedSentimentDetectionJobOutput
+    StartTopicsDetectionJobInput: StartTopicsDetectionJobInput
+    StartTopicsDetectionJobOutput: StartTopicsDetectionJobOutput
+    StopDominantLanguageDetectionJobInput: StopDominantLanguageDetectionJobInput
+    StopDominantLanguageDetectionJobOutput: StopDominantLanguageDetectionJobOutput
+    StopEntitiesDetectionJobInput: StopEntitiesDetectionJobInput
+    StopEntitiesDetectionJobOutput: StopEntitiesDetectionJobOutput
+    StopEventsDetectionJobInput: StopEventsDetectionJobInput
+    StopEventsDetectionJobOutput: StopEventsDetectionJobOutput
+    StopKeyPhrasesDetectionJobInput: StopKeyPhrasesDetectionJobInput
+    StopKeyPhrasesDetectionJobOutput: StopKeyPhrasesDetectionJobOutput
+    StopPiiEntitiesDetectionJobInput: StopPiiEntitiesDetectionJobInput
+    StopPiiEntitiesDetectionJobOutput: StopPiiEntitiesDetectionJobOutput
+    StopSentimentDetectionJobInput: StopSentimentDetectionJobInput
+    StopSentimentDetectionJobOutput: StopSentimentDetectionJobOutput
+    StopTargetedSentimentDetectionJobInput: StopTargetedSentimentDetectionJobInput
+    StopTargetedSentimentDetectionJobOutput: StopTargetedSentimentDetectionJobOutput
+    StopTrainingDocumentClassifierInput: StopTrainingDocumentClassifierInput
+    StopTrainingDocumentClassifierOutput: StopTrainingDocumentClassifierOutput
+    StopTrainingEntityRecognizerInput: StopTrainingEntityRecognizerInput
+    StopTrainingEntityRecognizerOutput: StopTrainingEntityRecognizerOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateEndpointInput: UpdateEndpointInput
+    UpdateEndpointOutput: UpdateEndpointOutput
+    UpdateFlywheelInput: UpdateFlywheelInput
+    UpdateFlywheelOutput: UpdateFlywheelOutput
+end
+
+return M

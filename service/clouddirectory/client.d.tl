@@ -1,0 +1,76 @@
+local types = require("clouddirectory.types")
+
+local record Client
+    addFacetToObject: function(Client, types.AddFacetToObjectInput): types.AddFacetToObjectOutput, table
+    applySchema: function(Client, types.ApplySchemaInput): types.ApplySchemaOutput, table
+    attachObject: function(Client, types.AttachObjectInput): types.AttachObjectOutput, table
+    attachPolicy: function(Client, types.AttachPolicyInput): types.AttachPolicyOutput, table
+    attachToIndex: function(Client, types.AttachToIndexInput): types.AttachToIndexOutput, table
+    attachTypedLink: function(Client, types.AttachTypedLinkInput): types.AttachTypedLinkOutput, table
+    batchRead: function(Client, types.BatchReadInput): types.BatchReadOutput, table
+    batchWrite: function(Client, types.BatchWriteInput): types.BatchWriteOutput, table
+    createDirectory: function(Client, types.CreateDirectoryInput): types.CreateDirectoryOutput, table
+    createFacet: function(Client, types.CreateFacetInput): types.CreateFacetOutput, table
+    createIndex: function(Client, types.CreateIndexInput): types.CreateIndexOutput, table
+    createObject: function(Client, types.CreateObjectInput): types.CreateObjectOutput, table
+    createSchema: function(Client, types.CreateSchemaInput): types.CreateSchemaOutput, table
+    createTypedLinkFacet: function(Client, types.CreateTypedLinkFacetInput): types.CreateTypedLinkFacetOutput, table
+    deleteDirectory: function(Client, types.DeleteDirectoryInput): types.DeleteDirectoryOutput, table
+    deleteFacet: function(Client, types.DeleteFacetInput): types.DeleteFacetOutput, table
+    deleteObject: function(Client, types.DeleteObjectInput): types.DeleteObjectOutput, table
+    deleteSchema: function(Client, types.DeleteSchemaInput): types.DeleteSchemaOutput, table
+    deleteTypedLinkFacet: function(Client, types.DeleteTypedLinkFacetInput): types.DeleteTypedLinkFacetOutput, table
+    detachFromIndex: function(Client, types.DetachFromIndexInput): types.DetachFromIndexOutput, table
+    detachObject: function(Client, types.DetachObjectInput): types.DetachObjectOutput, table
+    detachPolicy: function(Client, types.DetachPolicyInput): types.DetachPolicyOutput, table
+    detachTypedLink: function(Client, types.DetachTypedLinkInput): types.DetachTypedLinkOutput, table
+    disableDirectory: function(Client, types.DisableDirectoryInput): types.DisableDirectoryOutput, table
+    enableDirectory: function(Client, types.EnableDirectoryInput): types.EnableDirectoryOutput, table
+    getAppliedSchemaVersion: function(Client, types.GetAppliedSchemaVersionInput): types.GetAppliedSchemaVersionOutput, table
+    getDirectory: function(Client, types.GetDirectoryInput): types.GetDirectoryOutput, table
+    getFacet: function(Client, types.GetFacetInput): types.GetFacetOutput, table
+    getLinkAttributes: function(Client, types.GetLinkAttributesInput): types.GetLinkAttributesOutput, table
+    getObjectAttributes: function(Client, types.GetObjectAttributesInput): types.GetObjectAttributesOutput, table
+    getObjectInformation: function(Client, types.GetObjectInformationInput): types.GetObjectInformationOutput, table
+    getSchemaAsJson: function(Client, types.GetSchemaAsJsonInput): types.GetSchemaAsJsonOutput, table
+    getTypedLinkFacetInformation: function(Client, types.GetTypedLinkFacetInformationInput): types.GetTypedLinkFacetInformationOutput, table
+    listAppliedSchemaArns: function(Client, types.ListAppliedSchemaArnsInput): types.ListAppliedSchemaArnsOutput, table
+    listAttachedIndices: function(Client, types.ListAttachedIndicesInput): types.ListAttachedIndicesOutput, table
+    listDevelopmentSchemaArns: function(Client, types.ListDevelopmentSchemaArnsInput): types.ListDevelopmentSchemaArnsOutput, table
+    listDirectories: function(Client, types.ListDirectoriesInput): types.ListDirectoriesOutput, table
+    listFacetAttributes: function(Client, types.ListFacetAttributesInput): types.ListFacetAttributesOutput, table
+    listFacetNames: function(Client, types.ListFacetNamesInput): types.ListFacetNamesOutput, table
+    listIncomingTypedLinks: function(Client, types.ListIncomingTypedLinksInput): types.ListIncomingTypedLinksOutput, table
+    listIndex: function(Client, types.ListIndexInput): types.ListIndexOutput, table
+    listManagedSchemaArns: function(Client, types.ListManagedSchemaArnsInput): types.ListManagedSchemaArnsOutput, table
+    listObjectAttributes: function(Client, types.ListObjectAttributesInput): types.ListObjectAttributesOutput, table
+    listObjectChildren: function(Client, types.ListObjectChildrenInput): types.ListObjectChildrenOutput, table
+    listObjectParentPaths: function(Client, types.ListObjectParentPathsInput): types.ListObjectParentPathsOutput, table
+    listObjectParents: function(Client, types.ListObjectParentsInput): types.ListObjectParentsOutput, table
+    listObjectPolicies: function(Client, types.ListObjectPoliciesInput): types.ListObjectPoliciesOutput, table
+    listOutgoingTypedLinks: function(Client, types.ListOutgoingTypedLinksInput): types.ListOutgoingTypedLinksOutput, table
+    listPolicyAttachments: function(Client, types.ListPolicyAttachmentsInput): types.ListPolicyAttachmentsOutput, table
+    listPublishedSchemaArns: function(Client, types.ListPublishedSchemaArnsInput): types.ListPublishedSchemaArnsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTypedLinkFacetAttributes: function(Client, types.ListTypedLinkFacetAttributesInput): types.ListTypedLinkFacetAttributesOutput, table
+    listTypedLinkFacetNames: function(Client, types.ListTypedLinkFacetNamesInput): types.ListTypedLinkFacetNamesOutput, table
+    lookupPolicy: function(Client, types.LookupPolicyInput): types.LookupPolicyOutput, table
+    publishSchema: function(Client, types.PublishSchemaInput): types.PublishSchemaOutput, table
+    putSchemaFromJson: function(Client, types.PutSchemaFromJsonInput): types.PutSchemaFromJsonOutput, table
+    removeFacetFromObject: function(Client, types.RemoveFacetFromObjectInput): types.RemoveFacetFromObjectOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateFacet: function(Client, types.UpdateFacetInput): types.UpdateFacetOutput, table
+    updateLinkAttributes: function(Client, types.UpdateLinkAttributesInput): types.UpdateLinkAttributesOutput, table
+    updateObjectAttributes: function(Client, types.UpdateObjectAttributesInput): types.UpdateObjectAttributesOutput, table
+    updateSchema: function(Client, types.UpdateSchemaInput): types.UpdateSchemaOutput, table
+    updateTypedLinkFacet: function(Client, types.UpdateTypedLinkFacetInput): types.UpdateTypedLinkFacetOutput, table
+    upgradeAppliedSchema: function(Client, types.UpgradeAppliedSchemaInput): types.UpgradeAppliedSchemaOutput, table
+    upgradePublishedSchema: function(Client, types.UpgradePublishedSchemaInput): types.UpgradePublishedSchemaOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

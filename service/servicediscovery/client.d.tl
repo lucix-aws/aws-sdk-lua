@@ -1,0 +1,40 @@
+local types = require("servicediscovery.types")
+
+local record Client
+    createHttpNamespace: function(Client, types.CreateHttpNamespaceInput): types.CreateHttpNamespaceOutput, table
+    createPrivateDnsNamespace: function(Client, types.CreatePrivateDnsNamespaceInput): types.CreatePrivateDnsNamespaceOutput, table
+    createPublicDnsNamespace: function(Client, types.CreatePublicDnsNamespaceInput): types.CreatePublicDnsNamespaceOutput, table
+    createService: function(Client, types.CreateServiceInput): types.CreateServiceOutput, table
+    deleteNamespace: function(Client, types.DeleteNamespaceInput): types.DeleteNamespaceOutput, table
+    deleteService: function(Client, types.DeleteServiceInput): types.DeleteServiceOutput, table
+    deleteServiceAttributes: function(Client, types.DeleteServiceAttributesInput): types.DeleteServiceAttributesOutput, table
+    deregisterInstance: function(Client, types.DeregisterInstanceInput): types.DeregisterInstanceOutput, table
+    discoverInstances: function(Client, types.DiscoverInstancesInput): types.DiscoverInstancesOutput, table
+    discoverInstancesRevision: function(Client, types.DiscoverInstancesRevisionInput): types.DiscoverInstancesRevisionOutput, table
+    getInstance: function(Client, types.GetInstanceInput): types.GetInstanceOutput, table
+    getInstancesHealthStatus: function(Client, types.GetInstancesHealthStatusInput): types.GetInstancesHealthStatusOutput, table
+    getNamespace: function(Client, types.GetNamespaceInput): types.GetNamespaceOutput, table
+    getOperation: function(Client, types.GetOperationInput): types.GetOperationOutput, table
+    getService: function(Client, types.GetServiceInput): types.GetServiceOutput, table
+    getServiceAttributes: function(Client, types.GetServiceAttributesInput): types.GetServiceAttributesOutput, table
+    listInstances: function(Client, types.ListInstancesInput): types.ListInstancesOutput, table
+    listNamespaces: function(Client, types.ListNamespacesInput): types.ListNamespacesOutput, table
+    listOperations: function(Client, types.ListOperationsInput): types.ListOperationsOutput, table
+    listServices: function(Client, types.ListServicesInput): types.ListServicesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    registerInstance: function(Client, types.RegisterInstanceInput): types.RegisterInstanceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateHttpNamespace: function(Client, types.UpdateHttpNamespaceInput): types.UpdateHttpNamespaceOutput, table
+    updateInstanceCustomHealthStatus: function(Client, types.UpdateInstanceCustomHealthStatusInput): types.UpdateInstanceCustomHealthStatusOutput, table
+    updatePrivateDnsNamespace: function(Client, types.UpdatePrivateDnsNamespaceInput): types.UpdatePrivateDnsNamespaceOutput, table
+    updatePublicDnsNamespace: function(Client, types.UpdatePublicDnsNamespaceInput): types.UpdatePublicDnsNamespaceOutput, table
+    updateService: function(Client, types.UpdateServiceInput): types.UpdateServiceOutput, table
+    updateServiceAttributes: function(Client, types.UpdateServiceAttributesInput): types.UpdateServiceAttributesOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

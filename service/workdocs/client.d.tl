@@ -1,0 +1,54 @@
+local types = require("workdocs.types")
+
+local record Client
+    abortDocumentVersionUpload: function(Client, types.AbortDocumentVersionUploadInput): types.AbortDocumentVersionUploadOutput, table
+    activateUser: function(Client, types.ActivateUserInput): types.ActivateUserOutput, table
+    addResourcePermissions: function(Client, types.AddResourcePermissionsInput): types.AddResourcePermissionsOutput, table
+    createComment: function(Client, types.CreateCommentInput): types.CreateCommentOutput, table
+    createCustomMetadata: function(Client, types.CreateCustomMetadataInput): types.CreateCustomMetadataOutput, table
+    createFolder: function(Client, types.CreateFolderInput): types.CreateFolderOutput, table
+    createLabels: function(Client, types.CreateLabelsInput): types.CreateLabelsOutput, table
+    createNotificationSubscription: function(Client, types.CreateNotificationSubscriptionInput): types.CreateNotificationSubscriptionOutput, table
+    createUser: function(Client, types.CreateUserInput): types.CreateUserOutput, table
+    deactivateUser: function(Client, types.DeactivateUserInput): types.DeactivateUserOutput, table
+    deleteComment: function(Client, types.DeleteCommentInput): types.DeleteCommentOutput, table
+    deleteCustomMetadata: function(Client, types.DeleteCustomMetadataInput): types.DeleteCustomMetadataOutput, table
+    deleteDocument: function(Client, types.DeleteDocumentInput): types.DeleteDocumentOutput, table
+    deleteDocumentVersion: function(Client, types.DeleteDocumentVersionInput): types.DeleteDocumentVersionOutput, table
+    deleteFolder: function(Client, types.DeleteFolderInput): types.DeleteFolderOutput, table
+    deleteFolderContents: function(Client, types.DeleteFolderContentsInput): types.DeleteFolderContentsOutput, table
+    deleteLabels: function(Client, types.DeleteLabelsInput): types.DeleteLabelsOutput, table
+    deleteNotificationSubscription: function(Client, types.DeleteNotificationSubscriptionInput): types.DeleteNotificationSubscriptionOutput, table
+    deleteUser: function(Client, types.DeleteUserInput): types.DeleteUserOutput, table
+    describeActivities: function(Client, types.DescribeActivitiesInput): types.DescribeActivitiesOutput, table
+    describeComments: function(Client, types.DescribeCommentsInput): types.DescribeCommentsOutput, table
+    describeDocumentVersions: function(Client, types.DescribeDocumentVersionsInput): types.DescribeDocumentVersionsOutput, table
+    describeFolderContents: function(Client, types.DescribeFolderContentsInput): types.DescribeFolderContentsOutput, table
+    describeGroups: function(Client, types.DescribeGroupsInput): types.DescribeGroupsOutput, table
+    describeNotificationSubscriptions: function(Client, types.DescribeNotificationSubscriptionsInput): types.DescribeNotificationSubscriptionsOutput, table
+    describeResourcePermissions: function(Client, types.DescribeResourcePermissionsInput): types.DescribeResourcePermissionsOutput, table
+    describeRootFolders: function(Client, types.DescribeRootFoldersInput): types.DescribeRootFoldersOutput, table
+    describeUsers: function(Client, types.DescribeUsersInput): types.DescribeUsersOutput, table
+    getCurrentUser: function(Client, types.GetCurrentUserInput): types.GetCurrentUserOutput, table
+    getDocument: function(Client, types.GetDocumentInput): types.GetDocumentOutput, table
+    getDocumentPath: function(Client, types.GetDocumentPathInput): types.GetDocumentPathOutput, table
+    getDocumentVersion: function(Client, types.GetDocumentVersionInput): types.GetDocumentVersionOutput, table
+    getFolder: function(Client, types.GetFolderInput): types.GetFolderOutput, table
+    getFolderPath: function(Client, types.GetFolderPathInput): types.GetFolderPathOutput, table
+    getResources: function(Client, types.GetResourcesInput): types.GetResourcesOutput, table
+    initiateDocumentVersionUpload: function(Client, types.InitiateDocumentVersionUploadInput): types.InitiateDocumentVersionUploadOutput, table
+    removeAllResourcePermissions: function(Client, types.RemoveAllResourcePermissionsInput): types.RemoveAllResourcePermissionsOutput, table
+    removeResourcePermission: function(Client, types.RemoveResourcePermissionInput): types.RemoveResourcePermissionOutput, table
+    restoreDocumentVersions: function(Client, types.RestoreDocumentVersionsInput): types.RestoreDocumentVersionsOutput, table
+    searchResources: function(Client, types.SearchResourcesInput): types.SearchResourcesOutput, table
+    updateDocument: function(Client, types.UpdateDocumentInput): types.UpdateDocumentOutput, table
+    updateDocumentVersion: function(Client, types.UpdateDocumentVersionInput): types.UpdateDocumentVersionOutput, table
+    updateFolder: function(Client, types.UpdateFolderInput): types.UpdateFolderOutput, table
+    updateUser: function(Client, types.UpdateUserInput): types.UpdateUserOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

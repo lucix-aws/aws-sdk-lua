@@ -1,0 +1,43 @@
+local types = require("glacier.types")
+
+local record Client
+    abortMultipartUpload: function(Client, types.AbortMultipartUploadInput): types.AbortMultipartUploadOutput, table
+    abortVaultLock: function(Client, types.AbortVaultLockInput): types.AbortVaultLockOutput, table
+    addTagsToVault: function(Client, types.AddTagsToVaultInput): types.AddTagsToVaultOutput, table
+    completeMultipartUpload: function(Client, types.CompleteMultipartUploadInput): types.CompleteMultipartUploadOutput, table
+    completeVaultLock: function(Client, types.CompleteVaultLockInput): types.CompleteVaultLockOutput, table
+    createVault: function(Client, types.CreateVaultInput): types.CreateVaultOutput, table
+    deleteArchive: function(Client, types.DeleteArchiveInput): types.DeleteArchiveOutput, table
+    deleteVault: function(Client, types.DeleteVaultInput): types.DeleteVaultOutput, table
+    deleteVaultAccessPolicy: function(Client, types.DeleteVaultAccessPolicyInput): types.DeleteVaultAccessPolicyOutput, table
+    deleteVaultNotifications: function(Client, types.DeleteVaultNotificationsInput): types.DeleteVaultNotificationsOutput, table
+    describeJob: function(Client, types.DescribeJobInput): types.DescribeJobOutput, table
+    describeVault: function(Client, types.DescribeVaultInput): types.DescribeVaultOperationOutput, table
+    getDataRetrievalPolicy: function(Client, types.GetDataRetrievalPolicyInput): types.GetDataRetrievalPolicyOutput, table
+    getJobOutput: function(Client, types.GetJobOutputInput): types.GetJobOutputOutput, table
+    getVaultAccessPolicy: function(Client, types.GetVaultAccessPolicyInput): types.GetVaultAccessPolicyOutput, table
+    getVaultLock: function(Client, types.GetVaultLockInput): types.GetVaultLockOutput, table
+    getVaultNotifications: function(Client, types.GetVaultNotificationsInput): types.GetVaultNotificationsOutput, table
+    initiateJob: function(Client, types.InitiateJobInput): types.InitiateJobOutput, table
+    initiateMultipartUpload: function(Client, types.InitiateMultipartUploadInput): types.InitiateMultipartUploadOutput, table
+    initiateVaultLock: function(Client, types.InitiateVaultLockInput): types.InitiateVaultLockOutput, table
+    listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    listMultipartUploads: function(Client, types.ListMultipartUploadsInput): types.ListMultipartUploadsOutput, table
+    listParts: function(Client, types.ListPartsInput): types.ListPartsOutput, table
+    listProvisionedCapacity: function(Client, types.ListProvisionedCapacityInput): types.ListProvisionedCapacityOutput, table
+    listTagsForVault: function(Client, types.ListTagsForVaultInput): types.ListTagsForVaultOutput, table
+    listVaults: function(Client, types.ListVaultsInput): types.ListVaultsOutput, table
+    purchaseProvisionedCapacity: function(Client, types.PurchaseProvisionedCapacityInput): types.PurchaseProvisionedCapacityOutput, table
+    removeTagsFromVault: function(Client, types.RemoveTagsFromVaultInput): types.RemoveTagsFromVaultOutput, table
+    setDataRetrievalPolicy: function(Client, types.SetDataRetrievalPolicyInput): types.SetDataRetrievalPolicyOutput, table
+    setVaultAccessPolicy: function(Client, types.SetVaultAccessPolicyInput): types.SetVaultAccessPolicyOutput, table
+    setVaultNotifications: function(Client, types.SetVaultNotificationsInput): types.SetVaultNotificationsOutput, table
+    uploadArchive: function(Client, types.UploadArchiveInput): types.UploadArchiveOutput, table
+    uploadMultipartPart: function(Client, types.UploadMultipartPartInput): types.UploadMultipartPartOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

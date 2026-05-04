@@ -1,0 +1,22 @@
+local types = require("ioteventsdata.types")
+
+local record Client
+    batchAcknowledgeAlarm: function(Client, types.BatchAcknowledgeAlarmInput): types.BatchAcknowledgeAlarmOutput, table
+    batchDeleteDetector: function(Client, types.BatchDeleteDetectorInput): types.BatchDeleteDetectorOutput, table
+    batchDisableAlarm: function(Client, types.BatchDisableAlarmInput): types.BatchDisableAlarmOutput, table
+    batchEnableAlarm: function(Client, types.BatchEnableAlarmInput): types.BatchEnableAlarmOutput, table
+    batchPutMessage: function(Client, types.BatchPutMessageInput): types.BatchPutMessageOutput, table
+    batchResetAlarm: function(Client, types.BatchResetAlarmInput): types.BatchResetAlarmOutput, table
+    batchSnoozeAlarm: function(Client, types.BatchSnoozeAlarmInput): types.BatchSnoozeAlarmOutput, table
+    batchUpdateDetector: function(Client, types.BatchUpdateDetectorInput): types.BatchUpdateDetectorOutput, table
+    describeAlarm: function(Client, types.DescribeAlarmInput): types.DescribeAlarmOutput, table
+    describeDetector: function(Client, types.DescribeDetectorInput): types.DescribeDetectorOutput, table
+    listAlarms: function(Client, types.ListAlarmsInput): types.ListAlarmsOutput, table
+    listDetectors: function(Client, types.ListDetectorsInput): types.ListDetectorsOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

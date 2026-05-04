@@ -1,0 +1,106 @@
+local types = require("storagegateway.types")
+
+local record Client
+    activateGateway: function(Client, types.ActivateGatewayInput): types.ActivateGatewayOutput, table
+    addCache: function(Client, types.AddCacheInput): types.AddCacheOutput, table
+    addTagsToResource: function(Client, types.AddTagsToResourceInput): types.AddTagsToResourceOutput, table
+    addUploadBuffer: function(Client, types.AddUploadBufferInput): types.AddUploadBufferOutput, table
+    addWorkingStorage: function(Client, types.AddWorkingStorageInput): types.AddWorkingStorageOutput, table
+    assignTapePool: function(Client, types.AssignTapePoolInput): types.AssignTapePoolOutput, table
+    associateFileSystem: function(Client, types.AssociateFileSystemInput): types.AssociateFileSystemOutput, table
+    attachVolume: function(Client, types.AttachVolumeInput): types.AttachVolumeOutput, table
+    cancelArchival: function(Client, types.CancelArchivalInput): types.CancelArchivalOutput, table
+    cancelCacheReport: function(Client, types.CancelCacheReportInput): types.CancelCacheReportOutput, table
+    cancelRetrieval: function(Client, types.CancelRetrievalInput): types.CancelRetrievalOutput, table
+    createCachediSCSIVolume: function(Client, types.CreateCachediSCSIVolumeInput): types.CreateCachediSCSIVolumeOutput, table
+    createNFSFileShare: function(Client, types.CreateNFSFileShareInput): types.CreateNFSFileShareOutput, table
+    createSMBFileShare: function(Client, types.CreateSMBFileShareInput): types.CreateSMBFileShareOutput, table
+    createSnapshot: function(Client, types.CreateSnapshotInput): types.CreateSnapshotOutput, table
+    createSnapshotFromVolumeRecoveryPoint: function(Client, types.CreateSnapshotFromVolumeRecoveryPointInput): types.CreateSnapshotFromVolumeRecoveryPointOutput, table
+    createStorediSCSIVolume: function(Client, types.CreateStorediSCSIVolumeInput): types.CreateStorediSCSIVolumeOutput, table
+    createTapePool: function(Client, types.CreateTapePoolInput): types.CreateTapePoolOutput, table
+    createTapes: function(Client, types.CreateTapesInput): types.CreateTapesOutput, table
+    createTapeWithBarcode: function(Client, types.CreateTapeWithBarcodeInput): types.CreateTapeWithBarcodeOutput, table
+    deleteAutomaticTapeCreationPolicy: function(Client, types.DeleteAutomaticTapeCreationPolicyInput): types.DeleteAutomaticTapeCreationPolicyOutput, table
+    deleteBandwidthRateLimit: function(Client, types.DeleteBandwidthRateLimitInput): types.DeleteBandwidthRateLimitOutput, table
+    deleteCacheReport: function(Client, types.DeleteCacheReportInput): types.DeleteCacheReportOutput, table
+    deleteChapCredentials: function(Client, types.DeleteChapCredentialsInput): types.DeleteChapCredentialsOutput, table
+    deleteFileShare: function(Client, types.DeleteFileShareInput): types.DeleteFileShareOutput, table
+    deleteGateway: function(Client, types.DeleteGatewayInput): types.DeleteGatewayOutput, table
+    deleteSnapshotSchedule: function(Client, types.DeleteSnapshotScheduleInput): types.DeleteSnapshotScheduleOutput, table
+    deleteTape: function(Client, types.DeleteTapeInput): types.DeleteTapeOutput, table
+    deleteTapeArchive: function(Client, types.DeleteTapeArchiveInput): types.DeleteTapeArchiveOutput, table
+    deleteTapePool: function(Client, types.DeleteTapePoolInput): types.DeleteTapePoolOutput, table
+    deleteVolume: function(Client, types.DeleteVolumeInput): types.DeleteVolumeOutput, table
+    describeAvailabilityMonitorTest: function(Client, types.DescribeAvailabilityMonitorTestInput): types.DescribeAvailabilityMonitorTestOutput, table
+    describeBandwidthRateLimit: function(Client, types.DescribeBandwidthRateLimitInput): types.DescribeBandwidthRateLimitOutput, table
+    describeBandwidthRateLimitSchedule: function(Client, types.DescribeBandwidthRateLimitScheduleInput): types.DescribeBandwidthRateLimitScheduleOutput, table
+    describeCache: function(Client, types.DescribeCacheInput): types.DescribeCacheOutput, table
+    describeCachediSCSIVolumes: function(Client, types.DescribeCachediSCSIVolumesInput): types.DescribeCachediSCSIVolumesOutput, table
+    describeCacheReport: function(Client, types.DescribeCacheReportInput): types.DescribeCacheReportOutput, table
+    describeChapCredentials: function(Client, types.DescribeChapCredentialsInput): types.DescribeChapCredentialsOutput, table
+    describeFileSystemAssociations: function(Client, types.DescribeFileSystemAssociationsInput): types.DescribeFileSystemAssociationsOutput, table
+    describeGatewayInformation: function(Client, types.DescribeGatewayInformationInput): types.DescribeGatewayInformationOutput, table
+    describeMaintenanceStartTime: function(Client, types.DescribeMaintenanceStartTimeInput): types.DescribeMaintenanceStartTimeOutput, table
+    describeNFSFileShares: function(Client, types.DescribeNFSFileSharesInput): types.DescribeNFSFileSharesOutput, table
+    describeSMBFileShares: function(Client, types.DescribeSMBFileSharesInput): types.DescribeSMBFileSharesOutput, table
+    describeSMBSettings: function(Client, types.DescribeSMBSettingsInput): types.DescribeSMBSettingsOutput, table
+    describeSnapshotSchedule: function(Client, types.DescribeSnapshotScheduleInput): types.DescribeSnapshotScheduleOutput, table
+    describeStorediSCSIVolumes: function(Client, types.DescribeStorediSCSIVolumesInput): types.DescribeStorediSCSIVolumesOutput, table
+    describeTapeArchives: function(Client, types.DescribeTapeArchivesInput): types.DescribeTapeArchivesOutput, table
+    describeTapeRecoveryPoints: function(Client, types.DescribeTapeRecoveryPointsInput): types.DescribeTapeRecoveryPointsOutput, table
+    describeTapes: function(Client, types.DescribeTapesInput): types.DescribeTapesOutput, table
+    describeUploadBuffer: function(Client, types.DescribeUploadBufferInput): types.DescribeUploadBufferOutput, table
+    describeVTLDevices: function(Client, types.DescribeVTLDevicesInput): types.DescribeVTLDevicesOutput, table
+    describeWorkingStorage: function(Client, types.DescribeWorkingStorageInput): types.DescribeWorkingStorageOutput, table
+    detachVolume: function(Client, types.DetachVolumeInput): types.DetachVolumeOutput, table
+    disableGateway: function(Client, types.DisableGatewayInput): types.DisableGatewayOutput, table
+    disassociateFileSystem: function(Client, types.DisassociateFileSystemInput): types.DisassociateFileSystemOutput, table
+    evictFilesFailingUpload: function(Client, types.EvictFilesFailingUploadInput): types.EvictFilesFailingUploadOutput, table
+    joinDomain: function(Client, types.JoinDomainInput): types.JoinDomainOutput, table
+    listAutomaticTapeCreationPolicies: function(Client, types.ListAutomaticTapeCreationPoliciesInput): types.ListAutomaticTapeCreationPoliciesOutput, table
+    listCacheReports: function(Client, types.ListCacheReportsInput): types.ListCacheReportsOutput, table
+    listFileShares: function(Client, types.ListFileSharesInput): types.ListFileSharesOutput, table
+    listFileSystemAssociations: function(Client, types.ListFileSystemAssociationsInput): types.ListFileSystemAssociationsOutput, table
+    listGateways: function(Client, types.ListGatewaysInput): types.ListGatewaysOutput, table
+    listLocalDisks: function(Client, types.ListLocalDisksInput): types.ListLocalDisksOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTapePools: function(Client, types.ListTapePoolsInput): types.ListTapePoolsOutput, table
+    listTapes: function(Client, types.ListTapesInput): types.ListTapesOutput, table
+    listVolumeInitiators: function(Client, types.ListVolumeInitiatorsInput): types.ListVolumeInitiatorsOutput, table
+    listVolumeRecoveryPoints: function(Client, types.ListVolumeRecoveryPointsInput): types.ListVolumeRecoveryPointsOutput, table
+    listVolumes: function(Client, types.ListVolumesInput): types.ListVolumesOutput, table
+    notifyWhenUploaded: function(Client, types.NotifyWhenUploadedInput): types.NotifyWhenUploadedOutput, table
+    refreshCache: function(Client, types.RefreshCacheInput): types.RefreshCacheOutput, table
+    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): types.RemoveTagsFromResourceOutput, table
+    resetCache: function(Client, types.ResetCacheInput): types.ResetCacheOutput, table
+    retrieveTapeArchive: function(Client, types.RetrieveTapeArchiveInput): types.RetrieveTapeArchiveOutput, table
+    retrieveTapeRecoveryPoint: function(Client, types.RetrieveTapeRecoveryPointInput): types.RetrieveTapeRecoveryPointOutput, table
+    setLocalConsolePassword: function(Client, types.SetLocalConsolePasswordInput): types.SetLocalConsolePasswordOutput, table
+    setSMBGuestPassword: function(Client, types.SetSMBGuestPasswordInput): types.SetSMBGuestPasswordOutput, table
+    shutdownGateway: function(Client, types.ShutdownGatewayInput): types.ShutdownGatewayOutput, table
+    startAvailabilityMonitorTest: function(Client, types.StartAvailabilityMonitorTestInput): types.StartAvailabilityMonitorTestOutput, table
+    startCacheReport: function(Client, types.StartCacheReportInput): types.StartCacheReportOutput, table
+    startGateway: function(Client, types.StartGatewayInput): types.StartGatewayOutput, table
+    updateAutomaticTapeCreationPolicy: function(Client, types.UpdateAutomaticTapeCreationPolicyInput): types.UpdateAutomaticTapeCreationPolicyOutput, table
+    updateBandwidthRateLimit: function(Client, types.UpdateBandwidthRateLimitInput): types.UpdateBandwidthRateLimitOutput, table
+    updateBandwidthRateLimitSchedule: function(Client, types.UpdateBandwidthRateLimitScheduleInput): types.UpdateBandwidthRateLimitScheduleOutput, table
+    updateChapCredentials: function(Client, types.UpdateChapCredentialsInput): types.UpdateChapCredentialsOutput, table
+    updateFileSystemAssociation: function(Client, types.UpdateFileSystemAssociationInput): types.UpdateFileSystemAssociationOutput, table
+    updateGatewayInformation: function(Client, types.UpdateGatewayInformationInput): types.UpdateGatewayInformationOutput, table
+    updateGatewaySoftwareNow: function(Client, types.UpdateGatewaySoftwareNowInput): types.UpdateGatewaySoftwareNowOutput, table
+    updateMaintenanceStartTime: function(Client, types.UpdateMaintenanceStartTimeInput): types.UpdateMaintenanceStartTimeOutput, table
+    updateNFSFileShare: function(Client, types.UpdateNFSFileShareInput): types.UpdateNFSFileShareOutput, table
+    updateSMBFileShare: function(Client, types.UpdateSMBFileShareInput): types.UpdateSMBFileShareOutput, table
+    updateSMBFileShareVisibility: function(Client, types.UpdateSMBFileShareVisibilityInput): types.UpdateSMBFileShareVisibilityOutput, table
+    updateSMBLocalGroups: function(Client, types.UpdateSMBLocalGroupsInput): types.UpdateSMBLocalGroupsOutput, table
+    updateSMBSecurityStrategy: function(Client, types.UpdateSMBSecurityStrategyInput): types.UpdateSMBSecurityStrategyOutput, table
+    updateSnapshotSchedule: function(Client, types.UpdateSnapshotScheduleInput): types.UpdateSnapshotScheduleOutput, table
+    updateVTLDeviceType: function(Client, types.UpdateVTLDeviceTypeInput): types.UpdateVTLDeviceTypeOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

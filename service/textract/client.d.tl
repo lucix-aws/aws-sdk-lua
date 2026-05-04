@@ -1,0 +1,35 @@
+local types = require("textract.types")
+
+local record Client
+    analyzeDocument: function(Client, types.AnalyzeDocumentInput): types.AnalyzeDocumentOutput, table
+    analyzeExpense: function(Client, types.AnalyzeExpenseInput): types.AnalyzeExpenseOutput, table
+    analyzeID: function(Client, types.AnalyzeIDInput): types.AnalyzeIDOutput, table
+    createAdapter: function(Client, types.CreateAdapterInput): types.CreateAdapterOutput, table
+    createAdapterVersion: function(Client, types.CreateAdapterVersionInput): types.CreateAdapterVersionOutput, table
+    deleteAdapter: function(Client, types.DeleteAdapterInput): types.DeleteAdapterOutput, table
+    deleteAdapterVersion: function(Client, types.DeleteAdapterVersionInput): types.DeleteAdapterVersionOutput, table
+    detectDocumentText: function(Client, types.DetectDocumentTextInput): types.DetectDocumentTextOutput, table
+    getAdapter: function(Client, types.GetAdapterInput): types.GetAdapterOutput, table
+    getAdapterVersion: function(Client, types.GetAdapterVersionInput): types.GetAdapterVersionOutput, table
+    getDocumentAnalysis: function(Client, types.GetDocumentAnalysisInput): types.GetDocumentAnalysisOutput, table
+    getDocumentTextDetection: function(Client, types.GetDocumentTextDetectionInput): types.GetDocumentTextDetectionOutput, table
+    getExpenseAnalysis: function(Client, types.GetExpenseAnalysisInput): types.GetExpenseAnalysisOutput, table
+    getLendingAnalysis: function(Client, types.GetLendingAnalysisInput): types.GetLendingAnalysisOutput, table
+    getLendingAnalysisSummary: function(Client, types.GetLendingAnalysisSummaryInput): types.GetLendingAnalysisSummaryOutput, table
+    listAdapters: function(Client, types.ListAdaptersInput): types.ListAdaptersOutput, table
+    listAdapterVersions: function(Client, types.ListAdapterVersionsInput): types.ListAdapterVersionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    startDocumentAnalysis: function(Client, types.StartDocumentAnalysisInput): types.StartDocumentAnalysisOutput, table
+    startDocumentTextDetection: function(Client, types.StartDocumentTextDetectionInput): types.StartDocumentTextDetectionOutput, table
+    startExpenseAnalysis: function(Client, types.StartExpenseAnalysisInput): types.StartExpenseAnalysisOutput, table
+    startLendingAnalysis: function(Client, types.StartLendingAnalysisInput): types.StartLendingAnalysisOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAdapter: function(Client, types.UpdateAdapterInput): types.UpdateAdapterOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

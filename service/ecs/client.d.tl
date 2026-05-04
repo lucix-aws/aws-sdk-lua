@@ -1,0 +1,86 @@
+local types = require("ecs.types")
+
+local record Client
+    createCapacityProvider: function(Client, types.CreateCapacityProviderInput): types.CreateCapacityProviderOutput, table
+    createCluster: function(Client, types.CreateClusterInput): types.CreateClusterOutput, table
+    createDaemon: function(Client, types.CreateDaemonInput): types.CreateDaemonOutput, table
+    createExpressGatewayService: function(Client, types.CreateExpressGatewayServiceInput): types.CreateExpressGatewayServiceOutput, table
+    createService: function(Client, types.CreateServiceInput): types.CreateServiceOutput, table
+    createTaskSet: function(Client, types.CreateTaskSetInput): types.CreateTaskSetOutput, table
+    deleteAccountSetting: function(Client, types.DeleteAccountSettingInput): types.DeleteAccountSettingOutput, table
+    deleteAttributes: function(Client, types.DeleteAttributesInput): types.DeleteAttributesOutput, table
+    deleteCapacityProvider: function(Client, types.DeleteCapacityProviderInput): types.DeleteCapacityProviderOutput, table
+    deleteCluster: function(Client, types.DeleteClusterInput): types.DeleteClusterOutput, table
+    deleteDaemon: function(Client, types.DeleteDaemonInput): types.DeleteDaemonOutput, table
+    deleteDaemonTaskDefinition: function(Client, types.DeleteDaemonTaskDefinitionInput): types.DeleteDaemonTaskDefinitionOutput, table
+    deleteExpressGatewayService: function(Client, types.DeleteExpressGatewayServiceInput): types.DeleteExpressGatewayServiceOutput, table
+    deleteService: function(Client, types.DeleteServiceInput): types.DeleteServiceOutput, table
+    deleteTaskDefinitions: function(Client, types.DeleteTaskDefinitionsInput): types.DeleteTaskDefinitionsOutput, table
+    deleteTaskSet: function(Client, types.DeleteTaskSetInput): types.DeleteTaskSetOutput, table
+    deregisterContainerInstance: function(Client, types.DeregisterContainerInstanceInput): types.DeregisterContainerInstanceOutput, table
+    deregisterTaskDefinition: function(Client, types.DeregisterTaskDefinitionInput): types.DeregisterTaskDefinitionOutput, table
+    describeCapacityProviders: function(Client, types.DescribeCapacityProvidersInput): types.DescribeCapacityProvidersOutput, table
+    describeClusters: function(Client, types.DescribeClustersInput): types.DescribeClustersOutput, table
+    describeContainerInstances: function(Client, types.DescribeContainerInstancesInput): types.DescribeContainerInstancesOutput, table
+    describeDaemon: function(Client, types.DescribeDaemonInput): types.DescribeDaemonOutput, table
+    describeDaemonDeployments: function(Client, types.DescribeDaemonDeploymentsInput): types.DescribeDaemonDeploymentsOutput, table
+    describeDaemonRevisions: function(Client, types.DescribeDaemonRevisionsInput): types.DescribeDaemonRevisionsOutput, table
+    describeDaemonTaskDefinition: function(Client, types.DescribeDaemonTaskDefinitionInput): types.DescribeDaemonTaskDefinitionOutput, table
+    describeExpressGatewayService: function(Client, types.DescribeExpressGatewayServiceInput): types.DescribeExpressGatewayServiceOutput, table
+    describeServiceDeployments: function(Client, types.DescribeServiceDeploymentsInput): types.DescribeServiceDeploymentsOutput, table
+    describeServiceRevisions: function(Client, types.DescribeServiceRevisionsInput): types.DescribeServiceRevisionsOutput, table
+    describeServices: function(Client, types.DescribeServicesInput): types.DescribeServicesOutput, table
+    describeTaskDefinition: function(Client, types.DescribeTaskDefinitionInput): types.DescribeTaskDefinitionOutput, table
+    describeTasks: function(Client, types.DescribeTasksInput): types.DescribeTasksOutput, table
+    describeTaskSets: function(Client, types.DescribeTaskSetsInput): types.DescribeTaskSetsOutput, table
+    discoverPollEndpoint: function(Client, types.DiscoverPollEndpointInput): types.DiscoverPollEndpointOutput, table
+    executeCommand: function(Client, types.ExecuteCommandInput): types.ExecuteCommandOutput, table
+    getTaskProtection: function(Client, types.GetTaskProtectionInput): types.GetTaskProtectionOutput, table
+    listAccountSettings: function(Client, types.ListAccountSettingsInput): types.ListAccountSettingsOutput, table
+    listAttributes: function(Client, types.ListAttributesInput): types.ListAttributesOutput, table
+    listClusters: function(Client, types.ListClustersInput): types.ListClustersOutput, table
+    listContainerInstances: function(Client, types.ListContainerInstancesInput): types.ListContainerInstancesOutput, table
+    listDaemonDeployments: function(Client, types.ListDaemonDeploymentsInput): types.ListDaemonDeploymentsOutput, table
+    listDaemons: function(Client, types.ListDaemonsInput): types.ListDaemonsOutput, table
+    listDaemonTaskDefinitions: function(Client, types.ListDaemonTaskDefinitionsInput): types.ListDaemonTaskDefinitionsOutput, table
+    listServiceDeployments: function(Client, types.ListServiceDeploymentsInput): types.ListServiceDeploymentsOutput, table
+    listServices: function(Client, types.ListServicesInput): types.ListServicesOutput, table
+    listServicesByNamespace: function(Client, types.ListServicesByNamespaceInput): types.ListServicesByNamespaceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTaskDefinitionFamilies: function(Client, types.ListTaskDefinitionFamiliesInput): types.ListTaskDefinitionFamiliesOutput, table
+    listTaskDefinitions: function(Client, types.ListTaskDefinitionsInput): types.ListTaskDefinitionsOutput, table
+    listTasks: function(Client, types.ListTasksInput): types.ListTasksOutput, table
+    putAccountSetting: function(Client, types.PutAccountSettingInput): types.PutAccountSettingOutput, table
+    putAccountSettingDefault: function(Client, types.PutAccountSettingDefaultInput): types.PutAccountSettingDefaultOutput, table
+    putAttributes: function(Client, types.PutAttributesInput): types.PutAttributesOutput, table
+    putClusterCapacityProviders: function(Client, types.PutClusterCapacityProvidersInput): types.PutClusterCapacityProvidersOutput, table
+    registerContainerInstance: function(Client, types.RegisterContainerInstanceInput): types.RegisterContainerInstanceOutput, table
+    registerDaemonTaskDefinition: function(Client, types.RegisterDaemonTaskDefinitionInput): types.RegisterDaemonTaskDefinitionOutput, table
+    registerTaskDefinition: function(Client, types.RegisterTaskDefinitionInput): types.RegisterTaskDefinitionOutput, table
+    runTask: function(Client, types.RunTaskInput): types.RunTaskOutput, table
+    startTask: function(Client, types.StartTaskInput): types.StartTaskOutput, table
+    stopServiceDeployment: function(Client, types.StopServiceDeploymentInput): types.StopServiceDeploymentOutput, table
+    stopTask: function(Client, types.StopTaskInput): types.StopTaskOutput, table
+    submitAttachmentStateChanges: function(Client, types.SubmitAttachmentStateChangesInput): types.SubmitAttachmentStateChangesOutput, table
+    submitContainerStateChange: function(Client, types.SubmitContainerStateChangeInput): types.SubmitContainerStateChangeOutput, table
+    submitTaskStateChange: function(Client, types.SubmitTaskStateChangeInput): types.SubmitTaskStateChangeOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateCapacityProvider: function(Client, types.UpdateCapacityProviderInput): types.UpdateCapacityProviderOutput, table
+    updateCluster: function(Client, types.UpdateClusterInput): types.UpdateClusterOutput, table
+    updateClusterSettings: function(Client, types.UpdateClusterSettingsInput): types.UpdateClusterSettingsOutput, table
+    updateContainerAgent: function(Client, types.UpdateContainerAgentInput): types.UpdateContainerAgentOutput, table
+    updateContainerInstancesState: function(Client, types.UpdateContainerInstancesStateInput): types.UpdateContainerInstancesStateOutput, table
+    updateDaemon: function(Client, types.UpdateDaemonInput): types.UpdateDaemonOutput, table
+    updateExpressGatewayService: function(Client, types.UpdateExpressGatewayServiceInput): types.UpdateExpressGatewayServiceOutput, table
+    updateService: function(Client, types.UpdateServiceInput): types.UpdateServiceOutput, table
+    updateServicePrimaryTaskSet: function(Client, types.UpdateServicePrimaryTaskSetInput): types.UpdateServicePrimaryTaskSetOutput, table
+    updateTaskProtection: function(Client, types.UpdateTaskProtectionInput): types.UpdateTaskProtectionOutput, table
+    updateTaskSet: function(Client, types.UpdateTaskSetInput): types.UpdateTaskSetOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,2971 @@
+local record AssociateDelegateToResourceInput
+    OrganizationId: string
+    ResourceId: string
+    EntityId: string
+end
+
+local record AssociateDelegateToResourceOutput
+end
+
+local record AssociateMemberToGroupInput
+    OrganizationId: string
+    GroupId: string
+    MemberId: string
+end
+
+local record AssociateMemberToGroupOutput
+end
+
+local record AssumeImpersonationRoleInput
+    OrganizationId: string
+    ImpersonationRoleId: string
+end
+
+local record AssumeImpersonationRoleOutput
+    Token: string
+    ExpiresIn: number
+end
+
+local record CancelMailboxExportJobInput
+    ClientToken: string
+    JobId: string
+    OrganizationId: string
+end
+
+local record CancelMailboxExportJobOutput
+end
+
+local record CreateAliasInput
+    OrganizationId: string
+    EntityId: string
+    Alias: string
+end
+
+local record CreateAliasOutput
+end
+
+local record CreateAvailabilityConfigurationInput
+    ClientToken: string
+    OrganizationId: string
+    DomainName: string
+    EwsProvider: EwsAvailabilityProvider
+    LambdaProvider: LambdaAvailabilityProvider
+end
+
+local record CreateAvailabilityConfigurationOutput
+end
+
+local record CreateGroupInput
+    OrganizationId: string
+    Name: string
+    HiddenFromGlobalAddressList: boolean
+end
+
+local record CreateGroupOutput
+    GroupId: string
+end
+
+local record CreateIdentityCenterApplicationInput
+    Name: string
+    InstanceArn: string
+    ClientToken: string
+end
+
+local record CreateIdentityCenterApplicationOutput
+    ApplicationArn: string
+end
+
+local record CreateImpersonationRoleInput
+    ClientToken: string
+    OrganizationId: string
+    Name: string
+    Type: string
+    Description: string
+    Rules: {ImpersonationRule}
+end
+
+local record CreateImpersonationRoleOutput
+    ImpersonationRoleId: string
+end
+
+local record CreateMobileDeviceAccessRuleInput
+    OrganizationId: string
+    ClientToken: string
+    Name: string
+    Description: string
+    Effect: string
+    DeviceTypes: {string}
+    NotDeviceTypes: {string}
+    DeviceModels: {string}
+    NotDeviceModels: {string}
+    DeviceOperatingSystems: {string}
+    NotDeviceOperatingSystems: {string}
+    DeviceUserAgents: {string}
+    NotDeviceUserAgents: {string}
+end
+
+local record CreateMobileDeviceAccessRuleOutput
+    MobileDeviceAccessRuleId: string
+end
+
+local record CreateOrganizationInput
+    DirectoryId: string
+    Alias: string
+    ClientToken: string
+    Domains: {Domain}
+    KmsKeyArn: string
+    EnableInteroperability: boolean
+end
+
+local record CreateOrganizationOutput
+    OrganizationId: string
+end
+
+local record CreateResourceInput
+    OrganizationId: string
+    Name: string
+    Type: string
+    Description: string
+    HiddenFromGlobalAddressList: boolean
+end
+
+local record CreateResourceOutput
+    ResourceId: string
+end
+
+local record CreateUserInput
+    OrganizationId: string
+    Name: string
+    DisplayName: string
+    Password: string
+    Role: string
+    FirstName: string
+    LastName: string
+    HiddenFromGlobalAddressList: boolean
+    IdentityProviderUserId: string
+end
+
+local record CreateUserOutput
+    UserId: string
+end
+
+local record DeleteAccessControlRuleInput
+    OrganizationId: string
+    Name: string
+end
+
+local record DeleteAccessControlRuleOutput
+end
+
+local record DeleteAliasInput
+    OrganizationId: string
+    EntityId: string
+    Alias: string
+end
+
+local record DeleteAliasOutput
+end
+
+local record DeleteAvailabilityConfigurationInput
+    OrganizationId: string
+    DomainName: string
+end
+
+local record DeleteAvailabilityConfigurationOutput
+end
+
+local record DeleteEmailMonitoringConfigurationInput
+    OrganizationId: string
+end
+
+local record DeleteEmailMonitoringConfigurationOutput
+end
+
+local record DeleteGroupInput
+    OrganizationId: string
+    GroupId: string
+end
+
+local record DeleteGroupOutput
+end
+
+local record DeleteIdentityCenterApplicationInput
+    ApplicationArn: string
+end
+
+local record DeleteIdentityCenterApplicationOutput
+end
+
+local record DeleteIdentityProviderConfigurationInput
+    OrganizationId: string
+end
+
+local record DeleteIdentityProviderConfigurationOutput
+end
+
+local record DeleteImpersonationRoleInput
+    OrganizationId: string
+    ImpersonationRoleId: string
+end
+
+local record DeleteImpersonationRoleOutput
+end
+
+local record DeleteMailboxPermissionsInput
+    OrganizationId: string
+    EntityId: string
+    GranteeId: string
+end
+
+local record DeleteMailboxPermissionsOutput
+end
+
+local record DeleteMobileDeviceAccessOverrideInput
+    OrganizationId: string
+    UserId: string
+    DeviceId: string
+end
+
+local record DeleteMobileDeviceAccessOverrideOutput
+end
+
+local record DeleteMobileDeviceAccessRuleInput
+    OrganizationId: string
+    MobileDeviceAccessRuleId: string
+end
+
+local record DeleteMobileDeviceAccessRuleOutput
+end
+
+local record DeleteOrganizationInput
+    ClientToken: string
+    OrganizationId: string
+    DeleteDirectory: boolean
+    ForceDelete: boolean
+    DeleteIdentityCenterApplication: boolean
+end
+
+local record DeleteOrganizationOutput
+    OrganizationId: string
+    State: string
+end
+
+local record DeletePersonalAccessTokenInput
+    OrganizationId: string
+    PersonalAccessTokenId: string
+end
+
+local record DeletePersonalAccessTokenOutput
+end
+
+local record DeleteResourceInput
+    OrganizationId: string
+    ResourceId: string
+end
+
+local record DeleteResourceOutput
+end
+
+local record DeleteRetentionPolicyInput
+    OrganizationId: string
+    Id: string
+end
+
+local record DeleteRetentionPolicyOutput
+end
+
+local record DeleteUserInput
+    OrganizationId: string
+    UserId: string
+end
+
+local record DeleteUserOutput
+end
+
+local record DeregisterFromWorkMailInput
+    OrganizationId: string
+    EntityId: string
+end
+
+local record DeregisterFromWorkMailOutput
+end
+
+local record DeregisterMailDomainInput
+    OrganizationId: string
+    DomainName: string
+end
+
+local record DeregisterMailDomainOutput
+end
+
+local record DescribeEmailMonitoringConfigurationInput
+    OrganizationId: string
+end
+
+local record DescribeEmailMonitoringConfigurationOutput
+    RoleArn: string
+    LogGroupArn: string
+end
+
+local record DescribeEntityInput
+    OrganizationId: string
+    Email: string
+end
+
+local record DescribeEntityOutput
+    EntityId: string
+    Name: string
+    Type: string
+end
+
+local record DescribeGroupInput
+    OrganizationId: string
+    GroupId: string
+end
+
+local record DescribeGroupOutput
+    GroupId: string
+    Name: string
+    Email: string
+    State: string
+    EnabledDate: number
+    DisabledDate: number
+    HiddenFromGlobalAddressList: boolean
+end
+
+local record DescribeIdentityProviderConfigurationInput
+    OrganizationId: string
+end
+
+local record DescribeIdentityProviderConfigurationOutput
+    AuthenticationMode: string
+    IdentityCenterConfiguration: IdentityCenterConfiguration
+    PersonalAccessTokenConfiguration: PersonalAccessTokenConfiguration
+end
+
+local record DescribeInboundDmarcSettingsInput
+    OrganizationId: string
+end
+
+local record DescribeInboundDmarcSettingsOutput
+    Enforced: boolean
+end
+
+local record DescribeMailboxExportJobInput
+    JobId: string
+    OrganizationId: string
+end
+
+local record DescribeMailboxExportJobOutput
+    EntityId: string
+    Description: string
+    RoleArn: string
+    KmsKeyArn: string
+    S3BucketName: string
+    S3Prefix: string
+    S3Path: string
+    EstimatedProgress: number
+    State: string
+    ErrorInfo: string
+    StartTime: number
+    EndTime: number
+end
+
+local record DescribeOrganizationInput
+    OrganizationId: string
+end
+
+local record DescribeOrganizationOutput
+    OrganizationId: string
+    Alias: string
+    State: string
+    DirectoryId: string
+    DirectoryType: string
+    DefaultMailDomain: string
+    CompletedDate: number
+    ErrorMessage: string
+    ARN: string
+    MigrationAdmin: string
+    InteroperabilityEnabled: boolean
+end
+
+local record DescribeResourceInput
+    OrganizationId: string
+    ResourceId: string
+end
+
+local record DescribeResourceOutput
+    ResourceId: string
+    Email: string
+    Name: string
+    Type: string
+    BookingOptions: BookingOptions
+    State: string
+    EnabledDate: number
+    DisabledDate: number
+    Description: string
+    HiddenFromGlobalAddressList: boolean
+end
+
+local record DescribeUserInput
+    OrganizationId: string
+    UserId: string
+end
+
+local record DescribeUserOutput
+    UserId: string
+    Name: string
+    Email: string
+    DisplayName: string
+    State: string
+    UserRole: string
+    EnabledDate: number
+    DisabledDate: number
+    MailboxProvisionedDate: number
+    MailboxDeprovisionedDate: number
+    FirstName: string
+    LastName: string
+    HiddenFromGlobalAddressList: boolean
+    Initials: string
+    Telephone: string
+    Street: string
+    JobTitle: string
+    City: string
+    Company: string
+    ZipCode: string
+    Department: string
+    Country: string
+    Office: string
+    IdentityProviderUserId: string
+    IdentityProviderIdentityStoreId: string
+end
+
+local record DisassociateDelegateFromResourceInput
+    OrganizationId: string
+    ResourceId: string
+    EntityId: string
+end
+
+local record DisassociateDelegateFromResourceOutput
+end
+
+local record DisassociateMemberFromGroupInput
+    OrganizationId: string
+    GroupId: string
+    MemberId: string
+end
+
+local record DisassociateMemberFromGroupOutput
+end
+
+local record GetAccessControlEffectInput
+    OrganizationId: string
+    IpAddress: string
+    Action: string
+    UserId: string
+    ImpersonationRoleId: string
+end
+
+local record GetAccessControlEffectOutput
+    Effect: string
+    MatchedRules: {string}
+end
+
+local record GetDefaultRetentionPolicyInput
+    OrganizationId: string
+end
+
+local record GetDefaultRetentionPolicyOutput
+    Id: string
+    Name: string
+    Description: string
+    FolderConfigurations: {FolderConfiguration}
+end
+
+local record GetImpersonationRoleInput
+    OrganizationId: string
+    ImpersonationRoleId: string
+end
+
+local record GetImpersonationRoleOutput
+    ImpersonationRoleId: string
+    Name: string
+    Type: string
+    Description: string
+    Rules: {ImpersonationRule}
+    DateCreated: number
+    DateModified: number
+end
+
+local record GetImpersonationRoleEffectInput
+    OrganizationId: string
+    ImpersonationRoleId: string
+    TargetUser: string
+end
+
+local record GetImpersonationRoleEffectOutput
+    Type: string
+    Effect: string
+    MatchedRules: {ImpersonationMatchedRule}
+end
+
+local record GetMailboxDetailsInput
+    OrganizationId: string
+    UserId: string
+end
+
+local record GetMailboxDetailsOutput
+    MailboxQuota: number
+    MailboxSize: number
+end
+
+local record GetMailDomainInput
+    OrganizationId: string
+    DomainName: string
+end
+
+local record GetMailDomainOutput
+    Records: {DnsRecord}
+    IsTestDomain: boolean
+    IsDefault: boolean
+    OwnershipVerificationStatus: string
+    DkimVerificationStatus: string
+end
+
+local record GetMobileDeviceAccessEffectInput
+    OrganizationId: string
+    DeviceType: string
+    DeviceModel: string
+    DeviceOperatingSystem: string
+    DeviceUserAgent: string
+end
+
+local record GetMobileDeviceAccessEffectOutput
+    Effect: string
+    MatchedRules: {MobileDeviceAccessMatchedRule}
+end
+
+local record GetMobileDeviceAccessOverrideInput
+    OrganizationId: string
+    UserId: string
+    DeviceId: string
+end
+
+local record GetMobileDeviceAccessOverrideOutput
+    UserId: string
+    DeviceId: string
+    Effect: string
+    Description: string
+    DateCreated: number
+    DateModified: number
+end
+
+local record GetPersonalAccessTokenMetadataInput
+    OrganizationId: string
+    PersonalAccessTokenId: string
+end
+
+local record GetPersonalAccessTokenMetadataOutput
+    PersonalAccessTokenId: string
+    UserId: string
+    Name: string
+    DateCreated: number
+    DateLastUsed: number
+    ExpiresTime: number
+    Scopes: {string}
+end
+
+local record ListAccessControlRulesInput
+    OrganizationId: string
+end
+
+local record ListAccessControlRulesOutput
+    Rules: {AccessControlRule}
+end
+
+local record ListAliasesInput
+    OrganizationId: string
+    EntityId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListAliasesOutput
+    Aliases: {string}
+    NextToken: string
+end
+
+local record ListAvailabilityConfigurationsInput
+    OrganizationId: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListAvailabilityConfigurationsOutput
+    AvailabilityConfigurations: {AvailabilityConfiguration}
+    NextToken: string
+end
+
+local record ListGroupMembersInput
+    OrganizationId: string
+    GroupId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListGroupMembersOutput
+    Members: {Member}
+    NextToken: string
+end
+
+local record ListGroupsInput
+    OrganizationId: string
+    NextToken: string
+    MaxResults: number
+    Filters: ListGroupsFilters
+end
+
+local record ListGroupsOutput
+    Groups: {Group}
+    NextToken: string
+end
+
+local record ListGroupsForEntityInput
+    OrganizationId: string
+    EntityId: string
+    Filters: ListGroupsForEntityFilters
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListGroupsForEntityOutput
+    Groups: {GroupIdentifier}
+    NextToken: string
+end
+
+local record ListImpersonationRolesInput
+    OrganizationId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListImpersonationRolesOutput
+    Roles: {ImpersonationRole}
+    NextToken: string
+end
+
+local record ListMailboxExportJobsInput
+    OrganizationId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListMailboxExportJobsOutput
+    Jobs: {MailboxExportJob}
+    NextToken: string
+end
+
+local record ListMailboxPermissionsInput
+    OrganizationId: string
+    EntityId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListMailboxPermissionsOutput
+    Permissions: {Permission}
+    NextToken: string
+end
+
+local record ListMailDomainsInput
+    OrganizationId: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListMailDomainsOutput
+    MailDomains: {MailDomainSummary}
+    NextToken: string
+end
+
+local record ListMobileDeviceAccessOverridesInput
+    OrganizationId: string
+    UserId: string
+    DeviceId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListMobileDeviceAccessOverridesOutput
+    Overrides: {MobileDeviceAccessOverride}
+    NextToken: string
+end
+
+local record ListMobileDeviceAccessRulesInput
+    OrganizationId: string
+end
+
+local record ListMobileDeviceAccessRulesOutput
+    Rules: {MobileDeviceAccessRule}
+end
+
+local record ListOrganizationsInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListOrganizationsOutput
+    OrganizationSummaries: {OrganizationSummary}
+    NextToken: string
+end
+
+local record ListPersonalAccessTokensInput
+    OrganizationId: string
+    UserId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListPersonalAccessTokensOutput
+    NextToken: string
+    PersonalAccessTokenSummaries: {PersonalAccessTokenSummary}
+end
+
+local record ListResourceDelegatesInput
+    OrganizationId: string
+    ResourceId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListResourceDelegatesOutput
+    Delegates: {Delegate}
+    NextToken: string
+end
+
+local record ListResourcesInput
+    OrganizationId: string
+    NextToken: string
+    MaxResults: number
+    Filters: ListResourcesFilters
+end
+
+local record ListResourcesOutput
+    Resources: {Resource}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceARN: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+end
+
+local record ListUsersInput
+    OrganizationId: string
+    NextToken: string
+    MaxResults: number
+    Filters: ListUsersFilters
+end
+
+local record ListUsersOutput
+    Users: {User}
+    NextToken: string
+end
+
+local record PutAccessControlRuleInput
+    Name: string
+    Effect: string
+    Description: string
+    IpRanges: {string}
+    NotIpRanges: {string}
+    Actions: {string}
+    NotActions: {string}
+    UserIds: {string}
+    NotUserIds: {string}
+    OrganizationId: string
+    ImpersonationRoleIds: {string}
+    NotImpersonationRoleIds: {string}
+end
+
+local record PutAccessControlRuleOutput
+end
+
+local record PutEmailMonitoringConfigurationInput
+    OrganizationId: string
+    RoleArn: string
+    LogGroupArn: string
+end
+
+local record PutEmailMonitoringConfigurationOutput
+end
+
+local record PutIdentityProviderConfigurationInput
+    OrganizationId: string
+    AuthenticationMode: string
+    IdentityCenterConfiguration: IdentityCenterConfiguration
+    PersonalAccessTokenConfiguration: PersonalAccessTokenConfiguration
+end
+
+local record PutIdentityProviderConfigurationOutput
+end
+
+local record PutInboundDmarcSettingsInput
+    OrganizationId: string
+    Enforced: boolean
+end
+
+local record PutInboundDmarcSettingsOutput
+end
+
+local record PutMailboxPermissionsInput
+    OrganizationId: string
+    EntityId: string
+    GranteeId: string
+    PermissionValues: {string}
+end
+
+local record PutMailboxPermissionsOutput
+end
+
+local record PutMobileDeviceAccessOverrideInput
+    OrganizationId: string
+    UserId: string
+    DeviceId: string
+    Effect: string
+    Description: string
+end
+
+local record PutMobileDeviceAccessOverrideOutput
+end
+
+local record PutRetentionPolicyInput
+    OrganizationId: string
+    Id: string
+    Name: string
+    Description: string
+    FolderConfigurations: {FolderConfiguration}
+end
+
+local record PutRetentionPolicyOutput
+end
+
+local record RegisterMailDomainInput
+    ClientToken: string
+    OrganizationId: string
+    DomainName: string
+end
+
+local record RegisterMailDomainOutput
+end
+
+local record RegisterToWorkMailInput
+    OrganizationId: string
+    EntityId: string
+    Email: string
+end
+
+local record RegisterToWorkMailOutput
+end
+
+local record ResetPasswordInput
+    OrganizationId: string
+    UserId: string
+    Password: string
+end
+
+local record ResetPasswordOutput
+end
+
+local record StartMailboxExportJobInput
+    ClientToken: string
+    OrganizationId: string
+    EntityId: string
+    Description: string
+    RoleArn: string
+    KmsKeyArn: string
+    S3BucketName: string
+    S3Prefix: string
+end
+
+local record StartMailboxExportJobOutput
+    JobId: string
+end
+
+local record TagResourceInput
+    ResourceARN: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record TestAvailabilityConfigurationInput
+    OrganizationId: string
+    DomainName: string
+    EwsProvider: EwsAvailabilityProvider
+    LambdaProvider: LambdaAvailabilityProvider
+end
+
+local record TestAvailabilityConfigurationOutput
+    TestPassed: boolean
+    FailureReason: string
+end
+
+local record UntagResourceInput
+    ResourceARN: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateAvailabilityConfigurationInput
+    OrganizationId: string
+    DomainName: string
+    EwsProvider: EwsAvailabilityProvider
+    LambdaProvider: LambdaAvailabilityProvider
+end
+
+local record UpdateAvailabilityConfigurationOutput
+end
+
+local record UpdateDefaultMailDomainInput
+    OrganizationId: string
+    DomainName: string
+end
+
+local record UpdateDefaultMailDomainOutput
+end
+
+local record UpdateGroupInput
+    OrganizationId: string
+    GroupId: string
+    HiddenFromGlobalAddressList: boolean
+end
+
+local record UpdateGroupOutput
+end
+
+local record UpdateImpersonationRoleInput
+    OrganizationId: string
+    ImpersonationRoleId: string
+    Name: string
+    Type: string
+    Description: string
+    Rules: {ImpersonationRule}
+end
+
+local record UpdateImpersonationRoleOutput
+end
+
+local record UpdateMailboxQuotaInput
+    OrganizationId: string
+    UserId: string
+    MailboxQuota: number
+end
+
+local record UpdateMailboxQuotaOutput
+end
+
+local record UpdateMobileDeviceAccessRuleInput
+    OrganizationId: string
+    MobileDeviceAccessRuleId: string
+    Name: string
+    Description: string
+    Effect: string
+    DeviceTypes: {string}
+    NotDeviceTypes: {string}
+    DeviceModels: {string}
+    NotDeviceModels: {string}
+    DeviceOperatingSystems: {string}
+    NotDeviceOperatingSystems: {string}
+    DeviceUserAgents: {string}
+    NotDeviceUserAgents: {string}
+end
+
+local record UpdateMobileDeviceAccessRuleOutput
+end
+
+local record UpdatePrimaryEmailAddressInput
+    OrganizationId: string
+    EntityId: string
+    Email: string
+end
+
+local record UpdatePrimaryEmailAddressOutput
+end
+
+local record UpdateResourceInput
+    OrganizationId: string
+    ResourceId: string
+    Name: string
+    BookingOptions: BookingOptions
+    Description: string
+    Type: string
+    HiddenFromGlobalAddressList: boolean
+end
+
+local record UpdateResourceOutput
+end
+
+local record UpdateUserInput
+    OrganizationId: string
+    UserId: string
+    Role: string
+    DisplayName: string
+    FirstName: string
+    LastName: string
+    HiddenFromGlobalAddressList: boolean
+    Initials: string
+    Telephone: string
+    Street: string
+    JobTitle: string
+    City: string
+    Company: string
+    ZipCode: string
+    Department: string
+    Country: string
+    Office: string
+    IdentityProviderUserId: string
+end
+
+local record UpdateUserOutput
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record DirectoryServiceAuthenticationFailedException
+    Message: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EmailAddressInUseException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record MailDomainNotFoundException
+    Message: string
+end
+
+local record MailDomainStateException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record NameAvailabilityException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record DirectoryServiceAuthenticationFailedException
+    Message: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record NameAvailabilityException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ReservedNameException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record DirectoryInUseException
+    Message: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record NameAvailabilityException
+    Message: string
+end
+
+local record DirectoryServiceAuthenticationFailedException
+    Message: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record NameAvailabilityException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ReservedNameException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record DirectoryServiceAuthenticationFailedException
+    Message: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidPasswordException
+    Message: string
+end
+
+local record NameAvailabilityException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ReservedNameException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record DirectoryServiceAuthenticationFailedException
+    Message: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record DirectoryServiceAuthenticationFailedException
+    Message: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidCustomSesConfigurationException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record MailDomainInUseException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record DirectoryServiceAuthenticationFailedException
+    Message: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record DirectoryServiceAuthenticationFailedException
+    Message: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record MailDomainNotFoundException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record MailDomainInUseException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record DirectoryServiceAuthenticationFailedException
+    Message: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+end
+
+local record EmailAddressInUseException
+    Message: string
+end
+
+local record EntityAlreadyRegisteredException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record MailDomainNotFoundException
+    Message: string
+end
+
+local record MailDomainStateException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record DirectoryServiceAuthenticationFailedException
+    Message: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record InvalidPasswordException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record MailDomainNotFoundException
+    Message: string
+end
+
+local record MailDomainStateException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record LimitExceededException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record DirectoryServiceAuthenticationFailedException
+    Message: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+end
+
+local record EmailAddressInUseException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record MailDomainNotFoundException
+    Message: string
+end
+
+local record MailDomainStateException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+end
+
+local record EmailAddressInUseException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidConfigurationException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record MailDomainNotFoundException
+    Message: string
+end
+
+local record MailDomainStateException
+    Message: string
+end
+
+local record NameAvailabilityException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local record DirectoryServiceAuthenticationFailedException
+    Message: string
+end
+
+local record DirectoryUnavailableException
+    Message: string
+end
+
+local record EntityNotFoundException
+    Message: string
+end
+
+local record EntityStateException
+    Message: string
+end
+
+local record InvalidParameterException
+    Message: string
+end
+
+local record OrganizationNotFoundException
+    Message: string
+end
+
+local record OrganizationStateException
+    Message: string
+end
+
+local record UnsupportedOperationException
+    Message: string
+end
+
+local type ResourceType = "ROOM" | "EQUIPMENT"
+
+local type AccessEffect = "ALLOW" | "DENY"
+
+local type UserRole = "USER" | "RESOURCE" | "SYSTEM_USER" | "REMOTE_USER"
+
+local type DnsRecordVerificationStatus = "PENDING" | "VERIFIED" | "FAILED"
+
+local type ImpersonationRoleType = "FULL_ACCESS" | "READ_ONLY"
+
+local type MailboxExportJobState = "RUNNING" | "COMPLETED" | "FAILED" | "CANCELLED"
+
+local type MobileDeviceAccessRuleEffect = "ALLOW" | "DENY"
+
+local type EntityState = "ENABLED" | "DISABLED" | "DELETED"
+
+local type EntityType = "GROUP" | "USER" | "RESOURCE"
+
+local type IdentityProviderAuthenticationMode = "IDENTITY_PROVIDER_ONLY" | "IDENTITY_PROVIDER_AND_DIRECTORY"
+
+local type AccessControlRuleEffect = "ALLOW" | "DENY"
+
+local record M
+    AssociateDelegateToResourceInput: AssociateDelegateToResourceInput
+    AssociateDelegateToResourceOutput: AssociateDelegateToResourceOutput
+    AssociateMemberToGroupInput: AssociateMemberToGroupInput
+    AssociateMemberToGroupOutput: AssociateMemberToGroupOutput
+    AssumeImpersonationRoleInput: AssumeImpersonationRoleInput
+    AssumeImpersonationRoleOutput: AssumeImpersonationRoleOutput
+    CancelMailboxExportJobInput: CancelMailboxExportJobInput
+    CancelMailboxExportJobOutput: CancelMailboxExportJobOutput
+    CreateAliasInput: CreateAliasInput
+    CreateAliasOutput: CreateAliasOutput
+    CreateAvailabilityConfigurationInput: CreateAvailabilityConfigurationInput
+    CreateAvailabilityConfigurationOutput: CreateAvailabilityConfigurationOutput
+    CreateGroupInput: CreateGroupInput
+    CreateGroupOutput: CreateGroupOutput
+    CreateIdentityCenterApplicationInput: CreateIdentityCenterApplicationInput
+    CreateIdentityCenterApplicationOutput: CreateIdentityCenterApplicationOutput
+    CreateImpersonationRoleInput: CreateImpersonationRoleInput
+    CreateImpersonationRoleOutput: CreateImpersonationRoleOutput
+    CreateMobileDeviceAccessRuleInput: CreateMobileDeviceAccessRuleInput
+    CreateMobileDeviceAccessRuleOutput: CreateMobileDeviceAccessRuleOutput
+    CreateOrganizationInput: CreateOrganizationInput
+    CreateOrganizationOutput: CreateOrganizationOutput
+    CreateResourceInput: CreateResourceInput
+    CreateResourceOutput: CreateResourceOutput
+    CreateUserInput: CreateUserInput
+    CreateUserOutput: CreateUserOutput
+    DeleteAccessControlRuleInput: DeleteAccessControlRuleInput
+    DeleteAccessControlRuleOutput: DeleteAccessControlRuleOutput
+    DeleteAliasInput: DeleteAliasInput
+    DeleteAliasOutput: DeleteAliasOutput
+    DeleteAvailabilityConfigurationInput: DeleteAvailabilityConfigurationInput
+    DeleteAvailabilityConfigurationOutput: DeleteAvailabilityConfigurationOutput
+    DeleteEmailMonitoringConfigurationInput: DeleteEmailMonitoringConfigurationInput
+    DeleteEmailMonitoringConfigurationOutput: DeleteEmailMonitoringConfigurationOutput
+    DeleteGroupInput: DeleteGroupInput
+    DeleteGroupOutput: DeleteGroupOutput
+    DeleteIdentityCenterApplicationInput: DeleteIdentityCenterApplicationInput
+    DeleteIdentityCenterApplicationOutput: DeleteIdentityCenterApplicationOutput
+    DeleteIdentityProviderConfigurationInput: DeleteIdentityProviderConfigurationInput
+    DeleteIdentityProviderConfigurationOutput: DeleteIdentityProviderConfigurationOutput
+    DeleteImpersonationRoleInput: DeleteImpersonationRoleInput
+    DeleteImpersonationRoleOutput: DeleteImpersonationRoleOutput
+    DeleteMailboxPermissionsInput: DeleteMailboxPermissionsInput
+    DeleteMailboxPermissionsOutput: DeleteMailboxPermissionsOutput
+    DeleteMobileDeviceAccessOverrideInput: DeleteMobileDeviceAccessOverrideInput
+    DeleteMobileDeviceAccessOverrideOutput: DeleteMobileDeviceAccessOverrideOutput
+    DeleteMobileDeviceAccessRuleInput: DeleteMobileDeviceAccessRuleInput
+    DeleteMobileDeviceAccessRuleOutput: DeleteMobileDeviceAccessRuleOutput
+    DeleteOrganizationInput: DeleteOrganizationInput
+    DeleteOrganizationOutput: DeleteOrganizationOutput
+    DeletePersonalAccessTokenInput: DeletePersonalAccessTokenInput
+    DeletePersonalAccessTokenOutput: DeletePersonalAccessTokenOutput
+    DeleteResourceInput: DeleteResourceInput
+    DeleteResourceOutput: DeleteResourceOutput
+    DeleteRetentionPolicyInput: DeleteRetentionPolicyInput
+    DeleteRetentionPolicyOutput: DeleteRetentionPolicyOutput
+    DeleteUserInput: DeleteUserInput
+    DeleteUserOutput: DeleteUserOutput
+    DeregisterFromWorkMailInput: DeregisterFromWorkMailInput
+    DeregisterFromWorkMailOutput: DeregisterFromWorkMailOutput
+    DeregisterMailDomainInput: DeregisterMailDomainInput
+    DeregisterMailDomainOutput: DeregisterMailDomainOutput
+    DescribeEmailMonitoringConfigurationInput: DescribeEmailMonitoringConfigurationInput
+    DescribeEmailMonitoringConfigurationOutput: DescribeEmailMonitoringConfigurationOutput
+    DescribeEntityInput: DescribeEntityInput
+    DescribeEntityOutput: DescribeEntityOutput
+    DescribeGroupInput: DescribeGroupInput
+    DescribeGroupOutput: DescribeGroupOutput
+    DescribeIdentityProviderConfigurationInput: DescribeIdentityProviderConfigurationInput
+    DescribeIdentityProviderConfigurationOutput: DescribeIdentityProviderConfigurationOutput
+    DescribeInboundDmarcSettingsInput: DescribeInboundDmarcSettingsInput
+    DescribeInboundDmarcSettingsOutput: DescribeInboundDmarcSettingsOutput
+    DescribeMailboxExportJobInput: DescribeMailboxExportJobInput
+    DescribeMailboxExportJobOutput: DescribeMailboxExportJobOutput
+    DescribeOrganizationInput: DescribeOrganizationInput
+    DescribeOrganizationOutput: DescribeOrganizationOutput
+    DescribeResourceInput: DescribeResourceInput
+    DescribeResourceOutput: DescribeResourceOutput
+    DescribeUserInput: DescribeUserInput
+    DescribeUserOutput: DescribeUserOutput
+    DisassociateDelegateFromResourceInput: DisassociateDelegateFromResourceInput
+    DisassociateDelegateFromResourceOutput: DisassociateDelegateFromResourceOutput
+    DisassociateMemberFromGroupInput: DisassociateMemberFromGroupInput
+    DisassociateMemberFromGroupOutput: DisassociateMemberFromGroupOutput
+    GetAccessControlEffectInput: GetAccessControlEffectInput
+    GetAccessControlEffectOutput: GetAccessControlEffectOutput
+    GetDefaultRetentionPolicyInput: GetDefaultRetentionPolicyInput
+    GetDefaultRetentionPolicyOutput: GetDefaultRetentionPolicyOutput
+    GetImpersonationRoleInput: GetImpersonationRoleInput
+    GetImpersonationRoleOutput: GetImpersonationRoleOutput
+    GetImpersonationRoleEffectInput: GetImpersonationRoleEffectInput
+    GetImpersonationRoleEffectOutput: GetImpersonationRoleEffectOutput
+    GetMailboxDetailsInput: GetMailboxDetailsInput
+    GetMailboxDetailsOutput: GetMailboxDetailsOutput
+    GetMailDomainInput: GetMailDomainInput
+    GetMailDomainOutput: GetMailDomainOutput
+    GetMobileDeviceAccessEffectInput: GetMobileDeviceAccessEffectInput
+    GetMobileDeviceAccessEffectOutput: GetMobileDeviceAccessEffectOutput
+    GetMobileDeviceAccessOverrideInput: GetMobileDeviceAccessOverrideInput
+    GetMobileDeviceAccessOverrideOutput: GetMobileDeviceAccessOverrideOutput
+    GetPersonalAccessTokenMetadataInput: GetPersonalAccessTokenMetadataInput
+    GetPersonalAccessTokenMetadataOutput: GetPersonalAccessTokenMetadataOutput
+    ListAccessControlRulesInput: ListAccessControlRulesInput
+    ListAccessControlRulesOutput: ListAccessControlRulesOutput
+    ListAliasesInput: ListAliasesInput
+    ListAliasesOutput: ListAliasesOutput
+    ListAvailabilityConfigurationsInput: ListAvailabilityConfigurationsInput
+    ListAvailabilityConfigurationsOutput: ListAvailabilityConfigurationsOutput
+    ListGroupMembersInput: ListGroupMembersInput
+    ListGroupMembersOutput: ListGroupMembersOutput
+    ListGroupsInput: ListGroupsInput
+    ListGroupsOutput: ListGroupsOutput
+    ListGroupsForEntityInput: ListGroupsForEntityInput
+    ListGroupsForEntityOutput: ListGroupsForEntityOutput
+    ListImpersonationRolesInput: ListImpersonationRolesInput
+    ListImpersonationRolesOutput: ListImpersonationRolesOutput
+    ListMailboxExportJobsInput: ListMailboxExportJobsInput
+    ListMailboxExportJobsOutput: ListMailboxExportJobsOutput
+    ListMailboxPermissionsInput: ListMailboxPermissionsInput
+    ListMailboxPermissionsOutput: ListMailboxPermissionsOutput
+    ListMailDomainsInput: ListMailDomainsInput
+    ListMailDomainsOutput: ListMailDomainsOutput
+    ListMobileDeviceAccessOverridesInput: ListMobileDeviceAccessOverridesInput
+    ListMobileDeviceAccessOverridesOutput: ListMobileDeviceAccessOverridesOutput
+    ListMobileDeviceAccessRulesInput: ListMobileDeviceAccessRulesInput
+    ListMobileDeviceAccessRulesOutput: ListMobileDeviceAccessRulesOutput
+    ListOrganizationsInput: ListOrganizationsInput
+    ListOrganizationsOutput: ListOrganizationsOutput
+    ListPersonalAccessTokensInput: ListPersonalAccessTokensInput
+    ListPersonalAccessTokensOutput: ListPersonalAccessTokensOutput
+    ListResourceDelegatesInput: ListResourceDelegatesInput
+    ListResourceDelegatesOutput: ListResourceDelegatesOutput
+    ListResourcesInput: ListResourcesInput
+    ListResourcesOutput: ListResourcesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListUsersInput: ListUsersInput
+    ListUsersOutput: ListUsersOutput
+    PutAccessControlRuleInput: PutAccessControlRuleInput
+    PutAccessControlRuleOutput: PutAccessControlRuleOutput
+    PutEmailMonitoringConfigurationInput: PutEmailMonitoringConfigurationInput
+    PutEmailMonitoringConfigurationOutput: PutEmailMonitoringConfigurationOutput
+    PutIdentityProviderConfigurationInput: PutIdentityProviderConfigurationInput
+    PutIdentityProviderConfigurationOutput: PutIdentityProviderConfigurationOutput
+    PutInboundDmarcSettingsInput: PutInboundDmarcSettingsInput
+    PutInboundDmarcSettingsOutput: PutInboundDmarcSettingsOutput
+    PutMailboxPermissionsInput: PutMailboxPermissionsInput
+    PutMailboxPermissionsOutput: PutMailboxPermissionsOutput
+    PutMobileDeviceAccessOverrideInput: PutMobileDeviceAccessOverrideInput
+    PutMobileDeviceAccessOverrideOutput: PutMobileDeviceAccessOverrideOutput
+    PutRetentionPolicyInput: PutRetentionPolicyInput
+    PutRetentionPolicyOutput: PutRetentionPolicyOutput
+    RegisterMailDomainInput: RegisterMailDomainInput
+    RegisterMailDomainOutput: RegisterMailDomainOutput
+    RegisterToWorkMailInput: RegisterToWorkMailInput
+    RegisterToWorkMailOutput: RegisterToWorkMailOutput
+    ResetPasswordInput: ResetPasswordInput
+    ResetPasswordOutput: ResetPasswordOutput
+    StartMailboxExportJobInput: StartMailboxExportJobInput
+    StartMailboxExportJobOutput: StartMailboxExportJobOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    TestAvailabilityConfigurationInput: TestAvailabilityConfigurationInput
+    TestAvailabilityConfigurationOutput: TestAvailabilityConfigurationOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateAvailabilityConfigurationInput: UpdateAvailabilityConfigurationInput
+    UpdateAvailabilityConfigurationOutput: UpdateAvailabilityConfigurationOutput
+    UpdateDefaultMailDomainInput: UpdateDefaultMailDomainInput
+    UpdateDefaultMailDomainOutput: UpdateDefaultMailDomainOutput
+    UpdateGroupInput: UpdateGroupInput
+    UpdateGroupOutput: UpdateGroupOutput
+    UpdateImpersonationRoleInput: UpdateImpersonationRoleInput
+    UpdateImpersonationRoleOutput: UpdateImpersonationRoleOutput
+    UpdateMailboxQuotaInput: UpdateMailboxQuotaInput
+    UpdateMailboxQuotaOutput: UpdateMailboxQuotaOutput
+    UpdateMobileDeviceAccessRuleInput: UpdateMobileDeviceAccessRuleInput
+    UpdateMobileDeviceAccessRuleOutput: UpdateMobileDeviceAccessRuleOutput
+    UpdatePrimaryEmailAddressInput: UpdatePrimaryEmailAddressInput
+    UpdatePrimaryEmailAddressOutput: UpdatePrimaryEmailAddressOutput
+    UpdateResourceInput: UpdateResourceInput
+    UpdateResourceOutput: UpdateResourceOutput
+    UpdateUserInput: UpdateUserInput
+    UpdateUserOutput: UpdateUserOutput
+end
+
+return M

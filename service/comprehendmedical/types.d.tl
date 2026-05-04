@@ -1,0 +1,775 @@
+local record DescribeEntitiesDetectionV2JobInput
+    JobId: string
+end
+
+local record DescribeEntitiesDetectionV2JobOutput
+    ComprehendMedicalAsyncJobProperties: ComprehendMedicalAsyncJobProperties
+end
+
+local record DescribeICD10CMInferenceJobInput
+    JobId: string
+end
+
+local record DescribeICD10CMInferenceJobOutput
+    ComprehendMedicalAsyncJobProperties: ComprehendMedicalAsyncJobProperties
+end
+
+local record DescribePHIDetectionJobInput
+    JobId: string
+end
+
+local record DescribePHIDetectionJobOutput
+    ComprehendMedicalAsyncJobProperties: ComprehendMedicalAsyncJobProperties
+end
+
+local record DescribeRxNormInferenceJobInput
+    JobId: string
+end
+
+local record DescribeRxNormInferenceJobOutput
+    ComprehendMedicalAsyncJobProperties: ComprehendMedicalAsyncJobProperties
+end
+
+local record DescribeSNOMEDCTInferenceJobInput
+    JobId: string
+end
+
+local record DescribeSNOMEDCTInferenceJobOutput
+    ComprehendMedicalAsyncJobProperties: ComprehendMedicalAsyncJobProperties
+end
+
+local record DetectEntitiesInput
+    Text: string
+end
+
+local record DetectEntitiesOutput
+    Entities: {Entity}
+    UnmappedAttributes: {UnmappedAttribute}
+    PaginationToken: string
+    ModelVersion: string
+end
+
+local record DetectEntitiesV2Input
+    Text: string
+end
+
+local record DetectEntitiesV2Output
+    Entities: {Entity}
+    UnmappedAttributes: {UnmappedAttribute}
+    PaginationToken: string
+    ModelVersion: string
+end
+
+local record DetectPHIInput
+    Text: string
+end
+
+local record DetectPHIOutput
+    Entities: {Entity}
+    PaginationToken: string
+    ModelVersion: string
+end
+
+local record InferICD10CMInput
+    Text: string
+end
+
+local record InferICD10CMOutput
+    Entities: {ICD10CMEntity}
+    PaginationToken: string
+    ModelVersion: string
+end
+
+local record InferRxNormInput
+    Text: string
+end
+
+local record InferRxNormOutput
+    Entities: {RxNormEntity}
+    PaginationToken: string
+    ModelVersion: string
+end
+
+local record InferSNOMEDCTInput
+    Text: string
+end
+
+local record InferSNOMEDCTOutput
+    Entities: {SNOMEDCTEntity}
+    PaginationToken: string
+    ModelVersion: string
+    SNOMEDCTDetails: SNOMEDCTDetails
+    Characters: Characters
+end
+
+local record ListEntitiesDetectionV2JobsInput
+    Filter: ComprehendMedicalAsyncJobFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListEntitiesDetectionV2JobsOutput
+    ComprehendMedicalAsyncJobPropertiesList: {ComprehendMedicalAsyncJobProperties}
+    NextToken: string
+end
+
+local record ListICD10CMInferenceJobsInput
+    Filter: ComprehendMedicalAsyncJobFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListICD10CMInferenceJobsOutput
+    ComprehendMedicalAsyncJobPropertiesList: {ComprehendMedicalAsyncJobProperties}
+    NextToken: string
+end
+
+local record ListPHIDetectionJobsInput
+    Filter: ComprehendMedicalAsyncJobFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListPHIDetectionJobsOutput
+    ComprehendMedicalAsyncJobPropertiesList: {ComprehendMedicalAsyncJobProperties}
+    NextToken: string
+end
+
+local record ListRxNormInferenceJobsInput
+    Filter: ComprehendMedicalAsyncJobFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListRxNormInferenceJobsOutput
+    ComprehendMedicalAsyncJobPropertiesList: {ComprehendMedicalAsyncJobProperties}
+    NextToken: string
+end
+
+local record ListSNOMEDCTInferenceJobsInput
+    Filter: ComprehendMedicalAsyncJobFilter
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListSNOMEDCTInferenceJobsOutput
+    ComprehendMedicalAsyncJobPropertiesList: {ComprehendMedicalAsyncJobProperties}
+    NextToken: string
+end
+
+local record StartEntitiesDetectionV2JobInput
+    InputDataConfig: InputDataConfig
+    OutputDataConfig: OutputDataConfig
+    DataAccessRoleArn: string
+    JobName: string
+    ClientRequestToken: string
+    KMSKey: string
+    LanguageCode: string
+end
+
+local record StartEntitiesDetectionV2JobOutput
+    JobId: string
+end
+
+local record StartICD10CMInferenceJobInput
+    InputDataConfig: InputDataConfig
+    OutputDataConfig: OutputDataConfig
+    DataAccessRoleArn: string
+    JobName: string
+    ClientRequestToken: string
+    KMSKey: string
+    LanguageCode: string
+end
+
+local record StartICD10CMInferenceJobOutput
+    JobId: string
+end
+
+local record StartPHIDetectionJobInput
+    InputDataConfig: InputDataConfig
+    OutputDataConfig: OutputDataConfig
+    DataAccessRoleArn: string
+    JobName: string
+    ClientRequestToken: string
+    KMSKey: string
+    LanguageCode: string
+end
+
+local record StartPHIDetectionJobOutput
+    JobId: string
+end
+
+local record StartRxNormInferenceJobInput
+    InputDataConfig: InputDataConfig
+    OutputDataConfig: OutputDataConfig
+    DataAccessRoleArn: string
+    JobName: string
+    ClientRequestToken: string
+    KMSKey: string
+    LanguageCode: string
+end
+
+local record StartRxNormInferenceJobOutput
+    JobId: string
+end
+
+local record StartSNOMEDCTInferenceJobInput
+    InputDataConfig: InputDataConfig
+    OutputDataConfig: OutputDataConfig
+    DataAccessRoleArn: string
+    JobName: string
+    ClientRequestToken: string
+    KMSKey: string
+    LanguageCode: string
+end
+
+local record StartSNOMEDCTInferenceJobOutput
+    JobId: string
+end
+
+local record StopEntitiesDetectionV2JobInput
+    JobId: string
+end
+
+local record StopEntitiesDetectionV2JobOutput
+    JobId: string
+end
+
+local record StopICD10CMInferenceJobInput
+    JobId: string
+end
+
+local record StopICD10CMInferenceJobOutput
+    JobId: string
+end
+
+local record StopPHIDetectionJobInput
+    JobId: string
+end
+
+local record StopPHIDetectionJobOutput
+    JobId: string
+end
+
+local record StopRxNormInferenceJobInput
+    JobId: string
+end
+
+local record StopRxNormInferenceJobOutput
+    JobId: string
+end
+
+local record StopSNOMEDCTInferenceJobInput
+    JobId: string
+end
+
+local record StopSNOMEDCTInferenceJobOutput
+    JobId: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEncodingException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEncodingException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEncodingException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEncodingException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEncodingException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEncodingException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ServiceUnavailableException
+    Message: string
+end
+
+local record TextSizeLimitExceededException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local type LanguageCode = "en"
+
+local record M
+    DescribeEntitiesDetectionV2JobInput: DescribeEntitiesDetectionV2JobInput
+    DescribeEntitiesDetectionV2JobOutput: DescribeEntitiesDetectionV2JobOutput
+    DescribeICD10CMInferenceJobInput: DescribeICD10CMInferenceJobInput
+    DescribeICD10CMInferenceJobOutput: DescribeICD10CMInferenceJobOutput
+    DescribePHIDetectionJobInput: DescribePHIDetectionJobInput
+    DescribePHIDetectionJobOutput: DescribePHIDetectionJobOutput
+    DescribeRxNormInferenceJobInput: DescribeRxNormInferenceJobInput
+    DescribeRxNormInferenceJobOutput: DescribeRxNormInferenceJobOutput
+    DescribeSNOMEDCTInferenceJobInput: DescribeSNOMEDCTInferenceJobInput
+    DescribeSNOMEDCTInferenceJobOutput: DescribeSNOMEDCTInferenceJobOutput
+    DetectEntitiesInput: DetectEntitiesInput
+    DetectEntitiesOutput: DetectEntitiesOutput
+    DetectEntitiesV2Input: DetectEntitiesV2Input
+    DetectEntitiesV2Output: DetectEntitiesV2Output
+    DetectPHIInput: DetectPHIInput
+    DetectPHIOutput: DetectPHIOutput
+    InferICD10CMInput: InferICD10CMInput
+    InferICD10CMOutput: InferICD10CMOutput
+    InferRxNormInput: InferRxNormInput
+    InferRxNormOutput: InferRxNormOutput
+    InferSNOMEDCTInput: InferSNOMEDCTInput
+    InferSNOMEDCTOutput: InferSNOMEDCTOutput
+    ListEntitiesDetectionV2JobsInput: ListEntitiesDetectionV2JobsInput
+    ListEntitiesDetectionV2JobsOutput: ListEntitiesDetectionV2JobsOutput
+    ListICD10CMInferenceJobsInput: ListICD10CMInferenceJobsInput
+    ListICD10CMInferenceJobsOutput: ListICD10CMInferenceJobsOutput
+    ListPHIDetectionJobsInput: ListPHIDetectionJobsInput
+    ListPHIDetectionJobsOutput: ListPHIDetectionJobsOutput
+    ListRxNormInferenceJobsInput: ListRxNormInferenceJobsInput
+    ListRxNormInferenceJobsOutput: ListRxNormInferenceJobsOutput
+    ListSNOMEDCTInferenceJobsInput: ListSNOMEDCTInferenceJobsInput
+    ListSNOMEDCTInferenceJobsOutput: ListSNOMEDCTInferenceJobsOutput
+    StartEntitiesDetectionV2JobInput: StartEntitiesDetectionV2JobInput
+    StartEntitiesDetectionV2JobOutput: StartEntitiesDetectionV2JobOutput
+    StartICD10CMInferenceJobInput: StartICD10CMInferenceJobInput
+    StartICD10CMInferenceJobOutput: StartICD10CMInferenceJobOutput
+    StartPHIDetectionJobInput: StartPHIDetectionJobInput
+    StartPHIDetectionJobOutput: StartPHIDetectionJobOutput
+    StartRxNormInferenceJobInput: StartRxNormInferenceJobInput
+    StartRxNormInferenceJobOutput: StartRxNormInferenceJobOutput
+    StartSNOMEDCTInferenceJobInput: StartSNOMEDCTInferenceJobInput
+    StartSNOMEDCTInferenceJobOutput: StartSNOMEDCTInferenceJobOutput
+    StopEntitiesDetectionV2JobInput: StopEntitiesDetectionV2JobInput
+    StopEntitiesDetectionV2JobOutput: StopEntitiesDetectionV2JobOutput
+    StopICD10CMInferenceJobInput: StopICD10CMInferenceJobInput
+    StopICD10CMInferenceJobOutput: StopICD10CMInferenceJobOutput
+    StopPHIDetectionJobInput: StopPHIDetectionJobInput
+    StopPHIDetectionJobOutput: StopPHIDetectionJobOutput
+    StopRxNormInferenceJobInput: StopRxNormInferenceJobInput
+    StopRxNormInferenceJobOutput: StopRxNormInferenceJobOutput
+    StopSNOMEDCTInferenceJobInput: StopSNOMEDCTInferenceJobInput
+    StopSNOMEDCTInferenceJobOutput: StopSNOMEDCTInferenceJobOutput
+end
+
+return M

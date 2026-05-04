@@ -1,0 +1,1207 @@
+local M = {}
+
+M.AccessDeniedException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.InternalServerException = {
+    type = "structure",
+    error = "server",
+    members = {
+        Message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        RetryAfterSeconds = {
+            type = "number",
+            traits = {
+                http_header = "Retry-After",
+            },
+        },
+    },
+}
+
+M.ListTagsForResourceInput = {
+    type = "structure",
+    members = {
+        ResourceArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.ListTagsForResourceOutput = {
+    type = "structure",
+    members = {
+        Tags = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+        },
+    },
+}
+
+M.OperationTimeoutException = {
+    type = "structure",
+    error = "server",
+    members = {
+        Message = {
+            type = "string",
+        },
+    },
+}
+
+M.ResourceNotFoundException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ResourceId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ResourceType = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ThrottlingException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ServiceCode = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        QuotaCode = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        RetryAfterSeconds = {
+            type = "number",
+            traits = {
+                http_header = "Retry-After",
+            },
+        },
+    },
+}
+
+M.ValidationExceptionField = {
+    type = "structure",
+    members = {
+        Name = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        Message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.ValidationExceptionReason = {
+    UNKNOWN_OPERATION = "unknownOperation",
+    CANNOT_PARSE = "cannotParse",
+    FIELD_VALIDATION_FAILED = "fieldValidationFailed",
+    OTHER = "other",
+}
+
+M.ValidationException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        Reason = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        FieldList = {
+            type = "list",
+            member_type = "structure",
+        },
+    },
+}
+
+M.TagResourceInput = {
+    type = "structure",
+    members = {
+        ResourceArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        Tags = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.TagResourceOutput = {
+    type = "structure",
+}
+
+M.GetTaskInstanceInput = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        TaskInstanceId = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        RunId = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.TaskInstanceStatus = {
+    QUEUED = "QUEUED",
+    FAILED = "FAILED",
+    SCHEDULED = "SCHEDULED",
+    RUNNING = "RUNNING",
+    SUCCESS = "SUCCESS",
+    UP_FOR_RESCHEDULE = "UP_FOR_RESCHEDULE",
+    UP_FOR_RETRY = "UP_FOR_RETRY",
+    UPSTREAM_FAILED = "UPSTREAM_FAILED",
+    REMOVED = "REMOVED",
+    RESTARTING = "RESTARTING",
+    DEFERRED = "DEFERRED",
+    NONE = "NONE",
+    CANCELLED = "CANCELLED",
+    TIMEOUT = "TIMEOUT",
+}
+
+M.GetTaskInstanceOutput = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        RunId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        TaskInstanceId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        WorkflowVersion = {
+            type = "string",
+        },
+        Status = {
+            type = "string",
+        },
+        DurationInSeconds = {
+            type = "number",
+        },
+        OperatorName = {
+            type = "string",
+        },
+        ModifiedAt = {
+            type = "timestamp",
+        },
+        EndedAt = {
+            type = "timestamp",
+        },
+        StartedAt = {
+            type = "timestamp",
+        },
+        AttemptNumber = {
+            type = "number",
+        },
+        ErrorMessage = {
+            type = "string",
+        },
+        TaskId = {
+            type = "string",
+        },
+        LogStream = {
+            type = "string",
+        },
+        Xcom = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+        },
+    },
+}
+
+M.ListTaskInstancesInput = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        RunId = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        MaxResults = {
+            type = "number",
+            traits = {
+                http_query = "maxResults",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                http_query = "nextToken",
+            },
+        },
+    },
+}
+
+M.TaskInstanceSummary = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+        },
+        WorkflowVersion = {
+            type = "string",
+        },
+        RunId = {
+            type = "string",
+        },
+        TaskInstanceId = {
+            type = "string",
+        },
+        Status = {
+            type = "string",
+        },
+        DurationInSeconds = {
+            type = "number",
+        },
+        OperatorName = {
+            type = "string",
+        },
+    },
+}
+
+M.ListTaskInstancesOutput = {
+    type = "structure",
+    members = {
+        TaskInstances = {
+            type = "list",
+            member_type = "structure",
+        },
+        NextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.UntagResourceInput = {
+    type = "structure",
+    members = {
+        ResourceArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        TagKeys = {
+            type = "list",
+            member_type = "string",
+            traits = {
+                http_query = "tagKeys",
+                required = true,
+            },
+        },
+    },
+}
+
+M.UntagResourceOutput = {
+    type = "structure",
+}
+
+M.ConflictException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ResourceId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ResourceType = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.DefinitionS3Location = {
+    type = "structure",
+    members = {
+        Bucket = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ObjectKey = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        VersionId = {
+            type = "string",
+        },
+    },
+}
+
+M.EncryptionType = {
+    AWS_MANAGED_KEY = "AWS_MANAGED_KEY",
+    CUSTOMER_MANAGED_KEY = "CUSTOMER_MANAGED_KEY",
+}
+
+M.EncryptionConfiguration = {
+    type = "structure",
+    members = {
+        Type = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        KmsKeyId = {
+            type = "string",
+        },
+    },
+}
+
+M.EngineVersion = {
+    ONE = 1,
+}
+
+M.LoggingConfiguration = {
+    type = "structure",
+    members = {
+        LogGroupName = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.NetworkConfiguration = {
+    type = "structure",
+    members = {
+        SecurityGroupIds = {
+            type = "list",
+            member_type = "string",
+        },
+        SubnetIds = {
+            type = "list",
+            member_type = "string",
+        },
+    },
+}
+
+M.CreateWorkflowInput = {
+    type = "structure",
+    members = {
+        Name = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ClientToken = {
+            type = "string",
+        },
+        DefinitionS3Location = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        RoleArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        Description = {
+            type = "string",
+        },
+        EncryptionConfiguration = {
+            type = "structure",
+        },
+        LoggingConfiguration = {
+            type = "structure",
+        },
+        EngineVersion = {
+            type = "number",
+        },
+        NetworkConfiguration = {
+            type = "structure",
+        },
+        Tags = {
+            type = "map",
+            key_type = "string",
+            value_type = "string",
+        },
+        TriggerMode = {
+            type = "string",
+        },
+    },
+}
+
+M.WorkflowStatus = {
+    READY = "READY",
+    DELETING = "DELETING",
+}
+
+M.CreateWorkflowOutput = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        CreatedAt = {
+            type = "timestamp",
+        },
+        RevisionId = {
+            type = "string",
+        },
+        WorkflowStatus = {
+            type = "string",
+        },
+        WorkflowVersion = {
+            type = "string",
+        },
+        IsLatestVersion = {
+            type = "boolean",
+        },
+        Warnings = {
+            type = "list",
+            member_type = "string",
+        },
+    },
+}
+
+M.ServiceQuotaExceededException = {
+    type = "structure",
+    error = "client",
+    members = {
+        Message = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ResourceId = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ResourceType = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ServiceCode = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        QuotaCode = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+    },
+}
+
+M.DeleteWorkflowInput = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        WorkflowVersion = {
+            type = "string",
+            traits = {
+                http_query = "workflowVersion",
+            },
+        },
+    },
+}
+
+M.DeleteWorkflowOutput = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        WorkflowVersion = {
+            type = "string",
+        },
+    },
+}
+
+M.GetWorkflowInput = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        WorkflowVersion = {
+            type = "string",
+            traits = {
+                http_query = "workflowVersion",
+            },
+        },
+    },
+}
+
+M.ScheduleConfiguration = {
+    type = "structure",
+    members = {
+        CronExpression = {
+            type = "string",
+        },
+    },
+}
+
+M.GetWorkflowOutput = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        WorkflowVersion = {
+            type = "string",
+        },
+        Name = {
+            type = "string",
+        },
+        Description = {
+            type = "string",
+        },
+        CreatedAt = {
+            type = "timestamp",
+        },
+        ModifiedAt = {
+            type = "timestamp",
+        },
+        EncryptionConfiguration = {
+            type = "structure",
+        },
+        LoggingConfiguration = {
+            type = "structure",
+        },
+        EngineVersion = {
+            type = "number",
+        },
+        WorkflowStatus = {
+            type = "string",
+        },
+        DefinitionS3Location = {
+            type = "structure",
+        },
+        ScheduleConfiguration = {
+            type = "structure",
+        },
+        RoleArn = {
+            type = "string",
+        },
+        NetworkConfiguration = {
+            type = "structure",
+        },
+        TriggerMode = {
+            type = "string",
+        },
+        WorkflowDefinition = {
+            type = "string",
+        },
+    },
+}
+
+M.ListWorkflowsInput = {
+    type = "structure",
+    members = {
+        MaxResults = {
+            type = "number",
+            traits = {
+                http_query = "maxResults",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                http_query = "nextToken",
+            },
+        },
+    },
+}
+
+M.WorkflowSummary = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        WorkflowVersion = {
+            type = "string",
+        },
+        Name = {
+            type = "string",
+        },
+        Description = {
+            type = "string",
+        },
+        CreatedAt = {
+            type = "timestamp",
+        },
+        ModifiedAt = {
+            type = "timestamp",
+        },
+        WorkflowStatus = {
+            type = "string",
+        },
+        TriggerMode = {
+            type = "string",
+        },
+    },
+}
+
+M.ListWorkflowsOutput = {
+    type = "structure",
+    members = {
+        Workflows = {
+            type = "list",
+            member_type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        NextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.UpdateWorkflowInput = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        DefinitionS3Location = {
+            type = "structure",
+            traits = {
+                required = true,
+            },
+        },
+        RoleArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        Description = {
+            type = "string",
+        },
+        LoggingConfiguration = {
+            type = "structure",
+        },
+        EngineVersion = {
+            type = "number",
+        },
+        NetworkConfiguration = {
+            type = "structure",
+        },
+        TriggerMode = {
+            type = "string",
+        },
+    },
+}
+
+M.UpdateWorkflowOutput = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        ModifiedAt = {
+            type = "timestamp",
+        },
+        WorkflowVersion = {
+            type = "string",
+        },
+        Warnings = {
+            type = "list",
+            member_type = "string",
+        },
+    },
+}
+
+M.GetWorkflowRunInput = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        RunId = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.WorkflowRunStatus = {
+    STARTING = "STARTING",
+    QUEUED = "QUEUED",
+    RUNNING = "RUNNING",
+    SUCCESS = "SUCCESS",
+    FAILED = "FAILED",
+    TIMEOUT = "TIMEOUT",
+    STOPPING = "STOPPING",
+    STOPPED = "STOPPED",
+}
+
+M.RunType = {
+    ON_DEMAND = "ON_DEMAND",
+    SCHEDULED = "SCHEDULED",
+}
+
+M.WorkflowRunDetail = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+        },
+        WorkflowVersion = {
+            type = "string",
+        },
+        RunId = {
+            type = "string",
+        },
+        RunType = {
+            type = "string",
+        },
+        StartedOn = {
+            type = "timestamp",
+        },
+        CreatedAt = {
+            type = "timestamp",
+        },
+        CompletedOn = {
+            type = "timestamp",
+        },
+        ModifiedAt = {
+            type = "timestamp",
+        },
+        Duration = {
+            type = "number",
+        },
+        ErrorMessage = {
+            type = "string",
+        },
+        TaskInstances = {
+            type = "list",
+            member_type = "string",
+        },
+        RunState = {
+            type = "string",
+        },
+    },
+}
+
+M.GetWorkflowRunOutput = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+        },
+        WorkflowVersion = {
+            type = "string",
+        },
+        RunId = {
+            type = "string",
+        },
+        RunType = {
+            type = "string",
+        },
+        OverrideParameters = {
+            type = "map",
+            key_type = "string",
+            value_type = "document",
+        },
+        RunDetail = {
+            type = "structure",
+        },
+    },
+}
+
+M.ListWorkflowRunsInput = {
+    type = "structure",
+    members = {
+        MaxResults = {
+            type = "number",
+            traits = {
+                http_query = "maxResults",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                http_query = "nextToken",
+            },
+        },
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        WorkflowVersion = {
+            type = "string",
+            traits = {
+                http_query = "workflowVersion",
+            },
+        },
+    },
+}
+
+M.RunDetailSummary = {
+    type = "structure",
+    members = {
+        Status = {
+            type = "string",
+        },
+        CreatedOn = {
+            type = "timestamp",
+        },
+        StartedAt = {
+            type = "timestamp",
+        },
+        EndedAt = {
+            type = "timestamp",
+        },
+    },
+}
+
+M.WorkflowRunSummary = {
+    type = "structure",
+    members = {
+        RunId = {
+            type = "string",
+        },
+        WorkflowArn = {
+            type = "string",
+        },
+        WorkflowVersion = {
+            type = "string",
+        },
+        RunType = {
+            type = "string",
+        },
+        RunDetailSummary = {
+            type = "structure",
+        },
+    },
+}
+
+M.ListWorkflowRunsOutput = {
+    type = "structure",
+    members = {
+        WorkflowRuns = {
+            type = "list",
+            member_type = "structure",
+        },
+        NextToken = {
+            type = "string",
+        },
+    },
+}
+
+M.StartWorkflowRunInput = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        ClientToken = {
+            type = "string",
+        },
+        OverrideParameters = {
+            type = "map",
+            key_type = "string",
+            value_type = "document",
+        },
+        WorkflowVersion = {
+            type = "string",
+        },
+    },
+}
+
+M.StartWorkflowRunOutput = {
+    type = "structure",
+    members = {
+        RunId = {
+            type = "string",
+        },
+        Status = {
+            type = "string",
+        },
+        StartedAt = {
+            type = "timestamp",
+        },
+    },
+}
+
+M.StopWorkflowRunInput = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+        RunId = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.StopWorkflowRunOutput = {
+    type = "structure",
+    members = {
+        WorkflowArn = {
+            type = "string",
+        },
+        WorkflowVersion = {
+            type = "string",
+        },
+        RunId = {
+            type = "string",
+        },
+        Status = {
+            type = "string",
+        },
+    },
+}
+
+M.ListWorkflowVersionsInput = {
+    type = "structure",
+    members = {
+        MaxResults = {
+            type = "number",
+            traits = {
+                http_query = "maxResults",
+            },
+        },
+        NextToken = {
+            type = "string",
+            traits = {
+                http_query = "nextToken",
+            },
+        },
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                http_label = true,
+                required = true,
+            },
+        },
+    },
+}
+
+M.WorkflowVersionSummary = {
+    type = "structure",
+    members = {
+        WorkflowVersion = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        WorkflowArn = {
+            type = "string",
+            traits = {
+                required = true,
+            },
+        },
+        IsLatestVersion = {
+            type = "boolean",
+        },
+        CreatedAt = {
+            type = "timestamp",
+        },
+        ModifiedAt = {
+            type = "timestamp",
+        },
+        DefinitionS3Location = {
+            type = "structure",
+        },
+        ScheduleConfiguration = {
+            type = "structure",
+        },
+        TriggerMode = {
+            type = "string",
+        },
+    },
+}
+
+M.ListWorkflowVersionsOutput = {
+    type = "structure",
+    members = {
+        WorkflowVersions = {
+            type = "list",
+            member_type = "structure",
+        },
+        NextToken = {
+            type = "string",
+        },
+    },
+}
+
+return M

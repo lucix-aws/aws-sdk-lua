@@ -1,0 +1,100 @@
+local types = require("servicecatalog.types")
+
+local record Client
+    acceptPortfolioShare: function(Client, types.AcceptPortfolioShareInput): types.AcceptPortfolioShareOutput, table
+    associateBudgetWithResource: function(Client, types.AssociateBudgetWithResourceInput): types.AssociateBudgetWithResourceOutput, table
+    associatePrincipalWithPortfolio: function(Client, types.AssociatePrincipalWithPortfolioInput): types.AssociatePrincipalWithPortfolioOutput, table
+    associateProductWithPortfolio: function(Client, types.AssociateProductWithPortfolioInput): types.AssociateProductWithPortfolioOutput, table
+    associateServiceActionWithProvisioningArtifact: function(Client, types.AssociateServiceActionWithProvisioningArtifactInput): types.AssociateServiceActionWithProvisioningArtifactOutput, table
+    associateTagOptionWithResource: function(Client, types.AssociateTagOptionWithResourceInput): types.AssociateTagOptionWithResourceOutput, table
+    batchAssociateServiceActionWithProvisioningArtifact: function(Client, types.BatchAssociateServiceActionWithProvisioningArtifactInput): types.BatchAssociateServiceActionWithProvisioningArtifactOutput, table
+    batchDisassociateServiceActionFromProvisioningArtifact: function(Client, types.BatchDisassociateServiceActionFromProvisioningArtifactInput): types.BatchDisassociateServiceActionFromProvisioningArtifactOutput, table
+    copyProduct: function(Client, types.CopyProductInput): types.CopyProductOutput, table
+    createConstraint: function(Client, types.CreateConstraintInput): types.CreateConstraintOutput, table
+    createPortfolio: function(Client, types.CreatePortfolioInput): types.CreatePortfolioOutput, table
+    createPortfolioShare: function(Client, types.CreatePortfolioShareInput): types.CreatePortfolioShareOutput, table
+    createProduct: function(Client, types.CreateProductInput): types.CreateProductOutput, table
+    createProvisionedProductPlan: function(Client, types.CreateProvisionedProductPlanInput): types.CreateProvisionedProductPlanOutput, table
+    createProvisioningArtifact: function(Client, types.CreateProvisioningArtifactInput): types.CreateProvisioningArtifactOutput, table
+    createServiceAction: function(Client, types.CreateServiceActionInput): types.CreateServiceActionOutput, table
+    createTagOption: function(Client, types.CreateTagOptionInput): types.CreateTagOptionOutput, table
+    deleteConstraint: function(Client, types.DeleteConstraintInput): types.DeleteConstraintOutput, table
+    deletePortfolio: function(Client, types.DeletePortfolioInput): types.DeletePortfolioOutput, table
+    deletePortfolioShare: function(Client, types.DeletePortfolioShareInput): types.DeletePortfolioShareOutput, table
+    deleteProduct: function(Client, types.DeleteProductInput): types.DeleteProductOutput, table
+    deleteProvisionedProductPlan: function(Client, types.DeleteProvisionedProductPlanInput): types.DeleteProvisionedProductPlanOutput, table
+    deleteProvisioningArtifact: function(Client, types.DeleteProvisioningArtifactInput): types.DeleteProvisioningArtifactOutput, table
+    deleteServiceAction: function(Client, types.DeleteServiceActionInput): types.DeleteServiceActionOutput, table
+    deleteTagOption: function(Client, types.DeleteTagOptionInput): types.DeleteTagOptionOutput, table
+    describeConstraint: function(Client, types.DescribeConstraintInput): types.DescribeConstraintOutput, table
+    describeCopyProductStatus: function(Client, types.DescribeCopyProductStatusInput): types.DescribeCopyProductStatusOutput, table
+    describePortfolio: function(Client, types.DescribePortfolioInput): types.DescribePortfolioOutput, table
+    describePortfolioShares: function(Client, types.DescribePortfolioSharesInput): types.DescribePortfolioSharesOutput, table
+    describePortfolioShareStatus: function(Client, types.DescribePortfolioShareStatusInput): types.DescribePortfolioShareStatusOutput, table
+    describeProduct: function(Client, types.DescribeProductInput): types.DescribeProductOutput, table
+    describeProductAsAdmin: function(Client, types.DescribeProductAsAdminInput): types.DescribeProductAsAdminOutput, table
+    describeProductView: function(Client, types.DescribeProductViewInput): types.DescribeProductViewOutput, table
+    describeProvisionedProduct: function(Client, types.DescribeProvisionedProductInput): types.DescribeProvisionedProductOutput, table
+    describeProvisionedProductPlan: function(Client, types.DescribeProvisionedProductPlanInput): types.DescribeProvisionedProductPlanOutput, table
+    describeProvisioningArtifact: function(Client, types.DescribeProvisioningArtifactInput): types.DescribeProvisioningArtifactOutput, table
+    describeProvisioningParameters: function(Client, types.DescribeProvisioningParametersInput): types.DescribeProvisioningParametersOutput, table
+    describeRecord: function(Client, types.DescribeRecordInput): types.DescribeRecordOutput, table
+    describeServiceAction: function(Client, types.DescribeServiceActionInput): types.DescribeServiceActionOutput, table
+    describeServiceActionExecutionParameters: function(Client, types.DescribeServiceActionExecutionParametersInput): types.DescribeServiceActionExecutionParametersOutput, table
+    describeTagOption: function(Client, types.DescribeTagOptionInput): types.DescribeTagOptionOutput, table
+    disableAWSOrganizationsAccess: function(Client, types.DisableAWSOrganizationsAccessInput): types.DisableAWSOrganizationsAccessOutput, table
+    disassociateBudgetFromResource: function(Client, types.DisassociateBudgetFromResourceInput): types.DisassociateBudgetFromResourceOutput, table
+    disassociatePrincipalFromPortfolio: function(Client, types.DisassociatePrincipalFromPortfolioInput): types.DisassociatePrincipalFromPortfolioOutput, table
+    disassociateProductFromPortfolio: function(Client, types.DisassociateProductFromPortfolioInput): types.DisassociateProductFromPortfolioOutput, table
+    disassociateServiceActionFromProvisioningArtifact: function(Client, types.DisassociateServiceActionFromProvisioningArtifactInput): types.DisassociateServiceActionFromProvisioningArtifactOutput, table
+    disassociateTagOptionFromResource: function(Client, types.DisassociateTagOptionFromResourceInput): types.DisassociateTagOptionFromResourceOutput, table
+    enableAWSOrganizationsAccess: function(Client, types.EnableAWSOrganizationsAccessInput): types.EnableAWSOrganizationsAccessOutput, table
+    executeProvisionedProductPlan: function(Client, types.ExecuteProvisionedProductPlanInput): types.ExecuteProvisionedProductPlanOutput, table
+    executeProvisionedProductServiceAction: function(Client, types.ExecuteProvisionedProductServiceActionInput): types.ExecuteProvisionedProductServiceActionOutput, table
+    getAWSOrganizationsAccessStatus: function(Client, types.GetAWSOrganizationsAccessStatusInput): types.GetAWSOrganizationsAccessStatusOutput, table
+    getProvisionedProductOutputs: function(Client, types.GetProvisionedProductOutputsInput): types.GetProvisionedProductOutputsOutput, table
+    importAsProvisionedProduct: function(Client, types.ImportAsProvisionedProductInput): types.ImportAsProvisionedProductOutput, table
+    listAcceptedPortfolioShares: function(Client, types.ListAcceptedPortfolioSharesInput): types.ListAcceptedPortfolioSharesOutput, table
+    listBudgetsForResource: function(Client, types.ListBudgetsForResourceInput): types.ListBudgetsForResourceOutput, table
+    listConstraintsForPortfolio: function(Client, types.ListConstraintsForPortfolioInput): types.ListConstraintsForPortfolioOutput, table
+    listLaunchPaths: function(Client, types.ListLaunchPathsInput): types.ListLaunchPathsOutput, table
+    listOrganizationPortfolioAccess: function(Client, types.ListOrganizationPortfolioAccessInput): types.ListOrganizationPortfolioAccessOutput, table
+    listPortfolioAccess: function(Client, types.ListPortfolioAccessInput): types.ListPortfolioAccessOutput, table
+    listPortfolios: function(Client, types.ListPortfoliosInput): types.ListPortfoliosOutput, table
+    listPortfoliosForProduct: function(Client, types.ListPortfoliosForProductInput): types.ListPortfoliosForProductOutput, table
+    listPrincipalsForPortfolio: function(Client, types.ListPrincipalsForPortfolioInput): types.ListPrincipalsForPortfolioOutput, table
+    listProvisionedProductPlans: function(Client, types.ListProvisionedProductPlansInput): types.ListProvisionedProductPlansOutput, table
+    listProvisioningArtifacts: function(Client, types.ListProvisioningArtifactsInput): types.ListProvisioningArtifactsOutput, table
+    listProvisioningArtifactsForServiceAction: function(Client, types.ListProvisioningArtifactsForServiceActionInput): types.ListProvisioningArtifactsForServiceActionOutput, table
+    listRecordHistory: function(Client, types.ListRecordHistoryInput): types.ListRecordHistoryOutput, table
+    listResourcesForTagOption: function(Client, types.ListResourcesForTagOptionInput): types.ListResourcesForTagOptionOutput, table
+    listServiceActions: function(Client, types.ListServiceActionsInput): types.ListServiceActionsOutput, table
+    listServiceActionsForProvisioningArtifact: function(Client, types.ListServiceActionsForProvisioningArtifactInput): types.ListServiceActionsForProvisioningArtifactOutput, table
+    listStackInstancesForProvisionedProduct: function(Client, types.ListStackInstancesForProvisionedProductInput): types.ListStackInstancesForProvisionedProductOutput, table
+    listTagOptions: function(Client, types.ListTagOptionsInput): types.ListTagOptionsOutput, table
+    notifyProvisionProductEngineWorkflowResult: function(Client, types.NotifyProvisionProductEngineWorkflowResultInput): types.NotifyProvisionProductEngineWorkflowResultOutput, table
+    notifyTerminateProvisionedProductEngineWorkflowResult: function(Client, types.NotifyTerminateProvisionedProductEngineWorkflowResultInput): types.NotifyTerminateProvisionedProductEngineWorkflowResultOutput, table
+    notifyUpdateProvisionedProductEngineWorkflowResult: function(Client, types.NotifyUpdateProvisionedProductEngineWorkflowResultInput): types.NotifyUpdateProvisionedProductEngineWorkflowResultOutput, table
+    provisionProduct: function(Client, types.ProvisionProductInput): types.ProvisionProductOutput, table
+    rejectPortfolioShare: function(Client, types.RejectPortfolioShareInput): types.RejectPortfolioShareOutput, table
+    scanProvisionedProducts: function(Client, types.ScanProvisionedProductsInput): types.ScanProvisionedProductsOutput, table
+    searchProducts: function(Client, types.SearchProductsInput): types.SearchProductsOutput, table
+    searchProductsAsAdmin: function(Client, types.SearchProductsAsAdminInput): types.SearchProductsAsAdminOutput, table
+    searchProvisionedProducts: function(Client, types.SearchProvisionedProductsInput): types.SearchProvisionedProductsOutput, table
+    terminateProvisionedProduct: function(Client, types.TerminateProvisionedProductInput): types.TerminateProvisionedProductOutput, table
+    updateConstraint: function(Client, types.UpdateConstraintInput): types.UpdateConstraintOutput, table
+    updatePortfolio: function(Client, types.UpdatePortfolioInput): types.UpdatePortfolioOutput, table
+    updatePortfolioShare: function(Client, types.UpdatePortfolioShareInput): types.UpdatePortfolioShareOutput, table
+    updateProduct: function(Client, types.UpdateProductInput): types.UpdateProductOutput, table
+    updateProvisionedProduct: function(Client, types.UpdateProvisionedProductInput): types.UpdateProvisionedProductOutput, table
+    updateProvisionedProductProperties: function(Client, types.UpdateProvisionedProductPropertiesInput): types.UpdateProvisionedProductPropertiesOutput, table
+    updateProvisioningArtifact: function(Client, types.UpdateProvisioningArtifactInput): types.UpdateProvisioningArtifactOutput, table
+    updateServiceAction: function(Client, types.UpdateServiceActionInput): types.UpdateServiceActionOutput, table
+    updateTagOption: function(Client, types.UpdateTagOptionInput): types.UpdateTagOptionOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

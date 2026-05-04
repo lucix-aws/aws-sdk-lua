@@ -1,0 +1,98 @@
+local types = require("cleanrooms.types")
+
+local record Client
+    batchGetCollaborationAnalysisTemplate: function(Client, types.BatchGetCollaborationAnalysisTemplateInput): types.BatchGetCollaborationAnalysisTemplateOutput, table
+    batchGetSchema: function(Client, types.BatchGetSchemaInput): types.BatchGetSchemaOutput, table
+    batchGetSchemaAnalysisRule: function(Client, types.BatchGetSchemaAnalysisRuleInput): types.BatchGetSchemaAnalysisRuleOutput, table
+    createAnalysisTemplate: function(Client, types.CreateAnalysisTemplateInput): types.CreateAnalysisTemplateOutput, table
+    createCollaboration: function(Client, types.CreateCollaborationInput): types.CreateCollaborationOutput, table
+    createCollaborationChangeRequest: function(Client, types.CreateCollaborationChangeRequestInput): types.CreateCollaborationChangeRequestOutput, table
+    createConfiguredAudienceModelAssociation: function(Client, types.CreateConfiguredAudienceModelAssociationInput): types.CreateConfiguredAudienceModelAssociationOutput, table
+    createConfiguredTable: function(Client, types.CreateConfiguredTableInput): types.CreateConfiguredTableOutput, table
+    createConfiguredTableAnalysisRule: function(Client, types.CreateConfiguredTableAnalysisRuleInput): types.CreateConfiguredTableAnalysisRuleOutput, table
+    createConfiguredTableAssociation: function(Client, types.CreateConfiguredTableAssociationInput): types.CreateConfiguredTableAssociationOutput, table
+    createConfiguredTableAssociationAnalysisRule: function(Client, types.CreateConfiguredTableAssociationAnalysisRuleInput): types.CreateConfiguredTableAssociationAnalysisRuleOutput, table
+    createIdMappingTable: function(Client, types.CreateIdMappingTableInput): types.CreateIdMappingTableOutput, table
+    createIdNamespaceAssociation: function(Client, types.CreateIdNamespaceAssociationInput): types.CreateIdNamespaceAssociationOutput, table
+    createMembership: function(Client, types.CreateMembershipInput): types.CreateMembershipOutput, table
+    createPrivacyBudgetTemplate: function(Client, types.CreatePrivacyBudgetTemplateInput): types.CreatePrivacyBudgetTemplateOutput, table
+    deleteAnalysisTemplate: function(Client, types.DeleteAnalysisTemplateInput): types.DeleteAnalysisTemplateOutput, table
+    deleteCollaboration: function(Client, types.DeleteCollaborationInput): types.DeleteCollaborationOutput, table
+    deleteConfiguredAudienceModelAssociation: function(Client, types.DeleteConfiguredAudienceModelAssociationInput): types.DeleteConfiguredAudienceModelAssociationOutput, table
+    deleteConfiguredTable: function(Client, types.DeleteConfiguredTableInput): types.DeleteConfiguredTableOutput, table
+    deleteConfiguredTableAnalysisRule: function(Client, types.DeleteConfiguredTableAnalysisRuleInput): types.DeleteConfiguredTableAnalysisRuleOutput, table
+    deleteConfiguredTableAssociation: function(Client, types.DeleteConfiguredTableAssociationInput): types.DeleteConfiguredTableAssociationOutput, table
+    deleteConfiguredTableAssociationAnalysisRule: function(Client, types.DeleteConfiguredTableAssociationAnalysisRuleInput): types.DeleteConfiguredTableAssociationAnalysisRuleOutput, table
+    deleteIdMappingTable: function(Client, types.DeleteIdMappingTableInput): types.DeleteIdMappingTableOutput, table
+    deleteIdNamespaceAssociation: function(Client, types.DeleteIdNamespaceAssociationInput): types.DeleteIdNamespaceAssociationOutput, table
+    deleteMember: function(Client, types.DeleteMemberInput): types.DeleteMemberOutput, table
+    deleteMembership: function(Client, types.DeleteMembershipInput): types.DeleteMembershipOutput, table
+    deletePrivacyBudgetTemplate: function(Client, types.DeletePrivacyBudgetTemplateInput): types.DeletePrivacyBudgetTemplateOutput, table
+    getAnalysisTemplate: function(Client, types.GetAnalysisTemplateInput): types.GetAnalysisTemplateOutput, table
+    getCollaboration: function(Client, types.GetCollaborationInput): types.GetCollaborationOutput, table
+    getCollaborationAnalysisTemplate: function(Client, types.GetCollaborationAnalysisTemplateInput): types.GetCollaborationAnalysisTemplateOutput, table
+    getCollaborationChangeRequest: function(Client, types.GetCollaborationChangeRequestInput): types.GetCollaborationChangeRequestOutput, table
+    getCollaborationConfiguredAudienceModelAssociation: function(Client, types.GetCollaborationConfiguredAudienceModelAssociationInput): types.GetCollaborationConfiguredAudienceModelAssociationOutput, table
+    getCollaborationIdNamespaceAssociation: function(Client, types.GetCollaborationIdNamespaceAssociationInput): types.GetCollaborationIdNamespaceAssociationOutput, table
+    getCollaborationPrivacyBudgetTemplate: function(Client, types.GetCollaborationPrivacyBudgetTemplateInput): types.GetCollaborationPrivacyBudgetTemplateOutput, table
+    getConfiguredAudienceModelAssociation: function(Client, types.GetConfiguredAudienceModelAssociationInput): types.GetConfiguredAudienceModelAssociationOutput, table
+    getConfiguredTable: function(Client, types.GetConfiguredTableInput): types.GetConfiguredTableOutput, table
+    getConfiguredTableAnalysisRule: function(Client, types.GetConfiguredTableAnalysisRuleInput): types.GetConfiguredTableAnalysisRuleOutput, table
+    getConfiguredTableAssociation: function(Client, types.GetConfiguredTableAssociationInput): types.GetConfiguredTableAssociationOutput, table
+    getConfiguredTableAssociationAnalysisRule: function(Client, types.GetConfiguredTableAssociationAnalysisRuleInput): types.GetConfiguredTableAssociationAnalysisRuleOutput, table
+    getIdMappingTable: function(Client, types.GetIdMappingTableInput): types.GetIdMappingTableOutput, table
+    getIdNamespaceAssociation: function(Client, types.GetIdNamespaceAssociationInput): types.GetIdNamespaceAssociationOutput, table
+    getMembership: function(Client, types.GetMembershipInput): types.GetMembershipOutput, table
+    getPrivacyBudgetTemplate: function(Client, types.GetPrivacyBudgetTemplateInput): types.GetPrivacyBudgetTemplateOutput, table
+    getProtectedJob: function(Client, types.GetProtectedJobInput): types.GetProtectedJobOutput, table
+    getProtectedQuery: function(Client, types.GetProtectedQueryInput): types.GetProtectedQueryOutput, table
+    getSchema: function(Client, types.GetSchemaInput): types.GetSchemaOutput, table
+    getSchemaAnalysisRule: function(Client, types.GetSchemaAnalysisRuleInput): types.GetSchemaAnalysisRuleOutput, table
+    listAnalysisTemplates: function(Client, types.ListAnalysisTemplatesInput): types.ListAnalysisTemplatesOutput, table
+    listCollaborationAnalysisTemplates: function(Client, types.ListCollaborationAnalysisTemplatesInput): types.ListCollaborationAnalysisTemplatesOutput, table
+    listCollaborationChangeRequests: function(Client, types.ListCollaborationChangeRequestsInput): types.ListCollaborationChangeRequestsOutput, table
+    listCollaborationConfiguredAudienceModelAssociations: function(Client, types.ListCollaborationConfiguredAudienceModelAssociationsInput): types.ListCollaborationConfiguredAudienceModelAssociationsOutput, table
+    listCollaborationIdNamespaceAssociations: function(Client, types.ListCollaborationIdNamespaceAssociationsInput): types.ListCollaborationIdNamespaceAssociationsOutput, table
+    listCollaborationPrivacyBudgets: function(Client, types.ListCollaborationPrivacyBudgetsInput): types.ListCollaborationPrivacyBudgetsOutput, table
+    listCollaborationPrivacyBudgetTemplates: function(Client, types.ListCollaborationPrivacyBudgetTemplatesInput): types.ListCollaborationPrivacyBudgetTemplatesOutput, table
+    listCollaborations: function(Client, types.ListCollaborationsInput): types.ListCollaborationsOutput, table
+    listConfiguredAudienceModelAssociations: function(Client, types.ListConfiguredAudienceModelAssociationsInput): types.ListConfiguredAudienceModelAssociationsOutput, table
+    listConfiguredTableAssociations: function(Client, types.ListConfiguredTableAssociationsInput): types.ListConfiguredTableAssociationsOutput, table
+    listConfiguredTables: function(Client, types.ListConfiguredTablesInput): types.ListConfiguredTablesOutput, table
+    listIdMappingTables: function(Client, types.ListIdMappingTablesInput): types.ListIdMappingTablesOutput, table
+    listIdNamespaceAssociations: function(Client, types.ListIdNamespaceAssociationsInput): types.ListIdNamespaceAssociationsOutput, table
+    listMembers: function(Client, types.ListMembersInput): types.ListMembersOutput, table
+    listMemberships: function(Client, types.ListMembershipsInput): types.ListMembershipsOutput, table
+    listPrivacyBudgets: function(Client, types.ListPrivacyBudgetsInput): types.ListPrivacyBudgetsOutput, table
+    listPrivacyBudgetTemplates: function(Client, types.ListPrivacyBudgetTemplatesInput): types.ListPrivacyBudgetTemplatesOutput, table
+    listProtectedJobs: function(Client, types.ListProtectedJobsInput): types.ListProtectedJobsOutput, table
+    listProtectedQueries: function(Client, types.ListProtectedQueriesInput): types.ListProtectedQueriesOutput, table
+    listSchemas: function(Client, types.ListSchemasInput): types.ListSchemasOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    populateIdMappingTable: function(Client, types.PopulateIdMappingTableInput): types.PopulateIdMappingTableOutput, table
+    previewPrivacyImpact: function(Client, types.PreviewPrivacyImpactInput): types.PreviewPrivacyImpactOutput, table
+    startProtectedJob: function(Client, types.StartProtectedJobInput): types.StartProtectedJobOutput, table
+    startProtectedQuery: function(Client, types.StartProtectedQueryInput): types.StartProtectedQueryOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAnalysisTemplate: function(Client, types.UpdateAnalysisTemplateInput): types.UpdateAnalysisTemplateOutput, table
+    updateCollaboration: function(Client, types.UpdateCollaborationInput): types.UpdateCollaborationOutput, table
+    updateCollaborationChangeRequest: function(Client, types.UpdateCollaborationChangeRequestInput): types.UpdateCollaborationChangeRequestOutput, table
+    updateConfiguredAudienceModelAssociation: function(Client, types.UpdateConfiguredAudienceModelAssociationInput): types.UpdateConfiguredAudienceModelAssociationOutput, table
+    updateConfiguredTable: function(Client, types.UpdateConfiguredTableInput): types.UpdateConfiguredTableOutput, table
+    updateConfiguredTableAnalysisRule: function(Client, types.UpdateConfiguredTableAnalysisRuleInput): types.UpdateConfiguredTableAnalysisRuleOutput, table
+    updateConfiguredTableAssociation: function(Client, types.UpdateConfiguredTableAssociationInput): types.UpdateConfiguredTableAssociationOutput, table
+    updateConfiguredTableAssociationAnalysisRule: function(Client, types.UpdateConfiguredTableAssociationAnalysisRuleInput): types.UpdateConfiguredTableAssociationAnalysisRuleOutput, table
+    updateIdMappingTable: function(Client, types.UpdateIdMappingTableInput): types.UpdateIdMappingTableOutput, table
+    updateIdNamespaceAssociation: function(Client, types.UpdateIdNamespaceAssociationInput): types.UpdateIdNamespaceAssociationOutput, table
+    updateMembership: function(Client, types.UpdateMembershipInput): types.UpdateMembershipOutput, table
+    updatePrivacyBudgetTemplate: function(Client, types.UpdatePrivacyBudgetTemplateInput): types.UpdatePrivacyBudgetTemplateOutput, table
+    updateProtectedJob: function(Client, types.UpdateProtectedJobInput): types.UpdateProtectedJobOutput, table
+    updateProtectedQuery: function(Client, types.UpdateProtectedQueryInput): types.UpdateProtectedQueryOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

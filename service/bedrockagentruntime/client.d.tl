@@ -1,0 +1,41 @@
+local types = require("bedrockagentruntime.types")
+
+local record Client
+    createInvocation: function(Client, types.CreateInvocationInput): types.CreateInvocationOutput, table
+    createSession: function(Client, types.CreateSessionInput): types.CreateSessionOutput, table
+    deleteAgentMemory: function(Client, types.DeleteAgentMemoryInput): types.DeleteAgentMemoryOutput, table
+    deleteSession: function(Client, types.DeleteSessionInput): types.DeleteSessionOutput, table
+    endSession: function(Client, types.EndSessionInput): types.EndSessionOutput, table
+    generateQuery: function(Client, types.GenerateQueryInput): types.GenerateQueryOutput, table
+    getAgentMemory: function(Client, types.GetAgentMemoryInput): types.GetAgentMemoryOutput, table
+    getExecutionFlowSnapshot: function(Client, types.GetExecutionFlowSnapshotInput): types.GetExecutionFlowSnapshotOutput, table
+    getFlowExecution: function(Client, types.GetFlowExecutionInput): types.GetFlowExecutionOutput, table
+    getInvocationStep: function(Client, types.GetInvocationStepInput): types.GetInvocationStepOutput, table
+    getSession: function(Client, types.GetSessionInput): types.GetSessionOutput, table
+    invokeAgent: function(Client, types.InvokeAgentInput): types.InvokeAgentOutput, table
+    invokeFlow: function(Client, types.InvokeFlowInput): types.InvokeFlowOutput, table
+    invokeInlineAgent: function(Client, types.InvokeInlineAgentInput): types.InvokeInlineAgentOutput, table
+    listFlowExecutionEvents: function(Client, types.ListFlowExecutionEventsInput): types.ListFlowExecutionEventsOutput, table
+    listFlowExecutions: function(Client, types.ListFlowExecutionsInput): types.ListFlowExecutionsOutput, table
+    listInvocations: function(Client, types.ListInvocationsInput): types.ListInvocationsOutput, table
+    listInvocationSteps: function(Client, types.ListInvocationStepsInput): types.ListInvocationStepsOutput, table
+    listSessions: function(Client, types.ListSessionsInput): types.ListSessionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    optimizePrompt: function(Client, types.OptimizePromptInput): types.OptimizePromptOutput, table
+    putInvocationStep: function(Client, types.PutInvocationStepInput): types.PutInvocationStepOutput, table
+    rerank: function(Client, types.RerankInput): types.RerankOutput, table
+    retrieve: function(Client, types.RetrieveInput): types.RetrieveOutput, table
+    retrieveAndGenerate: function(Client, types.RetrieveAndGenerateOperationInput): types.RetrieveAndGenerateOperationOutput, table
+    retrieveAndGenerateStream: function(Client, types.RetrieveAndGenerateStreamInput): types.RetrieveAndGenerateStreamOutput, table
+    startFlowExecution: function(Client, types.StartFlowExecutionInput): types.StartFlowExecutionOutput, table
+    stopFlowExecution: function(Client, types.StopFlowExecutionInput): types.StopFlowExecutionOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateSession: function(Client, types.UpdateSessionInput): types.UpdateSessionOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

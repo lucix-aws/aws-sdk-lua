@@ -1,0 +1,117 @@
+local types = require("s3.types")
+
+local record Client
+    abortMultipartUpload: function(Client, types.AbortMultipartUploadInput): types.AbortMultipartUploadOutput, table
+    completeMultipartUpload: function(Client, types.CompleteMultipartUploadInput): types.CompleteMultipartUploadOutput, table
+    copyObject: function(Client, types.CopyObjectInput): types.CopyObjectOutput, table
+    createBucket: function(Client, types.CreateBucketInput): types.CreateBucketOutput, table
+    createBucketMetadataConfiguration: function(Client, types.CreateBucketMetadataConfigurationInput): types.CreateBucketMetadataConfigurationOutput, table
+    createBucketMetadataTableConfiguration: function(Client, types.CreateBucketMetadataTableConfigurationInput): types.CreateBucketMetadataTableConfigurationOutput, table
+    createMultipartUpload: function(Client, types.CreateMultipartUploadInput): types.CreateMultipartUploadOutput, table
+    createSession: function(Client, types.CreateSessionInput): types.CreateSessionOutput, table
+    deleteBucket: function(Client, types.DeleteBucketInput): types.DeleteBucketOutput, table
+    deleteBucketAnalyticsConfiguration: function(Client, types.DeleteBucketAnalyticsConfigurationInput): types.DeleteBucketAnalyticsConfigurationOutput, table
+    deleteBucketCors: function(Client, types.DeleteBucketCorsInput): types.DeleteBucketCorsOutput, table
+    deleteBucketEncryption: function(Client, types.DeleteBucketEncryptionInput): types.DeleteBucketEncryptionOutput, table
+    deleteBucketIntelligentTieringConfiguration: function(Client, types.DeleteBucketIntelligentTieringConfigurationInput): types.DeleteBucketIntelligentTieringConfigurationOutput, table
+    deleteBucketInventoryConfiguration: function(Client, types.DeleteBucketInventoryConfigurationInput): types.DeleteBucketInventoryConfigurationOutput, table
+    deleteBucketLifecycle: function(Client, types.DeleteBucketLifecycleInput): types.DeleteBucketLifecycleOutput, table
+    deleteBucketMetadataConfiguration: function(Client, types.DeleteBucketMetadataConfigurationInput): types.DeleteBucketMetadataConfigurationOutput, table
+    deleteBucketMetadataTableConfiguration: function(Client, types.DeleteBucketMetadataTableConfigurationInput): types.DeleteBucketMetadataTableConfigurationOutput, table
+    deleteBucketMetricsConfiguration: function(Client, types.DeleteBucketMetricsConfigurationInput): types.DeleteBucketMetricsConfigurationOutput, table
+    deleteBucketOwnershipControls: function(Client, types.DeleteBucketOwnershipControlsInput): types.DeleteBucketOwnershipControlsOutput, table
+    deleteBucketPolicy: function(Client, types.DeleteBucketPolicyInput): types.DeleteBucketPolicyOutput, table
+    deleteBucketReplication: function(Client, types.DeleteBucketReplicationInput): types.DeleteBucketReplicationOutput, table
+    deleteBucketTagging: function(Client, types.DeleteBucketTaggingInput): types.DeleteBucketTaggingOutput, table
+    deleteBucketWebsite: function(Client, types.DeleteBucketWebsiteInput): types.DeleteBucketWebsiteOutput, table
+    deleteObject: function(Client, types.DeleteObjectInput): types.DeleteObjectOutput, table
+    deleteObjects: function(Client, types.DeleteObjectsInput): types.DeleteObjectsOutput, table
+    deleteObjectTagging: function(Client, types.DeleteObjectTaggingInput): types.DeleteObjectTaggingOutput, table
+    deletePublicAccessBlock: function(Client, types.DeletePublicAccessBlockInput): types.DeletePublicAccessBlockOutput, table
+    getBucketAbac: function(Client, types.GetBucketAbacInput): types.GetBucketAbacOutput, table
+    getBucketAccelerateConfiguration: function(Client, types.GetBucketAccelerateConfigurationInput): types.GetBucketAccelerateConfigurationOutput, table
+    getBucketAcl: function(Client, types.GetBucketAclInput): types.GetBucketAclOutput, table
+    getBucketAnalyticsConfiguration: function(Client, types.GetBucketAnalyticsConfigurationInput): types.GetBucketAnalyticsConfigurationOutput, table
+    getBucketCors: function(Client, types.GetBucketCorsInput): types.GetBucketCorsOutput, table
+    getBucketEncryption: function(Client, types.GetBucketEncryptionInput): types.GetBucketEncryptionOutput, table
+    getBucketIntelligentTieringConfiguration: function(Client, types.GetBucketIntelligentTieringConfigurationInput): types.GetBucketIntelligentTieringConfigurationOutput, table
+    getBucketInventoryConfiguration: function(Client, types.GetBucketInventoryConfigurationInput): types.GetBucketInventoryConfigurationOutput, table
+    getBucketLifecycleConfiguration: function(Client, types.GetBucketLifecycleConfigurationInput): types.GetBucketLifecycleConfigurationOutput, table
+    getBucketLocation: function(Client, types.GetBucketLocationInput): types.GetBucketLocationOutput, table
+    getBucketLogging: function(Client, types.GetBucketLoggingInput): types.GetBucketLoggingOutput, table
+    getBucketMetadataConfiguration: function(Client, types.GetBucketMetadataConfigurationInput): types.GetBucketMetadataConfigurationOutput, table
+    getBucketMetadataTableConfiguration: function(Client, types.GetBucketMetadataTableConfigurationInput): types.GetBucketMetadataTableConfigurationOutput, table
+    getBucketMetricsConfiguration: function(Client, types.GetBucketMetricsConfigurationInput): types.GetBucketMetricsConfigurationOutput, table
+    getBucketNotificationConfiguration: function(Client, types.GetBucketNotificationConfigurationInput): types.GetBucketNotificationConfigurationOutput, table
+    getBucketOwnershipControls: function(Client, types.GetBucketOwnershipControlsInput): types.GetBucketOwnershipControlsOutput, table
+    getBucketPolicy: function(Client, types.GetBucketPolicyInput): types.GetBucketPolicyOutput, table
+    getBucketPolicyStatus: function(Client, types.GetBucketPolicyStatusInput): types.GetBucketPolicyStatusOutput, table
+    getBucketReplication: function(Client, types.GetBucketReplicationInput): types.GetBucketReplicationOutput, table
+    getBucketRequestPayment: function(Client, types.GetBucketRequestPaymentInput): types.GetBucketRequestPaymentOutput, table
+    getBucketTagging: function(Client, types.GetBucketTaggingInput): types.GetBucketTaggingOutput, table
+    getBucketVersioning: function(Client, types.GetBucketVersioningInput): types.GetBucketVersioningOutput, table
+    getBucketWebsite: function(Client, types.GetBucketWebsiteInput): types.GetBucketWebsiteOutput, table
+    getObject: function(Client, types.GetObjectInput): types.GetObjectOutput, table
+    getObjectAcl: function(Client, types.GetObjectAclInput): types.GetObjectAclOutput, table
+    getObjectAttributes: function(Client, types.GetObjectAttributesInput): types.GetObjectAttributesOutput, table
+    getObjectLegalHold: function(Client, types.GetObjectLegalHoldInput): types.GetObjectLegalHoldOutput, table
+    getObjectLockConfiguration: function(Client, types.GetObjectLockConfigurationInput): types.GetObjectLockConfigurationOutput, table
+    getObjectRetention: function(Client, types.GetObjectRetentionInput): types.GetObjectRetentionOutput, table
+    getObjectTagging: function(Client, types.GetObjectTaggingInput): types.GetObjectTaggingOutput, table
+    getObjectTorrent: function(Client, types.GetObjectTorrentInput): types.GetObjectTorrentOutput, table
+    getPublicAccessBlock: function(Client, types.GetPublicAccessBlockInput): types.GetPublicAccessBlockOutput, table
+    headBucket: function(Client, types.HeadBucketInput): types.HeadBucketOutput, table
+    headObject: function(Client, types.HeadObjectInput): types.HeadObjectOutput, table
+    listBucketAnalyticsConfigurations: function(Client, types.ListBucketAnalyticsConfigurationsInput): types.ListBucketAnalyticsConfigurationsOutput, table
+    listBucketIntelligentTieringConfigurations: function(Client, types.ListBucketIntelligentTieringConfigurationsInput): types.ListBucketIntelligentTieringConfigurationsOutput, table
+    listBucketInventoryConfigurations: function(Client, types.ListBucketInventoryConfigurationsInput): types.ListBucketInventoryConfigurationsOutput, table
+    listBucketMetricsConfigurations: function(Client, types.ListBucketMetricsConfigurationsInput): types.ListBucketMetricsConfigurationsOutput, table
+    listBuckets: function(Client, types.ListBucketsInput): types.ListBucketsOutput, table
+    listDirectoryBuckets: function(Client, types.ListDirectoryBucketsInput): types.ListDirectoryBucketsOutput, table
+    listMultipartUploads: function(Client, types.ListMultipartUploadsInput): types.ListMultipartUploadsOutput, table
+    listObjects: function(Client, types.ListObjectsInput): types.ListObjectsOutput, table
+    listObjectsV2: function(Client, types.ListObjectsV2Input): types.ListObjectsV2Output, table
+    listObjectVersions: function(Client, types.ListObjectVersionsInput): types.ListObjectVersionsOutput, table
+    listParts: function(Client, types.ListPartsInput): types.ListPartsOutput, table
+    putBucketAbac: function(Client, types.PutBucketAbacInput): types.PutBucketAbacOutput, table
+    putBucketAccelerateConfiguration: function(Client, types.PutBucketAccelerateConfigurationInput): types.PutBucketAccelerateConfigurationOutput, table
+    putBucketAcl: function(Client, types.PutBucketAclInput): types.PutBucketAclOutput, table
+    putBucketAnalyticsConfiguration: function(Client, types.PutBucketAnalyticsConfigurationInput): types.PutBucketAnalyticsConfigurationOutput, table
+    putBucketCors: function(Client, types.PutBucketCorsInput): types.PutBucketCorsOutput, table
+    putBucketEncryption: function(Client, types.PutBucketEncryptionInput): types.PutBucketEncryptionOutput, table
+    putBucketIntelligentTieringConfiguration: function(Client, types.PutBucketIntelligentTieringConfigurationInput): types.PutBucketIntelligentTieringConfigurationOutput, table
+    putBucketInventoryConfiguration: function(Client, types.PutBucketInventoryConfigurationInput): types.PutBucketInventoryConfigurationOutput, table
+    putBucketLifecycleConfiguration: function(Client, types.PutBucketLifecycleConfigurationInput): types.PutBucketLifecycleConfigurationOutput, table
+    putBucketLogging: function(Client, types.PutBucketLoggingInput): types.PutBucketLoggingOutput, table
+    putBucketMetricsConfiguration: function(Client, types.PutBucketMetricsConfigurationInput): types.PutBucketMetricsConfigurationOutput, table
+    putBucketNotificationConfiguration: function(Client, types.PutBucketNotificationConfigurationInput): types.PutBucketNotificationConfigurationOutput, table
+    putBucketOwnershipControls: function(Client, types.PutBucketOwnershipControlsInput): types.PutBucketOwnershipControlsOutput, table
+    putBucketPolicy: function(Client, types.PutBucketPolicyInput): types.PutBucketPolicyOutput, table
+    putBucketReplication: function(Client, types.PutBucketReplicationInput): types.PutBucketReplicationOutput, table
+    putBucketRequestPayment: function(Client, types.PutBucketRequestPaymentInput): types.PutBucketRequestPaymentOutput, table
+    putBucketTagging: function(Client, types.PutBucketTaggingInput): types.PutBucketTaggingOutput, table
+    putBucketVersioning: function(Client, types.PutBucketVersioningInput): types.PutBucketVersioningOutput, table
+    putBucketWebsite: function(Client, types.PutBucketWebsiteInput): types.PutBucketWebsiteOutput, table
+    putObject: function(Client, types.PutObjectInput): types.PutObjectOutput, table
+    putObjectAcl: function(Client, types.PutObjectAclInput): types.PutObjectAclOutput, table
+    putObjectLegalHold: function(Client, types.PutObjectLegalHoldInput): types.PutObjectLegalHoldOutput, table
+    putObjectLockConfiguration: function(Client, types.PutObjectLockConfigurationInput): types.PutObjectLockConfigurationOutput, table
+    putObjectRetention: function(Client, types.PutObjectRetentionInput): types.PutObjectRetentionOutput, table
+    putObjectTagging: function(Client, types.PutObjectTaggingInput): types.PutObjectTaggingOutput, table
+    putPublicAccessBlock: function(Client, types.PutPublicAccessBlockInput): types.PutPublicAccessBlockOutput, table
+    renameObject: function(Client, types.RenameObjectInput): types.RenameObjectOutput, table
+    restoreObject: function(Client, types.RestoreObjectInput): types.RestoreObjectOutput, table
+    selectObjectContent: function(Client, types.SelectObjectContentInput): types.SelectObjectContentOutput, table
+    updateBucketMetadataInventoryTableConfiguration: function(Client, types.UpdateBucketMetadataInventoryTableConfigurationInput): types.UpdateBucketMetadataInventoryTableConfigurationOutput, table
+    updateBucketMetadataJournalTableConfiguration: function(Client, types.UpdateBucketMetadataJournalTableConfigurationInput): types.UpdateBucketMetadataJournalTableConfigurationOutput, table
+    updateObjectEncryption: function(Client, types.UpdateObjectEncryptionInput): types.UpdateObjectEncryptionOutput, table
+    uploadPart: function(Client, types.UploadPartInput): types.UploadPartOutput, table
+    uploadPartCopy: function(Client, types.UploadPartCopyInput): types.UploadPartCopyOutput, table
+    writeGetObjectResponse: function(Client, types.WriteGetObjectResponseInput): types.WriteGetObjectResponseOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,831 @@
+local record AssociateGatewayToServerInput
+    GatewayArn: string
+    ServerArn: string
+end
+
+local record AssociateGatewayToServerOutput
+    GatewayArn: string
+end
+
+local record CreateGatewayInput
+    ActivationKey: string
+    GatewayDisplayName: string
+    GatewayType: string
+    Tags: {Tag}
+end
+
+local record CreateGatewayOutput
+    GatewayArn: string
+end
+
+local record DeleteGatewayInput
+    GatewayArn: string
+end
+
+local record DeleteGatewayOutput
+    GatewayArn: string
+end
+
+local record DeleteHypervisorInput
+    HypervisorArn: string
+end
+
+local record DeleteHypervisorOutput
+    HypervisorArn: string
+end
+
+local record DisassociateGatewayFromServerInput
+    GatewayArn: string
+end
+
+local record DisassociateGatewayFromServerOutput
+    GatewayArn: string
+end
+
+local record GetBandwidthRateLimitScheduleInput
+    GatewayArn: string
+end
+
+local record GetBandwidthRateLimitScheduleOutput
+    GatewayArn: string
+    BandwidthRateLimitIntervals: {BandwidthRateLimitInterval}
+end
+
+local record GetGatewayInput
+    GatewayArn: string
+end
+
+local record GetGatewayOutput
+    Gateway: GatewayDetails
+end
+
+local record GetHypervisorInput
+    HypervisorArn: string
+end
+
+local record GetHypervisorOutput
+    Hypervisor: HypervisorDetails
+end
+
+local record GetHypervisorPropertyMappingsInput
+    HypervisorArn: string
+end
+
+local record GetHypervisorPropertyMappingsOutput
+    HypervisorArn: string
+    VmwareToAwsTagMappings: {VmwareToAwsTagMapping}
+    IamRoleArn: string
+end
+
+local record GetVirtualMachineInput
+    ResourceArn: string
+end
+
+local record GetVirtualMachineOutput
+    VirtualMachine: VirtualMachineDetails
+end
+
+local record ImportHypervisorConfigurationInput
+    Name: string
+    Host: string
+    Username: string
+    Password: string
+    KmsKeyArn: string
+    Tags: {Tag}
+end
+
+local record ImportHypervisorConfigurationOutput
+    HypervisorArn: string
+end
+
+local record ListGatewaysInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListGatewaysOutput
+    Gateways: {Gateway}
+    NextToken: string
+end
+
+local record ListHypervisorsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListHypervisorsOutput
+    Hypervisors: {Hypervisor}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    ResourceArn: string
+    Tags: {Tag}
+end
+
+local record ListVirtualMachinesInput
+    HypervisorArn: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListVirtualMachinesOutput
+    VirtualMachines: {VirtualMachine}
+    NextToken: string
+end
+
+local record PutBandwidthRateLimitScheduleInput
+    GatewayArn: string
+    BandwidthRateLimitIntervals: {BandwidthRateLimitInterval}
+end
+
+local record PutBandwidthRateLimitScheduleOutput
+    GatewayArn: string
+end
+
+local record PutHypervisorPropertyMappingsInput
+    HypervisorArn: string
+    VmwareToAwsTagMappings: {VmwareToAwsTagMapping}
+    IamRoleArn: string
+end
+
+local record PutHypervisorPropertyMappingsOutput
+    HypervisorArn: string
+end
+
+local record PutMaintenanceStartTimeInput
+    GatewayArn: string
+    HourOfDay: number
+    MinuteOfHour: number
+    DayOfWeek: number
+    DayOfMonth: number
+end
+
+local record PutMaintenanceStartTimeOutput
+    GatewayArn: string
+end
+
+local record StartVirtualMachinesMetadataSyncInput
+    HypervisorArn: string
+end
+
+local record StartVirtualMachinesMetadataSyncOutput
+    HypervisorArn: string
+end
+
+local record TagResourceInput
+    ResourceARN: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+    ResourceARN: string
+end
+
+local record TestHypervisorConfigurationInput
+    GatewayArn: string
+    Host: string
+    Username: string
+    Password: string
+end
+
+local record TestHypervisorConfigurationOutput
+end
+
+local record UntagResourceInput
+    ResourceARN: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+    ResourceARN: string
+end
+
+local record UpdateGatewayInformationInput
+    GatewayArn: string
+    GatewayDisplayName: string
+end
+
+local record UpdateGatewayInformationOutput
+    GatewayArn: string
+end
+
+local record UpdateGatewaySoftwareNowInput
+    GatewayArn: string
+end
+
+local record UpdateGatewaySoftwareNowOutput
+    GatewayArn: string
+end
+
+local record UpdateHypervisorInput
+    HypervisorArn: string
+    Host: string
+    Username: string
+    Password: string
+    Name: string
+    LogGroupArn: string
+end
+
+local record UpdateHypervisorOutput
+    HypervisorArn: string
+end
+
+local record ConflictException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record AccessDeniedException
+    ErrorCode: string
+    Message: string
+end
+
+local record ConflictException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record ConflictException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record AccessDeniedException
+    ErrorCode: string
+    Message: string
+end
+
+local record ConflictException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record AccessDeniedException
+    ErrorCode: string
+    Message: string
+end
+
+local record ConflictException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record ConflictException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record AccessDeniedException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record ConflictException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record ConflictException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record AccessDeniedException
+    ErrorCode: string
+    Message: string
+end
+
+local record ConflictException
+    ErrorCode: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerException
+    ErrorCode: string
+    Message: string
+end
+
+local record ThrottlingException
+    ErrorCode: string
+    Message: string
+end
+
+local record ValidationException
+    ErrorCode: string
+    Message: string
+end
+
+local record M
+    AssociateGatewayToServerInput: AssociateGatewayToServerInput
+    AssociateGatewayToServerOutput: AssociateGatewayToServerOutput
+    CreateGatewayInput: CreateGatewayInput
+    CreateGatewayOutput: CreateGatewayOutput
+    DeleteGatewayInput: DeleteGatewayInput
+    DeleteGatewayOutput: DeleteGatewayOutput
+    DeleteHypervisorInput: DeleteHypervisorInput
+    DeleteHypervisorOutput: DeleteHypervisorOutput
+    DisassociateGatewayFromServerInput: DisassociateGatewayFromServerInput
+    DisassociateGatewayFromServerOutput: DisassociateGatewayFromServerOutput
+    GetBandwidthRateLimitScheduleInput: GetBandwidthRateLimitScheduleInput
+    GetBandwidthRateLimitScheduleOutput: GetBandwidthRateLimitScheduleOutput
+    GetGatewayInput: GetGatewayInput
+    GetGatewayOutput: GetGatewayOutput
+    GetHypervisorInput: GetHypervisorInput
+    GetHypervisorOutput: GetHypervisorOutput
+    GetHypervisorPropertyMappingsInput: GetHypervisorPropertyMappingsInput
+    GetHypervisorPropertyMappingsOutput: GetHypervisorPropertyMappingsOutput
+    GetVirtualMachineInput: GetVirtualMachineInput
+    GetVirtualMachineOutput: GetVirtualMachineOutput
+    ImportHypervisorConfigurationInput: ImportHypervisorConfigurationInput
+    ImportHypervisorConfigurationOutput: ImportHypervisorConfigurationOutput
+    ListGatewaysInput: ListGatewaysInput
+    ListGatewaysOutput: ListGatewaysOutput
+    ListHypervisorsInput: ListHypervisorsInput
+    ListHypervisorsOutput: ListHypervisorsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListVirtualMachinesInput: ListVirtualMachinesInput
+    ListVirtualMachinesOutput: ListVirtualMachinesOutput
+    PutBandwidthRateLimitScheduleInput: PutBandwidthRateLimitScheduleInput
+    PutBandwidthRateLimitScheduleOutput: PutBandwidthRateLimitScheduleOutput
+    PutHypervisorPropertyMappingsInput: PutHypervisorPropertyMappingsInput
+    PutHypervisorPropertyMappingsOutput: PutHypervisorPropertyMappingsOutput
+    PutMaintenanceStartTimeInput: PutMaintenanceStartTimeInput
+    PutMaintenanceStartTimeOutput: PutMaintenanceStartTimeOutput
+    StartVirtualMachinesMetadataSyncInput: StartVirtualMachinesMetadataSyncInput
+    StartVirtualMachinesMetadataSyncOutput: StartVirtualMachinesMetadataSyncOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    TestHypervisorConfigurationInput: TestHypervisorConfigurationInput
+    TestHypervisorConfigurationOutput: TestHypervisorConfigurationOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateGatewayInformationInput: UpdateGatewayInformationInput
+    UpdateGatewayInformationOutput: UpdateGatewayInformationOutput
+    UpdateGatewaySoftwareNowInput: UpdateGatewaySoftwareNowInput
+    UpdateGatewaySoftwareNowOutput: UpdateGatewaySoftwareNowOutput
+    UpdateHypervisorInput: UpdateHypervisorInput
+    UpdateHypervisorOutput: UpdateHypervisorOutput
+end
+
+return M

@@ -1,0 +1,722 @@
+local record CreateKeyspaceInput
+    keyspaceName: string
+    tags: {Tag}
+    replicationSpecification: ReplicationSpecification
+end
+
+local record CreateKeyspaceOutput
+    resourceArn: string
+end
+
+local record CreateTableInput
+    keyspaceName: string
+    tableName: string
+    schemaDefinition: SchemaDefinition
+    comment: Comment
+    capacitySpecification: CapacitySpecification
+    encryptionSpecification: EncryptionSpecification
+    pointInTimeRecovery: PointInTimeRecovery
+    ttl: TimeToLive
+    defaultTimeToLive: number
+    tags: {Tag}
+    clientSideTimestamps: ClientSideTimestamps
+    autoScalingSpecification: AutoScalingSpecification
+    replicaSpecifications: {ReplicaSpecification}
+    cdcSpecification: CdcSpecification
+    warmThroughputSpecification: WarmThroughputSpecification
+end
+
+local record CreateTableOutput
+    resourceArn: string
+end
+
+local record CreateTypeInput
+    keyspaceName: string
+    typeName: string
+    fieldDefinitions: {FieldDefinition}
+end
+
+local record CreateTypeOutput
+    keyspaceArn: string
+    typeName: string
+end
+
+local record DeleteKeyspaceInput
+    keyspaceName: string
+end
+
+local record DeleteKeyspaceOutput
+end
+
+local record DeleteTableInput
+    keyspaceName: string
+    tableName: string
+end
+
+local record DeleteTableOutput
+end
+
+local record DeleteTypeInput
+    keyspaceName: string
+    typeName: string
+end
+
+local record DeleteTypeOutput
+    keyspaceArn: string
+    typeName: string
+end
+
+local record GetKeyspaceInput
+    keyspaceName: string
+end
+
+local record GetKeyspaceOutput
+    keyspaceName: string
+    resourceArn: string
+    replicationStrategy: string
+    replicationRegions: {string}
+    replicationGroupStatuses: {ReplicationGroupStatus}
+end
+
+local record GetTableInput
+    keyspaceName: string
+    tableName: string
+end
+
+local record GetTableOutput
+    keyspaceName: string
+    tableName: string
+    resourceArn: string
+    creationTimestamp: number
+    status: string
+    schemaDefinition: SchemaDefinition
+    capacitySpecification: CapacitySpecificationSummary
+    encryptionSpecification: EncryptionSpecification
+    pointInTimeRecovery: PointInTimeRecoverySummary
+    ttl: TimeToLive
+    defaultTimeToLive: number
+    comment: Comment
+    clientSideTimestamps: ClientSideTimestamps
+    replicaSpecifications: {ReplicaSpecificationSummary}
+    latestStreamArn: string
+    cdcSpecification: CdcSpecificationSummary
+    warmThroughputSpecification: WarmThroughputSpecificationSummary
+end
+
+local record GetTableAutoScalingSettingsInput
+    keyspaceName: string
+    tableName: string
+end
+
+local record GetTableAutoScalingSettingsOutput
+    keyspaceName: string
+    tableName: string
+    resourceArn: string
+    autoScalingSpecification: AutoScalingSpecification
+    replicaSpecifications: {ReplicaAutoScalingSpecification}
+end
+
+local record GetTypeInput
+    keyspaceName: string
+    typeName: string
+end
+
+local record GetTypeOutput
+    keyspaceName: string
+    typeName: string
+    fieldDefinitions: {FieldDefinition}
+    lastModifiedTimestamp: number
+    status: string
+    directReferringTables: {string}
+    directParentTypes: {string}
+    maxNestingDepth: number
+    keyspaceArn: string
+end
+
+local record ListKeyspacesInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListKeyspacesOutput
+    nextToken: string
+    keyspaces: {KeyspaceSummary}
+end
+
+local record ListTablesInput
+    nextToken: string
+    maxResults: number
+    keyspaceName: string
+end
+
+local record ListTablesOutput
+    nextToken: string
+    tables: {TableSummary}
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListTagsForResourceOutput
+    nextToken: string
+    tags: {Tag}
+end
+
+local record ListTypesInput
+    nextToken: string
+    maxResults: number
+    keyspaceName: string
+end
+
+local record ListTypesOutput
+    nextToken: string
+    types: {string}
+end
+
+local record RestoreTableInput
+    sourceKeyspaceName: string
+    sourceTableName: string
+    targetKeyspaceName: string
+    targetTableName: string
+    restoreTimestamp: number
+    capacitySpecificationOverride: CapacitySpecification
+    encryptionSpecificationOverride: EncryptionSpecification
+    pointInTimeRecoveryOverride: PointInTimeRecovery
+    tagsOverride: {Tag}
+    autoScalingSpecification: AutoScalingSpecification
+    replicaSpecifications: {ReplicaSpecification}
+end
+
+local record RestoreTableOutput
+    restoredTableARN: string
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tags: {Tag}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateKeyspaceInput
+    keyspaceName: string
+    replicationSpecification: ReplicationSpecification
+    clientSideTimestamps: ClientSideTimestamps
+end
+
+local record UpdateKeyspaceOutput
+    resourceArn: string
+end
+
+local record UpdateTableInput
+    keyspaceName: string
+    tableName: string
+    addColumns: {ColumnDefinition}
+    capacitySpecification: CapacitySpecification
+    encryptionSpecification: EncryptionSpecification
+    pointInTimeRecovery: PointInTimeRecovery
+    ttl: TimeToLive
+    defaultTimeToLive: number
+    clientSideTimestamps: ClientSideTimestamps
+    autoScalingSpecification: AutoScalingSpecification
+    replicaSpecifications: {ReplicaSpecification}
+    cdcSpecification: CdcSpecification
+    warmThroughputSpecification: WarmThroughputSpecification
+end
+
+local record UpdateTableOutput
+    resourceArn: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceArn: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    CreateKeyspaceInput: CreateKeyspaceInput
+    CreateKeyspaceOutput: CreateKeyspaceOutput
+    CreateTableInput: CreateTableInput
+    CreateTableOutput: CreateTableOutput
+    CreateTypeInput: CreateTypeInput
+    CreateTypeOutput: CreateTypeOutput
+    DeleteKeyspaceInput: DeleteKeyspaceInput
+    DeleteKeyspaceOutput: DeleteKeyspaceOutput
+    DeleteTableInput: DeleteTableInput
+    DeleteTableOutput: DeleteTableOutput
+    DeleteTypeInput: DeleteTypeInput
+    DeleteTypeOutput: DeleteTypeOutput
+    GetKeyspaceInput: GetKeyspaceInput
+    GetKeyspaceOutput: GetKeyspaceOutput
+    GetTableInput: GetTableInput
+    GetTableOutput: GetTableOutput
+    GetTableAutoScalingSettingsInput: GetTableAutoScalingSettingsInput
+    GetTableAutoScalingSettingsOutput: GetTableAutoScalingSettingsOutput
+    GetTypeInput: GetTypeInput
+    GetTypeOutput: GetTypeOutput
+    ListKeyspacesInput: ListKeyspacesInput
+    ListKeyspacesOutput: ListKeyspacesOutput
+    ListTablesInput: ListTablesInput
+    ListTablesOutput: ListTablesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListTypesInput: ListTypesInput
+    ListTypesOutput: ListTypesOutput
+    RestoreTableInput: RestoreTableInput
+    RestoreTableOutput: RestoreTableOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateKeyspaceInput: UpdateKeyspaceInput
+    UpdateKeyspaceOutput: UpdateKeyspaceOutput
+    UpdateTableInput: UpdateTableInput
+    UpdateTableOutput: UpdateTableOutput
+end
+
+return M

@@ -1,0 +1,47 @@
+local types = require("m2.types")
+
+local record Client
+    cancelBatchJobExecution: function(Client, types.CancelBatchJobExecutionInput): types.CancelBatchJobExecutionOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createDataSetExportTask: function(Client, types.CreateDataSetExportTaskInput): types.CreateDataSetExportTaskOutput, table
+    createDataSetImportTask: function(Client, types.CreateDataSetImportTaskInput): types.CreateDataSetImportTaskOutput, table
+    createDeployment: function(Client, types.CreateDeploymentInput): types.CreateDeploymentOutput, table
+    createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    deleteApplicationFromEnvironment: function(Client, types.DeleteApplicationFromEnvironmentInput): types.DeleteApplicationFromEnvironmentOutput, table
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    getApplicationVersion: function(Client, types.GetApplicationVersionInput): types.GetApplicationVersionOutput, table
+    getBatchJobExecution: function(Client, types.GetBatchJobExecutionInput): types.GetBatchJobExecutionOutput, table
+    getDataSetDetails: function(Client, types.GetDataSetDetailsInput): types.GetDataSetDetailsOutput, table
+    getDataSetExportTask: function(Client, types.GetDataSetExportTaskInput): types.GetDataSetExportTaskOutput, table
+    getDataSetImportTask: function(Client, types.GetDataSetImportTaskInput): types.GetDataSetImportTaskOutput, table
+    getDeployment: function(Client, types.GetDeploymentInput): types.GetDeploymentOutput, table
+    getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    getSignedBluinsightsUrl: function(Client, types.GetSignedBluinsightsUrlInput): types.GetSignedBluinsightsUrlOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listApplicationVersions: function(Client, types.ListApplicationVersionsInput): types.ListApplicationVersionsOutput, table
+    listBatchJobDefinitions: function(Client, types.ListBatchJobDefinitionsInput): types.ListBatchJobDefinitionsOutput, table
+    listBatchJobExecutions: function(Client, types.ListBatchJobExecutionsInput): types.ListBatchJobExecutionsOutput, table
+    listBatchJobRestartPoints: function(Client, types.ListBatchJobRestartPointsInput): types.ListBatchJobRestartPointsOutput, table
+    listDataSetExportHistory: function(Client, types.ListDataSetExportHistoryInput): types.ListDataSetExportHistoryOutput, table
+    listDataSetImportHistory: function(Client, types.ListDataSetImportHistoryInput): types.ListDataSetImportHistoryOutput, table
+    listDataSets: function(Client, types.ListDataSetsInput): types.ListDataSetsOutput, table
+    listDeployments: function(Client, types.ListDeploymentsInput): types.ListDeploymentsOutput, table
+    listEngineVersions: function(Client, types.ListEngineVersionsInput): types.ListEngineVersionsOutput, table
+    listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    startApplication: function(Client, types.StartApplicationInput): types.StartApplicationOutput, table
+    startBatchJob: function(Client, types.StartBatchJobInput): types.StartBatchJobOutput, table
+    stopApplication: function(Client, types.StopApplicationInput): types.StopApplicationOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput): types.UpdateEnvironmentOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

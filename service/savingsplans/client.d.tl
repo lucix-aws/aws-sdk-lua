@@ -1,0 +1,20 @@
+local types = require("savingsplans.types")
+
+local record Client
+    createSavingsPlan: function(Client, types.CreateSavingsPlanInput): types.CreateSavingsPlanOutput, table
+    deleteQueuedSavingsPlan: function(Client, types.DeleteQueuedSavingsPlanInput): types.DeleteQueuedSavingsPlanOutput, table
+    describeSavingsPlanRates: function(Client, types.DescribeSavingsPlanRatesInput): types.DescribeSavingsPlanRatesOutput, table
+    describeSavingsPlans: function(Client, types.DescribeSavingsPlansInput): types.DescribeSavingsPlansOutput, table
+    describeSavingsPlansOfferingRates: function(Client, types.DescribeSavingsPlansOfferingRatesInput): types.DescribeSavingsPlansOfferingRatesOutput, table
+    describeSavingsPlansOfferings: function(Client, types.DescribeSavingsPlansOfferingsInput): types.DescribeSavingsPlansOfferingsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    returnSavingsPlan: function(Client, types.ReturnSavingsPlanInput): types.ReturnSavingsPlanOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

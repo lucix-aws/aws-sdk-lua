@@ -1,0 +1,871 @@
+local record BuildSuggestersInput
+    DomainName: string
+end
+
+local record BuildSuggestersOutput
+    FieldNames: {string}
+end
+
+local record CreateDomainInput
+    DomainName: string
+end
+
+local record CreateDomainOutput
+    DomainStatus: DomainStatus
+end
+
+local record DefineAnalysisSchemeInput
+    DomainName: string
+    AnalysisScheme: AnalysisScheme
+end
+
+local record DefineAnalysisSchemeOutput
+    AnalysisScheme: AnalysisSchemeStatus
+end
+
+local record DefineExpressionInput
+    DomainName: string
+    Expression: Expression
+end
+
+local record DefineExpressionOutput
+    Expression: ExpressionStatus
+end
+
+local record DefineIndexFieldInput
+    DomainName: string
+    IndexField: IndexField
+end
+
+local record DefineIndexFieldOutput
+    IndexField: IndexFieldStatus
+end
+
+local record DefineSuggesterInput
+    DomainName: string
+    Suggester: Suggester
+end
+
+local record DefineSuggesterOutput
+    Suggester: SuggesterStatus
+end
+
+local record DeleteAnalysisSchemeInput
+    DomainName: string
+    AnalysisSchemeName: string
+end
+
+local record DeleteAnalysisSchemeOutput
+    AnalysisScheme: AnalysisSchemeStatus
+end
+
+local record DeleteDomainInput
+    DomainName: string
+end
+
+local record DeleteDomainOutput
+    DomainStatus: DomainStatus
+end
+
+local record DeleteExpressionInput
+    DomainName: string
+    ExpressionName: string
+end
+
+local record DeleteExpressionOutput
+    Expression: ExpressionStatus
+end
+
+local record DeleteIndexFieldInput
+    DomainName: string
+    IndexFieldName: string
+end
+
+local record DeleteIndexFieldOutput
+    IndexField: IndexFieldStatus
+end
+
+local record DeleteSuggesterInput
+    DomainName: string
+    SuggesterName: string
+end
+
+local record DeleteSuggesterOutput
+    Suggester: SuggesterStatus
+end
+
+local record DescribeAnalysisSchemesInput
+    DomainName: string
+    AnalysisSchemeNames: {string}
+    Deployed: boolean
+end
+
+local record DescribeAnalysisSchemesOutput
+    AnalysisSchemes: {AnalysisSchemeStatus}
+end
+
+local record DescribeAvailabilityOptionsInput
+    DomainName: string
+    Deployed: boolean
+end
+
+local record DescribeAvailabilityOptionsOutput
+    AvailabilityOptions: AvailabilityOptionsStatus
+end
+
+local record DescribeDomainEndpointOptionsInput
+    DomainName: string
+    Deployed: boolean
+end
+
+local record DescribeDomainEndpointOptionsOutput
+    DomainEndpointOptions: DomainEndpointOptionsStatus
+end
+
+local record DescribeDomainsInput
+    DomainNames: {string}
+end
+
+local record DescribeDomainsOutput
+    DomainStatusList: {DomainStatus}
+end
+
+local record DescribeExpressionsInput
+    DomainName: string
+    ExpressionNames: {string}
+    Deployed: boolean
+end
+
+local record DescribeExpressionsOutput
+    Expressions: {ExpressionStatus}
+end
+
+local record DescribeIndexFieldsInput
+    DomainName: string
+    FieldNames: {string}
+    Deployed: boolean
+end
+
+local record DescribeIndexFieldsOutput
+    IndexFields: {IndexFieldStatus}
+end
+
+local record DescribeScalingParametersInput
+    DomainName: string
+end
+
+local record DescribeScalingParametersOutput
+    ScalingParameters: ScalingParametersStatus
+end
+
+local record DescribeServiceAccessPoliciesInput
+    DomainName: string
+    Deployed: boolean
+end
+
+local record DescribeServiceAccessPoliciesOutput
+    AccessPolicies: AccessPoliciesStatus
+end
+
+local record DescribeSuggestersInput
+    DomainName: string
+    SuggesterNames: {string}
+    Deployed: boolean
+end
+
+local record DescribeSuggestersOutput
+    Suggesters: {SuggesterStatus}
+end
+
+local record IndexDocumentsInput
+    DomainName: string
+end
+
+local record IndexDocumentsOutput
+    FieldNames: {string}
+end
+
+local record ListDomainNamesInput
+end
+
+local record ListDomainNamesOutput
+    DomainNames: {string : string}
+end
+
+local record UpdateAvailabilityOptionsInput
+    DomainName: string
+    MultiAZ: boolean
+end
+
+local record UpdateAvailabilityOptionsOutput
+    AvailabilityOptions: AvailabilityOptionsStatus
+end
+
+local record UpdateDomainEndpointOptionsInput
+    DomainName: string
+    DomainEndpointOptions: DomainEndpointOptions
+end
+
+local record UpdateDomainEndpointOptionsOutput
+    DomainEndpointOptions: DomainEndpointOptionsStatus
+end
+
+local record UpdateScalingParametersInput
+    DomainName: string
+    ScalingParameters: ScalingParameters
+end
+
+local record UpdateScalingParametersOutput
+    ScalingParameters: ScalingParametersStatus
+end
+
+local record UpdateServiceAccessPoliciesInput
+    DomainName: string
+    AccessPolicies: string
+end
+
+local record UpdateServiceAccessPoliciesOutput
+    AccessPolicies: AccessPoliciesStatus
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record ValidationException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record LimitExceededException
+    Code: string
+    Message: string
+end
+
+local record ResourceAlreadyExistsException
+    Code: string
+    Message: string
+end
+
+local record ValidationException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record InvalidTypeException
+    Code: string
+    Message: string
+end
+
+local record LimitExceededException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record ValidationException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record InvalidTypeException
+    Code: string
+    Message: string
+end
+
+local record LimitExceededException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record ValidationException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record InvalidTypeException
+    Code: string
+    Message: string
+end
+
+local record LimitExceededException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record ValidationException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record InvalidTypeException
+    Code: string
+    Message: string
+end
+
+local record LimitExceededException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record ValidationException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record InvalidTypeException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record ValidationException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record InvalidTypeException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record ValidationException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record InvalidTypeException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record ValidationException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record InvalidTypeException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record ValidationException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record DisabledOperationException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record InvalidTypeException
+    Code: string
+    Message: string
+end
+
+local record LimitExceededException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record DisabledOperationException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record LimitExceededException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record ValidationException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record DisabledOperationException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record InvalidTypeException
+    Code: string
+    Message: string
+end
+
+local record LimitExceededException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record ValidationException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record DisabledOperationException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record InvalidTypeException
+    Code: string
+    Message: string
+end
+
+local record LimitExceededException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record ValidationException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record InvalidTypeException
+    Code: string
+    Message: string
+end
+
+local record LimitExceededException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record ValidationException
+    Code: string
+    Message: string
+end
+
+local record BaseException
+    Code: string
+    Message: string
+end
+
+local record InternalException
+    Code: string
+    Message: string
+end
+
+local record InvalidTypeException
+    Code: string
+    Message: string
+end
+
+local record LimitExceededException
+    Code: string
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Code: string
+    Message: string
+end
+
+local record ValidationException
+    Code: string
+    Message: string
+end
+
+local record M
+    BuildSuggestersInput: BuildSuggestersInput
+    BuildSuggestersOutput: BuildSuggestersOutput
+    CreateDomainInput: CreateDomainInput
+    CreateDomainOutput: CreateDomainOutput
+    DefineAnalysisSchemeInput: DefineAnalysisSchemeInput
+    DefineAnalysisSchemeOutput: DefineAnalysisSchemeOutput
+    DefineExpressionInput: DefineExpressionInput
+    DefineExpressionOutput: DefineExpressionOutput
+    DefineIndexFieldInput: DefineIndexFieldInput
+    DefineIndexFieldOutput: DefineIndexFieldOutput
+    DefineSuggesterInput: DefineSuggesterInput
+    DefineSuggesterOutput: DefineSuggesterOutput
+    DeleteAnalysisSchemeInput: DeleteAnalysisSchemeInput
+    DeleteAnalysisSchemeOutput: DeleteAnalysisSchemeOutput
+    DeleteDomainInput: DeleteDomainInput
+    DeleteDomainOutput: DeleteDomainOutput
+    DeleteExpressionInput: DeleteExpressionInput
+    DeleteExpressionOutput: DeleteExpressionOutput
+    DeleteIndexFieldInput: DeleteIndexFieldInput
+    DeleteIndexFieldOutput: DeleteIndexFieldOutput
+    DeleteSuggesterInput: DeleteSuggesterInput
+    DeleteSuggesterOutput: DeleteSuggesterOutput
+    DescribeAnalysisSchemesInput: DescribeAnalysisSchemesInput
+    DescribeAnalysisSchemesOutput: DescribeAnalysisSchemesOutput
+    DescribeAvailabilityOptionsInput: DescribeAvailabilityOptionsInput
+    DescribeAvailabilityOptionsOutput: DescribeAvailabilityOptionsOutput
+    DescribeDomainEndpointOptionsInput: DescribeDomainEndpointOptionsInput
+    DescribeDomainEndpointOptionsOutput: DescribeDomainEndpointOptionsOutput
+    DescribeDomainsInput: DescribeDomainsInput
+    DescribeDomainsOutput: DescribeDomainsOutput
+    DescribeExpressionsInput: DescribeExpressionsInput
+    DescribeExpressionsOutput: DescribeExpressionsOutput
+    DescribeIndexFieldsInput: DescribeIndexFieldsInput
+    DescribeIndexFieldsOutput: DescribeIndexFieldsOutput
+    DescribeScalingParametersInput: DescribeScalingParametersInput
+    DescribeScalingParametersOutput: DescribeScalingParametersOutput
+    DescribeServiceAccessPoliciesInput: DescribeServiceAccessPoliciesInput
+    DescribeServiceAccessPoliciesOutput: DescribeServiceAccessPoliciesOutput
+    DescribeSuggestersInput: DescribeSuggestersInput
+    DescribeSuggestersOutput: DescribeSuggestersOutput
+    IndexDocumentsInput: IndexDocumentsInput
+    IndexDocumentsOutput: IndexDocumentsOutput
+    ListDomainNamesInput: ListDomainNamesInput
+    ListDomainNamesOutput: ListDomainNamesOutput
+    UpdateAvailabilityOptionsInput: UpdateAvailabilityOptionsInput
+    UpdateAvailabilityOptionsOutput: UpdateAvailabilityOptionsOutput
+    UpdateDomainEndpointOptionsInput: UpdateDomainEndpointOptionsInput
+    UpdateDomainEndpointOptionsOutput: UpdateDomainEndpointOptionsOutput
+    UpdateScalingParametersInput: UpdateScalingParametersInput
+    UpdateScalingParametersOutput: UpdateScalingParametersOutput
+    UpdateServiceAccessPoliciesInput: UpdateServiceAccessPoliciesInput
+    UpdateServiceAccessPoliciesOutput: UpdateServiceAccessPoliciesOutput
+end
+
+return M

@@ -1,0 +1,21 @@
+local types = require("sts.types")
+
+local record Client
+    assumeRole: function(Client, types.AssumeRoleInput): types.AssumeRoleOutput, table
+    assumeRoleWithSAML: function(Client, types.AssumeRoleWithSAMLInput): types.AssumeRoleWithSAMLOutput, table
+    assumeRoleWithWebIdentity: function(Client, types.AssumeRoleWithWebIdentityInput): types.AssumeRoleWithWebIdentityOutput, table
+    assumeRoot: function(Client, types.AssumeRootInput): types.AssumeRootOutput, table
+    decodeAuthorizationMessage: function(Client, types.DecodeAuthorizationMessageInput): types.DecodeAuthorizationMessageOutput, table
+    getAccessKeyInfo: function(Client, types.GetAccessKeyInfoInput): types.GetAccessKeyInfoOutput, table
+    getCallerIdentity: function(Client, types.GetCallerIdentityInput): types.GetCallerIdentityOutput, table
+    getDelegatedAccessToken: function(Client, types.GetDelegatedAccessTokenInput): types.GetDelegatedAccessTokenOutput, table
+    getFederationToken: function(Client, types.GetFederationTokenInput): types.GetFederationTokenOutput, table
+    getSessionToken: function(Client, types.GetSessionTokenInput): types.GetSessionTokenOutput, table
+    getWebIdentityToken: function(Client, types.GetWebIdentityTokenInput): types.GetWebIdentityTokenOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

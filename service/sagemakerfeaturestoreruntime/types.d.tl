@@ -1,0 +1,128 @@
+local record BatchGetRecordInput
+    Identifiers: {BatchGetRecordIdentifier}
+    ExpirationTimeResponse: string
+end
+
+local record BatchGetRecordOutput
+    Records: {BatchGetRecordResultDetail}
+    Errors: {BatchGetRecordError}
+    UnprocessedIdentifiers: {BatchGetRecordIdentifier}
+end
+
+local record DeleteRecordInput
+    FeatureGroupName: string
+    RecordIdentifierValueAsString: string
+    EventTime: string
+    TargetStores: {string}
+    DeletionMode: string
+end
+
+local record DeleteRecordOutput
+end
+
+local record GetRecordInput
+    FeatureGroupName: string
+    RecordIdentifierValueAsString: string
+    FeatureNames: {string}
+    ExpirationTimeResponse: string
+end
+
+local record GetRecordOutput
+    Record: {FeatureValue}
+    ExpiresAt: string
+end
+
+local record PutRecordInput
+    FeatureGroupName: string
+    Record: {FeatureValue}
+    TargetStores: {string}
+    TtlDuration: TtlDuration
+end
+
+local record PutRecordOutput
+end
+
+local record AccessForbidden
+    Message: string
+end
+
+local record InternalFailure
+    Message: string
+end
+
+local record ServiceUnavailable
+    Message: string
+end
+
+local record ValidationError
+    Message: string
+end
+
+local record AccessForbidden
+    Message: string
+end
+
+local record InternalFailure
+    Message: string
+end
+
+local record ServiceUnavailable
+    Message: string
+end
+
+local record ValidationError
+    Message: string
+end
+
+local record AccessForbidden
+    Message: string
+end
+
+local record InternalFailure
+    Message: string
+end
+
+local record ResourceNotFound
+    Message: string
+end
+
+local record ServiceUnavailable
+    Message: string
+end
+
+local record ValidationError
+    Message: string
+end
+
+local record AccessForbidden
+    Message: string
+end
+
+local record InternalFailure
+    Message: string
+end
+
+local record ServiceUnavailable
+    Message: string
+end
+
+local record ValidationError
+    Message: string
+end
+
+local type ExpirationTimeResponse = "Enabled" | "Disabled"
+
+local type DeletionMode = "SoftDelete" | "HardDelete"
+
+local record M
+    BatchGetRecordInput: BatchGetRecordInput
+    BatchGetRecordOutput: BatchGetRecordOutput
+    DeleteRecordInput: DeleteRecordInput
+    DeleteRecordOutput: DeleteRecordOutput
+    GetRecordInput: GetRecordInput
+    GetRecordOutput: GetRecordOutput
+    PutRecordInput: PutRecordInput
+    PutRecordOutput: PutRecordOutput
+end
+
+return M

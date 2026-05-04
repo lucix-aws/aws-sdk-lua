@@ -1,0 +1,277 @@
+local record CreateLifecyclePolicyInput
+    ExecutionRoleArn: string
+    Description: string
+    State: string
+    PolicyDetails: PolicyDetails
+    Tags: {string : string}
+    DefaultPolicy: string
+    CreateInterval: number
+    RetainInterval: number
+    CopyTags: boolean
+    ExtendDeletion: boolean
+    CrossRegionCopyTargets: {CrossRegionCopyTarget}
+    Exclusions: Exclusions
+end
+
+local record CreateLifecyclePolicyOutput
+    PolicyId: string
+end
+
+local record DeleteLifecyclePolicyInput
+    PolicyId: string
+end
+
+local record DeleteLifecyclePolicyOutput
+end
+
+local record GetLifecyclePoliciesInput
+    PolicyIds: {string}
+    State: string
+    ResourceTypes: {string}
+    TargetTags: {string}
+    TagsToAdd: {string}
+    DefaultPolicyType: string
+end
+
+local record GetLifecyclePoliciesOutput
+    Policies: {LifecyclePolicySummary}
+end
+
+local record GetLifecyclePolicyInput
+    PolicyId: string
+end
+
+local record GetLifecyclePolicyOutput
+    Policy: LifecyclePolicy
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {string : string}
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateLifecyclePolicyInput
+    PolicyId: string
+    ExecutionRoleArn: string
+    State: string
+    Description: string
+    PolicyDetails: PolicyDetails
+    CreateInterval: number
+    RetainInterval: number
+    CopyTags: boolean
+    ExtendDeletion: boolean
+    CrossRegionCopyTargets: {CrossRegionCopyTarget}
+    Exclusions: Exclusions
+end
+
+local record UpdateLifecyclePolicyOutput
+end
+
+local record InternalServerException
+    Message: string
+    Code: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Code: string
+    RequiredParameters: {string}
+    MutuallyExclusiveParameters: {string}
+end
+
+local record LimitExceededException
+    Message: string
+    Code: string
+    ResourceType: string
+end
+
+local record InternalServerException
+    Message: string
+    Code: string
+end
+
+local record LimitExceededException
+    Message: string
+    Code: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    Code: string
+    ResourceType: string
+    ResourceIds: {string}
+end
+
+local record InternalServerException
+    Message: string
+    Code: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Code: string
+    RequiredParameters: {string}
+    MutuallyExclusiveParameters: {string}
+end
+
+local record LimitExceededException
+    Message: string
+    Code: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    Code: string
+    ResourceType: string
+    ResourceIds: {string}
+end
+
+local record InternalServerException
+    Message: string
+    Code: string
+end
+
+local record LimitExceededException
+    Message: string
+    Code: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    Code: string
+    ResourceType: string
+    ResourceIds: {string}
+end
+
+local record InternalServerException
+    Message: string
+    Code: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Code: string
+    RequiredParameters: {string}
+    MutuallyExclusiveParameters: {string}
+end
+
+local record ResourceNotFoundException
+    Message: string
+    Code: string
+    ResourceType: string
+    ResourceIds: {string}
+end
+
+local record InternalServerException
+    Message: string
+    Code: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Code: string
+    RequiredParameters: {string}
+    MutuallyExclusiveParameters: {string}
+end
+
+local record ResourceNotFoundException
+    Message: string
+    Code: string
+    ResourceType: string
+    ResourceIds: {string}
+end
+
+local record InternalServerException
+    Message: string
+    Code: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Code: string
+    RequiredParameters: {string}
+    MutuallyExclusiveParameters: {string}
+end
+
+local record ResourceNotFoundException
+    Message: string
+    Code: string
+    ResourceType: string
+    ResourceIds: {string}
+end
+
+local record InternalServerException
+    Message: string
+    Code: string
+end
+
+local record InvalidRequestException
+    Message: string
+    Code: string
+    RequiredParameters: {string}
+    MutuallyExclusiveParameters: {string}
+end
+
+local record LimitExceededException
+    Message: string
+    Code: string
+    ResourceType: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    Code: string
+    ResourceType: string
+    ResourceIds: {string}
+end
+
+local type DefaultPoliciesTypeValues = "VOLUME" | "INSTANCE" | "ALL"
+
+local type GettablePolicyStateValues = "ENABLED" | "DISABLED" | "ERROR"
+
+local type DefaultPolicyTypeValues = "VOLUME" | "INSTANCE"
+
+local type SettablePolicyStateValues = "ENABLED" | "DISABLED"
+
+local record M
+    CreateLifecyclePolicyInput: CreateLifecyclePolicyInput
+    CreateLifecyclePolicyOutput: CreateLifecyclePolicyOutput
+    DeleteLifecyclePolicyInput: DeleteLifecyclePolicyInput
+    DeleteLifecyclePolicyOutput: DeleteLifecyclePolicyOutput
+    GetLifecyclePoliciesInput: GetLifecyclePoliciesInput
+    GetLifecyclePoliciesOutput: GetLifecyclePoliciesOutput
+    GetLifecyclePolicyInput: GetLifecyclePolicyInput
+    GetLifecyclePolicyOutput: GetLifecyclePolicyOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateLifecyclePolicyInput: UpdateLifecyclePolicyInput
+    UpdateLifecyclePolicyOutput: UpdateLifecyclePolicyOutput
+end
+
+return M

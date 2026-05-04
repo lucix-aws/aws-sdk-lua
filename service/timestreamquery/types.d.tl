@@ -1,0 +1,508 @@
+local record CancelQueryInput
+    QueryId: string
+end
+
+local record CancelQueryOutput
+    CancellationMessage: string
+end
+
+local record CreateScheduledQueryInput
+    Name: string
+    QueryString: string
+    ScheduleConfiguration: ScheduleConfiguration
+    NotificationConfiguration: NotificationConfiguration
+    TargetConfiguration: TargetConfiguration
+    ClientToken: string
+    ScheduledQueryExecutionRoleArn: string
+    Tags: {Tag}
+    KmsKeyId: string
+    ErrorReportConfiguration: ErrorReportConfiguration
+end
+
+local record CreateScheduledQueryOutput
+    Arn: string
+end
+
+local record DeleteScheduledQueryInput
+    ScheduledQueryArn: string
+end
+
+local record DeleteScheduledQueryOutput
+end
+
+local record DescribeAccountSettingsInput
+end
+
+local record DescribeAccountSettingsOutput
+    MaxQueryTCU: number
+    QueryPricingModel: string
+    QueryCompute: QueryComputeResponse
+end
+
+local record DescribeEndpointsInput
+end
+
+local record DescribeEndpointsOutput
+    Endpoints: {Endpoint}
+end
+
+local record DescribeScheduledQueryInput
+    ScheduledQueryArn: string
+end
+
+local record DescribeScheduledQueryOutput
+    ScheduledQuery: ScheduledQueryDescription
+end
+
+local record ExecuteScheduledQueryInput
+    ScheduledQueryArn: string
+    InvocationTime: number
+    ClientToken: string
+    QueryInsights: ScheduledQueryInsights
+end
+
+local record ExecuteScheduledQueryOutput
+end
+
+local record ListScheduledQueriesInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListScheduledQueriesOutput
+    ScheduledQueries: {ScheduledQuery}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceARN: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+    NextToken: string
+end
+
+local record PrepareQueryInput
+    QueryString: string
+    ValidateOnly: boolean
+end
+
+local record PrepareQueryOutput
+    QueryString: string
+    Columns: {SelectColumn}
+    Parameters: {ParameterMapping}
+end
+
+local record QueryInput
+    QueryString: string
+    ClientToken: string
+    NextToken: string
+    MaxRows: number
+    QueryInsights: QueryInsights
+end
+
+local record QueryOutput
+    QueryId: string
+    NextToken: string
+    Rows: {Row}
+    ColumnInfo: {ColumnInfo}
+    QueryStatus: QueryStatus
+    QueryInsightsResponse: QueryInsightsResponse
+end
+
+local record TagResourceInput
+    ResourceARN: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceARN: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateAccountSettingsInput
+    MaxQueryTCU: number
+    QueryPricingModel: string
+    QueryCompute: QueryComputeRequest
+end
+
+local record UpdateAccountSettingsOutput
+    MaxQueryTCU: number
+    QueryPricingModel: string
+    QueryCompute: QueryComputeResponse
+end
+
+local record UpdateScheduledQueryInput
+    ScheduledQueryArn: string
+    State: string
+end
+
+local record UpdateScheduledQueryOutput
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ScheduledQueryArn: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ScheduledQueryArn: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ScheduledQueryArn: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ScheduledQueryArn: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record QueryExecutionException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ScheduledQueryArn: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ScheduledQueryArn: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record InvalidEndpointException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+    ScheduledQueryArn: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local type ScheduledQueryState = "ENABLED" | "DISABLED"
+
+local type QueryPricingModel = "BYTES_SCANNED" | "COMPUTE_UNITS"
+
+local record M
+    CancelQueryInput: CancelQueryInput
+    CancelQueryOutput: CancelQueryOutput
+    CreateScheduledQueryInput: CreateScheduledQueryInput
+    CreateScheduledQueryOutput: CreateScheduledQueryOutput
+    DeleteScheduledQueryInput: DeleteScheduledQueryInput
+    DeleteScheduledQueryOutput: DeleteScheduledQueryOutput
+    DescribeAccountSettingsInput: DescribeAccountSettingsInput
+    DescribeAccountSettingsOutput: DescribeAccountSettingsOutput
+    DescribeEndpointsInput: DescribeEndpointsInput
+    DescribeEndpointsOutput: DescribeEndpointsOutput
+    DescribeScheduledQueryInput: DescribeScheduledQueryInput
+    DescribeScheduledQueryOutput: DescribeScheduledQueryOutput
+    ExecuteScheduledQueryInput: ExecuteScheduledQueryInput
+    ExecuteScheduledQueryOutput: ExecuteScheduledQueryOutput
+    ListScheduledQueriesInput: ListScheduledQueriesInput
+    ListScheduledQueriesOutput: ListScheduledQueriesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PrepareQueryInput: PrepareQueryInput
+    PrepareQueryOutput: PrepareQueryOutput
+    QueryInput: QueryInput
+    QueryOutput: QueryOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateAccountSettingsInput: UpdateAccountSettingsInput
+    UpdateAccountSettingsOutput: UpdateAccountSettingsOutput
+    UpdateScheduledQueryInput: UpdateScheduledQueryInput
+    UpdateScheduledQueryOutput: UpdateScheduledQueryOutput
+end
+
+return M

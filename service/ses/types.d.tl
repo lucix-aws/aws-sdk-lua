@@ -1,0 +1,1288 @@
+local record CloneReceiptRuleSetInput
+    RuleSetName: string
+    OriginalRuleSetName: string
+end
+
+local record CloneReceiptRuleSetOutput
+end
+
+local record CreateConfigurationSetInput
+    ConfigurationSet: ConfigurationSet
+end
+
+local record CreateConfigurationSetOutput
+end
+
+local record CreateConfigurationSetEventDestinationInput
+    ConfigurationSetName: string
+    EventDestination: EventDestination
+end
+
+local record CreateConfigurationSetEventDestinationOutput
+end
+
+local record CreateConfigurationSetTrackingOptionsInput
+    ConfigurationSetName: string
+    TrackingOptions: TrackingOptions
+end
+
+local record CreateConfigurationSetTrackingOptionsOutput
+end
+
+local record CreateCustomVerificationEmailTemplateInput
+    TemplateName: string
+    FromEmailAddress: string
+    TemplateSubject: string
+    TemplateContent: string
+    SuccessRedirectionURL: string
+    FailureRedirectionURL: string
+end
+
+local record CreateCustomVerificationEmailTemplateOutput
+end
+
+local record CreateReceiptFilterInput
+    Filter: ReceiptFilter
+end
+
+local record CreateReceiptFilterOutput
+end
+
+local record CreateReceiptRuleInput
+    RuleSetName: string
+    After: string
+    Rule: ReceiptRule
+end
+
+local record CreateReceiptRuleOutput
+end
+
+local record CreateReceiptRuleSetInput
+    RuleSetName: string
+end
+
+local record CreateReceiptRuleSetOutput
+end
+
+local record CreateTemplateInput
+    Template: Template
+end
+
+local record CreateTemplateOutput
+end
+
+local record DeleteConfigurationSetInput
+    ConfigurationSetName: string
+end
+
+local record DeleteConfigurationSetOutput
+end
+
+local record DeleteConfigurationSetEventDestinationInput
+    ConfigurationSetName: string
+    EventDestinationName: string
+end
+
+local record DeleteConfigurationSetEventDestinationOutput
+end
+
+local record DeleteConfigurationSetTrackingOptionsInput
+    ConfigurationSetName: string
+end
+
+local record DeleteConfigurationSetTrackingOptionsOutput
+end
+
+local record DeleteCustomVerificationEmailTemplateInput
+    TemplateName: string
+end
+
+local record DeleteCustomVerificationEmailTemplateOutput
+end
+
+local record DeleteIdentityInput
+    Identity: string
+end
+
+local record DeleteIdentityOutput
+end
+
+local record DeleteIdentityPolicyInput
+    Identity: string
+    PolicyName: string
+end
+
+local record DeleteIdentityPolicyOutput
+end
+
+local record DeleteReceiptFilterInput
+    FilterName: string
+end
+
+local record DeleteReceiptFilterOutput
+end
+
+local record DeleteReceiptRuleInput
+    RuleSetName: string
+    RuleName: string
+end
+
+local record DeleteReceiptRuleOutput
+end
+
+local record DeleteReceiptRuleSetInput
+    RuleSetName: string
+end
+
+local record DeleteReceiptRuleSetOutput
+end
+
+local record DeleteTemplateInput
+    TemplateName: string
+end
+
+local record DeleteTemplateOutput
+end
+
+local record DeleteVerifiedEmailAddressInput
+    EmailAddress: string
+end
+
+local record DeleteVerifiedEmailAddressOutput
+end
+
+local record DescribeActiveReceiptRuleSetInput
+end
+
+local record DescribeActiveReceiptRuleSetOutput
+    Metadata: ReceiptRuleSetMetadata
+    Rules: {ReceiptRule}
+end
+
+local record DescribeConfigurationSetInput
+    ConfigurationSetName: string
+    ConfigurationSetAttributeNames: {string}
+end
+
+local record DescribeConfigurationSetOutput
+    ConfigurationSet: ConfigurationSet
+    EventDestinations: {EventDestination}
+    TrackingOptions: TrackingOptions
+    DeliveryOptions: DeliveryOptions
+    ReputationOptions: ReputationOptions
+end
+
+local record DescribeReceiptRuleInput
+    RuleSetName: string
+    RuleName: string
+end
+
+local record DescribeReceiptRuleOutput
+    Rule: ReceiptRule
+end
+
+local record DescribeReceiptRuleSetInput
+    RuleSetName: string
+end
+
+local record DescribeReceiptRuleSetOutput
+    Metadata: ReceiptRuleSetMetadata
+    Rules: {ReceiptRule}
+end
+
+local record GetAccountSendingEnabledInput
+end
+
+local record GetAccountSendingEnabledOutput
+    Enabled: boolean
+end
+
+local record GetCustomVerificationEmailTemplateInput
+    TemplateName: string
+end
+
+local record GetCustomVerificationEmailTemplateOutput
+    TemplateName: string
+    FromEmailAddress: string
+    TemplateSubject: string
+    TemplateContent: string
+    SuccessRedirectionURL: string
+    FailureRedirectionURL: string
+end
+
+local record GetIdentityDkimAttributesInput
+    Identities: {string}
+end
+
+local record GetIdentityDkimAttributesOutput
+    DkimAttributes: {string : IdentityDkimAttributes}
+end
+
+local record GetIdentityMailFromDomainAttributesInput
+    Identities: {string}
+end
+
+local record GetIdentityMailFromDomainAttributesOutput
+    MailFromDomainAttributes: {string : IdentityMailFromDomainAttributes}
+end
+
+local record GetIdentityNotificationAttributesInput
+    Identities: {string}
+end
+
+local record GetIdentityNotificationAttributesOutput
+    NotificationAttributes: {string : IdentityNotificationAttributes}
+end
+
+local record GetIdentityPoliciesInput
+    Identity: string
+    PolicyNames: {string}
+end
+
+local record GetIdentityPoliciesOutput
+    Policies: {string : string}
+end
+
+local record GetIdentityVerificationAttributesInput
+    Identities: {string}
+end
+
+local record GetIdentityVerificationAttributesOutput
+    VerificationAttributes: {string : IdentityVerificationAttributes}
+end
+
+local record GetSendQuotaInput
+end
+
+local record GetSendQuotaOutput
+    Max24HourSend: number
+    MaxSendRate: number
+    SentLast24Hours: number
+end
+
+local record GetSendStatisticsInput
+end
+
+local record GetSendStatisticsOutput
+    SendDataPoints: {SendDataPoint}
+end
+
+local record GetTemplateInput
+    TemplateName: string
+end
+
+local record GetTemplateOutput
+    Template: Template
+end
+
+local record ListConfigurationSetsInput
+    NextToken: string
+    MaxItems: number
+end
+
+local record ListConfigurationSetsOutput
+    ConfigurationSets: {ConfigurationSet}
+    NextToken: string
+end
+
+local record ListCustomVerificationEmailTemplatesInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListCustomVerificationEmailTemplatesOutput
+    CustomVerificationEmailTemplates: {CustomVerificationEmailTemplate}
+    NextToken: string
+end
+
+local record ListIdentitiesInput
+    IdentityType: string
+    NextToken: string
+    MaxItems: number
+end
+
+local record ListIdentitiesOutput
+    Identities: {string}
+    NextToken: string
+end
+
+local record ListIdentityPoliciesInput
+    Identity: string
+end
+
+local record ListIdentityPoliciesOutput
+    PolicyNames: {string}
+end
+
+local record ListReceiptFiltersInput
+end
+
+local record ListReceiptFiltersOutput
+    Filters: {ReceiptFilter}
+end
+
+local record ListReceiptRuleSetsInput
+    NextToken: string
+end
+
+local record ListReceiptRuleSetsOutput
+    RuleSets: {ReceiptRuleSetMetadata}
+    NextToken: string
+end
+
+local record ListTemplatesInput
+    NextToken: string
+    MaxItems: number
+end
+
+local record ListTemplatesOutput
+    TemplatesMetadata: {TemplateMetadata}
+    NextToken: string
+end
+
+local record ListVerifiedEmailAddressesInput
+end
+
+local record ListVerifiedEmailAddressesOutput
+    VerifiedEmailAddresses: {string}
+end
+
+local record PutConfigurationSetDeliveryOptionsInput
+    ConfigurationSetName: string
+    DeliveryOptions: DeliveryOptions
+end
+
+local record PutConfigurationSetDeliveryOptionsOutput
+end
+
+local record PutIdentityPolicyInput
+    Identity: string
+    PolicyName: string
+    Policy: string
+end
+
+local record PutIdentityPolicyOutput
+end
+
+local record ReorderReceiptRuleSetInput
+    RuleSetName: string
+    RuleNames: {string}
+end
+
+local record ReorderReceiptRuleSetOutput
+end
+
+local record SendBounceInput
+    OriginalMessageId: string
+    BounceSender: string
+    Explanation: string
+    MessageDsn: MessageDsn
+    BouncedRecipientInfoList: {BouncedRecipientInfo}
+    BounceSenderArn: string
+end
+
+local record SendBounceOutput
+    MessageId: string
+end
+
+local record SendBulkTemplatedEmailInput
+    Source: string
+    SourceArn: string
+    ReplyToAddresses: {string}
+    ReturnPath: string
+    ReturnPathArn: string
+    ConfigurationSetName: string
+    DefaultTags: {MessageTag}
+    Template: string
+    TemplateArn: string
+    DefaultTemplateData: string
+    Destinations: {BulkEmailDestination}
+end
+
+local record SendBulkTemplatedEmailOutput
+    Status: {BulkEmailDestinationStatus}
+end
+
+local record SendCustomVerificationEmailInput
+    EmailAddress: string
+    TemplateName: string
+    ConfigurationSetName: string
+end
+
+local record SendCustomVerificationEmailOutput
+    MessageId: string
+end
+
+local record SendEmailInput
+    Source: string
+    Destination: Destination
+    Message: Message
+    ReplyToAddresses: {string}
+    ReturnPath: string
+    SourceArn: string
+    ReturnPathArn: string
+    Tags: {MessageTag}
+    ConfigurationSetName: string
+end
+
+local record SendEmailOutput
+    MessageId: string
+end
+
+local record SendRawEmailInput
+    Source: string
+    Destinations: {string}
+    RawMessage: RawMessage
+    FromArn: string
+    SourceArn: string
+    ReturnPathArn: string
+    Tags: {MessageTag}
+    ConfigurationSetName: string
+end
+
+local record SendRawEmailOutput
+    MessageId: string
+end
+
+local record SendTemplatedEmailInput
+    Source: string
+    Destination: Destination
+    ReplyToAddresses: {string}
+    ReturnPath: string
+    SourceArn: string
+    ReturnPathArn: string
+    Tags: {MessageTag}
+    ConfigurationSetName: string
+    Template: string
+    TemplateArn: string
+    TemplateData: string
+end
+
+local record SendTemplatedEmailOutput
+    MessageId: string
+end
+
+local record SetActiveReceiptRuleSetInput
+    RuleSetName: string
+end
+
+local record SetActiveReceiptRuleSetOutput
+end
+
+local record SetIdentityDkimEnabledInput
+    Identity: string
+    DkimEnabled: boolean
+end
+
+local record SetIdentityDkimEnabledOutput
+end
+
+local record SetIdentityFeedbackForwardingEnabledInput
+    Identity: string
+    ForwardingEnabled: boolean
+end
+
+local record SetIdentityFeedbackForwardingEnabledOutput
+end
+
+local record SetIdentityHeadersInNotificationsEnabledInput
+    Identity: string
+    NotificationType: string
+    Enabled: boolean
+end
+
+local record SetIdentityHeadersInNotificationsEnabledOutput
+end
+
+local record SetIdentityMailFromDomainInput
+    Identity: string
+    MailFromDomain: string
+    BehaviorOnMXFailure: string
+end
+
+local record SetIdentityMailFromDomainOutput
+end
+
+local record SetIdentityNotificationTopicInput
+    Identity: string
+    NotificationType: string
+    SnsTopic: string
+end
+
+local record SetIdentityNotificationTopicOutput
+end
+
+local record SetReceiptRulePositionInput
+    RuleSetName: string
+    RuleName: string
+    After: string
+end
+
+local record SetReceiptRulePositionOutput
+end
+
+local record TestRenderTemplateInput
+    TemplateName: string
+    TemplateData: string
+end
+
+local record TestRenderTemplateOutput
+    RenderedTemplate: string
+end
+
+local record UpdateAccountSendingEnabledInput
+    Enabled: boolean
+end
+
+local record UpdateAccountSendingEnabledOutput
+end
+
+local record UpdateConfigurationSetEventDestinationInput
+    ConfigurationSetName: string
+    EventDestination: EventDestination
+end
+
+local record UpdateConfigurationSetEventDestinationOutput
+end
+
+local record UpdateConfigurationSetReputationMetricsEnabledInput
+    ConfigurationSetName: string
+    Enabled: boolean
+end
+
+local record UpdateConfigurationSetReputationMetricsEnabledOutput
+end
+
+local record UpdateConfigurationSetSendingEnabledInput
+    ConfigurationSetName: string
+    Enabled: boolean
+end
+
+local record UpdateConfigurationSetSendingEnabledOutput
+end
+
+local record UpdateConfigurationSetTrackingOptionsInput
+    ConfigurationSetName: string
+    TrackingOptions: TrackingOptions
+end
+
+local record UpdateConfigurationSetTrackingOptionsOutput
+end
+
+local record UpdateCustomVerificationEmailTemplateInput
+    TemplateName: string
+    FromEmailAddress: string
+    TemplateSubject: string
+    TemplateContent: string
+    SuccessRedirectionURL: string
+    FailureRedirectionURL: string
+end
+
+local record UpdateCustomVerificationEmailTemplateOutput
+end
+
+local record UpdateReceiptRuleInput
+    RuleSetName: string
+    Rule: ReceiptRule
+end
+
+local record UpdateReceiptRuleOutput
+end
+
+local record UpdateTemplateInput
+    Template: Template
+end
+
+local record UpdateTemplateOutput
+end
+
+local record VerifyDomainDkimInput
+    Domain: string
+end
+
+local record VerifyDomainDkimOutput
+    DkimTokens: {string}
+end
+
+local record VerifyDomainIdentityInput
+    Domain: string
+end
+
+local record VerifyDomainIdentityOutput
+    VerificationToken: string
+end
+
+local record VerifyEmailAddressInput
+    EmailAddress: string
+end
+
+local record VerifyEmailAddressOutput
+end
+
+local record VerifyEmailIdentityInput
+    EmailAddress: string
+end
+
+local record VerifyEmailIdentityOutput
+end
+
+local record AlreadyExistsException
+    Name: string
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record RuleSetDoesNotExistException
+    Name: string
+    message: string
+end
+
+local record ConfigurationSetAlreadyExistsException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record InvalidConfigurationSetException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record EventDestinationAlreadyExistsException
+    ConfigurationSetName: string
+    EventDestinationName: string
+    message: string
+end
+
+local record InvalidCloudWatchDestinationException
+    ConfigurationSetName: string
+    EventDestinationName: string
+    message: string
+end
+
+local record InvalidFirehoseDestinationException
+    ConfigurationSetName: string
+    EventDestinationName: string
+    message: string
+end
+
+local record InvalidSNSDestinationException
+    ConfigurationSetName: string
+    EventDestinationName: string
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record InvalidTrackingOptionsException
+    message: string
+end
+
+local record TrackingOptionsAlreadyExistsException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record CustomVerificationEmailInvalidContentException
+    message: string
+end
+
+local record CustomVerificationEmailTemplateAlreadyExistsException
+    CustomVerificationEmailTemplateName: string
+    message: string
+end
+
+local record FromEmailAddressNotVerifiedException
+    FromEmailAddress: string
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record AlreadyExistsException
+    Name: string
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record AlreadyExistsException
+    Name: string
+    message: string
+end
+
+local record InvalidLambdaFunctionException
+    FunctionArn: string
+    message: string
+end
+
+local record InvalidS3ConfigurationException
+    Bucket: string
+    message: string
+end
+
+local record InvalidSnsTopicException
+    Topic: string
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record RuleDoesNotExistException
+    Name: string
+    message: string
+end
+
+local record RuleSetDoesNotExistException
+    Name: string
+    message: string
+end
+
+local record AlreadyExistsException
+    Name: string
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record AlreadyExistsException
+    Name: string
+    message: string
+end
+
+local record InvalidTemplateException
+    TemplateName: string
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record EventDestinationDoesNotExistException
+    ConfigurationSetName: string
+    EventDestinationName: string
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record TrackingOptionsDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record RuleSetDoesNotExistException
+    Name: string
+    message: string
+end
+
+local record CannotDeleteException
+    Name: string
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record RuleDoesNotExistException
+    Name: string
+    message: string
+end
+
+local record RuleSetDoesNotExistException
+    Name: string
+    message: string
+end
+
+local record RuleSetDoesNotExistException
+    Name: string
+    message: string
+end
+
+local record CustomVerificationEmailTemplateDoesNotExistException
+    CustomVerificationEmailTemplateName: string
+    message: string
+end
+
+local record TemplateDoesNotExistException
+    TemplateName: string
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record InvalidDeliveryOptionsException
+    message: string
+end
+
+local record InvalidPolicyException
+    message: string
+end
+
+local record RuleDoesNotExistException
+    Name: string
+    message: string
+end
+
+local record RuleSetDoesNotExistException
+    Name: string
+    message: string
+end
+
+local record MessageRejected
+    message: string
+end
+
+local record AccountSendingPausedException
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record ConfigurationSetSendingPausedException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record MailFromDomainNotVerifiedException
+    message: string
+end
+
+local record MessageRejected
+    message: string
+end
+
+local record TemplateDoesNotExistException
+    TemplateName: string
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record CustomVerificationEmailTemplateDoesNotExistException
+    CustomVerificationEmailTemplateName: string
+    message: string
+end
+
+local record FromEmailAddressNotVerifiedException
+    FromEmailAddress: string
+    message: string
+end
+
+local record MessageRejected
+    message: string
+end
+
+local record ProductionAccessNotGrantedException
+    message: string
+end
+
+local record AccountSendingPausedException
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record ConfigurationSetSendingPausedException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record MailFromDomainNotVerifiedException
+    message: string
+end
+
+local record MessageRejected
+    message: string
+end
+
+local record AccountSendingPausedException
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record ConfigurationSetSendingPausedException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record MailFromDomainNotVerifiedException
+    message: string
+end
+
+local record MessageRejected
+    message: string
+end
+
+local record AccountSendingPausedException
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record ConfigurationSetSendingPausedException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record MailFromDomainNotVerifiedException
+    message: string
+end
+
+local record MessageRejected
+    message: string
+end
+
+local record TemplateDoesNotExistException
+    TemplateName: string
+    message: string
+end
+
+local record RuleSetDoesNotExistException
+    Name: string
+    message: string
+end
+
+local record RuleDoesNotExistException
+    Name: string
+    message: string
+end
+
+local record RuleSetDoesNotExistException
+    Name: string
+    message: string
+end
+
+local record InvalidRenderingParameterException
+    TemplateName: string
+    message: string
+end
+
+local record MissingRenderingAttributeException
+    TemplateName: string
+    message: string
+end
+
+local record TemplateDoesNotExistException
+    TemplateName: string
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record EventDestinationDoesNotExistException
+    ConfigurationSetName: string
+    EventDestinationName: string
+    message: string
+end
+
+local record InvalidCloudWatchDestinationException
+    ConfigurationSetName: string
+    EventDestinationName: string
+    message: string
+end
+
+local record InvalidFirehoseDestinationException
+    ConfigurationSetName: string
+    EventDestinationName: string
+    message: string
+end
+
+local record InvalidSNSDestinationException
+    ConfigurationSetName: string
+    EventDestinationName: string
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record ConfigurationSetDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record InvalidTrackingOptionsException
+    message: string
+end
+
+local record TrackingOptionsDoesNotExistException
+    ConfigurationSetName: string
+    message: string
+end
+
+local record CustomVerificationEmailInvalidContentException
+    message: string
+end
+
+local record CustomVerificationEmailTemplateDoesNotExistException
+    CustomVerificationEmailTemplateName: string
+    message: string
+end
+
+local record FromEmailAddressNotVerifiedException
+    FromEmailAddress: string
+    message: string
+end
+
+local record InvalidLambdaFunctionException
+    FunctionArn: string
+    message: string
+end
+
+local record InvalidS3ConfigurationException
+    Bucket: string
+    message: string
+end
+
+local record InvalidSnsTopicException
+    Topic: string
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record RuleDoesNotExistException
+    Name: string
+    message: string
+end
+
+local record RuleSetDoesNotExistException
+    Name: string
+    message: string
+end
+
+local record InvalidTemplateException
+    TemplateName: string
+    message: string
+end
+
+local record TemplateDoesNotExistException
+    TemplateName: string
+    message: string
+end
+
+local type NotificationType = "Bounce" | "Complaint" | "Delivery"
+
+local type IdentityType = "EmailAddress" | "Domain"
+
+local type BehaviorOnMXFailure = "UseDefaultValue" | "RejectMessage"
+
+local record M
+    CloneReceiptRuleSetInput: CloneReceiptRuleSetInput
+    CloneReceiptRuleSetOutput: CloneReceiptRuleSetOutput
+    CreateConfigurationSetInput: CreateConfigurationSetInput
+    CreateConfigurationSetOutput: CreateConfigurationSetOutput
+    CreateConfigurationSetEventDestinationInput: CreateConfigurationSetEventDestinationInput
+    CreateConfigurationSetEventDestinationOutput: CreateConfigurationSetEventDestinationOutput
+    CreateConfigurationSetTrackingOptionsInput: CreateConfigurationSetTrackingOptionsInput
+    CreateConfigurationSetTrackingOptionsOutput: CreateConfigurationSetTrackingOptionsOutput
+    CreateCustomVerificationEmailTemplateInput: CreateCustomVerificationEmailTemplateInput
+    CreateCustomVerificationEmailTemplateOutput: CreateCustomVerificationEmailTemplateOutput
+    CreateReceiptFilterInput: CreateReceiptFilterInput
+    CreateReceiptFilterOutput: CreateReceiptFilterOutput
+    CreateReceiptRuleInput: CreateReceiptRuleInput
+    CreateReceiptRuleOutput: CreateReceiptRuleOutput
+    CreateReceiptRuleSetInput: CreateReceiptRuleSetInput
+    CreateReceiptRuleSetOutput: CreateReceiptRuleSetOutput
+    CreateTemplateInput: CreateTemplateInput
+    CreateTemplateOutput: CreateTemplateOutput
+    DeleteConfigurationSetInput: DeleteConfigurationSetInput
+    DeleteConfigurationSetOutput: DeleteConfigurationSetOutput
+    DeleteConfigurationSetEventDestinationInput: DeleteConfigurationSetEventDestinationInput
+    DeleteConfigurationSetEventDestinationOutput: DeleteConfigurationSetEventDestinationOutput
+    DeleteConfigurationSetTrackingOptionsInput: DeleteConfigurationSetTrackingOptionsInput
+    DeleteConfigurationSetTrackingOptionsOutput: DeleteConfigurationSetTrackingOptionsOutput
+    DeleteCustomVerificationEmailTemplateInput: DeleteCustomVerificationEmailTemplateInput
+    DeleteCustomVerificationEmailTemplateOutput: DeleteCustomVerificationEmailTemplateOutput
+    DeleteIdentityInput: DeleteIdentityInput
+    DeleteIdentityOutput: DeleteIdentityOutput
+    DeleteIdentityPolicyInput: DeleteIdentityPolicyInput
+    DeleteIdentityPolicyOutput: DeleteIdentityPolicyOutput
+    DeleteReceiptFilterInput: DeleteReceiptFilterInput
+    DeleteReceiptFilterOutput: DeleteReceiptFilterOutput
+    DeleteReceiptRuleInput: DeleteReceiptRuleInput
+    DeleteReceiptRuleOutput: DeleteReceiptRuleOutput
+    DeleteReceiptRuleSetInput: DeleteReceiptRuleSetInput
+    DeleteReceiptRuleSetOutput: DeleteReceiptRuleSetOutput
+    DeleteTemplateInput: DeleteTemplateInput
+    DeleteTemplateOutput: DeleteTemplateOutput
+    DeleteVerifiedEmailAddressInput: DeleteVerifiedEmailAddressInput
+    DeleteVerifiedEmailAddressOutput: DeleteVerifiedEmailAddressOutput
+    DescribeActiveReceiptRuleSetInput: DescribeActiveReceiptRuleSetInput
+    DescribeActiveReceiptRuleSetOutput: DescribeActiveReceiptRuleSetOutput
+    DescribeConfigurationSetInput: DescribeConfigurationSetInput
+    DescribeConfigurationSetOutput: DescribeConfigurationSetOutput
+    DescribeReceiptRuleInput: DescribeReceiptRuleInput
+    DescribeReceiptRuleOutput: DescribeReceiptRuleOutput
+    DescribeReceiptRuleSetInput: DescribeReceiptRuleSetInput
+    DescribeReceiptRuleSetOutput: DescribeReceiptRuleSetOutput
+    GetAccountSendingEnabledInput: GetAccountSendingEnabledInput
+    GetAccountSendingEnabledOutput: GetAccountSendingEnabledOutput
+    GetCustomVerificationEmailTemplateInput: GetCustomVerificationEmailTemplateInput
+    GetCustomVerificationEmailTemplateOutput: GetCustomVerificationEmailTemplateOutput
+    GetIdentityDkimAttributesInput: GetIdentityDkimAttributesInput
+    GetIdentityDkimAttributesOutput: GetIdentityDkimAttributesOutput
+    GetIdentityMailFromDomainAttributesInput: GetIdentityMailFromDomainAttributesInput
+    GetIdentityMailFromDomainAttributesOutput: GetIdentityMailFromDomainAttributesOutput
+    GetIdentityNotificationAttributesInput: GetIdentityNotificationAttributesInput
+    GetIdentityNotificationAttributesOutput: GetIdentityNotificationAttributesOutput
+    GetIdentityPoliciesInput: GetIdentityPoliciesInput
+    GetIdentityPoliciesOutput: GetIdentityPoliciesOutput
+    GetIdentityVerificationAttributesInput: GetIdentityVerificationAttributesInput
+    GetIdentityVerificationAttributesOutput: GetIdentityVerificationAttributesOutput
+    GetSendQuotaInput: GetSendQuotaInput
+    GetSendQuotaOutput: GetSendQuotaOutput
+    GetSendStatisticsInput: GetSendStatisticsInput
+    GetSendStatisticsOutput: GetSendStatisticsOutput
+    GetTemplateInput: GetTemplateInput
+    GetTemplateOutput: GetTemplateOutput
+    ListConfigurationSetsInput: ListConfigurationSetsInput
+    ListConfigurationSetsOutput: ListConfigurationSetsOutput
+    ListCustomVerificationEmailTemplatesInput: ListCustomVerificationEmailTemplatesInput
+    ListCustomVerificationEmailTemplatesOutput: ListCustomVerificationEmailTemplatesOutput
+    ListIdentitiesInput: ListIdentitiesInput
+    ListIdentitiesOutput: ListIdentitiesOutput
+    ListIdentityPoliciesInput: ListIdentityPoliciesInput
+    ListIdentityPoliciesOutput: ListIdentityPoliciesOutput
+    ListReceiptFiltersInput: ListReceiptFiltersInput
+    ListReceiptFiltersOutput: ListReceiptFiltersOutput
+    ListReceiptRuleSetsInput: ListReceiptRuleSetsInput
+    ListReceiptRuleSetsOutput: ListReceiptRuleSetsOutput
+    ListTemplatesInput: ListTemplatesInput
+    ListTemplatesOutput: ListTemplatesOutput
+    ListVerifiedEmailAddressesInput: ListVerifiedEmailAddressesInput
+    ListVerifiedEmailAddressesOutput: ListVerifiedEmailAddressesOutput
+    PutConfigurationSetDeliveryOptionsInput: PutConfigurationSetDeliveryOptionsInput
+    PutConfigurationSetDeliveryOptionsOutput: PutConfigurationSetDeliveryOptionsOutput
+    PutIdentityPolicyInput: PutIdentityPolicyInput
+    PutIdentityPolicyOutput: PutIdentityPolicyOutput
+    ReorderReceiptRuleSetInput: ReorderReceiptRuleSetInput
+    ReorderReceiptRuleSetOutput: ReorderReceiptRuleSetOutput
+    SendBounceInput: SendBounceInput
+    SendBounceOutput: SendBounceOutput
+    SendBulkTemplatedEmailInput: SendBulkTemplatedEmailInput
+    SendBulkTemplatedEmailOutput: SendBulkTemplatedEmailOutput
+    SendCustomVerificationEmailInput: SendCustomVerificationEmailInput
+    SendCustomVerificationEmailOutput: SendCustomVerificationEmailOutput
+    SendEmailInput: SendEmailInput
+    SendEmailOutput: SendEmailOutput
+    SendRawEmailInput: SendRawEmailInput
+    SendRawEmailOutput: SendRawEmailOutput
+    SendTemplatedEmailInput: SendTemplatedEmailInput
+    SendTemplatedEmailOutput: SendTemplatedEmailOutput
+    SetActiveReceiptRuleSetInput: SetActiveReceiptRuleSetInput
+    SetActiveReceiptRuleSetOutput: SetActiveReceiptRuleSetOutput
+    SetIdentityDkimEnabledInput: SetIdentityDkimEnabledInput
+    SetIdentityDkimEnabledOutput: SetIdentityDkimEnabledOutput
+    SetIdentityFeedbackForwardingEnabledInput: SetIdentityFeedbackForwardingEnabledInput
+    SetIdentityFeedbackForwardingEnabledOutput: SetIdentityFeedbackForwardingEnabledOutput
+    SetIdentityHeadersInNotificationsEnabledInput: SetIdentityHeadersInNotificationsEnabledInput
+    SetIdentityHeadersInNotificationsEnabledOutput: SetIdentityHeadersInNotificationsEnabledOutput
+    SetIdentityMailFromDomainInput: SetIdentityMailFromDomainInput
+    SetIdentityMailFromDomainOutput: SetIdentityMailFromDomainOutput
+    SetIdentityNotificationTopicInput: SetIdentityNotificationTopicInput
+    SetIdentityNotificationTopicOutput: SetIdentityNotificationTopicOutput
+    SetReceiptRulePositionInput: SetReceiptRulePositionInput
+    SetReceiptRulePositionOutput: SetReceiptRulePositionOutput
+    TestRenderTemplateInput: TestRenderTemplateInput
+    TestRenderTemplateOutput: TestRenderTemplateOutput
+    UpdateAccountSendingEnabledInput: UpdateAccountSendingEnabledInput
+    UpdateAccountSendingEnabledOutput: UpdateAccountSendingEnabledOutput
+    UpdateConfigurationSetEventDestinationInput: UpdateConfigurationSetEventDestinationInput
+    UpdateConfigurationSetEventDestinationOutput: UpdateConfigurationSetEventDestinationOutput
+    UpdateConfigurationSetReputationMetricsEnabledInput: UpdateConfigurationSetReputationMetricsEnabledInput
+    UpdateConfigurationSetReputationMetricsEnabledOutput: UpdateConfigurationSetReputationMetricsEnabledOutput
+    UpdateConfigurationSetSendingEnabledInput: UpdateConfigurationSetSendingEnabledInput
+    UpdateConfigurationSetSendingEnabledOutput: UpdateConfigurationSetSendingEnabledOutput
+    UpdateConfigurationSetTrackingOptionsInput: UpdateConfigurationSetTrackingOptionsInput
+    UpdateConfigurationSetTrackingOptionsOutput: UpdateConfigurationSetTrackingOptionsOutput
+    UpdateCustomVerificationEmailTemplateInput: UpdateCustomVerificationEmailTemplateInput
+    UpdateCustomVerificationEmailTemplateOutput: UpdateCustomVerificationEmailTemplateOutput
+    UpdateReceiptRuleInput: UpdateReceiptRuleInput
+    UpdateReceiptRuleOutput: UpdateReceiptRuleOutput
+    UpdateTemplateInput: UpdateTemplateInput
+    UpdateTemplateOutput: UpdateTemplateOutput
+    VerifyDomainDkimInput: VerifyDomainDkimInput
+    VerifyDomainDkimOutput: VerifyDomainDkimOutput
+    VerifyDomainIdentityInput: VerifyDomainIdentityInput
+    VerifyDomainIdentityOutput: VerifyDomainIdentityOutput
+    VerifyEmailAddressInput: VerifyEmailAddressInput
+    VerifyEmailAddressOutput: VerifyEmailAddressOutput
+    VerifyEmailIdentityInput: VerifyEmailIdentityInput
+    VerifyEmailIdentityOutput: VerifyEmailIdentityOutput
+end
+
+return M

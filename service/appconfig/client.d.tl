@@ -1,0 +1,55 @@
+local types = require("appconfig.types")
+
+local record Client
+    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createConfigurationProfile: function(Client, types.CreateConfigurationProfileInput): types.CreateConfigurationProfileOutput, table
+    createDeploymentStrategy: function(Client, types.CreateDeploymentStrategyInput): types.CreateDeploymentStrategyOutput, table
+    createEnvironment: function(Client, types.CreateEnvironmentInput): types.CreateEnvironmentOutput, table
+    createExtension: function(Client, types.CreateExtensionInput): types.CreateExtensionOutput, table
+    createExtensionAssociation: function(Client, types.CreateExtensionAssociationInput): types.CreateExtensionAssociationOutput, table
+    createHostedConfigurationVersion: function(Client, types.CreateHostedConfigurationVersionInput): types.CreateHostedConfigurationVersionOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    deleteConfigurationProfile: function(Client, types.DeleteConfigurationProfileInput): types.DeleteConfigurationProfileOutput, table
+    deleteDeploymentStrategy: function(Client, types.DeleteDeploymentStrategyInput): types.DeleteDeploymentStrategyOutput, table
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput): types.DeleteEnvironmentOutput, table
+    deleteExtension: function(Client, types.DeleteExtensionInput): types.DeleteExtensionOutput, table
+    deleteExtensionAssociation: function(Client, types.DeleteExtensionAssociationInput): types.DeleteExtensionAssociationOutput, table
+    deleteHostedConfigurationVersion: function(Client, types.DeleteHostedConfigurationVersionInput): types.DeleteHostedConfigurationVersionOutput, table
+    getAccountSettings: function(Client, types.GetAccountSettingsInput): types.GetAccountSettingsOutput, table
+    getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    getConfiguration: function(Client, types.GetConfigurationInput): types.GetConfigurationOutput, table
+    getConfigurationProfile: function(Client, types.GetConfigurationProfileInput): types.GetConfigurationProfileOutput, table
+    getDeployment: function(Client, types.GetDeploymentInput): types.GetDeploymentOutput, table
+    getDeploymentStrategy: function(Client, types.GetDeploymentStrategyInput): types.GetDeploymentStrategyOutput, table
+    getEnvironment: function(Client, types.GetEnvironmentInput): types.GetEnvironmentOutput, table
+    getExtension: function(Client, types.GetExtensionInput): types.GetExtensionOutput, table
+    getExtensionAssociation: function(Client, types.GetExtensionAssociationInput): types.GetExtensionAssociationOutput, table
+    getHostedConfigurationVersion: function(Client, types.GetHostedConfigurationVersionInput): types.GetHostedConfigurationVersionOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listConfigurationProfiles: function(Client, types.ListConfigurationProfilesInput): types.ListConfigurationProfilesOutput, table
+    listDeployments: function(Client, types.ListDeploymentsInput): types.ListDeploymentsOutput, table
+    listDeploymentStrategies: function(Client, types.ListDeploymentStrategiesInput): types.ListDeploymentStrategiesOutput, table
+    listEnvironments: function(Client, types.ListEnvironmentsInput): types.ListEnvironmentsOutput, table
+    listExtensionAssociations: function(Client, types.ListExtensionAssociationsInput): types.ListExtensionAssociationsOutput, table
+    listExtensions: function(Client, types.ListExtensionsInput): types.ListExtensionsOutput, table
+    listHostedConfigurationVersions: function(Client, types.ListHostedConfigurationVersionsInput): types.ListHostedConfigurationVersionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    startDeployment: function(Client, types.StartDeploymentInput): types.StartDeploymentOutput, table
+    stopDeployment: function(Client, types.StopDeploymentInput): types.StopDeploymentOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): types.UpdateAccountSettingsOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateConfigurationProfile: function(Client, types.UpdateConfigurationProfileInput): types.UpdateConfigurationProfileOutput, table
+    updateDeploymentStrategy: function(Client, types.UpdateDeploymentStrategyInput): types.UpdateDeploymentStrategyOutput, table
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput): types.UpdateEnvironmentOutput, table
+    updateExtension: function(Client, types.UpdateExtensionInput): types.UpdateExtensionOutput, table
+    updateExtensionAssociation: function(Client, types.UpdateExtensionAssociationInput): types.UpdateExtensionAssociationOutput, table
+    validateConfiguration: function(Client, types.ValidateConfigurationInput): types.ValidateConfigurationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

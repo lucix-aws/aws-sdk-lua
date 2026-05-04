@@ -1,0 +1,41 @@
+local types = require("schemas.types")
+
+local record Client
+    createDiscoverer: function(Client, types.CreateDiscovererInput): types.CreateDiscovererOutput, table
+    createRegistry: function(Client, types.CreateRegistryInput): types.CreateRegistryOutput, table
+    createSchema: function(Client, types.CreateSchemaInput): types.CreateSchemaOutput, table
+    deleteDiscoverer: function(Client, types.DeleteDiscovererInput): types.DeleteDiscovererOutput, table
+    deleteRegistry: function(Client, types.DeleteRegistryInput): types.DeleteRegistryOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteSchema: function(Client, types.DeleteSchemaInput): types.DeleteSchemaOutput, table
+    deleteSchemaVersion: function(Client, types.DeleteSchemaVersionInput): types.DeleteSchemaVersionOutput, table
+    describeCodeBinding: function(Client, types.DescribeCodeBindingInput): types.DescribeCodeBindingOutput, table
+    describeDiscoverer: function(Client, types.DescribeDiscovererInput): types.DescribeDiscovererOutput, table
+    describeRegistry: function(Client, types.DescribeRegistryInput): types.DescribeRegistryOutput, table
+    describeSchema: function(Client, types.DescribeSchemaInput): types.DescribeSchemaOutput, table
+    exportSchema: function(Client, types.ExportSchemaInput): types.ExportSchemaOutput, table
+    getCodeBindingSource: function(Client, types.GetCodeBindingSourceInput): types.GetCodeBindingSourceOutput, table
+    getDiscoveredSchema: function(Client, types.GetDiscoveredSchemaInput): types.GetDiscoveredSchemaOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    listDiscoverers: function(Client, types.ListDiscoverersInput): types.ListDiscoverersOutput, table
+    listRegistries: function(Client, types.ListRegistriesInput): types.ListRegistriesOutput, table
+    listSchemas: function(Client, types.ListSchemasInput): types.ListSchemasOutput, table
+    listSchemaVersions: function(Client, types.ListSchemaVersionsInput): types.ListSchemaVersionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putCodeBinding: function(Client, types.PutCodeBindingInput): types.PutCodeBindingOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    searchSchemas: function(Client, types.SearchSchemasInput): types.SearchSchemasOutput, table
+    startDiscoverer: function(Client, types.StartDiscovererInput): types.StartDiscovererOutput, table
+    stopDiscoverer: function(Client, types.StopDiscovererInput): types.StopDiscovererOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateDiscoverer: function(Client, types.UpdateDiscovererInput): types.UpdateDiscovererOutput, table
+    updateRegistry: function(Client, types.UpdateRegistryInput): types.UpdateRegistryOutput, table
+    updateSchema: function(Client, types.UpdateSchemaInput): types.UpdateSchemaOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

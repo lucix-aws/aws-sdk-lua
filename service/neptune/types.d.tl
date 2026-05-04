@@ -1,0 +1,2083 @@
+local record AddRoleToDBClusterInput
+    DBClusterIdentifier: string
+    RoleArn: string
+    FeatureName: string
+end
+
+local record AddRoleToDBClusterOutput
+end
+
+local record AddSourceIdentifierToSubscriptionInput
+    SubscriptionName: string
+    SourceIdentifier: string
+end
+
+local record AddSourceIdentifierToSubscriptionOutput
+    EventSubscription: EventSubscription
+end
+
+local record AddTagsToResourceInput
+    ResourceName: string
+    Tags: {Tag}
+end
+
+local record AddTagsToResourceOutput
+end
+
+local record ApplyPendingMaintenanceActionInput
+    ResourceIdentifier: string
+    ApplyAction: string
+    OptInType: string
+end
+
+local record ApplyPendingMaintenanceActionOutput
+    ResourcePendingMaintenanceActions: ResourcePendingMaintenanceActions
+end
+
+local record CopyDBClusterParameterGroupInput
+    SourceDBClusterParameterGroupIdentifier: string
+    TargetDBClusterParameterGroupIdentifier: string
+    TargetDBClusterParameterGroupDescription: string
+    Tags: {Tag}
+end
+
+local record CopyDBClusterParameterGroupOutput
+    DBClusterParameterGroup: DBClusterParameterGroup
+end
+
+local record CopyDBClusterSnapshotInput
+    SourceDBClusterSnapshotIdentifier: string
+    TargetDBClusterSnapshotIdentifier: string
+    KmsKeyId: string
+    PreSignedUrl: string
+    CopyTags: boolean
+    Tags: {Tag}
+end
+
+local record CopyDBClusterSnapshotOutput
+    DBClusterSnapshot: DBClusterSnapshot
+end
+
+local record CopyDBParameterGroupInput
+    SourceDBParameterGroupIdentifier: string
+    TargetDBParameterGroupIdentifier: string
+    TargetDBParameterGroupDescription: string
+    Tags: {Tag}
+end
+
+local record CopyDBParameterGroupOutput
+    DBParameterGroup: DBParameterGroup
+end
+
+local record CreateDBClusterInput
+    AvailabilityZones: {string}
+    BackupRetentionPeriod: number
+    CharacterSetName: string
+    CopyTagsToSnapshot: boolean
+    DatabaseName: string
+    DBClusterIdentifier: string
+    DBClusterParameterGroupName: string
+    VpcSecurityGroupIds: {string}
+    DBSubnetGroupName: string
+    Engine: string
+    EngineVersion: string
+    Port: number
+    MasterUsername: string
+    MasterUserPassword: string
+    OptionGroupName: string
+    PreferredBackupWindow: string
+    PreferredMaintenanceWindow: string
+    ReplicationSourceIdentifier: string
+    Tags: {Tag}
+    StorageEncrypted: boolean
+    KmsKeyId: string
+    PreSignedUrl: string
+    EnableIAMDatabaseAuthentication: boolean
+    EnableCloudwatchLogsExports: {string}
+    DeletionProtection: boolean
+    ServerlessV2ScalingConfiguration: ServerlessV2ScalingConfiguration
+    GlobalClusterIdentifier: string
+    StorageType: string
+end
+
+local record CreateDBClusterOutput
+    DBCluster: DBCluster
+end
+
+local record CreateDBClusterEndpointInput
+    DBClusterIdentifier: string
+    DBClusterEndpointIdentifier: string
+    EndpointType: string
+    StaticMembers: {string}
+    ExcludedMembers: {string}
+    Tags: {Tag}
+end
+
+local record CreateDBClusterEndpointOutput
+    DBClusterEndpointIdentifier: string
+    DBClusterIdentifier: string
+    DBClusterEndpointResourceIdentifier: string
+    Endpoint: string
+    Status: string
+    EndpointType: string
+    CustomEndpointType: string
+    StaticMembers: {string}
+    ExcludedMembers: {string}
+    DBClusterEndpointArn: string
+end
+
+local record CreateDBClusterParameterGroupInput
+    DBClusterParameterGroupName: string
+    DBParameterGroupFamily: string
+    Description: string
+    Tags: {Tag}
+end
+
+local record CreateDBClusterParameterGroupOutput
+    DBClusterParameterGroup: DBClusterParameterGroup
+end
+
+local record CreateDBClusterSnapshotInput
+    DBClusterSnapshotIdentifier: string
+    DBClusterIdentifier: string
+    Tags: {Tag}
+end
+
+local record CreateDBClusterSnapshotOutput
+    DBClusterSnapshot: DBClusterSnapshot
+end
+
+local record CreateDBInstanceInput
+    DBName: string
+    DBInstanceIdentifier: string
+    AllocatedStorage: number
+    DBInstanceClass: string
+    Engine: string
+    MasterUsername: string
+    MasterUserPassword: string
+    DBSecurityGroups: {string}
+    VpcSecurityGroupIds: {string}
+    AvailabilityZone: string
+    DBSubnetGroupName: string
+    PreferredMaintenanceWindow: string
+    DBParameterGroupName: string
+    BackupRetentionPeriod: number
+    PreferredBackupWindow: string
+    Port: number
+    MultiAZ: boolean
+    EngineVersion: string
+    AutoMinorVersionUpgrade: boolean
+    LicenseModel: string
+    Iops: number
+    OptionGroupName: string
+    CharacterSetName: string
+    PubliclyAccessible: boolean
+    Tags: {Tag}
+    DBClusterIdentifier: string
+    StorageType: string
+    TdeCredentialArn: string
+    TdeCredentialPassword: string
+    StorageEncrypted: boolean
+    KmsKeyId: string
+    Domain: string
+    CopyTagsToSnapshot: boolean
+    MonitoringInterval: number
+    MonitoringRoleArn: string
+    DomainIAMRoleName: string
+    PromotionTier: number
+    Timezone: string
+    EnableIAMDatabaseAuthentication: boolean
+    EnablePerformanceInsights: boolean
+    PerformanceInsightsKMSKeyId: string
+    EnableCloudwatchLogsExports: {string}
+    DeletionProtection: boolean
+end
+
+local record CreateDBInstanceOutput
+    DBInstance: DBInstance
+end
+
+local record CreateDBParameterGroupInput
+    DBParameterGroupName: string
+    DBParameterGroupFamily: string
+    Description: string
+    Tags: {Tag}
+end
+
+local record CreateDBParameterGroupOutput
+    DBParameterGroup: DBParameterGroup
+end
+
+local record CreateDBSubnetGroupInput
+    DBSubnetGroupName: string
+    DBSubnetGroupDescription: string
+    SubnetIds: {string}
+    Tags: {Tag}
+end
+
+local record CreateDBSubnetGroupOutput
+    DBSubnetGroup: DBSubnetGroup
+end
+
+local record CreateEventSubscriptionInput
+    SubscriptionName: string
+    SnsTopicArn: string
+    SourceType: string
+    EventCategories: {string}
+    SourceIds: {string}
+    Enabled: boolean
+    Tags: {Tag}
+end
+
+local record CreateEventSubscriptionOutput
+    EventSubscription: EventSubscription
+end
+
+local record CreateGlobalClusterInput
+    GlobalClusterIdentifier: string
+    SourceDBClusterIdentifier: string
+    Engine: string
+    EngineVersion: string
+    DeletionProtection: boolean
+    DatabaseName: string
+    Tags: {Tag}
+    StorageEncrypted: boolean
+end
+
+local record CreateGlobalClusterOutput
+    GlobalCluster: GlobalCluster
+end
+
+local record DeleteDBClusterInput
+    DBClusterIdentifier: string
+    SkipFinalSnapshot: boolean
+    FinalDBSnapshotIdentifier: string
+end
+
+local record DeleteDBClusterOutput
+    DBCluster: DBCluster
+end
+
+local record DeleteDBClusterEndpointInput
+    DBClusterEndpointIdentifier: string
+end
+
+local record DeleteDBClusterEndpointOutput
+    DBClusterEndpointIdentifier: string
+    DBClusterIdentifier: string
+    DBClusterEndpointResourceIdentifier: string
+    Endpoint: string
+    Status: string
+    EndpointType: string
+    CustomEndpointType: string
+    StaticMembers: {string}
+    ExcludedMembers: {string}
+    DBClusterEndpointArn: string
+end
+
+local record DeleteDBClusterParameterGroupInput
+    DBClusterParameterGroupName: string
+end
+
+local record DeleteDBClusterParameterGroupOutput
+end
+
+local record DeleteDBClusterSnapshotInput
+    DBClusterSnapshotIdentifier: string
+end
+
+local record DeleteDBClusterSnapshotOutput
+    DBClusterSnapshot: DBClusterSnapshot
+end
+
+local record DeleteDBInstanceInput
+    DBInstanceIdentifier: string
+    SkipFinalSnapshot: boolean
+    FinalDBSnapshotIdentifier: string
+end
+
+local record DeleteDBInstanceOutput
+    DBInstance: DBInstance
+end
+
+local record DeleteDBParameterGroupInput
+    DBParameterGroupName: string
+end
+
+local record DeleteDBParameterGroupOutput
+end
+
+local record DeleteDBSubnetGroupInput
+    DBSubnetGroupName: string
+end
+
+local record DeleteDBSubnetGroupOutput
+end
+
+local record DeleteEventSubscriptionInput
+    SubscriptionName: string
+end
+
+local record DeleteEventSubscriptionOutput
+    EventSubscription: EventSubscription
+end
+
+local record DeleteGlobalClusterInput
+    GlobalClusterIdentifier: string
+end
+
+local record DeleteGlobalClusterOutput
+    GlobalCluster: GlobalCluster
+end
+
+local record DescribeDBClusterEndpointsInput
+    DBClusterIdentifier: string
+    DBClusterEndpointIdentifier: string
+    Filters: {Filter}
+    MaxRecords: number
+    Marker: string
+end
+
+local record DescribeDBClusterEndpointsOutput
+    Marker: string
+    DBClusterEndpoints: {DBClusterEndpoint}
+end
+
+local record DescribeDBClusterParameterGroupsInput
+    DBClusterParameterGroupName: string
+    Filters: {Filter}
+    MaxRecords: number
+    Marker: string
+end
+
+local record DescribeDBClusterParameterGroupsOutput
+    Marker: string
+    DBClusterParameterGroups: {DBClusterParameterGroup}
+end
+
+local record DescribeDBClusterParametersInput
+    DBClusterParameterGroupName: string
+    Source: string
+    Filters: {Filter}
+    MaxRecords: number
+    Marker: string
+end
+
+local record DescribeDBClusterParametersOutput
+    Parameters: {Parameter}
+    Marker: string
+end
+
+local record DescribeDBClustersInput
+    DBClusterIdentifier: string
+    Filters: {Filter}
+    MaxRecords: number
+    Marker: string
+end
+
+local record DescribeDBClustersOutput
+    Marker: string
+    DBClusters: {DBCluster}
+end
+
+local record DescribeDBClusterSnapshotAttributesInput
+    DBClusterSnapshotIdentifier: string
+end
+
+local record DescribeDBClusterSnapshotAttributesOutput
+    DBClusterSnapshotAttributesResult: DBClusterSnapshotAttributesResult
+end
+
+local record DescribeDBClusterSnapshotsInput
+    DBClusterIdentifier: string
+    DBClusterSnapshotIdentifier: string
+    SnapshotType: string
+    Filters: {Filter}
+    MaxRecords: number
+    Marker: string
+    IncludeShared: boolean
+    IncludePublic: boolean
+end
+
+local record DescribeDBClusterSnapshotsOutput
+    Marker: string
+    DBClusterSnapshots: {DBClusterSnapshot}
+end
+
+local record DescribeDBEngineVersionsInput
+    Engine: string
+    EngineVersion: string
+    DBParameterGroupFamily: string
+    Filters: {Filter}
+    MaxRecords: number
+    Marker: string
+    DefaultOnly: boolean
+    ListSupportedCharacterSets: boolean
+    ListSupportedTimezones: boolean
+end
+
+local record DescribeDBEngineVersionsOutput
+    Marker: string
+    DBEngineVersions: {DBEngineVersion}
+end
+
+local record DescribeDBInstancesInput
+    DBInstanceIdentifier: string
+    Filters: {Filter}
+    MaxRecords: number
+    Marker: string
+end
+
+local record DescribeDBInstancesOutput
+    Marker: string
+    DBInstances: {DBInstance}
+end
+
+local record DescribeDBParameterGroupsInput
+    DBParameterGroupName: string
+    Filters: {Filter}
+    MaxRecords: number
+    Marker: string
+end
+
+local record DescribeDBParameterGroupsOutput
+    Marker: string
+    DBParameterGroups: {DBParameterGroup}
+end
+
+local record DescribeDBParametersInput
+    DBParameterGroupName: string
+    Source: string
+    Filters: {Filter}
+    MaxRecords: number
+    Marker: string
+end
+
+local record DescribeDBParametersOutput
+    Parameters: {Parameter}
+    Marker: string
+end
+
+local record DescribeDBSubnetGroupsInput
+    DBSubnetGroupName: string
+    Filters: {Filter}
+    MaxRecords: number
+    Marker: string
+end
+
+local record DescribeDBSubnetGroupsOutput
+    Marker: string
+    DBSubnetGroups: {DBSubnetGroup}
+end
+
+local record DescribeEngineDefaultClusterParametersInput
+    DBParameterGroupFamily: string
+    Filters: {Filter}
+    MaxRecords: number
+    Marker: string
+end
+
+local record DescribeEngineDefaultClusterParametersOutput
+    EngineDefaults: EngineDefaults
+end
+
+local record DescribeEngineDefaultParametersInput
+    DBParameterGroupFamily: string
+    Filters: {Filter}
+    MaxRecords: number
+    Marker: string
+end
+
+local record DescribeEngineDefaultParametersOutput
+    EngineDefaults: EngineDefaults
+end
+
+local record DescribeEventCategoriesInput
+    SourceType: string
+    Filters: {Filter}
+end
+
+local record DescribeEventCategoriesOutput
+    EventCategoriesMapList: {EventCategoriesMap}
+end
+
+local record DescribeEventsInput
+    SourceIdentifier: string
+    SourceType: string
+    StartTime: number
+    EndTime: number
+    Duration: number
+    EventCategories: {string}
+    Filters: {Filter}
+    MaxRecords: number
+    Marker: string
+end
+
+local record DescribeEventsOutput
+    Marker: string
+    Events: {Event}
+end
+
+local record DescribeEventSubscriptionsInput
+    SubscriptionName: string
+    Filters: {Filter}
+    MaxRecords: number
+    Marker: string
+end
+
+local record DescribeEventSubscriptionsOutput
+    Marker: string
+    EventSubscriptionsList: {EventSubscription}
+end
+
+local record DescribeGlobalClustersInput
+    GlobalClusterIdentifier: string
+    MaxRecords: number
+    Marker: string
+end
+
+local record DescribeGlobalClustersOutput
+    Marker: string
+    GlobalClusters: {GlobalCluster}
+end
+
+local record DescribeOrderableDBInstanceOptionsInput
+    Engine: string
+    EngineVersion: string
+    DBInstanceClass: string
+    LicenseModel: string
+    Vpc: boolean
+    Filters: {Filter}
+    MaxRecords: number
+    Marker: string
+end
+
+local record DescribeOrderableDBInstanceOptionsOutput
+    OrderableDBInstanceOptions: {OrderableDBInstanceOption}
+    Marker: string
+end
+
+local record DescribePendingMaintenanceActionsInput
+    ResourceIdentifier: string
+    Filters: {Filter}
+    Marker: string
+    MaxRecords: number
+end
+
+local record DescribePendingMaintenanceActionsOutput
+    PendingMaintenanceActions: {ResourcePendingMaintenanceActions}
+    Marker: string
+end
+
+local record DescribeValidDBInstanceModificationsInput
+    DBInstanceIdentifier: string
+end
+
+local record DescribeValidDBInstanceModificationsOutput
+    ValidDBInstanceModificationsMessage: ValidDBInstanceModificationsMessage
+end
+
+local record FailoverDBClusterInput
+    DBClusterIdentifier: string
+    TargetDBInstanceIdentifier: string
+end
+
+local record FailoverDBClusterOutput
+    DBCluster: DBCluster
+end
+
+local record FailoverGlobalClusterInput
+    GlobalClusterIdentifier: string
+    TargetDbClusterIdentifier: string
+    AllowDataLoss: boolean
+    Switchover: boolean
+end
+
+local record FailoverGlobalClusterOutput
+    GlobalCluster: GlobalCluster
+end
+
+local record ListTagsForResourceInput
+    ResourceName: string
+    Filters: {Filter}
+end
+
+local record ListTagsForResourceOutput
+    TagList: {Tag}
+end
+
+local record ModifyDBClusterInput
+    DBClusterIdentifier: string
+    NewDBClusterIdentifier: string
+    ApplyImmediately: boolean
+    BackupRetentionPeriod: number
+    DBClusterParameterGroupName: string
+    VpcSecurityGroupIds: {string}
+    Port: number
+    MasterUserPassword: string
+    OptionGroupName: string
+    PreferredBackupWindow: string
+    PreferredMaintenanceWindow: string
+    EnableIAMDatabaseAuthentication: boolean
+    CloudwatchLogsExportConfiguration: CloudwatchLogsExportConfiguration
+    EngineVersion: string
+    AllowMajorVersionUpgrade: boolean
+    DBInstanceParameterGroupName: string
+    DeletionProtection: boolean
+    CopyTagsToSnapshot: boolean
+    ServerlessV2ScalingConfiguration: ServerlessV2ScalingConfiguration
+    StorageType: string
+end
+
+local record ModifyDBClusterOutput
+    DBCluster: DBCluster
+end
+
+local record ModifyDBClusterEndpointInput
+    DBClusterEndpointIdentifier: string
+    EndpointType: string
+    StaticMembers: {string}
+    ExcludedMembers: {string}
+end
+
+local record ModifyDBClusterEndpointOutput
+    DBClusterEndpointIdentifier: string
+    DBClusterIdentifier: string
+    DBClusterEndpointResourceIdentifier: string
+    Endpoint: string
+    Status: string
+    EndpointType: string
+    CustomEndpointType: string
+    StaticMembers: {string}
+    ExcludedMembers: {string}
+    DBClusterEndpointArn: string
+end
+
+local record ModifyDBClusterParameterGroupInput
+    DBClusterParameterGroupName: string
+    Parameters: {Parameter}
+end
+
+local record ModifyDBClusterParameterGroupOutput
+    DBClusterParameterGroupName: string
+end
+
+local record ModifyDBClusterSnapshotAttributeInput
+    DBClusterSnapshotIdentifier: string
+    AttributeName: string
+    ValuesToAdd: {string}
+    ValuesToRemove: {string}
+end
+
+local record ModifyDBClusterSnapshotAttributeOutput
+    DBClusterSnapshotAttributesResult: DBClusterSnapshotAttributesResult
+end
+
+local record ModifyDBInstanceInput
+    DBInstanceIdentifier: string
+    AllocatedStorage: number
+    DBInstanceClass: string
+    DBSubnetGroupName: string
+    DBSecurityGroups: {string}
+    VpcSecurityGroupIds: {string}
+    ApplyImmediately: boolean
+    MasterUserPassword: string
+    DBParameterGroupName: string
+    BackupRetentionPeriod: number
+    PreferredBackupWindow: string
+    PreferredMaintenanceWindow: string
+    MultiAZ: boolean
+    EngineVersion: string
+    AllowMajorVersionUpgrade: boolean
+    AutoMinorVersionUpgrade: boolean
+    LicenseModel: string
+    Iops: number
+    OptionGroupName: string
+    NewDBInstanceIdentifier: string
+    StorageType: string
+    TdeCredentialArn: string
+    TdeCredentialPassword: string
+    CACertificateIdentifier: string
+    Domain: string
+    CopyTagsToSnapshot: boolean
+    MonitoringInterval: number
+    DBPortNumber: number
+    PubliclyAccessible: boolean
+    MonitoringRoleArn: string
+    DomainIAMRoleName: string
+    PromotionTier: number
+    EnableIAMDatabaseAuthentication: boolean
+    EnablePerformanceInsights: boolean
+    PerformanceInsightsKMSKeyId: string
+    CloudwatchLogsExportConfiguration: CloudwatchLogsExportConfiguration
+    DeletionProtection: boolean
+end
+
+local record ModifyDBInstanceOutput
+    DBInstance: DBInstance
+end
+
+local record ModifyDBParameterGroupInput
+    DBParameterGroupName: string
+    Parameters: {Parameter}
+end
+
+local record ModifyDBParameterGroupOutput
+    DBParameterGroupName: string
+end
+
+local record ModifyDBSubnetGroupInput
+    DBSubnetGroupName: string
+    DBSubnetGroupDescription: string
+    SubnetIds: {string}
+end
+
+local record ModifyDBSubnetGroupOutput
+    DBSubnetGroup: DBSubnetGroup
+end
+
+local record ModifyEventSubscriptionInput
+    SubscriptionName: string
+    SnsTopicArn: string
+    SourceType: string
+    EventCategories: {string}
+    Enabled: boolean
+end
+
+local record ModifyEventSubscriptionOutput
+    EventSubscription: EventSubscription
+end
+
+local record ModifyGlobalClusterInput
+    GlobalClusterIdentifier: string
+    NewGlobalClusterIdentifier: string
+    DeletionProtection: boolean
+    EngineVersion: string
+    AllowMajorVersionUpgrade: boolean
+end
+
+local record ModifyGlobalClusterOutput
+    GlobalCluster: GlobalCluster
+end
+
+local record PromoteReadReplicaDBClusterInput
+    DBClusterIdentifier: string
+end
+
+local record PromoteReadReplicaDBClusterOutput
+    DBCluster: DBCluster
+end
+
+local record RebootDBInstanceInput
+    DBInstanceIdentifier: string
+    ForceFailover: boolean
+end
+
+local record RebootDBInstanceOutput
+    DBInstance: DBInstance
+end
+
+local record RemoveFromGlobalClusterInput
+    GlobalClusterIdentifier: string
+    DbClusterIdentifier: string
+end
+
+local record RemoveFromGlobalClusterOutput
+    GlobalCluster: GlobalCluster
+end
+
+local record RemoveRoleFromDBClusterInput
+    DBClusterIdentifier: string
+    RoleArn: string
+    FeatureName: string
+end
+
+local record RemoveRoleFromDBClusterOutput
+end
+
+local record RemoveSourceIdentifierFromSubscriptionInput
+    SubscriptionName: string
+    SourceIdentifier: string
+end
+
+local record RemoveSourceIdentifierFromSubscriptionOutput
+    EventSubscription: EventSubscription
+end
+
+local record RemoveTagsFromResourceInput
+    ResourceName: string
+    TagKeys: {string}
+end
+
+local record RemoveTagsFromResourceOutput
+end
+
+local record ResetDBClusterParameterGroupInput
+    DBClusterParameterGroupName: string
+    ResetAllParameters: boolean
+    Parameters: {Parameter}
+end
+
+local record ResetDBClusterParameterGroupOutput
+    DBClusterParameterGroupName: string
+end
+
+local record ResetDBParameterGroupInput
+    DBParameterGroupName: string
+    ResetAllParameters: boolean
+    Parameters: {Parameter}
+end
+
+local record ResetDBParameterGroupOutput
+    DBParameterGroupName: string
+end
+
+local record RestoreDBClusterFromSnapshotInput
+    AvailabilityZones: {string}
+    DBClusterIdentifier: string
+    SnapshotIdentifier: string
+    Engine: string
+    EngineVersion: string
+    Port: number
+    DBSubnetGroupName: string
+    DatabaseName: string
+    OptionGroupName: string
+    VpcSecurityGroupIds: {string}
+    Tags: {Tag}
+    KmsKeyId: string
+    EnableIAMDatabaseAuthentication: boolean
+    EnableCloudwatchLogsExports: {string}
+    DBClusterParameterGroupName: string
+    DeletionProtection: boolean
+    CopyTagsToSnapshot: boolean
+    ServerlessV2ScalingConfiguration: ServerlessV2ScalingConfiguration
+    StorageType: string
+end
+
+local record RestoreDBClusterFromSnapshotOutput
+    DBCluster: DBCluster
+end
+
+local record RestoreDBClusterToPointInTimeInput
+    DBClusterIdentifier: string
+    RestoreType: string
+    SourceDBClusterIdentifier: string
+    RestoreToTime: number
+    UseLatestRestorableTime: boolean
+    Port: number
+    DBSubnetGroupName: string
+    OptionGroupName: string
+    VpcSecurityGroupIds: {string}
+    Tags: {Tag}
+    KmsKeyId: string
+    EnableIAMDatabaseAuthentication: boolean
+    EnableCloudwatchLogsExports: {string}
+    DBClusterParameterGroupName: string
+    DeletionProtection: boolean
+    ServerlessV2ScalingConfiguration: ServerlessV2ScalingConfiguration
+    StorageType: string
+end
+
+local record RestoreDBClusterToPointInTimeOutput
+    DBCluster: DBCluster
+end
+
+local record StartDBClusterInput
+    DBClusterIdentifier: string
+end
+
+local record StartDBClusterOutput
+    DBCluster: DBCluster
+end
+
+local record StopDBClusterInput
+    DBClusterIdentifier: string
+end
+
+local record StopDBClusterOutput
+    DBCluster: DBCluster
+end
+
+local record SwitchoverGlobalClusterInput
+    GlobalClusterIdentifier: string
+    TargetDbClusterIdentifier: string
+end
+
+local record SwitchoverGlobalClusterOutput
+    GlobalCluster: GlobalCluster
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record DBClusterRoleAlreadyExistsFault
+    message: string
+end
+
+local record DBClusterRoleQuotaExceededFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record SourceNotFoundFault
+    message: string
+end
+
+local record SubscriptionNotFoundFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record DBInstanceNotFoundFault
+    message: string
+end
+
+local record DBSnapshotNotFoundFault
+    message: string
+end
+
+local record ResourceNotFoundFault
+    message: string
+end
+
+local record DBParameterGroupAlreadyExistsFault
+    message: string
+end
+
+local record DBParameterGroupNotFoundFault
+    message: string
+end
+
+local record DBParameterGroupQuotaExceededFault
+    message: string
+end
+
+local record DBClusterSnapshotAlreadyExistsFault
+    message: string
+end
+
+local record DBClusterSnapshotNotFoundFault
+    message: string
+end
+
+local record InvalidDBClusterSnapshotStateFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record KMSKeyNotAccessibleFault
+    message: string
+end
+
+local record SnapshotQuotaExceededFault
+    message: string
+end
+
+local record DBParameterGroupAlreadyExistsFault
+    message: string
+end
+
+local record DBParameterGroupNotFoundFault
+    message: string
+end
+
+local record DBParameterGroupQuotaExceededFault
+    message: string
+end
+
+local record DBClusterAlreadyExistsFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record DBClusterParameterGroupNotFoundFault
+    message: string
+end
+
+local record DBClusterQuotaExceededFault
+    message: string
+end
+
+local record DBInstanceNotFoundFault
+    message: string
+end
+
+local record DBSubnetGroupDoesNotCoverEnoughAZs
+    message: string
+end
+
+local record DBSubnetGroupNotFoundFault
+    message: string
+end
+
+local record GlobalClusterNotFoundFault
+    message: string
+end
+
+local record InsufficientStorageClusterCapacityFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record InvalidDBInstanceStateFault
+    message: string
+end
+
+local record InvalidDBSubnetGroupStateFault
+    message: string
+end
+
+local record InvalidGlobalClusterStateFault
+    message: string
+end
+
+local record InvalidSubnet
+    message: string
+end
+
+local record InvalidVPCNetworkStateFault
+    message: string
+end
+
+local record KMSKeyNotAccessibleFault
+    message: string
+end
+
+local record StorageQuotaExceededFault
+    message: string
+end
+
+local record DBClusterEndpointAlreadyExistsFault
+    message: string
+end
+
+local record DBClusterEndpointQuotaExceededFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record DBInstanceNotFoundFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record InvalidDBInstanceStateFault
+    message: string
+end
+
+local record DBParameterGroupAlreadyExistsFault
+    message: string
+end
+
+local record DBParameterGroupQuotaExceededFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record DBClusterSnapshotAlreadyExistsFault
+    message: string
+end
+
+local record InvalidDBClusterSnapshotStateFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record SnapshotQuotaExceededFault
+    message: string
+end
+
+local record AuthorizationNotFoundFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record DBInstanceAlreadyExistsFault
+    message: string
+end
+
+local record DBParameterGroupNotFoundFault
+    message: string
+end
+
+local record DBSecurityGroupNotFoundFault
+    message: string
+end
+
+local record DBSubnetGroupDoesNotCoverEnoughAZs
+    message: string
+end
+
+local record DBSubnetGroupNotFoundFault
+    message: string
+end
+
+local record DomainNotFoundFault
+    message: string
+end
+
+local record InstanceQuotaExceededFault
+    message: string
+end
+
+local record InsufficientDBInstanceCapacityFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record InvalidSubnet
+    message: string
+end
+
+local record InvalidVPCNetworkStateFault
+    message: string
+end
+
+local record KMSKeyNotAccessibleFault
+    message: string
+end
+
+local record OptionGroupNotFoundFault
+    message: string
+end
+
+local record ProvisionedIopsNotAvailableInAZFault
+    message: string
+end
+
+local record StorageQuotaExceededFault
+    message: string
+end
+
+local record StorageTypeNotSupportedFault
+    message: string
+end
+
+local record DBParameterGroupAlreadyExistsFault
+    message: string
+end
+
+local record DBParameterGroupQuotaExceededFault
+    message: string
+end
+
+local record DBSubnetGroupAlreadyExistsFault
+    message: string
+end
+
+local record DBSubnetGroupDoesNotCoverEnoughAZs
+    message: string
+end
+
+local record DBSubnetGroupQuotaExceededFault
+    message: string
+end
+
+local record DBSubnetQuotaExceededFault
+    message: string
+end
+
+local record InvalidSubnet
+    message: string
+end
+
+local record EventSubscriptionQuotaExceededFault
+    message: string
+end
+
+local record SNSInvalidTopicFault
+    message: string
+end
+
+local record SNSNoAuthorizationFault
+    message: string
+end
+
+local record SNSTopicArnNotFoundFault
+    message: string
+end
+
+local record SourceNotFoundFault
+    message: string
+end
+
+local record SubscriptionAlreadyExistFault
+    message: string
+end
+
+local record SubscriptionCategoryNotFoundFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record GlobalClusterAlreadyExistsFault
+    message: string
+end
+
+local record GlobalClusterQuotaExceededFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record DBClusterSnapshotAlreadyExistsFault
+    message: string
+end
+
+local record InvalidDBClusterSnapshotStateFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record SnapshotQuotaExceededFault
+    message: string
+end
+
+local record DBClusterEndpointNotFoundFault
+    message: string
+end
+
+local record InvalidDBClusterEndpointStateFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record DBParameterGroupNotFoundFault
+    message: string
+end
+
+local record InvalidDBParameterGroupStateFault
+    message: string
+end
+
+local record DBClusterSnapshotNotFoundFault
+    message: string
+end
+
+local record InvalidDBClusterSnapshotStateFault
+    message: string
+end
+
+local record DBInstanceNotFoundFault
+    message: string
+end
+
+local record DBSnapshotAlreadyExistsFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record InvalidDBInstanceStateFault
+    message: string
+end
+
+local record SnapshotQuotaExceededFault
+    message: string
+end
+
+local record DBParameterGroupNotFoundFault
+    message: string
+end
+
+local record InvalidDBParameterGroupStateFault
+    message: string
+end
+
+local record DBSubnetGroupNotFoundFault
+    message: string
+end
+
+local record InvalidDBSubnetGroupStateFault
+    message: string
+end
+
+local record InvalidDBSubnetStateFault
+    message: string
+end
+
+local record InvalidEventSubscriptionStateFault
+    message: string
+end
+
+local record SubscriptionNotFoundFault
+    message: string
+end
+
+local record GlobalClusterNotFoundFault
+    message: string
+end
+
+local record InvalidGlobalClusterStateFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record DBParameterGroupNotFoundFault
+    message: string
+end
+
+local record DBParameterGroupNotFoundFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record DBClusterSnapshotNotFoundFault
+    message: string
+end
+
+local record DBClusterSnapshotNotFoundFault
+    message: string
+end
+
+local record DBInstanceNotFoundFault
+    message: string
+end
+
+local record DBParameterGroupNotFoundFault
+    message: string
+end
+
+local record DBParameterGroupNotFoundFault
+    message: string
+end
+
+local record DBSubnetGroupNotFoundFault
+    message: string
+end
+
+local record SubscriptionNotFoundFault
+    message: string
+end
+
+local record GlobalClusterNotFoundFault
+    message: string
+end
+
+local record ResourceNotFoundFault
+    message: string
+end
+
+local record DBInstanceNotFoundFault
+    message: string
+end
+
+local record InvalidDBInstanceStateFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record InvalidDBInstanceStateFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record GlobalClusterNotFoundFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record InvalidGlobalClusterStateFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record DBInstanceNotFoundFault
+    message: string
+end
+
+local record DBSnapshotNotFoundFault
+    message: string
+end
+
+local record DBClusterAlreadyExistsFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record DBClusterParameterGroupNotFoundFault
+    message: string
+end
+
+local record DBSubnetGroupNotFoundFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record InvalidDBInstanceStateFault
+    message: string
+end
+
+local record InvalidDBSecurityGroupStateFault
+    message: string
+end
+
+local record InvalidDBSubnetGroupStateFault
+    message: string
+end
+
+local record InvalidSubnet
+    message: string
+end
+
+local record InvalidVPCNetworkStateFault
+    message: string
+end
+
+local record StorageQuotaExceededFault
+    message: string
+end
+
+local record StorageTypeNotSupportedFault
+    message: string
+end
+
+local record DBClusterEndpointNotFoundFault
+    message: string
+end
+
+local record DBInstanceNotFoundFault
+    message: string
+end
+
+local record InvalidDBClusterEndpointStateFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record InvalidDBInstanceStateFault
+    message: string
+end
+
+local record DBParameterGroupNotFoundFault
+    message: string
+end
+
+local record InvalidDBParameterGroupStateFault
+    message: string
+end
+
+local record DBClusterSnapshotNotFoundFault
+    message: string
+end
+
+local record InvalidDBClusterSnapshotStateFault
+    message: string
+end
+
+local record SharedSnapshotQuotaExceededFault
+    message: string
+end
+
+local record AuthorizationNotFoundFault
+    message: string
+end
+
+local record CertificateNotFoundFault
+    message: string
+end
+
+local record DBInstanceAlreadyExistsFault
+    message: string
+end
+
+local record DBInstanceNotFoundFault
+    message: string
+end
+
+local record DBParameterGroupNotFoundFault
+    message: string
+end
+
+local record DBSecurityGroupNotFoundFault
+    message: string
+end
+
+local record DBUpgradeDependencyFailureFault
+    message: string
+end
+
+local record DomainNotFoundFault
+    message: string
+end
+
+local record InsufficientDBInstanceCapacityFault
+    message: string
+end
+
+local record InvalidDBInstanceStateFault
+    message: string
+end
+
+local record InvalidDBSecurityGroupStateFault
+    message: string
+end
+
+local record InvalidVPCNetworkStateFault
+    message: string
+end
+
+local record OptionGroupNotFoundFault
+    message: string
+end
+
+local record ProvisionedIopsNotAvailableInAZFault
+    message: string
+end
+
+local record StorageQuotaExceededFault
+    message: string
+end
+
+local record StorageTypeNotSupportedFault
+    message: string
+end
+
+local record DBParameterGroupNotFoundFault
+    message: string
+end
+
+local record InvalidDBParameterGroupStateFault
+    message: string
+end
+
+local record DBSubnetGroupDoesNotCoverEnoughAZs
+    message: string
+end
+
+local record DBSubnetGroupNotFoundFault
+    message: string
+end
+
+local record DBSubnetQuotaExceededFault
+    message: string
+end
+
+local record InvalidSubnet
+    message: string
+end
+
+local record SubnetAlreadyInUse
+    message: string
+end
+
+local record EventSubscriptionQuotaExceededFault
+    message: string
+end
+
+local record SNSInvalidTopicFault
+    message: string
+end
+
+local record SNSNoAuthorizationFault
+    message: string
+end
+
+local record SNSTopicArnNotFoundFault
+    message: string
+end
+
+local record SubscriptionCategoryNotFoundFault
+    message: string
+end
+
+local record SubscriptionNotFoundFault
+    message: string
+end
+
+local record GlobalClusterAlreadyExistsFault
+    message: string
+end
+
+local record GlobalClusterNotFoundFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record InvalidDBInstanceStateFault
+    message: string
+end
+
+local record InvalidGlobalClusterStateFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record DBInstanceNotFoundFault
+    message: string
+end
+
+local record InvalidDBInstanceStateFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record GlobalClusterNotFoundFault
+    message: string
+end
+
+local record InvalidGlobalClusterStateFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record DBClusterRoleNotFoundFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record SourceNotFoundFault
+    message: string
+end
+
+local record SubscriptionNotFoundFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record DBInstanceNotFoundFault
+    message: string
+end
+
+local record DBSnapshotNotFoundFault
+    message: string
+end
+
+local record DBParameterGroupNotFoundFault
+    message: string
+end
+
+local record InvalidDBParameterGroupStateFault
+    message: string
+end
+
+local record DBParameterGroupNotFoundFault
+    message: string
+end
+
+local record InvalidDBParameterGroupStateFault
+    message: string
+end
+
+local record DBClusterAlreadyExistsFault
+    message: string
+end
+
+local record DBClusterParameterGroupNotFoundFault
+    message: string
+end
+
+local record DBClusterQuotaExceededFault
+    message: string
+end
+
+local record DBClusterSnapshotNotFoundFault
+    message: string
+end
+
+local record DBSnapshotNotFoundFault
+    message: string
+end
+
+local record DBSubnetGroupNotFoundFault
+    message: string
+end
+
+local record InsufficientDBClusterCapacityFault
+    message: string
+end
+
+local record InsufficientStorageClusterCapacityFault
+    message: string
+end
+
+local record InvalidDBClusterSnapshotStateFault
+    message: string
+end
+
+local record InvalidDBSnapshotStateFault
+    message: string
+end
+
+local record InvalidRestoreFault
+    message: string
+end
+
+local record InvalidSubnet
+    message: string
+end
+
+local record InvalidVPCNetworkStateFault
+    message: string
+end
+
+local record KMSKeyNotAccessibleFault
+    message: string
+end
+
+local record OptionGroupNotFoundFault
+    message: string
+end
+
+local record StorageQuotaExceededFault
+    message: string
+end
+
+local record DBClusterAlreadyExistsFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record DBClusterParameterGroupNotFoundFault
+    message: string
+end
+
+local record DBClusterQuotaExceededFault
+    message: string
+end
+
+local record DBClusterSnapshotNotFoundFault
+    message: string
+end
+
+local record DBSubnetGroupNotFoundFault
+    message: string
+end
+
+local record InsufficientDBClusterCapacityFault
+    message: string
+end
+
+local record InsufficientStorageClusterCapacityFault
+    message: string
+end
+
+local record InvalidDBClusterSnapshotStateFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record InvalidDBSnapshotStateFault
+    message: string
+end
+
+local record InvalidRestoreFault
+    message: string
+end
+
+local record InvalidSubnet
+    message: string
+end
+
+local record InvalidVPCNetworkStateFault
+    message: string
+end
+
+local record KMSKeyNotAccessibleFault
+    message: string
+end
+
+local record OptionGroupNotFoundFault
+    message: string
+end
+
+local record StorageQuotaExceededFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record InvalidDBInstanceStateFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record InvalidDBInstanceStateFault
+    message: string
+end
+
+local record DBClusterNotFoundFault
+    message: string
+end
+
+local record GlobalClusterNotFoundFault
+    message: string
+end
+
+local record InvalidDBClusterStateFault
+    message: string
+end
+
+local record InvalidGlobalClusterStateFault
+    message: string
+end
+
+local type SourceType = "db-instance" | "db-parameter-group" | "db-security-group" | "db-snapshot" | "db-cluster" | "db-cluster-snapshot"
+
+local record M
+    AddRoleToDBClusterInput: AddRoleToDBClusterInput
+    AddRoleToDBClusterOutput: AddRoleToDBClusterOutput
+    AddSourceIdentifierToSubscriptionInput: AddSourceIdentifierToSubscriptionInput
+    AddSourceIdentifierToSubscriptionOutput: AddSourceIdentifierToSubscriptionOutput
+    AddTagsToResourceInput: AddTagsToResourceInput
+    AddTagsToResourceOutput: AddTagsToResourceOutput
+    ApplyPendingMaintenanceActionInput: ApplyPendingMaintenanceActionInput
+    ApplyPendingMaintenanceActionOutput: ApplyPendingMaintenanceActionOutput
+    CopyDBClusterParameterGroupInput: CopyDBClusterParameterGroupInput
+    CopyDBClusterParameterGroupOutput: CopyDBClusterParameterGroupOutput
+    CopyDBClusterSnapshotInput: CopyDBClusterSnapshotInput
+    CopyDBClusterSnapshotOutput: CopyDBClusterSnapshotOutput
+    CopyDBParameterGroupInput: CopyDBParameterGroupInput
+    CopyDBParameterGroupOutput: CopyDBParameterGroupOutput
+    CreateDBClusterInput: CreateDBClusterInput
+    CreateDBClusterOutput: CreateDBClusterOutput
+    CreateDBClusterEndpointInput: CreateDBClusterEndpointInput
+    CreateDBClusterEndpointOutput: CreateDBClusterEndpointOutput
+    CreateDBClusterParameterGroupInput: CreateDBClusterParameterGroupInput
+    CreateDBClusterParameterGroupOutput: CreateDBClusterParameterGroupOutput
+    CreateDBClusterSnapshotInput: CreateDBClusterSnapshotInput
+    CreateDBClusterSnapshotOutput: CreateDBClusterSnapshotOutput
+    CreateDBInstanceInput: CreateDBInstanceInput
+    CreateDBInstanceOutput: CreateDBInstanceOutput
+    CreateDBParameterGroupInput: CreateDBParameterGroupInput
+    CreateDBParameterGroupOutput: CreateDBParameterGroupOutput
+    CreateDBSubnetGroupInput: CreateDBSubnetGroupInput
+    CreateDBSubnetGroupOutput: CreateDBSubnetGroupOutput
+    CreateEventSubscriptionInput: CreateEventSubscriptionInput
+    CreateEventSubscriptionOutput: CreateEventSubscriptionOutput
+    CreateGlobalClusterInput: CreateGlobalClusterInput
+    CreateGlobalClusterOutput: CreateGlobalClusterOutput
+    DeleteDBClusterInput: DeleteDBClusterInput
+    DeleteDBClusterOutput: DeleteDBClusterOutput
+    DeleteDBClusterEndpointInput: DeleteDBClusterEndpointInput
+    DeleteDBClusterEndpointOutput: DeleteDBClusterEndpointOutput
+    DeleteDBClusterParameterGroupInput: DeleteDBClusterParameterGroupInput
+    DeleteDBClusterParameterGroupOutput: DeleteDBClusterParameterGroupOutput
+    DeleteDBClusterSnapshotInput: DeleteDBClusterSnapshotInput
+    DeleteDBClusterSnapshotOutput: DeleteDBClusterSnapshotOutput
+    DeleteDBInstanceInput: DeleteDBInstanceInput
+    DeleteDBInstanceOutput: DeleteDBInstanceOutput
+    DeleteDBParameterGroupInput: DeleteDBParameterGroupInput
+    DeleteDBParameterGroupOutput: DeleteDBParameterGroupOutput
+    DeleteDBSubnetGroupInput: DeleteDBSubnetGroupInput
+    DeleteDBSubnetGroupOutput: DeleteDBSubnetGroupOutput
+    DeleteEventSubscriptionInput: DeleteEventSubscriptionInput
+    DeleteEventSubscriptionOutput: DeleteEventSubscriptionOutput
+    DeleteGlobalClusterInput: DeleteGlobalClusterInput
+    DeleteGlobalClusterOutput: DeleteGlobalClusterOutput
+    DescribeDBClusterEndpointsInput: DescribeDBClusterEndpointsInput
+    DescribeDBClusterEndpointsOutput: DescribeDBClusterEndpointsOutput
+    DescribeDBClusterParameterGroupsInput: DescribeDBClusterParameterGroupsInput
+    DescribeDBClusterParameterGroupsOutput: DescribeDBClusterParameterGroupsOutput
+    DescribeDBClusterParametersInput: DescribeDBClusterParametersInput
+    DescribeDBClusterParametersOutput: DescribeDBClusterParametersOutput
+    DescribeDBClustersInput: DescribeDBClustersInput
+    DescribeDBClustersOutput: DescribeDBClustersOutput
+    DescribeDBClusterSnapshotAttributesInput: DescribeDBClusterSnapshotAttributesInput
+    DescribeDBClusterSnapshotAttributesOutput: DescribeDBClusterSnapshotAttributesOutput
+    DescribeDBClusterSnapshotsInput: DescribeDBClusterSnapshotsInput
+    DescribeDBClusterSnapshotsOutput: DescribeDBClusterSnapshotsOutput
+    DescribeDBEngineVersionsInput: DescribeDBEngineVersionsInput
+    DescribeDBEngineVersionsOutput: DescribeDBEngineVersionsOutput
+    DescribeDBInstancesInput: DescribeDBInstancesInput
+    DescribeDBInstancesOutput: DescribeDBInstancesOutput
+    DescribeDBParameterGroupsInput: DescribeDBParameterGroupsInput
+    DescribeDBParameterGroupsOutput: DescribeDBParameterGroupsOutput
+    DescribeDBParametersInput: DescribeDBParametersInput
+    DescribeDBParametersOutput: DescribeDBParametersOutput
+    DescribeDBSubnetGroupsInput: DescribeDBSubnetGroupsInput
+    DescribeDBSubnetGroupsOutput: DescribeDBSubnetGroupsOutput
+    DescribeEngineDefaultClusterParametersInput: DescribeEngineDefaultClusterParametersInput
+    DescribeEngineDefaultClusterParametersOutput: DescribeEngineDefaultClusterParametersOutput
+    DescribeEngineDefaultParametersInput: DescribeEngineDefaultParametersInput
+    DescribeEngineDefaultParametersOutput: DescribeEngineDefaultParametersOutput
+    DescribeEventCategoriesInput: DescribeEventCategoriesInput
+    DescribeEventCategoriesOutput: DescribeEventCategoriesOutput
+    DescribeEventsInput: DescribeEventsInput
+    DescribeEventsOutput: DescribeEventsOutput
+    DescribeEventSubscriptionsInput: DescribeEventSubscriptionsInput
+    DescribeEventSubscriptionsOutput: DescribeEventSubscriptionsOutput
+    DescribeGlobalClustersInput: DescribeGlobalClustersInput
+    DescribeGlobalClustersOutput: DescribeGlobalClustersOutput
+    DescribeOrderableDBInstanceOptionsInput: DescribeOrderableDBInstanceOptionsInput
+    DescribeOrderableDBInstanceOptionsOutput: DescribeOrderableDBInstanceOptionsOutput
+    DescribePendingMaintenanceActionsInput: DescribePendingMaintenanceActionsInput
+    DescribePendingMaintenanceActionsOutput: DescribePendingMaintenanceActionsOutput
+    DescribeValidDBInstanceModificationsInput: DescribeValidDBInstanceModificationsInput
+    DescribeValidDBInstanceModificationsOutput: DescribeValidDBInstanceModificationsOutput
+    FailoverDBClusterInput: FailoverDBClusterInput
+    FailoverDBClusterOutput: FailoverDBClusterOutput
+    FailoverGlobalClusterInput: FailoverGlobalClusterInput
+    FailoverGlobalClusterOutput: FailoverGlobalClusterOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ModifyDBClusterInput: ModifyDBClusterInput
+    ModifyDBClusterOutput: ModifyDBClusterOutput
+    ModifyDBClusterEndpointInput: ModifyDBClusterEndpointInput
+    ModifyDBClusterEndpointOutput: ModifyDBClusterEndpointOutput
+    ModifyDBClusterParameterGroupInput: ModifyDBClusterParameterGroupInput
+    ModifyDBClusterParameterGroupOutput: ModifyDBClusterParameterGroupOutput
+    ModifyDBClusterSnapshotAttributeInput: ModifyDBClusterSnapshotAttributeInput
+    ModifyDBClusterSnapshotAttributeOutput: ModifyDBClusterSnapshotAttributeOutput
+    ModifyDBInstanceInput: ModifyDBInstanceInput
+    ModifyDBInstanceOutput: ModifyDBInstanceOutput
+    ModifyDBParameterGroupInput: ModifyDBParameterGroupInput
+    ModifyDBParameterGroupOutput: ModifyDBParameterGroupOutput
+    ModifyDBSubnetGroupInput: ModifyDBSubnetGroupInput
+    ModifyDBSubnetGroupOutput: ModifyDBSubnetGroupOutput
+    ModifyEventSubscriptionInput: ModifyEventSubscriptionInput
+    ModifyEventSubscriptionOutput: ModifyEventSubscriptionOutput
+    ModifyGlobalClusterInput: ModifyGlobalClusterInput
+    ModifyGlobalClusterOutput: ModifyGlobalClusterOutput
+    PromoteReadReplicaDBClusterInput: PromoteReadReplicaDBClusterInput
+    PromoteReadReplicaDBClusterOutput: PromoteReadReplicaDBClusterOutput
+    RebootDBInstanceInput: RebootDBInstanceInput
+    RebootDBInstanceOutput: RebootDBInstanceOutput
+    RemoveFromGlobalClusterInput: RemoveFromGlobalClusterInput
+    RemoveFromGlobalClusterOutput: RemoveFromGlobalClusterOutput
+    RemoveRoleFromDBClusterInput: RemoveRoleFromDBClusterInput
+    RemoveRoleFromDBClusterOutput: RemoveRoleFromDBClusterOutput
+    RemoveSourceIdentifierFromSubscriptionInput: RemoveSourceIdentifierFromSubscriptionInput
+    RemoveSourceIdentifierFromSubscriptionOutput: RemoveSourceIdentifierFromSubscriptionOutput
+    RemoveTagsFromResourceInput: RemoveTagsFromResourceInput
+    RemoveTagsFromResourceOutput: RemoveTagsFromResourceOutput
+    ResetDBClusterParameterGroupInput: ResetDBClusterParameterGroupInput
+    ResetDBClusterParameterGroupOutput: ResetDBClusterParameterGroupOutput
+    ResetDBParameterGroupInput: ResetDBParameterGroupInput
+    ResetDBParameterGroupOutput: ResetDBParameterGroupOutput
+    RestoreDBClusterFromSnapshotInput: RestoreDBClusterFromSnapshotInput
+    RestoreDBClusterFromSnapshotOutput: RestoreDBClusterFromSnapshotOutput
+    RestoreDBClusterToPointInTimeInput: RestoreDBClusterToPointInTimeInput
+    RestoreDBClusterToPointInTimeOutput: RestoreDBClusterToPointInTimeOutput
+    StartDBClusterInput: StartDBClusterInput
+    StartDBClusterOutput: StartDBClusterOutput
+    StopDBClusterInput: StopDBClusterInput
+    StopDBClusterOutput: StopDBClusterOutput
+    SwitchoverGlobalClusterInput: SwitchoverGlobalClusterInput
+    SwitchoverGlobalClusterOutput: SwitchoverGlobalClusterOutput
+end
+
+return M

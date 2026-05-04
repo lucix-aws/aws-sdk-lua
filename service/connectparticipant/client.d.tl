@@ -1,0 +1,21 @@
+local types = require("connectparticipant.types")
+
+local record Client
+    cancelParticipantAuthentication: function(Client, types.CancelParticipantAuthenticationInput): types.CancelParticipantAuthenticationOutput, table
+    completeAttachmentUpload: function(Client, types.CompleteAttachmentUploadInput): types.CompleteAttachmentUploadOutput, table
+    createParticipantConnection: function(Client, types.CreateParticipantConnectionInput): types.CreateParticipantConnectionOutput, table
+    describeView: function(Client, types.DescribeViewInput): types.DescribeViewOutput, table
+    disconnectParticipant: function(Client, types.DisconnectParticipantInput): types.DisconnectParticipantOutput, table
+    getAttachment: function(Client, types.GetAttachmentInput): types.GetAttachmentOutput, table
+    getAuthenticationUrl: function(Client, types.GetAuthenticationUrlInput): types.GetAuthenticationUrlOutput, table
+    getTranscript: function(Client, types.GetTranscriptInput): types.GetTranscriptOutput, table
+    sendEvent: function(Client, types.SendEventInput): types.SendEventOutput, table
+    sendMessage: function(Client, types.SendMessageInput): types.SendMessageOutput, table
+    startAttachmentUpload: function(Client, types.StartAttachmentUploadInput): types.StartAttachmentUploadOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

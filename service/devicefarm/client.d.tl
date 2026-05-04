@@ -1,0 +1,87 @@
+local types = require("devicefarm.types")
+
+local record Client
+    createDevicePool: function(Client, types.CreateDevicePoolInput): types.CreateDevicePoolOutput, table
+    createInstanceProfile: function(Client, types.CreateInstanceProfileInput): types.CreateInstanceProfileOutput, table
+    createNetworkProfile: function(Client, types.CreateNetworkProfileInput): types.CreateNetworkProfileOutput, table
+    createProject: function(Client, types.CreateProjectInput): types.CreateProjectOutput, table
+    createRemoteAccessSession: function(Client, types.CreateRemoteAccessSessionInput): types.CreateRemoteAccessSessionOutput, table
+    createTestGridProject: function(Client, types.CreateTestGridProjectInput): types.CreateTestGridProjectOutput, table
+    createTestGridUrl: function(Client, types.CreateTestGridUrlInput): types.CreateTestGridUrlOutput, table
+    createUpload: function(Client, types.CreateUploadInput): types.CreateUploadOutput, table
+    createVPCEConfiguration: function(Client, types.CreateVPCEConfigurationInput): types.CreateVPCEConfigurationOutput, table
+    deleteDevicePool: function(Client, types.DeleteDevicePoolInput): types.DeleteDevicePoolOutput, table
+    deleteInstanceProfile: function(Client, types.DeleteInstanceProfileInput): types.DeleteInstanceProfileOutput, table
+    deleteNetworkProfile: function(Client, types.DeleteNetworkProfileInput): types.DeleteNetworkProfileOutput, table
+    deleteProject: function(Client, types.DeleteProjectInput): types.DeleteProjectOutput, table
+    deleteRemoteAccessSession: function(Client, types.DeleteRemoteAccessSessionInput): types.DeleteRemoteAccessSessionOutput, table
+    deleteRun: function(Client, types.DeleteRunInput): types.DeleteRunOutput, table
+    deleteTestGridProject: function(Client, types.DeleteTestGridProjectInput): types.DeleteTestGridProjectOutput, table
+    deleteUpload: function(Client, types.DeleteUploadInput): types.DeleteUploadOutput, table
+    deleteVPCEConfiguration: function(Client, types.DeleteVPCEConfigurationInput): types.DeleteVPCEConfigurationOutput, table
+    getAccountSettings: function(Client, types.GetAccountSettingsInput): types.GetAccountSettingsOutput, table
+    getDevice: function(Client, types.GetDeviceInput): types.GetDeviceOutput, table
+    getDeviceInstance: function(Client, types.GetDeviceInstanceInput): types.GetDeviceInstanceOutput, table
+    getDevicePool: function(Client, types.GetDevicePoolInput): types.GetDevicePoolOutput, table
+    getDevicePoolCompatibility: function(Client, types.GetDevicePoolCompatibilityInput): types.GetDevicePoolCompatibilityOutput, table
+    getInstanceProfile: function(Client, types.GetInstanceProfileInput): types.GetInstanceProfileOutput, table
+    getJob: function(Client, types.GetJobInput): types.GetJobOutput, table
+    getNetworkProfile: function(Client, types.GetNetworkProfileInput): types.GetNetworkProfileOutput, table
+    getOfferingStatus: function(Client, types.GetOfferingStatusInput): types.GetOfferingStatusOutput, table
+    getProject: function(Client, types.GetProjectInput): types.GetProjectOutput, table
+    getRemoteAccessSession: function(Client, types.GetRemoteAccessSessionInput): types.GetRemoteAccessSessionOutput, table
+    getRun: function(Client, types.GetRunInput): types.GetRunOutput, table
+    getSuite: function(Client, types.GetSuiteInput): types.GetSuiteOutput, table
+    getTest: function(Client, types.GetTestInput): types.GetTestOutput, table
+    getTestGridProject: function(Client, types.GetTestGridProjectInput): types.GetTestGridProjectOutput, table
+    getTestGridSession: function(Client, types.GetTestGridSessionInput): types.GetTestGridSessionOutput, table
+    getUpload: function(Client, types.GetUploadInput): types.GetUploadOutput, table
+    getVPCEConfiguration: function(Client, types.GetVPCEConfigurationInput): types.GetVPCEConfigurationOutput, table
+    installToRemoteAccessSession: function(Client, types.InstallToRemoteAccessSessionInput): types.InstallToRemoteAccessSessionOutput, table
+    listArtifacts: function(Client, types.ListArtifactsInput): types.ListArtifactsOutput, table
+    listDeviceInstances: function(Client, types.ListDeviceInstancesInput): types.ListDeviceInstancesOutput, table
+    listDevicePools: function(Client, types.ListDevicePoolsInput): types.ListDevicePoolsOutput, table
+    listDevices: function(Client, types.ListDevicesInput): types.ListDevicesOutput, table
+    listInstanceProfiles: function(Client, types.ListInstanceProfilesInput): types.ListInstanceProfilesOutput, table
+    listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    listNetworkProfiles: function(Client, types.ListNetworkProfilesInput): types.ListNetworkProfilesOutput, table
+    listOfferingPromotions: function(Client, types.ListOfferingPromotionsInput): types.ListOfferingPromotionsOutput, table
+    listOfferings: function(Client, types.ListOfferingsInput): types.ListOfferingsOutput, table
+    listOfferingTransactions: function(Client, types.ListOfferingTransactionsInput): types.ListOfferingTransactionsOutput, table
+    listProjects: function(Client, types.ListProjectsInput): types.ListProjectsOutput, table
+    listRemoteAccessSessions: function(Client, types.ListRemoteAccessSessionsInput): types.ListRemoteAccessSessionsOutput, table
+    listRuns: function(Client, types.ListRunsInput): types.ListRunsOutput, table
+    listSamples: function(Client, types.ListSamplesInput): types.ListSamplesOutput, table
+    listSuites: function(Client, types.ListSuitesInput): types.ListSuitesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTestGridProjects: function(Client, types.ListTestGridProjectsInput): types.ListTestGridProjectsOutput, table
+    listTestGridSessionActions: function(Client, types.ListTestGridSessionActionsInput): types.ListTestGridSessionActionsOutput, table
+    listTestGridSessionArtifacts: function(Client, types.ListTestGridSessionArtifactsInput): types.ListTestGridSessionArtifactsOutput, table
+    listTestGridSessions: function(Client, types.ListTestGridSessionsInput): types.ListTestGridSessionsOutput, table
+    listTests: function(Client, types.ListTestsInput): types.ListTestsOutput, table
+    listUniqueProblems: function(Client, types.ListUniqueProblemsInput): types.ListUniqueProblemsOutput, table
+    listUploads: function(Client, types.ListUploadsInput): types.ListUploadsOutput, table
+    listVPCEConfigurations: function(Client, types.ListVPCEConfigurationsInput): types.ListVPCEConfigurationsOutput, table
+    purchaseOffering: function(Client, types.PurchaseOfferingInput): types.PurchaseOfferingOutput, table
+    renewOffering: function(Client, types.RenewOfferingInput): types.RenewOfferingOutput, table
+    scheduleRun: function(Client, types.ScheduleRunInput): types.ScheduleRunOutput, table
+    stopJob: function(Client, types.StopJobInput): types.StopJobOutput, table
+    stopRemoteAccessSession: function(Client, types.StopRemoteAccessSessionInput): types.StopRemoteAccessSessionOutput, table
+    stopRun: function(Client, types.StopRunInput): types.StopRunOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateDeviceInstance: function(Client, types.UpdateDeviceInstanceInput): types.UpdateDeviceInstanceOutput, table
+    updateDevicePool: function(Client, types.UpdateDevicePoolInput): types.UpdateDevicePoolOutput, table
+    updateInstanceProfile: function(Client, types.UpdateInstanceProfileInput): types.UpdateInstanceProfileOutput, table
+    updateNetworkProfile: function(Client, types.UpdateNetworkProfileInput): types.UpdateNetworkProfileOutput, table
+    updateProject: function(Client, types.UpdateProjectInput): types.UpdateProjectOutput, table
+    updateTestGridProject: function(Client, types.UpdateTestGridProjectInput): types.UpdateTestGridProjectOutput, table
+    updateUpload: function(Client, types.UpdateUploadInput): types.UpdateUploadOutput, table
+    updateVPCEConfiguration: function(Client, types.UpdateVPCEConfigurationInput): types.UpdateVPCEConfigurationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,21 @@
+local types = require("redshiftdata.types")
+
+local record Client
+    batchExecuteStatement: function(Client, types.BatchExecuteStatementInput): types.BatchExecuteStatementOutput, table
+    cancelStatement: function(Client, types.CancelStatementInput): types.CancelStatementOutput, table
+    describeStatement: function(Client, types.DescribeStatementInput): types.DescribeStatementOutput, table
+    describeTable: function(Client, types.DescribeTableInput): types.DescribeTableOutput, table
+    executeStatement: function(Client, types.ExecuteStatementInput): types.ExecuteStatementOutput, table
+    getStatementResult: function(Client, types.GetStatementResultInput): types.GetStatementResultOutput, table
+    getStatementResultV2: function(Client, types.GetStatementResultV2Input): types.GetStatementResultV2Output, table
+    listDatabases: function(Client, types.ListDatabasesInput): types.ListDatabasesOutput, table
+    listSchemas: function(Client, types.ListSchemasInput): types.ListSchemasOutput, table
+    listStatements: function(Client, types.ListStatementsInput): types.ListStatementsOutput, table
+    listTables: function(Client, types.ListTablesInput): types.ListTablesOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

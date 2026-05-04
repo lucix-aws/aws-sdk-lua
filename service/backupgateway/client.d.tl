@@ -1,0 +1,35 @@
+local types = require("backupgateway.types")
+
+local record Client
+    associateGatewayToServer: function(Client, types.AssociateGatewayToServerInput): types.AssociateGatewayToServerOutput, table
+    createGateway: function(Client, types.CreateGatewayInput): types.CreateGatewayOutput, table
+    deleteGateway: function(Client, types.DeleteGatewayInput): types.DeleteGatewayOutput, table
+    deleteHypervisor: function(Client, types.DeleteHypervisorInput): types.DeleteHypervisorOutput, table
+    disassociateGatewayFromServer: function(Client, types.DisassociateGatewayFromServerInput): types.DisassociateGatewayFromServerOutput, table
+    getBandwidthRateLimitSchedule: function(Client, types.GetBandwidthRateLimitScheduleInput): types.GetBandwidthRateLimitScheduleOutput, table
+    getGateway: function(Client, types.GetGatewayInput): types.GetGatewayOutput, table
+    getHypervisor: function(Client, types.GetHypervisorInput): types.GetHypervisorOutput, table
+    getHypervisorPropertyMappings: function(Client, types.GetHypervisorPropertyMappingsInput): types.GetHypervisorPropertyMappingsOutput, table
+    getVirtualMachine: function(Client, types.GetVirtualMachineInput): types.GetVirtualMachineOutput, table
+    importHypervisorConfiguration: function(Client, types.ImportHypervisorConfigurationInput): types.ImportHypervisorConfigurationOutput, table
+    listGateways: function(Client, types.ListGatewaysInput): types.ListGatewaysOutput, table
+    listHypervisors: function(Client, types.ListHypervisorsInput): types.ListHypervisorsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listVirtualMachines: function(Client, types.ListVirtualMachinesInput): types.ListVirtualMachinesOutput, table
+    putBandwidthRateLimitSchedule: function(Client, types.PutBandwidthRateLimitScheduleInput): types.PutBandwidthRateLimitScheduleOutput, table
+    putHypervisorPropertyMappings: function(Client, types.PutHypervisorPropertyMappingsInput): types.PutHypervisorPropertyMappingsOutput, table
+    putMaintenanceStartTime: function(Client, types.PutMaintenanceStartTimeInput): types.PutMaintenanceStartTimeOutput, table
+    startVirtualMachinesMetadataSync: function(Client, types.StartVirtualMachinesMetadataSyncInput): types.StartVirtualMachinesMetadataSyncOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    testHypervisorConfiguration: function(Client, types.TestHypervisorConfigurationInput): types.TestHypervisorConfigurationOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateGatewayInformation: function(Client, types.UpdateGatewayInformationInput): types.UpdateGatewayInformationOutput, table
+    updateGatewaySoftwareNow: function(Client, types.UpdateGatewaySoftwareNowInput): types.UpdateGatewaySoftwareNowOutput, table
+    updateHypervisor: function(Client, types.UpdateHypervisorInput): types.UpdateHypervisorOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

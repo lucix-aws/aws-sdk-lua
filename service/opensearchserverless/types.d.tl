@@ -1,0 +1,1217 @@
+local record BatchGetCollectionInput
+    ids: {string}
+    names: {string}
+end
+
+local record BatchGetCollectionOutput
+    collectionDetails: {CollectionDetail}
+    collectionErrorDetails: {CollectionErrorDetail}
+end
+
+local record BatchGetCollectionGroupInput
+    ids: {string}
+    names: {string}
+end
+
+local record BatchGetCollectionGroupOutput
+    collectionGroupDetails: {CollectionGroupDetail}
+    collectionGroupErrorDetails: {CollectionGroupErrorDetail}
+end
+
+local record BatchGetEffectiveLifecyclePolicyInput
+    resourceIdentifiers: {LifecyclePolicyResourceIdentifier}
+end
+
+local record BatchGetEffectiveLifecyclePolicyOutput
+    effectiveLifecyclePolicyDetails: {EffectiveLifecyclePolicyDetail}
+    effectiveLifecyclePolicyErrorDetails: {EffectiveLifecyclePolicyErrorDetail}
+end
+
+local record BatchGetLifecyclePolicyInput
+    identifiers: {LifecyclePolicyIdentifier}
+end
+
+local record BatchGetLifecyclePolicyOutput
+    lifecyclePolicyDetails: {LifecyclePolicyDetail}
+    lifecyclePolicyErrorDetails: {LifecyclePolicyErrorDetail}
+end
+
+local record BatchGetVpcEndpointInput
+    ids: {string}
+end
+
+local record BatchGetVpcEndpointOutput
+    vpcEndpointDetails: {VpcEndpointDetail}
+    vpcEndpointErrorDetails: {VpcEndpointErrorDetail}
+end
+
+local record CreateAccessPolicyInput
+    type: string
+    name: string
+    description: string
+    policy: string
+    clientToken: string
+end
+
+local record CreateAccessPolicyOutput
+    accessPolicyDetail: AccessPolicyDetail
+end
+
+local record CreateCollectionInput
+    name: string
+    type: string
+    description: string
+    tags: {Tag}
+    standbyReplicas: string
+    vectorOptions: VectorOptions
+    collectionGroupName: string
+    encryptionConfig: EncryptionConfig
+    clientToken: string
+end
+
+local record CreateCollectionOutput
+    createCollectionDetail: CreateCollectionDetail
+end
+
+local record CreateCollectionGroupInput
+    name: string
+    standbyReplicas: string
+    description: string
+    tags: {Tag}
+    capacityLimits: CollectionGroupCapacityLimits
+    clientToken: string
+end
+
+local record CreateCollectionGroupOutput
+    createCollectionGroupDetail: CreateCollectionGroupDetail
+end
+
+local record CreateIndexInput
+    id: string
+    indexName: string
+    indexSchema: any
+end
+
+local record CreateIndexOutput
+end
+
+local record CreateLifecyclePolicyInput
+    type: string
+    name: string
+    description: string
+    policy: string
+    clientToken: string
+end
+
+local record CreateLifecyclePolicyOutput
+    lifecyclePolicyDetail: LifecyclePolicyDetail
+end
+
+local record CreateSecurityConfigInput
+    type: string
+    name: string
+    description: string
+    samlOptions: SamlConfigOptions
+    iamIdentityCenterOptions: CreateIamIdentityCenterConfigOptions
+    iamFederationOptions: IamFederationConfigOptions
+    clientToken: string
+end
+
+local record CreateSecurityConfigOutput
+    securityConfigDetail: SecurityConfigDetail
+end
+
+local record CreateSecurityPolicyInput
+    type: string
+    name: string
+    description: string
+    policy: string
+    clientToken: string
+end
+
+local record CreateSecurityPolicyOutput
+    securityPolicyDetail: SecurityPolicyDetail
+end
+
+local record CreateVpcEndpointInput
+    name: string
+    vpcId: string
+    subnetIds: {string}
+    securityGroupIds: {string}
+    clientToken: string
+end
+
+local record CreateVpcEndpointOutput
+    createVpcEndpointDetail: CreateVpcEndpointDetail
+end
+
+local record DeleteAccessPolicyInput
+    type: string
+    name: string
+    clientToken: string
+end
+
+local record DeleteAccessPolicyOutput
+end
+
+local record DeleteCollectionInput
+    id: string
+    clientToken: string
+end
+
+local record DeleteCollectionOutput
+    deleteCollectionDetail: DeleteCollectionDetail
+end
+
+local record DeleteCollectionGroupInput
+    id: string
+    clientToken: string
+end
+
+local record DeleteCollectionGroupOutput
+end
+
+local record DeleteIndexInput
+    id: string
+    indexName: string
+end
+
+local record DeleteIndexOutput
+end
+
+local record DeleteLifecyclePolicyInput
+    type: string
+    name: string
+    clientToken: string
+end
+
+local record DeleteLifecyclePolicyOutput
+end
+
+local record DeleteSecurityConfigInput
+    id: string
+    clientToken: string
+end
+
+local record DeleteSecurityConfigOutput
+end
+
+local record DeleteSecurityPolicyInput
+    type: string
+    name: string
+    clientToken: string
+end
+
+local record DeleteSecurityPolicyOutput
+end
+
+local record DeleteVpcEndpointInput
+    id: string
+    clientToken: string
+end
+
+local record DeleteVpcEndpointOutput
+    deleteVpcEndpointDetail: DeleteVpcEndpointDetail
+end
+
+local record GetAccessPolicyInput
+    type: string
+    name: string
+end
+
+local record GetAccessPolicyOutput
+    accessPolicyDetail: AccessPolicyDetail
+end
+
+local record GetAccountSettingsInput
+end
+
+local record GetAccountSettingsOutput
+    accountSettingsDetail: AccountSettingsDetail
+end
+
+local record GetIndexInput
+    id: string
+    indexName: string
+end
+
+local record GetIndexOutput
+    indexSchema: any
+end
+
+local record GetPoliciesStatsInput
+end
+
+local record GetPoliciesStatsOutput
+    AccessPolicyStats: AccessPolicyStats
+    SecurityPolicyStats: SecurityPolicyStats
+    SecurityConfigStats: SecurityConfigStats
+    LifecyclePolicyStats: LifecyclePolicyStats
+    TotalPolicyCount: number
+end
+
+local record GetSecurityConfigInput
+    id: string
+end
+
+local record GetSecurityConfigOutput
+    securityConfigDetail: SecurityConfigDetail
+end
+
+local record GetSecurityPolicyInput
+    type: string
+    name: string
+end
+
+local record GetSecurityPolicyOutput
+    securityPolicyDetail: SecurityPolicyDetail
+end
+
+local record ListAccessPoliciesInput
+    type: string
+    resource: {string}
+    nextToken: string
+    maxResults: number
+end
+
+local record ListAccessPoliciesOutput
+    accessPolicySummaries: {AccessPolicySummary}
+    nextToken: string
+end
+
+local record ListCollectionGroupsInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListCollectionGroupsOutput
+    collectionGroupSummaries: {CollectionGroupSummary}
+    nextToken: string
+end
+
+local record ListCollectionsInput
+    collectionFilters: CollectionFilters
+    nextToken: string
+    maxResults: number
+end
+
+local record ListCollectionsOutput
+    collectionSummaries: {CollectionSummary}
+    nextToken: string
+end
+
+local record ListLifecyclePoliciesInput
+    type: string
+    resources: {string}
+    nextToken: string
+    maxResults: number
+end
+
+local record ListLifecyclePoliciesOutput
+    lifecyclePolicySummaries: {LifecyclePolicySummary}
+    nextToken: string
+end
+
+local record ListSecurityConfigsInput
+    type: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListSecurityConfigsOutput
+    securityConfigSummaries: {SecurityConfigSummary}
+    nextToken: string
+end
+
+local record ListSecurityPoliciesInput
+    type: string
+    resource: {string}
+    nextToken: string
+    maxResults: number
+end
+
+local record ListSecurityPoliciesOutput
+    securityPolicySummaries: {SecurityPolicySummary}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {Tag}
+end
+
+local record ListVpcEndpointsInput
+    vpcEndpointFilters: VpcEndpointFilters
+    nextToken: string
+    maxResults: number
+end
+
+local record ListVpcEndpointsOutput
+    vpcEndpointSummaries: {VpcEndpointSummary}
+    nextToken: string
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateAccessPolicyInput
+    type: string
+    name: string
+    policyVersion: string
+    description: string
+    policy: string
+    clientToken: string
+end
+
+local record UpdateAccessPolicyOutput
+    accessPolicyDetail: AccessPolicyDetail
+end
+
+local record UpdateAccountSettingsInput
+    capacityLimits: CapacityLimits
+end
+
+local record UpdateAccountSettingsOutput
+    accountSettingsDetail: AccountSettingsDetail
+end
+
+local record UpdateCollectionInput
+    id: string
+    description: string
+    vectorOptions: VectorOptions
+    clientToken: string
+end
+
+local record UpdateCollectionOutput
+    updateCollectionDetail: UpdateCollectionDetail
+end
+
+local record UpdateCollectionGroupInput
+    id: string
+    description: string
+    capacityLimits: CollectionGroupCapacityLimits
+    clientToken: string
+end
+
+local record UpdateCollectionGroupOutput
+    updateCollectionGroupDetail: UpdateCollectionGroupDetail
+end
+
+local record UpdateIndexInput
+    id: string
+    indexName: string
+    indexSchema: any
+end
+
+local record UpdateIndexOutput
+end
+
+local record UpdateLifecyclePolicyInput
+    type: string
+    name: string
+    policyVersion: string
+    description: string
+    policy: string
+    clientToken: string
+end
+
+local record UpdateLifecyclePolicyOutput
+    lifecyclePolicyDetail: LifecyclePolicyDetail
+end
+
+local record UpdateSecurityConfigInput
+    id: string
+    configVersion: string
+    description: string
+    samlOptions: SamlConfigOptions
+    iamIdentityCenterOptionsUpdates: UpdateIamIdentityCenterConfigOptions
+    iamFederationOptions: IamFederationConfigOptions
+    clientToken: string
+end
+
+local record UpdateSecurityConfigOutput
+    securityConfigDetail: SecurityConfigDetail
+end
+
+local record UpdateSecurityPolicyInput
+    type: string
+    name: string
+    policyVersion: string
+    description: string
+    policy: string
+    clientToken: string
+end
+
+local record UpdateSecurityPolicyOutput
+    securityPolicyDetail: SecurityPolicyDetail
+end
+
+local record UpdateVpcEndpointInput
+    id: string
+    addSubnetIds: {string}
+    removeSubnetIds: {string}
+    addSecurityGroupIds: {string}
+    removeSecurityGroupIds: {string}
+    clientToken: string
+end
+
+local record UpdateVpcEndpointOutput
+    UpdateVpcEndpointDetail: UpdateVpcEndpointDetail
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record OcuLimitExceededException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    BatchGetCollectionInput: BatchGetCollectionInput
+    BatchGetCollectionOutput: BatchGetCollectionOutput
+    BatchGetCollectionGroupInput: BatchGetCollectionGroupInput
+    BatchGetCollectionGroupOutput: BatchGetCollectionGroupOutput
+    BatchGetEffectiveLifecyclePolicyInput: BatchGetEffectiveLifecyclePolicyInput
+    BatchGetEffectiveLifecyclePolicyOutput: BatchGetEffectiveLifecyclePolicyOutput
+    BatchGetLifecyclePolicyInput: BatchGetLifecyclePolicyInput
+    BatchGetLifecyclePolicyOutput: BatchGetLifecyclePolicyOutput
+    BatchGetVpcEndpointInput: BatchGetVpcEndpointInput
+    BatchGetVpcEndpointOutput: BatchGetVpcEndpointOutput
+    CreateAccessPolicyInput: CreateAccessPolicyInput
+    CreateAccessPolicyOutput: CreateAccessPolicyOutput
+    CreateCollectionInput: CreateCollectionInput
+    CreateCollectionOutput: CreateCollectionOutput
+    CreateCollectionGroupInput: CreateCollectionGroupInput
+    CreateCollectionGroupOutput: CreateCollectionGroupOutput
+    CreateIndexInput: CreateIndexInput
+    CreateIndexOutput: CreateIndexOutput
+    CreateLifecyclePolicyInput: CreateLifecyclePolicyInput
+    CreateLifecyclePolicyOutput: CreateLifecyclePolicyOutput
+    CreateSecurityConfigInput: CreateSecurityConfigInput
+    CreateSecurityConfigOutput: CreateSecurityConfigOutput
+    CreateSecurityPolicyInput: CreateSecurityPolicyInput
+    CreateSecurityPolicyOutput: CreateSecurityPolicyOutput
+    CreateVpcEndpointInput: CreateVpcEndpointInput
+    CreateVpcEndpointOutput: CreateVpcEndpointOutput
+    DeleteAccessPolicyInput: DeleteAccessPolicyInput
+    DeleteAccessPolicyOutput: DeleteAccessPolicyOutput
+    DeleteCollectionInput: DeleteCollectionInput
+    DeleteCollectionOutput: DeleteCollectionOutput
+    DeleteCollectionGroupInput: DeleteCollectionGroupInput
+    DeleteCollectionGroupOutput: DeleteCollectionGroupOutput
+    DeleteIndexInput: DeleteIndexInput
+    DeleteIndexOutput: DeleteIndexOutput
+    DeleteLifecyclePolicyInput: DeleteLifecyclePolicyInput
+    DeleteLifecyclePolicyOutput: DeleteLifecyclePolicyOutput
+    DeleteSecurityConfigInput: DeleteSecurityConfigInput
+    DeleteSecurityConfigOutput: DeleteSecurityConfigOutput
+    DeleteSecurityPolicyInput: DeleteSecurityPolicyInput
+    DeleteSecurityPolicyOutput: DeleteSecurityPolicyOutput
+    DeleteVpcEndpointInput: DeleteVpcEndpointInput
+    DeleteVpcEndpointOutput: DeleteVpcEndpointOutput
+    GetAccessPolicyInput: GetAccessPolicyInput
+    GetAccessPolicyOutput: GetAccessPolicyOutput
+    GetAccountSettingsInput: GetAccountSettingsInput
+    GetAccountSettingsOutput: GetAccountSettingsOutput
+    GetIndexInput: GetIndexInput
+    GetIndexOutput: GetIndexOutput
+    GetPoliciesStatsInput: GetPoliciesStatsInput
+    GetPoliciesStatsOutput: GetPoliciesStatsOutput
+    GetSecurityConfigInput: GetSecurityConfigInput
+    GetSecurityConfigOutput: GetSecurityConfigOutput
+    GetSecurityPolicyInput: GetSecurityPolicyInput
+    GetSecurityPolicyOutput: GetSecurityPolicyOutput
+    ListAccessPoliciesInput: ListAccessPoliciesInput
+    ListAccessPoliciesOutput: ListAccessPoliciesOutput
+    ListCollectionGroupsInput: ListCollectionGroupsInput
+    ListCollectionGroupsOutput: ListCollectionGroupsOutput
+    ListCollectionsInput: ListCollectionsInput
+    ListCollectionsOutput: ListCollectionsOutput
+    ListLifecyclePoliciesInput: ListLifecyclePoliciesInput
+    ListLifecyclePoliciesOutput: ListLifecyclePoliciesOutput
+    ListSecurityConfigsInput: ListSecurityConfigsInput
+    ListSecurityConfigsOutput: ListSecurityConfigsOutput
+    ListSecurityPoliciesInput: ListSecurityPoliciesInput
+    ListSecurityPoliciesOutput: ListSecurityPoliciesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListVpcEndpointsInput: ListVpcEndpointsInput
+    ListVpcEndpointsOutput: ListVpcEndpointsOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateAccessPolicyInput: UpdateAccessPolicyInput
+    UpdateAccessPolicyOutput: UpdateAccessPolicyOutput
+    UpdateAccountSettingsInput: UpdateAccountSettingsInput
+    UpdateAccountSettingsOutput: UpdateAccountSettingsOutput
+    UpdateCollectionInput: UpdateCollectionInput
+    UpdateCollectionOutput: UpdateCollectionOutput
+    UpdateCollectionGroupInput: UpdateCollectionGroupInput
+    UpdateCollectionGroupOutput: UpdateCollectionGroupOutput
+    UpdateIndexInput: UpdateIndexInput
+    UpdateIndexOutput: UpdateIndexOutput
+    UpdateLifecyclePolicyInput: UpdateLifecyclePolicyInput
+    UpdateLifecyclePolicyOutput: UpdateLifecyclePolicyOutput
+    UpdateSecurityConfigInput: UpdateSecurityConfigInput
+    UpdateSecurityConfigOutput: UpdateSecurityConfigOutput
+    UpdateSecurityPolicyInput: UpdateSecurityPolicyInput
+    UpdateSecurityPolicyOutput: UpdateSecurityPolicyOutput
+    UpdateVpcEndpointInput: UpdateVpcEndpointInput
+    UpdateVpcEndpointOutput: UpdateVpcEndpointOutput
+end
+
+return M

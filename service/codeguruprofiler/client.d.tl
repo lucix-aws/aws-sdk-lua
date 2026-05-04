@@ -1,0 +1,33 @@
+local types = require("codeguruprofiler.types")
+
+local record Client
+    addNotificationChannels: function(Client, types.AddNotificationChannelsInput): types.AddNotificationChannelsOutput, table
+    batchGetFrameMetricData: function(Client, types.BatchGetFrameMetricDataInput): types.BatchGetFrameMetricDataOutput, table
+    configureAgent: function(Client, types.ConfigureAgentInput): types.ConfigureAgentOutput, table
+    createProfilingGroup: function(Client, types.CreateProfilingGroupInput): types.CreateProfilingGroupOutput, table
+    deleteProfilingGroup: function(Client, types.DeleteProfilingGroupInput): types.DeleteProfilingGroupOutput, table
+    describeProfilingGroup: function(Client, types.DescribeProfilingGroupInput): types.DescribeProfilingGroupOutput, table
+    getFindingsReportAccountSummary: function(Client, types.GetFindingsReportAccountSummaryInput): types.GetFindingsReportAccountSummaryOutput, table
+    getNotificationConfiguration: function(Client, types.GetNotificationConfigurationInput): types.GetNotificationConfigurationOutput, table
+    getPolicy: function(Client, types.GetPolicyInput): types.GetPolicyOutput, table
+    getProfile: function(Client, types.GetProfileInput): types.GetProfileOutput, table
+    getRecommendations: function(Client, types.GetRecommendationsInput): types.GetRecommendationsOutput, table
+    listFindingsReports: function(Client, types.ListFindingsReportsInput): types.ListFindingsReportsOutput, table
+    listProfileTimes: function(Client, types.ListProfileTimesInput): types.ListProfileTimesOutput, table
+    listProfilingGroups: function(Client, types.ListProfilingGroupsInput): types.ListProfilingGroupsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    postAgentProfile: function(Client, types.PostAgentProfileInput): types.PostAgentProfileOutput, table
+    putPermission: function(Client, types.PutPermissionInput): types.PutPermissionOutput, table
+    removeNotificationChannel: function(Client, types.RemoveNotificationChannelInput): types.RemoveNotificationChannelOutput, table
+    removePermission: function(Client, types.RemovePermissionInput): types.RemovePermissionOutput, table
+    submitFeedback: function(Client, types.SubmitFeedbackInput): types.SubmitFeedbackOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateProfilingGroup: function(Client, types.UpdateProfilingGroupInput): types.UpdateProfilingGroupOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

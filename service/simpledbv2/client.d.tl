@@ -1,0 +1,13 @@
+local types = require("simpledbv2.types")
+
+local record Client
+    getExport: function(Client, types.GetExportInput): types.GetExportOutput, table
+    listExports: function(Client, types.ListExportsInput): types.ListExportsOutput, table
+    startDomainExport: function(Client, types.StartDomainExportInput): types.StartDomainExportOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

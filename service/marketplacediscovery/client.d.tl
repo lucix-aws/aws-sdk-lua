@@ -1,0 +1,19 @@
+local types = require("marketplacediscovery.types")
+
+local record Client
+    getListing: function(Client, types.GetListingInput): types.GetListingOutput, table
+    getOffer: function(Client, types.GetOfferInput): types.GetOfferOutput, table
+    getOfferSet: function(Client, types.GetOfferSetInput): types.GetOfferSetOutput, table
+    getOfferTerms: function(Client, types.GetOfferTermsInput): types.GetOfferTermsOutput, table
+    getProduct: function(Client, types.GetProductInput): types.GetProductOutput, table
+    listFulfillmentOptions: function(Client, types.ListFulfillmentOptionsInput): types.ListFulfillmentOptionsOutput, table
+    listPurchaseOptions: function(Client, types.ListPurchaseOptionsInput): types.ListPurchaseOptionsOutput, table
+    searchFacets: function(Client, types.SearchFacetsInput): types.SearchFacetsOutput, table
+    searchListings: function(Client, types.SearchListingsInput): types.SearchListingsOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,1235 @@
+local record CreateCapabilityInput
+    name: string
+    type: string
+    configuration: CapabilityConfiguration
+    instructionsDocuments: {S3Location}
+    clientToken: string
+    tags: {Tag}
+end
+
+local record CreateCapabilityOutput
+    capabilityId: string
+    capabilityArn: string
+    name: string
+    type: string
+    configuration: CapabilityConfiguration
+    instructionsDocuments: {S3Location}
+    createdAt: number
+end
+
+local record CreatePartnershipInput
+    profileId: string
+    name: string
+    email: string
+    phone: string
+    capabilities: {string}
+    capabilityOptions: CapabilityOptions
+    clientToken: string
+    tags: {Tag}
+end
+
+local record CreatePartnershipOutput
+    profileId: string
+    partnershipId: string
+    partnershipArn: string
+    name: string
+    email: string
+    phone: string
+    capabilities: {string}
+    capabilityOptions: CapabilityOptions
+    tradingPartnerId: string
+    createdAt: number
+end
+
+local record CreateProfileInput
+    name: string
+    email: string
+    phone: string
+    businessName: string
+    logging: string
+    clientToken: string
+    tags: {Tag}
+end
+
+local record CreateProfileOutput
+    profileId: string
+    profileArn: string
+    name: string
+    businessName: string
+    phone: string
+    email: string
+    logging: string
+    logGroupName: string
+    createdAt: number
+end
+
+local record CreateStarterMappingTemplateInput
+    outputSampleLocation: S3Location
+    mappingType: string
+    templateDetails: TemplateDetails
+end
+
+local record CreateStarterMappingTemplateOutput
+    mappingTemplate: string
+end
+
+local record CreateTransformerInput
+    name: string
+    clientToken: string
+    tags: {Tag}
+    fileFormat: string
+    mappingTemplate: string
+    ediType: EdiType
+    sampleDocument: string
+    inputConversion: InputConversion
+    mapping: Mapping
+    outputConversion: OutputConversion
+    sampleDocuments: SampleDocuments
+end
+
+local record CreateTransformerOutput
+    transformerId: string
+    transformerArn: string
+    name: string
+    status: string
+    createdAt: number
+    fileFormat: string
+    mappingTemplate: string
+    ediType: EdiType
+    sampleDocument: string
+    inputConversion: InputConversion
+    mapping: Mapping
+    outputConversion: OutputConversion
+    sampleDocuments: SampleDocuments
+end
+
+local record DeleteCapabilityInput
+    capabilityId: string
+end
+
+local record DeleteCapabilityOutput
+end
+
+local record DeletePartnershipInput
+    partnershipId: string
+end
+
+local record DeletePartnershipOutput
+end
+
+local record DeleteProfileInput
+    profileId: string
+end
+
+local record DeleteProfileOutput
+end
+
+local record DeleteTransformerInput
+    transformerId: string
+end
+
+local record DeleteTransformerOutput
+end
+
+local record GenerateMappingInput
+    inputFileContent: string
+    outputFileContent: string
+    mappingType: string
+end
+
+local record GenerateMappingOutput
+    mappingTemplate: string
+    mappingAccuracy: number
+end
+
+local record GetCapabilityInput
+    capabilityId: string
+end
+
+local record GetCapabilityOutput
+    capabilityId: string
+    capabilityArn: string
+    name: string
+    type: string
+    configuration: CapabilityConfiguration
+    instructionsDocuments: {S3Location}
+    createdAt: number
+    modifiedAt: number
+end
+
+local record GetPartnershipInput
+    partnershipId: string
+end
+
+local record GetPartnershipOutput
+    profileId: string
+    partnershipId: string
+    partnershipArn: string
+    name: string
+    email: string
+    phone: string
+    capabilities: {string}
+    capabilityOptions: CapabilityOptions
+    tradingPartnerId: string
+    createdAt: number
+    modifiedAt: number
+end
+
+local record GetProfileInput
+    profileId: string
+end
+
+local record GetProfileOutput
+    profileId: string
+    profileArn: string
+    name: string
+    email: string
+    phone: string
+    businessName: string
+    logging: string
+    logGroupName: string
+    createdAt: number
+    modifiedAt: number
+end
+
+local record GetTransformerInput
+    transformerId: string
+end
+
+local record GetTransformerOutput
+    transformerId: string
+    transformerArn: string
+    name: string
+    status: string
+    createdAt: number
+    modifiedAt: number
+    fileFormat: string
+    mappingTemplate: string
+    ediType: EdiType
+    sampleDocument: string
+    inputConversion: InputConversion
+    mapping: Mapping
+    outputConversion: OutputConversion
+    sampleDocuments: SampleDocuments
+end
+
+local record GetTransformerJobInput
+    transformerJobId: string
+    transformerId: string
+end
+
+local record GetTransformerJobOutput
+    status: string
+    outputFiles: {S3Location}
+    message: string
+end
+
+local record ListCapabilitiesInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListCapabilitiesOutput
+    capabilities: {CapabilitySummary}
+    nextToken: string
+end
+
+local record ListPartnershipsInput
+    profileId: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListPartnershipsOutput
+    partnerships: {PartnershipSummary}
+    nextToken: string
+end
+
+local record ListProfilesInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListProfilesOutput
+    profiles: {ProfileSummary}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceARN: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+end
+
+local record ListTransformersInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListTransformersOutput
+    transformers: {TransformerSummary}
+    nextToken: string
+end
+
+local record StartTransformerJobInput
+    inputFile: S3Location
+    outputLocation: S3Location
+    transformerId: string
+    clientToken: string
+end
+
+local record StartTransformerJobOutput
+    transformerJobId: string
+end
+
+local record TagResourceInput
+    ResourceARN: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record TestConversionInput
+    source: ConversionSource
+    target: ConversionTarget
+end
+
+local record TestConversionOutput
+    convertedFileContent: string
+    validationMessages: {string}
+end
+
+local record TestMappingInput
+    inputFileContent: string
+    mappingTemplate: string
+    fileFormat: string
+end
+
+local record TestMappingOutput
+    mappedFileContent: string
+end
+
+local record TestParsingInput
+    inputFile: S3Location
+    fileFormat: string
+    ediType: EdiType
+    advancedOptions: AdvancedOptions
+end
+
+local record TestParsingOutput
+    parsedFileContent: string
+    parsedSplitFileContents: {string}
+    validationMessages: {string}
+end
+
+local record UntagResourceInput
+    ResourceARN: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateCapabilityInput
+    capabilityId: string
+    name: string
+    configuration: CapabilityConfiguration
+    instructionsDocuments: {S3Location}
+end
+
+local record UpdateCapabilityOutput
+    capabilityId: string
+    capabilityArn: string
+    name: string
+    type: string
+    configuration: CapabilityConfiguration
+    instructionsDocuments: {S3Location}
+    createdAt: number
+    modifiedAt: number
+end
+
+local record UpdatePartnershipInput
+    partnershipId: string
+    name: string
+    capabilities: {string}
+    capabilityOptions: CapabilityOptions
+end
+
+local record UpdatePartnershipOutput
+    profileId: string
+    partnershipId: string
+    partnershipArn: string
+    name: string
+    email: string
+    phone: string
+    capabilities: {string}
+    capabilityOptions: CapabilityOptions
+    tradingPartnerId: string
+    createdAt: number
+    modifiedAt: number
+end
+
+local record UpdateProfileInput
+    profileId: string
+    name: string
+    email: string
+    phone: string
+    businessName: string
+end
+
+local record UpdateProfileOutput
+    profileId: string
+    profileArn: string
+    name: string
+    email: string
+    phone: string
+    businessName: string
+    logging: string
+    logGroupName: string
+    createdAt: number
+    modifiedAt: number
+end
+
+local record UpdateTransformerInput
+    transformerId: string
+    name: string
+    status: string
+    fileFormat: string
+    mappingTemplate: string
+    ediType: EdiType
+    sampleDocument: string
+    inputConversion: InputConversion
+    mapping: Mapping
+    outputConversion: OutputConversion
+    sampleDocuments: SampleDocuments
+end
+
+local record UpdateTransformerOutput
+    transformerId: string
+    transformerArn: string
+    name: string
+    status: string
+    createdAt: number
+    modifiedAt: number
+    fileFormat: string
+    mappingTemplate: string
+    ediType: EdiType
+    sampleDocument: string
+    inputConversion: InputConversion
+    mapping: Mapping
+    outputConversion: OutputConversion
+    sampleDocuments: SampleDocuments
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    Message: string
+end
+
+local type TransformerStatus = "active" | "inactive"
+
+local type CapabilityType = "edi"
+
+local type FileFormat = "XML" | "JSON" | "NOT_USED"
+
+local type MappingType = "JSONATA" | "XSLT"
+
+local type TransformerJobStatus = "running" | "succeeded" | "failed"
+
+local type Logging = "ENABLED" | "DISABLED"
+
+local record M
+    CreateCapabilityInput: CreateCapabilityInput
+    CreateCapabilityOutput: CreateCapabilityOutput
+    CreatePartnershipInput: CreatePartnershipInput
+    CreatePartnershipOutput: CreatePartnershipOutput
+    CreateProfileInput: CreateProfileInput
+    CreateProfileOutput: CreateProfileOutput
+    CreateStarterMappingTemplateInput: CreateStarterMappingTemplateInput
+    CreateStarterMappingTemplateOutput: CreateStarterMappingTemplateOutput
+    CreateTransformerInput: CreateTransformerInput
+    CreateTransformerOutput: CreateTransformerOutput
+    DeleteCapabilityInput: DeleteCapabilityInput
+    DeleteCapabilityOutput: DeleteCapabilityOutput
+    DeletePartnershipInput: DeletePartnershipInput
+    DeletePartnershipOutput: DeletePartnershipOutput
+    DeleteProfileInput: DeleteProfileInput
+    DeleteProfileOutput: DeleteProfileOutput
+    DeleteTransformerInput: DeleteTransformerInput
+    DeleteTransformerOutput: DeleteTransformerOutput
+    GenerateMappingInput: GenerateMappingInput
+    GenerateMappingOutput: GenerateMappingOutput
+    GetCapabilityInput: GetCapabilityInput
+    GetCapabilityOutput: GetCapabilityOutput
+    GetPartnershipInput: GetPartnershipInput
+    GetPartnershipOutput: GetPartnershipOutput
+    GetProfileInput: GetProfileInput
+    GetProfileOutput: GetProfileOutput
+    GetTransformerInput: GetTransformerInput
+    GetTransformerOutput: GetTransformerOutput
+    GetTransformerJobInput: GetTransformerJobInput
+    GetTransformerJobOutput: GetTransformerJobOutput
+    ListCapabilitiesInput: ListCapabilitiesInput
+    ListCapabilitiesOutput: ListCapabilitiesOutput
+    ListPartnershipsInput: ListPartnershipsInput
+    ListPartnershipsOutput: ListPartnershipsOutput
+    ListProfilesInput: ListProfilesInput
+    ListProfilesOutput: ListProfilesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListTransformersInput: ListTransformersInput
+    ListTransformersOutput: ListTransformersOutput
+    StartTransformerJobInput: StartTransformerJobInput
+    StartTransformerJobOutput: StartTransformerJobOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    TestConversionInput: TestConversionInput
+    TestConversionOutput: TestConversionOutput
+    TestMappingInput: TestMappingInput
+    TestMappingOutput: TestMappingOutput
+    TestParsingInput: TestParsingInput
+    TestParsingOutput: TestParsingOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateCapabilityInput: UpdateCapabilityInput
+    UpdateCapabilityOutput: UpdateCapabilityOutput
+    UpdatePartnershipInput: UpdatePartnershipInput
+    UpdatePartnershipOutput: UpdatePartnershipOutput
+    UpdateProfileInput: UpdateProfileInput
+    UpdateProfileOutput: UpdateProfileOutput
+    UpdateTransformerInput: UpdateTransformerInput
+    UpdateTransformerOutput: UpdateTransformerOutput
+end
+
+return M

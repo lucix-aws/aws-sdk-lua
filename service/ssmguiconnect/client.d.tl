@@ -1,0 +1,13 @@
+local types = require("ssmguiconnect.types")
+
+local record Client
+    deleteConnectionRecordingPreferences: function(Client, types.DeleteConnectionRecordingPreferencesInput): types.DeleteConnectionRecordingPreferencesOutput, table
+    getConnectionRecordingPreferences: function(Client, types.GetConnectionRecordingPreferencesInput): types.GetConnectionRecordingPreferencesOutput, table
+    updateConnectionRecordingPreferences: function(Client, types.UpdateConnectionRecordingPreferencesInput): types.UpdateConnectionRecordingPreferencesOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

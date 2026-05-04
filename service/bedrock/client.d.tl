@@ -1,0 +1,111 @@
+local types = require("bedrock.types")
+
+local record Client
+    batchDeleteEvaluationJob: function(Client, types.BatchDeleteEvaluationJobInput): types.BatchDeleteEvaluationJobOutput, table
+    cancelAutomatedReasoningPolicyBuildWorkflow: function(Client, types.CancelAutomatedReasoningPolicyBuildWorkflowInput): types.CancelAutomatedReasoningPolicyBuildWorkflowOutput, table
+    createAutomatedReasoningPolicy: function(Client, types.CreateAutomatedReasoningPolicyInput): types.CreateAutomatedReasoningPolicyOutput, table
+    createAutomatedReasoningPolicyTestCase: function(Client, types.CreateAutomatedReasoningPolicyTestCaseInput): types.CreateAutomatedReasoningPolicyTestCaseOutput, table
+    createAutomatedReasoningPolicyVersion: function(Client, types.CreateAutomatedReasoningPolicyVersionInput): types.CreateAutomatedReasoningPolicyVersionOutput, table
+    createCustomModel: function(Client, types.CreateCustomModelInput): types.CreateCustomModelOutput, table
+    createCustomModelDeployment: function(Client, types.CreateCustomModelDeploymentInput): types.CreateCustomModelDeploymentOutput, table
+    createEvaluationJob: function(Client, types.CreateEvaluationJobInput): types.CreateEvaluationJobOutput, table
+    createFoundationModelAgreement: function(Client, types.CreateFoundationModelAgreementInput): types.CreateFoundationModelAgreementOutput, table
+    createGuardrail: function(Client, types.CreateGuardrailInput): types.CreateGuardrailOutput, table
+    createGuardrailVersion: function(Client, types.CreateGuardrailVersionInput): types.CreateGuardrailVersionOutput, table
+    createInferenceProfile: function(Client, types.CreateInferenceProfileInput): types.CreateInferenceProfileOutput, table
+    createMarketplaceModelEndpoint: function(Client, types.CreateMarketplaceModelEndpointInput): types.CreateMarketplaceModelEndpointOutput, table
+    createModelCopyJob: function(Client, types.CreateModelCopyJobInput): types.CreateModelCopyJobOutput, table
+    createModelCustomizationJob: function(Client, types.CreateModelCustomizationJobInput): types.CreateModelCustomizationJobOutput, table
+    createModelImportJob: function(Client, types.CreateModelImportJobInput): types.CreateModelImportJobOutput, table
+    createModelInvocationJob: function(Client, types.CreateModelInvocationJobInput): types.CreateModelInvocationJobOutput, table
+    createPromptRouter: function(Client, types.CreatePromptRouterInput): types.CreatePromptRouterOutput, table
+    createProvisionedModelThroughput: function(Client, types.CreateProvisionedModelThroughputInput): types.CreateProvisionedModelThroughputOutput, table
+    deleteAutomatedReasoningPolicy: function(Client, types.DeleteAutomatedReasoningPolicyInput): types.DeleteAutomatedReasoningPolicyOutput, table
+    deleteAutomatedReasoningPolicyBuildWorkflow: function(Client, types.DeleteAutomatedReasoningPolicyBuildWorkflowInput): types.DeleteAutomatedReasoningPolicyBuildWorkflowOutput, table
+    deleteAutomatedReasoningPolicyTestCase: function(Client, types.DeleteAutomatedReasoningPolicyTestCaseInput): types.DeleteAutomatedReasoningPolicyTestCaseOutput, table
+    deleteCustomModel: function(Client, types.DeleteCustomModelInput): types.DeleteCustomModelOutput, table
+    deleteCustomModelDeployment: function(Client, types.DeleteCustomModelDeploymentInput): types.DeleteCustomModelDeploymentOutput, table
+    deleteEnforcedGuardrailConfiguration: function(Client, types.DeleteEnforcedGuardrailConfigurationInput): types.DeleteEnforcedGuardrailConfigurationOutput, table
+    deleteFoundationModelAgreement: function(Client, types.DeleteFoundationModelAgreementInput): types.DeleteFoundationModelAgreementOutput, table
+    deleteGuardrail: function(Client, types.DeleteGuardrailInput): types.DeleteGuardrailOutput, table
+    deleteImportedModel: function(Client, types.DeleteImportedModelInput): types.DeleteImportedModelOutput, table
+    deleteInferenceProfile: function(Client, types.DeleteInferenceProfileInput): types.DeleteInferenceProfileOutput, table
+    deleteMarketplaceModelEndpoint: function(Client, types.DeleteMarketplaceModelEndpointInput): types.DeleteMarketplaceModelEndpointOutput, table
+    deleteModelInvocationLoggingConfiguration: function(Client, types.DeleteModelInvocationLoggingConfigurationInput): types.DeleteModelInvocationLoggingConfigurationOutput, table
+    deletePromptRouter: function(Client, types.DeletePromptRouterInput): types.DeletePromptRouterOutput, table
+    deleteProvisionedModelThroughput: function(Client, types.DeleteProvisionedModelThroughputInput): types.DeleteProvisionedModelThroughputOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deregisterMarketplaceModelEndpoint: function(Client, types.DeregisterMarketplaceModelEndpointInput): types.DeregisterMarketplaceModelEndpointOutput, table
+    exportAutomatedReasoningPolicyVersion: function(Client, types.ExportAutomatedReasoningPolicyVersionInput): types.ExportAutomatedReasoningPolicyVersionOutput, table
+    getAutomatedReasoningPolicy: function(Client, types.GetAutomatedReasoningPolicyInput): types.GetAutomatedReasoningPolicyOutput, table
+    getAutomatedReasoningPolicyAnnotations: function(Client, types.GetAutomatedReasoningPolicyAnnotationsInput): types.GetAutomatedReasoningPolicyAnnotationsOutput, table
+    getAutomatedReasoningPolicyBuildWorkflow: function(Client, types.GetAutomatedReasoningPolicyBuildWorkflowInput): types.GetAutomatedReasoningPolicyBuildWorkflowOutput, table
+    getAutomatedReasoningPolicyBuildWorkflowResultAssets: function(Client, types.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsInput): types.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput, table
+    getAutomatedReasoningPolicyNextScenario: function(Client, types.GetAutomatedReasoningPolicyNextScenarioInput): types.GetAutomatedReasoningPolicyNextScenarioOutput, table
+    getAutomatedReasoningPolicyTestCase: function(Client, types.GetAutomatedReasoningPolicyTestCaseInput): types.GetAutomatedReasoningPolicyTestCaseOutput, table
+    getAutomatedReasoningPolicyTestResult: function(Client, types.GetAutomatedReasoningPolicyTestResultInput): types.GetAutomatedReasoningPolicyTestResultOutput, table
+    getCustomModel: function(Client, types.GetCustomModelInput): types.GetCustomModelOutput, table
+    getCustomModelDeployment: function(Client, types.GetCustomModelDeploymentInput): types.GetCustomModelDeploymentOutput, table
+    getEvaluationJob: function(Client, types.GetEvaluationJobInput): types.GetEvaluationJobOutput, table
+    getFoundationModel: function(Client, types.GetFoundationModelInput): types.GetFoundationModelOutput, table
+    getFoundationModelAvailability: function(Client, types.GetFoundationModelAvailabilityInput): types.GetFoundationModelAvailabilityOutput, table
+    getGuardrail: function(Client, types.GetGuardrailInput): types.GetGuardrailOutput, table
+    getImportedModel: function(Client, types.GetImportedModelInput): types.GetImportedModelOutput, table
+    getInferenceProfile: function(Client, types.GetInferenceProfileInput): types.GetInferenceProfileOutput, table
+    getMarketplaceModelEndpoint: function(Client, types.GetMarketplaceModelEndpointInput): types.GetMarketplaceModelEndpointOutput, table
+    getModelCopyJob: function(Client, types.GetModelCopyJobInput): types.GetModelCopyJobOutput, table
+    getModelCustomizationJob: function(Client, types.GetModelCustomizationJobInput): types.GetModelCustomizationJobOutput, table
+    getModelImportJob: function(Client, types.GetModelImportJobInput): types.GetModelImportJobOutput, table
+    getModelInvocationJob: function(Client, types.GetModelInvocationJobInput): types.GetModelInvocationJobOutput, table
+    getModelInvocationLoggingConfiguration: function(Client, types.GetModelInvocationLoggingConfigurationInput): types.GetModelInvocationLoggingConfigurationOutput, table
+    getPromptRouter: function(Client, types.GetPromptRouterInput): types.GetPromptRouterOutput, table
+    getProvisionedModelThroughput: function(Client, types.GetProvisionedModelThroughputInput): types.GetProvisionedModelThroughputOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getUseCaseForModelAccess: function(Client, types.GetUseCaseForModelAccessInput): types.GetUseCaseForModelAccessOutput, table
+    listAutomatedReasoningPolicies: function(Client, types.ListAutomatedReasoningPoliciesInput): types.ListAutomatedReasoningPoliciesOutput, table
+    listAutomatedReasoningPolicyBuildWorkflows: function(Client, types.ListAutomatedReasoningPolicyBuildWorkflowsInput): types.ListAutomatedReasoningPolicyBuildWorkflowsOutput, table
+    listAutomatedReasoningPolicyTestCases: function(Client, types.ListAutomatedReasoningPolicyTestCasesInput): types.ListAutomatedReasoningPolicyTestCasesOutput, table
+    listAutomatedReasoningPolicyTestResults: function(Client, types.ListAutomatedReasoningPolicyTestResultsInput): types.ListAutomatedReasoningPolicyTestResultsOutput, table
+    listCustomModelDeployments: function(Client, types.ListCustomModelDeploymentsInput): types.ListCustomModelDeploymentsOutput, table
+    listCustomModels: function(Client, types.ListCustomModelsInput): types.ListCustomModelsOutput, table
+    listEnforcedGuardrailsConfiguration: function(Client, types.ListEnforcedGuardrailsConfigurationInput): types.ListEnforcedGuardrailsConfigurationOutput, table
+    listEvaluationJobs: function(Client, types.ListEvaluationJobsInput): types.ListEvaluationJobsOutput, table
+    listFoundationModelAgreementOffers: function(Client, types.ListFoundationModelAgreementOffersInput): types.ListFoundationModelAgreementOffersOutput, table
+    listFoundationModels: function(Client, types.ListFoundationModelsInput): types.ListFoundationModelsOutput, table
+    listGuardrails: function(Client, types.ListGuardrailsInput): types.ListGuardrailsOutput, table
+    listImportedModels: function(Client, types.ListImportedModelsInput): types.ListImportedModelsOutput, table
+    listInferenceProfiles: function(Client, types.ListInferenceProfilesInput): types.ListInferenceProfilesOutput, table
+    listMarketplaceModelEndpoints: function(Client, types.ListMarketplaceModelEndpointsInput): types.ListMarketplaceModelEndpointsOutput, table
+    listModelCopyJobs: function(Client, types.ListModelCopyJobsInput): types.ListModelCopyJobsOutput, table
+    listModelCustomizationJobs: function(Client, types.ListModelCustomizationJobsInput): types.ListModelCustomizationJobsOutput, table
+    listModelImportJobs: function(Client, types.ListModelImportJobsInput): types.ListModelImportJobsOutput, table
+    listModelInvocationJobs: function(Client, types.ListModelInvocationJobsInput): types.ListModelInvocationJobsOutput, table
+    listPromptRouters: function(Client, types.ListPromptRoutersInput): types.ListPromptRoutersOutput, table
+    listProvisionedModelThroughputs: function(Client, types.ListProvisionedModelThroughputsInput): types.ListProvisionedModelThroughputsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putEnforcedGuardrailConfiguration: function(Client, types.PutEnforcedGuardrailConfigurationInput): types.PutEnforcedGuardrailConfigurationOutput, table
+    putModelInvocationLoggingConfiguration: function(Client, types.PutModelInvocationLoggingConfigurationInput): types.PutModelInvocationLoggingConfigurationOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putUseCaseForModelAccess: function(Client, types.PutUseCaseForModelAccessInput): types.PutUseCaseForModelAccessOutput, table
+    registerMarketplaceModelEndpoint: function(Client, types.RegisterMarketplaceModelEndpointInput): types.RegisterMarketplaceModelEndpointOutput, table
+    startAutomatedReasoningPolicyBuildWorkflow: function(Client, types.StartAutomatedReasoningPolicyBuildWorkflowInput): types.StartAutomatedReasoningPolicyBuildWorkflowOutput, table
+    startAutomatedReasoningPolicyTestWorkflow: function(Client, types.StartAutomatedReasoningPolicyTestWorkflowInput): types.StartAutomatedReasoningPolicyTestWorkflowOutput, table
+    stopEvaluationJob: function(Client, types.StopEvaluationJobInput): types.StopEvaluationJobOutput, table
+    stopModelCustomizationJob: function(Client, types.StopModelCustomizationJobInput): types.StopModelCustomizationJobOutput, table
+    stopModelInvocationJob: function(Client, types.StopModelInvocationJobInput): types.StopModelInvocationJobOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAutomatedReasoningPolicy: function(Client, types.UpdateAutomatedReasoningPolicyInput): types.UpdateAutomatedReasoningPolicyOutput, table
+    updateAutomatedReasoningPolicyAnnotations: function(Client, types.UpdateAutomatedReasoningPolicyAnnotationsInput): types.UpdateAutomatedReasoningPolicyAnnotationsOutput, table
+    updateAutomatedReasoningPolicyTestCase: function(Client, types.UpdateAutomatedReasoningPolicyTestCaseInput): types.UpdateAutomatedReasoningPolicyTestCaseOutput, table
+    updateCustomModelDeployment: function(Client, types.UpdateCustomModelDeploymentInput): types.UpdateCustomModelDeploymentOutput, table
+    updateGuardrail: function(Client, types.UpdateGuardrailInput): types.UpdateGuardrailOutput, table
+    updateMarketplaceModelEndpoint: function(Client, types.UpdateMarketplaceModelEndpointInput): types.UpdateMarketplaceModelEndpointOutput, table
+    updateProvisionedModelThroughput: function(Client, types.UpdateProvisionedModelThroughputInput): types.UpdateProvisionedModelThroughputOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,25 @@
+local types = require("bcmdashboards.types")
+
+local record Client
+    createDashboard: function(Client, types.CreateDashboardInput): types.CreateDashboardOutput, table
+    createScheduledReport: function(Client, types.CreateScheduledReportInput): types.CreateScheduledReportOutput, table
+    deleteDashboard: function(Client, types.DeleteDashboardInput): types.DeleteDashboardOutput, table
+    deleteScheduledReport: function(Client, types.DeleteScheduledReportInput): types.DeleteScheduledReportOutput, table
+    executeScheduledReport: function(Client, types.ExecuteScheduledReportInput): types.ExecuteScheduledReportOutput, table
+    getDashboard: function(Client, types.GetDashboardInput): types.GetDashboardOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getScheduledReport: function(Client, types.GetScheduledReportInput): types.GetScheduledReportOutput, table
+    listDashboards: function(Client, types.ListDashboardsInput): types.ListDashboardsOutput, table
+    listScheduledReports: function(Client, types.ListScheduledReportsInput): types.ListScheduledReportsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateDashboard: function(Client, types.UpdateDashboardInput): types.UpdateDashboardOutput, table
+    updateScheduledReport: function(Client, types.UpdateScheduledReportInput): types.UpdateScheduledReportOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

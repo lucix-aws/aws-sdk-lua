@@ -1,0 +1,27 @@
+local types = require("acm.types")
+
+local record Client
+    addTagsToCertificate: function(Client, types.AddTagsToCertificateInput): types.AddTagsToCertificateOutput, table
+    deleteCertificate: function(Client, types.DeleteCertificateInput): types.DeleteCertificateOutput, table
+    describeCertificate: function(Client, types.DescribeCertificateInput): types.DescribeCertificateOutput, table
+    exportCertificate: function(Client, types.ExportCertificateInput): types.ExportCertificateOutput, table
+    getAccountConfiguration: function(Client, types.GetAccountConfigurationInput): types.GetAccountConfigurationOutput, table
+    getCertificate: function(Client, types.GetCertificateInput): types.GetCertificateOutput, table
+    importCertificate: function(Client, types.ImportCertificateInput): types.ImportCertificateOutput, table
+    listCertificates: function(Client, types.ListCertificatesInput): types.ListCertificatesOutput, table
+    listTagsForCertificate: function(Client, types.ListTagsForCertificateInput): types.ListTagsForCertificateOutput, table
+    putAccountConfiguration: function(Client, types.PutAccountConfigurationInput): types.PutAccountConfigurationOutput, table
+    removeTagsFromCertificate: function(Client, types.RemoveTagsFromCertificateInput): types.RemoveTagsFromCertificateOutput, table
+    renewCertificate: function(Client, types.RenewCertificateInput): types.RenewCertificateOutput, table
+    requestCertificate: function(Client, types.RequestCertificateInput): types.RequestCertificateOutput, table
+    resendValidationEmail: function(Client, types.ResendValidationEmailInput): types.ResendValidationEmailOutput, table
+    revokeCertificate: function(Client, types.RevokeCertificateInput): types.RevokeCertificateOutput, table
+    searchCertificates: function(Client, types.SearchCertificatesInput): types.SearchCertificatesOutput, table
+    updateCertificateOptions: function(Client, types.UpdateCertificateOptionsInput): types.UpdateCertificateOptionsOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

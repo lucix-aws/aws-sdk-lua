@@ -1,0 +1,1346 @@
+local record AssociateAccessGrantsIdentityCenterInput
+    AccountId: string
+    IdentityCenterArn: string
+end
+
+local record AssociateAccessGrantsIdentityCenterOutput
+end
+
+local record CreateAccessGrantInput
+    AccountId: string
+    AccessGrantsLocationId: string
+    AccessGrantsLocationConfiguration: AccessGrantsLocationConfiguration
+    Grantee: Grantee
+    Permission: string
+    ApplicationArn: string
+    S3PrefixType: string
+    Tags: {Tag}
+end
+
+local record CreateAccessGrantOutput
+    CreatedAt: number
+    AccessGrantId: string
+    AccessGrantArn: string
+    Grantee: Grantee
+    AccessGrantsLocationId: string
+    AccessGrantsLocationConfiguration: AccessGrantsLocationConfiguration
+    Permission: string
+    ApplicationArn: string
+    GrantScope: string
+end
+
+local record CreateAccessGrantsInstanceInput
+    AccountId: string
+    IdentityCenterArn: string
+    Tags: {Tag}
+end
+
+local record CreateAccessGrantsInstanceOutput
+    CreatedAt: number
+    AccessGrantsInstanceId: string
+    AccessGrantsInstanceArn: string
+    IdentityCenterArn: string
+    IdentityCenterInstanceArn: string
+    IdentityCenterApplicationArn: string
+end
+
+local record CreateAccessGrantsLocationInput
+    AccountId: string
+    LocationScope: string
+    IAMRoleArn: string
+    Tags: {Tag}
+end
+
+local record CreateAccessGrantsLocationOutput
+    CreatedAt: number
+    AccessGrantsLocationId: string
+    AccessGrantsLocationArn: string
+    LocationScope: string
+    IAMRoleArn: string
+end
+
+local record CreateAccessPointInput
+    AccountId: string
+    Name: string
+    Bucket: string
+    VpcConfiguration: VpcConfiguration
+    PublicAccessBlockConfiguration: PublicAccessBlockConfiguration
+    BucketAccountId: string
+    Scope: Scope
+    Tags: {Tag}
+end
+
+local record CreateAccessPointOutput
+    AccessPointArn: string
+    Alias: string
+end
+
+local record CreateAccessPointForObjectLambdaInput
+    AccountId: string
+    Name: string
+    Configuration: ObjectLambdaConfiguration
+end
+
+local record CreateAccessPointForObjectLambdaOutput
+    ObjectLambdaAccessPointArn: string
+    Alias: ObjectLambdaAccessPointAlias
+end
+
+local record CreateBucketInput
+    ACL: string
+    Bucket: string
+    CreateBucketConfiguration: CreateBucketConfiguration
+    GrantFullControl: string
+    GrantRead: string
+    GrantReadACP: string
+    GrantWrite: string
+    GrantWriteACP: string
+    ObjectLockEnabledForBucket: boolean
+    OutpostId: string
+end
+
+local record CreateBucketOutput
+    Location: string
+    BucketArn: string
+end
+
+local record CreateJobInput
+    AccountId: string
+    ConfirmationRequired: boolean
+    Operation: JobOperation
+    Report: JobReport
+    ClientRequestToken: string
+    Manifest: JobManifest
+    Description: string
+    Priority: number
+    RoleArn: string
+    Tags: {S3Tag}
+    ManifestGenerator: JobManifestGenerator
+end
+
+local record CreateJobOutput
+    JobId: string
+end
+
+local record CreateMultiRegionAccessPointOperationInput
+    AccountId: string
+    ClientToken: string
+    Details: CreateMultiRegionAccessPointInput
+end
+
+local record CreateMultiRegionAccessPointOutput
+    RequestTokenARN: string
+end
+
+local record CreateStorageLensGroupInput
+    AccountId: string
+    StorageLensGroup: StorageLensGroup
+    Tags: {Tag}
+end
+
+local record CreateStorageLensGroupOutput
+end
+
+local record DeleteAccessGrantInput
+    AccountId: string
+    AccessGrantId: string
+end
+
+local record DeleteAccessGrantOutput
+end
+
+local record DeleteAccessGrantsInstanceInput
+    AccountId: string
+end
+
+local record DeleteAccessGrantsInstanceOutput
+end
+
+local record DeleteAccessGrantsInstanceResourcePolicyInput
+    AccountId: string
+end
+
+local record DeleteAccessGrantsInstanceResourcePolicyOutput
+end
+
+local record DeleteAccessGrantsLocationInput
+    AccountId: string
+    AccessGrantsLocationId: string
+end
+
+local record DeleteAccessGrantsLocationOutput
+end
+
+local record DeleteAccessPointInput
+    AccountId: string
+    Name: string
+end
+
+local record DeleteAccessPointOutput
+end
+
+local record DeleteAccessPointForObjectLambdaInput
+    AccountId: string
+    Name: string
+end
+
+local record DeleteAccessPointForObjectLambdaOutput
+end
+
+local record DeleteAccessPointPolicyInput
+    AccountId: string
+    Name: string
+end
+
+local record DeleteAccessPointPolicyOutput
+end
+
+local record DeleteAccessPointPolicyForObjectLambdaInput
+    AccountId: string
+    Name: string
+end
+
+local record DeleteAccessPointPolicyForObjectLambdaOutput
+end
+
+local record DeleteAccessPointScopeInput
+    AccountId: string
+    Name: string
+end
+
+local record DeleteAccessPointScopeOutput
+end
+
+local record DeleteBucketInput
+    AccountId: string
+    Bucket: string
+end
+
+local record DeleteBucketOutput
+end
+
+local record DeleteBucketLifecycleConfigurationInput
+    AccountId: string
+    Bucket: string
+end
+
+local record DeleteBucketLifecycleConfigurationOutput
+end
+
+local record DeleteBucketPolicyInput
+    AccountId: string
+    Bucket: string
+end
+
+local record DeleteBucketPolicyOutput
+end
+
+local record DeleteBucketReplicationInput
+    AccountId: string
+    Bucket: string
+end
+
+local record DeleteBucketReplicationOutput
+end
+
+local record DeleteBucketTaggingInput
+    AccountId: string
+    Bucket: string
+end
+
+local record DeleteBucketTaggingOutput
+end
+
+local record DeleteJobTaggingInput
+    AccountId: string
+    JobId: string
+end
+
+local record DeleteJobTaggingOutput
+end
+
+local record DeleteMultiRegionAccessPointOperationInput
+    AccountId: string
+    ClientToken: string
+    Details: DeleteMultiRegionAccessPointInput
+end
+
+local record DeleteMultiRegionAccessPointOutput
+    RequestTokenARN: string
+end
+
+local record DeletePublicAccessBlockInput
+    AccountId: string
+end
+
+local record DeletePublicAccessBlockOutput
+end
+
+local record DeleteStorageLensConfigurationInput
+    ConfigId: string
+    AccountId: string
+end
+
+local record DeleteStorageLensConfigurationOutput
+end
+
+local record DeleteStorageLensConfigurationTaggingInput
+    ConfigId: string
+    AccountId: string
+end
+
+local record DeleteStorageLensConfigurationTaggingOutput
+end
+
+local record DeleteStorageLensGroupInput
+    Name: string
+    AccountId: string
+end
+
+local record DeleteStorageLensGroupOutput
+end
+
+local record DescribeJobInput
+    AccountId: string
+    JobId: string
+end
+
+local record DescribeJobOutput
+    Job: JobDescriptor
+end
+
+local record DescribeMultiRegionAccessPointOperationInput
+    AccountId: string
+    RequestTokenARN: string
+end
+
+local record DescribeMultiRegionAccessPointOperationOutput
+    AsyncOperation: AsyncOperation
+end
+
+local record DissociateAccessGrantsIdentityCenterInput
+    AccountId: string
+end
+
+local record DissociateAccessGrantsIdentityCenterOutput
+end
+
+local record GetAccessGrantInput
+    AccountId: string
+    AccessGrantId: string
+end
+
+local record GetAccessGrantOutput
+    CreatedAt: number
+    AccessGrantId: string
+    AccessGrantArn: string
+    Grantee: Grantee
+    Permission: string
+    AccessGrantsLocationId: string
+    AccessGrantsLocationConfiguration: AccessGrantsLocationConfiguration
+    GrantScope: string
+    ApplicationArn: string
+end
+
+local record GetAccessGrantsInstanceInput
+    AccountId: string
+end
+
+local record GetAccessGrantsInstanceOutput
+    AccessGrantsInstanceArn: string
+    AccessGrantsInstanceId: string
+    IdentityCenterArn: string
+    IdentityCenterInstanceArn: string
+    IdentityCenterApplicationArn: string
+    CreatedAt: number
+end
+
+local record GetAccessGrantsInstanceForPrefixInput
+    AccountId: string
+    S3Prefix: string
+end
+
+local record GetAccessGrantsInstanceForPrefixOutput
+    AccessGrantsInstanceArn: string
+    AccessGrantsInstanceId: string
+end
+
+local record GetAccessGrantsInstanceResourcePolicyInput
+    AccountId: string
+end
+
+local record GetAccessGrantsInstanceResourcePolicyOutput
+    Policy: string
+    Organization: string
+    CreatedAt: number
+end
+
+local record GetAccessGrantsLocationInput
+    AccountId: string
+    AccessGrantsLocationId: string
+end
+
+local record GetAccessGrantsLocationOutput
+    CreatedAt: number
+    AccessGrantsLocationId: string
+    AccessGrantsLocationArn: string
+    LocationScope: string
+    IAMRoleArn: string
+end
+
+local record GetAccessPointInput
+    AccountId: string
+    Name: string
+end
+
+local record GetAccessPointOutput
+    Name: string
+    Bucket: string
+    NetworkOrigin: string
+    VpcConfiguration: VpcConfiguration
+    PublicAccessBlockConfiguration: PublicAccessBlockConfiguration
+    CreationDate: number
+    Alias: string
+    AccessPointArn: string
+    Endpoints: {string : string}
+    BucketAccountId: string
+    DataSourceId: string
+    DataSourceType: string
+end
+
+local record GetAccessPointConfigurationForObjectLambdaInput
+    AccountId: string
+    Name: string
+end
+
+local record GetAccessPointConfigurationForObjectLambdaOutput
+    Configuration: ObjectLambdaConfiguration
+end
+
+local record GetAccessPointForObjectLambdaInput
+    AccountId: string
+    Name: string
+end
+
+local record GetAccessPointForObjectLambdaOutput
+    Name: string
+    PublicAccessBlockConfiguration: PublicAccessBlockConfiguration
+    CreationDate: number
+    Alias: ObjectLambdaAccessPointAlias
+end
+
+local record GetAccessPointPolicyInput
+    AccountId: string
+    Name: string
+end
+
+local record GetAccessPointPolicyOutput
+    Policy: string
+end
+
+local record GetAccessPointPolicyForObjectLambdaInput
+    AccountId: string
+    Name: string
+end
+
+local record GetAccessPointPolicyForObjectLambdaOutput
+    Policy: string
+end
+
+local record GetAccessPointPolicyStatusInput
+    AccountId: string
+    Name: string
+end
+
+local record GetAccessPointPolicyStatusOutput
+    PolicyStatus: PolicyStatus
+end
+
+local record GetAccessPointPolicyStatusForObjectLambdaInput
+    AccountId: string
+    Name: string
+end
+
+local record GetAccessPointPolicyStatusForObjectLambdaOutput
+    PolicyStatus: PolicyStatus
+end
+
+local record GetAccessPointScopeInput
+    AccountId: string
+    Name: string
+end
+
+local record GetAccessPointScopeOutput
+    Scope: Scope
+end
+
+local record GetBucketInput
+    AccountId: string
+    Bucket: string
+end
+
+local record GetBucketOutput
+    Bucket: string
+    PublicAccessBlockEnabled: boolean
+    CreationDate: number
+end
+
+local record GetBucketLifecycleConfigurationInput
+    AccountId: string
+    Bucket: string
+end
+
+local record GetBucketLifecycleConfigurationOutput
+    Rules: {LifecycleRule}
+end
+
+local record GetBucketPolicyInput
+    AccountId: string
+    Bucket: string
+end
+
+local record GetBucketPolicyOutput
+    Policy: string
+end
+
+local record GetBucketReplicationInput
+    AccountId: string
+    Bucket: string
+end
+
+local record GetBucketReplicationOutput
+    ReplicationConfiguration: ReplicationConfiguration
+end
+
+local record GetBucketTaggingInput
+    AccountId: string
+    Bucket: string
+end
+
+local record GetBucketTaggingOutput
+    TagSet: {S3Tag}
+end
+
+local record GetBucketVersioningInput
+    AccountId: string
+    Bucket: string
+end
+
+local record GetBucketVersioningOutput
+    Status: string
+    MFADelete: string
+end
+
+local record GetDataAccessInput
+    AccountId: string
+    Target: string
+    Permission: string
+    DurationSeconds: number
+    Privilege: string
+    TargetType: string
+    AuditContext: string
+end
+
+local record GetDataAccessOutput
+    Credentials: Credentials
+    MatchedGrantTarget: string
+    Grantee: Grantee
+end
+
+local record GetJobTaggingInput
+    AccountId: string
+    JobId: string
+end
+
+local record GetJobTaggingOutput
+    Tags: {S3Tag}
+end
+
+local record GetMultiRegionAccessPointInput
+    AccountId: string
+    Name: string
+end
+
+local record GetMultiRegionAccessPointOutput
+    AccessPoint: MultiRegionAccessPointReport
+end
+
+local record GetMultiRegionAccessPointPolicyInput
+    AccountId: string
+    Name: string
+end
+
+local record GetMultiRegionAccessPointPolicyOutput
+    Policy: MultiRegionAccessPointPolicyDocument
+end
+
+local record GetMultiRegionAccessPointPolicyStatusInput
+    AccountId: string
+    Name: string
+end
+
+local record GetMultiRegionAccessPointPolicyStatusOutput
+    Established: PolicyStatus
+end
+
+local record GetMultiRegionAccessPointRoutesInput
+    AccountId: string
+    Mrap: string
+end
+
+local record GetMultiRegionAccessPointRoutesOutput
+    Mrap: string
+    Routes: {MultiRegionAccessPointRoute}
+end
+
+local record GetPublicAccessBlockInput
+    AccountId: string
+end
+
+local record GetPublicAccessBlockOutput
+    PublicAccessBlockConfiguration: PublicAccessBlockConfiguration
+end
+
+local record GetStorageLensConfigurationInput
+    ConfigId: string
+    AccountId: string
+end
+
+local record GetStorageLensConfigurationOutput
+    StorageLensConfiguration: StorageLensConfiguration
+end
+
+local record GetStorageLensConfigurationTaggingInput
+    ConfigId: string
+    AccountId: string
+end
+
+local record GetStorageLensConfigurationTaggingOutput
+    Tags: {StorageLensTag}
+end
+
+local record GetStorageLensGroupInput
+    Name: string
+    AccountId: string
+end
+
+local record GetStorageLensGroupOutput
+    StorageLensGroup: StorageLensGroup
+end
+
+local record ListAccessGrantsInput
+    AccountId: string
+    NextToken: string
+    MaxResults: number
+    GranteeType: string
+    GranteeIdentifier: string
+    Permission: string
+    GrantScope: string
+    ApplicationArn: string
+end
+
+local record ListAccessGrantsOutput
+    NextToken: string
+    AccessGrantsList: {ListAccessGrantEntry}
+end
+
+local record ListAccessGrantsInstancesInput
+    AccountId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListAccessGrantsInstancesOutput
+    NextToken: string
+    AccessGrantsInstancesList: {ListAccessGrantsInstanceEntry}
+end
+
+local record ListAccessGrantsLocationsInput
+    AccountId: string
+    NextToken: string
+    MaxResults: number
+    LocationScope: string
+end
+
+local record ListAccessGrantsLocationsOutput
+    NextToken: string
+    AccessGrantsLocationsList: {ListAccessGrantsLocationsEntry}
+end
+
+local record ListAccessPointsInput
+    AccountId: string
+    Bucket: string
+    NextToken: string
+    MaxResults: number
+    DataSourceId: string
+    DataSourceType: string
+end
+
+local record ListAccessPointsOutput
+    AccessPointList: {AccessPoint}
+    NextToken: string
+end
+
+local record ListAccessPointsForDirectoryBucketsInput
+    AccountId: string
+    DirectoryBucket: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListAccessPointsForDirectoryBucketsOutput
+    AccessPointList: {AccessPoint}
+    NextToken: string
+end
+
+local record ListAccessPointsForObjectLambdaInput
+    AccountId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListAccessPointsForObjectLambdaOutput
+    ObjectLambdaAccessPointList: {ObjectLambdaAccessPoint}
+    NextToken: string
+end
+
+local record ListCallerAccessGrantsInput
+    AccountId: string
+    GrantScope: string
+    NextToken: string
+    MaxResults: number
+    AllowedByApplication: boolean
+end
+
+local record ListCallerAccessGrantsOutput
+    NextToken: string
+    CallerAccessGrantsList: {ListCallerAccessGrantsEntry}
+end
+
+local record ListJobsInput
+    AccountId: string
+    JobStatuses: {string}
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListJobsOutput
+    NextToken: string
+    Jobs: {JobListDescriptor}
+end
+
+local record ListMultiRegionAccessPointsInput
+    AccountId: string
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListMultiRegionAccessPointsOutput
+    AccessPoints: {MultiRegionAccessPointReport}
+    NextToken: string
+end
+
+local record ListRegionalBucketsInput
+    AccountId: string
+    NextToken: string
+    MaxResults: number
+    OutpostId: string
+end
+
+local record ListRegionalBucketsOutput
+    RegionalBucketList: {RegionalBucket}
+    NextToken: string
+end
+
+local record ListStorageLensConfigurationsInput
+    AccountId: string
+    NextToken: string
+end
+
+local record ListStorageLensConfigurationsOutput
+    NextToken: string
+    StorageLensConfigurationList: {ListStorageLensConfigurationEntry}
+end
+
+local record ListStorageLensGroupsInput
+    AccountId: string
+    NextToken: string
+end
+
+local record ListStorageLensGroupsOutput
+    NextToken: string
+    StorageLensGroupList: {ListStorageLensGroupEntry}
+end
+
+local record ListTagsForResourceInput
+    AccountId: string
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+end
+
+local record PutAccessGrantsInstanceResourcePolicyInput
+    AccountId: string
+    Policy: string
+    Organization: string
+end
+
+local record PutAccessGrantsInstanceResourcePolicyOutput
+    Policy: string
+    Organization: string
+    CreatedAt: number
+end
+
+local record PutAccessPointConfigurationForObjectLambdaInput
+    AccountId: string
+    Name: string
+    Configuration: ObjectLambdaConfiguration
+end
+
+local record PutAccessPointConfigurationForObjectLambdaOutput
+end
+
+local record PutAccessPointPolicyInput
+    AccountId: string
+    Name: string
+    Policy: string
+end
+
+local record PutAccessPointPolicyOutput
+end
+
+local record PutAccessPointPolicyForObjectLambdaInput
+    AccountId: string
+    Name: string
+    Policy: string
+end
+
+local record PutAccessPointPolicyForObjectLambdaOutput
+end
+
+local record PutAccessPointScopeInput
+    AccountId: string
+    Name: string
+    Scope: Scope
+end
+
+local record PutAccessPointScopeOutput
+end
+
+local record PutBucketLifecycleConfigurationInput
+    AccountId: string
+    Bucket: string
+    LifecycleConfiguration: LifecycleConfiguration
+end
+
+local record PutBucketLifecycleConfigurationOutput
+end
+
+local record PutBucketPolicyInput
+    AccountId: string
+    Bucket: string
+    ConfirmRemoveSelfBucketAccess: boolean
+    Policy: string
+end
+
+local record PutBucketPolicyOutput
+end
+
+local record PutBucketReplicationInput
+    AccountId: string
+    Bucket: string
+    ReplicationConfiguration: ReplicationConfiguration
+end
+
+local record PutBucketReplicationOutput
+end
+
+local record PutBucketTaggingInput
+    AccountId: string
+    Bucket: string
+    Tagging: Tagging
+end
+
+local record PutBucketTaggingOutput
+end
+
+local record PutBucketVersioningInput
+    AccountId: string
+    Bucket: string
+    MFA: string
+    VersioningConfiguration: VersioningConfiguration
+end
+
+local record PutBucketVersioningOutput
+end
+
+local record PutJobTaggingInput
+    AccountId: string
+    JobId: string
+    Tags: {S3Tag}
+end
+
+local record PutJobTaggingOutput
+end
+
+local record PutMultiRegionAccessPointPolicyOperationInput
+    AccountId: string
+    ClientToken: string
+    Details: PutMultiRegionAccessPointPolicyInput
+end
+
+local record PutMultiRegionAccessPointPolicyOutput
+    RequestTokenARN: string
+end
+
+local record PutPublicAccessBlockInput
+    PublicAccessBlockConfiguration: PublicAccessBlockConfiguration
+    AccountId: string
+end
+
+local record PutPublicAccessBlockOutput
+end
+
+local record PutStorageLensConfigurationInput
+    ConfigId: string
+    AccountId: string
+    StorageLensConfiguration: StorageLensConfiguration
+    Tags: {StorageLensTag}
+end
+
+local record PutStorageLensConfigurationOutput
+end
+
+local record PutStorageLensConfigurationTaggingInput
+    ConfigId: string
+    AccountId: string
+    Tags: {StorageLensTag}
+end
+
+local record PutStorageLensConfigurationTaggingOutput
+end
+
+local record SubmitMultiRegionAccessPointRoutesInput
+    AccountId: string
+    Mrap: string
+    RouteUpdates: {MultiRegionAccessPointRoute}
+end
+
+local record SubmitMultiRegionAccessPointRoutesOutput
+end
+
+local record TagResourceInput
+    AccountId: string
+    ResourceArn: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    AccountId: string
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateAccessGrantsLocationInput
+    AccountId: string
+    AccessGrantsLocationId: string
+    IAMRoleArn: string
+end
+
+local record UpdateAccessGrantsLocationOutput
+    CreatedAt: number
+    AccessGrantsLocationId: string
+    AccessGrantsLocationArn: string
+    LocationScope: string
+    IAMRoleArn: string
+end
+
+local record UpdateJobPriorityInput
+    AccountId: string
+    JobId: string
+    Priority: number
+end
+
+local record UpdateJobPriorityOutput
+    JobId: string
+    Priority: number
+end
+
+local record UpdateJobStatusInput
+    AccountId: string
+    JobId: string
+    RequestedJobStatus: string
+    StatusUpdateReason: string
+end
+
+local record UpdateJobStatusOutput
+    JobId: string
+    Status: string
+    StatusUpdateReason: string
+end
+
+local record UpdateStorageLensGroupInput
+    Name: string
+    AccountId: string
+    StorageLensGroup: StorageLensGroup
+end
+
+local record UpdateStorageLensGroupOutput
+end
+
+local record BucketAlreadyExists
+end
+
+local record BucketAlreadyOwnedByYou
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record IdempotencyException
+    Message: string
+end
+
+local record InternalServiceException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServiceException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record InternalServiceException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record InternalServiceException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record NoSuchPublicAccessBlockConfiguration
+    Message: string
+end
+
+local record InternalServiceException
+    Message: string
+end
+
+local record InvalidNextTokenException
+    Message: string
+end
+
+local record InvalidRequestException
+    Message: string
+end
+
+local record InternalServiceException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record InternalServiceException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record InternalServiceException
+    Message: string
+end
+
+local record JobStatusException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+end
+
+local record TooManyRequestsException
+    Message: string
+end
+
+local type GranteeType = "DIRECTORY_USER" | "DIRECTORY_GROUP" | "IAM"
+
+local type BucketVersioningStatus = "Enabled" | "Suspended"
+
+local type MFADeleteStatus = "Enabled" | "Disabled"
+
+local type BucketCannedACL = "private" | "public-read" | "public-read-write" | "authenticated-read"
+
+local type NetworkOrigin = "Internet" | "VPC"
+
+local type Permission = "READ" | "WRITE" | "READWRITE"
+
+local type Privilege = "Minimal" | "Default"
+
+local type RequestedJobStatus = "Cancelled" | "Ready"
+
+local type S3PrefixType = "Object"
+
+local type JobStatus = "Active" | "Cancelled" | "Cancelling" | "Complete" | "Completing" | "Failed" | "Failing" | "New" | "Paused" | "Pausing" | "Preparing" | "Ready" | "Suspended"
+
+local record M
+    AssociateAccessGrantsIdentityCenterInput: AssociateAccessGrantsIdentityCenterInput
+    AssociateAccessGrantsIdentityCenterOutput: AssociateAccessGrantsIdentityCenterOutput
+    CreateAccessGrantInput: CreateAccessGrantInput
+    CreateAccessGrantOutput: CreateAccessGrantOutput
+    CreateAccessGrantsInstanceInput: CreateAccessGrantsInstanceInput
+    CreateAccessGrantsInstanceOutput: CreateAccessGrantsInstanceOutput
+    CreateAccessGrantsLocationInput: CreateAccessGrantsLocationInput
+    CreateAccessGrantsLocationOutput: CreateAccessGrantsLocationOutput
+    CreateAccessPointInput: CreateAccessPointInput
+    CreateAccessPointOutput: CreateAccessPointOutput
+    CreateAccessPointForObjectLambdaInput: CreateAccessPointForObjectLambdaInput
+    CreateAccessPointForObjectLambdaOutput: CreateAccessPointForObjectLambdaOutput
+    CreateBucketInput: CreateBucketInput
+    CreateBucketOutput: CreateBucketOutput
+    CreateJobInput: CreateJobInput
+    CreateJobOutput: CreateJobOutput
+    CreateMultiRegionAccessPointOperationInput: CreateMultiRegionAccessPointOperationInput
+    CreateMultiRegionAccessPointOutput: CreateMultiRegionAccessPointOutput
+    CreateStorageLensGroupInput: CreateStorageLensGroupInput
+    CreateStorageLensGroupOutput: CreateStorageLensGroupOutput
+    DeleteAccessGrantInput: DeleteAccessGrantInput
+    DeleteAccessGrantOutput: DeleteAccessGrantOutput
+    DeleteAccessGrantsInstanceInput: DeleteAccessGrantsInstanceInput
+    DeleteAccessGrantsInstanceOutput: DeleteAccessGrantsInstanceOutput
+    DeleteAccessGrantsInstanceResourcePolicyInput: DeleteAccessGrantsInstanceResourcePolicyInput
+    DeleteAccessGrantsInstanceResourcePolicyOutput: DeleteAccessGrantsInstanceResourcePolicyOutput
+    DeleteAccessGrantsLocationInput: DeleteAccessGrantsLocationInput
+    DeleteAccessGrantsLocationOutput: DeleteAccessGrantsLocationOutput
+    DeleteAccessPointInput: DeleteAccessPointInput
+    DeleteAccessPointOutput: DeleteAccessPointOutput
+    DeleteAccessPointForObjectLambdaInput: DeleteAccessPointForObjectLambdaInput
+    DeleteAccessPointForObjectLambdaOutput: DeleteAccessPointForObjectLambdaOutput
+    DeleteAccessPointPolicyInput: DeleteAccessPointPolicyInput
+    DeleteAccessPointPolicyOutput: DeleteAccessPointPolicyOutput
+    DeleteAccessPointPolicyForObjectLambdaInput: DeleteAccessPointPolicyForObjectLambdaInput
+    DeleteAccessPointPolicyForObjectLambdaOutput: DeleteAccessPointPolicyForObjectLambdaOutput
+    DeleteAccessPointScopeInput: DeleteAccessPointScopeInput
+    DeleteAccessPointScopeOutput: DeleteAccessPointScopeOutput
+    DeleteBucketInput: DeleteBucketInput
+    DeleteBucketOutput: DeleteBucketOutput
+    DeleteBucketLifecycleConfigurationInput: DeleteBucketLifecycleConfigurationInput
+    DeleteBucketLifecycleConfigurationOutput: DeleteBucketLifecycleConfigurationOutput
+    DeleteBucketPolicyInput: DeleteBucketPolicyInput
+    DeleteBucketPolicyOutput: DeleteBucketPolicyOutput
+    DeleteBucketReplicationInput: DeleteBucketReplicationInput
+    DeleteBucketReplicationOutput: DeleteBucketReplicationOutput
+    DeleteBucketTaggingInput: DeleteBucketTaggingInput
+    DeleteBucketTaggingOutput: DeleteBucketTaggingOutput
+    DeleteJobTaggingInput: DeleteJobTaggingInput
+    DeleteJobTaggingOutput: DeleteJobTaggingOutput
+    DeleteMultiRegionAccessPointOperationInput: DeleteMultiRegionAccessPointOperationInput
+    DeleteMultiRegionAccessPointOutput: DeleteMultiRegionAccessPointOutput
+    DeletePublicAccessBlockInput: DeletePublicAccessBlockInput
+    DeletePublicAccessBlockOutput: DeletePublicAccessBlockOutput
+    DeleteStorageLensConfigurationInput: DeleteStorageLensConfigurationInput
+    DeleteStorageLensConfigurationOutput: DeleteStorageLensConfigurationOutput
+    DeleteStorageLensConfigurationTaggingInput: DeleteStorageLensConfigurationTaggingInput
+    DeleteStorageLensConfigurationTaggingOutput: DeleteStorageLensConfigurationTaggingOutput
+    DeleteStorageLensGroupInput: DeleteStorageLensGroupInput
+    DeleteStorageLensGroupOutput: DeleteStorageLensGroupOutput
+    DescribeJobInput: DescribeJobInput
+    DescribeJobOutput: DescribeJobOutput
+    DescribeMultiRegionAccessPointOperationInput: DescribeMultiRegionAccessPointOperationInput
+    DescribeMultiRegionAccessPointOperationOutput: DescribeMultiRegionAccessPointOperationOutput
+    DissociateAccessGrantsIdentityCenterInput: DissociateAccessGrantsIdentityCenterInput
+    DissociateAccessGrantsIdentityCenterOutput: DissociateAccessGrantsIdentityCenterOutput
+    GetAccessGrantInput: GetAccessGrantInput
+    GetAccessGrantOutput: GetAccessGrantOutput
+    GetAccessGrantsInstanceInput: GetAccessGrantsInstanceInput
+    GetAccessGrantsInstanceOutput: GetAccessGrantsInstanceOutput
+    GetAccessGrantsInstanceForPrefixInput: GetAccessGrantsInstanceForPrefixInput
+    GetAccessGrantsInstanceForPrefixOutput: GetAccessGrantsInstanceForPrefixOutput
+    GetAccessGrantsInstanceResourcePolicyInput: GetAccessGrantsInstanceResourcePolicyInput
+    GetAccessGrantsInstanceResourcePolicyOutput: GetAccessGrantsInstanceResourcePolicyOutput
+    GetAccessGrantsLocationInput: GetAccessGrantsLocationInput
+    GetAccessGrantsLocationOutput: GetAccessGrantsLocationOutput
+    GetAccessPointInput: GetAccessPointInput
+    GetAccessPointOutput: GetAccessPointOutput
+    GetAccessPointConfigurationForObjectLambdaInput: GetAccessPointConfigurationForObjectLambdaInput
+    GetAccessPointConfigurationForObjectLambdaOutput: GetAccessPointConfigurationForObjectLambdaOutput
+    GetAccessPointForObjectLambdaInput: GetAccessPointForObjectLambdaInput
+    GetAccessPointForObjectLambdaOutput: GetAccessPointForObjectLambdaOutput
+    GetAccessPointPolicyInput: GetAccessPointPolicyInput
+    GetAccessPointPolicyOutput: GetAccessPointPolicyOutput
+    GetAccessPointPolicyForObjectLambdaInput: GetAccessPointPolicyForObjectLambdaInput
+    GetAccessPointPolicyForObjectLambdaOutput: GetAccessPointPolicyForObjectLambdaOutput
+    GetAccessPointPolicyStatusInput: GetAccessPointPolicyStatusInput
+    GetAccessPointPolicyStatusOutput: GetAccessPointPolicyStatusOutput
+    GetAccessPointPolicyStatusForObjectLambdaInput: GetAccessPointPolicyStatusForObjectLambdaInput
+    GetAccessPointPolicyStatusForObjectLambdaOutput: GetAccessPointPolicyStatusForObjectLambdaOutput
+    GetAccessPointScopeInput: GetAccessPointScopeInput
+    GetAccessPointScopeOutput: GetAccessPointScopeOutput
+    GetBucketInput: GetBucketInput
+    GetBucketOutput: GetBucketOutput
+    GetBucketLifecycleConfigurationInput: GetBucketLifecycleConfigurationInput
+    GetBucketLifecycleConfigurationOutput: GetBucketLifecycleConfigurationOutput
+    GetBucketPolicyInput: GetBucketPolicyInput
+    GetBucketPolicyOutput: GetBucketPolicyOutput
+    GetBucketReplicationInput: GetBucketReplicationInput
+    GetBucketReplicationOutput: GetBucketReplicationOutput
+    GetBucketTaggingInput: GetBucketTaggingInput
+    GetBucketTaggingOutput: GetBucketTaggingOutput
+    GetBucketVersioningInput: GetBucketVersioningInput
+    GetBucketVersioningOutput: GetBucketVersioningOutput
+    GetDataAccessInput: GetDataAccessInput
+    GetDataAccessOutput: GetDataAccessOutput
+    GetJobTaggingInput: GetJobTaggingInput
+    GetJobTaggingOutput: GetJobTaggingOutput
+    GetMultiRegionAccessPointInput: GetMultiRegionAccessPointInput
+    GetMultiRegionAccessPointOutput: GetMultiRegionAccessPointOutput
+    GetMultiRegionAccessPointPolicyInput: GetMultiRegionAccessPointPolicyInput
+    GetMultiRegionAccessPointPolicyOutput: GetMultiRegionAccessPointPolicyOutput
+    GetMultiRegionAccessPointPolicyStatusInput: GetMultiRegionAccessPointPolicyStatusInput
+    GetMultiRegionAccessPointPolicyStatusOutput: GetMultiRegionAccessPointPolicyStatusOutput
+    GetMultiRegionAccessPointRoutesInput: GetMultiRegionAccessPointRoutesInput
+    GetMultiRegionAccessPointRoutesOutput: GetMultiRegionAccessPointRoutesOutput
+    GetPublicAccessBlockInput: GetPublicAccessBlockInput
+    GetPublicAccessBlockOutput: GetPublicAccessBlockOutput
+    GetStorageLensConfigurationInput: GetStorageLensConfigurationInput
+    GetStorageLensConfigurationOutput: GetStorageLensConfigurationOutput
+    GetStorageLensConfigurationTaggingInput: GetStorageLensConfigurationTaggingInput
+    GetStorageLensConfigurationTaggingOutput: GetStorageLensConfigurationTaggingOutput
+    GetStorageLensGroupInput: GetStorageLensGroupInput
+    GetStorageLensGroupOutput: GetStorageLensGroupOutput
+    ListAccessGrantsInput: ListAccessGrantsInput
+    ListAccessGrantsOutput: ListAccessGrantsOutput
+    ListAccessGrantsInstancesInput: ListAccessGrantsInstancesInput
+    ListAccessGrantsInstancesOutput: ListAccessGrantsInstancesOutput
+    ListAccessGrantsLocationsInput: ListAccessGrantsLocationsInput
+    ListAccessGrantsLocationsOutput: ListAccessGrantsLocationsOutput
+    ListAccessPointsInput: ListAccessPointsInput
+    ListAccessPointsOutput: ListAccessPointsOutput
+    ListAccessPointsForDirectoryBucketsInput: ListAccessPointsForDirectoryBucketsInput
+    ListAccessPointsForDirectoryBucketsOutput: ListAccessPointsForDirectoryBucketsOutput
+    ListAccessPointsForObjectLambdaInput: ListAccessPointsForObjectLambdaInput
+    ListAccessPointsForObjectLambdaOutput: ListAccessPointsForObjectLambdaOutput
+    ListCallerAccessGrantsInput: ListCallerAccessGrantsInput
+    ListCallerAccessGrantsOutput: ListCallerAccessGrantsOutput
+    ListJobsInput: ListJobsInput
+    ListJobsOutput: ListJobsOutput
+    ListMultiRegionAccessPointsInput: ListMultiRegionAccessPointsInput
+    ListMultiRegionAccessPointsOutput: ListMultiRegionAccessPointsOutput
+    ListRegionalBucketsInput: ListRegionalBucketsInput
+    ListRegionalBucketsOutput: ListRegionalBucketsOutput
+    ListStorageLensConfigurationsInput: ListStorageLensConfigurationsInput
+    ListStorageLensConfigurationsOutput: ListStorageLensConfigurationsOutput
+    ListStorageLensGroupsInput: ListStorageLensGroupsInput
+    ListStorageLensGroupsOutput: ListStorageLensGroupsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PutAccessGrantsInstanceResourcePolicyInput: PutAccessGrantsInstanceResourcePolicyInput
+    PutAccessGrantsInstanceResourcePolicyOutput: PutAccessGrantsInstanceResourcePolicyOutput
+    PutAccessPointConfigurationForObjectLambdaInput: PutAccessPointConfigurationForObjectLambdaInput
+    PutAccessPointConfigurationForObjectLambdaOutput: PutAccessPointConfigurationForObjectLambdaOutput
+    PutAccessPointPolicyInput: PutAccessPointPolicyInput
+    PutAccessPointPolicyOutput: PutAccessPointPolicyOutput
+    PutAccessPointPolicyForObjectLambdaInput: PutAccessPointPolicyForObjectLambdaInput
+    PutAccessPointPolicyForObjectLambdaOutput: PutAccessPointPolicyForObjectLambdaOutput
+    PutAccessPointScopeInput: PutAccessPointScopeInput
+    PutAccessPointScopeOutput: PutAccessPointScopeOutput
+    PutBucketLifecycleConfigurationInput: PutBucketLifecycleConfigurationInput
+    PutBucketLifecycleConfigurationOutput: PutBucketLifecycleConfigurationOutput
+    PutBucketPolicyInput: PutBucketPolicyInput
+    PutBucketPolicyOutput: PutBucketPolicyOutput
+    PutBucketReplicationInput: PutBucketReplicationInput
+    PutBucketReplicationOutput: PutBucketReplicationOutput
+    PutBucketTaggingInput: PutBucketTaggingInput
+    PutBucketTaggingOutput: PutBucketTaggingOutput
+    PutBucketVersioningInput: PutBucketVersioningInput
+    PutBucketVersioningOutput: PutBucketVersioningOutput
+    PutJobTaggingInput: PutJobTaggingInput
+    PutJobTaggingOutput: PutJobTaggingOutput
+    PutMultiRegionAccessPointPolicyOperationInput: PutMultiRegionAccessPointPolicyOperationInput
+    PutMultiRegionAccessPointPolicyOutput: PutMultiRegionAccessPointPolicyOutput
+    PutPublicAccessBlockInput: PutPublicAccessBlockInput
+    PutPublicAccessBlockOutput: PutPublicAccessBlockOutput
+    PutStorageLensConfigurationInput: PutStorageLensConfigurationInput
+    PutStorageLensConfigurationOutput: PutStorageLensConfigurationOutput
+    PutStorageLensConfigurationTaggingInput: PutStorageLensConfigurationTaggingInput
+    PutStorageLensConfigurationTaggingOutput: PutStorageLensConfigurationTaggingOutput
+    SubmitMultiRegionAccessPointRoutesInput: SubmitMultiRegionAccessPointRoutesInput
+    SubmitMultiRegionAccessPointRoutesOutput: SubmitMultiRegionAccessPointRoutesOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateAccessGrantsLocationInput: UpdateAccessGrantsLocationInput
+    UpdateAccessGrantsLocationOutput: UpdateAccessGrantsLocationOutput
+    UpdateJobPriorityInput: UpdateJobPriorityInput
+    UpdateJobPriorityOutput: UpdateJobPriorityOutput
+    UpdateJobStatusInput: UpdateJobStatusInput
+    UpdateJobStatusOutput: UpdateJobStatusOutput
+    UpdateStorageLensGroupInput: UpdateStorageLensGroupInput
+    UpdateStorageLensGroupOutput: UpdateStorageLensGroupOutput
+end
+
+return M

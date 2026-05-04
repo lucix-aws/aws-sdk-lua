@@ -1,0 +1,1608 @@
+local record AssociateChannelInput
+    arn: string
+    notificationConfigurationArn: string
+end
+
+local record AssociateChannelOutput
+end
+
+local record AssociateManagedNotificationAccountContactInput
+    contactIdentifier: string
+    managedNotificationConfigurationArn: string
+end
+
+local record AssociateManagedNotificationAccountContactOutput
+end
+
+local record AssociateManagedNotificationAdditionalChannelInput
+    channelArn: string
+    managedNotificationConfigurationArn: string
+end
+
+local record AssociateManagedNotificationAdditionalChannelOutput
+end
+
+local record AssociateOrganizationalUnitInput
+    organizationalUnitId: string
+    notificationConfigurationArn: string
+end
+
+local record AssociateOrganizationalUnitOutput
+end
+
+local record CreateEventRuleInput
+    notificationConfigurationArn: string
+    source: string
+    eventType: string
+    eventPattern: string
+    regions: {string}
+end
+
+local record CreateEventRuleOutput
+    arn: string
+    notificationConfigurationArn: string
+    statusSummaryByRegion: {string : EventRuleStatusSummary}
+end
+
+local record CreateNotificationConfigurationInput
+    name: string
+    description: string
+    aggregationDuration: string
+    tags: {string : string}
+end
+
+local record CreateNotificationConfigurationOutput
+    arn: string
+    status: string
+end
+
+local record DeleteEventRuleInput
+    arn: string
+end
+
+local record DeleteEventRuleOutput
+end
+
+local record DeleteNotificationConfigurationInput
+    arn: string
+end
+
+local record DeleteNotificationConfigurationOutput
+end
+
+local record DeregisterNotificationHubInput
+    notificationHubRegion: string
+end
+
+local record DeregisterNotificationHubOutput
+    notificationHubRegion: string
+    statusSummary: NotificationHubStatusSummary
+end
+
+local record DisableNotificationsAccessForOrganizationInput
+end
+
+local record DisableNotificationsAccessForOrganizationOutput
+end
+
+local record DisassociateChannelInput
+    arn: string
+    notificationConfigurationArn: string
+end
+
+local record DisassociateChannelOutput
+end
+
+local record DisassociateManagedNotificationAccountContactInput
+    contactIdentifier: string
+    managedNotificationConfigurationArn: string
+end
+
+local record DisassociateManagedNotificationAccountContactOutput
+end
+
+local record DisassociateManagedNotificationAdditionalChannelInput
+    channelArn: string
+    managedNotificationConfigurationArn: string
+end
+
+local record DisassociateManagedNotificationAdditionalChannelOutput
+end
+
+local record DisassociateOrganizationalUnitInput
+    organizationalUnitId: string
+    notificationConfigurationArn: string
+end
+
+local record DisassociateOrganizationalUnitOutput
+end
+
+local record EnableNotificationsAccessForOrganizationInput
+end
+
+local record EnableNotificationsAccessForOrganizationOutput
+end
+
+local record GetEventRuleInput
+    arn: string
+end
+
+local record GetEventRuleOutput
+    arn: string
+    notificationConfigurationArn: string
+    creationTime: number
+    source: string
+    eventType: string
+    eventPattern: string
+    regions: {string}
+    managedRules: {string}
+    statusSummaryByRegion: {string : EventRuleStatusSummary}
+end
+
+local record GetManagedNotificationChildEventInput
+    arn: string
+    locale: string
+end
+
+local record GetManagedNotificationChildEventOutput
+    arn: string
+    managedNotificationConfigurationArn: string
+    creationTime: number
+    content: ManagedNotificationChildEvent
+end
+
+local record GetManagedNotificationConfigurationInput
+    arn: string
+end
+
+local record GetManagedNotificationConfigurationOutput
+    arn: string
+    name: string
+    description: string
+    category: string
+    subCategory: string
+end
+
+local record GetManagedNotificationEventInput
+    arn: string
+    locale: string
+end
+
+local record GetManagedNotificationEventOutput
+    arn: string
+    managedNotificationConfigurationArn: string
+    creationTime: number
+    content: ManagedNotificationEvent
+end
+
+local record GetNotificationConfigurationInput
+    arn: string
+end
+
+local record GetNotificationConfigurationOutput
+    arn: string
+    name: string
+    description: string
+    status: string
+    creationTime: number
+    aggregationDuration: string
+    subtype: string
+end
+
+local record GetNotificationEventInput
+    arn: string
+    locale: string
+end
+
+local record GetNotificationEventOutput
+    arn: string
+    notificationConfigurationArn: string
+    creationTime: number
+    content: NotificationEventSchema
+end
+
+local record GetNotificationsAccessForOrganizationInput
+end
+
+local record GetNotificationsAccessForOrganizationOutput
+    notificationsAccessForOrganization: NotificationsAccessForOrganization
+end
+
+local record ListChannelsInput
+    notificationConfigurationArn: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListChannelsOutput
+    nextToken: string
+    channels: {string}
+end
+
+local record ListEventRulesInput
+    notificationConfigurationArn: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListEventRulesOutput
+    nextToken: string
+    eventRules: {EventRuleStructure}
+end
+
+local record ListManagedNotificationChannelAssociationsInput
+    managedNotificationConfigurationArn: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListManagedNotificationChannelAssociationsOutput
+    nextToken: string
+    channelAssociations: {ManagedNotificationChannelAssociationSummary}
+end
+
+local record ListManagedNotificationChildEventsInput
+    aggregateManagedNotificationEventArn: string
+    startTime: number
+    endTime: number
+    locale: string
+    maxResults: number
+    relatedAccount: string
+    organizationalUnitId: string
+    nextToken: string
+end
+
+local record ListManagedNotificationChildEventsOutput
+    nextToken: string
+    managedNotificationChildEvents: {ManagedNotificationChildEventOverview}
+end
+
+local record ListManagedNotificationConfigurationsInput
+    channelIdentifier: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListManagedNotificationConfigurationsOutput
+    nextToken: string
+    managedNotificationConfigurations: {ManagedNotificationConfigurationStructure}
+end
+
+local record ListManagedNotificationEventsInput
+    startTime: number
+    endTime: number
+    locale: string
+    source: string
+    maxResults: number
+    nextToken: string
+    organizationalUnitId: string
+    relatedAccount: string
+end
+
+local record ListManagedNotificationEventsOutput
+    nextToken: string
+    managedNotificationEvents: {ManagedNotificationEventOverview}
+end
+
+local record ListMemberAccountsInput
+    notificationConfigurationArn: string
+    maxResults: number
+    nextToken: string
+    memberAccount: string
+    status: string
+    organizationalUnitId: string
+end
+
+local record ListMemberAccountsOutput
+    memberAccounts: {MemberAccount}
+    nextToken: string
+end
+
+local record ListNotificationConfigurationsInput
+    eventRuleSource: string
+    channelArn: string
+    status: string
+    subtype: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListNotificationConfigurationsOutput
+    nextToken: string
+    notificationConfigurations: {NotificationConfigurationStructure}
+end
+
+local record ListNotificationEventsInput
+    startTime: number
+    endTime: number
+    locale: string
+    source: string
+    includeChildEvents: boolean
+    aggregateNotificationEventArn: string
+    maxResults: number
+    nextToken: string
+    organizationalUnitId: string
+end
+
+local record ListNotificationEventsOutput
+    nextToken: string
+    notificationEvents: {NotificationEventOverview}
+end
+
+local record ListNotificationHubsInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListNotificationHubsOutput
+    notificationHubs: {NotificationHubOverview}
+    nextToken: string
+end
+
+local record ListOrganizationalUnitsInput
+    notificationConfigurationArn: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListOrganizationalUnitsOutput
+    organizationalUnits: {string}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    arn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record RegisterNotificationHubInput
+    notificationHubRegion: string
+end
+
+local record RegisterNotificationHubOutput
+    notificationHubRegion: string
+    statusSummary: NotificationHubStatusSummary
+    creationTime: number
+    lastActivationTime: number
+end
+
+local record TagResourceInput
+    arn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    arn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateEventRuleInput
+    arn: string
+    eventPattern: string
+    regions: {string}
+end
+
+local record UpdateEventRuleOutput
+    arn: string
+    notificationConfigurationArn: string
+    statusSummaryByRegion: {string : EventRuleStatusSummary}
+end
+
+local record UpdateNotificationConfigurationInput
+    arn: string
+    name: string
+    description: string
+    aggregationDuration: string
+end
+
+local record UpdateNotificationConfigurationOutput
+    arn: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceType: string
+    resourceId: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceType: string
+    resourceId: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceType: string
+    resourceId: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceType: string
+    resourceId: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceType: string
+    resourceId: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceType: string
+    resourceId: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceType: string
+    resourceId: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceType: string
+    resourceId: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    resourceType: string
+    resourceId: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record M
+    AssociateChannelInput: AssociateChannelInput
+    AssociateChannelOutput: AssociateChannelOutput
+    AssociateManagedNotificationAccountContactInput: AssociateManagedNotificationAccountContactInput
+    AssociateManagedNotificationAccountContactOutput: AssociateManagedNotificationAccountContactOutput
+    AssociateManagedNotificationAdditionalChannelInput: AssociateManagedNotificationAdditionalChannelInput
+    AssociateManagedNotificationAdditionalChannelOutput: AssociateManagedNotificationAdditionalChannelOutput
+    AssociateOrganizationalUnitInput: AssociateOrganizationalUnitInput
+    AssociateOrganizationalUnitOutput: AssociateOrganizationalUnitOutput
+    CreateEventRuleInput: CreateEventRuleInput
+    CreateEventRuleOutput: CreateEventRuleOutput
+    CreateNotificationConfigurationInput: CreateNotificationConfigurationInput
+    CreateNotificationConfigurationOutput: CreateNotificationConfigurationOutput
+    DeleteEventRuleInput: DeleteEventRuleInput
+    DeleteEventRuleOutput: DeleteEventRuleOutput
+    DeleteNotificationConfigurationInput: DeleteNotificationConfigurationInput
+    DeleteNotificationConfigurationOutput: DeleteNotificationConfigurationOutput
+    DeregisterNotificationHubInput: DeregisterNotificationHubInput
+    DeregisterNotificationHubOutput: DeregisterNotificationHubOutput
+    DisableNotificationsAccessForOrganizationInput: DisableNotificationsAccessForOrganizationInput
+    DisableNotificationsAccessForOrganizationOutput: DisableNotificationsAccessForOrganizationOutput
+    DisassociateChannelInput: DisassociateChannelInput
+    DisassociateChannelOutput: DisassociateChannelOutput
+    DisassociateManagedNotificationAccountContactInput: DisassociateManagedNotificationAccountContactInput
+    DisassociateManagedNotificationAccountContactOutput: DisassociateManagedNotificationAccountContactOutput
+    DisassociateManagedNotificationAdditionalChannelInput: DisassociateManagedNotificationAdditionalChannelInput
+    DisassociateManagedNotificationAdditionalChannelOutput: DisassociateManagedNotificationAdditionalChannelOutput
+    DisassociateOrganizationalUnitInput: DisassociateOrganizationalUnitInput
+    DisassociateOrganizationalUnitOutput: DisassociateOrganizationalUnitOutput
+    EnableNotificationsAccessForOrganizationInput: EnableNotificationsAccessForOrganizationInput
+    EnableNotificationsAccessForOrganizationOutput: EnableNotificationsAccessForOrganizationOutput
+    GetEventRuleInput: GetEventRuleInput
+    GetEventRuleOutput: GetEventRuleOutput
+    GetManagedNotificationChildEventInput: GetManagedNotificationChildEventInput
+    GetManagedNotificationChildEventOutput: GetManagedNotificationChildEventOutput
+    GetManagedNotificationConfigurationInput: GetManagedNotificationConfigurationInput
+    GetManagedNotificationConfigurationOutput: GetManagedNotificationConfigurationOutput
+    GetManagedNotificationEventInput: GetManagedNotificationEventInput
+    GetManagedNotificationEventOutput: GetManagedNotificationEventOutput
+    GetNotificationConfigurationInput: GetNotificationConfigurationInput
+    GetNotificationConfigurationOutput: GetNotificationConfigurationOutput
+    GetNotificationEventInput: GetNotificationEventInput
+    GetNotificationEventOutput: GetNotificationEventOutput
+    GetNotificationsAccessForOrganizationInput: GetNotificationsAccessForOrganizationInput
+    GetNotificationsAccessForOrganizationOutput: GetNotificationsAccessForOrganizationOutput
+    ListChannelsInput: ListChannelsInput
+    ListChannelsOutput: ListChannelsOutput
+    ListEventRulesInput: ListEventRulesInput
+    ListEventRulesOutput: ListEventRulesOutput
+    ListManagedNotificationChannelAssociationsInput: ListManagedNotificationChannelAssociationsInput
+    ListManagedNotificationChannelAssociationsOutput: ListManagedNotificationChannelAssociationsOutput
+    ListManagedNotificationChildEventsInput: ListManagedNotificationChildEventsInput
+    ListManagedNotificationChildEventsOutput: ListManagedNotificationChildEventsOutput
+    ListManagedNotificationConfigurationsInput: ListManagedNotificationConfigurationsInput
+    ListManagedNotificationConfigurationsOutput: ListManagedNotificationConfigurationsOutput
+    ListManagedNotificationEventsInput: ListManagedNotificationEventsInput
+    ListManagedNotificationEventsOutput: ListManagedNotificationEventsOutput
+    ListMemberAccountsInput: ListMemberAccountsInput
+    ListMemberAccountsOutput: ListMemberAccountsOutput
+    ListNotificationConfigurationsInput: ListNotificationConfigurationsInput
+    ListNotificationConfigurationsOutput: ListNotificationConfigurationsOutput
+    ListNotificationEventsInput: ListNotificationEventsInput
+    ListNotificationEventsOutput: ListNotificationEventsOutput
+    ListNotificationHubsInput: ListNotificationHubsInput
+    ListNotificationHubsOutput: ListNotificationHubsOutput
+    ListOrganizationalUnitsInput: ListOrganizationalUnitsInput
+    ListOrganizationalUnitsOutput: ListOrganizationalUnitsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    RegisterNotificationHubInput: RegisterNotificationHubInput
+    RegisterNotificationHubOutput: RegisterNotificationHubOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateEventRuleInput: UpdateEventRuleInput
+    UpdateEventRuleOutput: UpdateEventRuleOutput
+    UpdateNotificationConfigurationInput: UpdateNotificationConfigurationInput
+    UpdateNotificationConfigurationOutput: UpdateNotificationConfigurationOutput
+end
+
+return M

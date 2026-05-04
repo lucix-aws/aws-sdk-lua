@@ -1,0 +1,22 @@
+local types = require("pcaconnectorscep.types")
+
+local record Client
+    createChallenge: function(Client, types.CreateChallengeInput): types.CreateChallengeOutput, table
+    createConnector: function(Client, types.CreateConnectorInput): types.CreateConnectorOutput, table
+    deleteChallenge: function(Client, types.DeleteChallengeInput): types.DeleteChallengeOutput, table
+    deleteConnector: function(Client, types.DeleteConnectorInput): types.DeleteConnectorOutput, table
+    getChallengeMetadata: function(Client, types.GetChallengeMetadataInput): types.GetChallengeMetadataOutput, table
+    getChallengePassword: function(Client, types.GetChallengePasswordInput): types.GetChallengePasswordOutput, table
+    getConnector: function(Client, types.GetConnectorInput): types.GetConnectorOutput, table
+    listChallengeMetadata: function(Client, types.ListChallengeMetadataInput): types.ListChallengeMetadataOutput, table
+    listConnectors: function(Client, types.ListConnectorsInput): types.ListConnectorsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

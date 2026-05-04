@@ -1,0 +1,993 @@
+local record CreateLandingZoneInput
+    version: string
+    remediationTypes: {string}
+    tags: {string : string}
+    manifest: any
+end
+
+local record CreateLandingZoneOutput
+    arn: string
+    operationIdentifier: string
+end
+
+local record DeleteLandingZoneInput
+    landingZoneIdentifier: string
+end
+
+local record DeleteLandingZoneOutput
+    operationIdentifier: string
+end
+
+local record DisableBaselineInput
+    enabledBaselineIdentifier: string
+end
+
+local record DisableBaselineOutput
+    operationIdentifier: string
+end
+
+local record DisableControlInput
+    controlIdentifier: string
+    targetIdentifier: string
+    enabledControlIdentifier: string
+end
+
+local record DisableControlOutput
+    operationIdentifier: string
+end
+
+local record EnableBaselineInput
+    baselineVersion: string
+    parameters: {EnabledBaselineParameter}
+    baselineIdentifier: string
+    targetIdentifier: string
+    tags: {string : string}
+end
+
+local record EnableBaselineOutput
+    operationIdentifier: string
+    arn: string
+end
+
+local record EnableControlInput
+    controlIdentifier: string
+    targetIdentifier: string
+    tags: {string : string}
+    parameters: {EnabledControlParameter}
+end
+
+local record EnableControlOutput
+    operationIdentifier: string
+    arn: string
+end
+
+local record GetBaselineInput
+    baselineIdentifier: string
+end
+
+local record GetBaselineOutput
+    arn: string
+    name: string
+    description: string
+end
+
+local record GetBaselineOperationInput
+    operationIdentifier: string
+end
+
+local record GetBaselineOperationOutput
+    baselineOperation: BaselineOperation
+end
+
+local record GetControlOperationInput
+    operationIdentifier: string
+end
+
+local record GetControlOperationOutput
+    controlOperation: ControlOperation
+end
+
+local record GetEnabledBaselineInput
+    enabledBaselineIdentifier: string
+end
+
+local record GetEnabledBaselineOutput
+    enabledBaselineDetails: EnabledBaselineDetails
+end
+
+local record GetEnabledControlInput
+    enabledControlIdentifier: string
+end
+
+local record GetEnabledControlOutput
+    enabledControlDetails: EnabledControlDetails
+end
+
+local record GetLandingZoneInput
+    landingZoneIdentifier: string
+end
+
+local record GetLandingZoneOutput
+    landingZone: LandingZoneDetail
+end
+
+local record GetLandingZoneOperationInput
+    operationIdentifier: string
+end
+
+local record GetLandingZoneOperationOutput
+    operationDetails: LandingZoneOperationDetail
+end
+
+local record ListBaselinesInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListBaselinesOutput
+    baselines: {BaselineSummary}
+    nextToken: string
+end
+
+local record ListControlOperationsInput
+    filter: ControlOperationFilter
+    nextToken: string
+    maxResults: number
+end
+
+local record ListControlOperationsOutput
+    controlOperations: {ControlOperationSummary}
+    nextToken: string
+end
+
+local record ListEnabledBaselinesInput
+    filter: EnabledBaselineFilter
+    nextToken: string
+    maxResults: number
+    includeChildren: boolean
+end
+
+local record ListEnabledBaselinesOutput
+    enabledBaselines: {EnabledBaselineSummary}
+    nextToken: string
+end
+
+local record ListEnabledControlsInput
+    targetIdentifier: string
+    nextToken: string
+    maxResults: number
+    filter: EnabledControlFilter
+    includeChildren: boolean
+end
+
+local record ListEnabledControlsOutput
+    enabledControls: {EnabledControlSummary}
+    nextToken: string
+end
+
+local record ListLandingZoneOperationsInput
+    filter: LandingZoneOperationFilter
+    nextToken: string
+    maxResults: number
+end
+
+local record ListLandingZoneOperationsOutput
+    landingZoneOperations: {LandingZoneOperationSummary}
+    nextToken: string
+end
+
+local record ListLandingZonesInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListLandingZonesOutput
+    landingZones: {LandingZoneSummary}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record ResetEnabledBaselineInput
+    enabledBaselineIdentifier: string
+end
+
+local record ResetEnabledBaselineOutput
+    operationIdentifier: string
+end
+
+local record ResetEnabledControlInput
+    enabledControlIdentifier: string
+end
+
+local record ResetEnabledControlOutput
+    operationIdentifier: string
+end
+
+local record ResetLandingZoneInput
+    landingZoneIdentifier: string
+end
+
+local record ResetLandingZoneOutput
+    operationIdentifier: string
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateEnabledBaselineInput
+    baselineVersion: string
+    parameters: {EnabledBaselineParameter}
+    enabledBaselineIdentifier: string
+end
+
+local record UpdateEnabledBaselineOutput
+    operationIdentifier: string
+end
+
+local record UpdateEnabledControlInput
+    parameters: {EnabledControlParameter}
+    enabledControlIdentifier: string
+end
+
+local record UpdateEnabledControlOutput
+    operationIdentifier: string
+end
+
+local record UpdateLandingZoneInput
+    version: string
+    remediationTypes: {string}
+    landingZoneIdentifier: string
+    manifest: any
+end
+
+local record UpdateLandingZoneOutput
+    operationIdentifier: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    CreateLandingZoneInput: CreateLandingZoneInput
+    CreateLandingZoneOutput: CreateLandingZoneOutput
+    DeleteLandingZoneInput: DeleteLandingZoneInput
+    DeleteLandingZoneOutput: DeleteLandingZoneOutput
+    DisableBaselineInput: DisableBaselineInput
+    DisableBaselineOutput: DisableBaselineOutput
+    DisableControlInput: DisableControlInput
+    DisableControlOutput: DisableControlOutput
+    EnableBaselineInput: EnableBaselineInput
+    EnableBaselineOutput: EnableBaselineOutput
+    EnableControlInput: EnableControlInput
+    EnableControlOutput: EnableControlOutput
+    GetBaselineInput: GetBaselineInput
+    GetBaselineOutput: GetBaselineOutput
+    GetBaselineOperationInput: GetBaselineOperationInput
+    GetBaselineOperationOutput: GetBaselineOperationOutput
+    GetControlOperationInput: GetControlOperationInput
+    GetControlOperationOutput: GetControlOperationOutput
+    GetEnabledBaselineInput: GetEnabledBaselineInput
+    GetEnabledBaselineOutput: GetEnabledBaselineOutput
+    GetEnabledControlInput: GetEnabledControlInput
+    GetEnabledControlOutput: GetEnabledControlOutput
+    GetLandingZoneInput: GetLandingZoneInput
+    GetLandingZoneOutput: GetLandingZoneOutput
+    GetLandingZoneOperationInput: GetLandingZoneOperationInput
+    GetLandingZoneOperationOutput: GetLandingZoneOperationOutput
+    ListBaselinesInput: ListBaselinesInput
+    ListBaselinesOutput: ListBaselinesOutput
+    ListControlOperationsInput: ListControlOperationsInput
+    ListControlOperationsOutput: ListControlOperationsOutput
+    ListEnabledBaselinesInput: ListEnabledBaselinesInput
+    ListEnabledBaselinesOutput: ListEnabledBaselinesOutput
+    ListEnabledControlsInput: ListEnabledControlsInput
+    ListEnabledControlsOutput: ListEnabledControlsOutput
+    ListLandingZoneOperationsInput: ListLandingZoneOperationsInput
+    ListLandingZoneOperationsOutput: ListLandingZoneOperationsOutput
+    ListLandingZonesInput: ListLandingZonesInput
+    ListLandingZonesOutput: ListLandingZonesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ResetEnabledBaselineInput: ResetEnabledBaselineInput
+    ResetEnabledBaselineOutput: ResetEnabledBaselineOutput
+    ResetEnabledControlInput: ResetEnabledControlInput
+    ResetEnabledControlOutput: ResetEnabledControlOutput
+    ResetLandingZoneInput: ResetLandingZoneInput
+    ResetLandingZoneOutput: ResetLandingZoneOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateEnabledBaselineInput: UpdateEnabledBaselineInput
+    UpdateEnabledBaselineOutput: UpdateEnabledBaselineOutput
+    UpdateEnabledControlInput: UpdateEnabledControlInput
+    UpdateEnabledControlOutput: UpdateEnabledControlOutput
+    UpdateLandingZoneInput: UpdateLandingZoneInput
+    UpdateLandingZoneOutput: UpdateLandingZoneOutput
+end
+
+return M

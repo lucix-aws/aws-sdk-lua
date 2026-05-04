@@ -1,0 +1,475 @@
+local record CreateSnapshotInput
+    Simulation: string
+    Destination: S3Destination
+end
+
+local record CreateSnapshotOutput
+end
+
+local record DeleteAppInput
+    Simulation: string
+    Domain: string
+    App: string
+end
+
+local record DeleteAppOutput
+end
+
+local record DeleteSimulationInput
+    Simulation: string
+end
+
+local record DeleteSimulationOutput
+end
+
+local record DescribeAppInput
+    Simulation: string
+    Domain: string
+    App: string
+end
+
+local record DescribeAppOutput
+    Name: string
+    Simulation: string
+    Domain: string
+    Status: string
+    TargetStatus: string
+    LaunchOverrides: LaunchOverrides
+    Description: string
+    EndpointInfo: SimulationAppEndpointInfo
+end
+
+local record DescribeSimulationInput
+    Simulation: string
+end
+
+local record DescribeSimulationOutput
+    Name: string
+    ExecutionId: string
+    Arn: string
+    Description: string
+    RoleArn: string
+    CreationTime: number
+    Status: string
+    TargetStatus: string
+    SchemaS3Location: S3Location
+    SchemaError: string
+    LoggingConfiguration: LoggingConfiguration
+    LiveSimulationState: LiveSimulationState
+    MaximumDuration: string
+    SnapshotS3Location: S3Location
+    StartError: string
+end
+
+local record ListAppsInput
+    Simulation: string
+    Domain: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListAppsOutput
+    Apps: {SimulationAppMetadata}
+    NextToken: string
+end
+
+local record ListSimulationsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListSimulationsOutput
+    Simulations: {SimulationMetadata}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {string : string}
+end
+
+local record StartAppInput
+    ClientToken: string
+    Simulation: string
+    Domain: string
+    Name: string
+    Description: string
+    LaunchOverrides: LaunchOverrides
+end
+
+local record StartAppOutput
+    Name: string
+    Domain: string
+    Simulation: string
+end
+
+local record StartClockInput
+    Simulation: string
+end
+
+local record StartClockOutput
+end
+
+local record StartSimulationInput
+    ClientToken: string
+    Name: string
+    Description: string
+    RoleArn: string
+    SchemaS3Location: S3Location
+    MaximumDuration: string
+    Tags: {string : string}
+    SnapshotS3Location: S3Location
+end
+
+local record StartSimulationOutput
+    Arn: string
+    ExecutionId: string
+    CreationTime: number
+end
+
+local record StopAppInput
+    Simulation: string
+    Domain: string
+    App: string
+end
+
+local record StopAppOutput
+end
+
+local record StopClockInput
+    Simulation: string
+end
+
+local record StopClockOutput
+end
+
+local record StopSimulationInput
+    Simulation: string
+end
+
+local record StopSimulationOutput
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ServiceQuotaExceededException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record TooManyTagsException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record M
+    CreateSnapshotInput: CreateSnapshotInput
+    CreateSnapshotOutput: CreateSnapshotOutput
+    DeleteAppInput: DeleteAppInput
+    DeleteAppOutput: DeleteAppOutput
+    DeleteSimulationInput: DeleteSimulationInput
+    DeleteSimulationOutput: DeleteSimulationOutput
+    DescribeAppInput: DescribeAppInput
+    DescribeAppOutput: DescribeAppOutput
+    DescribeSimulationInput: DescribeSimulationInput
+    DescribeSimulationOutput: DescribeSimulationOutput
+    ListAppsInput: ListAppsInput
+    ListAppsOutput: ListAppsOutput
+    ListSimulationsInput: ListSimulationsInput
+    ListSimulationsOutput: ListSimulationsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    StartAppInput: StartAppInput
+    StartAppOutput: StartAppOutput
+    StartClockInput: StartClockInput
+    StartClockOutput: StartClockOutput
+    StartSimulationInput: StartSimulationInput
+    StartSimulationOutput: StartSimulationOutput
+    StopAppInput: StopAppInput
+    StopAppOutput: StopAppOutput
+    StopClockInput: StopClockInput
+    StopClockOutput: StopClockOutput
+    StopSimulationInput: StopSimulationInput
+    StopSimulationOutput: StopSimulationOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+end
+
+return M

@@ -1,0 +1,374 @@
+local record AssociateFeedInput
+    id: string
+    associatedResourceName: string
+    outputs: {CreateOutput}
+    dryRun: boolean
+end
+
+local record AssociateFeedOutput
+    arn: string
+    id: string
+end
+
+local record CreateFeedInput
+    name: string
+    outputs: {CreateOutput}
+    tags: {string : string}
+end
+
+local record CreateFeedOutput
+    arn: string
+    name: string
+    id: string
+    dataEndpoints: {string}
+    outputs: {GetOutput}
+    status: string
+    association: FeedAssociation
+    tags: {string : string}
+end
+
+local record DeleteFeedInput
+    id: string
+end
+
+local record DeleteFeedOutput
+    arn: string
+    id: string
+    status: string
+end
+
+local record DisassociateFeedInput
+    id: string
+    associatedResourceName: string
+    dryRun: boolean
+end
+
+local record DisassociateFeedOutput
+    arn: string
+    id: string
+end
+
+local record GetFeedInput
+    id: string
+end
+
+local record GetFeedOutput
+    arn: string
+    name: string
+    id: string
+    dataEndpoints: {string}
+    outputs: {GetOutput}
+    status: string
+    association: FeedAssociation
+    tags: {string : string}
+end
+
+local record ListFeedsInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListFeedsOutput
+    feeds: {FeedSummary}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateFeedInput
+    name: string
+    id: string
+    outputs: {UpdateOutput}
+end
+
+local record UpdateFeedOutput
+    arn: string
+    name: string
+    id: string
+    dataEndpoints: {string}
+    outputs: {GetOutput}
+    status: string
+    association: FeedAssociation
+    tags: {string : string}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record TooManyRequestException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record TooManyRequestException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerErrorException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record TooManyRequestException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local type FeedStatus = "CREATING" | "AVAILABLE" | "ACTIVE" | "UPDATING" | "DELETING" | "DELETED" | "ARCHIVED"
+
+local record M
+    AssociateFeedInput: AssociateFeedInput
+    AssociateFeedOutput: AssociateFeedOutput
+    CreateFeedInput: CreateFeedInput
+    CreateFeedOutput: CreateFeedOutput
+    DeleteFeedInput: DeleteFeedInput
+    DeleteFeedOutput: DeleteFeedOutput
+    DisassociateFeedInput: DisassociateFeedInput
+    DisassociateFeedOutput: DisassociateFeedOutput
+    GetFeedInput: GetFeedInput
+    GetFeedOutput: GetFeedOutput
+    ListFeedsInput: ListFeedsInput
+    ListFeedsOutput: ListFeedsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateFeedInput: UpdateFeedInput
+    UpdateFeedOutput: UpdateFeedOutput
+end
+
+return M

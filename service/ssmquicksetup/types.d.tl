@@ -1,0 +1,477 @@
+local record CreateConfigurationManagerInput
+    Name: string
+    Description: string
+    ConfigurationDefinitions: {ConfigurationDefinitionInput}
+    Tags: {string : string}
+end
+
+local record CreateConfigurationManagerOutput
+    ManagerArn: string
+end
+
+local record DeleteConfigurationManagerInput
+    ManagerArn: string
+end
+
+local record DeleteConfigurationManagerOutput
+end
+
+local record GetConfigurationInput
+    ConfigurationId: string
+end
+
+local record GetConfigurationOutput
+    Id: string
+    ManagerArn: string
+    ConfigurationDefinitionId: string
+    Type: string
+    TypeVersion: string
+    Account: string
+    Region: string
+    CreatedAt: number
+    LastModifiedAt: number
+    StatusSummaries: {StatusSummary}
+    Parameters: {string : string}
+end
+
+local record GetConfigurationManagerInput
+    ManagerArn: string
+end
+
+local record GetConfigurationManagerOutput
+    ManagerArn: string
+    Description: string
+    Name: string
+    CreatedAt: number
+    LastModifiedAt: number
+    StatusSummaries: {StatusSummary}
+    ConfigurationDefinitions: {ConfigurationDefinition}
+    Tags: {string : string}
+end
+
+local record GetServiceSettingsInput
+end
+
+local record GetServiceSettingsOutput
+    ServiceSettings: ServiceSettings
+end
+
+local record ListConfigurationManagersInput
+    StartingToken: string
+    MaxItems: number
+    Filters: {Filter}
+end
+
+local record ListConfigurationManagersOutput
+    ConfigurationManagersList: {ConfigurationManagerSummary}
+    NextToken: string
+end
+
+local record ListConfigurationsInput
+    StartingToken: string
+    MaxItems: number
+    Filters: {Filter}
+    ManagerArn: string
+    ConfigurationDefinitionId: string
+end
+
+local record ListConfigurationsOutput
+    ConfigurationsList: {ConfigurationSummary}
+    NextToken: string
+end
+
+local record ListQuickSetupTypesInput
+end
+
+local record ListQuickSetupTypesOutput
+    QuickSetupTypeList: {QuickSetupTypeOutput}
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {TagEntry}
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateConfigurationDefinitionInput
+    ManagerArn: string
+    Id: string
+    TypeVersion: string
+    Parameters: {string : string}
+    LocalDeploymentExecutionRoleName: string
+    LocalDeploymentAdministrationRoleArn: string
+end
+
+local record UpdateConfigurationDefinitionOutput
+end
+
+local record UpdateConfigurationManagerInput
+    ManagerArn: string
+    Name: string
+    Description: string
+end
+
+local record UpdateConfigurationManagerOutput
+end
+
+local record UpdateServiceSettingsInput
+    ExplorerEnablingRoleArn: string
+end
+
+local record UpdateServiceSettingsOutput
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record M
+    CreateConfigurationManagerInput: CreateConfigurationManagerInput
+    CreateConfigurationManagerOutput: CreateConfigurationManagerOutput
+    DeleteConfigurationManagerInput: DeleteConfigurationManagerInput
+    DeleteConfigurationManagerOutput: DeleteConfigurationManagerOutput
+    GetConfigurationInput: GetConfigurationInput
+    GetConfigurationOutput: GetConfigurationOutput
+    GetConfigurationManagerInput: GetConfigurationManagerInput
+    GetConfigurationManagerOutput: GetConfigurationManagerOutput
+    GetServiceSettingsInput: GetServiceSettingsInput
+    GetServiceSettingsOutput: GetServiceSettingsOutput
+    ListConfigurationManagersInput: ListConfigurationManagersInput
+    ListConfigurationManagersOutput: ListConfigurationManagersOutput
+    ListConfigurationsInput: ListConfigurationsInput
+    ListConfigurationsOutput: ListConfigurationsOutput
+    ListQuickSetupTypesInput: ListQuickSetupTypesInput
+    ListQuickSetupTypesOutput: ListQuickSetupTypesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateConfigurationDefinitionInput: UpdateConfigurationDefinitionInput
+    UpdateConfigurationDefinitionOutput: UpdateConfigurationDefinitionOutput
+    UpdateConfigurationManagerInput: UpdateConfigurationManagerInput
+    UpdateConfigurationManagerOutput: UpdateConfigurationManagerOutput
+    UpdateServiceSettingsInput: UpdateServiceSettingsInput
+    UpdateServiceSettingsOutput: UpdateServiceSettingsOutput
+end
+
+return M

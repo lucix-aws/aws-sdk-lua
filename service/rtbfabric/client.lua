@@ -1,0 +1,306 @@
+local base_client = require("client")
+local defaults = require("defaults")
+local endpoint = require("endpoint")
+local endpoint_rules = require("rtbfabric.endpoint_rules")
+local restjson_protocol = require("protocol.restjson")
+local sdk_defaults = require("sdk_defaults")
+local types = require("rtbfabric.types")
+
+local M = {}
+
+local Client = {}
+Client.__index = Client
+
+Client.invokeOperation = base_client.invokeOperation
+
+function M.new(cfg)
+    cfg = cfg or {}
+    cfg.service_id = "RTBFabric"
+    cfg.signing_name = "rtbfabric"
+    if not cfg.protocol then
+        cfg.protocol = restjson_protocol.new()
+    end
+    if not cfg.endpoint_provider then
+        cfg.endpoint_provider = function(params)
+            return endpoint.resolve(endpoint_rules, params)
+        end
+    end
+    defaults.resolve_signer(cfg)
+    defaults.resolve_http_client(cfg)
+    defaults.resolve_retry_strategy(cfg)
+    sdk_defaults.resolve_identity_resolver(cfg)
+    local self = setmetatable(base_client.new(cfg), Client)
+    return self
+end
+
+function Client:acceptLink(input, options)
+    return self:invokeOperation(input, {
+        name = "AcceptLink",
+        input_schema = types.AcceptLinkInput,
+        output_schema = types.AcceptLinkOutput,
+        http_method = "POST",
+        http_path = "/gateway/{gatewayId}/link/{linkId}/accept",
+    }, options)
+end
+
+function Client:createInboundExternalLink(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateInboundExternalLink",
+        input_schema = types.CreateInboundExternalLinkInput,
+        output_schema = types.CreateInboundExternalLinkOutput,
+        http_method = "POST",
+        http_path = "/responder-gateway/{gatewayId}/inbound-external-link",
+    }, options)
+end
+
+function Client:createLink(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateLink",
+        input_schema = types.CreateLinkInput,
+        output_schema = types.CreateLinkOutput,
+        http_method = "POST",
+        http_path = "/gateway/{gatewayId}/create-link",
+    }, options)
+end
+
+function Client:createOutboundExternalLink(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateOutboundExternalLink",
+        input_schema = types.CreateOutboundExternalLinkInput,
+        output_schema = types.CreateOutboundExternalLinkOutput,
+        http_method = "POST",
+        http_path = "/requester-gateway/{gatewayId}/outbound-external-link",
+    }, options)
+end
+
+function Client:createRequesterGateway(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateRequesterGateway",
+        input_schema = types.CreateRequesterGatewayInput,
+        output_schema = types.CreateRequesterGatewayOutput,
+        http_method = "POST",
+        http_path = "/requester-gateway",
+    }, options)
+end
+
+function Client:createResponderGateway(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateResponderGateway",
+        input_schema = types.CreateResponderGatewayInput,
+        output_schema = types.CreateResponderGatewayOutput,
+        http_method = "POST",
+        http_path = "/responder-gateway",
+    }, options)
+end
+
+function Client:deleteInboundExternalLink(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteInboundExternalLink",
+        input_schema = types.DeleteInboundExternalLinkInput,
+        output_schema = types.DeleteInboundExternalLinkOutput,
+        http_method = "DELETE",
+        http_path = "/responder-gateway/{gatewayId}/inbound-external-link/{linkId}",
+    }, options)
+end
+
+function Client:deleteLink(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteLink",
+        input_schema = types.DeleteLinkInput,
+        output_schema = types.DeleteLinkOutput,
+        http_method = "DELETE",
+        http_path = "/gateway/{gatewayId}/link/{linkId}",
+    }, options)
+end
+
+function Client:deleteOutboundExternalLink(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteOutboundExternalLink",
+        input_schema = types.DeleteOutboundExternalLinkInput,
+        output_schema = types.DeleteOutboundExternalLinkOutput,
+        http_method = "DELETE",
+        http_path = "/requester-gateway/{gatewayId}/outbound-external-link/{linkId}",
+    }, options)
+end
+
+function Client:deleteRequesterGateway(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteRequesterGateway",
+        input_schema = types.DeleteRequesterGatewayInput,
+        output_schema = types.DeleteRequesterGatewayOutput,
+        http_method = "DELETE",
+        http_path = "/requester-gateway/{gatewayId}",
+    }, options)
+end
+
+function Client:deleteResponderGateway(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteResponderGateway",
+        input_schema = types.DeleteResponderGatewayInput,
+        output_schema = types.DeleteResponderGatewayOutput,
+        http_method = "DELETE",
+        http_path = "/responder-gateway/{gatewayId}",
+    }, options)
+end
+
+function Client:getInboundExternalLink(input, options)
+    return self:invokeOperation(input, {
+        name = "GetInboundExternalLink",
+        input_schema = types.GetInboundExternalLinkInput,
+        output_schema = types.GetInboundExternalLinkOutput,
+        http_method = "GET",
+        http_path = "/responder-gateway/{gatewayId}/inbound-external-link/{linkId}",
+    }, options)
+end
+
+function Client:getLink(input, options)
+    return self:invokeOperation(input, {
+        name = "GetLink",
+        input_schema = types.GetLinkInput,
+        output_schema = types.GetLinkOutput,
+        http_method = "GET",
+        http_path = "/gateway/{gatewayId}/link/{linkId}",
+    }, options)
+end
+
+function Client:getOutboundExternalLink(input, options)
+    return self:invokeOperation(input, {
+        name = "GetOutboundExternalLink",
+        input_schema = types.GetOutboundExternalLinkInput,
+        output_schema = types.GetOutboundExternalLinkOutput,
+        http_method = "GET",
+        http_path = "/requester-gateway/{gatewayId}/outbound-external-link/{linkId}",
+    }, options)
+end
+
+function Client:getRequesterGateway(input, options)
+    return self:invokeOperation(input, {
+        name = "GetRequesterGateway",
+        input_schema = types.GetRequesterGatewayInput,
+        output_schema = types.GetRequesterGatewayOutput,
+        http_method = "GET",
+        http_path = "/requester-gateway/{gatewayId}",
+    }, options)
+end
+
+function Client:getResponderGateway(input, options)
+    return self:invokeOperation(input, {
+        name = "GetResponderGateway",
+        input_schema = types.GetResponderGatewayInput,
+        output_schema = types.GetResponderGatewayOutput,
+        http_method = "GET",
+        http_path = "/responder-gateway/{gatewayId}",
+    }, options)
+end
+
+function Client:listLinks(input, options)
+    return self:invokeOperation(input, {
+        name = "ListLinks",
+        input_schema = types.ListLinksInput,
+        output_schema = types.ListLinksOutput,
+        http_method = "GET",
+        http_path = "/gateway/{gatewayId}/links/",
+    }, options)
+end
+
+function Client:listRequesterGateways(input, options)
+    return self:invokeOperation(input, {
+        name = "ListRequesterGateways",
+        input_schema = types.ListRequesterGatewaysInput,
+        output_schema = types.ListRequesterGatewaysOutput,
+        http_method = "GET",
+        http_path = "/requester-gateways",
+    }, options)
+end
+
+function Client:listResponderGateways(input, options)
+    return self:invokeOperation(input, {
+        name = "ListResponderGateways",
+        input_schema = types.ListResponderGatewaysInput,
+        output_schema = types.ListResponderGatewaysOutput,
+        http_method = "GET",
+        http_path = "/responder-gateways",
+    }, options)
+end
+
+function Client:listTagsForResource(input, options)
+    return self:invokeOperation(input, {
+        name = "ListTagsForResource",
+        input_schema = types.ListTagsForResourceInput,
+        output_schema = types.ListTagsForResourceOutput,
+        http_method = "GET",
+        http_path = "/tags/{resourceArn}",
+    }, options)
+end
+
+function Client:rejectLink(input, options)
+    return self:invokeOperation(input, {
+        name = "RejectLink",
+        input_schema = types.RejectLinkInput,
+        output_schema = types.RejectLinkOutput,
+        http_method = "POST",
+        http_path = "/gateway/{gatewayId}/link/{linkId}/reject",
+    }, options)
+end
+
+function Client:tagResource(input, options)
+    return self:invokeOperation(input, {
+        name = "TagResource",
+        input_schema = types.TagResourceInput,
+        output_schema = types.TagResourceOutput,
+        http_method = "POST",
+        http_path = "/tags/{resourceArn}",
+    }, options)
+end
+
+function Client:untagResource(input, options)
+    return self:invokeOperation(input, {
+        name = "UntagResource",
+        input_schema = types.UntagResourceInput,
+        output_schema = types.UntagResourceOutput,
+        http_method = "DELETE",
+        http_path = "/tags/{resourceArn}",
+    }, options)
+end
+
+function Client:updateLink(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateLink",
+        input_schema = types.UpdateLinkInput,
+        output_schema = types.UpdateLinkOutput,
+        http_method = "PATCH",
+        http_path = "/gateway/{gatewayId}/link/{linkId}",
+    }, options)
+end
+
+function Client:updateLinkModuleFlow(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateLinkModuleFlow",
+        input_schema = types.UpdateLinkModuleFlowInput,
+        output_schema = types.UpdateLinkModuleFlowOutput,
+        http_method = "POST",
+        http_path = "/gateway/{gatewayId}/link/{linkId}/module-flow",
+    }, options)
+end
+
+function Client:updateRequesterGateway(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateRequesterGateway",
+        input_schema = types.UpdateRequesterGatewayInput,
+        output_schema = types.UpdateRequesterGatewayOutput,
+        http_method = "POST",
+        http_path = "/requester-gateway/{gatewayId}/update",
+    }, options)
+end
+
+function Client:updateResponderGateway(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdateResponderGateway",
+        input_schema = types.UpdateResponderGatewayInput,
+        output_schema = types.UpdateResponderGatewayOutput,
+        http_method = "POST",
+        http_path = "/responder-gateway/{gatewayId}/update",
+    }, options)
+end
+
+return M

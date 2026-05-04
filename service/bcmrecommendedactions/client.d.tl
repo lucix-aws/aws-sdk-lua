@@ -1,0 +1,11 @@
+local types = require("bcmrecommendedactions.types")
+
+local record Client
+    listRecommendedActions: function(Client, types.ListRecommendedActionsInput): types.ListRecommendedActionsOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

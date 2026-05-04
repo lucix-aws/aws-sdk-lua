@@ -1,0 +1,3786 @@
+local record ArchiveApplicationInput
+    applicationID: string
+    accountID: string
+end
+
+local record ArchiveApplicationOutput
+    applicationID: string
+    arn: string
+    name: string
+    description: string
+    isArchived: boolean
+    applicationAggregatedStatus: ApplicationAggregatedStatus
+    creationDateTime: string
+    lastModifiedDateTime: string
+    tags: {string : string}
+    waveID: string
+end
+
+local record ArchiveWaveInput
+    waveID: string
+    accountID: string
+end
+
+local record ArchiveWaveOutput
+    waveID: string
+    arn: string
+    name: string
+    description: string
+    isArchived: boolean
+    waveAggregatedStatus: WaveAggregatedStatus
+    creationDateTime: string
+    lastModifiedDateTime: string
+    tags: {string : string}
+end
+
+local record AssociateApplicationsInput
+    waveID: string
+    applicationIDs: {string}
+    accountID: string
+end
+
+local record AssociateApplicationsOutput
+end
+
+local record AssociateSourceServersInput
+    applicationID: string
+    sourceServerIDs: {string}
+    accountID: string
+end
+
+local record AssociateSourceServersOutput
+end
+
+local record ChangeServerLifeCycleStateInput
+    sourceServerID: string
+    lifeCycle: ChangeServerLifeCycleStateSourceServerLifecycle
+    accountID: string
+end
+
+local record ChangeServerLifeCycleStateOutput
+    sourceServerID: string
+    arn: string
+    isArchived: boolean
+    tags: {string : string}
+    launchedInstance: LaunchedInstance
+    dataReplicationInfo: DataReplicationInfo
+    lifeCycle: LifeCycle
+    sourceProperties: SourceProperties
+    replicationType: string
+    vcenterClientID: string
+    applicationID: string
+    userProvidedID: string
+    fqdnForActionFramework: string
+    connectorAction: SourceServerConnectorAction
+end
+
+local record CreateApplicationInput
+    name: string
+    description: string
+    tags: {string : string}
+    accountID: string
+end
+
+local record CreateApplicationOutput
+    applicationID: string
+    arn: string
+    name: string
+    description: string
+    isArchived: boolean
+    applicationAggregatedStatus: ApplicationAggregatedStatus
+    creationDateTime: string
+    lastModifiedDateTime: string
+    tags: {string : string}
+    waveID: string
+end
+
+local record CreateConnectorInput
+    name: string
+    ssmInstanceID: string
+    tags: {string : string}
+    ssmCommandConfig: ConnectorSsmCommandConfig
+end
+
+local record CreateConnectorOutput
+    connectorID: string
+    name: string
+    ssmInstanceID: string
+    arn: string
+    tags: {string : string}
+    ssmCommandConfig: ConnectorSsmCommandConfig
+end
+
+local record CreateLaunchConfigurationTemplateInput
+    postLaunchActions: PostLaunchActions
+    enableMapAutoTagging: boolean
+    mapAutoTaggingMpeID: string
+    tags: {string : string}
+    launchDisposition: string
+    targetInstanceTypeRightSizingMethod: string
+    copyPrivateIp: boolean
+    associatePublicIpAddress: boolean
+    copyTags: boolean
+    licensing: Licensing
+    bootMode: string
+    smallVolumeMaxSize: number
+    smallVolumeConf: LaunchTemplateDiskConf
+    largeVolumeConf: LaunchTemplateDiskConf
+    enableParametersEncryption: boolean
+    parametersEncryptionKey: string
+end
+
+local record CreateLaunchConfigurationTemplateOutput
+    launchConfigurationTemplateID: string
+    arn: string
+    postLaunchActions: PostLaunchActions
+    enableMapAutoTagging: boolean
+    mapAutoTaggingMpeID: string
+    tags: {string : string}
+    ec2LaunchTemplateID: string
+    launchDisposition: string
+    targetInstanceTypeRightSizingMethod: string
+    copyPrivateIp: boolean
+    associatePublicIpAddress: boolean
+    copyTags: boolean
+    licensing: Licensing
+    bootMode: string
+    smallVolumeMaxSize: number
+    smallVolumeConf: LaunchTemplateDiskConf
+    largeVolumeConf: LaunchTemplateDiskConf
+    enableParametersEncryption: boolean
+    parametersEncryptionKey: string
+end
+
+local record CreateNetworkMigrationDefinitionInput
+    name: string
+    description: string
+    sourceConfigurations: {SourceConfiguration}
+    targetS3Configuration: TargetS3Configuration
+    targetNetwork: TargetNetwork
+    targetDeployment: string
+    tags: {string : string}
+    scopeTags: {string : string}
+end
+
+local record CreateNetworkMigrationDefinitionOutput
+    arn: string
+    networkMigrationDefinitionID: string
+    name: string
+    description: string
+    sourceConfigurations: {SourceConfiguration}
+    targetS3Configuration: TargetS3Configuration
+    targetNetwork: TargetNetwork
+    targetDeployment: string
+    createdAt: number
+    updatedAt: number
+    tags: {string : string}
+    scopeTags: {string : string}
+end
+
+local record CreateReplicationConfigurationTemplateInput
+    stagingAreaSubnetId: string
+    associateDefaultSecurityGroup: boolean
+    replicationServersSecurityGroupsIDs: {string}
+    replicationServerInstanceType: string
+    useDedicatedReplicationServer: boolean
+    defaultLargeStagingDiskType: string
+    ebsEncryption: string
+    ebsEncryptionKeyArn: string
+    bandwidthThrottling: number
+    dataPlaneRouting: string
+    createPublicIP: boolean
+    stagingAreaTags: {string : string}
+    useFipsEndpoint: boolean
+    tags: {string : string}
+    internetProtocol: string
+    storeSnapshotOnLocalZone: boolean
+end
+
+local record CreateReplicationConfigurationTemplateOutput
+    replicationConfigurationTemplateID: string
+    arn: string
+    stagingAreaSubnetId: string
+    associateDefaultSecurityGroup: boolean
+    replicationServersSecurityGroupsIDs: {string}
+    replicationServerInstanceType: string
+    useDedicatedReplicationServer: boolean
+    defaultLargeStagingDiskType: string
+    ebsEncryption: string
+    ebsEncryptionKeyArn: string
+    bandwidthThrottling: number
+    dataPlaneRouting: string
+    createPublicIP: boolean
+    stagingAreaTags: {string : string}
+    useFipsEndpoint: boolean
+    tags: {string : string}
+    internetProtocol: string
+    storeSnapshotOnLocalZone: boolean
+end
+
+local record CreateWaveInput
+    name: string
+    description: string
+    tags: {string : string}
+    accountID: string
+end
+
+local record CreateWaveOutput
+    waveID: string
+    arn: string
+    name: string
+    description: string
+    isArchived: boolean
+    waveAggregatedStatus: WaveAggregatedStatus
+    creationDateTime: string
+    lastModifiedDateTime: string
+    tags: {string : string}
+end
+
+local record DeleteApplicationInput
+    applicationID: string
+    accountID: string
+end
+
+local record DeleteApplicationOutput
+end
+
+local record DeleteConnectorInput
+    connectorID: string
+end
+
+local record DeleteConnectorOutput
+end
+
+local record DeleteJobInput
+    jobID: string
+    accountID: string
+end
+
+local record DeleteJobOutput
+end
+
+local record DeleteLaunchConfigurationTemplateInput
+    launchConfigurationTemplateID: string
+end
+
+local record DeleteLaunchConfigurationTemplateOutput
+end
+
+local record DeleteNetworkMigrationDefinitionInput
+    networkMigrationDefinitionID: string
+end
+
+local record DeleteNetworkMigrationDefinitionOutput
+end
+
+local record DeleteReplicationConfigurationTemplateInput
+    replicationConfigurationTemplateID: string
+end
+
+local record DeleteReplicationConfigurationTemplateOutput
+end
+
+local record DeleteSourceServerInput
+    sourceServerID: string
+    accountID: string
+end
+
+local record DeleteSourceServerOutput
+end
+
+local record DeleteVcenterClientInput
+    vcenterClientID: string
+end
+
+local record DeleteVcenterClientOutput
+end
+
+local record DeleteWaveInput
+    waveID: string
+    accountID: string
+end
+
+local record DeleteWaveOutput
+end
+
+local record DescribeJobLogItemsInput
+    jobID: string
+    maxResults: number
+    nextToken: string
+    accountID: string
+end
+
+local record DescribeJobLogItemsOutput
+    items: {JobLog}
+    nextToken: string
+end
+
+local record DescribeJobsInput
+    filters: DescribeJobsRequestFilters
+    maxResults: number
+    nextToken: string
+    accountID: string
+end
+
+local record DescribeJobsOutput
+    items: {Job}
+    nextToken: string
+end
+
+local record DescribeLaunchConfigurationTemplatesInput
+    launchConfigurationTemplateIDs: {string}
+    maxResults: number
+    nextToken: string
+end
+
+local record DescribeLaunchConfigurationTemplatesOutput
+    items: {LaunchConfigurationTemplate}
+    nextToken: string
+end
+
+local record DescribeReplicationConfigurationTemplatesInput
+    replicationConfigurationTemplateIDs: {string}
+    maxResults: number
+    nextToken: string
+end
+
+local record DescribeReplicationConfigurationTemplatesOutput
+    items: {ReplicationConfigurationTemplate}
+    nextToken: string
+end
+
+local record DescribeSourceServersInput
+    filters: DescribeSourceServersRequestFilters
+    maxResults: number
+    nextToken: string
+    accountID: string
+end
+
+local record DescribeSourceServersOutput
+    items: {SourceServer}
+    nextToken: string
+end
+
+local record DescribeVcenterClientsInput
+    maxResults: number
+    nextToken: string
+end
+
+local record DescribeVcenterClientsOutput
+    items: {VcenterClient}
+    nextToken: string
+end
+
+local record DisassociateApplicationsInput
+    waveID: string
+    applicationIDs: {string}
+    accountID: string
+end
+
+local record DisassociateApplicationsOutput
+end
+
+local record DisassociateSourceServersInput
+    applicationID: string
+    sourceServerIDs: {string}
+    accountID: string
+end
+
+local record DisassociateSourceServersOutput
+end
+
+local record DisconnectFromServiceInput
+    sourceServerID: string
+    accountID: string
+end
+
+local record DisconnectFromServiceOutput
+    sourceServerID: string
+    arn: string
+    isArchived: boolean
+    tags: {string : string}
+    launchedInstance: LaunchedInstance
+    dataReplicationInfo: DataReplicationInfo
+    lifeCycle: LifeCycle
+    sourceProperties: SourceProperties
+    replicationType: string
+    vcenterClientID: string
+    applicationID: string
+    userProvidedID: string
+    fqdnForActionFramework: string
+    connectorAction: SourceServerConnectorAction
+end
+
+local record FinalizeCutoverInput
+    sourceServerID: string
+    accountID: string
+end
+
+local record FinalizeCutoverOutput
+    sourceServerID: string
+    arn: string
+    isArchived: boolean
+    tags: {string : string}
+    launchedInstance: LaunchedInstance
+    dataReplicationInfo: DataReplicationInfo
+    lifeCycle: LifeCycle
+    sourceProperties: SourceProperties
+    replicationType: string
+    vcenterClientID: string
+    applicationID: string
+    userProvidedID: string
+    fqdnForActionFramework: string
+    connectorAction: SourceServerConnectorAction
+end
+
+local record GetLaunchConfigurationInput
+    sourceServerID: string
+    accountID: string
+end
+
+local record GetLaunchConfigurationOutput
+    sourceServerID: string
+    name: string
+    ec2LaunchTemplateID: string
+    launchDisposition: string
+    targetInstanceTypeRightSizingMethod: string
+    copyPrivateIp: boolean
+    copyTags: boolean
+    licensing: Licensing
+    bootMode: string
+    postLaunchActions: PostLaunchActions
+    enableMapAutoTagging: boolean
+    mapAutoTaggingMpeID: string
+end
+
+local record GetNetworkMigrationDefinitionInput
+    networkMigrationDefinitionID: string
+end
+
+local record GetNetworkMigrationDefinitionOutput
+    arn: string
+    networkMigrationDefinitionID: string
+    name: string
+    description: string
+    sourceConfigurations: {SourceConfiguration}
+    targetS3Configuration: TargetS3Configuration
+    targetNetwork: TargetNetwork
+    targetDeployment: string
+    createdAt: number
+    updatedAt: number
+    tags: {string : string}
+    scopeTags: {string : string}
+end
+
+local record GetNetworkMigrationMapperSegmentConstructInput
+    networkMigrationDefinitionID: string
+    networkMigrationExecutionID: string
+    segmentID: string
+    constructID: string
+end
+
+local record GetNetworkMigrationMapperSegmentConstructOutput
+    construct: NetworkMigrationMapperSegmentConstruct
+end
+
+local record GetReplicationConfigurationInput
+    sourceServerID: string
+    accountID: string
+end
+
+local record GetReplicationConfigurationOutput
+    sourceServerID: string
+    name: string
+    stagingAreaSubnetId: string
+    associateDefaultSecurityGroup: boolean
+    replicationServersSecurityGroupsIDs: {string}
+    replicationServerInstanceType: string
+    useDedicatedReplicationServer: boolean
+    defaultLargeStagingDiskType: string
+    replicatedDisks: {ReplicationConfigurationReplicatedDisk}
+    ebsEncryption: string
+    ebsEncryptionKeyArn: string
+    bandwidthThrottling: number
+    dataPlaneRouting: string
+    createPublicIP: boolean
+    stagingAreaTags: {string : string}
+    useFipsEndpoint: boolean
+    internetProtocol: string
+    storeSnapshotOnLocalZone: boolean
+end
+
+local record InitializeServiceInput
+end
+
+local record InitializeServiceOutput
+end
+
+local record ListApplicationsInput
+    filters: ListApplicationsRequestFilters
+    maxResults: number
+    nextToken: string
+    accountID: string
+end
+
+local record ListApplicationsOutput
+    items: {Application}
+    nextToken: string
+end
+
+local record ListConnectorsInput
+    filters: ListConnectorsRequestFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record ListConnectorsOutput
+    items: {Connector}
+    nextToken: string
+end
+
+local record ListExportErrorsInput
+    exportID: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListExportErrorsOutput
+    items: {ExportTaskError}
+    nextToken: string
+end
+
+local record ListExportsInput
+    filters: ListExportsRequestFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record ListExportsOutput
+    items: {ExportTask}
+    nextToken: string
+end
+
+local record ListImportErrorsInput
+    importID: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListImportErrorsOutput
+    items: {ImportTaskError}
+    nextToken: string
+end
+
+local record ListImportFileEnrichmentsInput
+    filters: ListImportFileEnrichmentsFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record ListImportFileEnrichmentsOutput
+    items: {ImportFileEnrichment}
+    nextToken: string
+end
+
+local record ListImportsInput
+    filters: ListImportsRequestFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record ListImportsOutput
+    items: {ImportTask}
+    nextToken: string
+end
+
+local record ListManagedAccountsInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListManagedAccountsOutput
+    items: {ManagedAccount}
+    nextToken: string
+end
+
+local record ListNetworkMigrationAnalysesInput
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+    filters: ListNetworkMigrationAnalysesFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record ListNetworkMigrationAnalysesOutput
+    items: {NetworkMigrationAnalysisJobDetails}
+    nextToken: string
+end
+
+local record ListNetworkMigrationAnalysisResultsInput
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+    filters: ListNetworkMigrationAnalysisResultsFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record ListNetworkMigrationAnalysisResultsOutput
+    items: {NetworkMigrationAnalysisResult}
+    nextToken: string
+end
+
+local record ListNetworkMigrationCodeGenerationsInput
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+    filters: ListNetworkMigrationCodeGenerationsFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record ListNetworkMigrationCodeGenerationsOutput
+    items: {NetworkMigrationCodeGenerationJobDetails}
+    nextToken: string
+end
+
+local record ListNetworkMigrationCodeGenerationSegmentsInput
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+    filters: ListNetworkMigrationCodeGenerationSegmentsFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record ListNetworkMigrationCodeGenerationSegmentsOutput
+    items: {NetworkMigrationCodeGenerationSegment}
+    nextToken: string
+end
+
+local record ListNetworkMigrationDefinitionsInput
+    filters: ListNetworkMigrationDefinitionsRequestFilters
+    nextToken: string
+    maxResults: number
+end
+
+local record ListNetworkMigrationDefinitionsOutput
+    items: {NetworkMigrationDefinitionSummary}
+    nextToken: string
+end
+
+local record ListNetworkMigrationDeployedStacksInput
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListNetworkMigrationDeployedStacksOutput
+    items: {NetworkMigrationDeployedStackDetails}
+    nextToken: string
+end
+
+local record ListNetworkMigrationDeploymentsInput
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+    filters: ListNetworkMigrationDeployerJobFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record ListNetworkMigrationDeploymentsOutput
+    items: {NetworkMigrationDeployerJobDetails}
+    nextToken: string
+end
+
+local record ListNetworkMigrationExecutionsInput
+    networkMigrationDefinitionID: string
+    filters: ListNetworkMigrationExecutionRequestFilters
+    nextToken: string
+    maxResults: number
+end
+
+local record ListNetworkMigrationExecutionsOutput
+    items: {NetworkMigrationExecution}
+    nextToken: string
+end
+
+local record ListNetworkMigrationMapperSegmentConstructsInput
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+    segmentID: string
+    filters: ListNetworkMigrationMapperSegmentConstructsFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record ListNetworkMigrationMapperSegmentConstructsOutput
+    items: {NetworkMigrationMapperSegmentConstruct}
+    nextToken: string
+end
+
+local record ListNetworkMigrationMapperSegmentsInput
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+    filters: ListNetworkMigrationMapperSegmentsFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record ListNetworkMigrationMapperSegmentsOutput
+    items: {NetworkMigrationMapperSegment}
+    nextToken: string
+end
+
+local record ListNetworkMigrationMappingsInput
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+    filters: ListNetworkMigrationMappingsFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record ListNetworkMigrationMappingsOutput
+    items: {NetworkMigrationMappingJobDetails}
+    nextToken: string
+end
+
+local record ListNetworkMigrationMappingUpdatesInput
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+    filters: ListNetworkMigrationMappingUpdatesFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record ListNetworkMigrationMappingUpdatesOutput
+    items: {NetworkMigrationMappingUpdateJobDetails}
+    nextToken: string
+end
+
+local record ListSourceServerActionsInput
+    sourceServerID: string
+    filters: SourceServerActionsRequestFilters
+    maxResults: number
+    nextToken: string
+    accountID: string
+end
+
+local record ListSourceServerActionsOutput
+    items: {SourceServerActionDocument}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record ListTemplateActionsInput
+    launchConfigurationTemplateID: string
+    filters: TemplateActionsRequestFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record ListTemplateActionsOutput
+    items: {TemplateActionDocument}
+    nextToken: string
+end
+
+local record ListWavesInput
+    filters: ListWavesRequestFilters
+    maxResults: number
+    nextToken: string
+    accountID: string
+end
+
+local record ListWavesOutput
+    items: {Wave}
+    nextToken: string
+end
+
+local record MarkAsArchivedInput
+    sourceServerID: string
+    accountID: string
+end
+
+local record MarkAsArchivedOutput
+    sourceServerID: string
+    arn: string
+    isArchived: boolean
+    tags: {string : string}
+    launchedInstance: LaunchedInstance
+    dataReplicationInfo: DataReplicationInfo
+    lifeCycle: LifeCycle
+    sourceProperties: SourceProperties
+    replicationType: string
+    vcenterClientID: string
+    applicationID: string
+    userProvidedID: string
+    fqdnForActionFramework: string
+    connectorAction: SourceServerConnectorAction
+end
+
+local record PauseReplicationInput
+    sourceServerID: string
+    accountID: string
+end
+
+local record PauseReplicationOutput
+    sourceServerID: string
+    arn: string
+    isArchived: boolean
+    tags: {string : string}
+    launchedInstance: LaunchedInstance
+    dataReplicationInfo: DataReplicationInfo
+    lifeCycle: LifeCycle
+    sourceProperties: SourceProperties
+    replicationType: string
+    vcenterClientID: string
+    applicationID: string
+    userProvidedID: string
+    fqdnForActionFramework: string
+    connectorAction: SourceServerConnectorAction
+end
+
+local record PutSourceServerActionInput
+    sourceServerID: string
+    actionName: string
+    documentIdentifier: string
+    order: number
+    actionID: string
+    documentVersion: string
+    active: boolean
+    timeoutSeconds: number
+    mustSucceedForCutover: boolean
+    parameters: {string : {SsmParameterStoreParameter}}
+    externalParameters: {string : SsmExternalParameter}
+    description: string
+    category: string
+    accountID: string
+end
+
+local record PutSourceServerActionOutput
+    actionID: string
+    actionName: string
+    documentIdentifier: string
+    order: number
+    documentVersion: string
+    active: boolean
+    timeoutSeconds: number
+    mustSucceedForCutover: boolean
+    parameters: {string : {SsmParameterStoreParameter}}
+    externalParameters: {string : SsmExternalParameter}
+    description: string
+    category: string
+end
+
+local record PutTemplateActionInput
+    launchConfigurationTemplateID: string
+    actionName: string
+    documentIdentifier: string
+    order: number
+    actionID: string
+    documentVersion: string
+    active: boolean
+    timeoutSeconds: number
+    mustSucceedForCutover: boolean
+    parameters: {string : {SsmParameterStoreParameter}}
+    operatingSystem: string
+    externalParameters: {string : SsmExternalParameter}
+    description: string
+    category: string
+end
+
+local record PutTemplateActionOutput
+    actionID: string
+    actionName: string
+    documentIdentifier: string
+    order: number
+    documentVersion: string
+    active: boolean
+    timeoutSeconds: number
+    mustSucceedForCutover: boolean
+    parameters: {string : {SsmParameterStoreParameter}}
+    operatingSystem: string
+    externalParameters: {string : SsmExternalParameter}
+    description: string
+    category: string
+end
+
+local record RemoveSourceServerActionInput
+    sourceServerID: string
+    actionID: string
+    accountID: string
+end
+
+local record RemoveSourceServerActionOutput
+end
+
+local record RemoveTemplateActionInput
+    launchConfigurationTemplateID: string
+    actionID: string
+end
+
+local record RemoveTemplateActionOutput
+end
+
+local record ResumeReplicationInput
+    sourceServerID: string
+    accountID: string
+end
+
+local record ResumeReplicationOutput
+    sourceServerID: string
+    arn: string
+    isArchived: boolean
+    tags: {string : string}
+    launchedInstance: LaunchedInstance
+    dataReplicationInfo: DataReplicationInfo
+    lifeCycle: LifeCycle
+    sourceProperties: SourceProperties
+    replicationType: string
+    vcenterClientID: string
+    applicationID: string
+    userProvidedID: string
+    fqdnForActionFramework: string
+    connectorAction: SourceServerConnectorAction
+end
+
+local record RetryDataReplicationInput
+    sourceServerID: string
+    accountID: string
+end
+
+local record RetryDataReplicationOutput
+    sourceServerID: string
+    arn: string
+    isArchived: boolean
+    tags: {string : string}
+    launchedInstance: LaunchedInstance
+    dataReplicationInfo: DataReplicationInfo
+    lifeCycle: LifeCycle
+    sourceProperties: SourceProperties
+    replicationType: string
+    vcenterClientID: string
+    applicationID: string
+    userProvidedID: string
+    fqdnForActionFramework: string
+    connectorAction: SourceServerConnectorAction
+end
+
+local record StartCutoverInput
+    sourceServerIDs: {string}
+    tags: {string : string}
+    accountID: string
+end
+
+local record StartCutoverOutput
+    job: Job
+end
+
+local record StartExportInput
+    s3Bucket: string
+    s3Key: string
+    s3BucketOwner: string
+    tags: {string : string}
+end
+
+local record StartExportOutput
+    exportTask: ExportTask
+end
+
+local record StartImportInput
+    clientToken: string
+    s3BucketSource: S3BucketSource
+    tags: {string : string}
+end
+
+local record StartImportOutput
+    importTask: ImportTask
+end
+
+local record StartImportFileEnrichmentInput
+    clientToken: string
+    s3BucketSource: EnrichmentSourceS3Configuration
+    s3BucketTarget: EnrichmentTargetS3Configuration
+    ipAssignmentStrategy: string
+end
+
+local record StartImportFileEnrichmentOutput
+    jobID: string
+end
+
+local record StartNetworkMigrationAnalysisInput
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+end
+
+local record StartNetworkMigrationAnalysisOutput
+    jobID: string
+end
+
+local record StartNetworkMigrationCodeGenerationInput
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+    codeGenerationOutputFormatTypes: {string}
+end
+
+local record StartNetworkMigrationCodeGenerationOutput
+    jobID: string
+end
+
+local record StartNetworkMigrationDeploymentInput
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+end
+
+local record StartNetworkMigrationDeploymentOutput
+    jobID: string
+end
+
+local record StartNetworkMigrationMappingInput
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+    securityGroupMappingStrategy: string
+end
+
+local record StartNetworkMigrationMappingOutput
+    jobID: string
+end
+
+local record StartNetworkMigrationMappingUpdateInput
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+    constructs: {StartNetworkMigrationMappingUpdateConstruct}
+    segments: {StartNetworkMigrationMappingUpdateSegment}
+end
+
+local record StartNetworkMigrationMappingUpdateOutput
+    jobID: string
+end
+
+local record StartReplicationInput
+    sourceServerID: string
+    accountID: string
+end
+
+local record StartReplicationOutput
+    sourceServerID: string
+    arn: string
+    isArchived: boolean
+    tags: {string : string}
+    launchedInstance: LaunchedInstance
+    dataReplicationInfo: DataReplicationInfo
+    lifeCycle: LifeCycle
+    sourceProperties: SourceProperties
+    replicationType: string
+    vcenterClientID: string
+    applicationID: string
+    userProvidedID: string
+    fqdnForActionFramework: string
+    connectorAction: SourceServerConnectorAction
+end
+
+local record StartTestInput
+    sourceServerIDs: {string}
+    tags: {string : string}
+    accountID: string
+end
+
+local record StartTestOutput
+    job: Job
+end
+
+local record StopReplicationInput
+    sourceServerID: string
+    accountID: string
+end
+
+local record StopReplicationOutput
+    sourceServerID: string
+    arn: string
+    isArchived: boolean
+    tags: {string : string}
+    launchedInstance: LaunchedInstance
+    dataReplicationInfo: DataReplicationInfo
+    lifeCycle: LifeCycle
+    sourceProperties: SourceProperties
+    replicationType: string
+    vcenterClientID: string
+    applicationID: string
+    userProvidedID: string
+    fqdnForActionFramework: string
+    connectorAction: SourceServerConnectorAction
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record TerminateTargetInstancesInput
+    sourceServerIDs: {string}
+    tags: {string : string}
+    accountID: string
+end
+
+local record TerminateTargetInstancesOutput
+    job: Job
+end
+
+local record UnarchiveApplicationInput
+    applicationID: string
+    accountID: string
+end
+
+local record UnarchiveApplicationOutput
+    applicationID: string
+    arn: string
+    name: string
+    description: string
+    isArchived: boolean
+    applicationAggregatedStatus: ApplicationAggregatedStatus
+    creationDateTime: string
+    lastModifiedDateTime: string
+    tags: {string : string}
+    waveID: string
+end
+
+local record UnarchiveWaveInput
+    waveID: string
+    accountID: string
+end
+
+local record UnarchiveWaveOutput
+    waveID: string
+    arn: string
+    name: string
+    description: string
+    isArchived: boolean
+    waveAggregatedStatus: WaveAggregatedStatus
+    creationDateTime: string
+    lastModifiedDateTime: string
+    tags: {string : string}
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateApplicationInput
+    applicationID: string
+    name: string
+    description: string
+    accountID: string
+end
+
+local record UpdateApplicationOutput
+    applicationID: string
+    arn: string
+    name: string
+    description: string
+    isArchived: boolean
+    applicationAggregatedStatus: ApplicationAggregatedStatus
+    creationDateTime: string
+    lastModifiedDateTime: string
+    tags: {string : string}
+    waveID: string
+end
+
+local record UpdateConnectorInput
+    connectorID: string
+    name: string
+    ssmCommandConfig: ConnectorSsmCommandConfig
+end
+
+local record UpdateConnectorOutput
+    connectorID: string
+    name: string
+    ssmInstanceID: string
+    arn: string
+    tags: {string : string}
+    ssmCommandConfig: ConnectorSsmCommandConfig
+end
+
+local record UpdateLaunchConfigurationInput
+    sourceServerID: string
+    name: string
+    launchDisposition: string
+    targetInstanceTypeRightSizingMethod: string
+    copyPrivateIp: boolean
+    copyTags: boolean
+    licensing: Licensing
+    bootMode: string
+    postLaunchActions: PostLaunchActions
+    enableMapAutoTagging: boolean
+    mapAutoTaggingMpeID: string
+    accountID: string
+end
+
+local record UpdateLaunchConfigurationOutput
+    sourceServerID: string
+    name: string
+    ec2LaunchTemplateID: string
+    launchDisposition: string
+    targetInstanceTypeRightSizingMethod: string
+    copyPrivateIp: boolean
+    copyTags: boolean
+    licensing: Licensing
+    bootMode: string
+    postLaunchActions: PostLaunchActions
+    enableMapAutoTagging: boolean
+    mapAutoTaggingMpeID: string
+end
+
+local record UpdateLaunchConfigurationTemplateInput
+    launchConfigurationTemplateID: string
+    postLaunchActions: PostLaunchActions
+    enableMapAutoTagging: boolean
+    mapAutoTaggingMpeID: string
+    launchDisposition: string
+    targetInstanceTypeRightSizingMethod: string
+    copyPrivateIp: boolean
+    associatePublicIpAddress: boolean
+    copyTags: boolean
+    licensing: Licensing
+    bootMode: string
+    smallVolumeMaxSize: number
+    smallVolumeConf: LaunchTemplateDiskConf
+    largeVolumeConf: LaunchTemplateDiskConf
+    enableParametersEncryption: boolean
+    parametersEncryptionKey: string
+end
+
+local record UpdateLaunchConfigurationTemplateOutput
+    launchConfigurationTemplateID: string
+    arn: string
+    postLaunchActions: PostLaunchActions
+    enableMapAutoTagging: boolean
+    mapAutoTaggingMpeID: string
+    tags: {string : string}
+    ec2LaunchTemplateID: string
+    launchDisposition: string
+    targetInstanceTypeRightSizingMethod: string
+    copyPrivateIp: boolean
+    associatePublicIpAddress: boolean
+    copyTags: boolean
+    licensing: Licensing
+    bootMode: string
+    smallVolumeMaxSize: number
+    smallVolumeConf: LaunchTemplateDiskConf
+    largeVolumeConf: LaunchTemplateDiskConf
+    enableParametersEncryption: boolean
+    parametersEncryptionKey: string
+end
+
+local record UpdateNetworkMigrationDefinitionInput
+    networkMigrationDefinitionID: string
+    name: string
+    description: string
+    sourceConfigurations: {SourceConfiguration}
+    targetS3Configuration: TargetS3ConfigurationUpdate
+    targetNetwork: TargetNetworkUpdate
+    targetDeployment: string
+    scopeTags: {string : string}
+end
+
+local record UpdateNetworkMigrationDefinitionOutput
+    arn: string
+    networkMigrationDefinitionID: string
+    name: string
+    description: string
+    sourceConfigurations: {SourceConfiguration}
+    targetS3Configuration: TargetS3Configuration
+    targetNetwork: TargetNetwork
+    targetDeployment: string
+    createdAt: number
+    updatedAt: number
+    tags: {string : string}
+    scopeTags: {string : string}
+end
+
+local record UpdateNetworkMigrationMapperSegmentInput
+    networkMigrationDefinitionID: string
+    networkMigrationExecutionID: string
+    segmentID: string
+    scopeTags: {string : string}
+end
+
+local record UpdateNetworkMigrationMapperSegmentOutput
+    jobID: string
+    networkMigrationExecutionID: string
+    networkMigrationDefinitionID: string
+    segmentID: string
+    segmentType: string
+    name: string
+    description: string
+    logicalID: string
+    checksum: Checksum
+    outputS3Configuration: S3Configuration
+    createdAt: number
+    updatedAt: number
+    scopeTags: {string : string}
+    targetAccount: string
+    referencedSegments: {string}
+end
+
+local record UpdateReplicationConfigurationInput
+    sourceServerID: string
+    name: string
+    stagingAreaSubnetId: string
+    associateDefaultSecurityGroup: boolean
+    replicationServersSecurityGroupsIDs: {string}
+    replicationServerInstanceType: string
+    useDedicatedReplicationServer: boolean
+    defaultLargeStagingDiskType: string
+    replicatedDisks: {ReplicationConfigurationReplicatedDisk}
+    ebsEncryption: string
+    ebsEncryptionKeyArn: string
+    bandwidthThrottling: number
+    dataPlaneRouting: string
+    createPublicIP: boolean
+    stagingAreaTags: {string : string}
+    useFipsEndpoint: boolean
+    accountID: string
+    internetProtocol: string
+    storeSnapshotOnLocalZone: boolean
+end
+
+local record UpdateReplicationConfigurationOutput
+    sourceServerID: string
+    name: string
+    stagingAreaSubnetId: string
+    associateDefaultSecurityGroup: boolean
+    replicationServersSecurityGroupsIDs: {string}
+    replicationServerInstanceType: string
+    useDedicatedReplicationServer: boolean
+    defaultLargeStagingDiskType: string
+    replicatedDisks: {ReplicationConfigurationReplicatedDisk}
+    ebsEncryption: string
+    ebsEncryptionKeyArn: string
+    bandwidthThrottling: number
+    dataPlaneRouting: string
+    createPublicIP: boolean
+    stagingAreaTags: {string : string}
+    useFipsEndpoint: boolean
+    internetProtocol: string
+    storeSnapshotOnLocalZone: boolean
+end
+
+local record UpdateReplicationConfigurationTemplateInput
+    replicationConfigurationTemplateID: string
+    arn: string
+    stagingAreaSubnetId: string
+    associateDefaultSecurityGroup: boolean
+    replicationServersSecurityGroupsIDs: {string}
+    replicationServerInstanceType: string
+    useDedicatedReplicationServer: boolean
+    defaultLargeStagingDiskType: string
+    ebsEncryption: string
+    ebsEncryptionKeyArn: string
+    bandwidthThrottling: number
+    dataPlaneRouting: string
+    createPublicIP: boolean
+    stagingAreaTags: {string : string}
+    useFipsEndpoint: boolean
+    internetProtocol: string
+    storeSnapshotOnLocalZone: boolean
+end
+
+local record UpdateReplicationConfigurationTemplateOutput
+    replicationConfigurationTemplateID: string
+    arn: string
+    stagingAreaSubnetId: string
+    associateDefaultSecurityGroup: boolean
+    replicationServersSecurityGroupsIDs: {string}
+    replicationServerInstanceType: string
+    useDedicatedReplicationServer: boolean
+    defaultLargeStagingDiskType: string
+    ebsEncryption: string
+    ebsEncryptionKeyArn: string
+    bandwidthThrottling: number
+    dataPlaneRouting: string
+    createPublicIP: boolean
+    stagingAreaTags: {string : string}
+    useFipsEndpoint: boolean
+    tags: {string : string}
+    internetProtocol: string
+    storeSnapshotOnLocalZone: boolean
+end
+
+local record UpdateSourceServerInput
+    accountID: string
+    sourceServerID: string
+    connectorAction: SourceServerConnectorAction
+end
+
+local record UpdateSourceServerOutput
+    sourceServerID: string
+    arn: string
+    isArchived: boolean
+    tags: {string : string}
+    launchedInstance: LaunchedInstance
+    dataReplicationInfo: DataReplicationInfo
+    lifeCycle: LifeCycle
+    sourceProperties: SourceProperties
+    replicationType: string
+    vcenterClientID: string
+    applicationID: string
+    userProvidedID: string
+    fqdnForActionFramework: string
+    connectorAction: SourceServerConnectorAction
+end
+
+local record UpdateSourceServerReplicationTypeInput
+    sourceServerID: string
+    replicationType: string
+    accountID: string
+end
+
+local record UpdateSourceServerReplicationTypeOutput
+    sourceServerID: string
+    arn: string
+    isArchived: boolean
+    tags: {string : string}
+    launchedInstance: LaunchedInstance
+    dataReplicationInfo: DataReplicationInfo
+    lifeCycle: LifeCycle
+    sourceProperties: SourceProperties
+    replicationType: string
+    vcenterClientID: string
+    applicationID: string
+    userProvidedID: string
+    fqdnForActionFramework: string
+    connectorAction: SourceServerConnectorAction
+end
+
+local record UpdateWaveInput
+    waveID: string
+    name: string
+    description: string
+    accountID: string
+end
+
+local record UpdateWaveOutput
+    waveID: string
+    arn: string
+    name: string
+    description: string
+    isArchived: boolean
+    waveAggregatedStatus: WaveAggregatedStatus
+    creationDateTime: string
+    lastModifiedDateTime: string
+    tags: {string : string}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+    quotaValue: number
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    errors: {ErrorDetails}
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record M
+    ArchiveApplicationInput: ArchiveApplicationInput
+    ArchiveApplicationOutput: ArchiveApplicationOutput
+    ArchiveWaveInput: ArchiveWaveInput
+    ArchiveWaveOutput: ArchiveWaveOutput
+    AssociateApplicationsInput: AssociateApplicationsInput
+    AssociateApplicationsOutput: AssociateApplicationsOutput
+    AssociateSourceServersInput: AssociateSourceServersInput
+    AssociateSourceServersOutput: AssociateSourceServersOutput
+    ChangeServerLifeCycleStateInput: ChangeServerLifeCycleStateInput
+    ChangeServerLifeCycleStateOutput: ChangeServerLifeCycleStateOutput
+    CreateApplicationInput: CreateApplicationInput
+    CreateApplicationOutput: CreateApplicationOutput
+    CreateConnectorInput: CreateConnectorInput
+    CreateConnectorOutput: CreateConnectorOutput
+    CreateLaunchConfigurationTemplateInput: CreateLaunchConfigurationTemplateInput
+    CreateLaunchConfigurationTemplateOutput: CreateLaunchConfigurationTemplateOutput
+    CreateNetworkMigrationDefinitionInput: CreateNetworkMigrationDefinitionInput
+    CreateNetworkMigrationDefinitionOutput: CreateNetworkMigrationDefinitionOutput
+    CreateReplicationConfigurationTemplateInput: CreateReplicationConfigurationTemplateInput
+    CreateReplicationConfigurationTemplateOutput: CreateReplicationConfigurationTemplateOutput
+    CreateWaveInput: CreateWaveInput
+    CreateWaveOutput: CreateWaveOutput
+    DeleteApplicationInput: DeleteApplicationInput
+    DeleteApplicationOutput: DeleteApplicationOutput
+    DeleteConnectorInput: DeleteConnectorInput
+    DeleteConnectorOutput: DeleteConnectorOutput
+    DeleteJobInput: DeleteJobInput
+    DeleteJobOutput: DeleteJobOutput
+    DeleteLaunchConfigurationTemplateInput: DeleteLaunchConfigurationTemplateInput
+    DeleteLaunchConfigurationTemplateOutput: DeleteLaunchConfigurationTemplateOutput
+    DeleteNetworkMigrationDefinitionInput: DeleteNetworkMigrationDefinitionInput
+    DeleteNetworkMigrationDefinitionOutput: DeleteNetworkMigrationDefinitionOutput
+    DeleteReplicationConfigurationTemplateInput: DeleteReplicationConfigurationTemplateInput
+    DeleteReplicationConfigurationTemplateOutput: DeleteReplicationConfigurationTemplateOutput
+    DeleteSourceServerInput: DeleteSourceServerInput
+    DeleteSourceServerOutput: DeleteSourceServerOutput
+    DeleteVcenterClientInput: DeleteVcenterClientInput
+    DeleteVcenterClientOutput: DeleteVcenterClientOutput
+    DeleteWaveInput: DeleteWaveInput
+    DeleteWaveOutput: DeleteWaveOutput
+    DescribeJobLogItemsInput: DescribeJobLogItemsInput
+    DescribeJobLogItemsOutput: DescribeJobLogItemsOutput
+    DescribeJobsInput: DescribeJobsInput
+    DescribeJobsOutput: DescribeJobsOutput
+    DescribeLaunchConfigurationTemplatesInput: DescribeLaunchConfigurationTemplatesInput
+    DescribeLaunchConfigurationTemplatesOutput: DescribeLaunchConfigurationTemplatesOutput
+    DescribeReplicationConfigurationTemplatesInput: DescribeReplicationConfigurationTemplatesInput
+    DescribeReplicationConfigurationTemplatesOutput: DescribeReplicationConfigurationTemplatesOutput
+    DescribeSourceServersInput: DescribeSourceServersInput
+    DescribeSourceServersOutput: DescribeSourceServersOutput
+    DescribeVcenterClientsInput: DescribeVcenterClientsInput
+    DescribeVcenterClientsOutput: DescribeVcenterClientsOutput
+    DisassociateApplicationsInput: DisassociateApplicationsInput
+    DisassociateApplicationsOutput: DisassociateApplicationsOutput
+    DisassociateSourceServersInput: DisassociateSourceServersInput
+    DisassociateSourceServersOutput: DisassociateSourceServersOutput
+    DisconnectFromServiceInput: DisconnectFromServiceInput
+    DisconnectFromServiceOutput: DisconnectFromServiceOutput
+    FinalizeCutoverInput: FinalizeCutoverInput
+    FinalizeCutoverOutput: FinalizeCutoverOutput
+    GetLaunchConfigurationInput: GetLaunchConfigurationInput
+    GetLaunchConfigurationOutput: GetLaunchConfigurationOutput
+    GetNetworkMigrationDefinitionInput: GetNetworkMigrationDefinitionInput
+    GetNetworkMigrationDefinitionOutput: GetNetworkMigrationDefinitionOutput
+    GetNetworkMigrationMapperSegmentConstructInput: GetNetworkMigrationMapperSegmentConstructInput
+    GetNetworkMigrationMapperSegmentConstructOutput: GetNetworkMigrationMapperSegmentConstructOutput
+    GetReplicationConfigurationInput: GetReplicationConfigurationInput
+    GetReplicationConfigurationOutput: GetReplicationConfigurationOutput
+    InitializeServiceInput: InitializeServiceInput
+    InitializeServiceOutput: InitializeServiceOutput
+    ListApplicationsInput: ListApplicationsInput
+    ListApplicationsOutput: ListApplicationsOutput
+    ListConnectorsInput: ListConnectorsInput
+    ListConnectorsOutput: ListConnectorsOutput
+    ListExportErrorsInput: ListExportErrorsInput
+    ListExportErrorsOutput: ListExportErrorsOutput
+    ListExportsInput: ListExportsInput
+    ListExportsOutput: ListExportsOutput
+    ListImportErrorsInput: ListImportErrorsInput
+    ListImportErrorsOutput: ListImportErrorsOutput
+    ListImportFileEnrichmentsInput: ListImportFileEnrichmentsInput
+    ListImportFileEnrichmentsOutput: ListImportFileEnrichmentsOutput
+    ListImportsInput: ListImportsInput
+    ListImportsOutput: ListImportsOutput
+    ListManagedAccountsInput: ListManagedAccountsInput
+    ListManagedAccountsOutput: ListManagedAccountsOutput
+    ListNetworkMigrationAnalysesInput: ListNetworkMigrationAnalysesInput
+    ListNetworkMigrationAnalysesOutput: ListNetworkMigrationAnalysesOutput
+    ListNetworkMigrationAnalysisResultsInput: ListNetworkMigrationAnalysisResultsInput
+    ListNetworkMigrationAnalysisResultsOutput: ListNetworkMigrationAnalysisResultsOutput
+    ListNetworkMigrationCodeGenerationsInput: ListNetworkMigrationCodeGenerationsInput
+    ListNetworkMigrationCodeGenerationsOutput: ListNetworkMigrationCodeGenerationsOutput
+    ListNetworkMigrationCodeGenerationSegmentsInput: ListNetworkMigrationCodeGenerationSegmentsInput
+    ListNetworkMigrationCodeGenerationSegmentsOutput: ListNetworkMigrationCodeGenerationSegmentsOutput
+    ListNetworkMigrationDefinitionsInput: ListNetworkMigrationDefinitionsInput
+    ListNetworkMigrationDefinitionsOutput: ListNetworkMigrationDefinitionsOutput
+    ListNetworkMigrationDeployedStacksInput: ListNetworkMigrationDeployedStacksInput
+    ListNetworkMigrationDeployedStacksOutput: ListNetworkMigrationDeployedStacksOutput
+    ListNetworkMigrationDeploymentsInput: ListNetworkMigrationDeploymentsInput
+    ListNetworkMigrationDeploymentsOutput: ListNetworkMigrationDeploymentsOutput
+    ListNetworkMigrationExecutionsInput: ListNetworkMigrationExecutionsInput
+    ListNetworkMigrationExecutionsOutput: ListNetworkMigrationExecutionsOutput
+    ListNetworkMigrationMapperSegmentConstructsInput: ListNetworkMigrationMapperSegmentConstructsInput
+    ListNetworkMigrationMapperSegmentConstructsOutput: ListNetworkMigrationMapperSegmentConstructsOutput
+    ListNetworkMigrationMapperSegmentsInput: ListNetworkMigrationMapperSegmentsInput
+    ListNetworkMigrationMapperSegmentsOutput: ListNetworkMigrationMapperSegmentsOutput
+    ListNetworkMigrationMappingsInput: ListNetworkMigrationMappingsInput
+    ListNetworkMigrationMappingsOutput: ListNetworkMigrationMappingsOutput
+    ListNetworkMigrationMappingUpdatesInput: ListNetworkMigrationMappingUpdatesInput
+    ListNetworkMigrationMappingUpdatesOutput: ListNetworkMigrationMappingUpdatesOutput
+    ListSourceServerActionsInput: ListSourceServerActionsInput
+    ListSourceServerActionsOutput: ListSourceServerActionsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListTemplateActionsInput: ListTemplateActionsInput
+    ListTemplateActionsOutput: ListTemplateActionsOutput
+    ListWavesInput: ListWavesInput
+    ListWavesOutput: ListWavesOutput
+    MarkAsArchivedInput: MarkAsArchivedInput
+    MarkAsArchivedOutput: MarkAsArchivedOutput
+    PauseReplicationInput: PauseReplicationInput
+    PauseReplicationOutput: PauseReplicationOutput
+    PutSourceServerActionInput: PutSourceServerActionInput
+    PutSourceServerActionOutput: PutSourceServerActionOutput
+    PutTemplateActionInput: PutTemplateActionInput
+    PutTemplateActionOutput: PutTemplateActionOutput
+    RemoveSourceServerActionInput: RemoveSourceServerActionInput
+    RemoveSourceServerActionOutput: RemoveSourceServerActionOutput
+    RemoveTemplateActionInput: RemoveTemplateActionInput
+    RemoveTemplateActionOutput: RemoveTemplateActionOutput
+    ResumeReplicationInput: ResumeReplicationInput
+    ResumeReplicationOutput: ResumeReplicationOutput
+    RetryDataReplicationInput: RetryDataReplicationInput
+    RetryDataReplicationOutput: RetryDataReplicationOutput
+    StartCutoverInput: StartCutoverInput
+    StartCutoverOutput: StartCutoverOutput
+    StartExportInput: StartExportInput
+    StartExportOutput: StartExportOutput
+    StartImportInput: StartImportInput
+    StartImportOutput: StartImportOutput
+    StartImportFileEnrichmentInput: StartImportFileEnrichmentInput
+    StartImportFileEnrichmentOutput: StartImportFileEnrichmentOutput
+    StartNetworkMigrationAnalysisInput: StartNetworkMigrationAnalysisInput
+    StartNetworkMigrationAnalysisOutput: StartNetworkMigrationAnalysisOutput
+    StartNetworkMigrationCodeGenerationInput: StartNetworkMigrationCodeGenerationInput
+    StartNetworkMigrationCodeGenerationOutput: StartNetworkMigrationCodeGenerationOutput
+    StartNetworkMigrationDeploymentInput: StartNetworkMigrationDeploymentInput
+    StartNetworkMigrationDeploymentOutput: StartNetworkMigrationDeploymentOutput
+    StartNetworkMigrationMappingInput: StartNetworkMigrationMappingInput
+    StartNetworkMigrationMappingOutput: StartNetworkMigrationMappingOutput
+    StartNetworkMigrationMappingUpdateInput: StartNetworkMigrationMappingUpdateInput
+    StartNetworkMigrationMappingUpdateOutput: StartNetworkMigrationMappingUpdateOutput
+    StartReplicationInput: StartReplicationInput
+    StartReplicationOutput: StartReplicationOutput
+    StartTestInput: StartTestInput
+    StartTestOutput: StartTestOutput
+    StopReplicationInput: StopReplicationInput
+    StopReplicationOutput: StopReplicationOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    TerminateTargetInstancesInput: TerminateTargetInstancesInput
+    TerminateTargetInstancesOutput: TerminateTargetInstancesOutput
+    UnarchiveApplicationInput: UnarchiveApplicationInput
+    UnarchiveApplicationOutput: UnarchiveApplicationOutput
+    UnarchiveWaveInput: UnarchiveWaveInput
+    UnarchiveWaveOutput: UnarchiveWaveOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateApplicationInput: UpdateApplicationInput
+    UpdateApplicationOutput: UpdateApplicationOutput
+    UpdateConnectorInput: UpdateConnectorInput
+    UpdateConnectorOutput: UpdateConnectorOutput
+    UpdateLaunchConfigurationInput: UpdateLaunchConfigurationInput
+    UpdateLaunchConfigurationOutput: UpdateLaunchConfigurationOutput
+    UpdateLaunchConfigurationTemplateInput: UpdateLaunchConfigurationTemplateInput
+    UpdateLaunchConfigurationTemplateOutput: UpdateLaunchConfigurationTemplateOutput
+    UpdateNetworkMigrationDefinitionInput: UpdateNetworkMigrationDefinitionInput
+    UpdateNetworkMigrationDefinitionOutput: UpdateNetworkMigrationDefinitionOutput
+    UpdateNetworkMigrationMapperSegmentInput: UpdateNetworkMigrationMapperSegmentInput
+    UpdateNetworkMigrationMapperSegmentOutput: UpdateNetworkMigrationMapperSegmentOutput
+    UpdateReplicationConfigurationInput: UpdateReplicationConfigurationInput
+    UpdateReplicationConfigurationOutput: UpdateReplicationConfigurationOutput
+    UpdateReplicationConfigurationTemplateInput: UpdateReplicationConfigurationTemplateInput
+    UpdateReplicationConfigurationTemplateOutput: UpdateReplicationConfigurationTemplateOutput
+    UpdateSourceServerInput: UpdateSourceServerInput
+    UpdateSourceServerOutput: UpdateSourceServerOutput
+    UpdateSourceServerReplicationTypeInput: UpdateSourceServerReplicationTypeInput
+    UpdateSourceServerReplicationTypeOutput: UpdateSourceServerReplicationTypeOutput
+    UpdateWaveInput: UpdateWaveInput
+    UpdateWaveOutput: UpdateWaveOutput
+end
+
+return M

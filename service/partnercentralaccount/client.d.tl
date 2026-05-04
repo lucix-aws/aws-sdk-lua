@@ -1,0 +1,39 @@
+local types = require("partnercentralaccount.types")
+
+local record Client
+    acceptConnectionInvitation: function(Client, types.AcceptConnectionInvitationInput): types.AcceptConnectionInvitationOutput, table
+    associateAwsTrainingCertificationEmailDomain: function(Client, types.AssociateAwsTrainingCertificationEmailDomainInput): types.AssociateAwsTrainingCertificationEmailDomainOutput, table
+    cancelConnection: function(Client, types.CancelConnectionInput): types.CancelConnectionOutput, table
+    cancelConnectionInvitation: function(Client, types.CancelConnectionInvitationInput): types.CancelConnectionInvitationOutput, table
+    cancelProfileUpdateTask: function(Client, types.CancelProfileUpdateTaskInput): types.CancelProfileUpdateTaskOutput, table
+    createConnectionInvitation: function(Client, types.CreateConnectionInvitationInput): types.CreateConnectionInvitationOutput, table
+    createPartner: function(Client, types.CreatePartnerInput): types.CreatePartnerOutput, table
+    disassociateAwsTrainingCertificationEmailDomain: function(Client, types.DisassociateAwsTrainingCertificationEmailDomainInput): types.DisassociateAwsTrainingCertificationEmailDomainOutput, table
+    getAllianceLeadContact: function(Client, types.GetAllianceLeadContactInput): types.GetAllianceLeadContactOutput, table
+    getConnection: function(Client, types.GetConnectionInput): types.GetConnectionOutput, table
+    getConnectionInvitation: function(Client, types.GetConnectionInvitationInput): types.GetConnectionInvitationOutput, table
+    getConnectionPreferences: function(Client, types.GetConnectionPreferencesInput): types.GetConnectionPreferencesOutput, table
+    getPartner: function(Client, types.GetPartnerInput): types.GetPartnerOutput, table
+    getProfileUpdateTask: function(Client, types.GetProfileUpdateTaskInput): types.GetProfileUpdateTaskOutput, table
+    getProfileVisibility: function(Client, types.GetProfileVisibilityInput): types.GetProfileVisibilityOutput, table
+    getVerification: function(Client, types.GetVerificationInput): types.GetVerificationOutput, table
+    listConnectionInvitations: function(Client, types.ListConnectionInvitationsInput): types.ListConnectionInvitationsOutput, table
+    listConnections: function(Client, types.ListConnectionsInput): types.ListConnectionsOutput, table
+    listPartners: function(Client, types.ListPartnersInput): types.ListPartnersOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putAllianceLeadContact: function(Client, types.PutAllianceLeadContactInput): types.PutAllianceLeadContactOutput, table
+    putProfileVisibility: function(Client, types.PutProfileVisibilityInput): types.PutProfileVisibilityOutput, table
+    rejectConnectionInvitation: function(Client, types.RejectConnectionInvitationInput): types.RejectConnectionInvitationOutput, table
+    sendEmailVerificationCode: function(Client, types.SendEmailVerificationCodeInput): types.SendEmailVerificationCodeOutput, table
+    startProfileUpdateTask: function(Client, types.StartProfileUpdateTaskInput): types.StartProfileUpdateTaskOutput, table
+    startVerification: function(Client, types.StartVerificationInput): types.StartVerificationOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateConnectionPreferences: function(Client, types.UpdateConnectionPreferencesInput): types.UpdateConnectionPreferencesOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

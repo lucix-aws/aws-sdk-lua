@@ -1,0 +1,27 @@
+local types = require("partnercentralbenefits.types")
+
+local record Client
+    amendBenefitApplication: function(Client, types.AmendBenefitApplicationInput): types.AmendBenefitApplicationOutput, table
+    associateBenefitApplicationResource: function(Client, types.AssociateBenefitApplicationResourceInput): types.AssociateBenefitApplicationResourceOutput, table
+    cancelBenefitApplication: function(Client, types.CancelBenefitApplicationInput): types.CancelBenefitApplicationOutput, table
+    createBenefitApplication: function(Client, types.CreateBenefitApplicationInput): types.CreateBenefitApplicationOutput, table
+    disassociateBenefitApplicationResource: function(Client, types.DisassociateBenefitApplicationResourceInput): types.DisassociateBenefitApplicationResourceOutput, table
+    getBenefit: function(Client, types.GetBenefitInput): types.GetBenefitOutput, table
+    getBenefitAllocation: function(Client, types.GetBenefitAllocationInput): types.GetBenefitAllocationOutput, table
+    getBenefitApplication: function(Client, types.GetBenefitApplicationInput): types.GetBenefitApplicationOutput, table
+    listBenefitAllocations: function(Client, types.ListBenefitAllocationsInput): types.ListBenefitAllocationsOutput, table
+    listBenefitApplications: function(Client, types.ListBenefitApplicationsInput): types.ListBenefitApplicationsOutput, table
+    listBenefits: function(Client, types.ListBenefitsInput): types.ListBenefitsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    recallBenefitApplication: function(Client, types.RecallBenefitApplicationInput): types.RecallBenefitApplicationOutput, table
+    submitBenefitApplication: function(Client, types.SubmitBenefitApplicationInput): types.SubmitBenefitApplicationOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateBenefitApplication: function(Client, types.UpdateBenefitApplicationInput): types.UpdateBenefitApplicationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

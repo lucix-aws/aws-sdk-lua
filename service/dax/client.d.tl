@@ -1,0 +1,31 @@
+local types = require("dax.types")
+
+local record Client
+    createCluster: function(Client, types.CreateClusterInput): types.CreateClusterOutput, table
+    createParameterGroup: function(Client, types.CreateParameterGroupInput): types.CreateParameterGroupOutput, table
+    createSubnetGroup: function(Client, types.CreateSubnetGroupInput): types.CreateSubnetGroupOutput, table
+    decreaseReplicationFactor: function(Client, types.DecreaseReplicationFactorInput): types.DecreaseReplicationFactorOutput, table
+    deleteCluster: function(Client, types.DeleteClusterInput): types.DeleteClusterOutput, table
+    deleteParameterGroup: function(Client, types.DeleteParameterGroupInput): types.DeleteParameterGroupOutput, table
+    deleteSubnetGroup: function(Client, types.DeleteSubnetGroupInput): types.DeleteSubnetGroupOutput, table
+    describeClusters: function(Client, types.DescribeClustersInput): types.DescribeClustersOutput, table
+    describeDefaultParameters: function(Client, types.DescribeDefaultParametersInput): types.DescribeDefaultParametersOutput, table
+    describeEvents: function(Client, types.DescribeEventsInput): types.DescribeEventsOutput, table
+    describeParameterGroups: function(Client, types.DescribeParameterGroupsInput): types.DescribeParameterGroupsOutput, table
+    describeParameters: function(Client, types.DescribeParametersInput): types.DescribeParametersOutput, table
+    describeSubnetGroups: function(Client, types.DescribeSubnetGroupsInput): types.DescribeSubnetGroupsOutput, table
+    increaseReplicationFactor: function(Client, types.IncreaseReplicationFactorInput): types.IncreaseReplicationFactorOutput, table
+    listTags: function(Client, types.ListTagsInput): types.ListTagsOutput, table
+    rebootNode: function(Client, types.RebootNodeInput): types.RebootNodeOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateCluster: function(Client, types.UpdateClusterInput): types.UpdateClusterOutput, table
+    updateParameterGroup: function(Client, types.UpdateParameterGroupInput): types.UpdateParameterGroupOutput, table
+    updateSubnetGroup: function(Client, types.UpdateSubnetGroupInput): types.UpdateSubnetGroupOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

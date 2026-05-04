@@ -1,0 +1,348 @@
+local record AddAttachmentsToSetInput
+    attachmentSetId: string
+    attachments: {Attachment}
+end
+
+local record AddAttachmentsToSetOutput
+    attachmentSetId: string
+    expiryTime: string
+end
+
+local record AddCommunicationToCaseInput
+    caseId: string
+    communicationBody: string
+    ccEmailAddresses: {string}
+    attachmentSetId: string
+end
+
+local record AddCommunicationToCaseOutput
+    result: boolean
+end
+
+local record CreateCaseInput
+    subject: string
+    serviceCode: string
+    severityCode: string
+    categoryCode: string
+    communicationBody: string
+    ccEmailAddresses: {string}
+    language: string
+    issueType: string
+    attachmentSetId: string
+end
+
+local record CreateCaseOutput
+    caseId: string
+end
+
+local record DescribeAttachmentInput
+    attachmentId: string
+end
+
+local record DescribeAttachmentOutput
+    attachment: Attachment
+end
+
+local record DescribeCasesInput
+    caseIdList: {string}
+    displayId: string
+    afterTime: string
+    beforeTime: string
+    includeResolvedCases: boolean
+    nextToken: string
+    maxResults: number
+    language: string
+    includeCommunications: boolean
+end
+
+local record DescribeCasesOutput
+    cases: {CaseDetails}
+    nextToken: string
+end
+
+local record DescribeCommunicationsInput
+    caseId: string
+    beforeTime: string
+    afterTime: string
+    nextToken: string
+    maxResults: number
+end
+
+local record DescribeCommunicationsOutput
+    communications: {Communication}
+    nextToken: string
+end
+
+local record DescribeCreateCaseOptionsInput
+    issueType: string
+    serviceCode: string
+    language: string
+    categoryCode: string
+end
+
+local record DescribeCreateCaseOptionsOutput
+    languageAvailability: string
+    communicationTypes: {CommunicationTypeOptions}
+end
+
+local record DescribeServicesInput
+    serviceCodeList: {string}
+    language: string
+end
+
+local record DescribeServicesOutput
+    services: {Service}
+end
+
+local record DescribeSeverityLevelsInput
+    language: string
+end
+
+local record DescribeSeverityLevelsOutput
+    severityLevels: {SeverityLevel}
+end
+
+local record DescribeSupportedLanguagesInput
+    issueType: string
+    serviceCode: string
+    categoryCode: string
+end
+
+local record DescribeSupportedLanguagesOutput
+    supportedLanguages: {SupportedLanguage}
+end
+
+local record DescribeTrustedAdvisorCheckRefreshStatusesInput
+    checkIds: {string}
+end
+
+local record DescribeTrustedAdvisorCheckRefreshStatusesOutput
+    statuses: {TrustedAdvisorCheckRefreshStatus}
+end
+
+local record DescribeTrustedAdvisorCheckResultInput
+    checkId: string
+    language: string
+end
+
+local record DescribeTrustedAdvisorCheckResultOutput
+    result: TrustedAdvisorCheckResult
+end
+
+local record DescribeTrustedAdvisorChecksInput
+    language: string
+end
+
+local record DescribeTrustedAdvisorChecksOutput
+    checks: {TrustedAdvisorCheckDescription}
+end
+
+local record DescribeTrustedAdvisorCheckSummariesInput
+    checkIds: {string}
+end
+
+local record DescribeTrustedAdvisorCheckSummariesOutput
+    summaries: {TrustedAdvisorCheckSummary}
+end
+
+local record RefreshTrustedAdvisorCheckInput
+    checkId: string
+end
+
+local record RefreshTrustedAdvisorCheckOutput
+    status: TrustedAdvisorCheckRefreshStatus
+end
+
+local record ResolveCaseInput
+    caseId: string
+end
+
+local record ResolveCaseOutput
+    initialCaseStatus: string
+    finalCaseStatus: string
+end
+
+local record AttachmentLimitExceeded
+    message: string
+end
+
+local record AttachmentSetExpired
+    message: string
+end
+
+local record AttachmentSetIdNotFound
+    message: string
+end
+
+local record AttachmentSetSizeLimitExceeded
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record AttachmentSetExpired
+    message: string
+end
+
+local record AttachmentSetIdNotFound
+    message: string
+end
+
+local record CaseIdNotFound
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record AttachmentSetExpired
+    message: string
+end
+
+local record AttachmentSetIdNotFound
+    message: string
+end
+
+local record CaseCreationLimitExceeded
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record AttachmentIdNotFound
+    message: string
+end
+
+local record DescribeAttachmentLimitExceeded
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record CaseIdNotFound
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record CaseIdNotFound
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record CaseIdNotFound
+    message: string
+end
+
+local record InternalServerError
+    message: string
+end
+
+local record M
+    AddAttachmentsToSetInput: AddAttachmentsToSetInput
+    AddAttachmentsToSetOutput: AddAttachmentsToSetOutput
+    AddCommunicationToCaseInput: AddCommunicationToCaseInput
+    AddCommunicationToCaseOutput: AddCommunicationToCaseOutput
+    CreateCaseInput: CreateCaseInput
+    CreateCaseOutput: CreateCaseOutput
+    DescribeAttachmentInput: DescribeAttachmentInput
+    DescribeAttachmentOutput: DescribeAttachmentOutput
+    DescribeCasesInput: DescribeCasesInput
+    DescribeCasesOutput: DescribeCasesOutput
+    DescribeCommunicationsInput: DescribeCommunicationsInput
+    DescribeCommunicationsOutput: DescribeCommunicationsOutput
+    DescribeCreateCaseOptionsInput: DescribeCreateCaseOptionsInput
+    DescribeCreateCaseOptionsOutput: DescribeCreateCaseOptionsOutput
+    DescribeServicesInput: DescribeServicesInput
+    DescribeServicesOutput: DescribeServicesOutput
+    DescribeSeverityLevelsInput: DescribeSeverityLevelsInput
+    DescribeSeverityLevelsOutput: DescribeSeverityLevelsOutput
+    DescribeSupportedLanguagesInput: DescribeSupportedLanguagesInput
+    DescribeSupportedLanguagesOutput: DescribeSupportedLanguagesOutput
+    DescribeTrustedAdvisorCheckRefreshStatusesInput: DescribeTrustedAdvisorCheckRefreshStatusesInput
+    DescribeTrustedAdvisorCheckRefreshStatusesOutput: DescribeTrustedAdvisorCheckRefreshStatusesOutput
+    DescribeTrustedAdvisorCheckResultInput: DescribeTrustedAdvisorCheckResultInput
+    DescribeTrustedAdvisorCheckResultOutput: DescribeTrustedAdvisorCheckResultOutput
+    DescribeTrustedAdvisorChecksInput: DescribeTrustedAdvisorChecksInput
+    DescribeTrustedAdvisorChecksOutput: DescribeTrustedAdvisorChecksOutput
+    DescribeTrustedAdvisorCheckSummariesInput: DescribeTrustedAdvisorCheckSummariesInput
+    DescribeTrustedAdvisorCheckSummariesOutput: DescribeTrustedAdvisorCheckSummariesOutput
+    RefreshTrustedAdvisorCheckInput: RefreshTrustedAdvisorCheckInput
+    RefreshTrustedAdvisorCheckOutput: RefreshTrustedAdvisorCheckOutput
+    ResolveCaseInput: ResolveCaseInput
+    ResolveCaseOutput: ResolveCaseOutput
+end
+
+return M

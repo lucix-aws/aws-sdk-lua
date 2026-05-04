@@ -1,0 +1,604 @@
+local record CreateApplicationInput
+    Author: string
+    Description: string
+    HomePageUrl: string
+    Labels: {string}
+    LicenseBody: string
+    LicenseUrl: string
+    Name: string
+    ReadmeBody: string
+    ReadmeUrl: string
+    SemanticVersion: string
+    SourceCodeArchiveUrl: string
+    SourceCodeUrl: string
+    SpdxLicenseId: string
+    TemplateBody: string
+    TemplateUrl: string
+end
+
+local record CreateApplicationOutput
+    ApplicationId: string
+    Author: string
+    CreationTime: string
+    Description: string
+    HomePageUrl: string
+    IsVerifiedAuthor: boolean
+    Labels: {string}
+    LicenseUrl: string
+    Name: string
+    ReadmeUrl: string
+    SpdxLicenseId: string
+    VerifiedAuthorUrl: string
+    Version: Version
+end
+
+local record CreateApplicationVersionInput
+    ApplicationId: string
+    SemanticVersion: string
+    SourceCodeArchiveUrl: string
+    SourceCodeUrl: string
+    TemplateBody: string
+    TemplateUrl: string
+end
+
+local record CreateApplicationVersionOutput
+    ApplicationId: string
+    CreationTime: string
+    ParameterDefinitions: {ParameterDefinition}
+    RequiredCapabilities: {string}
+    ResourcesSupported: boolean
+    SemanticVersion: string
+    SourceCodeArchiveUrl: string
+    SourceCodeUrl: string
+    TemplateUrl: string
+end
+
+local record CreateCloudFormationChangeSetInput
+    ApplicationId: string
+    Capabilities: {string}
+    ChangeSetName: string
+    ClientToken: string
+    Description: string
+    NotificationArns: {string}
+    ParameterOverrides: {ParameterValue}
+    ResourceTypes: {string}
+    RollbackConfiguration: RollbackConfiguration
+    SemanticVersion: string
+    StackName: string
+    Tags: {Tag}
+    TemplateId: string
+end
+
+local record CreateCloudFormationChangeSetOutput
+    ApplicationId: string
+    ChangeSetId: string
+    SemanticVersion: string
+    StackId: string
+end
+
+local record CreateCloudFormationTemplateInput
+    ApplicationId: string
+    SemanticVersion: string
+end
+
+local record CreateCloudFormationTemplateOutput
+    ApplicationId: string
+    CreationTime: string
+    ExpirationTime: string
+    SemanticVersion: string
+    Status: string
+    TemplateId: string
+    TemplateUrl: string
+end
+
+local record DeleteApplicationInput
+    ApplicationId: string
+end
+
+local record DeleteApplicationOutput
+end
+
+local record GetApplicationInput
+    ApplicationId: string
+    SemanticVersion: string
+end
+
+local record GetApplicationOutput
+    ApplicationId: string
+    Author: string
+    CreationTime: string
+    Description: string
+    HomePageUrl: string
+    IsVerifiedAuthor: boolean
+    Labels: {string}
+    LicenseUrl: string
+    Name: string
+    ReadmeUrl: string
+    SpdxLicenseId: string
+    VerifiedAuthorUrl: string
+    Version: Version
+end
+
+local record GetApplicationPolicyInput
+    ApplicationId: string
+end
+
+local record GetApplicationPolicyOutput
+    Statements: {ApplicationPolicyStatement}
+end
+
+local record GetCloudFormationTemplateInput
+    ApplicationId: string
+    TemplateId: string
+end
+
+local record GetCloudFormationTemplateOutput
+    ApplicationId: string
+    CreationTime: string
+    ExpirationTime: string
+    SemanticVersion: string
+    Status: string
+    TemplateId: string
+    TemplateUrl: string
+end
+
+local record ListApplicationDependenciesInput
+    ApplicationId: string
+    MaxItems: number
+    NextToken: string
+    SemanticVersion: string
+end
+
+local record ListApplicationDependenciesOutput
+    Dependencies: {ApplicationDependencySummary}
+    NextToken: string
+end
+
+local record ListApplicationsInput
+    MaxItems: number
+    NextToken: string
+end
+
+local record ListApplicationsOutput
+    Applications: {ApplicationSummary}
+    NextToken: string
+end
+
+local record ListApplicationVersionsInput
+    ApplicationId: string
+    MaxItems: number
+    NextToken: string
+end
+
+local record ListApplicationVersionsOutput
+    NextToken: string
+    Versions: {VersionSummary}
+end
+
+local record PutApplicationPolicyInput
+    ApplicationId: string
+    Statements: {ApplicationPolicyStatement}
+end
+
+local record PutApplicationPolicyOutput
+    Statements: {ApplicationPolicyStatement}
+end
+
+local record UnshareApplicationInput
+    ApplicationId: string
+    OrganizationId: string
+end
+
+local record UnshareApplicationOutput
+end
+
+local record UpdateApplicationInput
+    ApplicationId: string
+    Author: string
+    Description: string
+    HomePageUrl: string
+    Labels: {string}
+    ReadmeBody: string
+    ReadmeUrl: string
+end
+
+local record UpdateApplicationOutput
+    ApplicationId: string
+    Author: string
+    CreationTime: string
+    Description: string
+    HomePageUrl: string
+    IsVerifiedAuthor: boolean
+    Labels: {string}
+    LicenseUrl: string
+    Name: string
+    ReadmeUrl: string
+    SpdxLicenseId: string
+    VerifiedAuthorUrl: string
+    Version: Version
+end
+
+local record BadRequestException
+    ErrorCode: string
+    Message: string
+end
+
+local record ConflictException
+    ErrorCode: string
+    Message: string
+end
+
+local record ForbiddenException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerErrorException
+    ErrorCode: string
+    Message: string
+end
+
+local record TooManyRequestsException
+    ErrorCode: string
+    Message: string
+end
+
+local record BadRequestException
+    ErrorCode: string
+    Message: string
+end
+
+local record ConflictException
+    ErrorCode: string
+    Message: string
+end
+
+local record ForbiddenException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerErrorException
+    ErrorCode: string
+    Message: string
+end
+
+local record TooManyRequestsException
+    ErrorCode: string
+    Message: string
+end
+
+local record BadRequestException
+    ErrorCode: string
+    Message: string
+end
+
+local record ForbiddenException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerErrorException
+    ErrorCode: string
+    Message: string
+end
+
+local record TooManyRequestsException
+    ErrorCode: string
+    Message: string
+end
+
+local record BadRequestException
+    ErrorCode: string
+    Message: string
+end
+
+local record ForbiddenException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerErrorException
+    ErrorCode: string
+    Message: string
+end
+
+local record NotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record TooManyRequestsException
+    ErrorCode: string
+    Message: string
+end
+
+local record BadRequestException
+    ErrorCode: string
+    Message: string
+end
+
+local record ConflictException
+    ErrorCode: string
+    Message: string
+end
+
+local record ForbiddenException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerErrorException
+    ErrorCode: string
+    Message: string
+end
+
+local record NotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record TooManyRequestsException
+    ErrorCode: string
+    Message: string
+end
+
+local record BadRequestException
+    ErrorCode: string
+    Message: string
+end
+
+local record ForbiddenException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerErrorException
+    ErrorCode: string
+    Message: string
+end
+
+local record NotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record TooManyRequestsException
+    ErrorCode: string
+    Message: string
+end
+
+local record BadRequestException
+    ErrorCode: string
+    Message: string
+end
+
+local record ForbiddenException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerErrorException
+    ErrorCode: string
+    Message: string
+end
+
+local record NotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record TooManyRequestsException
+    ErrorCode: string
+    Message: string
+end
+
+local record BadRequestException
+    ErrorCode: string
+    Message: string
+end
+
+local record ForbiddenException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerErrorException
+    ErrorCode: string
+    Message: string
+end
+
+local record NotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record TooManyRequestsException
+    ErrorCode: string
+    Message: string
+end
+
+local record BadRequestException
+    ErrorCode: string
+    Message: string
+end
+
+local record ForbiddenException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerErrorException
+    ErrorCode: string
+    Message: string
+end
+
+local record NotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record TooManyRequestsException
+    ErrorCode: string
+    Message: string
+end
+
+local record BadRequestException
+    ErrorCode: string
+    Message: string
+end
+
+local record ForbiddenException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerErrorException
+    ErrorCode: string
+    Message: string
+end
+
+local record NotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record BadRequestException
+    ErrorCode: string
+    Message: string
+end
+
+local record ForbiddenException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerErrorException
+    ErrorCode: string
+    Message: string
+end
+
+local record NotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record TooManyRequestsException
+    ErrorCode: string
+    Message: string
+end
+
+local record BadRequestException
+    ErrorCode: string
+    Message: string
+end
+
+local record ForbiddenException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerErrorException
+    ErrorCode: string
+    Message: string
+end
+
+local record NotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record TooManyRequestsException
+    ErrorCode: string
+    Message: string
+end
+
+local record BadRequestException
+    ErrorCode: string
+    Message: string
+end
+
+local record ForbiddenException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerErrorException
+    ErrorCode: string
+    Message: string
+end
+
+local record NotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record TooManyRequestsException
+    ErrorCode: string
+    Message: string
+end
+
+local record BadRequestException
+    ErrorCode: string
+    Message: string
+end
+
+local record ConflictException
+    ErrorCode: string
+    Message: string
+end
+
+local record ForbiddenException
+    ErrorCode: string
+    Message: string
+end
+
+local record InternalServerErrorException
+    ErrorCode: string
+    Message: string
+end
+
+local record NotFoundException
+    ErrorCode: string
+    Message: string
+end
+
+local record TooManyRequestsException
+    ErrorCode: string
+    Message: string
+end
+
+local type Status = "PREPARING" | "ACTIVE" | "EXPIRED"
+
+local record M
+    CreateApplicationInput: CreateApplicationInput
+    CreateApplicationOutput: CreateApplicationOutput
+    CreateApplicationVersionInput: CreateApplicationVersionInput
+    CreateApplicationVersionOutput: CreateApplicationVersionOutput
+    CreateCloudFormationChangeSetInput: CreateCloudFormationChangeSetInput
+    CreateCloudFormationChangeSetOutput: CreateCloudFormationChangeSetOutput
+    CreateCloudFormationTemplateInput: CreateCloudFormationTemplateInput
+    CreateCloudFormationTemplateOutput: CreateCloudFormationTemplateOutput
+    DeleteApplicationInput: DeleteApplicationInput
+    DeleteApplicationOutput: DeleteApplicationOutput
+    GetApplicationInput: GetApplicationInput
+    GetApplicationOutput: GetApplicationOutput
+    GetApplicationPolicyInput: GetApplicationPolicyInput
+    GetApplicationPolicyOutput: GetApplicationPolicyOutput
+    GetCloudFormationTemplateInput: GetCloudFormationTemplateInput
+    GetCloudFormationTemplateOutput: GetCloudFormationTemplateOutput
+    ListApplicationDependenciesInput: ListApplicationDependenciesInput
+    ListApplicationDependenciesOutput: ListApplicationDependenciesOutput
+    ListApplicationsInput: ListApplicationsInput
+    ListApplicationsOutput: ListApplicationsOutput
+    ListApplicationVersionsInput: ListApplicationVersionsInput
+    ListApplicationVersionsOutput: ListApplicationVersionsOutput
+    PutApplicationPolicyInput: PutApplicationPolicyInput
+    PutApplicationPolicyOutput: PutApplicationPolicyOutput
+    UnshareApplicationInput: UnshareApplicationInput
+    UnshareApplicationOutput: UnshareApplicationOutput
+    UpdateApplicationInput: UpdateApplicationInput
+    UpdateApplicationOutput: UpdateApplicationOutput
+end
+
+return M

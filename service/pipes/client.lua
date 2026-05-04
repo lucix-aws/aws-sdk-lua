@@ -1,0 +1,136 @@
+local base_client = require("client")
+local defaults = require("defaults")
+local endpoint = require("endpoint")
+local endpoint_rules = require("pipes.endpoint_rules")
+local restjson_protocol = require("protocol.restjson")
+local sdk_defaults = require("sdk_defaults")
+local types = require("pipes.types")
+
+local M = {}
+
+local Client = {}
+Client.__index = Client
+
+Client.invokeOperation = base_client.invokeOperation
+
+function M.new(cfg)
+    cfg = cfg or {}
+    cfg.service_id = "Pipes"
+    cfg.signing_name = "pipes"
+    if not cfg.protocol then
+        cfg.protocol = restjson_protocol.new()
+    end
+    if not cfg.endpoint_provider then
+        cfg.endpoint_provider = function(params)
+            return endpoint.resolve(endpoint_rules, params)
+        end
+    end
+    defaults.resolve_signer(cfg)
+    defaults.resolve_http_client(cfg)
+    defaults.resolve_retry_strategy(cfg)
+    sdk_defaults.resolve_identity_resolver(cfg)
+    local self = setmetatable(base_client.new(cfg), Client)
+    return self
+end
+
+function Client:createPipe(input, options)
+    return self:invokeOperation(input, {
+        name = "CreatePipe",
+        input_schema = types.CreatePipeInput,
+        output_schema = types.CreatePipeOutput,
+        http_method = "POST",
+        http_path = "/v1/pipes/{Name}",
+    }, options)
+end
+
+function Client:deletePipe(input, options)
+    return self:invokeOperation(input, {
+        name = "DeletePipe",
+        input_schema = types.DeletePipeInput,
+        output_schema = types.DeletePipeOutput,
+        http_method = "DELETE",
+        http_path = "/v1/pipes/{Name}",
+    }, options)
+end
+
+function Client:describePipe(input, options)
+    return self:invokeOperation(input, {
+        name = "DescribePipe",
+        input_schema = types.DescribePipeInput,
+        output_schema = types.DescribePipeOutput,
+        http_method = "GET",
+        http_path = "/v1/pipes/{Name}",
+    }, options)
+end
+
+function Client:listPipes(input, options)
+    return self:invokeOperation(input, {
+        name = "ListPipes",
+        input_schema = types.ListPipesInput,
+        output_schema = types.ListPipesOutput,
+        http_method = "GET",
+        http_path = "/v1/pipes",
+    }, options)
+end
+
+function Client:listTagsForResource(input, options)
+    return self:invokeOperation(input, {
+        name = "ListTagsForResource",
+        input_schema = types.ListTagsForResourceInput,
+        output_schema = types.ListTagsForResourceOutput,
+        http_method = "GET",
+        http_path = "/tags/{resourceArn}",
+    }, options)
+end
+
+function Client:startPipe(input, options)
+    return self:invokeOperation(input, {
+        name = "StartPipe",
+        input_schema = types.StartPipeInput,
+        output_schema = types.StartPipeOutput,
+        http_method = "POST",
+        http_path = "/v1/pipes/{Name}/start",
+    }, options)
+end
+
+function Client:stopPipe(input, options)
+    return self:invokeOperation(input, {
+        name = "StopPipe",
+        input_schema = types.StopPipeInput,
+        output_schema = types.StopPipeOutput,
+        http_method = "POST",
+        http_path = "/v1/pipes/{Name}/stop",
+    }, options)
+end
+
+function Client:tagResource(input, options)
+    return self:invokeOperation(input, {
+        name = "TagResource",
+        input_schema = types.TagResourceInput,
+        output_schema = types.TagResourceOutput,
+        http_method = "POST",
+        http_path = "/tags/{resourceArn}",
+    }, options)
+end
+
+function Client:untagResource(input, options)
+    return self:invokeOperation(input, {
+        name = "UntagResource",
+        input_schema = types.UntagResourceInput,
+        output_schema = types.UntagResourceOutput,
+        http_method = "DELETE",
+        http_path = "/tags/{resourceArn}",
+    }, options)
+end
+
+function Client:updatePipe(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdatePipe",
+        input_schema = types.UpdatePipeInput,
+        output_schema = types.UpdatePipeOutput,
+        http_method = "PUT",
+        http_path = "/v1/pipes/{Name}",
+    }, options)
+end
+
+return M

@@ -1,0 +1,89 @@
+local types = require("networkfirewall.types")
+
+local record Client
+    acceptNetworkFirewallTransitGatewayAttachment: function(Client, types.AcceptNetworkFirewallTransitGatewayAttachmentInput): types.AcceptNetworkFirewallTransitGatewayAttachmentOutput, table
+    associateAvailabilityZones: function(Client, types.AssociateAvailabilityZonesInput): types.AssociateAvailabilityZonesOutput, table
+    associateFirewallPolicy: function(Client, types.AssociateFirewallPolicyInput): types.AssociateFirewallPolicyOutput, table
+    associateSubnets: function(Client, types.AssociateSubnetsInput): types.AssociateSubnetsOutput, table
+    attachRuleGroupsToProxyConfiguration: function(Client, types.AttachRuleGroupsToProxyConfigurationInput): types.AttachRuleGroupsToProxyConfigurationOutput, table
+    createFirewall: function(Client, types.CreateFirewallInput): types.CreateFirewallOutput, table
+    createFirewallPolicy: function(Client, types.CreateFirewallPolicyInput): types.CreateFirewallPolicyOutput, table
+    createProxy: function(Client, types.CreateProxyInput): types.CreateProxyOutput, table
+    createProxyConfiguration: function(Client, types.CreateProxyConfigurationInput): types.CreateProxyConfigurationOutput, table
+    createProxyRuleGroup: function(Client, types.CreateProxyRuleGroupInput): types.CreateProxyRuleGroupOutput, table
+    createProxyRules: function(Client, types.CreateProxyRulesInput): types.CreateProxyRulesOutput, table
+    createRuleGroup: function(Client, types.CreateRuleGroupInput): types.CreateRuleGroupOutput, table
+    createTLSInspectionConfiguration: function(Client, types.CreateTLSInspectionConfigurationInput): types.CreateTLSInspectionConfigurationOutput, table
+    createVpcEndpointAssociation: function(Client, types.CreateVpcEndpointAssociationInput): types.CreateVpcEndpointAssociationOutput, table
+    deleteFirewall: function(Client, types.DeleteFirewallInput): types.DeleteFirewallOutput, table
+    deleteFirewallPolicy: function(Client, types.DeleteFirewallPolicyInput): types.DeleteFirewallPolicyOutput, table
+    deleteNetworkFirewallTransitGatewayAttachment: function(Client, types.DeleteNetworkFirewallTransitGatewayAttachmentInput): types.DeleteNetworkFirewallTransitGatewayAttachmentOutput, table
+    deleteProxy: function(Client, types.DeleteProxyInput): types.DeleteProxyOutput, table
+    deleteProxyConfiguration: function(Client, types.DeleteProxyConfigurationInput): types.DeleteProxyConfigurationOutput, table
+    deleteProxyRuleGroup: function(Client, types.DeleteProxyRuleGroupInput): types.DeleteProxyRuleGroupOutput, table
+    deleteProxyRules: function(Client, types.DeleteProxyRulesInput): types.DeleteProxyRulesOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteRuleGroup: function(Client, types.DeleteRuleGroupInput): types.DeleteRuleGroupOutput, table
+    deleteTLSInspectionConfiguration: function(Client, types.DeleteTLSInspectionConfigurationInput): types.DeleteTLSInspectionConfigurationOutput, table
+    deleteVpcEndpointAssociation: function(Client, types.DeleteVpcEndpointAssociationInput): types.DeleteVpcEndpointAssociationOutput, table
+    describeFirewall: function(Client, types.DescribeFirewallInput): types.DescribeFirewallOutput, table
+    describeFirewallMetadata: function(Client, types.DescribeFirewallMetadataInput): types.DescribeFirewallMetadataOutput, table
+    describeFirewallPolicy: function(Client, types.DescribeFirewallPolicyInput): types.DescribeFirewallPolicyOutput, table
+    describeFlowOperation: function(Client, types.DescribeFlowOperationInput): types.DescribeFlowOperationOutput, table
+    describeLoggingConfiguration: function(Client, types.DescribeLoggingConfigurationInput): types.DescribeLoggingConfigurationOutput, table
+    describeProxy: function(Client, types.DescribeProxyInput): types.DescribeProxyOutput, table
+    describeProxyConfiguration: function(Client, types.DescribeProxyConfigurationInput): types.DescribeProxyConfigurationOutput, table
+    describeProxyRule: function(Client, types.DescribeProxyRuleInput): types.DescribeProxyRuleOutput, table
+    describeProxyRuleGroup: function(Client, types.DescribeProxyRuleGroupInput): types.DescribeProxyRuleGroupOutput, table
+    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput): types.DescribeResourcePolicyOutput, table
+    describeRuleGroup: function(Client, types.DescribeRuleGroupInput): types.DescribeRuleGroupOutput, table
+    describeRuleGroupMetadata: function(Client, types.DescribeRuleGroupMetadataInput): types.DescribeRuleGroupMetadataOutput, table
+    describeRuleGroupSummary: function(Client, types.DescribeRuleGroupSummaryInput): types.DescribeRuleGroupSummaryOutput, table
+    describeTLSInspectionConfiguration: function(Client, types.DescribeTLSInspectionConfigurationInput): types.DescribeTLSInspectionConfigurationOutput, table
+    describeVpcEndpointAssociation: function(Client, types.DescribeVpcEndpointAssociationInput): types.DescribeVpcEndpointAssociationOutput, table
+    detachRuleGroupsFromProxyConfiguration: function(Client, types.DetachRuleGroupsFromProxyConfigurationInput): types.DetachRuleGroupsFromProxyConfigurationOutput, table
+    disassociateAvailabilityZones: function(Client, types.DisassociateAvailabilityZonesInput): types.DisassociateAvailabilityZonesOutput, table
+    disassociateSubnets: function(Client, types.DisassociateSubnetsInput): types.DisassociateSubnetsOutput, table
+    getAnalysisReportResults: function(Client, types.GetAnalysisReportResultsInput): types.GetAnalysisReportResultsOutput, table
+    listAnalysisReports: function(Client, types.ListAnalysisReportsInput): types.ListAnalysisReportsOutput, table
+    listFirewallPolicies: function(Client, types.ListFirewallPoliciesInput): types.ListFirewallPoliciesOutput, table
+    listFirewalls: function(Client, types.ListFirewallsInput): types.ListFirewallsOutput, table
+    listFlowOperationResults: function(Client, types.ListFlowOperationResultsInput): types.ListFlowOperationResultsOutput, table
+    listFlowOperations: function(Client, types.ListFlowOperationsInput): types.ListFlowOperationsOutput, table
+    listProxies: function(Client, types.ListProxiesInput): types.ListProxiesOutput, table
+    listProxyConfigurations: function(Client, types.ListProxyConfigurationsInput): types.ListProxyConfigurationsOutput, table
+    listProxyRuleGroups: function(Client, types.ListProxyRuleGroupsInput): types.ListProxyRuleGroupsOutput, table
+    listRuleGroups: function(Client, types.ListRuleGroupsInput): types.ListRuleGroupsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTLSInspectionConfigurations: function(Client, types.ListTLSInspectionConfigurationsInput): types.ListTLSInspectionConfigurationsOutput, table
+    listVpcEndpointAssociations: function(Client, types.ListVpcEndpointAssociationsInput): types.ListVpcEndpointAssociationsOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    rejectNetworkFirewallTransitGatewayAttachment: function(Client, types.RejectNetworkFirewallTransitGatewayAttachmentInput): types.RejectNetworkFirewallTransitGatewayAttachmentOutput, table
+    startAnalysisReport: function(Client, types.StartAnalysisReportInput): types.StartAnalysisReportOutput, table
+    startFlowCapture: function(Client, types.StartFlowCaptureInput): types.StartFlowCaptureOutput, table
+    startFlowFlush: function(Client, types.StartFlowFlushInput): types.StartFlowFlushOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAvailabilityZoneChangeProtection: function(Client, types.UpdateAvailabilityZoneChangeProtectionInput): types.UpdateAvailabilityZoneChangeProtectionOutput, table
+    updateFirewallAnalysisSettings: function(Client, types.UpdateFirewallAnalysisSettingsInput): types.UpdateFirewallAnalysisSettingsOutput, table
+    updateFirewallDeleteProtection: function(Client, types.UpdateFirewallDeleteProtectionInput): types.UpdateFirewallDeleteProtectionOutput, table
+    updateFirewallDescription: function(Client, types.UpdateFirewallDescriptionInput): types.UpdateFirewallDescriptionOutput, table
+    updateFirewallEncryptionConfiguration: function(Client, types.UpdateFirewallEncryptionConfigurationInput): types.UpdateFirewallEncryptionConfigurationOutput, table
+    updateFirewallPolicy: function(Client, types.UpdateFirewallPolicyInput): types.UpdateFirewallPolicyOutput, table
+    updateFirewallPolicyChangeProtection: function(Client, types.UpdateFirewallPolicyChangeProtectionInput): types.UpdateFirewallPolicyChangeProtectionOutput, table
+    updateLoggingConfiguration: function(Client, types.UpdateLoggingConfigurationInput): types.UpdateLoggingConfigurationOutput, table
+    updateProxy: function(Client, types.UpdateProxyInput): types.UpdateProxyOutput, table
+    updateProxyConfiguration: function(Client, types.UpdateProxyConfigurationInput): types.UpdateProxyConfigurationOutput, table
+    updateProxyRule: function(Client, types.UpdateProxyRuleInput): types.UpdateProxyRuleOutput, table
+    updateProxyRuleGroupPriorities: function(Client, types.UpdateProxyRuleGroupPrioritiesInput): types.UpdateProxyRuleGroupPrioritiesOutput, table
+    updateProxyRulePriorities: function(Client, types.UpdateProxyRulePrioritiesInput): types.UpdateProxyRulePrioritiesOutput, table
+    updateRuleGroup: function(Client, types.UpdateRuleGroupInput): types.UpdateRuleGroupOutput, table
+    updateSubnetChangeProtection: function(Client, types.UpdateSubnetChangeProtectionInput): types.UpdateSubnetChangeProtectionOutput, table
+    updateTLSInspectionConfiguration: function(Client, types.UpdateTLSInspectionConfigurationInput): types.UpdateTLSInspectionConfigurationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

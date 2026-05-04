@@ -1,0 +1,26 @@
+local types = require("support.types")
+
+local record Client
+    addAttachmentsToSet: function(Client, types.AddAttachmentsToSetInput): types.AddAttachmentsToSetOutput, table
+    addCommunicationToCase: function(Client, types.AddCommunicationToCaseInput): types.AddCommunicationToCaseOutput, table
+    createCase: function(Client, types.CreateCaseInput): types.CreateCaseOutput, table
+    describeAttachment: function(Client, types.DescribeAttachmentInput): types.DescribeAttachmentOutput, table
+    describeCases: function(Client, types.DescribeCasesInput): types.DescribeCasesOutput, table
+    describeCommunications: function(Client, types.DescribeCommunicationsInput): types.DescribeCommunicationsOutput, table
+    describeCreateCaseOptions: function(Client, types.DescribeCreateCaseOptionsInput): types.DescribeCreateCaseOptionsOutput, table
+    describeServices: function(Client, types.DescribeServicesInput): types.DescribeServicesOutput, table
+    describeSeverityLevels: function(Client, types.DescribeSeverityLevelsInput): types.DescribeSeverityLevelsOutput, table
+    describeSupportedLanguages: function(Client, types.DescribeSupportedLanguagesInput): types.DescribeSupportedLanguagesOutput, table
+    describeTrustedAdvisorCheckRefreshStatuses: function(Client, types.DescribeTrustedAdvisorCheckRefreshStatusesInput): types.DescribeTrustedAdvisorCheckRefreshStatusesOutput, table
+    describeTrustedAdvisorCheckResult: function(Client, types.DescribeTrustedAdvisorCheckResultInput): types.DescribeTrustedAdvisorCheckResultOutput, table
+    describeTrustedAdvisorChecks: function(Client, types.DescribeTrustedAdvisorChecksInput): types.DescribeTrustedAdvisorChecksOutput, table
+    describeTrustedAdvisorCheckSummaries: function(Client, types.DescribeTrustedAdvisorCheckSummariesInput): types.DescribeTrustedAdvisorCheckSummariesOutput, table
+    refreshTrustedAdvisorCheck: function(Client, types.RefreshTrustedAdvisorCheckInput): types.RefreshTrustedAdvisorCheckOutput, table
+    resolveCase: function(Client, types.ResolveCaseInput): types.ResolveCaseOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

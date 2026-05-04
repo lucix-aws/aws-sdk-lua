@@ -1,0 +1,41 @@
+local types = require("ssmincidents.types")
+
+local record Client
+    batchGetIncidentFindings: function(Client, types.BatchGetIncidentFindingsInput): types.BatchGetIncidentFindingsOutput, table
+    createReplicationSet: function(Client, types.CreateReplicationSetInput): types.CreateReplicationSetOutput, table
+    createResponsePlan: function(Client, types.CreateResponsePlanInput): types.CreateResponsePlanOutput, table
+    createTimelineEvent: function(Client, types.CreateTimelineEventInput): types.CreateTimelineEventOutput, table
+    deleteIncidentRecord: function(Client, types.DeleteIncidentRecordInput): types.DeleteIncidentRecordOutput, table
+    deleteReplicationSet: function(Client, types.DeleteReplicationSetInput): types.DeleteReplicationSetOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteResponsePlan: function(Client, types.DeleteResponsePlanInput): types.DeleteResponsePlanOutput, table
+    deleteTimelineEvent: function(Client, types.DeleteTimelineEventInput): types.DeleteTimelineEventOutput, table
+    getIncidentRecord: function(Client, types.GetIncidentRecordInput): types.GetIncidentRecordOutput, table
+    getReplicationSet: function(Client, types.GetReplicationSetInput): types.GetReplicationSetOutput, table
+    getResourcePolicies: function(Client, types.GetResourcePoliciesInput): types.GetResourcePoliciesOutput, table
+    getResponsePlan: function(Client, types.GetResponsePlanInput): types.GetResponsePlanOutput, table
+    getTimelineEvent: function(Client, types.GetTimelineEventInput): types.GetTimelineEventOutput, table
+    listIncidentFindings: function(Client, types.ListIncidentFindingsInput): types.ListIncidentFindingsOutput, table
+    listIncidentRecords: function(Client, types.ListIncidentRecordsInput): types.ListIncidentRecordsOutput, table
+    listRelatedItems: function(Client, types.ListRelatedItemsInput): types.ListRelatedItemsOutput, table
+    listReplicationSets: function(Client, types.ListReplicationSetsInput): types.ListReplicationSetsOutput, table
+    listResponsePlans: function(Client, types.ListResponsePlansInput): types.ListResponsePlansOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTimelineEvents: function(Client, types.ListTimelineEventsInput): types.ListTimelineEventsOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    startIncident: function(Client, types.StartIncidentInput): types.StartIncidentOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateDeletionProtection: function(Client, types.UpdateDeletionProtectionInput): types.UpdateDeletionProtectionOutput, table
+    updateIncidentRecord: function(Client, types.UpdateIncidentRecordInput): types.UpdateIncidentRecordOutput, table
+    updateRelatedItems: function(Client, types.UpdateRelatedItemsInput): types.UpdateRelatedItemsOutput, table
+    updateReplicationSet: function(Client, types.UpdateReplicationSetInput): types.UpdateReplicationSetOutput, table
+    updateResponsePlan: function(Client, types.UpdateResponsePlanInput): types.UpdateResponsePlanOutput, table
+    updateTimelineEvent: function(Client, types.UpdateTimelineEventInput): types.UpdateTimelineEventOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

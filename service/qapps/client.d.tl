@@ -1,0 +1,45 @@
+local types = require("qapps.types")
+
+local record Client
+    associateLibraryItemReview: function(Client, types.AssociateLibraryItemReviewInput): types.AssociateLibraryItemReviewOutput, table
+    associateQAppWithUser: function(Client, types.AssociateQAppWithUserInput): types.AssociateQAppWithUserOutput, table
+    batchCreateCategory: function(Client, types.BatchCreateCategoryInput): types.BatchCreateCategoryOutput, table
+    batchDeleteCategory: function(Client, types.BatchDeleteCategoryInput): types.BatchDeleteCategoryOutput, table
+    batchUpdateCategory: function(Client, types.BatchUpdateCategoryInput): types.BatchUpdateCategoryOutput, table
+    createLibraryItem: function(Client, types.CreateLibraryItemInput): types.CreateLibraryItemOutput, table
+    createPresignedUrl: function(Client, types.CreatePresignedUrlInput): types.CreatePresignedUrlOutput, table
+    createQApp: function(Client, types.CreateQAppInput): types.CreateQAppOutput, table
+    deleteLibraryItem: function(Client, types.DeleteLibraryItemInput): types.DeleteLibraryItemOutput, table
+    deleteQApp: function(Client, types.DeleteQAppInput): types.DeleteQAppOutput, table
+    describeQAppPermissions: function(Client, types.DescribeQAppPermissionsInput): types.DescribeQAppPermissionsOutput, table
+    disassociateLibraryItemReview: function(Client, types.DisassociateLibraryItemReviewInput): types.DisassociateLibraryItemReviewOutput, table
+    disassociateQAppFromUser: function(Client, types.DisassociateQAppFromUserInput): types.DisassociateQAppFromUserOutput, table
+    exportQAppSessionData: function(Client, types.ExportQAppSessionDataInput): types.ExportQAppSessionDataOutput, table
+    getLibraryItem: function(Client, types.GetLibraryItemInput): types.GetLibraryItemOutput, table
+    getQApp: function(Client, types.GetQAppInput): types.GetQAppOutput, table
+    getQAppSession: function(Client, types.GetQAppSessionInput): types.GetQAppSessionOutput, table
+    getQAppSessionMetadata: function(Client, types.GetQAppSessionMetadataInput): types.GetQAppSessionMetadataOutput, table
+    importDocument: function(Client, types.ImportDocumentInput): types.ImportDocumentOutput, table
+    listCategories: function(Client, types.ListCategoriesInput): types.ListCategoriesOutput, table
+    listLibraryItems: function(Client, types.ListLibraryItemsInput): types.ListLibraryItemsOutput, table
+    listQApps: function(Client, types.ListQAppsInput): types.ListQAppsOutput, table
+    listQAppSessionData: function(Client, types.ListQAppSessionDataInput): types.ListQAppSessionDataOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    predictQApp: function(Client, types.PredictQAppInput): types.PredictQAppOutput, table
+    startQAppSession: function(Client, types.StartQAppSessionInput): types.StartQAppSessionOutput, table
+    stopQAppSession: function(Client, types.StopQAppSessionInput): types.StopQAppSessionOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateLibraryItem: function(Client, types.UpdateLibraryItemInput): types.UpdateLibraryItemOutput, table
+    updateLibraryItemMetadata: function(Client, types.UpdateLibraryItemMetadataInput): types.UpdateLibraryItemMetadataOutput, table
+    updateQApp: function(Client, types.UpdateQAppInput): types.UpdateQAppOutput, table
+    updateQAppPermissions: function(Client, types.UpdateQAppPermissionsInput): types.UpdateQAppPermissionsOutput, table
+    updateQAppSession: function(Client, types.UpdateQAppSessionInput): types.UpdateQAppSessionOutput, table
+    updateQAppSessionMetadata: function(Client, types.UpdateQAppSessionMetadataInput): types.UpdateQAppSessionMetadataOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

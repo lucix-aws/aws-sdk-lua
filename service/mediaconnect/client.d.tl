@@ -1,0 +1,92 @@
+local types = require("mediaconnect.types")
+
+local record Client
+    addBridgeOutputs: function(Client, types.AddBridgeOutputsInput): types.AddBridgeOutputsOutput, table
+    addBridgeSources: function(Client, types.AddBridgeSourcesInput): types.AddBridgeSourcesOutput, table
+    addFlowMediaStreams: function(Client, types.AddFlowMediaStreamsInput): types.AddFlowMediaStreamsOutput, table
+    addFlowOutputs: function(Client, types.AddFlowOutputsInput): types.AddFlowOutputsOutput, table
+    addFlowSources: function(Client, types.AddFlowSourcesInput): types.AddFlowSourcesOutput, table
+    addFlowVpcInterfaces: function(Client, types.AddFlowVpcInterfacesInput): types.AddFlowVpcInterfacesOutput, table
+    batchGetRouterInput: function(Client, types.BatchGetRouterInputInput): types.BatchGetRouterInputOutput, table
+    batchGetRouterNetworkInterface: function(Client, types.BatchGetRouterNetworkInterfaceInput): types.BatchGetRouterNetworkInterfaceOutput, table
+    batchGetRouterOutput: function(Client, types.BatchGetRouterOutputInput): types.BatchGetRouterOutputOutput, table
+    createBridge: function(Client, types.CreateBridgeInput): types.CreateBridgeOutput, table
+    createFlow: function(Client, types.CreateFlowInput): types.CreateFlowOutput, table
+    createGateway: function(Client, types.CreateGatewayInput): types.CreateGatewayOutput, table
+    createRouterInput: function(Client, types.CreateRouterInputInput): types.CreateRouterInputOutput, table
+    createRouterNetworkInterface: function(Client, types.CreateRouterNetworkInterfaceInput): types.CreateRouterNetworkInterfaceOutput, table
+    createRouterOutput: function(Client, types.CreateRouterOutputInput): types.CreateRouterOutputOutput, table
+    deleteBridge: function(Client, types.DeleteBridgeInput): types.DeleteBridgeOutput, table
+    deleteFlow: function(Client, types.DeleteFlowInput): types.DeleteFlowOutput, table
+    deleteGateway: function(Client, types.DeleteGatewayInput): types.DeleteGatewayOutput, table
+    deleteRouterInput: function(Client, types.DeleteRouterInputInput): types.DeleteRouterInputOutput, table
+    deleteRouterNetworkInterface: function(Client, types.DeleteRouterNetworkInterfaceInput): types.DeleteRouterNetworkInterfaceOutput, table
+    deleteRouterOutput: function(Client, types.DeleteRouterOutputInput): types.DeleteRouterOutputOutput, table
+    deregisterGatewayInstance: function(Client, types.DeregisterGatewayInstanceInput): types.DeregisterGatewayInstanceOutput, table
+    describeBridge: function(Client, types.DescribeBridgeInput): types.DescribeBridgeOutput, table
+    describeFlow: function(Client, types.DescribeFlowInput): types.DescribeFlowOutput, table
+    describeFlowSourceMetadata: function(Client, types.DescribeFlowSourceMetadataInput): types.DescribeFlowSourceMetadataOutput, table
+    describeFlowSourceThumbnail: function(Client, types.DescribeFlowSourceThumbnailInput): types.DescribeFlowSourceThumbnailOutput, table
+    describeGateway: function(Client, types.DescribeGatewayInput): types.DescribeGatewayOutput, table
+    describeGatewayInstance: function(Client, types.DescribeGatewayInstanceInput): types.DescribeGatewayInstanceOutput, table
+    describeOffering: function(Client, types.DescribeOfferingInput): types.DescribeOfferingOutput, table
+    describeReservation: function(Client, types.DescribeReservationInput): types.DescribeReservationOutput, table
+    getRouterInput: function(Client, types.GetRouterInputInput): types.GetRouterInputOutput, table
+    getRouterInputSourceMetadata: function(Client, types.GetRouterInputSourceMetadataInput): types.GetRouterInputSourceMetadataOutput, table
+    getRouterInputThumbnail: function(Client, types.GetRouterInputThumbnailInput): types.GetRouterInputThumbnailOutput, table
+    getRouterNetworkInterface: function(Client, types.GetRouterNetworkInterfaceInput): types.GetRouterNetworkInterfaceOutput, table
+    getRouterOutput: function(Client, types.GetRouterOutputInput): types.GetRouterOutputOutput, table
+    grantFlowEntitlements: function(Client, types.GrantFlowEntitlementsInput): types.GrantFlowEntitlementsOutput, table
+    listBridges: function(Client, types.ListBridgesInput): types.ListBridgesOutput, table
+    listEntitlements: function(Client, types.ListEntitlementsInput): types.ListEntitlementsOutput, table
+    listFlows: function(Client, types.ListFlowsInput): types.ListFlowsOutput, table
+    listGatewayInstances: function(Client, types.ListGatewayInstancesInput): types.ListGatewayInstancesOutput, table
+    listGateways: function(Client, types.ListGatewaysInput): types.ListGatewaysOutput, table
+    listOfferings: function(Client, types.ListOfferingsInput): types.ListOfferingsOutput, table
+    listReservations: function(Client, types.ListReservationsInput): types.ListReservationsOutput, table
+    listRouterInputs: function(Client, types.ListRouterInputsInput): types.ListRouterInputsOutput, table
+    listRouterNetworkInterfaces: function(Client, types.ListRouterNetworkInterfacesInput): types.ListRouterNetworkInterfacesOutput, table
+    listRouterOutputs: function(Client, types.ListRouterOutputsInput): types.ListRouterOutputsOutput, table
+    listTagsForGlobalResource: function(Client, types.ListTagsForGlobalResourceInput): types.ListTagsForGlobalResourceOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    purchaseOffering: function(Client, types.PurchaseOfferingInput): types.PurchaseOfferingOutput, table
+    removeBridgeOutput: function(Client, types.RemoveBridgeOutputInput): types.RemoveBridgeOutputOutput, table
+    removeBridgeSource: function(Client, types.RemoveBridgeSourceInput): types.RemoveBridgeSourceOutput, table
+    removeFlowMediaStream: function(Client, types.RemoveFlowMediaStreamInput): types.RemoveFlowMediaStreamOutput, table
+    removeFlowOutput: function(Client, types.RemoveFlowOutputInput): types.RemoveFlowOutputOutput, table
+    removeFlowSource: function(Client, types.RemoveFlowSourceInput): types.RemoveFlowSourceOutput, table
+    removeFlowVpcInterface: function(Client, types.RemoveFlowVpcInterfaceInput): types.RemoveFlowVpcInterfaceOutput, table
+    restartRouterInput: function(Client, types.RestartRouterInputInput): types.RestartRouterInputOutput, table
+    restartRouterOutput: function(Client, types.RestartRouterOutputInput): types.RestartRouterOutputOutput, table
+    revokeFlowEntitlement: function(Client, types.RevokeFlowEntitlementInput): types.RevokeFlowEntitlementOutput, table
+    startFlow: function(Client, types.StartFlowInput): types.StartFlowOutput, table
+    startRouterInput: function(Client, types.StartRouterInputInput): types.StartRouterInputOutput, table
+    startRouterOutput: function(Client, types.StartRouterOutputInput): types.StartRouterOutputOutput, table
+    stopFlow: function(Client, types.StopFlowInput): types.StopFlowOutput, table
+    stopRouterInput: function(Client, types.StopRouterInputInput): types.StopRouterInputOutput, table
+    stopRouterOutput: function(Client, types.StopRouterOutputInput): types.StopRouterOutputOutput, table
+    tagGlobalResource: function(Client, types.TagGlobalResourceInput): types.TagGlobalResourceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    takeRouterInput: function(Client, types.TakeRouterInputInput): types.TakeRouterInputOutput, table
+    untagGlobalResource: function(Client, types.UntagGlobalResourceInput): types.UntagGlobalResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateBridge: function(Client, types.UpdateBridgeInput): types.UpdateBridgeOperationOutput, table
+    updateBridgeOutput: function(Client, types.UpdateBridgeOutputInput): types.UpdateBridgeOutputOutput, table
+    updateBridgeSource: function(Client, types.UpdateBridgeSourceInput): types.UpdateBridgeSourceOutput, table
+    updateBridgeState: function(Client, types.UpdateBridgeStateInput): types.UpdateBridgeStateOutput, table
+    updateFlow: function(Client, types.UpdateFlowInput): types.UpdateFlowOperationOutput, table
+    updateFlowEntitlement: function(Client, types.UpdateFlowEntitlementInput): types.UpdateFlowEntitlementOutput, table
+    updateFlowMediaStream: function(Client, types.UpdateFlowMediaStreamInput): types.UpdateFlowMediaStreamOutput, table
+    updateFlowOutput: function(Client, types.UpdateFlowOutputInput): types.UpdateFlowOutputOutput, table
+    updateFlowSource: function(Client, types.UpdateFlowSourceInput): types.UpdateFlowSourceOutput, table
+    updateGatewayInstance: function(Client, types.UpdateGatewayInstanceInput): types.UpdateGatewayInstanceOutput, table
+    updateRouterInput: function(Client, types.UpdateRouterInputInput): types.UpdateRouterInputOutput, table
+    updateRouterNetworkInterface: function(Client, types.UpdateRouterNetworkInterfaceInput): types.UpdateRouterNetworkInterfaceOutput, table
+    updateRouterOutput: function(Client, types.UpdateRouterOutputInput): types.UpdateRouterOutputOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

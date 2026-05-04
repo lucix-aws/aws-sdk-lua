@@ -1,0 +1,50 @@
+local types = require("observabilityadmin.types")
+
+local record Client
+    createCentralizationRuleForOrganization: function(Client, types.CreateCentralizationRuleForOrganizationInput): types.CreateCentralizationRuleForOrganizationOutput, table
+    createS3TableIntegration: function(Client, types.CreateS3TableIntegrationInput): types.CreateS3TableIntegrationOutput, table
+    createTelemetryPipeline: function(Client, types.CreateTelemetryPipelineInput): types.CreateTelemetryPipelineOutput, table
+    createTelemetryRule: function(Client, types.CreateTelemetryRuleInput): types.CreateTelemetryRuleOutput, table
+    createTelemetryRuleForOrganization: function(Client, types.CreateTelemetryRuleForOrganizationInput): types.CreateTelemetryRuleForOrganizationOutput, table
+    deleteCentralizationRuleForOrganization: function(Client, types.DeleteCentralizationRuleForOrganizationInput): types.DeleteCentralizationRuleForOrganizationOutput, table
+    deleteS3TableIntegration: function(Client, types.DeleteS3TableIntegrationInput): types.DeleteS3TableIntegrationOutput, table
+    deleteTelemetryPipeline: function(Client, types.DeleteTelemetryPipelineInput): types.DeleteTelemetryPipelineOutput, table
+    deleteTelemetryRule: function(Client, types.DeleteTelemetryRuleInput): types.DeleteTelemetryRuleOutput, table
+    deleteTelemetryRuleForOrganization: function(Client, types.DeleteTelemetryRuleForOrganizationInput): types.DeleteTelemetryRuleForOrganizationOutput, table
+    getCentralizationRuleForOrganization: function(Client, types.GetCentralizationRuleForOrganizationInput): types.GetCentralizationRuleForOrganizationOutput, table
+    getS3TableIntegration: function(Client, types.GetS3TableIntegrationInput): types.GetS3TableIntegrationOutput, table
+    getTelemetryEnrichmentStatus: function(Client, types.GetTelemetryEnrichmentStatusInput): types.GetTelemetryEnrichmentStatusOutput, table
+    getTelemetryEvaluationStatus: function(Client, types.GetTelemetryEvaluationStatusInput): types.GetTelemetryEvaluationStatusOutput, table
+    getTelemetryEvaluationStatusForOrganization: function(Client, types.GetTelemetryEvaluationStatusForOrganizationInput): types.GetTelemetryEvaluationStatusForOrganizationOutput, table
+    getTelemetryPipeline: function(Client, types.GetTelemetryPipelineInput): types.GetTelemetryPipelineOutput, table
+    getTelemetryRule: function(Client, types.GetTelemetryRuleInput): types.GetTelemetryRuleOutput, table
+    getTelemetryRuleForOrganization: function(Client, types.GetTelemetryRuleForOrganizationInput): types.GetTelemetryRuleForOrganizationOutput, table
+    listCentralizationRulesForOrganization: function(Client, types.ListCentralizationRulesForOrganizationInput): types.ListCentralizationRulesForOrganizationOutput, table
+    listResourceTelemetry: function(Client, types.ListResourceTelemetryInput): types.ListResourceTelemetryOutput, table
+    listResourceTelemetryForOrganization: function(Client, types.ListResourceTelemetryForOrganizationInput): types.ListResourceTelemetryForOrganizationOutput, table
+    listS3TableIntegrations: function(Client, types.ListS3TableIntegrationsInput): types.ListS3TableIntegrationsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTelemetryPipelines: function(Client, types.ListTelemetryPipelinesInput): types.ListTelemetryPipelinesOutput, table
+    listTelemetryRules: function(Client, types.ListTelemetryRulesInput): types.ListTelemetryRulesOutput, table
+    listTelemetryRulesForOrganization: function(Client, types.ListTelemetryRulesForOrganizationInput): types.ListTelemetryRulesForOrganizationOutput, table
+    startTelemetryEnrichment: function(Client, types.StartTelemetryEnrichmentInput): types.StartTelemetryEnrichmentOutput, table
+    startTelemetryEvaluation: function(Client, types.StartTelemetryEvaluationInput): types.StartTelemetryEvaluationOutput, table
+    startTelemetryEvaluationForOrganization: function(Client, types.StartTelemetryEvaluationForOrganizationInput): types.StartTelemetryEvaluationForOrganizationOutput, table
+    stopTelemetryEnrichment: function(Client, types.StopTelemetryEnrichmentInput): types.StopTelemetryEnrichmentOutput, table
+    stopTelemetryEvaluation: function(Client, types.StopTelemetryEvaluationInput): types.StopTelemetryEvaluationOutput, table
+    stopTelemetryEvaluationForOrganization: function(Client, types.StopTelemetryEvaluationForOrganizationInput): types.StopTelemetryEvaluationForOrganizationOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    testTelemetryPipeline: function(Client, types.TestTelemetryPipelineInput): types.TestTelemetryPipelineOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateCentralizationRuleForOrganization: function(Client, types.UpdateCentralizationRuleForOrganizationInput): types.UpdateCentralizationRuleForOrganizationOutput, table
+    updateTelemetryPipeline: function(Client, types.UpdateTelemetryPipelineInput): types.UpdateTelemetryPipelineOutput, table
+    updateTelemetryRule: function(Client, types.UpdateTelemetryRuleInput): types.UpdateTelemetryRuleOutput, table
+    updateTelemetryRuleForOrganization: function(Client, types.UpdateTelemetryRuleForOrganizationInput): types.UpdateTelemetryRuleForOrganizationOutput, table
+    validateTelemetryPipelineConfiguration: function(Client, types.ValidateTelemetryPipelineConfigurationInput): types.ValidateTelemetryPipelineConfigurationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

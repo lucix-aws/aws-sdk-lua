@@ -1,0 +1,33 @@
+local types = require("secretsmanager.types")
+
+local record Client
+    batchGetSecretValue: function(Client, types.BatchGetSecretValueInput): types.BatchGetSecretValueOutput, table
+    cancelRotateSecret: function(Client, types.CancelRotateSecretInput): types.CancelRotateSecretOutput, table
+    createSecret: function(Client, types.CreateSecretInput): types.CreateSecretOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteSecret: function(Client, types.DeleteSecretInput): types.DeleteSecretOutput, table
+    describeSecret: function(Client, types.DescribeSecretInput): types.DescribeSecretOutput, table
+    getRandomPassword: function(Client, types.GetRandomPasswordInput): types.GetRandomPasswordOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getSecretValue: function(Client, types.GetSecretValueInput): types.GetSecretValueOutput, table
+    listSecrets: function(Client, types.ListSecretsInput): types.ListSecretsOutput, table
+    listSecretVersionIds: function(Client, types.ListSecretVersionIdsInput): types.ListSecretVersionIdsOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    putSecretValue: function(Client, types.PutSecretValueInput): types.PutSecretValueOutput, table
+    removeRegionsFromReplication: function(Client, types.RemoveRegionsFromReplicationInput): types.RemoveRegionsFromReplicationOutput, table
+    replicateSecretToRegions: function(Client, types.ReplicateSecretToRegionsInput): types.ReplicateSecretToRegionsOutput, table
+    restoreSecret: function(Client, types.RestoreSecretInput): types.RestoreSecretOutput, table
+    rotateSecret: function(Client, types.RotateSecretInput): types.RotateSecretOutput, table
+    stopReplicationToReplica: function(Client, types.StopReplicationToReplicaInput): types.StopReplicationToReplicaOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateSecret: function(Client, types.UpdateSecretInput): types.UpdateSecretOutput, table
+    updateSecretVersionStage: function(Client, types.UpdateSecretVersionStageInput): types.UpdateSecretVersionStageOutput, table
+    validateResourcePolicy: function(Client, types.ValidateResourcePolicyInput): types.ValidateResourcePolicyOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

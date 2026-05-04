@@ -1,0 +1,49 @@
+local types = require("kinesis.types")
+
+local record Client
+    addTagsToStream: function(Client, types.AddTagsToStreamInput): types.AddTagsToStreamOutput, table
+    createStream: function(Client, types.CreateStreamInput): types.CreateStreamOutput, table
+    decreaseStreamRetentionPeriod: function(Client, types.DecreaseStreamRetentionPeriodInput): types.DecreaseStreamRetentionPeriodOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    deleteStream: function(Client, types.DeleteStreamInput): types.DeleteStreamOutput, table
+    deregisterStreamConsumer: function(Client, types.DeregisterStreamConsumerInput): types.DeregisterStreamConsumerOutput, table
+    describeAccountSettings: function(Client, types.DescribeAccountSettingsInput): types.DescribeAccountSettingsOutput, table
+    describeLimits: function(Client, types.DescribeLimitsInput): types.DescribeLimitsOutput, table
+    describeStream: function(Client, types.DescribeStreamInput): types.DescribeStreamOutput, table
+    describeStreamConsumer: function(Client, types.DescribeStreamConsumerInput): types.DescribeStreamConsumerOutput, table
+    describeStreamSummary: function(Client, types.DescribeStreamSummaryInput): types.DescribeStreamSummaryOutput, table
+    disableEnhancedMonitoring: function(Client, types.DisableEnhancedMonitoringInput): types.DisableEnhancedMonitoringOutput, table
+    enableEnhancedMonitoring: function(Client, types.EnableEnhancedMonitoringInput): types.EnableEnhancedMonitoringOutput, table
+    getRecords: function(Client, types.GetRecordsInput): types.GetRecordsOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    getShardIterator: function(Client, types.GetShardIteratorInput): types.GetShardIteratorOutput, table
+    increaseStreamRetentionPeriod: function(Client, types.IncreaseStreamRetentionPeriodInput): types.IncreaseStreamRetentionPeriodOutput, table
+    listShards: function(Client, types.ListShardsInput): types.ListShardsOutput, table
+    listStreamConsumers: function(Client, types.ListStreamConsumersInput): types.ListStreamConsumersOutput, table
+    listStreams: function(Client, types.ListStreamsInput): types.ListStreamsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTagsForStream: function(Client, types.ListTagsForStreamInput): types.ListTagsForStreamOutput, table
+    mergeShards: function(Client, types.MergeShardsInput): types.MergeShardsOutput, table
+    putRecord: function(Client, types.PutRecordInput): types.PutRecordOutput, table
+    putRecords: function(Client, types.PutRecordsInput): types.PutRecordsOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    registerStreamConsumer: function(Client, types.RegisterStreamConsumerInput): types.RegisterStreamConsumerOutput, table
+    removeTagsFromStream: function(Client, types.RemoveTagsFromStreamInput): types.RemoveTagsFromStreamOutput, table
+    splitShard: function(Client, types.SplitShardInput): types.SplitShardOutput, table
+    startStreamEncryption: function(Client, types.StartStreamEncryptionInput): types.StartStreamEncryptionOutput, table
+    stopStreamEncryption: function(Client, types.StopStreamEncryptionInput): types.StopStreamEncryptionOutput, table
+    subscribeToShard: function(Client, types.SubscribeToShardInput): types.SubscribeToShardOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput): types.UpdateAccountSettingsOutput, table
+    updateMaxRecordSize: function(Client, types.UpdateMaxRecordSizeInput): types.UpdateMaxRecordSizeOutput, table
+    updateShardCount: function(Client, types.UpdateShardCountInput): types.UpdateShardCountOutput, table
+    updateStreamMode: function(Client, types.UpdateStreamModeInput): types.UpdateStreamModeOutput, table
+    updateStreamWarmThroughput: function(Client, types.UpdateStreamWarmThroughputInput): types.UpdateStreamWarmThroughputOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

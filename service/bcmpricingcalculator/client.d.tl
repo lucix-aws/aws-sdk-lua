@@ -1,0 +1,46 @@
+local types = require("bcmpricingcalculator.types")
+
+local record Client
+    batchCreateBillScenarioCommitmentModification: function(Client, types.BatchCreateBillScenarioCommitmentModificationInput): types.BatchCreateBillScenarioCommitmentModificationOutput, table
+    batchCreateBillScenarioUsageModification: function(Client, types.BatchCreateBillScenarioUsageModificationInput): types.BatchCreateBillScenarioUsageModificationOutput, table
+    batchCreateWorkloadEstimateUsage: function(Client, types.BatchCreateWorkloadEstimateUsageInput): types.BatchCreateWorkloadEstimateUsageOutput, table
+    batchDeleteBillScenarioCommitmentModification: function(Client, types.BatchDeleteBillScenarioCommitmentModificationInput): types.BatchDeleteBillScenarioCommitmentModificationOutput, table
+    batchDeleteBillScenarioUsageModification: function(Client, types.BatchDeleteBillScenarioUsageModificationInput): types.BatchDeleteBillScenarioUsageModificationOutput, table
+    batchDeleteWorkloadEstimateUsage: function(Client, types.BatchDeleteWorkloadEstimateUsageInput): types.BatchDeleteWorkloadEstimateUsageOutput, table
+    batchUpdateBillScenarioCommitmentModification: function(Client, types.BatchUpdateBillScenarioCommitmentModificationInput): types.BatchUpdateBillScenarioCommitmentModificationOutput, table
+    batchUpdateBillScenarioUsageModification: function(Client, types.BatchUpdateBillScenarioUsageModificationInput): types.BatchUpdateBillScenarioUsageModificationOutput, table
+    batchUpdateWorkloadEstimateUsage: function(Client, types.BatchUpdateWorkloadEstimateUsageInput): types.BatchUpdateWorkloadEstimateUsageOutput, table
+    createBillEstimate: function(Client, types.CreateBillEstimateInput): types.CreateBillEstimateOutput, table
+    createBillScenario: function(Client, types.CreateBillScenarioInput): types.CreateBillScenarioOutput, table
+    createWorkloadEstimate: function(Client, types.CreateWorkloadEstimateInput): types.CreateWorkloadEstimateOutput, table
+    deleteBillEstimate: function(Client, types.DeleteBillEstimateInput): types.DeleteBillEstimateOutput, table
+    deleteBillScenario: function(Client, types.DeleteBillScenarioInput): types.DeleteBillScenarioOutput, table
+    deleteWorkloadEstimate: function(Client, types.DeleteWorkloadEstimateInput): types.DeleteWorkloadEstimateOutput, table
+    getBillEstimate: function(Client, types.GetBillEstimateInput): types.GetBillEstimateOutput, table
+    getBillScenario: function(Client, types.GetBillScenarioInput): types.GetBillScenarioOutput, table
+    getPreferences: function(Client, types.GetPreferencesInput): types.GetPreferencesOutput, table
+    getWorkloadEstimate: function(Client, types.GetWorkloadEstimateInput): types.GetWorkloadEstimateOutput, table
+    listBillEstimateCommitments: function(Client, types.ListBillEstimateCommitmentsInput): types.ListBillEstimateCommitmentsOutput, table
+    listBillEstimateInputCommitmentModifications: function(Client, types.ListBillEstimateInputCommitmentModificationsInput): types.ListBillEstimateInputCommitmentModificationsOutput, table
+    listBillEstimateInputUsageModifications: function(Client, types.ListBillEstimateInputUsageModificationsInput): types.ListBillEstimateInputUsageModificationsOutput, table
+    listBillEstimateLineItems: function(Client, types.ListBillEstimateLineItemsInput): types.ListBillEstimateLineItemsOutput, table
+    listBillEstimates: function(Client, types.ListBillEstimatesInput): types.ListBillEstimatesOutput, table
+    listBillScenarioCommitmentModifications: function(Client, types.ListBillScenarioCommitmentModificationsInput): types.ListBillScenarioCommitmentModificationsOutput, table
+    listBillScenarios: function(Client, types.ListBillScenariosInput): types.ListBillScenariosOutput, table
+    listBillScenarioUsageModifications: function(Client, types.ListBillScenarioUsageModificationsInput): types.ListBillScenarioUsageModificationsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listWorkloadEstimates: function(Client, types.ListWorkloadEstimatesInput): types.ListWorkloadEstimatesOutput, table
+    listWorkloadEstimateUsage: function(Client, types.ListWorkloadEstimateUsageInput): types.ListWorkloadEstimateUsageOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateBillEstimate: function(Client, types.UpdateBillEstimateInput): types.UpdateBillEstimateOutput, table
+    updateBillScenario: function(Client, types.UpdateBillScenarioInput): types.UpdateBillScenarioOutput, table
+    updatePreferences: function(Client, types.UpdatePreferencesInput): types.UpdatePreferencesOutput, table
+    updateWorkloadEstimate: function(Client, types.UpdateWorkloadEstimateInput): types.UpdateWorkloadEstimateOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

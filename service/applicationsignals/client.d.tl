@@ -1,0 +1,33 @@
+local types = require("applicationsignals.types")
+
+local record Client
+    batchGetServiceLevelObjectiveBudgetReport: function(Client, types.BatchGetServiceLevelObjectiveBudgetReportInput): types.BatchGetServiceLevelObjectiveBudgetReportOutput, table
+    batchUpdateExclusionWindows: function(Client, types.BatchUpdateExclusionWindowsInput): types.BatchUpdateExclusionWindowsOutput, table
+    createServiceLevelObjective: function(Client, types.CreateServiceLevelObjectiveInput): types.CreateServiceLevelObjectiveOutput, table
+    deleteGroupingConfiguration: function(Client, types.DeleteGroupingConfigurationInput): types.DeleteGroupingConfigurationOutput, table
+    deleteServiceLevelObjective: function(Client, types.DeleteServiceLevelObjectiveInput): types.DeleteServiceLevelObjectiveOutput, table
+    getService: function(Client, types.GetServiceInput): types.GetServiceOutput, table
+    getServiceLevelObjective: function(Client, types.GetServiceLevelObjectiveInput): types.GetServiceLevelObjectiveOutput, table
+    listAuditFindings: function(Client, types.ListAuditFindingsInput): types.ListAuditFindingsOutput, table
+    listEntityEvents: function(Client, types.ListEntityEventsInput): types.ListEntityEventsOutput, table
+    listGroupingAttributeDefinitions: function(Client, types.ListGroupingAttributeDefinitionsInput): types.ListGroupingAttributeDefinitionsOutput, table
+    listServiceDependencies: function(Client, types.ListServiceDependenciesInput): types.ListServiceDependenciesOutput, table
+    listServiceDependents: function(Client, types.ListServiceDependentsInput): types.ListServiceDependentsOutput, table
+    listServiceLevelObjectiveExclusionWindows: function(Client, types.ListServiceLevelObjectiveExclusionWindowsInput): types.ListServiceLevelObjectiveExclusionWindowsOutput, table
+    listServiceLevelObjectives: function(Client, types.ListServiceLevelObjectivesInput): types.ListServiceLevelObjectivesOutput, table
+    listServiceOperations: function(Client, types.ListServiceOperationsInput): types.ListServiceOperationsOutput, table
+    listServices: function(Client, types.ListServicesInput): types.ListServicesOutput, table
+    listServiceStates: function(Client, types.ListServiceStatesInput): types.ListServiceStatesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putGroupingConfiguration: function(Client, types.PutGroupingConfigurationInput): types.PutGroupingConfigurationOutput, table
+    startDiscovery: function(Client, types.StartDiscoveryInput): types.StartDiscoveryOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateServiceLevelObjective: function(Client, types.UpdateServiceLevelObjectiveInput): types.UpdateServiceLevelObjectiveOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

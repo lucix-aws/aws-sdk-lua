@@ -1,0 +1,49 @@
+local types = require("swf.types")
+
+local record Client
+    countClosedWorkflowExecutions: function(Client, types.CountClosedWorkflowExecutionsInput): types.CountClosedWorkflowExecutionsOutput, table
+    countOpenWorkflowExecutions: function(Client, types.CountOpenWorkflowExecutionsInput): types.CountOpenWorkflowExecutionsOutput, table
+    countPendingActivityTasks: function(Client, types.CountPendingActivityTasksInput): types.CountPendingActivityTasksOutput, table
+    countPendingDecisionTasks: function(Client, types.CountPendingDecisionTasksInput): types.CountPendingDecisionTasksOutput, table
+    deleteActivityType: function(Client, types.DeleteActivityTypeInput): types.DeleteActivityTypeOutput, table
+    deleteWorkflowType: function(Client, types.DeleteWorkflowTypeInput): types.DeleteWorkflowTypeOutput, table
+    deprecateActivityType: function(Client, types.DeprecateActivityTypeInput): types.DeprecateActivityTypeOutput, table
+    deprecateDomain: function(Client, types.DeprecateDomainInput): types.DeprecateDomainOutput, table
+    deprecateWorkflowType: function(Client, types.DeprecateWorkflowTypeInput): types.DeprecateWorkflowTypeOutput, table
+    describeActivityType: function(Client, types.DescribeActivityTypeInput): types.DescribeActivityTypeOutput, table
+    describeDomain: function(Client, types.DescribeDomainInput): types.DescribeDomainOutput, table
+    describeWorkflowExecution: function(Client, types.DescribeWorkflowExecutionInput): types.DescribeWorkflowExecutionOutput, table
+    describeWorkflowType: function(Client, types.DescribeWorkflowTypeInput): types.DescribeWorkflowTypeOutput, table
+    getWorkflowExecutionHistory: function(Client, types.GetWorkflowExecutionHistoryInput): types.GetWorkflowExecutionHistoryOutput, table
+    listActivityTypes: function(Client, types.ListActivityTypesInput): types.ListActivityTypesOutput, table
+    listClosedWorkflowExecutions: function(Client, types.ListClosedWorkflowExecutionsInput): types.ListClosedWorkflowExecutionsOutput, table
+    listDomains: function(Client, types.ListDomainsInput): types.ListDomainsOutput, table
+    listOpenWorkflowExecutions: function(Client, types.ListOpenWorkflowExecutionsInput): types.ListOpenWorkflowExecutionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listWorkflowTypes: function(Client, types.ListWorkflowTypesInput): types.ListWorkflowTypesOutput, table
+    pollForActivityTask: function(Client, types.PollForActivityTaskInput): types.PollForActivityTaskOutput, table
+    pollForDecisionTask: function(Client, types.PollForDecisionTaskInput): types.PollForDecisionTaskOutput, table
+    recordActivityTaskHeartbeat: function(Client, types.RecordActivityTaskHeartbeatInput): types.RecordActivityTaskHeartbeatOutput, table
+    registerActivityType: function(Client, types.RegisterActivityTypeInput): types.RegisterActivityTypeOutput, table
+    registerDomain: function(Client, types.RegisterDomainInput): types.RegisterDomainOutput, table
+    registerWorkflowType: function(Client, types.RegisterWorkflowTypeInput): types.RegisterWorkflowTypeOutput, table
+    requestCancelWorkflowExecution: function(Client, types.RequestCancelWorkflowExecutionInput): types.RequestCancelWorkflowExecutionOutput, table
+    respondActivityTaskCanceled: function(Client, types.RespondActivityTaskCanceledInput): types.RespondActivityTaskCanceledOutput, table
+    respondActivityTaskCompleted: function(Client, types.RespondActivityTaskCompletedInput): types.RespondActivityTaskCompletedOutput, table
+    respondActivityTaskFailed: function(Client, types.RespondActivityTaskFailedInput): types.RespondActivityTaskFailedOutput, table
+    respondDecisionTaskCompleted: function(Client, types.RespondDecisionTaskCompletedInput): types.RespondDecisionTaskCompletedOutput, table
+    signalWorkflowExecution: function(Client, types.SignalWorkflowExecutionInput): types.SignalWorkflowExecutionOutput, table
+    startWorkflowExecution: function(Client, types.StartWorkflowExecutionInput): types.StartWorkflowExecutionOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    terminateWorkflowExecution: function(Client, types.TerminateWorkflowExecutionInput): types.TerminateWorkflowExecutionOutput, table
+    undeprecateActivityType: function(Client, types.UndeprecateActivityTypeInput): types.UndeprecateActivityTypeOutput, table
+    undeprecateDomain: function(Client, types.UndeprecateDomainInput): types.UndeprecateDomainOutput, table
+    undeprecateWorkflowType: function(Client, types.UndeprecateWorkflowTypeInput): types.UndeprecateWorkflowTypeOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

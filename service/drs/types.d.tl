@@ -1,0 +1,2375 @@
+local record AssociateSourceNetworkStackInput
+    sourceNetworkID: string
+    cfnStackName: string
+end
+
+local record AssociateSourceNetworkStackOutput
+    job: Job
+end
+
+local record CreateExtendedSourceServerInput
+    sourceServerArn: string
+    tags: {string : string}
+end
+
+local record CreateExtendedSourceServerOutput
+    sourceServer: SourceServer
+end
+
+local record CreateLaunchConfigurationTemplateInput
+    tags: {string : string}
+    launchDisposition: string
+    targetInstanceTypeRightSizingMethod: string
+    copyPrivateIp: boolean
+    copyTags: boolean
+    licensing: Licensing
+    exportBucketArn: string
+    postLaunchEnabled: boolean
+    launchIntoSourceInstance: boolean
+end
+
+local record CreateLaunchConfigurationTemplateOutput
+    launchConfigurationTemplate: LaunchConfigurationTemplate
+end
+
+local record CreateReplicationConfigurationTemplateInput
+    stagingAreaSubnetId: string
+    associateDefaultSecurityGroup: boolean
+    replicationServersSecurityGroupsIDs: {string}
+    replicationServerInstanceType: string
+    useDedicatedReplicationServer: boolean
+    defaultLargeStagingDiskType: string
+    ebsEncryption: string
+    ebsEncryptionKeyArn: string
+    bandwidthThrottling: number
+    dataPlaneRouting: string
+    createPublicIP: boolean
+    stagingAreaTags: {string : string}
+    pitPolicy: {PITPolicyRule}
+    tags: {string : string}
+    autoReplicateNewDisks: boolean
+    internetProtocol: string
+end
+
+local record CreateReplicationConfigurationTemplateOutput
+    replicationConfigurationTemplateID: string
+    arn: string
+    stagingAreaSubnetId: string
+    associateDefaultSecurityGroup: boolean
+    replicationServersSecurityGroupsIDs: {string}
+    replicationServerInstanceType: string
+    useDedicatedReplicationServer: boolean
+    defaultLargeStagingDiskType: string
+    ebsEncryption: string
+    ebsEncryptionKeyArn: string
+    bandwidthThrottling: number
+    dataPlaneRouting: string
+    createPublicIP: boolean
+    stagingAreaTags: {string : string}
+    tags: {string : string}
+    pitPolicy: {PITPolicyRule}
+    autoReplicateNewDisks: boolean
+    internetProtocol: string
+end
+
+local record CreateSourceNetworkInput
+    vpcID: string
+    originAccountID: string
+    originRegion: string
+    tags: {string : string}
+end
+
+local record CreateSourceNetworkOutput
+    sourceNetworkID: string
+end
+
+local record DeleteJobInput
+    jobID: string
+end
+
+local record DeleteJobOutput
+end
+
+local record DeleteLaunchActionInput
+    resourceId: string
+    actionId: string
+end
+
+local record DeleteLaunchActionOutput
+end
+
+local record DeleteLaunchConfigurationTemplateInput
+    launchConfigurationTemplateID: string
+end
+
+local record DeleteLaunchConfigurationTemplateOutput
+end
+
+local record DeleteRecoveryInstanceInput
+    recoveryInstanceID: string
+end
+
+local record DeleteRecoveryInstanceOutput
+end
+
+local record DeleteReplicationConfigurationTemplateInput
+    replicationConfigurationTemplateID: string
+end
+
+local record DeleteReplicationConfigurationTemplateOutput
+end
+
+local record DeleteSourceNetworkInput
+    sourceNetworkID: string
+end
+
+local record DeleteSourceNetworkOutput
+end
+
+local record DeleteSourceServerInput
+    sourceServerID: string
+end
+
+local record DeleteSourceServerOutput
+end
+
+local record DescribeJobLogItemsInput
+    jobID: string
+    maxResults: number
+    nextToken: string
+end
+
+local record DescribeJobLogItemsOutput
+    items: {JobLog}
+    nextToken: string
+end
+
+local record DescribeJobsInput
+    filters: DescribeJobsRequestFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record DescribeJobsOutput
+    items: {Job}
+    nextToken: string
+end
+
+local record DescribeLaunchConfigurationTemplatesInput
+    launchConfigurationTemplateIDs: {string}
+    maxResults: number
+    nextToken: string
+end
+
+local record DescribeLaunchConfigurationTemplatesOutput
+    items: {LaunchConfigurationTemplate}
+    nextToken: string
+end
+
+local record DescribeRecoveryInstancesInput
+    filters: DescribeRecoveryInstancesRequestFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record DescribeRecoveryInstancesOutput
+    nextToken: string
+    items: {RecoveryInstance}
+end
+
+local record DescribeRecoverySnapshotsInput
+    sourceServerID: string
+    filters: DescribeRecoverySnapshotsRequestFilters
+    order: string
+    maxResults: number
+    nextToken: string
+end
+
+local record DescribeRecoverySnapshotsOutput
+    items: {RecoverySnapshot}
+    nextToken: string
+end
+
+local record DescribeReplicationConfigurationTemplatesInput
+    replicationConfigurationTemplateIDs: {string}
+    maxResults: number
+    nextToken: string
+end
+
+local record DescribeReplicationConfigurationTemplatesOutput
+    items: {ReplicationConfigurationTemplate}
+    nextToken: string
+end
+
+local record DescribeSourceNetworksInput
+    filters: DescribeSourceNetworksRequestFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record DescribeSourceNetworksOutput
+    items: {SourceNetwork}
+    nextToken: string
+end
+
+local record DescribeSourceServersInput
+    filters: DescribeSourceServersRequestFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record DescribeSourceServersOutput
+    items: {SourceServer}
+    nextToken: string
+end
+
+local record DisconnectRecoveryInstanceInput
+    recoveryInstanceID: string
+end
+
+local record DisconnectRecoveryInstanceOutput
+end
+
+local record DisconnectSourceServerInput
+    sourceServerID: string
+end
+
+local record DisconnectSourceServerOutput
+    sourceServerID: string
+    arn: string
+    tags: {string : string}
+    recoveryInstanceId: string
+    lastLaunchResult: string
+    dataReplicationInfo: DataReplicationInfo
+    lifeCycle: LifeCycle
+    sourceProperties: SourceProperties
+    stagingArea: StagingArea
+    sourceCloudProperties: SourceCloudProperties
+    replicationDirection: string
+    reversedDirectionSourceServerArn: string
+    sourceNetworkID: string
+    agentVersion: string
+end
+
+local record ExportSourceNetworkCfnTemplateInput
+    sourceNetworkID: string
+end
+
+local record ExportSourceNetworkCfnTemplateOutput
+    s3DestinationUrl: string
+end
+
+local record GetFailbackReplicationConfigurationInput
+    recoveryInstanceID: string
+end
+
+local record GetFailbackReplicationConfigurationOutput
+    recoveryInstanceID: string
+    name: string
+    bandwidthThrottling: number
+    usePrivateIP: boolean
+    internetProtocol: string
+end
+
+local record GetLaunchConfigurationInput
+    sourceServerID: string
+end
+
+local record GetLaunchConfigurationOutput
+    sourceServerID: string
+    name: string
+    ec2LaunchTemplateID: string
+    launchDisposition: string
+    targetInstanceTypeRightSizingMethod: string
+    copyPrivateIp: boolean
+    copyTags: boolean
+    licensing: Licensing
+    postLaunchEnabled: boolean
+    launchIntoInstanceProperties: LaunchIntoInstanceProperties
+end
+
+local record GetReplicationConfigurationInput
+    sourceServerID: string
+end
+
+local record GetReplicationConfigurationOutput
+    sourceServerID: string
+    name: string
+    stagingAreaSubnetId: string
+    associateDefaultSecurityGroup: boolean
+    replicationServersSecurityGroupsIDs: {string}
+    replicationServerInstanceType: string
+    useDedicatedReplicationServer: boolean
+    defaultLargeStagingDiskType: string
+    replicatedDisks: {ReplicationConfigurationReplicatedDisk}
+    ebsEncryption: string
+    ebsEncryptionKeyArn: string
+    bandwidthThrottling: number
+    dataPlaneRouting: string
+    createPublicIP: boolean
+    stagingAreaTags: {string : string}
+    pitPolicy: {PITPolicyRule}
+    autoReplicateNewDisks: boolean
+    internetProtocol: string
+end
+
+local record InitializeServiceInput
+end
+
+local record InitializeServiceOutput
+end
+
+local record ListExtensibleSourceServersInput
+    stagingAccountID: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListExtensibleSourceServersOutput
+    items: {StagingSourceServer}
+    nextToken: string
+end
+
+local record ListLaunchActionsInput
+    resourceId: string
+    filters: LaunchActionsRequestFilters
+    maxResults: number
+    nextToken: string
+end
+
+local record ListLaunchActionsOutput
+    items: {LaunchAction}
+    nextToken: string
+end
+
+local record ListStagingAccountsInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListStagingAccountsOutput
+    accounts: {Account}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record PutLaunchActionInput
+    resourceId: string
+    actionCode: string
+    order: number
+    actionId: string
+    optional: boolean
+    active: boolean
+    name: string
+    actionVersion: string
+    category: string
+    parameters: {string : LaunchActionParameter}
+    description: string
+end
+
+local record PutLaunchActionOutput
+    resourceId: string
+    actionId: string
+    actionCode: string
+    type: string
+    name: string
+    active: boolean
+    order: number
+    actionVersion: string
+    optional: boolean
+    parameters: {string : LaunchActionParameter}
+    description: string
+    category: string
+end
+
+local record RetryDataReplicationInput
+    sourceServerID: string
+end
+
+local record RetryDataReplicationOutput
+    sourceServerID: string
+    arn: string
+    tags: {string : string}
+    recoveryInstanceId: string
+    lastLaunchResult: string
+    dataReplicationInfo: DataReplicationInfo
+    lifeCycle: LifeCycle
+    sourceProperties: SourceProperties
+    stagingArea: StagingArea
+    sourceCloudProperties: SourceCloudProperties
+    replicationDirection: string
+    reversedDirectionSourceServerArn: string
+    sourceNetworkID: string
+    agentVersion: string
+end
+
+local record ReverseReplicationInput
+    recoveryInstanceID: string
+end
+
+local record ReverseReplicationOutput
+    reversedDirectionSourceServerArn: string
+end
+
+local record StartFailbackLaunchInput
+    recoveryInstanceIDs: {string}
+    tags: {string : string}
+end
+
+local record StartFailbackLaunchOutput
+    job: Job
+end
+
+local record StartRecoveryInput
+    sourceServers: {StartRecoveryRequestSourceServer}
+    isDrill: boolean
+    tags: {string : string}
+end
+
+local record StartRecoveryOutput
+    job: Job
+end
+
+local record StartReplicationInput
+    sourceServerID: string
+end
+
+local record StartReplicationOutput
+    sourceServer: SourceServer
+end
+
+local record StartSourceNetworkRecoveryInput
+    sourceNetworks: {StartSourceNetworkRecoveryRequestNetworkEntry}
+    deployAsNew: boolean
+    tags: {string : string}
+end
+
+local record StartSourceNetworkRecoveryOutput
+    job: Job
+end
+
+local record StartSourceNetworkReplicationInput
+    sourceNetworkID: string
+end
+
+local record StartSourceNetworkReplicationOutput
+    sourceNetwork: SourceNetwork
+end
+
+local record StopFailbackInput
+    recoveryInstanceID: string
+end
+
+local record StopFailbackOutput
+end
+
+local record StopReplicationInput
+    sourceServerID: string
+end
+
+local record StopReplicationOutput
+    sourceServer: SourceServer
+end
+
+local record StopSourceNetworkReplicationInput
+    sourceNetworkID: string
+end
+
+local record StopSourceNetworkReplicationOutput
+    sourceNetwork: SourceNetwork
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record TerminateRecoveryInstancesInput
+    recoveryInstanceIDs: {string}
+end
+
+local record TerminateRecoveryInstancesOutput
+    job: Job
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateFailbackReplicationConfigurationInput
+    recoveryInstanceID: string
+    name: string
+    bandwidthThrottling: number
+    usePrivateIP: boolean
+    internetProtocol: string
+end
+
+local record UpdateFailbackReplicationConfigurationOutput
+end
+
+local record UpdateLaunchConfigurationInput
+    sourceServerID: string
+    name: string
+    launchDisposition: string
+    targetInstanceTypeRightSizingMethod: string
+    copyPrivateIp: boolean
+    copyTags: boolean
+    licensing: Licensing
+    postLaunchEnabled: boolean
+    launchIntoInstanceProperties: LaunchIntoInstanceProperties
+end
+
+local record UpdateLaunchConfigurationOutput
+    sourceServerID: string
+    name: string
+    ec2LaunchTemplateID: string
+    launchDisposition: string
+    targetInstanceTypeRightSizingMethod: string
+    copyPrivateIp: boolean
+    copyTags: boolean
+    licensing: Licensing
+    postLaunchEnabled: boolean
+    launchIntoInstanceProperties: LaunchIntoInstanceProperties
+end
+
+local record UpdateLaunchConfigurationTemplateInput
+    launchConfigurationTemplateID: string
+    launchDisposition: string
+    targetInstanceTypeRightSizingMethod: string
+    copyPrivateIp: boolean
+    copyTags: boolean
+    licensing: Licensing
+    exportBucketArn: string
+    postLaunchEnabled: boolean
+    launchIntoSourceInstance: boolean
+end
+
+local record UpdateLaunchConfigurationTemplateOutput
+    launchConfigurationTemplate: LaunchConfigurationTemplate
+end
+
+local record UpdateReplicationConfigurationInput
+    sourceServerID: string
+    name: string
+    stagingAreaSubnetId: string
+    associateDefaultSecurityGroup: boolean
+    replicationServersSecurityGroupsIDs: {string}
+    replicationServerInstanceType: string
+    useDedicatedReplicationServer: boolean
+    defaultLargeStagingDiskType: string
+    replicatedDisks: {ReplicationConfigurationReplicatedDisk}
+    ebsEncryption: string
+    ebsEncryptionKeyArn: string
+    bandwidthThrottling: number
+    dataPlaneRouting: string
+    createPublicIP: boolean
+    stagingAreaTags: {string : string}
+    pitPolicy: {PITPolicyRule}
+    autoReplicateNewDisks: boolean
+    internetProtocol: string
+end
+
+local record UpdateReplicationConfigurationOutput
+    sourceServerID: string
+    name: string
+    stagingAreaSubnetId: string
+    associateDefaultSecurityGroup: boolean
+    replicationServersSecurityGroupsIDs: {string}
+    replicationServerInstanceType: string
+    useDedicatedReplicationServer: boolean
+    defaultLargeStagingDiskType: string
+    replicatedDisks: {ReplicationConfigurationReplicatedDisk}
+    ebsEncryption: string
+    ebsEncryptionKeyArn: string
+    bandwidthThrottling: number
+    dataPlaneRouting: string
+    createPublicIP: boolean
+    stagingAreaTags: {string : string}
+    pitPolicy: {PITPolicyRule}
+    autoReplicateNewDisks: boolean
+    internetProtocol: string
+end
+
+local record UpdateReplicationConfigurationTemplateInput
+    replicationConfigurationTemplateID: string
+    arn: string
+    stagingAreaSubnetId: string
+    associateDefaultSecurityGroup: boolean
+    replicationServersSecurityGroupsIDs: {string}
+    replicationServerInstanceType: string
+    useDedicatedReplicationServer: boolean
+    defaultLargeStagingDiskType: string
+    ebsEncryption: string
+    ebsEncryptionKeyArn: string
+    bandwidthThrottling: number
+    dataPlaneRouting: string
+    createPublicIP: boolean
+    stagingAreaTags: {string : string}
+    pitPolicy: {PITPolicyRule}
+    autoReplicateNewDisks: boolean
+    internetProtocol: string
+end
+
+local record UpdateReplicationConfigurationTemplateOutput
+    replicationConfigurationTemplateID: string
+    arn: string
+    stagingAreaSubnetId: string
+    associateDefaultSecurityGroup: boolean
+    replicationServersSecurityGroupsIDs: {string}
+    replicationServerInstanceType: string
+    useDedicatedReplicationServer: boolean
+    defaultLargeStagingDiskType: string
+    ebsEncryption: string
+    ebsEncryptionKeyArn: string
+    bandwidthThrottling: number
+    dataPlaneRouting: string
+    createPublicIP: boolean
+    stagingAreaTags: {string : string}
+    tags: {string : string}
+    pitPolicy: {PITPolicyRule}
+    autoReplicateNewDisks: boolean
+    internetProtocol: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ServiceQuotaExceededException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+    serviceCode: string
+    quotaCode: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record ConflictException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+    code: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    code: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: string
+end
+
+local record UninitializedAccountException
+    message: string
+    code: string
+end
+
+local record ValidationException
+    message: string
+    code: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record M
+    AssociateSourceNetworkStackInput: AssociateSourceNetworkStackInput
+    AssociateSourceNetworkStackOutput: AssociateSourceNetworkStackOutput
+    CreateExtendedSourceServerInput: CreateExtendedSourceServerInput
+    CreateExtendedSourceServerOutput: CreateExtendedSourceServerOutput
+    CreateLaunchConfigurationTemplateInput: CreateLaunchConfigurationTemplateInput
+    CreateLaunchConfigurationTemplateOutput: CreateLaunchConfigurationTemplateOutput
+    CreateReplicationConfigurationTemplateInput: CreateReplicationConfigurationTemplateInput
+    CreateReplicationConfigurationTemplateOutput: CreateReplicationConfigurationTemplateOutput
+    CreateSourceNetworkInput: CreateSourceNetworkInput
+    CreateSourceNetworkOutput: CreateSourceNetworkOutput
+    DeleteJobInput: DeleteJobInput
+    DeleteJobOutput: DeleteJobOutput
+    DeleteLaunchActionInput: DeleteLaunchActionInput
+    DeleteLaunchActionOutput: DeleteLaunchActionOutput
+    DeleteLaunchConfigurationTemplateInput: DeleteLaunchConfigurationTemplateInput
+    DeleteLaunchConfigurationTemplateOutput: DeleteLaunchConfigurationTemplateOutput
+    DeleteRecoveryInstanceInput: DeleteRecoveryInstanceInput
+    DeleteRecoveryInstanceOutput: DeleteRecoveryInstanceOutput
+    DeleteReplicationConfigurationTemplateInput: DeleteReplicationConfigurationTemplateInput
+    DeleteReplicationConfigurationTemplateOutput: DeleteReplicationConfigurationTemplateOutput
+    DeleteSourceNetworkInput: DeleteSourceNetworkInput
+    DeleteSourceNetworkOutput: DeleteSourceNetworkOutput
+    DeleteSourceServerInput: DeleteSourceServerInput
+    DeleteSourceServerOutput: DeleteSourceServerOutput
+    DescribeJobLogItemsInput: DescribeJobLogItemsInput
+    DescribeJobLogItemsOutput: DescribeJobLogItemsOutput
+    DescribeJobsInput: DescribeJobsInput
+    DescribeJobsOutput: DescribeJobsOutput
+    DescribeLaunchConfigurationTemplatesInput: DescribeLaunchConfigurationTemplatesInput
+    DescribeLaunchConfigurationTemplatesOutput: DescribeLaunchConfigurationTemplatesOutput
+    DescribeRecoveryInstancesInput: DescribeRecoveryInstancesInput
+    DescribeRecoveryInstancesOutput: DescribeRecoveryInstancesOutput
+    DescribeRecoverySnapshotsInput: DescribeRecoverySnapshotsInput
+    DescribeRecoverySnapshotsOutput: DescribeRecoverySnapshotsOutput
+    DescribeReplicationConfigurationTemplatesInput: DescribeReplicationConfigurationTemplatesInput
+    DescribeReplicationConfigurationTemplatesOutput: DescribeReplicationConfigurationTemplatesOutput
+    DescribeSourceNetworksInput: DescribeSourceNetworksInput
+    DescribeSourceNetworksOutput: DescribeSourceNetworksOutput
+    DescribeSourceServersInput: DescribeSourceServersInput
+    DescribeSourceServersOutput: DescribeSourceServersOutput
+    DisconnectRecoveryInstanceInput: DisconnectRecoveryInstanceInput
+    DisconnectRecoveryInstanceOutput: DisconnectRecoveryInstanceOutput
+    DisconnectSourceServerInput: DisconnectSourceServerInput
+    DisconnectSourceServerOutput: DisconnectSourceServerOutput
+    ExportSourceNetworkCfnTemplateInput: ExportSourceNetworkCfnTemplateInput
+    ExportSourceNetworkCfnTemplateOutput: ExportSourceNetworkCfnTemplateOutput
+    GetFailbackReplicationConfigurationInput: GetFailbackReplicationConfigurationInput
+    GetFailbackReplicationConfigurationOutput: GetFailbackReplicationConfigurationOutput
+    GetLaunchConfigurationInput: GetLaunchConfigurationInput
+    GetLaunchConfigurationOutput: GetLaunchConfigurationOutput
+    GetReplicationConfigurationInput: GetReplicationConfigurationInput
+    GetReplicationConfigurationOutput: GetReplicationConfigurationOutput
+    InitializeServiceInput: InitializeServiceInput
+    InitializeServiceOutput: InitializeServiceOutput
+    ListExtensibleSourceServersInput: ListExtensibleSourceServersInput
+    ListExtensibleSourceServersOutput: ListExtensibleSourceServersOutput
+    ListLaunchActionsInput: ListLaunchActionsInput
+    ListLaunchActionsOutput: ListLaunchActionsOutput
+    ListStagingAccountsInput: ListStagingAccountsInput
+    ListStagingAccountsOutput: ListStagingAccountsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PutLaunchActionInput: PutLaunchActionInput
+    PutLaunchActionOutput: PutLaunchActionOutput
+    RetryDataReplicationInput: RetryDataReplicationInput
+    RetryDataReplicationOutput: RetryDataReplicationOutput
+    ReverseReplicationInput: ReverseReplicationInput
+    ReverseReplicationOutput: ReverseReplicationOutput
+    StartFailbackLaunchInput: StartFailbackLaunchInput
+    StartFailbackLaunchOutput: StartFailbackLaunchOutput
+    StartRecoveryInput: StartRecoveryInput
+    StartRecoveryOutput: StartRecoveryOutput
+    StartReplicationInput: StartReplicationInput
+    StartReplicationOutput: StartReplicationOutput
+    StartSourceNetworkRecoveryInput: StartSourceNetworkRecoveryInput
+    StartSourceNetworkRecoveryOutput: StartSourceNetworkRecoveryOutput
+    StartSourceNetworkReplicationInput: StartSourceNetworkReplicationInput
+    StartSourceNetworkReplicationOutput: StartSourceNetworkReplicationOutput
+    StopFailbackInput: StopFailbackInput
+    StopFailbackOutput: StopFailbackOutput
+    StopReplicationInput: StopReplicationInput
+    StopReplicationOutput: StopReplicationOutput
+    StopSourceNetworkReplicationInput: StopSourceNetworkReplicationInput
+    StopSourceNetworkReplicationOutput: StopSourceNetworkReplicationOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    TerminateRecoveryInstancesInput: TerminateRecoveryInstancesInput
+    TerminateRecoveryInstancesOutput: TerminateRecoveryInstancesOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateFailbackReplicationConfigurationInput: UpdateFailbackReplicationConfigurationInput
+    UpdateFailbackReplicationConfigurationOutput: UpdateFailbackReplicationConfigurationOutput
+    UpdateLaunchConfigurationInput: UpdateLaunchConfigurationInput
+    UpdateLaunchConfigurationOutput: UpdateLaunchConfigurationOutput
+    UpdateLaunchConfigurationTemplateInput: UpdateLaunchConfigurationTemplateInput
+    UpdateLaunchConfigurationTemplateOutput: UpdateLaunchConfigurationTemplateOutput
+    UpdateReplicationConfigurationInput: UpdateReplicationConfigurationInput
+    UpdateReplicationConfigurationOutput: UpdateReplicationConfigurationOutput
+    UpdateReplicationConfigurationTemplateInput: UpdateReplicationConfigurationTemplateInput
+    UpdateReplicationConfigurationTemplateOutput: UpdateReplicationConfigurationTemplateOutput
+end
+
+return M

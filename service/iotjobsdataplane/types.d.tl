@@ -1,0 +1,193 @@
+local record DescribeJobExecutionInput
+    jobId: string
+    thingName: string
+    includeJobDocument: boolean
+    executionNumber: number
+end
+
+local record DescribeJobExecutionOutput
+    execution: JobExecution
+end
+
+local record GetPendingJobExecutionsInput
+    thingName: string
+end
+
+local record GetPendingJobExecutionsOutput
+    inProgressJobs: {JobExecutionSummary}
+    queuedJobs: {JobExecutionSummary}
+end
+
+local record StartCommandExecutionInput
+    targetArn: string
+    commandArn: string
+    parameters: {string : CommandParameterValue}
+    executionTimeoutSeconds: number
+    clientToken: string
+end
+
+local record StartCommandExecutionOutput
+    executionId: string
+end
+
+local record StartNextPendingJobExecutionInput
+    thingName: string
+    statusDetails: {string : string}
+    stepTimeoutInMinutes: number
+end
+
+local record StartNextPendingJobExecutionOutput
+    execution: JobExecution
+end
+
+local record UpdateJobExecutionInput
+    jobId: string
+    thingName: string
+    status: string
+    statusDetails: {string : string}
+    stepTimeoutInMinutes: number
+    expectedVersion: number
+    includeJobExecutionState: boolean
+    includeJobDocument: boolean
+    executionNumber: number
+end
+
+local record UpdateJobExecutionOutput
+    executionState: JobExecutionState
+    jobDocument: string
+end
+
+local record CertificateValidationException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record TerminalStateException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    payload: string
+end
+
+local record CertificateValidationException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    payload: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    payload: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record CertificateValidationException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    payload: string
+end
+
+local record CertificateValidationException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record InvalidStateTransitionException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    payload: string
+end
+
+local type JobExecutionStatus = "QUEUED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED" | "TIMED_OUT" | "REJECTED" | "REMOVED" | "CANCELED"
+
+local record M
+    DescribeJobExecutionInput: DescribeJobExecutionInput
+    DescribeJobExecutionOutput: DescribeJobExecutionOutput
+    GetPendingJobExecutionsInput: GetPendingJobExecutionsInput
+    GetPendingJobExecutionsOutput: GetPendingJobExecutionsOutput
+    StartCommandExecutionInput: StartCommandExecutionInput
+    StartCommandExecutionOutput: StartCommandExecutionOutput
+    StartNextPendingJobExecutionInput: StartNextPendingJobExecutionInput
+    StartNextPendingJobExecutionOutput: StartNextPendingJobExecutionOutput
+    UpdateJobExecutionInput: UpdateJobExecutionInput
+    UpdateJobExecutionOutput: UpdateJobExecutionOutput
+end
+
+return M

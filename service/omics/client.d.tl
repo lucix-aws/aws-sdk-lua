@@ -1,0 +1,117 @@
+local types = require("omics.types")
+
+local record Client
+    abortMultipartReadSetUpload: function(Client, types.AbortMultipartReadSetUploadInput): types.AbortMultipartReadSetUploadOutput, table
+    acceptShare: function(Client, types.AcceptShareInput): types.AcceptShareOutput, table
+    batchDeleteReadSet: function(Client, types.BatchDeleteReadSetInput): types.BatchDeleteReadSetOutput, table
+    cancelAnnotationImportJob: function(Client, types.CancelAnnotationImportJobInput): types.CancelAnnotationImportJobOutput, table
+    cancelRun: function(Client, types.CancelRunInput): types.CancelRunOutput, table
+    cancelRunBatch: function(Client, types.CancelRunBatchInput): types.CancelRunBatchOutput, table
+    cancelVariantImportJob: function(Client, types.CancelVariantImportJobInput): types.CancelVariantImportJobOutput, table
+    completeMultipartReadSetUpload: function(Client, types.CompleteMultipartReadSetUploadInput): types.CompleteMultipartReadSetUploadOutput, table
+    createAnnotationStore: function(Client, types.CreateAnnotationStoreInput): types.CreateAnnotationStoreOutput, table
+    createAnnotationStoreVersion: function(Client, types.CreateAnnotationStoreVersionInput): types.CreateAnnotationStoreVersionOutput, table
+    createConfiguration: function(Client, types.CreateConfigurationInput): types.CreateConfigurationOutput, table
+    createMultipartReadSetUpload: function(Client, types.CreateMultipartReadSetUploadInput): types.CreateMultipartReadSetUploadOutput, table
+    createReferenceStore: function(Client, types.CreateReferenceStoreInput): types.CreateReferenceStoreOutput, table
+    createRunCache: function(Client, types.CreateRunCacheInput): types.CreateRunCacheOutput, table
+    createRunGroup: function(Client, types.CreateRunGroupInput): types.CreateRunGroupOutput, table
+    createSequenceStore: function(Client, types.CreateSequenceStoreInput): types.CreateSequenceStoreOutput, table
+    createShare: function(Client, types.CreateShareInput): types.CreateShareOutput, table
+    createVariantStore: function(Client, types.CreateVariantStoreInput): types.CreateVariantStoreOutput, table
+    createWorkflow: function(Client, types.CreateWorkflowInput): types.CreateWorkflowOutput, table
+    createWorkflowVersion: function(Client, types.CreateWorkflowVersionInput): types.CreateWorkflowVersionOutput, table
+    deleteAnnotationStore: function(Client, types.DeleteAnnotationStoreInput): types.DeleteAnnotationStoreOutput, table
+    deleteAnnotationStoreVersions: function(Client, types.DeleteAnnotationStoreVersionsInput): types.DeleteAnnotationStoreVersionsOutput, table
+    deleteBatch: function(Client, types.DeleteBatchInput): types.DeleteBatchOutput, table
+    deleteConfiguration: function(Client, types.DeleteConfigurationInput): types.DeleteConfigurationOutput, table
+    deleteReference: function(Client, types.DeleteReferenceInput): types.DeleteReferenceOutput, table
+    deleteReferenceStore: function(Client, types.DeleteReferenceStoreInput): types.DeleteReferenceStoreOutput, table
+    deleteRun: function(Client, types.DeleteRunInput): types.DeleteRunOutput, table
+    deleteRunBatch: function(Client, types.DeleteRunBatchInput): types.DeleteRunBatchOutput, table
+    deleteRunCache: function(Client, types.DeleteRunCacheInput): types.DeleteRunCacheOutput, table
+    deleteRunGroup: function(Client, types.DeleteRunGroupInput): types.DeleteRunGroupOutput, table
+    deleteS3AccessPolicy: function(Client, types.DeleteS3AccessPolicyInput): types.DeleteS3AccessPolicyOutput, table
+    deleteSequenceStore: function(Client, types.DeleteSequenceStoreInput): types.DeleteSequenceStoreOutput, table
+    deleteShare: function(Client, types.DeleteShareInput): types.DeleteShareOutput, table
+    deleteVariantStore: function(Client, types.DeleteVariantStoreInput): types.DeleteVariantStoreOutput, table
+    deleteWorkflow: function(Client, types.DeleteWorkflowInput): types.DeleteWorkflowOutput, table
+    deleteWorkflowVersion: function(Client, types.DeleteWorkflowVersionInput): types.DeleteWorkflowVersionOutput, table
+    getAnnotationImportJob: function(Client, types.GetAnnotationImportJobInput): types.GetAnnotationImportJobOutput, table
+    getAnnotationStore: function(Client, types.GetAnnotationStoreInput): types.GetAnnotationStoreOutput, table
+    getAnnotationStoreVersion: function(Client, types.GetAnnotationStoreVersionInput): types.GetAnnotationStoreVersionOutput, table
+    getBatch: function(Client, types.GetBatchInput): types.GetBatchOutput, table
+    getConfiguration: function(Client, types.GetConfigurationInput): types.GetConfigurationOutput, table
+    getReadSet: function(Client, types.GetReadSetInput): types.GetReadSetOutput, table
+    getReadSetActivationJob: function(Client, types.GetReadSetActivationJobInput): types.GetReadSetActivationJobOutput, table
+    getReadSetExportJob: function(Client, types.GetReadSetExportJobInput): types.GetReadSetExportJobOutput, table
+    getReadSetImportJob: function(Client, types.GetReadSetImportJobInput): types.GetReadSetImportJobOutput, table
+    getReadSetMetadata: function(Client, types.GetReadSetMetadataInput): types.GetReadSetMetadataOutput, table
+    getReference: function(Client, types.GetReferenceInput): types.GetReferenceOutput, table
+    getReferenceImportJob: function(Client, types.GetReferenceImportJobInput): types.GetReferenceImportJobOutput, table
+    getReferenceMetadata: function(Client, types.GetReferenceMetadataInput): types.GetReferenceMetadataOutput, table
+    getReferenceStore: function(Client, types.GetReferenceStoreInput): types.GetReferenceStoreOutput, table
+    getRun: function(Client, types.GetRunInput): types.GetRunOutput, table
+    getRunCache: function(Client, types.GetRunCacheInput): types.GetRunCacheOutput, table
+    getRunGroup: function(Client, types.GetRunGroupInput): types.GetRunGroupOutput, table
+    getRunTask: function(Client, types.GetRunTaskInput): types.GetRunTaskOutput, table
+    getS3AccessPolicy: function(Client, types.GetS3AccessPolicyInput): types.GetS3AccessPolicyOutput, table
+    getSequenceStore: function(Client, types.GetSequenceStoreInput): types.GetSequenceStoreOutput, table
+    getShare: function(Client, types.GetShareInput): types.GetShareOutput, table
+    getVariantImportJob: function(Client, types.GetVariantImportJobInput): types.GetVariantImportJobOutput, table
+    getVariantStore: function(Client, types.GetVariantStoreInput): types.GetVariantStoreOutput, table
+    getWorkflow: function(Client, types.GetWorkflowInput): types.GetWorkflowOutput, table
+    getWorkflowVersion: function(Client, types.GetWorkflowVersionInput): types.GetWorkflowVersionOutput, table
+    listAnnotationImportJobs: function(Client, types.ListAnnotationImportJobsInput): types.ListAnnotationImportJobsOutput, table
+    listAnnotationStores: function(Client, types.ListAnnotationStoresInput): types.ListAnnotationStoresOutput, table
+    listAnnotationStoreVersions: function(Client, types.ListAnnotationStoreVersionsInput): types.ListAnnotationStoreVersionsOutput, table
+    listBatch: function(Client, types.ListBatchInput): types.ListBatchOutput, table
+    listConfigurations: function(Client, types.ListConfigurationsInput): types.ListConfigurationsOutput, table
+    listMultipartReadSetUploads: function(Client, types.ListMultipartReadSetUploadsInput): types.ListMultipartReadSetUploadsOutput, table
+    listReadSetActivationJobs: function(Client, types.ListReadSetActivationJobsInput): types.ListReadSetActivationJobsOutput, table
+    listReadSetExportJobs: function(Client, types.ListReadSetExportJobsInput): types.ListReadSetExportJobsOutput, table
+    listReadSetImportJobs: function(Client, types.ListReadSetImportJobsInput): types.ListReadSetImportJobsOutput, table
+    listReadSets: function(Client, types.ListReadSetsInput): types.ListReadSetsOutput, table
+    listReadSetUploadParts: function(Client, types.ListReadSetUploadPartsInput): types.ListReadSetUploadPartsOutput, table
+    listReferenceImportJobs: function(Client, types.ListReferenceImportJobsInput): types.ListReferenceImportJobsOutput, table
+    listReferences: function(Client, types.ListReferencesInput): types.ListReferencesOutput, table
+    listReferenceStores: function(Client, types.ListReferenceStoresInput): types.ListReferenceStoresOutput, table
+    listRunCaches: function(Client, types.ListRunCachesInput): types.ListRunCachesOutput, table
+    listRunGroups: function(Client, types.ListRunGroupsInput): types.ListRunGroupsOutput, table
+    listRuns: function(Client, types.ListRunsInput): types.ListRunsOutput, table
+    listRunsInBatch: function(Client, types.ListRunsInBatchInput): types.ListRunsInBatchOutput, table
+    listRunTasks: function(Client, types.ListRunTasksInput): types.ListRunTasksOutput, table
+    listSequenceStores: function(Client, types.ListSequenceStoresInput): types.ListSequenceStoresOutput, table
+    listShares: function(Client, types.ListSharesInput): types.ListSharesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listVariantImportJobs: function(Client, types.ListVariantImportJobsInput): types.ListVariantImportJobsOutput, table
+    listVariantStores: function(Client, types.ListVariantStoresInput): types.ListVariantStoresOutput, table
+    listWorkflows: function(Client, types.ListWorkflowsInput): types.ListWorkflowsOutput, table
+    listWorkflowVersions: function(Client, types.ListWorkflowVersionsInput): types.ListWorkflowVersionsOutput, table
+    putS3AccessPolicy: function(Client, types.PutS3AccessPolicyInput): types.PutS3AccessPolicyOutput, table
+    startAnnotationImportJob: function(Client, types.StartAnnotationImportJobInput): types.StartAnnotationImportJobOutput, table
+    startReadSetActivationJob: function(Client, types.StartReadSetActivationJobInput): types.StartReadSetActivationJobOutput, table
+    startReadSetExportJob: function(Client, types.StartReadSetExportJobInput): types.StartReadSetExportJobOutput, table
+    startReadSetImportJob: function(Client, types.StartReadSetImportJobInput): types.StartReadSetImportJobOutput, table
+    startReferenceImportJob: function(Client, types.StartReferenceImportJobInput): types.StartReferenceImportJobOutput, table
+    startRun: function(Client, types.StartRunInput): types.StartRunOutput, table
+    startRunBatch: function(Client, types.StartRunBatchInput): types.StartRunBatchOutput, table
+    startVariantImportJob: function(Client, types.StartVariantImportJobInput): types.StartVariantImportJobOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAnnotationStore: function(Client, types.UpdateAnnotationStoreInput): types.UpdateAnnotationStoreOutput, table
+    updateAnnotationStoreVersion: function(Client, types.UpdateAnnotationStoreVersionInput): types.UpdateAnnotationStoreVersionOutput, table
+    updateRunCache: function(Client, types.UpdateRunCacheInput): types.UpdateRunCacheOutput, table
+    updateRunGroup: function(Client, types.UpdateRunGroupInput): types.UpdateRunGroupOutput, table
+    updateSequenceStore: function(Client, types.UpdateSequenceStoreInput): types.UpdateSequenceStoreOutput, table
+    updateVariantStore: function(Client, types.UpdateVariantStoreInput): types.UpdateVariantStoreOutput, table
+    updateWorkflow: function(Client, types.UpdateWorkflowInput): types.UpdateWorkflowOutput, table
+    updateWorkflowVersion: function(Client, types.UpdateWorkflowVersionInput): types.UpdateWorkflowVersionOutput, table
+    uploadReadSetPart: function(Client, types.UploadReadSetPartInput): types.UploadReadSetPartOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

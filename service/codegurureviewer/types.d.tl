@@ -1,0 +1,430 @@
+local record AssociateRepositoryInput
+    Repository: Repository
+    ClientRequestToken: string
+    Tags: {string : string}
+    KMSKeyDetails: KMSKeyDetails
+end
+
+local record AssociateRepositoryOutput
+    RepositoryAssociation: RepositoryAssociation
+    Tags: {string : string}
+end
+
+local record CreateCodeReviewInput
+    Name: string
+    RepositoryAssociationArn: string
+    Type: CodeReviewType
+    ClientRequestToken: string
+end
+
+local record CreateCodeReviewOutput
+    CodeReview: CodeReview
+end
+
+local record DescribeCodeReviewInput
+    CodeReviewArn: string
+end
+
+local record DescribeCodeReviewOutput
+    CodeReview: CodeReview
+end
+
+local record DescribeRecommendationFeedbackInput
+    CodeReviewArn: string
+    RecommendationId: string
+    UserId: string
+end
+
+local record DescribeRecommendationFeedbackOutput
+    RecommendationFeedback: RecommendationFeedback
+end
+
+local record DescribeRepositoryAssociationInput
+    AssociationArn: string
+end
+
+local record DescribeRepositoryAssociationOutput
+    RepositoryAssociation: RepositoryAssociation
+    Tags: {string : string}
+end
+
+local record DisassociateRepositoryInput
+    AssociationArn: string
+end
+
+local record DisassociateRepositoryOutput
+    RepositoryAssociation: RepositoryAssociation
+    Tags: {string : string}
+end
+
+local record ListCodeReviewsInput
+    ProviderTypes: {string}
+    States: {string}
+    RepositoryNames: {string}
+    Type: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListCodeReviewsOutput
+    CodeReviewSummaries: {CodeReviewSummary}
+    NextToken: string
+end
+
+local record ListRecommendationFeedbackInput
+    NextToken: string
+    MaxResults: number
+    CodeReviewArn: string
+    UserIds: {string}
+    RecommendationIds: {string}
+end
+
+local record ListRecommendationFeedbackOutput
+    RecommendationFeedbackSummaries: {RecommendationFeedbackSummary}
+    NextToken: string
+end
+
+local record ListRecommendationsInput
+    NextToken: string
+    MaxResults: number
+    CodeReviewArn: string
+end
+
+local record ListRecommendationsOutput
+    RecommendationSummaries: {RecommendationSummary}
+    NextToken: string
+end
+
+local record ListRepositoryAssociationsInput
+    ProviderTypes: {string}
+    States: {string}
+    Names: {string}
+    Owners: {string}
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListRepositoryAssociationsOutput
+    RepositoryAssociationSummaries: {RepositoryAssociationSummary}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {string : string}
+end
+
+local record PutRecommendationFeedbackInput
+    CodeReviewArn: string
+    RecommendationId: string
+    Reactions: {string}
+end
+
+local record PutRecommendationFeedbackOutput
+end
+
+local record TagResourceInput
+    resourceArn: string
+    Tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record ConflictException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ThrottlingException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalServerException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local type Type = "PullRequest" | "RepositoryAnalysis"
+
+local record M
+    AssociateRepositoryInput: AssociateRepositoryInput
+    AssociateRepositoryOutput: AssociateRepositoryOutput
+    CreateCodeReviewInput: CreateCodeReviewInput
+    CreateCodeReviewOutput: CreateCodeReviewOutput
+    DescribeCodeReviewInput: DescribeCodeReviewInput
+    DescribeCodeReviewOutput: DescribeCodeReviewOutput
+    DescribeRecommendationFeedbackInput: DescribeRecommendationFeedbackInput
+    DescribeRecommendationFeedbackOutput: DescribeRecommendationFeedbackOutput
+    DescribeRepositoryAssociationInput: DescribeRepositoryAssociationInput
+    DescribeRepositoryAssociationOutput: DescribeRepositoryAssociationOutput
+    DisassociateRepositoryInput: DisassociateRepositoryInput
+    DisassociateRepositoryOutput: DisassociateRepositoryOutput
+    ListCodeReviewsInput: ListCodeReviewsInput
+    ListCodeReviewsOutput: ListCodeReviewsOutput
+    ListRecommendationFeedbackInput: ListRecommendationFeedbackInput
+    ListRecommendationFeedbackOutput: ListRecommendationFeedbackOutput
+    ListRecommendationsInput: ListRecommendationsInput
+    ListRecommendationsOutput: ListRecommendationsOutput
+    ListRepositoryAssociationsInput: ListRepositoryAssociationsInput
+    ListRepositoryAssociationsOutput: ListRepositoryAssociationsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PutRecommendationFeedbackInput: PutRecommendationFeedbackInput
+    PutRecommendationFeedbackOutput: PutRecommendationFeedbackOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+end
+
+return M

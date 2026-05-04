@@ -1,0 +1,1064 @@
+local record CloneBackendInput
+    AppId: string
+    BackendEnvironmentName: string
+    TargetEnvironmentName: string
+end
+
+local record CloneBackendOutput
+    AppId: string
+    BackendEnvironmentName: string
+    Error: string
+    JobId: string
+    Operation: string
+    Status: string
+end
+
+local record CreateBackendInput
+    AppId: string
+    AppName: string
+    BackendEnvironmentName: string
+    ResourceConfig: ResourceConfig
+    ResourceName: string
+end
+
+local record CreateBackendOutput
+    AppId: string
+    BackendEnvironmentName: string
+    Error: string
+    JobId: string
+    Operation: string
+    Status: string
+end
+
+local record CreateBackendAPIInput
+    AppId: string
+    BackendEnvironmentName: string
+    ResourceConfig: BackendAPIResourceConfig
+    ResourceName: string
+end
+
+local record CreateBackendAPIOutput
+    AppId: string
+    BackendEnvironmentName: string
+    Error: string
+    JobId: string
+    Operation: string
+    Status: string
+end
+
+local record CreateBackendAuthInput
+    AppId: string
+    BackendEnvironmentName: string
+    ResourceConfig: CreateBackendAuthResourceConfig
+    ResourceName: string
+end
+
+local record CreateBackendAuthOutput
+    AppId: string
+    BackendEnvironmentName: string
+    Error: string
+    JobId: string
+    Operation: string
+    Status: string
+end
+
+local record CreateBackendConfigInput
+    AppId: string
+    BackendManagerAppId: string
+end
+
+local record CreateBackendConfigOutput
+    AppId: string
+    BackendEnvironmentName: string
+    JobId: string
+    Status: string
+end
+
+local record CreateBackendStorageInput
+    AppId: string
+    BackendEnvironmentName: string
+    ResourceConfig: CreateBackendStorageResourceConfig
+    ResourceName: string
+end
+
+local record CreateBackendStorageOutput
+    AppId: string
+    BackendEnvironmentName: string
+    JobId: string
+    Status: string
+end
+
+local record CreateTokenInput
+    AppId: string
+end
+
+local record CreateTokenOutput
+    AppId: string
+    ChallengeCode: string
+    SessionId: string
+    Ttl: string
+end
+
+local record DeleteBackendInput
+    AppId: string
+    BackendEnvironmentName: string
+end
+
+local record DeleteBackendOutput
+    AppId: string
+    BackendEnvironmentName: string
+    Error: string
+    JobId: string
+    Operation: string
+    Status: string
+end
+
+local record DeleteBackendAPIInput
+    AppId: string
+    BackendEnvironmentName: string
+    ResourceConfig: BackendAPIResourceConfig
+    ResourceName: string
+end
+
+local record DeleteBackendAPIOutput
+    AppId: string
+    BackendEnvironmentName: string
+    Error: string
+    JobId: string
+    Operation: string
+    Status: string
+end
+
+local record DeleteBackendAuthInput
+    AppId: string
+    BackendEnvironmentName: string
+    ResourceName: string
+end
+
+local record DeleteBackendAuthOutput
+    AppId: string
+    BackendEnvironmentName: string
+    Error: string
+    JobId: string
+    Operation: string
+    Status: string
+end
+
+local record DeleteBackendStorageInput
+    AppId: string
+    BackendEnvironmentName: string
+    ResourceName: string
+    ServiceName: string
+end
+
+local record DeleteBackendStorageOutput
+    AppId: string
+    BackendEnvironmentName: string
+    JobId: string
+    Status: string
+end
+
+local record DeleteTokenInput
+    AppId: string
+    SessionId: string
+end
+
+local record DeleteTokenOutput
+    IsSuccess: boolean
+end
+
+local record GenerateBackendAPIModelsInput
+    AppId: string
+    BackendEnvironmentName: string
+    ResourceName: string
+end
+
+local record GenerateBackendAPIModelsOutput
+    AppId: string
+    BackendEnvironmentName: string
+    Error: string
+    JobId: string
+    Operation: string
+    Status: string
+end
+
+local record GetBackendInput
+    AppId: string
+    BackendEnvironmentName: string
+end
+
+local record GetBackendOutput
+    AmplifyFeatureFlags: string
+    AmplifyMetaConfig: string
+    AppId: string
+    AppName: string
+    BackendEnvironmentList: {string}
+    BackendEnvironmentName: string
+    Error: string
+end
+
+local record GetBackendAPIInput
+    AppId: string
+    BackendEnvironmentName: string
+    ResourceConfig: BackendAPIResourceConfig
+    ResourceName: string
+end
+
+local record GetBackendAPIOutput
+    AppId: string
+    BackendEnvironmentName: string
+    Error: string
+    ResourceConfig: BackendAPIResourceConfig
+    ResourceName: string
+end
+
+local record GetBackendAPIModelsInput
+    AppId: string
+    BackendEnvironmentName: string
+    ResourceName: string
+end
+
+local record GetBackendAPIModelsOutput
+    Models: string
+    Status: string
+    ModelIntrospectionSchema: string
+end
+
+local record GetBackendAuthInput
+    AppId: string
+    BackendEnvironmentName: string
+    ResourceName: string
+end
+
+local record GetBackendAuthOutput
+    AppId: string
+    BackendEnvironmentName: string
+    Error: string
+    ResourceConfig: CreateBackendAuthResourceConfig
+    ResourceName: string
+end
+
+local record GetBackendJobInput
+    AppId: string
+    BackendEnvironmentName: string
+    JobId: string
+end
+
+local record GetBackendJobOutput
+    AppId: string
+    BackendEnvironmentName: string
+    CreateTime: string
+    Error: string
+    JobId: string
+    Operation: string
+    Status: string
+    UpdateTime: string
+end
+
+local record GetBackendStorageInput
+    AppId: string
+    BackendEnvironmentName: string
+    ResourceName: string
+end
+
+local record GetBackendStorageOutput
+    AppId: string
+    BackendEnvironmentName: string
+    ResourceConfig: GetBackendStorageResourceConfig
+    ResourceName: string
+end
+
+local record GetTokenInput
+    AppId: string
+    SessionId: string
+end
+
+local record GetTokenOutput
+    AppId: string
+    ChallengeCode: string
+    SessionId: string
+    Ttl: string
+end
+
+local record ImportBackendAuthInput
+    AppId: string
+    BackendEnvironmentName: string
+    IdentityPoolId: string
+    NativeClientId: string
+    UserPoolId: string
+    WebClientId: string
+end
+
+local record ImportBackendAuthOutput
+    AppId: string
+    BackendEnvironmentName: string
+    Error: string
+    JobId: string
+    Operation: string
+    Status: string
+end
+
+local record ImportBackendStorageInput
+    AppId: string
+    BackendEnvironmentName: string
+    BucketName: string
+    ServiceName: string
+end
+
+local record ImportBackendStorageOutput
+    AppId: string
+    BackendEnvironmentName: string
+    JobId: string
+    Status: string
+end
+
+local record ListBackendJobsInput
+    AppId: string
+    BackendEnvironmentName: string
+    JobId: string
+    MaxResults: number
+    NextToken: string
+    Operation: string
+    Status: string
+end
+
+local record ListBackendJobsOutput
+    Jobs: {BackendJobRespObj}
+    NextToken: string
+end
+
+local record ListS3BucketsInput
+    NextToken: string
+end
+
+local record ListS3BucketsOutput
+    Buckets: {S3BucketInfo}
+    NextToken: string
+end
+
+local record RemoveAllBackendsInput
+    AppId: string
+    CleanAmplifyApp: boolean
+end
+
+local record RemoveAllBackendsOutput
+    AppId: string
+    Error: string
+    JobId: string
+    Operation: string
+    Status: string
+end
+
+local record RemoveBackendConfigInput
+    AppId: string
+end
+
+local record RemoveBackendConfigOutput
+    Error: string
+end
+
+local record UpdateBackendAPIInput
+    AppId: string
+    BackendEnvironmentName: string
+    ResourceConfig: BackendAPIResourceConfig
+    ResourceName: string
+end
+
+local record UpdateBackendAPIOutput
+    AppId: string
+    BackendEnvironmentName: string
+    Error: string
+    JobId: string
+    Operation: string
+    Status: string
+end
+
+local record UpdateBackendAuthInput
+    AppId: string
+    BackendEnvironmentName: string
+    ResourceConfig: UpdateBackendAuthResourceConfig
+    ResourceName: string
+end
+
+local record UpdateBackendAuthOutput
+    AppId: string
+    BackendEnvironmentName: string
+    Error: string
+    JobId: string
+    Operation: string
+    Status: string
+end
+
+local record UpdateBackendConfigInput
+    AppId: string
+    LoginAuthConfig: LoginAuthConfigReqObj
+end
+
+local record UpdateBackendConfigOutput
+    AppId: string
+    BackendManagerAppId: string
+    Error: string
+    LoginAuthConfig: LoginAuthConfigReqObj
+end
+
+local record UpdateBackendJobInput
+    AppId: string
+    BackendEnvironmentName: string
+    JobId: string
+    Operation: string
+    Status: string
+end
+
+local record UpdateBackendJobOutput
+    AppId: string
+    BackendEnvironmentName: string
+    CreateTime: string
+    Error: string
+    JobId: string
+    Operation: string
+    Status: string
+    UpdateTime: string
+end
+
+local record UpdateBackendStorageInput
+    AppId: string
+    BackendEnvironmentName: string
+    ResourceConfig: UpdateBackendStorageResourceConfig
+    ResourceName: string
+end
+
+local record UpdateBackendStorageOutput
+    AppId: string
+    BackendEnvironmentName: string
+    JobId: string
+    Status: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local record BadRequestException
+    Message: string
+end
+
+local record GatewayTimeoutException
+    Message: string
+end
+
+local record NotFoundException
+    Message: string
+    ResourceType: string
+end
+
+local record TooManyRequestsException
+    LimitType: string
+    Message: string
+end
+
+local type ServiceName = "S3"
+
+local type Status = "LATEST" | "STALE"
+
+local record M
+    CloneBackendInput: CloneBackendInput
+    CloneBackendOutput: CloneBackendOutput
+    CreateBackendInput: CreateBackendInput
+    CreateBackendOutput: CreateBackendOutput
+    CreateBackendAPIInput: CreateBackendAPIInput
+    CreateBackendAPIOutput: CreateBackendAPIOutput
+    CreateBackendAuthInput: CreateBackendAuthInput
+    CreateBackendAuthOutput: CreateBackendAuthOutput
+    CreateBackendConfigInput: CreateBackendConfigInput
+    CreateBackendConfigOutput: CreateBackendConfigOutput
+    CreateBackendStorageInput: CreateBackendStorageInput
+    CreateBackendStorageOutput: CreateBackendStorageOutput
+    CreateTokenInput: CreateTokenInput
+    CreateTokenOutput: CreateTokenOutput
+    DeleteBackendInput: DeleteBackendInput
+    DeleteBackendOutput: DeleteBackendOutput
+    DeleteBackendAPIInput: DeleteBackendAPIInput
+    DeleteBackendAPIOutput: DeleteBackendAPIOutput
+    DeleteBackendAuthInput: DeleteBackendAuthInput
+    DeleteBackendAuthOutput: DeleteBackendAuthOutput
+    DeleteBackendStorageInput: DeleteBackendStorageInput
+    DeleteBackendStorageOutput: DeleteBackendStorageOutput
+    DeleteTokenInput: DeleteTokenInput
+    DeleteTokenOutput: DeleteTokenOutput
+    GenerateBackendAPIModelsInput: GenerateBackendAPIModelsInput
+    GenerateBackendAPIModelsOutput: GenerateBackendAPIModelsOutput
+    GetBackendInput: GetBackendInput
+    GetBackendOutput: GetBackendOutput
+    GetBackendAPIInput: GetBackendAPIInput
+    GetBackendAPIOutput: GetBackendAPIOutput
+    GetBackendAPIModelsInput: GetBackendAPIModelsInput
+    GetBackendAPIModelsOutput: GetBackendAPIModelsOutput
+    GetBackendAuthInput: GetBackendAuthInput
+    GetBackendAuthOutput: GetBackendAuthOutput
+    GetBackendJobInput: GetBackendJobInput
+    GetBackendJobOutput: GetBackendJobOutput
+    GetBackendStorageInput: GetBackendStorageInput
+    GetBackendStorageOutput: GetBackendStorageOutput
+    GetTokenInput: GetTokenInput
+    GetTokenOutput: GetTokenOutput
+    ImportBackendAuthInput: ImportBackendAuthInput
+    ImportBackendAuthOutput: ImportBackendAuthOutput
+    ImportBackendStorageInput: ImportBackendStorageInput
+    ImportBackendStorageOutput: ImportBackendStorageOutput
+    ListBackendJobsInput: ListBackendJobsInput
+    ListBackendJobsOutput: ListBackendJobsOutput
+    ListS3BucketsInput: ListS3BucketsInput
+    ListS3BucketsOutput: ListS3BucketsOutput
+    RemoveAllBackendsInput: RemoveAllBackendsInput
+    RemoveAllBackendsOutput: RemoveAllBackendsOutput
+    RemoveBackendConfigInput: RemoveBackendConfigInput
+    RemoveBackendConfigOutput: RemoveBackendConfigOutput
+    UpdateBackendAPIInput: UpdateBackendAPIInput
+    UpdateBackendAPIOutput: UpdateBackendAPIOutput
+    UpdateBackendAuthInput: UpdateBackendAuthInput
+    UpdateBackendAuthOutput: UpdateBackendAuthOutput
+    UpdateBackendConfigInput: UpdateBackendConfigInput
+    UpdateBackendConfigOutput: UpdateBackendConfigOutput
+    UpdateBackendJobInput: UpdateBackendJobInput
+    UpdateBackendJobOutput: UpdateBackendJobOutput
+    UpdateBackendStorageInput: UpdateBackendStorageInput
+    UpdateBackendStorageOutput: UpdateBackendStorageOutput
+end
+
+return M

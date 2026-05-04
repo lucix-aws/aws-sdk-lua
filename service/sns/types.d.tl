@@ -1,0 +1,1364 @@
+local record AddPermissionInput
+    TopicArn: string
+    Label: string
+    AWSAccountId: {string}
+    ActionName: {string}
+end
+
+local record AddPermissionOutput
+end
+
+local record CheckIfPhoneNumberIsOptedOutInput
+    phoneNumber: string
+end
+
+local record CheckIfPhoneNumberIsOptedOutOutput
+    isOptedOut: boolean
+end
+
+local record ConfirmSubscriptionInput
+    TopicArn: string
+    Token: string
+    AuthenticateOnUnsubscribe: string
+end
+
+local record ConfirmSubscriptionOutput
+    SubscriptionArn: string
+end
+
+local record CreatePlatformApplicationInput
+    Name: string
+    Platform: string
+    Attributes: {string : string}
+end
+
+local record CreatePlatformApplicationOutput
+    PlatformApplicationArn: string
+end
+
+local record CreatePlatformEndpointInput
+    PlatformApplicationArn: string
+    Token: string
+    CustomUserData: string
+    Attributes: {string : string}
+end
+
+local record CreatePlatformEndpointOutput
+    EndpointArn: string
+end
+
+local record CreateSMSSandboxPhoneNumberInput
+    PhoneNumber: string
+    LanguageCode: string
+end
+
+local record CreateSMSSandboxPhoneNumberOutput
+end
+
+local record CreateTopicInput
+    Name: string
+    Attributes: {string : string}
+    Tags: {Tag}
+    DataProtectionPolicy: string
+end
+
+local record CreateTopicOutput
+    TopicArn: string
+end
+
+local record DeleteEndpointInput
+    EndpointArn: string
+end
+
+local record DeleteEndpointOutput
+end
+
+local record DeletePlatformApplicationInput
+    PlatformApplicationArn: string
+end
+
+local record DeletePlatformApplicationOutput
+end
+
+local record DeleteSMSSandboxPhoneNumberInput
+    PhoneNumber: string
+end
+
+local record DeleteSMSSandboxPhoneNumberOutput
+end
+
+local record DeleteTopicInput
+    TopicArn: string
+end
+
+local record DeleteTopicOutput
+end
+
+local record GetDataProtectionPolicyInput
+    ResourceArn: string
+end
+
+local record GetDataProtectionPolicyOutput
+    DataProtectionPolicy: string
+end
+
+local record GetEndpointAttributesInput
+    EndpointArn: string
+end
+
+local record GetEndpointAttributesOutput
+    Attributes: {string : string}
+end
+
+local record GetPlatformApplicationAttributesInput
+    PlatformApplicationArn: string
+end
+
+local record GetPlatformApplicationAttributesOutput
+    Attributes: {string : string}
+end
+
+local record GetSMSAttributesInput
+    attributes: {string}
+end
+
+local record GetSMSAttributesOutput
+    attributes: {string : string}
+end
+
+local record GetSMSSandboxAccountStatusInput
+end
+
+local record GetSMSSandboxAccountStatusOutput
+    IsInSandbox: boolean
+end
+
+local record GetSubscriptionAttributesInput
+    SubscriptionArn: string
+end
+
+local record GetSubscriptionAttributesOutput
+    Attributes: {string : string}
+end
+
+local record GetTopicAttributesInput
+    TopicArn: string
+end
+
+local record GetTopicAttributesOutput
+    Attributes: {string : string}
+end
+
+local record ListEndpointsByPlatformApplicationInput
+    PlatformApplicationArn: string
+    NextToken: string
+end
+
+local record ListEndpointsByPlatformApplicationOutput
+    Endpoints: {Endpoint}
+    NextToken: string
+end
+
+local record ListOriginationNumbersInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListOriginationNumbersOutput
+    NextToken: string
+    PhoneNumbers: {PhoneNumberInformation}
+end
+
+local record ListPhoneNumbersOptedOutInput
+    nextToken: string
+end
+
+local record ListPhoneNumbersOptedOutOutput
+    phoneNumbers: {string}
+    nextToken: string
+end
+
+local record ListPlatformApplicationsInput
+    NextToken: string
+end
+
+local record ListPlatformApplicationsOutput
+    PlatformApplications: {PlatformApplication}
+    NextToken: string
+end
+
+local record ListSMSSandboxPhoneNumbersInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListSMSSandboxPhoneNumbersOutput
+    PhoneNumbers: {SMSSandboxPhoneNumber}
+    NextToken: string
+end
+
+local record ListSubscriptionsInput
+    NextToken: string
+end
+
+local record ListSubscriptionsOutput
+    Subscriptions: {Subscription}
+    NextToken: string
+end
+
+local record ListSubscriptionsByTopicInput
+    TopicArn: string
+    NextToken: string
+end
+
+local record ListSubscriptionsByTopicOutput
+    Subscriptions: {Subscription}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+end
+
+local record ListTopicsInput
+    NextToken: string
+end
+
+local record ListTopicsOutput
+    Topics: {Topic}
+    NextToken: string
+end
+
+local record OptInPhoneNumberInput
+    phoneNumber: string
+end
+
+local record OptInPhoneNumberOutput
+end
+
+local record PublishInput
+    TopicArn: string
+    TargetArn: string
+    PhoneNumber: string
+    Message: string
+    Subject: string
+    MessageStructure: string
+    MessageAttributes: {string : MessageAttributeValue}
+    MessageDeduplicationId: string
+    MessageGroupId: string
+end
+
+local record PublishOutput
+    MessageId: string
+    SequenceNumber: string
+end
+
+local record PublishBatchInput
+    TopicArn: string
+    PublishBatchRequestEntries: {PublishBatchRequestEntry}
+end
+
+local record PublishBatchOutput
+    Successful: {PublishBatchResultEntry}
+    Failed: {BatchResultErrorEntry}
+end
+
+local record PutDataProtectionPolicyInput
+    ResourceArn: string
+    DataProtectionPolicy: string
+end
+
+local record PutDataProtectionPolicyOutput
+end
+
+local record RemovePermissionInput
+    TopicArn: string
+    Label: string
+end
+
+local record RemovePermissionOutput
+end
+
+local record SetEndpointAttributesInput
+    EndpointArn: string
+    Attributes: {string : string}
+end
+
+local record SetEndpointAttributesOutput
+end
+
+local record SetPlatformApplicationAttributesInput
+    PlatformApplicationArn: string
+    Attributes: {string : string}
+end
+
+local record SetPlatformApplicationAttributesOutput
+end
+
+local record SetSMSAttributesInput
+    attributes: {string : string}
+end
+
+local record SetSMSAttributesOutput
+end
+
+local record SetSubscriptionAttributesInput
+    SubscriptionArn: string
+    AttributeName: string
+    AttributeValue: string
+end
+
+local record SetSubscriptionAttributesOutput
+end
+
+local record SetTopicAttributesInput
+    TopicArn: string
+    AttributeName: string
+    AttributeValue: string
+end
+
+local record SetTopicAttributesOutput
+end
+
+local record SubscribeInput
+    TopicArn: string
+    Protocol: string
+    Endpoint: string
+    Attributes: {string : string}
+    ReturnSubscriptionArn: boolean
+end
+
+local record SubscribeOutput
+    SubscriptionArn: string
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UnsubscribeInput
+    SubscriptionArn: string
+end
+
+local record UnsubscribeOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record VerifySMSSandboxPhoneNumberInput
+    PhoneNumber: string
+    OneTimePassword: string
+end
+
+local record VerifySMSSandboxPhoneNumberOutput
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record ThrottledException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record FilterPolicyLimitExceededException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ReplayLimitExceededException
+    message: string
+end
+
+local record SubscriptionLimitExceededException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record OptedOutException
+    message: string
+end
+
+local record ThrottledException
+    message: string
+end
+
+local record UserErrorException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record ConcurrentAccessException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record InvalidSecurityException
+    message: string
+end
+
+local record StaleTagException
+    message: string
+end
+
+local record TagLimitExceededException
+    message: string
+end
+
+local record TagPolicyException
+    message: string
+end
+
+local record TopicLimitExceededException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottledException
+    message: string
+end
+
+local record UserErrorException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record ConcurrentAccessException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record InvalidStateException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record StaleTagException
+    message: string
+end
+
+local record TagPolicyException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record InvalidSecurityException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record ThrottledException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record ThrottledException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record InvalidSecurityException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record ThrottledException
+    message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record ThrottledException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottledException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record ConcurrentAccessException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TagPolicyException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record ThrottledException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record EndpointDisabledException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InvalidSecurityException
+    message: string
+end
+
+local record KMSAccessDeniedException
+    message: string
+end
+
+local record KMSDisabledException
+    message: string
+end
+
+local record KMSInvalidStateException
+    message: string
+end
+
+local record KMSNotFoundException
+    message: string
+end
+
+local record KMSOptInRequired
+    message: string
+end
+
+local record KMSThrottlingException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record PlatformApplicationDisabledException
+    message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record BatchEntryIdsNotDistinctException
+    message: string
+end
+
+local record BatchRequestTooLongException
+    message: string
+end
+
+local record EmptyBatchRequestException
+    message: string
+end
+
+local record EndpointDisabledException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidBatchEntryIdException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record InvalidParameterValueException
+    message: string
+end
+
+local record InvalidSecurityException
+    message: string
+end
+
+local record KMSAccessDeniedException
+    message: string
+end
+
+local record KMSDisabledException
+    message: string
+end
+
+local record KMSInvalidStateException
+    message: string
+end
+
+local record KMSNotFoundException
+    message: string
+end
+
+local record KMSOptInRequired
+    message: string
+end
+
+local record KMSThrottlingException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record PlatformApplicationDisabledException
+    message: string
+end
+
+local record TooManyEntriesInBatchRequestException
+    message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record InvalidSecurityException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record ThrottledException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record FilterPolicyLimitExceededException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ReplayLimitExceededException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record InvalidSecurityException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record FilterPolicyLimitExceededException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record InvalidSecurityException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record ReplayLimitExceededException
+    message: string
+end
+
+local record SubscriptionLimitExceededException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record ConcurrentAccessException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record StaleTagException
+    message: string
+end
+
+local record TagLimitExceededException
+    message: string
+end
+
+local record TagPolicyException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record InvalidSecurityException
+    message: string
+end
+
+local record NotFoundException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record ConcurrentAccessException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record StaleTagException
+    message: string
+end
+
+local record TagLimitExceededException
+    message: string
+end
+
+local record TagPolicyException
+    message: string
+end
+
+local record AuthorizationErrorException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottledException
+    message: string
+end
+
+local record VerificationException
+    Message: string
+    Status: string
+end
+
+local type LanguageCodeString = "en-US" | "en-GB" | "es-419" | "es-ES" | "de-DE" | "fr-CA" | "fr-FR" | "it-IT" | "ja-JP" | "pt-BR" | "kr-KR" | "zh-CN" | "zh-TW"
+
+local record M
+    AddPermissionInput: AddPermissionInput
+    AddPermissionOutput: AddPermissionOutput
+    CheckIfPhoneNumberIsOptedOutInput: CheckIfPhoneNumberIsOptedOutInput
+    CheckIfPhoneNumberIsOptedOutOutput: CheckIfPhoneNumberIsOptedOutOutput
+    ConfirmSubscriptionInput: ConfirmSubscriptionInput
+    ConfirmSubscriptionOutput: ConfirmSubscriptionOutput
+    CreatePlatformApplicationInput: CreatePlatformApplicationInput
+    CreatePlatformApplicationOutput: CreatePlatformApplicationOutput
+    CreatePlatformEndpointInput: CreatePlatformEndpointInput
+    CreatePlatformEndpointOutput: CreatePlatformEndpointOutput
+    CreateSMSSandboxPhoneNumberInput: CreateSMSSandboxPhoneNumberInput
+    CreateSMSSandboxPhoneNumberOutput: CreateSMSSandboxPhoneNumberOutput
+    CreateTopicInput: CreateTopicInput
+    CreateTopicOutput: CreateTopicOutput
+    DeleteEndpointInput: DeleteEndpointInput
+    DeleteEndpointOutput: DeleteEndpointOutput
+    DeletePlatformApplicationInput: DeletePlatformApplicationInput
+    DeletePlatformApplicationOutput: DeletePlatformApplicationOutput
+    DeleteSMSSandboxPhoneNumberInput: DeleteSMSSandboxPhoneNumberInput
+    DeleteSMSSandboxPhoneNumberOutput: DeleteSMSSandboxPhoneNumberOutput
+    DeleteTopicInput: DeleteTopicInput
+    DeleteTopicOutput: DeleteTopicOutput
+    GetDataProtectionPolicyInput: GetDataProtectionPolicyInput
+    GetDataProtectionPolicyOutput: GetDataProtectionPolicyOutput
+    GetEndpointAttributesInput: GetEndpointAttributesInput
+    GetEndpointAttributesOutput: GetEndpointAttributesOutput
+    GetPlatformApplicationAttributesInput: GetPlatformApplicationAttributesInput
+    GetPlatformApplicationAttributesOutput: GetPlatformApplicationAttributesOutput
+    GetSMSAttributesInput: GetSMSAttributesInput
+    GetSMSAttributesOutput: GetSMSAttributesOutput
+    GetSMSSandboxAccountStatusInput: GetSMSSandboxAccountStatusInput
+    GetSMSSandboxAccountStatusOutput: GetSMSSandboxAccountStatusOutput
+    GetSubscriptionAttributesInput: GetSubscriptionAttributesInput
+    GetSubscriptionAttributesOutput: GetSubscriptionAttributesOutput
+    GetTopicAttributesInput: GetTopicAttributesInput
+    GetTopicAttributesOutput: GetTopicAttributesOutput
+    ListEndpointsByPlatformApplicationInput: ListEndpointsByPlatformApplicationInput
+    ListEndpointsByPlatformApplicationOutput: ListEndpointsByPlatformApplicationOutput
+    ListOriginationNumbersInput: ListOriginationNumbersInput
+    ListOriginationNumbersOutput: ListOriginationNumbersOutput
+    ListPhoneNumbersOptedOutInput: ListPhoneNumbersOptedOutInput
+    ListPhoneNumbersOptedOutOutput: ListPhoneNumbersOptedOutOutput
+    ListPlatformApplicationsInput: ListPlatformApplicationsInput
+    ListPlatformApplicationsOutput: ListPlatformApplicationsOutput
+    ListSMSSandboxPhoneNumbersInput: ListSMSSandboxPhoneNumbersInput
+    ListSMSSandboxPhoneNumbersOutput: ListSMSSandboxPhoneNumbersOutput
+    ListSubscriptionsInput: ListSubscriptionsInput
+    ListSubscriptionsOutput: ListSubscriptionsOutput
+    ListSubscriptionsByTopicInput: ListSubscriptionsByTopicInput
+    ListSubscriptionsByTopicOutput: ListSubscriptionsByTopicOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListTopicsInput: ListTopicsInput
+    ListTopicsOutput: ListTopicsOutput
+    OptInPhoneNumberInput: OptInPhoneNumberInput
+    OptInPhoneNumberOutput: OptInPhoneNumberOutput
+    PublishInput: PublishInput
+    PublishOutput: PublishOutput
+    PublishBatchInput: PublishBatchInput
+    PublishBatchOutput: PublishBatchOutput
+    PutDataProtectionPolicyInput: PutDataProtectionPolicyInput
+    PutDataProtectionPolicyOutput: PutDataProtectionPolicyOutput
+    RemovePermissionInput: RemovePermissionInput
+    RemovePermissionOutput: RemovePermissionOutput
+    SetEndpointAttributesInput: SetEndpointAttributesInput
+    SetEndpointAttributesOutput: SetEndpointAttributesOutput
+    SetPlatformApplicationAttributesInput: SetPlatformApplicationAttributesInput
+    SetPlatformApplicationAttributesOutput: SetPlatformApplicationAttributesOutput
+    SetSMSAttributesInput: SetSMSAttributesInput
+    SetSMSAttributesOutput: SetSMSAttributesOutput
+    SetSubscriptionAttributesInput: SetSubscriptionAttributesInput
+    SetSubscriptionAttributesOutput: SetSubscriptionAttributesOutput
+    SetTopicAttributesInput: SetTopicAttributesInput
+    SetTopicAttributesOutput: SetTopicAttributesOutput
+    SubscribeInput: SubscribeInput
+    SubscribeOutput: SubscribeOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UnsubscribeInput: UnsubscribeInput
+    UnsubscribeOutput: UnsubscribeOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    VerifySMSSandboxPhoneNumberInput: VerifySMSSandboxPhoneNumberInput
+    VerifySMSSandboxPhoneNumberOutput: VerifySMSSandboxPhoneNumberOutput
+end
+
+return M

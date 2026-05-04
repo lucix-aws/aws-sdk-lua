@@ -1,0 +1,752 @@
+local record ApplyPendingMaintenanceActionInput
+    resourceArn: string
+    applyAction: string
+    optInType: string
+    applyOn: string
+end
+
+local record ApplyPendingMaintenanceActionOutput
+    resourcePendingMaintenanceAction: ResourcePendingMaintenanceAction
+end
+
+local record CopyClusterSnapshotInput
+    snapshotArn: string
+    targetSnapshotName: string
+    kmsKeyId: string
+    copyTags: boolean
+    tags: {string : string}
+end
+
+local record CopyClusterSnapshotOutput
+    snapshot: ClusterSnapshot
+end
+
+local record CreateClusterInput
+    clusterName: string
+    authType: string
+    adminUserName: string
+    adminUserPassword: string
+    shardCapacity: number
+    shardCount: number
+    vpcSecurityGroupIds: {string}
+    subnetIds: {string}
+    kmsKeyId: string
+    clientToken: string
+    preferredMaintenanceWindow: string
+    tags: {string : string}
+    backupRetentionPeriod: number
+    preferredBackupWindow: string
+    shardInstanceCount: number
+end
+
+local record CreateClusterOutput
+    cluster: Cluster
+end
+
+local record CreateClusterSnapshotInput
+    clusterArn: string
+    snapshotName: string
+    tags: {string : string}
+end
+
+local record CreateClusterSnapshotOutput
+    snapshot: ClusterSnapshot
+end
+
+local record DeleteClusterInput
+    clusterArn: string
+end
+
+local record DeleteClusterOutput
+    cluster: Cluster
+end
+
+local record DeleteClusterSnapshotInput
+    snapshotArn: string
+end
+
+local record DeleteClusterSnapshotOutput
+    snapshot: ClusterSnapshot
+end
+
+local record GetClusterInput
+    clusterArn: string
+end
+
+local record GetClusterOutput
+    cluster: Cluster
+end
+
+local record GetClusterSnapshotInput
+    snapshotArn: string
+end
+
+local record GetClusterSnapshotOutput
+    snapshot: ClusterSnapshot
+end
+
+local record GetPendingMaintenanceActionInput
+    resourceArn: string
+end
+
+local record GetPendingMaintenanceActionOutput
+    resourcePendingMaintenanceAction: ResourcePendingMaintenanceAction
+end
+
+local record ListClustersInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListClustersOutput
+    clusters: {ClusterInList}
+    nextToken: string
+end
+
+local record ListClusterSnapshotsInput
+    clusterArn: string
+    nextToken: string
+    maxResults: number
+    snapshotType: string
+end
+
+local record ListClusterSnapshotsOutput
+    snapshots: {ClusterSnapshotInList}
+    nextToken: string
+end
+
+local record ListPendingMaintenanceActionsInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListPendingMaintenanceActionsOutput
+    resourcePendingMaintenanceActions: {ResourcePendingMaintenanceAction}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record RestoreClusterFromSnapshotInput
+    clusterName: string
+    snapshotArn: string
+    vpcSecurityGroupIds: {string}
+    subnetIds: {string}
+    kmsKeyId: string
+    tags: {string : string}
+    shardCapacity: number
+    shardInstanceCount: number
+end
+
+local record RestoreClusterFromSnapshotOutput
+    cluster: Cluster
+end
+
+local record StartClusterInput
+    clusterArn: string
+end
+
+local record StartClusterOutput
+    cluster: Cluster
+end
+
+local record StopClusterInput
+    clusterArn: string
+end
+
+local record StopClusterOutput
+    cluster: Cluster
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateClusterInput
+    clusterArn: string
+    authType: string
+    shardCapacity: number
+    shardCount: number
+    vpcSecurityGroupIds: {string}
+    subnetIds: {string}
+    adminUserPassword: string
+    clientToken: string
+    preferredMaintenanceWindow: string
+    backupRetentionPeriod: number
+    preferredBackupWindow: string
+    shardInstanceCount: number
+end
+
+local record UpdateClusterOutput
+    cluster: Cluster
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceId: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+    reason: string
+    fieldList: {ValidationExceptionField}
+end
+
+local record M
+    ApplyPendingMaintenanceActionInput: ApplyPendingMaintenanceActionInput
+    ApplyPendingMaintenanceActionOutput: ApplyPendingMaintenanceActionOutput
+    CopyClusterSnapshotInput: CopyClusterSnapshotInput
+    CopyClusterSnapshotOutput: CopyClusterSnapshotOutput
+    CreateClusterInput: CreateClusterInput
+    CreateClusterOutput: CreateClusterOutput
+    CreateClusterSnapshotInput: CreateClusterSnapshotInput
+    CreateClusterSnapshotOutput: CreateClusterSnapshotOutput
+    DeleteClusterInput: DeleteClusterInput
+    DeleteClusterOutput: DeleteClusterOutput
+    DeleteClusterSnapshotInput: DeleteClusterSnapshotInput
+    DeleteClusterSnapshotOutput: DeleteClusterSnapshotOutput
+    GetClusterInput: GetClusterInput
+    GetClusterOutput: GetClusterOutput
+    GetClusterSnapshotInput: GetClusterSnapshotInput
+    GetClusterSnapshotOutput: GetClusterSnapshotOutput
+    GetPendingMaintenanceActionInput: GetPendingMaintenanceActionInput
+    GetPendingMaintenanceActionOutput: GetPendingMaintenanceActionOutput
+    ListClustersInput: ListClustersInput
+    ListClustersOutput: ListClustersOutput
+    ListClusterSnapshotsInput: ListClusterSnapshotsInput
+    ListClusterSnapshotsOutput: ListClusterSnapshotsOutput
+    ListPendingMaintenanceActionsInput: ListPendingMaintenanceActionsInput
+    ListPendingMaintenanceActionsOutput: ListPendingMaintenanceActionsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    RestoreClusterFromSnapshotInput: RestoreClusterFromSnapshotInput
+    RestoreClusterFromSnapshotOutput: RestoreClusterFromSnapshotOutput
+    StartClusterInput: StartClusterInput
+    StartClusterOutput: StartClusterOutput
+    StopClusterInput: StopClusterInput
+    StopClusterOutput: StopClusterOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateClusterInput: UpdateClusterInput
+    UpdateClusterOutput: UpdateClusterOutput
+end
+
+return M

@@ -1,0 +1,80 @@
+local types = require("athena.types")
+
+local record Client
+    batchGetNamedQuery: function(Client, types.BatchGetNamedQueryInput): types.BatchGetNamedQueryOutput, table
+    batchGetPreparedStatement: function(Client, types.BatchGetPreparedStatementInput): types.BatchGetPreparedStatementOutput, table
+    batchGetQueryExecution: function(Client, types.BatchGetQueryExecutionInput): types.BatchGetQueryExecutionOutput, table
+    cancelCapacityReservation: function(Client, types.CancelCapacityReservationInput): types.CancelCapacityReservationOutput, table
+    createCapacityReservation: function(Client, types.CreateCapacityReservationInput): types.CreateCapacityReservationOutput, table
+    createDataCatalog: function(Client, types.CreateDataCatalogInput): types.CreateDataCatalogOutput, table
+    createNamedQuery: function(Client, types.CreateNamedQueryInput): types.CreateNamedQueryOutput, table
+    createNotebook: function(Client, types.CreateNotebookInput): types.CreateNotebookOutput, table
+    createPreparedStatement: function(Client, types.CreatePreparedStatementInput): types.CreatePreparedStatementOutput, table
+    createPresignedNotebookUrl: function(Client, types.CreatePresignedNotebookUrlInput): types.CreatePresignedNotebookUrlOutput, table
+    createWorkGroup: function(Client, types.CreateWorkGroupInput): types.CreateWorkGroupOutput, table
+    deleteCapacityReservation: function(Client, types.DeleteCapacityReservationInput): types.DeleteCapacityReservationOutput, table
+    deleteDataCatalog: function(Client, types.DeleteDataCatalogInput): types.DeleteDataCatalogOutput, table
+    deleteNamedQuery: function(Client, types.DeleteNamedQueryInput): types.DeleteNamedQueryOutput, table
+    deleteNotebook: function(Client, types.DeleteNotebookInput): types.DeleteNotebookOutput, table
+    deletePreparedStatement: function(Client, types.DeletePreparedStatementInput): types.DeletePreparedStatementOutput, table
+    deleteWorkGroup: function(Client, types.DeleteWorkGroupInput): types.DeleteWorkGroupOutput, table
+    exportNotebook: function(Client, types.ExportNotebookInput): types.ExportNotebookOutput, table
+    getCalculationExecution: function(Client, types.GetCalculationExecutionInput): types.GetCalculationExecutionOutput, table
+    getCalculationExecutionCode: function(Client, types.GetCalculationExecutionCodeInput): types.GetCalculationExecutionCodeOutput, table
+    getCalculationExecutionStatus: function(Client, types.GetCalculationExecutionStatusInput): types.GetCalculationExecutionStatusOutput, table
+    getCapacityAssignmentConfiguration: function(Client, types.GetCapacityAssignmentConfigurationInput): types.GetCapacityAssignmentConfigurationOutput, table
+    getCapacityReservation: function(Client, types.GetCapacityReservationInput): types.GetCapacityReservationOutput, table
+    getDatabase: function(Client, types.GetDatabaseInput): types.GetDatabaseOutput, table
+    getDataCatalog: function(Client, types.GetDataCatalogInput): types.GetDataCatalogOutput, table
+    getNamedQuery: function(Client, types.GetNamedQueryInput): types.GetNamedQueryOutput, table
+    getNotebookMetadata: function(Client, types.GetNotebookMetadataInput): types.GetNotebookMetadataOutput, table
+    getPreparedStatement: function(Client, types.GetPreparedStatementInput): types.GetPreparedStatementOutput, table
+    getQueryExecution: function(Client, types.GetQueryExecutionInput): types.GetQueryExecutionOutput, table
+    getQueryResults: function(Client, types.GetQueryResultsInput): types.GetQueryResultsOutput, table
+    getQueryRuntimeStatistics: function(Client, types.GetQueryRuntimeStatisticsInput): types.GetQueryRuntimeStatisticsOutput, table
+    getResourceDashboard: function(Client, types.GetResourceDashboardInput): types.GetResourceDashboardOutput, table
+    getSession: function(Client, types.GetSessionInput): types.GetSessionOutput, table
+    getSessionEndpoint: function(Client, types.GetSessionEndpointInput): types.GetSessionEndpointOutput, table
+    getSessionStatus: function(Client, types.GetSessionStatusInput): types.GetSessionStatusOutput, table
+    getTableMetadata: function(Client, types.GetTableMetadataInput): types.GetTableMetadataOutput, table
+    getWorkGroup: function(Client, types.GetWorkGroupInput): types.GetWorkGroupOutput, table
+    importNotebook: function(Client, types.ImportNotebookInput): types.ImportNotebookOutput, table
+    listApplicationDPUSizes: function(Client, types.ListApplicationDPUSizesInput): types.ListApplicationDPUSizesOutput, table
+    listCalculationExecutions: function(Client, types.ListCalculationExecutionsInput): types.ListCalculationExecutionsOutput, table
+    listCapacityReservations: function(Client, types.ListCapacityReservationsInput): types.ListCapacityReservationsOutput, table
+    listDatabases: function(Client, types.ListDatabasesInput): types.ListDatabasesOutput, table
+    listDataCatalogs: function(Client, types.ListDataCatalogsInput): types.ListDataCatalogsOutput, table
+    listEngineVersions: function(Client, types.ListEngineVersionsInput): types.ListEngineVersionsOutput, table
+    listExecutors: function(Client, types.ListExecutorsInput): types.ListExecutorsOutput, table
+    listNamedQueries: function(Client, types.ListNamedQueriesInput): types.ListNamedQueriesOutput, table
+    listNotebookMetadata: function(Client, types.ListNotebookMetadataInput): types.ListNotebookMetadataOutput, table
+    listNotebookSessions: function(Client, types.ListNotebookSessionsInput): types.ListNotebookSessionsOutput, table
+    listPreparedStatements: function(Client, types.ListPreparedStatementsInput): types.ListPreparedStatementsOutput, table
+    listQueryExecutions: function(Client, types.ListQueryExecutionsInput): types.ListQueryExecutionsOutput, table
+    listSessions: function(Client, types.ListSessionsInput): types.ListSessionsOutput, table
+    listTableMetadata: function(Client, types.ListTableMetadataInput): types.ListTableMetadataOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listWorkGroups: function(Client, types.ListWorkGroupsInput): types.ListWorkGroupsOutput, table
+    putCapacityAssignmentConfiguration: function(Client, types.PutCapacityAssignmentConfigurationInput): types.PutCapacityAssignmentConfigurationOutput, table
+    startCalculationExecution: function(Client, types.StartCalculationExecutionInput): types.StartCalculationExecutionOutput, table
+    startQueryExecution: function(Client, types.StartQueryExecutionInput): types.StartQueryExecutionOutput, table
+    startSession: function(Client, types.StartSessionInput): types.StartSessionOutput, table
+    stopCalculationExecution: function(Client, types.StopCalculationExecutionInput): types.StopCalculationExecutionOutput, table
+    stopQueryExecution: function(Client, types.StopQueryExecutionInput): types.StopQueryExecutionOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    terminateSession: function(Client, types.TerminateSessionInput): types.TerminateSessionOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateCapacityReservation: function(Client, types.UpdateCapacityReservationInput): types.UpdateCapacityReservationOutput, table
+    updateDataCatalog: function(Client, types.UpdateDataCatalogInput): types.UpdateDataCatalogOutput, table
+    updateNamedQuery: function(Client, types.UpdateNamedQueryInput): types.UpdateNamedQueryOutput, table
+    updateNotebook: function(Client, types.UpdateNotebookInput): types.UpdateNotebookOutput, table
+    updateNotebookMetadata: function(Client, types.UpdateNotebookMetadataInput): types.UpdateNotebookMetadataOutput, table
+    updatePreparedStatement: function(Client, types.UpdatePreparedStatementInput): types.UpdatePreparedStatementOutput, table
+    updateWorkGroup: function(Client, types.UpdateWorkGroupInput): types.UpdateWorkGroupOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

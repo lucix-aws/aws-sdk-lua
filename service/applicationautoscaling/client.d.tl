@@ -1,0 +1,24 @@
+local types = require("applicationautoscaling.types")
+
+local record Client
+    deleteScalingPolicy: function(Client, types.DeleteScalingPolicyInput): types.DeleteScalingPolicyOutput, table
+    deleteScheduledAction: function(Client, types.DeleteScheduledActionInput): types.DeleteScheduledActionOutput, table
+    deregisterScalableTarget: function(Client, types.DeregisterScalableTargetInput): types.DeregisterScalableTargetOutput, table
+    describeScalableTargets: function(Client, types.DescribeScalableTargetsInput): types.DescribeScalableTargetsOutput, table
+    describeScalingActivities: function(Client, types.DescribeScalingActivitiesInput): types.DescribeScalingActivitiesOutput, table
+    describeScalingPolicies: function(Client, types.DescribeScalingPoliciesInput): types.DescribeScalingPoliciesOutput, table
+    describeScheduledActions: function(Client, types.DescribeScheduledActionsInput): types.DescribeScheduledActionsOutput, table
+    getPredictiveScalingForecast: function(Client, types.GetPredictiveScalingForecastInput): types.GetPredictiveScalingForecastOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putScalingPolicy: function(Client, types.PutScalingPolicyInput): types.PutScalingPolicyOutput, table
+    putScheduledAction: function(Client, types.PutScheduledActionInput): types.PutScheduledActionOutput, table
+    registerScalableTarget: function(Client, types.RegisterScalableTargetInput): types.RegisterScalableTargetOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

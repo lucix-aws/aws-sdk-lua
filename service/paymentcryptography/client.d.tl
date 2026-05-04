@@ -1,0 +1,42 @@
+local types = require("paymentcryptography.types")
+
+local record Client
+    addKeyReplicationRegions: function(Client, types.AddKeyReplicationRegionsInput): types.AddKeyReplicationRegionsOutput, table
+    associateMpaTeam: function(Client, types.AssociateMpaTeamInput): types.AssociateMpaTeamOutput, table
+    createAlias: function(Client, types.CreateAliasInput): types.CreateAliasOutput, table
+    createKey: function(Client, types.CreateKeyInput): types.CreateKeyOutput, table
+    deleteAlias: function(Client, types.DeleteAliasInput): types.DeleteAliasOutput, table
+    deleteKey: function(Client, types.DeleteKeyInput): types.DeleteKeyOutput, table
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput): types.DeleteResourcePolicyOutput, table
+    disableDefaultKeyReplicationRegions: function(Client, types.DisableDefaultKeyReplicationRegionsInput): types.DisableDefaultKeyReplicationRegionsOutput, table
+    disassociateMpaTeam: function(Client, types.DisassociateMpaTeamInput): types.DisassociateMpaTeamOutput, table
+    enableDefaultKeyReplicationRegions: function(Client, types.EnableDefaultKeyReplicationRegionsInput): types.EnableDefaultKeyReplicationRegionsOutput, table
+    exportKey: function(Client, types.ExportKeyInput): types.ExportKeyOutput, table
+    getAlias: function(Client, types.GetAliasInput): types.GetAliasOutput, table
+    getCertificateSigningRequest: function(Client, types.GetCertificateSigningRequestInput): types.GetCertificateSigningRequestOutput, table
+    getDefaultKeyReplicationRegions: function(Client, types.GetDefaultKeyReplicationRegionsInput): types.GetDefaultKeyReplicationRegionsOutput, table
+    getKey: function(Client, types.GetKeyInput): types.GetKeyOutput, table
+    getMpaTeamAssociation: function(Client, types.GetMpaTeamAssociationInput): types.GetMpaTeamAssociationOutput, table
+    getParametersForExport: function(Client, types.GetParametersForExportInput): types.GetParametersForExportOutput, table
+    getParametersForImport: function(Client, types.GetParametersForImportInput): types.GetParametersForImportOutput, table
+    getPublicKeyCertificate: function(Client, types.GetPublicKeyCertificateInput): types.GetPublicKeyCertificateOutput, table
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput): types.GetResourcePolicyOutput, table
+    importKey: function(Client, types.ImportKeyInput): types.ImportKeyOutput, table
+    listAliases: function(Client, types.ListAliasesInput): types.ListAliasesOutput, table
+    listKeys: function(Client, types.ListKeysInput): types.ListKeysOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput): types.PutResourcePolicyOutput, table
+    removeKeyReplicationRegions: function(Client, types.RemoveKeyReplicationRegionsInput): types.RemoveKeyReplicationRegionsOutput, table
+    restoreKey: function(Client, types.RestoreKeyInput): types.RestoreKeyOutput, table
+    startKeyUsage: function(Client, types.StartKeyUsageInput): types.StartKeyUsageOutput, table
+    stopKeyUsage: function(Client, types.StopKeyUsageInput): types.StopKeyUsageOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAlias: function(Client, types.UpdateAliasInput): types.UpdateAliasOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,1437 @@
+local record BatchPutPropertyValuesInput
+    workspaceId: string
+    entries: {PropertyValueEntry}
+end
+
+local record BatchPutPropertyValuesOutput
+    errorEntries: {BatchPutPropertyErrorEntry}
+end
+
+local record CancelMetadataTransferJobInput
+    metadataTransferJobId: string
+end
+
+local record CancelMetadataTransferJobOutput
+    metadataTransferJobId: string
+    arn: string
+    updateDateTime: number
+    status: MetadataTransferJobStatus
+    progress: MetadataTransferJobProgress
+end
+
+local record CreateComponentTypeInput
+    workspaceId: string
+    isSingleton: boolean
+    componentTypeId: string
+    description: string
+    propertyDefinitions: {string : PropertyDefinitionRequest}
+    extendsFrom: {string}
+    functions: {string : FunctionRequest}
+    tags: {string : string}
+    propertyGroups: {string : PropertyGroupRequest}
+    componentTypeName: string
+    compositeComponentTypes: {string : CompositeComponentTypeRequest}
+end
+
+local record CreateComponentTypeOutput
+    arn: string
+    creationDateTime: number
+    state: string
+end
+
+local record CreateEntityInput
+    workspaceId: string
+    entityId: string
+    entityName: string
+    description: string
+    components: {string : ComponentRequest}
+    compositeComponents: {string : CompositeComponentRequest}
+    parentEntityId: string
+    tags: {string : string}
+end
+
+local record CreateEntityOutput
+    entityId: string
+    arn: string
+    creationDateTime: number
+    state: string
+end
+
+local record CreateMetadataTransferJobInput
+    metadataTransferJobId: string
+    description: string
+    sources: {SourceConfiguration}
+    destination: DestinationConfiguration
+end
+
+local record CreateMetadataTransferJobOutput
+    metadataTransferJobId: string
+    arn: string
+    creationDateTime: number
+    status: MetadataTransferJobStatus
+end
+
+local record CreateSceneInput
+    workspaceId: string
+    sceneId: string
+    contentLocation: string
+    description: string
+    capabilities: {string}
+    tags: {string : string}
+    sceneMetadata: {string : string}
+end
+
+local record CreateSceneOutput
+    arn: string
+    creationDateTime: number
+end
+
+local record CreateSyncJobInput
+    workspaceId: string
+    syncSource: string
+    syncRole: string
+    tags: {string : string}
+end
+
+local record CreateSyncJobOutput
+    arn: string
+    creationDateTime: number
+    state: string
+end
+
+local record CreateWorkspaceInput
+    workspaceId: string
+    description: string
+    s3Location: string
+    role: string
+    tags: {string : string}
+end
+
+local record CreateWorkspaceOutput
+    arn: string
+    creationDateTime: number
+end
+
+local record DeleteComponentTypeInput
+    workspaceId: string
+    componentTypeId: string
+end
+
+local record DeleteComponentTypeOutput
+    state: string
+end
+
+local record DeleteEntityInput
+    workspaceId: string
+    entityId: string
+    isRecursive: boolean
+end
+
+local record DeleteEntityOutput
+    state: string
+end
+
+local record DeleteSceneInput
+    workspaceId: string
+    sceneId: string
+end
+
+local record DeleteSceneOutput
+end
+
+local record DeleteSyncJobInput
+    workspaceId: string
+    syncSource: string
+end
+
+local record DeleteSyncJobOutput
+    state: string
+end
+
+local record DeleteWorkspaceInput
+    workspaceId: string
+end
+
+local record DeleteWorkspaceOutput
+    message: string
+end
+
+local record ExecuteQueryInput
+    workspaceId: string
+    queryStatement: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ExecuteQueryOutput
+    columnDescriptions: {ColumnDescription}
+    rows: {Row}
+    nextToken: string
+end
+
+local record GetComponentTypeInput
+    workspaceId: string
+    componentTypeId: string
+end
+
+local record GetComponentTypeOutput
+    workspaceId: string
+    isSingleton: boolean
+    componentTypeId: string
+    description: string
+    propertyDefinitions: {string : PropertyDefinitionResponse}
+    extendsFrom: {string}
+    functions: {string : FunctionResponse}
+    creationDateTime: number
+    updateDateTime: number
+    arn: string
+    isAbstract: boolean
+    isSchemaInitialized: boolean
+    status: Status
+    propertyGroups: {string : PropertyGroupResponse}
+    syncSource: string
+    componentTypeName: string
+    compositeComponentTypes: {string : CompositeComponentTypeResponse}
+end
+
+local record GetEntityInput
+    workspaceId: string
+    entityId: string
+end
+
+local record GetEntityOutput
+    entityId: string
+    entityName: string
+    arn: string
+    status: Status
+    workspaceId: string
+    description: string
+    components: {string : ComponentResponse}
+    parentEntityId: string
+    hasChildEntities: boolean
+    creationDateTime: number
+    updateDateTime: number
+    syncSource: string
+    areAllComponentsReturned: boolean
+end
+
+local record GetMetadataTransferJobInput
+    metadataTransferJobId: string
+end
+
+local record GetMetadataTransferJobOutput
+    metadataTransferJobId: string
+    arn: string
+    description: string
+    sources: {SourceConfiguration}
+    destination: DestinationConfiguration
+    metadataTransferJobRole: string
+    reportUrl: string
+    creationDateTime: number
+    updateDateTime: number
+    status: MetadataTransferJobStatus
+    progress: MetadataTransferJobProgress
+end
+
+local record GetPricingPlanInput
+end
+
+local record GetPricingPlanOutput
+    currentPricingPlan: PricingPlan
+    pendingPricingPlan: PricingPlan
+end
+
+local record GetPropertyValueInput
+    componentName: string
+    componentPath: string
+    componentTypeId: string
+    entityId: string
+    selectedProperties: {string}
+    workspaceId: string
+    maxResults: number
+    nextToken: string
+    propertyGroupName: string
+    tabularConditions: TabularConditions
+end
+
+local record GetPropertyValueOutput
+    propertyValues: {string : PropertyLatestValue}
+    nextToken: string
+    tabularPropertyValues: {{{string : DataValue}}}
+end
+
+local record GetPropertyValueHistoryInput
+    workspaceId: string
+    entityId: string
+    componentName: string
+    componentPath: string
+    componentTypeId: string
+    selectedProperties: {string}
+    propertyFilters: {PropertyFilter}
+    startDateTime: number
+    endDateTime: number
+    interpolation: InterpolationParameters
+    nextToken: string
+    maxResults: number
+    orderByTime: string
+    startTime: string
+    endTime: string
+end
+
+local record GetPropertyValueHistoryOutput
+    propertyValues: {PropertyValueHistory}
+    nextToken: string
+end
+
+local record GetSceneInput
+    workspaceId: string
+    sceneId: string
+end
+
+local record GetSceneOutput
+    workspaceId: string
+    sceneId: string
+    contentLocation: string
+    arn: string
+    creationDateTime: number
+    updateDateTime: number
+    description: string
+    capabilities: {string}
+    sceneMetadata: {string : string}
+    generatedSceneMetadata: {string : string}
+    error: SceneError
+end
+
+local record GetSyncJobInput
+    syncSource: string
+    workspaceId: string
+end
+
+local record GetSyncJobOutput
+    arn: string
+    workspaceId: string
+    syncSource: string
+    syncRole: string
+    status: SyncJobStatus
+    creationDateTime: number
+    updateDateTime: number
+end
+
+local record GetWorkspaceInput
+    workspaceId: string
+end
+
+local record GetWorkspaceOutput
+    workspaceId: string
+    arn: string
+    description: string
+    linkedServices: {string}
+    s3Location: string
+    role: string
+    creationDateTime: number
+    updateDateTime: number
+end
+
+local record ListComponentsInput
+    workspaceId: string
+    entityId: string
+    componentPath: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListComponentsOutput
+    componentSummaries: {ComponentSummary}
+    nextToken: string
+end
+
+local record ListComponentTypesInput
+    workspaceId: string
+    filters: {ListComponentTypesFilter}
+    nextToken: string
+    maxResults: number
+end
+
+local record ListComponentTypesOutput
+    workspaceId: string
+    componentTypeSummaries: {ComponentTypeSummary}
+    nextToken: string
+    maxResults: number
+end
+
+local record ListEntitiesInput
+    workspaceId: string
+    filters: {ListEntitiesFilter}
+    maxResults: number
+    nextToken: string
+end
+
+local record ListEntitiesOutput
+    entitySummaries: {EntitySummary}
+    nextToken: string
+end
+
+local record ListMetadataTransferJobsInput
+    sourceType: string
+    destinationType: string
+    filters: {ListMetadataTransferJobsFilter}
+    nextToken: string
+    maxResults: number
+end
+
+local record ListMetadataTransferJobsOutput
+    metadataTransferJobSummaries: {MetadataTransferJobSummary}
+    nextToken: string
+end
+
+local record ListPropertiesInput
+    workspaceId: string
+    componentName: string
+    componentPath: string
+    entityId: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListPropertiesOutput
+    propertySummaries: {PropertySummary}
+    nextToken: string
+end
+
+local record ListScenesInput
+    workspaceId: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListScenesOutput
+    sceneSummaries: {SceneSummary}
+    nextToken: string
+end
+
+local record ListSyncJobsInput
+    workspaceId: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListSyncJobsOutput
+    syncJobSummaries: {SyncJobSummary}
+    nextToken: string
+end
+
+local record ListSyncResourcesInput
+    workspaceId: string
+    syncSource: string
+    filters: {SyncResourceFilter}
+    maxResults: number
+    nextToken: string
+end
+
+local record ListSyncResourcesOutput
+    syncResources: {SyncResourceSummary}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceARN: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+    nextToken: string
+end
+
+local record ListWorkspacesInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListWorkspacesOutput
+    workspaceSummaries: {WorkspaceSummary}
+    nextToken: string
+end
+
+local record TagResourceInput
+    resourceARN: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceARN: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateComponentTypeInput
+    workspaceId: string
+    isSingleton: boolean
+    componentTypeId: string
+    description: string
+    propertyDefinitions: {string : PropertyDefinitionRequest}
+    extendsFrom: {string}
+    functions: {string : FunctionRequest}
+    propertyGroups: {string : PropertyGroupRequest}
+    componentTypeName: string
+    compositeComponentTypes: {string : CompositeComponentTypeRequest}
+end
+
+local record UpdateComponentTypeOutput
+    workspaceId: string
+    arn: string
+    componentTypeId: string
+    state: string
+end
+
+local record UpdateEntityInput
+    workspaceId: string
+    entityId: string
+    entityName: string
+    description: string
+    componentUpdates: {string : ComponentUpdateRequest}
+    compositeComponentUpdates: {string : CompositeComponentUpdateRequest}
+    parentEntityUpdate: ParentEntityUpdateRequest
+end
+
+local record UpdateEntityOutput
+    updateDateTime: number
+    state: string
+end
+
+local record UpdatePricingPlanInput
+    pricingMode: string
+    bundleNames: {string}
+end
+
+local record UpdatePricingPlanOutput
+    currentPricingPlan: PricingPlan
+    pendingPricingPlan: PricingPlan
+end
+
+local record UpdateSceneInput
+    workspaceId: string
+    sceneId: string
+    contentLocation: string
+    description: string
+    capabilities: {string}
+    sceneMetadata: {string : string}
+end
+
+local record UpdateSceneOutput
+    updateDateTime: number
+end
+
+local record UpdateWorkspaceInput
+    workspaceId: string
+    description: string
+    role: string
+    s3Location: string
+end
+
+local record UpdateWorkspaceOutput
+    updateDateTime: number
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record QueryTimeoutException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConnectorFailureException
+    message: string
+end
+
+local record ConnectorTimeoutException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConnectorFailureException
+    message: string
+end
+
+local record ConnectorTimeoutException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyTagsException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    BatchPutPropertyValuesInput: BatchPutPropertyValuesInput
+    BatchPutPropertyValuesOutput: BatchPutPropertyValuesOutput
+    CancelMetadataTransferJobInput: CancelMetadataTransferJobInput
+    CancelMetadataTransferJobOutput: CancelMetadataTransferJobOutput
+    CreateComponentTypeInput: CreateComponentTypeInput
+    CreateComponentTypeOutput: CreateComponentTypeOutput
+    CreateEntityInput: CreateEntityInput
+    CreateEntityOutput: CreateEntityOutput
+    CreateMetadataTransferJobInput: CreateMetadataTransferJobInput
+    CreateMetadataTransferJobOutput: CreateMetadataTransferJobOutput
+    CreateSceneInput: CreateSceneInput
+    CreateSceneOutput: CreateSceneOutput
+    CreateSyncJobInput: CreateSyncJobInput
+    CreateSyncJobOutput: CreateSyncJobOutput
+    CreateWorkspaceInput: CreateWorkspaceInput
+    CreateWorkspaceOutput: CreateWorkspaceOutput
+    DeleteComponentTypeInput: DeleteComponentTypeInput
+    DeleteComponentTypeOutput: DeleteComponentTypeOutput
+    DeleteEntityInput: DeleteEntityInput
+    DeleteEntityOutput: DeleteEntityOutput
+    DeleteSceneInput: DeleteSceneInput
+    DeleteSceneOutput: DeleteSceneOutput
+    DeleteSyncJobInput: DeleteSyncJobInput
+    DeleteSyncJobOutput: DeleteSyncJobOutput
+    DeleteWorkspaceInput: DeleteWorkspaceInput
+    DeleteWorkspaceOutput: DeleteWorkspaceOutput
+    ExecuteQueryInput: ExecuteQueryInput
+    ExecuteQueryOutput: ExecuteQueryOutput
+    GetComponentTypeInput: GetComponentTypeInput
+    GetComponentTypeOutput: GetComponentTypeOutput
+    GetEntityInput: GetEntityInput
+    GetEntityOutput: GetEntityOutput
+    GetMetadataTransferJobInput: GetMetadataTransferJobInput
+    GetMetadataTransferJobOutput: GetMetadataTransferJobOutput
+    GetPricingPlanInput: GetPricingPlanInput
+    GetPricingPlanOutput: GetPricingPlanOutput
+    GetPropertyValueInput: GetPropertyValueInput
+    GetPropertyValueOutput: GetPropertyValueOutput
+    GetPropertyValueHistoryInput: GetPropertyValueHistoryInput
+    GetPropertyValueHistoryOutput: GetPropertyValueHistoryOutput
+    GetSceneInput: GetSceneInput
+    GetSceneOutput: GetSceneOutput
+    GetSyncJobInput: GetSyncJobInput
+    GetSyncJobOutput: GetSyncJobOutput
+    GetWorkspaceInput: GetWorkspaceInput
+    GetWorkspaceOutput: GetWorkspaceOutput
+    ListComponentsInput: ListComponentsInput
+    ListComponentsOutput: ListComponentsOutput
+    ListComponentTypesInput: ListComponentTypesInput
+    ListComponentTypesOutput: ListComponentTypesOutput
+    ListEntitiesInput: ListEntitiesInput
+    ListEntitiesOutput: ListEntitiesOutput
+    ListMetadataTransferJobsInput: ListMetadataTransferJobsInput
+    ListMetadataTransferJobsOutput: ListMetadataTransferJobsOutput
+    ListPropertiesInput: ListPropertiesInput
+    ListPropertiesOutput: ListPropertiesOutput
+    ListScenesInput: ListScenesInput
+    ListScenesOutput: ListScenesOutput
+    ListSyncJobsInput: ListSyncJobsInput
+    ListSyncJobsOutput: ListSyncJobsOutput
+    ListSyncResourcesInput: ListSyncResourcesInput
+    ListSyncResourcesOutput: ListSyncResourcesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListWorkspacesInput: ListWorkspacesInput
+    ListWorkspacesOutput: ListWorkspacesOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateComponentTypeInput: UpdateComponentTypeInput
+    UpdateComponentTypeOutput: UpdateComponentTypeOutput
+    UpdateEntityInput: UpdateEntityInput
+    UpdateEntityOutput: UpdateEntityOutput
+    UpdatePricingPlanInput: UpdatePricingPlanInput
+    UpdatePricingPlanOutput: UpdatePricingPlanOutput
+    UpdateSceneInput: UpdateSceneInput
+    UpdateSceneOutput: UpdateSceneOutput
+    UpdateWorkspaceInput: UpdateWorkspaceInput
+    UpdateWorkspaceOutput: UpdateWorkspaceOutput
+end
+
+return M

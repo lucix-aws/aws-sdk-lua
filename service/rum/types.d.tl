@@ -1,0 +1,824 @@
+local record BatchCreateRumMetricDefinitionsInput
+    AppMonitorName: string
+    Destination: string
+    DestinationArn: string
+    MetricDefinitions: {MetricDefinitionRequest}
+end
+
+local record BatchCreateRumMetricDefinitionsOutput
+    Errors: {BatchCreateRumMetricDefinitionsError}
+    MetricDefinitions: {MetricDefinition}
+end
+
+local record BatchDeleteRumMetricDefinitionsInput
+    AppMonitorName: string
+    Destination: string
+    DestinationArn: string
+    MetricDefinitionIds: {string}
+end
+
+local record BatchDeleteRumMetricDefinitionsOutput
+    Errors: {BatchDeleteRumMetricDefinitionsError}
+    MetricDefinitionIds: {string}
+end
+
+local record BatchGetRumMetricDefinitionsInput
+    AppMonitorName: string
+    Destination: string
+    DestinationArn: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record BatchGetRumMetricDefinitionsOutput
+    MetricDefinitions: {MetricDefinition}
+    NextToken: string
+end
+
+local record CreateAppMonitorInput
+    Name: string
+    Domain: string
+    DomainList: {string}
+    Tags: {string : string}
+    AppMonitorConfiguration: AppMonitorConfiguration
+    CwLogEnabled: boolean
+    CustomEvents: CustomEvents
+    DeobfuscationConfiguration: DeobfuscationConfiguration
+    Platform: string
+end
+
+local record CreateAppMonitorOutput
+    Id: string
+end
+
+local record DeleteAppMonitorInput
+    Name: string
+end
+
+local record DeleteAppMonitorOutput
+end
+
+local record DeleteResourcePolicyInput
+    Name: string
+    PolicyRevisionId: string
+end
+
+local record DeleteResourcePolicyOutput
+    PolicyRevisionId: string
+end
+
+local record DeleteRumMetricsDestinationInput
+    AppMonitorName: string
+    Destination: string
+    DestinationArn: string
+end
+
+local record DeleteRumMetricsDestinationOutput
+end
+
+local record GetAppMonitorInput
+    Name: string
+end
+
+local record GetAppMonitorOutput
+    AppMonitor: AppMonitor
+end
+
+local record GetAppMonitorDataInput
+    Name: string
+    TimeRange: TimeRange
+    Filters: {QueryFilter}
+    MaxResults: number
+    NextToken: string
+end
+
+local record GetAppMonitorDataOutput
+    Events: {string}
+    NextToken: string
+end
+
+local record GetResourcePolicyInput
+    Name: string
+end
+
+local record GetResourcePolicyOutput
+    PolicyDocument: string
+    PolicyRevisionId: string
+end
+
+local record ListAppMonitorsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListAppMonitorsOutput
+    NextToken: string
+    AppMonitorSummaries: {AppMonitorSummary}
+end
+
+local record ListRumMetricsDestinationsInput
+    AppMonitorName: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListRumMetricsDestinationsOutput
+    Destinations: {MetricDestinationSummary}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    ResourceArn: string
+    Tags: {string : string}
+end
+
+local record PutResourcePolicyInput
+    Name: string
+    PolicyDocument: string
+    PolicyRevisionId: string
+end
+
+local record PutResourcePolicyOutput
+    PolicyDocument: string
+    PolicyRevisionId: string
+end
+
+local record PutRumEventsInput
+    Id: string
+    BatchId: string
+    AppMonitorDetails: AppMonitorDetails
+    UserDetails: UserDetails
+    RumEvents: {RumEvent}
+    Alias: string
+end
+
+local record PutRumEventsOutput
+end
+
+local record PutRumMetricsDestinationInput
+    AppMonitorName: string
+    Destination: string
+    DestinationArn: string
+    IamRoleArn: string
+end
+
+local record PutRumMetricsDestinationOutput
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateAppMonitorInput
+    Name: string
+    Domain: string
+    DomainList: {string}
+    AppMonitorConfiguration: AppMonitorConfiguration
+    CwLogEnabled: boolean
+    CustomEvents: CustomEvents
+    DeobfuscationConfiguration: DeobfuscationConfiguration
+end
+
+local record UpdateAppMonitorOutput
+end
+
+local record UpdateRumMetricDefinitionInput
+    AppMonitorName: string
+    Destination: string
+    DestinationArn: string
+    MetricDefinition: MetricDefinitionRequest
+    MetricDefinitionId: string
+end
+
+local record UpdateRumMetricDefinitionOutput
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record InvalidPolicyRevisionIdException
+    message: string
+end
+
+local record PolicyNotFoundException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record PolicyNotFoundException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record InvalidPolicyRevisionIdException
+    message: string
+end
+
+local record MalformedPolicyDocumentException
+    message: string
+end
+
+local record PolicySizeLimitExceededException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record InternalServerException
+    message: string
+    retryAfterSeconds: number
+end
+
+local record ResourceNotFoundException
+    message: string
+    resourceName: string
+    resourceType: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+    serviceCode: string
+    quotaCode: string
+    retryAfterSeconds: number
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    BatchCreateRumMetricDefinitionsInput: BatchCreateRumMetricDefinitionsInput
+    BatchCreateRumMetricDefinitionsOutput: BatchCreateRumMetricDefinitionsOutput
+    BatchDeleteRumMetricDefinitionsInput: BatchDeleteRumMetricDefinitionsInput
+    BatchDeleteRumMetricDefinitionsOutput: BatchDeleteRumMetricDefinitionsOutput
+    BatchGetRumMetricDefinitionsInput: BatchGetRumMetricDefinitionsInput
+    BatchGetRumMetricDefinitionsOutput: BatchGetRumMetricDefinitionsOutput
+    CreateAppMonitorInput: CreateAppMonitorInput
+    CreateAppMonitorOutput: CreateAppMonitorOutput
+    DeleteAppMonitorInput: DeleteAppMonitorInput
+    DeleteAppMonitorOutput: DeleteAppMonitorOutput
+    DeleteResourcePolicyInput: DeleteResourcePolicyInput
+    DeleteResourcePolicyOutput: DeleteResourcePolicyOutput
+    DeleteRumMetricsDestinationInput: DeleteRumMetricsDestinationInput
+    DeleteRumMetricsDestinationOutput: DeleteRumMetricsDestinationOutput
+    GetAppMonitorInput: GetAppMonitorInput
+    GetAppMonitorOutput: GetAppMonitorOutput
+    GetAppMonitorDataInput: GetAppMonitorDataInput
+    GetAppMonitorDataOutput: GetAppMonitorDataOutput
+    GetResourcePolicyInput: GetResourcePolicyInput
+    GetResourcePolicyOutput: GetResourcePolicyOutput
+    ListAppMonitorsInput: ListAppMonitorsInput
+    ListAppMonitorsOutput: ListAppMonitorsOutput
+    ListRumMetricsDestinationsInput: ListRumMetricsDestinationsInput
+    ListRumMetricsDestinationsOutput: ListRumMetricsDestinationsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PutResourcePolicyInput: PutResourcePolicyInput
+    PutResourcePolicyOutput: PutResourcePolicyOutput
+    PutRumEventsInput: PutRumEventsInput
+    PutRumEventsOutput: PutRumEventsOutput
+    PutRumMetricsDestinationInput: PutRumMetricsDestinationInput
+    PutRumMetricsDestinationOutput: PutRumMetricsDestinationOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateAppMonitorInput: UpdateAppMonitorInput
+    UpdateAppMonitorOutput: UpdateAppMonitorOutput
+    UpdateRumMetricDefinitionInput: UpdateRumMetricDefinitionInput
+    UpdateRumMetricDefinitionOutput: UpdateRumMetricDefinitionOutput
+end
+
+return M

@@ -1,0 +1,226 @@
+local base_client = require("client")
+local defaults = require("defaults")
+local endpoint = require("endpoint")
+local endpoint_rules = require("sagemakergeospatial.endpoint_rules")
+local restjson_protocol = require("protocol.restjson")
+local sdk_defaults = require("sdk_defaults")
+local types = require("sagemakergeospatial.types")
+
+local M = {}
+
+local Client = {}
+Client.__index = Client
+
+Client.invokeOperation = base_client.invokeOperation
+
+function M.new(cfg)
+    cfg = cfg or {}
+    cfg.service_id = "SageMakerGeospatial"
+    cfg.signing_name = "sagemakergeospatial"
+    if not cfg.protocol then
+        cfg.protocol = restjson_protocol.new()
+    end
+    if not cfg.endpoint_provider then
+        cfg.endpoint_provider = function(params)
+            return endpoint.resolve(endpoint_rules, params)
+        end
+    end
+    defaults.resolve_signer(cfg)
+    defaults.resolve_http_client(cfg)
+    defaults.resolve_retry_strategy(cfg)
+    sdk_defaults.resolve_identity_resolver(cfg)
+    local self = setmetatable(base_client.new(cfg), Client)
+    return self
+end
+
+function Client:deleteEarthObservationJob(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteEarthObservationJob",
+        input_schema = types.DeleteEarthObservationJobInput,
+        output_schema = types.DeleteEarthObservationJobOutput,
+        http_method = "DELETE",
+        http_path = "/earth-observation-jobs/{Arn}",
+    }, options)
+end
+
+function Client:deleteVectorEnrichmentJob(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteVectorEnrichmentJob",
+        input_schema = types.DeleteVectorEnrichmentJobInput,
+        output_schema = types.DeleteVectorEnrichmentJobOutput,
+        http_method = "DELETE",
+        http_path = "/vector-enrichment-jobs/{Arn}",
+    }, options)
+end
+
+function Client:exportEarthObservationJob(input, options)
+    return self:invokeOperation(input, {
+        name = "ExportEarthObservationJob",
+        input_schema = types.ExportEarthObservationJobInput,
+        output_schema = types.ExportEarthObservationJobOutput,
+        http_method = "POST",
+        http_path = "/export-earth-observation-job",
+    }, options)
+end
+
+function Client:exportVectorEnrichmentJob(input, options)
+    return self:invokeOperation(input, {
+        name = "ExportVectorEnrichmentJob",
+        input_schema = types.ExportVectorEnrichmentJobInput,
+        output_schema = types.ExportVectorEnrichmentJobOutput,
+        http_method = "POST",
+        http_path = "/export-vector-enrichment-jobs",
+    }, options)
+end
+
+function Client:getEarthObservationJob(input, options)
+    return self:invokeOperation(input, {
+        name = "GetEarthObservationJob",
+        input_schema = types.GetEarthObservationJobInput,
+        output_schema = types.GetEarthObservationJobOutput,
+        http_method = "GET",
+        http_path = "/earth-observation-jobs/{Arn}",
+    }, options)
+end
+
+function Client:getRasterDataCollection(input, options)
+    return self:invokeOperation(input, {
+        name = "GetRasterDataCollection",
+        input_schema = types.GetRasterDataCollectionInput,
+        output_schema = types.GetRasterDataCollectionOutput,
+        http_method = "GET",
+        http_path = "/raster-data-collection/{Arn}",
+    }, options)
+end
+
+function Client:getTile(input, options)
+    return self:invokeOperation(input, {
+        name = "GetTile",
+        input_schema = types.GetTileInput,
+        output_schema = types.GetTileOutput,
+        http_method = "GET",
+        http_path = "/tile/{z}/{x}/{y}",
+    }, options)
+end
+
+function Client:getVectorEnrichmentJob(input, options)
+    return self:invokeOperation(input, {
+        name = "GetVectorEnrichmentJob",
+        input_schema = types.GetVectorEnrichmentJobInput,
+        output_schema = types.GetVectorEnrichmentJobOutput,
+        http_method = "GET",
+        http_path = "/vector-enrichment-jobs/{Arn}",
+    }, options)
+end
+
+function Client:listEarthObservationJobs(input, options)
+    return self:invokeOperation(input, {
+        name = "ListEarthObservationJobs",
+        input_schema = types.ListEarthObservationJobsInput,
+        output_schema = types.ListEarthObservationJobsOutput,
+        http_method = "POST",
+        http_path = "/list-earth-observation-jobs",
+    }, options)
+end
+
+function Client:listRasterDataCollections(input, options)
+    return self:invokeOperation(input, {
+        name = "ListRasterDataCollections",
+        input_schema = types.ListRasterDataCollectionsInput,
+        output_schema = types.ListRasterDataCollectionsOutput,
+        http_method = "GET",
+        http_path = "/raster-data-collections",
+    }, options)
+end
+
+function Client:listTagsForResource(input, options)
+    return self:invokeOperation(input, {
+        name = "ListTagsForResource",
+        input_schema = types.ListTagsForResourceInput,
+        output_schema = types.ListTagsForResourceOutput,
+        http_method = "GET",
+        http_path = "/tags/{ResourceArn}",
+    }, options)
+end
+
+function Client:listVectorEnrichmentJobs(input, options)
+    return self:invokeOperation(input, {
+        name = "ListVectorEnrichmentJobs",
+        input_schema = types.ListVectorEnrichmentJobsInput,
+        output_schema = types.ListVectorEnrichmentJobsOutput,
+        http_method = "POST",
+        http_path = "/list-vector-enrichment-jobs",
+    }, options)
+end
+
+function Client:searchRasterDataCollection(input, options)
+    return self:invokeOperation(input, {
+        name = "SearchRasterDataCollection",
+        input_schema = types.SearchRasterDataCollectionInput,
+        output_schema = types.SearchRasterDataCollectionOutput,
+        http_method = "POST",
+        http_path = "/search-raster-data-collection",
+    }, options)
+end
+
+function Client:startEarthObservationJob(input, options)
+    return self:invokeOperation(input, {
+        name = "StartEarthObservationJob",
+        input_schema = types.StartEarthObservationJobInput,
+        output_schema = types.StartEarthObservationJobOutput,
+        http_method = "POST",
+        http_path = "/earth-observation-jobs",
+    }, options)
+end
+
+function Client:startVectorEnrichmentJob(input, options)
+    return self:invokeOperation(input, {
+        name = "StartVectorEnrichmentJob",
+        input_schema = types.StartVectorEnrichmentJobInput,
+        output_schema = types.StartVectorEnrichmentJobOutput,
+        http_method = "POST",
+        http_path = "/vector-enrichment-jobs",
+    }, options)
+end
+
+function Client:stopEarthObservationJob(input, options)
+    return self:invokeOperation(input, {
+        name = "StopEarthObservationJob",
+        input_schema = types.StopEarthObservationJobInput,
+        output_schema = types.StopEarthObservationJobOutput,
+        http_method = "POST",
+        http_path = "/earth-observation-jobs/stop",
+    }, options)
+end
+
+function Client:stopVectorEnrichmentJob(input, options)
+    return self:invokeOperation(input, {
+        name = "StopVectorEnrichmentJob",
+        input_schema = types.StopVectorEnrichmentJobInput,
+        output_schema = types.StopVectorEnrichmentJobOutput,
+        http_method = "POST",
+        http_path = "/vector-enrichment-jobs/stop",
+    }, options)
+end
+
+function Client:tagResource(input, options)
+    return self:invokeOperation(input, {
+        name = "TagResource",
+        input_schema = types.TagResourceInput,
+        output_schema = types.TagResourceOutput,
+        http_method = "PUT",
+        http_path = "/tags/{ResourceArn}",
+    }, options)
+end
+
+function Client:untagResource(input, options)
+    return self:invokeOperation(input, {
+        name = "UntagResource",
+        input_schema = types.UntagResourceInput,
+        output_schema = types.UntagResourceOutput,
+        http_method = "DELETE",
+        http_path = "/tags/{ResourceArn}",
+    }, options)
+end
+
+return M

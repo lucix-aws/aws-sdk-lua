@@ -1,0 +1,53 @@
+local types = require("transcribe.types")
+
+local record Client
+    createCallAnalyticsCategory: function(Client, types.CreateCallAnalyticsCategoryInput): types.CreateCallAnalyticsCategoryOutput, table
+    createLanguageModel: function(Client, types.CreateLanguageModelInput): types.CreateLanguageModelOutput, table
+    createMedicalVocabulary: function(Client, types.CreateMedicalVocabularyInput): types.CreateMedicalVocabularyOutput, table
+    createVocabulary: function(Client, types.CreateVocabularyInput): types.CreateVocabularyOutput, table
+    createVocabularyFilter: function(Client, types.CreateVocabularyFilterInput): types.CreateVocabularyFilterOutput, table
+    deleteCallAnalyticsCategory: function(Client, types.DeleteCallAnalyticsCategoryInput): types.DeleteCallAnalyticsCategoryOutput, table
+    deleteCallAnalyticsJob: function(Client, types.DeleteCallAnalyticsJobInput): types.DeleteCallAnalyticsJobOutput, table
+    deleteLanguageModel: function(Client, types.DeleteLanguageModelInput): types.DeleteLanguageModelOutput, table
+    deleteMedicalScribeJob: function(Client, types.DeleteMedicalScribeJobInput): types.DeleteMedicalScribeJobOutput, table
+    deleteMedicalTranscriptionJob: function(Client, types.DeleteMedicalTranscriptionJobInput): types.DeleteMedicalTranscriptionJobOutput, table
+    deleteMedicalVocabulary: function(Client, types.DeleteMedicalVocabularyInput): types.DeleteMedicalVocabularyOutput, table
+    deleteTranscriptionJob: function(Client, types.DeleteTranscriptionJobInput): types.DeleteTranscriptionJobOutput, table
+    deleteVocabulary: function(Client, types.DeleteVocabularyInput): types.DeleteVocabularyOutput, table
+    deleteVocabularyFilter: function(Client, types.DeleteVocabularyFilterInput): types.DeleteVocabularyFilterOutput, table
+    describeLanguageModel: function(Client, types.DescribeLanguageModelInput): types.DescribeLanguageModelOutput, table
+    getCallAnalyticsCategory: function(Client, types.GetCallAnalyticsCategoryInput): types.GetCallAnalyticsCategoryOutput, table
+    getCallAnalyticsJob: function(Client, types.GetCallAnalyticsJobInput): types.GetCallAnalyticsJobOutput, table
+    getMedicalScribeJob: function(Client, types.GetMedicalScribeJobInput): types.GetMedicalScribeJobOutput, table
+    getMedicalTranscriptionJob: function(Client, types.GetMedicalTranscriptionJobInput): types.GetMedicalTranscriptionJobOutput, table
+    getMedicalVocabulary: function(Client, types.GetMedicalVocabularyInput): types.GetMedicalVocabularyOutput, table
+    getTranscriptionJob: function(Client, types.GetTranscriptionJobInput): types.GetTranscriptionJobOutput, table
+    getVocabulary: function(Client, types.GetVocabularyInput): types.GetVocabularyOutput, table
+    getVocabularyFilter: function(Client, types.GetVocabularyFilterInput): types.GetVocabularyFilterOutput, table
+    listCallAnalyticsCategories: function(Client, types.ListCallAnalyticsCategoriesInput): types.ListCallAnalyticsCategoriesOutput, table
+    listCallAnalyticsJobs: function(Client, types.ListCallAnalyticsJobsInput): types.ListCallAnalyticsJobsOutput, table
+    listLanguageModels: function(Client, types.ListLanguageModelsInput): types.ListLanguageModelsOutput, table
+    listMedicalScribeJobs: function(Client, types.ListMedicalScribeJobsInput): types.ListMedicalScribeJobsOutput, table
+    listMedicalTranscriptionJobs: function(Client, types.ListMedicalTranscriptionJobsInput): types.ListMedicalTranscriptionJobsOutput, table
+    listMedicalVocabularies: function(Client, types.ListMedicalVocabulariesInput): types.ListMedicalVocabulariesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTranscriptionJobs: function(Client, types.ListTranscriptionJobsInput): types.ListTranscriptionJobsOutput, table
+    listVocabularies: function(Client, types.ListVocabulariesInput): types.ListVocabulariesOutput, table
+    listVocabularyFilters: function(Client, types.ListVocabularyFiltersInput): types.ListVocabularyFiltersOutput, table
+    startCallAnalyticsJob: function(Client, types.StartCallAnalyticsJobInput): types.StartCallAnalyticsJobOutput, table
+    startMedicalScribeJob: function(Client, types.StartMedicalScribeJobInput): types.StartMedicalScribeJobOutput, table
+    startMedicalTranscriptionJob: function(Client, types.StartMedicalTranscriptionJobInput): types.StartMedicalTranscriptionJobOutput, table
+    startTranscriptionJob: function(Client, types.StartTranscriptionJobInput): types.StartTranscriptionJobOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateCallAnalyticsCategory: function(Client, types.UpdateCallAnalyticsCategoryInput): types.UpdateCallAnalyticsCategoryOutput, table
+    updateMedicalVocabulary: function(Client, types.UpdateMedicalVocabularyInput): types.UpdateMedicalVocabularyOutput, table
+    updateVocabulary: function(Client, types.UpdateVocabularyInput): types.UpdateVocabularyOutput, table
+    updateVocabularyFilter: function(Client, types.UpdateVocabularyFilterInput): types.UpdateVocabularyFilterOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

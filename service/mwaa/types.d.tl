@@ -1,0 +1,322 @@
+local record CreateCliTokenInput
+    Name: string
+end
+
+local record CreateCliTokenOutput
+    CliToken: string
+    WebServerHostname: string
+end
+
+local record CreateEnvironmentInput
+    Name: string
+    ExecutionRoleArn: string
+    SourceBucketArn: string
+    DagS3Path: string
+    NetworkConfiguration: NetworkConfiguration
+    PluginsS3Path: string
+    PluginsS3ObjectVersion: string
+    RequirementsS3Path: string
+    RequirementsS3ObjectVersion: string
+    StartupScriptS3Path: string
+    StartupScriptS3ObjectVersion: string
+    AirflowConfigurationOptions: {string : string}
+    EnvironmentClass: string
+    MaxWorkers: number
+    KmsKey: string
+    AirflowVersion: string
+    LoggingConfiguration: LoggingConfigurationInput
+    WeeklyMaintenanceWindowStart: string
+    Tags: {string : string}
+    WebserverAccessMode: string
+    MinWorkers: number
+    Schedulers: number
+    EndpointManagement: string
+    MinWebservers: number
+    MaxWebservers: number
+end
+
+local record CreateEnvironmentOutput
+    Arn: string
+end
+
+local record CreateWebLoginTokenInput
+    Name: string
+end
+
+local record CreateWebLoginTokenOutput
+    WebToken: string
+    WebServerHostname: string
+    IamIdentity: string
+    AirflowIdentity: string
+end
+
+local record DeleteEnvironmentInput
+    Name: string
+end
+
+local record DeleteEnvironmentOutput
+end
+
+local record GetEnvironmentInput
+    Name: string
+end
+
+local record GetEnvironmentOutput
+    Environment: Environment
+end
+
+local record InvokeRestApiInput
+    Name: string
+    Path: string
+    Method: string
+    QueryParameters: any
+    Body: any
+end
+
+local record InvokeRestApiOutput
+    RestApiStatusCode: number
+    RestApiResponse: any
+end
+
+local record ListEnvironmentsInput
+    NextToken: string
+    MaxResults: number
+end
+
+local record ListEnvironmentsOutput
+    Environments: {string}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {string : string}
+end
+
+local record PublishMetricsInput
+    EnvironmentName: string
+    MetricData: {MetricDatum}
+end
+
+local record PublishMetricsOutput
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateEnvironmentInput
+    Name: string
+    ExecutionRoleArn: string
+    AirflowConfigurationOptions: {string : string}
+    AirflowVersion: string
+    DagS3Path: string
+    EnvironmentClass: string
+    LoggingConfiguration: LoggingConfigurationInput
+    MaxWorkers: number
+    MinWorkers: number
+    MaxWebservers: number
+    MinWebservers: number
+    WorkerReplacementStrategy: string
+    NetworkConfiguration: UpdateNetworkConfigurationInput
+    PluginsS3Path: string
+    PluginsS3ObjectVersion: string
+    RequirementsS3Path: string
+    RequirementsS3ObjectVersion: string
+    Schedulers: number
+    SourceBucketArn: string
+    StartupScriptS3Path: string
+    StartupScriptS3ObjectVersion: string
+    WebserverAccessMode: string
+    WeeklyMaintenanceWindowStart: string
+end
+
+local record UpdateEnvironmentOutput
+    Arn: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    Message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record RestApiClientException
+    RestApiStatusCode: number
+    RestApiResponse: any
+end
+
+local record RestApiServerException
+    RestApiStatusCode: number
+    RestApiResponse: any
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    CreateCliTokenInput: CreateCliTokenInput
+    CreateCliTokenOutput: CreateCliTokenOutput
+    CreateEnvironmentInput: CreateEnvironmentInput
+    CreateEnvironmentOutput: CreateEnvironmentOutput
+    CreateWebLoginTokenInput: CreateWebLoginTokenInput
+    CreateWebLoginTokenOutput: CreateWebLoginTokenOutput
+    DeleteEnvironmentInput: DeleteEnvironmentInput
+    DeleteEnvironmentOutput: DeleteEnvironmentOutput
+    GetEnvironmentInput: GetEnvironmentInput
+    GetEnvironmentOutput: GetEnvironmentOutput
+    InvokeRestApiInput: InvokeRestApiInput
+    InvokeRestApiOutput: InvokeRestApiOutput
+    ListEnvironmentsInput: ListEnvironmentsInput
+    ListEnvironmentsOutput: ListEnvironmentsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PublishMetricsInput: PublishMetricsInput
+    PublishMetricsOutput: PublishMetricsOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateEnvironmentInput: UpdateEnvironmentInput
+    UpdateEnvironmentOutput: UpdateEnvironmentOutput
+end
+
+return M

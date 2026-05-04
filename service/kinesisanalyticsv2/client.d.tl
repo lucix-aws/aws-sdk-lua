@@ -1,0 +1,43 @@
+local types = require("kinesisanalyticsv2.types")
+
+local record Client
+    addApplicationCloudWatchLoggingOption: function(Client, types.AddApplicationCloudWatchLoggingOptionInput): types.AddApplicationCloudWatchLoggingOptionOutput, table
+    addApplicationInput: function(Client, types.AddApplicationInputInput): types.AddApplicationInputOutput, table
+    addApplicationInputProcessingConfiguration: function(Client, types.AddApplicationInputProcessingConfigurationInput): types.AddApplicationInputProcessingConfigurationOutput, table
+    addApplicationOutput: function(Client, types.AddApplicationOutputInput): types.AddApplicationOutputOutput, table
+    addApplicationReferenceDataSource: function(Client, types.AddApplicationReferenceDataSourceInput): types.AddApplicationReferenceDataSourceOutput, table
+    addApplicationVpcConfiguration: function(Client, types.AddApplicationVpcConfigurationInput): types.AddApplicationVpcConfigurationOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createApplicationPresignedUrl: function(Client, types.CreateApplicationPresignedUrlInput): types.CreateApplicationPresignedUrlOutput, table
+    createApplicationSnapshot: function(Client, types.CreateApplicationSnapshotInput): types.CreateApplicationSnapshotOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOperationOutput, table
+    deleteApplicationCloudWatchLoggingOption: function(Client, types.DeleteApplicationCloudWatchLoggingOptionInput): types.DeleteApplicationCloudWatchLoggingOptionOutput, table
+    deleteApplicationInputProcessingConfiguration: function(Client, types.DeleteApplicationInputProcessingConfigurationInput): types.DeleteApplicationInputProcessingConfigurationOutput, table
+    deleteApplicationOutput: function(Client, types.DeleteApplicationOutputInput): types.DeleteApplicationOutputOutput, table
+    deleteApplicationReferenceDataSource: function(Client, types.DeleteApplicationReferenceDataSourceInput): types.DeleteApplicationReferenceDataSourceOutput, table
+    deleteApplicationSnapshot: function(Client, types.DeleteApplicationSnapshotInput): types.DeleteApplicationSnapshotOutput, table
+    deleteApplicationVpcConfiguration: function(Client, types.DeleteApplicationVpcConfigurationInput): types.DeleteApplicationVpcConfigurationOutput, table
+    describeApplication: function(Client, types.DescribeApplicationInput): types.DescribeApplicationOutput, table
+    describeApplicationOperation: function(Client, types.DescribeApplicationOperationInput): types.DescribeApplicationOperationOutput, table
+    describeApplicationSnapshot: function(Client, types.DescribeApplicationSnapshotInput): types.DescribeApplicationSnapshotOutput, table
+    describeApplicationVersion: function(Client, types.DescribeApplicationVersionInput): types.DescribeApplicationVersionOutput, table
+    discoverInputSchema: function(Client, types.DiscoverInputSchemaInput): types.DiscoverInputSchemaOutput, table
+    listApplicationOperations: function(Client, types.ListApplicationOperationsInput): types.ListApplicationOperationsOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listApplicationSnapshots: function(Client, types.ListApplicationSnapshotsInput): types.ListApplicationSnapshotsOutput, table
+    listApplicationVersions: function(Client, types.ListApplicationVersionsInput): types.ListApplicationVersionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    rollbackApplication: function(Client, types.RollbackApplicationInput): types.RollbackApplicationOutput, table
+    startApplication: function(Client, types.StartApplicationInput): types.StartApplicationOutput, table
+    stopApplication: function(Client, types.StopApplicationInput): types.StopApplicationOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateApplicationMaintenanceConfiguration: function(Client, types.UpdateApplicationMaintenanceConfigurationInput): types.UpdateApplicationMaintenanceConfigurationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

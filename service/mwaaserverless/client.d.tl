@@ -1,0 +1,25 @@
+local types = require("mwaaserverless.types")
+
+local record Client
+    createWorkflow: function(Client, types.CreateWorkflowInput): types.CreateWorkflowOutput, table
+    deleteWorkflow: function(Client, types.DeleteWorkflowInput): types.DeleteWorkflowOutput, table
+    getTaskInstance: function(Client, types.GetTaskInstanceInput): types.GetTaskInstanceOutput, table
+    getWorkflow: function(Client, types.GetWorkflowInput): types.GetWorkflowOutput, table
+    getWorkflowRun: function(Client, types.GetWorkflowRunInput): types.GetWorkflowRunOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTaskInstances: function(Client, types.ListTaskInstancesInput): types.ListTaskInstancesOutput, table
+    listWorkflowRuns: function(Client, types.ListWorkflowRunsInput): types.ListWorkflowRunsOutput, table
+    listWorkflows: function(Client, types.ListWorkflowsInput): types.ListWorkflowsOutput, table
+    listWorkflowVersions: function(Client, types.ListWorkflowVersionsInput): types.ListWorkflowVersionsOutput, table
+    startWorkflowRun: function(Client, types.StartWorkflowRunInput): types.StartWorkflowRunOutput, table
+    stopWorkflowRun: function(Client, types.StopWorkflowRunInput): types.StopWorkflowRunOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateWorkflow: function(Client, types.UpdateWorkflowInput): types.UpdateWorkflowOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

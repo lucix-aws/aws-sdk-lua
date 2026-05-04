@@ -1,0 +1,14 @@
+local types = require("ssooidc.types")
+
+local record Client
+    createToken: function(Client, types.CreateTokenInput): types.CreateTokenOutput, table
+    createTokenWithIAM: function(Client, types.CreateTokenWithIAMInput): types.CreateTokenWithIAMOutput, table
+    registerClient: function(Client, types.RegisterClientInput): types.RegisterClientOutput, table
+    startDeviceAuthorization: function(Client, types.StartDeviceAuthorizationInput): types.StartDeviceAuthorizationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

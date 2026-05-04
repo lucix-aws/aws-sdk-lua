@@ -1,0 +1,87 @@
+local types = require("imagebuilder.types")
+
+local record Client
+    cancelImageCreation: function(Client, types.CancelImageCreationInput): types.CancelImageCreationOutput, table
+    cancelLifecycleExecution: function(Client, types.CancelLifecycleExecutionInput): types.CancelLifecycleExecutionOutput, table
+    createComponent: function(Client, types.CreateComponentInput): types.CreateComponentOutput, table
+    createContainerRecipe: function(Client, types.CreateContainerRecipeInput): types.CreateContainerRecipeOutput, table
+    createDistributionConfiguration: function(Client, types.CreateDistributionConfigurationInput): types.CreateDistributionConfigurationOutput, table
+    createImage: function(Client, types.CreateImageInput): types.CreateImageOutput, table
+    createImagePipeline: function(Client, types.CreateImagePipelineInput): types.CreateImagePipelineOutput, table
+    createImageRecipe: function(Client, types.CreateImageRecipeInput): types.CreateImageRecipeOutput, table
+    createInfrastructureConfiguration: function(Client, types.CreateInfrastructureConfigurationInput): types.CreateInfrastructureConfigurationOutput, table
+    createLifecyclePolicy: function(Client, types.CreateLifecyclePolicyInput): types.CreateLifecyclePolicyOutput, table
+    createWorkflow: function(Client, types.CreateWorkflowInput): types.CreateWorkflowOutput, table
+    deleteComponent: function(Client, types.DeleteComponentInput): types.DeleteComponentOutput, table
+    deleteContainerRecipe: function(Client, types.DeleteContainerRecipeInput): types.DeleteContainerRecipeOutput, table
+    deleteDistributionConfiguration: function(Client, types.DeleteDistributionConfigurationInput): types.DeleteDistributionConfigurationOutput, table
+    deleteImage: function(Client, types.DeleteImageInput): types.DeleteImageOutput, table
+    deleteImagePipeline: function(Client, types.DeleteImagePipelineInput): types.DeleteImagePipelineOutput, table
+    deleteImageRecipe: function(Client, types.DeleteImageRecipeInput): types.DeleteImageRecipeOutput, table
+    deleteInfrastructureConfiguration: function(Client, types.DeleteInfrastructureConfigurationInput): types.DeleteInfrastructureConfigurationOutput, table
+    deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput): types.DeleteLifecyclePolicyOutput, table
+    deleteWorkflow: function(Client, types.DeleteWorkflowInput): types.DeleteWorkflowOutput, table
+    distributeImage: function(Client, types.DistributeImageInput): types.DistributeImageOutput, table
+    getComponent: function(Client, types.GetComponentInput): types.GetComponentOutput, table
+    getComponentPolicy: function(Client, types.GetComponentPolicyInput): types.GetComponentPolicyOutput, table
+    getContainerRecipe: function(Client, types.GetContainerRecipeInput): types.GetContainerRecipeOutput, table
+    getContainerRecipePolicy: function(Client, types.GetContainerRecipePolicyInput): types.GetContainerRecipePolicyOutput, table
+    getDistributionConfiguration: function(Client, types.GetDistributionConfigurationInput): types.GetDistributionConfigurationOutput, table
+    getImage: function(Client, types.GetImageInput): types.GetImageOutput, table
+    getImagePipeline: function(Client, types.GetImagePipelineInput): types.GetImagePipelineOutput, table
+    getImagePolicy: function(Client, types.GetImagePolicyInput): types.GetImagePolicyOutput, table
+    getImageRecipe: function(Client, types.GetImageRecipeInput): types.GetImageRecipeOutput, table
+    getImageRecipePolicy: function(Client, types.GetImageRecipePolicyInput): types.GetImageRecipePolicyOutput, table
+    getInfrastructureConfiguration: function(Client, types.GetInfrastructureConfigurationInput): types.GetInfrastructureConfigurationOutput, table
+    getLifecycleExecution: function(Client, types.GetLifecycleExecutionInput): types.GetLifecycleExecutionOutput, table
+    getLifecyclePolicy: function(Client, types.GetLifecyclePolicyInput): types.GetLifecyclePolicyOutput, table
+    getMarketplaceResource: function(Client, types.GetMarketplaceResourceInput): types.GetMarketplaceResourceOutput, table
+    getWorkflow: function(Client, types.GetWorkflowInput): types.GetWorkflowOutput, table
+    getWorkflowExecution: function(Client, types.GetWorkflowExecutionInput): types.GetWorkflowExecutionOutput, table
+    getWorkflowStepExecution: function(Client, types.GetWorkflowStepExecutionInput): types.GetWorkflowStepExecutionOutput, table
+    importComponent: function(Client, types.ImportComponentInput): types.ImportComponentOutput, table
+    importDiskImage: function(Client, types.ImportDiskImageInput): types.ImportDiskImageOutput, table
+    importVmImage: function(Client, types.ImportVmImageInput): types.ImportVmImageOutput, table
+    listComponentBuildVersions: function(Client, types.ListComponentBuildVersionsInput): types.ListComponentBuildVersionsOutput, table
+    listComponents: function(Client, types.ListComponentsInput): types.ListComponentsOutput, table
+    listContainerRecipes: function(Client, types.ListContainerRecipesInput): types.ListContainerRecipesOutput, table
+    listDistributionConfigurations: function(Client, types.ListDistributionConfigurationsInput): types.ListDistributionConfigurationsOutput, table
+    listImageBuildVersions: function(Client, types.ListImageBuildVersionsInput): types.ListImageBuildVersionsOutput, table
+    listImagePackages: function(Client, types.ListImagePackagesInput): types.ListImagePackagesOutput, table
+    listImagePipelineImages: function(Client, types.ListImagePipelineImagesInput): types.ListImagePipelineImagesOutput, table
+    listImagePipelines: function(Client, types.ListImagePipelinesInput): types.ListImagePipelinesOutput, table
+    listImageRecipes: function(Client, types.ListImageRecipesInput): types.ListImageRecipesOutput, table
+    listImages: function(Client, types.ListImagesInput): types.ListImagesOutput, table
+    listImageScanFindingAggregations: function(Client, types.ListImageScanFindingAggregationsInput): types.ListImageScanFindingAggregationsOutput, table
+    listImageScanFindings: function(Client, types.ListImageScanFindingsInput): types.ListImageScanFindingsOutput, table
+    listInfrastructureConfigurations: function(Client, types.ListInfrastructureConfigurationsInput): types.ListInfrastructureConfigurationsOutput, table
+    listLifecycleExecutionResources: function(Client, types.ListLifecycleExecutionResourcesInput): types.ListLifecycleExecutionResourcesOutput, table
+    listLifecycleExecutions: function(Client, types.ListLifecycleExecutionsInput): types.ListLifecycleExecutionsOutput, table
+    listLifecyclePolicies: function(Client, types.ListLifecyclePoliciesInput): types.ListLifecyclePoliciesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listWaitingWorkflowSteps: function(Client, types.ListWaitingWorkflowStepsInput): types.ListWaitingWorkflowStepsOutput, table
+    listWorkflowBuildVersions: function(Client, types.ListWorkflowBuildVersionsInput): types.ListWorkflowBuildVersionsOutput, table
+    listWorkflowExecutions: function(Client, types.ListWorkflowExecutionsInput): types.ListWorkflowExecutionsOutput, table
+    listWorkflows: function(Client, types.ListWorkflowsInput): types.ListWorkflowsOutput, table
+    listWorkflowStepExecutions: function(Client, types.ListWorkflowStepExecutionsInput): types.ListWorkflowStepExecutionsOutput, table
+    putComponentPolicy: function(Client, types.PutComponentPolicyInput): types.PutComponentPolicyOutput, table
+    putContainerRecipePolicy: function(Client, types.PutContainerRecipePolicyInput): types.PutContainerRecipePolicyOutput, table
+    putImagePolicy: function(Client, types.PutImagePolicyInput): types.PutImagePolicyOutput, table
+    putImageRecipePolicy: function(Client, types.PutImageRecipePolicyInput): types.PutImageRecipePolicyOutput, table
+    retryImage: function(Client, types.RetryImageInput): types.RetryImageOutput, table
+    sendWorkflowStepAction: function(Client, types.SendWorkflowStepActionInput): types.SendWorkflowStepActionOutput, table
+    startImagePipelineExecution: function(Client, types.StartImagePipelineExecutionInput): types.StartImagePipelineExecutionOutput, table
+    startResourceStateUpdate: function(Client, types.StartResourceStateUpdateInput): types.StartResourceStateUpdateOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateDistributionConfiguration: function(Client, types.UpdateDistributionConfigurationInput): types.UpdateDistributionConfigurationOutput, table
+    updateImagePipeline: function(Client, types.UpdateImagePipelineInput): types.UpdateImagePipelineOutput, table
+    updateInfrastructureConfiguration: function(Client, types.UpdateInfrastructureConfigurationInput): types.UpdateInfrastructureConfigurationOutput, table
+    updateLifecyclePolicy: function(Client, types.UpdateLifecyclePolicyInput): types.UpdateLifecyclePolicyOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

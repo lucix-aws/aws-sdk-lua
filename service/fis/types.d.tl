@@ -1,0 +1,509 @@
+local record CreateExperimentTemplateInput
+    clientToken: string
+    description: string
+    stopConditions: {CreateExperimentTemplateStopConditionInput}
+    targets: {string : CreateExperimentTemplateTargetInput}
+    actions: {string : CreateExperimentTemplateActionInput}
+    roleArn: string
+    tags: {string : string}
+    logConfiguration: CreateExperimentTemplateLogConfigurationInput
+    experimentOptions: CreateExperimentTemplateExperimentOptionsInput
+    experimentReportConfiguration: CreateExperimentTemplateReportConfigurationInput
+end
+
+local record CreateExperimentTemplateOutput
+    experimentTemplate: ExperimentTemplate
+end
+
+local record CreateTargetAccountConfigurationInput
+    clientToken: string
+    experimentTemplateId: string
+    accountId: string
+    roleArn: string
+    description: string
+end
+
+local record CreateTargetAccountConfigurationOutput
+    targetAccountConfiguration: TargetAccountConfiguration
+end
+
+local record DeleteExperimentTemplateInput
+    id: string
+end
+
+local record DeleteExperimentTemplateOutput
+    experimentTemplate: ExperimentTemplate
+end
+
+local record DeleteTargetAccountConfigurationInput
+    experimentTemplateId: string
+    accountId: string
+end
+
+local record DeleteTargetAccountConfigurationOutput
+    targetAccountConfiguration: TargetAccountConfiguration
+end
+
+local record GetActionInput
+    id: string
+end
+
+local record GetActionOutput
+    action: Action
+end
+
+local record GetExperimentInput
+    id: string
+end
+
+local record GetExperimentOutput
+    experiment: Experiment
+end
+
+local record GetExperimentTargetAccountConfigurationInput
+    experimentId: string
+    accountId: string
+end
+
+local record GetExperimentTargetAccountConfigurationOutput
+    targetAccountConfiguration: ExperimentTargetAccountConfiguration
+end
+
+local record GetExperimentTemplateInput
+    id: string
+end
+
+local record GetExperimentTemplateOutput
+    experimentTemplate: ExperimentTemplate
+end
+
+local record GetSafetyLeverInput
+    id: string
+end
+
+local record GetSafetyLeverOutput
+    safetyLever: SafetyLever
+end
+
+local record GetTargetAccountConfigurationInput
+    experimentTemplateId: string
+    accountId: string
+end
+
+local record GetTargetAccountConfigurationOutput
+    targetAccountConfiguration: TargetAccountConfiguration
+end
+
+local record GetTargetResourceTypeInput
+    resourceType: string
+end
+
+local record GetTargetResourceTypeOutput
+    targetResourceType: TargetResourceType
+end
+
+local record ListActionsInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListActionsOutput
+    actions: {ActionSummary}
+    nextToken: string
+end
+
+local record ListExperimentResolvedTargetsInput
+    experimentId: string
+    maxResults: number
+    nextToken: string
+    targetName: string
+end
+
+local record ListExperimentResolvedTargetsOutput
+    resolvedTargets: {ResolvedTarget}
+    nextToken: string
+end
+
+local record ListExperimentsInput
+    maxResults: number
+    nextToken: string
+    experimentTemplateId: string
+end
+
+local record ListExperimentsOutput
+    experiments: {ExperimentSummary}
+    nextToken: string
+end
+
+local record ListExperimentTargetAccountConfigurationsInput
+    experimentId: string
+    nextToken: string
+end
+
+local record ListExperimentTargetAccountConfigurationsOutput
+    targetAccountConfigurations: {ExperimentTargetAccountConfigurationSummary}
+    nextToken: string
+end
+
+local record ListExperimentTemplatesInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListExperimentTemplatesOutput
+    experimentTemplates: {ExperimentTemplateSummary}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record ListTargetAccountConfigurationsInput
+    experimentTemplateId: string
+    maxResults: number
+    nextToken: string
+end
+
+local record ListTargetAccountConfigurationsOutput
+    targetAccountConfigurations: {TargetAccountConfigurationSummary}
+    nextToken: string
+end
+
+local record ListTargetResourceTypesInput
+    maxResults: number
+    nextToken: string
+end
+
+local record ListTargetResourceTypesOutput
+    targetResourceTypes: {TargetResourceTypeSummary}
+    nextToken: string
+end
+
+local record StartExperimentInput
+    clientToken: string
+    experimentTemplateId: string
+    experimentOptions: StartExperimentExperimentOptionsInput
+    tags: {string : string}
+end
+
+local record StartExperimentOutput
+    experiment: Experiment
+end
+
+local record StopExperimentInput
+    id: string
+end
+
+local record StopExperimentOutput
+    experiment: Experiment
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateExperimentTemplateInput
+    id: string
+    description: string
+    stopConditions: {UpdateExperimentTemplateStopConditionInput}
+    targets: {string : UpdateExperimentTemplateTargetInput}
+    actions: {string : UpdateExperimentTemplateActionInputItem}
+    roleArn: string
+    logConfiguration: UpdateExperimentTemplateLogConfigurationInput
+    experimentOptions: UpdateExperimentTemplateExperimentOptionsInput
+    experimentReportConfiguration: UpdateExperimentTemplateReportConfigurationInput
+end
+
+local record UpdateExperimentTemplateOutput
+    experimentTemplate: ExperimentTemplate
+end
+
+local record UpdateSafetyLeverStateOperationInput
+    id: string
+    state: UpdateSafetyLeverStateInput
+end
+
+local record UpdateSafetyLeverStateOutput
+    safetyLever: SafetyLever
+end
+
+local record UpdateTargetAccountConfigurationInput
+    experimentTemplateId: string
+    accountId: string
+    roleArn: string
+    description: string
+end
+
+local record UpdateTargetAccountConfigurationOutput
+    targetAccountConfiguration: TargetAccountConfiguration
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record M
+    CreateExperimentTemplateInput: CreateExperimentTemplateInput
+    CreateExperimentTemplateOutput: CreateExperimentTemplateOutput
+    CreateTargetAccountConfigurationInput: CreateTargetAccountConfigurationInput
+    CreateTargetAccountConfigurationOutput: CreateTargetAccountConfigurationOutput
+    DeleteExperimentTemplateInput: DeleteExperimentTemplateInput
+    DeleteExperimentTemplateOutput: DeleteExperimentTemplateOutput
+    DeleteTargetAccountConfigurationInput: DeleteTargetAccountConfigurationInput
+    DeleteTargetAccountConfigurationOutput: DeleteTargetAccountConfigurationOutput
+    GetActionInput: GetActionInput
+    GetActionOutput: GetActionOutput
+    GetExperimentInput: GetExperimentInput
+    GetExperimentOutput: GetExperimentOutput
+    GetExperimentTargetAccountConfigurationInput: GetExperimentTargetAccountConfigurationInput
+    GetExperimentTargetAccountConfigurationOutput: GetExperimentTargetAccountConfigurationOutput
+    GetExperimentTemplateInput: GetExperimentTemplateInput
+    GetExperimentTemplateOutput: GetExperimentTemplateOutput
+    GetSafetyLeverInput: GetSafetyLeverInput
+    GetSafetyLeverOutput: GetSafetyLeverOutput
+    GetTargetAccountConfigurationInput: GetTargetAccountConfigurationInput
+    GetTargetAccountConfigurationOutput: GetTargetAccountConfigurationOutput
+    GetTargetResourceTypeInput: GetTargetResourceTypeInput
+    GetTargetResourceTypeOutput: GetTargetResourceTypeOutput
+    ListActionsInput: ListActionsInput
+    ListActionsOutput: ListActionsOutput
+    ListExperimentResolvedTargetsInput: ListExperimentResolvedTargetsInput
+    ListExperimentResolvedTargetsOutput: ListExperimentResolvedTargetsOutput
+    ListExperimentsInput: ListExperimentsInput
+    ListExperimentsOutput: ListExperimentsOutput
+    ListExperimentTargetAccountConfigurationsInput: ListExperimentTargetAccountConfigurationsInput
+    ListExperimentTargetAccountConfigurationsOutput: ListExperimentTargetAccountConfigurationsOutput
+    ListExperimentTemplatesInput: ListExperimentTemplatesInput
+    ListExperimentTemplatesOutput: ListExperimentTemplatesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ListTargetAccountConfigurationsInput: ListTargetAccountConfigurationsInput
+    ListTargetAccountConfigurationsOutput: ListTargetAccountConfigurationsOutput
+    ListTargetResourceTypesInput: ListTargetResourceTypesInput
+    ListTargetResourceTypesOutput: ListTargetResourceTypesOutput
+    StartExperimentInput: StartExperimentInput
+    StartExperimentOutput: StartExperimentOutput
+    StopExperimentInput: StopExperimentInput
+    StopExperimentOutput: StopExperimentOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateExperimentTemplateInput: UpdateExperimentTemplateInput
+    UpdateExperimentTemplateOutput: UpdateExperimentTemplateOutput
+    UpdateSafetyLeverStateOperationInput: UpdateSafetyLeverStateOperationInput
+    UpdateSafetyLeverStateOutput: UpdateSafetyLeverStateOutput
+    UpdateTargetAccountConfigurationInput: UpdateTargetAccountConfigurationInput
+    UpdateTargetAccountConfigurationOutput: UpdateTargetAccountConfigurationOutput
+end
+
+return M

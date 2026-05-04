@@ -1,0 +1,29 @@
+local types = require("timestreaminfluxdb.types")
+
+local record Client
+    createDbCluster: function(Client, types.CreateDbClusterInput): types.CreateDbClusterOutput, table
+    createDbInstance: function(Client, types.CreateDbInstanceInput): types.CreateDbInstanceOutput, table
+    createDbParameterGroup: function(Client, types.CreateDbParameterGroupInput): types.CreateDbParameterGroupOutput, table
+    deleteDbCluster: function(Client, types.DeleteDbClusterInput): types.DeleteDbClusterOutput, table
+    deleteDbInstance: function(Client, types.DeleteDbInstanceInput): types.DeleteDbInstanceOutput, table
+    getDbCluster: function(Client, types.GetDbClusterInput): types.GetDbClusterOutput, table
+    getDbInstance: function(Client, types.GetDbInstanceInput): types.GetDbInstanceOutput, table
+    getDbParameterGroup: function(Client, types.GetDbParameterGroupInput): types.GetDbParameterGroupOutput, table
+    listDbClusters: function(Client, types.ListDbClustersInput): types.ListDbClustersOutput, table
+    listDbInstances: function(Client, types.ListDbInstancesInput): types.ListDbInstancesOutput, table
+    listDbInstancesForCluster: function(Client, types.ListDbInstancesForClusterInput): types.ListDbInstancesForClusterOutput, table
+    listDbParameterGroups: function(Client, types.ListDbParameterGroupsInput): types.ListDbParameterGroupsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    rebootDbCluster: function(Client, types.RebootDbClusterInput): types.RebootDbClusterOutput, table
+    rebootDbInstance: function(Client, types.RebootDbInstanceInput): types.RebootDbInstanceOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateDbCluster: function(Client, types.UpdateDbClusterInput): types.UpdateDbClusterOutput, table
+    updateDbInstance: function(Client, types.UpdateDbInstanceInput): types.UpdateDbInstanceOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

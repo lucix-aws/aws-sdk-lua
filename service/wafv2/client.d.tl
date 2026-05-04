@@ -1,0 +1,65 @@
+local types = require("wafv2.types")
+
+local record Client
+    associateWebACL: function(Client, types.AssociateWebACLInput): types.AssociateWebACLOutput, table
+    checkCapacity: function(Client, types.CheckCapacityInput): types.CheckCapacityOutput, table
+    createAPIKey: function(Client, types.CreateAPIKeyInput): types.CreateAPIKeyOutput, table
+    createIPSet: function(Client, types.CreateIPSetInput): types.CreateIPSetOutput, table
+    createRegexPatternSet: function(Client, types.CreateRegexPatternSetInput): types.CreateRegexPatternSetOutput, table
+    createRuleGroup: function(Client, types.CreateRuleGroupInput): types.CreateRuleGroupOutput, table
+    createWebACL: function(Client, types.CreateWebACLInput): types.CreateWebACLOutput, table
+    deleteAPIKey: function(Client, types.DeleteAPIKeyInput): types.DeleteAPIKeyOutput, table
+    deleteFirewallManagerRuleGroups: function(Client, types.DeleteFirewallManagerRuleGroupsInput): types.DeleteFirewallManagerRuleGroupsOutput, table
+    deleteIPSet: function(Client, types.DeleteIPSetInput): types.DeleteIPSetOutput, table
+    deleteLoggingConfiguration: function(Client, types.DeleteLoggingConfigurationInput): types.DeleteLoggingConfigurationOutput, table
+    deletePermissionPolicy: function(Client, types.DeletePermissionPolicyInput): types.DeletePermissionPolicyOutput, table
+    deleteRegexPatternSet: function(Client, types.DeleteRegexPatternSetInput): types.DeleteRegexPatternSetOutput, table
+    deleteRuleGroup: function(Client, types.DeleteRuleGroupInput): types.DeleteRuleGroupOutput, table
+    deleteWebACL: function(Client, types.DeleteWebACLInput): types.DeleteWebACLOutput, table
+    describeAllManagedProducts: function(Client, types.DescribeAllManagedProductsInput): types.DescribeAllManagedProductsOutput, table
+    describeManagedProductsByVendor: function(Client, types.DescribeManagedProductsByVendorInput): types.DescribeManagedProductsByVendorOutput, table
+    describeManagedRuleGroup: function(Client, types.DescribeManagedRuleGroupInput): types.DescribeManagedRuleGroupOutput, table
+    disassociateWebACL: function(Client, types.DisassociateWebACLInput): types.DisassociateWebACLOutput, table
+    generateMobileSdkReleaseUrl: function(Client, types.GenerateMobileSdkReleaseUrlInput): types.GenerateMobileSdkReleaseUrlOutput, table
+    getDecryptedAPIKey: function(Client, types.GetDecryptedAPIKeyInput): types.GetDecryptedAPIKeyOutput, table
+    getIPSet: function(Client, types.GetIPSetInput): types.GetIPSetOutput, table
+    getLoggingConfiguration: function(Client, types.GetLoggingConfigurationInput): types.GetLoggingConfigurationOutput, table
+    getManagedRuleSet: function(Client, types.GetManagedRuleSetInput): types.GetManagedRuleSetOutput, table
+    getMobileSdkRelease: function(Client, types.GetMobileSdkReleaseInput): types.GetMobileSdkReleaseOutput, table
+    getPermissionPolicy: function(Client, types.GetPermissionPolicyInput): types.GetPermissionPolicyOutput, table
+    getRateBasedStatementManagedKeys: function(Client, types.GetRateBasedStatementManagedKeysInput): types.GetRateBasedStatementManagedKeysOutput, table
+    getRegexPatternSet: function(Client, types.GetRegexPatternSetInput): types.GetRegexPatternSetOutput, table
+    getRuleGroup: function(Client, types.GetRuleGroupInput): types.GetRuleGroupOutput, table
+    getSampledRequests: function(Client, types.GetSampledRequestsInput): types.GetSampledRequestsOutput, table
+    getTopPathStatisticsByTraffic: function(Client, types.GetTopPathStatisticsByTrafficInput): types.GetTopPathStatisticsByTrafficOutput, table
+    getWebACL: function(Client, types.GetWebACLInput): types.GetWebACLOutput, table
+    getWebACLForResource: function(Client, types.GetWebACLForResourceInput): types.GetWebACLForResourceOutput, table
+    listAPIKeys: function(Client, types.ListAPIKeysInput): types.ListAPIKeysOutput, table
+    listAvailableManagedRuleGroups: function(Client, types.ListAvailableManagedRuleGroupsInput): types.ListAvailableManagedRuleGroupsOutput, table
+    listAvailableManagedRuleGroupVersions: function(Client, types.ListAvailableManagedRuleGroupVersionsInput): types.ListAvailableManagedRuleGroupVersionsOutput, table
+    listIPSets: function(Client, types.ListIPSetsInput): types.ListIPSetsOutput, table
+    listLoggingConfigurations: function(Client, types.ListLoggingConfigurationsInput): types.ListLoggingConfigurationsOutput, table
+    listManagedRuleSets: function(Client, types.ListManagedRuleSetsInput): types.ListManagedRuleSetsOutput, table
+    listMobileSdkReleases: function(Client, types.ListMobileSdkReleasesInput): types.ListMobileSdkReleasesOutput, table
+    listRegexPatternSets: function(Client, types.ListRegexPatternSetsInput): types.ListRegexPatternSetsOutput, table
+    listResourcesForWebACL: function(Client, types.ListResourcesForWebACLInput): types.ListResourcesForWebACLOutput, table
+    listRuleGroups: function(Client, types.ListRuleGroupsInput): types.ListRuleGroupsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listWebACLs: function(Client, types.ListWebACLsInput): types.ListWebACLsOutput, table
+    putLoggingConfiguration: function(Client, types.PutLoggingConfigurationInput): types.PutLoggingConfigurationOutput, table
+    putManagedRuleSetVersions: function(Client, types.PutManagedRuleSetVersionsInput): types.PutManagedRuleSetVersionsOutput, table
+    putPermissionPolicy: function(Client, types.PutPermissionPolicyInput): types.PutPermissionPolicyOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateIPSet: function(Client, types.UpdateIPSetInput): types.UpdateIPSetOutput, table
+    updateManagedRuleSetVersionExpiryDate: function(Client, types.UpdateManagedRuleSetVersionExpiryDateInput): types.UpdateManagedRuleSetVersionExpiryDateOutput, table
+    updateRegexPatternSet: function(Client, types.UpdateRegexPatternSetInput): types.UpdateRegexPatternSetOutput, table
+    updateRuleGroup: function(Client, types.UpdateRuleGroupInput): types.UpdateRuleGroupOutput, table
+    updateWebACL: function(Client, types.UpdateWebACLInput): types.UpdateWebACLOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

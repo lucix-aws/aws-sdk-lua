@@ -1,0 +1,39 @@
+local types = require("detective.types")
+
+local record Client
+    acceptInvitation: function(Client, types.AcceptInvitationInput): types.AcceptInvitationOutput, table
+    batchGetGraphMemberDatasources: function(Client, types.BatchGetGraphMemberDatasourcesInput): types.BatchGetGraphMemberDatasourcesOutput, table
+    batchGetMembershipDatasources: function(Client, types.BatchGetMembershipDatasourcesInput): types.BatchGetMembershipDatasourcesOutput, table
+    createGraph: function(Client, types.CreateGraphInput): types.CreateGraphOutput, table
+    createMembers: function(Client, types.CreateMembersInput): types.CreateMembersOutput, table
+    deleteGraph: function(Client, types.DeleteGraphInput): types.DeleteGraphOutput, table
+    deleteMembers: function(Client, types.DeleteMembersInput): types.DeleteMembersOutput, table
+    describeOrganizationConfiguration: function(Client, types.DescribeOrganizationConfigurationInput): types.DescribeOrganizationConfigurationOutput, table
+    disableOrganizationAdminAccount: function(Client, types.DisableOrganizationAdminAccountInput): types.DisableOrganizationAdminAccountOutput, table
+    disassociateMembership: function(Client, types.DisassociateMembershipInput): types.DisassociateMembershipOutput, table
+    enableOrganizationAdminAccount: function(Client, types.EnableOrganizationAdminAccountInput): types.EnableOrganizationAdminAccountOutput, table
+    getInvestigation: function(Client, types.GetInvestigationInput): types.GetInvestigationOutput, table
+    getMembers: function(Client, types.GetMembersInput): types.GetMembersOutput, table
+    listDatasourcePackages: function(Client, types.ListDatasourcePackagesInput): types.ListDatasourcePackagesOutput, table
+    listGraphs: function(Client, types.ListGraphsInput): types.ListGraphsOutput, table
+    listIndicators: function(Client, types.ListIndicatorsInput): types.ListIndicatorsOutput, table
+    listInvestigations: function(Client, types.ListInvestigationsInput): types.ListInvestigationsOutput, table
+    listInvitations: function(Client, types.ListInvitationsInput): types.ListInvitationsOutput, table
+    listMembers: function(Client, types.ListMembersInput): types.ListMembersOutput, table
+    listOrganizationAdminAccounts: function(Client, types.ListOrganizationAdminAccountsInput): types.ListOrganizationAdminAccountsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    rejectInvitation: function(Client, types.RejectInvitationInput): types.RejectInvitationOutput, table
+    startInvestigation: function(Client, types.StartInvestigationInput): types.StartInvestigationOutput, table
+    startMonitoringMember: function(Client, types.StartMonitoringMemberInput): types.StartMonitoringMemberOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateDatasourcePackages: function(Client, types.UpdateDatasourcePackagesInput): types.UpdateDatasourcePackagesOutput, table
+    updateInvestigationState: function(Client, types.UpdateInvestigationStateInput): types.UpdateInvestigationStateOutput, table
+    updateOrganizationConfiguration: function(Client, types.UpdateOrganizationConfigurationInput): types.UpdateOrganizationConfigurationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

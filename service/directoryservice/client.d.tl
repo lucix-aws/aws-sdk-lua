@@ -1,0 +1,90 @@
+local types = require("directoryservice.types")
+
+local record Client
+    acceptSharedDirectory: function(Client, types.AcceptSharedDirectoryInput): types.AcceptSharedDirectoryOutput, table
+    addIpRoutes: function(Client, types.AddIpRoutesInput): types.AddIpRoutesOutput, table
+    addRegion: function(Client, types.AddRegionInput): types.AddRegionOutput, table
+    addTagsToResource: function(Client, types.AddTagsToResourceInput): types.AddTagsToResourceOutput, table
+    cancelSchemaExtension: function(Client, types.CancelSchemaExtensionInput): types.CancelSchemaExtensionOutput, table
+    connectDirectory: function(Client, types.ConnectDirectoryInput): types.ConnectDirectoryOutput, table
+    createAlias: function(Client, types.CreateAliasInput): types.CreateAliasOutput, table
+    createComputer: function(Client, types.CreateComputerInput): types.CreateComputerOutput, table
+    createConditionalForwarder: function(Client, types.CreateConditionalForwarderInput): types.CreateConditionalForwarderOutput, table
+    createDirectory: function(Client, types.CreateDirectoryInput): types.CreateDirectoryOutput, table
+    createHybridAD: function(Client, types.CreateHybridADInput): types.CreateHybridADOutput, table
+    createLogSubscription: function(Client, types.CreateLogSubscriptionInput): types.CreateLogSubscriptionOutput, table
+    createMicrosoftAD: function(Client, types.CreateMicrosoftADInput): types.CreateMicrosoftADOutput, table
+    createSnapshot: function(Client, types.CreateSnapshotInput): types.CreateSnapshotOutput, table
+    createTrust: function(Client, types.CreateTrustInput): types.CreateTrustOutput, table
+    deleteADAssessment: function(Client, types.DeleteADAssessmentInput): types.DeleteADAssessmentOutput, table
+    deleteConditionalForwarder: function(Client, types.DeleteConditionalForwarderInput): types.DeleteConditionalForwarderOutput, table
+    deleteDirectory: function(Client, types.DeleteDirectoryInput): types.DeleteDirectoryOutput, table
+    deleteLogSubscription: function(Client, types.DeleteLogSubscriptionInput): types.DeleteLogSubscriptionOutput, table
+    deleteSnapshot: function(Client, types.DeleteSnapshotInput): types.DeleteSnapshotOutput, table
+    deleteTrust: function(Client, types.DeleteTrustInput): types.DeleteTrustOutput, table
+    deregisterCertificate: function(Client, types.DeregisterCertificateInput): types.DeregisterCertificateOutput, table
+    deregisterEventTopic: function(Client, types.DeregisterEventTopicInput): types.DeregisterEventTopicOutput, table
+    describeADAssessment: function(Client, types.DescribeADAssessmentInput): types.DescribeADAssessmentOutput, table
+    describeCAEnrollmentPolicy: function(Client, types.DescribeCAEnrollmentPolicyInput): types.DescribeCAEnrollmentPolicyOutput, table
+    describeCertificate: function(Client, types.DescribeCertificateInput): types.DescribeCertificateOutput, table
+    describeClientAuthenticationSettings: function(Client, types.DescribeClientAuthenticationSettingsInput): types.DescribeClientAuthenticationSettingsOutput, table
+    describeConditionalForwarders: function(Client, types.DescribeConditionalForwardersInput): types.DescribeConditionalForwardersOutput, table
+    describeDirectories: function(Client, types.DescribeDirectoriesInput): types.DescribeDirectoriesOutput, table
+    describeDirectoryDataAccess: function(Client, types.DescribeDirectoryDataAccessInput): types.DescribeDirectoryDataAccessOutput, table
+    describeDomainControllers: function(Client, types.DescribeDomainControllersInput): types.DescribeDomainControllersOutput, table
+    describeEventTopics: function(Client, types.DescribeEventTopicsInput): types.DescribeEventTopicsOutput, table
+    describeHybridADUpdate: function(Client, types.DescribeHybridADUpdateInput): types.DescribeHybridADUpdateOutput, table
+    describeLDAPSSettings: function(Client, types.DescribeLDAPSSettingsInput): types.DescribeLDAPSSettingsOutput, table
+    describeRegions: function(Client, types.DescribeRegionsInput): types.DescribeRegionsOutput, table
+    describeSettings: function(Client, types.DescribeSettingsInput): types.DescribeSettingsOutput, table
+    describeSharedDirectories: function(Client, types.DescribeSharedDirectoriesInput): types.DescribeSharedDirectoriesOutput, table
+    describeSnapshots: function(Client, types.DescribeSnapshotsInput): types.DescribeSnapshotsOutput, table
+    describeTrusts: function(Client, types.DescribeTrustsInput): types.DescribeTrustsOutput, table
+    describeUpdateDirectory: function(Client, types.DescribeUpdateDirectoryInput): types.DescribeUpdateDirectoryOutput, table
+    disableCAEnrollmentPolicy: function(Client, types.DisableCAEnrollmentPolicyInput): types.DisableCAEnrollmentPolicyOutput, table
+    disableClientAuthentication: function(Client, types.DisableClientAuthenticationInput): types.DisableClientAuthenticationOutput, table
+    disableDirectoryDataAccess: function(Client, types.DisableDirectoryDataAccessInput): types.DisableDirectoryDataAccessOutput, table
+    disableLDAPS: function(Client, types.DisableLDAPSInput): types.DisableLDAPSOutput, table
+    disableRadius: function(Client, types.DisableRadiusInput): types.DisableRadiusOutput, table
+    disableSso: function(Client, types.DisableSsoInput): types.DisableSsoOutput, table
+    enableCAEnrollmentPolicy: function(Client, types.EnableCAEnrollmentPolicyInput): types.EnableCAEnrollmentPolicyOutput, table
+    enableClientAuthentication: function(Client, types.EnableClientAuthenticationInput): types.EnableClientAuthenticationOutput, table
+    enableDirectoryDataAccess: function(Client, types.EnableDirectoryDataAccessInput): types.EnableDirectoryDataAccessOutput, table
+    enableLDAPS: function(Client, types.EnableLDAPSInput): types.EnableLDAPSOutput, table
+    enableRadius: function(Client, types.EnableRadiusInput): types.EnableRadiusOutput, table
+    enableSso: function(Client, types.EnableSsoInput): types.EnableSsoOutput, table
+    getDirectoryLimits: function(Client, types.GetDirectoryLimitsInput): types.GetDirectoryLimitsOutput, table
+    getSnapshotLimits: function(Client, types.GetSnapshotLimitsInput): types.GetSnapshotLimitsOutput, table
+    listADAssessments: function(Client, types.ListADAssessmentsInput): types.ListADAssessmentsOutput, table
+    listCertificates: function(Client, types.ListCertificatesInput): types.ListCertificatesOutput, table
+    listIpRoutes: function(Client, types.ListIpRoutesInput): types.ListIpRoutesOutput, table
+    listLogSubscriptions: function(Client, types.ListLogSubscriptionsInput): types.ListLogSubscriptionsOutput, table
+    listSchemaExtensions: function(Client, types.ListSchemaExtensionsInput): types.ListSchemaExtensionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    registerCertificate: function(Client, types.RegisterCertificateInput): types.RegisterCertificateOutput, table
+    registerEventTopic: function(Client, types.RegisterEventTopicInput): types.RegisterEventTopicOutput, table
+    rejectSharedDirectory: function(Client, types.RejectSharedDirectoryInput): types.RejectSharedDirectoryOutput, table
+    removeIpRoutes: function(Client, types.RemoveIpRoutesInput): types.RemoveIpRoutesOutput, table
+    removeRegion: function(Client, types.RemoveRegionInput): types.RemoveRegionOutput, table
+    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput): types.RemoveTagsFromResourceOutput, table
+    resetUserPassword: function(Client, types.ResetUserPasswordInput): types.ResetUserPasswordOutput, table
+    restoreFromSnapshot: function(Client, types.RestoreFromSnapshotInput): types.RestoreFromSnapshotOutput, table
+    shareDirectory: function(Client, types.ShareDirectoryInput): types.ShareDirectoryOutput, table
+    startADAssessment: function(Client, types.StartADAssessmentInput): types.StartADAssessmentOutput, table
+    startSchemaExtension: function(Client, types.StartSchemaExtensionInput): types.StartSchemaExtensionOutput, table
+    unshareDirectory: function(Client, types.UnshareDirectoryInput): types.UnshareDirectoryOutput, table
+    updateConditionalForwarder: function(Client, types.UpdateConditionalForwarderInput): types.UpdateConditionalForwarderOutput, table
+    updateDirectorySetup: function(Client, types.UpdateDirectorySetupInput): types.UpdateDirectorySetupOutput, table
+    updateHybridAD: function(Client, types.UpdateHybridADInput): types.UpdateHybridADOutput, table
+    updateNumberOfDomainControllers: function(Client, types.UpdateNumberOfDomainControllersInput): types.UpdateNumberOfDomainControllersOutput, table
+    updateRadius: function(Client, types.UpdateRadiusInput): types.UpdateRadiusOutput, table
+    updateSettings: function(Client, types.UpdateSettingsInput): types.UpdateSettingsOutput, table
+    updateTrust: function(Client, types.UpdateTrustInput): types.UpdateTrustOutput, table
+    verifyTrust: function(Client, types.VerifyTrustInput): types.VerifyTrustOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

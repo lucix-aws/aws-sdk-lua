@@ -1,0 +1,341 @@
+local record BatchAcknowledgeAlarmInput
+    acknowledgeActionRequests: {AcknowledgeAlarmActionRequest}
+end
+
+local record BatchAcknowledgeAlarmOutput
+    errorEntries: {BatchAlarmActionErrorEntry}
+end
+
+local record BatchDeleteDetectorInput
+    detectors: {DeleteDetectorRequest}
+end
+
+local record BatchDeleteDetectorOutput
+    batchDeleteDetectorErrorEntries: {BatchDeleteDetectorErrorEntry}
+end
+
+local record BatchDisableAlarmInput
+    disableActionRequests: {DisableAlarmActionRequest}
+end
+
+local record BatchDisableAlarmOutput
+    errorEntries: {BatchAlarmActionErrorEntry}
+end
+
+local record BatchEnableAlarmInput
+    enableActionRequests: {EnableAlarmActionRequest}
+end
+
+local record BatchEnableAlarmOutput
+    errorEntries: {BatchAlarmActionErrorEntry}
+end
+
+local record BatchPutMessageInput
+    messages: {Message}
+end
+
+local record BatchPutMessageOutput
+    BatchPutMessageErrorEntries: {BatchPutMessageErrorEntry}
+end
+
+local record BatchResetAlarmInput
+    resetActionRequests: {ResetAlarmActionRequest}
+end
+
+local record BatchResetAlarmOutput
+    errorEntries: {BatchAlarmActionErrorEntry}
+end
+
+local record BatchSnoozeAlarmInput
+    snoozeActionRequests: {SnoozeAlarmActionRequest}
+end
+
+local record BatchSnoozeAlarmOutput
+    errorEntries: {BatchAlarmActionErrorEntry}
+end
+
+local record BatchUpdateDetectorInput
+    detectors: {UpdateDetectorRequest}
+end
+
+local record BatchUpdateDetectorOutput
+    batchUpdateDetectorErrorEntries: {BatchUpdateDetectorErrorEntry}
+end
+
+local record DescribeAlarmInput
+    alarmModelName: string
+    keyValue: string
+end
+
+local record DescribeAlarmOutput
+    alarm: Alarm
+end
+
+local record DescribeDetectorInput
+    detectorModelName: string
+    keyValue: string
+end
+
+local record DescribeDetectorOutput
+    detector: Detector
+end
+
+local record ListAlarmsInput
+    alarmModelName: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListAlarmsOutput
+    alarmSummaries: {AlarmSummary}
+    nextToken: string
+end
+
+local record ListDetectorsInput
+    detectorModelName: string
+    stateName: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListDetectorsOutput
+    detectorSummaries: {DetectorSummary}
+    nextToken: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record M
+    BatchAcknowledgeAlarmInput: BatchAcknowledgeAlarmInput
+    BatchAcknowledgeAlarmOutput: BatchAcknowledgeAlarmOutput
+    BatchDeleteDetectorInput: BatchDeleteDetectorInput
+    BatchDeleteDetectorOutput: BatchDeleteDetectorOutput
+    BatchDisableAlarmInput: BatchDisableAlarmInput
+    BatchDisableAlarmOutput: BatchDisableAlarmOutput
+    BatchEnableAlarmInput: BatchEnableAlarmInput
+    BatchEnableAlarmOutput: BatchEnableAlarmOutput
+    BatchPutMessageInput: BatchPutMessageInput
+    BatchPutMessageOutput: BatchPutMessageOutput
+    BatchResetAlarmInput: BatchResetAlarmInput
+    BatchResetAlarmOutput: BatchResetAlarmOutput
+    BatchSnoozeAlarmInput: BatchSnoozeAlarmInput
+    BatchSnoozeAlarmOutput: BatchSnoozeAlarmOutput
+    BatchUpdateDetectorInput: BatchUpdateDetectorInput
+    BatchUpdateDetectorOutput: BatchUpdateDetectorOutput
+    DescribeAlarmInput: DescribeAlarmInput
+    DescribeAlarmOutput: DescribeAlarmOutput
+    DescribeDetectorInput: DescribeDetectorInput
+    DescribeDetectorOutput: DescribeDetectorOutput
+    ListAlarmsInput: ListAlarmsInput
+    ListAlarmsOutput: ListAlarmsOutput
+    ListDetectorsInput: ListDetectorsInput
+    ListDetectorsOutput: ListDetectorsOutput
+end
+
+return M

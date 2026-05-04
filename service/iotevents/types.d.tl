@@ -1,0 +1,904 @@
+local record CreateAlarmModelInput
+    alarmModelName: string
+    alarmModelDescription: string
+    roleArn: string
+    tags: {Tag}
+    key: string
+    severity: number
+    alarmRule: AlarmRule
+    alarmNotification: AlarmNotification
+    alarmEventActions: AlarmEventActions
+    alarmCapabilities: AlarmCapabilities
+end
+
+local record CreateAlarmModelOutput
+    creationTime: number
+    alarmModelArn: string
+    alarmModelVersion: string
+    lastUpdateTime: number
+    status: string
+end
+
+local record CreateDetectorModelInput
+    detectorModelName: string
+    detectorModelDefinition: DetectorModelDefinition
+    detectorModelDescription: string
+    key: string
+    roleArn: string
+    tags: {Tag}
+    evaluationMethod: string
+end
+
+local record CreateDetectorModelOutput
+    detectorModelConfiguration: DetectorModelConfiguration
+end
+
+local record CreateInputInput
+    inputName: string
+    inputDescription: string
+    inputDefinition: InputDefinition
+    tags: {Tag}
+end
+
+local record CreateInputOutput
+    inputConfiguration: InputConfiguration
+end
+
+local record DeleteAlarmModelInput
+    alarmModelName: string
+end
+
+local record DeleteAlarmModelOutput
+end
+
+local record DeleteDetectorModelInput
+    detectorModelName: string
+end
+
+local record DeleteDetectorModelOutput
+end
+
+local record DeleteInputInput
+    inputName: string
+end
+
+local record DeleteInputOutput
+end
+
+local record DescribeAlarmModelInput
+    alarmModelName: string
+    alarmModelVersion: string
+end
+
+local record DescribeAlarmModelOutput
+    creationTime: number
+    alarmModelArn: string
+    alarmModelVersion: string
+    lastUpdateTime: number
+    status: string
+    statusMessage: string
+    alarmModelName: string
+    alarmModelDescription: string
+    roleArn: string
+    key: string
+    severity: number
+    alarmRule: AlarmRule
+    alarmNotification: AlarmNotification
+    alarmEventActions: AlarmEventActions
+    alarmCapabilities: AlarmCapabilities
+end
+
+local record DescribeDetectorModelInput
+    detectorModelName: string
+    detectorModelVersion: string
+end
+
+local record DescribeDetectorModelOutput
+    detectorModel: DetectorModel
+end
+
+local record DescribeDetectorModelAnalysisInput
+    analysisId: string
+end
+
+local record DescribeDetectorModelAnalysisOutput
+    status: string
+end
+
+local record DescribeInputInput
+    inputName: string
+end
+
+local record DescribeInputOutput
+    input: Input
+end
+
+local record DescribeLoggingOptionsInput
+end
+
+local record DescribeLoggingOptionsOutput
+    loggingOptions: LoggingOptions
+end
+
+local record GetDetectorModelAnalysisResultsInput
+    analysisId: string
+    nextToken: string
+    maxResults: number
+end
+
+local record GetDetectorModelAnalysisResultsOutput
+    analysisResults: {AnalysisResult}
+    nextToken: string
+end
+
+local record ListAlarmModelsInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListAlarmModelsOutput
+    alarmModelSummaries: {AlarmModelSummary}
+    nextToken: string
+end
+
+local record ListAlarmModelVersionsInput
+    alarmModelName: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListAlarmModelVersionsOutput
+    alarmModelVersionSummaries: {AlarmModelVersionSummary}
+    nextToken: string
+end
+
+local record ListDetectorModelsInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListDetectorModelsOutput
+    detectorModelSummaries: {DetectorModelSummary}
+    nextToken: string
+end
+
+local record ListDetectorModelVersionsInput
+    detectorModelName: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListDetectorModelVersionsOutput
+    detectorModelVersionSummaries: {DetectorModelVersionSummary}
+    nextToken: string
+end
+
+local record ListInputRoutingsInput
+    inputIdentifier: InputIdentifier
+    maxResults: number
+    nextToken: string
+end
+
+local record ListInputRoutingsOutput
+    routedResources: {RoutedResource}
+    nextToken: string
+end
+
+local record ListInputsInput
+    nextToken: string
+    maxResults: number
+end
+
+local record ListInputsOutput
+    inputSummaries: {InputSummary}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {Tag}
+end
+
+local record PutLoggingOptionsInput
+    loggingOptions: LoggingOptions
+end
+
+local record PutLoggingOptionsOutput
+end
+
+local record StartDetectorModelAnalysisInput
+    detectorModelDefinition: DetectorModelDefinition
+end
+
+local record StartDetectorModelAnalysisOutput
+    analysisId: string
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateAlarmModelInput
+    alarmModelName: string
+    alarmModelDescription: string
+    roleArn: string
+    severity: number
+    alarmRule: AlarmRule
+    alarmNotification: AlarmNotification
+    alarmEventActions: AlarmEventActions
+    alarmCapabilities: AlarmCapabilities
+end
+
+local record UpdateAlarmModelOutput
+    creationTime: number
+    alarmModelArn: string
+    alarmModelVersion: string
+    lastUpdateTime: number
+    status: string
+end
+
+local record UpdateDetectorModelInput
+    detectorModelName: string
+    detectorModelDefinition: DetectorModelDefinition
+    detectorModelDescription: string
+    roleArn: string
+    evaluationMethod: string
+end
+
+local record UpdateDetectorModelOutput
+    detectorModelConfiguration: DetectorModelConfiguration
+end
+
+local record UpdateInputInput
+    inputName: string
+    inputDescription: string
+    inputDefinition: InputDefinition
+end
+
+local record UpdateInputOutput
+    inputConfiguration: InputConfiguration
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record ResourceAlreadyExistsException
+    message: string
+    resourceId: string
+    resourceArn: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record ResourceAlreadyExistsException
+    message: string
+    resourceId: string
+    resourceArn: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceAlreadyExistsException
+    message: string
+    resourceId: string
+    resourceArn: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record UnsupportedOperationException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record InternalFailureException
+    message: string
+end
+
+local record InvalidRequestException
+    message: string
+end
+
+local record ResourceInUseException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceUnavailableException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local type AlarmModelVersionStatus = "ACTIVE" | "ACTIVATING" | "INACTIVE" | "FAILED"
+
+local type AnalysisStatus = "RUNNING" | "COMPLETE" | "FAILED"
+
+local type EvaluationMethod = "BATCH" | "SERIAL"
+
+local record M
+    CreateAlarmModelInput: CreateAlarmModelInput
+    CreateAlarmModelOutput: CreateAlarmModelOutput
+    CreateDetectorModelInput: CreateDetectorModelInput
+    CreateDetectorModelOutput: CreateDetectorModelOutput
+    CreateInputInput: CreateInputInput
+    CreateInputOutput: CreateInputOutput
+    DeleteAlarmModelInput: DeleteAlarmModelInput
+    DeleteAlarmModelOutput: DeleteAlarmModelOutput
+    DeleteDetectorModelInput: DeleteDetectorModelInput
+    DeleteDetectorModelOutput: DeleteDetectorModelOutput
+    DeleteInputInput: DeleteInputInput
+    DeleteInputOutput: DeleteInputOutput
+    DescribeAlarmModelInput: DescribeAlarmModelInput
+    DescribeAlarmModelOutput: DescribeAlarmModelOutput
+    DescribeDetectorModelInput: DescribeDetectorModelInput
+    DescribeDetectorModelOutput: DescribeDetectorModelOutput
+    DescribeDetectorModelAnalysisInput: DescribeDetectorModelAnalysisInput
+    DescribeDetectorModelAnalysisOutput: DescribeDetectorModelAnalysisOutput
+    DescribeInputInput: DescribeInputInput
+    DescribeInputOutput: DescribeInputOutput
+    DescribeLoggingOptionsInput: DescribeLoggingOptionsInput
+    DescribeLoggingOptionsOutput: DescribeLoggingOptionsOutput
+    GetDetectorModelAnalysisResultsInput: GetDetectorModelAnalysisResultsInput
+    GetDetectorModelAnalysisResultsOutput: GetDetectorModelAnalysisResultsOutput
+    ListAlarmModelsInput: ListAlarmModelsInput
+    ListAlarmModelsOutput: ListAlarmModelsOutput
+    ListAlarmModelVersionsInput: ListAlarmModelVersionsInput
+    ListAlarmModelVersionsOutput: ListAlarmModelVersionsOutput
+    ListDetectorModelsInput: ListDetectorModelsInput
+    ListDetectorModelsOutput: ListDetectorModelsOutput
+    ListDetectorModelVersionsInput: ListDetectorModelVersionsInput
+    ListDetectorModelVersionsOutput: ListDetectorModelVersionsOutput
+    ListInputRoutingsInput: ListInputRoutingsInput
+    ListInputRoutingsOutput: ListInputRoutingsOutput
+    ListInputsInput: ListInputsInput
+    ListInputsOutput: ListInputsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    PutLoggingOptionsInput: PutLoggingOptionsInput
+    PutLoggingOptionsOutput: PutLoggingOptionsOutput
+    StartDetectorModelAnalysisInput: StartDetectorModelAnalysisInput
+    StartDetectorModelAnalysisOutput: StartDetectorModelAnalysisOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateAlarmModelInput: UpdateAlarmModelInput
+    UpdateAlarmModelOutput: UpdateAlarmModelOutput
+    UpdateDetectorModelInput: UpdateDetectorModelInput
+    UpdateDetectorModelOutput: UpdateDetectorModelOutput
+    UpdateInputInput: UpdateInputInput
+    UpdateInputOutput: UpdateInputOutput
+end
+
+return M

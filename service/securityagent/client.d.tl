@@ -1,0 +1,60 @@
+local types = require("securityagent.types")
+
+local record Client
+    addArtifact: function(Client, types.AddArtifactInput): types.AddArtifactOutput, table
+    batchDeletePentests: function(Client, types.BatchDeletePentestsInput): types.BatchDeletePentestsOutput, table
+    batchGetAgentSpaces: function(Client, types.BatchGetAgentSpacesInput): types.BatchGetAgentSpacesOutput, table
+    batchGetArtifactMetadata: function(Client, types.BatchGetArtifactMetadataInput): types.BatchGetArtifactMetadataOutput, table
+    batchGetFindings: function(Client, types.BatchGetFindingsInput): types.BatchGetFindingsOutput, table
+    batchGetPentestJobs: function(Client, types.BatchGetPentestJobsInput): types.BatchGetPentestJobsOutput, table
+    batchGetPentestJobTasks: function(Client, types.BatchGetPentestJobTasksInput): types.BatchGetPentestJobTasksOutput, table
+    batchGetPentests: function(Client, types.BatchGetPentestsInput): types.BatchGetPentestsOutput, table
+    batchGetTargetDomains: function(Client, types.BatchGetTargetDomainsInput): types.BatchGetTargetDomainsOutput, table
+    createAgentSpace: function(Client, types.CreateAgentSpaceInput): types.CreateAgentSpaceOutput, table
+    createApplication: function(Client, types.CreateApplicationInput): types.CreateApplicationOutput, table
+    createIntegration: function(Client, types.CreateIntegrationInput): types.CreateIntegrationOutput, table
+    createMembership: function(Client, types.CreateMembershipInput): types.CreateMembershipOutput, table
+    createPentest: function(Client, types.CreatePentestInput): types.CreatePentestOutput, table
+    createTargetDomain: function(Client, types.CreateTargetDomainInput): types.CreateTargetDomainOutput, table
+    deleteAgentSpace: function(Client, types.DeleteAgentSpaceInput): types.DeleteAgentSpaceOutput, table
+    deleteApplication: function(Client, types.DeleteApplicationInput): types.DeleteApplicationOutput, table
+    deleteArtifact: function(Client, types.DeleteArtifactInput): types.DeleteArtifactOutput, table
+    deleteIntegration: function(Client, types.DeleteIntegrationInput): types.DeleteIntegrationOutput, table
+    deleteMembership: function(Client, types.DeleteMembershipInput): types.DeleteMembershipOutput, table
+    deleteTargetDomain: function(Client, types.DeleteTargetDomainInput): types.DeleteTargetDomainOutput, table
+    getApplication: function(Client, types.GetApplicationInput): types.GetApplicationOutput, table
+    getArtifact: function(Client, types.GetArtifactInput): types.GetArtifactOutput, table
+    getIntegration: function(Client, types.GetIntegrationInput): types.GetIntegrationOutput, table
+    initiateProviderRegistration: function(Client, types.InitiateProviderRegistrationInput): types.InitiateProviderRegistrationOutput, table
+    listAgentSpaces: function(Client, types.ListAgentSpacesInput): types.ListAgentSpacesOutput, table
+    listApplications: function(Client, types.ListApplicationsInput): types.ListApplicationsOutput, table
+    listArtifacts: function(Client, types.ListArtifactsInput): types.ListArtifactsOutput, table
+    listDiscoveredEndpoints: function(Client, types.ListDiscoveredEndpointsInput): types.ListDiscoveredEndpointsOutput, table
+    listFindings: function(Client, types.ListFindingsInput): types.ListFindingsOutput, table
+    listIntegratedResources: function(Client, types.ListIntegratedResourcesInput): types.ListIntegratedResourcesOutput, table
+    listIntegrations: function(Client, types.ListIntegrationsInput): types.ListIntegrationsOutput, table
+    listMemberships: function(Client, types.ListMembershipsInput): types.ListMembershipsOutput, table
+    listPentestJobsForPentest: function(Client, types.ListPentestJobsForPentestInput): types.ListPentestJobsForPentestOutput, table
+    listPentestJobTasks: function(Client, types.ListPentestJobTasksInput): types.ListPentestJobTasksOutput, table
+    listPentests: function(Client, types.ListPentestsInput): types.ListPentestsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTargetDomains: function(Client, types.ListTargetDomainsInput): types.ListTargetDomainsOutput, table
+    startCodeRemediation: function(Client, types.StartCodeRemediationInput): types.StartCodeRemediationOutput, table
+    startPentestJob: function(Client, types.StartPentestJobInput): types.StartPentestJobOutput, table
+    stopPentestJob: function(Client, types.StopPentestJobInput): types.StopPentestJobOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAgentSpace: function(Client, types.UpdateAgentSpaceInput): types.UpdateAgentSpaceOutput, table
+    updateApplication: function(Client, types.UpdateApplicationInput): types.UpdateApplicationOutput, table
+    updateFinding: function(Client, types.UpdateFindingInput): types.UpdateFindingOutput, table
+    updateIntegratedResources: function(Client, types.UpdateIntegratedResourcesInput): types.UpdateIntegratedResourcesOutput, table
+    updatePentest: function(Client, types.UpdatePentestInput): types.UpdatePentestOutput, table
+    updateTargetDomain: function(Client, types.UpdateTargetDomainInput): types.UpdateTargetDomainOutput, table
+    verifyTargetDomain: function(Client, types.VerifyTargetDomainInput): types.VerifyTargetDomainOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

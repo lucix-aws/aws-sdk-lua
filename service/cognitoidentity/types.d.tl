@@ -1,0 +1,864 @@
+local record CreateIdentityPoolInput
+    IdentityPoolName: string
+    AllowUnauthenticatedIdentities: boolean
+    AllowClassicFlow: boolean
+    SupportedLoginProviders: {string : string}
+    DeveloperProviderName: string
+    OpenIdConnectProviderARNs: {string}
+    CognitoIdentityProviders: {CognitoIdentityProvider}
+    SamlProviderARNs: {string}
+    IdentityPoolTags: {string : string}
+end
+
+local record CreateIdentityPoolOutput
+    IdentityPoolId: string
+    IdentityPoolName: string
+    AllowUnauthenticatedIdentities: boolean
+    AllowClassicFlow: boolean
+    SupportedLoginProviders: {string : string}
+    DeveloperProviderName: string
+    OpenIdConnectProviderARNs: {string}
+    CognitoIdentityProviders: {CognitoIdentityProvider}
+    SamlProviderARNs: {string}
+    IdentityPoolTags: {string : string}
+end
+
+local record DeleteIdentitiesInput
+    IdentityIdsToDelete: {string}
+end
+
+local record DeleteIdentitiesOutput
+    UnprocessedIdentityIds: {UnprocessedIdentityId}
+end
+
+local record DeleteIdentityPoolInput
+    IdentityPoolId: string
+end
+
+local record DeleteIdentityPoolOutput
+end
+
+local record DescribeIdentityInput
+    IdentityId: string
+end
+
+local record DescribeIdentityOutput
+    IdentityId: string
+    Logins: {string}
+    CreationDate: number
+    LastModifiedDate: number
+end
+
+local record DescribeIdentityPoolInput
+    IdentityPoolId: string
+end
+
+local record DescribeIdentityPoolOutput
+    IdentityPoolId: string
+    IdentityPoolName: string
+    AllowUnauthenticatedIdentities: boolean
+    AllowClassicFlow: boolean
+    SupportedLoginProviders: {string : string}
+    DeveloperProviderName: string
+    OpenIdConnectProviderARNs: {string}
+    CognitoIdentityProviders: {CognitoIdentityProvider}
+    SamlProviderARNs: {string}
+    IdentityPoolTags: {string : string}
+end
+
+local record GetCredentialsForIdentityInput
+    IdentityId: string
+    Logins: {string : string}
+    CustomRoleArn: string
+end
+
+local record GetCredentialsForIdentityOutput
+    IdentityId: string
+    Credentials: Credentials
+end
+
+local record GetIdInput
+    AccountId: string
+    IdentityPoolId: string
+    Logins: {string : string}
+end
+
+local record GetIdOutput
+    IdentityId: string
+end
+
+local record GetIdentityPoolRolesInput
+    IdentityPoolId: string
+end
+
+local record GetIdentityPoolRolesOutput
+    IdentityPoolId: string
+    Roles: {string : string}
+    RoleMappings: {string : RoleMapping}
+end
+
+local record GetOpenIdTokenInput
+    IdentityId: string
+    Logins: {string : string}
+end
+
+local record GetOpenIdTokenOutput
+    IdentityId: string
+    Token: string
+end
+
+local record GetOpenIdTokenForDeveloperIdentityInput
+    IdentityPoolId: string
+    IdentityId: string
+    Logins: {string : string}
+    PrincipalTags: {string : string}
+    TokenDuration: number
+end
+
+local record GetOpenIdTokenForDeveloperIdentityOutput
+    IdentityId: string
+    Token: string
+end
+
+local record GetPrincipalTagAttributeMapInput
+    IdentityPoolId: string
+    IdentityProviderName: string
+end
+
+local record GetPrincipalTagAttributeMapOutput
+    IdentityPoolId: string
+    IdentityProviderName: string
+    UseDefaults: boolean
+    PrincipalTags: {string : string}
+end
+
+local record ListIdentitiesInput
+    IdentityPoolId: string
+    MaxResults: number
+    NextToken: string
+    HideDisabled: boolean
+end
+
+local record ListIdentitiesOutput
+    IdentityPoolId: string
+    Identities: {IdentityDescription}
+    NextToken: string
+end
+
+local record ListIdentityPoolsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListIdentityPoolsOutput
+    IdentityPools: {IdentityPoolShortDescription}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ResourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {string : string}
+end
+
+local record LookupDeveloperIdentityInput
+    IdentityPoolId: string
+    IdentityId: string
+    DeveloperUserIdentifier: string
+    MaxResults: number
+    NextToken: string
+end
+
+local record LookupDeveloperIdentityOutput
+    IdentityId: string
+    DeveloperUserIdentifierList: {string}
+    NextToken: string
+end
+
+local record MergeDeveloperIdentitiesInput
+    SourceUserIdentifier: string
+    DestinationUserIdentifier: string
+    DeveloperProviderName: string
+    IdentityPoolId: string
+end
+
+local record MergeDeveloperIdentitiesOutput
+    IdentityId: string
+end
+
+local record SetIdentityPoolRolesInput
+    IdentityPoolId: string
+    Roles: {string : string}
+    RoleMappings: {string : RoleMapping}
+end
+
+local record SetIdentityPoolRolesOutput
+end
+
+local record SetPrincipalTagAttributeMapInput
+    IdentityPoolId: string
+    IdentityProviderName: string
+    UseDefaults: boolean
+    PrincipalTags: {string : string}
+end
+
+local record SetPrincipalTagAttributeMapOutput
+    IdentityPoolId: string
+    IdentityProviderName: string
+    UseDefaults: boolean
+    PrincipalTags: {string : string}
+end
+
+local record TagResourceInput
+    ResourceArn: string
+    Tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UnlinkDeveloperIdentityInput
+    IdentityId: string
+    IdentityPoolId: string
+    DeveloperProviderName: string
+    DeveloperUserIdentifier: string
+end
+
+local record UnlinkDeveloperIdentityOutput
+end
+
+local record UnlinkIdentityInput
+    IdentityId: string
+    Logins: {string : string}
+    LoginsToRemove: {string}
+end
+
+local record UnlinkIdentityOutput
+end
+
+local record UntagResourceInput
+    ResourceArn: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateIdentityPoolInput
+    IdentityPoolId: string
+    IdentityPoolName: string
+    AllowUnauthenticatedIdentities: boolean
+    AllowClassicFlow: boolean
+    SupportedLoginProviders: {string : string}
+    DeveloperProviderName: string
+    OpenIdConnectProviderARNs: {string}
+    CognitoIdentityProviders: {CognitoIdentityProvider}
+    SamlProviderARNs: {string}
+    IdentityPoolTags: {string : string}
+end
+
+local record UpdateIdentityPoolOutput
+    IdentityPoolId: string
+    IdentityPoolName: string
+    AllowUnauthenticatedIdentities: boolean
+    AllowClassicFlow: boolean
+    SupportedLoginProviders: {string : string}
+    DeveloperProviderName: string
+    OpenIdConnectProviderARNs: {string}
+    CognitoIdentityProviders: {CognitoIdentityProvider}
+    SamlProviderARNs: {string}
+    IdentityPoolTags: {string : string}
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceConflictException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record ExternalServiceException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidIdentityPoolConfigurationException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record ExternalServiceException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record ExternalServiceException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record DeveloperUserAlreadyRegisteredException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record ExternalServiceException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record ConcurrentModificationException
+    message: string
+end
+
+local record InternalErrorException
+    message: string
+end
+
+local record InvalidParameterException
+    message: string
+end
+
+local record LimitExceededException
+    message: string
+end
+
+local record NotAuthorizedException
+    message: string
+end
+
+local record ResourceConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record TooManyRequestsException
+    message: string
+end
+
+local record M
+    CreateIdentityPoolInput: CreateIdentityPoolInput
+    CreateIdentityPoolOutput: CreateIdentityPoolOutput
+    DeleteIdentitiesInput: DeleteIdentitiesInput
+    DeleteIdentitiesOutput: DeleteIdentitiesOutput
+    DeleteIdentityPoolInput: DeleteIdentityPoolInput
+    DeleteIdentityPoolOutput: DeleteIdentityPoolOutput
+    DescribeIdentityInput: DescribeIdentityInput
+    DescribeIdentityOutput: DescribeIdentityOutput
+    DescribeIdentityPoolInput: DescribeIdentityPoolInput
+    DescribeIdentityPoolOutput: DescribeIdentityPoolOutput
+    GetCredentialsForIdentityInput: GetCredentialsForIdentityInput
+    GetCredentialsForIdentityOutput: GetCredentialsForIdentityOutput
+    GetIdInput: GetIdInput
+    GetIdOutput: GetIdOutput
+    GetIdentityPoolRolesInput: GetIdentityPoolRolesInput
+    GetIdentityPoolRolesOutput: GetIdentityPoolRolesOutput
+    GetOpenIdTokenInput: GetOpenIdTokenInput
+    GetOpenIdTokenOutput: GetOpenIdTokenOutput
+    GetOpenIdTokenForDeveloperIdentityInput: GetOpenIdTokenForDeveloperIdentityInput
+    GetOpenIdTokenForDeveloperIdentityOutput: GetOpenIdTokenForDeveloperIdentityOutput
+    GetPrincipalTagAttributeMapInput: GetPrincipalTagAttributeMapInput
+    GetPrincipalTagAttributeMapOutput: GetPrincipalTagAttributeMapOutput
+    ListIdentitiesInput: ListIdentitiesInput
+    ListIdentitiesOutput: ListIdentitiesOutput
+    ListIdentityPoolsInput: ListIdentityPoolsInput
+    ListIdentityPoolsOutput: ListIdentityPoolsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    LookupDeveloperIdentityInput: LookupDeveloperIdentityInput
+    LookupDeveloperIdentityOutput: LookupDeveloperIdentityOutput
+    MergeDeveloperIdentitiesInput: MergeDeveloperIdentitiesInput
+    MergeDeveloperIdentitiesOutput: MergeDeveloperIdentitiesOutput
+    SetIdentityPoolRolesInput: SetIdentityPoolRolesInput
+    SetIdentityPoolRolesOutput: SetIdentityPoolRolesOutput
+    SetPrincipalTagAttributeMapInput: SetPrincipalTagAttributeMapInput
+    SetPrincipalTagAttributeMapOutput: SetPrincipalTagAttributeMapOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UnlinkDeveloperIdentityInput: UnlinkDeveloperIdentityInput
+    UnlinkDeveloperIdentityOutput: UnlinkDeveloperIdentityOutput
+    UnlinkIdentityInput: UnlinkIdentityInput
+    UnlinkIdentityOutput: UnlinkIdentityOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateIdentityPoolInput: UpdateIdentityPoolInput
+    UpdateIdentityPoolOutput: UpdateIdentityPoolOutput
+end
+
+return M

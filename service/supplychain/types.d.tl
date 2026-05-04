@@ -1,0 +1,1223 @@
+local record CreateBillOfMaterialsImportJobInput
+    instanceId: string
+    s3uri: string
+    clientToken: string
+end
+
+local record CreateBillOfMaterialsImportJobOutput
+    jobId: string
+end
+
+local record CreateDataIntegrationFlowInput
+    instanceId: string
+    name: string
+    sources: {DataIntegrationFlowSource}
+    transformation: DataIntegrationFlowTransformation
+    target: DataIntegrationFlowTarget
+    tags: {string : string}
+end
+
+local record CreateDataIntegrationFlowOutput
+    instanceId: string
+    name: string
+end
+
+local record CreateDataLakeDatasetInput
+    instanceId: string
+    namespace: string
+    name: string
+    schema: DataLakeDatasetSchema
+    description: string
+    partitionSpec: DataLakeDatasetPartitionSpec
+    tags: {string : string}
+end
+
+local record CreateDataLakeDatasetOutput
+    dataset: DataLakeDataset
+end
+
+local record CreateDataLakeNamespaceInput
+    instanceId: string
+    name: string
+    description: string
+    tags: {string : string}
+end
+
+local record CreateDataLakeNamespaceOutput
+    namespace: DataLakeNamespace
+end
+
+local record CreateInstanceInput
+    instanceName: string
+    instanceDescription: string
+    kmsKeyArn: string
+    webAppDnsDomain: string
+    tags: {string : string}
+    clientToken: string
+end
+
+local record CreateInstanceOutput
+    instance: Instance
+end
+
+local record DeleteDataIntegrationFlowInput
+    instanceId: string
+    name: string
+end
+
+local record DeleteDataIntegrationFlowOutput
+    instanceId: string
+    name: string
+end
+
+local record DeleteDataLakeDatasetInput
+    instanceId: string
+    namespace: string
+    name: string
+end
+
+local record DeleteDataLakeDatasetOutput
+    instanceId: string
+    namespace: string
+    name: string
+end
+
+local record DeleteDataLakeNamespaceInput
+    instanceId: string
+    name: string
+end
+
+local record DeleteDataLakeNamespaceOutput
+    instanceId: string
+    name: string
+end
+
+local record DeleteInstanceInput
+    instanceId: string
+end
+
+local record DeleteInstanceOutput
+    instance: Instance
+end
+
+local record GetBillOfMaterialsImportJobInput
+    instanceId: string
+    jobId: string
+end
+
+local record GetBillOfMaterialsImportJobOutput
+    job: BillOfMaterialsImportJob
+end
+
+local record GetDataIntegrationEventInput
+    instanceId: string
+    eventId: string
+end
+
+local record GetDataIntegrationEventOutput
+    event: DataIntegrationEvent
+end
+
+local record GetDataIntegrationFlowInput
+    instanceId: string
+    name: string
+end
+
+local record GetDataIntegrationFlowOutput
+    flow: DataIntegrationFlow
+end
+
+local record GetDataIntegrationFlowExecutionInput
+    instanceId: string
+    flowName: string
+    executionId: string
+end
+
+local record GetDataIntegrationFlowExecutionOutput
+    flowExecution: DataIntegrationFlowExecution
+end
+
+local record GetDataLakeDatasetInput
+    instanceId: string
+    namespace: string
+    name: string
+end
+
+local record GetDataLakeDatasetOutput
+    dataset: DataLakeDataset
+end
+
+local record GetDataLakeNamespaceInput
+    instanceId: string
+    name: string
+end
+
+local record GetDataLakeNamespaceOutput
+    namespace: DataLakeNamespace
+end
+
+local record GetInstanceInput
+    instanceId: string
+end
+
+local record GetInstanceOutput
+    instance: Instance
+end
+
+local record ListDataIntegrationEventsInput
+    instanceId: string
+    eventType: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListDataIntegrationEventsOutput
+    events: {DataIntegrationEvent}
+    nextToken: string
+end
+
+local record ListDataIntegrationFlowExecutionsInput
+    instanceId: string
+    flowName: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListDataIntegrationFlowExecutionsOutput
+    flowExecutions: {DataIntegrationFlowExecution}
+    nextToken: string
+end
+
+local record ListDataIntegrationFlowsInput
+    instanceId: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListDataIntegrationFlowsOutput
+    flows: {DataIntegrationFlow}
+    nextToken: string
+end
+
+local record ListDataLakeDatasetsInput
+    instanceId: string
+    namespace: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListDataLakeDatasetsOutput
+    datasets: {DataLakeDataset}
+    nextToken: string
+end
+
+local record ListDataLakeNamespacesInput
+    instanceId: string
+    nextToken: string
+    maxResults: number
+end
+
+local record ListDataLakeNamespacesOutput
+    namespaces: {DataLakeNamespace}
+    nextToken: string
+end
+
+local record ListInstancesInput
+    nextToken: string
+    maxResults: number
+    instanceNameFilter: {string}
+    instanceStateFilter: {string}
+end
+
+local record ListInstancesOutput
+    instances: {Instance}
+    nextToken: string
+end
+
+local record ListTagsForResourceInput
+    resourceArn: string
+end
+
+local record ListTagsForResourceOutput
+    tags: {string : string}
+end
+
+local record SendDataIntegrationEventInput
+    instanceId: string
+    eventType: string
+    data: string
+    eventGroupId: string
+    eventTimestamp: number
+    clientToken: string
+    datasetTarget: DataIntegrationEventDatasetTargetConfiguration
+end
+
+local record SendDataIntegrationEventOutput
+    eventId: string
+end
+
+local record TagResourceInput
+    resourceArn: string
+    tags: {string : string}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    resourceArn: string
+    tagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record UpdateDataIntegrationFlowInput
+    instanceId: string
+    name: string
+    sources: {DataIntegrationFlowSource}
+    transformation: DataIntegrationFlowTransformation
+    target: DataIntegrationFlowTarget
+end
+
+local record UpdateDataIntegrationFlowOutput
+    flow: DataIntegrationFlow
+end
+
+local record UpdateDataLakeDatasetInput
+    instanceId: string
+    namespace: string
+    name: string
+    description: string
+end
+
+local record UpdateDataLakeDatasetOutput
+    dataset: DataLakeDataset
+end
+
+local record UpdateDataLakeNamespaceInput
+    instanceId: string
+    name: string
+    description: string
+end
+
+local record UpdateDataLakeNamespaceOutput
+    namespace: DataLakeNamespace
+end
+
+local record UpdateInstanceInput
+    instanceId: string
+    instanceName: string
+    instanceDescription: string
+end
+
+local record UpdateInstanceOutput
+    instance: Instance
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local record AccessDeniedException
+    message: string
+end
+
+local record InternalServerException
+    message: string
+end
+
+local record ResourceNotFoundException
+    message: string
+end
+
+local record ThrottlingException
+    message: string
+end
+
+local record ValidationException
+    message: string
+end
+
+local record ConflictException
+    message: string
+end
+
+local record ServiceQuotaExceededException
+    message: string
+end
+
+local type DataIntegrationEventType = "scn.data.forecast" | "scn.data.inventorylevel" | "scn.data.inboundorder" | "scn.data.inboundorderline" | "scn.data.inboundorderlineschedule" | "scn.data.outboundorderline" | "scn.data.outboundshipment" | "scn.data.processheader" | "scn.data.processoperation" | "scn.data.processproduct" | "scn.data.reservation" | "scn.data.shipment" | "scn.data.shipmentstop" | "scn.data.shipmentstoporder" | "scn.data.supplyplan" | "scn.data.dataset"
+
+local record M
+    CreateBillOfMaterialsImportJobInput: CreateBillOfMaterialsImportJobInput
+    CreateBillOfMaterialsImportJobOutput: CreateBillOfMaterialsImportJobOutput
+    CreateDataIntegrationFlowInput: CreateDataIntegrationFlowInput
+    CreateDataIntegrationFlowOutput: CreateDataIntegrationFlowOutput
+    CreateDataLakeDatasetInput: CreateDataLakeDatasetInput
+    CreateDataLakeDatasetOutput: CreateDataLakeDatasetOutput
+    CreateDataLakeNamespaceInput: CreateDataLakeNamespaceInput
+    CreateDataLakeNamespaceOutput: CreateDataLakeNamespaceOutput
+    CreateInstanceInput: CreateInstanceInput
+    CreateInstanceOutput: CreateInstanceOutput
+    DeleteDataIntegrationFlowInput: DeleteDataIntegrationFlowInput
+    DeleteDataIntegrationFlowOutput: DeleteDataIntegrationFlowOutput
+    DeleteDataLakeDatasetInput: DeleteDataLakeDatasetInput
+    DeleteDataLakeDatasetOutput: DeleteDataLakeDatasetOutput
+    DeleteDataLakeNamespaceInput: DeleteDataLakeNamespaceInput
+    DeleteDataLakeNamespaceOutput: DeleteDataLakeNamespaceOutput
+    DeleteInstanceInput: DeleteInstanceInput
+    DeleteInstanceOutput: DeleteInstanceOutput
+    GetBillOfMaterialsImportJobInput: GetBillOfMaterialsImportJobInput
+    GetBillOfMaterialsImportJobOutput: GetBillOfMaterialsImportJobOutput
+    GetDataIntegrationEventInput: GetDataIntegrationEventInput
+    GetDataIntegrationEventOutput: GetDataIntegrationEventOutput
+    GetDataIntegrationFlowInput: GetDataIntegrationFlowInput
+    GetDataIntegrationFlowOutput: GetDataIntegrationFlowOutput
+    GetDataIntegrationFlowExecutionInput: GetDataIntegrationFlowExecutionInput
+    GetDataIntegrationFlowExecutionOutput: GetDataIntegrationFlowExecutionOutput
+    GetDataLakeDatasetInput: GetDataLakeDatasetInput
+    GetDataLakeDatasetOutput: GetDataLakeDatasetOutput
+    GetDataLakeNamespaceInput: GetDataLakeNamespaceInput
+    GetDataLakeNamespaceOutput: GetDataLakeNamespaceOutput
+    GetInstanceInput: GetInstanceInput
+    GetInstanceOutput: GetInstanceOutput
+    ListDataIntegrationEventsInput: ListDataIntegrationEventsInput
+    ListDataIntegrationEventsOutput: ListDataIntegrationEventsOutput
+    ListDataIntegrationFlowExecutionsInput: ListDataIntegrationFlowExecutionsInput
+    ListDataIntegrationFlowExecutionsOutput: ListDataIntegrationFlowExecutionsOutput
+    ListDataIntegrationFlowsInput: ListDataIntegrationFlowsInput
+    ListDataIntegrationFlowsOutput: ListDataIntegrationFlowsOutput
+    ListDataLakeDatasetsInput: ListDataLakeDatasetsInput
+    ListDataLakeDatasetsOutput: ListDataLakeDatasetsOutput
+    ListDataLakeNamespacesInput: ListDataLakeNamespacesInput
+    ListDataLakeNamespacesOutput: ListDataLakeNamespacesOutput
+    ListInstancesInput: ListInstancesInput
+    ListInstancesOutput: ListInstancesOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    SendDataIntegrationEventInput: SendDataIntegrationEventInput
+    SendDataIntegrationEventOutput: SendDataIntegrationEventOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+    UpdateDataIntegrationFlowInput: UpdateDataIntegrationFlowInput
+    UpdateDataIntegrationFlowOutput: UpdateDataIntegrationFlowOutput
+    UpdateDataLakeDatasetInput: UpdateDataLakeDatasetInput
+    UpdateDataLakeDatasetOutput: UpdateDataLakeDatasetOutput
+    UpdateDataLakeNamespaceInput: UpdateDataLakeNamespaceInput
+    UpdateDataLakeNamespaceOutput: UpdateDataLakeNamespaceOutput
+    UpdateInstanceInput: UpdateInstanceInput
+    UpdateInstanceOutput: UpdateInstanceOutput
+end
+
+return M

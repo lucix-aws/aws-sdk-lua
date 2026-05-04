@@ -1,0 +1,64 @@
+local types = require("kms.types")
+
+local record Client
+    cancelKeyDeletion: function(Client, types.CancelKeyDeletionInput): types.CancelKeyDeletionOutput, table
+    connectCustomKeyStore: function(Client, types.ConnectCustomKeyStoreInput): types.ConnectCustomKeyStoreOutput, table
+    createAlias: function(Client, types.CreateAliasInput): types.CreateAliasOutput, table
+    createCustomKeyStore: function(Client, types.CreateCustomKeyStoreInput): types.CreateCustomKeyStoreOutput, table
+    createGrant: function(Client, types.CreateGrantInput): types.CreateGrantOutput, table
+    createKey: function(Client, types.CreateKeyInput): types.CreateKeyOutput, table
+    decrypt: function(Client, types.DecryptInput): types.DecryptOutput, table
+    deleteAlias: function(Client, types.DeleteAliasInput): types.DeleteAliasOutput, table
+    deleteCustomKeyStore: function(Client, types.DeleteCustomKeyStoreInput): types.DeleteCustomKeyStoreOutput, table
+    deleteImportedKeyMaterial: function(Client, types.DeleteImportedKeyMaterialInput): types.DeleteImportedKeyMaterialOutput, table
+    deriveSharedSecret: function(Client, types.DeriveSharedSecretInput): types.DeriveSharedSecretOutput, table
+    describeCustomKeyStores: function(Client, types.DescribeCustomKeyStoresInput): types.DescribeCustomKeyStoresOutput, table
+    describeKey: function(Client, types.DescribeKeyInput): types.DescribeKeyOutput, table
+    disableKey: function(Client, types.DisableKeyInput): types.DisableKeyOutput, table
+    disableKeyRotation: function(Client, types.DisableKeyRotationInput): types.DisableKeyRotationOutput, table
+    disconnectCustomKeyStore: function(Client, types.DisconnectCustomKeyStoreInput): types.DisconnectCustomKeyStoreOutput, table
+    enableKey: function(Client, types.EnableKeyInput): types.EnableKeyOutput, table
+    enableKeyRotation: function(Client, types.EnableKeyRotationInput): types.EnableKeyRotationOutput, table
+    encrypt: function(Client, types.EncryptInput): types.EncryptOutput, table
+    generateDataKey: function(Client, types.GenerateDataKeyInput): types.GenerateDataKeyOutput, table
+    generateDataKeyPair: function(Client, types.GenerateDataKeyPairInput): types.GenerateDataKeyPairOutput, table
+    generateDataKeyPairWithoutPlaintext: function(Client, types.GenerateDataKeyPairWithoutPlaintextInput): types.GenerateDataKeyPairWithoutPlaintextOutput, table
+    generateDataKeyWithoutPlaintext: function(Client, types.GenerateDataKeyWithoutPlaintextInput): types.GenerateDataKeyWithoutPlaintextOutput, table
+    generateMac: function(Client, types.GenerateMacInput): types.GenerateMacOutput, table
+    generateRandom: function(Client, types.GenerateRandomInput): types.GenerateRandomOutput, table
+    getKeyLastUsage: function(Client, types.GetKeyLastUsageInput): types.GetKeyLastUsageOutput, table
+    getKeyPolicy: function(Client, types.GetKeyPolicyInput): types.GetKeyPolicyOutput, table
+    getKeyRotationStatus: function(Client, types.GetKeyRotationStatusInput): types.GetKeyRotationStatusOutput, table
+    getParametersForImport: function(Client, types.GetParametersForImportInput): types.GetParametersForImportOutput, table
+    getPublicKey: function(Client, types.GetPublicKeyInput): types.GetPublicKeyOutput, table
+    importKeyMaterial: function(Client, types.ImportKeyMaterialInput): types.ImportKeyMaterialOutput, table
+    listAliases: function(Client, types.ListAliasesInput): types.ListAliasesOutput, table
+    listGrants: function(Client, types.ListGrantsInput): types.ListGrantsOutput, table
+    listKeyPolicies: function(Client, types.ListKeyPoliciesInput): types.ListKeyPoliciesOutput, table
+    listKeyRotations: function(Client, types.ListKeyRotationsInput): types.ListKeyRotationsOutput, table
+    listKeys: function(Client, types.ListKeysInput): types.ListKeysOutput, table
+    listResourceTags: function(Client, types.ListResourceTagsInput): types.ListResourceTagsOutput, table
+    listRetirableGrants: function(Client, types.ListRetirableGrantsInput): types.ListRetirableGrantsOutput, table
+    putKeyPolicy: function(Client, types.PutKeyPolicyInput): types.PutKeyPolicyOutput, table
+    reEncrypt: function(Client, types.ReEncryptInput): types.ReEncryptOutput, table
+    replicateKey: function(Client, types.ReplicateKeyInput): types.ReplicateKeyOutput, table
+    retireGrant: function(Client, types.RetireGrantInput): types.RetireGrantOutput, table
+    revokeGrant: function(Client, types.RevokeGrantInput): types.RevokeGrantOutput, table
+    rotateKeyOnDemand: function(Client, types.RotateKeyOnDemandInput): types.RotateKeyOnDemandOutput, table
+    scheduleKeyDeletion: function(Client, types.ScheduleKeyDeletionInput): types.ScheduleKeyDeletionOutput, table
+    sign: function(Client, types.SignInput): types.SignOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAlias: function(Client, types.UpdateAliasInput): types.UpdateAliasOutput, table
+    updateCustomKeyStore: function(Client, types.UpdateCustomKeyStoreInput): types.UpdateCustomKeyStoreOutput, table
+    updateKeyDescription: function(Client, types.UpdateKeyDescriptionInput): types.UpdateKeyDescriptionOutput, table
+    updatePrimaryRegion: function(Client, types.UpdatePrimaryRegionInput): types.UpdatePrimaryRegionOutput, table
+    verify: function(Client, types.VerifyInput): types.VerifyOutput, table
+    verifyMac: function(Client, types.VerifyMacInput): types.VerifyMacOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

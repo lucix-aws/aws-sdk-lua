@@ -1,0 +1,23 @@
+local types = require("snowdevicemanagement.types")
+
+local record Client
+    cancelTask: function(Client, types.CancelTaskInput): types.CancelTaskOutput, table
+    createTask: function(Client, types.CreateTaskInput): types.CreateTaskOutput, table
+    describeDevice: function(Client, types.DescribeDeviceInput): types.DescribeDeviceOutput, table
+    describeDeviceEc2Instances: function(Client, types.DescribeDeviceEc2InstancesInput): types.DescribeDeviceEc2InstancesOutput, table
+    describeExecution: function(Client, types.DescribeExecutionInput): types.DescribeExecutionOutput, table
+    describeTask: function(Client, types.DescribeTaskInput): types.DescribeTaskOutput, table
+    listDeviceResources: function(Client, types.ListDeviceResourcesInput): types.ListDeviceResourcesOutput, table
+    listDevices: function(Client, types.ListDevicesInput): types.ListDevicesOutput, table
+    listExecutions: function(Client, types.ListExecutionsInput): types.ListExecutionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    listTasks: function(Client, types.ListTasksInput): types.ListTasksOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,50 @@
+local types = require("groundstation.types")
+
+local record Client
+    cancelContact: function(Client, types.CancelContactInput): types.CancelContactOutput, table
+    createConfig: function(Client, types.CreateConfigInput): types.CreateConfigOutput, table
+    createDataflowEndpointGroup: function(Client, types.CreateDataflowEndpointGroupInput): types.CreateDataflowEndpointGroupOutput, table
+    createDataflowEndpointGroupV2: function(Client, types.CreateDataflowEndpointGroupV2Input): types.CreateDataflowEndpointGroupV2Output, table
+    createEphemeris: function(Client, types.CreateEphemerisInput): types.CreateEphemerisOutput, table
+    createMissionProfile: function(Client, types.CreateMissionProfileInput): types.CreateMissionProfileOutput, table
+    deleteConfig: function(Client, types.DeleteConfigInput): types.DeleteConfigOutput, table
+    deleteDataflowEndpointGroup: function(Client, types.DeleteDataflowEndpointGroupInput): types.DeleteDataflowEndpointGroupOutput, table
+    deleteEphemeris: function(Client, types.DeleteEphemerisInput): types.DeleteEphemerisOutput, table
+    deleteMissionProfile: function(Client, types.DeleteMissionProfileInput): types.DeleteMissionProfileOutput, table
+    describeContact: function(Client, types.DescribeContactInput): types.DescribeContactOutput, table
+    describeContactVersion: function(Client, types.DescribeContactVersionInput): types.DescribeContactVersionOutput, table
+    describeEphemeris: function(Client, types.DescribeEphemerisInput): types.DescribeEphemerisOutput, table
+    getAgentConfiguration: function(Client, types.GetAgentConfigurationInput): types.GetAgentConfigurationOutput, table
+    getAgentTaskResponseUrl: function(Client, types.GetAgentTaskResponseUrlInput): types.GetAgentTaskResponseUrlOutput, table
+    getConfig: function(Client, types.GetConfigInput): types.GetConfigOutput, table
+    getDataflowEndpointGroup: function(Client, types.GetDataflowEndpointGroupInput): types.GetDataflowEndpointGroupOutput, table
+    getMinuteUsage: function(Client, types.GetMinuteUsageInput): types.GetMinuteUsageOutput, table
+    getMissionProfile: function(Client, types.GetMissionProfileInput): types.GetMissionProfileOutput, table
+    getSatellite: function(Client, types.GetSatelliteInput): types.GetSatelliteOutput, table
+    listAntennas: function(Client, types.ListAntennasInput): types.ListAntennasOutput, table
+    listConfigs: function(Client, types.ListConfigsInput): types.ListConfigsOutput, table
+    listContacts: function(Client, types.ListContactsInput): types.ListContactsOutput, table
+    listContactVersions: function(Client, types.ListContactVersionsInput): types.ListContactVersionsOutput, table
+    listDataflowEndpointGroups: function(Client, types.ListDataflowEndpointGroupsInput): types.ListDataflowEndpointGroupsOutput, table
+    listEphemerides: function(Client, types.ListEphemeridesInput): types.ListEphemeridesOutput, table
+    listGroundStationReservations: function(Client, types.ListGroundStationReservationsInput): types.ListGroundStationReservationsOutput, table
+    listGroundStations: function(Client, types.ListGroundStationsInput): types.ListGroundStationsOutput, table
+    listMissionProfiles: function(Client, types.ListMissionProfilesInput): types.ListMissionProfilesOutput, table
+    listSatellites: function(Client, types.ListSatellitesInput): types.ListSatellitesOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    registerAgent: function(Client, types.RegisterAgentInput): types.RegisterAgentOutput, table
+    reserveContact: function(Client, types.ReserveContactInput): types.ReserveContactOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAgentStatus: function(Client, types.UpdateAgentStatusInput): types.UpdateAgentStatusOutput, table
+    updateConfig: function(Client, types.UpdateConfigInput): types.UpdateConfigOutput, table
+    updateContact: function(Client, types.UpdateContactInput): types.UpdateContactOutput, table
+    updateEphemeris: function(Client, types.UpdateEphemerisInput): types.UpdateEphemerisOutput, table
+    updateMissionProfile: function(Client, types.UpdateMissionProfileInput): types.UpdateMissionProfileOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,107 @@
+local types = require("s3control.types")
+
+local record Client
+    associateAccessGrantsIdentityCenter: function(Client, types.AssociateAccessGrantsIdentityCenterInput): types.AssociateAccessGrantsIdentityCenterOutput, table
+    createAccessGrant: function(Client, types.CreateAccessGrantInput): types.CreateAccessGrantOutput, table
+    createAccessGrantsInstance: function(Client, types.CreateAccessGrantsInstanceInput): types.CreateAccessGrantsInstanceOutput, table
+    createAccessGrantsLocation: function(Client, types.CreateAccessGrantsLocationInput): types.CreateAccessGrantsLocationOutput, table
+    createAccessPoint: function(Client, types.CreateAccessPointInput): types.CreateAccessPointOutput, table
+    createAccessPointForObjectLambda: function(Client, types.CreateAccessPointForObjectLambdaInput): types.CreateAccessPointForObjectLambdaOutput, table
+    createBucket: function(Client, types.CreateBucketInput): types.CreateBucketOutput, table
+    createJob: function(Client, types.CreateJobInput): types.CreateJobOutput, table
+    createMultiRegionAccessPoint: function(Client, types.CreateMultiRegionAccessPointOperationInput): types.CreateMultiRegionAccessPointOutput, table
+    createStorageLensGroup: function(Client, types.CreateStorageLensGroupInput): types.CreateStorageLensGroupOutput, table
+    deleteAccessGrant: function(Client, types.DeleteAccessGrantInput): types.DeleteAccessGrantOutput, table
+    deleteAccessGrantsInstance: function(Client, types.DeleteAccessGrantsInstanceInput): types.DeleteAccessGrantsInstanceOutput, table
+    deleteAccessGrantsInstanceResourcePolicy: function(Client, types.DeleteAccessGrantsInstanceResourcePolicyInput): types.DeleteAccessGrantsInstanceResourcePolicyOutput, table
+    deleteAccessGrantsLocation: function(Client, types.DeleteAccessGrantsLocationInput): types.DeleteAccessGrantsLocationOutput, table
+    deleteAccessPoint: function(Client, types.DeleteAccessPointInput): types.DeleteAccessPointOutput, table
+    deleteAccessPointForObjectLambda: function(Client, types.DeleteAccessPointForObjectLambdaInput): types.DeleteAccessPointForObjectLambdaOutput, table
+    deleteAccessPointPolicy: function(Client, types.DeleteAccessPointPolicyInput): types.DeleteAccessPointPolicyOutput, table
+    deleteAccessPointPolicyForObjectLambda: function(Client, types.DeleteAccessPointPolicyForObjectLambdaInput): types.DeleteAccessPointPolicyForObjectLambdaOutput, table
+    deleteAccessPointScope: function(Client, types.DeleteAccessPointScopeInput): types.DeleteAccessPointScopeOutput, table
+    deleteBucket: function(Client, types.DeleteBucketInput): types.DeleteBucketOutput, table
+    deleteBucketLifecycleConfiguration: function(Client, types.DeleteBucketLifecycleConfigurationInput): types.DeleteBucketLifecycleConfigurationOutput, table
+    deleteBucketPolicy: function(Client, types.DeleteBucketPolicyInput): types.DeleteBucketPolicyOutput, table
+    deleteBucketReplication: function(Client, types.DeleteBucketReplicationInput): types.DeleteBucketReplicationOutput, table
+    deleteBucketTagging: function(Client, types.DeleteBucketTaggingInput): types.DeleteBucketTaggingOutput, table
+    deleteJobTagging: function(Client, types.DeleteJobTaggingInput): types.DeleteJobTaggingOutput, table
+    deleteMultiRegionAccessPoint: function(Client, types.DeleteMultiRegionAccessPointOperationInput): types.DeleteMultiRegionAccessPointOutput, table
+    deletePublicAccessBlock: function(Client, types.DeletePublicAccessBlockInput): types.DeletePublicAccessBlockOutput, table
+    deleteStorageLensConfiguration: function(Client, types.DeleteStorageLensConfigurationInput): types.DeleteStorageLensConfigurationOutput, table
+    deleteStorageLensConfigurationTagging: function(Client, types.DeleteStorageLensConfigurationTaggingInput): types.DeleteStorageLensConfigurationTaggingOutput, table
+    deleteStorageLensGroup: function(Client, types.DeleteStorageLensGroupInput): types.DeleteStorageLensGroupOutput, table
+    describeJob: function(Client, types.DescribeJobInput): types.DescribeJobOutput, table
+    describeMultiRegionAccessPointOperation: function(Client, types.DescribeMultiRegionAccessPointOperationInput): types.DescribeMultiRegionAccessPointOperationOutput, table
+    dissociateAccessGrantsIdentityCenter: function(Client, types.DissociateAccessGrantsIdentityCenterInput): types.DissociateAccessGrantsIdentityCenterOutput, table
+    getAccessGrant: function(Client, types.GetAccessGrantInput): types.GetAccessGrantOutput, table
+    getAccessGrantsInstance: function(Client, types.GetAccessGrantsInstanceInput): types.GetAccessGrantsInstanceOutput, table
+    getAccessGrantsInstanceForPrefix: function(Client, types.GetAccessGrantsInstanceForPrefixInput): types.GetAccessGrantsInstanceForPrefixOutput, table
+    getAccessGrantsInstanceResourcePolicy: function(Client, types.GetAccessGrantsInstanceResourcePolicyInput): types.GetAccessGrantsInstanceResourcePolicyOutput, table
+    getAccessGrantsLocation: function(Client, types.GetAccessGrantsLocationInput): types.GetAccessGrantsLocationOutput, table
+    getAccessPoint: function(Client, types.GetAccessPointInput): types.GetAccessPointOutput, table
+    getAccessPointConfigurationForObjectLambda: function(Client, types.GetAccessPointConfigurationForObjectLambdaInput): types.GetAccessPointConfigurationForObjectLambdaOutput, table
+    getAccessPointForObjectLambda: function(Client, types.GetAccessPointForObjectLambdaInput): types.GetAccessPointForObjectLambdaOutput, table
+    getAccessPointPolicy: function(Client, types.GetAccessPointPolicyInput): types.GetAccessPointPolicyOutput, table
+    getAccessPointPolicyForObjectLambda: function(Client, types.GetAccessPointPolicyForObjectLambdaInput): types.GetAccessPointPolicyForObjectLambdaOutput, table
+    getAccessPointPolicyStatus: function(Client, types.GetAccessPointPolicyStatusInput): types.GetAccessPointPolicyStatusOutput, table
+    getAccessPointPolicyStatusForObjectLambda: function(Client, types.GetAccessPointPolicyStatusForObjectLambdaInput): types.GetAccessPointPolicyStatusForObjectLambdaOutput, table
+    getAccessPointScope: function(Client, types.GetAccessPointScopeInput): types.GetAccessPointScopeOutput, table
+    getBucket: function(Client, types.GetBucketInput): types.GetBucketOutput, table
+    getBucketLifecycleConfiguration: function(Client, types.GetBucketLifecycleConfigurationInput): types.GetBucketLifecycleConfigurationOutput, table
+    getBucketPolicy: function(Client, types.GetBucketPolicyInput): types.GetBucketPolicyOutput, table
+    getBucketReplication: function(Client, types.GetBucketReplicationInput): types.GetBucketReplicationOutput, table
+    getBucketTagging: function(Client, types.GetBucketTaggingInput): types.GetBucketTaggingOutput, table
+    getBucketVersioning: function(Client, types.GetBucketVersioningInput): types.GetBucketVersioningOutput, table
+    getDataAccess: function(Client, types.GetDataAccessInput): types.GetDataAccessOutput, table
+    getJobTagging: function(Client, types.GetJobTaggingInput): types.GetJobTaggingOutput, table
+    getMultiRegionAccessPoint: function(Client, types.GetMultiRegionAccessPointInput): types.GetMultiRegionAccessPointOutput, table
+    getMultiRegionAccessPointPolicy: function(Client, types.GetMultiRegionAccessPointPolicyInput): types.GetMultiRegionAccessPointPolicyOutput, table
+    getMultiRegionAccessPointPolicyStatus: function(Client, types.GetMultiRegionAccessPointPolicyStatusInput): types.GetMultiRegionAccessPointPolicyStatusOutput, table
+    getMultiRegionAccessPointRoutes: function(Client, types.GetMultiRegionAccessPointRoutesInput): types.GetMultiRegionAccessPointRoutesOutput, table
+    getPublicAccessBlock: function(Client, types.GetPublicAccessBlockInput): types.GetPublicAccessBlockOutput, table
+    getStorageLensConfiguration: function(Client, types.GetStorageLensConfigurationInput): types.GetStorageLensConfigurationOutput, table
+    getStorageLensConfigurationTagging: function(Client, types.GetStorageLensConfigurationTaggingInput): types.GetStorageLensConfigurationTaggingOutput, table
+    getStorageLensGroup: function(Client, types.GetStorageLensGroupInput): types.GetStorageLensGroupOutput, table
+    listAccessGrants: function(Client, types.ListAccessGrantsInput): types.ListAccessGrantsOutput, table
+    listAccessGrantsInstances: function(Client, types.ListAccessGrantsInstancesInput): types.ListAccessGrantsInstancesOutput, table
+    listAccessGrantsLocations: function(Client, types.ListAccessGrantsLocationsInput): types.ListAccessGrantsLocationsOutput, table
+    listAccessPoints: function(Client, types.ListAccessPointsInput): types.ListAccessPointsOutput, table
+    listAccessPointsForDirectoryBuckets: function(Client, types.ListAccessPointsForDirectoryBucketsInput): types.ListAccessPointsForDirectoryBucketsOutput, table
+    listAccessPointsForObjectLambda: function(Client, types.ListAccessPointsForObjectLambdaInput): types.ListAccessPointsForObjectLambdaOutput, table
+    listCallerAccessGrants: function(Client, types.ListCallerAccessGrantsInput): types.ListCallerAccessGrantsOutput, table
+    listJobs: function(Client, types.ListJobsInput): types.ListJobsOutput, table
+    listMultiRegionAccessPoints: function(Client, types.ListMultiRegionAccessPointsInput): types.ListMultiRegionAccessPointsOutput, table
+    listRegionalBuckets: function(Client, types.ListRegionalBucketsInput): types.ListRegionalBucketsOutput, table
+    listStorageLensConfigurations: function(Client, types.ListStorageLensConfigurationsInput): types.ListStorageLensConfigurationsOutput, table
+    listStorageLensGroups: function(Client, types.ListStorageLensGroupsInput): types.ListStorageLensGroupsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    putAccessGrantsInstanceResourcePolicy: function(Client, types.PutAccessGrantsInstanceResourcePolicyInput): types.PutAccessGrantsInstanceResourcePolicyOutput, table
+    putAccessPointConfigurationForObjectLambda: function(Client, types.PutAccessPointConfigurationForObjectLambdaInput): types.PutAccessPointConfigurationForObjectLambdaOutput, table
+    putAccessPointPolicy: function(Client, types.PutAccessPointPolicyInput): types.PutAccessPointPolicyOutput, table
+    putAccessPointPolicyForObjectLambda: function(Client, types.PutAccessPointPolicyForObjectLambdaInput): types.PutAccessPointPolicyForObjectLambdaOutput, table
+    putAccessPointScope: function(Client, types.PutAccessPointScopeInput): types.PutAccessPointScopeOutput, table
+    putBucketLifecycleConfiguration: function(Client, types.PutBucketLifecycleConfigurationInput): types.PutBucketLifecycleConfigurationOutput, table
+    putBucketPolicy: function(Client, types.PutBucketPolicyInput): types.PutBucketPolicyOutput, table
+    putBucketReplication: function(Client, types.PutBucketReplicationInput): types.PutBucketReplicationOutput, table
+    putBucketTagging: function(Client, types.PutBucketTaggingInput): types.PutBucketTaggingOutput, table
+    putBucketVersioning: function(Client, types.PutBucketVersioningInput): types.PutBucketVersioningOutput, table
+    putJobTagging: function(Client, types.PutJobTaggingInput): types.PutJobTaggingOutput, table
+    putMultiRegionAccessPointPolicy: function(Client, types.PutMultiRegionAccessPointPolicyOperationInput): types.PutMultiRegionAccessPointPolicyOutput, table
+    putPublicAccessBlock: function(Client, types.PutPublicAccessBlockInput): types.PutPublicAccessBlockOutput, table
+    putStorageLensConfiguration: function(Client, types.PutStorageLensConfigurationInput): types.PutStorageLensConfigurationOutput, table
+    putStorageLensConfigurationTagging: function(Client, types.PutStorageLensConfigurationTaggingInput): types.PutStorageLensConfigurationTaggingOutput, table
+    submitMultiRegionAccessPointRoutes: function(Client, types.SubmitMultiRegionAccessPointRoutesInput): types.SubmitMultiRegionAccessPointRoutesOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateAccessGrantsLocation: function(Client, types.UpdateAccessGrantsLocationInput): types.UpdateAccessGrantsLocationOutput, table
+    updateJobPriority: function(Client, types.UpdateJobPriorityInput): types.UpdateJobPriorityOutput, table
+    updateJobStatus: function(Client, types.UpdateJobStatusInput): types.UpdateJobStatusOutput, table
+    updateStorageLensGroup: function(Client, types.UpdateStorageLensGroupInput): types.UpdateStorageLensGroupOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,16 @@
+local types = require("lexruntimev2.types")
+
+local record Client
+    deleteSession: function(Client, types.DeleteSessionInput): types.DeleteSessionOutput, table
+    getSession: function(Client, types.GetSessionInput): types.GetSessionOutput, table
+    putSession: function(Client, types.PutSessionInput): types.PutSessionOutput, table
+    recognizeText: function(Client, types.RecognizeTextInput): types.RecognizeTextOutput, table
+    recognizeUtterance: function(Client, types.RecognizeUtteranceInput): types.RecognizeUtteranceOutput, table
+    startConversation: function(Client, types.StartConversationInput): types.StartConversationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

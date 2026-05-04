@@ -1,0 +1,11 @@
+local types = require("signerdata.types")
+
+local record Client
+    getRevocationStatus: function(Client, types.GetRevocationStatusInput): types.GetRevocationStatusOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

@@ -1,0 +1,152 @@
+local record DeleteReportDefinitionInput
+    ReportName: string
+end
+
+local record DeleteReportDefinitionOutput
+    ResponseMessage: string
+end
+
+local record DescribeReportDefinitionsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record DescribeReportDefinitionsOutput
+    ReportDefinitions: {ReportDefinition}
+    NextToken: string
+end
+
+local record ListTagsForResourceInput
+    ReportName: string
+end
+
+local record ListTagsForResourceOutput
+    Tags: {Tag}
+end
+
+local record ModifyReportDefinitionInput
+    ReportName: string
+    ReportDefinition: ReportDefinition
+end
+
+local record ModifyReportDefinitionOutput
+end
+
+local record PutReportDefinitionInput
+    ReportDefinition: ReportDefinition
+    Tags: {Tag}
+end
+
+local record PutReportDefinitionOutput
+end
+
+local record TagResourceInput
+    ReportName: string
+    Tags: {Tag}
+end
+
+local record TagResourceOutput
+end
+
+local record UntagResourceInput
+    ReportName: string
+    TagKeys: {string}
+end
+
+local record UntagResourceOutput
+end
+
+local record InternalErrorException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalErrorException
+    Message: string
+end
+
+local record InternalErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalErrorException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record DuplicateReportNameException
+    Message: string
+end
+
+local record InternalErrorException
+    Message: string
+end
+
+local record ReportLimitReachedException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record InternalErrorException
+    Message: string
+end
+
+local record ResourceNotFoundException
+    Message: string
+end
+
+local record ValidationException
+    Message: string
+end
+
+local record M
+    DeleteReportDefinitionInput: DeleteReportDefinitionInput
+    DeleteReportDefinitionOutput: DeleteReportDefinitionOutput
+    DescribeReportDefinitionsInput: DescribeReportDefinitionsInput
+    DescribeReportDefinitionsOutput: DescribeReportDefinitionsOutput
+    ListTagsForResourceInput: ListTagsForResourceInput
+    ListTagsForResourceOutput: ListTagsForResourceOutput
+    ModifyReportDefinitionInput: ModifyReportDefinitionInput
+    ModifyReportDefinitionOutput: ModifyReportDefinitionOutput
+    PutReportDefinitionInput: PutReportDefinitionInput
+    PutReportDefinitionOutput: PutReportDefinitionOutput
+    TagResourceInput: TagResourceInput
+    TagResourceOutput: TagResourceOutput
+    UntagResourceInput: UntagResourceInput
+    UntagResourceOutput: UntagResourceOutput
+end
+
+return M

@@ -1,0 +1,53 @@
+local types = require("odb.types")
+
+local record Client
+    acceptMarketplaceRegistration: function(Client, types.AcceptMarketplaceRegistrationInput): types.AcceptMarketplaceRegistrationOutput, table
+    associateIamRoleToResource: function(Client, types.AssociateIamRoleToResourceInput): types.AssociateIamRoleToResourceOutput, table
+    createCloudAutonomousVmCluster: function(Client, types.CreateCloudAutonomousVmClusterInput): types.CreateCloudAutonomousVmClusterOutput, table
+    createCloudExadataInfrastructure: function(Client, types.CreateCloudExadataInfrastructureInput): types.CreateCloudExadataInfrastructureOutput, table
+    createCloudVmCluster: function(Client, types.CreateCloudVmClusterInput): types.CreateCloudVmClusterOutput, table
+    createOdbNetwork: function(Client, types.CreateOdbNetworkInput): types.CreateOdbNetworkOutput, table
+    createOdbPeeringConnection: function(Client, types.CreateOdbPeeringConnectionInput): types.CreateOdbPeeringConnectionOutput, table
+    deleteCloudAutonomousVmCluster: function(Client, types.DeleteCloudAutonomousVmClusterInput): types.DeleteCloudAutonomousVmClusterOutput, table
+    deleteCloudExadataInfrastructure: function(Client, types.DeleteCloudExadataInfrastructureInput): types.DeleteCloudExadataInfrastructureOutput, table
+    deleteCloudVmCluster: function(Client, types.DeleteCloudVmClusterInput): types.DeleteCloudVmClusterOutput, table
+    deleteOdbNetwork: function(Client, types.DeleteOdbNetworkInput): types.DeleteOdbNetworkOutput, table
+    deleteOdbPeeringConnection: function(Client, types.DeleteOdbPeeringConnectionInput): types.DeleteOdbPeeringConnectionOutput, table
+    disassociateIamRoleFromResource: function(Client, types.DisassociateIamRoleFromResourceInput): types.DisassociateIamRoleFromResourceOutput, table
+    getCloudAutonomousVmCluster: function(Client, types.GetCloudAutonomousVmClusterInput): types.GetCloudAutonomousVmClusterOutput, table
+    getCloudExadataInfrastructure: function(Client, types.GetCloudExadataInfrastructureInput): types.GetCloudExadataInfrastructureOutput, table
+    getCloudExadataInfrastructureUnallocatedResources: function(Client, types.GetCloudExadataInfrastructureUnallocatedResourcesInput): types.GetCloudExadataInfrastructureUnallocatedResourcesOutput, table
+    getCloudVmCluster: function(Client, types.GetCloudVmClusterInput): types.GetCloudVmClusterOutput, table
+    getDbNode: function(Client, types.GetDbNodeInput): types.GetDbNodeOutput, table
+    getDbServer: function(Client, types.GetDbServerInput): types.GetDbServerOutput, table
+    getOciOnboardingStatus: function(Client, types.GetOciOnboardingStatusInput): types.GetOciOnboardingStatusOutput, table
+    getOdbNetwork: function(Client, types.GetOdbNetworkInput): types.GetOdbNetworkOutput, table
+    getOdbPeeringConnection: function(Client, types.GetOdbPeeringConnectionInput): types.GetOdbPeeringConnectionOutput, table
+    initializeService: function(Client, types.InitializeServiceInput): types.InitializeServiceOutput, table
+    listAutonomousVirtualMachines: function(Client, types.ListAutonomousVirtualMachinesInput): types.ListAutonomousVirtualMachinesOutput, table
+    listCloudAutonomousVmClusters: function(Client, types.ListCloudAutonomousVmClustersInput): types.ListCloudAutonomousVmClustersOutput, table
+    listCloudExadataInfrastructures: function(Client, types.ListCloudExadataInfrastructuresInput): types.ListCloudExadataInfrastructuresOutput, table
+    listCloudVmClusters: function(Client, types.ListCloudVmClustersInput): types.ListCloudVmClustersOutput, table
+    listDbNodes: function(Client, types.ListDbNodesInput): types.ListDbNodesOutput, table
+    listDbServers: function(Client, types.ListDbServersInput): types.ListDbServersOutput, table
+    listDbSystemShapes: function(Client, types.ListDbSystemShapesInput): types.ListDbSystemShapesOutput, table
+    listGiVersions: function(Client, types.ListGiVersionsInput): types.ListGiVersionsOutput, table
+    listOdbNetworks: function(Client, types.ListOdbNetworksInput): types.ListOdbNetworksOutput, table
+    listOdbPeeringConnections: function(Client, types.ListOdbPeeringConnectionsInput): types.ListOdbPeeringConnectionsOutput, table
+    listSystemVersions: function(Client, types.ListSystemVersionsInput): types.ListSystemVersionsOutput, table
+    listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
+    rebootDbNode: function(Client, types.RebootDbNodeInput): types.RebootDbNodeOutput, table
+    startDbNode: function(Client, types.StartDbNodeInput): types.StartDbNodeOutput, table
+    stopDbNode: function(Client, types.StopDbNodeInput): types.StopDbNodeOutput, table
+    tagResource: function(Client, types.TagResourceInput): types.TagResourceOutput, table
+    untagResource: function(Client, types.UntagResourceInput): types.UntagResourceOutput, table
+    updateCloudExadataInfrastructure: function(Client, types.UpdateCloudExadataInfrastructureInput): types.UpdateCloudExadataInfrastructureOutput, table
+    updateOdbNetwork: function(Client, types.UpdateOdbNetworkInput): types.UpdateOdbNetworkOutput, table
+    updateOdbPeeringConnection: function(Client, types.UpdateOdbPeeringConnectionInput): types.UpdateOdbPeeringConnectionOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M

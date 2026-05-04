@@ -1,0 +1,18 @@
+local types = require("pinpointsmsvoice.types")
+
+local record Client
+    createConfigurationSet: function(Client, types.CreateConfigurationSetInput): types.CreateConfigurationSetOutput, table
+    createConfigurationSetEventDestination: function(Client, types.CreateConfigurationSetEventDestinationInput): types.CreateConfigurationSetEventDestinationOutput, table
+    deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput): types.DeleteConfigurationSetOutput, table
+    deleteConfigurationSetEventDestination: function(Client, types.DeleteConfigurationSetEventDestinationInput): types.DeleteConfigurationSetEventDestinationOutput, table
+    getConfigurationSetEventDestinations: function(Client, types.GetConfigurationSetEventDestinationsInput): types.GetConfigurationSetEventDestinationsOutput, table
+    listConfigurationSets: function(Client, types.ListConfigurationSetsInput): types.ListConfigurationSetsOutput, table
+    sendVoiceMessage: function(Client, types.SendVoiceMessageInput): types.SendVoiceMessageOutput, table
+    updateConfigurationSetEventDestination: function(Client, types.UpdateConfigurationSetEventDestinationInput): types.UpdateConfigurationSetEventDestinationOutput, table
+end
+
+local record M
+    new: function(table): Client
+end
+
+return M
