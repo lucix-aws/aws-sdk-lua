@@ -17,7 +17,11 @@ SMITHY_LUA_RUNTIME := $(SMITHY_LUA_DIR)/runtime
 # Include smithy runtime at both levels:
 #   .../runtime/?.lua resolves smithy.endpoint -> runtime/smithy/endpoint.lua
 #   .../runtime/smithy/?.lua resolves bare endpoint -> runtime/smithy/endpoint.lua (compat for generated code)
-SDK_LUA_PATH := $(SMITHY_LUA_RUNTIME)/?.lua;$(SMITHY_LUA_RUNTIME)/smithy/?.lua;runtime/?.lua;service/?.lua;;
+SDK_LUA_PATH := $(SMITHY_LUA_RUNTIME)/?.lua;$(SMITHY_LUA_RUNTIME)/smithy/?.lua;runtime/?.lua;runtime/aws/?.lua;service/?.lua;;
+
+# Run an example: make run-example EXAMPLE=dynamodb_list_tables
+run-example:
+	@LUA_PATH="$(SDK_LUA_PATH)" luajit example/$(EXAMPLE).lua
 
 # Run endpoint tests for all services (or SERVICE=sts for one)
 test-endpoints:

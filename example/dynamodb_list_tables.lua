@@ -12,17 +12,13 @@
 --   ./example/dynamodb_list_tables.lua [region]
 --
 
--- Wire up LUA_PATH: smithy-lua runtime + sdk runtime + generated service code
-local sdk_root = debug.getinfo(1, "S").source:match("^@(.*)/example/") or "."
-local smithy_root = sdk_root .. "/../smithy-lua"
-package.path = table.concat({
-    smithy_root .. "/runtime/?.lua",
-    smithy_root .. "/runtime/smithy/?.lua",
-    sdk_root .. "/runtime/?.lua",
-    sdk_root .. "/runtime/aws/?.lua",
-    sdk_root .. "/service/?.lua",
-    "",
-}, ";")
+-- Wire up LUA_PATH externally, e.g.:
+--   make run-example EXAMPLE=dynamodb_list_tables
+--
+-- Or manually:
+--   LUA_PATH="../smithy-lua/runtime/?.lua;../smithy-lua/runtime/smithy/?.lua;runtime/?.lua;runtime/aws/?.lua;service/?.lua;;" \
+--     luajit example/dynamodb_list_tables.lua [region]
+--
 
 local dynamodb = require("dynamodb.client")
 
