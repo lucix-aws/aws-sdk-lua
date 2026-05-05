@@ -1,6 +1,6 @@
 SMITHY_LUA_DIR := $(HOME)/git/smithy-lua
 
-.PHONY: generate codegen-deps smithy-build clean
+.PHONY: generate codegen-deps smithy-build clean sync-models
 
 # Full regeneration: build smithy-lua codegen, then run SDK codegen
 generate: codegen-deps smithy-build
@@ -42,6 +42,29 @@ else
 	printf "\n\n$$((total - failed))/$$total services passed\n"; \
 	if [ $$failed -gt 0 ]; then exit 1; fi
 endif
+
+API_MODELS_REPO := https://github.com/aws/api-models-aws.git
+API_MODELS_DIR := /tmp/api-models-aws
+
+# Sync models from the public api-models-aws repo
+sync-models:
+	@if [ -d "$(API_MODELS_DIR)" ]; then \
+		echo "Updating existing clone..."; \
+		cd $(API_MODELS_DIR) && git pull --ff-only; \
+	else \
+		echo "Cloning api-models-aws..."; \
+		git clone --depth 1 $(API_MODELS_REPO) $(API_MODELS_DIR); \
+	fi
+	@rm -rf codegen/sdk-codegen/aws-models/
+	@mkdir -p codegen/sdk-codegen/aws-models/
+	@for dir in $(API_MODELS_DIR)/models/*/service/*/; do \
+		json=$$(find "$$dir" -name '*.json' -maxdepth 1 | head -1); \
+		if [ -n "$$json" ]; then \
+			svc=$$(echo "$$dir" | sed 's|.*/models/\([^/]*\)/service/.*|\1|'); \
+			cp "$$json" "codegen/sdk-codegen/aws-models/$${svc}.json"; \
+		fi; \
+	done
+	@echo "Synced $$(ls codegen/sdk-codegen/aws-models/ | wc -l | tr -d ' ') models"
 
 clean:
 	cd codegen && ./gradlew clean

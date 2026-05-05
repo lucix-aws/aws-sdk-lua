@@ -1,0 +1,39 @@
+name: Update Clients
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: aws/smithy-lua
+          path: smithy-lua
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: corretto
+          java-version: '17'
+
+      - name: Sync models and regenerate
+        run: |
+          make sync-models
+          make generate SMITHY_LUA_DIR=${{ github.workspace }}/smithy-lua
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "chore: update AWS service models"
+            git push
+          fi
