@@ -55,7 +55,7 @@ M.FormBindingElement = schema.new({
 })
 
 M.GetCodegenJobInput = schema.new({
-    id = id.from(_N, "GetCodegenJobInput"),
+    id = id.from(_N, "GetCodegenJobRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -676,7 +676,7 @@ M.CodegenJob = schema.new({
 })
 
 M.GetCodegenJobOutput = schema.new({
-    id = id.from(_N, "GetCodegenJobOutput"),
+    id = id.from(_N, "GetCodegenJobResponse"),
     type = "structure",
     members = {
         job = schema.new({
@@ -757,7 +757,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.ListCodegenJobsInput = schema.new({
-    id = id.from(_N, "ListCodegenJobsInput"),
+    id = id.from(_N, "ListCodegenJobsRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -855,7 +855,7 @@ M.CodegenJobSummary = schema.new({
 })
 
 M.ListCodegenJobsOutput = schema.new({
-    id = id.from(_N, "ListCodegenJobsOutput"),
+    id = id.from(_N, "ListCodegenJobsResponse"),
     type = "structure",
     members = {
         entities = schema.new({
@@ -923,7 +923,7 @@ M.StartCodegenJobData = schema.new({
 })
 
 M.StartCodegenJobInput = schema.new({
-    id = id.from(_N, "StartCodegenJobInput"),
+    id = id.from(_N, "StartCodegenJobRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -971,7 +971,7 @@ M.StartCodegenJobInput = schema.new({
 })
 
 M.StartCodegenJobOutput = schema.new({
-    id = id.from(_N, "StartCodegenJobOutput"),
+    id = id.from(_N, "StartCodegenJobResponse"),
     type = "structure",
     members = {
         entity = schema.new({
@@ -1030,7 +1030,7 @@ M.ComponentVariant = schema.new({
             name = "overrides",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
     },
 })
@@ -1068,7 +1068,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.DeleteComponentInput = schema.new({
-    id = id.from(_N, "DeleteComponentInput"),
+    id = id.from(_N, "DeleteComponentRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1105,12 +1105,12 @@ M.DeleteComponentInput = schema.new({
 })
 
 M.DeleteComponentOutput = schema.new({
-    id = id.from(_N, "DeleteComponentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ExportComponentsInput = schema.new({
-    id = id.from(_N, "ExportComponentsInput"),
+    id = id.from(_N, "ExportComponentsRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1146,7 +1146,7 @@ M.ExportComponentsInput = schema.new({
 })
 
 M.GetComponentInput = schema.new({
-    id = id.from(_N, "GetComponentInput"),
+    id = id.from(_N, "GetComponentRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1183,7 +1183,7 @@ M.GetComponentInput = schema.new({
 })
 
 M.ListComponentsInput = schema.new({
-    id = id.from(_N, "ListComponentsInput"),
+    id = id.from(_N, "ListComponentsRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1281,7 +1281,7 @@ M.ComponentSummary = schema.new({
 })
 
 M.ListComponentsOutput = schema.new({
-    id = id.from(_N, "ListComponentsOutput"),
+    id = id.from(_N, "ListComponentsResponse"),
     type = "structure",
     members = {
         entities = schema.new({
@@ -1335,7 +1335,7 @@ M.ExchangeCodeForTokenRequestBody = schema.new({
 })
 
 M.ExchangeCodeForTokenInput = schema.new({
-    id = id.from(_N, "ExchangeCodeForTokenInput"),
+    id = id.from(_N, "ExchangeCodeForTokenRequest"),
     type = "structure",
     members = {
         provider = schema.new({
@@ -1363,7 +1363,7 @@ M.ExchangeCodeForTokenInput = schema.new({
 })
 
 M.ExchangeCodeForTokenOutput = schema.new({
-    id = id.from(_N, "ExchangeCodeForTokenOutput"),
+    id = id.from(_N, "ExchangeCodeForTokenResponse"),
     type = "structure",
     members = {
         accessToken = schema.new({
@@ -1742,7 +1742,7 @@ M.FormStyle = schema.new({
 })
 
 M.DeleteFormInput = schema.new({
-    id = id.from(_N, "DeleteFormInput"),
+    id = id.from(_N, "DeleteFormRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1779,12 +1779,12 @@ M.DeleteFormInput = schema.new({
 })
 
 M.DeleteFormOutput = schema.new({
-    id = id.from(_N, "DeleteFormOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ExportFormsInput = schema.new({
-    id = id.from(_N, "ExportFormsInput"),
+    id = id.from(_N, "ExportFormsRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1820,7 +1820,7 @@ M.ExportFormsInput = schema.new({
 })
 
 M.GetFormInput = schema.new({
-    id = id.from(_N, "GetFormInput"),
+    id = id.from(_N, "GetFormRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1857,7 +1857,7 @@ M.GetFormInput = schema.new({
 })
 
 M.ListFormsInput = schema.new({
-    id = id.from(_N, "ListFormsInput"),
+    id = id.from(_N, "ListFormsRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1965,7 +1965,7 @@ M.FormSummary = schema.new({
 })
 
 M.ListFormsOutput = schema.new({
-    id = id.from(_N, "ListFormsOutput"),
+    id = id.from(_N, "ListFormsResponse"),
     type = "structure",
     members = {
         entities = schema.new({
@@ -1988,7 +1988,7 @@ M.ListFormsOutput = schema.new({
 })
 
 M.GetMetadataInput = schema.new({
-    id = id.from(_N, "GetMetadataInput"),
+    id = id.from(_N, "GetMetadataRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2015,7 +2015,7 @@ M.GetMetadataInput = schema.new({
 })
 
 M.GetMetadataOutput = schema.new({
-    id = id.from(_N, "GetMetadataOutput"),
+    id = id.from(_N, "GetMetadataResponse"),
     type = "structure",
     members = {
         features = schema.new({
@@ -2049,7 +2049,7 @@ M.UnauthorizedException = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2066,7 +2066,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2100,7 +2100,7 @@ M.PutMetadataFlagBody = schema.new({
 })
 
 M.PutMetadataFlagInput = schema.new({
-    id = id.from(_N, "PutMetadataFlagInput"),
+    id = id.from(_N, "PutMetadataFlagRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2148,7 +2148,7 @@ M.PutMetadataFlagInput = schema.new({
 })
 
 M.PutMetadataFlagOutput = schema.new({
-    id = id.from(_N, "PutMetadataFlagOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2175,7 +2175,7 @@ M.RefreshTokenRequestBody = schema.new({
 })
 
 M.RefreshTokenInput = schema.new({
-    id = id.from(_N, "RefreshTokenInput"),
+    id = id.from(_N, "RefreshTokenRequest"),
     type = "structure",
     members = {
         provider = schema.new({
@@ -2203,7 +2203,7 @@ M.RefreshTokenInput = schema.new({
 })
 
 M.RefreshTokenOutput = schema.new({
-    id = id.from(_N, "RefreshTokenOutput"),
+    id = id.from(_N, "RefreshTokenResponse"),
     type = "structure",
     members = {
         accessToken = schema.new({
@@ -2228,7 +2228,7 @@ M.RefreshTokenOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2256,12 +2256,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.DeleteThemeInput = schema.new({
-    id = id.from(_N, "DeleteThemeInput"),
+    id = id.from(_N, "DeleteThemeRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2298,12 +2298,12 @@ M.DeleteThemeInput = schema.new({
 })
 
 M.DeleteThemeOutput = schema.new({
-    id = id.from(_N, "DeleteThemeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ExportThemesInput = schema.new({
-    id = id.from(_N, "ExportThemesInput"),
+    id = id.from(_N, "ExportThemesRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2339,7 +2339,7 @@ M.ExportThemesInput = schema.new({
 })
 
 M.GetThemeInput = schema.new({
-    id = id.from(_N, "GetThemeInput"),
+    id = id.from(_N, "GetThemeRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2376,7 +2376,7 @@ M.GetThemeInput = schema.new({
 })
 
 M.ListThemesInput = schema.new({
-    id = id.from(_N, "ListThemesInput"),
+    id = id.from(_N, "ListThemesRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2465,7 +2465,7 @@ M.ThemeSummary = schema.new({
 })
 
 M.ListThemesOutput = schema.new({
-    id = id.from(_N, "ListThemesOutput"),
+    id = id.from(_N, "ListThemesResponse"),
     type = "structure",
     members = {
         entities = schema.new({
@@ -2488,7 +2488,7 @@ M.ListThemesOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2516,7 +2516,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -3129,7 +3129,7 @@ M.ComponentConditionProperty = schema.new({
 })
 
 M.CreateThemeInput = schema.new({
-    id = id.from(_N, "CreateThemeInput"),
+    id = id.from(_N, "CreateThemeRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -3177,7 +3177,7 @@ M.CreateThemeInput = schema.new({
 })
 
 M.CreateThemeOutput = schema.new({
-    id = id.from(_N, "CreateThemeOutput"),
+    id = id.from(_N, "CreateThemeResponse"),
     type = "structure",
     members = {
         entity = schema.new({
@@ -3194,7 +3194,7 @@ M.CreateThemeOutput = schema.new({
 })
 
 M.GetThemeOutput = schema.new({
-    id = id.from(_N, "GetThemeOutput"),
+    id = id.from(_N, "GetThemeResponse"),
     type = "structure",
     members = {
         theme = schema.new({
@@ -3211,7 +3211,7 @@ M.GetThemeOutput = schema.new({
 })
 
 M.UpdateThemeInput = schema.new({
-    id = id.from(_N, "UpdateThemeInput"),
+    id = id.from(_N, "UpdateThemeRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -3269,7 +3269,7 @@ M.UpdateThemeInput = schema.new({
 })
 
 M.UpdateThemeOutput = schema.new({
-    id = id.from(_N, "UpdateThemeOutput"),
+    id = id.from(_N, "UpdateThemeResponse"),
     type = "structure",
     members = {
         entity = schema.new({
@@ -3311,7 +3311,7 @@ M.ValueMappings = schema.new({
 })
 
 M.ExportThemesOutput = schema.new({
-    id = id.from(_N, "ExportThemesOutput"),
+    id = id.from(_N, "ExportThemesResponse"),
     type = "structure",
     members = {
         entities = schema.new({
@@ -3771,7 +3771,7 @@ M.UpdateFormData = schema.new({
 })
 
 M.CreateFormInput = schema.new({
-    id = id.from(_N, "CreateFormInput"),
+    id = id.from(_N, "CreateFormRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -3819,7 +3819,7 @@ M.CreateFormInput = schema.new({
 })
 
 M.CreateFormOutput = schema.new({
-    id = id.from(_N, "CreateFormOutput"),
+    id = id.from(_N, "CreateFormResponse"),
     type = "structure",
     members = {
         entity = schema.new({
@@ -3836,7 +3836,7 @@ M.CreateFormOutput = schema.new({
 })
 
 M.GetFormOutput = schema.new({
-    id = id.from(_N, "GetFormOutput"),
+    id = id.from(_N, "GetFormResponse"),
     type = "structure",
     members = {
         form = schema.new({
@@ -3853,7 +3853,7 @@ M.GetFormOutput = schema.new({
 })
 
 M.UpdateFormInput = schema.new({
-    id = id.from(_N, "UpdateFormInput"),
+    id = id.from(_N, "UpdateFormRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -3911,7 +3911,7 @@ M.UpdateFormInput = schema.new({
 })
 
 M.UpdateFormOutput = schema.new({
-    id = id.from(_N, "UpdateFormOutput"),
+    id = id.from(_N, "UpdateFormResponse"),
     type = "structure",
     members = {
         entity = schema.new({
@@ -3928,7 +3928,7 @@ M.UpdateFormOutput = schema.new({
 })
 
 M.ExportFormsOutput = schema.new({
-    id = id.from(_N, "ExportFormsOutput"),
+    id = id.from(_N, "ExportFormsResponse"),
     type = "structure",
     members = {
         entities = schema.new({
@@ -4192,7 +4192,7 @@ M.Component = schema.new({
             name = "overrides",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -4322,7 +4322,7 @@ M.CreateComponentData = schema.new({
             name = "overrides",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -4427,7 +4427,7 @@ M.UpdateComponentData = schema.new({
             name = "overrides",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
         bindingProperties = schema.new({
             id = id.from(_N, "UpdateComponentData", "bindingProperties"),
@@ -4463,7 +4463,7 @@ M.UpdateComponentData = schema.new({
 })
 
 M.CreateComponentInput = schema.new({
-    id = id.from(_N, "CreateComponentInput"),
+    id = id.from(_N, "CreateComponentRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -4511,7 +4511,7 @@ M.CreateComponentInput = schema.new({
 })
 
 M.CreateComponentOutput = schema.new({
-    id = id.from(_N, "CreateComponentOutput"),
+    id = id.from(_N, "CreateComponentResponse"),
     type = "structure",
     members = {
         entity = schema.new({
@@ -4528,7 +4528,7 @@ M.CreateComponentOutput = schema.new({
 })
 
 M.GetComponentOutput = schema.new({
-    id = id.from(_N, "GetComponentOutput"),
+    id = id.from(_N, "GetComponentResponse"),
     type = "structure",
     members = {
         component = schema.new({
@@ -4545,7 +4545,7 @@ M.GetComponentOutput = schema.new({
 })
 
 M.UpdateComponentInput = schema.new({
-    id = id.from(_N, "UpdateComponentInput"),
+    id = id.from(_N, "UpdateComponentRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -4603,7 +4603,7 @@ M.UpdateComponentInput = schema.new({
 })
 
 M.UpdateComponentOutput = schema.new({
-    id = id.from(_N, "UpdateComponentOutput"),
+    id = id.from(_N, "UpdateComponentResponse"),
     type = "structure",
     members = {
         entity = schema.new({
@@ -4620,7 +4620,7 @@ M.UpdateComponentOutput = schema.new({
 })
 
 M.ExportComponentsOutput = schema.new({
-    id = id.from(_N, "ExportComponentsOutput"),
+    id = id.from(_N, "ExportComponentsResponse"),
     type = "structure",
     members = {
         entities = schema.new({
@@ -4641,5 +4641,19 @@ M.ExportComponentsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

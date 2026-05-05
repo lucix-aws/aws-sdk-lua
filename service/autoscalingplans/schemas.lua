@@ -393,7 +393,7 @@ M.ScalingInstruction = schema.new({
 })
 
 M.CreateScalingPlanInput = schema.new({
-    id = id.from(_N, "CreateScalingPlanInput"),
+    id = id.from(_N, "CreateScalingPlanRequest"),
     type = "structure",
     members = {
         ScalingPlanName = schema.new({
@@ -429,7 +429,7 @@ M.CreateScalingPlanInput = schema.new({
 })
 
 M.CreateScalingPlanOutput = schema.new({
-    id = id.from(_N, "CreateScalingPlanOutput"),
+    id = id.from(_N, "CreateScalingPlanResponse"),
     type = "structure",
     members = {
         ScalingPlanVersion = schema.new({
@@ -493,7 +493,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteScalingPlanInput = schema.new({
-    id = id.from(_N, "DeleteScalingPlanInput"),
+    id = id.from(_N, "DeleteScalingPlanRequest"),
     type = "structure",
     members = {
         ScalingPlanName = schema.new({
@@ -518,7 +518,7 @@ M.DeleteScalingPlanInput = schema.new({
 })
 
 M.DeleteScalingPlanOutput = schema.new({
-    id = id.from(_N, "DeleteScalingPlanOutput"),
+    id = id.from(_N, "DeleteScalingPlanResponse"),
     type = "structure",
 })
 
@@ -539,7 +539,7 @@ M.ObjectNotFoundException = schema.new({
 })
 
 M.DescribeScalingPlanResourcesInput = schema.new({
-    id = id.from(_N, "DescribeScalingPlanResourcesInput"),
+    id = id.from(_N, "DescribeScalingPlanResourcesRequest"),
     type = "structure",
     members = {
         ScalingPlanName = schema.new({
@@ -682,7 +682,7 @@ M.ScalingPlanResource = schema.new({
 })
 
 M.DescribeScalingPlanResourcesOutput = schema.new({
-    id = id.from(_N, "DescribeScalingPlanResourcesOutput"),
+    id = id.from(_N, "DescribeScalingPlanResourcesResponse"),
     type = "structure",
     members = {
         ScalingPlanResources = schema.new({
@@ -718,7 +718,7 @@ M.InvalidNextTokenException = schema.new({
 })
 
 M.DescribeScalingPlansInput = schema.new({
-    id = id.from(_N, "DescribeScalingPlansInput"),
+    id = id.from(_N, "DescribeScalingPlansRequest"),
     type = "structure",
     members = {
         ScalingPlanNames = schema.new({
@@ -829,7 +829,7 @@ M.ScalingPlan = schema.new({
 })
 
 M.DescribeScalingPlansOutput = schema.new({
-    id = id.from(_N, "DescribeScalingPlansOutput"),
+    id = id.from(_N, "DescribeScalingPlansResponse"),
     type = "structure",
     members = {
         ScalingPlans = schema.new({
@@ -849,7 +849,7 @@ M.DescribeScalingPlansOutput = schema.new({
 })
 
 M.GetScalingPlanResourceForecastDataInput = schema.new({
-    id = id.from(_N, "GetScalingPlanResourceForecastDataInput"),
+    id = id.from(_N, "GetScalingPlanResourceForecastDataRequest"),
     type = "structure",
     members = {
         ScalingPlanName = schema.new({
@@ -947,7 +947,7 @@ M.Datapoint = schema.new({
 })
 
 M.GetScalingPlanResourceForecastDataOutput = schema.new({
-    id = id.from(_N, "GetScalingPlanResourceForecastDataOutput"),
+    id = id.from(_N, "GetScalingPlanResourceForecastDataResponse"),
     type = "structure",
     members = {
         Datapoints = schema.new({
@@ -964,7 +964,7 @@ M.GetScalingPlanResourceForecastDataOutput = schema.new({
 })
 
 M.UpdateScalingPlanInput = schema.new({
-    id = id.from(_N, "UpdateScalingPlanInput"),
+    id = id.from(_N, "UpdateScalingPlanRequest"),
     type = "structure",
     members = {
         ScalingPlanName = schema.new({
@@ -1003,8 +1003,22 @@ M.UpdateScalingPlanInput = schema.new({
 })
 
 M.UpdateScalingPlanOutput = schema.new({
-    id = id.from(_N, "UpdateScalingPlanOutput"),
+    id = id.from(_N, "UpdateScalingPlanResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

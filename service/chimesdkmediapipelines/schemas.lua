@@ -923,7 +923,7 @@ M.Tag = schema.new({
 })
 
 M.CreateMediaCapturePipelineInput = schema.new({
-    id = id.from(_N, "CreateMediaCapturePipelineInput"),
+    id = id.from(_N, "CreateMediaCapturePipelineRequest"),
     type = "structure",
     members = {
         SourceType = schema.new({
@@ -1089,7 +1089,7 @@ M.MediaCapturePipeline = schema.new({
 })
 
 M.CreateMediaCapturePipelineOutput = schema.new({
-    id = id.from(_N, "CreateMediaCapturePipelineOutput"),
+    id = id.from(_N, "CreateMediaCapturePipelineResponse"),
     type = "structure",
     members = {
         MediaCapturePipeline = schema.new({
@@ -1382,7 +1382,7 @@ M.ConcatenationSource = schema.new({
 })
 
 M.CreateMediaConcatenationPipelineInput = schema.new({
-    id = id.from(_N, "CreateMediaConcatenationPipelineInput"),
+    id = id.from(_N, "CreateMediaConcatenationPipelineRequest"),
     type = "structure",
     members = {
         Sources = schema.new({
@@ -1482,7 +1482,7 @@ M.MediaConcatenationPipeline = schema.new({
 })
 
 M.CreateMediaConcatenationPipelineOutput = schema.new({
-    id = id.from(_N, "CreateMediaConcatenationPipelineOutput"),
+    id = id.from(_N, "CreateMediaConcatenationPipelineResponse"),
     type = "structure",
     members = {
         MediaConcatenationPipeline = schema.new({
@@ -1702,7 +1702,7 @@ M.S3RecordingSinkRuntimeConfiguration = schema.new({
 })
 
 M.CreateMediaInsightsPipelineInput = schema.new({
-    id = id.from(_N, "CreateMediaInsightsPipelineInput"),
+    id = id.from(_N, "CreateMediaInsightsPipelineRequest"),
     type = "structure",
     members = {
         MediaInsightsPipelineConfigurationArn = schema.new({
@@ -1858,7 +1858,7 @@ M.MediaInsightsPipeline = schema.new({
 })
 
 M.CreateMediaInsightsPipelineOutput = schema.new({
-    id = id.from(_N, "CreateMediaInsightsPipelineOutput"),
+    id = id.from(_N, "CreateMediaInsightsPipelineResponse"),
     type = "structure",
     members = {
         MediaInsightsPipeline = schema.new({
@@ -2233,7 +2233,7 @@ M.RealTimeAlertConfiguration = schema.new({
 })
 
 M.CreateMediaInsightsPipelineConfigurationInput = schema.new({
-    id = id.from(_N, "CreateMediaInsightsPipelineConfigurationInput"),
+    id = id.from(_N, "CreateMediaInsightsPipelineConfigurationRequest"),
     type = "structure",
     members = {
         MediaInsightsPipelineConfigurationName = schema.new({
@@ -2354,7 +2354,7 @@ M.MediaInsightsPipelineConfiguration = schema.new({
 })
 
 M.CreateMediaInsightsPipelineConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateMediaInsightsPipelineConfigurationOutput"),
+    id = id.from(_N, "CreateMediaInsightsPipelineConfigurationResponse"),
     type = "structure",
     members = {
         MediaInsightsPipelineConfiguration = schema.new({
@@ -2487,7 +2487,7 @@ M.LiveConnectorSourceConfiguration = schema.new({
 })
 
 M.CreateMediaLiveConnectorPipelineInput = schema.new({
-    id = id.from(_N, "CreateMediaLiveConnectorPipelineInput"),
+    id = id.from(_N, "CreateMediaLiveConnectorPipelineRequest"),
     type = "structure",
     members = {
         Sources = schema.new({
@@ -2587,7 +2587,7 @@ M.MediaLiveConnectorPipeline = schema.new({
 })
 
 M.CreateMediaLiveConnectorPipelineOutput = schema.new({
-    id = id.from(_N, "CreateMediaLiveConnectorPipelineOutput"),
+    id = id.from(_N, "CreateMediaLiveConnectorPipelineResponse"),
     type = "structure",
     members = {
         MediaLiveConnectorPipeline = schema.new({
@@ -2651,7 +2651,7 @@ M.KinesisVideoStreamConfiguration = schema.new({
 })
 
 M.CreateMediaPipelineKinesisVideoStreamPoolInput = schema.new({
-    id = id.from(_N, "CreateMediaPipelineKinesisVideoStreamPoolInput"),
+    id = id.from(_N, "CreateMediaPipelineKinesisVideoStreamPoolRequest"),
     type = "structure",
     members = {
         StreamConfiguration = schema.new({
@@ -2755,7 +2755,7 @@ M.KinesisVideoStreamPoolConfiguration = schema.new({
 })
 
 M.CreateMediaPipelineKinesisVideoStreamPoolOutput = schema.new({
-    id = id.from(_N, "CreateMediaPipelineKinesisVideoStreamPoolOutput"),
+    id = id.from(_N, "CreateMediaPipelineKinesisVideoStreamPoolResponse"),
     type = "structure",
     members = {
         KinesisVideoStreamPoolConfiguration = schema.new({
@@ -2837,7 +2837,7 @@ M.MediaStreamSource = schema.new({
 })
 
 M.CreateMediaStreamPipelineInput = schema.new({
-    id = id.from(_N, "CreateMediaStreamPipelineInput"),
+    id = id.from(_N, "CreateMediaStreamPipelineRequest"),
     type = "structure",
     members = {
         Sources = schema.new({
@@ -2937,7 +2937,7 @@ M.MediaStreamPipeline = schema.new({
 })
 
 M.CreateMediaStreamPipelineOutput = schema.new({
-    id = id.from(_N, "CreateMediaStreamPipelineOutput"),
+    id = id.from(_N, "CreateMediaStreamPipelineResponse"),
     type = "structure",
     members = {
         MediaStreamPipeline = schema.new({
@@ -2951,7 +2951,7 @@ M.CreateMediaStreamPipelineOutput = schema.new({
 })
 
 M.DeleteMediaCapturePipelineInput = schema.new({
-    id = id.from(_N, "DeleteMediaCapturePipelineInput"),
+    id = id.from(_N, "DeleteMediaCapturePipelineRequest"),
     type = "structure",
     members = {
         MediaPipelineId = schema.new({
@@ -2968,12 +2968,12 @@ M.DeleteMediaCapturePipelineInput = schema.new({
 })
 
 M.DeleteMediaCapturePipelineOutput = schema.new({
-    id = id.from(_N, "DeleteMediaCapturePipelineOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMediaInsightsPipelineConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteMediaInsightsPipelineConfigurationInput"),
+    id = id.from(_N, "DeleteMediaInsightsPipelineConfigurationRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -2990,12 +2990,12 @@ M.DeleteMediaInsightsPipelineConfigurationInput = schema.new({
 })
 
 M.DeleteMediaInsightsPipelineConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteMediaInsightsPipelineConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMediaPipelineInput = schema.new({
-    id = id.from(_N, "DeleteMediaPipelineInput"),
+    id = id.from(_N, "DeleteMediaPipelineRequest"),
     type = "structure",
     members = {
         MediaPipelineId = schema.new({
@@ -3012,12 +3012,12 @@ M.DeleteMediaPipelineInput = schema.new({
 })
 
 M.DeleteMediaPipelineOutput = schema.new({
-    id = id.from(_N, "DeleteMediaPipelineOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMediaPipelineKinesisVideoStreamPoolInput = schema.new({
-    id = id.from(_N, "DeleteMediaPipelineKinesisVideoStreamPoolInput"),
+    id = id.from(_N, "DeleteMediaPipelineKinesisVideoStreamPoolRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -3034,12 +3034,12 @@ M.DeleteMediaPipelineKinesisVideoStreamPoolInput = schema.new({
 })
 
 M.DeleteMediaPipelineKinesisVideoStreamPoolOutput = schema.new({
-    id = id.from(_N, "DeleteMediaPipelineKinesisVideoStreamPoolOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetMediaCapturePipelineInput = schema.new({
-    id = id.from(_N, "GetMediaCapturePipelineInput"),
+    id = id.from(_N, "GetMediaCapturePipelineRequest"),
     type = "structure",
     members = {
         MediaPipelineId = schema.new({
@@ -3056,7 +3056,7 @@ M.GetMediaCapturePipelineInput = schema.new({
 })
 
 M.GetMediaCapturePipelineOutput = schema.new({
-    id = id.from(_N, "GetMediaCapturePipelineOutput"),
+    id = id.from(_N, "GetMediaCapturePipelineResponse"),
     type = "structure",
     members = {
         MediaCapturePipeline = schema.new({
@@ -3070,7 +3070,7 @@ M.GetMediaCapturePipelineOutput = schema.new({
 })
 
 M.GetMediaInsightsPipelineConfigurationInput = schema.new({
-    id = id.from(_N, "GetMediaInsightsPipelineConfigurationInput"),
+    id = id.from(_N, "GetMediaInsightsPipelineConfigurationRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -3087,7 +3087,7 @@ M.GetMediaInsightsPipelineConfigurationInput = schema.new({
 })
 
 M.GetMediaInsightsPipelineConfigurationOutput = schema.new({
-    id = id.from(_N, "GetMediaInsightsPipelineConfigurationOutput"),
+    id = id.from(_N, "GetMediaInsightsPipelineConfigurationResponse"),
     type = "structure",
     members = {
         MediaInsightsPipelineConfiguration = schema.new({
@@ -3101,7 +3101,7 @@ M.GetMediaInsightsPipelineConfigurationOutput = schema.new({
 })
 
 M.GetMediaPipelineInput = schema.new({
-    id = id.from(_N, "GetMediaPipelineInput"),
+    id = id.from(_N, "GetMediaPipelineRequest"),
     type = "structure",
     members = {
         MediaPipelineId = schema.new({
@@ -3160,7 +3160,7 @@ M.MediaPipeline = schema.new({
 })
 
 M.GetMediaPipelineOutput = schema.new({
-    id = id.from(_N, "GetMediaPipelineOutput"),
+    id = id.from(_N, "GetMediaPipelineResponse"),
     type = "structure",
     members = {
         MediaPipeline = schema.new({
@@ -3174,7 +3174,7 @@ M.GetMediaPipelineOutput = schema.new({
 })
 
 M.GetMediaPipelineKinesisVideoStreamPoolInput = schema.new({
-    id = id.from(_N, "GetMediaPipelineKinesisVideoStreamPoolInput"),
+    id = id.from(_N, "GetMediaPipelineKinesisVideoStreamPoolRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -3191,7 +3191,7 @@ M.GetMediaPipelineKinesisVideoStreamPoolInput = schema.new({
 })
 
 M.GetMediaPipelineKinesisVideoStreamPoolOutput = schema.new({
-    id = id.from(_N, "GetMediaPipelineKinesisVideoStreamPoolOutput"),
+    id = id.from(_N, "GetMediaPipelineKinesisVideoStreamPoolResponse"),
     type = "structure",
     members = {
         KinesisVideoStreamPoolConfiguration = schema.new({
@@ -3205,7 +3205,7 @@ M.GetMediaPipelineKinesisVideoStreamPoolOutput = schema.new({
 })
 
 M.GetSpeakerSearchTaskInput = schema.new({
-    id = id.from(_N, "GetSpeakerSearchTaskInput"),
+    id = id.from(_N, "GetSpeakerSearchTaskRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -3269,7 +3269,7 @@ M.SpeakerSearchTask = schema.new({
 })
 
 M.GetSpeakerSearchTaskOutput = schema.new({
-    id = id.from(_N, "GetSpeakerSearchTaskOutput"),
+    id = id.from(_N, "GetSpeakerSearchTaskResponse"),
     type = "structure",
     members = {
         SpeakerSearchTask = schema.new({
@@ -3283,7 +3283,7 @@ M.GetSpeakerSearchTaskOutput = schema.new({
 })
 
 M.GetVoiceToneAnalysisTaskInput = schema.new({
-    id = id.from(_N, "GetVoiceToneAnalysisTaskInput"),
+    id = id.from(_N, "GetVoiceToneAnalysisTaskRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -3347,7 +3347,7 @@ M.VoiceToneAnalysisTask = schema.new({
 })
 
 M.GetVoiceToneAnalysisTaskOutput = schema.new({
-    id = id.from(_N, "GetVoiceToneAnalysisTaskOutput"),
+    id = id.from(_N, "GetVoiceToneAnalysisTaskResponse"),
     type = "structure",
     members = {
         VoiceToneAnalysisTask = schema.new({
@@ -3361,7 +3361,7 @@ M.GetVoiceToneAnalysisTaskOutput = schema.new({
 })
 
 M.ListMediaCapturePipelinesInput = schema.new({
-    id = id.from(_N, "ListMediaCapturePipelinesInput"),
+    id = id.from(_N, "ListMediaCapturePipelinesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3405,7 +3405,7 @@ M.MediaCapturePipelineSummary = schema.new({
 })
 
 M.ListMediaCapturePipelinesOutput = schema.new({
-    id = id.from(_N, "ListMediaCapturePipelinesOutput"),
+    id = id.from(_N, "ListMediaCapturePipelinesResponse"),
     type = "structure",
     members = {
         MediaCapturePipelines = schema.new({
@@ -3425,7 +3425,7 @@ M.ListMediaCapturePipelinesOutput = schema.new({
 })
 
 M.ListMediaInsightsPipelineConfigurationsInput = schema.new({
-    id = id.from(_N, "ListMediaInsightsPipelineConfigurationsInput"),
+    id = id.from(_N, "ListMediaInsightsPipelineConfigurationsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3475,7 +3475,7 @@ M.MediaInsightsPipelineConfigurationSummary = schema.new({
 })
 
 M.ListMediaInsightsPipelineConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListMediaInsightsPipelineConfigurationsOutput"),
+    id = id.from(_N, "ListMediaInsightsPipelineConfigurationsResponse"),
     type = "structure",
     members = {
         MediaInsightsPipelineConfigurations = schema.new({
@@ -3495,7 +3495,7 @@ M.ListMediaInsightsPipelineConfigurationsOutput = schema.new({
 })
 
 M.ListMediaPipelineKinesisVideoStreamPoolsInput = schema.new({
-    id = id.from(_N, "ListMediaPipelineKinesisVideoStreamPoolsInput"),
+    id = id.from(_N, "ListMediaPipelineKinesisVideoStreamPoolsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3545,7 +3545,7 @@ M.KinesisVideoStreamPoolSummary = schema.new({
 })
 
 M.ListMediaPipelineKinesisVideoStreamPoolsOutput = schema.new({
-    id = id.from(_N, "ListMediaPipelineKinesisVideoStreamPoolsOutput"),
+    id = id.from(_N, "ListMediaPipelineKinesisVideoStreamPoolsResponse"),
     type = "structure",
     members = {
         KinesisVideoStreamPools = schema.new({
@@ -3565,7 +3565,7 @@ M.ListMediaPipelineKinesisVideoStreamPoolsOutput = schema.new({
 })
 
 M.ListMediaPipelinesInput = schema.new({
-    id = id.from(_N, "ListMediaPipelinesInput"),
+    id = id.from(_N, "ListMediaPipelinesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3609,7 +3609,7 @@ M.MediaPipelineSummary = schema.new({
 })
 
 M.ListMediaPipelinesOutput = schema.new({
-    id = id.from(_N, "ListMediaPipelinesOutput"),
+    id = id.from(_N, "ListMediaPipelinesResponse"),
     type = "structure",
     members = {
         MediaPipelines = schema.new({
@@ -3629,7 +3629,7 @@ M.ListMediaPipelinesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -3646,7 +3646,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -3692,7 +3692,7 @@ M.KinesisVideoStreamSourceTaskConfiguration = schema.new({
 })
 
 M.StartSpeakerSearchTaskInput = schema.new({
-    id = id.from(_N, "StartSpeakerSearchTaskInput"),
+    id = id.from(_N, "StartSpeakerSearchTaskRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -3734,7 +3734,7 @@ M.StartSpeakerSearchTaskInput = schema.new({
 })
 
 M.StartSpeakerSearchTaskOutput = schema.new({
-    id = id.from(_N, "StartSpeakerSearchTaskOutput"),
+    id = id.from(_N, "StartSpeakerSearchTaskResponse"),
     type = "structure",
     members = {
         SpeakerSearchTask = schema.new({
@@ -3748,7 +3748,7 @@ M.StartSpeakerSearchTaskOutput = schema.new({
 })
 
 M.StartVoiceToneAnalysisTaskInput = schema.new({
-    id = id.from(_N, "StartVoiceToneAnalysisTaskInput"),
+    id = id.from(_N, "StartVoiceToneAnalysisTaskRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -3790,7 +3790,7 @@ M.StartVoiceToneAnalysisTaskInput = schema.new({
 })
 
 M.StartVoiceToneAnalysisTaskOutput = schema.new({
-    id = id.from(_N, "StartVoiceToneAnalysisTaskOutput"),
+    id = id.from(_N, "StartVoiceToneAnalysisTaskResponse"),
     type = "structure",
     members = {
         VoiceToneAnalysisTask = schema.new({
@@ -3804,7 +3804,7 @@ M.StartVoiceToneAnalysisTaskOutput = schema.new({
 })
 
 M.StopSpeakerSearchTaskInput = schema.new({
-    id = id.from(_N, "StopSpeakerSearchTaskInput"),
+    id = id.from(_N, "StopSpeakerSearchTaskRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -3831,12 +3831,12 @@ M.StopSpeakerSearchTaskInput = schema.new({
 })
 
 M.StopSpeakerSearchTaskOutput = schema.new({
-    id = id.from(_N, "StopSpeakerSearchTaskOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopVoiceToneAnalysisTaskInput = schema.new({
-    id = id.from(_N, "StopVoiceToneAnalysisTaskInput"),
+    id = id.from(_N, "StopVoiceToneAnalysisTaskRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -3863,12 +3863,12 @@ M.StopVoiceToneAnalysisTaskInput = schema.new({
 })
 
 M.StopVoiceToneAnalysisTaskOutput = schema.new({
-    id = id.from(_N, "StopVoiceToneAnalysisTaskOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -3894,12 +3894,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -3925,12 +3925,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateMediaInsightsPipelineConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateMediaInsightsPipelineConfigurationInput"),
+    id = id.from(_N, "UpdateMediaInsightsPipelineConfigurationRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -3973,7 +3973,7 @@ M.UpdateMediaInsightsPipelineConfigurationInput = schema.new({
 })
 
 M.UpdateMediaInsightsPipelineConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateMediaInsightsPipelineConfigurationOutput"),
+    id = id.from(_N, "UpdateMediaInsightsPipelineConfigurationResponse"),
     type = "structure",
     members = {
         MediaInsightsPipelineConfiguration = schema.new({
@@ -3987,7 +3987,7 @@ M.UpdateMediaInsightsPipelineConfigurationOutput = schema.new({
 })
 
 M.UpdateMediaInsightsPipelineStatusInput = schema.new({
-    id = id.from(_N, "UpdateMediaInsightsPipelineStatusInput"),
+    id = id.from(_N, "UpdateMediaInsightsPipelineStatusRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -4013,7 +4013,7 @@ M.UpdateMediaInsightsPipelineStatusInput = schema.new({
 })
 
 M.UpdateMediaInsightsPipelineStatusOutput = schema.new({
-    id = id.from(_N, "UpdateMediaInsightsPipelineStatusOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4031,7 +4031,7 @@ M.KinesisVideoStreamConfigurationUpdate = schema.new({
 })
 
 M.UpdateMediaPipelineKinesisVideoStreamPoolInput = schema.new({
-    id = id.from(_N, "UpdateMediaPipelineKinesisVideoStreamPoolInput"),
+    id = id.from(_N, "UpdateMediaPipelineKinesisVideoStreamPoolRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -4055,7 +4055,7 @@ M.UpdateMediaPipelineKinesisVideoStreamPoolInput = schema.new({
 })
 
 M.UpdateMediaPipelineKinesisVideoStreamPoolOutput = schema.new({
-    id = id.from(_N, "UpdateMediaPipelineKinesisVideoStreamPoolOutput"),
+    id = id.from(_N, "UpdateMediaPipelineKinesisVideoStreamPoolResponse"),
     type = "structure",
     members = {
         KinesisVideoStreamPoolConfiguration = schema.new({
@@ -4067,5 +4067,19 @@ M.UpdateMediaPipelineKinesisVideoStreamPoolOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

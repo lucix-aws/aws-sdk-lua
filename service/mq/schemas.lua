@@ -866,7 +866,7 @@ M.WeeklyStartTime = schema.new({
 })
 
 M.CreateBrokerInput = schema.new({
-    id = id.from(_N, "CreateBrokerInput"),
+    id = id.from(_N, "CreateBrokerRequest"),
     type = "structure",
     members = {
         AuthenticationStrategy = schema.new({
@@ -1078,7 +1078,7 @@ M.CreateBrokerInput = schema.new({
 })
 
 M.CreateBrokerOutput = schema.new({
-    id = id.from(_N, "CreateBrokerOutput"),
+    id = id.from(_N, "CreateBrokerResponse"),
     type = "structure",
     members = {
         BrokerArn = schema.new({
@@ -1187,7 +1187,7 @@ M.UnauthorizedException = schema.new({
 })
 
 M.CreateConfigurationInput = schema.new({
-    id = id.from(_N, "CreateConfigurationInput"),
+    id = id.from(_N, "CreateConfigurationRequest"),
     type = "structure",
     members = {
         AuthenticationStrategy = schema.new({
@@ -1243,7 +1243,7 @@ M.CreateConfigurationInput = schema.new({
 })
 
 M.CreateConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateConfigurationOutput"),
+    id = id.from(_N, "CreateConfigurationResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1309,7 +1309,7 @@ M.CreateConfigurationOutput = schema.new({
 })
 
 M.CreateTagsInput = schema.new({
-    id = id.from(_N, "CreateTagsInput"),
+    id = id.from(_N, "CreateTagsRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1337,7 +1337,7 @@ M.CreateTagsInput = schema.new({
 })
 
 M.CreateTagsOutput = schema.new({
-    id = id.from(_N, "CreateTagsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1370,7 +1370,7 @@ M.NotFoundException = schema.new({
 })
 
 M.CreateUserInput = schema.new({
-    id = id.from(_N, "CreateUserInput"),
+    id = id.from(_N, "CreateUserRequest"),
     type = "structure",
     members = {
         BrokerId = schema.new({
@@ -1435,7 +1435,7 @@ M.CreateUserInput = schema.new({
 })
 
 M.CreateUserOutput = schema.new({
-    id = id.from(_N, "CreateUserOutput"),
+    id = id.from(_N, "CreateUserResponse"),
     type = "structure",
 })
 
@@ -1494,7 +1494,7 @@ M.DataReplicationMetadataOutput = schema.new({
 })
 
 M.DeleteBrokerInput = schema.new({
-    id = id.from(_N, "DeleteBrokerInput"),
+    id = id.from(_N, "DeleteBrokerRequest"),
     type = "structure",
     members = {
         BrokerId = schema.new({
@@ -1511,7 +1511,7 @@ M.DeleteBrokerInput = schema.new({
 })
 
 M.DeleteBrokerOutput = schema.new({
-    id = id.from(_N, "DeleteBrokerOutput"),
+    id = id.from(_N, "DeleteBrokerResponse"),
     type = "structure",
     members = {
         BrokerId = schema.new({
@@ -1527,7 +1527,7 @@ M.DeleteBrokerOutput = schema.new({
 })
 
 M.DeleteConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteConfigurationInput"),
+    id = id.from(_N, "DeleteConfigurationRequest"),
     type = "structure",
     members = {
         ConfigurationId = schema.new({
@@ -1544,7 +1544,7 @@ M.DeleteConfigurationInput = schema.new({
 })
 
 M.DeleteConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteConfigurationOutput"),
+    id = id.from(_N, "DeleteConfigurationResponse"),
     type = "structure",
     members = {
         ConfigurationId = schema.new({
@@ -1560,7 +1560,7 @@ M.DeleteConfigurationOutput = schema.new({
 })
 
 M.DeleteTagsInput = schema.new({
-    id = id.from(_N, "DeleteTagsInput"),
+    id = id.from(_N, "DeleteTagsRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1588,12 +1588,12 @@ M.DeleteTagsInput = schema.new({
 })
 
 M.DeleteTagsOutput = schema.new({
-    id = id.from(_N, "DeleteTagsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteUserInput = schema.new({
-    id = id.from(_N, "DeleteUserInput"),
+    id = id.from(_N, "DeleteUserRequest"),
     type = "structure",
     members = {
         BrokerId = schema.new({
@@ -1620,12 +1620,12 @@ M.DeleteUserInput = schema.new({
 })
 
 M.DeleteUserOutput = schema.new({
-    id = id.from(_N, "DeleteUserOutput"),
+    id = id.from(_N, "DeleteUserResponse"),
     type = "structure",
 })
 
 M.DescribeBrokerInput = schema.new({
-    id = id.from(_N, "DescribeBrokerInput"),
+    id = id.from(_N, "DescribeBrokerRequest"),
     type = "structure",
     members = {
         BrokerId = schema.new({
@@ -1826,7 +1826,7 @@ M.LogsSummary = schema.new({
 })
 
 M.DescribeBrokerOutput = schema.new({
-    id = id.from(_N, "DescribeBrokerOutput"),
+    id = id.from(_N, "DescribeBrokerResponse"),
     type = "structure",
     members = {
         ActionsRequired = schema.new({
@@ -2150,7 +2150,7 @@ M.DescribeBrokerOutput = schema.new({
 })
 
 M.DescribeBrokerEngineTypesInput = schema.new({
-    id = id.from(_N, "DescribeBrokerEngineTypesInput"),
+    id = id.from(_N, "DescribeBrokerEngineTypesRequest"),
     type = "structure",
     members = {
         EngineType = schema.new({
@@ -2184,7 +2184,7 @@ M.DescribeBrokerEngineTypesInput = schema.new({
 })
 
 M.DescribeBrokerEngineTypesOutput = schema.new({
-    id = id.from(_N, "DescribeBrokerEngineTypesOutput"),
+    id = id.from(_N, "DescribeBrokerEngineTypesResponse"),
     type = "structure",
     members = {
         BrokerEngineTypes = schema.new({
@@ -2219,7 +2219,7 @@ M.DescribeBrokerEngineTypesOutput = schema.new({
 })
 
 M.DescribeBrokerInstanceOptionsInput = schema.new({
-    id = id.from(_N, "DescribeBrokerInstanceOptionsInput"),
+    id = id.from(_N, "DescribeBrokerInstanceOptionsRequest"),
     type = "structure",
     members = {
         EngineType = schema.new({
@@ -2271,7 +2271,7 @@ M.DescribeBrokerInstanceOptionsInput = schema.new({
 })
 
 M.DescribeBrokerInstanceOptionsOutput = schema.new({
-    id = id.from(_N, "DescribeBrokerInstanceOptionsOutput"),
+    id = id.from(_N, "DescribeBrokerInstanceOptionsResponse"),
     type = "structure",
     members = {
         BrokerInstanceOptions = schema.new({
@@ -2306,7 +2306,7 @@ M.DescribeBrokerInstanceOptionsOutput = schema.new({
 })
 
 M.DescribeConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeConfigurationInput"),
+    id = id.from(_N, "DescribeConfigurationRequest"),
     type = "structure",
     members = {
         ConfigurationId = schema.new({
@@ -2323,7 +2323,7 @@ M.DescribeConfigurationInput = schema.new({
 })
 
 M.DescribeConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeConfigurationOutput"),
+    id = id.from(_N, "DescribeConfigurationResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2427,7 +2427,7 @@ M.DescribeConfigurationOutput = schema.new({
 })
 
 M.DescribeConfigurationRevisionInput = schema.new({
-    id = id.from(_N, "DescribeConfigurationRevisionInput"),
+    id = id.from(_N, "DescribeConfigurationRevisionRequest"),
     type = "structure",
     members = {
         ConfigurationId = schema.new({
@@ -2454,7 +2454,7 @@ M.DescribeConfigurationRevisionInput = schema.new({
 })
 
 M.DescribeConfigurationRevisionOutput = schema.new({
-    id = id.from(_N, "DescribeConfigurationRevisionOutput"),
+    id = id.from(_N, "DescribeConfigurationRevisionResponse"),
     type = "structure",
     members = {
         ConfigurationId = schema.new({
@@ -2501,7 +2501,7 @@ M.DescribeConfigurationRevisionOutput = schema.new({
 })
 
 M.DescribeUserInput = schema.new({
-    id = id.from(_N, "DescribeUserInput"),
+    id = id.from(_N, "DescribeUserRequest"),
     type = "structure",
     members = {
         BrokerId = schema.new({
@@ -2564,7 +2564,7 @@ M.UserPendingChanges = schema.new({
 })
 
 M.DescribeUserOutput = schema.new({
-    id = id.from(_N, "DescribeUserOutput"),
+    id = id.from(_N, "DescribeUserResponse"),
     type = "structure",
     members = {
         BrokerId = schema.new({
@@ -2627,7 +2627,7 @@ M.DescribeUserOutput = schema.new({
 })
 
 M.ListBrokersInput = schema.new({
-    id = id.from(_N, "ListBrokersInput"),
+    id = id.from(_N, "ListBrokersRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2652,7 +2652,7 @@ M.ListBrokersInput = schema.new({
 })
 
 M.ListBrokersOutput = schema.new({
-    id = id.from(_N, "ListBrokersOutput"),
+    id = id.from(_N, "ListBrokersResponse"),
     type = "structure",
     members = {
         BrokerSummaries = schema.new({
@@ -2678,7 +2678,7 @@ M.ListBrokersOutput = schema.new({
 })
 
 M.ListConfigurationRevisionsInput = schema.new({
-    id = id.from(_N, "ListConfigurationRevisionsInput"),
+    id = id.from(_N, "ListConfigurationRevisionsRequest"),
     type = "structure",
     members = {
         ConfigurationId = schema.new({
@@ -2713,7 +2713,7 @@ M.ListConfigurationRevisionsInput = schema.new({
 })
 
 M.ListConfigurationRevisionsOutput = schema.new({
-    id = id.from(_N, "ListConfigurationRevisionsOutput"),
+    id = id.from(_N, "ListConfigurationRevisionsResponse"),
     type = "structure",
     members = {
         ConfigurationId = schema.new({
@@ -2757,7 +2757,7 @@ M.ListConfigurationRevisionsOutput = schema.new({
 })
 
 M.ListConfigurationsInput = schema.new({
-    id = id.from(_N, "ListConfigurationsInput"),
+    id = id.from(_N, "ListConfigurationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2782,7 +2782,7 @@ M.ListConfigurationsInput = schema.new({
 })
 
 M.ListConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListConfigurationsOutput"),
+    id = id.from(_N, "ListConfigurationsResponse"),
     type = "structure",
     members = {
         Configurations = schema.new({
@@ -2817,7 +2817,7 @@ M.ListConfigurationsOutput = schema.new({
 })
 
 M.ListTagsInput = schema.new({
-    id = id.from(_N, "ListTagsInput"),
+    id = id.from(_N, "ListTagsRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2834,7 +2834,7 @@ M.ListTagsInput = schema.new({
 })
 
 M.ListTagsOutput = schema.new({
-    id = id.from(_N, "ListTagsOutput"),
+    id = id.from(_N, "ListTagsResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2852,7 +2852,7 @@ M.ListTagsOutput = schema.new({
 })
 
 M.ListUsersInput = schema.new({
-    id = id.from(_N, "ListUsersInput"),
+    id = id.from(_N, "ListUsersRequest"),
     type = "structure",
     members = {
         BrokerId = schema.new({
@@ -2887,7 +2887,7 @@ M.ListUsersInput = schema.new({
 })
 
 M.ListUsersOutput = schema.new({
-    id = id.from(_N, "ListUsersOutput"),
+    id = id.from(_N, "ListUsersResponse"),
     type = "structure",
     members = {
         BrokerId = schema.new({
@@ -2931,7 +2931,7 @@ M.ListUsersOutput = schema.new({
 })
 
 M.PromoteInput = schema.new({
-    id = id.from(_N, "PromoteInput"),
+    id = id.from(_N, "PromoteRequest"),
     type = "structure",
     members = {
         BrokerId = schema.new({
@@ -2958,7 +2958,7 @@ M.PromoteInput = schema.new({
 })
 
 M.PromoteOutput = schema.new({
-    id = id.from(_N, "PromoteOutput"),
+    id = id.from(_N, "PromoteResponse"),
     type = "structure",
     members = {
         BrokerId = schema.new({
@@ -2974,7 +2974,7 @@ M.PromoteOutput = schema.new({
 })
 
 M.RebootBrokerInput = schema.new({
-    id = id.from(_N, "RebootBrokerInput"),
+    id = id.from(_N, "RebootBrokerRequest"),
     type = "structure",
     members = {
         BrokerId = schema.new({
@@ -2991,12 +2991,12 @@ M.RebootBrokerInput = schema.new({
 })
 
 M.RebootBrokerOutput = schema.new({
-    id = id.from(_N, "RebootBrokerOutput"),
+    id = id.from(_N, "RebootBrokerResponse"),
     type = "structure",
 })
 
 M.UpdateBrokerInput = schema.new({
-    id = id.from(_N, "UpdateBrokerInput"),
+    id = id.from(_N, "UpdateBrokerRequest"),
     type = "structure",
     members = {
         AuthenticationStrategy = schema.new({
@@ -3108,7 +3108,7 @@ M.UpdateBrokerInput = schema.new({
 })
 
 M.UpdateBrokerOutput = schema.new({
-    id = id.from(_N, "UpdateBrokerOutput"),
+    id = id.from(_N, "UpdateBrokerResponse"),
     type = "structure",
     members = {
         AuthenticationStrategy = schema.new({
@@ -3248,7 +3248,7 @@ M.UpdateBrokerOutput = schema.new({
 })
 
 M.UpdateConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateConfigurationInput"),
+    id = id.from(_N, "UpdateConfigurationRequest"),
     type = "structure",
     members = {
         ConfigurationId = schema.new({
@@ -3284,7 +3284,7 @@ M.UpdateConfigurationInput = schema.new({
 })
 
 M.UpdateConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateConfigurationOutput"),
+    id = id.from(_N, "UpdateConfigurationResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3351,7 +3351,7 @@ M.UpdateConfigurationOutput = schema.new({
 })
 
 M.UpdateUserInput = schema.new({
-    id = id.from(_N, "UpdateUserInput"),
+    id = id.from(_N, "UpdateUserRequest"),
     type = "structure",
     members = {
         BrokerId = schema.new({
@@ -3415,8 +3415,22 @@ M.UpdateUserInput = schema.new({
 })
 
 M.UpdateUserOutput = schema.new({
-    id = id.from(_N, "UpdateUserOutput"),
+    id = id.from(_N, "UpdateUserResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

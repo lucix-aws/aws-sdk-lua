@@ -24,7 +24,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.AssociateBrowserSettingsInput = schema.new({
-    id = id.from(_N, "AssociateBrowserSettingsInput"),
+    id = id.from(_N, "AssociateBrowserSettingsRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -51,7 +51,7 @@ M.AssociateBrowserSettingsInput = schema.new({
 })
 
 M.AssociateBrowserSettingsOutput = schema.new({
-    id = id.from(_N, "AssociateBrowserSettingsOutput"),
+    id = id.from(_N, "AssociateBrowserSettingsResponse"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -250,7 +250,7 @@ M.ValidationException = schema.new({
 })
 
 M.AssociateDataProtectionSettingsInput = schema.new({
-    id = id.from(_N, "AssociateDataProtectionSettingsInput"),
+    id = id.from(_N, "AssociateDataProtectionSettingsRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -277,7 +277,7 @@ M.AssociateDataProtectionSettingsInput = schema.new({
 })
 
 M.AssociateDataProtectionSettingsOutput = schema.new({
-    id = id.from(_N, "AssociateDataProtectionSettingsOutput"),
+    id = id.from(_N, "AssociateDataProtectionSettingsResponse"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -302,7 +302,7 @@ M.AssociateDataProtectionSettingsOutput = schema.new({
 })
 
 M.AssociateIpAccessSettingsInput = schema.new({
-    id = id.from(_N, "AssociateIpAccessSettingsInput"),
+    id = id.from(_N, "AssociateIpAccessSettingsRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -329,7 +329,7 @@ M.AssociateIpAccessSettingsInput = schema.new({
 })
 
 M.AssociateIpAccessSettingsOutput = schema.new({
-    id = id.from(_N, "AssociateIpAccessSettingsOutput"),
+    id = id.from(_N, "AssociateIpAccessSettingsResponse"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -354,7 +354,7 @@ M.AssociateIpAccessSettingsOutput = schema.new({
 })
 
 M.AssociateNetworkSettingsInput = schema.new({
-    id = id.from(_N, "AssociateNetworkSettingsInput"),
+    id = id.from(_N, "AssociateNetworkSettingsRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -381,7 +381,7 @@ M.AssociateNetworkSettingsInput = schema.new({
 })
 
 M.AssociateNetworkSettingsOutput = schema.new({
-    id = id.from(_N, "AssociateNetworkSettingsOutput"),
+    id = id.from(_N, "AssociateNetworkSettingsResponse"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -406,7 +406,7 @@ M.AssociateNetworkSettingsOutput = schema.new({
 })
 
 M.AssociateSessionLoggerInput = schema.new({
-    id = id.from(_N, "AssociateSessionLoggerInput"),
+    id = id.from(_N, "AssociateSessionLoggerRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -433,7 +433,7 @@ M.AssociateSessionLoggerInput = schema.new({
 })
 
 M.AssociateSessionLoggerOutput = schema.new({
-    id = id.from(_N, "AssociateSessionLoggerOutput"),
+    id = id.from(_N, "AssociateSessionLoggerResponse"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -458,7 +458,7 @@ M.AssociateSessionLoggerOutput = schema.new({
 })
 
 M.AssociateTrustStoreInput = schema.new({
-    id = id.from(_N, "AssociateTrustStoreInput"),
+    id = id.from(_N, "AssociateTrustStoreRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -485,7 +485,7 @@ M.AssociateTrustStoreInput = schema.new({
 })
 
 M.AssociateTrustStoreOutput = schema.new({
-    id = id.from(_N, "AssociateTrustStoreOutput"),
+    id = id.from(_N, "AssociateTrustStoreResponse"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -510,7 +510,7 @@ M.AssociateTrustStoreOutput = schema.new({
 })
 
 M.AssociateUserAccessLoggingSettingsInput = schema.new({
-    id = id.from(_N, "AssociateUserAccessLoggingSettingsInput"),
+    id = id.from(_N, "AssociateUserAccessLoggingSettingsRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -537,7 +537,7 @@ M.AssociateUserAccessLoggingSettingsInput = schema.new({
 })
 
 M.AssociateUserAccessLoggingSettingsOutput = schema.new({
-    id = id.from(_N, "AssociateUserAccessLoggingSettingsOutput"),
+    id = id.from(_N, "AssociateUserAccessLoggingSettingsResponse"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -562,7 +562,7 @@ M.AssociateUserAccessLoggingSettingsOutput = schema.new({
 })
 
 M.AssociateUserSettingsInput = schema.new({
-    id = id.from(_N, "AssociateUserSettingsInput"),
+    id = id.from(_N, "AssociateUserSettingsRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -589,7 +589,7 @@ M.AssociateUserSettingsInput = schema.new({
 })
 
 M.AssociateUserSettingsOutput = schema.new({
-    id = id.from(_N, "AssociateUserSettingsOutput"),
+    id = id.from(_N, "AssociateUserSettingsResponse"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -667,7 +667,7 @@ M.WebContentFilteringPolicy = schema.new({
 })
 
 M.CreateBrowserSettingsInput = schema.new({
-    id = id.from(_N, "CreateBrowserSettingsInput"),
+    id = id.from(_N, "CreateBrowserSettingsRequest"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -717,7 +717,7 @@ M.CreateBrowserSettingsInput = schema.new({
 })
 
 M.CreateBrowserSettingsOutput = schema.new({
-    id = id.from(_N, "CreateBrowserSettingsOutput"),
+    id = id.from(_N, "CreateBrowserSettingsResponse"),
     type = "structure",
     members = {
         browserSettingsArn = schema.new({
@@ -773,7 +773,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.DeleteBrowserSettingsInput = schema.new({
-    id = id.from(_N, "DeleteBrowserSettingsInput"),
+    id = id.from(_N, "DeleteBrowserSettingsRequest"),
     type = "structure",
     members = {
         browserSettingsArn = schema.new({
@@ -790,12 +790,12 @@ M.DeleteBrowserSettingsInput = schema.new({
 })
 
 M.DeleteBrowserSettingsOutput = schema.new({
-    id = id.from(_N, "DeleteBrowserSettingsOutput"),
+    id = id.from(_N, "DeleteBrowserSettingsResponse"),
     type = "structure",
 })
 
 M.GetBrowserSettingsInput = schema.new({
-    id = id.from(_N, "GetBrowserSettingsInput"),
+    id = id.from(_N, "GetBrowserSettingsRequest"),
     type = "structure",
     members = {
         browserSettingsArn = schema.new({
@@ -862,7 +862,7 @@ M.BrowserSettings = schema.new({
 })
 
 M.GetBrowserSettingsOutput = schema.new({
-    id = id.from(_N, "GetBrowserSettingsOutput"),
+    id = id.from(_N, "GetBrowserSettingsResponse"),
     type = "structure",
     members = {
         browserSettings = schema.new({
@@ -876,7 +876,7 @@ M.GetBrowserSettingsOutput = schema.new({
 })
 
 M.ListBrowserSettingsInput = schema.new({
-    id = id.from(_N, "ListBrowserSettingsInput"),
+    id = id.from(_N, "ListBrowserSettingsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -917,7 +917,7 @@ M.BrowserSettingsSummary = schema.new({
 })
 
 M.ListBrowserSettingsOutput = schema.new({
-    id = id.from(_N, "ListBrowserSettingsOutput"),
+    id = id.from(_N, "ListBrowserSettingsResponse"),
     type = "structure",
     members = {
         browserSettings = schema.new({
@@ -937,7 +937,7 @@ M.ListBrowserSettingsOutput = schema.new({
 })
 
 M.UpdateBrowserSettingsInput = schema.new({
-    id = id.from(_N, "UpdateBrowserSettingsInput"),
+    id = id.from(_N, "UpdateBrowserSettingsRequest"),
     type = "structure",
     members = {
         browserSettingsArn = schema.new({
@@ -976,7 +976,7 @@ M.UpdateBrowserSettingsInput = schema.new({
 })
 
 M.UpdateBrowserSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateBrowserSettingsOutput"),
+    id = id.from(_N, "UpdateBrowserSettingsResponse"),
     type = "structure",
     members = {
         browserSettings = schema.new({
@@ -1139,7 +1139,7 @@ M.InlineRedactionConfiguration = schema.new({
 })
 
 M.CreateDataProtectionSettingsInput = schema.new({
-    id = id.from(_N, "CreateDataProtectionSettingsInput"),
+    id = id.from(_N, "CreateDataProtectionSettingsRequest"),
     type = "structure",
     members = {
         displayName = schema.new({
@@ -1195,7 +1195,7 @@ M.CreateDataProtectionSettingsInput = schema.new({
 })
 
 M.CreateDataProtectionSettingsOutput = schema.new({
-    id = id.from(_N, "CreateDataProtectionSettingsOutput"),
+    id = id.from(_N, "CreateDataProtectionSettingsResponse"),
     type = "structure",
     members = {
         dataProtectionSettingsArn = schema.new({
@@ -1211,7 +1211,7 @@ M.CreateDataProtectionSettingsOutput = schema.new({
 })
 
 M.DeleteDataProtectionSettingsInput = schema.new({
-    id = id.from(_N, "DeleteDataProtectionSettingsInput"),
+    id = id.from(_N, "DeleteDataProtectionSettingsRequest"),
     type = "structure",
     members = {
         dataProtectionSettingsArn = schema.new({
@@ -1228,12 +1228,12 @@ M.DeleteDataProtectionSettingsInput = schema.new({
 })
 
 M.DeleteDataProtectionSettingsOutput = schema.new({
-    id = id.from(_N, "DeleteDataProtectionSettingsOutput"),
+    id = id.from(_N, "DeleteDataProtectionSettingsResponse"),
     type = "structure",
 })
 
 M.GetDataProtectionSettingsInput = schema.new({
-    id = id.from(_N, "GetDataProtectionSettingsInput"),
+    id = id.from(_N, "GetDataProtectionSettingsRequest"),
     type = "structure",
     members = {
         dataProtectionSettingsArn = schema.new({
@@ -1312,7 +1312,7 @@ M.DataProtectionSettings = schema.new({
 })
 
 M.GetDataProtectionSettingsOutput = schema.new({
-    id = id.from(_N, "GetDataProtectionSettingsOutput"),
+    id = id.from(_N, "GetDataProtectionSettingsResponse"),
     type = "structure",
     members = {
         dataProtectionSettings = schema.new({
@@ -1326,7 +1326,7 @@ M.GetDataProtectionSettingsOutput = schema.new({
 })
 
 M.ListDataProtectionSettingsInput = schema.new({
-    id = id.from(_N, "ListDataProtectionSettingsInput"),
+    id = id.from(_N, "ListDataProtectionSettingsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1385,7 +1385,7 @@ M.DataProtectionSettingsSummary = schema.new({
 })
 
 M.ListDataProtectionSettingsOutput = schema.new({
-    id = id.from(_N, "ListDataProtectionSettingsOutput"),
+    id = id.from(_N, "ListDataProtectionSettingsResponse"),
     type = "structure",
     members = {
         dataProtectionSettings = schema.new({
@@ -1405,7 +1405,7 @@ M.ListDataProtectionSettingsOutput = schema.new({
 })
 
 M.UpdateDataProtectionSettingsInput = schema.new({
-    id = id.from(_N, "UpdateDataProtectionSettingsInput"),
+    id = id.from(_N, "UpdateDataProtectionSettingsRequest"),
     type = "structure",
     members = {
         dataProtectionSettingsArn = schema.new({
@@ -1450,7 +1450,7 @@ M.UpdateDataProtectionSettingsInput = schema.new({
 })
 
 M.UpdateDataProtectionSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateDataProtectionSettingsOutput"),
+    id = id.from(_N, "UpdateDataProtectionSettingsResponse"),
     type = "structure",
     members = {
         dataProtectionSettings = schema.new({
@@ -1467,7 +1467,7 @@ M.UpdateDataProtectionSettingsOutput = schema.new({
 })
 
 M.ExpireSessionInput = schema.new({
-    id = id.from(_N, "ExpireSessionInput"),
+    id = id.from(_N, "ExpireSessionRequest"),
     type = "structure",
     members = {
         portalId = schema.new({
@@ -1494,12 +1494,12 @@ M.ExpireSessionInput = schema.new({
 })
 
 M.ExpireSessionOutput = schema.new({
-    id = id.from(_N, "ExpireSessionOutput"),
+    id = id.from(_N, "ExpireSessionResponse"),
     type = "structure",
 })
 
 M.GetSessionInput = schema.new({
-    id = id.from(_N, "GetSessionInput"),
+    id = id.from(_N, "GetSessionRequest"),
     type = "structure",
     members = {
         portalId = schema.new({
@@ -1576,7 +1576,7 @@ M.Session = schema.new({
 })
 
 M.GetSessionOutput = schema.new({
-    id = id.from(_N, "GetSessionOutput"),
+    id = id.from(_N, "GetSessionResponse"),
     type = "structure",
     members = {
         session = schema.new({
@@ -1590,7 +1590,7 @@ M.GetSessionOutput = schema.new({
 })
 
 M.CreateIdentityProviderInput = schema.new({
-    id = id.from(_N, "CreateIdentityProviderInput"),
+    id = id.from(_N, "CreateIdentityProviderRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -1651,7 +1651,7 @@ M.CreateIdentityProviderInput = schema.new({
 })
 
 M.CreateIdentityProviderOutput = schema.new({
-    id = id.from(_N, "CreateIdentityProviderOutput"),
+    id = id.from(_N, "CreateIdentityProviderResponse"),
     type = "structure",
     members = {
         identityProviderArn = schema.new({
@@ -1667,7 +1667,7 @@ M.CreateIdentityProviderOutput = schema.new({
 })
 
 M.DeleteIdentityProviderInput = schema.new({
-    id = id.from(_N, "DeleteIdentityProviderInput"),
+    id = id.from(_N, "DeleteIdentityProviderRequest"),
     type = "structure",
     members = {
         identityProviderArn = schema.new({
@@ -1684,12 +1684,12 @@ M.DeleteIdentityProviderInput = schema.new({
 })
 
 M.DeleteIdentityProviderOutput = schema.new({
-    id = id.from(_N, "DeleteIdentityProviderOutput"),
+    id = id.from(_N, "DeleteIdentityProviderResponse"),
     type = "structure",
 })
 
 M.GetIdentityProviderInput = schema.new({
-    id = id.from(_N, "GetIdentityProviderInput"),
+    id = id.from(_N, "GetIdentityProviderRequest"),
     type = "structure",
     members = {
         identityProviderArn = schema.new({
@@ -1742,7 +1742,7 @@ M.IdentityProvider = schema.new({
 })
 
 M.GetIdentityProviderOutput = schema.new({
-    id = id.from(_N, "GetIdentityProviderOutput"),
+    id = id.from(_N, "GetIdentityProviderResponse"),
     type = "structure",
     members = {
         identityProvider = schema.new({
@@ -1756,7 +1756,7 @@ M.GetIdentityProviderOutput = schema.new({
 })
 
 M.ListIdentityProvidersInput = schema.new({
-    id = id.from(_N, "ListIdentityProvidersInput"),
+    id = id.from(_N, "ListIdentityProvidersRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1819,7 +1819,7 @@ M.IdentityProviderSummary = schema.new({
 })
 
 M.ListIdentityProvidersOutput = schema.new({
-    id = id.from(_N, "ListIdentityProvidersOutput"),
+    id = id.from(_N, "ListIdentityProvidersResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1839,7 +1839,7 @@ M.ListIdentityProvidersOutput = schema.new({
 })
 
 M.UpdateIdentityProviderInput = schema.new({
-    id = id.from(_N, "UpdateIdentityProviderInput"),
+    id = id.from(_N, "UpdateIdentityProviderRequest"),
     type = "structure",
     members = {
         identityProviderArn = schema.new({
@@ -1885,7 +1885,7 @@ M.UpdateIdentityProviderInput = schema.new({
 })
 
 M.UpdateIdentityProviderOutput = schema.new({
-    id = id.from(_N, "UpdateIdentityProviderOutput"),
+    id = id.from(_N, "UpdateIdentityProviderResponse"),
     type = "structure",
     members = {
         identityProvider = schema.new({
@@ -1924,7 +1924,7 @@ M.IpRule = schema.new({
 })
 
 M.CreateIpAccessSettingsInput = schema.new({
-    id = id.from(_N, "CreateIpAccessSettingsInput"),
+    id = id.from(_N, "CreateIpAccessSettingsRequest"),
     type = "structure",
     members = {
         displayName = schema.new({
@@ -1983,7 +1983,7 @@ M.CreateIpAccessSettingsInput = schema.new({
 })
 
 M.CreateIpAccessSettingsOutput = schema.new({
-    id = id.from(_N, "CreateIpAccessSettingsOutput"),
+    id = id.from(_N, "CreateIpAccessSettingsResponse"),
     type = "structure",
     members = {
         ipAccessSettingsArn = schema.new({
@@ -1999,7 +1999,7 @@ M.CreateIpAccessSettingsOutput = schema.new({
 })
 
 M.DeleteIpAccessSettingsInput = schema.new({
-    id = id.from(_N, "DeleteIpAccessSettingsInput"),
+    id = id.from(_N, "DeleteIpAccessSettingsRequest"),
     type = "structure",
     members = {
         ipAccessSettingsArn = schema.new({
@@ -2016,12 +2016,12 @@ M.DeleteIpAccessSettingsInput = schema.new({
 })
 
 M.DeleteIpAccessSettingsOutput = schema.new({
-    id = id.from(_N, "DeleteIpAccessSettingsOutput"),
+    id = id.from(_N, "DeleteIpAccessSettingsResponse"),
     type = "structure",
 })
 
 M.GetIpAccessSettingsInput = schema.new({
-    id = id.from(_N, "GetIpAccessSettingsInput"),
+    id = id.from(_N, "GetIpAccessSettingsRequest"),
     type = "structure",
     members = {
         ipAccessSettingsArn = schema.new({
@@ -2100,7 +2100,7 @@ M.IpAccessSettings = schema.new({
 })
 
 M.GetIpAccessSettingsOutput = schema.new({
-    id = id.from(_N, "GetIpAccessSettingsOutput"),
+    id = id.from(_N, "GetIpAccessSettingsResponse"),
     type = "structure",
     members = {
         ipAccessSettings = schema.new({
@@ -2114,7 +2114,7 @@ M.GetIpAccessSettingsOutput = schema.new({
 })
 
 M.ListIpAccessSettingsInput = schema.new({
-    id = id.from(_N, "ListIpAccessSettingsInput"),
+    id = id.from(_N, "ListIpAccessSettingsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2173,7 +2173,7 @@ M.IpAccessSettingsSummary = schema.new({
 })
 
 M.ListIpAccessSettingsOutput = schema.new({
-    id = id.from(_N, "ListIpAccessSettingsOutput"),
+    id = id.from(_N, "ListIpAccessSettingsResponse"),
     type = "structure",
     members = {
         ipAccessSettings = schema.new({
@@ -2193,7 +2193,7 @@ M.ListIpAccessSettingsOutput = schema.new({
 })
 
 M.UpdateIpAccessSettingsInput = schema.new({
-    id = id.from(_N, "UpdateIpAccessSettingsInput"),
+    id = id.from(_N, "UpdateIpAccessSettingsRequest"),
     type = "structure",
     members = {
         ipAccessSettingsArn = schema.new({
@@ -2238,7 +2238,7 @@ M.UpdateIpAccessSettingsInput = schema.new({
 })
 
 M.UpdateIpAccessSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateIpAccessSettingsOutput"),
+    id = id.from(_N, "UpdateIpAccessSettingsResponse"),
     type = "structure",
     members = {
         ipAccessSettings = schema.new({
@@ -2255,7 +2255,7 @@ M.UpdateIpAccessSettingsOutput = schema.new({
 })
 
 M.ListSessionsInput = schema.new({
-    id = id.from(_N, "ListSessionsInput"),
+    id = id.from(_N, "ListSessionsRequest"),
     type = "structure",
     members = {
         portalId = schema.new({
@@ -2369,7 +2369,7 @@ M.SessionSummary = schema.new({
 })
 
 M.ListSessionsOutput = schema.new({
-    id = id.from(_N, "ListSessionsOutput"),
+    id = id.from(_N, "ListSessionsResponse"),
     type = "structure",
     members = {
         sessions = schema.new({
@@ -2392,7 +2392,7 @@ M.ListSessionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2409,7 +2409,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2423,7 +2423,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.CreateNetworkSettingsInput = schema.new({
-    id = id.from(_N, "CreateNetworkSettingsInput"),
+    id = id.from(_N, "CreateNetworkSettingsRequest"),
     type = "structure",
     members = {
         vpcId = schema.new({
@@ -2475,7 +2475,7 @@ M.CreateNetworkSettingsInput = schema.new({
 })
 
 M.CreateNetworkSettingsOutput = schema.new({
-    id = id.from(_N, "CreateNetworkSettingsOutput"),
+    id = id.from(_N, "CreateNetworkSettingsResponse"),
     type = "structure",
     members = {
         networkSettingsArn = schema.new({
@@ -2491,7 +2491,7 @@ M.CreateNetworkSettingsOutput = schema.new({
 })
 
 M.DeleteNetworkSettingsInput = schema.new({
-    id = id.from(_N, "DeleteNetworkSettingsInput"),
+    id = id.from(_N, "DeleteNetworkSettingsRequest"),
     type = "structure",
     members = {
         networkSettingsArn = schema.new({
@@ -2508,12 +2508,12 @@ M.DeleteNetworkSettingsInput = schema.new({
 })
 
 M.DeleteNetworkSettingsOutput = schema.new({
-    id = id.from(_N, "DeleteNetworkSettingsOutput"),
+    id = id.from(_N, "DeleteNetworkSettingsResponse"),
     type = "structure",
 })
 
 M.GetNetworkSettingsInput = schema.new({
-    id = id.from(_N, "GetNetworkSettingsInput"),
+    id = id.from(_N, "GetNetworkSettingsRequest"),
     type = "structure",
     members = {
         networkSettingsArn = schema.new({
@@ -2573,7 +2573,7 @@ M.NetworkSettings = schema.new({
 })
 
 M.GetNetworkSettingsOutput = schema.new({
-    id = id.from(_N, "GetNetworkSettingsOutput"),
+    id = id.from(_N, "GetNetworkSettingsResponse"),
     type = "structure",
     members = {
         networkSettings = schema.new({
@@ -2587,7 +2587,7 @@ M.GetNetworkSettingsOutput = schema.new({
 })
 
 M.ListNetworkSettingsInput = schema.new({
-    id = id.from(_N, "ListNetworkSettingsInput"),
+    id = id.from(_N, "ListNetworkSettingsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2634,7 +2634,7 @@ M.NetworkSettingsSummary = schema.new({
 })
 
 M.ListNetworkSettingsOutput = schema.new({
-    id = id.from(_N, "ListNetworkSettingsOutput"),
+    id = id.from(_N, "ListNetworkSettingsResponse"),
     type = "structure",
     members = {
         networkSettings = schema.new({
@@ -2654,7 +2654,7 @@ M.ListNetworkSettingsOutput = schema.new({
 })
 
 M.UpdateNetworkSettingsInput = schema.new({
-    id = id.from(_N, "UpdateNetworkSettingsInput"),
+    id = id.from(_N, "UpdateNetworkSettingsRequest"),
     type = "structure",
     members = {
         networkSettingsArn = schema.new({
@@ -2700,7 +2700,7 @@ M.UpdateNetworkSettingsInput = schema.new({
 })
 
 M.UpdateNetworkSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateNetworkSettingsOutput"),
+    id = id.from(_N, "UpdateNetworkSettingsResponse"),
     type = "structure",
     members = {
         networkSettings = schema.new({
@@ -2717,7 +2717,7 @@ M.UpdateNetworkSettingsOutput = schema.new({
 })
 
 M.CreatePortalInput = schema.new({
-    id = id.from(_N, "CreatePortalInput"),
+    id = id.from(_N, "CreatePortalRequest"),
     type = "structure",
     members = {
         displayName = schema.new({
@@ -2784,7 +2784,7 @@ M.CreatePortalInput = schema.new({
 })
 
 M.CreatePortalOutput = schema.new({
-    id = id.from(_N, "CreatePortalOutput"),
+    id = id.from(_N, "CreatePortalResponse"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -2809,7 +2809,7 @@ M.CreatePortalOutput = schema.new({
 })
 
 M.DeletePortalInput = schema.new({
-    id = id.from(_N, "DeletePortalInput"),
+    id = id.from(_N, "DeletePortalRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -2826,12 +2826,12 @@ M.DeletePortalInput = schema.new({
 })
 
 M.DeletePortalOutput = schema.new({
-    id = id.from(_N, "DeletePortalOutput"),
+    id = id.from(_N, "DeletePortalResponse"),
     type = "structure",
 })
 
 M.DisassociateBrowserSettingsInput = schema.new({
-    id = id.from(_N, "DisassociateBrowserSettingsInput"),
+    id = id.from(_N, "DisassociateBrowserSettingsRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -2848,12 +2848,12 @@ M.DisassociateBrowserSettingsInput = schema.new({
 })
 
 M.DisassociateBrowserSettingsOutput = schema.new({
-    id = id.from(_N, "DisassociateBrowserSettingsOutput"),
+    id = id.from(_N, "DisassociateBrowserSettingsResponse"),
     type = "structure",
 })
 
 M.DisassociateDataProtectionSettingsInput = schema.new({
-    id = id.from(_N, "DisassociateDataProtectionSettingsInput"),
+    id = id.from(_N, "DisassociateDataProtectionSettingsRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -2870,12 +2870,12 @@ M.DisassociateDataProtectionSettingsInput = schema.new({
 })
 
 M.DisassociateDataProtectionSettingsOutput = schema.new({
-    id = id.from(_N, "DisassociateDataProtectionSettingsOutput"),
+    id = id.from(_N, "DisassociateDataProtectionSettingsResponse"),
     type = "structure",
 })
 
 M.DisassociateIpAccessSettingsInput = schema.new({
-    id = id.from(_N, "DisassociateIpAccessSettingsInput"),
+    id = id.from(_N, "DisassociateIpAccessSettingsRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -2892,12 +2892,12 @@ M.DisassociateIpAccessSettingsInput = schema.new({
 })
 
 M.DisassociateIpAccessSettingsOutput = schema.new({
-    id = id.from(_N, "DisassociateIpAccessSettingsOutput"),
+    id = id.from(_N, "DisassociateIpAccessSettingsResponse"),
     type = "structure",
 })
 
 M.DisassociateNetworkSettingsInput = schema.new({
-    id = id.from(_N, "DisassociateNetworkSettingsInput"),
+    id = id.from(_N, "DisassociateNetworkSettingsRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -2914,12 +2914,12 @@ M.DisassociateNetworkSettingsInput = schema.new({
 })
 
 M.DisassociateNetworkSettingsOutput = schema.new({
-    id = id.from(_N, "DisassociateNetworkSettingsOutput"),
+    id = id.from(_N, "DisassociateNetworkSettingsResponse"),
     type = "structure",
 })
 
 M.DisassociateSessionLoggerInput = schema.new({
-    id = id.from(_N, "DisassociateSessionLoggerInput"),
+    id = id.from(_N, "DisassociateSessionLoggerRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -2936,12 +2936,12 @@ M.DisassociateSessionLoggerInput = schema.new({
 })
 
 M.DisassociateSessionLoggerOutput = schema.new({
-    id = id.from(_N, "DisassociateSessionLoggerOutput"),
+    id = id.from(_N, "DisassociateSessionLoggerResponse"),
     type = "structure",
 })
 
 M.DisassociateTrustStoreInput = schema.new({
-    id = id.from(_N, "DisassociateTrustStoreInput"),
+    id = id.from(_N, "DisassociateTrustStoreRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -2958,12 +2958,12 @@ M.DisassociateTrustStoreInput = schema.new({
 })
 
 M.DisassociateTrustStoreOutput = schema.new({
-    id = id.from(_N, "DisassociateTrustStoreOutput"),
+    id = id.from(_N, "DisassociateTrustStoreResponse"),
     type = "structure",
 })
 
 M.DisassociateUserAccessLoggingSettingsInput = schema.new({
-    id = id.from(_N, "DisassociateUserAccessLoggingSettingsInput"),
+    id = id.from(_N, "DisassociateUserAccessLoggingSettingsRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -2980,12 +2980,12 @@ M.DisassociateUserAccessLoggingSettingsInput = schema.new({
 })
 
 M.DisassociateUserAccessLoggingSettingsOutput = schema.new({
-    id = id.from(_N, "DisassociateUserAccessLoggingSettingsOutput"),
+    id = id.from(_N, "DisassociateUserAccessLoggingSettingsResponse"),
     type = "structure",
 })
 
 M.DisassociateUserSettingsInput = schema.new({
-    id = id.from(_N, "DisassociateUserSettingsInput"),
+    id = id.from(_N, "DisassociateUserSettingsRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -3002,12 +3002,12 @@ M.DisassociateUserSettingsInput = schema.new({
 })
 
 M.DisassociateUserSettingsOutput = schema.new({
-    id = id.from(_N, "DisassociateUserSettingsOutput"),
+    id = id.from(_N, "DisassociateUserSettingsResponse"),
     type = "structure",
 })
 
 M.GetPortalInput = schema.new({
-    id = id.from(_N, "GetPortalInput"),
+    id = id.from(_N, "GetPortalRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -3168,7 +3168,7 @@ M.Portal = schema.new({
 })
 
 M.GetPortalOutput = schema.new({
-    id = id.from(_N, "GetPortalOutput"),
+    id = id.from(_N, "GetPortalResponse"),
     type = "structure",
     members = {
         portal = schema.new({
@@ -3182,7 +3182,7 @@ M.GetPortalOutput = schema.new({
 })
 
 M.GetPortalServiceProviderMetadataInput = schema.new({
-    id = id.from(_N, "GetPortalServiceProviderMetadataInput"),
+    id = id.from(_N, "GetPortalServiceProviderMetadataRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -3199,7 +3199,7 @@ M.GetPortalServiceProviderMetadataInput = schema.new({
 })
 
 M.GetPortalServiceProviderMetadataOutput = schema.new({
-    id = id.from(_N, "GetPortalServiceProviderMetadataOutput"),
+    id = id.from(_N, "GetPortalServiceProviderMetadataResponse"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -3221,7 +3221,7 @@ M.GetPortalServiceProviderMetadataOutput = schema.new({
 })
 
 M.ListPortalsInput = schema.new({
-    id = id.from(_N, "ListPortalsInput"),
+    id = id.from(_N, "ListPortalsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3370,7 +3370,7 @@ M.PortalSummary = schema.new({
 })
 
 M.ListPortalsOutput = schema.new({
-    id = id.from(_N, "ListPortalsOutput"),
+    id = id.from(_N, "ListPortalsResponse"),
     type = "structure",
     members = {
         portals = schema.new({
@@ -3390,7 +3390,7 @@ M.ListPortalsOutput = schema.new({
 })
 
 M.UpdatePortalInput = schema.new({
-    id = id.from(_N, "UpdatePortalInput"),
+    id = id.from(_N, "UpdatePortalRequest"),
     type = "structure",
     members = {
         portalArn = schema.new({
@@ -3437,7 +3437,7 @@ M.UpdatePortalInput = schema.new({
 })
 
 M.UpdatePortalOutput = schema.new({
-    id = id.from(_N, "UpdatePortalOutput"),
+    id = id.from(_N, "UpdatePortalResponse"),
     type = "structure",
     members = {
         portal = schema.new({
@@ -3537,7 +3537,7 @@ M.LogConfiguration = schema.new({
 })
 
 M.CreateSessionLoggerInput = schema.new({
-    id = id.from(_N, "CreateSessionLoggerInput"),
+    id = id.from(_N, "CreateSessionLoggerRequest"),
     type = "structure",
     members = {
         eventFilter = schema.new({
@@ -3600,7 +3600,7 @@ M.CreateSessionLoggerInput = schema.new({
 })
 
 M.CreateSessionLoggerOutput = schema.new({
-    id = id.from(_N, "CreateSessionLoggerOutput"),
+    id = id.from(_N, "CreateSessionLoggerResponse"),
     type = "structure",
     members = {
         sessionLoggerArn = schema.new({
@@ -3616,7 +3616,7 @@ M.CreateSessionLoggerOutput = schema.new({
 })
 
 M.DeleteSessionLoggerInput = schema.new({
-    id = id.from(_N, "DeleteSessionLoggerInput"),
+    id = id.from(_N, "DeleteSessionLoggerRequest"),
     type = "structure",
     members = {
         sessionLoggerArn = schema.new({
@@ -3633,12 +3633,12 @@ M.DeleteSessionLoggerInput = schema.new({
 })
 
 M.DeleteSessionLoggerOutput = schema.new({
-    id = id.from(_N, "DeleteSessionLoggerOutput"),
+    id = id.from(_N, "DeleteSessionLoggerResponse"),
     type = "structure",
 })
 
 M.GetSessionLoggerInput = schema.new({
-    id = id.from(_N, "GetSessionLoggerInput"),
+    id = id.from(_N, "GetSessionLoggerRequest"),
     type = "structure",
     members = {
         sessionLoggerArn = schema.new({
@@ -3718,7 +3718,7 @@ M.SessionLogger = schema.new({
 })
 
 M.GetSessionLoggerOutput = schema.new({
-    id = id.from(_N, "GetSessionLoggerOutput"),
+    id = id.from(_N, "GetSessionLoggerResponse"),
     type = "structure",
     members = {
         sessionLogger = schema.new({
@@ -3732,7 +3732,7 @@ M.GetSessionLoggerOutput = schema.new({
 })
 
 M.ListSessionLoggersInput = schema.new({
-    id = id.from(_N, "ListSessionLoggersInput"),
+    id = id.from(_N, "ListSessionLoggersRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3792,7 +3792,7 @@ M.SessionLoggerSummary = schema.new({
 })
 
 M.ListSessionLoggersOutput = schema.new({
-    id = id.from(_N, "ListSessionLoggersOutput"),
+    id = id.from(_N, "ListSessionLoggersResponse"),
     type = "structure",
     members = {
         sessionLoggers = schema.new({
@@ -3812,7 +3812,7 @@ M.ListSessionLoggersOutput = schema.new({
 })
 
 M.UpdateSessionLoggerInput = schema.new({
-    id = id.from(_N, "UpdateSessionLoggerInput"),
+    id = id.from(_N, "UpdateSessionLoggerRequest"),
     type = "structure",
     members = {
         sessionLoggerArn = schema.new({
@@ -3849,7 +3849,7 @@ M.UpdateSessionLoggerInput = schema.new({
 })
 
 M.UpdateSessionLoggerOutput = schema.new({
-    id = id.from(_N, "UpdateSessionLoggerOutput"),
+    id = id.from(_N, "UpdateSessionLoggerResponse"),
     type = "structure",
     members = {
         sessionLogger = schema.new({
@@ -3866,7 +3866,7 @@ M.UpdateSessionLoggerOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3902,7 +3902,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -3966,7 +3966,7 @@ M.CertificateSummary = schema.new({
 })
 
 M.CreateTrustStoreInput = schema.new({
-    id = id.from(_N, "CreateTrustStoreInput"),
+    id = id.from(_N, "CreateTrustStoreRequest"),
     type = "structure",
     members = {
         certificateList = schema.new({
@@ -3999,7 +3999,7 @@ M.CreateTrustStoreInput = schema.new({
 })
 
 M.CreateTrustStoreOutput = schema.new({
-    id = id.from(_N, "CreateTrustStoreOutput"),
+    id = id.from(_N, "CreateTrustStoreResponse"),
     type = "structure",
     members = {
         trustStoreArn = schema.new({
@@ -4015,7 +4015,7 @@ M.CreateTrustStoreOutput = schema.new({
 })
 
 M.DeleteTrustStoreInput = schema.new({
-    id = id.from(_N, "DeleteTrustStoreInput"),
+    id = id.from(_N, "DeleteTrustStoreRequest"),
     type = "structure",
     members = {
         trustStoreArn = schema.new({
@@ -4032,12 +4032,12 @@ M.DeleteTrustStoreInput = schema.new({
 })
 
 M.DeleteTrustStoreOutput = schema.new({
-    id = id.from(_N, "DeleteTrustStoreOutput"),
+    id = id.from(_N, "DeleteTrustStoreResponse"),
     type = "structure",
 })
 
 M.GetTrustStoreInput = schema.new({
-    id = id.from(_N, "GetTrustStoreInput"),
+    id = id.from(_N, "GetTrustStoreRequest"),
     type = "structure",
     members = {
         trustStoreArn = schema.new({
@@ -4077,7 +4077,7 @@ M.TrustStore = schema.new({
 })
 
 M.GetTrustStoreOutput = schema.new({
-    id = id.from(_N, "GetTrustStoreOutput"),
+    id = id.from(_N, "GetTrustStoreResponse"),
     type = "structure",
     members = {
         trustStore = schema.new({
@@ -4091,7 +4091,7 @@ M.GetTrustStoreOutput = schema.new({
 })
 
 M.GetTrustStoreCertificateInput = schema.new({
-    id = id.from(_N, "GetTrustStoreCertificateInput"),
+    id = id.from(_N, "GetTrustStoreCertificateRequest"),
     type = "structure",
     members = {
         trustStoreArn = schema.new({
@@ -4161,7 +4161,7 @@ M.Certificate = schema.new({
 })
 
 M.GetTrustStoreCertificateOutput = schema.new({
-    id = id.from(_N, "GetTrustStoreCertificateOutput"),
+    id = id.from(_N, "GetTrustStoreCertificateResponse"),
     type = "structure",
     members = {
         trustStoreArn = schema.new({
@@ -4184,7 +4184,7 @@ M.GetTrustStoreCertificateOutput = schema.new({
 })
 
 M.ListTrustStoreCertificatesInput = schema.new({
-    id = id.from(_N, "ListTrustStoreCertificatesInput"),
+    id = id.from(_N, "ListTrustStoreCertificatesRequest"),
     type = "structure",
     members = {
         trustStoreArn = schema.new({
@@ -4219,7 +4219,7 @@ M.ListTrustStoreCertificatesInput = schema.new({
 })
 
 M.ListTrustStoreCertificatesOutput = schema.new({
-    id = id.from(_N, "ListTrustStoreCertificatesOutput"),
+    id = id.from(_N, "ListTrustStoreCertificatesResponse"),
     type = "structure",
     members = {
         certificateList = schema.new({
@@ -4248,7 +4248,7 @@ M.ListTrustStoreCertificatesOutput = schema.new({
 })
 
 M.ListTrustStoresInput = schema.new({
-    id = id.from(_N, "ListTrustStoresInput"),
+    id = id.from(_N, "ListTrustStoresRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4286,7 +4286,7 @@ M.TrustStoreSummary = schema.new({
 })
 
 M.ListTrustStoresOutput = schema.new({
-    id = id.from(_N, "ListTrustStoresOutput"),
+    id = id.from(_N, "ListTrustStoresResponse"),
     type = "structure",
     members = {
         trustStores = schema.new({
@@ -4306,7 +4306,7 @@ M.ListTrustStoresOutput = schema.new({
 })
 
 M.UpdateTrustStoreInput = schema.new({
-    id = id.from(_N, "UpdateTrustStoreInput"),
+    id = id.from(_N, "UpdateTrustStoreRequest"),
     type = "structure",
     members = {
         trustStoreArn = schema.new({
@@ -4346,7 +4346,7 @@ M.UpdateTrustStoreInput = schema.new({
 })
 
 M.UpdateTrustStoreOutput = schema.new({
-    id = id.from(_N, "UpdateTrustStoreOutput"),
+    id = id.from(_N, "UpdateTrustStoreResponse"),
     type = "structure",
     members = {
         trustStoreArn = schema.new({
@@ -4362,7 +4362,7 @@ M.UpdateTrustStoreOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4390,12 +4390,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.CreateUserAccessLoggingSettingsInput = schema.new({
-    id = id.from(_N, "CreateUserAccessLoggingSettingsInput"),
+    id = id.from(_N, "CreateUserAccessLoggingSettingsRequest"),
     type = "structure",
     members = {
         kinesisStreamArn = schema.new({
@@ -4427,7 +4427,7 @@ M.CreateUserAccessLoggingSettingsInput = schema.new({
 })
 
 M.CreateUserAccessLoggingSettingsOutput = schema.new({
-    id = id.from(_N, "CreateUserAccessLoggingSettingsOutput"),
+    id = id.from(_N, "CreateUserAccessLoggingSettingsResponse"),
     type = "structure",
     members = {
         userAccessLoggingSettingsArn = schema.new({
@@ -4443,7 +4443,7 @@ M.CreateUserAccessLoggingSettingsOutput = schema.new({
 })
 
 M.DeleteUserAccessLoggingSettingsInput = schema.new({
-    id = id.from(_N, "DeleteUserAccessLoggingSettingsInput"),
+    id = id.from(_N, "DeleteUserAccessLoggingSettingsRequest"),
     type = "structure",
     members = {
         userAccessLoggingSettingsArn = schema.new({
@@ -4460,12 +4460,12 @@ M.DeleteUserAccessLoggingSettingsInput = schema.new({
 })
 
 M.DeleteUserAccessLoggingSettingsOutput = schema.new({
-    id = id.from(_N, "DeleteUserAccessLoggingSettingsOutput"),
+    id = id.from(_N, "DeleteUserAccessLoggingSettingsResponse"),
     type = "structure",
 })
 
 M.GetUserAccessLoggingSettingsInput = schema.new({
-    id = id.from(_N, "GetUserAccessLoggingSettingsInput"),
+    id = id.from(_N, "GetUserAccessLoggingSettingsRequest"),
     type = "structure",
     members = {
         userAccessLoggingSettingsArn = schema.new({
@@ -4511,7 +4511,7 @@ M.UserAccessLoggingSettings = schema.new({
 })
 
 M.GetUserAccessLoggingSettingsOutput = schema.new({
-    id = id.from(_N, "GetUserAccessLoggingSettingsOutput"),
+    id = id.from(_N, "GetUserAccessLoggingSettingsResponse"),
     type = "structure",
     members = {
         userAccessLoggingSettings = schema.new({
@@ -4525,7 +4525,7 @@ M.GetUserAccessLoggingSettingsOutput = schema.new({
 })
 
 M.ListUserAccessLoggingSettingsInput = schema.new({
-    id = id.from(_N, "ListUserAccessLoggingSettingsInput"),
+    id = id.from(_N, "ListUserAccessLoggingSettingsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4572,7 +4572,7 @@ M.UserAccessLoggingSettingsSummary = schema.new({
 })
 
 M.ListUserAccessLoggingSettingsOutput = schema.new({
-    id = id.from(_N, "ListUserAccessLoggingSettingsOutput"),
+    id = id.from(_N, "ListUserAccessLoggingSettingsResponse"),
     type = "structure",
     members = {
         userAccessLoggingSettings = schema.new({
@@ -4592,7 +4592,7 @@ M.ListUserAccessLoggingSettingsOutput = schema.new({
 })
 
 M.UpdateUserAccessLoggingSettingsInput = schema.new({
-    id = id.from(_N, "UpdateUserAccessLoggingSettingsInput"),
+    id = id.from(_N, "UpdateUserAccessLoggingSettingsRequest"),
     type = "structure",
     members = {
         userAccessLoggingSettingsArn = schema.new({
@@ -4624,7 +4624,7 @@ M.UpdateUserAccessLoggingSettingsInput = schema.new({
 })
 
 M.UpdateUserAccessLoggingSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateUserAccessLoggingSettingsOutput"),
+    id = id.from(_N, "UpdateUserAccessLoggingSettingsResponse"),
     type = "structure",
     members = {
         userAccessLoggingSettings = schema.new({
@@ -4990,7 +4990,7 @@ M.ToolbarConfiguration = schema.new({
 })
 
 M.CreateUserSettingsInput = schema.new({
-    id = id.from(_N, "CreateUserSettingsInput"),
+    id = id.from(_N, "CreateUserSettingsRequest"),
     type = "structure",
     members = {
         copyAllowed = schema.new({
@@ -5123,7 +5123,7 @@ M.CreateUserSettingsInput = schema.new({
 })
 
 M.CreateUserSettingsOutput = schema.new({
-    id = id.from(_N, "CreateUserSettingsOutput"),
+    id = id.from(_N, "CreateUserSettingsResponse"),
     type = "structure",
     members = {
         userSettingsArn = schema.new({
@@ -5139,7 +5139,7 @@ M.CreateUserSettingsOutput = schema.new({
 })
 
 M.DeleteUserSettingsInput = schema.new({
-    id = id.from(_N, "DeleteUserSettingsInput"),
+    id = id.from(_N, "DeleteUserSettingsRequest"),
     type = "structure",
     members = {
         userSettingsArn = schema.new({
@@ -5156,12 +5156,12 @@ M.DeleteUserSettingsInput = schema.new({
 })
 
 M.DeleteUserSettingsOutput = schema.new({
-    id = id.from(_N, "DeleteUserSettingsOutput"),
+    id = id.from(_N, "DeleteUserSettingsResponse"),
     type = "structure",
 })
 
 M.GetUserSettingsInput = schema.new({
-    id = id.from(_N, "GetUserSettingsInput"),
+    id = id.from(_N, "GetUserSettingsRequest"),
     type = "structure",
     members = {
         userSettingsArn = schema.new({
@@ -5296,7 +5296,7 @@ M.UserSettings = schema.new({
 })
 
 M.GetUserSettingsOutput = schema.new({
-    id = id.from(_N, "GetUserSettingsOutput"),
+    id = id.from(_N, "GetUserSettingsResponse"),
     type = "structure",
     members = {
         userSettings = schema.new({
@@ -5310,7 +5310,7 @@ M.GetUserSettingsOutput = schema.new({
 })
 
 M.ListUserSettingsInput = schema.new({
-    id = id.from(_N, "ListUserSettingsInput"),
+    id = id.from(_N, "ListUserSettingsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5432,7 +5432,7 @@ M.UserSettingsSummary = schema.new({
 })
 
 M.ListUserSettingsOutput = schema.new({
-    id = id.from(_N, "ListUserSettingsOutput"),
+    id = id.from(_N, "ListUserSettingsResponse"),
     type = "structure",
     members = {
         userSettings = schema.new({
@@ -5503,7 +5503,7 @@ M.BrandingConfigurationUpdateInput = schema.new({
 })
 
 M.UpdateUserSettingsInput = schema.new({
-    id = id.from(_N, "UpdateUserSettingsInput"),
+    id = id.from(_N, "UpdateUserSettingsRequest"),
     type = "structure",
     members = {
         userSettingsArn = schema.new({
@@ -5610,7 +5610,7 @@ M.UpdateUserSettingsInput = schema.new({
 })
 
 M.UpdateUserSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateUserSettingsOutput"),
+    id = id.from(_N, "UpdateUserSettingsResponse"),
     type = "structure",
     members = {
         userSettings = schema.new({
@@ -5625,5 +5625,19 @@ M.UpdateUserSettingsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

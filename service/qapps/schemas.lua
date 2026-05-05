@@ -592,7 +592,7 @@ M.AssociateLibraryItemReviewInput = schema.new({
 })
 
 M.AssociateLibraryItemReviewOutput = schema.new({
-    id = id.from(_N, "AssociateLibraryItemReviewOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -864,7 +864,7 @@ M.AssociateQAppWithUserInput = schema.new({
 })
 
 M.AssociateQAppWithUserOutput = schema.new({
-    id = id.from(_N, "AssociateQAppWithUserOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -924,7 +924,7 @@ M.BatchCreateCategoryInput = schema.new({
 })
 
 M.BatchCreateCategoryOutput = schema.new({
-    id = id.from(_N, "BatchCreateCategoryOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -956,7 +956,7 @@ M.BatchDeleteCategoryInput = schema.new({
 })
 
 M.BatchDeleteCategoryOutput = schema.new({
-    id = id.from(_N, "BatchDeleteCategoryOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1019,7 +1019,7 @@ M.BatchUpdateCategoryInput = schema.new({
 })
 
 M.BatchUpdateCategoryOutput = schema.new({
-    id = id.from(_N, "BatchUpdateCategoryOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1620,7 +1620,7 @@ M.DeleteLibraryItemInput = schema.new({
 })
 
 M.DeleteLibraryItemOutput = schema.new({
-    id = id.from(_N, "DeleteLibraryItemOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1651,7 +1651,7 @@ M.DeleteQAppInput = schema.new({
 })
 
 M.DeleteQAppOutput = schema.new({
-    id = id.from(_N, "DeleteQAppOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1786,7 +1786,7 @@ M.DisassociateLibraryItemReviewInput = schema.new({
 })
 
 M.DisassociateLibraryItemReviewOutput = schema.new({
-    id = id.from(_N, "DisassociateLibraryItemReviewOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1817,7 +1817,7 @@ M.DisassociateQAppFromUserInput = schema.new({
 })
 
 M.DisassociateQAppFromUserOutput = schema.new({
-    id = id.from(_N, "DisassociateQAppFromUserOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2823,7 +2823,7 @@ M.ListQAppSessionDataOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceARN = schema.new({
@@ -2840,7 +2840,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -3031,12 +3031,12 @@ M.StopQAppSessionInput = schema.new({
 })
 
 M.StopQAppSessionOutput = schema.new({
-    id = id.from(_N, "StopQAppSessionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceARN = schema.new({
@@ -3064,12 +3064,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceARN = schema.new({
@@ -3097,7 +3097,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -3290,7 +3290,7 @@ M.UpdateLibraryItemMetadataInput = schema.new({
 })
 
 M.UpdateLibraryItemMetadataOutput = schema.new({
-    id = id.from(_N, "UpdateLibraryItemMetadataOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4245,5 +4245,19 @@ M.PredictQAppOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -33,7 +33,7 @@ M.AppInstanceUserMembershipSummary = schema.new({
 })
 
 M.AssociateChannelFlowInput = schema.new({
-    id = id.from(_N, "AssociateChannelFlowInput"),
+    id = id.from(_N, "AssociateChannelFlowRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -69,7 +69,7 @@ M.AssociateChannelFlowInput = schema.new({
 })
 
 M.AssociateChannelFlowOutput = schema.new({
-    id = id.from(_N, "AssociateChannelFlowOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -308,7 +308,7 @@ M.BatchChannelMemberships = schema.new({
 })
 
 M.BatchCreateChannelMembershipInput = schema.new({
-    id = id.from(_N, "BatchCreateChannelMembershipInput"),
+    id = id.from(_N, "BatchCreateChannelMembershipRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -382,7 +382,7 @@ M.BatchCreateChannelMembershipError = schema.new({
 })
 
 M.BatchCreateChannelMembershipOutput = schema.new({
-    id = id.from(_N, "BatchCreateChannelMembershipOutput"),
+    id = id.from(_N, "BatchCreateChannelMembershipResponse"),
     type = "structure",
     members = {
         BatchChannelMemberships = schema.new({
@@ -868,7 +868,7 @@ M.ChannelMessageCallback = schema.new({
 })
 
 M.ChannelFlowCallbackInput = schema.new({
-    id = id.from(_N, "ChannelFlowCallbackInput"),
+    id = id.from(_N, "ChannelFlowCallbackRequest"),
     type = "structure",
     members = {
         CallbackId = schema.new({
@@ -914,7 +914,7 @@ M.ChannelFlowCallbackInput = schema.new({
 })
 
 M.ChannelFlowCallbackOutput = schema.new({
-    id = id.from(_N, "ChannelFlowCallbackOutput"),
+    id = id.from(_N, "ChannelFlowCallbackResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -1446,7 +1446,7 @@ M.Tag = schema.new({
 })
 
 M.CreateChannelInput = schema.new({
-    id = id.from(_N, "CreateChannelInput"),
+    id = id.from(_N, "CreateChannelRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -1550,7 +1550,7 @@ M.CreateChannelInput = schema.new({
 })
 
 M.CreateChannelOutput = schema.new({
-    id = id.from(_N, "CreateChannelOutput"),
+    id = id.from(_N, "CreateChannelResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -1563,7 +1563,7 @@ M.CreateChannelOutput = schema.new({
 })
 
 M.CreateChannelBanInput = schema.new({
-    id = id.from(_N, "CreateChannelBanInput"),
+    id = id.from(_N, "CreateChannelBanRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -1599,7 +1599,7 @@ M.CreateChannelBanInput = schema.new({
 })
 
 M.CreateChannelBanOutput = schema.new({
-    id = id.from(_N, "CreateChannelBanOutput"),
+    id = id.from(_N, "CreateChannelBanResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -1619,7 +1619,7 @@ M.CreateChannelBanOutput = schema.new({
 })
 
 M.CreateChannelFlowInput = schema.new({
-    id = id.from(_N, "CreateChannelFlowInput"),
+    id = id.from(_N, "CreateChannelFlowRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -1671,7 +1671,7 @@ M.CreateChannelFlowInput = schema.new({
 })
 
 M.CreateChannelFlowOutput = schema.new({
-    id = id.from(_N, "CreateChannelFlowOutput"),
+    id = id.from(_N, "CreateChannelFlowResponse"),
     type = "structure",
     members = {
         ChannelFlowArn = schema.new({
@@ -1684,7 +1684,7 @@ M.CreateChannelFlowOutput = schema.new({
 })
 
 M.CreateChannelMembershipInput = schema.new({
-    id = id.from(_N, "CreateChannelMembershipInput"),
+    id = id.from(_N, "CreateChannelMembershipRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -1735,7 +1735,7 @@ M.CreateChannelMembershipInput = schema.new({
 })
 
 M.CreateChannelMembershipOutput = schema.new({
-    id = id.from(_N, "CreateChannelMembershipOutput"),
+    id = id.from(_N, "CreateChannelMembershipResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -1761,7 +1761,7 @@ M.CreateChannelMembershipOutput = schema.new({
 })
 
 M.CreateChannelModeratorInput = schema.new({
-    id = id.from(_N, "CreateChannelModeratorInput"),
+    id = id.from(_N, "CreateChannelModeratorRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -1797,7 +1797,7 @@ M.CreateChannelModeratorInput = schema.new({
 })
 
 M.CreateChannelModeratorOutput = schema.new({
-    id = id.from(_N, "CreateChannelModeratorOutput"),
+    id = id.from(_N, "CreateChannelModeratorResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -1817,7 +1817,7 @@ M.CreateChannelModeratorOutput = schema.new({
 })
 
 M.DeleteChannelInput = schema.new({
-    id = id.from(_N, "DeleteChannelInput"),
+    id = id.from(_N, "DeleteChannelRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -1844,12 +1844,12 @@ M.DeleteChannelInput = schema.new({
 })
 
 M.DeleteChannelOutput = schema.new({
-    id = id.from(_N, "DeleteChannelOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteChannelBanInput = schema.new({
-    id = id.from(_N, "DeleteChannelBanInput"),
+    id = id.from(_N, "DeleteChannelBanRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -1886,12 +1886,12 @@ M.DeleteChannelBanInput = schema.new({
 })
 
 M.DeleteChannelBanOutput = schema.new({
-    id = id.from(_N, "DeleteChannelBanOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteChannelFlowInput = schema.new({
-    id = id.from(_N, "DeleteChannelFlowInput"),
+    id = id.from(_N, "DeleteChannelFlowRequest"),
     type = "structure",
     members = {
         ChannelFlowArn = schema.new({
@@ -1908,12 +1908,12 @@ M.DeleteChannelFlowInput = schema.new({
 })
 
 M.DeleteChannelFlowOutput = schema.new({
-    id = id.from(_N, "DeleteChannelFlowOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteChannelMembershipInput = schema.new({
-    id = id.from(_N, "DeleteChannelMembershipInput"),
+    id = id.from(_N, "DeleteChannelMembershipRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -1959,12 +1959,12 @@ M.DeleteChannelMembershipInput = schema.new({
 })
 
 M.DeleteChannelMembershipOutput = schema.new({
-    id = id.from(_N, "DeleteChannelMembershipOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteChannelMessageInput = schema.new({
-    id = id.from(_N, "DeleteChannelMessageInput"),
+    id = id.from(_N, "DeleteChannelMessageRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2010,12 +2010,12 @@ M.DeleteChannelMessageInput = schema.new({
 })
 
 M.DeleteChannelMessageOutput = schema.new({
-    id = id.from(_N, "DeleteChannelMessageOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteChannelModeratorInput = schema.new({
-    id = id.from(_N, "DeleteChannelModeratorInput"),
+    id = id.from(_N, "DeleteChannelModeratorRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2052,12 +2052,12 @@ M.DeleteChannelModeratorInput = schema.new({
 })
 
 M.DeleteChannelModeratorOutput = schema.new({
-    id = id.from(_N, "DeleteChannelModeratorOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMessagingStreamingConfigurationsInput = schema.new({
-    id = id.from(_N, "DeleteMessagingStreamingConfigurationsInput"),
+    id = id.from(_N, "DeleteMessagingStreamingConfigurationsRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -2074,12 +2074,12 @@ M.DeleteMessagingStreamingConfigurationsInput = schema.new({
 })
 
 M.DeleteMessagingStreamingConfigurationsOutput = schema.new({
-    id = id.from(_N, "DeleteMessagingStreamingConfigurationsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeChannelInput = schema.new({
-    id = id.from(_N, "DescribeChannelInput"),
+    id = id.from(_N, "DescribeChannelRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2106,7 +2106,7 @@ M.DescribeChannelInput = schema.new({
 })
 
 M.DescribeChannelOutput = schema.new({
-    id = id.from(_N, "DescribeChannelOutput"),
+    id = id.from(_N, "DescribeChannelResponse"),
     type = "structure",
     members = {
         Channel = schema.new({
@@ -2120,7 +2120,7 @@ M.DescribeChannelOutput = schema.new({
 })
 
 M.DescribeChannelBanInput = schema.new({
-    id = id.from(_N, "DescribeChannelBanInput"),
+    id = id.from(_N, "DescribeChannelBanRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2157,7 +2157,7 @@ M.DescribeChannelBanInput = schema.new({
 })
 
 M.DescribeChannelBanOutput = schema.new({
-    id = id.from(_N, "DescribeChannelBanOutput"),
+    id = id.from(_N, "DescribeChannelBanResponse"),
     type = "structure",
     members = {
         ChannelBan = schema.new({
@@ -2171,7 +2171,7 @@ M.DescribeChannelBanOutput = schema.new({
 })
 
 M.DescribeChannelFlowInput = schema.new({
-    id = id.from(_N, "DescribeChannelFlowInput"),
+    id = id.from(_N, "DescribeChannelFlowRequest"),
     type = "structure",
     members = {
         ChannelFlowArn = schema.new({
@@ -2188,7 +2188,7 @@ M.DescribeChannelFlowInput = schema.new({
 })
 
 M.DescribeChannelFlowOutput = schema.new({
-    id = id.from(_N, "DescribeChannelFlowOutput"),
+    id = id.from(_N, "DescribeChannelFlowResponse"),
     type = "structure",
     members = {
         ChannelFlow = schema.new({
@@ -2202,7 +2202,7 @@ M.DescribeChannelFlowOutput = schema.new({
 })
 
 M.DescribeChannelMembershipInput = schema.new({
-    id = id.from(_N, "DescribeChannelMembershipInput"),
+    id = id.from(_N, "DescribeChannelMembershipRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2248,7 +2248,7 @@ M.DescribeChannelMembershipInput = schema.new({
 })
 
 M.DescribeChannelMembershipOutput = schema.new({
-    id = id.from(_N, "DescribeChannelMembershipOutput"),
+    id = id.from(_N, "DescribeChannelMembershipResponse"),
     type = "structure",
     members = {
         ChannelMembership = schema.new({
@@ -2262,7 +2262,7 @@ M.DescribeChannelMembershipOutput = schema.new({
 })
 
 M.DescribeChannelMembershipForAppInstanceUserInput = schema.new({
-    id = id.from(_N, "DescribeChannelMembershipForAppInstanceUserInput"),
+    id = id.from(_N, "DescribeChannelMembershipForAppInstanceUserRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2299,7 +2299,7 @@ M.DescribeChannelMembershipForAppInstanceUserInput = schema.new({
 })
 
 M.DescribeChannelMembershipForAppInstanceUserOutput = schema.new({
-    id = id.from(_N, "DescribeChannelMembershipForAppInstanceUserOutput"),
+    id = id.from(_N, "DescribeChannelMembershipForAppInstanceUserResponse"),
     type = "structure",
     members = {
         ChannelMembership = schema.new({
@@ -2313,7 +2313,7 @@ M.DescribeChannelMembershipForAppInstanceUserOutput = schema.new({
 })
 
 M.DescribeChannelModeratedByAppInstanceUserInput = schema.new({
-    id = id.from(_N, "DescribeChannelModeratedByAppInstanceUserInput"),
+    id = id.from(_N, "DescribeChannelModeratedByAppInstanceUserRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2350,7 +2350,7 @@ M.DescribeChannelModeratedByAppInstanceUserInput = schema.new({
 })
 
 M.DescribeChannelModeratedByAppInstanceUserOutput = schema.new({
-    id = id.from(_N, "DescribeChannelModeratedByAppInstanceUserOutput"),
+    id = id.from(_N, "DescribeChannelModeratedByAppInstanceUserResponse"),
     type = "structure",
     members = {
         Channel = schema.new({
@@ -2364,7 +2364,7 @@ M.DescribeChannelModeratedByAppInstanceUserOutput = schema.new({
 })
 
 M.DescribeChannelModeratorInput = schema.new({
-    id = id.from(_N, "DescribeChannelModeratorInput"),
+    id = id.from(_N, "DescribeChannelModeratorRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2401,7 +2401,7 @@ M.DescribeChannelModeratorInput = schema.new({
 })
 
 M.DescribeChannelModeratorOutput = schema.new({
-    id = id.from(_N, "DescribeChannelModeratorOutput"),
+    id = id.from(_N, "DescribeChannelModeratorResponse"),
     type = "structure",
     members = {
         ChannelModerator = schema.new({
@@ -2415,7 +2415,7 @@ M.DescribeChannelModeratorOutput = schema.new({
 })
 
 M.DisassociateChannelFlowInput = schema.new({
-    id = id.from(_N, "DisassociateChannelFlowInput"),
+    id = id.from(_N, "DisassociateChannelFlowRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2452,12 +2452,12 @@ M.DisassociateChannelFlowInput = schema.new({
 })
 
 M.DisassociateChannelFlowOutput = schema.new({
-    id = id.from(_N, "DisassociateChannelFlowOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetChannelMembershipPreferencesInput = schema.new({
-    id = id.from(_N, "GetChannelMembershipPreferencesInput"),
+    id = id.from(_N, "GetChannelMembershipPreferencesRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2494,7 +2494,7 @@ M.GetChannelMembershipPreferencesInput = schema.new({
 })
 
 M.GetChannelMembershipPreferencesOutput = schema.new({
-    id = id.from(_N, "GetChannelMembershipPreferencesOutput"),
+    id = id.from(_N, "GetChannelMembershipPreferencesResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2521,7 +2521,7 @@ M.GetChannelMembershipPreferencesOutput = schema.new({
 })
 
 M.GetChannelMessageInput = schema.new({
-    id = id.from(_N, "GetChannelMessageInput"),
+    id = id.from(_N, "GetChannelMessageRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2567,7 +2567,7 @@ M.GetChannelMessageInput = schema.new({
 })
 
 M.GetChannelMessageOutput = schema.new({
-    id = id.from(_N, "GetChannelMessageOutput"),
+    id = id.from(_N, "GetChannelMessageResponse"),
     type = "structure",
     members = {
         ChannelMessage = schema.new({
@@ -2581,7 +2581,7 @@ M.GetChannelMessageOutput = schema.new({
 })
 
 M.GetChannelMessageStatusInput = schema.new({
-    id = id.from(_N, "GetChannelMessageStatusInput"),
+    id = id.from(_N, "GetChannelMessageStatusRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2627,7 +2627,7 @@ M.GetChannelMessageStatusInput = schema.new({
 })
 
 M.GetChannelMessageStatusOutput = schema.new({
-    id = id.from(_N, "GetChannelMessageStatusOutput"),
+    id = id.from(_N, "GetChannelMessageStatusResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -2641,7 +2641,7 @@ M.GetChannelMessageStatusOutput = schema.new({
 })
 
 M.GetMessagingSessionEndpointInput = schema.new({
-    id = id.from(_N, "GetMessagingSessionEndpointInput"),
+    id = id.from(_N, "GetMessagingSessionEndpointRequest"),
     type = "structure",
     members = {
         NetworkType = schema.new({
@@ -2670,7 +2670,7 @@ M.MessagingSessionEndpoint = schema.new({
 })
 
 M.GetMessagingSessionEndpointOutput = schema.new({
-    id = id.from(_N, "GetMessagingSessionEndpointOutput"),
+    id = id.from(_N, "GetMessagingSessionEndpointResponse"),
     type = "structure",
     members = {
         Endpoint = schema.new({
@@ -2684,7 +2684,7 @@ M.GetMessagingSessionEndpointOutput = schema.new({
 })
 
 M.GetMessagingStreamingConfigurationsInput = schema.new({
-    id = id.from(_N, "GetMessagingStreamingConfigurationsInput"),
+    id = id.from(_N, "GetMessagingStreamingConfigurationsRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -2726,7 +2726,7 @@ M.StreamingConfiguration = schema.new({
 })
 
 M.GetMessagingStreamingConfigurationsOutput = schema.new({
-    id = id.from(_N, "GetMessagingStreamingConfigurationsOutput"),
+    id = id.from(_N, "GetMessagingStreamingConfigurationsResponse"),
     type = "structure",
     members = {
         StreamingConfigurations = schema.new({
@@ -2740,7 +2740,7 @@ M.GetMessagingStreamingConfigurationsOutput = schema.new({
 })
 
 M.ListChannelBansInput = schema.new({
-    id = id.from(_N, "ListChannelBansInput"),
+    id = id.from(_N, "ListChannelBansRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2785,7 +2785,7 @@ M.ListChannelBansInput = schema.new({
 })
 
 M.ListChannelBansOutput = schema.new({
-    id = id.from(_N, "ListChannelBansOutput"),
+    id = id.from(_N, "ListChannelBansResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2811,7 +2811,7 @@ M.ListChannelBansOutput = schema.new({
 })
 
 M.ListChannelFlowsInput = schema.new({
-    id = id.from(_N, "ListChannelFlowsInput"),
+    id = id.from(_N, "ListChannelFlowsRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -2846,7 +2846,7 @@ M.ListChannelFlowsInput = schema.new({
 })
 
 M.ListChannelFlowsOutput = schema.new({
-    id = id.from(_N, "ListChannelFlowsOutput"),
+    id = id.from(_N, "ListChannelFlowsResponse"),
     type = "structure",
     members = {
         ChannelFlows = schema.new({
@@ -2866,7 +2866,7 @@ M.ListChannelFlowsOutput = schema.new({
 })
 
 M.ListChannelMembershipsInput = schema.new({
-    id = id.from(_N, "ListChannelMembershipsInput"),
+    id = id.from(_N, "ListChannelMembershipsRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2929,7 +2929,7 @@ M.ListChannelMembershipsInput = schema.new({
 })
 
 M.ListChannelMembershipsOutput = schema.new({
-    id = id.from(_N, "ListChannelMembershipsOutput"),
+    id = id.from(_N, "ListChannelMembershipsResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2955,7 +2955,7 @@ M.ListChannelMembershipsOutput = schema.new({
 })
 
 M.ListChannelMembershipsForAppInstanceUserInput = schema.new({
-    id = id.from(_N, "ListChannelMembershipsForAppInstanceUserInput"),
+    id = id.from(_N, "ListChannelMembershipsForAppInstanceUserRequest"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -2999,7 +2999,7 @@ M.ListChannelMembershipsForAppInstanceUserInput = schema.new({
 })
 
 M.ListChannelMembershipsForAppInstanceUserOutput = schema.new({
-    id = id.from(_N, "ListChannelMembershipsForAppInstanceUserOutput"),
+    id = id.from(_N, "ListChannelMembershipsForAppInstanceUserResponse"),
     type = "structure",
     members = {
         ChannelMemberships = schema.new({
@@ -3019,7 +3019,7 @@ M.ListChannelMembershipsForAppInstanceUserOutput = schema.new({
 })
 
 M.ListChannelMessagesInput = schema.new({
-    id = id.from(_N, "ListChannelMessagesInput"),
+    id = id.from(_N, "ListChannelMessagesRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -3100,7 +3100,7 @@ M.ListChannelMessagesInput = schema.new({
 })
 
 M.ListChannelMessagesOutput = schema.new({
-    id = id.from(_N, "ListChannelMessagesOutput"),
+    id = id.from(_N, "ListChannelMessagesResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -3132,7 +3132,7 @@ M.ListChannelMessagesOutput = schema.new({
 })
 
 M.ListChannelModeratorsInput = schema.new({
-    id = id.from(_N, "ListChannelModeratorsInput"),
+    id = id.from(_N, "ListChannelModeratorsRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -3177,7 +3177,7 @@ M.ListChannelModeratorsInput = schema.new({
 })
 
 M.ListChannelModeratorsOutput = schema.new({
-    id = id.from(_N, "ListChannelModeratorsOutput"),
+    id = id.from(_N, "ListChannelModeratorsResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -3203,7 +3203,7 @@ M.ListChannelModeratorsOutput = schema.new({
 })
 
 M.ListChannelsInput = schema.new({
-    id = id.from(_N, "ListChannelsInput"),
+    id = id.from(_N, "ListChannelsRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -3257,7 +3257,7 @@ M.ListChannelsInput = schema.new({
 })
 
 M.ListChannelsOutput = schema.new({
-    id = id.from(_N, "ListChannelsOutput"),
+    id = id.from(_N, "ListChannelsResponse"),
     type = "structure",
     members = {
         Channels = schema.new({
@@ -3277,7 +3277,7 @@ M.ListChannelsOutput = schema.new({
 })
 
 M.ListChannelsAssociatedWithChannelFlowInput = schema.new({
-    id = id.from(_N, "ListChannelsAssociatedWithChannelFlowInput"),
+    id = id.from(_N, "ListChannelsAssociatedWithChannelFlowRequest"),
     type = "structure",
     members = {
         ChannelFlowArn = schema.new({
@@ -3312,7 +3312,7 @@ M.ListChannelsAssociatedWithChannelFlowInput = schema.new({
 })
 
 M.ListChannelsAssociatedWithChannelFlowOutput = schema.new({
-    id = id.from(_N, "ListChannelsAssociatedWithChannelFlowOutput"),
+    id = id.from(_N, "ListChannelsAssociatedWithChannelFlowResponse"),
     type = "structure",
     members = {
         Channels = schema.new({
@@ -3332,7 +3332,7 @@ M.ListChannelsAssociatedWithChannelFlowOutput = schema.new({
 })
 
 M.ListChannelsModeratedByAppInstanceUserInput = schema.new({
-    id = id.from(_N, "ListChannelsModeratedByAppInstanceUserInput"),
+    id = id.from(_N, "ListChannelsModeratedByAppInstanceUserRequest"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -3376,7 +3376,7 @@ M.ListChannelsModeratedByAppInstanceUserInput = schema.new({
 })
 
 M.ListChannelsModeratedByAppInstanceUserOutput = schema.new({
-    id = id.from(_N, "ListChannelsModeratedByAppInstanceUserOutput"),
+    id = id.from(_N, "ListChannelsModeratedByAppInstanceUserResponse"),
     type = "structure",
     members = {
         Channels = schema.new({
@@ -3396,7 +3396,7 @@ M.ListChannelsModeratedByAppInstanceUserOutput = schema.new({
 })
 
 M.ListSubChannelsInput = schema.new({
-    id = id.from(_N, "ListSubChannelsInput"),
+    id = id.from(_N, "ListSubChannelsRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -3460,7 +3460,7 @@ M.SubChannelSummary = schema.new({
 })
 
 M.ListSubChannelsOutput = schema.new({
-    id = id.from(_N, "ListSubChannelsOutput"),
+    id = id.from(_N, "ListSubChannelsResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -3486,7 +3486,7 @@ M.ListSubChannelsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -3503,7 +3503,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -3517,7 +3517,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutChannelExpirationSettingsInput = schema.new({
-    id = id.from(_N, "PutChannelExpirationSettingsInput"),
+    id = id.from(_N, "PutChannelExpirationSettingsRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -3550,7 +3550,7 @@ M.PutChannelExpirationSettingsInput = schema.new({
 })
 
 M.PutChannelExpirationSettingsOutput = schema.new({
-    id = id.from(_N, "PutChannelExpirationSettingsOutput"),
+    id = id.from(_N, "PutChannelExpirationSettingsResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -3570,7 +3570,7 @@ M.PutChannelExpirationSettingsOutput = schema.new({
 })
 
 M.PutChannelMembershipPreferencesInput = schema.new({
-    id = id.from(_N, "PutChannelMembershipPreferencesInput"),
+    id = id.from(_N, "PutChannelMembershipPreferencesRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -3617,7 +3617,7 @@ M.PutChannelMembershipPreferencesInput = schema.new({
 })
 
 M.PutChannelMembershipPreferencesOutput = schema.new({
-    id = id.from(_N, "PutChannelMembershipPreferencesOutput"),
+    id = id.from(_N, "PutChannelMembershipPreferencesResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -3644,7 +3644,7 @@ M.PutChannelMembershipPreferencesOutput = schema.new({
 })
 
 M.PutMessagingStreamingConfigurationsInput = schema.new({
-    id = id.from(_N, "PutMessagingStreamingConfigurationsInput"),
+    id = id.from(_N, "PutMessagingStreamingConfigurationsRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -3671,7 +3671,7 @@ M.PutMessagingStreamingConfigurationsInput = schema.new({
 })
 
 M.PutMessagingStreamingConfigurationsOutput = schema.new({
-    id = id.from(_N, "PutMessagingStreamingConfigurationsOutput"),
+    id = id.from(_N, "PutMessagingStreamingConfigurationsResponse"),
     type = "structure",
     members = {
         StreamingConfigurations = schema.new({
@@ -3685,7 +3685,7 @@ M.PutMessagingStreamingConfigurationsOutput = schema.new({
 })
 
 M.RedactChannelMessageInput = schema.new({
-    id = id.from(_N, "RedactChannelMessageInput"),
+    id = id.from(_N, "RedactChannelMessageRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -3728,7 +3728,7 @@ M.RedactChannelMessageInput = schema.new({
 })
 
 M.RedactChannelMessageOutput = schema.new({
-    id = id.from(_N, "RedactChannelMessageOutput"),
+    id = id.from(_N, "RedactChannelMessageResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -3788,7 +3788,7 @@ M.SearchField = schema.new({
 })
 
 M.SearchChannelsInput = schema.new({
-    id = id.from(_N, "SearchChannelsInput"),
+    id = id.from(_N, "SearchChannelsRequest"),
     type = "structure",
     members = {
         ChimeBearer = schema.new({
@@ -3832,7 +3832,7 @@ M.SearchChannelsInput = schema.new({
 })
 
 M.SearchChannelsOutput = schema.new({
-    id = id.from(_N, "SearchChannelsOutput"),
+    id = id.from(_N, "SearchChannelsResponse"),
     type = "structure",
     members = {
         Channels = schema.new({
@@ -3852,7 +3852,7 @@ M.SearchChannelsOutput = schema.new({
 })
 
 M.SendChannelMessageInput = schema.new({
-    id = id.from(_N, "SendChannelMessageInput"),
+    id = id.from(_N, "SendChannelMessageRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -3956,7 +3956,7 @@ M.SendChannelMessageInput = schema.new({
 })
 
 M.SendChannelMessageOutput = schema.new({
-    id = id.from(_N, "SendChannelMessageOutput"),
+    id = id.from(_N, "SendChannelMessageResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -3988,7 +3988,7 @@ M.SendChannelMessageOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -4014,12 +4014,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -4045,12 +4045,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateChannelInput = schema.new({
-    id = id.from(_N, "UpdateChannelInput"),
+    id = id.from(_N, "UpdateChannelRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -4095,7 +4095,7 @@ M.UpdateChannelInput = schema.new({
 })
 
 M.UpdateChannelOutput = schema.new({
-    id = id.from(_N, "UpdateChannelOutput"),
+    id = id.from(_N, "UpdateChannelResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -4108,7 +4108,7 @@ M.UpdateChannelOutput = schema.new({
 })
 
 M.UpdateChannelFlowInput = schema.new({
-    id = id.from(_N, "UpdateChannelFlowInput"),
+    id = id.from(_N, "UpdateChannelFlowRequest"),
     type = "structure",
     members = {
         ChannelFlowArn = schema.new({
@@ -4144,7 +4144,7 @@ M.UpdateChannelFlowInput = schema.new({
 })
 
 M.UpdateChannelFlowOutput = schema.new({
-    id = id.from(_N, "UpdateChannelFlowOutput"),
+    id = id.from(_N, "UpdateChannelFlowResponse"),
     type = "structure",
     members = {
         ChannelFlowArn = schema.new({
@@ -4157,7 +4157,7 @@ M.UpdateChannelFlowOutput = schema.new({
 })
 
 M.UpdateChannelMessageInput = schema.new({
-    id = id.from(_N, "UpdateChannelMessageInput"),
+    id = id.from(_N, "UpdateChannelMessageRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -4221,7 +4221,7 @@ M.UpdateChannelMessageInput = schema.new({
 })
 
 M.UpdateChannelMessageOutput = schema.new({
-    id = id.from(_N, "UpdateChannelMessageOutput"),
+    id = id.from(_N, "UpdateChannelMessageResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -4253,7 +4253,7 @@ M.UpdateChannelMessageOutput = schema.new({
 })
 
 M.UpdateChannelReadMarkerInput = schema.new({
-    id = id.from(_N, "UpdateChannelReadMarkerInput"),
+    id = id.from(_N, "UpdateChannelReadMarkerRequest"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -4280,7 +4280,7 @@ M.UpdateChannelReadMarkerInput = schema.new({
 })
 
 M.UpdateChannelReadMarkerOutput = schema.new({
-    id = id.from(_N, "UpdateChannelReadMarkerOutput"),
+    id = id.from(_N, "UpdateChannelReadMarkerResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -4291,5 +4291,19 @@ M.UpdateChannelReadMarkerOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

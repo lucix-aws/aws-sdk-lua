@@ -49,7 +49,7 @@ M.Tag = schema.new({
 })
 
 M.AssociateProfileInput = schema.new({
-    id = id.from(_N, "AssociateProfileInput"),
+    id = id.from(_N, "AssociateProfileRequest"),
     type = "structure",
     members = {
         ProfileId = schema.new({
@@ -151,7 +151,7 @@ M.ProfileAssociation = schema.new({
 })
 
 M.AssociateProfileOutput = schema.new({
-    id = id.from(_N, "AssociateProfileOutput"),
+    id = id.from(_N, "AssociateProfileResponse"),
     type = "structure",
     members = {
         ProfileAssociation = schema.new({
@@ -304,7 +304,7 @@ M.ValidationException = schema.new({
 })
 
 M.AssociateResourceToProfileInput = schema.new({
-    id = id.from(_N, "AssociateResourceToProfileInput"),
+    id = id.from(_N, "AssociateResourceToProfileRequest"),
     type = "structure",
     members = {
         ProfileId = schema.new({
@@ -417,7 +417,7 @@ M.ProfileResourceAssociation = schema.new({
 })
 
 M.AssociateResourceToProfileOutput = schema.new({
-    id = id.from(_N, "AssociateResourceToProfileOutput"),
+    id = id.from(_N, "AssociateResourceToProfileResponse"),
     type = "structure",
     members = {
         ProfileResourceAssociation = schema.new({
@@ -447,7 +447,7 @@ M.InternalServiceErrorException = schema.new({
 })
 
 M.CreateProfileInput = schema.new({
-    id = id.from(_N, "CreateProfileInput"),
+    id = id.from(_N, "CreateProfileRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -547,7 +547,7 @@ M.Profile = schema.new({
 })
 
 M.CreateProfileOutput = schema.new({
-    id = id.from(_N, "CreateProfileOutput"),
+    id = id.from(_N, "CreateProfileResponse"),
     type = "structure",
     members = {
         Profile = schema.new({
@@ -561,7 +561,7 @@ M.CreateProfileOutput = schema.new({
 })
 
 M.DeleteProfileInput = schema.new({
-    id = id.from(_N, "DeleteProfileInput"),
+    id = id.from(_N, "DeleteProfileRequest"),
     type = "structure",
     members = {
         ProfileId = schema.new({
@@ -578,7 +578,7 @@ M.DeleteProfileInput = schema.new({
 })
 
 M.DeleteProfileOutput = schema.new({
-    id = id.from(_N, "DeleteProfileOutput"),
+    id = id.from(_N, "DeleteProfileResponse"),
     type = "structure",
     members = {
         Profile = schema.new({
@@ -592,7 +592,7 @@ M.DeleteProfileOutput = schema.new({
 })
 
 M.DisassociateProfileInput = schema.new({
-    id = id.from(_N, "DisassociateProfileInput"),
+    id = id.from(_N, "DisassociateProfileRequest"),
     type = "structure",
     members = {
         ProfileId = schema.new({
@@ -619,7 +619,7 @@ M.DisassociateProfileInput = schema.new({
 })
 
 M.DisassociateProfileOutput = schema.new({
-    id = id.from(_N, "DisassociateProfileOutput"),
+    id = id.from(_N, "DisassociateProfileResponse"),
     type = "structure",
     members = {
         ProfileAssociation = schema.new({
@@ -633,7 +633,7 @@ M.DisassociateProfileOutput = schema.new({
 })
 
 M.DisassociateResourceFromProfileInput = schema.new({
-    id = id.from(_N, "DisassociateResourceFromProfileInput"),
+    id = id.from(_N, "DisassociateResourceFromProfileRequest"),
     type = "structure",
     members = {
         ProfileId = schema.new({
@@ -660,7 +660,7 @@ M.DisassociateResourceFromProfileInput = schema.new({
 })
 
 M.DisassociateResourceFromProfileOutput = schema.new({
-    id = id.from(_N, "DisassociateResourceFromProfileOutput"),
+    id = id.from(_N, "DisassociateResourceFromProfileResponse"),
     type = "structure",
     members = {
         ProfileResourceAssociation = schema.new({
@@ -674,7 +674,7 @@ M.DisassociateResourceFromProfileOutput = schema.new({
 })
 
 M.GetProfileInput = schema.new({
-    id = id.from(_N, "GetProfileInput"),
+    id = id.from(_N, "GetProfileRequest"),
     type = "structure",
     members = {
         ProfileId = schema.new({
@@ -691,7 +691,7 @@ M.GetProfileInput = schema.new({
 })
 
 M.GetProfileOutput = schema.new({
-    id = id.from(_N, "GetProfileOutput"),
+    id = id.from(_N, "GetProfileResponse"),
     type = "structure",
     members = {
         Profile = schema.new({
@@ -705,7 +705,7 @@ M.GetProfileOutput = schema.new({
 })
 
 M.GetProfileAssociationInput = schema.new({
-    id = id.from(_N, "GetProfileAssociationInput"),
+    id = id.from(_N, "GetProfileAssociationRequest"),
     type = "structure",
     members = {
         ProfileAssociationId = schema.new({
@@ -722,7 +722,7 @@ M.GetProfileAssociationInput = schema.new({
 })
 
 M.GetProfileAssociationOutput = schema.new({
-    id = id.from(_N, "GetProfileAssociationOutput"),
+    id = id.from(_N, "GetProfileAssociationResponse"),
     type = "structure",
     members = {
         ProfileAssociation = schema.new({
@@ -736,7 +736,7 @@ M.GetProfileAssociationOutput = schema.new({
 })
 
 M.GetProfileResourceAssociationInput = schema.new({
-    id = id.from(_N, "GetProfileResourceAssociationInput"),
+    id = id.from(_N, "GetProfileResourceAssociationRequest"),
     type = "structure",
     members = {
         ProfileResourceAssociationId = schema.new({
@@ -753,7 +753,7 @@ M.GetProfileResourceAssociationInput = schema.new({
 })
 
 M.GetProfileResourceAssociationOutput = schema.new({
-    id = id.from(_N, "GetProfileResourceAssociationOutput"),
+    id = id.from(_N, "GetProfileResourceAssociationResponse"),
     type = "structure",
     members = {
         ProfileResourceAssociation = schema.new({
@@ -783,7 +783,7 @@ M.InvalidNextTokenException = schema.new({
 })
 
 M.ListProfileAssociationsInput = schema.new({
-    id = id.from(_N, "ListProfileAssociationsInput"),
+    id = id.from(_N, "ListProfileAssociationsRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -826,7 +826,7 @@ M.ListProfileAssociationsInput = schema.new({
 })
 
 M.ListProfileAssociationsOutput = schema.new({
-    id = id.from(_N, "ListProfileAssociationsOutput"),
+    id = id.from(_N, "ListProfileAssociationsResponse"),
     type = "structure",
     members = {
         ProfileAssociations = schema.new({
@@ -846,7 +846,7 @@ M.ListProfileAssociationsOutput = schema.new({
 })
 
 M.ListProfileResourceAssociationsInput = schema.new({
-    id = id.from(_N, "ListProfileResourceAssociationsInput"),
+    id = id.from(_N, "ListProfileResourceAssociationsRequest"),
     type = "structure",
     members = {
         ProfileId = schema.new({
@@ -890,7 +890,7 @@ M.ListProfileResourceAssociationsInput = schema.new({
 })
 
 M.ListProfileResourceAssociationsOutput = schema.new({
-    id = id.from(_N, "ListProfileResourceAssociationsOutput"),
+    id = id.from(_N, "ListProfileResourceAssociationsResponse"),
     type = "structure",
     members = {
         ProfileResourceAssociations = schema.new({
@@ -910,7 +910,7 @@ M.ListProfileResourceAssociationsOutput = schema.new({
 })
 
 M.ListProfilesInput = schema.new({
-    id = id.from(_N, "ListProfilesInput"),
+    id = id.from(_N, "ListProfilesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -966,7 +966,7 @@ M.ProfileSummary = schema.new({
 })
 
 M.ListProfilesOutput = schema.new({
-    id = id.from(_N, "ListProfilesOutput"),
+    id = id.from(_N, "ListProfilesResponse"),
     type = "structure",
     members = {
         ProfileSummaries = schema.new({
@@ -986,7 +986,7 @@ M.ListProfilesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1003,7 +1003,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1021,7 +1021,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1049,12 +1049,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1082,12 +1082,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateProfileResourceAssociationInput = schema.new({
-    id = id.from(_N, "UpdateProfileResourceAssociationInput"),
+    id = id.from(_N, "UpdateProfileResourceAssociationRequest"),
     type = "structure",
     members = {
         ProfileResourceAssociationId = schema.new({
@@ -1116,7 +1116,7 @@ M.UpdateProfileResourceAssociationInput = schema.new({
 })
 
 M.UpdateProfileResourceAssociationOutput = schema.new({
-    id = id.from(_N, "UpdateProfileResourceAssociationOutput"),
+    id = id.from(_N, "UpdateProfileResourceAssociationResponse"),
     type = "structure",
     members = {
         ProfileResourceAssociation = schema.new({
@@ -1128,5 +1128,19 @@ M.UpdateProfileResourceAssociationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

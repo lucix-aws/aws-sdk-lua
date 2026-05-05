@@ -278,7 +278,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateDiscovererInput = schema.new({
-    id = id.from(_N, "CreateDiscovererInput"),
+    id = id.from(_N, "CreateDiscovererRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -317,7 +317,7 @@ M.CreateDiscovererInput = schema.new({
 })
 
 M.CreateDiscovererOutput = schema.new({
-    id = id.from(_N, "CreateDiscovererOutput"),
+    id = id.from(_N, "CreateDiscovererResponse"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -483,7 +483,7 @@ M.UnauthorizedException = schema.new({
 })
 
 M.CreateRegistryInput = schema.new({
-    id = id.from(_N, "CreateRegistryInput"),
+    id = id.from(_N, "CreateRegistryRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -517,7 +517,7 @@ M.CreateRegistryInput = schema.new({
 })
 
 M.CreateRegistryOutput = schema.new({
-    id = id.from(_N, "CreateRegistryOutput"),
+    id = id.from(_N, "CreateRegistryResponse"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -553,7 +553,7 @@ M.CreateRegistryOutput = schema.new({
 })
 
 M.CreateSchemaInput = schema.new({
-    id = id.from(_N, "CreateSchemaInput"),
+    id = id.from(_N, "CreateSchemaRequest"),
     type = "structure",
     members = {
         Content = schema.new({
@@ -615,7 +615,7 @@ M.CreateSchemaInput = schema.new({
 })
 
 M.CreateSchemaOutput = schema.new({
-    id = id.from(_N, "CreateSchemaOutput"),
+    id = id.from(_N, "CreateSchemaResponse"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -681,7 +681,7 @@ M.CreateSchemaOutput = schema.new({
 })
 
 M.DeleteDiscovererInput = schema.new({
-    id = id.from(_N, "DeleteDiscovererInput"),
+    id = id.from(_N, "DeleteDiscovererRequest"),
     type = "structure",
     members = {
         DiscovererId = schema.new({
@@ -698,7 +698,7 @@ M.DeleteDiscovererInput = schema.new({
 })
 
 M.DeleteDiscovererOutput = schema.new({
-    id = id.from(_N, "DeleteDiscovererOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -731,7 +731,7 @@ M.NotFoundException = schema.new({
 })
 
 M.DeleteRegistryInput = schema.new({
-    id = id.from(_N, "DeleteRegistryInput"),
+    id = id.from(_N, "DeleteRegistryRequest"),
     type = "structure",
     members = {
         RegistryName = schema.new({
@@ -748,12 +748,12 @@ M.DeleteRegistryInput = schema.new({
 })
 
 M.DeleteRegistryOutput = schema.new({
-    id = id.from(_N, "DeleteRegistryOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         RegistryName = schema.new({
@@ -769,12 +769,12 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteSchemaInput = schema.new({
-    id = id.from(_N, "DeleteSchemaInput"),
+    id = id.from(_N, "DeleteSchemaRequest"),
     type = "structure",
     members = {
         RegistryName = schema.new({
@@ -801,12 +801,12 @@ M.DeleteSchemaInput = schema.new({
 })
 
 M.DeleteSchemaOutput = schema.new({
-    id = id.from(_N, "DeleteSchemaOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteSchemaVersionInput = schema.new({
-    id = id.from(_N, "DeleteSchemaVersionInput"),
+    id = id.from(_N, "DeleteSchemaVersionRequest"),
     type = "structure",
     members = {
         RegistryName = schema.new({
@@ -843,12 +843,12 @@ M.DeleteSchemaVersionInput = schema.new({
 })
 
 M.DeleteSchemaVersionOutput = schema.new({
-    id = id.from(_N, "DeleteSchemaVersionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeCodeBindingInput = schema.new({
-    id = id.from(_N, "DescribeCodeBindingInput"),
+    id = id.from(_N, "DescribeCodeBindingRequest"),
     type = "structure",
     members = {
         Language = schema.new({
@@ -894,7 +894,7 @@ M.DescribeCodeBindingInput = schema.new({
 })
 
 M.DescribeCodeBindingOutput = schema.new({
-    id = id.from(_N, "DescribeCodeBindingOutput"),
+    id = id.from(_N, "DescribeCodeBindingResponse"),
     type = "structure",
     members = {
         CreationDate = schema.new({
@@ -959,7 +959,7 @@ M.TooManyRequestsException = schema.new({
 })
 
 M.DescribeDiscovererInput = schema.new({
-    id = id.from(_N, "DescribeDiscovererInput"),
+    id = id.from(_N, "DescribeDiscovererRequest"),
     type = "structure",
     members = {
         DiscovererId = schema.new({
@@ -976,7 +976,7 @@ M.DescribeDiscovererInput = schema.new({
 })
 
 M.DescribeDiscovererOutput = schema.new({
-    id = id.from(_N, "DescribeDiscovererOutput"),
+    id = id.from(_N, "DescribeDiscovererResponse"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -1030,7 +1030,7 @@ M.DescribeDiscovererOutput = schema.new({
 })
 
 M.DescribeRegistryInput = schema.new({
-    id = id.from(_N, "DescribeRegistryInput"),
+    id = id.from(_N, "DescribeRegistryRequest"),
     type = "structure",
     members = {
         RegistryName = schema.new({
@@ -1047,7 +1047,7 @@ M.DescribeRegistryInput = schema.new({
 })
 
 M.DescribeRegistryOutput = schema.new({
-    id = id.from(_N, "DescribeRegistryOutput"),
+    id = id.from(_N, "DescribeRegistryResponse"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -1083,7 +1083,7 @@ M.DescribeRegistryOutput = schema.new({
 })
 
 M.DescribeSchemaInput = schema.new({
-    id = id.from(_N, "DescribeSchemaInput"),
+    id = id.from(_N, "DescribeSchemaRequest"),
     type = "structure",
     members = {
         RegistryName = schema.new({
@@ -1119,7 +1119,7 @@ M.DescribeSchemaInput = schema.new({
 })
 
 M.DescribeSchemaOutput = schema.new({
-    id = id.from(_N, "DescribeSchemaOutput"),
+    id = id.from(_N, "DescribeSchemaResponse"),
     type = "structure",
     members = {
         Content = schema.new({
@@ -1191,7 +1191,7 @@ M.DescribeSchemaOutput = schema.new({
 })
 
 M.ExportSchemaInput = schema.new({
-    id = id.from(_N, "ExportSchemaInput"),
+    id = id.from(_N, "ExportSchemaRequest"),
     type = "structure",
     members = {
         RegistryName = schema.new({
@@ -1237,7 +1237,7 @@ M.ExportSchemaInput = schema.new({
 })
 
 M.ExportSchemaOutput = schema.new({
-    id = id.from(_N, "ExportSchemaOutput"),
+    id = id.from(_N, "ExportSchemaResponse"),
     type = "structure",
     members = {
         Content = schema.new({
@@ -1274,7 +1274,7 @@ M.ExportSchemaOutput = schema.new({
 })
 
 M.GetCodeBindingSourceInput = schema.new({
-    id = id.from(_N, "GetCodeBindingSourceInput"),
+    id = id.from(_N, "GetCodeBindingSourceRequest"),
     type = "structure",
     members = {
         Language = schema.new({
@@ -1320,7 +1320,7 @@ M.GetCodeBindingSourceInput = schema.new({
 })
 
 M.GetCodeBindingSourceOutput = schema.new({
-    id = id.from(_N, "GetCodeBindingSourceOutput"),
+    id = id.from(_N, "GetCodeBindingSourceResponse"),
     type = "structure",
     members = {
         Body = schema.new({
@@ -1336,7 +1336,7 @@ M.GetCodeBindingSourceOutput = schema.new({
 })
 
 M.GetDiscoveredSchemaInput = schema.new({
-    id = id.from(_N, "GetDiscoveredSchemaInput"),
+    id = id.from(_N, "GetDiscoveredSchemaRequest"),
     type = "structure",
     members = {
         Events = schema.new({
@@ -1362,7 +1362,7 @@ M.GetDiscoveredSchemaInput = schema.new({
 })
 
 M.GetDiscoveredSchemaOutput = schema.new({
-    id = id.from(_N, "GetDiscoveredSchemaOutput"),
+    id = id.from(_N, "GetDiscoveredSchemaResponse"),
     type = "structure",
     members = {
         Content = schema.new({
@@ -1375,7 +1375,7 @@ M.GetDiscoveredSchemaOutput = schema.new({
 })
 
 M.GetResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetResourcePolicyInput"),
+    id = id.from(_N, "GetResourcePolicyRequest"),
     type = "structure",
     members = {
         RegistryName = schema.new({
@@ -1391,7 +1391,7 @@ M.GetResourcePolicyInput = schema.new({
 })
 
 M.GetResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetResourcePolicyOutput"),
+    id = id.from(_N, "GetResourcePolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -1441,7 +1441,7 @@ M.GoneException = schema.new({
 })
 
 M.ListDiscoverersInput = schema.new({
-    id = id.from(_N, "ListDiscoverersInput"),
+    id = id.from(_N, "ListDiscoverersRequest"),
     type = "structure",
     members = {
         DiscovererIdPrefix = schema.new({
@@ -1484,7 +1484,7 @@ M.ListDiscoverersInput = schema.new({
 })
 
 M.ListDiscoverersOutput = schema.new({
-    id = id.from(_N, "ListDiscoverersOutput"),
+    id = id.from(_N, "ListDiscoverersResponse"),
     type = "structure",
     members = {
         Discoverers = schema.new({
@@ -1504,7 +1504,7 @@ M.ListDiscoverersOutput = schema.new({
 })
 
 M.ListRegistriesInput = schema.new({
-    id = id.from(_N, "ListRegistriesInput"),
+    id = id.from(_N, "ListRegistriesRequest"),
     type = "structure",
     members = {
         Limit = schema.new({
@@ -1547,7 +1547,7 @@ M.ListRegistriesInput = schema.new({
 })
 
 M.ListRegistriesOutput = schema.new({
-    id = id.from(_N, "ListRegistriesOutput"),
+    id = id.from(_N, "ListRegistriesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1567,7 +1567,7 @@ M.ListRegistriesOutput = schema.new({
 })
 
 M.ListSchemasInput = schema.new({
-    id = id.from(_N, "ListSchemasInput"),
+    id = id.from(_N, "ListSchemasRequest"),
     type = "structure",
     members = {
         Limit = schema.new({
@@ -1611,7 +1611,7 @@ M.ListSchemasInput = schema.new({
 })
 
 M.ListSchemasOutput = schema.new({
-    id = id.from(_N, "ListSchemasOutput"),
+    id = id.from(_N, "ListSchemasResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1631,7 +1631,7 @@ M.ListSchemasOutput = schema.new({
 })
 
 M.ListSchemaVersionsInput = schema.new({
-    id = id.from(_N, "ListSchemaVersionsInput"),
+    id = id.from(_N, "ListSchemaVersionsRequest"),
     type = "structure",
     members = {
         Limit = schema.new({
@@ -1676,7 +1676,7 @@ M.ListSchemaVersionsInput = schema.new({
 })
 
 M.ListSchemaVersionsOutput = schema.new({
-    id = id.from(_N, "ListSchemaVersionsOutput"),
+    id = id.from(_N, "ListSchemaVersionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1696,7 +1696,7 @@ M.ListSchemaVersionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1713,7 +1713,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1759,7 +1759,7 @@ M.PreconditionFailedException = schema.new({
 })
 
 M.PutCodeBindingInput = schema.new({
-    id = id.from(_N, "PutCodeBindingInput"),
+    id = id.from(_N, "PutCodeBindingRequest"),
     type = "structure",
     members = {
         Language = schema.new({
@@ -1805,7 +1805,7 @@ M.PutCodeBindingInput = schema.new({
 })
 
 M.PutCodeBindingOutput = schema.new({
-    id = id.from(_N, "PutCodeBindingOutput"),
+    id = id.from(_N, "PutCodeBindingResponse"),
     type = "structure",
     members = {
         CreationDate = schema.new({
@@ -1842,7 +1842,7 @@ M.PutCodeBindingOutput = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -1877,7 +1877,7 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -1899,7 +1899,7 @@ M.PutResourcePolicyOutput = schema.new({
 })
 
 M.SearchSchemasInput = schema.new({
-    id = id.from(_N, "SearchSchemasInput"),
+    id = id.from(_N, "SearchSchemasRequest"),
     type = "structure",
     members = {
         Keywords = schema.new({
@@ -1944,7 +1944,7 @@ M.SearchSchemasInput = schema.new({
 })
 
 M.SearchSchemasOutput = schema.new({
-    id = id.from(_N, "SearchSchemasOutput"),
+    id = id.from(_N, "SearchSchemasResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1964,7 +1964,7 @@ M.SearchSchemasOutput = schema.new({
 })
 
 M.StartDiscovererInput = schema.new({
-    id = id.from(_N, "StartDiscovererInput"),
+    id = id.from(_N, "StartDiscovererRequest"),
     type = "structure",
     members = {
         DiscovererId = schema.new({
@@ -1981,7 +1981,7 @@ M.StartDiscovererInput = schema.new({
 })
 
 M.StartDiscovererOutput = schema.new({
-    id = id.from(_N, "StartDiscovererOutput"),
+    id = id.from(_N, "StartDiscovererResponse"),
     type = "structure",
     members = {
         DiscovererId = schema.new({
@@ -2000,7 +2000,7 @@ M.StartDiscovererOutput = schema.new({
 })
 
 M.StopDiscovererInput = schema.new({
-    id = id.from(_N, "StopDiscovererInput"),
+    id = id.from(_N, "StopDiscovererRequest"),
     type = "structure",
     members = {
         DiscovererId = schema.new({
@@ -2017,7 +2017,7 @@ M.StopDiscovererInput = schema.new({
 })
 
 M.StopDiscovererOutput = schema.new({
-    id = id.from(_N, "StopDiscovererOutput"),
+    id = id.from(_N, "StopDiscovererResponse"),
     type = "structure",
     members = {
         DiscovererId = schema.new({
@@ -2036,7 +2036,7 @@ M.StopDiscovererOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2065,12 +2065,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2098,12 +2098,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateDiscovererInput = schema.new({
-    id = id.from(_N, "UpdateDiscovererInput"),
+    id = id.from(_N, "UpdateDiscovererRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -2132,7 +2132,7 @@ M.UpdateDiscovererInput = schema.new({
 })
 
 M.UpdateDiscovererOutput = schema.new({
-    id = id.from(_N, "UpdateDiscovererOutput"),
+    id = id.from(_N, "UpdateDiscovererResponse"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -2186,7 +2186,7 @@ M.UpdateDiscovererOutput = schema.new({
 })
 
 M.UpdateRegistryInput = schema.new({
-    id = id.from(_N, "UpdateRegistryInput"),
+    id = id.from(_N, "UpdateRegistryRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -2209,7 +2209,7 @@ M.UpdateRegistryInput = schema.new({
 })
 
 M.UpdateRegistryOutput = schema.new({
-    id = id.from(_N, "UpdateRegistryOutput"),
+    id = id.from(_N, "UpdateRegistryResponse"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -2245,7 +2245,7 @@ M.UpdateRegistryOutput = schema.new({
 })
 
 M.UpdateSchemaInput = schema.new({
-    id = id.from(_N, "UpdateSchemaInput"),
+    id = id.from(_N, "UpdateSchemaRequest"),
     type = "structure",
     members = {
         ClientTokenId = schema.new({
@@ -2299,7 +2299,7 @@ M.UpdateSchemaInput = schema.new({
 })
 
 M.UpdateSchemaOutput = schema.new({
-    id = id.from(_N, "UpdateSchemaOutput"),
+    id = id.from(_N, "UpdateSchemaResponse"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -2363,5 +2363,19 @@ M.UpdateSchemaOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

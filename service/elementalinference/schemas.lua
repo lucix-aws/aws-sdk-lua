@@ -107,7 +107,7 @@ M.CreateOutput = schema.new({
 })
 
 M.AssociateFeedInput = schema.new({
-    id = id.from(_N, "AssociateFeedInput"),
+    id = id.from(_N, "AssociateFeedRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -153,7 +153,7 @@ M.AssociateFeedInput = schema.new({
 })
 
 M.AssociateFeedOutput = schema.new({
-    id = id.from(_N, "AssociateFeedOutput"),
+    id = id.from(_N, "AssociateFeedResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -292,7 +292,7 @@ M.ValidationException = schema.new({
 })
 
 M.CreateFeedInput = schema.new({
-    id = id.from(_N, "CreateFeedInput"),
+    id = id.from(_N, "CreateFeedRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -389,7 +389,7 @@ M.GetOutput = schema.new({
 })
 
 M.CreateFeedOutput = schema.new({
-    id = id.from(_N, "CreateFeedOutput"),
+    id = id.from(_N, "CreateFeedResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -467,7 +467,7 @@ M.CreateFeedOutput = schema.new({
 })
 
 M.DeleteFeedInput = schema.new({
-    id = id.from(_N, "DeleteFeedInput"),
+    id = id.from(_N, "DeleteFeedRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -484,7 +484,7 @@ M.DeleteFeedInput = schema.new({
 })
 
 M.DeleteFeedOutput = schema.new({
-    id = id.from(_N, "DeleteFeedOutput"),
+    id = id.from(_N, "DeleteFeedResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -518,7 +518,7 @@ M.DeleteFeedOutput = schema.new({
 })
 
 M.DisassociateFeedInput = schema.new({
-    id = id.from(_N, "DisassociateFeedInput"),
+    id = id.from(_N, "DisassociateFeedRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -554,7 +554,7 @@ M.DisassociateFeedInput = schema.new({
 })
 
 M.DisassociateFeedOutput = schema.new({
-    id = id.from(_N, "DisassociateFeedOutput"),
+    id = id.from(_N, "DisassociateFeedResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -579,7 +579,7 @@ M.DisassociateFeedOutput = schema.new({
 })
 
 M.GetFeedInput = schema.new({
-    id = id.from(_N, "GetFeedInput"),
+    id = id.from(_N, "GetFeedRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -596,7 +596,7 @@ M.GetFeedInput = schema.new({
 })
 
 M.GetFeedOutput = schema.new({
-    id = id.from(_N, "GetFeedOutput"),
+    id = id.from(_N, "GetFeedResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -674,7 +674,7 @@ M.GetFeedOutput = schema.new({
 })
 
 M.ListFeedsInput = schema.new({
-    id = id.from(_N, "ListFeedsInput"),
+    id = id.from(_N, "ListFeedsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -749,7 +749,7 @@ M.FeedSummary = schema.new({
 })
 
 M.ListFeedsOutput = schema.new({
-    id = id.from(_N, "ListFeedsOutput"),
+    id = id.from(_N, "ListFeedsResponse"),
     type = "structure",
     members = {
         feeds = schema.new({
@@ -819,7 +819,7 @@ M.UpdateOutput = schema.new({
 })
 
 M.UpdateFeedInput = schema.new({
-    id = id.from(_N, "UpdateFeedInput"),
+    id = id.from(_N, "UpdateFeedRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -855,7 +855,7 @@ M.UpdateFeedInput = schema.new({
 })
 
 M.UpdateFeedOutput = schema.new({
-    id = id.from(_N, "UpdateFeedOutput"),
+    id = id.from(_N, "UpdateFeedResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -933,7 +933,7 @@ M.UpdateFeedOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -950,7 +950,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -965,7 +965,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -993,12 +993,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1026,8 +1026,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

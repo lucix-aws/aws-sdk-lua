@@ -72,7 +72,7 @@ M.Filter = schema.new({
 })
 
 M.BatchGetSecretValueInput = schema.new({
-    id = id.from(_N, "BatchGetSecretValueInput"),
+    id = id.from(_N, "BatchGetSecretValueRequest"),
     type = "structure",
     members = {
         SecretIdList = schema.new({
@@ -155,7 +155,7 @@ M.SecretValueEntry = schema.new({
 })
 
 M.BatchGetSecretValueOutput = schema.new({
-    id = id.from(_N, "BatchGetSecretValueOutput"),
+    id = id.from(_N, "BatchGetSecretValueResponse"),
     type = "structure",
     members = {
         SecretValues = schema.new({
@@ -278,7 +278,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.CancelRotateSecretInput = schema.new({
-    id = id.from(_N, "CancelRotateSecretInput"),
+    id = id.from(_N, "CancelRotateSecretRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -294,7 +294,7 @@ M.CancelRotateSecretInput = schema.new({
 })
 
 M.CancelRotateSecretOutput = schema.new({
-    id = id.from(_N, "CancelRotateSecretOutput"),
+    id = id.from(_N, "CancelRotateSecretResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -338,7 +338,7 @@ M.Tag = schema.new({
 })
 
 M.CreateSecretInput = schema.new({
-    id = id.from(_N, "CreateSecretInput"),
+    id = id.from(_N, "CreateSecretRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -453,7 +453,7 @@ M.ReplicationStatusType = schema.new({
 })
 
 M.CreateSecretOutput = schema.new({
-    id = id.from(_N, "CreateSecretOutput"),
+    id = id.from(_N, "CreateSecretResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -565,7 +565,7 @@ M.ResourceExistsException = schema.new({
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -581,7 +581,7 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "DeleteResourcePolicyResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -600,7 +600,7 @@ M.DeleteResourcePolicyOutput = schema.new({
 })
 
 M.DeleteSecretInput = schema.new({
-    id = id.from(_N, "DeleteSecretInput"),
+    id = id.from(_N, "DeleteSecretRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -634,7 +634,7 @@ M.DeleteSecretInput = schema.new({
 })
 
 M.DeleteSecretOutput = schema.new({
-    id = id.from(_N, "DeleteSecretOutput"),
+    id = id.from(_N, "DeleteSecretResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -659,7 +659,7 @@ M.DeleteSecretOutput = schema.new({
 })
 
 M.DescribeSecretInput = schema.new({
-    id = id.from(_N, "DescribeSecretInput"),
+    id = id.from(_N, "DescribeSecretRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -719,7 +719,7 @@ M.RotationRulesType = schema.new({
 })
 
 M.DescribeSecretOutput = schema.new({
-    id = id.from(_N, "DescribeSecretOutput"),
+    id = id.from(_N, "DescribeSecretResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -830,7 +830,7 @@ M.DescribeSecretOutput = schema.new({
             name = "VersionIdsToStages",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         OwningService = schema.new({
             id = id.from(_N, "DescribeSecretOutput", "OwningService"),
@@ -861,7 +861,7 @@ M.DescribeSecretOutput = schema.new({
 })
 
 M.GetRandomPasswordInput = schema.new({
-    id = id.from(_N, "GetRandomPasswordInput"),
+    id = id.from(_N, "GetRandomPasswordRequest"),
     type = "structure",
     members = {
         PasswordLength = schema.new({
@@ -934,7 +934,7 @@ M.GetRandomPasswordInput = schema.new({
 })
 
 M.GetRandomPasswordOutput = schema.new({
-    id = id.from(_N, "GetRandomPasswordOutput"),
+    id = id.from(_N, "GetRandomPasswordResponse"),
     type = "structure",
     members = {
         RandomPassword = schema.new({
@@ -947,7 +947,7 @@ M.GetRandomPasswordOutput = schema.new({
 })
 
 M.GetResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetResourcePolicyInput"),
+    id = id.from(_N, "GetResourcePolicyRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -963,7 +963,7 @@ M.GetResourcePolicyInput = schema.new({
 })
 
 M.GetResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetResourcePolicyOutput"),
+    id = id.from(_N, "GetResourcePolicyResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -988,7 +988,7 @@ M.GetResourcePolicyOutput = schema.new({
 })
 
 M.GetSecretValueInput = schema.new({
-    id = id.from(_N, "GetSecretValueInput"),
+    id = id.from(_N, "GetSecretValueRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -1016,7 +1016,7 @@ M.GetSecretValueInput = schema.new({
 })
 
 M.GetSecretValueOutput = schema.new({
-    id = id.from(_N, "GetSecretValueOutput"),
+    id = id.from(_N, "GetSecretValueResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -1066,7 +1066,7 @@ M.GetSecretValueOutput = schema.new({
 })
 
 M.ListSecretsInput = schema.new({
-    id = id.from(_N, "ListSecretsInput"),
+    id = id.from(_N, "ListSecretsRequest"),
     type = "structure",
     members = {
         IncludePlannedDeletion = schema.new({
@@ -1224,7 +1224,7 @@ M.SecretListEntry = schema.new({
             name = "SecretVersionsToStages",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         OwningService = schema.new({
             id = id.from(_N, "SecretListEntry", "OwningService"),
@@ -1248,7 +1248,7 @@ M.SecretListEntry = schema.new({
 })
 
 M.ListSecretsOutput = schema.new({
-    id = id.from(_N, "ListSecretsOutput"),
+    id = id.from(_N, "ListSecretsResponse"),
     type = "structure",
     members = {
         SecretList = schema.new({
@@ -1268,7 +1268,7 @@ M.ListSecretsOutput = schema.new({
 })
 
 M.ListSecretVersionIdsInput = schema.new({
-    id = id.from(_N, "ListSecretVersionIdsInput"),
+    id = id.from(_N, "ListSecretVersionIdsRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -1344,7 +1344,7 @@ M.SecretVersionsListEntry = schema.new({
 })
 
 M.ListSecretVersionIdsOutput = schema.new({
-    id = id.from(_N, "ListSecretVersionIdsOutput"),
+    id = id.from(_N, "ListSecretVersionIdsResponse"),
     type = "structure",
     members = {
         Versions = schema.new({
@@ -1392,7 +1392,7 @@ M.PublicPolicyException = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -1426,7 +1426,7 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -1445,7 +1445,7 @@ M.PutResourcePolicyOutput = schema.new({
 })
 
 M.PutSecretValueInput = schema.new({
-    id = id.from(_N, "PutSecretValueInput"),
+    id = id.from(_N, "PutSecretValueRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -1495,7 +1495,7 @@ M.PutSecretValueInput = schema.new({
 })
 
 M.PutSecretValueOutput = schema.new({
-    id = id.from(_N, "PutSecretValueOutput"),
+    id = id.from(_N, "PutSecretValueResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -1527,7 +1527,7 @@ M.PutSecretValueOutput = schema.new({
 })
 
 M.RemoveRegionsFromReplicationInput = schema.new({
-    id = id.from(_N, "RemoveRegionsFromReplicationInput"),
+    id = id.from(_N, "RemoveRegionsFromReplicationRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -1553,7 +1553,7 @@ M.RemoveRegionsFromReplicationInput = schema.new({
 })
 
 M.RemoveRegionsFromReplicationOutput = schema.new({
-    id = id.from(_N, "RemoveRegionsFromReplicationOutput"),
+    id = id.from(_N, "RemoveRegionsFromReplicationResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -1573,7 +1573,7 @@ M.RemoveRegionsFromReplicationOutput = schema.new({
 })
 
 M.ReplicateSecretToRegionsInput = schema.new({
-    id = id.from(_N, "ReplicateSecretToRegionsInput"),
+    id = id.from(_N, "ReplicateSecretToRegionsRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -1608,7 +1608,7 @@ M.ReplicateSecretToRegionsInput = schema.new({
 })
 
 M.ReplicateSecretToRegionsOutput = schema.new({
-    id = id.from(_N, "ReplicateSecretToRegionsOutput"),
+    id = id.from(_N, "ReplicateSecretToRegionsResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -1628,7 +1628,7 @@ M.ReplicateSecretToRegionsOutput = schema.new({
 })
 
 M.RestoreSecretInput = schema.new({
-    id = id.from(_N, "RestoreSecretInput"),
+    id = id.from(_N, "RestoreSecretRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -1644,7 +1644,7 @@ M.RestoreSecretInput = schema.new({
 })
 
 M.RestoreSecretOutput = schema.new({
-    id = id.from(_N, "RestoreSecretOutput"),
+    id = id.from(_N, "RestoreSecretResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -1663,7 +1663,7 @@ M.RestoreSecretOutput = schema.new({
 })
 
 M.RotateSecretInput = schema.new({
-    id = id.from(_N, "RotateSecretInput"),
+    id = id.from(_N, "RotateSecretRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -1723,7 +1723,7 @@ M.RotateSecretInput = schema.new({
 })
 
 M.RotateSecretOutput = schema.new({
-    id = id.from(_N, "RotateSecretOutput"),
+    id = id.from(_N, "RotateSecretResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -1748,7 +1748,7 @@ M.RotateSecretOutput = schema.new({
 })
 
 M.StopReplicationToReplicaInput = schema.new({
-    id = id.from(_N, "StopReplicationToReplicaInput"),
+    id = id.from(_N, "StopReplicationToReplicaRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -1764,7 +1764,7 @@ M.StopReplicationToReplicaInput = schema.new({
 })
 
 M.StopReplicationToReplicaOutput = schema.new({
-    id = id.from(_N, "StopReplicationToReplicaOutput"),
+    id = id.from(_N, "StopReplicationToReplicaResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -1777,7 +1777,7 @@ M.StopReplicationToReplicaOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -1803,12 +1803,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -1834,12 +1834,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateSecretInput = schema.new({
-    id = id.from(_N, "UpdateSecretInput"),
+    id = id.from(_N, "UpdateSecretRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -1894,7 +1894,7 @@ M.UpdateSecretInput = schema.new({
 })
 
 M.UpdateSecretOutput = schema.new({
-    id = id.from(_N, "UpdateSecretOutput"),
+    id = id.from(_N, "UpdateSecretResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -1919,7 +1919,7 @@ M.UpdateSecretOutput = schema.new({
 })
 
 M.UpdateSecretVersionStageInput = schema.new({
-    id = id.from(_N, "UpdateSecretVersionStageInput"),
+    id = id.from(_N, "UpdateSecretVersionStageRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -1956,7 +1956,7 @@ M.UpdateSecretVersionStageInput = schema.new({
 })
 
 M.UpdateSecretVersionStageOutput = schema.new({
-    id = id.from(_N, "UpdateSecretVersionStageOutput"),
+    id = id.from(_N, "UpdateSecretVersionStageResponse"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -1975,7 +1975,7 @@ M.UpdateSecretVersionStageOutput = schema.new({
 })
 
 M.ValidateResourcePolicyInput = schema.new({
-    id = id.from(_N, "ValidateResourcePolicyInput"),
+    id = id.from(_N, "ValidateResourcePolicyRequest"),
     type = "structure",
     members = {
         SecretId = schema.new({
@@ -2016,7 +2016,7 @@ M.ValidationErrorsEntry = schema.new({
 })
 
 M.ValidateResourcePolicyOutput = schema.new({
-    id = id.from(_N, "ValidateResourcePolicyOutput"),
+    id = id.from(_N, "ValidateResourcePolicyResponse"),
     type = "structure",
     members = {
         PolicyValidationPassed = schema.new({
@@ -2037,5 +2037,19 @@ M.ValidateResourcePolicyOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

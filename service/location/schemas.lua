@@ -150,7 +150,7 @@ M.ApiKeyRestrictions = schema.new({
 })
 
 M.CreateKeyInput = schema.new({
-    id = id.from(_N, "CreateKeyInput"),
+    id = id.from(_N, "CreateKeyRequest"),
     type = "structure",
     members = {
         KeyName = schema.new({
@@ -205,7 +205,7 @@ M.CreateKeyInput = schema.new({
 })
 
 M.CreateKeyOutput = schema.new({
-    id = id.from(_N, "CreateKeyOutput"),
+    id = id.from(_N, "CreateKeyResponse"),
     type = "structure",
     members = {
         Key = schema.new({
@@ -380,7 +380,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteKeyInput = schema.new({
-    id = id.from(_N, "DeleteKeyInput"),
+    id = id.from(_N, "DeleteKeyRequest"),
     type = "structure",
     members = {
         KeyName = schema.new({
@@ -406,7 +406,7 @@ M.DeleteKeyInput = schema.new({
 })
 
 M.DeleteKeyOutput = schema.new({
-    id = id.from(_N, "DeleteKeyOutput"),
+    id = id.from(_N, "DeleteKeyResponse"),
     type = "structure",
 })
 
@@ -431,7 +431,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DescribeKeyInput = schema.new({
-    id = id.from(_N, "DescribeKeyInput"),
+    id = id.from(_N, "DescribeKeyRequest"),
     type = "structure",
     members = {
         KeyName = schema.new({
@@ -448,7 +448,7 @@ M.DescribeKeyInput = schema.new({
 })
 
 M.DescribeKeyOutput = schema.new({
-    id = id.from(_N, "DescribeKeyOutput"),
+    id = id.from(_N, "DescribeKeyResponse"),
     type = "structure",
     members = {
         Key = schema.new({
@@ -545,7 +545,7 @@ M.DescribeKeyOutput = schema.new({
 })
 
 M.ListKeysInput = schema.new({
-    id = id.from(_N, "ListKeysInput"),
+    id = id.from(_N, "ListKeysRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -645,7 +645,7 @@ M.ListKeysResponseEntry = schema.new({
 })
 
 M.ListKeysOutput = schema.new({
-    id = id.from(_N, "ListKeysOutput"),
+    id = id.from(_N, "ListKeysResponse"),
     type = "structure",
     members = {
         Entries = schema.new({
@@ -668,7 +668,7 @@ M.ListKeysOutput = schema.new({
 })
 
 M.UpdateKeyInput = schema.new({
-    id = id.from(_N, "UpdateKeyInput"),
+    id = id.from(_N, "UpdateKeyRequest"),
     type = "structure",
     members = {
         KeyName = schema.new({
@@ -719,7 +719,7 @@ M.UpdateKeyInput = schema.new({
 })
 
 M.UpdateKeyOutput = schema.new({
-    id = id.from(_N, "UpdateKeyOutput"),
+    id = id.from(_N, "UpdateKeyResponse"),
     type = "structure",
     members = {
         KeyArn = schema.new({
@@ -757,7 +757,7 @@ M.UpdateKeyOutput = schema.new({
 })
 
 M.AssociateTrackerConsumerInput = schema.new({
-    id = id.from(_N, "AssociateTrackerConsumerInput"),
+    id = id.from(_N, "AssociateTrackerConsumerRequest"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -783,12 +783,12 @@ M.AssociateTrackerConsumerInput = schema.new({
 })
 
 M.AssociateTrackerConsumerOutput = schema.new({
-    id = id.from(_N, "AssociateTrackerConsumerOutput"),
+    id = id.from(_N, "AssociateTrackerConsumerResponse"),
     type = "structure",
 })
 
 M.BatchDeleteDevicePositionHistoryInput = schema.new({
-    id = id.from(_N, "BatchDeleteDevicePositionHistoryInput"),
+    id = id.from(_N, "BatchDeleteDevicePositionHistoryRequest"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -860,7 +860,7 @@ M.BatchDeleteDevicePositionHistoryError = schema.new({
 })
 
 M.BatchDeleteDevicePositionHistoryOutput = schema.new({
-    id = id.from(_N, "BatchDeleteDevicePositionHistoryOutput"),
+    id = id.from(_N, "BatchDeleteDevicePositionHistoryResponse"),
     type = "structure",
     members = {
         Errors = schema.new({
@@ -877,7 +877,7 @@ M.BatchDeleteDevicePositionHistoryOutput = schema.new({
 })
 
 M.BatchDeleteGeofenceInput = schema.new({
-    id = id.from(_N, "BatchDeleteGeofenceInput"),
+    id = id.from(_N, "BatchDeleteGeofenceRequest"),
     type = "structure",
     members = {
         CollectionName = schema.new({
@@ -930,7 +930,7 @@ M.BatchDeleteGeofenceError = schema.new({
 })
 
 M.BatchDeleteGeofenceOutput = schema.new({
-    id = id.from(_N, "BatchDeleteGeofenceOutput"),
+    id = id.from(_N, "BatchDeleteGeofenceResponse"),
     type = "structure",
     members = {
         Errors = schema.new({
@@ -1017,7 +1017,7 @@ M.DevicePositionUpdate = schema.new({
 })
 
 M.BatchEvaluateGeofencesInput = schema.new({
-    id = id.from(_N, "BatchEvaluateGeofencesInput"),
+    id = id.from(_N, "BatchEvaluateGeofencesRequest"),
     type = "structure",
     members = {
         CollectionName = schema.new({
@@ -1083,7 +1083,7 @@ M.BatchEvaluateGeofencesError = schema.new({
 })
 
 M.BatchEvaluateGeofencesOutput = schema.new({
-    id = id.from(_N, "BatchEvaluateGeofencesOutput"),
+    id = id.from(_N, "BatchEvaluateGeofencesResponse"),
     type = "structure",
     members = {
         Errors = schema.new({
@@ -1100,7 +1100,7 @@ M.BatchEvaluateGeofencesOutput = schema.new({
 })
 
 M.BatchGetDevicePositionInput = schema.new({
-    id = id.from(_N, "BatchGetDevicePositionInput"),
+    id = id.from(_N, "BatchGetDevicePositionRequest"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -1217,7 +1217,7 @@ M.BatchGetDevicePositionError = schema.new({
 })
 
 M.BatchGetDevicePositionOutput = schema.new({
-    id = id.from(_N, "BatchGetDevicePositionOutput"),
+    id = id.from(_N, "BatchGetDevicePositionResponse"),
     type = "structure",
     members = {
         Errors = schema.new({
@@ -1278,7 +1278,7 @@ M.GeofenceGeometry = schema.new({
             type = "list",
             name = "Polygon",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Document }),
         }),
         Circle = schema.new({
             id = id.from(_N, "GeofenceGeometry", "Circle"),
@@ -1298,7 +1298,7 @@ M.GeofenceGeometry = schema.new({
             type = "list",
             name = "MultiPolygon",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Document }),
         }),
     },
 })
@@ -1338,7 +1338,7 @@ M.BatchPutGeofenceRequestEntry = schema.new({
 })
 
 M.BatchPutGeofenceInput = schema.new({
-    id = id.from(_N, "BatchPutGeofenceInput"),
+    id = id.from(_N, "BatchPutGeofenceRequest"),
     type = "structure",
     members = {
         CollectionName = schema.new({
@@ -1433,7 +1433,7 @@ M.BatchPutGeofenceSuccess = schema.new({
 })
 
 M.BatchPutGeofenceOutput = schema.new({
-    id = id.from(_N, "BatchPutGeofenceOutput"),
+    id = id.from(_N, "BatchPutGeofenceResponse"),
     type = "structure",
     members = {
         Successes = schema.new({
@@ -1460,7 +1460,7 @@ M.BatchPutGeofenceOutput = schema.new({
 })
 
 M.BatchUpdateDevicePositionInput = schema.new({
-    id = id.from(_N, "BatchUpdateDevicePositionInput"),
+    id = id.from(_N, "BatchUpdateDevicePositionRequest"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -1526,7 +1526,7 @@ M.BatchUpdateDevicePositionError = schema.new({
 })
 
 M.BatchUpdateDevicePositionOutput = schema.new({
-    id = id.from(_N, "BatchUpdateDevicePositionOutput"),
+    id = id.from(_N, "BatchUpdateDevicePositionResponse"),
     type = "structure",
     members = {
         Errors = schema.new({
@@ -1645,7 +1645,7 @@ M.CalculateRouteTruckModeOptions = schema.new({
 })
 
 M.CalculateRouteInput = schema.new({
-    id = id.from(_N, "CalculateRouteInput"),
+    id = id.from(_N, "CalculateRouteRequest"),
     type = "structure",
     members = {
         CalculatorName = schema.new({
@@ -1683,7 +1683,7 @@ M.CalculateRouteInput = schema.new({
             type = "list",
             name = "WaypointPositions",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Double }),
         }),
         TravelMode = schema.new({
             id = id.from(_N, "CalculateRouteInput", "TravelMode"),
@@ -1768,7 +1768,7 @@ M.LegGeometry = schema.new({
             type = "list",
             name = "LineString",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Double }),
         }),
     },
 })
@@ -1940,7 +1940,7 @@ M.CalculateRouteSummary = schema.new({
 })
 
 M.CalculateRouteOutput = schema.new({
-    id = id.from(_N, "CalculateRouteOutput"),
+    id = id.from(_N, "CalculateRouteResponse"),
     type = "structure",
     members = {
         Legs = schema.new({
@@ -1967,7 +1967,7 @@ M.CalculateRouteOutput = schema.new({
 })
 
 M.CalculateRouteMatrixInput = schema.new({
-    id = id.from(_N, "CalculateRouteMatrixInput"),
+    id = id.from(_N, "CalculateRouteMatrixRequest"),
     type = "structure",
     members = {
         CalculatorName = schema.new({
@@ -1985,7 +1985,7 @@ M.CalculateRouteMatrixInput = schema.new({
             type = "list",
             name = "DeparturePositions",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Double }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1995,7 +1995,7 @@ M.CalculateRouteMatrixInput = schema.new({
             type = "list",
             name = "DestinationPositions",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Double }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -2145,7 +2145,7 @@ M.CalculateRouteMatrixSummary = schema.new({
 })
 
 M.CalculateRouteMatrixOutput = schema.new({
-    id = id.from(_N, "CalculateRouteMatrixOutput"),
+    id = id.from(_N, "CalculateRouteMatrixResponse"),
     type = "structure",
     members = {
         RouteMatrix = schema.new({
@@ -2153,7 +2153,7 @@ M.CalculateRouteMatrixOutput = schema.new({
             type = "list",
             name = "RouteMatrix",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = M.RouteMatrixEntry }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -2163,14 +2163,14 @@ M.CalculateRouteMatrixOutput = schema.new({
             type = "list",
             name = "SnappedDeparturePositions",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Double }),
         }),
         SnappedDestinationPositions = schema.new({
             id = id.from(_N, "CalculateRouteMatrixOutput", "SnappedDestinationPositions"),
             type = "list",
             name = "SnappedDestinationPositions",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Double }),
         }),
         Summary = schema.new({
             id = id.from(_N, "CalculateRouteMatrixOutput", "Summary"),
@@ -2186,7 +2186,7 @@ M.CalculateRouteMatrixOutput = schema.new({
 })
 
 M.CancelJobInput = schema.new({
-    id = id.from(_N, "CancelJobInput"),
+    id = id.from(_N, "CancelJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2202,7 +2202,7 @@ M.CancelJobInput = schema.new({
 })
 
 M.CancelJobOutput = schema.new({
-    id = id.from(_N, "CancelJobOutput"),
+    id = id.from(_N, "CancelJobResponse"),
     type = "structure",
     members = {
         JobArn = schema.new({
@@ -2408,7 +2408,7 @@ M.CellSignals = schema.new({
 })
 
 M.CreateGeofenceCollectionInput = schema.new({
-    id = id.from(_N, "CreateGeofenceCollectionInput"),
+    id = id.from(_N, "CreateGeofenceCollectionRequest"),
     type = "structure",
     members = {
         CollectionName = schema.new({
@@ -2456,7 +2456,7 @@ M.CreateGeofenceCollectionInput = schema.new({
 })
 
 M.CreateGeofenceCollectionOutput = schema.new({
-    id = id.from(_N, "CreateGeofenceCollectionOutput"),
+    id = id.from(_N, "CreateGeofenceCollectionResponse"),
     type = "structure",
     members = {
         CollectionName = schema.new({
@@ -2523,7 +2523,7 @@ M.MapConfiguration = schema.new({
 })
 
 M.CreateMapInput = schema.new({
-    id = id.from(_N, "CreateMapInput"),
+    id = id.from(_N, "CreateMapRequest"),
     type = "structure",
     members = {
         MapName = schema.new({
@@ -2569,7 +2569,7 @@ M.CreateMapInput = schema.new({
 })
 
 M.CreateMapOutput = schema.new({
-    id = id.from(_N, "CreateMapOutput"),
+    id = id.from(_N, "CreateMapResponse"),
     type = "structure",
     members = {
         MapName = schema.new({
@@ -2620,7 +2620,7 @@ M.DataSourceConfiguration = schema.new({
 })
 
 M.CreatePlaceIndexInput = schema.new({
-    id = id.from(_N, "CreatePlaceIndexInput"),
+    id = id.from(_N, "CreatePlaceIndexRequest"),
     type = "structure",
     members = {
         IndexName = schema.new({
@@ -2672,7 +2672,7 @@ M.CreatePlaceIndexInput = schema.new({
 })
 
 M.CreatePlaceIndexOutput = schema.new({
-    id = id.from(_N, "CreatePlaceIndexOutput"),
+    id = id.from(_N, "CreatePlaceIndexResponse"),
     type = "structure",
     members = {
         IndexName = schema.new({
@@ -2710,7 +2710,7 @@ M.CreatePlaceIndexOutput = schema.new({
 })
 
 M.CreateRouteCalculatorInput = schema.new({
-    id = id.from(_N, "CreateRouteCalculatorInput"),
+    id = id.from(_N, "CreateRouteCalculatorRequest"),
     type = "structure",
     members = {
         CalculatorName = schema.new({
@@ -2755,7 +2755,7 @@ M.CreateRouteCalculatorInput = schema.new({
 })
 
 M.CreateRouteCalculatorOutput = schema.new({
-    id = id.from(_N, "CreateRouteCalculatorOutput"),
+    id = id.from(_N, "CreateRouteCalculatorResponse"),
     type = "structure",
     members = {
         CalculatorName = schema.new({
@@ -2793,7 +2793,7 @@ M.CreateRouteCalculatorOutput = schema.new({
 })
 
 M.CreateTrackerInput = schema.new({
-    id = id.from(_N, "CreateTrackerInput"),
+    id = id.from(_N, "CreateTrackerRequest"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -2859,7 +2859,7 @@ M.CreateTrackerInput = schema.new({
 })
 
 M.CreateTrackerOutput = schema.new({
-    id = id.from(_N, "CreateTrackerOutput"),
+    id = id.from(_N, "CreateTrackerResponse"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -2897,7 +2897,7 @@ M.CreateTrackerOutput = schema.new({
 })
 
 M.DeleteGeofenceCollectionInput = schema.new({
-    id = id.from(_N, "DeleteGeofenceCollectionInput"),
+    id = id.from(_N, "DeleteGeofenceCollectionRequest"),
     type = "structure",
     members = {
         CollectionName = schema.new({
@@ -2914,12 +2914,12 @@ M.DeleteGeofenceCollectionInput = schema.new({
 })
 
 M.DeleteGeofenceCollectionOutput = schema.new({
-    id = id.from(_N, "DeleteGeofenceCollectionOutput"),
+    id = id.from(_N, "DeleteGeofenceCollectionResponse"),
     type = "structure",
 })
 
 M.DeleteMapInput = schema.new({
-    id = id.from(_N, "DeleteMapInput"),
+    id = id.from(_N, "DeleteMapRequest"),
     type = "structure",
     members = {
         MapName = schema.new({
@@ -2936,12 +2936,12 @@ M.DeleteMapInput = schema.new({
 })
 
 M.DeleteMapOutput = schema.new({
-    id = id.from(_N, "DeleteMapOutput"),
+    id = id.from(_N, "DeleteMapResponse"),
     type = "structure",
 })
 
 M.DeletePlaceIndexInput = schema.new({
-    id = id.from(_N, "DeletePlaceIndexInput"),
+    id = id.from(_N, "DeletePlaceIndexRequest"),
     type = "structure",
     members = {
         IndexName = schema.new({
@@ -2958,12 +2958,12 @@ M.DeletePlaceIndexInput = schema.new({
 })
 
 M.DeletePlaceIndexOutput = schema.new({
-    id = id.from(_N, "DeletePlaceIndexOutput"),
+    id = id.from(_N, "DeletePlaceIndexResponse"),
     type = "structure",
 })
 
 M.DeleteRouteCalculatorInput = schema.new({
-    id = id.from(_N, "DeleteRouteCalculatorInput"),
+    id = id.from(_N, "DeleteRouteCalculatorRequest"),
     type = "structure",
     members = {
         CalculatorName = schema.new({
@@ -2980,12 +2980,12 @@ M.DeleteRouteCalculatorInput = schema.new({
 })
 
 M.DeleteRouteCalculatorOutput = schema.new({
-    id = id.from(_N, "DeleteRouteCalculatorOutput"),
+    id = id.from(_N, "DeleteRouteCalculatorResponse"),
     type = "structure",
 })
 
 M.DeleteTrackerInput = schema.new({
-    id = id.from(_N, "DeleteTrackerInput"),
+    id = id.from(_N, "DeleteTrackerRequest"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -3002,12 +3002,12 @@ M.DeleteTrackerInput = schema.new({
 })
 
 M.DeleteTrackerOutput = schema.new({
-    id = id.from(_N, "DeleteTrackerOutput"),
+    id = id.from(_N, "DeleteTrackerResponse"),
     type = "structure",
 })
 
 M.DescribeGeofenceCollectionInput = schema.new({
-    id = id.from(_N, "DescribeGeofenceCollectionInput"),
+    id = id.from(_N, "DescribeGeofenceCollectionRequest"),
     type = "structure",
     members = {
         CollectionName = schema.new({
@@ -3024,7 +3024,7 @@ M.DescribeGeofenceCollectionInput = schema.new({
 })
 
 M.DescribeGeofenceCollectionOutput = schema.new({
-    id = id.from(_N, "DescribeGeofenceCollectionOutput"),
+    id = id.from(_N, "DescribeGeofenceCollectionResponse"),
     type = "structure",
     members = {
         CollectionName = schema.new({
@@ -3116,7 +3116,7 @@ M.DescribeGeofenceCollectionOutput = schema.new({
 })
 
 M.DescribeMapInput = schema.new({
-    id = id.from(_N, "DescribeMapInput"),
+    id = id.from(_N, "DescribeMapRequest"),
     type = "structure",
     members = {
         MapName = schema.new({
@@ -3133,7 +3133,7 @@ M.DescribeMapInput = schema.new({
 })
 
 M.DescribeMapOutput = schema.new({
-    id = id.from(_N, "DescribeMapOutput"),
+    id = id.from(_N, "DescribeMapResponse"),
     type = "structure",
     members = {
         MapName = schema.new({
@@ -3226,7 +3226,7 @@ M.DescribeMapOutput = schema.new({
 })
 
 M.DescribePlaceIndexInput = schema.new({
-    id = id.from(_N, "DescribePlaceIndexInput"),
+    id = id.from(_N, "DescribePlaceIndexRequest"),
     type = "structure",
     members = {
         IndexName = schema.new({
@@ -3243,7 +3243,7 @@ M.DescribePlaceIndexInput = schema.new({
 })
 
 M.DescribePlaceIndexOutput = schema.new({
-    id = id.from(_N, "DescribePlaceIndexOutput"),
+    id = id.from(_N, "DescribePlaceIndexResponse"),
     type = "structure",
     members = {
         IndexName = schema.new({
@@ -3336,7 +3336,7 @@ M.DescribePlaceIndexOutput = schema.new({
 })
 
 M.DescribeRouteCalculatorInput = schema.new({
-    id = id.from(_N, "DescribeRouteCalculatorInput"),
+    id = id.from(_N, "DescribeRouteCalculatorRequest"),
     type = "structure",
     members = {
         CalculatorName = schema.new({
@@ -3353,7 +3353,7 @@ M.DescribeRouteCalculatorInput = schema.new({
 })
 
 M.DescribeRouteCalculatorOutput = schema.new({
-    id = id.from(_N, "DescribeRouteCalculatorOutput"),
+    id = id.from(_N, "DescribeRouteCalculatorResponse"),
     type = "structure",
     members = {
         CalculatorName = schema.new({
@@ -3436,7 +3436,7 @@ M.DescribeRouteCalculatorOutput = schema.new({
 })
 
 M.DescribeTrackerInput = schema.new({
-    id = id.from(_N, "DescribeTrackerInput"),
+    id = id.from(_N, "DescribeTrackerRequest"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -3453,7 +3453,7 @@ M.DescribeTrackerInput = schema.new({
 })
 
 M.DescribeTrackerOutput = schema.new({
-    id = id.from(_N, "DescribeTrackerOutput"),
+    id = id.from(_N, "DescribeTrackerResponse"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -3648,7 +3648,7 @@ M.DeviceState = schema.new({
 })
 
 M.DisassociateTrackerConsumerInput = schema.new({
-    id = id.from(_N, "DisassociateTrackerConsumerInput"),
+    id = id.from(_N, "DisassociateTrackerConsumerRequest"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -3675,7 +3675,7 @@ M.DisassociateTrackerConsumerInput = schema.new({
 })
 
 M.DisassociateTrackerConsumerOutput = schema.new({
-    id = id.from(_N, "DisassociateTrackerConsumerOutput"),
+    id = id.from(_N, "DisassociateTrackerConsumerResponse"),
     type = "structure",
 })
 
@@ -3773,7 +3773,7 @@ M.ForecastGeofenceEventsDeviceState = schema.new({
 })
 
 M.ForecastGeofenceEventsInput = schema.new({
-    id = id.from(_N, "ForecastGeofenceEventsInput"),
+    id = id.from(_N, "ForecastGeofenceEventsRequest"),
     type = "structure",
     members = {
         CollectionName = schema.new({
@@ -3833,7 +3833,7 @@ M.ForecastGeofenceEventsInput = schema.new({
 })
 
 M.ForecastGeofenceEventsOutput = schema.new({
-    id = id.from(_N, "ForecastGeofenceEventsOutput"),
+    id = id.from(_N, "ForecastGeofenceEventsResponse"),
     type = "structure",
     members = {
         ForecastedEvents = schema.new({
@@ -3874,7 +3874,7 @@ M.ForecastGeofenceEventsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3891,7 +3891,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -3906,7 +3906,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3934,12 +3934,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3967,12 +3967,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.GetGeofenceInput = schema.new({
-    id = id.from(_N, "GetGeofenceInput"),
+    id = id.from(_N, "GetGeofenceRequest"),
     type = "structure",
     members = {
         CollectionName = schema.new({
@@ -3999,7 +3999,7 @@ M.GetGeofenceInput = schema.new({
 })
 
 M.GetGeofenceOutput = schema.new({
-    id = id.from(_N, "GetGeofenceOutput"),
+    id = id.from(_N, "GetGeofenceResponse"),
     type = "structure",
     members = {
         GeofenceId = schema.new({
@@ -4068,7 +4068,7 @@ M.GetGeofenceOutput = schema.new({
 })
 
 M.ListGeofenceCollectionsInput = schema.new({
-    id = id.from(_N, "ListGeofenceCollectionsInput"),
+    id = id.from(_N, "ListGeofenceCollectionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4153,7 +4153,7 @@ M.ListGeofenceCollectionsResponseEntry = schema.new({
 })
 
 M.ListGeofenceCollectionsOutput = schema.new({
-    id = id.from(_N, "ListGeofenceCollectionsOutput"),
+    id = id.from(_N, "ListGeofenceCollectionsResponse"),
     type = "structure",
     members = {
         Entries = schema.new({
@@ -4176,7 +4176,7 @@ M.ListGeofenceCollectionsOutput = schema.new({
 })
 
 M.ListGeofencesInput = schema.new({
-    id = id.from(_N, "ListGeofencesInput"),
+    id = id.from(_N, "ListGeofencesRequest"),
     type = "structure",
     members = {
         CollectionName = schema.new({
@@ -4277,7 +4277,7 @@ M.ListGeofenceResponseEntry = schema.new({
 })
 
 M.ListGeofencesOutput = schema.new({
-    id = id.from(_N, "ListGeofencesOutput"),
+    id = id.from(_N, "ListGeofencesResponse"),
     type = "structure",
     members = {
         Entries = schema.new({
@@ -4300,7 +4300,7 @@ M.ListGeofencesOutput = schema.new({
 })
 
 M.PutGeofenceInput = schema.new({
-    id = id.from(_N, "PutGeofenceInput"),
+    id = id.from(_N, "PutGeofenceRequest"),
     type = "structure",
     members = {
         CollectionName = schema.new({
@@ -4345,7 +4345,7 @@ M.PutGeofenceInput = schema.new({
 })
 
 M.PutGeofenceOutput = schema.new({
-    id = id.from(_N, "PutGeofenceOutput"),
+    id = id.from(_N, "PutGeofenceResponse"),
     type = "structure",
     members = {
         GeofenceId = schema.new({
@@ -4387,7 +4387,7 @@ M.PutGeofenceOutput = schema.new({
 })
 
 M.UpdateGeofenceCollectionInput = schema.new({
-    id = id.from(_N, "UpdateGeofenceCollectionInput"),
+    id = id.from(_N, "UpdateGeofenceCollectionRequest"),
     type = "structure",
     members = {
         CollectionName = schema.new({
@@ -4422,7 +4422,7 @@ M.UpdateGeofenceCollectionInput = schema.new({
 })
 
 M.UpdateGeofenceCollectionOutput = schema.new({
-    id = id.from(_N, "UpdateGeofenceCollectionOutput"),
+    id = id.from(_N, "UpdateGeofenceCollectionResponse"),
     type = "structure",
     members = {
         CollectionName = schema.new({
@@ -4460,7 +4460,7 @@ M.UpdateGeofenceCollectionOutput = schema.new({
 })
 
 M.GetDevicePositionInput = schema.new({
-    id = id.from(_N, "GetDevicePositionInput"),
+    id = id.from(_N, "GetDevicePositionRequest"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -4487,7 +4487,7 @@ M.GetDevicePositionInput = schema.new({
 })
 
 M.GetDevicePositionOutput = schema.new({
-    id = id.from(_N, "GetDevicePositionOutput"),
+    id = id.from(_N, "GetDevicePositionResponse"),
     type = "structure",
     members = {
         DeviceId = schema.new({
@@ -4551,7 +4551,7 @@ M.GetDevicePositionOutput = schema.new({
 })
 
 M.GetDevicePositionHistoryInput = schema.new({
-    id = id.from(_N, "GetDevicePositionHistoryInput"),
+    id = id.from(_N, "GetDevicePositionHistoryRequest"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -4611,7 +4611,7 @@ M.GetDevicePositionHistoryInput = schema.new({
 })
 
 M.GetDevicePositionHistoryOutput = schema.new({
-    id = id.from(_N, "GetDevicePositionHistoryOutput"),
+    id = id.from(_N, "GetDevicePositionHistoryResponse"),
     type = "structure",
     members = {
         DevicePositions = schema.new({
@@ -4634,7 +4634,7 @@ M.GetDevicePositionHistoryOutput = schema.new({
 })
 
 M.GetJobInput = schema.new({
-    id = id.from(_N, "GetJobInput"),
+    id = id.from(_N, "GetJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -4752,7 +4752,7 @@ M.JobOutputOptions = schema.new({
 })
 
 M.GetJobOutput = schema.new({
-    id = id.from(_N, "GetJobOutput"),
+    id = id.from(_N, "GetJobResponse"),
     type = "structure",
     members = {
         Action = schema.new({
@@ -4887,7 +4887,7 @@ M.GetJobOutput = schema.new({
 })
 
 M.GetMapGlyphsInput = schema.new({
-    id = id.from(_N, "GetMapGlyphsInput"),
+    id = id.from(_N, "GetMapGlyphsRequest"),
     type = "structure",
     members = {
         MapName = schema.new({
@@ -4933,7 +4933,7 @@ M.GetMapGlyphsInput = schema.new({
 })
 
 M.GetMapGlyphsOutput = schema.new({
-    id = id.from(_N, "GetMapGlyphsOutput"),
+    id = id.from(_N, "GetMapGlyphsResponse"),
     type = "structure",
     members = {
         Blob = schema.new({
@@ -4967,7 +4967,7 @@ M.GetMapGlyphsOutput = schema.new({
 })
 
 M.GetMapSpritesInput = schema.new({
-    id = id.from(_N, "GetMapSpritesInput"),
+    id = id.from(_N, "GetMapSpritesRequest"),
     type = "structure",
     members = {
         MapName = schema.new({
@@ -5003,7 +5003,7 @@ M.GetMapSpritesInput = schema.new({
 })
 
 M.GetMapSpritesOutput = schema.new({
-    id = id.from(_N, "GetMapSpritesOutput"),
+    id = id.from(_N, "GetMapSpritesResponse"),
     type = "structure",
     members = {
         Blob = schema.new({
@@ -5037,7 +5037,7 @@ M.GetMapSpritesOutput = schema.new({
 })
 
 M.GetMapStyleDescriptorInput = schema.new({
-    id = id.from(_N, "GetMapStyleDescriptorInput"),
+    id = id.from(_N, "GetMapStyleDescriptorRequest"),
     type = "structure",
     members = {
         MapName = schema.new({
@@ -5063,7 +5063,7 @@ M.GetMapStyleDescriptorInput = schema.new({
 })
 
 M.GetMapStyleDescriptorOutput = schema.new({
-    id = id.from(_N, "GetMapStyleDescriptorOutput"),
+    id = id.from(_N, "GetMapStyleDescriptorResponse"),
     type = "structure",
     members = {
         Blob = schema.new({
@@ -5097,7 +5097,7 @@ M.GetMapStyleDescriptorOutput = schema.new({
 })
 
 M.GetMapTileInput = schema.new({
-    id = id.from(_N, "GetMapTileInput"),
+    id = id.from(_N, "GetMapTileRequest"),
     type = "structure",
     members = {
         MapName = schema.new({
@@ -5153,7 +5153,7 @@ M.GetMapTileInput = schema.new({
 })
 
 M.GetMapTileOutput = schema.new({
-    id = id.from(_N, "GetMapTileOutput"),
+    id = id.from(_N, "GetMapTileResponse"),
     type = "structure",
     members = {
         Blob = schema.new({
@@ -5187,7 +5187,7 @@ M.GetMapTileOutput = schema.new({
 })
 
 M.GetPlaceInput = schema.new({
-    id = id.from(_N, "GetPlaceInput"),
+    id = id.from(_N, "GetPlaceRequest"),
     type = "structure",
     members = {
         IndexName = schema.new({
@@ -5384,7 +5384,7 @@ M.Place = schema.new({
 })
 
 M.GetPlaceOutput = schema.new({
-    id = id.from(_N, "GetPlaceOutput"),
+    id = id.from(_N, "GetPlaceResponse"),
     type = "structure",
     members = {
         Place = schema.new({
@@ -5450,7 +5450,7 @@ M.JobsFilter = schema.new({
 })
 
 M.ListJobsInput = schema.new({
-    id = id.from(_N, "ListJobsInput"),
+    id = id.from(_N, "ListJobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -5606,7 +5606,7 @@ M.ListJobsResponseEntry = schema.new({
 })
 
 M.ListJobsOutput = schema.new({
-    id = id.from(_N, "ListJobsOutput"),
+    id = id.from(_N, "ListJobsResponse"),
     type = "structure",
     members = {
         Entries = schema.new({
@@ -5629,7 +5629,7 @@ M.ListJobsOutput = schema.new({
 })
 
 M.StartJobInput = schema.new({
-    id = id.from(_N, "StartJobInput"),
+    id = id.from(_N, "StartJobRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -5704,7 +5704,7 @@ M.StartJobInput = schema.new({
 })
 
 M.StartJobOutput = schema.new({
-    id = id.from(_N, "StartJobOutput"),
+    id = id.from(_N, "StartJobResponse"),
     type = "structure",
     members = {
         CreatedAt = schema.new({
@@ -5759,13 +5759,13 @@ M.TrackingFilterGeometry = schema.new({
             type = "list",
             name = "Polygon",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Document }),
         }),
     },
 })
 
 M.ListDevicePositionsInput = schema.new({
-    id = id.from(_N, "ListDevicePositionsInput"),
+    id = id.from(_N, "ListDevicePositionsRequest"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -5858,7 +5858,7 @@ M.ListDevicePositionsResponseEntry = schema.new({
 })
 
 M.ListDevicePositionsOutput = schema.new({
-    id = id.from(_N, "ListDevicePositionsOutput"),
+    id = id.from(_N, "ListDevicePositionsResponse"),
     type = "structure",
     members = {
         Entries = schema.new({
@@ -5881,7 +5881,7 @@ M.ListDevicePositionsOutput = schema.new({
 })
 
 M.ListMapsInput = schema.new({
-    id = id.from(_N, "ListMapsInput"),
+    id = id.from(_N, "ListMapsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -5969,7 +5969,7 @@ M.ListMapsResponseEntry = schema.new({
 })
 
 M.ListMapsOutput = schema.new({
-    id = id.from(_N, "ListMapsOutput"),
+    id = id.from(_N, "ListMapsResponse"),
     type = "structure",
     members = {
         Entries = schema.new({
@@ -5992,7 +5992,7 @@ M.ListMapsOutput = schema.new({
 })
 
 M.ListPlaceIndexesInput = schema.new({
-    id = id.from(_N, "ListPlaceIndexesInput"),
+    id = id.from(_N, "ListPlaceIndexesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -6080,7 +6080,7 @@ M.ListPlaceIndexesResponseEntry = schema.new({
 })
 
 M.ListPlaceIndexesOutput = schema.new({
-    id = id.from(_N, "ListPlaceIndexesOutput"),
+    id = id.from(_N, "ListPlaceIndexesResponse"),
     type = "structure",
     members = {
         Entries = schema.new({
@@ -6103,7 +6103,7 @@ M.ListPlaceIndexesOutput = schema.new({
 })
 
 M.ListRouteCalculatorsInput = schema.new({
-    id = id.from(_N, "ListRouteCalculatorsInput"),
+    id = id.from(_N, "ListRouteCalculatorsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -6191,7 +6191,7 @@ M.ListRouteCalculatorsResponseEntry = schema.new({
 })
 
 M.ListRouteCalculatorsOutput = schema.new({
-    id = id.from(_N, "ListRouteCalculatorsOutput"),
+    id = id.from(_N, "ListRouteCalculatorsResponse"),
     type = "structure",
     members = {
         Entries = schema.new({
@@ -6214,7 +6214,7 @@ M.ListRouteCalculatorsOutput = schema.new({
 })
 
 M.ListTrackerConsumersInput = schema.new({
-    id = id.from(_N, "ListTrackerConsumersInput"),
+    id = id.from(_N, "ListTrackerConsumersRequest"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -6246,7 +6246,7 @@ M.ListTrackerConsumersInput = schema.new({
 })
 
 M.ListTrackerConsumersOutput = schema.new({
-    id = id.from(_N, "ListTrackerConsumersOutput"),
+    id = id.from(_N, "ListTrackerConsumersResponse"),
     type = "structure",
     members = {
         ConsumerArns = schema.new({
@@ -6269,7 +6269,7 @@ M.ListTrackerConsumersOutput = schema.new({
 })
 
 M.ListTrackersInput = schema.new({
-    id = id.from(_N, "ListTrackersInput"),
+    id = id.from(_N, "ListTrackersRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -6354,7 +6354,7 @@ M.ListTrackersResponseEntry = schema.new({
 })
 
 M.ListTrackersOutput = schema.new({
-    id = id.from(_N, "ListTrackersOutput"),
+    id = id.from(_N, "ListTrackersResponse"),
     type = "structure",
     members = {
         Entries = schema.new({
@@ -6397,7 +6397,7 @@ M.MapConfigurationUpdate = schema.new({
 })
 
 M.UpdateMapInput = schema.new({
-    id = id.from(_N, "UpdateMapInput"),
+    id = id.from(_N, "UpdateMapRequest"),
     type = "structure",
     members = {
         MapName = schema.new({
@@ -6433,7 +6433,7 @@ M.UpdateMapInput = schema.new({
 })
 
 M.UpdateMapOutput = schema.new({
-    id = id.from(_N, "UpdateMapOutput"),
+    id = id.from(_N, "UpdateMapResponse"),
     type = "structure",
     members = {
         MapName = schema.new({
@@ -6471,7 +6471,7 @@ M.UpdateMapOutput = schema.new({
 })
 
 M.SearchPlaceIndexForPositionInput = schema.new({
-    id = id.from(_N, "SearchPlaceIndexForPositionInput"),
+    id = id.from(_N, "SearchPlaceIndexForPositionRequest"),
     type = "structure",
     members = {
         IndexName = schema.new({
@@ -6589,7 +6589,7 @@ M.SearchPlaceIndexForPositionSummary = schema.new({
 })
 
 M.SearchPlaceIndexForPositionOutput = schema.new({
-    id = id.from(_N, "SearchPlaceIndexForPositionOutput"),
+    id = id.from(_N, "SearchPlaceIndexForPositionResponse"),
     type = "structure",
     members = {
         Summary = schema.new({
@@ -6616,7 +6616,7 @@ M.SearchPlaceIndexForPositionOutput = schema.new({
 })
 
 M.SearchPlaceIndexForSuggestionsInput = schema.new({
-    id = id.from(_N, "SearchPlaceIndexForSuggestionsInput"),
+    id = id.from(_N, "SearchPlaceIndexForSuggestionsRequest"),
     type = "structure",
     members = {
         IndexName = schema.new({
@@ -6795,7 +6795,7 @@ M.SearchPlaceIndexForSuggestionsSummary = schema.new({
 })
 
 M.SearchPlaceIndexForSuggestionsOutput = schema.new({
-    id = id.from(_N, "SearchPlaceIndexForSuggestionsOutput"),
+    id = id.from(_N, "SearchPlaceIndexForSuggestionsResponse"),
     type = "structure",
     members = {
         Summary = schema.new({
@@ -6822,7 +6822,7 @@ M.SearchPlaceIndexForSuggestionsOutput = schema.new({
 })
 
 M.SearchPlaceIndexForTextInput = schema.new({
-    id = id.from(_N, "SearchPlaceIndexForTextInput"),
+    id = id.from(_N, "SearchPlaceIndexForTextRequest"),
     type = "structure",
     members = {
         IndexName = schema.new({
@@ -7004,7 +7004,7 @@ M.SearchPlaceIndexForTextSummary = schema.new({
 })
 
 M.SearchPlaceIndexForTextOutput = schema.new({
-    id = id.from(_N, "SearchPlaceIndexForTextOutput"),
+    id = id.from(_N, "SearchPlaceIndexForTextResponse"),
     type = "structure",
     members = {
         Summary = schema.new({
@@ -7031,7 +7031,7 @@ M.SearchPlaceIndexForTextOutput = schema.new({
 })
 
 M.UpdatePlaceIndexInput = schema.new({
-    id = id.from(_N, "UpdatePlaceIndexInput"),
+    id = id.from(_N, "UpdatePlaceIndexRequest"),
     type = "structure",
     members = {
         IndexName = schema.new({
@@ -7067,7 +7067,7 @@ M.UpdatePlaceIndexInput = schema.new({
 })
 
 M.UpdatePlaceIndexOutput = schema.new({
-    id = id.from(_N, "UpdatePlaceIndexOutput"),
+    id = id.from(_N, "UpdatePlaceIndexResponse"),
     type = "structure",
     members = {
         IndexName = schema.new({
@@ -7105,7 +7105,7 @@ M.UpdatePlaceIndexOutput = schema.new({
 })
 
 M.UpdateRouteCalculatorInput = schema.new({
-    id = id.from(_N, "UpdateRouteCalculatorInput"),
+    id = id.from(_N, "UpdateRouteCalculatorRequest"),
     type = "structure",
     members = {
         CalculatorName = schema.new({
@@ -7134,7 +7134,7 @@ M.UpdateRouteCalculatorInput = schema.new({
 })
 
 M.UpdateRouteCalculatorOutput = schema.new({
-    id = id.from(_N, "UpdateRouteCalculatorOutput"),
+    id = id.from(_N, "UpdateRouteCalculatorResponse"),
     type = "structure",
     members = {
         CalculatorName = schema.new({
@@ -7172,7 +7172,7 @@ M.UpdateRouteCalculatorOutput = schema.new({
 })
 
 M.UpdateTrackerInput = schema.new({
-    id = id.from(_N, "UpdateTrackerInput"),
+    id = id.from(_N, "UpdateTrackerRequest"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -7225,7 +7225,7 @@ M.UpdateTrackerInput = schema.new({
 })
 
 M.UpdateTrackerOutput = schema.new({
-    id = id.from(_N, "UpdateTrackerOutput"),
+    id = id.from(_N, "UpdateTrackerResponse"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -7263,7 +7263,7 @@ M.UpdateTrackerOutput = schema.new({
 })
 
 M.VerifyDevicePositionInput = schema.new({
-    id = id.from(_N, "VerifyDevicePositionInput"),
+    id = id.from(_N, "VerifyDevicePositionRequest"),
     type = "structure",
     members = {
         TrackerName = schema.new({
@@ -7296,7 +7296,7 @@ M.VerifyDevicePositionInput = schema.new({
 })
 
 M.VerifyDevicePositionOutput = schema.new({
-    id = id.from(_N, "VerifyDevicePositionOutput"),
+    id = id.from(_N, "VerifyDevicePositionResponse"),
     type = "structure",
     members = {
         InferredState = schema.new({
@@ -7355,5 +7355,19 @@ M.VerifyDevicePositionOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

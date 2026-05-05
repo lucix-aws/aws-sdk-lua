@@ -27,7 +27,7 @@ M.AttachPoint = schema.new({
 })
 
 M.AcceptConnectionProposalInput = schema.new({
-    id = id.from(_N, "AcceptConnectionProposalInput"),
+    id = id.from(_N, "AcceptConnectionProposalRequest"),
     type = "structure",
     members = {
         attachPoint = schema.new({
@@ -235,7 +235,7 @@ M.Connection = schema.new({
 })
 
 M.AcceptConnectionProposalOutput = schema.new({
-    id = id.from(_N, "AcceptConnectionProposalOutput"),
+    id = id.from(_N, "AcceptConnectionProposalResponse"),
     type = "structure",
     members = {
         connection = schema.new({
@@ -438,7 +438,7 @@ M.RemoteAccountIdentifier = schema.new({
 })
 
 M.CreateConnectionInput = schema.new({
-    id = id.from(_N, "CreateConnectionInput"),
+    id = id.from(_N, "CreateConnectionRequest"),
     type = "structure",
     members = {
         description = schema.new({
@@ -503,7 +503,7 @@ M.CreateConnectionInput = schema.new({
 })
 
 M.CreateConnectionOutput = schema.new({
-    id = id.from(_N, "CreateConnectionOutput"),
+    id = id.from(_N, "CreateConnectionResponse"),
     type = "structure",
     members = {
         connection = schema.new({
@@ -517,7 +517,7 @@ M.CreateConnectionOutput = schema.new({
 })
 
 M.DeleteConnectionInput = schema.new({
-    id = id.from(_N, "DeleteConnectionInput"),
+    id = id.from(_N, "DeleteConnectionRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -542,7 +542,7 @@ M.DeleteConnectionInput = schema.new({
 })
 
 M.DeleteConnectionOutput = schema.new({
-    id = id.from(_N, "DeleteConnectionOutput"),
+    id = id.from(_N, "DeleteConnectionResponse"),
     type = "structure",
     members = {
         connection = schema.new({
@@ -559,7 +559,7 @@ M.DeleteConnectionOutput = schema.new({
 })
 
 M.GetConnectionInput = schema.new({
-    id = id.from(_N, "GetConnectionInput"),
+    id = id.from(_N, "GetConnectionRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -575,7 +575,7 @@ M.GetConnectionInput = schema.new({
 })
 
 M.GetConnectionOutput = schema.new({
-    id = id.from(_N, "GetConnectionOutput"),
+    id = id.from(_N, "GetConnectionResponse"),
     type = "structure",
     members = {
         connection = schema.new({
@@ -589,7 +589,7 @@ M.GetConnectionOutput = schema.new({
 })
 
 M.ListConnectionsInput = schema.new({
-    id = id.from(_N, "ListConnectionsInput"),
+    id = id.from(_N, "ListConnectionsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -748,7 +748,7 @@ M.ConnectionSummary = schema.new({
 })
 
 M.ListConnectionsOutput = schema.new({
-    id = id.from(_N, "ListConnectionsOutput"),
+    id = id.from(_N, "ListConnectionsResponse"),
     type = "structure",
     members = {
         connections = schema.new({
@@ -768,7 +768,7 @@ M.ListConnectionsOutput = schema.new({
 })
 
 M.UpdateConnectionInput = schema.new({
-    id = id.from(_N, "UpdateConnectionInput"),
+    id = id.from(_N, "UpdateConnectionRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -805,7 +805,7 @@ M.UpdateConnectionInput = schema.new({
 })
 
 M.UpdateConnectionOutput = schema.new({
-    id = id.from(_N, "UpdateConnectionOutput"),
+    id = id.from(_N, "UpdateConnectionResponse"),
     type = "structure",
     members = {
         connection = schema.new({
@@ -819,7 +819,7 @@ M.UpdateConnectionOutput = schema.new({
 })
 
 M.DescribeConnectionProposalInput = schema.new({
-    id = id.from(_N, "DescribeConnectionProposalInput"),
+    id = id.from(_N, "DescribeConnectionProposalRequest"),
     type = "structure",
     members = {
         activationKey = schema.new({
@@ -835,7 +835,7 @@ M.DescribeConnectionProposalInput = schema.new({
 })
 
 M.DescribeConnectionProposalOutput = schema.new({
-    id = id.from(_N, "DescribeConnectionProposalOutput"),
+    id = id.from(_N, "DescribeConnectionProposalResponse"),
     type = "structure",
     members = {
         bandwidth = schema.new({
@@ -954,7 +954,7 @@ M.Environment = schema.new({
 })
 
 M.GetEnvironmentInput = schema.new({
-    id = id.from(_N, "GetEnvironmentInput"),
+    id = id.from(_N, "GetEnvironmentRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -970,7 +970,7 @@ M.GetEnvironmentInput = schema.new({
 })
 
 M.GetEnvironmentOutput = schema.new({
-    id = id.from(_N, "GetEnvironmentOutput"),
+    id = id.from(_N, "GetEnvironmentResponse"),
     type = "structure",
     members = {
         environment = schema.new({
@@ -987,7 +987,7 @@ M.GetEnvironmentOutput = schema.new({
 })
 
 M.ListEnvironmentsInput = schema.new({
-    id = id.from(_N, "ListEnvironmentsInput"),
+    id = id.from(_N, "ListEnvironmentsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -1019,7 +1019,7 @@ M.ListEnvironmentsInput = schema.new({
 })
 
 M.ListEnvironmentsOutput = schema.new({
-    id = id.from(_N, "ListEnvironmentsOutput"),
+    id = id.from(_N, "ListEnvironmentsResponse"),
     type = "structure",
     members = {
         environments = schema.new({
@@ -1042,7 +1042,7 @@ M.ListEnvironmentsOutput = schema.new({
 })
 
 M.ListAttachPointsInput = schema.new({
-    id = id.from(_N, "ListAttachPointsInput"),
+    id = id.from(_N, "ListAttachPointsRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -1070,7 +1070,7 @@ M.ListAttachPointsInput = schema.new({
 })
 
 M.ListAttachPointsOutput = schema.new({
-    id = id.from(_N, "ListAttachPointsOutput"),
+    id = id.from(_N, "ListAttachPointsResponse"),
     type = "structure",
     members = {
         attachPoints = schema.new({
@@ -1093,7 +1093,7 @@ M.ListAttachPointsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1109,7 +1109,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1124,7 +1124,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1151,12 +1151,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1182,8 +1182,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

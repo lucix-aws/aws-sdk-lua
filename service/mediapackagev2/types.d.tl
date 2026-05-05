@@ -1153,9 +1153,9 @@ local record ValidationException
     ValidationExceptionType: string
 end
 
-local type UriSeparator = "UNDERSCORE" | "HYPHEN"
-
 local type InputType = "HLS" | "CMAF"
+
+local type UriSeparator = "UNDERSCORE" | "HYPHEN"
 
 local type HarvestJobStatus = "QUEUED" | "IN_PROGRESS" | "CANCELLED" | "COMPLETED" | "FAILED"
 

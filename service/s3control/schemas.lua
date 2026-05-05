@@ -504,14 +504,14 @@ M.StorageLensGroupLevelSelectionCriteria = schema.new({
             type = "list",
             name = "Include",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Arn" } } }),
         }),
         Exclude = schema.new({
             id = id.from(_N, "StorageLensGroupLevelSelectionCriteria", "Exclude"),
             type = "list",
             name = "Exclude",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Arn" } } }),
         }),
     },
 })
@@ -590,7 +590,7 @@ M.AccountLevel = schema.new({
 })
 
 M.AssociateAccessGrantsIdentityCenterInput = schema.new({
-    id = id.from(_N, "AssociateAccessGrantsIdentityCenterInput"),
+    id = id.from(_N, "AssociateAccessGrantsIdentityCenterRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -616,7 +616,7 @@ M.AssociateAccessGrantsIdentityCenterInput = schema.new({
 })
 
 M.AssociateAccessGrantsIdentityCenterOutput = schema.new({
-    id = id.from(_N, "AssociateAccessGrantsIdentityCenterOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -745,7 +745,7 @@ M.CreateMultiRegionAccessPointInput = schema.new({
             type = "list",
             name = "Regions",
             target_id = prelude.Document.id,
-            list_member = M.Region,
+            list_member = schema.new({ type = "structure", target = M.Region, traits = { [traits.XML_NAME] = { name = "Region" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -850,7 +850,7 @@ M.MultiRegionAccessPointsAsyncResponse = schema.new({
             type = "list",
             name = "Regions",
             target_id = prelude.Document.id,
-            list_member = M.MultiRegionAccessPointRegionalResponse,
+            list_member = schema.new({ type = "structure", target = M.MultiRegionAccessPointRegionalResponse, traits = { [traits.XML_NAME] = { name = "Region" } } }),
         }),
     },
 })
@@ -969,7 +969,7 @@ M.Tag = schema.new({
 })
 
 M.CreateAccessGrantInput = schema.new({
-    id = id.from(_N, "CreateAccessGrantInput"),
+    id = id.from(_N, "CreateAccessGrantRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1034,13 +1034,13 @@ M.CreateAccessGrantInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateAccessGrantOutput = schema.new({
-    id = id.from(_N, "CreateAccessGrantOutput"),
+    id = id.from(_N, "CreateAccessGrantResult"),
     type = "structure",
     members = {
         CreatedAt = schema.new({
@@ -1103,7 +1103,7 @@ M.CreateAccessGrantOutput = schema.new({
 })
 
 M.CreateAccessGrantsInstanceInput = schema.new({
-    id = id.from(_N, "CreateAccessGrantsInstanceInput"),
+    id = id.from(_N, "CreateAccessGrantsInstanceRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1127,13 +1127,13 @@ M.CreateAccessGrantsInstanceInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateAccessGrantsInstanceOutput = schema.new({
-    id = id.from(_N, "CreateAccessGrantsInstanceOutput"),
+    id = id.from(_N, "CreateAccessGrantsInstanceResult"),
     type = "structure",
     members = {
         CreatedAt = schema.new({
@@ -1176,7 +1176,7 @@ M.CreateAccessGrantsInstanceOutput = schema.new({
 })
 
 M.CreateAccessGrantsLocationInput = schema.new({
-    id = id.from(_N, "CreateAccessGrantsLocationInput"),
+    id = id.from(_N, "CreateAccessGrantsLocationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1212,13 +1212,13 @@ M.CreateAccessGrantsLocationInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateAccessGrantsLocationOutput = schema.new({
-    id = id.from(_N, "CreateAccessGrantsLocationOutput"),
+    id = id.from(_N, "CreateAccessGrantsLocationResult"),
     type = "structure",
     members = {
         CreatedAt = schema.new({
@@ -1263,7 +1263,7 @@ M.Scope = schema.new({
             type = "list",
             name = "Prefixes",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Prefix" } } }),
             traits = {
                 [traits.XML_NAME] = { name = "Prefixes" },
             },
@@ -1273,7 +1273,7 @@ M.Scope = schema.new({
             type = "list",
             name = "Permissions",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Permission" } } }),
             traits = {
                 [traits.XML_NAME] = { name = "Permissions" },
             },
@@ -1282,7 +1282,7 @@ M.Scope = schema.new({
 })
 
 M.CreateAccessPointInput = schema.new({
-    id = id.from(_N, "CreateAccessPointInput"),
+    id = id.from(_N, "CreateAccessPointRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1346,13 +1346,13 @@ M.CreateAccessPointInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateAccessPointOutput = schema.new({
-    id = id.from(_N, "CreateAccessPointOutput"),
+    id = id.from(_N, "CreateAccessPointResult"),
     type = "structure",
     members = {
         AccessPointArn = schema.new({
@@ -1393,7 +1393,7 @@ M.ObjectLambdaTransformationConfiguration = schema.new({
             type = "list",
             name = "Actions",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Action" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1438,14 +1438,14 @@ M.ObjectLambdaConfiguration = schema.new({
             type = "list",
             name = "AllowedFeatures",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AllowedFeature" } } }),
         }),
         TransformationConfigurations = schema.new({
             id = id.from(_N, "ObjectLambdaConfiguration", "TransformationConfigurations"),
             type = "list",
             name = "TransformationConfigurations",
             target_id = prelude.Document.id,
-            list_member = M.ObjectLambdaTransformationConfiguration,
+            list_member = schema.new({ type = "structure", target = M.ObjectLambdaTransformationConfiguration, traits = { [traits.XML_NAME] = { name = "TransformationConfiguration" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1454,7 +1454,7 @@ M.ObjectLambdaConfiguration = schema.new({
 })
 
 M.CreateAccessPointForObjectLambdaInput = schema.new({
-    id = id.from(_N, "CreateAccessPointForObjectLambdaInput"),
+    id = id.from(_N, "CreateAccessPointForObjectLambdaRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1510,7 +1510,7 @@ M.ObjectLambdaAccessPointAlias = schema.new({
 })
 
 M.CreateAccessPointForObjectLambdaOutput = schema.new({
-    id = id.from(_N, "CreateAccessPointForObjectLambdaOutput"),
+    id = id.from(_N, "CreateAccessPointForObjectLambdaResult"),
     type = "structure",
     members = {
         ObjectLambdaAccessPointArn = schema.new({
@@ -1559,7 +1559,7 @@ M.CreateBucketConfiguration = schema.new({
 })
 
 M.CreateBucketInput = schema.new({
-    id = id.from(_N, "CreateBucketInput"),
+    id = id.from(_N, "CreateBucketRequest"),
     type = "structure",
     members = {
         ACL = schema.new({
@@ -1660,7 +1660,7 @@ M.CreateBucketInput = schema.new({
 })
 
 M.CreateBucketOutput = schema.new({
-    id = id.from(_N, "CreateBucketOutput"),
+    id = id.from(_N, "CreateBucketResult"),
     type = "structure",
     members = {
         Location = schema.new({
@@ -1982,7 +1982,7 @@ M.JobManifestGeneratorFilter = schema.new({
             type = "list",
             name = "MatchAnyObjectEncryption",
             target_id = prelude.Document.id,
-            list_member = M.ObjectEncryptionFilter,
+            list_member = schema.new({ type = "union", target = M.ObjectEncryptionFilter, traits = { [traits.XML_NAME] = { name = "ObjectEncryption" } } }),
         }),
     },
 })
@@ -2858,7 +2858,7 @@ M.JobReport = schema.new({
 })
 
 M.CreateJobInput = schema.new({
-    id = id.from(_N, "CreateJobInput"),
+    id = id.from(_N, "CreateJobRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2960,7 +2960,7 @@ M.CreateJobInput = schema.new({
 })
 
 M.CreateJobOutput = schema.new({
-    id = id.from(_N, "CreateJobOutput"),
+    id = id.from(_N, "CreateJobResult"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -3021,7 +3021,7 @@ M.TooManyRequestsException = schema.new({
 })
 
 M.CreateMultiRegionAccessPointOperationInput = schema.new({
-    id = id.from(_N, "CreateMultiRegionAccessPointOperationInput"),
+    id = id.from(_N, "CreateMultiRegionAccessPointRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3058,7 +3058,7 @@ M.CreateMultiRegionAccessPointOperationInput = schema.new({
 })
 
 M.CreateMultiRegionAccessPointOutput = schema.new({
-    id = id.from(_N, "CreateMultiRegionAccessPointOutput"),
+    id = id.from(_N, "CreateMultiRegionAccessPointResult"),
     type = "structure",
     members = {
         RequestTokenARN = schema.new({
@@ -3129,21 +3129,21 @@ M.StorageLensGroupAndOperator = schema.new({
             type = "list",
             name = "MatchAnyPrefix",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Prefix" } } }),
         }),
         MatchAnySuffix = schema.new({
             id = id.from(_N, "StorageLensGroupAndOperator", "MatchAnySuffix"),
             type = "list",
             name = "MatchAnySuffix",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Suffix" } } }),
         }),
         MatchAnyTag = schema.new({
             id = id.from(_N, "StorageLensGroupAndOperator", "MatchAnyTag"),
             type = "list",
             name = "MatchAnyTag",
             target_id = prelude.Document.id,
-            list_member = M.S3Tag,
+            list_member = schema.new({ type = "structure", target = M.S3Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         MatchObjectAge = schema.new({
             id = id.from(_N, "StorageLensGroupAndOperator", "MatchObjectAge"),
@@ -3171,21 +3171,21 @@ M.StorageLensGroupOrOperator = schema.new({
             type = "list",
             name = "MatchAnyPrefix",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Prefix" } } }),
         }),
         MatchAnySuffix = schema.new({
             id = id.from(_N, "StorageLensGroupOrOperator", "MatchAnySuffix"),
             type = "list",
             name = "MatchAnySuffix",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Suffix" } } }),
         }),
         MatchAnyTag = schema.new({
             id = id.from(_N, "StorageLensGroupOrOperator", "MatchAnyTag"),
             type = "list",
             name = "MatchAnyTag",
             target_id = prelude.Document.id,
-            list_member = M.S3Tag,
+            list_member = schema.new({ type = "structure", target = M.S3Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         MatchObjectAge = schema.new({
             id = id.from(_N, "StorageLensGroupOrOperator", "MatchObjectAge"),
@@ -3213,21 +3213,21 @@ M.StorageLensGroupFilter = schema.new({
             type = "list",
             name = "MatchAnyPrefix",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Prefix" } } }),
         }),
         MatchAnySuffix = schema.new({
             id = id.from(_N, "StorageLensGroupFilter", "MatchAnySuffix"),
             type = "list",
             name = "MatchAnySuffix",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Suffix" } } }),
         }),
         MatchAnyTag = schema.new({
             id = id.from(_N, "StorageLensGroupFilter", "MatchAnyTag"),
             type = "list",
             name = "MatchAnyTag",
             target_id = prelude.Document.id,
-            list_member = M.S3Tag,
+            list_member = schema.new({ type = "structure", target = M.S3Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         MatchObjectAge = schema.new({
             id = id.from(_N, "StorageLensGroupFilter", "MatchObjectAge"),
@@ -3293,7 +3293,7 @@ M.StorageLensGroup = schema.new({
 })
 
 M.CreateStorageLensGroupInput = schema.new({
-    id = id.from(_N, "CreateStorageLensGroupInput"),
+    id = id.from(_N, "CreateStorageLensGroupRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3321,18 +3321,18 @@ M.CreateStorageLensGroupInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateStorageLensGroupOutput = schema.new({
-    id = id.from(_N, "CreateStorageLensGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAccessGrantInput = schema.new({
-    id = id.from(_N, "DeleteAccessGrantInput"),
+    id = id.from(_N, "DeleteAccessGrantRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3359,12 +3359,12 @@ M.DeleteAccessGrantInput = schema.new({
 })
 
 M.DeleteAccessGrantOutput = schema.new({
-    id = id.from(_N, "DeleteAccessGrantOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAccessGrantsInstanceInput = schema.new({
-    id = id.from(_N, "DeleteAccessGrantsInstanceInput"),
+    id = id.from(_N, "DeleteAccessGrantsInstanceRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3381,12 +3381,12 @@ M.DeleteAccessGrantsInstanceInput = schema.new({
 })
 
 M.DeleteAccessGrantsInstanceOutput = schema.new({
-    id = id.from(_N, "DeleteAccessGrantsInstanceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAccessGrantsInstanceResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteAccessGrantsInstanceResourcePolicyInput"),
+    id = id.from(_N, "DeleteAccessGrantsInstanceResourcePolicyRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3403,12 +3403,12 @@ M.DeleteAccessGrantsInstanceResourcePolicyInput = schema.new({
 })
 
 M.DeleteAccessGrantsInstanceResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteAccessGrantsInstanceResourcePolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAccessGrantsLocationInput = schema.new({
-    id = id.from(_N, "DeleteAccessGrantsLocationInput"),
+    id = id.from(_N, "DeleteAccessGrantsLocationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3435,12 +3435,12 @@ M.DeleteAccessGrantsLocationInput = schema.new({
 })
 
 M.DeleteAccessGrantsLocationOutput = schema.new({
-    id = id.from(_N, "DeleteAccessGrantsLocationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAccessPointInput = schema.new({
-    id = id.from(_N, "DeleteAccessPointInput"),
+    id = id.from(_N, "DeleteAccessPointRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3467,12 +3467,12 @@ M.DeleteAccessPointInput = schema.new({
 })
 
 M.DeleteAccessPointOutput = schema.new({
-    id = id.from(_N, "DeleteAccessPointOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAccessPointForObjectLambdaInput = schema.new({
-    id = id.from(_N, "DeleteAccessPointForObjectLambdaInput"),
+    id = id.from(_N, "DeleteAccessPointForObjectLambdaRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3499,12 +3499,12 @@ M.DeleteAccessPointForObjectLambdaInput = schema.new({
 })
 
 M.DeleteAccessPointForObjectLambdaOutput = schema.new({
-    id = id.from(_N, "DeleteAccessPointForObjectLambdaOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAccessPointPolicyInput = schema.new({
-    id = id.from(_N, "DeleteAccessPointPolicyInput"),
+    id = id.from(_N, "DeleteAccessPointPolicyRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3531,12 +3531,12 @@ M.DeleteAccessPointPolicyInput = schema.new({
 })
 
 M.DeleteAccessPointPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteAccessPointPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAccessPointPolicyForObjectLambdaInput = schema.new({
-    id = id.from(_N, "DeleteAccessPointPolicyForObjectLambdaInput"),
+    id = id.from(_N, "DeleteAccessPointPolicyForObjectLambdaRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3563,12 +3563,12 @@ M.DeleteAccessPointPolicyForObjectLambdaInput = schema.new({
 })
 
 M.DeleteAccessPointPolicyForObjectLambdaOutput = schema.new({
-    id = id.from(_N, "DeleteAccessPointPolicyForObjectLambdaOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAccessPointScopeInput = schema.new({
-    id = id.from(_N, "DeleteAccessPointScopeInput"),
+    id = id.from(_N, "DeleteAccessPointScopeRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3595,12 +3595,12 @@ M.DeleteAccessPointScopeInput = schema.new({
 })
 
 M.DeleteAccessPointScopeOutput = schema.new({
-    id = id.from(_N, "DeleteAccessPointScopeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteBucketInput = schema.new({
-    id = id.from(_N, "DeleteBucketInput"),
+    id = id.from(_N, "DeleteBucketRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3627,12 +3627,12 @@ M.DeleteBucketInput = schema.new({
 })
 
 M.DeleteBucketOutput = schema.new({
-    id = id.from(_N, "DeleteBucketOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteBucketLifecycleConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteBucketLifecycleConfigurationInput"),
+    id = id.from(_N, "DeleteBucketLifecycleConfigurationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3659,12 +3659,12 @@ M.DeleteBucketLifecycleConfigurationInput = schema.new({
 })
 
 M.DeleteBucketLifecycleConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteBucketLifecycleConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteBucketPolicyInput = schema.new({
-    id = id.from(_N, "DeleteBucketPolicyInput"),
+    id = id.from(_N, "DeleteBucketPolicyRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3691,12 +3691,12 @@ M.DeleteBucketPolicyInput = schema.new({
 })
 
 M.DeleteBucketPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteBucketPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteBucketReplicationInput = schema.new({
-    id = id.from(_N, "DeleteBucketReplicationInput"),
+    id = id.from(_N, "DeleteBucketReplicationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3723,12 +3723,12 @@ M.DeleteBucketReplicationInput = schema.new({
 })
 
 M.DeleteBucketReplicationOutput = schema.new({
-    id = id.from(_N, "DeleteBucketReplicationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteBucketTaggingInput = schema.new({
-    id = id.from(_N, "DeleteBucketTaggingInput"),
+    id = id.from(_N, "DeleteBucketTaggingRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3755,12 +3755,12 @@ M.DeleteBucketTaggingInput = schema.new({
 })
 
 M.DeleteBucketTaggingOutput = schema.new({
-    id = id.from(_N, "DeleteBucketTaggingOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteJobTaggingInput = schema.new({
-    id = id.from(_N, "DeleteJobTaggingInput"),
+    id = id.from(_N, "DeleteJobTaggingRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3787,7 +3787,7 @@ M.DeleteJobTaggingInput = schema.new({
 })
 
 M.DeleteJobTaggingOutput = schema.new({
-    id = id.from(_N, "DeleteJobTaggingOutput"),
+    id = id.from(_N, "DeleteJobTaggingResult"),
     type = "structure",
 })
 
@@ -3808,7 +3808,7 @@ M.NotFoundException = schema.new({
 })
 
 M.DeleteMultiRegionAccessPointOperationInput = schema.new({
-    id = id.from(_N, "DeleteMultiRegionAccessPointOperationInput"),
+    id = id.from(_N, "DeleteMultiRegionAccessPointRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3845,7 +3845,7 @@ M.DeleteMultiRegionAccessPointOperationInput = schema.new({
 })
 
 M.DeleteMultiRegionAccessPointOutput = schema.new({
-    id = id.from(_N, "DeleteMultiRegionAccessPointOutput"),
+    id = id.from(_N, "DeleteMultiRegionAccessPointResult"),
     type = "structure",
     members = {
         RequestTokenARN = schema.new({
@@ -3858,7 +3858,7 @@ M.DeleteMultiRegionAccessPointOutput = schema.new({
 })
 
 M.DeletePublicAccessBlockInput = schema.new({
-    id = id.from(_N, "DeletePublicAccessBlockInput"),
+    id = id.from(_N, "DeletePublicAccessBlockRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3875,12 +3875,12 @@ M.DeletePublicAccessBlockInput = schema.new({
 })
 
 M.DeletePublicAccessBlockOutput = schema.new({
-    id = id.from(_N, "DeletePublicAccessBlockOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteStorageLensConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteStorageLensConfigurationInput"),
+    id = id.from(_N, "DeleteStorageLensConfigurationRequest"),
     type = "structure",
     members = {
         ConfigId = schema.new({
@@ -3907,12 +3907,12 @@ M.DeleteStorageLensConfigurationInput = schema.new({
 })
 
 M.DeleteStorageLensConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteStorageLensConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteStorageLensConfigurationTaggingInput = schema.new({
-    id = id.from(_N, "DeleteStorageLensConfigurationTaggingInput"),
+    id = id.from(_N, "DeleteStorageLensConfigurationTaggingRequest"),
     type = "structure",
     members = {
         ConfigId = schema.new({
@@ -3939,12 +3939,12 @@ M.DeleteStorageLensConfigurationTaggingInput = schema.new({
 })
 
 M.DeleteStorageLensConfigurationTaggingOutput = schema.new({
-    id = id.from(_N, "DeleteStorageLensConfigurationTaggingOutput"),
+    id = id.from(_N, "DeleteStorageLensConfigurationTaggingResult"),
     type = "structure",
 })
 
 M.DeleteStorageLensGroupInput = schema.new({
-    id = id.from(_N, "DeleteStorageLensGroupInput"),
+    id = id.from(_N, "DeleteStorageLensGroupRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3971,12 +3971,12 @@ M.DeleteStorageLensGroupInput = schema.new({
 })
 
 M.DeleteStorageLensGroupOutput = schema.new({
-    id = id.from(_N, "DeleteStorageLensGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeJobInput = schema.new({
-    id = id.from(_N, "DescribeJobInput"),
+    id = id.from(_N, "DescribeJobRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -4233,7 +4233,7 @@ M.JobDescriptor = schema.new({
 })
 
 M.DescribeJobOutput = schema.new({
-    id = id.from(_N, "DescribeJobOutput"),
+    id = id.from(_N, "DescribeJobResult"),
     type = "structure",
     members = {
         Job = schema.new({
@@ -4247,7 +4247,7 @@ M.DescribeJobOutput = schema.new({
 })
 
 M.DescribeMultiRegionAccessPointOperationInput = schema.new({
-    id = id.from(_N, "DescribeMultiRegionAccessPointOperationInput"),
+    id = id.from(_N, "DescribeMultiRegionAccessPointOperationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -4274,7 +4274,7 @@ M.DescribeMultiRegionAccessPointOperationInput = schema.new({
 })
 
 M.DescribeMultiRegionAccessPointOperationOutput = schema.new({
-    id = id.from(_N, "DescribeMultiRegionAccessPointOperationOutput"),
+    id = id.from(_N, "DescribeMultiRegionAccessPointOperationResult"),
     type = "structure",
     members = {
         AsyncOperation = schema.new({
@@ -4288,7 +4288,7 @@ M.DescribeMultiRegionAccessPointOperationOutput = schema.new({
 })
 
 M.DissociateAccessGrantsIdentityCenterInput = schema.new({
-    id = id.from(_N, "DissociateAccessGrantsIdentityCenterInput"),
+    id = id.from(_N, "DissociateAccessGrantsIdentityCenterRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -4305,12 +4305,12 @@ M.DissociateAccessGrantsIdentityCenterInput = schema.new({
 })
 
 M.DissociateAccessGrantsIdentityCenterOutput = schema.new({
-    id = id.from(_N, "DissociateAccessGrantsIdentityCenterOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetAccessGrantInput = schema.new({
-    id = id.from(_N, "GetAccessGrantInput"),
+    id = id.from(_N, "GetAccessGrantRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -4337,7 +4337,7 @@ M.GetAccessGrantInput = schema.new({
 })
 
 M.GetAccessGrantOutput = schema.new({
-    id = id.from(_N, "GetAccessGrantOutput"),
+    id = id.from(_N, "GetAccessGrantResult"),
     type = "structure",
     members = {
         CreatedAt = schema.new({
@@ -4400,7 +4400,7 @@ M.GetAccessGrantOutput = schema.new({
 })
 
 M.GetAccessGrantsInstanceInput = schema.new({
-    id = id.from(_N, "GetAccessGrantsInstanceInput"),
+    id = id.from(_N, "GetAccessGrantsInstanceRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -4417,7 +4417,7 @@ M.GetAccessGrantsInstanceInput = schema.new({
 })
 
 M.GetAccessGrantsInstanceOutput = schema.new({
-    id = id.from(_N, "GetAccessGrantsInstanceOutput"),
+    id = id.from(_N, "GetAccessGrantsInstanceResult"),
     type = "structure",
     members = {
         AccessGrantsInstanceArn = schema.new({
@@ -4460,7 +4460,7 @@ M.GetAccessGrantsInstanceOutput = schema.new({
 })
 
 M.GetAccessGrantsInstanceForPrefixInput = schema.new({
-    id = id.from(_N, "GetAccessGrantsInstanceForPrefixInput"),
+    id = id.from(_N, "GetAccessGrantsInstanceForPrefixRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -4487,7 +4487,7 @@ M.GetAccessGrantsInstanceForPrefixInput = schema.new({
 })
 
 M.GetAccessGrantsInstanceForPrefixOutput = schema.new({
-    id = id.from(_N, "GetAccessGrantsInstanceForPrefixOutput"),
+    id = id.from(_N, "GetAccessGrantsInstanceForPrefixResult"),
     type = "structure",
     members = {
         AccessGrantsInstanceArn = schema.new({
@@ -4506,7 +4506,7 @@ M.GetAccessGrantsInstanceForPrefixOutput = schema.new({
 })
 
 M.GetAccessGrantsInstanceResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetAccessGrantsInstanceResourcePolicyInput"),
+    id = id.from(_N, "GetAccessGrantsInstanceResourcePolicyRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -4523,7 +4523,7 @@ M.GetAccessGrantsInstanceResourcePolicyInput = schema.new({
 })
 
 M.GetAccessGrantsInstanceResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetAccessGrantsInstanceResourcePolicyOutput"),
+    id = id.from(_N, "GetAccessGrantsInstanceResourcePolicyResult"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -4548,7 +4548,7 @@ M.GetAccessGrantsInstanceResourcePolicyOutput = schema.new({
 })
 
 M.GetAccessGrantsLocationInput = schema.new({
-    id = id.from(_N, "GetAccessGrantsLocationInput"),
+    id = id.from(_N, "GetAccessGrantsLocationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -4575,7 +4575,7 @@ M.GetAccessGrantsLocationInput = schema.new({
 })
 
 M.GetAccessGrantsLocationOutput = schema.new({
-    id = id.from(_N, "GetAccessGrantsLocationOutput"),
+    id = id.from(_N, "GetAccessGrantsLocationResult"),
     type = "structure",
     members = {
         CreatedAt = schema.new({
@@ -4612,7 +4612,7 @@ M.GetAccessGrantsLocationOutput = schema.new({
 })
 
 M.GetAccessPointInput = schema.new({
-    id = id.from(_N, "GetAccessPointInput"),
+    id = id.from(_N, "GetAccessPointRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -4639,7 +4639,7 @@ M.GetAccessPointInput = schema.new({
 })
 
 M.GetAccessPointOutput = schema.new({
-    id = id.from(_N, "GetAccessPointOutput"),
+    id = id.from(_N, "GetAccessPointResult"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4722,7 +4722,7 @@ M.GetAccessPointOutput = schema.new({
 })
 
 M.GetAccessPointConfigurationForObjectLambdaInput = schema.new({
-    id = id.from(_N, "GetAccessPointConfigurationForObjectLambdaInput"),
+    id = id.from(_N, "GetAccessPointConfigurationForObjectLambdaRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -4749,7 +4749,7 @@ M.GetAccessPointConfigurationForObjectLambdaInput = schema.new({
 })
 
 M.GetAccessPointConfigurationForObjectLambdaOutput = schema.new({
-    id = id.from(_N, "GetAccessPointConfigurationForObjectLambdaOutput"),
+    id = id.from(_N, "GetAccessPointConfigurationForObjectLambdaResult"),
     type = "structure",
     members = {
         Configuration = schema.new({
@@ -4763,7 +4763,7 @@ M.GetAccessPointConfigurationForObjectLambdaOutput = schema.new({
 })
 
 M.GetAccessPointForObjectLambdaInput = schema.new({
-    id = id.from(_N, "GetAccessPointForObjectLambdaInput"),
+    id = id.from(_N, "GetAccessPointForObjectLambdaRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -4790,7 +4790,7 @@ M.GetAccessPointForObjectLambdaInput = schema.new({
 })
 
 M.GetAccessPointForObjectLambdaOutput = schema.new({
-    id = id.from(_N, "GetAccessPointForObjectLambdaOutput"),
+    id = id.from(_N, "GetAccessPointForObjectLambdaResult"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4823,7 +4823,7 @@ M.GetAccessPointForObjectLambdaOutput = schema.new({
 })
 
 M.GetAccessPointPolicyInput = schema.new({
-    id = id.from(_N, "GetAccessPointPolicyInput"),
+    id = id.from(_N, "GetAccessPointPolicyRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -4850,7 +4850,7 @@ M.GetAccessPointPolicyInput = schema.new({
 })
 
 M.GetAccessPointPolicyOutput = schema.new({
-    id = id.from(_N, "GetAccessPointPolicyOutput"),
+    id = id.from(_N, "GetAccessPointPolicyResult"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -4863,7 +4863,7 @@ M.GetAccessPointPolicyOutput = schema.new({
 })
 
 M.GetAccessPointPolicyForObjectLambdaInput = schema.new({
-    id = id.from(_N, "GetAccessPointPolicyForObjectLambdaInput"),
+    id = id.from(_N, "GetAccessPointPolicyForObjectLambdaRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -4890,7 +4890,7 @@ M.GetAccessPointPolicyForObjectLambdaInput = schema.new({
 })
 
 M.GetAccessPointPolicyForObjectLambdaOutput = schema.new({
-    id = id.from(_N, "GetAccessPointPolicyForObjectLambdaOutput"),
+    id = id.from(_N, "GetAccessPointPolicyForObjectLambdaResult"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -4903,7 +4903,7 @@ M.GetAccessPointPolicyForObjectLambdaOutput = schema.new({
 })
 
 M.GetAccessPointPolicyStatusInput = schema.new({
-    id = id.from(_N, "GetAccessPointPolicyStatusInput"),
+    id = id.from(_N, "GetAccessPointPolicyStatusRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -4947,7 +4947,7 @@ M.PolicyStatus = schema.new({
 })
 
 M.GetAccessPointPolicyStatusOutput = schema.new({
-    id = id.from(_N, "GetAccessPointPolicyStatusOutput"),
+    id = id.from(_N, "GetAccessPointPolicyStatusResult"),
     type = "structure",
     members = {
         PolicyStatus = schema.new({
@@ -4961,7 +4961,7 @@ M.GetAccessPointPolicyStatusOutput = schema.new({
 })
 
 M.GetAccessPointPolicyStatusForObjectLambdaInput = schema.new({
-    id = id.from(_N, "GetAccessPointPolicyStatusForObjectLambdaInput"),
+    id = id.from(_N, "GetAccessPointPolicyStatusForObjectLambdaRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -4988,7 +4988,7 @@ M.GetAccessPointPolicyStatusForObjectLambdaInput = schema.new({
 })
 
 M.GetAccessPointPolicyStatusForObjectLambdaOutput = schema.new({
-    id = id.from(_N, "GetAccessPointPolicyStatusForObjectLambdaOutput"),
+    id = id.from(_N, "GetAccessPointPolicyStatusForObjectLambdaResult"),
     type = "structure",
     members = {
         PolicyStatus = schema.new({
@@ -5002,7 +5002,7 @@ M.GetAccessPointPolicyStatusForObjectLambdaOutput = schema.new({
 })
 
 M.GetAccessPointScopeInput = schema.new({
-    id = id.from(_N, "GetAccessPointScopeInput"),
+    id = id.from(_N, "GetAccessPointScopeRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -5029,7 +5029,7 @@ M.GetAccessPointScopeInput = schema.new({
 })
 
 M.GetAccessPointScopeOutput = schema.new({
-    id = id.from(_N, "GetAccessPointScopeOutput"),
+    id = id.from(_N, "GetAccessPointScopeResult"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -5043,7 +5043,7 @@ M.GetAccessPointScopeOutput = schema.new({
 })
 
 M.GetBucketInput = schema.new({
-    id = id.from(_N, "GetBucketInput"),
+    id = id.from(_N, "GetBucketRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -5070,7 +5070,7 @@ M.GetBucketInput = schema.new({
 })
 
 M.GetBucketOutput = schema.new({
-    id = id.from(_N, "GetBucketOutput"),
+    id = id.from(_N, "GetBucketResult"),
     type = "structure",
     members = {
         Bucket = schema.new({
@@ -5098,7 +5098,7 @@ M.GetBucketOutput = schema.new({
 })
 
 M.GetBucketLifecycleConfigurationInput = schema.new({
-    id = id.from(_N, "GetBucketLifecycleConfigurationInput"),
+    id = id.from(_N, "GetBucketLifecycleConfigurationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -5351,14 +5351,14 @@ M.LifecycleRule = schema.new({
             type = "list",
             name = "Transitions",
             target_id = prelude.Document.id,
-            list_member = M.Transition,
+            list_member = schema.new({ type = "structure", target = M.Transition, traits = { [traits.XML_NAME] = { name = "Transition" } } }),
         }),
         NoncurrentVersionTransitions = schema.new({
             id = id.from(_N, "LifecycleRule", "NoncurrentVersionTransitions"),
             type = "list",
             name = "NoncurrentVersionTransitions",
             target_id = prelude.Document.id,
-            list_member = M.NoncurrentVersionTransition,
+            list_member = schema.new({ type = "structure", target = M.NoncurrentVersionTransition, traits = { [traits.XML_NAME] = { name = "NoncurrentVersionTransition" } } }),
         }),
         NoncurrentVersionExpiration = schema.new({
             id = id.from(_N, "LifecycleRule", "NoncurrentVersionExpiration"),
@@ -5378,7 +5378,7 @@ M.LifecycleRule = schema.new({
 })
 
 M.GetBucketLifecycleConfigurationOutput = schema.new({
-    id = id.from(_N, "GetBucketLifecycleConfigurationOutput"),
+    id = id.from(_N, "GetBucketLifecycleConfigurationResult"),
     type = "structure",
     members = {
         Rules = schema.new({
@@ -5386,13 +5386,13 @@ M.GetBucketLifecycleConfigurationOutput = schema.new({
             type = "list",
             name = "Rules",
             target_id = prelude.Document.id,
-            list_member = M.LifecycleRule,
+            list_member = schema.new({ type = "structure", target = M.LifecycleRule, traits = { [traits.XML_NAME] = { name = "Rule" } } }),
         }),
     },
 })
 
 M.GetBucketPolicyInput = schema.new({
-    id = id.from(_N, "GetBucketPolicyInput"),
+    id = id.from(_N, "GetBucketPolicyRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -5419,7 +5419,7 @@ M.GetBucketPolicyInput = schema.new({
 })
 
 M.GetBucketPolicyOutput = schema.new({
-    id = id.from(_N, "GetBucketPolicyOutput"),
+    id = id.from(_N, "GetBucketPolicyResult"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -5432,7 +5432,7 @@ M.GetBucketPolicyOutput = schema.new({
 })
 
 M.GetBucketReplicationInput = schema.new({
-    id = id.from(_N, "GetBucketReplicationInput"),
+    id = id.from(_N, "GetBucketReplicationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -5826,7 +5826,7 @@ M.ReplicationConfiguration = schema.new({
             type = "list",
             name = "Rules",
             target_id = prelude.Document.id,
-            list_member = M.ReplicationRule,
+            list_member = schema.new({ type = "structure", target = M.ReplicationRule, traits = { [traits.XML_NAME] = { name = "Rule" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5835,7 +5835,7 @@ M.ReplicationConfiguration = schema.new({
 })
 
 M.GetBucketReplicationOutput = schema.new({
-    id = id.from(_N, "GetBucketReplicationOutput"),
+    id = id.from(_N, "GetBucketReplicationResult"),
     type = "structure",
     members = {
         ReplicationConfiguration = schema.new({
@@ -5849,7 +5849,7 @@ M.GetBucketReplicationOutput = schema.new({
 })
 
 M.GetBucketTaggingInput = schema.new({
-    id = id.from(_N, "GetBucketTaggingInput"),
+    id = id.from(_N, "GetBucketTaggingRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -5876,7 +5876,7 @@ M.GetBucketTaggingInput = schema.new({
 })
 
 M.GetBucketTaggingOutput = schema.new({
-    id = id.from(_N, "GetBucketTaggingOutput"),
+    id = id.from(_N, "GetBucketTaggingResult"),
     type = "structure",
     members = {
         TagSet = schema.new({
@@ -5893,7 +5893,7 @@ M.GetBucketTaggingOutput = schema.new({
 })
 
 M.GetBucketVersioningInput = schema.new({
-    id = id.from(_N, "GetBucketVersioningInput"),
+    id = id.from(_N, "GetBucketVersioningRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -5920,7 +5920,7 @@ M.GetBucketVersioningInput = schema.new({
 })
 
 M.GetBucketVersioningOutput = schema.new({
-    id = id.from(_N, "GetBucketVersioningOutput"),
+    id = id.from(_N, "GetBucketVersioningResult"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -5942,7 +5942,7 @@ M.GetBucketVersioningOutput = schema.new({
 })
 
 M.GetDataAccessInput = schema.new({
-    id = id.from(_N, "GetDataAccessInput"),
+    id = id.from(_N, "GetDataAccessRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -6046,7 +6046,7 @@ M.Credentials = schema.new({
 })
 
 M.GetDataAccessOutput = schema.new({
-    id = id.from(_N, "GetDataAccessOutput"),
+    id = id.from(_N, "GetDataAccessResult"),
     type = "structure",
     members = {
         Credentials = schema.new({
@@ -6073,7 +6073,7 @@ M.GetDataAccessOutput = schema.new({
 })
 
 M.GetJobTaggingInput = schema.new({
-    id = id.from(_N, "GetJobTaggingInput"),
+    id = id.from(_N, "GetJobTaggingRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -6100,7 +6100,7 @@ M.GetJobTaggingInput = schema.new({
 })
 
 M.GetJobTaggingOutput = schema.new({
-    id = id.from(_N, "GetJobTaggingOutput"),
+    id = id.from(_N, "GetJobTaggingResult"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -6114,7 +6114,7 @@ M.GetJobTaggingOutput = schema.new({
 })
 
 M.GetMultiRegionAccessPointInput = schema.new({
-    id = id.from(_N, "GetMultiRegionAccessPointInput"),
+    id = id.from(_N, "GetMultiRegionAccessPointRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -6205,13 +6205,13 @@ M.MultiRegionAccessPointReport = schema.new({
             type = "list",
             name = "Regions",
             target_id = prelude.Document.id,
-            list_member = M.RegionReport,
+            list_member = schema.new({ type = "structure", target = M.RegionReport, traits = { [traits.XML_NAME] = { name = "Region" } } }),
         }),
     },
 })
 
 M.GetMultiRegionAccessPointOutput = schema.new({
-    id = id.from(_N, "GetMultiRegionAccessPointOutput"),
+    id = id.from(_N, "GetMultiRegionAccessPointResult"),
     type = "structure",
     members = {
         AccessPoint = schema.new({
@@ -6225,7 +6225,7 @@ M.GetMultiRegionAccessPointOutput = schema.new({
 })
 
 M.GetMultiRegionAccessPointPolicyInput = schema.new({
-    id = id.from(_N, "GetMultiRegionAccessPointPolicyInput"),
+    id = id.from(_N, "GetMultiRegionAccessPointPolicyRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -6299,7 +6299,7 @@ M.MultiRegionAccessPointPolicyDocument = schema.new({
 })
 
 M.GetMultiRegionAccessPointPolicyOutput = schema.new({
-    id = id.from(_N, "GetMultiRegionAccessPointPolicyOutput"),
+    id = id.from(_N, "GetMultiRegionAccessPointPolicyResult"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -6313,7 +6313,7 @@ M.GetMultiRegionAccessPointPolicyOutput = schema.new({
 })
 
 M.GetMultiRegionAccessPointPolicyStatusInput = schema.new({
-    id = id.from(_N, "GetMultiRegionAccessPointPolicyStatusInput"),
+    id = id.from(_N, "GetMultiRegionAccessPointPolicyStatusRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -6340,7 +6340,7 @@ M.GetMultiRegionAccessPointPolicyStatusInput = schema.new({
 })
 
 M.GetMultiRegionAccessPointPolicyStatusOutput = schema.new({
-    id = id.from(_N, "GetMultiRegionAccessPointPolicyStatusOutput"),
+    id = id.from(_N, "GetMultiRegionAccessPointPolicyStatusResult"),
     type = "structure",
     members = {
         Established = schema.new({
@@ -6354,7 +6354,7 @@ M.GetMultiRegionAccessPointPolicyStatusOutput = schema.new({
 })
 
 M.GetMultiRegionAccessPointRoutesInput = schema.new({
-    id = id.from(_N, "GetMultiRegionAccessPointRoutesInput"),
+    id = id.from(_N, "GetMultiRegionAccessPointRoutesRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -6409,7 +6409,7 @@ M.MultiRegionAccessPointRoute = schema.new({
 })
 
 M.GetMultiRegionAccessPointRoutesOutput = schema.new({
-    id = id.from(_N, "GetMultiRegionAccessPointRoutesOutput"),
+    id = id.from(_N, "GetMultiRegionAccessPointRoutesResult"),
     type = "structure",
     members = {
         Mrap = schema.new({
@@ -6423,13 +6423,13 @@ M.GetMultiRegionAccessPointRoutesOutput = schema.new({
             type = "list",
             name = "Routes",
             target_id = prelude.Document.id,
-            list_member = M.MultiRegionAccessPointRoute,
+            list_member = schema.new({ type = "structure", target = M.MultiRegionAccessPointRoute, traits = { [traits.XML_NAME] = { name = "Route" } } }),
         }),
     },
 })
 
 M.GetPublicAccessBlockInput = schema.new({
-    id = id.from(_N, "GetPublicAccessBlockInput"),
+    id = id.from(_N, "GetPublicAccessBlockRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -6479,7 +6479,7 @@ M.NoSuchPublicAccessBlockConfiguration = schema.new({
 })
 
 M.GetStorageLensConfigurationInput = schema.new({
-    id = id.from(_N, "GetStorageLensConfigurationInput"),
+    id = id.from(_N, "GetStorageLensConfigurationRequest"),
     type = "structure",
     members = {
         ConfigId = schema.new({
@@ -6709,14 +6709,14 @@ M.Exclude = schema.new({
             type = "list",
             name = "Buckets",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Arn" } } }),
         }),
         Regions = schema.new({
             id = id.from(_N, "Exclude", "Regions"),
             type = "list",
             name = "Regions",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Region" } } }),
         }),
     },
 })
@@ -6751,14 +6751,14 @@ M.Include = schema.new({
             type = "list",
             name = "Buckets",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Arn" } } }),
         }),
         Regions = schema.new({
             id = id.from(_N, "Include", "Regions"),
             type = "list",
             name = "Regions",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Region" } } }),
         }),
     },
 })
@@ -6847,7 +6847,7 @@ M.StorageLensConfiguration = schema.new({
 })
 
 M.GetStorageLensConfigurationOutput = schema.new({
-    id = id.from(_N, "GetStorageLensConfigurationOutput"),
+    id = id.from(_N, "GetStorageLensConfigurationResult"),
     type = "structure",
     members = {
         StorageLensConfiguration = schema.new({
@@ -6864,7 +6864,7 @@ M.GetStorageLensConfigurationOutput = schema.new({
 })
 
 M.GetStorageLensConfigurationTaggingInput = schema.new({
-    id = id.from(_N, "GetStorageLensConfigurationTaggingInput"),
+    id = id.from(_N, "GetStorageLensConfigurationTaggingRequest"),
     type = "structure",
     members = {
         ConfigId = schema.new({
@@ -6916,7 +6916,7 @@ M.StorageLensTag = schema.new({
 })
 
 M.GetStorageLensConfigurationTaggingOutput = schema.new({
-    id = id.from(_N, "GetStorageLensConfigurationTaggingOutput"),
+    id = id.from(_N, "GetStorageLensConfigurationTaggingResult"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -6924,13 +6924,13 @@ M.GetStorageLensConfigurationTaggingOutput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.StorageLensTag,
+            list_member = schema.new({ type = "structure", target = M.StorageLensTag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.GetStorageLensGroupInput = schema.new({
-    id = id.from(_N, "GetStorageLensGroupInput"),
+    id = id.from(_N, "GetStorageLensGroupRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6957,7 +6957,7 @@ M.GetStorageLensGroupInput = schema.new({
 })
 
 M.GetStorageLensGroupOutput = schema.new({
-    id = id.from(_N, "GetStorageLensGroupOutput"),
+    id = id.from(_N, "GetStorageLensGroupResult"),
     type = "structure",
     members = {
         StorageLensGroup = schema.new({
@@ -6974,7 +6974,7 @@ M.GetStorageLensGroupOutput = schema.new({
 })
 
 M.ListAccessGrantsInput = schema.new({
-    id = id.from(_N, "ListAccessGrantsInput"),
+    id = id.from(_N, "ListAccessGrantsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -7055,7 +7055,7 @@ M.ListAccessGrantsInput = schema.new({
 })
 
 M.ListAccessGrantsOutput = schema.new({
-    id = id.from(_N, "ListAccessGrantsOutput"),
+    id = id.from(_N, "ListAccessGrantsResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7069,13 +7069,13 @@ M.ListAccessGrantsOutput = schema.new({
             type = "list",
             name = "AccessGrantsList",
             target_id = prelude.Document.id,
-            list_member = M.ListAccessGrantEntry,
+            list_member = schema.new({ type = "structure", target = M.ListAccessGrantEntry, traits = { [traits.XML_NAME] = { name = "AccessGrant" } } }),
         }),
     },
 })
 
 M.ListAccessGrantsInstancesInput = schema.new({
-    id = id.from(_N, "ListAccessGrantsInstancesInput"),
+    id = id.from(_N, "ListAccessGrantsInstancesRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -7111,7 +7111,7 @@ M.ListAccessGrantsInstancesInput = schema.new({
 })
 
 M.ListAccessGrantsInstancesOutput = schema.new({
-    id = id.from(_N, "ListAccessGrantsInstancesOutput"),
+    id = id.from(_N, "ListAccessGrantsInstancesResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7125,13 +7125,13 @@ M.ListAccessGrantsInstancesOutput = schema.new({
             type = "list",
             name = "AccessGrantsInstancesList",
             target_id = prelude.Document.id,
-            list_member = M.ListAccessGrantsInstanceEntry,
+            list_member = schema.new({ type = "structure", target = M.ListAccessGrantsInstanceEntry, traits = { [traits.XML_NAME] = { name = "AccessGrantsInstance" } } }),
         }),
     },
 })
 
 M.ListAccessGrantsLocationsInput = schema.new({
-    id = id.from(_N, "ListAccessGrantsLocationsInput"),
+    id = id.from(_N, "ListAccessGrantsLocationsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -7176,7 +7176,7 @@ M.ListAccessGrantsLocationsInput = schema.new({
 })
 
 M.ListAccessGrantsLocationsOutput = schema.new({
-    id = id.from(_N, "ListAccessGrantsLocationsOutput"),
+    id = id.from(_N, "ListAccessGrantsLocationsResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7190,13 +7190,13 @@ M.ListAccessGrantsLocationsOutput = schema.new({
             type = "list",
             name = "AccessGrantsLocationsList",
             target_id = prelude.Document.id,
-            list_member = M.ListAccessGrantsLocationsEntry,
+            list_member = schema.new({ type = "structure", target = M.ListAccessGrantsLocationsEntry, traits = { [traits.XML_NAME] = { name = "AccessGrantsLocation" } } }),
         }),
     },
 })
 
 M.ListAccessPointsInput = schema.new({
-    id = id.from(_N, "ListAccessPointsInput"),
+    id = id.from(_N, "ListAccessPointsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -7259,7 +7259,7 @@ M.ListAccessPointsInput = schema.new({
 })
 
 M.ListAccessPointsOutput = schema.new({
-    id = id.from(_N, "ListAccessPointsOutput"),
+    id = id.from(_N, "ListAccessPointsResult"),
     type = "structure",
     members = {
         AccessPointList = schema.new({
@@ -7267,7 +7267,7 @@ M.ListAccessPointsOutput = schema.new({
             type = "list",
             name = "AccessPointList",
             target_id = prelude.Document.id,
-            list_member = M.AccessPoint,
+            list_member = schema.new({ type = "structure", target = M.AccessPoint, traits = { [traits.XML_NAME] = { name = "AccessPoint" } } }),
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListAccessPointsOutput", "NextToken"),
@@ -7279,7 +7279,7 @@ M.ListAccessPointsOutput = schema.new({
 })
 
 M.ListAccessPointsForDirectoryBucketsInput = schema.new({
-    id = id.from(_N, "ListAccessPointsForDirectoryBucketsInput"),
+    id = id.from(_N, "ListAccessPointsForDirectoryBucketsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -7324,7 +7324,7 @@ M.ListAccessPointsForDirectoryBucketsInput = schema.new({
 })
 
 M.ListAccessPointsForDirectoryBucketsOutput = schema.new({
-    id = id.from(_N, "ListAccessPointsForDirectoryBucketsOutput"),
+    id = id.from(_N, "ListAccessPointsForDirectoryBucketsResult"),
     type = "structure",
     members = {
         AccessPointList = schema.new({
@@ -7332,7 +7332,7 @@ M.ListAccessPointsForDirectoryBucketsOutput = schema.new({
             type = "list",
             name = "AccessPointList",
             target_id = prelude.Document.id,
-            list_member = M.AccessPoint,
+            list_member = schema.new({ type = "structure", target = M.AccessPoint, traits = { [traits.XML_NAME] = { name = "AccessPoint" } } }),
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListAccessPointsForDirectoryBucketsOutput", "NextToken"),
@@ -7344,7 +7344,7 @@ M.ListAccessPointsForDirectoryBucketsOutput = schema.new({
 })
 
 M.ListAccessPointsForObjectLambdaInput = schema.new({
-    id = id.from(_N, "ListAccessPointsForObjectLambdaInput"),
+    id = id.from(_N, "ListAccessPointsForObjectLambdaRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -7409,7 +7409,7 @@ M.ObjectLambdaAccessPoint = schema.new({
 })
 
 M.ListAccessPointsForObjectLambdaOutput = schema.new({
-    id = id.from(_N, "ListAccessPointsForObjectLambdaOutput"),
+    id = id.from(_N, "ListAccessPointsForObjectLambdaResult"),
     type = "structure",
     members = {
         ObjectLambdaAccessPointList = schema.new({
@@ -7417,7 +7417,7 @@ M.ListAccessPointsForObjectLambdaOutput = schema.new({
             type = "list",
             name = "ObjectLambdaAccessPointList",
             target_id = prelude.Document.id,
-            list_member = M.ObjectLambdaAccessPoint,
+            list_member = schema.new({ type = "structure", target = M.ObjectLambdaAccessPoint, traits = { [traits.XML_NAME] = { name = "ObjectLambdaAccessPoint" } } }),
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListAccessPointsForObjectLambdaOutput", "NextToken"),
@@ -7429,7 +7429,7 @@ M.ListAccessPointsForObjectLambdaOutput = schema.new({
 })
 
 M.ListCallerAccessGrantsInput = schema.new({
-    id = id.from(_N, "ListCallerAccessGrantsInput"),
+    id = id.from(_N, "ListCallerAccessGrantsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -7509,7 +7509,7 @@ M.ListCallerAccessGrantsEntry = schema.new({
 })
 
 M.ListCallerAccessGrantsOutput = schema.new({
-    id = id.from(_N, "ListCallerAccessGrantsOutput"),
+    id = id.from(_N, "ListCallerAccessGrantsResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7523,7 +7523,7 @@ M.ListCallerAccessGrantsOutput = schema.new({
             type = "list",
             name = "CallerAccessGrantsList",
             target_id = prelude.Document.id,
-            list_member = M.ListCallerAccessGrantsEntry,
+            list_member = schema.new({ type = "structure", target = M.ListCallerAccessGrantsEntry, traits = { [traits.XML_NAME] = { name = "AccessGrant" } } }),
         }),
     },
 })
@@ -7561,7 +7561,7 @@ M.InvalidRequestException = schema.new({
 })
 
 M.ListJobsInput = schema.new({
-    id = id.from(_N, "ListJobsInput"),
+    id = id.from(_N, "ListJobsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -7666,7 +7666,7 @@ M.JobListDescriptor = schema.new({
 })
 
 M.ListJobsOutput = schema.new({
-    id = id.from(_N, "ListJobsOutput"),
+    id = id.from(_N, "ListJobsResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7686,7 +7686,7 @@ M.ListJobsOutput = schema.new({
 })
 
 M.ListMultiRegionAccessPointsInput = schema.new({
-    id = id.from(_N, "ListMultiRegionAccessPointsInput"),
+    id = id.from(_N, "ListMultiRegionAccessPointsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -7722,7 +7722,7 @@ M.ListMultiRegionAccessPointsInput = schema.new({
 })
 
 M.ListMultiRegionAccessPointsOutput = schema.new({
-    id = id.from(_N, "ListMultiRegionAccessPointsOutput"),
+    id = id.from(_N, "ListMultiRegionAccessPointsResult"),
     type = "structure",
     members = {
         AccessPoints = schema.new({
@@ -7730,7 +7730,7 @@ M.ListMultiRegionAccessPointsOutput = schema.new({
             type = "list",
             name = "AccessPoints",
             target_id = prelude.Document.id,
-            list_member = M.MultiRegionAccessPointReport,
+            list_member = schema.new({ type = "structure", target = M.MultiRegionAccessPointReport, traits = { [traits.XML_NAME] = { name = "AccessPoint" } } }),
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListMultiRegionAccessPointsOutput", "NextToken"),
@@ -7742,7 +7742,7 @@ M.ListMultiRegionAccessPointsOutput = schema.new({
 })
 
 M.ListRegionalBucketsInput = schema.new({
-    id = id.from(_N, "ListRegionalBucketsInput"),
+    id = id.from(_N, "ListRegionalBucketsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -7834,7 +7834,7 @@ M.RegionalBucket = schema.new({
 })
 
 M.ListRegionalBucketsOutput = schema.new({
-    id = id.from(_N, "ListRegionalBucketsOutput"),
+    id = id.from(_N, "ListRegionalBucketsResult"),
     type = "structure",
     members = {
         RegionalBucketList = schema.new({
@@ -7842,7 +7842,7 @@ M.ListRegionalBucketsOutput = schema.new({
             type = "list",
             name = "RegionalBucketList",
             target_id = prelude.Document.id,
-            list_member = M.RegionalBucket,
+            list_member = schema.new({ type = "structure", target = M.RegionalBucket, traits = { [traits.XML_NAME] = { name = "RegionalBucket" } } }),
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListRegionalBucketsOutput", "NextToken"),
@@ -7854,7 +7854,7 @@ M.ListRegionalBucketsOutput = schema.new({
 })
 
 M.ListStorageLensConfigurationsInput = schema.new({
-    id = id.from(_N, "ListStorageLensConfigurationsInput"),
+    id = id.from(_N, "ListStorageLensConfigurationsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -7923,7 +7923,7 @@ M.ListStorageLensConfigurationEntry = schema.new({
 })
 
 M.ListStorageLensConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListStorageLensConfigurationsOutput"),
+    id = id.from(_N, "ListStorageLensConfigurationsResult"),
     type = "structure",
     traits = {
         [traits.XML_NAME] = { name = "ListStorageLensConfigurationResult" },
@@ -7940,7 +7940,7 @@ M.ListStorageLensConfigurationsOutput = schema.new({
             type = "list",
             name = "StorageLensConfigurationList",
             target_id = prelude.Document.id,
-            list_member = M.ListStorageLensConfigurationEntry,
+            list_member = schema.new({ type = "structure", target = M.ListStorageLensConfigurationEntry, traits = { [traits.XML_NAME] = { name = "StorageLensConfiguration" } } }),
             traits = {
                 [traits.XML_NAME] = { name = "StorageLensConfiguration" },
                 [traits.XML_FLATTENED] = {},
@@ -7950,7 +7950,7 @@ M.ListStorageLensConfigurationsOutput = schema.new({
 })
 
 M.ListStorageLensGroupsInput = schema.new({
-    id = id.from(_N, "ListStorageLensGroupsInput"),
+    id = id.from(_N, "ListStorageLensGroupsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8010,7 +8010,7 @@ M.ListStorageLensGroupEntry = schema.new({
 })
 
 M.ListStorageLensGroupsOutput = schema.new({
-    id = id.from(_N, "ListStorageLensGroupsOutput"),
+    id = id.from(_N, "ListStorageLensGroupsResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -8024,7 +8024,7 @@ M.ListStorageLensGroupsOutput = schema.new({
             type = "list",
             name = "StorageLensGroupList",
             target_id = prelude.Document.id,
-            list_member = M.ListStorageLensGroupEntry,
+            list_member = schema.new({ type = "structure", target = M.ListStorageLensGroupEntry, traits = { [traits.XML_NAME] = { name = "StorageLensGroup" } } }),
             traits = {
                 [traits.XML_NAME] = { name = "StorageLensGroup" },
                 [traits.XML_FLATTENED] = {},
@@ -8034,7 +8034,7 @@ M.ListStorageLensGroupsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8061,7 +8061,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResult"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -8069,13 +8069,13 @@ M.ListTagsForResourceOutput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.PutAccessGrantsInstanceResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutAccessGrantsInstanceResourcePolicyInput"),
+    id = id.from(_N, "PutAccessGrantsInstanceResourcePolicyRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8107,7 +8107,7 @@ M.PutAccessGrantsInstanceResourcePolicyInput = schema.new({
 })
 
 M.PutAccessGrantsInstanceResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutAccessGrantsInstanceResourcePolicyOutput"),
+    id = id.from(_N, "PutAccessGrantsInstanceResourcePolicyResult"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -8132,7 +8132,7 @@ M.PutAccessGrantsInstanceResourcePolicyOutput = schema.new({
 })
 
 M.PutAccessPointConfigurationForObjectLambdaInput = schema.new({
-    id = id.from(_N, "PutAccessPointConfigurationForObjectLambdaInput"),
+    id = id.from(_N, "PutAccessPointConfigurationForObjectLambdaRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8169,12 +8169,12 @@ M.PutAccessPointConfigurationForObjectLambdaInput = schema.new({
 })
 
 M.PutAccessPointConfigurationForObjectLambdaOutput = schema.new({
-    id = id.from(_N, "PutAccessPointConfigurationForObjectLambdaOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutAccessPointPolicyInput = schema.new({
-    id = id.from(_N, "PutAccessPointPolicyInput"),
+    id = id.from(_N, "PutAccessPointPolicyRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8210,12 +8210,12 @@ M.PutAccessPointPolicyInput = schema.new({
 })
 
 M.PutAccessPointPolicyOutput = schema.new({
-    id = id.from(_N, "PutAccessPointPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutAccessPointPolicyForObjectLambdaInput = schema.new({
-    id = id.from(_N, "PutAccessPointPolicyForObjectLambdaInput"),
+    id = id.from(_N, "PutAccessPointPolicyForObjectLambdaRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8251,12 +8251,12 @@ M.PutAccessPointPolicyForObjectLambdaInput = schema.new({
 })
 
 M.PutAccessPointPolicyForObjectLambdaOutput = schema.new({
-    id = id.from(_N, "PutAccessPointPolicyForObjectLambdaOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutAccessPointScopeInput = schema.new({
-    id = id.from(_N, "PutAccessPointScopeInput"),
+    id = id.from(_N, "PutAccessPointScopeRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8293,7 +8293,7 @@ M.PutAccessPointScopeInput = schema.new({
 })
 
 M.PutAccessPointScopeOutput = schema.new({
-    id = id.from(_N, "PutAccessPointScopeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -8306,13 +8306,13 @@ M.LifecycleConfiguration = schema.new({
             type = "list",
             name = "Rules",
             target_id = prelude.Document.id,
-            list_member = M.LifecycleRule,
+            list_member = schema.new({ type = "structure", target = M.LifecycleRule, traits = { [traits.XML_NAME] = { name = "Rule" } } }),
         }),
     },
 })
 
 M.PutBucketLifecycleConfigurationInput = schema.new({
-    id = id.from(_N, "PutBucketLifecycleConfigurationInput"),
+    id = id.from(_N, "PutBucketLifecycleConfigurationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8350,12 +8350,12 @@ M.PutBucketLifecycleConfigurationInput = schema.new({
 })
 
 M.PutBucketLifecycleConfigurationOutput = schema.new({
-    id = id.from(_N, "PutBucketLifecycleConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutBucketPolicyInput = schema.new({
-    id = id.from(_N, "PutBucketPolicyInput"),
+    id = id.from(_N, "PutBucketPolicyRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8401,12 +8401,12 @@ M.PutBucketPolicyInput = schema.new({
 })
 
 M.PutBucketPolicyOutput = schema.new({
-    id = id.from(_N, "PutBucketPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutBucketReplicationInput = schema.new({
-    id = id.from(_N, "PutBucketReplicationInput"),
+    id = id.from(_N, "PutBucketReplicationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8445,7 +8445,7 @@ M.PutBucketReplicationInput = schema.new({
 })
 
 M.PutBucketReplicationOutput = schema.new({
-    id = id.from(_N, "PutBucketReplicationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -8467,7 +8467,7 @@ M.Tagging = schema.new({
 })
 
 M.PutBucketTaggingInput = schema.new({
-    id = id.from(_N, "PutBucketTaggingInput"),
+    id = id.from(_N, "PutBucketTaggingRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8506,7 +8506,7 @@ M.PutBucketTaggingInput = schema.new({
 })
 
 M.PutBucketTaggingOutput = schema.new({
-    id = id.from(_N, "PutBucketTaggingOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -8533,7 +8533,7 @@ M.VersioningConfiguration = schema.new({
 })
 
 M.PutBucketVersioningInput = schema.new({
-    id = id.from(_N, "PutBucketVersioningInput"),
+    id = id.from(_N, "PutBucketVersioningRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8581,12 +8581,12 @@ M.PutBucketVersioningInput = schema.new({
 })
 
 M.PutBucketVersioningOutput = schema.new({
-    id = id.from(_N, "PutBucketVersioningOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutJobTaggingInput = schema.new({
-    id = id.from(_N, "PutJobTaggingInput"),
+    id = id.from(_N, "PutJobTaggingRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8623,7 +8623,7 @@ M.PutJobTaggingInput = schema.new({
 })
 
 M.PutJobTaggingOutput = schema.new({
-    id = id.from(_N, "PutJobTaggingOutput"),
+    id = id.from(_N, "PutJobTaggingResult"),
     type = "structure",
 })
 
@@ -8644,7 +8644,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.PutMultiRegionAccessPointPolicyOperationInput = schema.new({
-    id = id.from(_N, "PutMultiRegionAccessPointPolicyOperationInput"),
+    id = id.from(_N, "PutMultiRegionAccessPointPolicyRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8681,7 +8681,7 @@ M.PutMultiRegionAccessPointPolicyOperationInput = schema.new({
 })
 
 M.PutMultiRegionAccessPointPolicyOutput = schema.new({
-    id = id.from(_N, "PutMultiRegionAccessPointPolicyOutput"),
+    id = id.from(_N, "PutMultiRegionAccessPointPolicyResult"),
     type = "structure",
     members = {
         RequestTokenARN = schema.new({
@@ -8694,7 +8694,7 @@ M.PutMultiRegionAccessPointPolicyOutput = schema.new({
 })
 
 M.PutPublicAccessBlockInput = schema.new({
-    id = id.from(_N, "PutPublicAccessBlockInput"),
+    id = id.from(_N, "PutPublicAccessBlockRequest"),
     type = "structure",
     members = {
         PublicAccessBlockConfiguration = schema.new({
@@ -8723,12 +8723,12 @@ M.PutPublicAccessBlockInput = schema.new({
 })
 
 M.PutPublicAccessBlockOutput = schema.new({
-    id = id.from(_N, "PutPublicAccessBlockOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutStorageLensConfigurationInput = schema.new({
-    id = id.from(_N, "PutStorageLensConfigurationInput"),
+    id = id.from(_N, "PutStorageLensConfigurationRequest"),
     type = "structure",
     members = {
         ConfigId = schema.new({
@@ -8766,18 +8766,18 @@ M.PutStorageLensConfigurationInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.StorageLensTag,
+            list_member = schema.new({ type = "structure", target = M.StorageLensTag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.PutStorageLensConfigurationOutput = schema.new({
-    id = id.from(_N, "PutStorageLensConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutStorageLensConfigurationTaggingInput = schema.new({
-    id = id.from(_N, "PutStorageLensConfigurationTaggingInput"),
+    id = id.from(_N, "PutStorageLensConfigurationTaggingRequest"),
     type = "structure",
     members = {
         ConfigId = schema.new({
@@ -8805,7 +8805,7 @@ M.PutStorageLensConfigurationTaggingInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.StorageLensTag,
+            list_member = schema.new({ type = "structure", target = M.StorageLensTag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -8814,12 +8814,12 @@ M.PutStorageLensConfigurationTaggingInput = schema.new({
 })
 
 M.PutStorageLensConfigurationTaggingOutput = schema.new({
-    id = id.from(_N, "PutStorageLensConfigurationTaggingOutput"),
+    id = id.from(_N, "PutStorageLensConfigurationTaggingResult"),
     type = "structure",
 })
 
 M.SubmitMultiRegionAccessPointRoutesInput = schema.new({
-    id = id.from(_N, "SubmitMultiRegionAccessPointRoutesInput"),
+    id = id.from(_N, "SubmitMultiRegionAccessPointRoutesRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8847,7 +8847,7 @@ M.SubmitMultiRegionAccessPointRoutesInput = schema.new({
             type = "list",
             name = "RouteUpdates",
             target_id = prelude.Document.id,
-            list_member = M.MultiRegionAccessPointRoute,
+            list_member = schema.new({ type = "structure", target = M.MultiRegionAccessPointRoute, traits = { [traits.XML_NAME] = { name = "Route" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -8856,12 +8856,12 @@ M.SubmitMultiRegionAccessPointRoutesInput = schema.new({
 })
 
 M.SubmitMultiRegionAccessPointRoutesOutput = schema.new({
-    id = id.from(_N, "SubmitMultiRegionAccessPointRoutesOutput"),
+    id = id.from(_N, "SubmitMultiRegionAccessPointRoutesResult"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8889,7 +8889,7 @@ M.TagResourceInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -8898,12 +8898,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResult"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8941,12 +8941,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResult"),
     type = "structure",
 })
 
 M.UpdateAccessGrantsLocationInput = schema.new({
-    id = id.from(_N, "UpdateAccessGrantsLocationInput"),
+    id = id.from(_N, "UpdateAccessGrantsLocationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -8982,7 +8982,7 @@ M.UpdateAccessGrantsLocationInput = schema.new({
 })
 
 M.UpdateAccessGrantsLocationOutput = schema.new({
-    id = id.from(_N, "UpdateAccessGrantsLocationOutput"),
+    id = id.from(_N, "UpdateAccessGrantsLocationResult"),
     type = "structure",
     members = {
         CreatedAt = schema.new({
@@ -9019,7 +9019,7 @@ M.UpdateAccessGrantsLocationOutput = schema.new({
 })
 
 M.UpdateJobPriorityInput = schema.new({
-    id = id.from(_N, "UpdateJobPriorityInput"),
+    id = id.from(_N, "UpdateJobPriorityRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -9057,7 +9057,7 @@ M.UpdateJobPriorityInput = schema.new({
 })
 
 M.UpdateJobPriorityOutput = schema.new({
-    id = id.from(_N, "UpdateJobPriorityOutput"),
+    id = id.from(_N, "UpdateJobPriorityResult"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -9099,7 +9099,7 @@ M.JobStatusException = schema.new({
 })
 
 M.UpdateJobStatusInput = schema.new({
-    id = id.from(_N, "UpdateJobStatusInput"),
+    id = id.from(_N, "UpdateJobStatusRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -9145,7 +9145,7 @@ M.UpdateJobStatusInput = schema.new({
 })
 
 M.UpdateJobStatusOutput = schema.new({
-    id = id.from(_N, "UpdateJobStatusOutput"),
+    id = id.from(_N, "UpdateJobStatusResult"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -9170,7 +9170,7 @@ M.UpdateJobStatusOutput = schema.new({
 })
 
 M.UpdateStorageLensGroupInput = schema.new({
-    id = id.from(_N, "UpdateStorageLensGroupInput"),
+    id = id.from(_N, "UpdateStorageLensGroupRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -9207,8 +9207,22 @@ M.UpdateStorageLensGroupInput = schema.new({
 })
 
 M.UpdateStorageLensGroupOutput = schema.new({
-    id = id.from(_N, "UpdateStorageLensGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

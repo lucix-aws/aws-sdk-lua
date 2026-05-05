@@ -8,7 +8,7 @@ local _N = "com.amazonaws.evs"
 local M = {}
 
 M.AssociateEipToVlanInput = schema.new({
-    id = id.from(_N, "AssociateEipToVlanInput"),
+    id = id.from(_N, "AssociateEipToVlanRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -156,7 +156,7 @@ M.Vlan = schema.new({
 })
 
 M.AssociateEipToVlanOutput = schema.new({
-    id = id.from(_N, "AssociateEipToVlanOutput"),
+    id = id.from(_N, "AssociateEipToVlanResponse"),
     type = "structure",
     members = {
         vlan = schema.new({
@@ -295,7 +295,7 @@ M.ValidationException = schema.new({
 })
 
 M.CreateEntitlementInput = schema.new({
-    id = id.from(_N, "CreateEntitlementInput"),
+    id = id.from(_N, "CreateEntitlementRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -441,7 +441,7 @@ M.VmEntitlement = schema.new({
 })
 
 M.CreateEntitlementOutput = schema.new({
-    id = id.from(_N, "CreateEntitlementOutput"),
+    id = id.from(_N, "CreateEntitlementResponse"),
     type = "structure",
     members = {
         entitlements = schema.new({
@@ -783,7 +783,7 @@ M.VcfHostnames = schema.new({
 })
 
 M.CreateEnvironmentInput = schema.new({
-    id = id.from(_N, "CreateEnvironmentInput"),
+    id = id.from(_N, "CreateEnvironmentRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1092,7 +1092,7 @@ M.Environment = schema.new({
 })
 
 M.CreateEnvironmentOutput = schema.new({
-    id = id.from(_N, "CreateEnvironmentOutput"),
+    id = id.from(_N, "CreateEnvironmentResponse"),
     type = "structure",
     members = {
         environment = schema.new({
@@ -1106,7 +1106,7 @@ M.CreateEnvironmentOutput = schema.new({
 })
 
 M.CreateEnvironmentConnectorInput = schema.new({
-    id = id.from(_N, "CreateEnvironmentConnectorInput"),
+    id = id.from(_N, "CreateEnvironmentConnectorRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1264,7 +1264,7 @@ M.Connector = schema.new({
 })
 
 M.CreateEnvironmentConnectorOutput = schema.new({
-    id = id.from(_N, "CreateEnvironmentConnectorOutput"),
+    id = id.from(_N, "CreateEnvironmentConnectorResponse"),
     type = "structure",
     members = {
         connector = schema.new({
@@ -1278,7 +1278,7 @@ M.CreateEnvironmentConnectorOutput = schema.new({
 })
 
 M.CreateEnvironmentHostInput = schema.new({
-    id = id.from(_N, "CreateEnvironmentHostInput"),
+    id = id.from(_N, "CreateEnvironmentHostRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1467,7 +1467,7 @@ M.Host = schema.new({
 })
 
 M.CreateEnvironmentHostOutput = schema.new({
-    id = id.from(_N, "CreateEnvironmentHostOutput"),
+    id = id.from(_N, "CreateEnvironmentHostResponse"),
     type = "structure",
     members = {
         environmentSummary = schema.new({
@@ -1488,7 +1488,7 @@ M.CreateEnvironmentHostOutput = schema.new({
 })
 
 M.DeleteEntitlementInput = schema.new({
-    id = id.from(_N, "DeleteEntitlementInput"),
+    id = id.from(_N, "DeleteEntitlementRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1541,7 +1541,7 @@ M.DeleteEntitlementInput = schema.new({
 })
 
 M.DeleteEntitlementOutput = schema.new({
-    id = id.from(_N, "DeleteEntitlementOutput"),
+    id = id.from(_N, "DeleteEntitlementResponse"),
     type = "structure",
     members = {
         entitlements = schema.new({
@@ -1555,7 +1555,7 @@ M.DeleteEntitlementOutput = schema.new({
 })
 
 M.DeleteEnvironmentInput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentInput"),
+    id = id.from(_N, "DeleteEnvironmentRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1581,7 +1581,7 @@ M.DeleteEnvironmentInput = schema.new({
 })
 
 M.DeleteEnvironmentOutput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentOutput"),
+    id = id.from(_N, "DeleteEnvironmentResponse"),
     type = "structure",
     members = {
         environment = schema.new({
@@ -1595,7 +1595,7 @@ M.DeleteEnvironmentOutput = schema.new({
 })
 
 M.DeleteEnvironmentConnectorInput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentConnectorInput"),
+    id = id.from(_N, "DeleteEnvironmentConnectorRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1631,7 +1631,7 @@ M.DeleteEnvironmentConnectorInput = schema.new({
 })
 
 M.DeleteEnvironmentConnectorOutput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentConnectorOutput"),
+    id = id.from(_N, "DeleteEnvironmentConnectorResponse"),
     type = "structure",
     members = {
         connector = schema.new({
@@ -1652,7 +1652,7 @@ M.DeleteEnvironmentConnectorOutput = schema.new({
 })
 
 M.DeleteEnvironmentHostInput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentHostInput"),
+    id = id.from(_N, "DeleteEnvironmentHostRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1686,7 +1686,7 @@ M.DeleteEnvironmentHostInput = schema.new({
 })
 
 M.DeleteEnvironmentHostOutput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentHostOutput"),
+    id = id.from(_N, "DeleteEnvironmentHostResponse"),
     type = "structure",
     members = {
         environmentSummary = schema.new({
@@ -1707,7 +1707,7 @@ M.DeleteEnvironmentHostOutput = schema.new({
 })
 
 M.DisassociateEipFromVlanInput = schema.new({
-    id = id.from(_N, "DisassociateEipFromVlanInput"),
+    id = id.from(_N, "DisassociateEipFromVlanRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1750,7 +1750,7 @@ M.DisassociateEipFromVlanInput = schema.new({
 })
 
 M.DisassociateEipFromVlanOutput = schema.new({
-    id = id.from(_N, "DisassociateEipFromVlanOutput"),
+    id = id.from(_N, "DisassociateEipFromVlanResponse"),
     type = "structure",
     members = {
         vlan = schema.new({
@@ -1764,7 +1764,7 @@ M.DisassociateEipFromVlanOutput = schema.new({
 })
 
 M.GetEnvironmentInput = schema.new({
-    id = id.from(_N, "GetEnvironmentInput"),
+    id = id.from(_N, "GetEnvironmentRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -1781,7 +1781,7 @@ M.GetEnvironmentInput = schema.new({
 })
 
 M.GetEnvironmentOutput = schema.new({
-    id = id.from(_N, "GetEnvironmentOutput"),
+    id = id.from(_N, "GetEnvironmentResponse"),
     type = "structure",
     members = {
         environment = schema.new({
@@ -1795,7 +1795,7 @@ M.GetEnvironmentOutput = schema.new({
 })
 
 M.ListEnvironmentConnectorsInput = schema.new({
-    id = id.from(_N, "ListEnvironmentConnectorsInput"),
+    id = id.from(_N, "ListEnvironmentConnectorsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1830,7 +1830,7 @@ M.ListEnvironmentConnectorsInput = schema.new({
 })
 
 M.ListEnvironmentConnectorsOutput = schema.new({
-    id = id.from(_N, "ListEnvironmentConnectorsOutput"),
+    id = id.from(_N, "ListEnvironmentConnectorsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1850,7 +1850,7 @@ M.ListEnvironmentConnectorsOutput = schema.new({
 })
 
 M.ListEnvironmentHostsInput = schema.new({
-    id = id.from(_N, "ListEnvironmentHostsInput"),
+    id = id.from(_N, "ListEnvironmentHostsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1885,7 +1885,7 @@ M.ListEnvironmentHostsInput = schema.new({
 })
 
 M.ListEnvironmentHostsOutput = schema.new({
-    id = id.from(_N, "ListEnvironmentHostsOutput"),
+    id = id.from(_N, "ListEnvironmentHostsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1905,7 +1905,7 @@ M.ListEnvironmentHostsOutput = schema.new({
 })
 
 M.ListEnvironmentsInput = schema.new({
-    id = id.from(_N, "ListEnvironmentsInput"),
+    id = id.from(_N, "ListEnvironmentsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1940,7 +1940,7 @@ M.ListEnvironmentsInput = schema.new({
 })
 
 M.ListEnvironmentsOutput = schema.new({
-    id = id.from(_N, "ListEnvironmentsOutput"),
+    id = id.from(_N, "ListEnvironmentsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1960,7 +1960,7 @@ M.ListEnvironmentsOutput = schema.new({
 })
 
 M.ListEnvironmentVlansInput = schema.new({
-    id = id.from(_N, "ListEnvironmentVlansInput"),
+    id = id.from(_N, "ListEnvironmentVlansRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1995,7 +1995,7 @@ M.ListEnvironmentVlansInput = schema.new({
 })
 
 M.ListEnvironmentVlansOutput = schema.new({
-    id = id.from(_N, "ListEnvironmentVlansOutput"),
+    id = id.from(_N, "ListEnvironmentVlansResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2015,7 +2015,7 @@ M.ListEnvironmentVlansOutput = schema.new({
 })
 
 M.ListVmEntitlementsInput = schema.new({
-    id = id.from(_N, "ListVmEntitlementsInput"),
+    id = id.from(_N, "ListVmEntitlementsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2067,7 +2067,7 @@ M.ListVmEntitlementsInput = schema.new({
 })
 
 M.ListVmEntitlementsOutput = schema.new({
-    id = id.from(_N, "ListVmEntitlementsOutput"),
+    id = id.from(_N, "ListVmEntitlementsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2087,7 +2087,7 @@ M.ListVmEntitlementsOutput = schema.new({
 })
 
 M.UpdateEnvironmentConnectorInput = schema.new({
-    id = id.from(_N, "UpdateEnvironmentConnectorInput"),
+    id = id.from(_N, "UpdateEnvironmentConnectorRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -2135,7 +2135,7 @@ M.UpdateEnvironmentConnectorInput = schema.new({
 })
 
 M.UpdateEnvironmentConnectorOutput = schema.new({
-    id = id.from(_N, "UpdateEnvironmentConnectorOutput"),
+    id = id.from(_N, "UpdateEnvironmentConnectorResponse"),
     type = "structure",
     members = {
         connector = schema.new({
@@ -2149,7 +2149,7 @@ M.UpdateEnvironmentConnectorOutput = schema.new({
 })
 
 M.GetVersionsInput = schema.new({
-    id = id.from(_N, "GetVersionsInput"),
+    id = id.from(_N, "GetVersionsRequest"),
     type = "structure",
 })
 
@@ -2224,7 +2224,7 @@ M.VcfVersionInfo = schema.new({
 })
 
 M.GetVersionsOutput = schema.new({
-    id = id.from(_N, "GetVersionsOutput"),
+    id = id.from(_N, "GetVersionsResponse"),
     type = "structure",
     members = {
         vcfVersions = schema.new({
@@ -2270,7 +2270,7 @@ M.InternalServerException = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2286,7 +2286,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2339,7 +2339,7 @@ M.TagPolicyException = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2366,7 +2366,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -2390,7 +2390,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2416,8 +2416,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

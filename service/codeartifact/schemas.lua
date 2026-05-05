@@ -88,7 +88,7 @@ M.AssociatedPackage = schema.new({
 })
 
 M.AssociateExternalConnectionInput = schema.new({
-    id = id.from(_N, "AssociateExternalConnectionInput"),
+    id = id.from(_N, "AssociateExternalConnectionRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -235,7 +235,7 @@ M.RepositoryDescription = schema.new({
 })
 
 M.AssociateExternalConnectionOutput = schema.new({
-    id = id.from(_N, "AssociateExternalConnectionOutput"),
+    id = id.from(_N, "AssociateExternalConnectionResult"),
     type = "structure",
     members = {
         repository = schema.new({
@@ -414,7 +414,7 @@ M.ValidationException = schema.new({
 })
 
 M.CopyPackageVersionsInput = schema.new({
-    id = id.from(_N, "CopyPackageVersionsInput"),
+    id = id.from(_N, "CopyPackageVersionsRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -554,7 +554,7 @@ M.SuccessfulPackageVersionInfo = schema.new({
 })
 
 M.CopyPackageVersionsOutput = schema.new({
-    id = id.from(_N, "CopyPackageVersionsOutput"),
+    id = id.from(_N, "CopyPackageVersionsResult"),
     type = "structure",
     members = {
         successfulVersions = schema.new({
@@ -602,7 +602,7 @@ M.Tag = schema.new({
 })
 
 M.CreateDomainInput = schema.new({
-    id = id.from(_N, "CreateDomainInput"),
+    id = id.from(_N, "CreateDomainRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -699,7 +699,7 @@ M.DomainDescription = schema.new({
 })
 
 M.CreateDomainOutput = schema.new({
-    id = id.from(_N, "CreateDomainOutput"),
+    id = id.from(_N, "CreateDomainResult"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -713,7 +713,7 @@ M.CreateDomainOutput = schema.new({
 })
 
 M.CreatePackageGroupInput = schema.new({
-    id = id.from(_N, "CreatePackageGroupInput"),
+    id = id.from(_N, "CreatePackageGroupRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -896,7 +896,7 @@ M.PackageGroupDescription = schema.new({
 })
 
 M.CreatePackageGroupOutput = schema.new({
-    id = id.from(_N, "CreatePackageGroupOutput"),
+    id = id.from(_N, "CreatePackageGroupResult"),
     type = "structure",
     members = {
         packageGroup = schema.new({
@@ -926,7 +926,7 @@ M.UpstreamRepository = schema.new({
 })
 
 M.CreateRepositoryInput = schema.new({
-    id = id.from(_N, "CreateRepositoryInput"),
+    id = id.from(_N, "CreateRepositoryRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -982,7 +982,7 @@ M.CreateRepositoryInput = schema.new({
 })
 
 M.CreateRepositoryOutput = schema.new({
-    id = id.from(_N, "CreateRepositoryOutput"),
+    id = id.from(_N, "CreateRepositoryResult"),
     type = "structure",
     members = {
         repository = schema.new({
@@ -996,7 +996,7 @@ M.CreateRepositoryOutput = schema.new({
 })
 
 M.DeleteDomainInput = schema.new({
-    id = id.from(_N, "DeleteDomainInput"),
+    id = id.from(_N, "DeleteDomainRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -1022,7 +1022,7 @@ M.DeleteDomainInput = schema.new({
 })
 
 M.DeleteDomainOutput = schema.new({
-    id = id.from(_N, "DeleteDomainOutput"),
+    id = id.from(_N, "DeleteDomainResult"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -1036,7 +1036,7 @@ M.DeleteDomainOutput = schema.new({
 })
 
 M.DeleteDomainPermissionsPolicyInput = schema.new({
-    id = id.from(_N, "DeleteDomainPermissionsPolicyInput"),
+    id = id.from(_N, "DeleteDomainPermissionsPolicyRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -1096,7 +1096,7 @@ M.ResourcePolicy = schema.new({
 })
 
 M.DeleteDomainPermissionsPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteDomainPermissionsPolicyOutput"),
+    id = id.from(_N, "DeleteDomainPermissionsPolicyResult"),
     type = "structure",
     members = {
         policy = schema.new({
@@ -1110,7 +1110,7 @@ M.DeleteDomainPermissionsPolicyOutput = schema.new({
 })
 
 M.DeletePackageInput = schema.new({
-    id = id.from(_N, "DeletePackageInput"),
+    id = id.from(_N, "DeletePackageRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -1246,7 +1246,7 @@ M.PackageSummary = schema.new({
 })
 
 M.DeletePackageOutput = schema.new({
-    id = id.from(_N, "DeletePackageOutput"),
+    id = id.from(_N, "DeletePackageResult"),
     type = "structure",
     members = {
         deletedPackage = schema.new({
@@ -1260,7 +1260,7 @@ M.DeletePackageOutput = schema.new({
 })
 
 M.DeletePackageGroupInput = schema.new({
-    id = id.from(_N, "DeletePackageGroupInput"),
+    id = id.from(_N, "DeletePackageGroupRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -1296,7 +1296,7 @@ M.DeletePackageGroupInput = schema.new({
 })
 
 M.DeletePackageGroupOutput = schema.new({
-    id = id.from(_N, "DeletePackageGroupOutput"),
+    id = id.from(_N, "DeletePackageGroupResult"),
     type = "structure",
     members = {
         packageGroup = schema.new({
@@ -1310,7 +1310,7 @@ M.DeletePackageGroupOutput = schema.new({
 })
 
 M.DeletePackageVersionsInput = schema.new({
-    id = id.from(_N, "DeletePackageVersionsInput"),
+    id = id.from(_N, "DeletePackageVersionsRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -1391,7 +1391,7 @@ M.DeletePackageVersionsInput = schema.new({
 })
 
 M.DeletePackageVersionsOutput = schema.new({
-    id = id.from(_N, "DeletePackageVersionsOutput"),
+    id = id.from(_N, "DeletePackageVersionsResult"),
     type = "structure",
     members = {
         successfulVersions = schema.new({
@@ -1414,7 +1414,7 @@ M.DeletePackageVersionsOutput = schema.new({
 })
 
 M.DeleteRepositoryInput = schema.new({
-    id = id.from(_N, "DeleteRepositoryInput"),
+    id = id.from(_N, "DeleteRepositoryRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -1450,7 +1450,7 @@ M.DeleteRepositoryInput = schema.new({
 })
 
 M.DeleteRepositoryOutput = schema.new({
-    id = id.from(_N, "DeleteRepositoryOutput"),
+    id = id.from(_N, "DeleteRepositoryResult"),
     type = "structure",
     members = {
         repository = schema.new({
@@ -1464,7 +1464,7 @@ M.DeleteRepositoryOutput = schema.new({
 })
 
 M.DeleteRepositoryPermissionsPolicyInput = schema.new({
-    id = id.from(_N, "DeleteRepositoryPermissionsPolicyInput"),
+    id = id.from(_N, "DeleteRepositoryPermissionsPolicyRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -1509,7 +1509,7 @@ M.DeleteRepositoryPermissionsPolicyInput = schema.new({
 })
 
 M.DeleteRepositoryPermissionsPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteRepositoryPermissionsPolicyOutput"),
+    id = id.from(_N, "DeleteRepositoryPermissionsPolicyResult"),
     type = "structure",
     members = {
         policy = schema.new({
@@ -1523,7 +1523,7 @@ M.DeleteRepositoryPermissionsPolicyOutput = schema.new({
 })
 
 M.DescribeDomainInput = schema.new({
-    id = id.from(_N, "DescribeDomainInput"),
+    id = id.from(_N, "DescribeDomainRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -1549,7 +1549,7 @@ M.DescribeDomainInput = schema.new({
 })
 
 M.DescribeDomainOutput = schema.new({
-    id = id.from(_N, "DescribeDomainOutput"),
+    id = id.from(_N, "DescribeDomainResult"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -1563,7 +1563,7 @@ M.DescribeDomainOutput = schema.new({
 })
 
 M.DescribePackageInput = schema.new({
-    id = id.from(_N, "DescribePackageInput"),
+    id = id.from(_N, "DescribePackageRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -1660,7 +1660,7 @@ M.PackageDescription = schema.new({
 })
 
 M.DescribePackageOutput = schema.new({
-    id = id.from(_N, "DescribePackageOutput"),
+    id = id.from(_N, "DescribePackageResult"),
     type = "structure",
     members = {
         package = schema.new({
@@ -1677,7 +1677,7 @@ M.DescribePackageOutput = schema.new({
 })
 
 M.DescribePackageGroupInput = schema.new({
-    id = id.from(_N, "DescribePackageGroupInput"),
+    id = id.from(_N, "DescribePackageGroupRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -1713,7 +1713,7 @@ M.DescribePackageGroupInput = schema.new({
 })
 
 M.DescribePackageGroupOutput = schema.new({
-    id = id.from(_N, "DescribePackageGroupOutput"),
+    id = id.from(_N, "DescribePackageGroupResult"),
     type = "structure",
     members = {
         packageGroup = schema.new({
@@ -1727,7 +1727,7 @@ M.DescribePackageGroupOutput = schema.new({
 })
 
 M.DescribePackageVersionInput = schema.new({
-    id = id.from(_N, "DescribePackageVersionInput"),
+    id = id.from(_N, "DescribePackageVersionRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -1947,7 +1947,7 @@ M.PackageVersionDescription = schema.new({
 })
 
 M.DescribePackageVersionOutput = schema.new({
-    id = id.from(_N, "DescribePackageVersionOutput"),
+    id = id.from(_N, "DescribePackageVersionResult"),
     type = "structure",
     members = {
         packageVersion = schema.new({
@@ -1964,7 +1964,7 @@ M.DescribePackageVersionOutput = schema.new({
 })
 
 M.DescribeRepositoryInput = schema.new({
-    id = id.from(_N, "DescribeRepositoryInput"),
+    id = id.from(_N, "DescribeRepositoryRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -2000,7 +2000,7 @@ M.DescribeRepositoryInput = schema.new({
 })
 
 M.DescribeRepositoryOutput = schema.new({
-    id = id.from(_N, "DescribeRepositoryOutput"),
+    id = id.from(_N, "DescribeRepositoryResult"),
     type = "structure",
     members = {
         repository = schema.new({
@@ -2014,7 +2014,7 @@ M.DescribeRepositoryOutput = schema.new({
 })
 
 M.DisassociateExternalConnectionInput = schema.new({
-    id = id.from(_N, "DisassociateExternalConnectionInput"),
+    id = id.from(_N, "DisassociateExternalConnectionRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -2060,7 +2060,7 @@ M.DisassociateExternalConnectionInput = schema.new({
 })
 
 M.DisassociateExternalConnectionOutput = schema.new({
-    id = id.from(_N, "DisassociateExternalConnectionOutput"),
+    id = id.from(_N, "DisassociateExternalConnectionResult"),
     type = "structure",
     members = {
         repository = schema.new({
@@ -2074,7 +2074,7 @@ M.DisassociateExternalConnectionOutput = schema.new({
 })
 
 M.DisposePackageVersionsInput = schema.new({
-    id = id.from(_N, "DisposePackageVersionsInput"),
+    id = id.from(_N, "DisposePackageVersionsRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -2163,7 +2163,7 @@ M.DisposePackageVersionsInput = schema.new({
 })
 
 M.DisposePackageVersionsOutput = schema.new({
-    id = id.from(_N, "DisposePackageVersionsOutput"),
+    id = id.from(_N, "DisposePackageVersionsResult"),
     type = "structure",
     members = {
         successfulVersions = schema.new({
@@ -2186,7 +2186,7 @@ M.DisposePackageVersionsOutput = schema.new({
 })
 
 M.GetAssociatedPackageGroupInput = schema.new({
-    id = id.from(_N, "GetAssociatedPackageGroupInput"),
+    id = id.from(_N, "GetAssociatedPackageGroupRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -2241,7 +2241,7 @@ M.GetAssociatedPackageGroupInput = schema.new({
 })
 
 M.GetAssociatedPackageGroupOutput = schema.new({
-    id = id.from(_N, "GetAssociatedPackageGroupOutput"),
+    id = id.from(_N, "GetAssociatedPackageGroupResult"),
     type = "structure",
     members = {
         packageGroup = schema.new({
@@ -2261,7 +2261,7 @@ M.GetAssociatedPackageGroupOutput = schema.new({
 })
 
 M.GetAuthorizationTokenInput = schema.new({
-    id = id.from(_N, "GetAuthorizationTokenInput"),
+    id = id.from(_N, "GetAuthorizationTokenRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -2296,7 +2296,7 @@ M.GetAuthorizationTokenInput = schema.new({
 })
 
 M.GetAuthorizationTokenOutput = schema.new({
-    id = id.from(_N, "GetAuthorizationTokenOutput"),
+    id = id.from(_N, "GetAuthorizationTokenResult"),
     type = "structure",
     members = {
         authorizationToken = schema.new({
@@ -2315,7 +2315,7 @@ M.GetAuthorizationTokenOutput = schema.new({
 })
 
 M.GetDomainPermissionsPolicyInput = schema.new({
-    id = id.from(_N, "GetDomainPermissionsPolicyInput"),
+    id = id.from(_N, "GetDomainPermissionsPolicyRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -2341,7 +2341,7 @@ M.GetDomainPermissionsPolicyInput = schema.new({
 })
 
 M.GetDomainPermissionsPolicyOutput = schema.new({
-    id = id.from(_N, "GetDomainPermissionsPolicyOutput"),
+    id = id.from(_N, "GetDomainPermissionsPolicyResult"),
     type = "structure",
     members = {
         policy = schema.new({
@@ -2355,7 +2355,7 @@ M.GetDomainPermissionsPolicyOutput = schema.new({
 })
 
 M.GetPackageVersionAssetInput = schema.new({
-    id = id.from(_N, "GetPackageVersionAssetInput"),
+    id = id.from(_N, "GetPackageVersionAssetRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -2449,7 +2449,7 @@ M.GetPackageVersionAssetInput = schema.new({
 })
 
 M.GetPackageVersionAssetOutput = schema.new({
-    id = id.from(_N, "GetPackageVersionAssetOutput"),
+    id = id.from(_N, "GetPackageVersionAssetResult"),
     type = "structure",
     members = {
         asset = schema.new({
@@ -2493,7 +2493,7 @@ M.GetPackageVersionAssetOutput = schema.new({
 })
 
 M.GetPackageVersionReadmeInput = schema.new({
-    id = id.from(_N, "GetPackageVersionReadmeInput"),
+    id = id.from(_N, "GetPackageVersionReadmeRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -2568,7 +2568,7 @@ M.GetPackageVersionReadmeInput = schema.new({
 })
 
 M.GetPackageVersionReadmeOutput = schema.new({
-    id = id.from(_N, "GetPackageVersionReadmeOutput"),
+    id = id.from(_N, "GetPackageVersionReadmeResult"),
     type = "structure",
     members = {
         format = schema.new({
@@ -2611,7 +2611,7 @@ M.GetPackageVersionReadmeOutput = schema.new({
 })
 
 M.GetRepositoryEndpointInput = schema.new({
-    id = id.from(_N, "GetRepositoryEndpointInput"),
+    id = id.from(_N, "GetRepositoryEndpointRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -2666,7 +2666,7 @@ M.GetRepositoryEndpointInput = schema.new({
 })
 
 M.GetRepositoryEndpointOutput = schema.new({
-    id = id.from(_N, "GetRepositoryEndpointOutput"),
+    id = id.from(_N, "GetRepositoryEndpointResult"),
     type = "structure",
     members = {
         repositoryEndpoint = schema.new({
@@ -2679,7 +2679,7 @@ M.GetRepositoryEndpointOutput = schema.new({
 })
 
 M.GetRepositoryPermissionsPolicyInput = schema.new({
-    id = id.from(_N, "GetRepositoryPermissionsPolicyInput"),
+    id = id.from(_N, "GetRepositoryPermissionsPolicyRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -2715,7 +2715,7 @@ M.GetRepositoryPermissionsPolicyInput = schema.new({
 })
 
 M.GetRepositoryPermissionsPolicyOutput = schema.new({
-    id = id.from(_N, "GetRepositoryPermissionsPolicyOutput"),
+    id = id.from(_N, "GetRepositoryPermissionsPolicyResult"),
     type = "structure",
     members = {
         policy = schema.new({
@@ -2729,7 +2729,7 @@ M.GetRepositoryPermissionsPolicyOutput = schema.new({
 })
 
 M.ListAllowedRepositoriesForGroupInput = schema.new({
-    id = id.from(_N, "ListAllowedRepositoriesForGroupInput"),
+    id = id.from(_N, "ListAllowedRepositoriesForGroupRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -2793,7 +2793,7 @@ M.ListAllowedRepositoriesForGroupInput = schema.new({
 })
 
 M.ListAllowedRepositoriesForGroupOutput = schema.new({
-    id = id.from(_N, "ListAllowedRepositoriesForGroupOutput"),
+    id = id.from(_N, "ListAllowedRepositoriesForGroupResult"),
     type = "structure",
     members = {
         allowedRepositories = schema.new({
@@ -2813,7 +2813,7 @@ M.ListAllowedRepositoriesForGroupOutput = schema.new({
 })
 
 M.ListAssociatedPackagesInput = schema.new({
-    id = id.from(_N, "ListAssociatedPackagesInput"),
+    id = id.from(_N, "ListAssociatedPackagesRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -2876,7 +2876,7 @@ M.ListAssociatedPackagesInput = schema.new({
 })
 
 M.ListAssociatedPackagesOutput = schema.new({
-    id = id.from(_N, "ListAssociatedPackagesOutput"),
+    id = id.from(_N, "ListAssociatedPackagesResult"),
     type = "structure",
     members = {
         packages = schema.new({
@@ -2896,7 +2896,7 @@ M.ListAssociatedPackagesOutput = schema.new({
 })
 
 M.ListDomainsInput = schema.new({
-    id = id.from(_N, "ListDomainsInput"),
+    id = id.from(_N, "ListDomainsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2958,7 +2958,7 @@ M.DomainSummary = schema.new({
 })
 
 M.ListDomainsOutput = schema.new({
-    id = id.from(_N, "ListDomainsOutput"),
+    id = id.from(_N, "ListDomainsResult"),
     type = "structure",
     members = {
         domains = schema.new({
@@ -2978,7 +2978,7 @@ M.ListDomainsOutput = schema.new({
 })
 
 M.ListPackageGroupsInput = schema.new({
-    id = id.from(_N, "ListPackageGroupsInput"),
+    id = id.from(_N, "ListPackageGroupsRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -3094,7 +3094,7 @@ M.PackageGroupSummary = schema.new({
 })
 
 M.ListPackageGroupsOutput = schema.new({
-    id = id.from(_N, "ListPackageGroupsOutput"),
+    id = id.from(_N, "ListPackageGroupsResult"),
     type = "structure",
     members = {
         packageGroups = schema.new({
@@ -3114,7 +3114,7 @@ M.ListPackageGroupsOutput = schema.new({
 })
 
 M.ListPackagesInput = schema.new({
-    id = id.from(_N, "ListPackagesInput"),
+    id = id.from(_N, "ListPackagesRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -3213,7 +3213,7 @@ M.ListPackagesInput = schema.new({
 })
 
 M.ListPackagesOutput = schema.new({
-    id = id.from(_N, "ListPackagesOutput"),
+    id = id.from(_N, "ListPackagesResult"),
     type = "structure",
     members = {
         packages = schema.new({
@@ -3233,7 +3233,7 @@ M.ListPackagesOutput = schema.new({
 })
 
 M.ListPackageVersionAssetsInput = schema.new({
-    id = id.from(_N, "ListPackageVersionAssetsInput"),
+    id = id.from(_N, "ListPackageVersionAssetsRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -3326,7 +3326,7 @@ M.ListPackageVersionAssetsInput = schema.new({
 })
 
 M.ListPackageVersionAssetsOutput = schema.new({
-    id = id.from(_N, "ListPackageVersionAssetsOutput"),
+    id = id.from(_N, "ListPackageVersionAssetsResult"),
     type = "structure",
     members = {
         format = schema.new({
@@ -3376,7 +3376,7 @@ M.ListPackageVersionAssetsOutput = schema.new({
 })
 
 M.ListPackageVersionDependenciesInput = schema.new({
-    id = id.from(_N, "ListPackageVersionDependenciesInput"),
+    id = id.from(_N, "ListPackageVersionDependenciesRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -3491,7 +3491,7 @@ M.PackageDependency = schema.new({
 })
 
 M.ListPackageVersionDependenciesOutput = schema.new({
-    id = id.from(_N, "ListPackageVersionDependenciesOutput"),
+    id = id.from(_N, "ListPackageVersionDependenciesResult"),
     type = "structure",
     members = {
         format = schema.new({
@@ -3541,7 +3541,7 @@ M.ListPackageVersionDependenciesOutput = schema.new({
 })
 
 M.ListPackageVersionsInput = schema.new({
-    id = id.from(_N, "ListPackageVersionsInput"),
+    id = id.from(_N, "ListPackageVersionsRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -3689,7 +3689,7 @@ M.PackageVersionSummary = schema.new({
 })
 
 M.ListPackageVersionsOutput = schema.new({
-    id = id.from(_N, "ListPackageVersionsOutput"),
+    id = id.from(_N, "ListPackageVersionsResult"),
     type = "structure",
     members = {
         defaultDisplayVersion = schema.new({
@@ -3733,7 +3733,7 @@ M.ListPackageVersionsOutput = schema.new({
 })
 
 M.ListRepositoriesInput = schema.new({
-    id = id.from(_N, "ListRepositoriesInput"),
+    id = id.from(_N, "ListRepositoriesRequest"),
     type = "structure",
     members = {
         repositoryPrefix = schema.new({
@@ -3816,7 +3816,7 @@ M.RepositorySummary = schema.new({
 })
 
 M.ListRepositoriesOutput = schema.new({
-    id = id.from(_N, "ListRepositoriesOutput"),
+    id = id.from(_N, "ListRepositoriesResult"),
     type = "structure",
     members = {
         repositories = schema.new({
@@ -3836,7 +3836,7 @@ M.ListRepositoriesOutput = schema.new({
 })
 
 M.ListRepositoriesInDomainInput = schema.new({
-    id = id.from(_N, "ListRepositoriesInDomainInput"),
+    id = id.from(_N, "ListRepositoriesInDomainRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -3898,7 +3898,7 @@ M.ListRepositoriesInDomainInput = schema.new({
 })
 
 M.ListRepositoriesInDomainOutput = schema.new({
-    id = id.from(_N, "ListRepositoriesInDomainOutput"),
+    id = id.from(_N, "ListRepositoriesInDomainResult"),
     type = "structure",
     members = {
         repositories = schema.new({
@@ -3918,7 +3918,7 @@ M.ListRepositoriesInDomainOutput = schema.new({
 })
 
 M.ListSubPackageGroupsInput = schema.new({
-    id = id.from(_N, "ListSubPackageGroupsInput"),
+    id = id.from(_N, "ListSubPackageGroupsRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -3972,7 +3972,7 @@ M.ListSubPackageGroupsInput = schema.new({
 })
 
 M.ListSubPackageGroupsOutput = schema.new({
-    id = id.from(_N, "ListSubPackageGroupsOutput"),
+    id = id.from(_N, "ListSubPackageGroupsResult"),
     type = "structure",
     members = {
         packageGroups = schema.new({
@@ -3992,7 +3992,7 @@ M.ListSubPackageGroupsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4009,7 +4009,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResult"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -4023,7 +4023,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PublishPackageVersionInput = schema.new({
-    id = id.from(_N, "PublishPackageVersionInput"),
+    id = id.from(_N, "PublishPackageVersionRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -4137,7 +4137,7 @@ M.PublishPackageVersionInput = schema.new({
 })
 
 M.PublishPackageVersionOutput = schema.new({
-    id = id.from(_N, "PublishPackageVersionOutput"),
+    id = id.from(_N, "PublishPackageVersionResult"),
     type = "structure",
     members = {
         format = schema.new({
@@ -4187,7 +4187,7 @@ M.PublishPackageVersionOutput = schema.new({
 })
 
 M.PutDomainPermissionsPolicyInput = schema.new({
-    id = id.from(_N, "PutDomainPermissionsPolicyInput"),
+    id = id.from(_N, "PutDomainPermissionsPolicyRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -4224,7 +4224,7 @@ M.PutDomainPermissionsPolicyInput = schema.new({
 })
 
 M.PutDomainPermissionsPolicyOutput = schema.new({
-    id = id.from(_N, "PutDomainPermissionsPolicyOutput"),
+    id = id.from(_N, "PutDomainPermissionsPolicyResult"),
     type = "structure",
     members = {
         policy = schema.new({
@@ -4238,7 +4238,7 @@ M.PutDomainPermissionsPolicyOutput = schema.new({
 })
 
 M.PutPackageOriginConfigurationInput = schema.new({
-    id = id.from(_N, "PutPackageOriginConfigurationInput"),
+    id = id.from(_N, "PutPackageOriginConfigurationRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -4313,7 +4313,7 @@ M.PutPackageOriginConfigurationInput = schema.new({
 })
 
 M.PutPackageOriginConfigurationOutput = schema.new({
-    id = id.from(_N, "PutPackageOriginConfigurationOutput"),
+    id = id.from(_N, "PutPackageOriginConfigurationResult"),
     type = "structure",
     members = {
         originConfiguration = schema.new({
@@ -4327,7 +4327,7 @@ M.PutPackageOriginConfigurationOutput = schema.new({
 })
 
 M.PutRepositoryPermissionsPolicyInput = schema.new({
-    id = id.from(_N, "PutRepositoryPermissionsPolicyInput"),
+    id = id.from(_N, "PutRepositoryPermissionsPolicyRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -4378,7 +4378,7 @@ M.PutRepositoryPermissionsPolicyInput = schema.new({
 })
 
 M.PutRepositoryPermissionsPolicyOutput = schema.new({
-    id = id.from(_N, "PutRepositoryPermissionsPolicyOutput"),
+    id = id.from(_N, "PutRepositoryPermissionsPolicyResult"),
     type = "structure",
     members = {
         policy = schema.new({
@@ -4392,7 +4392,7 @@ M.PutRepositoryPermissionsPolicyOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4419,12 +4419,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResult"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4451,12 +4451,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResult"),
     type = "structure",
 })
 
 M.UpdatePackageGroupInput = schema.new({
-    id = id.from(_N, "UpdatePackageGroupInput"),
+    id = id.from(_N, "UpdatePackageGroupRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -4503,7 +4503,7 @@ M.UpdatePackageGroupInput = schema.new({
 })
 
 M.UpdatePackageGroupOutput = schema.new({
-    id = id.from(_N, "UpdatePackageGroupOutput"),
+    id = id.from(_N, "UpdatePackageGroupResult"),
     type = "structure",
     members = {
         packageGroup = schema.new({
@@ -4536,7 +4536,7 @@ M.PackageGroupAllowedRepository = schema.new({
 })
 
 M.UpdatePackageGroupOriginConfigurationInput = schema.new({
-    id = id.from(_N, "UpdatePackageGroupOriginConfigurationInput"),
+    id = id.from(_N, "UpdatePackageGroupOriginConfigurationRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -4594,7 +4594,7 @@ M.UpdatePackageGroupOriginConfigurationInput = schema.new({
 })
 
 M.UpdatePackageGroupOriginConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdatePackageGroupOriginConfigurationOutput"),
+    id = id.from(_N, "UpdatePackageGroupOriginConfigurationResult"),
     type = "structure",
     members = {
         packageGroup = schema.new({
@@ -4610,13 +4610,13 @@ M.UpdatePackageGroupOriginConfigurationOutput = schema.new({
             name = "allowedRepositoryUpdates",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document }),
         }),
     },
 })
 
 M.UpdatePackageVersionsStatusInput = schema.new({
-    id = id.from(_N, "UpdatePackageVersionsStatusInput"),
+    id = id.from(_N, "UpdatePackageVersionsStatusRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -4714,7 +4714,7 @@ M.UpdatePackageVersionsStatusInput = schema.new({
 })
 
 M.UpdatePackageVersionsStatusOutput = schema.new({
-    id = id.from(_N, "UpdatePackageVersionsStatusOutput"),
+    id = id.from(_N, "UpdatePackageVersionsStatusResult"),
     type = "structure",
     members = {
         successfulVersions = schema.new({
@@ -4737,7 +4737,7 @@ M.UpdatePackageVersionsStatusOutput = schema.new({
 })
 
 M.UpdateRepositoryInput = schema.new({
-    id = id.from(_N, "UpdateRepositoryInput"),
+    id = id.from(_N, "UpdateRepositoryRequest"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -4786,7 +4786,7 @@ M.UpdateRepositoryInput = schema.new({
 })
 
 M.UpdateRepositoryOutput = schema.new({
-    id = id.from(_N, "UpdateRepositoryOutput"),
+    id = id.from(_N, "UpdateRepositoryResult"),
     type = "structure",
     members = {
         repository = schema.new({
@@ -4798,5 +4798,19 @@ M.UpdateRepositoryOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

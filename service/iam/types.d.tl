@@ -4040,35 +4040,35 @@ local record UnrecognizedPublicKeyEncodingException
     message: string
 end
 
-local type permissionCheckStatusType = "COMPLETE" | "IN_PROGRESS" | "FAILED"
-
-local type DeletionTaskStatusType = "SUCCEEDED" | "IN_PROGRESS" | "FAILED" | "NOT_STARTED"
-
-local type summaryStateType = "AVAILABLE" | "NOT_AVAILABLE" | "NOT_SUPPORTED" | "FAILED"
-
-local type AccessAdvisorUsageGranularityType = "SERVICE_LEVEL" | "ACTION_LEVEL"
-
 local type globalEndpointTokenVersion = "v1Token" | "v2Token"
 
 local type ReportStateType = "STARTED" | "INPROGRESS" | "COMPLETE"
 
-local type encodingType = "SSH" | "PEM"
+local type policyScopeType = "All" | "AWS" | "Local"
 
-local type PolicyUsageType = "PermissionsPolicy" | "PermissionsBoundary"
+local type permissionCheckStatusType = "COMPLETE" | "IN_PROGRESS" | "FAILED"
 
 local type jobStatusType = "IN_PROGRESS" | "COMPLETED" | "FAILED"
 
-local type assertionEncryptionModeType = "Required" | "Allowed"
+local type PolicyUsageType = "PermissionsPolicy" | "PermissionsBoundary"
 
-local type permissionCheckResultType = "ALLOWED" | "DENIED" | "UNSURE"
+local type DeletionTaskStatusType = "SUCCEEDED" | "IN_PROGRESS" | "FAILED" | "NOT_STARTED"
 
 local type assignmentStatusType = "Assigned" | "Unassigned" | "Any"
 
-local type policyScopeType = "All" | "AWS" | "Local"
-
 local type statusType = "Active" | "Inactive" | "Expired"
 
+local type encodingType = "SSH" | "PEM"
+
+local type assertionEncryptionModeType = "Required" | "Allowed"
+
 local type sortKeyType = "SERVICE_NAMESPACE_ASCENDING" | "SERVICE_NAMESPACE_DESCENDING" | "LAST_AUTHENTICATED_TIME_ASCENDING" | "LAST_AUTHENTICATED_TIME_DESCENDING"
+
+local type AccessAdvisorUsageGranularityType = "SERVICE_LEVEL" | "ACTION_LEVEL"
+
+local type permissionCheckResultType = "ALLOWED" | "DENIED" | "UNSURE"
+
+local type summaryStateType = "AVAILABLE" | "NOT_AVAILABLE" | "NOT_SUPPORTED" | "FAILED"
 
 local type ReportFormatType = "text/csv"
 

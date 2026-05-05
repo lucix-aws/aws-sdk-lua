@@ -8,7 +8,7 @@ local _N = "com.amazonaws.networkmanager"
 local M = {}
 
 M.AcceptAttachmentInput = schema.new({
-    id = id.from(_N, "AcceptAttachmentInput"),
+    id = id.from(_N, "AcceptAttachmentRequest"),
     type = "structure",
     members = {
         AttachmentId = schema.new({
@@ -247,7 +247,7 @@ M.Attachment = schema.new({
 })
 
 M.AcceptAttachmentOutput = schema.new({
-    id = id.from(_N, "AcceptAttachmentOutput"),
+    id = id.from(_N, "AcceptAttachmentResponse"),
     type = "structure",
     members = {
         Attachment = schema.new({
@@ -494,7 +494,7 @@ M.AccountStatus = schema.new({
 })
 
 M.AssociateConnectPeerInput = schema.new({
-    id = id.from(_N, "AssociateConnectPeerInput"),
+    id = id.from(_N, "AssociateConnectPeerRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -572,7 +572,7 @@ M.ConnectPeerAssociation = schema.new({
 })
 
 M.AssociateConnectPeerOutput = schema.new({
-    id = id.from(_N, "AssociateConnectPeerOutput"),
+    id = id.from(_N, "AssociateConnectPeerResponse"),
     type = "structure",
     members = {
         ConnectPeerAssociation = schema.new({
@@ -635,7 +635,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.AssociateCustomerGatewayInput = schema.new({
-    id = id.from(_N, "AssociateCustomerGatewayInput"),
+    id = id.from(_N, "AssociateCustomerGatewayRequest"),
     type = "structure",
     members = {
         CustomerGatewayArn = schema.new({
@@ -713,7 +713,7 @@ M.CustomerGatewayAssociation = schema.new({
 })
 
 M.AssociateCustomerGatewayOutput = schema.new({
-    id = id.from(_N, "AssociateCustomerGatewayOutput"),
+    id = id.from(_N, "AssociateCustomerGatewayResponse"),
     type = "structure",
     members = {
         CustomerGatewayAssociation = schema.new({
@@ -727,7 +727,7 @@ M.AssociateCustomerGatewayOutput = schema.new({
 })
 
 M.AssociateLinkInput = schema.new({
-    id = id.from(_N, "AssociateLinkInput"),
+    id = id.from(_N, "AssociateLinkRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -793,7 +793,7 @@ M.LinkAssociation = schema.new({
 })
 
 M.AssociateLinkOutput = schema.new({
-    id = id.from(_N, "AssociateLinkOutput"),
+    id = id.from(_N, "AssociateLinkResponse"),
     type = "structure",
     members = {
         LinkAssociation = schema.new({
@@ -807,7 +807,7 @@ M.AssociateLinkOutput = schema.new({
 })
 
 M.AssociateTransitGatewayConnectPeerInput = schema.new({
-    id = id.from(_N, "AssociateTransitGatewayConnectPeerInput"),
+    id = id.from(_N, "AssociateTransitGatewayConnectPeerRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -885,7 +885,7 @@ M.TransitGatewayConnectPeerAssociation = schema.new({
 })
 
 M.AssociateTransitGatewayConnectPeerOutput = schema.new({
-    id = id.from(_N, "AssociateTransitGatewayConnectPeerOutput"),
+    id = id.from(_N, "AssociateTransitGatewayConnectPeerResponse"),
     type = "structure",
     members = {
         TransitGatewayConnectPeerAssociation = schema.new({
@@ -1563,7 +1563,7 @@ M.EdgeOverride = schema.new({
             type = "list",
             name = "EdgeSets",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.String }),
         }),
         UseEdge = schema.new({
             id = id.from(_N, "EdgeOverride", "UseEdge"),
@@ -2260,7 +2260,7 @@ M.CoreNetworkSummary = schema.new({
 })
 
 M.CreateConnectAttachmentInput = schema.new({
-    id = id.from(_N, "CreateConnectAttachmentInput"),
+    id = id.from(_N, "CreateConnectAttachmentRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -2326,7 +2326,7 @@ M.CreateConnectAttachmentInput = schema.new({
 })
 
 M.CreateConnectAttachmentOutput = schema.new({
-    id = id.from(_N, "CreateConnectAttachmentOutput"),
+    id = id.from(_N, "CreateConnectAttachmentResponse"),
     type = "structure",
     members = {
         ConnectAttachment = schema.new({
@@ -2340,7 +2340,7 @@ M.CreateConnectAttachmentOutput = schema.new({
 })
 
 M.CreateConnectionInput = schema.new({
-    id = id.from(_N, "CreateConnectionInput"),
+    id = id.from(_N, "CreateConnectionRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -2400,7 +2400,7 @@ M.CreateConnectionInput = schema.new({
 })
 
 M.CreateConnectionOutput = schema.new({
-    id = id.from(_N, "CreateConnectionOutput"),
+    id = id.from(_N, "CreateConnectionResponse"),
     type = "structure",
     members = {
         Connection = schema.new({
@@ -2414,7 +2414,7 @@ M.CreateConnectionOutput = schema.new({
 })
 
 M.CreateConnectPeerInput = schema.new({
-    id = id.from(_N, "CreateConnectPeerInput"),
+    id = id.from(_N, "CreateConnectPeerRequest"),
     type = "structure",
     members = {
         ConnectAttachmentId = schema.new({
@@ -2481,7 +2481,7 @@ M.CreateConnectPeerInput = schema.new({
 })
 
 M.CreateConnectPeerOutput = schema.new({
-    id = id.from(_N, "CreateConnectPeerOutput"),
+    id = id.from(_N, "CreateConnectPeerResponse"),
     type = "structure",
     members = {
         ConnectPeer = schema.new({
@@ -2495,7 +2495,7 @@ M.CreateConnectPeerOutput = schema.new({
 })
 
 M.CreateCoreNetworkInput = schema.new({
-    id = id.from(_N, "CreateCoreNetworkInput"),
+    id = id.from(_N, "CreateCoreNetworkRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -2539,7 +2539,7 @@ M.CreateCoreNetworkInput = schema.new({
 })
 
 M.CreateCoreNetworkOutput = schema.new({
-    id = id.from(_N, "CreateCoreNetworkOutput"),
+    id = id.from(_N, "CreateCoreNetworkResponse"),
     type = "structure",
     members = {
         CoreNetwork = schema.new({
@@ -2553,7 +2553,7 @@ M.CreateCoreNetworkOutput = schema.new({
 })
 
 M.CreateCoreNetworkPrefixListAssociationInput = schema.new({
-    id = id.from(_N, "CreateCoreNetworkPrefixListAssociationInput"),
+    id = id.from(_N, "CreateCoreNetworkPrefixListAssociationRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -2596,7 +2596,7 @@ M.CreateCoreNetworkPrefixListAssociationInput = schema.new({
 })
 
 M.CreateCoreNetworkPrefixListAssociationOutput = schema.new({
-    id = id.from(_N, "CreateCoreNetworkPrefixListAssociationOutput"),
+    id = id.from(_N, "CreateCoreNetworkPrefixListAssociationResponse"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -2646,7 +2646,7 @@ M.Location = schema.new({
 })
 
 M.CreateDeviceInput = schema.new({
-    id = id.from(_N, "CreateDeviceInput"),
+    id = id.from(_N, "CreateDeviceRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -2814,7 +2814,7 @@ M.Device = schema.new({
 })
 
 M.CreateDeviceOutput = schema.new({
-    id = id.from(_N, "CreateDeviceOutput"),
+    id = id.from(_N, "CreateDeviceResponse"),
     type = "structure",
     members = {
         Device = schema.new({
@@ -2828,7 +2828,7 @@ M.CreateDeviceOutput = schema.new({
 })
 
 M.CreateDirectConnectGatewayAttachmentInput = schema.new({
-    id = id.from(_N, "CreateDirectConnectGatewayAttachmentInput"),
+    id = id.from(_N, "CreateDirectConnectGatewayAttachmentRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -2905,7 +2905,7 @@ M.DirectConnectGatewayAttachment = schema.new({
 })
 
 M.CreateDirectConnectGatewayAttachmentOutput = schema.new({
-    id = id.from(_N, "CreateDirectConnectGatewayAttachmentOutput"),
+    id = id.from(_N, "CreateDirectConnectGatewayAttachmentResponse"),
     type = "structure",
     members = {
         DirectConnectGatewayAttachment = schema.new({
@@ -2919,7 +2919,7 @@ M.CreateDirectConnectGatewayAttachmentOutput = schema.new({
 })
 
 M.CreateGlobalNetworkInput = schema.new({
-    id = id.from(_N, "CreateGlobalNetworkInput"),
+    id = id.from(_N, "CreateGlobalNetworkRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -2983,7 +2983,7 @@ M.GlobalNetwork = schema.new({
 })
 
 M.CreateGlobalNetworkOutput = schema.new({
-    id = id.from(_N, "CreateGlobalNetworkOutput"),
+    id = id.from(_N, "CreateGlobalNetworkResponse"),
     type = "structure",
     members = {
         GlobalNetwork = schema.new({
@@ -2997,7 +2997,7 @@ M.CreateGlobalNetworkOutput = schema.new({
 })
 
 M.CreateLinkInput = schema.new({
-    id = id.from(_N, "CreateLinkInput"),
+    id = id.from(_N, "CreateLinkRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -3133,7 +3133,7 @@ M.Link = schema.new({
 })
 
 M.CreateLinkOutput = schema.new({
-    id = id.from(_N, "CreateLinkOutput"),
+    id = id.from(_N, "CreateLinkResponse"),
     type = "structure",
     members = {
         Link = schema.new({
@@ -3147,7 +3147,7 @@ M.CreateLinkOutput = schema.new({
 })
 
 M.CreateSiteInput = schema.new({
-    id = id.from(_N, "CreateSiteInput"),
+    id = id.from(_N, "CreateSiteRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -3241,7 +3241,7 @@ M.Site = schema.new({
 })
 
 M.CreateSiteOutput = schema.new({
-    id = id.from(_N, "CreateSiteOutput"),
+    id = id.from(_N, "CreateSiteResponse"),
     type = "structure",
     members = {
         Site = schema.new({
@@ -3255,7 +3255,7 @@ M.CreateSiteOutput = schema.new({
 })
 
 M.CreateSiteToSiteVpnAttachmentInput = schema.new({
-    id = id.from(_N, "CreateSiteToSiteVpnAttachmentInput"),
+    id = id.from(_N, "CreateSiteToSiteVpnAttachmentRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -3322,7 +3322,7 @@ M.SiteToSiteVpnAttachment = schema.new({
 })
 
 M.CreateSiteToSiteVpnAttachmentOutput = schema.new({
-    id = id.from(_N, "CreateSiteToSiteVpnAttachmentOutput"),
+    id = id.from(_N, "CreateSiteToSiteVpnAttachmentResponse"),
     type = "structure",
     members = {
         SiteToSiteVpnAttachment = schema.new({
@@ -3336,7 +3336,7 @@ M.CreateSiteToSiteVpnAttachmentOutput = schema.new({
 })
 
 M.CreateTransitGatewayPeeringInput = schema.new({
-    id = id.from(_N, "CreateTransitGatewayPeeringInput"),
+    id = id.from(_N, "CreateTransitGatewayPeeringRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -3529,7 +3529,7 @@ M.TransitGatewayPeering = schema.new({
 })
 
 M.CreateTransitGatewayPeeringOutput = schema.new({
-    id = id.from(_N, "CreateTransitGatewayPeeringOutput"),
+    id = id.from(_N, "CreateTransitGatewayPeeringResponse"),
     type = "structure",
     members = {
         TransitGatewayPeering = schema.new({
@@ -3543,7 +3543,7 @@ M.CreateTransitGatewayPeeringOutput = schema.new({
 })
 
 M.CreateTransitGatewayRouteTableAttachmentInput = schema.new({
-    id = id.from(_N, "CreateTransitGatewayRouteTableAttachmentInput"),
+    id = id.from(_N, "CreateTransitGatewayRouteTableAttachmentRequest"),
     type = "structure",
     members = {
         PeeringId = schema.new({
@@ -3616,7 +3616,7 @@ M.TransitGatewayRouteTableAttachment = schema.new({
 })
 
 M.CreateTransitGatewayRouteTableAttachmentOutput = schema.new({
-    id = id.from(_N, "CreateTransitGatewayRouteTableAttachmentOutput"),
+    id = id.from(_N, "CreateTransitGatewayRouteTableAttachmentResponse"),
     type = "structure",
     members = {
         TransitGatewayRouteTableAttachment = schema.new({
@@ -3673,7 +3673,7 @@ M.VpcOptions = schema.new({
 })
 
 M.CreateVpcAttachmentInput = schema.new({
-    id = id.from(_N, "CreateVpcAttachmentInput"),
+    id = id.from(_N, "CreateVpcAttachmentRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -3765,7 +3765,7 @@ M.VpcAttachment = schema.new({
 })
 
 M.CreateVpcAttachmentOutput = schema.new({
-    id = id.from(_N, "CreateVpcAttachmentOutput"),
+    id = id.from(_N, "CreateVpcAttachmentResponse"),
     type = "structure",
     members = {
         VpcAttachment = schema.new({
@@ -3779,7 +3779,7 @@ M.CreateVpcAttachmentOutput = schema.new({
 })
 
 M.DeleteAttachmentInput = schema.new({
-    id = id.from(_N, "DeleteAttachmentInput"),
+    id = id.from(_N, "DeleteAttachmentRequest"),
     type = "structure",
     members = {
         AttachmentId = schema.new({
@@ -3796,7 +3796,7 @@ M.DeleteAttachmentInput = schema.new({
 })
 
 M.DeleteAttachmentOutput = schema.new({
-    id = id.from(_N, "DeleteAttachmentOutput"),
+    id = id.from(_N, "DeleteAttachmentResponse"),
     type = "structure",
     members = {
         Attachment = schema.new({
@@ -3810,7 +3810,7 @@ M.DeleteAttachmentOutput = schema.new({
 })
 
 M.DeleteConnectionInput = schema.new({
-    id = id.from(_N, "DeleteConnectionInput"),
+    id = id.from(_N, "DeleteConnectionRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -3837,7 +3837,7 @@ M.DeleteConnectionInput = schema.new({
 })
 
 M.DeleteConnectionOutput = schema.new({
-    id = id.from(_N, "DeleteConnectionOutput"),
+    id = id.from(_N, "DeleteConnectionResponse"),
     type = "structure",
     members = {
         Connection = schema.new({
@@ -3851,7 +3851,7 @@ M.DeleteConnectionOutput = schema.new({
 })
 
 M.DeleteConnectPeerInput = schema.new({
-    id = id.from(_N, "DeleteConnectPeerInput"),
+    id = id.from(_N, "DeleteConnectPeerRequest"),
     type = "structure",
     members = {
         ConnectPeerId = schema.new({
@@ -3868,7 +3868,7 @@ M.DeleteConnectPeerInput = schema.new({
 })
 
 M.DeleteConnectPeerOutput = schema.new({
-    id = id.from(_N, "DeleteConnectPeerOutput"),
+    id = id.from(_N, "DeleteConnectPeerResponse"),
     type = "structure",
     members = {
         ConnectPeer = schema.new({
@@ -3882,7 +3882,7 @@ M.DeleteConnectPeerOutput = schema.new({
 })
 
 M.DeleteCoreNetworkInput = schema.new({
-    id = id.from(_N, "DeleteCoreNetworkInput"),
+    id = id.from(_N, "DeleteCoreNetworkRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -3899,7 +3899,7 @@ M.DeleteCoreNetworkInput = schema.new({
 })
 
 M.DeleteCoreNetworkOutput = schema.new({
-    id = id.from(_N, "DeleteCoreNetworkOutput"),
+    id = id.from(_N, "DeleteCoreNetworkResponse"),
     type = "structure",
     members = {
         CoreNetwork = schema.new({
@@ -3913,7 +3913,7 @@ M.DeleteCoreNetworkOutput = schema.new({
 })
 
 M.DeleteCoreNetworkPolicyVersionInput = schema.new({
-    id = id.from(_N, "DeleteCoreNetworkPolicyVersionInput"),
+    id = id.from(_N, "DeleteCoreNetworkPolicyVersionRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -3940,7 +3940,7 @@ M.DeleteCoreNetworkPolicyVersionInput = schema.new({
 })
 
 M.DeleteCoreNetworkPolicyVersionOutput = schema.new({
-    id = id.from(_N, "DeleteCoreNetworkPolicyVersionOutput"),
+    id = id.from(_N, "DeleteCoreNetworkPolicyVersionResponse"),
     type = "structure",
     members = {
         CoreNetworkPolicy = schema.new({
@@ -3954,7 +3954,7 @@ M.DeleteCoreNetworkPolicyVersionOutput = schema.new({
 })
 
 M.DeleteCoreNetworkPrefixListAssociationInput = schema.new({
-    id = id.from(_N, "DeleteCoreNetworkPrefixListAssociationInput"),
+    id = id.from(_N, "DeleteCoreNetworkPrefixListAssociationRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -3981,7 +3981,7 @@ M.DeleteCoreNetworkPrefixListAssociationInput = schema.new({
 })
 
 M.DeleteCoreNetworkPrefixListAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteCoreNetworkPrefixListAssociationOutput"),
+    id = id.from(_N, "DeleteCoreNetworkPrefixListAssociationResponse"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -4000,7 +4000,7 @@ M.DeleteCoreNetworkPrefixListAssociationOutput = schema.new({
 })
 
 M.DeleteDeviceInput = schema.new({
-    id = id.from(_N, "DeleteDeviceInput"),
+    id = id.from(_N, "DeleteDeviceRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -4027,7 +4027,7 @@ M.DeleteDeviceInput = schema.new({
 })
 
 M.DeleteDeviceOutput = schema.new({
-    id = id.from(_N, "DeleteDeviceOutput"),
+    id = id.from(_N, "DeleteDeviceResponse"),
     type = "structure",
     members = {
         Device = schema.new({
@@ -4041,7 +4041,7 @@ M.DeleteDeviceOutput = schema.new({
 })
 
 M.DeleteGlobalNetworkInput = schema.new({
-    id = id.from(_N, "DeleteGlobalNetworkInput"),
+    id = id.from(_N, "DeleteGlobalNetworkRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -4058,7 +4058,7 @@ M.DeleteGlobalNetworkInput = schema.new({
 })
 
 M.DeleteGlobalNetworkOutput = schema.new({
-    id = id.from(_N, "DeleteGlobalNetworkOutput"),
+    id = id.from(_N, "DeleteGlobalNetworkResponse"),
     type = "structure",
     members = {
         GlobalNetwork = schema.new({
@@ -4072,7 +4072,7 @@ M.DeleteGlobalNetworkOutput = schema.new({
 })
 
 M.DeleteLinkInput = schema.new({
-    id = id.from(_N, "DeleteLinkInput"),
+    id = id.from(_N, "DeleteLinkRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -4099,7 +4099,7 @@ M.DeleteLinkInput = schema.new({
 })
 
 M.DeleteLinkOutput = schema.new({
-    id = id.from(_N, "DeleteLinkOutput"),
+    id = id.from(_N, "DeleteLinkResponse"),
     type = "structure",
     members = {
         Link = schema.new({
@@ -4113,7 +4113,7 @@ M.DeleteLinkOutput = schema.new({
 })
 
 M.DeletePeeringInput = schema.new({
-    id = id.from(_N, "DeletePeeringInput"),
+    id = id.from(_N, "DeletePeeringRequest"),
     type = "structure",
     members = {
         PeeringId = schema.new({
@@ -4130,7 +4130,7 @@ M.DeletePeeringInput = schema.new({
 })
 
 M.DeletePeeringOutput = schema.new({
-    id = id.from(_N, "DeletePeeringOutput"),
+    id = id.from(_N, "DeletePeeringResponse"),
     type = "structure",
     members = {
         Peering = schema.new({
@@ -4144,7 +4144,7 @@ M.DeletePeeringOutput = schema.new({
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4161,12 +4161,12 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "DeleteResourcePolicyResponse"),
     type = "structure",
 })
 
 M.DeleteSiteInput = schema.new({
-    id = id.from(_N, "DeleteSiteInput"),
+    id = id.from(_N, "DeleteSiteRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -4193,7 +4193,7 @@ M.DeleteSiteInput = schema.new({
 })
 
 M.DeleteSiteOutput = schema.new({
-    id = id.from(_N, "DeleteSiteOutput"),
+    id = id.from(_N, "DeleteSiteResponse"),
     type = "structure",
     members = {
         Site = schema.new({
@@ -4207,7 +4207,7 @@ M.DeleteSiteOutput = schema.new({
 })
 
 M.DeregisterTransitGatewayInput = schema.new({
-    id = id.from(_N, "DeregisterTransitGatewayInput"),
+    id = id.from(_N, "DeregisterTransitGatewayRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -4279,7 +4279,7 @@ M.TransitGatewayRegistration = schema.new({
 })
 
 M.DeregisterTransitGatewayOutput = schema.new({
-    id = id.from(_N, "DeregisterTransitGatewayOutput"),
+    id = id.from(_N, "DeregisterTransitGatewayResponse"),
     type = "structure",
     members = {
         TransitGatewayRegistration = schema.new({
@@ -4293,7 +4293,7 @@ M.DeregisterTransitGatewayOutput = schema.new({
 })
 
 M.DescribeGlobalNetworksInput = schema.new({
-    id = id.from(_N, "DescribeGlobalNetworksInput"),
+    id = id.from(_N, "DescribeGlobalNetworksRequest"),
     type = "structure",
     members = {
         GlobalNetworkIds = schema.new({
@@ -4328,7 +4328,7 @@ M.DescribeGlobalNetworksInput = schema.new({
 })
 
 M.DescribeGlobalNetworksOutput = schema.new({
-    id = id.from(_N, "DescribeGlobalNetworksOutput"),
+    id = id.from(_N, "DescribeGlobalNetworksResponse"),
     type = "structure",
     members = {
         GlobalNetworks = schema.new({
@@ -4348,7 +4348,7 @@ M.DescribeGlobalNetworksOutput = schema.new({
 })
 
 M.DisassociateConnectPeerInput = schema.new({
-    id = id.from(_N, "DisassociateConnectPeerInput"),
+    id = id.from(_N, "DisassociateConnectPeerRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -4375,7 +4375,7 @@ M.DisassociateConnectPeerInput = schema.new({
 })
 
 M.DisassociateConnectPeerOutput = schema.new({
-    id = id.from(_N, "DisassociateConnectPeerOutput"),
+    id = id.from(_N, "DisassociateConnectPeerResponse"),
     type = "structure",
     members = {
         ConnectPeerAssociation = schema.new({
@@ -4389,7 +4389,7 @@ M.DisassociateConnectPeerOutput = schema.new({
 })
 
 M.DisassociateCustomerGatewayInput = schema.new({
-    id = id.from(_N, "DisassociateCustomerGatewayInput"),
+    id = id.from(_N, "DisassociateCustomerGatewayRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -4416,7 +4416,7 @@ M.DisassociateCustomerGatewayInput = schema.new({
 })
 
 M.DisassociateCustomerGatewayOutput = schema.new({
-    id = id.from(_N, "DisassociateCustomerGatewayOutput"),
+    id = id.from(_N, "DisassociateCustomerGatewayResponse"),
     type = "structure",
     members = {
         CustomerGatewayAssociation = schema.new({
@@ -4430,7 +4430,7 @@ M.DisassociateCustomerGatewayOutput = schema.new({
 })
 
 M.DisassociateLinkInput = schema.new({
-    id = id.from(_N, "DisassociateLinkInput"),
+    id = id.from(_N, "DisassociateLinkRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -4467,7 +4467,7 @@ M.DisassociateLinkInput = schema.new({
 })
 
 M.DisassociateLinkOutput = schema.new({
-    id = id.from(_N, "DisassociateLinkOutput"),
+    id = id.from(_N, "DisassociateLinkResponse"),
     type = "structure",
     members = {
         LinkAssociation = schema.new({
@@ -4481,7 +4481,7 @@ M.DisassociateLinkOutput = schema.new({
 })
 
 M.DisassociateTransitGatewayConnectPeerInput = schema.new({
-    id = id.from(_N, "DisassociateTransitGatewayConnectPeerInput"),
+    id = id.from(_N, "DisassociateTransitGatewayConnectPeerRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -4508,7 +4508,7 @@ M.DisassociateTransitGatewayConnectPeerInput = schema.new({
 })
 
 M.DisassociateTransitGatewayConnectPeerOutput = schema.new({
-    id = id.from(_N, "DisassociateTransitGatewayConnectPeerOutput"),
+    id = id.from(_N, "DisassociateTransitGatewayConnectPeerResponse"),
     type = "structure",
     members = {
         TransitGatewayConnectPeerAssociation = schema.new({
@@ -4522,7 +4522,7 @@ M.DisassociateTransitGatewayConnectPeerOutput = schema.new({
 })
 
 M.ExecuteCoreNetworkChangeSetInput = schema.new({
-    id = id.from(_N, "ExecuteCoreNetworkChangeSetInput"),
+    id = id.from(_N, "ExecuteCoreNetworkChangeSetRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -4549,12 +4549,12 @@ M.ExecuteCoreNetworkChangeSetInput = schema.new({
 })
 
 M.ExecuteCoreNetworkChangeSetOutput = schema.new({
-    id = id.from(_N, "ExecuteCoreNetworkChangeSetOutput"),
+    id = id.from(_N, "ExecuteCoreNetworkChangeSetResponse"),
     type = "structure",
 })
 
 M.GetConnectAttachmentInput = schema.new({
-    id = id.from(_N, "GetConnectAttachmentInput"),
+    id = id.from(_N, "GetConnectAttachmentRequest"),
     type = "structure",
     members = {
         AttachmentId = schema.new({
@@ -4571,7 +4571,7 @@ M.GetConnectAttachmentInput = schema.new({
 })
 
 M.GetConnectAttachmentOutput = schema.new({
-    id = id.from(_N, "GetConnectAttachmentOutput"),
+    id = id.from(_N, "GetConnectAttachmentResponse"),
     type = "structure",
     members = {
         ConnectAttachment = schema.new({
@@ -4585,7 +4585,7 @@ M.GetConnectAttachmentOutput = schema.new({
 })
 
 M.GetConnectionsInput = schema.new({
-    id = id.from(_N, "GetConnectionsInput"),
+    id = id.from(_N, "GetConnectionsRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -4639,7 +4639,7 @@ M.GetConnectionsInput = schema.new({
 })
 
 M.GetConnectionsOutput = schema.new({
-    id = id.from(_N, "GetConnectionsOutput"),
+    id = id.from(_N, "GetConnectionsResponse"),
     type = "structure",
     members = {
         Connections = schema.new({
@@ -4659,7 +4659,7 @@ M.GetConnectionsOutput = schema.new({
 })
 
 M.GetConnectPeerInput = schema.new({
-    id = id.from(_N, "GetConnectPeerInput"),
+    id = id.from(_N, "GetConnectPeerRequest"),
     type = "structure",
     members = {
         ConnectPeerId = schema.new({
@@ -4676,7 +4676,7 @@ M.GetConnectPeerInput = schema.new({
 })
 
 M.GetConnectPeerOutput = schema.new({
-    id = id.from(_N, "GetConnectPeerOutput"),
+    id = id.from(_N, "GetConnectPeerResponse"),
     type = "structure",
     members = {
         ConnectPeer = schema.new({
@@ -4690,7 +4690,7 @@ M.GetConnectPeerOutput = schema.new({
 })
 
 M.GetConnectPeerAssociationsInput = schema.new({
-    id = id.from(_N, "GetConnectPeerAssociationsInput"),
+    id = id.from(_N, "GetConnectPeerAssociationsRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -4735,7 +4735,7 @@ M.GetConnectPeerAssociationsInput = schema.new({
 })
 
 M.GetConnectPeerAssociationsOutput = schema.new({
-    id = id.from(_N, "GetConnectPeerAssociationsOutput"),
+    id = id.from(_N, "GetConnectPeerAssociationsResponse"),
     type = "structure",
     members = {
         ConnectPeerAssociations = schema.new({
@@ -4755,7 +4755,7 @@ M.GetConnectPeerAssociationsOutput = schema.new({
 })
 
 M.GetCoreNetworkInput = schema.new({
-    id = id.from(_N, "GetCoreNetworkInput"),
+    id = id.from(_N, "GetCoreNetworkRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -4772,7 +4772,7 @@ M.GetCoreNetworkInput = schema.new({
 })
 
 M.GetCoreNetworkOutput = schema.new({
-    id = id.from(_N, "GetCoreNetworkOutput"),
+    id = id.from(_N, "GetCoreNetworkResponse"),
     type = "structure",
     members = {
         CoreNetwork = schema.new({
@@ -4786,7 +4786,7 @@ M.GetCoreNetworkOutput = schema.new({
 })
 
 M.GetCoreNetworkChangeEventsInput = schema.new({
-    id = id.from(_N, "GetCoreNetworkChangeEventsInput"),
+    id = id.from(_N, "GetCoreNetworkChangeEventsRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -4831,7 +4831,7 @@ M.GetCoreNetworkChangeEventsInput = schema.new({
 })
 
 M.GetCoreNetworkChangeEventsOutput = schema.new({
-    id = id.from(_N, "GetCoreNetworkChangeEventsOutput"),
+    id = id.from(_N, "GetCoreNetworkChangeEventsResponse"),
     type = "structure",
     members = {
         CoreNetworkChangeEvents = schema.new({
@@ -4851,7 +4851,7 @@ M.GetCoreNetworkChangeEventsOutput = schema.new({
 })
 
 M.GetCoreNetworkChangeSetInput = schema.new({
-    id = id.from(_N, "GetCoreNetworkChangeSetInput"),
+    id = id.from(_N, "GetCoreNetworkChangeSetRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -4896,7 +4896,7 @@ M.GetCoreNetworkChangeSetInput = schema.new({
 })
 
 M.GetCoreNetworkChangeSetOutput = schema.new({
-    id = id.from(_N, "GetCoreNetworkChangeSetOutput"),
+    id = id.from(_N, "GetCoreNetworkChangeSetResponse"),
     type = "structure",
     members = {
         CoreNetworkChanges = schema.new({
@@ -4916,7 +4916,7 @@ M.GetCoreNetworkChangeSetOutput = schema.new({
 })
 
 M.GetCoreNetworkPolicyInput = schema.new({
-    id = id.from(_N, "GetCoreNetworkPolicyInput"),
+    id = id.from(_N, "GetCoreNetworkPolicyRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -4951,7 +4951,7 @@ M.GetCoreNetworkPolicyInput = schema.new({
 })
 
 M.GetCoreNetworkPolicyOutput = schema.new({
-    id = id.from(_N, "GetCoreNetworkPolicyOutput"),
+    id = id.from(_N, "GetCoreNetworkPolicyResponse"),
     type = "structure",
     members = {
         CoreNetworkPolicy = schema.new({
@@ -4965,7 +4965,7 @@ M.GetCoreNetworkPolicyOutput = schema.new({
 })
 
 M.GetCustomerGatewayAssociationsInput = schema.new({
-    id = id.from(_N, "GetCustomerGatewayAssociationsInput"),
+    id = id.from(_N, "GetCustomerGatewayAssociationsRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -5010,7 +5010,7 @@ M.GetCustomerGatewayAssociationsInput = schema.new({
 })
 
 M.GetCustomerGatewayAssociationsOutput = schema.new({
-    id = id.from(_N, "GetCustomerGatewayAssociationsOutput"),
+    id = id.from(_N, "GetCustomerGatewayAssociationsResponse"),
     type = "structure",
     members = {
         CustomerGatewayAssociations = schema.new({
@@ -5030,7 +5030,7 @@ M.GetCustomerGatewayAssociationsOutput = schema.new({
 })
 
 M.GetDevicesInput = schema.new({
-    id = id.from(_N, "GetDevicesInput"),
+    id = id.from(_N, "GetDevicesRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -5084,7 +5084,7 @@ M.GetDevicesInput = schema.new({
 })
 
 M.GetDevicesOutput = schema.new({
-    id = id.from(_N, "GetDevicesOutput"),
+    id = id.from(_N, "GetDevicesResponse"),
     type = "structure",
     members = {
         Devices = schema.new({
@@ -5104,7 +5104,7 @@ M.GetDevicesOutput = schema.new({
 })
 
 M.GetDirectConnectGatewayAttachmentInput = schema.new({
-    id = id.from(_N, "GetDirectConnectGatewayAttachmentInput"),
+    id = id.from(_N, "GetDirectConnectGatewayAttachmentRequest"),
     type = "structure",
     members = {
         AttachmentId = schema.new({
@@ -5121,7 +5121,7 @@ M.GetDirectConnectGatewayAttachmentInput = schema.new({
 })
 
 M.GetDirectConnectGatewayAttachmentOutput = schema.new({
-    id = id.from(_N, "GetDirectConnectGatewayAttachmentOutput"),
+    id = id.from(_N, "GetDirectConnectGatewayAttachmentResponse"),
     type = "structure",
     members = {
         DirectConnectGatewayAttachment = schema.new({
@@ -5135,7 +5135,7 @@ M.GetDirectConnectGatewayAttachmentOutput = schema.new({
 })
 
 M.GetLinkAssociationsInput = schema.new({
-    id = id.from(_N, "GetLinkAssociationsInput"),
+    id = id.from(_N, "GetLinkAssociationsRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -5188,7 +5188,7 @@ M.GetLinkAssociationsInput = schema.new({
 })
 
 M.GetLinkAssociationsOutput = schema.new({
-    id = id.from(_N, "GetLinkAssociationsOutput"),
+    id = id.from(_N, "GetLinkAssociationsResponse"),
     type = "structure",
     members = {
         LinkAssociations = schema.new({
@@ -5208,7 +5208,7 @@ M.GetLinkAssociationsOutput = schema.new({
 })
 
 M.GetLinksInput = schema.new({
-    id = id.from(_N, "GetLinksInput"),
+    id = id.from(_N, "GetLinksRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -5280,7 +5280,7 @@ M.GetLinksInput = schema.new({
 })
 
 M.GetLinksOutput = schema.new({
-    id = id.from(_N, "GetLinksOutput"),
+    id = id.from(_N, "GetLinksResponse"),
     type = "structure",
     members = {
         Links = schema.new({
@@ -5300,7 +5300,7 @@ M.GetLinksOutput = schema.new({
 })
 
 M.GetNetworkResourceCountsInput = schema.new({
-    id = id.from(_N, "GetNetworkResourceCountsInput"),
+    id = id.from(_N, "GetNetworkResourceCountsRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -5363,7 +5363,7 @@ M.NetworkResourceCount = schema.new({
 })
 
 M.GetNetworkResourceCountsOutput = schema.new({
-    id = id.from(_N, "GetNetworkResourceCountsOutput"),
+    id = id.from(_N, "GetNetworkResourceCountsResponse"),
     type = "structure",
     members = {
         NetworkResourceCounts = schema.new({
@@ -5383,7 +5383,7 @@ M.GetNetworkResourceCountsOutput = schema.new({
 })
 
 M.GetNetworkResourceRelationshipsInput = schema.new({
-    id = id.from(_N, "GetNetworkResourceRelationshipsInput"),
+    id = id.from(_N, "GetNetworkResourceRelationshipsRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -5491,7 +5491,7 @@ M.Relationship = schema.new({
 })
 
 M.GetNetworkResourceRelationshipsOutput = schema.new({
-    id = id.from(_N, "GetNetworkResourceRelationshipsOutput"),
+    id = id.from(_N, "GetNetworkResourceRelationshipsResponse"),
     type = "structure",
     members = {
         Relationships = schema.new({
@@ -5511,7 +5511,7 @@ M.GetNetworkResourceRelationshipsOutput = schema.new({
 })
 
 M.GetNetworkResourcesInput = schema.new({
-    id = id.from(_N, "GetNetworkResourcesInput"),
+    id = id.from(_N, "GetNetworkResourcesRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -5676,7 +5676,7 @@ M.NetworkResource = schema.new({
 })
 
 M.GetNetworkResourcesOutput = schema.new({
-    id = id.from(_N, "GetNetworkResourcesOutput"),
+    id = id.from(_N, "GetNetworkResourcesResponse"),
     type = "structure",
     members = {
         NetworkResources = schema.new({
@@ -5723,7 +5723,7 @@ M.RouteTableIdentifier = schema.new({
 })
 
 M.GetNetworkRoutesInput = schema.new({
-    id = id.from(_N, "GetNetworkRoutesInput"),
+    id = id.from(_N, "GetNetworkRoutesRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -5801,7 +5801,7 @@ M.GetNetworkRoutesInput = schema.new({
             name = "DestinationFilters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -5894,7 +5894,7 @@ M.NetworkRoute = schema.new({
 })
 
 M.GetNetworkRoutesOutput = schema.new({
-    id = id.from(_N, "GetNetworkRoutesOutput"),
+    id = id.from(_N, "GetNetworkRoutesResponse"),
     type = "structure",
     members = {
         RouteTableArn = schema.new({
@@ -5933,7 +5933,7 @@ M.GetNetworkRoutesOutput = schema.new({
 })
 
 M.GetNetworkTelemetryInput = schema.new({
-    id = id.from(_N, "GetNetworkTelemetryInput"),
+    id = id.from(_N, "GetNetworkTelemetryRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -6084,7 +6084,7 @@ M.NetworkTelemetry = schema.new({
 })
 
 M.GetNetworkTelemetryOutput = schema.new({
-    id = id.from(_N, "GetNetworkTelemetryOutput"),
+    id = id.from(_N, "GetNetworkTelemetryResponse"),
     type = "structure",
     members = {
         NetworkTelemetry = schema.new({
@@ -6104,7 +6104,7 @@ M.GetNetworkTelemetryOutput = schema.new({
 })
 
 M.GetResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetResourcePolicyInput"),
+    id = id.from(_N, "GetResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6121,7 +6121,7 @@ M.GetResourcePolicyInput = schema.new({
 })
 
 M.GetResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetResourcePolicyOutput"),
+    id = id.from(_N, "GetResourcePolicyResponse"),
     type = "structure",
     members = {
         PolicyDocument = schema.new({
@@ -6137,7 +6137,7 @@ M.GetResourcePolicyOutput = schema.new({
 })
 
 M.GetRouteAnalysisInput = schema.new({
-    id = id.from(_N, "GetRouteAnalysisInput"),
+    id = id.from(_N, "GetRouteAnalysisRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -6392,7 +6392,7 @@ M.RouteAnalysis = schema.new({
 })
 
 M.GetRouteAnalysisOutput = schema.new({
-    id = id.from(_N, "GetRouteAnalysisOutput"),
+    id = id.from(_N, "GetRouteAnalysisResponse"),
     type = "structure",
     members = {
         RouteAnalysis = schema.new({
@@ -6406,7 +6406,7 @@ M.GetRouteAnalysisOutput = schema.new({
 })
 
 M.GetSitesInput = schema.new({
-    id = id.from(_N, "GetSitesInput"),
+    id = id.from(_N, "GetSitesRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -6451,7 +6451,7 @@ M.GetSitesInput = schema.new({
 })
 
 M.GetSitesOutput = schema.new({
-    id = id.from(_N, "GetSitesOutput"),
+    id = id.from(_N, "GetSitesResponse"),
     type = "structure",
     members = {
         Sites = schema.new({
@@ -6471,7 +6471,7 @@ M.GetSitesOutput = schema.new({
 })
 
 M.GetSiteToSiteVpnAttachmentInput = schema.new({
-    id = id.from(_N, "GetSiteToSiteVpnAttachmentInput"),
+    id = id.from(_N, "GetSiteToSiteVpnAttachmentRequest"),
     type = "structure",
     members = {
         AttachmentId = schema.new({
@@ -6488,7 +6488,7 @@ M.GetSiteToSiteVpnAttachmentInput = schema.new({
 })
 
 M.GetSiteToSiteVpnAttachmentOutput = schema.new({
-    id = id.from(_N, "GetSiteToSiteVpnAttachmentOutput"),
+    id = id.from(_N, "GetSiteToSiteVpnAttachmentResponse"),
     type = "structure",
     members = {
         SiteToSiteVpnAttachment = schema.new({
@@ -6502,7 +6502,7 @@ M.GetSiteToSiteVpnAttachmentOutput = schema.new({
 })
 
 M.GetTransitGatewayConnectPeerAssociationsInput = schema.new({
-    id = id.from(_N, "GetTransitGatewayConnectPeerAssociationsInput"),
+    id = id.from(_N, "GetTransitGatewayConnectPeerAssociationsRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -6547,7 +6547,7 @@ M.GetTransitGatewayConnectPeerAssociationsInput = schema.new({
 })
 
 M.GetTransitGatewayConnectPeerAssociationsOutput = schema.new({
-    id = id.from(_N, "GetTransitGatewayConnectPeerAssociationsOutput"),
+    id = id.from(_N, "GetTransitGatewayConnectPeerAssociationsResponse"),
     type = "structure",
     members = {
         TransitGatewayConnectPeerAssociations = schema.new({
@@ -6567,7 +6567,7 @@ M.GetTransitGatewayConnectPeerAssociationsOutput = schema.new({
 })
 
 M.GetTransitGatewayPeeringInput = schema.new({
-    id = id.from(_N, "GetTransitGatewayPeeringInput"),
+    id = id.from(_N, "GetTransitGatewayPeeringRequest"),
     type = "structure",
     members = {
         PeeringId = schema.new({
@@ -6584,7 +6584,7 @@ M.GetTransitGatewayPeeringInput = schema.new({
 })
 
 M.GetTransitGatewayPeeringOutput = schema.new({
-    id = id.from(_N, "GetTransitGatewayPeeringOutput"),
+    id = id.from(_N, "GetTransitGatewayPeeringResponse"),
     type = "structure",
     members = {
         TransitGatewayPeering = schema.new({
@@ -6598,7 +6598,7 @@ M.GetTransitGatewayPeeringOutput = schema.new({
 })
 
 M.GetTransitGatewayRegistrationsInput = schema.new({
-    id = id.from(_N, "GetTransitGatewayRegistrationsInput"),
+    id = id.from(_N, "GetTransitGatewayRegistrationsRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -6643,7 +6643,7 @@ M.GetTransitGatewayRegistrationsInput = schema.new({
 })
 
 M.GetTransitGatewayRegistrationsOutput = schema.new({
-    id = id.from(_N, "GetTransitGatewayRegistrationsOutput"),
+    id = id.from(_N, "GetTransitGatewayRegistrationsResponse"),
     type = "structure",
     members = {
         TransitGatewayRegistrations = schema.new({
@@ -6663,7 +6663,7 @@ M.GetTransitGatewayRegistrationsOutput = schema.new({
 })
 
 M.GetTransitGatewayRouteTableAttachmentInput = schema.new({
-    id = id.from(_N, "GetTransitGatewayRouteTableAttachmentInput"),
+    id = id.from(_N, "GetTransitGatewayRouteTableAttachmentRequest"),
     type = "structure",
     members = {
         AttachmentId = schema.new({
@@ -6680,7 +6680,7 @@ M.GetTransitGatewayRouteTableAttachmentInput = schema.new({
 })
 
 M.GetTransitGatewayRouteTableAttachmentOutput = schema.new({
-    id = id.from(_N, "GetTransitGatewayRouteTableAttachmentOutput"),
+    id = id.from(_N, "GetTransitGatewayRouteTableAttachmentResponse"),
     type = "structure",
     members = {
         TransitGatewayRouteTableAttachment = schema.new({
@@ -6694,7 +6694,7 @@ M.GetTransitGatewayRouteTableAttachmentOutput = schema.new({
 })
 
 M.GetVpcAttachmentInput = schema.new({
-    id = id.from(_N, "GetVpcAttachmentInput"),
+    id = id.from(_N, "GetVpcAttachmentRequest"),
     type = "structure",
     members = {
         AttachmentId = schema.new({
@@ -6711,7 +6711,7 @@ M.GetVpcAttachmentInput = schema.new({
 })
 
 M.GetVpcAttachmentOutput = schema.new({
-    id = id.from(_N, "GetVpcAttachmentOutput"),
+    id = id.from(_N, "GetVpcAttachmentResponse"),
     type = "structure",
     members = {
         VpcAttachment = schema.new({
@@ -6725,7 +6725,7 @@ M.GetVpcAttachmentOutput = schema.new({
 })
 
 M.ListAttachmentRoutingPolicyAssociationsInput = schema.new({
-    id = id.from(_N, "ListAttachmentRoutingPolicyAssociationsInput"),
+    id = id.from(_N, "ListAttachmentRoutingPolicyAssociationsRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -6769,7 +6769,7 @@ M.ListAttachmentRoutingPolicyAssociationsInput = schema.new({
 })
 
 M.ListAttachmentRoutingPolicyAssociationsOutput = schema.new({
-    id = id.from(_N, "ListAttachmentRoutingPolicyAssociationsOutput"),
+    id = id.from(_N, "ListAttachmentRoutingPolicyAssociationsResponse"),
     type = "structure",
     members = {
         AttachmentRoutingPolicyAssociations = schema.new({
@@ -6789,7 +6789,7 @@ M.ListAttachmentRoutingPolicyAssociationsOutput = schema.new({
 })
 
 M.ListAttachmentsInput = schema.new({
-    id = id.from(_N, "ListAttachmentsInput"),
+    id = id.from(_N, "ListAttachmentsRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -6850,7 +6850,7 @@ M.ListAttachmentsInput = schema.new({
 })
 
 M.ListAttachmentsOutput = schema.new({
-    id = id.from(_N, "ListAttachmentsOutput"),
+    id = id.from(_N, "ListAttachmentsResponse"),
     type = "structure",
     members = {
         Attachments = schema.new({
@@ -6870,7 +6870,7 @@ M.ListAttachmentsOutput = schema.new({
 })
 
 M.ListConnectPeersInput = schema.new({
-    id = id.from(_N, "ListConnectPeersInput"),
+    id = id.from(_N, "ListConnectPeersRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -6913,7 +6913,7 @@ M.ListConnectPeersInput = schema.new({
 })
 
 M.ListConnectPeersOutput = schema.new({
-    id = id.from(_N, "ListConnectPeersOutput"),
+    id = id.from(_N, "ListConnectPeersResponse"),
     type = "structure",
     members = {
         ConnectPeers = schema.new({
@@ -6933,7 +6933,7 @@ M.ListConnectPeersOutput = schema.new({
 })
 
 M.ListCoreNetworkPolicyVersionsInput = schema.new({
-    id = id.from(_N, "ListCoreNetworkPolicyVersionsInput"),
+    id = id.from(_N, "ListCoreNetworkPolicyVersionsRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -6968,7 +6968,7 @@ M.ListCoreNetworkPolicyVersionsInput = schema.new({
 })
 
 M.ListCoreNetworkPolicyVersionsOutput = schema.new({
-    id = id.from(_N, "ListCoreNetworkPolicyVersionsOutput"),
+    id = id.from(_N, "ListCoreNetworkPolicyVersionsResponse"),
     type = "structure",
     members = {
         CoreNetworkPolicyVersions = schema.new({
@@ -6988,7 +6988,7 @@ M.ListCoreNetworkPolicyVersionsOutput = schema.new({
 })
 
 M.ListCoreNetworkPrefixListAssociationsInput = schema.new({
-    id = id.from(_N, "ListCoreNetworkPrefixListAssociationsInput"),
+    id = id.from(_N, "ListCoreNetworkPrefixListAssociationsRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -7057,7 +7057,7 @@ M.PrefixListAssociation = schema.new({
 })
 
 M.ListCoreNetworkPrefixListAssociationsOutput = schema.new({
-    id = id.from(_N, "ListCoreNetworkPrefixListAssociationsOutput"),
+    id = id.from(_N, "ListCoreNetworkPrefixListAssociationsResponse"),
     type = "structure",
     members = {
         PrefixListAssociations = schema.new({
@@ -7077,7 +7077,7 @@ M.ListCoreNetworkPrefixListAssociationsOutput = schema.new({
 })
 
 M.ListCoreNetworkRoutingInformationInput = schema.new({
-    id = id.from(_N, "ListCoreNetworkRoutingInformationInput"),
+    id = id.from(_N, "ListCoreNetworkRoutingInformationRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -7114,7 +7114,7 @@ M.ListCoreNetworkRoutingInformationInput = schema.new({
             name = "NextHopFilters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         LocalPreferenceMatches = schema.new({
             id = id.from(_N, "ListCoreNetworkRoutingInformationInput", "LocalPreferenceMatches"),
@@ -7166,7 +7166,7 @@ M.ListCoreNetworkRoutingInformationInput = schema.new({
 })
 
 M.ListCoreNetworkRoutingInformationOutput = schema.new({
-    id = id.from(_N, "ListCoreNetworkRoutingInformationOutput"),
+    id = id.from(_N, "ListCoreNetworkRoutingInformationResponse"),
     type = "structure",
     members = {
         CoreNetworkRoutingInformation = schema.new({
@@ -7186,7 +7186,7 @@ M.ListCoreNetworkRoutingInformationOutput = schema.new({
 })
 
 M.ListCoreNetworksInput = schema.new({
-    id = id.from(_N, "ListCoreNetworksInput"),
+    id = id.from(_N, "ListCoreNetworksRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -7211,7 +7211,7 @@ M.ListCoreNetworksInput = schema.new({
 })
 
 M.ListCoreNetworksOutput = schema.new({
-    id = id.from(_N, "ListCoreNetworksOutput"),
+    id = id.from(_N, "ListCoreNetworksResponse"),
     type = "structure",
     members = {
         CoreNetworks = schema.new({
@@ -7231,7 +7231,7 @@ M.ListCoreNetworksOutput = schema.new({
 })
 
 M.ListOrganizationServiceAccessStatusInput = schema.new({
-    id = id.from(_N, "ListOrganizationServiceAccessStatusInput"),
+    id = id.from(_N, "ListOrganizationServiceAccessStatusRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -7291,7 +7291,7 @@ M.OrganizationStatus = schema.new({
 })
 
 M.ListOrganizationServiceAccessStatusOutput = schema.new({
-    id = id.from(_N, "ListOrganizationServiceAccessStatusOutput"),
+    id = id.from(_N, "ListOrganizationServiceAccessStatusResponse"),
     type = "structure",
     members = {
         OrganizationStatus = schema.new({
@@ -7311,7 +7311,7 @@ M.ListOrganizationServiceAccessStatusOutput = schema.new({
 })
 
 M.ListPeeringsInput = schema.new({
-    id = id.from(_N, "ListPeeringsInput"),
+    id = id.from(_N, "ListPeeringsRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -7372,7 +7372,7 @@ M.ListPeeringsInput = schema.new({
 })
 
 M.ListPeeringsOutput = schema.new({
-    id = id.from(_N, "ListPeeringsOutput"),
+    id = id.from(_N, "ListPeeringsResponse"),
     type = "structure",
     members = {
         Peerings = schema.new({
@@ -7392,7 +7392,7 @@ M.ListPeeringsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -7409,7 +7409,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         TagList = schema.new({
@@ -7423,7 +7423,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutAttachmentRoutingPolicyLabelInput = schema.new({
-    id = id.from(_N, "PutAttachmentRoutingPolicyLabelInput"),
+    id = id.from(_N, "PutAttachmentRoutingPolicyLabelRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -7466,7 +7466,7 @@ M.PutAttachmentRoutingPolicyLabelInput = schema.new({
 })
 
 M.PutAttachmentRoutingPolicyLabelOutput = schema.new({
-    id = id.from(_N, "PutAttachmentRoutingPolicyLabelOutput"),
+    id = id.from(_N, "PutAttachmentRoutingPolicyLabelResponse"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -7491,7 +7491,7 @@ M.PutAttachmentRoutingPolicyLabelOutput = schema.new({
 })
 
 M.PutCoreNetworkPolicyInput = schema.new({
-    id = id.from(_N, "PutCoreNetworkPolicyInput"),
+    id = id.from(_N, "PutCoreNetworkPolicyRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -7542,7 +7542,7 @@ M.PutCoreNetworkPolicyInput = schema.new({
 })
 
 M.PutCoreNetworkPolicyOutput = schema.new({
-    id = id.from(_N, "PutCoreNetworkPolicyOutput"),
+    id = id.from(_N, "PutCoreNetworkPolicyResponse"),
     type = "structure",
     members = {
         CoreNetworkPolicy = schema.new({
@@ -7556,7 +7556,7 @@ M.PutCoreNetworkPolicyOutput = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         PolicyDocument = schema.new({
@@ -7586,12 +7586,12 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResponse"),
     type = "structure",
 })
 
 M.RegisterTransitGatewayInput = schema.new({
-    id = id.from(_N, "RegisterTransitGatewayInput"),
+    id = id.from(_N, "RegisterTransitGatewayRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -7617,7 +7617,7 @@ M.RegisterTransitGatewayInput = schema.new({
 })
 
 M.RegisterTransitGatewayOutput = schema.new({
-    id = id.from(_N, "RegisterTransitGatewayOutput"),
+    id = id.from(_N, "RegisterTransitGatewayResponse"),
     type = "structure",
     members = {
         TransitGatewayRegistration = schema.new({
@@ -7631,7 +7631,7 @@ M.RegisterTransitGatewayOutput = schema.new({
 })
 
 M.RejectAttachmentInput = schema.new({
-    id = id.from(_N, "RejectAttachmentInput"),
+    id = id.from(_N, "RejectAttachmentRequest"),
     type = "structure",
     members = {
         AttachmentId = schema.new({
@@ -7648,7 +7648,7 @@ M.RejectAttachmentInput = schema.new({
 })
 
 M.RejectAttachmentOutput = schema.new({
-    id = id.from(_N, "RejectAttachmentOutput"),
+    id = id.from(_N, "RejectAttachmentResponse"),
     type = "structure",
     members = {
         Attachment = schema.new({
@@ -7662,7 +7662,7 @@ M.RejectAttachmentOutput = schema.new({
 })
 
 M.RemoveAttachmentRoutingPolicyLabelInput = schema.new({
-    id = id.from(_N, "RemoveAttachmentRoutingPolicyLabelInput"),
+    id = id.from(_N, "RemoveAttachmentRoutingPolicyLabelRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -7689,7 +7689,7 @@ M.RemoveAttachmentRoutingPolicyLabelInput = schema.new({
 })
 
 M.RemoveAttachmentRoutingPolicyLabelOutput = schema.new({
-    id = id.from(_N, "RemoveAttachmentRoutingPolicyLabelOutput"),
+    id = id.from(_N, "RemoveAttachmentRoutingPolicyLabelResponse"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -7714,7 +7714,7 @@ M.RemoveAttachmentRoutingPolicyLabelOutput = schema.new({
 })
 
 M.RestoreCoreNetworkPolicyVersionInput = schema.new({
-    id = id.from(_N, "RestoreCoreNetworkPolicyVersionInput"),
+    id = id.from(_N, "RestoreCoreNetworkPolicyVersionRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -7741,7 +7741,7 @@ M.RestoreCoreNetworkPolicyVersionInput = schema.new({
 })
 
 M.RestoreCoreNetworkPolicyVersionOutput = schema.new({
-    id = id.from(_N, "RestoreCoreNetworkPolicyVersionOutput"),
+    id = id.from(_N, "RestoreCoreNetworkPolicyVersionResponse"),
     type = "structure",
     members = {
         CoreNetworkPolicy = schema.new({
@@ -7755,7 +7755,7 @@ M.RestoreCoreNetworkPolicyVersionOutput = schema.new({
 })
 
 M.StartOrganizationServiceAccessUpdateInput = schema.new({
-    id = id.from(_N, "StartOrganizationServiceAccessUpdateInput"),
+    id = id.from(_N, "StartOrganizationServiceAccessUpdateRequest"),
     type = "structure",
     members = {
         Action = schema.new({
@@ -7771,7 +7771,7 @@ M.StartOrganizationServiceAccessUpdateInput = schema.new({
 })
 
 M.StartOrganizationServiceAccessUpdateOutput = schema.new({
-    id = id.from(_N, "StartOrganizationServiceAccessUpdateOutput"),
+    id = id.from(_N, "StartOrganizationServiceAccessUpdateResponse"),
     type = "structure",
     members = {
         OrganizationStatus = schema.new({
@@ -7804,7 +7804,7 @@ M.RouteAnalysisEndpointOptionsSpecification = schema.new({
 })
 
 M.StartRouteAnalysisInput = schema.new({
-    id = id.from(_N, "StartRouteAnalysisInput"),
+    id = id.from(_N, "StartRouteAnalysisRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -7859,7 +7859,7 @@ M.StartRouteAnalysisInput = schema.new({
 })
 
 M.StartRouteAnalysisOutput = schema.new({
-    id = id.from(_N, "StartRouteAnalysisOutput"),
+    id = id.from(_N, "StartRouteAnalysisResponse"),
     type = "structure",
     members = {
         RouteAnalysis = schema.new({
@@ -7873,7 +7873,7 @@ M.StartRouteAnalysisOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -7900,12 +7900,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -7933,12 +7933,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateConnectionInput = schema.new({
-    id = id.from(_N, "UpdateConnectionInput"),
+    id = id.from(_N, "UpdateConnectionRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -7983,7 +7983,7 @@ M.UpdateConnectionInput = schema.new({
 })
 
 M.UpdateConnectionOutput = schema.new({
-    id = id.from(_N, "UpdateConnectionOutput"),
+    id = id.from(_N, "UpdateConnectionResponse"),
     type = "structure",
     members = {
         Connection = schema.new({
@@ -7997,7 +7997,7 @@ M.UpdateConnectionOutput = schema.new({
 })
 
 M.UpdateCoreNetworkInput = schema.new({
-    id = id.from(_N, "UpdateCoreNetworkInput"),
+    id = id.from(_N, "UpdateCoreNetworkRequest"),
     type = "structure",
     members = {
         CoreNetworkId = schema.new({
@@ -8020,7 +8020,7 @@ M.UpdateCoreNetworkInput = schema.new({
 })
 
 M.UpdateCoreNetworkOutput = schema.new({
-    id = id.from(_N, "UpdateCoreNetworkOutput"),
+    id = id.from(_N, "UpdateCoreNetworkResponse"),
     type = "structure",
     members = {
         CoreNetwork = schema.new({
@@ -8034,7 +8034,7 @@ M.UpdateCoreNetworkOutput = schema.new({
 })
 
 M.UpdateDeviceInput = schema.new({
-    id = id.from(_N, "UpdateDeviceInput"),
+    id = id.from(_N, "UpdateDeviceRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -8111,7 +8111,7 @@ M.UpdateDeviceInput = schema.new({
 })
 
 M.UpdateDeviceOutput = schema.new({
-    id = id.from(_N, "UpdateDeviceOutput"),
+    id = id.from(_N, "UpdateDeviceResponse"),
     type = "structure",
     members = {
         Device = schema.new({
@@ -8125,7 +8125,7 @@ M.UpdateDeviceOutput = schema.new({
 })
 
 M.UpdateDirectConnectGatewayAttachmentInput = schema.new({
-    id = id.from(_N, "UpdateDirectConnectGatewayAttachmentInput"),
+    id = id.from(_N, "UpdateDirectConnectGatewayAttachmentRequest"),
     type = "structure",
     members = {
         AttachmentId = schema.new({
@@ -8149,7 +8149,7 @@ M.UpdateDirectConnectGatewayAttachmentInput = schema.new({
 })
 
 M.UpdateDirectConnectGatewayAttachmentOutput = schema.new({
-    id = id.from(_N, "UpdateDirectConnectGatewayAttachmentOutput"),
+    id = id.from(_N, "UpdateDirectConnectGatewayAttachmentResponse"),
     type = "structure",
     members = {
         DirectConnectGatewayAttachment = schema.new({
@@ -8163,7 +8163,7 @@ M.UpdateDirectConnectGatewayAttachmentOutput = schema.new({
 })
 
 M.UpdateGlobalNetworkInput = schema.new({
-    id = id.from(_N, "UpdateGlobalNetworkInput"),
+    id = id.from(_N, "UpdateGlobalNetworkRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -8186,7 +8186,7 @@ M.UpdateGlobalNetworkInput = schema.new({
 })
 
 M.UpdateGlobalNetworkOutput = schema.new({
-    id = id.from(_N, "UpdateGlobalNetworkOutput"),
+    id = id.from(_N, "UpdateGlobalNetworkResponse"),
     type = "structure",
     members = {
         GlobalNetwork = schema.new({
@@ -8200,7 +8200,7 @@ M.UpdateGlobalNetworkOutput = schema.new({
 })
 
 M.UpdateLinkInput = schema.new({
-    id = id.from(_N, "UpdateLinkInput"),
+    id = id.from(_N, "UpdateLinkRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -8252,7 +8252,7 @@ M.UpdateLinkInput = schema.new({
 })
 
 M.UpdateLinkOutput = schema.new({
-    id = id.from(_N, "UpdateLinkOutput"),
+    id = id.from(_N, "UpdateLinkResponse"),
     type = "structure",
     members = {
         Link = schema.new({
@@ -8266,7 +8266,7 @@ M.UpdateLinkOutput = schema.new({
 })
 
 M.UpdateNetworkResourceMetadataInput = schema.new({
-    id = id.from(_N, "UpdateNetworkResourceMetadataInput"),
+    id = id.from(_N, "UpdateNetworkResourceMetadataRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -8304,7 +8304,7 @@ M.UpdateNetworkResourceMetadataInput = schema.new({
 })
 
 M.UpdateNetworkResourceMetadataOutput = schema.new({
-    id = id.from(_N, "UpdateNetworkResourceMetadataOutput"),
+    id = id.from(_N, "UpdateNetworkResourceMetadataResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -8325,7 +8325,7 @@ M.UpdateNetworkResourceMetadataOutput = schema.new({
 })
 
 M.UpdateSiteInput = schema.new({
-    id = id.from(_N, "UpdateSiteInput"),
+    id = id.from(_N, "UpdateSiteRequest"),
     type = "structure",
     members = {
         GlobalNetworkId = schema.new({
@@ -8365,7 +8365,7 @@ M.UpdateSiteInput = schema.new({
 })
 
 M.UpdateSiteOutput = schema.new({
-    id = id.from(_N, "UpdateSiteOutput"),
+    id = id.from(_N, "UpdateSiteResponse"),
     type = "structure",
     members = {
         Site = schema.new({
@@ -8379,7 +8379,7 @@ M.UpdateSiteOutput = schema.new({
 })
 
 M.UpdateVpcAttachmentInput = schema.new({
-    id = id.from(_N, "UpdateVpcAttachmentInput"),
+    id = id.from(_N, "UpdateVpcAttachmentRequest"),
     type = "structure",
     members = {
         AttachmentId = schema.new({
@@ -8417,7 +8417,7 @@ M.UpdateVpcAttachmentInput = schema.new({
 })
 
 M.UpdateVpcAttachmentOutput = schema.new({
-    id = id.from(_N, "UpdateVpcAttachmentOutput"),
+    id = id.from(_N, "UpdateVpcAttachmentResponse"),
     type = "structure",
     members = {
         VpcAttachment = schema.new({
@@ -8429,5 +8429,19 @@ M.UpdateVpcAttachmentOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

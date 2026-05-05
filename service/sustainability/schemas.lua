@@ -37,7 +37,7 @@ M.FilterExpression = schema.new({
             name = "Dimensions",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -92,7 +92,7 @@ M.TimePeriod = schema.new({
 })
 
 M.GetEstimatedCarbonEmissionsInput = schema.new({
-    id = id.from(_N, "GetEstimatedCarbonEmissionsInput"),
+    id = id.from(_N, "GetEstimatedCarbonEmissionsRequest"),
     type = "structure",
     members = {
         TimePeriod = schema.new({
@@ -234,7 +234,7 @@ M.EstimatedCarbonEmissions = schema.new({
 })
 
 M.GetEstimatedCarbonEmissionsOutput = schema.new({
-    id = id.from(_N, "GetEstimatedCarbonEmissionsOutput"),
+    id = id.from(_N, "GetEstimatedCarbonEmissionsResponse"),
     type = "structure",
     members = {
         Results = schema.new({
@@ -317,7 +317,7 @@ M.ValidationException = schema.new({
 })
 
 M.GetEstimatedCarbonEmissionsDimensionValuesInput = schema.new({
-    id = id.from(_N, "GetEstimatedCarbonEmissionsDimensionValuesInput"),
+    id = id.from(_N, "GetEstimatedCarbonEmissionsDimensionValuesRequest"),
     type = "structure",
     members = {
         TimePeriod = schema.new({
@@ -384,7 +384,7 @@ M.DimensionEntry = schema.new({
 })
 
 M.GetEstimatedCarbonEmissionsDimensionValuesOutput = schema.new({
-    id = id.from(_N, "GetEstimatedCarbonEmissionsDimensionValuesOutput"),
+    id = id.from(_N, "GetEstimatedCarbonEmissionsDimensionValuesResponse"),
     type = "structure",
     members = {
         Results = schema.new({
@@ -402,5 +402,19 @@ M.GetEstimatedCarbonEmissionsDimensionValuesOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

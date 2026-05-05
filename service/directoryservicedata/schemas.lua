@@ -30,7 +30,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.AddGroupMemberInput = schema.new({
-    id = id.from(_N, "AddGroupMemberInput"),
+    id = id.from(_N, "AddGroupMemberRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -80,7 +80,7 @@ M.AddGroupMemberInput = schema.new({
 })
 
 M.AddGroupMemberOutput = schema.new({
-    id = id.from(_N, "AddGroupMemberOutput"),
+    id = id.from(_N, "AddGroupMemberResult"),
     type = "structure",
 })
 
@@ -237,7 +237,7 @@ M.AttributeValue = schema.new({
 })
 
 M.CreateGroupInput = schema.new({
-    id = id.from(_N, "CreateGroupInput"),
+    id = id.from(_N, "CreateGroupRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -292,7 +292,7 @@ M.CreateGroupInput = schema.new({
 })
 
 M.CreateGroupOutput = schema.new({
-    id = id.from(_N, "CreateGroupOutput"),
+    id = id.from(_N, "CreateGroupResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -317,7 +317,7 @@ M.CreateGroupOutput = schema.new({
 })
 
 M.CreateUserInput = schema.new({
-    id = id.from(_N, "CreateUserInput"),
+    id = id.from(_N, "CreateUserRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -378,7 +378,7 @@ M.CreateUserInput = schema.new({
 })
 
 M.CreateUserOutput = schema.new({
-    id = id.from(_N, "CreateUserOutput"),
+    id = id.from(_N, "CreateUserResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -403,7 +403,7 @@ M.CreateUserOutput = schema.new({
 })
 
 M.DeleteGroupInput = schema.new({
-    id = id.from(_N, "DeleteGroupInput"),
+    id = id.from(_N, "DeleteGroupRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -438,12 +438,12 @@ M.DeleteGroupInput = schema.new({
 })
 
 M.DeleteGroupOutput = schema.new({
-    id = id.from(_N, "DeleteGroupOutput"),
+    id = id.from(_N, "DeleteGroupResult"),
     type = "structure",
 })
 
 M.DeleteUserInput = schema.new({
-    id = id.from(_N, "DeleteUserInput"),
+    id = id.from(_N, "DeleteUserRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -478,12 +478,12 @@ M.DeleteUserInput = schema.new({
 })
 
 M.DeleteUserOutput = schema.new({
-    id = id.from(_N, "DeleteUserOutput"),
+    id = id.from(_N, "DeleteUserResult"),
     type = "structure",
 })
 
 M.DescribeGroupInput = schema.new({
-    id = id.from(_N, "DescribeGroupInput"),
+    id = id.from(_N, "DescribeGroupRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -522,7 +522,7 @@ M.DescribeGroupInput = schema.new({
 })
 
 M.DescribeGroupOutput = schema.new({
-    id = id.from(_N, "DescribeGroupOutput"),
+    id = id.from(_N, "DescribeGroupResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -579,7 +579,7 @@ M.DescribeGroupOutput = schema.new({
 })
 
 M.DescribeUserInput = schema.new({
-    id = id.from(_N, "DescribeUserInput"),
+    id = id.from(_N, "DescribeUserRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -618,7 +618,7 @@ M.DescribeUserInput = schema.new({
 })
 
 M.DescribeUserOutput = schema.new({
-    id = id.from(_N, "DescribeUserOutput"),
+    id = id.from(_N, "DescribeUserResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -693,7 +693,7 @@ M.DescribeUserOutput = schema.new({
 })
 
 M.DisableUserInput = schema.new({
-    id = id.from(_N, "DisableUserInput"),
+    id = id.from(_N, "DisableUserRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -728,12 +728,12 @@ M.DisableUserInput = schema.new({
 })
 
 M.DisableUserOutput = schema.new({
-    id = id.from(_N, "DisableUserOutput"),
+    id = id.from(_N, "DisableUserResult"),
     type = "structure",
 })
 
 M.ListGroupMembersInput = schema.new({
-    id = id.from(_N, "ListGroupMembersInput"),
+    id = id.from(_N, "ListGroupMembersRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -817,7 +817,7 @@ M.Member = schema.new({
 })
 
 M.ListGroupMembersOutput = schema.new({
-    id = id.from(_N, "ListGroupMembersOutput"),
+    id = id.from(_N, "ListGroupMembersResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -855,7 +855,7 @@ M.ListGroupMembersOutput = schema.new({
 })
 
 M.ListGroupsInput = schema.new({
-    id = id.from(_N, "ListGroupsInput"),
+    id = id.from(_N, "ListGroupsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -933,7 +933,7 @@ M.GroupSummary = schema.new({
 })
 
 M.ListGroupsOutput = schema.new({
-    id = id.from(_N, "ListGroupsOutput"),
+    id = id.from(_N, "ListGroupsResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -965,7 +965,7 @@ M.ListGroupsOutput = schema.new({
 })
 
 M.ListGroupsForMemberInput = schema.new({
-    id = id.from(_N, "ListGroupsForMemberInput"),
+    id = id.from(_N, "ListGroupsForMemberRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1015,7 +1015,7 @@ M.ListGroupsForMemberInput = schema.new({
 })
 
 M.ListGroupsForMemberOutput = schema.new({
-    id = id.from(_N, "ListGroupsForMemberOutput"),
+    id = id.from(_N, "ListGroupsForMemberResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1053,7 +1053,7 @@ M.ListGroupsForMemberOutput = schema.new({
 })
 
 M.ListUsersInput = schema.new({
-    id = id.from(_N, "ListUsersInput"),
+    id = id.from(_N, "ListUsersRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1134,7 +1134,7 @@ M.UserSummary = schema.new({
 })
 
 M.ListUsersOutput = schema.new({
-    id = id.from(_N, "ListUsersOutput"),
+    id = id.from(_N, "ListUsersResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1166,7 +1166,7 @@ M.ListUsersOutput = schema.new({
 })
 
 M.RemoveGroupMemberInput = schema.new({
-    id = id.from(_N, "RemoveGroupMemberInput"),
+    id = id.from(_N, "RemoveGroupMemberRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1216,12 +1216,12 @@ M.RemoveGroupMemberInput = schema.new({
 })
 
 M.RemoveGroupMemberOutput = schema.new({
-    id = id.from(_N, "RemoveGroupMemberOutput"),
+    id = id.from(_N, "RemoveGroupMemberResult"),
     type = "structure",
 })
 
 M.SearchGroupsInput = schema.new({
-    id = id.from(_N, "SearchGroupsInput"),
+    id = id.from(_N, "SearchGroupsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1323,7 +1323,7 @@ M.Group = schema.new({
 })
 
 M.SearchGroupsOutput = schema.new({
-    id = id.from(_N, "SearchGroupsOutput"),
+    id = id.from(_N, "SearchGroupsResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1355,7 +1355,7 @@ M.SearchGroupsOutput = schema.new({
 })
 
 M.SearchUsersInput = schema.new({
-    id = id.from(_N, "SearchUsersInput"),
+    id = id.from(_N, "SearchUsersRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1475,7 +1475,7 @@ M.User = schema.new({
 })
 
 M.SearchUsersOutput = schema.new({
-    id = id.from(_N, "SearchUsersOutput"),
+    id = id.from(_N, "SearchUsersResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1507,7 +1507,7 @@ M.SearchUsersOutput = schema.new({
 })
 
 M.UpdateGroupInput = schema.new({
-    id = id.from(_N, "UpdateGroupInput"),
+    id = id.from(_N, "UpdateGroupRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1568,12 +1568,12 @@ M.UpdateGroupInput = schema.new({
 })
 
 M.UpdateGroupOutput = schema.new({
-    id = id.from(_N, "UpdateGroupOutput"),
+    id = id.from(_N, "UpdateGroupResult"),
     type = "structure",
 })
 
 M.UpdateUserInput = schema.new({
-    id = id.from(_N, "UpdateUserInput"),
+    id = id.from(_N, "UpdateUserRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1640,8 +1640,22 @@ M.UpdateUserInput = schema.new({
 })
 
 M.UpdateUserOutput = schema.new({
-    id = id.from(_N, "UpdateUserOutput"),
+    id = id.from(_N, "UpdateUserResult"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

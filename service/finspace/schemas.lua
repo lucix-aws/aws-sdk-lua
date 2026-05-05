@@ -146,7 +146,7 @@ M.SuperuserParameters = schema.new({
 })
 
 M.CreateEnvironmentInput = schema.new({
-    id = id.from(_N, "CreateEnvironmentInput"),
+    id = id.from(_N, "CreateEnvironmentRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -209,7 +209,7 @@ M.CreateEnvironmentInput = schema.new({
 })
 
 M.CreateEnvironmentOutput = schema.new({
-    id = id.from(_N, "CreateEnvironmentOutput"),
+    id = id.from(_N, "CreateEnvironmentResponse"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -367,7 +367,7 @@ M.ChangeRequest = schema.new({
 })
 
 M.CreateKxChangesetInput = schema.new({
-    id = id.from(_N, "CreateKxChangesetInput"),
+    id = id.from(_N, "CreateKxChangesetRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -433,7 +433,7 @@ M.ErrorInfo = schema.new({
 })
 
 M.CreateKxChangesetOutput = schema.new({
-    id = id.from(_N, "CreateKxChangesetOutput"),
+    id = id.from(_N, "CreateKxChangesetResponse"),
     type = "structure",
     members = {
         changesetId = schema.new({
@@ -853,7 +853,7 @@ M.VpcConfiguration = schema.new({
 })
 
 M.CreateKxClusterInput = schema.new({
-    id = id.from(_N, "CreateKxClusterInput"),
+    id = id.from(_N, "CreateKxClusterRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1039,7 +1039,7 @@ M.Volume = schema.new({
 })
 
 M.CreateKxClusterOutput = schema.new({
-    id = id.from(_N, "CreateKxClusterOutput"),
+    id = id.from(_N, "CreateKxClusterResponse"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -1201,7 +1201,7 @@ M.CreateKxClusterOutput = schema.new({
 })
 
 M.CreateKxDatabaseInput = schema.new({
-    id = id.from(_N, "CreateKxDatabaseInput"),
+    id = id.from(_N, "CreateKxDatabaseRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -1251,7 +1251,7 @@ M.CreateKxDatabaseInput = schema.new({
 })
 
 M.CreateKxDatabaseOutput = schema.new({
-    id = id.from(_N, "CreateKxDatabaseOutput"),
+    id = id.from(_N, "CreateKxDatabaseResponse"),
     type = "structure",
     members = {
         databaseName = schema.new({
@@ -1310,7 +1310,7 @@ M.ResourceAlreadyExistsException = schema.new({
 })
 
 M.CreateKxDataviewInput = schema.new({
-    id = id.from(_N, "CreateKxDataviewInput"),
+    id = id.from(_N, "CreateKxDataviewRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -1416,7 +1416,7 @@ M.CreateKxDataviewInput = schema.new({
 })
 
 M.CreateKxDataviewOutput = schema.new({
-    id = id.from(_N, "CreateKxDataviewOutput"),
+    id = id.from(_N, "CreateKxDataviewResponse"),
     type = "structure",
     members = {
         dataviewName = schema.new({
@@ -1508,7 +1508,7 @@ M.CreateKxDataviewOutput = schema.new({
 })
 
 M.CreateKxEnvironmentInput = schema.new({
-    id = id.from(_N, "CreateKxEnvironmentInput"),
+    id = id.from(_N, "CreateKxEnvironmentRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1556,7 +1556,7 @@ M.CreateKxEnvironmentInput = schema.new({
 })
 
 M.CreateKxEnvironmentOutput = schema.new({
-    id = id.from(_N, "CreateKxEnvironmentOutput"),
+    id = id.from(_N, "CreateKxEnvironmentResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1605,7 +1605,7 @@ M.CreateKxEnvironmentOutput = schema.new({
 })
 
 M.CreateKxScalingGroupInput = schema.new({
-    id = id.from(_N, "CreateKxScalingGroupInput"),
+    id = id.from(_N, "CreateKxScalingGroupRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1667,7 +1667,7 @@ M.CreateKxScalingGroupInput = schema.new({
 })
 
 M.CreateKxScalingGroupOutput = schema.new({
-    id = id.from(_N, "CreateKxScalingGroupOutput"),
+    id = id.from(_N, "CreateKxScalingGroupResponse"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -1716,7 +1716,7 @@ M.CreateKxScalingGroupOutput = schema.new({
 })
 
 M.CreateKxUserInput = schema.new({
-    id = id.from(_N, "CreateKxUserInput"),
+    id = id.from(_N, "CreateKxUserRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -1768,7 +1768,7 @@ M.CreateKxUserInput = schema.new({
 })
 
 M.CreateKxUserOutput = schema.new({
-    id = id.from(_N, "CreateKxUserOutput"),
+    id = id.from(_N, "CreateKxUserResponse"),
     type = "structure",
     members = {
         userName = schema.new({
@@ -1818,7 +1818,7 @@ M.KxNAS1Configuration = schema.new({
 })
 
 M.CreateKxVolumeInput = schema.new({
-    id = id.from(_N, "CreateKxVolumeInput"),
+    id = id.from(_N, "CreateKxVolumeRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1902,7 +1902,7 @@ M.CreateKxVolumeInput = schema.new({
 })
 
 M.CreateKxVolumeOutput = schema.new({
-    id = id.from(_N, "CreateKxVolumeOutput"),
+    id = id.from(_N, "CreateKxVolumeResponse"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -1977,7 +1977,7 @@ M.CreateKxVolumeOutput = schema.new({
 })
 
 M.DeleteEnvironmentInput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentInput"),
+    id = id.from(_N, "DeleteEnvironmentRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -1994,12 +1994,12 @@ M.DeleteEnvironmentInput = schema.new({
 })
 
 M.DeleteEnvironmentOutput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentOutput"),
+    id = id.from(_N, "DeleteEnvironmentResponse"),
     type = "structure",
 })
 
 M.DeleteKxClusterInput = schema.new({
-    id = id.from(_N, "DeleteKxClusterInput"),
+    id = id.from(_N, "DeleteKxClusterRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -2036,12 +2036,12 @@ M.DeleteKxClusterInput = schema.new({
 })
 
 M.DeleteKxClusterOutput = schema.new({
-    id = id.from(_N, "DeleteKxClusterOutput"),
+    id = id.from(_N, "DeleteKxClusterResponse"),
     type = "structure",
 })
 
 M.DeleteKxClusterNodeInput = schema.new({
-    id = id.from(_N, "DeleteKxClusterNodeInput"),
+    id = id.from(_N, "DeleteKxClusterNodeRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -2078,12 +2078,12 @@ M.DeleteKxClusterNodeInput = schema.new({
 })
 
 M.DeleteKxClusterNodeOutput = schema.new({
-    id = id.from(_N, "DeleteKxClusterNodeOutput"),
+    id = id.from(_N, "DeleteKxClusterNodeResponse"),
     type = "structure",
 })
 
 M.DeleteKxDatabaseInput = schema.new({
-    id = id.from(_N, "DeleteKxDatabaseInput"),
+    id = id.from(_N, "DeleteKxDatabaseRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -2121,12 +2121,12 @@ M.DeleteKxDatabaseInput = schema.new({
 })
 
 M.DeleteKxDatabaseOutput = schema.new({
-    id = id.from(_N, "DeleteKxDatabaseOutput"),
+    id = id.from(_N, "DeleteKxDatabaseResponse"),
     type = "structure",
 })
 
 M.DeleteKxDataviewInput = schema.new({
-    id = id.from(_N, "DeleteKxDataviewInput"),
+    id = id.from(_N, "DeleteKxDataviewRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -2174,12 +2174,12 @@ M.DeleteKxDataviewInput = schema.new({
 })
 
 M.DeleteKxDataviewOutput = schema.new({
-    id = id.from(_N, "DeleteKxDataviewOutput"),
+    id = id.from(_N, "DeleteKxDataviewResponse"),
     type = "structure",
 })
 
 M.DeleteKxEnvironmentInput = schema.new({
-    id = id.from(_N, "DeleteKxEnvironmentInput"),
+    id = id.from(_N, "DeleteKxEnvironmentRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -2206,12 +2206,12 @@ M.DeleteKxEnvironmentInput = schema.new({
 })
 
 M.DeleteKxEnvironmentOutput = schema.new({
-    id = id.from(_N, "DeleteKxEnvironmentOutput"),
+    id = id.from(_N, "DeleteKxEnvironmentResponse"),
     type = "structure",
 })
 
 M.DeleteKxScalingGroupInput = schema.new({
-    id = id.from(_N, "DeleteKxScalingGroupInput"),
+    id = id.from(_N, "DeleteKxScalingGroupRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -2248,12 +2248,12 @@ M.DeleteKxScalingGroupInput = schema.new({
 })
 
 M.DeleteKxScalingGroupOutput = schema.new({
-    id = id.from(_N, "DeleteKxScalingGroupOutput"),
+    id = id.from(_N, "DeleteKxScalingGroupResponse"),
     type = "structure",
 })
 
 M.DeleteKxUserInput = schema.new({
-    id = id.from(_N, "DeleteKxUserInput"),
+    id = id.from(_N, "DeleteKxUserRequest"),
     type = "structure",
     members = {
         userName = schema.new({
@@ -2290,12 +2290,12 @@ M.DeleteKxUserInput = schema.new({
 })
 
 M.DeleteKxUserOutput = schema.new({
-    id = id.from(_N, "DeleteKxUserOutput"),
+    id = id.from(_N, "DeleteKxUserResponse"),
     type = "structure",
 })
 
 M.DeleteKxVolumeInput = schema.new({
-    id = id.from(_N, "DeleteKxVolumeInput"),
+    id = id.from(_N, "DeleteKxVolumeRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -2332,12 +2332,12 @@ M.DeleteKxVolumeInput = schema.new({
 })
 
 M.DeleteKxVolumeOutput = schema.new({
-    id = id.from(_N, "DeleteKxVolumeOutput"),
+    id = id.from(_N, "DeleteKxVolumeResponse"),
     type = "structure",
 })
 
 M.GetEnvironmentInput = schema.new({
-    id = id.from(_N, "GetEnvironmentInput"),
+    id = id.from(_N, "GetEnvironmentRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -2434,7 +2434,7 @@ M.Environment = schema.new({
 })
 
 M.GetEnvironmentOutput = schema.new({
-    id = id.from(_N, "GetEnvironmentOutput"),
+    id = id.from(_N, "GetEnvironmentResponse"),
     type = "structure",
     members = {
         environment = schema.new({
@@ -2448,7 +2448,7 @@ M.GetEnvironmentOutput = schema.new({
 })
 
 M.GetKxChangesetInput = schema.new({
-    id = id.from(_N, "GetKxChangesetInput"),
+    id = id.from(_N, "GetKxChangesetRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -2485,7 +2485,7 @@ M.GetKxChangesetInput = schema.new({
 })
 
 M.GetKxChangesetOutput = schema.new({
-    id = id.from(_N, "GetKxChangesetOutput"),
+    id = id.from(_N, "GetKxChangesetResponse"),
     type = "structure",
     members = {
         changesetId = schema.new({
@@ -2548,7 +2548,7 @@ M.GetKxChangesetOutput = schema.new({
 })
 
 M.GetKxClusterInput = schema.new({
-    id = id.from(_N, "GetKxClusterInput"),
+    id = id.from(_N, "GetKxClusterRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -2575,7 +2575,7 @@ M.GetKxClusterInput = schema.new({
 })
 
 M.GetKxClusterOutput = schema.new({
-    id = id.from(_N, "GetKxClusterOutput"),
+    id = id.from(_N, "GetKxClusterResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -2731,7 +2731,7 @@ M.GetKxClusterOutput = schema.new({
 })
 
 M.GetKxConnectionStringInput = schema.new({
-    id = id.from(_N, "GetKxConnectionStringInput"),
+    id = id.from(_N, "GetKxConnectionStringRequest"),
     type = "structure",
     members = {
         userArn = schema.new({
@@ -2768,7 +2768,7 @@ M.GetKxConnectionStringInput = schema.new({
 })
 
 M.GetKxConnectionStringOutput = schema.new({
-    id = id.from(_N, "GetKxConnectionStringOutput"),
+    id = id.from(_N, "GetKxConnectionStringResponse"),
     type = "structure",
     members = {
         signedConnectionString = schema.new({
@@ -2781,7 +2781,7 @@ M.GetKxConnectionStringOutput = schema.new({
 })
 
 M.GetKxDatabaseInput = schema.new({
-    id = id.from(_N, "GetKxDatabaseInput"),
+    id = id.from(_N, "GetKxDatabaseRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -2808,7 +2808,7 @@ M.GetKxDatabaseInput = schema.new({
 })
 
 M.GetKxDatabaseOutput = schema.new({
-    id = id.from(_N, "GetKxDatabaseOutput"),
+    id = id.from(_N, "GetKxDatabaseResponse"),
     type = "structure",
     members = {
         databaseName = schema.new({
@@ -2884,7 +2884,7 @@ M.GetKxDatabaseOutput = schema.new({
 })
 
 M.GetKxDataviewInput = schema.new({
-    id = id.from(_N, "GetKxDataviewInput"),
+    id = id.from(_N, "GetKxDataviewRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -2960,7 +2960,7 @@ M.KxDataviewActiveVersion = schema.new({
 })
 
 M.GetKxDataviewOutput = schema.new({
-    id = id.from(_N, "GetKxDataviewOutput"),
+    id = id.from(_N, "GetKxDataviewResponse"),
     type = "structure",
     members = {
         databaseName = schema.new({
@@ -3065,7 +3065,7 @@ M.GetKxDataviewOutput = schema.new({
 })
 
 M.GetKxEnvironmentInput = schema.new({
-    id = id.from(_N, "GetKxEnvironmentInput"),
+    id = id.from(_N, "GetKxEnvironmentRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -3250,7 +3250,7 @@ M.TransitGatewayConfiguration = schema.new({
 })
 
 M.GetKxEnvironmentOutput = schema.new({
-    id = id.from(_N, "GetKxEnvironmentOutput"),
+    id = id.from(_N, "GetKxEnvironmentResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3362,7 +3362,7 @@ M.GetKxEnvironmentOutput = schema.new({
 })
 
 M.GetKxScalingGroupInput = schema.new({
-    id = id.from(_N, "GetKxScalingGroupInput"),
+    id = id.from(_N, "GetKxScalingGroupRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -3389,7 +3389,7 @@ M.GetKxScalingGroupInput = schema.new({
 })
 
 M.GetKxScalingGroupOutput = schema.new({
-    id = id.from(_N, "GetKxScalingGroupOutput"),
+    id = id.from(_N, "GetKxScalingGroupResponse"),
     type = "structure",
     members = {
         scalingGroupName = schema.new({
@@ -3451,7 +3451,7 @@ M.GetKxScalingGroupOutput = schema.new({
 })
 
 M.GetKxUserInput = schema.new({
-    id = id.from(_N, "GetKxUserInput"),
+    id = id.from(_N, "GetKxUserRequest"),
     type = "structure",
     members = {
         userName = schema.new({
@@ -3478,7 +3478,7 @@ M.GetKxUserInput = schema.new({
 })
 
 M.GetKxUserOutput = schema.new({
-    id = id.from(_N, "GetKxUserOutput"),
+    id = id.from(_N, "GetKxUserResponse"),
     type = "structure",
     members = {
         userName = schema.new({
@@ -3509,7 +3509,7 @@ M.GetKxUserOutput = schema.new({
 })
 
 M.GetKxVolumeInput = schema.new({
-    id = id.from(_N, "GetKxVolumeInput"),
+    id = id.from(_N, "GetKxVolumeRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -3561,7 +3561,7 @@ M.KxAttachedCluster = schema.new({
 })
 
 M.GetKxVolumeOutput = schema.new({
-    id = id.from(_N, "GetKxVolumeOutput"),
+    id = id.from(_N, "GetKxVolumeResponse"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -3649,7 +3649,7 @@ M.GetKxVolumeOutput = schema.new({
 })
 
 M.ListEnvironmentsInput = schema.new({
-    id = id.from(_N, "ListEnvironmentsInput"),
+    id = id.from(_N, "ListEnvironmentsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3675,7 +3675,7 @@ M.ListEnvironmentsInput = schema.new({
 })
 
 M.ListEnvironmentsOutput = schema.new({
-    id = id.from(_N, "ListEnvironmentsOutput"),
+    id = id.from(_N, "ListEnvironmentsResponse"),
     type = "structure",
     members = {
         environments = schema.new({
@@ -3695,7 +3695,7 @@ M.ListEnvironmentsOutput = schema.new({
 })
 
 M.ListKxChangesetsInput = schema.new({
-    id = id.from(_N, "ListKxChangesetsInput"),
+    id = id.from(_N, "ListKxChangesetsRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -3778,7 +3778,7 @@ M.KxChangesetListEntry = schema.new({
 })
 
 M.ListKxChangesetsOutput = schema.new({
-    id = id.from(_N, "ListKxChangesetsOutput"),
+    id = id.from(_N, "ListKxChangesetsResponse"),
     type = "structure",
     members = {
         kxChangesets = schema.new({
@@ -3798,7 +3798,7 @@ M.ListKxChangesetsOutput = schema.new({
 })
 
 M.ListKxClusterNodesInput = schema.new({
-    id = id.from(_N, "ListKxClusterNodesInput"),
+    id = id.from(_N, "ListKxClusterNodesRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -3875,7 +3875,7 @@ M.KxNode = schema.new({
 })
 
 M.ListKxClusterNodesOutput = schema.new({
-    id = id.from(_N, "ListKxClusterNodesOutput"),
+    id = id.from(_N, "ListKxClusterNodesResponse"),
     type = "structure",
     members = {
         nodes = schema.new({
@@ -3895,7 +3895,7 @@ M.ListKxClusterNodesOutput = schema.new({
 })
 
 M.ListKxClustersInput = schema.new({
-    id = id.from(_N, "ListKxClustersInput"),
+    id = id.from(_N, "ListKxClustersRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -4026,7 +4026,7 @@ M.KxCluster = schema.new({
 })
 
 M.ListKxClustersOutput = schema.new({
-    id = id.from(_N, "ListKxClustersOutput"),
+    id = id.from(_N, "ListKxClustersResponse"),
     type = "structure",
     members = {
         kxClusterSummaries = schema.new({
@@ -4046,7 +4046,7 @@ M.ListKxClustersOutput = schema.new({
 })
 
 M.ListKxDatabasesInput = schema.new({
-    id = id.from(_N, "ListKxDatabasesInput"),
+    id = id.from(_N, "ListKxDatabasesRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -4107,7 +4107,7 @@ M.KxDatabaseListEntry = schema.new({
 })
 
 M.ListKxDatabasesOutput = schema.new({
-    id = id.from(_N, "ListKxDatabasesOutput"),
+    id = id.from(_N, "ListKxDatabasesResponse"),
     type = "structure",
     members = {
         kxDatabases = schema.new({
@@ -4127,7 +4127,7 @@ M.ListKxDatabasesOutput = schema.new({
 })
 
 M.ListKxDataviewsInput = schema.new({
-    id = id.from(_N, "ListKxDataviewsInput"),
+    id = id.from(_N, "ListKxDataviewsRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -4278,7 +4278,7 @@ M.KxDataviewListEntry = schema.new({
 })
 
 M.ListKxDataviewsOutput = schema.new({
-    id = id.from(_N, "ListKxDataviewsOutput"),
+    id = id.from(_N, "ListKxDataviewsResponse"),
     type = "structure",
     members = {
         kxDataviews = schema.new({
@@ -4298,7 +4298,7 @@ M.ListKxDataviewsOutput = schema.new({
 })
 
 M.ListKxEnvironmentsInput = schema.new({
-    id = id.from(_N, "ListKxEnvironmentsInput"),
+    id = id.from(_N, "ListKxEnvironmentsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4435,7 +4435,7 @@ M.KxEnvironment = schema.new({
 })
 
 M.ListKxEnvironmentsOutput = schema.new({
-    id = id.from(_N, "ListKxEnvironmentsOutput"),
+    id = id.from(_N, "ListKxEnvironmentsResponse"),
     type = "structure",
     members = {
         environments = schema.new({
@@ -4455,7 +4455,7 @@ M.ListKxEnvironmentsOutput = schema.new({
 })
 
 M.ListKxScalingGroupsInput = schema.new({
-    id = id.from(_N, "ListKxScalingGroupsInput"),
+    id = id.from(_N, "ListKxScalingGroupsRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -4547,7 +4547,7 @@ M.KxScalingGroup = schema.new({
 })
 
 M.ListKxScalingGroupsOutput = schema.new({
-    id = id.from(_N, "ListKxScalingGroupsOutput"),
+    id = id.from(_N, "ListKxScalingGroupsResponse"),
     type = "structure",
     members = {
         scalingGroups = schema.new({
@@ -4567,7 +4567,7 @@ M.ListKxScalingGroupsOutput = schema.new({
 })
 
 M.ListKxUsersInput = schema.new({
-    id = id.from(_N, "ListKxUsersInput"),
+    id = id.from(_N, "ListKxUsersRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -4640,7 +4640,7 @@ M.KxUser = schema.new({
 })
 
 M.ListKxUsersOutput = schema.new({
-    id = id.from(_N, "ListKxUsersOutput"),
+    id = id.from(_N, "ListKxUsersResponse"),
     type = "structure",
     members = {
         users = schema.new({
@@ -4660,7 +4660,7 @@ M.ListKxUsersOutput = schema.new({
 })
 
 M.ListKxVolumesInput = schema.new({
-    id = id.from(_N, "ListKxVolumesInput"),
+    id = id.from(_N, "ListKxVolumesRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -4767,7 +4767,7 @@ M.KxVolume = schema.new({
 })
 
 M.ListKxVolumesOutput = schema.new({
-    id = id.from(_N, "ListKxVolumesOutput"),
+    id = id.from(_N, "ListKxVolumesResponse"),
     type = "structure",
     members = {
         kxVolumeSummaries = schema.new({
@@ -4803,7 +4803,7 @@ M.InvalidRequestException = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4820,7 +4820,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -4835,7 +4835,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4863,12 +4863,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4896,12 +4896,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateEnvironmentInput = schema.new({
-    id = id.from(_N, "UpdateEnvironmentInput"),
+    id = id.from(_N, "UpdateEnvironmentRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -4943,7 +4943,7 @@ M.UpdateEnvironmentInput = schema.new({
 })
 
 M.UpdateEnvironmentOutput = schema.new({
-    id = id.from(_N, "UpdateEnvironmentOutput"),
+    id = id.from(_N, "UpdateEnvironmentResponse"),
     type = "structure",
     members = {
         environment = schema.new({
@@ -4973,7 +4973,7 @@ M.KxClusterCodeDeploymentConfiguration = schema.new({
 })
 
 M.UpdateKxClusterCodeConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateKxClusterCodeConfigurationInput"),
+    id = id.from(_N, "UpdateKxClusterCodeConfigurationRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -5039,7 +5039,7 @@ M.UpdateKxClusterCodeConfigurationInput = schema.new({
 })
 
 M.UpdateKxClusterCodeConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateKxClusterCodeConfigurationOutput"),
+    id = id.from(_N, "UpdateKxClusterCodeConfigurationResponse"),
     type = "structure",
 })
 
@@ -5060,7 +5060,7 @@ M.KxDeploymentConfiguration = schema.new({
 })
 
 M.UpdateKxClusterDatabasesInput = schema.new({
-    id = id.from(_N, "UpdateKxClusterDatabasesInput"),
+    id = id.from(_N, "UpdateKxClusterDatabasesRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -5113,12 +5113,12 @@ M.UpdateKxClusterDatabasesInput = schema.new({
 })
 
 M.UpdateKxClusterDatabasesOutput = schema.new({
-    id = id.from(_N, "UpdateKxClusterDatabasesOutput"),
+    id = id.from(_N, "UpdateKxClusterDatabasesResponse"),
     type = "structure",
 })
 
 M.UpdateKxDatabaseInput = schema.new({
-    id = id.from(_N, "UpdateKxDatabaseInput"),
+    id = id.from(_N, "UpdateKxDatabaseRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -5161,7 +5161,7 @@ M.UpdateKxDatabaseInput = schema.new({
 })
 
 M.UpdateKxDatabaseOutput = schema.new({
-    id = id.from(_N, "UpdateKxDatabaseOutput"),
+    id = id.from(_N, "UpdateKxDatabaseResponse"),
     type = "structure",
     members = {
         databaseName = schema.new({
@@ -5192,7 +5192,7 @@ M.UpdateKxDatabaseOutput = schema.new({
 })
 
 M.UpdateKxDataviewInput = schema.new({
-    id = id.from(_N, "UpdateKxDataviewInput"),
+    id = id.from(_N, "UpdateKxDataviewRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -5258,7 +5258,7 @@ M.UpdateKxDataviewInput = schema.new({
 })
 
 M.UpdateKxDataviewOutput = schema.new({
-    id = id.from(_N, "UpdateKxDataviewOutput"),
+    id = id.from(_N, "UpdateKxDataviewResponse"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -5357,7 +5357,7 @@ M.UpdateKxDataviewOutput = schema.new({
 })
 
 M.UpdateKxEnvironmentInput = schema.new({
-    id = id.from(_N, "UpdateKxEnvironmentInput"),
+    id = id.from(_N, "UpdateKxEnvironmentRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -5395,7 +5395,7 @@ M.UpdateKxEnvironmentInput = schema.new({
 })
 
 M.UpdateKxEnvironmentOutput = schema.new({
-    id = id.from(_N, "UpdateKxEnvironmentOutput"),
+    id = id.from(_N, "UpdateKxEnvironmentResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -5501,7 +5501,7 @@ M.UpdateKxEnvironmentOutput = schema.new({
 })
 
 M.UpdateKxEnvironmentNetworkInput = schema.new({
-    id = id.from(_N, "UpdateKxEnvironmentNetworkInput"),
+    id = id.from(_N, "UpdateKxEnvironmentNetworkRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -5541,7 +5541,7 @@ M.UpdateKxEnvironmentNetworkInput = schema.new({
 })
 
 M.UpdateKxEnvironmentNetworkOutput = schema.new({
-    id = id.from(_N, "UpdateKxEnvironmentNetworkOutput"),
+    id = id.from(_N, "UpdateKxEnvironmentNetworkResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -5647,7 +5647,7 @@ M.UpdateKxEnvironmentNetworkOutput = schema.new({
 })
 
 M.UpdateKxUserInput = schema.new({
-    id = id.from(_N, "UpdateKxUserInput"),
+    id = id.from(_N, "UpdateKxUserRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -5692,7 +5692,7 @@ M.UpdateKxUserInput = schema.new({
 })
 
 M.UpdateKxUserOutput = schema.new({
-    id = id.from(_N, "UpdateKxUserOutput"),
+    id = id.from(_N, "UpdateKxUserResponse"),
     type = "structure",
     members = {
         userName = schema.new({
@@ -5723,7 +5723,7 @@ M.UpdateKxUserOutput = schema.new({
 })
 
 M.UpdateKxVolumeInput = schema.new({
-    id = id.from(_N, "UpdateKxVolumeInput"),
+    id = id.from(_N, "UpdateKxVolumeRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -5772,7 +5772,7 @@ M.UpdateKxVolumeInput = schema.new({
 })
 
 M.UpdateKxVolumeOutput = schema.new({
-    id = id.from(_N, "UpdateKxVolumeOutput"),
+    id = id.from(_N, "UpdateKxVolumeResponse"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -5858,5 +5858,19 @@ M.UpdateKxVolumeOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

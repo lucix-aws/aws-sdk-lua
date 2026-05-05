@@ -82,7 +82,7 @@ M.AccountUsage = schema.new({
 })
 
 M.AddLayerVersionPermissionInput = schema.new({
-    id = id.from(_N, "AddLayerVersionPermissionInput"),
+    id = id.from(_N, "AddLayerVersionPermissionRequest"),
     type = "structure",
     members = {
         LayerName = schema.new({
@@ -152,7 +152,7 @@ M.AddLayerVersionPermissionInput = schema.new({
 })
 
 M.AddLayerVersionPermissionOutput = schema.new({
-    id = id.from(_N, "AddLayerVersionPermissionOutput"),
+    id = id.from(_N, "AddLayerVersionPermissionResponse"),
     type = "structure",
     members = {
         Statement = schema.new({
@@ -340,7 +340,7 @@ M.TooManyRequestsException = schema.new({
 })
 
 M.AddPermissionInput = schema.new({
-    id = id.from(_N, "AddPermissionInput"),
+    id = id.from(_N, "AddPermissionRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -435,7 +435,7 @@ M.AddPermissionInput = schema.new({
 })
 
 M.AddPermissionOutput = schema.new({
-    id = id.from(_N, "AddPermissionOutput"),
+    id = id.from(_N, "AddPermissionResponse"),
     type = "structure",
     members = {
         Statement = schema.new({
@@ -753,7 +753,7 @@ M.CapacityProviderVpcConfig = schema.new({
 })
 
 M.CreateCapacityProviderInput = schema.new({
-    id = id.from(_N, "CreateCapacityProviderInput"),
+    id = id.from(_N, "CreateCapacityProviderRequest"),
     type = "structure",
     members = {
         CapacityProviderName = schema.new({
@@ -888,7 +888,7 @@ M.CapacityProvider = schema.new({
 })
 
 M.CreateCapacityProviderOutput = schema.new({
-    id = id.from(_N, "CreateCapacityProviderOutput"),
+    id = id.from(_N, "CreateCapacityProviderResponse"),
     type = "structure",
     members = {
         CapacityProvider = schema.new({
@@ -905,7 +905,7 @@ M.CreateCapacityProviderOutput = schema.new({
 })
 
 M.DeleteCapacityProviderInput = schema.new({
-    id = id.from(_N, "DeleteCapacityProviderInput"),
+    id = id.from(_N, "DeleteCapacityProviderRequest"),
     type = "structure",
     members = {
         CapacityProviderName = schema.new({
@@ -922,7 +922,7 @@ M.DeleteCapacityProviderInput = schema.new({
 })
 
 M.DeleteCapacityProviderOutput = schema.new({
-    id = id.from(_N, "DeleteCapacityProviderOutput"),
+    id = id.from(_N, "DeleteCapacityProviderResponse"),
     type = "structure",
     members = {
         CapacityProvider = schema.new({
@@ -939,7 +939,7 @@ M.DeleteCapacityProviderOutput = schema.new({
 })
 
 M.GetCapacityProviderInput = schema.new({
-    id = id.from(_N, "GetCapacityProviderInput"),
+    id = id.from(_N, "GetCapacityProviderRequest"),
     type = "structure",
     members = {
         CapacityProviderName = schema.new({
@@ -956,7 +956,7 @@ M.GetCapacityProviderInput = schema.new({
 })
 
 M.GetCapacityProviderOutput = schema.new({
-    id = id.from(_N, "GetCapacityProviderOutput"),
+    id = id.from(_N, "GetCapacityProviderResponse"),
     type = "structure",
     members = {
         CapacityProvider = schema.new({
@@ -973,7 +973,7 @@ M.GetCapacityProviderOutput = schema.new({
 })
 
 M.ListCapacityProvidersInput = schema.new({
-    id = id.from(_N, "ListCapacityProvidersInput"),
+    id = id.from(_N, "ListCapacityProvidersRequest"),
     type = "structure",
     members = {
         State = schema.new({
@@ -1007,7 +1007,7 @@ M.ListCapacityProvidersInput = schema.new({
 })
 
 M.ListCapacityProvidersOutput = schema.new({
-    id = id.from(_N, "ListCapacityProvidersOutput"),
+    id = id.from(_N, "ListCapacityProvidersResponse"),
     type = "structure",
     members = {
         CapacityProviders = schema.new({
@@ -1030,7 +1030,7 @@ M.ListCapacityProvidersOutput = schema.new({
 })
 
 M.ListFunctionVersionsByCapacityProviderInput = schema.new({
-    id = id.from(_N, "ListFunctionVersionsByCapacityProviderInput"),
+    id = id.from(_N, "ListFunctionVersionsByCapacityProviderRequest"),
     type = "structure",
     members = {
         CapacityProviderName = schema.new({
@@ -1090,7 +1090,7 @@ M.FunctionVersionsByCapacityProviderListItem = schema.new({
 })
 
 M.ListFunctionVersionsByCapacityProviderOutput = schema.new({
-    id = id.from(_N, "ListFunctionVersionsByCapacityProviderOutput"),
+    id = id.from(_N, "ListFunctionVersionsByCapacityProviderResponse"),
     type = "structure",
     members = {
         CapacityProviderArn = schema.new({
@@ -1122,7 +1122,7 @@ M.ListFunctionVersionsByCapacityProviderOutput = schema.new({
 })
 
 M.UpdateCapacityProviderInput = schema.new({
-    id = id.from(_N, "UpdateCapacityProviderInput"),
+    id = id.from(_N, "UpdateCapacityProviderRequest"),
     type = "structure",
     members = {
         CapacityProviderName = schema.new({
@@ -1146,7 +1146,7 @@ M.UpdateCapacityProviderInput = schema.new({
 })
 
 M.UpdateCapacityProviderOutput = schema.new({
-    id = id.from(_N, "UpdateCapacityProviderOutput"),
+    id = id.from(_N, "UpdateCapacityProviderResponse"),
     type = "structure",
     members = {
         CapacityProvider = schema.new({
@@ -1381,7 +1381,7 @@ M.OperationUpdate = schema.new({
 })
 
 M.CheckpointDurableExecutionInput = schema.new({
-    id = id.from(_N, "CheckpointDurableExecutionInput"),
+    id = id.from(_N, "CheckpointDurableExecutionRequest"),
     type = "structure",
     members = {
         DurableExecutionArn = schema.new({
@@ -1685,7 +1685,7 @@ M.CheckpointUpdatedExecutionState = schema.new({
 })
 
 M.CheckpointDurableExecutionOutput = schema.new({
-    id = id.from(_N, "CheckpointDurableExecutionOutput"),
+    id = id.from(_N, "CheckpointDurableExecutionResponse"),
     type = "structure",
     members = {
         CheckpointToken = schema.new({
@@ -1721,7 +1721,7 @@ M.CodeSigningPolicies = schema.new({
 })
 
 M.CreateCodeSigningConfigInput = schema.new({
-    id = id.from(_N, "CreateCodeSigningConfigInput"),
+    id = id.from(_N, "CreateCodeSigningConfigRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -1819,7 +1819,7 @@ M.CodeSigningConfig = schema.new({
 })
 
 M.CreateCodeSigningConfigOutput = schema.new({
-    id = id.from(_N, "CreateCodeSigningConfigOutput"),
+    id = id.from(_N, "CreateCodeSigningConfigResponse"),
     type = "structure",
     members = {
         CodeSigningConfig = schema.new({
@@ -1836,7 +1836,7 @@ M.CreateCodeSigningConfigOutput = schema.new({
 })
 
 M.DeleteCodeSigningConfigInput = schema.new({
-    id = id.from(_N, "DeleteCodeSigningConfigInput"),
+    id = id.from(_N, "DeleteCodeSigningConfigRequest"),
     type = "structure",
     members = {
         CodeSigningConfigArn = schema.new({
@@ -1853,12 +1853,12 @@ M.DeleteCodeSigningConfigInput = schema.new({
 })
 
 M.DeleteCodeSigningConfigOutput = schema.new({
-    id = id.from(_N, "DeleteCodeSigningConfigOutput"),
+    id = id.from(_N, "DeleteCodeSigningConfigResponse"),
     type = "structure",
 })
 
 M.GetCodeSigningConfigInput = schema.new({
-    id = id.from(_N, "GetCodeSigningConfigInput"),
+    id = id.from(_N, "GetCodeSigningConfigRequest"),
     type = "structure",
     members = {
         CodeSigningConfigArn = schema.new({
@@ -1875,7 +1875,7 @@ M.GetCodeSigningConfigInput = schema.new({
 })
 
 M.GetCodeSigningConfigOutput = schema.new({
-    id = id.from(_N, "GetCodeSigningConfigOutput"),
+    id = id.from(_N, "GetCodeSigningConfigResponse"),
     type = "structure",
     members = {
         CodeSigningConfig = schema.new({
@@ -1892,7 +1892,7 @@ M.GetCodeSigningConfigOutput = schema.new({
 })
 
 M.ListCodeSigningConfigsInput = schema.new({
-    id = id.from(_N, "ListCodeSigningConfigsInput"),
+    id = id.from(_N, "ListCodeSigningConfigsRequest"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -1917,7 +1917,7 @@ M.ListCodeSigningConfigsInput = schema.new({
 })
 
 M.ListCodeSigningConfigsOutput = schema.new({
-    id = id.from(_N, "ListCodeSigningConfigsOutput"),
+    id = id.from(_N, "ListCodeSigningConfigsResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -1937,7 +1937,7 @@ M.ListCodeSigningConfigsOutput = schema.new({
 })
 
 M.ListFunctionsByCodeSigningConfigInput = schema.new({
-    id = id.from(_N, "ListFunctionsByCodeSigningConfigInput"),
+    id = id.from(_N, "ListFunctionsByCodeSigningConfigRequest"),
     type = "structure",
     members = {
         CodeSigningConfigArn = schema.new({
@@ -1972,7 +1972,7 @@ M.ListFunctionsByCodeSigningConfigInput = schema.new({
 })
 
 M.ListFunctionsByCodeSigningConfigOutput = schema.new({
-    id = id.from(_N, "ListFunctionsByCodeSigningConfigOutput"),
+    id = id.from(_N, "ListFunctionsByCodeSigningConfigResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -1992,7 +1992,7 @@ M.ListFunctionsByCodeSigningConfigOutput = schema.new({
 })
 
 M.UpdateCodeSigningConfigInput = schema.new({
-    id = id.from(_N, "UpdateCodeSigningConfigInput"),
+    id = id.from(_N, "UpdateCodeSigningConfigRequest"),
     type = "structure",
     members = {
         CodeSigningConfigArn = schema.new({
@@ -2029,7 +2029,7 @@ M.UpdateCodeSigningConfigInput = schema.new({
 })
 
 M.UpdateCodeSigningConfigOutput = schema.new({
-    id = id.from(_N, "UpdateCodeSigningConfigOutput"),
+    id = id.from(_N, "UpdateCodeSigningConfigResponse"),
     type = "structure",
     members = {
         CodeSigningConfig = schema.new({
@@ -2046,7 +2046,7 @@ M.UpdateCodeSigningConfigOutput = schema.new({
 })
 
 M.DeleteFunctionInput = schema.new({
-    id = id.from(_N, "DeleteFunctionInput"),
+    id = id.from(_N, "DeleteFunctionRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -2072,7 +2072,7 @@ M.DeleteFunctionInput = schema.new({
 })
 
 M.DeleteFunctionOutput = schema.new({
-    id = id.from(_N, "DeleteFunctionOutput"),
+    id = id.from(_N, "DeleteFunctionResponse"),
     type = "structure",
     members = {
         StatusCode = schema.new({
@@ -2089,7 +2089,7 @@ M.DeleteFunctionOutput = schema.new({
 })
 
 M.DeleteFunctionEventInvokeConfigInput = schema.new({
-    id = id.from(_N, "DeleteFunctionEventInvokeConfigInput"),
+    id = id.from(_N, "DeleteFunctionEventInvokeConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -2115,7 +2115,7 @@ M.DeleteFunctionEventInvokeConfigInput = schema.new({
 })
 
 M.DeleteFunctionEventInvokeConfigOutput = schema.new({
-    id = id.from(_N, "DeleteFunctionEventInvokeConfigOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2293,7 +2293,7 @@ M.SelfManagedEventSource = schema.new({
             name = "Endpoints",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -2338,7 +2338,7 @@ M.SourceAccessConfiguration = schema.new({
 })
 
 M.CreateEventSourceMappingInput = schema.new({
-    id = id.from(_N, "CreateEventSourceMappingInput"),
+    id = id.from(_N, "CreateEventSourceMappingRequest"),
     type = "structure",
     members = {
         EventSourceArn = schema.new({
@@ -2551,7 +2551,7 @@ M.FilterCriteriaError = schema.new({
 })
 
 M.CreateEventSourceMappingOutput = schema.new({
-    id = id.from(_N, "CreateEventSourceMappingOutput"),
+    id = id.from(_N, "EventSourceMappingConfiguration"),
     type = "structure",
     members = {
         UUID = schema.new({
@@ -2771,7 +2771,7 @@ M.CreateEventSourceMappingOutput = schema.new({
 })
 
 M.DeleteEventSourceMappingInput = schema.new({
-    id = id.from(_N, "DeleteEventSourceMappingInput"),
+    id = id.from(_N, "DeleteEventSourceMappingRequest"),
     type = "structure",
     members = {
         UUID = schema.new({
@@ -2788,7 +2788,7 @@ M.DeleteEventSourceMappingInput = schema.new({
 })
 
 M.DeleteEventSourceMappingOutput = schema.new({
-    id = id.from(_N, "DeleteEventSourceMappingOutput"),
+    id = id.from(_N, "EventSourceMappingConfiguration"),
     type = "structure",
     members = {
         UUID = schema.new({
@@ -3030,7 +3030,7 @@ M.ResourceInUseException = schema.new({
 })
 
 M.GetEventSourceMappingInput = schema.new({
-    id = id.from(_N, "GetEventSourceMappingInput"),
+    id = id.from(_N, "GetEventSourceMappingRequest"),
     type = "structure",
     members = {
         UUID = schema.new({
@@ -3047,7 +3047,7 @@ M.GetEventSourceMappingInput = schema.new({
 })
 
 M.GetEventSourceMappingOutput = schema.new({
-    id = id.from(_N, "GetEventSourceMappingOutput"),
+    id = id.from(_N, "EventSourceMappingConfiguration"),
     type = "structure",
     members = {
         UUID = schema.new({
@@ -3267,7 +3267,7 @@ M.GetEventSourceMappingOutput = schema.new({
 })
 
 M.ListEventSourceMappingsInput = schema.new({
-    id = id.from(_N, "ListEventSourceMappingsInput"),
+    id = id.from(_N, "ListEventSourceMappingsRequest"),
     type = "structure",
     members = {
         EventSourceArn = schema.new({
@@ -3530,7 +3530,7 @@ M.EventSourceMappingConfiguration = schema.new({
 })
 
 M.ListEventSourceMappingsOutput = schema.new({
-    id = id.from(_N, "ListEventSourceMappingsOutput"),
+    id = id.from(_N, "ListEventSourceMappingsResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -3550,7 +3550,7 @@ M.ListEventSourceMappingsOutput = schema.new({
 })
 
 M.UpdateEventSourceMappingInput = schema.new({
-    id = id.from(_N, "UpdateEventSourceMappingInput"),
+    id = id.from(_N, "UpdateEventSourceMappingRequest"),
     type = "structure",
     members = {
         UUID = schema.new({
@@ -3704,7 +3704,7 @@ M.UpdateEventSourceMappingInput = schema.new({
 })
 
 M.UpdateEventSourceMappingOutput = schema.new({
-    id = id.from(_N, "UpdateEventSourceMappingOutput"),
+    id = id.from(_N, "EventSourceMappingConfiguration"),
     type = "structure",
     members = {
         UUID = schema.new({
@@ -4293,7 +4293,7 @@ M.VpcConfig = schema.new({
 })
 
 M.CreateFunctionInput = schema.new({
-    id = id.from(_N, "CreateFunctionInput"),
+    id = id.from(_N, "CreateFunctionRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -4716,7 +4716,7 @@ M.VpcConfigResponse = schema.new({
 })
 
 M.CreateFunctionOutput = schema.new({
-    id = id.from(_N, "CreateFunctionOutput"),
+    id = id.from(_N, "FunctionConfiguration"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -5072,7 +5072,7 @@ M.Cors = schema.new({
 })
 
 M.CreateFunctionUrlConfigInput = schema.new({
-    id = id.from(_N, "CreateFunctionUrlConfigInput"),
+    id = id.from(_N, "CreateFunctionUrlConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -5120,7 +5120,7 @@ M.CreateFunctionUrlConfigInput = schema.new({
 })
 
 M.CreateFunctionUrlConfigOutput = schema.new({
-    id = id.from(_N, "CreateFunctionUrlConfigOutput"),
+    id = id.from(_N, "CreateFunctionUrlConfigResponse"),
     type = "structure",
     members = {
         FunctionUrl = schema.new({
@@ -5176,7 +5176,7 @@ M.CreateFunctionUrlConfigOutput = schema.new({
 })
 
 M.DeleteFunctionCodeSigningConfigInput = schema.new({
-    id = id.from(_N, "DeleteFunctionCodeSigningConfigInput"),
+    id = id.from(_N, "DeleteFunctionCodeSigningConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -5193,12 +5193,12 @@ M.DeleteFunctionCodeSigningConfigInput = schema.new({
 })
 
 M.DeleteFunctionCodeSigningConfigOutput = schema.new({
-    id = id.from(_N, "DeleteFunctionCodeSigningConfigOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteFunctionConcurrencyInput = schema.new({
-    id = id.from(_N, "DeleteFunctionConcurrencyInput"),
+    id = id.from(_N, "DeleteFunctionConcurrencyRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -5215,12 +5215,12 @@ M.DeleteFunctionConcurrencyInput = schema.new({
 })
 
 M.DeleteFunctionConcurrencyOutput = schema.new({
-    id = id.from(_N, "DeleteFunctionConcurrencyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteFunctionUrlConfigInput = schema.new({
-    id = id.from(_N, "DeleteFunctionUrlConfigInput"),
+    id = id.from(_N, "DeleteFunctionUrlConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -5246,12 +5246,12 @@ M.DeleteFunctionUrlConfigInput = schema.new({
 })
 
 M.DeleteFunctionUrlConfigOutput = schema.new({
-    id = id.from(_N, "DeleteFunctionUrlConfigOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetFunctionInput = schema.new({
-    id = id.from(_N, "GetFunctionInput"),
+    id = id.from(_N, "GetFunctionRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -5617,7 +5617,7 @@ M.TagsError = schema.new({
 })
 
 M.GetFunctionOutput = schema.new({
-    id = id.from(_N, "GetFunctionOutput"),
+    id = id.from(_N, "GetFunctionResponse"),
     type = "structure",
     members = {
         Configuration = schema.new({
@@ -5660,7 +5660,7 @@ M.GetFunctionOutput = schema.new({
 })
 
 M.GetFunctionCodeSigningConfigInput = schema.new({
-    id = id.from(_N, "GetFunctionCodeSigningConfigInput"),
+    id = id.from(_N, "GetFunctionCodeSigningConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -5677,7 +5677,7 @@ M.GetFunctionCodeSigningConfigInput = schema.new({
 })
 
 M.GetFunctionCodeSigningConfigOutput = schema.new({
-    id = id.from(_N, "GetFunctionCodeSigningConfigOutput"),
+    id = id.from(_N, "GetFunctionCodeSigningConfigResponse"),
     type = "structure",
     members = {
         CodeSigningConfigArn = schema.new({
@@ -5702,7 +5702,7 @@ M.GetFunctionCodeSigningConfigOutput = schema.new({
 })
 
 M.GetFunctionConcurrencyInput = schema.new({
-    id = id.from(_N, "GetFunctionConcurrencyInput"),
+    id = id.from(_N, "GetFunctionConcurrencyRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -5719,7 +5719,7 @@ M.GetFunctionConcurrencyInput = schema.new({
 })
 
 M.GetFunctionConcurrencyOutput = schema.new({
-    id = id.from(_N, "GetFunctionConcurrencyOutput"),
+    id = id.from(_N, "GetFunctionConcurrencyResponse"),
     type = "structure",
     members = {
         ReservedConcurrentExecutions = schema.new({
@@ -5732,7 +5732,7 @@ M.GetFunctionConcurrencyOutput = schema.new({
 })
 
 M.GetFunctionConfigurationInput = schema.new({
-    id = id.from(_N, "GetFunctionConfigurationInput"),
+    id = id.from(_N, "GetFunctionConfigurationRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -5758,7 +5758,7 @@ M.GetFunctionConfigurationInput = schema.new({
 })
 
 M.GetFunctionConfigurationOutput = schema.new({
-    id = id.from(_N, "GetFunctionConfigurationOutput"),
+    id = id.from(_N, "FunctionConfiguration"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -6023,7 +6023,7 @@ M.GetFunctionConfigurationOutput = schema.new({
 })
 
 M.GetFunctionRecursionConfigInput = schema.new({
-    id = id.from(_N, "GetFunctionRecursionConfigInput"),
+    id = id.from(_N, "GetFunctionRecursionConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -6040,7 +6040,7 @@ M.GetFunctionRecursionConfigInput = schema.new({
 })
 
 M.GetFunctionRecursionConfigOutput = schema.new({
-    id = id.from(_N, "GetFunctionRecursionConfigOutput"),
+    id = id.from(_N, "GetFunctionRecursionConfigResponse"),
     type = "structure",
     members = {
         RecursiveLoop = schema.new({
@@ -6053,7 +6053,7 @@ M.GetFunctionRecursionConfigOutput = schema.new({
 })
 
 M.GetFunctionScalingConfigInput = schema.new({
-    id = id.from(_N, "GetFunctionScalingConfigInput"),
+    id = id.from(_N, "GetFunctionScalingConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -6099,7 +6099,7 @@ M.FunctionScalingConfig = schema.new({
 })
 
 M.GetFunctionScalingConfigOutput = schema.new({
-    id = id.from(_N, "GetFunctionScalingConfigOutput"),
+    id = id.from(_N, "GetFunctionScalingConfigResponse"),
     type = "structure",
     members = {
         FunctionArn = schema.new({
@@ -6126,7 +6126,7 @@ M.GetFunctionScalingConfigOutput = schema.new({
 })
 
 M.GetFunctionUrlConfigInput = schema.new({
-    id = id.from(_N, "GetFunctionUrlConfigInput"),
+    id = id.from(_N, "GetFunctionUrlConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -6152,7 +6152,7 @@ M.GetFunctionUrlConfigInput = schema.new({
 })
 
 M.GetFunctionUrlConfigOutput = schema.new({
-    id = id.from(_N, "GetFunctionUrlConfigOutput"),
+    id = id.from(_N, "GetFunctionUrlConfigResponse"),
     type = "structure",
     members = {
         FunctionUrl = schema.new({
@@ -6217,7 +6217,7 @@ M.GetFunctionUrlConfigOutput = schema.new({
 })
 
 M.GetPolicyInput = schema.new({
-    id = id.from(_N, "GetPolicyInput"),
+    id = id.from(_N, "GetPolicyRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -6243,7 +6243,7 @@ M.GetPolicyInput = schema.new({
 })
 
 M.GetPolicyOutput = schema.new({
-    id = id.from(_N, "GetPolicyOutput"),
+    id = id.from(_N, "GetPolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -6262,7 +6262,7 @@ M.GetPolicyOutput = schema.new({
 })
 
 M.GetRuntimeManagementConfigInput = schema.new({
-    id = id.from(_N, "GetRuntimeManagementConfigInput"),
+    id = id.from(_N, "GetRuntimeManagementConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -6288,7 +6288,7 @@ M.GetRuntimeManagementConfigInput = schema.new({
 })
 
 M.GetRuntimeManagementConfigOutput = schema.new({
-    id = id.from(_N, "GetRuntimeManagementConfigOutput"),
+    id = id.from(_N, "GetRuntimeManagementConfigResponse"),
     type = "structure",
     members = {
         UpdateRuntimeOn = schema.new({
@@ -6627,7 +6627,7 @@ M.InvalidZipFileException = schema.new({
 })
 
 M.InvokeInput = schema.new({
-    id = id.from(_N, "InvokeInput"),
+    id = id.from(_N, "InvocationRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -6707,7 +6707,7 @@ M.InvokeInput = schema.new({
 })
 
 M.InvokeOutput = schema.new({
-    id = id.from(_N, "InvokeOutput"),
+    id = id.from(_N, "InvocationResponse"),
     type = "structure",
     members = {
         StatusCode = schema.new({
@@ -7143,7 +7143,7 @@ M.UnsupportedMediaTypeException = schema.new({
 })
 
 M.InvokeAsyncInput = schema.new({
-    id = id.from(_N, "InvokeAsyncInput"),
+    id = id.from(_N, "InvokeAsyncRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -7170,7 +7170,7 @@ M.InvokeAsyncInput = schema.new({
 })
 
 M.InvokeAsyncOutput = schema.new({
-    id = id.from(_N, "InvokeAsyncOutput"),
+    id = id.from(_N, "InvokeAsyncResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -7187,7 +7187,7 @@ M.InvokeAsyncOutput = schema.new({
 })
 
 M.InvokeWithResponseStreamInput = schema.new({
-    id = id.from(_N, "InvokeWithResponseStreamInput"),
+    id = id.from(_N, "InvokeWithResponseStreamRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -7320,7 +7320,7 @@ M.InvokeWithResponseStreamResponseEvent = schema.new({
 })
 
 M.InvokeWithResponseStreamOutput = schema.new({
-    id = id.from(_N, "InvokeWithResponseStreamOutput"),
+    id = id.from(_N, "InvokeWithResponseStreamResponse"),
     type = "structure",
     members = {
         StatusCode = schema.new({
@@ -7365,7 +7365,7 @@ M.InvokeWithResponseStreamOutput = schema.new({
 })
 
 M.ListFunctionsInput = schema.new({
-    id = id.from(_N, "ListFunctionsInput"),
+    id = id.from(_N, "ListFunctionsRequest"),
     type = "structure",
     members = {
         MasterRegion = schema.new({
@@ -7408,7 +7408,7 @@ M.ListFunctionsInput = schema.new({
 })
 
 M.ListFunctionsOutput = schema.new({
-    id = id.from(_N, "ListFunctionsOutput"),
+    id = id.from(_N, "ListFunctionsResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -7428,7 +7428,7 @@ M.ListFunctionsOutput = schema.new({
 })
 
 M.ListFunctionUrlConfigsInput = schema.new({
-    id = id.from(_N, "ListFunctionUrlConfigsInput"),
+    id = id.from(_N, "ListFunctionUrlConfigsRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -7528,7 +7528,7 @@ M.FunctionUrlConfig = schema.new({
 })
 
 M.ListFunctionUrlConfigsOutput = schema.new({
-    id = id.from(_N, "ListFunctionUrlConfigsOutput"),
+    id = id.from(_N, "ListFunctionUrlConfigsResponse"),
     type = "structure",
     members = {
         FunctionUrlConfigs = schema.new({
@@ -7551,7 +7551,7 @@ M.ListFunctionUrlConfigsOutput = schema.new({
 })
 
 M.ListProvisionedConcurrencyConfigsInput = schema.new({
-    id = id.from(_N, "ListProvisionedConcurrencyConfigsInput"),
+    id = id.from(_N, "ListProvisionedConcurrencyConfigsRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -7635,7 +7635,7 @@ M.ProvisionedConcurrencyConfigListItem = schema.new({
 })
 
 M.ListProvisionedConcurrencyConfigsOutput = schema.new({
-    id = id.from(_N, "ListProvisionedConcurrencyConfigsOutput"),
+    id = id.from(_N, "ListProvisionedConcurrencyConfigsResponse"),
     type = "structure",
     members = {
         ProvisionedConcurrencyConfigs = schema.new({
@@ -7655,7 +7655,7 @@ M.ListProvisionedConcurrencyConfigsOutput = schema.new({
 })
 
 M.PutFunctionCodeSigningConfigInput = schema.new({
-    id = id.from(_N, "PutFunctionCodeSigningConfigInput"),
+    id = id.from(_N, "PutFunctionCodeSigningConfigRequest"),
     type = "structure",
     members = {
         CodeSigningConfigArn = schema.new({
@@ -7681,7 +7681,7 @@ M.PutFunctionCodeSigningConfigInput = schema.new({
 })
 
 M.PutFunctionCodeSigningConfigOutput = schema.new({
-    id = id.from(_N, "PutFunctionCodeSigningConfigOutput"),
+    id = id.from(_N, "PutFunctionCodeSigningConfigResponse"),
     type = "structure",
     members = {
         CodeSigningConfigArn = schema.new({
@@ -7706,7 +7706,7 @@ M.PutFunctionCodeSigningConfigOutput = schema.new({
 })
 
 M.PutFunctionConcurrencyInput = schema.new({
-    id = id.from(_N, "PutFunctionConcurrencyInput"),
+    id = id.from(_N, "PutFunctionConcurrencyRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -7732,7 +7732,7 @@ M.PutFunctionConcurrencyInput = schema.new({
 })
 
 M.PutFunctionConcurrencyOutput = schema.new({
-    id = id.from(_N, "PutFunctionConcurrencyOutput"),
+    id = id.from(_N, "Concurrency"),
     type = "structure",
     members = {
         ReservedConcurrentExecutions = schema.new({
@@ -7745,7 +7745,7 @@ M.PutFunctionConcurrencyOutput = schema.new({
 })
 
 M.PutFunctionRecursionConfigInput = schema.new({
-    id = id.from(_N, "PutFunctionRecursionConfigInput"),
+    id = id.from(_N, "PutFunctionRecursionConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -7771,7 +7771,7 @@ M.PutFunctionRecursionConfigInput = schema.new({
 })
 
 M.PutFunctionRecursionConfigOutput = schema.new({
-    id = id.from(_N, "PutFunctionRecursionConfigOutput"),
+    id = id.from(_N, "PutFunctionRecursionConfigResponse"),
     type = "structure",
     members = {
         RecursiveLoop = schema.new({
@@ -7784,7 +7784,7 @@ M.PutFunctionRecursionConfigOutput = schema.new({
 })
 
 M.PutFunctionScalingConfigInput = schema.new({
-    id = id.from(_N, "PutFunctionScalingConfigInput"),
+    id = id.from(_N, "PutFunctionScalingConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -7818,7 +7818,7 @@ M.PutFunctionScalingConfigInput = schema.new({
 })
 
 M.PutFunctionScalingConfigOutput = schema.new({
-    id = id.from(_N, "PutFunctionScalingConfigOutput"),
+    id = id.from(_N, "PutFunctionScalingConfigResponse"),
     type = "structure",
     members = {
         FunctionState = schema.new({
@@ -7831,7 +7831,7 @@ M.PutFunctionScalingConfigOutput = schema.new({
 })
 
 M.PutRuntimeManagementConfigInput = schema.new({
-    id = id.from(_N, "PutRuntimeManagementConfigInput"),
+    id = id.from(_N, "PutRuntimeManagementConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -7872,7 +7872,7 @@ M.PutRuntimeManagementConfigInput = schema.new({
 })
 
 M.PutRuntimeManagementConfigOutput = schema.new({
-    id = id.from(_N, "PutRuntimeManagementConfigOutput"),
+    id = id.from(_N, "PutRuntimeManagementConfigResponse"),
     type = "structure",
     members = {
         UpdateRuntimeOn = schema.new({
@@ -7903,7 +7903,7 @@ M.PutRuntimeManagementConfigOutput = schema.new({
 })
 
 M.UpdateFunctionCodeInput = schema.new({
-    id = id.from(_N, "UpdateFunctionCodeInput"),
+    id = id.from(_N, "UpdateFunctionCodeRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -7993,7 +7993,7 @@ M.UpdateFunctionCodeInput = schema.new({
 })
 
 M.UpdateFunctionCodeOutput = schema.new({
-    id = id.from(_N, "UpdateFunctionCodeOutput"),
+    id = id.from(_N, "FunctionConfiguration"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -8258,7 +8258,7 @@ M.UpdateFunctionCodeOutput = schema.new({
 })
 
 M.UpdateFunctionConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateFunctionConfigurationInput"),
+    id = id.from(_N, "UpdateFunctionConfigurationRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -8407,7 +8407,7 @@ M.UpdateFunctionConfigurationInput = schema.new({
 })
 
 M.UpdateFunctionConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateFunctionConfigurationOutput"),
+    id = id.from(_N, "FunctionConfiguration"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -8672,7 +8672,7 @@ M.UpdateFunctionConfigurationOutput = schema.new({
 })
 
 M.UpdateFunctionUrlConfigInput = schema.new({
-    id = id.from(_N, "UpdateFunctionUrlConfigInput"),
+    id = id.from(_N, "UpdateFunctionUrlConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -8717,7 +8717,7 @@ M.UpdateFunctionUrlConfigInput = schema.new({
 })
 
 M.UpdateFunctionUrlConfigOutput = schema.new({
-    id = id.from(_N, "UpdateFunctionUrlConfigOutput"),
+    id = id.from(_N, "UpdateFunctionUrlConfigResponse"),
     type = "structure",
     members = {
         FunctionUrl = schema.new({
@@ -8782,7 +8782,7 @@ M.UpdateFunctionUrlConfigOutput = schema.new({
 })
 
 M.CreateAliasInput = schema.new({
-    id = id.from(_N, "CreateAliasInput"),
+    id = id.from(_N, "CreateAliasRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -8830,7 +8830,7 @@ M.CreateAliasInput = schema.new({
 })
 
 M.CreateAliasOutput = schema.new({
-    id = id.from(_N, "CreateAliasOutput"),
+    id = id.from(_N, "AliasConfiguration"),
     type = "structure",
     members = {
         AliasArn = schema.new({
@@ -8874,7 +8874,7 @@ M.CreateAliasOutput = schema.new({
 })
 
 M.DeleteAliasInput = schema.new({
-    id = id.from(_N, "DeleteAliasInput"),
+    id = id.from(_N, "DeleteAliasRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -8901,12 +8901,12 @@ M.DeleteAliasInput = schema.new({
 })
 
 M.DeleteAliasOutput = schema.new({
-    id = id.from(_N, "DeleteAliasOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetAliasInput = schema.new({
-    id = id.from(_N, "GetAliasInput"),
+    id = id.from(_N, "GetAliasRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -8933,7 +8933,7 @@ M.GetAliasInput = schema.new({
 })
 
 M.GetAliasOutput = schema.new({
-    id = id.from(_N, "GetAliasOutput"),
+    id = id.from(_N, "AliasConfiguration"),
     type = "structure",
     members = {
         AliasArn = schema.new({
@@ -8977,7 +8977,7 @@ M.GetAliasOutput = schema.new({
 })
 
 M.ListAliasesInput = schema.new({
-    id = id.from(_N, "ListAliasesInput"),
+    id = id.from(_N, "ListAliasesRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -9021,7 +9021,7 @@ M.ListAliasesInput = schema.new({
 })
 
 M.ListAliasesOutput = schema.new({
-    id = id.from(_N, "ListAliasesOutput"),
+    id = id.from(_N, "ListAliasesResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -9041,7 +9041,7 @@ M.ListAliasesOutput = schema.new({
 })
 
 M.UpdateAliasInput = schema.new({
-    id = id.from(_N, "UpdateAliasInput"),
+    id = id.from(_N, "UpdateAliasRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -9093,7 +9093,7 @@ M.UpdateAliasInput = schema.new({
 })
 
 M.UpdateAliasOutput = schema.new({
-    id = id.from(_N, "UpdateAliasOutput"),
+    id = id.from(_N, "AliasConfiguration"),
     type = "structure",
     members = {
         AliasArn = schema.new({
@@ -9137,7 +9137,7 @@ M.UpdateAliasOutput = schema.new({
 })
 
 M.ListVersionsByFunctionInput = schema.new({
-    id = id.from(_N, "ListVersionsByFunctionInput"),
+    id = id.from(_N, "ListVersionsByFunctionRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -9172,7 +9172,7 @@ M.ListVersionsByFunctionInput = schema.new({
 })
 
 M.ListVersionsByFunctionOutput = schema.new({
-    id = id.from(_N, "ListVersionsByFunctionOutput"),
+    id = id.from(_N, "ListVersionsByFunctionResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -9192,7 +9192,7 @@ M.ListVersionsByFunctionOutput = schema.new({
 })
 
 M.PublishVersionInput = schema.new({
-    id = id.from(_N, "PublishVersionInput"),
+    id = id.from(_N, "PublishVersionRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -9233,7 +9233,7 @@ M.PublishVersionInput = schema.new({
 })
 
 M.PublishVersionOutput = schema.new({
-    id = id.from(_N, "PublishVersionOutput"),
+    id = id.from(_N, "FunctionConfiguration"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -9498,12 +9498,12 @@ M.PublishVersionOutput = schema.new({
 })
 
 M.GetAccountSettingsInput = schema.new({
-    id = id.from(_N, "GetAccountSettingsInput"),
+    id = id.from(_N, "GetAccountSettingsRequest"),
     type = "structure",
 })
 
 M.GetAccountSettingsOutput = schema.new({
-    id = id.from(_N, "GetAccountSettingsOutput"),
+    id = id.from(_N, "GetAccountSettingsResponse"),
     type = "structure",
     members = {
         AccountLimit = schema.new({
@@ -9524,7 +9524,7 @@ M.GetAccountSettingsOutput = schema.new({
 })
 
 M.GetDurableExecutionInput = schema.new({
-    id = id.from(_N, "GetDurableExecutionInput"),
+    id = id.from(_N, "GetDurableExecutionRequest"),
     type = "structure",
     members = {
         DurableExecutionArn = schema.new({
@@ -9554,7 +9554,7 @@ M.TraceHeader = schema.new({
 })
 
 M.GetDurableExecutionOutput = schema.new({
-    id = id.from(_N, "GetDurableExecutionOutput"),
+    id = id.from(_N, "GetDurableExecutionResponse"),
     type = "structure",
     members = {
         DurableExecutionArn = schema.new({
@@ -9644,7 +9644,7 @@ M.GetDurableExecutionOutput = schema.new({
 })
 
 M.GetDurableExecutionHistoryInput = schema.new({
-    id = id.from(_N, "GetDurableExecutionHistoryInput"),
+    id = id.from(_N, "GetDurableExecutionHistoryRequest"),
     type = "structure",
     members = {
         DurableExecutionArn = schema.new({
@@ -10468,7 +10468,7 @@ M.Event = schema.new({
 })
 
 M.GetDurableExecutionHistoryOutput = schema.new({
-    id = id.from(_N, "GetDurableExecutionHistoryOutput"),
+    id = id.from(_N, "GetDurableExecutionHistoryResponse"),
     type = "structure",
     members = {
         Events = schema.new({
@@ -10491,7 +10491,7 @@ M.GetDurableExecutionHistoryOutput = schema.new({
 })
 
 M.GetDurableExecutionStateInput = schema.new({
-    id = id.from(_N, "GetDurableExecutionStateInput"),
+    id = id.from(_N, "GetDurableExecutionStateRequest"),
     type = "structure",
     members = {
         DurableExecutionArn = schema.new({
@@ -10537,7 +10537,7 @@ M.GetDurableExecutionStateInput = schema.new({
 })
 
 M.GetDurableExecutionStateOutput = schema.new({
-    id = id.from(_N, "GetDurableExecutionStateOutput"),
+    id = id.from(_N, "GetDurableExecutionStateResponse"),
     type = "structure",
     members = {
         Operations = schema.new({
@@ -10560,7 +10560,7 @@ M.GetDurableExecutionStateOutput = schema.new({
 })
 
 M.GetFunctionEventInvokeConfigInput = schema.new({
-    id = id.from(_N, "GetFunctionEventInvokeConfigInput"),
+    id = id.from(_N, "GetFunctionEventInvokeConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -10586,7 +10586,7 @@ M.GetFunctionEventInvokeConfigInput = schema.new({
 })
 
 M.GetFunctionEventInvokeConfigOutput = schema.new({
-    id = id.from(_N, "GetFunctionEventInvokeConfigOutput"),
+    id = id.from(_N, "FunctionEventInvokeConfig"),
     type = "structure",
     members = {
         LastModified = schema.new({
@@ -10624,7 +10624,7 @@ M.GetFunctionEventInvokeConfigOutput = schema.new({
 })
 
 M.ListLayersInput = schema.new({
-    id = id.from(_N, "ListLayersInput"),
+    id = id.from(_N, "ListLayersRequest"),
     type = "structure",
     members = {
         CompatibleRuntime = schema.new({
@@ -10747,7 +10747,7 @@ M.LayersListItem = schema.new({
 })
 
 M.ListLayersOutput = schema.new({
-    id = id.from(_N, "ListLayersOutput"),
+    id = id.from(_N, "ListLayersResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -10767,7 +10767,7 @@ M.ListLayersOutput = schema.new({
 })
 
 M.DeleteLayerVersionInput = schema.new({
-    id = id.from(_N, "DeleteLayerVersionInput"),
+    id = id.from(_N, "DeleteLayerVersionRequest"),
     type = "structure",
     members = {
         LayerName = schema.new({
@@ -10795,12 +10795,12 @@ M.DeleteLayerVersionInput = schema.new({
 })
 
 M.DeleteLayerVersionOutput = schema.new({
-    id = id.from(_N, "DeleteLayerVersionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetLayerVersionInput = schema.new({
-    id = id.from(_N, "GetLayerVersionInput"),
+    id = id.from(_N, "GetLayerVersionRequest"),
     type = "structure",
     members = {
         LayerName = schema.new({
@@ -10868,7 +10868,7 @@ M.LayerVersionContentOutput = schema.new({
 })
 
 M.GetLayerVersionOutput = schema.new({
-    id = id.from(_N, "GetLayerVersionOutput"),
+    id = id.from(_N, "GetLayerVersionResponse"),
     type = "structure",
     members = {
         Content = schema.new({
@@ -10935,7 +10935,7 @@ M.GetLayerVersionOutput = schema.new({
 })
 
 M.GetLayerVersionByArnInput = schema.new({
-    id = id.from(_N, "GetLayerVersionByArnInput"),
+    id = id.from(_N, "GetLayerVersionByArnRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -10952,7 +10952,7 @@ M.GetLayerVersionByArnInput = schema.new({
 })
 
 M.GetLayerVersionByArnOutput = schema.new({
-    id = id.from(_N, "GetLayerVersionByArnOutput"),
+    id = id.from(_N, "GetLayerVersionResponse"),
     type = "structure",
     members = {
         Content = schema.new({
@@ -11019,7 +11019,7 @@ M.GetLayerVersionByArnOutput = schema.new({
 })
 
 M.GetLayerVersionPolicyInput = schema.new({
-    id = id.from(_N, "GetLayerVersionPolicyInput"),
+    id = id.from(_N, "GetLayerVersionPolicyRequest"),
     type = "structure",
     members = {
         LayerName = schema.new({
@@ -11047,7 +11047,7 @@ M.GetLayerVersionPolicyInput = schema.new({
 })
 
 M.GetLayerVersionPolicyOutput = schema.new({
-    id = id.from(_N, "GetLayerVersionPolicyOutput"),
+    id = id.from(_N, "GetLayerVersionPolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -11066,7 +11066,7 @@ M.GetLayerVersionPolicyOutput = schema.new({
 })
 
 M.ListLayerVersionsInput = schema.new({
-    id = id.from(_N, "ListLayerVersionsInput"),
+    id = id.from(_N, "ListLayerVersionsRequest"),
     type = "structure",
     members = {
         CompatibleRuntime = schema.new({
@@ -11119,7 +11119,7 @@ M.ListLayerVersionsInput = schema.new({
 })
 
 M.ListLayerVersionsOutput = schema.new({
-    id = id.from(_N, "ListLayerVersionsOutput"),
+    id = id.from(_N, "ListLayerVersionsResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -11170,7 +11170,7 @@ M.LayerVersionContentInput = schema.new({
 })
 
 M.PublishLayerVersionInput = schema.new({
-    id = id.from(_N, "PublishLayerVersionInput"),
+    id = id.from(_N, "PublishLayerVersionRequest"),
     type = "structure",
     members = {
         LayerName = schema.new({
@@ -11223,7 +11223,7 @@ M.PublishLayerVersionInput = schema.new({
 })
 
 M.PublishLayerVersionOutput = schema.new({
-    id = id.from(_N, "PublishLayerVersionOutput"),
+    id = id.from(_N, "PublishLayerVersionResponse"),
     type = "structure",
     members = {
         Content = schema.new({
@@ -11290,7 +11290,7 @@ M.PublishLayerVersionOutput = schema.new({
 })
 
 M.RemoveLayerVersionPermissionInput = schema.new({
-    id = id.from(_N, "RemoveLayerVersionPermissionInput"),
+    id = id.from(_N, "RemoveLayerVersionPermissionRequest"),
     type = "structure",
     members = {
         LayerName = schema.new({
@@ -11337,12 +11337,12 @@ M.RemoveLayerVersionPermissionInput = schema.new({
 })
 
 M.RemoveLayerVersionPermissionOutput = schema.new({
-    id = id.from(_N, "RemoveLayerVersionPermissionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ListDurableExecutionsByFunctionInput = schema.new({
-    id = id.from(_N, "ListDurableExecutionsByFunctionInput"),
+    id = id.from(_N, "ListDurableExecutionsByFunctionRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -11491,7 +11491,7 @@ M.Execution = schema.new({
 })
 
 M.ListDurableExecutionsByFunctionOutput = schema.new({
-    id = id.from(_N, "ListDurableExecutionsByFunctionOutput"),
+    id = id.from(_N, "ListDurableExecutionsByFunctionResponse"),
     type = "structure",
     members = {
         DurableExecutions = schema.new({
@@ -11511,7 +11511,7 @@ M.ListDurableExecutionsByFunctionOutput = schema.new({
 })
 
 M.ListFunctionEventInvokeConfigsInput = schema.new({
-    id = id.from(_N, "ListFunctionEventInvokeConfigsInput"),
+    id = id.from(_N, "ListFunctionEventInvokeConfigsRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -11584,7 +11584,7 @@ M.FunctionEventInvokeConfig = schema.new({
 })
 
 M.ListFunctionEventInvokeConfigsOutput = schema.new({
-    id = id.from(_N, "ListFunctionEventInvokeConfigsOutput"),
+    id = id.from(_N, "ListFunctionEventInvokeConfigsResponse"),
     type = "structure",
     members = {
         FunctionEventInvokeConfigs = schema.new({
@@ -11604,7 +11604,7 @@ M.ListFunctionEventInvokeConfigsOutput = schema.new({
 })
 
 M.ListTagsInput = schema.new({
-    id = id.from(_N, "ListTagsInput"),
+    id = id.from(_N, "ListTagsRequest"),
     type = "structure",
     members = {
         Resource = schema.new({
@@ -11621,7 +11621,7 @@ M.ListTagsInput = schema.new({
 })
 
 M.ListTagsOutput = schema.new({
-    id = id.from(_N, "ListTagsOutput"),
+    id = id.from(_N, "ListTagsResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -11636,7 +11636,7 @@ M.ListTagsOutput = schema.new({
 })
 
 M.RemovePermissionInput = schema.new({
-    id = id.from(_N, "RemovePermissionInput"),
+    id = id.from(_N, "RemovePermissionRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -11681,12 +11681,12 @@ M.RemovePermissionInput = schema.new({
 })
 
 M.RemovePermissionOutput = schema.new({
-    id = id.from(_N, "RemovePermissionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteProvisionedConcurrencyConfigInput = schema.new({
-    id = id.from(_N, "DeleteProvisionedConcurrencyConfigInput"),
+    id = id.from(_N, "DeleteProvisionedConcurrencyConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -11713,12 +11713,12 @@ M.DeleteProvisionedConcurrencyConfigInput = schema.new({
 })
 
 M.DeleteProvisionedConcurrencyConfigOutput = schema.new({
-    id = id.from(_N, "DeleteProvisionedConcurrencyConfigOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetProvisionedConcurrencyConfigInput = schema.new({
-    id = id.from(_N, "GetProvisionedConcurrencyConfigInput"),
+    id = id.from(_N, "GetProvisionedConcurrencyConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -11745,7 +11745,7 @@ M.GetProvisionedConcurrencyConfigInput = schema.new({
 })
 
 M.GetProvisionedConcurrencyConfigOutput = schema.new({
-    id = id.from(_N, "GetProvisionedConcurrencyConfigOutput"),
+    id = id.from(_N, "GetProvisionedConcurrencyConfigResponse"),
     type = "structure",
     members = {
         RequestedProvisionedConcurrentExecutions = schema.new({
@@ -11810,7 +11810,7 @@ M.ProvisionedConcurrencyConfigNotFoundException = schema.new({
 })
 
 M.PutProvisionedConcurrencyConfigInput = schema.new({
-    id = id.from(_N, "PutProvisionedConcurrencyConfigInput"),
+    id = id.from(_N, "PutProvisionedConcurrencyConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -11846,7 +11846,7 @@ M.PutProvisionedConcurrencyConfigInput = schema.new({
 })
 
 M.PutProvisionedConcurrencyConfigOutput = schema.new({
-    id = id.from(_N, "PutProvisionedConcurrencyConfigOutput"),
+    id = id.from(_N, "PutProvisionedConcurrencyConfigResponse"),
     type = "structure",
     members = {
         RequestedProvisionedConcurrentExecutions = schema.new({
@@ -11889,7 +11889,7 @@ M.PutProvisionedConcurrencyConfigOutput = schema.new({
 })
 
 M.PutFunctionEventInvokeConfigInput = schema.new({
-    id = id.from(_N, "PutFunctionEventInvokeConfigInput"),
+    id = id.from(_N, "PutFunctionEventInvokeConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -11934,7 +11934,7 @@ M.PutFunctionEventInvokeConfigInput = schema.new({
 })
 
 M.PutFunctionEventInvokeConfigOutput = schema.new({
-    id = id.from(_N, "PutFunctionEventInvokeConfigOutput"),
+    id = id.from(_N, "FunctionEventInvokeConfig"),
     type = "structure",
     members = {
         LastModified = schema.new({
@@ -11994,7 +11994,7 @@ M.CallbackTimeoutException = schema.new({
 })
 
 M.SendDurableExecutionCallbackFailureInput = schema.new({
-    id = id.from(_N, "SendDurableExecutionCallbackFailureInput"),
+    id = id.from(_N, "SendDurableExecutionCallbackFailureRequest"),
     type = "structure",
     members = {
         CallbackId = schema.new({
@@ -12021,12 +12021,12 @@ M.SendDurableExecutionCallbackFailureInput = schema.new({
 })
 
 M.SendDurableExecutionCallbackFailureOutput = schema.new({
-    id = id.from(_N, "SendDurableExecutionCallbackFailureOutput"),
+    id = id.from(_N, "SendDurableExecutionCallbackFailureResponse"),
     type = "structure",
 })
 
 M.SendDurableExecutionCallbackHeartbeatInput = schema.new({
-    id = id.from(_N, "SendDurableExecutionCallbackHeartbeatInput"),
+    id = id.from(_N, "SendDurableExecutionCallbackHeartbeatRequest"),
     type = "structure",
     members = {
         CallbackId = schema.new({
@@ -12043,12 +12043,12 @@ M.SendDurableExecutionCallbackHeartbeatInput = schema.new({
 })
 
 M.SendDurableExecutionCallbackHeartbeatOutput = schema.new({
-    id = id.from(_N, "SendDurableExecutionCallbackHeartbeatOutput"),
+    id = id.from(_N, "SendDurableExecutionCallbackHeartbeatResponse"),
     type = "structure",
 })
 
 M.SendDurableExecutionCallbackSuccessInput = schema.new({
-    id = id.from(_N, "SendDurableExecutionCallbackSuccessInput"),
+    id = id.from(_N, "SendDurableExecutionCallbackSuccessRequest"),
     type = "structure",
     members = {
         CallbackId = schema.new({
@@ -12074,12 +12074,12 @@ M.SendDurableExecutionCallbackSuccessInput = schema.new({
 })
 
 M.SendDurableExecutionCallbackSuccessOutput = schema.new({
-    id = id.from(_N, "SendDurableExecutionCallbackSuccessOutput"),
+    id = id.from(_N, "SendDurableExecutionCallbackSuccessResponse"),
     type = "structure",
 })
 
 M.StopDurableExecutionInput = schema.new({
-    id = id.from(_N, "StopDurableExecutionInput"),
+    id = id.from(_N, "StopDurableExecutionRequest"),
     type = "structure",
     members = {
         DurableExecutionArn = schema.new({
@@ -12106,7 +12106,7 @@ M.StopDurableExecutionInput = schema.new({
 })
 
 M.StopDurableExecutionOutput = schema.new({
-    id = id.from(_N, "StopDurableExecutionOutput"),
+    id = id.from(_N, "StopDurableExecutionResponse"),
     type = "structure",
     members = {
         StopTimestamp = schema.new({
@@ -12122,7 +12122,7 @@ M.StopDurableExecutionOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         Resource = schema.new({
@@ -12150,12 +12150,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         Resource = schema.new({
@@ -12183,12 +12183,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateFunctionEventInvokeConfigInput = schema.new({
-    id = id.from(_N, "UpdateFunctionEventInvokeConfigInput"),
+    id = id.from(_N, "UpdateFunctionEventInvokeConfigRequest"),
     type = "structure",
     members = {
         FunctionName = schema.new({
@@ -12233,7 +12233,7 @@ M.UpdateFunctionEventInvokeConfigInput = schema.new({
 })
 
 M.UpdateFunctionEventInvokeConfigOutput = schema.new({
-    id = id.from(_N, "UpdateFunctionEventInvokeConfigOutput"),
+    id = id.from(_N, "FunctionEventInvokeConfig"),
     type = "structure",
     members = {
         LastModified = schema.new({
@@ -12269,5 +12269,19 @@ M.UpdateFunctionEventInvokeConfigOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

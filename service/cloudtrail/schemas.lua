@@ -110,7 +110,7 @@ M.Tag = schema.new({
 })
 
 M.AddTagsInput = schema.new({
-    id = id.from(_N, "AddTagsInput"),
+    id = id.from(_N, "AddTagsRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -136,7 +136,7 @@ M.AddTagsInput = schema.new({
 })
 
 M.AddTagsOutput = schema.new({
-    id = id.from(_N, "AddTagsOutput"),
+    id = id.from(_N, "AddTagsResponse"),
     type = "structure",
 })
 
@@ -504,7 +504,7 @@ M.AggregationConfiguration = schema.new({
 })
 
 M.CancelQueryInput = schema.new({
-    id = id.from(_N, "CancelQueryInput"),
+    id = id.from(_N, "CancelQueryRequest"),
     type = "structure",
     members = {
         EventDataStore = schema.new({
@@ -532,7 +532,7 @@ M.CancelQueryInput = schema.new({
 })
 
 M.CancelQueryOutput = schema.new({
-    id = id.from(_N, "CancelQueryOutput"),
+    id = id.from(_N, "CancelQueryResponse"),
     type = "structure",
     members = {
         QueryId = schema.new({
@@ -719,7 +719,7 @@ M.Destination = schema.new({
 })
 
 M.CreateChannelInput = schema.new({
-    id = id.from(_N, "CreateChannelInput"),
+    id = id.from(_N, "CreateChannelRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -761,7 +761,7 @@ M.CreateChannelInput = schema.new({
 })
 
 M.CreateChannelOutput = schema.new({
-    id = id.from(_N, "CreateChannelOutput"),
+    id = id.from(_N, "CreateChannelResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -911,7 +911,7 @@ M.RequestWidget = schema.new({
 })
 
 M.CreateDashboardInput = schema.new({
-    id = id.from(_N, "CreateDashboardInput"),
+    id = id.from(_N, "CreateDashboardRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -988,7 +988,7 @@ M.Widget = schema.new({
 })
 
 M.CreateDashboardOutput = schema.new({
-    id = id.from(_N, "CreateDashboardOutput"),
+    id = id.from(_N, "CreateDashboardResponse"),
     type = "structure",
     members = {
         DashboardArn = schema.new({
@@ -1104,7 +1104,7 @@ M.CloudTrailAccessNotEnabledException = schema.new({
 })
 
 M.CreateEventDataStoreInput = schema.new({
-    id = id.from(_N, "CreateEventDataStoreInput"),
+    id = id.from(_N, "CreateEventDataStoreRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1176,7 +1176,7 @@ M.CreateEventDataStoreInput = schema.new({
 })
 
 M.CreateEventDataStoreOutput = schema.new({
-    id = id.from(_N, "CreateEventDataStoreOutput"),
+    id = id.from(_N, "CreateEventDataStoreResponse"),
     type = "structure",
     members = {
         EventDataStoreArn = schema.new({
@@ -1455,7 +1455,7 @@ M.CloudWatchLogsDeliveryUnavailableException = schema.new({
 })
 
 M.CreateTrailInput = schema.new({
-    id = id.from(_N, "CreateTrailInput"),
+    id = id.from(_N, "CreateTrailRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1541,7 +1541,7 @@ M.CreateTrailInput = schema.new({
 })
 
 M.CreateTrailOutput = schema.new({
-    id = id.from(_N, "CreateTrailOutput"),
+    id = id.from(_N, "CreateTrailResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1834,7 +1834,7 @@ M.TrailNotProvidedException = schema.new({
 })
 
 M.DeleteChannelInput = schema.new({
-    id = id.from(_N, "DeleteChannelInput"),
+    id = id.from(_N, "DeleteChannelRequest"),
     type = "structure",
     members = {
         Channel = schema.new({
@@ -1850,12 +1850,12 @@ M.DeleteChannelInput = schema.new({
 })
 
 M.DeleteChannelOutput = schema.new({
-    id = id.from(_N, "DeleteChannelOutput"),
+    id = id.from(_N, "DeleteChannelResponse"),
     type = "structure",
 })
 
 M.DeleteDashboardInput = schema.new({
-    id = id.from(_N, "DeleteDashboardInput"),
+    id = id.from(_N, "DeleteDashboardRequest"),
     type = "structure",
     members = {
         DashboardId = schema.new({
@@ -1871,12 +1871,12 @@ M.DeleteDashboardInput = schema.new({
 })
 
 M.DeleteDashboardOutput = schema.new({
-    id = id.from(_N, "DeleteDashboardOutput"),
+    id = id.from(_N, "DeleteDashboardResponse"),
     type = "structure",
 })
 
 M.DeleteEventDataStoreInput = schema.new({
-    id = id.from(_N, "DeleteEventDataStoreInput"),
+    id = id.from(_N, "DeleteEventDataStoreRequest"),
     type = "structure",
     members = {
         EventDataStore = schema.new({
@@ -1892,7 +1892,7 @@ M.DeleteEventDataStoreInput = schema.new({
 })
 
 M.DeleteEventDataStoreOutput = schema.new({
-    id = id.from(_N, "DeleteEventDataStoreOutput"),
+    id = id.from(_N, "DeleteEventDataStoreResponse"),
     type = "structure",
 })
 
@@ -1945,7 +1945,7 @@ M.EventDataStoreTerminationProtectedException = schema.new({
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1961,7 +1961,7 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "DeleteResourcePolicyResponse"),
     type = "structure",
 })
 
@@ -1998,7 +1998,7 @@ M.ResourcePolicyNotFoundException = schema.new({
 })
 
 M.DeleteTrailInput = schema.new({
-    id = id.from(_N, "DeleteTrailInput"),
+    id = id.from(_N, "DeleteTrailRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2014,7 +2014,7 @@ M.DeleteTrailInput = schema.new({
 })
 
 M.DeleteTrailOutput = schema.new({
-    id = id.from(_N, "DeleteTrailOutput"),
+    id = id.from(_N, "DeleteTrailResponse"),
     type = "structure",
 })
 
@@ -2051,7 +2051,7 @@ M.TrailNotFoundException = schema.new({
 })
 
 M.DeregisterOrganizationDelegatedAdminInput = schema.new({
-    id = id.from(_N, "DeregisterOrganizationDelegatedAdminInput"),
+    id = id.from(_N, "DeregisterOrganizationDelegatedAdminRequest"),
     type = "structure",
     members = {
         DelegatedAdminAccountId = schema.new({
@@ -2067,7 +2067,7 @@ M.DeregisterOrganizationDelegatedAdminInput = schema.new({
 })
 
 M.DeregisterOrganizationDelegatedAdminOutput = schema.new({
-    id = id.from(_N, "DeregisterOrganizationDelegatedAdminOutput"),
+    id = id.from(_N, "DeregisterOrganizationDelegatedAdminResponse"),
     type = "structure",
 })
 
@@ -2088,7 +2088,7 @@ M.NotOrganizationManagementAccountException = schema.new({
 })
 
 M.DescribeQueryInput = schema.new({
-    id = id.from(_N, "DescribeQueryInput"),
+    id = id.from(_N, "DescribeQueryRequest"),
     type = "structure",
     members = {
         EventDataStore = schema.new({
@@ -2162,7 +2162,7 @@ M.QueryStatisticsForDescribeQuery = schema.new({
 })
 
 M.DescribeQueryOutput = schema.new({
-    id = id.from(_N, "DescribeQueryOutput"),
+    id = id.from(_N, "DescribeQueryResponse"),
     type = "structure",
     members = {
         QueryId = schema.new({
@@ -2224,7 +2224,7 @@ M.DescribeQueryOutput = schema.new({
 })
 
 M.DescribeTrailsInput = schema.new({
-    id = id.from(_N, "DescribeTrailsInput"),
+    id = id.from(_N, "DescribeTrailsRequest"),
     type = "structure",
     members = {
         trailNameList = schema.new({
@@ -2347,7 +2347,7 @@ M.Trail = schema.new({
 })
 
 M.DescribeTrailsOutput = schema.new({
-    id = id.from(_N, "DescribeTrailsOutput"),
+    id = id.from(_N, "DescribeTrailsResponse"),
     type = "structure",
     members = {
         trailList = schema.new({
@@ -2377,7 +2377,7 @@ M.ConcurrentModificationException = schema.new({
 })
 
 M.DisableFederationInput = schema.new({
-    id = id.from(_N, "DisableFederationInput"),
+    id = id.from(_N, "DisableFederationRequest"),
     type = "structure",
     members = {
         EventDataStore = schema.new({
@@ -2393,7 +2393,7 @@ M.DisableFederationInput = schema.new({
 })
 
 M.DisableFederationOutput = schema.new({
-    id = id.from(_N, "DisableFederationOutput"),
+    id = id.from(_N, "DisableFederationResponse"),
     type = "structure",
     members = {
         EventDataStoreArn = schema.new({
@@ -2412,7 +2412,7 @@ M.DisableFederationOutput = schema.new({
 })
 
 M.EnableFederationInput = schema.new({
-    id = id.from(_N, "EnableFederationInput"),
+    id = id.from(_N, "EnableFederationRequest"),
     type = "structure",
     members = {
         EventDataStore = schema.new({
@@ -2437,7 +2437,7 @@ M.EnableFederationInput = schema.new({
 })
 
 M.EnableFederationOutput = schema.new({
-    id = id.from(_N, "EnableFederationOutput"),
+    id = id.from(_N, "EnableFederationResponse"),
     type = "structure",
     members = {
         EventDataStoreArn = schema.new({
@@ -2462,7 +2462,7 @@ M.EnableFederationOutput = schema.new({
 })
 
 M.GenerateQueryInput = schema.new({
-    id = id.from(_N, "GenerateQueryInput"),
+    id = id.from(_N, "GenerateQueryRequest"),
     type = "structure",
     members = {
         EventDataStores = schema.new({
@@ -2488,7 +2488,7 @@ M.GenerateQueryInput = schema.new({
 })
 
 M.GenerateQueryOutput = schema.new({
-    id = id.from(_N, "GenerateQueryOutput"),
+    id = id.from(_N, "GenerateQueryResponse"),
     type = "structure",
     members = {
         QueryStatement = schema.new({
@@ -2529,7 +2529,7 @@ M.GenerateResponseException = schema.new({
 })
 
 M.GetChannelInput = schema.new({
-    id = id.from(_N, "GetChannelInput"),
+    id = id.from(_N, "GetChannelRequest"),
     type = "structure",
     members = {
         Channel = schema.new({
@@ -2602,7 +2602,7 @@ M.SourceConfig = schema.new({
 })
 
 M.GetChannelOutput = schema.new({
-    id = id.from(_N, "GetChannelOutput"),
+    id = id.from(_N, "GetChannelResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -2648,7 +2648,7 @@ M.GetChannelOutput = schema.new({
 })
 
 M.GetDashboardInput = schema.new({
-    id = id.from(_N, "GetDashboardInput"),
+    id = id.from(_N, "GetDashboardRequest"),
     type = "structure",
     members = {
         DashboardId = schema.new({
@@ -2664,7 +2664,7 @@ M.GetDashboardInput = schema.new({
 })
 
 M.GetDashboardOutput = schema.new({
-    id = id.from(_N, "GetDashboardOutput"),
+    id = id.from(_N, "GetDashboardResponse"),
     type = "structure",
     members = {
         DashboardArn = schema.new({
@@ -2733,7 +2733,7 @@ M.GetDashboardOutput = schema.new({
 })
 
 M.GetEventConfigurationInput = schema.new({
-    id = id.from(_N, "GetEventConfigurationInput"),
+    id = id.from(_N, "GetEventConfigurationRequest"),
     type = "structure",
     members = {
         TrailName = schema.new({
@@ -2778,7 +2778,7 @@ M.ContextKeySelector = schema.new({
 })
 
 M.GetEventConfigurationOutput = schema.new({
-    id = id.from(_N, "GetEventConfigurationOutput"),
+    id = id.from(_N, "GetEventConfigurationResponse"),
     type = "structure",
     members = {
         TrailARN = schema.new({
@@ -2833,7 +2833,7 @@ M.InvalidEventDataStoreStatusException = schema.new({
 })
 
 M.GetEventDataStoreInput = schema.new({
-    id = id.from(_N, "GetEventDataStoreInput"),
+    id = id.from(_N, "GetEventDataStoreRequest"),
     type = "structure",
     members = {
         EventDataStore = schema.new({
@@ -2874,7 +2874,7 @@ M.PartitionKey = schema.new({
 })
 
 M.GetEventDataStoreOutput = schema.new({
-    id = id.from(_N, "GetEventDataStoreOutput"),
+    id = id.from(_N, "GetEventDataStoreResponse"),
     type = "structure",
     members = {
         EventDataStoreArn = schema.new({
@@ -2973,7 +2973,7 @@ M.GetEventDataStoreOutput = schema.new({
 })
 
 M.GetEventSelectorsInput = schema.new({
-    id = id.from(_N, "GetEventSelectorsInput"),
+    id = id.from(_N, "GetEventSelectorsRequest"),
     type = "structure",
     members = {
         TrailName = schema.new({
@@ -3042,7 +3042,7 @@ M.EventSelector = schema.new({
 })
 
 M.GetEventSelectorsOutput = schema.new({
-    id = id.from(_N, "GetEventSelectorsOutput"),
+    id = id.from(_N, "GetEventSelectorsResponse"),
     type = "structure",
     members = {
         TrailARN = schema.new({
@@ -3069,7 +3069,7 @@ M.GetEventSelectorsOutput = schema.new({
 })
 
 M.GetImportInput = schema.new({
-    id = id.from(_N, "GetImportInput"),
+    id = id.from(_N, "GetImportRequest"),
     type = "structure",
     members = {
         ImportId = schema.new({
@@ -3173,7 +3173,7 @@ M.ImportStatistics = schema.new({
 })
 
 M.GetImportOutput = schema.new({
-    id = id.from(_N, "GetImportOutput"),
+    id = id.from(_N, "GetImportResponse"),
     type = "structure",
     members = {
         ImportId = schema.new({
@@ -3253,7 +3253,7 @@ M.ImportNotFoundException = schema.new({
 })
 
 M.GetInsightSelectorsInput = schema.new({
-    id = id.from(_N, "GetInsightSelectorsInput"),
+    id = id.from(_N, "GetInsightSelectorsRequest"),
     type = "structure",
     members = {
         TrailName = schema.new({
@@ -3292,7 +3292,7 @@ M.InsightSelector = schema.new({
 })
 
 M.GetInsightSelectorsOutput = schema.new({
-    id = id.from(_N, "GetInsightSelectorsOutput"),
+    id = id.from(_N, "GetInsightSelectorsResponse"),
     type = "structure",
     members = {
         TrailARN = schema.new({
@@ -3340,7 +3340,7 @@ M.InsightNotEnabledException = schema.new({
 })
 
 M.GetQueryResultsInput = schema.new({
-    id = id.from(_N, "GetQueryResultsInput"),
+    id = id.from(_N, "GetQueryResultsRequest"),
     type = "structure",
     members = {
         EventDataStore = schema.new({
@@ -3405,7 +3405,7 @@ M.QueryStatistics = schema.new({
 })
 
 M.GetQueryResultsOutput = schema.new({
-    id = id.from(_N, "GetQueryResultsOutput"),
+    id = id.from(_N, "GetQueryResultsResponse"),
     type = "structure",
     members = {
         QueryStatus = schema.new({
@@ -3426,7 +3426,7 @@ M.GetQueryResultsOutput = schema.new({
             type = "list",
             name = "QueryResultRows",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Document }),
         }),
         NextToken = schema.new({
             id = id.from(_N, "GetQueryResultsOutput", "NextToken"),
@@ -3476,7 +3476,7 @@ M.InvalidNextTokenException = schema.new({
 })
 
 M.GetResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetResourcePolicyInput"),
+    id = id.from(_N, "GetResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3492,7 +3492,7 @@ M.GetResourcePolicyInput = schema.new({
 })
 
 M.GetResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetResourcePolicyOutput"),
+    id = id.from(_N, "GetResourcePolicyResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3517,7 +3517,7 @@ M.GetResourcePolicyOutput = schema.new({
 })
 
 M.GetTrailInput = schema.new({
-    id = id.from(_N, "GetTrailInput"),
+    id = id.from(_N, "GetTrailRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3533,7 +3533,7 @@ M.GetTrailInput = schema.new({
 })
 
 M.GetTrailOutput = schema.new({
-    id = id.from(_N, "GetTrailOutput"),
+    id = id.from(_N, "GetTrailResponse"),
     type = "structure",
     members = {
         Trail = schema.new({
@@ -3547,7 +3547,7 @@ M.GetTrailOutput = schema.new({
 })
 
 M.GetTrailStatusInput = schema.new({
-    id = id.from(_N, "GetTrailStatusInput"),
+    id = id.from(_N, "GetTrailStatusRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3563,7 +3563,7 @@ M.GetTrailStatusInput = schema.new({
 })
 
 M.GetTrailStatusOutput = schema.new({
-    id = id.from(_N, "GetTrailStatusOutput"),
+    id = id.from(_N, "GetTrailStatusResponse"),
     type = "structure",
     members = {
         IsLogging = schema.new({
@@ -3672,7 +3672,7 @@ M.GetTrailStatusOutput = schema.new({
 })
 
 M.ListChannelsInput = schema.new({
-    id = id.from(_N, "ListChannelsInput"),
+    id = id.from(_N, "ListChannelsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3691,7 +3691,7 @@ M.ListChannelsInput = schema.new({
 })
 
 M.ListChannelsOutput = schema.new({
-    id = id.from(_N, "ListChannelsOutput"),
+    id = id.from(_N, "ListChannelsResponse"),
     type = "structure",
     members = {
         Channels = schema.new({
@@ -3711,7 +3711,7 @@ M.ListChannelsOutput = schema.new({
 })
 
 M.ListDashboardsInput = schema.new({
-    id = id.from(_N, "ListDashboardsInput"),
+    id = id.from(_N, "ListDashboardsRequest"),
     type = "structure",
     members = {
         NamePrefix = schema.new({
@@ -3761,7 +3761,7 @@ M.DashboardDetail = schema.new({
 })
 
 M.ListDashboardsOutput = schema.new({
-    id = id.from(_N, "ListDashboardsOutput"),
+    id = id.from(_N, "ListDashboardsResponse"),
     type = "structure",
     members = {
         Dashboards = schema.new({
@@ -3781,7 +3781,7 @@ M.ListDashboardsOutput = schema.new({
 })
 
 M.ListEventDataStoresInput = schema.new({
-    id = id.from(_N, "ListEventDataStoresInput"),
+    id = id.from(_N, "ListEventDataStoresRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3868,7 +3868,7 @@ M.EventDataStore = schema.new({
 })
 
 M.ListEventDataStoresOutput = schema.new({
-    id = id.from(_N, "ListEventDataStoresOutput"),
+    id = id.from(_N, "ListEventDataStoresResponse"),
     type = "structure",
     members = {
         EventDataStores = schema.new({
@@ -3888,7 +3888,7 @@ M.ListEventDataStoresOutput = schema.new({
 })
 
 M.ListImportFailuresInput = schema.new({
-    id = id.from(_N, "ListImportFailuresInput"),
+    id = id.from(_N, "ListImportFailuresRequest"),
     type = "structure",
     members = {
         ImportId = schema.new({
@@ -3953,7 +3953,7 @@ M.ImportFailureListItem = schema.new({
 })
 
 M.ListImportFailuresOutput = schema.new({
-    id = id.from(_N, "ListImportFailuresOutput"),
+    id = id.from(_N, "ListImportFailuresResponse"),
     type = "structure",
     members = {
         Failures = schema.new({
@@ -3973,7 +3973,7 @@ M.ListImportFailuresOutput = schema.new({
 })
 
 M.ListImportsInput = schema.new({
-    id = id.from(_N, "ListImportsInput"),
+    id = id.from(_N, "ListImportsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4042,7 +4042,7 @@ M.ImportsListItem = schema.new({
 })
 
 M.ListImportsOutput = schema.new({
-    id = id.from(_N, "ListImportsOutput"),
+    id = id.from(_N, "ListImportsResponse"),
     type = "structure",
     members = {
         Imports = schema.new({
@@ -4062,7 +4062,7 @@ M.ListImportsOutput = schema.new({
 })
 
 M.ListInsightsDataInput = schema.new({
-    id = id.from(_N, "ListInsightsDataInput"),
+    id = id.from(_N, "ListInsightsDataRequest"),
     type = "structure",
     members = {
         InsightSource = schema.new({
@@ -4200,7 +4200,7 @@ M.Event = schema.new({
 })
 
 M.ListInsightsDataOutput = schema.new({
-    id = id.from(_N, "ListInsightsDataOutput"),
+    id = id.from(_N, "ListInsightsDataResponse"),
     type = "structure",
     members = {
         Events = schema.new({
@@ -4220,7 +4220,7 @@ M.ListInsightsDataOutput = schema.new({
 })
 
 M.ListInsightsMetricDataInput = schema.new({
-    id = id.from(_N, "ListInsightsMetricDataInput"),
+    id = id.from(_N, "ListInsightsMetricDataRequest"),
     type = "structure",
     members = {
         TrailName = schema.new({
@@ -4302,7 +4302,7 @@ M.ListInsightsMetricDataInput = schema.new({
 })
 
 M.ListInsightsMetricDataOutput = schema.new({
-    id = id.from(_N, "ListInsightsMetricDataOutput"),
+    id = id.from(_N, "ListInsightsMetricDataResponse"),
     type = "structure",
     members = {
         TrailARN = schema.new({
@@ -4391,7 +4391,7 @@ M.InvalidTokenException = schema.new({
 })
 
 M.ListPublicKeysInput = schema.new({
-    id = id.from(_N, "ListPublicKeysInput"),
+    id = id.from(_N, "ListPublicKeysRequest"),
     type = "structure",
     members = {
         StartTime = schema.new({
@@ -4447,7 +4447,7 @@ M.PublicKey = schema.new({
 })
 
 M.ListPublicKeysOutput = schema.new({
-    id = id.from(_N, "ListPublicKeysOutput"),
+    id = id.from(_N, "ListPublicKeysResponse"),
     type = "structure",
     members = {
         PublicKeyList = schema.new({
@@ -4499,7 +4499,7 @@ M.InvalidQueryStatusException = schema.new({
 })
 
 M.ListQueriesInput = schema.new({
-    id = id.from(_N, "ListQueriesInput"),
+    id = id.from(_N, "ListQueriesRequest"),
     type = "structure",
     members = {
         EventDataStore = schema.new({
@@ -4570,7 +4570,7 @@ M.Query = schema.new({
 })
 
 M.ListQueriesOutput = schema.new({
-    id = id.from(_N, "ListQueriesOutput"),
+    id = id.from(_N, "ListQueriesResponse"),
     type = "structure",
     members = {
         Queries = schema.new({
@@ -4590,7 +4590,7 @@ M.ListQueriesOutput = schema.new({
 })
 
 M.ListTagsInput = schema.new({
-    id = id.from(_N, "ListTagsInput"),
+    id = id.from(_N, "ListTagsRequest"),
     type = "structure",
     members = {
         ResourceIdList = schema.new({
@@ -4633,7 +4633,7 @@ M.ResourceTag = schema.new({
 })
 
 M.ListTagsOutput = schema.new({
-    id = id.from(_N, "ListTagsOutput"),
+    id = id.from(_N, "ListTagsResponse"),
     type = "structure",
     members = {
         ResourceTagList = schema.new({
@@ -4653,7 +4653,7 @@ M.ListTagsOutput = schema.new({
 })
 
 M.ListTrailsInput = schema.new({
-    id = id.from(_N, "ListTrailsInput"),
+    id = id.from(_N, "ListTrailsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4691,7 +4691,7 @@ M.TrailInfo = schema.new({
 })
 
 M.ListTrailsOutput = schema.new({
-    id = id.from(_N, "ListTrailsOutput"),
+    id = id.from(_N, "ListTrailsResponse"),
     type = "structure",
     members = {
         Trails = schema.new({
@@ -4768,7 +4768,7 @@ M.LookupAttribute = schema.new({
 })
 
 M.LookupEventsInput = schema.new({
-    id = id.from(_N, "LookupEventsInput"),
+    id = id.from(_N, "LookupEventsRequest"),
     type = "structure",
     members = {
         LookupAttributes = schema.new({
@@ -4812,7 +4812,7 @@ M.LookupEventsInput = schema.new({
 })
 
 M.LookupEventsOutput = schema.new({
-    id = id.from(_N, "LookupEventsOutput"),
+    id = id.from(_N, "LookupEventsResponse"),
     type = "structure",
     members = {
         Events = schema.new({
@@ -4848,7 +4848,7 @@ M.InsufficientIAMAccessPermissionException = schema.new({
 })
 
 M.PutEventConfigurationInput = schema.new({
-    id = id.from(_N, "PutEventConfigurationInput"),
+    id = id.from(_N, "PutEventConfigurationRequest"),
     type = "structure",
     members = {
         TrailName = schema.new({
@@ -4887,7 +4887,7 @@ M.PutEventConfigurationInput = schema.new({
 })
 
 M.PutEventConfigurationOutput = schema.new({
-    id = id.from(_N, "PutEventConfigurationOutput"),
+    id = id.from(_N, "PutEventConfigurationResponse"),
     type = "structure",
     members = {
         TrailARN = schema.new({
@@ -4926,7 +4926,7 @@ M.PutEventConfigurationOutput = schema.new({
 })
 
 M.PutEventSelectorsInput = schema.new({
-    id = id.from(_N, "PutEventSelectorsInput"),
+    id = id.from(_N, "PutEventSelectorsRequest"),
     type = "structure",
     members = {
         TrailName = schema.new({
@@ -4956,7 +4956,7 @@ M.PutEventSelectorsInput = schema.new({
 })
 
 M.PutEventSelectorsOutput = schema.new({
-    id = id.from(_N, "PutEventSelectorsOutput"),
+    id = id.from(_N, "PutEventSelectorsResponse"),
     type = "structure",
     members = {
         TrailARN = schema.new({
@@ -4999,7 +4999,7 @@ M.InvalidInsightSelectorsException = schema.new({
 })
 
 M.PutInsightSelectorsInput = schema.new({
-    id = id.from(_N, "PutInsightSelectorsInput"),
+    id = id.from(_N, "PutInsightSelectorsRequest"),
     type = "structure",
     members = {
         TrailName = schema.new({
@@ -5034,7 +5034,7 @@ M.PutInsightSelectorsInput = schema.new({
 })
 
 M.PutInsightSelectorsOutput = schema.new({
-    id = id.from(_N, "PutInsightSelectorsOutput"),
+    id = id.from(_N, "PutInsightSelectorsResponse"),
     type = "structure",
     members = {
         TrailARN = schema.new({
@@ -5066,7 +5066,7 @@ M.PutInsightSelectorsOutput = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5091,7 +5091,7 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5148,7 +5148,7 @@ M.DelegatedAdminAccountLimitExceededException = schema.new({
 })
 
 M.RegisterOrganizationDelegatedAdminInput = schema.new({
-    id = id.from(_N, "RegisterOrganizationDelegatedAdminInput"),
+    id = id.from(_N, "RegisterOrganizationDelegatedAdminRequest"),
     type = "structure",
     members = {
         MemberAccountId = schema.new({
@@ -5164,12 +5164,12 @@ M.RegisterOrganizationDelegatedAdminInput = schema.new({
 })
 
 M.RegisterOrganizationDelegatedAdminOutput = schema.new({
-    id = id.from(_N, "RegisterOrganizationDelegatedAdminOutput"),
+    id = id.from(_N, "RegisterOrganizationDelegatedAdminResponse"),
     type = "structure",
 })
 
 M.RemoveTagsInput = schema.new({
-    id = id.from(_N, "RemoveTagsInput"),
+    id = id.from(_N, "RemoveTagsRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -5195,12 +5195,12 @@ M.RemoveTagsInput = schema.new({
 })
 
 M.RemoveTagsOutput = schema.new({
-    id = id.from(_N, "RemoveTagsOutput"),
+    id = id.from(_N, "RemoveTagsResponse"),
     type = "structure",
 })
 
 M.RestoreEventDataStoreInput = schema.new({
-    id = id.from(_N, "RestoreEventDataStoreInput"),
+    id = id.from(_N, "RestoreEventDataStoreRequest"),
     type = "structure",
     members = {
         EventDataStore = schema.new({
@@ -5216,7 +5216,7 @@ M.RestoreEventDataStoreInput = schema.new({
 })
 
 M.RestoreEventDataStoreOutput = schema.new({
-    id = id.from(_N, "RestoreEventDataStoreOutput"),
+    id = id.from(_N, "RestoreEventDataStoreResponse"),
     type = "structure",
     members = {
         EventDataStoreArn = schema.new({
@@ -5296,7 +5296,7 @@ M.RestoreEventDataStoreOutput = schema.new({
 })
 
 M.SearchSampleQueriesInput = schema.new({
-    id = id.from(_N, "SearchSampleQueriesInput"),
+    id = id.from(_N, "SearchSampleQueriesRequest"),
     type = "structure",
     members = {
         SearchPhrase = schema.new({
@@ -5358,7 +5358,7 @@ M.SearchSampleQueriesSearchResult = schema.new({
 })
 
 M.SearchSampleQueriesOutput = schema.new({
-    id = id.from(_N, "SearchSampleQueriesOutput"),
+    id = id.from(_N, "SearchSampleQueriesResponse"),
     type = "structure",
     members = {
         SearchResults = schema.new({
@@ -5378,7 +5378,7 @@ M.SearchSampleQueriesOutput = schema.new({
 })
 
 M.StartDashboardRefreshInput = schema.new({
-    id = id.from(_N, "StartDashboardRefreshInput"),
+    id = id.from(_N, "StartDashboardRefreshRequest"),
     type = "structure",
     members = {
         DashboardId = schema.new({
@@ -5402,7 +5402,7 @@ M.StartDashboardRefreshInput = schema.new({
 })
 
 M.StartDashboardRefreshOutput = schema.new({
-    id = id.from(_N, "StartDashboardRefreshOutput"),
+    id = id.from(_N, "StartDashboardRefreshResponse"),
     type = "structure",
     members = {
         RefreshId = schema.new({
@@ -5415,7 +5415,7 @@ M.StartDashboardRefreshOutput = schema.new({
 })
 
 M.StartEventDataStoreIngestionInput = schema.new({
-    id = id.from(_N, "StartEventDataStoreIngestionInput"),
+    id = id.from(_N, "StartEventDataStoreIngestionRequest"),
     type = "structure",
     members = {
         EventDataStore = schema.new({
@@ -5431,7 +5431,7 @@ M.StartEventDataStoreIngestionInput = schema.new({
 })
 
 M.StartEventDataStoreIngestionOutput = schema.new({
-    id = id.from(_N, "StartEventDataStoreIngestionOutput"),
+    id = id.from(_N, "StartEventDataStoreIngestionResponse"),
     type = "structure",
 })
 
@@ -5452,7 +5452,7 @@ M.InvalidImportSourceException = schema.new({
 })
 
 M.StartImportInput = schema.new({
-    id = id.from(_N, "StartImportInput"),
+    id = id.from(_N, "StartImportRequest"),
     type = "structure",
     members = {
         Destinations = schema.new({
@@ -5491,7 +5491,7 @@ M.StartImportInput = schema.new({
 })
 
 M.StartImportOutput = schema.new({
-    id = id.from(_N, "StartImportOutput"),
+    id = id.from(_N, "StartImportResponse"),
     type = "structure",
     members = {
         ImportId = schema.new({
@@ -5548,7 +5548,7 @@ M.StartImportOutput = schema.new({
 })
 
 M.StartLoggingInput = schema.new({
-    id = id.from(_N, "StartLoggingInput"),
+    id = id.from(_N, "StartLoggingRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -5564,7 +5564,7 @@ M.StartLoggingInput = schema.new({
 })
 
 M.StartLoggingOutput = schema.new({
-    id = id.from(_N, "StartLoggingOutput"),
+    id = id.from(_N, "StartLoggingResponse"),
     type = "structure",
 })
 
@@ -5585,7 +5585,7 @@ M.MaxConcurrentQueriesException = schema.new({
 })
 
 M.StartQueryInput = schema.new({
-    id = id.from(_N, "StartQueryInput"),
+    id = id.from(_N, "StartQueryRequest"),
     type = "structure",
     members = {
         QueryStatement = schema.new({
@@ -5623,7 +5623,7 @@ M.StartQueryInput = schema.new({
 })
 
 M.StartQueryOutput = schema.new({
-    id = id.from(_N, "StartQueryOutput"),
+    id = id.from(_N, "StartQueryResponse"),
     type = "structure",
     members = {
         QueryId = schema.new({
@@ -5642,7 +5642,7 @@ M.StartQueryOutput = schema.new({
 })
 
 M.StopEventDataStoreIngestionInput = schema.new({
-    id = id.from(_N, "StopEventDataStoreIngestionInput"),
+    id = id.from(_N, "StopEventDataStoreIngestionRequest"),
     type = "structure",
     members = {
         EventDataStore = schema.new({
@@ -5658,12 +5658,12 @@ M.StopEventDataStoreIngestionInput = schema.new({
 })
 
 M.StopEventDataStoreIngestionOutput = schema.new({
-    id = id.from(_N, "StopEventDataStoreIngestionOutput"),
+    id = id.from(_N, "StopEventDataStoreIngestionResponse"),
     type = "structure",
 })
 
 M.StopImportInput = schema.new({
-    id = id.from(_N, "StopImportInput"),
+    id = id.from(_N, "StopImportRequest"),
     type = "structure",
     members = {
         ImportId = schema.new({
@@ -5679,7 +5679,7 @@ M.StopImportInput = schema.new({
 })
 
 M.StopImportOutput = schema.new({
-    id = id.from(_N, "StopImportOutput"),
+    id = id.from(_N, "StopImportResponse"),
     type = "structure",
     members = {
         ImportId = schema.new({
@@ -5743,7 +5743,7 @@ M.StopImportOutput = schema.new({
 })
 
 M.StopLoggingInput = schema.new({
-    id = id.from(_N, "StopLoggingInput"),
+    id = id.from(_N, "StopLoggingRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -5759,12 +5759,12 @@ M.StopLoggingInput = schema.new({
 })
 
 M.StopLoggingOutput = schema.new({
-    id = id.from(_N, "StopLoggingOutput"),
+    id = id.from(_N, "StopLoggingResponse"),
     type = "structure",
 })
 
 M.UpdateChannelInput = schema.new({
-    id = id.from(_N, "UpdateChannelInput"),
+    id = id.from(_N, "UpdateChannelRequest"),
     type = "structure",
     members = {
         Channel = schema.new({
@@ -5793,7 +5793,7 @@ M.UpdateChannelInput = schema.new({
 })
 
 M.UpdateChannelOutput = schema.new({
-    id = id.from(_N, "UpdateChannelOutput"),
+    id = id.from(_N, "UpdateChannelResponse"),
     type = "structure",
     members = {
         ChannelArn = schema.new({
@@ -5825,7 +5825,7 @@ M.UpdateChannelOutput = schema.new({
 })
 
 M.UpdateDashboardInput = schema.new({
-    id = id.from(_N, "UpdateDashboardInput"),
+    id = id.from(_N, "UpdateDashboardRequest"),
     type = "structure",
     members = {
         DashboardId = schema.new({
@@ -5861,7 +5861,7 @@ M.UpdateDashboardInput = schema.new({
 })
 
 M.UpdateDashboardOutput = schema.new({
-    id = id.from(_N, "UpdateDashboardOutput"),
+    id = id.from(_N, "UpdateDashboardResponse"),
     type = "structure",
     members = {
         DashboardArn = schema.new({
@@ -5918,7 +5918,7 @@ M.UpdateDashboardOutput = schema.new({
 })
 
 M.UpdateEventDataStoreInput = schema.new({
-    id = id.from(_N, "UpdateEventDataStoreInput"),
+    id = id.from(_N, "UpdateEventDataStoreRequest"),
     type = "structure",
     members = {
         EventDataStore = schema.new({
@@ -5983,7 +5983,7 @@ M.UpdateEventDataStoreInput = schema.new({
 })
 
 M.UpdateEventDataStoreOutput = schema.new({
-    id = id.from(_N, "UpdateEventDataStoreOutput"),
+    id = id.from(_N, "UpdateEventDataStoreResponse"),
     type = "structure",
     members = {
         EventDataStoreArn = schema.new({
@@ -6075,7 +6075,7 @@ M.UpdateEventDataStoreOutput = schema.new({
 })
 
 M.UpdateTrailInput = schema.new({
-    id = id.from(_N, "UpdateTrailInput"),
+    id = id.from(_N, "UpdateTrailRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6151,7 +6151,7 @@ M.UpdateTrailInput = schema.new({
 })
 
 M.UpdateTrailOutput = schema.new({
-    id = id.from(_N, "UpdateTrailOutput"),
+    id = id.from(_N, "UpdateTrailResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6234,5 +6234,19 @@ M.UpdateTrailOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

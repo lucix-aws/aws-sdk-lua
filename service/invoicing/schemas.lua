@@ -199,7 +199,7 @@ M.AmountBreakdown = schema.new({
 })
 
 M.BatchGetInvoiceProfileInput = schema.new({
-    id = id.from(_N, "BatchGetInvoiceProfileInput"),
+    id = id.from(_N, "BatchGetInvoiceProfileRequest"),
     type = "structure",
     members = {
         AccountIds = schema.new({
@@ -321,7 +321,7 @@ M.InvoiceProfile = schema.new({
 })
 
 M.BatchGetInvoiceProfileOutput = schema.new({
-    id = id.from(_N, "BatchGetInvoiceProfileOutput"),
+    id = id.from(_N, "BatchGetInvoiceProfileResponse"),
     type = "structure",
     members = {
         Profiles = schema.new({
@@ -576,7 +576,7 @@ M.InvoiceUnitRule = schema.new({
 })
 
 M.CreateInvoiceUnitInput = schema.new({
-    id = id.from(_N, "CreateInvoiceUnitInput"),
+    id = id.from(_N, "CreateInvoiceUnitRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -633,7 +633,7 @@ M.CreateInvoiceUnitInput = schema.new({
 })
 
 M.CreateInvoiceUnitOutput = schema.new({
-    id = id.from(_N, "CreateInvoiceUnitOutput"),
+    id = id.from(_N, "CreateInvoiceUnitResponse"),
     type = "structure",
     members = {
         InvoiceUnitArn = schema.new({
@@ -802,7 +802,7 @@ M.TestEnvPreferenceInput = schema.new({
 })
 
 M.CreateProcurementPortalPreferenceInput = schema.new({
-    id = id.from(_N, "CreateProcurementPortalPreferenceInput"),
+    id = id.from(_N, "CreateProcurementPortalPreferenceRequest"),
     type = "structure",
     members = {
         ProcurementPortalName = schema.new({
@@ -931,7 +931,7 @@ M.CreateProcurementPortalPreferenceInput = schema.new({
 })
 
 M.CreateProcurementPortalPreferenceOutput = schema.new({
-    id = id.from(_N, "CreateProcurementPortalPreferenceOutput"),
+    id = id.from(_N, "CreateProcurementPortalPreferenceResponse"),
     type = "structure",
     members = {
         ProcurementPortalPreferenceArn = schema.new({
@@ -1016,7 +1016,7 @@ M.DateInterval = schema.new({
 })
 
 M.DeleteInvoiceUnitInput = schema.new({
-    id = id.from(_N, "DeleteInvoiceUnitInput"),
+    id = id.from(_N, "DeleteInvoiceUnitRequest"),
     type = "structure",
     members = {
         InvoiceUnitArn = schema.new({
@@ -1032,7 +1032,7 @@ M.DeleteInvoiceUnitInput = schema.new({
 })
 
 M.DeleteInvoiceUnitOutput = schema.new({
-    id = id.from(_N, "DeleteInvoiceUnitOutput"),
+    id = id.from(_N, "DeleteInvoiceUnitResponse"),
     type = "structure",
     members = {
         InvoiceUnitArn = schema.new({
@@ -1045,7 +1045,7 @@ M.DeleteInvoiceUnitOutput = schema.new({
 })
 
 M.DeleteProcurementPortalPreferenceInput = schema.new({
-    id = id.from(_N, "DeleteProcurementPortalPreferenceInput"),
+    id = id.from(_N, "DeleteProcurementPortalPreferenceRequest"),
     type = "structure",
     members = {
         ProcurementPortalPreferenceArn = schema.new({
@@ -1061,7 +1061,7 @@ M.DeleteProcurementPortalPreferenceInput = schema.new({
 })
 
 M.DeleteProcurementPortalPreferenceOutput = schema.new({
-    id = id.from(_N, "DeleteProcurementPortalPreferenceOutput"),
+    id = id.from(_N, "DeleteProcurementPortalPreferenceResponse"),
     type = "structure",
     members = {
         ProcurementPortalPreferenceArn = schema.new({
@@ -1125,7 +1125,7 @@ M.Filters = schema.new({
 })
 
 M.GetInvoicePDFInput = schema.new({
-    id = id.from(_N, "GetInvoicePDFInput"),
+    id = id.from(_N, "GetInvoicePDFRequest"),
     type = "structure",
     members = {
         InvoiceId = schema.new({
@@ -1192,7 +1192,7 @@ M.InvoicePDF = schema.new({
 })
 
 M.GetInvoicePDFOutput = schema.new({
-    id = id.from(_N, "GetInvoicePDFOutput"),
+    id = id.from(_N, "GetInvoicePDFResponse"),
     type = "structure",
     members = {
         InvoicePDF = schema.new({
@@ -1206,7 +1206,7 @@ M.GetInvoicePDFOutput = schema.new({
 })
 
 M.GetInvoiceUnitInput = schema.new({
-    id = id.from(_N, "GetInvoiceUnitInput"),
+    id = id.from(_N, "GetInvoiceUnitRequest"),
     type = "structure",
     members = {
         InvoiceUnitArn = schema.new({
@@ -1228,7 +1228,7 @@ M.GetInvoiceUnitInput = schema.new({
 })
 
 M.GetInvoiceUnitOutput = schema.new({
-    id = id.from(_N, "GetInvoiceUnitOutput"),
+    id = id.from(_N, "GetInvoiceUnitResponse"),
     type = "structure",
     members = {
         InvoiceUnitArn = schema.new({
@@ -1281,7 +1281,7 @@ M.GetInvoiceUnitOutput = schema.new({
 })
 
 M.GetProcurementPortalPreferenceInput = schema.new({
-    id = id.from(_N, "GetProcurementPortalPreferenceInput"),
+    id = id.from(_N, "GetProcurementPortalPreferenceRequest"),
     type = "structure",
     members = {
         ProcurementPortalPreferenceArn = schema.new({
@@ -1543,7 +1543,7 @@ M.ProcurementPortalPreference = schema.new({
 })
 
 M.GetProcurementPortalPreferenceOutput = schema.new({
-    id = id.from(_N, "GetProcurementPortalPreferenceOutput"),
+    id = id.from(_N, "GetProcurementPortalPreferenceResponse"),
     type = "structure",
     members = {
         ProcurementPortalPreference = schema.new({
@@ -1788,7 +1788,7 @@ M.InvoiceUnit = schema.new({
 })
 
 M.ListInvoiceSummariesInput = schema.new({
-    id = id.from(_N, "ListInvoiceSummariesInput"),
+    id = id.from(_N, "ListInvoiceSummariesRequest"),
     type = "structure",
     members = {
         Selector = schema.new({
@@ -1824,7 +1824,7 @@ M.ListInvoiceSummariesInput = schema.new({
 })
 
 M.ListInvoiceSummariesOutput = schema.new({
-    id = id.from(_N, "ListInvoiceSummariesOutput"),
+    id = id.from(_N, "ListInvoiceSummariesResponse"),
     type = "structure",
     members = {
         InvoiceSummaries = schema.new({
@@ -1847,7 +1847,7 @@ M.ListInvoiceSummariesOutput = schema.new({
 })
 
 M.ListInvoiceUnitsInput = schema.new({
-    id = id.from(_N, "ListInvoiceUnitsInput"),
+    id = id.from(_N, "ListInvoiceUnitsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -1882,7 +1882,7 @@ M.ListInvoiceUnitsInput = schema.new({
 })
 
 M.ListInvoiceUnitsOutput = schema.new({
-    id = id.from(_N, "ListInvoiceUnitsOutput"),
+    id = id.from(_N, "ListInvoiceUnitsResponse"),
     type = "structure",
     members = {
         InvoiceUnits = schema.new({
@@ -1902,7 +1902,7 @@ M.ListInvoiceUnitsOutput = schema.new({
 })
 
 M.ListProcurementPortalPreferencesInput = schema.new({
-    id = id.from(_N, "ListProcurementPortalPreferencesInput"),
+    id = id.from(_N, "ListProcurementPortalPreferencesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2070,7 +2070,7 @@ M.ProcurementPortalPreferenceSummary = schema.new({
 })
 
 M.ListProcurementPortalPreferencesOutput = schema.new({
-    id = id.from(_N, "ListProcurementPortalPreferencesOutput"),
+    id = id.from(_N, "ListProcurementPortalPreferencesResponse"),
     type = "structure",
     members = {
         ProcurementPortalPreferences = schema.new({
@@ -2090,7 +2090,7 @@ M.ListProcurementPortalPreferencesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2106,7 +2106,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         ResourceTags = schema.new({
@@ -2120,7 +2120,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutProcurementPortalPreferenceInput = schema.new({
-    id = id.from(_N, "PutProcurementPortalPreferenceInput"),
+    id = id.from(_N, "PutProcurementPortalPreferenceRequest"),
     type = "structure",
     members = {
         ProcurementPortalPreferenceArn = schema.new({
@@ -2197,7 +2197,7 @@ M.PutProcurementPortalPreferenceInput = schema.new({
 })
 
 M.PutProcurementPortalPreferenceOutput = schema.new({
-    id = id.from(_N, "PutProcurementPortalPreferenceOutput"),
+    id = id.from(_N, "PutProcurementPortalPreferenceResponse"),
     type = "structure",
     members = {
         ProcurementPortalPreferenceArn = schema.new({
@@ -2213,7 +2213,7 @@ M.PutProcurementPortalPreferenceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2239,12 +2239,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2270,12 +2270,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateInvoiceUnitInput = schema.new({
-    id = id.from(_N, "UpdateInvoiceUnitInput"),
+    id = id.from(_N, "UpdateInvoiceUnitRequest"),
     type = "structure",
     members = {
         InvoiceUnitArn = schema.new({
@@ -2313,7 +2313,7 @@ M.UpdateInvoiceUnitInput = schema.new({
 })
 
 M.UpdateInvoiceUnitOutput = schema.new({
-    id = id.from(_N, "UpdateInvoiceUnitOutput"),
+    id = id.from(_N, "UpdateInvoiceUnitResponse"),
     type = "structure",
     members = {
         InvoiceUnitArn = schema.new({
@@ -2326,7 +2326,7 @@ M.UpdateInvoiceUnitOutput = schema.new({
 })
 
 M.UpdateProcurementPortalPreferenceStatusInput = schema.new({
-    id = id.from(_N, "UpdateProcurementPortalPreferenceStatusInput"),
+    id = id.from(_N, "UpdateProcurementPortalPreferenceStatusRequest"),
     type = "structure",
     members = {
         ProcurementPortalPreferenceArn = schema.new({
@@ -2366,7 +2366,7 @@ M.UpdateProcurementPortalPreferenceStatusInput = schema.new({
 })
 
 M.UpdateProcurementPortalPreferenceStatusOutput = schema.new({
-    id = id.from(_N, "UpdateProcurementPortalPreferenceStatusOutput"),
+    id = id.from(_N, "UpdateProcurementPortalPreferenceStatusResponse"),
     type = "structure",
     members = {
         ProcurementPortalPreferenceArn = schema.new({
@@ -2380,5 +2380,19 @@ M.UpdateProcurementPortalPreferenceStatusOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

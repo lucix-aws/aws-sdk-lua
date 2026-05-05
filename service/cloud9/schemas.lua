@@ -95,7 +95,7 @@ M.Tag = schema.new({
 })
 
 M.CreateEnvironmentEC2Input = schema.new({
-    id = id.from(_N, "CreateEnvironmentEC2Input"),
+    id = id.from(_N, "CreateEnvironmentEC2Request"),
     type = "structure",
     members = {
         name = schema.new({
@@ -178,7 +178,7 @@ M.CreateEnvironmentEC2Input = schema.new({
 })
 
 M.CreateEnvironmentEC2Output = schema.new({
-    id = id.from(_N, "CreateEnvironmentEC2Output"),
+    id = id.from(_N, "CreateEnvironmentEC2Result"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -346,7 +346,7 @@ M.TooManyRequestsException = schema.new({
 })
 
 M.CreateEnvironmentMembershipInput = schema.new({
-    id = id.from(_N, "CreateEnvironmentMembershipInput"),
+    id = id.from(_N, "CreateEnvironmentMembershipRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -429,7 +429,7 @@ M.EnvironmentMember = schema.new({
 })
 
 M.CreateEnvironmentMembershipOutput = schema.new({
-    id = id.from(_N, "CreateEnvironmentMembershipOutput"),
+    id = id.from(_N, "CreateEnvironmentMembershipResult"),
     type = "structure",
     members = {
         membership = schema.new({
@@ -446,7 +446,7 @@ M.CreateEnvironmentMembershipOutput = schema.new({
 })
 
 M.DeleteEnvironmentInput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentInput"),
+    id = id.from(_N, "DeleteEnvironmentRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -462,12 +462,12 @@ M.DeleteEnvironmentInput = schema.new({
 })
 
 M.DeleteEnvironmentOutput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentOutput"),
+    id = id.from(_N, "DeleteEnvironmentResult"),
     type = "structure",
 })
 
 M.DeleteEnvironmentMembershipInput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentMembershipInput"),
+    id = id.from(_N, "DeleteEnvironmentMembershipRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -492,12 +492,12 @@ M.DeleteEnvironmentMembershipInput = schema.new({
 })
 
 M.DeleteEnvironmentMembershipOutput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentMembershipOutput"),
+    id = id.from(_N, "DeleteEnvironmentMembershipResult"),
     type = "structure",
 })
 
 M.DescribeEnvironmentMembershipsInput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentMembershipsInput"),
+    id = id.from(_N, "DescribeEnvironmentMembershipsRequest"),
     type = "structure",
     members = {
         userArn = schema.new({
@@ -535,7 +535,7 @@ M.DescribeEnvironmentMembershipsInput = schema.new({
 })
 
 M.DescribeEnvironmentMembershipsOutput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentMembershipsOutput"),
+    id = id.from(_N, "DescribeEnvironmentMembershipsResult"),
     type = "structure",
     members = {
         memberships = schema.new({
@@ -555,7 +555,7 @@ M.DescribeEnvironmentMembershipsOutput = schema.new({
 })
 
 M.DescribeEnvironmentsInput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentsInput"),
+    id = id.from(_N, "DescribeEnvironmentsRequest"),
     type = "structure",
     members = {
         environmentIds = schema.new({
@@ -668,7 +668,7 @@ M.Environment = schema.new({
 })
 
 M.DescribeEnvironmentsOutput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentsOutput"),
+    id = id.from(_N, "DescribeEnvironmentsResult"),
     type = "structure",
     members = {
         environments = schema.new({
@@ -682,7 +682,7 @@ M.DescribeEnvironmentsOutput = schema.new({
 })
 
 M.DescribeEnvironmentStatusInput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentStatusInput"),
+    id = id.from(_N, "DescribeEnvironmentStatusRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -698,7 +698,7 @@ M.DescribeEnvironmentStatusInput = schema.new({
 })
 
 M.DescribeEnvironmentStatusOutput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentStatusOutput"),
+    id = id.from(_N, "DescribeEnvironmentStatusResult"),
     type = "structure",
     members = {
         status = schema.new({
@@ -723,7 +723,7 @@ M.DescribeEnvironmentStatusOutput = schema.new({
 })
 
 M.ListEnvironmentsInput = schema.new({
-    id = id.from(_N, "ListEnvironmentsInput"),
+    id = id.from(_N, "ListEnvironmentsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -742,7 +742,7 @@ M.ListEnvironmentsInput = schema.new({
 })
 
 M.ListEnvironmentsOutput = schema.new({
-    id = id.from(_N, "ListEnvironmentsOutput"),
+    id = id.from(_N, "ListEnvironmentsResult"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -762,7 +762,7 @@ M.ListEnvironmentsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -778,7 +778,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -823,7 +823,7 @@ M.ConcurrentAccessException = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -849,12 +849,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -880,12 +880,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateEnvironmentInput = schema.new({
-    id = id.from(_N, "UpdateEnvironmentInput"),
+    id = id.from(_N, "UpdateEnvironmentRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -919,12 +919,12 @@ M.UpdateEnvironmentInput = schema.new({
 })
 
 M.UpdateEnvironmentOutput = schema.new({
-    id = id.from(_N, "UpdateEnvironmentOutput"),
+    id = id.from(_N, "UpdateEnvironmentResult"),
     type = "structure",
 })
 
 M.UpdateEnvironmentMembershipInput = schema.new({
-    id = id.from(_N, "UpdateEnvironmentMembershipInput"),
+    id = id.from(_N, "UpdateEnvironmentMembershipRequest"),
     type = "structure",
     members = {
         environmentId = schema.new({
@@ -958,7 +958,7 @@ M.UpdateEnvironmentMembershipInput = schema.new({
 })
 
 M.UpdateEnvironmentMembershipOutput = schema.new({
-    id = id.from(_N, "UpdateEnvironmentMembershipOutput"),
+    id = id.from(_N, "UpdateEnvironmentMembershipResult"),
     type = "structure",
     members = {
         membership = schema.new({
@@ -970,5 +970,19 @@ M.UpdateEnvironmentMembershipOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

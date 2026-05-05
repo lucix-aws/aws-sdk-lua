@@ -153,7 +153,7 @@ M.Repository = schema.new({
 })
 
 M.AssociateRepositoryInput = schema.new({
-    id = id.from(_N, "AssociateRepositoryInput"),
+    id = id.from(_N, "AssociateRepositoryRequest"),
     type = "structure",
     members = {
         Repository = schema.new({
@@ -317,7 +317,7 @@ M.RepositoryAssociation = schema.new({
 })
 
 M.AssociateRepositoryOutput = schema.new({
-    id = id.from(_N, "AssociateRepositoryOutput"),
+    id = id.from(_N, "AssociateRepositoryResponse"),
     type = "structure",
     members = {
         RepositoryAssociation = schema.new({
@@ -630,7 +630,7 @@ M.CodeReviewType = schema.new({
 })
 
 M.CreateCodeReviewInput = schema.new({
-    id = id.from(_N, "CreateCodeReviewInput"),
+    id = id.from(_N, "CreateCodeReviewRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -805,7 +805,7 @@ M.CodeReview = schema.new({
 })
 
 M.CreateCodeReviewOutput = schema.new({
-    id = id.from(_N, "CreateCodeReviewOutput"),
+    id = id.from(_N, "CreateCodeReviewResponse"),
     type = "structure",
     members = {
         CodeReview = schema.new({
@@ -835,7 +835,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DescribeCodeReviewInput = schema.new({
-    id = id.from(_N, "DescribeCodeReviewInput"),
+    id = id.from(_N, "DescribeCodeReviewRequest"),
     type = "structure",
     members = {
         CodeReviewArn = schema.new({
@@ -852,7 +852,7 @@ M.DescribeCodeReviewInput = schema.new({
 })
 
 M.DescribeCodeReviewOutput = schema.new({
-    id = id.from(_N, "DescribeCodeReviewOutput"),
+    id = id.from(_N, "DescribeCodeReviewResponse"),
     type = "structure",
     members = {
         CodeReview = schema.new({
@@ -866,7 +866,7 @@ M.DescribeCodeReviewOutput = schema.new({
 })
 
 M.DescribeRecommendationFeedbackInput = schema.new({
-    id = id.from(_N, "DescribeRecommendationFeedbackInput"),
+    id = id.from(_N, "DescribeRecommendationFeedbackRequest"),
     type = "structure",
     members = {
         CodeReviewArn = schema.new({
@@ -946,7 +946,7 @@ M.RecommendationFeedback = schema.new({
 })
 
 M.DescribeRecommendationFeedbackOutput = schema.new({
-    id = id.from(_N, "DescribeRecommendationFeedbackOutput"),
+    id = id.from(_N, "DescribeRecommendationFeedbackResponse"),
     type = "structure",
     members = {
         RecommendationFeedback = schema.new({
@@ -960,7 +960,7 @@ M.DescribeRecommendationFeedbackOutput = schema.new({
 })
 
 M.DescribeRepositoryAssociationInput = schema.new({
-    id = id.from(_N, "DescribeRepositoryAssociationInput"),
+    id = id.from(_N, "DescribeRepositoryAssociationRequest"),
     type = "structure",
     members = {
         AssociationArn = schema.new({
@@ -977,7 +977,7 @@ M.DescribeRepositoryAssociationInput = schema.new({
 })
 
 M.DescribeRepositoryAssociationOutput = schema.new({
-    id = id.from(_N, "DescribeRepositoryAssociationOutput"),
+    id = id.from(_N, "DescribeRepositoryAssociationResponse"),
     type = "structure",
     members = {
         RepositoryAssociation = schema.new({
@@ -1015,7 +1015,7 @@ M.NotFoundException = schema.new({
 })
 
 M.DisassociateRepositoryInput = schema.new({
-    id = id.from(_N, "DisassociateRepositoryInput"),
+    id = id.from(_N, "DisassociateRepositoryRequest"),
     type = "structure",
     members = {
         AssociationArn = schema.new({
@@ -1032,7 +1032,7 @@ M.DisassociateRepositoryInput = schema.new({
 })
 
 M.DisassociateRepositoryOutput = schema.new({
-    id = id.from(_N, "DisassociateRepositoryOutput"),
+    id = id.from(_N, "DisassociateRepositoryResponse"),
     type = "structure",
     members = {
         RepositoryAssociation = schema.new({
@@ -1054,7 +1054,7 @@ M.DisassociateRepositoryOutput = schema.new({
 })
 
 M.ListCodeReviewsInput = schema.new({
-    id = id.from(_N, "ListCodeReviewsInput"),
+    id = id.from(_N, "ListCodeReviewsRequest"),
     type = "structure",
     members = {
         ProviderTypes = schema.new({
@@ -1225,7 +1225,7 @@ M.CodeReviewSummary = schema.new({
 })
 
 M.ListCodeReviewsOutput = schema.new({
-    id = id.from(_N, "ListCodeReviewsOutput"),
+    id = id.from(_N, "ListCodeReviewsResponse"),
     type = "structure",
     members = {
         CodeReviewSummaries = schema.new({
@@ -1245,7 +1245,7 @@ M.ListCodeReviewsOutput = schema.new({
 })
 
 M.ListRecommendationFeedbackInput = schema.new({
-    id = id.from(_N, "ListRecommendationFeedbackInput"),
+    id = id.from(_N, "ListRecommendationFeedbackRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1326,7 +1326,7 @@ M.RecommendationFeedbackSummary = schema.new({
 })
 
 M.ListRecommendationFeedbackOutput = schema.new({
-    id = id.from(_N, "ListRecommendationFeedbackOutput"),
+    id = id.from(_N, "ListRecommendationFeedbackResponse"),
     type = "structure",
     members = {
         RecommendationFeedbackSummaries = schema.new({
@@ -1346,7 +1346,7 @@ M.ListRecommendationFeedbackOutput = schema.new({
 })
 
 M.ListRecommendationsInput = schema.new({
-    id = id.from(_N, "ListRecommendationsInput"),
+    id = id.from(_N, "ListRecommendationsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1475,7 +1475,7 @@ M.RecommendationSummary = schema.new({
 })
 
 M.ListRecommendationsOutput = schema.new({
-    id = id.from(_N, "ListRecommendationsOutput"),
+    id = id.from(_N, "ListRecommendationsResponse"),
     type = "structure",
     members = {
         RecommendationSummaries = schema.new({
@@ -1495,7 +1495,7 @@ M.ListRecommendationsOutput = schema.new({
 })
 
 M.ListRepositoryAssociationsInput = schema.new({
-    id = id.from(_N, "ListRepositoryAssociationsInput"),
+    id = id.from(_N, "ListRepositoryAssociationsRequest"),
     type = "structure",
     members = {
         ProviderTypes = schema.new({
@@ -1615,7 +1615,7 @@ M.RepositoryAssociationSummary = schema.new({
 })
 
 M.ListRepositoryAssociationsOutput = schema.new({
-    id = id.from(_N, "ListRepositoryAssociationsOutput"),
+    id = id.from(_N, "ListRepositoryAssociationsResponse"),
     type = "structure",
     members = {
         RepositoryAssociationSummaries = schema.new({
@@ -1635,7 +1635,7 @@ M.ListRepositoryAssociationsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1652,7 +1652,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1667,7 +1667,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutRecommendationFeedbackInput = schema.new({
-    id = id.from(_N, "PutRecommendationFeedbackInput"),
+    id = id.from(_N, "PutRecommendationFeedbackRequest"),
     type = "structure",
     members = {
         CodeReviewArn = schema.new({
@@ -1702,12 +1702,12 @@ M.PutRecommendationFeedbackInput = schema.new({
 })
 
 M.PutRecommendationFeedbackOutput = schema.new({
-    id = id.from(_N, "PutRecommendationFeedbackOutput"),
+    id = id.from(_N, "PutRecommendationFeedbackResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1735,12 +1735,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1768,8 +1768,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

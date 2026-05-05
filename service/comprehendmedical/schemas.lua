@@ -108,7 +108,7 @@ M.Characters = schema.new({
 })
 
 M.DescribeEntitiesDetectionV2JobInput = schema.new({
-    id = id.from(_N, "DescribeEntitiesDetectionV2JobInput"),
+    id = id.from(_N, "DescribeEntitiesDetectionV2JobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -261,7 +261,7 @@ M.ComprehendMedicalAsyncJobProperties = schema.new({
 })
 
 M.DescribeEntitiesDetectionV2JobOutput = schema.new({
-    id = id.from(_N, "DescribeEntitiesDetectionV2JobOutput"),
+    id = id.from(_N, "DescribeEntitiesDetectionV2JobResponse"),
     type = "structure",
     members = {
         ComprehendMedicalAsyncJobProperties = schema.new({
@@ -339,7 +339,7 @@ M.TooManyRequestsException = schema.new({
 })
 
 M.DescribeICD10CMInferenceJobInput = schema.new({
-    id = id.from(_N, "DescribeICD10CMInferenceJobInput"),
+    id = id.from(_N, "DescribeICD10CMInferenceJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -355,7 +355,7 @@ M.DescribeICD10CMInferenceJobInput = schema.new({
 })
 
 M.DescribeICD10CMInferenceJobOutput = schema.new({
-    id = id.from(_N, "DescribeICD10CMInferenceJobOutput"),
+    id = id.from(_N, "DescribeICD10CMInferenceJobResponse"),
     type = "structure",
     members = {
         ComprehendMedicalAsyncJobProperties = schema.new({
@@ -369,7 +369,7 @@ M.DescribeICD10CMInferenceJobOutput = schema.new({
 })
 
 M.DescribePHIDetectionJobInput = schema.new({
-    id = id.from(_N, "DescribePHIDetectionJobInput"),
+    id = id.from(_N, "DescribePHIDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -385,7 +385,7 @@ M.DescribePHIDetectionJobInput = schema.new({
 })
 
 M.DescribePHIDetectionJobOutput = schema.new({
-    id = id.from(_N, "DescribePHIDetectionJobOutput"),
+    id = id.from(_N, "DescribePHIDetectionJobResponse"),
     type = "structure",
     members = {
         ComprehendMedicalAsyncJobProperties = schema.new({
@@ -399,7 +399,7 @@ M.DescribePHIDetectionJobOutput = schema.new({
 })
 
 M.DescribeRxNormInferenceJobInput = schema.new({
-    id = id.from(_N, "DescribeRxNormInferenceJobInput"),
+    id = id.from(_N, "DescribeRxNormInferenceJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -415,7 +415,7 @@ M.DescribeRxNormInferenceJobInput = schema.new({
 })
 
 M.DescribeRxNormInferenceJobOutput = schema.new({
-    id = id.from(_N, "DescribeRxNormInferenceJobOutput"),
+    id = id.from(_N, "DescribeRxNormInferenceJobResponse"),
     type = "structure",
     members = {
         ComprehendMedicalAsyncJobProperties = schema.new({
@@ -429,7 +429,7 @@ M.DescribeRxNormInferenceJobOutput = schema.new({
 })
 
 M.DescribeSNOMEDCTInferenceJobInput = schema.new({
-    id = id.from(_N, "DescribeSNOMEDCTInferenceJobInput"),
+    id = id.from(_N, "DescribeSNOMEDCTInferenceJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -445,7 +445,7 @@ M.DescribeSNOMEDCTInferenceJobInput = schema.new({
 })
 
 M.DescribeSNOMEDCTInferenceJobOutput = schema.new({
-    id = id.from(_N, "DescribeSNOMEDCTInferenceJobOutput"),
+    id = id.from(_N, "DescribeSNOMEDCTInferenceJobResponse"),
     type = "structure",
     members = {
         ComprehendMedicalAsyncJobProperties = schema.new({
@@ -459,7 +459,7 @@ M.DescribeSNOMEDCTInferenceJobOutput = schema.new({
 })
 
 M.DetectEntitiesInput = schema.new({
-    id = id.from(_N, "DetectEntitiesInput"),
+    id = id.from(_N, "DetectEntitiesRequest"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -558,7 +558,7 @@ M.UnmappedAttribute = schema.new({
 })
 
 M.DetectEntitiesOutput = schema.new({
-    id = id.from(_N, "DetectEntitiesOutput"),
+    id = id.from(_N, "DetectEntitiesResponse"),
     type = "structure",
     members = {
         Entities = schema.new({
@@ -645,7 +645,7 @@ M.TextSizeLimitExceededException = schema.new({
 })
 
 M.DetectEntitiesV2Input = schema.new({
-    id = id.from(_N, "DetectEntitiesV2Input"),
+    id = id.from(_N, "DetectEntitiesV2Request"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -661,7 +661,7 @@ M.DetectEntitiesV2Input = schema.new({
 })
 
 M.DetectEntitiesV2Output = schema.new({
-    id = id.from(_N, "DetectEntitiesV2Output"),
+    id = id.from(_N, "DetectEntitiesV2Response"),
     type = "structure",
     members = {
         Entities = schema.new({
@@ -700,7 +700,7 @@ M.DetectEntitiesV2Output = schema.new({
 })
 
 M.DetectPHIInput = schema.new({
-    id = id.from(_N, "DetectPHIInput"),
+    id = id.from(_N, "DetectPHIRequest"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -716,7 +716,7 @@ M.DetectPHIInput = schema.new({
 })
 
 M.DetectPHIOutput = schema.new({
-    id = id.from(_N, "DetectPHIOutput"),
+    id = id.from(_N, "DetectPHIResponse"),
     type = "structure",
     members = {
         Entities = schema.new({
@@ -748,7 +748,7 @@ M.DetectPHIOutput = schema.new({
 })
 
 M.InferICD10CMInput = schema.new({
-    id = id.from(_N, "InferICD10CMInput"),
+    id = id.from(_N, "InferICD10CMRequest"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -946,7 +946,7 @@ M.ICD10CMEntity = schema.new({
 })
 
 M.InferICD10CMOutput = schema.new({
-    id = id.from(_N, "InferICD10CMOutput"),
+    id = id.from(_N, "InferICD10CMResponse"),
     type = "structure",
     members = {
         Entities = schema.new({
@@ -975,7 +975,7 @@ M.InferICD10CMOutput = schema.new({
 })
 
 M.InferRxNormInput = schema.new({
-    id = id.from(_N, "InferRxNormInput"),
+    id = id.from(_N, "InferRxNormRequest"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -1161,7 +1161,7 @@ M.RxNormEntity = schema.new({
 })
 
 M.InferRxNormOutput = schema.new({
-    id = id.from(_N, "InferRxNormOutput"),
+    id = id.from(_N, "InferRxNormResponse"),
     type = "structure",
     members = {
         Entities = schema.new({
@@ -1190,7 +1190,7 @@ M.InferRxNormOutput = schema.new({
 })
 
 M.InferSNOMEDCTInput = schema.new({
-    id = id.from(_N, "InferSNOMEDCTInput"),
+    id = id.from(_N, "InferSNOMEDCTRequest"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -1420,7 +1420,7 @@ M.SNOMEDCTDetails = schema.new({
 })
 
 M.InferSNOMEDCTOutput = schema.new({
-    id = id.from(_N, "InferSNOMEDCTOutput"),
+    id = id.from(_N, "InferSNOMEDCTResponse"),
     type = "structure",
     members = {
         Entities = schema.new({
@@ -1494,7 +1494,7 @@ M.ComprehendMedicalAsyncJobFilter = schema.new({
 })
 
 M.ListEntitiesDetectionV2JobsInput = schema.new({
-    id = id.from(_N, "ListEntitiesDetectionV2JobsInput"),
+    id = id.from(_N, "ListEntitiesDetectionV2JobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -1520,7 +1520,7 @@ M.ListEntitiesDetectionV2JobsInput = schema.new({
 })
 
 M.ListEntitiesDetectionV2JobsOutput = schema.new({
-    id = id.from(_N, "ListEntitiesDetectionV2JobsOutput"),
+    id = id.from(_N, "ListEntitiesDetectionV2JobsResponse"),
     type = "structure",
     members = {
         ComprehendMedicalAsyncJobPropertiesList = schema.new({
@@ -1556,7 +1556,7 @@ M.ValidationException = schema.new({
 })
 
 M.ListICD10CMInferenceJobsInput = schema.new({
-    id = id.from(_N, "ListICD10CMInferenceJobsInput"),
+    id = id.from(_N, "ListICD10CMInferenceJobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -1582,7 +1582,7 @@ M.ListICD10CMInferenceJobsInput = schema.new({
 })
 
 M.ListICD10CMInferenceJobsOutput = schema.new({
-    id = id.from(_N, "ListICD10CMInferenceJobsOutput"),
+    id = id.from(_N, "ListICD10CMInferenceJobsResponse"),
     type = "structure",
     members = {
         ComprehendMedicalAsyncJobPropertiesList = schema.new({
@@ -1602,7 +1602,7 @@ M.ListICD10CMInferenceJobsOutput = schema.new({
 })
 
 M.ListPHIDetectionJobsInput = schema.new({
-    id = id.from(_N, "ListPHIDetectionJobsInput"),
+    id = id.from(_N, "ListPHIDetectionJobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -1628,7 +1628,7 @@ M.ListPHIDetectionJobsInput = schema.new({
 })
 
 M.ListPHIDetectionJobsOutput = schema.new({
-    id = id.from(_N, "ListPHIDetectionJobsOutput"),
+    id = id.from(_N, "ListPHIDetectionJobsResponse"),
     type = "structure",
     members = {
         ComprehendMedicalAsyncJobPropertiesList = schema.new({
@@ -1648,7 +1648,7 @@ M.ListPHIDetectionJobsOutput = schema.new({
 })
 
 M.ListRxNormInferenceJobsInput = schema.new({
-    id = id.from(_N, "ListRxNormInferenceJobsInput"),
+    id = id.from(_N, "ListRxNormInferenceJobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -1674,7 +1674,7 @@ M.ListRxNormInferenceJobsInput = schema.new({
 })
 
 M.ListRxNormInferenceJobsOutput = schema.new({
-    id = id.from(_N, "ListRxNormInferenceJobsOutput"),
+    id = id.from(_N, "ListRxNormInferenceJobsResponse"),
     type = "structure",
     members = {
         ComprehendMedicalAsyncJobPropertiesList = schema.new({
@@ -1694,7 +1694,7 @@ M.ListRxNormInferenceJobsOutput = schema.new({
 })
 
 M.ListSNOMEDCTInferenceJobsInput = schema.new({
-    id = id.from(_N, "ListSNOMEDCTInferenceJobsInput"),
+    id = id.from(_N, "ListSNOMEDCTInferenceJobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -1720,7 +1720,7 @@ M.ListSNOMEDCTInferenceJobsInput = schema.new({
 })
 
 M.ListSNOMEDCTInferenceJobsOutput = schema.new({
-    id = id.from(_N, "ListSNOMEDCTInferenceJobsOutput"),
+    id = id.from(_N, "ListSNOMEDCTInferenceJobsResponse"),
     type = "structure",
     members = {
         ComprehendMedicalAsyncJobPropertiesList = schema.new({
@@ -1740,7 +1740,7 @@ M.ListSNOMEDCTInferenceJobsOutput = schema.new({
 })
 
 M.StartEntitiesDetectionV2JobInput = schema.new({
-    id = id.from(_N, "StartEntitiesDetectionV2JobInput"),
+    id = id.from(_N, "StartEntitiesDetectionV2JobRequest"),
     type = "structure",
     members = {
         InputDataConfig = schema.new({
@@ -1806,7 +1806,7 @@ M.StartEntitiesDetectionV2JobInput = schema.new({
 })
 
 M.StartEntitiesDetectionV2JobOutput = schema.new({
-    id = id.from(_N, "StartEntitiesDetectionV2JobOutput"),
+    id = id.from(_N, "StartEntitiesDetectionV2JobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1819,7 +1819,7 @@ M.StartEntitiesDetectionV2JobOutput = schema.new({
 })
 
 M.StartICD10CMInferenceJobInput = schema.new({
-    id = id.from(_N, "StartICD10CMInferenceJobInput"),
+    id = id.from(_N, "StartICD10CMInferenceJobRequest"),
     type = "structure",
     members = {
         InputDataConfig = schema.new({
@@ -1885,7 +1885,7 @@ M.StartICD10CMInferenceJobInput = schema.new({
 })
 
 M.StartICD10CMInferenceJobOutput = schema.new({
-    id = id.from(_N, "StartICD10CMInferenceJobOutput"),
+    id = id.from(_N, "StartICD10CMInferenceJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1898,7 +1898,7 @@ M.StartICD10CMInferenceJobOutput = schema.new({
 })
 
 M.StartPHIDetectionJobInput = schema.new({
-    id = id.from(_N, "StartPHIDetectionJobInput"),
+    id = id.from(_N, "StartPHIDetectionJobRequest"),
     type = "structure",
     members = {
         InputDataConfig = schema.new({
@@ -1964,7 +1964,7 @@ M.StartPHIDetectionJobInput = schema.new({
 })
 
 M.StartPHIDetectionJobOutput = schema.new({
-    id = id.from(_N, "StartPHIDetectionJobOutput"),
+    id = id.from(_N, "StartPHIDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1977,7 +1977,7 @@ M.StartPHIDetectionJobOutput = schema.new({
 })
 
 M.StartRxNormInferenceJobInput = schema.new({
-    id = id.from(_N, "StartRxNormInferenceJobInput"),
+    id = id.from(_N, "StartRxNormInferenceJobRequest"),
     type = "structure",
     members = {
         InputDataConfig = schema.new({
@@ -2043,7 +2043,7 @@ M.StartRxNormInferenceJobInput = schema.new({
 })
 
 M.StartRxNormInferenceJobOutput = schema.new({
-    id = id.from(_N, "StartRxNormInferenceJobOutput"),
+    id = id.from(_N, "StartRxNormInferenceJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2056,7 +2056,7 @@ M.StartRxNormInferenceJobOutput = schema.new({
 })
 
 M.StartSNOMEDCTInferenceJobInput = schema.new({
-    id = id.from(_N, "StartSNOMEDCTInferenceJobInput"),
+    id = id.from(_N, "StartSNOMEDCTInferenceJobRequest"),
     type = "structure",
     members = {
         InputDataConfig = schema.new({
@@ -2122,7 +2122,7 @@ M.StartSNOMEDCTInferenceJobInput = schema.new({
 })
 
 M.StartSNOMEDCTInferenceJobOutput = schema.new({
-    id = id.from(_N, "StartSNOMEDCTInferenceJobOutput"),
+    id = id.from(_N, "StartSNOMEDCTInferenceJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2135,7 +2135,7 @@ M.StartSNOMEDCTInferenceJobOutput = schema.new({
 })
 
 M.StopEntitiesDetectionV2JobInput = schema.new({
-    id = id.from(_N, "StopEntitiesDetectionV2JobInput"),
+    id = id.from(_N, "StopEntitiesDetectionV2JobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2151,7 +2151,7 @@ M.StopEntitiesDetectionV2JobInput = schema.new({
 })
 
 M.StopEntitiesDetectionV2JobOutput = schema.new({
-    id = id.from(_N, "StopEntitiesDetectionV2JobOutput"),
+    id = id.from(_N, "StopEntitiesDetectionV2JobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2164,7 +2164,7 @@ M.StopEntitiesDetectionV2JobOutput = schema.new({
 })
 
 M.StopICD10CMInferenceJobInput = schema.new({
-    id = id.from(_N, "StopICD10CMInferenceJobInput"),
+    id = id.from(_N, "StopICD10CMInferenceJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2180,7 +2180,7 @@ M.StopICD10CMInferenceJobInput = schema.new({
 })
 
 M.StopICD10CMInferenceJobOutput = schema.new({
-    id = id.from(_N, "StopICD10CMInferenceJobOutput"),
+    id = id.from(_N, "StopICD10CMInferenceJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2193,7 +2193,7 @@ M.StopICD10CMInferenceJobOutput = schema.new({
 })
 
 M.StopPHIDetectionJobInput = schema.new({
-    id = id.from(_N, "StopPHIDetectionJobInput"),
+    id = id.from(_N, "StopPHIDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2209,7 +2209,7 @@ M.StopPHIDetectionJobInput = schema.new({
 })
 
 M.StopPHIDetectionJobOutput = schema.new({
-    id = id.from(_N, "StopPHIDetectionJobOutput"),
+    id = id.from(_N, "StopPHIDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2222,7 +2222,7 @@ M.StopPHIDetectionJobOutput = schema.new({
 })
 
 M.StopRxNormInferenceJobInput = schema.new({
-    id = id.from(_N, "StopRxNormInferenceJobInput"),
+    id = id.from(_N, "StopRxNormInferenceJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2238,7 +2238,7 @@ M.StopRxNormInferenceJobInput = schema.new({
 })
 
 M.StopRxNormInferenceJobOutput = schema.new({
-    id = id.from(_N, "StopRxNormInferenceJobOutput"),
+    id = id.from(_N, "StopRxNormInferenceJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2251,7 +2251,7 @@ M.StopRxNormInferenceJobOutput = schema.new({
 })
 
 M.StopSNOMEDCTInferenceJobInput = schema.new({
-    id = id.from(_N, "StopSNOMEDCTInferenceJobInput"),
+    id = id.from(_N, "StopSNOMEDCTInferenceJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2267,7 +2267,7 @@ M.StopSNOMEDCTInferenceJobInput = schema.new({
 })
 
 M.StopSNOMEDCTInferenceJobOutput = schema.new({
-    id = id.from(_N, "StopSNOMEDCTInferenceJobOutput"),
+    id = id.from(_N, "StopSNOMEDCTInferenceJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2278,5 +2278,19 @@ M.StopSNOMEDCTInferenceJobOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

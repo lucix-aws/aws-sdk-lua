@@ -128,7 +128,7 @@ M.AdditionalStorageVolumeOutput = schema.new({
 })
 
 M.AddRoleToDBClusterInput = schema.new({
-    id = id.from(_N, "AddRoleToDBClusterInput"),
+    id = id.from(_N, "AddRoleToDBClusterMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -159,7 +159,7 @@ M.AddRoleToDBClusterInput = schema.new({
 })
 
 M.AddRoleToDBClusterOutput = schema.new({
-    id = id.from(_N, "AddRoleToDBClusterOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -228,7 +228,7 @@ M.InvalidDBClusterStateFault = schema.new({
 })
 
 M.AddRoleToDBInstanceInput = schema.new({
-    id = id.from(_N, "AddRoleToDBInstanceInput"),
+    id = id.from(_N, "AddRoleToDBInstanceMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -262,7 +262,7 @@ M.AddRoleToDBInstanceInput = schema.new({
 })
 
 M.AddRoleToDBInstanceOutput = schema.new({
-    id = id.from(_N, "AddRoleToDBInstanceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -331,7 +331,7 @@ M.InvalidDBInstanceStateFault = schema.new({
 })
 
 M.AddSourceIdentifierToSubscriptionInput = schema.new({
-    id = id.from(_N, "AddSourceIdentifierToSubscriptionInput"),
+    id = id.from(_N, "AddSourceIdentifierToSubscriptionMessage"),
     type = "structure",
     members = {
         SubscriptionName = schema.new({
@@ -400,14 +400,14 @@ M.EventSubscription = schema.new({
             type = "list",
             name = "SourceIdsList",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SourceId" } } }),
         }),
         EventCategoriesList = schema.new({
             id = id.from(_N, "EventSubscription", "EventCategoriesList"),
             type = "list",
             name = "EventCategoriesList",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "EventCategory" } } }),
         }),
         Enabled = schema.new({
             id = id.from(_N, "EventSubscription", "Enabled"),
@@ -425,7 +425,7 @@ M.EventSubscription = schema.new({
 })
 
 M.AddSourceIdentifierToSubscriptionOutput = schema.new({
-    id = id.from(_N, "AddSourceIdentifierToSubscriptionOutput"),
+    id = id.from(_N, "AddSourceIdentifierToSubscriptionResult"),
     type = "structure",
     members = {
         EventSubscription = schema.new({
@@ -490,7 +490,7 @@ M.Tag = schema.new({
 })
 
 M.AddTagsToResourceInput = schema.new({
-    id = id.from(_N, "AddTagsToResourceInput"),
+    id = id.from(_N, "AddTagsToResourceMessage"),
     type = "structure",
     members = {
         ResourceName = schema.new({
@@ -507,7 +507,7 @@ M.AddTagsToResourceInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -516,7 +516,7 @@ M.AddTagsToResourceInput = schema.new({
 })
 
 M.AddTagsToResourceOutput = schema.new({
-    id = id.from(_N, "AddTagsToResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -681,7 +681,7 @@ M.TenantDatabaseNotFoundFault = schema.new({
 })
 
 M.ApplyPendingMaintenanceActionInput = schema.new({
-    id = id.from(_N, "ApplyPendingMaintenanceActionInput"),
+    id = id.from(_N, "ApplyPendingMaintenanceActionMessage"),
     type = "structure",
     members = {
         ResourceIdentifier = schema.new({
@@ -772,13 +772,13 @@ M.ResourcePendingMaintenanceActions = schema.new({
             type = "list",
             name = "PendingMaintenanceActionDetails",
             target_id = prelude.Document.id,
-            list_member = M.PendingMaintenanceAction,
+            list_member = schema.new({ type = "structure", target = M.PendingMaintenanceAction, traits = { [traits.XML_NAME] = { name = "PendingMaintenanceAction" } } }),
         }),
     },
 })
 
 M.ApplyPendingMaintenanceActionOutput = schema.new({
-    id = id.from(_N, "ApplyPendingMaintenanceActionOutput"),
+    id = id.from(_N, "ApplyPendingMaintenanceActionResult"),
     type = "structure",
     members = {
         ResourcePendingMaintenanceActions = schema.new({
@@ -840,7 +840,7 @@ M.AuthorizationQuotaExceededFault = schema.new({
 })
 
 M.AuthorizeDBSecurityGroupIngressInput = schema.new({
-    id = id.from(_N, "AuthorizeDBSecurityGroupIngressInput"),
+    id = id.from(_N, "AuthorizeDBSecurityGroupIngressMessage"),
     type = "structure",
     members = {
         DBSecurityGroupName = schema.new({
@@ -962,14 +962,14 @@ M.DBSecurityGroup = schema.new({
             type = "list",
             name = "EC2SecurityGroups",
             target_id = prelude.Document.id,
-            list_member = M.EC2SecurityGroup,
+            list_member = schema.new({ type = "structure", target = M.EC2SecurityGroup, traits = { [traits.XML_NAME] = { name = "EC2SecurityGroup" } } }),
         }),
         IPRanges = schema.new({
             id = id.from(_N, "DBSecurityGroup", "IPRanges"),
             type = "list",
             name = "IPRanges",
             target_id = prelude.Document.id,
-            list_member = M.IPRange,
+            list_member = schema.new({ type = "structure", target = M.IPRange, traits = { [traits.XML_NAME] = { name = "IPRange" } } }),
         }),
         DBSecurityGroupArn = schema.new({
             id = id.from(_N, "DBSecurityGroup", "DBSecurityGroupArn"),
@@ -981,7 +981,7 @@ M.DBSecurityGroup = schema.new({
 })
 
 M.AuthorizeDBSecurityGroupIngressOutput = schema.new({
-    id = id.from(_N, "AuthorizeDBSecurityGroupIngressOutput"),
+    id = id.from(_N, "AuthorizeDBSecurityGroupIngressResult"),
     type = "structure",
     members = {
         DBSecurityGroup = schema.new({
@@ -1027,7 +1027,7 @@ M.InvalidDBSecurityGroupStateFault = schema.new({
 })
 
 M.BacktrackDBClusterInput = schema.new({
-    id = id.from(_N, "BacktrackDBClusterInput"),
+    id = id.from(_N, "BacktrackDBClusterMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -1064,7 +1064,7 @@ M.BacktrackDBClusterInput = schema.new({
 })
 
 M.BacktrackDBClusterOutput = schema.new({
-    id = id.from(_N, "BacktrackDBClusterOutput"),
+    id = id.from(_N, "DBClusterBacktrack"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -1107,7 +1107,7 @@ M.BacktrackDBClusterOutput = schema.new({
 })
 
 M.CancelExportTaskInput = schema.new({
-    id = id.from(_N, "CancelExportTaskInput"),
+    id = id.from(_N, "CancelExportTaskMessage"),
     type = "structure",
     members = {
         ExportTaskIdentifier = schema.new({
@@ -1123,7 +1123,7 @@ M.CancelExportTaskInput = schema.new({
 })
 
 M.CancelExportTaskOutput = schema.new({
-    id = id.from(_N, "CancelExportTaskOutput"),
+    id = id.from(_N, "ExportTask"),
     type = "structure",
     members = {
         ExportTaskIdentifier = schema.new({
@@ -1259,7 +1259,7 @@ M.InvalidExportTaskStateFault = schema.new({
 })
 
 M.CopyDBClusterParameterGroupInput = schema.new({
-    id = id.from(_N, "CopyDBClusterParameterGroupInput"),
+    id = id.from(_N, "CopyDBClusterParameterGroupMessage"),
     type = "structure",
     members = {
         SourceDBClusterParameterGroupIdentifier = schema.new({
@@ -1294,7 +1294,7 @@ M.CopyDBClusterParameterGroupInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -1331,7 +1331,7 @@ M.DBClusterParameterGroup = schema.new({
 })
 
 M.CopyDBClusterParameterGroupOutput = schema.new({
-    id = id.from(_N, "CopyDBClusterParameterGroupOutput"),
+    id = id.from(_N, "CopyDBClusterParameterGroupResult"),
     type = "structure",
     members = {
         DBClusterParameterGroup = schema.new({
@@ -1393,7 +1393,7 @@ M.DBParameterGroupQuotaExceededFault = schema.new({
 })
 
 M.CopyDBClusterSnapshotInput = schema.new({
-    id = id.from(_N, "CopyDBClusterSnapshotInput"),
+    id = id.from(_N, "CopyDBClusterSnapshotMessage"),
     type = "structure",
     members = {
         SourceDBClusterSnapshotIdentifier = schema.new({
@@ -1437,7 +1437,7 @@ M.CopyDBClusterSnapshotInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -1451,7 +1451,7 @@ M.DBClusterSnapshot = schema.new({
             type = "list",
             name = "AvailabilityZones",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AvailabilityZone" } } }),
         }),
         DBClusterSnapshotIdentifier = schema.new({
             id = id.from(_N, "DBClusterSnapshot", "DBClusterSnapshotIdentifier"),
@@ -1596,7 +1596,7 @@ M.DBClusterSnapshot = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         StorageType = schema.new({
             id = id.from(_N, "DBClusterSnapshot", "StorageType"),
@@ -1626,7 +1626,7 @@ M.DBClusterSnapshot = schema.new({
 })
 
 M.CopyDBClusterSnapshotOutput = schema.new({
-    id = id.from(_N, "CopyDBClusterSnapshotOutput"),
+    id = id.from(_N, "CopyDBClusterSnapshotResult"),
     type = "structure",
     members = {
         DBClusterSnapshot = schema.new({
@@ -1720,7 +1720,7 @@ M.SnapshotQuotaExceededFault = schema.new({
 })
 
 M.CopyDBParameterGroupInput = schema.new({
-    id = id.from(_N, "CopyDBParameterGroupInput"),
+    id = id.from(_N, "CopyDBParameterGroupMessage"),
     type = "structure",
     members = {
         SourceDBParameterGroupIdentifier = schema.new({
@@ -1755,7 +1755,7 @@ M.CopyDBParameterGroupInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -1792,7 +1792,7 @@ M.DBParameterGroup = schema.new({
 })
 
 M.CopyDBParameterGroupOutput = schema.new({
-    id = id.from(_N, "CopyDBParameterGroupOutput"),
+    id = id.from(_N, "CopyDBParameterGroupResult"),
     type = "structure",
     members = {
         DBParameterGroup = schema.new({
@@ -1806,7 +1806,7 @@ M.CopyDBParameterGroupOutput = schema.new({
 })
 
 M.CopyDBSnapshotInput = schema.new({
-    id = id.from(_N, "CopyDBSnapshotInput"),
+    id = id.from(_N, "CopyDBSnapshotMessage"),
     type = "structure",
     members = {
         SourceDBSnapshotIdentifier = schema.new({
@@ -1838,7 +1838,7 @@ M.CopyDBSnapshotInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         CopyTags = schema.new({
             id = id.from(_N, "CopyDBSnapshotInput", "CopyTags"),
@@ -2093,7 +2093,7 @@ M.DBSnapshot = schema.new({
             type = "list",
             name = "ProcessorFeatures",
             target_id = prelude.Document.id,
-            list_member = M.ProcessorFeature,
+            list_member = schema.new({ type = "structure", target = M.ProcessorFeature, traits = { [traits.XML_NAME] = { name = "ProcessorFeature" } } }),
         }),
         DbiResourceId = schema.new({
             id = id.from(_N, "DBSnapshot", "DbiResourceId"),
@@ -2106,7 +2106,7 @@ M.DBSnapshot = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         SnapshotTarget = schema.new({
             id = id.from(_N, "DBSnapshot", "SnapshotTarget"),
@@ -2161,7 +2161,7 @@ M.DBSnapshot = schema.new({
 })
 
 M.CopyDBSnapshotOutput = schema.new({
-    id = id.from(_N, "CopyDBSnapshotOutput"),
+    id = id.from(_N, "CopyDBSnapshotResult"),
     type = "structure",
     members = {
         DBSnapshot = schema.new({
@@ -2223,7 +2223,7 @@ M.InvalidDBSnapshotStateFault = schema.new({
 })
 
 M.CopyOptionGroupInput = schema.new({
-    id = id.from(_N, "CopyOptionGroupInput"),
+    id = id.from(_N, "CopyOptionGroupMessage"),
     type = "structure",
     members = {
         SourceOptionGroupIdentifier = schema.new({
@@ -2258,7 +2258,7 @@ M.CopyOptionGroupInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -2407,21 +2407,21 @@ M.Option = schema.new({
             type = "list",
             name = "OptionSettings",
             target_id = prelude.Document.id,
-            list_member = M.OptionSetting,
+            list_member = schema.new({ type = "structure", target = M.OptionSetting, traits = { [traits.XML_NAME] = { name = "OptionSetting" } } }),
         }),
         DBSecurityGroupMemberships = schema.new({
             id = id.from(_N, "Option", "DBSecurityGroupMemberships"),
             type = "list",
             name = "DBSecurityGroupMemberships",
             target_id = prelude.Document.id,
-            list_member = M.DBSecurityGroupMembership,
+            list_member = schema.new({ type = "structure", target = M.DBSecurityGroupMembership, traits = { [traits.XML_NAME] = { name = "DBSecurityGroup" } } }),
         }),
         VpcSecurityGroupMemberships = schema.new({
             id = id.from(_N, "Option", "VpcSecurityGroupMemberships"),
             type = "list",
             name = "VpcSecurityGroupMemberships",
             target_id = prelude.Document.id,
-            list_member = M.VpcSecurityGroupMembership,
+            list_member = schema.new({ type = "structure", target = M.VpcSecurityGroupMembership, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupMembership" } } }),
         }),
     },
 })
@@ -2459,7 +2459,7 @@ M.OptionGroup = schema.new({
             type = "list",
             name = "Options",
             target_id = prelude.Document.id,
-            list_member = M.Option,
+            list_member = schema.new({ type = "structure", target = M.Option, traits = { [traits.XML_NAME] = { name = "Option" } } }),
         }),
         AllowsVpcAndNonVpcInstanceMemberships = schema.new({
             id = id.from(_N, "OptionGroup", "AllowsVpcAndNonVpcInstanceMemberships"),
@@ -2501,7 +2501,7 @@ M.OptionGroup = schema.new({
 })
 
 M.CopyOptionGroupOutput = schema.new({
-    id = id.from(_N, "CopyOptionGroupOutput"),
+    id = id.from(_N, "CopyOptionGroupResult"),
     type = "structure",
     members = {
         OptionGroup = schema.new({
@@ -2579,7 +2579,7 @@ M.BlueGreenDeploymentAlreadyExistsFault = schema.new({
 })
 
 M.CreateBlueGreenDeploymentInput = schema.new({
-    id = id.from(_N, "CreateBlueGreenDeploymentInput"),
+    id = id.from(_N, "CreateBlueGreenDeploymentRequest"),
     type = "structure",
     members = {
         BlueGreenDeploymentName = schema.new({
@@ -2623,7 +2623,7 @@ M.CreateBlueGreenDeploymentInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         TargetDBInstanceClass = schema.new({
             id = id.from(_N, "CreateBlueGreenDeploymentInput", "TargetDBInstanceClass"),
@@ -2779,13 +2779,13 @@ M.BlueGreenDeployment = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateBlueGreenDeploymentOutput = schema.new({
-    id = id.from(_N, "CreateBlueGreenDeploymentOutput"),
+    id = id.from(_N, "CreateBlueGreenDeploymentResponse"),
     type = "structure",
     members = {
         BlueGreenDeployment = schema.new({
@@ -2911,7 +2911,7 @@ M.CreateCustomDBEngineVersionFault = schema.new({
 })
 
 M.CreateCustomDBEngineVersionInput = schema.new({
-    id = id.from(_N, "CreateCustomDBEngineVersionInput"),
+    id = id.from(_N, "CreateCustomDBEngineVersionMessage"),
     type = "structure",
     members = {
         Engine = schema.new({
@@ -2992,7 +2992,7 @@ M.CreateCustomDBEngineVersionInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -3148,7 +3148,7 @@ M.UpgradeTarget = schema.new({
 })
 
 M.CreateCustomDBEngineVersionOutput = schema.new({
-    id = id.from(_N, "CreateCustomDBEngineVersionOutput"),
+    id = id.from(_N, "DBEngineVersion"),
     type = "structure",
     members = {
         Engine = schema.new({
@@ -3261,28 +3261,28 @@ M.CreateCustomDBEngineVersionOutput = schema.new({
             type = "list",
             name = "SupportedCharacterSets",
             target_id = prelude.Document.id,
-            list_member = M.CharacterSet,
+            list_member = schema.new({ type = "structure", target = M.CharacterSet, traits = { [traits.XML_NAME] = { name = "CharacterSet" } } }),
         }),
         SupportedNcharCharacterSets = schema.new({
             id = id.from(_N, "CreateCustomDBEngineVersionOutput", "SupportedNcharCharacterSets"),
             type = "list",
             name = "SupportedNcharCharacterSets",
             target_id = prelude.Document.id,
-            list_member = M.CharacterSet,
+            list_member = schema.new({ type = "structure", target = M.CharacterSet, traits = { [traits.XML_NAME] = { name = "CharacterSet" } } }),
         }),
         ValidUpgradeTarget = schema.new({
             id = id.from(_N, "CreateCustomDBEngineVersionOutput", "ValidUpgradeTarget"),
             type = "list",
             name = "ValidUpgradeTarget",
             target_id = prelude.Document.id,
-            list_member = M.UpgradeTarget,
+            list_member = schema.new({ type = "structure", target = M.UpgradeTarget, traits = { [traits.XML_NAME] = { name = "UpgradeTarget" } } }),
         }),
         SupportedTimezones = schema.new({
             id = id.from(_N, "CreateCustomDBEngineVersionOutput", "SupportedTimezones"),
             type = "list",
             name = "SupportedTimezones",
             target_id = prelude.Document.id,
-            list_member = M.Timezone,
+            list_member = schema.new({ type = "structure", target = M.Timezone, traits = { [traits.XML_NAME] = { name = "Timezone" } } }),
         }),
         ExportableLogTypes = schema.new({
             id = id.from(_N, "CreateCustomDBEngineVersionOutput", "ExportableLogTypes"),
@@ -3340,7 +3340,7 @@ M.CreateCustomDBEngineVersionOutput = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         SupportsBabelfish = schema.new({
             id = id.from(_N, "CreateCustomDBEngineVersionOutput", "SupportsBabelfish"),
@@ -3577,13 +3577,13 @@ M.TagSpecification = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateDBClusterInput = schema.new({
-    id = id.from(_N, "CreateDBClusterInput"),
+    id = id.from(_N, "CreateDBClusterMessage"),
     type = "structure",
     members = {
         AvailabilityZones = schema.new({
@@ -3591,7 +3591,7 @@ M.CreateDBClusterInput = schema.new({
             type = "list",
             name = "AvailabilityZones",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AvailabilityZone" } } }),
         }),
         BackupRetentionPeriod = schema.new({
             id = id.from(_N, "CreateDBClusterInput", "BackupRetentionPeriod"),
@@ -3631,7 +3631,7 @@ M.CreateDBClusterInput = schema.new({
             type = "list",
             name = "VpcSecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupId" } } }),
         }),
         DBSubnetGroupName = schema.new({
             id = id.from(_N, "CreateDBClusterInput", "DBSubnetGroupName"),
@@ -3701,7 +3701,7 @@ M.CreateDBClusterInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         StorageEncrypted = schema.new({
             id = id.from(_N, "CreateDBClusterInput", "StorageEncrypted"),
@@ -3940,7 +3940,7 @@ M.CreateDBClusterInput = schema.new({
             type = "list",
             name = "TagSpecifications",
             target_id = prelude.Document.id,
-            list_member = M.TagSpecification,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         MasterUserAuthenticationType = schema.new({
             id = id.from(_N, "CreateDBClusterInput", "MasterUserAuthenticationType"),
@@ -4356,7 +4356,7 @@ M.DBCluster = schema.new({
             type = "list",
             name = "AvailabilityZones",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AvailabilityZone" } } }),
         }),
         BackupRetentionPeriod = schema.new({
             id = id.from(_N, "DBCluster", "BackupRetentionPeriod"),
@@ -4472,7 +4472,7 @@ M.DBCluster = schema.new({
             type = "list",
             name = "DBClusterOptionGroupMemberships",
             target_id = prelude.Document.id,
-            list_member = M.DBClusterOptionGroupStatus,
+            list_member = schema.new({ type = "structure", target = M.DBClusterOptionGroupStatus, traits = { [traits.XML_NAME] = { name = "DBClusterOptionGroup" } } }),
         }),
         PreferredBackupWindow = schema.new({
             id = id.from(_N, "DBCluster", "PreferredBackupWindow"),
@@ -4503,28 +4503,28 @@ M.DBCluster = schema.new({
             type = "list",
             name = "ReadReplicaIdentifiers",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "ReadReplicaIdentifier" } } }),
         }),
         StatusInfos = schema.new({
             id = id.from(_N, "DBCluster", "StatusInfos"),
             type = "list",
             name = "StatusInfos",
             target_id = prelude.Document.id,
-            list_member = M.DBClusterStatusInfo,
+            list_member = schema.new({ type = "structure", target = M.DBClusterStatusInfo, traits = { [traits.XML_NAME] = { name = "DBClusterStatusInfo" } } }),
         }),
         DBClusterMembers = schema.new({
             id = id.from(_N, "DBCluster", "DBClusterMembers"),
             type = "list",
             name = "DBClusterMembers",
             target_id = prelude.Document.id,
-            list_member = M.DBClusterMember,
+            list_member = schema.new({ type = "structure", target = M.DBClusterMember, traits = { [traits.XML_NAME] = { name = "DBClusterMember" } } }),
         }),
         VpcSecurityGroups = schema.new({
             id = id.from(_N, "DBCluster", "VpcSecurityGroups"),
             type = "list",
             name = "VpcSecurityGroups",
             target_id = prelude.Document.id,
-            list_member = M.VpcSecurityGroupMembership,
+            list_member = schema.new({ type = "structure", target = M.VpcSecurityGroupMembership, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupMembership" } } }),
         }),
         HostedZoneId = schema.new({
             id = id.from(_N, "DBCluster", "HostedZoneId"),
@@ -4567,7 +4567,7 @@ M.DBCluster = schema.new({
             type = "list",
             name = "AssociatedRoles",
             target_id = prelude.Document.id,
-            list_member = M.DBClusterRole,
+            list_member = schema.new({ type = "structure", target = M.DBClusterRole, traits = { [traits.XML_NAME] = { name = "DBClusterRole" } } }),
         }),
         IAMDatabaseAuthenticationEnabled = schema.new({
             id = id.from(_N, "DBCluster", "IAMDatabaseAuthenticationEnabled"),
@@ -4740,14 +4740,14 @@ M.DBCluster = schema.new({
             type = "list",
             name = "DomainMemberships",
             target_id = prelude.Document.id,
-            list_member = M.DomainMembership,
+            list_member = schema.new({ type = "structure", target = M.DomainMembership, traits = { [traits.XML_NAME] = { name = "DomainMembership" } } }),
         }),
         TagList = schema.new({
             id = id.from(_N, "DBCluster", "TagList"),
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         GlobalClusterIdentifier = schema.new({
             id = id.from(_N, "DBCluster", "GlobalClusterIdentifier"),
@@ -4895,7 +4895,7 @@ M.DBCluster = schema.new({
 })
 
 M.CreateDBClusterOutput = schema.new({
-    id = id.from(_N, "CreateDBClusterOutput"),
+    id = id.from(_N, "CreateDBClusterResult"),
     type = "structure",
     members = {
         DBCluster = schema.new({
@@ -5149,7 +5149,7 @@ M.VpcEncryptionControlViolationException = schema.new({
 })
 
 M.CreateDBClusterEndpointInput = schema.new({
-    id = id.from(_N, "CreateDBClusterEndpointInput"),
+    id = id.from(_N, "CreateDBClusterEndpointMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -5198,13 +5198,13 @@ M.CreateDBClusterEndpointInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateDBClusterEndpointOutput = schema.new({
-    id = id.from(_N, "CreateDBClusterEndpointOutput"),
+    id = id.from(_N, "DBClusterEndpoint"),
     type = "structure",
     members = {
         DBClusterEndpointIdentifier = schema.new({
@@ -5305,7 +5305,7 @@ M.DBClusterEndpointQuotaExceededFault = schema.new({
 })
 
 M.CreateDBClusterParameterGroupInput = schema.new({
-    id = id.from(_N, "CreateDBClusterParameterGroupInput"),
+    id = id.from(_N, "CreateDBClusterParameterGroupMessage"),
     type = "structure",
     members = {
         DBClusterParameterGroupName = schema.new({
@@ -5340,13 +5340,13 @@ M.CreateDBClusterParameterGroupInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateDBClusterParameterGroupOutput = schema.new({
-    id = id.from(_N, "CreateDBClusterParameterGroupOutput"),
+    id = id.from(_N, "CreateDBClusterParameterGroupResult"),
     type = "structure",
     members = {
         DBClusterParameterGroup = schema.new({
@@ -5360,7 +5360,7 @@ M.CreateDBClusterParameterGroupOutput = schema.new({
 })
 
 M.CreateDBClusterSnapshotInput = schema.new({
-    id = id.from(_N, "CreateDBClusterSnapshotInput"),
+    id = id.from(_N, "CreateDBClusterSnapshotMessage"),
     type = "structure",
     members = {
         DBClusterSnapshotIdentifier = schema.new({
@@ -5386,13 +5386,13 @@ M.CreateDBClusterSnapshotInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateDBClusterSnapshotOutput = schema.new({
-    id = id.from(_N, "CreateDBClusterSnapshotOutput"),
+    id = id.from(_N, "CreateDBClusterSnapshotResult"),
     type = "structure",
     members = {
         DBClusterSnapshot = schema.new({
@@ -5454,7 +5454,7 @@ M.CertificateNotFoundFault = schema.new({
 })
 
 M.CreateDBInstanceInput = schema.new({
-    id = id.from(_N, "CreateDBInstanceInput"),
+    id = id.from(_N, "CreateDBInstanceMessage"),
     type = "structure",
     members = {
         DBName = schema.new({
@@ -5513,14 +5513,14 @@ M.CreateDBInstanceInput = schema.new({
             type = "list",
             name = "DBSecurityGroups",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "DBSecurityGroupName" } } }),
         }),
         VpcSecurityGroupIds = schema.new({
             id = id.from(_N, "CreateDBInstanceInput", "VpcSecurityGroupIds"),
             type = "list",
             name = "VpcSecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupId" } } }),
         }),
         AvailabilityZone = schema.new({
             id = id.from(_N, "CreateDBInstanceInput", "AvailabilityZone"),
@@ -5629,7 +5629,7 @@ M.CreateDBInstanceInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         DBClusterIdentifier = schema.new({
             id = id.from(_N, "CreateDBInstanceInput", "DBClusterIdentifier"),
@@ -5776,7 +5776,7 @@ M.CreateDBInstanceInput = schema.new({
             type = "list",
             name = "ProcessorFeatures",
             target_id = prelude.Document.id,
-            list_member = M.ProcessorFeature,
+            list_member = schema.new({ type = "structure", target = M.ProcessorFeature, traits = { [traits.XML_NAME] = { name = "ProcessorFeature" } } }),
         }),
         DeletionProtection = schema.new({
             id = id.from(_N, "CreateDBInstanceInput", "DeletionProtection"),
@@ -5868,7 +5868,7 @@ M.CreateDBInstanceInput = schema.new({
             type = "list",
             name = "TagSpecifications",
             target_id = prelude.Document.id,
-            list_member = M.TagSpecification,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         MasterUserAuthenticationType = schema.new({
             id = id.from(_N, "CreateDBInstanceInput", "MasterUserAuthenticationType"),
@@ -6028,7 +6028,7 @@ M.DBSubnetGroup = schema.new({
             type = "list",
             name = "Subnets",
             target_id = prelude.Document.id,
-            list_member = M.Subnet,
+            list_member = schema.new({ type = "structure", target = M.Subnet, traits = { [traits.XML_NAME] = { name = "Subnet" } } }),
         }),
         DBSubnetGroupArn = schema.new({
             id = id.from(_N, "DBSubnetGroup", "DBSubnetGroupArn"),
@@ -6190,7 +6190,7 @@ M.PendingModifiedValues = schema.new({
             type = "list",
             name = "ProcessorFeatures",
             target_id = prelude.Document.id,
-            list_member = M.ProcessorFeature,
+            list_member = schema.new({ type = "structure", target = M.ProcessorFeature, traits = { [traits.XML_NAME] = { name = "ProcessorFeature" } } }),
         }),
         AutomationMode = schema.new({
             id = id.from(_N, "PendingModifiedValues", "AutomationMode"),
@@ -6345,21 +6345,21 @@ M.DBInstance = schema.new({
             type = "list",
             name = "DBSecurityGroups",
             target_id = prelude.Document.id,
-            list_member = M.DBSecurityGroupMembership,
+            list_member = schema.new({ type = "structure", target = M.DBSecurityGroupMembership, traits = { [traits.XML_NAME] = { name = "DBSecurityGroup" } } }),
         }),
         VpcSecurityGroups = schema.new({
             id = id.from(_N, "DBInstance", "VpcSecurityGroups"),
             type = "list",
             name = "VpcSecurityGroups",
             target_id = prelude.Document.id,
-            list_member = M.VpcSecurityGroupMembership,
+            list_member = schema.new({ type = "structure", target = M.VpcSecurityGroupMembership, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupMembership" } } }),
         }),
         DBParameterGroups = schema.new({
             id = id.from(_N, "DBInstance", "DBParameterGroups"),
             type = "list",
             name = "DBParameterGroups",
             target_id = prelude.Document.id,
-            list_member = M.DBParameterGroupStatus,
+            list_member = schema.new({ type = "structure", target = M.DBParameterGroupStatus, traits = { [traits.XML_NAME] = { name = "DBParameterGroup" } } }),
         }),
         AvailabilityZone = schema.new({
             id = id.from(_N, "DBInstance", "AvailabilityZone"),
@@ -6428,14 +6428,14 @@ M.DBInstance = schema.new({
             type = "list",
             name = "ReadReplicaDBInstanceIdentifiers",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "ReadReplicaDBInstanceIdentifier" } } }),
         }),
         ReadReplicaDBClusterIdentifiers = schema.new({
             id = id.from(_N, "DBInstance", "ReadReplicaDBClusterIdentifiers"),
             type = "list",
             name = "ReadReplicaDBClusterIdentifiers",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "ReadReplicaDBClusterIdentifier" } } }),
         }),
         ReplicaMode = schema.new({
             id = id.from(_N, "DBInstance", "ReplicaMode"),
@@ -6466,7 +6466,7 @@ M.DBInstance = schema.new({
             type = "list",
             name = "OptionGroupMemberships",
             target_id = prelude.Document.id,
-            list_member = M.OptionGroupMembership,
+            list_member = schema.new({ type = "structure", target = M.OptionGroupMembership, traits = { [traits.XML_NAME] = { name = "OptionGroupMembership" } } }),
         }),
         CharacterSetName = schema.new({
             id = id.from(_N, "DBInstance", "CharacterSetName"),
@@ -6497,7 +6497,7 @@ M.DBInstance = schema.new({
             type = "list",
             name = "StatusInfos",
             target_id = prelude.Document.id,
-            list_member = M.DBInstanceStatusInfo,
+            list_member = schema.new({ type = "structure", target = M.DBInstanceStatusInfo, traits = { [traits.XML_NAME] = { name = "DBInstanceStatusInfo" } } }),
         }),
         StorageType = schema.new({
             id = id.from(_N, "DBInstance", "StorageType"),
@@ -6558,7 +6558,7 @@ M.DBInstance = schema.new({
             type = "list",
             name = "DomainMemberships",
             target_id = prelude.Document.id,
-            list_member = M.DomainMembership,
+            list_member = schema.new({ type = "structure", target = M.DomainMembership, traits = { [traits.XML_NAME] = { name = "DomainMembership" } } }),
         }),
         CopyTagsToSnapshot = schema.new({
             id = id.from(_N, "DBInstance", "CopyTagsToSnapshot"),
@@ -6644,7 +6644,7 @@ M.DBInstance = schema.new({
             type = "list",
             name = "ProcessorFeatures",
             target_id = prelude.Document.id,
-            list_member = M.ProcessorFeature,
+            list_member = schema.new({ type = "structure", target = M.ProcessorFeature, traits = { [traits.XML_NAME] = { name = "ProcessorFeature" } } }),
         }),
         DeletionProtection = schema.new({
             id = id.from(_N, "DBInstance", "DeletionProtection"),
@@ -6657,7 +6657,7 @@ M.DBInstance = schema.new({
             type = "list",
             name = "AssociatedRoles",
             target_id = prelude.Document.id,
-            list_member = M.DBInstanceRole,
+            list_member = schema.new({ type = "structure", target = M.DBInstanceRole, traits = { [traits.XML_NAME] = { name = "DBInstanceRole" } } }),
         }),
         ListenerEndpoint = schema.new({
             id = id.from(_N, "DBInstance", "ListenerEndpoint"),
@@ -6677,7 +6677,7 @@ M.DBInstance = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         AutomationMode = schema.new({
             id = id.from(_N, "DBInstance", "AutomationMode"),
@@ -6744,7 +6744,7 @@ M.DBInstance = schema.new({
             type = "list",
             name = "DBInstanceAutomatedBackupsReplications",
             target_id = prelude.Document.id,
-            list_member = M.DBInstanceAutomatedBackupsReplication,
+            list_member = schema.new({ type = "structure", target = M.DBInstanceAutomatedBackupsReplication, traits = { [traits.XML_NAME] = { name = "DBInstanceAutomatedBackupsReplication" } } }),
         }),
         BackupTarget = schema.new({
             id = id.from(_N, "DBInstance", "BackupTarget"),
@@ -6843,7 +6843,7 @@ M.DBInstance = schema.new({
 })
 
 M.CreateDBInstanceOutput = schema.new({
-    id = id.from(_N, "CreateDBInstanceOutput"),
+    id = id.from(_N, "CreateDBInstanceResult"),
     type = "structure",
     members = {
         DBInstance = schema.new({
@@ -6905,7 +6905,7 @@ M.TenantDatabaseQuotaExceededFault = schema.new({
 })
 
 M.CreateDBInstanceReadReplicaInput = schema.new({
-    id = id.from(_N, "CreateDBInstanceReadReplicaInput"),
+    id = id.from(_N, "CreateDBInstanceReadReplicaMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -6988,7 +6988,7 @@ M.CreateDBInstanceReadReplicaInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         DBSubnetGroupName = schema.new({
             id = id.from(_N, "CreateDBInstanceReadReplicaInput", "DBSubnetGroupName"),
@@ -7001,7 +7001,7 @@ M.CreateDBInstanceReadReplicaInput = schema.new({
             type = "list",
             name = "VpcSecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupId" } } }),
         }),
         StorageType = schema.new({
             id = id.from(_N, "CreateDBInstanceReadReplicaInput", "StorageType"),
@@ -7081,7 +7081,7 @@ M.CreateDBInstanceReadReplicaInput = schema.new({
             type = "list",
             name = "ProcessorFeatures",
             target_id = prelude.Document.id,
-            list_member = M.ProcessorFeature,
+            list_member = schema.new({ type = "structure", target = M.ProcessorFeature, traits = { [traits.XML_NAME] = { name = "ProcessorFeature" } } }),
         }),
         UseDefaultProcessorFeatures = schema.new({
             id = id.from(_N, "CreateDBInstanceReadReplicaInput", "UseDefaultProcessorFeatures"),
@@ -7210,13 +7210,13 @@ M.CreateDBInstanceReadReplicaInput = schema.new({
             type = "list",
             name = "TagSpecifications",
             target_id = prelude.Document.id,
-            list_member = M.TagSpecification,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
 
 M.CreateDBInstanceReadReplicaOutput = schema.new({
-    id = id.from(_N, "CreateDBInstanceReadReplicaOutput"),
+    id = id.from(_N, "CreateDBInstanceReadReplicaResult"),
     type = "structure",
     members = {
         DBInstance = schema.new({
@@ -7246,7 +7246,7 @@ M.DBSubnetGroupNotAllowedFault = schema.new({
 })
 
 M.CreateDBParameterGroupInput = schema.new({
-    id = id.from(_N, "CreateDBParameterGroupInput"),
+    id = id.from(_N, "CreateDBParameterGroupMessage"),
     type = "structure",
     members = {
         DBParameterGroupName = schema.new({
@@ -7281,13 +7281,13 @@ M.CreateDBParameterGroupInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateDBParameterGroupOutput = schema.new({
-    id = id.from(_N, "CreateDBParameterGroupOutput"),
+    id = id.from(_N, "CreateDBParameterGroupResult"),
     type = "structure",
     members = {
         DBParameterGroup = schema.new({
@@ -7344,7 +7344,7 @@ M.UserAuthConfig = schema.new({
 })
 
 M.CreateDBProxyInput = schema.new({
-    id = id.from(_N, "CreateDBProxyInput"),
+    id = id.from(_N, "CreateDBProxyRequest"),
     type = "structure",
     members = {
         DBProxyName = schema.new({
@@ -7427,7 +7427,7 @@ M.CreateDBProxyInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         EndpointNetworkType = schema.new({
             id = id.from(_N, "CreateDBProxyInput", "EndpointNetworkType"),
@@ -7606,7 +7606,7 @@ M.DBProxy = schema.new({
 })
 
 M.CreateDBProxyOutput = schema.new({
-    id = id.from(_N, "CreateDBProxyOutput"),
+    id = id.from(_N, "CreateDBProxyResponse"),
     type = "structure",
     members = {
         DBProxy = schema.new({
@@ -7652,7 +7652,7 @@ M.DBProxyQuotaExceededFault = schema.new({
 })
 
 M.CreateDBProxyEndpointInput = schema.new({
-    id = id.from(_N, "CreateDBProxyEndpointInput"),
+    id = id.from(_N, "CreateDBProxyEndpointRequest"),
     type = "structure",
     members = {
         DBProxyName = schema.new({
@@ -7701,7 +7701,7 @@ M.CreateDBProxyEndpointInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         EndpointNetworkType = schema.new({
             id = id.from(_N, "CreateDBProxyEndpointInput", "EndpointNetworkType"),
@@ -7794,7 +7794,7 @@ M.DBProxyEndpoint = schema.new({
 })
 
 M.CreateDBProxyEndpointOutput = schema.new({
-    id = id.from(_N, "CreateDBProxyEndpointOutput"),
+    id = id.from(_N, "CreateDBProxyEndpointResponse"),
     type = "structure",
     members = {
         DBProxyEndpoint = schema.new({
@@ -7856,7 +7856,7 @@ M.InvalidDBProxyStateFault = schema.new({
 })
 
 M.CreateDBSecurityGroupInput = schema.new({
-    id = id.from(_N, "CreateDBSecurityGroupInput"),
+    id = id.from(_N, "CreateDBSecurityGroupMessage"),
     type = "structure",
     members = {
         DBSecurityGroupName = schema.new({
@@ -7882,13 +7882,13 @@ M.CreateDBSecurityGroupInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateDBSecurityGroupOutput = schema.new({
-    id = id.from(_N, "CreateDBSecurityGroupOutput"),
+    id = id.from(_N, "CreateDBSecurityGroupResult"),
     type = "structure",
     members = {
         DBSecurityGroup = schema.new({
@@ -7950,7 +7950,7 @@ M.DBSecurityGroupQuotaExceededFault = schema.new({
 })
 
 M.CreateDBShardGroupInput = schema.new({
-    id = id.from(_N, "CreateDBShardGroupInput"),
+    id = id.from(_N, "CreateDBShardGroupMessage"),
     type = "structure",
     members = {
         DBShardGroupIdentifier = schema.new({
@@ -8003,13 +8003,13 @@ M.CreateDBShardGroupInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateDBShardGroupOutput = schema.new({
-    id = id.from(_N, "CreateDBShardGroupOutput"),
+    id = id.from(_N, "DBShardGroup"),
     type = "structure",
     members = {
         DBShardGroupResourceId = schema.new({
@@ -8077,7 +8077,7 @@ M.CreateDBShardGroupOutput = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -8131,7 +8131,7 @@ M.UnsupportedDBEngineVersionFault = schema.new({
 })
 
 M.CreateDBSnapshotInput = schema.new({
-    id = id.from(_N, "CreateDBSnapshotInput"),
+    id = id.from(_N, "CreateDBSnapshotMessage"),
     type = "structure",
     members = {
         DBSnapshotIdentifier = schema.new({
@@ -8157,13 +8157,13 @@ M.CreateDBSnapshotInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateDBSnapshotOutput = schema.new({
-    id = id.from(_N, "CreateDBSnapshotOutput"),
+    id = id.from(_N, "CreateDBSnapshotResult"),
     type = "structure",
     members = {
         DBSnapshot = schema.new({
@@ -8177,7 +8177,7 @@ M.CreateDBSnapshotOutput = schema.new({
 })
 
 M.CreateDBSubnetGroupInput = schema.new({
-    id = id.from(_N, "CreateDBSubnetGroupInput"),
+    id = id.from(_N, "CreateDBSubnetGroupMessage"),
     type = "structure",
     members = {
         DBSubnetGroupName = schema.new({
@@ -8203,7 +8203,7 @@ M.CreateDBSubnetGroupInput = schema.new({
             type = "list",
             name = "SubnetIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SubnetIdentifier" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -8213,13 +8213,13 @@ M.CreateDBSubnetGroupInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateDBSubnetGroupOutput = schema.new({
-    id = id.from(_N, "CreateDBSubnetGroupOutput"),
+    id = id.from(_N, "CreateDBSubnetGroupResult"),
     type = "structure",
     members = {
         DBSubnetGroup = schema.new({
@@ -8281,7 +8281,7 @@ M.DBSubnetQuotaExceededFault = schema.new({
 })
 
 M.CreateEventSubscriptionInput = schema.new({
-    id = id.from(_N, "CreateEventSubscriptionInput"),
+    id = id.from(_N, "CreateEventSubscriptionMessage"),
     type = "structure",
     members = {
         SubscriptionName = schema.new({
@@ -8313,14 +8313,14 @@ M.CreateEventSubscriptionInput = schema.new({
             type = "list",
             name = "EventCategories",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "EventCategory" } } }),
         }),
         SourceIds = schema.new({
             id = id.from(_N, "CreateEventSubscriptionInput", "SourceIds"),
             type = "list",
             name = "SourceIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SourceId" } } }),
         }),
         Enabled = schema.new({
             id = id.from(_N, "CreateEventSubscriptionInput", "Enabled"),
@@ -8333,13 +8333,13 @@ M.CreateEventSubscriptionInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateEventSubscriptionOutput = schema.new({
-    id = id.from(_N, "CreateEventSubscriptionOutput"),
+    id = id.from(_N, "CreateEventSubscriptionResult"),
     type = "structure",
     members = {
         EventSubscription = schema.new({
@@ -8449,7 +8449,7 @@ M.SubscriptionCategoryNotFoundFault = schema.new({
 })
 
 M.CreateGlobalClusterInput = schema.new({
-    id = id.from(_N, "CreateGlobalClusterInput"),
+    id = id.from(_N, "CreateGlobalClusterMessage"),
     type = "structure",
     members = {
         GlobalClusterIdentifier = schema.new({
@@ -8508,7 +8508,7 @@ M.CreateGlobalClusterInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -8657,7 +8657,7 @@ M.GlobalCluster = schema.new({
             type = "list",
             name = "GlobalClusterMembers",
             target_id = prelude.Document.id,
-            list_member = M.GlobalClusterMember,
+            list_member = schema.new({ type = "structure", target = M.GlobalClusterMember, traits = { [traits.XML_NAME] = { name = "GlobalClusterMember" } } }),
         }),
         Endpoint = schema.new({
             id = id.from(_N, "GlobalCluster", "Endpoint"),
@@ -8677,13 +8677,13 @@ M.GlobalCluster = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateGlobalClusterOutput = schema.new({
-    id = id.from(_N, "CreateGlobalClusterOutput"),
+    id = id.from(_N, "CreateGlobalClusterResult"),
     type = "structure",
     members = {
         GlobalCluster = schema.new({
@@ -8745,7 +8745,7 @@ M.InvalidDBShardGroupStateFault = schema.new({
 })
 
 M.CreateIntegrationInput = schema.new({
-    id = id.from(_N, "CreateIntegrationInput"),
+    id = id.from(_N, "CreateIntegrationMessage"),
     type = "structure",
     members = {
         SourceArn = schema.new({
@@ -8794,7 +8794,7 @@ M.CreateIntegrationInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         DataFilter = schema.new({
             id = id.from(_N, "CreateIntegrationInput", "DataFilter"),
@@ -8834,7 +8834,7 @@ M.IntegrationError = schema.new({
 })
 
 M.CreateIntegrationOutput = schema.new({
-    id = id.from(_N, "CreateIntegrationOutput"),
+    id = id.from(_N, "Integration"),
     type = "structure",
     members = {
         SourceArn = schema.new({
@@ -8886,7 +8886,7 @@ M.CreateIntegrationOutput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         DataFilter = schema.new({
             id = id.from(_N, "CreateIntegrationOutput", "DataFilter"),
@@ -8911,7 +8911,7 @@ M.CreateIntegrationOutput = schema.new({
             type = "list",
             name = "Errors",
             target_id = prelude.Document.id,
-            list_member = M.IntegrationError,
+            list_member = schema.new({ type = "structure", target = M.IntegrationError, traits = { [traits.XML_NAME] = { name = "IntegrationError" } } }),
         }),
     },
 })
@@ -8965,7 +8965,7 @@ M.IntegrationQuotaExceededFault = schema.new({
 })
 
 M.CreateOptionGroupInput = schema.new({
-    id = id.from(_N, "CreateOptionGroupInput"),
+    id = id.from(_N, "CreateOptionGroupMessage"),
     type = "structure",
     members = {
         OptionGroupName = schema.new({
@@ -9009,13 +9009,13 @@ M.CreateOptionGroupInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateOptionGroupOutput = schema.new({
-    id = id.from(_N, "CreateOptionGroupOutput"),
+    id = id.from(_N, "CreateOptionGroupResult"),
     type = "structure",
     members = {
         OptionGroup = schema.new({
@@ -9029,7 +9029,7 @@ M.CreateOptionGroupOutput = schema.new({
 })
 
 M.CreateTenantDatabaseInput = schema.new({
-    id = id.from(_N, "CreateTenantDatabaseInput"),
+    id = id.from(_N, "CreateTenantDatabaseMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -9094,7 +9094,7 @@ M.CreateTenantDatabaseInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -9207,13 +9207,13 @@ M.TenantDatabase = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateTenantDatabaseOutput = schema.new({
-    id = id.from(_N, "CreateTenantDatabaseOutput"),
+    id = id.from(_N, "CreateTenantDatabaseResult"),
     type = "structure",
     members = {
         TenantDatabase = schema.new({
@@ -9243,7 +9243,7 @@ M.TenantDatabaseAlreadyExistsFault = schema.new({
 })
 
 M.DeleteBlueGreenDeploymentInput = schema.new({
-    id = id.from(_N, "DeleteBlueGreenDeploymentInput"),
+    id = id.from(_N, "DeleteBlueGreenDeploymentRequest"),
     type = "structure",
     members = {
         BlueGreenDeploymentIdentifier = schema.new({
@@ -9265,7 +9265,7 @@ M.DeleteBlueGreenDeploymentInput = schema.new({
 })
 
 M.DeleteBlueGreenDeploymentOutput = schema.new({
-    id = id.from(_N, "DeleteBlueGreenDeploymentOutput"),
+    id = id.from(_N, "DeleteBlueGreenDeploymentResponse"),
     type = "structure",
     members = {
         BlueGreenDeployment = schema.new({
@@ -9295,7 +9295,7 @@ M.InvalidBlueGreenDeploymentStateFault = schema.new({
 })
 
 M.DeleteCustomDBEngineVersionInput = schema.new({
-    id = id.from(_N, "DeleteCustomDBEngineVersionInput"),
+    id = id.from(_N, "DeleteCustomDBEngineVersionMessage"),
     type = "structure",
     members = {
         Engine = schema.new({
@@ -9320,7 +9320,7 @@ M.DeleteCustomDBEngineVersionInput = schema.new({
 })
 
 M.DeleteCustomDBEngineVersionOutput = schema.new({
-    id = id.from(_N, "DeleteCustomDBEngineVersionOutput"),
+    id = id.from(_N, "DBEngineVersion"),
     type = "structure",
     members = {
         Engine = schema.new({
@@ -9433,28 +9433,28 @@ M.DeleteCustomDBEngineVersionOutput = schema.new({
             type = "list",
             name = "SupportedCharacterSets",
             target_id = prelude.Document.id,
-            list_member = M.CharacterSet,
+            list_member = schema.new({ type = "structure", target = M.CharacterSet, traits = { [traits.XML_NAME] = { name = "CharacterSet" } } }),
         }),
         SupportedNcharCharacterSets = schema.new({
             id = id.from(_N, "DeleteCustomDBEngineVersionOutput", "SupportedNcharCharacterSets"),
             type = "list",
             name = "SupportedNcharCharacterSets",
             target_id = prelude.Document.id,
-            list_member = M.CharacterSet,
+            list_member = schema.new({ type = "structure", target = M.CharacterSet, traits = { [traits.XML_NAME] = { name = "CharacterSet" } } }),
         }),
         ValidUpgradeTarget = schema.new({
             id = id.from(_N, "DeleteCustomDBEngineVersionOutput", "ValidUpgradeTarget"),
             type = "list",
             name = "ValidUpgradeTarget",
             target_id = prelude.Document.id,
-            list_member = M.UpgradeTarget,
+            list_member = schema.new({ type = "structure", target = M.UpgradeTarget, traits = { [traits.XML_NAME] = { name = "UpgradeTarget" } } }),
         }),
         SupportedTimezones = schema.new({
             id = id.from(_N, "DeleteCustomDBEngineVersionOutput", "SupportedTimezones"),
             type = "list",
             name = "SupportedTimezones",
             target_id = prelude.Document.id,
-            list_member = M.Timezone,
+            list_member = schema.new({ type = "structure", target = M.Timezone, traits = { [traits.XML_NAME] = { name = "Timezone" } } }),
         }),
         ExportableLogTypes = schema.new({
             id = id.from(_N, "DeleteCustomDBEngineVersionOutput", "ExportableLogTypes"),
@@ -9512,7 +9512,7 @@ M.DeleteCustomDBEngineVersionOutput = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         SupportsBabelfish = schema.new({
             id = id.from(_N, "DeleteCustomDBEngineVersionOutput", "SupportsBabelfish"),
@@ -9578,7 +9578,7 @@ M.DBClusterAutomatedBackupQuotaExceededFault = schema.new({
 })
 
 M.DeleteDBClusterInput = schema.new({
-    id = id.from(_N, "DeleteDBClusterInput"),
+    id = id.from(_N, "DeleteDBClusterMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -9612,7 +9612,7 @@ M.DeleteDBClusterInput = schema.new({
 })
 
 M.DeleteDBClusterOutput = schema.new({
-    id = id.from(_N, "DeleteDBClusterOutput"),
+    id = id.from(_N, "DeleteDBClusterResult"),
     type = "structure",
     members = {
         DBCluster = schema.new({
@@ -9642,7 +9642,7 @@ M.DBClusterAutomatedBackupNotFoundFault = schema.new({
 })
 
 M.DeleteDBClusterAutomatedBackupInput = schema.new({
-    id = id.from(_N, "DeleteDBClusterAutomatedBackupInput"),
+    id = id.from(_N, "DeleteDBClusterAutomatedBackupMessage"),
     type = "structure",
     members = {
         DbClusterResourceId = schema.new({
@@ -9806,7 +9806,7 @@ M.DBClusterAutomatedBackup = schema.new({
             type = "list",
             name = "AvailabilityZones",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AvailabilityZone" } } }),
         }),
         Port = schema.new({
             id = id.from(_N, "DBClusterAutomatedBackup", "Port"),
@@ -9849,13 +9849,13 @@ M.DBClusterAutomatedBackup = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.DeleteDBClusterAutomatedBackupOutput = schema.new({
-    id = id.from(_N, "DeleteDBClusterAutomatedBackupOutput"),
+    id = id.from(_N, "DeleteDBClusterAutomatedBackupResult"),
     type = "structure",
     members = {
         DBClusterAutomatedBackup = schema.new({
@@ -9901,7 +9901,7 @@ M.DBClusterEndpointNotFoundFault = schema.new({
 })
 
 M.DeleteDBClusterEndpointInput = schema.new({
-    id = id.from(_N, "DeleteDBClusterEndpointInput"),
+    id = id.from(_N, "DeleteDBClusterEndpointMessage"),
     type = "structure",
     members = {
         DBClusterEndpointIdentifier = schema.new({
@@ -9917,7 +9917,7 @@ M.DeleteDBClusterEndpointInput = schema.new({
 })
 
 M.DeleteDBClusterEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteDBClusterEndpointOutput"),
+    id = id.from(_N, "DBClusterEndpoint"),
     type = "structure",
     members = {
         DBClusterEndpointIdentifier = schema.new({
@@ -9986,7 +9986,7 @@ M.DeleteDBClusterEndpointOutput = schema.new({
 })
 
 M.DeleteDBClusterParameterGroupInput = schema.new({
-    id = id.from(_N, "DeleteDBClusterParameterGroupInput"),
+    id = id.from(_N, "DeleteDBClusterParameterGroupMessage"),
     type = "structure",
     members = {
         DBClusterParameterGroupName = schema.new({
@@ -10002,7 +10002,7 @@ M.DeleteDBClusterParameterGroupInput = schema.new({
 })
 
 M.DeleteDBClusterParameterGroupOutput = schema.new({
-    id = id.from(_N, "DeleteDBClusterParameterGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -10023,7 +10023,7 @@ M.InvalidDBParameterGroupStateFault = schema.new({
 })
 
 M.DeleteDBClusterSnapshotInput = schema.new({
-    id = id.from(_N, "DeleteDBClusterSnapshotInput"),
+    id = id.from(_N, "DeleteDBClusterSnapshotMessage"),
     type = "structure",
     members = {
         DBClusterSnapshotIdentifier = schema.new({
@@ -10039,7 +10039,7 @@ M.DeleteDBClusterSnapshotInput = schema.new({
 })
 
 M.DeleteDBClusterSnapshotOutput = schema.new({
-    id = id.from(_N, "DeleteDBClusterSnapshotOutput"),
+    id = id.from(_N, "DeleteDBClusterSnapshotResult"),
     type = "structure",
     members = {
         DBClusterSnapshot = schema.new({
@@ -10069,7 +10069,7 @@ M.DBInstanceAutomatedBackupQuotaExceededFault = schema.new({
 })
 
 M.DeleteDBInstanceInput = schema.new({
-    id = id.from(_N, "DeleteDBInstanceInput"),
+    id = id.from(_N, "DeleteDBInstanceMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -10103,7 +10103,7 @@ M.DeleteDBInstanceInput = schema.new({
 })
 
 M.DeleteDBInstanceOutput = schema.new({
-    id = id.from(_N, "DeleteDBInstanceOutput"),
+    id = id.from(_N, "DeleteDBInstanceResult"),
     type = "structure",
     members = {
         DBInstance = schema.new({
@@ -10133,7 +10133,7 @@ M.DBInstanceAutomatedBackupNotFoundFault = schema.new({
 })
 
 M.DeleteDBInstanceAutomatedBackupInput = schema.new({
-    id = id.from(_N, "DeleteDBInstanceAutomatedBackupInput"),
+    id = id.from(_N, "DeleteDBInstanceAutomatedBackupMessage"),
     type = "structure",
     members = {
         DbiResourceId = schema.new({
@@ -10329,7 +10329,7 @@ M.DBInstanceAutomatedBackup = schema.new({
             type = "list",
             name = "DBInstanceAutomatedBackupsReplications",
             target_id = prelude.Document.id,
-            list_member = M.DBInstanceAutomatedBackupsReplication,
+            list_member = schema.new({ type = "structure", target = M.DBInstanceAutomatedBackupsReplication, traits = { [traits.XML_NAME] = { name = "DBInstanceAutomatedBackupsReplication" } } }),
         }),
         BackupTarget = schema.new({
             id = id.from(_N, "DBInstanceAutomatedBackup", "BackupTarget"),
@@ -10354,7 +10354,7 @@ M.DBInstanceAutomatedBackup = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         DedicatedLogVolume = schema.new({
             id = id.from(_N, "DBInstanceAutomatedBackup", "DedicatedLogVolume"),
@@ -10373,7 +10373,7 @@ M.DBInstanceAutomatedBackup = schema.new({
 })
 
 M.DeleteDBInstanceAutomatedBackupOutput = schema.new({
-    id = id.from(_N, "DeleteDBInstanceAutomatedBackupOutput"),
+    id = id.from(_N, "DeleteDBInstanceAutomatedBackupResult"),
     type = "structure",
     members = {
         DBInstanceAutomatedBackup = schema.new({
@@ -10403,7 +10403,7 @@ M.InvalidDBInstanceAutomatedBackupStateFault = schema.new({
 })
 
 M.DeleteDBParameterGroupInput = schema.new({
-    id = id.from(_N, "DeleteDBParameterGroupInput"),
+    id = id.from(_N, "DeleteDBParameterGroupMessage"),
     type = "structure",
     members = {
         DBParameterGroupName = schema.new({
@@ -10419,12 +10419,12 @@ M.DeleteDBParameterGroupInput = schema.new({
 })
 
 M.DeleteDBParameterGroupOutput = schema.new({
-    id = id.from(_N, "DeleteDBParameterGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDBProxyInput = schema.new({
-    id = id.from(_N, "DeleteDBProxyInput"),
+    id = id.from(_N, "DeleteDBProxyRequest"),
     type = "structure",
     members = {
         DBProxyName = schema.new({
@@ -10440,7 +10440,7 @@ M.DeleteDBProxyInput = schema.new({
 })
 
 M.DeleteDBProxyOutput = schema.new({
-    id = id.from(_N, "DeleteDBProxyOutput"),
+    id = id.from(_N, "DeleteDBProxyResponse"),
     type = "structure",
     members = {
         DBProxy = schema.new({
@@ -10454,7 +10454,7 @@ M.DeleteDBProxyOutput = schema.new({
 })
 
 M.DeleteDBProxyEndpointInput = schema.new({
-    id = id.from(_N, "DeleteDBProxyEndpointInput"),
+    id = id.from(_N, "DeleteDBProxyEndpointRequest"),
     type = "structure",
     members = {
         DBProxyEndpointName = schema.new({
@@ -10470,7 +10470,7 @@ M.DeleteDBProxyEndpointInput = schema.new({
 })
 
 M.DeleteDBProxyEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteDBProxyEndpointOutput"),
+    id = id.from(_N, "DeleteDBProxyEndpointResponse"),
     type = "structure",
     members = {
         DBProxyEndpoint = schema.new({
@@ -10500,7 +10500,7 @@ M.InvalidDBProxyEndpointStateFault = schema.new({
 })
 
 M.DeleteDBSecurityGroupInput = schema.new({
-    id = id.from(_N, "DeleteDBSecurityGroupInput"),
+    id = id.from(_N, "DeleteDBSecurityGroupMessage"),
     type = "structure",
     members = {
         DBSecurityGroupName = schema.new({
@@ -10516,12 +10516,12 @@ M.DeleteDBSecurityGroupInput = schema.new({
 })
 
 M.DeleteDBSecurityGroupOutput = schema.new({
-    id = id.from(_N, "DeleteDBSecurityGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDBShardGroupInput = schema.new({
-    id = id.from(_N, "DeleteDBShardGroupInput"),
+    id = id.from(_N, "DeleteDBShardGroupMessage"),
     type = "structure",
     members = {
         DBShardGroupIdentifier = schema.new({
@@ -10537,7 +10537,7 @@ M.DeleteDBShardGroupInput = schema.new({
 })
 
 M.DeleteDBShardGroupOutput = schema.new({
-    id = id.from(_N, "DeleteDBShardGroupOutput"),
+    id = id.from(_N, "DBShardGroup"),
     type = "structure",
     members = {
         DBShardGroupResourceId = schema.new({
@@ -10605,13 +10605,13 @@ M.DeleteDBShardGroupOutput = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.DeleteDBSnapshotInput = schema.new({
-    id = id.from(_N, "DeleteDBSnapshotInput"),
+    id = id.from(_N, "DeleteDBSnapshotMessage"),
     type = "structure",
     members = {
         DBSnapshotIdentifier = schema.new({
@@ -10627,7 +10627,7 @@ M.DeleteDBSnapshotInput = schema.new({
 })
 
 M.DeleteDBSnapshotOutput = schema.new({
-    id = id.from(_N, "DeleteDBSnapshotOutput"),
+    id = id.from(_N, "DeleteDBSnapshotResult"),
     type = "structure",
     members = {
         DBSnapshot = schema.new({
@@ -10641,7 +10641,7 @@ M.DeleteDBSnapshotOutput = schema.new({
 })
 
 M.DeleteDBSubnetGroupInput = schema.new({
-    id = id.from(_N, "DeleteDBSubnetGroupInput"),
+    id = id.from(_N, "DeleteDBSubnetGroupMessage"),
     type = "structure",
     members = {
         DBSubnetGroupName = schema.new({
@@ -10657,7 +10657,7 @@ M.DeleteDBSubnetGroupInput = schema.new({
 })
 
 M.DeleteDBSubnetGroupOutput = schema.new({
-    id = id.from(_N, "DeleteDBSubnetGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -10678,7 +10678,7 @@ M.InvalidDBSubnetStateFault = schema.new({
 })
 
 M.DeleteEventSubscriptionInput = schema.new({
-    id = id.from(_N, "DeleteEventSubscriptionInput"),
+    id = id.from(_N, "DeleteEventSubscriptionMessage"),
     type = "structure",
     members = {
         SubscriptionName = schema.new({
@@ -10694,7 +10694,7 @@ M.DeleteEventSubscriptionInput = schema.new({
 })
 
 M.DeleteEventSubscriptionOutput = schema.new({
-    id = id.from(_N, "DeleteEventSubscriptionOutput"),
+    id = id.from(_N, "DeleteEventSubscriptionResult"),
     type = "structure",
     members = {
         EventSubscription = schema.new({
@@ -10724,7 +10724,7 @@ M.InvalidEventSubscriptionStateFault = schema.new({
 })
 
 M.DeleteGlobalClusterInput = schema.new({
-    id = id.from(_N, "DeleteGlobalClusterInput"),
+    id = id.from(_N, "DeleteGlobalClusterMessage"),
     type = "structure",
     members = {
         GlobalClusterIdentifier = schema.new({
@@ -10740,7 +10740,7 @@ M.DeleteGlobalClusterInput = schema.new({
 })
 
 M.DeleteGlobalClusterOutput = schema.new({
-    id = id.from(_N, "DeleteGlobalClusterOutput"),
+    id = id.from(_N, "DeleteGlobalClusterResult"),
     type = "structure",
     members = {
         GlobalCluster = schema.new({
@@ -10754,7 +10754,7 @@ M.DeleteGlobalClusterOutput = schema.new({
 })
 
 M.DeleteIntegrationInput = schema.new({
-    id = id.from(_N, "DeleteIntegrationInput"),
+    id = id.from(_N, "DeleteIntegrationMessage"),
     type = "structure",
     members = {
         IntegrationIdentifier = schema.new({
@@ -10770,7 +10770,7 @@ M.DeleteIntegrationInput = schema.new({
 })
 
 M.DeleteIntegrationOutput = schema.new({
-    id = id.from(_N, "DeleteIntegrationOutput"),
+    id = id.from(_N, "Integration"),
     type = "structure",
     members = {
         SourceArn = schema.new({
@@ -10822,7 +10822,7 @@ M.DeleteIntegrationOutput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         DataFilter = schema.new({
             id = id.from(_N, "DeleteIntegrationOutput", "DataFilter"),
@@ -10847,7 +10847,7 @@ M.DeleteIntegrationOutput = schema.new({
             type = "list",
             name = "Errors",
             target_id = prelude.Document.id,
-            list_member = M.IntegrationError,
+            list_member = schema.new({ type = "structure", target = M.IntegrationError, traits = { [traits.XML_NAME] = { name = "IntegrationError" } } }),
         }),
     },
 })
@@ -10869,7 +10869,7 @@ M.InvalidIntegrationStateFault = schema.new({
 })
 
 M.DeleteOptionGroupInput = schema.new({
-    id = id.from(_N, "DeleteOptionGroupInput"),
+    id = id.from(_N, "DeleteOptionGroupMessage"),
     type = "structure",
     members = {
         OptionGroupName = schema.new({
@@ -10885,7 +10885,7 @@ M.DeleteOptionGroupInput = schema.new({
 })
 
 M.DeleteOptionGroupOutput = schema.new({
-    id = id.from(_N, "DeleteOptionGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -10906,7 +10906,7 @@ M.InvalidOptionGroupStateFault = schema.new({
 })
 
 M.DeleteTenantDatabaseInput = schema.new({
-    id = id.from(_N, "DeleteTenantDatabaseInput"),
+    id = id.from(_N, "DeleteTenantDatabaseMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -10943,7 +10943,7 @@ M.DeleteTenantDatabaseInput = schema.new({
 })
 
 M.DeleteTenantDatabaseOutput = schema.new({
-    id = id.from(_N, "DeleteTenantDatabaseOutput"),
+    id = id.from(_N, "DeleteTenantDatabaseResult"),
     type = "structure",
     members = {
         TenantDatabase = schema.new({
@@ -10973,7 +10973,7 @@ M.DBProxyTargetNotFoundFault = schema.new({
 })
 
 M.DeregisterDBProxyTargetsInput = schema.new({
-    id = id.from(_N, "DeregisterDBProxyTargetsInput"),
+    id = id.from(_N, "DeregisterDBProxyTargetsRequest"),
     type = "structure",
     members = {
         DBProxyName = schema.new({
@@ -11009,17 +11009,17 @@ M.DeregisterDBProxyTargetsInput = schema.new({
 })
 
 M.DeregisterDBProxyTargetsOutput = schema.new({
-    id = id.from(_N, "DeregisterDBProxyTargetsOutput"),
+    id = id.from(_N, "DeregisterDBProxyTargetsResponse"),
     type = "structure",
 })
 
 M.DescribeAccountAttributesInput = schema.new({
-    id = id.from(_N, "DescribeAccountAttributesInput"),
+    id = id.from(_N, "DescribeAccountAttributesMessage"),
     type = "structure",
 })
 
 M.DescribeAccountAttributesOutput = schema.new({
-    id = id.from(_N, "DescribeAccountAttributesOutput"),
+    id = id.from(_N, "AccountAttributesMessage"),
     type = "structure",
     members = {
         AccountQuotas = schema.new({
@@ -11027,7 +11027,7 @@ M.DescribeAccountAttributesOutput = schema.new({
             type = "list",
             name = "AccountQuotas",
             target_id = prelude.Document.id,
-            list_member = M.AccountQuota,
+            list_member = schema.new({ type = "structure", target = M.AccountQuota, traits = { [traits.XML_NAME] = { name = "AccountQuota" } } }),
         }),
     },
 })
@@ -11050,7 +11050,7 @@ M.Filter = schema.new({
             type = "list",
             name = "Values",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Value" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -11059,7 +11059,7 @@ M.Filter = schema.new({
 })
 
 M.DescribeBlueGreenDeploymentsInput = schema.new({
-    id = id.from(_N, "DescribeBlueGreenDeploymentsInput"),
+    id = id.from(_N, "DescribeBlueGreenDeploymentsRequest"),
     type = "structure",
     members = {
         BlueGreenDeploymentIdentifier = schema.new({
@@ -11073,7 +11073,7 @@ M.DescribeBlueGreenDeploymentsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeBlueGreenDeploymentsInput", "Marker"),
@@ -11091,7 +11091,7 @@ M.DescribeBlueGreenDeploymentsInput = schema.new({
 })
 
 M.DescribeBlueGreenDeploymentsOutput = schema.new({
-    id = id.from(_N, "DescribeBlueGreenDeploymentsOutput"),
+    id = id.from(_N, "DescribeBlueGreenDeploymentsResponse"),
     type = "structure",
     members = {
         BlueGreenDeployments = schema.new({
@@ -11111,7 +11111,7 @@ M.DescribeBlueGreenDeploymentsOutput = schema.new({
 })
 
 M.DescribeCertificatesInput = schema.new({
-    id = id.from(_N, "DescribeCertificatesInput"),
+    id = id.from(_N, "DescribeCertificatesMessage"),
     type = "structure",
     members = {
         CertificateIdentifier = schema.new({
@@ -11125,7 +11125,7 @@ M.DescribeCertificatesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeCertificatesInput", "MaxRecords"),
@@ -11198,7 +11198,7 @@ M.Certificate = schema.new({
 })
 
 M.DescribeCertificatesOutput = schema.new({
-    id = id.from(_N, "DescribeCertificatesOutput"),
+    id = id.from(_N, "CertificateMessage"),
     type = "structure",
     members = {
         DefaultCertificateForNewLaunches = schema.new({
@@ -11212,7 +11212,7 @@ M.DescribeCertificatesOutput = schema.new({
             type = "list",
             name = "Certificates",
             target_id = prelude.Document.id,
-            list_member = M.Certificate,
+            list_member = schema.new({ type = "structure", target = M.Certificate, traits = { [traits.XML_NAME] = { name = "Certificate" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeCertificatesOutput", "Marker"),
@@ -11224,7 +11224,7 @@ M.DescribeCertificatesOutput = schema.new({
 })
 
 M.DescribeDBClusterAutomatedBackupsInput = schema.new({
-    id = id.from(_N, "DescribeDBClusterAutomatedBackupsInput"),
+    id = id.from(_N, "DescribeDBClusterAutomatedBackupsMessage"),
     type = "structure",
     members = {
         DbClusterResourceId = schema.new({
@@ -11244,7 +11244,7 @@ M.DescribeDBClusterAutomatedBackupsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBClusterAutomatedBackupsInput", "MaxRecords"),
@@ -11262,7 +11262,7 @@ M.DescribeDBClusterAutomatedBackupsInput = schema.new({
 })
 
 M.DescribeDBClusterAutomatedBackupsOutput = schema.new({
-    id = id.from(_N, "DescribeDBClusterAutomatedBackupsOutput"),
+    id = id.from(_N, "DBClusterAutomatedBackupMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -11276,7 +11276,7 @@ M.DescribeDBClusterAutomatedBackupsOutput = schema.new({
             type = "list",
             name = "DBClusterAutomatedBackups",
             target_id = prelude.Document.id,
-            list_member = M.DBClusterAutomatedBackup,
+            list_member = schema.new({ type = "structure", target = M.DBClusterAutomatedBackup, traits = { [traits.XML_NAME] = { name = "DBClusterAutomatedBackup" } } }),
         }),
     },
 })
@@ -11298,7 +11298,7 @@ M.DBClusterBacktrackNotFoundFault = schema.new({
 })
 
 M.DescribeDBClusterBacktracksInput = schema.new({
-    id = id.from(_N, "DescribeDBClusterBacktracksInput"),
+    id = id.from(_N, "DescribeDBClusterBacktracksMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -11321,7 +11321,7 @@ M.DescribeDBClusterBacktracksInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBClusterBacktracksInput", "MaxRecords"),
@@ -11382,7 +11382,7 @@ M.DBClusterBacktrack = schema.new({
 })
 
 M.DescribeDBClusterBacktracksOutput = schema.new({
-    id = id.from(_N, "DescribeDBClusterBacktracksOutput"),
+    id = id.from(_N, "DBClusterBacktrackMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -11396,13 +11396,13 @@ M.DescribeDBClusterBacktracksOutput = schema.new({
             type = "list",
             name = "DBClusterBacktracks",
             target_id = prelude.Document.id,
-            list_member = M.DBClusterBacktrack,
+            list_member = schema.new({ type = "structure", target = M.DBClusterBacktrack, traits = { [traits.XML_NAME] = { name = "DBClusterBacktrack" } } }),
         }),
     },
 })
 
 M.DescribeDBClusterEndpointsInput = schema.new({
-    id = id.from(_N, "DescribeDBClusterEndpointsInput"),
+    id = id.from(_N, "DescribeDBClusterEndpointsMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -11422,7 +11422,7 @@ M.DescribeDBClusterEndpointsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBClusterEndpointsInput", "MaxRecords"),
@@ -11509,7 +11509,7 @@ M.DBClusterEndpoint = schema.new({
 })
 
 M.DescribeDBClusterEndpointsOutput = schema.new({
-    id = id.from(_N, "DescribeDBClusterEndpointsOutput"),
+    id = id.from(_N, "DBClusterEndpointMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -11523,13 +11523,13 @@ M.DescribeDBClusterEndpointsOutput = schema.new({
             type = "list",
             name = "DBClusterEndpoints",
             target_id = prelude.Document.id,
-            list_member = M.DBClusterEndpoint,
+            list_member = schema.new({ type = "structure", target = M.DBClusterEndpoint, traits = { [traits.XML_NAME] = { name = "DBClusterEndpointList" } } }),
         }),
     },
 })
 
 M.DescribeDBClusterParameterGroupsInput = schema.new({
-    id = id.from(_N, "DescribeDBClusterParameterGroupsInput"),
+    id = id.from(_N, "DescribeDBClusterParameterGroupsMessage"),
     type = "structure",
     members = {
         DBClusterParameterGroupName = schema.new({
@@ -11543,7 +11543,7 @@ M.DescribeDBClusterParameterGroupsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBClusterParameterGroupsInput", "MaxRecords"),
@@ -11561,7 +11561,7 @@ M.DescribeDBClusterParameterGroupsInput = schema.new({
 })
 
 M.DescribeDBClusterParameterGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeDBClusterParameterGroupsOutput"),
+    id = id.from(_N, "DBClusterParameterGroupsMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -11575,13 +11575,13 @@ M.DescribeDBClusterParameterGroupsOutput = schema.new({
             type = "list",
             name = "DBClusterParameterGroups",
             target_id = prelude.Document.id,
-            list_member = M.DBClusterParameterGroup,
+            list_member = schema.new({ type = "structure", target = M.DBClusterParameterGroup, traits = { [traits.XML_NAME] = { name = "DBClusterParameterGroup" } } }),
         }),
     },
 })
 
 M.DescribeDBClusterParametersInput = schema.new({
-    id = id.from(_N, "DescribeDBClusterParametersInput"),
+    id = id.from(_N, "DescribeDBClusterParametersMessage"),
     type = "structure",
     members = {
         DBClusterParameterGroupName = schema.new({
@@ -11604,7 +11604,7 @@ M.DescribeDBClusterParametersInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBClusterParametersInput", "MaxRecords"),
@@ -11696,7 +11696,7 @@ M.Parameter = schema.new({
 })
 
 M.DescribeDBClusterParametersOutput = schema.new({
-    id = id.from(_N, "DescribeDBClusterParametersOutput"),
+    id = id.from(_N, "DBClusterParameterGroupDetails"),
     type = "structure",
     members = {
         Parameters = schema.new({
@@ -11704,7 +11704,7 @@ M.DescribeDBClusterParametersOutput = schema.new({
             type = "list",
             name = "Parameters",
             target_id = prelude.Document.id,
-            list_member = M.Parameter,
+            list_member = schema.new({ type = "structure", target = M.Parameter, traits = { [traits.XML_NAME] = { name = "Parameter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeDBClusterParametersOutput", "Marker"),
@@ -11716,7 +11716,7 @@ M.DescribeDBClusterParametersOutput = schema.new({
 })
 
 M.DescribeDBClustersInput = schema.new({
-    id = id.from(_N, "DescribeDBClustersInput"),
+    id = id.from(_N, "DescribeDBClustersMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -11730,7 +11730,7 @@ M.DescribeDBClustersInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBClustersInput", "MaxRecords"),
@@ -11754,7 +11754,7 @@ M.DescribeDBClustersInput = schema.new({
 })
 
 M.DescribeDBClustersOutput = schema.new({
-    id = id.from(_N, "DescribeDBClustersOutput"),
+    id = id.from(_N, "DBClusterMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -11768,13 +11768,13 @@ M.DescribeDBClustersOutput = schema.new({
             type = "list",
             name = "DBClusters",
             target_id = prelude.Document.id,
-            list_member = M.DBCluster,
+            list_member = schema.new({ type = "structure", target = M.DBCluster, traits = { [traits.XML_NAME] = { name = "DBCluster" } } }),
         }),
     },
 })
 
 M.DescribeDBClusterSnapshotAttributesInput = schema.new({
-    id = id.from(_N, "DescribeDBClusterSnapshotAttributesInput"),
+    id = id.from(_N, "DescribeDBClusterSnapshotAttributesMessage"),
     type = "structure",
     members = {
         DBClusterSnapshotIdentifier = schema.new({
@@ -11804,7 +11804,7 @@ M.DBClusterSnapshotAttribute = schema.new({
             type = "list",
             name = "AttributeValues",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AttributeValue" } } }),
         }),
     },
 })
@@ -11824,13 +11824,13 @@ M.DBClusterSnapshotAttributesResult = schema.new({
             type = "list",
             name = "DBClusterSnapshotAttributes",
             target_id = prelude.Document.id,
-            list_member = M.DBClusterSnapshotAttribute,
+            list_member = schema.new({ type = "structure", target = M.DBClusterSnapshotAttribute, traits = { [traits.XML_NAME] = { name = "DBClusterSnapshotAttribute" } } }),
         }),
     },
 })
 
 M.DescribeDBClusterSnapshotAttributesOutput = schema.new({
-    id = id.from(_N, "DescribeDBClusterSnapshotAttributesOutput"),
+    id = id.from(_N, "DescribeDBClusterSnapshotAttributesResult"),
     type = "structure",
     members = {
         DBClusterSnapshotAttributesResult = schema.new({
@@ -11844,7 +11844,7 @@ M.DescribeDBClusterSnapshotAttributesOutput = schema.new({
 })
 
 M.DescribeDBClusterSnapshotsInput = schema.new({
-    id = id.from(_N, "DescribeDBClusterSnapshotsInput"),
+    id = id.from(_N, "DescribeDBClusterSnapshotsMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -11870,7 +11870,7 @@ M.DescribeDBClusterSnapshotsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBClusterSnapshotsInput", "MaxRecords"),
@@ -11906,7 +11906,7 @@ M.DescribeDBClusterSnapshotsInput = schema.new({
 })
 
 M.DescribeDBClusterSnapshotsOutput = schema.new({
-    id = id.from(_N, "DescribeDBClusterSnapshotsOutput"),
+    id = id.from(_N, "DBClusterSnapshotMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -11920,13 +11920,13 @@ M.DescribeDBClusterSnapshotsOutput = schema.new({
             type = "list",
             name = "DBClusterSnapshots",
             target_id = prelude.Document.id,
-            list_member = M.DBClusterSnapshot,
+            list_member = schema.new({ type = "structure", target = M.DBClusterSnapshot, traits = { [traits.XML_NAME] = { name = "DBClusterSnapshot" } } }),
         }),
     },
 })
 
 M.DescribeDBEngineVersionsInput = schema.new({
-    id = id.from(_N, "DescribeDBEngineVersionsInput"),
+    id = id.from(_N, "DescribeDBEngineVersionsMessage"),
     type = "structure",
     members = {
         Engine = schema.new({
@@ -11952,7 +11952,7 @@ M.DescribeDBEngineVersionsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBEngineVersionsInput", "MaxRecords"),
@@ -12107,28 +12107,28 @@ M.DBEngineVersion = schema.new({
             type = "list",
             name = "SupportedCharacterSets",
             target_id = prelude.Document.id,
-            list_member = M.CharacterSet,
+            list_member = schema.new({ type = "structure", target = M.CharacterSet, traits = { [traits.XML_NAME] = { name = "CharacterSet" } } }),
         }),
         SupportedNcharCharacterSets = schema.new({
             id = id.from(_N, "DBEngineVersion", "SupportedNcharCharacterSets"),
             type = "list",
             name = "SupportedNcharCharacterSets",
             target_id = prelude.Document.id,
-            list_member = M.CharacterSet,
+            list_member = schema.new({ type = "structure", target = M.CharacterSet, traits = { [traits.XML_NAME] = { name = "CharacterSet" } } }),
         }),
         ValidUpgradeTarget = schema.new({
             id = id.from(_N, "DBEngineVersion", "ValidUpgradeTarget"),
             type = "list",
             name = "ValidUpgradeTarget",
             target_id = prelude.Document.id,
-            list_member = M.UpgradeTarget,
+            list_member = schema.new({ type = "structure", target = M.UpgradeTarget, traits = { [traits.XML_NAME] = { name = "UpgradeTarget" } } }),
         }),
         SupportedTimezones = schema.new({
             id = id.from(_N, "DBEngineVersion", "SupportedTimezones"),
             type = "list",
             name = "SupportedTimezones",
             target_id = prelude.Document.id,
-            list_member = M.Timezone,
+            list_member = schema.new({ type = "structure", target = M.Timezone, traits = { [traits.XML_NAME] = { name = "Timezone" } } }),
         }),
         ExportableLogTypes = schema.new({
             id = id.from(_N, "DBEngineVersion", "ExportableLogTypes"),
@@ -12186,7 +12186,7 @@ M.DBEngineVersion = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         SupportsBabelfish = schema.new({
             id = id.from(_N, "DBEngineVersion", "SupportsBabelfish"),
@@ -12236,7 +12236,7 @@ M.DBEngineVersion = schema.new({
 })
 
 M.DescribeDBEngineVersionsOutput = schema.new({
-    id = id.from(_N, "DescribeDBEngineVersionsOutput"),
+    id = id.from(_N, "DBEngineVersionMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -12250,13 +12250,13 @@ M.DescribeDBEngineVersionsOutput = schema.new({
             type = "list",
             name = "DBEngineVersions",
             target_id = prelude.Document.id,
-            list_member = M.DBEngineVersion,
+            list_member = schema.new({ type = "structure", target = M.DBEngineVersion, traits = { [traits.XML_NAME] = { name = "DBEngineVersion" } } }),
         }),
     },
 })
 
 M.DescribeDBInstanceAutomatedBackupsInput = schema.new({
-    id = id.from(_N, "DescribeDBInstanceAutomatedBackupsInput"),
+    id = id.from(_N, "DescribeDBInstanceAutomatedBackupsMessage"),
     type = "structure",
     members = {
         DbiResourceId = schema.new({
@@ -12276,7 +12276,7 @@ M.DescribeDBInstanceAutomatedBackupsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBInstanceAutomatedBackupsInput", "MaxRecords"),
@@ -12300,7 +12300,7 @@ M.DescribeDBInstanceAutomatedBackupsInput = schema.new({
 })
 
 M.DescribeDBInstanceAutomatedBackupsOutput = schema.new({
-    id = id.from(_N, "DescribeDBInstanceAutomatedBackupsOutput"),
+    id = id.from(_N, "DBInstanceAutomatedBackupMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -12314,13 +12314,13 @@ M.DescribeDBInstanceAutomatedBackupsOutput = schema.new({
             type = "list",
             name = "DBInstanceAutomatedBackups",
             target_id = prelude.Document.id,
-            list_member = M.DBInstanceAutomatedBackup,
+            list_member = schema.new({ type = "structure", target = M.DBInstanceAutomatedBackup, traits = { [traits.XML_NAME] = { name = "DBInstanceAutomatedBackup" } } }),
         }),
     },
 })
 
 M.DescribeDBInstancesInput = schema.new({
-    id = id.from(_N, "DescribeDBInstancesInput"),
+    id = id.from(_N, "DescribeDBInstancesMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -12334,7 +12334,7 @@ M.DescribeDBInstancesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBInstancesInput", "MaxRecords"),
@@ -12352,7 +12352,7 @@ M.DescribeDBInstancesInput = schema.new({
 })
 
 M.DescribeDBInstancesOutput = schema.new({
-    id = id.from(_N, "DescribeDBInstancesOutput"),
+    id = id.from(_N, "DBInstanceMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -12366,7 +12366,7 @@ M.DescribeDBInstancesOutput = schema.new({
             type = "list",
             name = "DBInstances",
             target_id = prelude.Document.id,
-            list_member = M.DBInstance,
+            list_member = schema.new({ type = "structure", target = M.DBInstance, traits = { [traits.XML_NAME] = { name = "DBInstance" } } }),
         }),
     },
 })
@@ -12388,7 +12388,7 @@ M.DBInstanceNotReadyFault = schema.new({
 })
 
 M.DescribeDBLogFilesInput = schema.new({
-    id = id.from(_N, "DescribeDBLogFilesInput"),
+    id = id.from(_N, "DescribeDBLogFilesMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -12423,7 +12423,7 @@ M.DescribeDBLogFilesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBLogFilesInput", "MaxRecords"),
@@ -12466,7 +12466,7 @@ M.DescribeDBLogFilesDetails = schema.new({
 })
 
 M.DescribeDBLogFilesOutput = schema.new({
-    id = id.from(_N, "DescribeDBLogFilesOutput"),
+    id = id.from(_N, "DescribeDBLogFilesResponse"),
     type = "structure",
     members = {
         DescribeDBLogFiles = schema.new({
@@ -12474,7 +12474,7 @@ M.DescribeDBLogFilesOutput = schema.new({
             type = "list",
             name = "DescribeDBLogFiles",
             target_id = prelude.Document.id,
-            list_member = M.DescribeDBLogFilesDetails,
+            list_member = schema.new({ type = "structure", target = M.DescribeDBLogFilesDetails, traits = { [traits.XML_NAME] = { name = "DescribeDBLogFilesDetails" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeDBLogFilesOutput", "Marker"),
@@ -12486,7 +12486,7 @@ M.DescribeDBLogFilesOutput = schema.new({
 })
 
 M.DescribeDBMajorEngineVersionsInput = schema.new({
-    id = id.from(_N, "DescribeDBMajorEngineVersionsInput"),
+    id = id.from(_N, "DescribeDBMajorEngineVersionsRequest"),
     type = "structure",
     members = {
         Engine = schema.new({
@@ -12571,13 +12571,13 @@ M.DBMajorEngineVersion = schema.new({
             type = "list",
             name = "SupportedEngineLifecycles",
             target_id = prelude.Document.id,
-            list_member = M.SupportedEngineLifecycle,
+            list_member = schema.new({ type = "structure", target = M.SupportedEngineLifecycle, traits = { [traits.XML_NAME] = { name = "SupportedEngineLifecycle" } } }),
         }),
     },
 })
 
 M.DescribeDBMajorEngineVersionsOutput = schema.new({
-    id = id.from(_N, "DescribeDBMajorEngineVersionsOutput"),
+    id = id.from(_N, "DescribeDBMajorEngineVersionsResponse"),
     type = "structure",
     members = {
         DBMajorEngineVersions = schema.new({
@@ -12585,7 +12585,7 @@ M.DescribeDBMajorEngineVersionsOutput = schema.new({
             type = "list",
             name = "DBMajorEngineVersions",
             target_id = prelude.Document.id,
-            list_member = M.DBMajorEngineVersion,
+            list_member = schema.new({ type = "structure", target = M.DBMajorEngineVersion, traits = { [traits.XML_NAME] = { name = "DBMajorEngineVersion" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeDBMajorEngineVersionsOutput", "Marker"),
@@ -12597,7 +12597,7 @@ M.DescribeDBMajorEngineVersionsOutput = schema.new({
 })
 
 M.DescribeDBParameterGroupsInput = schema.new({
-    id = id.from(_N, "DescribeDBParameterGroupsInput"),
+    id = id.from(_N, "DescribeDBParameterGroupsMessage"),
     type = "structure",
     members = {
         DBParameterGroupName = schema.new({
@@ -12611,7 +12611,7 @@ M.DescribeDBParameterGroupsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBParameterGroupsInput", "MaxRecords"),
@@ -12629,7 +12629,7 @@ M.DescribeDBParameterGroupsInput = schema.new({
 })
 
 M.DescribeDBParameterGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeDBParameterGroupsOutput"),
+    id = id.from(_N, "DBParameterGroupsMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -12643,13 +12643,13 @@ M.DescribeDBParameterGroupsOutput = schema.new({
             type = "list",
             name = "DBParameterGroups",
             target_id = prelude.Document.id,
-            list_member = M.DBParameterGroup,
+            list_member = schema.new({ type = "structure", target = M.DBParameterGroup, traits = { [traits.XML_NAME] = { name = "DBParameterGroup" } } }),
         }),
     },
 })
 
 M.DescribeDBParametersInput = schema.new({
-    id = id.from(_N, "DescribeDBParametersInput"),
+    id = id.from(_N, "DescribeDBParametersMessage"),
     type = "structure",
     members = {
         DBParameterGroupName = schema.new({
@@ -12672,7 +12672,7 @@ M.DescribeDBParametersInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBParametersInput", "MaxRecords"),
@@ -12690,7 +12690,7 @@ M.DescribeDBParametersInput = schema.new({
 })
 
 M.DescribeDBParametersOutput = schema.new({
-    id = id.from(_N, "DescribeDBParametersOutput"),
+    id = id.from(_N, "DBParameterGroupDetails"),
     type = "structure",
     members = {
         Parameters = schema.new({
@@ -12698,7 +12698,7 @@ M.DescribeDBParametersOutput = schema.new({
             type = "list",
             name = "Parameters",
             target_id = prelude.Document.id,
-            list_member = M.Parameter,
+            list_member = schema.new({ type = "structure", target = M.Parameter, traits = { [traits.XML_NAME] = { name = "Parameter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeDBParametersOutput", "Marker"),
@@ -12710,7 +12710,7 @@ M.DescribeDBParametersOutput = schema.new({
 })
 
 M.DescribeDBProxiesInput = schema.new({
-    id = id.from(_N, "DescribeDBProxiesInput"),
+    id = id.from(_N, "DescribeDBProxiesRequest"),
     type = "structure",
     members = {
         DBProxyName = schema.new({
@@ -12724,7 +12724,7 @@ M.DescribeDBProxiesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeDBProxiesInput", "Marker"),
@@ -12742,7 +12742,7 @@ M.DescribeDBProxiesInput = schema.new({
 })
 
 M.DescribeDBProxiesOutput = schema.new({
-    id = id.from(_N, "DescribeDBProxiesOutput"),
+    id = id.from(_N, "DescribeDBProxiesResponse"),
     type = "structure",
     members = {
         DBProxies = schema.new({
@@ -12762,7 +12762,7 @@ M.DescribeDBProxiesOutput = schema.new({
 })
 
 M.DescribeDBProxyEndpointsInput = schema.new({
-    id = id.from(_N, "DescribeDBProxyEndpointsInput"),
+    id = id.from(_N, "DescribeDBProxyEndpointsRequest"),
     type = "structure",
     members = {
         DBProxyName = schema.new({
@@ -12782,7 +12782,7 @@ M.DescribeDBProxyEndpointsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeDBProxyEndpointsInput", "Marker"),
@@ -12800,7 +12800,7 @@ M.DescribeDBProxyEndpointsInput = schema.new({
 })
 
 M.DescribeDBProxyEndpointsOutput = schema.new({
-    id = id.from(_N, "DescribeDBProxyEndpointsOutput"),
+    id = id.from(_N, "DescribeDBProxyEndpointsResponse"),
     type = "structure",
     members = {
         DBProxyEndpoints = schema.new({
@@ -12820,7 +12820,7 @@ M.DescribeDBProxyEndpointsOutput = schema.new({
 })
 
 M.DescribeDBProxyTargetGroupsInput = schema.new({
-    id = id.from(_N, "DescribeDBProxyTargetGroupsInput"),
+    id = id.from(_N, "DescribeDBProxyTargetGroupsRequest"),
     type = "structure",
     members = {
         DBProxyName = schema.new({
@@ -12843,7 +12843,7 @@ M.DescribeDBProxyTargetGroupsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeDBProxyTargetGroupsInput", "Marker"),
@@ -12955,7 +12955,7 @@ M.DBProxyTargetGroup = schema.new({
 })
 
 M.DescribeDBProxyTargetGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeDBProxyTargetGroupsOutput"),
+    id = id.from(_N, "DescribeDBProxyTargetGroupsResponse"),
     type = "structure",
     members = {
         TargetGroups = schema.new({
@@ -12975,7 +12975,7 @@ M.DescribeDBProxyTargetGroupsOutput = schema.new({
 })
 
 M.DescribeDBProxyTargetsInput = schema.new({
-    id = id.from(_N, "DescribeDBProxyTargetsInput"),
+    id = id.from(_N, "DescribeDBProxyTargetsRequest"),
     type = "structure",
     members = {
         DBProxyName = schema.new({
@@ -12998,7 +12998,7 @@ M.DescribeDBProxyTargetsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeDBProxyTargetsInput", "Marker"),
@@ -13097,7 +13097,7 @@ M.DBProxyTarget = schema.new({
 })
 
 M.DescribeDBProxyTargetsOutput = schema.new({
-    id = id.from(_N, "DescribeDBProxyTargetsOutput"),
+    id = id.from(_N, "DescribeDBProxyTargetsResponse"),
     type = "structure",
     members = {
         Targets = schema.new({
@@ -13117,7 +13117,7 @@ M.DescribeDBProxyTargetsOutput = schema.new({
 })
 
 M.DescribeDBRecommendationsInput = schema.new({
-    id = id.from(_N, "DescribeDBRecommendationsInput"),
+    id = id.from(_N, "DescribeDBRecommendationsMessage"),
     type = "structure",
     members = {
         LastUpdatedAfter = schema.new({
@@ -13143,7 +13143,7 @@ M.DescribeDBRecommendationsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBRecommendationsInput", "MaxRecords"),
@@ -13599,7 +13599,7 @@ M.DBRecommendation = schema.new({
 })
 
 M.DescribeDBRecommendationsOutput = schema.new({
-    id = id.from(_N, "DescribeDBRecommendationsOutput"),
+    id = id.from(_N, "DBRecommendationsMessage"),
     type = "structure",
     members = {
         DBRecommendations = schema.new({
@@ -13619,7 +13619,7 @@ M.DescribeDBRecommendationsOutput = schema.new({
 })
 
 M.DescribeDBSecurityGroupsInput = schema.new({
-    id = id.from(_N, "DescribeDBSecurityGroupsInput"),
+    id = id.from(_N, "DescribeDBSecurityGroupsMessage"),
     type = "structure",
     members = {
         DBSecurityGroupName = schema.new({
@@ -13633,7 +13633,7 @@ M.DescribeDBSecurityGroupsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBSecurityGroupsInput", "MaxRecords"),
@@ -13651,7 +13651,7 @@ M.DescribeDBSecurityGroupsInput = schema.new({
 })
 
 M.DescribeDBSecurityGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeDBSecurityGroupsOutput"),
+    id = id.from(_N, "DBSecurityGroupMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -13665,13 +13665,13 @@ M.DescribeDBSecurityGroupsOutput = schema.new({
             type = "list",
             name = "DBSecurityGroups",
             target_id = prelude.Document.id,
-            list_member = M.DBSecurityGroup,
+            list_member = schema.new({ type = "structure", target = M.DBSecurityGroup, traits = { [traits.XML_NAME] = { name = "DBSecurityGroup" } } }),
         }),
     },
 })
 
 M.DescribeDBShardGroupsInput = schema.new({
-    id = id.from(_N, "DescribeDBShardGroupsInput"),
+    id = id.from(_N, "DescribeDBShardGroupsMessage"),
     type = "structure",
     members = {
         DBShardGroupIdentifier = schema.new({
@@ -13685,7 +13685,7 @@ M.DescribeDBShardGroupsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeDBShardGroupsInput", "Marker"),
@@ -13771,13 +13771,13 @@ M.DBShardGroup = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.DescribeDBShardGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeDBShardGroupsOutput"),
+    id = id.from(_N, "DescribeDBShardGroupsResponse"),
     type = "structure",
     members = {
         DBShardGroups = schema.new({
@@ -13785,7 +13785,7 @@ M.DescribeDBShardGroupsOutput = schema.new({
             type = "list",
             name = "DBShardGroups",
             target_id = prelude.Document.id,
-            list_member = M.DBShardGroup,
+            list_member = schema.new({ type = "structure", target = M.DBShardGroup, traits = { [traits.XML_NAME] = { name = "DBShardGroup" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeDBShardGroupsOutput", "Marker"),
@@ -13797,7 +13797,7 @@ M.DescribeDBShardGroupsOutput = schema.new({
 })
 
 M.DescribeDBSnapshotAttributesInput = schema.new({
-    id = id.from(_N, "DescribeDBSnapshotAttributesInput"),
+    id = id.from(_N, "DescribeDBSnapshotAttributesMessage"),
     type = "structure",
     members = {
         DBSnapshotIdentifier = schema.new({
@@ -13827,7 +13827,7 @@ M.DBSnapshotAttribute = schema.new({
             type = "list",
             name = "AttributeValues",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AttributeValue" } } }),
         }),
     },
 })
@@ -13847,13 +13847,13 @@ M.DBSnapshotAttributesResult = schema.new({
             type = "list",
             name = "DBSnapshotAttributes",
             target_id = prelude.Document.id,
-            list_member = M.DBSnapshotAttribute,
+            list_member = schema.new({ type = "structure", target = M.DBSnapshotAttribute, traits = { [traits.XML_NAME] = { name = "DBSnapshotAttribute" } } }),
         }),
     },
 })
 
 M.DescribeDBSnapshotAttributesOutput = schema.new({
-    id = id.from(_N, "DescribeDBSnapshotAttributesOutput"),
+    id = id.from(_N, "DescribeDBSnapshotAttributesResult"),
     type = "structure",
     members = {
         DBSnapshotAttributesResult = schema.new({
@@ -13867,7 +13867,7 @@ M.DescribeDBSnapshotAttributesOutput = schema.new({
 })
 
 M.DescribeDBSnapshotsInput = schema.new({
-    id = id.from(_N, "DescribeDBSnapshotsInput"),
+    id = id.from(_N, "DescribeDBSnapshotsMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -13893,7 +13893,7 @@ M.DescribeDBSnapshotsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBSnapshotsInput", "MaxRecords"),
@@ -13929,7 +13929,7 @@ M.DescribeDBSnapshotsInput = schema.new({
 })
 
 M.DescribeDBSnapshotsOutput = schema.new({
-    id = id.from(_N, "DescribeDBSnapshotsOutput"),
+    id = id.from(_N, "DBSnapshotMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -13943,13 +13943,13 @@ M.DescribeDBSnapshotsOutput = schema.new({
             type = "list",
             name = "DBSnapshots",
             target_id = prelude.Document.id,
-            list_member = M.DBSnapshot,
+            list_member = schema.new({ type = "structure", target = M.DBSnapshot, traits = { [traits.XML_NAME] = { name = "DBSnapshot" } } }),
         }),
     },
 })
 
 M.DescribeDBSnapshotTenantDatabasesInput = schema.new({
-    id = id.from(_N, "DescribeDBSnapshotTenantDatabasesInput"),
+    id = id.from(_N, "DescribeDBSnapshotTenantDatabasesMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -13975,7 +13975,7 @@ M.DescribeDBSnapshotTenantDatabasesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBSnapshotTenantDatabasesInput", "MaxRecords"),
@@ -14079,13 +14079,13 @@ M.DBSnapshotTenantDatabase = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.DescribeDBSnapshotTenantDatabasesOutput = schema.new({
-    id = id.from(_N, "DescribeDBSnapshotTenantDatabasesOutput"),
+    id = id.from(_N, "DBSnapshotTenantDatabasesMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -14099,13 +14099,13 @@ M.DescribeDBSnapshotTenantDatabasesOutput = schema.new({
             type = "list",
             name = "DBSnapshotTenantDatabases",
             target_id = prelude.Document.id,
-            list_member = M.DBSnapshotTenantDatabase,
+            list_member = schema.new({ type = "structure", target = M.DBSnapshotTenantDatabase, traits = { [traits.XML_NAME] = { name = "DBSnapshotTenantDatabase" } } }),
         }),
     },
 })
 
 M.DescribeDBSubnetGroupsInput = schema.new({
-    id = id.from(_N, "DescribeDBSubnetGroupsInput"),
+    id = id.from(_N, "DescribeDBSubnetGroupsMessage"),
     type = "structure",
     members = {
         DBSubnetGroupName = schema.new({
@@ -14119,7 +14119,7 @@ M.DescribeDBSubnetGroupsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDBSubnetGroupsInput", "MaxRecords"),
@@ -14137,7 +14137,7 @@ M.DescribeDBSubnetGroupsInput = schema.new({
 })
 
 M.DescribeDBSubnetGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeDBSubnetGroupsOutput"),
+    id = id.from(_N, "DBSubnetGroupMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -14151,13 +14151,13 @@ M.DescribeDBSubnetGroupsOutput = schema.new({
             type = "list",
             name = "DBSubnetGroups",
             target_id = prelude.Document.id,
-            list_member = M.DBSubnetGroup,
+            list_member = schema.new({ type = "structure", target = M.DBSubnetGroup, traits = { [traits.XML_NAME] = { name = "DBSubnetGroup" } } }),
         }),
     },
 })
 
 M.DescribeEngineDefaultClusterParametersInput = schema.new({
-    id = id.from(_N, "DescribeEngineDefaultClusterParametersInput"),
+    id = id.from(_N, "DescribeEngineDefaultClusterParametersMessage"),
     type = "structure",
     members = {
         DBParameterGroupFamily = schema.new({
@@ -14174,7 +14174,7 @@ M.DescribeEngineDefaultClusterParametersInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeEngineDefaultClusterParametersInput", "MaxRecords"),
@@ -14212,13 +14212,13 @@ M.EngineDefaults = schema.new({
             type = "list",
             name = "Parameters",
             target_id = prelude.Document.id,
-            list_member = M.Parameter,
+            list_member = schema.new({ type = "structure", target = M.Parameter, traits = { [traits.XML_NAME] = { name = "Parameter" } } }),
         }),
     },
 })
 
 M.DescribeEngineDefaultClusterParametersOutput = schema.new({
-    id = id.from(_N, "DescribeEngineDefaultClusterParametersOutput"),
+    id = id.from(_N, "DescribeEngineDefaultClusterParametersResult"),
     type = "structure",
     members = {
         EngineDefaults = schema.new({
@@ -14232,7 +14232,7 @@ M.DescribeEngineDefaultClusterParametersOutput = schema.new({
 })
 
 M.DescribeEngineDefaultParametersInput = schema.new({
-    id = id.from(_N, "DescribeEngineDefaultParametersInput"),
+    id = id.from(_N, "DescribeEngineDefaultParametersMessage"),
     type = "structure",
     members = {
         DBParameterGroupFamily = schema.new({
@@ -14249,7 +14249,7 @@ M.DescribeEngineDefaultParametersInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeEngineDefaultParametersInput", "MaxRecords"),
@@ -14267,7 +14267,7 @@ M.DescribeEngineDefaultParametersInput = schema.new({
 })
 
 M.DescribeEngineDefaultParametersOutput = schema.new({
-    id = id.from(_N, "DescribeEngineDefaultParametersOutput"),
+    id = id.from(_N, "DescribeEngineDefaultParametersResult"),
     type = "structure",
     members = {
         EngineDefaults = schema.new({
@@ -14281,7 +14281,7 @@ M.DescribeEngineDefaultParametersOutput = schema.new({
 })
 
 M.DescribeEventCategoriesInput = schema.new({
-    id = id.from(_N, "DescribeEventCategoriesInput"),
+    id = id.from(_N, "DescribeEventCategoriesMessage"),
     type = "structure",
     members = {
         SourceType = schema.new({
@@ -14295,7 +14295,7 @@ M.DescribeEventCategoriesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
     },
 })
@@ -14315,13 +14315,13 @@ M.EventCategoriesMap = schema.new({
             type = "list",
             name = "EventCategories",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "EventCategory" } } }),
         }),
     },
 })
 
 M.DescribeEventCategoriesOutput = schema.new({
-    id = id.from(_N, "DescribeEventCategoriesOutput"),
+    id = id.from(_N, "EventCategoriesMessage"),
     type = "structure",
     members = {
         EventCategoriesMapList = schema.new({
@@ -14329,13 +14329,13 @@ M.DescribeEventCategoriesOutput = schema.new({
             type = "list",
             name = "EventCategoriesMapList",
             target_id = prelude.Document.id,
-            list_member = M.EventCategoriesMap,
+            list_member = schema.new({ type = "structure", target = M.EventCategoriesMap, traits = { [traits.XML_NAME] = { name = "EventCategoriesMap" } } }),
         }),
     },
 })
 
 M.DescribeEventsInput = schema.new({
-    id = id.from(_N, "DescribeEventsInput"),
+    id = id.from(_N, "DescribeEventsMessage"),
     type = "structure",
     members = {
         SourceIdentifier = schema.new({
@@ -14373,14 +14373,14 @@ M.DescribeEventsInput = schema.new({
             type = "list",
             name = "EventCategories",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "EventCategory" } } }),
         }),
         Filters = schema.new({
             id = id.from(_N, "DescribeEventsInput", "Filters"),
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeEventsInput", "MaxRecords"),
@@ -14424,7 +14424,7 @@ M.Event = schema.new({
             type = "list",
             name = "EventCategories",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "EventCategory" } } }),
         }),
         Date = schema.new({
             id = id.from(_N, "Event", "Date"),
@@ -14442,7 +14442,7 @@ M.Event = schema.new({
 })
 
 M.DescribeEventsOutput = schema.new({
-    id = id.from(_N, "DescribeEventsOutput"),
+    id = id.from(_N, "EventsMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -14456,13 +14456,13 @@ M.DescribeEventsOutput = schema.new({
             type = "list",
             name = "Events",
             target_id = prelude.Document.id,
-            list_member = M.Event,
+            list_member = schema.new({ type = "structure", target = M.Event, traits = { [traits.XML_NAME] = { name = "Event" } } }),
         }),
     },
 })
 
 M.DescribeEventSubscriptionsInput = schema.new({
-    id = id.from(_N, "DescribeEventSubscriptionsInput"),
+    id = id.from(_N, "DescribeEventSubscriptionsMessage"),
     type = "structure",
     members = {
         SubscriptionName = schema.new({
@@ -14476,7 +14476,7 @@ M.DescribeEventSubscriptionsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeEventSubscriptionsInput", "MaxRecords"),
@@ -14494,7 +14494,7 @@ M.DescribeEventSubscriptionsInput = schema.new({
 })
 
 M.DescribeEventSubscriptionsOutput = schema.new({
-    id = id.from(_N, "DescribeEventSubscriptionsOutput"),
+    id = id.from(_N, "EventSubscriptionsMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -14508,13 +14508,13 @@ M.DescribeEventSubscriptionsOutput = schema.new({
             type = "list",
             name = "EventSubscriptionsList",
             target_id = prelude.Document.id,
-            list_member = M.EventSubscription,
+            list_member = schema.new({ type = "structure", target = M.EventSubscription, traits = { [traits.XML_NAME] = { name = "EventSubscription" } } }),
         }),
     },
 })
 
 M.DescribeExportTasksInput = schema.new({
-    id = id.from(_N, "DescribeExportTasksInput"),
+    id = id.from(_N, "DescribeExportTasksMessage"),
     type = "structure",
     members = {
         ExportTaskIdentifier = schema.new({
@@ -14534,7 +14534,7 @@ M.DescribeExportTasksInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeExportTasksInput", "Marker"),
@@ -14662,7 +14662,7 @@ M.ExportTask = schema.new({
 })
 
 M.DescribeExportTasksOutput = schema.new({
-    id = id.from(_N, "DescribeExportTasksOutput"),
+    id = id.from(_N, "ExportTasksMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -14676,13 +14676,13 @@ M.DescribeExportTasksOutput = schema.new({
             type = "list",
             name = "ExportTasks",
             target_id = prelude.Document.id,
-            list_member = M.ExportTask,
+            list_member = schema.new({ type = "structure", target = M.ExportTask, traits = { [traits.XML_NAME] = { name = "ExportTask" } } }),
         }),
     },
 })
 
 M.DescribeGlobalClustersInput = schema.new({
-    id = id.from(_N, "DescribeGlobalClustersInput"),
+    id = id.from(_N, "DescribeGlobalClustersMessage"),
     type = "structure",
     members = {
         GlobalClusterIdentifier = schema.new({
@@ -14696,7 +14696,7 @@ M.DescribeGlobalClustersInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeGlobalClustersInput", "MaxRecords"),
@@ -14714,7 +14714,7 @@ M.DescribeGlobalClustersInput = schema.new({
 })
 
 M.DescribeGlobalClustersOutput = schema.new({
-    id = id.from(_N, "DescribeGlobalClustersOutput"),
+    id = id.from(_N, "GlobalClustersMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -14728,13 +14728,13 @@ M.DescribeGlobalClustersOutput = schema.new({
             type = "list",
             name = "GlobalClusters",
             target_id = prelude.Document.id,
-            list_member = M.GlobalCluster,
+            list_member = schema.new({ type = "structure", target = M.GlobalCluster, traits = { [traits.XML_NAME] = { name = "GlobalClusterMember" } } }),
         }),
     },
 })
 
 M.DescribeIntegrationsInput = schema.new({
-    id = id.from(_N, "DescribeIntegrationsInput"),
+    id = id.from(_N, "DescribeIntegrationsMessage"),
     type = "structure",
     members = {
         IntegrationIdentifier = schema.new({
@@ -14748,7 +14748,7 @@ M.DescribeIntegrationsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeIntegrationsInput", "MaxRecords"),
@@ -14818,7 +14818,7 @@ M.Integration = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         DataFilter = schema.new({
             id = id.from(_N, "Integration", "DataFilter"),
@@ -14843,13 +14843,13 @@ M.Integration = schema.new({
             type = "list",
             name = "Errors",
             target_id = prelude.Document.id,
-            list_member = M.IntegrationError,
+            list_member = schema.new({ type = "structure", target = M.IntegrationError, traits = { [traits.XML_NAME] = { name = "IntegrationError" } } }),
         }),
     },
 })
 
 M.DescribeIntegrationsOutput = schema.new({
-    id = id.from(_N, "DescribeIntegrationsOutput"),
+    id = id.from(_N, "DescribeIntegrationsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -14863,13 +14863,13 @@ M.DescribeIntegrationsOutput = schema.new({
             type = "list",
             name = "Integrations",
             target_id = prelude.Document.id,
-            list_member = M.Integration,
+            list_member = schema.new({ type = "structure", target = M.Integration, traits = { [traits.XML_NAME] = { name = "Integration" } } }),
         }),
     },
 })
 
 M.DescribeOptionGroupOptionsInput = schema.new({
-    id = id.from(_N, "DescribeOptionGroupOptionsInput"),
+    id = id.from(_N, "DescribeOptionGroupOptionsMessage"),
     type = "structure",
     members = {
         EngineName = schema.new({
@@ -14892,7 +14892,7 @@ M.DescribeOptionGroupOptionsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeOptionGroupOptionsInput", "MaxRecords"),
@@ -14979,7 +14979,7 @@ M.OptionGroupOptionSetting = schema.new({
             type = "list",
             name = "MinimumEngineVersionPerAllowedValue",
             target_id = prelude.Document.id,
-            list_member = M.MinimumEngineVersionPerAllowedValue,
+            list_member = schema.new({ type = "structure", target = M.MinimumEngineVersionPerAllowedValue, traits = { [traits.XML_NAME] = { name = "MinimumEngineVersionPerAllowedValue" } } }),
         }),
     },
 })
@@ -15054,14 +15054,14 @@ M.OptionGroupOption = schema.new({
             type = "list",
             name = "OptionsDependedOn",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "OptionName" } } }),
         }),
         OptionsConflictsWith = schema.new({
             id = id.from(_N, "OptionGroupOption", "OptionsConflictsWith"),
             type = "list",
             name = "OptionsConflictsWith",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "OptionConflictName" } } }),
         }),
         Persistent = schema.new({
             id = id.from(_N, "OptionGroupOption", "Persistent"),
@@ -15098,14 +15098,14 @@ M.OptionGroupOption = schema.new({
             type = "list",
             name = "OptionGroupOptionSettings",
             target_id = prelude.Document.id,
-            list_member = M.OptionGroupOptionSetting,
+            list_member = schema.new({ type = "structure", target = M.OptionGroupOptionSetting, traits = { [traits.XML_NAME] = { name = "OptionGroupOptionSetting" } } }),
         }),
         OptionGroupOptionVersions = schema.new({
             id = id.from(_N, "OptionGroupOption", "OptionGroupOptionVersions"),
             type = "list",
             name = "OptionGroupOptionVersions",
             target_id = prelude.Document.id,
-            list_member = M.OptionVersion,
+            list_member = schema.new({ type = "structure", target = M.OptionVersion, traits = { [traits.XML_NAME] = { name = "OptionVersion" } } }),
         }),
         CopyableCrossAccount = schema.new({
             id = id.from(_N, "OptionGroupOption", "CopyableCrossAccount"),
@@ -15117,7 +15117,7 @@ M.OptionGroupOption = schema.new({
 })
 
 M.DescribeOptionGroupOptionsOutput = schema.new({
-    id = id.from(_N, "DescribeOptionGroupOptionsOutput"),
+    id = id.from(_N, "OptionGroupOptionsMessage"),
     type = "structure",
     members = {
         OptionGroupOptions = schema.new({
@@ -15125,7 +15125,7 @@ M.DescribeOptionGroupOptionsOutput = schema.new({
             type = "list",
             name = "OptionGroupOptions",
             target_id = prelude.Document.id,
-            list_member = M.OptionGroupOption,
+            list_member = schema.new({ type = "structure", target = M.OptionGroupOption, traits = { [traits.XML_NAME] = { name = "OptionGroupOption" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeOptionGroupOptionsOutput", "Marker"),
@@ -15137,7 +15137,7 @@ M.DescribeOptionGroupOptionsOutput = schema.new({
 })
 
 M.DescribeOptionGroupsInput = schema.new({
-    id = id.from(_N, "DescribeOptionGroupsInput"),
+    id = id.from(_N, "DescribeOptionGroupsMessage"),
     type = "structure",
     members = {
         OptionGroupName = schema.new({
@@ -15151,7 +15151,7 @@ M.DescribeOptionGroupsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeOptionGroupsInput", "Marker"),
@@ -15181,7 +15181,7 @@ M.DescribeOptionGroupsInput = schema.new({
 })
 
 M.DescribeOptionGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeOptionGroupsOutput"),
+    id = id.from(_N, "OptionGroups"),
     type = "structure",
     members = {
         OptionGroupsList = schema.new({
@@ -15189,7 +15189,7 @@ M.DescribeOptionGroupsOutput = schema.new({
             type = "list",
             name = "OptionGroupsList",
             target_id = prelude.Document.id,
-            list_member = M.OptionGroup,
+            list_member = schema.new({ type = "structure", target = M.OptionGroup, traits = { [traits.XML_NAME] = { name = "OptionGroup" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeOptionGroupsOutput", "Marker"),
@@ -15201,7 +15201,7 @@ M.DescribeOptionGroupsOutput = schema.new({
 })
 
 M.DescribeOrderableDBInstanceOptionsInput = schema.new({
-    id = id.from(_N, "DescribeOrderableDBInstanceOptionsInput"),
+    id = id.from(_N, "DescribeOrderableDBInstanceOptionsMessage"),
     type = "structure",
     members = {
         Engine = schema.new({
@@ -15248,7 +15248,7 @@ M.DescribeOrderableDBInstanceOptionsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeOrderableDBInstanceOptionsInput", "MaxRecords"),
@@ -15408,7 +15408,7 @@ M.OrderableDBInstanceOption = schema.new({
             type = "list",
             name = "AvailabilityZones",
             target_id = prelude.Document.id,
-            list_member = M.AvailabilityZone,
+            list_member = schema.new({ type = "structure", target = M.AvailabilityZone, traits = { [traits.XML_NAME] = { name = "AvailabilityZone" } } }),
         }),
         MultiAZCapable = schema.new({
             id = id.from(_N, "OrderableDBInstanceOption", "MultiAZCapable"),
@@ -15535,7 +15535,7 @@ M.OrderableDBInstanceOption = schema.new({
             type = "list",
             name = "AvailableProcessorFeatures",
             target_id = prelude.Document.id,
-            list_member = M.AvailableProcessorFeature,
+            list_member = schema.new({ type = "structure", target = M.AvailableProcessorFeature, traits = { [traits.XML_NAME] = { name = "AvailableProcessorFeature" } } }),
         }),
         SupportedEngineModes = schema.new({
             id = id.from(_N, "OrderableDBInstanceOption", "SupportedEngineModes"),
@@ -15611,13 +15611,13 @@ M.OrderableDBInstanceOption = schema.new({
             type = "list",
             name = "AvailableAdditionalStorageVolumesOptions",
             target_id = prelude.Document.id,
-            list_member = M.AvailableAdditionalStorageVolumesOption,
+            list_member = schema.new({ type = "structure", target = M.AvailableAdditionalStorageVolumesOption, traits = { [traits.XML_NAME] = { name = "AvailableAdditionalStorageVolumesOption" } } }),
         }),
     },
 })
 
 M.DescribeOrderableDBInstanceOptionsOutput = schema.new({
-    id = id.from(_N, "DescribeOrderableDBInstanceOptionsOutput"),
+    id = id.from(_N, "OrderableDBInstanceOptionsMessage"),
     type = "structure",
     members = {
         OrderableDBInstanceOptions = schema.new({
@@ -15625,7 +15625,7 @@ M.DescribeOrderableDBInstanceOptionsOutput = schema.new({
             type = "list",
             name = "OrderableDBInstanceOptions",
             target_id = prelude.Document.id,
-            list_member = M.OrderableDBInstanceOption,
+            list_member = schema.new({ type = "structure", target = M.OrderableDBInstanceOption, traits = { [traits.XML_NAME] = { name = "OrderableDBInstanceOption" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeOrderableDBInstanceOptionsOutput", "Marker"),
@@ -15637,7 +15637,7 @@ M.DescribeOrderableDBInstanceOptionsOutput = schema.new({
 })
 
 M.DescribePendingMaintenanceActionsInput = schema.new({
-    id = id.from(_N, "DescribePendingMaintenanceActionsInput"),
+    id = id.from(_N, "DescribePendingMaintenanceActionsMessage"),
     type = "structure",
     members = {
         ResourceIdentifier = schema.new({
@@ -15651,7 +15651,7 @@ M.DescribePendingMaintenanceActionsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribePendingMaintenanceActionsInput", "Marker"),
@@ -15669,7 +15669,7 @@ M.DescribePendingMaintenanceActionsInput = schema.new({
 })
 
 M.DescribePendingMaintenanceActionsOutput = schema.new({
-    id = id.from(_N, "DescribePendingMaintenanceActionsOutput"),
+    id = id.from(_N, "PendingMaintenanceActionsMessage"),
     type = "structure",
     members = {
         PendingMaintenanceActions = schema.new({
@@ -15677,7 +15677,7 @@ M.DescribePendingMaintenanceActionsOutput = schema.new({
             type = "list",
             name = "PendingMaintenanceActions",
             target_id = prelude.Document.id,
-            list_member = M.ResourcePendingMaintenanceActions,
+            list_member = schema.new({ type = "structure", target = M.ResourcePendingMaintenanceActions, traits = { [traits.XML_NAME] = { name = "ResourcePendingMaintenanceActions" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribePendingMaintenanceActionsOutput", "Marker"),
@@ -15689,7 +15689,7 @@ M.DescribePendingMaintenanceActionsOutput = schema.new({
 })
 
 M.DescribeReservedDBInstancesInput = schema.new({
-    id = id.from(_N, "DescribeReservedDBInstancesInput"),
+    id = id.from(_N, "DescribeReservedDBInstancesMessage"),
     type = "structure",
     members = {
         ReservedDBInstanceId = schema.new({
@@ -15745,7 +15745,7 @@ M.DescribeReservedDBInstancesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeReservedDBInstancesInput", "MaxRecords"),
@@ -15868,7 +15868,7 @@ M.ReservedDBInstance = schema.new({
             type = "list",
             name = "RecurringCharges",
             target_id = prelude.Document.id,
-            list_member = M.RecurringCharge,
+            list_member = schema.new({ type = "structure", target = M.RecurringCharge, traits = { [traits.XML_NAME] = { name = "RecurringCharge" } } }),
         }),
         ReservedDBInstanceArn = schema.new({
             id = id.from(_N, "ReservedDBInstance", "ReservedDBInstanceArn"),
@@ -15886,7 +15886,7 @@ M.ReservedDBInstance = schema.new({
 })
 
 M.DescribeReservedDBInstancesOutput = schema.new({
-    id = id.from(_N, "DescribeReservedDBInstancesOutput"),
+    id = id.from(_N, "ReservedDBInstanceMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -15900,7 +15900,7 @@ M.DescribeReservedDBInstancesOutput = schema.new({
             type = "list",
             name = "ReservedDBInstances",
             target_id = prelude.Document.id,
-            list_member = M.ReservedDBInstance,
+            list_member = schema.new({ type = "structure", target = M.ReservedDBInstance, traits = { [traits.XML_NAME] = { name = "ReservedDBInstance" } } }),
         }),
     },
 })
@@ -15922,7 +15922,7 @@ M.ReservedDBInstanceNotFoundFault = schema.new({
 })
 
 M.DescribeReservedDBInstancesOfferingsInput = schema.new({
-    id = id.from(_N, "DescribeReservedDBInstancesOfferingsInput"),
+    id = id.from(_N, "DescribeReservedDBInstancesOfferingsMessage"),
     type = "structure",
     members = {
         ReservedDBInstancesOfferingId = schema.new({
@@ -15966,7 +15966,7 @@ M.DescribeReservedDBInstancesOfferingsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeReservedDBInstancesOfferingsInput", "MaxRecords"),
@@ -16046,13 +16046,13 @@ M.ReservedDBInstancesOffering = schema.new({
             type = "list",
             name = "RecurringCharges",
             target_id = prelude.Document.id,
-            list_member = M.RecurringCharge,
+            list_member = schema.new({ type = "structure", target = M.RecurringCharge, traits = { [traits.XML_NAME] = { name = "RecurringCharge" } } }),
         }),
     },
 })
 
 M.DescribeReservedDBInstancesOfferingsOutput = schema.new({
-    id = id.from(_N, "DescribeReservedDBInstancesOfferingsOutput"),
+    id = id.from(_N, "ReservedDBInstancesOfferingMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -16066,7 +16066,7 @@ M.DescribeReservedDBInstancesOfferingsOutput = schema.new({
             type = "list",
             name = "ReservedDBInstancesOfferings",
             target_id = prelude.Document.id,
-            list_member = M.ReservedDBInstancesOffering,
+            list_member = schema.new({ type = "structure", target = M.ReservedDBInstancesOffering, traits = { [traits.XML_NAME] = { name = "ReservedDBInstancesOffering" } } }),
         }),
     },
 })
@@ -16088,7 +16088,7 @@ M.ReservedDBInstancesOfferingNotFoundFault = schema.new({
 })
 
 M.DescribeServerlessV2PlatformVersionsInput = schema.new({
-    id = id.from(_N, "DescribeServerlessV2PlatformVersionsInput"),
+    id = id.from(_N, "DescribeServerlessV2PlatformVersionsMessage"),
     type = "structure",
     members = {
         ServerlessV2PlatformVersion = schema.new({
@@ -16108,7 +16108,7 @@ M.DescribeServerlessV2PlatformVersionsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         DefaultOnly = schema.new({
             id = id.from(_N, "DescribeServerlessV2PlatformVersionsInput", "DefaultOnly"),
@@ -16182,7 +16182,7 @@ M.ServerlessV2PlatformVersionInfo = schema.new({
 })
 
 M.DescribeServerlessV2PlatformVersionsOutput = schema.new({
-    id = id.from(_N, "DescribeServerlessV2PlatformVersionsOutput"),
+    id = id.from(_N, "ServerlessV2PlatformVersionsMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -16202,7 +16202,7 @@ M.DescribeServerlessV2PlatformVersionsOutput = schema.new({
 })
 
 M.DescribeSourceRegionsInput = schema.new({
-    id = id.from(_N, "DescribeSourceRegionsInput"),
+    id = id.from(_N, "DescribeSourceRegionsMessage"),
     type = "structure",
     members = {
         RegionName = schema.new({
@@ -16228,7 +16228,7 @@ M.DescribeSourceRegionsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
     },
 })
@@ -16265,7 +16265,7 @@ M.SourceRegion = schema.new({
 })
 
 M.DescribeSourceRegionsOutput = schema.new({
-    id = id.from(_N, "DescribeSourceRegionsOutput"),
+    id = id.from(_N, "SourceRegionMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -16279,13 +16279,13 @@ M.DescribeSourceRegionsOutput = schema.new({
             type = "list",
             name = "SourceRegions",
             target_id = prelude.Document.id,
-            list_member = M.SourceRegion,
+            list_member = schema.new({ type = "structure", target = M.SourceRegion, traits = { [traits.XML_NAME] = { name = "SourceRegion" } } }),
         }),
     },
 })
 
 M.DescribeTenantDatabasesInput = schema.new({
-    id = id.from(_N, "DescribeTenantDatabasesInput"),
+    id = id.from(_N, "DescribeTenantDatabasesMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -16305,7 +16305,7 @@ M.DescribeTenantDatabasesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeTenantDatabasesInput", "Marker"),
@@ -16323,7 +16323,7 @@ M.DescribeTenantDatabasesInput = schema.new({
 })
 
 M.DescribeTenantDatabasesOutput = schema.new({
-    id = id.from(_N, "DescribeTenantDatabasesOutput"),
+    id = id.from(_N, "TenantDatabasesMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -16337,13 +16337,13 @@ M.DescribeTenantDatabasesOutput = schema.new({
             type = "list",
             name = "TenantDatabases",
             target_id = prelude.Document.id,
-            list_member = M.TenantDatabase,
+            list_member = schema.new({ type = "structure", target = M.TenantDatabase, traits = { [traits.XML_NAME] = { name = "TenantDatabase" } } }),
         }),
     },
 })
 
 M.DescribeValidDBInstanceModificationsInput = schema.new({
-    id = id.from(_N, "DescribeValidDBInstanceModificationsInput"),
+    id = id.from(_N, "DescribeValidDBInstanceModificationsMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -16417,35 +16417,35 @@ M.ValidStorageOptions = schema.new({
             type = "list",
             name = "StorageSize",
             target_id = prelude.Document.id,
-            list_member = M.Range,
+            list_member = schema.new({ type = "structure", target = M.Range, traits = { [traits.XML_NAME] = { name = "Range" } } }),
         }),
         ProvisionedIops = schema.new({
             id = id.from(_N, "ValidStorageOptions", "ProvisionedIops"),
             type = "list",
             name = "ProvisionedIops",
             target_id = prelude.Document.id,
-            list_member = M.Range,
+            list_member = schema.new({ type = "structure", target = M.Range, traits = { [traits.XML_NAME] = { name = "Range" } } }),
         }),
         IopsToStorageRatio = schema.new({
             id = id.from(_N, "ValidStorageOptions", "IopsToStorageRatio"),
             type = "list",
             name = "IopsToStorageRatio",
             target_id = prelude.Document.id,
-            list_member = M.DoubleRange,
+            list_member = schema.new({ type = "structure", target = M.DoubleRange, traits = { [traits.XML_NAME] = { name = "DoubleRange" } } }),
         }),
         ProvisionedStorageThroughput = schema.new({
             id = id.from(_N, "ValidStorageOptions", "ProvisionedStorageThroughput"),
             type = "list",
             name = "ProvisionedStorageThroughput",
             target_id = prelude.Document.id,
-            list_member = M.Range,
+            list_member = schema.new({ type = "structure", target = M.Range, traits = { [traits.XML_NAME] = { name = "Range" } } }),
         }),
         StorageThroughputToIopsRatio = schema.new({
             id = id.from(_N, "ValidStorageOptions", "StorageThroughputToIopsRatio"),
             type = "list",
             name = "StorageThroughputToIopsRatio",
             target_id = prelude.Document.id,
-            list_member = M.DoubleRange,
+            list_member = schema.new({ type = "structure", target = M.DoubleRange, traits = { [traits.XML_NAME] = { name = "DoubleRange" } } }),
         }),
         SupportsStorageAutoscaling = schema.new({
             id = id.from(_N, "ValidStorageOptions", "SupportsStorageAutoscaling"),
@@ -16471,7 +16471,7 @@ M.ValidVolumeOptions = schema.new({
             type = "list",
             name = "Storage",
             target_id = prelude.Document.id,
-            list_member = M.ValidStorageOptions,
+            list_member = schema.new({ type = "structure", target = M.ValidStorageOptions, traits = { [traits.XML_NAME] = { name = "ValidStorageOptions" } } }),
         }),
     },
 })
@@ -16505,14 +16505,14 @@ M.ValidDBInstanceModificationsMessage = schema.new({
             type = "list",
             name = "Storage",
             target_id = prelude.Document.id,
-            list_member = M.ValidStorageOptions,
+            list_member = schema.new({ type = "structure", target = M.ValidStorageOptions, traits = { [traits.XML_NAME] = { name = "ValidStorageOptions" } } }),
         }),
         ValidProcessorFeatures = schema.new({
             id = id.from(_N, "ValidDBInstanceModificationsMessage", "ValidProcessorFeatures"),
             type = "list",
             name = "ValidProcessorFeatures",
             target_id = prelude.Document.id,
-            list_member = M.AvailableProcessorFeature,
+            list_member = schema.new({ type = "structure", target = M.AvailableProcessorFeature, traits = { [traits.XML_NAME] = { name = "AvailableProcessorFeature" } } }),
         }),
         SupportsDedicatedLogVolume = schema.new({
             id = id.from(_N, "ValidDBInstanceModificationsMessage", "SupportsDedicatedLogVolume"),
@@ -16531,7 +16531,7 @@ M.ValidDBInstanceModificationsMessage = schema.new({
 })
 
 M.DescribeValidDBInstanceModificationsOutput = schema.new({
-    id = id.from(_N, "DescribeValidDBInstanceModificationsOutput"),
+    id = id.from(_N, "DescribeValidDBInstanceModificationsResult"),
     type = "structure",
     members = {
         ValidDBInstanceModificationsMessage = schema.new({
@@ -16545,7 +16545,7 @@ M.DescribeValidDBInstanceModificationsOutput = schema.new({
 })
 
 M.DisableHttpEndpointInput = schema.new({
-    id = id.from(_N, "DisableHttpEndpointInput"),
+    id = id.from(_N, "DisableHttpEndpointRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -16561,7 +16561,7 @@ M.DisableHttpEndpointInput = schema.new({
 })
 
 M.DisableHttpEndpointOutput = schema.new({
-    id = id.from(_N, "DisableHttpEndpointOutput"),
+    id = id.from(_N, "DisableHttpEndpointResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -16612,7 +16612,7 @@ M.DBLogFileNotFoundFault = schema.new({
 })
 
 M.DownloadDBLogFilePortionInput = schema.new({
-    id = id.from(_N, "DownloadDBLogFilePortionInput"),
+    id = id.from(_N, "DownloadDBLogFilePortionMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -16649,7 +16649,7 @@ M.DownloadDBLogFilePortionInput = schema.new({
 })
 
 M.DownloadDBLogFilePortionOutput = schema.new({
-    id = id.from(_N, "DownloadDBLogFilePortionOutput"),
+    id = id.from(_N, "DownloadDBLogFilePortionDetails"),
     type = "structure",
     members = {
         LogFileData = schema.new({
@@ -16674,7 +16674,7 @@ M.DownloadDBLogFilePortionOutput = schema.new({
 })
 
 M.EnableHttpEndpointInput = schema.new({
-    id = id.from(_N, "EnableHttpEndpointInput"),
+    id = id.from(_N, "EnableHttpEndpointRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -16690,7 +16690,7 @@ M.EnableHttpEndpointInput = schema.new({
 })
 
 M.EnableHttpEndpointOutput = schema.new({
-    id = id.from(_N, "EnableHttpEndpointOutput"),
+    id = id.from(_N, "EnableHttpEndpointResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -16709,7 +16709,7 @@ M.EnableHttpEndpointOutput = schema.new({
 })
 
 M.FailoverDBClusterInput = schema.new({
-    id = id.from(_N, "FailoverDBClusterInput"),
+    id = id.from(_N, "FailoverDBClusterMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -16731,7 +16731,7 @@ M.FailoverDBClusterInput = schema.new({
 })
 
 M.FailoverDBClusterOutput = schema.new({
-    id = id.from(_N, "FailoverDBClusterOutput"),
+    id = id.from(_N, "FailoverDBClusterResult"),
     type = "structure",
     members = {
         DBCluster = schema.new({
@@ -16745,7 +16745,7 @@ M.FailoverDBClusterOutput = schema.new({
 })
 
 M.FailoverGlobalClusterInput = schema.new({
-    id = id.from(_N, "FailoverGlobalClusterInput"),
+    id = id.from(_N, "FailoverGlobalClusterMessage"),
     type = "structure",
     members = {
         GlobalClusterIdentifier = schema.new({
@@ -16782,7 +16782,7 @@ M.FailoverGlobalClusterInput = schema.new({
 })
 
 M.FailoverGlobalClusterOutput = schema.new({
-    id = id.from(_N, "FailoverGlobalClusterOutput"),
+    id = id.from(_N, "FailoverGlobalClusterResult"),
     type = "structure",
     members = {
         GlobalCluster = schema.new({
@@ -16796,7 +16796,7 @@ M.FailoverGlobalClusterOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceMessage"),
     type = "structure",
     members = {
         ResourceName = schema.new({
@@ -16813,13 +16813,13 @@ M.ListTagsForResourceInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
     },
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "TagListMessage"),
     type = "structure",
     members = {
         TagList = schema.new({
@@ -16827,13 +16827,13 @@ M.ListTagsForResourceOutput = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.ModifyActivityStreamInput = schema.new({
-    id = id.from(_N, "ModifyActivityStreamInput"),
+    id = id.from(_N, "ModifyActivityStreamRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -16852,7 +16852,7 @@ M.ModifyActivityStreamInput = schema.new({
 })
 
 M.ModifyActivityStreamOutput = schema.new({
-    id = id.from(_N, "ModifyActivityStreamOutput"),
+    id = id.from(_N, "ModifyActivityStreamResponse"),
     type = "structure",
     members = {
         KmsKeyId = schema.new({
@@ -16895,7 +16895,7 @@ M.ModifyActivityStreamOutput = schema.new({
 })
 
 M.ModifyCertificatesInput = schema.new({
-    id = id.from(_N, "ModifyCertificatesInput"),
+    id = id.from(_N, "ModifyCertificatesMessage"),
     type = "structure",
     members = {
         CertificateIdentifier = schema.new({
@@ -16914,7 +16914,7 @@ M.ModifyCertificatesInput = schema.new({
 })
 
 M.ModifyCertificatesOutput = schema.new({
-    id = id.from(_N, "ModifyCertificatesOutput"),
+    id = id.from(_N, "ModifyCertificatesResult"),
     type = "structure",
     members = {
         Certificate = schema.new({
@@ -16944,7 +16944,7 @@ M.InvalidDBClusterCapacityFault = schema.new({
 })
 
 M.ModifyCurrentDBClusterCapacityInput = schema.new({
-    id = id.from(_N, "ModifyCurrentDBClusterCapacityInput"),
+    id = id.from(_N, "ModifyCurrentDBClusterCapacityMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -16978,7 +16978,7 @@ M.ModifyCurrentDBClusterCapacityInput = schema.new({
 })
 
 M.ModifyCurrentDBClusterCapacityOutput = schema.new({
-    id = id.from(_N, "ModifyCurrentDBClusterCapacityOutput"),
+    id = id.from(_N, "DBClusterCapacityInfo"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -17015,7 +17015,7 @@ M.ModifyCurrentDBClusterCapacityOutput = schema.new({
 })
 
 M.ModifyCustomDBEngineVersionInput = schema.new({
-    id = id.from(_N, "ModifyCustomDBEngineVersionInput"),
+    id = id.from(_N, "ModifyCustomDBEngineVersionMessage"),
     type = "structure",
     members = {
         Engine = schema.new({
@@ -17052,7 +17052,7 @@ M.ModifyCustomDBEngineVersionInput = schema.new({
 })
 
 M.ModifyCustomDBEngineVersionOutput = schema.new({
-    id = id.from(_N, "ModifyCustomDBEngineVersionOutput"),
+    id = id.from(_N, "DBEngineVersion"),
     type = "structure",
     members = {
         Engine = schema.new({
@@ -17165,28 +17165,28 @@ M.ModifyCustomDBEngineVersionOutput = schema.new({
             type = "list",
             name = "SupportedCharacterSets",
             target_id = prelude.Document.id,
-            list_member = M.CharacterSet,
+            list_member = schema.new({ type = "structure", target = M.CharacterSet, traits = { [traits.XML_NAME] = { name = "CharacterSet" } } }),
         }),
         SupportedNcharCharacterSets = schema.new({
             id = id.from(_N, "ModifyCustomDBEngineVersionOutput", "SupportedNcharCharacterSets"),
             type = "list",
             name = "SupportedNcharCharacterSets",
             target_id = prelude.Document.id,
-            list_member = M.CharacterSet,
+            list_member = schema.new({ type = "structure", target = M.CharacterSet, traits = { [traits.XML_NAME] = { name = "CharacterSet" } } }),
         }),
         ValidUpgradeTarget = schema.new({
             id = id.from(_N, "ModifyCustomDBEngineVersionOutput", "ValidUpgradeTarget"),
             type = "list",
             name = "ValidUpgradeTarget",
             target_id = prelude.Document.id,
-            list_member = M.UpgradeTarget,
+            list_member = schema.new({ type = "structure", target = M.UpgradeTarget, traits = { [traits.XML_NAME] = { name = "UpgradeTarget" } } }),
         }),
         SupportedTimezones = schema.new({
             id = id.from(_N, "ModifyCustomDBEngineVersionOutput", "SupportedTimezones"),
             type = "list",
             name = "SupportedTimezones",
             target_id = prelude.Document.id,
-            list_member = M.Timezone,
+            list_member = schema.new({ type = "structure", target = M.Timezone, traits = { [traits.XML_NAME] = { name = "Timezone" } } }),
         }),
         ExportableLogTypes = schema.new({
             id = id.from(_N, "ModifyCustomDBEngineVersionOutput", "ExportableLogTypes"),
@@ -17244,7 +17244,7 @@ M.ModifyCustomDBEngineVersionOutput = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         SupportsBabelfish = schema.new({
             id = id.from(_N, "ModifyCustomDBEngineVersionOutput", "SupportsBabelfish"),
@@ -17315,7 +17315,7 @@ M.CloudwatchLogsExportConfiguration = schema.new({
 })
 
 M.ModifyDBClusterInput = schema.new({
-    id = id.from(_N, "ModifyDBClusterInput"),
+    id = id.from(_N, "ModifyDBClusterMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -17356,7 +17356,7 @@ M.ModifyDBClusterInput = schema.new({
             type = "list",
             name = "VpcSecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupId" } } }),
         }),
         Port = schema.new({
             id = id.from(_N, "ModifyDBClusterInput", "Port"),
@@ -17611,7 +17611,7 @@ M.ModifyDBClusterInput = schema.new({
 })
 
 M.ModifyDBClusterOutput = schema.new({
-    id = id.from(_N, "ModifyDBClusterOutput"),
+    id = id.from(_N, "ModifyDBClusterResult"),
     type = "structure",
     members = {
         DBCluster = schema.new({
@@ -17641,7 +17641,7 @@ M.StorageTypeNotAvailableFault = schema.new({
 })
 
 M.ModifyDBClusterEndpointInput = schema.new({
-    id = id.from(_N, "ModifyDBClusterEndpointInput"),
+    id = id.from(_N, "ModifyDBClusterEndpointMessage"),
     type = "structure",
     members = {
         DBClusterEndpointIdentifier = schema.new({
@@ -17677,7 +17677,7 @@ M.ModifyDBClusterEndpointInput = schema.new({
 })
 
 M.ModifyDBClusterEndpointOutput = schema.new({
-    id = id.from(_N, "ModifyDBClusterEndpointOutput"),
+    id = id.from(_N, "DBClusterEndpoint"),
     type = "structure",
     members = {
         DBClusterEndpointIdentifier = schema.new({
@@ -17746,7 +17746,7 @@ M.ModifyDBClusterEndpointOutput = schema.new({
 })
 
 M.ModifyDBClusterParameterGroupInput = schema.new({
-    id = id.from(_N, "ModifyDBClusterParameterGroupInput"),
+    id = id.from(_N, "ModifyDBClusterParameterGroupMessage"),
     type = "structure",
     members = {
         DBClusterParameterGroupName = schema.new({
@@ -17763,7 +17763,7 @@ M.ModifyDBClusterParameterGroupInput = schema.new({
             type = "list",
             name = "Parameters",
             target_id = prelude.Document.id,
-            list_member = M.Parameter,
+            list_member = schema.new({ type = "structure", target = M.Parameter, traits = { [traits.XML_NAME] = { name = "Parameter" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -17772,7 +17772,7 @@ M.ModifyDBClusterParameterGroupInput = schema.new({
 })
 
 M.ModifyDBClusterParameterGroupOutput = schema.new({
-    id = id.from(_N, "ModifyDBClusterParameterGroupOutput"),
+    id = id.from(_N, "DBClusterParameterGroupNameMessage"),
     type = "structure",
     members = {
         DBClusterParameterGroupName = schema.new({
@@ -17785,7 +17785,7 @@ M.ModifyDBClusterParameterGroupOutput = schema.new({
 })
 
 M.ModifyDBClusterSnapshotAttributeInput = schema.new({
-    id = id.from(_N, "ModifyDBClusterSnapshotAttributeInput"),
+    id = id.from(_N, "ModifyDBClusterSnapshotAttributeMessage"),
     type = "structure",
     members = {
         DBClusterSnapshotIdentifier = schema.new({
@@ -17811,20 +17811,20 @@ M.ModifyDBClusterSnapshotAttributeInput = schema.new({
             type = "list",
             name = "ValuesToAdd",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AttributeValue" } } }),
         }),
         ValuesToRemove = schema.new({
             id = id.from(_N, "ModifyDBClusterSnapshotAttributeInput", "ValuesToRemove"),
             type = "list",
             name = "ValuesToRemove",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AttributeValue" } } }),
         }),
     },
 })
 
 M.ModifyDBClusterSnapshotAttributeOutput = schema.new({
-    id = id.from(_N, "ModifyDBClusterSnapshotAttributeOutput"),
+    id = id.from(_N, "ModifyDBClusterSnapshotAttributeResult"),
     type = "structure",
     members = {
         DBClusterSnapshotAttributesResult = schema.new({
@@ -17922,7 +17922,7 @@ M.ModifyAdditionalStorageVolume = schema.new({
 })
 
 M.ModifyDBInstanceInput = schema.new({
-    id = id.from(_N, "ModifyDBInstanceInput"),
+    id = id.from(_N, "ModifyDBInstanceMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -17957,14 +17957,14 @@ M.ModifyDBInstanceInput = schema.new({
             type = "list",
             name = "DBSecurityGroups",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "DBSecurityGroupName" } } }),
         }),
         VpcSecurityGroupIds = schema.new({
             id = id.from(_N, "ModifyDBInstanceInput", "VpcSecurityGroupIds"),
             type = "list",
             name = "VpcSecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupId" } } }),
         }),
         ApplyImmediately = schema.new({
             id = id.from(_N, "ModifyDBInstanceInput", "ApplyImmediately"),
@@ -18201,7 +18201,7 @@ M.ModifyDBInstanceInput = schema.new({
             type = "list",
             name = "ProcessorFeatures",
             target_id = prelude.Document.id,
-            list_member = M.ProcessorFeature,
+            list_member = schema.new({ type = "structure", target = M.ProcessorFeature, traits = { [traits.XML_NAME] = { name = "ProcessorFeature" } } }),
         }),
         UseDefaultProcessorFeatures = schema.new({
             id = id.from(_N, "ModifyDBInstanceInput", "UseDefaultProcessorFeatures"),
@@ -18311,7 +18311,7 @@ M.ModifyDBInstanceInput = schema.new({
             type = "list",
             name = "TagSpecifications",
             target_id = prelude.Document.id,
-            list_member = M.TagSpecification,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         MasterUserAuthenticationType = schema.new({
             id = id.from(_N, "ModifyDBInstanceInput", "MasterUserAuthenticationType"),
@@ -18323,7 +18323,7 @@ M.ModifyDBInstanceInput = schema.new({
 })
 
 M.ModifyDBInstanceOutput = schema.new({
-    id = id.from(_N, "ModifyDBInstanceOutput"),
+    id = id.from(_N, "ModifyDBInstanceResult"),
     type = "structure",
     members = {
         DBInstance = schema.new({
@@ -18337,7 +18337,7 @@ M.ModifyDBInstanceOutput = schema.new({
 })
 
 M.ModifyDBParameterGroupInput = schema.new({
-    id = id.from(_N, "ModifyDBParameterGroupInput"),
+    id = id.from(_N, "ModifyDBParameterGroupMessage"),
     type = "structure",
     members = {
         DBParameterGroupName = schema.new({
@@ -18354,7 +18354,7 @@ M.ModifyDBParameterGroupInput = schema.new({
             type = "list",
             name = "Parameters",
             target_id = prelude.Document.id,
-            list_member = M.Parameter,
+            list_member = schema.new({ type = "structure", target = M.Parameter, traits = { [traits.XML_NAME] = { name = "Parameter" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -18363,7 +18363,7 @@ M.ModifyDBParameterGroupInput = schema.new({
 })
 
 M.ModifyDBParameterGroupOutput = schema.new({
-    id = id.from(_N, "ModifyDBParameterGroupOutput"),
+    id = id.from(_N, "DBParameterGroupNameMessage"),
     type = "structure",
     members = {
         DBParameterGroupName = schema.new({
@@ -18376,7 +18376,7 @@ M.ModifyDBParameterGroupOutput = schema.new({
 })
 
 M.ModifyDBProxyInput = schema.new({
-    id = id.from(_N, "ModifyDBProxyInput"),
+    id = id.from(_N, "ModifyDBProxyRequest"),
     type = "structure",
     members = {
         DBProxyName = schema.new({
@@ -18442,7 +18442,7 @@ M.ModifyDBProxyInput = schema.new({
 })
 
 M.ModifyDBProxyOutput = schema.new({
-    id = id.from(_N, "ModifyDBProxyOutput"),
+    id = id.from(_N, "ModifyDBProxyResponse"),
     type = "structure",
     members = {
         DBProxy = schema.new({
@@ -18456,7 +18456,7 @@ M.ModifyDBProxyOutput = schema.new({
 })
 
 M.ModifyDBProxyEndpointInput = schema.new({
-    id = id.from(_N, "ModifyDBProxyEndpointInput"),
+    id = id.from(_N, "ModifyDBProxyEndpointRequest"),
     type = "structure",
     members = {
         DBProxyEndpointName = schema.new({
@@ -18485,7 +18485,7 @@ M.ModifyDBProxyEndpointInput = schema.new({
 })
 
 M.ModifyDBProxyEndpointOutput = schema.new({
-    id = id.from(_N, "ModifyDBProxyEndpointOutput"),
+    id = id.from(_N, "ModifyDBProxyEndpointResponse"),
     type = "structure",
     members = {
         DBProxyEndpoint = schema.new({
@@ -18537,7 +18537,7 @@ M.ConnectionPoolConfiguration = schema.new({
 })
 
 M.ModifyDBProxyTargetGroupInput = schema.new({
-    id = id.from(_N, "ModifyDBProxyTargetGroupInput"),
+    id = id.from(_N, "ModifyDBProxyTargetGroupRequest"),
     type = "structure",
     members = {
         TargetGroupName = schema.new({
@@ -18575,7 +18575,7 @@ M.ModifyDBProxyTargetGroupInput = schema.new({
 })
 
 M.ModifyDBProxyTargetGroupOutput = schema.new({
-    id = id.from(_N, "ModifyDBProxyTargetGroupOutput"),
+    id = id.from(_N, "ModifyDBProxyTargetGroupResponse"),
     type = "structure",
     members = {
         DBProxyTargetGroup = schema.new({
@@ -18614,7 +18614,7 @@ M.RecommendedActionUpdate = schema.new({
 })
 
 M.ModifyDBRecommendationInput = schema.new({
-    id = id.from(_N, "ModifyDBRecommendationInput"),
+    id = id.from(_N, "ModifyDBRecommendationMessage"),
     type = "structure",
     members = {
         RecommendationId = schema.new({
@@ -18649,7 +18649,7 @@ M.ModifyDBRecommendationInput = schema.new({
 })
 
 M.ModifyDBRecommendationOutput = schema.new({
-    id = id.from(_N, "ModifyDBRecommendationOutput"),
+    id = id.from(_N, "DBRecommendationMessage"),
     type = "structure",
     members = {
         DBRecommendation = schema.new({
@@ -18663,7 +18663,7 @@ M.ModifyDBRecommendationOutput = schema.new({
 })
 
 M.ModifyDBShardGroupInput = schema.new({
-    id = id.from(_N, "ModifyDBShardGroupInput"),
+    id = id.from(_N, "ModifyDBShardGroupMessage"),
     type = "structure",
     members = {
         DBShardGroupIdentifier = schema.new({
@@ -18697,7 +18697,7 @@ M.ModifyDBShardGroupInput = schema.new({
 })
 
 M.ModifyDBShardGroupOutput = schema.new({
-    id = id.from(_N, "ModifyDBShardGroupOutput"),
+    id = id.from(_N, "DBShardGroup"),
     type = "structure",
     members = {
         DBShardGroupResourceId = schema.new({
@@ -18765,13 +18765,13 @@ M.ModifyDBShardGroupOutput = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.ModifyDBSnapshotInput = schema.new({
-    id = id.from(_N, "ModifyDBSnapshotInput"),
+    id = id.from(_N, "ModifyDBSnapshotMessage"),
     type = "structure",
     members = {
         DBSnapshotIdentifier = schema.new({
@@ -18799,7 +18799,7 @@ M.ModifyDBSnapshotInput = schema.new({
 })
 
 M.ModifyDBSnapshotOutput = schema.new({
-    id = id.from(_N, "ModifyDBSnapshotOutput"),
+    id = id.from(_N, "ModifyDBSnapshotResult"),
     type = "structure",
     members = {
         DBSnapshot = schema.new({
@@ -18813,7 +18813,7 @@ M.ModifyDBSnapshotOutput = schema.new({
 })
 
 M.ModifyDBSnapshotAttributeInput = schema.new({
-    id = id.from(_N, "ModifyDBSnapshotAttributeInput"),
+    id = id.from(_N, "ModifyDBSnapshotAttributeMessage"),
     type = "structure",
     members = {
         DBSnapshotIdentifier = schema.new({
@@ -18839,20 +18839,20 @@ M.ModifyDBSnapshotAttributeInput = schema.new({
             type = "list",
             name = "ValuesToAdd",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AttributeValue" } } }),
         }),
         ValuesToRemove = schema.new({
             id = id.from(_N, "ModifyDBSnapshotAttributeInput", "ValuesToRemove"),
             type = "list",
             name = "ValuesToRemove",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AttributeValue" } } }),
         }),
     },
 })
 
 M.ModifyDBSnapshotAttributeOutput = schema.new({
-    id = id.from(_N, "ModifyDBSnapshotAttributeOutput"),
+    id = id.from(_N, "ModifyDBSnapshotAttributeResult"),
     type = "structure",
     members = {
         DBSnapshotAttributesResult = schema.new({
@@ -18866,7 +18866,7 @@ M.ModifyDBSnapshotAttributeOutput = schema.new({
 })
 
 M.ModifyDBSubnetGroupInput = schema.new({
-    id = id.from(_N, "ModifyDBSubnetGroupInput"),
+    id = id.from(_N, "ModifyDBSubnetGroupMessage"),
     type = "structure",
     members = {
         DBSubnetGroupName = schema.new({
@@ -18889,7 +18889,7 @@ M.ModifyDBSubnetGroupInput = schema.new({
             type = "list",
             name = "SubnetIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SubnetIdentifier" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -18898,7 +18898,7 @@ M.ModifyDBSubnetGroupInput = schema.new({
 })
 
 M.ModifyDBSubnetGroupOutput = schema.new({
-    id = id.from(_N, "ModifyDBSubnetGroupOutput"),
+    id = id.from(_N, "ModifyDBSubnetGroupResult"),
     type = "structure",
     members = {
         DBSubnetGroup = schema.new({
@@ -18928,7 +18928,7 @@ M.SubnetAlreadyInUse = schema.new({
 })
 
 M.ModifyEventSubscriptionInput = schema.new({
-    id = id.from(_N, "ModifyEventSubscriptionInput"),
+    id = id.from(_N, "ModifyEventSubscriptionMessage"),
     type = "structure",
     members = {
         SubscriptionName = schema.new({
@@ -18957,7 +18957,7 @@ M.ModifyEventSubscriptionInput = schema.new({
             type = "list",
             name = "EventCategories",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "EventCategory" } } }),
         }),
         Enabled = schema.new({
             id = id.from(_N, "ModifyEventSubscriptionInput", "Enabled"),
@@ -18969,7 +18969,7 @@ M.ModifyEventSubscriptionInput = schema.new({
 })
 
 M.ModifyEventSubscriptionOutput = schema.new({
-    id = id.from(_N, "ModifyEventSubscriptionOutput"),
+    id = id.from(_N, "ModifyEventSubscriptionResult"),
     type = "structure",
     members = {
         EventSubscription = schema.new({
@@ -18983,7 +18983,7 @@ M.ModifyEventSubscriptionOutput = schema.new({
 })
 
 M.ModifyGlobalClusterInput = schema.new({
-    id = id.from(_N, "ModifyGlobalClusterInput"),
+    id = id.from(_N, "ModifyGlobalClusterMessage"),
     type = "structure",
     members = {
         GlobalClusterIdentifier = schema.new({
@@ -19023,7 +19023,7 @@ M.ModifyGlobalClusterInput = schema.new({
 })
 
 M.ModifyGlobalClusterOutput = schema.new({
-    id = id.from(_N, "ModifyGlobalClusterOutput"),
+    id = id.from(_N, "ModifyGlobalClusterResult"),
     type = "structure",
     members = {
         GlobalCluster = schema.new({
@@ -19037,7 +19037,7 @@ M.ModifyGlobalClusterOutput = schema.new({
 })
 
 M.ModifyIntegrationInput = schema.new({
-    id = id.from(_N, "ModifyIntegrationInput"),
+    id = id.from(_N, "ModifyIntegrationMessage"),
     type = "structure",
     members = {
         IntegrationIdentifier = schema.new({
@@ -19071,7 +19071,7 @@ M.ModifyIntegrationInput = schema.new({
 })
 
 M.ModifyIntegrationOutput = schema.new({
-    id = id.from(_N, "ModifyIntegrationOutput"),
+    id = id.from(_N, "Integration"),
     type = "structure",
     members = {
         SourceArn = schema.new({
@@ -19123,7 +19123,7 @@ M.ModifyIntegrationOutput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         DataFilter = schema.new({
             id = id.from(_N, "ModifyIntegrationOutput", "DataFilter"),
@@ -19148,7 +19148,7 @@ M.ModifyIntegrationOutput = schema.new({
             type = "list",
             name = "Errors",
             target_id = prelude.Document.id,
-            list_member = M.IntegrationError,
+            list_member = schema.new({ type = "structure", target = M.IntegrationError, traits = { [traits.XML_NAME] = { name = "IntegrationError" } } }),
         }),
     },
 })
@@ -19183,27 +19183,27 @@ M.OptionConfiguration = schema.new({
             type = "list",
             name = "DBSecurityGroupMemberships",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "DBSecurityGroupName" } } }),
         }),
         VpcSecurityGroupMemberships = schema.new({
             id = id.from(_N, "OptionConfiguration", "VpcSecurityGroupMemberships"),
             type = "list",
             name = "VpcSecurityGroupMemberships",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupId" } } }),
         }),
         OptionSettings = schema.new({
             id = id.from(_N, "OptionConfiguration", "OptionSettings"),
             type = "list",
             name = "OptionSettings",
             target_id = prelude.Document.id,
-            list_member = M.OptionSetting,
+            list_member = schema.new({ type = "structure", target = M.OptionSetting, traits = { [traits.XML_NAME] = { name = "OptionSetting" } } }),
         }),
     },
 })
 
 M.ModifyOptionGroupInput = schema.new({
-    id = id.from(_N, "ModifyOptionGroupInput"),
+    id = id.from(_N, "ModifyOptionGroupMessage"),
     type = "structure",
     members = {
         OptionGroupName = schema.new({
@@ -19220,7 +19220,7 @@ M.ModifyOptionGroupInput = schema.new({
             type = "list",
             name = "OptionsToInclude",
             target_id = prelude.Document.id,
-            list_member = M.OptionConfiguration,
+            list_member = schema.new({ type = "structure", target = M.OptionConfiguration, traits = { [traits.XML_NAME] = { name = "OptionConfiguration" } } }),
         }),
         OptionsToRemove = schema.new({
             id = id.from(_N, "ModifyOptionGroupInput", "OptionsToRemove"),
@@ -19239,7 +19239,7 @@ M.ModifyOptionGroupInput = schema.new({
 })
 
 M.ModifyOptionGroupOutput = schema.new({
-    id = id.from(_N, "ModifyOptionGroupOutput"),
+    id = id.from(_N, "ModifyOptionGroupResult"),
     type = "structure",
     members = {
         OptionGroup = schema.new({
@@ -19253,7 +19253,7 @@ M.ModifyOptionGroupOutput = schema.new({
 })
 
 M.ModifyTenantDatabaseInput = schema.new({
-    id = id.from(_N, "ModifyTenantDatabaseInput"),
+    id = id.from(_N, "ModifyTenantDatabaseMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -19308,7 +19308,7 @@ M.ModifyTenantDatabaseInput = schema.new({
 })
 
 M.ModifyTenantDatabaseOutput = schema.new({
-    id = id.from(_N, "ModifyTenantDatabaseOutput"),
+    id = id.from(_N, "ModifyTenantDatabaseResult"),
     type = "structure",
     members = {
         TenantDatabase = schema.new({
@@ -19322,7 +19322,7 @@ M.ModifyTenantDatabaseOutput = schema.new({
 })
 
 M.PromoteReadReplicaInput = schema.new({
-    id = id.from(_N, "PromoteReadReplicaInput"),
+    id = id.from(_N, "PromoteReadReplicaMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -19351,13 +19351,13 @@ M.PromoteReadReplicaInput = schema.new({
             type = "list",
             name = "TagSpecifications",
             target_id = prelude.Document.id,
-            list_member = M.TagSpecification,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
 
 M.PromoteReadReplicaOutput = schema.new({
-    id = id.from(_N, "PromoteReadReplicaOutput"),
+    id = id.from(_N, "PromoteReadReplicaResult"),
     type = "structure",
     members = {
         DBInstance = schema.new({
@@ -19371,7 +19371,7 @@ M.PromoteReadReplicaOutput = schema.new({
 })
 
 M.PromoteReadReplicaDBClusterInput = schema.new({
-    id = id.from(_N, "PromoteReadReplicaDBClusterInput"),
+    id = id.from(_N, "PromoteReadReplicaDBClusterMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -19387,7 +19387,7 @@ M.PromoteReadReplicaDBClusterInput = schema.new({
 })
 
 M.PromoteReadReplicaDBClusterOutput = schema.new({
-    id = id.from(_N, "PromoteReadReplicaDBClusterOutput"),
+    id = id.from(_N, "PromoteReadReplicaDBClusterResult"),
     type = "structure",
     members = {
         DBCluster = schema.new({
@@ -19401,7 +19401,7 @@ M.PromoteReadReplicaDBClusterOutput = schema.new({
 })
 
 M.PurchaseReservedDBInstancesOfferingInput = schema.new({
-    id = id.from(_N, "PurchaseReservedDBInstancesOfferingInput"),
+    id = id.from(_N, "PurchaseReservedDBInstancesOfferingMessage"),
     type = "structure",
     members = {
         ReservedDBInstancesOfferingId = schema.new({
@@ -19430,13 +19430,13 @@ M.PurchaseReservedDBInstancesOfferingInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.PurchaseReservedDBInstancesOfferingOutput = schema.new({
-    id = id.from(_N, "PurchaseReservedDBInstancesOfferingOutput"),
+    id = id.from(_N, "PurchaseReservedDBInstancesOfferingResult"),
     type = "structure",
     members = {
         ReservedDBInstance = schema.new({
@@ -19482,7 +19482,7 @@ M.ReservedDBInstanceQuotaExceededFault = schema.new({
 })
 
 M.RebootDBClusterInput = schema.new({
-    id = id.from(_N, "RebootDBClusterInput"),
+    id = id.from(_N, "RebootDBClusterMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -19498,7 +19498,7 @@ M.RebootDBClusterInput = schema.new({
 })
 
 M.RebootDBClusterOutput = schema.new({
-    id = id.from(_N, "RebootDBClusterOutput"),
+    id = id.from(_N, "RebootDBClusterResult"),
     type = "structure",
     members = {
         DBCluster = schema.new({
@@ -19512,7 +19512,7 @@ M.RebootDBClusterOutput = schema.new({
 })
 
 M.RebootDBInstanceInput = schema.new({
-    id = id.from(_N, "RebootDBInstanceInput"),
+    id = id.from(_N, "RebootDBInstanceMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -19534,7 +19534,7 @@ M.RebootDBInstanceInput = schema.new({
 })
 
 M.RebootDBInstanceOutput = schema.new({
-    id = id.from(_N, "RebootDBInstanceOutput"),
+    id = id.from(_N, "RebootDBInstanceResult"),
     type = "structure",
     members = {
         DBInstance = schema.new({
@@ -19548,7 +19548,7 @@ M.RebootDBInstanceOutput = schema.new({
 })
 
 M.RebootDBShardGroupInput = schema.new({
-    id = id.from(_N, "RebootDBShardGroupInput"),
+    id = id.from(_N, "RebootDBShardGroupMessage"),
     type = "structure",
     members = {
         DBShardGroupIdentifier = schema.new({
@@ -19564,7 +19564,7 @@ M.RebootDBShardGroupInput = schema.new({
 })
 
 M.RebootDBShardGroupOutput = schema.new({
-    id = id.from(_N, "RebootDBShardGroupOutput"),
+    id = id.from(_N, "DBShardGroup"),
     type = "structure",
     members = {
         DBShardGroupResourceId = schema.new({
@@ -19632,7 +19632,7 @@ M.RebootDBShardGroupOutput = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -19670,7 +19670,7 @@ M.InsufficientAvailableIPsInSubnetFault = schema.new({
 })
 
 M.RegisterDBProxyTargetsInput = schema.new({
-    id = id.from(_N, "RegisterDBProxyTargetsInput"),
+    id = id.from(_N, "RegisterDBProxyTargetsRequest"),
     type = "structure",
     members = {
         DBProxyName = schema.new({
@@ -19706,7 +19706,7 @@ M.RegisterDBProxyTargetsInput = schema.new({
 })
 
 M.RegisterDBProxyTargetsOutput = schema.new({
-    id = id.from(_N, "RegisterDBProxyTargetsOutput"),
+    id = id.from(_N, "RegisterDBProxyTargetsResponse"),
     type = "structure",
     members = {
         DBProxyTargets = schema.new({
@@ -19720,7 +19720,7 @@ M.RegisterDBProxyTargetsOutput = schema.new({
 })
 
 M.RemoveFromGlobalClusterInput = schema.new({
-    id = id.from(_N, "RemoveFromGlobalClusterInput"),
+    id = id.from(_N, "RemoveFromGlobalClusterMessage"),
     type = "structure",
     members = {
         GlobalClusterIdentifier = schema.new({
@@ -19745,7 +19745,7 @@ M.RemoveFromGlobalClusterInput = schema.new({
 })
 
 M.RemoveFromGlobalClusterOutput = schema.new({
-    id = id.from(_N, "RemoveFromGlobalClusterOutput"),
+    id = id.from(_N, "RemoveFromGlobalClusterResult"),
     type = "structure",
     members = {
         GlobalCluster = schema.new({
@@ -19775,7 +19775,7 @@ M.DBClusterRoleNotFoundFault = schema.new({
 })
 
 M.RemoveRoleFromDBClusterInput = schema.new({
-    id = id.from(_N, "RemoveRoleFromDBClusterInput"),
+    id = id.from(_N, "RemoveRoleFromDBClusterMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -19806,7 +19806,7 @@ M.RemoveRoleFromDBClusterInput = schema.new({
 })
 
 M.RemoveRoleFromDBClusterOutput = schema.new({
-    id = id.from(_N, "RemoveRoleFromDBClusterOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -19827,7 +19827,7 @@ M.DBInstanceRoleNotFoundFault = schema.new({
 })
 
 M.RemoveRoleFromDBInstanceInput = schema.new({
-    id = id.from(_N, "RemoveRoleFromDBInstanceInput"),
+    id = id.from(_N, "RemoveRoleFromDBInstanceMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -19861,12 +19861,12 @@ M.RemoveRoleFromDBInstanceInput = schema.new({
 })
 
 M.RemoveRoleFromDBInstanceOutput = schema.new({
-    id = id.from(_N, "RemoveRoleFromDBInstanceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RemoveSourceIdentifierFromSubscriptionInput = schema.new({
-    id = id.from(_N, "RemoveSourceIdentifierFromSubscriptionInput"),
+    id = id.from(_N, "RemoveSourceIdentifierFromSubscriptionMessage"),
     type = "structure",
     members = {
         SubscriptionName = schema.new({
@@ -19891,7 +19891,7 @@ M.RemoveSourceIdentifierFromSubscriptionInput = schema.new({
 })
 
 M.RemoveSourceIdentifierFromSubscriptionOutput = schema.new({
-    id = id.from(_N, "RemoveSourceIdentifierFromSubscriptionOutput"),
+    id = id.from(_N, "RemoveSourceIdentifierFromSubscriptionResult"),
     type = "structure",
     members = {
         EventSubscription = schema.new({
@@ -19905,7 +19905,7 @@ M.RemoveSourceIdentifierFromSubscriptionOutput = schema.new({
 })
 
 M.RemoveTagsFromResourceInput = schema.new({
-    id = id.from(_N, "RemoveTagsFromResourceInput"),
+    id = id.from(_N, "RemoveTagsFromResourceMessage"),
     type = "structure",
     members = {
         ResourceName = schema.new({
@@ -19931,12 +19931,12 @@ M.RemoveTagsFromResourceInput = schema.new({
 })
 
 M.RemoveTagsFromResourceOutput = schema.new({
-    id = id.from(_N, "RemoveTagsFromResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ResetDBClusterParameterGroupInput = schema.new({
-    id = id.from(_N, "ResetDBClusterParameterGroupInput"),
+    id = id.from(_N, "ResetDBClusterParameterGroupMessage"),
     type = "structure",
     members = {
         DBClusterParameterGroupName = schema.new({
@@ -19959,13 +19959,13 @@ M.ResetDBClusterParameterGroupInput = schema.new({
             type = "list",
             name = "Parameters",
             target_id = prelude.Document.id,
-            list_member = M.Parameter,
+            list_member = schema.new({ type = "structure", target = M.Parameter, traits = { [traits.XML_NAME] = { name = "Parameter" } } }),
         }),
     },
 })
 
 M.ResetDBClusterParameterGroupOutput = schema.new({
-    id = id.from(_N, "ResetDBClusterParameterGroupOutput"),
+    id = id.from(_N, "DBClusterParameterGroupNameMessage"),
     type = "structure",
     members = {
         DBClusterParameterGroupName = schema.new({
@@ -19978,7 +19978,7 @@ M.ResetDBClusterParameterGroupOutput = schema.new({
 })
 
 M.ResetDBParameterGroupInput = schema.new({
-    id = id.from(_N, "ResetDBParameterGroupInput"),
+    id = id.from(_N, "ResetDBParameterGroupMessage"),
     type = "structure",
     members = {
         DBParameterGroupName = schema.new({
@@ -20001,13 +20001,13 @@ M.ResetDBParameterGroupInput = schema.new({
             type = "list",
             name = "Parameters",
             target_id = prelude.Document.id,
-            list_member = M.Parameter,
+            list_member = schema.new({ type = "structure", target = M.Parameter, traits = { [traits.XML_NAME] = { name = "Parameter" } } }),
         }),
     },
 })
 
 M.ResetDBParameterGroupOutput = schema.new({
-    id = id.from(_N, "ResetDBParameterGroupOutput"),
+    id = id.from(_N, "DBParameterGroupNameMessage"),
     type = "structure",
     members = {
         DBParameterGroupName = schema.new({
@@ -20036,7 +20036,7 @@ M.InvalidS3BucketFault = schema.new({
 })
 
 M.RestoreDBClusterFromS3Input = schema.new({
-    id = id.from(_N, "RestoreDBClusterFromS3Input"),
+    id = id.from(_N, "RestoreDBClusterFromS3Message"),
     type = "structure",
     members = {
         AvailabilityZones = schema.new({
@@ -20044,7 +20044,7 @@ M.RestoreDBClusterFromS3Input = schema.new({
             type = "list",
             name = "AvailabilityZones",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AvailabilityZone" } } }),
         }),
         BackupRetentionPeriod = schema.new({
             id = id.from(_N, "RestoreDBClusterFromS3Input", "BackupRetentionPeriod"),
@@ -20084,7 +20084,7 @@ M.RestoreDBClusterFromS3Input = schema.new({
             type = "list",
             name = "VpcSecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupId" } } }),
         }),
         DBSubnetGroupName = schema.new({
             id = id.from(_N, "RestoreDBClusterFromS3Input", "DBSubnetGroupName"),
@@ -20151,7 +20151,7 @@ M.RestoreDBClusterFromS3Input = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         StorageEncrypted = schema.new({
             id = id.from(_N, "RestoreDBClusterFromS3Input", "StorageEncrypted"),
@@ -20292,13 +20292,13 @@ M.RestoreDBClusterFromS3Input = schema.new({
             type = "list",
             name = "TagSpecifications",
             target_id = prelude.Document.id,
-            list_member = M.TagSpecification,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
 
 M.RestoreDBClusterFromS3Output = schema.new({
-    id = id.from(_N, "RestoreDBClusterFromS3Output"),
+    id = id.from(_N, "RestoreDBClusterFromS3Result"),
     type = "structure",
     members = {
         DBCluster = schema.new({
@@ -20344,7 +20344,7 @@ M.InvalidRestoreFault = schema.new({
 })
 
 M.RestoreDBClusterFromSnapshotInput = schema.new({
-    id = id.from(_N, "RestoreDBClusterFromSnapshotInput"),
+    id = id.from(_N, "RestoreDBClusterFromSnapshotMessage"),
     type = "structure",
     members = {
         AvailabilityZones = schema.new({
@@ -20352,7 +20352,7 @@ M.RestoreDBClusterFromSnapshotInput = schema.new({
             type = "list",
             name = "AvailabilityZones",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AvailabilityZone" } } }),
         }),
         DBClusterIdentifier = schema.new({
             id = id.from(_N, "RestoreDBClusterFromSnapshotInput", "DBClusterIdentifier"),
@@ -20416,14 +20416,14 @@ M.RestoreDBClusterFromSnapshotInput = schema.new({
             type = "list",
             name = "VpcSecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupId" } } }),
         }),
         Tags = schema.new({
             id = id.from(_N, "RestoreDBClusterFromSnapshotInput", "Tags"),
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         KmsKeyId = schema.new({
             id = id.from(_N, "RestoreDBClusterFromSnapshotInput", "KmsKeyId"),
@@ -20590,7 +20590,7 @@ M.RestoreDBClusterFromSnapshotInput = schema.new({
             type = "list",
             name = "TagSpecifications",
             target_id = prelude.Document.id,
-            list_member = M.TagSpecification,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         EnableVPCNetworking = schema.new({
             id = id.from(_N, "RestoreDBClusterFromSnapshotInput", "EnableVPCNetworking"),
@@ -20608,7 +20608,7 @@ M.RestoreDBClusterFromSnapshotInput = schema.new({
 })
 
 M.RestoreDBClusterFromSnapshotOutput = schema.new({
-    id = id.from(_N, "RestoreDBClusterFromSnapshotOutput"),
+    id = id.from(_N, "RestoreDBClusterFromSnapshotResult"),
     type = "structure",
     members = {
         DBCluster = schema.new({
@@ -20622,7 +20622,7 @@ M.RestoreDBClusterFromSnapshotOutput = schema.new({
 })
 
 M.RestoreDBClusterToPointInTimeInput = schema.new({
-    id = id.from(_N, "RestoreDBClusterToPointInTimeInput"),
+    id = id.from(_N, "RestoreDBClusterToPointInTimeMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -20681,14 +20681,14 @@ M.RestoreDBClusterToPointInTimeInput = schema.new({
             type = "list",
             name = "VpcSecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupId" } } }),
         }),
         Tags = schema.new({
             id = id.from(_N, "RestoreDBClusterToPointInTimeInput", "Tags"),
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         KmsKeyId = schema.new({
             id = id.from(_N, "RestoreDBClusterToPointInTimeInput", "KmsKeyId"),
@@ -20861,7 +20861,7 @@ M.RestoreDBClusterToPointInTimeInput = schema.new({
             type = "list",
             name = "TagSpecifications",
             target_id = prelude.Document.id,
-            list_member = M.TagSpecification,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         EnableVPCNetworking = schema.new({
             id = id.from(_N, "RestoreDBClusterToPointInTimeInput", "EnableVPCNetworking"),
@@ -20879,7 +20879,7 @@ M.RestoreDBClusterToPointInTimeInput = schema.new({
 })
 
 M.RestoreDBClusterToPointInTimeOutput = schema.new({
-    id = id.from(_N, "RestoreDBClusterToPointInTimeOutput"),
+    id = id.from(_N, "RestoreDBClusterToPointInTimeResult"),
     type = "structure",
     members = {
         DBCluster = schema.new({
@@ -20893,7 +20893,7 @@ M.RestoreDBClusterToPointInTimeOutput = schema.new({
 })
 
 M.RestoreDBInstanceFromDBSnapshotInput = schema.new({
-    id = id.from(_N, "RestoreDBInstanceFromDBSnapshotInput"),
+    id = id.from(_N, "RestoreDBInstanceFromDBSnapshotMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -20994,7 +20994,7 @@ M.RestoreDBInstanceFromDBSnapshotInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         StorageType = schema.new({
             id = id.from(_N, "RestoreDBInstanceFromDBSnapshotInput", "StorageType"),
@@ -21019,7 +21019,7 @@ M.RestoreDBInstanceFromDBSnapshotInput = schema.new({
             type = "list",
             name = "VpcSecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupId" } } }),
         }),
         Domain = schema.new({
             id = id.from(_N, "RestoreDBInstanceFromDBSnapshotInput", "Domain"),
@@ -21082,7 +21082,7 @@ M.RestoreDBInstanceFromDBSnapshotInput = schema.new({
             type = "list",
             name = "ProcessorFeatures",
             target_id = prelude.Document.id,
-            list_member = M.ProcessorFeature,
+            list_member = schema.new({ type = "structure", target = M.ProcessorFeature, traits = { [traits.XML_NAME] = { name = "ProcessorFeature" } } }),
         }),
         UseDefaultProcessorFeatures = schema.new({
             id = id.from(_N, "RestoreDBInstanceFromDBSnapshotInput", "UseDefaultProcessorFeatures"),
@@ -21180,7 +21180,7 @@ M.RestoreDBInstanceFromDBSnapshotInput = schema.new({
             type = "list",
             name = "TagSpecifications",
             target_id = prelude.Document.id,
-            list_member = M.TagSpecification,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         ManageMasterUserPassword = schema.new({
             id = id.from(_N, "RestoreDBInstanceFromDBSnapshotInput", "ManageMasterUserPassword"),
@@ -21198,7 +21198,7 @@ M.RestoreDBInstanceFromDBSnapshotInput = schema.new({
 })
 
 M.RestoreDBInstanceFromDBSnapshotOutput = schema.new({
-    id = id.from(_N, "RestoreDBInstanceFromDBSnapshotOutput"),
+    id = id.from(_N, "RestoreDBInstanceFromDBSnapshotResult"),
     type = "structure",
     members = {
         DBInstance = schema.new({
@@ -21212,7 +21212,7 @@ M.RestoreDBInstanceFromDBSnapshotOutput = schema.new({
 })
 
 M.RestoreDBInstanceFromS3Input = schema.new({
-    id = id.from(_N, "RestoreDBInstanceFromS3Input"),
+    id = id.from(_N, "RestoreDBInstanceFromS3Message"),
     type = "structure",
     members = {
         DBName = schema.new({
@@ -21271,14 +21271,14 @@ M.RestoreDBInstanceFromS3Input = schema.new({
             type = "list",
             name = "DBSecurityGroups",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "DBSecurityGroupName" } } }),
         }),
         VpcSecurityGroupIds = schema.new({
             id = id.from(_N, "RestoreDBInstanceFromS3Input", "VpcSecurityGroupIds"),
             type = "list",
             name = "VpcSecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupId" } } }),
         }),
         AvailabilityZone = schema.new({
             id = id.from(_N, "RestoreDBInstanceFromS3Input", "AvailabilityZone"),
@@ -21375,7 +21375,7 @@ M.RestoreDBInstanceFromS3Input = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         StorageType = schema.new({
             id = id.from(_N, "RestoreDBInstanceFromS3Input", "StorageType"),
@@ -21497,7 +21497,7 @@ M.RestoreDBInstanceFromS3Input = schema.new({
             type = "list",
             name = "ProcessorFeatures",
             target_id = prelude.Document.id,
-            list_member = M.ProcessorFeature,
+            list_member = schema.new({ type = "structure", target = M.ProcessorFeature, traits = { [traits.XML_NAME] = { name = "ProcessorFeature" } } }),
         }),
         UseDefaultProcessorFeatures = schema.new({
             id = id.from(_N, "RestoreDBInstanceFromS3Input", "UseDefaultProcessorFeatures"),
@@ -21565,13 +21565,13 @@ M.RestoreDBInstanceFromS3Input = schema.new({
             type = "list",
             name = "TagSpecifications",
             target_id = prelude.Document.id,
-            list_member = M.TagSpecification,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
 
 M.RestoreDBInstanceFromS3Output = schema.new({
-    id = id.from(_N, "RestoreDBInstanceFromS3Output"),
+    id = id.from(_N, "RestoreDBInstanceFromS3Result"),
     type = "structure",
     members = {
         DBInstance = schema.new({
@@ -21601,7 +21601,7 @@ M.PointInTimeRestoreNotEnabledFault = schema.new({
 })
 
 M.RestoreDBInstanceToPointInTimeInput = schema.new({
-    id = id.from(_N, "RestoreDBInstanceToPointInTimeInput"),
+    id = id.from(_N, "RestoreDBInstanceToPointInTimeMessage"),
     type = "structure",
     members = {
         SourceDBInstanceIdentifier = schema.new({
@@ -21720,7 +21720,7 @@ M.RestoreDBInstanceToPointInTimeInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         StorageType = schema.new({
             id = id.from(_N, "RestoreDBInstanceToPointInTimeInput", "StorageType"),
@@ -21745,7 +21745,7 @@ M.RestoreDBInstanceToPointInTimeInput = schema.new({
             type = "list",
             name = "VpcSecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupId" } } }),
         }),
         Domain = schema.new({
             id = id.from(_N, "RestoreDBInstanceToPointInTimeInput", "Domain"),
@@ -21802,7 +21802,7 @@ M.RestoreDBInstanceToPointInTimeInput = schema.new({
             type = "list",
             name = "ProcessorFeatures",
             target_id = prelude.Document.id,
-            list_member = M.ProcessorFeature,
+            list_member = schema.new({ type = "structure", target = M.ProcessorFeature, traits = { [traits.XML_NAME] = { name = "ProcessorFeature" } } }),
         }),
         UseDefaultProcessorFeatures = schema.new({
             id = id.from(_N, "RestoreDBInstanceToPointInTimeInput", "UseDefaultProcessorFeatures"),
@@ -21912,7 +21912,7 @@ M.RestoreDBInstanceToPointInTimeInput = schema.new({
             type = "list",
             name = "TagSpecifications",
             target_id = prelude.Document.id,
-            list_member = M.TagSpecification,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         ManageMasterUserPassword = schema.new({
             id = id.from(_N, "RestoreDBInstanceToPointInTimeInput", "ManageMasterUserPassword"),
@@ -21930,7 +21930,7 @@ M.RestoreDBInstanceToPointInTimeInput = schema.new({
 })
 
 M.RestoreDBInstanceToPointInTimeOutput = schema.new({
-    id = id.from(_N, "RestoreDBInstanceToPointInTimeOutput"),
+    id = id.from(_N, "RestoreDBInstanceToPointInTimeResult"),
     type = "structure",
     members = {
         DBInstance = schema.new({
@@ -21944,7 +21944,7 @@ M.RestoreDBInstanceToPointInTimeOutput = schema.new({
 })
 
 M.RevokeDBSecurityGroupIngressInput = schema.new({
-    id = id.from(_N, "RevokeDBSecurityGroupIngressInput"),
+    id = id.from(_N, "RevokeDBSecurityGroupIngressMessage"),
     type = "structure",
     members = {
         DBSecurityGroupName = schema.new({
@@ -21984,7 +21984,7 @@ M.RevokeDBSecurityGroupIngressInput = schema.new({
 })
 
 M.RevokeDBSecurityGroupIngressOutput = schema.new({
-    id = id.from(_N, "RevokeDBSecurityGroupIngressOutput"),
+    id = id.from(_N, "RevokeDBSecurityGroupIngressResult"),
     type = "structure",
     members = {
         DBSecurityGroup = schema.new({
@@ -21998,7 +21998,7 @@ M.RevokeDBSecurityGroupIngressOutput = schema.new({
 })
 
 M.StartActivityStreamInput = schema.new({
-    id = id.from(_N, "StartActivityStreamInput"),
+    id = id.from(_N, "StartActivityStreamRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -22044,7 +22044,7 @@ M.StartActivityStreamInput = schema.new({
 })
 
 M.StartActivityStreamOutput = schema.new({
-    id = id.from(_N, "StartActivityStreamOutput"),
+    id = id.from(_N, "StartActivityStreamResponse"),
     type = "structure",
     members = {
         KmsKeyId = schema.new({
@@ -22087,7 +22087,7 @@ M.StartActivityStreamOutput = schema.new({
 })
 
 M.StartDBClusterInput = schema.new({
-    id = id.from(_N, "StartDBClusterInput"),
+    id = id.from(_N, "StartDBClusterMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -22103,7 +22103,7 @@ M.StartDBClusterInput = schema.new({
 })
 
 M.StartDBClusterOutput = schema.new({
-    id = id.from(_N, "StartDBClusterOutput"),
+    id = id.from(_N, "StartDBClusterResult"),
     type = "structure",
     members = {
         DBCluster = schema.new({
@@ -22117,7 +22117,7 @@ M.StartDBClusterOutput = schema.new({
 })
 
 M.StartDBInstanceInput = schema.new({
-    id = id.from(_N, "StartDBInstanceInput"),
+    id = id.from(_N, "StartDBInstanceMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -22133,7 +22133,7 @@ M.StartDBInstanceInput = schema.new({
 })
 
 M.StartDBInstanceOutput = schema.new({
-    id = id.from(_N, "StartDBInstanceOutput"),
+    id = id.from(_N, "StartDBInstanceResult"),
     type = "structure",
     members = {
         DBInstance = schema.new({
@@ -22147,7 +22147,7 @@ M.StartDBInstanceOutput = schema.new({
 })
 
 M.StartDBInstanceAutomatedBackupsReplicationInput = schema.new({
-    id = id.from(_N, "StartDBInstanceAutomatedBackupsReplicationInput"),
+    id = id.from(_N, "StartDBInstanceAutomatedBackupsReplicationMessage"),
     type = "structure",
     members = {
         SourceDBInstanceArn = schema.new({
@@ -22182,13 +22182,13 @@ M.StartDBInstanceAutomatedBackupsReplicationInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.StartDBInstanceAutomatedBackupsReplicationOutput = schema.new({
-    id = id.from(_N, "StartDBInstanceAutomatedBackupsReplicationOutput"),
+    id = id.from(_N, "StartDBInstanceAutomatedBackupsReplicationResult"),
     type = "structure",
     members = {
         DBInstanceAutomatedBackup = schema.new({
@@ -22282,7 +22282,7 @@ M.InvalidExportSourceStateFault = schema.new({
 })
 
 M.StartExportTaskInput = schema.new({
-    id = id.from(_N, "StartExportTaskInput"),
+    id = id.from(_N, "StartExportTaskMessage"),
     type = "structure",
     members = {
         ExportTaskIdentifier = schema.new({
@@ -22347,7 +22347,7 @@ M.StartExportTaskInput = schema.new({
 })
 
 M.StartExportTaskOutput = schema.new({
-    id = id.from(_N, "StartExportTaskOutput"),
+    id = id.from(_N, "ExportTask"),
     type = "structure",
     members = {
         ExportTaskIdentifier = schema.new({
@@ -22451,7 +22451,7 @@ M.StartExportTaskOutput = schema.new({
 })
 
 M.StopActivityStreamInput = schema.new({
-    id = id.from(_N, "StopActivityStreamInput"),
+    id = id.from(_N, "StopActivityStreamRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -22473,7 +22473,7 @@ M.StopActivityStreamInput = schema.new({
 })
 
 M.StopActivityStreamOutput = schema.new({
-    id = id.from(_N, "StopActivityStreamOutput"),
+    id = id.from(_N, "StopActivityStreamResponse"),
     type = "structure",
     members = {
         KmsKeyId = schema.new({
@@ -22498,7 +22498,7 @@ M.StopActivityStreamOutput = schema.new({
 })
 
 M.StopDBClusterInput = schema.new({
-    id = id.from(_N, "StopDBClusterInput"),
+    id = id.from(_N, "StopDBClusterMessage"),
     type = "structure",
     members = {
         DBClusterIdentifier = schema.new({
@@ -22514,7 +22514,7 @@ M.StopDBClusterInput = schema.new({
 })
 
 M.StopDBClusterOutput = schema.new({
-    id = id.from(_N, "StopDBClusterOutput"),
+    id = id.from(_N, "StopDBClusterResult"),
     type = "structure",
     members = {
         DBCluster = schema.new({
@@ -22528,7 +22528,7 @@ M.StopDBClusterOutput = schema.new({
 })
 
 M.StopDBInstanceInput = schema.new({
-    id = id.from(_N, "StopDBInstanceInput"),
+    id = id.from(_N, "StopDBInstanceMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -22550,7 +22550,7 @@ M.StopDBInstanceInput = schema.new({
 })
 
 M.StopDBInstanceOutput = schema.new({
-    id = id.from(_N, "StopDBInstanceOutput"),
+    id = id.from(_N, "StopDBInstanceResult"),
     type = "structure",
     members = {
         DBInstance = schema.new({
@@ -22564,7 +22564,7 @@ M.StopDBInstanceOutput = schema.new({
 })
 
 M.StopDBInstanceAutomatedBackupsReplicationInput = schema.new({
-    id = id.from(_N, "StopDBInstanceAutomatedBackupsReplicationInput"),
+    id = id.from(_N, "StopDBInstanceAutomatedBackupsReplicationMessage"),
     type = "structure",
     members = {
         SourceDBInstanceArn = schema.new({
@@ -22580,7 +22580,7 @@ M.StopDBInstanceAutomatedBackupsReplicationInput = schema.new({
 })
 
 M.StopDBInstanceAutomatedBackupsReplicationOutput = schema.new({
-    id = id.from(_N, "StopDBInstanceAutomatedBackupsReplicationOutput"),
+    id = id.from(_N, "StopDBInstanceAutomatedBackupsReplicationResult"),
     type = "structure",
     members = {
         DBInstanceAutomatedBackup = schema.new({
@@ -22594,7 +22594,7 @@ M.StopDBInstanceAutomatedBackupsReplicationOutput = schema.new({
 })
 
 M.SwitchoverBlueGreenDeploymentInput = schema.new({
-    id = id.from(_N, "SwitchoverBlueGreenDeploymentInput"),
+    id = id.from(_N, "SwitchoverBlueGreenDeploymentRequest"),
     type = "structure",
     members = {
         BlueGreenDeploymentIdentifier = schema.new({
@@ -22616,7 +22616,7 @@ M.SwitchoverBlueGreenDeploymentInput = schema.new({
 })
 
 M.SwitchoverBlueGreenDeploymentOutput = schema.new({
-    id = id.from(_N, "SwitchoverBlueGreenDeploymentOutput"),
+    id = id.from(_N, "SwitchoverBlueGreenDeploymentResponse"),
     type = "structure",
     members = {
         BlueGreenDeployment = schema.new({
@@ -22630,7 +22630,7 @@ M.SwitchoverBlueGreenDeploymentOutput = schema.new({
 })
 
 M.SwitchoverGlobalClusterInput = schema.new({
-    id = id.from(_N, "SwitchoverGlobalClusterInput"),
+    id = id.from(_N, "SwitchoverGlobalClusterMessage"),
     type = "structure",
     members = {
         GlobalClusterIdentifier = schema.new({
@@ -22655,7 +22655,7 @@ M.SwitchoverGlobalClusterInput = schema.new({
 })
 
 M.SwitchoverGlobalClusterOutput = schema.new({
-    id = id.from(_N, "SwitchoverGlobalClusterOutput"),
+    id = id.from(_N, "SwitchoverGlobalClusterResult"),
     type = "structure",
     members = {
         GlobalCluster = schema.new({
@@ -22669,7 +22669,7 @@ M.SwitchoverGlobalClusterOutput = schema.new({
 })
 
 M.SwitchoverReadReplicaInput = schema.new({
-    id = id.from(_N, "SwitchoverReadReplicaInput"),
+    id = id.from(_N, "SwitchoverReadReplicaMessage"),
     type = "structure",
     members = {
         DBInstanceIdentifier = schema.new({
@@ -22685,7 +22685,7 @@ M.SwitchoverReadReplicaInput = schema.new({
 })
 
 M.SwitchoverReadReplicaOutput = schema.new({
-    id = id.from(_N, "SwitchoverReadReplicaOutput"),
+    id = id.from(_N, "SwitchoverReadReplicaResult"),
     type = "structure",
     members = {
         DBInstance = schema.new({
@@ -22697,5 +22697,19 @@ M.SwitchoverReadReplicaOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

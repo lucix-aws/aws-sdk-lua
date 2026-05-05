@@ -1607,17 +1607,17 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type LicenseModel = "BRING_YOUR_OWN_LICENSE" | "LICENSE_INCLUDED"
-
 local type ResourceStatus = "AVAILABLE" | "FAILED" | "PROVISIONING" | "TERMINATED" | "TERMINATING" | "UPDATING" | "MAINTENANCE_IN_PROGRESS"
 
-local type OciOnboardingStatus = "NOT_STARTED" | "PENDING_LINK_GENERATION" | "PENDING_CUSTOMER_ACTION" | "PENDING_INITIALIZATION" | "ACTIVATING" | "ACTIVE_IN_HOME_REGION" | "ACTIVE" | "ACTIVE_LIMITED" | "FAILED" | "PUBLIC_OFFER_UNSUPPORTED" | "SUSPENDED" | "CANCELED"
+local type DbNodeResourceStatus = "AVAILABLE" | "FAILED" | "PROVISIONING" | "TERMINATED" | "TERMINATING" | "UPDATING" | "STOPPING" | "STOPPED" | "STARTING"
 
 local type Access = "ENABLED" | "DISABLED"
 
 local type SupportedAwsIntegration = "KmsTde"
 
-local type DbNodeResourceStatus = "AVAILABLE" | "FAILED" | "PROVISIONING" | "TERMINATED" | "TERMINATING" | "UPDATING" | "STOPPING" | "STOPPED" | "STARTING"
+local type OciOnboardingStatus = "NOT_STARTED" | "PENDING_LINK_GENERATION" | "PENDING_CUSTOMER_ACTION" | "PENDING_INITIALIZATION" | "ACTIVATING" | "ACTIVE_IN_HOME_REGION" | "ACTIVE" | "ACTIVE_LIMITED" | "FAILED" | "PUBLIC_OFFER_UNSUPPORTED" | "SUSPENDED" | "CANCELED"
+
+local type LicenseModel = "BRING_YOUR_OWN_LICENSE" | "LICENSE_INCLUDED"
 
 local record M
     AcceptMarketplaceRegistrationInput: AcceptMarketplaceRegistrationInput

@@ -8,7 +8,7 @@ local _N = "com.amazonaws.networkfirewall"
 local M = {}
 
 M.AcceptNetworkFirewallTransitGatewayAttachmentInput = schema.new({
-    id = id.from(_N, "AcceptNetworkFirewallTransitGatewayAttachmentInput"),
+    id = id.from(_N, "AcceptNetworkFirewallTransitGatewayAttachmentRequest"),
     type = "structure",
     members = {
         TransitGatewayAttachmentId = schema.new({
@@ -24,7 +24,7 @@ M.AcceptNetworkFirewallTransitGatewayAttachmentInput = schema.new({
 })
 
 M.AcceptNetworkFirewallTransitGatewayAttachmentOutput = schema.new({
-    id = id.from(_N, "AcceptNetworkFirewallTransitGatewayAttachmentOutput"),
+    id = id.from(_N, "AcceptNetworkFirewallTransitGatewayAttachmentResponse"),
     type = "structure",
     members = {
         TransitGatewayAttachmentId = schema.new({
@@ -326,7 +326,7 @@ M.AvailabilityZoneMapping = schema.new({
 })
 
 M.AssociateAvailabilityZonesInput = schema.new({
-    id = id.from(_N, "AssociateAvailabilityZonesInput"),
+    id = id.from(_N, "AssociateAvailabilityZonesRequest"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -361,7 +361,7 @@ M.AssociateAvailabilityZonesInput = schema.new({
 })
 
 M.AssociateAvailabilityZonesOutput = schema.new({
-    id = id.from(_N, "AssociateAvailabilityZonesOutput"),
+    id = id.from(_N, "AssociateAvailabilityZonesResponse"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -441,7 +441,7 @@ M.InvalidTokenException = schema.new({
 })
 
 M.AssociateFirewallPolicyInput = schema.new({
-    id = id.from(_N, "AssociateFirewallPolicyInput"),
+    id = id.from(_N, "AssociateFirewallPolicyRequest"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -475,7 +475,7 @@ M.AssociateFirewallPolicyInput = schema.new({
 })
 
 M.AssociateFirewallPolicyOutput = schema.new({
-    id = id.from(_N, "AssociateFirewallPolicyOutput"),
+    id = id.from(_N, "AssociateFirewallPolicyResponse"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -528,7 +528,7 @@ M.SubnetMapping = schema.new({
 })
 
 M.AssociateSubnetsInput = schema.new({
-    id = id.from(_N, "AssociateSubnetsInput"),
+    id = id.from(_N, "AssociateSubnetsRequest"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -563,7 +563,7 @@ M.AssociateSubnetsInput = schema.new({
 })
 
 M.AssociateSubnetsOutput = schema.new({
-    id = id.from(_N, "AssociateSubnetsOutput"),
+    id = id.from(_N, "AssociateSubnetsResponse"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -659,7 +659,7 @@ M.ProxyRuleGroupAttachment = schema.new({
 })
 
 M.AttachRuleGroupsToProxyConfigurationInput = schema.new({
-    id = id.from(_N, "AttachRuleGroupsToProxyConfigurationInput"),
+    id = id.from(_N, "AttachRuleGroupsToProxyConfigurationRequest"),
     type = "structure",
     members = {
         ProxyConfigurationName = schema.new({
@@ -836,7 +836,7 @@ M.ProxyConfiguration = schema.new({
 })
 
 M.AttachRuleGroupsToProxyConfigurationOutput = schema.new({
-    id = id.from(_N, "AttachRuleGroupsToProxyConfigurationOutput"),
+    id = id.from(_N, "AttachRuleGroupsToProxyConfigurationResponse"),
     type = "structure",
     members = {
         ProxyConfiguration = schema.new({
@@ -995,7 +995,7 @@ M.EncryptionConfiguration = schema.new({
 })
 
 M.CreateFirewallInput = schema.new({
-    id = id.from(_N, "CreateFirewallInput"),
+    id = id.from(_N, "CreateFirewallRequest"),
     type = "structure",
     members = {
         FirewallName = schema.new({
@@ -1366,7 +1366,7 @@ M.FirewallStatus = schema.new({
 })
 
 M.CreateFirewallOutput = schema.new({
-    id = id.from(_N, "CreateFirewallOutput"),
+    id = id.from(_N, "CreateFirewallResponse"),
     type = "structure",
     members = {
         Firewall = schema.new({
@@ -1654,7 +1654,7 @@ M.FirewallPolicy = schema.new({
 })
 
 M.CreateFirewallPolicyInput = schema.new({
-    id = id.from(_N, "CreateFirewallPolicyInput"),
+    id = id.from(_N, "CreateFirewallPolicyRequest"),
     type = "structure",
     members = {
         FirewallPolicyName = schema.new({
@@ -1799,7 +1799,7 @@ M.FirewallPolicyResponse = schema.new({
 })
 
 M.CreateFirewallPolicyOutput = schema.new({
-    id = id.from(_N, "CreateFirewallPolicyOutput"),
+    id = id.from(_N, "CreateFirewallPolicyResponse"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -1869,7 +1869,7 @@ M.TlsInterceptPropertiesRequest = schema.new({
 })
 
 M.CreateProxyInput = schema.new({
-    id = id.from(_N, "CreateProxyInput"),
+    id = id.from(_N, "CreateProxyRequest"),
     type = "structure",
     members = {
         ProxyName = schema.new({
@@ -2068,7 +2068,7 @@ M.Proxy = schema.new({
 })
 
 M.CreateProxyOutput = schema.new({
-    id = id.from(_N, "CreateProxyOutput"),
+    id = id.from(_N, "CreateProxyResponse"),
     type = "structure",
     members = {
         Proxy = schema.new({
@@ -2104,7 +2104,7 @@ M.UnsupportedOperationException = schema.new({
 })
 
 M.CreateProxyConfigurationInput = schema.new({
-    id = id.from(_N, "CreateProxyConfigurationInput"),
+    id = id.from(_N, "CreateProxyConfigurationRequest"),
     type = "structure",
     members = {
         ProxyConfigurationName = schema.new({
@@ -2157,7 +2157,7 @@ M.CreateProxyConfigurationInput = schema.new({
 })
 
 M.CreateProxyConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateProxyConfigurationOutput"),
+    id = id.from(_N, "CreateProxyConfigurationResponse"),
     type = "structure",
     members = {
         ProxyConfiguration = schema.new({
@@ -2301,7 +2301,7 @@ M.ProxyRulesByRequestPhase = schema.new({
 })
 
 M.CreateProxyRuleGroupInput = schema.new({
-    id = id.from(_N, "CreateProxyRuleGroupInput"),
+    id = id.from(_N, "CreateProxyRuleGroupRequest"),
     type = "structure",
     members = {
         ProxyRuleGroupName = schema.new({
@@ -2388,7 +2388,7 @@ M.ProxyRuleGroup = schema.new({
 })
 
 M.CreateProxyRuleGroupOutput = schema.new({
-    id = id.from(_N, "CreateProxyRuleGroupOutput"),
+    id = id.from(_N, "CreateProxyRuleGroupResponse"),
     type = "structure",
     members = {
         ProxyRuleGroup = schema.new({
@@ -2436,7 +2436,7 @@ M.CreateProxyRulesByRequestPhase = schema.new({
 })
 
 M.CreateProxyRulesInput = schema.new({
-    id = id.from(_N, "CreateProxyRulesInput"),
+    id = id.from(_N, "CreateProxyRulesRequest"),
     type = "structure",
     members = {
         ProxyRuleGroupArn = schema.new({
@@ -2465,7 +2465,7 @@ M.CreateProxyRulesInput = schema.new({
 })
 
 M.CreateProxyRulesOutput = schema.new({
-    id = id.from(_N, "CreateProxyRulesOutput"),
+    id = id.from(_N, "CreateProxyRulesResponse"),
     type = "structure",
     members = {
         ProxyRuleGroup = schema.new({
@@ -3001,7 +3001,7 @@ M.SummaryConfiguration = schema.new({
 })
 
 M.CreateRuleGroupInput = schema.new({
-    id = id.from(_N, "CreateRuleGroupInput"),
+    id = id.from(_N, "CreateRuleGroupRequest"),
     type = "structure",
     members = {
         RuleGroupName = schema.new({
@@ -3217,7 +3217,7 @@ M.RuleGroupResponse = schema.new({
 })
 
 M.CreateRuleGroupOutput = schema.new({
-    id = id.from(_N, "CreateRuleGroupOutput"),
+    id = id.from(_N, "CreateRuleGroupResponse"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -3346,7 +3346,7 @@ M.TLSInspectionConfiguration = schema.new({
 })
 
 M.CreateTLSInspectionConfigurationInput = schema.new({
-    id = id.from(_N, "CreateTLSInspectionConfigurationInput"),
+    id = id.from(_N, "CreateTLSInspectionConfigurationRequest"),
     type = "structure",
     members = {
         TLSInspectionConfigurationName = schema.new({
@@ -3478,7 +3478,7 @@ M.TLSInspectionConfigurationResponse = schema.new({
 })
 
 M.CreateTLSInspectionConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateTLSInspectionConfigurationOutput"),
+    id = id.from(_N, "CreateTLSInspectionConfigurationResponse"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -3504,7 +3504,7 @@ M.CreateTLSInspectionConfigurationOutput = schema.new({
 })
 
 M.CreateVpcEndpointAssociationInput = schema.new({
-    id = id.from(_N, "CreateVpcEndpointAssociationInput"),
+    id = id.from(_N, "CreateVpcEndpointAssociationRequest"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -3639,7 +3639,7 @@ M.VpcEndpointAssociationStatus = schema.new({
 })
 
 M.CreateVpcEndpointAssociationOutput = schema.new({
-    id = id.from(_N, "CreateVpcEndpointAssociationOutput"),
+    id = id.from(_N, "CreateVpcEndpointAssociationResponse"),
     type = "structure",
     members = {
         VpcEndpointAssociation = schema.new({
@@ -3660,7 +3660,7 @@ M.CreateVpcEndpointAssociationOutput = schema.new({
 })
 
 M.DeleteFirewallInput = schema.new({
-    id = id.from(_N, "DeleteFirewallInput"),
+    id = id.from(_N, "DeleteFirewallRequest"),
     type = "structure",
     members = {
         FirewallName = schema.new({
@@ -3679,7 +3679,7 @@ M.DeleteFirewallInput = schema.new({
 })
 
 M.DeleteFirewallOutput = schema.new({
-    id = id.from(_N, "DeleteFirewallOutput"),
+    id = id.from(_N, "DeleteFirewallResponse"),
     type = "structure",
     members = {
         Firewall = schema.new({
@@ -3700,7 +3700,7 @@ M.DeleteFirewallOutput = schema.new({
 })
 
 M.DeleteFirewallPolicyInput = schema.new({
-    id = id.from(_N, "DeleteFirewallPolicyInput"),
+    id = id.from(_N, "DeleteFirewallPolicyRequest"),
     type = "structure",
     members = {
         FirewallPolicyName = schema.new({
@@ -3719,7 +3719,7 @@ M.DeleteFirewallPolicyInput = schema.new({
 })
 
 M.DeleteFirewallPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteFirewallPolicyOutput"),
+    id = id.from(_N, "DeleteFirewallPolicyResponse"),
     type = "structure",
     members = {
         FirewallPolicyResponse = schema.new({
@@ -3736,7 +3736,7 @@ M.DeleteFirewallPolicyOutput = schema.new({
 })
 
 M.DeleteNetworkFirewallTransitGatewayAttachmentInput = schema.new({
-    id = id.from(_N, "DeleteNetworkFirewallTransitGatewayAttachmentInput"),
+    id = id.from(_N, "DeleteNetworkFirewallTransitGatewayAttachmentRequest"),
     type = "structure",
     members = {
         TransitGatewayAttachmentId = schema.new({
@@ -3752,7 +3752,7 @@ M.DeleteNetworkFirewallTransitGatewayAttachmentInput = schema.new({
 })
 
 M.DeleteNetworkFirewallTransitGatewayAttachmentOutput = schema.new({
-    id = id.from(_N, "DeleteNetworkFirewallTransitGatewayAttachmentOutput"),
+    id = id.from(_N, "DeleteNetworkFirewallTransitGatewayAttachmentResponse"),
     type = "structure",
     members = {
         TransitGatewayAttachmentId = schema.new({
@@ -3777,7 +3777,7 @@ M.DeleteNetworkFirewallTransitGatewayAttachmentOutput = schema.new({
 })
 
 M.DeleteProxyInput = schema.new({
-    id = id.from(_N, "DeleteProxyInput"),
+    id = id.from(_N, "DeleteProxyRequest"),
     type = "structure",
     members = {
         NatGatewayId = schema.new({
@@ -3805,7 +3805,7 @@ M.DeleteProxyInput = schema.new({
 })
 
 M.DeleteProxyOutput = schema.new({
-    id = id.from(_N, "DeleteProxyOutput"),
+    id = id.from(_N, "DeleteProxyResponse"),
     type = "structure",
     members = {
         NatGatewayId = schema.new({
@@ -3830,7 +3830,7 @@ M.DeleteProxyOutput = schema.new({
 })
 
 M.DeleteProxyConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteProxyConfigurationInput"),
+    id = id.from(_N, "DeleteProxyConfigurationRequest"),
     type = "structure",
     members = {
         ProxyConfigurationName = schema.new({
@@ -3849,7 +3849,7 @@ M.DeleteProxyConfigurationInput = schema.new({
 })
 
 M.DeleteProxyConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteProxyConfigurationOutput"),
+    id = id.from(_N, "DeleteProxyConfigurationResponse"),
     type = "structure",
     members = {
         ProxyConfigurationName = schema.new({
@@ -3868,7 +3868,7 @@ M.DeleteProxyConfigurationOutput = schema.new({
 })
 
 M.DeleteProxyRuleGroupInput = schema.new({
-    id = id.from(_N, "DeleteProxyRuleGroupInput"),
+    id = id.from(_N, "DeleteProxyRuleGroupRequest"),
     type = "structure",
     members = {
         ProxyRuleGroupName = schema.new({
@@ -3887,7 +3887,7 @@ M.DeleteProxyRuleGroupInput = schema.new({
 })
 
 M.DeleteProxyRuleGroupOutput = schema.new({
-    id = id.from(_N, "DeleteProxyRuleGroupOutput"),
+    id = id.from(_N, "DeleteProxyRuleGroupResponse"),
     type = "structure",
     members = {
         ProxyRuleGroupName = schema.new({
@@ -3906,7 +3906,7 @@ M.DeleteProxyRuleGroupOutput = schema.new({
 })
 
 M.DeleteProxyRulesInput = schema.new({
-    id = id.from(_N, "DeleteProxyRulesInput"),
+    id = id.from(_N, "DeleteProxyRulesRequest"),
     type = "structure",
     members = {
         ProxyRuleGroupArn = schema.new({
@@ -3935,7 +3935,7 @@ M.DeleteProxyRulesInput = schema.new({
 })
 
 M.DeleteProxyRulesOutput = schema.new({
-    id = id.from(_N, "DeleteProxyRulesOutput"),
+    id = id.from(_N, "DeleteProxyRulesResponse"),
     type = "structure",
     members = {
         ProxyRuleGroup = schema.new({
@@ -3949,7 +3949,7 @@ M.DeleteProxyRulesOutput = schema.new({
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3965,7 +3965,7 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "DeleteResourcePolicyResponse"),
     type = "structure",
 })
 
@@ -3986,7 +3986,7 @@ M.InvalidResourcePolicyException = schema.new({
 })
 
 M.DeleteRuleGroupInput = schema.new({
-    id = id.from(_N, "DeleteRuleGroupInput"),
+    id = id.from(_N, "DeleteRuleGroupRequest"),
     type = "structure",
     members = {
         RuleGroupName = schema.new({
@@ -4011,7 +4011,7 @@ M.DeleteRuleGroupInput = schema.new({
 })
 
 M.DeleteRuleGroupOutput = schema.new({
-    id = id.from(_N, "DeleteRuleGroupOutput"),
+    id = id.from(_N, "DeleteRuleGroupResponse"),
     type = "structure",
     members = {
         RuleGroupResponse = schema.new({
@@ -4028,7 +4028,7 @@ M.DeleteRuleGroupOutput = schema.new({
 })
 
 M.DeleteTLSInspectionConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteTLSInspectionConfigurationInput"),
+    id = id.from(_N, "DeleteTLSInspectionConfigurationRequest"),
     type = "structure",
     members = {
         TLSInspectionConfigurationArn = schema.new({
@@ -4047,7 +4047,7 @@ M.DeleteTLSInspectionConfigurationInput = schema.new({
 })
 
 M.DeleteTLSInspectionConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteTLSInspectionConfigurationOutput"),
+    id = id.from(_N, "DeleteTLSInspectionConfigurationResponse"),
     type = "structure",
     members = {
         TLSInspectionConfigurationResponse = schema.new({
@@ -4064,7 +4064,7 @@ M.DeleteTLSInspectionConfigurationOutput = schema.new({
 })
 
 M.DeleteVpcEndpointAssociationInput = schema.new({
-    id = id.from(_N, "DeleteVpcEndpointAssociationInput"),
+    id = id.from(_N, "DeleteVpcEndpointAssociationRequest"),
     type = "structure",
     members = {
         VpcEndpointAssociationArn = schema.new({
@@ -4080,7 +4080,7 @@ M.DeleteVpcEndpointAssociationInput = schema.new({
 })
 
 M.DeleteVpcEndpointAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteVpcEndpointAssociationOutput"),
+    id = id.from(_N, "DeleteVpcEndpointAssociationResponse"),
     type = "structure",
     members = {
         VpcEndpointAssociation = schema.new({
@@ -4101,7 +4101,7 @@ M.DeleteVpcEndpointAssociationOutput = schema.new({
 })
 
 M.DescribeFirewallInput = schema.new({
-    id = id.from(_N, "DescribeFirewallInput"),
+    id = id.from(_N, "DescribeFirewallRequest"),
     type = "structure",
     members = {
         FirewallName = schema.new({
@@ -4120,7 +4120,7 @@ M.DescribeFirewallInput = schema.new({
 })
 
 M.DescribeFirewallOutput = schema.new({
-    id = id.from(_N, "DescribeFirewallOutput"),
+    id = id.from(_N, "DescribeFirewallResponse"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -4147,7 +4147,7 @@ M.DescribeFirewallOutput = schema.new({
 })
 
 M.DescribeFirewallMetadataInput = schema.new({
-    id = id.from(_N, "DescribeFirewallMetadataInput"),
+    id = id.from(_N, "DescribeFirewallMetadataRequest"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -4160,7 +4160,7 @@ M.DescribeFirewallMetadataInput = schema.new({
 })
 
 M.DescribeFirewallMetadataOutput = schema.new({
-    id = id.from(_N, "DescribeFirewallMetadataOutput"),
+    id = id.from(_N, "DescribeFirewallMetadataResponse"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -4205,7 +4205,7 @@ M.DescribeFirewallMetadataOutput = schema.new({
 })
 
 M.DescribeFirewallPolicyInput = schema.new({
-    id = id.from(_N, "DescribeFirewallPolicyInput"),
+    id = id.from(_N, "DescribeFirewallPolicyRequest"),
     type = "structure",
     members = {
         FirewallPolicyName = schema.new({
@@ -4224,7 +4224,7 @@ M.DescribeFirewallPolicyInput = schema.new({
 })
 
 M.DescribeFirewallPolicyOutput = schema.new({
-    id = id.from(_N, "DescribeFirewallPolicyOutput"),
+    id = id.from(_N, "DescribeFirewallPolicyResponse"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -4257,7 +4257,7 @@ M.DescribeFirewallPolicyOutput = schema.new({
 })
 
 M.DescribeFlowOperationInput = schema.new({
-    id = id.from(_N, "DescribeFlowOperationInput"),
+    id = id.from(_N, "DescribeFlowOperationRequest"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -4360,7 +4360,7 @@ M.FlowOperation = schema.new({
 })
 
 M.DescribeFlowOperationOutput = schema.new({
-    id = id.from(_N, "DescribeFlowOperationOutput"),
+    id = id.from(_N, "DescribeFlowOperationResponse"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -4428,7 +4428,7 @@ M.DescribeFlowOperationOutput = schema.new({
 })
 
 M.DescribeLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeLoggingConfigurationInput"),
+    id = id.from(_N, "DescribeLoggingConfigurationRequest"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -4500,7 +4500,7 @@ M.LoggingConfiguration = schema.new({
 })
 
 M.DescribeLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeLoggingConfigurationOutput"),
+    id = id.from(_N, "DescribeLoggingConfigurationResponse"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -4526,7 +4526,7 @@ M.DescribeLoggingConfigurationOutput = schema.new({
 })
 
 M.DescribeProxyInput = schema.new({
-    id = id.from(_N, "DescribeProxyInput"),
+    id = id.from(_N, "DescribeProxyRequest"),
     type = "structure",
     members = {
         ProxyName = schema.new({
@@ -4657,7 +4657,7 @@ M.DescribeProxyResource = schema.new({
 })
 
 M.DescribeProxyOutput = schema.new({
-    id = id.from(_N, "DescribeProxyOutput"),
+    id = id.from(_N, "DescribeProxyResponse"),
     type = "structure",
     members = {
         Proxy = schema.new({
@@ -4677,7 +4677,7 @@ M.DescribeProxyOutput = schema.new({
 })
 
 M.DescribeProxyConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeProxyConfigurationInput"),
+    id = id.from(_N, "DescribeProxyConfigurationRequest"),
     type = "structure",
     members = {
         ProxyConfigurationName = schema.new({
@@ -4696,7 +4696,7 @@ M.DescribeProxyConfigurationInput = schema.new({
 })
 
 M.DescribeProxyConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeProxyConfigurationOutput"),
+    id = id.from(_N, "DescribeProxyConfigurationResponse"),
     type = "structure",
     members = {
         ProxyConfiguration = schema.new({
@@ -4716,7 +4716,7 @@ M.DescribeProxyConfigurationOutput = schema.new({
 })
 
 M.DescribeProxyRuleInput = schema.new({
-    id = id.from(_N, "DescribeProxyRuleInput"),
+    id = id.from(_N, "DescribeProxyRuleRequest"),
     type = "structure",
     members = {
         ProxyRuleName = schema.new({
@@ -4744,7 +4744,7 @@ M.DescribeProxyRuleInput = schema.new({
 })
 
 M.DescribeProxyRuleOutput = schema.new({
-    id = id.from(_N, "DescribeProxyRuleOutput"),
+    id = id.from(_N, "DescribeProxyRuleResponse"),
     type = "structure",
     members = {
         ProxyRule = schema.new({
@@ -4764,7 +4764,7 @@ M.DescribeProxyRuleOutput = schema.new({
 })
 
 M.DescribeProxyRuleGroupInput = schema.new({
-    id = id.from(_N, "DescribeProxyRuleGroupInput"),
+    id = id.from(_N, "DescribeProxyRuleGroupRequest"),
     type = "structure",
     members = {
         ProxyRuleGroupName = schema.new({
@@ -4783,7 +4783,7 @@ M.DescribeProxyRuleGroupInput = schema.new({
 })
 
 M.DescribeProxyRuleGroupOutput = schema.new({
-    id = id.from(_N, "DescribeProxyRuleGroupOutput"),
+    id = id.from(_N, "DescribeProxyRuleGroupResponse"),
     type = "structure",
     members = {
         ProxyRuleGroup = schema.new({
@@ -4803,7 +4803,7 @@ M.DescribeProxyRuleGroupOutput = schema.new({
 })
 
 M.DescribeResourcePolicyInput = schema.new({
-    id = id.from(_N, "DescribeResourcePolicyInput"),
+    id = id.from(_N, "DescribeResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4819,7 +4819,7 @@ M.DescribeResourcePolicyInput = schema.new({
 })
 
 M.DescribeResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DescribeResourcePolicyOutput"),
+    id = id.from(_N, "DescribeResourcePolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -4832,7 +4832,7 @@ M.DescribeResourcePolicyOutput = schema.new({
 })
 
 M.DescribeRuleGroupInput = schema.new({
-    id = id.from(_N, "DescribeRuleGroupInput"),
+    id = id.from(_N, "DescribeRuleGroupRequest"),
     type = "structure",
     members = {
         RuleGroupName = schema.new({
@@ -4866,7 +4866,7 @@ M.DescribeRuleGroupInput = schema.new({
 })
 
 M.DescribeRuleGroupOutput = schema.new({
-    id = id.from(_N, "DescribeRuleGroupOutput"),
+    id = id.from(_N, "DescribeRuleGroupResponse"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -4899,7 +4899,7 @@ M.DescribeRuleGroupOutput = schema.new({
 })
 
 M.DescribeRuleGroupMetadataInput = schema.new({
-    id = id.from(_N, "DescribeRuleGroupMetadataInput"),
+    id = id.from(_N, "DescribeRuleGroupMetadataRequest"),
     type = "structure",
     members = {
         RuleGroupName = schema.new({
@@ -4924,7 +4924,7 @@ M.DescribeRuleGroupMetadataInput = schema.new({
 })
 
 M.DescribeRuleGroupMetadataOutput = schema.new({
-    id = id.from(_N, "DescribeRuleGroupMetadataOutput"),
+    id = id.from(_N, "DescribeRuleGroupMetadataResponse"),
     type = "structure",
     members = {
         RuleGroupArn = schema.new({
@@ -4998,7 +4998,7 @@ M.DescribeRuleGroupMetadataOutput = schema.new({
 })
 
 M.DescribeRuleGroupSummaryInput = schema.new({
-    id = id.from(_N, "DescribeRuleGroupSummaryInput"),
+    id = id.from(_N, "DescribeRuleGroupSummaryRequest"),
     type = "structure",
     members = {
         RuleGroupName = schema.new({
@@ -5062,7 +5062,7 @@ M.Summary = schema.new({
 })
 
 M.DescribeRuleGroupSummaryOutput = schema.new({
-    id = id.from(_N, "DescribeRuleGroupSummaryOutput"),
+    id = id.from(_N, "DescribeRuleGroupSummaryResponse"),
     type = "structure",
     members = {
         RuleGroupName = schema.new({
@@ -5091,7 +5091,7 @@ M.DescribeRuleGroupSummaryOutput = schema.new({
 })
 
 M.DescribeTLSInspectionConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeTLSInspectionConfigurationInput"),
+    id = id.from(_N, "DescribeTLSInspectionConfigurationRequest"),
     type = "structure",
     members = {
         TLSInspectionConfigurationArn = schema.new({
@@ -5110,7 +5110,7 @@ M.DescribeTLSInspectionConfigurationInput = schema.new({
 })
 
 M.DescribeTLSInspectionConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeTLSInspectionConfigurationOutput"),
+    id = id.from(_N, "DescribeTLSInspectionConfigurationResponse"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -5143,7 +5143,7 @@ M.DescribeTLSInspectionConfigurationOutput = schema.new({
 })
 
 M.DescribeVpcEndpointAssociationInput = schema.new({
-    id = id.from(_N, "DescribeVpcEndpointAssociationInput"),
+    id = id.from(_N, "DescribeVpcEndpointAssociationRequest"),
     type = "structure",
     members = {
         VpcEndpointAssociationArn = schema.new({
@@ -5159,7 +5159,7 @@ M.DescribeVpcEndpointAssociationInput = schema.new({
 })
 
 M.DescribeVpcEndpointAssociationOutput = schema.new({
-    id = id.from(_N, "DescribeVpcEndpointAssociationOutput"),
+    id = id.from(_N, "DescribeVpcEndpointAssociationResponse"),
     type = "structure",
     members = {
         VpcEndpointAssociation = schema.new({
@@ -5180,7 +5180,7 @@ M.DescribeVpcEndpointAssociationOutput = schema.new({
 })
 
 M.DetachRuleGroupsFromProxyConfigurationInput = schema.new({
-    id = id.from(_N, "DetachRuleGroupsFromProxyConfigurationInput"),
+    id = id.from(_N, "DetachRuleGroupsFromProxyConfigurationRequest"),
     type = "structure",
     members = {
         ProxyConfigurationName = schema.new({
@@ -5222,7 +5222,7 @@ M.DetachRuleGroupsFromProxyConfigurationInput = schema.new({
 })
 
 M.DetachRuleGroupsFromProxyConfigurationOutput = schema.new({
-    id = id.from(_N, "DetachRuleGroupsFromProxyConfigurationOutput"),
+    id = id.from(_N, "DetachRuleGroupsFromProxyConfigurationResponse"),
     type = "structure",
     members = {
         ProxyConfiguration = schema.new({
@@ -5242,7 +5242,7 @@ M.DetachRuleGroupsFromProxyConfigurationOutput = schema.new({
 })
 
 M.DisassociateAvailabilityZonesInput = schema.new({
-    id = id.from(_N, "DisassociateAvailabilityZonesInput"),
+    id = id.from(_N, "DisassociateAvailabilityZonesRequest"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -5277,7 +5277,7 @@ M.DisassociateAvailabilityZonesInput = schema.new({
 })
 
 M.DisassociateAvailabilityZonesOutput = schema.new({
-    id = id.from(_N, "DisassociateAvailabilityZonesOutput"),
+    id = id.from(_N, "DisassociateAvailabilityZonesResponse"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -5309,7 +5309,7 @@ M.DisassociateAvailabilityZonesOutput = schema.new({
 })
 
 M.DisassociateSubnetsInput = schema.new({
-    id = id.from(_N, "DisassociateSubnetsInput"),
+    id = id.from(_N, "DisassociateSubnetsRequest"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -5344,7 +5344,7 @@ M.DisassociateSubnetsInput = schema.new({
 })
 
 M.DisassociateSubnetsOutput = schema.new({
-    id = id.from(_N, "DisassociateSubnetsOutput"),
+    id = id.from(_N, "DisassociateSubnetsResponse"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -5511,7 +5511,7 @@ M.FlowOperationMetadata = schema.new({
 })
 
 M.GetAnalysisReportResultsInput = schema.new({
-    id = id.from(_N, "GetAnalysisReportResultsInput"),
+    id = id.from(_N, "GetAnalysisReportResultsRequest"),
     type = "structure",
     members = {
         FirewallName = schema.new({
@@ -5551,7 +5551,7 @@ M.GetAnalysisReportResultsInput = schema.new({
 })
 
 M.GetAnalysisReportResultsOutput = schema.new({
-    id = id.from(_N, "GetAnalysisReportResultsOutput"),
+    id = id.from(_N, "GetAnalysisReportResultsResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -5601,7 +5601,7 @@ M.GetAnalysisReportResultsOutput = schema.new({
 })
 
 M.ListAnalysisReportsInput = schema.new({
-    id = id.from(_N, "ListAnalysisReportsInput"),
+    id = id.from(_N, "ListAnalysisReportsRequest"),
     type = "structure",
     members = {
         FirewallName = schema.new({
@@ -5632,7 +5632,7 @@ M.ListAnalysisReportsInput = schema.new({
 })
 
 M.ListAnalysisReportsOutput = schema.new({
-    id = id.from(_N, "ListAnalysisReportsOutput"),
+    id = id.from(_N, "ListAnalysisReportsResponse"),
     type = "structure",
     members = {
         AnalysisReports = schema.new({
@@ -5652,7 +5652,7 @@ M.ListAnalysisReportsOutput = schema.new({
 })
 
 M.ListFirewallPoliciesInput = schema.new({
-    id = id.from(_N, "ListFirewallPoliciesInput"),
+    id = id.from(_N, "ListFirewallPoliciesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5671,7 +5671,7 @@ M.ListFirewallPoliciesInput = schema.new({
 })
 
 M.ListFirewallPoliciesOutput = schema.new({
-    id = id.from(_N, "ListFirewallPoliciesOutput"),
+    id = id.from(_N, "ListFirewallPoliciesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5691,7 +5691,7 @@ M.ListFirewallPoliciesOutput = schema.new({
 })
 
 M.ListFirewallsInput = schema.new({
-    id = id.from(_N, "ListFirewallsInput"),
+    id = id.from(_N, "ListFirewallsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5717,7 +5717,7 @@ M.ListFirewallsInput = schema.new({
 })
 
 M.ListFirewallsOutput = schema.new({
-    id = id.from(_N, "ListFirewallsOutput"),
+    id = id.from(_N, "ListFirewallsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5737,7 +5737,7 @@ M.ListFirewallsOutput = schema.new({
 })
 
 M.ListFlowOperationResultsInput = schema.new({
-    id = id.from(_N, "ListFlowOperationResultsInput"),
+    id = id.from(_N, "ListFlowOperationResultsRequest"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -5792,7 +5792,7 @@ M.ListFlowOperationResultsInput = schema.new({
 })
 
 M.ListFlowOperationResultsOutput = schema.new({
-    id = id.from(_N, "ListFlowOperationResultsOutput"),
+    id = id.from(_N, "ListFlowOperationResultsResponse"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -5860,7 +5860,7 @@ M.ListFlowOperationResultsOutput = schema.new({
 })
 
 M.ListFlowOperationsInput = schema.new({
-    id = id.from(_N, "ListFlowOperationsInput"),
+    id = id.from(_N, "ListFlowOperationsRequest"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -5912,7 +5912,7 @@ M.ListFlowOperationsInput = schema.new({
 })
 
 M.ListFlowOperationsOutput = schema.new({
-    id = id.from(_N, "ListFlowOperationsOutput"),
+    id = id.from(_N, "ListFlowOperationsResponse"),
     type = "structure",
     members = {
         FlowOperations = schema.new({
@@ -5932,7 +5932,7 @@ M.ListFlowOperationsOutput = schema.new({
 })
 
 M.ListProxiesInput = schema.new({
-    id = id.from(_N, "ListProxiesInput"),
+    id = id.from(_N, "ListProxiesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5970,7 +5970,7 @@ M.ProxyMetadata = schema.new({
 })
 
 M.ListProxiesOutput = schema.new({
-    id = id.from(_N, "ListProxiesOutput"),
+    id = id.from(_N, "ListProxiesResponse"),
     type = "structure",
     members = {
         Proxies = schema.new({
@@ -5990,7 +5990,7 @@ M.ListProxiesOutput = schema.new({
 })
 
 M.ListProxyConfigurationsInput = schema.new({
-    id = id.from(_N, "ListProxyConfigurationsInput"),
+    id = id.from(_N, "ListProxyConfigurationsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6028,7 +6028,7 @@ M.ProxyConfigurationMetadata = schema.new({
 })
 
 M.ListProxyConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListProxyConfigurationsOutput"),
+    id = id.from(_N, "ListProxyConfigurationsResponse"),
     type = "structure",
     members = {
         ProxyConfigurations = schema.new({
@@ -6048,7 +6048,7 @@ M.ListProxyConfigurationsOutput = schema.new({
 })
 
 M.ListProxyRuleGroupsInput = schema.new({
-    id = id.from(_N, "ListProxyRuleGroupsInput"),
+    id = id.from(_N, "ListProxyRuleGroupsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6086,7 +6086,7 @@ M.ProxyRuleGroupMetadata = schema.new({
 })
 
 M.ListProxyRuleGroupsOutput = schema.new({
-    id = id.from(_N, "ListProxyRuleGroupsOutput"),
+    id = id.from(_N, "ListProxyRuleGroupsResponse"),
     type = "structure",
     members = {
         ProxyRuleGroups = schema.new({
@@ -6106,7 +6106,7 @@ M.ListProxyRuleGroupsOutput = schema.new({
 })
 
 M.ListRuleGroupsInput = schema.new({
-    id = id.from(_N, "ListRuleGroupsInput"),
+    id = id.from(_N, "ListRuleGroupsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6174,7 +6174,7 @@ M.RuleGroupMetadata = schema.new({
 })
 
 M.ListRuleGroupsOutput = schema.new({
-    id = id.from(_N, "ListRuleGroupsOutput"),
+    id = id.from(_N, "ListRuleGroupsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6194,7 +6194,7 @@ M.ListRuleGroupsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6222,7 +6222,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6242,7 +6242,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTLSInspectionConfigurationsInput = schema.new({
-    id = id.from(_N, "ListTLSInspectionConfigurationsInput"),
+    id = id.from(_N, "ListTLSInspectionConfigurationsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6280,7 +6280,7 @@ M.TLSInspectionConfigurationMetadata = schema.new({
 })
 
 M.ListTLSInspectionConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListTLSInspectionConfigurationsOutput"),
+    id = id.from(_N, "ListTLSInspectionConfigurationsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6300,7 +6300,7 @@ M.ListTLSInspectionConfigurationsOutput = schema.new({
 })
 
 M.ListVpcEndpointAssociationsInput = schema.new({
-    id = id.from(_N, "ListVpcEndpointAssociationsInput"),
+    id = id.from(_N, "ListVpcEndpointAssociationsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6338,7 +6338,7 @@ M.VpcEndpointAssociationMetadata = schema.new({
 })
 
 M.ListVpcEndpointAssociationsOutput = schema.new({
-    id = id.from(_N, "ListVpcEndpointAssociationsOutput"),
+    id = id.from(_N, "ListVpcEndpointAssociationsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6374,7 +6374,7 @@ M.LogDestinationPermissionException = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6399,12 +6399,12 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResponse"),
     type = "structure",
 })
 
 M.RejectNetworkFirewallTransitGatewayAttachmentInput = schema.new({
-    id = id.from(_N, "RejectNetworkFirewallTransitGatewayAttachmentInput"),
+    id = id.from(_N, "RejectNetworkFirewallTransitGatewayAttachmentRequest"),
     type = "structure",
     members = {
         TransitGatewayAttachmentId = schema.new({
@@ -6420,7 +6420,7 @@ M.RejectNetworkFirewallTransitGatewayAttachmentInput = schema.new({
 })
 
 M.RejectNetworkFirewallTransitGatewayAttachmentOutput = schema.new({
-    id = id.from(_N, "RejectNetworkFirewallTransitGatewayAttachmentOutput"),
+    id = id.from(_N, "RejectNetworkFirewallTransitGatewayAttachmentResponse"),
     type = "structure",
     members = {
         TransitGatewayAttachmentId = schema.new({
@@ -6445,7 +6445,7 @@ M.RejectNetworkFirewallTransitGatewayAttachmentOutput = schema.new({
 })
 
 M.StartAnalysisReportInput = schema.new({
-    id = id.from(_N, "StartAnalysisReportInput"),
+    id = id.from(_N, "StartAnalysisReportRequest"),
     type = "structure",
     members = {
         FirewallName = schema.new({
@@ -6473,7 +6473,7 @@ M.StartAnalysisReportInput = schema.new({
 })
 
 M.StartAnalysisReportOutput = schema.new({
-    id = id.from(_N, "StartAnalysisReportOutput"),
+    id = id.from(_N, "StartAnalysisReportResponse"),
     type = "structure",
     members = {
         AnalysisReportId = schema.new({
@@ -6489,7 +6489,7 @@ M.StartAnalysisReportOutput = schema.new({
 })
 
 M.StartFlowCaptureInput = schema.new({
-    id = id.from(_N, "StartFlowCaptureInput"),
+    id = id.from(_N, "StartFlowCaptureRequest"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -6539,7 +6539,7 @@ M.StartFlowCaptureInput = schema.new({
 })
 
 M.StartFlowCaptureOutput = schema.new({
-    id = id.from(_N, "StartFlowCaptureOutput"),
+    id = id.from(_N, "StartFlowCaptureResponse"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -6564,7 +6564,7 @@ M.StartFlowCaptureOutput = schema.new({
 })
 
 M.StartFlowFlushInput = schema.new({
-    id = id.from(_N, "StartFlowFlushInput"),
+    id = id.from(_N, "StartFlowFlushRequest"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -6614,7 +6614,7 @@ M.StartFlowFlushInput = schema.new({
 })
 
 M.StartFlowFlushOutput = schema.new({
-    id = id.from(_N, "StartFlowFlushOutput"),
+    id = id.from(_N, "StartFlowFlushResponse"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -6639,7 +6639,7 @@ M.StartFlowFlushOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6665,12 +6665,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6696,7 +6696,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -6717,7 +6717,7 @@ M.ResourceOwnerCheckException = schema.new({
 })
 
 M.UpdateAvailabilityZoneChangeProtectionInput = schema.new({
-    id = id.from(_N, "UpdateAvailabilityZoneChangeProtectionInput"),
+    id = id.from(_N, "UpdateAvailabilityZoneChangeProtectionRequest"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -6752,7 +6752,7 @@ M.UpdateAvailabilityZoneChangeProtectionInput = schema.new({
 })
 
 M.UpdateAvailabilityZoneChangeProtectionOutput = schema.new({
-    id = id.from(_N, "UpdateAvailabilityZoneChangeProtectionOutput"),
+    id = id.from(_N, "UpdateAvailabilityZoneChangeProtectionResponse"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -6786,7 +6786,7 @@ M.UpdateAvailabilityZoneChangeProtectionOutput = schema.new({
 })
 
 M.UpdateFirewallAnalysisSettingsInput = schema.new({
-    id = id.from(_N, "UpdateFirewallAnalysisSettingsInput"),
+    id = id.from(_N, "UpdateFirewallAnalysisSettingsRequest"),
     type = "structure",
     members = {
         EnabledAnalysisTypes = schema.new({
@@ -6818,7 +6818,7 @@ M.UpdateFirewallAnalysisSettingsInput = schema.new({
 })
 
 M.UpdateFirewallAnalysisSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateFirewallAnalysisSettingsOutput"),
+    id = id.from(_N, "UpdateFirewallAnalysisSettingsResponse"),
     type = "structure",
     members = {
         EnabledAnalysisTypes = schema.new({
@@ -6850,7 +6850,7 @@ M.UpdateFirewallAnalysisSettingsOutput = schema.new({
 })
 
 M.UpdateFirewallDeleteProtectionInput = schema.new({
-    id = id.from(_N, "UpdateFirewallDeleteProtectionInput"),
+    id = id.from(_N, "UpdateFirewallDeleteProtectionRequest"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -6885,7 +6885,7 @@ M.UpdateFirewallDeleteProtectionInput = schema.new({
 })
 
 M.UpdateFirewallDeleteProtectionOutput = schema.new({
-    id = id.from(_N, "UpdateFirewallDeleteProtectionOutput"),
+    id = id.from(_N, "UpdateFirewallDeleteProtectionResponse"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -6919,7 +6919,7 @@ M.UpdateFirewallDeleteProtectionOutput = schema.new({
 })
 
 M.UpdateFirewallDescriptionInput = schema.new({
-    id = id.from(_N, "UpdateFirewallDescriptionInput"),
+    id = id.from(_N, "UpdateFirewallDescriptionRequest"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -6950,7 +6950,7 @@ M.UpdateFirewallDescriptionInput = schema.new({
 })
 
 M.UpdateFirewallDescriptionOutput = schema.new({
-    id = id.from(_N, "UpdateFirewallDescriptionOutput"),
+    id = id.from(_N, "UpdateFirewallDescriptionResponse"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -6981,7 +6981,7 @@ M.UpdateFirewallDescriptionOutput = schema.new({
 })
 
 M.UpdateFirewallEncryptionConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateFirewallEncryptionConfigurationInput"),
+    id = id.from(_N, "UpdateFirewallEncryptionConfigurationRequest"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -7013,7 +7013,7 @@ M.UpdateFirewallEncryptionConfigurationInput = schema.new({
 })
 
 M.UpdateFirewallEncryptionConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateFirewallEncryptionConfigurationOutput"),
+    id = id.from(_N, "UpdateFirewallEncryptionConfigurationResponse"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -7045,7 +7045,7 @@ M.UpdateFirewallEncryptionConfigurationOutput = schema.new({
 })
 
 M.UpdateFirewallPolicyInput = schema.new({
-    id = id.from(_N, "UpdateFirewallPolicyInput"),
+    id = id.from(_N, "UpdateFirewallPolicyRequest"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -7105,7 +7105,7 @@ M.UpdateFirewallPolicyInput = schema.new({
 })
 
 M.UpdateFirewallPolicyOutput = schema.new({
-    id = id.from(_N, "UpdateFirewallPolicyOutput"),
+    id = id.from(_N, "UpdateFirewallPolicyResponse"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -7131,7 +7131,7 @@ M.UpdateFirewallPolicyOutput = schema.new({
 })
 
 M.UpdateFirewallPolicyChangeProtectionInput = schema.new({
-    id = id.from(_N, "UpdateFirewallPolicyChangeProtectionInput"),
+    id = id.from(_N, "UpdateFirewallPolicyChangeProtectionRequest"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -7166,7 +7166,7 @@ M.UpdateFirewallPolicyChangeProtectionInput = schema.new({
 })
 
 M.UpdateFirewallPolicyChangeProtectionOutput = schema.new({
-    id = id.from(_N, "UpdateFirewallPolicyChangeProtectionOutput"),
+    id = id.from(_N, "UpdateFirewallPolicyChangeProtectionResponse"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -7200,7 +7200,7 @@ M.UpdateFirewallPolicyChangeProtectionOutput = schema.new({
 })
 
 M.UpdateLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateLoggingConfigurationInput"),
+    id = id.from(_N, "UpdateLoggingConfigurationRequest"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -7232,7 +7232,7 @@ M.UpdateLoggingConfigurationInput = schema.new({
 })
 
 M.UpdateLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateLoggingConfigurationOutput"),
+    id = id.from(_N, "UpdateLoggingConfigurationResponse"),
     type = "structure",
     members = {
         FirewallArn = schema.new({
@@ -7264,7 +7264,7 @@ M.UpdateLoggingConfigurationOutput = schema.new({
 })
 
 M.UpdateProxyInput = schema.new({
-    id = id.from(_N, "UpdateProxyInput"),
+    id = id.from(_N, "UpdateProxyRequest"),
     type = "structure",
     members = {
         NatGatewayId = schema.new({
@@ -7322,7 +7322,7 @@ M.UpdateProxyInput = schema.new({
 })
 
 M.UpdateProxyOutput = schema.new({
-    id = id.from(_N, "UpdateProxyOutput"),
+    id = id.from(_N, "UpdateProxyResponse"),
     type = "structure",
     members = {
         Proxy = schema.new({
@@ -7342,7 +7342,7 @@ M.UpdateProxyOutput = schema.new({
 })
 
 M.UpdateProxyConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateProxyConfigurationInput"),
+    id = id.from(_N, "UpdateProxyConfigurationRequest"),
     type = "structure",
     members = {
         ProxyConfigurationName = schema.new({
@@ -7380,7 +7380,7 @@ M.UpdateProxyConfigurationInput = schema.new({
 })
 
 M.UpdateProxyConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateProxyConfigurationOutput"),
+    id = id.from(_N, "UpdateProxyConfigurationResponse"),
     type = "structure",
     members = {
         ProxyConfiguration = schema.new({
@@ -7400,7 +7400,7 @@ M.UpdateProxyConfigurationOutput = schema.new({
 })
 
 M.UpdateProxyRuleInput = schema.new({
-    id = id.from(_N, "UpdateProxyRuleInput"),
+    id = id.from(_N, "UpdateProxyRuleRequest"),
     type = "structure",
     members = {
         ProxyRuleGroupName = schema.new({
@@ -7463,7 +7463,7 @@ M.UpdateProxyRuleInput = schema.new({
 })
 
 M.UpdateProxyRuleOutput = schema.new({
-    id = id.from(_N, "UpdateProxyRuleOutput"),
+    id = id.from(_N, "UpdateProxyRuleResponse"),
     type = "structure",
     members = {
         ProxyRule = schema.new({
@@ -7509,7 +7509,7 @@ M.ProxyRuleGroupPriority = schema.new({
 })
 
 M.UpdateProxyRuleGroupPrioritiesInput = schema.new({
-    id = id.from(_N, "UpdateProxyRuleGroupPrioritiesInput"),
+    id = id.from(_N, "UpdateProxyRuleGroupPrioritiesRequest"),
     type = "structure",
     members = {
         ProxyConfigurationName = schema.new({
@@ -7566,7 +7566,7 @@ M.ProxyRuleGroupPriorityResult = schema.new({
 })
 
 M.UpdateProxyRuleGroupPrioritiesOutput = schema.new({
-    id = id.from(_N, "UpdateProxyRuleGroupPrioritiesOutput"),
+    id = id.from(_N, "UpdateProxyRuleGroupPrioritiesResponse"),
     type = "structure",
     members = {
         ProxyRuleGroups = schema.new({
@@ -7605,7 +7605,7 @@ M.ProxyRulePriority = schema.new({
 })
 
 M.UpdateProxyRulePrioritiesInput = schema.new({
-    id = id.from(_N, "UpdateProxyRulePrioritiesInput"),
+    id = id.from(_N, "UpdateProxyRulePrioritiesRequest"),
     type = "structure",
     members = {
         ProxyRuleGroupName = schema.new({
@@ -7652,7 +7652,7 @@ M.UpdateProxyRulePrioritiesInput = schema.new({
 })
 
 M.UpdateProxyRulePrioritiesOutput = schema.new({
-    id = id.from(_N, "UpdateProxyRulePrioritiesOutput"),
+    id = id.from(_N, "UpdateProxyRulePrioritiesResponse"),
     type = "structure",
     members = {
         ProxyRuleGroupName = schema.new({
@@ -7690,7 +7690,7 @@ M.UpdateProxyRulePrioritiesOutput = schema.new({
 })
 
 M.UpdateRuleGroupInput = schema.new({
-    id = id.from(_N, "UpdateRuleGroupInput"),
+    id = id.from(_N, "UpdateRuleGroupRequest"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -7782,7 +7782,7 @@ M.UpdateRuleGroupInput = schema.new({
 })
 
 M.UpdateRuleGroupOutput = schema.new({
-    id = id.from(_N, "UpdateRuleGroupOutput"),
+    id = id.from(_N, "UpdateRuleGroupResponse"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -7808,7 +7808,7 @@ M.UpdateRuleGroupOutput = schema.new({
 })
 
 M.UpdateSubnetChangeProtectionInput = schema.new({
-    id = id.from(_N, "UpdateSubnetChangeProtectionInput"),
+    id = id.from(_N, "UpdateSubnetChangeProtectionRequest"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -7843,7 +7843,7 @@ M.UpdateSubnetChangeProtectionInput = schema.new({
 })
 
 M.UpdateSubnetChangeProtectionOutput = schema.new({
-    id = id.from(_N, "UpdateSubnetChangeProtectionOutput"),
+    id = id.from(_N, "UpdateSubnetChangeProtectionResponse"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -7877,7 +7877,7 @@ M.UpdateSubnetChangeProtectionOutput = schema.new({
 })
 
 M.UpdateTLSInspectionConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateTLSInspectionConfigurationInput"),
+    id = id.from(_N, "UpdateTLSInspectionConfigurationRequest"),
     type = "structure",
     members = {
         TLSInspectionConfigurationArn = schema.new({
@@ -7928,7 +7928,7 @@ M.UpdateTLSInspectionConfigurationInput = schema.new({
 })
 
 M.UpdateTLSInspectionConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateTLSInspectionConfigurationOutput"),
+    id = id.from(_N, "UpdateTLSInspectionConfigurationResponse"),
     type = "structure",
     members = {
         UpdateToken = schema.new({
@@ -7952,5 +7952,19 @@ M.UpdateTLSInspectionConfigurationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

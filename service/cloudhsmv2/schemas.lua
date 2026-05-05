@@ -243,7 +243,7 @@ M.CloudHsmTagException = schema.new({
 })
 
 M.CopyBackupToRegionInput = schema.new({
-    id = id.from(_N, "CopyBackupToRegionInput"),
+    id = id.from(_N, "CopyBackupToRegionRequest"),
     type = "structure",
     members = {
         DestinationRegion = schema.new({
@@ -306,7 +306,7 @@ M.DestinationBackup = schema.new({
 })
 
 M.CopyBackupToRegionOutput = schema.new({
-    id = id.from(_N, "CopyBackupToRegionOutput"),
+    id = id.from(_N, "CopyBackupToRegionResponse"),
     type = "structure",
     members = {
         DestinationBackup = schema.new({
@@ -320,7 +320,7 @@ M.CopyBackupToRegionOutput = schema.new({
 })
 
 M.CreateClusterInput = schema.new({
-    id = id.from(_N, "CreateClusterInput"),
+    id = id.from(_N, "CreateClusterRequest"),
     type = "structure",
     members = {
         BackupRetentionPolicy = schema.new({
@@ -606,7 +606,7 @@ M.Cluster = schema.new({
 })
 
 M.CreateClusterOutput = schema.new({
-    id = id.from(_N, "CreateClusterOutput"),
+    id = id.from(_N, "CreateClusterResponse"),
     type = "structure",
     members = {
         Cluster = schema.new({
@@ -620,7 +620,7 @@ M.CreateClusterOutput = schema.new({
 })
 
 M.CreateHsmInput = schema.new({
-    id = id.from(_N, "CreateHsmInput"),
+    id = id.from(_N, "CreateHsmRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -651,7 +651,7 @@ M.CreateHsmInput = schema.new({
 })
 
 M.CreateHsmOutput = schema.new({
-    id = id.from(_N, "CreateHsmOutput"),
+    id = id.from(_N, "CreateHsmResponse"),
     type = "structure",
     members = {
         Hsm = schema.new({
@@ -665,7 +665,7 @@ M.CreateHsmOutput = schema.new({
 })
 
 M.DeleteBackupInput = schema.new({
-    id = id.from(_N, "DeleteBackupInput"),
+    id = id.from(_N, "DeleteBackupRequest"),
     type = "structure",
     members = {
         BackupId = schema.new({
@@ -681,7 +681,7 @@ M.DeleteBackupInput = schema.new({
 })
 
 M.DeleteBackupOutput = schema.new({
-    id = id.from(_N, "DeleteBackupOutput"),
+    id = id.from(_N, "DeleteBackupResponse"),
     type = "structure",
     members = {
         Backup = schema.new({
@@ -695,7 +695,7 @@ M.DeleteBackupOutput = schema.new({
 })
 
 M.DeleteClusterInput = schema.new({
-    id = id.from(_N, "DeleteClusterInput"),
+    id = id.from(_N, "DeleteClusterRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -711,7 +711,7 @@ M.DeleteClusterInput = schema.new({
 })
 
 M.DeleteClusterOutput = schema.new({
-    id = id.from(_N, "DeleteClusterOutput"),
+    id = id.from(_N, "DeleteClusterResponse"),
     type = "structure",
     members = {
         Cluster = schema.new({
@@ -725,7 +725,7 @@ M.DeleteClusterOutput = schema.new({
 })
 
 M.DeleteHsmInput = schema.new({
-    id = id.from(_N, "DeleteHsmInput"),
+    id = id.from(_N, "DeleteHsmRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -759,7 +759,7 @@ M.DeleteHsmInput = schema.new({
 })
 
 M.DeleteHsmOutput = schema.new({
-    id = id.from(_N, "DeleteHsmOutput"),
+    id = id.from(_N, "DeleteHsmResponse"),
     type = "structure",
     members = {
         HsmId = schema.new({
@@ -772,7 +772,7 @@ M.DeleteHsmOutput = schema.new({
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -785,7 +785,7 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "DeleteResourcePolicyResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -804,7 +804,7 @@ M.DeleteResourcePolicyOutput = schema.new({
 })
 
 M.DescribeBackupsInput = schema.new({
-    id = id.from(_N, "DescribeBackupsInput"),
+    id = id.from(_N, "DescribeBackupsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -825,7 +825,7 @@ M.DescribeBackupsInput = schema.new({
             name = "Filters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         Shared = schema.new({
             id = id.from(_N, "DescribeBackupsInput", "Shared"),
@@ -843,7 +843,7 @@ M.DescribeBackupsInput = schema.new({
 })
 
 M.DescribeBackupsOutput = schema.new({
-    id = id.from(_N, "DescribeBackupsOutput"),
+    id = id.from(_N, "DescribeBackupsResponse"),
     type = "structure",
     members = {
         Backups = schema.new({
@@ -863,7 +863,7 @@ M.DescribeBackupsOutput = schema.new({
 })
 
 M.DescribeClustersInput = schema.new({
-    id = id.from(_N, "DescribeClustersInput"),
+    id = id.from(_N, "DescribeClustersRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -872,7 +872,7 @@ M.DescribeClustersInput = schema.new({
             name = "Filters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         NextToken = schema.new({
             id = id.from(_N, "DescribeClustersInput", "NextToken"),
@@ -890,7 +890,7 @@ M.DescribeClustersInput = schema.new({
 })
 
 M.DescribeClustersOutput = schema.new({
-    id = id.from(_N, "DescribeClustersOutput"),
+    id = id.from(_N, "DescribeClustersResponse"),
     type = "structure",
     members = {
         Clusters = schema.new({
@@ -910,7 +910,7 @@ M.DescribeClustersOutput = schema.new({
 })
 
 M.GetResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetResourcePolicyInput"),
+    id = id.from(_N, "GetResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -923,7 +923,7 @@ M.GetResourcePolicyInput = schema.new({
 })
 
 M.GetResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetResourcePolicyOutput"),
+    id = id.from(_N, "GetResourcePolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -936,7 +936,7 @@ M.GetResourcePolicyOutput = schema.new({
 })
 
 M.InitializeClusterInput = schema.new({
-    id = id.from(_N, "InitializeClusterInput"),
+    id = id.from(_N, "InitializeClusterRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -970,7 +970,7 @@ M.InitializeClusterInput = schema.new({
 })
 
 M.InitializeClusterOutput = schema.new({
-    id = id.from(_N, "InitializeClusterOutput"),
+    id = id.from(_N, "InitializeClusterResponse"),
     type = "structure",
     members = {
         State = schema.new({
@@ -989,7 +989,7 @@ M.InitializeClusterOutput = schema.new({
 })
 
 M.ListTagsInput = schema.new({
-    id = id.from(_N, "ListTagsInput"),
+    id = id.from(_N, "ListTagsRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -1017,7 +1017,7 @@ M.ListTagsInput = schema.new({
 })
 
 M.ListTagsOutput = schema.new({
-    id = id.from(_N, "ListTagsOutput"),
+    id = id.from(_N, "ListTagsResponse"),
     type = "structure",
     members = {
         TagList = schema.new({
@@ -1040,7 +1040,7 @@ M.ListTagsOutput = schema.new({
 })
 
 M.ModifyBackupAttributesInput = schema.new({
-    id = id.from(_N, "ModifyBackupAttributesInput"),
+    id = id.from(_N, "ModifyBackupAttributesRequest"),
     type = "structure",
     members = {
         BackupId = schema.new({
@@ -1065,7 +1065,7 @@ M.ModifyBackupAttributesInput = schema.new({
 })
 
 M.ModifyBackupAttributesOutput = schema.new({
-    id = id.from(_N, "ModifyBackupAttributesOutput"),
+    id = id.from(_N, "ModifyBackupAttributesResponse"),
     type = "structure",
     members = {
         Backup = schema.new({
@@ -1079,7 +1079,7 @@ M.ModifyBackupAttributesOutput = schema.new({
 })
 
 M.ModifyClusterInput = schema.new({
-    id = id.from(_N, "ModifyClusterInput"),
+    id = id.from(_N, "ModifyClusterRequest"),
     type = "structure",
     members = {
         HsmType = schema.new({
@@ -1108,7 +1108,7 @@ M.ModifyClusterInput = schema.new({
 })
 
 M.ModifyClusterOutput = schema.new({
-    id = id.from(_N, "ModifyClusterOutput"),
+    id = id.from(_N, "ModifyClusterResponse"),
     type = "structure",
     members = {
         Cluster = schema.new({
@@ -1122,7 +1122,7 @@ M.ModifyClusterOutput = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1141,7 +1141,7 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1160,7 +1160,7 @@ M.PutResourcePolicyOutput = schema.new({
 })
 
 M.RestoreBackupInput = schema.new({
-    id = id.from(_N, "RestoreBackupInput"),
+    id = id.from(_N, "RestoreBackupRequest"),
     type = "structure",
     members = {
         BackupId = schema.new({
@@ -1176,7 +1176,7 @@ M.RestoreBackupInput = schema.new({
 })
 
 M.RestoreBackupOutput = schema.new({
-    id = id.from(_N, "RestoreBackupOutput"),
+    id = id.from(_N, "RestoreBackupResponse"),
     type = "structure",
     members = {
         Backup = schema.new({
@@ -1206,7 +1206,7 @@ M.CloudHsmResourceLimitExceededException = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -1232,12 +1232,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -1263,8 +1263,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

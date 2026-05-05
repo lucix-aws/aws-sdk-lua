@@ -75,7 +75,7 @@ M.Tag = schema.new({
 })
 
 M.CreateClusterInput = schema.new({
-    id = id.from(_N, "CreateClusterInput"),
+    id = id.from(_N, "CreateClusterRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -466,7 +466,7 @@ M.Cluster = schema.new({
 })
 
 M.CreateClusterOutput = schema.new({
-    id = id.from(_N, "CreateClusterOutput"),
+    id = id.from(_N, "CreateClusterResponse"),
     type = "structure",
     members = {
         Cluster = schema.new({
@@ -680,7 +680,7 @@ M.TagQuotaPerResourceExceeded = schema.new({
 })
 
 M.CreateParameterGroupInput = schema.new({
-    id = id.from(_N, "CreateParameterGroupInput"),
+    id = id.from(_N, "CreateParameterGroupRequest"),
     type = "structure",
     members = {
         ParameterGroupName = schema.new({
@@ -721,7 +721,7 @@ M.ParameterGroup = schema.new({
 })
 
 M.CreateParameterGroupOutput = schema.new({
-    id = id.from(_N, "CreateParameterGroupOutput"),
+    id = id.from(_N, "CreateParameterGroupResponse"),
     type = "structure",
     members = {
         ParameterGroup = schema.new({
@@ -767,7 +767,7 @@ M.ParameterGroupQuotaExceededFault = schema.new({
 })
 
 M.CreateSubnetGroupInput = schema.new({
-    id = id.from(_N, "CreateSubnetGroupInput"),
+    id = id.from(_N, "CreateSubnetGroupRequest"),
     type = "structure",
     members = {
         SubnetGroupName = schema.new({
@@ -864,7 +864,7 @@ M.SubnetGroup = schema.new({
 })
 
 M.CreateSubnetGroupOutput = schema.new({
-    id = id.from(_N, "CreateSubnetGroupOutput"),
+    id = id.from(_N, "CreateSubnetGroupResponse"),
     type = "structure",
     members = {
         SubnetGroup = schema.new({
@@ -974,7 +974,7 @@ M.ClusterNotFoundFault = schema.new({
 })
 
 M.DecreaseReplicationFactorInput = schema.new({
-    id = id.from(_N, "DecreaseReplicationFactorInput"),
+    id = id.from(_N, "DecreaseReplicationFactorRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -1014,7 +1014,7 @@ M.DecreaseReplicationFactorInput = schema.new({
 })
 
 M.DecreaseReplicationFactorOutput = schema.new({
-    id = id.from(_N, "DecreaseReplicationFactorOutput"),
+    id = id.from(_N, "DecreaseReplicationFactorResponse"),
     type = "structure",
     members = {
         Cluster = schema.new({
@@ -1044,7 +1044,7 @@ M.NodeNotFoundFault = schema.new({
 })
 
 M.DeleteClusterInput = schema.new({
-    id = id.from(_N, "DeleteClusterInput"),
+    id = id.from(_N, "DeleteClusterRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -1060,7 +1060,7 @@ M.DeleteClusterInput = schema.new({
 })
 
 M.DeleteClusterOutput = schema.new({
-    id = id.from(_N, "DeleteClusterOutput"),
+    id = id.from(_N, "DeleteClusterResponse"),
     type = "structure",
     members = {
         Cluster = schema.new({
@@ -1074,7 +1074,7 @@ M.DeleteClusterOutput = schema.new({
 })
 
 M.DeleteParameterGroupInput = schema.new({
-    id = id.from(_N, "DeleteParameterGroupInput"),
+    id = id.from(_N, "DeleteParameterGroupRequest"),
     type = "structure",
     members = {
         ParameterGroupName = schema.new({
@@ -1090,7 +1090,7 @@ M.DeleteParameterGroupInput = schema.new({
 })
 
 M.DeleteParameterGroupOutput = schema.new({
-    id = id.from(_N, "DeleteParameterGroupOutput"),
+    id = id.from(_N, "DeleteParameterGroupResponse"),
     type = "structure",
     members = {
         DeletionMessage = schema.new({
@@ -1103,7 +1103,7 @@ M.DeleteParameterGroupOutput = schema.new({
 })
 
 M.DeleteSubnetGroupInput = schema.new({
-    id = id.from(_N, "DeleteSubnetGroupInput"),
+    id = id.from(_N, "DeleteSubnetGroupRequest"),
     type = "structure",
     members = {
         SubnetGroupName = schema.new({
@@ -1119,7 +1119,7 @@ M.DeleteSubnetGroupInput = schema.new({
 })
 
 M.DeleteSubnetGroupOutput = schema.new({
-    id = id.from(_N, "DeleteSubnetGroupOutput"),
+    id = id.from(_N, "DeleteSubnetGroupResponse"),
     type = "structure",
     members = {
         DeletionMessage = schema.new({
@@ -1148,7 +1148,7 @@ M.SubnetGroupInUseFault = schema.new({
 })
 
 M.DescribeClustersInput = schema.new({
-    id = id.from(_N, "DescribeClustersInput"),
+    id = id.from(_N, "DescribeClustersRequest"),
     type = "structure",
     members = {
         ClusterNames = schema.new({
@@ -1174,7 +1174,7 @@ M.DescribeClustersInput = schema.new({
 })
 
 M.DescribeClustersOutput = schema.new({
-    id = id.from(_N, "DescribeClustersOutput"),
+    id = id.from(_N, "DescribeClustersResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1194,7 +1194,7 @@ M.DescribeClustersOutput = schema.new({
 })
 
 M.DescribeDefaultParametersInput = schema.new({
-    id = id.from(_N, "DescribeDefaultParametersInput"),
+    id = id.from(_N, "DescribeDefaultParametersRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1300,7 +1300,7 @@ M.Parameter = schema.new({
 })
 
 M.DescribeDefaultParametersOutput = schema.new({
-    id = id.from(_N, "DescribeDefaultParametersOutput"),
+    id = id.from(_N, "DescribeDefaultParametersResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1320,7 +1320,7 @@ M.DescribeDefaultParametersOutput = schema.new({
 })
 
 M.DescribeEventsInput = schema.new({
-    id = id.from(_N, "DescribeEventsInput"),
+    id = id.from(_N, "DescribeEventsRequest"),
     type = "structure",
     members = {
         SourceName = schema.new({
@@ -1400,7 +1400,7 @@ M.Event = schema.new({
 })
 
 M.DescribeEventsOutput = schema.new({
-    id = id.from(_N, "DescribeEventsOutput"),
+    id = id.from(_N, "DescribeEventsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1420,7 +1420,7 @@ M.DescribeEventsOutput = schema.new({
 })
 
 M.DescribeParameterGroupsInput = schema.new({
-    id = id.from(_N, "DescribeParameterGroupsInput"),
+    id = id.from(_N, "DescribeParameterGroupsRequest"),
     type = "structure",
     members = {
         ParameterGroupNames = schema.new({
@@ -1446,7 +1446,7 @@ M.DescribeParameterGroupsInput = schema.new({
 })
 
 M.DescribeParameterGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeParameterGroupsOutput"),
+    id = id.from(_N, "DescribeParameterGroupsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1466,7 +1466,7 @@ M.DescribeParameterGroupsOutput = schema.new({
 })
 
 M.DescribeParametersInput = schema.new({
-    id = id.from(_N, "DescribeParametersInput"),
+    id = id.from(_N, "DescribeParametersRequest"),
     type = "structure",
     members = {
         ParameterGroupName = schema.new({
@@ -1500,7 +1500,7 @@ M.DescribeParametersInput = schema.new({
 })
 
 M.DescribeParametersOutput = schema.new({
-    id = id.from(_N, "DescribeParametersOutput"),
+    id = id.from(_N, "DescribeParametersResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1520,7 +1520,7 @@ M.DescribeParametersOutput = schema.new({
 })
 
 M.DescribeSubnetGroupsInput = schema.new({
-    id = id.from(_N, "DescribeSubnetGroupsInput"),
+    id = id.from(_N, "DescribeSubnetGroupsRequest"),
     type = "structure",
     members = {
         SubnetGroupNames = schema.new({
@@ -1546,7 +1546,7 @@ M.DescribeSubnetGroupsInput = schema.new({
 })
 
 M.DescribeSubnetGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeSubnetGroupsOutput"),
+    id = id.from(_N, "DescribeSubnetGroupsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1566,7 +1566,7 @@ M.DescribeSubnetGroupsOutput = schema.new({
 })
 
 M.IncreaseReplicationFactorInput = schema.new({
-    id = id.from(_N, "IncreaseReplicationFactorInput"),
+    id = id.from(_N, "IncreaseReplicationFactorRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -1599,7 +1599,7 @@ M.IncreaseReplicationFactorInput = schema.new({
 })
 
 M.IncreaseReplicationFactorOutput = schema.new({
-    id = id.from(_N, "IncreaseReplicationFactorOutput"),
+    id = id.from(_N, "IncreaseReplicationFactorResponse"),
     type = "structure",
     members = {
         Cluster = schema.new({
@@ -1629,7 +1629,7 @@ M.InvalidARNFault = schema.new({
 })
 
 M.ListTagsInput = schema.new({
-    id = id.from(_N, "ListTagsInput"),
+    id = id.from(_N, "ListTagsRequest"),
     type = "structure",
     members = {
         ResourceName = schema.new({
@@ -1651,7 +1651,7 @@ M.ListTagsInput = schema.new({
 })
 
 M.ListTagsOutput = schema.new({
-    id = id.from(_N, "ListTagsOutput"),
+    id = id.from(_N, "ListTagsResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1671,7 +1671,7 @@ M.ListTagsOutput = schema.new({
 })
 
 M.RebootNodeInput = schema.new({
-    id = id.from(_N, "RebootNodeInput"),
+    id = id.from(_N, "RebootNodeRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -1696,7 +1696,7 @@ M.RebootNodeInput = schema.new({
 })
 
 M.RebootNodeOutput = schema.new({
-    id = id.from(_N, "RebootNodeOutput"),
+    id = id.from(_N, "RebootNodeResponse"),
     type = "structure",
     members = {
         Cluster = schema.new({
@@ -1710,7 +1710,7 @@ M.RebootNodeOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceName = schema.new({
@@ -1736,7 +1736,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1766,7 +1766,7 @@ M.TagNotFoundFault = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceName = schema.new({
@@ -1792,7 +1792,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1806,7 +1806,7 @@ M.UntagResourceOutput = schema.new({
 })
 
 M.UpdateClusterInput = schema.new({
-    id = id.from(_N, "UpdateClusterInput"),
+    id = id.from(_N, "UpdateClusterRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -1859,7 +1859,7 @@ M.UpdateClusterInput = schema.new({
 })
 
 M.UpdateClusterOutput = schema.new({
-    id = id.from(_N, "UpdateClusterOutput"),
+    id = id.from(_N, "UpdateClusterResponse"),
     type = "structure",
     members = {
         Cluster = schema.new({
@@ -1892,7 +1892,7 @@ M.ParameterNameValue = schema.new({
 })
 
 M.UpdateParameterGroupInput = schema.new({
-    id = id.from(_N, "UpdateParameterGroupInput"),
+    id = id.from(_N, "UpdateParameterGroupRequest"),
     type = "structure",
     members = {
         ParameterGroupName = schema.new({
@@ -1918,7 +1918,7 @@ M.UpdateParameterGroupInput = schema.new({
 })
 
 M.UpdateParameterGroupOutput = schema.new({
-    id = id.from(_N, "UpdateParameterGroupOutput"),
+    id = id.from(_N, "UpdateParameterGroupResponse"),
     type = "structure",
     members = {
         ParameterGroup = schema.new({
@@ -1948,7 +1948,7 @@ M.SubnetInUse = schema.new({
 })
 
 M.UpdateSubnetGroupInput = schema.new({
-    id = id.from(_N, "UpdateSubnetGroupInput"),
+    id = id.from(_N, "UpdateSubnetGroupRequest"),
     type = "structure",
     members = {
         SubnetGroupName = schema.new({
@@ -1977,7 +1977,7 @@ M.UpdateSubnetGroupInput = schema.new({
 })
 
 M.UpdateSubnetGroupOutput = schema.new({
-    id = id.from(_N, "UpdateSubnetGroupOutput"),
+    id = id.from(_N, "UpdateSubnetGroupResponse"),
     type = "structure",
     members = {
         SubnetGroup = schema.new({
@@ -1989,5 +1989,19 @@ M.UpdateSubnetGroupOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

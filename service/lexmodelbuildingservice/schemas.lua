@@ -56,7 +56,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateBotVersionInput = schema.new({
-    id = id.from(_N, "CreateBotVersionInput"),
+    id = id.from(_N, "CreateBotVersionRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -190,7 +190,7 @@ M.Intent = schema.new({
 })
 
 M.CreateBotVersionOutput = schema.new({
-    id = id.from(_N, "CreateBotVersionOutput"),
+    id = id.from(_N, "CreateBotVersionResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -375,7 +375,7 @@ M.PreconditionFailedException = schema.new({
 })
 
 M.CreateIntentVersionInput = schema.new({
-    id = id.from(_N, "CreateIntentVersionInput"),
+    id = id.from(_N, "CreateIntentVersionRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -669,7 +669,7 @@ M.Slot = schema.new({
 })
 
 M.CreateIntentVersionOutput = schema.new({
-    id = id.from(_N, "CreateIntentVersionOutput"),
+    id = id.from(_N, "CreateIntentVersionResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -795,7 +795,7 @@ M.CreateIntentVersionOutput = schema.new({
 })
 
 M.CreateSlotTypeVersionInput = schema.new({
-    id = id.from(_N, "CreateSlotTypeVersionInput"),
+    id = id.from(_N, "CreateSlotTypeVersionRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -871,7 +871,7 @@ M.SlotTypeConfiguration = schema.new({
 })
 
 M.CreateSlotTypeVersionOutput = schema.new({
-    id = id.from(_N, "CreateSlotTypeVersionOutput"),
+    id = id.from(_N, "CreateSlotTypeVersionResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -940,7 +940,7 @@ M.CreateSlotTypeVersionOutput = schema.new({
 })
 
 M.DeleteBotInput = schema.new({
-    id = id.from(_N, "DeleteBotInput"),
+    id = id.from(_N, "DeleteBotRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -957,7 +957,7 @@ M.DeleteBotInput = schema.new({
 })
 
 M.DeleteBotOutput = schema.new({
-    id = id.from(_N, "DeleteBotOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1004,7 +1004,7 @@ M.ResourceInUseException = schema.new({
 })
 
 M.DeleteBotAliasInput = schema.new({
-    id = id.from(_N, "DeleteBotAliasInput"),
+    id = id.from(_N, "DeleteBotAliasRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1031,12 +1031,12 @@ M.DeleteBotAliasInput = schema.new({
 })
 
 M.DeleteBotAliasOutput = schema.new({
-    id = id.from(_N, "DeleteBotAliasOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteBotChannelAssociationInput = schema.new({
-    id = id.from(_N, "DeleteBotChannelAssociationInput"),
+    id = id.from(_N, "DeleteBotChannelAssociationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1073,12 +1073,12 @@ M.DeleteBotChannelAssociationInput = schema.new({
 })
 
 M.DeleteBotChannelAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteBotChannelAssociationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteBotVersionInput = schema.new({
-    id = id.from(_N, "DeleteBotVersionInput"),
+    id = id.from(_N, "DeleteBotVersionRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1105,12 +1105,12 @@ M.DeleteBotVersionInput = schema.new({
 })
 
 M.DeleteBotVersionOutput = schema.new({
-    id = id.from(_N, "DeleteBotVersionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteIntentInput = schema.new({
-    id = id.from(_N, "DeleteIntentInput"),
+    id = id.from(_N, "DeleteIntentRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1127,12 +1127,12 @@ M.DeleteIntentInput = schema.new({
 })
 
 M.DeleteIntentOutput = schema.new({
-    id = id.from(_N, "DeleteIntentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteIntentVersionInput = schema.new({
-    id = id.from(_N, "DeleteIntentVersionInput"),
+    id = id.from(_N, "DeleteIntentVersionRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1159,12 +1159,12 @@ M.DeleteIntentVersionInput = schema.new({
 })
 
 M.DeleteIntentVersionOutput = schema.new({
-    id = id.from(_N, "DeleteIntentVersionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteSlotTypeInput = schema.new({
-    id = id.from(_N, "DeleteSlotTypeInput"),
+    id = id.from(_N, "DeleteSlotTypeRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1181,12 +1181,12 @@ M.DeleteSlotTypeInput = schema.new({
 })
 
 M.DeleteSlotTypeOutput = schema.new({
-    id = id.from(_N, "DeleteSlotTypeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteSlotTypeVersionInput = schema.new({
-    id = id.from(_N, "DeleteSlotTypeVersionInput"),
+    id = id.from(_N, "DeleteSlotTypeVersionRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1213,12 +1213,12 @@ M.DeleteSlotTypeVersionInput = schema.new({
 })
 
 M.DeleteSlotTypeVersionOutput = schema.new({
-    id = id.from(_N, "DeleteSlotTypeVersionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteUtterancesInput = schema.new({
-    id = id.from(_N, "DeleteUtterancesInput"),
+    id = id.from(_N, "DeleteUtterancesRequest"),
     type = "structure",
     members = {
         botName = schema.new({
@@ -1245,12 +1245,12 @@ M.DeleteUtterancesInput = schema.new({
 })
 
 M.DeleteUtterancesOutput = schema.new({
-    id = id.from(_N, "DeleteUtterancesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetBotInput = schema.new({
-    id = id.from(_N, "GetBotInput"),
+    id = id.from(_N, "GetBotRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1277,7 +1277,7 @@ M.GetBotInput = schema.new({
 })
 
 M.GetBotOutput = schema.new({
-    id = id.from(_N, "GetBotOutput"),
+    id = id.from(_N, "GetBotResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1395,7 +1395,7 @@ M.GetBotOutput = schema.new({
 })
 
 M.GetBotAliasInput = schema.new({
-    id = id.from(_N, "GetBotAliasInput"),
+    id = id.from(_N, "GetBotAliasRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1479,7 +1479,7 @@ M.ConversationLogsResponse = schema.new({
 })
 
 M.GetBotAliasOutput = schema.new({
-    id = id.from(_N, "GetBotAliasOutput"),
+    id = id.from(_N, "GetBotAliasResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1535,7 +1535,7 @@ M.GetBotAliasOutput = schema.new({
 })
 
 M.GetBotAliasesInput = schema.new({
-    id = id.from(_N, "GetBotAliasesInput"),
+    id = id.from(_N, "GetBotAliasesRequest"),
     type = "structure",
     members = {
         botName = schema.new({
@@ -1635,7 +1635,7 @@ M.BotAliasMetadata = schema.new({
 })
 
 M.GetBotAliasesOutput = schema.new({
-    id = id.from(_N, "GetBotAliasesOutput"),
+    id = id.from(_N, "GetBotAliasesResponse"),
     type = "structure",
     members = {
         BotAliases = schema.new({
@@ -1655,7 +1655,7 @@ M.GetBotAliasesOutput = schema.new({
 })
 
 M.GetBotChannelAssociationInput = schema.new({
-    id = id.from(_N, "GetBotChannelAssociationInput"),
+    id = id.from(_N, "GetBotChannelAssociationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1692,7 +1692,7 @@ M.GetBotChannelAssociationInput = schema.new({
 })
 
 M.GetBotChannelAssociationOutput = schema.new({
-    id = id.from(_N, "GetBotChannelAssociationOutput"),
+    id = id.from(_N, "GetBotChannelAssociationResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1755,7 +1755,7 @@ M.GetBotChannelAssociationOutput = schema.new({
 })
 
 M.GetBotChannelAssociationsInput = schema.new({
-    id = id.from(_N, "GetBotChannelAssociationsInput"),
+    id = id.from(_N, "GetBotChannelAssociationsRequest"),
     type = "structure",
     members = {
         botName = schema.new({
@@ -1872,7 +1872,7 @@ M.BotChannelAssociation = schema.new({
 })
 
 M.GetBotChannelAssociationsOutput = schema.new({
-    id = id.from(_N, "GetBotChannelAssociationsOutput"),
+    id = id.from(_N, "GetBotChannelAssociationsResponse"),
     type = "structure",
     members = {
         botChannelAssociations = schema.new({
@@ -1892,7 +1892,7 @@ M.GetBotChannelAssociationsOutput = schema.new({
 })
 
 M.GetBotsInput = schema.new({
-    id = id.from(_N, "GetBotsInput"),
+    id = id.from(_N, "GetBotsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1969,7 +1969,7 @@ M.BotMetadata = schema.new({
 })
 
 M.GetBotsOutput = schema.new({
-    id = id.from(_N, "GetBotsOutput"),
+    id = id.from(_N, "GetBotsResponse"),
     type = "structure",
     members = {
         bots = schema.new({
@@ -1989,7 +1989,7 @@ M.GetBotsOutput = schema.new({
 })
 
 M.GetBotVersionsInput = schema.new({
-    id = id.from(_N, "GetBotVersionsInput"),
+    id = id.from(_N, "GetBotVersionsRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2024,7 +2024,7 @@ M.GetBotVersionsInput = schema.new({
 })
 
 M.GetBotVersionsOutput = schema.new({
-    id = id.from(_N, "GetBotVersionsOutput"),
+    id = id.from(_N, "GetBotVersionsResponse"),
     type = "structure",
     members = {
         bots = schema.new({
@@ -2044,7 +2044,7 @@ M.GetBotVersionsOutput = schema.new({
 })
 
 M.GetBuiltinIntentInput = schema.new({
-    id = id.from(_N, "GetBuiltinIntentInput"),
+    id = id.from(_N, "GetBuiltinIntentRequest"),
     type = "structure",
     members = {
         signature = schema.new({
@@ -2074,7 +2074,7 @@ M.BuiltinIntentSlot = schema.new({
 })
 
 M.GetBuiltinIntentOutput = schema.new({
-    id = id.from(_N, "GetBuiltinIntentOutput"),
+    id = id.from(_N, "GetBuiltinIntentResponse"),
     type = "structure",
     members = {
         signature = schema.new({
@@ -2101,7 +2101,7 @@ M.GetBuiltinIntentOutput = schema.new({
 })
 
 M.GetBuiltinIntentsInput = schema.new({
-    id = id.from(_N, "GetBuiltinIntentsInput"),
+    id = id.from(_N, "GetBuiltinIntentsRequest"),
     type = "structure",
     members = {
         locale = schema.new({
@@ -2164,7 +2164,7 @@ M.BuiltinIntentMetadata = schema.new({
 })
 
 M.GetBuiltinIntentsOutput = schema.new({
-    id = id.from(_N, "GetBuiltinIntentsOutput"),
+    id = id.from(_N, "GetBuiltinIntentsResponse"),
     type = "structure",
     members = {
         intents = schema.new({
@@ -2184,7 +2184,7 @@ M.GetBuiltinIntentsOutput = schema.new({
 })
 
 M.GetBuiltinSlotTypesInput = schema.new({
-    id = id.from(_N, "GetBuiltinSlotTypesInput"),
+    id = id.from(_N, "GetBuiltinSlotTypesRequest"),
     type = "structure",
     members = {
         locale = schema.new({
@@ -2247,7 +2247,7 @@ M.BuiltinSlotTypeMetadata = schema.new({
 })
 
 M.GetBuiltinSlotTypesOutput = schema.new({
-    id = id.from(_N, "GetBuiltinSlotTypesOutput"),
+    id = id.from(_N, "GetBuiltinSlotTypesResponse"),
     type = "structure",
     members = {
         slotTypes = schema.new({
@@ -2267,7 +2267,7 @@ M.GetBuiltinSlotTypesOutput = schema.new({
 })
 
 M.GetExportInput = schema.new({
-    id = id.from(_N, "GetExportInput"),
+    id = id.from(_N, "GetExportRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2314,7 +2314,7 @@ M.GetExportInput = schema.new({
 })
 
 M.GetExportOutput = schema.new({
-    id = id.from(_N, "GetExportOutput"),
+    id = id.from(_N, "GetExportResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2363,7 +2363,7 @@ M.GetExportOutput = schema.new({
 })
 
 M.GetImportInput = schema.new({
-    id = id.from(_N, "GetImportInput"),
+    id = id.from(_N, "GetImportRequest"),
     type = "structure",
     members = {
         importId = schema.new({
@@ -2380,7 +2380,7 @@ M.GetImportInput = schema.new({
 })
 
 M.GetImportOutput = schema.new({
-    id = id.from(_N, "GetImportOutput"),
+    id = id.from(_N, "GetImportResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2430,7 +2430,7 @@ M.GetImportOutput = schema.new({
 })
 
 M.GetIntentInput = schema.new({
-    id = id.from(_N, "GetIntentInput"),
+    id = id.from(_N, "GetIntentRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2457,7 +2457,7 @@ M.GetIntentInput = schema.new({
 })
 
 M.GetIntentOutput = schema.new({
-    id = id.from(_N, "GetIntentOutput"),
+    id = id.from(_N, "GetIntentResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2583,7 +2583,7 @@ M.GetIntentOutput = schema.new({
 })
 
 M.GetIntentsInput = schema.new({
-    id = id.from(_N, "GetIntentsInput"),
+    id = id.from(_N, "GetIntentsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2654,7 +2654,7 @@ M.IntentMetadata = schema.new({
 })
 
 M.GetIntentsOutput = schema.new({
-    id = id.from(_N, "GetIntentsOutput"),
+    id = id.from(_N, "GetIntentsResponse"),
     type = "structure",
     members = {
         intents = schema.new({
@@ -2674,7 +2674,7 @@ M.GetIntentsOutput = schema.new({
 })
 
 M.GetIntentVersionsInput = schema.new({
-    id = id.from(_N, "GetIntentVersionsInput"),
+    id = id.from(_N, "GetIntentVersionsRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2709,7 +2709,7 @@ M.GetIntentVersionsInput = schema.new({
 })
 
 M.GetIntentVersionsOutput = schema.new({
-    id = id.from(_N, "GetIntentVersionsOutput"),
+    id = id.from(_N, "GetIntentVersionsResponse"),
     type = "structure",
     members = {
         intents = schema.new({
@@ -2729,7 +2729,7 @@ M.GetIntentVersionsOutput = schema.new({
 })
 
 M.GetMigrationInput = schema.new({
-    id = id.from(_N, "GetMigrationInput"),
+    id = id.from(_N, "GetMigrationRequest"),
     type = "structure",
     members = {
         migrationId = schema.new({
@@ -2779,7 +2779,7 @@ M.MigrationAlert = schema.new({
 })
 
 M.GetMigrationOutput = schema.new({
-    id = id.from(_N, "GetMigrationOutput"),
+    id = id.from(_N, "GetMigrationResponse"),
     type = "structure",
     members = {
         migrationId = schema.new({
@@ -2847,7 +2847,7 @@ M.GetMigrationOutput = schema.new({
 })
 
 M.GetMigrationsInput = schema.new({
-    id = id.from(_N, "GetMigrationsInput"),
+    id = id.from(_N, "GetMigrationsRequest"),
     type = "structure",
     members = {
         sortByAttribute = schema.new({
@@ -2969,7 +2969,7 @@ M.MigrationSummary = schema.new({
 })
 
 M.GetMigrationsOutput = schema.new({
-    id = id.from(_N, "GetMigrationsOutput"),
+    id = id.from(_N, "GetMigrationsResponse"),
     type = "structure",
     members = {
         migrationSummaries = schema.new({
@@ -2989,7 +2989,7 @@ M.GetMigrationsOutput = schema.new({
 })
 
 M.GetSlotTypeInput = schema.new({
-    id = id.from(_N, "GetSlotTypeInput"),
+    id = id.from(_N, "GetSlotTypeRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3016,7 +3016,7 @@ M.GetSlotTypeInput = schema.new({
 })
 
 M.GetSlotTypeOutput = schema.new({
-    id = id.from(_N, "GetSlotTypeOutput"),
+    id = id.from(_N, "GetSlotTypeResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3085,7 +3085,7 @@ M.GetSlotTypeOutput = schema.new({
 })
 
 M.GetSlotTypesInput = schema.new({
-    id = id.from(_N, "GetSlotTypesInput"),
+    id = id.from(_N, "GetSlotTypesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3156,7 +3156,7 @@ M.SlotTypeMetadata = schema.new({
 })
 
 M.GetSlotTypesOutput = schema.new({
-    id = id.from(_N, "GetSlotTypesOutput"),
+    id = id.from(_N, "GetSlotTypesResponse"),
     type = "structure",
     members = {
         slotTypes = schema.new({
@@ -3176,7 +3176,7 @@ M.GetSlotTypesOutput = schema.new({
 })
 
 M.GetSlotTypeVersionsInput = schema.new({
-    id = id.from(_N, "GetSlotTypeVersionsInput"),
+    id = id.from(_N, "GetSlotTypeVersionsRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3211,7 +3211,7 @@ M.GetSlotTypeVersionsInput = schema.new({
 })
 
 M.GetSlotTypeVersionsOutput = schema.new({
-    id = id.from(_N, "GetSlotTypeVersionsOutput"),
+    id = id.from(_N, "GetSlotTypeVersionsResponse"),
     type = "structure",
     members = {
         slotTypes = schema.new({
@@ -3231,7 +3231,7 @@ M.GetSlotTypeVersionsOutput = schema.new({
 })
 
 M.GetUtterancesViewInput = schema.new({
-    id = id.from(_N, "GetUtterancesViewInput"),
+    id = id.from(_N, "GetUtterancesViewRequest"),
     type = "structure",
     members = {
         botName = schema.new({
@@ -3326,7 +3326,7 @@ M.UtteranceList = schema.new({
 })
 
 M.GetUtterancesViewOutput = schema.new({
-    id = id.from(_N, "GetUtterancesViewOutput"),
+    id = id.from(_N, "GetUtterancesViewResponse"),
     type = "structure",
     members = {
         botName = schema.new({
@@ -3346,7 +3346,7 @@ M.GetUtterancesViewOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3388,7 +3388,7 @@ M.Tag = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -3402,7 +3402,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutBotInput = schema.new({
-    id = id.from(_N, "PutBotInput"),
+    id = id.from(_N, "PutBotRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3519,7 +3519,7 @@ M.PutBotInput = schema.new({
 })
 
 M.PutBotOutput = schema.new({
-    id = id.from(_N, "PutBotOutput"),
+    id = id.from(_N, "PutBotResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3716,7 +3716,7 @@ M.ConversationLogsRequest = schema.new({
 })
 
 M.PutBotAliasInput = schema.new({
-    id = id.from(_N, "PutBotAliasInput"),
+    id = id.from(_N, "PutBotAliasRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3778,7 +3778,7 @@ M.PutBotAliasInput = schema.new({
 })
 
 M.PutBotAliasOutput = schema.new({
-    id = id.from(_N, "PutBotAliasOutput"),
+    id = id.from(_N, "PutBotAliasResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3841,7 +3841,7 @@ M.PutBotAliasOutput = schema.new({
 })
 
 M.PutIntentInput = schema.new({
-    id = id.from(_N, "PutIntentInput"),
+    id = id.from(_N, "PutIntentRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3959,7 +3959,7 @@ M.PutIntentInput = schema.new({
 })
 
 M.PutIntentOutput = schema.new({
-    id = id.from(_N, "PutIntentOutput"),
+    id = id.from(_N, "PutIntentResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4091,7 +4091,7 @@ M.PutIntentOutput = schema.new({
 })
 
 M.PutSlotTypeInput = schema.new({
-    id = id.from(_N, "PutSlotTypeInput"),
+    id = id.from(_N, "PutSlotTypeRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4152,7 +4152,7 @@ M.PutSlotTypeInput = schema.new({
 })
 
 M.PutSlotTypeOutput = schema.new({
-    id = id.from(_N, "PutSlotTypeOutput"),
+    id = id.from(_N, "PutSlotTypeResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4227,7 +4227,7 @@ M.PutSlotTypeOutput = schema.new({
 })
 
 M.StartImportInput = schema.new({
-    id = id.from(_N, "StartImportInput"),
+    id = id.from(_N, "StartImportRequest"),
     type = "structure",
     members = {
         payload = schema.new({
@@ -4268,7 +4268,7 @@ M.StartImportInput = schema.new({
 })
 
 M.StartImportOutput = schema.new({
-    id = id.from(_N, "StartImportOutput"),
+    id = id.from(_N, "StartImportResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4318,7 +4318,7 @@ M.StartImportOutput = schema.new({
 })
 
 M.StartMigrationInput = schema.new({
-    id = id.from(_N, "StartMigrationInput"),
+    id = id.from(_N, "StartMigrationRequest"),
     type = "structure",
     members = {
         v1BotName = schema.new({
@@ -4370,7 +4370,7 @@ M.StartMigrationInput = schema.new({
 })
 
 M.StartMigrationOutput = schema.new({
-    id = id.from(_N, "StartMigrationOutput"),
+    id = id.from(_N, "StartMigrationResponse"),
     type = "structure",
     members = {
         v1BotName = schema.new({
@@ -4425,7 +4425,7 @@ M.StartMigrationOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4452,12 +4452,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4485,8 +4485,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

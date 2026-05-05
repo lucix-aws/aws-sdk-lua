@@ -225,7 +225,7 @@ M.SpotOptions = schema.new({
 })
 
 M.CreateComputeNodeGroupInput = schema.new({
-    id = id.from(_N, "CreateComputeNodeGroupInput"),
+    id = id.from(_N, "CreateComputeNodeGroupRequest"),
     type = "structure",
     members = {
         clusterIdentifier = schema.new({
@@ -556,7 +556,7 @@ M.ComputeNodeGroup = schema.new({
 })
 
 M.CreateComputeNodeGroupOutput = schema.new({
-    id = id.from(_N, "CreateComputeNodeGroupOutput"),
+    id = id.from(_N, "CreateComputeNodeGroupResponse"),
     type = "structure",
     members = {
         computeNodeGroup = schema.new({
@@ -760,7 +760,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteComputeNodeGroupInput = schema.new({
-    id = id.from(_N, "DeleteComputeNodeGroupInput"),
+    id = id.from(_N, "DeleteComputeNodeGroupRequest"),
     type = "structure",
     members = {
         clusterIdentifier = schema.new({
@@ -794,12 +794,12 @@ M.DeleteComputeNodeGroupInput = schema.new({
 })
 
 M.DeleteComputeNodeGroupOutput = schema.new({
-    id = id.from(_N, "DeleteComputeNodeGroupOutput"),
+    id = id.from(_N, "DeleteComputeNodeGroupResponse"),
     type = "structure",
 })
 
 M.GetComputeNodeGroupInput = schema.new({
-    id = id.from(_N, "GetComputeNodeGroupInput"),
+    id = id.from(_N, "GetComputeNodeGroupRequest"),
     type = "structure",
     members = {
         clusterIdentifier = schema.new({
@@ -824,7 +824,7 @@ M.GetComputeNodeGroupInput = schema.new({
 })
 
 M.GetComputeNodeGroupOutput = schema.new({
-    id = id.from(_N, "GetComputeNodeGroupOutput"),
+    id = id.from(_N, "GetComputeNodeGroupResponse"),
     type = "structure",
     members = {
         computeNodeGroup = schema.new({
@@ -838,7 +838,7 @@ M.GetComputeNodeGroupOutput = schema.new({
 })
 
 M.ListComputeNodeGroupsInput = schema.new({
-    id = id.from(_N, "ListComputeNodeGroupsInput"),
+    id = id.from(_N, "ListComputeNodeGroupsRequest"),
     type = "structure",
     members = {
         clusterIdentifier = schema.new({
@@ -941,7 +941,7 @@ M.ComputeNodeGroupSummary = schema.new({
 })
 
 M.ListComputeNodeGroupsOutput = schema.new({
-    id = id.from(_N, "ListComputeNodeGroupsOutput"),
+    id = id.from(_N, "ListComputeNodeGroupsResponse"),
     type = "structure",
     members = {
         computeNodeGroups = schema.new({
@@ -978,7 +978,7 @@ M.UpdateComputeNodeGroupSlurmConfigurationRequest = schema.new({
 })
 
 M.UpdateComputeNodeGroupInput = schema.new({
-    id = id.from(_N, "UpdateComputeNodeGroupInput"),
+    id = id.from(_N, "UpdateComputeNodeGroupRequest"),
     type = "structure",
     members = {
         clusterIdentifier = schema.new({
@@ -1065,7 +1065,7 @@ M.UpdateComputeNodeGroupInput = schema.new({
 })
 
 M.UpdateComputeNodeGroupOutput = schema.new({
-    id = id.from(_N, "UpdateComputeNodeGroupOutput"),
+    id = id.from(_N, "UpdateComputeNodeGroupResponse"),
     type = "structure",
     members = {
         computeNodeGroup = schema.new({
@@ -1245,7 +1245,7 @@ M.ClusterSlurmConfigurationRequest = schema.new({
 })
 
 M.CreateClusterInput = schema.new({
-    id = id.from(_N, "CreateClusterInput"),
+    id = id.from(_N, "CreateClusterRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -1667,7 +1667,7 @@ M.Cluster = schema.new({
 })
 
 M.CreateClusterOutput = schema.new({
-    id = id.from(_N, "CreateClusterOutput"),
+    id = id.from(_N, "CreateClusterResponse"),
     type = "structure",
     members = {
         cluster = schema.new({
@@ -1681,7 +1681,7 @@ M.CreateClusterOutput = schema.new({
 })
 
 M.DeleteClusterInput = schema.new({
-    id = id.from(_N, "DeleteClusterInput"),
+    id = id.from(_N, "DeleteClusterRequest"),
     type = "structure",
     members = {
         clusterIdentifier = schema.new({
@@ -1706,12 +1706,12 @@ M.DeleteClusterInput = schema.new({
 })
 
 M.DeleteClusterOutput = schema.new({
-    id = id.from(_N, "DeleteClusterOutput"),
+    id = id.from(_N, "DeleteClusterResponse"),
     type = "structure",
 })
 
 M.GetClusterInput = schema.new({
-    id = id.from(_N, "GetClusterInput"),
+    id = id.from(_N, "GetClusterRequest"),
     type = "structure",
     members = {
         clusterIdentifier = schema.new({
@@ -1727,7 +1727,7 @@ M.GetClusterInput = schema.new({
 })
 
 M.GetClusterOutput = schema.new({
-    id = id.from(_N, "GetClusterOutput"),
+    id = id.from(_N, "GetClusterResponse"),
     type = "structure",
     members = {
         cluster = schema.new({
@@ -1741,7 +1741,7 @@ M.GetClusterOutput = schema.new({
 })
 
 M.ListClustersInput = schema.new({
-    id = id.from(_N, "ListClustersInput"),
+    id = id.from(_N, "ListClustersRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1830,7 +1830,7 @@ M.ClusterSummary = schema.new({
 })
 
 M.ListClustersOutput = schema.new({
-    id = id.from(_N, "ListClustersOutput"),
+    id = id.from(_N, "ListClustersResponse"),
     type = "structure",
     members = {
         clusters = schema.new({
@@ -1880,7 +1880,7 @@ M.QueueSlurmConfigurationRequest = schema.new({
 })
 
 M.CreateQueueInput = schema.new({
-    id = id.from(_N, "CreateQueueInput"),
+    id = id.from(_N, "CreateQueueRequest"),
     type = "structure",
     members = {
         clusterIdentifier = schema.new({
@@ -2046,7 +2046,7 @@ M.Queue = schema.new({
 })
 
 M.CreateQueueOutput = schema.new({
-    id = id.from(_N, "CreateQueueOutput"),
+    id = id.from(_N, "CreateQueueResponse"),
     type = "structure",
     members = {
         queue = schema.new({
@@ -2060,7 +2060,7 @@ M.CreateQueueOutput = schema.new({
 })
 
 M.DeleteQueueInput = schema.new({
-    id = id.from(_N, "DeleteQueueInput"),
+    id = id.from(_N, "DeleteQueueRequest"),
     type = "structure",
     members = {
         clusterIdentifier = schema.new({
@@ -2094,12 +2094,12 @@ M.DeleteQueueInput = schema.new({
 })
 
 M.DeleteQueueOutput = schema.new({
-    id = id.from(_N, "DeleteQueueOutput"),
+    id = id.from(_N, "DeleteQueueResponse"),
     type = "structure",
 })
 
 M.GetQueueInput = schema.new({
-    id = id.from(_N, "GetQueueInput"),
+    id = id.from(_N, "GetQueueRequest"),
     type = "structure",
     members = {
         clusterIdentifier = schema.new({
@@ -2124,7 +2124,7 @@ M.GetQueueInput = schema.new({
 })
 
 M.GetQueueOutput = schema.new({
-    id = id.from(_N, "GetQueueOutput"),
+    id = id.from(_N, "GetQueueResponse"),
     type = "structure",
     members = {
         queue = schema.new({
@@ -2138,7 +2138,7 @@ M.GetQueueOutput = schema.new({
 })
 
 M.ListQueuesInput = schema.new({
-    id = id.from(_N, "ListQueuesInput"),
+    id = id.from(_N, "ListQueuesRequest"),
     type = "structure",
     members = {
         clusterIdentifier = schema.new({
@@ -2241,7 +2241,7 @@ M.QueueSummary = schema.new({
 })
 
 M.ListQueuesOutput = schema.new({
-    id = id.from(_N, "ListQueuesOutput"),
+    id = id.from(_N, "ListQueuesResponse"),
     type = "structure",
     members = {
         queues = schema.new({
@@ -2278,7 +2278,7 @@ M.UpdateQueueSlurmConfigurationRequest = schema.new({
 })
 
 M.UpdateQueueInput = schema.new({
-    id = id.from(_N, "UpdateQueueInput"),
+    id = id.from(_N, "UpdateQueueRequest"),
     type = "structure",
     members = {
         clusterIdentifier = schema.new({
@@ -2326,7 +2326,7 @@ M.UpdateQueueInput = schema.new({
 })
 
 M.UpdateQueueOutput = schema.new({
-    id = id.from(_N, "UpdateQueueOutput"),
+    id = id.from(_N, "UpdateQueueResponse"),
     type = "structure",
     members = {
         queue = schema.new({
@@ -2340,7 +2340,7 @@ M.UpdateQueueOutput = schema.new({
 })
 
 M.RegisterComputeNodeGroupInstanceInput = schema.new({
-    id = id.from(_N, "RegisterComputeNodeGroupInstanceInput"),
+    id = id.from(_N, "RegisterComputeNodeGroupInstanceRequest"),
     type = "structure",
     members = {
         clusterIdentifier = schema.new({
@@ -2365,7 +2365,7 @@ M.RegisterComputeNodeGroupInstanceInput = schema.new({
 })
 
 M.RegisterComputeNodeGroupInstanceOutput = schema.new({
-    id = id.from(_N, "RegisterComputeNodeGroupInstanceOutput"),
+    id = id.from(_N, "RegisterComputeNodeGroupInstanceResponse"),
     type = "structure",
     members = {
         nodeID = schema.new({
@@ -2480,7 +2480,7 @@ M.UpdateClusterSlurmConfigurationRequest = schema.new({
 })
 
 M.UpdateClusterInput = schema.new({
-    id = id.from(_N, "UpdateClusterInput"),
+    id = id.from(_N, "UpdateClusterRequest"),
     type = "structure",
     members = {
         clusterIdentifier = schema.new({
@@ -2512,7 +2512,7 @@ M.UpdateClusterInput = schema.new({
 })
 
 M.UpdateClusterOutput = schema.new({
-    id = id.from(_N, "UpdateClusterOutput"),
+    id = id.from(_N, "UpdateClusterResponse"),
     type = "structure",
     members = {
         cluster = schema.new({
@@ -2526,7 +2526,7 @@ M.UpdateClusterOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2542,7 +2542,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2557,7 +2557,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2584,12 +2584,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2616,8 +2616,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

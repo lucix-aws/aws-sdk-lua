@@ -1180,7 +1180,7 @@ M.CreatePreparedStatementOutput = schema.new({
 })
 
 M.CreatePresignedNotebookUrlInput = schema.new({
-    id = id.from(_N, "CreatePresignedNotebookUrlInput"),
+    id = id.from(_N, "CreatePresignedNotebookUrlRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -1196,7 +1196,7 @@ M.CreatePresignedNotebookUrlInput = schema.new({
 })
 
 M.CreatePresignedNotebookUrlOutput = schema.new({
-    id = id.from(_N, "CreatePresignedNotebookUrlOutput"),
+    id = id.from(_N, "CreatePresignedNotebookUrlResponse"),
     type = "structure",
     members = {
         NotebookUrl = schema.new({
@@ -1389,7 +1389,7 @@ M.CloudWatchLoggingConfiguration = schema.new({
             name = "LogTypes",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -1858,7 +1858,7 @@ M.ExportNotebookOutput = schema.new({
 })
 
 M.GetCalculationExecutionInput = schema.new({
-    id = id.from(_N, "GetCalculationExecutionInput"),
+    id = id.from(_N, "GetCalculationExecutionRequest"),
     type = "structure",
     members = {
         CalculationExecutionId = schema.new({
@@ -1955,7 +1955,7 @@ M.CalculationStatus = schema.new({
 })
 
 M.GetCalculationExecutionOutput = schema.new({
-    id = id.from(_N, "GetCalculationExecutionOutput"),
+    id = id.from(_N, "GetCalculationExecutionResponse"),
     type = "structure",
     members = {
         CalculationExecutionId = schema.new({
@@ -2007,7 +2007,7 @@ M.GetCalculationExecutionOutput = schema.new({
 })
 
 M.GetCalculationExecutionCodeInput = schema.new({
-    id = id.from(_N, "GetCalculationExecutionCodeInput"),
+    id = id.from(_N, "GetCalculationExecutionCodeRequest"),
     type = "structure",
     members = {
         CalculationExecutionId = schema.new({
@@ -2023,7 +2023,7 @@ M.GetCalculationExecutionCodeInput = schema.new({
 })
 
 M.GetCalculationExecutionCodeOutput = schema.new({
-    id = id.from(_N, "GetCalculationExecutionCodeOutput"),
+    id = id.from(_N, "GetCalculationExecutionCodeResponse"),
     type = "structure",
     members = {
         CodeBlock = schema.new({
@@ -2036,7 +2036,7 @@ M.GetCalculationExecutionCodeOutput = schema.new({
 })
 
 M.GetCalculationExecutionStatusInput = schema.new({
-    id = id.from(_N, "GetCalculationExecutionStatusInput"),
+    id = id.from(_N, "GetCalculationExecutionStatusRequest"),
     type = "structure",
     members = {
         CalculationExecutionId = schema.new({
@@ -2052,7 +2052,7 @@ M.GetCalculationExecutionStatusInput = schema.new({
 })
 
 M.GetCalculationExecutionStatusOutput = schema.new({
-    id = id.from(_N, "GetCalculationExecutionStatusOutput"),
+    id = id.from(_N, "GetCalculationExecutionStatusResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -2825,7 +2825,7 @@ M.QueryRuntimeStatisticsTimeline = schema.new({
 })
 
 M.GetResourceDashboardInput = schema.new({
-    id = id.from(_N, "GetResourceDashboardInput"),
+    id = id.from(_N, "GetResourceDashboardRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2841,7 +2841,7 @@ M.GetResourceDashboardInput = schema.new({
 })
 
 M.GetResourceDashboardOutput = schema.new({
-    id = id.from(_N, "GetResourceDashboardOutput"),
+    id = id.from(_N, "GetResourceDashboardResponse"),
     type = "structure",
     members = {
         Url = schema.new({
@@ -2857,7 +2857,7 @@ M.GetResourceDashboardOutput = schema.new({
 })
 
 M.GetSessionInput = schema.new({
-    id = id.from(_N, "GetSessionInput"),
+    id = id.from(_N, "GetSessionRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -2967,7 +2967,7 @@ M.SessionStatus = schema.new({
 })
 
 M.GetSessionOutput = schema.new({
-    id = id.from(_N, "GetSessionOutput"),
+    id = id.from(_N, "GetSessionResponse"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -3039,7 +3039,7 @@ M.GetSessionOutput = schema.new({
 })
 
 M.GetSessionEndpointInput = schema.new({
-    id = id.from(_N, "GetSessionEndpointInput"),
+    id = id.from(_N, "GetSessionEndpointRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -3055,7 +3055,7 @@ M.GetSessionEndpointInput = schema.new({
 })
 
 M.GetSessionEndpointOutput = schema.new({
-    id = id.from(_N, "GetSessionEndpointOutput"),
+    id = id.from(_N, "GetSessionEndpointResponse"),
     type = "structure",
     members = {
         EndpointUrl = schema.new({
@@ -3089,7 +3089,7 @@ M.GetSessionEndpointOutput = schema.new({
 })
 
 M.GetSessionStatusInput = schema.new({
-    id = id.from(_N, "GetSessionStatusInput"),
+    id = id.from(_N, "GetSessionStatusRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -3105,7 +3105,7 @@ M.GetSessionStatusInput = schema.new({
 })
 
 M.GetSessionStatusOutput = schema.new({
-    id = id.from(_N, "GetSessionStatusOutput"),
+    id = id.from(_N, "GetSessionStatusResponse"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -3464,7 +3464,7 @@ M.ListApplicationDPUSizesOutput = schema.new({
 })
 
 M.ListCalculationExecutionsInput = schema.new({
-    id = id.from(_N, "ListCalculationExecutionsInput"),
+    id = id.from(_N, "ListCalculationExecutionsRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -3524,7 +3524,7 @@ M.CalculationSummary = schema.new({
 })
 
 M.ListCalculationExecutionsOutput = schema.new({
-    id = id.from(_N, "ListCalculationExecutionsOutput"),
+    id = id.from(_N, "ListCalculationExecutionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3761,7 +3761,7 @@ M.ListEngineVersionsOutput = schema.new({
 })
 
 M.ListExecutorsInput = schema.new({
-    id = id.from(_N, "ListExecutorsInput"),
+    id = id.from(_N, "ListExecutorsRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -3841,7 +3841,7 @@ M.ExecutorsSummary = schema.new({
 })
 
 M.ListExecutorsOutput = schema.new({
-    id = id.from(_N, "ListExecutorsOutput"),
+    id = id.from(_N, "ListExecutorsResponse"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -3983,7 +3983,7 @@ M.ListNotebookMetadataOutput = schema.new({
 })
 
 M.ListNotebookSessionsInput = schema.new({
-    id = id.from(_N, "ListNotebookSessionsInput"),
+    id = id.from(_N, "ListNotebookSessionsRequest"),
     type = "structure",
     members = {
         NotebookId = schema.new({
@@ -4030,7 +4030,7 @@ M.NotebookSessionSummary = schema.new({
 })
 
 M.ListNotebookSessionsOutput = schema.new({
-    id = id.from(_N, "ListNotebookSessionsOutput"),
+    id = id.from(_N, "ListNotebookSessionsResponse"),
     type = "structure",
     members = {
         NotebookSessionsList = schema.new({
@@ -4165,7 +4165,7 @@ M.ListQueryExecutionsOutput = schema.new({
 })
 
 M.ListSessionsInput = schema.new({
-    id = id.from(_N, "ListSessionsInput"),
+    id = id.from(_N, "ListSessionsRequest"),
     type = "structure",
     members = {
         WorkGroup = schema.new({
@@ -4238,7 +4238,7 @@ M.SessionSummary = schema.new({
 })
 
 M.ListSessionsOutput = schema.new({
-    id = id.from(_N, "ListSessionsOutput"),
+    id = id.from(_N, "ListSessionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4502,7 +4502,7 @@ M.CalculationConfiguration = schema.new({
 })
 
 M.StartCalculationExecutionInput = schema.new({
-    id = id.from(_N, "StartCalculationExecutionInput"),
+    id = id.from(_N, "StartCalculationExecutionRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -4543,7 +4543,7 @@ M.StartCalculationExecutionInput = schema.new({
 })
 
 M.StartCalculationExecutionOutput = schema.new({
-    id = id.from(_N, "StartCalculationExecutionOutput"),
+    id = id.from(_N, "StartCalculationExecutionResponse"),
     type = "structure",
     members = {
         CalculationExecutionId = schema.new({
@@ -4657,7 +4657,7 @@ M.SessionAlreadyExistsException = schema.new({
 })
 
 M.StartSessionInput = schema.new({
-    id = id.from(_N, "StartSessionInput"),
+    id = id.from(_N, "StartSessionRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -4733,7 +4733,7 @@ M.StartSessionInput = schema.new({
 })
 
 M.StartSessionOutput = schema.new({
-    id = id.from(_N, "StartSessionOutput"),
+    id = id.from(_N, "StartSessionResponse"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -4752,7 +4752,7 @@ M.StartSessionOutput = schema.new({
 })
 
 M.StopCalculationExecutionInput = schema.new({
-    id = id.from(_N, "StopCalculationExecutionInput"),
+    id = id.from(_N, "StopCalculationExecutionRequest"),
     type = "structure",
     members = {
         CalculationExecutionId = schema.new({
@@ -4768,7 +4768,7 @@ M.StopCalculationExecutionInput = schema.new({
 })
 
 M.StopCalculationExecutionOutput = schema.new({
-    id = id.from(_N, "StopCalculationExecutionOutput"),
+    id = id.from(_N, "StopCalculationExecutionResponse"),
     type = "structure",
     members = {
         State = schema.new({
@@ -4834,7 +4834,7 @@ M.TagResourceOutput = schema.new({
 })
 
 M.TerminateSessionInput = schema.new({
-    id = id.from(_N, "TerminateSessionInput"),
+    id = id.from(_N, "TerminateSessionRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -4850,7 +4850,7 @@ M.TerminateSessionInput = schema.new({
 })
 
 M.TerminateSessionOutput = schema.new({
-    id = id.from(_N, "TerminateSessionOutput"),
+    id = id.from(_N, "TerminateSessionResponse"),
     type = "structure",
     members = {
         State = schema.new({
@@ -5514,5 +5514,19 @@ M.GetQueryRuntimeStatisticsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -160,7 +160,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateAwsLogSourceInput = schema.new({
-    id = id.from(_N, "CreateAwsLogSourceInput"),
+    id = id.from(_N, "CreateAwsLogSourceRequest"),
     type = "structure",
     members = {
         sources = schema.new({
@@ -177,7 +177,7 @@ M.CreateAwsLogSourceInput = schema.new({
 })
 
 M.CreateAwsLogSourceOutput = schema.new({
-    id = id.from(_N, "CreateAwsLogSourceOutput"),
+    id = id.from(_N, "CreateAwsLogSourceResponse"),
     type = "structure",
     members = {
         failed = schema.new({
@@ -315,7 +315,7 @@ M.CustomLogSourceConfiguration = schema.new({
 })
 
 M.CreateCustomLogSourceInput = schema.new({
-    id = id.from(_N, "CreateCustomLogSourceInput"),
+    id = id.from(_N, "CreateCustomLogSourceRequest"),
     type = "structure",
     members = {
         sourceName = schema.new({
@@ -431,7 +431,7 @@ M.CustomLogSourceResource = schema.new({
 })
 
 M.CreateCustomLogSourceOutput = schema.new({
-    id = id.from(_N, "CreateCustomLogSourceOutput"),
+    id = id.from(_N, "CreateCustomLogSourceResponse"),
     type = "structure",
     members = {
         source = schema.new({
@@ -593,7 +593,7 @@ M.Tag = schema.new({
 })
 
 M.CreateDataLakeInput = schema.new({
-    id = id.from(_N, "CreateDataLakeInput"),
+    id = id.from(_N, "CreateDataLakeRequest"),
     type = "structure",
     members = {
         configurations = schema.new({
@@ -736,7 +736,7 @@ M.DataLakeResource = schema.new({
 })
 
 M.CreateDataLakeOutput = schema.new({
-    id = id.from(_N, "CreateDataLakeOutput"),
+    id = id.from(_N, "CreateDataLakeResponse"),
     type = "structure",
     members = {
         dataLakes = schema.new({
@@ -750,7 +750,7 @@ M.CreateDataLakeOutput = schema.new({
 })
 
 M.CreateDataLakeExceptionSubscriptionInput = schema.new({
-    id = id.from(_N, "CreateDataLakeExceptionSubscriptionInput"),
+    id = id.from(_N, "CreateDataLakeExceptionSubscriptionRequest"),
     type = "structure",
     members = {
         subscriptionProtocol = schema.new({
@@ -781,7 +781,7 @@ M.CreateDataLakeExceptionSubscriptionInput = schema.new({
 })
 
 M.CreateDataLakeExceptionSubscriptionOutput = schema.new({
-    id = id.from(_N, "CreateDataLakeExceptionSubscriptionOutput"),
+    id = id.from(_N, "CreateDataLakeExceptionSubscriptionResponse"),
     type = "structure",
 })
 
@@ -812,7 +812,7 @@ M.DataLakeAutoEnableNewAccountConfiguration = schema.new({
 })
 
 M.CreateDataLakeOrganizationConfigurationInput = schema.new({
-    id = id.from(_N, "CreateDataLakeOrganizationConfigurationInput"),
+    id = id.from(_N, "CreateDataLakeOrganizationConfigurationRequest"),
     type = "structure",
     members = {
         autoEnableNewAccount = schema.new({
@@ -826,7 +826,7 @@ M.CreateDataLakeOrganizationConfigurationInput = schema.new({
 })
 
 M.CreateDataLakeOrganizationConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateDataLakeOrganizationConfigurationOutput"),
+    id = id.from(_N, "CreateDataLakeOrganizationConfigurationResponse"),
     type = "structure",
 })
 
@@ -852,7 +852,7 @@ M.LogSourceResource = schema.new({
 })
 
 M.CreateSubscriberInput = schema.new({
-    id = id.from(_N, "CreateSubscriberInput"),
+    id = id.from(_N, "CreateSubscriberRequest"),
     type = "structure",
     members = {
         subscriberIdentity = schema.new({
@@ -1029,7 +1029,7 @@ M.SubscriberResource = schema.new({
 })
 
 M.CreateSubscriberOutput = schema.new({
-    id = id.from(_N, "CreateSubscriberOutput"),
+    id = id.from(_N, "CreateSubscriberResponse"),
     type = "structure",
     members = {
         subscriber = schema.new({
@@ -1112,7 +1112,7 @@ M.NotificationConfiguration = schema.new({
 })
 
 M.CreateSubscriberNotificationInput = schema.new({
-    id = id.from(_N, "CreateSubscriberNotificationInput"),
+    id = id.from(_N, "CreateSubscriberNotificationRequest"),
     type = "structure",
     members = {
         subscriberId = schema.new({
@@ -1139,7 +1139,7 @@ M.CreateSubscriberNotificationInput = schema.new({
 })
 
 M.CreateSubscriberNotificationOutput = schema.new({
-    id = id.from(_N, "CreateSubscriberNotificationOutput"),
+    id = id.from(_N, "CreateSubscriberNotificationResponse"),
     type = "structure",
     members = {
         subscriberEndpoint = schema.new({
@@ -1152,7 +1152,7 @@ M.CreateSubscriberNotificationOutput = schema.new({
 })
 
 M.DeleteAwsLogSourceInput = schema.new({
-    id = id.from(_N, "DeleteAwsLogSourceInput"),
+    id = id.from(_N, "DeleteAwsLogSourceRequest"),
     type = "structure",
     members = {
         sources = schema.new({
@@ -1169,7 +1169,7 @@ M.DeleteAwsLogSourceInput = schema.new({
 })
 
 M.DeleteAwsLogSourceOutput = schema.new({
-    id = id.from(_N, "DeleteAwsLogSourceOutput"),
+    id = id.from(_N, "DeleteAwsLogSourceResponse"),
     type = "structure",
     members = {
         failed = schema.new({
@@ -1183,7 +1183,7 @@ M.DeleteAwsLogSourceOutput = schema.new({
 })
 
 M.DeleteCustomLogSourceInput = schema.new({
-    id = id.from(_N, "DeleteCustomLogSourceInput"),
+    id = id.from(_N, "DeleteCustomLogSourceRequest"),
     type = "structure",
     members = {
         sourceName = schema.new({
@@ -1209,12 +1209,12 @@ M.DeleteCustomLogSourceInput = schema.new({
 })
 
 M.DeleteCustomLogSourceOutput = schema.new({
-    id = id.from(_N, "DeleteCustomLogSourceOutput"),
+    id = id.from(_N, "DeleteCustomLogSourceResponse"),
     type = "structure",
 })
 
 M.DeleteDataLakeInput = schema.new({
-    id = id.from(_N, "DeleteDataLakeInput"),
+    id = id.from(_N, "DeleteDataLakeRequest"),
     type = "structure",
     members = {
         regions = schema.new({
@@ -1231,12 +1231,12 @@ M.DeleteDataLakeInput = schema.new({
 })
 
 M.DeleteDataLakeOutput = schema.new({
-    id = id.from(_N, "DeleteDataLakeOutput"),
+    id = id.from(_N, "DeleteDataLakeResponse"),
     type = "structure",
 })
 
 M.DeleteDataLakeOrganizationConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteDataLakeOrganizationConfigurationInput"),
+    id = id.from(_N, "DeleteDataLakeOrganizationConfigurationRequest"),
     type = "structure",
     members = {
         autoEnableNewAccount = schema.new({
@@ -1250,17 +1250,17 @@ M.DeleteDataLakeOrganizationConfigurationInput = schema.new({
 })
 
 M.DeleteDataLakeOrganizationConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteDataLakeOrganizationConfigurationOutput"),
+    id = id.from(_N, "DeleteDataLakeOrganizationConfigurationResponse"),
     type = "structure",
 })
 
 M.GetDataLakeOrganizationConfigurationInput = schema.new({
-    id = id.from(_N, "GetDataLakeOrganizationConfigurationInput"),
+    id = id.from(_N, "GetDataLakeOrganizationConfigurationRequest"),
     type = "structure",
 })
 
 M.GetDataLakeOrganizationConfigurationOutput = schema.new({
-    id = id.from(_N, "GetDataLakeOrganizationConfigurationOutput"),
+    id = id.from(_N, "GetDataLakeOrganizationConfigurationResponse"),
     type = "structure",
     members = {
         autoEnableNewAccount = schema.new({
@@ -1274,7 +1274,7 @@ M.GetDataLakeOrganizationConfigurationOutput = schema.new({
 })
 
 M.GetDataLakeSourcesInput = schema.new({
-    id = id.from(_N, "GetDataLakeSourcesInput"),
+    id = id.from(_N, "GetDataLakeSourcesRequest"),
     type = "structure",
     members = {
         accounts = schema.new({
@@ -1355,7 +1355,7 @@ M.DataLakeSource = schema.new({
 })
 
 M.GetDataLakeSourcesOutput = schema.new({
-    id = id.from(_N, "GetDataLakeSourcesOutput"),
+    id = id.from(_N, "GetDataLakeSourcesResponse"),
     type = "structure",
     members = {
         dataLakeArn = schema.new({
@@ -1381,7 +1381,7 @@ M.GetDataLakeSourcesOutput = schema.new({
 })
 
 M.ListDataLakesInput = schema.new({
-    id = id.from(_N, "ListDataLakesInput"),
+    id = id.from(_N, "ListDataLakesRequest"),
     type = "structure",
     members = {
         regions = schema.new({
@@ -1398,7 +1398,7 @@ M.ListDataLakesInput = schema.new({
 })
 
 M.ListDataLakesOutput = schema.new({
-    id = id.from(_N, "ListDataLakesOutput"),
+    id = id.from(_N, "ListDataLakesResponse"),
     type = "structure",
     members = {
         dataLakes = schema.new({
@@ -1412,7 +1412,7 @@ M.ListDataLakesOutput = schema.new({
 })
 
 M.ListLogSourcesInput = schema.new({
-    id = id.from(_N, "ListLogSourcesInput"),
+    id = id.from(_N, "ListLogSourcesRequest"),
     type = "structure",
     members = {
         accounts = schema.new({
@@ -1481,7 +1481,7 @@ M.LogSource = schema.new({
 })
 
 M.ListLogSourcesOutput = schema.new({
-    id = id.from(_N, "ListLogSourcesOutput"),
+    id = id.from(_N, "ListLogSourcesResponse"),
     type = "structure",
     members = {
         sources = schema.new({
@@ -1501,7 +1501,7 @@ M.ListLogSourcesOutput = schema.new({
 })
 
 M.UpdateDataLakeInput = schema.new({
-    id = id.from(_N, "UpdateDataLakeInput"),
+    id = id.from(_N, "UpdateDataLakeRequest"),
     type = "structure",
     members = {
         configurations = schema.new({
@@ -1524,7 +1524,7 @@ M.UpdateDataLakeInput = schema.new({
 })
 
 M.UpdateDataLakeOutput = schema.new({
-    id = id.from(_N, "UpdateDataLakeOutput"),
+    id = id.from(_N, "UpdateDataLakeResponse"),
     type = "structure",
     members = {
         dataLakes = schema.new({
@@ -1572,17 +1572,17 @@ M.DataLakeException = schema.new({
 })
 
 M.DeleteDataLakeExceptionSubscriptionInput = schema.new({
-    id = id.from(_N, "DeleteDataLakeExceptionSubscriptionInput"),
+    id = id.from(_N, "DeleteDataLakeExceptionSubscriptionRequest"),
     type = "structure",
 })
 
 M.DeleteDataLakeExceptionSubscriptionOutput = schema.new({
-    id = id.from(_N, "DeleteDataLakeExceptionSubscriptionOutput"),
+    id = id.from(_N, "DeleteDataLakeExceptionSubscriptionResponse"),
     type = "structure",
 })
 
 M.DeleteSubscriberInput = schema.new({
-    id = id.from(_N, "DeleteSubscriberInput"),
+    id = id.from(_N, "DeleteSubscriberRequest"),
     type = "structure",
     members = {
         subscriberId = schema.new({
@@ -1599,12 +1599,12 @@ M.DeleteSubscriberInput = schema.new({
 })
 
 M.DeleteSubscriberOutput = schema.new({
-    id = id.from(_N, "DeleteSubscriberOutput"),
+    id = id.from(_N, "DeleteSubscriberResponse"),
     type = "structure",
 })
 
 M.DeleteSubscriberNotificationInput = schema.new({
-    id = id.from(_N, "DeleteSubscriberNotificationInput"),
+    id = id.from(_N, "DeleteSubscriberNotificationRequest"),
     type = "structure",
     members = {
         subscriberId = schema.new({
@@ -1621,27 +1621,27 @@ M.DeleteSubscriberNotificationInput = schema.new({
 })
 
 M.DeleteSubscriberNotificationOutput = schema.new({
-    id = id.from(_N, "DeleteSubscriberNotificationOutput"),
+    id = id.from(_N, "DeleteSubscriberNotificationResponse"),
     type = "structure",
 })
 
 M.DeregisterDataLakeDelegatedAdministratorInput = schema.new({
-    id = id.from(_N, "DeregisterDataLakeDelegatedAdministratorInput"),
+    id = id.from(_N, "DeregisterDataLakeDelegatedAdministratorRequest"),
     type = "structure",
 })
 
 M.DeregisterDataLakeDelegatedAdministratorOutput = schema.new({
-    id = id.from(_N, "DeregisterDataLakeDelegatedAdministratorOutput"),
+    id = id.from(_N, "DeregisterDataLakeDelegatedAdministratorResponse"),
     type = "structure",
 })
 
 M.GetDataLakeExceptionSubscriptionInput = schema.new({
-    id = id.from(_N, "GetDataLakeExceptionSubscriptionInput"),
+    id = id.from(_N, "GetDataLakeExceptionSubscriptionRequest"),
     type = "structure",
 })
 
 M.GetDataLakeExceptionSubscriptionOutput = schema.new({
-    id = id.from(_N, "GetDataLakeExceptionSubscriptionOutput"),
+    id = id.from(_N, "GetDataLakeExceptionSubscriptionResponse"),
     type = "structure",
     members = {
         subscriptionProtocol = schema.new({
@@ -1666,7 +1666,7 @@ M.GetDataLakeExceptionSubscriptionOutput = schema.new({
 })
 
 M.GetSubscriberInput = schema.new({
-    id = id.from(_N, "GetSubscriberInput"),
+    id = id.from(_N, "GetSubscriberRequest"),
     type = "structure",
     members = {
         subscriberId = schema.new({
@@ -1683,7 +1683,7 @@ M.GetSubscriberInput = schema.new({
 })
 
 M.GetSubscriberOutput = schema.new({
-    id = id.from(_N, "GetSubscriberOutput"),
+    id = id.from(_N, "GetSubscriberResponse"),
     type = "structure",
     members = {
         subscriber = schema.new({
@@ -1697,7 +1697,7 @@ M.GetSubscriberOutput = schema.new({
 })
 
 M.ListDataLakeExceptionsInput = schema.new({
-    id = id.from(_N, "ListDataLakeExceptionsInput"),
+    id = id.from(_N, "ListDataLakeExceptionsRequest"),
     type = "structure",
     members = {
         regions = schema.new({
@@ -1726,7 +1726,7 @@ M.ListDataLakeExceptionsInput = schema.new({
 })
 
 M.ListDataLakeExceptionsOutput = schema.new({
-    id = id.from(_N, "ListDataLakeExceptionsOutput"),
+    id = id.from(_N, "ListDataLakeExceptionsResponse"),
     type = "structure",
     members = {
         exceptions = schema.new({
@@ -1746,7 +1746,7 @@ M.ListDataLakeExceptionsOutput = schema.new({
 })
 
 M.ListSubscribersInput = schema.new({
-    id = id.from(_N, "ListSubscribersInput"),
+    id = id.from(_N, "ListSubscribersRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1772,7 +1772,7 @@ M.ListSubscribersInput = schema.new({
 })
 
 M.ListSubscribersOutput = schema.new({
-    id = id.from(_N, "ListSubscribersOutput"),
+    id = id.from(_N, "ListSubscribersResponse"),
     type = "structure",
     members = {
         subscribers = schema.new({
@@ -1792,7 +1792,7 @@ M.ListSubscribersOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1809,7 +1809,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1823,7 +1823,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.RegisterDataLakeDelegatedAdministratorInput = schema.new({
-    id = id.from(_N, "RegisterDataLakeDelegatedAdministratorInput"),
+    id = id.from(_N, "RegisterDataLakeDelegatedAdministratorRequest"),
     type = "structure",
     members = {
         accountId = schema.new({
@@ -1839,12 +1839,12 @@ M.RegisterDataLakeDelegatedAdministratorInput = schema.new({
 })
 
 M.RegisterDataLakeDelegatedAdministratorOutput = schema.new({
-    id = id.from(_N, "RegisterDataLakeDelegatedAdministratorOutput"),
+    id = id.from(_N, "RegisterDataLakeDelegatedAdministratorResponse"),
     type = "structure",
 })
 
 M.UpdateSubscriberInput = schema.new({
-    id = id.from(_N, "UpdateSubscriberInput"),
+    id = id.from(_N, "UpdateSubscriberRequest"),
     type = "structure",
     members = {
         subscriberId = schema.new({
@@ -1887,7 +1887,7 @@ M.UpdateSubscriberInput = schema.new({
 })
 
 M.UpdateSubscriberOutput = schema.new({
-    id = id.from(_N, "UpdateSubscriberOutput"),
+    id = id.from(_N, "UpdateSubscriberResponse"),
     type = "structure",
     members = {
         subscriber = schema.new({
@@ -1901,7 +1901,7 @@ M.UpdateSubscriberOutput = schema.new({
 })
 
 M.UpdateSubscriberNotificationInput = schema.new({
-    id = id.from(_N, "UpdateSubscriberNotificationInput"),
+    id = id.from(_N, "UpdateSubscriberNotificationRequest"),
     type = "structure",
     members = {
         subscriberId = schema.new({
@@ -1928,7 +1928,7 @@ M.UpdateSubscriberNotificationInput = schema.new({
 })
 
 M.UpdateSubscriberNotificationOutput = schema.new({
-    id = id.from(_N, "UpdateSubscriberNotificationOutput"),
+    id = id.from(_N, "UpdateSubscriberNotificationResponse"),
     type = "structure",
     members = {
         subscriberEndpoint = schema.new({
@@ -1941,7 +1941,7 @@ M.UpdateSubscriberNotificationOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1968,12 +1968,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2001,12 +2001,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateDataLakeExceptionSubscriptionInput = schema.new({
-    id = id.from(_N, "UpdateDataLakeExceptionSubscriptionInput"),
+    id = id.from(_N, "UpdateDataLakeExceptionSubscriptionRequest"),
     type = "structure",
     members = {
         subscriptionProtocol = schema.new({
@@ -2037,8 +2037,22 @@ M.UpdateDataLakeExceptionSubscriptionInput = schema.new({
 })
 
 M.UpdateDataLakeExceptionSubscriptionOutput = schema.new({
-    id = id.from(_N, "UpdateDataLakeExceptionSubscriptionOutput"),
+    id = id.from(_N, "UpdateDataLakeExceptionSubscriptionResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

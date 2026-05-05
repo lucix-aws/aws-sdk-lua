@@ -1228,23 +1228,23 @@ local record ValidationException
     ErrorDetails: {ValidationError}
 end
 
-local type InvitationStatus = "PENDING" | "ACCEPTED" | "REJECTED" | "CANCELED" | "EXPIRED"
+local type ParticipantType = "SENDER" | "RECEIVER"
 
 local type AccessType = "ALLOW_ALL" | "DENY_ALL" | "ALLOW_BY_DEFAULT_DENY_SOME"
 
+local type InvitationStatus = "PENDING" | "ACCEPTED" | "REJECTED" | "CANCELED" | "EXPIRED"
+
 local type ProfileVisibility = "PRIVATE" | "PUBLIC"
 
-local type ProfileTaskStatus = "IN_PROGRESS" | "CANCELED" | "SUCCEEDED" | "FAILED"
-
-local type VerificationType = "BUSINESS_VERIFICATION" | "REGISTRANT_VERIFICATION"
-
-local type ParticipantType = "SENDER" | "RECEIVER"
+local type PrimarySolutionType = "SOFTWARE_PRODUCTS" | "CONSULTING_SERVICES" | "PROFESSIONAL_SERVICES" | "MANAGED_SERVICES" | "HARDWARE_PRODUCTS" | "COMMUNICATION_SERVICES" | "VALUE_ADDED_RESALE_AWS_SERVICES" | "TRAINING_SERVICES"
 
 local type ConnectionType = "OPPORTUNITY_COLLABORATION" | "SUBSIDIARY"
 
-local type VerificationStatus = "PENDING_CUSTOMER_ACTION" | "IN_PROGRESS" | "FAILED" | "SUCCEEDED" | "REJECTED"
+local type VerificationType = "BUSINESS_VERIFICATION" | "REGISTRANT_VERIFICATION"
 
-local type PrimarySolutionType = "SOFTWARE_PRODUCTS" | "CONSULTING_SERVICES" | "PROFESSIONAL_SERVICES" | "MANAGED_SERVICES" | "HARDWARE_PRODUCTS" | "COMMUNICATION_SERVICES" | "VALUE_ADDED_RESALE_AWS_SERVICES" | "TRAINING_SERVICES"
+local type ProfileTaskStatus = "IN_PROGRESS" | "CANCELED" | "SUCCEEDED" | "FAILED"
+
+local type VerificationStatus = "PENDING_CUSTOMER_ACTION" | "IN_PROGRESS" | "FAILED" | "SUCCEEDED" | "REJECTED"
 
 local record M
     AcceptConnectionInvitationInput: AcceptConnectionInvitationInput

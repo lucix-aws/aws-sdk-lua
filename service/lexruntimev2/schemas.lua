@@ -170,7 +170,7 @@ M.ConflictException = schema.new({
 })
 
 M.DeleteSessionInput = schema.new({
-    id = id.from(_N, "DeleteSessionInput"),
+    id = id.from(_N, "DeleteSessionRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -217,7 +217,7 @@ M.DeleteSessionInput = schema.new({
 })
 
 M.DeleteSessionOutput = schema.new({
-    id = id.from(_N, "DeleteSessionOutput"),
+    id = id.from(_N, "DeleteSessionResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -324,7 +324,7 @@ M.ValidationException = schema.new({
 })
 
 M.GetSessionInput = schema.new({
-    id = id.from(_N, "GetSessionInput"),
+    id = id.from(_N, "GetSessionRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -622,7 +622,7 @@ M.DependencyFailedException = schema.new({
 })
 
 M.PutSessionOutput = schema.new({
-    id = id.from(_N, "PutSessionOutput"),
+    id = id.from(_N, "PutSessionResponse"),
     type = "structure",
     members = {
         contentType = schema.new({
@@ -706,7 +706,7 @@ M.RecognizedBotMember = schema.new({
 })
 
 M.RecognizeUtteranceInput = schema.new({
-    id = id.from(_N, "RecognizeUtteranceInput"),
+    id = id.from(_N, "RecognizeUtteranceRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -800,7 +800,7 @@ M.RecognizeUtteranceInput = schema.new({
 })
 
 M.RecognizeUtteranceOutput = schema.new({
-    id = id.from(_N, "RecognizeUtteranceOutput"),
+    id = id.from(_N, "RecognizeUtteranceResponse"),
     type = "structure",
     members = {
         inputMode = schema.new({
@@ -1170,7 +1170,7 @@ M.RuntimeHints = schema.new({
             name = "slotHints",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.RuntimeHintDetails }),
         }),
     },
 })
@@ -1392,7 +1392,7 @@ M.ConfigurationEvent = schema.new({
 })
 
 M.PutSessionInput = schema.new({
-    id = id.from(_N, "PutSessionInput"),
+    id = id.from(_N, "PutSessionRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -1473,7 +1473,7 @@ M.PutSessionInput = schema.new({
 })
 
 M.RecognizeTextInput = schema.new({
-    id = id.from(_N, "RecognizeTextInput"),
+    id = id.from(_N, "RecognizeTextRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -1593,7 +1593,7 @@ M.StartConversationRequestEventStream = schema.new({
 })
 
 M.StartConversationInput = schema.new({
-    id = id.from(_N, "StartConversationInput"),
+    id = id.from(_N, "StartConversationRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -1660,7 +1660,7 @@ M.StartConversationInput = schema.new({
 })
 
 M.GetSessionOutput = schema.new({
-    id = id.from(_N, "GetSessionOutput"),
+    id = id.from(_N, "GetSessionResponse"),
     type = "structure",
     members = {
         sessionId = schema.new({
@@ -1748,7 +1748,7 @@ M.IntentResultEvent = schema.new({
 })
 
 M.RecognizeTextOutput = schema.new({
-    id = id.from(_N, "RecognizeTextOutput"),
+    id = id.from(_N, "RecognizeTextResponse"),
     type = "structure",
     members = {
         messages = schema.new({
@@ -1902,7 +1902,7 @@ M.StartConversationResponseEventStream = schema.new({
 })
 
 M.StartConversationOutput = schema.new({
-    id = id.from(_N, "StartConversationOutput"),
+    id = id.from(_N, "StartConversationResponse"),
     type = "structure",
     members = {
         responseEventStream = schema.new({
@@ -1917,5 +1917,19 @@ M.StartConversationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

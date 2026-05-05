@@ -1418,7 +1418,7 @@ M.WorkerConfiguration = schema.new({
 })
 
 M.CreateConnectorInput = schema.new({
-    id = id.from(_N, "CreateConnectorInput"),
+    id = id.from(_N, "CreateConnectorRequest"),
     type = "structure",
     members = {
         capacity = schema.new({
@@ -1547,7 +1547,7 @@ M.CreateConnectorInput = schema.new({
 })
 
 M.CreateConnectorOutput = schema.new({
-    id = id.from(_N, "CreateConnectorOutput"),
+    id = id.from(_N, "CreateConnectorResponse"),
     type = "structure",
     members = {
         connectorArn = schema.new({
@@ -1716,7 +1716,7 @@ M.CustomPluginLocation = schema.new({
 })
 
 M.CreateCustomPluginInput = schema.new({
-    id = id.from(_N, "CreateCustomPluginInput"),
+    id = id.from(_N, "CreateCustomPluginRequest"),
     type = "structure",
     members = {
         contentType = schema.new({
@@ -1765,7 +1765,7 @@ M.CreateCustomPluginInput = schema.new({
 })
 
 M.CreateCustomPluginOutput = schema.new({
-    id = id.from(_N, "CreateCustomPluginOutput"),
+    id = id.from(_N, "CreateCustomPluginResponse"),
     type = "structure",
     members = {
         customPluginArn = schema.new({
@@ -1799,7 +1799,7 @@ M.CreateCustomPluginOutput = schema.new({
 })
 
 M.CreateWorkerConfigurationInput = schema.new({
-    id = id.from(_N, "CreateWorkerConfigurationInput"),
+    id = id.from(_N, "CreateWorkerConfigurationRequest"),
     type = "structure",
     members = {
         description = schema.new({
@@ -1838,7 +1838,7 @@ M.CreateWorkerConfigurationInput = schema.new({
 })
 
 M.CreateWorkerConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateWorkerConfigurationOutput"),
+    id = id.from(_N, "CreateWorkerConfigurationResponse"),
     type = "structure",
     members = {
         creationTime = schema.new({
@@ -1879,7 +1879,7 @@ M.CreateWorkerConfigurationOutput = schema.new({
 })
 
 M.DeleteConnectorInput = schema.new({
-    id = id.from(_N, "DeleteConnectorInput"),
+    id = id.from(_N, "DeleteConnectorRequest"),
     type = "structure",
     members = {
         connectorArn = schema.new({
@@ -1905,7 +1905,7 @@ M.DeleteConnectorInput = schema.new({
 })
 
 M.DeleteConnectorOutput = schema.new({
-    id = id.from(_N, "DeleteConnectorOutput"),
+    id = id.from(_N, "DeleteConnectorResponse"),
     type = "structure",
     members = {
         connectorArn = schema.new({
@@ -1924,7 +1924,7 @@ M.DeleteConnectorOutput = schema.new({
 })
 
 M.DeleteCustomPluginInput = schema.new({
-    id = id.from(_N, "DeleteCustomPluginInput"),
+    id = id.from(_N, "DeleteCustomPluginRequest"),
     type = "structure",
     members = {
         customPluginArn = schema.new({
@@ -1941,7 +1941,7 @@ M.DeleteCustomPluginInput = schema.new({
 })
 
 M.DeleteCustomPluginOutput = schema.new({
-    id = id.from(_N, "DeleteCustomPluginOutput"),
+    id = id.from(_N, "DeleteCustomPluginResponse"),
     type = "structure",
     members = {
         customPluginArn = schema.new({
@@ -1960,7 +1960,7 @@ M.DeleteCustomPluginOutput = schema.new({
 })
 
 M.DeleteWorkerConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteWorkerConfigurationInput"),
+    id = id.from(_N, "DeleteWorkerConfigurationRequest"),
     type = "structure",
     members = {
         workerConfigurationArn = schema.new({
@@ -1977,7 +1977,7 @@ M.DeleteWorkerConfigurationInput = schema.new({
 })
 
 M.DeleteWorkerConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteWorkerConfigurationOutput"),
+    id = id.from(_N, "DeleteWorkerConfigurationResponse"),
     type = "structure",
     members = {
         workerConfigurationArn = schema.new({
@@ -1996,7 +1996,7 @@ M.DeleteWorkerConfigurationOutput = schema.new({
 })
 
 M.DescribeConnectorInput = schema.new({
-    id = id.from(_N, "DescribeConnectorInput"),
+    id = id.from(_N, "DescribeConnectorRequest"),
     type = "structure",
     members = {
         connectorArn = schema.new({
@@ -2032,7 +2032,7 @@ M.StateDescription = schema.new({
 })
 
 M.DescribeConnectorOutput = schema.new({
-    id = id.from(_N, "DescribeConnectorOutput"),
+    id = id.from(_N, "DescribeConnectorResponse"),
     type = "structure",
     members = {
         capacity = schema.new({
@@ -2160,7 +2160,7 @@ M.DescribeConnectorOutput = schema.new({
 })
 
 M.DescribeConnectorOperationInput = schema.new({
-    id = id.from(_N, "DescribeConnectorOperationInput"),
+    id = id.from(_N, "DescribeConnectorOperationRequest"),
     type = "structure",
     members = {
         connectorOperationArn = schema.new({
@@ -2191,7 +2191,7 @@ M.WorkerSetting = schema.new({
 })
 
 M.DescribeConnectorOperationOutput = schema.new({
-    id = id.from(_N, "DescribeConnectorOperationOutput"),
+    id = id.from(_N, "DescribeConnectorOperationResponse"),
     type = "structure",
     members = {
         connectorArn = schema.new({
@@ -2284,7 +2284,7 @@ M.DescribeConnectorOperationOutput = schema.new({
 })
 
 M.DescribeCustomPluginInput = schema.new({
-    id = id.from(_N, "DescribeCustomPluginInput"),
+    id = id.from(_N, "DescribeCustomPluginRequest"),
     type = "structure",
     members = {
         customPluginArn = schema.new({
@@ -2301,7 +2301,7 @@ M.DescribeCustomPluginInput = schema.new({
 })
 
 M.DescribeCustomPluginOutput = schema.new({
-    id = id.from(_N, "DescribeCustomPluginOutput"),
+    id = id.from(_N, "DescribeCustomPluginResponse"),
     type = "structure",
     members = {
         creationTime = schema.new({
@@ -2355,7 +2355,7 @@ M.DescribeCustomPluginOutput = schema.new({
 })
 
 M.DescribeWorkerConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeWorkerConfigurationInput"),
+    id = id.from(_N, "DescribeWorkerConfigurationRequest"),
     type = "structure",
     members = {
         workerConfigurationArn = schema.new({
@@ -2409,7 +2409,7 @@ M.WorkerConfigurationRevisionDescription = schema.new({
 })
 
 M.DescribeWorkerConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeWorkerConfigurationOutput"),
+    id = id.from(_N, "DescribeWorkerConfigurationResponse"),
     type = "structure",
     members = {
         creationTime = schema.new({
@@ -2456,7 +2456,7 @@ M.DescribeWorkerConfigurationOutput = schema.new({
 })
 
 M.ListConnectorOperationsInput = schema.new({
-    id = id.from(_N, "ListConnectorOperationsInput"),
+    id = id.from(_N, "ListConnectorOperationsRequest"),
     type = "structure",
     members = {
         connectorArn = schema.new({
@@ -2491,7 +2491,7 @@ M.ListConnectorOperationsInput = schema.new({
 })
 
 M.ListConnectorOperationsOutput = schema.new({
-    id = id.from(_N, "ListConnectorOperationsOutput"),
+    id = id.from(_N, "ListConnectorOperationsResponse"),
     type = "structure",
     members = {
         connectorOperations = schema.new({
@@ -2511,7 +2511,7 @@ M.ListConnectorOperationsOutput = schema.new({
 })
 
 M.ListConnectorsInput = schema.new({
-    id = id.from(_N, "ListConnectorsInput"),
+    id = id.from(_N, "ListConnectorsRequest"),
     type = "structure",
     members = {
         connectorNamePrefix = schema.new({
@@ -2545,7 +2545,7 @@ M.ListConnectorsInput = schema.new({
 })
 
 M.ListConnectorsOutput = schema.new({
-    id = id.from(_N, "ListConnectorsOutput"),
+    id = id.from(_N, "ListConnectorsResponse"),
     type = "structure",
     members = {
         connectors = schema.new({
@@ -2565,7 +2565,7 @@ M.ListConnectorsOutput = schema.new({
 })
 
 M.ListCustomPluginsInput = schema.new({
-    id = id.from(_N, "ListCustomPluginsInput"),
+    id = id.from(_N, "ListCustomPluginsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2599,7 +2599,7 @@ M.ListCustomPluginsInput = schema.new({
 })
 
 M.ListCustomPluginsOutput = schema.new({
-    id = id.from(_N, "ListCustomPluginsOutput"),
+    id = id.from(_N, "ListCustomPluginsResponse"),
     type = "structure",
     members = {
         customPlugins = schema.new({
@@ -2619,7 +2619,7 @@ M.ListCustomPluginsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2636,7 +2636,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2651,7 +2651,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListWorkerConfigurationsInput = schema.new({
-    id = id.from(_N, "ListWorkerConfigurationsInput"),
+    id = id.from(_N, "ListWorkerConfigurationsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2685,7 +2685,7 @@ M.ListWorkerConfigurationsInput = schema.new({
 })
 
 M.ListWorkerConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListWorkerConfigurationsOutput"),
+    id = id.from(_N, "ListWorkerConfigurationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2705,7 +2705,7 @@ M.ListWorkerConfigurationsOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2733,12 +2733,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2766,12 +2766,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateConnectorInput = schema.new({
-    id = id.from(_N, "UpdateConnectorInput"),
+    id = id.from(_N, "UpdateConnectorRequest"),
     type = "structure",
     members = {
         capacity = schema.new({
@@ -2813,7 +2813,7 @@ M.UpdateConnectorInput = schema.new({
 })
 
 M.UpdateConnectorOutput = schema.new({
-    id = id.from(_N, "UpdateConnectorOutput"),
+    id = id.from(_N, "UpdateConnectorResponse"),
     type = "structure",
     members = {
         connectorArn = schema.new({
@@ -2836,5 +2836,19 @@ M.UpdateConnectorOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

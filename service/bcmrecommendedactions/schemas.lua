@@ -95,7 +95,7 @@ M.RequestFilter = schema.new({
 })
 
 M.ListRecommendedActionsInput = schema.new({
-    id = id.from(_N, "ListRecommendedActionsInput"),
+    id = id.from(_N, "ListRecommendedActionsRequest"),
     type = "structure",
     members = {
         filter = schema.new({
@@ -179,7 +179,7 @@ M.RecommendedAction = schema.new({
 })
 
 M.ListRecommendedActionsOutput = schema.new({
-    id = id.from(_N, "ListRecommendedActionsOutput"),
+    id = id.from(_N, "ListRecommendedActionsResponse"),
     type = "structure",
     members = {
         recommendedActions = schema.new({
@@ -279,5 +279,19 @@ M.ValidationException = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

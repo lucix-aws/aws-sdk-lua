@@ -46,7 +46,7 @@ M.Target = schema.new({
 })
 
 M.CreateHomeRegionControlInput = schema.new({
-    id = id.from(_N, "CreateHomeRegionControlInput"),
+    id = id.from(_N, "CreateHomeRegionControlRequest"),
     type = "structure",
     members = {
         HomeRegion = schema.new({
@@ -113,7 +113,7 @@ M.HomeRegionControl = schema.new({
 })
 
 M.CreateHomeRegionControlOutput = schema.new({
-    id = id.from(_N, "CreateHomeRegionControlOutput"),
+    id = id.from(_N, "CreateHomeRegionControlResult"),
     type = "structure",
     members = {
         HomeRegionControl = schema.new({
@@ -220,7 +220,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.DeleteHomeRegionControlInput = schema.new({
-    id = id.from(_N, "DeleteHomeRegionControlInput"),
+    id = id.from(_N, "DeleteHomeRegionControlRequest"),
     type = "structure",
     members = {
         ControlId = schema.new({
@@ -236,12 +236,12 @@ M.DeleteHomeRegionControlInput = schema.new({
 })
 
 M.DeleteHomeRegionControlOutput = schema.new({
-    id = id.from(_N, "DeleteHomeRegionControlOutput"),
+    id = id.from(_N, "DeleteHomeRegionControlResult"),
     type = "structure",
 })
 
 M.DescribeHomeRegionControlsInput = schema.new({
-    id = id.from(_N, "DescribeHomeRegionControlsInput"),
+    id = id.from(_N, "DescribeHomeRegionControlsRequest"),
     type = "structure",
     members = {
         ControlId = schema.new({
@@ -279,7 +279,7 @@ M.DescribeHomeRegionControlsInput = schema.new({
 })
 
 M.DescribeHomeRegionControlsOutput = schema.new({
-    id = id.from(_N, "DescribeHomeRegionControlsOutput"),
+    id = id.from(_N, "DescribeHomeRegionControlsResult"),
     type = "structure",
     members = {
         HomeRegionControls = schema.new({
@@ -299,12 +299,12 @@ M.DescribeHomeRegionControlsOutput = schema.new({
 })
 
 M.GetHomeRegionInput = schema.new({
-    id = id.from(_N, "GetHomeRegionInput"),
+    id = id.from(_N, "GetHomeRegionRequest"),
     type = "structure",
 })
 
 M.GetHomeRegionOutput = schema.new({
-    id = id.from(_N, "GetHomeRegionOutput"),
+    id = id.from(_N, "GetHomeRegionResult"),
     type = "structure",
     members = {
         HomeRegion = schema.new({
@@ -315,5 +315,19 @@ M.GetHomeRegionOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -836,7 +836,7 @@ M.UpdateAgentSpaceOutput = schema.new({
 })
 
 M.CreateApplicationInput = schema.new({
-    id = id.from(_N, "CreateApplicationInput"),
+    id = id.from(_N, "CreateApplicationRequest"),
     type = "structure",
     members = {
         idcInstanceArn = schema.new({
@@ -869,7 +869,7 @@ M.CreateApplicationInput = schema.new({
 })
 
 M.CreateApplicationOutput = schema.new({
-    id = id.from(_N, "CreateApplicationOutput"),
+    id = id.from(_N, "CreateApplicationResponse"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -885,7 +885,7 @@ M.CreateApplicationOutput = schema.new({
 })
 
 M.DeleteApplicationInput = schema.new({
-    id = id.from(_N, "DeleteApplicationInput"),
+    id = id.from(_N, "DeleteApplicationRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -901,12 +901,12 @@ M.DeleteApplicationInput = schema.new({
 })
 
 M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetApplicationInput = schema.new({
-    id = id.from(_N, "GetApplicationInput"),
+    id = id.from(_N, "GetApplicationRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -941,7 +941,7 @@ M.IdCConfiguration = schema.new({
 })
 
 M.GetApplicationOutput = schema.new({
-    id = id.from(_N, "GetApplicationOutput"),
+    id = id.from(_N, "GetApplicationResponse"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -991,7 +991,7 @@ M.GetApplicationOutput = schema.new({
 })
 
 M.ListApplicationsInput = schema.new({
-    id = id.from(_N, "ListApplicationsInput"),
+    id = id.from(_N, "ListApplicationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1050,7 +1050,7 @@ M.ApplicationSummary = schema.new({
 })
 
 M.ListApplicationsOutput = schema.new({
-    id = id.from(_N, "ListApplicationsOutput"),
+    id = id.from(_N, "ListApplicationsResponse"),
     type = "structure",
     members = {
         applicationSummaries = schema.new({
@@ -1073,7 +1073,7 @@ M.ListApplicationsOutput = schema.new({
 })
 
 M.UpdateApplicationInput = schema.new({
-    id = id.from(_N, "UpdateApplicationInput"),
+    id = id.from(_N, "UpdateApplicationRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -1101,7 +1101,7 @@ M.UpdateApplicationInput = schema.new({
 })
 
 M.UpdateApplicationOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationOutput"),
+    id = id.from(_N, "UpdateApplicationResponse"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -2703,7 +2703,7 @@ M.MembershipConfig = schema.new({
 })
 
 M.CreateMembershipInput = schema.new({
-    id = id.from(_N, "CreateMembershipInput"),
+    id = id.from(_N, "CreateMembershipRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -2753,7 +2753,7 @@ M.CreateMembershipInput = schema.new({
 })
 
 M.CreateMembershipOutput = schema.new({
-    id = id.from(_N, "CreateMembershipOutput"),
+    id = id.from(_N, "CreateMembershipResponse"),
     type = "structure",
 })
 
@@ -3043,7 +3043,7 @@ M.DeleteIntegrationOutput = schema.new({
 })
 
 M.DeleteMembershipInput = schema.new({
-    id = id.from(_N, "DeleteMembershipInput"),
+    id = id.from(_N, "DeleteMembershipRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -3083,7 +3083,7 @@ M.DeleteMembershipInput = schema.new({
 })
 
 M.DeleteMembershipOutput = schema.new({
-    id = id.from(_N, "DeleteMembershipOutput"),
+    id = id.from(_N, "DeleteMembershipResponse"),
     type = "structure",
 })
 
@@ -4021,7 +4021,7 @@ M.ListIntegratedResourcesOutput = schema.new({
 })
 
 M.ListMembershipsInput = schema.new({
-    id = id.from(_N, "ListMembershipsInput"),
+    id = id.from(_N, "ListMembershipsRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -4198,7 +4198,7 @@ M.MembershipSummary = schema.new({
 })
 
 M.ListMembershipsOutput = schema.new({
-    id = id.from(_N, "ListMembershipsOutput"),
+    id = id.from(_N, "ListMembershipsResponse"),
     type = "structure",
     members = {
         membershipSummaries = schema.new({
@@ -5267,5 +5267,19 @@ M.VerifyTargetDomainOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

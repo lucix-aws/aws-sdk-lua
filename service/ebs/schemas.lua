@@ -77,7 +77,7 @@ M.ChangedBlock = schema.new({
 })
 
 M.CompleteSnapshotInput = schema.new({
-    id = id.from(_N, "CompleteSnapshotInput"),
+    id = id.from(_N, "CompleteSnapshotRequest"),
     type = "structure",
     members = {
         SnapshotId = schema.new({
@@ -131,7 +131,7 @@ M.CompleteSnapshotInput = schema.new({
 })
 
 M.CompleteSnapshotOutput = schema.new({
-    id = id.from(_N, "CompleteSnapshotOutput"),
+    id = id.from(_N, "CompleteSnapshotResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -280,7 +280,7 @@ M.ConflictException = schema.new({
 })
 
 M.GetSnapshotBlockInput = schema.new({
-    id = id.from(_N, "GetSnapshotBlockInput"),
+    id = id.from(_N, "GetSnapshotBlockRequest"),
     type = "structure",
     members = {
         SnapshotId = schema.new({
@@ -317,7 +317,7 @@ M.GetSnapshotBlockInput = schema.new({
 })
 
 M.GetSnapshotBlockOutput = schema.new({
-    id = id.from(_N, "GetSnapshotBlockOutput"),
+    id = id.from(_N, "GetSnapshotBlockResponse"),
     type = "structure",
     members = {
         DataLength = schema.new({
@@ -361,7 +361,7 @@ M.GetSnapshotBlockOutput = schema.new({
 })
 
 M.ListChangedBlocksInput = schema.new({
-    id = id.from(_N, "ListChangedBlocksInput"),
+    id = id.from(_N, "ListChangedBlocksRequest"),
     type = "structure",
     members = {
         FirstSnapshotId = schema.new({
@@ -414,7 +414,7 @@ M.ListChangedBlocksInput = schema.new({
 })
 
 M.ListChangedBlocksOutput = schema.new({
-    id = id.from(_N, "ListChangedBlocksOutput"),
+    id = id.from(_N, "ListChangedBlocksResponse"),
     type = "structure",
     members = {
         ChangedBlocks = schema.new({
@@ -452,7 +452,7 @@ M.ListChangedBlocksOutput = schema.new({
 })
 
 M.ListSnapshotBlocksInput = schema.new({
-    id = id.from(_N, "ListSnapshotBlocksInput"),
+    id = id.from(_N, "ListSnapshotBlocksRequest"),
     type = "structure",
     members = {
         SnapshotId = schema.new({
@@ -496,7 +496,7 @@ M.ListSnapshotBlocksInput = schema.new({
 })
 
 M.ListSnapshotBlocksOutput = schema.new({
-    id = id.from(_N, "ListSnapshotBlocksOutput"),
+    id = id.from(_N, "ListSnapshotBlocksResponse"),
     type = "structure",
     members = {
         Blocks = schema.new({
@@ -534,7 +534,7 @@ M.ListSnapshotBlocksOutput = schema.new({
 })
 
 M.PutSnapshotBlockInput = schema.new({
-    id = id.from(_N, "PutSnapshotBlockInput"),
+    id = id.from(_N, "PutSnapshotBlockRequest"),
     type = "structure",
     members = {
         SnapshotId = schema.new({
@@ -610,7 +610,7 @@ M.PutSnapshotBlockInput = schema.new({
 })
 
 M.PutSnapshotBlockOutput = schema.new({
-    id = id.from(_N, "PutSnapshotBlockOutput"),
+    id = id.from(_N, "PutSnapshotBlockResponse"),
     type = "structure",
     members = {
         Checksum = schema.new({
@@ -654,7 +654,7 @@ M.Tag = schema.new({
 })
 
 M.StartSnapshotInput = schema.new({
-    id = id.from(_N, "StartSnapshotInput"),
+    id = id.from(_N, "StartSnapshotRequest"),
     type = "structure",
     members = {
         VolumeSize = schema.new({
@@ -716,7 +716,7 @@ M.StartSnapshotInput = schema.new({
 })
 
 M.StartSnapshotOutput = schema.new({
-    id = id.from(_N, "StartSnapshotOutput"),
+    id = id.from(_N, "StartSnapshotResponse"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -788,5 +788,19 @@ M.StartSnapshotOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

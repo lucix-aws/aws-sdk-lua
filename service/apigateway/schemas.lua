@@ -271,7 +271,7 @@ M.StageKey = schema.new({
 })
 
 M.CreateApiKeyInput = schema.new({
-    id = id.from(_N, "CreateApiKeyInput"),
+    id = id.from(_N, "CreateApiKeyRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -335,7 +335,7 @@ M.CreateApiKeyInput = schema.new({
 })
 
 M.CreateApiKeyOutput = schema.new({
-    id = id.from(_N, "CreateApiKeyOutput"),
+    id = id.from(_N, "ApiKey"),
     type = "structure",
     members = {
         id = schema.new({
@@ -490,7 +490,7 @@ M.UnauthorizedException = schema.new({
 })
 
 M.CreateAuthorizerInput = schema.new({
-    id = id.from(_N, "CreateAuthorizerInput"),
+    id = id.from(_N, "CreateAuthorizerRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -568,7 +568,7 @@ M.CreateAuthorizerInput = schema.new({
 })
 
 M.CreateAuthorizerOutput = schema.new({
-    id = id.from(_N, "CreateAuthorizerOutput"),
+    id = id.from(_N, "Authorizer"),
     type = "structure",
     members = {
         id = schema.new({
@@ -636,7 +636,7 @@ M.CreateAuthorizerOutput = schema.new({
 })
 
 M.CreateBasePathMappingInput = schema.new({
-    id = id.from(_N, "CreateBasePathMappingInput"),
+    id = id.from(_N, "CreateBasePathMappingRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -683,7 +683,7 @@ M.CreateBasePathMappingInput = schema.new({
 })
 
 M.CreateBasePathMappingOutput = schema.new({
-    id = id.from(_N, "CreateBasePathMappingOutput"),
+    id = id.from(_N, "BasePathMapping"),
     type = "structure",
     members = {
         basePath = schema.new({
@@ -741,7 +741,7 @@ M.DeploymentCanarySettings = schema.new({
 })
 
 M.CreateDeploymentInput = schema.new({
-    id = id.from(_N, "CreateDeploymentInput"),
+    id = id.from(_N, "CreateDeploymentRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -831,7 +831,7 @@ M.MethodSnapshot = schema.new({
 })
 
 M.CreateDeploymentOutput = schema.new({
-    id = id.from(_N, "CreateDeploymentOutput"),
+    id = id.from(_N, "Deployment"),
     type = "structure",
     members = {
         id = schema.new({
@@ -858,7 +858,7 @@ M.CreateDeploymentOutput = schema.new({
             name = "apiSummary",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.MethodSnapshot }),
         }),
     },
 })
@@ -929,7 +929,7 @@ M.DocumentationPartLocation = schema.new({
 })
 
 M.CreateDocumentationPartInput = schema.new({
-    id = id.from(_N, "CreateDocumentationPartInput"),
+    id = id.from(_N, "CreateDocumentationPartRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -965,7 +965,7 @@ M.CreateDocumentationPartInput = schema.new({
 })
 
 M.CreateDocumentationPartOutput = schema.new({
-    id = id.from(_N, "CreateDocumentationPartOutput"),
+    id = id.from(_N, "DocumentationPart"),
     type = "structure",
     members = {
         id = schema.new({
@@ -991,7 +991,7 @@ M.CreateDocumentationPartOutput = schema.new({
 })
 
 M.CreateDocumentationVersionInput = schema.new({
-    id = id.from(_N, "CreateDocumentationVersionInput"),
+    id = id.from(_N, "CreateDocumentationVersionRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -1029,7 +1029,7 @@ M.CreateDocumentationVersionInput = schema.new({
 })
 
 M.CreateDocumentationVersionOutput = schema.new({
-    id = id.from(_N, "CreateDocumentationVersionOutput"),
+    id = id.from(_N, "DocumentationVersion"),
     type = "structure",
     members = {
         version = schema.new({
@@ -1100,7 +1100,7 @@ M.MutualTlsAuthenticationInput = schema.new({
 })
 
 M.CreateDomainNameInput = schema.new({
-    id = id.from(_N, "CreateDomainNameInput"),
+    id = id.from(_N, "CreateDomainNameRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -1236,7 +1236,7 @@ M.MutualTlsAuthentication = schema.new({
 })
 
 M.CreateDomainNameOutput = schema.new({
-    id = id.from(_N, "CreateDomainNameOutput"),
+    id = id.from(_N, "DomainName"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -1385,7 +1385,7 @@ M.CreateDomainNameOutput = schema.new({
 })
 
 M.CreateDomainNameAccessAssociationInput = schema.new({
-    id = id.from(_N, "CreateDomainNameAccessAssociationInput"),
+    id = id.from(_N, "CreateDomainNameAccessAssociationRequest"),
     type = "structure",
     members = {
         domainNameArn = schema.new({
@@ -1427,7 +1427,7 @@ M.CreateDomainNameAccessAssociationInput = schema.new({
 })
 
 M.CreateDomainNameAccessAssociationOutput = schema.new({
-    id = id.from(_N, "CreateDomainNameAccessAssociationOutput"),
+    id = id.from(_N, "DomainNameAccessAssociation"),
     type = "structure",
     members = {
         domainNameAccessAssociationArn = schema.new({
@@ -1466,7 +1466,7 @@ M.CreateDomainNameAccessAssociationOutput = schema.new({
 })
 
 M.CreateModelInput = schema.new({
-    id = id.from(_N, "CreateModelInput"),
+    id = id.from(_N, "CreateModelRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -1513,7 +1513,7 @@ M.CreateModelInput = schema.new({
 })
 
 M.CreateModelOutput = schema.new({
-    id = id.from(_N, "CreateModelOutput"),
+    id = id.from(_N, "Model"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1550,7 +1550,7 @@ M.CreateModelOutput = schema.new({
 })
 
 M.CreateRequestValidatorInput = schema.new({
-    id = id.from(_N, "CreateRequestValidatorInput"),
+    id = id.from(_N, "CreateRequestValidatorRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -1591,7 +1591,7 @@ M.CreateRequestValidatorInput = schema.new({
 })
 
 M.CreateRequestValidatorOutput = schema.new({
-    id = id.from(_N, "CreateRequestValidatorOutput"),
+    id = id.from(_N, "RequestValidator"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1628,7 +1628,7 @@ M.CreateRequestValidatorOutput = schema.new({
 })
 
 M.CreateResourceInput = schema.new({
-    id = id.from(_N, "CreateResourceInput"),
+    id = id.from(_N, "CreateResourceRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -1951,7 +1951,7 @@ M.Method = schema.new({
 })
 
 M.CreateResourceOutput = schema.new({
-    id = id.from(_N, "CreateResourceOutput"),
+    id = id.from(_N, "Resource"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1990,7 +1990,7 @@ M.CreateResourceOutput = schema.new({
 })
 
 M.CreateRestApiInput = schema.new({
-    id = id.from(_N, "CreateRestApiInput"),
+    id = id.from(_N, "CreateRestApiRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2085,7 +2085,7 @@ M.CreateRestApiInput = schema.new({
 })
 
 M.CreateRestApiOutput = schema.new({
-    id = id.from(_N, "CreateRestApiOutput"),
+    id = id.from(_N, "RestApi"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2247,7 +2247,7 @@ M.CanarySettings = schema.new({
 })
 
 M.CreateStageInput = schema.new({
-    id = id.from(_N, "CreateStageInput"),
+    id = id.from(_N, "CreateStageRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -2432,7 +2432,7 @@ M.MethodSetting = schema.new({
 })
 
 M.CreateStageOutput = schema.new({
-    id = id.from(_N, "CreateStageOutput"),
+    id = id.from(_N, "Stage"),
     type = "structure",
     members = {
         deploymentId = schema.new({
@@ -2586,7 +2586,7 @@ M.QuotaSettings = schema.new({
 })
 
 M.CreateUsagePlanInput = schema.new({
-    id = id.from(_N, "CreateUsagePlanInput"),
+    id = id.from(_N, "CreateUsagePlanRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2637,7 +2637,7 @@ M.CreateUsagePlanInput = schema.new({
 })
 
 M.CreateUsagePlanOutput = schema.new({
-    id = id.from(_N, "CreateUsagePlanOutput"),
+    id = id.from(_N, "UsagePlan"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2697,7 +2697,7 @@ M.CreateUsagePlanOutput = schema.new({
 })
 
 M.CreateUsagePlanKeyInput = schema.new({
-    id = id.from(_N, "CreateUsagePlanKeyInput"),
+    id = id.from(_N, "CreateUsagePlanKeyRequest"),
     type = "structure",
     members = {
         usagePlanId = schema.new({
@@ -2732,7 +2732,7 @@ M.CreateUsagePlanKeyInput = schema.new({
 })
 
 M.CreateUsagePlanKeyOutput = schema.new({
-    id = id.from(_N, "CreateUsagePlanKeyOutput"),
+    id = id.from(_N, "UsagePlanKey"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2763,7 +2763,7 @@ M.CreateUsagePlanKeyOutput = schema.new({
 })
 
 M.CreateVpcLinkInput = schema.new({
-    id = id.from(_N, "CreateVpcLinkInput"),
+    id = id.from(_N, "CreateVpcLinkRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2803,7 +2803,7 @@ M.CreateVpcLinkInput = schema.new({
 })
 
 M.CreateVpcLinkOutput = schema.new({
-    id = id.from(_N, "CreateVpcLinkOutput"),
+    id = id.from(_N, "VpcLink"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2855,7 +2855,7 @@ M.CreateVpcLinkOutput = schema.new({
 })
 
 M.DeleteApiKeyInput = schema.new({
-    id = id.from(_N, "DeleteApiKeyInput"),
+    id = id.from(_N, "DeleteApiKeyRequest"),
     type = "structure",
     members = {
         apiKey = schema.new({
@@ -2872,12 +2872,12 @@ M.DeleteApiKeyInput = schema.new({
 })
 
 M.DeleteApiKeyOutput = schema.new({
-    id = id.from(_N, "DeleteApiKeyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAuthorizerInput = schema.new({
-    id = id.from(_N, "DeleteAuthorizerInput"),
+    id = id.from(_N, "DeleteAuthorizerRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -2904,12 +2904,12 @@ M.DeleteAuthorizerInput = schema.new({
 })
 
 M.DeleteAuthorizerOutput = schema.new({
-    id = id.from(_N, "DeleteAuthorizerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteBasePathMappingInput = schema.new({
-    id = id.from(_N, "DeleteBasePathMappingInput"),
+    id = id.from(_N, "DeleteBasePathMappingRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -2945,12 +2945,12 @@ M.DeleteBasePathMappingInput = schema.new({
 })
 
 M.DeleteBasePathMappingOutput = schema.new({
-    id = id.from(_N, "DeleteBasePathMappingOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteClientCertificateInput = schema.new({
-    id = id.from(_N, "DeleteClientCertificateInput"),
+    id = id.from(_N, "DeleteClientCertificateRequest"),
     type = "structure",
     members = {
         clientCertificateId = schema.new({
@@ -2967,12 +2967,12 @@ M.DeleteClientCertificateInput = schema.new({
 })
 
 M.DeleteClientCertificateOutput = schema.new({
-    id = id.from(_N, "DeleteClientCertificateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDeploymentInput = schema.new({
-    id = id.from(_N, "DeleteDeploymentInput"),
+    id = id.from(_N, "DeleteDeploymentRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -2999,12 +2999,12 @@ M.DeleteDeploymentInput = schema.new({
 })
 
 M.DeleteDeploymentOutput = schema.new({
-    id = id.from(_N, "DeleteDeploymentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDocumentationPartInput = schema.new({
-    id = id.from(_N, "DeleteDocumentationPartInput"),
+    id = id.from(_N, "DeleteDocumentationPartRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -3031,12 +3031,12 @@ M.DeleteDocumentationPartInput = schema.new({
 })
 
 M.DeleteDocumentationPartOutput = schema.new({
-    id = id.from(_N, "DeleteDocumentationPartOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDocumentationVersionInput = schema.new({
-    id = id.from(_N, "DeleteDocumentationVersionInput"),
+    id = id.from(_N, "DeleteDocumentationVersionRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -3063,12 +3063,12 @@ M.DeleteDocumentationVersionInput = schema.new({
 })
 
 M.DeleteDocumentationVersionOutput = schema.new({
-    id = id.from(_N, "DeleteDocumentationVersionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDomainNameInput = schema.new({
-    id = id.from(_N, "DeleteDomainNameInput"),
+    id = id.from(_N, "DeleteDomainNameRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -3094,12 +3094,12 @@ M.DeleteDomainNameInput = schema.new({
 })
 
 M.DeleteDomainNameOutput = schema.new({
-    id = id.from(_N, "DeleteDomainNameOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDomainNameAccessAssociationInput = schema.new({
-    id = id.from(_N, "DeleteDomainNameAccessAssociationInput"),
+    id = id.from(_N, "DeleteDomainNameAccessAssociationRequest"),
     type = "structure",
     members = {
         domainNameAccessAssociationArn = schema.new({
@@ -3116,12 +3116,12 @@ M.DeleteDomainNameAccessAssociationInput = schema.new({
 })
 
 M.DeleteDomainNameAccessAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteDomainNameAccessAssociationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteGatewayResponseInput = schema.new({
-    id = id.from(_N, "DeleteGatewayResponseInput"),
+    id = id.from(_N, "DeleteGatewayResponseRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -3148,12 +3148,12 @@ M.DeleteGatewayResponseInput = schema.new({
 })
 
 M.DeleteGatewayResponseOutput = schema.new({
-    id = id.from(_N, "DeleteGatewayResponseOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteIntegrationInput = schema.new({
-    id = id.from(_N, "DeleteIntegrationInput"),
+    id = id.from(_N, "DeleteIntegrationRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -3190,12 +3190,12 @@ M.DeleteIntegrationInput = schema.new({
 })
 
 M.DeleteIntegrationOutput = schema.new({
-    id = id.from(_N, "DeleteIntegrationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteIntegrationResponseInput = schema.new({
-    id = id.from(_N, "DeleteIntegrationResponseInput"),
+    id = id.from(_N, "DeleteIntegrationResponseRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -3242,12 +3242,12 @@ M.DeleteIntegrationResponseInput = schema.new({
 })
 
 M.DeleteIntegrationResponseOutput = schema.new({
-    id = id.from(_N, "DeleteIntegrationResponseOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMethodInput = schema.new({
-    id = id.from(_N, "DeleteMethodInput"),
+    id = id.from(_N, "DeleteMethodRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -3284,12 +3284,12 @@ M.DeleteMethodInput = schema.new({
 })
 
 M.DeleteMethodOutput = schema.new({
-    id = id.from(_N, "DeleteMethodOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMethodResponseInput = schema.new({
-    id = id.from(_N, "DeleteMethodResponseInput"),
+    id = id.from(_N, "DeleteMethodResponseRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -3336,12 +3336,12 @@ M.DeleteMethodResponseInput = schema.new({
 })
 
 M.DeleteMethodResponseOutput = schema.new({
-    id = id.from(_N, "DeleteMethodResponseOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteModelInput = schema.new({
-    id = id.from(_N, "DeleteModelInput"),
+    id = id.from(_N, "DeleteModelRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -3368,12 +3368,12 @@ M.DeleteModelInput = schema.new({
 })
 
 M.DeleteModelOutput = schema.new({
-    id = id.from(_N, "DeleteModelOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRequestValidatorInput = schema.new({
-    id = id.from(_N, "DeleteRequestValidatorInput"),
+    id = id.from(_N, "DeleteRequestValidatorRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -3400,12 +3400,12 @@ M.DeleteRequestValidatorInput = schema.new({
 })
 
 M.DeleteRequestValidatorOutput = schema.new({
-    id = id.from(_N, "DeleteRequestValidatorOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteResourceInput = schema.new({
-    id = id.from(_N, "DeleteResourceInput"),
+    id = id.from(_N, "DeleteResourceRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -3432,12 +3432,12 @@ M.DeleteResourceInput = schema.new({
 })
 
 M.DeleteResourceOutput = schema.new({
-    id = id.from(_N, "DeleteResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRestApiInput = schema.new({
-    id = id.from(_N, "DeleteRestApiInput"),
+    id = id.from(_N, "DeleteRestApiRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -3454,12 +3454,12 @@ M.DeleteRestApiInput = schema.new({
 })
 
 M.DeleteRestApiOutput = schema.new({
-    id = id.from(_N, "DeleteRestApiOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteStageInput = schema.new({
-    id = id.from(_N, "DeleteStageInput"),
+    id = id.from(_N, "DeleteStageRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -3486,12 +3486,12 @@ M.DeleteStageInput = schema.new({
 })
 
 M.DeleteStageOutput = schema.new({
-    id = id.from(_N, "DeleteStageOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteUsagePlanInput = schema.new({
-    id = id.from(_N, "DeleteUsagePlanInput"),
+    id = id.from(_N, "DeleteUsagePlanRequest"),
     type = "structure",
     members = {
         usagePlanId = schema.new({
@@ -3508,12 +3508,12 @@ M.DeleteUsagePlanInput = schema.new({
 })
 
 M.DeleteUsagePlanOutput = schema.new({
-    id = id.from(_N, "DeleteUsagePlanOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteUsagePlanKeyInput = schema.new({
-    id = id.from(_N, "DeleteUsagePlanKeyInput"),
+    id = id.from(_N, "DeleteUsagePlanKeyRequest"),
     type = "structure",
     members = {
         usagePlanId = schema.new({
@@ -3540,12 +3540,12 @@ M.DeleteUsagePlanKeyInput = schema.new({
 })
 
 M.DeleteUsagePlanKeyOutput = schema.new({
-    id = id.from(_N, "DeleteUsagePlanKeyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteVpcLinkInput = schema.new({
-    id = id.from(_N, "DeleteVpcLinkInput"),
+    id = id.from(_N, "DeleteVpcLinkRequest"),
     type = "structure",
     members = {
         vpcLinkId = schema.new({
@@ -3562,12 +3562,12 @@ M.DeleteVpcLinkInput = schema.new({
 })
 
 M.DeleteVpcLinkOutput = schema.new({
-    id = id.from(_N, "DeleteVpcLinkOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.FlushStageAuthorizersCacheInput = schema.new({
-    id = id.from(_N, "FlushStageAuthorizersCacheInput"),
+    id = id.from(_N, "FlushStageAuthorizersCacheRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -3594,12 +3594,12 @@ M.FlushStageAuthorizersCacheInput = schema.new({
 })
 
 M.FlushStageAuthorizersCacheOutput = schema.new({
-    id = id.from(_N, "FlushStageAuthorizersCacheOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.FlushStageCacheInput = schema.new({
-    id = id.from(_N, "FlushStageCacheInput"),
+    id = id.from(_N, "FlushStageCacheRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -3626,12 +3626,12 @@ M.FlushStageCacheInput = schema.new({
 })
 
 M.FlushStageCacheOutput = schema.new({
-    id = id.from(_N, "FlushStageCacheOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GenerateClientCertificateInput = schema.new({
-    id = id.from(_N, "GenerateClientCertificateInput"),
+    id = id.from(_N, "GenerateClientCertificateRequest"),
     type = "structure",
     members = {
         description = schema.new({
@@ -3652,7 +3652,7 @@ M.GenerateClientCertificateInput = schema.new({
 })
 
 M.GenerateClientCertificateOutput = schema.new({
-    id = id.from(_N, "GenerateClientCertificateOutput"),
+    id = id.from(_N, "ClientCertificate"),
     type = "structure",
     members = {
         clientCertificateId = schema.new({
@@ -3697,12 +3697,12 @@ M.GenerateClientCertificateOutput = schema.new({
 })
 
 M.GetAccountInput = schema.new({
-    id = id.from(_N, "GetAccountInput"),
+    id = id.from(_N, "GetAccountRequest"),
     type = "structure",
 })
 
 M.GetAccountOutput = schema.new({
-    id = id.from(_N, "GetAccountOutput"),
+    id = id.from(_N, "Account"),
     type = "structure",
     members = {
         cloudwatchRoleArn = schema.new({
@@ -3735,7 +3735,7 @@ M.GetAccountOutput = schema.new({
 })
 
 M.GetApiKeyInput = schema.new({
-    id = id.from(_N, "GetApiKeyInput"),
+    id = id.from(_N, "GetApiKeyRequest"),
     type = "structure",
     members = {
         apiKey = schema.new({
@@ -3761,7 +3761,7 @@ M.GetApiKeyInput = schema.new({
 })
 
 M.GetApiKeyOutput = schema.new({
-    id = id.from(_N, "GetApiKeyOutput"),
+    id = id.from(_N, "ApiKey"),
     type = "structure",
     members = {
         id = schema.new({
@@ -3834,7 +3834,7 @@ M.GetApiKeyOutput = schema.new({
 })
 
 M.GetApiKeysInput = schema.new({
-    id = id.from(_N, "GetApiKeysInput"),
+    id = id.from(_N, "GetApiKeysRequest"),
     type = "structure",
     members = {
         position = schema.new({
@@ -3886,7 +3886,7 @@ M.GetApiKeysInput = schema.new({
 })
 
 M.GetApiKeysOutput = schema.new({
-    id = id.from(_N, "GetApiKeysOutput"),
+    id = id.from(_N, "ApiKeys"),
     type = "structure",
     members = {
         warnings = schema.new({
@@ -3919,7 +3919,7 @@ M.GetApiKeysOutput = schema.new({
 })
 
 M.GetAuthorizerInput = schema.new({
-    id = id.from(_N, "GetAuthorizerInput"),
+    id = id.from(_N, "GetAuthorizerRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -3946,7 +3946,7 @@ M.GetAuthorizerInput = schema.new({
 })
 
 M.GetAuthorizerOutput = schema.new({
-    id = id.from(_N, "GetAuthorizerOutput"),
+    id = id.from(_N, "Authorizer"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4014,7 +4014,7 @@ M.GetAuthorizerOutput = schema.new({
 })
 
 M.GetAuthorizersInput = schema.new({
-    id = id.from(_N, "GetAuthorizersInput"),
+    id = id.from(_N, "GetAuthorizersRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -4049,7 +4049,7 @@ M.GetAuthorizersInput = schema.new({
 })
 
 M.GetAuthorizersOutput = schema.new({
-    id = id.from(_N, "GetAuthorizersOutput"),
+    id = id.from(_N, "Authorizers"),
     type = "structure",
     members = {
         items = schema.new({
@@ -4075,7 +4075,7 @@ M.GetAuthorizersOutput = schema.new({
 })
 
 M.GetBasePathMappingInput = schema.new({
-    id = id.from(_N, "GetBasePathMappingInput"),
+    id = id.from(_N, "GetBasePathMappingRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -4111,7 +4111,7 @@ M.GetBasePathMappingInput = schema.new({
 })
 
 M.GetBasePathMappingOutput = schema.new({
-    id = id.from(_N, "GetBasePathMappingOutput"),
+    id = id.from(_N, "BasePathMapping"),
     type = "structure",
     members = {
         basePath = schema.new({
@@ -4136,7 +4136,7 @@ M.GetBasePathMappingOutput = schema.new({
 })
 
 M.GetBasePathMappingsInput = schema.new({
-    id = id.from(_N, "GetBasePathMappingsInput"),
+    id = id.from(_N, "GetBasePathMappingsRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -4205,7 +4205,7 @@ M.BasePathMapping = schema.new({
 })
 
 M.GetBasePathMappingsOutput = schema.new({
-    id = id.from(_N, "GetBasePathMappingsOutput"),
+    id = id.from(_N, "BasePathMappings"),
     type = "structure",
     members = {
         items = schema.new({
@@ -4231,7 +4231,7 @@ M.GetBasePathMappingsOutput = schema.new({
 })
 
 M.GetClientCertificateInput = schema.new({
-    id = id.from(_N, "GetClientCertificateInput"),
+    id = id.from(_N, "GetClientCertificateRequest"),
     type = "structure",
     members = {
         clientCertificateId = schema.new({
@@ -4248,7 +4248,7 @@ M.GetClientCertificateInput = schema.new({
 })
 
 M.GetClientCertificateOutput = schema.new({
-    id = id.from(_N, "GetClientCertificateOutput"),
+    id = id.from(_N, "ClientCertificate"),
     type = "structure",
     members = {
         clientCertificateId = schema.new({
@@ -4293,7 +4293,7 @@ M.GetClientCertificateOutput = schema.new({
 })
 
 M.GetClientCertificatesInput = schema.new({
-    id = id.from(_N, "GetClientCertificatesInput"),
+    id = id.from(_N, "GetClientCertificatesRequest"),
     type = "structure",
     members = {
         position = schema.new({
@@ -4363,7 +4363,7 @@ M.ClientCertificate = schema.new({
 })
 
 M.GetClientCertificatesOutput = schema.new({
-    id = id.from(_N, "GetClientCertificatesOutput"),
+    id = id.from(_N, "ClientCertificates"),
     type = "structure",
     members = {
         items = schema.new({
@@ -4389,7 +4389,7 @@ M.GetClientCertificatesOutput = schema.new({
 })
 
 M.GetDeploymentInput = schema.new({
-    id = id.from(_N, "GetDeploymentInput"),
+    id = id.from(_N, "GetDeploymentRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -4426,7 +4426,7 @@ M.GetDeploymentInput = schema.new({
 })
 
 M.GetDeploymentOutput = schema.new({
-    id = id.from(_N, "GetDeploymentOutput"),
+    id = id.from(_N, "Deployment"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4453,13 +4453,13 @@ M.GetDeploymentOutput = schema.new({
             name = "apiSummary",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.MethodSnapshot }),
         }),
     },
 })
 
 M.GetDeploymentsInput = schema.new({
-    id = id.from(_N, "GetDeploymentsInput"),
+    id = id.from(_N, "GetDeploymentsRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -4521,13 +4521,13 @@ M.Deployment = schema.new({
             name = "apiSummary",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.MethodSnapshot }),
         }),
     },
 })
 
 M.GetDeploymentsOutput = schema.new({
-    id = id.from(_N, "GetDeploymentsOutput"),
+    id = id.from(_N, "Deployments"),
     type = "structure",
     members = {
         items = schema.new({
@@ -4553,7 +4553,7 @@ M.GetDeploymentsOutput = schema.new({
 })
 
 M.GetDocumentationPartInput = schema.new({
-    id = id.from(_N, "GetDocumentationPartInput"),
+    id = id.from(_N, "GetDocumentationPartRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -4580,7 +4580,7 @@ M.GetDocumentationPartInput = schema.new({
 })
 
 M.GetDocumentationPartOutput = schema.new({
-    id = id.from(_N, "GetDocumentationPartOutput"),
+    id = id.from(_N, "DocumentationPart"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4606,7 +4606,7 @@ M.GetDocumentationPartOutput = schema.new({
 })
 
 M.GetDocumentationPartsInput = schema.new({
-    id = id.from(_N, "GetDocumentationPartsInput"),
+    id = id.from(_N, "GetDocumentationPartsRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -4703,7 +4703,7 @@ M.DocumentationPart = schema.new({
 })
 
 M.GetDocumentationPartsOutput = schema.new({
-    id = id.from(_N, "GetDocumentationPartsOutput"),
+    id = id.from(_N, "DocumentationParts"),
     type = "structure",
     members = {
         items = schema.new({
@@ -4729,7 +4729,7 @@ M.GetDocumentationPartsOutput = schema.new({
 })
 
 M.GetDocumentationVersionInput = schema.new({
-    id = id.from(_N, "GetDocumentationVersionInput"),
+    id = id.from(_N, "GetDocumentationVersionRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -4756,7 +4756,7 @@ M.GetDocumentationVersionInput = schema.new({
 })
 
 M.GetDocumentationVersionOutput = schema.new({
-    id = id.from(_N, "GetDocumentationVersionOutput"),
+    id = id.from(_N, "DocumentationVersion"),
     type = "structure",
     members = {
         version = schema.new({
@@ -4781,7 +4781,7 @@ M.GetDocumentationVersionOutput = schema.new({
 })
 
 M.GetDocumentationVersionsInput = schema.new({
-    id = id.from(_N, "GetDocumentationVersionsInput"),
+    id = id.from(_N, "GetDocumentationVersionsRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -4841,7 +4841,7 @@ M.DocumentationVersion = schema.new({
 })
 
 M.GetDocumentationVersionsOutput = schema.new({
-    id = id.from(_N, "GetDocumentationVersionsOutput"),
+    id = id.from(_N, "DocumentationVersions"),
     type = "structure",
     members = {
         items = schema.new({
@@ -4867,7 +4867,7 @@ M.GetDocumentationVersionsOutput = schema.new({
 })
 
 M.GetDomainNameInput = schema.new({
-    id = id.from(_N, "GetDomainNameInput"),
+    id = id.from(_N, "GetDomainNameRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -4893,7 +4893,7 @@ M.GetDomainNameInput = schema.new({
 })
 
 M.GetDomainNameOutput = schema.new({
-    id = id.from(_N, "GetDomainNameOutput"),
+    id = id.from(_N, "DomainName"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -5042,7 +5042,7 @@ M.GetDomainNameOutput = schema.new({
 })
 
 M.GetDomainNameAccessAssociationsInput = schema.new({
-    id = id.from(_N, "GetDomainNameAccessAssociationsInput"),
+    id = id.from(_N, "GetDomainNameAccessAssociationsRequest"),
     type = "structure",
     members = {
         position = schema.new({
@@ -5115,7 +5115,7 @@ M.DomainNameAccessAssociation = schema.new({
 })
 
 M.GetDomainNameAccessAssociationsOutput = schema.new({
-    id = id.from(_N, "GetDomainNameAccessAssociationsOutput"),
+    id = id.from(_N, "DomainNameAccessAssociations"),
     type = "structure",
     members = {
         items = schema.new({
@@ -5141,7 +5141,7 @@ M.GetDomainNameAccessAssociationsOutput = schema.new({
 })
 
 M.GetDomainNamesInput = schema.new({
-    id = id.from(_N, "GetDomainNamesInput"),
+    id = id.from(_N, "GetDomainNamesRequest"),
     type = "structure",
     members = {
         position = schema.new({
@@ -5324,7 +5324,7 @@ M.DomainName = schema.new({
 })
 
 M.GetDomainNamesOutput = schema.new({
-    id = id.from(_N, "GetDomainNamesOutput"),
+    id = id.from(_N, "DomainNames"),
     type = "structure",
     members = {
         items = schema.new({
@@ -5350,7 +5350,7 @@ M.GetDomainNamesOutput = schema.new({
 })
 
 M.GetExportInput = schema.new({
-    id = id.from(_N, "GetExportInput"),
+    id = id.from(_N, "GetExportRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -5407,7 +5407,7 @@ M.GetExportInput = schema.new({
 })
 
 M.GetExportOutput = schema.new({
-    id = id.from(_N, "GetExportOutput"),
+    id = id.from(_N, "ExportResponse"),
     type = "structure",
     members = {
         contentType = schema.new({
@@ -5441,7 +5441,7 @@ M.GetExportOutput = schema.new({
 })
 
 M.GetGatewayResponseInput = schema.new({
-    id = id.from(_N, "GetGatewayResponseInput"),
+    id = id.from(_N, "GetGatewayResponseRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -5468,7 +5468,7 @@ M.GetGatewayResponseInput = schema.new({
 })
 
 M.GetGatewayResponseOutput = schema.new({
-    id = id.from(_N, "GetGatewayResponseOutput"),
+    id = id.from(_N, "GatewayResponse"),
     type = "structure",
     members = {
         responseType = schema.new({
@@ -5512,7 +5512,7 @@ M.GetGatewayResponseOutput = schema.new({
 })
 
 M.GetGatewayResponsesInput = schema.new({
-    id = id.from(_N, "GetGatewayResponsesInput"),
+    id = id.from(_N, "GetGatewayResponsesRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -5591,7 +5591,7 @@ M.GatewayResponse = schema.new({
 })
 
 M.GetGatewayResponsesOutput = schema.new({
-    id = id.from(_N, "GetGatewayResponsesOutput"),
+    id = id.from(_N, "GatewayResponses"),
     type = "structure",
     members = {
         items = schema.new({
@@ -5617,7 +5617,7 @@ M.GetGatewayResponsesOutput = schema.new({
 })
 
 M.GetIntegrationInput = schema.new({
-    id = id.from(_N, "GetIntegrationInput"),
+    id = id.from(_N, "GetIntegrationRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -5654,7 +5654,7 @@ M.GetIntegrationInput = schema.new({
 })
 
 M.GetIntegrationOutput = schema.new({
-    id = id.from(_N, "GetIntegrationOutput"),
+    id = id.from(_N, "Integration"),
     type = "structure",
     members = {
         type = schema.new({
@@ -5774,7 +5774,7 @@ M.GetIntegrationOutput = schema.new({
 })
 
 M.GetIntegrationResponseInput = schema.new({
-    id = id.from(_N, "GetIntegrationResponseInput"),
+    id = id.from(_N, "GetIntegrationResponseRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -5821,7 +5821,7 @@ M.GetIntegrationResponseInput = schema.new({
 })
 
 M.GetIntegrationResponseOutput = schema.new({
-    id = id.from(_N, "GetIntegrationResponseOutput"),
+    id = id.from(_N, "IntegrationResponse"),
     type = "structure",
     members = {
         statusCode = schema.new({
@@ -5862,7 +5862,7 @@ M.GetIntegrationResponseOutput = schema.new({
 })
 
 M.GetMethodInput = schema.new({
-    id = id.from(_N, "GetMethodInput"),
+    id = id.from(_N, "GetMethodRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -5899,7 +5899,7 @@ M.GetMethodInput = schema.new({
 })
 
 M.GetMethodOutput = schema.new({
-    id = id.from(_N, "GetMethodOutput"),
+    id = id.from(_N, "Method"),
     type = "structure",
     members = {
         httpMethod = schema.new({
@@ -5980,7 +5980,7 @@ M.GetMethodOutput = schema.new({
 })
 
 M.GetMethodResponseInput = schema.new({
-    id = id.from(_N, "GetMethodResponseInput"),
+    id = id.from(_N, "GetMethodResponseRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -6027,7 +6027,7 @@ M.GetMethodResponseInput = schema.new({
 })
 
 M.GetMethodResponseOutput = schema.new({
-    id = id.from(_N, "GetMethodResponseOutput"),
+    id = id.from(_N, "MethodResponse"),
     type = "structure",
     members = {
         statusCode = schema.new({
@@ -6056,7 +6056,7 @@ M.GetMethodResponseOutput = schema.new({
 })
 
 M.GetModelInput = schema.new({
-    id = id.from(_N, "GetModelInput"),
+    id = id.from(_N, "GetModelRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -6093,7 +6093,7 @@ M.GetModelInput = schema.new({
 })
 
 M.GetModelOutput = schema.new({
-    id = id.from(_N, "GetModelOutput"),
+    id = id.from(_N, "Model"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6130,7 +6130,7 @@ M.GetModelOutput = schema.new({
 })
 
 M.GetModelsInput = schema.new({
-    id = id.from(_N, "GetModelsInput"),
+    id = id.from(_N, "GetModelsRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -6202,7 +6202,7 @@ M.Model = schema.new({
 })
 
 M.GetModelsOutput = schema.new({
-    id = id.from(_N, "GetModelsOutput"),
+    id = id.from(_N, "Models"),
     type = "structure",
     members = {
         items = schema.new({
@@ -6228,7 +6228,7 @@ M.GetModelsOutput = schema.new({
 })
 
 M.GetModelTemplateInput = schema.new({
-    id = id.from(_N, "GetModelTemplateInput"),
+    id = id.from(_N, "GetModelTemplateRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -6255,7 +6255,7 @@ M.GetModelTemplateInput = schema.new({
 })
 
 M.GetModelTemplateOutput = schema.new({
-    id = id.from(_N, "GetModelTemplateOutput"),
+    id = id.from(_N, "Template"),
     type = "structure",
     members = {
         value = schema.new({
@@ -6268,7 +6268,7 @@ M.GetModelTemplateOutput = schema.new({
 })
 
 M.GetRequestValidatorInput = schema.new({
-    id = id.from(_N, "GetRequestValidatorInput"),
+    id = id.from(_N, "GetRequestValidatorRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -6295,7 +6295,7 @@ M.GetRequestValidatorInput = schema.new({
 })
 
 M.GetRequestValidatorOutput = schema.new({
-    id = id.from(_N, "GetRequestValidatorOutput"),
+    id = id.from(_N, "RequestValidator"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6332,7 +6332,7 @@ M.GetRequestValidatorOutput = schema.new({
 })
 
 M.GetRequestValidatorsInput = schema.new({
-    id = id.from(_N, "GetRequestValidatorsInput"),
+    id = id.from(_N, "GetRequestValidatorsRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -6404,7 +6404,7 @@ M.RequestValidator = schema.new({
 })
 
 M.GetRequestValidatorsOutput = schema.new({
-    id = id.from(_N, "GetRequestValidatorsOutput"),
+    id = id.from(_N, "RequestValidators"),
     type = "structure",
     members = {
         items = schema.new({
@@ -6430,7 +6430,7 @@ M.GetRequestValidatorsOutput = schema.new({
 })
 
 M.GetResourceInput = schema.new({
-    id = id.from(_N, "GetResourceInput"),
+    id = id.from(_N, "GetResourceRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -6467,7 +6467,7 @@ M.GetResourceInput = schema.new({
 })
 
 M.GetResourceOutput = schema.new({
-    id = id.from(_N, "GetResourceOutput"),
+    id = id.from(_N, "Resource"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6506,7 +6506,7 @@ M.GetResourceOutput = schema.new({
 })
 
 M.GetResourcesInput = schema.new({
-    id = id.from(_N, "GetResourcesInput"),
+    id = id.from(_N, "GetResourcesRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -6590,7 +6590,7 @@ M.Resource = schema.new({
 })
 
 M.GetResourcesOutput = schema.new({
-    id = id.from(_N, "GetResourcesOutput"),
+    id = id.from(_N, "Resources"),
     type = "structure",
     members = {
         items = schema.new({
@@ -6616,7 +6616,7 @@ M.GetResourcesOutput = schema.new({
 })
 
 M.GetRestApiInput = schema.new({
-    id = id.from(_N, "GetRestApiInput"),
+    id = id.from(_N, "GetRestApiRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -6633,7 +6633,7 @@ M.GetRestApiInput = schema.new({
 })
 
 M.GetRestApiOutput = schema.new({
-    id = id.from(_N, "GetRestApiOutput"),
+    id = id.from(_N, "RestApi"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6756,7 +6756,7 @@ M.GetRestApiOutput = schema.new({
 })
 
 M.GetRestApisInput = schema.new({
-    id = id.from(_N, "GetRestApisInput"),
+    id = id.from(_N, "GetRestApisRequest"),
     type = "structure",
     members = {
         position = schema.new({
@@ -6904,7 +6904,7 @@ M.RestApi = schema.new({
 })
 
 M.GetRestApisOutput = schema.new({
-    id = id.from(_N, "GetRestApisOutput"),
+    id = id.from(_N, "RestApis"),
     type = "structure",
     members = {
         items = schema.new({
@@ -6930,7 +6930,7 @@ M.GetRestApisOutput = schema.new({
 })
 
 M.GetSdkInput = schema.new({
-    id = id.from(_N, "GetSdkInput"),
+    id = id.from(_N, "GetSdkRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -6978,7 +6978,7 @@ M.GetSdkInput = schema.new({
 })
 
 M.GetSdkOutput = schema.new({
-    id = id.from(_N, "GetSdkOutput"),
+    id = id.from(_N, "SdkResponse"),
     type = "structure",
     members = {
         contentType = schema.new({
@@ -7012,7 +7012,7 @@ M.GetSdkOutput = schema.new({
 })
 
 M.GetSdkTypeInput = schema.new({
-    id = id.from(_N, "GetSdkTypeInput"),
+    id = id.from(_N, "GetSdkTypeRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -7069,7 +7069,7 @@ M.SdkConfigurationProperty = schema.new({
 })
 
 M.GetSdkTypeOutput = schema.new({
-    id = id.from(_N, "GetSdkTypeOutput"),
+    id = id.from(_N, "SdkType"),
     type = "structure",
     members = {
         id = schema.new({
@@ -7101,7 +7101,7 @@ M.GetSdkTypeOutput = schema.new({
 })
 
 M.GetSdkTypesInput = schema.new({
-    id = id.from(_N, "GetSdkTypesInput"),
+    id = id.from(_N, "GetSdkTypesRequest"),
     type = "structure",
     members = {
         position = schema.new({
@@ -7158,7 +7158,7 @@ M.SdkType = schema.new({
 })
 
 M.GetSdkTypesOutput = schema.new({
-    id = id.from(_N, "GetSdkTypesOutput"),
+    id = id.from(_N, "SdkTypes"),
     type = "structure",
     members = {
         items = schema.new({
@@ -7175,7 +7175,7 @@ M.GetSdkTypesOutput = schema.new({
 })
 
 M.GetStageInput = schema.new({
-    id = id.from(_N, "GetStageInput"),
+    id = id.from(_N, "GetStageRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -7202,7 +7202,7 @@ M.GetStageInput = schema.new({
 })
 
 M.GetStageOutput = schema.new({
-    id = id.from(_N, "GetStageOutput"),
+    id = id.from(_N, "Stage"),
     type = "structure",
     members = {
         deploymentId = schema.new({
@@ -7325,7 +7325,7 @@ M.GetStageOutput = schema.new({
 })
 
 M.GetStagesInput = schema.new({
-    id = id.from(_N, "GetStagesInput"),
+    id = id.from(_N, "GetStagesRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -7474,7 +7474,7 @@ M.Stage = schema.new({
 })
 
 M.GetStagesOutput = schema.new({
-    id = id.from(_N, "GetStagesOutput"),
+    id = id.from(_N, "Stages"),
     type = "structure",
     members = {
         item = schema.new({
@@ -7488,7 +7488,7 @@ M.GetStagesOutput = schema.new({
 })
 
 M.GetTagsInput = schema.new({
-    id = id.from(_N, "GetTagsInput"),
+    id = id.from(_N, "GetTagsRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -7523,7 +7523,7 @@ M.GetTagsInput = schema.new({
 })
 
 M.GetTagsOutput = schema.new({
-    id = id.from(_N, "GetTagsOutput"),
+    id = id.from(_N, "Tags"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -7538,7 +7538,7 @@ M.GetTagsOutput = schema.new({
 })
 
 M.GetUsageInput = schema.new({
-    id = id.from(_N, "GetUsageInput"),
+    id = id.from(_N, "GetUsageRequest"),
     type = "structure",
     members = {
         usagePlanId = schema.new({
@@ -7602,7 +7602,7 @@ M.GetUsageInput = schema.new({
 })
 
 M.GetUsageOutput = schema.new({
-    id = id.from(_N, "GetUsageOutput"),
+    id = id.from(_N, "Usage"),
     type = "structure",
     members = {
         usagePlanId = schema.new({
@@ -7629,7 +7629,7 @@ M.GetUsageOutput = schema.new({
             name = "items",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.Document }),
             traits = {
                 [traits.JSON_NAME] = { name = "values" },
             },
@@ -7647,7 +7647,7 @@ M.GetUsageOutput = schema.new({
 })
 
 M.GetUsagePlanInput = schema.new({
-    id = id.from(_N, "GetUsagePlanInput"),
+    id = id.from(_N, "GetUsagePlanRequest"),
     type = "structure",
     members = {
         usagePlanId = schema.new({
@@ -7664,7 +7664,7 @@ M.GetUsagePlanInput = schema.new({
 })
 
 M.GetUsagePlanOutput = schema.new({
-    id = id.from(_N, "GetUsagePlanOutput"),
+    id = id.from(_N, "UsagePlan"),
     type = "structure",
     members = {
         id = schema.new({
@@ -7724,7 +7724,7 @@ M.GetUsagePlanOutput = schema.new({
 })
 
 M.GetUsagePlanKeyInput = schema.new({
-    id = id.from(_N, "GetUsagePlanKeyInput"),
+    id = id.from(_N, "GetUsagePlanKeyRequest"),
     type = "structure",
     members = {
         usagePlanId = schema.new({
@@ -7751,7 +7751,7 @@ M.GetUsagePlanKeyInput = schema.new({
 })
 
 M.GetUsagePlanKeyOutput = schema.new({
-    id = id.from(_N, "GetUsagePlanKeyOutput"),
+    id = id.from(_N, "UsagePlanKey"),
     type = "structure",
     members = {
         id = schema.new({
@@ -7782,7 +7782,7 @@ M.GetUsagePlanKeyOutput = schema.new({
 })
 
 M.GetUsagePlanKeysInput = schema.new({
-    id = id.from(_N, "GetUsagePlanKeysInput"),
+    id = id.from(_N, "GetUsagePlanKeysRequest"),
     type = "structure",
     members = {
         usagePlanId = schema.new({
@@ -7857,7 +7857,7 @@ M.UsagePlanKey = schema.new({
 })
 
 M.GetUsagePlanKeysOutput = schema.new({
-    id = id.from(_N, "GetUsagePlanKeysOutput"),
+    id = id.from(_N, "UsagePlanKeys"),
     type = "structure",
     members = {
         items = schema.new({
@@ -7883,7 +7883,7 @@ M.GetUsagePlanKeysOutput = schema.new({
 })
 
 M.GetUsagePlansInput = schema.new({
-    id = id.from(_N, "GetUsagePlansInput"),
+    id = id.from(_N, "GetUsagePlansRequest"),
     type = "structure",
     members = {
         position = schema.new({
@@ -7977,7 +7977,7 @@ M.UsagePlan = schema.new({
 })
 
 M.GetUsagePlansOutput = schema.new({
-    id = id.from(_N, "GetUsagePlansOutput"),
+    id = id.from(_N, "UsagePlans"),
     type = "structure",
     members = {
         items = schema.new({
@@ -8003,7 +8003,7 @@ M.GetUsagePlansOutput = schema.new({
 })
 
 M.GetVpcLinkInput = schema.new({
-    id = id.from(_N, "GetVpcLinkInput"),
+    id = id.from(_N, "GetVpcLinkRequest"),
     type = "structure",
     members = {
         vpcLinkId = schema.new({
@@ -8020,7 +8020,7 @@ M.GetVpcLinkInput = schema.new({
 })
 
 M.GetVpcLinkOutput = schema.new({
-    id = id.from(_N, "GetVpcLinkOutput"),
+    id = id.from(_N, "VpcLink"),
     type = "structure",
     members = {
         id = schema.new({
@@ -8072,7 +8072,7 @@ M.GetVpcLinkOutput = schema.new({
 })
 
 M.GetVpcLinksInput = schema.new({
-    id = id.from(_N, "GetVpcLinksInput"),
+    id = id.from(_N, "GetVpcLinksRequest"),
     type = "structure",
     members = {
         position = schema.new({
@@ -8149,7 +8149,7 @@ M.VpcLink = schema.new({
 })
 
 M.GetVpcLinksOutput = schema.new({
-    id = id.from(_N, "GetVpcLinksOutput"),
+    id = id.from(_N, "VpcLinks"),
     type = "structure",
     members = {
         items = schema.new({
@@ -8175,7 +8175,7 @@ M.GetVpcLinksOutput = schema.new({
 })
 
 M.ImportApiKeysInput = schema.new({
-    id = id.from(_N, "ImportApiKeysInput"),
+    id = id.from(_N, "ImportApiKeysRequest"),
     type = "structure",
     members = {
         body = schema.new({
@@ -8212,7 +8212,7 @@ M.ImportApiKeysInput = schema.new({
 })
 
 M.ImportApiKeysOutput = schema.new({
-    id = id.from(_N, "ImportApiKeysOutput"),
+    id = id.from(_N, "ApiKeyIds"),
     type = "structure",
     members = {
         ids = schema.new({
@@ -8233,7 +8233,7 @@ M.ImportApiKeysOutput = schema.new({
 })
 
 M.ImportDocumentationPartsInput = schema.new({
-    id = id.from(_N, "ImportDocumentationPartsInput"),
+    id = id.from(_N, "ImportDocumentationPartsRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -8279,7 +8279,7 @@ M.ImportDocumentationPartsInput = schema.new({
 })
 
 M.ImportDocumentationPartsOutput = schema.new({
-    id = id.from(_N, "ImportDocumentationPartsOutput"),
+    id = id.from(_N, "DocumentationPartIds"),
     type = "structure",
     members = {
         ids = schema.new({
@@ -8300,7 +8300,7 @@ M.ImportDocumentationPartsOutput = schema.new({
 })
 
 M.ImportRestApiInput = schema.new({
-    id = id.from(_N, "ImportRestApiInput"),
+    id = id.from(_N, "ImportRestApiRequest"),
     type = "structure",
     members = {
         failOnWarnings = schema.new({
@@ -8338,7 +8338,7 @@ M.ImportRestApiInput = schema.new({
 })
 
 M.ImportRestApiOutput = schema.new({
-    id = id.from(_N, "ImportRestApiOutput"),
+    id = id.from(_N, "RestApi"),
     type = "structure",
     members = {
         id = schema.new({
@@ -8461,7 +8461,7 @@ M.ImportRestApiOutput = schema.new({
 })
 
 M.PutGatewayResponseInput = schema.new({
-    id = id.from(_N, "PutGatewayResponseInput"),
+    id = id.from(_N, "PutGatewayResponseRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -8510,7 +8510,7 @@ M.PutGatewayResponseInput = schema.new({
 })
 
 M.PutGatewayResponseOutput = schema.new({
-    id = id.from(_N, "PutGatewayResponseOutput"),
+    id = id.from(_N, "GatewayResponse"),
     type = "structure",
     members = {
         responseType = schema.new({
@@ -8554,7 +8554,7 @@ M.PutGatewayResponseOutput = schema.new({
 })
 
 M.PutIntegrationInput = schema.new({
-    id = id.from(_N, "PutIntegrationInput"),
+    id = id.from(_N, "PutIntegrationRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -8700,7 +8700,7 @@ M.PutIntegrationInput = schema.new({
 })
 
 M.PutIntegrationOutput = schema.new({
-    id = id.from(_N, "PutIntegrationOutput"),
+    id = id.from(_N, "Integration"),
     type = "structure",
     members = {
         type = schema.new({
@@ -8820,7 +8820,7 @@ M.PutIntegrationOutput = schema.new({
 })
 
 M.PutIntegrationResponseInput = schema.new({
-    id = id.from(_N, "PutIntegrationResponseInput"),
+    id = id.from(_N, "PutIntegrationResponseRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -8895,7 +8895,7 @@ M.PutIntegrationResponseInput = schema.new({
 })
 
 M.PutIntegrationResponseOutput = schema.new({
-    id = id.from(_N, "PutIntegrationResponseOutput"),
+    id = id.from(_N, "IntegrationResponse"),
     type = "structure",
     members = {
         statusCode = schema.new({
@@ -8936,7 +8936,7 @@ M.PutIntegrationResponseOutput = schema.new({
 })
 
 M.PutMethodInput = schema.new({
-    id = id.from(_N, "PutMethodInput"),
+    id = id.from(_N, "PutMethodRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -9032,7 +9032,7 @@ M.PutMethodInput = schema.new({
 })
 
 M.PutMethodOutput = schema.new({
-    id = id.from(_N, "PutMethodOutput"),
+    id = id.from(_N, "Method"),
     type = "structure",
     members = {
         httpMethod = schema.new({
@@ -9113,7 +9113,7 @@ M.PutMethodOutput = schema.new({
 })
 
 M.PutMethodResponseInput = schema.new({
-    id = id.from(_N, "PutMethodResponseInput"),
+    id = id.from(_N, "PutMethodResponseRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -9176,7 +9176,7 @@ M.PutMethodResponseInput = schema.new({
 })
 
 M.PutMethodResponseOutput = schema.new({
-    id = id.from(_N, "PutMethodResponseOutput"),
+    id = id.from(_N, "MethodResponse"),
     type = "structure",
     members = {
         statusCode = schema.new({
@@ -9205,7 +9205,7 @@ M.PutMethodResponseOutput = schema.new({
 })
 
 M.PutRestApiInput = schema.new({
-    id = id.from(_N, "PutRestApiInput"),
+    id = id.from(_N, "PutRestApiRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -9262,7 +9262,7 @@ M.PutRestApiInput = schema.new({
 })
 
 M.PutRestApiOutput = schema.new({
-    id = id.from(_N, "PutRestApiOutput"),
+    id = id.from(_N, "RestApi"),
     type = "structure",
     members = {
         id = schema.new({
@@ -9385,7 +9385,7 @@ M.PutRestApiOutput = schema.new({
 })
 
 M.RejectDomainNameAccessAssociationInput = schema.new({
-    id = id.from(_N, "RejectDomainNameAccessAssociationInput"),
+    id = id.from(_N, "RejectDomainNameAccessAssociationRequest"),
     type = "structure",
     members = {
         domainNameAccessAssociationArn = schema.new({
@@ -9412,12 +9412,12 @@ M.RejectDomainNameAccessAssociationInput = schema.new({
 })
 
 M.RejectDomainNameAccessAssociationOutput = schema.new({
-    id = id.from(_N, "RejectDomainNameAccessAssociationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -9445,12 +9445,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.TestInvokeAuthorizerInput = schema.new({
-    id = id.from(_N, "TestInvokeAuthorizerInput"),
+    id = id.from(_N, "TestInvokeAuthorizerRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -9487,7 +9487,7 @@ M.TestInvokeAuthorizerInput = schema.new({
             name = "multiValueHeaders",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         pathWithQueryString = schema.new({
             id = id.from(_N, "TestInvokeAuthorizerInput", "pathWithQueryString"),
@@ -9521,7 +9521,7 @@ M.TestInvokeAuthorizerInput = schema.new({
 })
 
 M.TestInvokeAuthorizerOutput = schema.new({
-    id = id.from(_N, "TestInvokeAuthorizerOutput"),
+    id = id.from(_N, "TestInvokeAuthorizerResponse"),
     type = "structure",
     members = {
         clientStatus = schema.new({
@@ -9566,7 +9566,7 @@ M.TestInvokeAuthorizerOutput = schema.new({
             name = "authorization",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         claims = schema.new({
             id = id.from(_N, "TestInvokeAuthorizerOutput", "claims"),
@@ -9580,7 +9580,7 @@ M.TestInvokeAuthorizerOutput = schema.new({
 })
 
 M.TestInvokeMethodInput = schema.new({
-    id = id.from(_N, "TestInvokeMethodInput"),
+    id = id.from(_N, "TestInvokeMethodRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -9639,7 +9639,7 @@ M.TestInvokeMethodInput = schema.new({
             name = "multiValueHeaders",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         clientCertificateId = schema.new({
             id = id.from(_N, "TestInvokeMethodInput", "clientCertificateId"),
@@ -9659,7 +9659,7 @@ M.TestInvokeMethodInput = schema.new({
 })
 
 M.TestInvokeMethodOutput = schema.new({
-    id = id.from(_N, "TestInvokeMethodOutput"),
+    id = id.from(_N, "TestInvokeMethodResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -9691,7 +9691,7 @@ M.TestInvokeMethodOutput = schema.new({
             name = "multiValueHeaders",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         log = schema.new({
             id = id.from(_N, "TestInvokeMethodOutput", "log"),
@@ -9712,7 +9712,7 @@ M.TestInvokeMethodOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -9740,7 +9740,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -9776,7 +9776,7 @@ M.PatchOperation = schema.new({
 })
 
 M.UpdateAccountInput = schema.new({
-    id = id.from(_N, "UpdateAccountInput"),
+    id = id.from(_N, "UpdateAccountRequest"),
     type = "structure",
     members = {
         patchOperations = schema.new({
@@ -9790,7 +9790,7 @@ M.UpdateAccountInput = schema.new({
 })
 
 M.UpdateAccountOutput = schema.new({
-    id = id.from(_N, "UpdateAccountOutput"),
+    id = id.from(_N, "Account"),
     type = "structure",
     members = {
         cloudwatchRoleArn = schema.new({
@@ -9823,7 +9823,7 @@ M.UpdateAccountOutput = schema.new({
 })
 
 M.UpdateApiKeyInput = schema.new({
-    id = id.from(_N, "UpdateApiKeyInput"),
+    id = id.from(_N, "UpdateApiKeyRequest"),
     type = "structure",
     members = {
         apiKey = schema.new({
@@ -9847,7 +9847,7 @@ M.UpdateApiKeyInput = schema.new({
 })
 
 M.UpdateApiKeyOutput = schema.new({
-    id = id.from(_N, "UpdateApiKeyOutput"),
+    id = id.from(_N, "ApiKey"),
     type = "structure",
     members = {
         id = schema.new({
@@ -9920,7 +9920,7 @@ M.UpdateApiKeyOutput = schema.new({
 })
 
 M.UpdateAuthorizerInput = schema.new({
-    id = id.from(_N, "UpdateAuthorizerInput"),
+    id = id.from(_N, "UpdateAuthorizerRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -9954,7 +9954,7 @@ M.UpdateAuthorizerInput = schema.new({
 })
 
 M.UpdateAuthorizerOutput = schema.new({
-    id = id.from(_N, "UpdateAuthorizerOutput"),
+    id = id.from(_N, "Authorizer"),
     type = "structure",
     members = {
         id = schema.new({
@@ -10022,7 +10022,7 @@ M.UpdateAuthorizerOutput = schema.new({
 })
 
 M.UpdateBasePathMappingInput = schema.new({
-    id = id.from(_N, "UpdateBasePathMappingInput"),
+    id = id.from(_N, "UpdateBasePathMappingRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -10065,7 +10065,7 @@ M.UpdateBasePathMappingInput = schema.new({
 })
 
 M.UpdateBasePathMappingOutput = schema.new({
-    id = id.from(_N, "UpdateBasePathMappingOutput"),
+    id = id.from(_N, "BasePathMapping"),
     type = "structure",
     members = {
         basePath = schema.new({
@@ -10090,7 +10090,7 @@ M.UpdateBasePathMappingOutput = schema.new({
 })
 
 M.UpdateClientCertificateInput = schema.new({
-    id = id.from(_N, "UpdateClientCertificateInput"),
+    id = id.from(_N, "UpdateClientCertificateRequest"),
     type = "structure",
     members = {
         clientCertificateId = schema.new({
@@ -10114,7 +10114,7 @@ M.UpdateClientCertificateInput = schema.new({
 })
 
 M.UpdateClientCertificateOutput = schema.new({
-    id = id.from(_N, "UpdateClientCertificateOutput"),
+    id = id.from(_N, "ClientCertificate"),
     type = "structure",
     members = {
         clientCertificateId = schema.new({
@@ -10159,7 +10159,7 @@ M.UpdateClientCertificateOutput = schema.new({
 })
 
 M.UpdateDeploymentInput = schema.new({
-    id = id.from(_N, "UpdateDeploymentInput"),
+    id = id.from(_N, "UpdateDeploymentRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -10193,7 +10193,7 @@ M.UpdateDeploymentInput = schema.new({
 })
 
 M.UpdateDeploymentOutput = schema.new({
-    id = id.from(_N, "UpdateDeploymentOutput"),
+    id = id.from(_N, "Deployment"),
     type = "structure",
     members = {
         id = schema.new({
@@ -10220,13 +10220,13 @@ M.UpdateDeploymentOutput = schema.new({
             name = "apiSummary",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.MethodSnapshot }),
         }),
     },
 })
 
 M.UpdateDocumentationPartInput = schema.new({
-    id = id.from(_N, "UpdateDocumentationPartInput"),
+    id = id.from(_N, "UpdateDocumentationPartRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -10260,7 +10260,7 @@ M.UpdateDocumentationPartInput = schema.new({
 })
 
 M.UpdateDocumentationPartOutput = schema.new({
-    id = id.from(_N, "UpdateDocumentationPartOutput"),
+    id = id.from(_N, "DocumentationPart"),
     type = "structure",
     members = {
         id = schema.new({
@@ -10286,7 +10286,7 @@ M.UpdateDocumentationPartOutput = schema.new({
 })
 
 M.UpdateDocumentationVersionInput = schema.new({
-    id = id.from(_N, "UpdateDocumentationVersionInput"),
+    id = id.from(_N, "UpdateDocumentationVersionRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -10320,7 +10320,7 @@ M.UpdateDocumentationVersionInput = schema.new({
 })
 
 M.UpdateDocumentationVersionOutput = schema.new({
-    id = id.from(_N, "UpdateDocumentationVersionOutput"),
+    id = id.from(_N, "DocumentationVersion"),
     type = "structure",
     members = {
         version = schema.new({
@@ -10345,7 +10345,7 @@ M.UpdateDocumentationVersionOutput = schema.new({
 })
 
 M.UpdateDomainNameInput = schema.new({
-    id = id.from(_N, "UpdateDomainNameInput"),
+    id = id.from(_N, "UpdateDomainNameRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -10378,7 +10378,7 @@ M.UpdateDomainNameInput = schema.new({
 })
 
 M.UpdateDomainNameOutput = schema.new({
-    id = id.from(_N, "UpdateDomainNameOutput"),
+    id = id.from(_N, "DomainName"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -10527,7 +10527,7 @@ M.UpdateDomainNameOutput = schema.new({
 })
 
 M.UpdateGatewayResponseInput = schema.new({
-    id = id.from(_N, "UpdateGatewayResponseInput"),
+    id = id.from(_N, "UpdateGatewayResponseRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -10561,7 +10561,7 @@ M.UpdateGatewayResponseInput = schema.new({
 })
 
 M.UpdateGatewayResponseOutput = schema.new({
-    id = id.from(_N, "UpdateGatewayResponseOutput"),
+    id = id.from(_N, "GatewayResponse"),
     type = "structure",
     members = {
         responseType = schema.new({
@@ -10605,7 +10605,7 @@ M.UpdateGatewayResponseOutput = schema.new({
 })
 
 M.UpdateIntegrationInput = schema.new({
-    id = id.from(_N, "UpdateIntegrationInput"),
+    id = id.from(_N, "UpdateIntegrationRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -10649,7 +10649,7 @@ M.UpdateIntegrationInput = schema.new({
 })
 
 M.UpdateIntegrationOutput = schema.new({
-    id = id.from(_N, "UpdateIntegrationOutput"),
+    id = id.from(_N, "Integration"),
     type = "structure",
     members = {
         type = schema.new({
@@ -10769,7 +10769,7 @@ M.UpdateIntegrationOutput = schema.new({
 })
 
 M.UpdateIntegrationResponseInput = schema.new({
-    id = id.from(_N, "UpdateIntegrationResponseInput"),
+    id = id.from(_N, "UpdateIntegrationResponseRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -10823,7 +10823,7 @@ M.UpdateIntegrationResponseInput = schema.new({
 })
 
 M.UpdateIntegrationResponseOutput = schema.new({
-    id = id.from(_N, "UpdateIntegrationResponseOutput"),
+    id = id.from(_N, "IntegrationResponse"),
     type = "structure",
     members = {
         statusCode = schema.new({
@@ -10864,7 +10864,7 @@ M.UpdateIntegrationResponseOutput = schema.new({
 })
 
 M.UpdateMethodInput = schema.new({
-    id = id.from(_N, "UpdateMethodInput"),
+    id = id.from(_N, "UpdateMethodRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -10908,7 +10908,7 @@ M.UpdateMethodInput = schema.new({
 })
 
 M.UpdateMethodOutput = schema.new({
-    id = id.from(_N, "UpdateMethodOutput"),
+    id = id.from(_N, "Method"),
     type = "structure",
     members = {
         httpMethod = schema.new({
@@ -10989,7 +10989,7 @@ M.UpdateMethodOutput = schema.new({
 })
 
 M.UpdateMethodResponseInput = schema.new({
-    id = id.from(_N, "UpdateMethodResponseInput"),
+    id = id.from(_N, "UpdateMethodResponseRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -11043,7 +11043,7 @@ M.UpdateMethodResponseInput = schema.new({
 })
 
 M.UpdateMethodResponseOutput = schema.new({
-    id = id.from(_N, "UpdateMethodResponseOutput"),
+    id = id.from(_N, "MethodResponse"),
     type = "structure",
     members = {
         statusCode = schema.new({
@@ -11072,7 +11072,7 @@ M.UpdateMethodResponseOutput = schema.new({
 })
 
 M.UpdateModelInput = schema.new({
-    id = id.from(_N, "UpdateModelInput"),
+    id = id.from(_N, "UpdateModelRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -11106,7 +11106,7 @@ M.UpdateModelInput = schema.new({
 })
 
 M.UpdateModelOutput = schema.new({
-    id = id.from(_N, "UpdateModelOutput"),
+    id = id.from(_N, "Model"),
     type = "structure",
     members = {
         id = schema.new({
@@ -11143,7 +11143,7 @@ M.UpdateModelOutput = schema.new({
 })
 
 M.UpdateRequestValidatorInput = schema.new({
-    id = id.from(_N, "UpdateRequestValidatorInput"),
+    id = id.from(_N, "UpdateRequestValidatorRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -11177,7 +11177,7 @@ M.UpdateRequestValidatorInput = schema.new({
 })
 
 M.UpdateRequestValidatorOutput = schema.new({
-    id = id.from(_N, "UpdateRequestValidatorOutput"),
+    id = id.from(_N, "RequestValidator"),
     type = "structure",
     members = {
         id = schema.new({
@@ -11214,7 +11214,7 @@ M.UpdateRequestValidatorOutput = schema.new({
 })
 
 M.UpdateResourceInput = schema.new({
-    id = id.from(_N, "UpdateResourceInput"),
+    id = id.from(_N, "UpdateResourceRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -11248,7 +11248,7 @@ M.UpdateResourceInput = schema.new({
 })
 
 M.UpdateResourceOutput = schema.new({
-    id = id.from(_N, "UpdateResourceOutput"),
+    id = id.from(_N, "Resource"),
     type = "structure",
     members = {
         id = schema.new({
@@ -11287,7 +11287,7 @@ M.UpdateResourceOutput = schema.new({
 })
 
 M.UpdateRestApiInput = schema.new({
-    id = id.from(_N, "UpdateRestApiInput"),
+    id = id.from(_N, "UpdateRestApiRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -11311,7 +11311,7 @@ M.UpdateRestApiInput = schema.new({
 })
 
 M.UpdateRestApiOutput = schema.new({
-    id = id.from(_N, "UpdateRestApiOutput"),
+    id = id.from(_N, "RestApi"),
     type = "structure",
     members = {
         id = schema.new({
@@ -11434,7 +11434,7 @@ M.UpdateRestApiOutput = schema.new({
 })
 
 M.UpdateStageInput = schema.new({
-    id = id.from(_N, "UpdateStageInput"),
+    id = id.from(_N, "UpdateStageRequest"),
     type = "structure",
     members = {
         restApiId = schema.new({
@@ -11468,7 +11468,7 @@ M.UpdateStageInput = schema.new({
 })
 
 M.UpdateStageOutput = schema.new({
-    id = id.from(_N, "UpdateStageOutput"),
+    id = id.from(_N, "Stage"),
     type = "structure",
     members = {
         deploymentId = schema.new({
@@ -11591,7 +11591,7 @@ M.UpdateStageOutput = schema.new({
 })
 
 M.UpdateUsageInput = schema.new({
-    id = id.from(_N, "UpdateUsageInput"),
+    id = id.from(_N, "UpdateUsageRequest"),
     type = "structure",
     members = {
         usagePlanId = schema.new({
@@ -11625,7 +11625,7 @@ M.UpdateUsageInput = schema.new({
 })
 
 M.UpdateUsageOutput = schema.new({
-    id = id.from(_N, "UpdateUsageOutput"),
+    id = id.from(_N, "Usage"),
     type = "structure",
     members = {
         usagePlanId = schema.new({
@@ -11652,7 +11652,7 @@ M.UpdateUsageOutput = schema.new({
             name = "items",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.Document }),
             traits = {
                 [traits.JSON_NAME] = { name = "values" },
             },
@@ -11670,7 +11670,7 @@ M.UpdateUsageOutput = schema.new({
 })
 
 M.UpdateUsagePlanInput = schema.new({
-    id = id.from(_N, "UpdateUsagePlanInput"),
+    id = id.from(_N, "UpdateUsagePlanRequest"),
     type = "structure",
     members = {
         usagePlanId = schema.new({
@@ -11694,7 +11694,7 @@ M.UpdateUsagePlanInput = schema.new({
 })
 
 M.UpdateUsagePlanOutput = schema.new({
-    id = id.from(_N, "UpdateUsagePlanOutput"),
+    id = id.from(_N, "UsagePlan"),
     type = "structure",
     members = {
         id = schema.new({
@@ -11754,7 +11754,7 @@ M.UpdateUsagePlanOutput = schema.new({
 })
 
 M.UpdateVpcLinkInput = schema.new({
-    id = id.from(_N, "UpdateVpcLinkInput"),
+    id = id.from(_N, "UpdateVpcLinkRequest"),
     type = "structure",
     members = {
         vpcLinkId = schema.new({
@@ -11778,7 +11778,7 @@ M.UpdateVpcLinkInput = schema.new({
 })
 
 M.UpdateVpcLinkOutput = schema.new({
-    id = id.from(_N, "UpdateVpcLinkOutput"),
+    id = id.from(_N, "VpcLink"),
     type = "structure",
     members = {
         id = schema.new({
@@ -11828,5 +11828,19 @@ M.UpdateVpcLinkOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

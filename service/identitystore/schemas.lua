@@ -187,7 +187,7 @@ M.AttributeOperation = schema.new({
 })
 
 M.GetGroupIdInput = schema.new({
-    id = id.from(_N, "GetGroupIdInput"),
+    id = id.from(_N, "GetGroupIdRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -213,7 +213,7 @@ M.GetGroupIdInput = schema.new({
 })
 
 M.GetGroupIdOutput = schema.new({
-    id = id.from(_N, "GetGroupIdOutput"),
+    id = id.from(_N, "GetGroupIdResponse"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -389,7 +389,7 @@ M.MemberId = schema.new({
 })
 
 M.GetGroupMembershipIdInput = schema.new({
-    id = id.from(_N, "GetGroupMembershipIdInput"),
+    id = id.from(_N, "GetGroupMembershipIdRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -424,7 +424,7 @@ M.GetGroupMembershipIdInput = schema.new({
 })
 
 M.GetGroupMembershipIdOutput = schema.new({
-    id = id.from(_N, "GetGroupMembershipIdOutput"),
+    id = id.from(_N, "GetGroupMembershipIdResponse"),
     type = "structure",
     members = {
         MembershipId = schema.new({
@@ -449,7 +449,7 @@ M.GetGroupMembershipIdOutput = schema.new({
 })
 
 M.GetUserIdInput = schema.new({
-    id = id.from(_N, "GetUserIdInput"),
+    id = id.from(_N, "GetUserIdRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -475,7 +475,7 @@ M.GetUserIdInput = schema.new({
 })
 
 M.GetUserIdOutput = schema.new({
-    id = id.from(_N, "GetUserIdOutput"),
+    id = id.from(_N, "GetUserIdResponse"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -528,7 +528,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateGroupMembershipInput = schema.new({
-    id = id.from(_N, "CreateGroupMembershipInput"),
+    id = id.from(_N, "CreateGroupMembershipRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -563,7 +563,7 @@ M.CreateGroupMembershipInput = schema.new({
 })
 
 M.CreateGroupMembershipOutput = schema.new({
-    id = id.from(_N, "CreateGroupMembershipOutput"),
+    id = id.from(_N, "CreateGroupMembershipResponse"),
     type = "structure",
     members = {
         MembershipId = schema.new({
@@ -610,7 +610,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.DeleteGroupMembershipInput = schema.new({
-    id = id.from(_N, "DeleteGroupMembershipInput"),
+    id = id.from(_N, "DeleteGroupMembershipRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -635,12 +635,12 @@ M.DeleteGroupMembershipInput = schema.new({
 })
 
 M.DeleteGroupMembershipOutput = schema.new({
-    id = id.from(_N, "DeleteGroupMembershipOutput"),
+    id = id.from(_N, "DeleteGroupMembershipResponse"),
     type = "structure",
 })
 
 M.DescribeGroupMembershipInput = schema.new({
-    id = id.from(_N, "DescribeGroupMembershipInput"),
+    id = id.from(_N, "DescribeGroupMembershipRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -665,7 +665,7 @@ M.DescribeGroupMembershipInput = schema.new({
 })
 
 M.DescribeGroupMembershipOutput = schema.new({
-    id = id.from(_N, "DescribeGroupMembershipOutput"),
+    id = id.from(_N, "DescribeGroupMembershipResponse"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -733,7 +733,7 @@ M.DescribeGroupMembershipOutput = schema.new({
 })
 
 M.ListGroupMembershipsInput = schema.new({
-    id = id.from(_N, "ListGroupMembershipsInput"),
+    id = id.from(_N, "ListGroupMembershipsRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -829,7 +829,7 @@ M.GroupMembership = schema.new({
 })
 
 M.ListGroupMembershipsOutput = schema.new({
-    id = id.from(_N, "ListGroupMembershipsOutput"),
+    id = id.from(_N, "ListGroupMembershipsResponse"),
     type = "structure",
     members = {
         GroupMemberships = schema.new({
@@ -852,7 +852,7 @@ M.ListGroupMembershipsOutput = schema.new({
 })
 
 M.CreateGroupInput = schema.new({
-    id = id.from(_N, "CreateGroupInput"),
+    id = id.from(_N, "CreateGroupRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -880,7 +880,7 @@ M.CreateGroupInput = schema.new({
 })
 
 M.CreateGroupOutput = schema.new({
-    id = id.from(_N, "CreateGroupOutput"),
+    id = id.from(_N, "CreateGroupResponse"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -905,7 +905,7 @@ M.CreateGroupOutput = schema.new({
 })
 
 M.DeleteGroupInput = schema.new({
-    id = id.from(_N, "DeleteGroupInput"),
+    id = id.from(_N, "DeleteGroupRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -930,12 +930,12 @@ M.DeleteGroupInput = schema.new({
 })
 
 M.DeleteGroupOutput = schema.new({
-    id = id.from(_N, "DeleteGroupOutput"),
+    id = id.from(_N, "DeleteGroupResponse"),
     type = "structure",
 })
 
 M.DescribeGroupInput = schema.new({
-    id = id.from(_N, "DescribeGroupInput"),
+    id = id.from(_N, "DescribeGroupRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -960,7 +960,7 @@ M.DescribeGroupInput = schema.new({
 })
 
 M.DescribeGroupOutput = schema.new({
-    id = id.from(_N, "DescribeGroupOutput"),
+    id = id.from(_N, "DescribeGroupResponse"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -1053,7 +1053,7 @@ M.Filter = schema.new({
 })
 
 M.ListGroupsInput = schema.new({
-    id = id.from(_N, "ListGroupsInput"),
+    id = id.from(_N, "ListGroupsRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -1156,7 +1156,7 @@ M.Group = schema.new({
 })
 
 M.ListGroupsOutput = schema.new({
-    id = id.from(_N, "ListGroupsOutput"),
+    id = id.from(_N, "ListGroupsResponse"),
     type = "structure",
     members = {
         Groups = schema.new({
@@ -1179,7 +1179,7 @@ M.ListGroupsOutput = schema.new({
 })
 
 M.UpdateGroupInput = schema.new({
-    id = id.from(_N, "UpdateGroupInput"),
+    id = id.from(_N, "UpdateGroupRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -1214,12 +1214,12 @@ M.UpdateGroupInput = schema.new({
 })
 
 M.UpdateGroupOutput = schema.new({
-    id = id.from(_N, "UpdateGroupOutput"),
+    id = id.from(_N, "UpdateGroupResponse"),
     type = "structure",
 })
 
 M.IsMemberInGroupsInput = schema.new({
-    id = id.from(_N, "IsMemberInGroupsInput"),
+    id = id.from(_N, "IsMemberInGroupsRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -1284,7 +1284,7 @@ M.GroupMembershipExistenceResult = schema.new({
 })
 
 M.IsMemberInGroupsOutput = schema.new({
-    id = id.from(_N, "IsMemberInGroupsOutput"),
+    id = id.from(_N, "IsMemberInGroupsResponse"),
     type = "structure",
     members = {
         Results = schema.new({
@@ -1301,7 +1301,7 @@ M.IsMemberInGroupsOutput = schema.new({
 })
 
 M.ListGroupMembershipsForMemberInput = schema.new({
-    id = id.from(_N, "ListGroupMembershipsForMemberInput"),
+    id = id.from(_N, "ListGroupMembershipsForMemberRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -1339,7 +1339,7 @@ M.ListGroupMembershipsForMemberInput = schema.new({
 })
 
 M.ListGroupMembershipsForMemberOutput = schema.new({
-    id = id.from(_N, "ListGroupMembershipsForMemberOutput"),
+    id = id.from(_N, "ListGroupMembershipsForMemberResponse"),
     type = "structure",
     members = {
         GroupMemberships = schema.new({
@@ -1526,7 +1526,7 @@ M.Role = schema.new({
 })
 
 M.CreateUserInput = schema.new({
-    id = id.from(_N, "CreateUserInput"),
+    id = id.from(_N, "CreateUserRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -1658,7 +1658,7 @@ M.CreateUserInput = schema.new({
 })
 
 M.CreateUserOutput = schema.new({
-    id = id.from(_N, "CreateUserOutput"),
+    id = id.from(_N, "CreateUserResponse"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -1683,7 +1683,7 @@ M.CreateUserOutput = schema.new({
 })
 
 M.DeleteUserInput = schema.new({
-    id = id.from(_N, "DeleteUserInput"),
+    id = id.from(_N, "DeleteUserRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -1708,12 +1708,12 @@ M.DeleteUserInput = schema.new({
 })
 
 M.DeleteUserOutput = schema.new({
-    id = id.from(_N, "DeleteUserOutput"),
+    id = id.from(_N, "DeleteUserResponse"),
     type = "structure",
 })
 
 M.DescribeUserInput = schema.new({
-    id = id.from(_N, "DescribeUserInput"),
+    id = id.from(_N, "DescribeUserRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -1745,7 +1745,7 @@ M.DescribeUserInput = schema.new({
 })
 
 M.DescribeUserOutput = schema.new({
-    id = id.from(_N, "DescribeUserOutput"),
+    id = id.from(_N, "DescribeUserResponse"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -1923,7 +1923,7 @@ M.DescribeUserOutput = schema.new({
 })
 
 M.ListUsersInput = schema.new({
-    id = id.from(_N, "ListUsersInput"),
+    id = id.from(_N, "ListUsersRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -2143,7 +2143,7 @@ M.User = schema.new({
 })
 
 M.ListUsersOutput = schema.new({
-    id = id.from(_N, "ListUsersOutput"),
+    id = id.from(_N, "ListUsersResponse"),
     type = "structure",
     members = {
         Users = schema.new({
@@ -2166,7 +2166,7 @@ M.ListUsersOutput = schema.new({
 })
 
 M.UpdateUserInput = schema.new({
-    id = id.from(_N, "UpdateUserInput"),
+    id = id.from(_N, "UpdateUserRequest"),
     type = "structure",
     members = {
         IdentityStoreId = schema.new({
@@ -2201,8 +2201,22 @@ M.UpdateUserInput = schema.new({
 })
 
 M.UpdateUserOutput = schema.new({
-    id = id.from(_N, "UpdateUserOutput"),
+    id = id.from(_N, "UpdateUserResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

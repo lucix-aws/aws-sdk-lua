@@ -8,7 +8,7 @@ local _N = "com.amazonaws.iotsecuretunneling"
 local M = {}
 
 M.CloseTunnelInput = schema.new({
-    id = id.from(_N, "CloseTunnelInput"),
+    id = id.from(_N, "CloseTunnelRequest"),
     type = "structure",
     members = {
         tunnelId = schema.new({
@@ -35,7 +35,7 @@ M.CloseTunnelInput = schema.new({
 })
 
 M.CloseTunnelOutput = schema.new({
-    id = id.from(_N, "CloseTunnelOutput"),
+    id = id.from(_N, "CloseTunnelResponse"),
     type = "structure",
 })
 
@@ -75,7 +75,7 @@ M.ConnectionState = schema.new({
 })
 
 M.DescribeTunnelInput = schema.new({
-    id = id.from(_N, "DescribeTunnelInput"),
+    id = id.from(_N, "DescribeTunnelRequest"),
     type = "structure",
     members = {
         tunnelId = schema.new({
@@ -231,7 +231,7 @@ M.Tunnel = schema.new({
 })
 
 M.DescribeTunnelOutput = schema.new({
-    id = id.from(_N, "DescribeTunnelOutput"),
+    id = id.from(_N, "DescribeTunnelResponse"),
     type = "structure",
     members = {
         tunnel = schema.new({
@@ -245,7 +245,7 @@ M.DescribeTunnelOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -262,7 +262,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -276,7 +276,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTunnelsInput = schema.new({
-    id = id.from(_N, "ListTunnelsInput"),
+    id = id.from(_N, "ListTunnelsRequest"),
     type = "structure",
     members = {
         thingName = schema.new({
@@ -353,7 +353,7 @@ M.TunnelSummary = schema.new({
 })
 
 M.ListTunnelsOutput = schema.new({
-    id = id.from(_N, "ListTunnelsOutput"),
+    id = id.from(_N, "ListTunnelsResponse"),
     type = "structure",
     members = {
         tunnelSummaries = schema.new({
@@ -389,7 +389,7 @@ M.LimitExceededException = schema.new({
 })
 
 M.OpenTunnelInput = schema.new({
-    id = id.from(_N, "OpenTunnelInput"),
+    id = id.from(_N, "OpenTunnelRequest"),
     type = "structure",
     members = {
         description = schema.new({
@@ -423,7 +423,7 @@ M.OpenTunnelInput = schema.new({
 })
 
 M.OpenTunnelOutput = schema.new({
-    id = id.from(_N, "OpenTunnelOutput"),
+    id = id.from(_N, "OpenTunnelResponse"),
     type = "structure",
     members = {
         tunnelId = schema.new({
@@ -454,7 +454,7 @@ M.OpenTunnelOutput = schema.new({
 })
 
 M.RotateTunnelAccessTokenInput = schema.new({
-    id = id.from(_N, "RotateTunnelAccessTokenInput"),
+    id = id.from(_N, "RotateTunnelAccessTokenRequest"),
     type = "structure",
     members = {
         tunnelId = schema.new({
@@ -487,7 +487,7 @@ M.RotateTunnelAccessTokenInput = schema.new({
 })
 
 M.RotateTunnelAccessTokenOutput = schema.new({
-    id = id.from(_N, "RotateTunnelAccessTokenOutput"),
+    id = id.from(_N, "RotateTunnelAccessTokenResponse"),
     type = "structure",
     members = {
         tunnelArn = schema.new({
@@ -512,7 +512,7 @@ M.RotateTunnelAccessTokenOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -538,12 +538,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -569,8 +569,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

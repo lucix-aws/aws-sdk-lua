@@ -815,7 +815,7 @@ M.AssociatedApplication = schema.new({
 })
 
 M.GetApplicationComponentDetailsInput = schema.new({
-    id = id.from(_N, "GetApplicationComponentDetailsInput"),
+    id = id.from(_N, "GetApplicationComponentDetailsRequest"),
     type = "structure",
     members = {
         applicationComponentId = schema.new({
@@ -832,7 +832,7 @@ M.GetApplicationComponentDetailsInput = schema.new({
 })
 
 M.GetApplicationComponentDetailsOutput = schema.new({
-    id = id.from(_N, "GetApplicationComponentDetailsOutput"),
+    id = id.from(_N, "GetApplicationComponentDetailsResponse"),
     type = "structure",
     members = {
         applicationComponentDetail = schema.new({
@@ -914,7 +914,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.GetApplicationComponentStrategiesInput = schema.new({
-    id = id.from(_N, "GetApplicationComponentStrategiesInput"),
+    id = id.from(_N, "GetApplicationComponentStrategiesRequest"),
     type = "structure",
     members = {
         applicationComponentId = schema.new({
@@ -931,7 +931,7 @@ M.GetApplicationComponentStrategiesInput = schema.new({
 })
 
 M.GetApplicationComponentStrategiesOutput = schema.new({
-    id = id.from(_N, "GetApplicationComponentStrategiesOutput"),
+    id = id.from(_N, "GetApplicationComponentStrategiesResponse"),
     type = "structure",
     members = {
         applicationComponentStrategies = schema.new({
@@ -945,7 +945,7 @@ M.GetApplicationComponentStrategiesOutput = schema.new({
 })
 
 M.GetAssessmentInput = schema.new({
-    id = id.from(_N, "GetAssessmentInput"),
+    id = id.from(_N, "GetAssessmentRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1017,7 +1017,7 @@ M.DataCollectionDetails = schema.new({
 })
 
 M.GetAssessmentOutput = schema.new({
-    id = id.from(_N, "GetAssessmentOutput"),
+    id = id.from(_N, "GetAssessmentResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1044,7 +1044,7 @@ M.GetAssessmentOutput = schema.new({
 })
 
 M.GetImportFileTaskInput = schema.new({
-    id = id.from(_N, "GetImportFileTaskInput"),
+    id = id.from(_N, "GetImportFileTaskRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1061,7 +1061,7 @@ M.GetImportFileTaskInput = schema.new({
 })
 
 M.GetImportFileTaskOutput = schema.new({
-    id = id.from(_N, "GetImportFileTaskOutput"),
+    id = id.from(_N, "GetImportFileTaskResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1166,12 +1166,12 @@ M.DependencyException = schema.new({
 })
 
 M.GetLatestAssessmentIdInput = schema.new({
-    id = id.from(_N, "GetLatestAssessmentIdInput"),
+    id = id.from(_N, "GetLatestAssessmentIdRequest"),
     type = "structure",
 })
 
 M.GetLatestAssessmentIdOutput = schema.new({
-    id = id.from(_N, "GetLatestAssessmentIdOutput"),
+    id = id.from(_N, "GetLatestAssessmentIdResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1184,7 +1184,7 @@ M.GetLatestAssessmentIdOutput = schema.new({
 })
 
 M.GetPortfolioPreferencesInput = schema.new({
-    id = id.from(_N, "GetPortfolioPreferencesInput"),
+    id = id.from(_N, "GetPortfolioPreferencesRequest"),
     type = "structure",
 })
 
@@ -1330,7 +1330,7 @@ M.PrioritizeBusinessGoals = schema.new({
 })
 
 M.GetPortfolioPreferencesOutput = schema.new({
-    id = id.from(_N, "GetPortfolioPreferencesOutput"),
+    id = id.from(_N, "GetPortfolioPreferencesResponse"),
     type = "structure",
     members = {
         prioritizeBusinessGoals = schema.new({
@@ -1364,12 +1364,12 @@ M.GetPortfolioPreferencesOutput = schema.new({
 })
 
 M.GetPortfolioSummaryInput = schema.new({
-    id = id.from(_N, "GetPortfolioSummaryInput"),
+    id = id.from(_N, "GetPortfolioSummaryRequest"),
     type = "structure",
 })
 
 M.GetPortfolioSummaryOutput = schema.new({
-    id = id.from(_N, "GetPortfolioSummaryOutput"),
+    id = id.from(_N, "GetPortfolioSummaryResponse"),
     type = "structure",
     members = {
         assessmentSummary = schema.new({
@@ -1383,7 +1383,7 @@ M.GetPortfolioSummaryOutput = schema.new({
 })
 
 M.GetRecommendationReportDetailsInput = schema.new({
-    id = id.from(_N, "GetRecommendationReportDetailsInput"),
+    id = id.from(_N, "GetRecommendationReportDetailsRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1444,7 +1444,7 @@ M.RecommendationReportDetails = schema.new({
 })
 
 M.GetRecommendationReportDetailsOutput = schema.new({
-    id = id.from(_N, "GetRecommendationReportDetailsOutput"),
+    id = id.from(_N, "GetRecommendationReportDetailsResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1464,7 +1464,7 @@ M.GetRecommendationReportDetailsOutput = schema.new({
 })
 
 M.GetServerDetailsInput = schema.new({
-    id = id.from(_N, "GetServerDetailsInput"),
+    id = id.from(_N, "GetServerDetailsRequest"),
     type = "structure",
     members = {
         serverId = schema.new({
@@ -1704,7 +1704,7 @@ M.ServerDetail = schema.new({
 })
 
 M.GetServerDetailsOutput = schema.new({
-    id = id.from(_N, "GetServerDetailsOutput"),
+    id = id.from(_N, "GetServerDetailsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1731,7 +1731,7 @@ M.GetServerDetailsOutput = schema.new({
 })
 
 M.GetServerStrategiesInput = schema.new({
-    id = id.from(_N, "GetServerStrategiesInput"),
+    id = id.from(_N, "GetServerStrategiesRequest"),
     type = "structure",
     members = {
         serverId = schema.new({
@@ -1780,7 +1780,7 @@ M.ServerStrategy = schema.new({
 })
 
 M.GetServerStrategiesOutput = schema.new({
-    id = id.from(_N, "GetServerStrategiesOutput"),
+    id = id.from(_N, "GetServerStrategiesResponse"),
     type = "structure",
     members = {
         serverStrategies = schema.new({
@@ -1794,7 +1794,7 @@ M.GetServerStrategiesOutput = schema.new({
 })
 
 M.ListAnalyzableServersInput = schema.new({
-    id = id.from(_N, "ListAnalyzableServersInput"),
+    id = id.from(_N, "ListAnalyzableServersRequest"),
     type = "structure",
     members = {
         sort = schema.new({
@@ -1819,7 +1819,7 @@ M.ListAnalyzableServersInput = schema.new({
 })
 
 M.ListAnalyzableServersOutput = schema.new({
-    id = id.from(_N, "ListAnalyzableServersOutput"),
+    id = id.from(_N, "ListAnalyzableServersResponse"),
     type = "structure",
     members = {
         analyzableServers = schema.new({
@@ -1858,7 +1858,7 @@ M.Group = schema.new({
 })
 
 M.ListApplicationComponentsInput = schema.new({
-    id = id.from(_N, "ListApplicationComponentsInput"),
+    id = id.from(_N, "ListApplicationComponentsRequest"),
     type = "structure",
     members = {
         applicationComponentCriteria = schema.new({
@@ -1902,7 +1902,7 @@ M.ListApplicationComponentsInput = schema.new({
 })
 
 M.ListApplicationComponentsOutput = schema.new({
-    id = id.from(_N, "ListApplicationComponentsOutput"),
+    id = id.from(_N, "ListApplicationComponentsResponse"),
     type = "structure",
     members = {
         applicationComponentInfos = schema.new({
@@ -1938,7 +1938,7 @@ M.ServiceLinkedRoleLockClientException = schema.new({
 })
 
 M.ListCollectorsInput = schema.new({
-    id = id.from(_N, "ListCollectorsInput"),
+    id = id.from(_N, "ListCollectorsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2156,7 +2156,7 @@ M.Collector = schema.new({
 })
 
 M.ListCollectorsOutput = schema.new({
-    id = id.from(_N, "ListCollectorsOutput"),
+    id = id.from(_N, "ListCollectorsResponse"),
     type = "structure",
     members = {
         Collectors = schema.new({
@@ -2176,7 +2176,7 @@ M.ListCollectorsOutput = schema.new({
 })
 
 M.ListImportFileTaskInput = schema.new({
-    id = id.from(_N, "ListImportFileTaskInput"),
+    id = id.from(_N, "ListImportFileTaskRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2274,7 +2274,7 @@ M.ImportFileTaskInformation = schema.new({
 })
 
 M.ListImportFileTaskOutput = schema.new({
-    id = id.from(_N, "ListImportFileTaskOutput"),
+    id = id.from(_N, "ListImportFileTaskResponse"),
     type = "structure",
     members = {
         taskInfos = schema.new({
@@ -2294,7 +2294,7 @@ M.ListImportFileTaskOutput = schema.new({
 })
 
 M.ListServersInput = schema.new({
-    id = id.from(_N, "ListServersInput"),
+    id = id.from(_N, "ListServersRequest"),
     type = "structure",
     members = {
         serverCriteria = schema.new({
@@ -2338,7 +2338,7 @@ M.ListServersInput = schema.new({
 })
 
 M.ListServersOutput = schema.new({
-    id = id.from(_N, "ListServersOutput"),
+    id = id.from(_N, "ListServersResponse"),
     type = "structure",
     members = {
         serverInfos = schema.new({
@@ -2377,7 +2377,7 @@ M.ConflictException = schema.new({
 })
 
 M.PutPortfolioPreferencesInput = schema.new({
-    id = id.from(_N, "PutPortfolioPreferencesInput"),
+    id = id.from(_N, "PutPortfolioPreferencesRequest"),
     type = "structure",
     members = {
         prioritizeBusinessGoals = schema.new({
@@ -2411,7 +2411,7 @@ M.PutPortfolioPreferencesInput = schema.new({
 })
 
 M.PutPortfolioPreferencesOutput = schema.new({
-    id = id.from(_N, "PutPortfolioPreferencesOutput"),
+    id = id.from(_N, "PutPortfolioPreferencesResponse"),
     type = "structure",
 })
 
@@ -2435,7 +2435,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.StartAssessmentInput = schema.new({
-    id = id.from(_N, "StartAssessmentInput"),
+    id = id.from(_N, "StartAssessmentRequest"),
     type = "structure",
     members = {
         s3bucketForAnalysisData = schema.new({
@@ -2467,7 +2467,7 @@ M.StartAssessmentInput = schema.new({
 })
 
 M.StartAssessmentOutput = schema.new({
-    id = id.from(_N, "StartAssessmentOutput"),
+    id = id.from(_N, "StartAssessmentResponse"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -2480,7 +2480,7 @@ M.StartAssessmentOutput = schema.new({
 })
 
 M.StartImportFileTaskInput = schema.new({
-    id = id.from(_N, "StartImportFileTaskInput"),
+    id = id.from(_N, "StartImportFileTaskRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2533,7 +2533,7 @@ M.StartImportFileTaskInput = schema.new({
 })
 
 M.StartImportFileTaskOutput = schema.new({
-    id = id.from(_N, "StartImportFileTaskOutput"),
+    id = id.from(_N, "StartImportFileTaskResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2546,7 +2546,7 @@ M.StartImportFileTaskOutput = schema.new({
 })
 
 M.StartRecommendationReportGenerationInput = schema.new({
-    id = id.from(_N, "StartRecommendationReportGenerationInput"),
+    id = id.from(_N, "StartRecommendationReportGenerationRequest"),
     type = "structure",
     members = {
         outputFormat = schema.new({
@@ -2566,7 +2566,7 @@ M.StartRecommendationReportGenerationInput = schema.new({
 })
 
 M.StartRecommendationReportGenerationOutput = schema.new({
-    id = id.from(_N, "StartRecommendationReportGenerationOutput"),
+    id = id.from(_N, "StartRecommendationReportGenerationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2579,7 +2579,7 @@ M.StartRecommendationReportGenerationOutput = schema.new({
 })
 
 M.StopAssessmentInput = schema.new({
-    id = id.from(_N, "StopAssessmentInput"),
+    id = id.from(_N, "StopAssessmentRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -2595,7 +2595,7 @@ M.StopAssessmentInput = schema.new({
 })
 
 M.StopAssessmentOutput = schema.new({
-    id = id.from(_N, "StopAssessmentOutput"),
+    id = id.from(_N, "StopAssessmentResponse"),
     type = "structure",
 })
 
@@ -2662,7 +2662,7 @@ M.StrategyOption = schema.new({
 })
 
 M.UpdateApplicationComponentConfigInput = schema.new({
-    id = id.from(_N, "UpdateApplicationComponentConfigInput"),
+    id = id.from(_N, "UpdateApplicationComponentConfigRequest"),
     type = "structure",
     members = {
         applicationComponentId = schema.new({
@@ -2716,12 +2716,12 @@ M.UpdateApplicationComponentConfigInput = schema.new({
 })
 
 M.UpdateApplicationComponentConfigOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationComponentConfigOutput"),
+    id = id.from(_N, "UpdateApplicationComponentConfigResponse"),
     type = "structure",
 })
 
 M.UpdateServerConfigInput = schema.new({
-    id = id.from(_N, "UpdateServerConfigInput"),
+    id = id.from(_N, "UpdateServerConfigRequest"),
     type = "structure",
     members = {
         serverId = schema.new({
@@ -2744,8 +2744,22 @@ M.UpdateServerConfigInput = schema.new({
 })
 
 M.UpdateServerConfigOutput = schema.new({
-    id = id.from(_N, "UpdateServerConfigOutput"),
+    id = id.from(_N, "UpdateServerConfigResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

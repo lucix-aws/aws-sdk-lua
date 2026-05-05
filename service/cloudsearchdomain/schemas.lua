@@ -24,7 +24,7 @@ M.SearchException = schema.new({
 })
 
 M.SearchInput = schema.new({
-    id = id.from(_N, "SearchInput"),
+    id = id.from(_N, "SearchRequest"),
     type = "structure",
     members = {
         cursor = schema.new({
@@ -212,7 +212,7 @@ M.Hit = schema.new({
             name = "fields",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         exprs = schema.new({
             id = id.from(_N, "Hit", "exprs"),
@@ -364,7 +364,7 @@ M.SearchStatus = schema.new({
 })
 
 M.SearchOutput = schema.new({
-    id = id.from(_N, "SearchOutput"),
+    id = id.from(_N, "SearchResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -401,7 +401,7 @@ M.SearchOutput = schema.new({
 })
 
 M.SuggestInput = schema.new({
-    id = id.from(_N, "SuggestInput"),
+    id = id.from(_N, "SuggestRequest"),
     type = "structure",
     members = {
         query = schema.new({
@@ -517,7 +517,7 @@ M.SuggestModel = schema.new({
 })
 
 M.SuggestOutput = schema.new({
-    id = id.from(_N, "SuggestOutput"),
+    id = id.from(_N, "SuggestResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -560,7 +560,7 @@ M.DocumentServiceException = schema.new({
 })
 
 M.UploadDocumentsInput = schema.new({
-    id = id.from(_N, "UploadDocumentsInput"),
+    id = id.from(_N, "UploadDocumentsRequest"),
     type = "structure",
     members = {
         documents = schema.new({
@@ -600,7 +600,7 @@ M.DocumentServiceWarning = schema.new({
 })
 
 M.UploadDocumentsOutput = schema.new({
-    id = id.from(_N, "UploadDocumentsOutput"),
+    id = id.from(_N, "UploadDocumentsResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -636,5 +636,19 @@ M.UploadDocumentsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

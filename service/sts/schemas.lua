@@ -90,7 +90,7 @@ M.Tag = schema.new({
 })
 
 M.AssumeRoleInput = schema.new({
-    id = id.from(_N, "AssumeRoleInput"),
+    id = id.from(_N, "AssumeRoleRequest"),
     type = "structure",
     members = {
         RoleArn = schema.new({
@@ -222,7 +222,7 @@ M.Credentials = schema.new({
 })
 
 M.AssumeRoleOutput = schema.new({
-    id = id.from(_N, "AssumeRoleOutput"),
+    id = id.from(_N, "AssumeRoleResponse"),
     type = "structure",
     members = {
         Credentials = schema.new({
@@ -319,7 +319,7 @@ M.RegionDisabledException = schema.new({
 })
 
 M.AssumeRoleWithSAMLInput = schema.new({
-    id = id.from(_N, "AssumeRoleWithSAMLInput"),
+    id = id.from(_N, "AssumeRoleWithSAMLRequest"),
     type = "structure",
     members = {
         RoleArn = schema.new({
@@ -372,7 +372,7 @@ M.AssumeRoleWithSAMLInput = schema.new({
 })
 
 M.AssumeRoleWithSAMLOutput = schema.new({
-    id = id.from(_N, "AssumeRoleWithSAMLOutput"),
+    id = id.from(_N, "AssumeRoleWithSAMLResponse"),
     type = "structure",
     members = {
         Credentials = schema.new({
@@ -467,7 +467,7 @@ M.InvalidIdentityTokenException = schema.new({
 })
 
 M.AssumeRoleWithWebIdentityInput = schema.new({
-    id = id.from(_N, "AssumeRoleWithWebIdentityInput"),
+    id = id.from(_N, "AssumeRoleWithWebIdentityRequest"),
     type = "structure",
     members = {
         RoleArn = schema.new({
@@ -526,7 +526,7 @@ M.AssumeRoleWithWebIdentityInput = schema.new({
 })
 
 M.AssumeRoleWithWebIdentityOutput = schema.new({
-    id = id.from(_N, "AssumeRoleWithWebIdentityOutput"),
+    id = id.from(_N, "AssumeRoleWithWebIdentityResponse"),
     type = "structure",
     members = {
         Credentials = schema.new({
@@ -593,7 +593,7 @@ M.IDPCommunicationErrorException = schema.new({
 })
 
 M.AssumeRootInput = schema.new({
-    id = id.from(_N, "AssumeRootInput"),
+    id = id.from(_N, "AssumeRootRequest"),
     type = "structure",
     members = {
         TargetPrincipal = schema.new({
@@ -625,7 +625,7 @@ M.AssumeRootInput = schema.new({
 })
 
 M.AssumeRootOutput = schema.new({
-    id = id.from(_N, "AssumeRootOutput"),
+    id = id.from(_N, "AssumeRootResponse"),
     type = "structure",
     members = {
         Credentials = schema.new({
@@ -645,7 +645,7 @@ M.AssumeRootOutput = schema.new({
 })
 
 M.DecodeAuthorizationMessageInput = schema.new({
-    id = id.from(_N, "DecodeAuthorizationMessageInput"),
+    id = id.from(_N, "DecodeAuthorizationMessageRequest"),
     type = "structure",
     members = {
         EncodedMessage = schema.new({
@@ -661,7 +661,7 @@ M.DecodeAuthorizationMessageInput = schema.new({
 })
 
 M.DecodeAuthorizationMessageOutput = schema.new({
-    id = id.from(_N, "DecodeAuthorizationMessageOutput"),
+    id = id.from(_N, "DecodeAuthorizationMessageResponse"),
     type = "structure",
     members = {
         DecodedMessage = schema.new({
@@ -690,7 +690,7 @@ M.InvalidAuthorizationMessageException = schema.new({
 })
 
 M.GetAccessKeyInfoInput = schema.new({
-    id = id.from(_N, "GetAccessKeyInfoInput"),
+    id = id.from(_N, "GetAccessKeyInfoRequest"),
     type = "structure",
     members = {
         AccessKeyId = schema.new({
@@ -706,7 +706,7 @@ M.GetAccessKeyInfoInput = schema.new({
 })
 
 M.GetAccessKeyInfoOutput = schema.new({
-    id = id.from(_N, "GetAccessKeyInfoOutput"),
+    id = id.from(_N, "GetAccessKeyInfoResponse"),
     type = "structure",
     members = {
         Account = schema.new({
@@ -719,12 +719,12 @@ M.GetAccessKeyInfoOutput = schema.new({
 })
 
 M.GetCallerIdentityInput = schema.new({
-    id = id.from(_N, "GetCallerIdentityInput"),
+    id = id.from(_N, "GetCallerIdentityRequest"),
     type = "structure",
 })
 
 M.GetCallerIdentityOutput = schema.new({
-    id = id.from(_N, "GetCallerIdentityOutput"),
+    id = id.from(_N, "GetCallerIdentityResponse"),
     type = "structure",
     members = {
         UserId = schema.new({
@@ -765,7 +765,7 @@ M.ExpiredTradeInTokenException = schema.new({
 })
 
 M.GetDelegatedAccessTokenInput = schema.new({
-    id = id.from(_N, "GetDelegatedAccessTokenInput"),
+    id = id.from(_N, "GetDelegatedAccessTokenRequest"),
     type = "structure",
     members = {
         TradeInToken = schema.new({
@@ -781,7 +781,7 @@ M.GetDelegatedAccessTokenInput = schema.new({
 })
 
 M.GetDelegatedAccessTokenOutput = schema.new({
-    id = id.from(_N, "GetDelegatedAccessTokenOutput"),
+    id = id.from(_N, "GetDelegatedAccessTokenResponse"),
     type = "structure",
     members = {
         Credentials = schema.new({
@@ -807,7 +807,7 @@ M.GetDelegatedAccessTokenOutput = schema.new({
 })
 
 M.GetFederationTokenInput = schema.new({
-    id = id.from(_N, "GetFederationTokenInput"),
+    id = id.from(_N, "GetFederationTokenRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -874,7 +874,7 @@ M.FederatedUser = schema.new({
 })
 
 M.GetFederationTokenOutput = schema.new({
-    id = id.from(_N, "GetFederationTokenOutput"),
+    id = id.from(_N, "GetFederationTokenResponse"),
     type = "structure",
     members = {
         Credentials = schema.new({
@@ -901,7 +901,7 @@ M.GetFederationTokenOutput = schema.new({
 })
 
 M.GetSessionTokenInput = schema.new({
-    id = id.from(_N, "GetSessionTokenInput"),
+    id = id.from(_N, "GetSessionTokenRequest"),
     type = "structure",
     members = {
         DurationSeconds = schema.new({
@@ -926,7 +926,7 @@ M.GetSessionTokenInput = schema.new({
 })
 
 M.GetSessionTokenOutput = schema.new({
-    id = id.from(_N, "GetSessionTokenOutput"),
+    id = id.from(_N, "GetSessionTokenResponse"),
     type = "structure",
     members = {
         Credentials = schema.new({
@@ -940,7 +940,7 @@ M.GetSessionTokenOutput = schema.new({
 })
 
 M.GetWebIdentityTokenInput = schema.new({
-    id = id.from(_N, "GetWebIdentityTokenInput"),
+    id = id.from(_N, "GetWebIdentityTokenRequest"),
     type = "structure",
     members = {
         Audience = schema.new({
@@ -979,7 +979,7 @@ M.GetWebIdentityTokenInput = schema.new({
 })
 
 M.GetWebIdentityTokenOutput = schema.new({
-    id = id.from(_N, "GetWebIdentityTokenOutput"),
+    id = id.from(_N, "GetWebIdentityTokenResponse"),
     type = "structure",
     members = {
         WebIdentityToken = schema.new({
@@ -1044,5 +1044,19 @@ M.SessionDurationEscalationException = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

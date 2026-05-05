@@ -316,7 +316,7 @@ M.SchemaAttributeType = schema.new({
 })
 
 M.AddCustomAttributesInput = schema.new({
-    id = id.from(_N, "AddCustomAttributesInput"),
+    id = id.from(_N, "AddCustomAttributesRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -342,7 +342,7 @@ M.AddCustomAttributesInput = schema.new({
 })
 
 M.AddCustomAttributesOutput = schema.new({
-    id = id.from(_N, "AddCustomAttributesOutput"),
+    id = id.from(_N, "AddCustomAttributesResponse"),
     type = "structure",
 })
 
@@ -449,7 +449,7 @@ M.UserImportInProgressException = schema.new({
 })
 
 M.AddUserPoolClientSecretInput = schema.new({
-    id = id.from(_N, "AddUserPoolClientSecretInput"),
+    id = id.from(_N, "AddUserPoolClientSecretRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -505,7 +505,7 @@ M.ClientSecretDescriptorType = schema.new({
 })
 
 M.AddUserPoolClientSecretOutput = schema.new({
-    id = id.from(_N, "AddUserPoolClientSecretOutput"),
+    id = id.from(_N, "AddUserPoolClientSecretResponse"),
     type = "structure",
     members = {
         ClientSecretDescriptor = schema.new({
@@ -551,7 +551,7 @@ M.LimitExceededException = schema.new({
 })
 
 M.AdminAddUserToGroupInput = schema.new({
-    id = id.from(_N, "AdminAddUserToGroupInput"),
+    id = id.from(_N, "AdminAddUserToGroupRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -585,7 +585,7 @@ M.AdminAddUserToGroupInput = schema.new({
 })
 
 M.AdminAddUserToGroupOutput = schema.new({
-    id = id.from(_N, "AdminAddUserToGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -606,7 +606,7 @@ M.UserNotFoundException = schema.new({
 })
 
 M.AdminConfirmSignUpInput = schema.new({
-    id = id.from(_N, "AdminConfirmSignUpInput"),
+    id = id.from(_N, "AdminConfirmSignUpRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -639,7 +639,7 @@ M.AdminConfirmSignUpInput = schema.new({
 })
 
 M.AdminConfirmSignUpOutput = schema.new({
-    id = id.from(_N, "AdminConfirmSignUpOutput"),
+    id = id.from(_N, "AdminConfirmSignUpResponse"),
     type = "structure",
 })
 
@@ -730,7 +730,7 @@ M.AttributeType = schema.new({
 })
 
 M.AdminCreateUserInput = schema.new({
-    id = id.from(_N, "AdminCreateUserInput"),
+    id = id.from(_N, "AdminCreateUserRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -878,7 +878,7 @@ M.UserType = schema.new({
 })
 
 M.AdminCreateUserOutput = schema.new({
-    id = id.from(_N, "AdminCreateUserOutput"),
+    id = id.from(_N, "AdminCreateUserResponse"),
     type = "structure",
     members = {
         User = schema.new({
@@ -1061,7 +1061,7 @@ M.AdminCreateUserConfigType = schema.new({
 })
 
 M.AdminDeleteUserInput = schema.new({
-    id = id.from(_N, "AdminDeleteUserInput"),
+    id = id.from(_N, "AdminDeleteUserRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -1086,12 +1086,12 @@ M.AdminDeleteUserInput = schema.new({
 })
 
 M.AdminDeleteUserOutput = schema.new({
-    id = id.from(_N, "AdminDeleteUserOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.AdminDeleteUserAttributesInput = schema.new({
-    id = id.from(_N, "AdminDeleteUserAttributesInput"),
+    id = id.from(_N, "AdminDeleteUserAttributesRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -1126,7 +1126,7 @@ M.AdminDeleteUserAttributesInput = schema.new({
 })
 
 M.AdminDeleteUserAttributesOutput = schema.new({
-    id = id.from(_N, "AdminDeleteUserAttributesOutput"),
+    id = id.from(_N, "AdminDeleteUserAttributesResponse"),
     type = "structure",
 })
 
@@ -1156,7 +1156,7 @@ M.ProviderUserIdentifierType = schema.new({
 })
 
 M.AdminDisableProviderForUserInput = schema.new({
-    id = id.from(_N, "AdminDisableProviderForUserInput"),
+    id = id.from(_N, "AdminDisableProviderForUserRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -1182,7 +1182,7 @@ M.AdminDisableProviderForUserInput = schema.new({
 })
 
 M.AdminDisableProviderForUserOutput = schema.new({
-    id = id.from(_N, "AdminDisableProviderForUserOutput"),
+    id = id.from(_N, "AdminDisableProviderForUserResponse"),
     type = "structure",
 })
 
@@ -1203,7 +1203,7 @@ M.AliasExistsException = schema.new({
 })
 
 M.AdminDisableUserInput = schema.new({
-    id = id.from(_N, "AdminDisableUserInput"),
+    id = id.from(_N, "AdminDisableUserRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -1228,12 +1228,12 @@ M.AdminDisableUserInput = schema.new({
 })
 
 M.AdminDisableUserOutput = schema.new({
-    id = id.from(_N, "AdminDisableUserOutput"),
+    id = id.from(_N, "AdminDisableUserResponse"),
     type = "structure",
 })
 
 M.AdminEnableUserInput = schema.new({
-    id = id.from(_N, "AdminEnableUserInput"),
+    id = id.from(_N, "AdminEnableUserRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -1258,12 +1258,12 @@ M.AdminEnableUserInput = schema.new({
 })
 
 M.AdminEnableUserOutput = schema.new({
-    id = id.from(_N, "AdminEnableUserOutput"),
+    id = id.from(_N, "AdminEnableUserResponse"),
     type = "structure",
 })
 
 M.AdminForgetDeviceInput = schema.new({
-    id = id.from(_N, "AdminForgetDeviceInput"),
+    id = id.from(_N, "AdminForgetDeviceRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -1297,7 +1297,7 @@ M.AdminForgetDeviceInput = schema.new({
 })
 
 M.AdminForgetDeviceOutput = schema.new({
-    id = id.from(_N, "AdminForgetDeviceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1318,7 +1318,7 @@ M.InvalidUserPoolConfigurationException = schema.new({
 })
 
 M.AdminGetDeviceInput = schema.new({
-    id = id.from(_N, "AdminGetDeviceInput"),
+    id = id.from(_N, "AdminGetDeviceRequest"),
     type = "structure",
     members = {
         DeviceKey = schema.new({
@@ -1390,7 +1390,7 @@ M.DeviceType = schema.new({
 })
 
 M.AdminGetDeviceOutput = schema.new({
-    id = id.from(_N, "AdminGetDeviceOutput"),
+    id = id.from(_N, "AdminGetDeviceResponse"),
     type = "structure",
     members = {
         Device = schema.new({
@@ -1407,7 +1407,7 @@ M.AdminGetDeviceOutput = schema.new({
 })
 
 M.AdminGetUserInput = schema.new({
-    id = id.from(_N, "AdminGetUserInput"),
+    id = id.from(_N, "AdminGetUserRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -1432,7 +1432,7 @@ M.AdminGetUserInput = schema.new({
 })
 
 M.AdminGetUserOutput = schema.new({
-    id = id.from(_N, "AdminGetUserOutput"),
+    id = id.from(_N, "AdminGetUserResponse"),
     type = "structure",
     members = {
         Username = schema.new({
@@ -1584,7 +1584,7 @@ M.ContextDataType = schema.new({
 })
 
 M.AdminInitiateAuthInput = schema.new({
-    id = id.from(_N, "AdminInitiateAuthInput"),
+    id = id.from(_N, "AdminInitiateAuthRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -1720,7 +1720,7 @@ M.AuthenticationResultType = schema.new({
 })
 
 M.AdminInitiateAuthOutput = schema.new({
-    id = id.from(_N, "AdminInitiateAuthOutput"),
+    id = id.from(_N, "AdminInitiateAuthResponse"),
     type = "structure",
     members = {
         ChallengeName = schema.new({
@@ -1841,7 +1841,7 @@ M.UserNotConfirmedException = schema.new({
 })
 
 M.AdminLinkProviderForUserInput = schema.new({
-    id = id.from(_N, "AdminLinkProviderForUserInput"),
+    id = id.from(_N, "AdminLinkProviderForUserRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -1877,12 +1877,12 @@ M.AdminLinkProviderForUserInput = schema.new({
 })
 
 M.AdminLinkProviderForUserOutput = schema.new({
-    id = id.from(_N, "AdminLinkProviderForUserOutput"),
+    id = id.from(_N, "AdminLinkProviderForUserResponse"),
     type = "structure",
 })
 
 M.AdminListDevicesInput = schema.new({
-    id = id.from(_N, "AdminListDevicesInput"),
+    id = id.from(_N, "AdminListDevicesRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -1919,7 +1919,7 @@ M.AdminListDevicesInput = schema.new({
 })
 
 M.AdminListDevicesOutput = schema.new({
-    id = id.from(_N, "AdminListDevicesOutput"),
+    id = id.from(_N, "AdminListDevicesResponse"),
     type = "structure",
     members = {
         Devices = schema.new({
@@ -1939,7 +1939,7 @@ M.AdminListDevicesOutput = schema.new({
 })
 
 M.AdminListGroupsForUserInput = schema.new({
-    id = id.from(_N, "AdminListGroupsForUserInput"),
+    id = id.from(_N, "AdminListGroupsForUserRequest"),
     type = "structure",
     members = {
         Username = schema.new({
@@ -2025,7 +2025,7 @@ M.GroupType = schema.new({
 })
 
 M.AdminListGroupsForUserOutput = schema.new({
-    id = id.from(_N, "AdminListGroupsForUserOutput"),
+    id = id.from(_N, "AdminListGroupsForUserResponse"),
     type = "structure",
     members = {
         Groups = schema.new({
@@ -2045,7 +2045,7 @@ M.AdminListGroupsForUserOutput = schema.new({
 })
 
 M.AdminListUserAuthEventsInput = schema.new({
-    id = id.from(_N, "AdminListUserAuthEventsInput"),
+    id = id.from(_N, "AdminListUserAuthEventsRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -2253,7 +2253,7 @@ M.AuthEventType = schema.new({
 })
 
 M.AdminListUserAuthEventsOutput = schema.new({
-    id = id.from(_N, "AdminListUserAuthEventsOutput"),
+    id = id.from(_N, "AdminListUserAuthEventsResponse"),
     type = "structure",
     members = {
         AuthEvents = schema.new({
@@ -2289,7 +2289,7 @@ M.UserPoolAddOnNotEnabledException = schema.new({
 })
 
 M.AdminRemoveUserFromGroupInput = schema.new({
-    id = id.from(_N, "AdminRemoveUserFromGroupInput"),
+    id = id.from(_N, "AdminRemoveUserFromGroupRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -2323,12 +2323,12 @@ M.AdminRemoveUserFromGroupInput = schema.new({
 })
 
 M.AdminRemoveUserFromGroupOutput = schema.new({
-    id = id.from(_N, "AdminRemoveUserFromGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.AdminResetUserPasswordInput = schema.new({
-    id = id.from(_N, "AdminResetUserPasswordInput"),
+    id = id.from(_N, "AdminResetUserPasswordRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -2361,12 +2361,12 @@ M.AdminResetUserPasswordInput = schema.new({
 })
 
 M.AdminResetUserPasswordOutput = schema.new({
-    id = id.from(_N, "AdminResetUserPasswordOutput"),
+    id = id.from(_N, "AdminResetUserPasswordResponse"),
     type = "structure",
 })
 
 M.AdminRespondToAuthChallengeInput = schema.new({
-    id = id.from(_N, "AdminRespondToAuthChallengeInput"),
+    id = id.from(_N, "AdminRespondToAuthChallengeRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -2436,7 +2436,7 @@ M.AdminRespondToAuthChallengeInput = schema.new({
 })
 
 M.AdminRespondToAuthChallengeOutput = schema.new({
-    id = id.from(_N, "AdminRespondToAuthChallengeOutput"),
+    id = id.from(_N, "AdminRespondToAuthChallengeResponse"),
     type = "structure",
     members = {
         ChallengeName = schema.new({
@@ -2625,7 +2625,7 @@ M.WebAuthnMfaSettingsType = schema.new({
 })
 
 M.AdminSetUserMFAPreferenceInput = schema.new({
-    id = id.from(_N, "AdminSetUserMFAPreferenceInput"),
+    id = id.from(_N, "AdminSetUserMFAPreferenceRequest"),
     type = "structure",
     members = {
         SMSMfaSettings = schema.new({
@@ -2678,12 +2678,12 @@ M.AdminSetUserMFAPreferenceInput = schema.new({
 })
 
 M.AdminSetUserMFAPreferenceOutput = schema.new({
-    id = id.from(_N, "AdminSetUserMFAPreferenceOutput"),
+    id = id.from(_N, "AdminSetUserMFAPreferenceResponse"),
     type = "structure",
 })
 
 M.AdminSetUserPasswordInput = schema.new({
-    id = id.from(_N, "AdminSetUserPasswordInput"),
+    id = id.from(_N, "AdminSetUserPasswordRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -2726,12 +2726,12 @@ M.AdminSetUserPasswordInput = schema.new({
 })
 
 M.AdminSetUserPasswordOutput = schema.new({
-    id = id.from(_N, "AdminSetUserPasswordOutput"),
+    id = id.from(_N, "AdminSetUserPasswordResponse"),
     type = "structure",
 })
 
 M.AdminSetUserSettingsInput = schema.new({
-    id = id.from(_N, "AdminSetUserSettingsInput"),
+    id = id.from(_N, "AdminSetUserSettingsRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -2766,12 +2766,12 @@ M.AdminSetUserSettingsInput = schema.new({
 })
 
 M.AdminSetUserSettingsOutput = schema.new({
-    id = id.from(_N, "AdminSetUserSettingsOutput"),
+    id = id.from(_N, "AdminSetUserSettingsResponse"),
     type = "structure",
 })
 
 M.AdminUpdateAuthEventFeedbackInput = schema.new({
-    id = id.from(_N, "AdminUpdateAuthEventFeedbackInput"),
+    id = id.from(_N, "AdminUpdateAuthEventFeedbackRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -2814,12 +2814,12 @@ M.AdminUpdateAuthEventFeedbackInput = schema.new({
 })
 
 M.AdminUpdateAuthEventFeedbackOutput = schema.new({
-    id = id.from(_N, "AdminUpdateAuthEventFeedbackOutput"),
+    id = id.from(_N, "AdminUpdateAuthEventFeedbackResponse"),
     type = "structure",
 })
 
 M.AdminUpdateDeviceStatusInput = schema.new({
-    id = id.from(_N, "AdminUpdateDeviceStatusInput"),
+    id = id.from(_N, "AdminUpdateDeviceStatusRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -2859,12 +2859,12 @@ M.AdminUpdateDeviceStatusInput = schema.new({
 })
 
 M.AdminUpdateDeviceStatusOutput = schema.new({
-    id = id.from(_N, "AdminUpdateDeviceStatusOutput"),
+    id = id.from(_N, "AdminUpdateDeviceStatusResponse"),
     type = "structure",
 })
 
 M.AdminUpdateUserAttributesInput = schema.new({
-    id = id.from(_N, "AdminUpdateUserAttributesInput"),
+    id = id.from(_N, "AdminUpdateUserAttributesRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -2907,12 +2907,12 @@ M.AdminUpdateUserAttributesInput = schema.new({
 })
 
 M.AdminUpdateUserAttributesOutput = schema.new({
-    id = id.from(_N, "AdminUpdateUserAttributesOutput"),
+    id = id.from(_N, "AdminUpdateUserAttributesResponse"),
     type = "structure",
 })
 
 M.AdminUserGlobalSignOutInput = schema.new({
-    id = id.from(_N, "AdminUserGlobalSignOutInput"),
+    id = id.from(_N, "AdminUserGlobalSignOutRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -2937,7 +2937,7 @@ M.AdminUserGlobalSignOutInput = schema.new({
 })
 
 M.AdminUserGlobalSignOutOutput = schema.new({
-    id = id.from(_N, "AdminUserGlobalSignOutOutput"),
+    id = id.from(_N, "AdminUserGlobalSignOutResponse"),
     type = "structure",
 })
 
@@ -3041,7 +3041,7 @@ M.AssetType = schema.new({
 })
 
 M.AssociateSoftwareTokenInput = schema.new({
-    id = id.from(_N, "AssociateSoftwareTokenInput"),
+    id = id.from(_N, "AssociateSoftwareTokenRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -3060,7 +3060,7 @@ M.AssociateSoftwareTokenInput = schema.new({
 })
 
 M.AssociateSoftwareTokenOutput = schema.new({
-    id = id.from(_N, "AssociateSoftwareTokenOutput"),
+    id = id.from(_N, "AssociateSoftwareTokenResponse"),
     type = "structure",
     members = {
         SecretCode = schema.new({
@@ -3111,7 +3111,7 @@ M.ForbiddenException = schema.new({
 })
 
 M.ChangePasswordInput = schema.new({
-    id = id.from(_N, "ChangePasswordInput"),
+    id = id.from(_N, "ChangePasswordRequest"),
     type = "structure",
     members = {
         PreviousPassword = schema.new({
@@ -3142,12 +3142,12 @@ M.ChangePasswordInput = schema.new({
 })
 
 M.ChangePasswordOutput = schema.new({
-    id = id.from(_N, "ChangePasswordOutput"),
+    id = id.from(_N, "ChangePasswordResponse"),
     type = "structure",
 })
 
 M.CompleteWebAuthnRegistrationInput = schema.new({
-    id = id.from(_N, "CompleteWebAuthnRegistrationInput"),
+    id = id.from(_N, "CompleteWebAuthnRegistrationRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -3172,7 +3172,7 @@ M.CompleteWebAuthnRegistrationInput = schema.new({
 })
 
 M.CompleteWebAuthnRegistrationOutput = schema.new({
-    id = id.from(_N, "CompleteWebAuthnRegistrationOutput"),
+    id = id.from(_N, "CompleteWebAuthnRegistrationResponse"),
     type = "structure",
 })
 
@@ -3292,7 +3292,7 @@ M.DeviceSecretVerifierConfigType = schema.new({
 })
 
 M.ConfirmDeviceInput = schema.new({
-    id = id.from(_N, "ConfirmDeviceInput"),
+    id = id.from(_N, "ConfirmDeviceRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -3330,7 +3330,7 @@ M.ConfirmDeviceInput = schema.new({
 })
 
 M.ConfirmDeviceOutput = schema.new({
-    id = id.from(_N, "ConfirmDeviceOutput"),
+    id = id.from(_N, "ConfirmDeviceResponse"),
     type = "structure",
     members = {
         UserConfirmationNecessary = schema.new({
@@ -3381,7 +3381,7 @@ M.UserContextDataType = schema.new({
 })
 
 M.ConfirmForgotPasswordInput = schema.new({
-    id = id.from(_N, "ConfirmForgotPasswordInput"),
+    id = id.from(_N, "ConfirmForgotPasswordRequest"),
     type = "structure",
     members = {
         ClientId = schema.new({
@@ -3452,12 +3452,12 @@ M.ConfirmForgotPasswordInput = schema.new({
 })
 
 M.ConfirmForgotPasswordOutput = schema.new({
-    id = id.from(_N, "ConfirmForgotPasswordOutput"),
+    id = id.from(_N, "ConfirmForgotPasswordResponse"),
     type = "structure",
 })
 
 M.ConfirmSignUpInput = schema.new({
-    id = id.from(_N, "ConfirmSignUpInput"),
+    id = id.from(_N, "ConfirmSignUpRequest"),
     type = "structure",
     members = {
         ClientId = schema.new({
@@ -3534,7 +3534,7 @@ M.ConfirmSignUpInput = schema.new({
 })
 
 M.ConfirmSignUpOutput = schema.new({
-    id = id.from(_N, "ConfirmSignUpOutput"),
+    id = id.from(_N, "ConfirmSignUpResponse"),
     type = "structure",
     members = {
         Session = schema.new({
@@ -3547,7 +3547,7 @@ M.ConfirmSignUpOutput = schema.new({
 })
 
 M.CreateGroupInput = schema.new({
-    id = id.from(_N, "CreateGroupInput"),
+    id = id.from(_N, "CreateGroupRequest"),
     type = "structure",
     members = {
         GroupName = schema.new({
@@ -3590,7 +3590,7 @@ M.CreateGroupInput = schema.new({
 })
 
 M.CreateGroupOutput = schema.new({
-    id = id.from(_N, "CreateGroupOutput"),
+    id = id.from(_N, "CreateGroupResponse"),
     type = "structure",
     members = {
         Group = schema.new({
@@ -3620,7 +3620,7 @@ M.GroupExistsException = schema.new({
 })
 
 M.CreateIdentityProviderInput = schema.new({
-    id = id.from(_N, "CreateIdentityProviderInput"),
+    id = id.from(_N, "CreateIdentityProviderRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -3740,7 +3740,7 @@ M.IdentityProviderType = schema.new({
 })
 
 M.CreateIdentityProviderOutput = schema.new({
-    id = id.from(_N, "CreateIdentityProviderOutput"),
+    id = id.from(_N, "CreateIdentityProviderResponse"),
     type = "structure",
     members = {
         IdentityProvider = schema.new({
@@ -3773,7 +3773,7 @@ M.DuplicateProviderException = schema.new({
 })
 
 M.CreateManagedLoginBrandingInput = schema.new({
-    id = id.from(_N, "CreateManagedLoginBrandingInput"),
+    id = id.from(_N, "CreateManagedLoginBrandingRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -3873,7 +3873,7 @@ M.ManagedLoginBrandingType = schema.new({
 })
 
 M.CreateManagedLoginBrandingOutput = schema.new({
-    id = id.from(_N, "CreateManagedLoginBrandingOutput"),
+    id = id.from(_N, "CreateManagedLoginBrandingResponse"),
     type = "structure",
     members = {
         ManagedLoginBranding = schema.new({
@@ -3928,7 +3928,7 @@ M.ResourceServerScopeType = schema.new({
 })
 
 M.CreateResourceServerInput = schema.new({
-    id = id.from(_N, "CreateResourceServerInput"),
+    id = id.from(_N, "CreateResourceServerRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -4001,7 +4001,7 @@ M.ResourceServerType = schema.new({
 })
 
 M.CreateResourceServerOutput = schema.new({
-    id = id.from(_N, "CreateResourceServerOutput"),
+    id = id.from(_N, "CreateResourceServerResponse"),
     type = "structure",
     members = {
         ResourceServer = schema.new({
@@ -4018,7 +4018,7 @@ M.CreateResourceServerOutput = schema.new({
 })
 
 M.CreateTermsInput = schema.new({
-    id = id.from(_N, "CreateTermsInput"),
+    id = id.from(_N, "CreateTermsRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -4168,7 +4168,7 @@ M.TermsType = schema.new({
 })
 
 M.CreateTermsOutput = schema.new({
-    id = id.from(_N, "CreateTermsOutput"),
+    id = id.from(_N, "CreateTermsResponse"),
     type = "structure",
     members = {
         Terms = schema.new({
@@ -4198,7 +4198,7 @@ M.TermsExistsException = schema.new({
 })
 
 M.CreateUserImportJobInput = schema.new({
-    id = id.from(_N, "CreateUserImportJobInput"),
+    id = id.from(_N, "CreateUserImportJobRequest"),
     type = "structure",
     members = {
         JobName = schema.new({
@@ -4326,7 +4326,7 @@ M.UserImportJobType = schema.new({
 })
 
 M.CreateUserImportJobOutput = schema.new({
-    id = id.from(_N, "CreateUserImportJobOutput"),
+    id = id.from(_N, "CreateUserImportJobResponse"),
     type = "structure",
     members = {
         UserImportJob = schema.new({
@@ -4826,7 +4826,7 @@ M.VerificationMessageTemplateType = schema.new({
 })
 
 M.CreateUserPoolInput = schema.new({
-    id = id.from(_N, "CreateUserPoolInput"),
+    id = id.from(_N, "CreateUserPoolRequest"),
     type = "structure",
     members = {
         PoolName = schema.new({
@@ -5228,7 +5228,7 @@ M.UserPoolType = schema.new({
 })
 
 M.CreateUserPoolOutput = schema.new({
-    id = id.from(_N, "CreateUserPoolOutput"),
+    id = id.from(_N, "CreateUserPoolResponse"),
     type = "structure",
     members = {
         UserPool = schema.new({
@@ -5337,7 +5337,7 @@ M.TokenValidityUnitsType = schema.new({
 })
 
 M.CreateUserPoolClientInput = schema.new({
-    id = id.from(_N, "CreateUserPoolClientInput"),
+    id = id.from(_N, "CreateUserPoolClientRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -5694,7 +5694,7 @@ M.UserPoolClientType = schema.new({
 })
 
 M.CreateUserPoolClientOutput = schema.new({
-    id = id.from(_N, "CreateUserPoolClientOutput"),
+    id = id.from(_N, "CreateUserPoolClientResponse"),
     type = "structure",
     members = {
         UserPoolClient = schema.new({
@@ -5756,7 +5756,7 @@ M.CustomDomainConfigType = schema.new({
 })
 
 M.CreateUserPoolDomainInput = schema.new({
-    id = id.from(_N, "CreateUserPoolDomainInput"),
+    id = id.from(_N, "CreateUserPoolDomainRequest"),
     type = "structure",
     members = {
         Domain = schema.new({
@@ -5794,7 +5794,7 @@ M.CreateUserPoolDomainInput = schema.new({
 })
 
 M.CreateUserPoolDomainOutput = schema.new({
-    id = id.from(_N, "CreateUserPoolDomainOutput"),
+    id = id.from(_N, "CreateUserPoolDomainResponse"),
     type = "structure",
     members = {
         ManagedLoginVersion = schema.new({
@@ -5813,7 +5813,7 @@ M.CreateUserPoolDomainOutput = schema.new({
 })
 
 M.DeleteGroupInput = schema.new({
-    id = id.from(_N, "DeleteGroupInput"),
+    id = id.from(_N, "DeleteGroupRequest"),
     type = "structure",
     members = {
         GroupName = schema.new({
@@ -5838,12 +5838,12 @@ M.DeleteGroupInput = schema.new({
 })
 
 M.DeleteGroupOutput = schema.new({
-    id = id.from(_N, "DeleteGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteIdentityProviderInput = schema.new({
-    id = id.from(_N, "DeleteIdentityProviderInput"),
+    id = id.from(_N, "DeleteIdentityProviderRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -5868,7 +5868,7 @@ M.DeleteIdentityProviderInput = schema.new({
 })
 
 M.DeleteIdentityProviderOutput = schema.new({
-    id = id.from(_N, "DeleteIdentityProviderOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5889,7 +5889,7 @@ M.UnsupportedIdentityProviderException = schema.new({
 })
 
 M.DeleteManagedLoginBrandingInput = schema.new({
-    id = id.from(_N, "DeleteManagedLoginBrandingInput"),
+    id = id.from(_N, "DeleteManagedLoginBrandingRequest"),
     type = "structure",
     members = {
         ManagedLoginBrandingId = schema.new({
@@ -5914,12 +5914,12 @@ M.DeleteManagedLoginBrandingInput = schema.new({
 })
 
 M.DeleteManagedLoginBrandingOutput = schema.new({
-    id = id.from(_N, "DeleteManagedLoginBrandingOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteResourceServerInput = schema.new({
-    id = id.from(_N, "DeleteResourceServerInput"),
+    id = id.from(_N, "DeleteResourceServerRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -5944,12 +5944,12 @@ M.DeleteResourceServerInput = schema.new({
 })
 
 M.DeleteResourceServerOutput = schema.new({
-    id = id.from(_N, "DeleteResourceServerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTermsInput = schema.new({
-    id = id.from(_N, "DeleteTermsInput"),
+    id = id.from(_N, "DeleteTermsRequest"),
     type = "structure",
     members = {
         TermsId = schema.new({
@@ -5974,12 +5974,12 @@ M.DeleteTermsInput = schema.new({
 })
 
 M.DeleteTermsOutput = schema.new({
-    id = id.from(_N, "DeleteTermsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteUserInput = schema.new({
-    id = id.from(_N, "DeleteUserInput"),
+    id = id.from(_N, "DeleteUserRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -5995,12 +5995,12 @@ M.DeleteUserInput = schema.new({
 })
 
 M.DeleteUserOutput = schema.new({
-    id = id.from(_N, "DeleteUserOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteUserAttributesInput = schema.new({
-    id = id.from(_N, "DeleteUserAttributesInput"),
+    id = id.from(_N, "DeleteUserAttributesRequest"),
     type = "structure",
     members = {
         UserAttributeNames = schema.new({
@@ -6026,12 +6026,12 @@ M.DeleteUserAttributesInput = schema.new({
 })
 
 M.DeleteUserAttributesOutput = schema.new({
-    id = id.from(_N, "DeleteUserAttributesOutput"),
+    id = id.from(_N, "DeleteUserAttributesResponse"),
     type = "structure",
 })
 
 M.DeleteUserPoolInput = schema.new({
-    id = id.from(_N, "DeleteUserPoolInput"),
+    id = id.from(_N, "DeleteUserPoolRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -6047,12 +6047,12 @@ M.DeleteUserPoolInput = schema.new({
 })
 
 M.DeleteUserPoolOutput = schema.new({
-    id = id.from(_N, "DeleteUserPoolOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteUserPoolClientInput = schema.new({
-    id = id.from(_N, "DeleteUserPoolClientInput"),
+    id = id.from(_N, "DeleteUserPoolClientRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -6077,12 +6077,12 @@ M.DeleteUserPoolClientInput = schema.new({
 })
 
 M.DeleteUserPoolClientOutput = schema.new({
-    id = id.from(_N, "DeleteUserPoolClientOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteUserPoolClientSecretInput = schema.new({
-    id = id.from(_N, "DeleteUserPoolClientSecretInput"),
+    id = id.from(_N, "DeleteUserPoolClientSecretRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -6116,12 +6116,12 @@ M.DeleteUserPoolClientSecretInput = schema.new({
 })
 
 M.DeleteUserPoolClientSecretOutput = schema.new({
-    id = id.from(_N, "DeleteUserPoolClientSecretOutput"),
+    id = id.from(_N, "DeleteUserPoolClientSecretResponse"),
     type = "structure",
 })
 
 M.DeleteUserPoolDomainInput = schema.new({
-    id = id.from(_N, "DeleteUserPoolDomainInput"),
+    id = id.from(_N, "DeleteUserPoolDomainRequest"),
     type = "structure",
     members = {
         Domain = schema.new({
@@ -6146,12 +6146,12 @@ M.DeleteUserPoolDomainInput = schema.new({
 })
 
 M.DeleteUserPoolDomainOutput = schema.new({
-    id = id.from(_N, "DeleteUserPoolDomainOutput"),
+    id = id.from(_N, "DeleteUserPoolDomainResponse"),
     type = "structure",
 })
 
 M.DeleteWebAuthnCredentialInput = schema.new({
-    id = id.from(_N, "DeleteWebAuthnCredentialInput"),
+    id = id.from(_N, "DeleteWebAuthnCredentialRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -6176,12 +6176,12 @@ M.DeleteWebAuthnCredentialInput = schema.new({
 })
 
 M.DeleteWebAuthnCredentialOutput = schema.new({
-    id = id.from(_N, "DeleteWebAuthnCredentialOutput"),
+    id = id.from(_N, "DeleteWebAuthnCredentialResponse"),
     type = "structure",
 })
 
 M.DescribeIdentityProviderInput = schema.new({
-    id = id.from(_N, "DescribeIdentityProviderInput"),
+    id = id.from(_N, "DescribeIdentityProviderRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -6206,7 +6206,7 @@ M.DescribeIdentityProviderInput = schema.new({
 })
 
 M.DescribeIdentityProviderOutput = schema.new({
-    id = id.from(_N, "DescribeIdentityProviderOutput"),
+    id = id.from(_N, "DescribeIdentityProviderResponse"),
     type = "structure",
     members = {
         IdentityProvider = schema.new({
@@ -6223,7 +6223,7 @@ M.DescribeIdentityProviderOutput = schema.new({
 })
 
 M.DescribeManagedLoginBrandingInput = schema.new({
-    id = id.from(_N, "DescribeManagedLoginBrandingInput"),
+    id = id.from(_N, "DescribeManagedLoginBrandingRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -6257,7 +6257,7 @@ M.DescribeManagedLoginBrandingInput = schema.new({
 })
 
 M.DescribeManagedLoginBrandingOutput = schema.new({
-    id = id.from(_N, "DescribeManagedLoginBrandingOutput"),
+    id = id.from(_N, "DescribeManagedLoginBrandingResponse"),
     type = "structure",
     members = {
         ManagedLoginBranding = schema.new({
@@ -6271,7 +6271,7 @@ M.DescribeManagedLoginBrandingOutput = schema.new({
 })
 
 M.DescribeManagedLoginBrandingByClientInput = schema.new({
-    id = id.from(_N, "DescribeManagedLoginBrandingByClientInput"),
+    id = id.from(_N, "DescribeManagedLoginBrandingByClientRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -6305,7 +6305,7 @@ M.DescribeManagedLoginBrandingByClientInput = schema.new({
 })
 
 M.DescribeManagedLoginBrandingByClientOutput = schema.new({
-    id = id.from(_N, "DescribeManagedLoginBrandingByClientOutput"),
+    id = id.from(_N, "DescribeManagedLoginBrandingByClientResponse"),
     type = "structure",
     members = {
         ManagedLoginBranding = schema.new({
@@ -6319,7 +6319,7 @@ M.DescribeManagedLoginBrandingByClientOutput = schema.new({
 })
 
 M.DescribeResourceServerInput = schema.new({
-    id = id.from(_N, "DescribeResourceServerInput"),
+    id = id.from(_N, "DescribeResourceServerRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -6344,7 +6344,7 @@ M.DescribeResourceServerInput = schema.new({
 })
 
 M.DescribeResourceServerOutput = schema.new({
-    id = id.from(_N, "DescribeResourceServerOutput"),
+    id = id.from(_N, "DescribeResourceServerResponse"),
     type = "structure",
     members = {
         ResourceServer = schema.new({
@@ -6361,7 +6361,7 @@ M.DescribeResourceServerOutput = schema.new({
 })
 
 M.DescribeRiskConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeRiskConfigurationInput"),
+    id = id.from(_N, "DescribeRiskConfigurationRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -6490,7 +6490,7 @@ M.RiskConfigurationType = schema.new({
 })
 
 M.DescribeRiskConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeRiskConfigurationOutput"),
+    id = id.from(_N, "DescribeRiskConfigurationResponse"),
     type = "structure",
     members = {
         RiskConfiguration = schema.new({
@@ -6507,7 +6507,7 @@ M.DescribeRiskConfigurationOutput = schema.new({
 })
 
 M.DescribeTermsInput = schema.new({
-    id = id.from(_N, "DescribeTermsInput"),
+    id = id.from(_N, "DescribeTermsRequest"),
     type = "structure",
     members = {
         TermsId = schema.new({
@@ -6532,7 +6532,7 @@ M.DescribeTermsInput = schema.new({
 })
 
 M.DescribeTermsOutput = schema.new({
-    id = id.from(_N, "DescribeTermsOutput"),
+    id = id.from(_N, "DescribeTermsResponse"),
     type = "structure",
     members = {
         Terms = schema.new({
@@ -6546,7 +6546,7 @@ M.DescribeTermsOutput = schema.new({
 })
 
 M.DescribeUserImportJobInput = schema.new({
-    id = id.from(_N, "DescribeUserImportJobInput"),
+    id = id.from(_N, "DescribeUserImportJobRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -6571,7 +6571,7 @@ M.DescribeUserImportJobInput = schema.new({
 })
 
 M.DescribeUserImportJobOutput = schema.new({
-    id = id.from(_N, "DescribeUserImportJobOutput"),
+    id = id.from(_N, "DescribeUserImportJobResponse"),
     type = "structure",
     members = {
         UserImportJob = schema.new({
@@ -6585,7 +6585,7 @@ M.DescribeUserImportJobOutput = schema.new({
 })
 
 M.DescribeUserPoolInput = schema.new({
-    id = id.from(_N, "DescribeUserPoolInput"),
+    id = id.from(_N, "DescribeUserPoolRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -6601,7 +6601,7 @@ M.DescribeUserPoolInput = schema.new({
 })
 
 M.DescribeUserPoolOutput = schema.new({
-    id = id.from(_N, "DescribeUserPoolOutput"),
+    id = id.from(_N, "DescribeUserPoolResponse"),
     type = "structure",
     members = {
         UserPool = schema.new({
@@ -6615,7 +6615,7 @@ M.DescribeUserPoolOutput = schema.new({
 })
 
 M.DescribeUserPoolClientInput = schema.new({
-    id = id.from(_N, "DescribeUserPoolClientInput"),
+    id = id.from(_N, "DescribeUserPoolClientRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -6640,7 +6640,7 @@ M.DescribeUserPoolClientInput = schema.new({
 })
 
 M.DescribeUserPoolClientOutput = schema.new({
-    id = id.from(_N, "DescribeUserPoolClientOutput"),
+    id = id.from(_N, "DescribeUserPoolClientResponse"),
     type = "structure",
     members = {
         UserPoolClient = schema.new({
@@ -6654,7 +6654,7 @@ M.DescribeUserPoolClientOutput = schema.new({
 })
 
 M.DescribeUserPoolDomainInput = schema.new({
-    id = id.from(_N, "DescribeUserPoolDomainInput"),
+    id = id.from(_N, "DescribeUserPoolDomainRequest"),
     type = "structure",
     members = {
         Domain = schema.new({
@@ -6732,7 +6732,7 @@ M.DomainDescriptionType = schema.new({
 })
 
 M.DescribeUserPoolDomainOutput = schema.new({
-    id = id.from(_N, "DescribeUserPoolDomainOutput"),
+    id = id.from(_N, "DescribeUserPoolDomainResponse"),
     type = "structure",
     members = {
         DomainDescription = schema.new({
@@ -6746,7 +6746,7 @@ M.DescribeUserPoolDomainOutput = schema.new({
 })
 
 M.ForgetDeviceInput = schema.new({
-    id = id.from(_N, "ForgetDeviceInput"),
+    id = id.from(_N, "ForgetDeviceRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -6768,12 +6768,12 @@ M.ForgetDeviceInput = schema.new({
 })
 
 M.ForgetDeviceOutput = schema.new({
-    id = id.from(_N, "ForgetDeviceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ForgotPasswordInput = schema.new({
-    id = id.from(_N, "ForgotPasswordInput"),
+    id = id.from(_N, "ForgotPasswordRequest"),
     type = "structure",
     members = {
         ClientId = schema.new({
@@ -6851,7 +6851,7 @@ M.CodeDeliveryDetailsType = schema.new({
 })
 
 M.ForgotPasswordOutput = schema.new({
-    id = id.from(_N, "ForgotPasswordOutput"),
+    id = id.from(_N, "ForgotPasswordResponse"),
     type = "structure",
     members = {
         CodeDeliveryDetails = schema.new({
@@ -6865,7 +6865,7 @@ M.ForgotPasswordOutput = schema.new({
 })
 
 M.GetCSVHeaderInput = schema.new({
-    id = id.from(_N, "GetCSVHeaderInput"),
+    id = id.from(_N, "GetCSVHeaderRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -6881,7 +6881,7 @@ M.GetCSVHeaderInput = schema.new({
 })
 
 M.GetCSVHeaderOutput = schema.new({
-    id = id.from(_N, "GetCSVHeaderOutput"),
+    id = id.from(_N, "GetCSVHeaderResponse"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -6901,7 +6901,7 @@ M.GetCSVHeaderOutput = schema.new({
 })
 
 M.GetDeviceInput = schema.new({
-    id = id.from(_N, "GetDeviceInput"),
+    id = id.from(_N, "GetDeviceRequest"),
     type = "structure",
     members = {
         DeviceKey = schema.new({
@@ -6923,7 +6923,7 @@ M.GetDeviceInput = schema.new({
 })
 
 M.GetDeviceOutput = schema.new({
-    id = id.from(_N, "GetDeviceOutput"),
+    id = id.from(_N, "GetDeviceResponse"),
     type = "structure",
     members = {
         Device = schema.new({
@@ -6940,7 +6940,7 @@ M.GetDeviceOutput = schema.new({
 })
 
 M.GetGroupInput = schema.new({
-    id = id.from(_N, "GetGroupInput"),
+    id = id.from(_N, "GetGroupRequest"),
     type = "structure",
     members = {
         GroupName = schema.new({
@@ -6965,7 +6965,7 @@ M.GetGroupInput = schema.new({
 })
 
 M.GetGroupOutput = schema.new({
-    id = id.from(_N, "GetGroupOutput"),
+    id = id.from(_N, "GetGroupResponse"),
     type = "structure",
     members = {
         Group = schema.new({
@@ -6979,7 +6979,7 @@ M.GetGroupOutput = schema.new({
 })
 
 M.GetIdentityProviderByIdentifierInput = schema.new({
-    id = id.from(_N, "GetIdentityProviderByIdentifierInput"),
+    id = id.from(_N, "GetIdentityProviderByIdentifierRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -7004,7 +7004,7 @@ M.GetIdentityProviderByIdentifierInput = schema.new({
 })
 
 M.GetIdentityProviderByIdentifierOutput = schema.new({
-    id = id.from(_N, "GetIdentityProviderByIdentifierOutput"),
+    id = id.from(_N, "GetIdentityProviderByIdentifierResponse"),
     type = "structure",
     members = {
         IdentityProvider = schema.new({
@@ -7021,7 +7021,7 @@ M.GetIdentityProviderByIdentifierOutput = schema.new({
 })
 
 M.GetLogDeliveryConfigurationInput = schema.new({
-    id = id.from(_N, "GetLogDeliveryConfigurationInput"),
+    id = id.from(_N, "GetLogDeliveryConfigurationRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -7148,7 +7148,7 @@ M.LogDeliveryConfigurationType = schema.new({
 })
 
 M.GetLogDeliveryConfigurationOutput = schema.new({
-    id = id.from(_N, "GetLogDeliveryConfigurationOutput"),
+    id = id.from(_N, "GetLogDeliveryConfigurationResponse"),
     type = "structure",
     members = {
         LogDeliveryConfiguration = schema.new({
@@ -7162,7 +7162,7 @@ M.GetLogDeliveryConfigurationOutput = schema.new({
 })
 
 M.GetSigningCertificateInput = schema.new({
-    id = id.from(_N, "GetSigningCertificateInput"),
+    id = id.from(_N, "GetSigningCertificateRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -7178,7 +7178,7 @@ M.GetSigningCertificateInput = schema.new({
 })
 
 M.GetSigningCertificateOutput = schema.new({
-    id = id.from(_N, "GetSigningCertificateOutput"),
+    id = id.from(_N, "GetSigningCertificateResponse"),
     type = "structure",
     members = {
         Certificate = schema.new({
@@ -7191,7 +7191,7 @@ M.GetSigningCertificateOutput = schema.new({
 })
 
 M.GetTokensFromRefreshTokenInput = schema.new({
-    id = id.from(_N, "GetTokensFromRefreshTokenInput"),
+    id = id.from(_N, "GetTokensFromRefreshTokenRequest"),
     type = "structure",
     members = {
         RefreshToken = schema.new({
@@ -7236,7 +7236,7 @@ M.GetTokensFromRefreshTokenInput = schema.new({
 })
 
 M.GetTokensFromRefreshTokenOutput = schema.new({
-    id = id.from(_N, "GetTokensFromRefreshTokenOutput"),
+    id = id.from(_N, "GetTokensFromRefreshTokenResponse"),
     type = "structure",
     members = {
         AuthenticationResult = schema.new({
@@ -7266,7 +7266,7 @@ M.RefreshTokenReuseException = schema.new({
 })
 
 M.GetUICustomizationInput = schema.new({
-    id = id.from(_N, "GetUICustomizationInput"),
+    id = id.from(_N, "GetUICustomizationRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -7337,7 +7337,7 @@ M.UICustomizationType = schema.new({
 })
 
 M.GetUICustomizationOutput = schema.new({
-    id = id.from(_N, "GetUICustomizationOutput"),
+    id = id.from(_N, "GetUICustomizationResponse"),
     type = "structure",
     members = {
         UICustomization = schema.new({
@@ -7354,7 +7354,7 @@ M.GetUICustomizationOutput = schema.new({
 })
 
 M.GetUserInput = schema.new({
-    id = id.from(_N, "GetUserInput"),
+    id = id.from(_N, "GetUserRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -7370,7 +7370,7 @@ M.GetUserInput = schema.new({
 })
 
 M.GetUserOutput = schema.new({
-    id = id.from(_N, "GetUserOutput"),
+    id = id.from(_N, "GetUserResponse"),
     type = "structure",
     members = {
         Username = schema.new({
@@ -7416,7 +7416,7 @@ M.GetUserOutput = schema.new({
 })
 
 M.GetUserAttributeVerificationCodeInput = schema.new({
-    id = id.from(_N, "GetUserAttributeVerificationCodeInput"),
+    id = id.from(_N, "GetUserAttributeVerificationCodeRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -7449,7 +7449,7 @@ M.GetUserAttributeVerificationCodeInput = schema.new({
 })
 
 M.GetUserAttributeVerificationCodeOutput = schema.new({
-    id = id.from(_N, "GetUserAttributeVerificationCodeOutput"),
+    id = id.from(_N, "GetUserAttributeVerificationCodeResponse"),
     type = "structure",
     members = {
         CodeDeliveryDetails = schema.new({
@@ -7463,7 +7463,7 @@ M.GetUserAttributeVerificationCodeOutput = schema.new({
 })
 
 M.GetUserAuthFactorsInput = schema.new({
-    id = id.from(_N, "GetUserAuthFactorsInput"),
+    id = id.from(_N, "GetUserAuthFactorsRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -7479,7 +7479,7 @@ M.GetUserAuthFactorsInput = schema.new({
 })
 
 M.GetUserAuthFactorsOutput = schema.new({
-    id = id.from(_N, "GetUserAuthFactorsOutput"),
+    id = id.from(_N, "GetUserAuthFactorsResponse"),
     type = "structure",
     members = {
         Username = schema.new({
@@ -7515,7 +7515,7 @@ M.GetUserAuthFactorsOutput = schema.new({
 })
 
 M.GetUserPoolMfaConfigInput = schema.new({
-    id = id.from(_N, "GetUserPoolMfaConfigInput"),
+    id = id.from(_N, "GetUserPoolMfaConfigRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -7611,7 +7611,7 @@ M.WebAuthnConfigurationType = schema.new({
 })
 
 M.GetUserPoolMfaConfigOutput = schema.new({
-    id = id.from(_N, "GetUserPoolMfaConfigOutput"),
+    id = id.from(_N, "GetUserPoolMfaConfigResponse"),
     type = "structure",
     members = {
         SmsMfaConfiguration = schema.new({
@@ -7652,7 +7652,7 @@ M.GetUserPoolMfaConfigOutput = schema.new({
 })
 
 M.GlobalSignOutInput = schema.new({
-    id = id.from(_N, "GlobalSignOutInput"),
+    id = id.from(_N, "GlobalSignOutRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -7668,12 +7668,12 @@ M.GlobalSignOutInput = schema.new({
 })
 
 M.GlobalSignOutOutput = schema.new({
-    id = id.from(_N, "GlobalSignOutOutput"),
+    id = id.from(_N, "GlobalSignOutResponse"),
     type = "structure",
 })
 
 M.InitiateAuthInput = schema.new({
-    id = id.from(_N, "InitiateAuthInput"),
+    id = id.from(_N, "InitiateAuthRequest"),
     type = "structure",
     members = {
         AuthFlow = schema.new({
@@ -7734,7 +7734,7 @@ M.InitiateAuthInput = schema.new({
 })
 
 M.InitiateAuthOutput = schema.new({
-    id = id.from(_N, "InitiateAuthOutput"),
+    id = id.from(_N, "InitiateAuthResponse"),
     type = "structure",
     members = {
         ChallengeName = schema.new({
@@ -7775,7 +7775,7 @@ M.InitiateAuthOutput = schema.new({
 })
 
 M.ListDevicesInput = schema.new({
-    id = id.from(_N, "ListDevicesInput"),
+    id = id.from(_N, "ListDevicesRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -7803,7 +7803,7 @@ M.ListDevicesInput = schema.new({
 })
 
 M.ListDevicesOutput = schema.new({
-    id = id.from(_N, "ListDevicesOutput"),
+    id = id.from(_N, "ListDevicesResponse"),
     type = "structure",
     members = {
         Devices = schema.new({
@@ -7823,7 +7823,7 @@ M.ListDevicesOutput = schema.new({
 })
 
 M.ListGroupsInput = schema.new({
-    id = id.from(_N, "ListGroupsInput"),
+    id = id.from(_N, "ListGroupsRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -7851,7 +7851,7 @@ M.ListGroupsInput = schema.new({
 })
 
 M.ListGroupsOutput = schema.new({
-    id = id.from(_N, "ListGroupsOutput"),
+    id = id.from(_N, "ListGroupsResponse"),
     type = "structure",
     members = {
         Groups = schema.new({
@@ -7871,7 +7871,7 @@ M.ListGroupsOutput = schema.new({
 })
 
 M.ListIdentityProvidersInput = schema.new({
-    id = id.from(_N, "ListIdentityProvidersInput"),
+    id = id.from(_N, "ListIdentityProvidersRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -7930,7 +7930,7 @@ M.ProviderDescription = schema.new({
 })
 
 M.ListIdentityProvidersOutput = schema.new({
-    id = id.from(_N, "ListIdentityProvidersOutput"),
+    id = id.from(_N, "ListIdentityProvidersResponse"),
     type = "structure",
     members = {
         Providers = schema.new({
@@ -7953,7 +7953,7 @@ M.ListIdentityProvidersOutput = schema.new({
 })
 
 M.ListResourceServersInput = schema.new({
-    id = id.from(_N, "ListResourceServersInput"),
+    id = id.from(_N, "ListResourceServersRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -7981,7 +7981,7 @@ M.ListResourceServersInput = schema.new({
 })
 
 M.ListResourceServersOutput = schema.new({
-    id = id.from(_N, "ListResourceServersOutput"),
+    id = id.from(_N, "ListResourceServersResponse"),
     type = "structure",
     members = {
         ResourceServers = schema.new({
@@ -8004,7 +8004,7 @@ M.ListResourceServersOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -8020,7 +8020,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -8035,7 +8035,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTermsInput = schema.new({
-    id = id.from(_N, "ListTermsInput"),
+    id = id.from(_N, "ListTermsRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -8115,7 +8115,7 @@ M.TermsDescriptionType = schema.new({
 })
 
 M.ListTermsOutput = schema.new({
-    id = id.from(_N, "ListTermsOutput"),
+    id = id.from(_N, "ListTermsResponse"),
     type = "structure",
     members = {
         Terms = schema.new({
@@ -8138,7 +8138,7 @@ M.ListTermsOutput = schema.new({
 })
 
 M.ListUserImportJobsInput = schema.new({
-    id = id.from(_N, "ListUserImportJobsInput"),
+    id = id.from(_N, "ListUserImportJobsRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -8169,7 +8169,7 @@ M.ListUserImportJobsInput = schema.new({
 })
 
 M.ListUserImportJobsOutput = schema.new({
-    id = id.from(_N, "ListUserImportJobsOutput"),
+    id = id.from(_N, "ListUserImportJobsResponse"),
     type = "structure",
     members = {
         UserImportJobs = schema.new({
@@ -8189,7 +8189,7 @@ M.ListUserImportJobsOutput = schema.new({
 })
 
 M.ListUserPoolClientsInput = schema.new({
-    id = id.from(_N, "ListUserPoolClientsInput"),
+    id = id.from(_N, "ListUserPoolClientsRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -8242,7 +8242,7 @@ M.UserPoolClientDescription = schema.new({
 })
 
 M.ListUserPoolClientsOutput = schema.new({
-    id = id.from(_N, "ListUserPoolClientsOutput"),
+    id = id.from(_N, "ListUserPoolClientsResponse"),
     type = "structure",
     members = {
         UserPoolClients = schema.new({
@@ -8262,7 +8262,7 @@ M.ListUserPoolClientsOutput = schema.new({
 })
 
 M.ListUserPoolClientSecretsInput = schema.new({
-    id = id.from(_N, "ListUserPoolClientSecretsInput"),
+    id = id.from(_N, "ListUserPoolClientSecretsRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -8293,7 +8293,7 @@ M.ListUserPoolClientSecretsInput = schema.new({
 })
 
 M.ListUserPoolClientSecretsOutput = schema.new({
-    id = id.from(_N, "ListUserPoolClientSecretsOutput"),
+    id = id.from(_N, "ListUserPoolClientSecretsResponse"),
     type = "structure",
     members = {
         ClientSecrets = schema.new({
@@ -8313,7 +8313,7 @@ M.ListUserPoolClientSecretsOutput = schema.new({
 })
 
 M.ListUserPoolsInput = schema.new({
-    id = id.from(_N, "ListUserPoolsInput"),
+    id = id.from(_N, "ListUserPoolsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -8379,7 +8379,7 @@ M.UserPoolDescriptionType = schema.new({
 })
 
 M.ListUserPoolsOutput = schema.new({
-    id = id.from(_N, "ListUserPoolsOutput"),
+    id = id.from(_N, "ListUserPoolsResponse"),
     type = "structure",
     members = {
         UserPools = schema.new({
@@ -8399,7 +8399,7 @@ M.ListUserPoolsOutput = schema.new({
 })
 
 M.ListUsersInput = schema.new({
-    id = id.from(_N, "ListUsersInput"),
+    id = id.from(_N, "ListUsersRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -8440,7 +8440,7 @@ M.ListUsersInput = schema.new({
 })
 
 M.ListUsersOutput = schema.new({
-    id = id.from(_N, "ListUsersOutput"),
+    id = id.from(_N, "ListUsersResponse"),
     type = "structure",
     members = {
         Users = schema.new({
@@ -8460,7 +8460,7 @@ M.ListUsersOutput = schema.new({
 })
 
 M.ListUsersInGroupInput = schema.new({
-    id = id.from(_N, "ListUsersInGroupInput"),
+    id = id.from(_N, "ListUsersInGroupRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -8497,7 +8497,7 @@ M.ListUsersInGroupInput = schema.new({
 })
 
 M.ListUsersInGroupOutput = schema.new({
-    id = id.from(_N, "ListUsersInGroupOutput"),
+    id = id.from(_N, "ListUsersInGroupResponse"),
     type = "structure",
     members = {
         Users = schema.new({
@@ -8517,7 +8517,7 @@ M.ListUsersInGroupOutput = schema.new({
 })
 
 M.ListWebAuthnCredentialsInput = schema.new({
-    id = id.from(_N, "ListWebAuthnCredentialsInput"),
+    id = id.from(_N, "ListWebAuthnCredentialsRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -8604,7 +8604,7 @@ M.WebAuthnCredentialDescription = schema.new({
 })
 
 M.ListWebAuthnCredentialsOutput = schema.new({
-    id = id.from(_N, "ListWebAuthnCredentialsOutput"),
+    id = id.from(_N, "ListWebAuthnCredentialsResponse"),
     type = "structure",
     members = {
         Credentials = schema.new({
@@ -8627,7 +8627,7 @@ M.ListWebAuthnCredentialsOutput = schema.new({
 })
 
 M.ResendConfirmationCodeInput = schema.new({
-    id = id.from(_N, "ResendConfirmationCodeInput"),
+    id = id.from(_N, "ResendConfirmationCodeRequest"),
     type = "structure",
     members = {
         ClientId = schema.new({
@@ -8680,7 +8680,7 @@ M.ResendConfirmationCodeInput = schema.new({
 })
 
 M.ResendConfirmationCodeOutput = schema.new({
-    id = id.from(_N, "ResendConfirmationCodeOutput"),
+    id = id.from(_N, "ResendConfirmationCodeResponse"),
     type = "structure",
     members = {
         CodeDeliveryDetails = schema.new({
@@ -8694,7 +8694,7 @@ M.ResendConfirmationCodeOutput = schema.new({
 })
 
 M.RespondToAuthChallengeInput = schema.new({
-    id = id.from(_N, "RespondToAuthChallengeInput"),
+    id = id.from(_N, "RespondToAuthChallengeRequest"),
     type = "structure",
     members = {
         ClientId = schema.new({
@@ -8755,7 +8755,7 @@ M.RespondToAuthChallengeInput = schema.new({
 })
 
 M.RespondToAuthChallengeOutput = schema.new({
-    id = id.from(_N, "RespondToAuthChallengeOutput"),
+    id = id.from(_N, "RespondToAuthChallengeResponse"),
     type = "structure",
     members = {
         ChallengeName = schema.new({
@@ -8789,7 +8789,7 @@ M.RespondToAuthChallengeOutput = schema.new({
 })
 
 M.RevokeTokenInput = schema.new({
-    id = id.from(_N, "RevokeTokenInput"),
+    id = id.from(_N, "RevokeTokenRequest"),
     type = "structure",
     members = {
         Token = schema.new({
@@ -8820,7 +8820,7 @@ M.RevokeTokenInput = schema.new({
 })
 
 M.RevokeTokenOutput = schema.new({
-    id = id.from(_N, "RevokeTokenOutput"),
+    id = id.from(_N, "RevokeTokenResponse"),
     type = "structure",
 })
 
@@ -8857,7 +8857,7 @@ M.UnsupportedTokenTypeException = schema.new({
 })
 
 M.SetLogDeliveryConfigurationInput = schema.new({
-    id = id.from(_N, "SetLogDeliveryConfigurationInput"),
+    id = id.from(_N, "SetLogDeliveryConfigurationRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -8883,7 +8883,7 @@ M.SetLogDeliveryConfigurationInput = schema.new({
 })
 
 M.SetLogDeliveryConfigurationOutput = schema.new({
-    id = id.from(_N, "SetLogDeliveryConfigurationOutput"),
+    id = id.from(_N, "SetLogDeliveryConfigurationResponse"),
     type = "structure",
     members = {
         LogDeliveryConfiguration = schema.new({
@@ -8897,7 +8897,7 @@ M.SetLogDeliveryConfigurationOutput = schema.new({
 })
 
 M.SetRiskConfigurationInput = schema.new({
-    id = id.from(_N, "SetRiskConfigurationInput"),
+    id = id.from(_N, "SetRiskConfigurationRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -8940,7 +8940,7 @@ M.SetRiskConfigurationInput = schema.new({
 })
 
 M.SetRiskConfigurationOutput = schema.new({
-    id = id.from(_N, "SetRiskConfigurationOutput"),
+    id = id.from(_N, "SetRiskConfigurationResponse"),
     type = "structure",
     members = {
         RiskConfiguration = schema.new({
@@ -8957,7 +8957,7 @@ M.SetRiskConfigurationOutput = schema.new({
 })
 
 M.SetUICustomizationInput = schema.new({
-    id = id.from(_N, "SetUICustomizationInput"),
+    id = id.from(_N, "SetUICustomizationRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -8991,7 +8991,7 @@ M.SetUICustomizationInput = schema.new({
 })
 
 M.SetUICustomizationOutput = schema.new({
-    id = id.from(_N, "SetUICustomizationOutput"),
+    id = id.from(_N, "SetUICustomizationResponse"),
     type = "structure",
     members = {
         UICustomization = schema.new({
@@ -9008,7 +9008,7 @@ M.SetUICustomizationOutput = schema.new({
 })
 
 M.SetUserMFAPreferenceInput = schema.new({
-    id = id.from(_N, "SetUserMFAPreferenceInput"),
+    id = id.from(_N, "SetUserMFAPreferenceRequest"),
     type = "structure",
     members = {
         SMSMfaSettings = schema.new({
@@ -9052,12 +9052,12 @@ M.SetUserMFAPreferenceInput = schema.new({
 })
 
 M.SetUserMFAPreferenceOutput = schema.new({
-    id = id.from(_N, "SetUserMFAPreferenceOutput"),
+    id = id.from(_N, "SetUserMFAPreferenceResponse"),
     type = "structure",
 })
 
 M.SetUserPoolMfaConfigInput = schema.new({
-    id = id.from(_N, "SetUserPoolMfaConfigInput"),
+    id = id.from(_N, "SetUserPoolMfaConfigRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -9107,7 +9107,7 @@ M.SetUserPoolMfaConfigInput = schema.new({
 })
 
 M.SetUserPoolMfaConfigOutput = schema.new({
-    id = id.from(_N, "SetUserPoolMfaConfigOutput"),
+    id = id.from(_N, "SetUserPoolMfaConfigResponse"),
     type = "structure",
     members = {
         SmsMfaConfiguration = schema.new({
@@ -9148,7 +9148,7 @@ M.SetUserPoolMfaConfigOutput = schema.new({
 })
 
 M.SetUserSettingsInput = schema.new({
-    id = id.from(_N, "SetUserSettingsInput"),
+    id = id.from(_N, "SetUserSettingsRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -9174,12 +9174,12 @@ M.SetUserSettingsInput = schema.new({
 })
 
 M.SetUserSettingsOutput = schema.new({
-    id = id.from(_N, "SetUserSettingsOutput"),
+    id = id.from(_N, "SetUserSettingsResponse"),
     type = "structure",
 })
 
 M.SignUpInput = schema.new({
-    id = id.from(_N, "SignUpInput"),
+    id = id.from(_N, "SignUpRequest"),
     type = "structure",
     members = {
         ClientId = schema.new({
@@ -9252,7 +9252,7 @@ M.SignUpInput = schema.new({
 })
 
 M.SignUpOutput = schema.new({
-    id = id.from(_N, "SignUpOutput"),
+    id = id.from(_N, "SignUpResponse"),
     type = "structure",
     members = {
         UserConfirmed = schema.new({
@@ -9291,7 +9291,7 @@ M.SignUpOutput = schema.new({
 })
 
 M.StartUserImportJobInput = schema.new({
-    id = id.from(_N, "StartUserImportJobInput"),
+    id = id.from(_N, "StartUserImportJobRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -9316,7 +9316,7 @@ M.StartUserImportJobInput = schema.new({
 })
 
 M.StartUserImportJobOutput = schema.new({
-    id = id.from(_N, "StartUserImportJobOutput"),
+    id = id.from(_N, "StartUserImportJobResponse"),
     type = "structure",
     members = {
         UserImportJob = schema.new({
@@ -9330,7 +9330,7 @@ M.StartUserImportJobOutput = schema.new({
 })
 
 M.StartWebAuthnRegistrationInput = schema.new({
-    id = id.from(_N, "StartWebAuthnRegistrationInput"),
+    id = id.from(_N, "StartWebAuthnRegistrationRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -9346,7 +9346,7 @@ M.StartWebAuthnRegistrationInput = schema.new({
 })
 
 M.StartWebAuthnRegistrationOutput = schema.new({
-    id = id.from(_N, "StartWebAuthnRegistrationOutput"),
+    id = id.from(_N, "StartWebAuthnRegistrationResponse"),
     type = "structure",
     members = {
         CredentialCreationOptions = schema.new({
@@ -9378,7 +9378,7 @@ M.WebAuthnConfigurationMissingException = schema.new({
 })
 
 M.StopUserImportJobInput = schema.new({
-    id = id.from(_N, "StopUserImportJobInput"),
+    id = id.from(_N, "StopUserImportJobRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -9403,7 +9403,7 @@ M.StopUserImportJobInput = schema.new({
 })
 
 M.StopUserImportJobOutput = schema.new({
-    id = id.from(_N, "StopUserImportJobOutput"),
+    id = id.from(_N, "StopUserImportJobResponse"),
     type = "structure",
     members = {
         UserImportJob = schema.new({
@@ -9417,7 +9417,7 @@ M.StopUserImportJobOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -9444,12 +9444,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -9475,12 +9475,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAuthEventFeedbackInput = schema.new({
-    id = id.from(_N, "UpdateAuthEventFeedbackInput"),
+    id = id.from(_N, "UpdateAuthEventFeedbackRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -9532,12 +9532,12 @@ M.UpdateAuthEventFeedbackInput = schema.new({
 })
 
 M.UpdateAuthEventFeedbackOutput = schema.new({
-    id = id.from(_N, "UpdateAuthEventFeedbackOutput"),
+    id = id.from(_N, "UpdateAuthEventFeedbackResponse"),
     type = "structure",
 })
 
 M.UpdateDeviceStatusInput = schema.new({
-    id = id.from(_N, "UpdateDeviceStatusInput"),
+    id = id.from(_N, "UpdateDeviceStatusRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -9568,12 +9568,12 @@ M.UpdateDeviceStatusInput = schema.new({
 })
 
 M.UpdateDeviceStatusOutput = schema.new({
-    id = id.from(_N, "UpdateDeviceStatusOutput"),
+    id = id.from(_N, "UpdateDeviceStatusResponse"),
     type = "structure",
 })
 
 M.UpdateGroupInput = schema.new({
-    id = id.from(_N, "UpdateGroupInput"),
+    id = id.from(_N, "UpdateGroupRequest"),
     type = "structure",
     members = {
         GroupName = schema.new({
@@ -9616,7 +9616,7 @@ M.UpdateGroupInput = schema.new({
 })
 
 M.UpdateGroupOutput = schema.new({
-    id = id.from(_N, "UpdateGroupOutput"),
+    id = id.from(_N, "UpdateGroupResponse"),
     type = "structure",
     members = {
         Group = schema.new({
@@ -9630,7 +9630,7 @@ M.UpdateGroupOutput = schema.new({
 })
 
 M.UpdateIdentityProviderInput = schema.new({
-    id = id.from(_N, "UpdateIdentityProviderInput"),
+    id = id.from(_N, "UpdateIdentityProviderRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -9678,7 +9678,7 @@ M.UpdateIdentityProviderInput = schema.new({
 })
 
 M.UpdateIdentityProviderOutput = schema.new({
-    id = id.from(_N, "UpdateIdentityProviderOutput"),
+    id = id.from(_N, "UpdateIdentityProviderResponse"),
     type = "structure",
     members = {
         IdentityProvider = schema.new({
@@ -9695,7 +9695,7 @@ M.UpdateIdentityProviderOutput = schema.new({
 })
 
 M.UpdateManagedLoginBrandingInput = schema.new({
-    id = id.from(_N, "UpdateManagedLoginBrandingInput"),
+    id = id.from(_N, "UpdateManagedLoginBrandingRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -9736,7 +9736,7 @@ M.UpdateManagedLoginBrandingInput = schema.new({
 })
 
 M.UpdateManagedLoginBrandingOutput = schema.new({
-    id = id.from(_N, "UpdateManagedLoginBrandingOutput"),
+    id = id.from(_N, "UpdateManagedLoginBrandingResponse"),
     type = "structure",
     members = {
         ManagedLoginBranding = schema.new({
@@ -9750,7 +9750,7 @@ M.UpdateManagedLoginBrandingOutput = schema.new({
 })
 
 M.UpdateResourceServerInput = schema.new({
-    id = id.from(_N, "UpdateResourceServerInput"),
+    id = id.from(_N, "UpdateResourceServerRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -9791,7 +9791,7 @@ M.UpdateResourceServerInput = schema.new({
 })
 
 M.UpdateResourceServerOutput = schema.new({
-    id = id.from(_N, "UpdateResourceServerOutput"),
+    id = id.from(_N, "UpdateResourceServerResponse"),
     type = "structure",
     members = {
         ResourceServer = schema.new({
@@ -9808,7 +9808,7 @@ M.UpdateResourceServerOutput = schema.new({
 })
 
 M.UpdateTermsInput = schema.new({
-    id = id.from(_N, "UpdateTermsInput"),
+    id = id.from(_N, "UpdateTermsRequest"),
     type = "structure",
     members = {
         TermsId = schema.new({
@@ -9859,7 +9859,7 @@ M.UpdateTermsInput = schema.new({
 })
 
 M.UpdateTermsOutput = schema.new({
-    id = id.from(_N, "UpdateTermsOutput"),
+    id = id.from(_N, "UpdateTermsResponse"),
     type = "structure",
     members = {
         Terms = schema.new({
@@ -9873,7 +9873,7 @@ M.UpdateTermsOutput = schema.new({
 })
 
 M.UpdateUserAttributesInput = schema.new({
-    id = id.from(_N, "UpdateUserAttributesInput"),
+    id = id.from(_N, "UpdateUserAttributesRequest"),
     type = "structure",
     members = {
         UserAttributes = schema.new({
@@ -9907,7 +9907,7 @@ M.UpdateUserAttributesInput = schema.new({
 })
 
 M.UpdateUserAttributesOutput = schema.new({
-    id = id.from(_N, "UpdateUserAttributesOutput"),
+    id = id.from(_N, "UpdateUserAttributesResponse"),
     type = "structure",
     members = {
         CodeDeliveryDetailsList = schema.new({
@@ -9921,7 +9921,7 @@ M.UpdateUserAttributesOutput = schema.new({
 })
 
 M.UpdateUserPoolInput = schema.new({
-    id = id.from(_N, "UpdateUserPoolInput"),
+    id = id.from(_N, "UpdateUserPoolRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -10070,12 +10070,12 @@ M.UpdateUserPoolInput = schema.new({
 })
 
 M.UpdateUserPoolOutput = schema.new({
-    id = id.from(_N, "UpdateUserPoolOutput"),
+    id = id.from(_N, "UpdateUserPoolResponse"),
     type = "structure",
 })
 
 M.UpdateUserPoolClientInput = schema.new({
-    id = id.from(_N, "UpdateUserPoolClientInput"),
+    id = id.from(_N, "UpdateUserPoolClientRequest"),
     type = "structure",
     members = {
         UserPoolId = schema.new({
@@ -10243,7 +10243,7 @@ M.UpdateUserPoolClientInput = schema.new({
 })
 
 M.UpdateUserPoolClientOutput = schema.new({
-    id = id.from(_N, "UpdateUserPoolClientOutput"),
+    id = id.from(_N, "UpdateUserPoolClientResponse"),
     type = "structure",
     members = {
         UserPoolClient = schema.new({
@@ -10257,7 +10257,7 @@ M.UpdateUserPoolClientOutput = schema.new({
 })
 
 M.UpdateUserPoolDomainInput = schema.new({
-    id = id.from(_N, "UpdateUserPoolDomainInput"),
+    id = id.from(_N, "UpdateUserPoolDomainRequest"),
     type = "structure",
     members = {
         Domain = schema.new({
@@ -10295,7 +10295,7 @@ M.UpdateUserPoolDomainInput = schema.new({
 })
 
 M.UpdateUserPoolDomainOutput = schema.new({
-    id = id.from(_N, "UpdateUserPoolDomainOutput"),
+    id = id.from(_N, "UpdateUserPoolDomainResponse"),
     type = "structure",
     members = {
         ManagedLoginVersion = schema.new({
@@ -10330,7 +10330,7 @@ M.EnableSoftwareTokenMFAException = schema.new({
 })
 
 M.VerifySoftwareTokenInput = schema.new({
-    id = id.from(_N, "VerifySoftwareTokenInput"),
+    id = id.from(_N, "VerifySoftwareTokenRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -10364,7 +10364,7 @@ M.VerifySoftwareTokenInput = schema.new({
 })
 
 M.VerifySoftwareTokenOutput = schema.new({
-    id = id.from(_N, "VerifySoftwareTokenOutput"),
+    id = id.from(_N, "VerifySoftwareTokenResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -10383,7 +10383,7 @@ M.VerifySoftwareTokenOutput = schema.new({
 })
 
 M.VerifyUserAttributeInput = schema.new({
-    id = id.from(_N, "VerifyUserAttributeInput"),
+    id = id.from(_N, "VerifyUserAttributeRequest"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -10417,8 +10417,22 @@ M.VerifyUserAttributeInput = schema.new({
 })
 
 M.VerifyUserAttributeOutput = schema.new({
-    id = id.from(_N, "VerifyUserAttributeOutput"),
+    id = id.from(_N, "VerifyUserAttributeResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

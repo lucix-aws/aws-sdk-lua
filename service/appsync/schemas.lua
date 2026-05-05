@@ -597,7 +597,7 @@ M.AppSyncRuntime = schema.new({
 })
 
 M.AssociateApiInput = schema.new({
-    id = id.from(_N, "AssociateApiInput"),
+    id = id.from(_N, "AssociateApiRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -623,7 +623,7 @@ M.AssociateApiInput = schema.new({
 })
 
 M.AssociateApiOutput = schema.new({
-    id = id.from(_N, "AssociateApiOutput"),
+    id = id.from(_N, "AssociateApiResponse"),
     type = "structure",
     members = {
         apiAssociation = schema.new({
@@ -785,7 +785,7 @@ M.SourceApiAssociationConfig = schema.new({
 })
 
 M.AssociateMergedGraphqlApiInput = schema.new({
-    id = id.from(_N, "AssociateMergedGraphqlApiInput"),
+    id = id.from(_N, "AssociateMergedGraphqlApiRequest"),
     type = "structure",
     members = {
         sourceApiIdentifier = schema.new({
@@ -898,7 +898,7 @@ M.SourceApiAssociation = schema.new({
 })
 
 M.AssociateMergedGraphqlApiOutput = schema.new({
-    id = id.from(_N, "AssociateMergedGraphqlApiOutput"),
+    id = id.from(_N, "AssociateMergedGraphqlApiResponse"),
     type = "structure",
     members = {
         sourceApiAssociation = schema.new({
@@ -960,7 +960,7 @@ M.UnauthorizedException = schema.new({
 })
 
 M.AssociateSourceGraphqlApiInput = schema.new({
-    id = id.from(_N, "AssociateSourceGraphqlApiInput"),
+    id = id.from(_N, "AssociateSourceGraphqlApiRequest"),
     type = "structure",
     members = {
         mergedApiIdentifier = schema.new({
@@ -999,7 +999,7 @@ M.AssociateSourceGraphqlApiInput = schema.new({
 })
 
 M.AssociateSourceGraphqlApiOutput = schema.new({
-    id = id.from(_N, "AssociateSourceGraphqlApiOutput"),
+    id = id.from(_N, "AssociateSourceGraphqlApiResponse"),
     type = "structure",
     members = {
         sourceApiAssociation = schema.new({
@@ -1055,7 +1055,7 @@ M.AuthorizationConfig = schema.new({
 })
 
 M.CreateApiInput = schema.new({
-    id = id.from(_N, "CreateApiInput"),
+    id = id.from(_N, "CreateApiRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1095,7 +1095,7 @@ M.CreateApiInput = schema.new({
 })
 
 M.CreateApiOutput = schema.new({
-    id = id.from(_N, "CreateApiOutput"),
+    id = id.from(_N, "CreateApiResponse"),
     type = "structure",
     members = {
         api = schema.new({
@@ -1125,7 +1125,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.CreateApiCacheInput = schema.new({
-    id = id.from(_N, "CreateApiCacheInput"),
+    id = id.from(_N, "CreateApiCacheRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -1194,7 +1194,7 @@ M.CreateApiCacheInput = schema.new({
 })
 
 M.CreateApiCacheOutput = schema.new({
-    id = id.from(_N, "CreateApiCacheOutput"),
+    id = id.from(_N, "CreateApiCacheResponse"),
     type = "structure",
     members = {
         apiCache = schema.new({
@@ -1208,7 +1208,7 @@ M.CreateApiCacheOutput = schema.new({
 })
 
 M.CreateApiKeyInput = schema.new({
-    id = id.from(_N, "CreateApiKeyInput"),
+    id = id.from(_N, "CreateApiKeyRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -1240,7 +1240,7 @@ M.CreateApiKeyInput = schema.new({
 })
 
 M.CreateApiKeyOutput = schema.new({
-    id = id.from(_N, "CreateApiKeyOutput"),
+    id = id.from(_N, "CreateApiKeyResponse"),
     type = "structure",
     members = {
         apiKey = schema.new({
@@ -1353,7 +1353,7 @@ M.HandlerConfigs = schema.new({
 })
 
 M.CreateChannelNamespaceInput = schema.new({
-    id = id.from(_N, "CreateChannelNamespaceInput"),
+    id = id.from(_N, "CreateChannelNamespaceRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -1486,7 +1486,7 @@ M.ChannelNamespace = schema.new({
 })
 
 M.CreateChannelNamespaceOutput = schema.new({
-    id = id.from(_N, "CreateChannelNamespaceOutput"),
+    id = id.from(_N, "CreateChannelNamespaceResponse"),
     type = "structure",
     members = {
         channelNamespace = schema.new({
@@ -1740,7 +1740,7 @@ M.RelationalDatabaseDataSourceConfig = schema.new({
 })
 
 M.CreateDataSourceInput = schema.new({
-    id = id.from(_N, "CreateDataSourceInput"),
+    id = id.from(_N, "CreateDataSourceRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -1934,7 +1934,7 @@ M.DataSource = schema.new({
 })
 
 M.CreateDataSourceOutput = schema.new({
-    id = id.from(_N, "CreateDataSourceOutput"),
+    id = id.from(_N, "CreateDataSourceResponse"),
     type = "structure",
     members = {
         dataSource = schema.new({
@@ -1948,7 +1948,7 @@ M.CreateDataSourceOutput = schema.new({
 })
 
 M.CreateDomainNameInput = schema.new({
-    id = id.from(_N, "CreateDomainNameInput"),
+    id = id.from(_N, "CreateDomainNameRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -2038,7 +2038,7 @@ M.DomainNameConfig = schema.new({
 })
 
 M.CreateDomainNameOutput = schema.new({
-    id = id.from(_N, "CreateDomainNameOutput"),
+    id = id.from(_N, "CreateDomainNameResponse"),
     type = "structure",
     members = {
         domainNameConfig = schema.new({
@@ -2091,7 +2091,7 @@ M.SyncConfig = schema.new({
 })
 
 M.CreateFunctionInput = schema.new({
-    id = id.from(_N, "CreateFunctionInput"),
+    id = id.from(_N, "CreateFunctionRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -2263,7 +2263,7 @@ M.FunctionConfiguration = schema.new({
 })
 
 M.CreateFunctionOutput = schema.new({
-    id = id.from(_N, "CreateFunctionOutput"),
+    id = id.from(_N, "CreateFunctionResponse"),
     type = "structure",
     members = {
         functionConfiguration = schema.new({
@@ -2385,7 +2385,7 @@ M.UserPoolConfig = schema.new({
 })
 
 M.CreateGraphqlApiInput = schema.new({
-    id = id.from(_N, "CreateGraphqlApiInput"),
+    id = id.from(_N, "CreateGraphqlApiRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2683,7 +2683,7 @@ M.GraphqlApi = schema.new({
 })
 
 M.CreateGraphqlApiOutput = schema.new({
-    id = id.from(_N, "CreateGraphqlApiOutput"),
+    id = id.from(_N, "CreateGraphqlApiResponse"),
     type = "structure",
     members = {
         graphqlApi = schema.new({
@@ -2735,7 +2735,7 @@ M.PipelineConfig = schema.new({
 })
 
 M.CreateResolverInput = schema.new({
-    id = id.from(_N, "CreateResolverInput"),
+    id = id.from(_N, "CreateResolverRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -2942,7 +2942,7 @@ M.Resolver = schema.new({
 })
 
 M.CreateResolverOutput = schema.new({
-    id = id.from(_N, "CreateResolverOutput"),
+    id = id.from(_N, "CreateResolverResponse"),
     type = "structure",
     members = {
         resolver = schema.new({
@@ -2956,7 +2956,7 @@ M.CreateResolverOutput = schema.new({
 })
 
 M.CreateTypeInput = schema.new({
-    id = id.from(_N, "CreateTypeInput"),
+    id = id.from(_N, "CreateTypeRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3028,7 +3028,7 @@ M.Type = schema.new({
 })
 
 M.CreateTypeOutput = schema.new({
-    id = id.from(_N, "CreateTypeOutput"),
+    id = id.from(_N, "CreateTypeResponse"),
     type = "structure",
     members = {
         type = schema.new({
@@ -3042,7 +3042,7 @@ M.CreateTypeOutput = schema.new({
 })
 
 M.DeleteApiInput = schema.new({
-    id = id.from(_N, "DeleteApiInput"),
+    id = id.from(_N, "DeleteApiRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3059,12 +3059,12 @@ M.DeleteApiInput = schema.new({
 })
 
 M.DeleteApiOutput = schema.new({
-    id = id.from(_N, "DeleteApiOutput"),
+    id = id.from(_N, "DeleteApiResponse"),
     type = "structure",
 })
 
 M.DeleteApiCacheInput = schema.new({
-    id = id.from(_N, "DeleteApiCacheInput"),
+    id = id.from(_N, "DeleteApiCacheRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3081,12 +3081,12 @@ M.DeleteApiCacheInput = schema.new({
 })
 
 M.DeleteApiCacheOutput = schema.new({
-    id = id.from(_N, "DeleteApiCacheOutput"),
+    id = id.from(_N, "DeleteApiCacheResponse"),
     type = "structure",
 })
 
 M.DeleteApiKeyInput = schema.new({
-    id = id.from(_N, "DeleteApiKeyInput"),
+    id = id.from(_N, "DeleteApiKeyRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3113,12 +3113,12 @@ M.DeleteApiKeyInput = schema.new({
 })
 
 M.DeleteApiKeyOutput = schema.new({
-    id = id.from(_N, "DeleteApiKeyOutput"),
+    id = id.from(_N, "DeleteApiKeyResponse"),
     type = "structure",
 })
 
 M.DeleteChannelNamespaceInput = schema.new({
-    id = id.from(_N, "DeleteChannelNamespaceInput"),
+    id = id.from(_N, "DeleteChannelNamespaceRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3145,12 +3145,12 @@ M.DeleteChannelNamespaceInput = schema.new({
 })
 
 M.DeleteChannelNamespaceOutput = schema.new({
-    id = id.from(_N, "DeleteChannelNamespaceOutput"),
+    id = id.from(_N, "DeleteChannelNamespaceResponse"),
     type = "structure",
 })
 
 M.DeleteDataSourceInput = schema.new({
-    id = id.from(_N, "DeleteDataSourceInput"),
+    id = id.from(_N, "DeleteDataSourceRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3177,12 +3177,12 @@ M.DeleteDataSourceInput = schema.new({
 })
 
 M.DeleteDataSourceOutput = schema.new({
-    id = id.from(_N, "DeleteDataSourceOutput"),
+    id = id.from(_N, "DeleteDataSourceResponse"),
     type = "structure",
 })
 
 M.DeleteDomainNameInput = schema.new({
-    id = id.from(_N, "DeleteDomainNameInput"),
+    id = id.from(_N, "DeleteDomainNameRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -3199,12 +3199,12 @@ M.DeleteDomainNameInput = schema.new({
 })
 
 M.DeleteDomainNameOutput = schema.new({
-    id = id.from(_N, "DeleteDomainNameOutput"),
+    id = id.from(_N, "DeleteDomainNameResponse"),
     type = "structure",
 })
 
 M.DeleteFunctionInput = schema.new({
-    id = id.from(_N, "DeleteFunctionInput"),
+    id = id.from(_N, "DeleteFunctionRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3231,12 +3231,12 @@ M.DeleteFunctionInput = schema.new({
 })
 
 M.DeleteFunctionOutput = schema.new({
-    id = id.from(_N, "DeleteFunctionOutput"),
+    id = id.from(_N, "DeleteFunctionResponse"),
     type = "structure",
 })
 
 M.DeleteGraphqlApiInput = schema.new({
-    id = id.from(_N, "DeleteGraphqlApiInput"),
+    id = id.from(_N, "DeleteGraphqlApiRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3253,12 +3253,12 @@ M.DeleteGraphqlApiInput = schema.new({
 })
 
 M.DeleteGraphqlApiOutput = schema.new({
-    id = id.from(_N, "DeleteGraphqlApiOutput"),
+    id = id.from(_N, "DeleteGraphqlApiResponse"),
     type = "structure",
 })
 
 M.DeleteResolverInput = schema.new({
-    id = id.from(_N, "DeleteResolverInput"),
+    id = id.from(_N, "DeleteResolverRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3295,12 +3295,12 @@ M.DeleteResolverInput = schema.new({
 })
 
 M.DeleteResolverOutput = schema.new({
-    id = id.from(_N, "DeleteResolverOutput"),
+    id = id.from(_N, "DeleteResolverResponse"),
     type = "structure",
 })
 
 M.DeleteTypeInput = schema.new({
-    id = id.from(_N, "DeleteTypeInput"),
+    id = id.from(_N, "DeleteTypeRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3327,12 +3327,12 @@ M.DeleteTypeInput = schema.new({
 })
 
 M.DeleteTypeOutput = schema.new({
-    id = id.from(_N, "DeleteTypeOutput"),
+    id = id.from(_N, "DeleteTypeResponse"),
     type = "structure",
 })
 
 M.DisassociateApiInput = schema.new({
-    id = id.from(_N, "DisassociateApiInput"),
+    id = id.from(_N, "DisassociateApiRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -3349,12 +3349,12 @@ M.DisassociateApiInput = schema.new({
 })
 
 M.DisassociateApiOutput = schema.new({
-    id = id.from(_N, "DisassociateApiOutput"),
+    id = id.from(_N, "DisassociateApiResponse"),
     type = "structure",
 })
 
 M.DisassociateMergedGraphqlApiInput = schema.new({
-    id = id.from(_N, "DisassociateMergedGraphqlApiInput"),
+    id = id.from(_N, "DisassociateMergedGraphqlApiRequest"),
     type = "structure",
     members = {
         sourceApiIdentifier = schema.new({
@@ -3381,7 +3381,7 @@ M.DisassociateMergedGraphqlApiInput = schema.new({
 })
 
 M.DisassociateMergedGraphqlApiOutput = schema.new({
-    id = id.from(_N, "DisassociateMergedGraphqlApiOutput"),
+    id = id.from(_N, "DisassociateMergedGraphqlApiResponse"),
     type = "structure",
     members = {
         sourceApiAssociationStatus = schema.new({
@@ -3394,7 +3394,7 @@ M.DisassociateMergedGraphqlApiOutput = schema.new({
 })
 
 M.DisassociateSourceGraphqlApiInput = schema.new({
-    id = id.from(_N, "DisassociateSourceGraphqlApiInput"),
+    id = id.from(_N, "DisassociateSourceGraphqlApiRequest"),
     type = "structure",
     members = {
         mergedApiIdentifier = schema.new({
@@ -3421,7 +3421,7 @@ M.DisassociateSourceGraphqlApiInput = schema.new({
 })
 
 M.DisassociateSourceGraphqlApiOutput = schema.new({
-    id = id.from(_N, "DisassociateSourceGraphqlApiOutput"),
+    id = id.from(_N, "DisassociateSourceGraphqlApiResponse"),
     type = "structure",
     members = {
         sourceApiAssociationStatus = schema.new({
@@ -3434,7 +3434,7 @@ M.DisassociateSourceGraphqlApiOutput = schema.new({
 })
 
 M.EvaluateCodeInput = schema.new({
-    id = id.from(_N, "EvaluateCodeInput"),
+    id = id.from(_N, "EvaluateCodeRequest"),
     type = "structure",
     members = {
         runtime = schema.new({
@@ -3495,7 +3495,7 @@ M.EvaluateCodeErrorDetail = schema.new({
 })
 
 M.EvaluateCodeOutput = schema.new({
-    id = id.from(_N, "EvaluateCodeOutput"),
+    id = id.from(_N, "EvaluateCodeResponse"),
     type = "structure",
     members = {
         evaluationResult = schema.new({
@@ -3534,7 +3534,7 @@ M.EvaluateCodeOutput = schema.new({
 })
 
 M.EvaluateMappingTemplateInput = schema.new({
-    id = id.from(_N, "EvaluateMappingTemplateInput"),
+    id = id.from(_N, "EvaluateMappingTemplateRequest"),
     type = "structure",
     members = {
         template = schema.new({
@@ -3572,7 +3572,7 @@ M.ErrorDetail = schema.new({
 })
 
 M.EvaluateMappingTemplateOutput = schema.new({
-    id = id.from(_N, "EvaluateMappingTemplateOutput"),
+    id = id.from(_N, "EvaluateMappingTemplateResponse"),
     type = "structure",
     members = {
         evaluationResult = schema.new({
@@ -3611,7 +3611,7 @@ M.EvaluateMappingTemplateOutput = schema.new({
 })
 
 M.FlushApiCacheInput = schema.new({
-    id = id.from(_N, "FlushApiCacheInput"),
+    id = id.from(_N, "FlushApiCacheRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3628,12 +3628,12 @@ M.FlushApiCacheInput = schema.new({
 })
 
 M.FlushApiCacheOutput = schema.new({
-    id = id.from(_N, "FlushApiCacheOutput"),
+    id = id.from(_N, "FlushApiCacheResponse"),
     type = "structure",
 })
 
 M.GetApiInput = schema.new({
-    id = id.from(_N, "GetApiInput"),
+    id = id.from(_N, "GetApiRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3650,7 +3650,7 @@ M.GetApiInput = schema.new({
 })
 
 M.GetApiOutput = schema.new({
-    id = id.from(_N, "GetApiOutput"),
+    id = id.from(_N, "GetApiResponse"),
     type = "structure",
     members = {
         api = schema.new({
@@ -3664,7 +3664,7 @@ M.GetApiOutput = schema.new({
 })
 
 M.GetApiAssociationInput = schema.new({
-    id = id.from(_N, "GetApiAssociationInput"),
+    id = id.from(_N, "GetApiAssociationRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -3681,7 +3681,7 @@ M.GetApiAssociationInput = schema.new({
 })
 
 M.GetApiAssociationOutput = schema.new({
-    id = id.from(_N, "GetApiAssociationOutput"),
+    id = id.from(_N, "GetApiAssociationResponse"),
     type = "structure",
     members = {
         apiAssociation = schema.new({
@@ -3695,7 +3695,7 @@ M.GetApiAssociationOutput = schema.new({
 })
 
 M.GetApiCacheInput = schema.new({
-    id = id.from(_N, "GetApiCacheInput"),
+    id = id.from(_N, "GetApiCacheRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3712,7 +3712,7 @@ M.GetApiCacheInput = schema.new({
 })
 
 M.GetApiCacheOutput = schema.new({
-    id = id.from(_N, "GetApiCacheOutput"),
+    id = id.from(_N, "GetApiCacheResponse"),
     type = "structure",
     members = {
         apiCache = schema.new({
@@ -3726,7 +3726,7 @@ M.GetApiCacheOutput = schema.new({
 })
 
 M.GetChannelNamespaceInput = schema.new({
-    id = id.from(_N, "GetChannelNamespaceInput"),
+    id = id.from(_N, "GetChannelNamespaceRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3753,7 +3753,7 @@ M.GetChannelNamespaceInput = schema.new({
 })
 
 M.GetChannelNamespaceOutput = schema.new({
-    id = id.from(_N, "GetChannelNamespaceOutput"),
+    id = id.from(_N, "GetChannelNamespaceResponse"),
     type = "structure",
     members = {
         channelNamespace = schema.new({
@@ -3767,7 +3767,7 @@ M.GetChannelNamespaceOutput = schema.new({
 })
 
 M.GetDataSourceInput = schema.new({
-    id = id.from(_N, "GetDataSourceInput"),
+    id = id.from(_N, "GetDataSourceRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3794,7 +3794,7 @@ M.GetDataSourceInput = schema.new({
 })
 
 M.GetDataSourceOutput = schema.new({
-    id = id.from(_N, "GetDataSourceOutput"),
+    id = id.from(_N, "GetDataSourceResponse"),
     type = "structure",
     members = {
         dataSource = schema.new({
@@ -3808,7 +3808,7 @@ M.GetDataSourceOutput = schema.new({
 })
 
 M.GetDataSourceIntrospectionInput = schema.new({
-    id = id.from(_N, "GetDataSourceIntrospectionInput"),
+    id = id.from(_N, "GetDataSourceIntrospectionRequest"),
     type = "structure",
     members = {
         introspectionId = schema.new({
@@ -3874,7 +3874,7 @@ M.DataSourceIntrospectionModelIndex = schema.new({
 })
 
 M.GetDomainNameInput = schema.new({
-    id = id.from(_N, "GetDomainNameInput"),
+    id = id.from(_N, "GetDomainNameRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -3891,7 +3891,7 @@ M.GetDomainNameInput = schema.new({
 })
 
 M.GetDomainNameOutput = schema.new({
-    id = id.from(_N, "GetDomainNameOutput"),
+    id = id.from(_N, "GetDomainNameResponse"),
     type = "structure",
     members = {
         domainNameConfig = schema.new({
@@ -3905,7 +3905,7 @@ M.GetDomainNameOutput = schema.new({
 })
 
 M.GetFunctionInput = schema.new({
-    id = id.from(_N, "GetFunctionInput"),
+    id = id.from(_N, "GetFunctionRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3932,7 +3932,7 @@ M.GetFunctionInput = schema.new({
 })
 
 M.GetFunctionOutput = schema.new({
-    id = id.from(_N, "GetFunctionOutput"),
+    id = id.from(_N, "GetFunctionResponse"),
     type = "structure",
     members = {
         functionConfiguration = schema.new({
@@ -3946,7 +3946,7 @@ M.GetFunctionOutput = schema.new({
 })
 
 M.GetGraphqlApiInput = schema.new({
-    id = id.from(_N, "GetGraphqlApiInput"),
+    id = id.from(_N, "GetGraphqlApiRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3963,7 +3963,7 @@ M.GetGraphqlApiInput = schema.new({
 })
 
 M.GetGraphqlApiOutput = schema.new({
-    id = id.from(_N, "GetGraphqlApiOutput"),
+    id = id.from(_N, "GetGraphqlApiResponse"),
     type = "structure",
     members = {
         graphqlApi = schema.new({
@@ -3977,7 +3977,7 @@ M.GetGraphqlApiOutput = schema.new({
 })
 
 M.GetGraphqlApiEnvironmentVariablesInput = schema.new({
-    id = id.from(_N, "GetGraphqlApiEnvironmentVariablesInput"),
+    id = id.from(_N, "GetGraphqlApiEnvironmentVariablesRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -3994,7 +3994,7 @@ M.GetGraphqlApiEnvironmentVariablesInput = schema.new({
 })
 
 M.GetGraphqlApiEnvironmentVariablesOutput = schema.new({
-    id = id.from(_N, "GetGraphqlApiEnvironmentVariablesOutput"),
+    id = id.from(_N, "GetGraphqlApiEnvironmentVariablesResponse"),
     type = "structure",
     members = {
         environmentVariables = schema.new({
@@ -4009,7 +4009,7 @@ M.GetGraphqlApiEnvironmentVariablesOutput = schema.new({
 })
 
 M.GetIntrospectionSchemaInput = schema.new({
-    id = id.from(_N, "GetIntrospectionSchemaInput"),
+    id = id.from(_N, "GetIntrospectionSchemaRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -4045,7 +4045,7 @@ M.GetIntrospectionSchemaInput = schema.new({
 })
 
 M.GetIntrospectionSchemaOutput = schema.new({
-    id = id.from(_N, "GetIntrospectionSchemaOutput"),
+    id = id.from(_N, "GetIntrospectionSchemaResponse"),
     type = "structure",
     members = {
         schema = schema.new({
@@ -4077,7 +4077,7 @@ M.GraphQLSchemaException = schema.new({
 })
 
 M.GetResolverInput = schema.new({
-    id = id.from(_N, "GetResolverInput"),
+    id = id.from(_N, "GetResolverRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -4114,7 +4114,7 @@ M.GetResolverInput = schema.new({
 })
 
 M.GetResolverOutput = schema.new({
-    id = id.from(_N, "GetResolverOutput"),
+    id = id.from(_N, "GetResolverResponse"),
     type = "structure",
     members = {
         resolver = schema.new({
@@ -4128,7 +4128,7 @@ M.GetResolverOutput = schema.new({
 })
 
 M.GetSchemaCreationStatusInput = schema.new({
-    id = id.from(_N, "GetSchemaCreationStatusInput"),
+    id = id.from(_N, "GetSchemaCreationStatusRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -4145,7 +4145,7 @@ M.GetSchemaCreationStatusInput = schema.new({
 })
 
 M.GetSchemaCreationStatusOutput = schema.new({
-    id = id.from(_N, "GetSchemaCreationStatusOutput"),
+    id = id.from(_N, "GetSchemaCreationStatusResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -4164,7 +4164,7 @@ M.GetSchemaCreationStatusOutput = schema.new({
 })
 
 M.GetSourceApiAssociationInput = schema.new({
-    id = id.from(_N, "GetSourceApiAssociationInput"),
+    id = id.from(_N, "GetSourceApiAssociationRequest"),
     type = "structure",
     members = {
         mergedApiIdentifier = schema.new({
@@ -4191,7 +4191,7 @@ M.GetSourceApiAssociationInput = schema.new({
 })
 
 M.GetSourceApiAssociationOutput = schema.new({
-    id = id.from(_N, "GetSourceApiAssociationOutput"),
+    id = id.from(_N, "GetSourceApiAssociationResponse"),
     type = "structure",
     members = {
         sourceApiAssociation = schema.new({
@@ -4205,7 +4205,7 @@ M.GetSourceApiAssociationOutput = schema.new({
 })
 
 M.GetTypeInput = schema.new({
-    id = id.from(_N, "GetTypeInput"),
+    id = id.from(_N, "GetTypeRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -4242,7 +4242,7 @@ M.GetTypeInput = schema.new({
 })
 
 M.GetTypeOutput = schema.new({
-    id = id.from(_N, "GetTypeOutput"),
+    id = id.from(_N, "GetTypeResponse"),
     type = "structure",
     members = {
         type = schema.new({
@@ -4256,7 +4256,7 @@ M.GetTypeOutput = schema.new({
 })
 
 M.ListApiKeysInput = schema.new({
-    id = id.from(_N, "ListApiKeysInput"),
+    id = id.from(_N, "ListApiKeysRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -4292,7 +4292,7 @@ M.ListApiKeysInput = schema.new({
 })
 
 M.ListApiKeysOutput = schema.new({
-    id = id.from(_N, "ListApiKeysOutput"),
+    id = id.from(_N, "ListApiKeysResponse"),
     type = "structure",
     members = {
         apiKeys = schema.new({
@@ -4312,7 +4312,7 @@ M.ListApiKeysOutput = schema.new({
 })
 
 M.ListApisInput = schema.new({
-    id = id.from(_N, "ListApisInput"),
+    id = id.from(_N, "ListApisRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4338,7 +4338,7 @@ M.ListApisInput = schema.new({
 })
 
 M.ListApisOutput = schema.new({
-    id = id.from(_N, "ListApisOutput"),
+    id = id.from(_N, "ListApisResponse"),
     type = "structure",
     members = {
         apis = schema.new({
@@ -4358,7 +4358,7 @@ M.ListApisOutput = schema.new({
 })
 
 M.ListChannelNamespacesInput = schema.new({
-    id = id.from(_N, "ListChannelNamespacesInput"),
+    id = id.from(_N, "ListChannelNamespacesRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -4394,7 +4394,7 @@ M.ListChannelNamespacesInput = schema.new({
 })
 
 M.ListChannelNamespacesOutput = schema.new({
-    id = id.from(_N, "ListChannelNamespacesOutput"),
+    id = id.from(_N, "ListChannelNamespacesResponse"),
     type = "structure",
     members = {
         channelNamespaces = schema.new({
@@ -4414,7 +4414,7 @@ M.ListChannelNamespacesOutput = schema.new({
 })
 
 M.ListDataSourcesInput = schema.new({
-    id = id.from(_N, "ListDataSourcesInput"),
+    id = id.from(_N, "ListDataSourcesRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -4450,7 +4450,7 @@ M.ListDataSourcesInput = schema.new({
 })
 
 M.ListDataSourcesOutput = schema.new({
-    id = id.from(_N, "ListDataSourcesOutput"),
+    id = id.from(_N, "ListDataSourcesResponse"),
     type = "structure",
     members = {
         dataSources = schema.new({
@@ -4470,7 +4470,7 @@ M.ListDataSourcesOutput = schema.new({
 })
 
 M.ListDomainNamesInput = schema.new({
-    id = id.from(_N, "ListDomainNamesInput"),
+    id = id.from(_N, "ListDomainNamesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4496,7 +4496,7 @@ M.ListDomainNamesInput = schema.new({
 })
 
 M.ListDomainNamesOutput = schema.new({
-    id = id.from(_N, "ListDomainNamesOutput"),
+    id = id.from(_N, "ListDomainNamesResponse"),
     type = "structure",
     members = {
         domainNameConfigs = schema.new({
@@ -4516,7 +4516,7 @@ M.ListDomainNamesOutput = schema.new({
 })
 
 M.ListFunctionsInput = schema.new({
-    id = id.from(_N, "ListFunctionsInput"),
+    id = id.from(_N, "ListFunctionsRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -4552,7 +4552,7 @@ M.ListFunctionsInput = schema.new({
 })
 
 M.ListFunctionsOutput = schema.new({
-    id = id.from(_N, "ListFunctionsOutput"),
+    id = id.from(_N, "ListFunctionsResponse"),
     type = "structure",
     members = {
         functions = schema.new({
@@ -4572,7 +4572,7 @@ M.ListFunctionsOutput = schema.new({
 })
 
 M.ListGraphqlApisInput = schema.new({
-    id = id.from(_N, "ListGraphqlApisInput"),
+    id = id.from(_N, "ListGraphqlApisRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4616,7 +4616,7 @@ M.ListGraphqlApisInput = schema.new({
 })
 
 M.ListGraphqlApisOutput = schema.new({
-    id = id.from(_N, "ListGraphqlApisOutput"),
+    id = id.from(_N, "ListGraphqlApisResponse"),
     type = "structure",
     members = {
         graphqlApis = schema.new({
@@ -4636,7 +4636,7 @@ M.ListGraphqlApisOutput = schema.new({
 })
 
 M.ListResolversInput = schema.new({
-    id = id.from(_N, "ListResolversInput"),
+    id = id.from(_N, "ListResolversRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -4682,7 +4682,7 @@ M.ListResolversInput = schema.new({
 })
 
 M.ListResolversOutput = schema.new({
-    id = id.from(_N, "ListResolversOutput"),
+    id = id.from(_N, "ListResolversResponse"),
     type = "structure",
     members = {
         resolvers = schema.new({
@@ -4702,7 +4702,7 @@ M.ListResolversOutput = schema.new({
 })
 
 M.ListResolversByFunctionInput = schema.new({
-    id = id.from(_N, "ListResolversByFunctionInput"),
+    id = id.from(_N, "ListResolversByFunctionRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -4748,7 +4748,7 @@ M.ListResolversByFunctionInput = schema.new({
 })
 
 M.ListResolversByFunctionOutput = schema.new({
-    id = id.from(_N, "ListResolversByFunctionOutput"),
+    id = id.from(_N, "ListResolversByFunctionResponse"),
     type = "structure",
     members = {
         resolvers = schema.new({
@@ -4768,7 +4768,7 @@ M.ListResolversByFunctionOutput = schema.new({
 })
 
 M.ListSourceApiAssociationsInput = schema.new({
-    id = id.from(_N, "ListSourceApiAssociationsInput"),
+    id = id.from(_N, "ListSourceApiAssociationsRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -4853,7 +4853,7 @@ M.SourceApiAssociationSummary = schema.new({
 })
 
 M.ListSourceApiAssociationsOutput = schema.new({
-    id = id.from(_N, "ListSourceApiAssociationsOutput"),
+    id = id.from(_N, "ListSourceApiAssociationsResponse"),
     type = "structure",
     members = {
         sourceApiAssociationSummaries = schema.new({
@@ -4873,7 +4873,7 @@ M.ListSourceApiAssociationsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4890,7 +4890,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -4905,7 +4905,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTypesInput = schema.new({
-    id = id.from(_N, "ListTypesInput"),
+    id = id.from(_N, "ListTypesRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -4951,7 +4951,7 @@ M.ListTypesInput = schema.new({
 })
 
 M.ListTypesOutput = schema.new({
-    id = id.from(_N, "ListTypesOutput"),
+    id = id.from(_N, "ListTypesResponse"),
     type = "structure",
     members = {
         types = schema.new({
@@ -4971,7 +4971,7 @@ M.ListTypesOutput = schema.new({
 })
 
 M.ListTypesByAssociationInput = schema.new({
-    id = id.from(_N, "ListTypesByAssociationInput"),
+    id = id.from(_N, "ListTypesByAssociationRequest"),
     type = "structure",
     members = {
         mergedApiIdentifier = schema.new({
@@ -5027,7 +5027,7 @@ M.ListTypesByAssociationInput = schema.new({
 })
 
 M.ListTypesByAssociationOutput = schema.new({
-    id = id.from(_N, "ListTypesByAssociationOutput"),
+    id = id.from(_N, "ListTypesByAssociationResponse"),
     type = "structure",
     members = {
         types = schema.new({
@@ -5047,7 +5047,7 @@ M.ListTypesByAssociationOutput = schema.new({
 })
 
 M.PutGraphqlApiEnvironmentVariablesInput = schema.new({
-    id = id.from(_N, "PutGraphqlApiEnvironmentVariablesInput"),
+    id = id.from(_N, "PutGraphqlApiEnvironmentVariablesRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -5075,7 +5075,7 @@ M.PutGraphqlApiEnvironmentVariablesInput = schema.new({
 })
 
 M.PutGraphqlApiEnvironmentVariablesOutput = schema.new({
-    id = id.from(_N, "PutGraphqlApiEnvironmentVariablesOutput"),
+    id = id.from(_N, "PutGraphqlApiEnvironmentVariablesResponse"),
     type = "structure",
     members = {
         environmentVariables = schema.new({
@@ -5124,7 +5124,7 @@ M.RdsDataApiConfig = schema.new({
 })
 
 M.StartDataSourceIntrospectionInput = schema.new({
-    id = id.from(_N, "StartDataSourceIntrospectionInput"),
+    id = id.from(_N, "StartDataSourceIntrospectionRequest"),
     type = "structure",
     members = {
         rdsDataApiConfig = schema.new({
@@ -5138,7 +5138,7 @@ M.StartDataSourceIntrospectionInput = schema.new({
 })
 
 M.StartDataSourceIntrospectionOutput = schema.new({
-    id = id.from(_N, "StartDataSourceIntrospectionOutput"),
+    id = id.from(_N, "StartDataSourceIntrospectionResponse"),
     type = "structure",
     members = {
         introspectionId = schema.new({
@@ -5163,7 +5163,7 @@ M.StartDataSourceIntrospectionOutput = schema.new({
 })
 
 M.StartSchemaCreationInput = schema.new({
-    id = id.from(_N, "StartSchemaCreationInput"),
+    id = id.from(_N, "StartSchemaCreationRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -5189,7 +5189,7 @@ M.StartSchemaCreationInput = schema.new({
 })
 
 M.StartSchemaCreationOutput = schema.new({
-    id = id.from(_N, "StartSchemaCreationOutput"),
+    id = id.from(_N, "StartSchemaCreationResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -5202,7 +5202,7 @@ M.StartSchemaCreationOutput = schema.new({
 })
 
 M.StartSchemaMergeInput = schema.new({
-    id = id.from(_N, "StartSchemaMergeInput"),
+    id = id.from(_N, "StartSchemaMergeRequest"),
     type = "structure",
     members = {
         associationId = schema.new({
@@ -5229,7 +5229,7 @@ M.StartSchemaMergeInput = schema.new({
 })
 
 M.StartSchemaMergeOutput = schema.new({
-    id = id.from(_N, "StartSchemaMergeOutput"),
+    id = id.from(_N, "StartSchemaMergeResponse"),
     type = "structure",
     members = {
         sourceApiAssociationStatus = schema.new({
@@ -5242,7 +5242,7 @@ M.StartSchemaMergeOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5270,12 +5270,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5303,12 +5303,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateApiInput = schema.new({
-    id = id.from(_N, "UpdateApiInput"),
+    id = id.from(_N, "UpdateApiRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -5350,7 +5350,7 @@ M.UpdateApiInput = schema.new({
 })
 
 M.UpdateApiOutput = schema.new({
-    id = id.from(_N, "UpdateApiOutput"),
+    id = id.from(_N, "UpdateApiResponse"),
     type = "structure",
     members = {
         api = schema.new({
@@ -5364,7 +5364,7 @@ M.UpdateApiOutput = schema.new({
 })
 
 M.UpdateApiCacheInput = schema.new({
-    id = id.from(_N, "UpdateApiCacheInput"),
+    id = id.from(_N, "UpdateApiCacheRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -5415,7 +5415,7 @@ M.UpdateApiCacheInput = schema.new({
 })
 
 M.UpdateApiCacheOutput = schema.new({
-    id = id.from(_N, "UpdateApiCacheOutput"),
+    id = id.from(_N, "UpdateApiCacheResponse"),
     type = "structure",
     members = {
         apiCache = schema.new({
@@ -5429,7 +5429,7 @@ M.UpdateApiCacheOutput = schema.new({
 })
 
 M.UpdateApiKeyInput = schema.new({
-    id = id.from(_N, "UpdateApiKeyInput"),
+    id = id.from(_N, "UpdateApiKeyRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -5471,7 +5471,7 @@ M.UpdateApiKeyInput = schema.new({
 })
 
 M.UpdateApiKeyOutput = schema.new({
-    id = id.from(_N, "UpdateApiKeyOutput"),
+    id = id.from(_N, "UpdateApiKeyResponse"),
     type = "structure",
     members = {
         apiKey = schema.new({
@@ -5485,7 +5485,7 @@ M.UpdateApiKeyOutput = schema.new({
 })
 
 M.UpdateChannelNamespaceInput = schema.new({
-    id = id.from(_N, "UpdateChannelNamespaceInput"),
+    id = id.from(_N, "UpdateChannelNamespaceRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -5539,7 +5539,7 @@ M.UpdateChannelNamespaceInput = schema.new({
 })
 
 M.UpdateChannelNamespaceOutput = schema.new({
-    id = id.from(_N, "UpdateChannelNamespaceOutput"),
+    id = id.from(_N, "UpdateChannelNamespaceResponse"),
     type = "structure",
     members = {
         channelNamespace = schema.new({
@@ -5553,7 +5553,7 @@ M.UpdateChannelNamespaceOutput = schema.new({
 })
 
 M.UpdateDataSourceInput = schema.new({
-    id = id.from(_N, "UpdateDataSourceInput"),
+    id = id.from(_N, "UpdateDataSourceRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -5656,7 +5656,7 @@ M.UpdateDataSourceInput = schema.new({
 })
 
 M.UpdateDataSourceOutput = schema.new({
-    id = id.from(_N, "UpdateDataSourceOutput"),
+    id = id.from(_N, "UpdateDataSourceResponse"),
     type = "structure",
     members = {
         dataSource = schema.new({
@@ -5670,7 +5670,7 @@ M.UpdateDataSourceOutput = schema.new({
 })
 
 M.UpdateDomainNameInput = schema.new({
-    id = id.from(_N, "UpdateDomainNameInput"),
+    id = id.from(_N, "UpdateDomainNameRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -5693,7 +5693,7 @@ M.UpdateDomainNameInput = schema.new({
 })
 
 M.UpdateDomainNameOutput = schema.new({
-    id = id.from(_N, "UpdateDomainNameOutput"),
+    id = id.from(_N, "UpdateDomainNameResponse"),
     type = "structure",
     members = {
         domainNameConfig = schema.new({
@@ -5707,7 +5707,7 @@ M.UpdateDomainNameOutput = schema.new({
 })
 
 M.UpdateFunctionInput = schema.new({
-    id = id.from(_N, "UpdateFunctionInput"),
+    id = id.from(_N, "UpdateFunctionRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -5805,7 +5805,7 @@ M.UpdateFunctionInput = schema.new({
 })
 
 M.UpdateFunctionOutput = schema.new({
-    id = id.from(_N, "UpdateFunctionOutput"),
+    id = id.from(_N, "UpdateFunctionResponse"),
     type = "structure",
     members = {
         functionConfiguration = schema.new({
@@ -5819,7 +5819,7 @@ M.UpdateFunctionOutput = schema.new({
 })
 
 M.UpdateGraphqlApiInput = schema.new({
-    id = id.from(_N, "UpdateGraphqlApiInput"),
+    id = id.from(_N, "UpdateGraphqlApiRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -5941,7 +5941,7 @@ M.UpdateGraphqlApiInput = schema.new({
 })
 
 M.UpdateGraphqlApiOutput = schema.new({
-    id = id.from(_N, "UpdateGraphqlApiOutput"),
+    id = id.from(_N, "UpdateGraphqlApiResponse"),
     type = "structure",
     members = {
         graphqlApi = schema.new({
@@ -5955,7 +5955,7 @@ M.UpdateGraphqlApiOutput = schema.new({
 })
 
 M.UpdateResolverInput = schema.new({
-    id = id.from(_N, "UpdateResolverInput"),
+    id = id.from(_N, "UpdateResolverRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -6065,7 +6065,7 @@ M.UpdateResolverInput = schema.new({
 })
 
 M.UpdateResolverOutput = schema.new({
-    id = id.from(_N, "UpdateResolverOutput"),
+    id = id.from(_N, "UpdateResolverResponse"),
     type = "structure",
     members = {
         resolver = schema.new({
@@ -6079,7 +6079,7 @@ M.UpdateResolverOutput = schema.new({
 })
 
 M.UpdateSourceApiAssociationInput = schema.new({
-    id = id.from(_N, "UpdateSourceApiAssociationInput"),
+    id = id.from(_N, "UpdateSourceApiAssociationRequest"),
     type = "structure",
     members = {
         associationId = schema.new({
@@ -6119,7 +6119,7 @@ M.UpdateSourceApiAssociationInput = schema.new({
 })
 
 M.UpdateSourceApiAssociationOutput = schema.new({
-    id = id.from(_N, "UpdateSourceApiAssociationOutput"),
+    id = id.from(_N, "UpdateSourceApiAssociationResponse"),
     type = "structure",
     members = {
         sourceApiAssociation = schema.new({
@@ -6133,7 +6133,7 @@ M.UpdateSourceApiAssociationOutput = schema.new({
 })
 
 M.UpdateTypeInput = schema.new({
-    id = id.from(_N, "UpdateTypeInput"),
+    id = id.from(_N, "UpdateTypeRequest"),
     type = "structure",
     members = {
         apiId = schema.new({
@@ -6175,7 +6175,7 @@ M.UpdateTypeInput = schema.new({
 })
 
 M.UpdateTypeOutput = schema.new({
-    id = id.from(_N, "UpdateTypeOutput"),
+    id = id.from(_N, "UpdateTypeResponse"),
     type = "structure",
     members = {
         type = schema.new({
@@ -6311,7 +6311,7 @@ M.DataSourceIntrospectionResult = schema.new({
 })
 
 M.GetDataSourceIntrospectionOutput = schema.new({
-    id = id.from(_N, "GetDataSourceIntrospectionOutput"),
+    id = id.from(_N, "GetDataSourceIntrospectionResponse"),
     type = "structure",
     members = {
         introspectionId = schema.new({
@@ -6341,5 +6341,19 @@ M.GetDataSourceIntrospectionOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

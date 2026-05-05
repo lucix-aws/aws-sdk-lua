@@ -71,7 +71,7 @@ M.ArtifactConfigOutput = schema.new({
 })
 
 M.AssociateResourceInput = schema.new({
-    id = id.from(_N, "AssociateResourceInput"),
+    id = id.from(_N, "AssociateResourceRequest"),
     type = "structure",
     members = {
         GroupIdentifier = schema.new({
@@ -97,7 +97,7 @@ M.AssociateResourceInput = schema.new({
 })
 
 M.AssociateResourceOutput = schema.new({
-    id = id.from(_N, "AssociateResourceOutput"),
+    id = id.from(_N, "AssociateResourceResponse"),
     type = "structure",
 })
 
@@ -983,7 +983,7 @@ M.VpcConfigInput = schema.new({
 })
 
 M.CreateCanaryInput = schema.new({
-    id = id.from(_N, "CreateCanaryInput"),
+    id = id.from(_N, "CreateCanaryRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1107,7 +1107,7 @@ M.CreateCanaryInput = schema.new({
 })
 
 M.CreateCanaryOutput = schema.new({
-    id = id.from(_N, "CreateCanaryOutput"),
+    id = id.from(_N, "CreateCanaryResponse"),
     type = "structure",
     members = {
         Canary = schema.new({
@@ -1137,7 +1137,7 @@ M.RequestEntityTooLargeException = schema.new({
 })
 
 M.CreateGroupInput = schema.new({
-    id = id.from(_N, "CreateGroupInput"),
+    id = id.from(_N, "CreateGroupRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1206,7 +1206,7 @@ M.Group = schema.new({
 })
 
 M.CreateGroupOutput = schema.new({
-    id = id.from(_N, "CreateGroupOutput"),
+    id = id.from(_N, "CreateGroupResponse"),
     type = "structure",
     members = {
         Group = schema.new({
@@ -1220,7 +1220,7 @@ M.CreateGroupOutput = schema.new({
 })
 
 M.DeleteCanaryInput = schema.new({
-    id = id.from(_N, "DeleteCanaryInput"),
+    id = id.from(_N, "DeleteCanaryRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1247,12 +1247,12 @@ M.DeleteCanaryInput = schema.new({
 })
 
 M.DeleteCanaryOutput = schema.new({
-    id = id.from(_N, "DeleteCanaryOutput"),
+    id = id.from(_N, "DeleteCanaryResponse"),
     type = "structure",
 })
 
 M.DeleteGroupInput = schema.new({
-    id = id.from(_N, "DeleteGroupInput"),
+    id = id.from(_N, "DeleteGroupRequest"),
     type = "structure",
     members = {
         GroupIdentifier = schema.new({
@@ -1269,12 +1269,12 @@ M.DeleteGroupInput = schema.new({
 })
 
 M.DeleteGroupOutput = schema.new({
-    id = id.from(_N, "DeleteGroupOutput"),
+    id = id.from(_N, "DeleteGroupResponse"),
     type = "structure",
 })
 
 M.DescribeCanariesInput = schema.new({
-    id = id.from(_N, "DescribeCanariesInput"),
+    id = id.from(_N, "DescribeCanariesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1300,7 +1300,7 @@ M.DescribeCanariesInput = schema.new({
 })
 
 M.DescribeCanariesOutput = schema.new({
-    id = id.from(_N, "DescribeCanariesOutput"),
+    id = id.from(_N, "DescribeCanariesResponse"),
     type = "structure",
     members = {
         Canaries = schema.new({
@@ -1320,7 +1320,7 @@ M.DescribeCanariesOutput = schema.new({
 })
 
 M.DescribeCanariesLastRunInput = schema.new({
-    id = id.from(_N, "DescribeCanariesLastRunInput"),
+    id = id.from(_N, "DescribeCanariesLastRunRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1352,7 +1352,7 @@ M.DescribeCanariesLastRunInput = schema.new({
 })
 
 M.DescribeCanariesLastRunOutput = schema.new({
-    id = id.from(_N, "DescribeCanariesLastRunOutput"),
+    id = id.from(_N, "DescribeCanariesLastRunResponse"),
     type = "structure",
     members = {
         CanariesLastRun = schema.new({
@@ -1372,7 +1372,7 @@ M.DescribeCanariesLastRunOutput = schema.new({
 })
 
 M.DescribeRuntimeVersionsInput = schema.new({
-    id = id.from(_N, "DescribeRuntimeVersionsInput"),
+    id = id.from(_N, "DescribeRuntimeVersionsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1422,7 +1422,7 @@ M.RuntimeVersion = schema.new({
 })
 
 M.DescribeRuntimeVersionsOutput = schema.new({
-    id = id.from(_N, "DescribeRuntimeVersionsOutput"),
+    id = id.from(_N, "DescribeRuntimeVersionsResponse"),
     type = "structure",
     members = {
         RuntimeVersions = schema.new({
@@ -1442,7 +1442,7 @@ M.DescribeRuntimeVersionsOutput = schema.new({
 })
 
 M.DisassociateResourceInput = schema.new({
-    id = id.from(_N, "DisassociateResourceInput"),
+    id = id.from(_N, "DisassociateResourceRequest"),
     type = "structure",
     members = {
         GroupIdentifier = schema.new({
@@ -1468,12 +1468,12 @@ M.DisassociateResourceInput = schema.new({
 })
 
 M.DisassociateResourceOutput = schema.new({
-    id = id.from(_N, "DisassociateResourceOutput"),
+    id = id.from(_N, "DisassociateResourceResponse"),
     type = "structure",
 })
 
 M.GetCanaryInput = schema.new({
-    id = id.from(_N, "GetCanaryInput"),
+    id = id.from(_N, "GetCanaryRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1499,7 +1499,7 @@ M.GetCanaryInput = schema.new({
 })
 
 M.GetCanaryOutput = schema.new({
-    id = id.from(_N, "GetCanaryOutput"),
+    id = id.from(_N, "GetCanaryResponse"),
     type = "structure",
     members = {
         Canary = schema.new({
@@ -1513,7 +1513,7 @@ M.GetCanaryOutput = schema.new({
 })
 
 M.GetCanaryRunsInput = schema.new({
-    id = id.from(_N, "GetCanaryRunsInput"),
+    id = id.from(_N, "GetCanaryRunsRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1554,7 +1554,7 @@ M.GetCanaryRunsInput = schema.new({
 })
 
 M.GetCanaryRunsOutput = schema.new({
-    id = id.from(_N, "GetCanaryRunsOutput"),
+    id = id.from(_N, "GetCanaryRunsResponse"),
     type = "structure",
     members = {
         CanaryRuns = schema.new({
@@ -1574,7 +1574,7 @@ M.GetCanaryRunsOutput = schema.new({
 })
 
 M.GetGroupInput = schema.new({
-    id = id.from(_N, "GetGroupInput"),
+    id = id.from(_N, "GetGroupRequest"),
     type = "structure",
     members = {
         GroupIdentifier = schema.new({
@@ -1591,7 +1591,7 @@ M.GetGroupInput = schema.new({
 })
 
 M.GetGroupOutput = schema.new({
-    id = id.from(_N, "GetGroupOutput"),
+    id = id.from(_N, "GetGroupResponse"),
     type = "structure",
     members = {
         Group = schema.new({
@@ -1646,7 +1646,7 @@ M.InternalFailureException = schema.new({
 })
 
 M.ListAssociatedGroupsInput = schema.new({
-    id = id.from(_N, "ListAssociatedGroupsInput"),
+    id = id.from(_N, "ListAssociatedGroupsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1675,7 +1675,7 @@ M.ListAssociatedGroupsInput = schema.new({
 })
 
 M.ListAssociatedGroupsOutput = schema.new({
-    id = id.from(_N, "ListAssociatedGroupsOutput"),
+    id = id.from(_N, "ListAssociatedGroupsResponse"),
     type = "structure",
     members = {
         Groups = schema.new({
@@ -1695,7 +1695,7 @@ M.ListAssociatedGroupsOutput = schema.new({
 })
 
 M.ListGroupResourcesInput = schema.new({
-    id = id.from(_N, "ListGroupResourcesInput"),
+    id = id.from(_N, "ListGroupResourcesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1724,7 +1724,7 @@ M.ListGroupResourcesInput = schema.new({
 })
 
 M.ListGroupResourcesOutput = schema.new({
-    id = id.from(_N, "ListGroupResourcesOutput"),
+    id = id.from(_N, "ListGroupResourcesResponse"),
     type = "structure",
     members = {
         Resources = schema.new({
@@ -1744,7 +1744,7 @@ M.ListGroupResourcesOutput = schema.new({
 })
 
 M.ListGroupsInput = schema.new({
-    id = id.from(_N, "ListGroupsInput"),
+    id = id.from(_N, "ListGroupsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1763,7 +1763,7 @@ M.ListGroupsInput = schema.new({
 })
 
 M.ListGroupsOutput = schema.new({
-    id = id.from(_N, "ListGroupsOutput"),
+    id = id.from(_N, "ListGroupsResponse"),
     type = "structure",
     members = {
         Groups = schema.new({
@@ -1783,7 +1783,7 @@ M.ListGroupsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1800,7 +1800,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1847,7 +1847,7 @@ M.TooManyRequestsException = schema.new({
 })
 
 M.StartCanaryInput = schema.new({
-    id = id.from(_N, "StartCanaryInput"),
+    id = id.from(_N, "StartCanaryRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1864,7 +1864,7 @@ M.StartCanaryInput = schema.new({
 })
 
 M.StartCanaryOutput = schema.new({
-    id = id.from(_N, "StartCanaryOutput"),
+    id = id.from(_N, "StartCanaryResponse"),
     type = "structure",
 })
 
@@ -1898,7 +1898,7 @@ M.VisualReferenceInput = schema.new({
 })
 
 M.StartCanaryDryRunInput = schema.new({
-    id = id.from(_N, "StartCanaryDryRunInput"),
+    id = id.from(_N, "StartCanaryDryRunRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2000,7 +2000,7 @@ M.StartCanaryDryRunInput = schema.new({
 })
 
 M.StartCanaryDryRunOutput = schema.new({
-    id = id.from(_N, "StartCanaryDryRunOutput"),
+    id = id.from(_N, "StartCanaryDryRunResponse"),
     type = "structure",
     members = {
         DryRunConfig = schema.new({
@@ -2014,7 +2014,7 @@ M.StartCanaryDryRunOutput = schema.new({
 })
 
 M.StopCanaryInput = schema.new({
-    id = id.from(_N, "StopCanaryInput"),
+    id = id.from(_N, "StopCanaryRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2031,12 +2031,12 @@ M.StopCanaryInput = schema.new({
 })
 
 M.StopCanaryOutput = schema.new({
-    id = id.from(_N, "StopCanaryOutput"),
+    id = id.from(_N, "StopCanaryResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2064,12 +2064,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2097,12 +2097,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateCanaryInput = schema.new({
-    id = id.from(_N, "UpdateCanaryInput"),
+    id = id.from(_N, "UpdateCanaryRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2217,8 +2217,22 @@ M.UpdateCanaryInput = schema.new({
 })
 
 M.UpdateCanaryOutput = schema.new({
-    id = id.from(_N, "UpdateCanaryOutput"),
+    id = id.from(_N, "UpdateCanaryResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

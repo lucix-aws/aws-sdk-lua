@@ -158,7 +158,7 @@ M.ActionSummary = schema.new({
 })
 
 M.AddAssociationInput = schema.new({
-    id = id.from(_N, "AddAssociationInput"),
+    id = id.from(_N, "AddAssociationRequest"),
     type = "structure",
     members = {
         SourceArn = schema.new({
@@ -189,7 +189,7 @@ M.AddAssociationInput = schema.new({
 })
 
 M.AddAssociationOutput = schema.new({
-    id = id.from(_N, "AddAssociationOutput"),
+    id = id.from(_N, "AddAssociationResponse"),
     type = "structure",
     members = {
         SourceArn = schema.new({
@@ -3044,7 +3044,7 @@ M.ArtifactSummary = schema.new({
 })
 
 M.AssociateTrialComponentInput = schema.new({
-    id = id.from(_N, "AssociateTrialComponentInput"),
+    id = id.from(_N, "AssociateTrialComponentRequest"),
     type = "structure",
     members = {
         TrialComponentName = schema.new({
@@ -3069,7 +3069,7 @@ M.AssociateTrialComponentInput = schema.new({
 })
 
 M.AssociateTrialComponentOutput = schema.new({
-    id = id.from(_N, "AssociateTrialComponentOutput"),
+    id = id.from(_N, "AssociateTrialComponentResponse"),
     type = "structure",
     members = {
         TrialComponentArn = schema.new({
@@ -3397,7 +3397,7 @@ M.AthenaDatasetDefinition = schema.new({
 })
 
 M.AttachClusterNodeVolumeInput = schema.new({
-    id = id.from(_N, "AttachClusterNodeVolumeInput"),
+    id = id.from(_N, "AttachClusterNodeVolumeRequest"),
     type = "structure",
     members = {
         ClusterArn = schema.new({
@@ -3431,7 +3431,7 @@ M.AttachClusterNodeVolumeInput = schema.new({
 })
 
 M.AttachClusterNodeVolumeOutput = schema.new({
-    id = id.from(_N, "AttachClusterNodeVolumeOutput"),
+    id = id.from(_N, "AttachClusterNodeVolumeResponse"),
     type = "structure",
     members = {
         ClusterArn = schema.new({
@@ -3809,7 +3809,7 @@ M.AutoMLCandidate = schema.new({
             name = "InferenceContainerDefinitions",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.AutoMLContainerDefinition }),
         }),
     },
 })
@@ -4472,7 +4472,7 @@ M.TimeSeriesTransformations = schema.new({
             name = "Filling",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
         Aggregation = schema.new({
             id = id.from(_N, "TimeSeriesTransformations", "Aggregation"),
@@ -4754,7 +4754,7 @@ M.AvailableUpgrade = schema.new({
 })
 
 M.BatchAddClusterNodesInput = schema.new({
-    id = id.from(_N, "BatchAddClusterNodesInput"),
+    id = id.from(_N, "BatchAddClusterNodesRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -4891,7 +4891,7 @@ M.NodeAdditionResult = schema.new({
 })
 
 M.BatchAddClusterNodesOutput = schema.new({
-    id = id.from(_N, "BatchAddClusterNodesOutput"),
+    id = id.from(_N, "BatchAddClusterNodesResponse"),
     type = "structure",
     members = {
         Successful = schema.new({
@@ -4980,7 +4980,7 @@ M.BatchDeleteClusterNodeLogicalIdsError = schema.new({
 })
 
 M.BatchDeleteClusterNodesInput = schema.new({
-    id = id.from(_N, "BatchDeleteClusterNodesInput"),
+    id = id.from(_N, "BatchDeleteClusterNodesRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -5044,7 +5044,7 @@ M.BatchDeleteClusterNodesError = schema.new({
 })
 
 M.BatchDeleteClusterNodesOutput = schema.new({
-    id = id.from(_N, "BatchDeleteClusterNodesOutput"),
+    id = id.from(_N, "BatchDeleteClusterNodesResponse"),
     type = "structure",
     members = {
         Failed = schema.new({
@@ -5300,7 +5300,7 @@ M.BatchRebootClusterNodeLogicalIdsError = schema.new({
 })
 
 M.BatchRebootClusterNodesInput = schema.new({
-    id = id.from(_N, "BatchRebootClusterNodesInput"),
+    id = id.from(_N, "BatchRebootClusterNodesRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -5364,7 +5364,7 @@ M.BatchRebootClusterNodesError = schema.new({
 })
 
 M.BatchRebootClusterNodesOutput = schema.new({
-    id = id.from(_N, "BatchRebootClusterNodesOutput"),
+    id = id.from(_N, "BatchRebootClusterNodesResponse"),
     type = "structure",
     members = {
         Successful = schema.new({
@@ -5433,7 +5433,7 @@ M.BatchReplaceClusterNodeLogicalIdsError = schema.new({
 })
 
 M.BatchReplaceClusterNodesInput = schema.new({
-    id = id.from(_N, "BatchReplaceClusterNodesInput"),
+    id = id.from(_N, "BatchReplaceClusterNodesRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -5497,7 +5497,7 @@ M.BatchReplaceClusterNodesError = schema.new({
 })
 
 M.BatchReplaceClusterNodesOutput = schema.new({
-    id = id.from(_N, "BatchReplaceClusterNodesOutput"),
+    id = id.from(_N, "BatchReplaceClusterNodesResponse"),
     type = "structure",
     members = {
         Successful = schema.new({
@@ -9659,7 +9659,7 @@ M.MetadataProperties = schema.new({
 })
 
 M.CreateActionInput = schema.new({
-    id = id.from(_N, "CreateActionInput"),
+    id = id.from(_N, "CreateActionRequest"),
     type = "structure",
     members = {
         ActionName = schema.new({
@@ -9728,7 +9728,7 @@ M.CreateActionInput = schema.new({
 })
 
 M.CreateActionOutput = schema.new({
-    id = id.from(_N, "CreateActionOutput"),
+    id = id.from(_N, "CreateActionResponse"),
     type = "structure",
     members = {
         ActionArn = schema.new({
@@ -9741,7 +9741,7 @@ M.CreateActionOutput = schema.new({
 })
 
 M.CreateAIBenchmarkJobInput = schema.new({
-    id = id.from(_N, "CreateAIBenchmarkJobInput"),
+    id = id.from(_N, "CreateAIBenchmarkJobRequest"),
     type = "structure",
     members = {
         AIBenchmarkJobName = schema.new({
@@ -9809,7 +9809,7 @@ M.CreateAIBenchmarkJobInput = schema.new({
 })
 
 M.CreateAIBenchmarkJobOutput = schema.new({
-    id = id.from(_N, "CreateAIBenchmarkJobOutput"),
+    id = id.from(_N, "CreateAIBenchmarkJobResponse"),
     type = "structure",
     members = {
         AIBenchmarkJobArn = schema.new({
@@ -9841,7 +9841,7 @@ M.ResourceInUse = schema.new({
 })
 
 M.CreateAIRecommendationJobInput = schema.new({
-    id = id.from(_N, "CreateAIRecommendationJobInput"),
+    id = id.from(_N, "CreateAIRecommendationJobRequest"),
     type = "structure",
     members = {
         AIRecommendationJobName = schema.new({
@@ -9932,7 +9932,7 @@ M.CreateAIRecommendationJobInput = schema.new({
 })
 
 M.CreateAIRecommendationJobOutput = schema.new({
-    id = id.from(_N, "CreateAIRecommendationJobOutput"),
+    id = id.from(_N, "CreateAIRecommendationJobResponse"),
     type = "structure",
     members = {
         AIRecommendationJobArn = schema.new({
@@ -9948,7 +9948,7 @@ M.CreateAIRecommendationJobOutput = schema.new({
 })
 
 M.CreateAIWorkloadConfigInput = schema.new({
-    id = id.from(_N, "CreateAIWorkloadConfigInput"),
+    id = id.from(_N, "CreateAIWorkloadConfigRequest"),
     type = "structure",
     members = {
         AIWorkloadConfigName = schema.new({
@@ -9985,7 +9985,7 @@ M.CreateAIWorkloadConfigInput = schema.new({
 })
 
 M.CreateAIWorkloadConfigOutput = schema.new({
-    id = id.from(_N, "CreateAIWorkloadConfigOutput"),
+    id = id.from(_N, "CreateAIWorkloadConfigResponse"),
     type = "structure",
     members = {
         AIWorkloadConfigArn = schema.new({
@@ -10286,7 +10286,7 @@ M.CreateAlgorithmOutput = schema.new({
 })
 
 M.CreateAppInput = schema.new({
-    id = id.from(_N, "CreateAppInput"),
+    id = id.from(_N, "CreateAppRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -10352,7 +10352,7 @@ M.CreateAppInput = schema.new({
 })
 
 M.CreateAppOutput = schema.new({
-    id = id.from(_N, "CreateAppOutput"),
+    id = id.from(_N, "CreateAppResponse"),
     type = "structure",
     members = {
         AppArn = schema.new({
@@ -10365,7 +10365,7 @@ M.CreateAppOutput = schema.new({
 })
 
 M.CreateAppImageConfigInput = schema.new({
-    id = id.from(_N, "CreateAppImageConfigInput"),
+    id = id.from(_N, "CreateAppImageConfigRequest"),
     type = "structure",
     members = {
         AppImageConfigName = schema.new({
@@ -10409,7 +10409,7 @@ M.CreateAppImageConfigInput = schema.new({
 })
 
 M.CreateAppImageConfigOutput = schema.new({
-    id = id.from(_N, "CreateAppImageConfigOutput"),
+    id = id.from(_N, "CreateAppImageConfigResponse"),
     type = "structure",
     members = {
         AppImageConfigArn = schema.new({
@@ -10422,7 +10422,7 @@ M.CreateAppImageConfigOutput = schema.new({
 })
 
 M.CreateArtifactInput = schema.new({
-    id = id.from(_N, "CreateArtifactInput"),
+    id = id.from(_N, "CreateArtifactRequest"),
     type = "structure",
     members = {
         ArtifactName = schema.new({
@@ -10476,7 +10476,7 @@ M.CreateArtifactInput = schema.new({
 })
 
 M.CreateArtifactOutput = schema.new({
-    id = id.from(_N, "CreateArtifactOutput"),
+    id = id.from(_N, "CreateArtifactResponse"),
     type = "structure",
     members = {
         ArtifactArn = schema.new({
@@ -10508,7 +10508,7 @@ M.ModelDeployConfig = schema.new({
 })
 
 M.CreateAutoMLJobInput = schema.new({
-    id = id.from(_N, "CreateAutoMLJobInput"),
+    id = id.from(_N, "CreateAutoMLJobRequest"),
     type = "structure",
     members = {
         AutoMLJobName = schema.new({
@@ -10593,7 +10593,7 @@ M.CreateAutoMLJobInput = schema.new({
 })
 
 M.CreateAutoMLJobOutput = schema.new({
-    id = id.from(_N, "CreateAutoMLJobOutput"),
+    id = id.from(_N, "CreateAutoMLJobResponse"),
     type = "structure",
     members = {
         AutoMLJobArn = schema.new({
@@ -10609,7 +10609,7 @@ M.CreateAutoMLJobOutput = schema.new({
 })
 
 M.CreateAutoMLJobV2Input = schema.new({
-    id = id.from(_N, "CreateAutoMLJobV2Input"),
+    id = id.from(_N, "CreateAutoMLJobV2Request"),
     type = "structure",
     members = {
         AutoMLJobName = schema.new({
@@ -10706,7 +10706,7 @@ M.CreateAutoMLJobV2Input = schema.new({
 })
 
 M.CreateAutoMLJobV2Output = schema.new({
-    id = id.from(_N, "CreateAutoMLJobV2Output"),
+    id = id.from(_N, "CreateAutoMLJobV2Response"),
     type = "structure",
     members = {
         AutoMLJobArn = schema.new({
@@ -10722,7 +10722,7 @@ M.CreateAutoMLJobV2Output = schema.new({
 })
 
 M.CreateClusterInput = schema.new({
-    id = id.from(_N, "CreateClusterInput"),
+    id = id.from(_N, "CreateClusterRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -10805,7 +10805,7 @@ M.CreateClusterInput = schema.new({
 })
 
 M.CreateClusterOutput = schema.new({
-    id = id.from(_N, "CreateClusterOutput"),
+    id = id.from(_N, "CreateClusterResponse"),
     type = "structure",
     members = {
         ClusterArn = schema.new({
@@ -10872,7 +10872,7 @@ M.SchedulerConfig = schema.new({
 })
 
 M.CreateClusterSchedulerConfigInput = schema.new({
-    id = id.from(_N, "CreateClusterSchedulerConfigInput"),
+    id = id.from(_N, "CreateClusterSchedulerConfigRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -10920,7 +10920,7 @@ M.CreateClusterSchedulerConfigInput = schema.new({
 })
 
 M.CreateClusterSchedulerConfigOutput = schema.new({
-    id = id.from(_N, "CreateClusterSchedulerConfigOutput"),
+    id = id.from(_N, "CreateClusterSchedulerConfigResponse"),
     type = "structure",
     members = {
         ClusterSchedulerConfigArn = schema.new({
@@ -11130,7 +11130,7 @@ M.NeoVpcConfig = schema.new({
 })
 
 M.CreateCompilationJobInput = schema.new({
-    id = id.from(_N, "CreateCompilationJobInput"),
+    id = id.from(_N, "CreateCompilationJobRequest"),
     type = "structure",
     members = {
         CompilationJobName = schema.new({
@@ -11202,7 +11202,7 @@ M.CreateCompilationJobInput = schema.new({
 })
 
 M.CreateCompilationJobOutput = schema.new({
-    id = id.from(_N, "CreateCompilationJobOutput"),
+    id = id.from(_N, "CreateCompilationJobResponse"),
     type = "structure",
     members = {
         CompilationJobArn = schema.new({
@@ -11218,7 +11218,7 @@ M.CreateCompilationJobOutput = schema.new({
 })
 
 M.CreateComputeQuotaInput = schema.new({
-    id = id.from(_N, "CreateComputeQuotaInput"),
+    id = id.from(_N, "CreateComputeQuotaRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -11282,7 +11282,7 @@ M.CreateComputeQuotaInput = schema.new({
 })
 
 M.CreateComputeQuotaOutput = schema.new({
-    id = id.from(_N, "CreateComputeQuotaOutput"),
+    id = id.from(_N, "CreateComputeQuotaResponse"),
     type = "structure",
     members = {
         ComputeQuotaArn = schema.new({
@@ -11307,7 +11307,7 @@ M.CreateComputeQuotaOutput = schema.new({
 })
 
 M.CreateContextInput = schema.new({
-    id = id.from(_N, "CreateContextInput"),
+    id = id.from(_N, "CreateContextRequest"),
     type = "structure",
     members = {
         ContextName = schema.new({
@@ -11363,7 +11363,7 @@ M.CreateContextInput = schema.new({
 })
 
 M.CreateContextOutput = schema.new({
-    id = id.from(_N, "CreateContextOutput"),
+    id = id.from(_N, "CreateContextResponse"),
     type = "structure",
     members = {
         ContextArn = schema.new({
@@ -11749,7 +11749,7 @@ M.MonitoringStoppingCondition = schema.new({
 })
 
 M.CreateDataQualityJobDefinitionInput = schema.new({
-    id = id.from(_N, "CreateDataQualityJobDefinitionInput"),
+    id = id.from(_N, "CreateDataQualityJobDefinitionRequest"),
     type = "structure",
     members = {
         JobDefinitionName = schema.new({
@@ -11842,7 +11842,7 @@ M.CreateDataQualityJobDefinitionInput = schema.new({
 })
 
 M.CreateDataQualityJobDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateDataQualityJobDefinitionOutput"),
+    id = id.from(_N, "CreateDataQualityJobDefinitionResponse"),
     type = "structure",
     members = {
         JobDefinitionArn = schema.new({
@@ -11892,7 +11892,7 @@ M.EdgeOutputConfig = schema.new({
 })
 
 M.CreateDeviceFleetInput = schema.new({
-    id = id.from(_N, "CreateDeviceFleetInput"),
+    id = id.from(_N, "CreateDeviceFleetRequest"),
     type = "structure",
     members = {
         DeviceFleetName = schema.new({
@@ -11943,7 +11943,7 @@ M.CreateDeviceFleetInput = schema.new({
 })
 
 M.CreateDeviceFleetOutput = schema.new({
-    id = id.from(_N, "CreateDeviceFleetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -12756,7 +12756,7 @@ M.DomainSettings = schema.new({
 })
 
 M.CreateDomainInput = schema.new({
-    id = id.from(_N, "CreateDomainInput"),
+    id = id.from(_N, "CreateDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -12855,7 +12855,7 @@ M.CreateDomainInput = schema.new({
 })
 
 M.CreateDomainOutput = schema.new({
-    id = id.from(_N, "CreateDomainOutput"),
+    id = id.from(_N, "CreateDomainResponse"),
     type = "structure",
     members = {
         DomainArn = schema.new({
@@ -12989,7 +12989,7 @@ M.DeploymentStage = schema.new({
 })
 
 M.CreateEdgeDeploymentPlanInput = schema.new({
-    id = id.from(_N, "CreateEdgeDeploymentPlanInput"),
+    id = id.from(_N, "CreateEdgeDeploymentPlanRequest"),
     type = "structure",
     members = {
         EdgeDeploymentPlanName = schema.new({
@@ -13038,7 +13038,7 @@ M.CreateEdgeDeploymentPlanInput = schema.new({
 })
 
 M.CreateEdgeDeploymentPlanOutput = schema.new({
-    id = id.from(_N, "CreateEdgeDeploymentPlanOutput"),
+    id = id.from(_N, "CreateEdgeDeploymentPlanResponse"),
     type = "structure",
     members = {
         EdgeDeploymentPlanArn = schema.new({
@@ -13054,7 +13054,7 @@ M.CreateEdgeDeploymentPlanOutput = schema.new({
 })
 
 M.CreateEdgeDeploymentStageInput = schema.new({
-    id = id.from(_N, "CreateEdgeDeploymentStageInput"),
+    id = id.from(_N, "CreateEdgeDeploymentStageRequest"),
     type = "structure",
     members = {
         EdgeDeploymentPlanName = schema.new({
@@ -13080,12 +13080,12 @@ M.CreateEdgeDeploymentStageInput = schema.new({
 })
 
 M.CreateEdgeDeploymentStageOutput = schema.new({
-    id = id.from(_N, "CreateEdgeDeploymentStageOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.CreateEdgePackagingJobInput = schema.new({
-    id = id.from(_N, "CreateEdgePackagingJobInput"),
+    id = id.from(_N, "CreateEdgePackagingJobRequest"),
     type = "structure",
     members = {
         EdgePackagingJobName = schema.new({
@@ -13160,7 +13160,7 @@ M.CreateEdgePackagingJobInput = schema.new({
 })
 
 M.CreateEdgePackagingJobOutput = schema.new({
-    id = id.from(_N, "CreateEdgePackagingJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -13786,7 +13786,7 @@ M.CreateEndpointConfigOutput = schema.new({
 })
 
 M.CreateExperimentInput = schema.new({
-    id = id.from(_N, "CreateExperimentInput"),
+    id = id.from(_N, "CreateExperimentRequest"),
     type = "structure",
     members = {
         ExperimentName = schema.new({
@@ -13821,7 +13821,7 @@ M.CreateExperimentInput = schema.new({
 })
 
 M.CreateExperimentOutput = schema.new({
-    id = id.from(_N, "CreateExperimentOutput"),
+    id = id.from(_N, "CreateExperimentResponse"),
     type = "structure",
     members = {
         ExperimentArn = schema.new({
@@ -14063,7 +14063,7 @@ M.ThroughputConfig = schema.new({
 })
 
 M.CreateFeatureGroupInput = schema.new({
-    id = id.from(_N, "CreateFeatureGroupInput"),
+    id = id.from(_N, "CreateFeatureGroupRequest"),
     type = "structure",
     members = {
         FeatureGroupName = schema.new({
@@ -14147,7 +14147,7 @@ M.CreateFeatureGroupInput = schema.new({
 })
 
 M.CreateFeatureGroupOutput = schema.new({
-    id = id.from(_N, "CreateFeatureGroupOutput"),
+    id = id.from(_N, "CreateFeatureGroupResponse"),
     type = "structure",
     members = {
         FeatureGroupArn = schema.new({
@@ -14355,7 +14355,7 @@ M.FlowDefinitionOutputConfig = schema.new({
 })
 
 M.CreateFlowDefinitionInput = schema.new({
-    id = id.from(_N, "CreateFlowDefinitionInput"),
+    id = id.from(_N, "CreateFlowDefinitionRequest"),
     type = "structure",
     members = {
         FlowDefinitionName = schema.new({
@@ -14418,7 +14418,7 @@ M.CreateFlowDefinitionInput = schema.new({
 })
 
 M.CreateFlowDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateFlowDefinitionOutput"),
+    id = id.from(_N, "CreateFlowDefinitionResponse"),
     type = "structure",
     members = {
         FlowDefinitionArn = schema.new({
@@ -14447,7 +14447,7 @@ M.HubS3StorageConfig = schema.new({
 })
 
 M.CreateHubInput = schema.new({
-    id = id.from(_N, "CreateHubInput"),
+    id = id.from(_N, "CreateHubRequest"),
     type = "structure",
     members = {
         HubName = schema.new({
@@ -14499,7 +14499,7 @@ M.CreateHubInput = schema.new({
 })
 
 M.CreateHubOutput = schema.new({
-    id = id.from(_N, "CreateHubOutput"),
+    id = id.from(_N, "CreateHubResponse"),
     type = "structure",
     members = {
         HubArn = schema.new({
@@ -14534,7 +14534,7 @@ M.PresignedUrlAccessConfig = schema.new({
 })
 
 M.CreateHubContentPresignedUrlsInput = schema.new({
-    id = id.from(_N, "CreateHubContentPresignedUrlsInput"),
+    id = id.from(_N, "CreateHubContentPresignedUrlsRequest"),
     type = "structure",
     members = {
         HubName = schema.new({
@@ -14593,7 +14593,7 @@ M.CreateHubContentPresignedUrlsInput = schema.new({
 })
 
 M.CreateHubContentPresignedUrlsOutput = schema.new({
-    id = id.from(_N, "CreateHubContentPresignedUrlsOutput"),
+    id = id.from(_N, "CreateHubContentPresignedUrlsResponse"),
     type = "structure",
     members = {
         AuthorizedUrlConfigs = schema.new({
@@ -14616,7 +14616,7 @@ M.CreateHubContentPresignedUrlsOutput = schema.new({
 })
 
 M.CreateHubContentReferenceInput = schema.new({
-    id = id.from(_N, "CreateHubContentReferenceInput"),
+    id = id.from(_N, "CreateHubContentReferenceRequest"),
     type = "structure",
     members = {
         HubName = schema.new({
@@ -14660,7 +14660,7 @@ M.CreateHubContentReferenceInput = schema.new({
 })
 
 M.CreateHubContentReferenceOutput = schema.new({
-    id = id.from(_N, "CreateHubContentReferenceOutput"),
+    id = id.from(_N, "CreateHubContentReferenceResponse"),
     type = "structure",
     members = {
         HubArn = schema.new({
@@ -14701,7 +14701,7 @@ M.UiTemplate = schema.new({
 })
 
 M.CreateHumanTaskUiInput = schema.new({
-    id = id.from(_N, "CreateHumanTaskUiInput"),
+    id = id.from(_N, "CreateHumanTaskUiRequest"),
     type = "structure",
     members = {
         HumanTaskUiName = schema.new({
@@ -14734,7 +14734,7 @@ M.CreateHumanTaskUiInput = schema.new({
 })
 
 M.CreateHumanTaskUiOutput = schema.new({
-    id = id.from(_N, "CreateHumanTaskUiOutput"),
+    id = id.from(_N, "CreateHumanTaskUiResponse"),
     type = "structure",
     members = {
         HumanTaskUiArn = schema.new({
@@ -15289,7 +15289,7 @@ M.HyperParameterTuningJobWarmStartConfig = schema.new({
 })
 
 M.CreateHyperParameterTuningJobInput = schema.new({
-    id = id.from(_N, "CreateHyperParameterTuningJobInput"),
+    id = id.from(_N, "CreateHyperParameterTuningJobRequest"),
     type = "structure",
     members = {
         HyperParameterTuningJobName = schema.new({
@@ -15350,7 +15350,7 @@ M.CreateHyperParameterTuningJobInput = schema.new({
 })
 
 M.CreateHyperParameterTuningJobOutput = schema.new({
-    id = id.from(_N, "CreateHyperParameterTuningJobOutput"),
+    id = id.from(_N, "CreateHyperParameterTuningJobResponse"),
     type = "structure",
     members = {
         HyperParameterTuningJobArn = schema.new({
@@ -15366,7 +15366,7 @@ M.CreateHyperParameterTuningJobOutput = schema.new({
 })
 
 M.CreateImageInput = schema.new({
-    id = id.from(_N, "CreateImageInput"),
+    id = id.from(_N, "CreateImageRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -15410,7 +15410,7 @@ M.CreateImageInput = schema.new({
 })
 
 M.CreateImageOutput = schema.new({
-    id = id.from(_N, "CreateImageOutput"),
+    id = id.from(_N, "CreateImageResponse"),
     type = "structure",
     members = {
         ImageArn = schema.new({
@@ -15423,7 +15423,7 @@ M.CreateImageOutput = schema.new({
 })
 
 M.CreateImageVersionInput = schema.new({
-    id = id.from(_N, "CreateImageVersionInput"),
+    id = id.from(_N, "CreateImageVersionRequest"),
     type = "structure",
     members = {
         BaseImage = schema.new({
@@ -15507,7 +15507,7 @@ M.CreateImageVersionInput = schema.new({
 })
 
 M.CreateImageVersionOutput = schema.new({
-    id = id.from(_N, "CreateImageVersionOutput"),
+    id = id.from(_N, "CreateImageVersionResponse"),
     type = "structure",
     members = {
         ImageVersionArn = schema.new({
@@ -15997,7 +15997,7 @@ M.ShadowModeConfig = schema.new({
 })
 
 M.CreateInferenceExperimentInput = schema.new({
-    id = id.from(_N, "CreateInferenceExperimentInput"),
+    id = id.from(_N, "CreateInferenceExperimentRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -16093,7 +16093,7 @@ M.CreateInferenceExperimentInput = schema.new({
 })
 
 M.CreateInferenceExperimentOutput = schema.new({
-    id = id.from(_N, "CreateInferenceExperimentOutput"),
+    id = id.from(_N, "CreateInferenceExperimentResponse"),
     type = "structure",
     members = {
         InferenceExperimentArn = schema.new({
@@ -16533,7 +16533,7 @@ M.RecommendationJobStoppingConditions = schema.new({
 })
 
 M.CreateInferenceRecommendationsJobInput = schema.new({
-    id = id.from(_N, "CreateInferenceRecommendationsJobInput"),
+    id = id.from(_N, "CreateInferenceRecommendationsJobRequest"),
     type = "structure",
     members = {
         JobName = schema.new({
@@ -16604,7 +16604,7 @@ M.CreateInferenceRecommendationsJobInput = schema.new({
 })
 
 M.CreateInferenceRecommendationsJobOutput = schema.new({
-    id = id.from(_N, "CreateInferenceRecommendationsJobOutput"),
+    id = id.from(_N, "CreateInferenceRecommendationsJobResponse"),
     type = "structure",
     members = {
         JobArn = schema.new({
@@ -16927,7 +16927,7 @@ M.LabelingJobStoppingConditions = schema.new({
 })
 
 M.CreateLabelingJobInput = schema.new({
-    id = id.from(_N, "CreateLabelingJobInput"),
+    id = id.from(_N, "CreateLabelingJobRequest"),
     type = "structure",
     members = {
         LabelingJobName = schema.new({
@@ -17018,7 +17018,7 @@ M.CreateLabelingJobInput = schema.new({
 })
 
 M.CreateLabelingJobOutput = schema.new({
-    id = id.from(_N, "CreateLabelingJobOutput"),
+    id = id.from(_N, "CreateLabelingJobResponse"),
     type = "structure",
     members = {
         LabelingJobArn = schema.new({
@@ -17034,7 +17034,7 @@ M.CreateLabelingJobOutput = schema.new({
 })
 
 M.CreateMlflowAppInput = schema.new({
-    id = id.from(_N, "CreateMlflowAppInput"),
+    id = id.from(_N, "CreateMlflowAppRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -17100,7 +17100,7 @@ M.CreateMlflowAppInput = schema.new({
 })
 
 M.CreateMlflowAppOutput = schema.new({
-    id = id.from(_N, "CreateMlflowAppOutput"),
+    id = id.from(_N, "CreateMlflowAppResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -17113,7 +17113,7 @@ M.CreateMlflowAppOutput = schema.new({
 })
 
 M.CreateMlflowTrackingServerInput = schema.new({
-    id = id.from(_N, "CreateMlflowTrackingServerInput"),
+    id = id.from(_N, "CreateMlflowTrackingServerRequest"),
     type = "structure",
     members = {
         TrackingServerName = schema.new({
@@ -17190,7 +17190,7 @@ M.CreateMlflowTrackingServerInput = schema.new({
 })
 
 M.CreateMlflowTrackingServerOutput = schema.new({
-    id = id.from(_N, "CreateMlflowTrackingServerOutput"),
+    id = id.from(_N, "CreateMlflowTrackingServerResponse"),
     type = "structure",
     members = {
         TrackingServerArn = schema.new({
@@ -17395,7 +17395,7 @@ M.ModelBiasJobInput = schema.new({
 })
 
 M.CreateModelBiasJobDefinitionInput = schema.new({
-    id = id.from(_N, "CreateModelBiasJobDefinitionInput"),
+    id = id.from(_N, "CreateModelBiasJobDefinitionRequest"),
     type = "structure",
     members = {
         JobDefinitionName = schema.new({
@@ -17488,7 +17488,7 @@ M.CreateModelBiasJobDefinitionInput = schema.new({
 })
 
 M.CreateModelBiasJobDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateModelBiasJobDefinitionOutput"),
+    id = id.from(_N, "CreateModelBiasJobDefinitionResponse"),
     type = "structure",
     members = {
         JobDefinitionArn = schema.new({
@@ -17517,7 +17517,7 @@ M.ModelCardSecurityConfig = schema.new({
 })
 
 M.CreateModelCardInput = schema.new({
-    id = id.from(_N, "CreateModelCardInput"),
+    id = id.from(_N, "CreateModelCardRequest"),
     type = "structure",
     members = {
         ModelCardName = schema.new({
@@ -17565,7 +17565,7 @@ M.CreateModelCardInput = schema.new({
 })
 
 M.CreateModelCardOutput = schema.new({
-    id = id.from(_N, "CreateModelCardOutput"),
+    id = id.from(_N, "CreateModelCardResponse"),
     type = "structure",
     members = {
         ModelCardArn = schema.new({
@@ -17597,7 +17597,7 @@ M.ModelCardExportOutputConfig = schema.new({
 })
 
 M.CreateModelCardExportJobInput = schema.new({
-    id = id.from(_N, "CreateModelCardExportJobInput"),
+    id = id.from(_N, "CreateModelCardExportJobRequest"),
     type = "structure",
     members = {
         ModelCardName = schema.new({
@@ -17638,7 +17638,7 @@ M.CreateModelCardExportJobInput = schema.new({
 })
 
 M.CreateModelCardExportJobOutput = schema.new({
-    id = id.from(_N, "CreateModelCardExportJobOutput"),
+    id = id.from(_N, "CreateModelCardExportJobResponse"),
     type = "structure",
     members = {
         ModelCardExportJobArn = schema.new({
@@ -17728,7 +17728,7 @@ M.ModelExplainabilityJobInput = schema.new({
 })
 
 M.CreateModelExplainabilityJobDefinitionInput = schema.new({
-    id = id.from(_N, "CreateModelExplainabilityJobDefinitionInput"),
+    id = id.from(_N, "CreateModelExplainabilityJobDefinitionRequest"),
     type = "structure",
     members = {
         JobDefinitionName = schema.new({
@@ -17821,7 +17821,7 @@ M.CreateModelExplainabilityJobDefinitionInput = schema.new({
 })
 
 M.CreateModelExplainabilityJobDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateModelExplainabilityJobDefinitionOutput"),
+    id = id.from(_N, "CreateModelExplainabilityJobDefinitionResponse"),
     type = "structure",
     members = {
         JobDefinitionArn = schema.new({
@@ -18587,7 +18587,7 @@ M.ModelQualityJobInput = schema.new({
 })
 
 M.CreateModelQualityJobDefinitionInput = schema.new({
-    id = id.from(_N, "CreateModelQualityJobDefinitionInput"),
+    id = id.from(_N, "CreateModelQualityJobDefinitionRequest"),
     type = "structure",
     members = {
         JobDefinitionName = schema.new({
@@ -18680,7 +18680,7 @@ M.CreateModelQualityJobDefinitionInput = schema.new({
 })
 
 M.CreateModelQualityJobDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateModelQualityJobDefinitionOutput"),
+    id = id.from(_N, "CreateModelQualityJobDefinitionResponse"),
     type = "structure",
     members = {
         JobDefinitionArn = schema.new({
@@ -18958,7 +18958,7 @@ M.MonitoringScheduleConfig = schema.new({
 })
 
 M.CreateMonitoringScheduleInput = schema.new({
-    id = id.from(_N, "CreateMonitoringScheduleInput"),
+    id = id.from(_N, "CreateMonitoringScheduleRequest"),
     type = "structure",
     members = {
         MonitoringScheduleName = schema.new({
@@ -18991,7 +18991,7 @@ M.CreateMonitoringScheduleInput = schema.new({
 })
 
 M.CreateMonitoringScheduleOutput = schema.new({
-    id = id.from(_N, "CreateMonitoringScheduleOutput"),
+    id = id.from(_N, "CreateMonitoringScheduleResponse"),
     type = "structure",
     members = {
         MonitoringScheduleArn = schema.new({
@@ -19494,7 +19494,7 @@ M.OptimizationVpcConfig = schema.new({
 })
 
 M.CreateOptimizationJobInput = schema.new({
-    id = id.from(_N, "CreateOptimizationJobInput"),
+    id = id.from(_N, "CreateOptimizationJobRequest"),
     type = "structure",
     members = {
         OptimizationJobName = schema.new({
@@ -19596,7 +19596,7 @@ M.CreateOptimizationJobInput = schema.new({
 })
 
 M.CreateOptimizationJobOutput = schema.new({
-    id = id.from(_N, "CreateOptimizationJobOutput"),
+    id = id.from(_N, "CreateOptimizationJobResponse"),
     type = "structure",
     members = {
         OptimizationJobArn = schema.new({
@@ -19687,7 +19687,7 @@ M.PartnerAppMaintenanceConfig = schema.new({
 })
 
 M.CreatePartnerAppInput = schema.new({
-    id = id.from(_N, "CreatePartnerAppInput"),
+    id = id.from(_N, "CreatePartnerAppRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -19787,7 +19787,7 @@ M.CreatePartnerAppInput = schema.new({
 })
 
 M.CreatePartnerAppOutput = schema.new({
-    id = id.from(_N, "CreatePartnerAppOutput"),
+    id = id.from(_N, "CreatePartnerAppResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -19800,7 +19800,7 @@ M.CreatePartnerAppOutput = schema.new({
 })
 
 M.CreatePartnerAppPresignedUrlInput = schema.new({
-    id = id.from(_N, "CreatePartnerAppPresignedUrlInput"),
+    id = id.from(_N, "CreatePartnerAppPresignedUrlRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -19828,7 +19828,7 @@ M.CreatePartnerAppPresignedUrlInput = schema.new({
 })
 
 M.CreatePartnerAppPresignedUrlOutput = schema.new({
-    id = id.from(_N, "CreatePartnerAppPresignedUrlOutput"),
+    id = id.from(_N, "CreatePartnerAppPresignedUrlResponse"),
     type = "structure",
     members = {
         Url = schema.new({
@@ -19888,7 +19888,7 @@ M.PipelineDefinitionS3Location = schema.new({
 })
 
 M.CreatePipelineInput = schema.new({
-    id = id.from(_N, "CreatePipelineInput"),
+    id = id.from(_N, "CreatePipelineRequest"),
     type = "structure",
     members = {
         PipelineName = schema.new({
@@ -19962,7 +19962,7 @@ M.CreatePipelineInput = schema.new({
 })
 
 M.CreatePipelineOutput = schema.new({
-    id = id.from(_N, "CreatePipelineOutput"),
+    id = id.from(_N, "CreatePipelineResponse"),
     type = "structure",
     members = {
         PipelineArn = schema.new({
@@ -19975,7 +19975,7 @@ M.CreatePipelineOutput = schema.new({
 })
 
 M.CreatePresignedDomainUrlInput = schema.new({
-    id = id.from(_N, "CreatePresignedDomainUrlInput"),
+    id = id.from(_N, "CreatePresignedDomainUrlRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -20024,7 +20024,7 @@ M.CreatePresignedDomainUrlInput = schema.new({
 })
 
 M.CreatePresignedDomainUrlOutput = schema.new({
-    id = id.from(_N, "CreatePresignedDomainUrlOutput"),
+    id = id.from(_N, "CreatePresignedDomainUrlResponse"),
     type = "structure",
     members = {
         AuthorizedUrl = schema.new({
@@ -20037,7 +20037,7 @@ M.CreatePresignedDomainUrlOutput = schema.new({
 })
 
 M.CreatePresignedMlflowAppUrlInput = schema.new({
-    id = id.from(_N, "CreatePresignedMlflowAppUrlInput"),
+    id = id.from(_N, "CreatePresignedMlflowAppUrlRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -20065,7 +20065,7 @@ M.CreatePresignedMlflowAppUrlInput = schema.new({
 })
 
 M.CreatePresignedMlflowAppUrlOutput = schema.new({
-    id = id.from(_N, "CreatePresignedMlflowAppUrlOutput"),
+    id = id.from(_N, "CreatePresignedMlflowAppUrlResponse"),
     type = "structure",
     members = {
         AuthorizedUrl = schema.new({
@@ -20078,7 +20078,7 @@ M.CreatePresignedMlflowAppUrlOutput = schema.new({
 })
 
 M.CreatePresignedMlflowTrackingServerUrlInput = schema.new({
-    id = id.from(_N, "CreatePresignedMlflowTrackingServerUrlInput"),
+    id = id.from(_N, "CreatePresignedMlflowTrackingServerUrlRequest"),
     type = "structure",
     members = {
         TrackingServerName = schema.new({
@@ -20106,7 +20106,7 @@ M.CreatePresignedMlflowTrackingServerUrlInput = schema.new({
 })
 
 M.CreatePresignedMlflowTrackingServerUrlOutput = schema.new({
-    id = id.from(_N, "CreatePresignedMlflowTrackingServerUrlOutput"),
+    id = id.from(_N, "CreatePresignedMlflowTrackingServerUrlResponse"),
     type = "structure",
     members = {
         AuthorizedUrl = schema.new({
@@ -20570,7 +20570,7 @@ M.ProcessingStoppingCondition = schema.new({
 })
 
 M.CreateProcessingJobInput = schema.new({
-    id = id.from(_N, "CreateProcessingJobInput"),
+    id = id.from(_N, "CreateProcessingJobRequest"),
     type = "structure",
     members = {
         ProcessingInputs = schema.new({
@@ -20665,7 +20665,7 @@ M.CreateProcessingJobInput = schema.new({
 })
 
 M.CreateProcessingJobOutput = schema.new({
-    id = id.from(_N, "CreateProcessingJobOutput"),
+    id = id.from(_N, "CreateProcessingJobResponse"),
     type = "structure",
     members = {
         ProcessingJobArn = schema.new({
@@ -21098,7 +21098,7 @@ M.SpaceSharingSettings = schema.new({
 })
 
 M.CreateSpaceInput = schema.new({
-    id = id.from(_N, "CreateSpaceInput"),
+    id = id.from(_N, "CreateSpaceRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -21157,7 +21157,7 @@ M.CreateSpaceInput = schema.new({
 })
 
 M.CreateSpaceOutput = schema.new({
-    id = id.from(_N, "CreateSpaceOutput"),
+    id = id.from(_N, "CreateSpaceResponse"),
     type = "structure",
     members = {
         SpaceArn = schema.new({
@@ -21170,7 +21170,7 @@ M.CreateSpaceOutput = schema.new({
 })
 
 M.CreateStudioLifecycleConfigInput = schema.new({
-    id = id.from(_N, "CreateStudioLifecycleConfigInput"),
+    id = id.from(_N, "CreateStudioLifecycleConfigRequest"),
     type = "structure",
     members = {
         StudioLifecycleConfigName = schema.new({
@@ -21211,7 +21211,7 @@ M.CreateStudioLifecycleConfigInput = schema.new({
 })
 
 M.CreateStudioLifecycleConfigOutput = schema.new({
-    id = id.from(_N, "CreateStudioLifecycleConfigOutput"),
+    id = id.from(_N, "CreateStudioLifecycleConfigResponse"),
     type = "structure",
     members = {
         StudioLifecycleConfigArn = schema.new({
@@ -21574,7 +21574,7 @@ M.TensorBoardOutputConfig = schema.new({
 })
 
 M.CreateTrainingJobInput = schema.new({
-    id = id.from(_N, "CreateTrainingJobInput"),
+    id = id.from(_N, "CreateTrainingJobRequest"),
     type = "structure",
     members = {
         TrainingJobName = schema.new({
@@ -21783,7 +21783,7 @@ M.CreateTrainingJobInput = schema.new({
 })
 
 M.CreateTrainingJobOutput = schema.new({
-    id = id.from(_N, "CreateTrainingJobOutput"),
+    id = id.from(_N, "CreateTrainingJobResponse"),
     type = "structure",
     members = {
         TrainingJobArn = schema.new({
@@ -21799,7 +21799,7 @@ M.CreateTrainingJobOutput = schema.new({
 })
 
 M.CreateTrainingPlanInput = schema.new({
-    id = id.from(_N, "CreateTrainingPlanInput"),
+    id = id.from(_N, "CreateTrainingPlanRequest"),
     type = "structure",
     members = {
         TrainingPlanName = schema.new({
@@ -21837,7 +21837,7 @@ M.CreateTrainingPlanInput = schema.new({
 })
 
 M.CreateTrainingPlanOutput = schema.new({
-    id = id.from(_N, "CreateTrainingPlanOutput"),
+    id = id.from(_N, "CreateTrainingPlanResponse"),
     type = "structure",
     members = {
         TrainingPlanArn = schema.new({
@@ -21897,7 +21897,7 @@ M.ModelClientConfig = schema.new({
 })
 
 M.CreateTransformJobInput = schema.new({
-    id = id.from(_N, "CreateTransformJobInput"),
+    id = id.from(_N, "CreateTransformJobRequest"),
     type = "structure",
     members = {
         TransformJobName = schema.new({
@@ -22013,7 +22013,7 @@ M.CreateTransformJobInput = schema.new({
 })
 
 M.CreateTransformJobOutput = schema.new({
-    id = id.from(_N, "CreateTransformJobOutput"),
+    id = id.from(_N, "CreateTransformJobResponse"),
     type = "structure",
     members = {
         TransformJobArn = schema.new({
@@ -22029,7 +22029,7 @@ M.CreateTransformJobOutput = schema.new({
 })
 
 M.CreateTrialInput = schema.new({
-    id = id.from(_N, "CreateTrialInput"),
+    id = id.from(_N, "CreateTrialRequest"),
     type = "structure",
     members = {
         TrialName = schema.new({
@@ -22074,7 +22074,7 @@ M.CreateTrialInput = schema.new({
 })
 
 M.CreateTrialOutput = schema.new({
-    id = id.from(_N, "CreateTrialOutput"),
+    id = id.from(_N, "CreateTrialResponse"),
     type = "structure",
     members = {
         TrialArn = schema.new({
@@ -22147,7 +22147,7 @@ M.TrialComponentStatus = schema.new({
 })
 
 M.CreateTrialComponentInput = schema.new({
-    id = id.from(_N, "CreateTrialComponentInput"),
+    id = id.from(_N, "CreateTrialComponentRequest"),
     type = "structure",
     members = {
         TrialComponentName = schema.new({
@@ -22226,7 +22226,7 @@ M.CreateTrialComponentInput = schema.new({
 })
 
 M.CreateTrialComponentOutput = schema.new({
-    id = id.from(_N, "CreateTrialComponentOutput"),
+    id = id.from(_N, "CreateTrialComponentResponse"),
     type = "structure",
     members = {
         TrialComponentArn = schema.new({
@@ -22239,7 +22239,7 @@ M.CreateTrialComponentOutput = schema.new({
 })
 
 M.CreateUserProfileInput = schema.new({
-    id = id.from(_N, "CreateUserProfileInput"),
+    id = id.from(_N, "CreateUserProfileRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -22290,7 +22290,7 @@ M.CreateUserProfileInput = schema.new({
 })
 
 M.CreateUserProfileOutput = schema.new({
-    id = id.from(_N, "CreateUserProfileOutput"),
+    id = id.from(_N, "CreateUserProfileResponse"),
     type = "structure",
     members = {
         UserProfileArn = schema.new({
@@ -22440,7 +22440,7 @@ M.WorkforceVpcConfigRequest = schema.new({
 })
 
 M.CreateWorkforceInput = schema.new({
-    id = id.from(_N, "CreateWorkforceInput"),
+    id = id.from(_N, "CreateWorkforceRequest"),
     type = "structure",
     members = {
         CognitoConfig = schema.new({
@@ -22497,7 +22497,7 @@ M.CreateWorkforceInput = schema.new({
 })
 
 M.CreateWorkforceOutput = schema.new({
-    id = id.from(_N, "CreateWorkforceOutput"),
+    id = id.from(_N, "CreateWorkforceResponse"),
     type = "structure",
     members = {
         WorkforceArn = schema.new({
@@ -22608,7 +22608,7 @@ M.WorkerAccessConfiguration = schema.new({
 })
 
 M.CreateWorkteamInput = schema.new({
-    id = id.from(_N, "CreateWorkteamInput"),
+    id = id.from(_N, "CreateWorkteamRequest"),
     type = "structure",
     members = {
         WorkteamName = schema.new({
@@ -22670,7 +22670,7 @@ M.CreateWorkteamInput = schema.new({
 })
 
 M.CreateWorkteamOutput = schema.new({
-    id = id.from(_N, "CreateWorkteamOutput"),
+    id = id.from(_N, "CreateWorkteamResponse"),
     type = "structure",
     members = {
         WorkteamArn = schema.new({
@@ -22830,7 +22830,7 @@ M.InstanceGroupHealthCheckConfiguration = schema.new({
 })
 
 M.DeleteActionInput = schema.new({
-    id = id.from(_N, "DeleteActionInput"),
+    id = id.from(_N, "DeleteActionRequest"),
     type = "structure",
     members = {
         ActionName = schema.new({
@@ -22846,7 +22846,7 @@ M.DeleteActionInput = schema.new({
 })
 
 M.DeleteActionOutput = schema.new({
-    id = id.from(_N, "DeleteActionOutput"),
+    id = id.from(_N, "DeleteActionResponse"),
     type = "structure",
     members = {
         ActionArn = schema.new({
@@ -22859,7 +22859,7 @@ M.DeleteActionOutput = schema.new({
 })
 
 M.DeleteAIBenchmarkJobInput = schema.new({
-    id = id.from(_N, "DeleteAIBenchmarkJobInput"),
+    id = id.from(_N, "DeleteAIBenchmarkJobRequest"),
     type = "structure",
     members = {
         AIBenchmarkJobName = schema.new({
@@ -22875,7 +22875,7 @@ M.DeleteAIBenchmarkJobInput = schema.new({
 })
 
 M.DeleteAIBenchmarkJobOutput = schema.new({
-    id = id.from(_N, "DeleteAIBenchmarkJobOutput"),
+    id = id.from(_N, "DeleteAIBenchmarkJobResponse"),
     type = "structure",
     members = {
         AIBenchmarkJobArn = schema.new({
@@ -22888,7 +22888,7 @@ M.DeleteAIBenchmarkJobOutput = schema.new({
 })
 
 M.DeleteAIRecommendationJobInput = schema.new({
-    id = id.from(_N, "DeleteAIRecommendationJobInput"),
+    id = id.from(_N, "DeleteAIRecommendationJobRequest"),
     type = "structure",
     members = {
         AIRecommendationJobName = schema.new({
@@ -22904,7 +22904,7 @@ M.DeleteAIRecommendationJobInput = schema.new({
 })
 
 M.DeleteAIRecommendationJobOutput = schema.new({
-    id = id.from(_N, "DeleteAIRecommendationJobOutput"),
+    id = id.from(_N, "DeleteAIRecommendationJobResponse"),
     type = "structure",
     members = {
         AIRecommendationJobArn = schema.new({
@@ -22917,7 +22917,7 @@ M.DeleteAIRecommendationJobOutput = schema.new({
 })
 
 M.DeleteAIWorkloadConfigInput = schema.new({
-    id = id.from(_N, "DeleteAIWorkloadConfigInput"),
+    id = id.from(_N, "DeleteAIWorkloadConfigRequest"),
     type = "structure",
     members = {
         AIWorkloadConfigName = schema.new({
@@ -22933,7 +22933,7 @@ M.DeleteAIWorkloadConfigInput = schema.new({
 })
 
 M.DeleteAIWorkloadConfigOutput = schema.new({
-    id = id.from(_N, "DeleteAIWorkloadConfigOutput"),
+    id = id.from(_N, "DeleteAIWorkloadConfigResponse"),
     type = "structure",
     members = {
         AIWorkloadConfigArn = schema.new({
@@ -22962,12 +22962,12 @@ M.DeleteAlgorithmInput = schema.new({
 })
 
 M.DeleteAlgorithmOutput = schema.new({
-    id = id.from(_N, "DeleteAlgorithmOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAppInput = schema.new({
-    id = id.from(_N, "DeleteAppInput"),
+    id = id.from(_N, "DeleteAppRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -23013,12 +23013,12 @@ M.DeleteAppInput = schema.new({
 })
 
 M.DeleteAppOutput = schema.new({
-    id = id.from(_N, "DeleteAppOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAppImageConfigInput = schema.new({
-    id = id.from(_N, "DeleteAppImageConfigInput"),
+    id = id.from(_N, "DeleteAppImageConfigRequest"),
     type = "structure",
     members = {
         AppImageConfigName = schema.new({
@@ -23034,12 +23034,12 @@ M.DeleteAppImageConfigInput = schema.new({
 })
 
 M.DeleteAppImageConfigOutput = schema.new({
-    id = id.from(_N, "DeleteAppImageConfigOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteArtifactInput = schema.new({
-    id = id.from(_N, "DeleteArtifactInput"),
+    id = id.from(_N, "DeleteArtifactRequest"),
     type = "structure",
     members = {
         ArtifactArn = schema.new({
@@ -23059,7 +23059,7 @@ M.DeleteArtifactInput = schema.new({
 })
 
 M.DeleteArtifactOutput = schema.new({
-    id = id.from(_N, "DeleteArtifactOutput"),
+    id = id.from(_N, "DeleteArtifactResponse"),
     type = "structure",
     members = {
         ArtifactArn = schema.new({
@@ -23072,7 +23072,7 @@ M.DeleteArtifactOutput = schema.new({
 })
 
 M.DeleteAssociationInput = schema.new({
-    id = id.from(_N, "DeleteAssociationInput"),
+    id = id.from(_N, "DeleteAssociationRequest"),
     type = "structure",
     members = {
         SourceArn = schema.new({
@@ -23097,7 +23097,7 @@ M.DeleteAssociationInput = schema.new({
 })
 
 M.DeleteAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteAssociationOutput"),
+    id = id.from(_N, "DeleteAssociationResponse"),
     type = "structure",
     members = {
         SourceArn = schema.new({
@@ -23116,7 +23116,7 @@ M.DeleteAssociationOutput = schema.new({
 })
 
 M.DeleteClusterInput = schema.new({
-    id = id.from(_N, "DeleteClusterInput"),
+    id = id.from(_N, "DeleteClusterRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -23132,7 +23132,7 @@ M.DeleteClusterInput = schema.new({
 })
 
 M.DeleteClusterOutput = schema.new({
-    id = id.from(_N, "DeleteClusterOutput"),
+    id = id.from(_N, "DeleteClusterResponse"),
     type = "structure",
     members = {
         ClusterArn = schema.new({
@@ -23148,7 +23148,7 @@ M.DeleteClusterOutput = schema.new({
 })
 
 M.DeleteClusterSchedulerConfigInput = schema.new({
-    id = id.from(_N, "DeleteClusterSchedulerConfigInput"),
+    id = id.from(_N, "DeleteClusterSchedulerConfigRequest"),
     type = "structure",
     members = {
         ClusterSchedulerConfigId = schema.new({
@@ -23164,7 +23164,7 @@ M.DeleteClusterSchedulerConfigInput = schema.new({
 })
 
 M.DeleteClusterSchedulerConfigOutput = schema.new({
-    id = id.from(_N, "DeleteClusterSchedulerConfigOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -23185,12 +23185,12 @@ M.DeleteCodeRepositoryInput = schema.new({
 })
 
 M.DeleteCodeRepositoryOutput = schema.new({
-    id = id.from(_N, "DeleteCodeRepositoryOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteCompilationJobInput = schema.new({
-    id = id.from(_N, "DeleteCompilationJobInput"),
+    id = id.from(_N, "DeleteCompilationJobRequest"),
     type = "structure",
     members = {
         CompilationJobName = schema.new({
@@ -23206,12 +23206,12 @@ M.DeleteCompilationJobInput = schema.new({
 })
 
 M.DeleteCompilationJobOutput = schema.new({
-    id = id.from(_N, "DeleteCompilationJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteComputeQuotaInput = schema.new({
-    id = id.from(_N, "DeleteComputeQuotaInput"),
+    id = id.from(_N, "DeleteComputeQuotaRequest"),
     type = "structure",
     members = {
         ComputeQuotaId = schema.new({
@@ -23227,12 +23227,12 @@ M.DeleteComputeQuotaInput = schema.new({
 })
 
 M.DeleteComputeQuotaOutput = schema.new({
-    id = id.from(_N, "DeleteComputeQuotaOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteContextInput = schema.new({
-    id = id.from(_N, "DeleteContextInput"),
+    id = id.from(_N, "DeleteContextRequest"),
     type = "structure",
     members = {
         ContextName = schema.new({
@@ -23248,7 +23248,7 @@ M.DeleteContextInput = schema.new({
 })
 
 M.DeleteContextOutput = schema.new({
-    id = id.from(_N, "DeleteContextOutput"),
+    id = id.from(_N, "DeleteContextResponse"),
     type = "structure",
     members = {
         ContextArn = schema.new({
@@ -23261,7 +23261,7 @@ M.DeleteContextOutput = schema.new({
 })
 
 M.DeleteDataQualityJobDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteDataQualityJobDefinitionInput"),
+    id = id.from(_N, "DeleteDataQualityJobDefinitionRequest"),
     type = "structure",
     members = {
         JobDefinitionName = schema.new({
@@ -23277,12 +23277,12 @@ M.DeleteDataQualityJobDefinitionInput = schema.new({
 })
 
 M.DeleteDataQualityJobDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteDataQualityJobDefinitionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDeviceFleetInput = schema.new({
-    id = id.from(_N, "DeleteDeviceFleetInput"),
+    id = id.from(_N, "DeleteDeviceFleetRequest"),
     type = "structure",
     members = {
         DeviceFleetName = schema.new({
@@ -23298,7 +23298,7 @@ M.DeleteDeviceFleetInput = schema.new({
 })
 
 M.DeleteDeviceFleetOutput = schema.new({
-    id = id.from(_N, "DeleteDeviceFleetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -23316,7 +23316,7 @@ M.RetentionPolicy = schema.new({
 })
 
 M.DeleteDomainInput = schema.new({
-    id = id.from(_N, "DeleteDomainInput"),
+    id = id.from(_N, "DeleteDomainRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -23339,12 +23339,12 @@ M.DeleteDomainInput = schema.new({
 })
 
 M.DeleteDomainOutput = schema.new({
-    id = id.from(_N, "DeleteDomainOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteEdgeDeploymentPlanInput = schema.new({
-    id = id.from(_N, "DeleteEdgeDeploymentPlanInput"),
+    id = id.from(_N, "DeleteEdgeDeploymentPlanRequest"),
     type = "structure",
     members = {
         EdgeDeploymentPlanName = schema.new({
@@ -23360,12 +23360,12 @@ M.DeleteEdgeDeploymentPlanInput = schema.new({
 })
 
 M.DeleteEdgeDeploymentPlanOutput = schema.new({
-    id = id.from(_N, "DeleteEdgeDeploymentPlanOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteEdgeDeploymentStageInput = schema.new({
-    id = id.from(_N, "DeleteEdgeDeploymentStageInput"),
+    id = id.from(_N, "DeleteEdgeDeploymentStageRequest"),
     type = "structure",
     members = {
         EdgeDeploymentPlanName = schema.new({
@@ -23390,7 +23390,7 @@ M.DeleteEdgeDeploymentStageInput = schema.new({
 })
 
 M.DeleteEdgeDeploymentStageOutput = schema.new({
-    id = id.from(_N, "DeleteEdgeDeploymentStageOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -23411,7 +23411,7 @@ M.DeleteEndpointInput = schema.new({
 })
 
 M.DeleteEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteEndpointOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -23432,12 +23432,12 @@ M.DeleteEndpointConfigInput = schema.new({
 })
 
 M.DeleteEndpointConfigOutput = schema.new({
-    id = id.from(_N, "DeleteEndpointConfigOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteExperimentInput = schema.new({
-    id = id.from(_N, "DeleteExperimentInput"),
+    id = id.from(_N, "DeleteExperimentRequest"),
     type = "structure",
     members = {
         ExperimentName = schema.new({
@@ -23453,7 +23453,7 @@ M.DeleteExperimentInput = schema.new({
 })
 
 M.DeleteExperimentOutput = schema.new({
-    id = id.from(_N, "DeleteExperimentOutput"),
+    id = id.from(_N, "DeleteExperimentResponse"),
     type = "structure",
     members = {
         ExperimentArn = schema.new({
@@ -23466,7 +23466,7 @@ M.DeleteExperimentOutput = schema.new({
 })
 
 M.DeleteFeatureGroupInput = schema.new({
-    id = id.from(_N, "DeleteFeatureGroupInput"),
+    id = id.from(_N, "DeleteFeatureGroupRequest"),
     type = "structure",
     members = {
         FeatureGroupName = schema.new({
@@ -23482,12 +23482,12 @@ M.DeleteFeatureGroupInput = schema.new({
 })
 
 M.DeleteFeatureGroupOutput = schema.new({
-    id = id.from(_N, "DeleteFeatureGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteFlowDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteFlowDefinitionInput"),
+    id = id.from(_N, "DeleteFlowDefinitionRequest"),
     type = "structure",
     members = {
         FlowDefinitionName = schema.new({
@@ -23503,12 +23503,12 @@ M.DeleteFlowDefinitionInput = schema.new({
 })
 
 M.DeleteFlowDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteFlowDefinitionOutput"),
+    id = id.from(_N, "DeleteFlowDefinitionResponse"),
     type = "structure",
 })
 
 M.DeleteHubInput = schema.new({
-    id = id.from(_N, "DeleteHubInput"),
+    id = id.from(_N, "DeleteHubRequest"),
     type = "structure",
     members = {
         HubName = schema.new({
@@ -23524,12 +23524,12 @@ M.DeleteHubInput = schema.new({
 })
 
 M.DeleteHubOutput = schema.new({
-    id = id.from(_N, "DeleteHubOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteHubContentInput = schema.new({
-    id = id.from(_N, "DeleteHubContentInput"),
+    id = id.from(_N, "DeleteHubContentRequest"),
     type = "structure",
     members = {
         HubName = schema.new({
@@ -23572,12 +23572,12 @@ M.DeleteHubContentInput = schema.new({
 })
 
 M.DeleteHubContentOutput = schema.new({
-    id = id.from(_N, "DeleteHubContentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteHubContentReferenceInput = schema.new({
-    id = id.from(_N, "DeleteHubContentReferenceInput"),
+    id = id.from(_N, "DeleteHubContentReferenceRequest"),
     type = "structure",
     members = {
         HubName = schema.new({
@@ -23611,12 +23611,12 @@ M.DeleteHubContentReferenceInput = schema.new({
 })
 
 M.DeleteHubContentReferenceOutput = schema.new({
-    id = id.from(_N, "DeleteHubContentReferenceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteHumanTaskUiInput = schema.new({
-    id = id.from(_N, "DeleteHumanTaskUiInput"),
+    id = id.from(_N, "DeleteHumanTaskUiRequest"),
     type = "structure",
     members = {
         HumanTaskUiName = schema.new({
@@ -23632,12 +23632,12 @@ M.DeleteHumanTaskUiInput = schema.new({
 })
 
 M.DeleteHumanTaskUiOutput = schema.new({
-    id = id.from(_N, "DeleteHumanTaskUiOutput"),
+    id = id.from(_N, "DeleteHumanTaskUiResponse"),
     type = "structure",
 })
 
 M.DeleteHyperParameterTuningJobInput = schema.new({
-    id = id.from(_N, "DeleteHyperParameterTuningJobInput"),
+    id = id.from(_N, "DeleteHyperParameterTuningJobRequest"),
     type = "structure",
     members = {
         HyperParameterTuningJobName = schema.new({
@@ -23653,12 +23653,12 @@ M.DeleteHyperParameterTuningJobInput = schema.new({
 })
 
 M.DeleteHyperParameterTuningJobOutput = schema.new({
-    id = id.from(_N, "DeleteHyperParameterTuningJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteImageInput = schema.new({
-    id = id.from(_N, "DeleteImageInput"),
+    id = id.from(_N, "DeleteImageRequest"),
     type = "structure",
     members = {
         ImageName = schema.new({
@@ -23674,12 +23674,12 @@ M.DeleteImageInput = schema.new({
 })
 
 M.DeleteImageOutput = schema.new({
-    id = id.from(_N, "DeleteImageOutput"),
+    id = id.from(_N, "DeleteImageResponse"),
     type = "structure",
 })
 
 M.DeleteImageVersionInput = schema.new({
-    id = id.from(_N, "DeleteImageVersionInput"),
+    id = id.from(_N, "DeleteImageVersionRequest"),
     type = "structure",
     members = {
         ImageName = schema.new({
@@ -23707,7 +23707,7 @@ M.DeleteImageVersionInput = schema.new({
 })
 
 M.DeleteImageVersionOutput = schema.new({
-    id = id.from(_N, "DeleteImageVersionOutput"),
+    id = id.from(_N, "DeleteImageVersionResponse"),
     type = "structure",
 })
 
@@ -23728,12 +23728,12 @@ M.DeleteInferenceComponentInput = schema.new({
 })
 
 M.DeleteInferenceComponentOutput = schema.new({
-    id = id.from(_N, "DeleteInferenceComponentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteInferenceExperimentInput = schema.new({
-    id = id.from(_N, "DeleteInferenceExperimentInput"),
+    id = id.from(_N, "DeleteInferenceExperimentRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -23749,7 +23749,7 @@ M.DeleteInferenceExperimentInput = schema.new({
 })
 
 M.DeleteInferenceExperimentOutput = schema.new({
-    id = id.from(_N, "DeleteInferenceExperimentOutput"),
+    id = id.from(_N, "DeleteInferenceExperimentResponse"),
     type = "structure",
     members = {
         InferenceExperimentArn = schema.new({
@@ -23765,7 +23765,7 @@ M.DeleteInferenceExperimentOutput = schema.new({
 })
 
 M.DeleteMlflowAppInput = schema.new({
-    id = id.from(_N, "DeleteMlflowAppInput"),
+    id = id.from(_N, "DeleteMlflowAppRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -23781,7 +23781,7 @@ M.DeleteMlflowAppInput = schema.new({
 })
 
 M.DeleteMlflowAppOutput = schema.new({
-    id = id.from(_N, "DeleteMlflowAppOutput"),
+    id = id.from(_N, "DeleteMlflowAppResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -23794,7 +23794,7 @@ M.DeleteMlflowAppOutput = schema.new({
 })
 
 M.DeleteMlflowTrackingServerInput = schema.new({
-    id = id.from(_N, "DeleteMlflowTrackingServerInput"),
+    id = id.from(_N, "DeleteMlflowTrackingServerRequest"),
     type = "structure",
     members = {
         TrackingServerName = schema.new({
@@ -23810,7 +23810,7 @@ M.DeleteMlflowTrackingServerInput = schema.new({
 })
 
 M.DeleteMlflowTrackingServerOutput = schema.new({
-    id = id.from(_N, "DeleteMlflowTrackingServerOutput"),
+    id = id.from(_N, "DeleteMlflowTrackingServerResponse"),
     type = "structure",
     members = {
         TrackingServerArn = schema.new({
@@ -23839,12 +23839,12 @@ M.DeleteModelInput = schema.new({
 })
 
 M.DeleteModelOutput = schema.new({
-    id = id.from(_N, "DeleteModelOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteModelBiasJobDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteModelBiasJobDefinitionInput"),
+    id = id.from(_N, "DeleteModelBiasJobDefinitionRequest"),
     type = "structure",
     members = {
         JobDefinitionName = schema.new({
@@ -23860,12 +23860,12 @@ M.DeleteModelBiasJobDefinitionInput = schema.new({
 })
 
 M.DeleteModelBiasJobDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteModelBiasJobDefinitionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteModelCardInput = schema.new({
-    id = id.from(_N, "DeleteModelCardInput"),
+    id = id.from(_N, "DeleteModelCardRequest"),
     type = "structure",
     members = {
         ModelCardName = schema.new({
@@ -23881,12 +23881,12 @@ M.DeleteModelCardInput = schema.new({
 })
 
 M.DeleteModelCardOutput = schema.new({
-    id = id.from(_N, "DeleteModelCardOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteModelExplainabilityJobDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteModelExplainabilityJobDefinitionInput"),
+    id = id.from(_N, "DeleteModelExplainabilityJobDefinitionRequest"),
     type = "structure",
     members = {
         JobDefinitionName = schema.new({
@@ -23902,7 +23902,7 @@ M.DeleteModelExplainabilityJobDefinitionInput = schema.new({
 })
 
 M.DeleteModelExplainabilityJobDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteModelExplainabilityJobDefinitionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -23923,7 +23923,7 @@ M.DeleteModelPackageInput = schema.new({
 })
 
 M.DeleteModelPackageOutput = schema.new({
-    id = id.from(_N, "DeleteModelPackageOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -23944,7 +23944,7 @@ M.DeleteModelPackageGroupInput = schema.new({
 })
 
 M.DeleteModelPackageGroupOutput = schema.new({
-    id = id.from(_N, "DeleteModelPackageGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -23965,12 +23965,12 @@ M.DeleteModelPackageGroupPolicyInput = schema.new({
 })
 
 M.DeleteModelPackageGroupPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteModelPackageGroupPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteModelQualityJobDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteModelQualityJobDefinitionInput"),
+    id = id.from(_N, "DeleteModelQualityJobDefinitionRequest"),
     type = "structure",
     members = {
         JobDefinitionName = schema.new({
@@ -23986,12 +23986,12 @@ M.DeleteModelQualityJobDefinitionInput = schema.new({
 })
 
 M.DeleteModelQualityJobDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteModelQualityJobDefinitionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMonitoringScheduleInput = schema.new({
-    id = id.from(_N, "DeleteMonitoringScheduleInput"),
+    id = id.from(_N, "DeleteMonitoringScheduleRequest"),
     type = "structure",
     members = {
         MonitoringScheduleName = schema.new({
@@ -24007,7 +24007,7 @@ M.DeleteMonitoringScheduleInput = schema.new({
 })
 
 M.DeleteMonitoringScheduleOutput = schema.new({
-    id = id.from(_N, "DeleteMonitoringScheduleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -24028,7 +24028,7 @@ M.DeleteNotebookInstanceInput = schema.new({
 })
 
 M.DeleteNotebookInstanceOutput = schema.new({
-    id = id.from(_N, "DeleteNotebookInstanceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -24049,12 +24049,12 @@ M.DeleteNotebookInstanceLifecycleConfigInput = schema.new({
 })
 
 M.DeleteNotebookInstanceLifecycleConfigOutput = schema.new({
-    id = id.from(_N, "DeleteNotebookInstanceLifecycleConfigOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteOptimizationJobInput = schema.new({
-    id = id.from(_N, "DeleteOptimizationJobInput"),
+    id = id.from(_N, "DeleteOptimizationJobRequest"),
     type = "structure",
     members = {
         OptimizationJobName = schema.new({
@@ -24070,12 +24070,12 @@ M.DeleteOptimizationJobInput = schema.new({
 })
 
 M.DeleteOptimizationJobOutput = schema.new({
-    id = id.from(_N, "DeleteOptimizationJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeletePartnerAppInput = schema.new({
-    id = id.from(_N, "DeletePartnerAppInput"),
+    id = id.from(_N, "DeletePartnerAppRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -24100,7 +24100,7 @@ M.DeletePartnerAppInput = schema.new({
 })
 
 M.DeletePartnerAppOutput = schema.new({
-    id = id.from(_N, "DeletePartnerAppOutput"),
+    id = id.from(_N, "DeletePartnerAppResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -24113,7 +24113,7 @@ M.DeletePartnerAppOutput = schema.new({
 })
 
 M.DeletePipelineInput = schema.new({
-    id = id.from(_N, "DeletePipelineInput"),
+    id = id.from(_N, "DeletePipelineRequest"),
     type = "structure",
     members = {
         PipelineName = schema.new({
@@ -24139,7 +24139,7 @@ M.DeletePipelineInput = schema.new({
 })
 
 M.DeletePipelineOutput = schema.new({
-    id = id.from(_N, "DeletePipelineOutput"),
+    id = id.from(_N, "DeletePipelineResponse"),
     type = "structure",
     members = {
         PipelineArn = schema.new({
@@ -24152,7 +24152,7 @@ M.DeletePipelineOutput = schema.new({
 })
 
 M.DeleteProcessingJobInput = schema.new({
-    id = id.from(_N, "DeleteProcessingJobInput"),
+    id = id.from(_N, "DeleteProcessingJobRequest"),
     type = "structure",
     members = {
         ProcessingJobName = schema.new({
@@ -24168,7 +24168,7 @@ M.DeleteProcessingJobInput = schema.new({
 })
 
 M.DeleteProcessingJobOutput = schema.new({
-    id = id.from(_N, "DeleteProcessingJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -24189,12 +24189,12 @@ M.DeleteProjectInput = schema.new({
 })
 
 M.DeleteProjectOutput = schema.new({
-    id = id.from(_N, "DeleteProjectOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteSpaceInput = schema.new({
-    id = id.from(_N, "DeleteSpaceInput"),
+    id = id.from(_N, "DeleteSpaceRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -24219,12 +24219,12 @@ M.DeleteSpaceInput = schema.new({
 })
 
 M.DeleteSpaceOutput = schema.new({
-    id = id.from(_N, "DeleteSpaceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteStudioLifecycleConfigInput = schema.new({
-    id = id.from(_N, "DeleteStudioLifecycleConfigInput"),
+    id = id.from(_N, "DeleteStudioLifecycleConfigRequest"),
     type = "structure",
     members = {
         StudioLifecycleConfigName = schema.new({
@@ -24240,7 +24240,7 @@ M.DeleteStudioLifecycleConfigInput = schema.new({
 })
 
 M.DeleteStudioLifecycleConfigOutput = schema.new({
-    id = id.from(_N, "DeleteStudioLifecycleConfigOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -24276,7 +24276,7 @@ M.DeleteTagsOutput = schema.new({
 })
 
 M.DeleteTrainingJobInput = schema.new({
-    id = id.from(_N, "DeleteTrainingJobInput"),
+    id = id.from(_N, "DeleteTrainingJobRequest"),
     type = "structure",
     members = {
         TrainingJobName = schema.new({
@@ -24292,12 +24292,12 @@ M.DeleteTrainingJobInput = schema.new({
 })
 
 M.DeleteTrainingJobOutput = schema.new({
-    id = id.from(_N, "DeleteTrainingJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTrialInput = schema.new({
-    id = id.from(_N, "DeleteTrialInput"),
+    id = id.from(_N, "DeleteTrialRequest"),
     type = "structure",
     members = {
         TrialName = schema.new({
@@ -24313,7 +24313,7 @@ M.DeleteTrialInput = schema.new({
 })
 
 M.DeleteTrialOutput = schema.new({
-    id = id.from(_N, "DeleteTrialOutput"),
+    id = id.from(_N, "DeleteTrialResponse"),
     type = "structure",
     members = {
         TrialArn = schema.new({
@@ -24326,7 +24326,7 @@ M.DeleteTrialOutput = schema.new({
 })
 
 M.DeleteTrialComponentInput = schema.new({
-    id = id.from(_N, "DeleteTrialComponentInput"),
+    id = id.from(_N, "DeleteTrialComponentRequest"),
     type = "structure",
     members = {
         TrialComponentName = schema.new({
@@ -24342,7 +24342,7 @@ M.DeleteTrialComponentInput = schema.new({
 })
 
 M.DeleteTrialComponentOutput = schema.new({
-    id = id.from(_N, "DeleteTrialComponentOutput"),
+    id = id.from(_N, "DeleteTrialComponentResponse"),
     type = "structure",
     members = {
         TrialComponentArn = schema.new({
@@ -24355,7 +24355,7 @@ M.DeleteTrialComponentOutput = schema.new({
 })
 
 M.DeleteUserProfileInput = schema.new({
-    id = id.from(_N, "DeleteUserProfileInput"),
+    id = id.from(_N, "DeleteUserProfileRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -24380,12 +24380,12 @@ M.DeleteUserProfileInput = schema.new({
 })
 
 M.DeleteUserProfileOutput = schema.new({
-    id = id.from(_N, "DeleteUserProfileOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteWorkforceInput = schema.new({
-    id = id.from(_N, "DeleteWorkforceInput"),
+    id = id.from(_N, "DeleteWorkforceRequest"),
     type = "structure",
     members = {
         WorkforceName = schema.new({
@@ -24401,12 +24401,12 @@ M.DeleteWorkforceInput = schema.new({
 })
 
 M.DeleteWorkforceOutput = schema.new({
-    id = id.from(_N, "DeleteWorkforceOutput"),
+    id = id.from(_N, "DeleteWorkforceResponse"),
     type = "structure",
 })
 
 M.DeleteWorkteamInput = schema.new({
-    id = id.from(_N, "DeleteWorkteamInput"),
+    id = id.from(_N, "DeleteWorkteamRequest"),
     type = "structure",
     members = {
         WorkteamName = schema.new({
@@ -24422,7 +24422,7 @@ M.DeleteWorkteamInput = schema.new({
 })
 
 M.DeleteWorkteamOutput = schema.new({
-    id = id.from(_N, "DeleteWorkteamOutput"),
+    id = id.from(_N, "DeleteWorkteamResponse"),
     type = "structure",
     members = {
         Success = schema.new({
@@ -24620,7 +24620,7 @@ M.DeploymentStageStatusSummary = schema.new({
 })
 
 M.DeregisterDevicesInput = schema.new({
-    id = id.from(_N, "DeregisterDevicesInput"),
+    id = id.from(_N, "DeregisterDevicesRequest"),
     type = "structure",
     members = {
         DeviceFleetName = schema.new({
@@ -24646,7 +24646,7 @@ M.DeregisterDevicesInput = schema.new({
 })
 
 M.DeregisterDevicesOutput = schema.new({
-    id = id.from(_N, "DeregisterDevicesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -24664,7 +24664,7 @@ M.DerivedInformation = schema.new({
 })
 
 M.DescribeActionInput = schema.new({
-    id = id.from(_N, "DescribeActionInput"),
+    id = id.from(_N, "DescribeActionRequest"),
     type = "structure",
     members = {
         ActionName = schema.new({
@@ -24680,7 +24680,7 @@ M.DescribeActionInput = schema.new({
 })
 
 M.DescribeActionOutput = schema.new({
-    id = id.from(_N, "DescribeActionOutput"),
+    id = id.from(_N, "DescribeActionResponse"),
     type = "structure",
     members = {
         ActionName = schema.new({
@@ -24771,7 +24771,7 @@ M.DescribeActionOutput = schema.new({
 })
 
 M.DescribeAIBenchmarkJobInput = schema.new({
-    id = id.from(_N, "DescribeAIBenchmarkJobInput"),
+    id = id.from(_N, "DescribeAIBenchmarkJobRequest"),
     type = "structure",
     members = {
         AIBenchmarkJobName = schema.new({
@@ -24787,7 +24787,7 @@ M.DescribeAIBenchmarkJobInput = schema.new({
 })
 
 M.DescribeAIBenchmarkJobOutput = schema.new({
-    id = id.from(_N, "DescribeAIBenchmarkJobOutput"),
+    id = id.from(_N, "DescribeAIBenchmarkJobResponse"),
     type = "structure",
     members = {
         AIBenchmarkJobName = schema.new({
@@ -24900,7 +24900,7 @@ M.DescribeAIBenchmarkJobOutput = schema.new({
 })
 
 M.DescribeAIRecommendationJobInput = schema.new({
-    id = id.from(_N, "DescribeAIRecommendationJobInput"),
+    id = id.from(_N, "DescribeAIRecommendationJobRequest"),
     type = "structure",
     members = {
         AIRecommendationJobName = schema.new({
@@ -24916,7 +24916,7 @@ M.DescribeAIRecommendationJobInput = schema.new({
 })
 
 M.DescribeAIRecommendationJobOutput = schema.new({
-    id = id.from(_N, "DescribeAIRecommendationJobOutput"),
+    id = id.from(_N, "DescribeAIRecommendationJobResponse"),
     type = "structure",
     members = {
         AIRecommendationJobName = schema.new({
@@ -25056,7 +25056,7 @@ M.DescribeAIRecommendationJobOutput = schema.new({
 })
 
 M.DescribeAIWorkloadConfigInput = schema.new({
-    id = id.from(_N, "DescribeAIWorkloadConfigInput"),
+    id = id.from(_N, "DescribeAIWorkloadConfigRequest"),
     type = "structure",
     members = {
         AIWorkloadConfigName = schema.new({
@@ -25072,7 +25072,7 @@ M.DescribeAIWorkloadConfigInput = schema.new({
 })
 
 M.DescribeAIWorkloadConfigOutput = schema.new({
-    id = id.from(_N, "DescribeAIWorkloadConfigOutput"),
+    id = id.from(_N, "DescribeAIWorkloadConfigResponse"),
     type = "structure",
     members = {
         AIWorkloadConfigName = schema.new({
@@ -25238,7 +25238,7 @@ M.DescribeAlgorithmOutput = schema.new({
 })
 
 M.DescribeAppInput = schema.new({
-    id = id.from(_N, "DescribeAppInput"),
+    id = id.from(_N, "DescribeAppRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -25284,7 +25284,7 @@ M.DescribeAppInput = schema.new({
 })
 
 M.DescribeAppOutput = schema.new({
-    id = id.from(_N, "DescribeAppOutput"),
+    id = id.from(_N, "DescribeAppResponse"),
     type = "structure",
     members = {
         AppArn = schema.new({
@@ -25382,7 +25382,7 @@ M.DescribeAppOutput = schema.new({
 })
 
 M.DescribeAppImageConfigInput = schema.new({
-    id = id.from(_N, "DescribeAppImageConfigInput"),
+    id = id.from(_N, "DescribeAppImageConfigRequest"),
     type = "structure",
     members = {
         AppImageConfigName = schema.new({
@@ -25398,7 +25398,7 @@ M.DescribeAppImageConfigInput = schema.new({
 })
 
 M.DescribeAppImageConfigOutput = schema.new({
-    id = id.from(_N, "DescribeAppImageConfigOutput"),
+    id = id.from(_N, "DescribeAppImageConfigResponse"),
     type = "structure",
     members = {
         AppImageConfigArn = schema.new({
@@ -25450,7 +25450,7 @@ M.DescribeAppImageConfigOutput = schema.new({
 })
 
 M.DescribeArtifactInput = schema.new({
-    id = id.from(_N, "DescribeArtifactInput"),
+    id = id.from(_N, "DescribeArtifactRequest"),
     type = "structure",
     members = {
         ArtifactArn = schema.new({
@@ -25466,7 +25466,7 @@ M.DescribeArtifactInput = schema.new({
 })
 
 M.DescribeArtifactOutput = schema.new({
-    id = id.from(_N, "DescribeArtifactOutput"),
+    id = id.from(_N, "DescribeArtifactResponse"),
     type = "structure",
     members = {
         ArtifactName = schema.new({
@@ -25545,7 +25545,7 @@ M.DescribeArtifactOutput = schema.new({
 })
 
 M.DescribeAutoMLJobInput = schema.new({
-    id = id.from(_N, "DescribeAutoMLJobInput"),
+    id = id.from(_N, "DescribeAutoMLJobRequest"),
     type = "structure",
     members = {
         AutoMLJobName = schema.new({
@@ -25601,7 +25601,7 @@ M.ResolvedAttributes = schema.new({
 })
 
 M.DescribeAutoMLJobOutput = schema.new({
-    id = id.from(_N, "DescribeAutoMLJobOutput"),
+    id = id.from(_N, "DescribeAutoMLJobResponse"),
     type = "structure",
     members = {
         AutoMLJobName = schema.new({
@@ -25771,7 +25771,7 @@ M.DescribeAutoMLJobOutput = schema.new({
 })
 
 M.DescribeAutoMLJobV2Input = schema.new({
-    id = id.from(_N, "DescribeAutoMLJobV2Input"),
+    id = id.from(_N, "DescribeAutoMLJobV2Request"),
     type = "structure",
     members = {
         AutoMLJobName = schema.new({
@@ -25787,7 +25787,7 @@ M.DescribeAutoMLJobV2Input = schema.new({
 })
 
 M.DescribeAutoMLJobV2Output = schema.new({
-    id = id.from(_N, "DescribeAutoMLJobV2Output"),
+    id = id.from(_N, "DescribeAutoMLJobV2Response"),
     type = "structure",
     members = {
         AutoMLJobName = schema.new({
@@ -25972,7 +25972,7 @@ M.DescribeAutoMLJobV2Output = schema.new({
 })
 
 M.DescribeClusterInput = schema.new({
-    id = id.from(_N, "DescribeClusterInput"),
+    id = id.from(_N, "DescribeClusterRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -25988,7 +25988,7 @@ M.DescribeClusterInput = schema.new({
 })
 
 M.DescribeClusterOutput = schema.new({
-    id = id.from(_N, "DescribeClusterOutput"),
+    id = id.from(_N, "DescribeClusterResponse"),
     type = "structure",
     members = {
         ClusterArn = schema.new({
@@ -26094,7 +26094,7 @@ M.DescribeClusterOutput = schema.new({
 })
 
 M.DescribeClusterEventInput = schema.new({
-    id = id.from(_N, "DescribeClusterEventInput"),
+    id = id.from(_N, "DescribeClusterEventRequest"),
     type = "structure",
     members = {
         EventId = schema.new({
@@ -26119,7 +26119,7 @@ M.DescribeClusterEventInput = schema.new({
 })
 
 M.DescribeClusterEventOutput = schema.new({
-    id = id.from(_N, "DescribeClusterEventOutput"),
+    id = id.from(_N, "DescribeClusterEventResponse"),
     type = "structure",
     members = {
         EventDetails = schema.new({
@@ -26133,7 +26133,7 @@ M.DescribeClusterEventOutput = schema.new({
 })
 
 M.DescribeClusterNodeInput = schema.new({
-    id = id.from(_N, "DescribeClusterNodeInput"),
+    id = id.from(_N, "DescribeClusterNodeRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -26161,7 +26161,7 @@ M.DescribeClusterNodeInput = schema.new({
 })
 
 M.DescribeClusterNodeOutput = schema.new({
-    id = id.from(_N, "DescribeClusterNodeOutput"),
+    id = id.from(_N, "DescribeClusterNodeResponse"),
     type = "structure",
     members = {
         NodeDetails = schema.new({
@@ -26178,7 +26178,7 @@ M.DescribeClusterNodeOutput = schema.new({
 })
 
 M.DescribeClusterSchedulerConfigInput = schema.new({
-    id = id.from(_N, "DescribeClusterSchedulerConfigInput"),
+    id = id.from(_N, "DescribeClusterSchedulerConfigRequest"),
     type = "structure",
     members = {
         ClusterSchedulerConfigId = schema.new({
@@ -26200,7 +26200,7 @@ M.DescribeClusterSchedulerConfigInput = schema.new({
 })
 
 M.DescribeClusterSchedulerConfigOutput = schema.new({
-    id = id.from(_N, "DescribeClusterSchedulerConfigOutput"),
+    id = id.from(_N, "DescribeClusterSchedulerConfigResponse"),
     type = "structure",
     members = {
         ClusterSchedulerConfigArn = schema.new({
@@ -26380,7 +26380,7 @@ M.DescribeCodeRepositoryOutput = schema.new({
 })
 
 M.DescribeCompilationJobInput = schema.new({
-    id = id.from(_N, "DescribeCompilationJobInput"),
+    id = id.from(_N, "DescribeCompilationJobRequest"),
     type = "structure",
     members = {
         CompilationJobName = schema.new({
@@ -26425,7 +26425,7 @@ M.ModelDigests = schema.new({
 })
 
 M.DescribeCompilationJobOutput = schema.new({
-    id = id.from(_N, "DescribeCompilationJobOutput"),
+    id = id.from(_N, "DescribeCompilationJobResponse"),
     type = "structure",
     members = {
         CompilationJobName = schema.new({
@@ -26580,7 +26580,7 @@ M.DescribeCompilationJobOutput = schema.new({
 })
 
 M.DescribeComputeQuotaInput = schema.new({
-    id = id.from(_N, "DescribeComputeQuotaInput"),
+    id = id.from(_N, "DescribeComputeQuotaRequest"),
     type = "structure",
     members = {
         ComputeQuotaId = schema.new({
@@ -26602,7 +26602,7 @@ M.DescribeComputeQuotaInput = schema.new({
 })
 
 M.DescribeComputeQuotaOutput = schema.new({
-    id = id.from(_N, "DescribeComputeQuotaOutput"),
+    id = id.from(_N, "DescribeComputeQuotaResponse"),
     type = "structure",
     members = {
         ComputeQuotaArn = schema.new({
@@ -26724,7 +26724,7 @@ M.DescribeComputeQuotaOutput = schema.new({
 })
 
 M.DescribeContextInput = schema.new({
-    id = id.from(_N, "DescribeContextInput"),
+    id = id.from(_N, "DescribeContextRequest"),
     type = "structure",
     members = {
         ContextName = schema.new({
@@ -26740,7 +26740,7 @@ M.DescribeContextInput = schema.new({
 })
 
 M.DescribeContextOutput = schema.new({
-    id = id.from(_N, "DescribeContextOutput"),
+    id = id.from(_N, "DescribeContextResponse"),
     type = "structure",
     members = {
         ContextName = schema.new({
@@ -26818,7 +26818,7 @@ M.DescribeContextOutput = schema.new({
 })
 
 M.DescribeDataQualityJobDefinitionInput = schema.new({
-    id = id.from(_N, "DescribeDataQualityJobDefinitionInput"),
+    id = id.from(_N, "DescribeDataQualityJobDefinitionRequest"),
     type = "structure",
     members = {
         JobDefinitionName = schema.new({
@@ -26834,7 +26834,7 @@ M.DescribeDataQualityJobDefinitionInput = schema.new({
 })
 
 M.DescribeDataQualityJobDefinitionOutput = schema.new({
-    id = id.from(_N, "DescribeDataQualityJobDefinitionOutput"),
+    id = id.from(_N, "DescribeDataQualityJobDefinitionResponse"),
     type = "structure",
     members = {
         JobDefinitionArn = schema.new({
@@ -26938,7 +26938,7 @@ M.DescribeDataQualityJobDefinitionOutput = schema.new({
 })
 
 M.DescribeDeviceInput = schema.new({
-    id = id.from(_N, "DescribeDeviceInput"),
+    id = id.from(_N, "DescribeDeviceRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -27006,7 +27006,7 @@ M.EdgeModel = schema.new({
 })
 
 M.DescribeDeviceOutput = schema.new({
-    id = id.from(_N, "DescribeDeviceOutput"),
+    id = id.from(_N, "DescribeDeviceResponse"),
     type = "structure",
     members = {
         DeviceArn = schema.new({
@@ -27089,7 +27089,7 @@ M.DescribeDeviceOutput = schema.new({
 })
 
 M.DescribeDeviceFleetInput = schema.new({
-    id = id.from(_N, "DescribeDeviceFleetInput"),
+    id = id.from(_N, "DescribeDeviceFleetRequest"),
     type = "structure",
     members = {
         DeviceFleetName = schema.new({
@@ -27105,7 +27105,7 @@ M.DescribeDeviceFleetInput = schema.new({
 })
 
 M.DescribeDeviceFleetOutput = schema.new({
-    id = id.from(_N, "DescribeDeviceFleetOutput"),
+    id = id.from(_N, "DescribeDeviceFleetResponse"),
     type = "structure",
     members = {
         DeviceFleetName = schema.new({
@@ -27176,7 +27176,7 @@ M.DescribeDeviceFleetOutput = schema.new({
 })
 
 M.DescribeDomainInput = schema.new({
-    id = id.from(_N, "DescribeDomainInput"),
+    id = id.from(_N, "DescribeDomainRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -27192,7 +27192,7 @@ M.DescribeDomainInput = schema.new({
 })
 
 M.DescribeDomainOutput = schema.new({
-    id = id.from(_N, "DescribeDomainOutput"),
+    id = id.from(_N, "DescribeDomainResponse"),
     type = "structure",
     members = {
         DomainArn = schema.new({
@@ -27341,7 +27341,7 @@ M.DescribeDomainOutput = schema.new({
 })
 
 M.DescribeEdgeDeploymentPlanInput = schema.new({
-    id = id.from(_N, "DescribeEdgeDeploymentPlanInput"),
+    id = id.from(_N, "DescribeEdgeDeploymentPlanRequest"),
     type = "structure",
     members = {
         EdgeDeploymentPlanName = schema.new({
@@ -27369,7 +27369,7 @@ M.DescribeEdgeDeploymentPlanInput = schema.new({
 })
 
 M.DescribeEdgeDeploymentPlanOutput = schema.new({
-    id = id.from(_N, "DescribeEdgeDeploymentPlanOutput"),
+    id = id.from(_N, "DescribeEdgeDeploymentPlanResponse"),
     type = "structure",
     members = {
         EdgeDeploymentPlanArn = schema.new({
@@ -27459,7 +27459,7 @@ M.DescribeEdgeDeploymentPlanOutput = schema.new({
 })
 
 M.DescribeEdgePackagingJobInput = schema.new({
-    id = id.from(_N, "DescribeEdgePackagingJobInput"),
+    id = id.from(_N, "DescribeEdgePackagingJobRequest"),
     type = "structure",
     members = {
         EdgePackagingJobName = schema.new({
@@ -27509,7 +27509,7 @@ M.EdgePresetDeploymentOutput = schema.new({
 })
 
 M.DescribeEdgePackagingJobOutput = schema.new({
-    id = id.from(_N, "DescribeEdgePackagingJobOutput"),
+    id = id.from(_N, "DescribeEdgePackagingJobResponse"),
     type = "structure",
     members = {
         EdgePackagingJobArn = schema.new({
@@ -28234,7 +28234,7 @@ M.DescribeEndpointConfigOutput = schema.new({
 })
 
 M.DescribeExperimentInput = schema.new({
-    id = id.from(_N, "DescribeExperimentInput"),
+    id = id.from(_N, "DescribeExperimentRequest"),
     type = "structure",
     members = {
         ExperimentName = schema.new({
@@ -28272,7 +28272,7 @@ M.ExperimentSource = schema.new({
 })
 
 M.DescribeExperimentOutput = schema.new({
-    id = id.from(_N, "DescribeExperimentOutput"),
+    id = id.from(_N, "DescribeExperimentResponse"),
     type = "structure",
     members = {
         ExperimentName = schema.new({
@@ -28336,7 +28336,7 @@ M.DescribeExperimentOutput = schema.new({
 })
 
 M.DescribeFeatureGroupInput = schema.new({
-    id = id.from(_N, "DescribeFeatureGroupInput"),
+    id = id.from(_N, "DescribeFeatureGroupRequest"),
     type = "structure",
     members = {
         FeatureGroupName = schema.new({
@@ -28430,7 +28430,7 @@ M.ThroughputConfigDescription = schema.new({
 })
 
 M.DescribeFeatureGroupOutput = schema.new({
-    id = id.from(_N, "DescribeFeatureGroupOutput"),
+    id = id.from(_N, "DescribeFeatureGroupResponse"),
     type = "structure",
     members = {
         FeatureGroupArn = schema.new({
@@ -28572,7 +28572,7 @@ M.DescribeFeatureGroupOutput = schema.new({
 })
 
 M.DescribeFeatureMetadataInput = schema.new({
-    id = id.from(_N, "DescribeFeatureMetadataInput"),
+    id = id.from(_N, "DescribeFeatureMetadataRequest"),
     type = "structure",
     members = {
         FeatureGroupName = schema.new({
@@ -28616,7 +28616,7 @@ M.FeatureParameter = schema.new({
 })
 
 M.DescribeFeatureMetadataOutput = schema.new({
-    id = id.from(_N, "DescribeFeatureMetadataOutput"),
+    id = id.from(_N, "DescribeFeatureMetadataResponse"),
     type = "structure",
     members = {
         FeatureGroupArn = schema.new({
@@ -28690,7 +28690,7 @@ M.DescribeFeatureMetadataOutput = schema.new({
 })
 
 M.DescribeFlowDefinitionInput = schema.new({
-    id = id.from(_N, "DescribeFlowDefinitionInput"),
+    id = id.from(_N, "DescribeFlowDefinitionRequest"),
     type = "structure",
     members = {
         FlowDefinitionName = schema.new({
@@ -28706,7 +28706,7 @@ M.DescribeFlowDefinitionInput = schema.new({
 })
 
 M.DescribeFlowDefinitionOutput = schema.new({
-    id = id.from(_N, "DescribeFlowDefinitionOutput"),
+    id = id.from(_N, "DescribeFlowDefinitionResponse"),
     type = "structure",
     members = {
         FlowDefinitionArn = schema.new({
@@ -28795,7 +28795,7 @@ M.DescribeFlowDefinitionOutput = schema.new({
 })
 
 M.DescribeHubInput = schema.new({
-    id = id.from(_N, "DescribeHubInput"),
+    id = id.from(_N, "DescribeHubRequest"),
     type = "structure",
     members = {
         HubName = schema.new({
@@ -28811,7 +28811,7 @@ M.DescribeHubInput = schema.new({
 })
 
 M.DescribeHubOutput = schema.new({
-    id = id.from(_N, "DescribeHubOutput"),
+    id = id.from(_N, "DescribeHubResponse"),
     type = "structure",
     members = {
         HubName = schema.new({
@@ -28895,7 +28895,7 @@ M.DescribeHubOutput = schema.new({
 })
 
 M.DescribeHubContentInput = schema.new({
-    id = id.from(_N, "DescribeHubContentInput"),
+    id = id.from(_N, "DescribeHubContentRequest"),
     type = "structure",
     members = {
         HubName = schema.new({
@@ -28954,7 +28954,7 @@ M.HubContentDependency = schema.new({
 })
 
 M.DescribeHubContentOutput = schema.new({
-    id = id.from(_N, "DescribeHubContentOutput"),
+    id = id.from(_N, "DescribeHubContentResponse"),
     type = "structure",
     members = {
         HubContentName = schema.new({
@@ -29113,7 +29113,7 @@ M.DescribeHubContentOutput = schema.new({
 })
 
 M.DescribeHumanTaskUiInput = schema.new({
-    id = id.from(_N, "DescribeHumanTaskUiInput"),
+    id = id.from(_N, "DescribeHumanTaskUiRequest"),
     type = "structure",
     members = {
         HumanTaskUiName = schema.new({
@@ -29148,7 +29148,7 @@ M.UiTemplateInfo = schema.new({
 })
 
 M.DescribeHumanTaskUiOutput = schema.new({
-    id = id.from(_N, "DescribeHumanTaskUiOutput"),
+    id = id.from(_N, "DescribeHumanTaskUiResponse"),
     type = "structure",
     members = {
         HumanTaskUiArn = schema.new({
@@ -29198,7 +29198,7 @@ M.DescribeHumanTaskUiOutput = schema.new({
 })
 
 M.DescribeHyperParameterTuningJobInput = schema.new({
-    id = id.from(_N, "DescribeHyperParameterTuningJobInput"),
+    id = id.from(_N, "DescribeHyperParameterTuningJobRequest"),
     type = "structure",
     members = {
         HyperParameterTuningJobName = schema.new({
@@ -29436,7 +29436,7 @@ M.HyperParameterTuningJobCompletionDetails = schema.new({
 })
 
 M.DescribeHyperParameterTuningJobOutput = schema.new({
-    id = id.from(_N, "DescribeHyperParameterTuningJobOutput"),
+    id = id.from(_N, "DescribeHyperParameterTuningJobResponse"),
     type = "structure",
     members = {
         HyperParameterTuningJobName = schema.new({
@@ -29583,7 +29583,7 @@ M.DescribeHyperParameterTuningJobOutput = schema.new({
 })
 
 M.DescribeImageInput = schema.new({
-    id = id.from(_N, "DescribeImageInput"),
+    id = id.from(_N, "DescribeImageRequest"),
     type = "structure",
     members = {
         ImageName = schema.new({
@@ -29599,7 +29599,7 @@ M.DescribeImageInput = schema.new({
 })
 
 M.DescribeImageOutput = schema.new({
-    id = id.from(_N, "DescribeImageOutput"),
+    id = id.from(_N, "DescribeImageResponse"),
     type = "structure",
     members = {
         CreationTime = schema.new({
@@ -29660,7 +29660,7 @@ M.DescribeImageOutput = schema.new({
 })
 
 M.DescribeImageVersionInput = schema.new({
-    id = id.from(_N, "DescribeImageVersionInput"),
+    id = id.from(_N, "DescribeImageVersionRequest"),
     type = "structure",
     members = {
         ImageName = schema.new({
@@ -29688,7 +29688,7 @@ M.DescribeImageVersionInput = schema.new({
 })
 
 M.DescribeImageVersionOutput = schema.new({
-    id = id.from(_N, "DescribeImageVersionOutput"),
+    id = id.from(_N, "DescribeImageVersionResponse"),
     type = "structure",
     members = {
         BaseImage = schema.new({
@@ -30157,7 +30157,7 @@ M.DescribeInferenceComponentOutput = schema.new({
 })
 
 M.DescribeInferenceExperimentInput = schema.new({
-    id = id.from(_N, "DescribeInferenceExperimentInput"),
+    id = id.from(_N, "DescribeInferenceExperimentRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -30251,7 +30251,7 @@ M.ModelVariantConfigSummary = schema.new({
 })
 
 M.DescribeInferenceExperimentOutput = schema.new({
-    id = id.from(_N, "DescribeInferenceExperimentOutput"),
+    id = id.from(_N, "DescribeInferenceExperimentResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -30377,7 +30377,7 @@ M.DescribeInferenceExperimentOutput = schema.new({
 })
 
 M.DescribeInferenceRecommendationsJobInput = schema.new({
-    id = id.from(_N, "DescribeInferenceRecommendationsJobInput"),
+    id = id.from(_N, "DescribeInferenceRecommendationsJobRequest"),
     type = "structure",
     members = {
         JobName = schema.new({
@@ -30650,7 +30650,7 @@ M.InferenceRecommendation = schema.new({
 })
 
 M.DescribeInferenceRecommendationsJobOutput = schema.new({
-    id = id.from(_N, "DescribeInferenceRecommendationsJobOutput"),
+    id = id.from(_N, "DescribeInferenceRecommendationsJobResponse"),
     type = "structure",
     members = {
         JobName = schema.new({
@@ -30769,7 +30769,7 @@ M.DescribeInferenceRecommendationsJobOutput = schema.new({
 })
 
 M.DescribeLabelingJobInput = schema.new({
-    id = id.from(_N, "DescribeLabelingJobInput"),
+    id = id.from(_N, "DescribeLabelingJobRequest"),
     type = "structure",
     members = {
         LabelingJobName = schema.new({
@@ -30844,7 +30844,7 @@ M.LabelingJobOutput = schema.new({
 })
 
 M.DescribeLabelingJobOutput = schema.new({
-    id = id.from(_N, "DescribeLabelingJobOutput"),
+    id = id.from(_N, "DescribeLabelingJobResponse"),
     type = "structure",
     members = {
         LabelingJobStatus = schema.new({
@@ -31000,7 +31000,7 @@ M.DescribeLabelingJobOutput = schema.new({
 })
 
 M.DescribeLineageGroupInput = schema.new({
-    id = id.from(_N, "DescribeLineageGroupInput"),
+    id = id.from(_N, "DescribeLineageGroupRequest"),
     type = "structure",
     members = {
         LineageGroupName = schema.new({
@@ -31016,7 +31016,7 @@ M.DescribeLineageGroupInput = schema.new({
 })
 
 M.DescribeLineageGroupOutput = schema.new({
-    id = id.from(_N, "DescribeLineageGroupOutput"),
+    id = id.from(_N, "DescribeLineageGroupResponse"),
     type = "structure",
     members = {
         LineageGroupName = schema.new({
@@ -31073,7 +31073,7 @@ M.DescribeLineageGroupOutput = schema.new({
 })
 
 M.DescribeMlflowAppInput = schema.new({
-    id = id.from(_N, "DescribeMlflowAppInput"),
+    id = id.from(_N, "DescribeMlflowAppRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -31089,7 +31089,7 @@ M.DescribeMlflowAppInput = schema.new({
 })
 
 M.DescribeMlflowAppOutput = schema.new({
-    id = id.from(_N, "DescribeMlflowAppOutput"),
+    id = id.from(_N, "DescribeMlflowAppResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -31189,7 +31189,7 @@ M.DescribeMlflowAppOutput = schema.new({
 })
 
 M.DescribeMlflowTrackingServerInput = schema.new({
-    id = id.from(_N, "DescribeMlflowTrackingServerInput"),
+    id = id.from(_N, "DescribeMlflowTrackingServerRequest"),
     type = "structure",
     members = {
         TrackingServerName = schema.new({
@@ -31205,7 +31205,7 @@ M.DescribeMlflowTrackingServerInput = schema.new({
 })
 
 M.DescribeMlflowTrackingServerOutput = schema.new({
-    id = id.from(_N, "DescribeMlflowTrackingServerOutput"),
+    id = id.from(_N, "DescribeMlflowTrackingServerResponse"),
     type = "structure",
     members = {
         TrackingServerArn = schema.new({
@@ -31419,7 +31419,7 @@ M.DescribeModelOutput = schema.new({
 })
 
 M.DescribeModelBiasJobDefinitionInput = schema.new({
-    id = id.from(_N, "DescribeModelBiasJobDefinitionInput"),
+    id = id.from(_N, "DescribeModelBiasJobDefinitionRequest"),
     type = "structure",
     members = {
         JobDefinitionName = schema.new({
@@ -31435,7 +31435,7 @@ M.DescribeModelBiasJobDefinitionInput = schema.new({
 })
 
 M.DescribeModelBiasJobDefinitionOutput = schema.new({
-    id = id.from(_N, "DescribeModelBiasJobDefinitionOutput"),
+    id = id.from(_N, "DescribeModelBiasJobDefinitionResponse"),
     type = "structure",
     members = {
         JobDefinitionArn = schema.new({
@@ -31539,7 +31539,7 @@ M.DescribeModelBiasJobDefinitionOutput = schema.new({
 })
 
 M.DescribeModelCardInput = schema.new({
-    id = id.from(_N, "DescribeModelCardInput"),
+    id = id.from(_N, "DescribeModelCardRequest"),
     type = "structure",
     members = {
         ModelCardName = schema.new({
@@ -31561,7 +31561,7 @@ M.DescribeModelCardInput = schema.new({
 })
 
 M.DescribeModelCardOutput = schema.new({
-    id = id.from(_N, "DescribeModelCardOutput"),
+    id = id.from(_N, "DescribeModelCardResponse"),
     type = "structure",
     members = {
         ModelCardArn = schema.new({
@@ -31658,7 +31658,7 @@ M.DescribeModelCardOutput = schema.new({
 })
 
 M.DescribeModelCardExportJobInput = schema.new({
-    id = id.from(_N, "DescribeModelCardExportJobInput"),
+    id = id.from(_N, "DescribeModelCardExportJobRequest"),
     type = "structure",
     members = {
         ModelCardExportJobArn = schema.new({
@@ -31690,7 +31690,7 @@ M.ModelCardExportArtifacts = schema.new({
 })
 
 M.DescribeModelCardExportJobOutput = schema.new({
-    id = id.from(_N, "DescribeModelCardExportJobOutput"),
+    id = id.from(_N, "DescribeModelCardExportJobResponse"),
     type = "structure",
     members = {
         ModelCardExportJobName = schema.new({
@@ -31783,7 +31783,7 @@ M.DescribeModelCardExportJobOutput = schema.new({
 })
 
 M.DescribeModelExplainabilityJobDefinitionInput = schema.new({
-    id = id.from(_N, "DescribeModelExplainabilityJobDefinitionInput"),
+    id = id.from(_N, "DescribeModelExplainabilityJobDefinitionRequest"),
     type = "structure",
     members = {
         JobDefinitionName = schema.new({
@@ -31799,7 +31799,7 @@ M.DescribeModelExplainabilityJobDefinitionInput = schema.new({
 })
 
 M.DescribeModelExplainabilityJobDefinitionOutput = schema.new({
-    id = id.from(_N, "DescribeModelExplainabilityJobDefinitionOutput"),
+    id = id.from(_N, "DescribeModelExplainabilityJobDefinitionResponse"),
     type = "structure",
     members = {
         JobDefinitionArn = schema.new({
@@ -32272,7 +32272,7 @@ M.DescribeModelPackageGroupOutput = schema.new({
 })
 
 M.DescribeModelQualityJobDefinitionInput = schema.new({
-    id = id.from(_N, "DescribeModelQualityJobDefinitionInput"),
+    id = id.from(_N, "DescribeModelQualityJobDefinitionRequest"),
     type = "structure",
     members = {
         JobDefinitionName = schema.new({
@@ -32288,7 +32288,7 @@ M.DescribeModelQualityJobDefinitionInput = schema.new({
 })
 
 M.DescribeModelQualityJobDefinitionOutput = schema.new({
-    id = id.from(_N, "DescribeModelQualityJobDefinitionOutput"),
+    id = id.from(_N, "DescribeModelQualityJobDefinitionResponse"),
     type = "structure",
     members = {
         JobDefinitionArn = schema.new({
@@ -32392,7 +32392,7 @@ M.DescribeModelQualityJobDefinitionOutput = schema.new({
 })
 
 M.DescribeMonitoringScheduleInput = schema.new({
-    id = id.from(_N, "DescribeMonitoringScheduleInput"),
+    id = id.from(_N, "DescribeMonitoringScheduleRequest"),
     type = "structure",
     members = {
         MonitoringScheduleName = schema.new({
@@ -32490,7 +32490,7 @@ M.MonitoringExecutionSummary = schema.new({
 })
 
 M.DescribeMonitoringScheduleOutput = schema.new({
-    id = id.from(_N, "DescribeMonitoringScheduleOutput"),
+    id = id.from(_N, "DescribeMonitoringScheduleResponse"),
     type = "structure",
     members = {
         MonitoringScheduleArn = schema.new({
@@ -32803,7 +32803,7 @@ M.DescribeNotebookInstanceLifecycleConfigOutput = schema.new({
 })
 
 M.DescribeOptimizationJobInput = schema.new({
-    id = id.from(_N, "DescribeOptimizationJobInput"),
+    id = id.from(_N, "DescribeOptimizationJobRequest"),
     type = "structure",
     members = {
         OptimizationJobName = schema.new({
@@ -32832,7 +32832,7 @@ M.OptimizationOutput = schema.new({
 })
 
 M.DescribeOptimizationJobOutput = schema.new({
-    id = id.from(_N, "DescribeOptimizationJobOutput"),
+    id = id.from(_N, "DescribeOptimizationJobResponse"),
     type = "structure",
     members = {
         OptimizationJobArn = schema.new({
@@ -32988,7 +32988,7 @@ M.DescribeOptimizationJobOutput = schema.new({
 })
 
 M.DescribePartnerAppInput = schema.new({
-    id = id.from(_N, "DescribePartnerAppInput"),
+    id = id.from(_N, "DescribePartnerAppRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -33029,7 +33029,7 @@ M.ErrorInfo = schema.new({
 })
 
 M.DescribePartnerAppOutput = schema.new({
-    id = id.from(_N, "DescribePartnerAppOutput"),
+    id = id.from(_N, "DescribePartnerAppResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -33154,7 +33154,7 @@ M.DescribePartnerAppOutput = schema.new({
 })
 
 M.DescribePipelineInput = schema.new({
-    id = id.from(_N, "DescribePipelineInput"),
+    id = id.from(_N, "DescribePipelineRequest"),
     type = "structure",
     members = {
         PipelineName = schema.new({
@@ -33176,7 +33176,7 @@ M.DescribePipelineInput = schema.new({
 })
 
 M.DescribePipelineOutput = schema.new({
-    id = id.from(_N, "DescribePipelineOutput"),
+    id = id.from(_N, "DescribePipelineResponse"),
     type = "structure",
     members = {
         PipelineArn = schema.new({
@@ -33276,7 +33276,7 @@ M.DescribePipelineOutput = schema.new({
 })
 
 M.DescribePipelineDefinitionForExecutionInput = schema.new({
-    id = id.from(_N, "DescribePipelineDefinitionForExecutionInput"),
+    id = id.from(_N, "DescribePipelineDefinitionForExecutionRequest"),
     type = "structure",
     members = {
         PipelineExecutionArn = schema.new({
@@ -33292,7 +33292,7 @@ M.DescribePipelineDefinitionForExecutionInput = schema.new({
 })
 
 M.DescribePipelineDefinitionForExecutionOutput = schema.new({
-    id = id.from(_N, "DescribePipelineDefinitionForExecutionOutput"),
+    id = id.from(_N, "DescribePipelineDefinitionForExecutionResponse"),
     type = "structure",
     members = {
         PipelineDefinition = schema.new({
@@ -33311,7 +33311,7 @@ M.DescribePipelineDefinitionForExecutionOutput = schema.new({
 })
 
 M.DescribePipelineExecutionInput = schema.new({
-    id = id.from(_N, "DescribePipelineExecutionInput"),
+    id = id.from(_N, "DescribePipelineExecutionRequest"),
     type = "structure",
     members = {
         PipelineExecutionArn = schema.new({
@@ -33404,7 +33404,7 @@ M.SelectiveExecutionConfig = schema.new({
 })
 
 M.DescribePipelineExecutionOutput = schema.new({
-    id = id.from(_N, "DescribePipelineExecutionOutput"),
+    id = id.from(_N, "DescribePipelineExecutionResponse"),
     type = "structure",
     members = {
         PipelineArn = schema.new({
@@ -33507,7 +33507,7 @@ M.DescribePipelineExecutionOutput = schema.new({
 })
 
 M.DescribeProcessingJobInput = schema.new({
-    id = id.from(_N, "DescribeProcessingJobInput"),
+    id = id.from(_N, "DescribeProcessingJobRequest"),
     type = "structure",
     members = {
         ProcessingJobName = schema.new({
@@ -33523,7 +33523,7 @@ M.DescribeProcessingJobInput = schema.new({
 })
 
 M.DescribeProcessingJobOutput = schema.new({
-    id = id.from(_N, "DescribeProcessingJobOutput"),
+    id = id.from(_N, "DescribeProcessingJobResponse"),
     type = "structure",
     members = {
         ProcessingInputs = schema.new({
@@ -33831,7 +33831,7 @@ M.DescribeProjectOutput = schema.new({
 })
 
 M.DescribeReservedCapacityInput = schema.new({
-    id = id.from(_N, "DescribeReservedCapacityInput"),
+    id = id.from(_N, "DescribeReservedCapacityRequest"),
     type = "structure",
     members = {
         ReservedCapacityArn = schema.new({
@@ -33890,7 +33890,7 @@ M.UltraServerSummary = schema.new({
 })
 
 M.DescribeReservedCapacityOutput = schema.new({
-    id = id.from(_N, "DescribeReservedCapacityOutput"),
+    id = id.from(_N, "DescribeReservedCapacityResponse"),
     type = "structure",
     members = {
         ReservedCapacityArn = schema.new({
@@ -33985,7 +33985,7 @@ M.DescribeReservedCapacityOutput = schema.new({
 })
 
 M.DescribeSpaceInput = schema.new({
-    id = id.from(_N, "DescribeSpaceInput"),
+    id = id.from(_N, "DescribeSpaceRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -34010,7 +34010,7 @@ M.DescribeSpaceInput = schema.new({
 })
 
 M.DescribeSpaceOutput = schema.new({
-    id = id.from(_N, "DescribeSpaceOutput"),
+    id = id.from(_N, "DescribeSpaceResponse"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -34098,7 +34098,7 @@ M.DescribeSpaceOutput = schema.new({
 })
 
 M.DescribeStudioLifecycleConfigInput = schema.new({
-    id = id.from(_N, "DescribeStudioLifecycleConfigInput"),
+    id = id.from(_N, "DescribeStudioLifecycleConfigRequest"),
     type = "structure",
     members = {
         StudioLifecycleConfigName = schema.new({
@@ -34114,7 +34114,7 @@ M.DescribeStudioLifecycleConfigInput = schema.new({
 })
 
 M.DescribeStudioLifecycleConfigOutput = schema.new({
-    id = id.from(_N, "DescribeStudioLifecycleConfigOutput"),
+    id = id.from(_N, "DescribeStudioLifecycleConfigResponse"),
     type = "structure",
     members = {
         StudioLifecycleConfigArn = schema.new({
@@ -34157,7 +34157,7 @@ M.DescribeStudioLifecycleConfigOutput = schema.new({
 })
 
 M.DescribeSubscribedWorkteamInput = schema.new({
-    id = id.from(_N, "DescribeSubscribedWorkteamInput"),
+    id = id.from(_N, "DescribeSubscribedWorkteamRequest"),
     type = "structure",
     members = {
         WorkteamArn = schema.new({
@@ -34213,7 +34213,7 @@ M.SubscribedWorkteam = schema.new({
 })
 
 M.DescribeSubscribedWorkteamOutput = schema.new({
-    id = id.from(_N, "DescribeSubscribedWorkteamOutput"),
+    id = id.from(_N, "DescribeSubscribedWorkteamResponse"),
     type = "structure",
     members = {
         SubscribedWorkteam = schema.new({
@@ -34230,7 +34230,7 @@ M.DescribeSubscribedWorkteamOutput = schema.new({
 })
 
 M.DescribeTrainingJobInput = schema.new({
-    id = id.from(_N, "DescribeTrainingJobInput"),
+    id = id.from(_N, "DescribeTrainingJobRequest"),
     type = "structure",
     members = {
         TrainingJobName = schema.new({
@@ -34423,7 +34423,7 @@ M.WarmPoolStatus = schema.new({
 })
 
 M.DescribeTrainingJobOutput = schema.new({
-    id = id.from(_N, "DescribeTrainingJobOutput"),
+    id = id.from(_N, "DescribeTrainingJobResponse"),
     type = "structure",
     members = {
         TrainingJobName = schema.new({
@@ -34782,7 +34782,7 @@ M.DescribeTrainingJobOutput = schema.new({
 })
 
 M.DescribeTrainingPlanInput = schema.new({
-    id = id.from(_N, "DescribeTrainingPlanInput"),
+    id = id.from(_N, "DescribeTrainingPlanRequest"),
     type = "structure",
     members = {
         TrainingPlanName = schema.new({
@@ -34889,7 +34889,7 @@ M.ReservedCapacitySummary = schema.new({
 })
 
 M.DescribeTrainingPlanOutput = schema.new({
-    id = id.from(_N, "DescribeTrainingPlanOutput"),
+    id = id.from(_N, "DescribeTrainingPlanResponse"),
     type = "structure",
     members = {
         TrainingPlanArn = schema.new({
@@ -35015,7 +35015,7 @@ M.DescribeTrainingPlanOutput = schema.new({
 })
 
 M.DescribeTrainingPlanExtensionHistoryInput = schema.new({
-    id = id.from(_N, "DescribeTrainingPlanExtensionHistoryInput"),
+    id = id.from(_N, "DescribeTrainingPlanExtensionHistoryRequest"),
     type = "structure",
     members = {
         TrainingPlanArn = schema.new({
@@ -35119,7 +35119,7 @@ M.TrainingPlanExtension = schema.new({
 })
 
 M.DescribeTrainingPlanExtensionHistoryOutput = schema.new({
-    id = id.from(_N, "DescribeTrainingPlanExtensionHistoryOutput"),
+    id = id.from(_N, "DescribeTrainingPlanExtensionHistoryResponse"),
     type = "structure",
     members = {
         TrainingPlanExtensions = schema.new({
@@ -35142,7 +35142,7 @@ M.DescribeTrainingPlanExtensionHistoryOutput = schema.new({
 })
 
 M.DescribeTransformJobInput = schema.new({
-    id = id.from(_N, "DescribeTransformJobInput"),
+    id = id.from(_N, "DescribeTransformJobRequest"),
     type = "structure",
     members = {
         TransformJobName = schema.new({
@@ -35158,7 +35158,7 @@ M.DescribeTransformJobInput = schema.new({
 })
 
 M.DescribeTransformJobOutput = schema.new({
-    id = id.from(_N, "DescribeTransformJobOutput"),
+    id = id.from(_N, "DescribeTransformJobResponse"),
     type = "structure",
     members = {
         TransformJobName = schema.new({
@@ -35321,7 +35321,7 @@ M.DescribeTransformJobOutput = schema.new({
 })
 
 M.DescribeTrialInput = schema.new({
-    id = id.from(_N, "DescribeTrialInput"),
+    id = id.from(_N, "DescribeTrialRequest"),
     type = "structure",
     members = {
         TrialName = schema.new({
@@ -35359,7 +35359,7 @@ M.TrialSource = schema.new({
 })
 
 M.DescribeTrialOutput = schema.new({
-    id = id.from(_N, "DescribeTrialOutput"),
+    id = id.from(_N, "DescribeTrialResponse"),
     type = "structure",
     members = {
         TrialName = schema.new({
@@ -35430,7 +35430,7 @@ M.DescribeTrialOutput = schema.new({
 })
 
 M.DescribeTrialComponentInput = schema.new({
-    id = id.from(_N, "DescribeTrialComponentInput"),
+    id = id.from(_N, "DescribeTrialComponentRequest"),
     type = "structure",
     members = {
         TrialComponentName = schema.new({
@@ -35529,7 +35529,7 @@ M.TrialComponentSource = schema.new({
 })
 
 M.DescribeTrialComponentOutput = schema.new({
-    id = id.from(_N, "DescribeTrialComponentOutput"),
+    id = id.from(_N, "DescribeTrialComponentResponse"),
     type = "structure",
     members = {
         TrialComponentName = schema.new({
@@ -35657,7 +35657,7 @@ M.DescribeTrialComponentOutput = schema.new({
 })
 
 M.DescribeUserProfileInput = schema.new({
-    id = id.from(_N, "DescribeUserProfileInput"),
+    id = id.from(_N, "DescribeUserProfileRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -35682,7 +35682,7 @@ M.DescribeUserProfileInput = schema.new({
 })
 
 M.DescribeUserProfileOutput = schema.new({
-    id = id.from(_N, "DescribeUserProfileOutput"),
+    id = id.from(_N, "DescribeUserProfileResponse"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -35756,7 +35756,7 @@ M.DescribeUserProfileOutput = schema.new({
 })
 
 M.DescribeWorkforceInput = schema.new({
-    id = id.from(_N, "DescribeWorkforceInput"),
+    id = id.from(_N, "DescribeWorkforceRequest"),
     type = "structure",
     members = {
         WorkforceName = schema.new({
@@ -35966,7 +35966,7 @@ M.Workforce = schema.new({
 })
 
 M.DescribeWorkforceOutput = schema.new({
-    id = id.from(_N, "DescribeWorkforceOutput"),
+    id = id.from(_N, "DescribeWorkforceResponse"),
     type = "structure",
     members = {
         Workforce = schema.new({
@@ -35983,7 +35983,7 @@ M.DescribeWorkforceOutput = schema.new({
 })
 
 M.DescribeWorkteamInput = schema.new({
-    id = id.from(_N, "DescribeWorkteamInput"),
+    id = id.from(_N, "DescribeWorkteamRequest"),
     type = "structure",
     members = {
         WorkteamName = schema.new({
@@ -36088,7 +36088,7 @@ M.Workteam = schema.new({
 })
 
 M.DescribeWorkteamOutput = schema.new({
-    id = id.from(_N, "DescribeWorkteamOutput"),
+    id = id.from(_N, "DescribeWorkteamResponse"),
     type = "structure",
     members = {
         Workteam = schema.new({
@@ -36159,7 +36159,7 @@ M.DesiredWeightAndCapacity = schema.new({
 })
 
 M.DetachClusterNodeVolumeInput = schema.new({
-    id = id.from(_N, "DetachClusterNodeVolumeInput"),
+    id = id.from(_N, "DetachClusterNodeVolumeRequest"),
     type = "structure",
     members = {
         ClusterArn = schema.new({
@@ -36193,7 +36193,7 @@ M.DetachClusterNodeVolumeInput = schema.new({
 })
 
 M.DetachClusterNodeVolumeOutput = schema.new({
-    id = id.from(_N, "DetachClusterNodeVolumeOutput"),
+    id = id.from(_N, "DetachClusterNodeVolumeResponse"),
     type = "structure",
     members = {
         ClusterArn = schema.new({
@@ -36535,7 +36535,7 @@ M.DisableSagemakerServicecatalogPortfolioOutput = schema.new({
 })
 
 M.DisassociateTrialComponentInput = schema.new({
-    id = id.from(_N, "DisassociateTrialComponentInput"),
+    id = id.from(_N, "DisassociateTrialComponentRequest"),
     type = "structure",
     members = {
         TrialComponentName = schema.new({
@@ -36560,7 +36560,7 @@ M.DisassociateTrialComponentInput = schema.new({
 })
 
 M.DisassociateTrialComponentOutput = schema.new({
-    id = id.from(_N, "DisassociateTrialComponentOutput"),
+    id = id.from(_N, "DisassociateTrialComponentResponse"),
     type = "structure",
     members = {
         TrialComponentArn = schema.new({
@@ -37499,7 +37499,7 @@ M.ExperimentSummary = schema.new({
 })
 
 M.ExtendTrainingPlanInput = schema.new({
-    id = id.from(_N, "ExtendTrainingPlanInput"),
+    id = id.from(_N, "ExtendTrainingPlanRequest"),
     type = "structure",
     members = {
         TrainingPlanExtensionOfferingId = schema.new({
@@ -37515,7 +37515,7 @@ M.ExtendTrainingPlanInput = schema.new({
 })
 
 M.ExtendTrainingPlanOutput = schema.new({
-    id = id.from(_N, "ExtendTrainingPlanOutput"),
+    id = id.from(_N, "ExtendTrainingPlanResponse"),
     type = "structure",
     members = {
         TrainingPlanExtensions = schema.new({
@@ -37834,7 +37834,7 @@ M.FlowDefinitionSummary = schema.new({
 })
 
 M.GetDeviceFleetReportInput = schema.new({
-    id = id.from(_N, "GetDeviceFleetReportInput"),
+    id = id.from(_N, "GetDeviceFleetReportRequest"),
     type = "structure",
     members = {
         DeviceFleetName = schema.new({
@@ -37850,7 +37850,7 @@ M.GetDeviceFleetReportInput = schema.new({
 })
 
 M.GetDeviceFleetReportOutput = schema.new({
-    id = id.from(_N, "GetDeviceFleetReportOutput"),
+    id = id.from(_N, "GetDeviceFleetReportResponse"),
     type = "structure",
     members = {
         DeviceFleetArn = schema.new({
@@ -37915,7 +37915,7 @@ M.GetDeviceFleetReportOutput = schema.new({
 })
 
 M.GetLineageGroupPolicyInput = schema.new({
-    id = id.from(_N, "GetLineageGroupPolicyInput"),
+    id = id.from(_N, "GetLineageGroupPolicyRequest"),
     type = "structure",
     members = {
         LineageGroupName = schema.new({
@@ -37931,7 +37931,7 @@ M.GetLineageGroupPolicyInput = schema.new({
 })
 
 M.GetLineageGroupPolicyOutput = schema.new({
-    id = id.from(_N, "GetLineageGroupPolicyOutput"),
+    id = id.from(_N, "GetLineageGroupPolicyResponse"),
     type = "structure",
     members = {
         LineageGroupArn = schema.new({
@@ -38019,7 +38019,7 @@ M.ScalingPolicyObjective = schema.new({
 })
 
 M.GetScalingConfigurationRecommendationInput = schema.new({
-    id = id.from(_N, "GetScalingConfigurationRecommendationInput"),
+    id = id.from(_N, "GetScalingConfigurationRecommendationRequest"),
     type = "structure",
     members = {
         InferenceRecommendationsJobName = schema.new({
@@ -38079,7 +38079,7 @@ M.ScalingPolicyMetric = schema.new({
 })
 
 M.GetScalingConfigurationRecommendationOutput = schema.new({
-    id = id.from(_N, "GetScalingConfigurationRecommendationOutput"),
+    id = id.from(_N, "GetScalingConfigurationRecommendationResponse"),
     type = "structure",
     members = {
         InferenceRecommendationsJobName = schema.new({
@@ -38161,7 +38161,7 @@ M.SuggestionQuery = schema.new({
 })
 
 M.GetSearchSuggestionsInput = schema.new({
-    id = id.from(_N, "GetSearchSuggestionsInput"),
+    id = id.from(_N, "GetSearchSuggestionsRequest"),
     type = "structure",
     members = {
         Resource = schema.new({
@@ -38197,7 +38197,7 @@ M.PropertyNameSuggestion = schema.new({
 })
 
 M.GetSearchSuggestionsOutput = schema.new({
-    id = id.from(_N, "GetSearchSuggestionsOutput"),
+    id = id.from(_N, "GetSearchSuggestionsResponse"),
     type = "structure",
     members = {
         PropertyNameSuggestions = schema.new({
@@ -38790,7 +38790,7 @@ M.ImageVersion = schema.new({
 })
 
 M.ImportHubContentInput = schema.new({
-    id = id.from(_N, "ImportHubContentInput"),
+    id = id.from(_N, "ImportHubContentRequest"),
     type = "structure",
     members = {
         HubContentName = schema.new({
@@ -38886,7 +38886,7 @@ M.ImportHubContentInput = schema.new({
 })
 
 M.ImportHubContentOutput = schema.new({
-    id = id.from(_N, "ImportHubContentOutput"),
+    id = id.from(_N, "ImportHubContentResponse"),
     type = "structure",
     members = {
         HubArn = schema.new({
@@ -39565,7 +39565,7 @@ M.LineageMetadata = schema.new({
 })
 
 M.ListActionsInput = schema.new({
-    id = id.from(_N, "ListActionsInput"),
+    id = id.from(_N, "ListActionsRequest"),
     type = "structure",
     members = {
         SourceUri = schema.new({
@@ -39620,7 +39620,7 @@ M.ListActionsInput = schema.new({
 })
 
 M.ListActionsOutput = schema.new({
-    id = id.from(_N, "ListActionsOutput"),
+    id = id.from(_N, "ListActionsResponse"),
     type = "structure",
     members = {
         ActionSummaries = schema.new({
@@ -39640,7 +39640,7 @@ M.ListActionsOutput = schema.new({
 })
 
 M.ListAIBenchmarkJobsInput = schema.new({
-    id = id.from(_N, "ListAIBenchmarkJobsInput"),
+    id = id.from(_N, "ListAIBenchmarkJobsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -39695,7 +39695,7 @@ M.ListAIBenchmarkJobsInput = schema.new({
 })
 
 M.ListAIBenchmarkJobsOutput = schema.new({
-    id = id.from(_N, "ListAIBenchmarkJobsOutput"),
+    id = id.from(_N, "ListAIBenchmarkJobsResponse"),
     type = "structure",
     members = {
         AIBenchmarkJobs = schema.new({
@@ -39718,7 +39718,7 @@ M.ListAIBenchmarkJobsOutput = schema.new({
 })
 
 M.ListAIRecommendationJobsInput = schema.new({
-    id = id.from(_N, "ListAIRecommendationJobsInput"),
+    id = id.from(_N, "ListAIRecommendationJobsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -39773,7 +39773,7 @@ M.ListAIRecommendationJobsInput = schema.new({
 })
 
 M.ListAIRecommendationJobsOutput = schema.new({
-    id = id.from(_N, "ListAIRecommendationJobsOutput"),
+    id = id.from(_N, "ListAIRecommendationJobsResponse"),
     type = "structure",
     members = {
         AIRecommendationJobs = schema.new({
@@ -39796,7 +39796,7 @@ M.ListAIRecommendationJobsOutput = schema.new({
 })
 
 M.ListAIWorkloadConfigsInput = schema.new({
-    id = id.from(_N, "ListAIWorkloadConfigsInput"),
+    id = id.from(_N, "ListAIWorkloadConfigsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -39845,7 +39845,7 @@ M.ListAIWorkloadConfigsInput = schema.new({
 })
 
 M.ListAIWorkloadConfigsOutput = schema.new({
-    id = id.from(_N, "ListAIWorkloadConfigsOutput"),
+    id = id.from(_N, "ListAIWorkloadConfigsResponse"),
     type = "structure",
     members = {
         AIWorkloadConfigs = schema.new({
@@ -39940,7 +39940,7 @@ M.ListAlgorithmsOutput = schema.new({
 })
 
 M.ListAliasesInput = schema.new({
-    id = id.from(_N, "ListAliasesInput"),
+    id = id.from(_N, "ListAliasesRequest"),
     type = "structure",
     members = {
         ImageName = schema.new({
@@ -39980,7 +39980,7 @@ M.ListAliasesInput = schema.new({
 })
 
 M.ListAliasesOutput = schema.new({
-    id = id.from(_N, "ListAliasesOutput"),
+    id = id.from(_N, "ListAliasesResponse"),
     type = "structure",
     members = {
         SageMakerImageVersionAliases = schema.new({
@@ -40000,7 +40000,7 @@ M.ListAliasesOutput = schema.new({
 })
 
 M.ListAppImageConfigsInput = schema.new({
-    id = id.from(_N, "ListAppImageConfigsInput"),
+    id = id.from(_N, "ListAppImageConfigsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -40061,7 +40061,7 @@ M.ListAppImageConfigsInput = schema.new({
 })
 
 M.ListAppImageConfigsOutput = schema.new({
-    id = id.from(_N, "ListAppImageConfigsOutput"),
+    id = id.from(_N, "ListAppImageConfigsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -40081,7 +40081,7 @@ M.ListAppImageConfigsOutput = schema.new({
 })
 
 M.ListAppsInput = schema.new({
-    id = id.from(_N, "ListAppsInput"),
+    id = id.from(_N, "ListAppsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -40130,7 +40130,7 @@ M.ListAppsInput = schema.new({
 })
 
 M.ListAppsOutput = schema.new({
-    id = id.from(_N, "ListAppsOutput"),
+    id = id.from(_N, "ListAppsResponse"),
     type = "structure",
     members = {
         Apps = schema.new({
@@ -40150,7 +40150,7 @@ M.ListAppsOutput = schema.new({
 })
 
 M.ListArtifactsInput = schema.new({
-    id = id.from(_N, "ListArtifactsInput"),
+    id = id.from(_N, "ListArtifactsRequest"),
     type = "structure",
     members = {
         SourceUri = schema.new({
@@ -40205,7 +40205,7 @@ M.ListArtifactsInput = schema.new({
 })
 
 M.ListArtifactsOutput = schema.new({
-    id = id.from(_N, "ListArtifactsOutput"),
+    id = id.from(_N, "ListArtifactsResponse"),
     type = "structure",
     members = {
         ArtifactSummaries = schema.new({
@@ -40225,7 +40225,7 @@ M.ListArtifactsOutput = schema.new({
 })
 
 M.ListAssociationsInput = schema.new({
-    id = id.from(_N, "ListAssociationsInput"),
+    id = id.from(_N, "ListAssociationsRequest"),
     type = "structure",
     members = {
         SourceArn = schema.new({
@@ -40298,7 +40298,7 @@ M.ListAssociationsInput = schema.new({
 })
 
 M.ListAssociationsOutput = schema.new({
-    id = id.from(_N, "ListAssociationsOutput"),
+    id = id.from(_N, "ListAssociationsResponse"),
     type = "structure",
     members = {
         AssociationSummaries = schema.new({
@@ -40318,7 +40318,7 @@ M.ListAssociationsOutput = schema.new({
 })
 
 M.ListAutoMLJobsInput = schema.new({
-    id = id.from(_N, "ListAutoMLJobsInput"),
+    id = id.from(_N, "ListAutoMLJobsRequest"),
     type = "structure",
     members = {
         CreationTimeAfter = schema.new({
@@ -40385,7 +40385,7 @@ M.ListAutoMLJobsInput = schema.new({
 })
 
 M.ListAutoMLJobsOutput = schema.new({
-    id = id.from(_N, "ListAutoMLJobsOutput"),
+    id = id.from(_N, "ListAutoMLJobsResponse"),
     type = "structure",
     members = {
         AutoMLJobSummaries = schema.new({
@@ -40408,7 +40408,7 @@ M.ListAutoMLJobsOutput = schema.new({
 })
 
 M.ListCandidatesForAutoMLJobInput = schema.new({
-    id = id.from(_N, "ListCandidatesForAutoMLJobInput"),
+    id = id.from(_N, "ListCandidatesForAutoMLJobRequest"),
     type = "structure",
     members = {
         AutoMLJobName = schema.new({
@@ -40460,7 +40460,7 @@ M.ListCandidatesForAutoMLJobInput = schema.new({
 })
 
 M.ListCandidatesForAutoMLJobOutput = schema.new({
-    id = id.from(_N, "ListCandidatesForAutoMLJobOutput"),
+    id = id.from(_N, "ListCandidatesForAutoMLJobResponse"),
     type = "structure",
     members = {
         Candidates = schema.new({
@@ -40483,7 +40483,7 @@ M.ListCandidatesForAutoMLJobOutput = schema.new({
 })
 
 M.ListClusterEventsInput = schema.new({
-    id = id.from(_N, "ListClusterEventsInput"),
+    id = id.from(_N, "ListClusterEventsRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -40553,7 +40553,7 @@ M.ListClusterEventsInput = schema.new({
 })
 
 M.ListClusterEventsOutput = schema.new({
-    id = id.from(_N, "ListClusterEventsOutput"),
+    id = id.from(_N, "ListClusterEventsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -40573,7 +40573,7 @@ M.ListClusterEventsOutput = schema.new({
 })
 
 M.ListClusterNodesInput = schema.new({
-    id = id.from(_N, "ListClusterNodesInput"),
+    id = id.from(_N, "ListClusterNodesRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -40637,7 +40637,7 @@ M.ListClusterNodesInput = schema.new({
 })
 
 M.ListClusterNodesOutput = schema.new({
-    id = id.from(_N, "ListClusterNodesOutput"),
+    id = id.from(_N, "ListClusterNodesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -40660,7 +40660,7 @@ M.ListClusterNodesOutput = schema.new({
 })
 
 M.ListClustersInput = schema.new({
-    id = id.from(_N, "ListClustersInput"),
+    id = id.from(_N, "ListClustersRequest"),
     type = "structure",
     members = {
         CreationTimeAfter = schema.new({
@@ -40715,7 +40715,7 @@ M.ListClustersInput = schema.new({
 })
 
 M.ListClustersOutput = schema.new({
-    id = id.from(_N, "ListClustersOutput"),
+    id = id.from(_N, "ListClustersResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -40738,7 +40738,7 @@ M.ListClustersOutput = schema.new({
 })
 
 M.ListClusterSchedulerConfigsInput = schema.new({
-    id = id.from(_N, "ListClusterSchedulerConfigsInput"),
+    id = id.from(_N, "ListClusterSchedulerConfigsRequest"),
     type = "structure",
     members = {
         CreatedAfter = schema.new({
@@ -40799,7 +40799,7 @@ M.ListClusterSchedulerConfigsInput = schema.new({
 })
 
 M.ListClusterSchedulerConfigsOutput = schema.new({
-    id = id.from(_N, "ListClusterSchedulerConfigsOutput"),
+    id = id.from(_N, "ListClusterSchedulerConfigsResponse"),
     type = "structure",
     members = {
         ClusterSchedulerConfigSummaries = schema.new({
@@ -40903,7 +40903,7 @@ M.ListCodeRepositoriesOutput = schema.new({
 })
 
 M.ListCompilationJobsInput = schema.new({
-    id = id.from(_N, "ListCompilationJobsInput"),
+    id = id.from(_N, "ListCompilationJobsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -40970,7 +40970,7 @@ M.ListCompilationJobsInput = schema.new({
 })
 
 M.ListCompilationJobsOutput = schema.new({
-    id = id.from(_N, "ListCompilationJobsOutput"),
+    id = id.from(_N, "ListCompilationJobsResponse"),
     type = "structure",
     members = {
         CompilationJobSummaries = schema.new({
@@ -40993,7 +40993,7 @@ M.ListCompilationJobsOutput = schema.new({
 })
 
 M.ListComputeQuotasInput = schema.new({
-    id = id.from(_N, "ListComputeQuotasInput"),
+    id = id.from(_N, "ListComputeQuotasRequest"),
     type = "structure",
     members = {
         CreatedAfter = schema.new({
@@ -41054,7 +41054,7 @@ M.ListComputeQuotasInput = schema.new({
 })
 
 M.ListComputeQuotasOutput = schema.new({
-    id = id.from(_N, "ListComputeQuotasOutput"),
+    id = id.from(_N, "ListComputeQuotasResponse"),
     type = "structure",
     members = {
         ComputeQuotaSummaries = schema.new({
@@ -41074,7 +41074,7 @@ M.ListComputeQuotasOutput = schema.new({
 })
 
 M.ListContextsInput = schema.new({
-    id = id.from(_N, "ListContextsInput"),
+    id = id.from(_N, "ListContextsRequest"),
     type = "structure",
     members = {
         SourceUri = schema.new({
@@ -41129,7 +41129,7 @@ M.ListContextsInput = schema.new({
 })
 
 M.ListContextsOutput = schema.new({
-    id = id.from(_N, "ListContextsOutput"),
+    id = id.from(_N, "ListContextsResponse"),
     type = "structure",
     members = {
         ContextSummaries = schema.new({
@@ -41149,7 +41149,7 @@ M.ListContextsOutput = schema.new({
 })
 
 M.ListDataQualityJobDefinitionsInput = schema.new({
-    id = id.from(_N, "ListDataQualityJobDefinitionsInput"),
+    id = id.from(_N, "ListDataQualityJobDefinitionsRequest"),
     type = "structure",
     members = {
         EndpointName = schema.new({
@@ -41247,7 +41247,7 @@ M.MonitoringJobDefinitionSummary = schema.new({
 })
 
 M.ListDataQualityJobDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListDataQualityJobDefinitionsOutput"),
+    id = id.from(_N, "ListDataQualityJobDefinitionsResponse"),
     type = "structure",
     members = {
         JobDefinitionSummaries = schema.new({
@@ -41270,7 +41270,7 @@ M.ListDataQualityJobDefinitionsOutput = schema.new({
 })
 
 M.ListDeviceFleetsInput = schema.new({
-    id = id.from(_N, "ListDeviceFleetsInput"),
+    id = id.from(_N, "ListDeviceFleetsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -41331,7 +41331,7 @@ M.ListDeviceFleetsInput = schema.new({
 })
 
 M.ListDeviceFleetsOutput = schema.new({
-    id = id.from(_N, "ListDeviceFleetsOutput"),
+    id = id.from(_N, "ListDeviceFleetsResponse"),
     type = "structure",
     members = {
         DeviceFleetSummaries = schema.new({
@@ -41354,7 +41354,7 @@ M.ListDeviceFleetsOutput = schema.new({
 })
 
 M.ListDevicesInput = schema.new({
-    id = id.from(_N, "ListDevicesInput"),
+    id = id.from(_N, "ListDevicesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -41391,7 +41391,7 @@ M.ListDevicesInput = schema.new({
 })
 
 M.ListDevicesOutput = schema.new({
-    id = id.from(_N, "ListDevicesOutput"),
+    id = id.from(_N, "ListDevicesResponse"),
     type = "structure",
     members = {
         DeviceSummaries = schema.new({
@@ -41414,7 +41414,7 @@ M.ListDevicesOutput = schema.new({
 })
 
 M.ListDomainsInput = schema.new({
-    id = id.from(_N, "ListDomainsInput"),
+    id = id.from(_N, "ListDomainsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -41433,7 +41433,7 @@ M.ListDomainsInput = schema.new({
 })
 
 M.ListDomainsOutput = schema.new({
-    id = id.from(_N, "ListDomainsOutput"),
+    id = id.from(_N, "ListDomainsResponse"),
     type = "structure",
     members = {
         Domains = schema.new({
@@ -41453,7 +41453,7 @@ M.ListDomainsOutput = schema.new({
 })
 
 M.ListEdgeDeploymentPlansInput = schema.new({
-    id = id.from(_N, "ListEdgeDeploymentPlansInput"),
+    id = id.from(_N, "ListEdgeDeploymentPlansRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -41520,7 +41520,7 @@ M.ListEdgeDeploymentPlansInput = schema.new({
 })
 
 M.ListEdgeDeploymentPlansOutput = schema.new({
-    id = id.from(_N, "ListEdgeDeploymentPlansOutput"),
+    id = id.from(_N, "ListEdgeDeploymentPlansResponse"),
     type = "structure",
     members = {
         EdgeDeploymentPlanSummaries = schema.new({
@@ -41543,7 +41543,7 @@ M.ListEdgeDeploymentPlansOutput = schema.new({
 })
 
 M.ListEdgePackagingJobsInput = schema.new({
-    id = id.from(_N, "ListEdgePackagingJobsInput"),
+    id = id.from(_N, "ListEdgePackagingJobsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -41616,7 +41616,7 @@ M.ListEdgePackagingJobsInput = schema.new({
 })
 
 M.ListEdgePackagingJobsOutput = schema.new({
-    id = id.from(_N, "ListEdgePackagingJobsOutput"),
+    id = id.from(_N, "ListEdgePackagingJobsResponse"),
     type = "structure",
     members = {
         EdgePackagingJobSummaries = schema.new({
@@ -41801,7 +41801,7 @@ M.ListEndpointsOutput = schema.new({
 })
 
 M.ListExperimentsInput = schema.new({
-    id = id.from(_N, "ListExperimentsInput"),
+    id = id.from(_N, "ListExperimentsRequest"),
     type = "structure",
     members = {
         CreatedAfter = schema.new({
@@ -41844,7 +41844,7 @@ M.ListExperimentsInput = schema.new({
 })
 
 M.ListExperimentsOutput = schema.new({
-    id = id.from(_N, "ListExperimentsOutput"),
+    id = id.from(_N, "ListExperimentsResponse"),
     type = "structure",
     members = {
         ExperimentSummaries = schema.new({
@@ -41864,7 +41864,7 @@ M.ListExperimentsOutput = schema.new({
 })
 
 M.ListFeatureGroupsInput = schema.new({
-    id = id.from(_N, "ListFeatureGroupsInput"),
+    id = id.from(_N, "ListFeatureGroupsRequest"),
     type = "structure",
     members = {
         NameContains = schema.new({
@@ -41925,7 +41925,7 @@ M.ListFeatureGroupsInput = schema.new({
 })
 
 M.ListFeatureGroupsOutput = schema.new({
-    id = id.from(_N, "ListFeatureGroupsOutput"),
+    id = id.from(_N, "ListFeatureGroupsResponse"),
     type = "structure",
     members = {
         FeatureGroupSummaries = schema.new({
@@ -41948,7 +41948,7 @@ M.ListFeatureGroupsOutput = schema.new({
 })
 
 M.ListFlowDefinitionsInput = schema.new({
-    id = id.from(_N, "ListFlowDefinitionsInput"),
+    id = id.from(_N, "ListFlowDefinitionsRequest"),
     type = "structure",
     members = {
         CreationTimeAfter = schema.new({
@@ -41985,7 +41985,7 @@ M.ListFlowDefinitionsInput = schema.new({
 })
 
 M.ListFlowDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListFlowDefinitionsOutput"),
+    id = id.from(_N, "ListFlowDefinitionsResponse"),
     type = "structure",
     members = {
         FlowDefinitionSummaries = schema.new({
@@ -42008,7 +42008,7 @@ M.ListFlowDefinitionsOutput = schema.new({
 })
 
 M.ListHubContentsInput = schema.new({
-    id = id.from(_N, "ListHubContentsInput"),
+    id = id.from(_N, "ListHubContentsRequest"),
     type = "structure",
     members = {
         HubName = schema.new({
@@ -42081,7 +42081,7 @@ M.ListHubContentsInput = schema.new({
 })
 
 M.ListHubContentsOutput = schema.new({
-    id = id.from(_N, "ListHubContentsOutput"),
+    id = id.from(_N, "ListHubContentsResponse"),
     type = "structure",
     members = {
         HubContentSummaries = schema.new({
@@ -42104,7 +42104,7 @@ M.ListHubContentsOutput = schema.new({
 })
 
 M.ListHubContentVersionsInput = schema.new({
-    id = id.from(_N, "ListHubContentVersionsInput"),
+    id = id.from(_N, "ListHubContentVersionsRequest"),
     type = "structure",
     members = {
         HubName = schema.new({
@@ -42186,7 +42186,7 @@ M.ListHubContentVersionsInput = schema.new({
 })
 
 M.ListHubContentVersionsOutput = schema.new({
-    id = id.from(_N, "ListHubContentVersionsOutput"),
+    id = id.from(_N, "ListHubContentVersionsResponse"),
     type = "structure",
     members = {
         HubContentSummaries = schema.new({
@@ -42209,7 +42209,7 @@ M.ListHubContentVersionsOutput = schema.new({
 })
 
 M.ListHubsInput = schema.new({
-    id = id.from(_N, "ListHubsInput"),
+    id = id.from(_N, "ListHubsRequest"),
     type = "structure",
     members = {
         NameContains = schema.new({
@@ -42270,7 +42270,7 @@ M.ListHubsInput = schema.new({
 })
 
 M.ListHubsOutput = schema.new({
-    id = id.from(_N, "ListHubsOutput"),
+    id = id.from(_N, "ListHubsResponse"),
     type = "structure",
     members = {
         HubSummaries = schema.new({
@@ -42293,7 +42293,7 @@ M.ListHubsOutput = schema.new({
 })
 
 M.ListHumanTaskUisInput = schema.new({
-    id = id.from(_N, "ListHumanTaskUisInput"),
+    id = id.from(_N, "ListHumanTaskUisRequest"),
     type = "structure",
     members = {
         CreationTimeAfter = schema.new({
@@ -42330,7 +42330,7 @@ M.ListHumanTaskUisInput = schema.new({
 })
 
 M.ListHumanTaskUisOutput = schema.new({
-    id = id.from(_N, "ListHumanTaskUisOutput"),
+    id = id.from(_N, "ListHumanTaskUisResponse"),
     type = "structure",
     members = {
         HumanTaskUiSummaries = schema.new({
@@ -42353,7 +42353,7 @@ M.ListHumanTaskUisOutput = schema.new({
 })
 
 M.ListHyperParameterTuningJobsInput = schema.new({
-    id = id.from(_N, "ListHyperParameterTuningJobsInput"),
+    id = id.from(_N, "ListHyperParameterTuningJobsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -42420,7 +42420,7 @@ M.ListHyperParameterTuningJobsInput = schema.new({
 })
 
 M.ListHyperParameterTuningJobsOutput = schema.new({
-    id = id.from(_N, "ListHyperParameterTuningJobsOutput"),
+    id = id.from(_N, "ListHyperParameterTuningJobsResponse"),
     type = "structure",
     members = {
         HyperParameterTuningJobSummaries = schema.new({
@@ -42443,7 +42443,7 @@ M.ListHyperParameterTuningJobsOutput = schema.new({
 })
 
 M.ListImagesInput = schema.new({
-    id = id.from(_N, "ListImagesInput"),
+    id = id.from(_N, "ListImagesRequest"),
     type = "structure",
     members = {
         CreationTimeAfter = schema.new({
@@ -42504,7 +42504,7 @@ M.ListImagesInput = schema.new({
 })
 
 M.ListImagesOutput = schema.new({
-    id = id.from(_N, "ListImagesOutput"),
+    id = id.from(_N, "ListImagesResponse"),
     type = "structure",
     members = {
         Images = schema.new({
@@ -42524,7 +42524,7 @@ M.ListImagesOutput = schema.new({
 })
 
 M.ListImageVersionsInput = schema.new({
-    id = id.from(_N, "ListImageVersionsInput"),
+    id = id.from(_N, "ListImageVersionsRequest"),
     type = "structure",
     members = {
         CreationTimeAfter = schema.new({
@@ -42588,7 +42588,7 @@ M.ListImageVersionsInput = schema.new({
 })
 
 M.ListImageVersionsOutput = schema.new({
-    id = id.from(_N, "ListImageVersionsOutput"),
+    id = id.from(_N, "ListImageVersionsResponse"),
     type = "structure",
     members = {
         ImageVersions = schema.new({
@@ -42710,7 +42710,7 @@ M.ListInferenceComponentsOutput = schema.new({
 })
 
 M.ListInferenceExperimentsInput = schema.new({
-    id = id.from(_N, "ListInferenceExperimentsInput"),
+    id = id.from(_N, "ListInferenceExperimentsRequest"),
     type = "structure",
     members = {
         NameContains = schema.new({
@@ -42783,7 +42783,7 @@ M.ListInferenceExperimentsInput = schema.new({
 })
 
 M.ListInferenceExperimentsOutput = schema.new({
-    id = id.from(_N, "ListInferenceExperimentsOutput"),
+    id = id.from(_N, "ListInferenceExperimentsResponse"),
     type = "structure",
     members = {
         InferenceExperiments = schema.new({
@@ -42803,7 +42803,7 @@ M.ListInferenceExperimentsOutput = schema.new({
 })
 
 M.ListInferenceRecommendationsJobsInput = schema.new({
-    id = id.from(_N, "ListInferenceRecommendationsJobsInput"),
+    id = id.from(_N, "ListInferenceRecommendationsJobsRequest"),
     type = "structure",
     members = {
         CreationTimeAfter = schema.new({
@@ -42882,7 +42882,7 @@ M.ListInferenceRecommendationsJobsInput = schema.new({
 })
 
 M.ListInferenceRecommendationsJobsOutput = schema.new({
-    id = id.from(_N, "ListInferenceRecommendationsJobsOutput"),
+    id = id.from(_N, "ListInferenceRecommendationsJobsResponse"),
     type = "structure",
     members = {
         InferenceRecommendationsJobs = schema.new({
@@ -42905,7 +42905,7 @@ M.ListInferenceRecommendationsJobsOutput = schema.new({
 })
 
 M.ListInferenceRecommendationsJobStepsInput = schema.new({
-    id = id.from(_N, "ListInferenceRecommendationsJobStepsInput"),
+    id = id.from(_N, "ListInferenceRecommendationsJobStepsRequest"),
     type = "structure",
     members = {
         JobName = schema.new({
@@ -42945,7 +42945,7 @@ M.ListInferenceRecommendationsJobStepsInput = schema.new({
 })
 
 M.ListInferenceRecommendationsJobStepsOutput = schema.new({
-    id = id.from(_N, "ListInferenceRecommendationsJobStepsOutput"),
+    id = id.from(_N, "ListInferenceRecommendationsJobStepsResponse"),
     type = "structure",
     members = {
         Steps = schema.new({
@@ -42965,7 +42965,7 @@ M.ListInferenceRecommendationsJobStepsOutput = schema.new({
 })
 
 M.ListLabelingJobsInput = schema.new({
-    id = id.from(_N, "ListLabelingJobsInput"),
+    id = id.from(_N, "ListLabelingJobsRequest"),
     type = "structure",
     members = {
         CreationTimeAfter = schema.new({
@@ -43032,7 +43032,7 @@ M.ListLabelingJobsInput = schema.new({
 })
 
 M.ListLabelingJobsOutput = schema.new({
-    id = id.from(_N, "ListLabelingJobsOutput"),
+    id = id.from(_N, "ListLabelingJobsResponse"),
     type = "structure",
     members = {
         LabelingJobSummaryList = schema.new({
@@ -43052,7 +43052,7 @@ M.ListLabelingJobsOutput = schema.new({
 })
 
 M.ListLabelingJobsForWorkteamInput = schema.new({
-    id = id.from(_N, "ListLabelingJobsForWorkteamInput"),
+    id = id.from(_N, "ListLabelingJobsForWorkteamRequest"),
     type = "structure",
     members = {
         WorkteamArn = schema.new({
@@ -43110,7 +43110,7 @@ M.ListLabelingJobsForWorkteamInput = schema.new({
 })
 
 M.ListLabelingJobsForWorkteamOutput = schema.new({
-    id = id.from(_N, "ListLabelingJobsForWorkteamOutput"),
+    id = id.from(_N, "ListLabelingJobsForWorkteamResponse"),
     type = "structure",
     members = {
         LabelingJobSummaryList = schema.new({
@@ -43133,7 +43133,7 @@ M.ListLabelingJobsForWorkteamOutput = schema.new({
 })
 
 M.ListLineageGroupsInput = schema.new({
-    id = id.from(_N, "ListLineageGroupsInput"),
+    id = id.from(_N, "ListLineageGroupsRequest"),
     type = "structure",
     members = {
         CreatedAfter = schema.new({
@@ -43176,7 +43176,7 @@ M.ListLineageGroupsInput = schema.new({
 })
 
 M.ListLineageGroupsOutput = schema.new({
-    id = id.from(_N, "ListLineageGroupsOutput"),
+    id = id.from(_N, "ListLineageGroupsResponse"),
     type = "structure",
     members = {
         LineageGroupSummaries = schema.new({
@@ -43196,7 +43196,7 @@ M.ListLineageGroupsOutput = schema.new({
 })
 
 M.ListMlflowAppsInput = schema.new({
-    id = id.from(_N, "ListMlflowAppsInput"),
+    id = id.from(_N, "ListMlflowAppsRequest"),
     type = "structure",
     members = {
         CreatedAfter = schema.new({
@@ -43306,7 +43306,7 @@ M.MlflowAppSummary = schema.new({
 })
 
 M.ListMlflowAppsOutput = schema.new({
-    id = id.from(_N, "ListMlflowAppsOutput"),
+    id = id.from(_N, "ListMlflowAppsResponse"),
     type = "structure",
     members = {
         Summaries = schema.new({
@@ -43326,7 +43326,7 @@ M.ListMlflowAppsOutput = schema.new({
 })
 
 M.ListMlflowTrackingServersInput = schema.new({
-    id = id.from(_N, "ListMlflowTrackingServersInput"),
+    id = id.from(_N, "ListMlflowTrackingServersRequest"),
     type = "structure",
     members = {
         CreatedAfter = schema.new({
@@ -43430,7 +43430,7 @@ M.TrackingServerSummary = schema.new({
 })
 
 M.ListMlflowTrackingServersOutput = schema.new({
-    id = id.from(_N, "ListMlflowTrackingServersOutput"),
+    id = id.from(_N, "ListMlflowTrackingServersResponse"),
     type = "structure",
     members = {
         TrackingServerSummaries = schema.new({
@@ -43450,7 +43450,7 @@ M.ListMlflowTrackingServersOutput = schema.new({
 })
 
 M.ListModelBiasJobDefinitionsInput = schema.new({
-    id = id.from(_N, "ListModelBiasJobDefinitionsInput"),
+    id = id.from(_N, "ListModelBiasJobDefinitionsRequest"),
     type = "structure",
     members = {
         EndpointName = schema.new({
@@ -43505,7 +43505,7 @@ M.ListModelBiasJobDefinitionsInput = schema.new({
 })
 
 M.ListModelBiasJobDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListModelBiasJobDefinitionsOutput"),
+    id = id.from(_N, "ListModelBiasJobDefinitionsResponse"),
     type = "structure",
     members = {
         JobDefinitionSummaries = schema.new({
@@ -43528,7 +43528,7 @@ M.ListModelBiasJobDefinitionsOutput = schema.new({
 })
 
 M.ListModelCardExportJobsInput = schema.new({
-    id = id.from(_N, "ListModelCardExportJobsInput"),
+    id = id.from(_N, "ListModelCardExportJobsRequest"),
     type = "structure",
     members = {
         ModelCardName = schema.new({
@@ -43668,7 +43668,7 @@ M.ModelCardExportJobSummary = schema.new({
 })
 
 M.ListModelCardExportJobsOutput = schema.new({
-    id = id.from(_N, "ListModelCardExportJobsOutput"),
+    id = id.from(_N, "ListModelCardExportJobsResponse"),
     type = "structure",
     members = {
         ModelCardExportJobSummaries = schema.new({
@@ -43691,7 +43691,7 @@ M.ListModelCardExportJobsOutput = schema.new({
 })
 
 M.ListModelCardsInput = schema.new({
-    id = id.from(_N, "ListModelCardsInput"),
+    id = id.from(_N, "ListModelCardsRequest"),
     type = "structure",
     members = {
         CreationTimeAfter = schema.new({
@@ -43795,7 +43795,7 @@ M.ModelCardSummary = schema.new({
 })
 
 M.ListModelCardsOutput = schema.new({
-    id = id.from(_N, "ListModelCardsOutput"),
+    id = id.from(_N, "ListModelCardsResponse"),
     type = "structure",
     members = {
         ModelCardSummaries = schema.new({
@@ -43818,7 +43818,7 @@ M.ListModelCardsOutput = schema.new({
 })
 
 M.ListModelCardVersionsInput = schema.new({
-    id = id.from(_N, "ListModelCardVersionsInput"),
+    id = id.from(_N, "ListModelCardVersionsRequest"),
     type = "structure",
     members = {
         CreationTimeAfter = schema.new({
@@ -43934,7 +43934,7 @@ M.ModelCardVersionSummary = schema.new({
 })
 
 M.ListModelCardVersionsOutput = schema.new({
-    id = id.from(_N, "ListModelCardVersionsOutput"),
+    id = id.from(_N, "ListModelCardVersionsResponse"),
     type = "structure",
     members = {
         ModelCardVersionSummaryList = schema.new({
@@ -43957,7 +43957,7 @@ M.ListModelCardVersionsOutput = schema.new({
 })
 
 M.ListModelExplainabilityJobDefinitionsInput = schema.new({
-    id = id.from(_N, "ListModelExplainabilityJobDefinitionsInput"),
+    id = id.from(_N, "ListModelExplainabilityJobDefinitionsRequest"),
     type = "structure",
     members = {
         EndpointName = schema.new({
@@ -44012,7 +44012,7 @@ M.ListModelExplainabilityJobDefinitionsInput = schema.new({
 })
 
 M.ListModelExplainabilityJobDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListModelExplainabilityJobDefinitionsOutput"),
+    id = id.from(_N, "ListModelExplainabilityJobDefinitionsResponse"),
     type = "structure",
     members = {
         JobDefinitionSummaries = schema.new({
@@ -44074,7 +44074,7 @@ M.ModelMetadataSearchExpression = schema.new({
 })
 
 M.ListModelMetadataInput = schema.new({
-    id = id.from(_N, "ListModelMetadataInput"),
+    id = id.from(_N, "ListModelMetadataRequest"),
     type = "structure",
     members = {
         SearchExpression = schema.new({
@@ -44152,7 +44152,7 @@ M.ModelMetadataSummary = schema.new({
 })
 
 M.ListModelMetadataOutput = schema.new({
-    id = id.from(_N, "ListModelMetadataOutput"),
+    id = id.from(_N, "ListModelMetadataResponse"),
     type = "structure",
     members = {
         ModelMetadataSummaries = schema.new({
@@ -44469,7 +44469,7 @@ M.ListModelPackagesOutput = schema.new({
 })
 
 M.ListModelQualityJobDefinitionsInput = schema.new({
-    id = id.from(_N, "ListModelQualityJobDefinitionsInput"),
+    id = id.from(_N, "ListModelQualityJobDefinitionsRequest"),
     type = "structure",
     members = {
         EndpointName = schema.new({
@@ -44524,7 +44524,7 @@ M.ListModelQualityJobDefinitionsInput = schema.new({
 })
 
 M.ListModelQualityJobDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListModelQualityJobDefinitionsOutput"),
+    id = id.from(_N, "ListModelQualityJobDefinitionsResponse"),
     type = "structure",
     members = {
         JobDefinitionSummaries = schema.new({
@@ -44653,7 +44653,7 @@ M.ListModelsOutput = schema.new({
 })
 
 M.ListMonitoringAlertHistoryInput = schema.new({
-    id = id.from(_N, "ListMonitoringAlertHistoryInput"),
+    id = id.from(_N, "ListMonitoringAlertHistoryRequest"),
     type = "structure",
     members = {
         MonitoringScheduleName = schema.new({
@@ -44757,7 +44757,7 @@ M.MonitoringAlertHistorySummary = schema.new({
 })
 
 M.ListMonitoringAlertHistoryOutput = schema.new({
-    id = id.from(_N, "ListMonitoringAlertHistoryOutput"),
+    id = id.from(_N, "ListMonitoringAlertHistoryResponse"),
     type = "structure",
     members = {
         MonitoringAlertHistory = schema.new({
@@ -44777,7 +44777,7 @@ M.ListMonitoringAlertHistoryOutput = schema.new({
 })
 
 M.ListMonitoringAlertsInput = schema.new({
-    id = id.from(_N, "ListMonitoringAlertsInput"),
+    id = id.from(_N, "ListMonitoringAlertsRequest"),
     type = "structure",
     members = {
         MonitoringScheduleName = schema.new({
@@ -44903,7 +44903,7 @@ M.MonitoringAlertSummary = schema.new({
 })
 
 M.ListMonitoringAlertsOutput = schema.new({
-    id = id.from(_N, "ListMonitoringAlertsOutput"),
+    id = id.from(_N, "ListMonitoringAlertsResponse"),
     type = "structure",
     members = {
         MonitoringAlertSummaries = schema.new({
@@ -44923,7 +44923,7 @@ M.ListMonitoringAlertsOutput = schema.new({
 })
 
 M.ListMonitoringExecutionsInput = schema.new({
-    id = id.from(_N, "ListMonitoringExecutionsInput"),
+    id = id.from(_N, "ListMonitoringExecutionsRequest"),
     type = "structure",
     members = {
         MonitoringScheduleName = schema.new({
@@ -45020,7 +45020,7 @@ M.ListMonitoringExecutionsInput = schema.new({
 })
 
 M.ListMonitoringExecutionsOutput = schema.new({
-    id = id.from(_N, "ListMonitoringExecutionsOutput"),
+    id = id.from(_N, "ListMonitoringExecutionsResponse"),
     type = "structure",
     members = {
         MonitoringExecutionSummaries = schema.new({
@@ -45043,7 +45043,7 @@ M.ListMonitoringExecutionsOutput = schema.new({
 })
 
 M.ListMonitoringSchedulesInput = schema.new({
-    id = id.from(_N, "ListMonitoringSchedulesInput"),
+    id = id.from(_N, "ListMonitoringSchedulesRequest"),
     type = "structure",
     members = {
         EndpointName = schema.new({
@@ -45198,7 +45198,7 @@ M.MonitoringScheduleSummary = schema.new({
 })
 
 M.ListMonitoringSchedulesOutput = schema.new({
-    id = id.from(_N, "ListMonitoringSchedulesOutput"),
+    id = id.from(_N, "ListMonitoringSchedulesResponse"),
     type = "structure",
     members = {
         MonitoringScheduleSummaries = schema.new({
@@ -45518,7 +45518,7 @@ M.ListNotebookInstancesOutput = schema.new({
 })
 
 M.ListOptimizationJobsInput = schema.new({
-    id = id.from(_N, "ListOptimizationJobsInput"),
+    id = id.from(_N, "ListOptimizationJobsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -45677,7 +45677,7 @@ M.OptimizationJobSummary = schema.new({
 })
 
 M.ListOptimizationJobsOutput = schema.new({
-    id = id.from(_N, "ListOptimizationJobsOutput"),
+    id = id.from(_N, "ListOptimizationJobsResponse"),
     type = "structure",
     members = {
         OptimizationJobSummaries = schema.new({
@@ -45700,7 +45700,7 @@ M.ListOptimizationJobsOutput = schema.new({
 })
 
 M.ListPartnerAppsInput = schema.new({
-    id = id.from(_N, "ListPartnerAppsInput"),
+    id = id.from(_N, "ListPartnerAppsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -45756,7 +45756,7 @@ M.PartnerAppSummary = schema.new({
 })
 
 M.ListPartnerAppsOutput = schema.new({
-    id = id.from(_N, "ListPartnerAppsOutput"),
+    id = id.from(_N, "ListPartnerAppsResponse"),
     type = "structure",
     members = {
         Summaries = schema.new({
@@ -45776,7 +45776,7 @@ M.ListPartnerAppsOutput = schema.new({
 })
 
 M.ListPipelineExecutionsInput = schema.new({
-    id = id.from(_N, "ListPipelineExecutionsInput"),
+    id = id.from(_N, "ListPipelineExecutionsRequest"),
     type = "structure",
     members = {
         PipelineName = schema.new({
@@ -45871,7 +45871,7 @@ M.PipelineExecutionSummary = schema.new({
 })
 
 M.ListPipelineExecutionsOutput = schema.new({
-    id = id.from(_N, "ListPipelineExecutionsOutput"),
+    id = id.from(_N, "ListPipelineExecutionsResponse"),
     type = "structure",
     members = {
         PipelineExecutionSummaries = schema.new({
@@ -45891,7 +45891,7 @@ M.ListPipelineExecutionsOutput = schema.new({
 })
 
 M.ListPipelineExecutionStepsInput = schema.new({
-    id = id.from(_N, "ListPipelineExecutionStepsInput"),
+    id = id.from(_N, "ListPipelineExecutionStepsRequest"),
     type = "structure",
     members = {
         PipelineExecutionArn = schema.new({
@@ -46317,7 +46317,7 @@ M.PipelineExecutionStep = schema.new({
 })
 
 M.ListPipelineExecutionStepsOutput = schema.new({
-    id = id.from(_N, "ListPipelineExecutionStepsOutput"),
+    id = id.from(_N, "ListPipelineExecutionStepsResponse"),
     type = "structure",
     members = {
         PipelineExecutionSteps = schema.new({
@@ -46337,7 +46337,7 @@ M.ListPipelineExecutionStepsOutput = schema.new({
 })
 
 M.ListPipelineParametersForExecutionInput = schema.new({
-    id = id.from(_N, "ListPipelineParametersForExecutionInput"),
+    id = id.from(_N, "ListPipelineParametersForExecutionRequest"),
     type = "structure",
     members = {
         PipelineExecutionArn = schema.new({
@@ -46390,7 +46390,7 @@ M.Parameter = schema.new({
 })
 
 M.ListPipelineParametersForExecutionOutput = schema.new({
-    id = id.from(_N, "ListPipelineParametersForExecutionOutput"),
+    id = id.from(_N, "ListPipelineParametersForExecutionResponse"),
     type = "structure",
     members = {
         PipelineParameters = schema.new({
@@ -46410,7 +46410,7 @@ M.ListPipelineParametersForExecutionOutput = schema.new({
 })
 
 M.ListPipelinesInput = schema.new({
-    id = id.from(_N, "ListPipelinesInput"),
+    id = id.from(_N, "ListPipelinesRequest"),
     type = "structure",
     members = {
         PipelineNamePrefix = schema.new({
@@ -46514,7 +46514,7 @@ M.PipelineSummary = schema.new({
 })
 
 M.ListPipelinesOutput = schema.new({
-    id = id.from(_N, "ListPipelinesOutput"),
+    id = id.from(_N, "ListPipelinesResponse"),
     type = "structure",
     members = {
         PipelineSummaries = schema.new({
@@ -46534,7 +46534,7 @@ M.ListPipelinesOutput = schema.new({
 })
 
 M.ListPipelineVersionsInput = schema.new({
-    id = id.from(_N, "ListPipelineVersionsInput"),
+    id = id.from(_N, "ListPipelineVersionsRequest"),
     type = "structure",
     members = {
         PipelineName = schema.new({
@@ -46623,7 +46623,7 @@ M.PipelineVersionSummary = schema.new({
 })
 
 M.ListPipelineVersionsOutput = schema.new({
-    id = id.from(_N, "ListPipelineVersionsOutput"),
+    id = id.from(_N, "ListPipelineVersionsResponse"),
     type = "structure",
     members = {
         PipelineVersionSummaries = schema.new({
@@ -46643,7 +46643,7 @@ M.ListPipelineVersionsOutput = schema.new({
 })
 
 M.ListProcessingJobsInput = schema.new({
-    id = id.from(_N, "ListProcessingJobsInput"),
+    id = id.from(_N, "ListProcessingJobsRequest"),
     type = "structure",
     members = {
         CreationTimeAfter = schema.new({
@@ -46777,7 +46777,7 @@ M.ProcessingJobSummary = schema.new({
 })
 
 M.ListProcessingJobsOutput = schema.new({
-    id = id.from(_N, "ListProcessingJobsOutput"),
+    id = id.from(_N, "ListProcessingJobsResponse"),
     type = "structure",
     members = {
         ProcessingJobSummaries = schema.new({
@@ -46930,7 +46930,7 @@ M.ListProjectsOutput = schema.new({
 })
 
 M.ListResourceCatalogsInput = schema.new({
-    id = id.from(_N, "ListResourceCatalogsInput"),
+    id = id.from(_N, "ListResourceCatalogsRequest"),
     type = "structure",
     members = {
         NameContains = schema.new({
@@ -47022,7 +47022,7 @@ M.ResourceCatalog = schema.new({
 })
 
 M.ListResourceCatalogsOutput = schema.new({
-    id = id.from(_N, "ListResourceCatalogsOutput"),
+    id = id.from(_N, "ListResourceCatalogsResponse"),
     type = "structure",
     members = {
         ResourceCatalogs = schema.new({
@@ -47042,7 +47042,7 @@ M.ListResourceCatalogsOutput = schema.new({
 })
 
 M.ListSpacesInput = schema.new({
-    id = id.from(_N, "ListSpacesInput"),
+    id = id.from(_N, "ListSpacesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -47201,7 +47201,7 @@ M.SpaceDetails = schema.new({
 })
 
 M.ListSpacesOutput = schema.new({
-    id = id.from(_N, "ListSpacesOutput"),
+    id = id.from(_N, "ListSpacesResponse"),
     type = "structure",
     members = {
         Spaces = schema.new({
@@ -47221,7 +47221,7 @@ M.ListSpacesOutput = schema.new({
 })
 
 M.ListStageDevicesInput = schema.new({
-    id = id.from(_N, "ListStageDevicesInput"),
+    id = id.from(_N, "ListStageDevicesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -47264,7 +47264,7 @@ M.ListStageDevicesInput = schema.new({
 })
 
 M.ListStageDevicesOutput = schema.new({
-    id = id.from(_N, "ListStageDevicesOutput"),
+    id = id.from(_N, "ListStageDevicesResponse"),
     type = "structure",
     members = {
         DeviceDeploymentSummaries = schema.new({
@@ -47287,7 +47287,7 @@ M.ListStageDevicesOutput = schema.new({
 })
 
 M.ListStudioLifecycleConfigsInput = schema.new({
-    id = id.from(_N, "ListStudioLifecycleConfigsInput"),
+    id = id.from(_N, "ListStudioLifecycleConfigsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -47391,7 +47391,7 @@ M.StudioLifecycleConfigDetails = schema.new({
 })
 
 M.ListStudioLifecycleConfigsOutput = schema.new({
-    id = id.from(_N, "ListStudioLifecycleConfigsOutput"),
+    id = id.from(_N, "ListStudioLifecycleConfigsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -47411,7 +47411,7 @@ M.ListStudioLifecycleConfigsOutput = schema.new({
 })
 
 M.ListSubscribedWorkteamsInput = schema.new({
-    id = id.from(_N, "ListSubscribedWorkteamsInput"),
+    id = id.from(_N, "ListSubscribedWorkteamsRequest"),
     type = "structure",
     members = {
         NameContains = schema.new({
@@ -47436,7 +47436,7 @@ M.ListSubscribedWorkteamsInput = schema.new({
 })
 
 M.ListSubscribedWorkteamsOutput = schema.new({
-    id = id.from(_N, "ListSubscribedWorkteamsOutput"),
+    id = id.from(_N, "ListSubscribedWorkteamsResponse"),
     type = "structure",
     members = {
         SubscribedWorkteams = schema.new({
@@ -47507,7 +47507,7 @@ M.ListTagsOutput = schema.new({
 })
 
 M.ListTrainingJobsInput = schema.new({
-    id = id.from(_N, "ListTrainingJobsInput"),
+    id = id.from(_N, "ListTrainingJobsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -47660,7 +47660,7 @@ M.TrainingJobSummary = schema.new({
 })
 
 M.ListTrainingJobsOutput = schema.new({
-    id = id.from(_N, "ListTrainingJobsOutput"),
+    id = id.from(_N, "ListTrainingJobsResponse"),
     type = "structure",
     members = {
         TrainingJobSummaries = schema.new({
@@ -47683,7 +47683,7 @@ M.ListTrainingJobsOutput = schema.new({
 })
 
 M.ListTrainingJobsForHyperParameterTuningJobInput = schema.new({
-    id = id.from(_N, "ListTrainingJobsForHyperParameterTuningJobInput"),
+    id = id.from(_N, "ListTrainingJobsForHyperParameterTuningJobRequest"),
     type = "structure",
     members = {
         HyperParameterTuningJobName = schema.new({
@@ -47729,7 +47729,7 @@ M.ListTrainingJobsForHyperParameterTuningJobInput = schema.new({
 })
 
 M.ListTrainingJobsForHyperParameterTuningJobOutput = schema.new({
-    id = id.from(_N, "ListTrainingJobsForHyperParameterTuningJobOutput"),
+    id = id.from(_N, "ListTrainingJobsForHyperParameterTuningJobResponse"),
     type = "structure",
     members = {
         TrainingJobSummaries = schema.new({
@@ -47777,7 +47777,7 @@ M.TrainingPlanFilter = schema.new({
 })
 
 M.ListTrainingPlansInput = schema.new({
-    id = id.from(_N, "ListTrainingPlansInput"),
+    id = id.from(_N, "ListTrainingPlansRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -47941,7 +47941,7 @@ M.TrainingPlanSummary = schema.new({
 })
 
 M.ListTrainingPlansOutput = schema.new({
-    id = id.from(_N, "ListTrainingPlansOutput"),
+    id = id.from(_N, "ListTrainingPlansResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -47964,7 +47964,7 @@ M.ListTrainingPlansOutput = schema.new({
 })
 
 M.ListTransformJobsInput = schema.new({
-    id = id.from(_N, "ListTransformJobsInput"),
+    id = id.from(_N, "ListTransformJobsRequest"),
     type = "structure",
     members = {
         CreationTimeAfter = schema.new({
@@ -48092,7 +48092,7 @@ M.TransformJobSummary = schema.new({
 })
 
 M.ListTransformJobsOutput = schema.new({
-    id = id.from(_N, "ListTransformJobsOutput"),
+    id = id.from(_N, "ListTransformJobsResponse"),
     type = "structure",
     members = {
         TransformJobSummaries = schema.new({
@@ -48115,7 +48115,7 @@ M.ListTransformJobsOutput = schema.new({
 })
 
 M.ListTrialComponentsInput = schema.new({
-    id = id.from(_N, "ListTrialComponentsInput"),
+    id = id.from(_N, "ListTrialComponentsRequest"),
     type = "structure",
     members = {
         ExperimentName = schema.new({
@@ -48253,7 +48253,7 @@ M.TrialComponentSummary = schema.new({
 })
 
 M.ListTrialComponentsOutput = schema.new({
-    id = id.from(_N, "ListTrialComponentsOutput"),
+    id = id.from(_N, "ListTrialComponentsResponse"),
     type = "structure",
     members = {
         TrialComponentSummaries = schema.new({
@@ -48273,7 +48273,7 @@ M.ListTrialComponentsOutput = schema.new({
 })
 
 M.ListTrialsInput = schema.new({
-    id = id.from(_N, "ListTrialsInput"),
+    id = id.from(_N, "ListTrialsRequest"),
     type = "structure",
     members = {
         ExperimentName = schema.new({
@@ -48372,7 +48372,7 @@ M.TrialSummary = schema.new({
 })
 
 M.ListTrialsOutput = schema.new({
-    id = id.from(_N, "ListTrialsOutput"),
+    id = id.from(_N, "ListTrialsResponse"),
     type = "structure",
     members = {
         TrialSummaries = schema.new({
@@ -48392,7 +48392,7 @@ M.ListTrialsOutput = schema.new({
 })
 
 M.ListUltraServersByReservedCapacityInput = schema.new({
-    id = id.from(_N, "ListUltraServersByReservedCapacityInput"),
+    id = id.from(_N, "ListUltraServersByReservedCapacityRequest"),
     type = "structure",
     members = {
         ReservedCapacityArn = schema.new({
@@ -48508,7 +48508,7 @@ M.UltraServer = schema.new({
 })
 
 M.ListUltraServersByReservedCapacityOutput = schema.new({
-    id = id.from(_N, "ListUltraServersByReservedCapacityOutput"),
+    id = id.from(_N, "ListUltraServersByReservedCapacityResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -48531,7 +48531,7 @@ M.ListUltraServersByReservedCapacityOutput = schema.new({
 })
 
 M.ListUserProfilesInput = schema.new({
-    id = id.from(_N, "ListUserProfilesInput"),
+    id = id.from(_N, "ListUserProfilesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -48611,7 +48611,7 @@ M.UserProfileDetails = schema.new({
 })
 
 M.ListUserProfilesOutput = schema.new({
-    id = id.from(_N, "ListUserProfilesOutput"),
+    id = id.from(_N, "ListUserProfilesResponse"),
     type = "structure",
     members = {
         UserProfiles = schema.new({
@@ -48631,7 +48631,7 @@ M.ListUserProfilesOutput = schema.new({
 })
 
 M.ListWorkforcesInput = schema.new({
-    id = id.from(_N, "ListWorkforcesInput"),
+    id = id.from(_N, "ListWorkforcesRequest"),
     type = "structure",
     members = {
         SortBy = schema.new({
@@ -48668,7 +48668,7 @@ M.ListWorkforcesInput = schema.new({
 })
 
 M.ListWorkforcesOutput = schema.new({
-    id = id.from(_N, "ListWorkforcesOutput"),
+    id = id.from(_N, "ListWorkforcesResponse"),
     type = "structure",
     members = {
         Workforces = schema.new({
@@ -48691,7 +48691,7 @@ M.ListWorkforcesOutput = schema.new({
 })
 
 M.ListWorkteamsInput = schema.new({
-    id = id.from(_N, "ListWorkteamsInput"),
+    id = id.from(_N, "ListWorkteamsRequest"),
     type = "structure",
     members = {
         SortBy = schema.new({
@@ -48728,7 +48728,7 @@ M.ListWorkteamsInput = schema.new({
 })
 
 M.ListWorkteamsOutput = schema.new({
-    id = id.from(_N, "ListWorkteamsOutput"),
+    id = id.from(_N, "ListWorkteamsResponse"),
     type = "structure",
     members = {
         Workteams = schema.new({
@@ -50299,7 +50299,7 @@ M.QueryFilters = schema.new({
 })
 
 M.QueryLineageInput = schema.new({
-    id = id.from(_N, "QueryLineageInput"),
+    id = id.from(_N, "QueryLineageRequest"),
     type = "structure",
     members = {
         StartArns = schema.new({
@@ -50375,7 +50375,7 @@ M.Vertex = schema.new({
 })
 
 M.QueryLineageOutput = schema.new({
-    id = id.from(_N, "QueryLineageOutput"),
+    id = id.from(_N, "QueryLineageResponse"),
     type = "structure",
     members = {
         Vertices = schema.new({
@@ -50402,7 +50402,7 @@ M.QueryLineageOutput = schema.new({
 })
 
 M.RegisterDevicesInput = schema.new({
-    id = id.from(_N, "RegisterDevicesInput"),
+    id = id.from(_N, "RegisterDevicesRequest"),
     type = "structure",
     members = {
         DeviceFleetName = schema.new({
@@ -50435,7 +50435,7 @@ M.RegisterDevicesInput = schema.new({
 })
 
 M.RegisterDevicesOutput = schema.new({
-    id = id.from(_N, "RegisterDevicesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -50494,7 +50494,7 @@ M.RenderingError = schema.new({
 })
 
 M.RenderUiTemplateInput = schema.new({
-    id = id.from(_N, "RenderUiTemplateInput"),
+    id = id.from(_N, "RenderUiTemplateRequest"),
     type = "structure",
     members = {
         UiTemplate = schema.new({
@@ -50533,7 +50533,7 @@ M.RenderUiTemplateInput = schema.new({
 })
 
 M.RenderUiTemplateOutput = schema.new({
-    id = id.from(_N, "RenderUiTemplateOutput"),
+    id = id.from(_N, "RenderUiTemplateResponse"),
     type = "structure",
     members = {
         RenderedContent = schema.new({
@@ -50660,7 +50660,7 @@ M.ResourceConfigForUpdate = schema.new({
 })
 
 M.RetryPipelineExecutionInput = schema.new({
-    id = id.from(_N, "RetryPipelineExecutionInput"),
+    id = id.from(_N, "RetryPipelineExecutionRequest"),
     type = "structure",
     members = {
         PipelineExecutionArn = schema.new({
@@ -50693,7 +50693,7 @@ M.RetryPipelineExecutionInput = schema.new({
 })
 
 M.RetryPipelineExecutionOutput = schema.new({
-    id = id.from(_N, "RetryPipelineExecutionOutput"),
+    id = id.from(_N, "RetryPipelineExecutionResponse"),
     type = "structure",
     members = {
         PipelineExecutionArn = schema.new({
@@ -51439,7 +51439,7 @@ M.TotalHits = schema.new({
 })
 
 M.SearchOutput = schema.new({
-    id = id.from(_N, "SearchOutput"),
+    id = id.from(_N, "SearchResponse"),
     type = "structure",
     members = {
         Results = schema.new({
@@ -51466,7 +51466,7 @@ M.SearchOutput = schema.new({
 })
 
 M.SearchTrainingPlanOfferingsInput = schema.new({
-    id = id.from(_N, "SearchTrainingPlanOfferingsInput"),
+    id = id.from(_N, "SearchTrainingPlanOfferingsRequest"),
     type = "structure",
     members = {
         InstanceType = schema.new({
@@ -51649,7 +51649,7 @@ M.TrainingPlanOffering = schema.new({
 })
 
 M.SearchTrainingPlanOfferingsOutput = schema.new({
-    id = id.from(_N, "SearchTrainingPlanOfferingsOutput"),
+    id = id.from(_N, "SearchTrainingPlanOfferingsResponse"),
     type = "structure",
     members = {
         TrainingPlanOfferings = schema.new({
@@ -51673,7 +51673,7 @@ M.SearchTrainingPlanOfferingsOutput = schema.new({
 })
 
 M.SendPipelineExecutionStepFailureInput = schema.new({
-    id = id.from(_N, "SendPipelineExecutionStepFailureInput"),
+    id = id.from(_N, "SendPipelineExecutionStepFailureRequest"),
     type = "structure",
     members = {
         CallbackToken = schema.new({
@@ -51704,7 +51704,7 @@ M.SendPipelineExecutionStepFailureInput = schema.new({
 })
 
 M.SendPipelineExecutionStepFailureOutput = schema.new({
-    id = id.from(_N, "SendPipelineExecutionStepFailureOutput"),
+    id = id.from(_N, "SendPipelineExecutionStepFailureResponse"),
     type = "structure",
     members = {
         PipelineExecutionArn = schema.new({
@@ -51717,7 +51717,7 @@ M.SendPipelineExecutionStepFailureOutput = schema.new({
 })
 
 M.SendPipelineExecutionStepSuccessInput = schema.new({
-    id = id.from(_N, "SendPipelineExecutionStepSuccessInput"),
+    id = id.from(_N, "SendPipelineExecutionStepSuccessRequest"),
     type = "structure",
     members = {
         CallbackToken = schema.new({
@@ -51749,7 +51749,7 @@ M.SendPipelineExecutionStepSuccessInput = schema.new({
 })
 
 M.SendPipelineExecutionStepSuccessOutput = schema.new({
-    id = id.from(_N, "SendPipelineExecutionStepSuccessOutput"),
+    id = id.from(_N, "SendPipelineExecutionStepSuccessResponse"),
     type = "structure",
     members = {
         PipelineExecutionArn = schema.new({
@@ -51762,7 +51762,7 @@ M.SendPipelineExecutionStepSuccessOutput = schema.new({
 })
 
 M.StartClusterHealthCheckInput = schema.new({
-    id = id.from(_N, "StartClusterHealthCheckInput"),
+    id = id.from(_N, "StartClusterHealthCheckRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -51788,7 +51788,7 @@ M.StartClusterHealthCheckInput = schema.new({
 })
 
 M.StartClusterHealthCheckOutput = schema.new({
-    id = id.from(_N, "StartClusterHealthCheckOutput"),
+    id = id.from(_N, "StartClusterHealthCheckResponse"),
     type = "structure",
     members = {
         ClusterArn = schema.new({
@@ -51804,7 +51804,7 @@ M.StartClusterHealthCheckOutput = schema.new({
 })
 
 M.StartEdgeDeploymentStageInput = schema.new({
-    id = id.from(_N, "StartEdgeDeploymentStageInput"),
+    id = id.from(_N, "StartEdgeDeploymentStageRequest"),
     type = "structure",
     members = {
         EdgeDeploymentPlanName = schema.new({
@@ -51829,12 +51829,12 @@ M.StartEdgeDeploymentStageInput = schema.new({
 })
 
 M.StartEdgeDeploymentStageOutput = schema.new({
-    id = id.from(_N, "StartEdgeDeploymentStageOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StartInferenceExperimentInput = schema.new({
-    id = id.from(_N, "StartInferenceExperimentInput"),
+    id = id.from(_N, "StartInferenceExperimentRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -51850,7 +51850,7 @@ M.StartInferenceExperimentInput = schema.new({
 })
 
 M.StartInferenceExperimentOutput = schema.new({
-    id = id.from(_N, "StartInferenceExperimentOutput"),
+    id = id.from(_N, "StartInferenceExperimentResponse"),
     type = "structure",
     members = {
         InferenceExperimentArn = schema.new({
@@ -51866,7 +51866,7 @@ M.StartInferenceExperimentOutput = schema.new({
 })
 
 M.StartMlflowTrackingServerInput = schema.new({
-    id = id.from(_N, "StartMlflowTrackingServerInput"),
+    id = id.from(_N, "StartMlflowTrackingServerRequest"),
     type = "structure",
     members = {
         TrackingServerName = schema.new({
@@ -51882,7 +51882,7 @@ M.StartMlflowTrackingServerInput = schema.new({
 })
 
 M.StartMlflowTrackingServerOutput = schema.new({
-    id = id.from(_N, "StartMlflowTrackingServerOutput"),
+    id = id.from(_N, "StartMlflowTrackingServerResponse"),
     type = "structure",
     members = {
         TrackingServerArn = schema.new({
@@ -51895,7 +51895,7 @@ M.StartMlflowTrackingServerOutput = schema.new({
 })
 
 M.StartMonitoringScheduleInput = schema.new({
-    id = id.from(_N, "StartMonitoringScheduleInput"),
+    id = id.from(_N, "StartMonitoringScheduleRequest"),
     type = "structure",
     members = {
         MonitoringScheduleName = schema.new({
@@ -51911,7 +51911,7 @@ M.StartMonitoringScheduleInput = schema.new({
 })
 
 M.StartMonitoringScheduleOutput = schema.new({
-    id = id.from(_N, "StartMonitoringScheduleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -51932,12 +51932,12 @@ M.StartNotebookInstanceInput = schema.new({
 })
 
 M.StartNotebookInstanceOutput = schema.new({
-    id = id.from(_N, "StartNotebookInstanceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StartPipelineExecutionInput = schema.new({
-    id = id.from(_N, "StartPipelineExecutionInput"),
+    id = id.from(_N, "StartPipelineExecutionRequest"),
     type = "structure",
     members = {
         PipelineName = schema.new({
@@ -52008,7 +52008,7 @@ M.StartPipelineExecutionInput = schema.new({
 })
 
 M.StartPipelineExecutionOutput = schema.new({
-    id = id.from(_N, "StartPipelineExecutionOutput"),
+    id = id.from(_N, "StartPipelineExecutionResponse"),
     type = "structure",
     members = {
         PipelineExecutionArn = schema.new({
@@ -52021,7 +52021,7 @@ M.StartPipelineExecutionOutput = schema.new({
 })
 
 M.StartSessionInput = schema.new({
-    id = id.from(_N, "StartSessionInput"),
+    id = id.from(_N, "StartSessionRequest"),
     type = "structure",
     members = {
         ResourceIdentifier = schema.new({
@@ -52037,7 +52037,7 @@ M.StartSessionInput = schema.new({
 })
 
 M.StartSessionOutput = schema.new({
-    id = id.from(_N, "StartSessionOutput"),
+    id = id.from(_N, "StartSessionResponse"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -52062,7 +52062,7 @@ M.StartSessionOutput = schema.new({
 })
 
 M.StopAIBenchmarkJobInput = schema.new({
-    id = id.from(_N, "StopAIBenchmarkJobInput"),
+    id = id.from(_N, "StopAIBenchmarkJobRequest"),
     type = "structure",
     members = {
         AIBenchmarkJobName = schema.new({
@@ -52078,7 +52078,7 @@ M.StopAIBenchmarkJobInput = schema.new({
 })
 
 M.StopAIBenchmarkJobOutput = schema.new({
-    id = id.from(_N, "StopAIBenchmarkJobOutput"),
+    id = id.from(_N, "StopAIBenchmarkJobResponse"),
     type = "structure",
     members = {
         AIBenchmarkJobArn = schema.new({
@@ -52094,7 +52094,7 @@ M.StopAIBenchmarkJobOutput = schema.new({
 })
 
 M.StopAIRecommendationJobInput = schema.new({
-    id = id.from(_N, "StopAIRecommendationJobInput"),
+    id = id.from(_N, "StopAIRecommendationJobRequest"),
     type = "structure",
     members = {
         AIRecommendationJobName = schema.new({
@@ -52110,7 +52110,7 @@ M.StopAIRecommendationJobInput = schema.new({
 })
 
 M.StopAIRecommendationJobOutput = schema.new({
-    id = id.from(_N, "StopAIRecommendationJobOutput"),
+    id = id.from(_N, "StopAIRecommendationJobResponse"),
     type = "structure",
     members = {
         AIRecommendationJobArn = schema.new({
@@ -52126,7 +52126,7 @@ M.StopAIRecommendationJobOutput = schema.new({
 })
 
 M.StopAutoMLJobInput = schema.new({
-    id = id.from(_N, "StopAutoMLJobInput"),
+    id = id.from(_N, "StopAutoMLJobRequest"),
     type = "structure",
     members = {
         AutoMLJobName = schema.new({
@@ -52142,12 +52142,12 @@ M.StopAutoMLJobInput = schema.new({
 })
 
 M.StopAutoMLJobOutput = schema.new({
-    id = id.from(_N, "StopAutoMLJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopCompilationJobInput = schema.new({
-    id = id.from(_N, "StopCompilationJobInput"),
+    id = id.from(_N, "StopCompilationJobRequest"),
     type = "structure",
     members = {
         CompilationJobName = schema.new({
@@ -52163,12 +52163,12 @@ M.StopCompilationJobInput = schema.new({
 })
 
 M.StopCompilationJobOutput = schema.new({
-    id = id.from(_N, "StopCompilationJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopEdgeDeploymentStageInput = schema.new({
-    id = id.from(_N, "StopEdgeDeploymentStageInput"),
+    id = id.from(_N, "StopEdgeDeploymentStageRequest"),
     type = "structure",
     members = {
         EdgeDeploymentPlanName = schema.new({
@@ -52193,12 +52193,12 @@ M.StopEdgeDeploymentStageInput = schema.new({
 })
 
 M.StopEdgeDeploymentStageOutput = schema.new({
-    id = id.from(_N, "StopEdgeDeploymentStageOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopEdgePackagingJobInput = schema.new({
-    id = id.from(_N, "StopEdgePackagingJobInput"),
+    id = id.from(_N, "StopEdgePackagingJobRequest"),
     type = "structure",
     members = {
         EdgePackagingJobName = schema.new({
@@ -52214,12 +52214,12 @@ M.StopEdgePackagingJobInput = schema.new({
 })
 
 M.StopEdgePackagingJobOutput = schema.new({
-    id = id.from(_N, "StopEdgePackagingJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopHyperParameterTuningJobInput = schema.new({
-    id = id.from(_N, "StopHyperParameterTuningJobInput"),
+    id = id.from(_N, "StopHyperParameterTuningJobRequest"),
     type = "structure",
     members = {
         HyperParameterTuningJobName = schema.new({
@@ -52235,12 +52235,12 @@ M.StopHyperParameterTuningJobInput = schema.new({
 })
 
 M.StopHyperParameterTuningJobOutput = schema.new({
-    id = id.from(_N, "StopHyperParameterTuningJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopInferenceExperimentInput = schema.new({
-    id = id.from(_N, "StopInferenceExperimentInput"),
+    id = id.from(_N, "StopInferenceExperimentRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -52286,7 +52286,7 @@ M.StopInferenceExperimentInput = schema.new({
 })
 
 M.StopInferenceExperimentOutput = schema.new({
-    id = id.from(_N, "StopInferenceExperimentOutput"),
+    id = id.from(_N, "StopInferenceExperimentResponse"),
     type = "structure",
     members = {
         InferenceExperimentArn = schema.new({
@@ -52302,7 +52302,7 @@ M.StopInferenceExperimentOutput = schema.new({
 })
 
 M.StopInferenceRecommendationsJobInput = schema.new({
-    id = id.from(_N, "StopInferenceRecommendationsJobInput"),
+    id = id.from(_N, "StopInferenceRecommendationsJobRequest"),
     type = "structure",
     members = {
         JobName = schema.new({
@@ -52318,12 +52318,12 @@ M.StopInferenceRecommendationsJobInput = schema.new({
 })
 
 M.StopInferenceRecommendationsJobOutput = schema.new({
-    id = id.from(_N, "StopInferenceRecommendationsJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopLabelingJobInput = schema.new({
-    id = id.from(_N, "StopLabelingJobInput"),
+    id = id.from(_N, "StopLabelingJobRequest"),
     type = "structure",
     members = {
         LabelingJobName = schema.new({
@@ -52339,12 +52339,12 @@ M.StopLabelingJobInput = schema.new({
 })
 
 M.StopLabelingJobOutput = schema.new({
-    id = id.from(_N, "StopLabelingJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopMlflowTrackingServerInput = schema.new({
-    id = id.from(_N, "StopMlflowTrackingServerInput"),
+    id = id.from(_N, "StopMlflowTrackingServerRequest"),
     type = "structure",
     members = {
         TrackingServerName = schema.new({
@@ -52360,7 +52360,7 @@ M.StopMlflowTrackingServerInput = schema.new({
 })
 
 M.StopMlflowTrackingServerOutput = schema.new({
-    id = id.from(_N, "StopMlflowTrackingServerOutput"),
+    id = id.from(_N, "StopMlflowTrackingServerResponse"),
     type = "structure",
     members = {
         TrackingServerArn = schema.new({
@@ -52373,7 +52373,7 @@ M.StopMlflowTrackingServerOutput = schema.new({
 })
 
 M.StopMonitoringScheduleInput = schema.new({
-    id = id.from(_N, "StopMonitoringScheduleInput"),
+    id = id.from(_N, "StopMonitoringScheduleRequest"),
     type = "structure",
     members = {
         MonitoringScheduleName = schema.new({
@@ -52389,7 +52389,7 @@ M.StopMonitoringScheduleInput = schema.new({
 })
 
 M.StopMonitoringScheduleOutput = schema.new({
-    id = id.from(_N, "StopMonitoringScheduleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -52410,12 +52410,12 @@ M.StopNotebookInstanceInput = schema.new({
 })
 
 M.StopNotebookInstanceOutput = schema.new({
-    id = id.from(_N, "StopNotebookInstanceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopOptimizationJobInput = schema.new({
-    id = id.from(_N, "StopOptimizationJobInput"),
+    id = id.from(_N, "StopOptimizationJobRequest"),
     type = "structure",
     members = {
         OptimizationJobName = schema.new({
@@ -52431,12 +52431,12 @@ M.StopOptimizationJobInput = schema.new({
 })
 
 M.StopOptimizationJobOutput = schema.new({
-    id = id.from(_N, "StopOptimizationJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopPipelineExecutionInput = schema.new({
-    id = id.from(_N, "StopPipelineExecutionInput"),
+    id = id.from(_N, "StopPipelineExecutionRequest"),
     type = "structure",
     members = {
         PipelineExecutionArn = schema.new({
@@ -52462,7 +52462,7 @@ M.StopPipelineExecutionInput = schema.new({
 })
 
 M.StopPipelineExecutionOutput = schema.new({
-    id = id.from(_N, "StopPipelineExecutionOutput"),
+    id = id.from(_N, "StopPipelineExecutionResponse"),
     type = "structure",
     members = {
         PipelineExecutionArn = schema.new({
@@ -52475,7 +52475,7 @@ M.StopPipelineExecutionOutput = schema.new({
 })
 
 M.StopProcessingJobInput = schema.new({
-    id = id.from(_N, "StopProcessingJobInput"),
+    id = id.from(_N, "StopProcessingJobRequest"),
     type = "structure",
     members = {
         ProcessingJobName = schema.new({
@@ -52491,12 +52491,12 @@ M.StopProcessingJobInput = schema.new({
 })
 
 M.StopProcessingJobOutput = schema.new({
-    id = id.from(_N, "StopProcessingJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopTrainingJobInput = schema.new({
-    id = id.from(_N, "StopTrainingJobInput"),
+    id = id.from(_N, "StopTrainingJobRequest"),
     type = "structure",
     members = {
         TrainingJobName = schema.new({
@@ -52512,12 +52512,12 @@ M.StopTrainingJobInput = schema.new({
 })
 
 M.StopTrainingJobOutput = schema.new({
-    id = id.from(_N, "StopTrainingJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopTransformJobInput = schema.new({
-    id = id.from(_N, "StopTransformJobInput"),
+    id = id.from(_N, "StopTransformJobRequest"),
     type = "structure",
     members = {
         TransformJobName = schema.new({
@@ -52533,12 +52533,12 @@ M.StopTransformJobInput = schema.new({
 })
 
 M.StopTransformJobOutput = schema.new({
-    id = id.from(_N, "StopTransformJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateActionInput = schema.new({
-    id = id.from(_N, "UpdateActionInput"),
+    id = id.from(_N, "UpdateActionRequest"),
     type = "structure",
     members = {
         ActionName = schema.new({
@@ -52581,7 +52581,7 @@ M.UpdateActionInput = schema.new({
 })
 
 M.UpdateActionOutput = schema.new({
-    id = id.from(_N, "UpdateActionOutput"),
+    id = id.from(_N, "UpdateActionResponse"),
     type = "structure",
     members = {
         ActionArn = schema.new({
@@ -52594,7 +52594,7 @@ M.UpdateActionOutput = schema.new({
 })
 
 M.UpdateAppImageConfigInput = schema.new({
-    id = id.from(_N, "UpdateAppImageConfigInput"),
+    id = id.from(_N, "UpdateAppImageConfigRequest"),
     type = "structure",
     members = {
         AppImageConfigName = schema.new({
@@ -52631,7 +52631,7 @@ M.UpdateAppImageConfigInput = schema.new({
 })
 
 M.UpdateAppImageConfigOutput = schema.new({
-    id = id.from(_N, "UpdateAppImageConfigOutput"),
+    id = id.from(_N, "UpdateAppImageConfigResponse"),
     type = "structure",
     members = {
         AppImageConfigArn = schema.new({
@@ -52644,7 +52644,7 @@ M.UpdateAppImageConfigOutput = schema.new({
 })
 
 M.UpdateArtifactInput = schema.new({
-    id = id.from(_N, "UpdateArtifactInput"),
+    id = id.from(_N, "UpdateArtifactRequest"),
     type = "structure",
     members = {
         ArtifactArn = schema.new({
@@ -52681,7 +52681,7 @@ M.UpdateArtifactInput = schema.new({
 })
 
 M.UpdateArtifactOutput = schema.new({
-    id = id.from(_N, "UpdateArtifactOutput"),
+    id = id.from(_N, "UpdateArtifactResponse"),
     type = "structure",
     members = {
         ArtifactArn = schema.new({
@@ -52694,7 +52694,7 @@ M.UpdateArtifactOutput = schema.new({
 })
 
 M.UpdateClusterInput = schema.new({
-    id = id.from(_N, "UpdateClusterInput"),
+    id = id.from(_N, "UpdateClusterRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -52770,7 +52770,7 @@ M.UpdateClusterInput = schema.new({
 })
 
 M.UpdateClusterOutput = schema.new({
-    id = id.from(_N, "UpdateClusterOutput"),
+    id = id.from(_N, "UpdateClusterResponse"),
     type = "structure",
     members = {
         ClusterArn = schema.new({
@@ -52786,7 +52786,7 @@ M.UpdateClusterOutput = schema.new({
 })
 
 M.UpdateClusterSchedulerConfigInput = schema.new({
-    id = id.from(_N, "UpdateClusterSchedulerConfigInput"),
+    id = id.from(_N, "UpdateClusterSchedulerConfigRequest"),
     type = "structure",
     members = {
         ClusterSchedulerConfigId = schema.new({
@@ -52824,7 +52824,7 @@ M.UpdateClusterSchedulerConfigInput = schema.new({
 })
 
 M.UpdateClusterSchedulerConfigOutput = schema.new({
-    id = id.from(_N, "UpdateClusterSchedulerConfigOutput"),
+    id = id.from(_N, "UpdateClusterSchedulerConfigResponse"),
     type = "structure",
     members = {
         ClusterSchedulerConfigArn = schema.new({
@@ -52865,7 +52865,7 @@ M.UpdateClusterSoftwareInstanceGroupSpecification = schema.new({
 })
 
 M.UpdateClusterSoftwareInput = schema.new({
-    id = id.from(_N, "UpdateClusterSoftwareInput"),
+    id = id.from(_N, "UpdateClusterSoftwareRequest"),
     type = "structure",
     members = {
         ClusterName = schema.new({
@@ -52901,7 +52901,7 @@ M.UpdateClusterSoftwareInput = schema.new({
 })
 
 M.UpdateClusterSoftwareOutput = schema.new({
-    id = id.from(_N, "UpdateClusterSoftwareOutput"),
+    id = id.from(_N, "UpdateClusterSoftwareResponse"),
     type = "structure",
     members = {
         ClusterArn = schema.new({
@@ -52956,7 +52956,7 @@ M.UpdateCodeRepositoryOutput = schema.new({
 })
 
 M.UpdateComputeQuotaInput = schema.new({
-    id = id.from(_N, "UpdateComputeQuotaInput"),
+    id = id.from(_N, "UpdateComputeQuotaRequest"),
     type = "structure",
     members = {
         ComputeQuotaId = schema.new({
@@ -53007,7 +53007,7 @@ M.UpdateComputeQuotaInput = schema.new({
 })
 
 M.UpdateComputeQuotaOutput = schema.new({
-    id = id.from(_N, "UpdateComputeQuotaOutput"),
+    id = id.from(_N, "UpdateComputeQuotaResponse"),
     type = "structure",
     members = {
         ComputeQuotaArn = schema.new({
@@ -53032,7 +53032,7 @@ M.UpdateComputeQuotaOutput = schema.new({
 })
 
 M.UpdateContextInput = schema.new({
-    id = id.from(_N, "UpdateContextInput"),
+    id = id.from(_N, "UpdateContextRequest"),
     type = "structure",
     members = {
         ContextName = schema.new({
@@ -53069,7 +53069,7 @@ M.UpdateContextInput = schema.new({
 })
 
 M.UpdateContextOutput = schema.new({
-    id = id.from(_N, "UpdateContextOutput"),
+    id = id.from(_N, "UpdateContextResponse"),
     type = "structure",
     members = {
         ContextArn = schema.new({
@@ -53082,7 +53082,7 @@ M.UpdateContextOutput = schema.new({
 })
 
 M.UpdateDeviceFleetInput = schema.new({
-    id = id.from(_N, "UpdateDeviceFleetInput"),
+    id = id.from(_N, "UpdateDeviceFleetRequest"),
     type = "structure",
     members = {
         DeviceFleetName = schema.new({
@@ -53126,12 +53126,12 @@ M.UpdateDeviceFleetInput = schema.new({
 })
 
 M.UpdateDeviceFleetOutput = schema.new({
-    id = id.from(_N, "UpdateDeviceFleetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateDevicesInput = schema.new({
-    id = id.from(_N, "UpdateDevicesInput"),
+    id = id.from(_N, "UpdateDevicesRequest"),
     type = "structure",
     members = {
         DeviceFleetName = schema.new({
@@ -53157,12 +53157,12 @@ M.UpdateDevicesInput = schema.new({
 })
 
 M.UpdateDevicesOutput = schema.new({
-    id = id.from(_N, "UpdateDevicesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateDomainInput = schema.new({
-    id = id.from(_N, "UpdateDomainInput"),
+    id = id.from(_N, "UpdateDomainRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -53230,7 +53230,7 @@ M.UpdateDomainInput = schema.new({
 })
 
 M.UpdateDomainOutput = schema.new({
-    id = id.from(_N, "UpdateDomainOutput"),
+    id = id.from(_N, "UpdateDomainResponse"),
     type = "structure",
     members = {
         DomainArn = schema.new({
@@ -53368,7 +53368,7 @@ M.UpdateEndpointWeightsAndCapacitiesOutput = schema.new({
 })
 
 M.UpdateExperimentInput = schema.new({
-    id = id.from(_N, "UpdateExperimentInput"),
+    id = id.from(_N, "UpdateExperimentRequest"),
     type = "structure",
     members = {
         ExperimentName = schema.new({
@@ -53396,7 +53396,7 @@ M.UpdateExperimentInput = schema.new({
 })
 
 M.UpdateExperimentOutput = schema.new({
-    id = id.from(_N, "UpdateExperimentOutput"),
+    id = id.from(_N, "UpdateExperimentResponse"),
     type = "structure",
     members = {
         ExperimentArn = schema.new({
@@ -53434,7 +53434,7 @@ M.ThroughputConfigUpdate = schema.new({
 })
 
 M.UpdateFeatureGroupInput = schema.new({
-    id = id.from(_N, "UpdateFeatureGroupInput"),
+    id = id.from(_N, "UpdateFeatureGroupRequest"),
     type = "structure",
     members = {
         FeatureGroupName = schema.new({
@@ -53471,7 +53471,7 @@ M.UpdateFeatureGroupInput = schema.new({
 })
 
 M.UpdateFeatureGroupOutput = schema.new({
-    id = id.from(_N, "UpdateFeatureGroupOutput"),
+    id = id.from(_N, "UpdateFeatureGroupResponse"),
     type = "structure",
     members = {
         FeatureGroupArn = schema.new({
@@ -53487,7 +53487,7 @@ M.UpdateFeatureGroupOutput = schema.new({
 })
 
 M.UpdateFeatureMetadataInput = schema.new({
-    id = id.from(_N, "UpdateFeatureMetadataInput"),
+    id = id.from(_N, "UpdateFeatureMetadataRequest"),
     type = "structure",
     members = {
         FeatureGroupName = schema.new({
@@ -53532,12 +53532,12 @@ M.UpdateFeatureMetadataInput = schema.new({
 })
 
 M.UpdateFeatureMetadataOutput = schema.new({
-    id = id.from(_N, "UpdateFeatureMetadataOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateHubInput = schema.new({
-    id = id.from(_N, "UpdateHubInput"),
+    id = id.from(_N, "UpdateHubRequest"),
     type = "structure",
     members = {
         HubName = schema.new({
@@ -53572,7 +53572,7 @@ M.UpdateHubInput = schema.new({
 })
 
 M.UpdateHubOutput = schema.new({
-    id = id.from(_N, "UpdateHubOutput"),
+    id = id.from(_N, "UpdateHubResponse"),
     type = "structure",
     members = {
         HubArn = schema.new({
@@ -53588,7 +53588,7 @@ M.UpdateHubOutput = schema.new({
 })
 
 M.UpdateHubContentInput = schema.new({
-    id = id.from(_N, "UpdateHubContentInput"),
+    id = id.from(_N, "UpdateHubContentRequest"),
     type = "structure",
     members = {
         HubName = schema.new({
@@ -53662,7 +53662,7 @@ M.UpdateHubContentInput = schema.new({
 })
 
 M.UpdateHubContentOutput = schema.new({
-    id = id.from(_N, "UpdateHubContentOutput"),
+    id = id.from(_N, "UpdateHubContentResponse"),
     type = "structure",
     members = {
         HubArn = schema.new({
@@ -53687,7 +53687,7 @@ M.UpdateHubContentOutput = schema.new({
 })
 
 M.UpdateHubContentReferenceInput = schema.new({
-    id = id.from(_N, "UpdateHubContentReferenceInput"),
+    id = id.from(_N, "UpdateHubContentReferenceRequest"),
     type = "structure",
     members = {
         HubName = schema.new({
@@ -53727,7 +53727,7 @@ M.UpdateHubContentReferenceInput = schema.new({
 })
 
 M.UpdateHubContentReferenceOutput = schema.new({
-    id = id.from(_N, "UpdateHubContentReferenceOutput"),
+    id = id.from(_N, "UpdateHubContentReferenceResponse"),
     type = "structure",
     members = {
         HubArn = schema.new({
@@ -53752,7 +53752,7 @@ M.UpdateHubContentReferenceOutput = schema.new({
 })
 
 M.UpdateImageInput = schema.new({
-    id = id.from(_N, "UpdateImageInput"),
+    id = id.from(_N, "UpdateImageRequest"),
     type = "structure",
     members = {
         DeleteProperties = schema.new({
@@ -53793,7 +53793,7 @@ M.UpdateImageInput = schema.new({
 })
 
 M.UpdateImageOutput = schema.new({
-    id = id.from(_N, "UpdateImageOutput"),
+    id = id.from(_N, "UpdateImageResponse"),
     type = "structure",
     members = {
         ImageArn = schema.new({
@@ -53806,7 +53806,7 @@ M.UpdateImageOutput = schema.new({
 })
 
 M.UpdateImageVersionInput = schema.new({
-    id = id.from(_N, "UpdateImageVersionInput"),
+    id = id.from(_N, "UpdateImageVersionRequest"),
     type = "structure",
     members = {
         ImageName = schema.new({
@@ -53890,7 +53890,7 @@ M.UpdateImageVersionInput = schema.new({
 })
 
 M.UpdateImageVersionOutput = schema.new({
-    id = id.from(_N, "UpdateImageVersionOutput"),
+    id = id.from(_N, "UpdateImageVersionResponse"),
     type = "structure",
     members = {
         ImageVersionArn = schema.new({
@@ -54005,7 +54005,7 @@ M.UpdateInferenceComponentRuntimeConfigOutput = schema.new({
 })
 
 M.UpdateInferenceExperimentInput = schema.new({
-    id = id.from(_N, "UpdateInferenceExperimentInput"),
+    id = id.from(_N, "UpdateInferenceExperimentRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -54055,7 +54055,7 @@ M.UpdateInferenceExperimentInput = schema.new({
 })
 
 M.UpdateInferenceExperimentOutput = schema.new({
-    id = id.from(_N, "UpdateInferenceExperimentOutput"),
+    id = id.from(_N, "UpdateInferenceExperimentResponse"),
     type = "structure",
     members = {
         InferenceExperimentArn = schema.new({
@@ -54071,7 +54071,7 @@ M.UpdateInferenceExperimentOutput = schema.new({
 })
 
 M.UpdateMlflowAppInput = schema.new({
-    id = id.from(_N, "UpdateMlflowAppInput"),
+    id = id.from(_N, "UpdateMlflowAppRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -54124,7 +54124,7 @@ M.UpdateMlflowAppInput = schema.new({
 })
 
 M.UpdateMlflowAppOutput = schema.new({
-    id = id.from(_N, "UpdateMlflowAppOutput"),
+    id = id.from(_N, "UpdateMlflowAppResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -54137,7 +54137,7 @@ M.UpdateMlflowAppOutput = schema.new({
 })
 
 M.UpdateMlflowTrackingServerInput = schema.new({
-    id = id.from(_N, "UpdateMlflowTrackingServerInput"),
+    id = id.from(_N, "UpdateMlflowTrackingServerRequest"),
     type = "structure",
     members = {
         TrackingServerName = schema.new({
@@ -54189,7 +54189,7 @@ M.UpdateMlflowTrackingServerInput = schema.new({
 })
 
 M.UpdateMlflowTrackingServerOutput = schema.new({
-    id = id.from(_N, "UpdateMlflowTrackingServerOutput"),
+    id = id.from(_N, "UpdateMlflowTrackingServerResponse"),
     type = "structure",
     members = {
         TrackingServerArn = schema.new({
@@ -54202,7 +54202,7 @@ M.UpdateMlflowTrackingServerOutput = schema.new({
 })
 
 M.UpdateModelCardInput = schema.new({
-    id = id.from(_N, "UpdateModelCardInput"),
+    id = id.from(_N, "UpdateModelCardRequest"),
     type = "structure",
     members = {
         ModelCardName = schema.new({
@@ -54230,7 +54230,7 @@ M.UpdateModelCardInput = schema.new({
 })
 
 M.UpdateModelCardOutput = schema.new({
-    id = id.from(_N, "UpdateModelCardOutput"),
+    id = id.from(_N, "UpdateModelCardResponse"),
     type = "structure",
     members = {
         ModelCardArn = schema.new({
@@ -54351,7 +54351,7 @@ M.UpdateModelPackageOutput = schema.new({
 })
 
 M.UpdateMonitoringAlertInput = schema.new({
-    id = id.from(_N, "UpdateMonitoringAlertInput"),
+    id = id.from(_N, "UpdateMonitoringAlertRequest"),
     type = "structure",
     members = {
         MonitoringScheduleName = schema.new({
@@ -54394,7 +54394,7 @@ M.UpdateMonitoringAlertInput = schema.new({
 })
 
 M.UpdateMonitoringAlertOutput = schema.new({
-    id = id.from(_N, "UpdateMonitoringAlertOutput"),
+    id = id.from(_N, "UpdateMonitoringAlertResponse"),
     type = "structure",
     members = {
         MonitoringScheduleArn = schema.new({
@@ -54416,7 +54416,7 @@ M.UpdateMonitoringAlertOutput = schema.new({
 })
 
 M.UpdateMonitoringScheduleInput = schema.new({
-    id = id.from(_N, "UpdateMonitoringScheduleInput"),
+    id = id.from(_N, "UpdateMonitoringScheduleRequest"),
     type = "structure",
     members = {
         MonitoringScheduleName = schema.new({
@@ -54442,7 +54442,7 @@ M.UpdateMonitoringScheduleInput = schema.new({
 })
 
 M.UpdateMonitoringScheduleOutput = schema.new({
-    id = id.from(_N, "UpdateMonitoringScheduleOutput"),
+    id = id.from(_N, "UpdateMonitoringScheduleResponse"),
     type = "structure",
     members = {
         MonitoringScheduleArn = schema.new({
@@ -54607,7 +54607,7 @@ M.UpdateNotebookInstanceLifecycleConfigOutput = schema.new({
 })
 
 M.UpdatePartnerAppInput = schema.new({
-    id = id.from(_N, "UpdatePartnerAppInput"),
+    id = id.from(_N, "UpdatePartnerAppRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -54677,7 +54677,7 @@ M.UpdatePartnerAppInput = schema.new({
 })
 
 M.UpdatePartnerAppOutput = schema.new({
-    id = id.from(_N, "UpdatePartnerAppOutput"),
+    id = id.from(_N, "UpdatePartnerAppResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -54690,7 +54690,7 @@ M.UpdatePartnerAppOutput = schema.new({
 })
 
 M.UpdatePipelineInput = schema.new({
-    id = id.from(_N, "UpdatePipelineInput"),
+    id = id.from(_N, "UpdatePipelineRequest"),
     type = "structure",
     members = {
         PipelineName = schema.new({
@@ -54744,7 +54744,7 @@ M.UpdatePipelineInput = schema.new({
 })
 
 M.UpdatePipelineOutput = schema.new({
-    id = id.from(_N, "UpdatePipelineOutput"),
+    id = id.from(_N, "UpdatePipelineResponse"),
     type = "structure",
     members = {
         PipelineArn = schema.new({
@@ -54763,7 +54763,7 @@ M.UpdatePipelineOutput = schema.new({
 })
 
 M.UpdatePipelineExecutionInput = schema.new({
-    id = id.from(_N, "UpdatePipelineExecutionInput"),
+    id = id.from(_N, "UpdatePipelineExecutionRequest"),
     type = "structure",
     members = {
         PipelineExecutionArn = schema.new({
@@ -54798,7 +54798,7 @@ M.UpdatePipelineExecutionInput = schema.new({
 })
 
 M.UpdatePipelineExecutionOutput = schema.new({
-    id = id.from(_N, "UpdatePipelineExecutionOutput"),
+    id = id.from(_N, "UpdatePipelineExecutionResponse"),
     type = "structure",
     members = {
         PipelineExecutionArn = schema.new({
@@ -54811,7 +54811,7 @@ M.UpdatePipelineExecutionOutput = schema.new({
 })
 
 M.UpdatePipelineVersionInput = schema.new({
-    id = id.from(_N, "UpdatePipelineVersionInput"),
+    id = id.from(_N, "UpdatePipelineVersionRequest"),
     type = "structure",
     members = {
         PipelineArn = schema.new({
@@ -54848,7 +54848,7 @@ M.UpdatePipelineVersionInput = schema.new({
 })
 
 M.UpdatePipelineVersionOutput = schema.new({
-    id = id.from(_N, "UpdatePipelineVersionOutput"),
+    id = id.from(_N, "UpdatePipelineVersionResponse"),
     type = "structure",
     members = {
         PipelineArn = schema.new({
@@ -54960,7 +54960,7 @@ M.UpdateProjectOutput = schema.new({
 })
 
 M.UpdateSpaceInput = schema.new({
-    id = id.from(_N, "UpdateSpaceInput"),
+    id = id.from(_N, "UpdateSpaceRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -54998,7 +54998,7 @@ M.UpdateSpaceInput = schema.new({
 })
 
 M.UpdateSpaceOutput = schema.new({
-    id = id.from(_N, "UpdateSpaceOutput"),
+    id = id.from(_N, "UpdateSpaceResponse"),
     type = "structure",
     members = {
         SpaceArn = schema.new({
@@ -55011,7 +55011,7 @@ M.UpdateSpaceOutput = schema.new({
 })
 
 M.UpdateTrainingJobInput = schema.new({
-    id = id.from(_N, "UpdateTrainingJobInput"),
+    id = id.from(_N, "UpdateTrainingJobRequest"),
     type = "structure",
     members = {
         TrainingJobName = schema.new({
@@ -55055,7 +55055,7 @@ M.UpdateTrainingJobInput = schema.new({
 })
 
 M.UpdateTrainingJobOutput = schema.new({
-    id = id.from(_N, "UpdateTrainingJobOutput"),
+    id = id.from(_N, "UpdateTrainingJobResponse"),
     type = "structure",
     members = {
         TrainingJobArn = schema.new({
@@ -55071,7 +55071,7 @@ M.UpdateTrainingJobOutput = schema.new({
 })
 
 M.UpdateTrialInput = schema.new({
-    id = id.from(_N, "UpdateTrialInput"),
+    id = id.from(_N, "UpdateTrialRequest"),
     type = "structure",
     members = {
         TrialName = schema.new({
@@ -55093,7 +55093,7 @@ M.UpdateTrialInput = schema.new({
 })
 
 M.UpdateTrialOutput = schema.new({
-    id = id.from(_N, "UpdateTrialOutput"),
+    id = id.from(_N, "UpdateTrialResponse"),
     type = "structure",
     members = {
         TrialArn = schema.new({
@@ -55106,7 +55106,7 @@ M.UpdateTrialOutput = schema.new({
 })
 
 M.UpdateTrialComponentInput = schema.new({
-    id = id.from(_N, "UpdateTrialComponentInput"),
+    id = id.from(_N, "UpdateTrialComponentRequest"),
     type = "structure",
     members = {
         TrialComponentName = schema.new({
@@ -55192,7 +55192,7 @@ M.UpdateTrialComponentInput = schema.new({
 })
 
 M.UpdateTrialComponentOutput = schema.new({
-    id = id.from(_N, "UpdateTrialComponentOutput"),
+    id = id.from(_N, "UpdateTrialComponentResponse"),
     type = "structure",
     members = {
         TrialComponentArn = schema.new({
@@ -55205,7 +55205,7 @@ M.UpdateTrialComponentOutput = schema.new({
 })
 
 M.UpdateUserProfileInput = schema.new({
-    id = id.from(_N, "UpdateUserProfileInput"),
+    id = id.from(_N, "UpdateUserProfileRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -55237,7 +55237,7 @@ M.UpdateUserProfileInput = schema.new({
 })
 
 M.UpdateUserProfileOutput = schema.new({
-    id = id.from(_N, "UpdateUserProfileOutput"),
+    id = id.from(_N, "UpdateUserProfileResponse"),
     type = "structure",
     members = {
         UserProfileArn = schema.new({
@@ -55250,7 +55250,7 @@ M.UpdateUserProfileOutput = schema.new({
 })
 
 M.UpdateWorkforceInput = schema.new({
-    id = id.from(_N, "UpdateWorkforceInput"),
+    id = id.from(_N, "UpdateWorkforceRequest"),
     type = "structure",
     members = {
         WorkforceName = schema.new({
@@ -55293,7 +55293,7 @@ M.UpdateWorkforceInput = schema.new({
 })
 
 M.UpdateWorkforceOutput = schema.new({
-    id = id.from(_N, "UpdateWorkforceOutput"),
+    id = id.from(_N, "UpdateWorkforceResponse"),
     type = "structure",
     members = {
         Workforce = schema.new({
@@ -55310,7 +55310,7 @@ M.UpdateWorkforceOutput = schema.new({
 })
 
 M.UpdateWorkteamInput = schema.new({
-    id = id.from(_N, "UpdateWorkteamInput"),
+    id = id.from(_N, "UpdateWorkteamRequest"),
     type = "structure",
     members = {
         WorkteamName = schema.new({
@@ -55353,7 +55353,7 @@ M.UpdateWorkteamInput = schema.new({
 })
 
 M.UpdateWorkteamOutput = schema.new({
-    id = id.from(_N, "UpdateWorkteamOutput"),
+    id = id.from(_N, "UpdateWorkteamResponse"),
     type = "structure",
     members = {
         Workteam = schema.new({
@@ -55404,7 +55404,7 @@ M.SearchExpression = schema.new({
 })
 
 M.SearchInput = schema.new({
-    id = id.from(_N, "SearchInput"),
+    id = id.from(_N, "SearchRequest"),
     type = "structure",
     members = {
         Resource = schema.new({
@@ -55462,5 +55462,19 @@ M.SearchInput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

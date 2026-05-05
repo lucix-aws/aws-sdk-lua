@@ -75,7 +75,7 @@ M.Target = schema.new({
 })
 
 M.CreateNotificationRuleInput = schema.new({
-    id = id.from(_N, "CreateNotificationRuleInput"),
+    id = id.from(_N, "CreateNotificationRuleRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -152,7 +152,7 @@ M.CreateNotificationRuleInput = schema.new({
 })
 
 M.CreateNotificationRuleOutput = schema.new({
-    id = id.from(_N, "CreateNotificationRuleOutput"),
+    id = id.from(_N, "CreateNotificationRuleResult"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -213,7 +213,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteNotificationRuleInput = schema.new({
-    id = id.from(_N, "DeleteNotificationRuleInput"),
+    id = id.from(_N, "DeleteNotificationRuleRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -229,7 +229,7 @@ M.DeleteNotificationRuleInput = schema.new({
 })
 
 M.DeleteNotificationRuleOutput = schema.new({
-    id = id.from(_N, "DeleteNotificationRuleOutput"),
+    id = id.from(_N, "DeleteNotificationRuleResult"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -242,7 +242,7 @@ M.DeleteNotificationRuleOutput = schema.new({
 })
 
 M.DeleteTargetInput = schema.new({
-    id = id.from(_N, "DeleteTargetInput"),
+    id = id.from(_N, "DeleteTargetRequest"),
     type = "structure",
     members = {
         TargetAddress = schema.new({
@@ -267,12 +267,12 @@ M.DeleteTargetInput = schema.new({
 })
 
 M.DeleteTargetOutput = schema.new({
-    id = id.from(_N, "DeleteTargetOutput"),
+    id = id.from(_N, "DeleteTargetResult"),
     type = "structure",
 })
 
 M.DescribeNotificationRuleInput = schema.new({
-    id = id.from(_N, "DescribeNotificationRuleInput"),
+    id = id.from(_N, "DescribeNotificationRuleRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -344,7 +344,7 @@ M.TargetSummary = schema.new({
 })
 
 M.DescribeNotificationRuleOutput = schema.new({
-    id = id.from(_N, "DescribeNotificationRuleOutput"),
+    id = id.from(_N, "DescribeNotificationRuleResult"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -481,7 +481,7 @@ M.ListEventTypesFilter = schema.new({
 })
 
 M.ListEventTypesInput = schema.new({
-    id = id.from(_N, "ListEventTypesInput"),
+    id = id.from(_N, "ListEventTypesRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -507,7 +507,7 @@ M.ListEventTypesInput = schema.new({
 })
 
 M.ListEventTypesOutput = schema.new({
-    id = id.from(_N, "ListEventTypesOutput"),
+    id = id.from(_N, "ListEventTypesResult"),
     type = "structure",
     members = {
         EventTypes = schema.new({
@@ -552,7 +552,7 @@ M.ListNotificationRulesFilter = schema.new({
 })
 
 M.ListNotificationRulesInput = schema.new({
-    id = id.from(_N, "ListNotificationRulesInput"),
+    id = id.from(_N, "ListNotificationRulesRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -597,7 +597,7 @@ M.NotificationRuleSummary = schema.new({
 })
 
 M.ListNotificationRulesOutput = schema.new({
-    id = id.from(_N, "ListNotificationRulesOutput"),
+    id = id.from(_N, "ListNotificationRulesResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -617,7 +617,7 @@ M.ListNotificationRulesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -633,7 +633,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResult"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -673,7 +673,7 @@ M.ListTargetsFilter = schema.new({
 })
 
 M.ListTargetsInput = schema.new({
-    id = id.from(_N, "ListTargetsInput"),
+    id = id.from(_N, "ListTargetsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -699,7 +699,7 @@ M.ListTargetsInput = schema.new({
 })
 
 M.ListTargetsOutput = schema.new({
-    id = id.from(_N, "ListTargetsOutput"),
+    id = id.from(_N, "ListTargetsResult"),
     type = "structure",
     members = {
         Targets = schema.new({
@@ -719,7 +719,7 @@ M.ListTargetsOutput = schema.new({
 })
 
 M.SubscribeInput = schema.new({
-    id = id.from(_N, "SubscribeInput"),
+    id = id.from(_N, "SubscribeRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -751,7 +751,7 @@ M.SubscribeInput = schema.new({
 })
 
 M.SubscribeOutput = schema.new({
-    id = id.from(_N, "SubscribeOutput"),
+    id = id.from(_N, "SubscribeResult"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -764,7 +764,7 @@ M.SubscribeOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -791,7 +791,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResult"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -806,7 +806,7 @@ M.TagResourceOutput = schema.new({
 })
 
 M.UnsubscribeInput = schema.new({
-    id = id.from(_N, "UnsubscribeInput"),
+    id = id.from(_N, "UnsubscribeRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -831,7 +831,7 @@ M.UnsubscribeInput = schema.new({
 })
 
 M.UnsubscribeOutput = schema.new({
-    id = id.from(_N, "UnsubscribeOutput"),
+    id = id.from(_N, "UnsubscribeResult"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -847,7 +847,7 @@ M.UnsubscribeOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -875,12 +875,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResult"),
     type = "structure",
 })
 
 M.UpdateNotificationRuleInput = schema.new({
-    id = id.from(_N, "UpdateNotificationRuleInput"),
+    id = id.from(_N, "UpdateNotificationRuleRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -928,8 +928,22 @@ M.UpdateNotificationRuleInput = schema.new({
 })
 
 M.UpdateNotificationRuleOutput = schema.new({
-    id = id.from(_N, "UpdateNotificationRuleOutput"),
+    id = id.from(_N, "UpdateNotificationRuleResult"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

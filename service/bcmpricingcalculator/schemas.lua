@@ -112,7 +112,7 @@ M.InternalServerException = schema.new({
 })
 
 M.ListBillEstimateCommitmentsInput = schema.new({
-    id = id.from(_N, "ListBillEstimateCommitmentsInput"),
+    id = id.from(_N, "ListBillEstimateCommitmentsRequest"),
     type = "structure",
     members = {
         billEstimateId = schema.new({
@@ -222,7 +222,7 @@ M.BillEstimateCommitmentSummary = schema.new({
 })
 
 M.ListBillEstimateCommitmentsOutput = schema.new({
-    id = id.from(_N, "ListBillEstimateCommitmentsOutput"),
+    id = id.from(_N, "ListBillEstimateCommitmentsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -419,7 +419,7 @@ M.BillEstimateCostSummary = schema.new({
 })
 
 M.ListBillEstimateInputCommitmentModificationsInput = schema.new({
-    id = id.from(_N, "ListBillEstimateInputCommitmentModificationsInput"),
+    id = id.from(_N, "ListBillEstimateInputCommitmentModificationsRequest"),
     type = "structure",
     members = {
         billEstimateId = schema.new({
@@ -540,7 +540,7 @@ M.BillEstimateInputCommitmentModificationSummary = schema.new({
 })
 
 M.ListBillEstimateInputCommitmentModificationsOutput = schema.new({
-    id = id.from(_N, "ListBillEstimateInputCommitmentModificationsOutput"),
+    id = id.from(_N, "ListBillEstimateInputCommitmentModificationsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -592,7 +592,7 @@ M.ListUsageFilter = schema.new({
 })
 
 M.ListBillEstimateInputUsageModificationsInput = schema.new({
-    id = id.from(_N, "ListBillEstimateInputUsageModificationsInput"),
+    id = id.from(_N, "ListBillEstimateInputUsageModificationsRequest"),
     type = "structure",
     members = {
         billEstimateId = schema.new({
@@ -730,7 +730,7 @@ M.ListBillEstimateLineItemsFilter = schema.new({
 })
 
 M.ListBillEstimateLineItemsInput = schema.new({
-    id = id.from(_N, "ListBillEstimateLineItemsInput"),
+    id = id.from(_N, "ListBillEstimateLineItemsRequest"),
     type = "structure",
     members = {
         billEstimateId = schema.new({
@@ -895,7 +895,7 @@ M.BillEstimateLineItemSummary = schema.new({
 })
 
 M.ListBillEstimateLineItemsOutput = schema.new({
-    id = id.from(_N, "ListBillEstimateLineItemsOutput"),
+    id = id.from(_N, "ListBillEstimateLineItemsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -952,7 +952,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateBillEstimateInput = schema.new({
-    id = id.from(_N, "CreateBillEstimateInput"),
+    id = id.from(_N, "CreateBillEstimateRequest"),
     type = "structure",
     members = {
         billScenarioId = schema.new({
@@ -995,7 +995,7 @@ M.CreateBillEstimateInput = schema.new({
 })
 
 M.CreateBillEstimateOutput = schema.new({
-    id = id.from(_N, "CreateBillEstimateOutput"),
+    id = id.from(_N, "CreateBillEstimateResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1073,7 +1073,7 @@ M.CreateBillEstimateOutput = schema.new({
 })
 
 M.DeleteBillEstimateInput = schema.new({
-    id = id.from(_N, "DeleteBillEstimateInput"),
+    id = id.from(_N, "DeleteBillEstimateRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -1089,12 +1089,12 @@ M.DeleteBillEstimateInput = schema.new({
 })
 
 M.DeleteBillEstimateOutput = schema.new({
-    id = id.from(_N, "DeleteBillEstimateOutput"),
+    id = id.from(_N, "DeleteBillEstimateResponse"),
     type = "structure",
 })
 
 M.GetBillEstimateInput = schema.new({
-    id = id.from(_N, "GetBillEstimateInput"),
+    id = id.from(_N, "GetBillEstimateRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -1110,7 +1110,7 @@ M.GetBillEstimateInput = schema.new({
 })
 
 M.GetBillEstimateOutput = schema.new({
-    id = id.from(_N, "GetBillEstimateOutput"),
+    id = id.from(_N, "GetBillEstimateResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1239,7 +1239,7 @@ M.ListBillEstimatesFilter = schema.new({
 })
 
 M.ListBillEstimatesInput = schema.new({
-    id = id.from(_N, "ListBillEstimatesInput"),
+    id = id.from(_N, "ListBillEstimatesRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -1326,7 +1326,7 @@ M.BillEstimateSummary = schema.new({
 })
 
 M.ListBillEstimatesOutput = schema.new({
-    id = id.from(_N, "ListBillEstimatesOutput"),
+    id = id.from(_N, "ListBillEstimatesResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -1346,7 +1346,7 @@ M.ListBillEstimatesOutput = schema.new({
 })
 
 M.UpdateBillEstimateInput = schema.new({
-    id = id.from(_N, "UpdateBillEstimateInput"),
+    id = id.from(_N, "UpdateBillEstimateRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -1374,7 +1374,7 @@ M.UpdateBillEstimateInput = schema.new({
 })
 
 M.UpdateBillEstimateOutput = schema.new({
-    id = id.from(_N, "UpdateBillEstimateOutput"),
+    id = id.from(_N, "UpdateBillEstimateResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1493,7 +1493,7 @@ M.BatchCreateBillScenarioCommitmentModificationEntry = schema.new({
 })
 
 M.BatchCreateBillScenarioCommitmentModificationInput = schema.new({
-    id = id.from(_N, "BatchCreateBillScenarioCommitmentModificationInput"),
+    id = id.from(_N, "BatchCreateBillScenarioCommitmentModificationRequest"),
     type = "structure",
     members = {
         billScenarioId = schema.new({
@@ -1592,7 +1592,7 @@ M.BatchCreateBillScenarioCommitmentModificationItem = schema.new({
 })
 
 M.BatchCreateBillScenarioCommitmentModificationOutput = schema.new({
-    id = id.from(_N, "BatchCreateBillScenarioCommitmentModificationOutput"),
+    id = id.from(_N, "BatchCreateBillScenarioCommitmentModificationResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -1613,7 +1613,7 @@ M.BatchCreateBillScenarioCommitmentModificationOutput = schema.new({
 })
 
 M.BatchDeleteBillScenarioCommitmentModificationInput = schema.new({
-    id = id.from(_N, "BatchDeleteBillScenarioCommitmentModificationInput"),
+    id = id.from(_N, "BatchDeleteBillScenarioCommitmentModificationRequest"),
     type = "structure",
     members = {
         billScenarioId = schema.new({
@@ -1664,7 +1664,7 @@ M.BatchDeleteBillScenarioCommitmentModificationError = schema.new({
 })
 
 M.BatchDeleteBillScenarioCommitmentModificationOutput = schema.new({
-    id = id.from(_N, "BatchDeleteBillScenarioCommitmentModificationOutput"),
+    id = id.from(_N, "BatchDeleteBillScenarioCommitmentModificationResponse"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -1700,7 +1700,7 @@ M.BatchUpdateBillScenarioCommitmentModificationEntry = schema.new({
 })
 
 M.BatchUpdateBillScenarioCommitmentModificationInput = schema.new({
-    id = id.from(_N, "BatchUpdateBillScenarioCommitmentModificationInput"),
+    id = id.from(_N, "BatchUpdateBillScenarioCommitmentModificationRequest"),
     type = "structure",
     members = {
         billScenarioId = schema.new({
@@ -1783,7 +1783,7 @@ M.BillScenarioCommitmentModificationItem = schema.new({
 })
 
 M.BatchUpdateBillScenarioCommitmentModificationOutput = schema.new({
-    id = id.from(_N, "BatchUpdateBillScenarioCommitmentModificationOutput"),
+    id = id.from(_N, "BatchUpdateBillScenarioCommitmentModificationResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -1804,7 +1804,7 @@ M.BatchUpdateBillScenarioCommitmentModificationOutput = schema.new({
 })
 
 M.ListBillScenarioCommitmentModificationsInput = schema.new({
-    id = id.from(_N, "ListBillScenarioCommitmentModificationsInput"),
+    id = id.from(_N, "ListBillScenarioCommitmentModificationsRequest"),
     type = "structure",
     members = {
         billScenarioId = schema.new({
@@ -1832,7 +1832,7 @@ M.ListBillScenarioCommitmentModificationsInput = schema.new({
 })
 
 M.ListBillScenarioCommitmentModificationsOutput = schema.new({
-    id = id.from(_N, "ListBillScenarioCommitmentModificationsOutput"),
+    id = id.from(_N, "ListBillScenarioCommitmentModificationsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -1951,7 +1951,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.BatchDeleteBillScenarioUsageModificationInput = schema.new({
-    id = id.from(_N, "BatchDeleteBillScenarioUsageModificationInput"),
+    id = id.from(_N, "BatchDeleteBillScenarioUsageModificationRequest"),
     type = "structure",
     members = {
         billScenarioId = schema.new({
@@ -2002,7 +2002,7 @@ M.BatchDeleteBillScenarioUsageModificationError = schema.new({
 })
 
 M.BatchDeleteBillScenarioUsageModificationOutput = schema.new({
-    id = id.from(_N, "BatchDeleteBillScenarioUsageModificationOutput"),
+    id = id.from(_N, "BatchDeleteBillScenarioUsageModificationResponse"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -2045,7 +2045,7 @@ M.BatchUpdateBillScenarioUsageModificationEntry = schema.new({
 })
 
 M.BatchUpdateBillScenarioUsageModificationInput = schema.new({
-    id = id.from(_N, "BatchUpdateBillScenarioUsageModificationInput"),
+    id = id.from(_N, "BatchUpdateBillScenarioUsageModificationRequest"),
     type = "structure",
     members = {
         billScenarioId = schema.new({
@@ -2096,7 +2096,7 @@ M.BatchUpdateBillScenarioUsageModificationError = schema.new({
 })
 
 M.ListBillScenarioUsageModificationsInput = schema.new({
-    id = id.from(_N, "ListBillScenarioUsageModificationsInput"),
+    id = id.from(_N, "ListBillScenarioUsageModificationsRequest"),
     type = "structure",
     members = {
         billScenarioId = schema.new({
@@ -2131,7 +2131,7 @@ M.ListBillScenarioUsageModificationsInput = schema.new({
 })
 
 M.CreateBillScenarioInput = schema.new({
-    id = id.from(_N, "CreateBillScenarioInput"),
+    id = id.from(_N, "CreateBillScenarioRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2177,7 +2177,7 @@ M.CreateBillScenarioInput = schema.new({
 })
 
 M.CreateBillScenarioOutput = schema.new({
-    id = id.from(_N, "CreateBillScenarioOutput"),
+    id = id.from(_N, "CreateBillScenarioResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2242,7 +2242,7 @@ M.CreateBillScenarioOutput = schema.new({
 })
 
 M.DeleteBillScenarioInput = schema.new({
-    id = id.from(_N, "DeleteBillScenarioInput"),
+    id = id.from(_N, "DeleteBillScenarioRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -2258,12 +2258,12 @@ M.DeleteBillScenarioInput = schema.new({
 })
 
 M.DeleteBillScenarioOutput = schema.new({
-    id = id.from(_N, "DeleteBillScenarioOutput"),
+    id = id.from(_N, "DeleteBillScenarioResponse"),
     type = "structure",
 })
 
 M.GetBillScenarioInput = schema.new({
-    id = id.from(_N, "GetBillScenarioInput"),
+    id = id.from(_N, "GetBillScenarioRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -2279,7 +2279,7 @@ M.GetBillScenarioInput = schema.new({
 })
 
 M.GetBillScenarioOutput = schema.new({
-    id = id.from(_N, "GetBillScenarioOutput"),
+    id = id.from(_N, "GetBillScenarioResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2376,7 +2376,7 @@ M.ListBillScenariosFilter = schema.new({
 })
 
 M.ListBillScenariosInput = schema.new({
-    id = id.from(_N, "ListBillScenariosInput"),
+    id = id.from(_N, "ListBillScenariosRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -2481,7 +2481,7 @@ M.BillScenarioSummary = schema.new({
 })
 
 M.ListBillScenariosOutput = schema.new({
-    id = id.from(_N, "ListBillScenariosOutput"),
+    id = id.from(_N, "ListBillScenariosResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -2501,7 +2501,7 @@ M.ListBillScenariosOutput = schema.new({
 })
 
 M.UpdateBillScenarioInput = schema.new({
-    id = id.from(_N, "UpdateBillScenarioInput"),
+    id = id.from(_N, "UpdateBillScenarioRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -2541,7 +2541,7 @@ M.UpdateBillScenarioInput = schema.new({
 })
 
 M.UpdateBillScenarioOutput = schema.new({
-    id = id.from(_N, "UpdateBillScenarioOutput"),
+    id = id.from(_N, "UpdateBillScenarioResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2606,12 +2606,12 @@ M.UpdateBillScenarioOutput = schema.new({
 })
 
 M.GetPreferencesInput = schema.new({
-    id = id.from(_N, "GetPreferencesInput"),
+    id = id.from(_N, "GetPreferencesRequest"),
     type = "structure",
 })
 
 M.GetPreferencesOutput = schema.new({
-    id = id.from(_N, "GetPreferencesOutput"),
+    id = id.from(_N, "GetPreferencesResponse"),
     type = "structure",
     members = {
         managementAccountRateTypeSelections = schema.new({
@@ -2639,7 +2639,7 @@ M.GetPreferencesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2655,7 +2655,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2670,7 +2670,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2697,12 +2697,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2728,12 +2728,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdatePreferencesInput = schema.new({
-    id = id.from(_N, "UpdatePreferencesInput"),
+    id = id.from(_N, "UpdatePreferencesRequest"),
     type = "structure",
     members = {
         managementAccountRateTypeSelections = schema.new({
@@ -2761,7 +2761,7 @@ M.UpdatePreferencesInput = schema.new({
 })
 
 M.UpdatePreferencesOutput = schema.new({
-    id = id.from(_N, "UpdatePreferencesOutput"),
+    id = id.from(_N, "UpdatePreferencesResponse"),
     type = "structure",
     members = {
         managementAccountRateTypeSelections = schema.new({
@@ -2789,7 +2789,7 @@ M.UpdatePreferencesOutput = schema.new({
 })
 
 M.CreateWorkloadEstimateInput = schema.new({
-    id = id.from(_N, "CreateWorkloadEstimateInput"),
+    id = id.from(_N, "CreateWorkloadEstimateRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2829,7 +2829,7 @@ M.CreateWorkloadEstimateInput = schema.new({
 })
 
 M.CreateWorkloadEstimateOutput = schema.new({
-    id = id.from(_N, "CreateWorkloadEstimateOutput"),
+    id = id.from(_N, "CreateWorkloadEstimateResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2899,7 +2899,7 @@ M.CreateWorkloadEstimateOutput = schema.new({
 })
 
 M.DeleteWorkloadEstimateInput = schema.new({
-    id = id.from(_N, "DeleteWorkloadEstimateInput"),
+    id = id.from(_N, "DeleteWorkloadEstimateRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -2915,12 +2915,12 @@ M.DeleteWorkloadEstimateInput = schema.new({
 })
 
 M.DeleteWorkloadEstimateOutput = schema.new({
-    id = id.from(_N, "DeleteWorkloadEstimateOutput"),
+    id = id.from(_N, "DeleteWorkloadEstimateResponse"),
     type = "structure",
 })
 
 M.GetWorkloadEstimateInput = schema.new({
-    id = id.from(_N, "GetWorkloadEstimateInput"),
+    id = id.from(_N, "GetWorkloadEstimateRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -2936,7 +2936,7 @@ M.GetWorkloadEstimateInput = schema.new({
 })
 
 M.GetWorkloadEstimateOutput = schema.new({
-    id = id.from(_N, "GetWorkloadEstimateOutput"),
+    id = id.from(_N, "GetWorkloadEstimateResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -3038,7 +3038,7 @@ M.ListWorkloadEstimatesFilter = schema.new({
 })
 
 M.ListWorkloadEstimatesInput = schema.new({
-    id = id.from(_N, "ListWorkloadEstimatesInput"),
+    id = id.from(_N, "ListWorkloadEstimatesRequest"),
     type = "structure",
     members = {
         createdAtFilter = schema.new({
@@ -3148,7 +3148,7 @@ M.WorkloadEstimateSummary = schema.new({
 })
 
 M.ListWorkloadEstimatesOutput = schema.new({
-    id = id.from(_N, "ListWorkloadEstimatesOutput"),
+    id = id.from(_N, "ListWorkloadEstimatesResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -3168,7 +3168,7 @@ M.ListWorkloadEstimatesOutput = schema.new({
 })
 
 M.UpdateWorkloadEstimateInput = schema.new({
-    id = id.from(_N, "UpdateWorkloadEstimateInput"),
+    id = id.from(_N, "UpdateWorkloadEstimateRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -3196,7 +3196,7 @@ M.UpdateWorkloadEstimateInput = schema.new({
 })
 
 M.UpdateWorkloadEstimateOutput = schema.new({
-    id = id.from(_N, "UpdateWorkloadEstimateOutput"),
+    id = id.from(_N, "UpdateWorkloadEstimateResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -3310,7 +3310,7 @@ M.WorkloadEstimateUsageQuantity = schema.new({
 })
 
 M.BatchDeleteWorkloadEstimateUsageInput = schema.new({
-    id = id.from(_N, "BatchDeleteWorkloadEstimateUsageInput"),
+    id = id.from(_N, "BatchDeleteWorkloadEstimateUsageRequest"),
     type = "structure",
     members = {
         workloadEstimateId = schema.new({
@@ -3361,7 +3361,7 @@ M.BatchDeleteWorkloadEstimateUsageError = schema.new({
 })
 
 M.BatchDeleteWorkloadEstimateUsageOutput = schema.new({
-    id = id.from(_N, "BatchDeleteWorkloadEstimateUsageOutput"),
+    id = id.from(_N, "BatchDeleteWorkloadEstimateUsageResponse"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -3403,7 +3403,7 @@ M.BatchUpdateWorkloadEstimateUsageEntry = schema.new({
 })
 
 M.BatchUpdateWorkloadEstimateUsageInput = schema.new({
-    id = id.from(_N, "BatchUpdateWorkloadEstimateUsageInput"),
+    id = id.from(_N, "BatchUpdateWorkloadEstimateUsageRequest"),
     type = "structure",
     members = {
         workloadEstimateId = schema.new({
@@ -3454,7 +3454,7 @@ M.BatchUpdateWorkloadEstimateUsageError = schema.new({
 })
 
 M.ListWorkloadEstimateUsageInput = schema.new({
-    id = id.from(_N, "ListWorkloadEstimateUsageInput"),
+    id = id.from(_N, "ListWorkloadEstimateUsageRequest"),
     type = "structure",
     members = {
         workloadEstimateId = schema.new({
@@ -4185,7 +4185,7 @@ M.WorkloadEstimateUsageItem = schema.new({
 })
 
 M.BatchCreateBillScenarioUsageModificationInput = schema.new({
-    id = id.from(_N, "BatchCreateBillScenarioUsageModificationInput"),
+    id = id.from(_N, "BatchCreateBillScenarioUsageModificationRequest"),
     type = "structure",
     members = {
         billScenarioId = schema.new({
@@ -4221,7 +4221,7 @@ M.BatchCreateBillScenarioUsageModificationInput = schema.new({
 })
 
 M.BatchCreateBillScenarioUsageModificationOutput = schema.new({
-    id = id.from(_N, "BatchCreateBillScenarioUsageModificationOutput"),
+    id = id.from(_N, "BatchCreateBillScenarioUsageModificationResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -4242,7 +4242,7 @@ M.BatchCreateBillScenarioUsageModificationOutput = schema.new({
 })
 
 M.BatchCreateWorkloadEstimateUsageInput = schema.new({
-    id = id.from(_N, "BatchCreateWorkloadEstimateUsageInput"),
+    id = id.from(_N, "BatchCreateWorkloadEstimateUsageRequest"),
     type = "structure",
     members = {
         workloadEstimateId = schema.new({
@@ -4278,7 +4278,7 @@ M.BatchCreateWorkloadEstimateUsageInput = schema.new({
 })
 
 M.BatchCreateWorkloadEstimateUsageOutput = schema.new({
-    id = id.from(_N, "BatchCreateWorkloadEstimateUsageOutput"),
+    id = id.from(_N, "BatchCreateWorkloadEstimateUsageResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -4299,7 +4299,7 @@ M.BatchCreateWorkloadEstimateUsageOutput = schema.new({
 })
 
 M.BatchUpdateBillScenarioUsageModificationOutput = schema.new({
-    id = id.from(_N, "BatchUpdateBillScenarioUsageModificationOutput"),
+    id = id.from(_N, "BatchUpdateBillScenarioUsageModificationResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -4320,7 +4320,7 @@ M.BatchUpdateBillScenarioUsageModificationOutput = schema.new({
 })
 
 M.BatchUpdateWorkloadEstimateUsageOutput = schema.new({
-    id = id.from(_N, "BatchUpdateWorkloadEstimateUsageOutput"),
+    id = id.from(_N, "BatchUpdateWorkloadEstimateUsageResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -4341,7 +4341,7 @@ M.BatchUpdateWorkloadEstimateUsageOutput = schema.new({
 })
 
 M.ListBillEstimateInputUsageModificationsOutput = schema.new({
-    id = id.from(_N, "ListBillEstimateInputUsageModificationsOutput"),
+    id = id.from(_N, "ListBillEstimateInputUsageModificationsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -4361,7 +4361,7 @@ M.ListBillEstimateInputUsageModificationsOutput = schema.new({
 })
 
 M.ListBillScenarioUsageModificationsOutput = schema.new({
-    id = id.from(_N, "ListBillScenarioUsageModificationsOutput"),
+    id = id.from(_N, "ListBillScenarioUsageModificationsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -4381,7 +4381,7 @@ M.ListBillScenarioUsageModificationsOutput = schema.new({
 })
 
 M.ListWorkloadEstimateUsageOutput = schema.new({
-    id = id.from(_N, "ListWorkloadEstimateUsageOutput"),
+    id = id.from(_N, "ListWorkloadEstimateUsageResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -4399,5 +4399,19 @@ M.ListWorkloadEstimateUsageOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -130,7 +130,7 @@ M.NotificationChannelConfig = schema.new({
 })
 
 M.AddNotificationChannelInput = schema.new({
-    id = id.from(_N, "AddNotificationChannelInput"),
+    id = id.from(_N, "AddNotificationChannelRequest"),
     type = "structure",
     members = {
         Config = schema.new({
@@ -147,7 +147,7 @@ M.AddNotificationChannelInput = schema.new({
 })
 
 M.AddNotificationChannelOutput = schema.new({
-    id = id.from(_N, "AddNotificationChannelOutput"),
+    id = id.from(_N, "AddNotificationChannelResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -909,7 +909,7 @@ M.AnomalyTimeRange = schema.new({
 })
 
 M.DeleteInsightInput = schema.new({
-    id = id.from(_N, "DeleteInsightInput"),
+    id = id.from(_N, "DeleteInsightRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -926,17 +926,17 @@ M.DeleteInsightInput = schema.new({
 })
 
 M.DeleteInsightOutput = schema.new({
-    id = id.from(_N, "DeleteInsightOutput"),
+    id = id.from(_N, "DeleteInsightResponse"),
     type = "structure",
 })
 
 M.DescribeAccountHealthInput = schema.new({
-    id = id.from(_N, "DescribeAccountHealthInput"),
+    id = id.from(_N, "DescribeAccountHealthRequest"),
     type = "structure",
 })
 
 M.DescribeAccountHealthOutput = schema.new({
-    id = id.from(_N, "DescribeAccountHealthOutput"),
+    id = id.from(_N, "DescribeAccountHealthResponse"),
     type = "structure",
     members = {
         OpenReactiveInsights = schema.new({
@@ -988,7 +988,7 @@ M.DescribeAccountHealthOutput = schema.new({
 })
 
 M.DescribeAccountOverviewInput = schema.new({
-    id = id.from(_N, "DescribeAccountOverviewInput"),
+    id = id.from(_N, "DescribeAccountOverviewRequest"),
     type = "structure",
     members = {
         FromTime = schema.new({
@@ -1010,7 +1010,7 @@ M.DescribeAccountOverviewInput = schema.new({
 })
 
 M.DescribeAccountOverviewOutput = schema.new({
-    id = id.from(_N, "DescribeAccountOverviewOutput"),
+    id = id.from(_N, "DescribeAccountOverviewResponse"),
     type = "structure",
     members = {
         ReactiveInsights = schema.new({
@@ -1046,7 +1046,7 @@ M.DescribeAccountOverviewOutput = schema.new({
 })
 
 M.DescribeAnomalyInput = schema.new({
-    id = id.from(_N, "DescribeAnomalyInput"),
+    id = id.from(_N, "DescribeAnomalyRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1343,7 +1343,7 @@ M.ReactiveAnomaly = schema.new({
 })
 
 M.DescribeAnomalyOutput = schema.new({
-    id = id.from(_N, "DescribeAnomalyOutput"),
+    id = id.from(_N, "DescribeAnomalyResponse"),
     type = "structure",
     members = {
         ProactiveAnomaly = schema.new({
@@ -1364,7 +1364,7 @@ M.DescribeAnomalyOutput = schema.new({
 })
 
 M.DescribeEventSourcesConfigInput = schema.new({
-    id = id.from(_N, "DescribeEventSourcesConfigInput"),
+    id = id.from(_N, "DescribeEventSourcesConfigRequest"),
     type = "structure",
 })
 
@@ -1383,7 +1383,7 @@ M.EventSourcesConfig = schema.new({
 })
 
 M.DescribeEventSourcesConfigOutput = schema.new({
-    id = id.from(_N, "DescribeEventSourcesConfigOutput"),
+    id = id.from(_N, "DescribeEventSourcesConfigResponse"),
     type = "structure",
     members = {
         EventSources = schema.new({
@@ -1397,7 +1397,7 @@ M.DescribeEventSourcesConfigOutput = schema.new({
 })
 
 M.DescribeFeedbackInput = schema.new({
-    id = id.from(_N, "DescribeFeedbackInput"),
+    id = id.from(_N, "DescribeFeedbackRequest"),
     type = "structure",
     members = {
         InsightId = schema.new({
@@ -1429,7 +1429,7 @@ M.InsightFeedback = schema.new({
 })
 
 M.DescribeFeedbackOutput = schema.new({
-    id = id.from(_N, "DescribeFeedbackOutput"),
+    id = id.from(_N, "DescribeFeedbackResponse"),
     type = "structure",
     members = {
         InsightFeedback = schema.new({
@@ -1443,7 +1443,7 @@ M.DescribeFeedbackOutput = schema.new({
 })
 
 M.DescribeInsightInput = schema.new({
-    id = id.from(_N, "DescribeInsightInput"),
+    id = id.from(_N, "DescribeInsightRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1612,7 +1612,7 @@ M.ReactiveInsight = schema.new({
 })
 
 M.DescribeInsightOutput = schema.new({
-    id = id.from(_N, "DescribeInsightOutput"),
+    id = id.from(_N, "DescribeInsightResponse"),
     type = "structure",
     members = {
         ProactiveInsight = schema.new({
@@ -1633,7 +1633,7 @@ M.DescribeInsightOutput = schema.new({
 })
 
 M.DescribeOrganizationHealthInput = schema.new({
-    id = id.from(_N, "DescribeOrganizationHealthInput"),
+    id = id.from(_N, "DescribeOrganizationHealthRequest"),
     type = "structure",
     members = {
         AccountIds = schema.new({
@@ -1654,7 +1654,7 @@ M.DescribeOrganizationHealthInput = schema.new({
 })
 
 M.DescribeOrganizationHealthOutput = schema.new({
-    id = id.from(_N, "DescribeOrganizationHealthOutput"),
+    id = id.from(_N, "DescribeOrganizationHealthResponse"),
     type = "structure",
     members = {
         OpenReactiveInsights = schema.new({
@@ -1700,7 +1700,7 @@ M.DescribeOrganizationHealthOutput = schema.new({
 })
 
 M.DescribeOrganizationOverviewInput = schema.new({
-    id = id.from(_N, "DescribeOrganizationOverviewInput"),
+    id = id.from(_N, "DescribeOrganizationOverviewRequest"),
     type = "structure",
     members = {
         FromTime = schema.new({
@@ -1736,7 +1736,7 @@ M.DescribeOrganizationOverviewInput = schema.new({
 })
 
 M.DescribeOrganizationOverviewOutput = schema.new({
-    id = id.from(_N, "DescribeOrganizationOverviewOutput"),
+    id = id.from(_N, "DescribeOrganizationOverviewResponse"),
     type = "structure",
     members = {
         ReactiveInsights = schema.new({
@@ -1763,7 +1763,7 @@ M.DescribeOrganizationOverviewOutput = schema.new({
 })
 
 M.DescribeOrganizationResourceCollectionHealthInput = schema.new({
-    id = id.from(_N, "DescribeOrganizationResourceCollectionHealthInput"),
+    id = id.from(_N, "DescribeOrganizationResourceCollectionHealthRequest"),
     type = "structure",
     members = {
         OrganizationResourceCollectionType = schema.new({
@@ -1945,7 +1945,7 @@ M.TagHealth = schema.new({
 })
 
 M.DescribeOrganizationResourceCollectionHealthOutput = schema.new({
-    id = id.from(_N, "DescribeOrganizationResourceCollectionHealthOutput"),
+    id = id.from(_N, "DescribeOrganizationResourceCollectionHealthResponse"),
     type = "structure",
     members = {
         CloudFormation = schema.new({
@@ -1986,7 +1986,7 @@ M.DescribeOrganizationResourceCollectionHealthOutput = schema.new({
 })
 
 M.DescribeResourceCollectionHealthInput = schema.new({
-    id = id.from(_N, "DescribeResourceCollectionHealthInput"),
+    id = id.from(_N, "DescribeResourceCollectionHealthRequest"),
     type = "structure",
     members = {
         ResourceCollectionType = schema.new({
@@ -2012,7 +2012,7 @@ M.DescribeResourceCollectionHealthInput = schema.new({
 })
 
 M.DescribeResourceCollectionHealthOutput = schema.new({
-    id = id.from(_N, "DescribeResourceCollectionHealthOutput"),
+    id = id.from(_N, "DescribeResourceCollectionHealthResponse"),
     type = "structure",
     members = {
         CloudFormation = schema.new({
@@ -2046,7 +2046,7 @@ M.DescribeResourceCollectionHealthOutput = schema.new({
 })
 
 M.DescribeServiceIntegrationInput = schema.new({
-    id = id.from(_N, "DescribeServiceIntegrationInput"),
+    id = id.from(_N, "DescribeServiceIntegrationRequest"),
     type = "structure",
 })
 
@@ -2130,7 +2130,7 @@ M.ServiceIntegrationConfig = schema.new({
 })
 
 M.DescribeServiceIntegrationOutput = schema.new({
-    id = id.from(_N, "DescribeServiceIntegrationOutput"),
+    id = id.from(_N, "DescribeServiceIntegrationResponse"),
     type = "structure",
     members = {
         ServiceIntegration = schema.new({
@@ -2144,7 +2144,7 @@ M.DescribeServiceIntegrationOutput = schema.new({
 })
 
 M.GetCostEstimationInput = schema.new({
-    id = id.from(_N, "GetCostEstimationInput"),
+    id = id.from(_N, "GetCostEstimationRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2286,7 +2286,7 @@ M.CostEstimationTimeRange = schema.new({
 })
 
 M.GetCostEstimationOutput = schema.new({
-    id = id.from(_N, "GetCostEstimationOutput"),
+    id = id.from(_N, "GetCostEstimationResponse"),
     type = "structure",
     members = {
         ResourceCollection = schema.new({
@@ -2335,7 +2335,7 @@ M.GetCostEstimationOutput = schema.new({
 })
 
 M.GetResourceCollectionInput = schema.new({
-    id = id.from(_N, "GetResourceCollectionInput"),
+    id = id.from(_N, "GetResourceCollectionRequest"),
     type = "structure",
     members = {
         ResourceCollectionType = schema.new({
@@ -2422,7 +2422,7 @@ M.ResourceCollectionFilter = schema.new({
 })
 
 M.GetResourceCollectionOutput = schema.new({
-    id = id.from(_N, "GetResourceCollectionOutput"),
+    id = id.from(_N, "GetResourceCollectionResponse"),
     type = "structure",
     members = {
         ResourceCollection = schema.new({
@@ -2489,7 +2489,7 @@ M.StartTimeRange = schema.new({
 })
 
 M.ListAnomaliesForInsightInput = schema.new({
-    id = id.from(_N, "ListAnomaliesForInsightInput"),
+    id = id.from(_N, "ListAnomaliesForInsightRequest"),
     type = "structure",
     members = {
         InsightId = schema.new({
@@ -2726,7 +2726,7 @@ M.ReactiveAnomalySummary = schema.new({
 })
 
 M.ListAnomaliesForInsightOutput = schema.new({
-    id = id.from(_N, "ListAnomaliesForInsightOutput"),
+    id = id.from(_N, "ListAnomaliesForInsightResponse"),
     type = "structure",
     members = {
         ProactiveAnomalies = schema.new({
@@ -2753,7 +2753,7 @@ M.ListAnomaliesForInsightOutput = schema.new({
 })
 
 M.ListAnomalousLogGroupsInput = schema.new({
-    id = id.from(_N, "ListAnomalousLogGroupsInput"),
+    id = id.from(_N, "ListAnomalousLogGroupsRequest"),
     type = "structure",
     members = {
         InsightId = schema.new({
@@ -2781,7 +2781,7 @@ M.ListAnomalousLogGroupsInput = schema.new({
 })
 
 M.ListAnomalousLogGroupsOutput = schema.new({
-    id = id.from(_N, "ListAnomalousLogGroupsOutput"),
+    id = id.from(_N, "ListAnomalousLogGroupsResponse"),
     type = "structure",
     members = {
         InsightId = schema.new({
@@ -2883,7 +2883,7 @@ M.ListEventsFilters = schema.new({
 })
 
 M.ListEventsInput = schema.new({
-    id = id.from(_N, "ListEventsInput"),
+    id = id.from(_N, "ListEventsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -3000,7 +3000,7 @@ M.Event = schema.new({
 })
 
 M.ListEventsOutput = schema.new({
-    id = id.from(_N, "ListEventsOutput"),
+    id = id.from(_N, "ListEventsResponse"),
     type = "structure",
     members = {
         Events = schema.new({
@@ -3138,7 +3138,7 @@ M.ListInsightsStatusFilter = schema.new({
 })
 
 M.ListInsightsInput = schema.new({
-    id = id.from(_N, "ListInsightsInput"),
+    id = id.from(_N, "ListInsightsRequest"),
     type = "structure",
     members = {
         StatusFilter = schema.new({
@@ -3292,7 +3292,7 @@ M.ReactiveInsightSummary = schema.new({
 })
 
 M.ListInsightsOutput = schema.new({
-    id = id.from(_N, "ListInsightsOutput"),
+    id = id.from(_N, "ListInsightsResponse"),
     type = "structure",
     members = {
         ProactiveInsights = schema.new({
@@ -3345,7 +3345,7 @@ M.ListMonitoredResourcesFilters = schema.new({
 })
 
 M.ListMonitoredResourcesInput = schema.new({
-    id = id.from(_N, "ListMonitoredResourcesInput"),
+    id = id.from(_N, "ListMonitoredResourcesRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -3409,7 +3409,7 @@ M.MonitoredResourceIdentifier = schema.new({
 })
 
 M.ListMonitoredResourcesOutput = schema.new({
-    id = id.from(_N, "ListMonitoredResourcesOutput"),
+    id = id.from(_N, "ListMonitoredResourcesResponse"),
     type = "structure",
     members = {
         MonitoredResourceIdentifiers = schema.new({
@@ -3432,7 +3432,7 @@ M.ListMonitoredResourcesOutput = schema.new({
 })
 
 M.ListNotificationChannelsInput = schema.new({
-    id = id.from(_N, "ListNotificationChannelsInput"),
+    id = id.from(_N, "ListNotificationChannelsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3465,7 +3465,7 @@ M.NotificationChannel = schema.new({
 })
 
 M.ListNotificationChannelsOutput = schema.new({
-    id = id.from(_N, "ListNotificationChannelsOutput"),
+    id = id.from(_N, "ListNotificationChannelsResponse"),
     type = "structure",
     members = {
         Channels = schema.new({
@@ -3485,7 +3485,7 @@ M.ListNotificationChannelsOutput = schema.new({
 })
 
 M.ListOrganizationInsightsInput = schema.new({
-    id = id.from(_N, "ListOrganizationInsightsInput"),
+    id = id.from(_N, "ListOrganizationInsightsRequest"),
     type = "structure",
     members = {
         StatusFilter = schema.new({
@@ -3663,7 +3663,7 @@ M.ReactiveOrganizationInsightSummary = schema.new({
 })
 
 M.ListOrganizationInsightsOutput = schema.new({
-    id = id.from(_N, "ListOrganizationInsightsOutput"),
+    id = id.from(_N, "ListOrganizationInsightsResponse"),
     type = "structure",
     members = {
         ProactiveInsights = schema.new({
@@ -3690,7 +3690,7 @@ M.ListOrganizationInsightsOutput = schema.new({
 })
 
 M.ListRecommendationsInput = schema.new({
-    id = id.from(_N, "ListRecommendationsInput"),
+    id = id.from(_N, "ListRecommendationsRequest"),
     type = "structure",
     members = {
         InsightId = schema.new({
@@ -3893,7 +3893,7 @@ M.Recommendation = schema.new({
 })
 
 M.ListRecommendationsOutput = schema.new({
-    id = id.from(_N, "ListRecommendationsOutput"),
+    id = id.from(_N, "ListRecommendationsResponse"),
     type = "structure",
     members = {
         Recommendations = schema.new({
@@ -3913,7 +3913,7 @@ M.ListRecommendationsOutput = schema.new({
 })
 
 M.PutFeedbackInput = schema.new({
-    id = id.from(_N, "PutFeedbackInput"),
+    id = id.from(_N, "PutFeedbackRequest"),
     type = "structure",
     members = {
         InsightFeedback = schema.new({
@@ -3927,12 +3927,12 @@ M.PutFeedbackInput = schema.new({
 })
 
 M.PutFeedbackOutput = schema.new({
-    id = id.from(_N, "PutFeedbackOutput"),
+    id = id.from(_N, "PutFeedbackResponse"),
     type = "structure",
 })
 
 M.RemoveNotificationChannelInput = schema.new({
-    id = id.from(_N, "RemoveNotificationChannelInput"),
+    id = id.from(_N, "RemoveNotificationChannelRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3949,7 +3949,7 @@ M.RemoveNotificationChannelInput = schema.new({
 })
 
 M.RemoveNotificationChannelOutput = schema.new({
-    id = id.from(_N, "RemoveNotificationChannelOutput"),
+    id = id.from(_N, "RemoveNotificationChannelResponse"),
     type = "structure",
 })
 
@@ -3989,7 +3989,7 @@ M.SearchInsightsFilters = schema.new({
 })
 
 M.SearchInsightsInput = schema.new({
-    id = id.from(_N, "SearchInsightsInput"),
+    id = id.from(_N, "SearchInsightsRequest"),
     type = "structure",
     members = {
         StartTimeRange = schema.new({
@@ -4034,7 +4034,7 @@ M.SearchInsightsInput = schema.new({
 })
 
 M.SearchInsightsOutput = schema.new({
-    id = id.from(_N, "SearchInsightsOutput"),
+    id = id.from(_N, "SearchInsightsResponse"),
     type = "structure",
     members = {
         ProactiveInsights = schema.new({
@@ -4096,7 +4096,7 @@ M.SearchOrganizationInsightsFilters = schema.new({
 })
 
 M.SearchOrganizationInsightsInput = schema.new({
-    id = id.from(_N, "SearchOrganizationInsightsInput"),
+    id = id.from(_N, "SearchOrganizationInsightsRequest"),
     type = "structure",
     members = {
         AccountIds = schema.new({
@@ -4151,7 +4151,7 @@ M.SearchOrganizationInsightsInput = schema.new({
 })
 
 M.SearchOrganizationInsightsOutput = schema.new({
-    id = id.from(_N, "SearchOrganizationInsightsOutput"),
+    id = id.from(_N, "SearchOrganizationInsightsResponse"),
     type = "structure",
     members = {
         ProactiveInsights = schema.new({
@@ -4178,7 +4178,7 @@ M.SearchOrganizationInsightsOutput = schema.new({
 })
 
 M.StartCostEstimationInput = schema.new({
-    id = id.from(_N, "StartCostEstimationInput"),
+    id = id.from(_N, "StartCostEstimationRequest"),
     type = "structure",
     members = {
         ResourceCollection = schema.new({
@@ -4204,12 +4204,12 @@ M.StartCostEstimationInput = schema.new({
 })
 
 M.StartCostEstimationOutput = schema.new({
-    id = id.from(_N, "StartCostEstimationOutput"),
+    id = id.from(_N, "StartCostEstimationResponse"),
     type = "structure",
 })
 
 M.UpdateEventSourcesConfigInput = schema.new({
-    id = id.from(_N, "UpdateEventSourcesConfigInput"),
+    id = id.from(_N, "UpdateEventSourcesConfigRequest"),
     type = "structure",
     members = {
         EventSources = schema.new({
@@ -4223,7 +4223,7 @@ M.UpdateEventSourcesConfigInput = schema.new({
 })
 
 M.UpdateEventSourcesConfigOutput = schema.new({
-    id = id.from(_N, "UpdateEventSourcesConfigOutput"),
+    id = id.from(_N, "UpdateEventSourcesConfigResponse"),
     type = "structure",
 })
 
@@ -4289,7 +4289,7 @@ M.UpdateResourceCollectionFilter = schema.new({
 })
 
 M.UpdateResourceCollectionInput = schema.new({
-    id = id.from(_N, "UpdateResourceCollectionInput"),
+    id = id.from(_N, "UpdateResourceCollectionRequest"),
     type = "structure",
     members = {
         Action = schema.new({
@@ -4315,7 +4315,7 @@ M.UpdateResourceCollectionInput = schema.new({
 })
 
 M.UpdateResourceCollectionOutput = schema.new({
-    id = id.from(_N, "UpdateResourceCollectionOutput"),
+    id = id.from(_N, "UpdateResourceCollectionResponse"),
     type = "structure",
 })
 
@@ -4399,7 +4399,7 @@ M.UpdateServiceIntegrationConfig = schema.new({
 })
 
 M.UpdateServiceIntegrationInput = schema.new({
-    id = id.from(_N, "UpdateServiceIntegrationInput"),
+    id = id.from(_N, "UpdateServiceIntegrationRequest"),
     type = "structure",
     members = {
         ServiceIntegration = schema.new({
@@ -4416,8 +4416,22 @@ M.UpdateServiceIntegrationInput = schema.new({
 })
 
 M.UpdateServiceIntegrationOutput = schema.new({
-    id = id.from(_N, "UpdateServiceIntegrationOutput"),
+    id = id.from(_N, "UpdateServiceIntegrationResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

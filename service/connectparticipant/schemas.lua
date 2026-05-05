@@ -27,7 +27,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.CancelParticipantAuthenticationInput = schema.new({
-    id = id.from(_N, "CancelParticipantAuthenticationInput"),
+    id = id.from(_N, "CancelParticipantAuthenticationRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -53,7 +53,7 @@ M.CancelParticipantAuthenticationInput = schema.new({
 })
 
 M.CancelParticipantAuthenticationOutput = schema.new({
-    id = id.from(_N, "CancelParticipantAuthenticationOutput"),
+    id = id.from(_N, "CancelParticipantAuthenticationResponse"),
     type = "structure",
 })
 
@@ -115,7 +115,7 @@ M.ValidationException = schema.new({
 })
 
 M.CompleteAttachmentUploadInput = schema.new({
-    id = id.from(_N, "CompleteAttachmentUploadInput"),
+    id = id.from(_N, "CompleteAttachmentUploadRequest"),
     type = "structure",
     members = {
         AttachmentIds = schema.new({
@@ -152,7 +152,7 @@ M.CompleteAttachmentUploadInput = schema.new({
 })
 
 M.CompleteAttachmentUploadOutput = schema.new({
-    id = id.from(_N, "CompleteAttachmentUploadOutput"),
+    id = id.from(_N, "CompleteAttachmentUploadResponse"),
     type = "structure",
 })
 
@@ -195,7 +195,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.CreateParticipantConnectionInput = schema.new({
-    id = id.from(_N, "CreateParticipantConnectionInput"),
+    id = id.from(_N, "CreateParticipantConnectionRequest"),
     type = "structure",
     members = {
         Type = schema.new({
@@ -388,7 +388,7 @@ M.Websocket = schema.new({
 })
 
 M.CreateParticipantConnectionOutput = schema.new({
-    id = id.from(_N, "CreateParticipantConnectionOutput"),
+    id = id.from(_N, "CreateParticipantConnectionResponse"),
     type = "structure",
     members = {
         Websocket = schema.new({
@@ -416,7 +416,7 @@ M.CreateParticipantConnectionOutput = schema.new({
 })
 
 M.DescribeViewInput = schema.new({
-    id = id.from(_N, "DescribeViewInput"),
+    id = id.from(_N, "DescribeViewRequest"),
     type = "structure",
     members = {
         ViewToken = schema.new({
@@ -507,7 +507,7 @@ M.View = schema.new({
 })
 
 M.DescribeViewOutput = schema.new({
-    id = id.from(_N, "DescribeViewOutput"),
+    id = id.from(_N, "DescribeViewResponse"),
     type = "structure",
     members = {
         View = schema.new({
@@ -549,7 +549,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DisconnectParticipantInput = schema.new({
-    id = id.from(_N, "DisconnectParticipantInput"),
+    id = id.from(_N, "DisconnectParticipantRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -575,12 +575,12 @@ M.DisconnectParticipantInput = schema.new({
 })
 
 M.DisconnectParticipantOutput = schema.new({
-    id = id.from(_N, "DisconnectParticipantOutput"),
+    id = id.from(_N, "DisconnectParticipantResponse"),
     type = "structure",
 })
 
 M.GetAttachmentInput = schema.new({
-    id = id.from(_N, "GetAttachmentInput"),
+    id = id.from(_N, "GetAttachmentRequest"),
     type = "structure",
     members = {
         AttachmentId = schema.new({
@@ -612,7 +612,7 @@ M.GetAttachmentInput = schema.new({
 })
 
 M.GetAttachmentOutput = schema.new({
-    id = id.from(_N, "GetAttachmentOutput"),
+    id = id.from(_N, "GetAttachmentResponse"),
     type = "structure",
     members = {
         Url = schema.new({
@@ -641,7 +641,7 @@ M.GetAttachmentOutput = schema.new({
 })
 
 M.GetAuthenticationUrlInput = schema.new({
-    id = id.from(_N, "GetAuthenticationUrlInput"),
+    id = id.from(_N, "GetAuthenticationUrlRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -676,7 +676,7 @@ M.GetAuthenticationUrlInput = schema.new({
 })
 
 M.GetAuthenticationUrlOutput = schema.new({
-    id = id.from(_N, "GetAuthenticationUrlOutput"),
+    id = id.from(_N, "GetAuthenticationUrlResponse"),
     type = "structure",
     members = {
         AuthenticationUrl = schema.new({
@@ -717,7 +717,7 @@ M.StartPosition = schema.new({
 })
 
 M.GetTranscriptInput = schema.new({
-    id = id.from(_N, "GetTranscriptInput"),
+    id = id.from(_N, "GetTranscriptRequest"),
     type = "structure",
     members = {
         ContactId = schema.new({
@@ -937,7 +937,7 @@ M.Item = schema.new({
 })
 
 M.GetTranscriptOutput = schema.new({
-    id = id.from(_N, "GetTranscriptOutput"),
+    id = id.from(_N, "GetTranscriptResponse"),
     type = "structure",
     members = {
         InitialContactId = schema.new({
@@ -963,7 +963,7 @@ M.GetTranscriptOutput = schema.new({
 })
 
 M.SendEventInput = schema.new({
-    id = id.from(_N, "SendEventInput"),
+    id = id.from(_N, "SendEventRequest"),
     type = "structure",
     members = {
         ContentType = schema.new({
@@ -1004,7 +1004,7 @@ M.SendEventInput = schema.new({
 })
 
 M.SendEventOutput = schema.new({
-    id = id.from(_N, "SendEventOutput"),
+    id = id.from(_N, "SendEventResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1023,7 +1023,7 @@ M.SendEventOutput = schema.new({
 })
 
 M.SendMessageInput = schema.new({
-    id = id.from(_N, "SendMessageInput"),
+    id = id.from(_N, "SendMessageRequest"),
     type = "structure",
     members = {
         ContentType = schema.new({
@@ -1080,7 +1080,7 @@ M.MessageProcessingMetadata = schema.new({
 })
 
 M.SendMessageOutput = schema.new({
-    id = id.from(_N, "SendMessageOutput"),
+    id = id.from(_N, "SendMessageResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1106,7 +1106,7 @@ M.SendMessageOutput = schema.new({
 })
 
 M.StartAttachmentUploadInput = schema.new({
-    id = id.from(_N, "StartAttachmentUploadInput"),
+    id = id.from(_N, "StartAttachmentUploadRequest"),
     type = "structure",
     members = {
         ContentType = schema.new({
@@ -1188,7 +1188,7 @@ M.UploadMetadata = schema.new({
 })
 
 M.StartAttachmentUploadOutput = schema.new({
-    id = id.from(_N, "StartAttachmentUploadOutput"),
+    id = id.from(_N, "StartAttachmentUploadResponse"),
     type = "structure",
     members = {
         AttachmentId = schema.new({
@@ -1206,5 +1206,19 @@ M.StartAttachmentUploadOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

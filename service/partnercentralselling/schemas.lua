@@ -8,7 +8,7 @@ local _N = "com.amazonaws.partnercentralselling"
 local M = {}
 
 M.AcceptEngagementInvitationInput = schema.new({
-    id = id.from(_N, "AcceptEngagementInvitationInput"),
+    id = id.from(_N, "AcceptEngagementInvitationRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -33,7 +33,7 @@ M.AcceptEngagementInvitationInput = schema.new({
 })
 
 M.AcceptEngagementInvitationOutput = schema.new({
-    id = id.from(_N, "AcceptEngagementInvitationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -423,7 +423,7 @@ M.AssigneeContact = schema.new({
 })
 
 M.AssignOpportunityInput = schema.new({
-    id = id.from(_N, "AssignOpportunityInput"),
+    id = id.from(_N, "AssignOpportunityRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -458,12 +458,12 @@ M.AssignOpportunityInput = schema.new({
 })
 
 M.AssignOpportunityOutput = schema.new({
-    id = id.from(_N, "AssignOpportunityOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.AssociateOpportunityInput = schema.new({
-    id = id.from(_N, "AssociateOpportunityInput"),
+    id = id.from(_N, "AssociateOpportunityRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -506,7 +506,7 @@ M.AssociateOpportunityInput = schema.new({
 })
 
 M.AssociateOpportunityOutput = schema.new({
-    id = id.from(_N, "AssociateOpportunityOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1353,7 +1353,7 @@ M.EngagementContextPayload = schema.new({
 })
 
 M.CreateEngagementContextInput = schema.new({
-    id = id.from(_N, "CreateEngagementContextInput"),
+    id = id.from(_N, "CreateEngagementContextRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -1407,7 +1407,7 @@ M.CreateEngagementContextInput = schema.new({
 })
 
 M.CreateEngagementContextOutput = schema.new({
-    id = id.from(_N, "CreateEngagementContextOutput"),
+    id = id.from(_N, "CreateEngagementContextResponse"),
     type = "structure",
     members = {
         EngagementId = schema.new({
@@ -1486,7 +1486,7 @@ M.EngagementContextDetails = schema.new({
 })
 
 M.CreateEngagementInput = schema.new({
-    id = id.from(_N, "CreateEngagementInput"),
+    id = id.from(_N, "CreateEngagementRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -1537,7 +1537,7 @@ M.CreateEngagementInput = schema.new({
 })
 
 M.CreateEngagementOutput = schema.new({
-    id = id.from(_N, "CreateEngagementOutput"),
+    id = id.from(_N, "CreateEngagementResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1565,7 +1565,7 @@ M.CreateEngagementOutput = schema.new({
 })
 
 M.GetEngagementInput = schema.new({
-    id = id.from(_N, "GetEngagementInput"),
+    id = id.from(_N, "GetEngagementRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -1590,7 +1590,7 @@ M.GetEngagementInput = schema.new({
 })
 
 M.GetEngagementOutput = schema.new({
-    id = id.from(_N, "GetEngagementOutput"),
+    id = id.from(_N, "GetEngagementResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1664,7 +1664,7 @@ M.GetEngagementOutput = schema.new({
 })
 
 M.ListEngagementMembersInput = schema.new({
-    id = id.from(_N, "ListEngagementMembersInput"),
+    id = id.from(_N, "ListEngagementMembersRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -1729,7 +1729,7 @@ M.EngagementMember = schema.new({
 })
 
 M.ListEngagementMembersOutput = schema.new({
-    id = id.from(_N, "ListEngagementMembersOutput"),
+    id = id.from(_N, "ListEngagementMembersResponse"),
     type = "structure",
     members = {
         EngagementMemberList = schema.new({
@@ -1777,7 +1777,7 @@ M.EngagementSort = schema.new({
 })
 
 M.ListEngagementsInput = schema.new({
-    id = id.from(_N, "ListEngagementsInput"),
+    id = id.from(_N, "ListEngagementsRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -1918,7 +1918,7 @@ M.EngagementSummary = schema.new({
 })
 
 M.ListEngagementsOutput = schema.new({
-    id = id.from(_N, "ListEngagementsOutput"),
+    id = id.from(_N, "ListEngagementsResponse"),
     type = "structure",
     members = {
         EngagementSummaryList = schema.new({
@@ -1966,7 +1966,7 @@ M.ListTasksSortBase = schema.new({
 })
 
 M.ListEngagementByAcceptingInvitationTasksInput = schema.new({
-    id = id.from(_N, "ListEngagementByAcceptingInvitationTasksInput"),
+    id = id.from(_N, "ListEngagementByAcceptingInvitationTasksRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2093,7 +2093,7 @@ M.ListEngagementByAcceptingInvitationTaskSummary = schema.new({
 })
 
 M.ListEngagementByAcceptingInvitationTasksOutput = schema.new({
-    id = id.from(_N, "ListEngagementByAcceptingInvitationTasksOutput"),
+    id = id.from(_N, "ListEngagementByAcceptingInvitationTasksResponse"),
     type = "structure",
     members = {
         TaskSummaries = schema.new({
@@ -2138,7 +2138,7 @@ M.Tag = schema.new({
 })
 
 M.StartEngagementByAcceptingInvitationTaskInput = schema.new({
-    id = id.from(_N, "StartEngagementByAcceptingInvitationTaskInput"),
+    id = id.from(_N, "StartEngagementByAcceptingInvitationTaskRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2180,7 +2180,7 @@ M.StartEngagementByAcceptingInvitationTaskInput = schema.new({
 })
 
 M.StartEngagementByAcceptingInvitationTaskOutput = schema.new({
-    id = id.from(_N, "StartEngagementByAcceptingInvitationTaskOutput"),
+    id = id.from(_N, "StartEngagementByAcceptingInvitationTaskResponse"),
     type = "structure",
     members = {
         TaskId = schema.new({
@@ -2244,7 +2244,7 @@ M.StartEngagementByAcceptingInvitationTaskOutput = schema.new({
 })
 
 M.ListEngagementFromOpportunityTasksInput = schema.new({
-    id = id.from(_N, "ListEngagementFromOpportunityTasksInput"),
+    id = id.from(_N, "ListEngagementFromOpportunityTasksRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2377,7 +2377,7 @@ M.ListEngagementFromOpportunityTaskSummary = schema.new({
 })
 
 M.ListEngagementFromOpportunityTasksOutput = schema.new({
-    id = id.from(_N, "ListEngagementFromOpportunityTasksOutput"),
+    id = id.from(_N, "ListEngagementFromOpportunityTasksResponse"),
     type = "structure",
     members = {
         TaskSummaries = schema.new({
@@ -2419,7 +2419,7 @@ M.AwsSubmission = schema.new({
 })
 
 M.StartEngagementFromOpportunityTaskInput = schema.new({
-    id = id.from(_N, "StartEngagementFromOpportunityTaskInput"),
+    id = id.from(_N, "StartEngagementFromOpportunityTaskRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2471,7 +2471,7 @@ M.StartEngagementFromOpportunityTaskInput = schema.new({
 })
 
 M.StartEngagementFromOpportunityTaskOutput = schema.new({
-    id = id.from(_N, "StartEngagementFromOpportunityTaskOutput"),
+    id = id.from(_N, "StartEngagementFromOpportunityTaskResponse"),
     type = "structure",
     members = {
         TaskId = schema.new({
@@ -2865,7 +2865,7 @@ M.Invitation = schema.new({
 })
 
 M.CreateEngagementInvitationInput = schema.new({
-    id = id.from(_N, "CreateEngagementInvitationInput"),
+    id = id.from(_N, "CreateEngagementInvitationRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2910,7 +2910,7 @@ M.CreateEngagementInvitationInput = schema.new({
 })
 
 M.CreateEngagementInvitationOutput = schema.new({
-    id = id.from(_N, "CreateEngagementInvitationOutput"),
+    id = id.from(_N, "CreateEngagementInvitationResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2935,7 +2935,7 @@ M.CreateEngagementInvitationOutput = schema.new({
 })
 
 M.GetEngagementInvitationInput = schema.new({
-    id = id.from(_N, "GetEngagementInvitationInput"),
+    id = id.from(_N, "GetEngagementInvitationRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2979,7 +2979,7 @@ M.EngagementMemberSummary = schema.new({
 })
 
 M.GetEngagementInvitationOutput = schema.new({
-    id = id.from(_N, "GetEngagementInvitationOutput"),
+    id = id.from(_N, "GetEngagementInvitationResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3128,7 +3128,7 @@ M.OpportunityEngagementInvitationSort = schema.new({
 })
 
 M.ListEngagementInvitationsInput = schema.new({
-    id = id.from(_N, "ListEngagementInvitationsInput"),
+    id = id.from(_N, "ListEngagementInvitationsRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3298,7 +3298,7 @@ M.EngagementInvitationSummary = schema.new({
 })
 
 M.ListEngagementInvitationsOutput = schema.new({
-    id = id.from(_N, "ListEngagementInvitationsOutput"),
+    id = id.from(_N, "ListEngagementInvitationsResponse"),
     type = "structure",
     members = {
         EngagementInvitationSummaries = schema.new({
@@ -3318,7 +3318,7 @@ M.ListEngagementInvitationsOutput = schema.new({
 })
 
 M.RejectEngagementInvitationInput = schema.new({
-    id = id.from(_N, "RejectEngagementInvitationInput"),
+    id = id.from(_N, "RejectEngagementInvitationRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3349,12 +3349,12 @@ M.RejectEngagementInvitationInput = schema.new({
 })
 
 M.RejectEngagementInvitationOutput = schema.new({
-    id = id.from(_N, "RejectEngagementInvitationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetSellingSystemSettingsInput = schema.new({
-    id = id.from(_N, "GetSellingSystemSettingsInput"),
+    id = id.from(_N, "GetSellingSystemSettingsRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3370,7 +3370,7 @@ M.GetSellingSystemSettingsInput = schema.new({
 })
 
 M.GetSellingSystemSettingsOutput = schema.new({
-    id = id.from(_N, "GetSellingSystemSettingsOutput"),
+    id = id.from(_N, "GetSellingSystemSettingsResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3392,7 +3392,7 @@ M.GetSellingSystemSettingsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3408,7 +3408,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -3716,7 +3716,7 @@ M.SoftwareRevenue = schema.new({
 })
 
 M.CreateOpportunityInput = schema.new({
-    id = id.from(_N, "CreateOpportunityInput"),
+    id = id.from(_N, "CreateOpportunityRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3822,7 +3822,7 @@ M.CreateOpportunityInput = schema.new({
 })
 
 M.CreateOpportunityOutput = schema.new({
-    id = id.from(_N, "CreateOpportunityOutput"),
+    id = id.from(_N, "CreateOpportunityResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3853,7 +3853,7 @@ M.CreateOpportunityOutput = schema.new({
 })
 
 M.DisassociateOpportunityInput = schema.new({
-    id = id.from(_N, "DisassociateOpportunityInput"),
+    id = id.from(_N, "DisassociateOpportunityRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3896,12 +3896,12 @@ M.DisassociateOpportunityInput = schema.new({
 })
 
 M.DisassociateOpportunityOutput = schema.new({
-    id = id.from(_N, "DisassociateOpportunityOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetAwsOpportunitySummaryInput = schema.new({
-    id = id.from(_N, "GetAwsOpportunitySummaryInput"),
+    id = id.from(_N, "GetAwsOpportunitySummaryRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3926,7 +3926,7 @@ M.GetAwsOpportunitySummaryInput = schema.new({
 })
 
 M.GetAwsOpportunitySummaryOutput = schema.new({
-    id = id.from(_N, "GetAwsOpportunitySummaryOutput"),
+    id = id.from(_N, "GetAwsOpportunitySummaryResponse"),
     type = "structure",
     members = {
         RelatedOpportunityId = schema.new({
@@ -4014,7 +4014,7 @@ M.GetAwsOpportunitySummaryOutput = schema.new({
 })
 
 M.GetOpportunityInput = schema.new({
-    id = id.from(_N, "GetOpportunityInput"),
+    id = id.from(_N, "GetOpportunityRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -4074,7 +4074,7 @@ M.RelatedEntityIdentifiers = schema.new({
 })
 
 M.GetOpportunityOutput = schema.new({
-    id = id.from(_N, "GetOpportunityOutput"),
+    id = id.from(_N, "GetOpportunityResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -4302,7 +4302,7 @@ M.TargetCloseDateFilter = schema.new({
 })
 
 M.ListOpportunitiesInput = schema.new({
-    id = id.from(_N, "ListOpportunitiesInput"),
+    id = id.from(_N, "ListOpportunitiesRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -4549,7 +4549,7 @@ M.OpportunitySummary = schema.new({
 })
 
 M.ListOpportunitiesOutput = schema.new({
-    id = id.from(_N, "ListOpportunitiesOutput"),
+    id = id.from(_N, "ListOpportunitiesResponse"),
     type = "structure",
     members = {
         OpportunitySummaries = schema.new({
@@ -4572,7 +4572,7 @@ M.ListOpportunitiesOutput = schema.new({
 })
 
 M.SubmitOpportunityInput = schema.new({
-    id = id.from(_N, "SubmitOpportunityInput"),
+    id = id.from(_N, "SubmitOpportunityRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -4612,12 +4612,12 @@ M.SubmitOpportunityInput = schema.new({
 })
 
 M.SubmitOpportunityOutput = schema.new({
-    id = id.from(_N, "SubmitOpportunityOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateOpportunityInput = schema.new({
-    id = id.from(_N, "UpdateOpportunityInput"),
+    id = id.from(_N, "UpdateOpportunityRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -4715,7 +4715,7 @@ M.UpdateOpportunityInput = schema.new({
 })
 
 M.UpdateOpportunityOutput = schema.new({
-    id = id.from(_N, "UpdateOpportunityOutput"),
+    id = id.from(_N, "UpdateOpportunityResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -4744,7 +4744,7 @@ M.UpdateOpportunityOutput = schema.new({
 })
 
 M.ListOpportunityFromEngagementTasksInput = schema.new({
-    id = id.from(_N, "ListOpportunityFromEngagementTasksInput"),
+    id = id.from(_N, "ListOpportunityFromEngagementTasksRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4884,7 +4884,7 @@ M.ListOpportunityFromEngagementTaskSummary = schema.new({
 })
 
 M.ListOpportunityFromEngagementTasksOutput = schema.new({
-    id = id.from(_N, "ListOpportunityFromEngagementTasksOutput"),
+    id = id.from(_N, "ListOpportunityFromEngagementTasksResponse"),
     type = "structure",
     members = {
         TaskSummaries = schema.new({
@@ -4904,7 +4904,7 @@ M.ListOpportunityFromEngagementTasksOutput = schema.new({
 })
 
 M.StartOpportunityFromEngagementTaskInput = schema.new({
-    id = id.from(_N, "StartOpportunityFromEngagementTaskInput"),
+    id = id.from(_N, "StartOpportunityFromEngagementTaskRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -4955,7 +4955,7 @@ M.StartOpportunityFromEngagementTaskInput = schema.new({
 })
 
 M.StartOpportunityFromEngagementTaskOutput = schema.new({
-    id = id.from(_N, "StartOpportunityFromEngagementTaskOutput"),
+    id = id.from(_N, "StartOpportunityFromEngagementTaskResponse"),
     type = "structure",
     members = {
         TaskId = schema.new({
@@ -5025,7 +5025,7 @@ M.StartOpportunityFromEngagementTaskOutput = schema.new({
 })
 
 M.PutSellingSystemSettingsInput = schema.new({
-    id = id.from(_N, "PutSellingSystemSettingsInput"),
+    id = id.from(_N, "PutSellingSystemSettingsRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -5047,7 +5047,7 @@ M.PutSellingSystemSettingsInput = schema.new({
 })
 
 M.PutSellingSystemSettingsOutput = schema.new({
-    id = id.from(_N, "PutSellingSystemSettingsOutput"),
+    id = id.from(_N, "PutSellingSystemSettingsResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -5069,7 +5069,7 @@ M.PutSellingSystemSettingsOutput = schema.new({
 })
 
 M.CreateResourceSnapshotInput = schema.new({
-    id = id.from(_N, "CreateResourceSnapshotInput"),
+    id = id.from(_N, "CreateResourceSnapshotRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -5131,7 +5131,7 @@ M.CreateResourceSnapshotInput = schema.new({
 })
 
 M.CreateResourceSnapshotOutput = schema.new({
-    id = id.from(_N, "CreateResourceSnapshotOutput"),
+    id = id.from(_N, "CreateResourceSnapshotResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -5150,7 +5150,7 @@ M.CreateResourceSnapshotOutput = schema.new({
 })
 
 M.GetResourceSnapshotInput = schema.new({
-    id = id.from(_N, "GetResourceSnapshotInput"),
+    id = id.from(_N, "GetResourceSnapshotRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -5355,7 +5355,7 @@ M.ResourceSnapshotPayload = schema.new({
 })
 
 M.GetResourceSnapshotOutput = schema.new({
-    id = id.from(_N, "GetResourceSnapshotOutput"),
+    id = id.from(_N, "GetResourceSnapshotResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -5436,7 +5436,7 @@ M.GetResourceSnapshotOutput = schema.new({
 })
 
 M.ListEngagementResourceAssociationsInput = schema.new({
-    id = id.from(_N, "ListEngagementResourceAssociationsInput"),
+    id = id.from(_N, "ListEngagementResourceAssociationsRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -5531,7 +5531,7 @@ M.EngagementResourceAssociationSummary = schema.new({
 })
 
 M.ListEngagementResourceAssociationsOutput = schema.new({
-    id = id.from(_N, "ListEngagementResourceAssociationsOutput"),
+    id = id.from(_N, "ListEngagementResourceAssociationsResponse"),
     type = "structure",
     members = {
         EngagementResourceAssociationSummaries = schema.new({
@@ -5554,7 +5554,7 @@ M.ListEngagementResourceAssociationsOutput = schema.new({
 })
 
 M.ListResourceSnapshotsInput = schema.new({
-    id = id.from(_N, "ListResourceSnapshotsInput"),
+    id = id.from(_N, "ListResourceSnapshotsRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -5661,7 +5661,7 @@ M.ResourceSnapshotSummary = schema.new({
 })
 
 M.ListResourceSnapshotsOutput = schema.new({
-    id = id.from(_N, "ListResourceSnapshotsOutput"),
+    id = id.from(_N, "ListResourceSnapshotsResponse"),
     type = "structure",
     members = {
         ResourceSnapshotSummaries = schema.new({
@@ -5684,7 +5684,7 @@ M.ListResourceSnapshotsOutput = schema.new({
 })
 
 M.CreateResourceSnapshotJobInput = schema.new({
-    id = id.from(_N, "CreateResourceSnapshotJobInput"),
+    id = id.from(_N, "CreateResourceSnapshotJobRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -5753,7 +5753,7 @@ M.CreateResourceSnapshotJobInput = schema.new({
 })
 
 M.CreateResourceSnapshotJobOutput = schema.new({
-    id = id.from(_N, "CreateResourceSnapshotJobOutput"),
+    id = id.from(_N, "CreateResourceSnapshotJobResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -5772,7 +5772,7 @@ M.CreateResourceSnapshotJobOutput = schema.new({
 })
 
 M.DeleteResourceSnapshotJobInput = schema.new({
-    id = id.from(_N, "DeleteResourceSnapshotJobInput"),
+    id = id.from(_N, "DeleteResourceSnapshotJobRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -5797,12 +5797,12 @@ M.DeleteResourceSnapshotJobInput = schema.new({
 })
 
 M.DeleteResourceSnapshotJobOutput = schema.new({
-    id = id.from(_N, "DeleteResourceSnapshotJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetResourceSnapshotJobInput = schema.new({
-    id = id.from(_N, "GetResourceSnapshotJobInput"),
+    id = id.from(_N, "GetResourceSnapshotJobRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -5827,7 +5827,7 @@ M.GetResourceSnapshotJobInput = schema.new({
 })
 
 M.GetResourceSnapshotJobOutput = schema.new({
-    id = id.from(_N, "GetResourceSnapshotJobOutput"),
+    id = id.from(_N, "GetResourceSnapshotJobResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -5934,7 +5934,7 @@ M.SortObject = schema.new({
 })
 
 M.ListResourceSnapshotJobsInput = schema.new({
-    id = id.from(_N, "ListResourceSnapshotJobsInput"),
+    id = id.from(_N, "ListResourceSnapshotJobsRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -6015,7 +6015,7 @@ M.ResourceSnapshotJobSummary = schema.new({
 })
 
 M.ListResourceSnapshotJobsOutput = schema.new({
-    id = id.from(_N, "ListResourceSnapshotJobsOutput"),
+    id = id.from(_N, "ListResourceSnapshotJobsResponse"),
     type = "structure",
     members = {
         ResourceSnapshotJobSummaries = schema.new({
@@ -6038,7 +6038,7 @@ M.ListResourceSnapshotJobsOutput = schema.new({
 })
 
 M.StartResourceSnapshotJobInput = schema.new({
-    id = id.from(_N, "StartResourceSnapshotJobInput"),
+    id = id.from(_N, "StartResourceSnapshotJobRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -6063,12 +6063,12 @@ M.StartResourceSnapshotJobInput = schema.new({
 })
 
 M.StartResourceSnapshotJobOutput = schema.new({
-    id = id.from(_N, "StartResourceSnapshotJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopResourceSnapshotJobInput = schema.new({
-    id = id.from(_N, "StopResourceSnapshotJobInput"),
+    id = id.from(_N, "StopResourceSnapshotJobRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -6093,7 +6093,7 @@ M.StopResourceSnapshotJobInput = schema.new({
 })
 
 M.StopResourceSnapshotJobOutput = schema.new({
-    id = id.from(_N, "StopResourceSnapshotJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -6123,7 +6123,7 @@ M.SolutionSort = schema.new({
 })
 
 M.ListSolutionsInput = schema.new({
-    id = id.from(_N, "ListSolutionsInput"),
+    id = id.from(_N, "ListSolutionsRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -6250,7 +6250,7 @@ M.SolutionBase = schema.new({
 })
 
 M.ListSolutionsOutput = schema.new({
-    id = id.from(_N, "ListSolutionsOutput"),
+    id = id.from(_N, "ListSolutionsResponse"),
     type = "structure",
     members = {
         SolutionSummaries = schema.new({
@@ -6273,7 +6273,7 @@ M.ListSolutionsOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6299,12 +6299,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6330,7 +6330,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -6389,7 +6389,7 @@ M.UpdateEngagementContextPayload = schema.new({
 })
 
 M.UpdateEngagementContextInput = schema.new({
-    id = id.from(_N, "UpdateEngagementContextInput"),
+    id = id.from(_N, "UpdateEngagementContextRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -6455,7 +6455,7 @@ M.UpdateEngagementContextInput = schema.new({
 })
 
 M.UpdateEngagementContextOutput = schema.new({
-    id = id.from(_N, "UpdateEngagementContextOutput"),
+    id = id.from(_N, "UpdateEngagementContextResponse"),
     type = "structure",
     members = {
         EngagementId = schema.new({
@@ -6500,5 +6500,19 @@ M.UpdateEngagementContextOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

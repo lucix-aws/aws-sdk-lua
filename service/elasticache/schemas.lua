@@ -27,7 +27,7 @@ M.Tag = schema.new({
 })
 
 M.AddTagsToResourceInput = schema.new({
-    id = id.from(_N, "AddTagsToResourceInput"),
+    id = id.from(_N, "AddTagsToResourceMessage"),
     type = "structure",
     members = {
         ResourceName = schema.new({
@@ -44,7 +44,7 @@ M.AddTagsToResourceInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -53,7 +53,7 @@ M.AddTagsToResourceInput = schema.new({
 })
 
 M.AddTagsToResourceOutput = schema.new({
-    id = id.from(_N, "AddTagsToResourceOutput"),
+    id = id.from(_N, "TagListMessage"),
     type = "structure",
     members = {
         TagList = schema.new({
@@ -61,7 +61,7 @@ M.AddTagsToResourceOutput = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -339,7 +339,7 @@ M.AuthorizationAlreadyExistsFault = schema.new({
 })
 
 M.AuthorizeCacheSecurityGroupIngressInput = schema.new({
-    id = id.from(_N, "AuthorizeCacheSecurityGroupIngressInput"),
+    id = id.from(_N, "AuthorizeCacheSecurityGroupIngressMessage"),
     type = "structure",
     members = {
         CacheSecurityGroupName = schema.new({
@@ -424,7 +424,7 @@ M.CacheSecurityGroup = schema.new({
             type = "list",
             name = "EC2SecurityGroups",
             target_id = prelude.Document.id,
-            list_member = M.EC2SecurityGroup,
+            list_member = schema.new({ type = "structure", target = M.EC2SecurityGroup, traits = { [traits.XML_NAME] = { name = "EC2SecurityGroup" } } }),
         }),
         ARN = schema.new({
             id = id.from(_N, "CacheSecurityGroup", "ARN"),
@@ -436,7 +436,7 @@ M.CacheSecurityGroup = schema.new({
 })
 
 M.AuthorizeCacheSecurityGroupIngressOutput = schema.new({
-    id = id.from(_N, "AuthorizeCacheSecurityGroupIngressOutput"),
+    id = id.from(_N, "AuthorizeCacheSecurityGroupIngressResult"),
     type = "structure",
     members = {
         CacheSecurityGroup = schema.new({
@@ -498,7 +498,7 @@ M.InvalidParameterValueException = schema.new({
 })
 
 M.BatchApplyUpdateActionInput = schema.new({
-    id = id.from(_N, "BatchApplyUpdateActionInput"),
+    id = id.from(_N, "BatchApplyUpdateActionMessage"),
     type = "structure",
     members = {
         ReplicationGroupIds = schema.new({
@@ -596,7 +596,7 @@ M.UnprocessedUpdateAction = schema.new({
 })
 
 M.BatchApplyUpdateActionOutput = schema.new({
-    id = id.from(_N, "BatchApplyUpdateActionOutput"),
+    id = id.from(_N, "UpdateActionResultsMessage"),
     type = "structure",
     members = {
         ProcessedUpdateActions = schema.new({
@@ -604,14 +604,14 @@ M.BatchApplyUpdateActionOutput = schema.new({
             type = "list",
             name = "ProcessedUpdateActions",
             target_id = prelude.Document.id,
-            list_member = M.ProcessedUpdateAction,
+            list_member = schema.new({ type = "structure", target = M.ProcessedUpdateAction, traits = { [traits.XML_NAME] = { name = "ProcessedUpdateAction" } } }),
         }),
         UnprocessedUpdateActions = schema.new({
             id = id.from(_N, "BatchApplyUpdateActionOutput", "UnprocessedUpdateActions"),
             type = "list",
             name = "UnprocessedUpdateActions",
             target_id = prelude.Document.id,
-            list_member = M.UnprocessedUpdateAction,
+            list_member = schema.new({ type = "structure", target = M.UnprocessedUpdateAction, traits = { [traits.XML_NAME] = { name = "UnprocessedUpdateAction" } } }),
         }),
     },
 })
@@ -633,7 +633,7 @@ M.ServiceUpdateNotFoundFault = schema.new({
 })
 
 M.BatchStopUpdateActionInput = schema.new({
-    id = id.from(_N, "BatchStopUpdateActionInput"),
+    id = id.from(_N, "BatchStopUpdateActionMessage"),
     type = "structure",
     members = {
         ReplicationGroupIds = schema.new({
@@ -663,7 +663,7 @@ M.BatchStopUpdateActionInput = schema.new({
 })
 
 M.BatchStopUpdateActionOutput = schema.new({
-    id = id.from(_N, "BatchStopUpdateActionOutput"),
+    id = id.from(_N, "UpdateActionResultsMessage"),
     type = "structure",
     members = {
         ProcessedUpdateActions = schema.new({
@@ -671,20 +671,20 @@ M.BatchStopUpdateActionOutput = schema.new({
             type = "list",
             name = "ProcessedUpdateActions",
             target_id = prelude.Document.id,
-            list_member = M.ProcessedUpdateAction,
+            list_member = schema.new({ type = "structure", target = M.ProcessedUpdateAction, traits = { [traits.XML_NAME] = { name = "ProcessedUpdateAction" } } }),
         }),
         UnprocessedUpdateActions = schema.new({
             id = id.from(_N, "BatchStopUpdateActionOutput", "UnprocessedUpdateActions"),
             type = "list",
             name = "UnprocessedUpdateActions",
             target_id = prelude.Document.id,
-            list_member = M.UnprocessedUpdateAction,
+            list_member = schema.new({ type = "structure", target = M.UnprocessedUpdateAction, traits = { [traits.XML_NAME] = { name = "UnprocessedUpdateAction" } } }),
         }),
     },
 })
 
 M.CompleteMigrationInput = schema.new({
-    id = id.from(_N, "CompleteMigrationInput"),
+    id = id.from(_N, "CompleteMigrationMessage"),
     type = "structure",
     members = {
         ReplicationGroupId = schema.new({
@@ -919,7 +919,7 @@ M.NodeGroup = schema.new({
             type = "list",
             name = "NodeGroupMembers",
             target_id = prelude.Document.id,
-            list_member = M.NodeGroupMember,
+            list_member = schema.new({ type = "structure", target = M.NodeGroupMember, traits = { [traits.XML_NAME] = { name = "NodeGroupMember" } } }),
         }),
     },
 })
@@ -1109,14 +1109,14 @@ M.ReplicationGroup = schema.new({
             type = "list",
             name = "MemberClusters",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "ClusterId" } } }),
         }),
         NodeGroups = schema.new({
             id = id.from(_N, "ReplicationGroup", "NodeGroups"),
             type = "list",
             name = "NodeGroups",
             target_id = prelude.Document.id,
-            list_member = M.NodeGroup,
+            list_member = schema.new({ type = "structure", target = M.NodeGroup, traits = { [traits.XML_NAME] = { name = "NodeGroup" } } }),
         }),
         SnapshottingClusterId = schema.new({
             id = id.from(_N, "ReplicationGroup", "SnapshottingClusterId"),
@@ -1196,7 +1196,7 @@ M.ReplicationGroup = schema.new({
             type = "list",
             name = "MemberClustersOutpostArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "ReplicationGroupOutpostArn" } } }),
         }),
         KmsKeyId = schema.new({
             id = id.from(_N, "ReplicationGroup", "KmsKeyId"),
@@ -1222,7 +1222,7 @@ M.ReplicationGroup = schema.new({
             type = "list",
             name = "LogDeliveryConfigurations",
             target_id = prelude.Document.id,
-            list_member = M.LogDeliveryConfiguration,
+            list_member = schema.new({ type = "structure", target = M.LogDeliveryConfiguration, traits = { [traits.XML_NAME] = { name = "LogDeliveryConfiguration" } } }),
         }),
         ReplicationGroupCreateTime = schema.new({
             id = id.from(_N, "ReplicationGroup", "ReplicationGroupCreateTime"),
@@ -1276,7 +1276,7 @@ M.ReplicationGroup = schema.new({
 })
 
 M.CompleteMigrationOutput = schema.new({
-    id = id.from(_N, "CompleteMigrationOutput"),
+    id = id.from(_N, "CompleteMigrationResponse"),
     type = "structure",
     members = {
         ReplicationGroup = schema.new({
@@ -1306,7 +1306,7 @@ M.ReplicationGroupNotUnderMigrationFault = schema.new({
 })
 
 M.CopyServerlessCacheSnapshotInput = schema.new({
-    id = id.from(_N, "CopyServerlessCacheSnapshotInput"),
+    id = id.from(_N, "CopyServerlessCacheSnapshotRequest"),
     type = "structure",
     members = {
         SourceServerlessCacheSnapshotName = schema.new({
@@ -1338,7 +1338,7 @@ M.CopyServerlessCacheSnapshotInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -1431,7 +1431,7 @@ M.ServerlessCacheSnapshot = schema.new({
 })
 
 M.CopyServerlessCacheSnapshotOutput = schema.new({
-    id = id.from(_N, "CopyServerlessCacheSnapshotOutput"),
+    id = id.from(_N, "CopyServerlessCacheSnapshotResponse"),
     type = "structure",
     members = {
         ServerlessCacheSnapshot = schema.new({
@@ -1493,7 +1493,7 @@ M.ServiceLinkedRoleNotFoundFault = schema.new({
 })
 
 M.CopySnapshotInput = schema.new({
-    id = id.from(_N, "CopySnapshotInput"),
+    id = id.from(_N, "CopySnapshotMessage"),
     type = "structure",
     members = {
         SourceSnapshotName = schema.new({
@@ -1531,7 +1531,7 @@ M.CopySnapshotInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -1569,7 +1569,7 @@ M.NodeGroupConfiguration = schema.new({
             type = "list",
             name = "ReplicaAvailabilityZones",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AvailabilityZone" } } }),
         }),
         PrimaryOutpostArn = schema.new({
             id = id.from(_N, "NodeGroupConfiguration", "PrimaryOutpostArn"),
@@ -1582,7 +1582,7 @@ M.NodeGroupConfiguration = schema.new({
             type = "list",
             name = "ReplicaOutpostArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "OutpostArn" } } }),
         }),
     },
 })
@@ -1790,7 +1790,7 @@ M.Snapshot = schema.new({
             type = "list",
             name = "NodeSnapshots",
             target_id = prelude.Document.id,
-            list_member = M.NodeSnapshot,
+            list_member = schema.new({ type = "structure", target = M.NodeSnapshot, traits = { [traits.XML_NAME] = { name = "NodeSnapshot" } } }),
         }),
         KmsKeyId = schema.new({
             id = id.from(_N, "Snapshot", "KmsKeyId"),
@@ -1814,7 +1814,7 @@ M.Snapshot = schema.new({
 })
 
 M.CopySnapshotOutput = schema.new({
-    id = id.from(_N, "CopySnapshotOutput"),
+    id = id.from(_N, "CopySnapshotResult"),
     type = "structure",
     members = {
         Snapshot = schema.new({
@@ -1946,7 +1946,7 @@ M.LogDeliveryConfigurationRequest = schema.new({
 })
 
 M.CreateCacheClusterInput = schema.new({
-    id = id.from(_N, "CreateCacheClusterInput"),
+    id = id.from(_N, "CreateCacheClusterMessage"),
     type = "structure",
     members = {
         CacheClusterId = schema.new({
@@ -1981,7 +1981,7 @@ M.CreateCacheClusterInput = schema.new({
             type = "list",
             name = "PreferredAvailabilityZones",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "PreferredAvailabilityZone" } } }),
         }),
         NumCacheNodes = schema.new({
             id = id.from(_N, "CreateCacheClusterInput", "NumCacheNodes"),
@@ -2024,28 +2024,28 @@ M.CreateCacheClusterInput = schema.new({
             type = "list",
             name = "CacheSecurityGroupNames",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "CacheSecurityGroupName" } } }),
         }),
         SecurityGroupIds = schema.new({
             id = id.from(_N, "CreateCacheClusterInput", "SecurityGroupIds"),
             type = "list",
             name = "SecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SecurityGroupId" } } }),
         }),
         Tags = schema.new({
             id = id.from(_N, "CreateCacheClusterInput", "Tags"),
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         SnapshotArns = schema.new({
             id = id.from(_N, "CreateCacheClusterInput", "SnapshotArns"),
             type = "list",
             name = "SnapshotArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SnapshotArn" } } }),
         }),
         SnapshotName = schema.new({
             id = id.from(_N, "CreateCacheClusterInput", "SnapshotName"),
@@ -2112,14 +2112,14 @@ M.CreateCacheClusterInput = schema.new({
             type = "list",
             name = "PreferredOutpostArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "PreferredOutpostArn" } } }),
         }),
         LogDeliveryConfigurations = schema.new({
             id = id.from(_N, "CreateCacheClusterInput", "LogDeliveryConfigurations"),
             type = "list",
             name = "LogDeliveryConfigurations",
             target_id = prelude.Document.id,
-            list_member = M.LogDeliveryConfigurationRequest,
+            list_member = schema.new({ type = "structure", target = M.LogDeliveryConfigurationRequest, traits = { [traits.XML_NAME] = { name = "LogDeliveryConfigurationRequest" } } }),
         }),
         TransitEncryptionEnabled = schema.new({
             id = id.from(_N, "CreateCacheClusterInput", "TransitEncryptionEnabled"),
@@ -2219,7 +2219,7 @@ M.CacheParameterGroupStatus = schema.new({
             type = "list",
             name = "CacheNodeIdsToReboot",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "CacheNodeId" } } }),
         }),
     },
 })
@@ -2296,7 +2296,7 @@ M.PendingModifiedValues = schema.new({
             type = "list",
             name = "CacheNodeIdsToRemove",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "CacheNodeId" } } }),
         }),
         EngineVersion = schema.new({
             id = id.from(_N, "PendingModifiedValues", "EngineVersion"),
@@ -2460,7 +2460,7 @@ M.CacheCluster = schema.new({
             type = "list",
             name = "CacheSecurityGroups",
             target_id = prelude.Document.id,
-            list_member = M.CacheSecurityGroupMembership,
+            list_member = schema.new({ type = "structure", target = M.CacheSecurityGroupMembership, traits = { [traits.XML_NAME] = { name = "CacheSecurityGroup" } } }),
         }),
         CacheParameterGroup = schema.new({
             id = id.from(_N, "CacheCluster", "CacheParameterGroup"),
@@ -2480,7 +2480,7 @@ M.CacheCluster = schema.new({
             type = "list",
             name = "CacheNodes",
             target_id = prelude.Document.id,
-            list_member = M.CacheNode,
+            list_member = schema.new({ type = "structure", target = M.CacheNode, traits = { [traits.XML_NAME] = { name = "CacheNode" } } }),
         }),
         AutoMinorVersionUpgrade = schema.new({
             id = id.from(_N, "CacheCluster", "AutoMinorVersionUpgrade"),
@@ -2554,7 +2554,7 @@ M.CacheCluster = schema.new({
             type = "list",
             name = "LogDeliveryConfigurations",
             target_id = prelude.Document.id,
-            list_member = M.LogDeliveryConfiguration,
+            list_member = schema.new({ type = "structure", target = M.LogDeliveryConfiguration, traits = { [traits.XML_NAME] = { name = "LogDeliveryConfiguration" } } }),
         }),
         NetworkType = schema.new({
             id = id.from(_N, "CacheCluster", "NetworkType"),
@@ -2578,7 +2578,7 @@ M.CacheCluster = schema.new({
 })
 
 M.CreateCacheClusterOutput = schema.new({
-    id = id.from(_N, "CreateCacheClusterOutput"),
+    id = id.from(_N, "CreateCacheClusterResult"),
     type = "structure",
     members = {
         CacheCluster = schema.new({
@@ -2688,7 +2688,7 @@ M.CacheParameterGroupQuotaExceededFault = schema.new({
 })
 
 M.CreateCacheParameterGroupInput = schema.new({
-    id = id.from(_N, "CreateCacheParameterGroupInput"),
+    id = id.from(_N, "CreateCacheParameterGroupMessage"),
     type = "structure",
     members = {
         CacheParameterGroupName = schema.new({
@@ -2723,7 +2723,7 @@ M.CreateCacheParameterGroupInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -2766,7 +2766,7 @@ M.CacheParameterGroup = schema.new({
 })
 
 M.CreateCacheParameterGroupOutput = schema.new({
-    id = id.from(_N, "CreateCacheParameterGroupOutput"),
+    id = id.from(_N, "CreateCacheParameterGroupResult"),
     type = "structure",
     members = {
         CacheParameterGroup = schema.new({
@@ -2828,7 +2828,7 @@ M.CacheSecurityGroupQuotaExceededFault = schema.new({
 })
 
 M.CreateCacheSecurityGroupInput = schema.new({
-    id = id.from(_N, "CreateCacheSecurityGroupInput"),
+    id = id.from(_N, "CreateCacheSecurityGroupMessage"),
     type = "structure",
     members = {
         CacheSecurityGroupName = schema.new({
@@ -2854,13 +2854,13 @@ M.CreateCacheSecurityGroupInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateCacheSecurityGroupOutput = schema.new({
-    id = id.from(_N, "CreateCacheSecurityGroupOutput"),
+    id = id.from(_N, "CreateCacheSecurityGroupResult"),
     type = "structure",
     members = {
         CacheSecurityGroup = schema.new({
@@ -2922,7 +2922,7 @@ M.CacheSubnetQuotaExceededFault = schema.new({
 })
 
 M.CreateCacheSubnetGroupInput = schema.new({
-    id = id.from(_N, "CreateCacheSubnetGroupInput"),
+    id = id.from(_N, "CreateCacheSubnetGroupMessage"),
     type = "structure",
     members = {
         CacheSubnetGroupName = schema.new({
@@ -2948,7 +2948,7 @@ M.CreateCacheSubnetGroupInput = schema.new({
             type = "list",
             name = "SubnetIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SubnetIdentifier" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -2958,7 +2958,7 @@ M.CreateCacheSubnetGroupInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -3050,7 +3050,7 @@ M.CacheSubnetGroup = schema.new({
             type = "list",
             name = "Subnets",
             target_id = prelude.Document.id,
-            list_member = M.Subnet,
+            list_member = schema.new({ type = "structure", target = M.Subnet, traits = { [traits.XML_NAME] = { name = "Subnet" } } }),
         }),
         ARN = schema.new({
             id = id.from(_N, "CacheSubnetGroup", "ARN"),
@@ -3069,7 +3069,7 @@ M.CacheSubnetGroup = schema.new({
 })
 
 M.CreateCacheSubnetGroupOutput = schema.new({
-    id = id.from(_N, "CreateCacheSubnetGroupOutput"),
+    id = id.from(_N, "CreateCacheSubnetGroupResult"),
     type = "structure",
     members = {
         CacheSubnetGroup = schema.new({
@@ -3115,7 +3115,7 @@ M.SubnetNotAllowedFault = schema.new({
 })
 
 M.CreateGlobalReplicationGroupInput = schema.new({
-    id = id.from(_N, "CreateGlobalReplicationGroupInput"),
+    id = id.from(_N, "CreateGlobalReplicationGroupMessage"),
     type = "structure",
     members = {
         GlobalReplicationGroupIdSuffix = schema.new({
@@ -3246,7 +3246,7 @@ M.GlobalReplicationGroup = schema.new({
             type = "list",
             name = "Members",
             target_id = prelude.Document.id,
-            list_member = M.GlobalReplicationGroupMember,
+            list_member = schema.new({ type = "structure", target = M.GlobalReplicationGroupMember, traits = { [traits.XML_NAME] = { name = "GlobalReplicationGroupMember" } } }),
         }),
         ClusterEnabled = schema.new({
             id = id.from(_N, "GlobalReplicationGroup", "ClusterEnabled"),
@@ -3259,7 +3259,7 @@ M.GlobalReplicationGroup = schema.new({
             type = "list",
             name = "GlobalNodeGroups",
             target_id = prelude.Document.id,
-            list_member = M.GlobalNodeGroup,
+            list_member = schema.new({ type = "structure", target = M.GlobalNodeGroup, traits = { [traits.XML_NAME] = { name = "GlobalNodeGroup" } } }),
         }),
         AuthTokenEnabled = schema.new({
             id = id.from(_N, "GlobalReplicationGroup", "AuthTokenEnabled"),
@@ -3289,7 +3289,7 @@ M.GlobalReplicationGroup = schema.new({
 })
 
 M.CreateGlobalReplicationGroupOutput = schema.new({
-    id = id.from(_N, "CreateGlobalReplicationGroupOutput"),
+    id = id.from(_N, "CreateGlobalReplicationGroupResult"),
     type = "structure",
     members = {
         GlobalReplicationGroup = schema.new({
@@ -3319,7 +3319,7 @@ M.GlobalReplicationGroupAlreadyExistsFault = schema.new({
 })
 
 M.CreateReplicationGroupInput = schema.new({
-    id = id.from(_N, "CreateReplicationGroupInput"),
+    id = id.from(_N, "CreateReplicationGroupMessage"),
     type = "structure",
     members = {
         ReplicationGroupId = schema.new({
@@ -3375,7 +3375,7 @@ M.CreateReplicationGroupInput = schema.new({
             type = "list",
             name = "PreferredCacheClusterAZs",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AvailabilityZone" } } }),
         }),
         NumNodeGroups = schema.new({
             id = id.from(_N, "CreateReplicationGroupInput", "NumNodeGroups"),
@@ -3394,7 +3394,7 @@ M.CreateReplicationGroupInput = schema.new({
             type = "list",
             name = "NodeGroupConfiguration",
             target_id = prelude.Document.id,
-            list_member = M.NodeGroupConfiguration,
+            list_member = schema.new({ type = "structure", target = M.NodeGroupConfiguration, traits = { [traits.XML_NAME] = { name = "NodeGroupConfiguration" } } }),
         }),
         CacheNodeType = schema.new({
             id = id.from(_N, "CreateReplicationGroupInput", "CacheNodeType"),
@@ -3431,28 +3431,28 @@ M.CreateReplicationGroupInput = schema.new({
             type = "list",
             name = "CacheSecurityGroupNames",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "CacheSecurityGroupName" } } }),
         }),
         SecurityGroupIds = schema.new({
             id = id.from(_N, "CreateReplicationGroupInput", "SecurityGroupIds"),
             type = "list",
             name = "SecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SecurityGroupId" } } }),
         }),
         Tags = schema.new({
             id = id.from(_N, "CreateReplicationGroupInput", "Tags"),
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         SnapshotArns = schema.new({
             id = id.from(_N, "CreateReplicationGroupInput", "SnapshotArns"),
             type = "list",
             name = "SnapshotArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SnapshotArn" } } }),
         }),
         SnapshotName = schema.new({
             id = id.from(_N, "CreateReplicationGroupInput", "SnapshotName"),
@@ -3532,7 +3532,7 @@ M.CreateReplicationGroupInput = schema.new({
             type = "list",
             name = "LogDeliveryConfigurations",
             target_id = prelude.Document.id,
-            list_member = M.LogDeliveryConfigurationRequest,
+            list_member = schema.new({ type = "structure", target = M.LogDeliveryConfigurationRequest, traits = { [traits.XML_NAME] = { name = "LogDeliveryConfigurationRequest" } } }),
         }),
         DataTieringEnabled = schema.new({
             id = id.from(_N, "CreateReplicationGroupInput", "DataTieringEnabled"),
@@ -3574,7 +3574,7 @@ M.CreateReplicationGroupInput = schema.new({
 })
 
 M.CreateReplicationGroupOutput = schema.new({
-    id = id.from(_N, "CreateReplicationGroupOutput"),
+    id = id.from(_N, "CreateReplicationGroupResult"),
     type = "structure",
     members = {
         ReplicationGroup = schema.new({
@@ -3752,7 +3752,7 @@ M.CacheUsageLimits = schema.new({
 })
 
 M.CreateServerlessCacheInput = schema.new({
-    id = id.from(_N, "CreateServerlessCacheInput"),
+    id = id.from(_N, "CreateServerlessCacheRequest"),
     type = "structure",
     members = {
         ServerlessCacheName = schema.new({
@@ -3803,21 +3803,21 @@ M.CreateServerlessCacheInput = schema.new({
             type = "list",
             name = "SecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SecurityGroupId" } } }),
         }),
         SnapshotArnsToRestore = schema.new({
             id = id.from(_N, "CreateServerlessCacheInput", "SnapshotArnsToRestore"),
             type = "list",
             name = "SnapshotArnsToRestore",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SnapshotArn" } } }),
         }),
         Tags = schema.new({
             id = id.from(_N, "CreateServerlessCacheInput", "Tags"),
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         UserGroupId = schema.new({
             id = id.from(_N, "CreateServerlessCacheInput", "UserGroupId"),
@@ -3830,7 +3830,7 @@ M.CreateServerlessCacheInput = schema.new({
             type = "list",
             name = "SubnetIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SubnetId" } } }),
         }),
         SnapshotRetentionLimit = schema.new({
             id = id.from(_N, "CreateServerlessCacheInput", "SnapshotRetentionLimit"),
@@ -3917,7 +3917,7 @@ M.ServerlessCache = schema.new({
             type = "list",
             name = "SecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SecurityGroupId" } } }),
         }),
         Endpoint = schema.new({
             id = id.from(_N, "ServerlessCache", "Endpoint"),
@@ -3950,7 +3950,7 @@ M.ServerlessCache = schema.new({
             type = "list",
             name = "SubnetIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SubnetId" } } }),
         }),
         SnapshotRetentionLimit = schema.new({
             id = id.from(_N, "ServerlessCache", "SnapshotRetentionLimit"),
@@ -3974,7 +3974,7 @@ M.ServerlessCache = schema.new({
 })
 
 M.CreateServerlessCacheOutput = schema.new({
-    id = id.from(_N, "CreateServerlessCacheOutput"),
+    id = id.from(_N, "CreateServerlessCacheResponse"),
     type = "structure",
     members = {
         ServerlessCache = schema.new({
@@ -4036,7 +4036,7 @@ M.ServerlessCacheQuotaForCustomerExceededFault = schema.new({
 })
 
 M.CreateServerlessCacheSnapshotInput = schema.new({
-    id = id.from(_N, "CreateServerlessCacheSnapshotInput"),
+    id = id.from(_N, "CreateServerlessCacheSnapshotRequest"),
     type = "structure",
     members = {
         ServerlessCacheSnapshotName = schema.new({
@@ -4068,13 +4068,13 @@ M.CreateServerlessCacheSnapshotInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateServerlessCacheSnapshotOutput = schema.new({
-    id = id.from(_N, "CreateServerlessCacheSnapshotOutput"),
+    id = id.from(_N, "CreateServerlessCacheSnapshotResponse"),
     type = "structure",
     members = {
         ServerlessCacheSnapshot = schema.new({
@@ -4088,7 +4088,7 @@ M.CreateServerlessCacheSnapshotOutput = schema.new({
 })
 
 M.CreateSnapshotInput = schema.new({
-    id = id.from(_N, "CreateSnapshotInput"),
+    id = id.from(_N, "CreateSnapshotMessage"),
     type = "structure",
     members = {
         ReplicationGroupId = schema.new({
@@ -4123,13 +4123,13 @@ M.CreateSnapshotInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateSnapshotOutput = schema.new({
-    id = id.from(_N, "CreateSnapshotOutput"),
+    id = id.from(_N, "CreateSnapshotResult"),
     type = "structure",
     members = {
         Snapshot = schema.new({
@@ -4179,7 +4179,7 @@ M.AuthenticationMode = schema.new({
 })
 
 M.CreateUserInput = schema.new({
-    id = id.from(_N, "CreateUserInput"),
+    id = id.from(_N, "CreateUserMessage"),
     type = "structure",
     members = {
         UserId = schema.new({
@@ -4236,7 +4236,7 @@ M.CreateUserInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         AuthenticationMode = schema.new({
             id = id.from(_N, "CreateUserInput", "AuthenticationMode"),
@@ -4268,7 +4268,7 @@ M.Authentication = schema.new({
 })
 
 M.CreateUserOutput = schema.new({
-    id = id.from(_N, "CreateUserOutput"),
+    id = id.from(_N, "User"),
     type = "structure",
     members = {
         UserId = schema.new({
@@ -4379,7 +4379,7 @@ M.UserQuotaExceededFault = schema.new({
 })
 
 M.CreateUserGroupInput = schema.new({
-    id = id.from(_N, "CreateUserGroupInput"),
+    id = id.from(_N, "CreateUserGroupMessage"),
     type = "structure",
     members = {
         UserGroupId = schema.new({
@@ -4412,7 +4412,7 @@ M.CreateUserGroupInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -4439,7 +4439,7 @@ M.UserGroupPendingChanges = schema.new({
 })
 
 M.CreateUserGroupOutput = schema.new({
-    id = id.from(_N, "CreateUserGroupOutput"),
+    id = id.from(_N, "UserGroup"),
     type = "structure",
     members = {
         UserGroupId = schema.new({
@@ -4552,7 +4552,7 @@ M.UserGroupQuotaExceededFault = schema.new({
 })
 
 M.DecreaseNodeGroupsInGlobalReplicationGroupInput = schema.new({
-    id = id.from(_N, "DecreaseNodeGroupsInGlobalReplicationGroupInput"),
+    id = id.from(_N, "DecreaseNodeGroupsInGlobalReplicationGroupMessage"),
     type = "structure",
     members = {
         GlobalReplicationGroupId = schema.new({
@@ -4578,14 +4578,14 @@ M.DecreaseNodeGroupsInGlobalReplicationGroupInput = schema.new({
             type = "list",
             name = "GlobalNodeGroupsToRemove",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "GlobalNodeGroupId" } } }),
         }),
         GlobalNodeGroupsToRetain = schema.new({
             id = id.from(_N, "DecreaseNodeGroupsInGlobalReplicationGroupInput", "GlobalNodeGroupsToRetain"),
             type = "list",
             name = "GlobalNodeGroupsToRetain",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "GlobalNodeGroupId" } } }),
         }),
         ApplyImmediately = schema.new({
             id = id.from(_N, "DecreaseNodeGroupsInGlobalReplicationGroupInput", "ApplyImmediately"),
@@ -4600,7 +4600,7 @@ M.DecreaseNodeGroupsInGlobalReplicationGroupInput = schema.new({
 })
 
 M.DecreaseNodeGroupsInGlobalReplicationGroupOutput = schema.new({
-    id = id.from(_N, "DecreaseNodeGroupsInGlobalReplicationGroupOutput"),
+    id = id.from(_N, "DecreaseNodeGroupsInGlobalReplicationGroupResult"),
     type = "structure",
     members = {
         GlobalReplicationGroup = schema.new({
@@ -4640,20 +4640,20 @@ M.ConfigureShard = schema.new({
             type = "list",
             name = "PreferredAvailabilityZones",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "PreferredAvailabilityZone" } } }),
         }),
         PreferredOutpostArns = schema.new({
             id = id.from(_N, "ConfigureShard", "PreferredOutpostArns"),
             type = "list",
             name = "PreferredOutpostArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "PreferredOutpostArn" } } }),
         }),
     },
 })
 
 M.DecreaseReplicaCountInput = schema.new({
-    id = id.from(_N, "DecreaseReplicaCountInput"),
+    id = id.from(_N, "DecreaseReplicaCountMessage"),
     type = "structure",
     members = {
         ReplicationGroupId = schema.new({
@@ -4676,7 +4676,7 @@ M.DecreaseReplicaCountInput = schema.new({
             type = "list",
             name = "ReplicaConfiguration",
             target_id = prelude.Document.id,
-            list_member = M.ConfigureShard,
+            list_member = schema.new({ type = "structure", target = M.ConfigureShard, traits = { [traits.XML_NAME] = { name = "ConfigureShard" } } }),
         }),
         ReplicasToRemove = schema.new({
             id = id.from(_N, "DecreaseReplicaCountInput", "ReplicasToRemove"),
@@ -4698,7 +4698,7 @@ M.DecreaseReplicaCountInput = schema.new({
 })
 
 M.DecreaseReplicaCountOutput = schema.new({
-    id = id.from(_N, "DecreaseReplicaCountOutput"),
+    id = id.from(_N, "DecreaseReplicaCountResult"),
     type = "structure",
     members = {
         ReplicationGroup = schema.new({
@@ -4728,7 +4728,7 @@ M.NoOperationFault = schema.new({
 })
 
 M.DeleteCacheClusterInput = schema.new({
-    id = id.from(_N, "DeleteCacheClusterInput"),
+    id = id.from(_N, "DeleteCacheClusterMessage"),
     type = "structure",
     members = {
         CacheClusterId = schema.new({
@@ -4750,7 +4750,7 @@ M.DeleteCacheClusterInput = schema.new({
 })
 
 M.DeleteCacheClusterOutput = schema.new({
-    id = id.from(_N, "DeleteCacheClusterOutput"),
+    id = id.from(_N, "DeleteCacheClusterResult"),
     type = "structure",
     members = {
         CacheCluster = schema.new({
@@ -4764,7 +4764,7 @@ M.DeleteCacheClusterOutput = schema.new({
 })
 
 M.DeleteCacheParameterGroupInput = schema.new({
-    id = id.from(_N, "DeleteCacheParameterGroupInput"),
+    id = id.from(_N, "DeleteCacheParameterGroupMessage"),
     type = "structure",
     members = {
         CacheParameterGroupName = schema.new({
@@ -4780,12 +4780,12 @@ M.DeleteCacheParameterGroupInput = schema.new({
 })
 
 M.DeleteCacheParameterGroupOutput = schema.new({
-    id = id.from(_N, "DeleteCacheParameterGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteCacheSecurityGroupInput = schema.new({
-    id = id.from(_N, "DeleteCacheSecurityGroupInput"),
+    id = id.from(_N, "DeleteCacheSecurityGroupMessage"),
     type = "structure",
     members = {
         CacheSecurityGroupName = schema.new({
@@ -4801,7 +4801,7 @@ M.DeleteCacheSecurityGroupInput = schema.new({
 })
 
 M.DeleteCacheSecurityGroupOutput = schema.new({
-    id = id.from(_N, "DeleteCacheSecurityGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4822,7 +4822,7 @@ M.CacheSubnetGroupInUse = schema.new({
 })
 
 M.DeleteCacheSubnetGroupInput = schema.new({
-    id = id.from(_N, "DeleteCacheSubnetGroupInput"),
+    id = id.from(_N, "DeleteCacheSubnetGroupMessage"),
     type = "structure",
     members = {
         CacheSubnetGroupName = schema.new({
@@ -4838,12 +4838,12 @@ M.DeleteCacheSubnetGroupInput = schema.new({
 })
 
 M.DeleteCacheSubnetGroupOutput = schema.new({
-    id = id.from(_N, "DeleteCacheSubnetGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteGlobalReplicationGroupInput = schema.new({
-    id = id.from(_N, "DeleteGlobalReplicationGroupInput"),
+    id = id.from(_N, "DeleteGlobalReplicationGroupMessage"),
     type = "structure",
     members = {
         GlobalReplicationGroupId = schema.new({
@@ -4868,7 +4868,7 @@ M.DeleteGlobalReplicationGroupInput = schema.new({
 })
 
 M.DeleteGlobalReplicationGroupOutput = schema.new({
-    id = id.from(_N, "DeleteGlobalReplicationGroupOutput"),
+    id = id.from(_N, "DeleteGlobalReplicationGroupResult"),
     type = "structure",
     members = {
         GlobalReplicationGroup = schema.new({
@@ -4882,7 +4882,7 @@ M.DeleteGlobalReplicationGroupOutput = schema.new({
 })
 
 M.DeleteReplicationGroupInput = schema.new({
-    id = id.from(_N, "DeleteReplicationGroupInput"),
+    id = id.from(_N, "DeleteReplicationGroupMessage"),
     type = "structure",
     members = {
         ReplicationGroupId = schema.new({
@@ -4910,7 +4910,7 @@ M.DeleteReplicationGroupInput = schema.new({
 })
 
 M.DeleteReplicationGroupOutput = schema.new({
-    id = id.from(_N, "DeleteReplicationGroupOutput"),
+    id = id.from(_N, "DeleteReplicationGroupResult"),
     type = "structure",
     members = {
         ReplicationGroup = schema.new({
@@ -4924,7 +4924,7 @@ M.DeleteReplicationGroupOutput = schema.new({
 })
 
 M.DeleteServerlessCacheInput = schema.new({
-    id = id.from(_N, "DeleteServerlessCacheInput"),
+    id = id.from(_N, "DeleteServerlessCacheRequest"),
     type = "structure",
     members = {
         ServerlessCacheName = schema.new({
@@ -4946,7 +4946,7 @@ M.DeleteServerlessCacheInput = schema.new({
 })
 
 M.DeleteServerlessCacheOutput = schema.new({
-    id = id.from(_N, "DeleteServerlessCacheOutput"),
+    id = id.from(_N, "DeleteServerlessCacheResponse"),
     type = "structure",
     members = {
         ServerlessCache = schema.new({
@@ -4960,7 +4960,7 @@ M.DeleteServerlessCacheOutput = schema.new({
 })
 
 M.DeleteServerlessCacheSnapshotInput = schema.new({
-    id = id.from(_N, "DeleteServerlessCacheSnapshotInput"),
+    id = id.from(_N, "DeleteServerlessCacheSnapshotRequest"),
     type = "structure",
     members = {
         ServerlessCacheSnapshotName = schema.new({
@@ -4976,7 +4976,7 @@ M.DeleteServerlessCacheSnapshotInput = schema.new({
 })
 
 M.DeleteServerlessCacheSnapshotOutput = schema.new({
-    id = id.from(_N, "DeleteServerlessCacheSnapshotOutput"),
+    id = id.from(_N, "DeleteServerlessCacheSnapshotResponse"),
     type = "structure",
     members = {
         ServerlessCacheSnapshot = schema.new({
@@ -4990,7 +4990,7 @@ M.DeleteServerlessCacheSnapshotOutput = schema.new({
 })
 
 M.DeleteSnapshotInput = schema.new({
-    id = id.from(_N, "DeleteSnapshotInput"),
+    id = id.from(_N, "DeleteSnapshotMessage"),
     type = "structure",
     members = {
         SnapshotName = schema.new({
@@ -5006,7 +5006,7 @@ M.DeleteSnapshotInput = schema.new({
 })
 
 M.DeleteSnapshotOutput = schema.new({
-    id = id.from(_N, "DeleteSnapshotOutput"),
+    id = id.from(_N, "DeleteSnapshotResult"),
     type = "structure",
     members = {
         Snapshot = schema.new({
@@ -5036,7 +5036,7 @@ M.DefaultUserAssociatedToUserGroupFault = schema.new({
 })
 
 M.DeleteUserInput = schema.new({
-    id = id.from(_N, "DeleteUserInput"),
+    id = id.from(_N, "DeleteUserMessage"),
     type = "structure",
     members = {
         UserId = schema.new({
@@ -5052,7 +5052,7 @@ M.DeleteUserInput = schema.new({
 })
 
 M.DeleteUserOutput = schema.new({
-    id = id.from(_N, "DeleteUserOutput"),
+    id = id.from(_N, "User"),
     type = "structure",
     members = {
         UserId = schema.new({
@@ -5131,7 +5131,7 @@ M.InvalidUserStateFault = schema.new({
 })
 
 M.DeleteUserGroupInput = schema.new({
-    id = id.from(_N, "DeleteUserGroupInput"),
+    id = id.from(_N, "DeleteUserGroupMessage"),
     type = "structure",
     members = {
         UserGroupId = schema.new({
@@ -5147,7 +5147,7 @@ M.DeleteUserGroupInput = schema.new({
 })
 
 M.DeleteUserGroupOutput = schema.new({
-    id = id.from(_N, "DeleteUserGroupOutput"),
+    id = id.from(_N, "UserGroup"),
     type = "structure",
     members = {
         UserGroupId = schema.new({
@@ -5212,7 +5212,7 @@ M.DeleteUserGroupOutput = schema.new({
 })
 
 M.DescribeCacheClustersInput = schema.new({
-    id = id.from(_N, "DescribeCacheClustersInput"),
+    id = id.from(_N, "DescribeCacheClustersMessage"),
     type = "structure",
     members = {
         CacheClusterId = schema.new({
@@ -5249,7 +5249,7 @@ M.DescribeCacheClustersInput = schema.new({
 })
 
 M.DescribeCacheClustersOutput = schema.new({
-    id = id.from(_N, "DescribeCacheClustersOutput"),
+    id = id.from(_N, "CacheClusterMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -5263,13 +5263,13 @@ M.DescribeCacheClustersOutput = schema.new({
             type = "list",
             name = "CacheClusters",
             target_id = prelude.Document.id,
-            list_member = M.CacheCluster,
+            list_member = schema.new({ type = "structure", target = M.CacheCluster, traits = { [traits.XML_NAME] = { name = "CacheCluster" } } }),
         }),
     },
 })
 
 M.DescribeCacheEngineVersionsInput = schema.new({
-    id = id.from(_N, "DescribeCacheEngineVersionsInput"),
+    id = id.from(_N, "DescribeCacheEngineVersionsMessage"),
     type = "structure",
     members = {
         Engine = schema.new({
@@ -5349,7 +5349,7 @@ M.CacheEngineVersion = schema.new({
 })
 
 M.DescribeCacheEngineVersionsOutput = schema.new({
-    id = id.from(_N, "DescribeCacheEngineVersionsOutput"),
+    id = id.from(_N, "CacheEngineVersionMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -5363,13 +5363,13 @@ M.DescribeCacheEngineVersionsOutput = schema.new({
             type = "list",
             name = "CacheEngineVersions",
             target_id = prelude.Document.id,
-            list_member = M.CacheEngineVersion,
+            list_member = schema.new({ type = "structure", target = M.CacheEngineVersion, traits = { [traits.XML_NAME] = { name = "CacheEngineVersion" } } }),
         }),
     },
 })
 
 M.DescribeCacheParameterGroupsInput = schema.new({
-    id = id.from(_N, "DescribeCacheParameterGroupsInput"),
+    id = id.from(_N, "DescribeCacheParameterGroupsMessage"),
     type = "structure",
     members = {
         CacheParameterGroupName = schema.new({
@@ -5394,7 +5394,7 @@ M.DescribeCacheParameterGroupsInput = schema.new({
 })
 
 M.DescribeCacheParameterGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeCacheParameterGroupsOutput"),
+    id = id.from(_N, "CacheParameterGroupsMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -5408,13 +5408,13 @@ M.DescribeCacheParameterGroupsOutput = schema.new({
             type = "list",
             name = "CacheParameterGroups",
             target_id = prelude.Document.id,
-            list_member = M.CacheParameterGroup,
+            list_member = schema.new({ type = "structure", target = M.CacheParameterGroup, traits = { [traits.XML_NAME] = { name = "CacheParameterGroup" } } }),
         }),
     },
 })
 
 M.DescribeCacheParametersInput = schema.new({
-    id = id.from(_N, "DescribeCacheParametersInput"),
+    id = id.from(_N, "DescribeCacheParametersMessage"),
     type = "structure",
     members = {
         CacheParameterGroupName = schema.new({
@@ -5517,7 +5517,7 @@ M.CacheNodeTypeSpecificParameter = schema.new({
             type = "list",
             name = "CacheNodeTypeSpecificValues",
             target_id = prelude.Document.id,
-            list_member = M.CacheNodeTypeSpecificValue,
+            list_member = schema.new({ type = "structure", target = M.CacheNodeTypeSpecificValue, traits = { [traits.XML_NAME] = { name = "CacheNodeTypeSpecificValue" } } }),
         }),
         ChangeType = schema.new({
             id = id.from(_N, "CacheNodeTypeSpecificParameter", "ChangeType"),
@@ -5590,7 +5590,7 @@ M.Parameter = schema.new({
 })
 
 M.DescribeCacheParametersOutput = schema.new({
-    id = id.from(_N, "DescribeCacheParametersOutput"),
+    id = id.from(_N, "CacheParameterGroupDetails"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -5604,20 +5604,20 @@ M.DescribeCacheParametersOutput = schema.new({
             type = "list",
             name = "Parameters",
             target_id = prelude.Document.id,
-            list_member = M.Parameter,
+            list_member = schema.new({ type = "structure", target = M.Parameter, traits = { [traits.XML_NAME] = { name = "Parameter" } } }),
         }),
         CacheNodeTypeSpecificParameters = schema.new({
             id = id.from(_N, "DescribeCacheParametersOutput", "CacheNodeTypeSpecificParameters"),
             type = "list",
             name = "CacheNodeTypeSpecificParameters",
             target_id = prelude.Document.id,
-            list_member = M.CacheNodeTypeSpecificParameter,
+            list_member = schema.new({ type = "structure", target = M.CacheNodeTypeSpecificParameter, traits = { [traits.XML_NAME] = { name = "CacheNodeTypeSpecificParameter" } } }),
         }),
     },
 })
 
 M.DescribeCacheSecurityGroupsInput = schema.new({
-    id = id.from(_N, "DescribeCacheSecurityGroupsInput"),
+    id = id.from(_N, "DescribeCacheSecurityGroupsMessage"),
     type = "structure",
     members = {
         CacheSecurityGroupName = schema.new({
@@ -5642,7 +5642,7 @@ M.DescribeCacheSecurityGroupsInput = schema.new({
 })
 
 M.DescribeCacheSecurityGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeCacheSecurityGroupsOutput"),
+    id = id.from(_N, "CacheSecurityGroupMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -5656,13 +5656,13 @@ M.DescribeCacheSecurityGroupsOutput = schema.new({
             type = "list",
             name = "CacheSecurityGroups",
             target_id = prelude.Document.id,
-            list_member = M.CacheSecurityGroup,
+            list_member = schema.new({ type = "structure", target = M.CacheSecurityGroup, traits = { [traits.XML_NAME] = { name = "CacheSecurityGroup" } } }),
         }),
     },
 })
 
 M.DescribeCacheSubnetGroupsInput = schema.new({
-    id = id.from(_N, "DescribeCacheSubnetGroupsInput"),
+    id = id.from(_N, "DescribeCacheSubnetGroupsMessage"),
     type = "structure",
     members = {
         CacheSubnetGroupName = schema.new({
@@ -5687,7 +5687,7 @@ M.DescribeCacheSubnetGroupsInput = schema.new({
 })
 
 M.DescribeCacheSubnetGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeCacheSubnetGroupsOutput"),
+    id = id.from(_N, "CacheSubnetGroupMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -5701,13 +5701,13 @@ M.DescribeCacheSubnetGroupsOutput = schema.new({
             type = "list",
             name = "CacheSubnetGroups",
             target_id = prelude.Document.id,
-            list_member = M.CacheSubnetGroup,
+            list_member = schema.new({ type = "structure", target = M.CacheSubnetGroup, traits = { [traits.XML_NAME] = { name = "CacheSubnetGroup" } } }),
         }),
     },
 })
 
 M.DescribeEngineDefaultParametersInput = schema.new({
-    id = id.from(_N, "DescribeEngineDefaultParametersInput"),
+    id = id.from(_N, "DescribeEngineDefaultParametersMessage"),
     type = "structure",
     members = {
         CacheParameterGroupFamily = schema.new({
@@ -5755,20 +5755,20 @@ M.EngineDefaults = schema.new({
             type = "list",
             name = "Parameters",
             target_id = prelude.Document.id,
-            list_member = M.Parameter,
+            list_member = schema.new({ type = "structure", target = M.Parameter, traits = { [traits.XML_NAME] = { name = "Parameter" } } }),
         }),
         CacheNodeTypeSpecificParameters = schema.new({
             id = id.from(_N, "EngineDefaults", "CacheNodeTypeSpecificParameters"),
             type = "list",
             name = "CacheNodeTypeSpecificParameters",
             target_id = prelude.Document.id,
-            list_member = M.CacheNodeTypeSpecificParameter,
+            list_member = schema.new({ type = "structure", target = M.CacheNodeTypeSpecificParameter, traits = { [traits.XML_NAME] = { name = "CacheNodeTypeSpecificParameter" } } }),
         }),
     },
 })
 
 M.DescribeEngineDefaultParametersOutput = schema.new({
-    id = id.from(_N, "DescribeEngineDefaultParametersOutput"),
+    id = id.from(_N, "DescribeEngineDefaultParametersResult"),
     type = "structure",
     members = {
         EngineDefaults = schema.new({
@@ -5782,7 +5782,7 @@ M.DescribeEngineDefaultParametersOutput = schema.new({
 })
 
 M.DescribeEventsInput = schema.new({
-    id = id.from(_N, "DescribeEventsInput"),
+    id = id.from(_N, "DescribeEventsMessage"),
     type = "structure",
     members = {
         SourceIdentifier = schema.new({
@@ -5862,7 +5862,7 @@ M.Event = schema.new({
 })
 
 M.DescribeEventsOutput = schema.new({
-    id = id.from(_N, "DescribeEventsOutput"),
+    id = id.from(_N, "EventsMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -5876,13 +5876,13 @@ M.DescribeEventsOutput = schema.new({
             type = "list",
             name = "Events",
             target_id = prelude.Document.id,
-            list_member = M.Event,
+            list_member = schema.new({ type = "structure", target = M.Event, traits = { [traits.XML_NAME] = { name = "Event" } } }),
         }),
     },
 })
 
 M.DescribeGlobalReplicationGroupsInput = schema.new({
-    id = id.from(_N, "DescribeGlobalReplicationGroupsInput"),
+    id = id.from(_N, "DescribeGlobalReplicationGroupsMessage"),
     type = "structure",
     members = {
         GlobalReplicationGroupId = schema.new({
@@ -5913,7 +5913,7 @@ M.DescribeGlobalReplicationGroupsInput = schema.new({
 })
 
 M.DescribeGlobalReplicationGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeGlobalReplicationGroupsOutput"),
+    id = id.from(_N, "DescribeGlobalReplicationGroupsResult"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -5927,13 +5927,13 @@ M.DescribeGlobalReplicationGroupsOutput = schema.new({
             type = "list",
             name = "GlobalReplicationGroups",
             target_id = prelude.Document.id,
-            list_member = M.GlobalReplicationGroup,
+            list_member = schema.new({ type = "structure", target = M.GlobalReplicationGroup, traits = { [traits.XML_NAME] = { name = "GlobalReplicationGroup" } } }),
         }),
     },
 })
 
 M.DescribeReplicationGroupsInput = schema.new({
-    id = id.from(_N, "DescribeReplicationGroupsInput"),
+    id = id.from(_N, "DescribeReplicationGroupsMessage"),
     type = "structure",
     members = {
         ReplicationGroupId = schema.new({
@@ -5958,7 +5958,7 @@ M.DescribeReplicationGroupsInput = schema.new({
 })
 
 M.DescribeReplicationGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeReplicationGroupsOutput"),
+    id = id.from(_N, "ReplicationGroupMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -5972,13 +5972,13 @@ M.DescribeReplicationGroupsOutput = schema.new({
             type = "list",
             name = "ReplicationGroups",
             target_id = prelude.Document.id,
-            list_member = M.ReplicationGroup,
+            list_member = schema.new({ type = "structure", target = M.ReplicationGroup, traits = { [traits.XML_NAME] = { name = "ReplicationGroup" } } }),
         }),
     },
 })
 
 M.DescribeReservedCacheNodesInput = schema.new({
-    id = id.from(_N, "DescribeReservedCacheNodesInput"),
+    id = id.from(_N, "DescribeReservedCacheNodesMessage"),
     type = "structure",
     members = {
         ReservedCacheNodeId = schema.new({
@@ -6126,7 +6126,7 @@ M.ReservedCacheNode = schema.new({
             type = "list",
             name = "RecurringCharges",
             target_id = prelude.Document.id,
-            list_member = M.RecurringCharge,
+            list_member = schema.new({ type = "structure", target = M.RecurringCharge, traits = { [traits.XML_NAME] = { name = "RecurringCharge" } } }),
         }),
         ReservationARN = schema.new({
             id = id.from(_N, "ReservedCacheNode", "ReservationARN"),
@@ -6138,7 +6138,7 @@ M.ReservedCacheNode = schema.new({
 })
 
 M.DescribeReservedCacheNodesOutput = schema.new({
-    id = id.from(_N, "DescribeReservedCacheNodesOutput"),
+    id = id.from(_N, "ReservedCacheNodeMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -6152,13 +6152,13 @@ M.DescribeReservedCacheNodesOutput = schema.new({
             type = "list",
             name = "ReservedCacheNodes",
             target_id = prelude.Document.id,
-            list_member = M.ReservedCacheNode,
+            list_member = schema.new({ type = "structure", target = M.ReservedCacheNode, traits = { [traits.XML_NAME] = { name = "ReservedCacheNode" } } }),
         }),
     },
 })
 
 M.DescribeReservedCacheNodesOfferingsInput = schema.new({
-    id = id.from(_N, "DescribeReservedCacheNodesOfferingsInput"),
+    id = id.from(_N, "DescribeReservedCacheNodesOfferingsMessage"),
     type = "structure",
     members = {
         ReservedCacheNodesOfferingId = schema.new({
@@ -6257,13 +6257,13 @@ M.ReservedCacheNodesOffering = schema.new({
             type = "list",
             name = "RecurringCharges",
             target_id = prelude.Document.id,
-            list_member = M.RecurringCharge,
+            list_member = schema.new({ type = "structure", target = M.RecurringCharge, traits = { [traits.XML_NAME] = { name = "RecurringCharge" } } }),
         }),
     },
 })
 
 M.DescribeReservedCacheNodesOfferingsOutput = schema.new({
-    id = id.from(_N, "DescribeReservedCacheNodesOfferingsOutput"),
+    id = id.from(_N, "ReservedCacheNodesOfferingMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -6277,7 +6277,7 @@ M.DescribeReservedCacheNodesOfferingsOutput = schema.new({
             type = "list",
             name = "ReservedCacheNodesOfferings",
             target_id = prelude.Document.id,
-            list_member = M.ReservedCacheNodesOffering,
+            list_member = schema.new({ type = "structure", target = M.ReservedCacheNodesOffering, traits = { [traits.XML_NAME] = { name = "ReservedCacheNodesOffering" } } }),
         }),
     },
 })
@@ -6299,7 +6299,7 @@ M.ReservedCacheNodesOfferingNotFoundFault = schema.new({
 })
 
 M.DescribeServerlessCachesInput = schema.new({
-    id = id.from(_N, "DescribeServerlessCachesInput"),
+    id = id.from(_N, "DescribeServerlessCachesRequest"),
     type = "structure",
     members = {
         ServerlessCacheName = schema.new({
@@ -6324,7 +6324,7 @@ M.DescribeServerlessCachesInput = schema.new({
 })
 
 M.DescribeServerlessCachesOutput = schema.new({
-    id = id.from(_N, "DescribeServerlessCachesOutput"),
+    id = id.from(_N, "DescribeServerlessCachesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6344,7 +6344,7 @@ M.DescribeServerlessCachesOutput = schema.new({
 })
 
 M.DescribeServerlessCacheSnapshotsInput = schema.new({
-    id = id.from(_N, "DescribeServerlessCacheSnapshotsInput"),
+    id = id.from(_N, "DescribeServerlessCacheSnapshotsRequest"),
     type = "structure",
     members = {
         ServerlessCacheName = schema.new({
@@ -6381,7 +6381,7 @@ M.DescribeServerlessCacheSnapshotsInput = schema.new({
 })
 
 M.DescribeServerlessCacheSnapshotsOutput = schema.new({
-    id = id.from(_N, "DescribeServerlessCacheSnapshotsOutput"),
+    id = id.from(_N, "DescribeServerlessCacheSnapshotsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6395,13 +6395,13 @@ M.DescribeServerlessCacheSnapshotsOutput = schema.new({
             type = "list",
             name = "ServerlessCacheSnapshots",
             target_id = prelude.Document.id,
-            list_member = M.ServerlessCacheSnapshot,
+            list_member = schema.new({ type = "structure", target = M.ServerlessCacheSnapshot, traits = { [traits.XML_NAME] = { name = "ServerlessCacheSnapshot" } } }),
         }),
     },
 })
 
 M.DescribeServiceUpdatesInput = schema.new({
-    id = id.from(_N, "DescribeServiceUpdatesInput"),
+    id = id.from(_N, "DescribeServiceUpdatesMessage"),
     type = "structure",
     members = {
         ServiceUpdateName = schema.new({
@@ -6512,7 +6512,7 @@ M.ServiceUpdate = schema.new({
 })
 
 M.DescribeServiceUpdatesOutput = schema.new({
-    id = id.from(_N, "DescribeServiceUpdatesOutput"),
+    id = id.from(_N, "ServiceUpdatesMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -6526,13 +6526,13 @@ M.DescribeServiceUpdatesOutput = schema.new({
             type = "list",
             name = "ServiceUpdates",
             target_id = prelude.Document.id,
-            list_member = M.ServiceUpdate,
+            list_member = schema.new({ type = "structure", target = M.ServiceUpdate, traits = { [traits.XML_NAME] = { name = "ServiceUpdate" } } }),
         }),
     },
 })
 
 M.DescribeSnapshotsInput = schema.new({
-    id = id.from(_N, "DescribeSnapshotsInput"),
+    id = id.from(_N, "DescribeSnapshotsMessage"),
     type = "structure",
     members = {
         ReplicationGroupId = schema.new({
@@ -6581,7 +6581,7 @@ M.DescribeSnapshotsInput = schema.new({
 })
 
 M.DescribeSnapshotsOutput = schema.new({
-    id = id.from(_N, "DescribeSnapshotsOutput"),
+    id = id.from(_N, "DescribeSnapshotsListMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -6595,7 +6595,7 @@ M.DescribeSnapshotsOutput = schema.new({
             type = "list",
             name = "Snapshots",
             target_id = prelude.Document.id,
-            list_member = M.Snapshot,
+            list_member = schema.new({ type = "structure", target = M.Snapshot, traits = { [traits.XML_NAME] = { name = "Snapshot" } } }),
         }),
     },
 })
@@ -6620,7 +6620,7 @@ M.TimeRangeFilter = schema.new({
 })
 
 M.DescribeUpdateActionsInput = schema.new({
-    id = id.from(_N, "DescribeUpdateActionsInput"),
+    id = id.from(_N, "DescribeUpdateActionsMessage"),
     type = "structure",
     members = {
         ServiceUpdateName = schema.new({
@@ -6822,7 +6822,7 @@ M.NodeGroupUpdateStatus = schema.new({
             type = "list",
             name = "NodeGroupMemberUpdateStatus",
             target_id = prelude.Document.id,
-            list_member = M.NodeGroupMemberUpdateStatus,
+            list_member = schema.new({ type = "structure", target = M.NodeGroupMemberUpdateStatus, traits = { [traits.XML_NAME] = { name = "NodeGroupMemberUpdateStatus" } } }),
         }),
     },
 })
@@ -6914,14 +6914,14 @@ M.UpdateAction = schema.new({
             type = "list",
             name = "NodeGroupUpdateStatus",
             target_id = prelude.Document.id,
-            list_member = M.NodeGroupUpdateStatus,
+            list_member = schema.new({ type = "structure", target = M.NodeGroupUpdateStatus, traits = { [traits.XML_NAME] = { name = "NodeGroupUpdateStatus" } } }),
         }),
         CacheNodeUpdateStatus = schema.new({
             id = id.from(_N, "UpdateAction", "CacheNodeUpdateStatus"),
             type = "list",
             name = "CacheNodeUpdateStatus",
             target_id = prelude.Document.id,
-            list_member = M.CacheNodeUpdateStatus,
+            list_member = schema.new({ type = "structure", target = M.CacheNodeUpdateStatus, traits = { [traits.XML_NAME] = { name = "CacheNodeUpdateStatus" } } }),
         }),
         EstimatedUpdateTime = schema.new({
             id = id.from(_N, "UpdateAction", "EstimatedUpdateTime"),
@@ -6939,7 +6939,7 @@ M.UpdateAction = schema.new({
 })
 
 M.DescribeUpdateActionsOutput = schema.new({
-    id = id.from(_N, "DescribeUpdateActionsOutput"),
+    id = id.from(_N, "UpdateActionsMessage"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -6953,13 +6953,13 @@ M.DescribeUpdateActionsOutput = schema.new({
             type = "list",
             name = "UpdateActions",
             target_id = prelude.Document.id,
-            list_member = M.UpdateAction,
+            list_member = schema.new({ type = "structure", target = M.UpdateAction, traits = { [traits.XML_NAME] = { name = "UpdateAction" } } }),
         }),
     },
 })
 
 M.DescribeUserGroupsInput = schema.new({
-    id = id.from(_N, "DescribeUserGroupsInput"),
+    id = id.from(_N, "DescribeUserGroupsMessage"),
     type = "structure",
     members = {
         UserGroupId = schema.new({
@@ -7049,7 +7049,7 @@ M.UserGroup = schema.new({
 })
 
 M.DescribeUserGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeUserGroupsOutput"),
+    id = id.from(_N, "DescribeUserGroupsResult"),
     type = "structure",
     members = {
         UserGroups = schema.new({
@@ -7095,7 +7095,7 @@ M.Filter = schema.new({
 })
 
 M.DescribeUsersInput = schema.new({
-    id = id.from(_N, "DescribeUsersInput"),
+    id = id.from(_N, "DescribeUsersMessage"),
     type = "structure",
     members = {
         Engine = schema.new({
@@ -7196,7 +7196,7 @@ M.User = schema.new({
 })
 
 M.DescribeUsersOutput = schema.new({
-    id = id.from(_N, "DescribeUsersOutput"),
+    id = id.from(_N, "DescribeUsersResult"),
     type = "structure",
     members = {
         Users = schema.new({
@@ -7216,7 +7216,7 @@ M.DescribeUsersOutput = schema.new({
 })
 
 M.DisassociateGlobalReplicationGroupInput = schema.new({
-    id = id.from(_N, "DisassociateGlobalReplicationGroupInput"),
+    id = id.from(_N, "DisassociateGlobalReplicationGroupMessage"),
     type = "structure",
     members = {
         GlobalReplicationGroupId = schema.new({
@@ -7250,7 +7250,7 @@ M.DisassociateGlobalReplicationGroupInput = schema.new({
 })
 
 M.DisassociateGlobalReplicationGroupOutput = schema.new({
-    id = id.from(_N, "DisassociateGlobalReplicationGroupOutput"),
+    id = id.from(_N, "DisassociateGlobalReplicationGroupResult"),
     type = "structure",
     members = {
         GlobalReplicationGroup = schema.new({
@@ -7264,7 +7264,7 @@ M.DisassociateGlobalReplicationGroupOutput = schema.new({
 })
 
 M.ExportServerlessCacheSnapshotInput = schema.new({
-    id = id.from(_N, "ExportServerlessCacheSnapshotInput"),
+    id = id.from(_N, "ExportServerlessCacheSnapshotRequest"),
     type = "structure",
     members = {
         ServerlessCacheSnapshotName = schema.new({
@@ -7289,7 +7289,7 @@ M.ExportServerlessCacheSnapshotInput = schema.new({
 })
 
 M.ExportServerlessCacheSnapshotOutput = schema.new({
-    id = id.from(_N, "ExportServerlessCacheSnapshotOutput"),
+    id = id.from(_N, "ExportServerlessCacheSnapshotResponse"),
     type = "structure",
     members = {
         ServerlessCacheSnapshot = schema.new({
@@ -7303,7 +7303,7 @@ M.ExportServerlessCacheSnapshotOutput = schema.new({
 })
 
 M.FailoverGlobalReplicationGroupInput = schema.new({
-    id = id.from(_N, "FailoverGlobalReplicationGroupInput"),
+    id = id.from(_N, "FailoverGlobalReplicationGroupMessage"),
     type = "structure",
     members = {
         GlobalReplicationGroupId = schema.new({
@@ -7337,7 +7337,7 @@ M.FailoverGlobalReplicationGroupInput = schema.new({
 })
 
 M.FailoverGlobalReplicationGroupOutput = schema.new({
-    id = id.from(_N, "FailoverGlobalReplicationGroupOutput"),
+    id = id.from(_N, "FailoverGlobalReplicationGroupResult"),
     type = "structure",
     members = {
         GlobalReplicationGroup = schema.new({
@@ -7365,7 +7365,7 @@ M.ReshardingConfiguration = schema.new({
             type = "list",
             name = "PreferredAvailabilityZones",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "AvailabilityZone" } } }),
         }),
     },
 })
@@ -7397,7 +7397,7 @@ M.RegionalConfiguration = schema.new({
             type = "list",
             name = "ReshardingConfiguration",
             target_id = prelude.Document.id,
-            list_member = M.ReshardingConfiguration,
+            list_member = schema.new({ type = "structure", target = M.ReshardingConfiguration, traits = { [traits.XML_NAME] = { name = "ReshardingConfiguration" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -7406,7 +7406,7 @@ M.RegionalConfiguration = schema.new({
 })
 
 M.IncreaseNodeGroupsInGlobalReplicationGroupInput = schema.new({
-    id = id.from(_N, "IncreaseNodeGroupsInGlobalReplicationGroupInput"),
+    id = id.from(_N, "IncreaseNodeGroupsInGlobalReplicationGroupMessage"),
     type = "structure",
     members = {
         GlobalReplicationGroupId = schema.new({
@@ -7432,7 +7432,7 @@ M.IncreaseNodeGroupsInGlobalReplicationGroupInput = schema.new({
             type = "list",
             name = "RegionalConfigurations",
             target_id = prelude.Document.id,
-            list_member = M.RegionalConfiguration,
+            list_member = schema.new({ type = "structure", target = M.RegionalConfiguration, traits = { [traits.XML_NAME] = { name = "RegionalConfiguration" } } }),
         }),
         ApplyImmediately = schema.new({
             id = id.from(_N, "IncreaseNodeGroupsInGlobalReplicationGroupInput", "ApplyImmediately"),
@@ -7447,7 +7447,7 @@ M.IncreaseNodeGroupsInGlobalReplicationGroupInput = schema.new({
 })
 
 M.IncreaseNodeGroupsInGlobalReplicationGroupOutput = schema.new({
-    id = id.from(_N, "IncreaseNodeGroupsInGlobalReplicationGroupOutput"),
+    id = id.from(_N, "IncreaseNodeGroupsInGlobalReplicationGroupResult"),
     type = "structure",
     members = {
         GlobalReplicationGroup = schema.new({
@@ -7461,7 +7461,7 @@ M.IncreaseNodeGroupsInGlobalReplicationGroupOutput = schema.new({
 })
 
 M.IncreaseReplicaCountInput = schema.new({
-    id = id.from(_N, "IncreaseReplicaCountInput"),
+    id = id.from(_N, "IncreaseReplicaCountMessage"),
     type = "structure",
     members = {
         ReplicationGroupId = schema.new({
@@ -7484,7 +7484,7 @@ M.IncreaseReplicaCountInput = schema.new({
             type = "list",
             name = "ReplicaConfiguration",
             target_id = prelude.Document.id,
-            list_member = M.ConfigureShard,
+            list_member = schema.new({ type = "structure", target = M.ConfigureShard, traits = { [traits.XML_NAME] = { name = "ConfigureShard" } } }),
         }),
         ApplyImmediately = schema.new({
             id = id.from(_N, "IncreaseReplicaCountInput", "ApplyImmediately"),
@@ -7499,7 +7499,7 @@ M.IncreaseReplicaCountInput = schema.new({
 })
 
 M.IncreaseReplicaCountOutput = schema.new({
-    id = id.from(_N, "IncreaseReplicaCountOutput"),
+    id = id.from(_N, "IncreaseReplicaCountResult"),
     type = "structure",
     members = {
         ReplicationGroup = schema.new({
@@ -7529,7 +7529,7 @@ M.InvalidKMSKeyFault = schema.new({
 })
 
 M.ListAllowedNodeTypeModificationsInput = schema.new({
-    id = id.from(_N, "ListAllowedNodeTypeModificationsInput"),
+    id = id.from(_N, "ListAllowedNodeTypeModificationsMessage"),
     type = "structure",
     members = {
         CacheClusterId = schema.new({
@@ -7548,7 +7548,7 @@ M.ListAllowedNodeTypeModificationsInput = schema.new({
 })
 
 M.ListAllowedNodeTypeModificationsOutput = schema.new({
-    id = id.from(_N, "ListAllowedNodeTypeModificationsOutput"),
+    id = id.from(_N, "AllowedNodeTypeModificationsMessage"),
     type = "structure",
     members = {
         ScaleUpModifications = schema.new({
@@ -7569,7 +7569,7 @@ M.ListAllowedNodeTypeModificationsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceMessage"),
     type = "structure",
     members = {
         ResourceName = schema.new({
@@ -7585,7 +7585,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "TagListMessage"),
     type = "structure",
     members = {
         TagList = schema.new({
@@ -7593,13 +7593,13 @@ M.ListTagsForResourceOutput = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.ModifyCacheClusterInput = schema.new({
-    id = id.from(_N, "ModifyCacheClusterInput"),
+    id = id.from(_N, "ModifyCacheClusterMessage"),
     type = "structure",
     members = {
         CacheClusterId = schema.new({
@@ -7622,7 +7622,7 @@ M.ModifyCacheClusterInput = schema.new({
             type = "list",
             name = "CacheNodeIdsToRemove",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "CacheNodeId" } } }),
         }),
         AZMode = schema.new({
             id = id.from(_N, "ModifyCacheClusterInput", "AZMode"),
@@ -7635,21 +7635,21 @@ M.ModifyCacheClusterInput = schema.new({
             type = "list",
             name = "NewAvailabilityZones",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "PreferredAvailabilityZone" } } }),
         }),
         CacheSecurityGroupNames = schema.new({
             id = id.from(_N, "ModifyCacheClusterInput", "CacheSecurityGroupNames"),
             type = "list",
             name = "CacheSecurityGroupNames",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "CacheSecurityGroupName" } } }),
         }),
         SecurityGroupIds = schema.new({
             id = id.from(_N, "ModifyCacheClusterInput", "SecurityGroupIds"),
             type = "list",
             name = "SecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SecurityGroupId" } } }),
         }),
         PreferredMaintenanceWindow = schema.new({
             id = id.from(_N, "ModifyCacheClusterInput", "PreferredMaintenanceWindow"),
@@ -7734,7 +7734,7 @@ M.ModifyCacheClusterInput = schema.new({
             type = "list",
             name = "LogDeliveryConfigurations",
             target_id = prelude.Document.id,
-            list_member = M.LogDeliveryConfigurationRequest,
+            list_member = schema.new({ type = "structure", target = M.LogDeliveryConfigurationRequest, traits = { [traits.XML_NAME] = { name = "LogDeliveryConfigurationRequest" } } }),
         }),
         IpDiscovery = schema.new({
             id = id.from(_N, "ModifyCacheClusterInput", "IpDiscovery"),
@@ -7753,7 +7753,7 @@ M.ModifyCacheClusterInput = schema.new({
 })
 
 M.ModifyCacheClusterOutput = schema.new({
-    id = id.from(_N, "ModifyCacheClusterOutput"),
+    id = id.from(_N, "ModifyCacheClusterResult"),
     type = "structure",
     members = {
         CacheCluster = schema.new({
@@ -7786,7 +7786,7 @@ M.ParameterNameValue = schema.new({
 })
 
 M.ModifyCacheParameterGroupInput = schema.new({
-    id = id.from(_N, "ModifyCacheParameterGroupInput"),
+    id = id.from(_N, "ModifyCacheParameterGroupMessage"),
     type = "structure",
     members = {
         CacheParameterGroupName = schema.new({
@@ -7803,7 +7803,7 @@ M.ModifyCacheParameterGroupInput = schema.new({
             type = "list",
             name = "ParameterNameValues",
             target_id = prelude.Document.id,
-            list_member = M.ParameterNameValue,
+            list_member = schema.new({ type = "structure", target = M.ParameterNameValue, traits = { [traits.XML_NAME] = { name = "ParameterNameValue" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -7812,7 +7812,7 @@ M.ModifyCacheParameterGroupInput = schema.new({
 })
 
 M.ModifyCacheParameterGroupOutput = schema.new({
-    id = id.from(_N, "ModifyCacheParameterGroupOutput"),
+    id = id.from(_N, "CacheParameterGroupNameMessage"),
     type = "structure",
     members = {
         CacheParameterGroupName = schema.new({
@@ -7825,7 +7825,7 @@ M.ModifyCacheParameterGroupOutput = schema.new({
 })
 
 M.ModifyCacheSubnetGroupInput = schema.new({
-    id = id.from(_N, "ModifyCacheSubnetGroupInput"),
+    id = id.from(_N, "ModifyCacheSubnetGroupMessage"),
     type = "structure",
     members = {
         CacheSubnetGroupName = schema.new({
@@ -7848,13 +7848,13 @@ M.ModifyCacheSubnetGroupInput = schema.new({
             type = "list",
             name = "SubnetIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SubnetIdentifier" } } }),
         }),
     },
 })
 
 M.ModifyCacheSubnetGroupOutput = schema.new({
-    id = id.from(_N, "ModifyCacheSubnetGroupOutput"),
+    id = id.from(_N, "ModifyCacheSubnetGroupResult"),
     type = "structure",
     members = {
         CacheSubnetGroup = schema.new({
@@ -7884,7 +7884,7 @@ M.SubnetInUse = schema.new({
 })
 
 M.ModifyGlobalReplicationGroupInput = schema.new({
-    id = id.from(_N, "ModifyGlobalReplicationGroupInput"),
+    id = id.from(_N, "ModifyGlobalReplicationGroupMessage"),
     type = "structure",
     members = {
         GlobalReplicationGroupId = schema.new({
@@ -7945,7 +7945,7 @@ M.ModifyGlobalReplicationGroupInput = schema.new({
 })
 
 M.ModifyGlobalReplicationGroupOutput = schema.new({
-    id = id.from(_N, "ModifyGlobalReplicationGroupOutput"),
+    id = id.from(_N, "ModifyGlobalReplicationGroupResult"),
     type = "structure",
     members = {
         GlobalReplicationGroup = schema.new({
@@ -7959,7 +7959,7 @@ M.ModifyGlobalReplicationGroupOutput = schema.new({
 })
 
 M.ModifyReplicationGroupInput = schema.new({
-    id = id.from(_N, "ModifyReplicationGroupInput"),
+    id = id.from(_N, "ModifyReplicationGroupMessage"),
     type = "structure",
     members = {
         ReplicationGroupId = schema.new({
@@ -8012,14 +8012,14 @@ M.ModifyReplicationGroupInput = schema.new({
             type = "list",
             name = "CacheSecurityGroupNames",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "CacheSecurityGroupName" } } }),
         }),
         SecurityGroupIds = schema.new({
             id = id.from(_N, "ModifyReplicationGroupInput", "SecurityGroupIds"),
             type = "list",
             name = "SecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SecurityGroupId" } } }),
         }),
         PreferredMaintenanceWindow = schema.new({
             id = id.from(_N, "ModifyReplicationGroupInput", "PreferredMaintenanceWindow"),
@@ -8124,7 +8124,7 @@ M.ModifyReplicationGroupInput = schema.new({
             type = "list",
             name = "LogDeliveryConfigurations",
             target_id = prelude.Document.id,
-            list_member = M.LogDeliveryConfigurationRequest,
+            list_member = schema.new({ type = "structure", target = M.LogDeliveryConfigurationRequest, traits = { [traits.XML_NAME] = { name = "LogDeliveryConfigurationRequest" } } }),
         }),
         IpDiscovery = schema.new({
             id = id.from(_N, "ModifyReplicationGroupInput", "IpDiscovery"),
@@ -8154,7 +8154,7 @@ M.ModifyReplicationGroupInput = schema.new({
 })
 
 M.ModifyReplicationGroupOutput = schema.new({
-    id = id.from(_N, "ModifyReplicationGroupOutput"),
+    id = id.from(_N, "ModifyReplicationGroupResult"),
     type = "structure",
     members = {
         ReplicationGroup = schema.new({
@@ -8168,7 +8168,7 @@ M.ModifyReplicationGroupOutput = schema.new({
 })
 
 M.ModifyReplicationGroupShardConfigurationInput = schema.new({
-    id = id.from(_N, "ModifyReplicationGroupShardConfigurationInput"),
+    id = id.from(_N, "ModifyReplicationGroupShardConfigurationMessage"),
     type = "structure",
     members = {
         ReplicationGroupId = schema.new({
@@ -8203,27 +8203,27 @@ M.ModifyReplicationGroupShardConfigurationInput = schema.new({
             type = "list",
             name = "ReshardingConfiguration",
             target_id = prelude.Document.id,
-            list_member = M.ReshardingConfiguration,
+            list_member = schema.new({ type = "structure", target = M.ReshardingConfiguration, traits = { [traits.XML_NAME] = { name = "ReshardingConfiguration" } } }),
         }),
         NodeGroupsToRemove = schema.new({
             id = id.from(_N, "ModifyReplicationGroupShardConfigurationInput", "NodeGroupsToRemove"),
             type = "list",
             name = "NodeGroupsToRemove",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "NodeGroupToRemove" } } }),
         }),
         NodeGroupsToRetain = schema.new({
             id = id.from(_N, "ModifyReplicationGroupShardConfigurationInput", "NodeGroupsToRetain"),
             type = "list",
             name = "NodeGroupsToRetain",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "NodeGroupToRetain" } } }),
         }),
     },
 })
 
 M.ModifyReplicationGroupShardConfigurationOutput = schema.new({
-    id = id.from(_N, "ModifyReplicationGroupShardConfigurationOutput"),
+    id = id.from(_N, "ModifyReplicationGroupShardConfigurationResult"),
     type = "structure",
     members = {
         ReplicationGroup = schema.new({
@@ -8237,7 +8237,7 @@ M.ModifyReplicationGroupShardConfigurationOutput = schema.new({
 })
 
 M.ModifyServerlessCacheInput = schema.new({
-    id = id.from(_N, "ModifyServerlessCacheInput"),
+    id = id.from(_N, "ModifyServerlessCacheRequest"),
     type = "structure",
     members = {
         ServerlessCacheName = schema.new({
@@ -8279,7 +8279,7 @@ M.ModifyServerlessCacheInput = schema.new({
             type = "list",
             name = "SecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SecurityGroupId" } } }),
         }),
         SnapshotRetentionLimit = schema.new({
             id = id.from(_N, "ModifyServerlessCacheInput", "SnapshotRetentionLimit"),
@@ -8309,7 +8309,7 @@ M.ModifyServerlessCacheInput = schema.new({
 })
 
 M.ModifyServerlessCacheOutput = schema.new({
-    id = id.from(_N, "ModifyServerlessCacheOutput"),
+    id = id.from(_N, "ModifyServerlessCacheResponse"),
     type = "structure",
     members = {
         ServerlessCache = schema.new({
@@ -8323,7 +8323,7 @@ M.ModifyServerlessCacheOutput = schema.new({
 })
 
 M.ModifyUserInput = schema.new({
-    id = id.from(_N, "ModifyUserInput"),
+    id = id.from(_N, "ModifyUserMessage"),
     type = "structure",
     members = {
         UserId = schema.new({
@@ -8377,7 +8377,7 @@ M.ModifyUserInput = schema.new({
 })
 
 M.ModifyUserOutput = schema.new({
-    id = id.from(_N, "ModifyUserOutput"),
+    id = id.from(_N, "User"),
     type = "structure",
     members = {
         UserId = schema.new({
@@ -8440,7 +8440,7 @@ M.ModifyUserOutput = schema.new({
 })
 
 M.ModifyUserGroupInput = schema.new({
-    id = id.from(_N, "ModifyUserGroupInput"),
+    id = id.from(_N, "ModifyUserGroupMessage"),
     type = "structure",
     members = {
         UserGroupId = schema.new({
@@ -8476,7 +8476,7 @@ M.ModifyUserGroupInput = schema.new({
 })
 
 M.ModifyUserGroupOutput = schema.new({
-    id = id.from(_N, "ModifyUserGroupOutput"),
+    id = id.from(_N, "UserGroup"),
     type = "structure",
     members = {
         UserGroupId = schema.new({
@@ -8541,7 +8541,7 @@ M.ModifyUserGroupOutput = schema.new({
 })
 
 M.PurchaseReservedCacheNodesOfferingInput = schema.new({
-    id = id.from(_N, "PurchaseReservedCacheNodesOfferingInput"),
+    id = id.from(_N, "PurchaseReservedCacheNodesOfferingMessage"),
     type = "structure",
     members = {
         ReservedCacheNodesOfferingId = schema.new({
@@ -8570,13 +8570,13 @@ M.PurchaseReservedCacheNodesOfferingInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.PurchaseReservedCacheNodesOfferingOutput = schema.new({
-    id = id.from(_N, "PurchaseReservedCacheNodesOfferingOutput"),
+    id = id.from(_N, "PurchaseReservedCacheNodesOfferingResult"),
     type = "structure",
     members = {
         ReservedCacheNode = schema.new({
@@ -8622,7 +8622,7 @@ M.ReservedCacheNodeQuotaExceededFault = schema.new({
 })
 
 M.RebalanceSlotsInGlobalReplicationGroupInput = schema.new({
-    id = id.from(_N, "RebalanceSlotsInGlobalReplicationGroupInput"),
+    id = id.from(_N, "RebalanceSlotsInGlobalReplicationGroupMessage"),
     type = "structure",
     members = {
         GlobalReplicationGroupId = schema.new({
@@ -8647,7 +8647,7 @@ M.RebalanceSlotsInGlobalReplicationGroupInput = schema.new({
 })
 
 M.RebalanceSlotsInGlobalReplicationGroupOutput = schema.new({
-    id = id.from(_N, "RebalanceSlotsInGlobalReplicationGroupOutput"),
+    id = id.from(_N, "RebalanceSlotsInGlobalReplicationGroupResult"),
     type = "structure",
     members = {
         GlobalReplicationGroup = schema.new({
@@ -8661,7 +8661,7 @@ M.RebalanceSlotsInGlobalReplicationGroupOutput = schema.new({
 })
 
 M.RebootCacheClusterInput = schema.new({
-    id = id.from(_N, "RebootCacheClusterInput"),
+    id = id.from(_N, "RebootCacheClusterMessage"),
     type = "structure",
     members = {
         CacheClusterId = schema.new({
@@ -8678,7 +8678,7 @@ M.RebootCacheClusterInput = schema.new({
             type = "list",
             name = "CacheNodeIdsToReboot",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "CacheNodeId" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -8687,7 +8687,7 @@ M.RebootCacheClusterInput = schema.new({
 })
 
 M.RebootCacheClusterOutput = schema.new({
-    id = id.from(_N, "RebootCacheClusterOutput"),
+    id = id.from(_N, "RebootCacheClusterResult"),
     type = "structure",
     members = {
         CacheCluster = schema.new({
@@ -8701,7 +8701,7 @@ M.RebootCacheClusterOutput = schema.new({
 })
 
 M.RemoveTagsFromResourceInput = schema.new({
-    id = id.from(_N, "RemoveTagsFromResourceInput"),
+    id = id.from(_N, "RemoveTagsFromResourceMessage"),
     type = "structure",
     members = {
         ResourceName = schema.new({
@@ -8727,7 +8727,7 @@ M.RemoveTagsFromResourceInput = schema.new({
 })
 
 M.RemoveTagsFromResourceOutput = schema.new({
-    id = id.from(_N, "RemoveTagsFromResourceOutput"),
+    id = id.from(_N, "TagListMessage"),
     type = "structure",
     members = {
         TagList = schema.new({
@@ -8735,7 +8735,7 @@ M.RemoveTagsFromResourceOutput = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -8757,7 +8757,7 @@ M.TagNotFoundFault = schema.new({
 })
 
 M.ResetCacheParameterGroupInput = schema.new({
-    id = id.from(_N, "ResetCacheParameterGroupInput"),
+    id = id.from(_N, "ResetCacheParameterGroupMessage"),
     type = "structure",
     members = {
         CacheParameterGroupName = schema.new({
@@ -8780,13 +8780,13 @@ M.ResetCacheParameterGroupInput = schema.new({
             type = "list",
             name = "ParameterNameValues",
             target_id = prelude.Document.id,
-            list_member = M.ParameterNameValue,
+            list_member = schema.new({ type = "structure", target = M.ParameterNameValue, traits = { [traits.XML_NAME] = { name = "ParameterNameValue" } } }),
         }),
     },
 })
 
 M.ResetCacheParameterGroupOutput = schema.new({
-    id = id.from(_N, "ResetCacheParameterGroupOutput"),
+    id = id.from(_N, "CacheParameterGroupNameMessage"),
     type = "structure",
     members = {
         CacheParameterGroupName = schema.new({
@@ -8815,7 +8815,7 @@ M.AuthorizationNotFoundFault = schema.new({
 })
 
 M.RevokeCacheSecurityGroupIngressInput = schema.new({
-    id = id.from(_N, "RevokeCacheSecurityGroupIngressInput"),
+    id = id.from(_N, "RevokeCacheSecurityGroupIngressMessage"),
     type = "structure",
     members = {
         CacheSecurityGroupName = schema.new({
@@ -8849,7 +8849,7 @@ M.RevokeCacheSecurityGroupIngressInput = schema.new({
 })
 
 M.RevokeCacheSecurityGroupIngressOutput = schema.new({
-    id = id.from(_N, "RevokeCacheSecurityGroupIngressOutput"),
+    id = id.from(_N, "RevokeCacheSecurityGroupIngressResult"),
     type = "structure",
     members = {
         CacheSecurityGroup = schema.new({
@@ -8898,7 +8898,7 @@ M.CustomerNodeEndpoint = schema.new({
 })
 
 M.StartMigrationInput = schema.new({
-    id = id.from(_N, "StartMigrationInput"),
+    id = id.from(_N, "StartMigrationMessage"),
     type = "structure",
     members = {
         ReplicationGroupId = schema.new({
@@ -8924,7 +8924,7 @@ M.StartMigrationInput = schema.new({
 })
 
 M.StartMigrationOutput = schema.new({
-    id = id.from(_N, "StartMigrationOutput"),
+    id = id.from(_N, "StartMigrationResponse"),
     type = "structure",
     members = {
         ReplicationGroup = schema.new({
@@ -8970,7 +8970,7 @@ M.NodeGroupNotFoundFault = schema.new({
 })
 
 M.TestFailoverInput = schema.new({
-    id = id.from(_N, "TestFailoverInput"),
+    id = id.from(_N, "TestFailoverMessage"),
     type = "structure",
     members = {
         ReplicationGroupId = schema.new({
@@ -9011,7 +9011,7 @@ M.TestFailoverNotAvailableFault = schema.new({
 })
 
 M.TestFailoverOutput = schema.new({
-    id = id.from(_N, "TestFailoverOutput"),
+    id = id.from(_N, "TestFailoverResult"),
     type = "structure",
     members = {
         ReplicationGroup = schema.new({
@@ -9025,7 +9025,7 @@ M.TestFailoverOutput = schema.new({
 })
 
 M.TestMigrationInput = schema.new({
-    id = id.from(_N, "TestMigrationInput"),
+    id = id.from(_N, "TestMigrationMessage"),
     type = "structure",
     members = {
         ReplicationGroupId = schema.new({
@@ -9051,7 +9051,7 @@ M.TestMigrationInput = schema.new({
 })
 
 M.TestMigrationOutput = schema.new({
-    id = id.from(_N, "TestMigrationOutput"),
+    id = id.from(_N, "TestMigrationResponse"),
     type = "structure",
     members = {
         ReplicationGroup = schema.new({
@@ -9063,5 +9063,19 @@ M.TestMigrationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

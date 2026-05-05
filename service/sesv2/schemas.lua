@@ -248,7 +248,7 @@ M.BatchGetMetricDataQuery = schema.new({
 })
 
 M.BatchGetMetricDataInput = schema.new({
-    id = id.from(_N, "BatchGetMetricDataInput"),
+    id = id.from(_N, "BatchGetMetricDataRequest"),
     type = "structure",
     members = {
         Queries = schema.new({
@@ -317,7 +317,7 @@ M.MetricDataResult = schema.new({
 })
 
 M.BatchGetMetricDataOutput = schema.new({
-    id = id.from(_N, "BatchGetMetricDataOutput"),
+    id = id.from(_N, "BatchGetMetricDataResponse"),
     type = "structure",
     members = {
         Results = schema.new({
@@ -732,7 +732,7 @@ M.BulkEmailEntryResult = schema.new({
 })
 
 M.CancelExportJobInput = schema.new({
-    id = id.from(_N, "CancelExportJobInput"),
+    id = id.from(_N, "CancelExportJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -749,7 +749,7 @@ M.CancelExportJobInput = schema.new({
 })
 
 M.CancelExportJobOutput = schema.new({
-    id = id.from(_N, "CancelExportJobOutput"),
+    id = id.from(_N, "CancelExportJobResponse"),
     type = "structure",
 })
 
@@ -1201,7 +1201,7 @@ M.VdmOptions = schema.new({
 })
 
 M.CreateConfigurationSetInput = schema.new({
-    id = id.from(_N, "CreateConfigurationSetInput"),
+    id = id.from(_N, "CreateConfigurationSetRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -1273,7 +1273,7 @@ M.CreateConfigurationSetInput = schema.new({
 })
 
 M.CreateConfigurationSetOutput = schema.new({
-    id = id.from(_N, "CreateConfigurationSetOutput"),
+    id = id.from(_N, "CreateConfigurationSetResponse"),
     type = "structure",
 })
 
@@ -1422,7 +1422,7 @@ M.EventDestinationDefinition = schema.new({
 })
 
 M.CreateConfigurationSetEventDestinationInput = schema.new({
-    id = id.from(_N, "CreateConfigurationSetEventDestinationInput"),
+    id = id.from(_N, "CreateConfigurationSetEventDestinationRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -1458,12 +1458,12 @@ M.CreateConfigurationSetEventDestinationInput = schema.new({
 })
 
 M.CreateConfigurationSetEventDestinationOutput = schema.new({
-    id = id.from(_N, "CreateConfigurationSetEventDestinationOutput"),
+    id = id.from(_N, "CreateConfigurationSetEventDestinationResponse"),
     type = "structure",
 })
 
 M.CreateContactInput = schema.new({
-    id = id.from(_N, "CreateContactInput"),
+    id = id.from(_N, "CreateContactRequest"),
     type = "structure",
     members = {
         ContactListName = schema.new({
@@ -1511,7 +1511,7 @@ M.CreateContactInput = schema.new({
 })
 
 M.CreateContactOutput = schema.new({
-    id = id.from(_N, "CreateContactOutput"),
+    id = id.from(_N, "CreateContactResponse"),
     type = "structure",
 })
 
@@ -1556,7 +1556,7 @@ M.Topic = schema.new({
 })
 
 M.CreateContactListInput = schema.new({
-    id = id.from(_N, "CreateContactListInput"),
+    id = id.from(_N, "CreateContactListRequest"),
     type = "structure",
     members = {
         ContactListName = schema.new({
@@ -1592,12 +1592,12 @@ M.CreateContactListInput = schema.new({
 })
 
 M.CreateContactListOutput = schema.new({
-    id = id.from(_N, "CreateContactListOutput"),
+    id = id.from(_N, "CreateContactListResponse"),
     type = "structure",
 })
 
 M.CreateCustomVerificationEmailTemplateInput = schema.new({
-    id = id.from(_N, "CreateCustomVerificationEmailTemplateInput"),
+    id = id.from(_N, "CreateCustomVerificationEmailTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -1665,12 +1665,12 @@ M.CreateCustomVerificationEmailTemplateInput = schema.new({
 })
 
 M.CreateCustomVerificationEmailTemplateOutput = schema.new({
-    id = id.from(_N, "CreateCustomVerificationEmailTemplateOutput"),
+    id = id.from(_N, "CreateCustomVerificationEmailTemplateResponse"),
     type = "structure",
 })
 
 M.CreateDedicatedIpPoolInput = schema.new({
-    id = id.from(_N, "CreateDedicatedIpPoolInput"),
+    id = id.from(_N, "CreateDedicatedIpPoolRequest"),
     type = "structure",
     members = {
         PoolName = schema.new({
@@ -1699,7 +1699,7 @@ M.CreateDedicatedIpPoolInput = schema.new({
 })
 
 M.CreateDedicatedIpPoolOutput = schema.new({
-    id = id.from(_N, "CreateDedicatedIpPoolOutput"),
+    id = id.from(_N, "CreateDedicatedIpPoolResponse"),
     type = "structure",
 })
 
@@ -1789,7 +1789,7 @@ M.EmailContent = schema.new({
 })
 
 M.CreateDeliverabilityTestReportInput = schema.new({
-    id = id.from(_N, "CreateDeliverabilityTestReportInput"),
+    id = id.from(_N, "CreateDeliverabilityTestReportRequest"),
     type = "structure",
     members = {
         ReportName = schema.new({
@@ -1828,7 +1828,7 @@ M.CreateDeliverabilityTestReportInput = schema.new({
 })
 
 M.CreateDeliverabilityTestReportOutput = schema.new({
-    id = id.from(_N, "CreateDeliverabilityTestReportOutput"),
+    id = id.from(_N, "CreateDeliverabilityTestReportResponse"),
     type = "structure",
     members = {
         ReportId = schema.new({
@@ -1932,7 +1932,7 @@ M.DkimSigningAttributes = schema.new({
 })
 
 M.CreateEmailIdentityInput = schema.new({
-    id = id.from(_N, "CreateEmailIdentityInput"),
+    id = id.from(_N, "CreateEmailIdentityRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -2027,7 +2027,7 @@ M.DkimAttributes = schema.new({
 })
 
 M.CreateEmailIdentityOutput = schema.new({
-    id = id.from(_N, "CreateEmailIdentityOutput"),
+    id = id.from(_N, "CreateEmailIdentityResponse"),
     type = "structure",
     members = {
         IdentityType = schema.new({
@@ -2056,7 +2056,7 @@ M.CreateEmailIdentityOutput = schema.new({
 })
 
 M.CreateEmailIdentityPolicyInput = schema.new({
-    id = id.from(_N, "CreateEmailIdentityPolicyInput"),
+    id = id.from(_N, "CreateEmailIdentityPolicyRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -2092,12 +2092,12 @@ M.CreateEmailIdentityPolicyInput = schema.new({
 })
 
 M.CreateEmailIdentityPolicyOutput = schema.new({
-    id = id.from(_N, "CreateEmailIdentityPolicyOutput"),
+    id = id.from(_N, "CreateEmailIdentityPolicyResponse"),
     type = "structure",
 })
 
 M.CreateEmailTemplateInput = schema.new({
-    id = id.from(_N, "CreateEmailTemplateInput"),
+    id = id.from(_N, "CreateEmailTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -2130,7 +2130,7 @@ M.CreateEmailTemplateInput = schema.new({
 })
 
 M.CreateEmailTemplateOutput = schema.new({
-    id = id.from(_N, "CreateEmailTemplateOutput"),
+    id = id.from(_N, "CreateEmailTemplateResponse"),
     type = "structure",
 })
 
@@ -2257,7 +2257,7 @@ M.MetricsDataSource = schema.new({
             name = "Dimensions",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -2346,7 +2346,7 @@ M.ExportDestination = schema.new({
 })
 
 M.CreateExportJobInput = schema.new({
-    id = id.from(_N, "CreateExportJobInput"),
+    id = id.from(_N, "CreateExportJobRequest"),
     type = "structure",
     members = {
         ExportDataSource = schema.new({
@@ -2373,7 +2373,7 @@ M.CreateExportJobInput = schema.new({
 })
 
 M.CreateExportJobOutput = schema.new({
-    id = id.from(_N, "CreateExportJobOutput"),
+    id = id.from(_N, "CreateExportJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2448,7 +2448,7 @@ M.ImportDestination = schema.new({
 })
 
 M.CreateImportJobInput = schema.new({
-    id = id.from(_N, "CreateImportJobInput"),
+    id = id.from(_N, "CreateImportJobRequest"),
     type = "structure",
     members = {
         ImportDestination = schema.new({
@@ -2475,7 +2475,7 @@ M.CreateImportJobInput = schema.new({
 })
 
 M.CreateImportJobOutput = schema.new({
-    id = id.from(_N, "CreateImportJobOutput"),
+    id = id.from(_N, "CreateImportJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2521,7 +2521,7 @@ M.Details = schema.new({
 })
 
 M.CreateMultiRegionEndpointInput = schema.new({
-    id = id.from(_N, "CreateMultiRegionEndpointInput"),
+    id = id.from(_N, "CreateMultiRegionEndpointRequest"),
     type = "structure",
     members = {
         EndpointName = schema.new({
@@ -2554,7 +2554,7 @@ M.CreateMultiRegionEndpointInput = schema.new({
 })
 
 M.CreateMultiRegionEndpointOutput = schema.new({
-    id = id.from(_N, "CreateMultiRegionEndpointOutput"),
+    id = id.from(_N, "CreateMultiRegionEndpointResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -2573,7 +2573,7 @@ M.CreateMultiRegionEndpointOutput = schema.new({
 })
 
 M.CreateTenantInput = schema.new({
-    id = id.from(_N, "CreateTenantInput"),
+    id = id.from(_N, "CreateTenantRequest"),
     type = "structure",
     members = {
         TenantName = schema.new({
@@ -2596,7 +2596,7 @@ M.CreateTenantInput = schema.new({
 })
 
 M.CreateTenantOutput = schema.new({
-    id = id.from(_N, "CreateTenantOutput"),
+    id = id.from(_N, "CreateTenantResponse"),
     type = "structure",
     members = {
         TenantName = schema.new({
@@ -2640,7 +2640,7 @@ M.CreateTenantOutput = schema.new({
 })
 
 M.CreateTenantResourceAssociationInput = schema.new({
-    id = id.from(_N, "CreateTenantResourceAssociationInput"),
+    id = id.from(_N, "CreateTenantResourceAssociationRequest"),
     type = "structure",
     members = {
         TenantName = schema.new({
@@ -2665,7 +2665,7 @@ M.CreateTenantResourceAssociationInput = schema.new({
 })
 
 M.CreateTenantResourceAssociationOutput = schema.new({
-    id = id.from(_N, "CreateTenantResourceAssociationOutput"),
+    id = id.from(_N, "CreateTenantResourceAssociationResponse"),
     type = "structure",
 })
 
@@ -2880,7 +2880,7 @@ M.DedicatedIpPool = schema.new({
 })
 
 M.DeleteConfigurationSetInput = schema.new({
-    id = id.from(_N, "DeleteConfigurationSetInput"),
+    id = id.from(_N, "DeleteConfigurationSetRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -2897,12 +2897,12 @@ M.DeleteConfigurationSetInput = schema.new({
 })
 
 M.DeleteConfigurationSetOutput = schema.new({
-    id = id.from(_N, "DeleteConfigurationSetOutput"),
+    id = id.from(_N, "DeleteConfigurationSetResponse"),
     type = "structure",
 })
 
 M.DeleteConfigurationSetEventDestinationInput = schema.new({
-    id = id.from(_N, "DeleteConfigurationSetEventDestinationInput"),
+    id = id.from(_N, "DeleteConfigurationSetEventDestinationRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -2929,12 +2929,12 @@ M.DeleteConfigurationSetEventDestinationInput = schema.new({
 })
 
 M.DeleteConfigurationSetEventDestinationOutput = schema.new({
-    id = id.from(_N, "DeleteConfigurationSetEventDestinationOutput"),
+    id = id.from(_N, "DeleteConfigurationSetEventDestinationResponse"),
     type = "structure",
 })
 
 M.DeleteContactInput = schema.new({
-    id = id.from(_N, "DeleteContactInput"),
+    id = id.from(_N, "DeleteContactRequest"),
     type = "structure",
     members = {
         ContactListName = schema.new({
@@ -2961,12 +2961,12 @@ M.DeleteContactInput = schema.new({
 })
 
 M.DeleteContactOutput = schema.new({
-    id = id.from(_N, "DeleteContactOutput"),
+    id = id.from(_N, "DeleteContactResponse"),
     type = "structure",
 })
 
 M.DeleteContactListInput = schema.new({
-    id = id.from(_N, "DeleteContactListInput"),
+    id = id.from(_N, "DeleteContactListRequest"),
     type = "structure",
     members = {
         ContactListName = schema.new({
@@ -2983,12 +2983,12 @@ M.DeleteContactListInput = schema.new({
 })
 
 M.DeleteContactListOutput = schema.new({
-    id = id.from(_N, "DeleteContactListOutput"),
+    id = id.from(_N, "DeleteContactListResponse"),
     type = "structure",
 })
 
 M.DeleteCustomVerificationEmailTemplateInput = schema.new({
-    id = id.from(_N, "DeleteCustomVerificationEmailTemplateInput"),
+    id = id.from(_N, "DeleteCustomVerificationEmailTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -3005,12 +3005,12 @@ M.DeleteCustomVerificationEmailTemplateInput = schema.new({
 })
 
 M.DeleteCustomVerificationEmailTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteCustomVerificationEmailTemplateOutput"),
+    id = id.from(_N, "DeleteCustomVerificationEmailTemplateResponse"),
     type = "structure",
 })
 
 M.DeleteDedicatedIpPoolInput = schema.new({
-    id = id.from(_N, "DeleteDedicatedIpPoolInput"),
+    id = id.from(_N, "DeleteDedicatedIpPoolRequest"),
     type = "structure",
     members = {
         PoolName = schema.new({
@@ -3027,12 +3027,12 @@ M.DeleteDedicatedIpPoolInput = schema.new({
 })
 
 M.DeleteDedicatedIpPoolOutput = schema.new({
-    id = id.from(_N, "DeleteDedicatedIpPoolOutput"),
+    id = id.from(_N, "DeleteDedicatedIpPoolResponse"),
     type = "structure",
 })
 
 M.DeleteEmailIdentityInput = schema.new({
-    id = id.from(_N, "DeleteEmailIdentityInput"),
+    id = id.from(_N, "DeleteEmailIdentityRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -3049,12 +3049,12 @@ M.DeleteEmailIdentityInput = schema.new({
 })
 
 M.DeleteEmailIdentityOutput = schema.new({
-    id = id.from(_N, "DeleteEmailIdentityOutput"),
+    id = id.from(_N, "DeleteEmailIdentityResponse"),
     type = "structure",
 })
 
 M.DeleteEmailIdentityPolicyInput = schema.new({
-    id = id.from(_N, "DeleteEmailIdentityPolicyInput"),
+    id = id.from(_N, "DeleteEmailIdentityPolicyRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -3081,12 +3081,12 @@ M.DeleteEmailIdentityPolicyInput = schema.new({
 })
 
 M.DeleteEmailIdentityPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteEmailIdentityPolicyOutput"),
+    id = id.from(_N, "DeleteEmailIdentityPolicyResponse"),
     type = "structure",
 })
 
 M.DeleteEmailTemplateInput = schema.new({
-    id = id.from(_N, "DeleteEmailTemplateInput"),
+    id = id.from(_N, "DeleteEmailTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -3103,12 +3103,12 @@ M.DeleteEmailTemplateInput = schema.new({
 })
 
 M.DeleteEmailTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteEmailTemplateOutput"),
+    id = id.from(_N, "DeleteEmailTemplateResponse"),
     type = "structure",
 })
 
 M.DeleteMultiRegionEndpointInput = schema.new({
-    id = id.from(_N, "DeleteMultiRegionEndpointInput"),
+    id = id.from(_N, "DeleteMultiRegionEndpointRequest"),
     type = "structure",
     members = {
         EndpointName = schema.new({
@@ -3125,7 +3125,7 @@ M.DeleteMultiRegionEndpointInput = schema.new({
 })
 
 M.DeleteMultiRegionEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteMultiRegionEndpointOutput"),
+    id = id.from(_N, "DeleteMultiRegionEndpointResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -3138,7 +3138,7 @@ M.DeleteMultiRegionEndpointOutput = schema.new({
 })
 
 M.DeleteSuppressedDestinationInput = schema.new({
-    id = id.from(_N, "DeleteSuppressedDestinationInput"),
+    id = id.from(_N, "DeleteSuppressedDestinationRequest"),
     type = "structure",
     members = {
         EmailAddress = schema.new({
@@ -3155,12 +3155,12 @@ M.DeleteSuppressedDestinationInput = schema.new({
 })
 
 M.DeleteSuppressedDestinationOutput = schema.new({
-    id = id.from(_N, "DeleteSuppressedDestinationOutput"),
+    id = id.from(_N, "DeleteSuppressedDestinationResponse"),
     type = "structure",
 })
 
 M.DeleteTenantInput = schema.new({
-    id = id.from(_N, "DeleteTenantInput"),
+    id = id.from(_N, "DeleteTenantRequest"),
     type = "structure",
     members = {
         TenantName = schema.new({
@@ -3176,12 +3176,12 @@ M.DeleteTenantInput = schema.new({
 })
 
 M.DeleteTenantOutput = schema.new({
-    id = id.from(_N, "DeleteTenantOutput"),
+    id = id.from(_N, "DeleteTenantResponse"),
     type = "structure",
 })
 
 M.DeleteTenantResourceAssociationInput = schema.new({
-    id = id.from(_N, "DeleteTenantResourceAssociationInput"),
+    id = id.from(_N, "DeleteTenantResourceAssociationRequest"),
     type = "structure",
     members = {
         TenantName = schema.new({
@@ -3206,7 +3206,7 @@ M.DeleteTenantResourceAssociationInput = schema.new({
 })
 
 M.DeleteTenantResourceAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteTenantResourceAssociationOutput"),
+    id = id.from(_N, "DeleteTenantResourceAssociationResponse"),
     type = "structure",
 })
 
@@ -3695,7 +3695,7 @@ M.FailureInfo = schema.new({
 })
 
 M.GetAccountInput = schema.new({
-    id = id.from(_N, "GetAccountInput"),
+    id = id.from(_N, "GetAccountRequest"),
     type = "structure",
 })
 
@@ -3815,7 +3815,7 @@ M.VdmAttributes = schema.new({
 })
 
 M.GetAccountOutput = schema.new({
-    id = id.from(_N, "GetAccountOutput"),
+    id = id.from(_N, "GetAccountResponse"),
     type = "structure",
     members = {
         DedicatedIpAutoWarmupEnabled = schema.new({
@@ -3883,7 +3883,7 @@ M.GetAccountOutput = schema.new({
 })
 
 M.GetBlacklistReportsInput = schema.new({
-    id = id.from(_N, "GetBlacklistReportsInput"),
+    id = id.from(_N, "GetBlacklistReportsRequest"),
     type = "structure",
     members = {
         BlacklistItemNames = schema.new({
@@ -3901,7 +3901,7 @@ M.GetBlacklistReportsInput = schema.new({
 })
 
 M.GetBlacklistReportsOutput = schema.new({
-    id = id.from(_N, "GetBlacklistReportsOutput"),
+    id = id.from(_N, "GetBlacklistReportsResponse"),
     type = "structure",
     members = {
         BlacklistReport = schema.new({
@@ -3910,7 +3910,7 @@ M.GetBlacklistReportsOutput = schema.new({
             name = "BlacklistReport",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.BlacklistEntry }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -3919,7 +3919,7 @@ M.GetBlacklistReportsOutput = schema.new({
 })
 
 M.GetConfigurationSetInput = schema.new({
-    id = id.from(_N, "GetConfigurationSetInput"),
+    id = id.from(_N, "GetConfigurationSetRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -3936,7 +3936,7 @@ M.GetConfigurationSetInput = schema.new({
 })
 
 M.GetConfigurationSetOutput = schema.new({
-    id = id.from(_N, "GetConfigurationSetOutput"),
+    id = id.from(_N, "GetConfigurationSetResponse"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -4005,7 +4005,7 @@ M.GetConfigurationSetOutput = schema.new({
 })
 
 M.GetConfigurationSetEventDestinationsInput = schema.new({
-    id = id.from(_N, "GetConfigurationSetEventDestinationsInput"),
+    id = id.from(_N, "GetConfigurationSetEventDestinationsRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -4022,7 +4022,7 @@ M.GetConfigurationSetEventDestinationsInput = schema.new({
 })
 
 M.GetConfigurationSetEventDestinationsOutput = schema.new({
-    id = id.from(_N, "GetConfigurationSetEventDestinationsOutput"),
+    id = id.from(_N, "GetConfigurationSetEventDestinationsResponse"),
     type = "structure",
     members = {
         EventDestinations = schema.new({
@@ -4036,7 +4036,7 @@ M.GetConfigurationSetEventDestinationsOutput = schema.new({
 })
 
 M.GetContactInput = schema.new({
-    id = id.from(_N, "GetContactInput"),
+    id = id.from(_N, "GetContactRequest"),
     type = "structure",
     members = {
         ContactListName = schema.new({
@@ -4063,7 +4063,7 @@ M.GetContactInput = schema.new({
 })
 
 M.GetContactOutput = schema.new({
-    id = id.from(_N, "GetContactOutput"),
+    id = id.from(_N, "GetContactResponse"),
     type = "structure",
     members = {
         ContactListName = schema.new({
@@ -4123,7 +4123,7 @@ M.GetContactOutput = schema.new({
 })
 
 M.GetContactListInput = schema.new({
-    id = id.from(_N, "GetContactListInput"),
+    id = id.from(_N, "GetContactListRequest"),
     type = "structure",
     members = {
         ContactListName = schema.new({
@@ -4140,7 +4140,7 @@ M.GetContactListInput = schema.new({
 })
 
 M.GetContactListOutput = schema.new({
-    id = id.from(_N, "GetContactListOutput"),
+    id = id.from(_N, "GetContactListResponse"),
     type = "structure",
     members = {
         ContactListName = schema.new({
@@ -4185,7 +4185,7 @@ M.GetContactListOutput = schema.new({
 })
 
 M.GetCustomVerificationEmailTemplateInput = schema.new({
-    id = id.from(_N, "GetCustomVerificationEmailTemplateInput"),
+    id = id.from(_N, "GetCustomVerificationEmailTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -4202,7 +4202,7 @@ M.GetCustomVerificationEmailTemplateInput = schema.new({
 })
 
 M.GetCustomVerificationEmailTemplateOutput = schema.new({
-    id = id.from(_N, "GetCustomVerificationEmailTemplateOutput"),
+    id = id.from(_N, "GetCustomVerificationEmailTemplateResponse"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -4252,7 +4252,7 @@ M.GetCustomVerificationEmailTemplateOutput = schema.new({
 })
 
 M.GetDedicatedIpInput = schema.new({
-    id = id.from(_N, "GetDedicatedIpInput"),
+    id = id.from(_N, "GetDedicatedIpRequest"),
     type = "structure",
     members = {
         Ip = schema.new({
@@ -4269,7 +4269,7 @@ M.GetDedicatedIpInput = schema.new({
 })
 
 M.GetDedicatedIpOutput = schema.new({
-    id = id.from(_N, "GetDedicatedIpOutput"),
+    id = id.from(_N, "GetDedicatedIpResponse"),
     type = "structure",
     members = {
         DedicatedIp = schema.new({
@@ -4283,7 +4283,7 @@ M.GetDedicatedIpOutput = schema.new({
 })
 
 M.GetDedicatedIpPoolInput = schema.new({
-    id = id.from(_N, "GetDedicatedIpPoolInput"),
+    id = id.from(_N, "GetDedicatedIpPoolRequest"),
     type = "structure",
     members = {
         PoolName = schema.new({
@@ -4300,7 +4300,7 @@ M.GetDedicatedIpPoolInput = schema.new({
 })
 
 M.GetDedicatedIpPoolOutput = schema.new({
-    id = id.from(_N, "GetDedicatedIpPoolOutput"),
+    id = id.from(_N, "GetDedicatedIpPoolResponse"),
     type = "structure",
     members = {
         DedicatedIpPool = schema.new({
@@ -4314,7 +4314,7 @@ M.GetDedicatedIpPoolOutput = schema.new({
 })
 
 M.GetDedicatedIpsInput = schema.new({
-    id = id.from(_N, "GetDedicatedIpsInput"),
+    id = id.from(_N, "GetDedicatedIpsRequest"),
     type = "structure",
     members = {
         PoolName = schema.new({
@@ -4348,7 +4348,7 @@ M.GetDedicatedIpsInput = schema.new({
 })
 
 M.GetDedicatedIpsOutput = schema.new({
-    id = id.from(_N, "GetDedicatedIpsOutput"),
+    id = id.from(_N, "GetDedicatedIpsResponse"),
     type = "structure",
     members = {
         DedicatedIps = schema.new({
@@ -4368,12 +4368,12 @@ M.GetDedicatedIpsOutput = schema.new({
 })
 
 M.GetDeliverabilityDashboardOptionsInput = schema.new({
-    id = id.from(_N, "GetDeliverabilityDashboardOptionsInput"),
+    id = id.from(_N, "GetDeliverabilityDashboardOptionsRequest"),
     type = "structure",
 })
 
 M.GetDeliverabilityDashboardOptionsOutput = schema.new({
-    id = id.from(_N, "GetDeliverabilityDashboardOptionsOutput"),
+    id = id.from(_N, "GetDeliverabilityDashboardOptionsResponse"),
     type = "structure",
     members = {
         DashboardEnabled = schema.new({
@@ -4416,7 +4416,7 @@ M.GetDeliverabilityDashboardOptionsOutput = schema.new({
 })
 
 M.GetDeliverabilityTestReportInput = schema.new({
-    id = id.from(_N, "GetDeliverabilityTestReportInput"),
+    id = id.from(_N, "GetDeliverabilityTestReportRequest"),
     type = "structure",
     members = {
         ReportId = schema.new({
@@ -4490,7 +4490,7 @@ M.IspPlacement = schema.new({
 })
 
 M.GetDeliverabilityTestReportOutput = schema.new({
-    id = id.from(_N, "GetDeliverabilityTestReportOutput"),
+    id = id.from(_N, "GetDeliverabilityTestReportResponse"),
     type = "structure",
     members = {
         DeliverabilityTestReport = schema.new({
@@ -4540,7 +4540,7 @@ M.GetDeliverabilityTestReportOutput = schema.new({
 })
 
 M.GetDomainDeliverabilityCampaignInput = schema.new({
-    id = id.from(_N, "GetDomainDeliverabilityCampaignInput"),
+    id = id.from(_N, "GetDomainDeliverabilityCampaignRequest"),
     type = "structure",
     members = {
         CampaignId = schema.new({
@@ -4557,7 +4557,7 @@ M.GetDomainDeliverabilityCampaignInput = schema.new({
 })
 
 M.GetDomainDeliverabilityCampaignOutput = schema.new({
-    id = id.from(_N, "GetDomainDeliverabilityCampaignOutput"),
+    id = id.from(_N, "GetDomainDeliverabilityCampaignResponse"),
     type = "structure",
     members = {
         DomainDeliverabilityCampaign = schema.new({
@@ -4574,7 +4574,7 @@ M.GetDomainDeliverabilityCampaignOutput = schema.new({
 })
 
 M.GetDomainStatisticsReportInput = schema.new({
-    id = id.from(_N, "GetDomainStatisticsReportInput"),
+    id = id.from(_N, "GetDomainStatisticsReportRequest"),
     type = "structure",
     members = {
         Domain = schema.new({
@@ -4638,7 +4638,7 @@ M.OverallVolume = schema.new({
 })
 
 M.GetDomainStatisticsReportOutput = schema.new({
-    id = id.from(_N, "GetDomainStatisticsReportOutput"),
+    id = id.from(_N, "GetDomainStatisticsReportResponse"),
     type = "structure",
     members = {
         OverallVolume = schema.new({
@@ -4665,7 +4665,7 @@ M.GetDomainStatisticsReportOutput = schema.new({
 })
 
 M.GetEmailAddressInsightsInput = schema.new({
-    id = id.from(_N, "GetEmailAddressInsightsInput"),
+    id = id.from(_N, "GetEmailAddressInsightsRequest"),
     type = "structure",
     members = {
         EmailAddress = schema.new({
@@ -4702,7 +4702,7 @@ M.MailboxValidation = schema.new({
 })
 
 M.GetEmailAddressInsightsOutput = schema.new({
-    id = id.from(_N, "GetEmailAddressInsightsOutput"),
+    id = id.from(_N, "GetEmailAddressInsightsResponse"),
     type = "structure",
     members = {
         MailboxValidation = schema.new({
@@ -4716,7 +4716,7 @@ M.GetEmailAddressInsightsOutput = schema.new({
 })
 
 M.GetEmailIdentityInput = schema.new({
-    id = id.from(_N, "GetEmailIdentityInput"),
+    id = id.from(_N, "GetEmailIdentityRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -4827,7 +4827,7 @@ M.VerificationInfo = schema.new({
 })
 
 M.GetEmailIdentityOutput = schema.new({
-    id = id.from(_N, "GetEmailIdentityOutput"),
+    id = id.from(_N, "GetEmailIdentityResponse"),
     type = "structure",
     members = {
         IdentityType = schema.new({
@@ -4906,7 +4906,7 @@ M.GetEmailIdentityOutput = schema.new({
 })
 
 M.GetEmailIdentityPoliciesInput = schema.new({
-    id = id.from(_N, "GetEmailIdentityPoliciesInput"),
+    id = id.from(_N, "GetEmailIdentityPoliciesRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -4923,7 +4923,7 @@ M.GetEmailIdentityPoliciesInput = schema.new({
 })
 
 M.GetEmailIdentityPoliciesOutput = schema.new({
-    id = id.from(_N, "GetEmailIdentityPoliciesOutput"),
+    id = id.from(_N, "GetEmailIdentityPoliciesResponse"),
     type = "structure",
     members = {
         Policies = schema.new({
@@ -4938,7 +4938,7 @@ M.GetEmailIdentityPoliciesOutput = schema.new({
 })
 
 M.GetEmailTemplateInput = schema.new({
-    id = id.from(_N, "GetEmailTemplateInput"),
+    id = id.from(_N, "GetEmailTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -4955,7 +4955,7 @@ M.GetEmailTemplateInput = schema.new({
 })
 
 M.GetEmailTemplateOutput = schema.new({
-    id = id.from(_N, "GetEmailTemplateOutput"),
+    id = id.from(_N, "GetEmailTemplateResponse"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -4988,7 +4988,7 @@ M.GetEmailTemplateOutput = schema.new({
 })
 
 M.GetExportJobInput = schema.new({
-    id = id.from(_N, "GetExportJobInput"),
+    id = id.from(_N, "GetExportJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -5005,7 +5005,7 @@ M.GetExportJobInput = schema.new({
 })
 
 M.GetExportJobOutput = schema.new({
-    id = id.from(_N, "GetExportJobOutput"),
+    id = id.from(_N, "GetExportJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -5070,7 +5070,7 @@ M.GetExportJobOutput = schema.new({
 })
 
 M.GetImportJobInput = schema.new({
-    id = id.from(_N, "GetImportJobInput"),
+    id = id.from(_N, "GetImportJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -5087,7 +5087,7 @@ M.GetImportJobInput = schema.new({
 })
 
 M.GetImportJobOutput = schema.new({
-    id = id.from(_N, "GetImportJobOutput"),
+    id = id.from(_N, "GetImportJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -5151,7 +5151,7 @@ M.GetImportJobOutput = schema.new({
 })
 
 M.GetMessageInsightsInput = schema.new({
-    id = id.from(_N, "GetMessageInsightsInput"),
+    id = id.from(_N, "GetMessageInsightsRequest"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -5168,7 +5168,7 @@ M.GetMessageInsightsInput = schema.new({
 })
 
 M.GetMessageInsightsOutput = schema.new({
-    id = id.from(_N, "GetMessageInsightsOutput"),
+    id = id.from(_N, "GetMessageInsightsResponse"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -5207,7 +5207,7 @@ M.GetMessageInsightsOutput = schema.new({
 })
 
 M.GetMultiRegionEndpointInput = schema.new({
-    id = id.from(_N, "GetMultiRegionEndpointInput"),
+    id = id.from(_N, "GetMultiRegionEndpointRequest"),
     type = "structure",
     members = {
         EndpointName = schema.new({
@@ -5240,7 +5240,7 @@ M.Route = schema.new({
 })
 
 M.GetMultiRegionEndpointOutput = schema.new({
-    id = id.from(_N, "GetMultiRegionEndpointOutput"),
+    id = id.from(_N, "GetMultiRegionEndpointResponse"),
     type = "structure",
     members = {
         EndpointName = schema.new({
@@ -5284,7 +5284,7 @@ M.GetMultiRegionEndpointOutput = schema.new({
 })
 
 M.GetReputationEntityInput = schema.new({
-    id = id.from(_N, "GetReputationEntityInput"),
+    id = id.from(_N, "GetReputationEntityRequest"),
     type = "structure",
     members = {
         ReputationEntityReference = schema.new({
@@ -5387,7 +5387,7 @@ M.ReputationEntity = schema.new({
 })
 
 M.GetReputationEntityOutput = schema.new({
-    id = id.from(_N, "GetReputationEntityOutput"),
+    id = id.from(_N, "GetReputationEntityResponse"),
     type = "structure",
     members = {
         ReputationEntity = schema.new({
@@ -5401,7 +5401,7 @@ M.GetReputationEntityOutput = schema.new({
 })
 
 M.GetSuppressedDestinationInput = schema.new({
-    id = id.from(_N, "GetSuppressedDestinationInput"),
+    id = id.from(_N, "GetSuppressedDestinationRequest"),
     type = "structure",
     members = {
         EmailAddress = schema.new({
@@ -5478,7 +5478,7 @@ M.SuppressedDestination = schema.new({
 })
 
 M.GetSuppressedDestinationOutput = schema.new({
-    id = id.from(_N, "GetSuppressedDestinationOutput"),
+    id = id.from(_N, "GetSuppressedDestinationResponse"),
     type = "structure",
     members = {
         SuppressedDestination = schema.new({
@@ -5495,7 +5495,7 @@ M.GetSuppressedDestinationOutput = schema.new({
 })
 
 M.GetTenantInput = schema.new({
-    id = id.from(_N, "GetTenantInput"),
+    id = id.from(_N, "GetTenantRequest"),
     type = "structure",
     members = {
         TenantName = schema.new({
@@ -5555,7 +5555,7 @@ M.Tenant = schema.new({
 })
 
 M.GetTenantOutput = schema.new({
-    id = id.from(_N, "GetTenantOutput"),
+    id = id.from(_N, "GetTenantResponse"),
     type = "structure",
     members = {
         Tenant = schema.new({
@@ -5663,7 +5663,7 @@ M.InvalidNextTokenException = schema.new({
 })
 
 M.ListConfigurationSetsInput = schema.new({
-    id = id.from(_N, "ListConfigurationSetsInput"),
+    id = id.from(_N, "ListConfigurationSetsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5688,7 +5688,7 @@ M.ListConfigurationSetsInput = schema.new({
 })
 
 M.ListConfigurationSetsOutput = schema.new({
-    id = id.from(_N, "ListConfigurationSetsOutput"),
+    id = id.from(_N, "ListConfigurationSetsResponse"),
     type = "structure",
     members = {
         ConfigurationSets = schema.new({
@@ -5708,7 +5708,7 @@ M.ListConfigurationSetsOutput = schema.new({
 })
 
 M.ListContactListsInput = schema.new({
-    id = id.from(_N, "ListContactListsInput"),
+    id = id.from(_N, "ListContactListsRequest"),
     type = "structure",
     members = {
         PageSize = schema.new({
@@ -5733,7 +5733,7 @@ M.ListContactListsInput = schema.new({
 })
 
 M.ListContactListsOutput = schema.new({
-    id = id.from(_N, "ListContactListsOutput"),
+    id = id.from(_N, "ListContactListsResponse"),
     type = "structure",
     members = {
         ContactLists = schema.new({
@@ -5795,7 +5795,7 @@ M.ListContactsFilter = schema.new({
 })
 
 M.ListContactsInput = schema.new({
-    id = id.from(_N, "ListContactsInput"),
+    id = id.from(_N, "ListContactsRequest"),
     type = "structure",
     members = {
         ContactListName = schema.new({
@@ -5831,7 +5831,7 @@ M.ListContactsInput = schema.new({
 })
 
 M.ListContactsOutput = schema.new({
-    id = id.from(_N, "ListContactsOutput"),
+    id = id.from(_N, "ListContactsResponse"),
     type = "structure",
     members = {
         Contacts = schema.new({
@@ -5851,7 +5851,7 @@ M.ListContactsOutput = schema.new({
 })
 
 M.ListCustomVerificationEmailTemplatesInput = schema.new({
-    id = id.from(_N, "ListCustomVerificationEmailTemplatesInput"),
+    id = id.from(_N, "ListCustomVerificationEmailTemplatesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5876,7 +5876,7 @@ M.ListCustomVerificationEmailTemplatesInput = schema.new({
 })
 
 M.ListCustomVerificationEmailTemplatesOutput = schema.new({
-    id = id.from(_N, "ListCustomVerificationEmailTemplatesOutput"),
+    id = id.from(_N, "ListCustomVerificationEmailTemplatesResponse"),
     type = "structure",
     members = {
         CustomVerificationEmailTemplates = schema.new({
@@ -5896,7 +5896,7 @@ M.ListCustomVerificationEmailTemplatesOutput = schema.new({
 })
 
 M.ListDedicatedIpPoolsInput = schema.new({
-    id = id.from(_N, "ListDedicatedIpPoolsInput"),
+    id = id.from(_N, "ListDedicatedIpPoolsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5921,7 +5921,7 @@ M.ListDedicatedIpPoolsInput = schema.new({
 })
 
 M.ListDedicatedIpPoolsOutput = schema.new({
-    id = id.from(_N, "ListDedicatedIpPoolsOutput"),
+    id = id.from(_N, "ListDedicatedIpPoolsResponse"),
     type = "structure",
     members = {
         DedicatedIpPools = schema.new({
@@ -5941,7 +5941,7 @@ M.ListDedicatedIpPoolsOutput = schema.new({
 })
 
 M.ListDeliverabilityTestReportsInput = schema.new({
-    id = id.from(_N, "ListDeliverabilityTestReportsInput"),
+    id = id.from(_N, "ListDeliverabilityTestReportsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5966,7 +5966,7 @@ M.ListDeliverabilityTestReportsInput = schema.new({
 })
 
 M.ListDeliverabilityTestReportsOutput = schema.new({
-    id = id.from(_N, "ListDeliverabilityTestReportsOutput"),
+    id = id.from(_N, "ListDeliverabilityTestReportsResponse"),
     type = "structure",
     members = {
         DeliverabilityTestReports = schema.new({
@@ -5989,7 +5989,7 @@ M.ListDeliverabilityTestReportsOutput = schema.new({
 })
 
 M.ListDomainDeliverabilityCampaignsInput = schema.new({
-    id = id.from(_N, "ListDomainDeliverabilityCampaignsInput"),
+    id = id.from(_N, "ListDomainDeliverabilityCampaignsRequest"),
     type = "structure",
     members = {
         StartDate = schema.new({
@@ -6044,7 +6044,7 @@ M.ListDomainDeliverabilityCampaignsInput = schema.new({
 })
 
 M.ListDomainDeliverabilityCampaignsOutput = schema.new({
-    id = id.from(_N, "ListDomainDeliverabilityCampaignsOutput"),
+    id = id.from(_N, "ListDomainDeliverabilityCampaignsResponse"),
     type = "structure",
     members = {
         DomainDeliverabilityCampaigns = schema.new({
@@ -6067,7 +6067,7 @@ M.ListDomainDeliverabilityCampaignsOutput = schema.new({
 })
 
 M.ListEmailIdentitiesInput = schema.new({
-    id = id.from(_N, "ListEmailIdentitiesInput"),
+    id = id.from(_N, "ListEmailIdentitiesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6092,7 +6092,7 @@ M.ListEmailIdentitiesInput = schema.new({
 })
 
 M.ListEmailIdentitiesOutput = schema.new({
-    id = id.from(_N, "ListEmailIdentitiesOutput"),
+    id = id.from(_N, "ListEmailIdentitiesResponse"),
     type = "structure",
     members = {
         EmailIdentities = schema.new({
@@ -6112,7 +6112,7 @@ M.ListEmailIdentitiesOutput = schema.new({
 })
 
 M.ListEmailTemplatesInput = schema.new({
-    id = id.from(_N, "ListEmailTemplatesInput"),
+    id = id.from(_N, "ListEmailTemplatesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6137,7 +6137,7 @@ M.ListEmailTemplatesInput = schema.new({
 })
 
 M.ListEmailTemplatesOutput = schema.new({
-    id = id.from(_N, "ListEmailTemplatesOutput"),
+    id = id.from(_N, "ListEmailTemplatesResponse"),
     type = "structure",
     members = {
         TemplatesMetadata = schema.new({
@@ -6157,7 +6157,7 @@ M.ListEmailTemplatesOutput = schema.new({
 })
 
 M.ListExportJobsInput = schema.new({
-    id = id.from(_N, "ListExportJobsInput"),
+    id = id.from(_N, "ListExportJobsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6188,7 +6188,7 @@ M.ListExportJobsInput = schema.new({
 })
 
 M.ListExportJobsOutput = schema.new({
-    id = id.from(_N, "ListExportJobsOutput"),
+    id = id.from(_N, "ListExportJobsResponse"),
     type = "structure",
     members = {
         ExportJobs = schema.new({
@@ -6208,7 +6208,7 @@ M.ListExportJobsOutput = schema.new({
 })
 
 M.ListImportJobsInput = schema.new({
-    id = id.from(_N, "ListImportJobsInput"),
+    id = id.from(_N, "ListImportJobsRequest"),
     type = "structure",
     members = {
         ImportDestinationType = schema.new({
@@ -6233,7 +6233,7 @@ M.ListImportJobsInput = schema.new({
 })
 
 M.ListImportJobsOutput = schema.new({
-    id = id.from(_N, "ListImportJobsOutput"),
+    id = id.from(_N, "ListImportJobsResponse"),
     type = "structure",
     members = {
         ImportJobs = schema.new({
@@ -6275,7 +6275,7 @@ M.ListManagementOptions = schema.new({
 })
 
 M.ListMultiRegionEndpointsInput = schema.new({
-    id = id.from(_N, "ListMultiRegionEndpointsInput"),
+    id = id.from(_N, "ListMultiRegionEndpointsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6344,7 +6344,7 @@ M.MultiRegionEndpoint = schema.new({
 })
 
 M.ListMultiRegionEndpointsOutput = schema.new({
-    id = id.from(_N, "ListMultiRegionEndpointsOutput"),
+    id = id.from(_N, "ListMultiRegionEndpointsResponse"),
     type = "structure",
     members = {
         MultiRegionEndpoints = schema.new({
@@ -6364,7 +6364,7 @@ M.ListMultiRegionEndpointsOutput = schema.new({
 })
 
 M.ListRecommendationsInput = schema.new({
-    id = id.from(_N, "ListRecommendationsInput"),
+    id = id.from(_N, "ListRecommendationsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -6440,7 +6440,7 @@ M.Recommendation = schema.new({
 })
 
 M.ListRecommendationsOutput = schema.new({
-    id = id.from(_N, "ListRecommendationsOutput"),
+    id = id.from(_N, "ListRecommendationsResponse"),
     type = "structure",
     members = {
         Recommendations = schema.new({
@@ -6460,7 +6460,7 @@ M.ListRecommendationsOutput = schema.new({
 })
 
 M.ListReputationEntitiesInput = schema.new({
-    id = id.from(_N, "ListReputationEntitiesInput"),
+    id = id.from(_N, "ListReputationEntitiesRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -6487,7 +6487,7 @@ M.ListReputationEntitiesInput = schema.new({
 })
 
 M.ListReputationEntitiesOutput = schema.new({
-    id = id.from(_N, "ListReputationEntitiesOutput"),
+    id = id.from(_N, "ListReputationEntitiesResponse"),
     type = "structure",
     members = {
         ReputationEntities = schema.new({
@@ -6507,7 +6507,7 @@ M.ListReputationEntitiesOutput = schema.new({
 })
 
 M.ListResourceTenantsInput = schema.new({
-    id = id.from(_N, "ListResourceTenantsInput"),
+    id = id.from(_N, "ListResourceTenantsRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6566,7 +6566,7 @@ M.ResourceTenantMetadata = schema.new({
 })
 
 M.ListResourceTenantsOutput = schema.new({
-    id = id.from(_N, "ListResourceTenantsOutput"),
+    id = id.from(_N, "ListResourceTenantsResponse"),
     type = "structure",
     members = {
         ResourceTenants = schema.new({
@@ -6586,7 +6586,7 @@ M.ListResourceTenantsOutput = schema.new({
 })
 
 M.ListSuppressedDestinationsInput = schema.new({
-    id = id.from(_N, "ListSuppressedDestinationsInput"),
+    id = id.from(_N, "ListSuppressedDestinationsRequest"),
     type = "structure",
     members = {
         Reasons = schema.new({
@@ -6673,7 +6673,7 @@ M.SuppressedDestinationSummary = schema.new({
 })
 
 M.ListSuppressedDestinationsOutput = schema.new({
-    id = id.from(_N, "ListSuppressedDestinationsOutput"),
+    id = id.from(_N, "ListSuppressedDestinationsResponse"),
     type = "structure",
     members = {
         SuppressedDestinationSummaries = schema.new({
@@ -6693,7 +6693,7 @@ M.ListSuppressedDestinationsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6710,7 +6710,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -6727,7 +6727,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTenantResourcesInput = schema.new({
-    id = id.from(_N, "ListTenantResourcesInput"),
+    id = id.from(_N, "ListTenantResourcesRequest"),
     type = "structure",
     members = {
         TenantName = schema.new({
@@ -6782,7 +6782,7 @@ M.TenantResource = schema.new({
 })
 
 M.ListTenantResourcesOutput = schema.new({
-    id = id.from(_N, "ListTenantResourcesOutput"),
+    id = id.from(_N, "ListTenantResourcesResponse"),
     type = "structure",
     members = {
         TenantResources = schema.new({
@@ -6802,7 +6802,7 @@ M.ListTenantResourcesOutput = schema.new({
 })
 
 M.ListTenantsInput = schema.new({
-    id = id.from(_N, "ListTenantsInput"),
+    id = id.from(_N, "ListTenantsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6852,7 +6852,7 @@ M.TenantInfo = schema.new({
 })
 
 M.ListTenantsOutput = schema.new({
-    id = id.from(_N, "ListTenantsOutput"),
+    id = id.from(_N, "ListTenantsResponse"),
     type = "structure",
     members = {
         Tenants = schema.new({
@@ -6872,7 +6872,7 @@ M.ListTenantsOutput = schema.new({
 })
 
 M.PutAccountDedicatedIpWarmupAttributesInput = schema.new({
-    id = id.from(_N, "PutAccountDedicatedIpWarmupAttributesInput"),
+    id = id.from(_N, "PutAccountDedicatedIpWarmupAttributesRequest"),
     type = "structure",
     members = {
         AutoWarmupEnabled = schema.new({
@@ -6888,12 +6888,12 @@ M.PutAccountDedicatedIpWarmupAttributesInput = schema.new({
 })
 
 M.PutAccountDedicatedIpWarmupAttributesOutput = schema.new({
-    id = id.from(_N, "PutAccountDedicatedIpWarmupAttributesOutput"),
+    id = id.from(_N, "PutAccountDedicatedIpWarmupAttributesResponse"),
     type = "structure",
 })
 
 M.PutAccountDetailsInput = schema.new({
-    id = id.from(_N, "PutAccountDetailsInput"),
+    id = id.from(_N, "PutAccountDetailsRequest"),
     type = "structure",
     members = {
         MailType = schema.new({
@@ -6943,12 +6943,12 @@ M.PutAccountDetailsInput = schema.new({
 })
 
 M.PutAccountDetailsOutput = schema.new({
-    id = id.from(_N, "PutAccountDetailsOutput"),
+    id = id.from(_N, "PutAccountDetailsResponse"),
     type = "structure",
 })
 
 M.PutAccountSendingAttributesInput = schema.new({
-    id = id.from(_N, "PutAccountSendingAttributesInput"),
+    id = id.from(_N, "PutAccountSendingAttributesRequest"),
     type = "structure",
     members = {
         SendingEnabled = schema.new({
@@ -6964,12 +6964,12 @@ M.PutAccountSendingAttributesInput = schema.new({
 })
 
 M.PutAccountSendingAttributesOutput = schema.new({
-    id = id.from(_N, "PutAccountSendingAttributesOutput"),
+    id = id.from(_N, "PutAccountSendingAttributesResponse"),
     type = "structure",
 })
 
 M.PutAccountSuppressionAttributesInput = schema.new({
-    id = id.from(_N, "PutAccountSuppressionAttributesInput"),
+    id = id.from(_N, "PutAccountSuppressionAttributesRequest"),
     type = "structure",
     members = {
         SuppressedReasons = schema.new({
@@ -6990,12 +6990,12 @@ M.PutAccountSuppressionAttributesInput = schema.new({
 })
 
 M.PutAccountSuppressionAttributesOutput = schema.new({
-    id = id.from(_N, "PutAccountSuppressionAttributesOutput"),
+    id = id.from(_N, "PutAccountSuppressionAttributesResponse"),
     type = "structure",
 })
 
 M.PutAccountVdmAttributesInput = schema.new({
-    id = id.from(_N, "PutAccountVdmAttributesInput"),
+    id = id.from(_N, "PutAccountVdmAttributesRequest"),
     type = "structure",
     members = {
         VdmAttributes = schema.new({
@@ -7012,12 +7012,12 @@ M.PutAccountVdmAttributesInput = schema.new({
 })
 
 M.PutAccountVdmAttributesOutput = schema.new({
-    id = id.from(_N, "PutAccountVdmAttributesOutput"),
+    id = id.from(_N, "PutAccountVdmAttributesResponse"),
     type = "structure",
 })
 
 M.PutConfigurationSetArchivingOptionsInput = schema.new({
-    id = id.from(_N, "PutConfigurationSetArchivingOptionsInput"),
+    id = id.from(_N, "PutConfigurationSetArchivingOptionsRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -7040,12 +7040,12 @@ M.PutConfigurationSetArchivingOptionsInput = schema.new({
 })
 
 M.PutConfigurationSetArchivingOptionsOutput = schema.new({
-    id = id.from(_N, "PutConfigurationSetArchivingOptionsOutput"),
+    id = id.from(_N, "PutConfigurationSetArchivingOptionsResponse"),
     type = "structure",
 })
 
 M.PutConfigurationSetDeliveryOptionsInput = schema.new({
-    id = id.from(_N, "PutConfigurationSetDeliveryOptionsInput"),
+    id = id.from(_N, "PutConfigurationSetDeliveryOptionsRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -7080,12 +7080,12 @@ M.PutConfigurationSetDeliveryOptionsInput = schema.new({
 })
 
 M.PutConfigurationSetDeliveryOptionsOutput = schema.new({
-    id = id.from(_N, "PutConfigurationSetDeliveryOptionsOutput"),
+    id = id.from(_N, "PutConfigurationSetDeliveryOptionsResponse"),
     type = "structure",
 })
 
 M.PutConfigurationSetReputationOptionsInput = schema.new({
-    id = id.from(_N, "PutConfigurationSetReputationOptionsInput"),
+    id = id.from(_N, "PutConfigurationSetReputationOptionsRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -7111,12 +7111,12 @@ M.PutConfigurationSetReputationOptionsInput = schema.new({
 })
 
 M.PutConfigurationSetReputationOptionsOutput = schema.new({
-    id = id.from(_N, "PutConfigurationSetReputationOptionsOutput"),
+    id = id.from(_N, "PutConfigurationSetReputationOptionsResponse"),
     type = "structure",
 })
 
 M.PutConfigurationSetSendingOptionsInput = schema.new({
-    id = id.from(_N, "PutConfigurationSetSendingOptionsInput"),
+    id = id.from(_N, "PutConfigurationSetSendingOptionsRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -7142,12 +7142,12 @@ M.PutConfigurationSetSendingOptionsInput = schema.new({
 })
 
 M.PutConfigurationSetSendingOptionsOutput = schema.new({
-    id = id.from(_N, "PutConfigurationSetSendingOptionsOutput"),
+    id = id.from(_N, "PutConfigurationSetSendingOptionsResponse"),
     type = "structure",
 })
 
 M.PutConfigurationSetSuppressionOptionsInput = schema.new({
-    id = id.from(_N, "PutConfigurationSetSuppressionOptionsInput"),
+    id = id.from(_N, "PutConfigurationSetSuppressionOptionsRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -7178,12 +7178,12 @@ M.PutConfigurationSetSuppressionOptionsInput = schema.new({
 })
 
 M.PutConfigurationSetSuppressionOptionsOutput = schema.new({
-    id = id.from(_N, "PutConfigurationSetSuppressionOptionsOutput"),
+    id = id.from(_N, "PutConfigurationSetSuppressionOptionsResponse"),
     type = "structure",
 })
 
 M.PutConfigurationSetTrackingOptionsInput = schema.new({
-    id = id.from(_N, "PutConfigurationSetTrackingOptionsInput"),
+    id = id.from(_N, "PutConfigurationSetTrackingOptionsRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -7212,12 +7212,12 @@ M.PutConfigurationSetTrackingOptionsInput = schema.new({
 })
 
 M.PutConfigurationSetTrackingOptionsOutput = schema.new({
-    id = id.from(_N, "PutConfigurationSetTrackingOptionsOutput"),
+    id = id.from(_N, "PutConfigurationSetTrackingOptionsResponse"),
     type = "structure",
 })
 
 M.PutConfigurationSetVdmOptionsInput = schema.new({
-    id = id.from(_N, "PutConfigurationSetVdmOptionsInput"),
+    id = id.from(_N, "PutConfigurationSetVdmOptionsRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -7241,12 +7241,12 @@ M.PutConfigurationSetVdmOptionsInput = schema.new({
 })
 
 M.PutConfigurationSetVdmOptionsOutput = schema.new({
-    id = id.from(_N, "PutConfigurationSetVdmOptionsOutput"),
+    id = id.from(_N, "PutConfigurationSetVdmOptionsResponse"),
     type = "structure",
 })
 
 M.PutDedicatedIpInPoolInput = schema.new({
-    id = id.from(_N, "PutDedicatedIpInPoolInput"),
+    id = id.from(_N, "PutDedicatedIpInPoolRequest"),
     type = "structure",
     members = {
         Ip = schema.new({
@@ -7272,12 +7272,12 @@ M.PutDedicatedIpInPoolInput = schema.new({
 })
 
 M.PutDedicatedIpInPoolOutput = schema.new({
-    id = id.from(_N, "PutDedicatedIpInPoolOutput"),
+    id = id.from(_N, "PutDedicatedIpInPoolResponse"),
     type = "structure",
 })
 
 M.PutDedicatedIpPoolScalingAttributesInput = schema.new({
-    id = id.from(_N, "PutDedicatedIpPoolScalingAttributesInput"),
+    id = id.from(_N, "PutDedicatedIpPoolScalingAttributesRequest"),
     type = "structure",
     members = {
         PoolName = schema.new({
@@ -7303,12 +7303,12 @@ M.PutDedicatedIpPoolScalingAttributesInput = schema.new({
 })
 
 M.PutDedicatedIpPoolScalingAttributesOutput = schema.new({
-    id = id.from(_N, "PutDedicatedIpPoolScalingAttributesOutput"),
+    id = id.from(_N, "PutDedicatedIpPoolScalingAttributesResponse"),
     type = "structure",
 })
 
 M.PutDedicatedIpWarmupAttributesInput = schema.new({
-    id = id.from(_N, "PutDedicatedIpWarmupAttributesInput"),
+    id = id.from(_N, "PutDedicatedIpWarmupAttributesRequest"),
     type = "structure",
     members = {
         Ip = schema.new({
@@ -7334,12 +7334,12 @@ M.PutDedicatedIpWarmupAttributesInput = schema.new({
 })
 
 M.PutDedicatedIpWarmupAttributesOutput = schema.new({
-    id = id.from(_N, "PutDedicatedIpWarmupAttributesOutput"),
+    id = id.from(_N, "PutDedicatedIpWarmupAttributesResponse"),
     type = "structure",
 })
 
 M.PutDeliverabilityDashboardOptionInput = schema.new({
-    id = id.from(_N, "PutDeliverabilityDashboardOptionInput"),
+    id = id.from(_N, "PutDeliverabilityDashboardOptionRequest"),
     type = "structure",
     members = {
         DashboardEnabled = schema.new({
@@ -7363,12 +7363,12 @@ M.PutDeliverabilityDashboardOptionInput = schema.new({
 })
 
 M.PutDeliverabilityDashboardOptionOutput = schema.new({
-    id = id.from(_N, "PutDeliverabilityDashboardOptionOutput"),
+    id = id.from(_N, "PutDeliverabilityDashboardOptionResponse"),
     type = "structure",
 })
 
 M.PutEmailIdentityConfigurationSetAttributesInput = schema.new({
-    id = id.from(_N, "PutEmailIdentityConfigurationSetAttributesInput"),
+    id = id.from(_N, "PutEmailIdentityConfigurationSetAttributesRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -7391,12 +7391,12 @@ M.PutEmailIdentityConfigurationSetAttributesInput = schema.new({
 })
 
 M.PutEmailIdentityConfigurationSetAttributesOutput = schema.new({
-    id = id.from(_N, "PutEmailIdentityConfigurationSetAttributesOutput"),
+    id = id.from(_N, "PutEmailIdentityConfigurationSetAttributesResponse"),
     type = "structure",
 })
 
 M.PutEmailIdentityDkimAttributesInput = schema.new({
-    id = id.from(_N, "PutEmailIdentityDkimAttributesInput"),
+    id = id.from(_N, "PutEmailIdentityDkimAttributesRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -7422,12 +7422,12 @@ M.PutEmailIdentityDkimAttributesInput = schema.new({
 })
 
 M.PutEmailIdentityDkimAttributesOutput = schema.new({
-    id = id.from(_N, "PutEmailIdentityDkimAttributesOutput"),
+    id = id.from(_N, "PutEmailIdentityDkimAttributesResponse"),
     type = "structure",
 })
 
 M.PutEmailIdentityDkimSigningAttributesInput = schema.new({
-    id = id.from(_N, "PutEmailIdentityDkimSigningAttributesInput"),
+    id = id.from(_N, "PutEmailIdentityDkimSigningAttributesRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -7460,7 +7460,7 @@ M.PutEmailIdentityDkimSigningAttributesInput = schema.new({
 })
 
 M.PutEmailIdentityDkimSigningAttributesOutput = schema.new({
-    id = id.from(_N, "PutEmailIdentityDkimSigningAttributesOutput"),
+    id = id.from(_N, "PutEmailIdentityDkimSigningAttributesResponse"),
     type = "structure",
     members = {
         DkimStatus = schema.new({
@@ -7486,7 +7486,7 @@ M.PutEmailIdentityDkimSigningAttributesOutput = schema.new({
 })
 
 M.PutEmailIdentityFeedbackAttributesInput = schema.new({
-    id = id.from(_N, "PutEmailIdentityFeedbackAttributesInput"),
+    id = id.from(_N, "PutEmailIdentityFeedbackAttributesRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -7512,12 +7512,12 @@ M.PutEmailIdentityFeedbackAttributesInput = schema.new({
 })
 
 M.PutEmailIdentityFeedbackAttributesOutput = schema.new({
-    id = id.from(_N, "PutEmailIdentityFeedbackAttributesOutput"),
+    id = id.from(_N, "PutEmailIdentityFeedbackAttributesResponse"),
     type = "structure",
 })
 
 M.PutEmailIdentityMailFromAttributesInput = schema.new({
-    id = id.from(_N, "PutEmailIdentityMailFromAttributesInput"),
+    id = id.from(_N, "PutEmailIdentityMailFromAttributesRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -7546,12 +7546,12 @@ M.PutEmailIdentityMailFromAttributesInput = schema.new({
 })
 
 M.PutEmailIdentityMailFromAttributesOutput = schema.new({
-    id = id.from(_N, "PutEmailIdentityMailFromAttributesOutput"),
+    id = id.from(_N, "PutEmailIdentityMailFromAttributesResponse"),
     type = "structure",
 })
 
 M.PutSuppressedDestinationInput = schema.new({
-    id = id.from(_N, "PutSuppressedDestinationInput"),
+    id = id.from(_N, "PutSuppressedDestinationRequest"),
     type = "structure",
     members = {
         EmailAddress = schema.new({
@@ -7576,12 +7576,12 @@ M.PutSuppressedDestinationInput = schema.new({
 })
 
 M.PutSuppressedDestinationOutput = schema.new({
-    id = id.from(_N, "PutSuppressedDestinationOutput"),
+    id = id.from(_N, "PutSuppressedDestinationResponse"),
     type = "structure",
 })
 
 M.SendBulkEmailInput = schema.new({
-    id = id.from(_N, "SendBulkEmailInput"),
+    id = id.from(_N, "SendBulkEmailRequest"),
     type = "structure",
     members = {
         FromEmailAddress = schema.new({
@@ -7664,7 +7664,7 @@ M.SendBulkEmailInput = schema.new({
 })
 
 M.SendBulkEmailOutput = schema.new({
-    id = id.from(_N, "SendBulkEmailOutput"),
+    id = id.from(_N, "SendBulkEmailResponse"),
     type = "structure",
     members = {
         BulkEmailEntryResults = schema.new({
@@ -7681,7 +7681,7 @@ M.SendBulkEmailOutput = schema.new({
 })
 
 M.SendCustomVerificationEmailInput = schema.new({
-    id = id.from(_N, "SendCustomVerificationEmailInput"),
+    id = id.from(_N, "SendCustomVerificationEmailRequest"),
     type = "structure",
     members = {
         EmailAddress = schema.new({
@@ -7712,7 +7712,7 @@ M.SendCustomVerificationEmailInput = schema.new({
 })
 
 M.SendCustomVerificationEmailOutput = schema.new({
-    id = id.from(_N, "SendCustomVerificationEmailOutput"),
+    id = id.from(_N, "SendCustomVerificationEmailResponse"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -7725,7 +7725,7 @@ M.SendCustomVerificationEmailOutput = schema.new({
 })
 
 M.SendEmailInput = schema.new({
-    id = id.from(_N, "SendEmailInput"),
+    id = id.from(_N, "SendEmailRequest"),
     type = "structure",
     members = {
         FromEmailAddress = schema.new({
@@ -7812,7 +7812,7 @@ M.SendEmailInput = schema.new({
 })
 
 M.SendEmailOutput = schema.new({
-    id = id.from(_N, "SendEmailOutput"),
+    id = id.from(_N, "SendEmailResponse"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -7825,7 +7825,7 @@ M.SendEmailOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -7851,12 +7851,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.TestRenderEmailTemplateInput = schema.new({
-    id = id.from(_N, "TestRenderEmailTemplateInput"),
+    id = id.from(_N, "TestRenderEmailTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -7882,7 +7882,7 @@ M.TestRenderEmailTemplateInput = schema.new({
 })
 
 M.TestRenderEmailTemplateOutput = schema.new({
-    id = id.from(_N, "TestRenderEmailTemplateOutput"),
+    id = id.from(_N, "TestRenderEmailTemplateResponse"),
     type = "structure",
     members = {
         RenderedTemplate = schema.new({
@@ -7898,7 +7898,7 @@ M.TestRenderEmailTemplateOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -7926,12 +7926,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateConfigurationSetEventDestinationInput = schema.new({
-    id = id.from(_N, "UpdateConfigurationSetEventDestinationInput"),
+    id = id.from(_N, "UpdateConfigurationSetEventDestinationRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -7968,12 +7968,12 @@ M.UpdateConfigurationSetEventDestinationInput = schema.new({
 })
 
 M.UpdateConfigurationSetEventDestinationOutput = schema.new({
-    id = id.from(_N, "UpdateConfigurationSetEventDestinationOutput"),
+    id = id.from(_N, "UpdateConfigurationSetEventDestinationResponse"),
     type = "structure",
 })
 
 M.UpdateContactInput = schema.new({
-    id = id.from(_N, "UpdateContactInput"),
+    id = id.from(_N, "UpdateContactRequest"),
     type = "structure",
     members = {
         ContactListName = schema.new({
@@ -8022,12 +8022,12 @@ M.UpdateContactInput = schema.new({
 })
 
 M.UpdateContactOutput = schema.new({
-    id = id.from(_N, "UpdateContactOutput"),
+    id = id.from(_N, "UpdateContactResponse"),
     type = "structure",
 })
 
 M.UpdateContactListInput = schema.new({
-    id = id.from(_N, "UpdateContactListInput"),
+    id = id.from(_N, "UpdateContactListRequest"),
     type = "structure",
     members = {
         ContactListName = schema.new({
@@ -8057,12 +8057,12 @@ M.UpdateContactListInput = schema.new({
 })
 
 M.UpdateContactListOutput = schema.new({
-    id = id.from(_N, "UpdateContactListOutput"),
+    id = id.from(_N, "UpdateContactListResponse"),
     type = "structure",
 })
 
 M.UpdateCustomVerificationEmailTemplateInput = schema.new({
-    id = id.from(_N, "UpdateCustomVerificationEmailTemplateInput"),
+    id = id.from(_N, "UpdateCustomVerificationEmailTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -8124,12 +8124,12 @@ M.UpdateCustomVerificationEmailTemplateInput = schema.new({
 })
 
 M.UpdateCustomVerificationEmailTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateCustomVerificationEmailTemplateOutput"),
+    id = id.from(_N, "UpdateCustomVerificationEmailTemplateResponse"),
     type = "structure",
 })
 
 M.UpdateEmailIdentityPolicyInput = schema.new({
-    id = id.from(_N, "UpdateEmailIdentityPolicyInput"),
+    id = id.from(_N, "UpdateEmailIdentityPolicyRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -8165,12 +8165,12 @@ M.UpdateEmailIdentityPolicyInput = schema.new({
 })
 
 M.UpdateEmailIdentityPolicyOutput = schema.new({
-    id = id.from(_N, "UpdateEmailIdentityPolicyOutput"),
+    id = id.from(_N, "UpdateEmailIdentityPolicyResponse"),
     type = "structure",
 })
 
 M.UpdateEmailTemplateInput = schema.new({
-    id = id.from(_N, "UpdateEmailTemplateInput"),
+    id = id.from(_N, "UpdateEmailTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -8197,12 +8197,12 @@ M.UpdateEmailTemplateInput = schema.new({
 })
 
 M.UpdateEmailTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateEmailTemplateOutput"),
+    id = id.from(_N, "UpdateEmailTemplateResponse"),
     type = "structure",
 })
 
 M.UpdateReputationEntityCustomerManagedStatusInput = schema.new({
-    id = id.from(_N, "UpdateReputationEntityCustomerManagedStatusInput"),
+    id = id.from(_N, "UpdateReputationEntityCustomerManagedStatusRequest"),
     type = "structure",
     members = {
         ReputationEntityType = schema.new({
@@ -8238,12 +8238,12 @@ M.UpdateReputationEntityCustomerManagedStatusInput = schema.new({
 })
 
 M.UpdateReputationEntityCustomerManagedStatusOutput = schema.new({
-    id = id.from(_N, "UpdateReputationEntityCustomerManagedStatusOutput"),
+    id = id.from(_N, "UpdateReputationEntityCustomerManagedStatusResponse"),
     type = "structure",
 })
 
 M.UpdateReputationEntityPolicyInput = schema.new({
-    id = id.from(_N, "UpdateReputationEntityPolicyInput"),
+    id = id.from(_N, "UpdateReputationEntityPolicyRequest"),
     type = "structure",
     members = {
         ReputationEntityType = schema.new({
@@ -8279,8 +8279,22 @@ M.UpdateReputationEntityPolicyInput = schema.new({
 })
 
 M.UpdateReputationEntityPolicyOutput = schema.new({
-    id = id.from(_N, "UpdateReputationEntityPolicyOutput"),
+    id = id.from(_N, "UpdateReputationEntityPolicyResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -64,7 +64,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateWorkspaceApiKeyInput = schema.new({
-    id = id.from(_N, "CreateWorkspaceApiKeyInput"),
+    id = id.from(_N, "CreateWorkspaceApiKeyRequest"),
     type = "structure",
     members = {
         keyName = schema.new({
@@ -108,7 +108,7 @@ M.CreateWorkspaceApiKeyInput = schema.new({
 })
 
 M.CreateWorkspaceApiKeyOutput = schema.new({
-    id = id.from(_N, "CreateWorkspaceApiKeyOutput"),
+    id = id.from(_N, "CreateWorkspaceApiKeyResponse"),
     type = "structure",
     members = {
         keyName = schema.new({
@@ -362,7 +362,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteWorkspaceApiKeyInput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceApiKeyInput"),
+    id = id.from(_N, "DeleteWorkspaceApiKeyRequest"),
     type = "structure",
     members = {
         keyName = schema.new({
@@ -389,7 +389,7 @@ M.DeleteWorkspaceApiKeyInput = schema.new({
 })
 
 M.DeleteWorkspaceApiKeyOutput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceApiKeyOutput"),
+    id = id.from(_N, "DeleteWorkspaceApiKeyResponse"),
     type = "structure",
     members = {
         keyName = schema.new({
@@ -457,7 +457,7 @@ M.AssertionAttributes = schema.new({
 })
 
 M.AssociateLicenseInput = schema.new({
-    id = id.from(_N, "AssociateLicenseInput"),
+    id = id.from(_N, "AssociateLicenseRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -765,7 +765,7 @@ M.WorkspaceDescription = schema.new({
 })
 
 M.AssociateLicenseOutput = schema.new({
-    id = id.from(_N, "AssociateLicenseOutput"),
+    id = id.from(_N, "AssociateLicenseResponse"),
     type = "structure",
     members = {
         workspace = schema.new({
@@ -782,7 +782,7 @@ M.AssociateLicenseOutput = schema.new({
 })
 
 M.DescribeWorkspaceAuthenticationInput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceAuthenticationInput"),
+    id = id.from(_N, "DescribeWorkspaceAuthenticationRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -953,7 +953,7 @@ M.AuthenticationDescription = schema.new({
 })
 
 M.DescribeWorkspaceAuthenticationOutput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceAuthenticationOutput"),
+    id = id.from(_N, "DescribeWorkspaceAuthenticationResponse"),
     type = "structure",
     members = {
         authentication = schema.new({
@@ -970,7 +970,7 @@ M.DescribeWorkspaceAuthenticationOutput = schema.new({
 })
 
 M.UpdateWorkspaceAuthenticationInput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceAuthenticationInput"),
+    id = id.from(_N, "UpdateWorkspaceAuthenticationRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -1004,7 +1004,7 @@ M.UpdateWorkspaceAuthenticationInput = schema.new({
 })
 
 M.UpdateWorkspaceAuthenticationOutput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceAuthenticationOutput"),
+    id = id.from(_N, "UpdateWorkspaceAuthenticationResponse"),
     type = "structure",
     members = {
         authentication = schema.new({
@@ -1021,7 +1021,7 @@ M.UpdateWorkspaceAuthenticationOutput = schema.new({
 })
 
 M.DescribeWorkspaceConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceConfigurationInput"),
+    id = id.from(_N, "DescribeWorkspaceConfigurationRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -1038,7 +1038,7 @@ M.DescribeWorkspaceConfigurationInput = schema.new({
 })
 
 M.DescribeWorkspaceConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceConfigurationOutput"),
+    id = id.from(_N, "DescribeWorkspaceConfigurationResponse"),
     type = "structure",
     members = {
         configuration = schema.new({
@@ -1064,7 +1064,7 @@ M.DescribeWorkspaceConfigurationOutput = schema.new({
 })
 
 M.UpdateWorkspaceConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceConfigurationInput"),
+    id = id.from(_N, "UpdateWorkspaceConfigurationRequest"),
     type = "structure",
     members = {
         configuration = schema.new({
@@ -1100,12 +1100,12 @@ M.UpdateWorkspaceConfigurationInput = schema.new({
 })
 
 M.UpdateWorkspaceConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceConfigurationOutput"),
+    id = id.from(_N, "UpdateWorkspaceConfigurationResponse"),
     type = "structure",
 })
 
 M.DisassociateLicenseInput = schema.new({
-    id = id.from(_N, "DisassociateLicenseInput"),
+    id = id.from(_N, "DisassociateLicenseRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -1132,7 +1132,7 @@ M.DisassociateLicenseInput = schema.new({
 })
 
 M.DisassociateLicenseOutput = schema.new({
-    id = id.from(_N, "DisassociateLicenseOutput"),
+    id = id.from(_N, "DisassociateLicenseResponse"),
     type = "structure",
     members = {
         workspace = schema.new({
@@ -1149,7 +1149,7 @@ M.DisassociateLicenseOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1166,7 +1166,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1181,7 +1181,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListVersionsInput = schema.new({
-    id = id.from(_N, "ListVersionsInput"),
+    id = id.from(_N, "ListVersionsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -1215,7 +1215,7 @@ M.ListVersionsInput = schema.new({
 })
 
 M.ListVersionsOutput = schema.new({
-    id = id.from(_N, "ListVersionsOutput"),
+    id = id.from(_N, "ListVersionsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1235,7 +1235,7 @@ M.ListVersionsOutput = schema.new({
 })
 
 M.ListPermissionsInput = schema.new({
-    id = id.from(_N, "ListPermissionsInput"),
+    id = id.from(_N, "ListPermissionsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -1348,7 +1348,7 @@ M.PermissionEntry = schema.new({
 })
 
 M.ListPermissionsOutput = schema.new({
-    id = id.from(_N, "ListPermissionsOutput"),
+    id = id.from(_N, "ListPermissionsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1406,7 +1406,7 @@ M.UpdateInstruction = schema.new({
 })
 
 M.UpdatePermissionsInput = schema.new({
-    id = id.from(_N, "UpdatePermissionsInput"),
+    id = id.from(_N, "UpdatePermissionsRequest"),
     type = "structure",
     members = {
         updateInstructionBatch = schema.new({
@@ -1468,7 +1468,7 @@ M.UpdateError = schema.new({
 })
 
 M.UpdatePermissionsOutput = schema.new({
-    id = id.from(_N, "UpdatePermissionsOutput"),
+    id = id.from(_N, "UpdatePermissionsResponse"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -1485,7 +1485,7 @@ M.UpdatePermissionsOutput = schema.new({
 })
 
 M.CreateWorkspaceServiceAccountInput = schema.new({
-    id = id.from(_N, "CreateWorkspaceServiceAccountInput"),
+    id = id.from(_N, "CreateWorkspaceServiceAccountRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1520,7 +1520,7 @@ M.CreateWorkspaceServiceAccountInput = schema.new({
 })
 
 M.CreateWorkspaceServiceAccountOutput = schema.new({
-    id = id.from(_N, "CreateWorkspaceServiceAccountOutput"),
+    id = id.from(_N, "CreateWorkspaceServiceAccountResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1563,7 +1563,7 @@ M.CreateWorkspaceServiceAccountOutput = schema.new({
 })
 
 M.DeleteWorkspaceServiceAccountInput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceServiceAccountInput"),
+    id = id.from(_N, "DeleteWorkspaceServiceAccountRequest"),
     type = "structure",
     members = {
         serviceAccountId = schema.new({
@@ -1590,7 +1590,7 @@ M.DeleteWorkspaceServiceAccountInput = schema.new({
 })
 
 M.DeleteWorkspaceServiceAccountOutput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceServiceAccountOutput"),
+    id = id.from(_N, "DeleteWorkspaceServiceAccountResponse"),
     type = "structure",
     members = {
         serviceAccountId = schema.new({
@@ -1615,7 +1615,7 @@ M.DeleteWorkspaceServiceAccountOutput = schema.new({
 })
 
 M.ListWorkspaceServiceAccountsInput = schema.new({
-    id = id.from(_N, "ListWorkspaceServiceAccountsInput"),
+    id = id.from(_N, "ListWorkspaceServiceAccountsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -1693,7 +1693,7 @@ M.ServiceAccountSummary = schema.new({
 })
 
 M.ListWorkspaceServiceAccountsOutput = schema.new({
-    id = id.from(_N, "ListWorkspaceServiceAccountsOutput"),
+    id = id.from(_N, "ListWorkspaceServiceAccountsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1725,7 +1725,7 @@ M.ListWorkspaceServiceAccountsOutput = schema.new({
 })
 
 M.CreateWorkspaceServiceAccountTokenInput = schema.new({
-    id = id.from(_N, "CreateWorkspaceServiceAccountTokenInput"),
+    id = id.from(_N, "CreateWorkspaceServiceAccountTokenRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1804,7 +1804,7 @@ M.ServiceAccountTokenSummaryWithKey = schema.new({
 })
 
 M.CreateWorkspaceServiceAccountTokenOutput = schema.new({
-    id = id.from(_N, "CreateWorkspaceServiceAccountTokenOutput"),
+    id = id.from(_N, "CreateWorkspaceServiceAccountTokenResponse"),
     type = "structure",
     members = {
         serviceAccountToken = schema.new({
@@ -1839,7 +1839,7 @@ M.CreateWorkspaceServiceAccountTokenOutput = schema.new({
 })
 
 M.DeleteWorkspaceServiceAccountTokenInput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceServiceAccountTokenInput"),
+    id = id.from(_N, "DeleteWorkspaceServiceAccountTokenRequest"),
     type = "structure",
     members = {
         tokenId = schema.new({
@@ -1876,7 +1876,7 @@ M.DeleteWorkspaceServiceAccountTokenInput = schema.new({
 })
 
 M.DeleteWorkspaceServiceAccountTokenOutput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceServiceAccountTokenOutput"),
+    id = id.from(_N, "DeleteWorkspaceServiceAccountTokenResponse"),
     type = "structure",
     members = {
         tokenId = schema.new({
@@ -1910,7 +1910,7 @@ M.DeleteWorkspaceServiceAccountTokenOutput = schema.new({
 })
 
 M.ListWorkspaceServiceAccountTokensInput = schema.new({
-    id = id.from(_N, "ListWorkspaceServiceAccountTokensInput"),
+    id = id.from(_N, "ListWorkspaceServiceAccountTokensRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2004,7 +2004,7 @@ M.ServiceAccountTokenSummary = schema.new({
 })
 
 M.ListWorkspaceServiceAccountTokensOutput = schema.new({
-    id = id.from(_N, "ListWorkspaceServiceAccountTokensOutput"),
+    id = id.from(_N, "ListWorkspaceServiceAccountTokensResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2045,7 +2045,7 @@ M.ListWorkspaceServiceAccountTokensOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2073,12 +2073,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2106,12 +2106,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.CreateWorkspaceInput = schema.new({
-    id = id.from(_N, "CreateWorkspaceInput"),
+    id = id.from(_N, "CreateWorkspaceRequest"),
     type = "structure",
     members = {
         accountAccessType = schema.new({
@@ -2249,7 +2249,7 @@ M.CreateWorkspaceInput = schema.new({
 })
 
 M.CreateWorkspaceOutput = schema.new({
-    id = id.from(_N, "CreateWorkspaceOutput"),
+    id = id.from(_N, "CreateWorkspaceResponse"),
     type = "structure",
     members = {
         workspace = schema.new({
@@ -2266,7 +2266,7 @@ M.CreateWorkspaceOutput = schema.new({
 })
 
 M.DeleteWorkspaceInput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceInput"),
+    id = id.from(_N, "DeleteWorkspaceRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2283,7 +2283,7 @@ M.DeleteWorkspaceInput = schema.new({
 })
 
 M.DeleteWorkspaceOutput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceOutput"),
+    id = id.from(_N, "DeleteWorkspaceResponse"),
     type = "structure",
     members = {
         workspace = schema.new({
@@ -2300,7 +2300,7 @@ M.DeleteWorkspaceOutput = schema.new({
 })
 
 M.DescribeWorkspaceInput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceInput"),
+    id = id.from(_N, "DescribeWorkspaceRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2317,7 +2317,7 @@ M.DescribeWorkspaceInput = schema.new({
 })
 
 M.DescribeWorkspaceOutput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceOutput"),
+    id = id.from(_N, "DescribeWorkspaceResponse"),
     type = "structure",
     members = {
         workspace = schema.new({
@@ -2334,7 +2334,7 @@ M.DescribeWorkspaceOutput = schema.new({
 })
 
 M.ListWorkspacesInput = schema.new({
-    id = id.from(_N, "ListWorkspacesInput"),
+    id = id.from(_N, "ListWorkspacesRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2469,7 +2469,7 @@ M.WorkspaceSummary = schema.new({
 })
 
 M.ListWorkspacesOutput = schema.new({
-    id = id.from(_N, "ListWorkspacesOutput"),
+    id = id.from(_N, "ListWorkspacesResponse"),
     type = "structure",
     members = {
         workspaces = schema.new({
@@ -2492,7 +2492,7 @@ M.ListWorkspacesOutput = schema.new({
 })
 
 M.UpdateWorkspaceInput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceInput"),
+    id = id.from(_N, "UpdateWorkspaceRequest"),
     type = "structure",
     members = {
         accountAccessType = schema.new({
@@ -2598,7 +2598,7 @@ M.UpdateWorkspaceInput = schema.new({
 })
 
 M.UpdateWorkspaceOutput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceOutput"),
+    id = id.from(_N, "UpdateWorkspaceResponse"),
     type = "structure",
     members = {
         workspace = schema.new({
@@ -2613,5 +2613,19 @@ M.UpdateWorkspaceOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

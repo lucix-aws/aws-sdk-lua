@@ -105,7 +105,7 @@ M.MaintenanceWindow = schema.new({
 })
 
 M.CreateEnvironmentInput = schema.new({
-    id = id.from(_N, "CreateEnvironmentInput"),
+    id = id.from(_N, "CreateEnvironmentRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -281,7 +281,7 @@ M.EnvironmentSummary = schema.new({
 })
 
 M.CreateEnvironmentOutput = schema.new({
-    id = id.from(_N, "CreateEnvironmentOutput"),
+    id = id.from(_N, "CreateEnvironmentResponse"),
     type = "structure",
     members = {
         environment = schema.new({
@@ -479,7 +479,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteDeviceInput = schema.new({
-    id = id.from(_N, "DeleteDeviceInput"),
+    id = id.from(_N, "DeleteDeviceRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -506,12 +506,12 @@ M.DeleteDeviceInput = schema.new({
 })
 
 M.DeleteDeviceOutput = schema.new({
-    id = id.from(_N, "DeleteDeviceOutput"),
+    id = id.from(_N, "DeleteDeviceResponse"),
     type = "structure",
 })
 
 M.DeleteEnvironmentInput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentInput"),
+    id = id.from(_N, "DeleteEnvironmentRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -538,12 +538,12 @@ M.DeleteEnvironmentInput = schema.new({
 })
 
 M.DeleteEnvironmentOutput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentOutput"),
+    id = id.from(_N, "DeleteEnvironmentResponse"),
     type = "structure",
 })
 
 M.DeregisterDeviceInput = schema.new({
-    id = id.from(_N, "DeregisterDeviceInput"),
+    id = id.from(_N, "DeregisterDeviceRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -575,7 +575,7 @@ M.DeregisterDeviceInput = schema.new({
 })
 
 M.DeregisterDeviceOutput = schema.new({
-    id = id.from(_N, "DeregisterDeviceOutput"),
+    id = id.from(_N, "DeregisterDeviceResponse"),
     type = "structure",
 })
 
@@ -940,7 +940,7 @@ M.Environment = schema.new({
 })
 
 M.GetDeviceInput = schema.new({
-    id = id.from(_N, "GetDeviceInput"),
+    id = id.from(_N, "GetDeviceRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -957,7 +957,7 @@ M.GetDeviceInput = schema.new({
 })
 
 M.GetDeviceOutput = schema.new({
-    id = id.from(_N, "GetDeviceOutput"),
+    id = id.from(_N, "GetDeviceResponse"),
     type = "structure",
     members = {
         device = schema.new({
@@ -971,7 +971,7 @@ M.GetDeviceOutput = schema.new({
 })
 
 M.GetEnvironmentInput = schema.new({
-    id = id.from(_N, "GetEnvironmentInput"),
+    id = id.from(_N, "GetEnvironmentRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -988,7 +988,7 @@ M.GetEnvironmentInput = schema.new({
 })
 
 M.GetEnvironmentOutput = schema.new({
-    id = id.from(_N, "GetEnvironmentOutput"),
+    id = id.from(_N, "GetEnvironmentResponse"),
     type = "structure",
     members = {
         environment = schema.new({
@@ -1002,7 +1002,7 @@ M.GetEnvironmentOutput = schema.new({
 })
 
 M.GetSoftwareSetInput = schema.new({
-    id = id.from(_N, "GetSoftwareSetInput"),
+    id = id.from(_N, "GetSoftwareSetRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1088,7 +1088,7 @@ M.SoftwareSet = schema.new({
 })
 
 M.GetSoftwareSetOutput = schema.new({
-    id = id.from(_N, "GetSoftwareSetOutput"),
+    id = id.from(_N, "GetSoftwareSetResponse"),
     type = "structure",
     members = {
         softwareSet = schema.new({
@@ -1102,7 +1102,7 @@ M.GetSoftwareSetOutput = schema.new({
 })
 
 M.ListDevicesInput = schema.new({
-    id = id.from(_N, "ListDevicesInput"),
+    id = id.from(_N, "ListDevicesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1127,7 +1127,7 @@ M.ListDevicesInput = schema.new({
 })
 
 M.ListDevicesOutput = schema.new({
-    id = id.from(_N, "ListDevicesOutput"),
+    id = id.from(_N, "ListDevicesResponse"),
     type = "structure",
     members = {
         devices = schema.new({
@@ -1147,7 +1147,7 @@ M.ListDevicesOutput = schema.new({
 })
 
 M.ListEnvironmentsInput = schema.new({
-    id = id.from(_N, "ListEnvironmentsInput"),
+    id = id.from(_N, "ListEnvironmentsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1172,7 +1172,7 @@ M.ListEnvironmentsInput = schema.new({
 })
 
 M.ListEnvironmentsOutput = schema.new({
-    id = id.from(_N, "ListEnvironmentsOutput"),
+    id = id.from(_N, "ListEnvironmentsResponse"),
     type = "structure",
     members = {
         environments = schema.new({
@@ -1192,7 +1192,7 @@ M.ListEnvironmentsOutput = schema.new({
 })
 
 M.ListSoftwareSetsInput = schema.new({
-    id = id.from(_N, "ListSoftwareSetsInput"),
+    id = id.from(_N, "ListSoftwareSetsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1260,7 +1260,7 @@ M.SoftwareSetSummary = schema.new({
 })
 
 M.ListSoftwareSetsOutput = schema.new({
-    id = id.from(_N, "ListSoftwareSetsOutput"),
+    id = id.from(_N, "ListSoftwareSetsResponse"),
     type = "structure",
     members = {
         softwareSets = schema.new({
@@ -1280,7 +1280,7 @@ M.ListSoftwareSetsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1297,7 +1297,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1312,7 +1312,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1340,12 +1340,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1373,12 +1373,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateDeviceInput = schema.new({
-    id = id.from(_N, "UpdateDeviceInput"),
+    id = id.from(_N, "UpdateDeviceRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1413,7 +1413,7 @@ M.UpdateDeviceInput = schema.new({
 })
 
 M.UpdateDeviceOutput = schema.new({
-    id = id.from(_N, "UpdateDeviceOutput"),
+    id = id.from(_N, "UpdateDeviceResponse"),
     type = "structure",
     members = {
         device = schema.new({
@@ -1427,7 +1427,7 @@ M.UpdateDeviceOutput = schema.new({
 })
 
 M.UpdateEnvironmentInput = schema.new({
-    id = id.from(_N, "UpdateEnvironmentInput"),
+    id = id.from(_N, "UpdateEnvironmentRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1495,7 +1495,7 @@ M.UpdateEnvironmentInput = schema.new({
 })
 
 M.UpdateEnvironmentOutput = schema.new({
-    id = id.from(_N, "UpdateEnvironmentOutput"),
+    id = id.from(_N, "UpdateEnvironmentResponse"),
     type = "structure",
     members = {
         environment = schema.new({
@@ -1509,7 +1509,7 @@ M.UpdateEnvironmentOutput = schema.new({
 })
 
 M.UpdateSoftwareSetInput = schema.new({
-    id = id.from(_N, "UpdateSoftwareSetInput"),
+    id = id.from(_N, "UpdateSoftwareSetRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1535,8 +1535,22 @@ M.UpdateSoftwareSetInput = schema.new({
 })
 
 M.UpdateSoftwareSetOutput = schema.new({
-    id = id.from(_N, "UpdateSoftwareSetOutput"),
+    id = id.from(_N, "UpdateSoftwareSetResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

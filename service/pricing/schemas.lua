@@ -37,7 +37,7 @@ M.AttributeValue = schema.new({
 })
 
 M.DescribeServicesInput = schema.new({
-    id = id.from(_N, "DescribeServicesInput"),
+    id = id.from(_N, "DescribeServicesRequest"),
     type = "structure",
     members = {
         ServiceCode = schema.new({
@@ -94,7 +94,7 @@ M.Service = schema.new({
 })
 
 M.DescribeServicesOutput = schema.new({
-    id = id.from(_N, "DescribeServicesOutput"),
+    id = id.from(_N, "DescribeServicesResponse"),
     type = "structure",
     members = {
         Services = schema.new({
@@ -216,7 +216,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.GetAttributeValuesInput = schema.new({
-    id = id.from(_N, "GetAttributeValuesInput"),
+    id = id.from(_N, "GetAttributeValuesRequest"),
     type = "structure",
     members = {
         ServiceCode = schema.new({
@@ -256,7 +256,7 @@ M.GetAttributeValuesInput = schema.new({
 })
 
 M.GetAttributeValuesOutput = schema.new({
-    id = id.from(_N, "GetAttributeValuesOutput"),
+    id = id.from(_N, "GetAttributeValuesResponse"),
     type = "structure",
     members = {
         AttributeValues = schema.new({
@@ -276,7 +276,7 @@ M.GetAttributeValuesOutput = schema.new({
 })
 
 M.GetPriceListFileUrlInput = schema.new({
-    id = id.from(_N, "GetPriceListFileUrlInput"),
+    id = id.from(_N, "GetPriceListFileUrlRequest"),
     type = "structure",
     members = {
         PriceListArn = schema.new({
@@ -301,7 +301,7 @@ M.GetPriceListFileUrlInput = schema.new({
 })
 
 M.GetPriceListFileUrlOutput = schema.new({
-    id = id.from(_N, "GetPriceListFileUrlOutput"),
+    id = id.from(_N, "GetPriceListFileUrlResponse"),
     type = "structure",
     members = {
         Url = schema.new({
@@ -364,7 +364,7 @@ M.Filter = schema.new({
 })
 
 M.GetProductsInput = schema.new({
-    id = id.from(_N, "GetProductsInput"),
+    id = id.from(_N, "GetProductsRequest"),
     type = "structure",
     members = {
         ServiceCode = schema.new({
@@ -408,7 +408,7 @@ M.GetProductsInput = schema.new({
 })
 
 M.GetProductsOutput = schema.new({
-    id = id.from(_N, "GetProductsOutput"),
+    id = id.from(_N, "GetProductsResponse"),
     type = "structure",
     members = {
         FormatVersion = schema.new({
@@ -434,7 +434,7 @@ M.GetProductsOutput = schema.new({
 })
 
 M.ListPriceListsInput = schema.new({
-    id = id.from(_N, "ListPriceListsInput"),
+    id = id.from(_N, "ListPriceListsRequest"),
     type = "structure",
     members = {
         ServiceCode = schema.new({
@@ -521,7 +521,7 @@ M.PriceList = schema.new({
 })
 
 M.ListPriceListsOutput = schema.new({
-    id = id.from(_N, "ListPriceListsOutput"),
+    id = id.from(_N, "ListPriceListsResponse"),
     type = "structure",
     members = {
         PriceLists = schema.new({
@@ -539,5 +539,19 @@ M.ListPriceListsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

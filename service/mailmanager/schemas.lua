@@ -127,7 +127,7 @@ M.Tag = schema.new({
 })
 
 M.CreateAddonInstanceInput = schema.new({
-    id = id.from(_N, "CreateAddonInstanceInput"),
+    id = id.from(_N, "CreateAddonInstanceRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -159,7 +159,7 @@ M.CreateAddonInstanceInput = schema.new({
 })
 
 M.CreateAddonInstanceOutput = schema.new({
-    id = id.from(_N, "CreateAddonInstanceOutput"),
+    id = id.from(_N, "CreateAddonInstanceResponse"),
     type = "structure",
     members = {
         AddonInstanceId = schema.new({
@@ -223,7 +223,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteAddonInstanceInput = schema.new({
-    id = id.from(_N, "DeleteAddonInstanceInput"),
+    id = id.from(_N, "DeleteAddonInstanceRequest"),
     type = "structure",
     members = {
         AddonInstanceId = schema.new({
@@ -239,12 +239,12 @@ M.DeleteAddonInstanceInput = schema.new({
 })
 
 M.DeleteAddonInstanceOutput = schema.new({
-    id = id.from(_N, "DeleteAddonInstanceOutput"),
+    id = id.from(_N, "DeleteAddonInstanceResponse"),
     type = "structure",
 })
 
 M.GetAddonInstanceInput = schema.new({
-    id = id.from(_N, "GetAddonInstanceInput"),
+    id = id.from(_N, "GetAddonInstanceRequest"),
     type = "structure",
     members = {
         AddonInstanceId = schema.new({
@@ -260,7 +260,7 @@ M.GetAddonInstanceInput = schema.new({
 })
 
 M.GetAddonInstanceOutput = schema.new({
-    id = id.from(_N, "GetAddonInstanceOutput"),
+    id = id.from(_N, "GetAddonInstanceResponse"),
     type = "structure",
     members = {
         AddonSubscriptionId = schema.new({
@@ -291,7 +291,7 @@ M.GetAddonInstanceOutput = schema.new({
 })
 
 M.ListAddonInstancesInput = schema.new({
-    id = id.from(_N, "ListAddonInstancesInput"),
+    id = id.from(_N, "ListAddonInstancesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -310,7 +310,7 @@ M.ListAddonInstancesInput = schema.new({
 })
 
 M.ListAddonInstancesOutput = schema.new({
-    id = id.from(_N, "ListAddonInstancesOutput"),
+    id = id.from(_N, "ListAddonInstancesResponse"),
     type = "structure",
     members = {
         AddonInstances = schema.new({
@@ -361,7 +361,7 @@ M.AddonSubscription = schema.new({
 })
 
 M.CreateAddonSubscriptionInput = schema.new({
-    id = id.from(_N, "CreateAddonSubscriptionInput"),
+    id = id.from(_N, "CreateAddonSubscriptionRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -393,7 +393,7 @@ M.CreateAddonSubscriptionInput = schema.new({
 })
 
 M.CreateAddonSubscriptionOutput = schema.new({
-    id = id.from(_N, "CreateAddonSubscriptionOutput"),
+    id = id.from(_N, "CreateAddonSubscriptionResponse"),
     type = "structure",
     members = {
         AddonSubscriptionId = schema.new({
@@ -425,7 +425,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.DeleteAddonSubscriptionInput = schema.new({
-    id = id.from(_N, "DeleteAddonSubscriptionInput"),
+    id = id.from(_N, "DeleteAddonSubscriptionRequest"),
     type = "structure",
     members = {
         AddonSubscriptionId = schema.new({
@@ -441,12 +441,12 @@ M.DeleteAddonSubscriptionInput = schema.new({
 })
 
 M.DeleteAddonSubscriptionOutput = schema.new({
-    id = id.from(_N, "DeleteAddonSubscriptionOutput"),
+    id = id.from(_N, "DeleteAddonSubscriptionResponse"),
     type = "structure",
 })
 
 M.GetAddonSubscriptionInput = schema.new({
-    id = id.from(_N, "GetAddonSubscriptionInput"),
+    id = id.from(_N, "GetAddonSubscriptionRequest"),
     type = "structure",
     members = {
         AddonSubscriptionId = schema.new({
@@ -462,7 +462,7 @@ M.GetAddonSubscriptionInput = schema.new({
 })
 
 M.GetAddonSubscriptionOutput = schema.new({
-    id = id.from(_N, "GetAddonSubscriptionOutput"),
+    id = id.from(_N, "GetAddonSubscriptionResponse"),
     type = "structure",
     members = {
         AddonName = schema.new({
@@ -487,7 +487,7 @@ M.GetAddonSubscriptionOutput = schema.new({
 })
 
 M.ListAddonSubscriptionsInput = schema.new({
-    id = id.from(_N, "ListAddonSubscriptionsInput"),
+    id = id.from(_N, "ListAddonSubscriptionsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -506,7 +506,7 @@ M.ListAddonSubscriptionsInput = schema.new({
 })
 
 M.ListAddonSubscriptionsOutput = schema.new({
-    id = id.from(_N, "ListAddonSubscriptionsOutput"),
+    id = id.from(_N, "ListAddonSubscriptionsResponse"),
     type = "structure",
     members = {
         AddonSubscriptions = schema.new({
@@ -591,7 +591,7 @@ M.AddressList = schema.new({
 })
 
 M.CreateAddressListInput = schema.new({
-    id = id.from(_N, "CreateAddressListInput"),
+    id = id.from(_N, "CreateAddressListRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -623,7 +623,7 @@ M.CreateAddressListInput = schema.new({
 })
 
 M.CreateAddressListOutput = schema.new({
-    id = id.from(_N, "CreateAddressListOutput"),
+    id = id.from(_N, "CreateAddressListResponse"),
     type = "structure",
     members = {
         AddressListId = schema.new({
@@ -639,7 +639,7 @@ M.CreateAddressListOutput = schema.new({
 })
 
 M.DeleteAddressListInput = schema.new({
-    id = id.from(_N, "DeleteAddressListInput"),
+    id = id.from(_N, "DeleteAddressListRequest"),
     type = "structure",
     members = {
         AddressListId = schema.new({
@@ -655,12 +655,12 @@ M.DeleteAddressListInput = schema.new({
 })
 
 M.DeleteAddressListOutput = schema.new({
-    id = id.from(_N, "DeleteAddressListOutput"),
+    id = id.from(_N, "DeleteAddressListResponse"),
     type = "structure",
 })
 
 M.GetAddressListInput = schema.new({
-    id = id.from(_N, "GetAddressListInput"),
+    id = id.from(_N, "GetAddressListRequest"),
     type = "structure",
     members = {
         AddressListId = schema.new({
@@ -676,7 +676,7 @@ M.GetAddressListInput = schema.new({
 })
 
 M.GetAddressListOutput = schema.new({
-    id = id.from(_N, "GetAddressListOutput"),
+    id = id.from(_N, "GetAddressListResponse"),
     type = "structure",
     members = {
         AddressListId = schema.new({
@@ -728,7 +728,7 @@ M.GetAddressListOutput = schema.new({
 })
 
 M.ListAddressListsInput = schema.new({
-    id = id.from(_N, "ListAddressListsInput"),
+    id = id.from(_N, "ListAddressListsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -747,7 +747,7 @@ M.ListAddressListsInput = schema.new({
 })
 
 M.ListAddressListsOutput = schema.new({
-    id = id.from(_N, "ListAddressListsOutput"),
+    id = id.from(_N, "ListAddressListsResponse"),
     type = "structure",
     members = {
         AddressLists = schema.new({
@@ -994,7 +994,7 @@ M.ArchiveRetention = schema.new({
 })
 
 M.CreateArchiveInput = schema.new({
-    id = id.from(_N, "CreateArchiveInput"),
+    id = id.from(_N, "CreateArchiveRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -1039,7 +1039,7 @@ M.CreateArchiveInput = schema.new({
 })
 
 M.CreateArchiveOutput = schema.new({
-    id = id.from(_N, "CreateArchiveOutput"),
+    id = id.from(_N, "CreateArchiveResponse"),
     type = "structure",
     members = {
         ArchiveId = schema.new({
@@ -1055,7 +1055,7 @@ M.CreateArchiveOutput = schema.new({
 })
 
 M.DeleteArchiveInput = schema.new({
-    id = id.from(_N, "DeleteArchiveInput"),
+    id = id.from(_N, "DeleteArchiveRequest"),
     type = "structure",
     members = {
         ArchiveId = schema.new({
@@ -1071,12 +1071,12 @@ M.DeleteArchiveInput = schema.new({
 })
 
 M.DeleteArchiveOutput = schema.new({
-    id = id.from(_N, "DeleteArchiveOutput"),
+    id = id.from(_N, "DeleteArchiveResponse"),
     type = "structure",
 })
 
 M.GetArchiveInput = schema.new({
-    id = id.from(_N, "GetArchiveInput"),
+    id = id.from(_N, "GetArchiveRequest"),
     type = "structure",
     members = {
         ArchiveId = schema.new({
@@ -1092,7 +1092,7 @@ M.GetArchiveInput = schema.new({
 })
 
 M.GetArchiveOutput = schema.new({
-    id = id.from(_N, "GetArchiveOutput"),
+    id = id.from(_N, "GetArchiveResponse"),
     type = "structure",
     members = {
         ArchiveId = schema.new({
@@ -1163,7 +1163,7 @@ M.GetArchiveOutput = schema.new({
 })
 
 M.ListArchivesInput = schema.new({
-    id = id.from(_N, "ListArchivesInput"),
+    id = id.from(_N, "ListArchivesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1182,7 +1182,7 @@ M.ListArchivesInput = schema.new({
 })
 
 M.ListArchivesOutput = schema.new({
-    id = id.from(_N, "ListArchivesOutput"),
+    id = id.from(_N, "ListArchivesResponse"),
     type = "structure",
     members = {
         Archives = schema.new({
@@ -1205,7 +1205,7 @@ M.ListArchivesOutput = schema.new({
 })
 
 M.UpdateArchiveInput = schema.new({
-    id = id.from(_N, "UpdateArchiveInput"),
+    id = id.from(_N, "UpdateArchiveRequest"),
     type = "structure",
     members = {
         ArchiveId = schema.new({
@@ -1234,7 +1234,7 @@ M.UpdateArchiveInput = schema.new({
 })
 
 M.UpdateArchiveOutput = schema.new({
-    id = id.from(_N, "UpdateArchiveOutput"),
+    id = id.from(_N, "UpdateArchiveResponse"),
     type = "structure",
 })
 
@@ -1319,7 +1319,7 @@ M.ImportDataFormat = schema.new({
 })
 
 M.CreateAddressListImportJobInput = schema.new({
-    id = id.from(_N, "CreateAddressListImportJobInput"),
+    id = id.from(_N, "CreateAddressListImportJobRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -1363,7 +1363,7 @@ M.CreateAddressListImportJobInput = schema.new({
 })
 
 M.CreateAddressListImportJobOutput = schema.new({
-    id = id.from(_N, "CreateAddressListImportJobOutput"),
+    id = id.from(_N, "CreateAddressListImportJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1510,7 +1510,7 @@ M.NetworkConfiguration = schema.new({
 })
 
 M.CreateIngressPointInput = schema.new({
-    id = id.from(_N, "CreateIngressPointInput"),
+    id = id.from(_N, "CreateIngressPointRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -1589,7 +1589,7 @@ M.CreateIngressPointInput = schema.new({
 })
 
 M.CreateIngressPointOutput = schema.new({
-    id = id.from(_N, "CreateIngressPointOutput"),
+    id = id.from(_N, "CreateIngressPointResponse"),
     type = "structure",
     members = {
         IngressPointId = schema.new({
@@ -1630,7 +1630,7 @@ M.RelayAuthentication = schema.new({
 })
 
 M.CreateRelayInput = schema.new({
-    id = id.from(_N, "CreateRelayInput"),
+    id = id.from(_N, "CreateRelayRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -1690,7 +1690,7 @@ M.CreateRelayInput = schema.new({
 })
 
 M.CreateRelayOutput = schema.new({
-    id = id.from(_N, "CreateRelayOutput"),
+    id = id.from(_N, "CreateRelayResponse"),
     type = "structure",
     members = {
         RelayId = schema.new({
@@ -2487,7 +2487,7 @@ M.Rule = schema.new({
 })
 
 M.CreateRuleSetInput = schema.new({
-    id = id.from(_N, "CreateRuleSetInput"),
+    id = id.from(_N, "CreateRuleSetRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -2529,7 +2529,7 @@ M.CreateRuleSetInput = schema.new({
 })
 
 M.CreateRuleSetOutput = schema.new({
-    id = id.from(_N, "CreateRuleSetOutput"),
+    id = id.from(_N, "CreateRuleSetResponse"),
     type = "structure",
     members = {
         RuleSetId = schema.new({
@@ -2913,7 +2913,7 @@ M.PolicyStatement = schema.new({
 })
 
 M.CreateTrafficPolicyInput = schema.new({
-    id = id.from(_N, "CreateTrafficPolicyInput"),
+    id = id.from(_N, "CreateTrafficPolicyRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -2970,7 +2970,7 @@ M.CreateTrafficPolicyInput = schema.new({
 })
 
 M.CreateTrafficPolicyOutput = schema.new({
-    id = id.from(_N, "CreateTrafficPolicyOutput"),
+    id = id.from(_N, "CreateTrafficPolicyResponse"),
     type = "structure",
     members = {
         TrafficPolicyId = schema.new({
@@ -2986,7 +2986,7 @@ M.CreateTrafficPolicyOutput = schema.new({
 })
 
 M.DeleteIngressPointInput = schema.new({
-    id = id.from(_N, "DeleteIngressPointInput"),
+    id = id.from(_N, "DeleteIngressPointRequest"),
     type = "structure",
     members = {
         IngressPointId = schema.new({
@@ -3002,12 +3002,12 @@ M.DeleteIngressPointInput = schema.new({
 })
 
 M.DeleteIngressPointOutput = schema.new({
-    id = id.from(_N, "DeleteIngressPointOutput"),
+    id = id.from(_N, "DeleteIngressPointResponse"),
     type = "structure",
 })
 
 M.DeleteRelayInput = schema.new({
-    id = id.from(_N, "DeleteRelayInput"),
+    id = id.from(_N, "DeleteRelayRequest"),
     type = "structure",
     members = {
         RelayId = schema.new({
@@ -3023,12 +3023,12 @@ M.DeleteRelayInput = schema.new({
 })
 
 M.DeleteRelayOutput = schema.new({
-    id = id.from(_N, "DeleteRelayOutput"),
+    id = id.from(_N, "DeleteRelayResponse"),
     type = "structure",
 })
 
 M.DeleteRuleSetInput = schema.new({
-    id = id.from(_N, "DeleteRuleSetInput"),
+    id = id.from(_N, "DeleteRuleSetRequest"),
     type = "structure",
     members = {
         RuleSetId = schema.new({
@@ -3044,12 +3044,12 @@ M.DeleteRuleSetInput = schema.new({
 })
 
 M.DeleteRuleSetOutput = schema.new({
-    id = id.from(_N, "DeleteRuleSetOutput"),
+    id = id.from(_N, "DeleteRuleSetResponse"),
     type = "structure",
 })
 
 M.DeleteTrafficPolicyInput = schema.new({
-    id = id.from(_N, "DeleteTrafficPolicyInput"),
+    id = id.from(_N, "DeleteTrafficPolicyRequest"),
     type = "structure",
     members = {
         TrafficPolicyId = schema.new({
@@ -3065,12 +3065,12 @@ M.DeleteTrafficPolicyInput = schema.new({
 })
 
 M.DeleteTrafficPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteTrafficPolicyOutput"),
+    id = id.from(_N, "DeleteTrafficPolicyResponse"),
     type = "structure",
 })
 
 M.DeregisterMemberFromAddressListInput = schema.new({
-    id = id.from(_N, "DeregisterMemberFromAddressListInput"),
+    id = id.from(_N, "DeregisterMemberFromAddressListRequest"),
     type = "structure",
     members = {
         AddressListId = schema.new({
@@ -3095,7 +3095,7 @@ M.DeregisterMemberFromAddressListInput = schema.new({
 })
 
 M.DeregisterMemberFromAddressListOutput = schema.new({
-    id = id.from(_N, "DeregisterMemberFromAddressListOutput"),
+    id = id.from(_N, "DeregisterMemberFromAddressListResponse"),
     type = "structure",
 })
 
@@ -3204,7 +3204,7 @@ M.ExportSummary = schema.new({
 })
 
 M.GetAddressListImportJobInput = schema.new({
-    id = id.from(_N, "GetAddressListImportJobInput"),
+    id = id.from(_N, "GetAddressListImportJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -3220,7 +3220,7 @@ M.GetAddressListImportJobInput = schema.new({
 })
 
 M.GetAddressListImportJobOutput = schema.new({
-    id = id.from(_N, "GetAddressListImportJobOutput"),
+    id = id.from(_N, "GetAddressListImportJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -3321,7 +3321,7 @@ M.GetAddressListImportJobOutput = schema.new({
 })
 
 M.GetArchiveExportInput = schema.new({
-    id = id.from(_N, "GetArchiveExportInput"),
+    id = id.from(_N, "GetArchiveExportRequest"),
     type = "structure",
     members = {
         ExportId = schema.new({
@@ -3337,7 +3337,7 @@ M.GetArchiveExportInput = schema.new({
 })
 
 M.GetArchiveExportOutput = schema.new({
-    id = id.from(_N, "GetArchiveExportOutput"),
+    id = id.from(_N, "GetArchiveExportResponse"),
     type = "structure",
     members = {
         ArchiveId = schema.new({
@@ -3389,7 +3389,7 @@ M.GetArchiveExportOutput = schema.new({
 })
 
 M.GetArchiveMessageInput = schema.new({
-    id = id.from(_N, "GetArchiveMessageInput"),
+    id = id.from(_N, "GetArchiveMessageRequest"),
     type = "structure",
     members = {
         ArchivedMessageId = schema.new({
@@ -3490,7 +3490,7 @@ M.Metadata = schema.new({
 })
 
 M.GetArchiveMessageOutput = schema.new({
-    id = id.from(_N, "GetArchiveMessageOutput"),
+    id = id.from(_N, "GetArchiveMessageResponse"),
     type = "structure",
     members = {
         MessageDownloadLink = schema.new({
@@ -3517,7 +3517,7 @@ M.GetArchiveMessageOutput = schema.new({
 })
 
 M.GetArchiveMessageContentInput = schema.new({
-    id = id.from(_N, "GetArchiveMessageContentInput"),
+    id = id.from(_N, "GetArchiveMessageContentRequest"),
     type = "structure",
     members = {
         ArchivedMessageId = schema.new({
@@ -3558,7 +3558,7 @@ M.MessageBody = schema.new({
 })
 
 M.GetArchiveMessageContentOutput = schema.new({
-    id = id.from(_N, "GetArchiveMessageContentOutput"),
+    id = id.from(_N, "GetArchiveMessageContentResponse"),
     type = "structure",
     members = {
         Body = schema.new({
@@ -3572,7 +3572,7 @@ M.GetArchiveMessageContentOutput = schema.new({
 })
 
 M.GetArchiveSearchInput = schema.new({
-    id = id.from(_N, "GetArchiveSearchInput"),
+    id = id.from(_N, "GetArchiveSearchRequest"),
     type = "structure",
     members = {
         SearchId = schema.new({
@@ -3619,7 +3619,7 @@ M.SearchStatus = schema.new({
 })
 
 M.GetArchiveSearchOutput = schema.new({
-    id = id.from(_N, "GetArchiveSearchOutput"),
+    id = id.from(_N, "GetArchiveSearchResponse"),
     type = "structure",
     members = {
         ArchiveId = schema.new({
@@ -3664,7 +3664,7 @@ M.GetArchiveSearchOutput = schema.new({
 })
 
 M.GetArchiveSearchResultsInput = schema.new({
-    id = id.from(_N, "GetArchiveSearchResultsInput"),
+    id = id.from(_N, "GetArchiveSearchResultsRequest"),
     type = "structure",
     members = {
         SearchId = schema.new({
@@ -3803,7 +3803,7 @@ M.Row = schema.new({
 })
 
 M.GetArchiveSearchResultsOutput = schema.new({
-    id = id.from(_N, "GetArchiveSearchResultsOutput"),
+    id = id.from(_N, "GetArchiveSearchResultsResponse"),
     type = "structure",
     members = {
         Rows = schema.new({
@@ -3817,7 +3817,7 @@ M.GetArchiveSearchResultsOutput = schema.new({
 })
 
 M.GetIngressPointInput = schema.new({
-    id = id.from(_N, "GetIngressPointInput"),
+    id = id.from(_N, "GetIngressPointRequest"),
     type = "structure",
     members = {
         IngressPointId = schema.new({
@@ -3891,7 +3891,7 @@ M.IngressPointAuthConfiguration = schema.new({
 })
 
 M.GetIngressPointOutput = schema.new({
-    id = id.from(_N, "GetIngressPointOutput"),
+    id = id.from(_N, "GetIngressPointResponse"),
     type = "structure",
     members = {
         IngressPointId = schema.new({
@@ -3984,7 +3984,7 @@ M.GetIngressPointOutput = schema.new({
 })
 
 M.GetMemberOfAddressListInput = schema.new({
-    id = id.from(_N, "GetMemberOfAddressListInput"),
+    id = id.from(_N, "GetMemberOfAddressListRequest"),
     type = "structure",
     members = {
         AddressListId = schema.new({
@@ -4009,7 +4009,7 @@ M.GetMemberOfAddressListInput = schema.new({
 })
 
 M.GetMemberOfAddressListOutput = schema.new({
-    id = id.from(_N, "GetMemberOfAddressListOutput"),
+    id = id.from(_N, "GetMemberOfAddressListResponse"),
     type = "structure",
     members = {
         Address = schema.new({
@@ -4034,7 +4034,7 @@ M.GetMemberOfAddressListOutput = schema.new({
 })
 
 M.GetRelayInput = schema.new({
-    id = id.from(_N, "GetRelayInput"),
+    id = id.from(_N, "GetRelayRequest"),
     type = "structure",
     members = {
         RelayId = schema.new({
@@ -4050,7 +4050,7 @@ M.GetRelayInput = schema.new({
 })
 
 M.GetRelayOutput = schema.new({
-    id = id.from(_N, "GetRelayOutput"),
+    id = id.from(_N, "GetRelayResponse"),
     type = "structure",
     members = {
         RelayId = schema.new({
@@ -4109,7 +4109,7 @@ M.GetRelayOutput = schema.new({
 })
 
 M.GetRuleSetInput = schema.new({
-    id = id.from(_N, "GetRuleSetInput"),
+    id = id.from(_N, "GetRuleSetRequest"),
     type = "structure",
     members = {
         RuleSetId = schema.new({
@@ -4125,7 +4125,7 @@ M.GetRuleSetInput = schema.new({
 })
 
 M.GetRuleSetOutput = schema.new({
-    id = id.from(_N, "GetRuleSetOutput"),
+    id = id.from(_N, "GetRuleSetResponse"),
     type = "structure",
     members = {
         RuleSetId = schema.new({
@@ -4187,7 +4187,7 @@ M.GetRuleSetOutput = schema.new({
 })
 
 M.GetTrafficPolicyInput = schema.new({
-    id = id.from(_N, "GetTrafficPolicyInput"),
+    id = id.from(_N, "GetTrafficPolicyRequest"),
     type = "structure",
     members = {
         TrafficPolicyId = schema.new({
@@ -4203,7 +4203,7 @@ M.GetTrafficPolicyInput = schema.new({
 })
 
 M.GetTrafficPolicyOutput = schema.new({
-    id = id.from(_N, "GetTrafficPolicyOutput"),
+    id = id.from(_N, "GetTrafficPolicyResponse"),
     type = "structure",
     members = {
         TrafficPolicyName = schema.new({
@@ -4415,7 +4415,7 @@ M.IngressPoint = schema.new({
 })
 
 M.ListIngressPointsInput = schema.new({
-    id = id.from(_N, "ListIngressPointsInput"),
+    id = id.from(_N, "ListIngressPointsRequest"),
     type = "structure",
     members = {
         PageSize = schema.new({
@@ -4434,7 +4434,7 @@ M.ListIngressPointsInput = schema.new({
 })
 
 M.ListIngressPointsOutput = schema.new({
-    id = id.from(_N, "ListIngressPointsOutput"),
+    id = id.from(_N, "ListIngressPointsResponse"),
     type = "structure",
     members = {
         IngressPoints = schema.new({
@@ -4454,7 +4454,7 @@ M.ListIngressPointsOutput = schema.new({
 })
 
 M.UpdateIngressPointInput = schema.new({
-    id = id.from(_N, "UpdateIngressPointInput"),
+    id = id.from(_N, "UpdateIngressPointRequest"),
     type = "structure",
     members = {
         IngressPointId = schema.new({
@@ -4507,12 +4507,12 @@ M.UpdateIngressPointInput = schema.new({
 })
 
 M.UpdateIngressPointOutput = schema.new({
-    id = id.from(_N, "UpdateIngressPointOutput"),
+    id = id.from(_N, "UpdateIngressPointResponse"),
     type = "structure",
 })
 
 M.ListAddressListImportJobsInput = schema.new({
-    id = id.from(_N, "ListAddressListImportJobsInput"),
+    id = id.from(_N, "ListAddressListImportJobsRequest"),
     type = "structure",
     members = {
         AddressListId = schema.new({
@@ -4540,7 +4540,7 @@ M.ListAddressListImportJobsInput = schema.new({
 })
 
 M.ListAddressListImportJobsOutput = schema.new({
-    id = id.from(_N, "ListAddressListImportJobsOutput"),
+    id = id.from(_N, "ListAddressListImportJobsResponse"),
     type = "structure",
     members = {
         ImportJobs = schema.new({
@@ -4563,7 +4563,7 @@ M.ListAddressListImportJobsOutput = schema.new({
 })
 
 M.ListArchiveExportsInput = schema.new({
-    id = id.from(_N, "ListArchiveExportsInput"),
+    id = id.from(_N, "ListArchiveExportsRequest"),
     type = "structure",
     members = {
         ArchiveId = schema.new({
@@ -4591,7 +4591,7 @@ M.ListArchiveExportsInput = schema.new({
 })
 
 M.ListArchiveExportsOutput = schema.new({
-    id = id.from(_N, "ListArchiveExportsOutput"),
+    id = id.from(_N, "ListArchiveExportsResponse"),
     type = "structure",
     members = {
         Exports = schema.new({
@@ -4611,7 +4611,7 @@ M.ListArchiveExportsOutput = schema.new({
 })
 
 M.ListArchiveSearchesInput = schema.new({
-    id = id.from(_N, "ListArchiveSearchesInput"),
+    id = id.from(_N, "ListArchiveSearchesRequest"),
     type = "structure",
     members = {
         ArchiveId = schema.new({
@@ -4659,7 +4659,7 @@ M.SearchSummary = schema.new({
 })
 
 M.ListArchiveSearchesOutput = schema.new({
-    id = id.from(_N, "ListArchiveSearchesOutput"),
+    id = id.from(_N, "ListArchiveSearchesResponse"),
     type = "structure",
     members = {
         Searches = schema.new({
@@ -4679,7 +4679,7 @@ M.ListArchiveSearchesOutput = schema.new({
 })
 
 M.ListMembersOfAddressListInput = schema.new({
-    id = id.from(_N, "ListMembersOfAddressListInput"),
+    id = id.from(_N, "ListMembersOfAddressListRequest"),
     type = "structure",
     members = {
         AddressListId = schema.new({
@@ -4739,7 +4739,7 @@ M.SavedAddress = schema.new({
 })
 
 M.ListMembersOfAddressListOutput = schema.new({
-    id = id.from(_N, "ListMembersOfAddressListOutput"),
+    id = id.from(_N, "ListMembersOfAddressListResponse"),
     type = "structure",
     members = {
         Addresses = schema.new({
@@ -4762,7 +4762,7 @@ M.ListMembersOfAddressListOutput = schema.new({
 })
 
 M.ListRelaysInput = schema.new({
-    id = id.from(_N, "ListRelaysInput"),
+    id = id.from(_N, "ListRelaysRequest"),
     type = "structure",
     members = {
         PageSize = schema.new({
@@ -4806,7 +4806,7 @@ M.Relay = schema.new({
 })
 
 M.ListRelaysOutput = schema.new({
-    id = id.from(_N, "ListRelaysOutput"),
+    id = id.from(_N, "ListRelaysResponse"),
     type = "structure",
     members = {
         Relays = schema.new({
@@ -4829,7 +4829,7 @@ M.ListRelaysOutput = schema.new({
 })
 
 M.ListRuleSetsInput = schema.new({
-    id = id.from(_N, "ListRuleSetsInput"),
+    id = id.from(_N, "ListRuleSetsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4873,7 +4873,7 @@ M.RuleSet = schema.new({
 })
 
 M.ListRuleSetsOutput = schema.new({
-    id = id.from(_N, "ListRuleSetsOutput"),
+    id = id.from(_N, "ListRuleSetsResponse"),
     type = "structure",
     members = {
         RuleSets = schema.new({
@@ -4896,7 +4896,7 @@ M.ListRuleSetsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4912,7 +4912,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -4929,7 +4929,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTrafficPoliciesInput = schema.new({
-    id = id.from(_N, "ListTrafficPoliciesInput"),
+    id = id.from(_N, "ListTrafficPoliciesRequest"),
     type = "structure",
     members = {
         PageSize = schema.new({
@@ -4982,7 +4982,7 @@ M.TrafficPolicy = schema.new({
 })
 
 M.ListTrafficPoliciesOutput = schema.new({
-    id = id.from(_N, "ListTrafficPoliciesOutput"),
+    id = id.from(_N, "ListTrafficPoliciesResponse"),
     type = "structure",
     members = {
         TrafficPolicies = schema.new({
@@ -5002,7 +5002,7 @@ M.ListTrafficPoliciesOutput = schema.new({
 })
 
 M.RegisterMemberToAddressListInput = schema.new({
-    id = id.from(_N, "RegisterMemberToAddressListInput"),
+    id = id.from(_N, "RegisterMemberToAddressListRequest"),
     type = "structure",
     members = {
         AddressListId = schema.new({
@@ -5027,12 +5027,12 @@ M.RegisterMemberToAddressListInput = schema.new({
 })
 
 M.RegisterMemberToAddressListOutput = schema.new({
-    id = id.from(_N, "RegisterMemberToAddressListOutput"),
+    id = id.from(_N, "RegisterMemberToAddressListResponse"),
     type = "structure",
 })
 
 M.UpdateRelayInput = schema.new({
-    id = id.from(_N, "UpdateRelayInput"),
+    id = id.from(_N, "UpdateRelayRequest"),
     type = "structure",
     members = {
         RelayId = schema.new({
@@ -5073,12 +5073,12 @@ M.UpdateRelayInput = schema.new({
 })
 
 M.UpdateRelayOutput = schema.new({
-    id = id.from(_N, "UpdateRelayOutput"),
+    id = id.from(_N, "UpdateRelayResponse"),
     type = "structure",
 })
 
 M.UpdateRuleSetInput = schema.new({
-    id = id.from(_N, "UpdateRuleSetInput"),
+    id = id.from(_N, "UpdateRuleSetRequest"),
     type = "structure",
     members = {
         RuleSetId = schema.new({
@@ -5107,12 +5107,12 @@ M.UpdateRuleSetInput = schema.new({
 })
 
 M.UpdateRuleSetOutput = schema.new({
-    id = id.from(_N, "UpdateRuleSetOutput"),
+    id = id.from(_N, "UpdateRuleSetResponse"),
     type = "structure",
 })
 
 M.StartAddressListImportJobInput = schema.new({
-    id = id.from(_N, "StartAddressListImportJobInput"),
+    id = id.from(_N, "StartAddressListImportJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -5128,12 +5128,12 @@ M.StartAddressListImportJobInput = schema.new({
 })
 
 M.StartAddressListImportJobOutput = schema.new({
-    id = id.from(_N, "StartAddressListImportJobOutput"),
+    id = id.from(_N, "StartAddressListImportJobResponse"),
     type = "structure",
 })
 
 M.StartArchiveExportInput = schema.new({
-    id = id.from(_N, "StartArchiveExportInput"),
+    id = id.from(_N, "StartArchiveExportRequest"),
     type = "structure",
     members = {
         ArchiveId = schema.new({
@@ -5196,7 +5196,7 @@ M.StartArchiveExportInput = schema.new({
 })
 
 M.StartArchiveExportOutput = schema.new({
-    id = id.from(_N, "StartArchiveExportOutput"),
+    id = id.from(_N, "StartArchiveExportResponse"),
     type = "structure",
     members = {
         ExportId = schema.new({
@@ -5209,7 +5209,7 @@ M.StartArchiveExportOutput = schema.new({
 })
 
 M.StartArchiveSearchInput = schema.new({
-    id = id.from(_N, "StartArchiveSearchInput"),
+    id = id.from(_N, "StartArchiveSearchRequest"),
     type = "structure",
     members = {
         ArchiveId = schema.new({
@@ -5259,7 +5259,7 @@ M.StartArchiveSearchInput = schema.new({
 })
 
 M.StartArchiveSearchOutput = schema.new({
-    id = id.from(_N, "StartArchiveSearchOutput"),
+    id = id.from(_N, "StartArchiveSearchResponse"),
     type = "structure",
     members = {
         SearchId = schema.new({
@@ -5272,7 +5272,7 @@ M.StartArchiveSearchOutput = schema.new({
 })
 
 M.StopAddressListImportJobInput = schema.new({
-    id = id.from(_N, "StopAddressListImportJobInput"),
+    id = id.from(_N, "StopAddressListImportJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -5288,12 +5288,12 @@ M.StopAddressListImportJobInput = schema.new({
 })
 
 M.StopAddressListImportJobOutput = schema.new({
-    id = id.from(_N, "StopAddressListImportJobOutput"),
+    id = id.from(_N, "StopAddressListImportJobResponse"),
     type = "structure",
 })
 
 M.StopArchiveExportInput = schema.new({
-    id = id.from(_N, "StopArchiveExportInput"),
+    id = id.from(_N, "StopArchiveExportRequest"),
     type = "structure",
     members = {
         ExportId = schema.new({
@@ -5309,12 +5309,12 @@ M.StopArchiveExportInput = schema.new({
 })
 
 M.StopArchiveExportOutput = schema.new({
-    id = id.from(_N, "StopArchiveExportOutput"),
+    id = id.from(_N, "StopArchiveExportResponse"),
     type = "structure",
 })
 
 M.StopArchiveSearchInput = schema.new({
-    id = id.from(_N, "StopArchiveSearchInput"),
+    id = id.from(_N, "StopArchiveSearchRequest"),
     type = "structure",
     members = {
         SearchId = schema.new({
@@ -5330,12 +5330,12 @@ M.StopArchiveSearchInput = schema.new({
 })
 
 M.StopArchiveSearchOutput = schema.new({
-    id = id.from(_N, "StopArchiveSearchOutput"),
+    id = id.from(_N, "StopArchiveSearchResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5361,12 +5361,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateTrafficPolicyInput = schema.new({
-    id = id.from(_N, "UpdateTrafficPolicyInput"),
+    id = id.from(_N, "UpdateTrafficPolicyRequest"),
     type = "structure",
     members = {
         TrafficPolicyId = schema.new({
@@ -5407,12 +5407,12 @@ M.UpdateTrafficPolicyInput = schema.new({
 })
 
 M.UpdateTrafficPolicyOutput = schema.new({
-    id = id.from(_N, "UpdateTrafficPolicyOutput"),
+    id = id.from(_N, "UpdateTrafficPolicyResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5438,8 +5438,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

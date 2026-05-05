@@ -8,7 +8,7 @@ local _N = "com.amazonaws.workdocs"
 local M = {}
 
 M.AbortDocumentVersionUploadInput = schema.new({
-    id = id.from(_N, "AbortDocumentVersionUploadInput"),
+    id = id.from(_N, "AbortDocumentVersionUploadRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -44,7 +44,7 @@ M.AbortDocumentVersionUploadInput = schema.new({
 })
 
 M.AbortDocumentVersionUploadOutput = schema.new({
-    id = id.from(_N, "AbortDocumentVersionUploadOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -174,7 +174,7 @@ M.UnauthorizedResourceAccessException = schema.new({
 })
 
 M.ActivateUserInput = schema.new({
-    id = id.from(_N, "ActivateUserInput"),
+    id = id.from(_N, "ActivateUserRequest"),
     type = "structure",
     members = {
         UserId = schema.new({
@@ -337,7 +337,7 @@ M.User = schema.new({
 })
 
 M.ActivateUserOutput = schema.new({
-    id = id.from(_N, "ActivateUserOutput"),
+    id = id.from(_N, "ActivateUserResponse"),
     type = "structure",
     members = {
         User = schema.new({
@@ -647,7 +647,7 @@ M.SharePrincipal = schema.new({
 })
 
 M.AddResourcePermissionsInput = schema.new({
-    id = id.from(_N, "AddResourcePermissionsInput"),
+    id = id.from(_N, "AddResourcePermissionsRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -733,7 +733,7 @@ M.ShareResult = schema.new({
 })
 
 M.AddResourcePermissionsOutput = schema.new({
-    id = id.from(_N, "AddResourcePermissionsOutput"),
+    id = id.from(_N, "AddResourcePermissionsResponse"),
     type = "structure",
     members = {
         ShareResults = schema.new({
@@ -747,7 +747,7 @@ M.AddResourcePermissionsOutput = schema.new({
 })
 
 M.CreateCommentInput = schema.new({
-    id = id.from(_N, "CreateCommentInput"),
+    id = id.from(_N, "CreateCommentRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -884,7 +884,7 @@ M.Comment = schema.new({
 })
 
 M.CreateCommentOutput = schema.new({
-    id = id.from(_N, "CreateCommentOutput"),
+    id = id.from(_N, "CreateCommentResponse"),
     type = "structure",
     members = {
         Comment = schema.new({
@@ -930,7 +930,7 @@ M.InvalidCommentOperationException = schema.new({
 })
 
 M.CreateCustomMetadataInput = schema.new({
-    id = id.from(_N, "CreateCustomMetadataInput"),
+    id = id.from(_N, "CreateCustomMetadataRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -976,7 +976,7 @@ M.CreateCustomMetadataInput = schema.new({
 })
 
 M.CreateCustomMetadataOutput = schema.new({
-    id = id.from(_N, "CreateCustomMetadataOutput"),
+    id = id.from(_N, "CreateCustomMetadataResponse"),
     type = "structure",
 })
 
@@ -1013,7 +1013,7 @@ M.ConflictingOperationException = schema.new({
 })
 
 M.CreateFolderInput = schema.new({
-    id = id.from(_N, "CreateFolderInput"),
+    id = id.from(_N, "CreateFolderRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -1118,7 +1118,7 @@ M.FolderMetadata = schema.new({
 })
 
 M.CreateFolderOutput = schema.new({
-    id = id.from(_N, "CreateFolderOutput"),
+    id = id.from(_N, "CreateFolderResponse"),
     type = "structure",
     members = {
         Metadata = schema.new({
@@ -1164,7 +1164,7 @@ M.LimitExceededException = schema.new({
 })
 
 M.CreateLabelsInput = schema.new({
-    id = id.from(_N, "CreateLabelsInput"),
+    id = id.from(_N, "CreateLabelsRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -1200,7 +1200,7 @@ M.CreateLabelsInput = schema.new({
 })
 
 M.CreateLabelsOutput = schema.new({
-    id = id.from(_N, "CreateLabelsOutput"),
+    id = id.from(_N, "CreateLabelsResponse"),
     type = "structure",
 })
 
@@ -1221,7 +1221,7 @@ M.TooManyLabelsException = schema.new({
 })
 
 M.CreateNotificationSubscriptionInput = schema.new({
-    id = id.from(_N, "CreateNotificationSubscriptionInput"),
+    id = id.from(_N, "CreateNotificationSubscriptionRequest"),
     type = "structure",
     members = {
         OrganizationId = schema.new({
@@ -1290,7 +1290,7 @@ M.Subscription = schema.new({
 })
 
 M.CreateNotificationSubscriptionOutput = schema.new({
-    id = id.from(_N, "CreateNotificationSubscriptionOutput"),
+    id = id.from(_N, "CreateNotificationSubscriptionResponse"),
     type = "structure",
     members = {
         Subscription = schema.new({
@@ -1336,7 +1336,7 @@ M.TooManySubscriptionsException = schema.new({
 })
 
 M.CreateUserInput = schema.new({
-    id = id.from(_N, "CreateUserInput"),
+    id = id.from(_N, "CreateUserRequest"),
     type = "structure",
     members = {
         OrganizationId = schema.new({
@@ -1413,7 +1413,7 @@ M.CreateUserInput = schema.new({
 })
 
 M.CreateUserOutput = schema.new({
-    id = id.from(_N, "CreateUserOutput"),
+    id = id.from(_N, "CreateUserResponse"),
     type = "structure",
     members = {
         User = schema.new({
@@ -1427,7 +1427,7 @@ M.CreateUserOutput = schema.new({
 })
 
 M.DeactivateUserInput = schema.new({
-    id = id.from(_N, "DeactivateUserInput"),
+    id = id.from(_N, "DeactivateUserRequest"),
     type = "structure",
     members = {
         UserId = schema.new({
@@ -1453,12 +1453,12 @@ M.DeactivateUserInput = schema.new({
 })
 
 M.DeactivateUserOutput = schema.new({
-    id = id.from(_N, "DeactivateUserOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteCommentInput = schema.new({
-    id = id.from(_N, "DeleteCommentInput"),
+    id = id.from(_N, "DeleteCommentRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -1504,12 +1504,12 @@ M.DeleteCommentInput = schema.new({
 })
 
 M.DeleteCommentOutput = schema.new({
-    id = id.from(_N, "DeleteCommentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteCustomMetadataInput = schema.new({
-    id = id.from(_N, "DeleteCustomMetadataInput"),
+    id = id.from(_N, "DeleteCustomMetadataRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -1564,12 +1564,12 @@ M.DeleteCustomMetadataInput = schema.new({
 })
 
 M.DeleteCustomMetadataOutput = schema.new({
-    id = id.from(_N, "DeleteCustomMetadataOutput"),
+    id = id.from(_N, "DeleteCustomMetadataResponse"),
     type = "structure",
 })
 
 M.DeleteDocumentInput = schema.new({
-    id = id.from(_N, "DeleteDocumentInput"),
+    id = id.from(_N, "DeleteDocumentRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -1595,12 +1595,12 @@ M.DeleteDocumentInput = schema.new({
 })
 
 M.DeleteDocumentOutput = schema.new({
-    id = id.from(_N, "DeleteDocumentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDocumentVersionInput = schema.new({
-    id = id.from(_N, "DeleteDocumentVersionInput"),
+    id = id.from(_N, "DeleteDocumentVersionRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -1647,7 +1647,7 @@ M.DeleteDocumentVersionInput = schema.new({
 })
 
 M.DeleteDocumentVersionOutput = schema.new({
-    id = id.from(_N, "DeleteDocumentVersionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1668,7 +1668,7 @@ M.InvalidOperationException = schema.new({
 })
 
 M.DeleteFolderInput = schema.new({
-    id = id.from(_N, "DeleteFolderInput"),
+    id = id.from(_N, "DeleteFolderRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -1694,12 +1694,12 @@ M.DeleteFolderInput = schema.new({
 })
 
 M.DeleteFolderOutput = schema.new({
-    id = id.from(_N, "DeleteFolderOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteFolderContentsInput = schema.new({
-    id = id.from(_N, "DeleteFolderContentsInput"),
+    id = id.from(_N, "DeleteFolderContentsRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -1725,12 +1725,12 @@ M.DeleteFolderContentsInput = schema.new({
 })
 
 M.DeleteFolderContentsOutput = schema.new({
-    id = id.from(_N, "DeleteFolderContentsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteLabelsInput = schema.new({
-    id = id.from(_N, "DeleteLabelsInput"),
+    id = id.from(_N, "DeleteLabelsRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -1776,12 +1776,12 @@ M.DeleteLabelsInput = schema.new({
 })
 
 M.DeleteLabelsOutput = schema.new({
-    id = id.from(_N, "DeleteLabelsOutput"),
+    id = id.from(_N, "DeleteLabelsResponse"),
     type = "structure",
 })
 
 M.DeleteNotificationSubscriptionInput = schema.new({
-    id = id.from(_N, "DeleteNotificationSubscriptionInput"),
+    id = id.from(_N, "DeleteNotificationSubscriptionRequest"),
     type = "structure",
     members = {
         SubscriptionId = schema.new({
@@ -1808,12 +1808,12 @@ M.DeleteNotificationSubscriptionInput = schema.new({
 })
 
 M.DeleteNotificationSubscriptionOutput = schema.new({
-    id = id.from(_N, "DeleteNotificationSubscriptionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteUserInput = schema.new({
-    id = id.from(_N, "DeleteUserInput"),
+    id = id.from(_N, "DeleteUserRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -1839,12 +1839,12 @@ M.DeleteUserInput = schema.new({
 })
 
 M.DeleteUserOutput = schema.new({
-    id = id.from(_N, "DeleteUserOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeActivitiesInput = schema.new({
-    id = id.from(_N, "DescribeActivitiesInput"),
+    id = id.from(_N, "DescribeActivitiesRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -1942,7 +1942,7 @@ M.DescribeActivitiesInput = schema.new({
 })
 
 M.DescribeActivitiesOutput = schema.new({
-    id = id.from(_N, "DescribeActivitiesOutput"),
+    id = id.from(_N, "DescribeActivitiesResponse"),
     type = "structure",
     members = {
         UserActivities = schema.new({
@@ -1962,7 +1962,7 @@ M.DescribeActivitiesOutput = schema.new({
 })
 
 M.DescribeCommentsInput = schema.new({
-    id = id.from(_N, "DescribeCommentsInput"),
+    id = id.from(_N, "DescribeCommentsRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -2016,7 +2016,7 @@ M.DescribeCommentsInput = schema.new({
 })
 
 M.DescribeCommentsOutput = schema.new({
-    id = id.from(_N, "DescribeCommentsOutput"),
+    id = id.from(_N, "DescribeCommentsResponse"),
     type = "structure",
     members = {
         Comments = schema.new({
@@ -2036,7 +2036,7 @@ M.DescribeCommentsOutput = schema.new({
 })
 
 M.DescribeDocumentVersionsInput = schema.new({
-    id = id.from(_N, "DescribeDocumentVersionsInput"),
+    id = id.from(_N, "DescribeDocumentVersionsRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -2187,7 +2187,7 @@ M.DocumentVersionMetadata = schema.new({
 })
 
 M.DescribeDocumentVersionsOutput = schema.new({
-    id = id.from(_N, "DescribeDocumentVersionsOutput"),
+    id = id.from(_N, "DescribeDocumentVersionsResponse"),
     type = "structure",
     members = {
         DocumentVersions = schema.new({
@@ -2223,7 +2223,7 @@ M.InvalidPasswordException = schema.new({
 })
 
 M.DescribeFolderContentsInput = schema.new({
-    id = id.from(_N, "DescribeFolderContentsInput"),
+    id = id.from(_N, "DescribeFolderContentsRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -2360,7 +2360,7 @@ M.DocumentMetadata = schema.new({
 })
 
 M.DescribeFolderContentsOutput = schema.new({
-    id = id.from(_N, "DescribeFolderContentsOutput"),
+    id = id.from(_N, "DescribeFolderContentsResponse"),
     type = "structure",
     members = {
         Folders = schema.new({
@@ -2387,7 +2387,7 @@ M.DescribeFolderContentsOutput = schema.new({
 })
 
 M.DescribeGroupsInput = schema.new({
-    id = id.from(_N, "DescribeGroupsInput"),
+    id = id.from(_N, "DescribeGroupsRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -2440,7 +2440,7 @@ M.DescribeGroupsInput = schema.new({
 })
 
 M.DescribeGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeGroupsOutput"),
+    id = id.from(_N, "DescribeGroupsResponse"),
     type = "structure",
     members = {
         Groups = schema.new({
@@ -2460,7 +2460,7 @@ M.DescribeGroupsOutput = schema.new({
 })
 
 M.DescribeNotificationSubscriptionsInput = schema.new({
-    id = id.from(_N, "DescribeNotificationSubscriptionsInput"),
+    id = id.from(_N, "DescribeNotificationSubscriptionsRequest"),
     type = "structure",
     members = {
         OrganizationId = schema.new({
@@ -2495,7 +2495,7 @@ M.DescribeNotificationSubscriptionsInput = schema.new({
 })
 
 M.DescribeNotificationSubscriptionsOutput = schema.new({
-    id = id.from(_N, "DescribeNotificationSubscriptionsOutput"),
+    id = id.from(_N, "DescribeNotificationSubscriptionsResponse"),
     type = "structure",
     members = {
         Subscriptions = schema.new({
@@ -2515,7 +2515,7 @@ M.DescribeNotificationSubscriptionsOutput = schema.new({
 })
 
 M.DescribeResourcePermissionsInput = schema.new({
-    id = id.from(_N, "DescribeResourcePermissionsInput"),
+    id = id.from(_N, "DescribeResourcePermissionsRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -2613,7 +2613,7 @@ M.Principal = schema.new({
 })
 
 M.DescribeResourcePermissionsOutput = schema.new({
-    id = id.from(_N, "DescribeResourcePermissionsOutput"),
+    id = id.from(_N, "DescribeResourcePermissionsResponse"),
     type = "structure",
     members = {
         Principals = schema.new({
@@ -2633,7 +2633,7 @@ M.DescribeResourcePermissionsOutput = schema.new({
 })
 
 M.DescribeRootFoldersInput = schema.new({
-    id = id.from(_N, "DescribeRootFoldersInput"),
+    id = id.from(_N, "DescribeRootFoldersRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -2668,7 +2668,7 @@ M.DescribeRootFoldersInput = schema.new({
 })
 
 M.DescribeRootFoldersOutput = schema.new({
-    id = id.from(_N, "DescribeRootFoldersOutput"),
+    id = id.from(_N, "DescribeRootFoldersResponse"),
     type = "structure",
     members = {
         Folders = schema.new({
@@ -2688,7 +2688,7 @@ M.DescribeRootFoldersOutput = schema.new({
 })
 
 M.DescribeUsersInput = schema.new({
-    id = id.from(_N, "DescribeUsersInput"),
+    id = id.from(_N, "DescribeUsersRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -2785,7 +2785,7 @@ M.DescribeUsersInput = schema.new({
 })
 
 M.DescribeUsersOutput = schema.new({
-    id = id.from(_N, "DescribeUsersOutput"),
+    id = id.from(_N, "DescribeUsersResponse"),
     type = "structure",
     members = {
         Users = schema.new({
@@ -2827,7 +2827,7 @@ M.RequestedEntityTooLargeException = schema.new({
 })
 
 M.GetCurrentUserInput = schema.new({
-    id = id.from(_N, "GetCurrentUserInput"),
+    id = id.from(_N, "GetCurrentUserRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -2844,7 +2844,7 @@ M.GetCurrentUserInput = schema.new({
 })
 
 M.GetCurrentUserOutput = schema.new({
-    id = id.from(_N, "GetCurrentUserOutput"),
+    id = id.from(_N, "GetCurrentUserResponse"),
     type = "structure",
     members = {
         User = schema.new({
@@ -2858,7 +2858,7 @@ M.GetCurrentUserOutput = schema.new({
 })
 
 M.GetDocumentInput = schema.new({
-    id = id.from(_N, "GetDocumentInput"),
+    id = id.from(_N, "GetDocumentRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -2894,7 +2894,7 @@ M.GetDocumentInput = schema.new({
 })
 
 M.GetDocumentOutput = schema.new({
-    id = id.from(_N, "GetDocumentOutput"),
+    id = id.from(_N, "GetDocumentResponse"),
     type = "structure",
     members = {
         Metadata = schema.new({
@@ -2916,7 +2916,7 @@ M.GetDocumentOutput = schema.new({
 })
 
 M.GetDocumentPathInput = schema.new({
-    id = id.from(_N, "GetDocumentPathInput"),
+    id = id.from(_N, "GetDocumentPathRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -3002,7 +3002,7 @@ M.ResourcePath = schema.new({
 })
 
 M.GetDocumentPathOutput = schema.new({
-    id = id.from(_N, "GetDocumentPathOutput"),
+    id = id.from(_N, "GetDocumentPathResponse"),
     type = "structure",
     members = {
         Path = schema.new({
@@ -3016,7 +3016,7 @@ M.GetDocumentPathOutput = schema.new({
 })
 
 M.GetDocumentVersionInput = schema.new({
-    id = id.from(_N, "GetDocumentVersionInput"),
+    id = id.from(_N, "GetDocumentVersionRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -3071,7 +3071,7 @@ M.GetDocumentVersionInput = schema.new({
 })
 
 M.GetDocumentVersionOutput = schema.new({
-    id = id.from(_N, "GetDocumentVersionOutput"),
+    id = id.from(_N, "GetDocumentVersionResponse"),
     type = "structure",
     members = {
         Metadata = schema.new({
@@ -3093,7 +3093,7 @@ M.GetDocumentVersionOutput = schema.new({
 })
 
 M.GetFolderInput = schema.new({
-    id = id.from(_N, "GetFolderInput"),
+    id = id.from(_N, "GetFolderRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -3129,7 +3129,7 @@ M.GetFolderInput = schema.new({
 })
 
 M.GetFolderOutput = schema.new({
-    id = id.from(_N, "GetFolderOutput"),
+    id = id.from(_N, "GetFolderResponse"),
     type = "structure",
     members = {
         Metadata = schema.new({
@@ -3151,7 +3151,7 @@ M.GetFolderOutput = schema.new({
 })
 
 M.GetFolderPathInput = schema.new({
-    id = id.from(_N, "GetFolderPathInput"),
+    id = id.from(_N, "GetFolderPathRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -3204,7 +3204,7 @@ M.GetFolderPathInput = schema.new({
 })
 
 M.GetFolderPathOutput = schema.new({
-    id = id.from(_N, "GetFolderPathOutput"),
+    id = id.from(_N, "GetFolderPathResponse"),
     type = "structure",
     members = {
         Path = schema.new({
@@ -3218,7 +3218,7 @@ M.GetFolderPathOutput = schema.new({
 })
 
 M.GetResourcesInput = schema.new({
-    id = id.from(_N, "GetResourcesInput"),
+    id = id.from(_N, "GetResourcesRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -3270,7 +3270,7 @@ M.GetResourcesInput = schema.new({
 })
 
 M.GetResourcesOutput = schema.new({
-    id = id.from(_N, "GetResourcesOutput"),
+    id = id.from(_N, "GetResourcesResponse"),
     type = "structure",
     members = {
         Folders = schema.new({
@@ -3313,7 +3313,7 @@ M.DraftUploadOutOfSyncException = schema.new({
 })
 
 M.InitiateDocumentVersionUploadInput = schema.new({
-    id = id.from(_N, "InitiateDocumentVersionUploadInput"),
+    id = id.from(_N, "InitiateDocumentVersionUploadRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -3392,7 +3392,7 @@ M.UploadMetadata = schema.new({
 })
 
 M.InitiateDocumentVersionUploadOutput = schema.new({
-    id = id.from(_N, "InitiateDocumentVersionUploadOutput"),
+    id = id.from(_N, "InitiateDocumentVersionUploadResponse"),
     type = "structure",
     members = {
         Metadata = schema.new({
@@ -3461,7 +3461,7 @@ M.StorageLimitWillExceedException = schema.new({
 })
 
 M.RemoveAllResourcePermissionsInput = schema.new({
-    id = id.from(_N, "RemoveAllResourcePermissionsInput"),
+    id = id.from(_N, "RemoveAllResourcePermissionsRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -3487,12 +3487,12 @@ M.RemoveAllResourcePermissionsInput = schema.new({
 })
 
 M.RemoveAllResourcePermissionsOutput = schema.new({
-    id = id.from(_N, "RemoveAllResourcePermissionsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RemoveResourcePermissionInput = schema.new({
-    id = id.from(_N, "RemoveResourcePermissionInput"),
+    id = id.from(_N, "RemoveResourcePermissionRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -3537,12 +3537,12 @@ M.RemoveResourcePermissionInput = schema.new({
 })
 
 M.RemoveResourcePermissionOutput = schema.new({
-    id = id.from(_N, "RemoveResourcePermissionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RestoreDocumentVersionsInput = schema.new({
-    id = id.from(_N, "RestoreDocumentVersionsInput"),
+    id = id.from(_N, "RestoreDocumentVersionsRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -3568,7 +3568,7 @@ M.RestoreDocumentVersionsInput = schema.new({
 })
 
 M.RestoreDocumentVersionsOutput = schema.new({
-    id = id.from(_N, "RestoreDocumentVersionsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3730,7 +3730,7 @@ M.SearchSortResult = schema.new({
 })
 
 M.SearchResourcesInput = schema.new({
-    id = id.from(_N, "SearchResourcesInput"),
+    id = id.from(_N, "SearchResourcesRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -3845,7 +3845,7 @@ M.ResponseItem = schema.new({
 })
 
 M.SearchResourcesOutput = schema.new({
-    id = id.from(_N, "SearchResourcesOutput"),
+    id = id.from(_N, "SearchResourcesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -3865,7 +3865,7 @@ M.SearchResourcesOutput = schema.new({
 })
 
 M.UpdateDocumentInput = schema.new({
-    id = id.from(_N, "UpdateDocumentInput"),
+    id = id.from(_N, "UpdateDocumentRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -3909,12 +3909,12 @@ M.UpdateDocumentInput = schema.new({
 })
 
 M.UpdateDocumentOutput = schema.new({
-    id = id.from(_N, "UpdateDocumentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateDocumentVersionInput = schema.new({
-    id = id.from(_N, "UpdateDocumentVersionInput"),
+    id = id.from(_N, "UpdateDocumentVersionRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -3956,12 +3956,12 @@ M.UpdateDocumentVersionInput = schema.new({
 })
 
 M.UpdateDocumentVersionOutput = schema.new({
-    id = id.from(_N, "UpdateDocumentVersionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateFolderInput = schema.new({
-    id = id.from(_N, "UpdateFolderInput"),
+    id = id.from(_N, "UpdateFolderRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -4005,7 +4005,7 @@ M.UpdateFolderInput = schema.new({
 })
 
 M.UpdateFolderOutput = schema.new({
-    id = id.from(_N, "UpdateFolderOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4048,7 +4048,7 @@ M.IllegalUserStateException = schema.new({
 })
 
 M.UpdateUserInput = schema.new({
-    id = id.from(_N, "UpdateUserInput"),
+    id = id.from(_N, "UpdateUserRequest"),
     type = "structure",
     members = {
         AuthenticationToken = schema.new({
@@ -4117,7 +4117,7 @@ M.UpdateUserInput = schema.new({
 })
 
 M.UpdateUserOutput = schema.new({
-    id = id.from(_N, "UpdateUserOutput"),
+    id = id.from(_N, "UpdateUserResponse"),
     type = "structure",
     members = {
         User = schema.new({
@@ -4129,5 +4129,19 @@ M.UpdateUserOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

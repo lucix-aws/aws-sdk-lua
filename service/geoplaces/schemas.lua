@@ -641,7 +641,7 @@ M.AutocompleteFilter = schema.new({
 })
 
 M.AutocompleteInput = schema.new({
-    id = id.from(_N, "AutocompleteInput"),
+    id = id.from(_N, "AutocompleteRequest"),
     type = "structure",
     members = {
         QueryText = schema.new({
@@ -886,7 +886,7 @@ M.AutocompleteAddressHighlights = schema.new({
             type = "list",
             name = "Intersection",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = M.Highlight }),
         }),
         PostalCode = schema.new({
             id = id.from(_N, "AutocompleteAddressHighlights", "PostalCode"),
@@ -1003,7 +1003,7 @@ M.AutocompleteResultItem = schema.new({
 })
 
 M.AutocompleteOutput = schema.new({
-    id = id.from(_N, "AutocompleteOutput"),
+    id = id.from(_N, "AutocompleteResponse"),
     type = "structure",
     members = {
         PricingBucket = schema.new({
@@ -1342,7 +1342,7 @@ M.GeocodeQueryComponents = schema.new({
 })
 
 M.GeocodeInput = schema.new({
-    id = id.from(_N, "GeocodeInput"),
+    id = id.from(_N, "GeocodeRequest"),
     type = "structure",
     members = {
         QueryText = schema.new({
@@ -2012,7 +2012,7 @@ M.GeocodeResultItem = schema.new({
 })
 
 M.GeocodeOutput = schema.new({
-    id = id.from(_N, "GeocodeOutput"),
+    id = id.from(_N, "GeocodeResponse"),
     type = "structure",
     members = {
         PricingBucket = schema.new({
@@ -2036,7 +2036,7 @@ M.GeocodeOutput = schema.new({
 })
 
 M.GetPlaceInput = schema.new({
-    id = id.from(_N, "GetPlaceInput"),
+    id = id.from(_N, "GetPlaceRequest"),
     type = "structure",
     members = {
         PlaceId = schema.new({
@@ -2179,7 +2179,7 @@ M.PhonemeDetails = schema.new({
 })
 
 M.GetPlaceOutput = schema.new({
-    id = id.from(_N, "GetPlaceOutput"),
+    id = id.from(_N, "GetPlaceResponse"),
     type = "structure",
     members = {
         PlaceId = schema.new({
@@ -2354,7 +2354,7 @@ M.ReverseGeocodeFilter = schema.new({
 })
 
 M.ReverseGeocodeInput = schema.new({
-    id = id.from(_N, "ReverseGeocodeInput"),
+    id = id.from(_N, "ReverseGeocodeRequest"),
     type = "structure",
     members = {
         QueryPosition = schema.new({
@@ -2557,7 +2557,7 @@ M.ReverseGeocodeResultItem = schema.new({
 })
 
 M.ReverseGeocodeOutput = schema.new({
-    id = id.from(_N, "ReverseGeocodeOutput"),
+    id = id.from(_N, "ReverseGeocodeResponse"),
     type = "structure",
     members = {
         PricingBucket = schema.new({
@@ -2644,7 +2644,7 @@ M.SearchNearbyFilter = schema.new({
 })
 
 M.SearchNearbyInput = schema.new({
-    id = id.from(_N, "SearchNearbyInput"),
+    id = id.from(_N, "SearchNearbyRequest"),
     type = "structure",
     members = {
         QueryPosition = schema.new({
@@ -2865,7 +2865,7 @@ M.SearchNearbyResultItem = schema.new({
 })
 
 M.SearchNearbyOutput = schema.new({
-    id = id.from(_N, "SearchNearbyOutput"),
+    id = id.from(_N, "SearchNearbyResponse"),
     type = "structure",
     members = {
         PricingBucket = schema.new({
@@ -2923,7 +2923,7 @@ M.SearchTextFilter = schema.new({
 })
 
 M.SearchTextInput = schema.new({
-    id = id.from(_N, "SearchTextInput"),
+    id = id.from(_N, "SearchTextRequest"),
     type = "structure",
     members = {
         QueryText = schema.new({
@@ -3144,7 +3144,7 @@ M.SearchTextResultItem = schema.new({
 })
 
 M.SearchTextOutput = schema.new({
-    id = id.from(_N, "SearchTextOutput"),
+    id = id.from(_N, "SearchTextResponse"),
     type = "structure",
     members = {
         PricingBucket = schema.new({
@@ -3202,7 +3202,7 @@ M.SuggestFilter = schema.new({
 })
 
 M.SuggestInput = schema.new({
-    id = id.from(_N, "SuggestInput"),
+    id = id.from(_N, "SuggestRequest"),
     type = "structure",
     members = {
         QueryText = schema.new({
@@ -3531,7 +3531,7 @@ M.SuggestResultItem = schema.new({
 })
 
 M.SuggestOutput = schema.new({
-    id = id.from(_N, "SuggestOutput"),
+    id = id.from(_N, "SuggestResponse"),
     type = "structure",
     members = {
         PricingBucket = schema.new({
@@ -3560,5 +3560,19 @@ M.SuggestOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

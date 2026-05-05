@@ -2282,13 +2282,13 @@ end
 
 local type ChannelMessageType = "STANDARD" | "CONTROL"
 
-local type SortOrder = "ASCENDING" | "DESCENDING"
+local type ChannelPrivacy = "PUBLIC" | "PRIVATE"
 
-local type ChannelMessagePersistenceType = "PERSISTENT" | "NON_PERSISTENT"
+local type SortOrder = "ASCENDING" | "DESCENDING"
 
 local type ChannelMode = "UNRESTRICTED" | "RESTRICTED"
 
-local type ChannelPrivacy = "PUBLIC" | "PRIVATE"
+local type ChannelMessagePersistenceType = "PERSISTENT" | "NON_PERSISTENT"
 
 local type NetworkType = "IPV4_ONLY" | "DUAL_STACK"
 

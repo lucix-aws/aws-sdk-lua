@@ -139,7 +139,7 @@ M.AvailabilityZoneDetail = schema.new({
 })
 
 M.BatchGetTracesInput = schema.new({
-    id = id.from(_N, "BatchGetTracesInput"),
+    id = id.from(_N, "BatchGetTracesRequest"),
     type = "structure",
     members = {
         TraceIds = schema.new({
@@ -213,7 +213,7 @@ M.Trace = schema.new({
 })
 
 M.BatchGetTracesOutput = schema.new({
-    id = id.from(_N, "BatchGetTracesOutput"),
+    id = id.from(_N, "BatchGetTracesResult"),
     type = "structure",
     members = {
         Traces = schema.new({
@@ -272,7 +272,7 @@ M.ThrottledException = schema.new({
 })
 
 M.CancelTraceRetrievalInput = schema.new({
-    id = id.from(_N, "CancelTraceRetrievalInput"),
+    id = id.from(_N, "CancelTraceRetrievalRequest"),
     type = "structure",
     members = {
         RetrievalToken = schema.new({
@@ -288,7 +288,7 @@ M.CancelTraceRetrievalInput = schema.new({
 })
 
 M.CancelTraceRetrievalOutput = schema.new({
-    id = id.from(_N, "CancelTraceRetrievalOutput"),
+    id = id.from(_N, "CancelTraceRetrievalResult"),
     type = "structure",
 })
 
@@ -359,7 +359,7 @@ M.Tag = schema.new({
 })
 
 M.CreateGroupInput = schema.new({
-    id = id.from(_N, "CreateGroupInput"),
+    id = id.from(_N, "CreateGroupRequest"),
     type = "structure",
     members = {
         GroupName = schema.new({
@@ -427,7 +427,7 @@ M.Group = schema.new({
 })
 
 M.CreateGroupOutput = schema.new({
-    id = id.from(_N, "CreateGroupOutput"),
+    id = id.from(_N, "CreateGroupResult"),
     type = "structure",
     members = {
         Group = schema.new({
@@ -594,7 +594,7 @@ M.SamplingRule = schema.new({
 })
 
 M.CreateSamplingRuleInput = schema.new({
-    id = id.from(_N, "CreateSamplingRuleInput"),
+    id = id.from(_N, "CreateSamplingRuleRequest"),
     type = "structure",
     members = {
         SamplingRule = schema.new({
@@ -644,7 +644,7 @@ M.SamplingRuleRecord = schema.new({
 })
 
 M.CreateSamplingRuleOutput = schema.new({
-    id = id.from(_N, "CreateSamplingRuleOutput"),
+    id = id.from(_N, "CreateSamplingRuleResult"),
     type = "structure",
     members = {
         SamplingRuleRecord = schema.new({
@@ -674,7 +674,7 @@ M.RuleLimitExceededException = schema.new({
 })
 
 M.DeleteGroupInput = schema.new({
-    id = id.from(_N, "DeleteGroupInput"),
+    id = id.from(_N, "DeleteGroupRequest"),
     type = "structure",
     members = {
         GroupName = schema.new({
@@ -693,12 +693,12 @@ M.DeleteGroupInput = schema.new({
 })
 
 M.DeleteGroupOutput = schema.new({
-    id = id.from(_N, "DeleteGroupOutput"),
+    id = id.from(_N, "DeleteGroupResult"),
     type = "structure",
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         PolicyName = schema.new({
@@ -720,7 +720,7 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "DeleteResourcePolicyResult"),
     type = "structure",
 })
 
@@ -741,7 +741,7 @@ M.InvalidPolicyRevisionIdException = schema.new({
 })
 
 M.DeleteSamplingRuleInput = schema.new({
-    id = id.from(_N, "DeleteSamplingRuleInput"),
+    id = id.from(_N, "DeleteSamplingRuleRequest"),
     type = "structure",
     members = {
         RuleName = schema.new({
@@ -760,7 +760,7 @@ M.DeleteSamplingRuleInput = schema.new({
 })
 
 M.DeleteSamplingRuleOutput = schema.new({
-    id = id.from(_N, "DeleteSamplingRuleOutput"),
+    id = id.from(_N, "DeleteSamplingRuleResult"),
     type = "structure",
     members = {
         SamplingRuleRecord = schema.new({
@@ -774,7 +774,7 @@ M.DeleteSamplingRuleOutput = schema.new({
 })
 
 M.GetEncryptionConfigInput = schema.new({
-    id = id.from(_N, "GetEncryptionConfigInput"),
+    id = id.from(_N, "GetEncryptionConfigRequest"),
     type = "structure",
 })
 
@@ -804,7 +804,7 @@ M.EncryptionConfig = schema.new({
 })
 
 M.GetEncryptionConfigOutput = schema.new({
-    id = id.from(_N, "GetEncryptionConfigOutput"),
+    id = id.from(_N, "GetEncryptionConfigResult"),
     type = "structure",
     members = {
         EncryptionConfig = schema.new({
@@ -818,7 +818,7 @@ M.GetEncryptionConfigOutput = schema.new({
 })
 
 M.GetGroupInput = schema.new({
-    id = id.from(_N, "GetGroupInput"),
+    id = id.from(_N, "GetGroupRequest"),
     type = "structure",
     members = {
         GroupName = schema.new({
@@ -837,7 +837,7 @@ M.GetGroupInput = schema.new({
 })
 
 M.GetGroupOutput = schema.new({
-    id = id.from(_N, "GetGroupOutput"),
+    id = id.from(_N, "GetGroupResult"),
     type = "structure",
     members = {
         Group = schema.new({
@@ -851,7 +851,7 @@ M.GetGroupOutput = schema.new({
 })
 
 M.GetGroupsInput = schema.new({
-    id = id.from(_N, "GetGroupsInput"),
+    id = id.from(_N, "GetGroupsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -896,7 +896,7 @@ M.GroupSummary = schema.new({
 })
 
 M.GetGroupsOutput = schema.new({
-    id = id.from(_N, "GetGroupsOutput"),
+    id = id.from(_N, "GetGroupsResult"),
     type = "structure",
     members = {
         Groups = schema.new({
@@ -916,7 +916,7 @@ M.GetGroupsOutput = schema.new({
 })
 
 M.GetIndexingRulesInput = schema.new({
-    id = id.from(_N, "GetIndexingRulesInput"),
+    id = id.from(_N, "GetIndexingRulesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -991,7 +991,7 @@ M.IndexingRule = schema.new({
 })
 
 M.GetIndexingRulesOutput = schema.new({
-    id = id.from(_N, "GetIndexingRulesOutput"),
+    id = id.from(_N, "GetIndexingRulesResult"),
     type = "structure",
     members = {
         IndexingRules = schema.new({
@@ -1011,7 +1011,7 @@ M.GetIndexingRulesOutput = schema.new({
 })
 
 M.GetInsightInput = schema.new({
-    id = id.from(_N, "GetInsightInput"),
+    id = id.from(_N, "GetInsightRequest"),
     type = "structure",
     members = {
         InsightId = schema.new({
@@ -1136,7 +1136,7 @@ M.Insight = schema.new({
 })
 
 M.GetInsightOutput = schema.new({
-    id = id.from(_N, "GetInsightOutput"),
+    id = id.from(_N, "GetInsightResult"),
     type = "structure",
     members = {
         Insight = schema.new({
@@ -1150,7 +1150,7 @@ M.GetInsightOutput = schema.new({
 })
 
 M.GetInsightEventsInput = schema.new({
-    id = id.from(_N, "GetInsightEventsInput"),
+    id = id.from(_N, "GetInsightEventsRequest"),
     type = "structure",
     members = {
         InsightId = schema.new({
@@ -1218,7 +1218,7 @@ M.InsightEvent = schema.new({
 })
 
 M.GetInsightEventsOutput = schema.new({
-    id = id.from(_N, "GetInsightEventsOutput"),
+    id = id.from(_N, "GetInsightEventsResult"),
     type = "structure",
     members = {
         InsightEvents = schema.new({
@@ -1238,7 +1238,7 @@ M.GetInsightEventsOutput = schema.new({
 })
 
 M.GetInsightImpactGraphInput = schema.new({
-    id = id.from(_N, "GetInsightImpactGraphInput"),
+    id = id.from(_N, "GetInsightImpactGraphRequest"),
     type = "structure",
     members = {
         InsightId = schema.new({
@@ -1336,7 +1336,7 @@ M.InsightImpactGraphService = schema.new({
 })
 
 M.GetInsightImpactGraphOutput = schema.new({
-    id = id.from(_N, "GetInsightImpactGraphOutput"),
+    id = id.from(_N, "GetInsightImpactGraphResult"),
     type = "structure",
     members = {
         InsightId = schema.new({
@@ -1386,7 +1386,7 @@ M.GetInsightImpactGraphOutput = schema.new({
 })
 
 M.GetInsightSummariesInput = schema.new({
-    id = id.from(_N, "GetInsightSummariesInput"),
+    id = id.from(_N, "GetInsightSummariesRequest"),
     type = "structure",
     members = {
         States = schema.new({
@@ -1532,7 +1532,7 @@ M.InsightSummary = schema.new({
 })
 
 M.GetInsightSummariesOutput = schema.new({
-    id = id.from(_N, "GetInsightSummariesOutput"),
+    id = id.from(_N, "GetInsightSummariesResult"),
     type = "structure",
     members = {
         InsightSummaries = schema.new({
@@ -1552,7 +1552,7 @@ M.GetInsightSummariesOutput = schema.new({
 })
 
 M.GetRetrievedTracesGraphInput = schema.new({
-    id = id.from(_N, "GetRetrievedTracesGraphInput"),
+    id = id.from(_N, "GetRetrievedTracesGraphRequest"),
     type = "structure",
     members = {
         RetrievalToken = schema.new({
@@ -1917,7 +1917,7 @@ M.RetrievedService = schema.new({
 })
 
 M.GetRetrievedTracesGraphOutput = schema.new({
-    id = id.from(_N, "GetRetrievedTracesGraphOutput"),
+    id = id.from(_N, "GetRetrievedTracesGraphResult"),
     type = "structure",
     members = {
         RetrievalStatus = schema.new({
@@ -1943,7 +1943,7 @@ M.GetRetrievedTracesGraphOutput = schema.new({
 })
 
 M.GetSamplingRulesInput = schema.new({
-    id = id.from(_N, "GetSamplingRulesInput"),
+    id = id.from(_N, "GetSamplingRulesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1956,7 +1956,7 @@ M.GetSamplingRulesInput = schema.new({
 })
 
 M.GetSamplingRulesOutput = schema.new({
-    id = id.from(_N, "GetSamplingRulesOutput"),
+    id = id.from(_N, "GetSamplingRulesResult"),
     type = "structure",
     members = {
         SamplingRuleRecords = schema.new({
@@ -1976,7 +1976,7 @@ M.GetSamplingRulesOutput = schema.new({
 })
 
 M.GetSamplingStatisticSummariesInput = schema.new({
-    id = id.from(_N, "GetSamplingStatisticSummariesInput"),
+    id = id.from(_N, "GetSamplingStatisticSummariesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2035,7 +2035,7 @@ M.SamplingStatisticSummary = schema.new({
 })
 
 M.GetSamplingStatisticSummariesOutput = schema.new({
-    id = id.from(_N, "GetSamplingStatisticSummariesOutput"),
+    id = id.from(_N, "GetSamplingStatisticSummariesResult"),
     type = "structure",
     members = {
         SamplingStatisticSummaries = schema.new({
@@ -2182,7 +2182,7 @@ M.SamplingStatisticsDocument = schema.new({
 })
 
 M.GetSamplingTargetsInput = schema.new({
-    id = id.from(_N, "GetSamplingTargetsInput"),
+    id = id.from(_N, "GetSamplingTargetsRequest"),
     type = "structure",
     members = {
         SamplingStatisticsDocuments = schema.new({
@@ -2304,7 +2304,7 @@ M.UnprocessedStatistics = schema.new({
 })
 
 M.GetSamplingTargetsOutput = schema.new({
-    id = id.from(_N, "GetSamplingTargetsOutput"),
+    id = id.from(_N, "GetSamplingTargetsResult"),
     type = "structure",
     members = {
         SamplingTargetDocuments = schema.new({
@@ -2338,7 +2338,7 @@ M.GetSamplingTargetsOutput = schema.new({
 })
 
 M.GetServiceGraphInput = schema.new({
-    id = id.from(_N, "GetServiceGraphInput"),
+    id = id.from(_N, "GetServiceGraphRequest"),
     type = "structure",
     members = {
         StartTime = schema.new({
@@ -2381,7 +2381,7 @@ M.GetServiceGraphInput = schema.new({
 })
 
 M.GetServiceGraphOutput = schema.new({
-    id = id.from(_N, "GetServiceGraphOutput"),
+    id = id.from(_N, "GetServiceGraphResult"),
     type = "structure",
     members = {
         StartTime = schema.new({
@@ -2422,7 +2422,7 @@ M.GetServiceGraphOutput = schema.new({
 })
 
 M.GetTimeSeriesServiceStatisticsInput = schema.new({
-    id = id.from(_N, "GetTimeSeriesServiceStatisticsInput"),
+    id = id.from(_N, "GetTimeSeriesServiceStatisticsRequest"),
     type = "structure",
     members = {
         StartTime = schema.new({
@@ -2543,7 +2543,7 @@ M.TimeSeriesServiceStatistics = schema.new({
 })
 
 M.GetTimeSeriesServiceStatisticsOutput = schema.new({
-    id = id.from(_N, "GetTimeSeriesServiceStatisticsOutput"),
+    id = id.from(_N, "GetTimeSeriesServiceStatisticsResult"),
     type = "structure",
     members = {
         TimeSeriesServiceStatistics = schema.new({
@@ -2572,7 +2572,7 @@ M.GetTimeSeriesServiceStatisticsOutput = schema.new({
 })
 
 M.GetTraceGraphInput = schema.new({
-    id = id.from(_N, "GetTraceGraphInput"),
+    id = id.from(_N, "GetTraceGraphRequest"),
     type = "structure",
     members = {
         TraceIds = schema.new({
@@ -2595,7 +2595,7 @@ M.GetTraceGraphInput = schema.new({
 })
 
 M.GetTraceGraphOutput = schema.new({
-    id = id.from(_N, "GetTraceGraphOutput"),
+    id = id.from(_N, "GetTraceGraphResult"),
     type = "structure",
     members = {
         Services = schema.new({
@@ -2615,12 +2615,12 @@ M.GetTraceGraphOutput = schema.new({
 })
 
 M.GetTraceSegmentDestinationInput = schema.new({
-    id = id.from(_N, "GetTraceSegmentDestinationInput"),
+    id = id.from(_N, "GetTraceSegmentDestinationRequest"),
     type = "structure",
 })
 
 M.GetTraceSegmentDestinationOutput = schema.new({
-    id = id.from(_N, "GetTraceSegmentDestinationOutput"),
+    id = id.from(_N, "GetTraceSegmentDestinationResult"),
     type = "structure",
     members = {
         Destination = schema.new({
@@ -2658,7 +2658,7 @@ M.SamplingStrategy = schema.new({
 })
 
 M.GetTraceSummariesInput = schema.new({
-    id = id.from(_N, "GetTraceSummariesInput"),
+    id = id.from(_N, "GetTraceSummariesRequest"),
     type = "structure",
     members = {
         StartTime = schema.new({
@@ -3152,7 +3152,7 @@ M.TraceSummary = schema.new({
             name = "Annotations",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.ValueWithServiceIds }),
         }),
         Users = schema.new({
             id = id.from(_N, "TraceSummary", "Users"),
@@ -3236,7 +3236,7 @@ M.TraceSummary = schema.new({
 })
 
 M.GetTraceSummariesOutput = schema.new({
-    id = id.from(_N, "GetTraceSummariesOutput"),
+    id = id.from(_N, "GetTraceSummariesResult"),
     type = "structure",
     members = {
         TraceSummaries = schema.new({
@@ -3268,7 +3268,7 @@ M.GetTraceSummariesOutput = schema.new({
 })
 
 M.ListResourcePoliciesInput = schema.new({
-    id = id.from(_N, "ListResourcePoliciesInput"),
+    id = id.from(_N, "ListResourcePoliciesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3312,7 +3312,7 @@ M.ResourcePolicy = schema.new({
 })
 
 M.ListResourcePoliciesOutput = schema.new({
-    id = id.from(_N, "ListResourcePoliciesOutput"),
+    id = id.from(_N, "ListResourcePoliciesResult"),
     type = "structure",
     members = {
         ResourcePolicies = schema.new({
@@ -3332,7 +3332,7 @@ M.ListResourcePoliciesOutput = schema.new({
 })
 
 M.ListRetrievedTracesInput = schema.new({
-    id = id.from(_N, "ListRetrievedTracesInput"),
+    id = id.from(_N, "ListRetrievedTracesRequest"),
     type = "structure",
     members = {
         RetrievalToken = schema.new({
@@ -3405,7 +3405,7 @@ M.RetrievedTrace = schema.new({
 })
 
 M.ListRetrievedTracesOutput = schema.new({
-    id = id.from(_N, "ListRetrievedTracesOutput"),
+    id = id.from(_N, "ListRetrievedTracesResult"),
     type = "structure",
     members = {
         RetrievalStatus = schema.new({
@@ -3437,7 +3437,7 @@ M.ListRetrievedTracesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -3459,7 +3459,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -3479,7 +3479,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutEncryptionConfigInput = schema.new({
-    id = id.from(_N, "PutEncryptionConfigInput"),
+    id = id.from(_N, "PutEncryptionConfigRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -3501,7 +3501,7 @@ M.PutEncryptionConfigInput = schema.new({
 })
 
 M.PutEncryptionConfigOutput = schema.new({
-    id = id.from(_N, "PutEncryptionConfigOutput"),
+    id = id.from(_N, "PutEncryptionConfigResult"),
     type = "structure",
     members = {
         EncryptionConfig = schema.new({
@@ -3579,7 +3579,7 @@ M.PolicySizeLimitExceededException = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         PolicyName = schema.new({
@@ -3619,7 +3619,7 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResult"),
     type = "structure",
     members = {
         ResourcePolicy = schema.new({
@@ -3723,7 +3723,7 @@ M.TelemetryRecord = schema.new({
 })
 
 M.PutTelemetryRecordsInput = schema.new({
-    id = id.from(_N, "PutTelemetryRecordsInput"),
+    id = id.from(_N, "PutTelemetryRecordsRequest"),
     type = "structure",
     members = {
         TelemetryRecords = schema.new({
@@ -3758,12 +3758,12 @@ M.PutTelemetryRecordsInput = schema.new({
 })
 
 M.PutTelemetryRecordsOutput = schema.new({
-    id = id.from(_N, "PutTelemetryRecordsOutput"),
+    id = id.from(_N, "PutTelemetryRecordsResult"),
     type = "structure",
 })
 
 M.PutTraceSegmentsInput = schema.new({
-    id = id.from(_N, "PutTraceSegmentsInput"),
+    id = id.from(_N, "PutTraceSegmentsRequest"),
     type = "structure",
     members = {
         TraceSegmentDocuments = schema.new({
@@ -3805,7 +3805,7 @@ M.UnprocessedTraceSegment = schema.new({
 })
 
 M.PutTraceSegmentsOutput = schema.new({
-    id = id.from(_N, "PutTraceSegmentsOutput"),
+    id = id.from(_N, "PutTraceSegmentsResult"),
     type = "structure",
     members = {
         UnprocessedTraceSegments = schema.new({
@@ -3819,7 +3819,7 @@ M.PutTraceSegmentsOutput = schema.new({
 })
 
 M.StartTraceRetrievalInput = schema.new({
-    id = id.from(_N, "StartTraceRetrievalInput"),
+    id = id.from(_N, "StartTraceRetrievalRequest"),
     type = "structure",
     members = {
         TraceIds = schema.new({
@@ -3854,7 +3854,7 @@ M.StartTraceRetrievalInput = schema.new({
 })
 
 M.StartTraceRetrievalOutput = schema.new({
-    id = id.from(_N, "StartTraceRetrievalOutput"),
+    id = id.from(_N, "StartTraceRetrievalResult"),
     type = "structure",
     members = {
         RetrievalToken = schema.new({
@@ -3867,7 +3867,7 @@ M.StartTraceRetrievalOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -3893,7 +3893,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -3920,7 +3920,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -3946,12 +3946,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateGroupInput = schema.new({
-    id = id.from(_N, "UpdateGroupInput"),
+    id = id.from(_N, "UpdateGroupRequest"),
     type = "structure",
     members = {
         GroupName = schema.new({
@@ -3983,7 +3983,7 @@ M.UpdateGroupInput = schema.new({
 })
 
 M.UpdateGroupOutput = schema.new({
-    id = id.from(_N, "UpdateGroupOutput"),
+    id = id.from(_N, "UpdateGroupResult"),
     type = "structure",
     members = {
         Group = schema.new({
@@ -4027,7 +4027,7 @@ M.IndexingRuleValueUpdate = schema.new({
 })
 
 M.UpdateIndexingRuleInput = schema.new({
-    id = id.from(_N, "UpdateIndexingRuleInput"),
+    id = id.from(_N, "UpdateIndexingRuleRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4053,7 +4053,7 @@ M.UpdateIndexingRuleInput = schema.new({
 })
 
 M.UpdateIndexingRuleOutput = schema.new({
-    id = id.from(_N, "UpdateIndexingRuleOutput"),
+    id = id.from(_N, "UpdateIndexingRuleResult"),
     type = "structure",
     members = {
         IndexingRule = schema.new({
@@ -4155,7 +4155,7 @@ M.SamplingRuleUpdate = schema.new({
 })
 
 M.UpdateSamplingRuleInput = schema.new({
-    id = id.from(_N, "UpdateSamplingRuleInput"),
+    id = id.from(_N, "UpdateSamplingRuleRequest"),
     type = "structure",
     members = {
         SamplingRuleUpdate = schema.new({
@@ -4172,7 +4172,7 @@ M.UpdateSamplingRuleInput = schema.new({
 })
 
 M.UpdateSamplingRuleOutput = schema.new({
-    id = id.from(_N, "UpdateSamplingRuleOutput"),
+    id = id.from(_N, "UpdateSamplingRuleResult"),
     type = "structure",
     members = {
         SamplingRuleRecord = schema.new({
@@ -4186,7 +4186,7 @@ M.UpdateSamplingRuleOutput = schema.new({
 })
 
 M.UpdateTraceSegmentDestinationInput = schema.new({
-    id = id.from(_N, "UpdateTraceSegmentDestinationInput"),
+    id = id.from(_N, "UpdateTraceSegmentDestinationRequest"),
     type = "structure",
     members = {
         Destination = schema.new({
@@ -4199,7 +4199,7 @@ M.UpdateTraceSegmentDestinationInput = schema.new({
 })
 
 M.UpdateTraceSegmentDestinationOutput = schema.new({
-    id = id.from(_N, "UpdateTraceSegmentDestinationOutput"),
+    id = id.from(_N, "UpdateTraceSegmentDestinationResult"),
     type = "structure",
     members = {
         Destination = schema.new({
@@ -4216,5 +4216,19 @@ M.UpdateTraceSegmentDestinationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

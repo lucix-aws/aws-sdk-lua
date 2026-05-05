@@ -8,7 +8,7 @@ local _N = "com.amazonaws.partnercentralaccount"
 local M = {}
 
 M.AcceptConnectionInvitationInput = schema.new({
-    id = id.from(_N, "AcceptConnectionInvitationInput"),
+    id = id.from(_N, "AcceptConnectionInvitationRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -276,7 +276,7 @@ M.Connection = schema.new({
 })
 
 M.AcceptConnectionInvitationOutput = schema.new({
-    id = id.from(_N, "AcceptConnectionInvitationOutput"),
+    id = id.from(_N, "AcceptConnectionInvitationResponse"),
     type = "structure",
     members = {
         Connection = schema.new({
@@ -613,7 +613,7 @@ M.AllianceLeadContact = schema.new({
 })
 
 M.AssociateAwsTrainingCertificationEmailDomainInput = schema.new({
-    id = id.from(_N, "AssociateAwsTrainingCertificationEmailDomainInput"),
+    id = id.from(_N, "AssociateAwsTrainingCertificationEmailDomainRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -665,7 +665,7 @@ M.AssociateAwsTrainingCertificationEmailDomainInput = schema.new({
 })
 
 M.AssociateAwsTrainingCertificationEmailDomainOutput = schema.new({
-    id = id.from(_N, "AssociateAwsTrainingCertificationEmailDomainOutput"),
+    id = id.from(_N, "AssociateAwsTrainingCertificationEmailDomainResponse"),
     type = "structure",
 })
 
@@ -742,7 +742,7 @@ M.BusinessVerificationResponse = schema.new({
 })
 
 M.CancelConnectionInput = schema.new({
-    id = id.from(_N, "CancelConnectionInput"),
+    id = id.from(_N, "CancelConnectionRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -795,7 +795,7 @@ M.CancelConnectionInput = schema.new({
 })
 
 M.CancelConnectionOutput = schema.new({
-    id = id.from(_N, "CancelConnectionOutput"),
+    id = id.from(_N, "CancelConnectionResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -862,7 +862,7 @@ M.CancelConnectionOutput = schema.new({
 })
 
 M.CancelConnectionInvitationInput = schema.new({
-    id = id.from(_N, "CancelConnectionInvitationInput"),
+    id = id.from(_N, "CancelConnectionInvitationRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -897,7 +897,7 @@ M.CancelConnectionInvitationInput = schema.new({
 })
 
 M.CancelConnectionInvitationOutput = schema.new({
-    id = id.from(_N, "CancelConnectionInvitationOutput"),
+    id = id.from(_N, "CancelConnectionInvitationResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -1035,7 +1035,7 @@ M.CancelConnectionInvitationOutput = schema.new({
 })
 
 M.CancelProfileUpdateTaskInput = schema.new({
-    id = id.from(_N, "CancelProfileUpdateTaskInput"),
+    id = id.from(_N, "CancelProfileUpdateTaskRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -1242,7 +1242,7 @@ M.TaskDetails = schema.new({
 })
 
 M.CancelProfileUpdateTaskOutput = schema.new({
-    id = id.from(_N, "CancelProfileUpdateTaskOutput"),
+    id = id.from(_N, "CancelProfileUpdateTaskResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -1333,7 +1333,7 @@ M.CancelProfileUpdateTaskOutput = schema.new({
 })
 
 M.CreateConnectionInvitationInput = schema.new({
-    id = id.from(_N, "CreateConnectionInvitationInput"),
+    id = id.from(_N, "CreateConnectionInvitationRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -1404,7 +1404,7 @@ M.CreateConnectionInvitationInput = schema.new({
 })
 
 M.CreateConnectionInvitationOutput = schema.new({
-    id = id.from(_N, "CreateConnectionInvitationOutput"),
+    id = id.from(_N, "CreateConnectionInvitationResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -1542,7 +1542,7 @@ M.CreateConnectionInvitationOutput = schema.new({
 })
 
 M.GetConnectionInvitationInput = schema.new({
-    id = id.from(_N, "GetConnectionInvitationInput"),
+    id = id.from(_N, "GetConnectionInvitationRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -1567,7 +1567,7 @@ M.GetConnectionInvitationInput = schema.new({
 })
 
 M.GetConnectionInvitationOutput = schema.new({
-    id = id.from(_N, "GetConnectionInvitationOutput"),
+    id = id.from(_N, "GetConnectionInvitationResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -1705,7 +1705,7 @@ M.GetConnectionInvitationOutput = schema.new({
 })
 
 M.ListConnectionInvitationsInput = schema.new({
-    id = id.from(_N, "ListConnectionInvitationsInput"),
+    id = id.from(_N, "ListConnectionInvitationsRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -1872,7 +1872,7 @@ M.ConnectionInvitationSummary = schema.new({
 })
 
 M.ListConnectionInvitationsOutput = schema.new({
-    id = id.from(_N, "ListConnectionInvitationsOutput"),
+    id = id.from(_N, "ListConnectionInvitationsResponse"),
     type = "structure",
     members = {
         ConnectionInvitationSummaries = schema.new({
@@ -1895,7 +1895,7 @@ M.ListConnectionInvitationsOutput = schema.new({
 })
 
 M.RejectConnectionInvitationInput = schema.new({
-    id = id.from(_N, "RejectConnectionInvitationInput"),
+    id = id.from(_N, "RejectConnectionInvitationRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -1936,7 +1936,7 @@ M.RejectConnectionInvitationInput = schema.new({
 })
 
 M.RejectConnectionInvitationOutput = schema.new({
-    id = id.from(_N, "RejectConnectionInvitationOutput"),
+    id = id.from(_N, "RejectConnectionInvitationResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2074,7 +2074,7 @@ M.RejectConnectionInvitationOutput = schema.new({
 })
 
 M.GetConnectionPreferencesInput = schema.new({
-    id = id.from(_N, "GetConnectionPreferencesInput"),
+    id = id.from(_N, "GetConnectionPreferencesRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2090,7 +2090,7 @@ M.GetConnectionPreferencesInput = schema.new({
 })
 
 M.GetConnectionPreferencesOutput = schema.new({
-    id = id.from(_N, "GetConnectionPreferencesOutput"),
+    id = id.from(_N, "GetConnectionPreferencesResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2153,7 +2153,7 @@ M.GetConnectionPreferencesOutput = schema.new({
 })
 
 M.UpdateConnectionPreferencesInput = schema.new({
-    id = id.from(_N, "UpdateConnectionPreferencesInput"),
+    id = id.from(_N, "UpdateConnectionPreferencesRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2194,7 +2194,7 @@ M.UpdateConnectionPreferencesInput = schema.new({
 })
 
 M.UpdateConnectionPreferencesOutput = schema.new({
-    id = id.from(_N, "UpdateConnectionPreferencesOutput"),
+    id = id.from(_N, "UpdateConnectionPreferencesResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2257,7 +2257,7 @@ M.UpdateConnectionPreferencesOutput = schema.new({
 })
 
 M.GetConnectionInput = schema.new({
-    id = id.from(_N, "GetConnectionInput"),
+    id = id.from(_N, "GetConnectionRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2282,7 +2282,7 @@ M.GetConnectionInput = schema.new({
 })
 
 M.GetConnectionOutput = schema.new({
-    id = id.from(_N, "GetConnectionOutput"),
+    id = id.from(_N, "GetConnectionResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2349,7 +2349,7 @@ M.GetConnectionOutput = schema.new({
 })
 
 M.ListConnectionsInput = schema.new({
-    id = id.from(_N, "ListConnectionsInput"),
+    id = id.from(_N, "ListConnectionsRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2486,7 +2486,7 @@ M.ConnectionSummary = schema.new({
 })
 
 M.ListConnectionsOutput = schema.new({
-    id = id.from(_N, "ListConnectionsOutput"),
+    id = id.from(_N, "ListConnectionsResponse"),
     type = "structure",
     members = {
         ConnectionSummaries = schema.new({
@@ -2534,7 +2534,7 @@ M.Tag = schema.new({
 })
 
 M.CreatePartnerInput = schema.new({
-    id = id.from(_N, "CreatePartnerInput"),
+    id = id.from(_N, "CreatePartnerRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2716,7 +2716,7 @@ M.PartnerProfile = schema.new({
 })
 
 M.CreatePartnerOutput = schema.new({
-    id = id.from(_N, "CreatePartnerOutput"),
+    id = id.from(_N, "CreatePartnerResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2799,7 +2799,7 @@ M.CreatePartnerOutput = schema.new({
 })
 
 M.DisassociateAwsTrainingCertificationEmailDomainInput = schema.new({
-    id = id.from(_N, "DisassociateAwsTrainingCertificationEmailDomainInput"),
+    id = id.from(_N, "DisassociateAwsTrainingCertificationEmailDomainRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2842,12 +2842,12 @@ M.DisassociateAwsTrainingCertificationEmailDomainInput = schema.new({
 })
 
 M.DisassociateAwsTrainingCertificationEmailDomainOutput = schema.new({
-    id = id.from(_N, "DisassociateAwsTrainingCertificationEmailDomainOutput"),
+    id = id.from(_N, "DisassociateAwsTrainingCertificationEmailDomainResponse"),
     type = "structure",
 })
 
 M.GetAllianceLeadContactInput = schema.new({
-    id = id.from(_N, "GetAllianceLeadContactInput"),
+    id = id.from(_N, "GetAllianceLeadContactRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2872,7 +2872,7 @@ M.GetAllianceLeadContactInput = schema.new({
 })
 
 M.GetAllianceLeadContactOutput = schema.new({
-    id = id.from(_N, "GetAllianceLeadContactOutput"),
+    id = id.from(_N, "GetAllianceLeadContactResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2916,7 +2916,7 @@ M.GetAllianceLeadContactOutput = schema.new({
 })
 
 M.GetPartnerInput = schema.new({
-    id = id.from(_N, "GetPartnerInput"),
+    id = id.from(_N, "GetPartnerRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2941,7 +2941,7 @@ M.GetPartnerInput = schema.new({
 })
 
 M.GetPartnerOutput = schema.new({
-    id = id.from(_N, "GetPartnerOutput"),
+    id = id.from(_N, "GetPartnerResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3014,7 +3014,7 @@ M.GetPartnerOutput = schema.new({
 })
 
 M.GetProfileUpdateTaskInput = schema.new({
-    id = id.from(_N, "GetProfileUpdateTaskInput"),
+    id = id.from(_N, "GetProfileUpdateTaskRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3039,7 +3039,7 @@ M.GetProfileUpdateTaskInput = schema.new({
 })
 
 M.GetProfileUpdateTaskOutput = schema.new({
-    id = id.from(_N, "GetProfileUpdateTaskOutput"),
+    id = id.from(_N, "GetProfileUpdateTaskResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3130,7 +3130,7 @@ M.GetProfileUpdateTaskOutput = schema.new({
 })
 
 M.GetProfileVisibilityInput = schema.new({
-    id = id.from(_N, "GetProfileVisibilityInput"),
+    id = id.from(_N, "GetProfileVisibilityRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3155,7 +3155,7 @@ M.GetProfileVisibilityInput = schema.new({
 })
 
 M.GetProfileVisibilityOutput = schema.new({
-    id = id.from(_N, "GetProfileVisibilityOutput"),
+    id = id.from(_N, "GetProfileVisibilityResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3207,7 +3207,7 @@ M.GetProfileVisibilityOutput = schema.new({
 })
 
 M.GetVerificationInput = schema.new({
-    id = id.from(_N, "GetVerificationInput"),
+    id = id.from(_N, "GetVerificationRequest"),
     type = "structure",
     members = {
         VerificationType = schema.new({
@@ -3273,7 +3273,7 @@ M.VerificationResponseDetails = schema.new({
 })
 
 M.GetVerificationOutput = schema.new({
-    id = id.from(_N, "GetVerificationOutput"),
+    id = id.from(_N, "GetVerificationResponse"),
     type = "structure",
     members = {
         VerificationType = schema.new({
@@ -3336,7 +3336,7 @@ M.GetVerificationOutput = schema.new({
 })
 
 M.ListPartnersInput = schema.new({
-    id = id.from(_N, "ListPartnersInput"),
+    id = id.from(_N, "ListPartnersRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3414,7 +3414,7 @@ M.PartnerSummary = schema.new({
 })
 
 M.ListPartnersOutput = schema.new({
-    id = id.from(_N, "ListPartnersOutput"),
+    id = id.from(_N, "ListPartnersResponse"),
     type = "structure",
     members = {
         PartnerSummaryList = schema.new({
@@ -3437,7 +3437,7 @@ M.ListPartnersOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3453,7 +3453,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3476,7 +3476,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutAllianceLeadContactInput = schema.new({
-    id = id.from(_N, "PutAllianceLeadContactInput"),
+    id = id.from(_N, "PutAllianceLeadContactRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3517,7 +3517,7 @@ M.PutAllianceLeadContactInput = schema.new({
 })
 
 M.PutAllianceLeadContactOutput = schema.new({
-    id = id.from(_N, "PutAllianceLeadContactOutput"),
+    id = id.from(_N, "PutAllianceLeadContactResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3561,7 +3561,7 @@ M.PutAllianceLeadContactOutput = schema.new({
 })
 
 M.PutProfileVisibilityInput = schema.new({
-    id = id.from(_N, "PutProfileVisibilityInput"),
+    id = id.from(_N, "PutProfileVisibilityRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3595,7 +3595,7 @@ M.PutProfileVisibilityInput = schema.new({
 })
 
 M.PutProfileVisibilityOutput = schema.new({
-    id = id.from(_N, "PutProfileVisibilityOutput"),
+    id = id.from(_N, "PutProfileVisibilityResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3647,7 +3647,7 @@ M.PutProfileVisibilityOutput = schema.new({
 })
 
 M.StartProfileUpdateTaskInput = schema.new({
-    id = id.from(_N, "StartProfileUpdateTaskInput"),
+    id = id.from(_N, "StartProfileUpdateTaskRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3691,7 +3691,7 @@ M.StartProfileUpdateTaskInput = schema.new({
 })
 
 M.StartProfileUpdateTaskOutput = schema.new({
-    id = id.from(_N, "StartProfileUpdateTaskOutput"),
+    id = id.from(_N, "StartProfileUpdateTaskResponse"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3782,7 +3782,7 @@ M.StartProfileUpdateTaskOutput = schema.new({
 })
 
 M.SendEmailVerificationCodeInput = schema.new({
-    id = id.from(_N, "SendEmailVerificationCodeInput"),
+    id = id.from(_N, "SendEmailVerificationCodeRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3807,7 +3807,7 @@ M.SendEmailVerificationCodeInput = schema.new({
 })
 
 M.SendEmailVerificationCodeOutput = schema.new({
-    id = id.from(_N, "SendEmailVerificationCodeOutput"),
+    id = id.from(_N, "SendEmailVerificationCodeResponse"),
     type = "structure",
 })
 
@@ -3838,7 +3838,7 @@ M.VerificationDetails = schema.new({
 })
 
 M.StartVerificationInput = schema.new({
-    id = id.from(_N, "StartVerificationInput"),
+    id = id.from(_N, "StartVerificationRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -3861,7 +3861,7 @@ M.StartVerificationInput = schema.new({
 })
 
 M.StartVerificationOutput = schema.new({
-    id = id.from(_N, "StartVerificationOutput"),
+    id = id.from(_N, "StartVerificationResponse"),
     type = "structure",
     members = {
         VerificationType = schema.new({
@@ -3924,7 +3924,7 @@ M.StartVerificationOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3950,12 +3950,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3981,8 +3981,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

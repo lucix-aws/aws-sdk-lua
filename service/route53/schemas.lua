@@ -33,7 +33,7 @@ M.AccountLimit = schema.new({
 })
 
 M.ActivateKeySigningKeyInput = schema.new({
-    id = id.from(_N, "ActivateKeySigningKeyInput"),
+    id = id.from(_N, "ActivateKeySigningKeyRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -100,7 +100,7 @@ M.ChangeInfo = schema.new({
 })
 
 M.ActivateKeySigningKeyOutput = schema.new({
-    id = id.from(_N, "ActivateKeySigningKeyOutput"),
+    id = id.from(_N, "ActivateKeySigningKeyResponse"),
     type = "structure",
     members = {
         ChangeInfo = schema.new({
@@ -292,7 +292,7 @@ M.VPC = schema.new({
 })
 
 M.AssociateVPCWithHostedZoneInput = schema.new({
-    id = id.from(_N, "AssociateVPCWithHostedZoneInput"),
+    id = id.from(_N, "AssociateVPCWithHostedZoneRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -325,7 +325,7 @@ M.AssociateVPCWithHostedZoneInput = schema.new({
 })
 
 M.AssociateVPCWithHostedZoneOutput = schema.new({
-    id = id.from(_N, "AssociateVPCWithHostedZoneOutput"),
+    id = id.from(_N, "AssociateVPCWithHostedZoneResponse"),
     type = "structure",
     members = {
         ChangeInfo = schema.new({
@@ -480,7 +480,7 @@ M.CidrCollectionChange = schema.new({
             type = "list",
             name = "CidrList",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Cidr" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -489,7 +489,7 @@ M.CidrCollectionChange = schema.new({
 })
 
 M.ChangeCidrCollectionInput = schema.new({
-    id = id.from(_N, "ChangeCidrCollectionInput"),
+    id = id.from(_N, "ChangeCidrCollectionRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -522,7 +522,7 @@ M.ChangeCidrCollectionInput = schema.new({
 })
 
 M.ChangeCidrCollectionOutput = schema.new({
-    id = id.from(_N, "ChangeCidrCollectionOutput"),
+    id = id.from(_N, "ChangeCidrCollectionResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -778,7 +778,7 @@ M.ResourceRecordSet = schema.new({
             type = "list",
             name = "ResourceRecords",
             target_id = prelude.Document.id,
-            list_member = M.ResourceRecord,
+            list_member = schema.new({ type = "structure", target = M.ResourceRecord, traits = { [traits.XML_NAME] = { name = "ResourceRecord" } } }),
         }),
         AliasTarget = schema.new({
             id = id.from(_N, "ResourceRecordSet", "AliasTarget"),
@@ -857,7 +857,7 @@ M.ChangeBatch = schema.new({
             type = "list",
             name = "Changes",
             target_id = prelude.Document.id,
-            list_member = M.Change,
+            list_member = schema.new({ type = "structure", target = M.Change, traits = { [traits.XML_NAME] = { name = "Change" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -866,7 +866,7 @@ M.ChangeBatch = schema.new({
 })
 
 M.ChangeResourceRecordSetsInput = schema.new({
-    id = id.from(_N, "ChangeResourceRecordSetsInput"),
+    id = id.from(_N, "ChangeResourceRecordSetsRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -893,7 +893,7 @@ M.ChangeResourceRecordSetsInput = schema.new({
 })
 
 M.ChangeResourceRecordSetsOutput = schema.new({
-    id = id.from(_N, "ChangeResourceRecordSetsOutput"),
+    id = id.from(_N, "ChangeResourceRecordSetsResponse"),
     type = "structure",
     members = {
         ChangeInfo = schema.new({
@@ -921,7 +921,7 @@ M.InvalidChangeBatch = schema.new({
             type = "list",
             name = "messages",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Message" } } }),
         }),
         message = schema.new({
             id = id.from(_N, "InvalidChangeBatch", "message"),
@@ -968,7 +968,7 @@ M.Tag = schema.new({
 })
 
 M.ChangeTagsForResourceInput = schema.new({
-    id = id.from(_N, "ChangeTagsForResourceInput"),
+    id = id.from(_N, "ChangeTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceType = schema.new({
@@ -996,20 +996,20 @@ M.ChangeTagsForResourceInput = schema.new({
             type = "list",
             name = "AddTags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         RemoveTagKeys = schema.new({
             id = id.from(_N, "ChangeTagsForResourceInput", "RemoveTagKeys"),
             type = "list",
             name = "RemoveTagKeys",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Key" } } }),
         }),
     },
 })
 
 M.ChangeTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ChangeTagsForResourceOutput"),
+    id = id.from(_N, "ChangeTagsForResourceResponse"),
     type = "structure",
 })
 
@@ -1046,7 +1046,7 @@ M.CidrCollectionAlreadyExistsException = schema.new({
 })
 
 M.CreateCidrCollectionInput = schema.new({
-    id = id.from(_N, "CreateCidrCollectionInput"),
+    id = id.from(_N, "CreateCidrCollectionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1102,7 +1102,7 @@ M.CidrCollection = schema.new({
 })
 
 M.CreateCidrCollectionOutput = schema.new({
-    id = id.from(_N, "CreateCidrCollectionOutput"),
+    id = id.from(_N, "CreateCidrCollectionResponse"),
     type = "structure",
     members = {
         Collection = schema.new({
@@ -1208,7 +1208,7 @@ M.HealthCheckConfig = schema.new({
             type = "list",
             name = "ChildHealthChecks",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "ChildHealthCheck" } } }),
         }),
         EnableSNI = schema.new({
             id = id.from(_N, "HealthCheckConfig", "EnableSNI"),
@@ -1221,7 +1221,7 @@ M.HealthCheckConfig = schema.new({
             type = "list",
             name = "Regions",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Region" } } }),
         }),
         AlarmIdentifier = schema.new({
             id = id.from(_N, "HealthCheckConfig", "AlarmIdentifier"),
@@ -1246,7 +1246,7 @@ M.HealthCheckConfig = schema.new({
 })
 
 M.CreateHealthCheckInput = schema.new({
-    id = id.from(_N, "CreateHealthCheckInput"),
+    id = id.from(_N, "CreateHealthCheckRequest"),
     type = "structure",
     members = {
         CallerReference = schema.new({
@@ -1368,7 +1368,7 @@ M.CloudWatchAlarmConfiguration = schema.new({
             type = "list",
             name = "Dimensions",
             target_id = prelude.Document.id,
-            list_member = M.Dimension,
+            list_member = schema.new({ type = "structure", target = M.Dimension, traits = { [traits.XML_NAME] = { name = "Dimension" } } }),
         }),
     },
 })
@@ -1451,7 +1451,7 @@ M.HealthCheck = schema.new({
 })
 
 M.CreateHealthCheckOutput = schema.new({
-    id = id.from(_N, "CreateHealthCheckOutput"),
+    id = id.from(_N, "CreateHealthCheckResponse"),
     type = "structure",
     members = {
         HealthCheck = schema.new({
@@ -1532,7 +1532,7 @@ M.HostedZoneConfig = schema.new({
 })
 
 M.CreateHostedZoneInput = schema.new({
-    id = id.from(_N, "CreateHostedZoneInput"),
+    id = id.from(_N, "CreateHostedZoneRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1597,7 +1597,7 @@ M.DelegationSet = schema.new({
             type = "list",
             name = "NameServers",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "NameServer" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1700,7 +1700,7 @@ M.HostedZone = schema.new({
 })
 
 M.CreateHostedZoneOutput = schema.new({
-    id = id.from(_N, "CreateHostedZoneOutput"),
+    id = id.from(_N, "CreateHostedZoneResponse"),
     type = "structure",
     members = {
         HostedZone = schema.new({
@@ -1850,7 +1850,7 @@ M.TooManyHostedZones = schema.new({
 })
 
 M.CreateKeySigningKeyInput = schema.new({
-    id = id.from(_N, "CreateKeySigningKeyInput"),
+    id = id.from(_N, "CreateKeySigningKeyRequest"),
     type = "structure",
     members = {
         CallerReference = schema.new({
@@ -2017,7 +2017,7 @@ M.KeySigningKey = schema.new({
 })
 
 M.CreateKeySigningKeyOutput = schema.new({
-    id = id.from(_N, "CreateKeySigningKeyOutput"),
+    id = id.from(_N, "CreateKeySigningKeyResponse"),
     type = "structure",
     members = {
         ChangeInfo = schema.new({
@@ -2118,7 +2118,7 @@ M.TooManyKeySigningKeys = schema.new({
 })
 
 M.CreateQueryLoggingConfigInput = schema.new({
-    id = id.from(_N, "CreateQueryLoggingConfigInput"),
+    id = id.from(_N, "CreateQueryLoggingConfigRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -2177,7 +2177,7 @@ M.QueryLoggingConfig = schema.new({
 })
 
 M.CreateQueryLoggingConfigOutput = schema.new({
-    id = id.from(_N, "CreateQueryLoggingConfigOutput"),
+    id = id.from(_N, "CreateQueryLoggingConfigResponse"),
     type = "structure",
     members = {
         QueryLoggingConfig = schema.new({
@@ -2252,7 +2252,7 @@ M.QueryLoggingConfigAlreadyExists = schema.new({
 })
 
 M.CreateReusableDelegationSetInput = schema.new({
-    id = id.from(_N, "CreateReusableDelegationSetInput"),
+    id = id.from(_N, "CreateReusableDelegationSetRequest"),
     type = "structure",
     members = {
         CallerReference = schema.new({
@@ -2274,7 +2274,7 @@ M.CreateReusableDelegationSetInput = schema.new({
 })
 
 M.CreateReusableDelegationSetOutput = schema.new({
-    id = id.from(_N, "CreateReusableDelegationSetOutput"),
+    id = id.from(_N, "CreateReusableDelegationSetResponse"),
     type = "structure",
     members = {
         DelegationSet = schema.new({
@@ -2349,7 +2349,7 @@ M.HostedZoneNotFound = schema.new({
 })
 
 M.CreateTrafficPolicyInput = schema.new({
-    id = id.from(_N, "CreateTrafficPolicyInput"),
+    id = id.from(_N, "CreateTrafficPolicyRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2438,7 +2438,7 @@ M.TrafficPolicy = schema.new({
 })
 
 M.CreateTrafficPolicyOutput = schema.new({
-    id = id.from(_N, "CreateTrafficPolicyOutput"),
+    id = id.from(_N, "CreateTrafficPolicyResponse"),
     type = "structure",
     members = {
         TrafficPolicy = schema.new({
@@ -2513,7 +2513,7 @@ M.TrafficPolicyAlreadyExists = schema.new({
 })
 
 M.CreateTrafficPolicyInstanceInput = schema.new({
-    id = id.from(_N, "CreateTrafficPolicyInstanceInput"),
+    id = id.from(_N, "CreateTrafficPolicyInstanceRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -2653,7 +2653,7 @@ M.TrafficPolicyInstance = schema.new({
 })
 
 M.CreateTrafficPolicyInstanceOutput = schema.new({
-    id = id.from(_N, "CreateTrafficPolicyInstanceOutput"),
+    id = id.from(_N, "CreateTrafficPolicyInstanceResponse"),
     type = "structure",
     members = {
         TrafficPolicyInstance = schema.new({
@@ -2728,7 +2728,7 @@ M.TrafficPolicyInstanceAlreadyExists = schema.new({
 })
 
 M.CreateTrafficPolicyVersionInput = schema.new({
-    id = id.from(_N, "CreateTrafficPolicyVersionInput"),
+    id = id.from(_N, "CreateTrafficPolicyVersionRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2760,7 +2760,7 @@ M.CreateTrafficPolicyVersionInput = schema.new({
 })
 
 M.CreateTrafficPolicyVersionOutput = schema.new({
-    id = id.from(_N, "CreateTrafficPolicyVersionOutput"),
+    id = id.from(_N, "CreateTrafficPolicyVersionResponse"),
     type = "structure",
     members = {
         TrafficPolicy = schema.new({
@@ -2803,7 +2803,7 @@ M.TooManyTrafficPolicyVersionsForCurrentPolicy = schema.new({
 })
 
 M.CreateVPCAssociationAuthorizationInput = schema.new({
-    id = id.from(_N, "CreateVPCAssociationAuthorizationInput"),
+    id = id.from(_N, "CreateVPCAssociationAuthorizationRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -2830,7 +2830,7 @@ M.CreateVPCAssociationAuthorizationInput = schema.new({
 })
 
 M.CreateVPCAssociationAuthorizationOutput = schema.new({
-    id = id.from(_N, "CreateVPCAssociationAuthorizationOutput"),
+    id = id.from(_N, "CreateVPCAssociationAuthorizationResponse"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -2872,7 +2872,7 @@ M.TooManyVPCAssociationAuthorizations = schema.new({
 })
 
 M.DeactivateKeySigningKeyInput = schema.new({
-    id = id.from(_N, "DeactivateKeySigningKeyInput"),
+    id = id.from(_N, "DeactivateKeySigningKeyRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -2899,7 +2899,7 @@ M.DeactivateKeySigningKeyInput = schema.new({
 })
 
 M.DeactivateKeySigningKeyOutput = schema.new({
-    id = id.from(_N, "DeactivateKeySigningKeyOutput"),
+    id = id.from(_N, "DeactivateKeySigningKeyResponse"),
     type = "structure",
     members = {
         ChangeInfo = schema.new({
@@ -2964,7 +2964,7 @@ M.CidrCollectionInUseException = schema.new({
 })
 
 M.DeleteCidrCollectionInput = schema.new({
-    id = id.from(_N, "DeleteCidrCollectionInput"),
+    id = id.from(_N, "DeleteCidrCollectionRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2981,12 +2981,12 @@ M.DeleteCidrCollectionInput = schema.new({
 })
 
 M.DeleteCidrCollectionOutput = schema.new({
-    id = id.from(_N, "DeleteCidrCollectionOutput"),
+    id = id.from(_N, "DeleteCidrCollectionResponse"),
     type = "structure",
 })
 
 M.DeleteHealthCheckInput = schema.new({
-    id = id.from(_N, "DeleteHealthCheckInput"),
+    id = id.from(_N, "DeleteHealthCheckRequest"),
     type = "structure",
     members = {
         HealthCheckId = schema.new({
@@ -3003,7 +3003,7 @@ M.DeleteHealthCheckInput = schema.new({
 })
 
 M.DeleteHealthCheckOutput = schema.new({
-    id = id.from(_N, "DeleteHealthCheckOutput"),
+    id = id.from(_N, "DeleteHealthCheckResponse"),
     type = "structure",
 })
 
@@ -3024,7 +3024,7 @@ M.HealthCheckInUse = schema.new({
 })
 
 M.DeleteHostedZoneInput = schema.new({
-    id = id.from(_N, "DeleteHostedZoneInput"),
+    id = id.from(_N, "DeleteHostedZoneRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3041,7 +3041,7 @@ M.DeleteHostedZoneInput = schema.new({
 })
 
 M.DeleteHostedZoneOutput = schema.new({
-    id = id.from(_N, "DeleteHostedZoneOutput"),
+    id = id.from(_N, "DeleteHostedZoneResponse"),
     type = "structure",
     members = {
         ChangeInfo = schema.new({
@@ -3074,7 +3074,7 @@ M.HostedZoneNotEmpty = schema.new({
 })
 
 M.DeleteKeySigningKeyInput = schema.new({
-    id = id.from(_N, "DeleteKeySigningKeyInput"),
+    id = id.from(_N, "DeleteKeySigningKeyRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -3101,7 +3101,7 @@ M.DeleteKeySigningKeyInput = schema.new({
 })
 
 M.DeleteKeySigningKeyOutput = schema.new({
-    id = id.from(_N, "DeleteKeySigningKeyOutput"),
+    id = id.from(_N, "DeleteKeySigningKeyResponse"),
     type = "structure",
     members = {
         ChangeInfo = schema.new({
@@ -3118,7 +3118,7 @@ M.DeleteKeySigningKeyOutput = schema.new({
 })
 
 M.DeleteQueryLoggingConfigInput = schema.new({
-    id = id.from(_N, "DeleteQueryLoggingConfigInput"),
+    id = id.from(_N, "DeleteQueryLoggingConfigRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3135,7 +3135,7 @@ M.DeleteQueryLoggingConfigInput = schema.new({
 })
 
 M.DeleteQueryLoggingConfigOutput = schema.new({
-    id = id.from(_N, "DeleteQueryLoggingConfigOutput"),
+    id = id.from(_N, "DeleteQueryLoggingConfigResponse"),
     type = "structure",
 })
 
@@ -3172,7 +3172,7 @@ M.DelegationSetInUse = schema.new({
 })
 
 M.DeleteReusableDelegationSetInput = schema.new({
-    id = id.from(_N, "DeleteReusableDelegationSetInput"),
+    id = id.from(_N, "DeleteReusableDelegationSetRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3189,12 +3189,12 @@ M.DeleteReusableDelegationSetInput = schema.new({
 })
 
 M.DeleteReusableDelegationSetOutput = schema.new({
-    id = id.from(_N, "DeleteReusableDelegationSetOutput"),
+    id = id.from(_N, "DeleteReusableDelegationSetResponse"),
     type = "structure",
 })
 
 M.DeleteTrafficPolicyInput = schema.new({
-    id = id.from(_N, "DeleteTrafficPolicyInput"),
+    id = id.from(_N, "DeleteTrafficPolicyRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3221,7 +3221,7 @@ M.DeleteTrafficPolicyInput = schema.new({
 })
 
 M.DeleteTrafficPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteTrafficPolicyOutput"),
+    id = id.from(_N, "DeleteTrafficPolicyResponse"),
     type = "structure",
 })
 
@@ -3242,7 +3242,7 @@ M.TrafficPolicyInUse = schema.new({
 })
 
 M.DeleteTrafficPolicyInstanceInput = schema.new({
-    id = id.from(_N, "DeleteTrafficPolicyInstanceInput"),
+    id = id.from(_N, "DeleteTrafficPolicyInstanceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3259,7 +3259,7 @@ M.DeleteTrafficPolicyInstanceInput = schema.new({
 })
 
 M.DeleteTrafficPolicyInstanceOutput = schema.new({
-    id = id.from(_N, "DeleteTrafficPolicyInstanceOutput"),
+    id = id.from(_N, "DeleteTrafficPolicyInstanceResponse"),
     type = "structure",
 })
 
@@ -3280,7 +3280,7 @@ M.NoSuchTrafficPolicyInstance = schema.new({
 })
 
 M.DeleteVPCAssociationAuthorizationInput = schema.new({
-    id = id.from(_N, "DeleteVPCAssociationAuthorizationInput"),
+    id = id.from(_N, "DeleteVPCAssociationAuthorizationRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -3307,7 +3307,7 @@ M.DeleteVPCAssociationAuthorizationInput = schema.new({
 })
 
 M.DeleteVPCAssociationAuthorizationOutput = schema.new({
-    id = id.from(_N, "DeleteVPCAssociationAuthorizationOutput"),
+    id = id.from(_N, "DeleteVPCAssociationAuthorizationResponse"),
     type = "structure",
 })
 
@@ -3328,7 +3328,7 @@ M.VPCAssociationAuthorizationNotFound = schema.new({
 })
 
 M.DisableHostedZoneDNSSECInput = schema.new({
-    id = id.from(_N, "DisableHostedZoneDNSSECInput"),
+    id = id.from(_N, "DisableHostedZoneDNSSECRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -3345,7 +3345,7 @@ M.DisableHostedZoneDNSSECInput = schema.new({
 })
 
 M.DisableHostedZoneDNSSECOutput = schema.new({
-    id = id.from(_N, "DisableHostedZoneDNSSECOutput"),
+    id = id.from(_N, "DisableHostedZoneDNSSECResponse"),
     type = "structure",
     members = {
         ChangeInfo = schema.new({
@@ -3378,7 +3378,7 @@ M.DNSSECNotFound = schema.new({
 })
 
 M.DisassociateVPCFromHostedZoneInput = schema.new({
-    id = id.from(_N, "DisassociateVPCFromHostedZoneInput"),
+    id = id.from(_N, "DisassociateVPCFromHostedZoneRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -3411,7 +3411,7 @@ M.DisassociateVPCFromHostedZoneInput = schema.new({
 })
 
 M.DisassociateVPCFromHostedZoneOutput = schema.new({
-    id = id.from(_N, "DisassociateVPCFromHostedZoneOutput"),
+    id = id.from(_N, "DisassociateVPCFromHostedZoneResponse"),
     type = "structure",
     members = {
         ChangeInfo = schema.new({
@@ -3460,7 +3460,7 @@ M.VPCAssociationNotFound = schema.new({
 })
 
 M.EnableHostedZoneDNSSECInput = schema.new({
-    id = id.from(_N, "EnableHostedZoneDNSSECInput"),
+    id = id.from(_N, "EnableHostedZoneDNSSECRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -3477,7 +3477,7 @@ M.EnableHostedZoneDNSSECInput = schema.new({
 })
 
 M.EnableHostedZoneDNSSECOutput = schema.new({
-    id = id.from(_N, "EnableHostedZoneDNSSECOutput"),
+    id = id.from(_N, "EnableHostedZoneDNSSECResponse"),
     type = "structure",
     members = {
         ChangeInfo = schema.new({
@@ -3526,7 +3526,7 @@ M.KeySigningKeyWithActiveStatusNotFound = schema.new({
 })
 
 M.GetAccountLimitInput = schema.new({
-    id = id.from(_N, "GetAccountLimitInput"),
+    id = id.from(_N, "GetAccountLimitRequest"),
     type = "structure",
     members = {
         Type = schema.new({
@@ -3543,7 +3543,7 @@ M.GetAccountLimitInput = schema.new({
 })
 
 M.GetAccountLimitOutput = schema.new({
-    id = id.from(_N, "GetAccountLimitOutput"),
+    id = id.from(_N, "GetAccountLimitResponse"),
     type = "structure",
     members = {
         Limit = schema.new({
@@ -3570,7 +3570,7 @@ M.GetAccountLimitOutput = schema.new({
 })
 
 M.GetChangeInput = schema.new({
-    id = id.from(_N, "GetChangeInput"),
+    id = id.from(_N, "GetChangeRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3587,7 +3587,7 @@ M.GetChangeInput = schema.new({
 })
 
 M.GetChangeOutput = schema.new({
-    id = id.from(_N, "GetChangeOutput"),
+    id = id.from(_N, "GetChangeResponse"),
     type = "structure",
     members = {
         ChangeInfo = schema.new({
@@ -3620,12 +3620,12 @@ M.NoSuchChange = schema.new({
 })
 
 M.GetCheckerIpRangesInput = schema.new({
-    id = id.from(_N, "GetCheckerIpRangesInput"),
+    id = id.from(_N, "GetCheckerIpRangesRequest"),
     type = "structure",
 })
 
 M.GetCheckerIpRangesOutput = schema.new({
-    id = id.from(_N, "GetCheckerIpRangesOutput"),
+    id = id.from(_N, "GetCheckerIpRangesResponse"),
     type = "structure",
     members = {
         CheckerIpRanges = schema.new({
@@ -3642,7 +3642,7 @@ M.GetCheckerIpRangesOutput = schema.new({
 })
 
 M.GetDNSSECInput = schema.new({
-    id = id.from(_N, "GetDNSSECInput"),
+    id = id.from(_N, "GetDNSSECRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -3678,7 +3678,7 @@ M.DNSSECStatus = schema.new({
 })
 
 M.GetDNSSECOutput = schema.new({
-    id = id.from(_N, "GetDNSSECOutput"),
+    id = id.from(_N, "GetDNSSECResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -3705,7 +3705,7 @@ M.GetDNSSECOutput = schema.new({
 })
 
 M.GetGeoLocationInput = schema.new({
-    id = id.from(_N, "GetGeoLocationInput"),
+    id = id.from(_N, "GetGeoLocationRequest"),
     type = "structure",
     members = {
         ContinentCode = schema.new({
@@ -3782,7 +3782,7 @@ M.GeoLocationDetails = schema.new({
 })
 
 M.GetGeoLocationOutput = schema.new({
-    id = id.from(_N, "GetGeoLocationOutput"),
+    id = id.from(_N, "GetGeoLocationResponse"),
     type = "structure",
     members = {
         GeoLocationDetails = schema.new({
@@ -3815,7 +3815,7 @@ M.NoSuchGeoLocation = schema.new({
 })
 
 M.GetHealthCheckInput = schema.new({
-    id = id.from(_N, "GetHealthCheckInput"),
+    id = id.from(_N, "GetHealthCheckRequest"),
     type = "structure",
     members = {
         HealthCheckId = schema.new({
@@ -3832,7 +3832,7 @@ M.GetHealthCheckInput = schema.new({
 })
 
 M.GetHealthCheckOutput = schema.new({
-    id = id.from(_N, "GetHealthCheckOutput"),
+    id = id.from(_N, "GetHealthCheckResponse"),
     type = "structure",
     members = {
         HealthCheck = schema.new({
@@ -3865,12 +3865,12 @@ M.IncompatibleVersion = schema.new({
 })
 
 M.GetHealthCheckCountInput = schema.new({
-    id = id.from(_N, "GetHealthCheckCountInput"),
+    id = id.from(_N, "GetHealthCheckCountRequest"),
     type = "structure",
 })
 
 M.GetHealthCheckCountOutput = schema.new({
-    id = id.from(_N, "GetHealthCheckCountOutput"),
+    id = id.from(_N, "GetHealthCheckCountResponse"),
     type = "structure",
     members = {
         HealthCheckCount = schema.new({
@@ -3886,7 +3886,7 @@ M.GetHealthCheckCountOutput = schema.new({
 })
 
 M.GetHealthCheckLastFailureReasonInput = schema.new({
-    id = id.from(_N, "GetHealthCheckLastFailureReasonInput"),
+    id = id.from(_N, "GetHealthCheckLastFailureReasonRequest"),
     type = "structure",
     members = {
         HealthCheckId = schema.new({
@@ -3948,7 +3948,7 @@ M.HealthCheckObservation = schema.new({
 })
 
 M.GetHealthCheckLastFailureReasonOutput = schema.new({
-    id = id.from(_N, "GetHealthCheckLastFailureReasonOutput"),
+    id = id.from(_N, "GetHealthCheckLastFailureReasonResponse"),
     type = "structure",
     members = {
         HealthCheckObservations = schema.new({
@@ -3956,7 +3956,7 @@ M.GetHealthCheckLastFailureReasonOutput = schema.new({
             type = "list",
             name = "HealthCheckObservations",
             target_id = prelude.Document.id,
-            list_member = M.HealthCheckObservation,
+            list_member = schema.new({ type = "structure", target = M.HealthCheckObservation, traits = { [traits.XML_NAME] = { name = "HealthCheckObservation" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -3965,7 +3965,7 @@ M.GetHealthCheckLastFailureReasonOutput = schema.new({
 })
 
 M.GetHealthCheckStatusInput = schema.new({
-    id = id.from(_N, "GetHealthCheckStatusInput"),
+    id = id.from(_N, "GetHealthCheckStatusRequest"),
     type = "structure",
     members = {
         HealthCheckId = schema.new({
@@ -3982,7 +3982,7 @@ M.GetHealthCheckStatusInput = schema.new({
 })
 
 M.GetHealthCheckStatusOutput = schema.new({
-    id = id.from(_N, "GetHealthCheckStatusOutput"),
+    id = id.from(_N, "GetHealthCheckStatusResponse"),
     type = "structure",
     members = {
         HealthCheckObservations = schema.new({
@@ -3990,7 +3990,7 @@ M.GetHealthCheckStatusOutput = schema.new({
             type = "list",
             name = "HealthCheckObservations",
             target_id = prelude.Document.id,
-            list_member = M.HealthCheckObservation,
+            list_member = schema.new({ type = "structure", target = M.HealthCheckObservation, traits = { [traits.XML_NAME] = { name = "HealthCheckObservation" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -3999,7 +3999,7 @@ M.GetHealthCheckStatusOutput = schema.new({
 })
 
 M.GetHostedZoneInput = schema.new({
-    id = id.from(_N, "GetHostedZoneInput"),
+    id = id.from(_N, "GetHostedZoneRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -4016,7 +4016,7 @@ M.GetHostedZoneInput = schema.new({
 })
 
 M.GetHostedZoneOutput = schema.new({
-    id = id.from(_N, "GetHostedZoneOutput"),
+    id = id.from(_N, "GetHostedZoneResponse"),
     type = "structure",
     members = {
         HostedZone = schema.new({
@@ -4041,18 +4041,18 @@ M.GetHostedZoneOutput = schema.new({
             type = "list",
             name = "VPCs",
             target_id = prelude.Document.id,
-            list_member = M.VPC,
+            list_member = schema.new({ type = "structure", target = M.VPC, traits = { [traits.XML_NAME] = { name = "VPC" } } }),
         }),
     },
 })
 
 M.GetHostedZoneCountInput = schema.new({
-    id = id.from(_N, "GetHostedZoneCountInput"),
+    id = id.from(_N, "GetHostedZoneCountRequest"),
     type = "structure",
 })
 
 M.GetHostedZoneCountOutput = schema.new({
-    id = id.from(_N, "GetHostedZoneCountOutput"),
+    id = id.from(_N, "GetHostedZoneCountResponse"),
     type = "structure",
     members = {
         HostedZoneCount = schema.new({
@@ -4068,7 +4068,7 @@ M.GetHostedZoneCountOutput = schema.new({
 })
 
 M.GetHostedZoneLimitInput = schema.new({
-    id = id.from(_N, "GetHostedZoneLimitInput"),
+    id = id.from(_N, "GetHostedZoneLimitRequest"),
     type = "structure",
     members = {
         Type = schema.new({
@@ -4120,7 +4120,7 @@ M.HostedZoneLimit = schema.new({
 })
 
 M.GetHostedZoneLimitOutput = schema.new({
-    id = id.from(_N, "GetHostedZoneLimitOutput"),
+    id = id.from(_N, "GetHostedZoneLimitResponse"),
     type = "structure",
     members = {
         Limit = schema.new({
@@ -4163,7 +4163,7 @@ M.HostedZoneNotPrivate = schema.new({
 })
 
 M.GetQueryLoggingConfigInput = schema.new({
-    id = id.from(_N, "GetQueryLoggingConfigInput"),
+    id = id.from(_N, "GetQueryLoggingConfigRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -4180,7 +4180,7 @@ M.GetQueryLoggingConfigInput = schema.new({
 })
 
 M.GetQueryLoggingConfigOutput = schema.new({
-    id = id.from(_N, "GetQueryLoggingConfigOutput"),
+    id = id.from(_N, "GetQueryLoggingConfigResponse"),
     type = "structure",
     members = {
         QueryLoggingConfig = schema.new({
@@ -4197,7 +4197,7 @@ M.GetQueryLoggingConfigOutput = schema.new({
 })
 
 M.GetReusableDelegationSetInput = schema.new({
-    id = id.from(_N, "GetReusableDelegationSetInput"),
+    id = id.from(_N, "GetReusableDelegationSetRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -4214,7 +4214,7 @@ M.GetReusableDelegationSetInput = schema.new({
 })
 
 M.GetReusableDelegationSetOutput = schema.new({
-    id = id.from(_N, "GetReusableDelegationSetOutput"),
+    id = id.from(_N, "GetReusableDelegationSetResponse"),
     type = "structure",
     members = {
         DelegationSet = schema.new({
@@ -4231,7 +4231,7 @@ M.GetReusableDelegationSetOutput = schema.new({
 })
 
 M.GetReusableDelegationSetLimitInput = schema.new({
-    id = id.from(_N, "GetReusableDelegationSetLimitInput"),
+    id = id.from(_N, "GetReusableDelegationSetLimitRequest"),
     type = "structure",
     members = {
         Type = schema.new({
@@ -4283,7 +4283,7 @@ M.ReusableDelegationSetLimit = schema.new({
 })
 
 M.GetReusableDelegationSetLimitOutput = schema.new({
-    id = id.from(_N, "GetReusableDelegationSetLimitOutput"),
+    id = id.from(_N, "GetReusableDelegationSetLimitResponse"),
     type = "structure",
     members = {
         Limit = schema.new({
@@ -4310,7 +4310,7 @@ M.GetReusableDelegationSetLimitOutput = schema.new({
 })
 
 M.GetTrafficPolicyInput = schema.new({
-    id = id.from(_N, "GetTrafficPolicyInput"),
+    id = id.from(_N, "GetTrafficPolicyRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -4337,7 +4337,7 @@ M.GetTrafficPolicyInput = schema.new({
 })
 
 M.GetTrafficPolicyOutput = schema.new({
-    id = id.from(_N, "GetTrafficPolicyOutput"),
+    id = id.from(_N, "GetTrafficPolicyResponse"),
     type = "structure",
     members = {
         TrafficPolicy = schema.new({
@@ -4354,7 +4354,7 @@ M.GetTrafficPolicyOutput = schema.new({
 })
 
 M.GetTrafficPolicyInstanceInput = schema.new({
-    id = id.from(_N, "GetTrafficPolicyInstanceInput"),
+    id = id.from(_N, "GetTrafficPolicyInstanceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -4371,7 +4371,7 @@ M.GetTrafficPolicyInstanceInput = schema.new({
 })
 
 M.GetTrafficPolicyInstanceOutput = schema.new({
-    id = id.from(_N, "GetTrafficPolicyInstanceOutput"),
+    id = id.from(_N, "GetTrafficPolicyInstanceResponse"),
     type = "structure",
     members = {
         TrafficPolicyInstance = schema.new({
@@ -4388,12 +4388,12 @@ M.GetTrafficPolicyInstanceOutput = schema.new({
 })
 
 M.GetTrafficPolicyInstanceCountInput = schema.new({
-    id = id.from(_N, "GetTrafficPolicyInstanceCountInput"),
+    id = id.from(_N, "GetTrafficPolicyInstanceCountRequest"),
     type = "structure",
 })
 
 M.GetTrafficPolicyInstanceCountOutput = schema.new({
-    id = id.from(_N, "GetTrafficPolicyInstanceCountOutput"),
+    id = id.from(_N, "GetTrafficPolicyInstanceCountResponse"),
     type = "structure",
     members = {
         TrafficPolicyInstanceCount = schema.new({
@@ -4409,7 +4409,7 @@ M.GetTrafficPolicyInstanceCountOutput = schema.new({
 })
 
 M.ListCidrBlocksInput = schema.new({
-    id = id.from(_N, "ListCidrBlocksInput"),
+    id = id.from(_N, "ListCidrBlocksRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -4472,7 +4472,7 @@ M.CidrBlockSummary = schema.new({
 })
 
 M.ListCidrBlocksOutput = schema.new({
-    id = id.from(_N, "ListCidrBlocksOutput"),
+    id = id.from(_N, "ListCidrBlocksResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4508,7 +4508,7 @@ M.NoSuchCidrLocationException = schema.new({
 })
 
 M.ListCidrCollectionsInput = schema.new({
-    id = id.from(_N, "ListCidrCollectionsInput"),
+    id = id.from(_N, "ListCidrCollectionsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4564,7 +4564,7 @@ M.CollectionSummary = schema.new({
 })
 
 M.ListCidrCollectionsOutput = schema.new({
-    id = id.from(_N, "ListCidrCollectionsOutput"),
+    id = id.from(_N, "ListCidrCollectionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4584,7 +4584,7 @@ M.ListCidrCollectionsOutput = schema.new({
 })
 
 M.ListCidrLocationsInput = schema.new({
-    id = id.from(_N, "ListCidrLocationsInput"),
+    id = id.from(_N, "ListCidrLocationsRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -4632,7 +4632,7 @@ M.LocationSummary = schema.new({
 })
 
 M.ListCidrLocationsOutput = schema.new({
-    id = id.from(_N, "ListCidrLocationsOutput"),
+    id = id.from(_N, "ListCidrLocationsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4652,7 +4652,7 @@ M.ListCidrLocationsOutput = schema.new({
 })
 
 M.ListGeoLocationsInput = schema.new({
-    id = id.from(_N, "ListGeoLocationsInput"),
+    id = id.from(_N, "ListGeoLocationsRequest"),
     type = "structure",
     members = {
         StartContinentCode = schema.new({
@@ -4695,7 +4695,7 @@ M.ListGeoLocationsInput = schema.new({
 })
 
 M.ListGeoLocationsOutput = schema.new({
-    id = id.from(_N, "ListGeoLocationsOutput"),
+    id = id.from(_N, "ListGeoLocationsResponse"),
     type = "structure",
     members = {
         GeoLocationDetailsList = schema.new({
@@ -4703,7 +4703,7 @@ M.ListGeoLocationsOutput = schema.new({
             type = "list",
             name = "GeoLocationDetailsList",
             target_id = prelude.Document.id,
-            list_member = M.GeoLocationDetails,
+            list_member = schema.new({ type = "structure", target = M.GeoLocationDetails, traits = { [traits.XML_NAME] = { name = "GeoLocationDetails" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -4749,7 +4749,7 @@ M.ListGeoLocationsOutput = schema.new({
 })
 
 M.ListHealthChecksInput = schema.new({
-    id = id.from(_N, "ListHealthChecksInput"),
+    id = id.from(_N, "ListHealthChecksRequest"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -4774,7 +4774,7 @@ M.ListHealthChecksInput = schema.new({
 })
 
 M.ListHealthChecksOutput = schema.new({
-    id = id.from(_N, "ListHealthChecksOutput"),
+    id = id.from(_N, "ListHealthChecksResponse"),
     type = "structure",
     members = {
         HealthChecks = schema.new({
@@ -4782,7 +4782,7 @@ M.ListHealthChecksOutput = schema.new({
             type = "list",
             name = "HealthChecks",
             target_id = prelude.Document.id,
-            list_member = M.HealthCheck,
+            list_member = schema.new({ type = "structure", target = M.HealthCheck, traits = { [traits.XML_NAME] = { name = "HealthCheck" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -4825,7 +4825,7 @@ M.ListHealthChecksOutput = schema.new({
 })
 
 M.ListHostedZonesInput = schema.new({
-    id = id.from(_N, "ListHostedZonesInput"),
+    id = id.from(_N, "ListHostedZonesRequest"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -4868,7 +4868,7 @@ M.ListHostedZonesInput = schema.new({
 })
 
 M.ListHostedZonesOutput = schema.new({
-    id = id.from(_N, "ListHostedZonesOutput"),
+    id = id.from(_N, "ListHostedZonesResponse"),
     type = "structure",
     members = {
         HostedZones = schema.new({
@@ -4876,7 +4876,7 @@ M.ListHostedZonesOutput = schema.new({
             type = "list",
             name = "HostedZones",
             target_id = prelude.Document.id,
-            list_member = M.HostedZone,
+            list_member = schema.new({ type = "structure", target = M.HostedZone, traits = { [traits.XML_NAME] = { name = "HostedZone" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -4919,7 +4919,7 @@ M.ListHostedZonesOutput = schema.new({
 })
 
 M.ListHostedZonesByNameInput = schema.new({
-    id = id.from(_N, "ListHostedZonesByNameInput"),
+    id = id.from(_N, "ListHostedZonesByNameRequest"),
     type = "structure",
     members = {
         DNSName = schema.new({
@@ -4953,7 +4953,7 @@ M.ListHostedZonesByNameInput = schema.new({
 })
 
 M.ListHostedZonesByNameOutput = schema.new({
-    id = id.from(_N, "ListHostedZonesByNameOutput"),
+    id = id.from(_N, "ListHostedZonesByNameResponse"),
     type = "structure",
     members = {
         HostedZones = schema.new({
@@ -4961,7 +4961,7 @@ M.ListHostedZonesByNameOutput = schema.new({
             type = "list",
             name = "HostedZones",
             target_id = prelude.Document.id,
-            list_member = M.HostedZone,
+            list_member = schema.new({ type = "structure", target = M.HostedZone, traits = { [traits.XML_NAME] = { name = "HostedZone" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5029,7 +5029,7 @@ M.InvalidPaginationToken = schema.new({
 })
 
 M.ListHostedZonesByVPCInput = schema.new({
-    id = id.from(_N, "ListHostedZonesByVPCInput"),
+    id = id.from(_N, "ListHostedZonesByVPCRequest"),
     type = "structure",
     members = {
         VPCId = schema.new({
@@ -5128,7 +5128,7 @@ M.HostedZoneSummary = schema.new({
 })
 
 M.ListHostedZonesByVPCOutput = schema.new({
-    id = id.from(_N, "ListHostedZonesByVPCOutput"),
+    id = id.from(_N, "ListHostedZonesByVPCResponse"),
     type = "structure",
     members = {
         HostedZoneSummaries = schema.new({
@@ -5136,7 +5136,7 @@ M.ListHostedZonesByVPCOutput = schema.new({
             type = "list",
             name = "HostedZoneSummaries",
             target_id = prelude.Document.id,
-            list_member = M.HostedZoneSummary,
+            list_member = schema.new({ type = "structure", target = M.HostedZoneSummary, traits = { [traits.XML_NAME] = { name = "HostedZoneSummary" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5160,7 +5160,7 @@ M.ListHostedZonesByVPCOutput = schema.new({
 })
 
 M.ListQueryLoggingConfigsInput = schema.new({
-    id = id.from(_N, "ListQueryLoggingConfigsInput"),
+    id = id.from(_N, "ListQueryLoggingConfigsRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -5194,7 +5194,7 @@ M.ListQueryLoggingConfigsInput = schema.new({
 })
 
 M.ListQueryLoggingConfigsOutput = schema.new({
-    id = id.from(_N, "ListQueryLoggingConfigsOutput"),
+    id = id.from(_N, "ListQueryLoggingConfigsResponse"),
     type = "structure",
     members = {
         QueryLoggingConfigs = schema.new({
@@ -5202,7 +5202,7 @@ M.ListQueryLoggingConfigsOutput = schema.new({
             type = "list",
             name = "QueryLoggingConfigs",
             target_id = prelude.Document.id,
-            list_member = M.QueryLoggingConfig,
+            list_member = schema.new({ type = "structure", target = M.QueryLoggingConfig, traits = { [traits.XML_NAME] = { name = "QueryLoggingConfig" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5217,7 +5217,7 @@ M.ListQueryLoggingConfigsOutput = schema.new({
 })
 
 M.ListResourceRecordSetsInput = schema.new({
-    id = id.from(_N, "ListResourceRecordSetsInput"),
+    id = id.from(_N, "ListResourceRecordSetsRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -5270,7 +5270,7 @@ M.ListResourceRecordSetsInput = schema.new({
 })
 
 M.ListResourceRecordSetsOutput = schema.new({
-    id = id.from(_N, "ListResourceRecordSetsOutput"),
+    id = id.from(_N, "ListResourceRecordSetsResponse"),
     type = "structure",
     members = {
         ResourceRecordSets = schema.new({
@@ -5278,7 +5278,7 @@ M.ListResourceRecordSetsOutput = schema.new({
             type = "list",
             name = "ResourceRecordSets",
             target_id = prelude.Document.id,
-            list_member = M.ResourceRecordSet,
+            list_member = schema.new({ type = "structure", target = M.ResourceRecordSet, traits = { [traits.XML_NAME] = { name = "ResourceRecordSet" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5324,7 +5324,7 @@ M.ListResourceRecordSetsOutput = schema.new({
 })
 
 M.ListReusableDelegationSetsInput = schema.new({
-    id = id.from(_N, "ListReusableDelegationSetsInput"),
+    id = id.from(_N, "ListReusableDelegationSetsRequest"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -5349,7 +5349,7 @@ M.ListReusableDelegationSetsInput = schema.new({
 })
 
 M.ListReusableDelegationSetsOutput = schema.new({
-    id = id.from(_N, "ListReusableDelegationSetsOutput"),
+    id = id.from(_N, "ListReusableDelegationSetsResponse"),
     type = "structure",
     members = {
         DelegationSets = schema.new({
@@ -5357,7 +5357,7 @@ M.ListReusableDelegationSetsOutput = schema.new({
             type = "list",
             name = "DelegationSets",
             target_id = prelude.Document.id,
-            list_member = M.DelegationSet,
+            list_member = schema.new({ type = "structure", target = M.DelegationSet, traits = { [traits.XML_NAME] = { name = "DelegationSet" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5400,7 +5400,7 @@ M.ListReusableDelegationSetsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceType = schema.new({
@@ -5447,13 +5447,13 @@ M.ResourceTagSet = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         ResourceTagSet = schema.new({
@@ -5470,7 +5470,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTagsForResourcesInput = schema.new({
-    id = id.from(_N, "ListTagsForResourcesInput"),
+    id = id.from(_N, "ListTagsForResourcesRequest"),
     type = "structure",
     members = {
         ResourceType = schema.new({
@@ -5488,7 +5488,7 @@ M.ListTagsForResourcesInput = schema.new({
             type = "list",
             name = "ResourceIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "ResourceId" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5497,7 +5497,7 @@ M.ListTagsForResourcesInput = schema.new({
 })
 
 M.ListTagsForResourcesOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourcesOutput"),
+    id = id.from(_N, "ListTagsForResourcesResponse"),
     type = "structure",
     members = {
         ResourceTagSets = schema.new({
@@ -5505,7 +5505,7 @@ M.ListTagsForResourcesOutput = schema.new({
             type = "list",
             name = "ResourceTagSets",
             target_id = prelude.Document.id,
-            list_member = M.ResourceTagSet,
+            list_member = schema.new({ type = "structure", target = M.ResourceTagSet, traits = { [traits.XML_NAME] = { name = "ResourceTagSet" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5514,7 +5514,7 @@ M.ListTagsForResourcesOutput = schema.new({
 })
 
 M.ListTrafficPoliciesInput = schema.new({
-    id = id.from(_N, "ListTrafficPoliciesInput"),
+    id = id.from(_N, "ListTrafficPoliciesRequest"),
     type = "structure",
     members = {
         TrafficPolicyIdMarker = schema.new({
@@ -5591,7 +5591,7 @@ M.TrafficPolicySummary = schema.new({
 })
 
 M.ListTrafficPoliciesOutput = schema.new({
-    id = id.from(_N, "ListTrafficPoliciesOutput"),
+    id = id.from(_N, "ListTrafficPoliciesResponse"),
     type = "structure",
     members = {
         TrafficPolicySummaries = schema.new({
@@ -5599,7 +5599,7 @@ M.ListTrafficPoliciesOutput = schema.new({
             type = "list",
             name = "TrafficPolicySummaries",
             target_id = prelude.Document.id,
-            list_member = M.TrafficPolicySummary,
+            list_member = schema.new({ type = "structure", target = M.TrafficPolicySummary, traits = { [traits.XML_NAME] = { name = "TrafficPolicySummary" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5636,7 +5636,7 @@ M.ListTrafficPoliciesOutput = schema.new({
 })
 
 M.ListTrafficPolicyInstancesInput = schema.new({
-    id = id.from(_N, "ListTrafficPolicyInstancesInput"),
+    id = id.from(_N, "ListTrafficPolicyInstancesRequest"),
     type = "structure",
     members = {
         HostedZoneIdMarker = schema.new({
@@ -5679,7 +5679,7 @@ M.ListTrafficPolicyInstancesInput = schema.new({
 })
 
 M.ListTrafficPolicyInstancesOutput = schema.new({
-    id = id.from(_N, "ListTrafficPolicyInstancesOutput"),
+    id = id.from(_N, "ListTrafficPolicyInstancesResponse"),
     type = "structure",
     members = {
         TrafficPolicyInstances = schema.new({
@@ -5687,7 +5687,7 @@ M.ListTrafficPolicyInstancesOutput = schema.new({
             type = "list",
             name = "TrafficPolicyInstances",
             target_id = prelude.Document.id,
-            list_member = M.TrafficPolicyInstance,
+            list_member = schema.new({ type = "structure", target = M.TrafficPolicyInstance, traits = { [traits.XML_NAME] = { name = "TrafficPolicyInstance" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5733,7 +5733,7 @@ M.ListTrafficPolicyInstancesOutput = schema.new({
 })
 
 M.ListTrafficPolicyInstancesByHostedZoneInput = schema.new({
-    id = id.from(_N, "ListTrafficPolicyInstancesByHostedZoneInput"),
+    id = id.from(_N, "ListTrafficPolicyInstancesByHostedZoneRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -5777,7 +5777,7 @@ M.ListTrafficPolicyInstancesByHostedZoneInput = schema.new({
 })
 
 M.ListTrafficPolicyInstancesByHostedZoneOutput = schema.new({
-    id = id.from(_N, "ListTrafficPolicyInstancesByHostedZoneOutput"),
+    id = id.from(_N, "ListTrafficPolicyInstancesByHostedZoneResponse"),
     type = "structure",
     members = {
         TrafficPolicyInstances = schema.new({
@@ -5785,7 +5785,7 @@ M.ListTrafficPolicyInstancesByHostedZoneOutput = schema.new({
             type = "list",
             name = "TrafficPolicyInstances",
             target_id = prelude.Document.id,
-            list_member = M.TrafficPolicyInstance,
+            list_member = schema.new({ type = "structure", target = M.TrafficPolicyInstance, traits = { [traits.XML_NAME] = { name = "TrafficPolicyInstance" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5825,7 +5825,7 @@ M.ListTrafficPolicyInstancesByHostedZoneOutput = schema.new({
 })
 
 M.ListTrafficPolicyInstancesByPolicyInput = schema.new({
-    id = id.from(_N, "ListTrafficPolicyInstancesByPolicyInput"),
+    id = id.from(_N, "ListTrafficPolicyInstancesByPolicyRequest"),
     type = "structure",
     members = {
         TrafficPolicyId = schema.new({
@@ -5888,7 +5888,7 @@ M.ListTrafficPolicyInstancesByPolicyInput = schema.new({
 })
 
 M.ListTrafficPolicyInstancesByPolicyOutput = schema.new({
-    id = id.from(_N, "ListTrafficPolicyInstancesByPolicyOutput"),
+    id = id.from(_N, "ListTrafficPolicyInstancesByPolicyResponse"),
     type = "structure",
     members = {
         TrafficPolicyInstances = schema.new({
@@ -5896,7 +5896,7 @@ M.ListTrafficPolicyInstancesByPolicyOutput = schema.new({
             type = "list",
             name = "TrafficPolicyInstances",
             target_id = prelude.Document.id,
-            list_member = M.TrafficPolicyInstance,
+            list_member = schema.new({ type = "structure", target = M.TrafficPolicyInstance, traits = { [traits.XML_NAME] = { name = "TrafficPolicyInstance" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5942,7 +5942,7 @@ M.ListTrafficPolicyInstancesByPolicyOutput = schema.new({
 })
 
 M.ListTrafficPolicyVersionsInput = schema.new({
-    id = id.from(_N, "ListTrafficPolicyVersionsInput"),
+    id = id.from(_N, "ListTrafficPolicyVersionsRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -5977,7 +5977,7 @@ M.ListTrafficPolicyVersionsInput = schema.new({
 })
 
 M.ListTrafficPolicyVersionsOutput = schema.new({
-    id = id.from(_N, "ListTrafficPolicyVersionsOutput"),
+    id = id.from(_N, "ListTrafficPolicyVersionsResponse"),
     type = "structure",
     members = {
         TrafficPolicies = schema.new({
@@ -5985,7 +5985,7 @@ M.ListTrafficPolicyVersionsOutput = schema.new({
             type = "list",
             name = "TrafficPolicies",
             target_id = prelude.Document.id,
-            list_member = M.TrafficPolicy,
+            list_member = schema.new({ type = "structure", target = M.TrafficPolicy, traits = { [traits.XML_NAME] = { name = "TrafficPolicy" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -6022,7 +6022,7 @@ M.ListTrafficPolicyVersionsOutput = schema.new({
 })
 
 M.ListVPCAssociationAuthorizationsInput = schema.new({
-    id = id.from(_N, "ListVPCAssociationAuthorizationsInput"),
+    id = id.from(_N, "ListVPCAssociationAuthorizationsRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -6057,7 +6057,7 @@ M.ListVPCAssociationAuthorizationsInput = schema.new({
 })
 
 M.ListVPCAssociationAuthorizationsOutput = schema.new({
-    id = id.from(_N, "ListVPCAssociationAuthorizationsOutput"),
+    id = id.from(_N, "ListVPCAssociationAuthorizationsResponse"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -6080,7 +6080,7 @@ M.ListVPCAssociationAuthorizationsOutput = schema.new({
             type = "list",
             name = "VPCs",
             target_id = prelude.Document.id,
-            list_member = M.VPC,
+            list_member = schema.new({ type = "structure", target = M.VPC, traits = { [traits.XML_NAME] = { name = "VPC" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -6089,7 +6089,7 @@ M.ListVPCAssociationAuthorizationsOutput = schema.new({
 })
 
 M.TestDNSAnswerInput = schema.new({
-    id = id.from(_N, "TestDNSAnswerInput"),
+    id = id.from(_N, "TestDNSAnswerRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -6153,7 +6153,7 @@ M.TestDNSAnswerInput = schema.new({
 })
 
 M.TestDNSAnswerOutput = schema.new({
-    id = id.from(_N, "TestDNSAnswerOutput"),
+    id = id.from(_N, "TestDNSAnswerResponse"),
     type = "structure",
     members = {
         Nameserver = schema.new({
@@ -6188,7 +6188,7 @@ M.TestDNSAnswerOutput = schema.new({
             type = "list",
             name = "RecordData",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "RecordDataEntry" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -6231,7 +6231,7 @@ M.HealthCheckVersionMismatch = schema.new({
 })
 
 M.UpdateHealthCheckInput = schema.new({
-    id = id.from(_N, "UpdateHealthCheckInput"),
+    id = id.from(_N, "UpdateHealthCheckRequest"),
     type = "structure",
     members = {
         HealthCheckId = schema.new({
@@ -6309,7 +6309,7 @@ M.UpdateHealthCheckInput = schema.new({
             type = "list",
             name = "ChildHealthChecks",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "ChildHealthCheck" } } }),
         }),
         EnableSNI = schema.new({
             id = id.from(_N, "UpdateHealthCheckInput", "EnableSNI"),
@@ -6322,7 +6322,7 @@ M.UpdateHealthCheckInput = schema.new({
             type = "list",
             name = "Regions",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Region" } } }),
         }),
         AlarmIdentifier = schema.new({
             id = id.from(_N, "UpdateHealthCheckInput", "AlarmIdentifier"),
@@ -6342,13 +6342,13 @@ M.UpdateHealthCheckInput = schema.new({
             type = "list",
             name = "ResetElements",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "ResettableElementName" } } }),
         }),
     },
 })
 
 M.UpdateHealthCheckOutput = schema.new({
-    id = id.from(_N, "UpdateHealthCheckOutput"),
+    id = id.from(_N, "UpdateHealthCheckResponse"),
     type = "structure",
     members = {
         HealthCheck = schema.new({
@@ -6365,7 +6365,7 @@ M.UpdateHealthCheckOutput = schema.new({
 })
 
 M.UpdateHostedZoneCommentInput = schema.new({
-    id = id.from(_N, "UpdateHostedZoneCommentInput"),
+    id = id.from(_N, "UpdateHostedZoneCommentRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -6388,7 +6388,7 @@ M.UpdateHostedZoneCommentInput = schema.new({
 })
 
 M.UpdateHostedZoneCommentOutput = schema.new({
-    id = id.from(_N, "UpdateHostedZoneCommentOutput"),
+    id = id.from(_N, "UpdateHostedZoneCommentResponse"),
     type = "structure",
     members = {
         HostedZone = schema.new({
@@ -6405,7 +6405,7 @@ M.UpdateHostedZoneCommentOutput = schema.new({
 })
 
 M.UpdateHostedZoneFeaturesInput = schema.new({
-    id = id.from(_N, "UpdateHostedZoneFeaturesInput"),
+    id = id.from(_N, "UpdateHostedZoneFeaturesRequest"),
     type = "structure",
     members = {
         HostedZoneId = schema.new({
@@ -6428,12 +6428,12 @@ M.UpdateHostedZoneFeaturesInput = schema.new({
 })
 
 M.UpdateHostedZoneFeaturesOutput = schema.new({
-    id = id.from(_N, "UpdateHostedZoneFeaturesOutput"),
+    id = id.from(_N, "UpdateHostedZoneFeaturesResponse"),
     type = "structure",
 })
 
 M.UpdateTrafficPolicyCommentInput = schema.new({
-    id = id.from(_N, "UpdateTrafficPolicyCommentInput"),
+    id = id.from(_N, "UpdateTrafficPolicyCommentRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -6469,7 +6469,7 @@ M.UpdateTrafficPolicyCommentInput = schema.new({
 })
 
 M.UpdateTrafficPolicyCommentOutput = schema.new({
-    id = id.from(_N, "UpdateTrafficPolicyCommentOutput"),
+    id = id.from(_N, "UpdateTrafficPolicyCommentResponse"),
     type = "structure",
     members = {
         TrafficPolicy = schema.new({
@@ -6502,7 +6502,7 @@ M.ConflictingTypes = schema.new({
 })
 
 M.UpdateTrafficPolicyInstanceInput = schema.new({
-    id = id.from(_N, "UpdateTrafficPolicyInstanceInput"),
+    id = id.from(_N, "UpdateTrafficPolicyInstanceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -6546,7 +6546,7 @@ M.UpdateTrafficPolicyInstanceInput = schema.new({
 })
 
 M.UpdateTrafficPolicyInstanceOutput = schema.new({
-    id = id.from(_N, "UpdateTrafficPolicyInstanceOutput"),
+    id = id.from(_N, "UpdateTrafficPolicyInstanceResponse"),
     type = "structure",
     members = {
         TrafficPolicyInstance = schema.new({
@@ -6561,5 +6561,19 @@ M.UpdateTrafficPolicyInstanceOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -83,7 +83,7 @@ M.EndpointTemporarilyUnavailableException = schema.new({
 })
 
 M.GetRoutingControlStateInput = schema.new({
-    id = id.from(_N, "GetRoutingControlStateInput"),
+    id = id.from(_N, "GetRoutingControlStateRequest"),
     type = "structure",
     members = {
         RoutingControlArn = schema.new({
@@ -99,7 +99,7 @@ M.GetRoutingControlStateInput = schema.new({
 })
 
 M.GetRoutingControlStateOutput = schema.new({
-    id = id.from(_N, "GetRoutingControlStateOutput"),
+    id = id.from(_N, "GetRoutingControlStateResponse"),
     type = "structure",
     members = {
         RoutingControlArn = schema.new({
@@ -282,7 +282,7 @@ M.ValidationException = schema.new({
 })
 
 M.ListRoutingControlsInput = schema.new({
-    id = id.from(_N, "ListRoutingControlsInput"),
+    id = id.from(_N, "ListRoutingControlsRequest"),
     type = "structure",
     members = {
         ControlPanelArn = schema.new({
@@ -350,7 +350,7 @@ M.RoutingControl = schema.new({
 })
 
 M.ListRoutingControlsOutput = schema.new({
-    id = id.from(_N, "ListRoutingControlsOutput"),
+    id = id.from(_N, "ListRoutingControlsResponse"),
     type = "structure",
     members = {
         RoutingControls = schema.new({
@@ -422,7 +422,7 @@ M.ServiceLimitExceededException = schema.new({
 })
 
 M.UpdateRoutingControlStateInput = schema.new({
-    id = id.from(_N, "UpdateRoutingControlStateInput"),
+    id = id.from(_N, "UpdateRoutingControlStateRequest"),
     type = "structure",
     members = {
         RoutingControlArn = schema.new({
@@ -454,7 +454,7 @@ M.UpdateRoutingControlStateInput = schema.new({
 })
 
 M.UpdateRoutingControlStateOutput = schema.new({
-    id = id.from(_N, "UpdateRoutingControlStateOutput"),
+    id = id.from(_N, "UpdateRoutingControlStateResponse"),
     type = "structure",
 })
 
@@ -484,7 +484,7 @@ M.UpdateRoutingControlStateEntry = schema.new({
 })
 
 M.UpdateRoutingControlStatesInput = schema.new({
-    id = id.from(_N, "UpdateRoutingControlStatesInput"),
+    id = id.from(_N, "UpdateRoutingControlStatesRequest"),
     type = "structure",
     members = {
         UpdateRoutingControlStateEntries = schema.new({
@@ -508,8 +508,22 @@ M.UpdateRoutingControlStatesInput = schema.new({
 })
 
 M.UpdateRoutingControlStatesOutput = schema.new({
-    id = id.from(_N, "UpdateRoutingControlStatesOutput"),
+    id = id.from(_N, "UpdateRoutingControlStatesResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -157,7 +157,7 @@ M.Tag = schema.new({
 })
 
 M.CreateFHIRDatastoreInput = schema.new({
-    id = id.from(_N, "CreateFHIRDatastoreInput"),
+    id = id.from(_N, "CreateFHIRDatastoreRequest"),
     type = "structure",
     members = {
         DatastoreName = schema.new({
@@ -216,7 +216,7 @@ M.CreateFHIRDatastoreInput = schema.new({
 })
 
 M.CreateFHIRDatastoreOutput = schema.new({
-    id = id.from(_N, "CreateFHIRDatastoreOutput"),
+    id = id.from(_N, "CreateFHIRDatastoreResponse"),
     type = "structure",
     members = {
         DatastoreId = schema.new({
@@ -449,7 +449,7 @@ M.DatastoreProperties = schema.new({
 })
 
 M.DeleteFHIRDatastoreInput = schema.new({
-    id = id.from(_N, "DeleteFHIRDatastoreInput"),
+    id = id.from(_N, "DeleteFHIRDatastoreRequest"),
     type = "structure",
     members = {
         DatastoreId = schema.new({
@@ -465,7 +465,7 @@ M.DeleteFHIRDatastoreInput = schema.new({
 })
 
 M.DeleteFHIRDatastoreOutput = schema.new({
-    id = id.from(_N, "DeleteFHIRDatastoreOutput"),
+    id = id.from(_N, "DeleteFHIRDatastoreResponse"),
     type = "structure",
     members = {
         DatastoreId = schema.new({
@@ -524,7 +524,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DescribeFHIRDatastoreInput = schema.new({
-    id = id.from(_N, "DescribeFHIRDatastoreInput"),
+    id = id.from(_N, "DescribeFHIRDatastoreRequest"),
     type = "structure",
     members = {
         DatastoreId = schema.new({
@@ -540,7 +540,7 @@ M.DescribeFHIRDatastoreInput = schema.new({
 })
 
 M.DescribeFHIRDatastoreOutput = schema.new({
-    id = id.from(_N, "DescribeFHIRDatastoreOutput"),
+    id = id.from(_N, "DescribeFHIRDatastoreResponse"),
     type = "structure",
     members = {
         DatastoreProperties = schema.new({
@@ -557,7 +557,7 @@ M.DescribeFHIRDatastoreOutput = schema.new({
 })
 
 M.DescribeFHIRExportJobInput = schema.new({
-    id = id.from(_N, "DescribeFHIRExportJobInput"),
+    id = id.from(_N, "DescribeFHIRExportJobRequest"),
     type = "structure",
     members = {
         DatastoreId = schema.new({
@@ -698,7 +698,7 @@ M.ExportJobProperties = schema.new({
 })
 
 M.DescribeFHIRExportJobOutput = schema.new({
-    id = id.from(_N, "DescribeFHIRExportJobOutput"),
+    id = id.from(_N, "DescribeFHIRExportJobResponse"),
     type = "structure",
     members = {
         ExportJobProperties = schema.new({
@@ -715,7 +715,7 @@ M.DescribeFHIRExportJobOutput = schema.new({
 })
 
 M.DescribeFHIRImportJobInput = schema.new({
-    id = id.from(_N, "DescribeFHIRImportJobInput"),
+    id = id.from(_N, "DescribeFHIRImportJobRequest"),
     type = "structure",
     members = {
         DatastoreId = schema.new({
@@ -905,7 +905,7 @@ M.ImportJobProperties = schema.new({
 })
 
 M.DescribeFHIRImportJobOutput = schema.new({
-    id = id.from(_N, "DescribeFHIRImportJobOutput"),
+    id = id.from(_N, "DescribeFHIRImportJobResponse"),
     type = "structure",
     members = {
         ImportJobProperties = schema.new({
@@ -922,7 +922,7 @@ M.DescribeFHIRImportJobOutput = schema.new({
 })
 
 M.ListFHIRDatastoresInput = schema.new({
-    id = id.from(_N, "ListFHIRDatastoresInput"),
+    id = id.from(_N, "ListFHIRDatastoresRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -948,7 +948,7 @@ M.ListFHIRDatastoresInput = schema.new({
 })
 
 M.ListFHIRDatastoresOutput = schema.new({
-    id = id.from(_N, "ListFHIRDatastoresOutput"),
+    id = id.from(_N, "ListFHIRDatastoresResponse"),
     type = "structure",
     members = {
         DatastorePropertiesList = schema.new({
@@ -971,7 +971,7 @@ M.ListFHIRDatastoresOutput = schema.new({
 })
 
 M.ListFHIRExportJobsInput = schema.new({
-    id = id.from(_N, "ListFHIRExportJobsInput"),
+    id = id.from(_N, "ListFHIRExportJobsRequest"),
     type = "structure",
     members = {
         DatastoreId = schema.new({
@@ -1023,7 +1023,7 @@ M.ListFHIRExportJobsInput = schema.new({
 })
 
 M.ListFHIRExportJobsOutput = schema.new({
-    id = id.from(_N, "ListFHIRExportJobsOutput"),
+    id = id.from(_N, "ListFHIRExportJobsResponse"),
     type = "structure",
     members = {
         ExportJobPropertiesList = schema.new({
@@ -1046,7 +1046,7 @@ M.ListFHIRExportJobsOutput = schema.new({
 })
 
 M.ListFHIRImportJobsInput = schema.new({
-    id = id.from(_N, "ListFHIRImportJobsInput"),
+    id = id.from(_N, "ListFHIRImportJobsRequest"),
     type = "structure",
     members = {
         DatastoreId = schema.new({
@@ -1098,7 +1098,7 @@ M.ListFHIRImportJobsInput = schema.new({
 })
 
 M.ListFHIRImportJobsOutput = schema.new({
-    id = id.from(_N, "ListFHIRImportJobsOutput"),
+    id = id.from(_N, "ListFHIRImportJobsResponse"),
     type = "structure",
     members = {
         ImportJobPropertiesList = schema.new({
@@ -1121,7 +1121,7 @@ M.ListFHIRImportJobsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1137,7 +1137,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1151,7 +1151,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.StartFHIRExportJobInput = schema.new({
-    id = id.from(_N, "StartFHIRExportJobInput"),
+    id = id.from(_N, "StartFHIRExportJobRequest"),
     type = "structure",
     members = {
         JobName = schema.new({
@@ -1201,7 +1201,7 @@ M.StartFHIRExportJobInput = schema.new({
 })
 
 M.StartFHIRExportJobOutput = schema.new({
-    id = id.from(_N, "StartFHIRExportJobOutput"),
+    id = id.from(_N, "StartFHIRExportJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1232,7 +1232,7 @@ M.StartFHIRExportJobOutput = schema.new({
 })
 
 M.StartFHIRImportJobInput = schema.new({
-    id = id.from(_N, "StartFHIRImportJobInput"),
+    id = id.from(_N, "StartFHIRImportJobRequest"),
     type = "structure",
     members = {
         JobName = schema.new({
@@ -1298,7 +1298,7 @@ M.StartFHIRImportJobInput = schema.new({
 })
 
 M.StartFHIRImportJobOutput = schema.new({
-    id = id.from(_N, "StartFHIRImportJobOutput"),
+    id = id.from(_N, "StartFHIRImportJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1329,7 +1329,7 @@ M.StartFHIRImportJobOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1355,12 +1355,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1386,8 +1386,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

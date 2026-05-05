@@ -24,7 +24,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.AssociateFraudsterInput = schema.new({
-    id = id.from(_N, "AssociateFraudsterInput"),
+    id = id.from(_N, "AssociateFraudsterRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -90,7 +90,7 @@ M.Fraudster = schema.new({
 })
 
 M.AssociateFraudsterOutput = schema.new({
-    id = id.from(_N, "AssociateFraudsterOutput"),
+    id = id.from(_N, "AssociateFraudsterResponse"),
     type = "structure",
     members = {
         Fraudster = schema.new({
@@ -325,7 +325,7 @@ M.Tag = schema.new({
 })
 
 M.CreateDomainInput = schema.new({
-    id = id.from(_N, "CreateDomainInput"),
+    id = id.from(_N, "CreateDomainRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -484,7 +484,7 @@ M.Domain = schema.new({
 })
 
 M.CreateDomainOutput = schema.new({
-    id = id.from(_N, "CreateDomainOutput"),
+    id = id.from(_N, "CreateDomainResponse"),
     type = "structure",
     members = {
         Domain = schema.new({
@@ -498,7 +498,7 @@ M.CreateDomainOutput = schema.new({
 })
 
 M.CreateWatchlistInput = schema.new({
-    id = id.from(_N, "CreateWatchlistInput"),
+    id = id.from(_N, "CreateWatchlistRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -590,7 +590,7 @@ M.Watchlist = schema.new({
 })
 
 M.CreateWatchlistOutput = schema.new({
-    id = id.from(_N, "CreateWatchlistOutput"),
+    id = id.from(_N, "CreateWatchlistResponse"),
     type = "structure",
     members = {
         Watchlist = schema.new({
@@ -604,7 +604,7 @@ M.CreateWatchlistOutput = schema.new({
 })
 
 M.DeleteDomainInput = schema.new({
-    id = id.from(_N, "DeleteDomainInput"),
+    id = id.from(_N, "DeleteDomainRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -620,12 +620,12 @@ M.DeleteDomainInput = schema.new({
 })
 
 M.DeleteDomainOutput = schema.new({
-    id = id.from(_N, "DeleteDomainOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteFraudsterInput = schema.new({
-    id = id.from(_N, "DeleteFraudsterInput"),
+    id = id.from(_N, "DeleteFraudsterRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -650,12 +650,12 @@ M.DeleteFraudsterInput = schema.new({
 })
 
 M.DeleteFraudsterOutput = schema.new({
-    id = id.from(_N, "DeleteFraudsterOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteSpeakerInput = schema.new({
-    id = id.from(_N, "DeleteSpeakerInput"),
+    id = id.from(_N, "DeleteSpeakerRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -680,12 +680,12 @@ M.DeleteSpeakerInput = schema.new({
 })
 
 M.DeleteSpeakerOutput = schema.new({
-    id = id.from(_N, "DeleteSpeakerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteWatchlistInput = schema.new({
-    id = id.from(_N, "DeleteWatchlistInput"),
+    id = id.from(_N, "DeleteWatchlistRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -710,12 +710,12 @@ M.DeleteWatchlistInput = schema.new({
 })
 
 M.DeleteWatchlistOutput = schema.new({
-    id = id.from(_N, "DeleteWatchlistOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeDomainInput = schema.new({
-    id = id.from(_N, "DescribeDomainInput"),
+    id = id.from(_N, "DescribeDomainRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -731,7 +731,7 @@ M.DescribeDomainInput = schema.new({
 })
 
 M.DescribeDomainOutput = schema.new({
-    id = id.from(_N, "DescribeDomainOutput"),
+    id = id.from(_N, "DescribeDomainResponse"),
     type = "structure",
     members = {
         Domain = schema.new({
@@ -745,7 +745,7 @@ M.DescribeDomainOutput = schema.new({
 })
 
 M.DescribeFraudsterInput = schema.new({
-    id = id.from(_N, "DescribeFraudsterInput"),
+    id = id.from(_N, "DescribeFraudsterRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -770,7 +770,7 @@ M.DescribeFraudsterInput = schema.new({
 })
 
 M.DescribeFraudsterOutput = schema.new({
-    id = id.from(_N, "DescribeFraudsterOutput"),
+    id = id.from(_N, "DescribeFraudsterResponse"),
     type = "structure",
     members = {
         Fraudster = schema.new({
@@ -784,7 +784,7 @@ M.DescribeFraudsterOutput = schema.new({
 })
 
 M.DescribeFraudsterRegistrationJobInput = schema.new({
-    id = id.from(_N, "DescribeFraudsterRegistrationJobInput"),
+    id = id.from(_N, "DescribeFraudsterRegistrationJobRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -989,7 +989,7 @@ M.FraudsterRegistrationJob = schema.new({
 })
 
 M.DescribeFraudsterRegistrationJobOutput = schema.new({
-    id = id.from(_N, "DescribeFraudsterRegistrationJobOutput"),
+    id = id.from(_N, "DescribeFraudsterRegistrationJobResponse"),
     type = "structure",
     members = {
         Job = schema.new({
@@ -1003,7 +1003,7 @@ M.DescribeFraudsterRegistrationJobOutput = schema.new({
 })
 
 M.DescribeSpeakerInput = schema.new({
-    id = id.from(_N, "DescribeSpeakerInput"),
+    id = id.from(_N, "DescribeSpeakerRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -1077,7 +1077,7 @@ M.Speaker = schema.new({
 })
 
 M.DescribeSpeakerOutput = schema.new({
-    id = id.from(_N, "DescribeSpeakerOutput"),
+    id = id.from(_N, "DescribeSpeakerResponse"),
     type = "structure",
     members = {
         Speaker = schema.new({
@@ -1091,7 +1091,7 @@ M.DescribeSpeakerOutput = schema.new({
 })
 
 M.DescribeSpeakerEnrollmentJobInput = schema.new({
-    id = id.from(_N, "DescribeSpeakerEnrollmentJobInput"),
+    id = id.from(_N, "DescribeSpeakerEnrollmentJobRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -1246,7 +1246,7 @@ M.SpeakerEnrollmentJob = schema.new({
 })
 
 M.DescribeSpeakerEnrollmentJobOutput = schema.new({
-    id = id.from(_N, "DescribeSpeakerEnrollmentJobOutput"),
+    id = id.from(_N, "DescribeSpeakerEnrollmentJobResponse"),
     type = "structure",
     members = {
         Job = schema.new({
@@ -1260,7 +1260,7 @@ M.DescribeSpeakerEnrollmentJobOutput = schema.new({
 })
 
 M.DescribeWatchlistInput = schema.new({
-    id = id.from(_N, "DescribeWatchlistInput"),
+    id = id.from(_N, "DescribeWatchlistRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -1285,7 +1285,7 @@ M.DescribeWatchlistInput = schema.new({
 })
 
 M.DescribeWatchlistOutput = schema.new({
-    id = id.from(_N, "DescribeWatchlistOutput"),
+    id = id.from(_N, "DescribeWatchlistResponse"),
     type = "structure",
     members = {
         Watchlist = schema.new({
@@ -1299,7 +1299,7 @@ M.DescribeWatchlistOutput = schema.new({
 })
 
 M.DisassociateFraudsterInput = schema.new({
-    id = id.from(_N, "DisassociateFraudsterInput"),
+    id = id.from(_N, "DisassociateFraudsterRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -1333,7 +1333,7 @@ M.DisassociateFraudsterInput = schema.new({
 })
 
 M.DisassociateFraudsterOutput = schema.new({
-    id = id.from(_N, "DisassociateFraudsterOutput"),
+    id = id.from(_N, "DisassociateFraudsterResponse"),
     type = "structure",
     members = {
         Fraudster = schema.new({
@@ -1347,7 +1347,7 @@ M.DisassociateFraudsterOutput = schema.new({
 })
 
 M.ListDomainsInput = schema.new({
-    id = id.from(_N, "ListDomainsInput"),
+    id = id.from(_N, "ListDomainsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1436,7 +1436,7 @@ M.DomainSummary = schema.new({
 })
 
 M.ListDomainsOutput = schema.new({
-    id = id.from(_N, "ListDomainsOutput"),
+    id = id.from(_N, "ListDomainsResponse"),
     type = "structure",
     members = {
         DomainSummaries = schema.new({
@@ -1456,7 +1456,7 @@ M.ListDomainsOutput = schema.new({
 })
 
 M.UpdateDomainInput = schema.new({
-    id = id.from(_N, "UpdateDomainInput"),
+    id = id.from(_N, "UpdateDomainRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -1497,7 +1497,7 @@ M.UpdateDomainInput = schema.new({
 })
 
 M.UpdateDomainOutput = schema.new({
-    id = id.from(_N, "UpdateDomainOutput"),
+    id = id.from(_N, "UpdateDomainResponse"),
     type = "structure",
     members = {
         Domain = schema.new({
@@ -1511,7 +1511,7 @@ M.UpdateDomainOutput = schema.new({
 })
 
 M.EvaluateSessionInput = schema.new({
-    id = id.from(_N, "EvaluateSessionInput"),
+    id = id.from(_N, "EvaluateSessionRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -1672,7 +1672,7 @@ M.FraudDetectionResult = schema.new({
 })
 
 M.EvaluateSessionOutput = schema.new({
-    id = id.from(_N, "EvaluateSessionOutput"),
+    id = id.from(_N, "EvaluateSessionResponse"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -1806,7 +1806,7 @@ M.FraudsterSummary = schema.new({
 })
 
 M.ListFraudsterRegistrationJobsInput = schema.new({
-    id = id.from(_N, "ListFraudsterRegistrationJobsInput"),
+    id = id.from(_N, "ListFraudsterRegistrationJobsRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -1840,7 +1840,7 @@ M.ListFraudsterRegistrationJobsInput = schema.new({
 })
 
 M.ListFraudsterRegistrationJobsOutput = schema.new({
-    id = id.from(_N, "ListFraudsterRegistrationJobsOutput"),
+    id = id.from(_N, "ListFraudsterRegistrationJobsResponse"),
     type = "structure",
     members = {
         JobSummaries = schema.new({
@@ -1860,7 +1860,7 @@ M.ListFraudsterRegistrationJobsOutput = schema.new({
 })
 
 M.ListFraudstersInput = schema.new({
-    id = id.from(_N, "ListFraudstersInput"),
+    id = id.from(_N, "ListFraudstersRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -1894,7 +1894,7 @@ M.ListFraudstersInput = schema.new({
 })
 
 M.ListFraudstersOutput = schema.new({
-    id = id.from(_N, "ListFraudstersOutput"),
+    id = id.from(_N, "ListFraudstersResponse"),
     type = "structure",
     members = {
         FraudsterSummaries = schema.new({
@@ -1914,7 +1914,7 @@ M.ListFraudstersOutput = schema.new({
 })
 
 M.ListSpeakerEnrollmentJobsInput = schema.new({
-    id = id.from(_N, "ListSpeakerEnrollmentJobsInput"),
+    id = id.from(_N, "ListSpeakerEnrollmentJobsRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -2005,7 +2005,7 @@ M.SpeakerEnrollmentJobSummary = schema.new({
 })
 
 M.ListSpeakerEnrollmentJobsOutput = schema.new({
-    id = id.from(_N, "ListSpeakerEnrollmentJobsOutput"),
+    id = id.from(_N, "ListSpeakerEnrollmentJobsResponse"),
     type = "structure",
     members = {
         JobSummaries = schema.new({
@@ -2025,7 +2025,7 @@ M.ListSpeakerEnrollmentJobsOutput = schema.new({
 })
 
 M.ListSpeakersInput = schema.new({
-    id = id.from(_N, "ListSpeakersInput"),
+    id = id.from(_N, "ListSpeakersRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -2102,7 +2102,7 @@ M.SpeakerSummary = schema.new({
 })
 
 M.ListSpeakersOutput = schema.new({
-    id = id.from(_N, "ListSpeakersOutput"),
+    id = id.from(_N, "ListSpeakersResponse"),
     type = "structure",
     members = {
         SpeakerSummaries = schema.new({
@@ -2122,7 +2122,7 @@ M.ListSpeakersOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2138,7 +2138,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2152,7 +2152,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListWatchlistsInput = schema.new({
-    id = id.from(_N, "ListWatchlistsInput"),
+    id = id.from(_N, "ListWatchlistsRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -2232,7 +2232,7 @@ M.WatchlistSummary = schema.new({
 })
 
 M.ListWatchlistsOutput = schema.new({
-    id = id.from(_N, "ListWatchlistsOutput"),
+    id = id.from(_N, "ListWatchlistsResponse"),
     type = "structure",
     members = {
         WatchlistSummaries = schema.new({
@@ -2252,7 +2252,7 @@ M.ListWatchlistsOutput = schema.new({
 })
 
 M.OptOutSpeakerInput = schema.new({
-    id = id.from(_N, "OptOutSpeakerInput"),
+    id = id.from(_N, "OptOutSpeakerRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -2277,7 +2277,7 @@ M.OptOutSpeakerInput = schema.new({
 })
 
 M.OptOutSpeakerOutput = schema.new({
-    id = id.from(_N, "OptOutSpeakerOutput"),
+    id = id.from(_N, "OptOutSpeakerResponse"),
     type = "structure",
     members = {
         Speaker = schema.new({
@@ -2291,7 +2291,7 @@ M.OptOutSpeakerOutput = schema.new({
 })
 
 M.StartFraudsterRegistrationJobInput = schema.new({
-    id = id.from(_N, "StartFraudsterRegistrationJobInput"),
+    id = id.from(_N, "StartFraudsterRegistrationJobRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -2358,7 +2358,7 @@ M.StartFraudsterRegistrationJobInput = schema.new({
 })
 
 M.StartFraudsterRegistrationJobOutput = schema.new({
-    id = id.from(_N, "StartFraudsterRegistrationJobOutput"),
+    id = id.from(_N, "StartFraudsterRegistrationJobResponse"),
     type = "structure",
     members = {
         Job = schema.new({
@@ -2372,7 +2372,7 @@ M.StartFraudsterRegistrationJobOutput = schema.new({
 })
 
 M.StartSpeakerEnrollmentJobInput = schema.new({
-    id = id.from(_N, "StartSpeakerEnrollmentJobInput"),
+    id = id.from(_N, "StartSpeakerEnrollmentJobRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -2439,7 +2439,7 @@ M.StartSpeakerEnrollmentJobInput = schema.new({
 })
 
 M.StartSpeakerEnrollmentJobOutput = schema.new({
-    id = id.from(_N, "StartSpeakerEnrollmentJobOutput"),
+    id = id.from(_N, "StartSpeakerEnrollmentJobResponse"),
     type = "structure",
     members = {
         Job = schema.new({
@@ -2453,7 +2453,7 @@ M.StartSpeakerEnrollmentJobOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2479,12 +2479,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2510,12 +2510,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateWatchlistInput = schema.new({
-    id = id.from(_N, "UpdateWatchlistInput"),
+    id = id.from(_N, "UpdateWatchlistRequest"),
     type = "structure",
     members = {
         DomainId = schema.new({
@@ -2552,7 +2552,7 @@ M.UpdateWatchlistInput = schema.new({
 })
 
 M.UpdateWatchlistOutput = schema.new({
-    id = id.from(_N, "UpdateWatchlistOutput"),
+    id = id.from(_N, "UpdateWatchlistResponse"),
     type = "structure",
     members = {
         Watchlist = schema.new({
@@ -2564,5 +2564,19 @@ M.UpdateWatchlistOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

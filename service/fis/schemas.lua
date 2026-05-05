@@ -477,7 +477,7 @@ M.CreateExperimentTemplateTargetInput = schema.new({
 })
 
 M.CreateExperimentTemplateInput = schema.new({
-    id = id.from(_N, "CreateExperimentTemplateInput"),
+    id = id.from(_N, "CreateExperimentTemplateRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -972,7 +972,7 @@ M.ExperimentTemplate = schema.new({
 })
 
 M.CreateExperimentTemplateOutput = schema.new({
-    id = id.from(_N, "CreateExperimentTemplateOutput"),
+    id = id.from(_N, "CreateExperimentTemplateResponse"),
     type = "structure",
     members = {
         experimentTemplate = schema.new({
@@ -1034,7 +1034,7 @@ M.ValidationException = schema.new({
 })
 
 M.CreateTargetAccountConfigurationInput = schema.new({
-    id = id.from(_N, "CreateTargetAccountConfigurationInput"),
+    id = id.from(_N, "CreateTargetAccountConfigurationRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1110,7 +1110,7 @@ M.TargetAccountConfiguration = schema.new({
 })
 
 M.CreateTargetAccountConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateTargetAccountConfigurationOutput"),
+    id = id.from(_N, "CreateTargetAccountConfigurationResponse"),
     type = "structure",
     members = {
         targetAccountConfiguration = schema.new({
@@ -1124,7 +1124,7 @@ M.CreateTargetAccountConfigurationOutput = schema.new({
 })
 
 M.DeleteExperimentTemplateInput = schema.new({
-    id = id.from(_N, "DeleteExperimentTemplateInput"),
+    id = id.from(_N, "DeleteExperimentTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1141,7 +1141,7 @@ M.DeleteExperimentTemplateInput = schema.new({
 })
 
 M.DeleteExperimentTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteExperimentTemplateOutput"),
+    id = id.from(_N, "DeleteExperimentTemplateResponse"),
     type = "structure",
     members = {
         experimentTemplate = schema.new({
@@ -1155,7 +1155,7 @@ M.DeleteExperimentTemplateOutput = schema.new({
 })
 
 M.DeleteTargetAccountConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteTargetAccountConfigurationInput"),
+    id = id.from(_N, "DeleteTargetAccountConfigurationRequest"),
     type = "structure",
     members = {
         experimentTemplateId = schema.new({
@@ -1182,7 +1182,7 @@ M.DeleteTargetAccountConfigurationInput = schema.new({
 })
 
 M.DeleteTargetAccountConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteTargetAccountConfigurationOutput"),
+    id = id.from(_N, "DeleteTargetAccountConfigurationResponse"),
     type = "structure",
     members = {
         targetAccountConfiguration = schema.new({
@@ -1940,7 +1940,7 @@ M.ExperimentTemplateSummary = schema.new({
 })
 
 M.GetActionInput = schema.new({
-    id = id.from(_N, "GetActionInput"),
+    id = id.from(_N, "GetActionRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1957,7 +1957,7 @@ M.GetActionInput = schema.new({
 })
 
 M.GetActionOutput = schema.new({
-    id = id.from(_N, "GetActionOutput"),
+    id = id.from(_N, "GetActionResponse"),
     type = "structure",
     members = {
         action = schema.new({
@@ -1971,7 +1971,7 @@ M.GetActionOutput = schema.new({
 })
 
 M.GetExperimentInput = schema.new({
-    id = id.from(_N, "GetExperimentInput"),
+    id = id.from(_N, "GetExperimentRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1988,7 +1988,7 @@ M.GetExperimentInput = schema.new({
 })
 
 M.GetExperimentOutput = schema.new({
-    id = id.from(_N, "GetExperimentOutput"),
+    id = id.from(_N, "GetExperimentResponse"),
     type = "structure",
     members = {
         experiment = schema.new({
@@ -2002,7 +2002,7 @@ M.GetExperimentOutput = schema.new({
 })
 
 M.GetExperimentTargetAccountConfigurationInput = schema.new({
-    id = id.from(_N, "GetExperimentTargetAccountConfigurationInput"),
+    id = id.from(_N, "GetExperimentTargetAccountConfigurationRequest"),
     type = "structure",
     members = {
         experimentId = schema.new({
@@ -2029,7 +2029,7 @@ M.GetExperimentTargetAccountConfigurationInput = schema.new({
 })
 
 M.GetExperimentTargetAccountConfigurationOutput = schema.new({
-    id = id.from(_N, "GetExperimentTargetAccountConfigurationOutput"),
+    id = id.from(_N, "GetExperimentTargetAccountConfigurationResponse"),
     type = "structure",
     members = {
         targetAccountConfiguration = schema.new({
@@ -2043,7 +2043,7 @@ M.GetExperimentTargetAccountConfigurationOutput = schema.new({
 })
 
 M.GetExperimentTemplateInput = schema.new({
-    id = id.from(_N, "GetExperimentTemplateInput"),
+    id = id.from(_N, "GetExperimentTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2060,7 +2060,7 @@ M.GetExperimentTemplateInput = schema.new({
 })
 
 M.GetExperimentTemplateOutput = schema.new({
-    id = id.from(_N, "GetExperimentTemplateOutput"),
+    id = id.from(_N, "GetExperimentTemplateResponse"),
     type = "structure",
     members = {
         experimentTemplate = schema.new({
@@ -2074,7 +2074,7 @@ M.GetExperimentTemplateOutput = schema.new({
 })
 
 M.GetSafetyLeverInput = schema.new({
-    id = id.from(_N, "GetSafetyLeverInput"),
+    id = id.from(_N, "GetSafetyLeverRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2136,7 +2136,7 @@ M.SafetyLever = schema.new({
 })
 
 M.GetSafetyLeverOutput = schema.new({
-    id = id.from(_N, "GetSafetyLeverOutput"),
+    id = id.from(_N, "GetSafetyLeverResponse"),
     type = "structure",
     members = {
         safetyLever = schema.new({
@@ -2150,7 +2150,7 @@ M.GetSafetyLeverOutput = schema.new({
 })
 
 M.GetTargetAccountConfigurationInput = schema.new({
-    id = id.from(_N, "GetTargetAccountConfigurationInput"),
+    id = id.from(_N, "GetTargetAccountConfigurationRequest"),
     type = "structure",
     members = {
         experimentTemplateId = schema.new({
@@ -2177,7 +2177,7 @@ M.GetTargetAccountConfigurationInput = schema.new({
 })
 
 M.GetTargetAccountConfigurationOutput = schema.new({
-    id = id.from(_N, "GetTargetAccountConfigurationOutput"),
+    id = id.from(_N, "GetTargetAccountConfigurationResponse"),
     type = "structure",
     members = {
         targetAccountConfiguration = schema.new({
@@ -2191,7 +2191,7 @@ M.GetTargetAccountConfigurationOutput = schema.new({
 })
 
 M.GetTargetResourceTypeInput = schema.new({
-    id = id.from(_N, "GetTargetResourceTypeInput"),
+    id = id.from(_N, "GetTargetResourceTypeRequest"),
     type = "structure",
     members = {
         resourceType = schema.new({
@@ -2257,7 +2257,7 @@ M.TargetResourceType = schema.new({
 })
 
 M.GetTargetResourceTypeOutput = schema.new({
-    id = id.from(_N, "GetTargetResourceTypeOutput"),
+    id = id.from(_N, "GetTargetResourceTypeResponse"),
     type = "structure",
     members = {
         targetResourceType = schema.new({
@@ -2271,7 +2271,7 @@ M.GetTargetResourceTypeOutput = schema.new({
 })
 
 M.ListActionsInput = schema.new({
-    id = id.from(_N, "ListActionsInput"),
+    id = id.from(_N, "ListActionsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2296,7 +2296,7 @@ M.ListActionsInput = schema.new({
 })
 
 M.ListActionsOutput = schema.new({
-    id = id.from(_N, "ListActionsOutput"),
+    id = id.from(_N, "ListActionsResponse"),
     type = "structure",
     members = {
         actions = schema.new({
@@ -2316,7 +2316,7 @@ M.ListActionsOutput = schema.new({
 })
 
 M.ListExperimentResolvedTargetsInput = schema.new({
-    id = id.from(_N, "ListExperimentResolvedTargetsInput"),
+    id = id.from(_N, "ListExperimentResolvedTargetsRequest"),
     type = "structure",
     members = {
         experimentId = schema.new({
@@ -2387,7 +2387,7 @@ M.ResolvedTarget = schema.new({
 })
 
 M.ListExperimentResolvedTargetsOutput = schema.new({
-    id = id.from(_N, "ListExperimentResolvedTargetsOutput"),
+    id = id.from(_N, "ListExperimentResolvedTargetsResponse"),
     type = "structure",
     members = {
         resolvedTargets = schema.new({
@@ -2407,7 +2407,7 @@ M.ListExperimentResolvedTargetsOutput = schema.new({
 })
 
 M.ListExperimentsInput = schema.new({
-    id = id.from(_N, "ListExperimentsInput"),
+    id = id.from(_N, "ListExperimentsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2441,7 +2441,7 @@ M.ListExperimentsInput = schema.new({
 })
 
 M.ListExperimentsOutput = schema.new({
-    id = id.from(_N, "ListExperimentsOutput"),
+    id = id.from(_N, "ListExperimentsResponse"),
     type = "structure",
     members = {
         experiments = schema.new({
@@ -2461,7 +2461,7 @@ M.ListExperimentsOutput = schema.new({
 })
 
 M.ListExperimentTargetAccountConfigurationsInput = schema.new({
-    id = id.from(_N, "ListExperimentTargetAccountConfigurationsInput"),
+    id = id.from(_N, "ListExperimentTargetAccountConfigurationsRequest"),
     type = "structure",
     members = {
         experimentId = schema.new({
@@ -2487,7 +2487,7 @@ M.ListExperimentTargetAccountConfigurationsInput = schema.new({
 })
 
 M.ListExperimentTargetAccountConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListExperimentTargetAccountConfigurationsOutput"),
+    id = id.from(_N, "ListExperimentTargetAccountConfigurationsResponse"),
     type = "structure",
     members = {
         targetAccountConfigurations = schema.new({
@@ -2507,7 +2507,7 @@ M.ListExperimentTargetAccountConfigurationsOutput = schema.new({
 })
 
 M.ListExperimentTemplatesInput = schema.new({
-    id = id.from(_N, "ListExperimentTemplatesInput"),
+    id = id.from(_N, "ListExperimentTemplatesRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2532,7 +2532,7 @@ M.ListExperimentTemplatesInput = schema.new({
 })
 
 M.ListExperimentTemplatesOutput = schema.new({
-    id = id.from(_N, "ListExperimentTemplatesOutput"),
+    id = id.from(_N, "ListExperimentTemplatesResponse"),
     type = "structure",
     members = {
         experimentTemplates = schema.new({
@@ -2552,7 +2552,7 @@ M.ListExperimentTemplatesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2569,7 +2569,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2584,7 +2584,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTargetAccountConfigurationsInput = schema.new({
-    id = id.from(_N, "ListTargetAccountConfigurationsInput"),
+    id = id.from(_N, "ListTargetAccountConfigurationsRequest"),
     type = "structure",
     members = {
         experimentTemplateId = schema.new({
@@ -2644,7 +2644,7 @@ M.TargetAccountConfigurationSummary = schema.new({
 })
 
 M.ListTargetAccountConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListTargetAccountConfigurationsOutput"),
+    id = id.from(_N, "ListTargetAccountConfigurationsResponse"),
     type = "structure",
     members = {
         targetAccountConfigurations = schema.new({
@@ -2664,7 +2664,7 @@ M.ListTargetAccountConfigurationsOutput = schema.new({
 })
 
 M.ListTargetResourceTypesInput = schema.new({
-    id = id.from(_N, "ListTargetResourceTypesInput"),
+    id = id.from(_N, "ListTargetResourceTypesRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2708,7 +2708,7 @@ M.TargetResourceTypeSummary = schema.new({
 })
 
 M.ListTargetResourceTypesOutput = schema.new({
-    id = id.from(_N, "ListTargetResourceTypesOutput"),
+    id = id.from(_N, "ListTargetResourceTypesResponse"),
     type = "structure",
     members = {
         targetResourceTypes = schema.new({
@@ -2741,7 +2741,7 @@ M.StartExperimentExperimentOptionsInput = schema.new({
 })
 
 M.StartExperimentInput = schema.new({
-    id = id.from(_N, "StartExperimentInput"),
+    id = id.from(_N, "StartExperimentRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -2782,7 +2782,7 @@ M.StartExperimentInput = schema.new({
 })
 
 M.StartExperimentOutput = schema.new({
-    id = id.from(_N, "StartExperimentOutput"),
+    id = id.from(_N, "StartExperimentResponse"),
     type = "structure",
     members = {
         experiment = schema.new({
@@ -2796,7 +2796,7 @@ M.StartExperimentOutput = schema.new({
 })
 
 M.StopExperimentInput = schema.new({
-    id = id.from(_N, "StopExperimentInput"),
+    id = id.from(_N, "StopExperimentRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2813,7 +2813,7 @@ M.StopExperimentInput = schema.new({
 })
 
 M.StopExperimentOutput = schema.new({
-    id = id.from(_N, "StopExperimentOutput"),
+    id = id.from(_N, "StopExperimentResponse"),
     type = "structure",
     members = {
         experiment = schema.new({
@@ -2827,7 +2827,7 @@ M.StopExperimentOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2855,12 +2855,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2887,7 +2887,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -3084,7 +3084,7 @@ M.UpdateExperimentTemplateTargetInput = schema.new({
 })
 
 M.UpdateExperimentTemplateInput = schema.new({
-    id = id.from(_N, "UpdateExperimentTemplateInput"),
+    id = id.from(_N, "UpdateExperimentTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -3157,7 +3157,7 @@ M.UpdateExperimentTemplateInput = schema.new({
 })
 
 M.UpdateExperimentTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateExperimentTemplateOutput"),
+    id = id.from(_N, "UpdateExperimentTemplateResponse"),
     type = "structure",
     members = {
         experimentTemplate = schema.new({
@@ -3196,7 +3196,7 @@ M.UpdateSafetyLeverStateInput = schema.new({
 })
 
 M.UpdateSafetyLeverStateOperationInput = schema.new({
-    id = id.from(_N, "UpdateSafetyLeverStateOperationInput"),
+    id = id.from(_N, "UpdateSafetyLeverStateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -3223,7 +3223,7 @@ M.UpdateSafetyLeverStateOperationInput = schema.new({
 })
 
 M.UpdateSafetyLeverStateOutput = schema.new({
-    id = id.from(_N, "UpdateSafetyLeverStateOutput"),
+    id = id.from(_N, "UpdateSafetyLeverStateResponse"),
     type = "structure",
     members = {
         safetyLever = schema.new({
@@ -3237,7 +3237,7 @@ M.UpdateSafetyLeverStateOutput = schema.new({
 })
 
 M.UpdateTargetAccountConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateTargetAccountConfigurationInput"),
+    id = id.from(_N, "UpdateTargetAccountConfigurationRequest"),
     type = "structure",
     members = {
         experimentTemplateId = schema.new({
@@ -3276,7 +3276,7 @@ M.UpdateTargetAccountConfigurationInput = schema.new({
 })
 
 M.UpdateTargetAccountConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateTargetAccountConfigurationOutput"),
+    id = id.from(_N, "UpdateTargetAccountConfigurationResponse"),
     type = "structure",
     members = {
         targetAccountConfiguration = schema.new({
@@ -3288,5 +3288,19 @@ M.UpdateTargetAccountConfigurationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

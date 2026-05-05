@@ -510,9 +510,9 @@ local type ClientVersion = "5.1" | "5.3"
 
 local type HsmStatus = "PENDING" | "RUNNING" | "UPDATING" | "SUSPENDED" | "TERMINATING" | "TERMINATED" | "DEGRADED"
 
-local type CloudHsmObjectState = "READY" | "UPDATING" | "DEGRADED"
-
 local type SubscriptionType = "PRODUCTION"
+
+local type CloudHsmObjectState = "READY" | "UPDATING" | "DEGRADED"
 
 local record M
     AddTagsToResourceInput: AddTagsToResourceInput

@@ -80,7 +80,7 @@ M.Tag = schema.new({
 })
 
 M.AddTagsToResourceInput = schema.new({
-    id = id.from(_N, "AddTagsToResourceInput"),
+    id = id.from(_N, "AddTagsToResourceMessage"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -97,7 +97,7 @@ M.AddTagsToResourceInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -106,7 +106,7 @@ M.AddTagsToResourceInput = schema.new({
 })
 
 M.AddTagsToResourceOutput = schema.new({
-    id = id.from(_N, "AddTagsToResourceOutput"),
+    id = id.from(_N, "AddTagsToResourceResponse"),
     type = "structure",
 })
 
@@ -143,7 +143,7 @@ M.ResourceNotFoundFault = schema.new({
 })
 
 M.ApplyPendingMaintenanceActionInput = schema.new({
-    id = id.from(_N, "ApplyPendingMaintenanceActionInput"),
+    id = id.from(_N, "ApplyPendingMaintenanceActionMessage"),
     type = "structure",
     members = {
         ReplicationInstanceArn = schema.new({
@@ -234,13 +234,13 @@ M.ResourcePendingMaintenanceActions = schema.new({
             type = "list",
             name = "PendingMaintenanceActionDetails",
             target_id = prelude.Document.id,
-            list_member = M.PendingMaintenanceAction,
+            list_member = schema.new({ type = "structure", target = M.PendingMaintenanceAction, traits = { [traits.XML_NAME] = { name = "PendingMaintenanceAction" } } }),
         }),
     },
 })
 
 M.ApplyPendingMaintenanceActionOutput = schema.new({
-    id = id.from(_N, "ApplyPendingMaintenanceActionOutput"),
+    id = id.from(_N, "ApplyPendingMaintenanceActionResponse"),
     type = "structure",
     members = {
         ResourcePendingMaintenanceActions = schema.new({
@@ -305,7 +305,7 @@ M.StartRecommendationsRequestEntry = schema.new({
 })
 
 M.BatchStartRecommendationsInput = schema.new({
-    id = id.from(_N, "BatchStartRecommendationsInput"),
+    id = id.from(_N, "BatchStartRecommendationsRequest"),
     type = "structure",
     members = {
         Data = schema.new({
@@ -344,7 +344,7 @@ M.BatchStartRecommendationsErrorEntry = schema.new({
 })
 
 M.BatchStartRecommendationsOutput = schema.new({
-    id = id.from(_N, "BatchStartRecommendationsOutput"),
+    id = id.from(_N, "BatchStartRecommendationsResponse"),
     type = "structure",
     members = {
         ErrorEntries = schema.new({
@@ -358,7 +358,7 @@ M.BatchStartRecommendationsOutput = schema.new({
 })
 
 M.CancelMetadataModelConversionInput = schema.new({
-    id = id.from(_N, "CancelMetadataModelConversionInput"),
+    id = id.from(_N, "CancelMetadataModelConversionMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -535,7 +535,7 @@ M.SchemaConversionRequest = schema.new({
 })
 
 M.CancelMetadataModelConversionOutput = schema.new({
-    id = id.from(_N, "CancelMetadataModelConversionOutput"),
+    id = id.from(_N, "CancelMetadataModelConversionResponse"),
     type = "structure",
     members = {
         Request = schema.new({
@@ -549,7 +549,7 @@ M.CancelMetadataModelConversionOutput = schema.new({
 })
 
 M.CancelMetadataModelCreationInput = schema.new({
-    id = id.from(_N, "CancelMetadataModelCreationInput"),
+    id = id.from(_N, "CancelMetadataModelCreationMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -574,7 +574,7 @@ M.CancelMetadataModelCreationInput = schema.new({
 })
 
 M.CancelMetadataModelCreationOutput = schema.new({
-    id = id.from(_N, "CancelMetadataModelCreationOutput"),
+    id = id.from(_N, "CancelMetadataModelCreationResponse"),
     type = "structure",
     members = {
         Request = schema.new({
@@ -588,7 +588,7 @@ M.CancelMetadataModelCreationOutput = schema.new({
 })
 
 M.CancelReplicationTaskAssessmentRunInput = schema.new({
-    id = id.from(_N, "CancelReplicationTaskAssessmentRunInput"),
+    id = id.from(_N, "CancelReplicationTaskAssessmentRunMessage"),
     type = "structure",
     members = {
         ReplicationTaskAssessmentRunArn = schema.new({
@@ -786,7 +786,7 @@ M.ReplicationTaskAssessmentRun = schema.new({
 })
 
 M.CancelReplicationTaskAssessmentRunOutput = schema.new({
-    id = id.from(_N, "CancelReplicationTaskAssessmentRunOutput"),
+    id = id.from(_N, "CancelReplicationTaskAssessmentRunResponse"),
     type = "structure",
     members = {
         ReplicationTaskAssessmentRun = schema.new({
@@ -850,7 +850,7 @@ M.TargetDataSetting = schema.new({
 })
 
 M.CreateDataMigrationInput = schema.new({
-    id = id.from(_N, "CreateDataMigrationInput"),
+    id = id.from(_N, "CreateDataMigrationMessage"),
     type = "structure",
     members = {
         DataMigrationName = schema.new({
@@ -917,7 +917,7 @@ M.CreateDataMigrationInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         SelectionRules = schema.new({
             id = id.from(_N, "CreateDataMigrationInput", "SelectionRules"),
@@ -1166,7 +1166,7 @@ M.DataMigration = schema.new({
 })
 
 M.CreateDataMigrationOutput = schema.new({
-    id = id.from(_N, "CreateDataMigrationOutput"),
+    id = id.from(_N, "CreateDataMigrationResponse"),
     type = "structure",
     members = {
         DataMigration = schema.new({
@@ -1879,7 +1879,7 @@ M.DataProviderSettings = schema.new({
 })
 
 M.CreateDataProviderInput = schema.new({
-    id = id.from(_N, "CreateDataProviderInput"),
+    id = id.from(_N, "CreateDataProviderMessage"),
     type = "structure",
     members = {
         DataProviderName = schema.new({
@@ -1924,7 +1924,7 @@ M.CreateDataProviderInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -1983,7 +1983,7 @@ M.DataProvider = schema.new({
 })
 
 M.CreateDataProviderOutput = schema.new({
-    id = id.from(_N, "CreateDataProviderOutput"),
+    id = id.from(_N, "CreateDataProviderResponse"),
     type = "structure",
     members = {
         DataProvider = schema.new({
@@ -3968,7 +3968,7 @@ M.TimestreamSettings = schema.new({
 })
 
 M.CreateEndpointInput = schema.new({
-    id = id.from(_N, "CreateEndpointInput"),
+    id = id.from(_N, "CreateEndpointMessage"),
     type = "structure",
     members = {
         EndpointIdentifier = schema.new({
@@ -4045,7 +4045,7 @@ M.CreateEndpointInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         CertificateArn = schema.new({
             id = id.from(_N, "CreateEndpointInput", "CertificateArn"),
@@ -4485,7 +4485,7 @@ M.Endpoint = schema.new({
 })
 
 M.CreateEndpointOutput = schema.new({
-    id = id.from(_N, "CreateEndpointOutput"),
+    id = id.from(_N, "CreateEndpointResponse"),
     type = "structure",
     members = {
         Endpoint = schema.new({
@@ -4531,7 +4531,7 @@ M.S3AccessDeniedFault = schema.new({
 })
 
 M.CreateEventSubscriptionInput = schema.new({
-    id = id.from(_N, "CreateEventSubscriptionInput"),
+    id = id.from(_N, "CreateEventSubscriptionMessage"),
     type = "structure",
     members = {
         SubscriptionName = schema.new({
@@ -4563,14 +4563,14 @@ M.CreateEventSubscriptionInput = schema.new({
             type = "list",
             name = "EventCategories",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "EventCategory" } } }),
         }),
         SourceIds = schema.new({
             id = id.from(_N, "CreateEventSubscriptionInput", "SourceIds"),
             type = "list",
             name = "SourceIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SourceId" } } }),
         }),
         Enabled = schema.new({
             id = id.from(_N, "CreateEventSubscriptionInput", "Enabled"),
@@ -4583,7 +4583,7 @@ M.CreateEventSubscriptionInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -4633,14 +4633,14 @@ M.EventSubscription = schema.new({
             type = "list",
             name = "SourceIdsList",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SourceId" } } }),
         }),
         EventCategoriesList = schema.new({
             id = id.from(_N, "EventSubscription", "EventCategoriesList"),
             type = "list",
             name = "EventCategoriesList",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "EventCategory" } } }),
         }),
         Enabled = schema.new({
             id = id.from(_N, "EventSubscription", "Enabled"),
@@ -4655,7 +4655,7 @@ M.EventSubscription = schema.new({
 })
 
 M.CreateEventSubscriptionOutput = schema.new({
-    id = id.from(_N, "CreateEventSubscriptionOutput"),
+    id = id.from(_N, "CreateEventSubscriptionResponse"),
     type = "structure",
     members = {
         EventSubscription = schema.new({
@@ -4781,7 +4781,7 @@ M.SNSNoAuthorizationFault = schema.new({
 })
 
 M.CreateFleetAdvisorCollectorInput = schema.new({
-    id = id.from(_N, "CreateFleetAdvisorCollectorInput"),
+    id = id.from(_N, "CreateFleetAdvisorCollectorRequest"),
     type = "structure",
     members = {
         CollectorName = schema.new({
@@ -4821,7 +4821,7 @@ M.CreateFleetAdvisorCollectorInput = schema.new({
 })
 
 M.CreateFleetAdvisorCollectorOutput = schema.new({
-    id = id.from(_N, "CreateFleetAdvisorCollectorOutput"),
+    id = id.from(_N, "CreateFleetAdvisorCollectorResponse"),
     type = "structure",
     members = {
         CollectorReferencedId = schema.new({
@@ -4874,7 +4874,7 @@ M.S3ResourceNotFoundFault = schema.new({
 })
 
 M.CreateInstanceProfileInput = schema.new({
-    id = id.from(_N, "CreateInstanceProfileInput"),
+    id = id.from(_N, "CreateInstanceProfileMessage"),
     type = "structure",
     members = {
         AvailabilityZone = schema.new({
@@ -4900,7 +4900,7 @@ M.CreateInstanceProfileInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         NetworkType = schema.new({
             id = id.from(_N, "CreateInstanceProfileInput", "NetworkType"),
@@ -5008,7 +5008,7 @@ M.InstanceProfile = schema.new({
 })
 
 M.CreateInstanceProfileOutput = schema.new({
-    id = id.from(_N, "CreateInstanceProfileOutput"),
+    id = id.from(_N, "CreateInstanceProfileResponse"),
     type = "structure",
     members = {
         InstanceProfile = schema.new({
@@ -5069,7 +5069,7 @@ M.DataProviderDescriptorDefinition = schema.new({
 })
 
 M.CreateMigrationProjectInput = schema.new({
-    id = id.from(_N, "CreateMigrationProjectInput"),
+    id = id.from(_N, "CreateMigrationProjectMessage"),
     type = "structure",
     members = {
         MigrationProjectName = schema.new({
@@ -5124,7 +5124,7 @@ M.CreateMigrationProjectInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         SchemaConversionApplicationAttributes = schema.new({
             id = id.from(_N, "CreateMigrationProjectInput", "SchemaConversionApplicationAttributes"),
@@ -5241,7 +5241,7 @@ M.MigrationProject = schema.new({
 })
 
 M.CreateMigrationProjectOutput = schema.new({
-    id = id.from(_N, "CreateMigrationProjectOutput"),
+    id = id.from(_N, "CreateMigrationProjectResponse"),
     type = "structure",
     members = {
         MigrationProject = schema.new({
@@ -5317,7 +5317,7 @@ M.ComputeConfig = schema.new({
 })
 
 M.CreateReplicationConfigInput = schema.new({
-    id = id.from(_N, "CreateReplicationConfigInput"),
+    id = id.from(_N, "CreateReplicationConfigMessage"),
     type = "structure",
     members = {
         ReplicationConfigIdentifier = schema.new({
@@ -5398,7 +5398,7 @@ M.CreateReplicationConfigInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
@@ -5484,7 +5484,7 @@ M.ReplicationConfig = schema.new({
 })
 
 M.CreateReplicationConfigOutput = schema.new({
-    id = id.from(_N, "CreateReplicationConfigOutput"),
+    id = id.from(_N, "CreateReplicationConfigResponse"),
     type = "structure",
     members = {
         ReplicationConfig = schema.new({
@@ -5555,7 +5555,7 @@ M.KerberosAuthenticationSettings = schema.new({
 })
 
 M.CreateReplicationInstanceInput = schema.new({
-    id = id.from(_N, "CreateReplicationInstanceInput"),
+    id = id.from(_N, "CreateReplicationInstanceMessage"),
     type = "structure",
     members = {
         ReplicationInstanceIdentifier = schema.new({
@@ -5587,7 +5587,7 @@ M.CreateReplicationInstanceInput = schema.new({
             type = "list",
             name = "VpcSecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupId" } } }),
         }),
         AvailabilityZone = schema.new({
             id = id.from(_N, "CreateReplicationInstanceInput", "AvailabilityZone"),
@@ -5630,7 +5630,7 @@ M.CreateReplicationInstanceInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         KmsKeyId = schema.new({
             id = id.from(_N, "CreateReplicationInstanceInput", "KmsKeyId"),
@@ -5781,7 +5781,7 @@ M.ReplicationSubnetGroup = schema.new({
             type = "list",
             name = "Subnets",
             target_id = prelude.Document.id,
-            list_member = M.Subnet,
+            list_member = schema.new({ type = "structure", target = M.Subnet, traits = { [traits.XML_NAME] = { name = "Subnet" } } }),
         }),
         SupportedNetworkTypes = schema.new({
             id = id.from(_N, "ReplicationSubnetGroup", "SupportedNetworkTypes"),
@@ -5860,7 +5860,7 @@ M.ReplicationInstance = schema.new({
             type = "list",
             name = "VpcSecurityGroups",
             target_id = prelude.Document.id,
-            list_member = M.VpcSecurityGroupMembership,
+            list_member = schema.new({ type = "structure", target = M.VpcSecurityGroupMembership, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupMembership" } } }),
         }),
         AvailabilityZone = schema.new({
             id = id.from(_N, "ReplicationInstance", "AvailabilityZone"),
@@ -6001,7 +6001,7 @@ M.ReplicationInstance = schema.new({
 })
 
 M.CreateReplicationInstanceOutput = schema.new({
-    id = id.from(_N, "CreateReplicationInstanceOutput"),
+    id = id.from(_N, "CreateReplicationInstanceResponse"),
     type = "structure",
     members = {
         ReplicationInstance = schema.new({
@@ -6047,7 +6047,7 @@ M.StorageQuotaExceededFault = schema.new({
 })
 
 M.CreateReplicationSubnetGroupInput = schema.new({
-    id = id.from(_N, "CreateReplicationSubnetGroupInput"),
+    id = id.from(_N, "CreateReplicationSubnetGroupMessage"),
     type = "structure",
     members = {
         ReplicationSubnetGroupIdentifier = schema.new({
@@ -6073,7 +6073,7 @@ M.CreateReplicationSubnetGroupInput = schema.new({
             type = "list",
             name = "SubnetIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SubnetIdentifier" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -6083,13 +6083,13 @@ M.CreateReplicationSubnetGroupInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.CreateReplicationSubnetGroupOutput = schema.new({
-    id = id.from(_N, "CreateReplicationSubnetGroupOutput"),
+    id = id.from(_N, "CreateReplicationSubnetGroupResponse"),
     type = "structure",
     members = {
         ReplicationSubnetGroup = schema.new({
@@ -6103,7 +6103,7 @@ M.CreateReplicationSubnetGroupOutput = schema.new({
 })
 
 M.CreateReplicationTaskInput = schema.new({
-    id = id.from(_N, "CreateReplicationTaskInput"),
+    id = id.from(_N, "CreateReplicationTaskMessage"),
     type = "structure",
     members = {
         ReplicationTaskIdentifier = schema.new({
@@ -6189,7 +6189,7 @@ M.CreateReplicationTaskInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         TaskData = schema.new({
             id = id.from(_N, "CreateReplicationTaskInput", "TaskData"),
@@ -6420,7 +6420,7 @@ M.ReplicationTask = schema.new({
 })
 
 M.CreateReplicationTaskOutput = schema.new({
-    id = id.from(_N, "CreateReplicationTaskOutput"),
+    id = id.from(_N, "CreateReplicationTaskResponse"),
     type = "structure",
     members = {
         ReplicationTask = schema.new({
@@ -6434,7 +6434,7 @@ M.CreateReplicationTaskOutput = schema.new({
 })
 
 M.DeleteCertificateInput = schema.new({
-    id = id.from(_N, "DeleteCertificateInput"),
+    id = id.from(_N, "DeleteCertificateMessage"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -6523,7 +6523,7 @@ M.Certificate = schema.new({
 })
 
 M.DeleteCertificateOutput = schema.new({
-    id = id.from(_N, "DeleteCertificateOutput"),
+    id = id.from(_N, "DeleteCertificateResponse"),
     type = "structure",
     members = {
         Certificate = schema.new({
@@ -6537,7 +6537,7 @@ M.DeleteCertificateOutput = schema.new({
 })
 
 M.DeleteConnectionInput = schema.new({
-    id = id.from(_N, "DeleteConnectionInput"),
+    id = id.from(_N, "DeleteConnectionMessage"),
     type = "structure",
     members = {
         EndpointArn = schema.new({
@@ -6605,7 +6605,7 @@ M.Connection = schema.new({
 })
 
 M.DeleteConnectionOutput = schema.new({
-    id = id.from(_N, "DeleteConnectionOutput"),
+    id = id.from(_N, "DeleteConnectionResponse"),
     type = "structure",
     members = {
         Connection = schema.new({
@@ -6619,7 +6619,7 @@ M.DeleteConnectionOutput = schema.new({
 })
 
 M.DeleteDataMigrationInput = schema.new({
-    id = id.from(_N, "DeleteDataMigrationInput"),
+    id = id.from(_N, "DeleteDataMigrationMessage"),
     type = "structure",
     members = {
         DataMigrationIdentifier = schema.new({
@@ -6635,7 +6635,7 @@ M.DeleteDataMigrationInput = schema.new({
 })
 
 M.DeleteDataMigrationOutput = schema.new({
-    id = id.from(_N, "DeleteDataMigrationOutput"),
+    id = id.from(_N, "DeleteDataMigrationResponse"),
     type = "structure",
     members = {
         DataMigration = schema.new({
@@ -6649,7 +6649,7 @@ M.DeleteDataMigrationOutput = schema.new({
 })
 
 M.DeleteDataProviderInput = schema.new({
-    id = id.from(_N, "DeleteDataProviderInput"),
+    id = id.from(_N, "DeleteDataProviderMessage"),
     type = "structure",
     members = {
         DataProviderIdentifier = schema.new({
@@ -6665,7 +6665,7 @@ M.DeleteDataProviderInput = schema.new({
 })
 
 M.DeleteDataProviderOutput = schema.new({
-    id = id.from(_N, "DeleteDataProviderOutput"),
+    id = id.from(_N, "DeleteDataProviderResponse"),
     type = "structure",
     members = {
         DataProvider = schema.new({
@@ -6679,7 +6679,7 @@ M.DeleteDataProviderOutput = schema.new({
 })
 
 M.DeleteEndpointInput = schema.new({
-    id = id.from(_N, "DeleteEndpointInput"),
+    id = id.from(_N, "DeleteEndpointMessage"),
     type = "structure",
     members = {
         EndpointArn = schema.new({
@@ -6695,7 +6695,7 @@ M.DeleteEndpointInput = schema.new({
 })
 
 M.DeleteEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteEndpointOutput"),
+    id = id.from(_N, "DeleteEndpointResponse"),
     type = "structure",
     members = {
         Endpoint = schema.new({
@@ -6709,7 +6709,7 @@ M.DeleteEndpointOutput = schema.new({
 })
 
 M.DeleteEventSubscriptionInput = schema.new({
-    id = id.from(_N, "DeleteEventSubscriptionInput"),
+    id = id.from(_N, "DeleteEventSubscriptionMessage"),
     type = "structure",
     members = {
         SubscriptionName = schema.new({
@@ -6725,7 +6725,7 @@ M.DeleteEventSubscriptionInput = schema.new({
 })
 
 M.DeleteEventSubscriptionOutput = schema.new({
-    id = id.from(_N, "DeleteEventSubscriptionOutput"),
+    id = id.from(_N, "DeleteEventSubscriptionResponse"),
     type = "structure",
     members = {
         EventSubscription = schema.new({
@@ -6755,7 +6755,7 @@ M.CollectorNotFoundFault = schema.new({
 })
 
 M.DeleteFleetAdvisorCollectorInput = schema.new({
-    id = id.from(_N, "DeleteFleetAdvisorCollectorInput"),
+    id = id.from(_N, "DeleteCollectorRequest"),
     type = "structure",
     members = {
         CollectorReferencedId = schema.new({
@@ -6771,12 +6771,12 @@ M.DeleteFleetAdvisorCollectorInput = schema.new({
 })
 
 M.DeleteFleetAdvisorCollectorOutput = schema.new({
-    id = id.from(_N, "DeleteFleetAdvisorCollectorOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteFleetAdvisorDatabasesInput = schema.new({
-    id = id.from(_N, "DeleteFleetAdvisorDatabasesInput"),
+    id = id.from(_N, "DeleteFleetAdvisorDatabasesRequest"),
     type = "structure",
     members = {
         DatabaseIds = schema.new({
@@ -6793,7 +6793,7 @@ M.DeleteFleetAdvisorDatabasesInput = schema.new({
 })
 
 M.DeleteFleetAdvisorDatabasesOutput = schema.new({
-    id = id.from(_N, "DeleteFleetAdvisorDatabasesOutput"),
+    id = id.from(_N, "DeleteFleetAdvisorDatabasesResponse"),
     type = "structure",
     members = {
         DatabaseIds = schema.new({
@@ -6807,7 +6807,7 @@ M.DeleteFleetAdvisorDatabasesOutput = schema.new({
 })
 
 M.DeleteInstanceProfileInput = schema.new({
-    id = id.from(_N, "DeleteInstanceProfileInput"),
+    id = id.from(_N, "DeleteInstanceProfileMessage"),
     type = "structure",
     members = {
         InstanceProfileIdentifier = schema.new({
@@ -6823,7 +6823,7 @@ M.DeleteInstanceProfileInput = schema.new({
 })
 
 M.DeleteInstanceProfileOutput = schema.new({
-    id = id.from(_N, "DeleteInstanceProfileOutput"),
+    id = id.from(_N, "DeleteInstanceProfileResponse"),
     type = "structure",
     members = {
         InstanceProfile = schema.new({
@@ -6837,7 +6837,7 @@ M.DeleteInstanceProfileOutput = schema.new({
 })
 
 M.DeleteMigrationProjectInput = schema.new({
-    id = id.from(_N, "DeleteMigrationProjectInput"),
+    id = id.from(_N, "DeleteMigrationProjectMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -6853,7 +6853,7 @@ M.DeleteMigrationProjectInput = schema.new({
 })
 
 M.DeleteMigrationProjectOutput = schema.new({
-    id = id.from(_N, "DeleteMigrationProjectOutput"),
+    id = id.from(_N, "DeleteMigrationProjectResponse"),
     type = "structure",
     members = {
         MigrationProject = schema.new({
@@ -6867,7 +6867,7 @@ M.DeleteMigrationProjectOutput = schema.new({
 })
 
 M.DeleteReplicationConfigInput = schema.new({
-    id = id.from(_N, "DeleteReplicationConfigInput"),
+    id = id.from(_N, "DeleteReplicationConfigMessage"),
     type = "structure",
     members = {
         ReplicationConfigArn = schema.new({
@@ -6883,7 +6883,7 @@ M.DeleteReplicationConfigInput = schema.new({
 })
 
 M.DeleteReplicationConfigOutput = schema.new({
-    id = id.from(_N, "DeleteReplicationConfigOutput"),
+    id = id.from(_N, "DeleteReplicationConfigResponse"),
     type = "structure",
     members = {
         ReplicationConfig = schema.new({
@@ -6897,7 +6897,7 @@ M.DeleteReplicationConfigOutput = schema.new({
 })
 
 M.DeleteReplicationInstanceInput = schema.new({
-    id = id.from(_N, "DeleteReplicationInstanceInput"),
+    id = id.from(_N, "DeleteReplicationInstanceMessage"),
     type = "structure",
     members = {
         ReplicationInstanceArn = schema.new({
@@ -6913,7 +6913,7 @@ M.DeleteReplicationInstanceInput = schema.new({
 })
 
 M.DeleteReplicationInstanceOutput = schema.new({
-    id = id.from(_N, "DeleteReplicationInstanceOutput"),
+    id = id.from(_N, "DeleteReplicationInstanceResponse"),
     type = "structure",
     members = {
         ReplicationInstance = schema.new({
@@ -6927,7 +6927,7 @@ M.DeleteReplicationInstanceOutput = schema.new({
 })
 
 M.DeleteReplicationSubnetGroupInput = schema.new({
-    id = id.from(_N, "DeleteReplicationSubnetGroupInput"),
+    id = id.from(_N, "DeleteReplicationSubnetGroupMessage"),
     type = "structure",
     members = {
         ReplicationSubnetGroupIdentifier = schema.new({
@@ -6943,12 +6943,12 @@ M.DeleteReplicationSubnetGroupInput = schema.new({
 })
 
 M.DeleteReplicationSubnetGroupOutput = schema.new({
-    id = id.from(_N, "DeleteReplicationSubnetGroupOutput"),
+    id = id.from(_N, "DeleteReplicationSubnetGroupResponse"),
     type = "structure",
 })
 
 M.DeleteReplicationTaskInput = schema.new({
-    id = id.from(_N, "DeleteReplicationTaskInput"),
+    id = id.from(_N, "DeleteReplicationTaskMessage"),
     type = "structure",
     members = {
         ReplicationTaskArn = schema.new({
@@ -6964,7 +6964,7 @@ M.DeleteReplicationTaskInput = schema.new({
 })
 
 M.DeleteReplicationTaskOutput = schema.new({
-    id = id.from(_N, "DeleteReplicationTaskOutput"),
+    id = id.from(_N, "DeleteReplicationTaskResponse"),
     type = "structure",
     members = {
         ReplicationTask = schema.new({
@@ -6978,7 +6978,7 @@ M.DeleteReplicationTaskOutput = schema.new({
 })
 
 M.DeleteReplicationTaskAssessmentRunInput = schema.new({
-    id = id.from(_N, "DeleteReplicationTaskAssessmentRunInput"),
+    id = id.from(_N, "DeleteReplicationTaskAssessmentRunMessage"),
     type = "structure",
     members = {
         ReplicationTaskAssessmentRunArn = schema.new({
@@ -6994,7 +6994,7 @@ M.DeleteReplicationTaskAssessmentRunInput = schema.new({
 })
 
 M.DeleteReplicationTaskAssessmentRunOutput = schema.new({
-    id = id.from(_N, "DeleteReplicationTaskAssessmentRunOutput"),
+    id = id.from(_N, "DeleteReplicationTaskAssessmentRunResponse"),
     type = "structure",
     members = {
         ReplicationTaskAssessmentRun = schema.new({
@@ -7008,12 +7008,12 @@ M.DeleteReplicationTaskAssessmentRunOutput = schema.new({
 })
 
 M.DescribeAccountAttributesInput = schema.new({
-    id = id.from(_N, "DescribeAccountAttributesInput"),
+    id = id.from(_N, "DescribeAccountAttributesMessage"),
     type = "structure",
 })
 
 M.DescribeAccountAttributesOutput = schema.new({
-    id = id.from(_N, "DescribeAccountAttributesOutput"),
+    id = id.from(_N, "DescribeAccountAttributesResponse"),
     type = "structure",
     members = {
         AccountQuotas = schema.new({
@@ -7021,7 +7021,7 @@ M.DescribeAccountAttributesOutput = schema.new({
             type = "list",
             name = "AccountQuotas",
             target_id = prelude.Document.id,
-            list_member = M.AccountQuota,
+            list_member = schema.new({ type = "structure", target = M.AccountQuota, traits = { [traits.XML_NAME] = { name = "AccountQuota" } } }),
         }),
         UniqueAccountIdentifier = schema.new({
             id = id.from(_N, "DescribeAccountAttributesOutput", "UniqueAccountIdentifier"),
@@ -7033,7 +7033,7 @@ M.DescribeAccountAttributesOutput = schema.new({
 })
 
 M.DescribeApplicableIndividualAssessmentsInput = schema.new({
-    id = id.from(_N, "DescribeApplicableIndividualAssessmentsInput"),
+    id = id.from(_N, "DescribeApplicableIndividualAssessmentsMessage"),
     type = "structure",
     members = {
         ReplicationTaskArn = schema.new({
@@ -7088,7 +7088,7 @@ M.DescribeApplicableIndividualAssessmentsInput = schema.new({
 })
 
 M.DescribeApplicableIndividualAssessmentsOutput = schema.new({
-    id = id.from(_N, "DescribeApplicableIndividualAssessmentsOutput"),
+    id = id.from(_N, "DescribeApplicableIndividualAssessmentsResponse"),
     type = "structure",
     members = {
         IndividualAssessmentNames = schema.new({
@@ -7125,7 +7125,7 @@ M.Filter = schema.new({
             type = "list",
             name = "Values",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Value" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -7134,7 +7134,7 @@ M.Filter = schema.new({
 })
 
 M.DescribeCertificatesInput = schema.new({
-    id = id.from(_N, "DescribeCertificatesInput"),
+    id = id.from(_N, "DescribeCertificatesMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -7142,7 +7142,7 @@ M.DescribeCertificatesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeCertificatesInput", "MaxRecords"),
@@ -7160,7 +7160,7 @@ M.DescribeCertificatesInput = schema.new({
 })
 
 M.DescribeCertificatesOutput = schema.new({
-    id = id.from(_N, "DescribeCertificatesOutput"),
+    id = id.from(_N, "DescribeCertificatesResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -7174,13 +7174,13 @@ M.DescribeCertificatesOutput = schema.new({
             type = "list",
             name = "Certificates",
             target_id = prelude.Document.id,
-            list_member = M.Certificate,
+            list_member = schema.new({ type = "structure", target = M.Certificate, traits = { [traits.XML_NAME] = { name = "Certificate" } } }),
         }),
     },
 })
 
 M.DescribeConnectionsInput = schema.new({
-    id = id.from(_N, "DescribeConnectionsInput"),
+    id = id.from(_N, "DescribeConnectionsMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -7188,7 +7188,7 @@ M.DescribeConnectionsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeConnectionsInput", "MaxRecords"),
@@ -7206,7 +7206,7 @@ M.DescribeConnectionsInput = schema.new({
 })
 
 M.DescribeConnectionsOutput = schema.new({
-    id = id.from(_N, "DescribeConnectionsOutput"),
+    id = id.from(_N, "DescribeConnectionsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -7220,13 +7220,13 @@ M.DescribeConnectionsOutput = schema.new({
             type = "list",
             name = "Connections",
             target_id = prelude.Document.id,
-            list_member = M.Connection,
+            list_member = schema.new({ type = "structure", target = M.Connection, traits = { [traits.XML_NAME] = { name = "Connection" } } }),
         }),
     },
 })
 
 M.DescribeConversionConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeConversionConfigurationInput"),
+    id = id.from(_N, "DescribeConversionConfigurationMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -7242,7 +7242,7 @@ M.DescribeConversionConfigurationInput = schema.new({
 })
 
 M.DescribeConversionConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeConversionConfigurationOutput"),
+    id = id.from(_N, "DescribeConversionConfigurationResponse"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -7261,7 +7261,7 @@ M.DescribeConversionConfigurationOutput = schema.new({
 })
 
 M.DescribeDataMigrationsInput = schema.new({
-    id = id.from(_N, "DescribeDataMigrationsInput"),
+    id = id.from(_N, "DescribeDataMigrationsMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -7269,7 +7269,7 @@ M.DescribeDataMigrationsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDataMigrationsInput", "MaxRecords"),
@@ -7299,7 +7299,7 @@ M.DescribeDataMigrationsInput = schema.new({
 })
 
 M.DescribeDataMigrationsOutput = schema.new({
-    id = id.from(_N, "DescribeDataMigrationsOutput"),
+    id = id.from(_N, "DescribeDataMigrationsResponse"),
     type = "structure",
     members = {
         DataMigrations = schema.new({
@@ -7319,7 +7319,7 @@ M.DescribeDataMigrationsOutput = schema.new({
 })
 
 M.DescribeDataProvidersInput = schema.new({
-    id = id.from(_N, "DescribeDataProvidersInput"),
+    id = id.from(_N, "DescribeDataProvidersMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -7327,7 +7327,7 @@ M.DescribeDataProvidersInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeDataProvidersInput", "MaxRecords"),
@@ -7345,7 +7345,7 @@ M.DescribeDataProvidersInput = schema.new({
 })
 
 M.DescribeDataProvidersOutput = schema.new({
-    id = id.from(_N, "DescribeDataProvidersOutput"),
+    id = id.from(_N, "DescribeDataProvidersResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -7359,13 +7359,13 @@ M.DescribeDataProvidersOutput = schema.new({
             type = "list",
             name = "DataProviders",
             target_id = prelude.Document.id,
-            list_member = M.DataProvider,
+            list_member = schema.new({ type = "structure", target = M.DataProvider, traits = { [traits.XML_NAME] = { name = "DataProvider" } } }),
         }),
     },
 })
 
 M.DescribeEndpointsInput = schema.new({
-    id = id.from(_N, "DescribeEndpointsInput"),
+    id = id.from(_N, "DescribeEndpointsMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -7373,7 +7373,7 @@ M.DescribeEndpointsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeEndpointsInput", "MaxRecords"),
@@ -7391,7 +7391,7 @@ M.DescribeEndpointsInput = schema.new({
 })
 
 M.DescribeEndpointsOutput = schema.new({
-    id = id.from(_N, "DescribeEndpointsOutput"),
+    id = id.from(_N, "DescribeEndpointsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -7405,13 +7405,13 @@ M.DescribeEndpointsOutput = schema.new({
             type = "list",
             name = "Endpoints",
             target_id = prelude.Document.id,
-            list_member = M.Endpoint,
+            list_member = schema.new({ type = "structure", target = M.Endpoint, traits = { [traits.XML_NAME] = { name = "Endpoint" } } }),
         }),
     },
 })
 
 M.DescribeEndpointSettingsInput = schema.new({
-    id = id.from(_N, "DescribeEndpointSettingsInput"),
+    id = id.from(_N, "DescribeEndpointSettingsMessage"),
     type = "structure",
     members = {
         EngineName = schema.new({
@@ -7501,7 +7501,7 @@ M.EndpointSetting = schema.new({
 })
 
 M.DescribeEndpointSettingsOutput = schema.new({
-    id = id.from(_N, "DescribeEndpointSettingsOutput"),
+    id = id.from(_N, "DescribeEndpointSettingsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -7521,7 +7521,7 @@ M.DescribeEndpointSettingsOutput = schema.new({
 })
 
 M.DescribeEndpointTypesInput = schema.new({
-    id = id.from(_N, "DescribeEndpointTypesInput"),
+    id = id.from(_N, "DescribeEndpointTypesMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -7529,7 +7529,7 @@ M.DescribeEndpointTypesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeEndpointTypesInput", "MaxRecords"),
@@ -7587,7 +7587,7 @@ M.SupportedEndpointType = schema.new({
 })
 
 M.DescribeEndpointTypesOutput = schema.new({
-    id = id.from(_N, "DescribeEndpointTypesOutput"),
+    id = id.from(_N, "DescribeEndpointTypesResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -7601,13 +7601,13 @@ M.DescribeEndpointTypesOutput = schema.new({
             type = "list",
             name = "SupportedEndpointTypes",
             target_id = prelude.Document.id,
-            list_member = M.SupportedEndpointType,
+            list_member = schema.new({ type = "structure", target = M.SupportedEndpointType, traits = { [traits.XML_NAME] = { name = "SupportedEndpointType" } } }),
         }),
     },
 })
 
 M.DescribeEngineVersionsInput = schema.new({
-    id = id.from(_N, "DescribeEngineVersionsInput"),
+    id = id.from(_N, "DescribeEngineVersionsMessage"),
     type = "structure",
     members = {
         MaxRecords = schema.new({
@@ -7682,7 +7682,7 @@ M.EngineVersion = schema.new({
 })
 
 M.DescribeEngineVersionsOutput = schema.new({
-    id = id.from(_N, "DescribeEngineVersionsOutput"),
+    id = id.from(_N, "DescribeEngineVersionsResponse"),
     type = "structure",
     members = {
         EngineVersions = schema.new({
@@ -7690,7 +7690,7 @@ M.DescribeEngineVersionsOutput = schema.new({
             type = "list",
             name = "EngineVersions",
             target_id = prelude.Document.id,
-            list_member = M.EngineVersion,
+            list_member = schema.new({ type = "structure", target = M.EngineVersion, traits = { [traits.XML_NAME] = { name = "EngineVersion" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeEngineVersionsOutput", "Marker"),
@@ -7702,7 +7702,7 @@ M.DescribeEngineVersionsOutput = schema.new({
 })
 
 M.DescribeEventCategoriesInput = schema.new({
-    id = id.from(_N, "DescribeEventCategoriesInput"),
+    id = id.from(_N, "DescribeEventCategoriesMessage"),
     type = "structure",
     members = {
         SourceType = schema.new({
@@ -7716,7 +7716,7 @@ M.DescribeEventCategoriesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
     },
 })
@@ -7736,13 +7736,13 @@ M.EventCategoryGroup = schema.new({
             type = "list",
             name = "EventCategories",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "EventCategory" } } }),
         }),
     },
 })
 
 M.DescribeEventCategoriesOutput = schema.new({
-    id = id.from(_N, "DescribeEventCategoriesOutput"),
+    id = id.from(_N, "DescribeEventCategoriesResponse"),
     type = "structure",
     members = {
         EventCategoryGroupList = schema.new({
@@ -7750,13 +7750,13 @@ M.DescribeEventCategoriesOutput = schema.new({
             type = "list",
             name = "EventCategoryGroupList",
             target_id = prelude.Document.id,
-            list_member = M.EventCategoryGroup,
+            list_member = schema.new({ type = "structure", target = M.EventCategoryGroup, traits = { [traits.XML_NAME] = { name = "EventCategoryGroup" } } }),
         }),
     },
 })
 
 M.DescribeEventsInput = schema.new({
-    id = id.from(_N, "DescribeEventsInput"),
+    id = id.from(_N, "DescribeEventsMessage"),
     type = "structure",
     members = {
         SourceIdentifier = schema.new({
@@ -7794,14 +7794,14 @@ M.DescribeEventsInput = schema.new({
             type = "list",
             name = "EventCategories",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "EventCategory" } } }),
         }),
         Filters = schema.new({
             id = id.from(_N, "DescribeEventsInput", "Filters"),
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeEventsInput", "MaxRecords"),
@@ -7845,7 +7845,7 @@ M.Event = schema.new({
             type = "list",
             name = "EventCategories",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "EventCategory" } } }),
         }),
         Date = schema.new({
             id = id.from(_N, "Event", "Date"),
@@ -7857,7 +7857,7 @@ M.Event = schema.new({
 })
 
 M.DescribeEventsOutput = schema.new({
-    id = id.from(_N, "DescribeEventsOutput"),
+    id = id.from(_N, "DescribeEventsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -7871,13 +7871,13 @@ M.DescribeEventsOutput = schema.new({
             type = "list",
             name = "Events",
             target_id = prelude.Document.id,
-            list_member = M.Event,
+            list_member = schema.new({ type = "structure", target = M.Event, traits = { [traits.XML_NAME] = { name = "Event" } } }),
         }),
     },
 })
 
 M.DescribeEventSubscriptionsInput = schema.new({
-    id = id.from(_N, "DescribeEventSubscriptionsInput"),
+    id = id.from(_N, "DescribeEventSubscriptionsMessage"),
     type = "structure",
     members = {
         SubscriptionName = schema.new({
@@ -7891,7 +7891,7 @@ M.DescribeEventSubscriptionsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeEventSubscriptionsInput", "MaxRecords"),
@@ -7909,7 +7909,7 @@ M.DescribeEventSubscriptionsInput = schema.new({
 })
 
 M.DescribeEventSubscriptionsOutput = schema.new({
-    id = id.from(_N, "DescribeEventSubscriptionsOutput"),
+    id = id.from(_N, "DescribeEventSubscriptionsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -7923,13 +7923,13 @@ M.DescribeEventSubscriptionsOutput = schema.new({
             type = "list",
             name = "EventSubscriptionsList",
             target_id = prelude.Document.id,
-            list_member = M.EventSubscription,
+            list_member = schema.new({ type = "structure", target = M.EventSubscription, traits = { [traits.XML_NAME] = { name = "EventSubscription" } } }),
         }),
     },
 })
 
 M.DescribeExtensionPackAssociationsInput = schema.new({
-    id = id.from(_N, "DescribeExtensionPackAssociationsInput"),
+    id = id.from(_N, "DescribeExtensionPackAssociationsMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -7946,7 +7946,7 @@ M.DescribeExtensionPackAssociationsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeExtensionPackAssociationsInput", "Marker"),
@@ -7964,7 +7964,7 @@ M.DescribeExtensionPackAssociationsInput = schema.new({
 })
 
 M.DescribeExtensionPackAssociationsOutput = schema.new({
-    id = id.from(_N, "DescribeExtensionPackAssociationsOutput"),
+    id = id.from(_N, "DescribeExtensionPackAssociationsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -7984,7 +7984,7 @@ M.DescribeExtensionPackAssociationsOutput = schema.new({
 })
 
 M.DescribeFleetAdvisorCollectorsInput = schema.new({
-    id = id.from(_N, "DescribeFleetAdvisorCollectorsInput"),
+    id = id.from(_N, "DescribeFleetAdvisorCollectorsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -7992,7 +7992,7 @@ M.DescribeFleetAdvisorCollectorsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeFleetAdvisorCollectorsInput", "MaxRecords"),
@@ -8147,7 +8147,7 @@ M.CollectorResponse = schema.new({
 })
 
 M.DescribeFleetAdvisorCollectorsOutput = schema.new({
-    id = id.from(_N, "DescribeFleetAdvisorCollectorsOutput"),
+    id = id.from(_N, "DescribeFleetAdvisorCollectorsResponse"),
     type = "structure",
     members = {
         Collectors = schema.new({
@@ -8167,7 +8167,7 @@ M.DescribeFleetAdvisorCollectorsOutput = schema.new({
 })
 
 M.DescribeFleetAdvisorDatabasesInput = schema.new({
-    id = id.from(_N, "DescribeFleetAdvisorDatabasesInput"),
+    id = id.from(_N, "DescribeFleetAdvisorDatabasesRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -8175,7 +8175,7 @@ M.DescribeFleetAdvisorDatabasesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeFleetAdvisorDatabasesInput", "MaxRecords"),
@@ -8338,7 +8338,7 @@ M.DatabaseResponse = schema.new({
 })
 
 M.DescribeFleetAdvisorDatabasesOutput = schema.new({
-    id = id.from(_N, "DescribeFleetAdvisorDatabasesOutput"),
+    id = id.from(_N, "DescribeFleetAdvisorDatabasesResponse"),
     type = "structure",
     members = {
         Databases = schema.new({
@@ -8358,7 +8358,7 @@ M.DescribeFleetAdvisorDatabasesOutput = schema.new({
 })
 
 M.DescribeFleetAdvisorLsaAnalysisInput = schema.new({
-    id = id.from(_N, "DescribeFleetAdvisorLsaAnalysisInput"),
+    id = id.from(_N, "DescribeFleetAdvisorLsaAnalysisRequest"),
     type = "structure",
     members = {
         MaxRecords = schema.new({
@@ -8396,7 +8396,7 @@ M.FleetAdvisorLsaAnalysisResponse = schema.new({
 })
 
 M.DescribeFleetAdvisorLsaAnalysisOutput = schema.new({
-    id = id.from(_N, "DescribeFleetAdvisorLsaAnalysisOutput"),
+    id = id.from(_N, "DescribeFleetAdvisorLsaAnalysisResponse"),
     type = "structure",
     members = {
         Analysis = schema.new({
@@ -8416,7 +8416,7 @@ M.DescribeFleetAdvisorLsaAnalysisOutput = schema.new({
 })
 
 M.DescribeFleetAdvisorSchemaObjectSummaryInput = schema.new({
-    id = id.from(_N, "DescribeFleetAdvisorSchemaObjectSummaryInput"),
+    id = id.from(_N, "DescribeFleetAdvisorSchemaObjectSummaryRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -8424,7 +8424,7 @@ M.DescribeFleetAdvisorSchemaObjectSummaryInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeFleetAdvisorSchemaObjectSummaryInput", "MaxRecords"),
@@ -8479,7 +8479,7 @@ M.FleetAdvisorSchemaObjectResponse = schema.new({
 })
 
 M.DescribeFleetAdvisorSchemaObjectSummaryOutput = schema.new({
-    id = id.from(_N, "DescribeFleetAdvisorSchemaObjectSummaryOutput"),
+    id = id.from(_N, "DescribeFleetAdvisorSchemaObjectSummaryResponse"),
     type = "structure",
     members = {
         FleetAdvisorSchemaObjects = schema.new({
@@ -8499,7 +8499,7 @@ M.DescribeFleetAdvisorSchemaObjectSummaryOutput = schema.new({
 })
 
 M.DescribeFleetAdvisorSchemasInput = schema.new({
-    id = id.from(_N, "DescribeFleetAdvisorSchemasInput"),
+    id = id.from(_N, "DescribeFleetAdvisorSchemasRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -8507,7 +8507,7 @@ M.DescribeFleetAdvisorSchemasInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeFleetAdvisorSchemasInput", "MaxRecords"),
@@ -8657,7 +8657,7 @@ M.SchemaResponse = schema.new({
 })
 
 M.DescribeFleetAdvisorSchemasOutput = schema.new({
-    id = id.from(_N, "DescribeFleetAdvisorSchemasOutput"),
+    id = id.from(_N, "DescribeFleetAdvisorSchemasResponse"),
     type = "structure",
     members = {
         FleetAdvisorSchemas = schema.new({
@@ -8677,7 +8677,7 @@ M.DescribeFleetAdvisorSchemasOutput = schema.new({
 })
 
 M.DescribeInstanceProfilesInput = schema.new({
-    id = id.from(_N, "DescribeInstanceProfilesInput"),
+    id = id.from(_N, "DescribeInstanceProfilesMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -8685,7 +8685,7 @@ M.DescribeInstanceProfilesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeInstanceProfilesInput", "MaxRecords"),
@@ -8703,7 +8703,7 @@ M.DescribeInstanceProfilesInput = schema.new({
 })
 
 M.DescribeInstanceProfilesOutput = schema.new({
-    id = id.from(_N, "DescribeInstanceProfilesOutput"),
+    id = id.from(_N, "DescribeInstanceProfilesResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -8717,13 +8717,13 @@ M.DescribeInstanceProfilesOutput = schema.new({
             type = "list",
             name = "InstanceProfiles",
             target_id = prelude.Document.id,
-            list_member = M.InstanceProfile,
+            list_member = schema.new({ type = "structure", target = M.InstanceProfile, traits = { [traits.XML_NAME] = { name = "InstanceProfile" } } }),
         }),
     },
 })
 
 M.DescribeMetadataModelInput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelInput"),
+    id = id.from(_N, "DescribeMetadataModelMessage"),
     type = "structure",
     members = {
         SelectionRules = schema.new({
@@ -8776,7 +8776,7 @@ M.MetadataModelReference = schema.new({
 })
 
 M.DescribeMetadataModelOutput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelOutput"),
+    id = id.from(_N, "DescribeMetadataModelResponse"),
     type = "structure",
     members = {
         MetadataModelName = schema.new({
@@ -8808,7 +8808,7 @@ M.DescribeMetadataModelOutput = schema.new({
 })
 
 M.DescribeMetadataModelAssessmentsInput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelAssessmentsInput"),
+    id = id.from(_N, "DescribeMetadataModelAssessmentsMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -8825,7 +8825,7 @@ M.DescribeMetadataModelAssessmentsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeMetadataModelAssessmentsInput", "Marker"),
@@ -8843,7 +8843,7 @@ M.DescribeMetadataModelAssessmentsInput = schema.new({
 })
 
 M.DescribeMetadataModelAssessmentsOutput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelAssessmentsOutput"),
+    id = id.from(_N, "DescribeMetadataModelAssessmentsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -8863,7 +8863,7 @@ M.DescribeMetadataModelAssessmentsOutput = schema.new({
 })
 
 M.DescribeMetadataModelChildrenInput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelChildrenInput"),
+    id = id.from(_N, "DescribeMetadataModelChildrenMessage"),
     type = "structure",
     members = {
         SelectionRules = schema.new({
@@ -8909,7 +8909,7 @@ M.DescribeMetadataModelChildrenInput = schema.new({
 })
 
 M.DescribeMetadataModelChildrenOutput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelChildrenOutput"),
+    id = id.from(_N, "DescribeMetadataModelChildrenResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -8929,7 +8929,7 @@ M.DescribeMetadataModelChildrenOutput = schema.new({
 })
 
 M.DescribeMetadataModelConversionsInput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelConversionsInput"),
+    id = id.from(_N, "DescribeMetadataModelConversionsMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -8946,7 +8946,7 @@ M.DescribeMetadataModelConversionsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeMetadataModelConversionsInput", "Marker"),
@@ -8964,7 +8964,7 @@ M.DescribeMetadataModelConversionsInput = schema.new({
 })
 
 M.DescribeMetadataModelConversionsOutput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelConversionsOutput"),
+    id = id.from(_N, "DescribeMetadataModelConversionsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -8984,7 +8984,7 @@ M.DescribeMetadataModelConversionsOutput = schema.new({
 })
 
 M.DescribeMetadataModelCreationsInput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelCreationsInput"),
+    id = id.from(_N, "DescribeMetadataModelCreationsMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -8992,7 +8992,7 @@ M.DescribeMetadataModelCreationsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeMetadataModelCreationsInput", "Marker"),
@@ -9019,7 +9019,7 @@ M.DescribeMetadataModelCreationsInput = schema.new({
 })
 
 M.DescribeMetadataModelCreationsOutput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelCreationsOutput"),
+    id = id.from(_N, "DescribeMetadataModelCreationsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -9039,7 +9039,7 @@ M.DescribeMetadataModelCreationsOutput = schema.new({
 })
 
 M.DescribeMetadataModelExportsAsScriptInput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelExportsAsScriptInput"),
+    id = id.from(_N, "DescribeMetadataModelExportsAsScriptMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -9056,7 +9056,7 @@ M.DescribeMetadataModelExportsAsScriptInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeMetadataModelExportsAsScriptInput", "Marker"),
@@ -9074,7 +9074,7 @@ M.DescribeMetadataModelExportsAsScriptInput = schema.new({
 })
 
 M.DescribeMetadataModelExportsAsScriptOutput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelExportsAsScriptOutput"),
+    id = id.from(_N, "DescribeMetadataModelExportsAsScriptResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -9094,7 +9094,7 @@ M.DescribeMetadataModelExportsAsScriptOutput = schema.new({
 })
 
 M.DescribeMetadataModelExportsToTargetInput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelExportsToTargetInput"),
+    id = id.from(_N, "DescribeMetadataModelExportsToTargetMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -9111,7 +9111,7 @@ M.DescribeMetadataModelExportsToTargetInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeMetadataModelExportsToTargetInput", "Marker"),
@@ -9129,7 +9129,7 @@ M.DescribeMetadataModelExportsToTargetInput = schema.new({
 })
 
 M.DescribeMetadataModelExportsToTargetOutput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelExportsToTargetOutput"),
+    id = id.from(_N, "DescribeMetadataModelExportsToTargetResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -9149,7 +9149,7 @@ M.DescribeMetadataModelExportsToTargetOutput = schema.new({
 })
 
 M.DescribeMetadataModelImportsInput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelImportsInput"),
+    id = id.from(_N, "DescribeMetadataModelImportsMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -9166,7 +9166,7 @@ M.DescribeMetadataModelImportsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeMetadataModelImportsInput", "Marker"),
@@ -9184,7 +9184,7 @@ M.DescribeMetadataModelImportsInput = schema.new({
 })
 
 M.DescribeMetadataModelImportsOutput = schema.new({
-    id = id.from(_N, "DescribeMetadataModelImportsOutput"),
+    id = id.from(_N, "DescribeMetadataModelImportsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -9204,7 +9204,7 @@ M.DescribeMetadataModelImportsOutput = schema.new({
 })
 
 M.DescribeMigrationProjectsInput = schema.new({
-    id = id.from(_N, "DescribeMigrationProjectsInput"),
+    id = id.from(_N, "DescribeMigrationProjectsMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -9212,7 +9212,7 @@ M.DescribeMigrationProjectsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeMigrationProjectsInput", "MaxRecords"),
@@ -9230,7 +9230,7 @@ M.DescribeMigrationProjectsInput = schema.new({
 })
 
 M.DescribeMigrationProjectsOutput = schema.new({
-    id = id.from(_N, "DescribeMigrationProjectsOutput"),
+    id = id.from(_N, "DescribeMigrationProjectsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -9244,13 +9244,13 @@ M.DescribeMigrationProjectsOutput = schema.new({
             type = "list",
             name = "MigrationProjects",
             target_id = prelude.Document.id,
-            list_member = M.MigrationProject,
+            list_member = schema.new({ type = "structure", target = M.MigrationProject, traits = { [traits.XML_NAME] = { name = "MigrationProject" } } }),
         }),
     },
 })
 
 M.DescribeOrderableReplicationInstancesInput = schema.new({
-    id = id.from(_N, "DescribeOrderableReplicationInstancesInput"),
+    id = id.from(_N, "DescribeOrderableReplicationInstancesMessage"),
     type = "structure",
     members = {
         MaxRecords = schema.new({
@@ -9343,7 +9343,7 @@ M.OrderableReplicationInstance = schema.new({
 })
 
 M.DescribeOrderableReplicationInstancesOutput = schema.new({
-    id = id.from(_N, "DescribeOrderableReplicationInstancesOutput"),
+    id = id.from(_N, "DescribeOrderableReplicationInstancesResponse"),
     type = "structure",
     members = {
         OrderableReplicationInstances = schema.new({
@@ -9351,7 +9351,7 @@ M.DescribeOrderableReplicationInstancesOutput = schema.new({
             type = "list",
             name = "OrderableReplicationInstances",
             target_id = prelude.Document.id,
-            list_member = M.OrderableReplicationInstance,
+            list_member = schema.new({ type = "structure", target = M.OrderableReplicationInstance, traits = { [traits.XML_NAME] = { name = "OrderableReplicationInstance" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribeOrderableReplicationInstancesOutput", "Marker"),
@@ -9363,7 +9363,7 @@ M.DescribeOrderableReplicationInstancesOutput = schema.new({
 })
 
 M.DescribePendingMaintenanceActionsInput = schema.new({
-    id = id.from(_N, "DescribePendingMaintenanceActionsInput"),
+    id = id.from(_N, "DescribePendingMaintenanceActionsMessage"),
     type = "structure",
     members = {
         ReplicationInstanceArn = schema.new({
@@ -9377,7 +9377,7 @@ M.DescribePendingMaintenanceActionsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribePendingMaintenanceActionsInput", "Marker"),
@@ -9395,7 +9395,7 @@ M.DescribePendingMaintenanceActionsInput = schema.new({
 })
 
 M.DescribePendingMaintenanceActionsOutput = schema.new({
-    id = id.from(_N, "DescribePendingMaintenanceActionsOutput"),
+    id = id.from(_N, "DescribePendingMaintenanceActionsResponse"),
     type = "structure",
     members = {
         PendingMaintenanceActions = schema.new({
@@ -9403,7 +9403,7 @@ M.DescribePendingMaintenanceActionsOutput = schema.new({
             type = "list",
             name = "PendingMaintenanceActions",
             target_id = prelude.Document.id,
-            list_member = M.ResourcePendingMaintenanceActions,
+            list_member = schema.new({ type = "structure", target = M.ResourcePendingMaintenanceActions, traits = { [traits.XML_NAME] = { name = "ResourcePendingMaintenanceActions" } } }),
         }),
         Marker = schema.new({
             id = id.from(_N, "DescribePendingMaintenanceActionsOutput", "Marker"),
@@ -9415,7 +9415,7 @@ M.DescribePendingMaintenanceActionsOutput = schema.new({
 })
 
 M.DescribeRecommendationLimitationsInput = schema.new({
-    id = id.from(_N, "DescribeRecommendationLimitationsInput"),
+    id = id.from(_N, "DescribeRecommendationLimitationsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -9423,7 +9423,7 @@ M.DescribeRecommendationLimitationsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeRecommendationLimitationsInput", "MaxRecords"),
@@ -9484,7 +9484,7 @@ M.Limitation = schema.new({
 })
 
 M.DescribeRecommendationLimitationsOutput = schema.new({
-    id = id.from(_N, "DescribeRecommendationLimitationsOutput"),
+    id = id.from(_N, "DescribeRecommendationLimitationsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -9504,7 +9504,7 @@ M.DescribeRecommendationLimitationsOutput = schema.new({
 })
 
 M.DescribeRecommendationsInput = schema.new({
-    id = id.from(_N, "DescribeRecommendationsInput"),
+    id = id.from(_N, "DescribeRecommendationsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -9512,7 +9512,7 @@ M.DescribeRecommendationsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeRecommendationsInput", "MaxRecords"),
@@ -9726,7 +9726,7 @@ M.Recommendation = schema.new({
 })
 
 M.DescribeRecommendationsOutput = schema.new({
-    id = id.from(_N, "DescribeRecommendationsOutput"),
+    id = id.from(_N, "DescribeRecommendationsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -9746,7 +9746,7 @@ M.DescribeRecommendationsOutput = schema.new({
 })
 
 M.DescribeRefreshSchemasStatusInput = schema.new({
-    id = id.from(_N, "DescribeRefreshSchemasStatusInput"),
+    id = id.from(_N, "DescribeRefreshSchemasStatusMessage"),
     type = "structure",
     members = {
         EndpointArn = schema.new({
@@ -9799,7 +9799,7 @@ M.RefreshSchemasStatus = schema.new({
 })
 
 M.DescribeRefreshSchemasStatusOutput = schema.new({
-    id = id.from(_N, "DescribeRefreshSchemasStatusOutput"),
+    id = id.from(_N, "DescribeRefreshSchemasStatusResponse"),
     type = "structure",
     members = {
         RefreshSchemasStatus = schema.new({
@@ -9813,7 +9813,7 @@ M.DescribeRefreshSchemasStatusOutput = schema.new({
 })
 
 M.DescribeReplicationConfigsInput = schema.new({
-    id = id.from(_N, "DescribeReplicationConfigsInput"),
+    id = id.from(_N, "DescribeReplicationConfigsMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -9821,7 +9821,7 @@ M.DescribeReplicationConfigsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeReplicationConfigsInput", "MaxRecords"),
@@ -9839,7 +9839,7 @@ M.DescribeReplicationConfigsInput = schema.new({
 })
 
 M.DescribeReplicationConfigsOutput = schema.new({
-    id = id.from(_N, "DescribeReplicationConfigsOutput"),
+    id = id.from(_N, "DescribeReplicationConfigsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -9853,13 +9853,13 @@ M.DescribeReplicationConfigsOutput = schema.new({
             type = "list",
             name = "ReplicationConfigs",
             target_id = prelude.Document.id,
-            list_member = M.ReplicationConfig,
+            list_member = schema.new({ type = "structure", target = M.ReplicationConfig, traits = { [traits.XML_NAME] = { name = "ReplicationConfig" } } }),
         }),
     },
 })
 
 M.DescribeReplicationInstancesInput = schema.new({
-    id = id.from(_N, "DescribeReplicationInstancesInput"),
+    id = id.from(_N, "DescribeReplicationInstancesMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -9867,7 +9867,7 @@ M.DescribeReplicationInstancesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeReplicationInstancesInput", "MaxRecords"),
@@ -9885,7 +9885,7 @@ M.DescribeReplicationInstancesInput = schema.new({
 })
 
 M.DescribeReplicationInstancesOutput = schema.new({
-    id = id.from(_N, "DescribeReplicationInstancesOutput"),
+    id = id.from(_N, "DescribeReplicationInstancesResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -9899,13 +9899,13 @@ M.DescribeReplicationInstancesOutput = schema.new({
             type = "list",
             name = "ReplicationInstances",
             target_id = prelude.Document.id,
-            list_member = M.ReplicationInstance,
+            list_member = schema.new({ type = "structure", target = M.ReplicationInstance, traits = { [traits.XML_NAME] = { name = "ReplicationInstance" } } }),
         }),
     },
 })
 
 M.DescribeReplicationInstanceTaskLogsInput = schema.new({
-    id = id.from(_N, "DescribeReplicationInstanceTaskLogsInput"),
+    id = id.from(_N, "DescribeReplicationInstanceTaskLogsMessage"),
     type = "structure",
     members = {
         ReplicationInstanceArn = schema.new({
@@ -9961,7 +9961,7 @@ M.ReplicationInstanceTaskLog = schema.new({
 })
 
 M.DescribeReplicationInstanceTaskLogsOutput = schema.new({
-    id = id.from(_N, "DescribeReplicationInstanceTaskLogsOutput"),
+    id = id.from(_N, "DescribeReplicationInstanceTaskLogsResponse"),
     type = "structure",
     members = {
         ReplicationInstanceArn = schema.new({
@@ -9987,7 +9987,7 @@ M.DescribeReplicationInstanceTaskLogsOutput = schema.new({
 })
 
 M.DescribeReplicationsInput = schema.new({
-    id = id.from(_N, "DescribeReplicationsInput"),
+    id = id.from(_N, "DescribeReplicationsMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -9995,7 +9995,7 @@ M.DescribeReplicationsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeReplicationsInput", "MaxRecords"),
@@ -10368,7 +10368,7 @@ M.Replication = schema.new({
 })
 
 M.DescribeReplicationsOutput = schema.new({
-    id = id.from(_N, "DescribeReplicationsOutput"),
+    id = id.from(_N, "DescribeReplicationsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -10382,13 +10382,13 @@ M.DescribeReplicationsOutput = schema.new({
             type = "list",
             name = "Replications",
             target_id = prelude.Document.id,
-            list_member = M.Replication,
+            list_member = schema.new({ type = "structure", target = M.Replication, traits = { [traits.XML_NAME] = { name = "Replication" } } }),
         }),
     },
 })
 
 M.DescribeReplicationSubnetGroupsInput = schema.new({
-    id = id.from(_N, "DescribeReplicationSubnetGroupsInput"),
+    id = id.from(_N, "DescribeReplicationSubnetGroupsMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -10396,7 +10396,7 @@ M.DescribeReplicationSubnetGroupsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeReplicationSubnetGroupsInput", "MaxRecords"),
@@ -10414,7 +10414,7 @@ M.DescribeReplicationSubnetGroupsInput = schema.new({
 })
 
 M.DescribeReplicationSubnetGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeReplicationSubnetGroupsOutput"),
+    id = id.from(_N, "DescribeReplicationSubnetGroupsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -10428,13 +10428,13 @@ M.DescribeReplicationSubnetGroupsOutput = schema.new({
             type = "list",
             name = "ReplicationSubnetGroups",
             target_id = prelude.Document.id,
-            list_member = M.ReplicationSubnetGroup,
+            list_member = schema.new({ type = "structure", target = M.ReplicationSubnetGroup, traits = { [traits.XML_NAME] = { name = "ReplicationSubnetGroup" } } }),
         }),
     },
 })
 
 M.DescribeReplicationTableStatisticsInput = schema.new({
-    id = id.from(_N, "DescribeReplicationTableStatisticsInput"),
+    id = id.from(_N, "DescribeReplicationTableStatisticsMessage"),
     type = "structure",
     members = {
         ReplicationConfigArn = schema.new({
@@ -10463,7 +10463,7 @@ M.DescribeReplicationTableStatisticsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
     },
 })
@@ -10674,7 +10674,7 @@ M.TableStatistics = schema.new({
 })
 
 M.DescribeReplicationTableStatisticsOutput = schema.new({
-    id = id.from(_N, "DescribeReplicationTableStatisticsOutput"),
+    id = id.from(_N, "DescribeReplicationTableStatisticsResponse"),
     type = "structure",
     members = {
         ReplicationConfigArn = schema.new({
@@ -10700,7 +10700,7 @@ M.DescribeReplicationTableStatisticsOutput = schema.new({
 })
 
 M.DescribeReplicationTaskAssessmentResultsInput = schema.new({
-    id = id.from(_N, "DescribeReplicationTaskAssessmentResultsInput"),
+    id = id.from(_N, "DescribeReplicationTaskAssessmentResultsMessage"),
     type = "structure",
     members = {
         ReplicationTaskArn = schema.new({
@@ -10774,7 +10774,7 @@ M.ReplicationTaskAssessmentResult = schema.new({
 })
 
 M.DescribeReplicationTaskAssessmentResultsOutput = schema.new({
-    id = id.from(_N, "DescribeReplicationTaskAssessmentResultsOutput"),
+    id = id.from(_N, "DescribeReplicationTaskAssessmentResultsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -10794,13 +10794,13 @@ M.DescribeReplicationTaskAssessmentResultsOutput = schema.new({
             type = "list",
             name = "ReplicationTaskAssessmentResults",
             target_id = prelude.Document.id,
-            list_member = M.ReplicationTaskAssessmentResult,
+            list_member = schema.new({ type = "structure", target = M.ReplicationTaskAssessmentResult, traits = { [traits.XML_NAME] = { name = "ReplicationTaskAssessmentResult" } } }),
         }),
     },
 })
 
 M.DescribeReplicationTaskAssessmentRunsInput = schema.new({
-    id = id.from(_N, "DescribeReplicationTaskAssessmentRunsInput"),
+    id = id.from(_N, "DescribeReplicationTaskAssessmentRunsMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -10808,7 +10808,7 @@ M.DescribeReplicationTaskAssessmentRunsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeReplicationTaskAssessmentRunsInput", "MaxRecords"),
@@ -10826,7 +10826,7 @@ M.DescribeReplicationTaskAssessmentRunsInput = schema.new({
 })
 
 M.DescribeReplicationTaskAssessmentRunsOutput = schema.new({
-    id = id.from(_N, "DescribeReplicationTaskAssessmentRunsOutput"),
+    id = id.from(_N, "DescribeReplicationTaskAssessmentRunsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -10846,7 +10846,7 @@ M.DescribeReplicationTaskAssessmentRunsOutput = schema.new({
 })
 
 M.DescribeReplicationTaskIndividualAssessmentsInput = schema.new({
-    id = id.from(_N, "DescribeReplicationTaskIndividualAssessmentsInput"),
+    id = id.from(_N, "DescribeReplicationTaskIndividualAssessmentsMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -10854,7 +10854,7 @@ M.DescribeReplicationTaskIndividualAssessmentsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeReplicationTaskIndividualAssessmentsInput", "MaxRecords"),
@@ -10909,7 +10909,7 @@ M.ReplicationTaskIndividualAssessment = schema.new({
 })
 
 M.DescribeReplicationTaskIndividualAssessmentsOutput = schema.new({
-    id = id.from(_N, "DescribeReplicationTaskIndividualAssessmentsOutput"),
+    id = id.from(_N, "DescribeReplicationTaskIndividualAssessmentsResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -10929,7 +10929,7 @@ M.DescribeReplicationTaskIndividualAssessmentsOutput = schema.new({
 })
 
 M.DescribeReplicationTasksInput = schema.new({
-    id = id.from(_N, "DescribeReplicationTasksInput"),
+    id = id.from(_N, "DescribeReplicationTasksMessage"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -10937,7 +10937,7 @@ M.DescribeReplicationTasksInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
         MaxRecords = schema.new({
             id = id.from(_N, "DescribeReplicationTasksInput", "MaxRecords"),
@@ -10961,7 +10961,7 @@ M.DescribeReplicationTasksInput = schema.new({
 })
 
 M.DescribeReplicationTasksOutput = schema.new({
-    id = id.from(_N, "DescribeReplicationTasksOutput"),
+    id = id.from(_N, "DescribeReplicationTasksResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -10975,13 +10975,13 @@ M.DescribeReplicationTasksOutput = schema.new({
             type = "list",
             name = "ReplicationTasks",
             target_id = prelude.Document.id,
-            list_member = M.ReplicationTask,
+            list_member = schema.new({ type = "structure", target = M.ReplicationTask, traits = { [traits.XML_NAME] = { name = "ReplicationTask" } } }),
         }),
     },
 })
 
 M.DescribeSchemasInput = schema.new({
-    id = id.from(_N, "DescribeSchemasInput"),
+    id = id.from(_N, "DescribeSchemasMessage"),
     type = "structure",
     members = {
         EndpointArn = schema.new({
@@ -11009,7 +11009,7 @@ M.DescribeSchemasInput = schema.new({
 })
 
 M.DescribeSchemasOutput = schema.new({
-    id = id.from(_N, "DescribeSchemasOutput"),
+    id = id.from(_N, "DescribeSchemasResponse"),
     type = "structure",
     members = {
         Marker = schema.new({
@@ -11029,7 +11029,7 @@ M.DescribeSchemasOutput = schema.new({
 })
 
 M.DescribeTableStatisticsInput = schema.new({
-    id = id.from(_N, "DescribeTableStatisticsInput"),
+    id = id.from(_N, "DescribeTableStatisticsMessage"),
     type = "structure",
     members = {
         ReplicationTaskArn = schema.new({
@@ -11058,13 +11058,13 @@ M.DescribeTableStatisticsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
         }),
     },
 })
 
 M.DescribeTableStatisticsOutput = schema.new({
-    id = id.from(_N, "DescribeTableStatisticsOutput"),
+    id = id.from(_N, "DescribeTableStatisticsResponse"),
     type = "structure",
     members = {
         ReplicationTaskArn = schema.new({
@@ -11090,7 +11090,7 @@ M.DescribeTableStatisticsOutput = schema.new({
 })
 
 M.ExportMetadataModelAssessmentInput = schema.new({
-    id = id.from(_N, "ExportMetadataModelAssessmentInput"),
+    id = id.from(_N, "ExportMetadataModelAssessmentMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -11147,7 +11147,7 @@ M.ExportMetadataModelAssessmentResultEntry = schema.new({
 })
 
 M.ExportMetadataModelAssessmentOutput = schema.new({
-    id = id.from(_N, "ExportMetadataModelAssessmentOutput"),
+    id = id.from(_N, "ExportMetadataModelAssessmentResponse"),
     type = "structure",
     members = {
         PdfReport = schema.new({
@@ -11168,7 +11168,7 @@ M.ExportMetadataModelAssessmentOutput = schema.new({
 })
 
 M.GetTargetSelectionRulesInput = schema.new({
-    id = id.from(_N, "GetTargetSelectionRulesInput"),
+    id = id.from(_N, "GetTargetSelectionRulesMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -11193,7 +11193,7 @@ M.GetTargetSelectionRulesInput = schema.new({
 })
 
 M.GetTargetSelectionRulesOutput = schema.new({
-    id = id.from(_N, "GetTargetSelectionRulesOutput"),
+    id = id.from(_N, "GetTargetSelectionRulesResponse"),
     type = "structure",
     members = {
         TargetSelectionRules = schema.new({
@@ -11206,7 +11206,7 @@ M.GetTargetSelectionRulesOutput = schema.new({
 })
 
 M.ImportCertificateInput = schema.new({
-    id = id.from(_N, "ImportCertificateInput"),
+    id = id.from(_N, "ImportCertificateMessage"),
     type = "structure",
     members = {
         CertificateIdentifier = schema.new({
@@ -11235,7 +11235,7 @@ M.ImportCertificateInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
         KmsKeyId = schema.new({
             id = id.from(_N, "ImportCertificateInput", "KmsKeyId"),
@@ -11247,7 +11247,7 @@ M.ImportCertificateInput = schema.new({
 })
 
 M.ImportCertificateOutput = schema.new({
-    id = id.from(_N, "ImportCertificateOutput"),
+    id = id.from(_N, "ImportCertificateResponse"),
     type = "structure",
     members = {
         Certificate = schema.new({
@@ -11277,7 +11277,7 @@ M.InvalidCertificateFault = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceMessage"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -11297,7 +11297,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         TagList = schema.new({
@@ -11305,13 +11305,13 @@ M.ListTagsForResourceOutput = schema.new({
             type = "list",
             name = "TagList",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.ModifyConversionConfigurationInput = schema.new({
-    id = id.from(_N, "ModifyConversionConfigurationInput"),
+    id = id.from(_N, "ModifyConversionConfigurationMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -11336,7 +11336,7 @@ M.ModifyConversionConfigurationInput = schema.new({
 })
 
 M.ModifyConversionConfigurationOutput = schema.new({
-    id = id.from(_N, "ModifyConversionConfigurationOutput"),
+    id = id.from(_N, "ModifyConversionConfigurationResponse"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -11349,7 +11349,7 @@ M.ModifyConversionConfigurationOutput = schema.new({
 })
 
 M.ModifyDataMigrationInput = schema.new({
-    id = id.from(_N, "ModifyDataMigrationInput"),
+    id = id.from(_N, "ModifyDataMigrationMessage"),
     type = "structure",
     members = {
         DataMigrationIdentifier = schema.new({
@@ -11415,7 +11415,7 @@ M.ModifyDataMigrationInput = schema.new({
 })
 
 M.ModifyDataMigrationOutput = schema.new({
-    id = id.from(_N, "ModifyDataMigrationOutput"),
+    id = id.from(_N, "ModifyDataMigrationResponse"),
     type = "structure",
     members = {
         DataMigration = schema.new({
@@ -11429,7 +11429,7 @@ M.ModifyDataMigrationOutput = schema.new({
 })
 
 M.ModifyDataProviderInput = schema.new({
-    id = id.from(_N, "ModifyDataProviderInput"),
+    id = id.from(_N, "ModifyDataProviderMessage"),
     type = "structure",
     members = {
         DataProviderIdentifier = schema.new({
@@ -11482,7 +11482,7 @@ M.ModifyDataProviderInput = schema.new({
 })
 
 M.ModifyDataProviderOutput = schema.new({
-    id = id.from(_N, "ModifyDataProviderOutput"),
+    id = id.from(_N, "ModifyDataProviderResponse"),
     type = "structure",
     members = {
         DataProvider = schema.new({
@@ -11496,7 +11496,7 @@ M.ModifyDataProviderOutput = schema.new({
 })
 
 M.ModifyEndpointInput = schema.new({
-    id = id.from(_N, "ModifyEndpointInput"),
+    id = id.from(_N, "ModifyEndpointMessage"),
     type = "structure",
     members = {
         EndpointArn = schema.new({
@@ -11729,7 +11729,7 @@ M.ModifyEndpointInput = schema.new({
 })
 
 M.ModifyEndpointOutput = schema.new({
-    id = id.from(_N, "ModifyEndpointOutput"),
+    id = id.from(_N, "ModifyEndpointResponse"),
     type = "structure",
     members = {
         Endpoint = schema.new({
@@ -11743,7 +11743,7 @@ M.ModifyEndpointOutput = schema.new({
 })
 
 M.ModifyEventSubscriptionInput = schema.new({
-    id = id.from(_N, "ModifyEventSubscriptionInput"),
+    id = id.from(_N, "ModifyEventSubscriptionMessage"),
     type = "structure",
     members = {
         SubscriptionName = schema.new({
@@ -11772,7 +11772,7 @@ M.ModifyEventSubscriptionInput = schema.new({
             type = "list",
             name = "EventCategories",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "EventCategory" } } }),
         }),
         Enabled = schema.new({
             id = id.from(_N, "ModifyEventSubscriptionInput", "Enabled"),
@@ -11784,7 +11784,7 @@ M.ModifyEventSubscriptionInput = schema.new({
 })
 
 M.ModifyEventSubscriptionOutput = schema.new({
-    id = id.from(_N, "ModifyEventSubscriptionOutput"),
+    id = id.from(_N, "ModifyEventSubscriptionResponse"),
     type = "structure",
     members = {
         EventSubscription = schema.new({
@@ -11798,7 +11798,7 @@ M.ModifyEventSubscriptionOutput = schema.new({
 })
 
 M.ModifyInstanceProfileInput = schema.new({
-    id = id.from(_N, "ModifyInstanceProfileInput"),
+    id = id.from(_N, "ModifyInstanceProfileMessage"),
     type = "structure",
     members = {
         InstanceProfileIdentifier = schema.new({
@@ -11863,7 +11863,7 @@ M.ModifyInstanceProfileInput = schema.new({
 })
 
 M.ModifyInstanceProfileOutput = schema.new({
-    id = id.from(_N, "ModifyInstanceProfileOutput"),
+    id = id.from(_N, "ModifyInstanceProfileResponse"),
     type = "structure",
     members = {
         InstanceProfile = schema.new({
@@ -11877,7 +11877,7 @@ M.ModifyInstanceProfileOutput = schema.new({
 })
 
 M.ModifyMigrationProjectInput = schema.new({
-    id = id.from(_N, "ModifyMigrationProjectInput"),
+    id = id.from(_N, "ModifyMigrationProjectMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -11938,7 +11938,7 @@ M.ModifyMigrationProjectInput = schema.new({
 })
 
 M.ModifyMigrationProjectOutput = schema.new({
-    id = id.from(_N, "ModifyMigrationProjectOutput"),
+    id = id.from(_N, "ModifyMigrationProjectResponse"),
     type = "structure",
     members = {
         MigrationProject = schema.new({
@@ -11952,7 +11952,7 @@ M.ModifyMigrationProjectOutput = schema.new({
 })
 
 M.ModifyReplicationConfigInput = schema.new({
-    id = id.from(_N, "ModifyReplicationConfigInput"),
+    id = id.from(_N, "ModifyReplicationConfigMessage"),
     type = "structure",
     members = {
         ReplicationConfigArn = schema.new({
@@ -12017,7 +12017,7 @@ M.ModifyReplicationConfigInput = schema.new({
 })
 
 M.ModifyReplicationConfigOutput = schema.new({
-    id = id.from(_N, "ModifyReplicationConfigOutput"),
+    id = id.from(_N, "ModifyReplicationConfigResponse"),
     type = "structure",
     members = {
         ReplicationConfig = schema.new({
@@ -12031,7 +12031,7 @@ M.ModifyReplicationConfigOutput = schema.new({
 })
 
 M.ModifyReplicationInstanceInput = schema.new({
-    id = id.from(_N, "ModifyReplicationInstanceInput"),
+    id = id.from(_N, "ModifyReplicationInstanceMessage"),
     type = "structure",
     members = {
         ReplicationInstanceArn = schema.new({
@@ -12069,7 +12069,7 @@ M.ModifyReplicationInstanceInput = schema.new({
             type = "list",
             name = "VpcSecurityGroupIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "VpcSecurityGroupId" } } }),
         }),
         PreferredMaintenanceWindow = schema.new({
             id = id.from(_N, "ModifyReplicationInstanceInput", "PreferredMaintenanceWindow"),
@@ -12127,7 +12127,7 @@ M.ModifyReplicationInstanceInput = schema.new({
 })
 
 M.ModifyReplicationInstanceOutput = schema.new({
-    id = id.from(_N, "ModifyReplicationInstanceOutput"),
+    id = id.from(_N, "ModifyReplicationInstanceResponse"),
     type = "structure",
     members = {
         ReplicationInstance = schema.new({
@@ -12157,7 +12157,7 @@ M.UpgradeDependencyFailureFault = schema.new({
 })
 
 M.ModifyReplicationSubnetGroupInput = schema.new({
-    id = id.from(_N, "ModifyReplicationSubnetGroupInput"),
+    id = id.from(_N, "ModifyReplicationSubnetGroupMessage"),
     type = "structure",
     members = {
         ReplicationSubnetGroupIdentifier = schema.new({
@@ -12180,7 +12180,7 @@ M.ModifyReplicationSubnetGroupInput = schema.new({
             type = "list",
             name = "SubnetIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "SubnetIdentifier" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -12189,7 +12189,7 @@ M.ModifyReplicationSubnetGroupInput = schema.new({
 })
 
 M.ModifyReplicationSubnetGroupOutput = schema.new({
-    id = id.from(_N, "ModifyReplicationSubnetGroupOutput"),
+    id = id.from(_N, "ModifyReplicationSubnetGroupResponse"),
     type = "structure",
     members = {
         ReplicationSubnetGroup = schema.new({
@@ -12219,7 +12219,7 @@ M.SubnetAlreadyInUse = schema.new({
 })
 
 M.ModifyReplicationTaskInput = schema.new({
-    id = id.from(_N, "ModifyReplicationTaskInput"),
+    id = id.from(_N, "ModifyReplicationTaskMessage"),
     type = "structure",
     members = {
         ReplicationTaskArn = schema.new({
@@ -12283,7 +12283,7 @@ M.ModifyReplicationTaskInput = schema.new({
 })
 
 M.ModifyReplicationTaskOutput = schema.new({
-    id = id.from(_N, "ModifyReplicationTaskOutput"),
+    id = id.from(_N, "ModifyReplicationTaskResponse"),
     type = "structure",
     members = {
         ReplicationTask = schema.new({
@@ -12297,7 +12297,7 @@ M.ModifyReplicationTaskOutput = schema.new({
 })
 
 M.MoveReplicationTaskInput = schema.new({
-    id = id.from(_N, "MoveReplicationTaskInput"),
+    id = id.from(_N, "MoveReplicationTaskMessage"),
     type = "structure",
     members = {
         ReplicationTaskArn = schema.new({
@@ -12322,7 +12322,7 @@ M.MoveReplicationTaskInput = schema.new({
 })
 
 M.MoveReplicationTaskOutput = schema.new({
-    id = id.from(_N, "MoveReplicationTaskOutput"),
+    id = id.from(_N, "MoveReplicationTaskResponse"),
     type = "structure",
     members = {
         ReplicationTask = schema.new({
@@ -12336,7 +12336,7 @@ M.MoveReplicationTaskOutput = schema.new({
 })
 
 M.RebootReplicationInstanceInput = schema.new({
-    id = id.from(_N, "RebootReplicationInstanceInput"),
+    id = id.from(_N, "RebootReplicationInstanceMessage"),
     type = "structure",
     members = {
         ReplicationInstanceArn = schema.new({
@@ -12364,7 +12364,7 @@ M.RebootReplicationInstanceInput = schema.new({
 })
 
 M.RebootReplicationInstanceOutput = schema.new({
-    id = id.from(_N, "RebootReplicationInstanceOutput"),
+    id = id.from(_N, "RebootReplicationInstanceResponse"),
     type = "structure",
     members = {
         ReplicationInstance = schema.new({
@@ -12378,7 +12378,7 @@ M.RebootReplicationInstanceOutput = schema.new({
 })
 
 M.RefreshSchemasInput = schema.new({
-    id = id.from(_N, "RefreshSchemasInput"),
+    id = id.from(_N, "RefreshSchemasMessage"),
     type = "structure",
     members = {
         EndpointArn = schema.new({
@@ -12403,7 +12403,7 @@ M.RefreshSchemasInput = schema.new({
 })
 
 M.RefreshSchemasOutput = schema.new({
-    id = id.from(_N, "RefreshSchemasOutput"),
+    id = id.from(_N, "RefreshSchemasResponse"),
     type = "structure",
     members = {
         RefreshSchemasStatus = schema.new({
@@ -12442,7 +12442,7 @@ M.TableToReload = schema.new({
 })
 
 M.ReloadReplicationTablesInput = schema.new({
-    id = id.from(_N, "ReloadReplicationTablesInput"),
+    id = id.from(_N, "ReloadReplicationTablesMessage"),
     type = "structure",
     members = {
         ReplicationConfigArn = schema.new({
@@ -12474,7 +12474,7 @@ M.ReloadReplicationTablesInput = schema.new({
 })
 
 M.ReloadReplicationTablesOutput = schema.new({
-    id = id.from(_N, "ReloadReplicationTablesOutput"),
+    id = id.from(_N, "ReloadReplicationTablesResponse"),
     type = "structure",
     members = {
         ReplicationConfigArn = schema.new({
@@ -12487,7 +12487,7 @@ M.ReloadReplicationTablesOutput = schema.new({
 })
 
 M.ReloadTablesInput = schema.new({
-    id = id.from(_N, "ReloadTablesInput"),
+    id = id.from(_N, "ReloadTablesMessage"),
     type = "structure",
     members = {
         ReplicationTaskArn = schema.new({
@@ -12519,7 +12519,7 @@ M.ReloadTablesInput = schema.new({
 })
 
 M.ReloadTablesOutput = schema.new({
-    id = id.from(_N, "ReloadTablesOutput"),
+    id = id.from(_N, "ReloadTablesResponse"),
     type = "structure",
     members = {
         ReplicationTaskArn = schema.new({
@@ -12532,7 +12532,7 @@ M.ReloadTablesOutput = schema.new({
 })
 
 M.RemoveTagsFromResourceInput = schema.new({
-    id = id.from(_N, "RemoveTagsFromResourceInput"),
+    id = id.from(_N, "RemoveTagsFromResourceMessage"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -12558,17 +12558,17 @@ M.RemoveTagsFromResourceInput = schema.new({
 })
 
 M.RemoveTagsFromResourceOutput = schema.new({
-    id = id.from(_N, "RemoveTagsFromResourceOutput"),
+    id = id.from(_N, "RemoveTagsFromResourceResponse"),
     type = "structure",
 })
 
 M.RunFleetAdvisorLsaAnalysisInput = schema.new({
-    id = id.from(_N, "RunFleetAdvisorLsaAnalysisInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RunFleetAdvisorLsaAnalysisOutput = schema.new({
-    id = id.from(_N, "RunFleetAdvisorLsaAnalysisOutput"),
+    id = id.from(_N, "RunFleetAdvisorLsaAnalysisResponse"),
     type = "structure",
     members = {
         LsaAnalysisId = schema.new({
@@ -12587,7 +12587,7 @@ M.RunFleetAdvisorLsaAnalysisOutput = schema.new({
 })
 
 M.StartDataMigrationInput = schema.new({
-    id = id.from(_N, "StartDataMigrationInput"),
+    id = id.from(_N, "StartDataMigrationMessage"),
     type = "structure",
     members = {
         DataMigrationIdentifier = schema.new({
@@ -12612,7 +12612,7 @@ M.StartDataMigrationInput = schema.new({
 })
 
 M.StartDataMigrationOutput = schema.new({
-    id = id.from(_N, "StartDataMigrationOutput"),
+    id = id.from(_N, "StartDataMigrationResponse"),
     type = "structure",
     members = {
         DataMigration = schema.new({
@@ -12626,7 +12626,7 @@ M.StartDataMigrationOutput = schema.new({
 })
 
 M.StartExtensionPackAssociationInput = schema.new({
-    id = id.from(_N, "StartExtensionPackAssociationInput"),
+    id = id.from(_N, "StartExtensionPackAssociationMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -12642,7 +12642,7 @@ M.StartExtensionPackAssociationInput = schema.new({
 })
 
 M.StartExtensionPackAssociationOutput = schema.new({
-    id = id.from(_N, "StartExtensionPackAssociationOutput"),
+    id = id.from(_N, "StartExtensionPackAssociationResponse"),
     type = "structure",
     members = {
         RequestIdentifier = schema.new({
@@ -12655,7 +12655,7 @@ M.StartExtensionPackAssociationOutput = schema.new({
 })
 
 M.StartMetadataModelAssessmentInput = schema.new({
-    id = id.from(_N, "StartMetadataModelAssessmentInput"),
+    id = id.from(_N, "StartMetadataModelAssessmentMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -12680,7 +12680,7 @@ M.StartMetadataModelAssessmentInput = schema.new({
 })
 
 M.StartMetadataModelAssessmentOutput = schema.new({
-    id = id.from(_N, "StartMetadataModelAssessmentOutput"),
+    id = id.from(_N, "StartMetadataModelAssessmentResponse"),
     type = "structure",
     members = {
         RequestIdentifier = schema.new({
@@ -12693,7 +12693,7 @@ M.StartMetadataModelAssessmentOutput = schema.new({
 })
 
 M.StartMetadataModelConversionInput = schema.new({
-    id = id.from(_N, "StartMetadataModelConversionInput"),
+    id = id.from(_N, "StartMetadataModelConversionMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -12718,7 +12718,7 @@ M.StartMetadataModelConversionInput = schema.new({
 })
 
 M.StartMetadataModelConversionOutput = schema.new({
-    id = id.from(_N, "StartMetadataModelConversionOutput"),
+    id = id.from(_N, "StartMetadataModelConversionResponse"),
     type = "structure",
     members = {
         RequestIdentifier = schema.new({
@@ -12761,7 +12761,7 @@ M.MetadataModelProperties = schema.new({
 })
 
 M.StartMetadataModelCreationInput = schema.new({
-    id = id.from(_N, "StartMetadataModelCreationInput"),
+    id = id.from(_N, "StartMetadataModelCreationMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -12805,7 +12805,7 @@ M.StartMetadataModelCreationInput = schema.new({
 })
 
 M.StartMetadataModelCreationOutput = schema.new({
-    id = id.from(_N, "StartMetadataModelCreationOutput"),
+    id = id.from(_N, "StartMetadataModelCreationResponse"),
     type = "structure",
     members = {
         RequestIdentifier = schema.new({
@@ -12818,7 +12818,7 @@ M.StartMetadataModelCreationOutput = schema.new({
 })
 
 M.StartMetadataModelExportAsScriptInput = schema.new({
-    id = id.from(_N, "StartMetadataModelExportAsScriptInput"),
+    id = id.from(_N, "StartMetadataModelExportAsScriptMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -12858,7 +12858,7 @@ M.StartMetadataModelExportAsScriptInput = schema.new({
 })
 
 M.StartMetadataModelExportAsScriptOutput = schema.new({
-    id = id.from(_N, "StartMetadataModelExportAsScriptOutput"),
+    id = id.from(_N, "StartMetadataModelExportAsScriptResponse"),
     type = "structure",
     members = {
         RequestIdentifier = schema.new({
@@ -12871,7 +12871,7 @@ M.StartMetadataModelExportAsScriptOutput = schema.new({
 })
 
 M.StartMetadataModelExportToTargetInput = schema.new({
-    id = id.from(_N, "StartMetadataModelExportToTargetInput"),
+    id = id.from(_N, "StartMetadataModelExportToTargetMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -12902,7 +12902,7 @@ M.StartMetadataModelExportToTargetInput = schema.new({
 })
 
 M.StartMetadataModelExportToTargetOutput = schema.new({
-    id = id.from(_N, "StartMetadataModelExportToTargetOutput"),
+    id = id.from(_N, "StartMetadataModelExportToTargetResponse"),
     type = "structure",
     members = {
         RequestIdentifier = schema.new({
@@ -12915,7 +12915,7 @@ M.StartMetadataModelExportToTargetOutput = schema.new({
 })
 
 M.StartMetadataModelImportInput = schema.new({
-    id = id.from(_N, "StartMetadataModelImportInput"),
+    id = id.from(_N, "StartMetadataModelImportMessage"),
     type = "structure",
     members = {
         MigrationProjectIdentifier = schema.new({
@@ -12958,7 +12958,7 @@ M.StartMetadataModelImportInput = schema.new({
 })
 
 M.StartMetadataModelImportOutput = schema.new({
-    id = id.from(_N, "StartMetadataModelImportOutput"),
+    id = id.from(_N, "StartMetadataModelImportResponse"),
     type = "structure",
     members = {
         RequestIdentifier = schema.new({
@@ -12971,7 +12971,7 @@ M.StartMetadataModelImportOutput = schema.new({
 })
 
 M.StartRecommendationsInput = schema.new({
-    id = id.from(_N, "StartRecommendationsInput"),
+    id = id.from(_N, "StartRecommendationsRequest"),
     type = "structure",
     members = {
         DatabaseId = schema.new({
@@ -12997,12 +12997,12 @@ M.StartRecommendationsInput = schema.new({
 })
 
 M.StartRecommendationsOutput = schema.new({
-    id = id.from(_N, "StartRecommendationsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StartReplicationInput = schema.new({
-    id = id.from(_N, "StartReplicationInput"),
+    id = id.from(_N, "StartReplicationMessage"),
     type = "structure",
     members = {
         ReplicationConfigArn = schema.new({
@@ -13051,7 +13051,7 @@ M.StartReplicationInput = schema.new({
 })
 
 M.StartReplicationOutput = schema.new({
-    id = id.from(_N, "StartReplicationOutput"),
+    id = id.from(_N, "StartReplicationResponse"),
     type = "structure",
     members = {
         Replication = schema.new({
@@ -13065,7 +13065,7 @@ M.StartReplicationOutput = schema.new({
 })
 
 M.StartReplicationTaskInput = schema.new({
-    id = id.from(_N, "StartReplicationTaskInput"),
+    id = id.from(_N, "StartReplicationTaskMessage"),
     type = "structure",
     members = {
         ReplicationTaskArn = schema.new({
@@ -13108,7 +13108,7 @@ M.StartReplicationTaskInput = schema.new({
 })
 
 M.StartReplicationTaskOutput = schema.new({
-    id = id.from(_N, "StartReplicationTaskOutput"),
+    id = id.from(_N, "StartReplicationTaskResponse"),
     type = "structure",
     members = {
         ReplicationTask = schema.new({
@@ -13122,7 +13122,7 @@ M.StartReplicationTaskOutput = schema.new({
 })
 
 M.StartReplicationTaskAssessmentInput = schema.new({
-    id = id.from(_N, "StartReplicationTaskAssessmentInput"),
+    id = id.from(_N, "StartReplicationTaskAssessmentMessage"),
     type = "structure",
     members = {
         ReplicationTaskArn = schema.new({
@@ -13138,7 +13138,7 @@ M.StartReplicationTaskAssessmentInput = schema.new({
 })
 
 M.StartReplicationTaskAssessmentOutput = schema.new({
-    id = id.from(_N, "StartReplicationTaskAssessmentOutput"),
+    id = id.from(_N, "StartReplicationTaskAssessmentResponse"),
     type = "structure",
     members = {
         ReplicationTask = schema.new({
@@ -13168,7 +13168,7 @@ M.KMSFault = schema.new({
 })
 
 M.StartReplicationTaskAssessmentRunInput = schema.new({
-    id = id.from(_N, "StartReplicationTaskAssessmentRunInput"),
+    id = id.from(_N, "StartReplicationTaskAssessmentRunMessage"),
     type = "structure",
     members = {
         ReplicationTaskArn = schema.new({
@@ -13244,13 +13244,13 @@ M.StartReplicationTaskAssessmentRunInput = schema.new({
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
         }),
     },
 })
 
 M.StartReplicationTaskAssessmentRunOutput = schema.new({
-    id = id.from(_N, "StartReplicationTaskAssessmentRunOutput"),
+    id = id.from(_N, "StartReplicationTaskAssessmentRunResponse"),
     type = "structure",
     members = {
         ReplicationTaskAssessmentRun = schema.new({
@@ -13264,7 +13264,7 @@ M.StartReplicationTaskAssessmentRunOutput = schema.new({
 })
 
 M.StopDataMigrationInput = schema.new({
-    id = id.from(_N, "StopDataMigrationInput"),
+    id = id.from(_N, "StopDataMigrationMessage"),
     type = "structure",
     members = {
         DataMigrationIdentifier = schema.new({
@@ -13280,7 +13280,7 @@ M.StopDataMigrationInput = schema.new({
 })
 
 M.StopDataMigrationOutput = schema.new({
-    id = id.from(_N, "StopDataMigrationOutput"),
+    id = id.from(_N, "StopDataMigrationResponse"),
     type = "structure",
     members = {
         DataMigration = schema.new({
@@ -13294,7 +13294,7 @@ M.StopDataMigrationOutput = schema.new({
 })
 
 M.StopReplicationInput = schema.new({
-    id = id.from(_N, "StopReplicationInput"),
+    id = id.from(_N, "StopReplicationMessage"),
     type = "structure",
     members = {
         ReplicationConfigArn = schema.new({
@@ -13310,7 +13310,7 @@ M.StopReplicationInput = schema.new({
 })
 
 M.StopReplicationOutput = schema.new({
-    id = id.from(_N, "StopReplicationOutput"),
+    id = id.from(_N, "StopReplicationResponse"),
     type = "structure",
     members = {
         Replication = schema.new({
@@ -13324,7 +13324,7 @@ M.StopReplicationOutput = schema.new({
 })
 
 M.StopReplicationTaskInput = schema.new({
-    id = id.from(_N, "StopReplicationTaskInput"),
+    id = id.from(_N, "StopReplicationTaskMessage"),
     type = "structure",
     members = {
         ReplicationTaskArn = schema.new({
@@ -13340,7 +13340,7 @@ M.StopReplicationTaskInput = schema.new({
 })
 
 M.StopReplicationTaskOutput = schema.new({
-    id = id.from(_N, "StopReplicationTaskOutput"),
+    id = id.from(_N, "StopReplicationTaskResponse"),
     type = "structure",
     members = {
         ReplicationTask = schema.new({
@@ -13354,7 +13354,7 @@ M.StopReplicationTaskOutput = schema.new({
 })
 
 M.TestConnectionInput = schema.new({
-    id = id.from(_N, "TestConnectionInput"),
+    id = id.from(_N, "TestConnectionMessage"),
     type = "structure",
     members = {
         ReplicationInstanceArn = schema.new({
@@ -13379,7 +13379,7 @@ M.TestConnectionInput = schema.new({
 })
 
 M.TestConnectionOutput = schema.new({
-    id = id.from(_N, "TestConnectionOutput"),
+    id = id.from(_N, "TestConnectionResponse"),
     type = "structure",
     members = {
         Connection = schema.new({
@@ -13393,7 +13393,7 @@ M.TestConnectionOutput = schema.new({
 })
 
 M.UpdateSubscriptionsToEventBridgeInput = schema.new({
-    id = id.from(_N, "UpdateSubscriptionsToEventBridgeInput"),
+    id = id.from(_N, "UpdateSubscriptionsToEventBridgeMessage"),
     type = "structure",
     members = {
         ForceMove = schema.new({
@@ -13406,7 +13406,7 @@ M.UpdateSubscriptionsToEventBridgeInput = schema.new({
 })
 
 M.UpdateSubscriptionsToEventBridgeOutput = schema.new({
-    id = id.from(_N, "UpdateSubscriptionsToEventBridgeOutput"),
+    id = id.from(_N, "UpdateSubscriptionsToEventBridgeResponse"),
     type = "structure",
     members = {
         Result = schema.new({
@@ -13417,5 +13417,19 @@ M.UpdateSubscriptionsToEventBridgeOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -121,7 +121,7 @@ M.AssociatedFace = schema.new({
 })
 
 M.AssociateFacesInput = schema.new({
-    id = id.from(_N, "AssociateFacesInput"),
+    id = id.from(_N, "AssociateFacesRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -203,7 +203,7 @@ M.UnsuccessfulFaceAssociation = schema.new({
 })
 
 M.AssociateFacesOutput = schema.new({
-    id = id.from(_N, "AssociateFacesOutput"),
+    id = id.from(_N, "AssociateFacesResponse"),
     type = "structure",
     members = {
         AssociatedFaces = schema.new({
@@ -1373,7 +1373,7 @@ M.Image = schema.new({
 })
 
 M.CompareFacesInput = schema.new({
-    id = id.from(_N, "CompareFacesInput"),
+    id = id.from(_N, "CompareFacesRequest"),
     type = "structure",
     members = {
         SourceImage = schema.new({
@@ -1432,7 +1432,7 @@ M.CompareFacesMatch = schema.new({
 })
 
 M.CompareFacesOutput = schema.new({
-    id = id.from(_N, "CompareFacesOutput"),
+    id = id.from(_N, "CompareFacesResponse"),
     type = "structure",
     members = {
         SourceImageFace = schema.new({
@@ -1716,7 +1716,7 @@ M.OutputConfig = schema.new({
 })
 
 M.CopyProjectVersionInput = schema.new({
-    id = id.from(_N, "CopyProjectVersionInput"),
+    id = id.from(_N, "CopyProjectVersionRequest"),
     type = "structure",
     members = {
         SourceProjectArn = schema.new({
@@ -1783,7 +1783,7 @@ M.CopyProjectVersionInput = schema.new({
 })
 
 M.CopyProjectVersionOutput = schema.new({
-    id = id.from(_N, "CopyProjectVersionOutput"),
+    id = id.from(_N, "CopyProjectVersionResponse"),
     type = "structure",
     members = {
         ProjectVersionArn = schema.new({
@@ -1852,7 +1852,7 @@ M.ResourceInUseException = schema.new({
 })
 
 M.CreateCollectionInput = schema.new({
-    id = id.from(_N, "CreateCollectionInput"),
+    id = id.from(_N, "CreateCollectionRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -1876,7 +1876,7 @@ M.CreateCollectionInput = schema.new({
 })
 
 M.CreateCollectionOutput = schema.new({
-    id = id.from(_N, "CreateCollectionOutput"),
+    id = id.from(_N, "CreateCollectionResponse"),
     type = "structure",
     members = {
         StatusCode = schema.new({
@@ -1949,7 +1949,7 @@ M.DatasetSource = schema.new({
 })
 
 M.CreateDatasetInput = schema.new({
-    id = id.from(_N, "CreateDatasetInput"),
+    id = id.from(_N, "CreateDatasetRequest"),
     type = "structure",
     members = {
         DatasetSource = schema.new({
@@ -1989,7 +1989,7 @@ M.CreateDatasetInput = schema.new({
 })
 
 M.CreateDatasetOutput = schema.new({
-    id = id.from(_N, "CreateDatasetOutput"),
+    id = id.from(_N, "CreateDatasetResponse"),
     type = "structure",
     members = {
         DatasetArn = schema.new({
@@ -2051,7 +2051,7 @@ M.CreateFaceLivenessSessionRequestSettings = schema.new({
 })
 
 M.CreateFaceLivenessSessionInput = schema.new({
-    id = id.from(_N, "CreateFaceLivenessSessionInput"),
+    id = id.from(_N, "CreateFaceLivenessSessionRequest"),
     type = "structure",
     members = {
         KmsKeyId = schema.new({
@@ -2077,7 +2077,7 @@ M.CreateFaceLivenessSessionInput = schema.new({
 })
 
 M.CreateFaceLivenessSessionOutput = schema.new({
-    id = id.from(_N, "CreateFaceLivenessSessionOutput"),
+    id = id.from(_N, "CreateFaceLivenessSessionResponse"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -2093,7 +2093,7 @@ M.CreateFaceLivenessSessionOutput = schema.new({
 })
 
 M.CreateProjectInput = schema.new({
-    id = id.from(_N, "CreateProjectInput"),
+    id = id.from(_N, "CreateProjectRequest"),
     type = "structure",
     members = {
         ProjectName = schema.new({
@@ -2129,7 +2129,7 @@ M.CreateProjectInput = schema.new({
 })
 
 M.CreateProjectOutput = schema.new({
-    id = id.from(_N, "CreateProjectOutput"),
+    id = id.from(_N, "CreateProjectResponse"),
     type = "structure",
     members = {
         ProjectArn = schema.new({
@@ -2206,7 +2206,7 @@ M.TrainingData = schema.new({
 })
 
 M.CreateProjectVersionInput = schema.new({
-    id = id.from(_N, "CreateProjectVersionInput"),
+    id = id.from(_N, "CreateProjectVersionRequest"),
     type = "structure",
     members = {
         ProjectArn = schema.new({
@@ -2282,7 +2282,7 @@ M.CreateProjectVersionInput = schema.new({
 })
 
 M.CreateProjectVersionOutput = schema.new({
-    id = id.from(_N, "CreateProjectVersionOutput"),
+    id = id.from(_N, "CreateProjectVersionResponse"),
     type = "structure",
     members = {
         ProjectVersionArn = schema.new({
@@ -2488,7 +2488,7 @@ M.StreamProcessorSettings = schema.new({
 })
 
 M.CreateStreamProcessorInput = schema.new({
-    id = id.from(_N, "CreateStreamProcessorInput"),
+    id = id.from(_N, "CreateStreamProcessorRequest"),
     type = "structure",
     members = {
         Input = schema.new({
@@ -2578,7 +2578,7 @@ M.CreateStreamProcessorInput = schema.new({
 })
 
 M.CreateStreamProcessorOutput = schema.new({
-    id = id.from(_N, "CreateStreamProcessorOutput"),
+    id = id.from(_N, "CreateStreamProcessorResponse"),
     type = "structure",
     members = {
         StreamProcessorArn = schema.new({
@@ -2591,7 +2591,7 @@ M.CreateStreamProcessorOutput = schema.new({
 })
 
 M.CreateUserInput = schema.new({
-    id = id.from(_N, "CreateUserInput"),
+    id = id.from(_N, "CreateUserRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -2625,7 +2625,7 @@ M.CreateUserInput = schema.new({
 })
 
 M.CreateUserOutput = schema.new({
-    id = id.from(_N, "CreateUserOutput"),
+    id = id.from(_N, "CreateUserResponse"),
     type = "structure",
 })
 
@@ -2850,7 +2850,7 @@ M.DatasetMetadata = schema.new({
 })
 
 M.DeleteCollectionInput = schema.new({
-    id = id.from(_N, "DeleteCollectionInput"),
+    id = id.from(_N, "DeleteCollectionRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -2866,7 +2866,7 @@ M.DeleteCollectionInput = schema.new({
 })
 
 M.DeleteCollectionOutput = schema.new({
-    id = id.from(_N, "DeleteCollectionOutput"),
+    id = id.from(_N, "DeleteCollectionResponse"),
     type = "structure",
     members = {
         StatusCode = schema.new({
@@ -2879,7 +2879,7 @@ M.DeleteCollectionOutput = schema.new({
 })
 
 M.DeleteDatasetInput = schema.new({
-    id = id.from(_N, "DeleteDatasetInput"),
+    id = id.from(_N, "DeleteDatasetRequest"),
     type = "structure",
     members = {
         DatasetArn = schema.new({
@@ -2895,12 +2895,12 @@ M.DeleteDatasetInput = schema.new({
 })
 
 M.DeleteDatasetOutput = schema.new({
-    id = id.from(_N, "DeleteDatasetOutput"),
+    id = id.from(_N, "DeleteDatasetResponse"),
     type = "structure",
 })
 
 M.DeleteFacesInput = schema.new({
-    id = id.from(_N, "DeleteFacesInput"),
+    id = id.from(_N, "DeleteFacesRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -2952,7 +2952,7 @@ M.UnsuccessfulFaceDeletion = schema.new({
 })
 
 M.DeleteFacesOutput = schema.new({
-    id = id.from(_N, "DeleteFacesOutput"),
+    id = id.from(_N, "DeleteFacesResponse"),
     type = "structure",
     members = {
         DeletedFaces = schema.new({
@@ -2973,7 +2973,7 @@ M.DeleteFacesOutput = schema.new({
 })
 
 M.DeleteProjectInput = schema.new({
-    id = id.from(_N, "DeleteProjectInput"),
+    id = id.from(_N, "DeleteProjectRequest"),
     type = "structure",
     members = {
         ProjectArn = schema.new({
@@ -2989,7 +2989,7 @@ M.DeleteProjectInput = schema.new({
 })
 
 M.DeleteProjectOutput = schema.new({
-    id = id.from(_N, "DeleteProjectOutput"),
+    id = id.from(_N, "DeleteProjectResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -3002,7 +3002,7 @@ M.DeleteProjectOutput = schema.new({
 })
 
 M.DeleteProjectPolicyInput = schema.new({
-    id = id.from(_N, "DeleteProjectPolicyInput"),
+    id = id.from(_N, "DeleteProjectPolicyRequest"),
     type = "structure",
     members = {
         ProjectArn = schema.new({
@@ -3033,7 +3033,7 @@ M.DeleteProjectPolicyInput = schema.new({
 })
 
 M.DeleteProjectPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteProjectPolicyOutput"),
+    id = id.from(_N, "DeleteProjectPolicyResponse"),
     type = "structure",
 })
 
@@ -3066,7 +3066,7 @@ M.InvalidPolicyRevisionIdException = schema.new({
 })
 
 M.DeleteProjectVersionInput = schema.new({
-    id = id.from(_N, "DeleteProjectVersionInput"),
+    id = id.from(_N, "DeleteProjectVersionRequest"),
     type = "structure",
     members = {
         ProjectVersionArn = schema.new({
@@ -3082,7 +3082,7 @@ M.DeleteProjectVersionInput = schema.new({
 })
 
 M.DeleteProjectVersionOutput = schema.new({
-    id = id.from(_N, "DeleteProjectVersionOutput"),
+    id = id.from(_N, "DeleteProjectVersionResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -3095,7 +3095,7 @@ M.DeleteProjectVersionOutput = schema.new({
 })
 
 M.DeleteStreamProcessorInput = schema.new({
-    id = id.from(_N, "DeleteStreamProcessorInput"),
+    id = id.from(_N, "DeleteStreamProcessorRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3111,12 +3111,12 @@ M.DeleteStreamProcessorInput = schema.new({
 })
 
 M.DeleteStreamProcessorOutput = schema.new({
-    id = id.from(_N, "DeleteStreamProcessorOutput"),
+    id = id.from(_N, "DeleteStreamProcessorResponse"),
     type = "structure",
 })
 
 M.DeleteUserInput = schema.new({
-    id = id.from(_N, "DeleteUserInput"),
+    id = id.from(_N, "DeleteUserRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -3150,12 +3150,12 @@ M.DeleteUserInput = schema.new({
 })
 
 M.DeleteUserOutput = schema.new({
-    id = id.from(_N, "DeleteUserOutput"),
+    id = id.from(_N, "DeleteUserResponse"),
     type = "structure",
 })
 
 M.DescribeCollectionInput = schema.new({
-    id = id.from(_N, "DescribeCollectionInput"),
+    id = id.from(_N, "DescribeCollectionRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -3171,7 +3171,7 @@ M.DescribeCollectionInput = schema.new({
 })
 
 M.DescribeCollectionOutput = schema.new({
-    id = id.from(_N, "DescribeCollectionOutput"),
+    id = id.from(_N, "DescribeCollectionResponse"),
     type = "structure",
     members = {
         FaceCount = schema.new({
@@ -3208,7 +3208,7 @@ M.DescribeCollectionOutput = schema.new({
 })
 
 M.DescribeDatasetInput = schema.new({
-    id = id.from(_N, "DescribeDatasetInput"),
+    id = id.from(_N, "DescribeDatasetRequest"),
     type = "structure",
     members = {
         DatasetArn = schema.new({
@@ -3224,7 +3224,7 @@ M.DescribeDatasetInput = schema.new({
 })
 
 M.DescribeDatasetOutput = schema.new({
-    id = id.from(_N, "DescribeDatasetOutput"),
+    id = id.from(_N, "DescribeDatasetResponse"),
     type = "structure",
     members = {
         DatasetDescription = schema.new({
@@ -3238,7 +3238,7 @@ M.DescribeDatasetOutput = schema.new({
 })
 
 M.DescribeProjectsInput = schema.new({
-    id = id.from(_N, "DescribeProjectsInput"),
+    id = id.from(_N, "DescribeProjectsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3315,7 +3315,7 @@ M.ProjectDescription = schema.new({
 })
 
 M.DescribeProjectsOutput = schema.new({
-    id = id.from(_N, "DescribeProjectsOutput"),
+    id = id.from(_N, "DescribeProjectsResponse"),
     type = "structure",
     members = {
         ProjectDescriptions = schema.new({
@@ -3363,7 +3363,7 @@ M.InvalidPaginationTokenException = schema.new({
 })
 
 M.DescribeProjectVersionsInput = schema.new({
-    id = id.from(_N, "DescribeProjectVersionsInput"),
+    id = id.from(_N, "DescribeProjectVersionsRequest"),
     type = "structure",
     members = {
         ProjectArn = schema.new({
@@ -3629,7 +3629,7 @@ M.ProjectVersionDescription = schema.new({
 })
 
 M.DescribeProjectVersionsOutput = schema.new({
-    id = id.from(_N, "DescribeProjectVersionsOutput"),
+    id = id.from(_N, "DescribeProjectVersionsResponse"),
     type = "structure",
     members = {
         ProjectVersionDescriptions = schema.new({
@@ -3649,7 +3649,7 @@ M.DescribeProjectVersionsOutput = schema.new({
 })
 
 M.DescribeStreamProcessorInput = schema.new({
-    id = id.from(_N, "DescribeStreamProcessorInput"),
+    id = id.from(_N, "DescribeStreamProcessorRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3665,7 +3665,7 @@ M.DescribeStreamProcessorInput = schema.new({
 })
 
 M.DescribeStreamProcessorOutput = schema.new({
-    id = id.from(_N, "DescribeStreamProcessorOutput"),
+    id = id.from(_N, "DescribeStreamProcessorResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3762,7 +3762,7 @@ M.DescribeStreamProcessorOutput = schema.new({
 })
 
 M.DetectCustomLabelsInput = schema.new({
-    id = id.from(_N, "DetectCustomLabelsInput"),
+    id = id.from(_N, "DetectCustomLabelsRequest"),
     type = "structure",
     members = {
         ProjectVersionArn = schema.new({
@@ -3800,7 +3800,7 @@ M.DetectCustomLabelsInput = schema.new({
 })
 
 M.DetectCustomLabelsOutput = schema.new({
-    id = id.from(_N, "DetectCustomLabelsOutput"),
+    id = id.from(_N, "DetectCustomLabelsResponse"),
     type = "structure",
     members = {
         CustomLabels = schema.new({
@@ -3842,7 +3842,7 @@ M.ResourceNotReadyException = schema.new({
 })
 
 M.DetectFacesInput = schema.new({
-    id = id.from(_N, "DetectFacesInput"),
+    id = id.from(_N, "DetectFacesRequest"),
     type = "structure",
     members = {
         Image = schema.new({
@@ -3866,7 +3866,7 @@ M.DetectFacesInput = schema.new({
 })
 
 M.DetectFacesOutput = schema.new({
-    id = id.from(_N, "DetectFacesOutput"),
+    id = id.from(_N, "DetectFacesResponse"),
     type = "structure",
     members = {
         FaceDetails = schema.new({
@@ -3983,7 +3983,7 @@ M.DetectLabelsSettings = schema.new({
 })
 
 M.DetectLabelsInput = schema.new({
-    id = id.from(_N, "DetectLabelsInput"),
+    id = id.from(_N, "DetectLabelsRequest"),
     type = "structure",
     members = {
         Image = schema.new({
@@ -4290,7 +4290,7 @@ M.Label = schema.new({
 })
 
 M.DetectLabelsOutput = schema.new({
-    id = id.from(_N, "DetectLabelsOutput"),
+    id = id.from(_N, "DetectLabelsResponse"),
     type = "structure",
     members = {
         Labels = schema.new({
@@ -4369,7 +4369,7 @@ M.HumanLoopConfig = schema.new({
 })
 
 M.DetectModerationLabelsInput = schema.new({
-    id = id.from(_N, "DetectModerationLabelsInput"),
+    id = id.from(_N, "DetectModerationLabelsRequest"),
     type = "structure",
     members = {
         Image = schema.new({
@@ -4434,7 +4434,7 @@ M.HumanLoopActivationOutput = schema.new({
 })
 
 M.DetectModerationLabelsOutput = schema.new({
-    id = id.from(_N, "DetectModerationLabelsOutput"),
+    id = id.from(_N, "DetectModerationLabelsResponse"),
     type = "structure",
     members = {
         ModerationLabels = schema.new({
@@ -4546,7 +4546,7 @@ M.ProtectiveEquipmentSummarizationAttributes = schema.new({
 })
 
 M.DetectProtectiveEquipmentInput = schema.new({
-    id = id.from(_N, "DetectProtectiveEquipmentInput"),
+    id = id.from(_N, "DetectProtectiveEquipmentRequest"),
     type = "structure",
     members = {
         Image = schema.new({
@@ -4631,7 +4631,7 @@ M.ProtectiveEquipmentSummary = schema.new({
 })
 
 M.DetectProtectiveEquipmentOutput = schema.new({
-    id = id.from(_N, "DetectProtectiveEquipmentOutput"),
+    id = id.from(_N, "DetectProtectiveEquipmentResponse"),
     type = "structure",
     members = {
         ProtectiveEquipmentModelVersion = schema.new({
@@ -4679,7 +4679,7 @@ M.DetectTextFilters = schema.new({
 })
 
 M.DetectTextInput = schema.new({
-    id = id.from(_N, "DetectTextInput"),
+    id = id.from(_N, "DetectTextRequest"),
     type = "structure",
     members = {
         Image = schema.new({
@@ -4747,7 +4747,7 @@ M.TextDetection = schema.new({
 })
 
 M.DetectTextOutput = schema.new({
-    id = id.from(_N, "DetectTextOutput"),
+    id = id.from(_N, "DetectTextResponse"),
     type = "structure",
     members = {
         TextDetections = schema.new({
@@ -4780,7 +4780,7 @@ M.DisassociatedFace = schema.new({
 })
 
 M.DisassociateFacesInput = schema.new({
-    id = id.from(_N, "DisassociateFacesInput"),
+    id = id.from(_N, "DisassociateFacesRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -4850,7 +4850,7 @@ M.UnsuccessfulFaceDisassociation = schema.new({
 })
 
 M.DisassociateFacesOutput = schema.new({
-    id = id.from(_N, "DisassociateFacesOutput"),
+    id = id.from(_N, "DisassociateFacesResponse"),
     type = "structure",
     members = {
         DisassociatedFaces = schema.new({
@@ -4893,7 +4893,7 @@ M.DistributeDataset = schema.new({
 })
 
 M.DistributeDatasetEntriesInput = schema.new({
-    id = id.from(_N, "DistributeDatasetEntriesInput"),
+    id = id.from(_N, "DistributeDatasetEntriesRequest"),
     type = "structure",
     members = {
         Datasets = schema.new({
@@ -4910,7 +4910,7 @@ M.DistributeDatasetEntriesInput = schema.new({
 })
 
 M.DistributeDatasetEntriesOutput = schema.new({
-    id = id.from(_N, "DistributeDatasetEntriesOutput"),
+    id = id.from(_N, "DistributeDatasetEntriesResponse"),
     type = "structure",
 })
 
@@ -5029,7 +5029,7 @@ M.FaceRecord = schema.new({
 })
 
 M.GetCelebrityInfoInput = schema.new({
-    id = id.from(_N, "GetCelebrityInfoInput"),
+    id = id.from(_N, "GetCelebrityInfoRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -5045,7 +5045,7 @@ M.GetCelebrityInfoInput = schema.new({
 })
 
 M.GetCelebrityInfoOutput = schema.new({
-    id = id.from(_N, "GetCelebrityInfoOutput"),
+    id = id.from(_N, "GetCelebrityInfoResponse"),
     type = "structure",
     members = {
         Urls = schema.new({
@@ -5072,7 +5072,7 @@ M.GetCelebrityInfoOutput = schema.new({
 })
 
 M.GetCelebrityRecognitionInput = schema.new({
-    id = id.from(_N, "GetCelebrityRecognitionInput"),
+    id = id.from(_N, "GetCelebrityRecognitionRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -5169,7 +5169,7 @@ M.VideoMetadata = schema.new({
 })
 
 M.GetCelebrityRecognitionOutput = schema.new({
-    id = id.from(_N, "GetCelebrityRecognitionOutput"),
+    id = id.from(_N, "GetCelebrityRecognitionResponse"),
     type = "structure",
     members = {
         JobStatus = schema.new({
@@ -5227,7 +5227,7 @@ M.GetCelebrityRecognitionOutput = schema.new({
 })
 
 M.GetContentModerationInput = schema.new({
-    id = id.from(_N, "GetContentModerationInput"),
+    id = id.from(_N, "GetContentModerationRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -5286,7 +5286,7 @@ M.GetContentModerationRequestMetadata = schema.new({
 })
 
 M.GetContentModerationOutput = schema.new({
-    id = id.from(_N, "GetContentModerationOutput"),
+    id = id.from(_N, "GetContentModerationResponse"),
     type = "structure",
     members = {
         JobStatus = schema.new({
@@ -5357,7 +5357,7 @@ M.GetContentModerationOutput = schema.new({
 })
 
 M.GetFaceDetectionInput = schema.new({
-    id = id.from(_N, "GetFaceDetectionInput"),
+    id = id.from(_N, "GetFaceDetectionRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -5385,7 +5385,7 @@ M.GetFaceDetectionInput = schema.new({
 })
 
 M.GetFaceDetectionOutput = schema.new({
-    id = id.from(_N, "GetFaceDetectionOutput"),
+    id = id.from(_N, "GetFaceDetectionResponse"),
     type = "structure",
     members = {
         JobStatus = schema.new({
@@ -5443,7 +5443,7 @@ M.GetFaceDetectionOutput = schema.new({
 })
 
 M.GetFaceLivenessSessionResultsInput = schema.new({
-    id = id.from(_N, "GetFaceLivenessSessionResultsInput"),
+    id = id.from(_N, "GetFaceLivenessSessionResultsRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -5459,7 +5459,7 @@ M.GetFaceLivenessSessionResultsInput = schema.new({
 })
 
 M.GetFaceLivenessSessionResultsOutput = schema.new({
-    id = id.from(_N, "GetFaceLivenessSessionResultsOutput"),
+    id = id.from(_N, "GetFaceLivenessSessionResultsResponse"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -5539,7 +5539,7 @@ M.SessionNotFoundException = schema.new({
 })
 
 M.GetFaceSearchInput = schema.new({
-    id = id.from(_N, "GetFaceSearchInput"),
+    id = id.from(_N, "GetFaceSearchRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -5633,7 +5633,7 @@ M.PersonMatch = schema.new({
 })
 
 M.GetFaceSearchOutput = schema.new({
-    id = id.from(_N, "GetFaceSearchOutput"),
+    id = id.from(_N, "GetFaceSearchResponse"),
     type = "structure",
     members = {
         JobStatus = schema.new({
@@ -5691,7 +5691,7 @@ M.GetFaceSearchOutput = schema.new({
 })
 
 M.GetLabelDetectionInput = schema.new({
-    id = id.from(_N, "GetLabelDetectionInput"),
+    id = id.from(_N, "GetLabelDetectionRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -5791,7 +5791,7 @@ M.LabelDetection = schema.new({
 })
 
 M.GetLabelDetectionOutput = schema.new({
-    id = id.from(_N, "GetLabelDetectionOutput"),
+    id = id.from(_N, "GetLabelDetectionResponse"),
     type = "structure",
     members = {
         JobStatus = schema.new({
@@ -5862,7 +5862,7 @@ M.GetLabelDetectionOutput = schema.new({
 })
 
 M.GetMediaAnalysisJobInput = schema.new({
-    id = id.from(_N, "GetMediaAnalysisJobInput"),
+    id = id.from(_N, "GetMediaAnalysisJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -6017,7 +6017,7 @@ M.MediaAnalysisResults = schema.new({
 })
 
 M.GetMediaAnalysisJobOutput = schema.new({
-    id = id.from(_N, "GetMediaAnalysisJobOutput"),
+    id = id.from(_N, "GetMediaAnalysisJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -6120,7 +6120,7 @@ M.GetMediaAnalysisJobOutput = schema.new({
 })
 
 M.GetPersonTrackingInput = schema.new({
-    id = id.from(_N, "GetPersonTrackingInput"),
+    id = id.from(_N, "GetPersonTrackingRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -6177,7 +6177,7 @@ M.PersonDetection = schema.new({
 })
 
 M.GetPersonTrackingOutput = schema.new({
-    id = id.from(_N, "GetPersonTrackingOutput"),
+    id = id.from(_N, "GetPersonTrackingResponse"),
     type = "structure",
     members = {
         JobStatus = schema.new({
@@ -6235,7 +6235,7 @@ M.GetPersonTrackingOutput = schema.new({
 })
 
 M.GetSegmentDetectionInput = schema.new({
-    id = id.from(_N, "GetSegmentDetectionInput"),
+    id = id.from(_N, "GetSegmentDetectionRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -6407,7 +6407,7 @@ M.SegmentTypeInfo = schema.new({
 })
 
 M.GetSegmentDetectionOutput = schema.new({
-    id = id.from(_N, "GetSegmentDetectionOutput"),
+    id = id.from(_N, "GetSegmentDetectionResponse"),
     type = "structure",
     members = {
         JobStatus = schema.new({
@@ -6479,7 +6479,7 @@ M.GetSegmentDetectionOutput = schema.new({
 })
 
 M.GetTextDetectionInput = schema.new({
-    id = id.from(_N, "GetTextDetectionInput"),
+    id = id.from(_N, "GetTextDetectionRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -6530,7 +6530,7 @@ M.TextDetectionResult = schema.new({
 })
 
 M.GetTextDetectionOutput = schema.new({
-    id = id.from(_N, "GetTextDetectionOutput"),
+    id = id.from(_N, "GetTextDetectionResponse"),
     type = "structure",
     members = {
         JobStatus = schema.new({
@@ -6594,7 +6594,7 @@ M.GetTextDetectionOutput = schema.new({
 })
 
 M.IndexFacesInput = schema.new({
-    id = id.from(_N, "IndexFacesInput"),
+    id = id.from(_N, "IndexFacesRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -6666,7 +6666,7 @@ M.UnindexedFace = schema.new({
 })
 
 M.IndexFacesOutput = schema.new({
-    id = id.from(_N, "IndexFacesOutput"),
+    id = id.from(_N, "IndexFacesResponse"),
     type = "structure",
     members = {
         FaceRecords = schema.new({
@@ -6760,7 +6760,7 @@ M.LabelDetectionSettings = schema.new({
 })
 
 M.ListCollectionsInput = schema.new({
-    id = id.from(_N, "ListCollectionsInput"),
+    id = id.from(_N, "ListCollectionsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6779,7 +6779,7 @@ M.ListCollectionsInput = schema.new({
 })
 
 M.ListCollectionsOutput = schema.new({
-    id = id.from(_N, "ListCollectionsOutput"),
+    id = id.from(_N, "ListCollectionsResponse"),
     type = "structure",
     members = {
         CollectionIds = schema.new({
@@ -6806,7 +6806,7 @@ M.ListCollectionsOutput = schema.new({
 })
 
 M.ListDatasetEntriesInput = schema.new({
-    id = id.from(_N, "ListDatasetEntriesInput"),
+    id = id.from(_N, "ListDatasetEntriesRequest"),
     type = "structure",
     members = {
         DatasetArn = schema.new({
@@ -6859,7 +6859,7 @@ M.ListDatasetEntriesInput = schema.new({
 })
 
 M.ListDatasetEntriesOutput = schema.new({
-    id = id.from(_N, "ListDatasetEntriesOutput"),
+    id = id.from(_N, "ListDatasetEntriesResponse"),
     type = "structure",
     members = {
         DatasetEntries = schema.new({
@@ -6879,7 +6879,7 @@ M.ListDatasetEntriesOutput = schema.new({
 })
 
 M.ListDatasetLabelsInput = schema.new({
-    id = id.from(_N, "ListDatasetLabelsInput"),
+    id = id.from(_N, "ListDatasetLabelsRequest"),
     type = "structure",
     members = {
         DatasetArn = schema.new({
@@ -6907,7 +6907,7 @@ M.ListDatasetLabelsInput = schema.new({
 })
 
 M.ListDatasetLabelsOutput = schema.new({
-    id = id.from(_N, "ListDatasetLabelsOutput"),
+    id = id.from(_N, "ListDatasetLabelsResponse"),
     type = "structure",
     members = {
         DatasetLabelDescriptions = schema.new({
@@ -6927,7 +6927,7 @@ M.ListDatasetLabelsOutput = schema.new({
 })
 
 M.ListFacesInput = schema.new({
-    id = id.from(_N, "ListFacesInput"),
+    id = id.from(_N, "ListFacesRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -6968,7 +6968,7 @@ M.ListFacesInput = schema.new({
 })
 
 M.ListFacesOutput = schema.new({
-    id = id.from(_N, "ListFacesOutput"),
+    id = id.from(_N, "ListFacesResponse"),
     type = "structure",
     members = {
         Faces = schema.new({
@@ -6994,7 +6994,7 @@ M.ListFacesOutput = schema.new({
 })
 
 M.ListMediaAnalysisJobsInput = schema.new({
-    id = id.from(_N, "ListMediaAnalysisJobsInput"),
+    id = id.from(_N, "ListMediaAnalysisJobsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7116,7 +7116,7 @@ M.MediaAnalysisJobDescription = schema.new({
 })
 
 M.ListMediaAnalysisJobsOutput = schema.new({
-    id = id.from(_N, "ListMediaAnalysisJobsOutput"),
+    id = id.from(_N, "ListMediaAnalysisJobsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7139,7 +7139,7 @@ M.ListMediaAnalysisJobsOutput = schema.new({
 })
 
 M.ListProjectPoliciesInput = schema.new({
-    id = id.from(_N, "ListProjectPoliciesInput"),
+    id = id.from(_N, "ListProjectPoliciesRequest"),
     type = "structure",
     members = {
         ProjectArn = schema.new({
@@ -7210,7 +7210,7 @@ M.ProjectPolicy = schema.new({
 })
 
 M.ListProjectPoliciesOutput = schema.new({
-    id = id.from(_N, "ListProjectPoliciesOutput"),
+    id = id.from(_N, "ListProjectPoliciesResponse"),
     type = "structure",
     members = {
         ProjectPolicies = schema.new({
@@ -7230,7 +7230,7 @@ M.ListProjectPoliciesOutput = schema.new({
 })
 
 M.ListStreamProcessorsInput = schema.new({
-    id = id.from(_N, "ListStreamProcessorsInput"),
+    id = id.from(_N, "ListStreamProcessorsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7268,7 +7268,7 @@ M.StreamProcessor = schema.new({
 })
 
 M.ListStreamProcessorsOutput = schema.new({
-    id = id.from(_N, "ListStreamProcessorsOutput"),
+    id = id.from(_N, "ListStreamProcessorsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7288,7 +7288,7 @@ M.ListStreamProcessorsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -7304,7 +7304,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -7319,7 +7319,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListUsersInput = schema.new({
-    id = id.from(_N, "ListUsersInput"),
+    id = id.from(_N, "ListUsersRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -7366,7 +7366,7 @@ M.User = schema.new({
 })
 
 M.ListUsersOutput = schema.new({
-    id = id.from(_N, "ListUsersOutput"),
+    id = id.from(_N, "ListUsersResponse"),
     type = "structure",
     members = {
         Users = schema.new({
@@ -7458,7 +7458,7 @@ M.NotificationChannel = schema.new({
 })
 
 M.PutProjectPolicyInput = schema.new({
-    id = id.from(_N, "PutProjectPolicyInput"),
+    id = id.from(_N, "PutProjectPolicyRequest"),
     type = "structure",
     members = {
         ProjectArn = schema.new({
@@ -7498,7 +7498,7 @@ M.PutProjectPolicyInput = schema.new({
 })
 
 M.PutProjectPolicyOutput = schema.new({
-    id = id.from(_N, "PutProjectPolicyOutput"),
+    id = id.from(_N, "PutProjectPolicyResponse"),
     type = "structure",
     members = {
         PolicyRevisionId = schema.new({
@@ -7511,7 +7511,7 @@ M.PutProjectPolicyOutput = schema.new({
 })
 
 M.RecognizeCelebritiesInput = schema.new({
-    id = id.from(_N, "RecognizeCelebritiesInput"),
+    id = id.from(_N, "RecognizeCelebritiesRequest"),
     type = "structure",
     members = {
         Image = schema.new({
@@ -7528,7 +7528,7 @@ M.RecognizeCelebritiesInput = schema.new({
 })
 
 M.RecognizeCelebritiesOutput = schema.new({
-    id = id.from(_N, "RecognizeCelebritiesOutput"),
+    id = id.from(_N, "RecognizeCelebritiesResponse"),
     type = "structure",
     members = {
         CelebrityFaces = schema.new({
@@ -7555,7 +7555,7 @@ M.RecognizeCelebritiesOutput = schema.new({
 })
 
 M.SearchFacesInput = schema.new({
-    id = id.from(_N, "SearchFacesInput"),
+    id = id.from(_N, "SearchFacesRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -7592,7 +7592,7 @@ M.SearchFacesInput = schema.new({
 })
 
 M.SearchFacesOutput = schema.new({
-    id = id.from(_N, "SearchFacesOutput"),
+    id = id.from(_N, "SearchFacesResponse"),
     type = "structure",
     members = {
         SearchedFaceId = schema.new({
@@ -7618,7 +7618,7 @@ M.SearchFacesOutput = schema.new({
 })
 
 M.SearchFacesByImageInput = schema.new({
-    id = id.from(_N, "SearchFacesByImageInput"),
+    id = id.from(_N, "SearchFacesByImageRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -7662,7 +7662,7 @@ M.SearchFacesByImageInput = schema.new({
 })
 
 M.SearchFacesByImageOutput = schema.new({
-    id = id.from(_N, "SearchFacesByImageOutput"),
+    id = id.from(_N, "SearchFacesByImageResponse"),
     type = "structure",
     members = {
         SearchedFaceBoundingBox = schema.new({
@@ -7695,7 +7695,7 @@ M.SearchFacesByImageOutput = schema.new({
 })
 
 M.SearchUsersInput = schema.new({
-    id = id.from(_N, "SearchUsersInput"),
+    id = id.from(_N, "SearchUsersRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -7781,7 +7781,7 @@ M.UserMatch = schema.new({
 })
 
 M.SearchUsersOutput = schema.new({
-    id = id.from(_N, "SearchUsersOutput"),
+    id = id.from(_N, "SearchUsersResponse"),
     type = "structure",
     members = {
         UserMatches = schema.new({
@@ -7815,7 +7815,7 @@ M.SearchUsersOutput = schema.new({
 })
 
 M.SearchUsersByImageInput = schema.new({
-    id = id.from(_N, "SearchUsersByImageInput"),
+    id = id.from(_N, "SearchUsersByImageRequest"),
     type = "structure",
     members = {
         CollectionId = schema.new({
@@ -7894,7 +7894,7 @@ M.UnsearchedFace = schema.new({
 })
 
 M.SearchUsersByImageOutput = schema.new({
-    id = id.from(_N, "SearchUsersByImageOutput"),
+    id = id.from(_N, "SearchUsersByImageResponse"),
     type = "structure",
     members = {
         UserMatches = schema.new({
@@ -7928,7 +7928,7 @@ M.SearchUsersByImageOutput = schema.new({
 })
 
 M.StartCelebrityRecognitionInput = schema.new({
-    id = id.from(_N, "StartCelebrityRecognitionInput"),
+    id = id.from(_N, "StartCelebrityRecognitionRequest"),
     type = "structure",
     members = {
         Video = schema.new({
@@ -7964,7 +7964,7 @@ M.StartCelebrityRecognitionInput = schema.new({
 })
 
 M.StartCelebrityRecognitionOutput = schema.new({
-    id = id.from(_N, "StartCelebrityRecognitionOutput"),
+    id = id.from(_N, "StartCelebrityRecognitionResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -8005,7 +8005,7 @@ M.VideoTooLargeException = schema.new({
 })
 
 M.StartContentModerationInput = schema.new({
-    id = id.from(_N, "StartContentModerationInput"),
+    id = id.from(_N, "StartContentModerationRequest"),
     type = "structure",
     members = {
         Video = schema.new({
@@ -8047,7 +8047,7 @@ M.StartContentModerationInput = schema.new({
 })
 
 M.StartContentModerationOutput = schema.new({
-    id = id.from(_N, "StartContentModerationOutput"),
+    id = id.from(_N, "StartContentModerationResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -8060,7 +8060,7 @@ M.StartContentModerationOutput = schema.new({
 })
 
 M.StartFaceDetectionInput = schema.new({
-    id = id.from(_N, "StartFaceDetectionInput"),
+    id = id.from(_N, "StartFaceDetectionRequest"),
     type = "structure",
     members = {
         Video = schema.new({
@@ -8102,7 +8102,7 @@ M.StartFaceDetectionInput = schema.new({
 })
 
 M.StartFaceDetectionOutput = schema.new({
-    id = id.from(_N, "StartFaceDetectionOutput"),
+    id = id.from(_N, "StartFaceDetectionResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -8115,7 +8115,7 @@ M.StartFaceDetectionOutput = schema.new({
 })
 
 M.StartFaceSearchInput = schema.new({
-    id = id.from(_N, "StartFaceSearchInput"),
+    id = id.from(_N, "StartFaceSearchRequest"),
     type = "structure",
     members = {
         Video = schema.new({
@@ -8166,7 +8166,7 @@ M.StartFaceSearchInput = schema.new({
 })
 
 M.StartFaceSearchOutput = schema.new({
-    id = id.from(_N, "StartFaceSearchOutput"),
+    id = id.from(_N, "StartFaceSearchResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -8179,7 +8179,7 @@ M.StartFaceSearchOutput = schema.new({
 })
 
 M.StartLabelDetectionInput = schema.new({
-    id = id.from(_N, "StartLabelDetectionInput"),
+    id = id.from(_N, "StartLabelDetectionRequest"),
     type = "structure",
     members = {
         Video = schema.new({
@@ -8235,7 +8235,7 @@ M.StartLabelDetectionInput = schema.new({
 })
 
 M.StartLabelDetectionOutput = schema.new({
-    id = id.from(_N, "StartLabelDetectionOutput"),
+    id = id.from(_N, "StartLabelDetectionResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -8248,7 +8248,7 @@ M.StartLabelDetectionOutput = schema.new({
 })
 
 M.StartMediaAnalysisJobInput = schema.new({
-    id = id.from(_N, "StartMediaAnalysisJobInput"),
+    id = id.from(_N, "StartMediaAnalysisJobRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -8306,7 +8306,7 @@ M.StartMediaAnalysisJobInput = schema.new({
 })
 
 M.StartMediaAnalysisJobOutput = schema.new({
-    id = id.from(_N, "StartMediaAnalysisJobOutput"),
+    id = id.from(_N, "StartMediaAnalysisJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -8322,7 +8322,7 @@ M.StartMediaAnalysisJobOutput = schema.new({
 })
 
 M.StartPersonTrackingInput = schema.new({
-    id = id.from(_N, "StartPersonTrackingInput"),
+    id = id.from(_N, "StartPersonTrackingRequest"),
     type = "structure",
     members = {
         Video = schema.new({
@@ -8358,7 +8358,7 @@ M.StartPersonTrackingInput = schema.new({
 })
 
 M.StartPersonTrackingOutput = schema.new({
-    id = id.from(_N, "StartPersonTrackingOutput"),
+    id = id.from(_N, "StartPersonTrackingResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -8371,7 +8371,7 @@ M.StartPersonTrackingOutput = schema.new({
 })
 
 M.StartProjectVersionInput = schema.new({
-    id = id.from(_N, "StartProjectVersionInput"),
+    id = id.from(_N, "StartProjectVersionRequest"),
     type = "structure",
     members = {
         ProjectVersionArn = schema.new({
@@ -8402,7 +8402,7 @@ M.StartProjectVersionInput = schema.new({
 })
 
 M.StartProjectVersionOutput = schema.new({
-    id = id.from(_N, "StartProjectVersionOutput"),
+    id = id.from(_N, "StartProjectVersionResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -8469,7 +8469,7 @@ M.StartSegmentDetectionFilters = schema.new({
 })
 
 M.StartSegmentDetectionInput = schema.new({
-    id = id.from(_N, "StartSegmentDetectionInput"),
+    id = id.from(_N, "StartSegmentDetectionRequest"),
     type = "structure",
     members = {
         Video = schema.new({
@@ -8522,7 +8522,7 @@ M.StartSegmentDetectionInput = schema.new({
 })
 
 M.StartSegmentDetectionOutput = schema.new({
-    id = id.from(_N, "StartSegmentDetectionOutput"),
+    id = id.from(_N, "StartSegmentDetectionResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -8562,7 +8562,7 @@ M.StreamProcessingStopSelector = schema.new({
 })
 
 M.StartStreamProcessorInput = schema.new({
-    id = id.from(_N, "StartStreamProcessorInput"),
+    id = id.from(_N, "StartStreamProcessorRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -8592,7 +8592,7 @@ M.StartStreamProcessorInput = schema.new({
 })
 
 M.StartStreamProcessorOutput = schema.new({
-    id = id.from(_N, "StartStreamProcessorOutput"),
+    id = id.from(_N, "StartStreamProcessorResponse"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -8626,7 +8626,7 @@ M.StartTextDetectionFilters = schema.new({
 })
 
 M.StartTextDetectionInput = schema.new({
-    id = id.from(_N, "StartTextDetectionInput"),
+    id = id.from(_N, "StartTextDetectionRequest"),
     type = "structure",
     members = {
         Video = schema.new({
@@ -8669,7 +8669,7 @@ M.StartTextDetectionInput = schema.new({
 })
 
 M.StartTextDetectionOutput = schema.new({
-    id = id.from(_N, "StartTextDetectionOutput"),
+    id = id.from(_N, "StartTextDetectionResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -8682,7 +8682,7 @@ M.StartTextDetectionOutput = schema.new({
 })
 
 M.StopProjectVersionInput = schema.new({
-    id = id.from(_N, "StopProjectVersionInput"),
+    id = id.from(_N, "StopProjectVersionRequest"),
     type = "structure",
     members = {
         ProjectVersionArn = schema.new({
@@ -8698,7 +8698,7 @@ M.StopProjectVersionInput = schema.new({
 })
 
 M.StopProjectVersionOutput = schema.new({
-    id = id.from(_N, "StopProjectVersionOutput"),
+    id = id.from(_N, "StopProjectVersionResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -8711,7 +8711,7 @@ M.StopProjectVersionOutput = schema.new({
 })
 
 M.StopStreamProcessorInput = schema.new({
-    id = id.from(_N, "StopStreamProcessorInput"),
+    id = id.from(_N, "StopStreamProcessorRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -8727,12 +8727,12 @@ M.StopStreamProcessorInput = schema.new({
 })
 
 M.StopStreamProcessorOutput = schema.new({
-    id = id.from(_N, "StopStreamProcessorOutput"),
+    id = id.from(_N, "StopStreamProcessorResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -8759,12 +8759,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -8790,12 +8790,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateDatasetEntriesInput = schema.new({
-    id = id.from(_N, "UpdateDatasetEntriesInput"),
+    id = id.from(_N, "UpdateDatasetEntriesRequest"),
     type = "structure",
     members = {
         DatasetArn = schema.new({
@@ -8821,7 +8821,7 @@ M.UpdateDatasetEntriesInput = schema.new({
 })
 
 M.UpdateDatasetEntriesOutput = schema.new({
-    id = id.from(_N, "UpdateDatasetEntriesOutput"),
+    id = id.from(_N, "UpdateDatasetEntriesResponse"),
     type = "structure",
 })
 
@@ -8840,7 +8840,7 @@ M.StreamProcessorSettingsForUpdate = schema.new({
 })
 
 M.UpdateStreamProcessorInput = schema.new({
-    id = id.from(_N, "UpdateStreamProcessorInput"),
+    id = id.from(_N, "UpdateStreamProcessorRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -8884,8 +8884,22 @@ M.UpdateStreamProcessorInput = schema.new({
 })
 
 M.UpdateStreamProcessorOutput = schema.new({
-    id = id.from(_N, "UpdateStreamProcessorOutput"),
+    id = id.from(_N, "UpdateStreamProcessorResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

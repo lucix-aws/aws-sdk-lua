@@ -189,7 +189,7 @@ M.AdConfigurationSummary = schema.new({
 })
 
 M.BatchGetChannelInput = schema.new({
-    id = id.from(_N, "BatchGetChannelInput"),
+    id = id.from(_N, "BatchGetChannelRequest"),
     type = "structure",
     members = {
         arns = schema.new({
@@ -391,7 +391,7 @@ M.BatchError = schema.new({
 })
 
 M.BatchGetChannelOutput = schema.new({
-    id = id.from(_N, "BatchGetChannelOutput"),
+    id = id.from(_N, "BatchGetChannelResponse"),
     type = "structure",
     members = {
         accessControlAllowOrigin = schema.new({
@@ -651,7 +651,7 @@ M.ValidationException = schema.new({
 })
 
 M.BatchGetStreamKeyInput = schema.new({
-    id = id.from(_N, "BatchGetStreamKeyInput"),
+    id = id.from(_N, "BatchGetStreamKeyRequest"),
     type = "structure",
     members = {
         arns = schema.new({
@@ -701,7 +701,7 @@ M.StreamKey = schema.new({
 })
 
 M.BatchGetStreamKeyOutput = schema.new({
-    id = id.from(_N, "BatchGetStreamKeyOutput"),
+    id = id.from(_N, "BatchGetStreamKeyResponse"),
     type = "structure",
     members = {
         accessControlAllowOrigin = schema.new({
@@ -819,7 +819,7 @@ M.BatchStartViewerSessionRevocationViewerSession = schema.new({
 })
 
 M.BatchStartViewerSessionRevocationInput = schema.new({
-    id = id.from(_N, "BatchStartViewerSessionRevocationInput"),
+    id = id.from(_N, "BatchStartViewerSessionRevocationRequest"),
     type = "structure",
     members = {
         viewerSessions = schema.new({
@@ -873,7 +873,7 @@ M.BatchStartViewerSessionRevocationError = schema.new({
 })
 
 M.BatchStartViewerSessionRevocationOutput = schema.new({
-    id = id.from(_N, "BatchStartViewerSessionRevocationOutput"),
+    id = id.from(_N, "BatchStartViewerSessionRevocationResponse"),
     type = "structure",
     members = {
         accessControlAllowOrigin = schema.new({
@@ -1214,7 +1214,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateAdConfigurationInput = schema.new({
-    id = id.from(_N, "CreateAdConfigurationInput"),
+    id = id.from(_N, "CreateAdConfigurationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1245,7 +1245,7 @@ M.CreateAdConfigurationInput = schema.new({
 })
 
 M.CreateAdConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateAdConfigurationOutput"),
+    id = id.from(_N, "CreateAdConfigurationResponse"),
     type = "structure",
     members = {
         adConfiguration = schema.new({
@@ -1526,7 +1526,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.CreateChannelInput = schema.new({
-    id = id.from(_N, "CreateChannelInput"),
+    id = id.from(_N, "CreateChannelRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1614,7 +1614,7 @@ M.CreateChannelInput = schema.new({
 })
 
 M.CreateChannelOutput = schema.new({
-    id = id.from(_N, "CreateChannelOutput"),
+    id = id.from(_N, "CreateChannelResponse"),
     type = "structure",
     members = {
         channel = schema.new({
@@ -1635,7 +1635,7 @@ M.CreateChannelOutput = schema.new({
 })
 
 M.CreatePlaybackRestrictionPolicyInput = schema.new({
-    id = id.from(_N, "CreatePlaybackRestrictionPolicyInput"),
+    id = id.from(_N, "CreatePlaybackRestrictionPolicyRequest"),
     type = "structure",
     members = {
         allowedCountries = schema.new({
@@ -1732,7 +1732,7 @@ M.PlaybackRestrictionPolicy = schema.new({
 })
 
 M.CreatePlaybackRestrictionPolicyOutput = schema.new({
-    id = id.from(_N, "CreatePlaybackRestrictionPolicyOutput"),
+    id = id.from(_N, "CreatePlaybackRestrictionPolicyResponse"),
     type = "structure",
     members = {
         playbackRestrictionPolicy = schema.new({
@@ -1828,7 +1828,7 @@ M.ThumbnailConfiguration = schema.new({
 })
 
 M.CreateRecordingConfigurationInput = schema.new({
-    id = id.from(_N, "CreateRecordingConfigurationInput"),
+    id = id.from(_N, "CreateRecordingConfigurationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1954,7 +1954,7 @@ M.RecordingConfiguration = schema.new({
 })
 
 M.CreateRecordingConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateRecordingConfigurationOutput"),
+    id = id.from(_N, "CreateRecordingConfigurationResponse"),
     type = "structure",
     members = {
         recordingConfiguration = schema.new({
@@ -1968,7 +1968,7 @@ M.CreateRecordingConfigurationOutput = schema.new({
 })
 
 M.CreateStreamKeyInput = schema.new({
-    id = id.from(_N, "CreateStreamKeyInput"),
+    id = id.from(_N, "CreateStreamKeyRequest"),
     type = "structure",
     members = {
         channelArn = schema.new({
@@ -1992,7 +1992,7 @@ M.CreateStreamKeyInput = schema.new({
 })
 
 M.CreateStreamKeyOutput = schema.new({
-    id = id.from(_N, "CreateStreamKeyOutput"),
+    id = id.from(_N, "CreateStreamKeyResponse"),
     type = "structure",
     members = {
         streamKey = schema.new({
@@ -2006,7 +2006,7 @@ M.CreateStreamKeyOutput = schema.new({
 })
 
 M.DeleteAdConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteAdConfigurationInput"),
+    id = id.from(_N, "DeleteAdConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2022,12 +2022,12 @@ M.DeleteAdConfigurationInput = schema.new({
 })
 
 M.DeleteAdConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteAdConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteChannelInput = schema.new({
-    id = id.from(_N, "DeleteChannelInput"),
+    id = id.from(_N, "DeleteChannelRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2043,12 +2043,12 @@ M.DeleteChannelInput = schema.new({
 })
 
 M.DeleteChannelOutput = schema.new({
-    id = id.from(_N, "DeleteChannelOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeletePlaybackKeyPairInput = schema.new({
-    id = id.from(_N, "DeletePlaybackKeyPairInput"),
+    id = id.from(_N, "DeletePlaybackKeyPairRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2064,12 +2064,12 @@ M.DeletePlaybackKeyPairInput = schema.new({
 })
 
 M.DeletePlaybackKeyPairOutput = schema.new({
-    id = id.from(_N, "DeletePlaybackKeyPairOutput"),
+    id = id.from(_N, "DeletePlaybackKeyPairResponse"),
     type = "structure",
 })
 
 M.DeletePlaybackRestrictionPolicyInput = schema.new({
-    id = id.from(_N, "DeletePlaybackRestrictionPolicyInput"),
+    id = id.from(_N, "DeletePlaybackRestrictionPolicyRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2085,12 +2085,12 @@ M.DeletePlaybackRestrictionPolicyInput = schema.new({
 })
 
 M.DeletePlaybackRestrictionPolicyOutput = schema.new({
-    id = id.from(_N, "DeletePlaybackRestrictionPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRecordingConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteRecordingConfigurationInput"),
+    id = id.from(_N, "DeleteRecordingConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2106,12 +2106,12 @@ M.DeleteRecordingConfigurationInput = schema.new({
 })
 
 M.DeleteRecordingConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteRecordingConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteStreamKeyInput = schema.new({
-    id = id.from(_N, "DeleteStreamKeyInput"),
+    id = id.from(_N, "DeleteStreamKeyRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2127,12 +2127,12 @@ M.DeleteStreamKeyInput = schema.new({
 })
 
 M.DeleteStreamKeyOutput = schema.new({
-    id = id.from(_N, "DeleteStreamKeyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetAdConfigurationInput = schema.new({
-    id = id.from(_N, "GetAdConfigurationInput"),
+    id = id.from(_N, "GetAdConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2148,7 +2148,7 @@ M.GetAdConfigurationInput = schema.new({
 })
 
 M.GetAdConfigurationOutput = schema.new({
-    id = id.from(_N, "GetAdConfigurationOutput"),
+    id = id.from(_N, "GetAdConfigurationResponse"),
     type = "structure",
     members = {
         adConfiguration = schema.new({
@@ -2162,7 +2162,7 @@ M.GetAdConfigurationOutput = schema.new({
 })
 
 M.GetChannelInput = schema.new({
-    id = id.from(_N, "GetChannelInput"),
+    id = id.from(_N, "GetChannelRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2178,7 +2178,7 @@ M.GetChannelInput = schema.new({
 })
 
 M.GetChannelOutput = schema.new({
-    id = id.from(_N, "GetChannelOutput"),
+    id = id.from(_N, "GetChannelResponse"),
     type = "structure",
     members = {
         channel = schema.new({
@@ -2192,7 +2192,7 @@ M.GetChannelOutput = schema.new({
 })
 
 M.GetPlaybackKeyPairInput = schema.new({
-    id = id.from(_N, "GetPlaybackKeyPairInput"),
+    id = id.from(_N, "GetPlaybackKeyPairRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2241,7 +2241,7 @@ M.PlaybackKeyPair = schema.new({
 })
 
 M.GetPlaybackKeyPairOutput = schema.new({
-    id = id.from(_N, "GetPlaybackKeyPairOutput"),
+    id = id.from(_N, "GetPlaybackKeyPairResponse"),
     type = "structure",
     members = {
         keyPair = schema.new({
@@ -2255,7 +2255,7 @@ M.GetPlaybackKeyPairOutput = schema.new({
 })
 
 M.GetPlaybackRestrictionPolicyInput = schema.new({
-    id = id.from(_N, "GetPlaybackRestrictionPolicyInput"),
+    id = id.from(_N, "GetPlaybackRestrictionPolicyRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2271,7 +2271,7 @@ M.GetPlaybackRestrictionPolicyInput = schema.new({
 })
 
 M.GetPlaybackRestrictionPolicyOutput = schema.new({
-    id = id.from(_N, "GetPlaybackRestrictionPolicyOutput"),
+    id = id.from(_N, "GetPlaybackRestrictionPolicyResponse"),
     type = "structure",
     members = {
         playbackRestrictionPolicy = schema.new({
@@ -2285,7 +2285,7 @@ M.GetPlaybackRestrictionPolicyOutput = schema.new({
 })
 
 M.GetRecordingConfigurationInput = schema.new({
-    id = id.from(_N, "GetRecordingConfigurationInput"),
+    id = id.from(_N, "GetRecordingConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2301,7 +2301,7 @@ M.GetRecordingConfigurationInput = schema.new({
 })
 
 M.GetRecordingConfigurationOutput = schema.new({
-    id = id.from(_N, "GetRecordingConfigurationOutput"),
+    id = id.from(_N, "GetRecordingConfigurationResponse"),
     type = "structure",
     members = {
         recordingConfiguration = schema.new({
@@ -2403,7 +2403,7 @@ M.ChannelNotBroadcasting = schema.new({
 })
 
 M.GetStreamInput = schema.new({
-    id = id.from(_N, "GetStreamInput"),
+    id = id.from(_N, "GetStreamRequest"),
     type = "structure",
     members = {
         channelArn = schema.new({
@@ -2474,7 +2474,7 @@ M.Stream = schema.new({
 })
 
 M.GetStreamOutput = schema.new({
-    id = id.from(_N, "GetStreamOutput"),
+    id = id.from(_N, "GetStreamResponse"),
     type = "structure",
     members = {
         stream = schema.new({
@@ -2488,7 +2488,7 @@ M.GetStreamOutput = schema.new({
 })
 
 M.GetStreamKeyInput = schema.new({
-    id = id.from(_N, "GetStreamKeyInput"),
+    id = id.from(_N, "GetStreamKeyRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2504,7 +2504,7 @@ M.GetStreamKeyInput = schema.new({
 })
 
 M.GetStreamKeyOutput = schema.new({
-    id = id.from(_N, "GetStreamKeyOutput"),
+    id = id.from(_N, "GetStreamKeyResponse"),
     type = "structure",
     members = {
         streamKey = schema.new({
@@ -2518,7 +2518,7 @@ M.GetStreamKeyOutput = schema.new({
 })
 
 M.GetStreamSessionInput = schema.new({
-    id = id.from(_N, "GetStreamSessionInput"),
+    id = id.from(_N, "GetStreamSessionRequest"),
     type = "structure",
     members = {
         channelArn = schema.new({
@@ -2819,7 +2819,7 @@ M.StreamSession = schema.new({
 })
 
 M.GetStreamSessionOutput = schema.new({
-    id = id.from(_N, "GetStreamSessionOutput"),
+    id = id.from(_N, "GetStreamSessionResponse"),
     type = "structure",
     members = {
         streamSession = schema.new({
@@ -2833,7 +2833,7 @@ M.GetStreamSessionOutput = schema.new({
 })
 
 M.ImportPlaybackKeyPairInput = schema.new({
-    id = id.from(_N, "ImportPlaybackKeyPairInput"),
+    id = id.from(_N, "ImportPlaybackKeyPairRequest"),
     type = "structure",
     members = {
         publicKeyMaterial = schema.new({
@@ -2863,7 +2863,7 @@ M.ImportPlaybackKeyPairInput = schema.new({
 })
 
 M.ImportPlaybackKeyPairOutput = schema.new({
-    id = id.from(_N, "ImportPlaybackKeyPairOutput"),
+    id = id.from(_N, "ImportPlaybackKeyPairResponse"),
     type = "structure",
     members = {
         keyPair = schema.new({
@@ -2877,7 +2877,7 @@ M.ImportPlaybackKeyPairOutput = schema.new({
 })
 
 M.InsertAdBreakInput = schema.new({
-    id = id.from(_N, "InsertAdBreakInput"),
+    id = id.from(_N, "InsertAdBreakRequest"),
     type = "structure",
     members = {
         channelArn = schema.new({
@@ -2902,7 +2902,7 @@ M.InsertAdBreakInput = schema.new({
 })
 
 M.InsertAdBreakOutput = schema.new({
-    id = id.from(_N, "InsertAdBreakOutput"),
+    id = id.from(_N, "InsertAdBreakResponse"),
     type = "structure",
     members = {
         adBreakId = schema.new({
@@ -2915,7 +2915,7 @@ M.InsertAdBreakOutput = schema.new({
 })
 
 M.ListAdConfigurationsInput = schema.new({
-    id = id.from(_N, "ListAdConfigurationsInput"),
+    id = id.from(_N, "ListAdConfigurationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2934,7 +2934,7 @@ M.ListAdConfigurationsInput = schema.new({
 })
 
 M.ListAdConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListAdConfigurationsOutput"),
+    id = id.from(_N, "ListAdConfigurationsResponse"),
     type = "structure",
     members = {
         adConfigurations = schema.new({
@@ -2957,7 +2957,7 @@ M.ListAdConfigurationsOutput = schema.new({
 })
 
 M.ListChannelsInput = schema.new({
-    id = id.from(_N, "ListChannelsInput"),
+    id = id.from(_N, "ListChannelsRequest"),
     type = "structure",
     members = {
         filterByName = schema.new({
@@ -3081,7 +3081,7 @@ M.ChannelSummary = schema.new({
 })
 
 M.ListChannelsOutput = schema.new({
-    id = id.from(_N, "ListChannelsOutput"),
+    id = id.from(_N, "ListChannelsResponse"),
     type = "structure",
     members = {
         channels = schema.new({
@@ -3104,7 +3104,7 @@ M.ListChannelsOutput = schema.new({
 })
 
 M.ListPlaybackKeyPairsInput = schema.new({
-    id = id.from(_N, "ListPlaybackKeyPairsInput"),
+    id = id.from(_N, "ListPlaybackKeyPairsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3150,7 +3150,7 @@ M.PlaybackKeyPairSummary = schema.new({
 })
 
 M.ListPlaybackKeyPairsOutput = schema.new({
-    id = id.from(_N, "ListPlaybackKeyPairsOutput"),
+    id = id.from(_N, "ListPlaybackKeyPairsResponse"),
     type = "structure",
     members = {
         keyPairs = schema.new({
@@ -3173,7 +3173,7 @@ M.ListPlaybackKeyPairsOutput = schema.new({
 })
 
 M.ListPlaybackRestrictionPoliciesInput = schema.new({
-    id = id.from(_N, "ListPlaybackRestrictionPoliciesInput"),
+    id = id.from(_N, "ListPlaybackRestrictionPoliciesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3248,7 +3248,7 @@ M.PlaybackRestrictionPolicySummary = schema.new({
 })
 
 M.ListPlaybackRestrictionPoliciesOutput = schema.new({
-    id = id.from(_N, "ListPlaybackRestrictionPoliciesOutput"),
+    id = id.from(_N, "ListPlaybackRestrictionPoliciesResponse"),
     type = "structure",
     members = {
         playbackRestrictionPolicies = schema.new({
@@ -3271,7 +3271,7 @@ M.ListPlaybackRestrictionPoliciesOutput = schema.new({
 })
 
 M.ListRecordingConfigurationsInput = schema.new({
-    id = id.from(_N, "ListRecordingConfigurationsInput"),
+    id = id.from(_N, "ListRecordingConfigurationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3339,7 +3339,7 @@ M.RecordingConfigurationSummary = schema.new({
 })
 
 M.ListRecordingConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListRecordingConfigurationsOutput"),
+    id = id.from(_N, "ListRecordingConfigurationsResponse"),
     type = "structure",
     members = {
         recordingConfigurations = schema.new({
@@ -3362,7 +3362,7 @@ M.ListRecordingConfigurationsOutput = schema.new({
 })
 
 M.ListStreamKeysInput = schema.new({
-    id = id.from(_N, "ListStreamKeysInput"),
+    id = id.from(_N, "ListStreamKeysRequest"),
     type = "structure",
     members = {
         channelArn = schema.new({
@@ -3417,7 +3417,7 @@ M.StreamKeySummary = schema.new({
 })
 
 M.ListStreamKeysOutput = schema.new({
-    id = id.from(_N, "ListStreamKeysOutput"),
+    id = id.from(_N, "ListStreamKeysResponse"),
     type = "structure",
     members = {
         streamKeys = schema.new({
@@ -3453,7 +3453,7 @@ M.StreamFilters = schema.new({
 })
 
 M.ListStreamsInput = schema.new({
-    id = id.from(_N, "ListStreamsInput"),
+    id = id.from(_N, "ListStreamsRequest"),
     type = "structure",
     members = {
         filterBy = schema.new({
@@ -3528,7 +3528,7 @@ M.StreamSummary = schema.new({
 })
 
 M.ListStreamsOutput = schema.new({
-    id = id.from(_N, "ListStreamsOutput"),
+    id = id.from(_N, "ListStreamsResponse"),
     type = "structure",
     members = {
         streams = schema.new({
@@ -3551,7 +3551,7 @@ M.ListStreamsOutput = schema.new({
 })
 
 M.ListStreamSessionsInput = schema.new({
-    id = id.from(_N, "ListStreamSessionsInput"),
+    id = id.from(_N, "ListStreamSessionsRequest"),
     type = "structure",
     members = {
         channelArn = schema.new({
@@ -3619,7 +3619,7 @@ M.StreamSessionSummary = schema.new({
 })
 
 M.ListStreamSessionsOutput = schema.new({
-    id = id.from(_N, "ListStreamSessionsOutput"),
+    id = id.from(_N, "ListStreamSessionsResponse"),
     type = "structure",
     members = {
         streamSessions = schema.new({
@@ -3642,7 +3642,7 @@ M.ListStreamSessionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3659,7 +3659,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -3677,7 +3677,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutMetadataInput = schema.new({
-    id = id.from(_N, "PutMetadataInput"),
+    id = id.from(_N, "PutMetadataRequest"),
     type = "structure",
     members = {
         channelArn = schema.new({
@@ -3702,12 +3702,12 @@ M.PutMetadataInput = schema.new({
 })
 
 M.PutMetadataOutput = schema.new({
-    id = id.from(_N, "PutMetadataOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StartViewerSessionRevocationInput = schema.new({
-    id = id.from(_N, "StartViewerSessionRevocationInput"),
+    id = id.from(_N, "StartViewerSessionRevocationRequest"),
     type = "structure",
     members = {
         channelArn = schema.new({
@@ -3741,12 +3741,12 @@ M.StartViewerSessionRevocationInput = schema.new({
 })
 
 M.StartViewerSessionRevocationOutput = schema.new({
-    id = id.from(_N, "StartViewerSessionRevocationOutput"),
+    id = id.from(_N, "StartViewerSessionRevocationResponse"),
     type = "structure",
 })
 
 M.StopStreamInput = schema.new({
-    id = id.from(_N, "StopStreamInput"),
+    id = id.from(_N, "StopStreamRequest"),
     type = "structure",
     members = {
         channelArn = schema.new({
@@ -3762,7 +3762,7 @@ M.StopStreamInput = schema.new({
 })
 
 M.StopStreamOutput = schema.new({
-    id = id.from(_N, "StopStreamOutput"),
+    id = id.from(_N, "StopStreamResponse"),
     type = "structure",
 })
 
@@ -3855,7 +3855,7 @@ M.StreamUnavailable = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3883,12 +3883,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3916,12 +3916,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateChannelInput = schema.new({
-    id = id.from(_N, "UpdateChannelInput"),
+    id = id.from(_N, "UpdateChannelRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4010,7 +4010,7 @@ M.UpdateChannelInput = schema.new({
 })
 
 M.UpdateChannelOutput = schema.new({
-    id = id.from(_N, "UpdateChannelOutput"),
+    id = id.from(_N, "UpdateChannelResponse"),
     type = "structure",
     members = {
         channel = schema.new({
@@ -4024,7 +4024,7 @@ M.UpdateChannelOutput = schema.new({
 })
 
 M.UpdatePlaybackRestrictionPolicyInput = schema.new({
-    id = id.from(_N, "UpdatePlaybackRestrictionPolicyInput"),
+    id = id.from(_N, "UpdatePlaybackRestrictionPolicyRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4066,7 +4066,7 @@ M.UpdatePlaybackRestrictionPolicyInput = schema.new({
 })
 
 M.UpdatePlaybackRestrictionPolicyOutput = schema.new({
-    id = id.from(_N, "UpdatePlaybackRestrictionPolicyOutput"),
+    id = id.from(_N, "UpdatePlaybackRestrictionPolicyResponse"),
     type = "structure",
     members = {
         playbackRestrictionPolicy = schema.new({
@@ -4078,5 +4078,19 @@ M.UpdatePlaybackRestrictionPolicyOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

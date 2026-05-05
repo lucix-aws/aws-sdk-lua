@@ -110,7 +110,7 @@ M.RecommendationResourceExclusion = schema.new({
 })
 
 M.BatchUpdateRecommendationResourceExclusionInput = schema.new({
-    id = id.from(_N, "BatchUpdateRecommendationResourceExclusionInput"),
+    id = id.from(_N, "BatchUpdateRecommendationResourceExclusionRequest"),
     type = "structure",
     members = {
         recommendationResourceExclusions = schema.new({
@@ -152,7 +152,7 @@ M.UpdateRecommendationResourceExclusionError = schema.new({
 })
 
 M.BatchUpdateRecommendationResourceExclusionOutput = schema.new({
-    id = id.from(_N, "BatchUpdateRecommendationResourceExclusionOutput"),
+    id = id.from(_N, "BatchUpdateRecommendationResourceExclusionResponse"),
     type = "structure",
     members = {
         batchUpdateRecommendationResourceExclusionErrors = schema.new({
@@ -328,7 +328,7 @@ M.CheckSummary = schema.new({
 })
 
 M.GetOrganizationRecommendationInput = schema.new({
-    id = id.from(_N, "GetOrganizationRecommendationInput"),
+    id = id.from(_N, "GetOrganizationRecommendationRequest"),
     type = "structure",
     members = {
         organizationRecommendationIdentifier = schema.new({
@@ -597,7 +597,7 @@ M.OrganizationRecommendation = schema.new({
 })
 
 M.GetOrganizationRecommendationOutput = schema.new({
-    id = id.from(_N, "GetOrganizationRecommendationOutput"),
+    id = id.from(_N, "GetOrganizationRecommendationResponse"),
     type = "structure",
     members = {
         organizationRecommendation = schema.new({
@@ -630,7 +630,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.GetRecommendationInput = schema.new({
-    id = id.from(_N, "GetRecommendationInput"),
+    id = id.from(_N, "GetRecommendationRequest"),
     type = "structure",
     members = {
         recommendationIdentifier = schema.new({
@@ -835,7 +835,7 @@ M.Recommendation = schema.new({
 })
 
 M.GetRecommendationOutput = schema.new({
-    id = id.from(_N, "GetRecommendationOutput"),
+    id = id.from(_N, "GetRecommendationResponse"),
     type = "structure",
     members = {
         recommendation = schema.new({
@@ -849,7 +849,7 @@ M.GetRecommendationOutput = schema.new({
 })
 
 M.ListChecksInput = schema.new({
-    id = id.from(_N, "ListChecksInput"),
+    id = id.from(_N, "ListChecksRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -910,7 +910,7 @@ M.ListChecksInput = schema.new({
 })
 
 M.ListChecksOutput = schema.new({
-    id = id.from(_N, "ListChecksOutput"),
+    id = id.from(_N, "ListChecksResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -933,7 +933,7 @@ M.ListChecksOutput = schema.new({
 })
 
 M.ListOrganizationRecommendationAccountsInput = schema.new({
-    id = id.from(_N, "ListOrganizationRecommendationAccountsInput"),
+    id = id.from(_N, "ListOrganizationRecommendationAccountsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -977,7 +977,7 @@ M.ListOrganizationRecommendationAccountsInput = schema.new({
 })
 
 M.ListOrganizationRecommendationAccountsOutput = schema.new({
-    id = id.from(_N, "ListOrganizationRecommendationAccountsOutput"),
+    id = id.from(_N, "ListOrganizationRecommendationAccountsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1000,7 +1000,7 @@ M.ListOrganizationRecommendationAccountsOutput = schema.new({
 })
 
 M.ListOrganizationRecommendationResourcesInput = schema.new({
-    id = id.from(_N, "ListOrganizationRecommendationResourcesInput"),
+    id = id.from(_N, "ListOrganizationRecommendationResourcesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1168,7 +1168,7 @@ M.OrganizationRecommendationResourceSummary = schema.new({
 })
 
 M.ListOrganizationRecommendationResourcesOutput = schema.new({
-    id = id.from(_N, "ListOrganizationRecommendationResourcesOutput"),
+    id = id.from(_N, "ListOrganizationRecommendationResourcesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1191,7 +1191,7 @@ M.ListOrganizationRecommendationResourcesOutput = schema.new({
 })
 
 M.ListOrganizationRecommendationsInput = schema.new({
-    id = id.from(_N, "ListOrganizationRecommendationsInput"),
+    id = id.from(_N, "ListOrganizationRecommendationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1413,7 +1413,7 @@ M.OrganizationRecommendationSummary = schema.new({
 })
 
 M.ListOrganizationRecommendationsOutput = schema.new({
-    id = id.from(_N, "ListOrganizationRecommendationsOutput"),
+    id = id.from(_N, "ListOrganizationRecommendationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1436,7 +1436,7 @@ M.ListOrganizationRecommendationsOutput = schema.new({
 })
 
 M.ListRecommendationResourcesInput = schema.new({
-    id = id.from(_N, "ListRecommendationResourcesInput"),
+    id = id.from(_N, "ListRecommendationResourcesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1598,7 +1598,7 @@ M.RecommendationResourceSummary = schema.new({
 })
 
 M.ListRecommendationResourcesOutput = schema.new({
-    id = id.from(_N, "ListRecommendationResourcesOutput"),
+    id = id.from(_N, "ListRecommendationResourcesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1621,7 +1621,7 @@ M.ListRecommendationResourcesOutput = schema.new({
 })
 
 M.ListRecommendationsInput = schema.new({
-    id = id.from(_N, "ListRecommendationsInput"),
+    id = id.from(_N, "ListRecommendationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1858,7 +1858,7 @@ M.RecommendationSummary = schema.new({
 })
 
 M.ListRecommendationsOutput = schema.new({
-    id = id.from(_N, "ListRecommendationsOutput"),
+    id = id.from(_N, "ListRecommendationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1881,7 +1881,7 @@ M.ListRecommendationsOutput = schema.new({
 })
 
 M.UpdateOrganizationRecommendationLifecycleInput = schema.new({
-    id = id.from(_N, "UpdateOrganizationRecommendationLifecycleInput"),
+    id = id.from(_N, "UpdateOrganizationRecommendationLifecycleRequest"),
     type = "structure",
     members = {
         lifecycleStage = schema.new({
@@ -1919,12 +1919,12 @@ M.UpdateOrganizationRecommendationLifecycleInput = schema.new({
 })
 
 M.UpdateOrganizationRecommendationLifecycleOutput = schema.new({
-    id = id.from(_N, "UpdateOrganizationRecommendationLifecycleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateRecommendationLifecycleInput = schema.new({
-    id = id.from(_N, "UpdateRecommendationLifecycleInput"),
+    id = id.from(_N, "UpdateRecommendationLifecycleRequest"),
     type = "structure",
     members = {
         lifecycleStage = schema.new({
@@ -1962,8 +1962,22 @@ M.UpdateRecommendationLifecycleInput = schema.new({
 })
 
 M.UpdateRecommendationLifecycleOutput = schema.new({
-    id = id.from(_N, "UpdateRecommendationLifecycleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

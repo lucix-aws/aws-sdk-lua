@@ -366,7 +366,7 @@ M.BasicAuthCredentials = schema.new({
 })
 
 M.CancelFlowExecutionsInput = schema.new({
-    id = id.from(_N, "CancelFlowExecutionsInput"),
+    id = id.from(_N, "CancelFlowExecutionsRequest"),
     type = "structure",
     members = {
         flowName = schema.new({
@@ -389,7 +389,7 @@ M.CancelFlowExecutionsInput = schema.new({
 })
 
 M.CancelFlowExecutionsOutput = schema.new({
-    id = id.from(_N, "CancelFlowExecutionsOutput"),
+    id = id.from(_N, "CancelFlowExecutionsResponse"),
     type = "structure",
     members = {
         invalidExecutions = schema.new({
@@ -3208,7 +3208,7 @@ M.ConnectorServerException = schema.new({
 })
 
 M.CreateConnectorProfileInput = schema.new({
-    id = id.from(_N, "CreateConnectorProfileInput"),
+    id = id.from(_N, "CreateConnectorProfileRequest"),
     type = "structure",
     members = {
         connectorProfileName = schema.new({
@@ -3273,7 +3273,7 @@ M.CreateConnectorProfileInput = schema.new({
 })
 
 M.CreateConnectorProfileOutput = schema.new({
-    id = id.from(_N, "CreateConnectorProfileOutput"),
+    id = id.from(_N, "CreateConnectorProfileResponse"),
     type = "structure",
     members = {
         connectorProfileArn = schema.new({
@@ -4746,7 +4746,7 @@ M.TriggerConfig = schema.new({
 })
 
 M.CreateFlowInput = schema.new({
-    id = id.from(_N, "CreateFlowInput"),
+    id = id.from(_N, "CreateFlowRequest"),
     type = "structure",
     members = {
         flowName = schema.new({
@@ -4838,7 +4838,7 @@ M.CreateFlowInput = schema.new({
 })
 
 M.CreateFlowOutput = schema.new({
-    id = id.from(_N, "CreateFlowOutput"),
+    id = id.from(_N, "CreateFlowResponse"),
     type = "structure",
     members = {
         flowArn = schema.new({
@@ -4857,7 +4857,7 @@ M.CreateFlowOutput = schema.new({
 })
 
 M.DeleteConnectorProfileInput = schema.new({
-    id = id.from(_N, "DeleteConnectorProfileInput"),
+    id = id.from(_N, "DeleteConnectorProfileRequest"),
     type = "structure",
     members = {
         connectorProfileName = schema.new({
@@ -4882,12 +4882,12 @@ M.DeleteConnectorProfileInput = schema.new({
 })
 
 M.DeleteConnectorProfileOutput = schema.new({
-    id = id.from(_N, "DeleteConnectorProfileOutput"),
+    id = id.from(_N, "DeleteConnectorProfileResponse"),
     type = "structure",
 })
 
 M.DeleteFlowInput = schema.new({
-    id = id.from(_N, "DeleteFlowInput"),
+    id = id.from(_N, "DeleteFlowRequest"),
     type = "structure",
     members = {
         flowName = schema.new({
@@ -4912,12 +4912,12 @@ M.DeleteFlowInput = schema.new({
 })
 
 M.DeleteFlowOutput = schema.new({
-    id = id.from(_N, "DeleteFlowOutput"),
+    id = id.from(_N, "DeleteFlowResponse"),
     type = "structure",
 })
 
 M.DescribeConnectorInput = schema.new({
-    id = id.from(_N, "DescribeConnectorInput"),
+    id = id.from(_N, "DescribeConnectorRequest"),
     type = "structure",
     members = {
         connectorType = schema.new({
@@ -4939,7 +4939,7 @@ M.DescribeConnectorInput = schema.new({
 })
 
 M.DescribeConnectorOutput = schema.new({
-    id = id.from(_N, "DescribeConnectorOutput"),
+    id = id.from(_N, "DescribeConnectorResponse"),
     type = "structure",
     members = {
         connectorConfiguration = schema.new({
@@ -4953,7 +4953,7 @@ M.DescribeConnectorOutput = schema.new({
 })
 
 M.DescribeConnectorEntityInput = schema.new({
-    id = id.from(_N, "DescribeConnectorEntityInput"),
+    id = id.from(_N, "DescribeConnectorEntityRequest"),
     type = "structure",
     members = {
         connectorEntityName = schema.new({
@@ -4987,7 +4987,7 @@ M.DescribeConnectorEntityInput = schema.new({
 })
 
 M.DescribeConnectorEntityOutput = schema.new({
-    id = id.from(_N, "DescribeConnectorEntityOutput"),
+    id = id.from(_N, "DescribeConnectorEntityResponse"),
     type = "structure",
     members = {
         connectorEntityFields = schema.new({
@@ -5004,7 +5004,7 @@ M.DescribeConnectorEntityOutput = schema.new({
 })
 
 M.DescribeConnectorProfilesInput = schema.new({
-    id = id.from(_N, "DescribeConnectorProfilesInput"),
+    id = id.from(_N, "DescribeConnectorProfilesRequest"),
     type = "structure",
     members = {
         connectorProfileNames = schema.new({
@@ -5042,7 +5042,7 @@ M.DescribeConnectorProfilesInput = schema.new({
 })
 
 M.DescribeConnectorProfilesOutput = schema.new({
-    id = id.from(_N, "DescribeConnectorProfilesOutput"),
+    id = id.from(_N, "DescribeConnectorProfilesResponse"),
     type = "structure",
     members = {
         connectorProfileDetails = schema.new({
@@ -5062,7 +5062,7 @@ M.DescribeConnectorProfilesOutput = schema.new({
 })
 
 M.DescribeConnectorsInput = schema.new({
-    id = id.from(_N, "DescribeConnectorsInput"),
+    id = id.from(_N, "DescribeConnectorsRequest"),
     type = "structure",
     members = {
         connectorTypes = schema.new({
@@ -5088,7 +5088,7 @@ M.DescribeConnectorsInput = schema.new({
 })
 
 M.DescribeConnectorsOutput = schema.new({
-    id = id.from(_N, "DescribeConnectorsOutput"),
+    id = id.from(_N, "DescribeConnectorsResponse"),
     type = "structure",
     members = {
         connectorConfigurations = schema.new({
@@ -5116,7 +5116,7 @@ M.DescribeConnectorsOutput = schema.new({
 })
 
 M.DescribeFlowInput = schema.new({
-    id = id.from(_N, "DescribeFlowInput"),
+    id = id.from(_N, "DescribeFlowRequest"),
     type = "structure",
     members = {
         flowName = schema.new({
@@ -5215,7 +5215,7 @@ M.MetadataCatalogDetail = schema.new({
 })
 
 M.DescribeFlowOutput = schema.new({
-    id = id.from(_N, "DescribeFlowOutput"),
+    id = id.from(_N, "DescribeFlowResponse"),
     type = "structure",
     members = {
         flowArn = schema.new({
@@ -5345,7 +5345,7 @@ M.DescribeFlowOutput = schema.new({
 })
 
 M.DescribeFlowExecutionRecordsInput = schema.new({
-    id = id.from(_N, "DescribeFlowExecutionRecordsInput"),
+    id = id.from(_N, "DescribeFlowExecutionRecordsRequest"),
     type = "structure",
     members = {
         flowName = schema.new({
@@ -5493,7 +5493,7 @@ M.ExecutionRecord = schema.new({
 })
 
 M.DescribeFlowExecutionRecordsOutput = schema.new({
-    id = id.from(_N, "DescribeFlowExecutionRecordsOutput"),
+    id = id.from(_N, "DescribeFlowExecutionRecordsResponse"),
     type = "structure",
     members = {
         flowExecutions = schema.new({
@@ -5613,7 +5613,7 @@ M.FlowDefinition = schema.new({
 })
 
 M.ListConnectorEntitiesInput = schema.new({
-    id = id.from(_N, "ListConnectorEntitiesInput"),
+    id = id.from(_N, "ListConnectorEntitiesRequest"),
     type = "structure",
     members = {
         connectorProfileName = schema.new({
@@ -5656,7 +5656,7 @@ M.ListConnectorEntitiesInput = schema.new({
 })
 
 M.ListConnectorEntitiesOutput = schema.new({
-    id = id.from(_N, "ListConnectorEntitiesOutput"),
+    id = id.from(_N, "ListConnectorEntitiesResponse"),
     type = "structure",
     members = {
         connectorEntityMap = schema.new({
@@ -5665,7 +5665,7 @@ M.ListConnectorEntitiesOutput = schema.new({
             name = "connectorEntityMap",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.ConnectorEntity }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5680,7 +5680,7 @@ M.ListConnectorEntitiesOutput = schema.new({
 })
 
 M.ListConnectorsInput = schema.new({
-    id = id.from(_N, "ListConnectorsInput"),
+    id = id.from(_N, "ListConnectorsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -5699,7 +5699,7 @@ M.ListConnectorsInput = schema.new({
 })
 
 M.ListConnectorsOutput = schema.new({
-    id = id.from(_N, "ListConnectorsOutput"),
+    id = id.from(_N, "ListConnectorsResponse"),
     type = "structure",
     members = {
         connectors = schema.new({
@@ -5719,7 +5719,7 @@ M.ListConnectorsOutput = schema.new({
 })
 
 M.ListFlowsInput = schema.new({
-    id = id.from(_N, "ListFlowsInput"),
+    id = id.from(_N, "ListFlowsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -5738,7 +5738,7 @@ M.ListFlowsInput = schema.new({
 })
 
 M.ListFlowsOutput = schema.new({
-    id = id.from(_N, "ListFlowsOutput"),
+    id = id.from(_N, "ListFlowsResponse"),
     type = "structure",
     members = {
         flows = schema.new({
@@ -5758,7 +5758,7 @@ M.ListFlowsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5775,7 +5775,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -5790,7 +5790,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.RegisterConnectorInput = schema.new({
-    id = id.from(_N, "RegisterConnectorInput"),
+    id = id.from(_N, "RegisterConnectorRequest"),
     type = "structure",
     members = {
         connectorLabel = schema.new({
@@ -5831,7 +5831,7 @@ M.RegisterConnectorInput = schema.new({
 })
 
 M.RegisterConnectorOutput = schema.new({
-    id = id.from(_N, "RegisterConnectorOutput"),
+    id = id.from(_N, "RegisterConnectorResponse"),
     type = "structure",
     members = {
         connectorArn = schema.new({
@@ -5844,7 +5844,7 @@ M.RegisterConnectorOutput = schema.new({
 })
 
 M.ResetConnectorMetadataCacheInput = schema.new({
-    id = id.from(_N, "ResetConnectorMetadataCacheInput"),
+    id = id.from(_N, "ResetConnectorMetadataCacheRequest"),
     type = "structure",
     members = {
         connectorProfileName = schema.new({
@@ -5881,12 +5881,12 @@ M.ResetConnectorMetadataCacheInput = schema.new({
 })
 
 M.ResetConnectorMetadataCacheOutput = schema.new({
-    id = id.from(_N, "ResetConnectorMetadataCacheOutput"),
+    id = id.from(_N, "ResetConnectorMetadataCacheResponse"),
     type = "structure",
 })
 
 M.StartFlowInput = schema.new({
-    id = id.from(_N, "StartFlowInput"),
+    id = id.from(_N, "StartFlowRequest"),
     type = "structure",
     members = {
         flowName = schema.new({
@@ -5911,7 +5911,7 @@ M.StartFlowInput = schema.new({
 })
 
 M.StartFlowOutput = schema.new({
-    id = id.from(_N, "StartFlowOutput"),
+    id = id.from(_N, "StartFlowResponse"),
     type = "structure",
     members = {
         flowArn = schema.new({
@@ -5936,7 +5936,7 @@ M.StartFlowOutput = schema.new({
 })
 
 M.StopFlowInput = schema.new({
-    id = id.from(_N, "StopFlowInput"),
+    id = id.from(_N, "StopFlowRequest"),
     type = "structure",
     members = {
         flowName = schema.new({
@@ -5952,7 +5952,7 @@ M.StopFlowInput = schema.new({
 })
 
 M.StopFlowOutput = schema.new({
-    id = id.from(_N, "StopFlowOutput"),
+    id = id.from(_N, "StopFlowResponse"),
     type = "structure",
     members = {
         flowArn = schema.new({
@@ -5987,7 +5987,7 @@ M.UnsupportedOperationException = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6015,12 +6015,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UnregisterConnectorInput = schema.new({
-    id = id.from(_N, "UnregisterConnectorInput"),
+    id = id.from(_N, "UnregisterConnectorRequest"),
     type = "structure",
     members = {
         connectorLabel = schema.new({
@@ -6045,12 +6045,12 @@ M.UnregisterConnectorInput = schema.new({
 })
 
 M.UnregisterConnectorOutput = schema.new({
-    id = id.from(_N, "UnregisterConnectorOutput"),
+    id = id.from(_N, "UnregisterConnectorResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6078,12 +6078,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateConnectorProfileInput = schema.new({
-    id = id.from(_N, "UpdateConnectorProfileInput"),
+    id = id.from(_N, "UpdateConnectorProfileRequest"),
     type = "structure",
     members = {
         connectorProfileName = schema.new({
@@ -6127,7 +6127,7 @@ M.UpdateConnectorProfileInput = schema.new({
 })
 
 M.UpdateConnectorProfileOutput = schema.new({
-    id = id.from(_N, "UpdateConnectorProfileOutput"),
+    id = id.from(_N, "UpdateConnectorProfileResponse"),
     type = "structure",
     members = {
         connectorProfileArn = schema.new({
@@ -6140,7 +6140,7 @@ M.UpdateConnectorProfileOutput = schema.new({
 })
 
 M.UpdateConnectorRegistrationInput = schema.new({
-    id = id.from(_N, "UpdateConnectorRegistrationInput"),
+    id = id.from(_N, "UpdateConnectorRegistrationRequest"),
     type = "structure",
     members = {
         connectorLabel = schema.new({
@@ -6178,7 +6178,7 @@ M.UpdateConnectorRegistrationInput = schema.new({
 })
 
 M.UpdateConnectorRegistrationOutput = schema.new({
-    id = id.from(_N, "UpdateConnectorRegistrationOutput"),
+    id = id.from(_N, "UpdateConnectorRegistrationResponse"),
     type = "structure",
     members = {
         connectorArn = schema.new({
@@ -6191,7 +6191,7 @@ M.UpdateConnectorRegistrationOutput = schema.new({
 })
 
 M.UpdateFlowInput = schema.new({
-    id = id.from(_N, "UpdateFlowInput"),
+    id = id.from(_N, "UpdateFlowRequest"),
     type = "structure",
     members = {
         flowName = schema.new({
@@ -6269,7 +6269,7 @@ M.UpdateFlowInput = schema.new({
 })
 
 M.UpdateFlowOutput = schema.new({
-    id = id.from(_N, "UpdateFlowOutput"),
+    id = id.from(_N, "UpdateFlowResponse"),
     type = "structure",
     members = {
         flowStatus = schema.new({
@@ -6280,5 +6280,19 @@ M.UpdateFlowOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

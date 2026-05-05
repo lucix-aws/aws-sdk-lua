@@ -2365,41 +2365,41 @@ local record ThrottlingException
     Message: string
 end
 
-local type FirewallDomainListStatus = "COMPLETE" | "COMPLETE_IMPORT_FAILED" | "IMPORTING" | "DELETING" | "UPDATING"
-
 local type RuleTypeOption = "FORWARD" | "SYSTEM" | "RECURSIVE" | "DELEGATE"
 
-local type Validation = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
+local type FirewallDomainListStatus = "COMPLETE" | "COMPLETE_IMPORT_FAILED" | "IMPORTING" | "DELETING" | "UPDATING"
+
+local type BlockResponse = "NODATA" | "NXDOMAIN" | "OVERRIDE"
+
+local type BlockOverrideDnsType = "CNAME"
+
+local type ConfidenceThreshold = "LOW" | "MEDIUM" | "HIGH"
 
 local type ResolverEndpointType = "IPV6" | "IPV4" | "DUALSTACK"
 
-local type AutodefinedReverseFlag = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
+local type FirewallDomainRedirectionAction = "INSPECT_REDIRECTION_DOMAIN" | "TRUST_REDIRECTION_DOMAIN"
 
-local type FirewallDomainUpdateOperation = "ADD" | "REMOVE" | "REPLACE"
+local type Action = "ALLOW" | "BLOCK" | "ALERT"
 
-local type MutationProtectionStatus = "ENABLED" | "DISABLED"
-
-local type FirewallFailOpenStatus = "ENABLED" | "DISABLED" | "USE_LOCAL_RESOURCE_SETTING"
-
-local type FirewallRuleGroupAssociationStatus = "COMPLETE" | "DELETING" | "UPDATING"
-
-local type ResolverEndpointDirection = "INBOUND" | "OUTBOUND" | "INBOUND_DELEGATION"
+local type FirewallDomainImportOperation = "REPLACE"
 
 local type SortOrder = "ASCENDING" | "DESCENDING"
 
 local type DnsThreatProtection = "DGA" | "DNS_TUNNELING" | "DICTIONARY_DGA"
 
-local type BlockOverrideDnsType = "CNAME"
+local type Validation = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
 
-local type FirewallDomainRedirectionAction = "INSPECT_REDIRECTION_DOMAIN" | "TRUST_REDIRECTION_DOMAIN"
+local type FirewallDomainUpdateOperation = "ADD" | "REMOVE" | "REPLACE"
 
-local type BlockResponse = "NODATA" | "NXDOMAIN" | "OVERRIDE"
+local type MutationProtectionStatus = "ENABLED" | "DISABLED"
 
-local type ConfidenceThreshold = "LOW" | "MEDIUM" | "HIGH"
+local type AutodefinedReverseFlag = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
 
-local type FirewallDomainImportOperation = "REPLACE"
+local type FirewallRuleGroupAssociationStatus = "COMPLETE" | "DELETING" | "UPDATING"
 
-local type Action = "ALLOW" | "BLOCK" | "ALERT"
+local type FirewallFailOpenStatus = "ENABLED" | "DISABLED" | "USE_LOCAL_RESOURCE_SETTING"
+
+local type ResolverEndpointDirection = "INBOUND" | "OUTBOUND" | "INBOUND_DELEGATION"
 
 local record M
     AssociateFirewallRuleGroupInput: AssociateFirewallRuleGroupInput

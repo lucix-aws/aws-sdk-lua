@@ -49,7 +49,7 @@ M.ConcurrentUpdateException = schema.new({
 })
 
 M.DeleteScalingPolicyInput = schema.new({
-    id = id.from(_N, "DeleteScalingPolicyInput"),
+    id = id.from(_N, "DeleteScalingPolicyRequest"),
     type = "structure",
     members = {
         PolicyName = schema.new({
@@ -92,7 +92,7 @@ M.DeleteScalingPolicyInput = schema.new({
 })
 
 M.DeleteScalingPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteScalingPolicyOutput"),
+    id = id.from(_N, "DeleteScalingPolicyResponse"),
     type = "structure",
 })
 
@@ -145,7 +145,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteScheduledActionInput = schema.new({
-    id = id.from(_N, "DeleteScheduledActionInput"),
+    id = id.from(_N, "DeleteScheduledActionRequest"),
     type = "structure",
     members = {
         ServiceNamespace = schema.new({
@@ -188,12 +188,12 @@ M.DeleteScheduledActionInput = schema.new({
 })
 
 M.DeleteScheduledActionOutput = schema.new({
-    id = id.from(_N, "DeleteScheduledActionOutput"),
+    id = id.from(_N, "DeleteScheduledActionResponse"),
     type = "structure",
 })
 
 M.DeregisterScalableTargetInput = schema.new({
-    id = id.from(_N, "DeregisterScalableTargetInput"),
+    id = id.from(_N, "DeregisterScalableTargetRequest"),
     type = "structure",
     members = {
         ServiceNamespace = schema.new({
@@ -227,12 +227,12 @@ M.DeregisterScalableTargetInput = schema.new({
 })
 
 M.DeregisterScalableTargetOutput = schema.new({
-    id = id.from(_N, "DeregisterScalableTargetOutput"),
+    id = id.from(_N, "DeregisterScalableTargetResponse"),
     type = "structure",
 })
 
 M.DescribeScalableTargetsInput = schema.new({
-    id = id.from(_N, "DescribeScalableTargetsInput"),
+    id = id.from(_N, "DescribeScalableTargetsRequest"),
     type = "structure",
     members = {
         ServiceNamespace = schema.new({
@@ -387,7 +387,7 @@ M.ScalableTarget = schema.new({
 })
 
 M.DescribeScalableTargetsOutput = schema.new({
-    id = id.from(_N, "DescribeScalableTargetsOutput"),
+    id = id.from(_N, "DescribeScalableTargetsResponse"),
     type = "structure",
     members = {
         ScalableTargets = schema.new({
@@ -423,7 +423,7 @@ M.InvalidNextTokenException = schema.new({
 })
 
 M.DescribeScalingActivitiesInput = schema.new({
-    id = id.from(_N, "DescribeScalingActivitiesInput"),
+    id = id.from(_N, "DescribeScalingActivitiesRequest"),
     type = "structure",
     members = {
         ServiceNamespace = schema.new({
@@ -607,7 +607,7 @@ M.ScalingActivity = schema.new({
 })
 
 M.DescribeScalingActivitiesOutput = schema.new({
-    id = id.from(_N, "DescribeScalingActivitiesOutput"),
+    id = id.from(_N, "DescribeScalingActivitiesResponse"),
     type = "structure",
     members = {
         ScalingActivities = schema.new({
@@ -627,7 +627,7 @@ M.DescribeScalingActivitiesOutput = schema.new({
 })
 
 M.DescribeScalingPoliciesInput = schema.new({
-    id = id.from(_N, "DescribeScalingPoliciesInput"),
+    id = id.from(_N, "DescribeScalingPoliciesRequest"),
     type = "structure",
     members = {
         PolicyNames = schema.new({
@@ -1408,7 +1408,7 @@ M.ScalingPolicy = schema.new({
 })
 
 M.DescribeScalingPoliciesOutput = schema.new({
-    id = id.from(_N, "DescribeScalingPoliciesOutput"),
+    id = id.from(_N, "DescribeScalingPoliciesResponse"),
     type = "structure",
     members = {
         ScalingPolicies = schema.new({
@@ -1444,7 +1444,7 @@ M.FailedResourceAccessException = schema.new({
 })
 
 M.DescribeScheduledActionsInput = schema.new({
-    id = id.from(_N, "DescribeScheduledActionsInput"),
+    id = id.from(_N, "DescribeScheduledActionsRequest"),
     type = "structure",
     members = {
         ScheduledActionNames = schema.new({
@@ -1602,7 +1602,7 @@ M.ScheduledAction = schema.new({
 })
 
 M.DescribeScheduledActionsOutput = schema.new({
-    id = id.from(_N, "DescribeScheduledActionsOutput"),
+    id = id.from(_N, "DescribeScheduledActionsResponse"),
     type = "structure",
     members = {
         ScheduledActions = schema.new({
@@ -1622,7 +1622,7 @@ M.DescribeScheduledActionsOutput = schema.new({
 })
 
 M.GetPredictiveScalingForecastInput = schema.new({
-    id = id.from(_N, "GetPredictiveScalingForecastInput"),
+    id = id.from(_N, "GetPredictiveScalingForecastRequest"),
     type = "structure",
     members = {
         ServiceNamespace = schema.new({
@@ -1747,7 +1747,7 @@ M.LoadForecast = schema.new({
 })
 
 M.GetPredictiveScalingForecastOutput = schema.new({
-    id = id.from(_N, "GetPredictiveScalingForecastOutput"),
+    id = id.from(_N, "GetPredictiveScalingForecastResponse"),
     type = "structure",
     members = {
         LoadForecast = schema.new({
@@ -1774,7 +1774,7 @@ M.GetPredictiveScalingForecastOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1790,7 +1790,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1843,7 +1843,7 @@ M.LimitExceededException = schema.new({
 })
 
 M.PutScalingPolicyInput = schema.new({
-    id = id.from(_N, "PutScalingPolicyInput"),
+    id = id.from(_N, "PutScalingPolicyRequest"),
     type = "structure",
     members = {
         PolicyName = schema.new({
@@ -1913,7 +1913,7 @@ M.PutScalingPolicyInput = schema.new({
 })
 
 M.PutScalingPolicyOutput = schema.new({
-    id = id.from(_N, "PutScalingPolicyOutput"),
+    id = id.from(_N, "PutScalingPolicyResponse"),
     type = "structure",
     members = {
         PolicyARN = schema.new({
@@ -1936,7 +1936,7 @@ M.PutScalingPolicyOutput = schema.new({
 })
 
 M.PutScheduledActionInput = schema.new({
-    id = id.from(_N, "PutScheduledActionInput"),
+    id = id.from(_N, "PutScheduledActionRequest"),
     type = "structure",
     members = {
         ServiceNamespace = schema.new({
@@ -2010,12 +2010,12 @@ M.PutScheduledActionInput = schema.new({
 })
 
 M.PutScheduledActionOutput = schema.new({
-    id = id.from(_N, "PutScheduledActionOutput"),
+    id = id.from(_N, "PutScheduledActionResponse"),
     type = "structure",
 })
 
 M.RegisterScalableTargetInput = schema.new({
-    id = id.from(_N, "RegisterScalableTargetInput"),
+    id = id.from(_N, "RegisterScalableTargetRequest"),
     type = "structure",
     members = {
         ServiceNamespace = schema.new({
@@ -2082,7 +2082,7 @@ M.RegisterScalableTargetInput = schema.new({
 })
 
 M.RegisterScalableTargetOutput = schema.new({
-    id = id.from(_N, "RegisterScalableTargetOutput"),
+    id = id.from(_N, "RegisterScalableTargetResponse"),
     type = "structure",
     members = {
         ScalableTargetARN = schema.new({
@@ -2095,7 +2095,7 @@ M.RegisterScalableTargetOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2122,7 +2122,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -2149,7 +2149,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2175,8 +2175,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -67,7 +67,7 @@ M.Attribute = schema.new({
 })
 
 M.AddAttributesToFindingsInput = schema.new({
-    id = id.from(_N, "AddAttributesToFindingsInput"),
+    id = id.from(_N, "AddAttributesToFindingsRequest"),
     type = "structure",
     members = {
         findingArns = schema.new({
@@ -119,7 +119,7 @@ M.FailedItemDetails = schema.new({
 })
 
 M.AddAttributesToFindingsOutput = schema.new({
-    id = id.from(_N, "AddAttributesToFindingsOutput"),
+    id = id.from(_N, "AddAttributesToFindingsResponse"),
     type = "structure",
     members = {
         failedItems = schema.new({
@@ -1247,7 +1247,7 @@ M.AssetAttributes = schema.new({
 })
 
 M.CreateAssessmentTargetInput = schema.new({
-    id = id.from(_N, "CreateAssessmentTargetInput"),
+    id = id.from(_N, "CreateAssessmentTargetRequest"),
     type = "structure",
     members = {
         assessmentTargetName = schema.new({
@@ -1269,7 +1269,7 @@ M.CreateAssessmentTargetInput = schema.new({
 })
 
 M.CreateAssessmentTargetOutput = schema.new({
-    id = id.from(_N, "CreateAssessmentTargetOutput"),
+    id = id.from(_N, "CreateAssessmentTargetResponse"),
     type = "structure",
     members = {
         assessmentTargetArn = schema.new({
@@ -1359,7 +1359,7 @@ M.LimitExceededException = schema.new({
 })
 
 M.CreateAssessmentTemplateInput = schema.new({
-    id = id.from(_N, "CreateAssessmentTemplateInput"),
+    id = id.from(_N, "CreateAssessmentTemplateRequest"),
     type = "structure",
     members = {
         assessmentTargetArn = schema.new({
@@ -1410,7 +1410,7 @@ M.CreateAssessmentTemplateInput = schema.new({
 })
 
 M.CreateAssessmentTemplateOutput = schema.new({
-    id = id.from(_N, "CreateAssessmentTemplateOutput"),
+    id = id.from(_N, "CreateAssessmentTemplateResponse"),
     type = "structure",
     members = {
         assessmentTemplateArn = schema.new({
@@ -1426,7 +1426,7 @@ M.CreateAssessmentTemplateOutput = schema.new({
 })
 
 M.CreateExclusionsPreviewInput = schema.new({
-    id = id.from(_N, "CreateExclusionsPreviewInput"),
+    id = id.from(_N, "CreateExclusionsPreviewRequest"),
     type = "structure",
     members = {
         assessmentTemplateArn = schema.new({
@@ -1442,7 +1442,7 @@ M.CreateExclusionsPreviewInput = schema.new({
 })
 
 M.CreateExclusionsPreviewOutput = schema.new({
-    id = id.from(_N, "CreateExclusionsPreviewOutput"),
+    id = id.from(_N, "CreateExclusionsPreviewResponse"),
     type = "structure",
     members = {
         previewToken = schema.new({
@@ -1499,7 +1499,7 @@ M.ResourceGroupTag = schema.new({
 })
 
 M.CreateResourceGroupInput = schema.new({
-    id = id.from(_N, "CreateResourceGroupInput"),
+    id = id.from(_N, "CreateResourceGroupRequest"),
     type = "structure",
     members = {
         resourceGroupTags = schema.new({
@@ -1516,7 +1516,7 @@ M.CreateResourceGroupInput = schema.new({
 })
 
 M.CreateResourceGroupOutput = schema.new({
-    id = id.from(_N, "CreateResourceGroupOutput"),
+    id = id.from(_N, "CreateResourceGroupResponse"),
     type = "structure",
     members = {
         resourceGroupArn = schema.new({
@@ -1532,7 +1532,7 @@ M.CreateResourceGroupOutput = schema.new({
 })
 
 M.DeleteAssessmentRunInput = schema.new({
-    id = id.from(_N, "DeleteAssessmentRunInput"),
+    id = id.from(_N, "DeleteAssessmentRunRequest"),
     type = "structure",
     members = {
         assessmentRunArn = schema.new({
@@ -1548,12 +1548,12 @@ M.DeleteAssessmentRunInput = schema.new({
 })
 
 M.DeleteAssessmentRunOutput = schema.new({
-    id = id.from(_N, "DeleteAssessmentRunOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAssessmentTargetInput = schema.new({
-    id = id.from(_N, "DeleteAssessmentTargetInput"),
+    id = id.from(_N, "DeleteAssessmentTargetRequest"),
     type = "structure",
     members = {
         assessmentTargetArn = schema.new({
@@ -1569,12 +1569,12 @@ M.DeleteAssessmentTargetInput = schema.new({
 })
 
 M.DeleteAssessmentTargetOutput = schema.new({
-    id = id.from(_N, "DeleteAssessmentTargetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAssessmentTemplateInput = schema.new({
-    id = id.from(_N, "DeleteAssessmentTemplateInput"),
+    id = id.from(_N, "DeleteAssessmentTemplateRequest"),
     type = "structure",
     members = {
         assessmentTemplateArn = schema.new({
@@ -1590,12 +1590,12 @@ M.DeleteAssessmentTemplateInput = schema.new({
 })
 
 M.DeleteAssessmentTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteAssessmentTemplateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeAssessmentRunsInput = schema.new({
-    id = id.from(_N, "DescribeAssessmentRunsInput"),
+    id = id.from(_N, "DescribeAssessmentRunsRequest"),
     type = "structure",
     members = {
         assessmentRunArns = schema.new({
@@ -1612,7 +1612,7 @@ M.DescribeAssessmentRunsInput = schema.new({
 })
 
 M.DescribeAssessmentRunsOutput = schema.new({
-    id = id.from(_N, "DescribeAssessmentRunsOutput"),
+    id = id.from(_N, "DescribeAssessmentRunsResponse"),
     type = "structure",
     members = {
         assessmentRuns = schema.new({
@@ -1640,7 +1640,7 @@ M.DescribeAssessmentRunsOutput = schema.new({
 })
 
 M.DescribeAssessmentTargetsInput = schema.new({
-    id = id.from(_N, "DescribeAssessmentTargetsInput"),
+    id = id.from(_N, "DescribeAssessmentTargetsRequest"),
     type = "structure",
     members = {
         assessmentTargetArns = schema.new({
@@ -1657,7 +1657,7 @@ M.DescribeAssessmentTargetsInput = schema.new({
 })
 
 M.DescribeAssessmentTargetsOutput = schema.new({
-    id = id.from(_N, "DescribeAssessmentTargetsOutput"),
+    id = id.from(_N, "DescribeAssessmentTargetsResponse"),
     type = "structure",
     members = {
         assessmentTargets = schema.new({
@@ -1685,7 +1685,7 @@ M.DescribeAssessmentTargetsOutput = schema.new({
 })
 
 M.DescribeAssessmentTemplatesInput = schema.new({
-    id = id.from(_N, "DescribeAssessmentTemplatesInput"),
+    id = id.from(_N, "DescribeAssessmentTemplatesRequest"),
     type = "structure",
     members = {
         assessmentTemplateArns = schema.new({
@@ -1702,7 +1702,7 @@ M.DescribeAssessmentTemplatesInput = schema.new({
 })
 
 M.DescribeAssessmentTemplatesOutput = schema.new({
-    id = id.from(_N, "DescribeAssessmentTemplatesOutput"),
+    id = id.from(_N, "DescribeAssessmentTemplatesResponse"),
     type = "structure",
     members = {
         assessmentTemplates = schema.new({
@@ -1730,12 +1730,12 @@ M.DescribeAssessmentTemplatesOutput = schema.new({
 })
 
 M.DescribeCrossAccountAccessRoleInput = schema.new({
-    id = id.from(_N, "DescribeCrossAccountAccessRoleInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeCrossAccountAccessRoleOutput = schema.new({
-    id = id.from(_N, "DescribeCrossAccountAccessRoleOutput"),
+    id = id.from(_N, "DescribeCrossAccountAccessRoleResponse"),
     type = "structure",
     members = {
         roleArn = schema.new({
@@ -1769,7 +1769,7 @@ M.DescribeCrossAccountAccessRoleOutput = schema.new({
 })
 
 M.DescribeExclusionsInput = schema.new({
-    id = id.from(_N, "DescribeExclusionsInput"),
+    id = id.from(_N, "DescribeExclusionsRequest"),
     type = "structure",
     members = {
         exclusionArns = schema.new({
@@ -1871,7 +1871,7 @@ M.Exclusion = schema.new({
 })
 
 M.DescribeExclusionsOutput = schema.new({
-    id = id.from(_N, "DescribeExclusionsOutput"),
+    id = id.from(_N, "DescribeExclusionsResponse"),
     type = "structure",
     members = {
         exclusions = schema.new({
@@ -1900,7 +1900,7 @@ M.DescribeExclusionsOutput = schema.new({
 })
 
 M.DescribeFindingsInput = schema.new({
-    id = id.from(_N, "DescribeFindingsInput"),
+    id = id.from(_N, "DescribeFindingsRequest"),
     type = "structure",
     members = {
         findingArns = schema.new({
@@ -2095,7 +2095,7 @@ M.Finding = schema.new({
 })
 
 M.DescribeFindingsOutput = schema.new({
-    id = id.from(_N, "DescribeFindingsOutput"),
+    id = id.from(_N, "DescribeFindingsResponse"),
     type = "structure",
     members = {
         findings = schema.new({
@@ -2123,7 +2123,7 @@ M.DescribeFindingsOutput = schema.new({
 })
 
 M.DescribeResourceGroupsInput = schema.new({
-    id = id.from(_N, "DescribeResourceGroupsInput"),
+    id = id.from(_N, "DescribeResourceGroupsRequest"),
     type = "structure",
     members = {
         resourceGroupArns = schema.new({
@@ -2175,7 +2175,7 @@ M.ResourceGroup = schema.new({
 })
 
 M.DescribeResourceGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeResourceGroupsOutput"),
+    id = id.from(_N, "DescribeResourceGroupsResponse"),
     type = "structure",
     members = {
         resourceGroups = schema.new({
@@ -2203,7 +2203,7 @@ M.DescribeResourceGroupsOutput = schema.new({
 })
 
 M.DescribeRulesPackagesInput = schema.new({
-    id = id.from(_N, "DescribeRulesPackagesInput"),
+    id = id.from(_N, "DescribeRulesPackagesRequest"),
     type = "structure",
     members = {
         rulesPackageArns = schema.new({
@@ -2275,7 +2275,7 @@ M.RulesPackage = schema.new({
 })
 
 M.DescribeRulesPackagesOutput = schema.new({
-    id = id.from(_N, "DescribeRulesPackagesOutput"),
+    id = id.from(_N, "DescribeRulesPackagesResponse"),
     type = "structure",
     members = {
         rulesPackages = schema.new({
@@ -2442,7 +2442,7 @@ M.FindingFilter = schema.new({
 })
 
 M.GetAssessmentReportInput = schema.new({
-    id = id.from(_N, "GetAssessmentReportInput"),
+    id = id.from(_N, "GetAssessmentReportRequest"),
     type = "structure",
     members = {
         assessmentRunArn = schema.new({
@@ -2476,7 +2476,7 @@ M.GetAssessmentReportInput = schema.new({
 })
 
 M.GetAssessmentReportOutput = schema.new({
-    id = id.from(_N, "GetAssessmentReportOutput"),
+    id = id.from(_N, "GetAssessmentReportResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -2526,7 +2526,7 @@ M.UnsupportedFeatureException = schema.new({
 })
 
 M.GetExclusionsPreviewInput = schema.new({
-    id = id.from(_N, "GetExclusionsPreviewInput"),
+    id = id.from(_N, "GetExclusionsPreviewRequest"),
     type = "structure",
     members = {
         assessmentTemplateArn = schema.new({
@@ -2569,7 +2569,7 @@ M.GetExclusionsPreviewInput = schema.new({
 })
 
 M.GetExclusionsPreviewOutput = schema.new({
-    id = id.from(_N, "GetExclusionsPreviewOutput"),
+    id = id.from(_N, "GetExclusionsPreviewResponse"),
     type = "structure",
     members = {
         previewStatus = schema.new({
@@ -2598,7 +2598,7 @@ M.GetExclusionsPreviewOutput = schema.new({
 })
 
 M.GetTelemetryMetadataInput = schema.new({
-    id = id.from(_N, "GetTelemetryMetadataInput"),
+    id = id.from(_N, "GetTelemetryMetadataRequest"),
     type = "structure",
     members = {
         assessmentRunArn = schema.new({
@@ -2614,7 +2614,7 @@ M.GetTelemetryMetadataInput = schema.new({
 })
 
 M.GetTelemetryMetadataOutput = schema.new({
-    id = id.from(_N, "GetTelemetryMetadataOutput"),
+    id = id.from(_N, "GetTelemetryMetadataResponse"),
     type = "structure",
     members = {
         telemetryMetadata = schema.new({
@@ -2631,7 +2631,7 @@ M.GetTelemetryMetadataOutput = schema.new({
 })
 
 M.ListAssessmentRunAgentsInput = schema.new({
-    id = id.from(_N, "ListAssessmentRunAgentsInput"),
+    id = id.from(_N, "ListAssessmentRunAgentsRequest"),
     type = "structure",
     members = {
         assessmentRunArn = schema.new({
@@ -2666,7 +2666,7 @@ M.ListAssessmentRunAgentsInput = schema.new({
 })
 
 M.ListAssessmentRunAgentsOutput = schema.new({
-    id = id.from(_N, "ListAssessmentRunAgentsOutput"),
+    id = id.from(_N, "ListAssessmentRunAgentsResponse"),
     type = "structure",
     members = {
         assessmentRunAgents = schema.new({
@@ -2689,7 +2689,7 @@ M.ListAssessmentRunAgentsOutput = schema.new({
 })
 
 M.ListAssessmentRunsInput = schema.new({
-    id = id.from(_N, "ListAssessmentRunsInput"),
+    id = id.from(_N, "ListAssessmentRunsRequest"),
     type = "structure",
     members = {
         assessmentTemplateArns = schema.new({
@@ -2722,7 +2722,7 @@ M.ListAssessmentRunsInput = schema.new({
 })
 
 M.ListAssessmentRunsOutput = schema.new({
-    id = id.from(_N, "ListAssessmentRunsOutput"),
+    id = id.from(_N, "ListAssessmentRunsResponse"),
     type = "structure",
     members = {
         assessmentRunArns = schema.new({
@@ -2745,7 +2745,7 @@ M.ListAssessmentRunsOutput = schema.new({
 })
 
 M.ListAssessmentTargetsInput = schema.new({
-    id = id.from(_N, "ListAssessmentTargetsInput"),
+    id = id.from(_N, "ListAssessmentTargetsRequest"),
     type = "structure",
     members = {
         filter = schema.new({
@@ -2771,7 +2771,7 @@ M.ListAssessmentTargetsInput = schema.new({
 })
 
 M.ListAssessmentTargetsOutput = schema.new({
-    id = id.from(_N, "ListAssessmentTargetsOutput"),
+    id = id.from(_N, "ListAssessmentTargetsResponse"),
     type = "structure",
     members = {
         assessmentTargetArns = schema.new({
@@ -2794,7 +2794,7 @@ M.ListAssessmentTargetsOutput = schema.new({
 })
 
 M.ListAssessmentTemplatesInput = schema.new({
-    id = id.from(_N, "ListAssessmentTemplatesInput"),
+    id = id.from(_N, "ListAssessmentTemplatesRequest"),
     type = "structure",
     members = {
         assessmentTargetArns = schema.new({
@@ -2827,7 +2827,7 @@ M.ListAssessmentTemplatesInput = schema.new({
 })
 
 M.ListAssessmentTemplatesOutput = schema.new({
-    id = id.from(_N, "ListAssessmentTemplatesOutput"),
+    id = id.from(_N, "ListAssessmentTemplatesResponse"),
     type = "structure",
     members = {
         assessmentTemplateArns = schema.new({
@@ -2850,7 +2850,7 @@ M.ListAssessmentTemplatesOutput = schema.new({
 })
 
 M.ListEventSubscriptionsInput = schema.new({
-    id = id.from(_N, "ListEventSubscriptionsInput"),
+    id = id.from(_N, "ListEventSubscriptionsRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2910,7 +2910,7 @@ M.Subscription = schema.new({
 })
 
 M.ListEventSubscriptionsOutput = schema.new({
-    id = id.from(_N, "ListEventSubscriptionsOutput"),
+    id = id.from(_N, "ListEventSubscriptionsResponse"),
     type = "structure",
     members = {
         subscriptions = schema.new({
@@ -2933,7 +2933,7 @@ M.ListEventSubscriptionsOutput = schema.new({
 })
 
 M.ListExclusionsInput = schema.new({
-    id = id.from(_N, "ListExclusionsInput"),
+    id = id.from(_N, "ListExclusionsRequest"),
     type = "structure",
     members = {
         assessmentRunArn = schema.new({
@@ -2961,7 +2961,7 @@ M.ListExclusionsInput = schema.new({
 })
 
 M.ListExclusionsOutput = schema.new({
-    id = id.from(_N, "ListExclusionsOutput"),
+    id = id.from(_N, "ListExclusionsResponse"),
     type = "structure",
     members = {
         exclusionArns = schema.new({
@@ -2984,7 +2984,7 @@ M.ListExclusionsOutput = schema.new({
 })
 
 M.ListFindingsInput = schema.new({
-    id = id.from(_N, "ListFindingsInput"),
+    id = id.from(_N, "ListFindingsRequest"),
     type = "structure",
     members = {
         assessmentRunArns = schema.new({
@@ -3017,7 +3017,7 @@ M.ListFindingsInput = schema.new({
 })
 
 M.ListFindingsOutput = schema.new({
-    id = id.from(_N, "ListFindingsOutput"),
+    id = id.from(_N, "ListFindingsResponse"),
     type = "structure",
     members = {
         findingArns = schema.new({
@@ -3040,7 +3040,7 @@ M.ListFindingsOutput = schema.new({
 })
 
 M.ListRulesPackagesInput = schema.new({
-    id = id.from(_N, "ListRulesPackagesInput"),
+    id = id.from(_N, "ListRulesPackagesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3059,7 +3059,7 @@ M.ListRulesPackagesInput = schema.new({
 })
 
 M.ListRulesPackagesOutput = schema.new({
-    id = id.from(_N, "ListRulesPackagesOutput"),
+    id = id.from(_N, "ListRulesPackagesResponse"),
     type = "structure",
     members = {
         rulesPackageArns = schema.new({
@@ -3082,7 +3082,7 @@ M.ListRulesPackagesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3098,7 +3098,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -3115,7 +3115,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PreviewAgentsInput = schema.new({
-    id = id.from(_N, "PreviewAgentsInput"),
+    id = id.from(_N, "PreviewAgentsRequest"),
     type = "structure",
     members = {
         previewAgentsArn = schema.new({
@@ -3143,7 +3143,7 @@ M.PreviewAgentsInput = schema.new({
 })
 
 M.PreviewAgentsOutput = schema.new({
-    id = id.from(_N, "PreviewAgentsOutput"),
+    id = id.from(_N, "PreviewAgentsResponse"),
     type = "structure",
     members = {
         agentPreviews = schema.new({
@@ -3166,7 +3166,7 @@ M.PreviewAgentsOutput = schema.new({
 })
 
 M.RegisterCrossAccountAccessRoleInput = schema.new({
-    id = id.from(_N, "RegisterCrossAccountAccessRoleInput"),
+    id = id.from(_N, "RegisterCrossAccountAccessRoleRequest"),
     type = "structure",
     members = {
         roleArn = schema.new({
@@ -3182,12 +3182,12 @@ M.RegisterCrossAccountAccessRoleInput = schema.new({
 })
 
 M.RegisterCrossAccountAccessRoleOutput = schema.new({
-    id = id.from(_N, "RegisterCrossAccountAccessRoleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RemoveAttributesFromFindingsInput = schema.new({
-    id = id.from(_N, "RemoveAttributesFromFindingsInput"),
+    id = id.from(_N, "RemoveAttributesFromFindingsRequest"),
     type = "structure",
     members = {
         findingArns = schema.new({
@@ -3214,7 +3214,7 @@ M.RemoveAttributesFromFindingsInput = schema.new({
 })
 
 M.RemoveAttributesFromFindingsOutput = schema.new({
-    id = id.from(_N, "RemoveAttributesFromFindingsOutput"),
+    id = id.from(_N, "RemoveAttributesFromFindingsResponse"),
     type = "structure",
     members = {
         failedItems = schema.new({
@@ -3232,7 +3232,7 @@ M.RemoveAttributesFromFindingsOutput = schema.new({
 })
 
 M.SetTagsForResourceInput = schema.new({
-    id = id.from(_N, "SetTagsForResourceInput"),
+    id = id.from(_N, "SetTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3255,12 +3255,12 @@ M.SetTagsForResourceInput = schema.new({
 })
 
 M.SetTagsForResourceOutput = schema.new({
-    id = id.from(_N, "SetTagsForResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StartAssessmentRunInput = schema.new({
-    id = id.from(_N, "StartAssessmentRunInput"),
+    id = id.from(_N, "StartAssessmentRunRequest"),
     type = "structure",
     members = {
         assessmentTemplateArn = schema.new({
@@ -3282,7 +3282,7 @@ M.StartAssessmentRunInput = schema.new({
 })
 
 M.StartAssessmentRunOutput = schema.new({
-    id = id.from(_N, "StartAssessmentRunOutput"),
+    id = id.from(_N, "StartAssessmentRunResponse"),
     type = "structure",
     members = {
         assessmentRunArn = schema.new({
@@ -3298,7 +3298,7 @@ M.StartAssessmentRunOutput = schema.new({
 })
 
 M.StopAssessmentRunInput = schema.new({
-    id = id.from(_N, "StopAssessmentRunInput"),
+    id = id.from(_N, "StopAssessmentRunRequest"),
     type = "structure",
     members = {
         assessmentRunArn = schema.new({
@@ -3320,12 +3320,12 @@ M.StopAssessmentRunInput = schema.new({
 })
 
 M.StopAssessmentRunOutput = schema.new({
-    id = id.from(_N, "StopAssessmentRunOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.SubscribeToEventInput = schema.new({
-    id = id.from(_N, "SubscribeToEventInput"),
+    id = id.from(_N, "SubscribeToEventRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3359,12 +3359,12 @@ M.SubscribeToEventInput = schema.new({
 })
 
 M.SubscribeToEventOutput = schema.new({
-    id = id.from(_N, "SubscribeToEventOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UnsubscribeFromEventInput = schema.new({
-    id = id.from(_N, "UnsubscribeFromEventInput"),
+    id = id.from(_N, "UnsubscribeFromEventRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3398,12 +3398,12 @@ M.UnsubscribeFromEventInput = schema.new({
 })
 
 M.UnsubscribeFromEventOutput = schema.new({
-    id = id.from(_N, "UnsubscribeFromEventOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateAssessmentTargetInput = schema.new({
-    id = id.from(_N, "UpdateAssessmentTargetInput"),
+    id = id.from(_N, "UpdateAssessmentTargetRequest"),
     type = "structure",
     members = {
         assessmentTargetArn = schema.new({
@@ -3434,8 +3434,22 @@ M.UpdateAssessmentTargetInput = schema.new({
 })
 
 M.UpdateAssessmentTargetOutput = schema.new({
-    id = id.from(_N, "UpdateAssessmentTargetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

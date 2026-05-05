@@ -8,7 +8,7 @@ local _N = "com.amazonaws.elasticsearchservice"
 local M = {}
 
 M.AcceptInboundCrossClusterSearchConnectionInput = schema.new({
-    id = id.from(_N, "AcceptInboundCrossClusterSearchConnectionInput"),
+    id = id.from(_N, "AcceptInboundCrossClusterSearchConnectionRequest"),
     type = "structure",
     members = {
         CrossClusterSearchConnectionId = schema.new({
@@ -106,7 +106,7 @@ M.InboundCrossClusterSearchConnection = schema.new({
 })
 
 M.AcceptInboundCrossClusterSearchConnectionOutput = schema.new({
-    id = id.from(_N, "AcceptInboundCrossClusterSearchConnectionOutput"),
+    id = id.from(_N, "AcceptInboundCrossClusterSearchConnectionResponse"),
     type = "structure",
     members = {
         CrossClusterSearchConnection = schema.new({
@@ -304,7 +304,7 @@ M.Tag = schema.new({
 })
 
 M.AddTagsInput = schema.new({
-    id = id.from(_N, "AddTagsInput"),
+    id = id.from(_N, "AddTagsRequest"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -330,7 +330,7 @@ M.AddTagsInput = schema.new({
 })
 
 M.AddTagsOutput = schema.new({
-    id = id.from(_N, "AddTagsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -653,7 +653,7 @@ M.AdvancedSecurityOptionsStatus = schema.new({
 })
 
 M.AssociatePackageInput = schema.new({
-    id = id.from(_N, "AssociatePackageInput"),
+    id = id.from(_N, "AssociatePackageRequest"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -761,7 +761,7 @@ M.DomainPackageDetails = schema.new({
 })
 
 M.AssociatePackageOutput = schema.new({
-    id = id.from(_N, "AssociatePackageOutput"),
+    id = id.from(_N, "AssociatePackageResponse"),
     type = "structure",
     members = {
         DomainPackageDetails = schema.new({
@@ -791,7 +791,7 @@ M.ConflictException = schema.new({
 })
 
 M.AuthorizeVpcEndpointAccessInput = schema.new({
-    id = id.from(_N, "AuthorizeVpcEndpointAccessInput"),
+    id = id.from(_N, "AuthorizeVpcEndpointAccessRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -836,7 +836,7 @@ M.AuthorizedPrincipal = schema.new({
 })
 
 M.AuthorizeVpcEndpointAccessOutput = schema.new({
-    id = id.from(_N, "AuthorizeVpcEndpointAccessOutput"),
+    id = id.from(_N, "AuthorizeVpcEndpointAccessResponse"),
     type = "structure",
     members = {
         AuthorizedPrincipal = schema.new({
@@ -853,7 +853,7 @@ M.AuthorizeVpcEndpointAccessOutput = schema.new({
 })
 
 M.CancelDomainConfigChangeInput = schema.new({
-    id = id.from(_N, "CancelDomainConfigChangeInput"),
+    id = id.from(_N, "CancelDomainConfigChangeRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -901,7 +901,7 @@ M.CancelledChangeProperty = schema.new({
 })
 
 M.CancelDomainConfigChangeOutput = schema.new({
-    id = id.from(_N, "CancelDomainConfigChangeOutput"),
+    id = id.from(_N, "CancelDomainConfigChangeResponse"),
     type = "structure",
     members = {
         DryRun = schema.new({
@@ -928,7 +928,7 @@ M.CancelDomainConfigChangeOutput = schema.new({
 })
 
 M.CancelElasticsearchServiceSoftwareUpdateInput = schema.new({
-    id = id.from(_N, "CancelElasticsearchServiceSoftwareUpdateInput"),
+    id = id.from(_N, "CancelElasticsearchServiceSoftwareUpdateRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -999,7 +999,7 @@ M.ServiceSoftwareOptions = schema.new({
 })
 
 M.CancelElasticsearchServiceSoftwareUpdateOutput = schema.new({
-    id = id.from(_N, "CancelElasticsearchServiceSoftwareUpdateOutput"),
+    id = id.from(_N, "CancelElasticsearchServiceSoftwareUpdateResponse"),
     type = "structure",
     members = {
         ServiceSoftwareOptions = schema.new({
@@ -1388,7 +1388,7 @@ M.VPCOptions = schema.new({
 })
 
 M.CreateElasticsearchDomainInput = schema.new({
-    id = id.from(_N, "CreateElasticsearchDomainInput"),
+    id = id.from(_N, "CreateElasticsearchDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1850,7 +1850,7 @@ M.ElasticsearchDomainStatus = schema.new({
 })
 
 M.CreateElasticsearchDomainOutput = schema.new({
-    id = id.from(_N, "CreateElasticsearchDomainOutput"),
+    id = id.from(_N, "CreateElasticsearchDomainResponse"),
     type = "structure",
     members = {
         DomainStatus = schema.new({
@@ -1896,7 +1896,7 @@ M.ResourceAlreadyExistsException = schema.new({
 })
 
 M.CreateOutboundCrossClusterSearchConnectionInput = schema.new({
-    id = id.from(_N, "CreateOutboundCrossClusterSearchConnectionInput"),
+    id = id.from(_N, "CreateOutboundCrossClusterSearchConnectionRequest"),
     type = "structure",
     members = {
         SourceDomainInfo = schema.new({
@@ -1951,7 +1951,7 @@ M.OutboundCrossClusterSearchConnectionStatus = schema.new({
 })
 
 M.CreateOutboundCrossClusterSearchConnectionOutput = schema.new({
-    id = id.from(_N, "CreateOutboundCrossClusterSearchConnectionOutput"),
+    id = id.from(_N, "CreateOutboundCrossClusterSearchConnectionResponse"),
     type = "structure",
     members = {
         SourceDomainInfo = schema.new({
@@ -2010,7 +2010,7 @@ M.PackageSource = schema.new({
 })
 
 M.CreatePackageInput = schema.new({
-    id = id.from(_N, "CreatePackageInput"),
+    id = id.from(_N, "CreatePackageRequest"),
     type = "structure",
     members = {
         PackageName = schema.new({
@@ -2113,7 +2113,7 @@ M.PackageDetails = schema.new({
 })
 
 M.CreatePackageOutput = schema.new({
-    id = id.from(_N, "CreatePackageOutput"),
+    id = id.from(_N, "CreatePackageResponse"),
     type = "structure",
     members = {
         PackageDetails = schema.new({
@@ -2127,7 +2127,7 @@ M.CreatePackageOutput = schema.new({
 })
 
 M.CreateVpcEndpointInput = schema.new({
-    id = id.from(_N, "CreateVpcEndpointInput"),
+    id = id.from(_N, "CreateVpcEndpointRequest"),
     type = "structure",
     members = {
         DomainArn = schema.new({
@@ -2203,7 +2203,7 @@ M.VpcEndpoint = schema.new({
 })
 
 M.CreateVpcEndpointOutput = schema.new({
-    id = id.from(_N, "CreateVpcEndpointOutput"),
+    id = id.from(_N, "CreateVpcEndpointResponse"),
     type = "structure",
     members = {
         VpcEndpoint = schema.new({
@@ -2220,7 +2220,7 @@ M.CreateVpcEndpointOutput = schema.new({
 })
 
 M.DeleteElasticsearchDomainInput = schema.new({
-    id = id.from(_N, "DeleteElasticsearchDomainInput"),
+    id = id.from(_N, "DeleteElasticsearchDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2237,7 +2237,7 @@ M.DeleteElasticsearchDomainInput = schema.new({
 })
 
 M.DeleteElasticsearchDomainOutput = schema.new({
-    id = id.from(_N, "DeleteElasticsearchDomainOutput"),
+    id = id.from(_N, "DeleteElasticsearchDomainResponse"),
     type = "structure",
     members = {
         DomainStatus = schema.new({
@@ -2251,17 +2251,17 @@ M.DeleteElasticsearchDomainOutput = schema.new({
 })
 
 M.DeleteElasticsearchServiceRoleInput = schema.new({
-    id = id.from(_N, "DeleteElasticsearchServiceRoleInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteElasticsearchServiceRoleOutput = schema.new({
-    id = id.from(_N, "DeleteElasticsearchServiceRoleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteInboundCrossClusterSearchConnectionInput = schema.new({
-    id = id.from(_N, "DeleteInboundCrossClusterSearchConnectionInput"),
+    id = id.from(_N, "DeleteInboundCrossClusterSearchConnectionRequest"),
     type = "structure",
     members = {
         CrossClusterSearchConnectionId = schema.new({
@@ -2278,7 +2278,7 @@ M.DeleteInboundCrossClusterSearchConnectionInput = schema.new({
 })
 
 M.DeleteInboundCrossClusterSearchConnectionOutput = schema.new({
-    id = id.from(_N, "DeleteInboundCrossClusterSearchConnectionOutput"),
+    id = id.from(_N, "DeleteInboundCrossClusterSearchConnectionResponse"),
     type = "structure",
     members = {
         CrossClusterSearchConnection = schema.new({
@@ -2292,7 +2292,7 @@ M.DeleteInboundCrossClusterSearchConnectionOutput = schema.new({
 })
 
 M.DeleteOutboundCrossClusterSearchConnectionInput = schema.new({
-    id = id.from(_N, "DeleteOutboundCrossClusterSearchConnectionInput"),
+    id = id.from(_N, "DeleteOutboundCrossClusterSearchConnectionRequest"),
     type = "structure",
     members = {
         CrossClusterSearchConnectionId = schema.new({
@@ -2349,7 +2349,7 @@ M.OutboundCrossClusterSearchConnection = schema.new({
 })
 
 M.DeleteOutboundCrossClusterSearchConnectionOutput = schema.new({
-    id = id.from(_N, "DeleteOutboundCrossClusterSearchConnectionOutput"),
+    id = id.from(_N, "DeleteOutboundCrossClusterSearchConnectionResponse"),
     type = "structure",
     members = {
         CrossClusterSearchConnection = schema.new({
@@ -2363,7 +2363,7 @@ M.DeleteOutboundCrossClusterSearchConnectionOutput = schema.new({
 })
 
 M.DeletePackageInput = schema.new({
-    id = id.from(_N, "DeletePackageInput"),
+    id = id.from(_N, "DeletePackageRequest"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -2380,7 +2380,7 @@ M.DeletePackageInput = schema.new({
 })
 
 M.DeletePackageOutput = schema.new({
-    id = id.from(_N, "DeletePackageOutput"),
+    id = id.from(_N, "DeletePackageResponse"),
     type = "structure",
     members = {
         PackageDetails = schema.new({
@@ -2394,7 +2394,7 @@ M.DeletePackageOutput = schema.new({
 })
 
 M.DeleteVpcEndpointInput = schema.new({
-    id = id.from(_N, "DeleteVpcEndpointInput"),
+    id = id.from(_N, "DeleteVpcEndpointRequest"),
     type = "structure",
     members = {
         VpcEndpointId = schema.new({
@@ -2442,7 +2442,7 @@ M.VpcEndpointSummary = schema.new({
 })
 
 M.DeleteVpcEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteVpcEndpointOutput"),
+    id = id.from(_N, "DeleteVpcEndpointResponse"),
     type = "structure",
     members = {
         VpcEndpointSummary = schema.new({
@@ -2459,7 +2459,7 @@ M.DeleteVpcEndpointOutput = schema.new({
 })
 
 M.DescribeDomainAutoTunesInput = schema.new({
-    id = id.from(_N, "DescribeDomainAutoTunesInput"),
+    id = id.from(_N, "DescribeDomainAutoTunesRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2560,7 +2560,7 @@ M.AutoTune = schema.new({
 })
 
 M.DescribeDomainAutoTunesOutput = schema.new({
-    id = id.from(_N, "DescribeDomainAutoTunesOutput"),
+    id = id.from(_N, "DescribeDomainAutoTunesResponse"),
     type = "structure",
     members = {
         AutoTunes = schema.new({
@@ -2580,7 +2580,7 @@ M.DescribeDomainAutoTunesOutput = schema.new({
 })
 
 M.DescribeDomainChangeProgressInput = schema.new({
-    id = id.from(_N, "DescribeDomainChangeProgressInput"),
+    id = id.from(_N, "DescribeDomainChangeProgressRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2710,7 +2710,7 @@ M.ChangeProgressStatusDetails = schema.new({
 })
 
 M.DescribeDomainChangeProgressOutput = schema.new({
-    id = id.from(_N, "DescribeDomainChangeProgressOutput"),
+    id = id.from(_N, "DescribeDomainChangeProgressResponse"),
     type = "structure",
     members = {
         ChangeProgressStatus = schema.new({
@@ -2724,7 +2724,7 @@ M.DescribeDomainChangeProgressOutput = schema.new({
 })
 
 M.DescribeElasticsearchDomainInput = schema.new({
-    id = id.from(_N, "DescribeElasticsearchDomainInput"),
+    id = id.from(_N, "DescribeElasticsearchDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2741,7 +2741,7 @@ M.DescribeElasticsearchDomainInput = schema.new({
 })
 
 M.DescribeElasticsearchDomainOutput = schema.new({
-    id = id.from(_N, "DescribeElasticsearchDomainOutput"),
+    id = id.from(_N, "DescribeElasticsearchDomainResponse"),
     type = "structure",
     members = {
         DomainStatus = schema.new({
@@ -2758,7 +2758,7 @@ M.DescribeElasticsearchDomainOutput = schema.new({
 })
 
 M.DescribeElasticsearchDomainConfigInput = schema.new({
-    id = id.from(_N, "DescribeElasticsearchDomainConfigInput"),
+    id = id.from(_N, "DescribeElasticsearchDomainConfigRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -3294,7 +3294,7 @@ M.ElasticsearchDomainConfig = schema.new({
 })
 
 M.DescribeElasticsearchDomainConfigOutput = schema.new({
-    id = id.from(_N, "DescribeElasticsearchDomainConfigOutput"),
+    id = id.from(_N, "DescribeElasticsearchDomainConfigResponse"),
     type = "structure",
     members = {
         DomainConfig = schema.new({
@@ -3311,7 +3311,7 @@ M.DescribeElasticsearchDomainConfigOutput = schema.new({
 })
 
 M.DescribeElasticsearchDomainsInput = schema.new({
-    id = id.from(_N, "DescribeElasticsearchDomainsInput"),
+    id = id.from(_N, "DescribeElasticsearchDomainsRequest"),
     type = "structure",
     members = {
         DomainNames = schema.new({
@@ -3328,7 +3328,7 @@ M.DescribeElasticsearchDomainsInput = schema.new({
 })
 
 M.DescribeElasticsearchDomainsOutput = schema.new({
-    id = id.from(_N, "DescribeElasticsearchDomainsOutput"),
+    id = id.from(_N, "DescribeElasticsearchDomainsResponse"),
     type = "structure",
     members = {
         DomainStatusList = schema.new({
@@ -3345,7 +3345,7 @@ M.DescribeElasticsearchDomainsOutput = schema.new({
 })
 
 M.DescribeElasticsearchInstanceTypeLimitsInput = schema.new({
-    id = id.from(_N, "DescribeElasticsearchInstanceTypeLimitsInput"),
+    id = id.from(_N, "DescribeElasticsearchInstanceTypeLimitsRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -3494,7 +3494,7 @@ M.Limits = schema.new({
 })
 
 M.DescribeElasticsearchInstanceTypeLimitsOutput = schema.new({
-    id = id.from(_N, "DescribeElasticsearchInstanceTypeLimitsOutput"),
+    id = id.from(_N, "DescribeElasticsearchInstanceTypeLimitsResponse"),
     type = "structure",
     members = {
         LimitsByRole = schema.new({
@@ -3529,7 +3529,7 @@ M.Filter = schema.new({
 })
 
 M.DescribeInboundCrossClusterSearchConnectionsInput = schema.new({
-    id = id.from(_N, "DescribeInboundCrossClusterSearchConnectionsInput"),
+    id = id.from(_N, "DescribeInboundCrossClusterSearchConnectionsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -3558,7 +3558,7 @@ M.DescribeInboundCrossClusterSearchConnectionsInput = schema.new({
 })
 
 M.DescribeInboundCrossClusterSearchConnectionsOutput = schema.new({
-    id = id.from(_N, "DescribeInboundCrossClusterSearchConnectionsOutput"),
+    id = id.from(_N, "DescribeInboundCrossClusterSearchConnectionsResponse"),
     type = "structure",
     members = {
         CrossClusterSearchConnections = schema.new({
@@ -3594,7 +3594,7 @@ M.InvalidPaginationTokenException = schema.new({
 })
 
 M.DescribeOutboundCrossClusterSearchConnectionsInput = schema.new({
-    id = id.from(_N, "DescribeOutboundCrossClusterSearchConnectionsInput"),
+    id = id.from(_N, "DescribeOutboundCrossClusterSearchConnectionsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -3623,7 +3623,7 @@ M.DescribeOutboundCrossClusterSearchConnectionsInput = schema.new({
 })
 
 M.DescribeOutboundCrossClusterSearchConnectionsOutput = schema.new({
-    id = id.from(_N, "DescribeOutboundCrossClusterSearchConnectionsOutput"),
+    id = id.from(_N, "DescribeOutboundCrossClusterSearchConnectionsResponse"),
     type = "structure",
     members = {
         CrossClusterSearchConnections = schema.new({
@@ -3663,7 +3663,7 @@ M.DescribePackagesFilter = schema.new({
 })
 
 M.DescribePackagesInput = schema.new({
-    id = id.from(_N, "DescribePackagesInput"),
+    id = id.from(_N, "DescribePackagesRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -3692,7 +3692,7 @@ M.DescribePackagesInput = schema.new({
 })
 
 M.DescribePackagesOutput = schema.new({
-    id = id.from(_N, "DescribePackagesOutput"),
+    id = id.from(_N, "DescribePackagesResponse"),
     type = "structure",
     members = {
         PackageDetailsList = schema.new({
@@ -3712,7 +3712,7 @@ M.DescribePackagesOutput = schema.new({
 })
 
 M.DescribeReservedElasticsearchInstanceOfferingsInput = schema.new({
-    id = id.from(_N, "DescribeReservedElasticsearchInstanceOfferingsInput"),
+    id = id.from(_N, "DescribeReservedElasticsearchInstanceOfferingsRequest"),
     type = "structure",
     members = {
         ReservedElasticsearchInstanceOfferingId = schema.new({
@@ -3819,13 +3819,13 @@ M.ReservedElasticsearchInstanceOffering = schema.new({
             type = "list",
             name = "RecurringCharges",
             target_id = prelude.Document.id,
-            list_member = M.RecurringCharge,
+            list_member = schema.new({ type = "structure", target = M.RecurringCharge, traits = { [traits.XML_NAME] = { name = "RecurringCharge" } } }),
         }),
     },
 })
 
 M.DescribeReservedElasticsearchInstanceOfferingsOutput = schema.new({
-    id = id.from(_N, "DescribeReservedElasticsearchInstanceOfferingsOutput"),
+    id = id.from(_N, "DescribeReservedElasticsearchInstanceOfferingsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3839,13 +3839,13 @@ M.DescribeReservedElasticsearchInstanceOfferingsOutput = schema.new({
             type = "list",
             name = "ReservedElasticsearchInstanceOfferings",
             target_id = prelude.Document.id,
-            list_member = M.ReservedElasticsearchInstanceOffering,
+            list_member = schema.new({ type = "structure", target = M.ReservedElasticsearchInstanceOffering, traits = { [traits.XML_NAME] = { name = "ReservedElasticsearchInstanceOffering" } } }),
         }),
     },
 })
 
 M.DescribeReservedElasticsearchInstancesInput = schema.new({
-    id = id.from(_N, "DescribeReservedElasticsearchInstancesInput"),
+    id = id.from(_N, "DescribeReservedElasticsearchInstancesRequest"),
     type = "structure",
     members = {
         ReservedElasticsearchInstanceId = schema.new({
@@ -3966,13 +3966,13 @@ M.ReservedElasticsearchInstance = schema.new({
             type = "list",
             name = "RecurringCharges",
             target_id = prelude.Document.id,
-            list_member = M.RecurringCharge,
+            list_member = schema.new({ type = "structure", target = M.RecurringCharge, traits = { [traits.XML_NAME] = { name = "RecurringCharge" } } }),
         }),
     },
 })
 
 M.DescribeReservedElasticsearchInstancesOutput = schema.new({
-    id = id.from(_N, "DescribeReservedElasticsearchInstancesOutput"),
+    id = id.from(_N, "DescribeReservedElasticsearchInstancesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3992,7 +3992,7 @@ M.DescribeReservedElasticsearchInstancesOutput = schema.new({
 })
 
 M.DescribeVpcEndpointsInput = schema.new({
-    id = id.from(_N, "DescribeVpcEndpointsInput"),
+    id = id.from(_N, "DescribeVpcEndpointsRequest"),
     type = "structure",
     members = {
         VpcEndpointIds = schema.new({
@@ -4034,7 +4034,7 @@ M.VpcEndpointError = schema.new({
 })
 
 M.DescribeVpcEndpointsOutput = schema.new({
-    id = id.from(_N, "DescribeVpcEndpointsOutput"),
+    id = id.from(_N, "DescribeVpcEndpointsResponse"),
     type = "structure",
     members = {
         VpcEndpoints = schema.new({
@@ -4061,7 +4061,7 @@ M.DescribeVpcEndpointsOutput = schema.new({
 })
 
 M.DissociatePackageInput = schema.new({
-    id = id.from(_N, "DissociatePackageInput"),
+    id = id.from(_N, "DissociatePackageRequest"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -4088,7 +4088,7 @@ M.DissociatePackageInput = schema.new({
 })
 
 M.DissociatePackageOutput = schema.new({
-    id = id.from(_N, "DissociatePackageOutput"),
+    id = id.from(_N, "DissociatePackageResponse"),
     type = "structure",
     members = {
         DomainPackageDetails = schema.new({
@@ -4102,7 +4102,7 @@ M.DissociatePackageOutput = schema.new({
 })
 
 M.GetCompatibleElasticsearchVersionsInput = schema.new({
-    id = id.from(_N, "GetCompatibleElasticsearchVersionsInput"),
+    id = id.from(_N, "GetCompatibleElasticsearchVersionsRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -4138,7 +4138,7 @@ M.CompatibleVersionsMap = schema.new({
 })
 
 M.GetCompatibleElasticsearchVersionsOutput = schema.new({
-    id = id.from(_N, "GetCompatibleElasticsearchVersionsOutput"),
+    id = id.from(_N, "GetCompatibleElasticsearchVersionsResponse"),
     type = "structure",
     members = {
         CompatibleElasticsearchVersions = schema.new({
@@ -4152,7 +4152,7 @@ M.GetCompatibleElasticsearchVersionsOutput = schema.new({
 })
 
 M.GetPackageVersionHistoryInput = schema.new({
-    id = id.from(_N, "GetPackageVersionHistoryInput"),
+    id = id.from(_N, "GetPackageVersionHistoryRequest"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -4213,7 +4213,7 @@ M.PackageVersionHistory = schema.new({
 })
 
 M.GetPackageVersionHistoryOutput = schema.new({
-    id = id.from(_N, "GetPackageVersionHistoryOutput"),
+    id = id.from(_N, "GetPackageVersionHistoryResponse"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -4239,7 +4239,7 @@ M.GetPackageVersionHistoryOutput = schema.new({
 })
 
 M.GetUpgradeHistoryInput = schema.new({
-    id = id.from(_N, "GetUpgradeHistoryInput"),
+    id = id.from(_N, "GetUpgradeHistoryRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -4339,7 +4339,7 @@ M.UpgradeHistory = schema.new({
 })
 
 M.GetUpgradeHistoryOutput = schema.new({
-    id = id.from(_N, "GetUpgradeHistoryOutput"),
+    id = id.from(_N, "GetUpgradeHistoryResponse"),
     type = "structure",
     members = {
         UpgradeHistories = schema.new({
@@ -4359,7 +4359,7 @@ M.GetUpgradeHistoryOutput = schema.new({
 })
 
 M.GetUpgradeStatusInput = schema.new({
-    id = id.from(_N, "GetUpgradeStatusInput"),
+    id = id.from(_N, "GetUpgradeStatusRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -4376,7 +4376,7 @@ M.GetUpgradeStatusInput = schema.new({
 })
 
 M.GetUpgradeStatusOutput = schema.new({
-    id = id.from(_N, "GetUpgradeStatusOutput"),
+    id = id.from(_N, "GetUpgradeStatusResponse"),
     type = "structure",
     members = {
         UpgradeStep = schema.new({
@@ -4401,7 +4401,7 @@ M.GetUpgradeStatusOutput = schema.new({
 })
 
 M.ListDomainNamesInput = schema.new({
-    id = id.from(_N, "ListDomainNamesInput"),
+    id = id.from(_N, "ListDomainNamesRequest"),
     type = "structure",
     members = {
         EngineType = schema.new({
@@ -4436,7 +4436,7 @@ M.DomainInfo = schema.new({
 })
 
 M.ListDomainNamesOutput = schema.new({
-    id = id.from(_N, "ListDomainNamesOutput"),
+    id = id.from(_N, "ListDomainNamesResponse"),
     type = "structure",
     members = {
         DomainNames = schema.new({
@@ -4450,7 +4450,7 @@ M.ListDomainNamesOutput = schema.new({
 })
 
 M.ListDomainsForPackageInput = schema.new({
-    id = id.from(_N, "ListDomainsForPackageInput"),
+    id = id.from(_N, "ListDomainsForPackageRequest"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -4486,7 +4486,7 @@ M.ListDomainsForPackageInput = schema.new({
 })
 
 M.ListDomainsForPackageOutput = schema.new({
-    id = id.from(_N, "ListDomainsForPackageOutput"),
+    id = id.from(_N, "ListDomainsForPackageResponse"),
     type = "structure",
     members = {
         DomainPackageDetailsList = schema.new({
@@ -4506,7 +4506,7 @@ M.ListDomainsForPackageOutput = schema.new({
 })
 
 M.ListElasticsearchInstanceTypesInput = schema.new({
-    id = id.from(_N, "ListElasticsearchInstanceTypesInput"),
+    id = id.from(_N, "ListElasticsearchInstanceTypesRequest"),
     type = "structure",
     members = {
         ElasticsearchVersion = schema.new({
@@ -4551,7 +4551,7 @@ M.ListElasticsearchInstanceTypesInput = schema.new({
 })
 
 M.ListElasticsearchInstanceTypesOutput = schema.new({
-    id = id.from(_N, "ListElasticsearchInstanceTypesOutput"),
+    id = id.from(_N, "ListElasticsearchInstanceTypesResponse"),
     type = "structure",
     members = {
         ElasticsearchInstanceTypes = schema.new({
@@ -4571,7 +4571,7 @@ M.ListElasticsearchInstanceTypesOutput = schema.new({
 })
 
 M.ListElasticsearchVersionsInput = schema.new({
-    id = id.from(_N, "ListElasticsearchVersionsInput"),
+    id = id.from(_N, "ListElasticsearchVersionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4597,7 +4597,7 @@ M.ListElasticsearchVersionsInput = schema.new({
 })
 
 M.ListElasticsearchVersionsOutput = schema.new({
-    id = id.from(_N, "ListElasticsearchVersionsOutput"),
+    id = id.from(_N, "ListElasticsearchVersionsResponse"),
     type = "structure",
     members = {
         ElasticsearchVersions = schema.new({
@@ -4617,7 +4617,7 @@ M.ListElasticsearchVersionsOutput = schema.new({
 })
 
 M.ListPackagesForDomainInput = schema.new({
-    id = id.from(_N, "ListPackagesForDomainInput"),
+    id = id.from(_N, "ListPackagesForDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -4653,7 +4653,7 @@ M.ListPackagesForDomainInput = schema.new({
 })
 
 M.ListPackagesForDomainOutput = schema.new({
-    id = id.from(_N, "ListPackagesForDomainOutput"),
+    id = id.from(_N, "ListPackagesForDomainResponse"),
     type = "structure",
     members = {
         DomainPackageDetailsList = schema.new({
@@ -4673,7 +4673,7 @@ M.ListPackagesForDomainOutput = schema.new({
 })
 
 M.ListTagsInput = schema.new({
-    id = id.from(_N, "ListTagsInput"),
+    id = id.from(_N, "ListTagsRequest"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -4690,7 +4690,7 @@ M.ListTagsInput = schema.new({
 })
 
 M.ListTagsOutput = schema.new({
-    id = id.from(_N, "ListTagsOutput"),
+    id = id.from(_N, "ListTagsResponse"),
     type = "structure",
     members = {
         TagList = schema.new({
@@ -4704,7 +4704,7 @@ M.ListTagsOutput = schema.new({
 })
 
 M.ListVpcEndpointAccessInput = schema.new({
-    id = id.from(_N, "ListVpcEndpointAccessInput"),
+    id = id.from(_N, "ListVpcEndpointAccessRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -4730,7 +4730,7 @@ M.ListVpcEndpointAccessInput = schema.new({
 })
 
 M.ListVpcEndpointAccessOutput = schema.new({
-    id = id.from(_N, "ListVpcEndpointAccessOutput"),
+    id = id.from(_N, "ListVpcEndpointAccessResponse"),
     type = "structure",
     members = {
         AuthorizedPrincipalList = schema.new({
@@ -4756,7 +4756,7 @@ M.ListVpcEndpointAccessOutput = schema.new({
 })
 
 M.ListVpcEndpointsInput = schema.new({
-    id = id.from(_N, "ListVpcEndpointsInput"),
+    id = id.from(_N, "ListVpcEndpointsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4772,7 +4772,7 @@ M.ListVpcEndpointsInput = schema.new({
 })
 
 M.ListVpcEndpointsOutput = schema.new({
-    id = id.from(_N, "ListVpcEndpointsOutput"),
+    id = id.from(_N, "ListVpcEndpointsResponse"),
     type = "structure",
     members = {
         VpcEndpointSummaryList = schema.new({
@@ -4798,7 +4798,7 @@ M.ListVpcEndpointsOutput = schema.new({
 })
 
 M.ListVpcEndpointsForDomainInput = schema.new({
-    id = id.from(_N, "ListVpcEndpointsForDomainInput"),
+    id = id.from(_N, "ListVpcEndpointsForDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -4824,7 +4824,7 @@ M.ListVpcEndpointsForDomainInput = schema.new({
 })
 
 M.ListVpcEndpointsForDomainOutput = schema.new({
-    id = id.from(_N, "ListVpcEndpointsForDomainOutput"),
+    id = id.from(_N, "ListVpcEndpointsForDomainResponse"),
     type = "structure",
     members = {
         VpcEndpointSummaryList = schema.new({
@@ -4850,7 +4850,7 @@ M.ListVpcEndpointsForDomainOutput = schema.new({
 })
 
 M.PurchaseReservedElasticsearchInstanceOfferingInput = schema.new({
-    id = id.from(_N, "PurchaseReservedElasticsearchInstanceOfferingInput"),
+    id = id.from(_N, "PurchaseReservedElasticsearchInstanceOfferingRequest"),
     type = "structure",
     members = {
         ReservedElasticsearchInstanceOfferingId = schema.new({
@@ -4881,7 +4881,7 @@ M.PurchaseReservedElasticsearchInstanceOfferingInput = schema.new({
 })
 
 M.PurchaseReservedElasticsearchInstanceOfferingOutput = schema.new({
-    id = id.from(_N, "PurchaseReservedElasticsearchInstanceOfferingOutput"),
+    id = id.from(_N, "PurchaseReservedElasticsearchInstanceOfferingResponse"),
     type = "structure",
     members = {
         ReservedElasticsearchInstanceId = schema.new({
@@ -4900,7 +4900,7 @@ M.PurchaseReservedElasticsearchInstanceOfferingOutput = schema.new({
 })
 
 M.RejectInboundCrossClusterSearchConnectionInput = schema.new({
-    id = id.from(_N, "RejectInboundCrossClusterSearchConnectionInput"),
+    id = id.from(_N, "RejectInboundCrossClusterSearchConnectionRequest"),
     type = "structure",
     members = {
         CrossClusterSearchConnectionId = schema.new({
@@ -4917,7 +4917,7 @@ M.RejectInboundCrossClusterSearchConnectionInput = schema.new({
 })
 
 M.RejectInboundCrossClusterSearchConnectionOutput = schema.new({
-    id = id.from(_N, "RejectInboundCrossClusterSearchConnectionOutput"),
+    id = id.from(_N, "RejectInboundCrossClusterSearchConnectionResponse"),
     type = "structure",
     members = {
         CrossClusterSearchConnection = schema.new({
@@ -4931,7 +4931,7 @@ M.RejectInboundCrossClusterSearchConnectionOutput = schema.new({
 })
 
 M.RemoveTagsInput = schema.new({
-    id = id.from(_N, "RemoveTagsInput"),
+    id = id.from(_N, "RemoveTagsRequest"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -4957,12 +4957,12 @@ M.RemoveTagsInput = schema.new({
 })
 
 M.RemoveTagsOutput = schema.new({
-    id = id.from(_N, "RemoveTagsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RevokeVpcEndpointAccessInput = schema.new({
-    id = id.from(_N, "RevokeVpcEndpointAccessInput"),
+    id = id.from(_N, "RevokeVpcEndpointAccessRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -4988,12 +4988,12 @@ M.RevokeVpcEndpointAccessInput = schema.new({
 })
 
 M.RevokeVpcEndpointAccessOutput = schema.new({
-    id = id.from(_N, "RevokeVpcEndpointAccessOutput"),
+    id = id.from(_N, "RevokeVpcEndpointAccessResponse"),
     type = "structure",
 })
 
 M.StartElasticsearchServiceSoftwareUpdateInput = schema.new({
-    id = id.from(_N, "StartElasticsearchServiceSoftwareUpdateInput"),
+    id = id.from(_N, "StartElasticsearchServiceSoftwareUpdateRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -5009,7 +5009,7 @@ M.StartElasticsearchServiceSoftwareUpdateInput = schema.new({
 })
 
 M.StartElasticsearchServiceSoftwareUpdateOutput = schema.new({
-    id = id.from(_N, "StartElasticsearchServiceSoftwareUpdateOutput"),
+    id = id.from(_N, "StartElasticsearchServiceSoftwareUpdateResponse"),
     type = "structure",
     members = {
         ServiceSoftwareOptions = schema.new({
@@ -5023,7 +5023,7 @@ M.StartElasticsearchServiceSoftwareUpdateOutput = schema.new({
 })
 
 M.UpdateElasticsearchDomainConfigInput = schema.new({
-    id = id.from(_N, "UpdateElasticsearchDomainConfigInput"),
+    id = id.from(_N, "UpdateElasticsearchDomainConfigRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -5164,7 +5164,7 @@ M.DryRunResults = schema.new({
 })
 
 M.UpdateElasticsearchDomainConfigOutput = schema.new({
-    id = id.from(_N, "UpdateElasticsearchDomainConfigOutput"),
+    id = id.from(_N, "UpdateElasticsearchDomainConfigResponse"),
     type = "structure",
     members = {
         DomainConfig = schema.new({
@@ -5188,7 +5188,7 @@ M.UpdateElasticsearchDomainConfigOutput = schema.new({
 })
 
 M.UpdatePackageInput = schema.new({
-    id = id.from(_N, "UpdatePackageInput"),
+    id = id.from(_N, "UpdatePackageRequest"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -5226,7 +5226,7 @@ M.UpdatePackageInput = schema.new({
 })
 
 M.UpdatePackageOutput = schema.new({
-    id = id.from(_N, "UpdatePackageOutput"),
+    id = id.from(_N, "UpdatePackageResponse"),
     type = "structure",
     members = {
         PackageDetails = schema.new({
@@ -5240,7 +5240,7 @@ M.UpdatePackageOutput = schema.new({
 })
 
 M.UpdateVpcEndpointInput = schema.new({
-    id = id.from(_N, "UpdateVpcEndpointInput"),
+    id = id.from(_N, "UpdateVpcEndpointRequest"),
     type = "structure",
     members = {
         VpcEndpointId = schema.new({
@@ -5266,7 +5266,7 @@ M.UpdateVpcEndpointInput = schema.new({
 })
 
 M.UpdateVpcEndpointOutput = schema.new({
-    id = id.from(_N, "UpdateVpcEndpointOutput"),
+    id = id.from(_N, "UpdateVpcEndpointResponse"),
     type = "structure",
     members = {
         VpcEndpoint = schema.new({
@@ -5283,7 +5283,7 @@ M.UpdateVpcEndpointOutput = schema.new({
 })
 
 M.UpgradeElasticsearchDomainInput = schema.new({
-    id = id.from(_N, "UpgradeElasticsearchDomainInput"),
+    id = id.from(_N, "UpgradeElasticsearchDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -5314,7 +5314,7 @@ M.UpgradeElasticsearchDomainInput = schema.new({
 })
 
 M.UpgradeElasticsearchDomainOutput = schema.new({
-    id = id.from(_N, "UpgradeElasticsearchDomainOutput"),
+    id = id.from(_N, "UpgradeElasticsearchDomainResponse"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -5344,5 +5344,19 @@ M.UpgradeElasticsearchDomainOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

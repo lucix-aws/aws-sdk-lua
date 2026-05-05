@@ -95,7 +95,7 @@ M.ConflictException = schema.new({
 })
 
 M.DescribeJobExecutionInput = schema.new({
-    id = id.from(_N, "DescribeJobExecutionInput"),
+    id = id.from(_N, "DescribeJobExecutionRequest"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -224,7 +224,7 @@ M.JobExecution = schema.new({
 })
 
 M.DescribeJobExecutionOutput = schema.new({
-    id = id.from(_N, "DescribeJobExecutionOutput"),
+    id = id.from(_N, "DescribeJobExecutionResponse"),
     type = "structure",
     members = {
         execution = schema.new({
@@ -324,7 +324,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.GetPendingJobExecutionsInput = schema.new({
-    id = id.from(_N, "GetPendingJobExecutionsInput"),
+    id = id.from(_N, "GetPendingJobExecutionsRequest"),
     type = "structure",
     members = {
         thingName = schema.new({
@@ -393,7 +393,7 @@ M.JobExecutionSummary = schema.new({
 })
 
 M.GetPendingJobExecutionsOutput = schema.new({
-    id = id.from(_N, "GetPendingJobExecutionsOutput"),
+    id = id.from(_N, "GetPendingJobExecutionsResponse"),
     type = "structure",
     members = {
         inProgressJobs = schema.new({
@@ -462,7 +462,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.StartCommandExecutionInput = schema.new({
-    id = id.from(_N, "StartCommandExecutionInput"),
+    id = id.from(_N, "StartCommandExecutionRequest"),
     type = "structure",
     members = {
         targetArn = schema.new({
@@ -510,7 +510,7 @@ M.StartCommandExecutionInput = schema.new({
 })
 
 M.StartCommandExecutionOutput = schema.new({
-    id = id.from(_N, "StartCommandExecutionOutput"),
+    id = id.from(_N, "StartCommandExecutionResponse"),
     type = "structure",
     members = {
         executionId = schema.new({
@@ -539,7 +539,7 @@ M.ValidationException = schema.new({
 })
 
 M.StartNextPendingJobExecutionInput = schema.new({
-    id = id.from(_N, "StartNextPendingJobExecutionInput"),
+    id = id.from(_N, "StartNextPendingJobExecutionRequest"),
     type = "structure",
     members = {
         thingName = schema.new({
@@ -570,7 +570,7 @@ M.StartNextPendingJobExecutionInput = schema.new({
 })
 
 M.StartNextPendingJobExecutionOutput = schema.new({
-    id = id.from(_N, "StartNextPendingJobExecutionOutput"),
+    id = id.from(_N, "StartNextPendingJobExecutionResponse"),
     type = "structure",
     members = {
         execution = schema.new({
@@ -584,7 +584,7 @@ M.StartNextPendingJobExecutionOutput = schema.new({
 })
 
 M.UpdateJobExecutionInput = schema.new({
-    id = id.from(_N, "UpdateJobExecutionInput"),
+    id = id.from(_N, "UpdateJobExecutionRequest"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -688,7 +688,7 @@ M.JobExecutionState = schema.new({
 })
 
 M.UpdateJobExecutionOutput = schema.new({
-    id = id.from(_N, "UpdateJobExecutionOutput"),
+    id = id.from(_N, "UpdateJobExecutionResponse"),
     type = "structure",
     members = {
         executionState = schema.new({
@@ -706,5 +706,19 @@ M.UpdateJobExecutionOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

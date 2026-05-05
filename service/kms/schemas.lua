@@ -61,7 +61,7 @@ M.AlreadyExistsException = schema.new({
 })
 
 M.CancelKeyDeletionInput = schema.new({
-    id = id.from(_N, "CancelKeyDeletionInput"),
+    id = id.from(_N, "CancelKeyDeletionRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -77,7 +77,7 @@ M.CancelKeyDeletionInput = schema.new({
 })
 
 M.CancelKeyDeletionOutput = schema.new({
-    id = id.from(_N, "CancelKeyDeletionOutput"),
+    id = id.from(_N, "CancelKeyDeletionResponse"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -266,7 +266,7 @@ M.ConflictException = schema.new({
 })
 
 M.ConnectCustomKeyStoreInput = schema.new({
-    id = id.from(_N, "ConnectCustomKeyStoreInput"),
+    id = id.from(_N, "ConnectCustomKeyStoreRequest"),
     type = "structure",
     members = {
         CustomKeyStoreId = schema.new({
@@ -282,7 +282,7 @@ M.ConnectCustomKeyStoreInput = schema.new({
 })
 
 M.ConnectCustomKeyStoreOutput = schema.new({
-    id = id.from(_N, "ConnectCustomKeyStoreOutput"),
+    id = id.from(_N, "ConnectCustomKeyStoreResponse"),
     type = "structure",
 })
 
@@ -319,7 +319,7 @@ M.CustomKeyStoreNotFoundException = schema.new({
 })
 
 M.CreateAliasInput = schema.new({
-    id = id.from(_N, "CreateAliasInput"),
+    id = id.from(_N, "CreateAliasRequest"),
     type = "structure",
     members = {
         AliasName = schema.new({
@@ -344,7 +344,7 @@ M.CreateAliasInput = schema.new({
 })
 
 M.CreateAliasOutput = schema.new({
-    id = id.from(_N, "CreateAliasOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -406,7 +406,7 @@ M.XksProxyAuthenticationCredentialType = schema.new({
 })
 
 M.CreateCustomKeyStoreInput = schema.new({
-    id = id.from(_N, "CreateCustomKeyStoreInput"),
+    id = id.from(_N, "CreateCustomKeyStoreRequest"),
     type = "structure",
     members = {
         CustomKeyStoreName = schema.new({
@@ -483,7 +483,7 @@ M.CreateCustomKeyStoreInput = schema.new({
 })
 
 M.CreateCustomKeyStoreOutput = schema.new({
-    id = id.from(_N, "CreateCustomKeyStoreOutput"),
+    id = id.from(_N, "CreateCustomKeyStoreResponse"),
     type = "structure",
     members = {
         CustomKeyStoreId = schema.new({
@@ -695,7 +695,7 @@ M.GrantConstraints = schema.new({
 })
 
 M.CreateGrantInput = schema.new({
-    id = id.from(_N, "CreateGrantInput"),
+    id = id.from(_N, "CreateGrantRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -762,7 +762,7 @@ M.CreateGrantInput = schema.new({
 })
 
 M.CreateGrantOutput = schema.new({
-    id = id.from(_N, "CreateGrantOutput"),
+    id = id.from(_N, "CreateGrantResponse"),
     type = "structure",
     members = {
         GrantToken = schema.new({
@@ -854,7 +854,7 @@ M.Tag = schema.new({
 })
 
 M.CreateKeyInput = schema.new({
-    id = id.from(_N, "CreateKeyInput"),
+    id = id.from(_N, "CreateKeyRequest"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -1165,7 +1165,7 @@ M.KeyMetadata = schema.new({
 })
 
 M.CreateKeyOutput = schema.new({
-    id = id.from(_N, "CreateKeyOutput"),
+    id = id.from(_N, "CreateKeyResponse"),
     type = "structure",
     members = {
         KeyMetadata = schema.new({
@@ -1415,7 +1415,7 @@ M.RecipientInfo = schema.new({
 })
 
 M.DecryptInput = schema.new({
-    id = id.from(_N, "DecryptInput"),
+    id = id.from(_N, "DecryptRequest"),
     type = "structure",
     members = {
         CiphertextBlob = schema.new({
@@ -1475,7 +1475,7 @@ M.DecryptInput = schema.new({
 })
 
 M.DecryptOutput = schema.new({
-    id = id.from(_N, "DecryptOutput"),
+    id = id.from(_N, "DecryptResponse"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -1576,7 +1576,7 @@ M.KeyUnavailableException = schema.new({
 })
 
 M.DeleteAliasInput = schema.new({
-    id = id.from(_N, "DeleteAliasInput"),
+    id = id.from(_N, "DeleteAliasRequest"),
     type = "structure",
     members = {
         AliasName = schema.new({
@@ -1592,12 +1592,12 @@ M.DeleteAliasInput = schema.new({
 })
 
 M.DeleteAliasOutput = schema.new({
-    id = id.from(_N, "DeleteAliasOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteCustomKeyStoreInput = schema.new({
-    id = id.from(_N, "DeleteCustomKeyStoreInput"),
+    id = id.from(_N, "DeleteCustomKeyStoreRequest"),
     type = "structure",
     members = {
         CustomKeyStoreId = schema.new({
@@ -1613,12 +1613,12 @@ M.DeleteCustomKeyStoreInput = schema.new({
 })
 
 M.DeleteCustomKeyStoreOutput = schema.new({
-    id = id.from(_N, "DeleteCustomKeyStoreOutput"),
+    id = id.from(_N, "DeleteCustomKeyStoreResponse"),
     type = "structure",
 })
 
 M.DeleteImportedKeyMaterialInput = schema.new({
-    id = id.from(_N, "DeleteImportedKeyMaterialInput"),
+    id = id.from(_N, "DeleteImportedKeyMaterialRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -1640,7 +1640,7 @@ M.DeleteImportedKeyMaterialInput = schema.new({
 })
 
 M.DeleteImportedKeyMaterialOutput = schema.new({
-    id = id.from(_N, "DeleteImportedKeyMaterialOutput"),
+    id = id.from(_N, "DeleteImportedKeyMaterialResponse"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -1659,7 +1659,7 @@ M.DeleteImportedKeyMaterialOutput = schema.new({
 })
 
 M.DeriveSharedSecretInput = schema.new({
-    id = id.from(_N, "DeriveSharedSecretInput"),
+    id = id.from(_N, "DeriveSharedSecretRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -1713,7 +1713,7 @@ M.DeriveSharedSecretInput = schema.new({
 })
 
 M.DeriveSharedSecretOutput = schema.new({
-    id = id.from(_N, "DeriveSharedSecretOutput"),
+    id = id.from(_N, "DeriveSharedSecretResponse"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -1750,7 +1750,7 @@ M.DeriveSharedSecretOutput = schema.new({
 })
 
 M.DescribeCustomKeyStoresInput = schema.new({
-    id = id.from(_N, "DescribeCustomKeyStoresInput"),
+    id = id.from(_N, "DescribeCustomKeyStoresRequest"),
     type = "structure",
     members = {
         CustomKeyStoreId = schema.new({
@@ -1781,7 +1781,7 @@ M.DescribeCustomKeyStoresInput = schema.new({
 })
 
 M.DescribeCustomKeyStoresOutput = schema.new({
-    id = id.from(_N, "DescribeCustomKeyStoresOutput"),
+    id = id.from(_N, "DescribeCustomKeyStoresResponse"),
     type = "structure",
     members = {
         CustomKeyStores = schema.new({
@@ -1826,7 +1826,7 @@ M.InvalidMarkerException = schema.new({
 })
 
 M.DescribeKeyInput = schema.new({
-    id = id.from(_N, "DescribeKeyInput"),
+    id = id.from(_N, "DescribeKeyRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -1849,7 +1849,7 @@ M.DescribeKeyInput = schema.new({
 })
 
 M.DescribeKeyOutput = schema.new({
-    id = id.from(_N, "DescribeKeyOutput"),
+    id = id.from(_N, "DescribeKeyResponse"),
     type = "structure",
     members = {
         KeyMetadata = schema.new({
@@ -1863,7 +1863,7 @@ M.DescribeKeyOutput = schema.new({
 })
 
 M.DisableKeyInput = schema.new({
-    id = id.from(_N, "DisableKeyInput"),
+    id = id.from(_N, "DisableKeyRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -1879,12 +1879,12 @@ M.DisableKeyInput = schema.new({
 })
 
 M.DisableKeyOutput = schema.new({
-    id = id.from(_N, "DisableKeyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DisableKeyRotationInput = schema.new({
-    id = id.from(_N, "DisableKeyRotationInput"),
+    id = id.from(_N, "DisableKeyRotationRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -1900,12 +1900,12 @@ M.DisableKeyRotationInput = schema.new({
 })
 
 M.DisableKeyRotationOutput = schema.new({
-    id = id.from(_N, "DisableKeyRotationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DisconnectCustomKeyStoreInput = schema.new({
-    id = id.from(_N, "DisconnectCustomKeyStoreInput"),
+    id = id.from(_N, "DisconnectCustomKeyStoreRequest"),
     type = "structure",
     members = {
         CustomKeyStoreId = schema.new({
@@ -1921,12 +1921,12 @@ M.DisconnectCustomKeyStoreInput = schema.new({
 })
 
 M.DisconnectCustomKeyStoreOutput = schema.new({
-    id = id.from(_N, "DisconnectCustomKeyStoreOutput"),
+    id = id.from(_N, "DisconnectCustomKeyStoreResponse"),
     type = "structure",
 })
 
 M.EnableKeyInput = schema.new({
-    id = id.from(_N, "EnableKeyInput"),
+    id = id.from(_N, "EnableKeyRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -1942,12 +1942,12 @@ M.EnableKeyInput = schema.new({
 })
 
 M.EnableKeyOutput = schema.new({
-    id = id.from(_N, "EnableKeyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.EnableKeyRotationInput = schema.new({
-    id = id.from(_N, "EnableKeyRotationInput"),
+    id = id.from(_N, "EnableKeyRotationRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -1969,12 +1969,12 @@ M.EnableKeyRotationInput = schema.new({
 })
 
 M.EnableKeyRotationOutput = schema.new({
-    id = id.from(_N, "EnableKeyRotationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.EncryptInput = schema.new({
-    id = id.from(_N, "EncryptInput"),
+    id = id.from(_N, "EncryptRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -2026,7 +2026,7 @@ M.EncryptInput = schema.new({
 })
 
 M.EncryptOutput = schema.new({
-    id = id.from(_N, "EncryptOutput"),
+    id = id.from(_N, "EncryptResponse"),
     type = "structure",
     members = {
         CiphertextBlob = schema.new({
@@ -2067,7 +2067,7 @@ M.ExpiredImportTokenException = schema.new({
 })
 
 M.GenerateDataKeyInput = schema.new({
-    id = id.from(_N, "GenerateDataKeyInput"),
+    id = id.from(_N, "GenerateDataKeyRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -2123,7 +2123,7 @@ M.GenerateDataKeyInput = schema.new({
 })
 
 M.GenerateDataKeyOutput = schema.new({
-    id = id.from(_N, "GenerateDataKeyOutput"),
+    id = id.from(_N, "GenerateDataKeyResponse"),
     type = "structure",
     members = {
         CiphertextBlob = schema.new({
@@ -2160,7 +2160,7 @@ M.GenerateDataKeyOutput = schema.new({
 })
 
 M.GenerateDataKeyPairInput = schema.new({
-    id = id.from(_N, "GenerateDataKeyPairInput"),
+    id = id.from(_N, "GenerateDataKeyPairRequest"),
     type = "structure",
     members = {
         EncryptionContext = schema.new({
@@ -2213,7 +2213,7 @@ M.GenerateDataKeyPairInput = schema.new({
 })
 
 M.GenerateDataKeyPairOutput = schema.new({
-    id = id.from(_N, "GenerateDataKeyPairOutput"),
+    id = id.from(_N, "GenerateDataKeyPairResponse"),
     type = "structure",
     members = {
         PrivateKeyCiphertextBlob = schema.new({
@@ -2262,7 +2262,7 @@ M.GenerateDataKeyPairOutput = schema.new({
 })
 
 M.GenerateDataKeyPairWithoutPlaintextInput = schema.new({
-    id = id.from(_N, "GenerateDataKeyPairWithoutPlaintextInput"),
+    id = id.from(_N, "GenerateDataKeyPairWithoutPlaintextRequest"),
     type = "structure",
     members = {
         EncryptionContext = schema.new({
@@ -2308,7 +2308,7 @@ M.GenerateDataKeyPairWithoutPlaintextInput = schema.new({
 })
 
 M.GenerateDataKeyPairWithoutPlaintextOutput = schema.new({
-    id = id.from(_N, "GenerateDataKeyPairWithoutPlaintextOutput"),
+    id = id.from(_N, "GenerateDataKeyPairWithoutPlaintextResponse"),
     type = "structure",
     members = {
         PrivateKeyCiphertextBlob = schema.new({
@@ -2345,7 +2345,7 @@ M.GenerateDataKeyPairWithoutPlaintextOutput = schema.new({
 })
 
 M.GenerateDataKeyWithoutPlaintextInput = schema.new({
-    id = id.from(_N, "GenerateDataKeyWithoutPlaintextInput"),
+    id = id.from(_N, "GenerateDataKeyWithoutPlaintextRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -2394,7 +2394,7 @@ M.GenerateDataKeyWithoutPlaintextInput = schema.new({
 })
 
 M.GenerateDataKeyWithoutPlaintextOutput = schema.new({
-    id = id.from(_N, "GenerateDataKeyWithoutPlaintextOutput"),
+    id = id.from(_N, "GenerateDataKeyWithoutPlaintextResponse"),
     type = "structure",
     members = {
         CiphertextBlob = schema.new({
@@ -2419,7 +2419,7 @@ M.GenerateDataKeyWithoutPlaintextOutput = schema.new({
 })
 
 M.GenerateMacInput = schema.new({
-    id = id.from(_N, "GenerateMacInput"),
+    id = id.from(_N, "GenerateMacRequest"),
     type = "structure",
     members = {
         Message = schema.new({
@@ -2466,7 +2466,7 @@ M.GenerateMacInput = schema.new({
 })
 
 M.GenerateMacOutput = schema.new({
-    id = id.from(_N, "GenerateMacOutput"),
+    id = id.from(_N, "GenerateMacResponse"),
     type = "structure",
     members = {
         Mac = schema.new({
@@ -2491,7 +2491,7 @@ M.GenerateMacOutput = schema.new({
 })
 
 M.GenerateRandomInput = schema.new({
-    id = id.from(_N, "GenerateRandomInput"),
+    id = id.from(_N, "GenerateRandomRequest"),
     type = "structure",
     members = {
         NumberOfBytes = schema.new({
@@ -2517,7 +2517,7 @@ M.GenerateRandomInput = schema.new({
 })
 
 M.GenerateRandomOutput = schema.new({
-    id = id.from(_N, "GenerateRandomOutput"),
+    id = id.from(_N, "GenerateRandomResponse"),
     type = "structure",
     members = {
         Plaintext = schema.new({
@@ -2536,7 +2536,7 @@ M.GenerateRandomOutput = schema.new({
 })
 
 M.GetKeyLastUsageInput = schema.new({
-    id = id.from(_N, "GetKeyLastUsageInput"),
+    id = id.from(_N, "GetKeyLastUsageRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -2583,7 +2583,7 @@ M.KeyLastUsageData = schema.new({
 })
 
 M.GetKeyLastUsageOutput = schema.new({
-    id = id.from(_N, "GetKeyLastUsageOutput"),
+    id = id.from(_N, "GetKeyLastUsageResponse"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -2615,7 +2615,7 @@ M.GetKeyLastUsageOutput = schema.new({
 })
 
 M.GetKeyPolicyInput = schema.new({
-    id = id.from(_N, "GetKeyPolicyInput"),
+    id = id.from(_N, "GetKeyPolicyRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -2637,7 +2637,7 @@ M.GetKeyPolicyInput = schema.new({
 })
 
 M.GetKeyPolicyOutput = schema.new({
-    id = id.from(_N, "GetKeyPolicyOutput"),
+    id = id.from(_N, "GetKeyPolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -2656,7 +2656,7 @@ M.GetKeyPolicyOutput = schema.new({
 })
 
 M.GetKeyRotationStatusInput = schema.new({
-    id = id.from(_N, "GetKeyRotationStatusInput"),
+    id = id.from(_N, "GetKeyRotationStatusRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -2672,7 +2672,7 @@ M.GetKeyRotationStatusInput = schema.new({
 })
 
 M.GetKeyRotationStatusOutput = schema.new({
-    id = id.from(_N, "GetKeyRotationStatusOutput"),
+    id = id.from(_N, "GetKeyRotationStatusResponse"),
     type = "structure",
     members = {
         KeyRotationEnabled = schema.new({
@@ -2712,7 +2712,7 @@ M.GetKeyRotationStatusOutput = schema.new({
 })
 
 M.GetParametersForImportInput = schema.new({
-    id = id.from(_N, "GetParametersForImportInput"),
+    id = id.from(_N, "GetParametersForImportRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -2746,7 +2746,7 @@ M.GetParametersForImportInput = schema.new({
 })
 
 M.GetParametersForImportOutput = schema.new({
-    id = id.from(_N, "GetParametersForImportOutput"),
+    id = id.from(_N, "GetParametersForImportResponse"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -2777,7 +2777,7 @@ M.GetParametersForImportOutput = schema.new({
 })
 
 M.GetPublicKeyInput = schema.new({
-    id = id.from(_N, "GetPublicKeyInput"),
+    id = id.from(_N, "GetPublicKeyRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -2800,7 +2800,7 @@ M.GetPublicKeyInput = schema.new({
 })
 
 M.GetPublicKeyOutput = schema.new({
-    id = id.from(_N, "GetPublicKeyOutput"),
+    id = id.from(_N, "GetPublicKeyResponse"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -2921,7 +2921,7 @@ M.GrantListEntry = schema.new({
 })
 
 M.ImportKeyMaterialInput = schema.new({
-    id = id.from(_N, "ImportKeyMaterialInput"),
+    id = id.from(_N, "ImportKeyMaterialRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -2985,7 +2985,7 @@ M.ImportKeyMaterialInput = schema.new({
 })
 
 M.ImportKeyMaterialOutput = schema.new({
-    id = id.from(_N, "ImportKeyMaterialOutput"),
+    id = id.from(_N, "ImportKeyMaterialResponse"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -3103,7 +3103,7 @@ M.KMSInvalidSignatureException = schema.new({
 })
 
 M.ListAliasesInput = schema.new({
-    id = id.from(_N, "ListAliasesInput"),
+    id = id.from(_N, "ListAliasesRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -3128,7 +3128,7 @@ M.ListAliasesInput = schema.new({
 })
 
 M.ListAliasesOutput = schema.new({
-    id = id.from(_N, "ListAliasesOutput"),
+    id = id.from(_N, "ListAliasesResponse"),
     type = "structure",
     members = {
         Aliases = schema.new({
@@ -3157,7 +3157,7 @@ M.ListAliasesOutput = schema.new({
 })
 
 M.ListGrantsInput = schema.new({
-    id = id.from(_N, "ListGrantsInput"),
+    id = id.from(_N, "ListGrantsRequest"),
     type = "structure",
     members = {
         Limit = schema.new({
@@ -3197,7 +3197,7 @@ M.ListGrantsInput = schema.new({
 })
 
 M.ListGrantsOutput = schema.new({
-    id = id.from(_N, "ListGrantsOutput"),
+    id = id.from(_N, "ListGrantsResponse"),
     type = "structure",
     members = {
         Grants = schema.new({
@@ -3226,7 +3226,7 @@ M.ListGrantsOutput = schema.new({
 })
 
 M.ListKeyPoliciesInput = schema.new({
-    id = id.from(_N, "ListKeyPoliciesInput"),
+    id = id.from(_N, "ListKeyPoliciesRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -3254,7 +3254,7 @@ M.ListKeyPoliciesInput = schema.new({
 })
 
 M.ListKeyPoliciesOutput = schema.new({
-    id = id.from(_N, "ListKeyPoliciesOutput"),
+    id = id.from(_N, "ListKeyPoliciesResponse"),
     type = "structure",
     members = {
         PolicyNames = schema.new({
@@ -3283,7 +3283,7 @@ M.ListKeyPoliciesOutput = schema.new({
 })
 
 M.ListKeyRotationsInput = schema.new({
-    id = id.from(_N, "ListKeyRotationsInput"),
+    id = id.from(_N, "ListKeyRotationsRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -3378,7 +3378,7 @@ M.RotationsListEntry = schema.new({
 })
 
 M.ListKeyRotationsOutput = schema.new({
-    id = id.from(_N, "ListKeyRotationsOutput"),
+    id = id.from(_N, "ListKeyRotationsResponse"),
     type = "structure",
     members = {
         Rotations = schema.new({
@@ -3407,7 +3407,7 @@ M.ListKeyRotationsOutput = schema.new({
 })
 
 M.ListKeysInput = schema.new({
-    id = id.from(_N, "ListKeysInput"),
+    id = id.from(_N, "ListKeysRequest"),
     type = "structure",
     members = {
         Limit = schema.new({
@@ -3426,7 +3426,7 @@ M.ListKeysInput = schema.new({
 })
 
 M.ListKeysOutput = schema.new({
-    id = id.from(_N, "ListKeysOutput"),
+    id = id.from(_N, "ListKeysResponse"),
     type = "structure",
     members = {
         Keys = schema.new({
@@ -3455,7 +3455,7 @@ M.ListKeysOutput = schema.new({
 })
 
 M.ListResourceTagsInput = schema.new({
-    id = id.from(_N, "ListResourceTagsInput"),
+    id = id.from(_N, "ListResourceTagsRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -3483,7 +3483,7 @@ M.ListResourceTagsInput = schema.new({
 })
 
 M.ListResourceTagsOutput = schema.new({
-    id = id.from(_N, "ListResourceTagsOutput"),
+    id = id.from(_N, "ListResourceTagsResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -3512,7 +3512,7 @@ M.ListResourceTagsOutput = schema.new({
 })
 
 M.ListRetirableGrantsInput = schema.new({
-    id = id.from(_N, "ListRetirableGrantsInput"),
+    id = id.from(_N, "ListRetirableGrantsRequest"),
     type = "structure",
     members = {
         Limit = schema.new({
@@ -3540,7 +3540,7 @@ M.ListRetirableGrantsInput = schema.new({
 })
 
 M.ListRetirableGrantsOutput = schema.new({
-    id = id.from(_N, "ListRetirableGrantsOutput"),
+    id = id.from(_N, "ListGrantsResponse"),
     type = "structure",
     members = {
         Grants = schema.new({
@@ -3569,7 +3569,7 @@ M.ListRetirableGrantsOutput = schema.new({
 })
 
 M.PutKeyPolicyInput = schema.new({
-    id = id.from(_N, "PutKeyPolicyInput"),
+    id = id.from(_N, "PutKeyPolicyRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -3609,12 +3609,12 @@ M.PutKeyPolicyInput = schema.new({
 })
 
 M.PutKeyPolicyOutput = schema.new({
-    id = id.from(_N, "PutKeyPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ReEncryptInput = schema.new({
-    id = id.from(_N, "ReEncryptInput"),
+    id = id.from(_N, "ReEncryptRequest"),
     type = "structure",
     members = {
         CiphertextBlob = schema.new({
@@ -3690,7 +3690,7 @@ M.ReEncryptInput = schema.new({
 })
 
 M.ReEncryptOutput = schema.new({
-    id = id.from(_N, "ReEncryptOutput"),
+    id = id.from(_N, "ReEncryptResponse"),
     type = "structure",
     members = {
         CiphertextBlob = schema.new({
@@ -3739,7 +3739,7 @@ M.ReEncryptOutput = schema.new({
 })
 
 M.ReplicateKeyInput = schema.new({
-    id = id.from(_N, "ReplicateKeyInput"),
+    id = id.from(_N, "ReplicateKeyRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -3792,7 +3792,7 @@ M.ReplicateKeyInput = schema.new({
 })
 
 M.ReplicateKeyOutput = schema.new({
-    id = id.from(_N, "ReplicateKeyOutput"),
+    id = id.from(_N, "ReplicateKeyResponse"),
     type = "structure",
     members = {
         ReplicaKeyMetadata = schema.new({
@@ -3819,7 +3819,7 @@ M.ReplicateKeyOutput = schema.new({
 })
 
 M.RetireGrantInput = schema.new({
-    id = id.from(_N, "RetireGrantInput"),
+    id = id.from(_N, "RetireGrantRequest"),
     type = "structure",
     members = {
         GrantToken = schema.new({
@@ -3850,12 +3850,12 @@ M.RetireGrantInput = schema.new({
 })
 
 M.RetireGrantOutput = schema.new({
-    id = id.from(_N, "RetireGrantOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RevokeGrantInput = schema.new({
-    id = id.from(_N, "RevokeGrantInput"),
+    id = id.from(_N, "RevokeGrantRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -3886,12 +3886,12 @@ M.RevokeGrantInput = schema.new({
 })
 
 M.RevokeGrantOutput = schema.new({
-    id = id.from(_N, "RevokeGrantOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RotateKeyOnDemandInput = schema.new({
-    id = id.from(_N, "RotateKeyOnDemandInput"),
+    id = id.from(_N, "RotateKeyOnDemandRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -3907,7 +3907,7 @@ M.RotateKeyOnDemandInput = schema.new({
 })
 
 M.RotateKeyOnDemandOutput = schema.new({
-    id = id.from(_N, "RotateKeyOnDemandOutput"),
+    id = id.from(_N, "RotateKeyOnDemandResponse"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -3920,7 +3920,7 @@ M.RotateKeyOnDemandOutput = schema.new({
 })
 
 M.ScheduleKeyDeletionInput = schema.new({
-    id = id.from(_N, "ScheduleKeyDeletionInput"),
+    id = id.from(_N, "ScheduleKeyDeletionRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -3942,7 +3942,7 @@ M.ScheduleKeyDeletionInput = schema.new({
 })
 
 M.ScheduleKeyDeletionOutput = schema.new({
-    id = id.from(_N, "ScheduleKeyDeletionOutput"),
+    id = id.from(_N, "ScheduleKeyDeletionResponse"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -3973,7 +3973,7 @@ M.ScheduleKeyDeletionOutput = schema.new({
 })
 
 M.SignInput = schema.new({
-    id = id.from(_N, "SignInput"),
+    id = id.from(_N, "SignRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -4026,7 +4026,7 @@ M.SignInput = schema.new({
 })
 
 M.SignOutput = schema.new({
-    id = id.from(_N, "SignOutput"),
+    id = id.from(_N, "SignResponse"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -4051,7 +4051,7 @@ M.SignOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -4077,12 +4077,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -4108,12 +4108,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateAliasInput = schema.new({
-    id = id.from(_N, "UpdateAliasInput"),
+    id = id.from(_N, "UpdateAliasRequest"),
     type = "structure",
     members = {
         AliasName = schema.new({
@@ -4138,12 +4138,12 @@ M.UpdateAliasInput = schema.new({
 })
 
 M.UpdateAliasOutput = schema.new({
-    id = id.from(_N, "UpdateAliasOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateCustomKeyStoreInput = schema.new({
-    id = id.from(_N, "UpdateCustomKeyStoreInput"),
+    id = id.from(_N, "UpdateCustomKeyStoreRequest"),
     type = "structure",
     members = {
         CustomKeyStoreId = schema.new({
@@ -4214,12 +4214,12 @@ M.UpdateCustomKeyStoreInput = schema.new({
 })
 
 M.UpdateCustomKeyStoreOutput = schema.new({
-    id = id.from(_N, "UpdateCustomKeyStoreOutput"),
+    id = id.from(_N, "UpdateCustomKeyStoreResponse"),
     type = "structure",
 })
 
 M.UpdateKeyDescriptionInput = schema.new({
-    id = id.from(_N, "UpdateKeyDescriptionInput"),
+    id = id.from(_N, "UpdateKeyDescriptionRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -4244,12 +4244,12 @@ M.UpdateKeyDescriptionInput = schema.new({
 })
 
 M.UpdateKeyDescriptionOutput = schema.new({
-    id = id.from(_N, "UpdateKeyDescriptionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdatePrimaryRegionInput = schema.new({
-    id = id.from(_N, "UpdatePrimaryRegionInput"),
+    id = id.from(_N, "UpdatePrimaryRegionRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -4274,12 +4274,12 @@ M.UpdatePrimaryRegionInput = schema.new({
 })
 
 M.UpdatePrimaryRegionOutput = schema.new({
-    id = id.from(_N, "UpdatePrimaryRegionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.VerifyInput = schema.new({
-    id = id.from(_N, "VerifyInput"),
+    id = id.from(_N, "VerifyRequest"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -4341,7 +4341,7 @@ M.VerifyInput = schema.new({
 })
 
 M.VerifyOutput = schema.new({
-    id = id.from(_N, "VerifyOutput"),
+    id = id.from(_N, "VerifyResponse"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -4369,7 +4369,7 @@ M.VerifyOutput = schema.new({
 })
 
 M.VerifyMacInput = schema.new({
-    id = id.from(_N, "VerifyMacInput"),
+    id = id.from(_N, "VerifyMacRequest"),
     type = "structure",
     members = {
         Message = schema.new({
@@ -4425,7 +4425,7 @@ M.VerifyMacInput = schema.new({
 })
 
 M.VerifyMacOutput = schema.new({
-    id = id.from(_N, "VerifyMacOutput"),
+    id = id.from(_N, "VerifyMacResponse"),
     type = "structure",
     members = {
         KeyId = schema.new({
@@ -4451,5 +4451,19 @@ M.VerifyMacOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

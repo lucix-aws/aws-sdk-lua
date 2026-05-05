@@ -176,7 +176,7 @@ M.VpcOptions = schema.new({
 })
 
 M.CreatePipelineInput = schema.new({
-    id = id.from(_N, "CreatePipelineInput"),
+    id = id.from(_N, "CreatePipelineRequest"),
     type = "structure",
     members = {
         PipelineName = schema.new({
@@ -473,7 +473,7 @@ M.Pipeline = schema.new({
 })
 
 M.CreatePipelineOutput = schema.new({
-    id = id.from(_N, "CreatePipelineOutput"),
+    id = id.from(_N, "CreatePipelineResponse"),
     type = "structure",
     members = {
         Pipeline = schema.new({
@@ -604,7 +604,7 @@ M.PipelineEndpointVpcOptions = schema.new({
 })
 
 M.CreatePipelineEndpointInput = schema.new({
-    id = id.from(_N, "CreatePipelineEndpointInput"),
+    id = id.from(_N, "CreatePipelineEndpointRequest"),
     type = "structure",
     members = {
         PipelineArn = schema.new({
@@ -630,7 +630,7 @@ M.CreatePipelineEndpointInput = schema.new({
 })
 
 M.CreatePipelineEndpointOutput = schema.new({
-    id = id.from(_N, "CreatePipelineEndpointOutput"),
+    id = id.from(_N, "CreatePipelineEndpointResponse"),
     type = "structure",
     members = {
         PipelineArn = schema.new({
@@ -677,7 +677,7 @@ M.ConflictException = schema.new({
 })
 
 M.DeletePipelineInput = schema.new({
-    id = id.from(_N, "DeletePipelineInput"),
+    id = id.from(_N, "DeletePipelineRequest"),
     type = "structure",
     members = {
         PipelineName = schema.new({
@@ -694,12 +694,12 @@ M.DeletePipelineInput = schema.new({
 })
 
 M.DeletePipelineOutput = schema.new({
-    id = id.from(_N, "DeletePipelineOutput"),
+    id = id.from(_N, "DeletePipelineResponse"),
     type = "structure",
 })
 
 M.DeletePipelineEndpointInput = schema.new({
-    id = id.from(_N, "DeletePipelineEndpointInput"),
+    id = id.from(_N, "DeletePipelineEndpointRequest"),
     type = "structure",
     members = {
         EndpointId = schema.new({
@@ -716,12 +716,12 @@ M.DeletePipelineEndpointInput = schema.new({
 })
 
 M.DeletePipelineEndpointOutput = schema.new({
-    id = id.from(_N, "DeletePipelineEndpointOutput"),
+    id = id.from(_N, "DeletePipelineEndpointResponse"),
     type = "structure",
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -738,12 +738,12 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "DeleteResourcePolicyResponse"),
     type = "structure",
 })
 
 M.GetPipelineInput = schema.new({
-    id = id.from(_N, "GetPipelineInput"),
+    id = id.from(_N, "GetPipelineRequest"),
     type = "structure",
     members = {
         PipelineName = schema.new({
@@ -760,7 +760,7 @@ M.GetPipelineInput = schema.new({
 })
 
 M.GetPipelineOutput = schema.new({
-    id = id.from(_N, "GetPipelineOutput"),
+    id = id.from(_N, "GetPipelineResponse"),
     type = "structure",
     members = {
         Pipeline = schema.new({
@@ -774,7 +774,7 @@ M.GetPipelineOutput = schema.new({
 })
 
 M.GetPipelineBlueprintInput = schema.new({
-    id = id.from(_N, "GetPipelineBlueprintInput"),
+    id = id.from(_N, "GetPipelineBlueprintRequest"),
     type = "structure",
     members = {
         BlueprintName = schema.new({
@@ -843,7 +843,7 @@ M.PipelineBlueprint = schema.new({
 })
 
 M.GetPipelineBlueprintOutput = schema.new({
-    id = id.from(_N, "GetPipelineBlueprintOutput"),
+    id = id.from(_N, "GetPipelineBlueprintResponse"),
     type = "structure",
     members = {
         Blueprint = schema.new({
@@ -863,7 +863,7 @@ M.GetPipelineBlueprintOutput = schema.new({
 })
 
 M.GetPipelineChangeProgressInput = schema.new({
-    id = id.from(_N, "GetPipelineChangeProgressInput"),
+    id = id.from(_N, "GetPipelineChangeProgressRequest"),
     type = "structure",
     members = {
         PipelineName = schema.new({
@@ -946,7 +946,7 @@ M.ChangeProgressStatus = schema.new({
 })
 
 M.GetPipelineChangeProgressOutput = schema.new({
-    id = id.from(_N, "GetPipelineChangeProgressOutput"),
+    id = id.from(_N, "GetPipelineChangeProgressResponse"),
     type = "structure",
     members = {
         ChangeProgressStatuses = schema.new({
@@ -960,7 +960,7 @@ M.GetPipelineChangeProgressOutput = schema.new({
 })
 
 M.GetResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetResourcePolicyInput"),
+    id = id.from(_N, "GetResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -977,7 +977,7 @@ M.GetResourcePolicyInput = schema.new({
 })
 
 M.GetResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetResourcePolicyOutput"),
+    id = id.from(_N, "GetResourcePolicyResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1012,7 +1012,7 @@ M.InvalidPaginationTokenException = schema.new({
 })
 
 M.ListPipelineBlueprintsInput = schema.new({
-    id = id.from(_N, "ListPipelineBlueprintsInput"),
+    id = id.from(_N, "ListPipelineBlueprintsRequest"),
     type = "structure",
 })
 
@@ -1054,7 +1054,7 @@ M.PipelineBlueprintSummary = schema.new({
 })
 
 M.ListPipelineBlueprintsOutput = schema.new({
-    id = id.from(_N, "ListPipelineBlueprintsOutput"),
+    id = id.from(_N, "ListPipelineBlueprintsResponse"),
     type = "structure",
     members = {
         Blueprints = schema.new({
@@ -1068,7 +1068,7 @@ M.ListPipelineBlueprintsOutput = schema.new({
 })
 
 M.ListPipelineEndpointConnectionsInput = schema.new({
-    id = id.from(_N, "ListPipelineEndpointConnectionsInput"),
+    id = id.from(_N, "ListPipelineEndpointConnectionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1124,7 +1124,7 @@ M.PipelineEndpointConnection = schema.new({
 })
 
 M.ListPipelineEndpointConnectionsOutput = schema.new({
-    id = id.from(_N, "ListPipelineEndpointConnectionsOutput"),
+    id = id.from(_N, "ListPipelineEndpointConnectionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1144,7 +1144,7 @@ M.ListPipelineEndpointConnectionsOutput = schema.new({
 })
 
 M.ListPipelineEndpointsInput = schema.new({
-    id = id.from(_N, "ListPipelineEndpointsInput"),
+    id = id.from(_N, "ListPipelineEndpointsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1213,7 +1213,7 @@ M.PipelineEndpoint = schema.new({
 })
 
 M.ListPipelineEndpointsOutput = schema.new({
-    id = id.from(_N, "ListPipelineEndpointsOutput"),
+    id = id.from(_N, "ListPipelineEndpointsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1233,7 +1233,7 @@ M.ListPipelineEndpointsOutput = schema.new({
 })
 
 M.ListPipelinesInput = schema.new({
-    id = id.from(_N, "ListPipelinesInput"),
+    id = id.from(_N, "ListPipelinesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1328,7 +1328,7 @@ M.PipelineSummary = schema.new({
 })
 
 M.ListPipelinesOutput = schema.new({
-    id = id.from(_N, "ListPipelinesOutput"),
+    id = id.from(_N, "ListPipelinesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1348,7 +1348,7 @@ M.ListPipelinesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1365,7 +1365,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1379,7 +1379,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1405,7 +1405,7 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1424,7 +1424,7 @@ M.PutResourcePolicyOutput = schema.new({
 })
 
 M.RevokePipelineEndpointConnectionsInput = schema.new({
-    id = id.from(_N, "RevokePipelineEndpointConnectionsInput"),
+    id = id.from(_N, "RevokePipelineEndpointConnectionsRequest"),
     type = "structure",
     members = {
         PipelineArn = schema.new({
@@ -1450,7 +1450,7 @@ M.RevokePipelineEndpointConnectionsInput = schema.new({
 })
 
 M.RevokePipelineEndpointConnectionsOutput = schema.new({
-    id = id.from(_N, "RevokePipelineEndpointConnectionsOutput"),
+    id = id.from(_N, "RevokePipelineEndpointConnectionsResponse"),
     type = "structure",
     members = {
         PipelineArn = schema.new({
@@ -1463,7 +1463,7 @@ M.RevokePipelineEndpointConnectionsOutput = schema.new({
 })
 
 M.StartPipelineInput = schema.new({
-    id = id.from(_N, "StartPipelineInput"),
+    id = id.from(_N, "StartPipelineRequest"),
     type = "structure",
     members = {
         PipelineName = schema.new({
@@ -1480,7 +1480,7 @@ M.StartPipelineInput = schema.new({
 })
 
 M.StartPipelineOutput = schema.new({
-    id = id.from(_N, "StartPipelineOutput"),
+    id = id.from(_N, "StartPipelineResponse"),
     type = "structure",
     members = {
         Pipeline = schema.new({
@@ -1494,7 +1494,7 @@ M.StartPipelineOutput = schema.new({
 })
 
 M.StopPipelineInput = schema.new({
-    id = id.from(_N, "StopPipelineInput"),
+    id = id.from(_N, "StopPipelineRequest"),
     type = "structure",
     members = {
         PipelineName = schema.new({
@@ -1511,7 +1511,7 @@ M.StopPipelineInput = schema.new({
 })
 
 M.StopPipelineOutput = schema.new({
-    id = id.from(_N, "StopPipelineOutput"),
+    id = id.from(_N, "StopPipelineResponse"),
     type = "structure",
     members = {
         Pipeline = schema.new({
@@ -1525,7 +1525,7 @@ M.StopPipelineOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1552,12 +1552,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1584,12 +1584,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdatePipelineInput = schema.new({
-    id = id.from(_N, "UpdatePipelineInput"),
+    id = id.from(_N, "UpdatePipelineRequest"),
     type = "structure",
     members = {
         PipelineName = schema.new({
@@ -1651,7 +1651,7 @@ M.UpdatePipelineInput = schema.new({
 })
 
 M.UpdatePipelineOutput = schema.new({
-    id = id.from(_N, "UpdatePipelineOutput"),
+    id = id.from(_N, "UpdatePipelineResponse"),
     type = "structure",
     members = {
         Pipeline = schema.new({
@@ -1665,7 +1665,7 @@ M.UpdatePipelineOutput = schema.new({
 })
 
 M.ValidatePipelineInput = schema.new({
-    id = id.from(_N, "ValidatePipelineInput"),
+    id = id.from(_N, "ValidatePipelineRequest"),
     type = "structure",
     members = {
         PipelineConfigurationBody = schema.new({
@@ -1694,7 +1694,7 @@ M.ValidationMessage = schema.new({
 })
 
 M.ValidatePipelineOutput = schema.new({
-    id = id.from(_N, "ValidatePipelineOutput"),
+    id = id.from(_N, "ValidatePipelineResponse"),
     type = "structure",
     members = {
         isValid = schema.new({
@@ -1712,5 +1712,19 @@ M.ValidatePipelineOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

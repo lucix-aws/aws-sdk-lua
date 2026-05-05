@@ -71,7 +71,7 @@ M.AwsAdditionalDetails = schema.new({
 })
 
 M.CreateTokenInput = schema.new({
-    id = id.from(_N, "CreateTokenInput"),
+    id = id.from(_N, "CreateTokenRequest"),
     type = "structure",
     members = {
         clientId = schema.new({
@@ -142,7 +142,7 @@ M.CreateTokenInput = schema.new({
 })
 
 M.CreateTokenOutput = schema.new({
-    id = id.from(_N, "CreateTokenOutput"),
+    id = id.from(_N, "CreateTokenResponse"),
     type = "structure",
     members = {
         accessToken = schema.new({
@@ -386,7 +386,7 @@ M.UnsupportedGrantTypeException = schema.new({
 })
 
 M.CreateTokenWithIAMInput = schema.new({
-    id = id.from(_N, "CreateTokenWithIAMInput"),
+    id = id.from(_N, "CreateTokenWithIAMRequest"),
     type = "structure",
     members = {
         clientId = schema.new({
@@ -466,7 +466,7 @@ M.CreateTokenWithIAMInput = schema.new({
 })
 
 M.CreateTokenWithIAMOutput = schema.new({
-    id = id.from(_N, "CreateTokenWithIAMOutput"),
+    id = id.from(_N, "CreateTokenWithIAMResponse"),
     type = "structure",
     members = {
         accessToken = schema.new({
@@ -604,7 +604,7 @@ M.InvalidRedirectUriException = schema.new({
 })
 
 M.RegisterClientInput = schema.new({
-    id = id.from(_N, "RegisterClientInput"),
+    id = id.from(_N, "RegisterClientRequest"),
     type = "structure",
     members = {
         clientName = schema.new({
@@ -662,7 +662,7 @@ M.RegisterClientInput = schema.new({
 })
 
 M.RegisterClientOutput = schema.new({
-    id = id.from(_N, "RegisterClientOutput"),
+    id = id.from(_N, "RegisterClientResponse"),
     type = "structure",
     members = {
         clientId = schema.new({
@@ -711,7 +711,7 @@ M.RegisterClientOutput = schema.new({
 })
 
 M.StartDeviceAuthorizationInput = schema.new({
-    id = id.from(_N, "StartDeviceAuthorizationInput"),
+    id = id.from(_N, "StartDeviceAuthorizationRequest"),
     type = "structure",
     members = {
         clientId = schema.new({
@@ -745,7 +745,7 @@ M.StartDeviceAuthorizationInput = schema.new({
 })
 
 M.StartDeviceAuthorizationOutput = schema.new({
-    id = id.from(_N, "StartDeviceAuthorizationOutput"),
+    id = id.from(_N, "StartDeviceAuthorizationResponse"),
     type = "structure",
     members = {
         deviceCode = schema.new({
@@ -792,5 +792,19 @@ M.StartDeviceAuthorizationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

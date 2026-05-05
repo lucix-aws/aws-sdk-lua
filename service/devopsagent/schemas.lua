@@ -1826,7 +1826,7 @@ M.DisableOperatorAppInput = schema.new({
 })
 
 M.DisableOperatorAppOutput = schema.new({
-    id = id.from(_N, "DisableOperatorAppOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2447,7 +2447,7 @@ M.ReferenceInput = schema.new({
 })
 
 M.CreateBacklogTaskInput = schema.new({
-    id = id.from(_N, "CreateBacklogTaskInput"),
+    id = id.from(_N, "CreateBacklogTaskRequest"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -2710,7 +2710,7 @@ M.Task = schema.new({
 })
 
 M.CreateBacklogTaskOutput = schema.new({
-    id = id.from(_N, "CreateBacklogTaskOutput"),
+    id = id.from(_N, "CreateBacklogTaskResponse"),
     type = "structure",
     members = {
         task = schema.new({
@@ -2727,7 +2727,7 @@ M.CreateBacklogTaskOutput = schema.new({
 })
 
 M.CreateChatInput = schema.new({
-    id = id.from(_N, "CreateChatInput"),
+    id = id.from(_N, "CreateChatRequest"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -2762,7 +2762,7 @@ M.CreateChatInput = schema.new({
 })
 
 M.CreateChatOutput = schema.new({
-    id = id.from(_N, "CreateChatOutput"),
+    id = id.from(_N, "CreateChatResponse"),
     type = "structure",
     members = {
         executionId = schema.new({
@@ -3324,7 +3324,7 @@ M.GetAccountUsageOutput = schema.new({
 })
 
 M.GetBacklogTaskInput = schema.new({
-    id = id.from(_N, "GetBacklogTaskInput"),
+    id = id.from(_N, "GetBacklogTaskRequest"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -3351,7 +3351,7 @@ M.GetBacklogTaskInput = schema.new({
 })
 
 M.GetBacklogTaskOutput = schema.new({
-    id = id.from(_N, "GetBacklogTaskOutput"),
+    id = id.from(_N, "GetBacklogTaskResponse"),
     type = "structure",
     members = {
         task = schema.new({
@@ -3368,7 +3368,7 @@ M.GetBacklogTaskOutput = schema.new({
 })
 
 M.GetRecommendationInput = schema.new({
-    id = id.from(_N, "GetRecommendationInput"),
+    id = id.from(_N, "GetRecommendationRequest"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -3550,7 +3550,7 @@ M.Recommendation = schema.new({
 })
 
 M.GetRecommendationOutput = schema.new({
-    id = id.from(_N, "GetRecommendationOutput"),
+    id = id.from(_N, "GetRecommendationResponse"),
     type = "structure",
     members = {
         recommendation = schema.new({
@@ -3619,7 +3619,7 @@ M.TaskFilter = schema.new({
 })
 
 M.ListBacklogTasksInput = schema.new({
-    id = id.from(_N, "ListBacklogTasksInput"),
+    id = id.from(_N, "ListBacklogTasksRequest"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -3673,7 +3673,7 @@ M.ListBacklogTasksInput = schema.new({
 })
 
 M.ListBacklogTasksOutput = schema.new({
-    id = id.from(_N, "ListBacklogTasksOutput"),
+    id = id.from(_N, "ListBacklogTasksResponse"),
     type = "structure",
     members = {
         tasks = schema.new({
@@ -3696,7 +3696,7 @@ M.ListBacklogTasksOutput = schema.new({
 })
 
 M.ListChatsInput = schema.new({
-    id = id.from(_N, "ListChatsInput"),
+    id = id.from(_N, "ListChatsRequest"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -3740,7 +3740,7 @@ M.ListChatsInput = schema.new({
 })
 
 M.ListChatsOutput = schema.new({
-    id = id.from(_N, "ListChatsOutput"),
+    id = id.from(_N, "ListChatsResponse"),
     type = "structure",
     members = {
         executions = schema.new({
@@ -3763,7 +3763,7 @@ M.ListChatsOutput = schema.new({
 })
 
 M.ListExecutionsInput = schema.new({
-    id = id.from(_N, "ListExecutionsInput"),
+    id = id.from(_N, "ListExecutionsRequest"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -3880,7 +3880,7 @@ M.Execution = schema.new({
 })
 
 M.ListExecutionsOutput = schema.new({
-    id = id.from(_N, "ListExecutionsOutput"),
+    id = id.from(_N, "ListExecutionsResponse"),
     type = "structure",
     members = {
         executions = schema.new({
@@ -3903,7 +3903,7 @@ M.ListExecutionsOutput = schema.new({
 })
 
 M.ListGoalsInput = schema.new({
-    id = id.from(_N, "ListGoalsInput"),
+    id = id.from(_N, "ListGoalsRequest"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -4120,7 +4120,7 @@ M.Goal = schema.new({
 })
 
 M.ListGoalsOutput = schema.new({
-    id = id.from(_N, "ListGoalsOutput"),
+    id = id.from(_N, "ListGoalsResponse"),
     type = "structure",
     members = {
         goals = schema.new({
@@ -4143,7 +4143,7 @@ M.ListGoalsOutput = schema.new({
 })
 
 M.ListJournalRecordsInput = schema.new({
-    id = id.from(_N, "ListJournalRecordsInput"),
+    id = id.from(_N, "ListJournalRecordsRequest"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -4295,7 +4295,7 @@ M.JournalRecord = schema.new({
 })
 
 M.ListJournalRecordsOutput = schema.new({
-    id = id.from(_N, "ListJournalRecordsOutput"),
+    id = id.from(_N, "ListJournalRecordsResponse"),
     type = "structure",
     members = {
         records = schema.new({
@@ -4318,7 +4318,7 @@ M.ListJournalRecordsOutput = schema.new({
 })
 
 M.ListPendingMessagesInput = schema.new({
-    id = id.from(_N, "ListPendingMessagesInput"),
+    id = id.from(_N, "ListPendingMessagesRequest"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -4410,7 +4410,7 @@ M.PendingMessage = schema.new({
 })
 
 M.ListPendingMessagesOutput = schema.new({
-    id = id.from(_N, "ListPendingMessagesOutput"),
+    id = id.from(_N, "ListPendingMessagesResponse"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -4455,7 +4455,7 @@ M.ListPendingMessagesOutput = schema.new({
 })
 
 M.ListRecommendationsInput = schema.new({
-    id = id.from(_N, "ListRecommendationsInput"),
+    id = id.from(_N, "ListRecommendationsRequest"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -4511,7 +4511,7 @@ M.ListRecommendationsInput = schema.new({
 })
 
 M.ListRecommendationsOutput = schema.new({
-    id = id.from(_N, "ListRecommendationsOutput"),
+    id = id.from(_N, "ListRecommendationsResponse"),
     type = "structure",
     members = {
         recommendations = schema.new({
@@ -4534,7 +4534,7 @@ M.ListRecommendationsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4551,7 +4551,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -4776,7 +4776,7 @@ M.SendMessageContext = schema.new({
 })
 
 M.SendMessageInput = schema.new({
-    id = id.from(_N, "SendMessageInput"),
+    id = id.from(_N, "SendMessageRequest"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -5185,7 +5185,7 @@ M.SendMessageEvents = schema.new({
 })
 
 M.SendMessageOutput = schema.new({
-    id = id.from(_N, "SendMessageOutput"),
+    id = id.from(_N, "SendMessageResponse"),
     type = "structure",
     members = {
         events = schema.new({
@@ -6228,7 +6228,7 @@ M.RegisterServiceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6256,12 +6256,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6289,12 +6289,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateBacklogTaskInput = schema.new({
-    id = id.from(_N, "UpdateBacklogTaskInput"),
+    id = id.from(_N, "UpdateBacklogTaskRequest"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -6336,7 +6336,7 @@ M.UpdateBacklogTaskInput = schema.new({
 })
 
 M.UpdateBacklogTaskOutput = schema.new({
-    id = id.from(_N, "UpdateBacklogTaskOutput"),
+    id = id.from(_N, "UpdateBacklogTaskResponse"),
     type = "structure",
     members = {
         task = schema.new({
@@ -6369,7 +6369,7 @@ M.GoalScheduleInput = schema.new({
 })
 
 M.UpdateGoalInput = schema.new({
-    id = id.from(_N, "UpdateGoalInput"),
+    id = id.from(_N, "UpdateGoalRequest"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -6412,7 +6412,7 @@ M.UpdateGoalInput = schema.new({
 })
 
 M.UpdateGoalOutput = schema.new({
-    id = id.from(_N, "UpdateGoalOutput"),
+    id = id.from(_N, "UpdateGoalResponse"),
     type = "structure",
     members = {
         goal = schema.new({
@@ -6429,7 +6429,7 @@ M.UpdateGoalOutput = schema.new({
 })
 
 M.UpdateRecommendationInput = schema.new({
-    id = id.from(_N, "UpdateRecommendationInput"),
+    id = id.from(_N, "UpdateRecommendationRequest"),
     type = "structure",
     members = {
         agentSpaceId = schema.new({
@@ -6477,7 +6477,7 @@ M.UpdateRecommendationInput = schema.new({
 })
 
 M.UpdateRecommendationOutput = schema.new({
-    id = id.from(_N, "UpdateRecommendationOutput"),
+    id = id.from(_N, "UpdateRecommendationResponse"),
     type = "structure",
     members = {
         recommendation = schema.new({
@@ -6492,5 +6492,19 @@ M.UpdateRecommendationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

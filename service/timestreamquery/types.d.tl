@@ -468,9 +468,9 @@ local record ValidationException
     Message: string
 end
 
-local type QueryPricingModel = "BYTES_SCANNED" | "COMPUTE_UNITS"
-
 local type ScheduledQueryState = "ENABLED" | "DISABLED"
+
+local type QueryPricingModel = "BYTES_SCANNED" | "COMPUTE_UNITS"
 
 local record M
     CancelQueryInput: CancelQueryInput

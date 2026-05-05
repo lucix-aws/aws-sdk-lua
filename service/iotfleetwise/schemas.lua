@@ -107,7 +107,7 @@ M.Actuator = schema.new({
 })
 
 M.AssociateVehicleFleetInput = schema.new({
-    id = id.from(_N, "AssociateVehicleFleetInput"),
+    id = id.from(_N, "AssociateVehicleFleetRequest"),
     type = "structure",
     members = {
         vehicleName = schema.new({
@@ -133,7 +133,7 @@ M.AssociateVehicleFleetInput = schema.new({
 })
 
 M.AssociateVehicleFleetOutput = schema.new({
-    id = id.from(_N, "AssociateVehicleFleetOutput"),
+    id = id.from(_N, "AssociateVehicleFleetResponse"),
     type = "structure",
 })
 
@@ -600,7 +600,7 @@ M.CreateVehicleRequestItem = schema.new({
 })
 
 M.BatchCreateVehicleInput = schema.new({
-    id = id.from(_N, "BatchCreateVehicleInput"),
+    id = id.from(_N, "BatchCreateVehicleRequest"),
     type = "structure",
     members = {
         vehicles = schema.new({
@@ -667,7 +667,7 @@ M.CreateVehicleResponseItem = schema.new({
 })
 
 M.BatchCreateVehicleOutput = schema.new({
-    id = id.from(_N, "BatchCreateVehicleOutput"),
+    id = id.from(_N, "BatchCreateVehicleResponse"),
     type = "structure",
     members = {
         vehicles = schema.new({
@@ -751,7 +751,7 @@ M.UpdateVehicleRequestItem = schema.new({
 })
 
 M.BatchUpdateVehicleInput = schema.new({
-    id = id.from(_N, "BatchUpdateVehicleInput"),
+    id = id.from(_N, "BatchUpdateVehicleRequest"),
     type = "structure",
     members = {
         vehicles = schema.new({
@@ -815,7 +815,7 @@ M.UpdateVehicleResponseItem = schema.new({
 })
 
 M.BatchUpdateVehicleOutput = schema.new({
-    id = id.from(_N, "BatchUpdateVehicleOutput"),
+    id = id.from(_N, "BatchUpdateVehicleResponse"),
     type = "structure",
     members = {
         vehicles = schema.new({
@@ -1369,7 +1369,7 @@ M.SignalFetchInformation = schema.new({
 })
 
 M.CreateCampaignInput = schema.new({
-    id = id.from(_N, "CreateCampaignInput"),
+    id = id.from(_N, "CreateCampaignRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1504,7 +1504,7 @@ M.CreateCampaignInput = schema.new({
 })
 
 M.CreateCampaignOutput = schema.new({
-    id = id.from(_N, "CreateCampaignOutput"),
+    id = id.from(_N, "CreateCampaignResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1523,7 +1523,7 @@ M.CreateCampaignOutput = schema.new({
 })
 
 M.DeleteCampaignInput = schema.new({
-    id = id.from(_N, "DeleteCampaignInput"),
+    id = id.from(_N, "DeleteCampaignRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1540,7 +1540,7 @@ M.DeleteCampaignInput = schema.new({
 })
 
 M.DeleteCampaignOutput = schema.new({
-    id = id.from(_N, "DeleteCampaignOutput"),
+    id = id.from(_N, "DeleteCampaignResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1559,7 +1559,7 @@ M.DeleteCampaignOutput = schema.new({
 })
 
 M.GetCampaignInput = schema.new({
-    id = id.from(_N, "GetCampaignInput"),
+    id = id.from(_N, "GetCampaignRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1576,7 +1576,7 @@ M.GetCampaignInput = schema.new({
 })
 
 M.GetCampaignOutput = schema.new({
-    id = id.from(_N, "GetCampaignOutput"),
+    id = id.from(_N, "GetCampaignResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1715,7 +1715,7 @@ M.GetCampaignOutput = schema.new({
 })
 
 M.ListCampaignsInput = schema.new({
-    id = id.from(_N, "ListCampaignsInput"),
+    id = id.from(_N, "ListCampaignsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1819,7 +1819,7 @@ M.CampaignSummary = schema.new({
 })
 
 M.ListCampaignsOutput = schema.new({
-    id = id.from(_N, "ListCampaignsOutput"),
+    id = id.from(_N, "ListCampaignsResponse"),
     type = "structure",
     members = {
         campaignSummaries = schema.new({
@@ -1839,7 +1839,7 @@ M.ListCampaignsOutput = schema.new({
 })
 
 M.UpdateCampaignInput = schema.new({
-    id = id.from(_N, "UpdateCampaignInput"),
+    id = id.from(_N, "UpdateCampaignRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1878,7 +1878,7 @@ M.UpdateCampaignInput = schema.new({
 })
 
 M.UpdateCampaignOutput = schema.new({
-    id = id.from(_N, "UpdateCampaignOutput"),
+    id = id.from(_N, "UpdateCampaignResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2403,7 +2403,7 @@ M.ObdSignal = schema.new({
 })
 
 M.CreateDecoderManifestOutput = schema.new({
-    id = id.from(_N, "CreateDecoderManifestOutput"),
+    id = id.from(_N, "CreateDecoderManifestResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2502,7 +2502,7 @@ M.DecoderManifestValidationException = schema.new({
 })
 
 M.CreateFleetInput = schema.new({
-    id = id.from(_N, "CreateFleetInput"),
+    id = id.from(_N, "CreateFleetRequest"),
     type = "structure",
     members = {
         fleetId = schema.new({
@@ -2541,7 +2541,7 @@ M.CreateFleetInput = schema.new({
 })
 
 M.CreateFleetOutput = schema.new({
-    id = id.from(_N, "CreateFleetOutput"),
+    id = id.from(_N, "CreateFleetResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2566,7 +2566,7 @@ M.CreateFleetOutput = schema.new({
 })
 
 M.CreateModelManifestInput = schema.new({
-    id = id.from(_N, "CreateModelManifestInput"),
+    id = id.from(_N, "CreateModelManifestRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2615,7 +2615,7 @@ M.CreateModelManifestInput = schema.new({
 })
 
 M.CreateModelManifestOutput = schema.new({
-    id = id.from(_N, "CreateModelManifestOutput"),
+    id = id.from(_N, "CreateModelManifestResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2894,7 +2894,7 @@ M.Node = schema.new({
 })
 
 M.CreateSignalCatalogInput = schema.new({
-    id = id.from(_N, "CreateSignalCatalogInput"),
+    id = id.from(_N, "CreateSignalCatalogRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2931,7 +2931,7 @@ M.CreateSignalCatalogInput = schema.new({
 })
 
 M.CreateSignalCatalogOutput = schema.new({
-    id = id.from(_N, "CreateSignalCatalogOutput"),
+    id = id.from(_N, "CreateSignalCatalogResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2985,7 +2985,7 @@ M.InvalidNodeException = schema.new({
 })
 
 M.CreateStateTemplateInput = schema.new({
-    id = id.from(_N, "CreateStateTemplateInput"),
+    id = id.from(_N, "CreateStateTemplateRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3048,7 +3048,7 @@ M.CreateStateTemplateInput = schema.new({
 })
 
 M.CreateStateTemplateOutput = schema.new({
-    id = id.from(_N, "CreateStateTemplateOutput"),
+    id = id.from(_N, "CreateStateTemplateResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3073,7 +3073,7 @@ M.CreateStateTemplateOutput = schema.new({
 })
 
 M.CreateVehicleInput = schema.new({
-    id = id.from(_N, "CreateVehicleInput"),
+    id = id.from(_N, "CreateVehicleRequest"),
     type = "structure",
     members = {
         vehicleName = schema.new({
@@ -3136,7 +3136,7 @@ M.CreateVehicleInput = schema.new({
 })
 
 M.CreateVehicleOutput = schema.new({
-    id = id.from(_N, "CreateVehicleOutput"),
+    id = id.from(_N, "CreateVehicleResponse"),
     type = "structure",
     members = {
         vehicleName = schema.new({
@@ -3161,7 +3161,7 @@ M.CreateVehicleOutput = schema.new({
 })
 
 M.DeleteDecoderManifestInput = schema.new({
-    id = id.from(_N, "DeleteDecoderManifestInput"),
+    id = id.from(_N, "DeleteDecoderManifestRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3178,7 +3178,7 @@ M.DeleteDecoderManifestInput = schema.new({
 })
 
 M.DeleteDecoderManifestOutput = schema.new({
-    id = id.from(_N, "DeleteDecoderManifestOutput"),
+    id = id.from(_N, "DeleteDecoderManifestResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3203,7 +3203,7 @@ M.DeleteDecoderManifestOutput = schema.new({
 })
 
 M.GetDecoderManifestInput = schema.new({
-    id = id.from(_N, "GetDecoderManifestInput"),
+    id = id.from(_N, "GetDecoderManifestRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3220,7 +3220,7 @@ M.GetDecoderManifestInput = schema.new({
 })
 
 M.GetDecoderManifestOutput = schema.new({
-    id = id.from(_N, "GetDecoderManifestOutput"),
+    id = id.from(_N, "GetDecoderManifestResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3301,7 +3301,7 @@ M.NetworkFileDefinition = schema.new({
 })
 
 M.ImportDecoderManifestInput = schema.new({
-    id = id.from(_N, "ImportDecoderManifestInput"),
+    id = id.from(_N, "ImportDecoderManifestRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3328,7 +3328,7 @@ M.ImportDecoderManifestInput = schema.new({
 })
 
 M.ImportDecoderManifestOutput = schema.new({
-    id = id.from(_N, "ImportDecoderManifestOutput"),
+    id = id.from(_N, "ImportDecoderManifestResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3353,7 +3353,7 @@ M.ImportDecoderManifestOutput = schema.new({
 })
 
 M.ListDecoderManifestNetworkInterfacesInput = schema.new({
-    id = id.from(_N, "ListDecoderManifestNetworkInterfacesInput"),
+    id = id.from(_N, "ListDecoderManifestNetworkInterfacesRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3388,7 +3388,7 @@ M.ListDecoderManifestNetworkInterfacesInput = schema.new({
 })
 
 M.ListDecoderManifestNetworkInterfacesOutput = schema.new({
-    id = id.from(_N, "ListDecoderManifestNetworkInterfacesOutput"),
+    id = id.from(_N, "ListDecoderManifestNetworkInterfacesResponse"),
     type = "structure",
     members = {
         networkInterfaces = schema.new({
@@ -3408,7 +3408,7 @@ M.ListDecoderManifestNetworkInterfacesOutput = schema.new({
 })
 
 M.ListDecoderManifestsInput = schema.new({
-    id = id.from(_N, "ListDecoderManifestsInput"),
+    id = id.from(_N, "ListDecoderManifestsRequest"),
     type = "structure",
     members = {
         modelManifestArn = schema.new({
@@ -3512,7 +3512,7 @@ M.DecoderManifestSummary = schema.new({
 })
 
 M.ListDecoderManifestsOutput = schema.new({
-    id = id.from(_N, "ListDecoderManifestsOutput"),
+    id = id.from(_N, "ListDecoderManifestsResponse"),
     type = "structure",
     members = {
         summaries = schema.new({
@@ -3532,7 +3532,7 @@ M.ListDecoderManifestsOutput = schema.new({
 })
 
 M.ListDecoderManifestSignalsInput = schema.new({
-    id = id.from(_N, "ListDecoderManifestSignalsInput"),
+    id = id.from(_N, "ListDecoderManifestSignalsRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3567,7 +3567,7 @@ M.ListDecoderManifestSignalsInput = schema.new({
 })
 
 M.UpdateDecoderManifestOutput = schema.new({
-    id = id.from(_N, "UpdateDecoderManifestOutput"),
+    id = id.from(_N, "UpdateDecoderManifestResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3592,7 +3592,7 @@ M.UpdateDecoderManifestOutput = schema.new({
 })
 
 M.DeleteFleetInput = schema.new({
-    id = id.from(_N, "DeleteFleetInput"),
+    id = id.from(_N, "DeleteFleetRequest"),
     type = "structure",
     members = {
         fleetId = schema.new({
@@ -3609,7 +3609,7 @@ M.DeleteFleetInput = schema.new({
 })
 
 M.DeleteFleetOutput = schema.new({
-    id = id.from(_N, "DeleteFleetOutput"),
+    id = id.from(_N, "DeleteFleetResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -3628,7 +3628,7 @@ M.DeleteFleetOutput = schema.new({
 })
 
 M.DeleteModelManifestInput = schema.new({
-    id = id.from(_N, "DeleteModelManifestInput"),
+    id = id.from(_N, "DeleteModelManifestRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3645,7 +3645,7 @@ M.DeleteModelManifestInput = schema.new({
 })
 
 M.DeleteModelManifestOutput = schema.new({
-    id = id.from(_N, "DeleteModelManifestOutput"),
+    id = id.from(_N, "DeleteModelManifestResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3670,7 +3670,7 @@ M.DeleteModelManifestOutput = schema.new({
 })
 
 M.DeleteSignalCatalogInput = schema.new({
-    id = id.from(_N, "DeleteSignalCatalogInput"),
+    id = id.from(_N, "DeleteSignalCatalogRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3687,7 +3687,7 @@ M.DeleteSignalCatalogInput = schema.new({
 })
 
 M.DeleteSignalCatalogOutput = schema.new({
-    id = id.from(_N, "DeleteSignalCatalogOutput"),
+    id = id.from(_N, "DeleteSignalCatalogResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3712,7 +3712,7 @@ M.DeleteSignalCatalogOutput = schema.new({
 })
 
 M.DeleteStateTemplateInput = schema.new({
-    id = id.from(_N, "DeleteStateTemplateInput"),
+    id = id.from(_N, "DeleteStateTemplateRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -3729,7 +3729,7 @@ M.DeleteStateTemplateInput = schema.new({
 })
 
 M.DeleteStateTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteStateTemplateOutput"),
+    id = id.from(_N, "DeleteStateTemplateResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3754,7 +3754,7 @@ M.DeleteStateTemplateOutput = schema.new({
 })
 
 M.DeleteVehicleInput = schema.new({
-    id = id.from(_N, "DeleteVehicleInput"),
+    id = id.from(_N, "DeleteVehicleRequest"),
     type = "structure",
     members = {
         vehicleName = schema.new({
@@ -3771,7 +3771,7 @@ M.DeleteVehicleInput = schema.new({
 })
 
 M.DeleteVehicleOutput = schema.new({
-    id = id.from(_N, "DeleteVehicleOutput"),
+    id = id.from(_N, "DeleteVehicleResponse"),
     type = "structure",
     members = {
         vehicleName = schema.new({
@@ -3796,7 +3796,7 @@ M.DeleteVehicleOutput = schema.new({
 })
 
 M.DisassociateVehicleFleetInput = schema.new({
-    id = id.from(_N, "DisassociateVehicleFleetInput"),
+    id = id.from(_N, "DisassociateVehicleFleetRequest"),
     type = "structure",
     members = {
         vehicleName = schema.new({
@@ -3822,12 +3822,12 @@ M.DisassociateVehicleFleetInput = schema.new({
 })
 
 M.DisassociateVehicleFleetOutput = schema.new({
-    id = id.from(_N, "DisassociateVehicleFleetOutput"),
+    id = id.from(_N, "DisassociateVehicleFleetResponse"),
     type = "structure",
 })
 
 M.ListFleetsForVehicleInput = schema.new({
-    id = id.from(_N, "ListFleetsForVehicleInput"),
+    id = id.from(_N, "ListFleetsForVehicleRequest"),
     type = "structure",
     members = {
         vehicleName = schema.new({
@@ -3862,7 +3862,7 @@ M.ListFleetsForVehicleInput = schema.new({
 })
 
 M.ListFleetsForVehicleOutput = schema.new({
-    id = id.from(_N, "ListFleetsForVehicleOutput"),
+    id = id.from(_N, "ListFleetsForVehicleResponse"),
     type = "structure",
     members = {
         fleets = schema.new({
@@ -3882,7 +3882,7 @@ M.ListFleetsForVehicleOutput = schema.new({
 })
 
 M.GetFleetInput = schema.new({
-    id = id.from(_N, "GetFleetInput"),
+    id = id.from(_N, "GetFleetRequest"),
     type = "structure",
     members = {
         fleetId = schema.new({
@@ -3899,7 +3899,7 @@ M.GetFleetInput = schema.new({
 })
 
 M.GetFleetOutput = schema.new({
-    id = id.from(_N, "GetFleetOutput"),
+    id = id.from(_N, "GetFleetResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -3957,7 +3957,7 @@ M.GetFleetOutput = schema.new({
 })
 
 M.ListFleetsInput = schema.new({
-    id = id.from(_N, "ListFleetsInput"),
+    id = id.from(_N, "ListFleetsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4046,7 +4046,7 @@ M.FleetSummary = schema.new({
 })
 
 M.ListFleetsOutput = schema.new({
-    id = id.from(_N, "ListFleetsOutput"),
+    id = id.from(_N, "ListFleetsResponse"),
     type = "structure",
     members = {
         fleetSummaries = schema.new({
@@ -4066,7 +4066,7 @@ M.ListFleetsOutput = schema.new({
 })
 
 M.UpdateFleetInput = schema.new({
-    id = id.from(_N, "UpdateFleetInput"),
+    id = id.from(_N, "UpdateFleetRequest"),
     type = "structure",
     members = {
         fleetId = schema.new({
@@ -4089,7 +4089,7 @@ M.UpdateFleetInput = schema.new({
 })
 
 M.UpdateFleetOutput = schema.new({
-    id = id.from(_N, "UpdateFleetOutput"),
+    id = id.from(_N, "UpdateFleetResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4108,7 +4108,7 @@ M.UpdateFleetOutput = schema.new({
 })
 
 M.ListVehiclesInFleetInput = schema.new({
-    id = id.from(_N, "ListVehiclesInFleetInput"),
+    id = id.from(_N, "ListVehiclesInFleetRequest"),
     type = "structure",
     members = {
         fleetId = schema.new({
@@ -4143,7 +4143,7 @@ M.ListVehiclesInFleetInput = schema.new({
 })
 
 M.ListVehiclesInFleetOutput = schema.new({
-    id = id.from(_N, "ListVehiclesInFleetOutput"),
+    id = id.from(_N, "ListVehiclesInFleetResponse"),
     type = "structure",
     members = {
         vehicles = schema.new({
@@ -4176,12 +4176,12 @@ M.FormattedVss = schema.new({
 })
 
 M.GetEncryptionConfigurationInput = schema.new({
-    id = id.from(_N, "GetEncryptionConfigurationInput"),
+    id = id.from(_N, "GetEncryptionConfigurationRequest"),
     type = "structure",
 })
 
 M.GetEncryptionConfigurationOutput = schema.new({
-    id = id.from(_N, "GetEncryptionConfigurationOutput"),
+    id = id.from(_N, "GetEncryptionConfigurationResponse"),
     type = "structure",
     members = {
         kmsKeyId = schema.new({
@@ -4230,12 +4230,12 @@ M.GetEncryptionConfigurationOutput = schema.new({
 })
 
 M.GetLoggingOptionsInput = schema.new({
-    id = id.from(_N, "GetLoggingOptionsInput"),
+    id = id.from(_N, "GetLoggingOptionsRequest"),
     type = "structure",
 })
 
 M.GetLoggingOptionsOutput = schema.new({
-    id = id.from(_N, "GetLoggingOptionsOutput"),
+    id = id.from(_N, "GetLoggingOptionsResponse"),
     type = "structure",
     members = {
         cloudWatchLogDelivery = schema.new({
@@ -4252,7 +4252,7 @@ M.GetLoggingOptionsOutput = schema.new({
 })
 
 M.GetModelManifestInput = schema.new({
-    id = id.from(_N, "GetModelManifestInput"),
+    id = id.from(_N, "GetModelManifestRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4269,7 +4269,7 @@ M.GetModelManifestInput = schema.new({
 })
 
 M.GetModelManifestOutput = schema.new({
-    id = id.from(_N, "GetModelManifestOutput"),
+    id = id.from(_N, "GetModelManifestResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4330,7 +4330,7 @@ M.GetModelManifestOutput = schema.new({
 })
 
 M.GetRegisterAccountStatusInput = schema.new({
-    id = id.from(_N, "GetRegisterAccountStatusInput"),
+    id = id.from(_N, "GetRegisterAccountStatusRequest"),
     type = "structure",
 })
 
@@ -4418,7 +4418,7 @@ M.TimestreamRegistrationResponse = schema.new({
 })
 
 M.GetRegisterAccountStatusOutput = schema.new({
-    id = id.from(_N, "GetRegisterAccountStatusOutput"),
+    id = id.from(_N, "GetRegisterAccountStatusResponse"),
     type = "structure",
     members = {
         customerAccountId = schema.new({
@@ -4478,7 +4478,7 @@ M.GetRegisterAccountStatusOutput = schema.new({
 })
 
 M.GetSignalCatalogInput = schema.new({
-    id = id.from(_N, "GetSignalCatalogInput"),
+    id = id.from(_N, "GetSignalCatalogRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4565,7 +4565,7 @@ M.NodeCounts = schema.new({
 })
 
 M.GetSignalCatalogOutput = schema.new({
-    id = id.from(_N, "GetSignalCatalogOutput"),
+    id = id.from(_N, "GetSignalCatalogResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4621,7 +4621,7 @@ M.GetSignalCatalogOutput = schema.new({
 })
 
 M.GetStateTemplateInput = schema.new({
-    id = id.from(_N, "GetStateTemplateInput"),
+    id = id.from(_N, "GetStateTemplateRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -4638,7 +4638,7 @@ M.GetStateTemplateInput = schema.new({
 })
 
 M.GetStateTemplateOutput = schema.new({
-    id = id.from(_N, "GetStateTemplateOutput"),
+    id = id.from(_N, "GetStateTemplateResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4708,7 +4708,7 @@ M.GetStateTemplateOutput = schema.new({
 })
 
 M.GetVehicleInput = schema.new({
-    id = id.from(_N, "GetVehicleInput"),
+    id = id.from(_N, "GetVehicleRequest"),
     type = "structure",
     members = {
         vehicleName = schema.new({
@@ -4725,7 +4725,7 @@ M.GetVehicleInput = schema.new({
 })
 
 M.GetVehicleOutput = schema.new({
-    id = id.from(_N, "GetVehicleOutput"),
+    id = id.from(_N, "GetVehicleResponse"),
     type = "structure",
     members = {
         vehicleName = schema.new({
@@ -4783,7 +4783,7 @@ M.GetVehicleOutput = schema.new({
 })
 
 M.GetVehicleStatusInput = schema.new({
-    id = id.from(_N, "GetVehicleStatusInput"),
+    id = id.from(_N, "GetVehicleStatusRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4843,7 +4843,7 @@ M.VehicleStatus = schema.new({
 })
 
 M.GetVehicleStatusOutput = schema.new({
-    id = id.from(_N, "GetVehicleStatusOutput"),
+    id = id.from(_N, "GetVehicleStatusResponse"),
     type = "structure",
     members = {
         campaigns = schema.new({
@@ -4879,7 +4879,7 @@ M.IamResources = schema.new({
 })
 
 M.ImportSignalCatalogInput = schema.new({
-    id = id.from(_N, "ImportSignalCatalogInput"),
+    id = id.from(_N, "ImportSignalCatalogRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4916,7 +4916,7 @@ M.ImportSignalCatalogInput = schema.new({
 })
 
 M.ImportSignalCatalogOutput = schema.new({
-    id = id.from(_N, "ImportSignalCatalogOutput"),
+    id = id.from(_N, "ImportSignalCatalogResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4941,7 +4941,7 @@ M.ImportSignalCatalogOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -4958,7 +4958,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -4972,7 +4972,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListModelManifestNodesInput = schema.new({
-    id = id.from(_N, "ListModelManifestNodesInput"),
+    id = id.from(_N, "ListModelManifestNodesRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -5007,7 +5007,7 @@ M.ListModelManifestNodesInput = schema.new({
 })
 
 M.ListModelManifestNodesOutput = schema.new({
-    id = id.from(_N, "ListModelManifestNodesOutput"),
+    id = id.from(_N, "ListModelManifestNodesResponse"),
     type = "structure",
     members = {
         nodes = schema.new({
@@ -5027,7 +5027,7 @@ M.ListModelManifestNodesOutput = schema.new({
 })
 
 M.ListModelManifestsInput = schema.new({
-    id = id.from(_N, "ListModelManifestsInput"),
+    id = id.from(_N, "ListModelManifestsRequest"),
     type = "structure",
     members = {
         signalCatalogArn = schema.new({
@@ -5125,7 +5125,7 @@ M.ModelManifestSummary = schema.new({
 })
 
 M.ListModelManifestsOutput = schema.new({
-    id = id.from(_N, "ListModelManifestsOutput"),
+    id = id.from(_N, "ListModelManifestsResponse"),
     type = "structure",
     members = {
         summaries = schema.new({
@@ -5145,7 +5145,7 @@ M.ListModelManifestsOutput = schema.new({
 })
 
 M.UpdateModelManifestInput = schema.new({
-    id = id.from(_N, "UpdateModelManifestInput"),
+    id = id.from(_N, "UpdateModelManifestRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -5188,7 +5188,7 @@ M.UpdateModelManifestInput = schema.new({
 })
 
 M.UpdateModelManifestOutput = schema.new({
-    id = id.from(_N, "UpdateModelManifestOutput"),
+    id = id.from(_N, "UpdateModelManifestResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -5213,7 +5213,7 @@ M.UpdateModelManifestOutput = schema.new({
 })
 
 M.PutEncryptionConfigurationInput = schema.new({
-    id = id.from(_N, "PutEncryptionConfigurationInput"),
+    id = id.from(_N, "PutEncryptionConfigurationRequest"),
     type = "structure",
     members = {
         kmsKeyId = schema.new({
@@ -5235,7 +5235,7 @@ M.PutEncryptionConfigurationInput = schema.new({
 })
 
 M.PutEncryptionConfigurationOutput = schema.new({
-    id = id.from(_N, "PutEncryptionConfigurationOutput"),
+    id = id.from(_N, "PutEncryptionConfigurationResponse"),
     type = "structure",
     members = {
         kmsKeyId = schema.new({
@@ -5266,7 +5266,7 @@ M.PutEncryptionConfigurationOutput = schema.new({
 })
 
 M.PutLoggingOptionsInput = schema.new({
-    id = id.from(_N, "PutLoggingOptionsInput"),
+    id = id.from(_N, "PutLoggingOptionsRequest"),
     type = "structure",
     members = {
         cloudWatchLogDelivery = schema.new({
@@ -5283,7 +5283,7 @@ M.PutLoggingOptionsInput = schema.new({
 })
 
 M.PutLoggingOptionsOutput = schema.new({
-    id = id.from(_N, "PutLoggingOptionsOutput"),
+    id = id.from(_N, "PutLoggingOptionsResponse"),
     type = "structure",
 })
 
@@ -5313,7 +5313,7 @@ M.TimestreamResources = schema.new({
 })
 
 M.RegisterAccountInput = schema.new({
-    id = id.from(_N, "RegisterAccountInput"),
+    id = id.from(_N, "RegisterAccountRequest"),
     type = "structure",
     members = {
         timestreamResources = schema.new({
@@ -5334,7 +5334,7 @@ M.RegisterAccountInput = schema.new({
 })
 
 M.RegisterAccountOutput = schema.new({
-    id = id.from(_N, "RegisterAccountOutput"),
+    id = id.from(_N, "RegisterAccountResponse"),
     type = "structure",
     members = {
         registerAccountStatus = schema.new({
@@ -5385,7 +5385,7 @@ M.RegisterAccountOutput = schema.new({
 })
 
 M.ListSignalCatalogNodesInput = schema.new({
-    id = id.from(_N, "ListSignalCatalogNodesInput"),
+    id = id.from(_N, "ListSignalCatalogNodesRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -5429,7 +5429,7 @@ M.ListSignalCatalogNodesInput = schema.new({
 })
 
 M.ListSignalCatalogNodesOutput = schema.new({
-    id = id.from(_N, "ListSignalCatalogNodesOutput"),
+    id = id.from(_N, "ListSignalCatalogNodesResponse"),
     type = "structure",
     members = {
         nodes = schema.new({
@@ -5449,7 +5449,7 @@ M.ListSignalCatalogNodesOutput = schema.new({
 })
 
 M.ListSignalCatalogsInput = schema.new({
-    id = id.from(_N, "ListSignalCatalogsInput"),
+    id = id.from(_N, "ListSignalCatalogsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5505,7 +5505,7 @@ M.SignalCatalogSummary = schema.new({
 })
 
 M.ListSignalCatalogsOutput = schema.new({
-    id = id.from(_N, "ListSignalCatalogsOutput"),
+    id = id.from(_N, "ListSignalCatalogsResponse"),
     type = "structure",
     members = {
         summaries = schema.new({
@@ -5525,7 +5525,7 @@ M.ListSignalCatalogsOutput = schema.new({
 })
 
 M.UpdateSignalCatalogInput = schema.new({
-    id = id.from(_N, "UpdateSignalCatalogInput"),
+    id = id.from(_N, "UpdateSignalCatalogRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -5569,7 +5569,7 @@ M.UpdateSignalCatalogInput = schema.new({
 })
 
 M.UpdateSignalCatalogOutput = schema.new({
-    id = id.from(_N, "UpdateSignalCatalogOutput"),
+    id = id.from(_N, "UpdateSignalCatalogResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -5594,7 +5594,7 @@ M.UpdateSignalCatalogOutput = schema.new({
 })
 
 M.ListStateTemplatesInput = schema.new({
-    id = id.from(_N, "ListStateTemplatesInput"),
+    id = id.from(_N, "ListStateTemplatesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5677,7 +5677,7 @@ M.StateTemplateSummary = schema.new({
 })
 
 M.ListStateTemplatesOutput = schema.new({
-    id = id.from(_N, "ListStateTemplatesOutput"),
+    id = id.from(_N, "ListStateTemplatesResponse"),
     type = "structure",
     members = {
         summaries = schema.new({
@@ -5697,7 +5697,7 @@ M.ListStateTemplatesOutput = schema.new({
 })
 
 M.UpdateStateTemplateInput = schema.new({
-    id = id.from(_N, "UpdateStateTemplateInput"),
+    id = id.from(_N, "UpdateStateTemplateRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -5748,7 +5748,7 @@ M.UpdateStateTemplateInput = schema.new({
 })
 
 M.UpdateStateTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateStateTemplateOutput"),
+    id = id.from(_N, "UpdateStateTemplateResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -5773,7 +5773,7 @@ M.UpdateStateTemplateOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -5800,12 +5800,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -5833,12 +5833,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.ListVehiclesInput = schema.new({
-    id = id.from(_N, "ListVehiclesInput"),
+    id = id.from(_N, "ListVehiclesRequest"),
     type = "structure",
     members = {
         modelManifestArn = schema.new({
@@ -5970,7 +5970,7 @@ M.VehicleSummary = schema.new({
 })
 
 M.ListVehiclesOutput = schema.new({
-    id = id.from(_N, "ListVehiclesOutput"),
+    id = id.from(_N, "ListVehiclesResponse"),
     type = "structure",
     members = {
         vehicleSummaries = schema.new({
@@ -5990,7 +5990,7 @@ M.ListVehiclesOutput = schema.new({
 })
 
 M.UpdateVehicleInput = schema.new({
-    id = id.from(_N, "UpdateVehicleInput"),
+    id = id.from(_N, "UpdateVehicleRequest"),
     type = "structure",
     members = {
         vehicleName = schema.new({
@@ -6054,7 +6054,7 @@ M.UpdateVehicleInput = schema.new({
 })
 
 M.UpdateVehicleOutput = schema.new({
-    id = id.from(_N, "UpdateVehicleOutput"),
+    id = id.from(_N, "UpdateVehicleResponse"),
     type = "structure",
     members = {
         vehicleName = schema.new({
@@ -6259,7 +6259,7 @@ M.SignalDecoder = schema.new({
 })
 
 M.CreateDecoderManifestInput = schema.new({
-    id = id.from(_N, "CreateDecoderManifestInput"),
+    id = id.from(_N, "CreateDecoderManifestRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -6318,7 +6318,7 @@ M.CreateDecoderManifestInput = schema.new({
 })
 
 M.ListDecoderManifestSignalsOutput = schema.new({
-    id = id.from(_N, "ListDecoderManifestSignalsOutput"),
+    id = id.from(_N, "ListDecoderManifestSignalsResponse"),
     type = "structure",
     members = {
         signalDecoders = schema.new({
@@ -6338,7 +6338,7 @@ M.ListDecoderManifestSignalsOutput = schema.new({
 })
 
 M.UpdateDecoderManifestInput = schema.new({
-    id = id.from(_N, "UpdateDecoderManifestInput"),
+    id = id.from(_N, "UpdateDecoderManifestRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -6413,5 +6413,19 @@ M.UpdateDecoderManifestInput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

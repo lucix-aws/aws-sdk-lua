@@ -24,7 +24,7 @@ M.AcceptGroupingRecommendationEntry = schema.new({
 })
 
 M.AcceptResourceGroupingRecommendationsInput = schema.new({
-    id = id.from(_N, "AcceptResourceGroupingRecommendationsInput"),
+    id = id.from(_N, "AcceptResourceGroupingRecommendationsRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -75,7 +75,7 @@ M.FailedGroupingRecommendationEntry = schema.new({
 })
 
 M.AcceptResourceGroupingRecommendationsOutput = schema.new({
-    id = id.from(_N, "AcceptResourceGroupingRecommendationsOutput"),
+    id = id.from(_N, "AcceptResourceGroupingRecommendationsResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -298,7 +298,7 @@ M.ResourceMapping = schema.new({
 })
 
 M.AddDraftAppVersionResourceMappingsInput = schema.new({
-    id = id.from(_N, "AddDraftAppVersionResourceMappingsInput"),
+    id = id.from(_N, "AddDraftAppVersionResourceMappingsRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -324,7 +324,7 @@ M.AddDraftAppVersionResourceMappingsInput = schema.new({
 })
 
 M.AddDraftAppVersionResourceMappingsOutput = schema.new({
-    id = id.from(_N, "AddDraftAppVersionResourceMappingsOutput"),
+    id = id.from(_N, "AddDraftAppVersionResourceMappingsResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -1428,7 +1428,7 @@ M.AppComponent = schema.new({
             name = "additionalInfo",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -1782,7 +1782,7 @@ M.UpdateRecommendationStatusRequestEntry = schema.new({
 })
 
 M.BatchUpdateRecommendationStatusInput = schema.new({
-    id = id.from(_N, "BatchUpdateRecommendationStatusInput"),
+    id = id.from(_N, "BatchUpdateRecommendationStatusRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -1886,7 +1886,7 @@ M.BatchUpdateRecommendationStatusSuccessfulEntry = schema.new({
 })
 
 M.BatchUpdateRecommendationStatusOutput = schema.new({
-    id = id.from(_N, "BatchUpdateRecommendationStatusOutput"),
+    id = id.from(_N, "BatchUpdateRecommendationStatusResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -1922,7 +1922,7 @@ M.BatchUpdateRecommendationStatusOutput = schema.new({
 })
 
 M.CreateAppInput = schema.new({
-    id = id.from(_N, "CreateAppInput"),
+    id = id.from(_N, "CreateAppRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1993,7 +1993,7 @@ M.CreateAppInput = schema.new({
 })
 
 M.CreateAppOutput = schema.new({
-    id = id.from(_N, "CreateAppOutput"),
+    id = id.from(_N, "CreateAppResponse"),
     type = "structure",
     members = {
         app = schema.new({
@@ -2010,7 +2010,7 @@ M.CreateAppOutput = schema.new({
 })
 
 M.CreateAppVersionAppComponentInput = schema.new({
-    id = id.from(_N, "CreateAppVersionAppComponentInput"),
+    id = id.from(_N, "CreateAppVersionAppComponentRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -2052,7 +2052,7 @@ M.CreateAppVersionAppComponentInput = schema.new({
             name = "additionalInfo",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         clientToken = schema.new({
             id = id.from(_N, "CreateAppVersionAppComponentInput", "clientToken"),
@@ -2067,7 +2067,7 @@ M.CreateAppVersionAppComponentInput = schema.new({
 })
 
 M.CreateAppVersionAppComponentOutput = schema.new({
-    id = id.from(_N, "CreateAppVersionAppComponentOutput"),
+    id = id.from(_N, "CreateAppVersionAppComponentResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -2139,7 +2139,7 @@ M.LogicalResourceId = schema.new({
 })
 
 M.CreateAppVersionResourceInput = schema.new({
-    id = id.from(_N, "CreateAppVersionResourceInput"),
+    id = id.from(_N, "CreateAppVersionResourceRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -2213,7 +2213,7 @@ M.CreateAppVersionResourceInput = schema.new({
             name = "additionalInfo",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         clientToken = schema.new({
             id = id.from(_N, "CreateAppVersionResourceInput", "clientToken"),
@@ -2279,7 +2279,7 @@ M.PhysicalResource = schema.new({
             name = "additionalInfo",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         excluded = schema.new({
             id = id.from(_N, "PhysicalResource", "excluded"),
@@ -2303,7 +2303,7 @@ M.PhysicalResource = schema.new({
 })
 
 M.CreateAppVersionResourceOutput = schema.new({
-    id = id.from(_N, "CreateAppVersionResourceOutput"),
+    id = id.from(_N, "CreateAppVersionResourceResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -2335,7 +2335,7 @@ M.CreateAppVersionResourceOutput = schema.new({
 })
 
 M.CreateRecommendationTemplateInput = schema.new({
-    id = id.from(_N, "CreateRecommendationTemplateInput"),
+    id = id.from(_N, "CreateRecommendationTemplateRequest"),
     type = "structure",
     members = {
         recommendationIds = schema.new({
@@ -2536,7 +2536,7 @@ M.RecommendationTemplate = schema.new({
 })
 
 M.CreateRecommendationTemplateOutput = schema.new({
-    id = id.from(_N, "CreateRecommendationTemplateOutput"),
+    id = id.from(_N, "CreateRecommendationTemplateResponse"),
     type = "structure",
     members = {
         recommendationTemplate = schema.new({
@@ -2550,7 +2550,7 @@ M.CreateRecommendationTemplateOutput = schema.new({
 })
 
 M.CreateResiliencyPolicyInput = schema.new({
-    id = id.from(_N, "CreateResiliencyPolicyInput"),
+    id = id.from(_N, "CreateResiliencyPolicyRequest"),
     type = "structure",
     members = {
         policyName = schema.new({
@@ -2615,7 +2615,7 @@ M.CreateResiliencyPolicyInput = schema.new({
 })
 
 M.CreateResiliencyPolicyOutput = schema.new({
-    id = id.from(_N, "CreateResiliencyPolicyOutput"),
+    id = id.from(_N, "CreateResiliencyPolicyResponse"),
     type = "structure",
     members = {
         policy = schema.new({
@@ -2632,7 +2632,7 @@ M.CreateResiliencyPolicyOutput = schema.new({
 })
 
 M.DeleteAppInput = schema.new({
-    id = id.from(_N, "DeleteAppInput"),
+    id = id.from(_N, "DeleteAppRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -2663,7 +2663,7 @@ M.DeleteAppInput = schema.new({
 })
 
 M.DeleteAppOutput = schema.new({
-    id = id.from(_N, "DeleteAppOutput"),
+    id = id.from(_N, "DeleteAppResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -2679,7 +2679,7 @@ M.DeleteAppOutput = schema.new({
 })
 
 M.DeleteAppAssessmentInput = schema.new({
-    id = id.from(_N, "DeleteAppAssessmentInput"),
+    id = id.from(_N, "DeleteAppAssessmentRequest"),
     type = "structure",
     members = {
         assessmentArn = schema.new({
@@ -2704,7 +2704,7 @@ M.DeleteAppAssessmentInput = schema.new({
 })
 
 M.DeleteAppAssessmentOutput = schema.new({
-    id = id.from(_N, "DeleteAppAssessmentOutput"),
+    id = id.from(_N, "DeleteAppAssessmentResponse"),
     type = "structure",
     members = {
         assessmentArn = schema.new({
@@ -2729,7 +2729,7 @@ M.DeleteAppAssessmentOutput = schema.new({
 })
 
 M.DeleteAppInputSourceInput = schema.new({
-    id = id.from(_N, "DeleteAppInputSourceInput"),
+    id = id.from(_N, "DeleteAppInputSourceRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -2774,7 +2774,7 @@ M.DeleteAppInputSourceInput = schema.new({
 })
 
 M.DeleteAppInputSourceOutput = schema.new({
-    id = id.from(_N, "DeleteAppInputSourceOutput"),
+    id = id.from(_N, "DeleteAppInputSourceResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -2794,7 +2794,7 @@ M.DeleteAppInputSourceOutput = schema.new({
 })
 
 M.DeleteAppVersionAppComponentInput = schema.new({
-    id = id.from(_N, "DeleteAppVersionAppComponentInput"),
+    id = id.from(_N, "DeleteAppVersionAppComponentRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -2828,7 +2828,7 @@ M.DeleteAppVersionAppComponentInput = schema.new({
 })
 
 M.DeleteAppVersionAppComponentOutput = schema.new({
-    id = id.from(_N, "DeleteAppVersionAppComponentOutput"),
+    id = id.from(_N, "DeleteAppVersionAppComponentResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -2860,7 +2860,7 @@ M.DeleteAppVersionAppComponentOutput = schema.new({
 })
 
 M.DeleteAppVersionResourceInput = schema.new({
-    id = id.from(_N, "DeleteAppVersionResourceInput"),
+    id = id.from(_N, "DeleteAppVersionResourceRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -2916,7 +2916,7 @@ M.DeleteAppVersionResourceInput = schema.new({
 })
 
 M.DeleteAppVersionResourceOutput = schema.new({
-    id = id.from(_N, "DeleteAppVersionResourceOutput"),
+    id = id.from(_N, "DeleteAppVersionResourceResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -2948,7 +2948,7 @@ M.DeleteAppVersionResourceOutput = schema.new({
 })
 
 M.DeleteRecommendationTemplateInput = schema.new({
-    id = id.from(_N, "DeleteRecommendationTemplateInput"),
+    id = id.from(_N, "DeleteRecommendationTemplateRequest"),
     type = "structure",
     members = {
         recommendationTemplateArn = schema.new({
@@ -2973,7 +2973,7 @@ M.DeleteRecommendationTemplateInput = schema.new({
 })
 
 M.DeleteRecommendationTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteRecommendationTemplateOutput"),
+    id = id.from(_N, "DeleteRecommendationTemplateResponse"),
     type = "structure",
     members = {
         recommendationTemplateArn = schema.new({
@@ -2998,7 +2998,7 @@ M.DeleteRecommendationTemplateOutput = schema.new({
 })
 
 M.DeleteResiliencyPolicyInput = schema.new({
-    id = id.from(_N, "DeleteResiliencyPolicyInput"),
+    id = id.from(_N, "DeleteResiliencyPolicyRequest"),
     type = "structure",
     members = {
         policyArn = schema.new({
@@ -3023,7 +3023,7 @@ M.DeleteResiliencyPolicyInput = schema.new({
 })
 
 M.DeleteResiliencyPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResiliencyPolicyOutput"),
+    id = id.from(_N, "DeleteResiliencyPolicyResponse"),
     type = "structure",
     members = {
         policyArn = schema.new({
@@ -3039,7 +3039,7 @@ M.DeleteResiliencyPolicyOutput = schema.new({
 })
 
 M.DescribeAppInput = schema.new({
-    id = id.from(_N, "DescribeAppInput"),
+    id = id.from(_N, "DescribeAppRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3055,7 +3055,7 @@ M.DescribeAppInput = schema.new({
 })
 
 M.DescribeAppOutput = schema.new({
-    id = id.from(_N, "DescribeAppOutput"),
+    id = id.from(_N, "DescribeAppResponse"),
     type = "structure",
     members = {
         app = schema.new({
@@ -3072,7 +3072,7 @@ M.DescribeAppOutput = schema.new({
 })
 
 M.DescribeAppAssessmentInput = schema.new({
-    id = id.from(_N, "DescribeAppAssessmentInput"),
+    id = id.from(_N, "DescribeAppAssessmentRequest"),
     type = "structure",
     members = {
         assessmentArn = schema.new({
@@ -3088,7 +3088,7 @@ M.DescribeAppAssessmentInput = schema.new({
 })
 
 M.DescribeAppAssessmentOutput = schema.new({
-    id = id.from(_N, "DescribeAppAssessmentOutput"),
+    id = id.from(_N, "DescribeAppAssessmentResponse"),
     type = "structure",
     members = {
         assessment = schema.new({
@@ -3105,7 +3105,7 @@ M.DescribeAppAssessmentOutput = schema.new({
 })
 
 M.DescribeAppVersionInput = schema.new({
-    id = id.from(_N, "DescribeAppVersionInput"),
+    id = id.from(_N, "DescribeAppVersionRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3130,7 +3130,7 @@ M.DescribeAppVersionInput = schema.new({
 })
 
 M.DescribeAppVersionOutput = schema.new({
-    id = id.from(_N, "DescribeAppVersionOutput"),
+    id = id.from(_N, "DescribeAppVersionResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3157,13 +3157,13 @@ M.DescribeAppVersionOutput = schema.new({
             name = "additionalInfo",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
 
 M.DescribeAppVersionAppComponentInput = schema.new({
-    id = id.from(_N, "DescribeAppVersionAppComponentInput"),
+    id = id.from(_N, "DescribeAppVersionAppComponentRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3197,7 +3197,7 @@ M.DescribeAppVersionAppComponentInput = schema.new({
 })
 
 M.DescribeAppVersionAppComponentOutput = schema.new({
-    id = id.from(_N, "DescribeAppVersionAppComponentOutput"),
+    id = id.from(_N, "DescribeAppVersionAppComponentResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3229,7 +3229,7 @@ M.DescribeAppVersionAppComponentOutput = schema.new({
 })
 
 M.DescribeAppVersionResourceInput = schema.new({
-    id = id.from(_N, "DescribeAppVersionResourceInput"),
+    id = id.from(_N, "DescribeAppVersionResourceRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3285,7 +3285,7 @@ M.DescribeAppVersionResourceInput = schema.new({
 })
 
 M.DescribeAppVersionResourceOutput = schema.new({
-    id = id.from(_N, "DescribeAppVersionResourceOutput"),
+    id = id.from(_N, "DescribeAppVersionResourceResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3317,7 +3317,7 @@ M.DescribeAppVersionResourceOutput = schema.new({
 })
 
 M.DescribeAppVersionResourcesResolutionStatusInput = schema.new({
-    id = id.from(_N, "DescribeAppVersionResourcesResolutionStatusInput"),
+    id = id.from(_N, "DescribeAppVersionResourcesResolutionStatusRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3348,7 +3348,7 @@ M.DescribeAppVersionResourcesResolutionStatusInput = schema.new({
 })
 
 M.DescribeAppVersionResourcesResolutionStatusOutput = schema.new({
-    id = id.from(_N, "DescribeAppVersionResourcesResolutionStatusOutput"),
+    id = id.from(_N, "DescribeAppVersionResourcesResolutionStatusResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3397,7 +3397,7 @@ M.DescribeAppVersionResourcesResolutionStatusOutput = schema.new({
 })
 
 M.DescribeAppVersionTemplateInput = schema.new({
-    id = id.from(_N, "DescribeAppVersionTemplateInput"),
+    id = id.from(_N, "DescribeAppVersionTemplateRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3422,7 +3422,7 @@ M.DescribeAppVersionTemplateInput = schema.new({
 })
 
 M.DescribeAppVersionTemplateOutput = schema.new({
-    id = id.from(_N, "DescribeAppVersionTemplateOutput"),
+    id = id.from(_N, "DescribeAppVersionTemplateResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3456,7 +3456,7 @@ M.DescribeAppVersionTemplateOutput = schema.new({
 })
 
 M.DescribeDraftAppVersionResourcesImportStatusInput = schema.new({
-    id = id.from(_N, "DescribeDraftAppVersionResourcesImportStatusInput"),
+    id = id.from(_N, "DescribeDraftAppVersionResourcesImportStatusRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3485,7 +3485,7 @@ M.ErrorDetail = schema.new({
 })
 
 M.DescribeDraftAppVersionResourcesImportStatusOutput = schema.new({
-    id = id.from(_N, "DescribeDraftAppVersionResourcesImportStatusOutput"),
+    id = id.from(_N, "DescribeDraftAppVersionResourcesImportStatusResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3541,7 +3541,7 @@ M.DescribeDraftAppVersionResourcesImportStatusOutput = schema.new({
 })
 
 M.DescribeMetricsExportInput = schema.new({
-    id = id.from(_N, "DescribeMetricsExportInput"),
+    id = id.from(_N, "DescribeMetricsExportRequest"),
     type = "structure",
     members = {
         metricsExportId = schema.new({
@@ -3557,7 +3557,7 @@ M.DescribeMetricsExportInput = schema.new({
 })
 
 M.DescribeMetricsExportOutput = schema.new({
-    id = id.from(_N, "DescribeMetricsExportOutput"),
+    id = id.from(_N, "DescribeMetricsExportResponse"),
     type = "structure",
     members = {
         metricsExportId = schema.new({
@@ -3595,7 +3595,7 @@ M.DescribeMetricsExportOutput = schema.new({
 })
 
 M.DescribeResiliencyPolicyInput = schema.new({
-    id = id.from(_N, "DescribeResiliencyPolicyInput"),
+    id = id.from(_N, "DescribeResiliencyPolicyRequest"),
     type = "structure",
     members = {
         policyArn = schema.new({
@@ -3611,7 +3611,7 @@ M.DescribeResiliencyPolicyInput = schema.new({
 })
 
 M.DescribeResiliencyPolicyOutput = schema.new({
-    id = id.from(_N, "DescribeResiliencyPolicyOutput"),
+    id = id.from(_N, "DescribeResiliencyPolicyResponse"),
     type = "structure",
     members = {
         policy = schema.new({
@@ -3628,7 +3628,7 @@ M.DescribeResiliencyPolicyOutput = schema.new({
 })
 
 M.DescribeResourceGroupingRecommendationTaskInput = schema.new({
-    id = id.from(_N, "DescribeResourceGroupingRecommendationTaskInput"),
+    id = id.from(_N, "DescribeResourceGroupingRecommendationTaskRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3650,7 +3650,7 @@ M.DescribeResourceGroupingRecommendationTaskInput = schema.new({
 })
 
 M.DescribeResourceGroupingRecommendationTaskOutput = schema.new({
-    id = id.from(_N, "DescribeResourceGroupingRecommendationTaskOutput"),
+    id = id.from(_N, "DescribeResourceGroupingRecommendationTaskResponse"),
     type = "structure",
     members = {
         groupingId = schema.new({
@@ -3707,7 +3707,7 @@ M.EksSource = schema.new({
 })
 
 M.ImportResourcesToDraftAppVersionInput = schema.new({
-    id = id.from(_N, "ImportResourcesToDraftAppVersionInput"),
+    id = id.from(_N, "ImportResourcesToDraftAppVersionRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3750,7 +3750,7 @@ M.ImportResourcesToDraftAppVersionInput = schema.new({
 })
 
 M.ImportResourcesToDraftAppVersionOutput = schema.new({
-    id = id.from(_N, "ImportResourcesToDraftAppVersionOutput"),
+    id = id.from(_N, "ImportResourcesToDraftAppVersionResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -3805,7 +3805,7 @@ M.ImportResourcesToDraftAppVersionOutput = schema.new({
 })
 
 M.ListAlarmRecommendationsInput = schema.new({
-    id = id.from(_N, "ListAlarmRecommendationsInput"),
+    id = id.from(_N, "ListAlarmRecommendationsRequest"),
     type = "structure",
     members = {
         assessmentArn = schema.new({
@@ -3833,7 +3833,7 @@ M.ListAlarmRecommendationsInput = schema.new({
 })
 
 M.ListAlarmRecommendationsOutput = schema.new({
-    id = id.from(_N, "ListAlarmRecommendationsOutput"),
+    id = id.from(_N, "ListAlarmRecommendationsResponse"),
     type = "structure",
     members = {
         alarmRecommendations = schema.new({
@@ -3856,7 +3856,7 @@ M.ListAlarmRecommendationsOutput = schema.new({
 })
 
 M.ListAppAssessmentComplianceDriftsInput = schema.new({
-    id = id.from(_N, "ListAppAssessmentComplianceDriftsInput"),
+    id = id.from(_N, "ListAppAssessmentComplianceDriftsRequest"),
     type = "structure",
     members = {
         assessmentArn = schema.new({
@@ -3955,7 +3955,7 @@ M.ComplianceDrift = schema.new({
 })
 
 M.ListAppAssessmentComplianceDriftsOutput = schema.new({
-    id = id.from(_N, "ListAppAssessmentComplianceDriftsOutput"),
+    id = id.from(_N, "ListAppAssessmentComplianceDriftsResponse"),
     type = "structure",
     members = {
         complianceDrifts = schema.new({
@@ -3978,7 +3978,7 @@ M.ListAppAssessmentComplianceDriftsOutput = schema.new({
 })
 
 M.ListAppAssessmentResourceDriftsInput = schema.new({
-    id = id.from(_N, "ListAppAssessmentResourceDriftsInput"),
+    id = id.from(_N, "ListAppAssessmentResourceDriftsRequest"),
     type = "structure",
     members = {
         assessmentArn = schema.new({
@@ -4064,7 +4064,7 @@ M.ResourceDrift = schema.new({
 })
 
 M.ListAppAssessmentResourceDriftsOutput = schema.new({
-    id = id.from(_N, "ListAppAssessmentResourceDriftsOutput"),
+    id = id.from(_N, "ListAppAssessmentResourceDriftsResponse"),
     type = "structure",
     members = {
         resourceDrifts = schema.new({
@@ -4087,7 +4087,7 @@ M.ListAppAssessmentResourceDriftsOutput = schema.new({
 })
 
 M.ListAppAssessmentsInput = schema.new({
-    id = id.from(_N, "ListAppAssessmentsInput"),
+    id = id.from(_N, "ListAppAssessmentsRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -4167,7 +4167,7 @@ M.ListAppAssessmentsInput = schema.new({
 })
 
 M.ListAppAssessmentsOutput = schema.new({
-    id = id.from(_N, "ListAppAssessmentsOutput"),
+    id = id.from(_N, "ListAppAssessmentsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4190,7 +4190,7 @@ M.ListAppAssessmentsOutput = schema.new({
 })
 
 M.ListAppComponentCompliancesInput = schema.new({
-    id = id.from(_N, "ListAppComponentCompliancesInput"),
+    id = id.from(_N, "ListAppComponentCompliancesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4218,7 +4218,7 @@ M.ListAppComponentCompliancesInput = schema.new({
 })
 
 M.ListAppComponentCompliancesOutput = schema.new({
-    id = id.from(_N, "ListAppComponentCompliancesOutput"),
+    id = id.from(_N, "ListAppComponentCompliancesResponse"),
     type = "structure",
     members = {
         componentCompliances = schema.new({
@@ -4241,7 +4241,7 @@ M.ListAppComponentCompliancesOutput = schema.new({
 })
 
 M.ListAppComponentRecommendationsInput = schema.new({
-    id = id.from(_N, "ListAppComponentRecommendationsInput"),
+    id = id.from(_N, "ListAppComponentRecommendationsRequest"),
     type = "structure",
     members = {
         assessmentArn = schema.new({
@@ -4432,7 +4432,7 @@ M.ComponentRecommendation = schema.new({
 })
 
 M.ListAppComponentRecommendationsOutput = schema.new({
-    id = id.from(_N, "ListAppComponentRecommendationsOutput"),
+    id = id.from(_N, "ListAppComponentRecommendationsResponse"),
     type = "structure",
     members = {
         componentRecommendations = schema.new({
@@ -4455,7 +4455,7 @@ M.ListAppComponentRecommendationsOutput = schema.new({
 })
 
 M.ListAppInputSourcesInput = schema.new({
-    id = id.from(_N, "ListAppInputSourcesInput"),
+    id = id.from(_N, "ListAppInputSourcesRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -4492,7 +4492,7 @@ M.ListAppInputSourcesInput = schema.new({
 })
 
 M.ListAppInputSourcesOutput = schema.new({
-    id = id.from(_N, "ListAppInputSourcesOutput"),
+    id = id.from(_N, "ListAppInputSourcesResponse"),
     type = "structure",
     members = {
         appInputSources = schema.new({
@@ -4515,7 +4515,7 @@ M.ListAppInputSourcesOutput = schema.new({
 })
 
 M.ListAppsInput = schema.new({
-    id = id.from(_N, "ListAppsInput"),
+    id = id.from(_N, "ListAppsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4594,7 +4594,7 @@ M.ListAppsInput = schema.new({
 })
 
 M.ListAppsOutput = schema.new({
-    id = id.from(_N, "ListAppsOutput"),
+    id = id.from(_N, "ListAppsResponse"),
     type = "structure",
     members = {
         appSummaries = schema.new({
@@ -4617,7 +4617,7 @@ M.ListAppsOutput = schema.new({
 })
 
 M.ListAppVersionAppComponentsInput = schema.new({
-    id = id.from(_N, "ListAppVersionAppComponentsInput"),
+    id = id.from(_N, "ListAppVersionAppComponentsRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -4654,7 +4654,7 @@ M.ListAppVersionAppComponentsInput = schema.new({
 })
 
 M.ListAppVersionAppComponentsOutput = schema.new({
-    id = id.from(_N, "ListAppVersionAppComponentsOutput"),
+    id = id.from(_N, "ListAppVersionAppComponentsResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -4692,7 +4692,7 @@ M.ListAppVersionAppComponentsOutput = schema.new({
 })
 
 M.ListAppVersionResourceMappingsInput = schema.new({
-    id = id.from(_N, "ListAppVersionResourceMappingsInput"),
+    id = id.from(_N, "ListAppVersionResourceMappingsRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -4729,7 +4729,7 @@ M.ListAppVersionResourceMappingsInput = schema.new({
 })
 
 M.ListAppVersionResourceMappingsOutput = schema.new({
-    id = id.from(_N, "ListAppVersionResourceMappingsOutput"),
+    id = id.from(_N, "ListAppVersionResourceMappingsResponse"),
     type = "structure",
     members = {
         resourceMappings = schema.new({
@@ -4752,7 +4752,7 @@ M.ListAppVersionResourceMappingsOutput = schema.new({
 })
 
 M.ListAppVersionResourcesInput = schema.new({
-    id = id.from(_N, "ListAppVersionResourcesInput"),
+    id = id.from(_N, "ListAppVersionResourcesRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -4795,7 +4795,7 @@ M.ListAppVersionResourcesInput = schema.new({
 })
 
 M.ListAppVersionResourcesOutput = schema.new({
-    id = id.from(_N, "ListAppVersionResourcesOutput"),
+    id = id.from(_N, "ListAppVersionResourcesResponse"),
     type = "structure",
     members = {
         physicalResources = schema.new({
@@ -4827,7 +4827,7 @@ M.ListAppVersionResourcesOutput = schema.new({
 })
 
 M.ListAppVersionsInput = schema.new({
-    id = id.from(_N, "ListAppVersionsInput"),
+    id = id.from(_N, "ListAppVersionsRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -4867,7 +4867,7 @@ M.ListAppVersionsInput = schema.new({
 })
 
 M.ListAppVersionsOutput = schema.new({
-    id = id.from(_N, "ListAppVersionsOutput"),
+    id = id.from(_N, "ListAppVersionsResponse"),
     type = "structure",
     members = {
         appVersions = schema.new({
@@ -4965,7 +4965,7 @@ M.Sort = schema.new({
 })
 
 M.ListMetricsInput = schema.new({
-    id = id.from(_N, "ListMetricsInput"),
+    id = id.from(_N, "ListMetricsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5011,7 +5011,7 @@ M.ListMetricsInput = schema.new({
 })
 
 M.ListMetricsOutput = schema.new({
-    id = id.from(_N, "ListMetricsOutput"),
+    id = id.from(_N, "ListMetricsResponse"),
     type = "structure",
     members = {
         rows = schema.new({
@@ -5019,7 +5019,7 @@ M.ListMetricsOutput = schema.new({
             type = "list",
             name = "rows",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.String }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5034,7 +5034,7 @@ M.ListMetricsOutput = schema.new({
 })
 
 M.ListRecommendationTemplatesInput = schema.new({
-    id = id.from(_N, "ListRecommendationTemplatesInput"),
+    id = id.from(_N, "ListRecommendationTemplatesRequest"),
     type = "structure",
     members = {
         assessmentArn = schema.new({
@@ -5105,7 +5105,7 @@ M.ListRecommendationTemplatesInput = schema.new({
 })
 
 M.ListRecommendationTemplatesOutput = schema.new({
-    id = id.from(_N, "ListRecommendationTemplatesOutput"),
+    id = id.from(_N, "ListRecommendationTemplatesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5125,7 +5125,7 @@ M.ListRecommendationTemplatesOutput = schema.new({
 })
 
 M.ListResiliencyPoliciesInput = schema.new({
-    id = id.from(_N, "ListResiliencyPoliciesInput"),
+    id = id.from(_N, "ListResiliencyPoliciesRequest"),
     type = "structure",
     members = {
         policyName = schema.new({
@@ -5159,7 +5159,7 @@ M.ListResiliencyPoliciesInput = schema.new({
 })
 
 M.ListResiliencyPoliciesOutput = schema.new({
-    id = id.from(_N, "ListResiliencyPoliciesOutput"),
+    id = id.from(_N, "ListResiliencyPoliciesResponse"),
     type = "structure",
     members = {
         resiliencyPolicies = schema.new({
@@ -5182,7 +5182,7 @@ M.ListResiliencyPoliciesOutput = schema.new({
 })
 
 M.ListResourceGroupingRecommendationsInput = schema.new({
-    id = id.from(_N, "ListResourceGroupingRecommendationsInput"),
+    id = id.from(_N, "ListResourceGroupingRecommendationsRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -5394,7 +5394,7 @@ M.GroupingRecommendation = schema.new({
 })
 
 M.ListResourceGroupingRecommendationsOutput = schema.new({
-    id = id.from(_N, "ListResourceGroupingRecommendationsOutput"),
+    id = id.from(_N, "ListResourceGroupingRecommendationsResponse"),
     type = "structure",
     members = {
         groupingRecommendations = schema.new({
@@ -5417,7 +5417,7 @@ M.ListResourceGroupingRecommendationsOutput = schema.new({
 })
 
 M.ListSopRecommendationsInput = schema.new({
-    id = id.from(_N, "ListSopRecommendationsInput"),
+    id = id.from(_N, "ListSopRecommendationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5516,7 +5516,7 @@ M.SopRecommendation = schema.new({
 })
 
 M.ListSopRecommendationsOutput = schema.new({
-    id = id.from(_N, "ListSopRecommendationsOutput"),
+    id = id.from(_N, "ListSopRecommendationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5539,7 +5539,7 @@ M.ListSopRecommendationsOutput = schema.new({
 })
 
 M.ListSuggestedResiliencyPoliciesInput = schema.new({
-    id = id.from(_N, "ListSuggestedResiliencyPoliciesInput"),
+    id = id.from(_N, "ListSuggestedResiliencyPoliciesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5564,7 +5564,7 @@ M.ListSuggestedResiliencyPoliciesInput = schema.new({
 })
 
 M.ListSuggestedResiliencyPoliciesOutput = schema.new({
-    id = id.from(_N, "ListSuggestedResiliencyPoliciesOutput"),
+    id = id.from(_N, "ListSuggestedResiliencyPoliciesResponse"),
     type = "structure",
     members = {
         resiliencyPolicies = schema.new({
@@ -5587,7 +5587,7 @@ M.ListSuggestedResiliencyPoliciesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5604,7 +5604,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -5619,7 +5619,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTestRecommendationsInput = schema.new({
-    id = id.from(_N, "ListTestRecommendationsInput"),
+    id = id.from(_N, "ListTestRecommendationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5737,7 +5737,7 @@ M.TestRecommendation = schema.new({
 })
 
 M.ListTestRecommendationsOutput = schema.new({
-    id = id.from(_N, "ListTestRecommendationsOutput"),
+    id = id.from(_N, "ListTestRecommendationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5760,7 +5760,7 @@ M.ListTestRecommendationsOutput = schema.new({
 })
 
 M.ListUnsupportedAppVersionResourcesInput = schema.new({
-    id = id.from(_N, "ListUnsupportedAppVersionResourcesInput"),
+    id = id.from(_N, "ListUnsupportedAppVersionResourcesRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -5845,7 +5845,7 @@ M.UnsupportedResource = schema.new({
 })
 
 M.ListUnsupportedAppVersionResourcesOutput = schema.new({
-    id = id.from(_N, "ListUnsupportedAppVersionResourcesOutput"),
+    id = id.from(_N, "ListUnsupportedAppVersionResourcesResponse"),
     type = "structure",
     members = {
         unsupportedResources = schema.new({
@@ -5877,7 +5877,7 @@ M.ListUnsupportedAppVersionResourcesOutput = schema.new({
 })
 
 M.PublishAppVersionInput = schema.new({
-    id = id.from(_N, "PublishAppVersionInput"),
+    id = id.from(_N, "PublishAppVersionRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -5899,7 +5899,7 @@ M.PublishAppVersionInput = schema.new({
 })
 
 M.PublishAppVersionOutput = schema.new({
-    id = id.from(_N, "PublishAppVersionOutput"),
+    id = id.from(_N, "PublishAppVersionResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -5933,7 +5933,7 @@ M.PublishAppVersionOutput = schema.new({
 })
 
 M.PutDraftAppVersionTemplateInput = schema.new({
-    id = id.from(_N, "PutDraftAppVersionTemplateInput"),
+    id = id.from(_N, "PutDraftAppVersionTemplateRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -5958,7 +5958,7 @@ M.PutDraftAppVersionTemplateInput = schema.new({
 })
 
 M.PutDraftAppVersionTemplateOutput = schema.new({
-    id = id.from(_N, "PutDraftAppVersionTemplateOutput"),
+    id = id.from(_N, "PutDraftAppVersionTemplateResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -5999,7 +5999,7 @@ M.RejectGroupingRecommendationEntry = schema.new({
 })
 
 M.RejectResourceGroupingRecommendationsInput = schema.new({
-    id = id.from(_N, "RejectResourceGroupingRecommendationsInput"),
+    id = id.from(_N, "RejectResourceGroupingRecommendationsRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6025,7 +6025,7 @@ M.RejectResourceGroupingRecommendationsInput = schema.new({
 })
 
 M.RejectResourceGroupingRecommendationsOutput = schema.new({
-    id = id.from(_N, "RejectResourceGroupingRecommendationsOutput"),
+    id = id.from(_N, "RejectResourceGroupingRecommendationsResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6051,7 +6051,7 @@ M.RejectResourceGroupingRecommendationsOutput = schema.new({
 })
 
 M.RemoveDraftAppVersionResourceMappingsInput = schema.new({
-    id = id.from(_N, "RemoveDraftAppVersionResourceMappingsInput"),
+    id = id.from(_N, "RemoveDraftAppVersionResourceMappingsRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6109,7 +6109,7 @@ M.RemoveDraftAppVersionResourceMappingsInput = schema.new({
 })
 
 M.RemoveDraftAppVersionResourceMappingsOutput = schema.new({
-    id = id.from(_N, "RemoveDraftAppVersionResourceMappingsOutput"),
+    id = id.from(_N, "RemoveDraftAppVersionResourceMappingsResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6128,7 +6128,7 @@ M.RemoveDraftAppVersionResourceMappingsOutput = schema.new({
 })
 
 M.ResolveAppVersionResourcesInput = schema.new({
-    id = id.from(_N, "ResolveAppVersionResourcesInput"),
+    id = id.from(_N, "ResolveAppVersionResourcesRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6153,7 +6153,7 @@ M.ResolveAppVersionResourcesInput = schema.new({
 })
 
 M.ResolveAppVersionResourcesOutput = schema.new({
-    id = id.from(_N, "ResolveAppVersionResourcesOutput"),
+    id = id.from(_N, "ResolveAppVersionResourcesResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6196,7 +6196,7 @@ M.ResolveAppVersionResourcesOutput = schema.new({
 })
 
 M.StartAppAssessmentInput = schema.new({
-    id = id.from(_N, "StartAppAssessmentInput"),
+    id = id.from(_N, "StartAppAssessmentRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6247,7 +6247,7 @@ M.StartAppAssessmentInput = schema.new({
 })
 
 M.StartAppAssessmentOutput = schema.new({
-    id = id.from(_N, "StartAppAssessmentOutput"),
+    id = id.from(_N, "StartAppAssessmentResponse"),
     type = "structure",
     members = {
         assessment = schema.new({
@@ -6264,7 +6264,7 @@ M.StartAppAssessmentOutput = schema.new({
 })
 
 M.StartMetricsExportInput = schema.new({
-    id = id.from(_N, "StartMetricsExportInput"),
+    id = id.from(_N, "StartMetricsExportRequest"),
     type = "structure",
     members = {
         bucketName = schema.new({
@@ -6286,7 +6286,7 @@ M.StartMetricsExportInput = schema.new({
 })
 
 M.StartMetricsExportOutput = schema.new({
-    id = id.from(_N, "StartMetricsExportOutput"),
+    id = id.from(_N, "StartMetricsExportResponse"),
     type = "structure",
     members = {
         metricsExportId = schema.new({
@@ -6311,7 +6311,7 @@ M.StartMetricsExportOutput = schema.new({
 })
 
 M.StartResourceGroupingRecommendationTaskInput = schema.new({
-    id = id.from(_N, "StartResourceGroupingRecommendationTaskInput"),
+    id = id.from(_N, "StartResourceGroupingRecommendationTaskRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6327,7 +6327,7 @@ M.StartResourceGroupingRecommendationTaskInput = schema.new({
 })
 
 M.StartResourceGroupingRecommendationTaskOutput = schema.new({
-    id = id.from(_N, "StartResourceGroupingRecommendationTaskOutput"),
+    id = id.from(_N, "StartResourceGroupingRecommendationTaskResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6367,7 +6367,7 @@ M.StartResourceGroupingRecommendationTaskOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6395,12 +6395,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6428,12 +6428,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAppInput = schema.new({
-    id = id.from(_N, "UpdateAppInput"),
+    id = id.from(_N, "UpdateAppRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6487,7 +6487,7 @@ M.UpdateAppInput = schema.new({
 })
 
 M.UpdateAppOutput = schema.new({
-    id = id.from(_N, "UpdateAppOutput"),
+    id = id.from(_N, "UpdateAppResponse"),
     type = "structure",
     members = {
         app = schema.new({
@@ -6504,7 +6504,7 @@ M.UpdateAppOutput = schema.new({
 })
 
 M.UpdateAppVersionInput = schema.new({
-    id = id.from(_N, "UpdateAppVersionInput"),
+    id = id.from(_N, "UpdateAppVersionRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6522,13 +6522,13 @@ M.UpdateAppVersionInput = schema.new({
             name = "additionalInfo",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
 
 M.UpdateAppVersionOutput = schema.new({
-    id = id.from(_N, "UpdateAppVersionOutput"),
+    id = id.from(_N, "UpdateAppVersionResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6555,13 +6555,13 @@ M.UpdateAppVersionOutput = schema.new({
             name = "additionalInfo",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
 
 M.UpdateAppVersionAppComponentInput = schema.new({
-    id = id.from(_N, "UpdateAppVersionAppComponentInput"),
+    id = id.from(_N, "UpdateAppVersionAppComponentRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6600,13 +6600,13 @@ M.UpdateAppVersionAppComponentInput = schema.new({
             name = "additionalInfo",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
 
 M.UpdateAppVersionAppComponentOutput = schema.new({
-    id = id.from(_N, "UpdateAppVersionAppComponentOutput"),
+    id = id.from(_N, "UpdateAppVersionAppComponentResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6638,7 +6638,7 @@ M.UpdateAppVersionAppComponentOutput = schema.new({
 })
 
 M.UpdateAppVersionResourceInput = schema.new({
-    id = id.from(_N, "UpdateAppVersionResourceInput"),
+    id = id.from(_N, "UpdateAppVersionResourceRequest"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6700,7 +6700,7 @@ M.UpdateAppVersionResourceInput = schema.new({
             name = "additionalInfo",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         excluded = schema.new({
             id = id.from(_N, "UpdateAppVersionResourceInput", "excluded"),
@@ -6712,7 +6712,7 @@ M.UpdateAppVersionResourceInput = schema.new({
 })
 
 M.UpdateAppVersionResourceOutput = schema.new({
-    id = id.from(_N, "UpdateAppVersionResourceOutput"),
+    id = id.from(_N, "UpdateAppVersionResourceResponse"),
     type = "structure",
     members = {
         appArn = schema.new({
@@ -6744,7 +6744,7 @@ M.UpdateAppVersionResourceOutput = schema.new({
 })
 
 M.UpdateResiliencyPolicyInput = schema.new({
-    id = id.from(_N, "UpdateResiliencyPolicyInput"),
+    id = id.from(_N, "UpdateResiliencyPolicyRequest"),
     type = "structure",
     members = {
         policyArn = schema.new({
@@ -6792,7 +6792,7 @@ M.UpdateResiliencyPolicyInput = schema.new({
 })
 
 M.UpdateResiliencyPolicyOutput = schema.new({
-    id = id.from(_N, "UpdateResiliencyPolicyOutput"),
+    id = id.from(_N, "UpdateResiliencyPolicyResponse"),
     type = "structure",
     members = {
         policy = schema.new({
@@ -6807,5 +6807,19 @@ M.UpdateResiliencyPolicyOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

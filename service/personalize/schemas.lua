@@ -377,7 +377,7 @@ M.ThemeGenerationConfig = schema.new({
 })
 
 M.CreateBatchInferenceJobInput = schema.new({
-    id = id.from(_N, "CreateBatchInferenceJobInput"),
+    id = id.from(_N, "CreateBatchInferenceJobRequest"),
     type = "structure",
     members = {
         jobName = schema.new({
@@ -470,7 +470,7 @@ M.CreateBatchInferenceJobInput = schema.new({
 })
 
 M.CreateBatchInferenceJobOutput = schema.new({
-    id = id.from(_N, "CreateBatchInferenceJobOutput"),
+    id = id.from(_N, "CreateBatchInferenceJobResponse"),
     type = "structure",
     members = {
         batchInferenceJobArn = schema.new({
@@ -613,7 +613,7 @@ M.BatchSegmentJobOutput = schema.new({
 })
 
 M.CreateBatchSegmentJobInput = schema.new({
-    id = id.from(_N, "CreateBatchSegmentJobInput"),
+    id = id.from(_N, "CreateBatchSegmentJobRequest"),
     type = "structure",
     members = {
         jobName = schema.new({
@@ -686,7 +686,7 @@ M.CreateBatchSegmentJobInput = schema.new({
 })
 
 M.CreateBatchSegmentJobOutput = schema.new({
-    id = id.from(_N, "CreateBatchSegmentJobOutput"),
+    id = id.from(_N, "CreateBatchSegmentJobResponse"),
     type = "structure",
     members = {
         batchSegmentJobArn = schema.new({
@@ -734,7 +734,7 @@ M.CampaignConfig = schema.new({
 })
 
 M.CreateCampaignInput = schema.new({
-    id = id.from(_N, "CreateCampaignInput"),
+    id = id.from(_N, "CreateCampaignRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -779,7 +779,7 @@ M.CreateCampaignInput = schema.new({
 })
 
 M.CreateCampaignOutput = schema.new({
-    id = id.from(_N, "CreateCampaignOutput"),
+    id = id.from(_N, "CreateCampaignResponse"),
     type = "structure",
     members = {
         campaignArn = schema.new({
@@ -805,7 +805,7 @@ M.DataSource = schema.new({
 })
 
 M.CreateDataDeletionJobInput = schema.new({
-    id = id.from(_N, "CreateDataDeletionJobInput"),
+    id = id.from(_N, "CreateDataDeletionJobRequest"),
     type = "structure",
     members = {
         jobName = schema.new({
@@ -856,7 +856,7 @@ M.CreateDataDeletionJobInput = schema.new({
 })
 
 M.CreateDataDeletionJobOutput = schema.new({
-    id = id.from(_N, "CreateDataDeletionJobOutput"),
+    id = id.from(_N, "CreateDataDeletionJobResponse"),
     type = "structure",
     members = {
         dataDeletionJobArn = schema.new({
@@ -869,7 +869,7 @@ M.CreateDataDeletionJobOutput = schema.new({
 })
 
 M.CreateDatasetInput = schema.new({
-    id = id.from(_N, "CreateDatasetInput"),
+    id = id.from(_N, "CreateDatasetRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -919,7 +919,7 @@ M.CreateDatasetInput = schema.new({
 })
 
 M.CreateDatasetOutput = schema.new({
-    id = id.from(_N, "CreateDatasetOutput"),
+    id = id.from(_N, "CreateDatasetResponse"),
     type = "structure",
     members = {
         datasetArn = schema.new({
@@ -949,7 +949,7 @@ M.DatasetExportJobOutput = schema.new({
 })
 
 M.CreateDatasetExportJobInput = schema.new({
-    id = id.from(_N, "CreateDatasetExportJobInput"),
+    id = id.from(_N, "CreateDatasetExportJobRequest"),
     type = "structure",
     members = {
         jobName = schema.new({
@@ -1006,7 +1006,7 @@ M.CreateDatasetExportJobInput = schema.new({
 })
 
 M.CreateDatasetExportJobOutput = schema.new({
-    id = id.from(_N, "CreateDatasetExportJobOutput"),
+    id = id.from(_N, "CreateDatasetExportJobResponse"),
     type = "structure",
     members = {
         datasetExportJobArn = schema.new({
@@ -1019,7 +1019,7 @@ M.CreateDatasetExportJobOutput = schema.new({
 })
 
 M.CreateDatasetGroupInput = schema.new({
-    id = id.from(_N, "CreateDatasetGroupInput"),
+    id = id.from(_N, "CreateDatasetGroupRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1060,7 +1060,7 @@ M.CreateDatasetGroupInput = schema.new({
 })
 
 M.CreateDatasetGroupOutput = schema.new({
-    id = id.from(_N, "CreateDatasetGroupOutput"),
+    id = id.from(_N, "CreateDatasetGroupResponse"),
     type = "structure",
     members = {
         datasetGroupArn = schema.new({
@@ -1079,7 +1079,7 @@ M.CreateDatasetGroupOutput = schema.new({
 })
 
 M.CreateDatasetImportJobInput = schema.new({
-    id = id.from(_N, "CreateDatasetImportJobInput"),
+    id = id.from(_N, "CreateDatasetImportJobRequest"),
     type = "structure",
     members = {
         jobName = schema.new({
@@ -1139,7 +1139,7 @@ M.CreateDatasetImportJobInput = schema.new({
 })
 
 M.CreateDatasetImportJobOutput = schema.new({
-    id = id.from(_N, "CreateDatasetImportJobOutput"),
+    id = id.from(_N, "CreateDatasetImportJobResponse"),
     type = "structure",
     members = {
         datasetImportJobArn = schema.new({
@@ -1152,7 +1152,7 @@ M.CreateDatasetImportJobOutput = schema.new({
 })
 
 M.CreateEventTrackerInput = schema.new({
-    id = id.from(_N, "CreateEventTrackerInput"),
+    id = id.from(_N, "CreateEventTrackerRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1184,7 +1184,7 @@ M.CreateEventTrackerInput = schema.new({
 })
 
 M.CreateEventTrackerOutput = schema.new({
-    id = id.from(_N, "CreateEventTrackerOutput"),
+    id = id.from(_N, "CreateEventTrackerResponse"),
     type = "structure",
     members = {
         eventTrackerArn = schema.new({
@@ -1203,7 +1203,7 @@ M.CreateEventTrackerOutput = schema.new({
 })
 
 M.CreateFilterInput = schema.new({
-    id = id.from(_N, "CreateFilterInput"),
+    id = id.from(_N, "CreateFilterRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1244,7 +1244,7 @@ M.CreateFilterInput = schema.new({
 })
 
 M.CreateFilterOutput = schema.new({
-    id = id.from(_N, "CreateFilterOutput"),
+    id = id.from(_N, "CreateFilterResponse"),
     type = "structure",
     members = {
         filterArn = schema.new({
@@ -1314,7 +1314,7 @@ M.MetricAttributionOutput = schema.new({
 })
 
 M.CreateMetricAttributionInput = schema.new({
-    id = id.from(_N, "CreateMetricAttributionInput"),
+    id = id.from(_N, "CreateMetricAttributionRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1359,7 +1359,7 @@ M.CreateMetricAttributionInput = schema.new({
 })
 
 M.CreateMetricAttributionOutput = schema.new({
-    id = id.from(_N, "CreateMetricAttributionOutput"),
+    id = id.from(_N, "CreateMetricAttributionResponse"),
     type = "structure",
     members = {
         metricAttributionArn = schema.new({
@@ -1381,7 +1381,7 @@ M.TrainingDataConfig = schema.new({
             name = "excludedDatasetColumns",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         includedDatasetColumns = schema.new({
             id = id.from(_N, "TrainingDataConfig", "includedDatasetColumns"),
@@ -1389,7 +1389,7 @@ M.TrainingDataConfig = schema.new({
             name = "includedDatasetColumns",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -1429,7 +1429,7 @@ M.RecommenderConfig = schema.new({
 })
 
 M.CreateRecommenderInput = schema.new({
-    id = id.from(_N, "CreateRecommenderInput"),
+    id = id.from(_N, "CreateRecommenderRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1477,7 +1477,7 @@ M.CreateRecommenderInput = schema.new({
 })
 
 M.CreateRecommenderOutput = schema.new({
-    id = id.from(_N, "CreateRecommenderOutput"),
+    id = id.from(_N, "CreateRecommenderResponse"),
     type = "structure",
     members = {
         recommenderArn = schema.new({
@@ -1490,7 +1490,7 @@ M.CreateRecommenderOutput = schema.new({
 })
 
 M.CreateSchemaInput = schema.new({
-    id = id.from(_N, "CreateSchemaInput"),
+    id = id.from(_N, "CreateSchemaRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1521,7 +1521,7 @@ M.CreateSchemaInput = schema.new({
 })
 
 M.CreateSchemaOutput = schema.new({
-    id = id.from(_N, "CreateSchemaOutput"),
+    id = id.from(_N, "CreateSchemaResponse"),
     type = "structure",
     members = {
         schemaArn = schema.new({
@@ -1878,7 +1878,7 @@ M.SolutionConfig = schema.new({
 })
 
 M.CreateSolutionInput = schema.new({
-    id = id.from(_N, "CreateSolutionInput"),
+    id = id.from(_N, "CreateSolutionRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1956,7 +1956,7 @@ M.CreateSolutionInput = schema.new({
 })
 
 M.CreateSolutionOutput = schema.new({
-    id = id.from(_N, "CreateSolutionOutput"),
+    id = id.from(_N, "CreateSolutionResponse"),
     type = "structure",
     members = {
         solutionArn = schema.new({
@@ -1969,7 +1969,7 @@ M.CreateSolutionOutput = schema.new({
 })
 
 M.CreateSolutionVersionInput = schema.new({
-    id = id.from(_N, "CreateSolutionVersionInput"),
+    id = id.from(_N, "CreateSolutionVersionRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2004,7 +2004,7 @@ M.CreateSolutionVersionInput = schema.new({
 })
 
 M.CreateSolutionVersionOutput = schema.new({
-    id = id.from(_N, "CreateSolutionVersionOutput"),
+    id = id.from(_N, "CreateSolutionVersionResponse"),
     type = "structure",
     members = {
         solutionVersionArn = schema.new({
@@ -2017,7 +2017,7 @@ M.CreateSolutionVersionOutput = schema.new({
 })
 
 M.DeleteCampaignInput = schema.new({
-    id = id.from(_N, "DeleteCampaignInput"),
+    id = id.from(_N, "DeleteCampaignRequest"),
     type = "structure",
     members = {
         campaignArn = schema.new({
@@ -2033,12 +2033,12 @@ M.DeleteCampaignInput = schema.new({
 })
 
 M.DeleteCampaignOutput = schema.new({
-    id = id.from(_N, "DeleteCampaignOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDatasetInput = schema.new({
-    id = id.from(_N, "DeleteDatasetInput"),
+    id = id.from(_N, "DeleteDatasetRequest"),
     type = "structure",
     members = {
         datasetArn = schema.new({
@@ -2054,12 +2054,12 @@ M.DeleteDatasetInput = schema.new({
 })
 
 M.DeleteDatasetOutput = schema.new({
-    id = id.from(_N, "DeleteDatasetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDatasetGroupInput = schema.new({
-    id = id.from(_N, "DeleteDatasetGroupInput"),
+    id = id.from(_N, "DeleteDatasetGroupRequest"),
     type = "structure",
     members = {
         datasetGroupArn = schema.new({
@@ -2075,12 +2075,12 @@ M.DeleteDatasetGroupInput = schema.new({
 })
 
 M.DeleteDatasetGroupOutput = schema.new({
-    id = id.from(_N, "DeleteDatasetGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteEventTrackerInput = schema.new({
-    id = id.from(_N, "DeleteEventTrackerInput"),
+    id = id.from(_N, "DeleteEventTrackerRequest"),
     type = "structure",
     members = {
         eventTrackerArn = schema.new({
@@ -2096,12 +2096,12 @@ M.DeleteEventTrackerInput = schema.new({
 })
 
 M.DeleteEventTrackerOutput = schema.new({
-    id = id.from(_N, "DeleteEventTrackerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteFilterInput = schema.new({
-    id = id.from(_N, "DeleteFilterInput"),
+    id = id.from(_N, "DeleteFilterRequest"),
     type = "structure",
     members = {
         filterArn = schema.new({
@@ -2117,12 +2117,12 @@ M.DeleteFilterInput = schema.new({
 })
 
 M.DeleteFilterOutput = schema.new({
-    id = id.from(_N, "DeleteFilterOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMetricAttributionInput = schema.new({
-    id = id.from(_N, "DeleteMetricAttributionInput"),
+    id = id.from(_N, "DeleteMetricAttributionRequest"),
     type = "structure",
     members = {
         metricAttributionArn = schema.new({
@@ -2138,12 +2138,12 @@ M.DeleteMetricAttributionInput = schema.new({
 })
 
 M.DeleteMetricAttributionOutput = schema.new({
-    id = id.from(_N, "DeleteMetricAttributionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRecommenderInput = schema.new({
-    id = id.from(_N, "DeleteRecommenderInput"),
+    id = id.from(_N, "DeleteRecommenderRequest"),
     type = "structure",
     members = {
         recommenderArn = schema.new({
@@ -2159,12 +2159,12 @@ M.DeleteRecommenderInput = schema.new({
 })
 
 M.DeleteRecommenderOutput = schema.new({
-    id = id.from(_N, "DeleteRecommenderOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteSchemaInput = schema.new({
-    id = id.from(_N, "DeleteSchemaInput"),
+    id = id.from(_N, "DeleteSchemaRequest"),
     type = "structure",
     members = {
         schemaArn = schema.new({
@@ -2180,12 +2180,12 @@ M.DeleteSchemaInput = schema.new({
 })
 
 M.DeleteSchemaOutput = schema.new({
-    id = id.from(_N, "DeleteSchemaOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteSolutionInput = schema.new({
-    id = id.from(_N, "DeleteSolutionInput"),
+    id = id.from(_N, "DeleteSolutionRequest"),
     type = "structure",
     members = {
         solutionArn = schema.new({
@@ -2201,12 +2201,12 @@ M.DeleteSolutionInput = schema.new({
 })
 
 M.DeleteSolutionOutput = schema.new({
-    id = id.from(_N, "DeleteSolutionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeAlgorithmInput = schema.new({
-    id = id.from(_N, "DescribeAlgorithmInput"),
+    id = id.from(_N, "DescribeAlgorithmRequest"),
     type = "structure",
     members = {
         algorithmArn = schema.new({
@@ -2222,7 +2222,7 @@ M.DescribeAlgorithmInput = schema.new({
 })
 
 M.DescribeAlgorithmOutput = schema.new({
-    id = id.from(_N, "DescribeAlgorithmOutput"),
+    id = id.from(_N, "DescribeAlgorithmResponse"),
     type = "structure",
     members = {
         algorithm = schema.new({
@@ -2236,7 +2236,7 @@ M.DescribeAlgorithmOutput = schema.new({
 })
 
 M.DescribeBatchInferenceJobInput = schema.new({
-    id = id.from(_N, "DescribeBatchInferenceJobInput"),
+    id = id.from(_N, "DescribeBatchInferenceJobRequest"),
     type = "structure",
     members = {
         batchInferenceJobArn = schema.new({
@@ -2353,7 +2353,7 @@ M.BatchInferenceJob = schema.new({
 })
 
 M.DescribeBatchInferenceJobOutput = schema.new({
-    id = id.from(_N, "DescribeBatchInferenceJobOutput"),
+    id = id.from(_N, "DescribeBatchInferenceJobResponse"),
     type = "structure",
     members = {
         batchInferenceJob = schema.new({
@@ -2367,7 +2367,7 @@ M.DescribeBatchInferenceJobOutput = schema.new({
 })
 
 M.DescribeBatchSegmentJobInput = schema.new({
-    id = id.from(_N, "DescribeBatchSegmentJobInput"),
+    id = id.from(_N, "DescribeBatchSegmentJobRequest"),
     type = "structure",
     members = {
         batchSegmentJobArn = schema.new({
@@ -2464,7 +2464,7 @@ M.BatchSegmentJob = schema.new({
 })
 
 M.DescribeBatchSegmentJobOutput = schema.new({
-    id = id.from(_N, "DescribeBatchSegmentJobOutput"),
+    id = id.from(_N, "DescribeBatchSegmentJobResponse"),
     type = "structure",
     members = {
         batchSegmentJob = schema.new({
@@ -2478,7 +2478,7 @@ M.DescribeBatchSegmentJobOutput = schema.new({
 })
 
 M.DescribeCampaignInput = schema.new({
-    id = id.from(_N, "DescribeCampaignInput"),
+    id = id.from(_N, "DescribeCampaignRequest"),
     type = "structure",
     members = {
         campaignArn = schema.new({
@@ -2613,7 +2613,7 @@ M.Campaign = schema.new({
 })
 
 M.DescribeCampaignOutput = schema.new({
-    id = id.from(_N, "DescribeCampaignOutput"),
+    id = id.from(_N, "DescribeCampaignResponse"),
     type = "structure",
     members = {
         campaign = schema.new({
@@ -2627,7 +2627,7 @@ M.DescribeCampaignOutput = schema.new({
 })
 
 M.DescribeDataDeletionJobInput = schema.new({
-    id = id.from(_N, "DescribeDataDeletionJobInput"),
+    id = id.from(_N, "DescribeDataDeletionJobRequest"),
     type = "structure",
     members = {
         dataDeletionJobArn = schema.new({
@@ -2711,7 +2711,7 @@ M.DataDeletionJob = schema.new({
 })
 
 M.DescribeDataDeletionJobOutput = schema.new({
-    id = id.from(_N, "DescribeDataDeletionJobOutput"),
+    id = id.from(_N, "DescribeDataDeletionJobResponse"),
     type = "structure",
     members = {
         dataDeletionJob = schema.new({
@@ -2725,7 +2725,7 @@ M.DescribeDataDeletionJobOutput = schema.new({
 })
 
 M.DescribeDatasetInput = schema.new({
-    id = id.from(_N, "DescribeDatasetInput"),
+    id = id.from(_N, "DescribeDatasetRequest"),
     type = "structure",
     members = {
         datasetArn = schema.new({
@@ -2846,7 +2846,7 @@ M.Dataset = schema.new({
 })
 
 M.DescribeDatasetOutput = schema.new({
-    id = id.from(_N, "DescribeDatasetOutput"),
+    id = id.from(_N, "DescribeDatasetResponse"),
     type = "structure",
     members = {
         dataset = schema.new({
@@ -2860,7 +2860,7 @@ M.DescribeDatasetOutput = schema.new({
 })
 
 M.DescribeDatasetExportJobInput = schema.new({
-    id = id.from(_N, "DescribeDatasetExportJobInput"),
+    id = id.from(_N, "DescribeDatasetExportJobRequest"),
     type = "structure",
     members = {
         datasetExportJobArn = schema.new({
@@ -2944,7 +2944,7 @@ M.DatasetExportJob = schema.new({
 })
 
 M.DescribeDatasetExportJobOutput = schema.new({
-    id = id.from(_N, "DescribeDatasetExportJobOutput"),
+    id = id.from(_N, "DescribeDatasetExportJobResponse"),
     type = "structure",
     members = {
         datasetExportJob = schema.new({
@@ -2958,7 +2958,7 @@ M.DescribeDatasetExportJobOutput = schema.new({
 })
 
 M.DescribeDatasetGroupInput = schema.new({
-    id = id.from(_N, "DescribeDatasetGroupInput"),
+    id = id.from(_N, "DescribeDatasetGroupRequest"),
     type = "structure",
     members = {
         datasetGroupArn = schema.new({
@@ -3035,7 +3035,7 @@ M.DatasetGroup = schema.new({
 })
 
 M.DescribeDatasetGroupOutput = schema.new({
-    id = id.from(_N, "DescribeDatasetGroupOutput"),
+    id = id.from(_N, "DescribeDatasetGroupResponse"),
     type = "structure",
     members = {
         datasetGroup = schema.new({
@@ -3049,7 +3049,7 @@ M.DescribeDatasetGroupOutput = schema.new({
 })
 
 M.DescribeDatasetImportJobInput = schema.new({
-    id = id.from(_N, "DescribeDatasetImportJobInput"),
+    id = id.from(_N, "DescribeDatasetImportJobRequest"),
     type = "structure",
     members = {
         datasetImportJobArn = schema.new({
@@ -3139,7 +3139,7 @@ M.DatasetImportJob = schema.new({
 })
 
 M.DescribeDatasetImportJobOutput = schema.new({
-    id = id.from(_N, "DescribeDatasetImportJobOutput"),
+    id = id.from(_N, "DescribeDatasetImportJobResponse"),
     type = "structure",
     members = {
         datasetImportJob = schema.new({
@@ -3153,7 +3153,7 @@ M.DescribeDatasetImportJobOutput = schema.new({
 })
 
 M.DescribeEventTrackerInput = schema.new({
-    id = id.from(_N, "DescribeEventTrackerInput"),
+    id = id.from(_N, "DescribeEventTrackerRequest"),
     type = "structure",
     members = {
         eventTrackerArn = schema.new({
@@ -3224,7 +3224,7 @@ M.EventTracker = schema.new({
 })
 
 M.DescribeEventTrackerOutput = schema.new({
-    id = id.from(_N, "DescribeEventTrackerOutput"),
+    id = id.from(_N, "DescribeEventTrackerResponse"),
     type = "structure",
     members = {
         eventTracker = schema.new({
@@ -3238,7 +3238,7 @@ M.DescribeEventTrackerOutput = schema.new({
 })
 
 M.DescribeFeatureTransformationInput = schema.new({
-    id = id.from(_N, "DescribeFeatureTransformationInput"),
+    id = id.from(_N, "DescribeFeatureTransformationRequest"),
     type = "structure",
     members = {
         featureTransformationArn = schema.new({
@@ -3299,7 +3299,7 @@ M.FeatureTransformation = schema.new({
 })
 
 M.DescribeFeatureTransformationOutput = schema.new({
-    id = id.from(_N, "DescribeFeatureTransformationOutput"),
+    id = id.from(_N, "DescribeFeatureTransformationResponse"),
     type = "structure",
     members = {
         featureTransformation = schema.new({
@@ -3313,7 +3313,7 @@ M.DescribeFeatureTransformationOutput = schema.new({
 })
 
 M.DescribeFilterInput = schema.new({
-    id = id.from(_N, "DescribeFilterInput"),
+    id = id.from(_N, "DescribeFilterRequest"),
     type = "structure",
     members = {
         filterArn = schema.new({
@@ -3384,7 +3384,7 @@ M.Filter = schema.new({
 })
 
 M.DescribeFilterOutput = schema.new({
-    id = id.from(_N, "DescribeFilterOutput"),
+    id = id.from(_N, "DescribeFilterResponse"),
     type = "structure",
     members = {
         filter = schema.new({
@@ -3398,7 +3398,7 @@ M.DescribeFilterOutput = schema.new({
 })
 
 M.DescribeMetricAttributionInput = schema.new({
-    id = id.from(_N, "DescribeMetricAttributionInput"),
+    id = id.from(_N, "DescribeMetricAttributionRequest"),
     type = "structure",
     members = {
         metricAttributionArn = schema.new({
@@ -3470,7 +3470,7 @@ M.MetricAttribution = schema.new({
 })
 
 M.DescribeMetricAttributionOutput = schema.new({
-    id = id.from(_N, "DescribeMetricAttributionOutput"),
+    id = id.from(_N, "DescribeMetricAttributionResponse"),
     type = "structure",
     members = {
         metricAttribution = schema.new({
@@ -3484,7 +3484,7 @@ M.DescribeMetricAttributionOutput = schema.new({
 })
 
 M.DescribeRecipeInput = schema.new({
-    id = id.from(_N, "DescribeRecipeInput"),
+    id = id.from(_N, "DescribeRecipeRequest"),
     type = "structure",
     members = {
         recipeArn = schema.new({
@@ -3561,7 +3561,7 @@ M.Recipe = schema.new({
 })
 
 M.DescribeRecipeOutput = schema.new({
-    id = id.from(_N, "DescribeRecipeOutput"),
+    id = id.from(_N, "DescribeRecipeResponse"),
     type = "structure",
     members = {
         recipe = schema.new({
@@ -3575,7 +3575,7 @@ M.DescribeRecipeOutput = schema.new({
 })
 
 M.DescribeRecommenderInput = schema.new({
-    id = id.from(_N, "DescribeRecommenderInput"),
+    id = id.from(_N, "DescribeRecommenderRequest"),
     type = "structure",
     members = {
         recommenderArn = schema.new({
@@ -3706,7 +3706,7 @@ M.Recommender = schema.new({
 })
 
 M.DescribeRecommenderOutput = schema.new({
-    id = id.from(_N, "DescribeRecommenderOutput"),
+    id = id.from(_N, "DescribeRecommenderResponse"),
     type = "structure",
     members = {
         recommender = schema.new({
@@ -3720,7 +3720,7 @@ M.DescribeRecommenderOutput = schema.new({
 })
 
 M.DescribeSchemaInput = schema.new({
-    id = id.from(_N, "DescribeSchemaInput"),
+    id = id.from(_N, "DescribeSchemaRequest"),
     type = "structure",
     members = {
         schemaArn = schema.new({
@@ -3779,7 +3779,7 @@ M.DatasetSchema = schema.new({
 })
 
 M.DescribeSchemaOutput = schema.new({
-    id = id.from(_N, "DescribeSchemaOutput"),
+    id = id.from(_N, "DescribeSchemaResponse"),
     type = "structure",
     members = {
         schema = schema.new({
@@ -3793,7 +3793,7 @@ M.DescribeSchemaOutput = schema.new({
 })
 
 M.DescribeSolutionInput = schema.new({
-    id = id.from(_N, "DescribeSolutionInput"),
+    id = id.from(_N, "DescribeSolutionRequest"),
     type = "structure",
     members = {
         solutionArn = schema.new({
@@ -4055,7 +4055,7 @@ M.Solution = schema.new({
 })
 
 M.DescribeSolutionOutput = schema.new({
-    id = id.from(_N, "DescribeSolutionOutput"),
+    id = id.from(_N, "DescribeSolutionResponse"),
     type = "structure",
     members = {
         solution = schema.new({
@@ -4069,7 +4069,7 @@ M.DescribeSolutionOutput = schema.new({
 })
 
 M.DescribeSolutionVersionInput = schema.new({
-    id = id.from(_N, "DescribeSolutionVersionInput"),
+    id = id.from(_N, "DescribeSolutionVersionRequest"),
     type = "structure",
     members = {
         solutionVersionArn = schema.new({
@@ -4223,7 +4223,7 @@ M.SolutionVersion = schema.new({
 })
 
 M.DescribeSolutionVersionOutput = schema.new({
-    id = id.from(_N, "DescribeSolutionVersionOutput"),
+    id = id.from(_N, "DescribeSolutionVersionResponse"),
     type = "structure",
     members = {
         solutionVersion = schema.new({
@@ -4237,7 +4237,7 @@ M.DescribeSolutionVersionOutput = schema.new({
 })
 
 M.GetSolutionMetricsInput = schema.new({
-    id = id.from(_N, "GetSolutionMetricsInput"),
+    id = id.from(_N, "GetSolutionMetricsRequest"),
     type = "structure",
     members = {
         solutionVersionArn = schema.new({
@@ -4253,7 +4253,7 @@ M.GetSolutionMetricsInput = schema.new({
 })
 
 M.GetSolutionMetricsOutput = schema.new({
-    id = id.from(_N, "GetSolutionMetricsOutput"),
+    id = id.from(_N, "GetSolutionMetricsResponse"),
     type = "structure",
     members = {
         solutionVersionArn = schema.new({
@@ -4290,7 +4290,7 @@ M.InvalidNextTokenException = schema.new({
 })
 
 M.ListBatchInferenceJobsInput = schema.new({
-    id = id.from(_N, "ListBatchInferenceJobsInput"),
+    id = id.from(_N, "ListBatchInferenceJobsRequest"),
     type = "structure",
     members = {
         solutionVersionArn = schema.new({
@@ -4370,7 +4370,7 @@ M.BatchInferenceJobSummary = schema.new({
 })
 
 M.ListBatchInferenceJobsOutput = schema.new({
-    id = id.from(_N, "ListBatchInferenceJobsOutput"),
+    id = id.from(_N, "ListBatchInferenceJobsResponse"),
     type = "structure",
     members = {
         batchInferenceJobs = schema.new({
@@ -4390,7 +4390,7 @@ M.ListBatchInferenceJobsOutput = schema.new({
 })
 
 M.ListBatchSegmentJobsInput = schema.new({
-    id = id.from(_N, "ListBatchSegmentJobsInput"),
+    id = id.from(_N, "ListBatchSegmentJobsRequest"),
     type = "structure",
     members = {
         solutionVersionArn = schema.new({
@@ -4464,7 +4464,7 @@ M.BatchSegmentJobSummary = schema.new({
 })
 
 M.ListBatchSegmentJobsOutput = schema.new({
-    id = id.from(_N, "ListBatchSegmentJobsOutput"),
+    id = id.from(_N, "ListBatchSegmentJobsResponse"),
     type = "structure",
     members = {
         batchSegmentJobs = schema.new({
@@ -4484,7 +4484,7 @@ M.ListBatchSegmentJobsOutput = schema.new({
 })
 
 M.ListCampaignsInput = schema.new({
-    id = id.from(_N, "ListCampaignsInput"),
+    id = id.from(_N, "ListCampaignsRequest"),
     type = "structure",
     members = {
         solutionArn = schema.new({
@@ -4552,7 +4552,7 @@ M.CampaignSummary = schema.new({
 })
 
 M.ListCampaignsOutput = schema.new({
-    id = id.from(_N, "ListCampaignsOutput"),
+    id = id.from(_N, "ListCampaignsResponse"),
     type = "structure",
     members = {
         campaigns = schema.new({
@@ -4572,7 +4572,7 @@ M.ListCampaignsOutput = schema.new({
 })
 
 M.ListDataDeletionJobsInput = schema.new({
-    id = id.from(_N, "ListDataDeletionJobsInput"),
+    id = id.from(_N, "ListDataDeletionJobsRequest"),
     type = "structure",
     members = {
         datasetGroupArn = schema.new({
@@ -4646,7 +4646,7 @@ M.DataDeletionJobSummary = schema.new({
 })
 
 M.ListDataDeletionJobsOutput = schema.new({
-    id = id.from(_N, "ListDataDeletionJobsOutput"),
+    id = id.from(_N, "ListDataDeletionJobsResponse"),
     type = "structure",
     members = {
         dataDeletionJobs = schema.new({
@@ -4666,7 +4666,7 @@ M.ListDataDeletionJobsOutput = schema.new({
 })
 
 M.ListDatasetExportJobsInput = schema.new({
-    id = id.from(_N, "ListDatasetExportJobsInput"),
+    id = id.from(_N, "ListDatasetExportJobsRequest"),
     type = "structure",
     members = {
         datasetArn = schema.new({
@@ -4734,7 +4734,7 @@ M.DatasetExportJobSummary = schema.new({
 })
 
 M.ListDatasetExportJobsOutput = schema.new({
-    id = id.from(_N, "ListDatasetExportJobsOutput"),
+    id = id.from(_N, "ListDatasetExportJobsResponse"),
     type = "structure",
     members = {
         datasetExportJobs = schema.new({
@@ -4754,7 +4754,7 @@ M.ListDatasetExportJobsOutput = schema.new({
 })
 
 M.ListDatasetGroupsInput = schema.new({
-    id = id.from(_N, "ListDatasetGroupsInput"),
+    id = id.from(_N, "ListDatasetGroupsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4822,7 +4822,7 @@ M.DatasetGroupSummary = schema.new({
 })
 
 M.ListDatasetGroupsOutput = schema.new({
-    id = id.from(_N, "ListDatasetGroupsOutput"),
+    id = id.from(_N, "ListDatasetGroupsResponse"),
     type = "structure",
     members = {
         datasetGroups = schema.new({
@@ -4842,7 +4842,7 @@ M.ListDatasetGroupsOutput = schema.new({
 })
 
 M.ListDatasetImportJobsInput = schema.new({
-    id = id.from(_N, "ListDatasetImportJobsInput"),
+    id = id.from(_N, "ListDatasetImportJobsRequest"),
     type = "structure",
     members = {
         datasetArn = schema.new({
@@ -4916,7 +4916,7 @@ M.DatasetImportJobSummary = schema.new({
 })
 
 M.ListDatasetImportJobsOutput = schema.new({
-    id = id.from(_N, "ListDatasetImportJobsOutput"),
+    id = id.from(_N, "ListDatasetImportJobsResponse"),
     type = "structure",
     members = {
         datasetImportJobs = schema.new({
@@ -4936,7 +4936,7 @@ M.ListDatasetImportJobsOutput = schema.new({
 })
 
 M.ListDatasetsInput = schema.new({
-    id = id.from(_N, "ListDatasetsInput"),
+    id = id.from(_N, "ListDatasetsRequest"),
     type = "structure",
     members = {
         datasetGroupArn = schema.new({
@@ -5004,7 +5004,7 @@ M.DatasetSummary = schema.new({
 })
 
 M.ListDatasetsOutput = schema.new({
-    id = id.from(_N, "ListDatasetsOutput"),
+    id = id.from(_N, "ListDatasetsResponse"),
     type = "structure",
     members = {
         datasets = schema.new({
@@ -5024,7 +5024,7 @@ M.ListDatasetsOutput = schema.new({
 })
 
 M.ListEventTrackersInput = schema.new({
-    id = id.from(_N, "ListEventTrackersInput"),
+    id = id.from(_N, "ListEventTrackersRequest"),
     type = "structure",
     members = {
         datasetGroupArn = schema.new({
@@ -5086,7 +5086,7 @@ M.EventTrackerSummary = schema.new({
 })
 
 M.ListEventTrackersOutput = schema.new({
-    id = id.from(_N, "ListEventTrackersOutput"),
+    id = id.from(_N, "ListEventTrackersResponse"),
     type = "structure",
     members = {
         eventTrackers = schema.new({
@@ -5106,7 +5106,7 @@ M.ListEventTrackersOutput = schema.new({
 })
 
 M.ListFiltersInput = schema.new({
-    id = id.from(_N, "ListFiltersInput"),
+    id = id.from(_N, "ListFiltersRequest"),
     type = "structure",
     members = {
         datasetGroupArn = schema.new({
@@ -5180,7 +5180,7 @@ M.FilterSummary = schema.new({
 })
 
 M.ListFiltersOutput = schema.new({
-    id = id.from(_N, "ListFiltersOutput"),
+    id = id.from(_N, "ListFiltersResponse"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -5200,7 +5200,7 @@ M.ListFiltersOutput = schema.new({
 })
 
 M.ListMetricAttributionMetricsInput = schema.new({
-    id = id.from(_N, "ListMetricAttributionMetricsInput"),
+    id = id.from(_N, "ListMetricAttributionMetricsRequest"),
     type = "structure",
     members = {
         metricAttributionArn = schema.new({
@@ -5225,7 +5225,7 @@ M.ListMetricAttributionMetricsInput = schema.new({
 })
 
 M.ListMetricAttributionMetricsOutput = schema.new({
-    id = id.from(_N, "ListMetricAttributionMetricsOutput"),
+    id = id.from(_N, "ListMetricAttributionMetricsResponse"),
     type = "structure",
     members = {
         metrics = schema.new({
@@ -5245,7 +5245,7 @@ M.ListMetricAttributionMetricsOutput = schema.new({
 })
 
 M.ListMetricAttributionsInput = schema.new({
-    id = id.from(_N, "ListMetricAttributionsInput"),
+    id = id.from(_N, "ListMetricAttributionsRequest"),
     type = "structure",
     members = {
         datasetGroupArn = schema.new({
@@ -5313,7 +5313,7 @@ M.MetricAttributionSummary = schema.new({
 })
 
 M.ListMetricAttributionsOutput = schema.new({
-    id = id.from(_N, "ListMetricAttributionsOutput"),
+    id = id.from(_N, "ListMetricAttributionsResponse"),
     type = "structure",
     members = {
         metricAttributions = schema.new({
@@ -5333,7 +5333,7 @@ M.ListMetricAttributionsOutput = schema.new({
 })
 
 M.ListRecipesInput = schema.new({
-    id = id.from(_N, "ListRecipesInput"),
+    id = id.from(_N, "ListRecipesRequest"),
     type = "structure",
     members = {
         recipeProvider = schema.new({
@@ -5407,7 +5407,7 @@ M.RecipeSummary = schema.new({
 })
 
 M.ListRecipesOutput = schema.new({
-    id = id.from(_N, "ListRecipesOutput"),
+    id = id.from(_N, "ListRecipesResponse"),
     type = "structure",
     members = {
         recipes = schema.new({
@@ -5427,7 +5427,7 @@ M.ListRecipesOutput = schema.new({
 })
 
 M.ListRecommendersInput = schema.new({
-    id = id.from(_N, "ListRecommendersInput"),
+    id = id.from(_N, "ListRecommendersRequest"),
     type = "structure",
     members = {
         datasetGroupArn = schema.new({
@@ -5508,7 +5508,7 @@ M.RecommenderSummary = schema.new({
 })
 
 M.ListRecommendersOutput = schema.new({
-    id = id.from(_N, "ListRecommendersOutput"),
+    id = id.from(_N, "ListRecommendersResponse"),
     type = "structure",
     members = {
         recommenders = schema.new({
@@ -5528,7 +5528,7 @@ M.ListRecommendersOutput = schema.new({
 })
 
 M.ListSchemasInput = schema.new({
-    id = id.from(_N, "ListSchemasInput"),
+    id = id.from(_N, "ListSchemasRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5584,7 +5584,7 @@ M.DatasetSchemaSummary = schema.new({
 })
 
 M.ListSchemasOutput = schema.new({
-    id = id.from(_N, "ListSchemasOutput"),
+    id = id.from(_N, "ListSchemasResponse"),
     type = "structure",
     members = {
         schemas = schema.new({
@@ -5604,7 +5604,7 @@ M.ListSchemasOutput = schema.new({
 })
 
 M.ListSolutionsInput = schema.new({
-    id = id.from(_N, "ListSolutionsInput"),
+    id = id.from(_N, "ListSolutionsRequest"),
     type = "structure",
     members = {
         datasetGroupArn = schema.new({
@@ -5672,7 +5672,7 @@ M.SolutionSummary = schema.new({
 })
 
 M.ListSolutionsOutput = schema.new({
-    id = id.from(_N, "ListSolutionsOutput"),
+    id = id.from(_N, "ListSolutionsResponse"),
     type = "structure",
     members = {
         solutions = schema.new({
@@ -5692,7 +5692,7 @@ M.ListSolutionsOutput = schema.new({
 })
 
 M.ListSolutionVersionsInput = schema.new({
-    id = id.from(_N, "ListSolutionVersionsInput"),
+    id = id.from(_N, "ListSolutionVersionsRequest"),
     type = "structure",
     members = {
         solutionArn = schema.new({
@@ -5717,7 +5717,7 @@ M.ListSolutionVersionsInput = schema.new({
 })
 
 M.ListSolutionVersionsOutput = schema.new({
-    id = id.from(_N, "ListSolutionVersionsOutput"),
+    id = id.from(_N, "ListSolutionVersionsResponse"),
     type = "structure",
     members = {
         solutionVersions = schema.new({
@@ -5737,7 +5737,7 @@ M.ListSolutionVersionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5753,7 +5753,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -5767,7 +5767,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.StartRecommenderInput = schema.new({
-    id = id.from(_N, "StartRecommenderInput"),
+    id = id.from(_N, "StartRecommenderRequest"),
     type = "structure",
     members = {
         recommenderArn = schema.new({
@@ -5783,7 +5783,7 @@ M.StartRecommenderInput = schema.new({
 })
 
 M.StartRecommenderOutput = schema.new({
-    id = id.from(_N, "StartRecommenderOutput"),
+    id = id.from(_N, "StartRecommenderResponse"),
     type = "structure",
     members = {
         recommenderArn = schema.new({
@@ -5796,7 +5796,7 @@ M.StartRecommenderOutput = schema.new({
 })
 
 M.StopRecommenderInput = schema.new({
-    id = id.from(_N, "StopRecommenderInput"),
+    id = id.from(_N, "StopRecommenderRequest"),
     type = "structure",
     members = {
         recommenderArn = schema.new({
@@ -5812,7 +5812,7 @@ M.StopRecommenderInput = schema.new({
 })
 
 M.StopRecommenderOutput = schema.new({
-    id = id.from(_N, "StopRecommenderOutput"),
+    id = id.from(_N, "StopRecommenderResponse"),
     type = "structure",
     members = {
         recommenderArn = schema.new({
@@ -5825,7 +5825,7 @@ M.StopRecommenderOutput = schema.new({
 })
 
 M.StopSolutionVersionCreationInput = schema.new({
-    id = id.from(_N, "StopSolutionVersionCreationInput"),
+    id = id.from(_N, "StopSolutionVersionCreationRequest"),
     type = "structure",
     members = {
         solutionVersionArn = schema.new({
@@ -5841,12 +5841,12 @@ M.StopSolutionVersionCreationInput = schema.new({
 })
 
 M.StopSolutionVersionCreationOutput = schema.new({
-    id = id.from(_N, "StopSolutionVersionCreationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5872,7 +5872,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -5893,7 +5893,7 @@ M.TooManyTagKeysException = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5919,12 +5919,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateCampaignInput = schema.new({
-    id = id.from(_N, "UpdateCampaignInput"),
+    id = id.from(_N, "UpdateCampaignRequest"),
     type = "structure",
     members = {
         campaignArn = schema.new({
@@ -5959,7 +5959,7 @@ M.UpdateCampaignInput = schema.new({
 })
 
 M.UpdateCampaignOutput = schema.new({
-    id = id.from(_N, "UpdateCampaignOutput"),
+    id = id.from(_N, "UpdateCampaignResponse"),
     type = "structure",
     members = {
         campaignArn = schema.new({
@@ -5972,7 +5972,7 @@ M.UpdateCampaignOutput = schema.new({
 })
 
 M.UpdateDatasetInput = schema.new({
-    id = id.from(_N, "UpdateDatasetInput"),
+    id = id.from(_N, "UpdateDatasetRequest"),
     type = "structure",
     members = {
         datasetArn = schema.new({
@@ -5997,7 +5997,7 @@ M.UpdateDatasetInput = schema.new({
 })
 
 M.UpdateDatasetOutput = schema.new({
-    id = id.from(_N, "UpdateDatasetOutput"),
+    id = id.from(_N, "UpdateDatasetResponse"),
     type = "structure",
     members = {
         datasetArn = schema.new({
@@ -6010,7 +6010,7 @@ M.UpdateDatasetOutput = schema.new({
 })
 
 M.UpdateMetricAttributionInput = schema.new({
-    id = id.from(_N, "UpdateMetricAttributionInput"),
+    id = id.from(_N, "UpdateMetricAttributionRequest"),
     type = "structure",
     members = {
         addMetrics = schema.new({
@@ -6044,7 +6044,7 @@ M.UpdateMetricAttributionInput = schema.new({
 })
 
 M.UpdateMetricAttributionOutput = schema.new({
-    id = id.from(_N, "UpdateMetricAttributionOutput"),
+    id = id.from(_N, "UpdateMetricAttributionResponse"),
     type = "structure",
     members = {
         metricAttributionArn = schema.new({
@@ -6057,7 +6057,7 @@ M.UpdateMetricAttributionOutput = schema.new({
 })
 
 M.UpdateRecommenderInput = schema.new({
-    id = id.from(_N, "UpdateRecommenderInput"),
+    id = id.from(_N, "UpdateRecommenderRequest"),
     type = "structure",
     members = {
         recommenderArn = schema.new({
@@ -6083,7 +6083,7 @@ M.UpdateRecommenderInput = schema.new({
 })
 
 M.UpdateRecommenderOutput = schema.new({
-    id = id.from(_N, "UpdateRecommenderOutput"),
+    id = id.from(_N, "UpdateRecommenderResponse"),
     type = "structure",
     members = {
         recommenderArn = schema.new({
@@ -6096,7 +6096,7 @@ M.UpdateRecommenderOutput = schema.new({
 })
 
 M.UpdateSolutionInput = schema.new({
-    id = id.from(_N, "UpdateSolutionInput"),
+    id = id.from(_N, "UpdateSolutionRequest"),
     type = "structure",
     members = {
         solutionArn = schema.new({
@@ -6131,7 +6131,7 @@ M.UpdateSolutionInput = schema.new({
 })
 
 M.UpdateSolutionOutput = schema.new({
-    id = id.from(_N, "UpdateSolutionOutput"),
+    id = id.from(_N, "UpdateSolutionResponse"),
     type = "structure",
     members = {
         solutionArn = schema.new({
@@ -6142,5 +6142,19 @@ M.UpdateSolutionOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -8,7 +8,7 @@ local _N = "com.amazonaws.licensemanagerlinuxsubscriptions"
 local M = {}
 
 M.DeregisterSubscriptionProviderInput = schema.new({
-    id = id.from(_N, "DeregisterSubscriptionProviderInput"),
+    id = id.from(_N, "DeregisterSubscriptionProviderRequest"),
     type = "structure",
     members = {
         SubscriptionProviderArn = schema.new({
@@ -24,7 +24,7 @@ M.DeregisterSubscriptionProviderInput = schema.new({
 })
 
 M.DeregisterSubscriptionProviderOutput = schema.new({
-    id = id.from(_N, "DeregisterSubscriptionProviderOutput"),
+    id = id.from(_N, "DeregisterSubscriptionProviderResponse"),
     type = "structure",
 })
 
@@ -119,7 +119,7 @@ M.Filter = schema.new({
 })
 
 M.GetRegisteredSubscriptionProviderInput = schema.new({
-    id = id.from(_N, "GetRegisteredSubscriptionProviderInput"),
+    id = id.from(_N, "GetRegisteredSubscriptionProviderRequest"),
     type = "structure",
     members = {
         SubscriptionProviderArn = schema.new({
@@ -135,7 +135,7 @@ M.GetRegisteredSubscriptionProviderInput = schema.new({
 })
 
 M.GetRegisteredSubscriptionProviderOutput = schema.new({
-    id = id.from(_N, "GetRegisteredSubscriptionProviderOutput"),
+    id = id.from(_N, "GetRegisteredSubscriptionProviderResponse"),
     type = "structure",
     members = {
         SubscriptionProviderArn = schema.new({
@@ -178,7 +178,7 @@ M.GetRegisteredSubscriptionProviderOutput = schema.new({
 })
 
 M.GetServiceSettingsInput = schema.new({
-    id = id.from(_N, "GetServiceSettingsInput"),
+    id = id.from(_N, "GetServiceSettingsRequest"),
     type = "structure",
 })
 
@@ -209,7 +209,7 @@ M.LinuxSubscriptionsDiscoverySettings = schema.new({
 })
 
 M.GetServiceSettingsOutput = schema.new({
-    id = id.from(_N, "GetServiceSettingsOutput"),
+    id = id.from(_N, "GetServiceSettingsResponse"),
     type = "structure",
     members = {
         LinuxSubscriptionsDiscovery = schema.new({
@@ -348,7 +348,7 @@ M.Instance = schema.new({
 })
 
 M.ListLinuxSubscriptionInstancesInput = schema.new({
-    id = id.from(_N, "ListLinuxSubscriptionInstancesInput"),
+    id = id.from(_N, "ListLinuxSubscriptionInstancesRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -374,7 +374,7 @@ M.ListLinuxSubscriptionInstancesInput = schema.new({
 })
 
 M.ListLinuxSubscriptionInstancesOutput = schema.new({
-    id = id.from(_N, "ListLinuxSubscriptionInstancesOutput"),
+    id = id.from(_N, "ListLinuxSubscriptionInstancesResponse"),
     type = "structure",
     members = {
         Instances = schema.new({
@@ -394,7 +394,7 @@ M.ListLinuxSubscriptionInstancesOutput = schema.new({
 })
 
 M.ListLinuxSubscriptionsInput = schema.new({
-    id = id.from(_N, "ListLinuxSubscriptionsInput"),
+    id = id.from(_N, "ListLinuxSubscriptionsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -445,7 +445,7 @@ M.Subscription = schema.new({
 })
 
 M.ListLinuxSubscriptionsOutput = schema.new({
-    id = id.from(_N, "ListLinuxSubscriptionsOutput"),
+    id = id.from(_N, "ListLinuxSubscriptionsResponse"),
     type = "structure",
     members = {
         Subscriptions = schema.new({
@@ -465,7 +465,7 @@ M.ListLinuxSubscriptionsOutput = schema.new({
 })
 
 M.ListRegisteredSubscriptionProvidersInput = schema.new({
-    id = id.from(_N, "ListRegisteredSubscriptionProvidersInput"),
+    id = id.from(_N, "ListRegisteredSubscriptionProvidersRequest"),
     type = "structure",
     members = {
         SubscriptionProviderSources = schema.new({
@@ -534,7 +534,7 @@ M.RegisteredSubscriptionProvider = schema.new({
 })
 
 M.ListRegisteredSubscriptionProvidersOutput = schema.new({
-    id = id.from(_N, "ListRegisteredSubscriptionProvidersOutput"),
+    id = id.from(_N, "ListRegisteredSubscriptionProvidersResponse"),
     type = "structure",
     members = {
         RegisteredSubscriptionProviders = schema.new({
@@ -554,7 +554,7 @@ M.ListRegisteredSubscriptionProvidersOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -571,7 +571,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -586,7 +586,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.RegisterSubscriptionProviderInput = schema.new({
-    id = id.from(_N, "RegisterSubscriptionProviderInput"),
+    id = id.from(_N, "RegisterSubscriptionProviderRequest"),
     type = "structure",
     members = {
         SubscriptionProviderSource = schema.new({
@@ -619,7 +619,7 @@ M.RegisterSubscriptionProviderInput = schema.new({
 })
 
 M.RegisterSubscriptionProviderOutput = schema.new({
-    id = id.from(_N, "RegisterSubscriptionProviderOutput"),
+    id = id.from(_N, "RegisterSubscriptionProviderResponse"),
     type = "structure",
     members = {
         SubscriptionProviderSource = schema.new({
@@ -644,7 +644,7 @@ M.RegisterSubscriptionProviderOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -672,12 +672,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -705,12 +705,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateServiceSettingsInput = schema.new({
-    id = id.from(_N, "UpdateServiceSettingsInput"),
+    id = id.from(_N, "UpdateServiceSettingsRequest"),
     type = "structure",
     members = {
         LinuxSubscriptionsDiscovery = schema.new({
@@ -742,7 +742,7 @@ M.UpdateServiceSettingsInput = schema.new({
 })
 
 M.UpdateServiceSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateServiceSettingsOutput"),
+    id = id.from(_N, "UpdateServiceSettingsResponse"),
     type = "structure",
     members = {
         LinuxSubscriptionsDiscovery = schema.new({
@@ -781,5 +781,19 @@ M.UpdateServiceSettingsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

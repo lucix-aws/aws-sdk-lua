@@ -285,7 +285,7 @@ M.CallRateLimitExceededException = schema.new({
 })
 
 M.CancelImageCreationInput = schema.new({
-    id = id.from(_N, "CancelImageCreationInput"),
+    id = id.from(_N, "CancelImageCreationRequest"),
     type = "structure",
     members = {
         imageBuildVersionArn = schema.new({
@@ -311,7 +311,7 @@ M.CancelImageCreationInput = schema.new({
 })
 
 M.CancelImageCreationOutput = schema.new({
-    id = id.from(_N, "CancelImageCreationOutput"),
+    id = id.from(_N, "CancelImageCreationResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -448,7 +448,7 @@ M.ServiceUnavailableException = schema.new({
 })
 
 M.CancelLifecycleExecutionInput = schema.new({
-    id = id.from(_N, "CancelLifecycleExecutionInput"),
+    id = id.from(_N, "CancelLifecycleExecutionRequest"),
     type = "structure",
     members = {
         lifecycleExecutionId = schema.new({
@@ -474,7 +474,7 @@ M.CancelLifecycleExecutionInput = schema.new({
 })
 
 M.CancelLifecycleExecutionOutput = schema.new({
-    id = id.from(_N, "CancelLifecycleExecutionOutput"),
+    id = id.from(_N, "CancelLifecycleExecutionResponse"),
     type = "structure",
     members = {
         lifecycleExecutionId = schema.new({
@@ -1280,7 +1280,7 @@ M.ContainerRecipeSummary = schema.new({
 })
 
 M.CreateComponentInput = schema.new({
-    id = id.from(_N, "CreateComponentInput"),
+    id = id.from(_N, "CreateComponentRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1409,7 +1409,7 @@ M.LatestVersionReferences = schema.new({
 })
 
 M.CreateComponentOutput = schema.new({
-    id = id.from(_N, "CreateComponentOutput"),
+    id = id.from(_N, "CreateComponentResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -1505,7 +1505,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.CreateContainerRecipeInput = schema.new({
-    id = id.from(_N, "CreateContainerRecipeInput"),
+    id = id.from(_N, "CreateContainerRecipeRequest"),
     type = "structure",
     members = {
         containerType = schema.new({
@@ -1632,7 +1632,7 @@ M.CreateContainerRecipeInput = schema.new({
 })
 
 M.CreateContainerRecipeOutput = schema.new({
-    id = id.from(_N, "CreateContainerRecipeOutput"),
+    id = id.from(_N, "CreateContainerRecipeResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -1925,7 +1925,7 @@ M.Distribution = schema.new({
 })
 
 M.CreateDistributionConfigurationInput = schema.new({
-    id = id.from(_N, "CreateDistributionConfigurationInput"),
+    id = id.from(_N, "CreateDistributionConfigurationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1975,7 +1975,7 @@ M.CreateDistributionConfigurationInput = schema.new({
 })
 
 M.CreateDistributionConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateDistributionConfigurationOutput"),
+    id = id.from(_N, "CreateDistributionConfigurationResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -2133,7 +2133,7 @@ M.WorkflowConfiguration = schema.new({
 })
 
 M.CreateImageInput = schema.new({
-    id = id.from(_N, "CreateImageInput"),
+    id = id.from(_N, "CreateImageRequest"),
     type = "structure",
     members = {
         imageRecipeArn = schema.new({
@@ -2225,7 +2225,7 @@ M.CreateImageInput = schema.new({
 })
 
 M.CreateImageOutput = schema.new({
-    id = id.from(_N, "CreateImageOutput"),
+    id = id.from(_N, "CreateImageResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -2308,7 +2308,7 @@ M.Schedule = schema.new({
 })
 
 M.CreateImagePipelineInput = schema.new({
-    id = id.from(_N, "CreateImagePipelineInput"),
+    id = id.from(_N, "CreateImagePipelineRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2436,7 +2436,7 @@ M.CreateImagePipelineInput = schema.new({
 })
 
 M.CreateImagePipelineOutput = schema.new({
-    id = id.from(_N, "CreateImagePipelineOutput"),
+    id = id.from(_N, "CreateImagePipelineResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -2461,7 +2461,7 @@ M.CreateImagePipelineOutput = schema.new({
 })
 
 M.CreateImageRecipeInput = schema.new({
-    id = id.from(_N, "CreateImageRecipeInput"),
+    id = id.from(_N, "CreateImageRecipeRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2554,7 +2554,7 @@ M.CreateImageRecipeInput = schema.new({
 })
 
 M.CreateImageRecipeOutput = schema.new({
-    id = id.from(_N, "CreateImageRecipeOutput"),
+    id = id.from(_N, "CreateImageRecipeResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -2669,7 +2669,7 @@ M.Placement = schema.new({
 })
 
 M.CreateInfrastructureConfigurationInput = schema.new({
-    id = id.from(_N, "CreateInfrastructureConfigurationInput"),
+    id = id.from(_N, "CreateInfrastructureConfigurationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2785,7 +2785,7 @@ M.CreateInfrastructureConfigurationInput = schema.new({
 })
 
 M.CreateInfrastructureConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateInfrastructureConfigurationOutput"),
+    id = id.from(_N, "CreateInfrastructureConfigurationResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -3077,7 +3077,7 @@ M.LifecyclePolicyResourceSelection = schema.new({
 })
 
 M.CreateLifecyclePolicyInput = schema.new({
-    id = id.from(_N, "CreateLifecyclePolicyInput"),
+    id = id.from(_N, "CreateLifecyclePolicyRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3161,7 +3161,7 @@ M.CreateLifecyclePolicyInput = schema.new({
 })
 
 M.CreateLifecyclePolicyOutput = schema.new({
-    id = id.from(_N, "CreateLifecyclePolicyOutput"),
+    id = id.from(_N, "CreateLifecyclePolicyResponse"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -3180,7 +3180,7 @@ M.CreateLifecyclePolicyOutput = schema.new({
 })
 
 M.CreateWorkflowInput = schema.new({
-    id = id.from(_N, "CreateWorkflowInput"),
+    id = id.from(_N, "CreateWorkflowRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3271,7 +3271,7 @@ M.CreateWorkflowInput = schema.new({
 })
 
 M.CreateWorkflowOutput = schema.new({
-    id = id.from(_N, "CreateWorkflowOutput"),
+    id = id.from(_N, "CreateWorkflowResponse"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -3391,7 +3391,7 @@ M.CvssScoreDetails = schema.new({
 })
 
 M.DeleteComponentInput = schema.new({
-    id = id.from(_N, "DeleteComponentInput"),
+    id = id.from(_N, "DeleteComponentRequest"),
     type = "structure",
     members = {
         componentBuildVersionArn = schema.new({
@@ -3408,7 +3408,7 @@ M.DeleteComponentInput = schema.new({
 })
 
 M.DeleteComponentOutput = schema.new({
-    id = id.from(_N, "DeleteComponentOutput"),
+    id = id.from(_N, "DeleteComponentResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -3443,7 +3443,7 @@ M.ResourceDependencyException = schema.new({
 })
 
 M.DeleteContainerRecipeInput = schema.new({
-    id = id.from(_N, "DeleteContainerRecipeInput"),
+    id = id.from(_N, "DeleteContainerRecipeRequest"),
     type = "structure",
     members = {
         containerRecipeArn = schema.new({
@@ -3460,7 +3460,7 @@ M.DeleteContainerRecipeInput = schema.new({
 })
 
 M.DeleteContainerRecipeOutput = schema.new({
-    id = id.from(_N, "DeleteContainerRecipeOutput"),
+    id = id.from(_N, "DeleteContainerRecipeResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -3479,7 +3479,7 @@ M.DeleteContainerRecipeOutput = schema.new({
 })
 
 M.DeleteDistributionConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteDistributionConfigurationInput"),
+    id = id.from(_N, "DeleteDistributionConfigurationRequest"),
     type = "structure",
     members = {
         distributionConfigurationArn = schema.new({
@@ -3496,7 +3496,7 @@ M.DeleteDistributionConfigurationInput = schema.new({
 })
 
 M.DeleteDistributionConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteDistributionConfigurationOutput"),
+    id = id.from(_N, "DeleteDistributionConfigurationResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -3515,7 +3515,7 @@ M.DeleteDistributionConfigurationOutput = schema.new({
 })
 
 M.DeleteImageInput = schema.new({
-    id = id.from(_N, "DeleteImageInput"),
+    id = id.from(_N, "DeleteImageRequest"),
     type = "structure",
     members = {
         imageBuildVersionArn = schema.new({
@@ -3532,7 +3532,7 @@ M.DeleteImageInput = schema.new({
 })
 
 M.DeleteImageOutput = schema.new({
-    id = id.from(_N, "DeleteImageOutput"),
+    id = id.from(_N, "DeleteImageResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -3551,7 +3551,7 @@ M.DeleteImageOutput = schema.new({
 })
 
 M.DeleteImagePipelineInput = schema.new({
-    id = id.from(_N, "DeleteImagePipelineInput"),
+    id = id.from(_N, "DeleteImagePipelineRequest"),
     type = "structure",
     members = {
         imagePipelineArn = schema.new({
@@ -3568,7 +3568,7 @@ M.DeleteImagePipelineInput = schema.new({
 })
 
 M.DeleteImagePipelineOutput = schema.new({
-    id = id.from(_N, "DeleteImagePipelineOutput"),
+    id = id.from(_N, "DeleteImagePipelineResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -3587,7 +3587,7 @@ M.DeleteImagePipelineOutput = schema.new({
 })
 
 M.DeleteImageRecipeInput = schema.new({
-    id = id.from(_N, "DeleteImageRecipeInput"),
+    id = id.from(_N, "DeleteImageRecipeRequest"),
     type = "structure",
     members = {
         imageRecipeArn = schema.new({
@@ -3604,7 +3604,7 @@ M.DeleteImageRecipeInput = schema.new({
 })
 
 M.DeleteImageRecipeOutput = schema.new({
-    id = id.from(_N, "DeleteImageRecipeOutput"),
+    id = id.from(_N, "DeleteImageRecipeResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -3623,7 +3623,7 @@ M.DeleteImageRecipeOutput = schema.new({
 })
 
 M.DeleteInfrastructureConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteInfrastructureConfigurationInput"),
+    id = id.from(_N, "DeleteInfrastructureConfigurationRequest"),
     type = "structure",
     members = {
         infrastructureConfigurationArn = schema.new({
@@ -3640,7 +3640,7 @@ M.DeleteInfrastructureConfigurationInput = schema.new({
 })
 
 M.DeleteInfrastructureConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteInfrastructureConfigurationOutput"),
+    id = id.from(_N, "DeleteInfrastructureConfigurationResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -3659,7 +3659,7 @@ M.DeleteInfrastructureConfigurationOutput = schema.new({
 })
 
 M.DeleteLifecyclePolicyInput = schema.new({
-    id = id.from(_N, "DeleteLifecyclePolicyInput"),
+    id = id.from(_N, "DeleteLifecyclePolicyRequest"),
     type = "structure",
     members = {
         lifecyclePolicyArn = schema.new({
@@ -3676,7 +3676,7 @@ M.DeleteLifecyclePolicyInput = schema.new({
 })
 
 M.DeleteLifecyclePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteLifecyclePolicyOutput"),
+    id = id.from(_N, "DeleteLifecyclePolicyResponse"),
     type = "structure",
     members = {
         lifecyclePolicyArn = schema.new({
@@ -3689,7 +3689,7 @@ M.DeleteLifecyclePolicyOutput = schema.new({
 })
 
 M.DeleteWorkflowInput = schema.new({
-    id = id.from(_N, "DeleteWorkflowInput"),
+    id = id.from(_N, "DeleteWorkflowRequest"),
     type = "structure",
     members = {
         workflowBuildVersionArn = schema.new({
@@ -3706,7 +3706,7 @@ M.DeleteWorkflowInput = schema.new({
 })
 
 M.DeleteWorkflowOutput = schema.new({
-    id = id.from(_N, "DeleteWorkflowOutput"),
+    id = id.from(_N, "DeleteWorkflowResponse"),
     type = "structure",
     members = {
         workflowBuildVersionArn = schema.new({
@@ -3719,7 +3719,7 @@ M.DeleteWorkflowOutput = schema.new({
 })
 
 M.DistributeImageInput = schema.new({
-    id = id.from(_N, "DistributeImageInput"),
+    id = id.from(_N, "DistributeImageRequest"),
     type = "structure",
     members = {
         sourceImage = schema.new({
@@ -3778,7 +3778,7 @@ M.DistributeImageInput = schema.new({
 })
 
 M.DistributeImageOutput = schema.new({
-    id = id.from(_N, "DistributeImageOutput"),
+    id = id.from(_N, "DistributeImageResponse"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -3962,7 +3962,7 @@ M.Filter = schema.new({
 })
 
 M.GetComponentInput = schema.new({
-    id = id.from(_N, "GetComponentInput"),
+    id = id.from(_N, "GetComponentRequest"),
     type = "structure",
     members = {
         componentBuildVersionArn = schema.new({
@@ -3979,7 +3979,7 @@ M.GetComponentInput = schema.new({
 })
 
 M.GetComponentOutput = schema.new({
-    id = id.from(_N, "GetComponentOutput"),
+    id = id.from(_N, "GetComponentResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -4006,7 +4006,7 @@ M.GetComponentOutput = schema.new({
 })
 
 M.GetComponentPolicyInput = schema.new({
-    id = id.from(_N, "GetComponentPolicyInput"),
+    id = id.from(_N, "GetComponentPolicyRequest"),
     type = "structure",
     members = {
         componentArn = schema.new({
@@ -4023,7 +4023,7 @@ M.GetComponentPolicyInput = schema.new({
 })
 
 M.GetComponentPolicyOutput = schema.new({
-    id = id.from(_N, "GetComponentPolicyOutput"),
+    id = id.from(_N, "GetComponentPolicyResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -4042,7 +4042,7 @@ M.GetComponentPolicyOutput = schema.new({
 })
 
 M.GetContainerRecipeInput = schema.new({
-    id = id.from(_N, "GetContainerRecipeInput"),
+    id = id.from(_N, "GetContainerRecipeRequest"),
     type = "structure",
     members = {
         containerRecipeArn = schema.new({
@@ -4059,7 +4059,7 @@ M.GetContainerRecipeInput = schema.new({
 })
 
 M.GetContainerRecipeOutput = schema.new({
-    id = id.from(_N, "GetContainerRecipeOutput"),
+    id = id.from(_N, "GetContainerRecipeResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -4086,7 +4086,7 @@ M.GetContainerRecipeOutput = schema.new({
 })
 
 M.GetContainerRecipePolicyInput = schema.new({
-    id = id.from(_N, "GetContainerRecipePolicyInput"),
+    id = id.from(_N, "GetContainerRecipePolicyRequest"),
     type = "structure",
     members = {
         containerRecipeArn = schema.new({
@@ -4103,7 +4103,7 @@ M.GetContainerRecipePolicyInput = schema.new({
 })
 
 M.GetContainerRecipePolicyOutput = schema.new({
-    id = id.from(_N, "GetContainerRecipePolicyOutput"),
+    id = id.from(_N, "GetContainerRecipePolicyResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -4122,7 +4122,7 @@ M.GetContainerRecipePolicyOutput = schema.new({
 })
 
 M.GetDistributionConfigurationInput = schema.new({
-    id = id.from(_N, "GetDistributionConfigurationInput"),
+    id = id.from(_N, "GetDistributionConfigurationRequest"),
     type = "structure",
     members = {
         distributionConfigurationArn = schema.new({
@@ -4139,7 +4139,7 @@ M.GetDistributionConfigurationInput = schema.new({
 })
 
 M.GetDistributionConfigurationOutput = schema.new({
-    id = id.from(_N, "GetDistributionConfigurationOutput"),
+    id = id.from(_N, "GetDistributionConfigurationResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -4159,7 +4159,7 @@ M.GetDistributionConfigurationOutput = schema.new({
 })
 
 M.GetImageInput = schema.new({
-    id = id.from(_N, "GetImageInput"),
+    id = id.from(_N, "GetImageRequest"),
     type = "structure",
     members = {
         imageBuildVersionArn = schema.new({
@@ -4620,7 +4620,7 @@ M.Image = schema.new({
 })
 
 M.GetImageOutput = schema.new({
-    id = id.from(_N, "GetImageOutput"),
+    id = id.from(_N, "GetImageResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -4647,7 +4647,7 @@ M.GetImageOutput = schema.new({
 })
 
 M.GetImagePipelineInput = schema.new({
-    id = id.from(_N, "GetImagePipelineInput"),
+    id = id.from(_N, "GetImagePipelineRequest"),
     type = "structure",
     members = {
         imagePipelineArn = schema.new({
@@ -4824,7 +4824,7 @@ M.ImagePipeline = schema.new({
 })
 
 M.GetImagePipelineOutput = schema.new({
-    id = id.from(_N, "GetImagePipelineOutput"),
+    id = id.from(_N, "GetImagePipelineResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -4844,7 +4844,7 @@ M.GetImagePipelineOutput = schema.new({
 })
 
 M.GetImagePolicyInput = schema.new({
-    id = id.from(_N, "GetImagePolicyInput"),
+    id = id.from(_N, "GetImagePolicyRequest"),
     type = "structure",
     members = {
         imageArn = schema.new({
@@ -4861,7 +4861,7 @@ M.GetImagePolicyInput = schema.new({
 })
 
 M.GetImagePolicyOutput = schema.new({
-    id = id.from(_N, "GetImagePolicyOutput"),
+    id = id.from(_N, "GetImagePolicyResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -4880,7 +4880,7 @@ M.GetImagePolicyOutput = schema.new({
 })
 
 M.GetImageRecipeInput = schema.new({
-    id = id.from(_N, "GetImageRecipeInput"),
+    id = id.from(_N, "GetImageRecipeRequest"),
     type = "structure",
     members = {
         imageRecipeArn = schema.new({
@@ -4897,7 +4897,7 @@ M.GetImageRecipeInput = schema.new({
 })
 
 M.GetImageRecipeOutput = schema.new({
-    id = id.from(_N, "GetImageRecipeOutput"),
+    id = id.from(_N, "GetImageRecipeResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -4924,7 +4924,7 @@ M.GetImageRecipeOutput = schema.new({
 })
 
 M.GetImageRecipePolicyInput = schema.new({
-    id = id.from(_N, "GetImageRecipePolicyInput"),
+    id = id.from(_N, "GetImageRecipePolicyRequest"),
     type = "structure",
     members = {
         imageRecipeArn = schema.new({
@@ -4941,7 +4941,7 @@ M.GetImageRecipePolicyInput = schema.new({
 })
 
 M.GetImageRecipePolicyOutput = schema.new({
-    id = id.from(_N, "GetImageRecipePolicyOutput"),
+    id = id.from(_N, "GetImageRecipePolicyResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -4960,7 +4960,7 @@ M.GetImageRecipePolicyOutput = schema.new({
 })
 
 M.GetInfrastructureConfigurationInput = schema.new({
-    id = id.from(_N, "GetInfrastructureConfigurationInput"),
+    id = id.from(_N, "GetInfrastructureConfigurationRequest"),
     type = "structure",
     members = {
         infrastructureConfigurationArn = schema.new({
@@ -4977,7 +4977,7 @@ M.GetInfrastructureConfigurationInput = schema.new({
 })
 
 M.GetInfrastructureConfigurationOutput = schema.new({
-    id = id.from(_N, "GetInfrastructureConfigurationOutput"),
+    id = id.from(_N, "GetInfrastructureConfigurationResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -4997,7 +4997,7 @@ M.GetInfrastructureConfigurationOutput = schema.new({
 })
 
 M.GetLifecycleExecutionInput = schema.new({
-    id = id.from(_N, "GetLifecycleExecutionInput"),
+    id = id.from(_N, "GetLifecycleExecutionRequest"),
     type = "structure",
     members = {
         lifecycleExecutionId = schema.new({
@@ -5094,7 +5094,7 @@ M.LifecycleExecution = schema.new({
 })
 
 M.GetLifecycleExecutionOutput = schema.new({
-    id = id.from(_N, "GetLifecycleExecutionOutput"),
+    id = id.from(_N, "GetLifecycleExecutionResponse"),
     type = "structure",
     members = {
         lifecycleExecution = schema.new({
@@ -5108,7 +5108,7 @@ M.GetLifecycleExecutionOutput = schema.new({
 })
 
 M.GetLifecyclePolicyInput = schema.new({
-    id = id.from(_N, "GetLifecyclePolicyInput"),
+    id = id.from(_N, "GetLifecyclePolicyRequest"),
     type = "structure",
     members = {
         lifecyclePolicyArn = schema.new({
@@ -5208,7 +5208,7 @@ M.LifecyclePolicy = schema.new({
 })
 
 M.GetLifecyclePolicyOutput = schema.new({
-    id = id.from(_N, "GetLifecyclePolicyOutput"),
+    id = id.from(_N, "GetLifecyclePolicyResponse"),
     type = "structure",
     members = {
         lifecyclePolicy = schema.new({
@@ -5222,7 +5222,7 @@ M.GetLifecyclePolicyOutput = schema.new({
 })
 
 M.GetMarketplaceResourceInput = schema.new({
-    id = id.from(_N, "GetMarketplaceResourceInput"),
+    id = id.from(_N, "GetMarketplaceResourceRequest"),
     type = "structure",
     members = {
         resourceType = schema.new({
@@ -5253,7 +5253,7 @@ M.GetMarketplaceResourceInput = schema.new({
 })
 
 M.GetMarketplaceResourceOutput = schema.new({
-    id = id.from(_N, "GetMarketplaceResourceOutput"),
+    id = id.from(_N, "GetMarketplaceResourceResponse"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5278,7 +5278,7 @@ M.GetMarketplaceResourceOutput = schema.new({
 })
 
 M.GetWorkflowInput = schema.new({
-    id = id.from(_N, "GetWorkflowInput"),
+    id = id.from(_N, "GetWorkflowRequest"),
     type = "structure",
     members = {
         workflowBuildVersionArn = schema.new({
@@ -5441,7 +5441,7 @@ M.Workflow = schema.new({
 })
 
 M.GetWorkflowOutput = schema.new({
-    id = id.from(_N, "GetWorkflowOutput"),
+    id = id.from(_N, "GetWorkflowResponse"),
     type = "structure",
     members = {
         workflow = schema.new({
@@ -5462,7 +5462,7 @@ M.GetWorkflowOutput = schema.new({
 })
 
 M.GetWorkflowExecutionInput = schema.new({
-    id = id.from(_N, "GetWorkflowExecutionInput"),
+    id = id.from(_N, "GetWorkflowExecutionRequest"),
     type = "structure",
     members = {
         workflowExecutionId = schema.new({
@@ -5479,7 +5479,7 @@ M.GetWorkflowExecutionInput = schema.new({
 })
 
 M.GetWorkflowExecutionOutput = schema.new({
-    id = id.from(_N, "GetWorkflowExecutionOutput"),
+    id = id.from(_N, "GetWorkflowExecutionResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -5582,7 +5582,7 @@ M.GetWorkflowExecutionOutput = schema.new({
 })
 
 M.GetWorkflowStepExecutionInput = schema.new({
-    id = id.from(_N, "GetWorkflowStepExecutionInput"),
+    id = id.from(_N, "GetWorkflowStepExecutionRequest"),
     type = "structure",
     members = {
         stepExecutionId = schema.new({
@@ -5599,7 +5599,7 @@ M.GetWorkflowStepExecutionInput = schema.new({
 })
 
 M.GetWorkflowStepExecutionOutput = schema.new({
-    id = id.from(_N, "GetWorkflowStepExecutionOutput"),
+    id = id.from(_N, "GetWorkflowStepExecutionResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -5728,7 +5728,7 @@ M.ImageAggregation = schema.new({
 })
 
 M.ImportComponentInput = schema.new({
-    id = id.from(_N, "ImportComponentInput"),
+    id = id.from(_N, "ImportComponentRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -5828,7 +5828,7 @@ M.ImportComponentInput = schema.new({
 })
 
 M.ImportComponentOutput = schema.new({
-    id = id.from(_N, "ImportComponentOutput"),
+    id = id.from(_N, "ImportComponentResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -5888,7 +5888,7 @@ M.WindowsConfiguration = schema.new({
 })
 
 M.ImportDiskImageInput = schema.new({
-    id = id.from(_N, "ImportDiskImageInput"),
+    id = id.from(_N, "ImportDiskImageRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -6000,7 +6000,7 @@ M.ImportDiskImageInput = schema.new({
 })
 
 M.ImportDiskImageOutput = schema.new({
-    id = id.from(_N, "ImportDiskImageOutput"),
+    id = id.from(_N, "ImportDiskImageResponse"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -6019,7 +6019,7 @@ M.ImportDiskImageOutput = schema.new({
 })
 
 M.ImportVmImageInput = schema.new({
-    id = id.from(_N, "ImportVmImageInput"),
+    id = id.from(_N, "ImportVmImageRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -6099,7 +6099,7 @@ M.ImportVmImageInput = schema.new({
 })
 
 M.ImportVmImageOutput = schema.new({
-    id = id.from(_N, "ImportVmImageOutput"),
+    id = id.from(_N, "ImportVmImageResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -6140,7 +6140,7 @@ M.InvalidPaginationTokenException = schema.new({
 })
 
 M.ListComponentBuildVersionsInput = schema.new({
-    id = id.from(_N, "ListComponentBuildVersionsInput"),
+    id = id.from(_N, "ListComponentBuildVersionsRequest"),
     type = "structure",
     members = {
         componentVersionArn = schema.new({
@@ -6165,7 +6165,7 @@ M.ListComponentBuildVersionsInput = schema.new({
 })
 
 M.ListComponentBuildVersionsOutput = schema.new({
-    id = id.from(_N, "ListComponentBuildVersionsOutput"),
+    id = id.from(_N, "ListComponentBuildVersionsResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -6191,7 +6191,7 @@ M.ListComponentBuildVersionsOutput = schema.new({
 })
 
 M.ListComponentsInput = schema.new({
-    id = id.from(_N, "ListComponentsInput"),
+    id = id.from(_N, "ListComponentsRequest"),
     type = "structure",
     members = {
         owner = schema.new({
@@ -6232,7 +6232,7 @@ M.ListComponentsInput = schema.new({
 })
 
 M.ListComponentsOutput = schema.new({
-    id = id.from(_N, "ListComponentsOutput"),
+    id = id.from(_N, "ListComponentsResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -6258,7 +6258,7 @@ M.ListComponentsOutput = schema.new({
 })
 
 M.ListContainerRecipesInput = schema.new({
-    id = id.from(_N, "ListContainerRecipesInput"),
+    id = id.from(_N, "ListContainerRecipesRequest"),
     type = "structure",
     members = {
         owner = schema.new({
@@ -6290,7 +6290,7 @@ M.ListContainerRecipesInput = schema.new({
 })
 
 M.ListContainerRecipesOutput = schema.new({
-    id = id.from(_N, "ListContainerRecipesOutput"),
+    id = id.from(_N, "ListContainerRecipesResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -6316,7 +6316,7 @@ M.ListContainerRecipesOutput = schema.new({
 })
 
 M.ListDistributionConfigurationsInput = schema.new({
-    id = id.from(_N, "ListDistributionConfigurationsInput"),
+    id = id.from(_N, "ListDistributionConfigurationsRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -6342,7 +6342,7 @@ M.ListDistributionConfigurationsInput = schema.new({
 })
 
 M.ListDistributionConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListDistributionConfigurationsOutput"),
+    id = id.from(_N, "ListDistributionConfigurationsResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -6368,7 +6368,7 @@ M.ListDistributionConfigurationsOutput = schema.new({
 })
 
 M.ListImageBuildVersionsInput = schema.new({
-    id = id.from(_N, "ListImageBuildVersionsInput"),
+    id = id.from(_N, "ListImageBuildVersionsRequest"),
     type = "structure",
     members = {
         imageVersionArn = schema.new({
@@ -6508,7 +6508,7 @@ M.ImageSummary = schema.new({
 })
 
 M.ListImageBuildVersionsOutput = schema.new({
-    id = id.from(_N, "ListImageBuildVersionsOutput"),
+    id = id.from(_N, "ListImageBuildVersionsResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -6534,7 +6534,7 @@ M.ListImageBuildVersionsOutput = schema.new({
 })
 
 M.ListImagePackagesInput = schema.new({
-    id = id.from(_N, "ListImagePackagesInput"),
+    id = id.from(_N, "ListImagePackagesRequest"),
     type = "structure",
     members = {
         imageBuildVersionArn = schema.new({
@@ -6581,7 +6581,7 @@ M.ImagePackage = schema.new({
 })
 
 M.ListImagePackagesOutput = schema.new({
-    id = id.from(_N, "ListImagePackagesOutput"),
+    id = id.from(_N, "ListImagePackagesResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -6607,7 +6607,7 @@ M.ListImagePackagesOutput = schema.new({
 })
 
 M.ListImagePipelineImagesInput = schema.new({
-    id = id.from(_N, "ListImagePipelineImagesInput"),
+    id = id.from(_N, "ListImagePipelineImagesRequest"),
     type = "structure",
     members = {
         imagePipelineArn = schema.new({
@@ -6642,7 +6642,7 @@ M.ListImagePipelineImagesInput = schema.new({
 })
 
 M.ListImagePipelineImagesOutput = schema.new({
-    id = id.from(_N, "ListImagePipelineImagesOutput"),
+    id = id.from(_N, "ListImagePipelineImagesResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -6668,7 +6668,7 @@ M.ListImagePipelineImagesOutput = schema.new({
 })
 
 M.ListImagePipelinesInput = schema.new({
-    id = id.from(_N, "ListImagePipelinesInput"),
+    id = id.from(_N, "ListImagePipelinesRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -6694,7 +6694,7 @@ M.ListImagePipelinesInput = schema.new({
 })
 
 M.ListImagePipelinesOutput = schema.new({
-    id = id.from(_N, "ListImagePipelinesOutput"),
+    id = id.from(_N, "ListImagePipelinesResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -6720,7 +6720,7 @@ M.ListImagePipelinesOutput = schema.new({
 })
 
 M.ListImageRecipesInput = schema.new({
-    id = id.from(_N, "ListImageRecipesInput"),
+    id = id.from(_N, "ListImageRecipesRequest"),
     type = "structure",
     members = {
         owner = schema.new({
@@ -6803,7 +6803,7 @@ M.ImageRecipeSummary = schema.new({
 })
 
 M.ListImageRecipesOutput = schema.new({
-    id = id.from(_N, "ListImageRecipesOutput"),
+    id = id.from(_N, "ListImageRecipesResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -6829,7 +6829,7 @@ M.ListImageRecipesOutput = schema.new({
 })
 
 M.ListImagesInput = schema.new({
-    id = id.from(_N, "ListImagesInput"),
+    id = id.from(_N, "ListImagesRequest"),
     type = "structure",
     members = {
         owner = schema.new({
@@ -6943,7 +6943,7 @@ M.ImageVersion = schema.new({
 })
 
 M.ListImagesOutput = schema.new({
-    id = id.from(_N, "ListImagesOutput"),
+    id = id.from(_N, "ListImagesResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -6969,7 +6969,7 @@ M.ListImagesOutput = schema.new({
 })
 
 M.ListImageScanFindingAggregationsInput = schema.new({
-    id = id.from(_N, "ListImageScanFindingAggregationsInput"),
+    id = id.from(_N, "ListImageScanFindingAggregationsRequest"),
     type = "structure",
     members = {
         filter = schema.new({
@@ -7064,7 +7064,7 @@ M.ImageScanFindingAggregation = schema.new({
 })
 
 M.ListImageScanFindingAggregationsOutput = schema.new({
-    id = id.from(_N, "ListImageScanFindingAggregationsOutput"),
+    id = id.from(_N, "ListImageScanFindingAggregationsResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -7116,7 +7116,7 @@ M.ImageScanFindingsFilter = schema.new({
 })
 
 M.ListImageScanFindingsInput = schema.new({
-    id = id.from(_N, "ListImageScanFindingsInput"),
+    id = id.from(_N, "ListImageScanFindingsRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -7424,7 +7424,7 @@ M.ImageScanFinding = schema.new({
 })
 
 M.ListImageScanFindingsOutput = schema.new({
-    id = id.from(_N, "ListImageScanFindingsOutput"),
+    id = id.from(_N, "ListImageScanFindingsResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -7450,7 +7450,7 @@ M.ListImageScanFindingsOutput = schema.new({
 })
 
 M.ListInfrastructureConfigurationsInput = schema.new({
-    id = id.from(_N, "ListInfrastructureConfigurationsInput"),
+    id = id.from(_N, "ListInfrastructureConfigurationsRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -7549,7 +7549,7 @@ M.InfrastructureConfigurationSummary = schema.new({
 })
 
 M.ListInfrastructureConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListInfrastructureConfigurationsOutput"),
+    id = id.from(_N, "ListInfrastructureConfigurationsResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -7575,7 +7575,7 @@ M.ListInfrastructureConfigurationsOutput = schema.new({
 })
 
 M.ListLifecycleExecutionResourcesInput = schema.new({
-    id = id.from(_N, "ListLifecycleExecutionResourcesInput"),
+    id = id.from(_N, "ListLifecycleExecutionResourcesRequest"),
     type = "structure",
     members = {
         lifecycleExecutionId = schema.new({
@@ -7732,7 +7732,7 @@ M.LifecycleExecutionResource = schema.new({
 })
 
 M.ListLifecycleExecutionResourcesOutput = schema.new({
-    id = id.from(_N, "ListLifecycleExecutionResourcesOutput"),
+    id = id.from(_N, "ListLifecycleExecutionResourcesResponse"),
     type = "structure",
     members = {
         lifecycleExecutionId = schema.new({
@@ -7765,7 +7765,7 @@ M.ListLifecycleExecutionResourcesOutput = schema.new({
 })
 
 M.ListLifecycleExecutionsInput = schema.new({
-    id = id.from(_N, "ListLifecycleExecutionsInput"),
+    id = id.from(_N, "ListLifecycleExecutionsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -7793,7 +7793,7 @@ M.ListLifecycleExecutionsInput = schema.new({
 })
 
 M.ListLifecycleExecutionsOutput = schema.new({
-    id = id.from(_N, "ListLifecycleExecutionsOutput"),
+    id = id.from(_N, "ListLifecycleExecutionsResponse"),
     type = "structure",
     members = {
         lifecycleExecutions = schema.new({
@@ -7813,7 +7813,7 @@ M.ListLifecycleExecutionsOutput = schema.new({
 })
 
 M.ListLifecyclePoliciesInput = schema.new({
-    id = id.from(_N, "ListLifecyclePoliciesInput"),
+    id = id.from(_N, "ListLifecyclePoliciesRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -7908,7 +7908,7 @@ M.LifecyclePolicySummary = schema.new({
 })
 
 M.ListLifecyclePoliciesOutput = schema.new({
-    id = id.from(_N, "ListLifecyclePoliciesOutput"),
+    id = id.from(_N, "ListLifecyclePoliciesResponse"),
     type = "structure",
     members = {
         lifecyclePolicySummaryList = schema.new({
@@ -7944,7 +7944,7 @@ M.InvalidParameterException = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -7961,7 +7961,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -7976,7 +7976,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListWaitingWorkflowStepsInput = schema.new({
-    id = id.from(_N, "ListWaitingWorkflowStepsInput"),
+    id = id.from(_N, "ListWaitingWorkflowStepsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -8044,7 +8044,7 @@ M.WorkflowStepExecution = schema.new({
 })
 
 M.ListWaitingWorkflowStepsOutput = schema.new({
-    id = id.from(_N, "ListWaitingWorkflowStepsOutput"),
+    id = id.from(_N, "ListWaitingWorkflowStepsResponse"),
     type = "structure",
     members = {
         steps = schema.new({
@@ -8064,7 +8064,7 @@ M.ListWaitingWorkflowStepsOutput = schema.new({
 })
 
 M.ListWorkflowBuildVersionsInput = schema.new({
-    id = id.from(_N, "ListWorkflowBuildVersionsInput"),
+    id = id.from(_N, "ListWorkflowBuildVersionsRequest"),
     type = "structure",
     members = {
         workflowVersionArn = schema.new({
@@ -8159,7 +8159,7 @@ M.WorkflowSummary = schema.new({
 })
 
 M.ListWorkflowBuildVersionsOutput = schema.new({
-    id = id.from(_N, "ListWorkflowBuildVersionsOutput"),
+    id = id.from(_N, "ListWorkflowBuildVersionsResponse"),
     type = "structure",
     members = {
         workflowSummaryList = schema.new({
@@ -8179,7 +8179,7 @@ M.ListWorkflowBuildVersionsOutput = schema.new({
 })
 
 M.ListWorkflowExecutionsInput = schema.new({
-    id = id.from(_N, "ListWorkflowExecutionsInput"),
+    id = id.from(_N, "ListWorkflowExecutionsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -8304,7 +8304,7 @@ M.WorkflowExecutionMetadata = schema.new({
 })
 
 M.ListWorkflowExecutionsOutput = schema.new({
-    id = id.from(_N, "ListWorkflowExecutionsOutput"),
+    id = id.from(_N, "ListWorkflowExecutionsResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -8342,7 +8342,7 @@ M.ListWorkflowExecutionsOutput = schema.new({
 })
 
 M.ListWorkflowsInput = schema.new({
-    id = id.from(_N, "ListWorkflowsInput"),
+    id = id.from(_N, "ListWorkflowsRequest"),
     type = "structure",
     members = {
         owner = schema.new({
@@ -8432,7 +8432,7 @@ M.WorkflowVersion = schema.new({
 })
 
 M.ListWorkflowsOutput = schema.new({
-    id = id.from(_N, "ListWorkflowsOutput"),
+    id = id.from(_N, "ListWorkflowsResponse"),
     type = "structure",
     members = {
         workflowVersionList = schema.new({
@@ -8452,7 +8452,7 @@ M.ListWorkflowsOutput = schema.new({
 })
 
 M.ListWorkflowStepExecutionsInput = schema.new({
-    id = id.from(_N, "ListWorkflowStepExecutionsInput"),
+    id = id.from(_N, "ListWorkflowStepExecutionsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -8553,7 +8553,7 @@ M.WorkflowStepMetadata = schema.new({
 })
 
 M.ListWorkflowStepExecutionsOutput = schema.new({
-    id = id.from(_N, "ListWorkflowStepExecutionsOutput"),
+    id = id.from(_N, "ListWorkflowStepExecutionsResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -8619,7 +8619,7 @@ M.InvalidParameterValueException = schema.new({
 })
 
 M.PutComponentPolicyInput = schema.new({
-    id = id.from(_N, "PutComponentPolicyInput"),
+    id = id.from(_N, "PutComponentPolicyRequest"),
     type = "structure",
     members = {
         componentArn = schema.new({
@@ -8644,7 +8644,7 @@ M.PutComponentPolicyInput = schema.new({
 })
 
 M.PutComponentPolicyOutput = schema.new({
-    id = id.from(_N, "PutComponentPolicyOutput"),
+    id = id.from(_N, "PutComponentPolicyResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -8663,7 +8663,7 @@ M.PutComponentPolicyOutput = schema.new({
 })
 
 M.PutContainerRecipePolicyInput = schema.new({
-    id = id.from(_N, "PutContainerRecipePolicyInput"),
+    id = id.from(_N, "PutContainerRecipePolicyRequest"),
     type = "structure",
     members = {
         containerRecipeArn = schema.new({
@@ -8688,7 +8688,7 @@ M.PutContainerRecipePolicyInput = schema.new({
 })
 
 M.PutContainerRecipePolicyOutput = schema.new({
-    id = id.from(_N, "PutContainerRecipePolicyOutput"),
+    id = id.from(_N, "PutContainerRecipePolicyResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -8707,7 +8707,7 @@ M.PutContainerRecipePolicyOutput = schema.new({
 })
 
 M.PutImagePolicyInput = schema.new({
-    id = id.from(_N, "PutImagePolicyInput"),
+    id = id.from(_N, "PutImagePolicyRequest"),
     type = "structure",
     members = {
         imageArn = schema.new({
@@ -8732,7 +8732,7 @@ M.PutImagePolicyInput = schema.new({
 })
 
 M.PutImagePolicyOutput = schema.new({
-    id = id.from(_N, "PutImagePolicyOutput"),
+    id = id.from(_N, "PutImagePolicyResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -8751,7 +8751,7 @@ M.PutImagePolicyOutput = schema.new({
 })
 
 M.PutImageRecipePolicyInput = schema.new({
-    id = id.from(_N, "PutImageRecipePolicyInput"),
+    id = id.from(_N, "PutImageRecipePolicyRequest"),
     type = "structure",
     members = {
         imageRecipeArn = schema.new({
@@ -8776,7 +8776,7 @@ M.PutImageRecipePolicyInput = schema.new({
 })
 
 M.PutImageRecipePolicyOutput = schema.new({
-    id = id.from(_N, "PutImageRecipePolicyOutput"),
+    id = id.from(_N, "PutImageRecipePolicyResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -8795,7 +8795,7 @@ M.PutImageRecipePolicyOutput = schema.new({
 })
 
 M.RetryImageInput = schema.new({
-    id = id.from(_N, "RetryImageInput"),
+    id = id.from(_N, "RetryImageRequest"),
     type = "structure",
     members = {
         imageBuildVersionArn = schema.new({
@@ -8821,7 +8821,7 @@ M.RetryImageInput = schema.new({
 })
 
 M.RetryImageOutput = schema.new({
-    id = id.from(_N, "RetryImageOutput"),
+    id = id.from(_N, "RetryImageResponse"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -8840,7 +8840,7 @@ M.RetryImageOutput = schema.new({
 })
 
 M.SendWorkflowStepActionInput = schema.new({
-    id = id.from(_N, "SendWorkflowStepActionInput"),
+    id = id.from(_N, "SendWorkflowStepActionRequest"),
     type = "structure",
     members = {
         stepExecutionId = schema.new({
@@ -8890,7 +8890,7 @@ M.SendWorkflowStepActionInput = schema.new({
 })
 
 M.SendWorkflowStepActionOutput = schema.new({
-    id = id.from(_N, "SendWorkflowStepActionOutput"),
+    id = id.from(_N, "SendWorkflowStepActionResponse"),
     type = "structure",
     members = {
         stepExecutionId = schema.new({
@@ -8915,7 +8915,7 @@ M.SendWorkflowStepActionOutput = schema.new({
 })
 
 M.StartImagePipelineExecutionInput = schema.new({
-    id = id.from(_N, "StartImagePipelineExecutionInput"),
+    id = id.from(_N, "StartImagePipelineExecutionRequest"),
     type = "structure",
     members = {
         imagePipelineArn = schema.new({
@@ -8949,7 +8949,7 @@ M.StartImagePipelineExecutionInput = schema.new({
 })
 
 M.StartImagePipelineExecutionOutput = schema.new({
-    id = id.from(_N, "StartImagePipelineExecutionOutput"),
+    id = id.from(_N, "StartImagePipelineExecutionResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -9035,7 +9035,7 @@ M.ResourceState = schema.new({
 })
 
 M.StartResourceStateUpdateInput = schema.new({
-    id = id.from(_N, "StartResourceStateUpdateInput"),
+    id = id.from(_N, "StartResourceStateUpdateRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -9097,7 +9097,7 @@ M.StartResourceStateUpdateInput = schema.new({
 })
 
 M.StartResourceStateUpdateOutput = schema.new({
-    id = id.from(_N, "StartResourceStateUpdateOutput"),
+    id = id.from(_N, "StartResourceStateUpdateResponse"),
     type = "structure",
     members = {
         lifecycleExecutionId = schema.new({
@@ -9116,7 +9116,7 @@ M.StartResourceStateUpdateOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -9144,12 +9144,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -9177,12 +9177,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateDistributionConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateDistributionConfigurationInput"),
+    id = id.from(_N, "UpdateDistributionConfigurationRequest"),
     type = "structure",
     members = {
         distributionConfigurationArn = schema.new({
@@ -9224,7 +9224,7 @@ M.UpdateDistributionConfigurationInput = schema.new({
 })
 
 M.UpdateDistributionConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateDistributionConfigurationOutput"),
+    id = id.from(_N, "UpdateDistributionConfigurationResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -9249,7 +9249,7 @@ M.UpdateDistributionConfigurationOutput = schema.new({
 })
 
 M.UpdateImagePipelineInput = schema.new({
-    id = id.from(_N, "UpdateImagePipelineInput"),
+    id = id.from(_N, "UpdateImagePipelineRequest"),
     type = "structure",
     members = {
         imagePipelineArn = schema.new({
@@ -9369,7 +9369,7 @@ M.UpdateImagePipelineInput = schema.new({
 })
 
 M.UpdateImagePipelineOutput = schema.new({
-    id = id.from(_N, "UpdateImagePipelineOutput"),
+    id = id.from(_N, "UpdateImagePipelineResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -9394,7 +9394,7 @@ M.UpdateImagePipelineOutput = schema.new({
 })
 
 M.UpdateInfrastructureConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateInfrastructureConfigurationInput"),
+    id = id.from(_N, "UpdateInfrastructureConfigurationRequest"),
     type = "structure",
     members = {
         infrastructureConfigurationArn = schema.new({
@@ -9502,7 +9502,7 @@ M.UpdateInfrastructureConfigurationInput = schema.new({
 })
 
 M.UpdateInfrastructureConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateInfrastructureConfigurationOutput"),
+    id = id.from(_N, "UpdateInfrastructureConfigurationResponse"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -9527,7 +9527,7 @@ M.UpdateInfrastructureConfigurationOutput = schema.new({
 })
 
 M.UpdateLifecyclePolicyInput = schema.new({
-    id = id.from(_N, "UpdateLifecyclePolicyInput"),
+    id = id.from(_N, "UpdateLifecyclePolicyRequest"),
     type = "structure",
     members = {
         lifecyclePolicyArn = schema.new({
@@ -9603,7 +9603,7 @@ M.UpdateLifecyclePolicyInput = schema.new({
 })
 
 M.UpdateLifecyclePolicyOutput = schema.new({
-    id = id.from(_N, "UpdateLifecyclePolicyOutput"),
+    id = id.from(_N, "UpdateLifecyclePolicyResponse"),
     type = "structure",
     members = {
         lifecyclePolicyArn = schema.new({
@@ -9614,5 +9614,19 @@ M.UpdateLifecyclePolicyOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

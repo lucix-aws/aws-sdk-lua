@@ -680,11 +680,11 @@ local record TooManyRequestsException
     code: string
 end
 
+local type SigningStatus = "InProgress" | "Failed" | "Succeeded"
+
 local type SigningProfileStatus = "Active" | "Canceled" | "Revoked"
 
 local type Category = "AWSIoT"
-
-local type SigningStatus = "InProgress" | "Failed" | "Succeeded"
 
 local record M
     AddProfilePermissionInput: AddProfilePermissionInput

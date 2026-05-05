@@ -27,7 +27,7 @@ M.AlreadyStreamedException = schema.new({
 })
 
 M.BulkPublishInput = schema.new({
-    id = id.from(_N, "BulkPublishInput"),
+    id = id.from(_N, "BulkPublishRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -44,7 +44,7 @@ M.BulkPublishInput = schema.new({
 })
 
 M.BulkPublishOutput = schema.new({
-    id = id.from(_N, "BulkPublishOutput"),
+    id = id.from(_N, "BulkPublishResponse"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -152,7 +152,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DeleteDatasetInput = schema.new({
-    id = id.from(_N, "DeleteDatasetInput"),
+    id = id.from(_N, "DeleteDatasetRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -238,7 +238,7 @@ M.Dataset = schema.new({
 })
 
 M.DeleteDatasetOutput = schema.new({
-    id = id.from(_N, "DeleteDatasetOutput"),
+    id = id.from(_N, "DeleteDatasetResponse"),
     type = "structure",
     members = {
         Dataset = schema.new({
@@ -290,7 +290,7 @@ M.TooManyRequestsException = schema.new({
 })
 
 M.DescribeDatasetInput = schema.new({
-    id = id.from(_N, "DescribeDatasetInput"),
+    id = id.from(_N, "DescribeDatasetRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -327,7 +327,7 @@ M.DescribeDatasetInput = schema.new({
 })
 
 M.DescribeDatasetOutput = schema.new({
-    id = id.from(_N, "DescribeDatasetOutput"),
+    id = id.from(_N, "DescribeDatasetResponse"),
     type = "structure",
     members = {
         Dataset = schema.new({
@@ -341,7 +341,7 @@ M.DescribeDatasetOutput = schema.new({
 })
 
 M.DescribeIdentityPoolUsageInput = schema.new({
-    id = id.from(_N, "DescribeIdentityPoolUsageInput"),
+    id = id.from(_N, "DescribeIdentityPoolUsageRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -389,7 +389,7 @@ M.IdentityPoolUsage = schema.new({
 })
 
 M.DescribeIdentityPoolUsageOutput = schema.new({
-    id = id.from(_N, "DescribeIdentityPoolUsageOutput"),
+    id = id.from(_N, "DescribeIdentityPoolUsageResponse"),
     type = "structure",
     members = {
         IdentityPoolUsage = schema.new({
@@ -403,7 +403,7 @@ M.DescribeIdentityPoolUsageOutput = schema.new({
 })
 
 M.DescribeIdentityUsageInput = schema.new({
-    id = id.from(_N, "DescribeIdentityUsageInput"),
+    id = id.from(_N, "DescribeIdentityUsageRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -470,7 +470,7 @@ M.IdentityUsage = schema.new({
 })
 
 M.DescribeIdentityUsageOutput = schema.new({
-    id = id.from(_N, "DescribeIdentityUsageOutput"),
+    id = id.from(_N, "DescribeIdentityUsageResponse"),
     type = "structure",
     members = {
         IdentityUsage = schema.new({
@@ -484,7 +484,7 @@ M.DescribeIdentityUsageOutput = schema.new({
 })
 
 M.GetBulkPublishDetailsInput = schema.new({
-    id = id.from(_N, "GetBulkPublishDetailsInput"),
+    id = id.from(_N, "GetBulkPublishDetailsRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -501,7 +501,7 @@ M.GetBulkPublishDetailsInput = schema.new({
 })
 
 M.GetBulkPublishDetailsOutput = schema.new({
-    id = id.from(_N, "GetBulkPublishDetailsOutput"),
+    id = id.from(_N, "GetBulkPublishDetailsResponse"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -538,7 +538,7 @@ M.GetBulkPublishDetailsOutput = schema.new({
 })
 
 M.GetCognitoEventsInput = schema.new({
-    id = id.from(_N, "GetCognitoEventsInput"),
+    id = id.from(_N, "GetCognitoEventsRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -555,7 +555,7 @@ M.GetCognitoEventsInput = schema.new({
 })
 
 M.GetCognitoEventsOutput = schema.new({
-    id = id.from(_N, "GetCognitoEventsOutput"),
+    id = id.from(_N, "GetCognitoEventsResponse"),
     type = "structure",
     members = {
         Events = schema.new({
@@ -570,7 +570,7 @@ M.GetCognitoEventsOutput = schema.new({
 })
 
 M.GetIdentityPoolConfigurationInput = schema.new({
-    id = id.from(_N, "GetIdentityPoolConfigurationInput"),
+    id = id.from(_N, "GetIdentityPoolConfigurationRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -632,7 +632,7 @@ M.PushSync = schema.new({
 })
 
 M.GetIdentityPoolConfigurationOutput = schema.new({
-    id = id.from(_N, "GetIdentityPoolConfigurationOutput"),
+    id = id.from(_N, "GetIdentityPoolConfigurationResponse"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -659,7 +659,7 @@ M.GetIdentityPoolConfigurationOutput = schema.new({
 })
 
 M.ListDatasetsInput = schema.new({
-    id = id.from(_N, "ListDatasetsInput"),
+    id = id.from(_N, "ListDatasetsRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -704,7 +704,7 @@ M.ListDatasetsInput = schema.new({
 })
 
 M.ListDatasetsOutput = schema.new({
-    id = id.from(_N, "ListDatasetsOutput"),
+    id = id.from(_N, "ListDatasetsResponse"),
     type = "structure",
     members = {
         Datasets = schema.new({
@@ -733,7 +733,7 @@ M.ListDatasetsOutput = schema.new({
 })
 
 M.ListIdentityPoolUsageInput = schema.new({
-    id = id.from(_N, "ListIdentityPoolUsageInput"),
+    id = id.from(_N, "ListIdentityPoolUsageRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -758,7 +758,7 @@ M.ListIdentityPoolUsageInput = schema.new({
 })
 
 M.ListIdentityPoolUsageOutput = schema.new({
-    id = id.from(_N, "ListIdentityPoolUsageOutput"),
+    id = id.from(_N, "ListIdentityPoolUsageResponse"),
     type = "structure",
     members = {
         IdentityPoolUsages = schema.new({
@@ -796,7 +796,7 @@ M.ListIdentityPoolUsageOutput = schema.new({
 })
 
 M.ListRecordsInput = schema.new({
-    id = id.from(_N, "ListRecordsInput"),
+    id = id.from(_N, "ListRecordsRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -912,7 +912,7 @@ M.Record = schema.new({
 })
 
 M.ListRecordsOutput = schema.new({
-    id = id.from(_N, "ListRecordsOutput"),
+    id = id.from(_N, "ListRecordsResponse"),
     type = "structure",
     members = {
         Records = schema.new({
@@ -1003,7 +1003,7 @@ M.InvalidConfigurationException = schema.new({
 })
 
 M.RegisterDeviceInput = schema.new({
-    id = id.from(_N, "RegisterDeviceInput"),
+    id = id.from(_N, "RegisterDeviceRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -1048,7 +1048,7 @@ M.RegisterDeviceInput = schema.new({
 })
 
 M.RegisterDeviceOutput = schema.new({
-    id = id.from(_N, "RegisterDeviceOutput"),
+    id = id.from(_N, "RegisterDeviceResponse"),
     type = "structure",
     members = {
         DeviceId = schema.new({
@@ -1061,7 +1061,7 @@ M.RegisterDeviceOutput = schema.new({
 })
 
 M.SetCognitoEventsInput = schema.new({
-    id = id.from(_N, "SetCognitoEventsInput"),
+    id = id.from(_N, "SetCognitoEventsRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -1089,7 +1089,7 @@ M.SetCognitoEventsInput = schema.new({
 })
 
 M.SetCognitoEventsOutput = schema.new({
-    id = id.from(_N, "SetCognitoEventsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1113,7 +1113,7 @@ M.ConcurrentModificationException = schema.new({
 })
 
 M.SetIdentityPoolConfigurationInput = schema.new({
-    id = id.from(_N, "SetIdentityPoolConfigurationInput"),
+    id = id.from(_N, "SetIdentityPoolConfigurationRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -1144,7 +1144,7 @@ M.SetIdentityPoolConfigurationInput = schema.new({
 })
 
 M.SetIdentityPoolConfigurationOutput = schema.new({
-    id = id.from(_N, "SetIdentityPoolConfigurationOutput"),
+    id = id.from(_N, "SetIdentityPoolConfigurationResponse"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -1171,7 +1171,7 @@ M.SetIdentityPoolConfigurationOutput = schema.new({
 })
 
 M.SubscribeToDatasetInput = schema.new({
-    id = id.from(_N, "SubscribeToDatasetInput"),
+    id = id.from(_N, "SubscribeToDatasetRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -1218,12 +1218,12 @@ M.SubscribeToDatasetInput = schema.new({
 })
 
 M.SubscribeToDatasetOutput = schema.new({
-    id = id.from(_N, "SubscribeToDatasetOutput"),
+    id = id.from(_N, "SubscribeToDatasetResponse"),
     type = "structure",
 })
 
 M.UnsubscribeFromDatasetInput = schema.new({
-    id = id.from(_N, "UnsubscribeFromDatasetInput"),
+    id = id.from(_N, "UnsubscribeFromDatasetRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -1270,7 +1270,7 @@ M.UnsubscribeFromDatasetInput = schema.new({
 })
 
 M.UnsubscribeFromDatasetOutput = schema.new({
-    id = id.from(_N, "UnsubscribeFromDatasetOutput"),
+    id = id.from(_N, "UnsubscribeFromDatasetResponse"),
     type = "structure",
 })
 
@@ -1378,7 +1378,7 @@ M.RecordPatch = schema.new({
 })
 
 M.UpdateRecordsInput = schema.new({
-    id = id.from(_N, "UpdateRecordsInput"),
+    id = id.from(_N, "UpdateRecordsRequest"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -1446,7 +1446,7 @@ M.UpdateRecordsInput = schema.new({
 })
 
 M.UpdateRecordsOutput = schema.new({
-    id = id.from(_N, "UpdateRecordsOutput"),
+    id = id.from(_N, "UpdateRecordsResponse"),
     type = "structure",
     members = {
         Records = schema.new({
@@ -1458,5 +1458,19 @@ M.UpdateRecordsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -1060,7 +1060,7 @@ M.AssessmentReportMetadata = schema.new({
 })
 
 M.AssociateAssessmentReportEvidenceFolderInput = schema.new({
-    id = id.from(_N, "AssociateAssessmentReportEvidenceFolderInput"),
+    id = id.from(_N, "AssociateAssessmentReportEvidenceFolderRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -1086,7 +1086,7 @@ M.AssociateAssessmentReportEvidenceFolderInput = schema.new({
 })
 
 M.AssociateAssessmentReportEvidenceFolderOutput = schema.new({
-    id = id.from(_N, "AssociateAssessmentReportEvidenceFolderOutput"),
+    id = id.from(_N, "AssociateAssessmentReportEvidenceFolderResponse"),
     type = "structure",
 })
 
@@ -1204,7 +1204,7 @@ M.ValidationException = schema.new({
 })
 
 M.BatchAssociateAssessmentReportEvidenceInput = schema.new({
-    id = id.from(_N, "BatchAssociateAssessmentReportEvidenceInput"),
+    id = id.from(_N, "BatchAssociateAssessmentReportEvidenceRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -1240,7 +1240,7 @@ M.BatchAssociateAssessmentReportEvidenceInput = schema.new({
 })
 
 M.BatchAssociateAssessmentReportEvidenceOutput = schema.new({
-    id = id.from(_N, "BatchAssociateAssessmentReportEvidenceOutput"),
+    id = id.from(_N, "BatchAssociateAssessmentReportEvidenceResponse"),
     type = "structure",
     members = {
         evidenceIds = schema.new({
@@ -1292,7 +1292,7 @@ M.CreateDelegationRequest = schema.new({
 })
 
 M.BatchCreateDelegationByAssessmentInput = schema.new({
-    id = id.from(_N, "BatchCreateDelegationByAssessmentInput"),
+    id = id.from(_N, "BatchCreateDelegationByAssessmentRequest"),
     type = "structure",
     members = {
         createDelegationRequests = schema.new({
@@ -1345,7 +1345,7 @@ M.BatchCreateDelegationByAssessmentError = schema.new({
 })
 
 M.BatchCreateDelegationByAssessmentOutput = schema.new({
-    id = id.from(_N, "BatchCreateDelegationByAssessmentOutput"),
+    id = id.from(_N, "BatchCreateDelegationByAssessmentResponse"),
     type = "structure",
     members = {
         delegations = schema.new({
@@ -1366,7 +1366,7 @@ M.BatchCreateDelegationByAssessmentOutput = schema.new({
 })
 
 M.BatchDeleteDelegationByAssessmentInput = schema.new({
-    id = id.from(_N, "BatchDeleteDelegationByAssessmentInput"),
+    id = id.from(_N, "BatchDeleteDelegationByAssessmentRequest"),
     type = "structure",
     members = {
         delegationIds = schema.new({
@@ -1418,7 +1418,7 @@ M.BatchDeleteDelegationByAssessmentError = schema.new({
 })
 
 M.BatchDeleteDelegationByAssessmentOutput = schema.new({
-    id = id.from(_N, "BatchDeleteDelegationByAssessmentOutput"),
+    id = id.from(_N, "BatchDeleteDelegationByAssessmentResponse"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -1432,7 +1432,7 @@ M.BatchDeleteDelegationByAssessmentOutput = schema.new({
 })
 
 M.BatchDisassociateAssessmentReportEvidenceInput = schema.new({
-    id = id.from(_N, "BatchDisassociateAssessmentReportEvidenceInput"),
+    id = id.from(_N, "BatchDisassociateAssessmentReportEvidenceRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -1468,7 +1468,7 @@ M.BatchDisassociateAssessmentReportEvidenceInput = schema.new({
 })
 
 M.BatchDisassociateAssessmentReportEvidenceOutput = schema.new({
-    id = id.from(_N, "BatchDisassociateAssessmentReportEvidenceOutput"),
+    id = id.from(_N, "BatchDisassociateAssessmentReportEvidenceResponse"),
     type = "structure",
     members = {
         evidenceIds = schema.new({
@@ -1514,7 +1514,7 @@ M.ManualEvidence = schema.new({
 })
 
 M.BatchImportEvidenceToAssessmentControlInput = schema.new({
-    id = id.from(_N, "BatchImportEvidenceToAssessmentControlInput"),
+    id = id.from(_N, "BatchImportEvidenceToAssessmentControlRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -1587,7 +1587,7 @@ M.BatchImportEvidenceToAssessmentControlError = schema.new({
 })
 
 M.BatchImportEvidenceToAssessmentControlOutput = schema.new({
-    id = id.from(_N, "BatchImportEvidenceToAssessmentControlOutput"),
+    id = id.from(_N, "BatchImportEvidenceToAssessmentControlResponse"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -1620,7 +1620,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.CreateAssessmentInput = schema.new({
-    id = id.from(_N, "CreateAssessmentInput"),
+    id = id.from(_N, "CreateAssessmentRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1689,7 +1689,7 @@ M.CreateAssessmentInput = schema.new({
 })
 
 M.CreateAssessmentOutput = schema.new({
-    id = id.from(_N, "CreateAssessmentOutput"),
+    id = id.from(_N, "CreateAssessmentResponse"),
     type = "structure",
     members = {
         assessment = schema.new({
@@ -1761,7 +1761,7 @@ M.CreateAssessmentFrameworkControlSet = schema.new({
 })
 
 M.CreateAssessmentFrameworkInput = schema.new({
-    id = id.from(_N, "CreateAssessmentFrameworkInput"),
+    id = id.from(_N, "CreateAssessmentFrameworkRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2108,7 +2108,7 @@ M.Framework = schema.new({
 })
 
 M.CreateAssessmentFrameworkOutput = schema.new({
-    id = id.from(_N, "CreateAssessmentFrameworkOutput"),
+    id = id.from(_N, "CreateAssessmentFrameworkResponse"),
     type = "structure",
     members = {
         framework = schema.new({
@@ -2122,7 +2122,7 @@ M.CreateAssessmentFrameworkOutput = schema.new({
 })
 
 M.CreateAssessmentReportInput = schema.new({
-    id = id.from(_N, "CreateAssessmentReportInput"),
+    id = id.from(_N, "CreateAssessmentReportRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2160,7 +2160,7 @@ M.CreateAssessmentReportInput = schema.new({
 })
 
 M.CreateAssessmentReportOutput = schema.new({
-    id = id.from(_N, "CreateAssessmentReportOutput"),
+    id = id.from(_N, "CreateAssessmentReportResponse"),
     type = "structure",
     members = {
         assessmentReport = schema.new({
@@ -2224,7 +2224,7 @@ M.CreateControlMappingSource = schema.new({
 })
 
 M.CreateControlInput = schema.new({
-    id = id.from(_N, "CreateControlInput"),
+    id = id.from(_N, "CreateControlRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2282,7 +2282,7 @@ M.CreateControlInput = schema.new({
 })
 
 M.CreateControlOutput = schema.new({
-    id = id.from(_N, "CreateControlOutput"),
+    id = id.from(_N, "CreateControlResponse"),
     type = "structure",
     members = {
         control = schema.new({
@@ -2296,7 +2296,7 @@ M.CreateControlOutput = schema.new({
 })
 
 M.DeleteAssessmentInput = schema.new({
-    id = id.from(_N, "DeleteAssessmentInput"),
+    id = id.from(_N, "DeleteAssessmentRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -2313,12 +2313,12 @@ M.DeleteAssessmentInput = schema.new({
 })
 
 M.DeleteAssessmentOutput = schema.new({
-    id = id.from(_N, "DeleteAssessmentOutput"),
+    id = id.from(_N, "DeleteAssessmentResponse"),
     type = "structure",
 })
 
 M.DeleteAssessmentFrameworkInput = schema.new({
-    id = id.from(_N, "DeleteAssessmentFrameworkInput"),
+    id = id.from(_N, "DeleteAssessmentFrameworkRequest"),
     type = "structure",
     members = {
         frameworkId = schema.new({
@@ -2335,12 +2335,12 @@ M.DeleteAssessmentFrameworkInput = schema.new({
 })
 
 M.DeleteAssessmentFrameworkOutput = schema.new({
-    id = id.from(_N, "DeleteAssessmentFrameworkOutput"),
+    id = id.from(_N, "DeleteAssessmentFrameworkResponse"),
     type = "structure",
 })
 
 M.DeleteAssessmentFrameworkShareInput = schema.new({
-    id = id.from(_N, "DeleteAssessmentFrameworkShareInput"),
+    id = id.from(_N, "DeleteAssessmentFrameworkShareRequest"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -2367,12 +2367,12 @@ M.DeleteAssessmentFrameworkShareInput = schema.new({
 })
 
 M.DeleteAssessmentFrameworkShareOutput = schema.new({
-    id = id.from(_N, "DeleteAssessmentFrameworkShareOutput"),
+    id = id.from(_N, "DeleteAssessmentFrameworkShareResponse"),
     type = "structure",
 })
 
 M.DeleteAssessmentReportInput = schema.new({
-    id = id.from(_N, "DeleteAssessmentReportInput"),
+    id = id.from(_N, "DeleteAssessmentReportRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -2399,12 +2399,12 @@ M.DeleteAssessmentReportInput = schema.new({
 })
 
 M.DeleteAssessmentReportOutput = schema.new({
-    id = id.from(_N, "DeleteAssessmentReportOutput"),
+    id = id.from(_N, "DeleteAssessmentReportResponse"),
     type = "structure",
 })
 
 M.DeleteControlInput = schema.new({
-    id = id.from(_N, "DeleteControlInput"),
+    id = id.from(_N, "DeleteControlRequest"),
     type = "structure",
     members = {
         controlId = schema.new({
@@ -2421,17 +2421,17 @@ M.DeleteControlInput = schema.new({
 })
 
 M.DeleteControlOutput = schema.new({
-    id = id.from(_N, "DeleteControlOutput"),
+    id = id.from(_N, "DeleteControlResponse"),
     type = "structure",
 })
 
 M.DeregisterAccountInput = schema.new({
-    id = id.from(_N, "DeregisterAccountInput"),
+    id = id.from(_N, "DeregisterAccountRequest"),
     type = "structure",
 })
 
 M.DeregisterAccountOutput = schema.new({
-    id = id.from(_N, "DeregisterAccountOutput"),
+    id = id.from(_N, "DeregisterAccountResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -2444,7 +2444,7 @@ M.DeregisterAccountOutput = schema.new({
 })
 
 M.DeregisterOrganizationAdminAccountInput = schema.new({
-    id = id.from(_N, "DeregisterOrganizationAdminAccountInput"),
+    id = id.from(_N, "DeregisterOrganizationAdminAccountRequest"),
     type = "structure",
     members = {
         adminAccountId = schema.new({
@@ -2457,12 +2457,12 @@ M.DeregisterOrganizationAdminAccountInput = schema.new({
 })
 
 M.DeregisterOrganizationAdminAccountOutput = schema.new({
-    id = id.from(_N, "DeregisterOrganizationAdminAccountOutput"),
+    id = id.from(_N, "DeregisterOrganizationAdminAccountResponse"),
     type = "structure",
 })
 
 M.DisassociateAssessmentReportEvidenceFolderInput = schema.new({
-    id = id.from(_N, "DisassociateAssessmentReportEvidenceFolderInput"),
+    id = id.from(_N, "DisassociateAssessmentReportEvidenceFolderRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -2488,17 +2488,17 @@ M.DisassociateAssessmentReportEvidenceFolderInput = schema.new({
 })
 
 M.DisassociateAssessmentReportEvidenceFolderOutput = schema.new({
-    id = id.from(_N, "DisassociateAssessmentReportEvidenceFolderOutput"),
+    id = id.from(_N, "DisassociateAssessmentReportEvidenceFolderResponse"),
     type = "structure",
 })
 
 M.GetAccountStatusInput = schema.new({
-    id = id.from(_N, "GetAccountStatusInput"),
+    id = id.from(_N, "GetAccountStatusRequest"),
     type = "structure",
 })
 
 M.GetAccountStatusOutput = schema.new({
-    id = id.from(_N, "GetAccountStatusOutput"),
+    id = id.from(_N, "GetAccountStatusResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -2511,7 +2511,7 @@ M.GetAccountStatusOutput = schema.new({
 })
 
 M.GetAssessmentInput = schema.new({
-    id = id.from(_N, "GetAssessmentInput"),
+    id = id.from(_N, "GetAssessmentRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -2528,7 +2528,7 @@ M.GetAssessmentInput = schema.new({
 })
 
 M.GetAssessmentOutput = schema.new({
-    id = id.from(_N, "GetAssessmentOutput"),
+    id = id.from(_N, "GetAssessmentResponse"),
     type = "structure",
     members = {
         assessment = schema.new({
@@ -2549,7 +2549,7 @@ M.GetAssessmentOutput = schema.new({
 })
 
 M.GetAssessmentFrameworkInput = schema.new({
-    id = id.from(_N, "GetAssessmentFrameworkInput"),
+    id = id.from(_N, "GetAssessmentFrameworkRequest"),
     type = "structure",
     members = {
         frameworkId = schema.new({
@@ -2566,7 +2566,7 @@ M.GetAssessmentFrameworkInput = schema.new({
 })
 
 M.GetAssessmentFrameworkOutput = schema.new({
-    id = id.from(_N, "GetAssessmentFrameworkOutput"),
+    id = id.from(_N, "GetAssessmentFrameworkResponse"),
     type = "structure",
     members = {
         framework = schema.new({
@@ -2580,7 +2580,7 @@ M.GetAssessmentFrameworkOutput = schema.new({
 })
 
 M.GetAssessmentReportUrlInput = schema.new({
-    id = id.from(_N, "GetAssessmentReportUrlInput"),
+    id = id.from(_N, "GetAssessmentReportUrlRequest"),
     type = "structure",
     members = {
         assessmentReportId = schema.new({
@@ -2626,7 +2626,7 @@ M.URL = schema.new({
 })
 
 M.GetAssessmentReportUrlOutput = schema.new({
-    id = id.from(_N, "GetAssessmentReportUrlOutput"),
+    id = id.from(_N, "GetAssessmentReportUrlResponse"),
     type = "structure",
     members = {
         preSignedUrl = schema.new({
@@ -2640,7 +2640,7 @@ M.GetAssessmentReportUrlOutput = schema.new({
 })
 
 M.GetChangeLogsInput = schema.new({
-    id = id.from(_N, "GetChangeLogsInput"),
+    id = id.from(_N, "GetChangeLogsRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -2730,7 +2730,7 @@ M.ChangeLog = schema.new({
 })
 
 M.GetChangeLogsOutput = schema.new({
-    id = id.from(_N, "GetChangeLogsOutput"),
+    id = id.from(_N, "GetChangeLogsResponse"),
     type = "structure",
     members = {
         changeLogs = schema.new({
@@ -2750,7 +2750,7 @@ M.GetChangeLogsOutput = schema.new({
 })
 
 M.GetControlInput = schema.new({
-    id = id.from(_N, "GetControlInput"),
+    id = id.from(_N, "GetControlRequest"),
     type = "structure",
     members = {
         controlId = schema.new({
@@ -2767,7 +2767,7 @@ M.GetControlInput = schema.new({
 })
 
 M.GetControlOutput = schema.new({
-    id = id.from(_N, "GetControlOutput"),
+    id = id.from(_N, "GetControlResponse"),
     type = "structure",
     members = {
         control = schema.new({
@@ -2781,7 +2781,7 @@ M.GetControlOutput = schema.new({
 })
 
 M.GetDelegationsInput = schema.new({
-    id = id.from(_N, "GetDelegationsInput"),
+    id = id.from(_N, "GetDelegationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2855,7 +2855,7 @@ M.DelegationMetadata = schema.new({
 })
 
 M.GetDelegationsOutput = schema.new({
-    id = id.from(_N, "GetDelegationsOutput"),
+    id = id.from(_N, "GetDelegationsResponse"),
     type = "structure",
     members = {
         delegations = schema.new({
@@ -2875,7 +2875,7 @@ M.GetDelegationsOutput = schema.new({
 })
 
 M.GetEvidenceInput = schema.new({
-    id = id.from(_N, "GetEvidenceInput"),
+    id = id.from(_N, "GetEvidenceRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -3047,7 +3047,7 @@ M.Evidence = schema.new({
 })
 
 M.GetEvidenceOutput = schema.new({
-    id = id.from(_N, "GetEvidenceOutput"),
+    id = id.from(_N, "GetEvidenceResponse"),
     type = "structure",
     members = {
         evidence = schema.new({
@@ -3061,7 +3061,7 @@ M.GetEvidenceOutput = schema.new({
 })
 
 M.GetEvidenceByEvidenceFolderInput = schema.new({
-    id = id.from(_N, "GetEvidenceByEvidenceFolderInput"),
+    id = id.from(_N, "GetEvidenceByEvidenceFolderRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -3116,7 +3116,7 @@ M.GetEvidenceByEvidenceFolderInput = schema.new({
 })
 
 M.GetEvidenceByEvidenceFolderOutput = schema.new({
-    id = id.from(_N, "GetEvidenceByEvidenceFolderOutput"),
+    id = id.from(_N, "GetEvidenceByEvidenceFolderResponse"),
     type = "structure",
     members = {
         evidence = schema.new({
@@ -3136,7 +3136,7 @@ M.GetEvidenceByEvidenceFolderOutput = schema.new({
 })
 
 M.GetEvidenceFileUploadUrlInput = schema.new({
-    id = id.from(_N, "GetEvidenceFileUploadUrlInput"),
+    id = id.from(_N, "GetEvidenceFileUploadUrlRequest"),
     type = "structure",
     members = {
         fileName = schema.new({
@@ -3153,7 +3153,7 @@ M.GetEvidenceFileUploadUrlInput = schema.new({
 })
 
 M.GetEvidenceFileUploadUrlOutput = schema.new({
-    id = id.from(_N, "GetEvidenceFileUploadUrlOutput"),
+    id = id.from(_N, "GetEvidenceFileUploadUrlResponse"),
     type = "structure",
     members = {
         evidenceFileName = schema.new({
@@ -3172,7 +3172,7 @@ M.GetEvidenceFileUploadUrlOutput = schema.new({
 })
 
 M.GetEvidenceFolderInput = schema.new({
-    id = id.from(_N, "GetEvidenceFolderInput"),
+    id = id.from(_N, "GetEvidenceFolderRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -3209,7 +3209,7 @@ M.GetEvidenceFolderInput = schema.new({
 })
 
 M.GetEvidenceFolderOutput = schema.new({
-    id = id.from(_N, "GetEvidenceFolderOutput"),
+    id = id.from(_N, "GetEvidenceFolderResponse"),
     type = "structure",
     members = {
         evidenceFolder = schema.new({
@@ -3223,7 +3223,7 @@ M.GetEvidenceFolderOutput = schema.new({
 })
 
 M.GetEvidenceFoldersByAssessmentInput = schema.new({
-    id = id.from(_N, "GetEvidenceFoldersByAssessmentInput"),
+    id = id.from(_N, "GetEvidenceFoldersByAssessmentRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -3258,7 +3258,7 @@ M.GetEvidenceFoldersByAssessmentInput = schema.new({
 })
 
 M.GetEvidenceFoldersByAssessmentOutput = schema.new({
-    id = id.from(_N, "GetEvidenceFoldersByAssessmentOutput"),
+    id = id.from(_N, "GetEvidenceFoldersByAssessmentResponse"),
     type = "structure",
     members = {
         evidenceFolders = schema.new({
@@ -3278,7 +3278,7 @@ M.GetEvidenceFoldersByAssessmentOutput = schema.new({
 })
 
 M.GetEvidenceFoldersByAssessmentControlInput = schema.new({
-    id = id.from(_N, "GetEvidenceFoldersByAssessmentControlInput"),
+    id = id.from(_N, "GetEvidenceFoldersByAssessmentControlRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -3333,7 +3333,7 @@ M.GetEvidenceFoldersByAssessmentControlInput = schema.new({
 })
 
 M.GetEvidenceFoldersByAssessmentControlOutput = schema.new({
-    id = id.from(_N, "GetEvidenceFoldersByAssessmentControlOutput"),
+    id = id.from(_N, "GetEvidenceFoldersByAssessmentControlResponse"),
     type = "structure",
     members = {
         evidenceFolders = schema.new({
@@ -3353,7 +3353,7 @@ M.GetEvidenceFoldersByAssessmentControlOutput = schema.new({
 })
 
 M.GetInsightsInput = schema.new({
-    id = id.from(_N, "GetInsightsInput"),
+    id = id.from(_N, "GetInsightsRequest"),
     type = "structure",
 })
 
@@ -3407,7 +3407,7 @@ M.Insights = schema.new({
 })
 
 M.GetInsightsOutput = schema.new({
-    id = id.from(_N, "GetInsightsOutput"),
+    id = id.from(_N, "GetInsightsResponse"),
     type = "structure",
     members = {
         insights = schema.new({
@@ -3421,7 +3421,7 @@ M.GetInsightsOutput = schema.new({
 })
 
 M.GetInsightsByAssessmentInput = schema.new({
-    id = id.from(_N, "GetInsightsByAssessmentInput"),
+    id = id.from(_N, "GetInsightsByAssessmentRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -3481,7 +3481,7 @@ M.InsightsByAssessment = schema.new({
 })
 
 M.GetInsightsByAssessmentOutput = schema.new({
-    id = id.from(_N, "GetInsightsByAssessmentOutput"),
+    id = id.from(_N, "GetInsightsByAssessmentResponse"),
     type = "structure",
     members = {
         insights = schema.new({
@@ -3495,12 +3495,12 @@ M.GetInsightsByAssessmentOutput = schema.new({
 })
 
 M.GetOrganizationAdminAccountInput = schema.new({
-    id = id.from(_N, "GetOrganizationAdminAccountInput"),
+    id = id.from(_N, "GetOrganizationAdminAccountRequest"),
     type = "structure",
 })
 
 M.GetOrganizationAdminAccountOutput = schema.new({
-    id = id.from(_N, "GetOrganizationAdminAccountOutput"),
+    id = id.from(_N, "GetOrganizationAdminAccountResponse"),
     type = "structure",
     members = {
         adminAccountId = schema.new({
@@ -3519,7 +3519,7 @@ M.GetOrganizationAdminAccountOutput = schema.new({
 })
 
 M.GetServicesInScopeInput = schema.new({
-    id = id.from(_N, "GetServicesInScopeInput"),
+    id = id.from(_N, "GetServicesInScopeRequest"),
     type = "structure",
 })
 
@@ -3555,7 +3555,7 @@ M.ServiceMetadata = schema.new({
 })
 
 M.GetServicesInScopeOutput = schema.new({
-    id = id.from(_N, "GetServicesInScopeOutput"),
+    id = id.from(_N, "GetServicesInScopeResponse"),
     type = "structure",
     members = {
         serviceMetadata = schema.new({
@@ -3569,7 +3569,7 @@ M.GetServicesInScopeOutput = schema.new({
 })
 
 M.GetSettingsInput = schema.new({
-    id = id.from(_N, "GetSettingsInput"),
+    id = id.from(_N, "GetSettingsRequest"),
     type = "structure",
     members = {
         attribute = schema.new({
@@ -3709,7 +3709,7 @@ M.Settings = schema.new({
 })
 
 M.GetSettingsOutput = schema.new({
-    id = id.from(_N, "GetSettingsOutput"),
+    id = id.from(_N, "GetSettingsResponse"),
     type = "structure",
     members = {
         settings = schema.new({
@@ -3723,7 +3723,7 @@ M.GetSettingsOutput = schema.new({
 })
 
 M.ListAssessmentControlInsightsByControlDomainInput = schema.new({
-    id = id.from(_N, "ListAssessmentControlInsightsByControlDomainInput"),
+    id = id.from(_N, "ListAssessmentControlInsightsByControlDomainRequest"),
     type = "structure",
     members = {
         controlDomainId = schema.new({
@@ -3831,7 +3831,7 @@ M.ControlInsightsMetadataByAssessmentItem = schema.new({
 })
 
 M.ListAssessmentControlInsightsByControlDomainOutput = schema.new({
-    id = id.from(_N, "ListAssessmentControlInsightsByControlDomainOutput"),
+    id = id.from(_N, "ListAssessmentControlInsightsByControlDomainResponse"),
     type = "structure",
     members = {
         controlInsightsByAssessment = schema.new({
@@ -3851,7 +3851,7 @@ M.ListAssessmentControlInsightsByControlDomainOutput = schema.new({
 })
 
 M.ListAssessmentFrameworksInput = schema.new({
-    id = id.from(_N, "ListAssessmentFrameworksInput"),
+    id = id.from(_N, "ListAssessmentFrameworksRequest"),
     type = "structure",
     members = {
         frameworkType = schema.new({
@@ -3886,7 +3886,7 @@ M.ListAssessmentFrameworksInput = schema.new({
 })
 
 M.ListAssessmentFrameworksOutput = schema.new({
-    id = id.from(_N, "ListAssessmentFrameworksOutput"),
+    id = id.from(_N, "ListAssessmentFrameworksResponse"),
     type = "structure",
     members = {
         frameworkMetadataList = schema.new({
@@ -3906,7 +3906,7 @@ M.ListAssessmentFrameworksOutput = schema.new({
 })
 
 M.ListAssessmentFrameworkShareRequestsInput = schema.new({
-    id = id.from(_N, "ListAssessmentFrameworkShareRequestsInput"),
+    id = id.from(_N, "ListAssessmentFrameworkShareRequestsRequest"),
     type = "structure",
     members = {
         requestType = schema.new({
@@ -3941,7 +3941,7 @@ M.ListAssessmentFrameworkShareRequestsInput = schema.new({
 })
 
 M.ListAssessmentFrameworkShareRequestsOutput = schema.new({
-    id = id.from(_N, "ListAssessmentFrameworkShareRequestsOutput"),
+    id = id.from(_N, "ListAssessmentFrameworkShareRequestsResponse"),
     type = "structure",
     members = {
         assessmentFrameworkShareRequests = schema.new({
@@ -3961,7 +3961,7 @@ M.ListAssessmentFrameworkShareRequestsOutput = schema.new({
 })
 
 M.ListAssessmentReportsInput = schema.new({
-    id = id.from(_N, "ListAssessmentReportsInput"),
+    id = id.from(_N, "ListAssessmentReportsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3986,7 +3986,7 @@ M.ListAssessmentReportsInput = schema.new({
 })
 
 M.ListAssessmentReportsOutput = schema.new({
-    id = id.from(_N, "ListAssessmentReportsOutput"),
+    id = id.from(_N, "ListAssessmentReportsResponse"),
     type = "structure",
     members = {
         assessmentReports = schema.new({
@@ -4006,7 +4006,7 @@ M.ListAssessmentReportsOutput = schema.new({
 })
 
 M.ListAssessmentsInput = schema.new({
-    id = id.from(_N, "ListAssessmentsInput"),
+    id = id.from(_N, "ListAssessmentsRequest"),
     type = "structure",
     members = {
         status = schema.new({
@@ -4040,7 +4040,7 @@ M.ListAssessmentsInput = schema.new({
 })
 
 M.ListAssessmentsOutput = schema.new({
-    id = id.from(_N, "ListAssessmentsOutput"),
+    id = id.from(_N, "ListAssessmentsResponse"),
     type = "structure",
     members = {
         assessmentMetadata = schema.new({
@@ -4060,7 +4060,7 @@ M.ListAssessmentsOutput = schema.new({
 })
 
 M.ListControlDomainInsightsInput = schema.new({
-    id = id.from(_N, "ListControlDomainInsightsInput"),
+    id = id.from(_N, "ListControlDomainInsightsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4129,7 +4129,7 @@ M.ControlDomainInsights = schema.new({
 })
 
 M.ListControlDomainInsightsOutput = schema.new({
-    id = id.from(_N, "ListControlDomainInsightsOutput"),
+    id = id.from(_N, "ListControlDomainInsightsResponse"),
     type = "structure",
     members = {
         controlDomainInsights = schema.new({
@@ -4149,7 +4149,7 @@ M.ListControlDomainInsightsOutput = schema.new({
 })
 
 M.ListControlDomainInsightsByAssessmentInput = schema.new({
-    id = id.from(_N, "ListControlDomainInsightsByAssessmentInput"),
+    id = id.from(_N, "ListControlDomainInsightsByAssessmentRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -4184,7 +4184,7 @@ M.ListControlDomainInsightsByAssessmentInput = schema.new({
 })
 
 M.ListControlDomainInsightsByAssessmentOutput = schema.new({
-    id = id.from(_N, "ListControlDomainInsightsByAssessmentOutput"),
+    id = id.from(_N, "ListControlDomainInsightsByAssessmentResponse"),
     type = "structure",
     members = {
         controlDomainInsights = schema.new({
@@ -4204,7 +4204,7 @@ M.ListControlDomainInsightsByAssessmentOutput = schema.new({
 })
 
 M.ListControlInsightsByControlDomainInput = schema.new({
-    id = id.from(_N, "ListControlInsightsByControlDomainInput"),
+    id = id.from(_N, "ListControlInsightsByControlDomainRequest"),
     type = "structure",
     members = {
         controlDomainId = schema.new({
@@ -4271,7 +4271,7 @@ M.ControlInsightsMetadataItem = schema.new({
 })
 
 M.ListControlInsightsByControlDomainOutput = schema.new({
-    id = id.from(_N, "ListControlInsightsByControlDomainOutput"),
+    id = id.from(_N, "ListControlInsightsByControlDomainResponse"),
     type = "structure",
     members = {
         controlInsightsMetadata = schema.new({
@@ -4291,7 +4291,7 @@ M.ListControlInsightsByControlDomainOutput = schema.new({
 })
 
 M.ListControlsInput = schema.new({
-    id = id.from(_N, "ListControlsInput"),
+    id = id.from(_N, "ListControlsRequest"),
     type = "structure",
     members = {
         controlType = schema.new({
@@ -4378,7 +4378,7 @@ M.ControlMetadata = schema.new({
 })
 
 M.ListControlsOutput = schema.new({
-    id = id.from(_N, "ListControlsOutput"),
+    id = id.from(_N, "ListControlsResponse"),
     type = "structure",
     members = {
         controlMetadataList = schema.new({
@@ -4398,7 +4398,7 @@ M.ListControlsOutput = schema.new({
 })
 
 M.ListKeywordsForDataSourceInput = schema.new({
-    id = id.from(_N, "ListKeywordsForDataSourceInput"),
+    id = id.from(_N, "ListKeywordsForDataSourceRequest"),
     type = "structure",
     members = {
         source = schema.new({
@@ -4433,7 +4433,7 @@ M.ListKeywordsForDataSourceInput = schema.new({
 })
 
 M.ListKeywordsForDataSourceOutput = schema.new({
-    id = id.from(_N, "ListKeywordsForDataSourceOutput"),
+    id = id.from(_N, "ListKeywordsForDataSourceResponse"),
     type = "structure",
     members = {
         keywords = schema.new({
@@ -4453,7 +4453,7 @@ M.ListKeywordsForDataSourceOutput = schema.new({
 })
 
 M.ListNotificationsInput = schema.new({
-    id = id.from(_N, "ListNotificationsInput"),
+    id = id.from(_N, "ListNotificationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4533,7 +4533,7 @@ M.Notification = schema.new({
 })
 
 M.ListNotificationsOutput = schema.new({
-    id = id.from(_N, "ListNotificationsOutput"),
+    id = id.from(_N, "ListNotificationsResponse"),
     type = "structure",
     members = {
         notifications = schema.new({
@@ -4553,7 +4553,7 @@ M.ListNotificationsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4570,7 +4570,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -4585,7 +4585,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.RegisterAccountInput = schema.new({
-    id = id.from(_N, "RegisterAccountInput"),
+    id = id.from(_N, "RegisterAccountRequest"),
     type = "structure",
     members = {
         kmsKey = schema.new({
@@ -4604,7 +4604,7 @@ M.RegisterAccountInput = schema.new({
 })
 
 M.RegisterAccountOutput = schema.new({
-    id = id.from(_N, "RegisterAccountOutput"),
+    id = id.from(_N, "RegisterAccountResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -4617,7 +4617,7 @@ M.RegisterAccountOutput = schema.new({
 })
 
 M.RegisterOrganizationAdminAccountInput = schema.new({
-    id = id.from(_N, "RegisterOrganizationAdminAccountInput"),
+    id = id.from(_N, "RegisterOrganizationAdminAccountRequest"),
     type = "structure",
     members = {
         adminAccountId = schema.new({
@@ -4633,7 +4633,7 @@ M.RegisterOrganizationAdminAccountInput = schema.new({
 })
 
 M.RegisterOrganizationAdminAccountOutput = schema.new({
-    id = id.from(_N, "RegisterOrganizationAdminAccountOutput"),
+    id = id.from(_N, "RegisterOrganizationAdminAccountResponse"),
     type = "structure",
     members = {
         adminAccountId = schema.new({
@@ -4652,7 +4652,7 @@ M.RegisterOrganizationAdminAccountOutput = schema.new({
 })
 
 M.StartAssessmentFrameworkShareInput = schema.new({
-    id = id.from(_N, "StartAssessmentFrameworkShareInput"),
+    id = id.from(_N, "StartAssessmentFrameworkShareRequest"),
     type = "structure",
     members = {
         frameworkId = schema.new({
@@ -4693,7 +4693,7 @@ M.StartAssessmentFrameworkShareInput = schema.new({
 })
 
 M.StartAssessmentFrameworkShareOutput = schema.new({
-    id = id.from(_N, "StartAssessmentFrameworkShareOutput"),
+    id = id.from(_N, "StartAssessmentFrameworkShareResponse"),
     type = "structure",
     members = {
         assessmentFrameworkShareRequest = schema.new({
@@ -4707,7 +4707,7 @@ M.StartAssessmentFrameworkShareOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4735,12 +4735,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4768,12 +4768,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAssessmentInput = schema.new({
-    id = id.from(_N, "UpdateAssessmentInput"),
+    id = id.from(_N, "UpdateAssessmentRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -4826,7 +4826,7 @@ M.UpdateAssessmentInput = schema.new({
 })
 
 M.UpdateAssessmentOutput = schema.new({
-    id = id.from(_N, "UpdateAssessmentOutput"),
+    id = id.from(_N, "UpdateAssessmentResponse"),
     type = "structure",
     members = {
         assessment = schema.new({
@@ -4840,7 +4840,7 @@ M.UpdateAssessmentOutput = schema.new({
 })
 
 M.UpdateAssessmentControlInput = schema.new({
-    id = id.from(_N, "UpdateAssessmentControlInput"),
+    id = id.from(_N, "UpdateAssessmentControlRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -4889,7 +4889,7 @@ M.UpdateAssessmentControlInput = schema.new({
 })
 
 M.UpdateAssessmentControlOutput = schema.new({
-    id = id.from(_N, "UpdateAssessmentControlOutput"),
+    id = id.from(_N, "UpdateAssessmentControlResponse"),
     type = "structure",
     members = {
         control = schema.new({
@@ -4903,7 +4903,7 @@ M.UpdateAssessmentControlOutput = schema.new({
 })
 
 M.UpdateAssessmentControlSetStatusInput = schema.new({
-    id = id.from(_N, "UpdateAssessmentControlSetStatusInput"),
+    id = id.from(_N, "UpdateAssessmentControlSetStatusRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -4948,7 +4948,7 @@ M.UpdateAssessmentControlSetStatusInput = schema.new({
 })
 
 M.UpdateAssessmentControlSetStatusOutput = schema.new({
-    id = id.from(_N, "UpdateAssessmentControlSetStatusOutput"),
+    id = id.from(_N, "UpdateAssessmentControlSetStatusResponse"),
     type = "structure",
     members = {
         controlSet = schema.new({
@@ -4994,7 +4994,7 @@ M.UpdateAssessmentFrameworkControlSet = schema.new({
 })
 
 M.UpdateAssessmentFrameworkInput = schema.new({
-    id = id.from(_N, "UpdateAssessmentFrameworkInput"),
+    id = id.from(_N, "UpdateAssessmentFrameworkRequest"),
     type = "structure",
     members = {
         frameworkId = schema.new({
@@ -5042,7 +5042,7 @@ M.UpdateAssessmentFrameworkInput = schema.new({
 })
 
 M.UpdateAssessmentFrameworkOutput = schema.new({
-    id = id.from(_N, "UpdateAssessmentFrameworkOutput"),
+    id = id.from(_N, "UpdateAssessmentFrameworkResponse"),
     type = "structure",
     members = {
         framework = schema.new({
@@ -5056,7 +5056,7 @@ M.UpdateAssessmentFrameworkOutput = schema.new({
 })
 
 M.UpdateAssessmentFrameworkShareInput = schema.new({
-    id = id.from(_N, "UpdateAssessmentFrameworkShareInput"),
+    id = id.from(_N, "UpdateAssessmentFrameworkShareRequest"),
     type = "structure",
     members = {
         requestId = schema.new({
@@ -5091,7 +5091,7 @@ M.UpdateAssessmentFrameworkShareInput = schema.new({
 })
 
 M.UpdateAssessmentFrameworkShareOutput = schema.new({
-    id = id.from(_N, "UpdateAssessmentFrameworkShareOutput"),
+    id = id.from(_N, "UpdateAssessmentFrameworkShareResponse"),
     type = "structure",
     members = {
         assessmentFrameworkShareRequest = schema.new({
@@ -5105,7 +5105,7 @@ M.UpdateAssessmentFrameworkShareOutput = schema.new({
 })
 
 M.UpdateAssessmentStatusInput = schema.new({
-    id = id.from(_N, "UpdateAssessmentStatusInput"),
+    id = id.from(_N, "UpdateAssessmentStatusRequest"),
     type = "structure",
     members = {
         assessmentId = schema.new({
@@ -5131,7 +5131,7 @@ M.UpdateAssessmentStatusInput = schema.new({
 })
 
 M.UpdateAssessmentStatusOutput = schema.new({
-    id = id.from(_N, "UpdateAssessmentStatusOutput"),
+    id = id.from(_N, "UpdateAssessmentStatusResponse"),
     type = "structure",
     members = {
         assessment = schema.new({
@@ -5145,7 +5145,7 @@ M.UpdateAssessmentStatusOutput = schema.new({
 })
 
 M.UpdateControlInput = schema.new({
-    id = id.from(_N, "UpdateControlInput"),
+    id = id.from(_N, "UpdateControlRequest"),
     type = "structure",
     members = {
         controlId = schema.new({
@@ -5205,7 +5205,7 @@ M.UpdateControlInput = schema.new({
 })
 
 M.UpdateControlOutput = schema.new({
-    id = id.from(_N, "UpdateControlOutput"),
+    id = id.from(_N, "UpdateControlResponse"),
     type = "structure",
     members = {
         control = schema.new({
@@ -5219,7 +5219,7 @@ M.UpdateControlOutput = schema.new({
 })
 
 M.UpdateSettingsInput = schema.new({
-    id = id.from(_N, "UpdateSettingsInput"),
+    id = id.from(_N, "UpdateSettingsRequest"),
     type = "structure",
     members = {
         snsTopic = schema.new({
@@ -5272,7 +5272,7 @@ M.UpdateSettingsInput = schema.new({
 })
 
 M.UpdateSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateSettingsOutput"),
+    id = id.from(_N, "UpdateSettingsResponse"),
     type = "structure",
     members = {
         settings = schema.new({
@@ -5286,7 +5286,7 @@ M.UpdateSettingsOutput = schema.new({
 })
 
 M.ValidateAssessmentReportIntegrityInput = schema.new({
-    id = id.from(_N, "ValidateAssessmentReportIntegrityInput"),
+    id = id.from(_N, "ValidateAssessmentReportIntegrityRequest"),
     type = "structure",
     members = {
         s3RelativePath = schema.new({
@@ -5302,7 +5302,7 @@ M.ValidateAssessmentReportIntegrityInput = schema.new({
 })
 
 M.ValidateAssessmentReportIntegrityOutput = schema.new({
-    id = id.from(_N, "ValidateAssessmentReportIntegrityOutput"),
+    id = id.from(_N, "ValidateAssessmentReportIntegrityResponse"),
     type = "structure",
     members = {
         signatureValid = schema.new({
@@ -5338,5 +5338,19 @@ M.ValidateAssessmentReportIntegrityOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

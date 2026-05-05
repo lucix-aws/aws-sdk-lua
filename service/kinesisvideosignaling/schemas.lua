@@ -24,7 +24,7 @@ M.ClientLimitExceededException = schema.new({
 })
 
 M.GetIceServerConfigInput = schema.new({
-    id = id.from(_N, "GetIceServerConfigInput"),
+    id = id.from(_N, "GetIceServerConfigRequest"),
     type = "structure",
     members = {
         ChannelARN = schema.new({
@@ -90,7 +90,7 @@ M.IceServer = schema.new({
 })
 
 M.GetIceServerConfigOutput = schema.new({
-    id = id.from(_N, "GetIceServerConfigOutput"),
+    id = id.from(_N, "GetIceServerConfigResponse"),
     type = "structure",
     members = {
         IceServerList = schema.new({
@@ -184,7 +184,7 @@ M.SessionExpiredException = schema.new({
 })
 
 M.SendAlexaOfferToMasterInput = schema.new({
-    id = id.from(_N, "SendAlexaOfferToMasterInput"),
+    id = id.from(_N, "SendAlexaOfferToMasterRequest"),
     type = "structure",
     members = {
         ChannelARN = schema.new({
@@ -218,7 +218,7 @@ M.SendAlexaOfferToMasterInput = schema.new({
 })
 
 M.SendAlexaOfferToMasterOutput = schema.new({
-    id = id.from(_N, "SendAlexaOfferToMasterOutput"),
+    id = id.from(_N, "SendAlexaOfferToMasterResponse"),
     type = "structure",
     members = {
         Answer = schema.new({
@@ -229,5 +229,19 @@ M.SendAlexaOfferToMasterOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

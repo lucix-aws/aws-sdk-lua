@@ -45,7 +45,7 @@ M.AbortMultipartUploadInput = schema.new({
 })
 
 M.AbortMultipartUploadOutput = schema.new({
-    id = id.from(_N, "AbortMultipartUploadOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -217,7 +217,7 @@ M.AbortVaultLockInput = schema.new({
 })
 
 M.AbortVaultLockOutput = schema.new({
-    id = id.from(_N, "AbortVaultLockOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -317,7 +317,7 @@ M.AddTagsToVaultInput = schema.new({
 })
 
 M.AddTagsToVaultOutput = schema.new({
-    id = id.from(_N, "AddTagsToVaultOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -405,7 +405,7 @@ M.CompleteMultipartUploadInput = schema.new({
 })
 
 M.CompleteMultipartUploadOutput = schema.new({
-    id = id.from(_N, "CompleteMultipartUploadOutput"),
+    id = id.from(_N, "ArchiveCreationOutput"),
     type = "structure",
     members = {
         location = schema.new({
@@ -476,7 +476,7 @@ M.CompleteVaultLockInput = schema.new({
 })
 
 M.CompleteVaultLockOutput = schema.new({
-    id = id.from(_N, "CompleteVaultLockOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -674,7 +674,7 @@ M.DeleteArchiveInput = schema.new({
 })
 
 M.DeleteArchiveOutput = schema.new({
-    id = id.from(_N, "DeleteArchiveOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -706,7 +706,7 @@ M.DeleteVaultInput = schema.new({
 })
 
 M.DeleteVaultOutput = schema.new({
-    id = id.from(_N, "DeleteVaultOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -738,7 +738,7 @@ M.DeleteVaultAccessPolicyInput = schema.new({
 })
 
 M.DeleteVaultAccessPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteVaultAccessPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -770,7 +770,7 @@ M.DeleteVaultNotificationsInput = schema.new({
 })
 
 M.DeleteVaultNotificationsOutput = schema.new({
-    id = id.from(_N, "DeleteVaultNotificationsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1010,7 +1010,7 @@ M.SelectParameters = schema.new({
 })
 
 M.DescribeJobOutput = schema.new({
-    id = id.from(_N, "DescribeJobOutput"),
+    id = id.from(_N, "GlacierJobDescription"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1176,7 +1176,7 @@ M.DescribeVaultInput = schema.new({
 })
 
 M.DescribeVaultOperationOutput = schema.new({
-    id = id.from(_N, "DescribeVaultOperationOutput"),
+    id = id.from(_N, "DescribeVaultOutput"),
     type = "structure",
     members = {
         VaultARN = schema.new({
@@ -2640,7 +2640,7 @@ M.RemoveTagsFromVaultInput = schema.new({
 })
 
 M.RemoveTagsFromVaultOutput = schema.new({
-    id = id.from(_N, "RemoveTagsFromVaultOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2669,7 +2669,7 @@ M.SetDataRetrievalPolicyInput = schema.new({
 })
 
 M.SetDataRetrievalPolicyOutput = schema.new({
-    id = id.from(_N, "SetDataRetrievalPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2711,7 +2711,7 @@ M.SetVaultAccessPolicyInput = schema.new({
 })
 
 M.SetVaultAccessPolicyOutput = schema.new({
-    id = id.from(_N, "SetVaultAccessPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2753,7 +2753,7 @@ M.SetVaultNotificationsInput = schema.new({
 })
 
 M.SetVaultNotificationsOutput = schema.new({
-    id = id.from(_N, "SetVaultNotificationsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2841,7 +2841,7 @@ M.UploadArchiveInput = schema.new({
 })
 
 M.UploadArchiveOutput = schema.new({
-    id = id.from(_N, "UploadArchiveOutput"),
+    id = id.from(_N, "ArchiveCreationOutput"),
     type = "structure",
     members = {
         location = schema.new({
@@ -2954,5 +2954,19 @@ M.UploadMultipartPartOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

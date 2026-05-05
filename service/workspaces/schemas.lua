@@ -8,7 +8,7 @@ local _N = "com.amazonaws.workspaces"
 local M = {}
 
 M.AcceptAccountLinkInvitationInput = schema.new({
-    id = id.from(_N, "AcceptAccountLinkInvitationInput"),
+    id = id.from(_N, "AcceptAccountLinkInvitationRequest"),
     type = "structure",
     members = {
         LinkId = schema.new({
@@ -61,7 +61,7 @@ M.AccountLink = schema.new({
 })
 
 M.AcceptAccountLinkInvitationOutput = schema.new({
-    id = id.from(_N, "AcceptAccountLinkInvitationOutput"),
+    id = id.from(_N, "AcceptAccountLinkInvitationResult"),
     type = "structure",
     members = {
         AccountLink = schema.new({
@@ -399,7 +399,7 @@ M.ApplicationSettingsResponse = schema.new({
 })
 
 M.AssociateConnectionAliasInput = schema.new({
-    id = id.from(_N, "AssociateConnectionAliasInput"),
+    id = id.from(_N, "AssociateConnectionAliasRequest"),
     type = "structure",
     members = {
         AliasId = schema.new({
@@ -424,7 +424,7 @@ M.AssociateConnectionAliasInput = schema.new({
 })
 
 M.AssociateConnectionAliasOutput = schema.new({
-    id = id.from(_N, "AssociateConnectionAliasOutput"),
+    id = id.from(_N, "AssociateConnectionAliasResult"),
     type = "structure",
     members = {
         ConnectionIdentifier = schema.new({
@@ -507,7 +507,7 @@ M.ResourceAssociatedException = schema.new({
 })
 
 M.AssociateIpGroupsInput = schema.new({
-    id = id.from(_N, "AssociateIpGroupsInput"),
+    id = id.from(_N, "AssociateIpGroupsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -533,7 +533,7 @@ M.AssociateIpGroupsInput = schema.new({
 })
 
 M.AssociateIpGroupsOutput = schema.new({
-    id = id.from(_N, "AssociateIpGroupsOutput"),
+    id = id.from(_N, "AssociateIpGroupsResult"),
     type = "structure",
 })
 
@@ -554,7 +554,7 @@ M.ResourceLimitExceededException = schema.new({
 })
 
 M.AssociateWorkspaceApplicationInput = schema.new({
-    id = id.from(_N, "AssociateWorkspaceApplicationInput"),
+    id = id.from(_N, "AssociateWorkspaceApplicationRequest"),
     type = "structure",
     members = {
         WorkspaceId = schema.new({
@@ -629,7 +629,7 @@ M.WorkspaceResourceAssociation = schema.new({
 })
 
 M.AssociateWorkspaceApplicationOutput = schema.new({
-    id = id.from(_N, "AssociateWorkspaceApplicationOutput"),
+    id = id.from(_N, "AssociateWorkspaceApplicationResult"),
     type = "structure",
     members = {
         Association = schema.new({
@@ -724,7 +724,7 @@ M.IpRuleItem = schema.new({
 })
 
 M.AuthorizeIpRulesInput = schema.new({
-    id = id.from(_N, "AuthorizeIpRulesInput"),
+    id = id.from(_N, "AuthorizeIpRulesRequest"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -750,7 +750,7 @@ M.AuthorizeIpRulesInput = schema.new({
 })
 
 M.AuthorizeIpRulesOutput = schema.new({
-    id = id.from(_N, "AuthorizeIpRulesOutput"),
+    id = id.from(_N, "AuthorizeIpRulesResult"),
     type = "structure",
 })
 
@@ -1196,7 +1196,7 @@ M.Tag = schema.new({
 })
 
 M.CopyWorkspaceImageInput = schema.new({
-    id = id.from(_N, "CopyWorkspaceImageInput"),
+    id = id.from(_N, "CopyWorkspaceImageRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1243,7 +1243,7 @@ M.CopyWorkspaceImageInput = schema.new({
 })
 
 M.CopyWorkspaceImageOutput = schema.new({
-    id = id.from(_N, "CopyWorkspaceImageOutput"),
+    id = id.from(_N, "CopyWorkspaceImageResult"),
     type = "structure",
     members = {
         ImageId = schema.new({
@@ -1278,7 +1278,7 @@ M.ResourceUnavailableException = schema.new({
 })
 
 M.CreateAccountLinkInvitationInput = schema.new({
-    id = id.from(_N, "CreateAccountLinkInvitationInput"),
+    id = id.from(_N, "CreateAccountLinkInvitationRequest"),
     type = "structure",
     members = {
         TargetAccountId = schema.new({
@@ -1300,7 +1300,7 @@ M.CreateAccountLinkInvitationInput = schema.new({
 })
 
 M.CreateAccountLinkInvitationOutput = schema.new({
-    id = id.from(_N, "CreateAccountLinkInvitationOutput"),
+    id = id.from(_N, "CreateAccountLinkInvitationResult"),
     type = "structure",
     members = {
         AccountLink = schema.new({
@@ -1314,7 +1314,7 @@ M.CreateAccountLinkInvitationOutput = schema.new({
 })
 
 M.CreateConnectClientAddInInput = schema.new({
-    id = id.from(_N, "CreateConnectClientAddInInput"),
+    id = id.from(_N, "CreateConnectClientAddInRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -1348,7 +1348,7 @@ M.CreateConnectClientAddInInput = schema.new({
 })
 
 M.CreateConnectClientAddInOutput = schema.new({
-    id = id.from(_N, "CreateConnectClientAddInOutput"),
+    id = id.from(_N, "CreateConnectClientAddInResult"),
     type = "structure",
     members = {
         AddInId = schema.new({
@@ -1377,7 +1377,7 @@ M.ResourceCreationFailedException = schema.new({
 })
 
 M.CreateConnectionAliasInput = schema.new({
-    id = id.from(_N, "CreateConnectionAliasInput"),
+    id = id.from(_N, "CreateConnectionAliasRequest"),
     type = "structure",
     members = {
         ConnectionString = schema.new({
@@ -1400,7 +1400,7 @@ M.CreateConnectionAliasInput = schema.new({
 })
 
 M.CreateConnectionAliasOutput = schema.new({
-    id = id.from(_N, "CreateConnectionAliasOutput"),
+    id = id.from(_N, "CreateConnectionAliasResult"),
     type = "structure",
     members = {
         AliasId = schema.new({
@@ -1413,7 +1413,7 @@ M.CreateConnectionAliasOutput = schema.new({
 })
 
 M.CreateIpGroupInput = schema.new({
-    id = id.from(_N, "CreateIpGroupInput"),
+    id = id.from(_N, "CreateIpGroupRequest"),
     type = "structure",
     members = {
         GroupName = schema.new({
@@ -1449,7 +1449,7 @@ M.CreateIpGroupInput = schema.new({
 })
 
 M.CreateIpGroupOutput = schema.new({
-    id = id.from(_N, "CreateIpGroupOutput"),
+    id = id.from(_N, "CreateIpGroupResult"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -1506,7 +1506,7 @@ M.StandbyWorkspace = schema.new({
 })
 
 M.CreateStandbyWorkspacesInput = schema.new({
-    id = id.from(_N, "CreateStandbyWorkspacesInput"),
+    id = id.from(_N, "CreateStandbyWorkspacesRequest"),
     type = "structure",
     members = {
         PrimaryRegion = schema.new({
@@ -1589,7 +1589,7 @@ M.PendingCreateStandbyWorkspacesRequest = schema.new({
 })
 
 M.CreateStandbyWorkspacesOutput = schema.new({
-    id = id.from(_N, "CreateStandbyWorkspacesOutput"),
+    id = id.from(_N, "CreateStandbyWorkspacesResult"),
     type = "structure",
     members = {
         FailedStandbyRequests = schema.new({
@@ -1610,7 +1610,7 @@ M.CreateStandbyWorkspacesOutput = schema.new({
 })
 
 M.CreateTagsInput = schema.new({
-    id = id.from(_N, "CreateTagsInput"),
+    id = id.from(_N, "CreateTagsRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -1636,12 +1636,12 @@ M.CreateTagsInput = schema.new({
 })
 
 M.CreateTagsOutput = schema.new({
-    id = id.from(_N, "CreateTagsOutput"),
+    id = id.from(_N, "CreateTagsResult"),
     type = "structure",
 })
 
 M.CreateUpdatedWorkspaceImageInput = schema.new({
-    id = id.from(_N, "CreateUpdatedWorkspaceImageInput"),
+    id = id.from(_N, "CreateUpdatedWorkspaceImageRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1682,7 +1682,7 @@ M.CreateUpdatedWorkspaceImageInput = schema.new({
 })
 
 M.CreateUpdatedWorkspaceImageOutput = schema.new({
-    id = id.from(_N, "CreateUpdatedWorkspaceImageOutput"),
+    id = id.from(_N, "CreateUpdatedWorkspaceImageResult"),
     type = "structure",
     members = {
         ImageId = schema.new({
@@ -1695,7 +1695,7 @@ M.CreateUpdatedWorkspaceImageOutput = schema.new({
 })
 
 M.CreateWorkspaceBundleInput = schema.new({
-    id = id.from(_N, "CreateWorkspaceBundleInput"),
+    id = id.from(_N, "CreateWorkspaceBundleRequest"),
     type = "structure",
     members = {
         BundleName = schema.new({
@@ -1763,7 +1763,7 @@ M.CreateWorkspaceBundleInput = schema.new({
 })
 
 M.CreateWorkspaceBundleOutput = schema.new({
-    id = id.from(_N, "CreateWorkspaceBundleOutput"),
+    id = id.from(_N, "CreateWorkspaceBundleResult"),
     type = "structure",
     members = {
         WorkspaceBundle = schema.new({
@@ -1777,7 +1777,7 @@ M.CreateWorkspaceBundleOutput = schema.new({
 })
 
 M.CreateWorkspaceImageInput = schema.new({
-    id = id.from(_N, "CreateWorkspaceImageInput"),
+    id = id.from(_N, "CreateWorkspaceImageRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1831,7 +1831,7 @@ M.OperatingSystem = schema.new({
 })
 
 M.CreateWorkspaceImageOutput = schema.new({
-    id = id.from(_N, "CreateWorkspaceImageOutput"),
+    id = id.from(_N, "CreateWorkspaceImageResult"),
     type = "structure",
     members = {
         ImageId = schema.new({
@@ -2044,7 +2044,7 @@ M.WorkspaceRequest = schema.new({
 })
 
 M.CreateWorkspacesInput = schema.new({
-    id = id.from(_N, "CreateWorkspacesInput"),
+    id = id.from(_N, "CreateWorkspacesRequest"),
     type = "structure",
     members = {
         Workspaces = schema.new({
@@ -2313,7 +2313,7 @@ M.Workspace = schema.new({
 })
 
 M.CreateWorkspacesOutput = schema.new({
-    id = id.from(_N, "CreateWorkspacesOutput"),
+    id = id.from(_N, "CreateWorkspacesResult"),
     type = "structure",
     members = {
         FailedRequests = schema.new({
@@ -2359,7 +2359,7 @@ M.TimeoutSettings = schema.new({
 })
 
 M.CreateWorkspacesPoolInput = schema.new({
-    id = id.from(_N, "CreateWorkspacesPoolInput"),
+    id = id.from(_N, "CreateWorkspacesPoolRequest"),
     type = "structure",
     members = {
         PoolName = schema.new({
@@ -2575,7 +2575,7 @@ M.WorkspacesPool = schema.new({
 })
 
 M.CreateWorkspacesPoolOutput = schema.new({
-    id = id.from(_N, "CreateWorkspacesPoolOutput"),
+    id = id.from(_N, "CreateWorkspacesPoolResult"),
     type = "structure",
     members = {
         WorkspacesPool = schema.new({
@@ -2729,7 +2729,7 @@ M.DefaultWorkspaceCreationProperties = schema.new({
 })
 
 M.DeleteAccountLinkInvitationInput = schema.new({
-    id = id.from(_N, "DeleteAccountLinkInvitationInput"),
+    id = id.from(_N, "DeleteAccountLinkInvitationRequest"),
     type = "structure",
     members = {
         LinkId = schema.new({
@@ -2751,7 +2751,7 @@ M.DeleteAccountLinkInvitationInput = schema.new({
 })
 
 M.DeleteAccountLinkInvitationOutput = schema.new({
-    id = id.from(_N, "DeleteAccountLinkInvitationOutput"),
+    id = id.from(_N, "DeleteAccountLinkInvitationResult"),
     type = "structure",
     members = {
         AccountLink = schema.new({
@@ -2765,7 +2765,7 @@ M.DeleteAccountLinkInvitationOutput = schema.new({
 })
 
 M.DeleteClientBrandingInput = schema.new({
-    id = id.from(_N, "DeleteClientBrandingInput"),
+    id = id.from(_N, "DeleteClientBrandingRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -2791,12 +2791,12 @@ M.DeleteClientBrandingInput = schema.new({
 })
 
 M.DeleteClientBrandingOutput = schema.new({
-    id = id.from(_N, "DeleteClientBrandingOutput"),
+    id = id.from(_N, "DeleteClientBrandingResult"),
     type = "structure",
 })
 
 M.DeleteConnectClientAddInInput = schema.new({
-    id = id.from(_N, "DeleteConnectClientAddInInput"),
+    id = id.from(_N, "DeleteConnectClientAddInRequest"),
     type = "structure",
     members = {
         AddInId = schema.new({
@@ -2821,12 +2821,12 @@ M.DeleteConnectClientAddInInput = schema.new({
 })
 
 M.DeleteConnectClientAddInOutput = schema.new({
-    id = id.from(_N, "DeleteConnectClientAddInOutput"),
+    id = id.from(_N, "DeleteConnectClientAddInResult"),
     type = "structure",
 })
 
 M.DeleteConnectionAliasInput = schema.new({
-    id = id.from(_N, "DeleteConnectionAliasInput"),
+    id = id.from(_N, "DeleteConnectionAliasRequest"),
     type = "structure",
     members = {
         AliasId = schema.new({
@@ -2842,12 +2842,12 @@ M.DeleteConnectionAliasInput = schema.new({
 })
 
 M.DeleteConnectionAliasOutput = schema.new({
-    id = id.from(_N, "DeleteConnectionAliasOutput"),
+    id = id.from(_N, "DeleteConnectionAliasResult"),
     type = "structure",
 })
 
 M.DeleteIpGroupInput = schema.new({
-    id = id.from(_N, "DeleteIpGroupInput"),
+    id = id.from(_N, "DeleteIpGroupRequest"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -2863,12 +2863,12 @@ M.DeleteIpGroupInput = schema.new({
 })
 
 M.DeleteIpGroupOutput = schema.new({
-    id = id.from(_N, "DeleteIpGroupOutput"),
+    id = id.from(_N, "DeleteIpGroupResult"),
     type = "structure",
 })
 
 M.DeleteTagsInput = schema.new({
-    id = id.from(_N, "DeleteTagsInput"),
+    id = id.from(_N, "DeleteTagsRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -2894,12 +2894,12 @@ M.DeleteTagsInput = schema.new({
 })
 
 M.DeleteTagsOutput = schema.new({
-    id = id.from(_N, "DeleteTagsOutput"),
+    id = id.from(_N, "DeleteTagsResult"),
     type = "structure",
 })
 
 M.DeleteWorkspaceBundleInput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceBundleInput"),
+    id = id.from(_N, "DeleteWorkspaceBundleRequest"),
     type = "structure",
     members = {
         BundleId = schema.new({
@@ -2912,12 +2912,12 @@ M.DeleteWorkspaceBundleInput = schema.new({
 })
 
 M.DeleteWorkspaceBundleOutput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceBundleOutput"),
+    id = id.from(_N, "DeleteWorkspaceBundleResult"),
     type = "structure",
 })
 
 M.DeleteWorkspaceImageInput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceImageInput"),
+    id = id.from(_N, "DeleteWorkspaceImageRequest"),
     type = "structure",
     members = {
         ImageId = schema.new({
@@ -2933,12 +2933,12 @@ M.DeleteWorkspaceImageInput = schema.new({
 })
 
 M.DeleteWorkspaceImageOutput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceImageOutput"),
+    id = id.from(_N, "DeleteWorkspaceImageResult"),
     type = "structure",
 })
 
 M.DeployWorkspaceApplicationsInput = schema.new({
-    id = id.from(_N, "DeployWorkspaceApplicationsInput"),
+    id = id.from(_N, "DeployWorkspaceApplicationsRequest"),
     type = "structure",
     members = {
         WorkspaceId = schema.new({
@@ -2974,7 +2974,7 @@ M.WorkSpaceApplicationDeployment = schema.new({
 })
 
 M.DeployWorkspaceApplicationsOutput = schema.new({
-    id = id.from(_N, "DeployWorkspaceApplicationsOutput"),
+    id = id.from(_N, "DeployWorkspaceApplicationsResult"),
     type = "structure",
     members = {
         Deployment = schema.new({
@@ -2988,7 +2988,7 @@ M.DeployWorkspaceApplicationsOutput = schema.new({
 })
 
 M.DeregisterWorkspaceDirectoryInput = schema.new({
-    id = id.from(_N, "DeregisterWorkspaceDirectoryInput"),
+    id = id.from(_N, "DeregisterWorkspaceDirectoryRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -3004,17 +3004,17 @@ M.DeregisterWorkspaceDirectoryInput = schema.new({
 })
 
 M.DeregisterWorkspaceDirectoryOutput = schema.new({
-    id = id.from(_N, "DeregisterWorkspaceDirectoryOutput"),
+    id = id.from(_N, "DeregisterWorkspaceDirectoryResult"),
     type = "structure",
 })
 
 M.DescribeAccountInput = schema.new({
-    id = id.from(_N, "DescribeAccountInput"),
+    id = id.from(_N, "DescribeAccountRequest"),
     type = "structure",
 })
 
 M.DescribeAccountOutput = schema.new({
-    id = id.from(_N, "DescribeAccountOutput"),
+    id = id.from(_N, "DescribeAccountResult"),
     type = "structure",
     members = {
         DedicatedTenancySupport = schema.new({
@@ -3045,7 +3045,7 @@ M.DescribeAccountOutput = schema.new({
 })
 
 M.DescribeAccountModificationsInput = schema.new({
-    id = id.from(_N, "DescribeAccountModificationsInput"),
+    id = id.from(_N, "DescribeAccountModificationsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3058,7 +3058,7 @@ M.DescribeAccountModificationsInput = schema.new({
 })
 
 M.DescribeAccountModificationsOutput = schema.new({
-    id = id.from(_N, "DescribeAccountModificationsOutput"),
+    id = id.from(_N, "DescribeAccountModificationsResult"),
     type = "structure",
     members = {
         AccountModifications = schema.new({
@@ -3078,7 +3078,7 @@ M.DescribeAccountModificationsOutput = schema.new({
 })
 
 M.DescribeApplicationAssociationsInput = schema.new({
-    id = id.from(_N, "DescribeApplicationAssociationsInput"),
+    id = id.from(_N, "DescribeApplicationAssociationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3116,7 +3116,7 @@ M.DescribeApplicationAssociationsInput = schema.new({
 })
 
 M.DescribeApplicationAssociationsOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationAssociationsOutput"),
+    id = id.from(_N, "DescribeApplicationAssociationsResult"),
     type = "structure",
     members = {
         Associations = schema.new({
@@ -3136,7 +3136,7 @@ M.DescribeApplicationAssociationsOutput = schema.new({
 })
 
 M.DescribeApplicationsInput = schema.new({
-    id = id.from(_N, "DescribeApplicationsInput"),
+    id = id.from(_N, "DescribeApplicationsRequest"),
     type = "structure",
     members = {
         ApplicationIds = schema.new({
@@ -3251,7 +3251,7 @@ M.WorkSpaceApplication = schema.new({
 })
 
 M.DescribeApplicationsOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationsOutput"),
+    id = id.from(_N, "DescribeApplicationsResult"),
     type = "structure",
     members = {
         Applications = schema.new({
@@ -3271,7 +3271,7 @@ M.DescribeApplicationsOutput = schema.new({
 })
 
 M.DescribeBundleAssociationsInput = schema.new({
-    id = id.from(_N, "DescribeBundleAssociationsInput"),
+    id = id.from(_N, "DescribeBundleAssociationsRequest"),
     type = "structure",
     members = {
         BundleId = schema.new({
@@ -3297,7 +3297,7 @@ M.DescribeBundleAssociationsInput = schema.new({
 })
 
 M.DescribeBundleAssociationsOutput = schema.new({
-    id = id.from(_N, "DescribeBundleAssociationsOutput"),
+    id = id.from(_N, "DescribeBundleAssociationsResult"),
     type = "structure",
     members = {
         Associations = schema.new({
@@ -3311,7 +3311,7 @@ M.DescribeBundleAssociationsOutput = schema.new({
 })
 
 M.DescribeClientBrandingInput = schema.new({
-    id = id.from(_N, "DescribeClientBrandingInput"),
+    id = id.from(_N, "DescribeClientBrandingRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -3378,7 +3378,7 @@ M.IosClientBrandingAttributes = schema.new({
 })
 
 M.DescribeClientBrandingOutput = schema.new({
-    id = id.from(_N, "DescribeClientBrandingOutput"),
+    id = id.from(_N, "DescribeClientBrandingResult"),
     type = "structure",
     members = {
         DeviceTypeWindows = schema.new({
@@ -3427,7 +3427,7 @@ M.DescribeClientBrandingOutput = schema.new({
 })
 
 M.DescribeClientPropertiesInput = schema.new({
-    id = id.from(_N, "DescribeClientPropertiesInput"),
+    id = id.from(_N, "DescribeClientPropertiesRequest"),
     type = "structure",
     members = {
         ResourceIds = schema.new({
@@ -3444,7 +3444,7 @@ M.DescribeClientPropertiesInput = schema.new({
 })
 
 M.DescribeClientPropertiesOutput = schema.new({
-    id = id.from(_N, "DescribeClientPropertiesOutput"),
+    id = id.from(_N, "DescribeClientPropertiesResult"),
     type = "structure",
     members = {
         ClientPropertiesList = schema.new({
@@ -3458,7 +3458,7 @@ M.DescribeClientPropertiesOutput = schema.new({
 })
 
 M.DescribeConnectClientAddInsInput = schema.new({
-    id = id.from(_N, "DescribeConnectClientAddInsInput"),
+    id = id.from(_N, "DescribeConnectClientAddInsRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -3486,7 +3486,7 @@ M.DescribeConnectClientAddInsInput = schema.new({
 })
 
 M.DescribeConnectClientAddInsOutput = schema.new({
-    id = id.from(_N, "DescribeConnectClientAddInsOutput"),
+    id = id.from(_N, "DescribeConnectClientAddInsResult"),
     type = "structure",
     members = {
         AddIns = schema.new({
@@ -3506,7 +3506,7 @@ M.DescribeConnectClientAddInsOutput = schema.new({
 })
 
 M.DescribeConnectionAliasesInput = schema.new({
-    id = id.from(_N, "DescribeConnectionAliasesInput"),
+    id = id.from(_N, "DescribeConnectionAliasesRequest"),
     type = "structure",
     members = {
         AliasIds = schema.new({
@@ -3538,7 +3538,7 @@ M.DescribeConnectionAliasesInput = schema.new({
 })
 
 M.DescribeConnectionAliasesOutput = schema.new({
-    id = id.from(_N, "DescribeConnectionAliasesOutput"),
+    id = id.from(_N, "DescribeConnectionAliasesResult"),
     type = "structure",
     members = {
         ConnectionAliases = schema.new({
@@ -3558,7 +3558,7 @@ M.DescribeConnectionAliasesOutput = schema.new({
 })
 
 M.DescribeConnectionAliasPermissionsInput = schema.new({
-    id = id.from(_N, "DescribeConnectionAliasPermissionsInput"),
+    id = id.from(_N, "DescribeConnectionAliasPermissionsRequest"),
     type = "structure",
     members = {
         AliasId = schema.new({
@@ -3586,7 +3586,7 @@ M.DescribeConnectionAliasPermissionsInput = schema.new({
 })
 
 M.DescribeConnectionAliasPermissionsOutput = schema.new({
-    id = id.from(_N, "DescribeConnectionAliasPermissionsOutput"),
+    id = id.from(_N, "DescribeConnectionAliasPermissionsResult"),
     type = "structure",
     members = {
         AliasId = schema.new({
@@ -3612,7 +3612,7 @@ M.DescribeConnectionAliasPermissionsOutput = schema.new({
 })
 
 M.DescribeCustomWorkspaceImageImportInput = schema.new({
-    id = id.from(_N, "DescribeCustomWorkspaceImageImportInput"),
+    id = id.from(_N, "DescribeCustomWorkspaceImageImportRequest"),
     type = "structure",
     members = {
         ImageId = schema.new({
@@ -3653,7 +3653,7 @@ M.ImageSourceIdentifier = schema.new({
 })
 
 M.DescribeCustomWorkspaceImageImportOutput = schema.new({
-    id = id.from(_N, "DescribeCustomWorkspaceImageImportOutput"),
+    id = id.from(_N, "DescribeCustomWorkspaceImageImportResult"),
     type = "structure",
     members = {
         ImageId = schema.new({
@@ -3722,7 +3722,7 @@ M.DescribeCustomWorkspaceImageImportOutput = schema.new({
 })
 
 M.DescribeImageAssociationsInput = schema.new({
-    id = id.from(_N, "DescribeImageAssociationsInput"),
+    id = id.from(_N, "DescribeImageAssociationsRequest"),
     type = "structure",
     members = {
         ImageId = schema.new({
@@ -3798,7 +3798,7 @@ M.ImageResourceAssociation = schema.new({
 })
 
 M.DescribeImageAssociationsOutput = schema.new({
-    id = id.from(_N, "DescribeImageAssociationsOutput"),
+    id = id.from(_N, "DescribeImageAssociationsResult"),
     type = "structure",
     members = {
         Associations = schema.new({
@@ -3812,7 +3812,7 @@ M.DescribeImageAssociationsOutput = schema.new({
 })
 
 M.DescribeIpGroupsInput = schema.new({
-    id = id.from(_N, "DescribeIpGroupsInput"),
+    id = id.from(_N, "DescribeIpGroupsRequest"),
     type = "structure",
     members = {
         GroupIds = schema.new({
@@ -3870,7 +3870,7 @@ M.WorkspacesIpGroup = schema.new({
 })
 
 M.DescribeIpGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeIpGroupsOutput"),
+    id = id.from(_N, "DescribeIpGroupsResult"),
     type = "structure",
     members = {
         Result = schema.new({
@@ -3890,7 +3890,7 @@ M.DescribeIpGroupsOutput = schema.new({
 })
 
 M.DescribeTagsInput = schema.new({
-    id = id.from(_N, "DescribeTagsInput"),
+    id = id.from(_N, "DescribeTagsRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -3906,7 +3906,7 @@ M.DescribeTagsInput = schema.new({
 })
 
 M.DescribeTagsOutput = schema.new({
-    id = id.from(_N, "DescribeTagsOutput"),
+    id = id.from(_N, "DescribeTagsResult"),
     type = "structure",
     members = {
         TagList = schema.new({
@@ -3920,7 +3920,7 @@ M.DescribeTagsOutput = schema.new({
 })
 
 M.DescribeWorkspaceAssociationsInput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceAssociationsInput"),
+    id = id.from(_N, "DescribeWorkspaceAssociationsRequest"),
     type = "structure",
     members = {
         WorkspaceId = schema.new({
@@ -3946,7 +3946,7 @@ M.DescribeWorkspaceAssociationsInput = schema.new({
 })
 
 M.DescribeWorkspaceAssociationsOutput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceAssociationsOutput"),
+    id = id.from(_N, "DescribeWorkspaceAssociationsResult"),
     type = "structure",
     members = {
         Associations = schema.new({
@@ -3960,7 +3960,7 @@ M.DescribeWorkspaceAssociationsOutput = schema.new({
 })
 
 M.DescribeWorkspaceBundlesInput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceBundlesInput"),
+    id = id.from(_N, "DescribeWorkspaceBundlesRequest"),
     type = "structure",
     members = {
         BundleIds = schema.new({
@@ -3986,7 +3986,7 @@ M.DescribeWorkspaceBundlesInput = schema.new({
 })
 
 M.DescribeWorkspaceBundlesOutput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceBundlesOutput"),
+    id = id.from(_N, "DescribeWorkspaceBundlesResult"),
     type = "structure",
     members = {
         Bundles = schema.new({
@@ -4032,7 +4032,7 @@ M.DescribeWorkspaceDirectoriesFilter = schema.new({
 })
 
 M.DescribeWorkspaceDirectoriesInput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceDirectoriesInput"),
+    id = id.from(_N, "DescribeWorkspaceDirectoriesRequest"),
     type = "structure",
     members = {
         DirectoryIds = schema.new({
@@ -4546,7 +4546,7 @@ M.WorkspaceDirectory = schema.new({
 })
 
 M.DescribeWorkspaceDirectoriesOutput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceDirectoriesOutput"),
+    id = id.from(_N, "DescribeWorkspaceDirectoriesResult"),
     type = "structure",
     members = {
         Directories = schema.new({
@@ -4566,7 +4566,7 @@ M.DescribeWorkspaceDirectoriesOutput = schema.new({
 })
 
 M.DescribeWorkspaceImagePermissionsInput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceImagePermissionsInput"),
+    id = id.from(_N, "DescribeWorkspaceImagePermissionsRequest"),
     type = "structure",
     members = {
         ImageId = schema.new({
@@ -4607,7 +4607,7 @@ M.ImagePermission = schema.new({
 })
 
 M.DescribeWorkspaceImagePermissionsOutput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceImagePermissionsOutput"),
+    id = id.from(_N, "DescribeWorkspaceImagePermissionsResult"),
     type = "structure",
     members = {
         ImageId = schema.new({
@@ -4633,7 +4633,7 @@ M.DescribeWorkspaceImagePermissionsOutput = schema.new({
 })
 
 M.DescribeWorkspaceImagesInput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceImagesInput"),
+    id = id.from(_N, "DescribeWorkspaceImagesRequest"),
     type = "structure",
     members = {
         ImageIds = schema.new({
@@ -4785,7 +4785,7 @@ M.WorkspaceImage = schema.new({
 })
 
 M.DescribeWorkspaceImagesOutput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceImagesOutput"),
+    id = id.from(_N, "DescribeWorkspaceImagesResult"),
     type = "structure",
     members = {
         Images = schema.new({
@@ -4805,7 +4805,7 @@ M.DescribeWorkspaceImagesOutput = schema.new({
 })
 
 M.DescribeWorkspacesInput = schema.new({
-    id = id.from(_N, "DescribeWorkspacesInput"),
+    id = id.from(_N, "DescribeWorkspacesRequest"),
     type = "structure",
     members = {
         WorkspaceIds = schema.new({
@@ -4855,7 +4855,7 @@ M.DescribeWorkspacesInput = schema.new({
 })
 
 M.DescribeWorkspacesOutput = schema.new({
-    id = id.from(_N, "DescribeWorkspacesOutput"),
+    id = id.from(_N, "DescribeWorkspacesResult"),
     type = "structure",
     members = {
         Workspaces = schema.new({
@@ -4875,7 +4875,7 @@ M.DescribeWorkspacesOutput = schema.new({
 })
 
 M.DescribeWorkspacesConnectionStatusInput = schema.new({
-    id = id.from(_N, "DescribeWorkspacesConnectionStatusInput"),
+    id = id.from(_N, "DescribeWorkspacesConnectionStatusRequest"),
     type = "structure",
     members = {
         WorkspaceIds = schema.new({
@@ -4926,7 +4926,7 @@ M.WorkspaceConnectionStatus = schema.new({
 })
 
 M.DescribeWorkspacesConnectionStatusOutput = schema.new({
-    id = id.from(_N, "DescribeWorkspacesConnectionStatusOutput"),
+    id = id.from(_N, "DescribeWorkspacesConnectionStatusResult"),
     type = "structure",
     members = {
         WorkspacesConnectionStatus = schema.new({
@@ -4946,7 +4946,7 @@ M.DescribeWorkspacesConnectionStatusOutput = schema.new({
 })
 
 M.DescribeWorkspaceSnapshotsInput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceSnapshotsInput"),
+    id = id.from(_N, "DescribeWorkspaceSnapshotsRequest"),
     type = "structure",
     members = {
         WorkspaceId = schema.new({
@@ -4975,7 +4975,7 @@ M.Snapshot = schema.new({
 })
 
 M.DescribeWorkspaceSnapshotsOutput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceSnapshotsOutput"),
+    id = id.from(_N, "DescribeWorkspaceSnapshotsResult"),
     type = "structure",
     members = {
         RebuildSnapshots = schema.new({
@@ -5031,7 +5031,7 @@ M.DescribeWorkspacesPoolsFilter = schema.new({
 })
 
 M.DescribeWorkspacesPoolsInput = schema.new({
-    id = id.from(_N, "DescribeWorkspacesPoolsInput"),
+    id = id.from(_N, "DescribeWorkspacesPoolsRequest"),
     type = "structure",
     members = {
         PoolIds = schema.new({
@@ -5064,7 +5064,7 @@ M.DescribeWorkspacesPoolsInput = schema.new({
 })
 
 M.DescribeWorkspacesPoolsOutput = schema.new({
-    id = id.from(_N, "DescribeWorkspacesPoolsOutput"),
+    id = id.from(_N, "DescribeWorkspacesPoolsResult"),
     type = "structure",
     members = {
         WorkspacesPools = schema.new({
@@ -5084,7 +5084,7 @@ M.DescribeWorkspacesPoolsOutput = schema.new({
 })
 
 M.DescribeWorkspacesPoolSessionsInput = schema.new({
-    id = id.from(_N, "DescribeWorkspacesPoolSessionsInput"),
+    id = id.from(_N, "DescribeWorkspacesPoolSessionsRequest"),
     type = "structure",
     members = {
         PoolId = schema.new({
@@ -5208,7 +5208,7 @@ M.WorkspacesPoolSession = schema.new({
 })
 
 M.DescribeWorkspacesPoolSessionsOutput = schema.new({
-    id = id.from(_N, "DescribeWorkspacesPoolSessionsOutput"),
+    id = id.from(_N, "DescribeWorkspacesPoolSessionsResult"),
     type = "structure",
     members = {
         Sessions = schema.new({
@@ -5228,7 +5228,7 @@ M.DescribeWorkspacesPoolSessionsOutput = schema.new({
 })
 
 M.DisassociateConnectionAliasInput = schema.new({
-    id = id.from(_N, "DisassociateConnectionAliasInput"),
+    id = id.from(_N, "DisassociateConnectionAliasRequest"),
     type = "structure",
     members = {
         AliasId = schema.new({
@@ -5244,12 +5244,12 @@ M.DisassociateConnectionAliasInput = schema.new({
 })
 
 M.DisassociateConnectionAliasOutput = schema.new({
-    id = id.from(_N, "DisassociateConnectionAliasOutput"),
+    id = id.from(_N, "DisassociateConnectionAliasResult"),
     type = "structure",
 })
 
 M.DisassociateIpGroupsInput = schema.new({
-    id = id.from(_N, "DisassociateIpGroupsInput"),
+    id = id.from(_N, "DisassociateIpGroupsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -5275,12 +5275,12 @@ M.DisassociateIpGroupsInput = schema.new({
 })
 
 M.DisassociateIpGroupsOutput = schema.new({
-    id = id.from(_N, "DisassociateIpGroupsOutput"),
+    id = id.from(_N, "DisassociateIpGroupsResult"),
     type = "structure",
 })
 
 M.DisassociateWorkspaceApplicationInput = schema.new({
-    id = id.from(_N, "DisassociateWorkspaceApplicationInput"),
+    id = id.from(_N, "DisassociateWorkspaceApplicationRequest"),
     type = "structure",
     members = {
         WorkspaceId = schema.new({
@@ -5305,7 +5305,7 @@ M.DisassociateWorkspaceApplicationInput = schema.new({
 })
 
 M.DisassociateWorkspaceApplicationOutput = schema.new({
-    id = id.from(_N, "DisassociateWorkspaceApplicationOutput"),
+    id = id.from(_N, "DisassociateWorkspaceApplicationResult"),
     type = "structure",
     members = {
         Association = schema.new({
@@ -5344,7 +5344,7 @@ M.FailedWorkspaceChangeRequest = schema.new({
 })
 
 M.GetAccountLinkInput = schema.new({
-    id = id.from(_N, "GetAccountLinkInput"),
+    id = id.from(_N, "GetAccountLinkRequest"),
     type = "structure",
     members = {
         LinkId = schema.new({
@@ -5363,7 +5363,7 @@ M.GetAccountLinkInput = schema.new({
 })
 
 M.GetAccountLinkOutput = schema.new({
-    id = id.from(_N, "GetAccountLinkOutput"),
+    id = id.from(_N, "GetAccountLinkResult"),
     type = "structure",
     members = {
         AccountLink = schema.new({
@@ -5428,7 +5428,7 @@ M.IosImportClientBrandingAttributes = schema.new({
 })
 
 M.ImportClientBrandingInput = schema.new({
-    id = id.from(_N, "ImportClientBrandingInput"),
+    id = id.from(_N, "ImportClientBrandingRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -5486,7 +5486,7 @@ M.ImportClientBrandingInput = schema.new({
 })
 
 M.ImportClientBrandingOutput = schema.new({
-    id = id.from(_N, "ImportClientBrandingOutput"),
+    id = id.from(_N, "ImportClientBrandingResult"),
     type = "structure",
     members = {
         DeviceTypeWindows = schema.new({
@@ -5535,7 +5535,7 @@ M.ImportClientBrandingOutput = schema.new({
 })
 
 M.ImportCustomWorkspaceImageInput = schema.new({
-    id = id.from(_N, "ImportCustomWorkspaceImageInput"),
+    id = id.from(_N, "ImportCustomWorkspaceImageRequest"),
     type = "structure",
     members = {
         ImageName = schema.new({
@@ -5622,7 +5622,7 @@ M.ImportCustomWorkspaceImageInput = schema.new({
 })
 
 M.ImportCustomWorkspaceImageOutput = schema.new({
-    id = id.from(_N, "ImportCustomWorkspaceImageOutput"),
+    id = id.from(_N, "ImportCustomWorkspaceImageResult"),
     type = "structure",
     members = {
         ImageId = schema.new({
@@ -5641,7 +5641,7 @@ M.ImportCustomWorkspaceImageOutput = schema.new({
 })
 
 M.ImportWorkspaceImageInput = schema.new({
-    id = id.from(_N, "ImportWorkspaceImageInput"),
+    id = id.from(_N, "ImportWorkspaceImageRequest"),
     type = "structure",
     members = {
         Ec2ImageId = schema.new({
@@ -5698,7 +5698,7 @@ M.ImportWorkspaceImageInput = schema.new({
 })
 
 M.ImportWorkspaceImageOutput = schema.new({
-    id = id.from(_N, "ImportWorkspaceImageOutput"),
+    id = id.from(_N, "ImportWorkspaceImageResult"),
     type = "structure",
     members = {
         ImageId = schema.new({
@@ -5727,7 +5727,7 @@ M.InvalidParameterCombinationException = schema.new({
 })
 
 M.ListAccountLinksInput = schema.new({
-    id = id.from(_N, "ListAccountLinksInput"),
+    id = id.from(_N, "ListAccountLinksRequest"),
     type = "structure",
     members = {
         LinkStatusFilter = schema.new({
@@ -5753,7 +5753,7 @@ M.ListAccountLinksInput = schema.new({
 })
 
 M.ListAccountLinksOutput = schema.new({
-    id = id.from(_N, "ListAccountLinksOutput"),
+    id = id.from(_N, "ListAccountLinksResult"),
     type = "structure",
     members = {
         AccountLinks = schema.new({
@@ -5773,7 +5773,7 @@ M.ListAccountLinksOutput = schema.new({
 })
 
 M.ListAvailableManagementCidrRangesInput = schema.new({
-    id = id.from(_N, "ListAvailableManagementCidrRangesInput"),
+    id = id.from(_N, "ListAvailableManagementCidrRangesRequest"),
     type = "structure",
     members = {
         ManagementCidrRangeConstraint = schema.new({
@@ -5801,7 +5801,7 @@ M.ListAvailableManagementCidrRangesInput = schema.new({
 })
 
 M.ListAvailableManagementCidrRangesOutput = schema.new({
-    id = id.from(_N, "ListAvailableManagementCidrRangesOutput"),
+    id = id.from(_N, "ListAvailableManagementCidrRangesResult"),
     type = "structure",
     members = {
         ManagementCidrRanges = schema.new({
@@ -5821,7 +5821,7 @@ M.ListAvailableManagementCidrRangesOutput = schema.new({
 })
 
 M.MigrateWorkspaceInput = schema.new({
-    id = id.from(_N, "MigrateWorkspaceInput"),
+    id = id.from(_N, "MigrateWorkspaceRequest"),
     type = "structure",
     members = {
         SourceWorkspaceId = schema.new({
@@ -5846,7 +5846,7 @@ M.MigrateWorkspaceInput = schema.new({
 })
 
 M.MigrateWorkspaceOutput = schema.new({
-    id = id.from(_N, "MigrateWorkspaceOutput"),
+    id = id.from(_N, "MigrateWorkspaceResult"),
     type = "structure",
     members = {
         SourceWorkspaceId = schema.new({
@@ -5881,7 +5881,7 @@ M.OperationInProgressException = schema.new({
 })
 
 M.ModifyAccountInput = schema.new({
-    id = id.from(_N, "ModifyAccountInput"),
+    id = id.from(_N, "ModifyAccountRequest"),
     type = "structure",
     members = {
         DedicatedTenancySupport = schema.new({
@@ -5900,7 +5900,7 @@ M.ModifyAccountInput = schema.new({
 })
 
 M.ModifyAccountOutput = schema.new({
-    id = id.from(_N, "ModifyAccountOutput"),
+    id = id.from(_N, "ModifyAccountResult"),
     type = "structure",
     members = {
         Message = schema.new({
@@ -5913,7 +5913,7 @@ M.ModifyAccountOutput = schema.new({
 })
 
 M.ModifyCertificateBasedAuthPropertiesInput = schema.new({
-    id = id.from(_N, "ModifyCertificateBasedAuthPropertiesInput"),
+    id = id.from(_N, "ModifyCertificateBasedAuthPropertiesRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -5943,12 +5943,12 @@ M.ModifyCertificateBasedAuthPropertiesInput = schema.new({
 })
 
 M.ModifyCertificateBasedAuthPropertiesOutput = schema.new({
-    id = id.from(_N, "ModifyCertificateBasedAuthPropertiesOutput"),
+    id = id.from(_N, "ModifyCertificateBasedAuthPropertiesResult"),
     type = "structure",
 })
 
 M.ModifyClientPropertiesInput = schema.new({
-    id = id.from(_N, "ModifyClientPropertiesInput"),
+    id = id.from(_N, "ModifyClientPropertiesRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -5974,12 +5974,12 @@ M.ModifyClientPropertiesInput = schema.new({
 })
 
 M.ModifyClientPropertiesOutput = schema.new({
-    id = id.from(_N, "ModifyClientPropertiesOutput"),
+    id = id.from(_N, "ModifyClientPropertiesResult"),
     type = "structure",
 })
 
 M.ModifyEndpointEncryptionModeInput = schema.new({
-    id = id.from(_N, "ModifyEndpointEncryptionModeInput"),
+    id = id.from(_N, "ModifyEndpointEncryptionModeRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -6004,12 +6004,12 @@ M.ModifyEndpointEncryptionModeInput = schema.new({
 })
 
 M.ModifyEndpointEncryptionModeOutput = schema.new({
-    id = id.from(_N, "ModifyEndpointEncryptionModeOutput"),
+    id = id.from(_N, "ModifyEndpointEncryptionModeResponse"),
     type = "structure",
 })
 
 M.ModifySamlPropertiesInput = schema.new({
-    id = id.from(_N, "ModifySamlPropertiesInput"),
+    id = id.from(_N, "ModifySamlPropertiesRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -6039,12 +6039,12 @@ M.ModifySamlPropertiesInput = schema.new({
 })
 
 M.ModifySamlPropertiesOutput = schema.new({
-    id = id.from(_N, "ModifySamlPropertiesOutput"),
+    id = id.from(_N, "ModifySamlPropertiesResult"),
     type = "structure",
 })
 
 M.ModifySelfservicePermissionsInput = schema.new({
-    id = id.from(_N, "ModifySelfservicePermissionsInput"),
+    id = id.from(_N, "ModifySelfservicePermissionsRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -6070,12 +6070,12 @@ M.ModifySelfservicePermissionsInput = schema.new({
 })
 
 M.ModifySelfservicePermissionsOutput = schema.new({
-    id = id.from(_N, "ModifySelfservicePermissionsOutput"),
+    id = id.from(_N, "ModifySelfservicePermissionsResult"),
     type = "structure",
 })
 
 M.ModifyStreamingPropertiesInput = schema.new({
-    id = id.from(_N, "ModifyStreamingPropertiesInput"),
+    id = id.from(_N, "ModifyStreamingPropertiesRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -6098,12 +6098,12 @@ M.ModifyStreamingPropertiesInput = schema.new({
 })
 
 M.ModifyStreamingPropertiesOutput = schema.new({
-    id = id.from(_N, "ModifyStreamingPropertiesOutput"),
+    id = id.from(_N, "ModifyStreamingPropertiesResult"),
     type = "structure",
 })
 
 M.ModifyWorkspaceAccessPropertiesInput = schema.new({
-    id = id.from(_N, "ModifyWorkspaceAccessPropertiesInput"),
+    id = id.from(_N, "ModifyWorkspaceAccessPropertiesRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -6129,7 +6129,7 @@ M.ModifyWorkspaceAccessPropertiesInput = schema.new({
 })
 
 M.ModifyWorkspaceAccessPropertiesOutput = schema.new({
-    id = id.from(_N, "ModifyWorkspaceAccessPropertiesOutput"),
+    id = id.from(_N, "ModifyWorkspaceAccessPropertiesResult"),
     type = "structure",
 })
 
@@ -6177,7 +6177,7 @@ M.WorkspaceCreationProperties = schema.new({
 })
 
 M.ModifyWorkspaceCreationPropertiesInput = schema.new({
-    id = id.from(_N, "ModifyWorkspaceCreationPropertiesInput"),
+    id = id.from(_N, "ModifyWorkspaceCreationPropertiesRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -6203,12 +6203,12 @@ M.ModifyWorkspaceCreationPropertiesInput = schema.new({
 })
 
 M.ModifyWorkspaceCreationPropertiesOutput = schema.new({
-    id = id.from(_N, "ModifyWorkspaceCreationPropertiesOutput"),
+    id = id.from(_N, "ModifyWorkspaceCreationPropertiesResult"),
     type = "structure",
 })
 
 M.ModifyWorkspacePropertiesInput = schema.new({
-    id = id.from(_N, "ModifyWorkspacePropertiesInput"),
+    id = id.from(_N, "ModifyWorkspacePropertiesRequest"),
     type = "structure",
     members = {
         WorkspaceId = schema.new({
@@ -6237,7 +6237,7 @@ M.ModifyWorkspacePropertiesInput = schema.new({
 })
 
 M.ModifyWorkspacePropertiesOutput = schema.new({
-    id = id.from(_N, "ModifyWorkspacePropertiesOutput"),
+    id = id.from(_N, "ModifyWorkspacePropertiesResult"),
     type = "structure",
 })
 
@@ -6258,7 +6258,7 @@ M.UnsupportedWorkspaceConfigurationException = schema.new({
 })
 
 M.ModifyWorkspaceStateInput = schema.new({
-    id = id.from(_N, "ModifyWorkspaceStateInput"),
+    id = id.from(_N, "ModifyWorkspaceStateRequest"),
     type = "structure",
     members = {
         WorkspaceId = schema.new({
@@ -6283,7 +6283,7 @@ M.ModifyWorkspaceStateInput = schema.new({
 })
 
 M.ModifyWorkspaceStateOutput = schema.new({
-    id = id.from(_N, "ModifyWorkspaceStateOutput"),
+    id = id.from(_N, "ModifyWorkspaceStateResult"),
     type = "structure",
 })
 
@@ -6304,7 +6304,7 @@ M.RebootRequest = schema.new({
 })
 
 M.RebootWorkspacesInput = schema.new({
-    id = id.from(_N, "RebootWorkspacesInput"),
+    id = id.from(_N, "RebootWorkspacesRequest"),
     type = "structure",
     members = {
         RebootWorkspaceRequests = schema.new({
@@ -6321,7 +6321,7 @@ M.RebootWorkspacesInput = schema.new({
 })
 
 M.RebootWorkspacesOutput = schema.new({
-    id = id.from(_N, "RebootWorkspacesOutput"),
+    id = id.from(_N, "RebootWorkspacesResult"),
     type = "structure",
     members = {
         FailedRequests = schema.new({
@@ -6351,7 +6351,7 @@ M.RebuildRequest = schema.new({
 })
 
 M.RebuildWorkspacesInput = schema.new({
-    id = id.from(_N, "RebuildWorkspacesInput"),
+    id = id.from(_N, "RebuildWorkspacesRequest"),
     type = "structure",
     members = {
         RebuildWorkspaceRequests = schema.new({
@@ -6368,7 +6368,7 @@ M.RebuildWorkspacesInput = schema.new({
 })
 
 M.RebuildWorkspacesOutput = schema.new({
-    id = id.from(_N, "RebuildWorkspacesOutput"),
+    id = id.from(_N, "RebuildWorkspacesResult"),
     type = "structure",
     members = {
         FailedRequests = schema.new({
@@ -6382,7 +6382,7 @@ M.RebuildWorkspacesOutput = schema.new({
 })
 
 M.RegisterWorkspaceDirectoryInput = schema.new({
-    id = id.from(_N, "RegisterWorkspaceDirectoryInput"),
+    id = id.from(_N, "RegisterWorkspaceDirectoryRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -6465,7 +6465,7 @@ M.RegisterWorkspaceDirectoryInput = schema.new({
 })
 
 M.RegisterWorkspaceDirectoryOutput = schema.new({
-    id = id.from(_N, "RegisterWorkspaceDirectoryOutput"),
+    id = id.from(_N, "RegisterWorkspaceDirectoryResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -6516,7 +6516,7 @@ M.WorkspacesDefaultRoleNotFoundException = schema.new({
 })
 
 M.RejectAccountLinkInvitationInput = schema.new({
-    id = id.from(_N, "RejectAccountLinkInvitationInput"),
+    id = id.from(_N, "RejectAccountLinkInvitationRequest"),
     type = "structure",
     members = {
         LinkId = schema.new({
@@ -6538,7 +6538,7 @@ M.RejectAccountLinkInvitationInput = schema.new({
 })
 
 M.RejectAccountLinkInvitationOutput = schema.new({
-    id = id.from(_N, "RejectAccountLinkInvitationOutput"),
+    id = id.from(_N, "RejectAccountLinkInvitationResult"),
     type = "structure",
     members = {
         AccountLink = schema.new({
@@ -6552,7 +6552,7 @@ M.RejectAccountLinkInvitationOutput = schema.new({
 })
 
 M.RestoreWorkspaceInput = schema.new({
-    id = id.from(_N, "RestoreWorkspaceInput"),
+    id = id.from(_N, "RestoreWorkspaceRequest"),
     type = "structure",
     members = {
         WorkspaceId = schema.new({
@@ -6568,12 +6568,12 @@ M.RestoreWorkspaceInput = schema.new({
 })
 
 M.RestoreWorkspaceOutput = schema.new({
-    id = id.from(_N, "RestoreWorkspaceOutput"),
+    id = id.from(_N, "RestoreWorkspaceResult"),
     type = "structure",
 })
 
 M.RevokeIpRulesInput = schema.new({
-    id = id.from(_N, "RevokeIpRulesInput"),
+    id = id.from(_N, "RevokeIpRulesRequest"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -6599,7 +6599,7 @@ M.RevokeIpRulesInput = schema.new({
 })
 
 M.RevokeIpRulesOutput = schema.new({
-    id = id.from(_N, "RevokeIpRulesOutput"),
+    id = id.from(_N, "RevokeIpRulesResult"),
     type = "structure",
 })
 
@@ -6617,7 +6617,7 @@ M.StartRequest = schema.new({
 })
 
 M.StartWorkspacesInput = schema.new({
-    id = id.from(_N, "StartWorkspacesInput"),
+    id = id.from(_N, "StartWorkspacesRequest"),
     type = "structure",
     members = {
         StartWorkspaceRequests = schema.new({
@@ -6634,7 +6634,7 @@ M.StartWorkspacesInput = schema.new({
 })
 
 M.StartWorkspacesOutput = schema.new({
-    id = id.from(_N, "StartWorkspacesOutput"),
+    id = id.from(_N, "StartWorkspacesResult"),
     type = "structure",
     members = {
         FailedRequests = schema.new({
@@ -6648,7 +6648,7 @@ M.StartWorkspacesOutput = schema.new({
 })
 
 M.StartWorkspacesPoolInput = schema.new({
-    id = id.from(_N, "StartWorkspacesPoolInput"),
+    id = id.from(_N, "StartWorkspacesPoolRequest"),
     type = "structure",
     members = {
         PoolId = schema.new({
@@ -6664,7 +6664,7 @@ M.StartWorkspacesPoolInput = schema.new({
 })
 
 M.StartWorkspacesPoolOutput = schema.new({
-    id = id.from(_N, "StartWorkspacesPoolOutput"),
+    id = id.from(_N, "StartWorkspacesPoolResult"),
     type = "structure",
 })
 
@@ -6682,7 +6682,7 @@ M.StopRequest = schema.new({
 })
 
 M.StopWorkspacesInput = schema.new({
-    id = id.from(_N, "StopWorkspacesInput"),
+    id = id.from(_N, "StopWorkspacesRequest"),
     type = "structure",
     members = {
         StopWorkspaceRequests = schema.new({
@@ -6699,7 +6699,7 @@ M.StopWorkspacesInput = schema.new({
 })
 
 M.StopWorkspacesOutput = schema.new({
-    id = id.from(_N, "StopWorkspacesOutput"),
+    id = id.from(_N, "StopWorkspacesResult"),
     type = "structure",
     members = {
         FailedRequests = schema.new({
@@ -6713,7 +6713,7 @@ M.StopWorkspacesOutput = schema.new({
 })
 
 M.StopWorkspacesPoolInput = schema.new({
-    id = id.from(_N, "StopWorkspacesPoolInput"),
+    id = id.from(_N, "StopWorkspacesPoolRequest"),
     type = "structure",
     members = {
         PoolId = schema.new({
@@ -6729,7 +6729,7 @@ M.StopWorkspacesPoolInput = schema.new({
 })
 
 M.StopWorkspacesPoolOutput = schema.new({
-    id = id.from(_N, "StopWorkspacesPoolOutput"),
+    id = id.from(_N, "StopWorkspacesPoolResult"),
     type = "structure",
 })
 
@@ -6750,7 +6750,7 @@ M.TerminateRequest = schema.new({
 })
 
 M.TerminateWorkspacesInput = schema.new({
-    id = id.from(_N, "TerminateWorkspacesInput"),
+    id = id.from(_N, "TerminateWorkspacesRequest"),
     type = "structure",
     members = {
         TerminateWorkspaceRequests = schema.new({
@@ -6767,7 +6767,7 @@ M.TerminateWorkspacesInput = schema.new({
 })
 
 M.TerminateWorkspacesOutput = schema.new({
-    id = id.from(_N, "TerminateWorkspacesOutput"),
+    id = id.from(_N, "TerminateWorkspacesResult"),
     type = "structure",
     members = {
         FailedRequests = schema.new({
@@ -6781,7 +6781,7 @@ M.TerminateWorkspacesOutput = schema.new({
 })
 
 M.TerminateWorkspacesPoolInput = schema.new({
-    id = id.from(_N, "TerminateWorkspacesPoolInput"),
+    id = id.from(_N, "TerminateWorkspacesPoolRequest"),
     type = "structure",
     members = {
         PoolId = schema.new({
@@ -6797,12 +6797,12 @@ M.TerminateWorkspacesPoolInput = schema.new({
 })
 
 M.TerminateWorkspacesPoolOutput = schema.new({
-    id = id.from(_N, "TerminateWorkspacesPoolOutput"),
+    id = id.from(_N, "TerminateWorkspacesPoolResult"),
     type = "structure",
 })
 
 M.TerminateWorkspacesPoolSessionInput = schema.new({
-    id = id.from(_N, "TerminateWorkspacesPoolSessionInput"),
+    id = id.from(_N, "TerminateWorkspacesPoolSessionRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -6818,12 +6818,12 @@ M.TerminateWorkspacesPoolSessionInput = schema.new({
 })
 
 M.TerminateWorkspacesPoolSessionOutput = schema.new({
-    id = id.from(_N, "TerminateWorkspacesPoolSessionOutput"),
+    id = id.from(_N, "TerminateWorkspacesPoolSessionResult"),
     type = "structure",
 })
 
 M.UpdateConnectClientAddInInput = schema.new({
-    id = id.from(_N, "UpdateConnectClientAddInInput"),
+    id = id.from(_N, "UpdateConnectClientAddInRequest"),
     type = "structure",
     members = {
         AddInId = schema.new({
@@ -6860,12 +6860,12 @@ M.UpdateConnectClientAddInInput = schema.new({
 })
 
 M.UpdateConnectClientAddInOutput = schema.new({
-    id = id.from(_N, "UpdateConnectClientAddInOutput"),
+    id = id.from(_N, "UpdateConnectClientAddInResult"),
     type = "structure",
 })
 
 M.UpdateConnectionAliasPermissionInput = schema.new({
-    id = id.from(_N, "UpdateConnectionAliasPermissionInput"),
+    id = id.from(_N, "UpdateConnectionAliasPermissionRequest"),
     type = "structure",
     members = {
         AliasId = schema.new({
@@ -6891,12 +6891,12 @@ M.UpdateConnectionAliasPermissionInput = schema.new({
 })
 
 M.UpdateConnectionAliasPermissionOutput = schema.new({
-    id = id.from(_N, "UpdateConnectionAliasPermissionOutput"),
+    id = id.from(_N, "UpdateConnectionAliasPermissionResult"),
     type = "structure",
 })
 
 M.UpdateRulesOfIpGroupInput = schema.new({
-    id = id.from(_N, "UpdateRulesOfIpGroupInput"),
+    id = id.from(_N, "UpdateRulesOfIpGroupRequest"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -6922,12 +6922,12 @@ M.UpdateRulesOfIpGroupInput = schema.new({
 })
 
 M.UpdateRulesOfIpGroupOutput = schema.new({
-    id = id.from(_N, "UpdateRulesOfIpGroupOutput"),
+    id = id.from(_N, "UpdateRulesOfIpGroupResult"),
     type = "structure",
 })
 
 M.UpdateWorkspaceBundleInput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceBundleInput"),
+    id = id.from(_N, "UpdateWorkspaceBundleRequest"),
     type = "structure",
     members = {
         BundleId = schema.new({
@@ -6946,12 +6946,12 @@ M.UpdateWorkspaceBundleInput = schema.new({
 })
 
 M.UpdateWorkspaceBundleOutput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceBundleOutput"),
+    id = id.from(_N, "UpdateWorkspaceBundleResult"),
     type = "structure",
 })
 
 M.UpdateWorkspaceImagePermissionInput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceImagePermissionInput"),
+    id = id.from(_N, "UpdateWorkspaceImagePermissionRequest"),
     type = "structure",
     members = {
         ImageId = schema.new({
@@ -6985,12 +6985,12 @@ M.UpdateWorkspaceImagePermissionInput = schema.new({
 })
 
 M.UpdateWorkspaceImagePermissionOutput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceImagePermissionOutput"),
+    id = id.from(_N, "UpdateWorkspaceImagePermissionResult"),
     type = "structure",
 })
 
 M.UpdateWorkspacesPoolInput = schema.new({
-    id = id.from(_N, "UpdateWorkspacesPoolInput"),
+    id = id.from(_N, "UpdateWorkspacesPoolRequest"),
     type = "structure",
     members = {
         PoolId = schema.new({
@@ -7051,7 +7051,7 @@ M.UpdateWorkspacesPoolInput = schema.new({
 })
 
 M.UpdateWorkspacesPoolOutput = schema.new({
-    id = id.from(_N, "UpdateWorkspacesPoolOutput"),
+    id = id.from(_N, "UpdateWorkspacesPoolResult"),
     type = "structure",
     members = {
         WorkspacesPool = schema.new({
@@ -7063,5 +7063,19 @@ M.UpdateWorkspacesPoolOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

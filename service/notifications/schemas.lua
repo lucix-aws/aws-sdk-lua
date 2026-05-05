@@ -183,7 +183,7 @@ M.AggregationSummary = schema.new({
 })
 
 M.AssociateChannelInput = schema.new({
-    id = id.from(_N, "AssociateChannelInput"),
+    id = id.from(_N, "AssociateChannelRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -209,7 +209,7 @@ M.AssociateChannelInput = schema.new({
 })
 
 M.AssociateChannelOutput = schema.new({
-    id = id.from(_N, "AssociateChannelOutput"),
+    id = id.from(_N, "AssociateChannelResponse"),
     type = "structure",
 })
 
@@ -432,7 +432,7 @@ M.ValidationException = schema.new({
 })
 
 M.AssociateManagedNotificationAccountContactInput = schema.new({
-    id = id.from(_N, "AssociateManagedNotificationAccountContactInput"),
+    id = id.from(_N, "AssociateManagedNotificationAccountContactRequest"),
     type = "structure",
     members = {
         contactIdentifier = schema.new({
@@ -458,12 +458,12 @@ M.AssociateManagedNotificationAccountContactInput = schema.new({
 })
 
 M.AssociateManagedNotificationAccountContactOutput = schema.new({
-    id = id.from(_N, "AssociateManagedNotificationAccountContactOutput"),
+    id = id.from(_N, "AssociateManagedNotificationAccountContactResponse"),
     type = "structure",
 })
 
 M.AssociateManagedNotificationAdditionalChannelInput = schema.new({
-    id = id.from(_N, "AssociateManagedNotificationAdditionalChannelInput"),
+    id = id.from(_N, "AssociateManagedNotificationAdditionalChannelRequest"),
     type = "structure",
     members = {
         channelArn = schema.new({
@@ -489,12 +489,12 @@ M.AssociateManagedNotificationAdditionalChannelInput = schema.new({
 })
 
 M.AssociateManagedNotificationAdditionalChannelOutput = schema.new({
-    id = id.from(_N, "AssociateManagedNotificationAdditionalChannelOutput"),
+    id = id.from(_N, "AssociateManagedNotificationAdditionalChannelResponse"),
     type = "structure",
 })
 
 M.AssociateOrganizationalUnitInput = schema.new({
-    id = id.from(_N, "AssociateOrganizationalUnitInput"),
+    id = id.from(_N, "AssociateOrganizationalUnitRequest"),
     type = "structure",
     members = {
         organizationalUnitId = schema.new({
@@ -520,12 +520,12 @@ M.AssociateOrganizationalUnitInput = schema.new({
 })
 
 M.AssociateOrganizationalUnitOutput = schema.new({
-    id = id.from(_N, "AssociateOrganizationalUnitOutput"),
+    id = id.from(_N, "AssociateOrganizationalUnitResponse"),
     type = "structure",
 })
 
 M.DisassociateChannelInput = schema.new({
-    id = id.from(_N, "DisassociateChannelInput"),
+    id = id.from(_N, "DisassociateChannelRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -551,12 +551,12 @@ M.DisassociateChannelInput = schema.new({
 })
 
 M.DisassociateChannelOutput = schema.new({
-    id = id.from(_N, "DisassociateChannelOutput"),
+    id = id.from(_N, "DisassociateChannelResponse"),
     type = "structure",
 })
 
 M.ListChannelsInput = schema.new({
-    id = id.from(_N, "ListChannelsInput"),
+    id = id.from(_N, "ListChannelsRequest"),
     type = "structure",
     members = {
         notificationConfigurationArn = schema.new({
@@ -591,7 +591,7 @@ M.ListChannelsInput = schema.new({
 })
 
 M.ListChannelsOutput = schema.new({
-    id = id.from(_N, "ListChannelsOutput"),
+    id = id.from(_N, "ListChannelsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -614,7 +614,7 @@ M.ListChannelsOutput = schema.new({
 })
 
 M.CreateEventRuleInput = schema.new({
-    id = id.from(_N, "CreateEventRuleInput"),
+    id = id.from(_N, "CreateEventRuleRequest"),
     type = "structure",
     members = {
         notificationConfigurationArn = schema.new({
@@ -689,7 +689,7 @@ M.EventRuleStatusSummary = schema.new({
 })
 
 M.CreateEventRuleOutput = schema.new({
-    id = id.from(_N, "CreateEventRuleOutput"),
+    id = id.from(_N, "CreateEventRuleResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -725,7 +725,7 @@ M.CreateEventRuleOutput = schema.new({
 })
 
 M.CreateNotificationConfigurationInput = schema.new({
-    id = id.from(_N, "CreateNotificationConfigurationInput"),
+    id = id.from(_N, "CreateNotificationConfigurationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -764,7 +764,7 @@ M.CreateNotificationConfigurationInput = schema.new({
 })
 
 M.CreateNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateNotificationConfigurationOutput"),
+    id = id.from(_N, "CreateNotificationConfigurationResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -789,7 +789,7 @@ M.CreateNotificationConfigurationOutput = schema.new({
 })
 
 M.DeleteEventRuleInput = schema.new({
-    id = id.from(_N, "DeleteEventRuleInput"),
+    id = id.from(_N, "DeleteEventRuleRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -806,12 +806,12 @@ M.DeleteEventRuleInput = schema.new({
 })
 
 M.DeleteEventRuleOutput = schema.new({
-    id = id.from(_N, "DeleteEventRuleOutput"),
+    id = id.from(_N, "DeleteEventRuleResponse"),
     type = "structure",
 })
 
 M.DeleteNotificationConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteNotificationConfigurationInput"),
+    id = id.from(_N, "DeleteNotificationConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -828,12 +828,12 @@ M.DeleteNotificationConfigurationInput = schema.new({
 })
 
 M.DeleteNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteNotificationConfigurationOutput"),
+    id = id.from(_N, "DeleteNotificationConfigurationResponse"),
     type = "structure",
 })
 
 M.DeregisterNotificationHubInput = schema.new({
-    id = id.from(_N, "DeregisterNotificationHubInput"),
+    id = id.from(_N, "DeregisterNotificationHubRequest"),
     type = "structure",
     members = {
         notificationHubRegion = schema.new({
@@ -875,7 +875,7 @@ M.NotificationHubStatusSummary = schema.new({
 })
 
 M.DeregisterNotificationHubOutput = schema.new({
-    id = id.from(_N, "DeregisterNotificationHubOutput"),
+    id = id.from(_N, "DeregisterNotificationHubResponse"),
     type = "structure",
     members = {
         notificationHubRegion = schema.new({
@@ -926,17 +926,17 @@ M.Dimension = schema.new({
 })
 
 M.DisableNotificationsAccessForOrganizationInput = schema.new({
-    id = id.from(_N, "DisableNotificationsAccessForOrganizationInput"),
+    id = id.from(_N, "DisableNotificationsAccessForOrganizationRequest"),
     type = "structure",
 })
 
 M.DisableNotificationsAccessForOrganizationOutput = schema.new({
-    id = id.from(_N, "DisableNotificationsAccessForOrganizationOutput"),
+    id = id.from(_N, "DisableNotificationsAccessForOrganizationResponse"),
     type = "structure",
 })
 
 M.DisassociateManagedNotificationAccountContactInput = schema.new({
-    id = id.from(_N, "DisassociateManagedNotificationAccountContactInput"),
+    id = id.from(_N, "DisassociateManagedNotificationAccountContactRequest"),
     type = "structure",
     members = {
         contactIdentifier = schema.new({
@@ -962,12 +962,12 @@ M.DisassociateManagedNotificationAccountContactInput = schema.new({
 })
 
 M.DisassociateManagedNotificationAccountContactOutput = schema.new({
-    id = id.from(_N, "DisassociateManagedNotificationAccountContactOutput"),
+    id = id.from(_N, "DisassociateManagedNotificationAccountContactResponse"),
     type = "structure",
 })
 
 M.DisassociateManagedNotificationAdditionalChannelInput = schema.new({
-    id = id.from(_N, "DisassociateManagedNotificationAdditionalChannelInput"),
+    id = id.from(_N, "DisassociateManagedNotificationAdditionalChannelRequest"),
     type = "structure",
     members = {
         channelArn = schema.new({
@@ -993,12 +993,12 @@ M.DisassociateManagedNotificationAdditionalChannelInput = schema.new({
 })
 
 M.DisassociateManagedNotificationAdditionalChannelOutput = schema.new({
-    id = id.from(_N, "DisassociateManagedNotificationAdditionalChannelOutput"),
+    id = id.from(_N, "DisassociateManagedNotificationAdditionalChannelResponse"),
     type = "structure",
 })
 
 M.DisassociateOrganizationalUnitInput = schema.new({
-    id = id.from(_N, "DisassociateOrganizationalUnitInput"),
+    id = id.from(_N, "DisassociateOrganizationalUnitRequest"),
     type = "structure",
     members = {
         organizationalUnitId = schema.new({
@@ -1024,22 +1024,22 @@ M.DisassociateOrganizationalUnitInput = schema.new({
 })
 
 M.DisassociateOrganizationalUnitOutput = schema.new({
-    id = id.from(_N, "DisassociateOrganizationalUnitOutput"),
+    id = id.from(_N, "DisassociateOrganizationalUnitResponse"),
     type = "structure",
 })
 
 M.EnableNotificationsAccessForOrganizationInput = schema.new({
-    id = id.from(_N, "EnableNotificationsAccessForOrganizationInput"),
+    id = id.from(_N, "EnableNotificationsAccessForOrganizationRequest"),
     type = "structure",
 })
 
 M.EnableNotificationsAccessForOrganizationOutput = schema.new({
-    id = id.from(_N, "EnableNotificationsAccessForOrganizationOutput"),
+    id = id.from(_N, "EnableNotificationsAccessForOrganizationResponse"),
     type = "structure",
 })
 
 M.GetEventRuleInput = schema.new({
-    id = id.from(_N, "GetEventRuleInput"),
+    id = id.from(_N, "GetEventRuleRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1056,7 +1056,7 @@ M.GetEventRuleInput = schema.new({
 })
 
 M.GetEventRuleOutput = schema.new({
-    id = id.from(_N, "GetEventRuleOutput"),
+    id = id.from(_N, "GetEventRuleResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1152,7 +1152,7 @@ M.GetEventRuleOutput = schema.new({
 })
 
 M.ListEventRulesInput = schema.new({
-    id = id.from(_N, "ListEventRulesInput"),
+    id = id.from(_N, "ListEventRulesRequest"),
     type = "structure",
     members = {
         notificationConfigurationArn = schema.new({
@@ -1283,7 +1283,7 @@ M.EventRuleStructure = schema.new({
 })
 
 M.ListEventRulesOutput = schema.new({
-    id = id.from(_N, "ListEventRulesOutput"),
+    id = id.from(_N, "ListEventRulesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1306,7 +1306,7 @@ M.ListEventRulesOutput = schema.new({
 })
 
 M.UpdateEventRuleInput = schema.new({
-    id = id.from(_N, "UpdateEventRuleInput"),
+    id = id.from(_N, "UpdateEventRuleRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1336,7 +1336,7 @@ M.UpdateEventRuleInput = schema.new({
 })
 
 M.UpdateEventRuleOutput = schema.new({
-    id = id.from(_N, "UpdateEventRuleOutput"),
+    id = id.from(_N, "UpdateEventRuleResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1372,7 +1372,7 @@ M.UpdateEventRuleOutput = schema.new({
 })
 
 M.GetManagedNotificationChildEventInput = schema.new({
-    id = id.from(_N, "GetManagedNotificationChildEventInput"),
+    id = id.from(_N, "GetManagedNotificationChildEventRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1579,7 +1579,7 @@ M.ManagedNotificationChildEvent = schema.new({
 })
 
 M.GetManagedNotificationChildEventOutput = schema.new({
-    id = id.from(_N, "GetManagedNotificationChildEventOutput"),
+    id = id.from(_N, "GetManagedNotificationChildEventResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1627,7 +1627,7 @@ M.GetManagedNotificationChildEventOutput = schema.new({
 })
 
 M.GetManagedNotificationConfigurationInput = schema.new({
-    id = id.from(_N, "GetManagedNotificationConfigurationInput"),
+    id = id.from(_N, "GetManagedNotificationConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1644,7 +1644,7 @@ M.GetManagedNotificationConfigurationInput = schema.new({
 })
 
 M.GetManagedNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "GetManagedNotificationConfigurationOutput"),
+    id = id.from(_N, "GetManagedNotificationConfigurationResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1696,7 +1696,7 @@ M.GetManagedNotificationConfigurationOutput = schema.new({
 })
 
 M.GetManagedNotificationEventInput = schema.new({
-    id = id.from(_N, "GetManagedNotificationEventInput"),
+    id = id.from(_N, "GetManagedNotificationEventRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1832,7 +1832,7 @@ M.ManagedNotificationEvent = schema.new({
 })
 
 M.GetManagedNotificationEventOutput = schema.new({
-    id = id.from(_N, "GetManagedNotificationEventOutput"),
+    id = id.from(_N, "GetManagedNotificationEventResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1880,7 +1880,7 @@ M.GetManagedNotificationEventOutput = schema.new({
 })
 
 M.GetNotificationConfigurationInput = schema.new({
-    id = id.from(_N, "GetNotificationConfigurationInput"),
+    id = id.from(_N, "GetNotificationConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1897,7 +1897,7 @@ M.GetNotificationConfigurationInput = schema.new({
 })
 
 M.GetNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "GetNotificationConfigurationOutput"),
+    id = id.from(_N, "GetNotificationConfigurationResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1965,7 +1965,7 @@ M.GetNotificationConfigurationOutput = schema.new({
 })
 
 M.GetNotificationEventInput = schema.new({
-    id = id.from(_N, "GetNotificationEventInput"),
+    id = id.from(_N, "GetNotificationEventRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2280,7 +2280,7 @@ M.NotificationEventSchema = schema.new({
 })
 
 M.GetNotificationEventOutput = schema.new({
-    id = id.from(_N, "GetNotificationEventOutput"),
+    id = id.from(_N, "GetNotificationEventResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2328,7 +2328,7 @@ M.GetNotificationEventOutput = schema.new({
 })
 
 M.GetNotificationsAccessForOrganizationInput = schema.new({
-    id = id.from(_N, "GetNotificationsAccessForOrganizationInput"),
+    id = id.from(_N, "GetNotificationsAccessForOrganizationRequest"),
     type = "structure",
 })
 
@@ -2349,7 +2349,7 @@ M.NotificationsAccessForOrganization = schema.new({
 })
 
 M.GetNotificationsAccessForOrganizationOutput = schema.new({
-    id = id.from(_N, "GetNotificationsAccessForOrganizationOutput"),
+    id = id.from(_N, "GetNotificationsAccessForOrganizationResponse"),
     type = "structure",
     members = {
         notificationsAccessForOrganization = schema.new({
@@ -2366,7 +2366,7 @@ M.GetNotificationsAccessForOrganizationOutput = schema.new({
 })
 
 M.ListManagedNotificationChannelAssociationsInput = schema.new({
-    id = id.from(_N, "ListManagedNotificationChannelAssociationsInput"),
+    id = id.from(_N, "ListManagedNotificationChannelAssociationsRequest"),
     type = "structure",
     members = {
         managedNotificationConfigurationArn = schema.new({
@@ -2432,7 +2432,7 @@ M.ManagedNotificationChannelAssociationSummary = schema.new({
 })
 
 M.ListManagedNotificationChannelAssociationsOutput = schema.new({
-    id = id.from(_N, "ListManagedNotificationChannelAssociationsOutput"),
+    id = id.from(_N, "ListManagedNotificationChannelAssociationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2455,7 +2455,7 @@ M.ListManagedNotificationChannelAssociationsOutput = schema.new({
 })
 
 M.ListManagedNotificationChildEventsInput = schema.new({
-    id = id.from(_N, "ListManagedNotificationChildEventsInput"),
+    id = id.from(_N, "ListManagedNotificationChildEventsRequest"),
     type = "structure",
     members = {
         aggregateManagedNotificationEventArn = schema.new({
@@ -2720,7 +2720,7 @@ M.ManagedNotificationChildEventOverview = schema.new({
 })
 
 M.ListManagedNotificationChildEventsOutput = schema.new({
-    id = id.from(_N, "ListManagedNotificationChildEventsOutput"),
+    id = id.from(_N, "ListManagedNotificationChildEventsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2743,7 +2743,7 @@ M.ListManagedNotificationChildEventsOutput = schema.new({
 })
 
 M.ListManagedNotificationConfigurationsInput = schema.new({
-    id = id.from(_N, "ListManagedNotificationConfigurationsInput"),
+    id = id.from(_N, "ListManagedNotificationConfigurationsRequest"),
     type = "structure",
     members = {
         channelIdentifier = schema.new({
@@ -2811,7 +2811,7 @@ M.ManagedNotificationConfigurationStructure = schema.new({
 })
 
 M.ListManagedNotificationConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListManagedNotificationConfigurationsOutput"),
+    id = id.from(_N, "ListManagedNotificationConfigurationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2834,7 +2834,7 @@ M.ListManagedNotificationConfigurationsOutput = schema.new({
 })
 
 M.ListManagedNotificationEventsInput = schema.new({
-    id = id.from(_N, "ListManagedNotificationEventsInput"),
+    id = id.from(_N, "ListManagedNotificationEventsRequest"),
     type = "structure",
     members = {
         startTime = schema.new({
@@ -3052,7 +3052,7 @@ M.ManagedNotificationEventOverview = schema.new({
 })
 
 M.ListManagedNotificationEventsOutput = schema.new({
-    id = id.from(_N, "ListManagedNotificationEventsOutput"),
+    id = id.from(_N, "ListManagedNotificationEventsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3075,7 +3075,7 @@ M.ListManagedNotificationEventsOutput = schema.new({
 })
 
 M.ListMemberAccountsInput = schema.new({
-    id = id.from(_N, "ListMemberAccountsInput"),
+    id = id.from(_N, "ListMemberAccountsRequest"),
     type = "structure",
     members = {
         notificationConfigurationArn = schema.new({
@@ -3186,7 +3186,7 @@ M.MemberAccount = schema.new({
 })
 
 M.ListMemberAccountsOutput = schema.new({
-    id = id.from(_N, "ListMemberAccountsOutput"),
+    id = id.from(_N, "ListMemberAccountsResponse"),
     type = "structure",
     members = {
         memberAccounts = schema.new({
@@ -3209,7 +3209,7 @@ M.ListMemberAccountsOutput = schema.new({
 })
 
 M.ListNotificationConfigurationsInput = schema.new({
-    id = id.from(_N, "ListNotificationConfigurationsInput"),
+    id = id.from(_N, "ListNotificationConfigurationsRequest"),
     type = "structure",
     members = {
         eventRuleSource = schema.new({
@@ -3338,7 +3338,7 @@ M.NotificationConfigurationStructure = schema.new({
 })
 
 M.ListNotificationConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListNotificationConfigurationsOutput"),
+    id = id.from(_N, "ListNotificationConfigurationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3361,7 +3361,7 @@ M.ListNotificationConfigurationsOutput = schema.new({
 })
 
 M.ListNotificationEventsInput = schema.new({
-    id = id.from(_N, "ListNotificationEventsInput"),
+    id = id.from(_N, "ListNotificationEventsRequest"),
     type = "structure",
     members = {
         startTime = schema.new({
@@ -3618,7 +3618,7 @@ M.NotificationEventOverview = schema.new({
 })
 
 M.ListNotificationEventsOutput = schema.new({
-    id = id.from(_N, "ListNotificationEventsOutput"),
+    id = id.from(_N, "ListNotificationEventsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3641,7 +3641,7 @@ M.ListNotificationEventsOutput = schema.new({
 })
 
 M.ListNotificationHubsInput = schema.new({
-    id = id.from(_N, "ListNotificationHubsInput"),
+    id = id.from(_N, "ListNotificationHubsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -3714,7 +3714,7 @@ M.NotificationHubOverview = schema.new({
 })
 
 M.ListNotificationHubsOutput = schema.new({
-    id = id.from(_N, "ListNotificationHubsOutput"),
+    id = id.from(_N, "ListNotificationHubsResponse"),
     type = "structure",
     members = {
         notificationHubs = schema.new({
@@ -3737,7 +3737,7 @@ M.ListNotificationHubsOutput = schema.new({
 })
 
 M.ListOrganizationalUnitsInput = schema.new({
-    id = id.from(_N, "ListOrganizationalUnitsInput"),
+    id = id.from(_N, "ListOrganizationalUnitsRequest"),
     type = "structure",
     members = {
         notificationConfigurationArn = schema.new({
@@ -3772,7 +3772,7 @@ M.ListOrganizationalUnitsInput = schema.new({
 })
 
 M.ListOrganizationalUnitsOutput = schema.new({
-    id = id.from(_N, "ListOrganizationalUnitsOutput"),
+    id = id.from(_N, "ListOrganizationalUnitsResponse"),
     type = "structure",
     members = {
         organizationalUnits = schema.new({
@@ -3795,7 +3795,7 @@ M.ListOrganizationalUnitsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3812,7 +3812,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -3827,7 +3827,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.UpdateNotificationConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateNotificationConfigurationInput"),
+    id = id.from(_N, "UpdateNotificationConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3862,7 +3862,7 @@ M.UpdateNotificationConfigurationInput = schema.new({
 })
 
 M.UpdateNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateNotificationConfigurationOutput"),
+    id = id.from(_N, "UpdateNotificationConfigurationResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3878,7 +3878,7 @@ M.UpdateNotificationConfigurationOutput = schema.new({
 })
 
 M.RegisterNotificationHubInput = schema.new({
-    id = id.from(_N, "RegisterNotificationHubInput"),
+    id = id.from(_N, "RegisterNotificationHubRequest"),
     type = "structure",
     members = {
         notificationHubRegion = schema.new({
@@ -3894,7 +3894,7 @@ M.RegisterNotificationHubInput = schema.new({
 })
 
 M.RegisterNotificationHubOutput = schema.new({
-    id = id.from(_N, "RegisterNotificationHubOutput"),
+    id = id.from(_N, "RegisterNotificationHubResponse"),
     type = "structure",
     members = {
         notificationHubRegion = schema.new({
@@ -3942,7 +3942,7 @@ M.RegisterNotificationHubOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3970,12 +3970,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4003,8 +4003,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -1166,7 +1166,7 @@ M.CloudWatchLogConfiguration = schema.new({
             name = "LogTypes",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -1894,7 +1894,7 @@ M.CreateStudioSessionMappingInput = schema.new({
 })
 
 M.CreateStudioSessionMappingOutput = schema.new({
-    id = id.from(_N, "CreateStudioSessionMappingOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1969,7 +1969,7 @@ M.DeleteStudioInput = schema.new({
 })
 
 M.DeleteStudioOutput = schema.new({
-    id = id.from(_N, "DeleteStudioOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2011,7 +2011,7 @@ M.DeleteStudioSessionMappingInput = schema.new({
 })
 
 M.DeleteStudioSessionMappingOutput = schema.new({
-    id = id.from(_N, "DeleteStudioSessionMappingOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5003,12 +5003,12 @@ M.ModifyClusterOutput = schema.new({
 })
 
 M.ModifyInstanceFleetOutput = schema.new({
-    id = id.from(_N, "ModifyInstanceFleetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ModifyInstanceGroupsOutput = schema.new({
-    id = id.from(_N, "ModifyInstanceGroupsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5312,7 +5312,7 @@ M.SetKeepJobFlowAliveWhenNoStepsInput = schema.new({
 })
 
 M.SetKeepJobFlowAliveWhenNoStepsOutput = schema.new({
-    id = id.from(_N, "SetKeepJobFlowAliveWhenNoStepsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5343,7 +5343,7 @@ M.SetTerminationProtectionInput = schema.new({
 })
 
 M.SetTerminationProtectionOutput = schema.new({
-    id = id.from(_N, "SetTerminationProtectionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5374,7 +5374,7 @@ M.SetUnhealthyNodeReplacementInput = schema.new({
 })
 
 M.SetUnhealthyNodeReplacementOutput = schema.new({
-    id = id.from(_N, "SetUnhealthyNodeReplacementOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5405,7 +5405,7 @@ M.SetVisibleToAllUsersInput = schema.new({
 })
 
 M.SetVisibleToAllUsersOutput = schema.new({
-    id = id.from(_N, "SetVisibleToAllUsersOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5568,7 +5568,7 @@ M.StopNotebookExecutionInput = schema.new({
 })
 
 M.StopNotebookExecutionOutput = schema.new({
-    id = id.from(_N, "StopNotebookExecutionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5590,7 +5590,7 @@ M.TerminateJobFlowsInput = schema.new({
 })
 
 M.TerminateJobFlowsOutput = schema.new({
-    id = id.from(_N, "TerminateJobFlowsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5642,7 +5642,7 @@ M.UpdateStudioInput = schema.new({
 })
 
 M.UpdateStudioOutput = schema.new({
-    id = id.from(_N, "UpdateStudioOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5693,7 +5693,7 @@ M.UpdateStudioSessionMappingInput = schema.new({
 })
 
 M.UpdateStudioSessionMappingOutput = schema.new({
-    id = id.from(_N, "UpdateStudioSessionMappingOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -7110,5 +7110,19 @@ M.RunJobFlowInput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

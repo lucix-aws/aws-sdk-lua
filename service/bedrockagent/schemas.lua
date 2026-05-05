@@ -176,7 +176,7 @@ M.FunctionSchema = schema.new({
 })
 
 M.CreateAgentActionGroupInput = schema.new({
-    id = id.from(_N, "CreateAgentActionGroupInput"),
+    id = id.from(_N, "CreateAgentActionGroupRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -393,7 +393,7 @@ M.AgentActionGroup = schema.new({
 })
 
 M.CreateAgentActionGroupOutput = schema.new({
-    id = id.from(_N, "CreateAgentActionGroupOutput"),
+    id = id.from(_N, "CreateAgentActionGroupResponse"),
     type = "structure",
     members = {
         agentActionGroup = schema.new({
@@ -522,7 +522,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteAgentActionGroupInput = schema.new({
-    id = id.from(_N, "DeleteAgentActionGroupInput"),
+    id = id.from(_N, "DeleteAgentActionGroupRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -569,12 +569,12 @@ M.DeleteAgentActionGroupInput = schema.new({
 })
 
 M.DeleteAgentActionGroupOutput = schema.new({
-    id = id.from(_N, "DeleteAgentActionGroupOutput"),
+    id = id.from(_N, "DeleteAgentActionGroupResponse"),
     type = "structure",
 })
 
 M.GetAgentActionGroupInput = schema.new({
-    id = id.from(_N, "GetAgentActionGroupInput"),
+    id = id.from(_N, "GetAgentActionGroupRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -611,7 +611,7 @@ M.GetAgentActionGroupInput = schema.new({
 })
 
 M.GetAgentActionGroupOutput = schema.new({
-    id = id.from(_N, "GetAgentActionGroupOutput"),
+    id = id.from(_N, "GetAgentActionGroupResponse"),
     type = "structure",
     members = {
         agentActionGroup = schema.new({
@@ -628,7 +628,7 @@ M.GetAgentActionGroupOutput = schema.new({
 })
 
 M.ListAgentActionGroupsInput = schema.new({
-    id = id.from(_N, "ListAgentActionGroupsInput"),
+    id = id.from(_N, "ListAgentActionGroupsRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -720,7 +720,7 @@ M.ActionGroupSummary = schema.new({
 })
 
 M.ListAgentActionGroupsOutput = schema.new({
-    id = id.from(_N, "ListAgentActionGroupsOutput"),
+    id = id.from(_N, "ListAgentActionGroupsResponse"),
     type = "structure",
     members = {
         actionGroupSummaries = schema.new({
@@ -743,7 +743,7 @@ M.ListAgentActionGroupsOutput = schema.new({
 })
 
 M.UpdateAgentActionGroupInput = schema.new({
-    id = id.from(_N, "UpdateAgentActionGroupInput"),
+    id = id.from(_N, "UpdateAgentActionGroupRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -836,7 +836,7 @@ M.UpdateAgentActionGroupInput = schema.new({
 })
 
 M.UpdateAgentActionGroupOutput = schema.new({
-    id = id.from(_N, "UpdateAgentActionGroupOutput"),
+    id = id.from(_N, "UpdateAgentActionGroupResponse"),
     type = "structure",
     members = {
         agentActionGroup = schema.new({
@@ -1617,7 +1617,7 @@ M.AgentCollaborator = schema.new({
 })
 
 M.AssociateAgentCollaboratorInput = schema.new({
-    id = id.from(_N, "AssociateAgentCollaboratorInput"),
+    id = id.from(_N, "AssociateAgentCollaboratorRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -1687,7 +1687,7 @@ M.AssociateAgentCollaboratorInput = schema.new({
 })
 
 M.AssociateAgentCollaboratorOutput = schema.new({
-    id = id.from(_N, "AssociateAgentCollaboratorOutput"),
+    id = id.from(_N, "AssociateAgentCollaboratorResponse"),
     type = "structure",
     members = {
         agentCollaborator = schema.new({
@@ -1704,7 +1704,7 @@ M.AssociateAgentCollaboratorOutput = schema.new({
 })
 
 M.DisassociateAgentCollaboratorInput = schema.new({
-    id = id.from(_N, "DisassociateAgentCollaboratorInput"),
+    id = id.from(_N, "DisassociateAgentCollaboratorRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -1741,12 +1741,12 @@ M.DisassociateAgentCollaboratorInput = schema.new({
 })
 
 M.DisassociateAgentCollaboratorOutput = schema.new({
-    id = id.from(_N, "DisassociateAgentCollaboratorOutput"),
+    id = id.from(_N, "DisassociateAgentCollaboratorResponse"),
     type = "structure",
 })
 
 M.GetAgentCollaboratorInput = schema.new({
-    id = id.from(_N, "GetAgentCollaboratorInput"),
+    id = id.from(_N, "GetAgentCollaboratorRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -1783,7 +1783,7 @@ M.GetAgentCollaboratorInput = schema.new({
 })
 
 M.GetAgentCollaboratorOutput = schema.new({
-    id = id.from(_N, "GetAgentCollaboratorOutput"),
+    id = id.from(_N, "GetAgentCollaboratorResponse"),
     type = "structure",
     members = {
         agentCollaborator = schema.new({
@@ -1800,7 +1800,7 @@ M.GetAgentCollaboratorOutput = schema.new({
 })
 
 M.ListAgentCollaboratorsInput = schema.new({
-    id = id.from(_N, "ListAgentCollaboratorsInput"),
+    id = id.from(_N, "ListAgentCollaboratorsRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -1936,7 +1936,7 @@ M.AgentCollaboratorSummary = schema.new({
 })
 
 M.ListAgentCollaboratorsOutput = schema.new({
-    id = id.from(_N, "ListAgentCollaboratorsOutput"),
+    id = id.from(_N, "ListAgentCollaboratorsResponse"),
     type = "structure",
     members = {
         agentCollaboratorSummaries = schema.new({
@@ -1959,7 +1959,7 @@ M.ListAgentCollaboratorsOutput = schema.new({
 })
 
 M.UpdateAgentCollaboratorInput = schema.new({
-    id = id.from(_N, "UpdateAgentCollaboratorInput"),
+    id = id.from(_N, "UpdateAgentCollaboratorRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -2030,7 +2030,7 @@ M.UpdateAgentCollaboratorInput = schema.new({
 })
 
 M.UpdateAgentCollaboratorOutput = schema.new({
-    id = id.from(_N, "UpdateAgentCollaboratorOutput"),
+    id = id.from(_N, "UpdateAgentCollaboratorResponse"),
     type = "structure",
     members = {
         agentCollaborator = schema.new({
@@ -2186,7 +2186,7 @@ M.AgentKnowledgeBaseSummary = schema.new({
 })
 
 M.CreateAgentInput = schema.new({
-    id = id.from(_N, "CreateAgentInput"),
+    id = id.from(_N, "CreateAgentRequest"),
     type = "structure",
     members = {
         agentName = schema.new({
@@ -2295,7 +2295,7 @@ M.CreateAgentInput = schema.new({
 })
 
 M.CreateAgentOutput = schema.new({
-    id = id.from(_N, "CreateAgentOutput"),
+    id = id.from(_N, "CreateAgentResponse"),
     type = "structure",
     members = {
         agent = schema.new({
@@ -2312,7 +2312,7 @@ M.CreateAgentOutput = schema.new({
 })
 
 M.DeleteAgentInput = schema.new({
-    id = id.from(_N, "DeleteAgentInput"),
+    id = id.from(_N, "DeleteAgentRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -2339,7 +2339,7 @@ M.DeleteAgentInput = schema.new({
 })
 
 M.DeleteAgentOutput = schema.new({
-    id = id.from(_N, "DeleteAgentOutput"),
+    id = id.from(_N, "DeleteAgentResponse"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -2364,7 +2364,7 @@ M.DeleteAgentOutput = schema.new({
 })
 
 M.GetAgentInput = schema.new({
-    id = id.from(_N, "GetAgentInput"),
+    id = id.from(_N, "GetAgentRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -2381,7 +2381,7 @@ M.GetAgentInput = schema.new({
 })
 
 M.GetAgentOutput = schema.new({
-    id = id.from(_N, "GetAgentOutput"),
+    id = id.from(_N, "GetAgentResponse"),
     type = "structure",
     members = {
         agent = schema.new({
@@ -2398,7 +2398,7 @@ M.GetAgentOutput = schema.new({
 })
 
 M.ListAgentsInput = schema.new({
-    id = id.from(_N, "ListAgentsInput"),
+    id = id.from(_N, "ListAgentsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2483,7 +2483,7 @@ M.AgentSummary = schema.new({
 })
 
 M.ListAgentsOutput = schema.new({
-    id = id.from(_N, "ListAgentsOutput"),
+    id = id.from(_N, "ListAgentsResponse"),
     type = "structure",
     members = {
         agentSummaries = schema.new({
@@ -2506,7 +2506,7 @@ M.ListAgentsOutput = schema.new({
 })
 
 M.PrepareAgentInput = schema.new({
-    id = id.from(_N, "PrepareAgentInput"),
+    id = id.from(_N, "PrepareAgentRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -2523,7 +2523,7 @@ M.PrepareAgentInput = schema.new({
 })
 
 M.PrepareAgentOutput = schema.new({
-    id = id.from(_N, "PrepareAgentOutput"),
+    id = id.from(_N, "PrepareAgentResponse"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -2570,7 +2570,7 @@ M.PrepareAgentOutput = schema.new({
 })
 
 M.UpdateAgentInput = schema.new({
-    id = id.from(_N, "UpdateAgentInput"),
+    id = id.from(_N, "UpdateAgentRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -2678,7 +2678,7 @@ M.UpdateAgentInput = schema.new({
 })
 
 M.UpdateAgentOutput = schema.new({
-    id = id.from(_N, "UpdateAgentOutput"),
+    id = id.from(_N, "UpdateAgentResponse"),
     type = "structure",
     members = {
         agent = schema.new({
@@ -2929,7 +2929,7 @@ M.AgentVersionSummary = schema.new({
 })
 
 M.CreateAgentAliasInput = schema.new({
-    id = id.from(_N, "CreateAgentAliasInput"),
+    id = id.from(_N, "CreateAgentAliasRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -2985,7 +2985,7 @@ M.CreateAgentAliasInput = schema.new({
 })
 
 M.CreateAgentAliasOutput = schema.new({
-    id = id.from(_N, "CreateAgentAliasOutput"),
+    id = id.from(_N, "CreateAgentAliasResponse"),
     type = "structure",
     members = {
         agentAlias = schema.new({
@@ -3002,7 +3002,7 @@ M.CreateAgentAliasOutput = schema.new({
 })
 
 M.DeleteAgentAliasInput = schema.new({
-    id = id.from(_N, "DeleteAgentAliasInput"),
+    id = id.from(_N, "DeleteAgentAliasRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -3029,7 +3029,7 @@ M.DeleteAgentAliasInput = schema.new({
 })
 
 M.DeleteAgentAliasOutput = schema.new({
-    id = id.from(_N, "DeleteAgentAliasOutput"),
+    id = id.from(_N, "DeleteAgentAliasResponse"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -3063,7 +3063,7 @@ M.DeleteAgentAliasOutput = schema.new({
 })
 
 M.GetAgentAliasInput = schema.new({
-    id = id.from(_N, "GetAgentAliasInput"),
+    id = id.from(_N, "GetAgentAliasRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -3090,7 +3090,7 @@ M.GetAgentAliasInput = schema.new({
 })
 
 M.GetAgentAliasOutput = schema.new({
-    id = id.from(_N, "GetAgentAliasOutput"),
+    id = id.from(_N, "GetAgentAliasResponse"),
     type = "structure",
     members = {
         agentAlias = schema.new({
@@ -3107,7 +3107,7 @@ M.GetAgentAliasOutput = schema.new({
 })
 
 M.ListAgentAliasesInput = schema.new({
-    id = id.from(_N, "ListAgentAliasesInput"),
+    id = id.from(_N, "ListAgentAliasesRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -3136,7 +3136,7 @@ M.ListAgentAliasesInput = schema.new({
 })
 
 M.ListAgentAliasesOutput = schema.new({
-    id = id.from(_N, "ListAgentAliasesOutput"),
+    id = id.from(_N, "ListAgentAliasesResponse"),
     type = "structure",
     members = {
         agentAliasSummaries = schema.new({
@@ -3159,7 +3159,7 @@ M.ListAgentAliasesOutput = schema.new({
 })
 
 M.UpdateAgentAliasInput = schema.new({
-    id = id.from(_N, "UpdateAgentAliasInput"),
+    id = id.from(_N, "UpdateAgentAliasRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -3214,7 +3214,7 @@ M.UpdateAgentAliasInput = schema.new({
 })
 
 M.UpdateAgentAliasOutput = schema.new({
-    id = id.from(_N, "UpdateAgentAliasOutput"),
+    id = id.from(_N, "UpdateAgentAliasResponse"),
     type = "structure",
     members = {
         agentAlias = schema.new({
@@ -4222,7 +4222,7 @@ M.VectorIngestionConfiguration = schema.new({
 })
 
 M.CreateDataSourceInput = schema.new({
-    id = id.from(_N, "CreateDataSourceInput"),
+    id = id.from(_N, "CreateDataSourceRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -4405,7 +4405,7 @@ M.DataSource = schema.new({
 })
 
 M.CreateDataSourceOutput = schema.new({
-    id = id.from(_N, "CreateDataSourceOutput"),
+    id = id.from(_N, "CreateDataSourceResponse"),
     type = "structure",
     members = {
         dataSource = schema.new({
@@ -4422,7 +4422,7 @@ M.CreateDataSourceOutput = schema.new({
 })
 
 M.DeleteDataSourceInput = schema.new({
-    id = id.from(_N, "DeleteDataSourceInput"),
+    id = id.from(_N, "DeleteDataSourceRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -4449,7 +4449,7 @@ M.DeleteDataSourceInput = schema.new({
 })
 
 M.DeleteDataSourceOutput = schema.new({
-    id = id.from(_N, "DeleteDataSourceOutput"),
+    id = id.from(_N, "DeleteDataSourceResponse"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -4483,7 +4483,7 @@ M.DeleteDataSourceOutput = schema.new({
 })
 
 M.GetDataSourceInput = schema.new({
-    id = id.from(_N, "GetDataSourceInput"),
+    id = id.from(_N, "GetDataSourceRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -4510,7 +4510,7 @@ M.GetDataSourceInput = schema.new({
 })
 
 M.GetDataSourceOutput = schema.new({
-    id = id.from(_N, "GetDataSourceOutput"),
+    id = id.from(_N, "GetDataSourceResponse"),
     type = "structure",
     members = {
         dataSource = schema.new({
@@ -4527,7 +4527,7 @@ M.GetDataSourceOutput = schema.new({
 })
 
 M.ListDataSourcesInput = schema.new({
-    id = id.from(_N, "ListDataSourcesInput"),
+    id = id.from(_N, "ListDataSourcesRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -4618,7 +4618,7 @@ M.DataSourceSummary = schema.new({
 })
 
 M.ListDataSourcesOutput = schema.new({
-    id = id.from(_N, "ListDataSourcesOutput"),
+    id = id.from(_N, "ListDataSourcesResponse"),
     type = "structure",
     members = {
         dataSourceSummaries = schema.new({
@@ -4641,7 +4641,7 @@ M.ListDataSourcesOutput = schema.new({
 })
 
 M.UpdateDataSourceInput = schema.new({
-    id = id.from(_N, "UpdateDataSourceInput"),
+    id = id.from(_N, "UpdateDataSourceRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -4713,7 +4713,7 @@ M.UpdateDataSourceInput = schema.new({
 })
 
 M.UpdateDataSourceOutput = schema.new({
-    id = id.from(_N, "UpdateDataSourceOutput"),
+    id = id.from(_N, "UpdateDataSourceResponse"),
     type = "structure",
     members = {
         dataSource = schema.new({
@@ -5922,7 +5922,7 @@ M.FlowNodeOutput = schema.new({
 })
 
 M.DeleteFlowInput = schema.new({
-    id = id.from(_N, "DeleteFlowInput"),
+    id = id.from(_N, "DeleteFlowRequest"),
     type = "structure",
     members = {
         flowIdentifier = schema.new({
@@ -5949,7 +5949,7 @@ M.DeleteFlowInput = schema.new({
 })
 
 M.DeleteFlowOutput = schema.new({
-    id = id.from(_N, "DeleteFlowOutput"),
+    id = id.from(_N, "DeleteFlowResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6000,7 +6000,7 @@ M.FlowAliasRoutingConfigurationListItem = schema.new({
 })
 
 M.CreateFlowAliasInput = schema.new({
-    id = id.from(_N, "CreateFlowAliasInput"),
+    id = id.from(_N, "CreateFlowAliasRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -6066,7 +6066,7 @@ M.CreateFlowAliasInput = schema.new({
 })
 
 M.CreateFlowAliasOutput = schema.new({
-    id = id.from(_N, "CreateFlowAliasOutput"),
+    id = id.from(_N, "CreateFlowAliasResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -6158,7 +6158,7 @@ M.CreateFlowAliasOutput = schema.new({
 })
 
 M.DeleteFlowAliasInput = schema.new({
-    id = id.from(_N, "DeleteFlowAliasInput"),
+    id = id.from(_N, "DeleteFlowAliasRequest"),
     type = "structure",
     members = {
         flowIdentifier = schema.new({
@@ -6185,7 +6185,7 @@ M.DeleteFlowAliasInput = schema.new({
 })
 
 M.DeleteFlowAliasOutput = schema.new({
-    id = id.from(_N, "DeleteFlowAliasOutput"),
+    id = id.from(_N, "DeleteFlowAliasResponse"),
     type = "structure",
     members = {
         flowId = schema.new({
@@ -6210,7 +6210,7 @@ M.DeleteFlowAliasOutput = schema.new({
 })
 
 M.GetFlowAliasInput = schema.new({
-    id = id.from(_N, "GetFlowAliasInput"),
+    id = id.from(_N, "GetFlowAliasRequest"),
     type = "structure",
     members = {
         flowIdentifier = schema.new({
@@ -6237,7 +6237,7 @@ M.GetFlowAliasInput = schema.new({
 })
 
 M.GetFlowAliasOutput = schema.new({
-    id = id.from(_N, "GetFlowAliasOutput"),
+    id = id.from(_N, "GetFlowAliasResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -6329,7 +6329,7 @@ M.GetFlowAliasOutput = schema.new({
 })
 
 M.ListFlowAliasesInput = schema.new({
-    id = id.from(_N, "ListFlowAliasesInput"),
+    id = id.from(_N, "ListFlowAliasesRequest"),
     type = "structure",
     members = {
         flowIdentifier = schema.new({
@@ -6456,7 +6456,7 @@ M.FlowAliasSummary = schema.new({
 })
 
 M.ListFlowAliasesOutput = schema.new({
-    id = id.from(_N, "ListFlowAliasesOutput"),
+    id = id.from(_N, "ListFlowAliasesResponse"),
     type = "structure",
     members = {
         flowAliasSummaries = schema.new({
@@ -6479,7 +6479,7 @@ M.ListFlowAliasesOutput = schema.new({
 })
 
 M.UpdateFlowAliasInput = schema.new({
-    id = id.from(_N, "UpdateFlowAliasInput"),
+    id = id.from(_N, "UpdateFlowAliasRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -6538,7 +6538,7 @@ M.UpdateFlowAliasInput = schema.new({
 })
 
 M.UpdateFlowAliasOutput = schema.new({
-    id = id.from(_N, "UpdateFlowAliasOutput"),
+    id = id.from(_N, "UpdateFlowAliasResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -6630,7 +6630,7 @@ M.UpdateFlowAliasOutput = schema.new({
 })
 
 M.CreateFlowVersionInput = schema.new({
-    id = id.from(_N, "CreateFlowVersionInput"),
+    id = id.from(_N, "CreateFlowVersionRequest"),
     type = "structure",
     members = {
         flowIdentifier = schema.new({
@@ -6662,7 +6662,7 @@ M.CreateFlowVersionInput = schema.new({
 })
 
 M.DeleteFlowVersionInput = schema.new({
-    id = id.from(_N, "DeleteFlowVersionInput"),
+    id = id.from(_N, "DeleteFlowVersionRequest"),
     type = "structure",
     members = {
         flowIdentifier = schema.new({
@@ -6699,7 +6699,7 @@ M.DeleteFlowVersionInput = schema.new({
 })
 
 M.DeleteFlowVersionOutput = schema.new({
-    id = id.from(_N, "DeleteFlowVersionOutput"),
+    id = id.from(_N, "DeleteFlowVersionResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6724,7 +6724,7 @@ M.DeleteFlowVersionOutput = schema.new({
 })
 
 M.GetFlowVersionInput = schema.new({
-    id = id.from(_N, "GetFlowVersionInput"),
+    id = id.from(_N, "GetFlowVersionRequest"),
     type = "structure",
     members = {
         flowIdentifier = schema.new({
@@ -6751,7 +6751,7 @@ M.GetFlowVersionInput = schema.new({
 })
 
 M.ListFlowVersionsInput = schema.new({
-    id = id.from(_N, "ListFlowVersionsInput"),
+    id = id.from(_N, "ListFlowVersionsRequest"),
     type = "structure",
     members = {
         flowIdentifier = schema.new({
@@ -6842,7 +6842,7 @@ M.FlowVersionSummary = schema.new({
 })
 
 M.ListFlowVersionsOutput = schema.new({
-    id = id.from(_N, "ListFlowVersionsOutput"),
+    id = id.from(_N, "ListFlowVersionsResponse"),
     type = "structure",
     members = {
         flowVersionSummaries = schema.new({
@@ -6865,7 +6865,7 @@ M.ListFlowVersionsOutput = schema.new({
 })
 
 M.GetFlowInput = schema.new({
-    id = id.from(_N, "GetFlowInput"),
+    id = id.from(_N, "GetFlowRequest"),
     type = "structure",
     members = {
         flowIdentifier = schema.new({
@@ -7833,7 +7833,7 @@ M.FlowValidation = schema.new({
 })
 
 M.ListFlowsInput = schema.new({
-    id = id.from(_N, "ListFlowsInput"),
+    id = id.from(_N, "ListFlowsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -7942,7 +7942,7 @@ M.FlowSummary = schema.new({
 })
 
 M.ListFlowsOutput = schema.new({
-    id = id.from(_N, "ListFlowsOutput"),
+    id = id.from(_N, "ListFlowsResponse"),
     type = "structure",
     members = {
         flowSummaries = schema.new({
@@ -7965,7 +7965,7 @@ M.ListFlowsOutput = schema.new({
 })
 
 M.PrepareFlowInput = schema.new({
-    id = id.from(_N, "PrepareFlowInput"),
+    id = id.from(_N, "PrepareFlowRequest"),
     type = "structure",
     members = {
         flowIdentifier = schema.new({
@@ -7982,7 +7982,7 @@ M.PrepareFlowInput = schema.new({
 })
 
 M.PrepareFlowOutput = schema.new({
-    id = id.from(_N, "PrepareFlowOutput"),
+    id = id.from(_N, "PrepareFlowResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -8007,7 +8007,7 @@ M.PrepareFlowOutput = schema.new({
 })
 
 M.GetIngestionJobInput = schema.new({
-    id = id.from(_N, "GetIngestionJobInput"),
+    id = id.from(_N, "GetIngestionJobRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -8203,7 +8203,7 @@ M.IngestionJob = schema.new({
 })
 
 M.GetIngestionJobOutput = schema.new({
-    id = id.from(_N, "GetIngestionJobOutput"),
+    id = id.from(_N, "GetIngestionJobResponse"),
     type = "structure",
     members = {
         ingestionJob = schema.new({
@@ -8280,7 +8280,7 @@ M.IngestionJobSortBy = schema.new({
 })
 
 M.ListIngestionJobsInput = schema.new({
-    id = id.from(_N, "ListIngestionJobsInput"),
+    id = id.from(_N, "ListIngestionJobsRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -8415,7 +8415,7 @@ M.IngestionJobSummary = schema.new({
 })
 
 M.ListIngestionJobsOutput = schema.new({
-    id = id.from(_N, "ListIngestionJobsOutput"),
+    id = id.from(_N, "ListIngestionJobsResponse"),
     type = "structure",
     members = {
         ingestionJobSummaries = schema.new({
@@ -8438,7 +8438,7 @@ M.ListIngestionJobsOutput = schema.new({
 })
 
 M.StartIngestionJobInput = schema.new({
-    id = id.from(_N, "StartIngestionJobInput"),
+    id = id.from(_N, "StartIngestionJobRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -8480,7 +8480,7 @@ M.StartIngestionJobInput = schema.new({
 })
 
 M.StartIngestionJobOutput = schema.new({
-    id = id.from(_N, "StartIngestionJobOutput"),
+    id = id.from(_N, "StartIngestionJobResponse"),
     type = "structure",
     members = {
         ingestionJob = schema.new({
@@ -8497,7 +8497,7 @@ M.StartIngestionJobOutput = schema.new({
 })
 
 M.StopIngestionJobInput = schema.new({
-    id = id.from(_N, "StopIngestionJobInput"),
+    id = id.from(_N, "StopIngestionJobRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -8534,7 +8534,7 @@ M.StopIngestionJobInput = schema.new({
 })
 
 M.StopIngestionJobOutput = schema.new({
-    id = id.from(_N, "StopIngestionJobOutput"),
+    id = id.from(_N, "StopIngestionJobResponse"),
     type = "structure",
     members = {
         ingestionJob = schema.new({
@@ -8597,7 +8597,7 @@ M.DocumentIdentifier = schema.new({
 })
 
 M.DeleteKnowledgeBaseDocumentsInput = schema.new({
-    id = id.from(_N, "DeleteKnowledgeBaseDocumentsInput"),
+    id = id.from(_N, "DeleteKnowledgeBaseDocumentsRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -8702,7 +8702,7 @@ M.KnowledgeBaseDocumentDetail = schema.new({
 })
 
 M.DeleteKnowledgeBaseDocumentsOutput = schema.new({
-    id = id.from(_N, "DeleteKnowledgeBaseDocumentsOutput"),
+    id = id.from(_N, "DeleteKnowledgeBaseDocumentsResponse"),
     type = "structure",
     members = {
         documentDetails = schema.new({
@@ -8716,7 +8716,7 @@ M.DeleteKnowledgeBaseDocumentsOutput = schema.new({
 })
 
 M.GetKnowledgeBaseDocumentsInput = schema.new({
-    id = id.from(_N, "GetKnowledgeBaseDocumentsInput"),
+    id = id.from(_N, "GetKnowledgeBaseDocumentsRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -8753,7 +8753,7 @@ M.GetKnowledgeBaseDocumentsInput = schema.new({
 })
 
 M.GetKnowledgeBaseDocumentsOutput = schema.new({
-    id = id.from(_N, "GetKnowledgeBaseDocumentsOutput"),
+    id = id.from(_N, "GetKnowledgeBaseDocumentsResponse"),
     type = "structure",
     members = {
         documentDetails = schema.new({
@@ -9068,7 +9068,7 @@ M.KnowledgeBaseDocument = schema.new({
 })
 
 M.IngestKnowledgeBaseDocumentsInput = schema.new({
-    id = id.from(_N, "IngestKnowledgeBaseDocumentsInput"),
+    id = id.from(_N, "IngestKnowledgeBaseDocumentsRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -9114,7 +9114,7 @@ M.IngestKnowledgeBaseDocumentsInput = schema.new({
 })
 
 M.IngestKnowledgeBaseDocumentsOutput = schema.new({
-    id = id.from(_N, "IngestKnowledgeBaseDocumentsOutput"),
+    id = id.from(_N, "IngestKnowledgeBaseDocumentsResponse"),
     type = "structure",
     members = {
         documentDetails = schema.new({
@@ -9128,7 +9128,7 @@ M.IngestKnowledgeBaseDocumentsOutput = schema.new({
 })
 
 M.ListKnowledgeBaseDocumentsInput = schema.new({
-    id = id.from(_N, "ListKnowledgeBaseDocumentsInput"),
+    id = id.from(_N, "ListKnowledgeBaseDocumentsRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -9167,7 +9167,7 @@ M.ListKnowledgeBaseDocumentsInput = schema.new({
 })
 
 M.ListKnowledgeBaseDocumentsOutput = schema.new({
-    id = id.from(_N, "ListKnowledgeBaseDocumentsOutput"),
+    id = id.from(_N, "ListKnowledgeBaseDocumentsResponse"),
     type = "structure",
     members = {
         documentDetails = schema.new({
@@ -9190,7 +9190,7 @@ M.ListKnowledgeBaseDocumentsOutput = schema.new({
 })
 
 M.AssociateAgentKnowledgeBaseInput = schema.new({
-    id = id.from(_N, "AssociateAgentKnowledgeBaseInput"),
+    id = id.from(_N, "AssociateAgentKnowledgeBaseRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -9241,7 +9241,7 @@ M.AssociateAgentKnowledgeBaseInput = schema.new({
 })
 
 M.AssociateAgentKnowledgeBaseOutput = schema.new({
-    id = id.from(_N, "AssociateAgentKnowledgeBaseOutput"),
+    id = id.from(_N, "AssociateAgentKnowledgeBaseResponse"),
     type = "structure",
     members = {
         agentKnowledgeBase = schema.new({
@@ -10521,7 +10521,7 @@ M.StorageConfiguration = schema.new({
 })
 
 M.CreateKnowledgeBaseInput = schema.new({
-    id = id.from(_N, "CreateKnowledgeBaseInput"),
+    id = id.from(_N, "CreateKnowledgeBaseRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -10694,7 +10694,7 @@ M.KnowledgeBase = schema.new({
 })
 
 M.CreateKnowledgeBaseOutput = schema.new({
-    id = id.from(_N, "CreateKnowledgeBaseOutput"),
+    id = id.from(_N, "CreateKnowledgeBaseResponse"),
     type = "structure",
     members = {
         knowledgeBase = schema.new({
@@ -10711,7 +10711,7 @@ M.CreateKnowledgeBaseOutput = schema.new({
 })
 
 M.DeleteKnowledgeBaseInput = schema.new({
-    id = id.from(_N, "DeleteKnowledgeBaseInput"),
+    id = id.from(_N, "DeleteKnowledgeBaseRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -10728,7 +10728,7 @@ M.DeleteKnowledgeBaseInput = schema.new({
 })
 
 M.DeleteKnowledgeBaseOutput = schema.new({
-    id = id.from(_N, "DeleteKnowledgeBaseOutput"),
+    id = id.from(_N, "DeleteKnowledgeBaseResponse"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -10753,7 +10753,7 @@ M.DeleteKnowledgeBaseOutput = schema.new({
 })
 
 M.DisassociateAgentKnowledgeBaseInput = schema.new({
-    id = id.from(_N, "DisassociateAgentKnowledgeBaseInput"),
+    id = id.from(_N, "DisassociateAgentKnowledgeBaseRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -10790,12 +10790,12 @@ M.DisassociateAgentKnowledgeBaseInput = schema.new({
 })
 
 M.DisassociateAgentKnowledgeBaseOutput = schema.new({
-    id = id.from(_N, "DisassociateAgentKnowledgeBaseOutput"),
+    id = id.from(_N, "DisassociateAgentKnowledgeBaseResponse"),
     type = "structure",
 })
 
 M.GetAgentKnowledgeBaseInput = schema.new({
-    id = id.from(_N, "GetAgentKnowledgeBaseInput"),
+    id = id.from(_N, "GetAgentKnowledgeBaseRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -10832,7 +10832,7 @@ M.GetAgentKnowledgeBaseInput = schema.new({
 })
 
 M.GetAgentKnowledgeBaseOutput = schema.new({
-    id = id.from(_N, "GetAgentKnowledgeBaseOutput"),
+    id = id.from(_N, "GetAgentKnowledgeBaseResponse"),
     type = "structure",
     members = {
         agentKnowledgeBase = schema.new({
@@ -10849,7 +10849,7 @@ M.GetAgentKnowledgeBaseOutput = schema.new({
 })
 
 M.GetKnowledgeBaseInput = schema.new({
-    id = id.from(_N, "GetKnowledgeBaseInput"),
+    id = id.from(_N, "GetKnowledgeBaseRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -10866,7 +10866,7 @@ M.GetKnowledgeBaseInput = schema.new({
 })
 
 M.GetKnowledgeBaseOutput = schema.new({
-    id = id.from(_N, "GetKnowledgeBaseOutput"),
+    id = id.from(_N, "GetKnowledgeBaseResponse"),
     type = "structure",
     members = {
         knowledgeBase = schema.new({
@@ -10883,7 +10883,7 @@ M.GetKnowledgeBaseOutput = schema.new({
 })
 
 M.ListAgentKnowledgeBasesInput = schema.new({
-    id = id.from(_N, "ListAgentKnowledgeBasesInput"),
+    id = id.from(_N, "ListAgentKnowledgeBasesRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -10922,7 +10922,7 @@ M.ListAgentKnowledgeBasesInput = schema.new({
 })
 
 M.ListAgentKnowledgeBasesOutput = schema.new({
-    id = id.from(_N, "ListAgentKnowledgeBasesOutput"),
+    id = id.from(_N, "ListAgentKnowledgeBasesResponse"),
     type = "structure",
     members = {
         agentKnowledgeBaseSummaries = schema.new({
@@ -10945,7 +10945,7 @@ M.ListAgentKnowledgeBasesOutput = schema.new({
 })
 
 M.ListKnowledgeBasesInput = schema.new({
-    id = id.from(_N, "ListKnowledgeBasesInput"),
+    id = id.from(_N, "ListKnowledgeBasesRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -11017,7 +11017,7 @@ M.KnowledgeBaseSummary = schema.new({
 })
 
 M.ListKnowledgeBasesOutput = schema.new({
-    id = id.from(_N, "ListKnowledgeBasesOutput"),
+    id = id.from(_N, "ListKnowledgeBasesResponse"),
     type = "structure",
     members = {
         knowledgeBaseSummaries = schema.new({
@@ -11040,7 +11040,7 @@ M.ListKnowledgeBasesOutput = schema.new({
 })
 
 M.UpdateAgentKnowledgeBaseInput = schema.new({
-    id = id.from(_N, "UpdateAgentKnowledgeBaseInput"),
+    id = id.from(_N, "UpdateAgentKnowledgeBaseRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -11089,7 +11089,7 @@ M.UpdateAgentKnowledgeBaseInput = schema.new({
 })
 
 M.UpdateAgentKnowledgeBaseOutput = schema.new({
-    id = id.from(_N, "UpdateAgentKnowledgeBaseOutput"),
+    id = id.from(_N, "UpdateAgentKnowledgeBaseResponse"),
     type = "structure",
     members = {
         agentKnowledgeBase = schema.new({
@@ -11106,7 +11106,7 @@ M.UpdateAgentKnowledgeBaseOutput = schema.new({
 })
 
 M.UpdateKnowledgeBaseInput = schema.new({
-    id = id.from(_N, "UpdateKnowledgeBaseInput"),
+    id = id.from(_N, "UpdateKnowledgeBaseRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -11164,7 +11164,7 @@ M.UpdateKnowledgeBaseInput = schema.new({
 })
 
 M.UpdateKnowledgeBaseOutput = schema.new({
-    id = id.from(_N, "UpdateKnowledgeBaseOutput"),
+    id = id.from(_N, "UpdateKnowledgeBaseResponse"),
     type = "structure",
     members = {
         knowledgeBase = schema.new({
@@ -11304,7 +11304,7 @@ M.PromptVariant = schema.new({
 })
 
 M.CreatePromptInput = schema.new({
-    id = id.from(_N, "CreatePromptInput"),
+    id = id.from(_N, "CreatePromptRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -11362,7 +11362,7 @@ M.CreatePromptInput = schema.new({
 })
 
 M.CreatePromptOutput = schema.new({
-    id = id.from(_N, "CreatePromptOutput"),
+    id = id.from(_N, "CreatePromptResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -11456,7 +11456,7 @@ M.CreatePromptOutput = schema.new({
 })
 
 M.CreatePromptVersionInput = schema.new({
-    id = id.from(_N, "CreatePromptVersionInput"),
+    id = id.from(_N, "CreatePromptVersionRequest"),
     type = "structure",
     members = {
         promptIdentifier = schema.new({
@@ -11496,7 +11496,7 @@ M.CreatePromptVersionInput = schema.new({
 })
 
 M.CreatePromptVersionOutput = schema.new({
-    id = id.from(_N, "CreatePromptVersionOutput"),
+    id = id.from(_N, "CreatePromptVersionResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -11590,7 +11590,7 @@ M.CreatePromptVersionOutput = schema.new({
 })
 
 M.DeletePromptInput = schema.new({
-    id = id.from(_N, "DeletePromptInput"),
+    id = id.from(_N, "DeletePromptRequest"),
     type = "structure",
     members = {
         promptIdentifier = schema.new({
@@ -11616,7 +11616,7 @@ M.DeletePromptInput = schema.new({
 })
 
 M.DeletePromptOutput = schema.new({
-    id = id.from(_N, "DeletePromptOutput"),
+    id = id.from(_N, "DeletePromptResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -11638,7 +11638,7 @@ M.DeletePromptOutput = schema.new({
 })
 
 M.GetPromptInput = schema.new({
-    id = id.from(_N, "GetPromptInput"),
+    id = id.from(_N, "GetPromptRequest"),
     type = "structure",
     members = {
         promptIdentifier = schema.new({
@@ -11664,7 +11664,7 @@ M.GetPromptInput = schema.new({
 })
 
 M.GetPromptOutput = schema.new({
-    id = id.from(_N, "GetPromptOutput"),
+    id = id.from(_N, "GetPromptResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -11758,7 +11758,7 @@ M.GetPromptOutput = schema.new({
 })
 
 M.ListPromptsInput = schema.new({
-    id = id.from(_N, "ListPromptsInput"),
+    id = id.from(_N, "ListPromptsRequest"),
     type = "structure",
     members = {
         promptIdentifier = schema.new({
@@ -11867,7 +11867,7 @@ M.PromptSummary = schema.new({
 })
 
 M.ListPromptsOutput = schema.new({
-    id = id.from(_N, "ListPromptsOutput"),
+    id = id.from(_N, "ListPromptsResponse"),
     type = "structure",
     members = {
         promptSummaries = schema.new({
@@ -11890,7 +11890,7 @@ M.ListPromptsOutput = schema.new({
 })
 
 M.UpdatePromptInput = schema.new({
-    id = id.from(_N, "UpdatePromptInput"),
+    id = id.from(_N, "UpdatePromptRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -11941,7 +11941,7 @@ M.UpdatePromptInput = schema.new({
 })
 
 M.UpdatePromptOutput = schema.new({
-    id = id.from(_N, "UpdatePromptOutput"),
+    id = id.from(_N, "UpdatePromptResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -12035,7 +12035,7 @@ M.UpdatePromptOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -12052,7 +12052,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -12067,7 +12067,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -12095,12 +12095,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -12128,12 +12128,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.ValidateFlowDefinitionOutput = schema.new({
-    id = id.from(_N, "ValidateFlowDefinitionOutput"),
+    id = id.from(_N, "ValidateFlowDefinitionResponse"),
     type = "structure",
     members = {
         validations = schema.new({
@@ -12150,7 +12150,7 @@ M.ValidateFlowDefinitionOutput = schema.new({
 })
 
 M.DeleteAgentVersionInput = schema.new({
-    id = id.from(_N, "DeleteAgentVersionInput"),
+    id = id.from(_N, "DeleteAgentVersionRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -12187,7 +12187,7 @@ M.DeleteAgentVersionInput = schema.new({
 })
 
 M.DeleteAgentVersionOutput = schema.new({
-    id = id.from(_N, "DeleteAgentVersionOutput"),
+    id = id.from(_N, "DeleteAgentVersionResponse"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -12221,7 +12221,7 @@ M.DeleteAgentVersionOutput = schema.new({
 })
 
 M.GetAgentVersionInput = schema.new({
-    id = id.from(_N, "GetAgentVersionInput"),
+    id = id.from(_N, "GetAgentVersionRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -12248,7 +12248,7 @@ M.GetAgentVersionInput = schema.new({
 })
 
 M.GetAgentVersionOutput = schema.new({
-    id = id.from(_N, "GetAgentVersionOutput"),
+    id = id.from(_N, "GetAgentVersionResponse"),
     type = "structure",
     members = {
         agentVersion = schema.new({
@@ -12265,7 +12265,7 @@ M.GetAgentVersionOutput = schema.new({
 })
 
 M.ListAgentVersionsInput = schema.new({
-    id = id.from(_N, "ListAgentVersionsInput"),
+    id = id.from(_N, "ListAgentVersionsRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -12294,7 +12294,7 @@ M.ListAgentVersionsInput = schema.new({
 })
 
 M.ListAgentVersionsOutput = schema.new({
-    id = id.from(_N, "ListAgentVersionsOutput"),
+    id = id.from(_N, "ListAgentVersionsResponse"),
     type = "structure",
     members = {
         agentVersionSummaries = schema.new({
@@ -12520,7 +12520,7 @@ M.LoopFlowNodeConfiguration = schema.new({
 })
 
 M.CreateFlowInput = schema.new({
-    id = id.from(_N, "CreateFlowInput"),
+    id = id.from(_N, "CreateFlowRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -12581,7 +12581,7 @@ M.CreateFlowInput = schema.new({
 })
 
 M.CreateFlowOutput = schema.new({
-    id = id.from(_N, "CreateFlowOutput"),
+    id = id.from(_N, "CreateFlowResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -12687,7 +12687,7 @@ M.CreateFlowOutput = schema.new({
 })
 
 M.CreateFlowVersionOutput = schema.new({
-    id = id.from(_N, "CreateFlowVersionOutput"),
+    id = id.from(_N, "CreateFlowVersionResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -12780,7 +12780,7 @@ M.CreateFlowVersionOutput = schema.new({
 })
 
 M.GetFlowOutput = schema.new({
-    id = id.from(_N, "GetFlowOutput"),
+    id = id.from(_N, "GetFlowResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -12893,7 +12893,7 @@ M.GetFlowOutput = schema.new({
 })
 
 M.GetFlowVersionOutput = schema.new({
-    id = id.from(_N, "GetFlowVersionOutput"),
+    id = id.from(_N, "GetFlowVersionResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -12986,7 +12986,7 @@ M.GetFlowVersionOutput = schema.new({
 })
 
 M.UpdateFlowInput = schema.new({
-    id = id.from(_N, "UpdateFlowInput"),
+    id = id.from(_N, "UpdateFlowRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -13040,7 +13040,7 @@ M.UpdateFlowInput = schema.new({
 })
 
 M.UpdateFlowOutput = schema.new({
-    id = id.from(_N, "UpdateFlowOutput"),
+    id = id.from(_N, "UpdateFlowResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -13146,7 +13146,7 @@ M.UpdateFlowOutput = schema.new({
 })
 
 M.ValidateFlowDefinitionInput = schema.new({
-    id = id.from(_N, "ValidateFlowDefinitionInput"),
+    id = id.from(_N, "ValidateFlowDefinitionRequest"),
     type = "structure",
     members = {
         definition = schema.new({
@@ -13161,5 +13161,19 @@ M.ValidateFlowDefinitionInput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

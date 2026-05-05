@@ -87,7 +87,7 @@ M.Tag = schema.new({
 })
 
 M.CreateDatasetInput = schema.new({
-    id = id.from(_N, "CreateDatasetInput"),
+    id = id.from(_N, "CreateDatasetRequest"),
     type = "structure",
     members = {
         DatasetName = schema.new({
@@ -133,7 +133,7 @@ M.CreateDatasetInput = schema.new({
 })
 
 M.CreateDatasetOutput = schema.new({
-    id = id.from(_N, "CreateDatasetOutput"),
+    id = id.from(_N, "CreateDatasetResponse"),
     type = "structure",
     members = {
         DatasetName = schema.new({
@@ -347,7 +347,7 @@ M.InferenceOutputConfiguration = schema.new({
 })
 
 M.CreateInferenceSchedulerInput = schema.new({
-    id = id.from(_N, "CreateInferenceSchedulerInput"),
+    id = id.from(_N, "CreateInferenceSchedulerRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -439,7 +439,7 @@ M.CreateInferenceSchedulerInput = schema.new({
 })
 
 M.CreateInferenceSchedulerOutput = schema.new({
-    id = id.from(_N, "CreateInferenceSchedulerOutput"),
+    id = id.from(_N, "CreateInferenceSchedulerResponse"),
     type = "structure",
     members = {
         InferenceSchedulerArn = schema.new({
@@ -489,7 +489,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.CreateLabelInput = schema.new({
-    id = id.from(_N, "CreateLabelInput"),
+    id = id.from(_N, "CreateLabelRequest"),
     type = "structure",
     members = {
         LabelGroupName = schema.new({
@@ -560,7 +560,7 @@ M.CreateLabelInput = schema.new({
 })
 
 M.CreateLabelOutput = schema.new({
-    id = id.from(_N, "CreateLabelOutput"),
+    id = id.from(_N, "CreateLabelResponse"),
     type = "structure",
     members = {
         LabelId = schema.new({
@@ -573,7 +573,7 @@ M.CreateLabelOutput = schema.new({
 })
 
 M.CreateLabelGroupInput = schema.new({
-    id = id.from(_N, "CreateLabelGroupInput"),
+    id = id.from(_N, "CreateLabelGroupRequest"),
     type = "structure",
     members = {
         LabelGroupName = schema.new({
@@ -613,7 +613,7 @@ M.CreateLabelGroupInput = schema.new({
 })
 
 M.CreateLabelGroupOutput = schema.new({
-    id = id.from(_N, "CreateLabelGroupOutput"),
+    id = id.from(_N, "CreateLabelGroupResponse"),
     type = "structure",
     members = {
         LabelGroupName = schema.new({
@@ -732,7 +732,7 @@ M.ModelDiagnosticsOutputConfiguration = schema.new({
 })
 
 M.CreateModelInput = schema.new({
-    id = id.from(_N, "CreateModelInput"),
+    id = id.from(_N, "CreateModelRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -844,7 +844,7 @@ M.CreateModelInput = schema.new({
 })
 
 M.CreateModelOutput = schema.new({
-    id = id.from(_N, "CreateModelOutput"),
+    id = id.from(_N, "CreateModelResponse"),
     type = "structure",
     members = {
         ModelArn = schema.new({
@@ -863,7 +863,7 @@ M.CreateModelOutput = schema.new({
 })
 
 M.CreateRetrainingSchedulerInput = schema.new({
-    id = id.from(_N, "CreateRetrainingSchedulerInput"),
+    id = id.from(_N, "CreateRetrainingSchedulerRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -919,7 +919,7 @@ M.CreateRetrainingSchedulerInput = schema.new({
 })
 
 M.CreateRetrainingSchedulerOutput = schema.new({
-    id = id.from(_N, "CreateRetrainingSchedulerOutput"),
+    id = id.from(_N, "CreateRetrainingSchedulerResponse"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -944,7 +944,7 @@ M.CreateRetrainingSchedulerOutput = schema.new({
 })
 
 M.DeleteDatasetInput = schema.new({
-    id = id.from(_N, "DeleteDatasetInput"),
+    id = id.from(_N, "DeleteDatasetRequest"),
     type = "structure",
     members = {
         DatasetName = schema.new({
@@ -960,12 +960,12 @@ M.DeleteDatasetInput = schema.new({
 })
 
 M.DeleteDatasetOutput = schema.new({
-    id = id.from(_N, "DeleteDatasetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteInferenceSchedulerInput = schema.new({
-    id = id.from(_N, "DeleteInferenceSchedulerInput"),
+    id = id.from(_N, "DeleteInferenceSchedulerRequest"),
     type = "structure",
     members = {
         InferenceSchedulerName = schema.new({
@@ -981,12 +981,12 @@ M.DeleteInferenceSchedulerInput = schema.new({
 })
 
 M.DeleteInferenceSchedulerOutput = schema.new({
-    id = id.from(_N, "DeleteInferenceSchedulerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteLabelInput = schema.new({
-    id = id.from(_N, "DeleteLabelInput"),
+    id = id.from(_N, "DeleteLabelRequest"),
     type = "structure",
     members = {
         LabelGroupName = schema.new({
@@ -1011,12 +1011,12 @@ M.DeleteLabelInput = schema.new({
 })
 
 M.DeleteLabelOutput = schema.new({
-    id = id.from(_N, "DeleteLabelOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteLabelGroupInput = schema.new({
-    id = id.from(_N, "DeleteLabelGroupInput"),
+    id = id.from(_N, "DeleteLabelGroupRequest"),
     type = "structure",
     members = {
         LabelGroupName = schema.new({
@@ -1032,12 +1032,12 @@ M.DeleteLabelGroupInput = schema.new({
 })
 
 M.DeleteLabelGroupOutput = schema.new({
-    id = id.from(_N, "DeleteLabelGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteModelInput = schema.new({
-    id = id.from(_N, "DeleteModelInput"),
+    id = id.from(_N, "DeleteModelRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -1053,12 +1053,12 @@ M.DeleteModelInput = schema.new({
 })
 
 M.DeleteModelOutput = schema.new({
-    id = id.from(_N, "DeleteModelOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1074,12 +1074,12 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRetrainingSchedulerInput = schema.new({
-    id = id.from(_N, "DeleteRetrainingSchedulerInput"),
+    id = id.from(_N, "DeleteRetrainingSchedulerRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -1095,12 +1095,12 @@ M.DeleteRetrainingSchedulerInput = schema.new({
 })
 
 M.DeleteRetrainingSchedulerOutput = schema.new({
-    id = id.from(_N, "DeleteRetrainingSchedulerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeDataIngestionJobInput = schema.new({
-    id = id.from(_N, "DescribeDataIngestionJobInput"),
+    id = id.from(_N, "DescribeDataIngestionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1416,7 +1416,7 @@ M.IngestionInputConfiguration = schema.new({
 })
 
 M.DescribeDataIngestionJobOutput = schema.new({
-    id = id.from(_N, "DescribeDataIngestionJobOutput"),
+    id = id.from(_N, "DescribeDataIngestionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1510,7 +1510,7 @@ M.DescribeDataIngestionJobOutput = schema.new({
 })
 
 M.DescribeDatasetInput = schema.new({
-    id = id.from(_N, "DescribeDatasetInput"),
+    id = id.from(_N, "DescribeDatasetRequest"),
     type = "structure",
     members = {
         DatasetName = schema.new({
@@ -1526,7 +1526,7 @@ M.DescribeDatasetInput = schema.new({
 })
 
 M.DescribeDatasetOutput = schema.new({
-    id = id.from(_N, "DescribeDatasetOutput"),
+    id = id.from(_N, "DescribeDatasetResponse"),
     type = "structure",
     members = {
         DatasetName = schema.new({
@@ -1623,7 +1623,7 @@ M.DescribeDatasetOutput = schema.new({
 })
 
 M.DescribeInferenceSchedulerInput = schema.new({
-    id = id.from(_N, "DescribeInferenceSchedulerInput"),
+    id = id.from(_N, "DescribeInferenceSchedulerRequest"),
     type = "structure",
     members = {
         InferenceSchedulerName = schema.new({
@@ -1639,7 +1639,7 @@ M.DescribeInferenceSchedulerInput = schema.new({
 })
 
 M.DescribeInferenceSchedulerOutput = schema.new({
-    id = id.from(_N, "DescribeInferenceSchedulerOutput"),
+    id = id.from(_N, "DescribeInferenceSchedulerResponse"),
     type = "structure",
     members = {
         ModelArn = schema.new({
@@ -1732,7 +1732,7 @@ M.DescribeInferenceSchedulerOutput = schema.new({
 })
 
 M.DescribeLabelInput = schema.new({
-    id = id.from(_N, "DescribeLabelInput"),
+    id = id.from(_N, "DescribeLabelRequest"),
     type = "structure",
     members = {
         LabelGroupName = schema.new({
@@ -1757,7 +1757,7 @@ M.DescribeLabelInput = schema.new({
 })
 
 M.DescribeLabelOutput = schema.new({
-    id = id.from(_N, "DescribeLabelOutput"),
+    id = id.from(_N, "DescribeLabelResponse"),
     type = "structure",
     members = {
         LabelGroupName = schema.new({
@@ -1824,7 +1824,7 @@ M.DescribeLabelOutput = schema.new({
 })
 
 M.DescribeLabelGroupInput = schema.new({
-    id = id.from(_N, "DescribeLabelGroupInput"),
+    id = id.from(_N, "DescribeLabelGroupRequest"),
     type = "structure",
     members = {
         LabelGroupName = schema.new({
@@ -1840,7 +1840,7 @@ M.DescribeLabelGroupInput = schema.new({
 })
 
 M.DescribeLabelGroupOutput = schema.new({
-    id = id.from(_N, "DescribeLabelGroupOutput"),
+    id = id.from(_N, "DescribeLabelGroupResponse"),
     type = "structure",
     members = {
         LabelGroupName = schema.new({
@@ -1878,7 +1878,7 @@ M.DescribeLabelGroupOutput = schema.new({
 })
 
 M.DescribeModelInput = schema.new({
-    id = id.from(_N, "DescribeModelInput"),
+    id = id.from(_N, "DescribeModelRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -1894,7 +1894,7 @@ M.DescribeModelInput = schema.new({
 })
 
 M.DescribeModelOutput = schema.new({
-    id = id.from(_N, "DescribeModelOutput"),
+    id = id.from(_N, "DescribeModelResponse"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -2165,7 +2165,7 @@ M.DescribeModelOutput = schema.new({
 })
 
 M.DescribeModelVersionInput = schema.new({
-    id = id.from(_N, "DescribeModelVersionInput"),
+    id = id.from(_N, "DescribeModelVersionRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -2190,7 +2190,7 @@ M.DescribeModelVersionInput = schema.new({
 })
 
 M.DescribeModelVersionOutput = schema.new({
-    id = id.from(_N, "DescribeModelVersionOutput"),
+    id = id.from(_N, "DescribeModelVersionResponse"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -2411,7 +2411,7 @@ M.DescribeModelVersionOutput = schema.new({
 })
 
 M.DescribeResourcePolicyInput = schema.new({
-    id = id.from(_N, "DescribeResourcePolicyInput"),
+    id = id.from(_N, "DescribeResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2427,7 +2427,7 @@ M.DescribeResourcePolicyInput = schema.new({
 })
 
 M.DescribeResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DescribeResourcePolicyOutput"),
+    id = id.from(_N, "DescribeResourcePolicyResponse"),
     type = "structure",
     members = {
         PolicyRevisionId = schema.new({
@@ -2458,7 +2458,7 @@ M.DescribeResourcePolicyOutput = schema.new({
 })
 
 M.DescribeRetrainingSchedulerInput = schema.new({
-    id = id.from(_N, "DescribeRetrainingSchedulerInput"),
+    id = id.from(_N, "DescribeRetrainingSchedulerRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -2474,7 +2474,7 @@ M.DescribeRetrainingSchedulerInput = schema.new({
 })
 
 M.DescribeRetrainingSchedulerOutput = schema.new({
-    id = id.from(_N, "DescribeRetrainingSchedulerOutput"),
+    id = id.from(_N, "DescribeRetrainingSchedulerResponse"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -2535,7 +2535,7 @@ M.DescribeRetrainingSchedulerOutput = schema.new({
 })
 
 M.ImportDatasetInput = schema.new({
-    id = id.from(_N, "ImportDatasetInput"),
+    id = id.from(_N, "ImportDatasetRequest"),
     type = "structure",
     members = {
         SourceDatasetArn = schema.new({
@@ -2580,7 +2580,7 @@ M.ImportDatasetInput = schema.new({
 })
 
 M.ImportDatasetOutput = schema.new({
-    id = id.from(_N, "ImportDatasetOutput"),
+    id = id.from(_N, "ImportDatasetResponse"),
     type = "structure",
     members = {
         DatasetName = schema.new({
@@ -2611,7 +2611,7 @@ M.ImportDatasetOutput = schema.new({
 })
 
 M.ImportModelVersionInput = schema.new({
-    id = id.from(_N, "ImportModelVersionInput"),
+    id = id.from(_N, "ImportModelVersionRequest"),
     type = "structure",
     members = {
         SourceModelVersionArn = schema.new({
@@ -2684,7 +2684,7 @@ M.ImportModelVersionInput = schema.new({
 })
 
 M.ImportModelVersionOutput = schema.new({
-    id = id.from(_N, "ImportModelVersionOutput"),
+    id = id.from(_N, "ImportModelVersionResponse"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -2721,7 +2721,7 @@ M.ImportModelVersionOutput = schema.new({
 })
 
 M.ListDataIngestionJobsInput = schema.new({
-    id = id.from(_N, "ListDataIngestionJobsInput"),
+    id = id.from(_N, "ListDataIngestionJobsRequest"),
     type = "structure",
     members = {
         DatasetName = schema.new({
@@ -2790,7 +2790,7 @@ M.DataIngestionJobSummary = schema.new({
 })
 
 M.ListDataIngestionJobsOutput = schema.new({
-    id = id.from(_N, "ListDataIngestionJobsOutput"),
+    id = id.from(_N, "ListDataIngestionJobsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2810,7 +2810,7 @@ M.ListDataIngestionJobsOutput = schema.new({
 })
 
 M.ListDatasetsInput = schema.new({
-    id = id.from(_N, "ListDatasetsInput"),
+    id = id.from(_N, "ListDatasetsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2866,7 +2866,7 @@ M.DatasetSummary = schema.new({
 })
 
 M.ListDatasetsOutput = schema.new({
-    id = id.from(_N, "ListDatasetsOutput"),
+    id = id.from(_N, "ListDatasetsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2886,7 +2886,7 @@ M.ListDatasetsOutput = schema.new({
 })
 
 M.ListInferenceEventsInput = schema.new({
-    id = id.from(_N, "ListInferenceEventsInput"),
+    id = id.from(_N, "ListInferenceEventsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2975,7 +2975,7 @@ M.InferenceEventSummary = schema.new({
 })
 
 M.ListInferenceEventsOutput = schema.new({
-    id = id.from(_N, "ListInferenceEventsOutput"),
+    id = id.from(_N, "ListInferenceEventsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2995,7 +2995,7 @@ M.ListInferenceEventsOutput = schema.new({
 })
 
 M.ListInferenceExecutionsInput = schema.new({
-    id = id.from(_N, "ListInferenceExecutionsInput"),
+    id = id.from(_N, "ListInferenceExecutionsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3135,7 +3135,7 @@ M.InferenceExecutionSummary = schema.new({
 })
 
 M.ListInferenceExecutionsOutput = schema.new({
-    id = id.from(_N, "ListInferenceExecutionsOutput"),
+    id = id.from(_N, "ListInferenceExecutionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3155,7 +3155,7 @@ M.ListInferenceExecutionsOutput = schema.new({
 })
 
 M.ListInferenceSchedulersInput = schema.new({
-    id = id.from(_N, "ListInferenceSchedulersInput"),
+    id = id.from(_N, "ListInferenceSchedulersRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3247,7 +3247,7 @@ M.InferenceSchedulerSummary = schema.new({
 })
 
 M.ListInferenceSchedulersOutput = schema.new({
-    id = id.from(_N, "ListInferenceSchedulersOutput"),
+    id = id.from(_N, "ListInferenceSchedulersResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3267,7 +3267,7 @@ M.ListInferenceSchedulersOutput = schema.new({
 })
 
 M.ListLabelGroupsInput = schema.new({
-    id = id.from(_N, "ListLabelGroupsInput"),
+    id = id.from(_N, "ListLabelGroupsRequest"),
     type = "structure",
     members = {
         LabelGroupNameBeginsWith = schema.new({
@@ -3323,7 +3323,7 @@ M.LabelGroupSummary = schema.new({
 })
 
 M.ListLabelGroupsOutput = schema.new({
-    id = id.from(_N, "ListLabelGroupsOutput"),
+    id = id.from(_N, "ListLabelGroupsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3343,7 +3343,7 @@ M.ListLabelGroupsOutput = schema.new({
 })
 
 M.ListLabelsInput = schema.new({
-    id = id.from(_N, "ListLabelsInput"),
+    id = id.from(_N, "ListLabelsRequest"),
     type = "structure",
     members = {
         LabelGroupName = schema.new({
@@ -3456,7 +3456,7 @@ M.LabelSummary = schema.new({
 })
 
 M.ListLabelsOutput = schema.new({
-    id = id.from(_N, "ListLabelsOutput"),
+    id = id.from(_N, "ListLabelsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3476,7 +3476,7 @@ M.ListLabelsOutput = schema.new({
 })
 
 M.ListModelsInput = schema.new({
-    id = id.from(_N, "ListModelsInput"),
+    id = id.from(_N, "ListModelsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3611,7 +3611,7 @@ M.ModelSummary = schema.new({
 })
 
 M.ListModelsOutput = schema.new({
-    id = id.from(_N, "ListModelsOutput"),
+    id = id.from(_N, "ListModelsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3631,7 +3631,7 @@ M.ListModelsOutput = schema.new({
 })
 
 M.ListModelVersionsInput = schema.new({
-    id = id.from(_N, "ListModelVersionsInput"),
+    id = id.from(_N, "ListModelVersionsRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -3750,7 +3750,7 @@ M.ModelVersionSummary = schema.new({
 })
 
 M.ListModelVersionsOutput = schema.new({
-    id = id.from(_N, "ListModelVersionsOutput"),
+    id = id.from(_N, "ListModelVersionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3770,7 +3770,7 @@ M.ListModelVersionsOutput = schema.new({
 })
 
 M.ListRetrainingSchedulersInput = schema.new({
-    id = id.from(_N, "ListRetrainingSchedulersInput"),
+    id = id.from(_N, "ListRetrainingSchedulersRequest"),
     type = "structure",
     members = {
         ModelNameBeginsWith = schema.new({
@@ -3844,7 +3844,7 @@ M.RetrainingSchedulerSummary = schema.new({
 })
 
 M.ListRetrainingSchedulersOutput = schema.new({
-    id = id.from(_N, "ListRetrainingSchedulersOutput"),
+    id = id.from(_N, "ListRetrainingSchedulersResponse"),
     type = "structure",
     members = {
         RetrainingSchedulerSummaries = schema.new({
@@ -3864,7 +3864,7 @@ M.ListRetrainingSchedulersOutput = schema.new({
 })
 
 M.ListSensorStatisticsInput = schema.new({
-    id = id.from(_N, "ListSensorStatisticsInput"),
+    id = id.from(_N, "ListSensorStatisticsRequest"),
     type = "structure",
     members = {
         DatasetName = schema.new({
@@ -4108,7 +4108,7 @@ M.SensorStatisticsSummary = schema.new({
 })
 
 M.ListSensorStatisticsOutput = schema.new({
-    id = id.from(_N, "ListSensorStatisticsOutput"),
+    id = id.from(_N, "ListSensorStatisticsResponse"),
     type = "structure",
     members = {
         SensorStatisticsSummaries = schema.new({
@@ -4128,7 +4128,7 @@ M.ListSensorStatisticsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4144,7 +4144,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -4158,7 +4158,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4199,7 +4199,7 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4218,7 +4218,7 @@ M.PutResourcePolicyOutput = schema.new({
 })
 
 M.StartDataIngestionJobInput = schema.new({
-    id = id.from(_N, "StartDataIngestionJobInput"),
+    id = id.from(_N, "StartDataIngestionJobRequest"),
     type = "structure",
     members = {
         DatasetName = schema.new({
@@ -4263,7 +4263,7 @@ M.StartDataIngestionJobInput = schema.new({
 })
 
 M.StartDataIngestionJobOutput = schema.new({
-    id = id.from(_N, "StartDataIngestionJobOutput"),
+    id = id.from(_N, "StartDataIngestionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -4282,7 +4282,7 @@ M.StartDataIngestionJobOutput = schema.new({
 })
 
 M.StartInferenceSchedulerInput = schema.new({
-    id = id.from(_N, "StartInferenceSchedulerInput"),
+    id = id.from(_N, "StartInferenceSchedulerRequest"),
     type = "structure",
     members = {
         InferenceSchedulerName = schema.new({
@@ -4298,7 +4298,7 @@ M.StartInferenceSchedulerInput = schema.new({
 })
 
 M.StartInferenceSchedulerOutput = schema.new({
-    id = id.from(_N, "StartInferenceSchedulerOutput"),
+    id = id.from(_N, "StartInferenceSchedulerResponse"),
     type = "structure",
     members = {
         ModelArn = schema.new({
@@ -4335,7 +4335,7 @@ M.StartInferenceSchedulerOutput = schema.new({
 })
 
 M.StartRetrainingSchedulerInput = schema.new({
-    id = id.from(_N, "StartRetrainingSchedulerInput"),
+    id = id.from(_N, "StartRetrainingSchedulerRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -4351,7 +4351,7 @@ M.StartRetrainingSchedulerInput = schema.new({
 })
 
 M.StartRetrainingSchedulerOutput = schema.new({
-    id = id.from(_N, "StartRetrainingSchedulerOutput"),
+    id = id.from(_N, "StartRetrainingSchedulerResponse"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -4376,7 +4376,7 @@ M.StartRetrainingSchedulerOutput = schema.new({
 })
 
 M.StopInferenceSchedulerInput = schema.new({
-    id = id.from(_N, "StopInferenceSchedulerInput"),
+    id = id.from(_N, "StopInferenceSchedulerRequest"),
     type = "structure",
     members = {
         InferenceSchedulerName = schema.new({
@@ -4392,7 +4392,7 @@ M.StopInferenceSchedulerInput = schema.new({
 })
 
 M.StopInferenceSchedulerOutput = schema.new({
-    id = id.from(_N, "StopInferenceSchedulerOutput"),
+    id = id.from(_N, "StopInferenceSchedulerResponse"),
     type = "structure",
     members = {
         ModelArn = schema.new({
@@ -4429,7 +4429,7 @@ M.StopInferenceSchedulerOutput = schema.new({
 })
 
 M.StopRetrainingSchedulerInput = schema.new({
-    id = id.from(_N, "StopRetrainingSchedulerInput"),
+    id = id.from(_N, "StopRetrainingSchedulerRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -4445,7 +4445,7 @@ M.StopRetrainingSchedulerInput = schema.new({
 })
 
 M.StopRetrainingSchedulerOutput = schema.new({
-    id = id.from(_N, "StopRetrainingSchedulerOutput"),
+    id = id.from(_N, "StopRetrainingSchedulerResponse"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -4470,7 +4470,7 @@ M.StopRetrainingSchedulerOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4496,12 +4496,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4527,12 +4527,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateActiveModelVersionInput = schema.new({
-    id = id.from(_N, "UpdateActiveModelVersionInput"),
+    id = id.from(_N, "UpdateActiveModelVersionRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -4557,7 +4557,7 @@ M.UpdateActiveModelVersionInput = schema.new({
 })
 
 M.UpdateActiveModelVersionOutput = schema.new({
-    id = id.from(_N, "UpdateActiveModelVersionOutput"),
+    id = id.from(_N, "UpdateActiveModelVersionResponse"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -4600,7 +4600,7 @@ M.UpdateActiveModelVersionOutput = schema.new({
 })
 
 M.UpdateInferenceSchedulerInput = schema.new({
-    id = id.from(_N, "UpdateInferenceSchedulerInput"),
+    id = id.from(_N, "UpdateInferenceSchedulerRequest"),
     type = "structure",
     members = {
         InferenceSchedulerName = schema.new({
@@ -4648,12 +4648,12 @@ M.UpdateInferenceSchedulerInput = schema.new({
 })
 
 M.UpdateInferenceSchedulerOutput = schema.new({
-    id = id.from(_N, "UpdateInferenceSchedulerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateLabelGroupInput = schema.new({
-    id = id.from(_N, "UpdateLabelGroupInput"),
+    id = id.from(_N, "UpdateLabelGroupRequest"),
     type = "structure",
     members = {
         LabelGroupName = schema.new({
@@ -4676,12 +4676,12 @@ M.UpdateLabelGroupInput = schema.new({
 })
 
 M.UpdateLabelGroupOutput = schema.new({
-    id = id.from(_N, "UpdateLabelGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateModelInput = schema.new({
-    id = id.from(_N, "UpdateModelInput"),
+    id = id.from(_N, "UpdateModelRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -4717,12 +4717,12 @@ M.UpdateModelInput = schema.new({
 })
 
 M.UpdateModelOutput = schema.new({
-    id = id.from(_N, "UpdateModelOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateRetrainingSchedulerInput = schema.new({
-    id = id.from(_N, "UpdateRetrainingSchedulerInput"),
+    id = id.from(_N, "UpdateRetrainingSchedulerRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -4762,8 +4762,22 @@ M.UpdateRetrainingSchedulerInput = schema.new({
 })
 
 M.UpdateRetrainingSchedulerOutput = schema.new({
-    id = id.from(_N, "UpdateRetrainingSchedulerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

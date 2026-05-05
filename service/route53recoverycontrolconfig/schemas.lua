@@ -452,7 +452,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateClusterInput = schema.new({
-    id = id.from(_N, "CreateClusterInput"),
+    id = id.from(_N, "CreateClusterRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -491,7 +491,7 @@ M.CreateClusterInput = schema.new({
 })
 
 M.CreateClusterOutput = schema.new({
-    id = id.from(_N, "CreateClusterOutput"),
+    id = id.from(_N, "CreateClusterResponse"),
     type = "structure",
     members = {
         Cluster = schema.new({
@@ -605,7 +605,7 @@ M.ValidationException = schema.new({
 })
 
 M.CreateControlPanelInput = schema.new({
-    id = id.from(_N, "CreateControlPanelInput"),
+    id = id.from(_N, "CreateControlPanelRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -647,7 +647,7 @@ M.CreateControlPanelInput = schema.new({
 })
 
 M.CreateControlPanelOutput = schema.new({
-    id = id.from(_N, "CreateControlPanelOutput"),
+    id = id.from(_N, "CreateControlPanelResponse"),
     type = "structure",
     members = {
         ControlPanel = schema.new({
@@ -661,7 +661,7 @@ M.CreateControlPanelOutput = schema.new({
 })
 
 M.CreateRoutingControlInput = schema.new({
-    id = id.from(_N, "CreateRoutingControlInput"),
+    id = id.from(_N, "CreateRoutingControlRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -701,7 +701,7 @@ M.CreateRoutingControlInput = schema.new({
 })
 
 M.CreateRoutingControlOutput = schema.new({
-    id = id.from(_N, "CreateRoutingControlOutput"),
+    id = id.from(_N, "CreateRoutingControlResponse"),
     type = "structure",
     members = {
         RoutingControl = schema.new({
@@ -833,7 +833,7 @@ M.NewGatingRule = schema.new({
 })
 
 M.CreateSafetyRuleInput = schema.new({
-    id = id.from(_N, "CreateSafetyRuleInput"),
+    id = id.from(_N, "CreateSafetyRuleRequest"),
     type = "structure",
     members = {
         AssertionRule = schema.new({
@@ -871,7 +871,7 @@ M.CreateSafetyRuleInput = schema.new({
 })
 
 M.CreateSafetyRuleOutput = schema.new({
-    id = id.from(_N, "CreateSafetyRuleOutput"),
+    id = id.from(_N, "CreateSafetyRuleResponse"),
     type = "structure",
     members = {
         AssertionRule = schema.new({
@@ -892,7 +892,7 @@ M.CreateSafetyRuleOutput = schema.new({
 })
 
 M.DeleteClusterInput = schema.new({
-    id = id.from(_N, "DeleteClusterInput"),
+    id = id.from(_N, "DeleteClusterRequest"),
     type = "structure",
     members = {
         ClusterArn = schema.new({
@@ -909,12 +909,12 @@ M.DeleteClusterInput = schema.new({
 })
 
 M.DeleteClusterOutput = schema.new({
-    id = id.from(_N, "DeleteClusterOutput"),
+    id = id.from(_N, "DeleteClusterResponse"),
     type = "structure",
 })
 
 M.DeleteControlPanelInput = schema.new({
-    id = id.from(_N, "DeleteControlPanelInput"),
+    id = id.from(_N, "DeleteControlPanelRequest"),
     type = "structure",
     members = {
         ControlPanelArn = schema.new({
@@ -931,12 +931,12 @@ M.DeleteControlPanelInput = schema.new({
 })
 
 M.DeleteControlPanelOutput = schema.new({
-    id = id.from(_N, "DeleteControlPanelOutput"),
+    id = id.from(_N, "DeleteControlPanelResponse"),
     type = "structure",
 })
 
 M.DeleteRoutingControlInput = schema.new({
-    id = id.from(_N, "DeleteRoutingControlInput"),
+    id = id.from(_N, "DeleteRoutingControlRequest"),
     type = "structure",
     members = {
         RoutingControlArn = schema.new({
@@ -953,12 +953,12 @@ M.DeleteRoutingControlInput = schema.new({
 })
 
 M.DeleteRoutingControlOutput = schema.new({
-    id = id.from(_N, "DeleteRoutingControlOutput"),
+    id = id.from(_N, "DeleteRoutingControlResponse"),
     type = "structure",
 })
 
 M.DeleteSafetyRuleInput = schema.new({
-    id = id.from(_N, "DeleteSafetyRuleInput"),
+    id = id.from(_N, "DeleteSafetyRuleRequest"),
     type = "structure",
     members = {
         SafetyRuleArn = schema.new({
@@ -975,12 +975,12 @@ M.DeleteSafetyRuleInput = schema.new({
 })
 
 M.DeleteSafetyRuleOutput = schema.new({
-    id = id.from(_N, "DeleteSafetyRuleOutput"),
+    id = id.from(_N, "DeleteSafetyRuleResponse"),
     type = "structure",
 })
 
 M.DescribeClusterInput = schema.new({
-    id = id.from(_N, "DescribeClusterInput"),
+    id = id.from(_N, "DescribeClusterRequest"),
     type = "structure",
     members = {
         ClusterArn = schema.new({
@@ -997,7 +997,7 @@ M.DescribeClusterInput = schema.new({
 })
 
 M.DescribeClusterOutput = schema.new({
-    id = id.from(_N, "DescribeClusterOutput"),
+    id = id.from(_N, "DescribeClusterResponse"),
     type = "structure",
     members = {
         Cluster = schema.new({
@@ -1011,7 +1011,7 @@ M.DescribeClusterOutput = schema.new({
 })
 
 M.DescribeControlPanelInput = schema.new({
-    id = id.from(_N, "DescribeControlPanelInput"),
+    id = id.from(_N, "DescribeControlPanelRequest"),
     type = "structure",
     members = {
         ControlPanelArn = schema.new({
@@ -1028,7 +1028,7 @@ M.DescribeControlPanelInput = schema.new({
 })
 
 M.DescribeControlPanelOutput = schema.new({
-    id = id.from(_N, "DescribeControlPanelOutput"),
+    id = id.from(_N, "DescribeControlPanelResponse"),
     type = "structure",
     members = {
         ControlPanel = schema.new({
@@ -1042,7 +1042,7 @@ M.DescribeControlPanelOutput = schema.new({
 })
 
 M.DescribeRoutingControlInput = schema.new({
-    id = id.from(_N, "DescribeRoutingControlInput"),
+    id = id.from(_N, "DescribeRoutingControlRequest"),
     type = "structure",
     members = {
         RoutingControlArn = schema.new({
@@ -1059,7 +1059,7 @@ M.DescribeRoutingControlInput = schema.new({
 })
 
 M.DescribeRoutingControlOutput = schema.new({
-    id = id.from(_N, "DescribeRoutingControlOutput"),
+    id = id.from(_N, "DescribeRoutingControlResponse"),
     type = "structure",
     members = {
         RoutingControl = schema.new({
@@ -1073,7 +1073,7 @@ M.DescribeRoutingControlOutput = schema.new({
 })
 
 M.DescribeSafetyRuleInput = schema.new({
-    id = id.from(_N, "DescribeSafetyRuleInput"),
+    id = id.from(_N, "DescribeSafetyRuleRequest"),
     type = "structure",
     members = {
         SafetyRuleArn = schema.new({
@@ -1090,7 +1090,7 @@ M.DescribeSafetyRuleInput = schema.new({
 })
 
 M.DescribeSafetyRuleOutput = schema.new({
-    id = id.from(_N, "DescribeSafetyRuleOutput"),
+    id = id.from(_N, "DescribeSafetyRuleResponse"),
     type = "structure",
     members = {
         AssertionRule = schema.new({
@@ -1145,7 +1145,7 @@ M.GatingRuleUpdate = schema.new({
 })
 
 M.GetResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetResourcePolicyInput"),
+    id = id.from(_N, "GetResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1162,7 +1162,7 @@ M.GetResourcePolicyInput = schema.new({
 })
 
 M.GetResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetResourcePolicyOutput"),
+    id = id.from(_N, "GetResourcePolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -1175,7 +1175,7 @@ M.GetResourcePolicyOutput = schema.new({
 })
 
 M.ListAssociatedRoute53HealthChecksInput = schema.new({
-    id = id.from(_N, "ListAssociatedRoute53HealthChecksInput"),
+    id = id.from(_N, "ListAssociatedRoute53HealthChecksRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1210,7 +1210,7 @@ M.ListAssociatedRoute53HealthChecksInput = schema.new({
 })
 
 M.ListAssociatedRoute53HealthChecksOutput = schema.new({
-    id = id.from(_N, "ListAssociatedRoute53HealthChecksOutput"),
+    id = id.from(_N, "ListAssociatedRoute53HealthChecksResponse"),
     type = "structure",
     members = {
         HealthCheckIds = schema.new({
@@ -1230,7 +1230,7 @@ M.ListAssociatedRoute53HealthChecksOutput = schema.new({
 })
 
 M.ListClustersInput = schema.new({
-    id = id.from(_N, "ListClustersInput"),
+    id = id.from(_N, "ListClustersRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1255,7 +1255,7 @@ M.ListClustersInput = schema.new({
 })
 
 M.ListClustersOutput = schema.new({
-    id = id.from(_N, "ListClustersOutput"),
+    id = id.from(_N, "ListClustersResponse"),
     type = "structure",
     members = {
         Clusters = schema.new({
@@ -1275,7 +1275,7 @@ M.ListClustersOutput = schema.new({
 })
 
 M.ListControlPanelsInput = schema.new({
-    id = id.from(_N, "ListControlPanelsInput"),
+    id = id.from(_N, "ListControlPanelsRequest"),
     type = "structure",
     members = {
         ClusterArn = schema.new({
@@ -1309,7 +1309,7 @@ M.ListControlPanelsInput = schema.new({
 })
 
 M.ListControlPanelsOutput = schema.new({
-    id = id.from(_N, "ListControlPanelsOutput"),
+    id = id.from(_N, "ListControlPanelsResponse"),
     type = "structure",
     members = {
         ControlPanels = schema.new({
@@ -1329,7 +1329,7 @@ M.ListControlPanelsOutput = schema.new({
 })
 
 M.ListRoutingControlsInput = schema.new({
-    id = id.from(_N, "ListRoutingControlsInput"),
+    id = id.from(_N, "ListRoutingControlsRequest"),
     type = "structure",
     members = {
         ControlPanelArn = schema.new({
@@ -1364,7 +1364,7 @@ M.ListRoutingControlsInput = schema.new({
 })
 
 M.ListRoutingControlsOutput = schema.new({
-    id = id.from(_N, "ListRoutingControlsOutput"),
+    id = id.from(_N, "ListRoutingControlsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1384,7 +1384,7 @@ M.ListRoutingControlsOutput = schema.new({
 })
 
 M.ListSafetyRulesInput = schema.new({
-    id = id.from(_N, "ListSafetyRulesInput"),
+    id = id.from(_N, "ListSafetyRulesRequest"),
     type = "structure",
     members = {
         ControlPanelArn = schema.new({
@@ -1419,7 +1419,7 @@ M.ListSafetyRulesInput = schema.new({
 })
 
 M.ListSafetyRulesOutput = schema.new({
-    id = id.from(_N, "ListSafetyRulesOutput"),
+    id = id.from(_N, "ListSafetyRulesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1439,7 +1439,7 @@ M.ListSafetyRulesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1456,7 +1456,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1471,7 +1471,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1499,12 +1499,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1532,12 +1532,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateClusterInput = schema.new({
-    id = id.from(_N, "UpdateClusterInput"),
+    id = id.from(_N, "UpdateClusterRequest"),
     type = "structure",
     members = {
         ClusterArn = schema.new({
@@ -1562,7 +1562,7 @@ M.UpdateClusterInput = schema.new({
 })
 
 M.UpdateClusterOutput = schema.new({
-    id = id.from(_N, "UpdateClusterOutput"),
+    id = id.from(_N, "UpdateClusterResponse"),
     type = "structure",
     members = {
         Cluster = schema.new({
@@ -1576,7 +1576,7 @@ M.UpdateClusterOutput = schema.new({
 })
 
 M.UpdateControlPanelInput = schema.new({
-    id = id.from(_N, "UpdateControlPanelInput"),
+    id = id.from(_N, "UpdateControlPanelRequest"),
     type = "structure",
     members = {
         ControlPanelArn = schema.new({
@@ -1601,7 +1601,7 @@ M.UpdateControlPanelInput = schema.new({
 })
 
 M.UpdateControlPanelOutput = schema.new({
-    id = id.from(_N, "UpdateControlPanelOutput"),
+    id = id.from(_N, "UpdateControlPanelResponse"),
     type = "structure",
     members = {
         ControlPanel = schema.new({
@@ -1615,7 +1615,7 @@ M.UpdateControlPanelOutput = schema.new({
 })
 
 M.UpdateRoutingControlInput = schema.new({
-    id = id.from(_N, "UpdateRoutingControlInput"),
+    id = id.from(_N, "UpdateRoutingControlRequest"),
     type = "structure",
     members = {
         RoutingControlArn = schema.new({
@@ -1640,7 +1640,7 @@ M.UpdateRoutingControlInput = schema.new({
 })
 
 M.UpdateRoutingControlOutput = schema.new({
-    id = id.from(_N, "UpdateRoutingControlOutput"),
+    id = id.from(_N, "UpdateRoutingControlResponse"),
     type = "structure",
     members = {
         RoutingControl = schema.new({
@@ -1654,7 +1654,7 @@ M.UpdateRoutingControlOutput = schema.new({
 })
 
 M.UpdateSafetyRuleInput = schema.new({
-    id = id.from(_N, "UpdateSafetyRuleInput"),
+    id = id.from(_N, "UpdateSafetyRuleRequest"),
     type = "structure",
     members = {
         AssertionRuleUpdate = schema.new({
@@ -1675,7 +1675,7 @@ M.UpdateSafetyRuleInput = schema.new({
 })
 
 M.UpdateSafetyRuleOutput = schema.new({
-    id = id.from(_N, "UpdateSafetyRuleOutput"),
+    id = id.from(_N, "UpdateSafetyRuleResponse"),
     type = "structure",
     members = {
         AssertionRule = schema.new({
@@ -1694,5 +1694,19 @@ M.UpdateSafetyRuleOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

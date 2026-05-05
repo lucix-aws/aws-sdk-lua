@@ -277,7 +277,7 @@ M.CloudWatchLoggingConfiguration = schema.new({
             name = "logTypes",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -576,7 +576,7 @@ M.WorkerTypeSpecificationInput = schema.new({
 })
 
 M.CreateApplicationOutput = schema.new({
-    id = id.from(_N, "CreateApplicationOutput"),
+    id = id.from(_N, "CreateApplicationResponse"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -664,7 +664,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteApplicationInput = schema.new({
-    id = id.from(_N, "DeleteApplicationInput"),
+    id = id.from(_N, "DeleteApplicationRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -681,12 +681,12 @@ M.DeleteApplicationInput = schema.new({
 })
 
 M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationOutput"),
+    id = id.from(_N, "DeleteApplicationResponse"),
     type = "structure",
 })
 
 M.GetApplicationInput = schema.new({
-    id = id.from(_N, "GetApplicationInput"),
+    id = id.from(_N, "GetApplicationRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -703,7 +703,7 @@ M.GetApplicationInput = schema.new({
 })
 
 M.GetResourceDashboardInput = schema.new({
-    id = id.from(_N, "GetResourceDashboardInput"),
+    id = id.from(_N, "GetResourceDashboardRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -740,7 +740,7 @@ M.GetResourceDashboardInput = schema.new({
 })
 
 M.GetResourceDashboardOutput = schema.new({
-    id = id.from(_N, "GetResourceDashboardOutput"),
+    id = id.from(_N, "GetResourceDashboardResponse"),
     type = "structure",
     members = {
         url = schema.new({
@@ -753,7 +753,7 @@ M.GetResourceDashboardOutput = schema.new({
 })
 
 M.ListApplicationsInput = schema.new({
-    id = id.from(_N, "ListApplicationsInput"),
+    id = id.from(_N, "ListApplicationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -789,7 +789,7 @@ M.ListApplicationsInput = schema.new({
 })
 
 M.ListApplicationsOutput = schema.new({
-    id = id.from(_N, "ListApplicationsOutput"),
+    id = id.from(_N, "ListApplicationsResponse"),
     type = "structure",
     members = {
         applications = schema.new({
@@ -831,7 +831,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.StartApplicationInput = schema.new({
-    id = id.from(_N, "StartApplicationInput"),
+    id = id.from(_N, "StartApplicationRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -848,12 +848,12 @@ M.StartApplicationInput = schema.new({
 })
 
 M.StartApplicationOutput = schema.new({
-    id = id.from(_N, "StartApplicationOutput"),
+    id = id.from(_N, "StartApplicationResponse"),
     type = "structure",
 })
 
 M.StopApplicationInput = schema.new({
-    id = id.from(_N, "StopApplicationInput"),
+    id = id.from(_N, "StopApplicationRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -870,12 +870,12 @@ M.StopApplicationInput = schema.new({
 })
 
 M.StopApplicationOutput = schema.new({
-    id = id.from(_N, "StopApplicationOutput"),
+    id = id.from(_N, "StopApplicationResponse"),
     type = "structure",
 })
 
 M.CancelJobRunInput = schema.new({
-    id = id.from(_N, "CancelJobRunInput"),
+    id = id.from(_N, "CancelJobRunRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -912,7 +912,7 @@ M.CancelJobRunInput = schema.new({
 })
 
 M.CancelJobRunOutput = schema.new({
-    id = id.from(_N, "CancelJobRunOutput"),
+    id = id.from(_N, "CancelJobRunResponse"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -937,7 +937,7 @@ M.CancelJobRunOutput = schema.new({
 })
 
 M.GetDashboardForJobRunInput = schema.new({
-    id = id.from(_N, "GetDashboardForJobRunInput"),
+    id = id.from(_N, "GetDashboardForJobRunRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -982,7 +982,7 @@ M.GetDashboardForJobRunInput = schema.new({
 })
 
 M.GetDashboardForJobRunOutput = schema.new({
-    id = id.from(_N, "GetDashboardForJobRunOutput"),
+    id = id.from(_N, "GetDashboardForJobRunResponse"),
     type = "structure",
     members = {
         url = schema.new({
@@ -995,7 +995,7 @@ M.GetDashboardForJobRunOutput = schema.new({
 })
 
 M.GetJobRunInput = schema.new({
-    id = id.from(_N, "GetJobRunInput"),
+    id = id.from(_N, "GetJobRunRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -1201,7 +1201,7 @@ M.TotalResourceUtilization = schema.new({
 })
 
 M.ListJobRunAttemptsInput = schema.new({
-    id = id.from(_N, "ListJobRunAttemptsInput"),
+    id = id.from(_N, "ListJobRunAttemptsRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -1377,7 +1377,7 @@ M.JobRunAttemptSummary = schema.new({
 })
 
 M.ListJobRunAttemptsOutput = schema.new({
-    id = id.from(_N, "ListJobRunAttemptsOutput"),
+    id = id.from(_N, "ListJobRunAttemptsResponse"),
     type = "structure",
     members = {
         jobRunAttempts = schema.new({
@@ -1400,7 +1400,7 @@ M.ListJobRunAttemptsOutput = schema.new({
 })
 
 M.ListJobRunsInput = schema.new({
-    id = id.from(_N, "ListJobRunsInput"),
+    id = id.from(_N, "ListJobRunsRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -1606,7 +1606,7 @@ M.JobRunSummary = schema.new({
 })
 
 M.ListJobRunsOutput = schema.new({
-    id = id.from(_N, "ListJobRunsOutput"),
+    id = id.from(_N, "ListJobRunsResponse"),
     type = "structure",
     members = {
         jobRuns = schema.new({
@@ -1629,7 +1629,7 @@ M.ListJobRunsOutput = schema.new({
 })
 
 M.StartJobRunOutput = schema.new({
-    id = id.from(_N, "StartJobRunOutput"),
+    id = id.from(_N, "StartJobRunResponse"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -1663,7 +1663,7 @@ M.StartJobRunOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1680,7 +1680,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1695,7 +1695,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.GetSessionInput = schema.new({
-    id = id.from(_N, "GetSessionInput"),
+    id = id.from(_N, "GetSessionRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -1722,7 +1722,7 @@ M.GetSessionInput = schema.new({
 })
 
 M.GetSessionEndpointInput = schema.new({
-    id = id.from(_N, "GetSessionEndpointInput"),
+    id = id.from(_N, "GetSessionEndpointRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -1749,7 +1749,7 @@ M.GetSessionEndpointInput = schema.new({
 })
 
 M.GetSessionEndpointOutput = schema.new({
-    id = id.from(_N, "GetSessionEndpointOutput"),
+    id = id.from(_N, "GetSessionEndpointResponse"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -1801,7 +1801,7 @@ M.GetSessionEndpointOutput = schema.new({
 })
 
 M.ListSessionsInput = schema.new({
-    id = id.from(_N, "ListSessionsInput"),
+    id = id.from(_N, "ListSessionsRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -1968,7 +1968,7 @@ M.SessionSummary = schema.new({
 })
 
 M.ListSessionsOutput = schema.new({
-    id = id.from(_N, "ListSessionsOutput"),
+    id = id.from(_N, "ListSessionsResponse"),
     type = "structure",
     members = {
         sessions = schema.new({
@@ -1991,7 +1991,7 @@ M.ListSessionsOutput = schema.new({
 })
 
 M.StartSessionOutput = schema.new({
-    id = id.from(_N, "StartSessionOutput"),
+    id = id.from(_N, "StartSessionResponse"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -2025,7 +2025,7 @@ M.StartSessionOutput = schema.new({
 })
 
 M.TerminateSessionInput = schema.new({
-    id = id.from(_N, "TerminateSessionInput"),
+    id = id.from(_N, "TerminateSessionRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -2052,7 +2052,7 @@ M.TerminateSessionInput = schema.new({
 })
 
 M.TerminateSessionOutput = schema.new({
-    id = id.from(_N, "TerminateSessionOutput"),
+    id = id.from(_N, "TerminateSessionResponse"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -2077,7 +2077,7 @@ M.TerminateSessionOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2105,12 +2105,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2138,7 +2138,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -2398,7 +2398,7 @@ M.ConfigurationOverrides = schema.new({
 })
 
 M.CreateApplicationInput = schema.new({
-    id = id.from(_N, "CreateApplicationInput"),
+    id = id.from(_N, "CreateApplicationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2567,7 +2567,7 @@ M.SessionConfigurationOverrides = schema.new({
 })
 
 M.UpdateApplicationInput = schema.new({
-    id = id.from(_N, "UpdateApplicationInput"),
+    id = id.from(_N, "UpdateApplicationRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -2706,7 +2706,7 @@ M.UpdateApplicationInput = schema.new({
 })
 
 M.GetApplicationOutput = schema.new({
-    id = id.from(_N, "GetApplicationOutput"),
+    id = id.from(_N, "GetApplicationResponse"),
     type = "structure",
     members = {
         application = schema.new({
@@ -3115,7 +3115,7 @@ M.Session = schema.new({
 })
 
 M.StartJobRunInput = schema.new({
-    id = id.from(_N, "StartJobRunInput"),
+    id = id.from(_N, "StartJobRunRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -3208,7 +3208,7 @@ M.StartJobRunInput = schema.new({
 })
 
 M.StartSessionInput = schema.new({
-    id = id.from(_N, "StartSessionInput"),
+    id = id.from(_N, "StartSessionRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -3274,7 +3274,7 @@ M.StartSessionInput = schema.new({
 })
 
 M.UpdateApplicationOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationOutput"),
+    id = id.from(_N, "UpdateApplicationResponse"),
     type = "structure",
     members = {
         application = schema.new({
@@ -3291,7 +3291,7 @@ M.UpdateApplicationOutput = schema.new({
 })
 
 M.GetJobRunOutput = schema.new({
-    id = id.from(_N, "GetJobRunOutput"),
+    id = id.from(_N, "GetJobRunResponse"),
     type = "structure",
     members = {
         jobRun = schema.new({
@@ -3308,7 +3308,7 @@ M.GetJobRunOutput = schema.new({
 })
 
 M.GetSessionOutput = schema.new({
-    id = id.from(_N, "GetSessionOutput"),
+    id = id.from(_N, "GetSessionResponse"),
     type = "structure",
     members = {
         session = schema.new({
@@ -3323,5 +3323,19 @@ M.GetSessionOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

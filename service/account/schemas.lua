@@ -8,7 +8,7 @@ local _N = "com.amazonaws.account"
 local M = {}
 
 M.AcceptPrimaryEmailUpdateInput = schema.new({
-    id = id.from(_N, "AcceptPrimaryEmailUpdateInput"),
+    id = id.from(_N, "AcceptPrimaryEmailUpdateRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -42,7 +42,7 @@ M.AcceptPrimaryEmailUpdateInput = schema.new({
 })
 
 M.AcceptPrimaryEmailUpdateOutput = schema.new({
-    id = id.from(_N, "AcceptPrimaryEmailUpdateOutput"),
+    id = id.from(_N, "AcceptPrimaryEmailUpdateResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -252,7 +252,7 @@ M.ValidationException = schema.new({
 })
 
 M.GetAccountInformationInput = schema.new({
-    id = id.from(_N, "GetAccountInformationInput"),
+    id = id.from(_N, "GetAccountInformationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -265,7 +265,7 @@ M.GetAccountInformationInput = schema.new({
 })
 
 M.GetAccountInformationOutput = schema.new({
-    id = id.from(_N, "GetAccountInformationOutput"),
+    id = id.from(_N, "GetAccountInformationResponse"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -299,7 +299,7 @@ M.GetAccountInformationOutput = schema.new({
 })
 
 M.PutAccountNameInput = schema.new({
-    id = id.from(_N, "PutAccountNameInput"),
+    id = id.from(_N, "PutAccountNameRequest"),
     type = "structure",
     members = {
         AccountName = schema.new({
@@ -321,12 +321,12 @@ M.PutAccountNameInput = schema.new({
 })
 
 M.PutAccountNameOutput = schema.new({
-    id = id.from(_N, "PutAccountNameOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAlternateContactInput = schema.new({
-    id = id.from(_N, "DeleteAlternateContactInput"),
+    id = id.from(_N, "DeleteAlternateContactRequest"),
     type = "structure",
     members = {
         AlternateContactType = schema.new({
@@ -348,12 +348,12 @@ M.DeleteAlternateContactInput = schema.new({
 })
 
 M.DeleteAlternateContactOutput = schema.new({
-    id = id.from(_N, "DeleteAlternateContactOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetAlternateContactInput = schema.new({
-    id = id.from(_N, "GetAlternateContactInput"),
+    id = id.from(_N, "GetAlternateContactRequest"),
     type = "structure",
     members = {
         AlternateContactType = schema.new({
@@ -412,7 +412,7 @@ M.AlternateContact = schema.new({
 })
 
 M.GetAlternateContactOutput = schema.new({
-    id = id.from(_N, "GetAlternateContactOutput"),
+    id = id.from(_N, "GetAlternateContactResponse"),
     type = "structure",
     members = {
         AlternateContact = schema.new({
@@ -426,7 +426,7 @@ M.GetAlternateContactOutput = schema.new({
 })
 
 M.PutAlternateContactInput = schema.new({
-    id = id.from(_N, "PutAlternateContactInput"),
+    id = id.from(_N, "PutAlternateContactRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -484,12 +484,12 @@ M.PutAlternateContactInput = schema.new({
 })
 
 M.PutAlternateContactOutput = schema.new({
-    id = id.from(_N, "PutAlternateContactOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetGovCloudAccountInformationInput = schema.new({
-    id = id.from(_N, "GetGovCloudAccountInformationInput"),
+    id = id.from(_N, "GetGovCloudAccountInformationRequest"),
     type = "structure",
     members = {
         StandardAccountId = schema.new({
@@ -502,7 +502,7 @@ M.GetGovCloudAccountInformationInput = schema.new({
 })
 
 M.GetGovCloudAccountInformationOutput = schema.new({
-    id = id.from(_N, "GetGovCloudAccountInformationOutput"),
+    id = id.from(_N, "GetGovCloudAccountInformationResponse"),
     type = "structure",
     members = {
         GovCloudAccountId = schema.new({
@@ -555,7 +555,7 @@ M.ResourceUnavailableException = schema.new({
 })
 
 M.GetContactInformationInput = schema.new({
-    id = id.from(_N, "GetContactInformationInput"),
+    id = id.from(_N, "GetContactInformationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -665,7 +665,7 @@ M.ContactInformation = schema.new({
 })
 
 M.GetContactInformationOutput = schema.new({
-    id = id.from(_N, "GetContactInformationOutput"),
+    id = id.from(_N, "GetContactInformationResponse"),
     type = "structure",
     members = {
         ContactInformation = schema.new({
@@ -679,7 +679,7 @@ M.GetContactInformationOutput = schema.new({
 })
 
 M.PutContactInformationInput = schema.new({
-    id = id.from(_N, "PutContactInformationInput"),
+    id = id.from(_N, "PutContactInformationRequest"),
     type = "structure",
     members = {
         ContactInformation = schema.new({
@@ -702,12 +702,12 @@ M.PutContactInformationInput = schema.new({
 })
 
 M.PutContactInformationOutput = schema.new({
-    id = id.from(_N, "PutContactInformationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetPrimaryEmailInput = schema.new({
-    id = id.from(_N, "GetPrimaryEmailInput"),
+    id = id.from(_N, "GetPrimaryEmailRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -723,7 +723,7 @@ M.GetPrimaryEmailInput = schema.new({
 })
 
 M.GetPrimaryEmailOutput = schema.new({
-    id = id.from(_N, "GetPrimaryEmailOutput"),
+    id = id.from(_N, "GetPrimaryEmailResponse"),
     type = "structure",
     members = {
         PrimaryEmail = schema.new({
@@ -736,7 +736,7 @@ M.GetPrimaryEmailOutput = schema.new({
 })
 
 M.StartPrimaryEmailUpdateInput = schema.new({
-    id = id.from(_N, "StartPrimaryEmailUpdateInput"),
+    id = id.from(_N, "StartPrimaryEmailUpdateRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -761,7 +761,7 @@ M.StartPrimaryEmailUpdateInput = schema.new({
 })
 
 M.StartPrimaryEmailUpdateOutput = schema.new({
-    id = id.from(_N, "StartPrimaryEmailUpdateOutput"),
+    id = id.from(_N, "StartPrimaryEmailUpdateResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -774,7 +774,7 @@ M.StartPrimaryEmailUpdateOutput = schema.new({
 })
 
 M.DisableRegionInput = schema.new({
-    id = id.from(_N, "DisableRegionInput"),
+    id = id.from(_N, "DisableRegionRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -796,12 +796,12 @@ M.DisableRegionInput = schema.new({
 })
 
 M.DisableRegionOutput = schema.new({
-    id = id.from(_N, "DisableRegionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.EnableRegionInput = schema.new({
-    id = id.from(_N, "EnableRegionInput"),
+    id = id.from(_N, "EnableRegionRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -823,12 +823,12 @@ M.EnableRegionInput = schema.new({
 })
 
 M.EnableRegionOutput = schema.new({
-    id = id.from(_N, "EnableRegionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetRegionOptStatusInput = schema.new({
-    id = id.from(_N, "GetRegionOptStatusInput"),
+    id = id.from(_N, "GetRegionOptStatusRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -850,7 +850,7 @@ M.GetRegionOptStatusInput = schema.new({
 })
 
 M.GetRegionOptStatusOutput = schema.new({
-    id = id.from(_N, "GetRegionOptStatusOutput"),
+    id = id.from(_N, "GetRegionOptStatusResponse"),
     type = "structure",
     members = {
         RegionName = schema.new({
@@ -869,7 +869,7 @@ M.GetRegionOptStatusOutput = schema.new({
 })
 
 M.ListRegionsInput = schema.new({
-    id = id.from(_N, "ListRegionsInput"),
+    id = id.from(_N, "ListRegionsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -920,7 +920,7 @@ M.Region = schema.new({
 })
 
 M.ListRegionsOutput = schema.new({
-    id = id.from(_N, "ListRegionsOutput"),
+    id = id.from(_N, "ListRegionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -938,5 +938,19 @@ M.ListRegionsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

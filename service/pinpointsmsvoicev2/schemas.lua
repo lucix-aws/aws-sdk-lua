@@ -91,7 +91,7 @@ M.AccountLimit = schema.new({
 })
 
 M.AssociateOriginationIdentityInput = schema.new({
-    id = id.from(_N, "AssociateOriginationIdentityInput"),
+    id = id.from(_N, "AssociateOriginationIdentityRequest"),
     type = "structure",
     members = {
         PoolId = schema.new({
@@ -131,7 +131,7 @@ M.AssociateOriginationIdentityInput = schema.new({
 })
 
 M.AssociateOriginationIdentityOutput = schema.new({
-    id = id.from(_N, "AssociateOriginationIdentityOutput"),
+    id = id.from(_N, "AssociateOriginationIdentityResult"),
     type = "structure",
     members = {
         PoolArn = schema.new({
@@ -344,7 +344,7 @@ M.ValidationException = schema.new({
 })
 
 M.AssociateProtectConfigurationInput = schema.new({
-    id = id.from(_N, "AssociateProtectConfigurationInput"),
+    id = id.from(_N, "AssociateProtectConfigurationRequest"),
     type = "structure",
     members = {
         ProtectConfigurationId = schema.new({
@@ -369,7 +369,7 @@ M.AssociateProtectConfigurationInput = schema.new({
 })
 
 M.AssociateProtectConfigurationOutput = schema.new({
-    id = id.from(_N, "AssociateProtectConfigurationOutput"),
+    id = id.from(_N, "AssociateProtectConfigurationResult"),
     type = "structure",
     members = {
         ConfigurationSetArn = schema.new({
@@ -412,7 +412,7 @@ M.AssociateProtectConfigurationOutput = schema.new({
 })
 
 M.CarrierLookupInput = schema.new({
-    id = id.from(_N, "CarrierLookupInput"),
+    id = id.from(_N, "CarrierLookupRequest"),
     type = "structure",
     members = {
         PhoneNumber = schema.new({
@@ -428,7 +428,7 @@ M.CarrierLookupInput = schema.new({
 })
 
 M.CarrierLookupOutput = schema.new({
-    id = id.from(_N, "CarrierLookupOutput"),
+    id = id.from(_N, "CarrierLookupResult"),
     type = "structure",
     members = {
         E164PhoneNumber = schema.new({
@@ -831,7 +831,7 @@ M.Tag = schema.new({
 })
 
 M.CreateConfigurationSetInput = schema.new({
-    id = id.from(_N, "CreateConfigurationSetInput"),
+    id = id.from(_N, "CreateConfigurationSetRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -863,7 +863,7 @@ M.CreateConfigurationSetInput = schema.new({
 })
 
 M.CreateConfigurationSetOutput = schema.new({
-    id = id.from(_N, "CreateConfigurationSetOutput"),
+    id = id.from(_N, "CreateConfigurationSetResult"),
     type = "structure",
     members = {
         ConfigurationSetArn = schema.new({
@@ -895,7 +895,7 @@ M.CreateConfigurationSetOutput = schema.new({
 })
 
 M.CreateEventDestinationInput = schema.new({
-    id = id.from(_N, "CreateEventDestinationInput"),
+    id = id.from(_N, "CreateEventDestinationRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -960,7 +960,7 @@ M.CreateEventDestinationInput = schema.new({
 })
 
 M.CreateEventDestinationOutput = schema.new({
-    id = id.from(_N, "CreateEventDestinationOutput"),
+    id = id.from(_N, "CreateEventDestinationResult"),
     type = "structure",
     members = {
         ConfigurationSetArn = schema.new({
@@ -986,7 +986,7 @@ M.CreateEventDestinationOutput = schema.new({
 })
 
 M.CreateNotifyConfigurationInput = schema.new({
-    id = id.from(_N, "CreateNotifyConfigurationInput"),
+    id = id.from(_N, "CreateNotifyConfigurationRequest"),
     type = "structure",
     members = {
         DisplayName = schema.new({
@@ -1062,7 +1062,7 @@ M.CreateNotifyConfigurationInput = schema.new({
 })
 
 M.CreateNotifyConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateNotifyConfigurationOutput"),
+    id = id.from(_N, "CreateNotifyConfigurationResult"),
     type = "structure",
     members = {
         NotifyConfigurationArn = schema.new({
@@ -1193,7 +1193,7 @@ M.CreateNotifyConfigurationOutput = schema.new({
 })
 
 M.CreateOptOutListInput = schema.new({
-    id = id.from(_N, "CreateOptOutListInput"),
+    id = id.from(_N, "CreateOptOutListRequest"),
     type = "structure",
     members = {
         OptOutListName = schema.new({
@@ -1225,7 +1225,7 @@ M.CreateOptOutListInput = schema.new({
 })
 
 M.CreateOptOutListOutput = schema.new({
-    id = id.from(_N, "CreateOptOutListOutput"),
+    id = id.from(_N, "CreateOptOutListResult"),
     type = "structure",
     members = {
         OptOutListArn = schema.new({
@@ -1257,7 +1257,7 @@ M.CreateOptOutListOutput = schema.new({
 })
 
 M.CreatePoolInput = schema.new({
-    id = id.from(_N, "CreatePoolInput"),
+    id = id.from(_N, "CreatePoolRequest"),
     type = "structure",
     members = {
         OriginationIdentity = schema.new({
@@ -1310,7 +1310,7 @@ M.CreatePoolInput = schema.new({
 })
 
 M.CreatePoolOutput = schema.new({
-    id = id.from(_N, "CreatePoolOutput"),
+    id = id.from(_N, "CreatePoolResult"),
     type = "structure",
     members = {
         PoolArn = schema.new({
@@ -1408,7 +1408,7 @@ M.CreatePoolOutput = schema.new({
 })
 
 M.CreateProtectConfigurationInput = schema.new({
-    id = id.from(_N, "CreateProtectConfigurationInput"),
+    id = id.from(_N, "CreateProtectConfigurationRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -1437,7 +1437,7 @@ M.CreateProtectConfigurationInput = schema.new({
 })
 
 M.CreateProtectConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateProtectConfigurationOutput"),
+    id = id.from(_N, "CreateProtectConfigurationResult"),
     type = "structure",
     members = {
         ProtectConfigurationArn = schema.new({
@@ -1498,7 +1498,7 @@ M.CreateProtectConfigurationOutput = schema.new({
 })
 
 M.CreateRcsAgentInput = schema.new({
-    id = id.from(_N, "CreateRcsAgentInput"),
+    id = id.from(_N, "CreateRcsAgentRequest"),
     type = "structure",
     members = {
         DeletionProtectionEnabled = schema.new({
@@ -1533,7 +1533,7 @@ M.CreateRcsAgentInput = schema.new({
 })
 
 M.CreateRcsAgentOutput = schema.new({
-    id = id.from(_N, "CreateRcsAgentOutput"),
+    id = id.from(_N, "CreateRcsAgentResult"),
     type = "structure",
     members = {
         RcsAgentArn = schema.new({
@@ -1631,7 +1631,7 @@ M.CreateRcsAgentOutput = schema.new({
 })
 
 M.CreateRegistrationInput = schema.new({
-    id = id.from(_N, "CreateRegistrationInput"),
+    id = id.from(_N, "CreateRegistrationRequest"),
     type = "structure",
     members = {
         RegistrationType = schema.new({
@@ -1663,7 +1663,7 @@ M.CreateRegistrationInput = schema.new({
 })
 
 M.CreateRegistrationOutput = schema.new({
-    id = id.from(_N, "CreateRegistrationOutput"),
+    id = id.from(_N, "CreateRegistrationResult"),
     type = "structure",
     members = {
         RegistrationArn = schema.new({
@@ -1739,7 +1739,7 @@ M.CreateRegistrationOutput = schema.new({
 })
 
 M.CreateRegistrationAssociationInput = schema.new({
-    id = id.from(_N, "CreateRegistrationAssociationInput"),
+    id = id.from(_N, "CreateRegistrationAssociationRequest"),
     type = "structure",
     members = {
         RegistrationId = schema.new({
@@ -1764,7 +1764,7 @@ M.CreateRegistrationAssociationInput = schema.new({
 })
 
 M.CreateRegistrationAssociationOutput = schema.new({
-    id = id.from(_N, "CreateRegistrationAssociationOutput"),
+    id = id.from(_N, "CreateRegistrationAssociationResult"),
     type = "structure",
     members = {
         RegistrationArn = schema.new({
@@ -1837,7 +1837,7 @@ M.CreateRegistrationAssociationOutput = schema.new({
 })
 
 M.CreateRegistrationAttachmentInput = schema.new({
-    id = id.from(_N, "CreateRegistrationAttachmentInput"),
+    id = id.from(_N, "CreateRegistrationAttachmentRequest"),
     type = "structure",
     members = {
         AttachmentBody = schema.new({
@@ -1872,7 +1872,7 @@ M.CreateRegistrationAttachmentInput = schema.new({
 })
 
 M.CreateRegistrationAttachmentOutput = schema.new({
-    id = id.from(_N, "CreateRegistrationAttachmentOutput"),
+    id = id.from(_N, "CreateRegistrationAttachmentResult"),
     type = "structure",
     members = {
         RegistrationAttachmentArn = schema.new({
@@ -1922,7 +1922,7 @@ M.CreateRegistrationAttachmentOutput = schema.new({
 })
 
 M.CreateRegistrationVersionInput = schema.new({
-    id = id.from(_N, "CreateRegistrationVersionInput"),
+    id = id.from(_N, "CreateRegistrationVersionRequest"),
     type = "structure",
     members = {
         RegistrationId = schema.new({
@@ -2008,7 +2008,7 @@ M.RegistrationVersionStatusHistory = schema.new({
 })
 
 M.CreateRegistrationVersionOutput = schema.new({
-    id = id.from(_N, "CreateRegistrationVersionOutput"),
+    id = id.from(_N, "CreateRegistrationVersionResult"),
     type = "structure",
     members = {
         RegistrationArn = schema.new({
@@ -2061,7 +2061,7 @@ M.CreateRegistrationVersionOutput = schema.new({
 })
 
 M.CreateVerifiedDestinationNumberInput = schema.new({
-    id = id.from(_N, "CreateVerifiedDestinationNumberInput"),
+    id = id.from(_N, "CreateVerifiedDestinationNumberRequest"),
     type = "structure",
     members = {
         DestinationPhoneNumber = schema.new({
@@ -2099,7 +2099,7 @@ M.CreateVerifiedDestinationNumberInput = schema.new({
 })
 
 M.CreateVerifiedDestinationNumberOutput = schema.new({
-    id = id.from(_N, "CreateVerifiedDestinationNumberOutput"),
+    id = id.from(_N, "CreateVerifiedDestinationNumberResult"),
     type = "structure",
     members = {
         VerifiedDestinationNumberArn = schema.new({
@@ -2164,12 +2164,12 @@ M.CreateVerifiedDestinationNumberOutput = schema.new({
 })
 
 M.DeleteAccountDefaultProtectConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteAccountDefaultProtectConfigurationInput"),
+    id = id.from(_N, "DeleteAccountDefaultProtectConfigurationRequest"),
     type = "structure",
 })
 
 M.DeleteAccountDefaultProtectConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteAccountDefaultProtectConfigurationOutput"),
+    id = id.from(_N, "DeleteAccountDefaultProtectConfigurationResult"),
     type = "structure",
     members = {
         DefaultProtectConfigurationArn = schema.new({
@@ -2194,7 +2194,7 @@ M.DeleteAccountDefaultProtectConfigurationOutput = schema.new({
 })
 
 M.DeleteConfigurationSetInput = schema.new({
-    id = id.from(_N, "DeleteConfigurationSetInput"),
+    id = id.from(_N, "DeleteConfigurationSetRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -2210,7 +2210,7 @@ M.DeleteConfigurationSetInput = schema.new({
 })
 
 M.DeleteConfigurationSetOutput = schema.new({
-    id = id.from(_N, "DeleteConfigurationSetOutput"),
+    id = id.from(_N, "DeleteConfigurationSetResult"),
     type = "structure",
     members = {
         ConfigurationSetArn = schema.new({
@@ -2260,7 +2260,7 @@ M.DeleteConfigurationSetOutput = schema.new({
 })
 
 M.DeleteDefaultMessageTypeInput = schema.new({
-    id = id.from(_N, "DeleteDefaultMessageTypeInput"),
+    id = id.from(_N, "DeleteDefaultMessageTypeRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -2276,7 +2276,7 @@ M.DeleteDefaultMessageTypeInput = schema.new({
 })
 
 M.DeleteDefaultMessageTypeOutput = schema.new({
-    id = id.from(_N, "DeleteDefaultMessageTypeOutput"),
+    id = id.from(_N, "DeleteDefaultMessageTypeResult"),
     type = "structure",
     members = {
         ConfigurationSetArn = schema.new({
@@ -2301,7 +2301,7 @@ M.DeleteDefaultMessageTypeOutput = schema.new({
 })
 
 M.DeleteDefaultSenderIdInput = schema.new({
-    id = id.from(_N, "DeleteDefaultSenderIdInput"),
+    id = id.from(_N, "DeleteDefaultSenderIdRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -2317,7 +2317,7 @@ M.DeleteDefaultSenderIdInput = schema.new({
 })
 
 M.DeleteDefaultSenderIdOutput = schema.new({
-    id = id.from(_N, "DeleteDefaultSenderIdOutput"),
+    id = id.from(_N, "DeleteDefaultSenderIdResult"),
     type = "structure",
     members = {
         ConfigurationSetArn = schema.new({
@@ -2342,7 +2342,7 @@ M.DeleteDefaultSenderIdOutput = schema.new({
 })
 
 M.DeleteEventDestinationInput = schema.new({
-    id = id.from(_N, "DeleteEventDestinationInput"),
+    id = id.from(_N, "DeleteEventDestinationRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -2367,7 +2367,7 @@ M.DeleteEventDestinationInput = schema.new({
 })
 
 M.DeleteEventDestinationOutput = schema.new({
-    id = id.from(_N, "DeleteEventDestinationOutput"),
+    id = id.from(_N, "DeleteEventDestinationResult"),
     type = "structure",
     members = {
         ConfigurationSetArn = schema.new({
@@ -2393,7 +2393,7 @@ M.DeleteEventDestinationOutput = schema.new({
 })
 
 M.DeleteKeywordInput = schema.new({
-    id = id.from(_N, "DeleteKeywordInput"),
+    id = id.from(_N, "DeleteKeywordRequest"),
     type = "structure",
     members = {
         OriginationIdentity = schema.new({
@@ -2418,7 +2418,7 @@ M.DeleteKeywordInput = schema.new({
 })
 
 M.DeleteKeywordOutput = schema.new({
-    id = id.from(_N, "DeleteKeywordOutput"),
+    id = id.from(_N, "DeleteKeywordResult"),
     type = "structure",
     members = {
         OriginationIdentityArn = schema.new({
@@ -2455,12 +2455,12 @@ M.DeleteKeywordOutput = schema.new({
 })
 
 M.DeleteMediaMessageSpendLimitOverrideInput = schema.new({
-    id = id.from(_N, "DeleteMediaMessageSpendLimitOverrideInput"),
+    id = id.from(_N, "DeleteMediaMessageSpendLimitOverrideRequest"),
     type = "structure",
 })
 
 M.DeleteMediaMessageSpendLimitOverrideOutput = schema.new({
-    id = id.from(_N, "DeleteMediaMessageSpendLimitOverrideOutput"),
+    id = id.from(_N, "DeleteMediaMessageSpendLimitOverrideResult"),
     type = "structure",
     members = {
         MonthlyLimit = schema.new({
@@ -2473,7 +2473,7 @@ M.DeleteMediaMessageSpendLimitOverrideOutput = schema.new({
 })
 
 M.DeleteNotifyConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteNotifyConfigurationInput"),
+    id = id.from(_N, "DeleteNotifyConfigurationRequest"),
     type = "structure",
     members = {
         NotifyConfigurationId = schema.new({
@@ -2489,7 +2489,7 @@ M.DeleteNotifyConfigurationInput = schema.new({
 })
 
 M.DeleteNotifyConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteNotifyConfigurationOutput"),
+    id = id.from(_N, "DeleteNotifyConfigurationResult"),
     type = "structure",
     members = {
         NotifyConfigurationArn = schema.new({
@@ -2613,12 +2613,12 @@ M.DeleteNotifyConfigurationOutput = schema.new({
 })
 
 M.DeleteNotifyMessageSpendLimitOverrideInput = schema.new({
-    id = id.from(_N, "DeleteNotifyMessageSpendLimitOverrideInput"),
+    id = id.from(_N, "DeleteNotifyMessageSpendLimitOverrideRequest"),
     type = "structure",
 })
 
 M.DeleteNotifyMessageSpendLimitOverrideOutput = schema.new({
-    id = id.from(_N, "DeleteNotifyMessageSpendLimitOverrideOutput"),
+    id = id.from(_N, "DeleteNotifyMessageSpendLimitOverrideResult"),
     type = "structure",
     members = {
         MonthlyLimit = schema.new({
@@ -2631,7 +2631,7 @@ M.DeleteNotifyMessageSpendLimitOverrideOutput = schema.new({
 })
 
 M.DeleteOptedOutNumberInput = schema.new({
-    id = id.from(_N, "DeleteOptedOutNumberInput"),
+    id = id.from(_N, "DeleteOptedOutNumberRequest"),
     type = "structure",
     members = {
         OptOutListName = schema.new({
@@ -2656,7 +2656,7 @@ M.DeleteOptedOutNumberInput = schema.new({
 })
 
 M.DeleteOptedOutNumberOutput = schema.new({
-    id = id.from(_N, "DeleteOptedOutNumberOutput"),
+    id = id.from(_N, "DeleteOptedOutNumberResult"),
     type = "structure",
     members = {
         OptOutListArn = schema.new({
@@ -2696,7 +2696,7 @@ M.DeleteOptedOutNumberOutput = schema.new({
 })
 
 M.DeleteOptOutListInput = schema.new({
-    id = id.from(_N, "DeleteOptOutListInput"),
+    id = id.from(_N, "DeleteOptOutListRequest"),
     type = "structure",
     members = {
         OptOutListName = schema.new({
@@ -2712,7 +2712,7 @@ M.DeleteOptOutListInput = schema.new({
 })
 
 M.DeleteOptOutListOutput = schema.new({
-    id = id.from(_N, "DeleteOptOutListOutput"),
+    id = id.from(_N, "DeleteOptOutListResult"),
     type = "structure",
     members = {
         OptOutListArn = schema.new({
@@ -2737,7 +2737,7 @@ M.DeleteOptOutListOutput = schema.new({
 })
 
 M.DeletePoolInput = schema.new({
-    id = id.from(_N, "DeletePoolInput"),
+    id = id.from(_N, "DeletePoolRequest"),
     type = "structure",
     members = {
         PoolId = schema.new({
@@ -2753,7 +2753,7 @@ M.DeletePoolInput = schema.new({
 })
 
 M.DeletePoolOutput = schema.new({
-    id = id.from(_N, "DeletePoolOutput"),
+    id = id.from(_N, "DeletePoolResult"),
     type = "structure",
     members = {
         PoolArn = schema.new({
@@ -2835,7 +2835,7 @@ M.DeletePoolOutput = schema.new({
 })
 
 M.DeleteProtectConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteProtectConfigurationInput"),
+    id = id.from(_N, "DeleteProtectConfigurationRequest"),
     type = "structure",
     members = {
         ProtectConfigurationId = schema.new({
@@ -2851,7 +2851,7 @@ M.DeleteProtectConfigurationInput = schema.new({
 })
 
 M.DeleteProtectConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteProtectConfigurationOutput"),
+    id = id.from(_N, "DeleteProtectConfigurationResult"),
     type = "structure",
     members = {
         ProtectConfigurationArn = schema.new({
@@ -2905,7 +2905,7 @@ M.DeleteProtectConfigurationOutput = schema.new({
 })
 
 M.DeleteProtectConfigurationRuleSetNumberOverrideInput = schema.new({
-    id = id.from(_N, "DeleteProtectConfigurationRuleSetNumberOverrideInput"),
+    id = id.from(_N, "DeleteProtectConfigurationRuleSetNumberOverrideRequest"),
     type = "structure",
     members = {
         ProtectConfigurationId = schema.new({
@@ -2930,7 +2930,7 @@ M.DeleteProtectConfigurationRuleSetNumberOverrideInput = schema.new({
 })
 
 M.DeleteProtectConfigurationRuleSetNumberOverrideOutput = schema.new({
-    id = id.from(_N, "DeleteProtectConfigurationRuleSetNumberOverrideOutput"),
+    id = id.from(_N, "DeleteProtectConfigurationRuleSetNumberOverrideResult"),
     type = "structure",
     members = {
         ProtectConfigurationArn = schema.new({
@@ -2994,7 +2994,7 @@ M.DeleteProtectConfigurationRuleSetNumberOverrideOutput = schema.new({
 })
 
 M.DeleteRcsAgentInput = schema.new({
-    id = id.from(_N, "DeleteRcsAgentInput"),
+    id = id.from(_N, "DeleteRcsAgentRequest"),
     type = "structure",
     members = {
         RcsAgentId = schema.new({
@@ -3010,7 +3010,7 @@ M.DeleteRcsAgentInput = schema.new({
 })
 
 M.DeleteRcsAgentOutput = schema.new({
-    id = id.from(_N, "DeleteRcsAgentOutput"),
+    id = id.from(_N, "DeleteRcsAgentResult"),
     type = "structure",
     members = {
         RcsAgentArn = schema.new({
@@ -3101,7 +3101,7 @@ M.DeleteRcsAgentOutput = schema.new({
 })
 
 M.DeleteRegistrationInput = schema.new({
-    id = id.from(_N, "DeleteRegistrationInput"),
+    id = id.from(_N, "DeleteRegistrationRequest"),
     type = "structure",
     members = {
         RegistrationId = schema.new({
@@ -3117,7 +3117,7 @@ M.DeleteRegistrationInput = schema.new({
 })
 
 M.DeleteRegistrationOutput = schema.new({
-    id = id.from(_N, "DeleteRegistrationOutput"),
+    id = id.from(_N, "DeleteRegistrationResult"),
     type = "structure",
     members = {
         RegistrationArn = schema.new({
@@ -3198,7 +3198,7 @@ M.DeleteRegistrationOutput = schema.new({
 })
 
 M.DeleteRegistrationAttachmentInput = schema.new({
-    id = id.from(_N, "DeleteRegistrationAttachmentInput"),
+    id = id.from(_N, "DeleteRegistrationAttachmentRequest"),
     type = "structure",
     members = {
         RegistrationAttachmentId = schema.new({
@@ -3214,7 +3214,7 @@ M.DeleteRegistrationAttachmentInput = schema.new({
 })
 
 M.DeleteRegistrationAttachmentOutput = schema.new({
-    id = id.from(_N, "DeleteRegistrationAttachmentOutput"),
+    id = id.from(_N, "DeleteRegistrationAttachmentResult"),
     type = "structure",
     members = {
         RegistrationAttachmentArn = schema.new({
@@ -3263,7 +3263,7 @@ M.DeleteRegistrationAttachmentOutput = schema.new({
 })
 
 M.DeleteRegistrationFieldValueInput = schema.new({
-    id = id.from(_N, "DeleteRegistrationFieldValueInput"),
+    id = id.from(_N, "DeleteRegistrationFieldValueRequest"),
     type = "structure",
     members = {
         RegistrationId = schema.new({
@@ -3288,7 +3288,7 @@ M.DeleteRegistrationFieldValueInput = schema.new({
 })
 
 M.DeleteRegistrationFieldValueOutput = schema.new({
-    id = id.from(_N, "DeleteRegistrationFieldValueOutput"),
+    id = id.from(_N, "DeleteRegistrationFieldValueResult"),
     type = "structure",
     members = {
         RegistrationArn = schema.new({
@@ -3350,7 +3350,7 @@ M.DeleteRegistrationFieldValueOutput = schema.new({
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3366,7 +3366,7 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "DeleteResourcePolicyResult"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3391,12 +3391,12 @@ M.DeleteResourcePolicyOutput = schema.new({
 })
 
 M.DeleteTextMessageSpendLimitOverrideInput = schema.new({
-    id = id.from(_N, "DeleteTextMessageSpendLimitOverrideInput"),
+    id = id.from(_N, "DeleteTextMessageSpendLimitOverrideRequest"),
     type = "structure",
 })
 
 M.DeleteTextMessageSpendLimitOverrideOutput = schema.new({
-    id = id.from(_N, "DeleteTextMessageSpendLimitOverrideOutput"),
+    id = id.from(_N, "DeleteTextMessageSpendLimitOverrideResult"),
     type = "structure",
     members = {
         MonthlyLimit = schema.new({
@@ -3409,7 +3409,7 @@ M.DeleteTextMessageSpendLimitOverrideOutput = schema.new({
 })
 
 M.DeleteVerifiedDestinationNumberInput = schema.new({
-    id = id.from(_N, "DeleteVerifiedDestinationNumberInput"),
+    id = id.from(_N, "DeleteVerifiedDestinationNumberRequest"),
     type = "structure",
     members = {
         VerifiedDestinationNumberId = schema.new({
@@ -3425,7 +3425,7 @@ M.DeleteVerifiedDestinationNumberInput = schema.new({
 })
 
 M.DeleteVerifiedDestinationNumberOutput = schema.new({
-    id = id.from(_N, "DeleteVerifiedDestinationNumberOutput"),
+    id = id.from(_N, "DeleteVerifiedDestinationNumberResult"),
     type = "structure",
     members = {
         VerifiedDestinationNumberArn = schema.new({
@@ -3468,12 +3468,12 @@ M.DeleteVerifiedDestinationNumberOutput = schema.new({
 })
 
 M.DeleteVoiceMessageSpendLimitOverrideInput = schema.new({
-    id = id.from(_N, "DeleteVoiceMessageSpendLimitOverrideInput"),
+    id = id.from(_N, "DeleteVoiceMessageSpendLimitOverrideRequest"),
     type = "structure",
 })
 
 M.DeleteVoiceMessageSpendLimitOverrideOutput = schema.new({
-    id = id.from(_N, "DeleteVoiceMessageSpendLimitOverrideOutput"),
+    id = id.from(_N, "DeleteVoiceMessageSpendLimitOverrideResult"),
     type = "structure",
     members = {
         MonthlyLimit = schema.new({
@@ -3486,7 +3486,7 @@ M.DeleteVoiceMessageSpendLimitOverrideOutput = schema.new({
 })
 
 M.DescribeAccountAttributesInput = schema.new({
-    id = id.from(_N, "DescribeAccountAttributesInput"),
+    id = id.from(_N, "DescribeAccountAttributesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3505,7 +3505,7 @@ M.DescribeAccountAttributesInput = schema.new({
 })
 
 M.DescribeAccountAttributesOutput = schema.new({
-    id = id.from(_N, "DescribeAccountAttributesOutput"),
+    id = id.from(_N, "DescribeAccountAttributesResult"),
     type = "structure",
     members = {
         AccountAttributes = schema.new({
@@ -3525,7 +3525,7 @@ M.DescribeAccountAttributesOutput = schema.new({
 })
 
 M.DescribeAccountLimitsInput = schema.new({
-    id = id.from(_N, "DescribeAccountLimitsInput"),
+    id = id.from(_N, "DescribeAccountLimitsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3544,7 +3544,7 @@ M.DescribeAccountLimitsInput = schema.new({
 })
 
 M.DescribeAccountLimitsOutput = schema.new({
-    id = id.from(_N, "DescribeAccountLimitsOutput"),
+    id = id.from(_N, "DescribeAccountLimitsResult"),
     type = "structure",
     members = {
         AccountLimits = schema.new({
@@ -3564,7 +3564,7 @@ M.DescribeAccountLimitsOutput = schema.new({
 })
 
 M.DescribeConfigurationSetsInput = schema.new({
-    id = id.from(_N, "DescribeConfigurationSetsInput"),
+    id = id.from(_N, "DescribeConfigurationSetsRequest"),
     type = "structure",
     members = {
         ConfigurationSetNames = schema.new({
@@ -3597,7 +3597,7 @@ M.DescribeConfigurationSetsInput = schema.new({
 })
 
 M.DescribeConfigurationSetsOutput = schema.new({
-    id = id.from(_N, "DescribeConfigurationSetsOutput"),
+    id = id.from(_N, "DescribeConfigurationSetsResult"),
     type = "structure",
     members = {
         ConfigurationSets = schema.new({
@@ -3643,7 +3643,7 @@ M.KeywordFilter = schema.new({
 })
 
 M.DescribeKeywordsInput = schema.new({
-    id = id.from(_N, "DescribeKeywordsInput"),
+    id = id.from(_N, "DescribeKeywordsRequest"),
     type = "structure",
     members = {
         OriginationIdentity = schema.new({
@@ -3719,7 +3719,7 @@ M.KeywordInformation = schema.new({
 })
 
 M.DescribeKeywordsOutput = schema.new({
-    id = id.from(_N, "DescribeKeywordsOutput"),
+    id = id.from(_N, "DescribeKeywordsResult"),
     type = "structure",
     members = {
         OriginationIdentityArn = schema.new({
@@ -3777,7 +3777,7 @@ M.NotifyConfigurationFilter = schema.new({
 })
 
 M.DescribeNotifyConfigurationsInput = schema.new({
-    id = id.from(_N, "DescribeNotifyConfigurationsInput"),
+    id = id.from(_N, "DescribeNotifyConfigurationsRequest"),
     type = "structure",
     members = {
         NotifyConfigurationIds = schema.new({
@@ -3934,7 +3934,7 @@ M.NotifyConfigurationInformation = schema.new({
 })
 
 M.DescribeNotifyConfigurationsOutput = schema.new({
-    id = id.from(_N, "DescribeNotifyConfigurationsOutput"),
+    id = id.from(_N, "DescribeNotifyConfigurationsResult"),
     type = "structure",
     members = {
         NotifyConfigurations = schema.new({
@@ -3980,7 +3980,7 @@ M.NotifyTemplateFilter = schema.new({
 })
 
 M.DescribeNotifyTemplatesInput = schema.new({
-    id = id.from(_N, "DescribeNotifyTemplatesInput"),
+    id = id.from(_N, "DescribeNotifyTemplatesRequest"),
     type = "structure",
     members = {
         TemplateIds = schema.new({
@@ -4187,7 +4187,7 @@ M.NotifyTemplateInformation = schema.new({
 })
 
 M.DescribeNotifyTemplatesOutput = schema.new({
-    id = id.from(_N, "DescribeNotifyTemplatesOutput"),
+    id = id.from(_N, "DescribeNotifyTemplatesResult"),
     type = "structure",
     members = {
         NotifyTemplates = schema.new({
@@ -4233,7 +4233,7 @@ M.OptedOutFilter = schema.new({
 })
 
 M.DescribeOptedOutNumbersInput = schema.new({
-    id = id.from(_N, "DescribeOptedOutNumbersInput"),
+    id = id.from(_N, "DescribeOptedOutNumbersRequest"),
     type = "structure",
     members = {
         OptOutListName = schema.new({
@@ -4310,7 +4310,7 @@ M.OptedOutNumberInformation = schema.new({
 })
 
 M.DescribeOptedOutNumbersOutput = schema.new({
-    id = id.from(_N, "DescribeOptedOutNumbersOutput"),
+    id = id.from(_N, "DescribeOptedOutNumbersResult"),
     type = "structure",
     members = {
         OptOutListArn = schema.new({
@@ -4342,7 +4342,7 @@ M.DescribeOptedOutNumbersOutput = schema.new({
 })
 
 M.DescribeOptOutListsInput = schema.new({
-    id = id.from(_N, "DescribeOptOutListsInput"),
+    id = id.from(_N, "DescribeOptOutListsRequest"),
     type = "structure",
     members = {
         OptOutListNames = schema.new({
@@ -4408,7 +4408,7 @@ M.OptOutListInformation = schema.new({
 })
 
 M.DescribeOptOutListsOutput = schema.new({
-    id = id.from(_N, "DescribeOptOutListsOutput"),
+    id = id.from(_N, "DescribeOptOutListsResult"),
     type = "structure",
     members = {
         OptOutLists = schema.new({
@@ -4454,7 +4454,7 @@ M.PhoneNumberFilter = schema.new({
 })
 
 M.DescribePhoneNumbersInput = schema.new({
-    id = id.from(_N, "DescribePhoneNumbersInput"),
+    id = id.from(_N, "DescribePhoneNumbersRequest"),
     type = "structure",
     members = {
         PhoneNumberIds = schema.new({
@@ -4660,7 +4660,7 @@ M.PhoneNumberInformation = schema.new({
 })
 
 M.DescribePhoneNumbersOutput = schema.new({
-    id = id.from(_N, "DescribePhoneNumbersOutput"),
+    id = id.from(_N, "DescribePhoneNumbersResult"),
     type = "structure",
     members = {
         PhoneNumbers = schema.new({
@@ -4706,7 +4706,7 @@ M.PoolFilter = schema.new({
 })
 
 M.DescribePoolsInput = schema.new({
-    id = id.from(_N, "DescribePoolsInput"),
+    id = id.from(_N, "DescribePoolsRequest"),
     type = "structure",
     members = {
         PoolIds = schema.new({
@@ -4858,7 +4858,7 @@ M.PoolInformation = schema.new({
 })
 
 M.DescribePoolsOutput = schema.new({
-    id = id.from(_N, "DescribePoolsOutput"),
+    id = id.from(_N, "DescribePoolsResult"),
     type = "structure",
     members = {
         Pools = schema.new({
@@ -4904,7 +4904,7 @@ M.ProtectConfigurationFilter = schema.new({
 })
 
 M.DescribeProtectConfigurationsInput = schema.new({
-    id = id.from(_N, "DescribeProtectConfigurationsInput"),
+    id = id.from(_N, "DescribeProtectConfigurationsRequest"),
     type = "structure",
     members = {
         ProtectConfigurationIds = schema.new({
@@ -4991,7 +4991,7 @@ M.ProtectConfigurationInformation = schema.new({
 })
 
 M.DescribeProtectConfigurationsOutput = schema.new({
-    id = id.from(_N, "DescribeProtectConfigurationsOutput"),
+    id = id.from(_N, "DescribeProtectConfigurationsResult"),
     type = "structure",
     members = {
         ProtectConfigurations = schema.new({
@@ -5011,7 +5011,7 @@ M.DescribeProtectConfigurationsOutput = schema.new({
 })
 
 M.DescribeRcsAgentCountryLaunchStatusInput = schema.new({
-    id = id.from(_N, "DescribeRcsAgentCountryLaunchStatusInput"),
+    id = id.from(_N, "DescribeRcsAgentCountryLaunchStatusRequest"),
     type = "structure",
     members = {
         RcsAgentId = schema.new({
@@ -5053,7 +5053,7 @@ M.DescribeRcsAgentCountryLaunchStatusInput = schema.new({
 })
 
 M.DescribeRcsAgentCountryLaunchStatusOutput = schema.new({
-    id = id.from(_N, "DescribeRcsAgentCountryLaunchStatusOutput"),
+    id = id.from(_N, "DescribeRcsAgentCountryLaunchStatusResult"),
     type = "structure",
     members = {
         RcsAgentId = schema.new({
@@ -5117,7 +5117,7 @@ M.RcsAgentFilter = schema.new({
 })
 
 M.DescribeRcsAgentsInput = schema.new({
-    id = id.from(_N, "DescribeRcsAgentsInput"),
+    id = id.from(_N, "DescribeRcsAgentsRequest"),
     type = "structure",
     members = {
         RcsAgentIds = schema.new({
@@ -5291,7 +5291,7 @@ M.RcsAgentInformation = schema.new({
 })
 
 M.DescribeRcsAgentsOutput = schema.new({
-    id = id.from(_N, "DescribeRcsAgentsOutput"),
+    id = id.from(_N, "DescribeRcsAgentsResult"),
     type = "structure",
     members = {
         RcsAgents = schema.new({
@@ -5337,7 +5337,7 @@ M.RegistrationAttachmentFilter = schema.new({
 })
 
 M.DescribeRegistrationAttachmentsInput = schema.new({
-    id = id.from(_N, "DescribeRegistrationAttachmentsInput"),
+    id = id.from(_N, "DescribeRegistrationAttachmentsRequest"),
     type = "structure",
     members = {
         RegistrationAttachmentIds = schema.new({
@@ -5425,7 +5425,7 @@ M.RegistrationAttachmentsInformation = schema.new({
 })
 
 M.DescribeRegistrationAttachmentsOutput = schema.new({
-    id = id.from(_N, "DescribeRegistrationAttachmentsOutput"),
+    id = id.from(_N, "DescribeRegistrationAttachmentsResult"),
     type = "structure",
     members = {
         RegistrationAttachments = schema.new({
@@ -5448,7 +5448,7 @@ M.DescribeRegistrationAttachmentsOutput = schema.new({
 })
 
 M.DescribeRegistrationFieldDefinitionsInput = schema.new({
-    id = id.from(_N, "DescribeRegistrationFieldDefinitionsInput"),
+    id = id.from(_N, "DescribeRegistrationFieldDefinitionsRequest"),
     type = "structure",
     members = {
         RegistrationType = schema.new({
@@ -5715,7 +5715,7 @@ M.RegistrationFieldDefinition = schema.new({
 })
 
 M.DescribeRegistrationFieldDefinitionsOutput = schema.new({
-    id = id.from(_N, "DescribeRegistrationFieldDefinitionsOutput"),
+    id = id.from(_N, "DescribeRegistrationFieldDefinitionsResult"),
     type = "structure",
     members = {
         RegistrationType = schema.new({
@@ -5747,7 +5747,7 @@ M.DescribeRegistrationFieldDefinitionsOutput = schema.new({
 })
 
 M.DescribeRegistrationFieldValuesInput = schema.new({
-    id = id.from(_N, "DescribeRegistrationFieldValuesInput"),
+    id = id.from(_N, "DescribeRegistrationFieldValuesRequest"),
     type = "structure",
     members = {
         RegistrationId = schema.new({
@@ -5841,7 +5841,7 @@ M.RegistrationFieldValueInformation = schema.new({
 })
 
 M.DescribeRegistrationFieldValuesOutput = schema.new({
-    id = id.from(_N, "DescribeRegistrationFieldValuesOutput"),
+    id = id.from(_N, "DescribeRegistrationFieldValuesResult"),
     type = "structure",
     members = {
         RegistrationArn = schema.new({
@@ -5917,7 +5917,7 @@ M.RegistrationFilter = schema.new({
 })
 
 M.DescribeRegistrationsInput = schema.new({
-    id = id.from(_N, "DescribeRegistrationsInput"),
+    id = id.from(_N, "DescribeRegistrationsRequest"),
     type = "structure",
     members = {
         RegistrationIds = schema.new({
@@ -6031,7 +6031,7 @@ M.RegistrationInformation = schema.new({
 })
 
 M.DescribeRegistrationsOutput = schema.new({
-    id = id.from(_N, "DescribeRegistrationsOutput"),
+    id = id.from(_N, "DescribeRegistrationsResult"),
     type = "structure",
     members = {
         Registrations = schema.new({
@@ -6054,7 +6054,7 @@ M.DescribeRegistrationsOutput = schema.new({
 })
 
 M.DescribeRegistrationSectionDefinitionsInput = schema.new({
-    id = id.from(_N, "DescribeRegistrationSectionDefinitionsInput"),
+    id = id.from(_N, "DescribeRegistrationSectionDefinitionsRequest"),
     type = "structure",
     members = {
         RegistrationType = schema.new({
@@ -6158,7 +6158,7 @@ M.RegistrationSectionDefinition = schema.new({
 })
 
 M.DescribeRegistrationSectionDefinitionsOutput = schema.new({
-    id = id.from(_N, "DescribeRegistrationSectionDefinitionsOutput"),
+    id = id.from(_N, "DescribeRegistrationSectionDefinitionsResult"),
     type = "structure",
     members = {
         RegistrationType = schema.new({
@@ -6216,7 +6216,7 @@ M.RegistrationTypeFilter = schema.new({
 })
 
 M.DescribeRegistrationTypeDefinitionsInput = schema.new({
-    id = id.from(_N, "DescribeRegistrationTypeDefinitionsInput"),
+    id = id.from(_N, "DescribeRegistrationTypeDefinitionsRequest"),
     type = "structure",
     members = {
         RegistrationTypes = schema.new({
@@ -6362,7 +6362,7 @@ M.RegistrationTypeDefinition = schema.new({
 })
 
 M.DescribeRegistrationTypeDefinitionsOutput = schema.new({
-    id = id.from(_N, "DescribeRegistrationTypeDefinitionsOutput"),
+    id = id.from(_N, "DescribeRegistrationTypeDefinitionsResult"),
     type = "structure",
     members = {
         RegistrationTypeDefinitions = schema.new({
@@ -6411,7 +6411,7 @@ M.RegistrationVersionFilter = schema.new({
 })
 
 M.DescribeRegistrationVersionsInput = schema.new({
-    id = id.from(_N, "DescribeRegistrationVersionsInput"),
+    id = id.from(_N, "DescribeRegistrationVersionsRequest"),
     type = "structure",
     members = {
         RegistrationId = schema.new({
@@ -6544,7 +6544,7 @@ M.RegistrationVersionInformation = schema.new({
 })
 
 M.DescribeRegistrationVersionsOutput = schema.new({
-    id = id.from(_N, "DescribeRegistrationVersionsOutput"),
+    id = id.from(_N, "DescribeRegistrationVersionsResult"),
     type = "structure",
     members = {
         RegistrationArn = schema.new({
@@ -6636,7 +6636,7 @@ M.SenderIdAndCountry = schema.new({
 })
 
 M.DescribeSenderIdsInput = schema.new({
-    id = id.from(_N, "DescribeSenderIdsInput"),
+    id = id.from(_N, "DescribeSenderIdsRequest"),
     type = "structure",
     members = {
         SenderIds = schema.new({
@@ -6754,7 +6754,7 @@ M.SenderIdInformation = schema.new({
 })
 
 M.DescribeSenderIdsOutput = schema.new({
-    id = id.from(_N, "DescribeSenderIdsOutput"),
+    id = id.from(_N, "DescribeSenderIdsResult"),
     type = "structure",
     members = {
         SenderIds = schema.new({
@@ -6774,7 +6774,7 @@ M.DescribeSenderIdsOutput = schema.new({
 })
 
 M.DescribeSpendLimitsInput = schema.new({
-    id = id.from(_N, "DescribeSpendLimitsInput"),
+    id = id.from(_N, "DescribeSpendLimitsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6839,7 +6839,7 @@ M.SpendLimit = schema.new({
 })
 
 M.DescribeSpendLimitsOutput = schema.new({
-    id = id.from(_N, "DescribeSpendLimitsOutput"),
+    id = id.from(_N, "DescribeSpendLimitsResult"),
     type = "structure",
     members = {
         SpendLimits = schema.new({
@@ -6885,7 +6885,7 @@ M.VerifiedDestinationNumberFilter = schema.new({
 })
 
 M.DescribeVerifiedDestinationNumbersInput = schema.new({
-    id = id.from(_N, "DescribeVerifiedDestinationNumbersInput"),
+    id = id.from(_N, "DescribeVerifiedDestinationNumbersRequest"),
     type = "structure",
     members = {
         VerifiedDestinationNumberIds = schema.new({
@@ -6983,7 +6983,7 @@ M.VerifiedDestinationNumberInformation = schema.new({
 })
 
 M.DescribeVerifiedDestinationNumbersOutput = schema.new({
-    id = id.from(_N, "DescribeVerifiedDestinationNumbersOutput"),
+    id = id.from(_N, "DescribeVerifiedDestinationNumbersResult"),
     type = "structure",
     members = {
         VerifiedDestinationNumbers = schema.new({
@@ -7006,7 +7006,7 @@ M.DescribeVerifiedDestinationNumbersOutput = schema.new({
 })
 
 M.DisassociateOriginationIdentityInput = schema.new({
-    id = id.from(_N, "DisassociateOriginationIdentityInput"),
+    id = id.from(_N, "DisassociateOriginationIdentityRequest"),
     type = "structure",
     members = {
         PoolId = schema.new({
@@ -7046,7 +7046,7 @@ M.DisassociateOriginationIdentityInput = schema.new({
 })
 
 M.DisassociateOriginationIdentityOutput = schema.new({
-    id = id.from(_N, "DisassociateOriginationIdentityOutput"),
+    id = id.from(_N, "DisassociateOriginationIdentityResult"),
     type = "structure",
     members = {
         PoolArn = schema.new({
@@ -7083,7 +7083,7 @@ M.DisassociateOriginationIdentityOutput = schema.new({
 })
 
 M.DisassociateProtectConfigurationInput = schema.new({
-    id = id.from(_N, "DisassociateProtectConfigurationInput"),
+    id = id.from(_N, "DisassociateProtectConfigurationRequest"),
     type = "structure",
     members = {
         ProtectConfigurationId = schema.new({
@@ -7108,7 +7108,7 @@ M.DisassociateProtectConfigurationInput = schema.new({
 })
 
 M.DisassociateProtectConfigurationOutput = schema.new({
-    id = id.from(_N, "DisassociateProtectConfigurationOutput"),
+    id = id.from(_N, "DisassociateProtectConfigurationResult"),
     type = "structure",
     members = {
         ConfigurationSetArn = schema.new({
@@ -7151,7 +7151,7 @@ M.DisassociateProtectConfigurationOutput = schema.new({
 })
 
 M.DiscardRegistrationVersionInput = schema.new({
-    id = id.from(_N, "DiscardRegistrationVersionInput"),
+    id = id.from(_N, "DiscardRegistrationVersionRequest"),
     type = "structure",
     members = {
         RegistrationId = schema.new({
@@ -7167,7 +7167,7 @@ M.DiscardRegistrationVersionInput = schema.new({
 })
 
 M.DiscardRegistrationVersionOutput = schema.new({
-    id = id.from(_N, "DiscardRegistrationVersionOutput"),
+    id = id.from(_N, "DiscardRegistrationVersionResult"),
     type = "structure",
     members = {
         RegistrationArn = schema.new({
@@ -7220,7 +7220,7 @@ M.DiscardRegistrationVersionOutput = schema.new({
 })
 
 M.GetProtectConfigurationCountryRuleSetInput = schema.new({
-    id = id.from(_N, "GetProtectConfigurationCountryRuleSetInput"),
+    id = id.from(_N, "GetProtectConfigurationCountryRuleSetRequest"),
     type = "structure",
     members = {
         ProtectConfigurationId = schema.new({
@@ -7261,7 +7261,7 @@ M.ProtectConfigurationCountryRuleSetInformation = schema.new({
 })
 
 M.GetProtectConfigurationCountryRuleSetOutput = schema.new({
-    id = id.from(_N, "GetProtectConfigurationCountryRuleSetOutput"),
+    id = id.from(_N, "GetProtectConfigurationCountryRuleSetResult"),
     type = "structure",
     members = {
         ProtectConfigurationArn = schema.new({
@@ -7306,7 +7306,7 @@ M.GetProtectConfigurationCountryRuleSetOutput = schema.new({
 })
 
 M.GetResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetResourcePolicyInput"),
+    id = id.from(_N, "GetResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -7322,7 +7322,7 @@ M.GetResourcePolicyInput = schema.new({
 })
 
 M.GetResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetResourcePolicyOutput"),
+    id = id.from(_N, "GetResourcePolicyResult"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -7347,7 +7347,7 @@ M.GetResourcePolicyOutput = schema.new({
 })
 
 M.ListNotifyCountriesInput = schema.new({
-    id = id.from(_N, "ListNotifyCountriesInput"),
+    id = id.from(_N, "ListNotifyCountriesRequest"),
     type = "structure",
     members = {
         Channels = schema.new({
@@ -7451,7 +7451,7 @@ M.NotifyCountryInformation = schema.new({
 })
 
 M.ListNotifyCountriesOutput = schema.new({
-    id = id.from(_N, "ListNotifyCountriesOutput"),
+    id = id.from(_N, "ListNotifyCountriesResult"),
     type = "structure",
     members = {
         NotifyCountries = schema.new({
@@ -7497,7 +7497,7 @@ M.PoolOriginationIdentitiesFilter = schema.new({
 })
 
 M.ListPoolOriginationIdentitiesInput = schema.new({
-    id = id.from(_N, "ListPoolOriginationIdentitiesInput"),
+    id = id.from(_N, "ListPoolOriginationIdentitiesRequest"),
     type = "structure",
     members = {
         PoolId = schema.new({
@@ -7582,7 +7582,7 @@ M.OriginationIdentityMetadata = schema.new({
 })
 
 M.ListPoolOriginationIdentitiesOutput = schema.new({
-    id = id.from(_N, "ListPoolOriginationIdentitiesOutput"),
+    id = id.from(_N, "ListPoolOriginationIdentitiesResult"),
     type = "structure",
     members = {
         PoolArn = schema.new({
@@ -7640,7 +7640,7 @@ M.ProtectConfigurationRuleSetNumberOverrideFilterItem = schema.new({
 })
 
 M.ListProtectConfigurationRuleSetNumberOverridesInput = schema.new({
-    id = id.from(_N, "ListProtectConfigurationRuleSetNumberOverridesInput"),
+    id = id.from(_N, "ListProtectConfigurationRuleSetNumberOverridesRequest"),
     type = "structure",
     members = {
         ProtectConfigurationId = schema.new({
@@ -7721,7 +7721,7 @@ M.ProtectConfigurationRuleSetNumberOverride = schema.new({
 })
 
 M.ListProtectConfigurationRuleSetNumberOverridesOutput = schema.new({
-    id = id.from(_N, "ListProtectConfigurationRuleSetNumberOverridesOutput"),
+    id = id.from(_N, "ListProtectConfigurationRuleSetNumberOverridesResult"),
     type = "structure",
     members = {
         ProtectConfigurationArn = schema.new({
@@ -7785,7 +7785,7 @@ M.RegistrationAssociationFilter = schema.new({
 })
 
 M.ListRegistrationAssociationsInput = schema.new({
-    id = id.from(_N, "ListRegistrationAssociationsInput"),
+    id = id.from(_N, "ListRegistrationAssociationsRequest"),
     type = "structure",
     members = {
         RegistrationId = schema.new({
@@ -7866,7 +7866,7 @@ M.RegistrationAssociationMetadata = schema.new({
 })
 
 M.ListRegistrationAssociationsOutput = schema.new({
-    id = id.from(_N, "ListRegistrationAssociationsOutput"),
+    id = id.from(_N, "ListRegistrationAssociationsResult"),
     type = "structure",
     members = {
         RegistrationArn = schema.new({
@@ -7916,7 +7916,7 @@ M.ListRegistrationAssociationsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -7932,7 +7932,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResult"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -7952,7 +7952,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutKeywordInput = schema.new({
-    id = id.from(_N, "PutKeywordInput"),
+    id = id.from(_N, "PutKeywordRequest"),
     type = "structure",
     members = {
         OriginationIdentity = schema.new({
@@ -7992,7 +7992,7 @@ M.PutKeywordInput = schema.new({
 })
 
 M.PutKeywordOutput = schema.new({
-    id = id.from(_N, "PutKeywordOutput"),
+    id = id.from(_N, "PutKeywordResult"),
     type = "structure",
     members = {
         OriginationIdentityArn = schema.new({
@@ -8029,7 +8029,7 @@ M.PutKeywordOutput = schema.new({
 })
 
 M.PutMessageFeedbackInput = schema.new({
-    id = id.from(_N, "PutMessageFeedbackInput"),
+    id = id.from(_N, "PutMessageFeedbackRequest"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -8054,7 +8054,7 @@ M.PutMessageFeedbackInput = schema.new({
 })
 
 M.PutMessageFeedbackOutput = schema.new({
-    id = id.from(_N, "PutMessageFeedbackOutput"),
+    id = id.from(_N, "PutMessageFeedbackResult"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -8079,7 +8079,7 @@ M.PutMessageFeedbackOutput = schema.new({
 })
 
 M.PutOptedOutNumberInput = schema.new({
-    id = id.from(_N, "PutOptedOutNumberInput"),
+    id = id.from(_N, "PutOptedOutNumberRequest"),
     type = "structure",
     members = {
         OptOutListName = schema.new({
@@ -8104,7 +8104,7 @@ M.PutOptedOutNumberInput = schema.new({
 })
 
 M.PutOptedOutNumberOutput = schema.new({
-    id = id.from(_N, "PutOptedOutNumberOutput"),
+    id = id.from(_N, "PutOptedOutNumberResult"),
     type = "structure",
     members = {
         OptOutListArn = schema.new({
@@ -8144,7 +8144,7 @@ M.PutOptedOutNumberOutput = schema.new({
 })
 
 M.PutProtectConfigurationRuleSetNumberOverrideInput = schema.new({
-    id = id.from(_N, "PutProtectConfigurationRuleSetNumberOverrideInput"),
+    id = id.from(_N, "PutProtectConfigurationRuleSetNumberOverrideRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -8193,7 +8193,7 @@ M.PutProtectConfigurationRuleSetNumberOverrideInput = schema.new({
 })
 
 M.PutProtectConfigurationRuleSetNumberOverrideOutput = schema.new({
-    id = id.from(_N, "PutProtectConfigurationRuleSetNumberOverrideOutput"),
+    id = id.from(_N, "PutProtectConfigurationRuleSetNumberOverrideResult"),
     type = "structure",
     members = {
         ProtectConfigurationArn = schema.new({
@@ -8257,7 +8257,7 @@ M.PutProtectConfigurationRuleSetNumberOverrideOutput = schema.new({
 })
 
 M.PutRegistrationFieldValueInput = schema.new({
-    id = id.from(_N, "PutRegistrationFieldValueInput"),
+    id = id.from(_N, "PutRegistrationFieldValueRequest"),
     type = "structure",
     members = {
         RegistrationId = schema.new({
@@ -8301,7 +8301,7 @@ M.PutRegistrationFieldValueInput = schema.new({
 })
 
 M.PutRegistrationFieldValueOutput = schema.new({
-    id = id.from(_N, "PutRegistrationFieldValueOutput"),
+    id = id.from(_N, "PutRegistrationFieldValueResult"),
     type = "structure",
     members = {
         RegistrationArn = schema.new({
@@ -8363,7 +8363,7 @@ M.PutRegistrationFieldValueOutput = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -8388,7 +8388,7 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResult"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -8413,7 +8413,7 @@ M.PutResourcePolicyOutput = schema.new({
 })
 
 M.ReleasePhoneNumberInput = schema.new({
-    id = id.from(_N, "ReleasePhoneNumberInput"),
+    id = id.from(_N, "ReleasePhoneNumberRequest"),
     type = "structure",
     members = {
         PhoneNumberId = schema.new({
@@ -8429,7 +8429,7 @@ M.ReleasePhoneNumberInput = schema.new({
 })
 
 M.ReleasePhoneNumberOutput = schema.new({
-    id = id.from(_N, "ReleasePhoneNumberOutput"),
+    id = id.from(_N, "ReleasePhoneNumberResult"),
     type = "structure",
     members = {
         PhoneNumberArn = schema.new({
@@ -8539,7 +8539,7 @@ M.ReleasePhoneNumberOutput = schema.new({
 })
 
 M.ReleaseSenderIdInput = schema.new({
-    id = id.from(_N, "ReleaseSenderIdInput"),
+    id = id.from(_N, "ReleaseSenderIdRequest"),
     type = "structure",
     members = {
         SenderId = schema.new({
@@ -8564,7 +8564,7 @@ M.ReleaseSenderIdInput = schema.new({
 })
 
 M.ReleaseSenderIdOutput = schema.new({
-    id = id.from(_N, "ReleaseSenderIdOutput"),
+    id = id.from(_N, "ReleaseSenderIdResult"),
     type = "structure",
     members = {
         SenderIdArn = schema.new({
@@ -8633,7 +8633,7 @@ M.ReleaseSenderIdOutput = schema.new({
 })
 
 M.RequestPhoneNumberInput = schema.new({
-    id = id.from(_N, "RequestPhoneNumberInput"),
+    id = id.from(_N, "RequestPhoneNumberRequest"),
     type = "structure",
     members = {
         IsoCountryCode = schema.new({
@@ -8723,7 +8723,7 @@ M.RequestPhoneNumberInput = schema.new({
 })
 
 M.RequestPhoneNumberOutput = schema.new({
-    id = id.from(_N, "RequestPhoneNumberOutput"),
+    id = id.from(_N, "RequestPhoneNumberResult"),
     type = "structure",
     members = {
         PhoneNumberArn = schema.new({
@@ -8864,7 +8864,7 @@ M.RequestPhoneNumberOutput = schema.new({
 })
 
 M.RequestSenderIdInput = schema.new({
-    id = id.from(_N, "RequestSenderIdInput"),
+    id = id.from(_N, "RequestSenderIdRequest"),
     type = "structure",
     members = {
         SenderId = schema.new({
@@ -8918,7 +8918,7 @@ M.RequestSenderIdInput = schema.new({
 })
 
 M.RequestSenderIdOutput = schema.new({
-    id = id.from(_N, "RequestSenderIdOutput"),
+    id = id.from(_N, "RequestSenderIdResult"),
     type = "structure",
     members = {
         SenderIdArn = schema.new({
@@ -8998,7 +8998,7 @@ M.RequestSenderIdOutput = schema.new({
 })
 
 M.SendDestinationNumberVerificationCodeInput = schema.new({
-    id = id.from(_N, "SendDestinationNumberVerificationCodeInput"),
+    id = id.from(_N, "SendDestinationNumberVerificationCodeRequest"),
     type = "structure",
     members = {
         VerifiedDestinationNumberId = schema.new({
@@ -9057,7 +9057,7 @@ M.SendDestinationNumberVerificationCodeInput = schema.new({
 })
 
 M.SendDestinationNumberVerificationCodeOutput = schema.new({
-    id = id.from(_N, "SendDestinationNumberVerificationCodeOutput"),
+    id = id.from(_N, "SendDestinationNumberVerificationCodeResult"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -9073,7 +9073,7 @@ M.SendDestinationNumberVerificationCodeOutput = schema.new({
 })
 
 M.SendMediaMessageInput = schema.new({
-    id = id.from(_N, "SendMediaMessageInput"),
+    id = id.from(_N, "SendMediaMessageRequest"),
     type = "structure",
     members = {
         DestinationPhoneNumber = schema.new({
@@ -9158,7 +9158,7 @@ M.SendMediaMessageInput = schema.new({
 })
 
 M.SendMediaMessageOutput = schema.new({
-    id = id.from(_N, "SendMediaMessageOutput"),
+    id = id.from(_N, "SendMediaMessageResult"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -9171,7 +9171,7 @@ M.SendMediaMessageOutput = schema.new({
 })
 
 M.SendNotifyTextMessageInput = schema.new({
-    id = id.from(_N, "SendNotifyTextMessageInput"),
+    id = id.from(_N, "SendNotifyTextMessageRequest"),
     type = "structure",
     members = {
         NotifyConfigurationId = schema.new({
@@ -9248,7 +9248,7 @@ M.SendNotifyTextMessageInput = schema.new({
 })
 
 M.SendNotifyTextMessageOutput = schema.new({
-    id = id.from(_N, "SendNotifyTextMessageOutput"),
+    id = id.from(_N, "SendNotifyTextMessageResult"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -9273,7 +9273,7 @@ M.SendNotifyTextMessageOutput = schema.new({
 })
 
 M.SendNotifyVoiceMessageInput = schema.new({
-    id = id.from(_N, "SendNotifyVoiceMessageInput"),
+    id = id.from(_N, "SendNotifyVoiceMessageRequest"),
     type = "structure",
     members = {
         NotifyConfigurationId = schema.new({
@@ -9356,7 +9356,7 @@ M.SendNotifyVoiceMessageInput = schema.new({
 })
 
 M.SendNotifyVoiceMessageOutput = schema.new({
-    id = id.from(_N, "SendNotifyVoiceMessageOutput"),
+    id = id.from(_N, "SendNotifyVoiceMessageResult"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -9381,7 +9381,7 @@ M.SendNotifyVoiceMessageOutput = schema.new({
 })
 
 M.SendTextMessageInput = schema.new({
-    id = id.from(_N, "SendTextMessageInput"),
+    id = id.from(_N, "SendTextMessageRequest"),
     type = "structure",
     members = {
         DestinationPhoneNumber = schema.new({
@@ -9476,7 +9476,7 @@ M.SendTextMessageInput = schema.new({
 })
 
 M.SendTextMessageOutput = schema.new({
-    id = id.from(_N, "SendTextMessageOutput"),
+    id = id.from(_N, "SendTextMessageResult"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -9489,7 +9489,7 @@ M.SendTextMessageOutput = schema.new({
 })
 
 M.SendVoiceMessageInput = schema.new({
-    id = id.from(_N, "SendVoiceMessageInput"),
+    id = id.from(_N, "SendVoiceMessageRequest"),
     type = "structure",
     members = {
         DestinationPhoneNumber = schema.new({
@@ -9579,7 +9579,7 @@ M.SendVoiceMessageInput = schema.new({
 })
 
 M.SendVoiceMessageOutput = schema.new({
-    id = id.from(_N, "SendVoiceMessageOutput"),
+    id = id.from(_N, "SendVoiceMessageResult"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -9592,7 +9592,7 @@ M.SendVoiceMessageOutput = schema.new({
 })
 
 M.SetAccountDefaultProtectConfigurationInput = schema.new({
-    id = id.from(_N, "SetAccountDefaultProtectConfigurationInput"),
+    id = id.from(_N, "SetAccountDefaultProtectConfigurationRequest"),
     type = "structure",
     members = {
         ProtectConfigurationId = schema.new({
@@ -9608,7 +9608,7 @@ M.SetAccountDefaultProtectConfigurationInput = schema.new({
 })
 
 M.SetAccountDefaultProtectConfigurationOutput = schema.new({
-    id = id.from(_N, "SetAccountDefaultProtectConfigurationOutput"),
+    id = id.from(_N, "SetAccountDefaultProtectConfigurationResult"),
     type = "structure",
     members = {
         DefaultProtectConfigurationArn = schema.new({
@@ -9633,7 +9633,7 @@ M.SetAccountDefaultProtectConfigurationOutput = schema.new({
 })
 
 M.SetDefaultMessageFeedbackEnabledInput = schema.new({
-    id = id.from(_N, "SetDefaultMessageFeedbackEnabledInput"),
+    id = id.from(_N, "SetDefaultMessageFeedbackEnabledRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -9658,7 +9658,7 @@ M.SetDefaultMessageFeedbackEnabledInput = schema.new({
 })
 
 M.SetDefaultMessageFeedbackEnabledOutput = schema.new({
-    id = id.from(_N, "SetDefaultMessageFeedbackEnabledOutput"),
+    id = id.from(_N, "SetDefaultMessageFeedbackEnabledResult"),
     type = "structure",
     members = {
         ConfigurationSetArn = schema.new({
@@ -9683,7 +9683,7 @@ M.SetDefaultMessageFeedbackEnabledOutput = schema.new({
 })
 
 M.SetDefaultMessageTypeInput = schema.new({
-    id = id.from(_N, "SetDefaultMessageTypeInput"),
+    id = id.from(_N, "SetDefaultMessageTypeRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -9708,7 +9708,7 @@ M.SetDefaultMessageTypeInput = schema.new({
 })
 
 M.SetDefaultMessageTypeOutput = schema.new({
-    id = id.from(_N, "SetDefaultMessageTypeOutput"),
+    id = id.from(_N, "SetDefaultMessageTypeResult"),
     type = "structure",
     members = {
         ConfigurationSetArn = schema.new({
@@ -9733,7 +9733,7 @@ M.SetDefaultMessageTypeOutput = schema.new({
 })
 
 M.SetDefaultSenderIdInput = schema.new({
-    id = id.from(_N, "SetDefaultSenderIdInput"),
+    id = id.from(_N, "SetDefaultSenderIdRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -9758,7 +9758,7 @@ M.SetDefaultSenderIdInput = schema.new({
 })
 
 M.SetDefaultSenderIdOutput = schema.new({
-    id = id.from(_N, "SetDefaultSenderIdOutput"),
+    id = id.from(_N, "SetDefaultSenderIdResult"),
     type = "structure",
     members = {
         ConfigurationSetArn = schema.new({
@@ -9783,7 +9783,7 @@ M.SetDefaultSenderIdOutput = schema.new({
 })
 
 M.SetMediaMessageSpendLimitOverrideInput = schema.new({
-    id = id.from(_N, "SetMediaMessageSpendLimitOverrideInput"),
+    id = id.from(_N, "SetMediaMessageSpendLimitOverrideRequest"),
     type = "structure",
     members = {
         MonthlyLimit = schema.new({
@@ -9799,7 +9799,7 @@ M.SetMediaMessageSpendLimitOverrideInput = schema.new({
 })
 
 M.SetMediaMessageSpendLimitOverrideOutput = schema.new({
-    id = id.from(_N, "SetMediaMessageSpendLimitOverrideOutput"),
+    id = id.from(_N, "SetMediaMessageSpendLimitOverrideResult"),
     type = "structure",
     members = {
         MonthlyLimit = schema.new({
@@ -9812,7 +9812,7 @@ M.SetMediaMessageSpendLimitOverrideOutput = schema.new({
 })
 
 M.SetNotifyMessageSpendLimitOverrideInput = schema.new({
-    id = id.from(_N, "SetNotifyMessageSpendLimitOverrideInput"),
+    id = id.from(_N, "SetNotifyMessageSpendLimitOverrideRequest"),
     type = "structure",
     members = {
         MonthlyLimit = schema.new({
@@ -9828,7 +9828,7 @@ M.SetNotifyMessageSpendLimitOverrideInput = schema.new({
 })
 
 M.SetNotifyMessageSpendLimitOverrideOutput = schema.new({
-    id = id.from(_N, "SetNotifyMessageSpendLimitOverrideOutput"),
+    id = id.from(_N, "SetNotifyMessageSpendLimitOverrideResult"),
     type = "structure",
     members = {
         MonthlyLimit = schema.new({
@@ -9841,7 +9841,7 @@ M.SetNotifyMessageSpendLimitOverrideOutput = schema.new({
 })
 
 M.SetTextMessageSpendLimitOverrideInput = schema.new({
-    id = id.from(_N, "SetTextMessageSpendLimitOverrideInput"),
+    id = id.from(_N, "SetTextMessageSpendLimitOverrideRequest"),
     type = "structure",
     members = {
         MonthlyLimit = schema.new({
@@ -9857,7 +9857,7 @@ M.SetTextMessageSpendLimitOverrideInput = schema.new({
 })
 
 M.SetTextMessageSpendLimitOverrideOutput = schema.new({
-    id = id.from(_N, "SetTextMessageSpendLimitOverrideOutput"),
+    id = id.from(_N, "SetTextMessageSpendLimitOverrideResult"),
     type = "structure",
     members = {
         MonthlyLimit = schema.new({
@@ -9870,7 +9870,7 @@ M.SetTextMessageSpendLimitOverrideOutput = schema.new({
 })
 
 M.SetVoiceMessageSpendLimitOverrideInput = schema.new({
-    id = id.from(_N, "SetVoiceMessageSpendLimitOverrideInput"),
+    id = id.from(_N, "SetVoiceMessageSpendLimitOverrideRequest"),
     type = "structure",
     members = {
         MonthlyLimit = schema.new({
@@ -9886,7 +9886,7 @@ M.SetVoiceMessageSpendLimitOverrideInput = schema.new({
 })
 
 M.SetVoiceMessageSpendLimitOverrideOutput = schema.new({
-    id = id.from(_N, "SetVoiceMessageSpendLimitOverrideOutput"),
+    id = id.from(_N, "SetVoiceMessageSpendLimitOverrideResult"),
     type = "structure",
     members = {
         MonthlyLimit = schema.new({
@@ -9899,7 +9899,7 @@ M.SetVoiceMessageSpendLimitOverrideOutput = schema.new({
 })
 
 M.SubmitRegistrationVersionInput = schema.new({
-    id = id.from(_N, "SubmitRegistrationVersionInput"),
+    id = id.from(_N, "SubmitRegistrationVersionRequest"),
     type = "structure",
     members = {
         RegistrationId = schema.new({
@@ -9924,7 +9924,7 @@ M.SubmitRegistrationVersionInput = schema.new({
 })
 
 M.SubmitRegistrationVersionOutput = schema.new({
-    id = id.from(_N, "SubmitRegistrationVersionOutput"),
+    id = id.from(_N, "SubmitRegistrationVersionResult"),
     type = "structure",
     members = {
         RegistrationArn = schema.new({
@@ -9987,7 +9987,7 @@ M.SubmitRegistrationVersionOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -10013,12 +10013,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResult"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -10044,12 +10044,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResult"),
     type = "structure",
 })
 
 M.UpdateEventDestinationInput = schema.new({
-    id = id.from(_N, "UpdateEventDestinationInput"),
+    id = id.from(_N, "UpdateEventDestinationRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -10108,7 +10108,7 @@ M.UpdateEventDestinationInput = schema.new({
 })
 
 M.UpdateEventDestinationOutput = schema.new({
-    id = id.from(_N, "UpdateEventDestinationOutput"),
+    id = id.from(_N, "UpdateEventDestinationResult"),
     type = "structure",
     members = {
         ConfigurationSetArn = schema.new({
@@ -10134,7 +10134,7 @@ M.UpdateEventDestinationOutput = schema.new({
 })
 
 M.UpdateNotifyConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateNotifyConfigurationInput"),
+    id = id.from(_N, "UpdateNotifyConfigurationRequest"),
     type = "structure",
     members = {
         NotifyConfigurationId = schema.new({
@@ -10182,7 +10182,7 @@ M.UpdateNotifyConfigurationInput = schema.new({
 })
 
 M.UpdateNotifyConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateNotifyConfigurationOutput"),
+    id = id.from(_N, "UpdateNotifyConfigurationResult"),
     type = "structure",
     members = {
         NotifyConfigurationArn = schema.new({
@@ -10306,7 +10306,7 @@ M.UpdateNotifyConfigurationOutput = schema.new({
 })
 
 M.UpdatePhoneNumberInput = schema.new({
-    id = id.from(_N, "UpdatePhoneNumberInput"),
+    id = id.from(_N, "UpdatePhoneNumberRequest"),
     type = "structure",
     members = {
         PhoneNumberId = schema.new({
@@ -10364,7 +10364,7 @@ M.UpdatePhoneNumberInput = schema.new({
 })
 
 M.UpdatePhoneNumberOutput = schema.new({
-    id = id.from(_N, "UpdatePhoneNumberOutput"),
+    id = id.from(_N, "UpdatePhoneNumberResult"),
     type = "structure",
     members = {
         PhoneNumberArn = schema.new({
@@ -10492,7 +10492,7 @@ M.UpdatePhoneNumberOutput = schema.new({
 })
 
 M.UpdatePoolInput = schema.new({
-    id = id.from(_N, "UpdatePoolInput"),
+    id = id.from(_N, "UpdatePoolRequest"),
     type = "structure",
     members = {
         PoolId = schema.new({
@@ -10550,7 +10550,7 @@ M.UpdatePoolInput = schema.new({
 })
 
 M.UpdatePoolOutput = schema.new({
-    id = id.from(_N, "UpdatePoolOutput"),
+    id = id.from(_N, "UpdatePoolResult"),
     type = "structure",
     members = {
         PoolArn = schema.new({
@@ -10641,7 +10641,7 @@ M.UpdatePoolOutput = schema.new({
 })
 
 M.UpdateProtectConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateProtectConfigurationInput"),
+    id = id.from(_N, "UpdateProtectConfigurationRequest"),
     type = "structure",
     members = {
         ProtectConfigurationId = schema.new({
@@ -10663,7 +10663,7 @@ M.UpdateProtectConfigurationInput = schema.new({
 })
 
 M.UpdateProtectConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateProtectConfigurationOutput"),
+    id = id.from(_N, "UpdateProtectConfigurationResult"),
     type = "structure",
     members = {
         ProtectConfigurationArn = schema.new({
@@ -10717,7 +10717,7 @@ M.UpdateProtectConfigurationOutput = schema.new({
 })
 
 M.UpdateProtectConfigurationCountryRuleSetInput = schema.new({
-    id = id.from(_N, "UpdateProtectConfigurationCountryRuleSetInput"),
+    id = id.from(_N, "UpdateProtectConfigurationCountryRuleSetRequest"),
     type = "structure",
     members = {
         ProtectConfigurationId = schema.new({
@@ -10753,7 +10753,7 @@ M.UpdateProtectConfigurationCountryRuleSetInput = schema.new({
 })
 
 M.UpdateProtectConfigurationCountryRuleSetOutput = schema.new({
-    id = id.from(_N, "UpdateProtectConfigurationCountryRuleSetOutput"),
+    id = id.from(_N, "UpdateProtectConfigurationCountryRuleSetResult"),
     type = "structure",
     members = {
         ProtectConfigurationArn = schema.new({
@@ -10798,7 +10798,7 @@ M.UpdateProtectConfigurationCountryRuleSetOutput = schema.new({
 })
 
 M.UpdateRcsAgentInput = schema.new({
-    id = id.from(_N, "UpdateRcsAgentInput"),
+    id = id.from(_N, "UpdateRcsAgentRequest"),
     type = "structure",
     members = {
         RcsAgentId = schema.new({
@@ -10850,7 +10850,7 @@ M.UpdateRcsAgentInput = schema.new({
 })
 
 M.UpdateRcsAgentOutput = schema.new({
-    id = id.from(_N, "UpdateRcsAgentOutput"),
+    id = id.from(_N, "UpdateRcsAgentResult"),
     type = "structure",
     members = {
         RcsAgentArn = schema.new({
@@ -10941,7 +10941,7 @@ M.UpdateRcsAgentOutput = schema.new({
 })
 
 M.UpdateSenderIdInput = schema.new({
-    id = id.from(_N, "UpdateSenderIdInput"),
+    id = id.from(_N, "UpdateSenderIdRequest"),
     type = "structure",
     members = {
         SenderId = schema.new({
@@ -10972,7 +10972,7 @@ M.UpdateSenderIdInput = schema.new({
 })
 
 M.UpdateSenderIdOutput = schema.new({
-    id = id.from(_N, "UpdateSenderIdOutput"),
+    id = id.from(_N, "UpdateSenderIdResult"),
     type = "structure",
     members = {
         SenderIdArn = schema.new({
@@ -11051,7 +11051,7 @@ M.UpdateSenderIdOutput = schema.new({
 })
 
 M.VerifyDestinationNumberInput = schema.new({
-    id = id.from(_N, "VerifyDestinationNumberInput"),
+    id = id.from(_N, "VerifyDestinationNumberRequest"),
     type = "structure",
     members = {
         VerifiedDestinationNumberId = schema.new({
@@ -11076,7 +11076,7 @@ M.VerifyDestinationNumberInput = schema.new({
 })
 
 M.VerifyDestinationNumberOutput = schema.new({
-    id = id.from(_N, "VerifyDestinationNumberOutput"),
+    id = id.from(_N, "VerifyDestinationNumberResult"),
     type = "structure",
     members = {
         VerifiedDestinationNumberArn = schema.new({
@@ -11126,5 +11126,19 @@ M.VerifyDestinationNumberOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

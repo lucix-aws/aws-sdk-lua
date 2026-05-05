@@ -740,7 +740,7 @@ M.ArgoCdConfigResponse = schema.new({
 })
 
 M.AssociateAccessPolicyInput = schema.new({
-    id = id.from(_N, "AssociateAccessPolicyInput"),
+    id = id.from(_N, "AssociateAccessPolicyRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -818,7 +818,7 @@ M.AssociatedAccessPolicy = schema.new({
 })
 
 M.AssociateAccessPolicyOutput = schema.new({
-    id = id.from(_N, "AssociateAccessPolicyOutput"),
+    id = id.from(_N, "AssociateAccessPolicyResponse"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -1050,7 +1050,7 @@ M.EncryptionConfig = schema.new({
 })
 
 M.AssociateEncryptionConfigInput = schema.new({
-    id = id.from(_N, "AssociateEncryptionConfigInput"),
+    id = id.from(_N, "AssociateEncryptionConfigRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -1176,7 +1176,7 @@ M.Update = schema.new({
 })
 
 M.AssociateEncryptionConfigOutput = schema.new({
-    id = id.from(_N, "AssociateEncryptionConfigOutput"),
+    id = id.from(_N, "AssociateEncryptionConfigResponse"),
     type = "structure",
     members = {
         update = schema.new({
@@ -1352,7 +1352,7 @@ M.OidcIdentityProviderConfigRequest = schema.new({
 })
 
 M.AssociateIdentityProviderConfigInput = schema.new({
-    id = id.from(_N, "AssociateIdentityProviderConfigInput"),
+    id = id.from(_N, "AssociateIdentityProviderConfigRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -1396,7 +1396,7 @@ M.AssociateIdentityProviderConfigInput = schema.new({
 })
 
 M.AssociateIdentityProviderConfigOutput = schema.new({
-    id = id.from(_N, "AssociateIdentityProviderConfigOutput"),
+    id = id.from(_N, "AssociateIdentityProviderConfigResponse"),
     type = "structure",
     members = {
         update = schema.new({
@@ -1431,7 +1431,7 @@ M.AutoScalingGroup = schema.new({
 })
 
 M.CreateAccessEntryInput = schema.new({
-    id = id.from(_N, "CreateAccessEntryInput"),
+    id = id.from(_N, "CreateAccessEntryRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -1493,7 +1493,7 @@ M.CreateAccessEntryInput = schema.new({
 })
 
 M.CreateAccessEntryOutput = schema.new({
-    id = id.from(_N, "CreateAccessEntryOutput"),
+    id = id.from(_N, "CreateAccessEntryResponse"),
     type = "structure",
     members = {
         accessEntry = schema.new({
@@ -1541,7 +1541,7 @@ M.ResourceLimitExceededException = schema.new({
 })
 
 M.CreateAddonInput = schema.new({
-    id = id.from(_N, "CreateAddonInput"),
+    id = id.from(_N, "CreateAddonRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -1622,7 +1622,7 @@ M.CreateAddonInput = schema.new({
 })
 
 M.CreateAddonOutput = schema.new({
-    id = id.from(_N, "CreateAddonOutput"),
+    id = id.from(_N, "CreateAddonResponse"),
     type = "structure",
     members = {
         addon = schema.new({
@@ -1650,7 +1650,7 @@ M.CapabilityConfigurationRequest = schema.new({
 })
 
 M.CreateCapabilityInput = schema.new({
-    id = id.from(_N, "CreateCapabilityInput"),
+    id = id.from(_N, "CreateCapabilityRequest"),
     type = "structure",
     members = {
         capabilityName = schema.new({
@@ -1863,7 +1863,7 @@ M.Capability = schema.new({
 })
 
 M.CreateCapabilityOutput = schema.new({
-    id = id.from(_N, "CreateCapabilityOutput"),
+    id = id.from(_N, "CreateCapabilityResponse"),
     type = "structure",
     members = {
         capability = schema.new({
@@ -2196,7 +2196,7 @@ M.ZonalShiftConfigRequest = schema.new({
 })
 
 M.CreateClusterInput = schema.new({
-    id = id.from(_N, "CreateClusterInput"),
+    id = id.from(_N, "CreateClusterRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2876,7 +2876,7 @@ M.Cluster = schema.new({
 })
 
 M.CreateClusterOutput = schema.new({
-    id = id.from(_N, "CreateClusterOutput"),
+    id = id.from(_N, "CreateClusterResponse"),
     type = "structure",
     members = {
         cluster = schema.new({
@@ -2963,7 +2963,7 @@ M.EksAnywhereSubscriptionTerm = schema.new({
 })
 
 M.CreateEksAnywhereSubscriptionInput = schema.new({
-    id = id.from(_N, "CreateEksAnywhereSubscriptionInput"),
+    id = id.from(_N, "CreateEksAnywhereSubscriptionRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3145,7 +3145,7 @@ M.EksAnywhereSubscription = schema.new({
 })
 
 M.CreateEksAnywhereSubscriptionOutput = schema.new({
-    id = id.from(_N, "CreateEksAnywhereSubscriptionOutput"),
+    id = id.from(_N, "CreateEksAnywhereSubscriptionResponse"),
     type = "structure",
     members = {
         subscription = schema.new({
@@ -3180,7 +3180,7 @@ M.FargateProfileSelector = schema.new({
 })
 
 M.CreateFargateProfileInput = schema.new({
-    id = id.from(_N, "CreateFargateProfileInput"),
+    id = id.from(_N, "CreateFargateProfileRequest"),
     type = "structure",
     members = {
         fargateProfileName = schema.new({
@@ -3358,7 +3358,7 @@ M.FargateProfile = schema.new({
 })
 
 M.CreateFargateProfileOutput = schema.new({
-    id = id.from(_N, "CreateFargateProfileOutput"),
+    id = id.from(_N, "CreateFargateProfileResponse"),
     type = "structure",
     members = {
         fargateProfile = schema.new({
@@ -3604,7 +3604,7 @@ M.WarmPoolConfig = schema.new({
 })
 
 M.CreateNodegroupInput = schema.new({
-    id = id.from(_N, "CreateNodegroupInput"),
+    id = id.from(_N, "CreateNodegroupRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -3992,7 +3992,7 @@ M.Nodegroup = schema.new({
 })
 
 M.CreateNodegroupOutput = schema.new({
-    id = id.from(_N, "CreateNodegroupOutput"),
+    id = id.from(_N, "CreateNodegroupResponse"),
     type = "structure",
     members = {
         nodegroup = schema.new({
@@ -4006,7 +4006,7 @@ M.CreateNodegroupOutput = schema.new({
 })
 
 M.CreatePodIdentityAssociationInput = schema.new({
-    id = id.from(_N, "CreatePodIdentityAssociationInput"),
+    id = id.from(_N, "CreatePodIdentityAssociationRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -4178,7 +4178,7 @@ M.PodIdentityAssociation = schema.new({
 })
 
 M.CreatePodIdentityAssociationOutput = schema.new({
-    id = id.from(_N, "CreatePodIdentityAssociationOutput"),
+    id = id.from(_N, "CreatePodIdentityAssociationResponse"),
     type = "structure",
     members = {
         association = schema.new({
@@ -4192,7 +4192,7 @@ M.CreatePodIdentityAssociationOutput = schema.new({
 })
 
 M.DeleteAccessEntryInput = schema.new({
-    id = id.from(_N, "DeleteAccessEntryInput"),
+    id = id.from(_N, "DeleteAccessEntryRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -4219,12 +4219,12 @@ M.DeleteAccessEntryInput = schema.new({
 })
 
 M.DeleteAccessEntryOutput = schema.new({
-    id = id.from(_N, "DeleteAccessEntryOutput"),
+    id = id.from(_N, "DeleteAccessEntryResponse"),
     type = "structure",
 })
 
 M.DeleteAddonInput = schema.new({
-    id = id.from(_N, "DeleteAddonInput"),
+    id = id.from(_N, "DeleteAddonRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -4261,7 +4261,7 @@ M.DeleteAddonInput = schema.new({
 })
 
 M.DeleteAddonOutput = schema.new({
-    id = id.from(_N, "DeleteAddonOutput"),
+    id = id.from(_N, "DeleteAddonResponse"),
     type = "structure",
     members = {
         addon = schema.new({
@@ -4275,7 +4275,7 @@ M.DeleteAddonOutput = schema.new({
 })
 
 M.DeleteCapabilityInput = schema.new({
-    id = id.from(_N, "DeleteCapabilityInput"),
+    id = id.from(_N, "DeleteCapabilityRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -4302,7 +4302,7 @@ M.DeleteCapabilityInput = schema.new({
 })
 
 M.DeleteCapabilityOutput = schema.new({
-    id = id.from(_N, "DeleteCapabilityOutput"),
+    id = id.from(_N, "DeleteCapabilityResponse"),
     type = "structure",
     members = {
         capability = schema.new({
@@ -4316,7 +4316,7 @@ M.DeleteCapabilityOutput = schema.new({
 })
 
 M.DeleteClusterInput = schema.new({
-    id = id.from(_N, "DeleteClusterInput"),
+    id = id.from(_N, "DeleteClusterRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4333,7 +4333,7 @@ M.DeleteClusterInput = schema.new({
 })
 
 M.DeleteClusterOutput = schema.new({
-    id = id.from(_N, "DeleteClusterOutput"),
+    id = id.from(_N, "DeleteClusterResponse"),
     type = "structure",
     members = {
         cluster = schema.new({
@@ -4347,7 +4347,7 @@ M.DeleteClusterOutput = schema.new({
 })
 
 M.DeleteEksAnywhereSubscriptionInput = schema.new({
-    id = id.from(_N, "DeleteEksAnywhereSubscriptionInput"),
+    id = id.from(_N, "DeleteEksAnywhereSubscriptionRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4364,7 +4364,7 @@ M.DeleteEksAnywhereSubscriptionInput = schema.new({
 })
 
 M.DeleteEksAnywhereSubscriptionOutput = schema.new({
-    id = id.from(_N, "DeleteEksAnywhereSubscriptionOutput"),
+    id = id.from(_N, "DeleteEksAnywhereSubscriptionResponse"),
     type = "structure",
     members = {
         subscription = schema.new({
@@ -4378,7 +4378,7 @@ M.DeleteEksAnywhereSubscriptionOutput = schema.new({
 })
 
 M.DeleteFargateProfileInput = schema.new({
-    id = id.from(_N, "DeleteFargateProfileInput"),
+    id = id.from(_N, "DeleteFargateProfileRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -4405,7 +4405,7 @@ M.DeleteFargateProfileInput = schema.new({
 })
 
 M.DeleteFargateProfileOutput = schema.new({
-    id = id.from(_N, "DeleteFargateProfileOutput"),
+    id = id.from(_N, "DeleteFargateProfileResponse"),
     type = "structure",
     members = {
         fargateProfile = schema.new({
@@ -4419,7 +4419,7 @@ M.DeleteFargateProfileOutput = schema.new({
 })
 
 M.DeleteNodegroupInput = schema.new({
-    id = id.from(_N, "DeleteNodegroupInput"),
+    id = id.from(_N, "DeleteNodegroupRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -4446,7 +4446,7 @@ M.DeleteNodegroupInput = schema.new({
 })
 
 M.DeleteNodegroupOutput = schema.new({
-    id = id.from(_N, "DeleteNodegroupOutput"),
+    id = id.from(_N, "DeleteNodegroupResponse"),
     type = "structure",
     members = {
         nodegroup = schema.new({
@@ -4460,7 +4460,7 @@ M.DeleteNodegroupOutput = schema.new({
 })
 
 M.DeletePodIdentityAssociationInput = schema.new({
-    id = id.from(_N, "DeletePodIdentityAssociationInput"),
+    id = id.from(_N, "DeletePodIdentityAssociationRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -4487,7 +4487,7 @@ M.DeletePodIdentityAssociationInput = schema.new({
 })
 
 M.DeletePodIdentityAssociationOutput = schema.new({
-    id = id.from(_N, "DeletePodIdentityAssociationOutput"),
+    id = id.from(_N, "DeletePodIdentityAssociationResponse"),
     type = "structure",
     members = {
         association = schema.new({
@@ -4501,7 +4501,7 @@ M.DeletePodIdentityAssociationOutput = schema.new({
 })
 
 M.DeregisterClusterInput = schema.new({
-    id = id.from(_N, "DeregisterClusterInput"),
+    id = id.from(_N, "DeregisterClusterRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4518,7 +4518,7 @@ M.DeregisterClusterInput = schema.new({
 })
 
 M.DeregisterClusterOutput = schema.new({
-    id = id.from(_N, "DeregisterClusterOutput"),
+    id = id.from(_N, "DeregisterClusterResponse"),
     type = "structure",
     members = {
         cluster = schema.new({
@@ -4532,7 +4532,7 @@ M.DeregisterClusterOutput = schema.new({
 })
 
 M.DescribeAccessEntryInput = schema.new({
-    id = id.from(_N, "DescribeAccessEntryInput"),
+    id = id.from(_N, "DescribeAccessEntryRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -4559,7 +4559,7 @@ M.DescribeAccessEntryInput = schema.new({
 })
 
 M.DescribeAccessEntryOutput = schema.new({
-    id = id.from(_N, "DescribeAccessEntryOutput"),
+    id = id.from(_N, "DescribeAccessEntryResponse"),
     type = "structure",
     members = {
         accessEntry = schema.new({
@@ -4573,7 +4573,7 @@ M.DescribeAccessEntryOutput = schema.new({
 })
 
 M.DescribeAddonInput = schema.new({
-    id = id.from(_N, "DescribeAddonInput"),
+    id = id.from(_N, "DescribeAddonRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -4600,7 +4600,7 @@ M.DescribeAddonInput = schema.new({
 })
 
 M.DescribeAddonOutput = schema.new({
-    id = id.from(_N, "DescribeAddonOutput"),
+    id = id.from(_N, "DescribeAddonResponse"),
     type = "structure",
     members = {
         addon = schema.new({
@@ -4614,7 +4614,7 @@ M.DescribeAddonOutput = schema.new({
 })
 
 M.DescribeAddonConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeAddonConfigurationInput"),
+    id = id.from(_N, "DescribeAddonConfigurationRequest"),
     type = "structure",
     members = {
         addonName = schema.new({
@@ -4641,7 +4641,7 @@ M.DescribeAddonConfigurationInput = schema.new({
 })
 
 M.DescribeAddonConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeAddonConfigurationOutput"),
+    id = id.from(_N, "DescribeAddonConfigurationResponse"),
     type = "structure",
     members = {
         addonName = schema.new({
@@ -4673,7 +4673,7 @@ M.DescribeAddonConfigurationOutput = schema.new({
 })
 
 M.DescribeAddonVersionsInput = schema.new({
-    id = id.from(_N, "DescribeAddonVersionsInput"),
+    id = id.from(_N, "DescribeAddonVersionsRequest"),
     type = "structure",
     members = {
         kubernetesVersion = schema.new({
@@ -4746,7 +4746,7 @@ M.DescribeAddonVersionsInput = schema.new({
 })
 
 M.DescribeAddonVersionsOutput = schema.new({
-    id = id.from(_N, "DescribeAddonVersionsOutput"),
+    id = id.from(_N, "DescribeAddonVersionsResponse"),
     type = "structure",
     members = {
         addons = schema.new({
@@ -4766,7 +4766,7 @@ M.DescribeAddonVersionsOutput = schema.new({
 })
 
 M.DescribeCapabilityInput = schema.new({
-    id = id.from(_N, "DescribeCapabilityInput"),
+    id = id.from(_N, "DescribeCapabilityRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -4793,7 +4793,7 @@ M.DescribeCapabilityInput = schema.new({
 })
 
 M.DescribeCapabilityOutput = schema.new({
-    id = id.from(_N, "DescribeCapabilityOutput"),
+    id = id.from(_N, "DescribeCapabilityResponse"),
     type = "structure",
     members = {
         capability = schema.new({
@@ -4807,7 +4807,7 @@ M.DescribeCapabilityOutput = schema.new({
 })
 
 M.DescribeClusterInput = schema.new({
-    id = id.from(_N, "DescribeClusterInput"),
+    id = id.from(_N, "DescribeClusterRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4824,7 +4824,7 @@ M.DescribeClusterInput = schema.new({
 })
 
 M.DescribeClusterOutput = schema.new({
-    id = id.from(_N, "DescribeClusterOutput"),
+    id = id.from(_N, "DescribeClusterResponse"),
     type = "structure",
     members = {
         cluster = schema.new({
@@ -4838,7 +4838,7 @@ M.DescribeClusterOutput = schema.new({
 })
 
 M.DescribeClusterVersionsInput = schema.new({
-    id = id.from(_N, "DescribeClusterVersionsInput"),
+    id = id.from(_N, "DescribeClusterVersionsRequest"),
     type = "structure",
     members = {
         clusterType = schema.new({
@@ -4988,7 +4988,7 @@ M.ClusterVersionInformation = schema.new({
 })
 
 M.DescribeClusterVersionsOutput = schema.new({
-    id = id.from(_N, "DescribeClusterVersionsOutput"),
+    id = id.from(_N, "DescribeClusterVersionsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5008,7 +5008,7 @@ M.DescribeClusterVersionsOutput = schema.new({
 })
 
 M.DescribeEksAnywhereSubscriptionInput = schema.new({
-    id = id.from(_N, "DescribeEksAnywhereSubscriptionInput"),
+    id = id.from(_N, "DescribeEksAnywhereSubscriptionRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -5025,7 +5025,7 @@ M.DescribeEksAnywhereSubscriptionInput = schema.new({
 })
 
 M.DescribeEksAnywhereSubscriptionOutput = schema.new({
-    id = id.from(_N, "DescribeEksAnywhereSubscriptionOutput"),
+    id = id.from(_N, "DescribeEksAnywhereSubscriptionResponse"),
     type = "structure",
     members = {
         subscription = schema.new({
@@ -5039,7 +5039,7 @@ M.DescribeEksAnywhereSubscriptionOutput = schema.new({
 })
 
 M.DescribeFargateProfileInput = schema.new({
-    id = id.from(_N, "DescribeFargateProfileInput"),
+    id = id.from(_N, "DescribeFargateProfileRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -5066,7 +5066,7 @@ M.DescribeFargateProfileInput = schema.new({
 })
 
 M.DescribeFargateProfileOutput = schema.new({
-    id = id.from(_N, "DescribeFargateProfileOutput"),
+    id = id.from(_N, "DescribeFargateProfileResponse"),
     type = "structure",
     members = {
         fargateProfile = schema.new({
@@ -5105,7 +5105,7 @@ M.IdentityProviderConfig = schema.new({
 })
 
 M.DescribeIdentityProviderConfigInput = schema.new({
-    id = id.from(_N, "DescribeIdentityProviderConfigInput"),
+    id = id.from(_N, "DescribeIdentityProviderConfigRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -5229,7 +5229,7 @@ M.IdentityProviderConfigResponse = schema.new({
 })
 
 M.DescribeIdentityProviderConfigOutput = schema.new({
-    id = id.from(_N, "DescribeIdentityProviderConfigOutput"),
+    id = id.from(_N, "DescribeIdentityProviderConfigResponse"),
     type = "structure",
     members = {
         identityProviderConfig = schema.new({
@@ -5243,7 +5243,7 @@ M.DescribeIdentityProviderConfigOutput = schema.new({
 })
 
 M.DescribeInsightInput = schema.new({
-    id = id.from(_N, "DescribeInsightInput"),
+    id = id.from(_N, "DescribeInsightRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -5486,7 +5486,7 @@ M.Insight = schema.new({
 })
 
 M.DescribeInsightOutput = schema.new({
-    id = id.from(_N, "DescribeInsightOutput"),
+    id = id.from(_N, "DescribeInsightResponse"),
     type = "structure",
     members = {
         insight = schema.new({
@@ -5500,7 +5500,7 @@ M.DescribeInsightOutput = schema.new({
 })
 
 M.DescribeInsightsRefreshInput = schema.new({
-    id = id.from(_N, "DescribeInsightsRefreshInput"),
+    id = id.from(_N, "DescribeInsightsRefreshRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -5517,7 +5517,7 @@ M.DescribeInsightsRefreshInput = schema.new({
 })
 
 M.DescribeInsightsRefreshOutput = schema.new({
-    id = id.from(_N, "DescribeInsightsRefreshOutput"),
+    id = id.from(_N, "DescribeInsightsRefreshResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -5548,7 +5548,7 @@ M.DescribeInsightsRefreshOutput = schema.new({
 })
 
 M.DescribeNodegroupInput = schema.new({
-    id = id.from(_N, "DescribeNodegroupInput"),
+    id = id.from(_N, "DescribeNodegroupRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -5575,7 +5575,7 @@ M.DescribeNodegroupInput = schema.new({
 })
 
 M.DescribeNodegroupOutput = schema.new({
-    id = id.from(_N, "DescribeNodegroupOutput"),
+    id = id.from(_N, "DescribeNodegroupResponse"),
     type = "structure",
     members = {
         nodegroup = schema.new({
@@ -5589,7 +5589,7 @@ M.DescribeNodegroupOutput = schema.new({
 })
 
 M.DescribePodIdentityAssociationInput = schema.new({
-    id = id.from(_N, "DescribePodIdentityAssociationInput"),
+    id = id.from(_N, "DescribePodIdentityAssociationRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -5616,7 +5616,7 @@ M.DescribePodIdentityAssociationInput = schema.new({
 })
 
 M.DescribePodIdentityAssociationOutput = schema.new({
-    id = id.from(_N, "DescribePodIdentityAssociationOutput"),
+    id = id.from(_N, "DescribePodIdentityAssociationResponse"),
     type = "structure",
     members = {
         association = schema.new({
@@ -5630,7 +5630,7 @@ M.DescribePodIdentityAssociationOutput = schema.new({
 })
 
 M.DescribeUpdateInput = schema.new({
-    id = id.from(_N, "DescribeUpdateInput"),
+    id = id.from(_N, "DescribeUpdateRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -5684,7 +5684,7 @@ M.DescribeUpdateInput = schema.new({
 })
 
 M.DescribeUpdateOutput = schema.new({
-    id = id.from(_N, "DescribeUpdateOutput"),
+    id = id.from(_N, "DescribeUpdateResponse"),
     type = "structure",
     members = {
         update = schema.new({
@@ -5698,7 +5698,7 @@ M.DescribeUpdateOutput = schema.new({
 })
 
 M.DisassociateAccessPolicyInput = schema.new({
-    id = id.from(_N, "DisassociateAccessPolicyInput"),
+    id = id.from(_N, "DisassociateAccessPolicyRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -5735,12 +5735,12 @@ M.DisassociateAccessPolicyInput = schema.new({
 })
 
 M.DisassociateAccessPolicyOutput = schema.new({
-    id = id.from(_N, "DisassociateAccessPolicyOutput"),
+    id = id.from(_N, "DisassociateAccessPolicyResponse"),
     type = "structure",
 })
 
 M.DisassociateIdentityProviderConfigInput = schema.new({
-    id = id.from(_N, "DisassociateIdentityProviderConfigInput"),
+    id = id.from(_N, "DisassociateIdentityProviderConfigRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -5776,7 +5776,7 @@ M.DisassociateIdentityProviderConfigInput = schema.new({
 })
 
 M.DisassociateIdentityProviderConfigOutput = schema.new({
-    id = id.from(_N, "DisassociateIdentityProviderConfigOutput"),
+    id = id.from(_N, "DisassociateIdentityProviderConfigResponse"),
     type = "structure",
     members = {
         update = schema.new({
@@ -5790,7 +5790,7 @@ M.DisassociateIdentityProviderConfigOutput = schema.new({
 })
 
 M.ListAccessEntriesInput = schema.new({
-    id = id.from(_N, "ListAccessEntriesInput"),
+    id = id.from(_N, "ListAccessEntriesRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -5834,7 +5834,7 @@ M.ListAccessEntriesInput = schema.new({
 })
 
 M.ListAccessEntriesOutput = schema.new({
-    id = id.from(_N, "ListAccessEntriesOutput"),
+    id = id.from(_N, "ListAccessEntriesResponse"),
     type = "structure",
     members = {
         accessEntries = schema.new({
@@ -5854,7 +5854,7 @@ M.ListAccessEntriesOutput = schema.new({
 })
 
 M.ListAccessPoliciesInput = schema.new({
-    id = id.from(_N, "ListAccessPoliciesInput"),
+    id = id.from(_N, "ListAccessPoliciesRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -5879,7 +5879,7 @@ M.ListAccessPoliciesInput = schema.new({
 })
 
 M.ListAccessPoliciesOutput = schema.new({
-    id = id.from(_N, "ListAccessPoliciesOutput"),
+    id = id.from(_N, "ListAccessPoliciesResponse"),
     type = "structure",
     members = {
         accessPolicies = schema.new({
@@ -5899,7 +5899,7 @@ M.ListAccessPoliciesOutput = schema.new({
 })
 
 M.ListAddonsInput = schema.new({
-    id = id.from(_N, "ListAddonsInput"),
+    id = id.from(_N, "ListAddonsRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -5934,7 +5934,7 @@ M.ListAddonsInput = schema.new({
 })
 
 M.ListAddonsOutput = schema.new({
-    id = id.from(_N, "ListAddonsOutput"),
+    id = id.from(_N, "ListAddonsResponse"),
     type = "structure",
     members = {
         addons = schema.new({
@@ -5954,7 +5954,7 @@ M.ListAddonsOutput = schema.new({
 })
 
 M.ListAssociatedAccessPoliciesInput = schema.new({
-    id = id.from(_N, "ListAssociatedAccessPoliciesInput"),
+    id = id.from(_N, "ListAssociatedAccessPoliciesRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -5999,7 +5999,7 @@ M.ListAssociatedAccessPoliciesInput = schema.new({
 })
 
 M.ListAssociatedAccessPoliciesOutput = schema.new({
-    id = id.from(_N, "ListAssociatedAccessPoliciesOutput"),
+    id = id.from(_N, "ListAssociatedAccessPoliciesResponse"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -6031,7 +6031,7 @@ M.ListAssociatedAccessPoliciesOutput = schema.new({
 })
 
 M.ListCapabilitiesInput = schema.new({
-    id = id.from(_N, "ListCapabilitiesInput"),
+    id = id.from(_N, "ListCapabilitiesRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -6115,7 +6115,7 @@ M.CapabilitySummary = schema.new({
 })
 
 M.ListCapabilitiesOutput = schema.new({
-    id = id.from(_N, "ListCapabilitiesOutput"),
+    id = id.from(_N, "ListCapabilitiesResponse"),
     type = "structure",
     members = {
         capabilities = schema.new({
@@ -6135,7 +6135,7 @@ M.ListCapabilitiesOutput = schema.new({
 })
 
 M.ListClustersInput = schema.new({
-    id = id.from(_N, "ListClustersInput"),
+    id = id.from(_N, "ListClustersRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -6170,7 +6170,7 @@ M.ListClustersInput = schema.new({
 })
 
 M.ListClustersOutput = schema.new({
-    id = id.from(_N, "ListClustersOutput"),
+    id = id.from(_N, "ListClustersResponse"),
     type = "structure",
     members = {
         clusters = schema.new({
@@ -6190,7 +6190,7 @@ M.ListClustersOutput = schema.new({
 })
 
 M.ListEksAnywhereSubscriptionsInput = schema.new({
-    id = id.from(_N, "ListEksAnywhereSubscriptionsInput"),
+    id = id.from(_N, "ListEksAnywhereSubscriptionsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -6225,7 +6225,7 @@ M.ListEksAnywhereSubscriptionsInput = schema.new({
 })
 
 M.ListEksAnywhereSubscriptionsOutput = schema.new({
-    id = id.from(_N, "ListEksAnywhereSubscriptionsOutput"),
+    id = id.from(_N, "ListEksAnywhereSubscriptionsResponse"),
     type = "structure",
     members = {
         subscriptions = schema.new({
@@ -6245,7 +6245,7 @@ M.ListEksAnywhereSubscriptionsOutput = schema.new({
 })
 
 M.ListFargateProfilesInput = schema.new({
-    id = id.from(_N, "ListFargateProfilesInput"),
+    id = id.from(_N, "ListFargateProfilesRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -6280,7 +6280,7 @@ M.ListFargateProfilesInput = schema.new({
 })
 
 M.ListFargateProfilesOutput = schema.new({
-    id = id.from(_N, "ListFargateProfilesOutput"),
+    id = id.from(_N, "ListFargateProfilesResponse"),
     type = "structure",
     members = {
         fargateProfileNames = schema.new({
@@ -6300,7 +6300,7 @@ M.ListFargateProfilesOutput = schema.new({
 })
 
 M.ListIdentityProviderConfigsInput = schema.new({
-    id = id.from(_N, "ListIdentityProviderConfigsInput"),
+    id = id.from(_N, "ListIdentityProviderConfigsRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -6335,7 +6335,7 @@ M.ListIdentityProviderConfigsInput = schema.new({
 })
 
 M.ListIdentityProviderConfigsOutput = schema.new({
-    id = id.from(_N, "ListIdentityProviderConfigsOutput"),
+    id = id.from(_N, "ListIdentityProviderConfigsResponse"),
     type = "structure",
     members = {
         identityProviderConfigs = schema.new({
@@ -6383,7 +6383,7 @@ M.InsightsFilter = schema.new({
 })
 
 M.ListInsightsInput = schema.new({
-    id = id.from(_N, "ListInsightsInput"),
+    id = id.from(_N, "ListInsightsRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -6475,7 +6475,7 @@ M.InsightSummary = schema.new({
 })
 
 M.ListInsightsOutput = schema.new({
-    id = id.from(_N, "ListInsightsOutput"),
+    id = id.from(_N, "ListInsightsResponse"),
     type = "structure",
     members = {
         insights = schema.new({
@@ -6495,7 +6495,7 @@ M.ListInsightsOutput = schema.new({
 })
 
 M.ListNodegroupsInput = schema.new({
-    id = id.from(_N, "ListNodegroupsInput"),
+    id = id.from(_N, "ListNodegroupsRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -6530,7 +6530,7 @@ M.ListNodegroupsInput = schema.new({
 })
 
 M.ListNodegroupsOutput = schema.new({
-    id = id.from(_N, "ListNodegroupsOutput"),
+    id = id.from(_N, "ListNodegroupsResponse"),
     type = "structure",
     members = {
         nodegroups = schema.new({
@@ -6550,7 +6550,7 @@ M.ListNodegroupsOutput = schema.new({
 })
 
 M.ListPodIdentityAssociationsInput = schema.new({
-    id = id.from(_N, "ListPodIdentityAssociationsInput"),
+    id = id.from(_N, "ListPodIdentityAssociationsRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -6646,7 +6646,7 @@ M.PodIdentityAssociationSummary = schema.new({
 })
 
 M.ListPodIdentityAssociationsOutput = schema.new({
-    id = id.from(_N, "ListPodIdentityAssociationsOutput"),
+    id = id.from(_N, "ListPodIdentityAssociationsResponse"),
     type = "structure",
     members = {
         associations = schema.new({
@@ -6682,7 +6682,7 @@ M.BadRequestException = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6699,7 +6699,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -6730,7 +6730,7 @@ M.NotFoundException = schema.new({
 })
 
 M.ListUpdatesInput = schema.new({
-    id = id.from(_N, "ListUpdatesInput"),
+    id = id.from(_N, "ListUpdatesRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -6792,7 +6792,7 @@ M.ListUpdatesInput = schema.new({
 })
 
 M.ListUpdatesOutput = schema.new({
-    id = id.from(_N, "ListUpdatesOutput"),
+    id = id.from(_N, "ListUpdatesResponse"),
     type = "structure",
     members = {
         updateIds = schema.new({
@@ -6837,7 +6837,7 @@ M.ConnectorConfigRequest = schema.new({
 })
 
 M.RegisterClusterInput = schema.new({
-    id = id.from(_N, "RegisterClusterInput"),
+    id = id.from(_N, "RegisterClusterRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -6880,7 +6880,7 @@ M.RegisterClusterInput = schema.new({
 })
 
 M.RegisterClusterOutput = schema.new({
-    id = id.from(_N, "RegisterClusterOutput"),
+    id = id.from(_N, "RegisterClusterResponse"),
     type = "structure",
     members = {
         cluster = schema.new({
@@ -6910,7 +6910,7 @@ M.ResourcePropagationDelayException = schema.new({
 })
 
 M.StartInsightsRefreshInput = schema.new({
-    id = id.from(_N, "StartInsightsRefreshInput"),
+    id = id.from(_N, "StartInsightsRefreshRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -6927,7 +6927,7 @@ M.StartInsightsRefreshInput = schema.new({
 })
 
 M.StartInsightsRefreshOutput = schema.new({
-    id = id.from(_N, "StartInsightsRefreshOutput"),
+    id = id.from(_N, "StartInsightsRefreshResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -6946,7 +6946,7 @@ M.StartInsightsRefreshOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6974,12 +6974,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -7007,12 +7007,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAccessEntryInput = schema.new({
-    id = id.from(_N, "UpdateAccessEntryInput"),
+    id = id.from(_N, "UpdateAccessEntryRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -7061,7 +7061,7 @@ M.UpdateAccessEntryInput = schema.new({
 })
 
 M.UpdateAccessEntryOutput = schema.new({
-    id = id.from(_N, "UpdateAccessEntryOutput"),
+    id = id.from(_N, "UpdateAccessEntryResponse"),
     type = "structure",
     members = {
         accessEntry = schema.new({
@@ -7075,7 +7075,7 @@ M.UpdateAccessEntryOutput = schema.new({
 })
 
 M.UpdateAddonInput = schema.new({
-    id = id.from(_N, "UpdateAddonInput"),
+    id = id.from(_N, "UpdateAddonRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -7142,7 +7142,7 @@ M.UpdateAddonInput = schema.new({
 })
 
 M.UpdateAddonOutput = schema.new({
-    id = id.from(_N, "UpdateAddonOutput"),
+    id = id.from(_N, "UpdateAddonResponse"),
     type = "structure",
     members = {
         update = schema.new({
@@ -7212,7 +7212,7 @@ M.UpdateCapabilityConfiguration = schema.new({
 })
 
 M.UpdateCapabilityInput = schema.new({
-    id = id.from(_N, "UpdateCapabilityInput"),
+    id = id.from(_N, "UpdateCapabilityRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -7267,7 +7267,7 @@ M.UpdateCapabilityInput = schema.new({
 })
 
 M.UpdateCapabilityOutput = schema.new({
-    id = id.from(_N, "UpdateCapabilityOutput"),
+    id = id.from(_N, "UpdateCapabilityResponse"),
     type = "structure",
     members = {
         update = schema.new({
@@ -7294,7 +7294,7 @@ M.UpdateAccessConfigRequest = schema.new({
 })
 
 M.UpdateClusterConfigInput = schema.new({
-    id = id.from(_N, "UpdateClusterConfigInput"),
+    id = id.from(_N, "UpdateClusterConfigRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -7396,7 +7396,7 @@ M.UpdateClusterConfigInput = schema.new({
 })
 
 M.UpdateClusterConfigOutput = schema.new({
-    id = id.from(_N, "UpdateClusterConfigOutput"),
+    id = id.from(_N, "UpdateClusterConfigResponse"),
     type = "structure",
     members = {
         update = schema.new({
@@ -7432,7 +7432,7 @@ M.InvalidStateException = schema.new({
 })
 
 M.UpdateClusterVersionInput = schema.new({
-    id = id.from(_N, "UpdateClusterVersionInput"),
+    id = id.from(_N, "UpdateClusterVersionRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -7476,7 +7476,7 @@ M.UpdateClusterVersionInput = schema.new({
 })
 
 M.UpdateClusterVersionOutput = schema.new({
-    id = id.from(_N, "UpdateClusterVersionOutput"),
+    id = id.from(_N, "UpdateClusterVersionResponse"),
     type = "structure",
     members = {
         update = schema.new({
@@ -7490,7 +7490,7 @@ M.UpdateClusterVersionOutput = schema.new({
 })
 
 M.UpdateEksAnywhereSubscriptionInput = schema.new({
-    id = id.from(_N, "UpdateEksAnywhereSubscriptionInput"),
+    id = id.from(_N, "UpdateEksAnywhereSubscriptionRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -7526,7 +7526,7 @@ M.UpdateEksAnywhereSubscriptionInput = schema.new({
 })
 
 M.UpdateEksAnywhereSubscriptionOutput = schema.new({
-    id = id.from(_N, "UpdateEksAnywhereSubscriptionOutput"),
+    id = id.from(_N, "UpdateEksAnywhereSubscriptionResponse"),
     type = "structure",
     members = {
         subscription = schema.new({
@@ -7583,7 +7583,7 @@ M.UpdateTaintsPayload = schema.new({
 })
 
 M.UpdateNodegroupConfigInput = schema.new({
-    id = id.from(_N, "UpdateNodegroupConfigInput"),
+    id = id.from(_N, "UpdateNodegroupConfigRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -7661,7 +7661,7 @@ M.UpdateNodegroupConfigInput = schema.new({
 })
 
 M.UpdateNodegroupConfigOutput = schema.new({
-    id = id.from(_N, "UpdateNodegroupConfigOutput"),
+    id = id.from(_N, "UpdateNodegroupConfigResponse"),
     type = "structure",
     members = {
         update = schema.new({
@@ -7675,7 +7675,7 @@ M.UpdateNodegroupConfigOutput = schema.new({
 })
 
 M.UpdateNodegroupVersionInput = schema.new({
-    id = id.from(_N, "UpdateNodegroupVersionInput"),
+    id = id.from(_N, "UpdateNodegroupVersionRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -7739,7 +7739,7 @@ M.UpdateNodegroupVersionInput = schema.new({
 })
 
 M.UpdateNodegroupVersionOutput = schema.new({
-    id = id.from(_N, "UpdateNodegroupVersionOutput"),
+    id = id.from(_N, "UpdateNodegroupVersionResponse"),
     type = "structure",
     members = {
         update = schema.new({
@@ -7753,7 +7753,7 @@ M.UpdateNodegroupVersionOutput = schema.new({
 })
 
 M.UpdatePodIdentityAssociationInput = schema.new({
-    id = id.from(_N, "UpdatePodIdentityAssociationInput"),
+    id = id.from(_N, "UpdatePodIdentityAssociationRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -7813,7 +7813,7 @@ M.UpdatePodIdentityAssociationInput = schema.new({
 })
 
 M.UpdatePodIdentityAssociationOutput = schema.new({
-    id = id.from(_N, "UpdatePodIdentityAssociationOutput"),
+    id = id.from(_N, "UpdatePodIdentityAssociationResponse"),
     type = "structure",
     members = {
         association = schema.new({
@@ -7825,5 +7825,19 @@ M.UpdatePodIdentityAssociationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

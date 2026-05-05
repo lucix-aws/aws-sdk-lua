@@ -24,7 +24,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.CreateCliTokenInput = schema.new({
-    id = id.from(_N, "CreateCliTokenInput"),
+    id = id.from(_N, "CreateCliTokenRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -41,7 +41,7 @@ M.CreateCliTokenInput = schema.new({
 })
 
 M.CreateCliTokenOutput = schema.new({
-    id = id.from(_N, "CreateCliTokenOutput"),
+    id = id.from(_N, "CreateCliTokenResponse"),
     type = "structure",
     members = {
         CliToken = schema.new({
@@ -388,7 +388,7 @@ M.ValidationException = schema.new({
 })
 
 M.CreateWebLoginTokenInput = schema.new({
-    id = id.from(_N, "CreateWebLoginTokenInput"),
+    id = id.from(_N, "CreateWebLoginTokenRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -405,7 +405,7 @@ M.CreateWebLoginTokenInput = schema.new({
 })
 
 M.CreateWebLoginTokenOutput = schema.new({
-    id = id.from(_N, "CreateWebLoginTokenOutput"),
+    id = id.from(_N, "CreateWebLoginTokenResponse"),
     type = "structure",
     members = {
         WebToken = schema.new({
@@ -831,7 +831,7 @@ M.GetEnvironmentOutput = schema.new({
 })
 
 M.InvokeRestApiInput = schema.new({
-    id = id.from(_N, "InvokeRestApiInput"),
+    id = id.from(_N, "InvokeRestApiRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -878,7 +878,7 @@ M.InvokeRestApiInput = schema.new({
 })
 
 M.InvokeRestApiOutput = schema.new({
-    id = id.from(_N, "InvokeRestApiOutput"),
+    id = id.from(_N, "InvokeRestApiResponse"),
     type = "structure",
     members = {
         RestApiStatusCode = schema.new({
@@ -1407,5 +1407,19 @@ M.UpdateEnvironmentOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

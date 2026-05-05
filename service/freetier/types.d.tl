@@ -142,11 +142,11 @@ end
 
 local type AccountPlanStatus = "NOT_STARTED" | "ACTIVE" | "EXPIRED"
 
-local type LanguageCode = "en-US" | "en-GB" | "id-ID" | "de-DE" | "es-ES" | "fr-FR" | "ja-JP" | "it-IT" | "pt-PT" | "ko-KR" | "zh-CN" | "zh-TW" | "tr-TR"
-
 local type ActivityStatus = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED" | "EXPIRING"
 
 local type AccountPlanType = "FREE" | "PAID"
+
+local type LanguageCode = "en-US" | "en-GB" | "id-ID" | "de-DE" | "es-ES" | "fr-FR" | "ja-JP" | "it-IT" | "pt-PT" | "ko-KR" | "zh-CN" | "zh-TW" | "tr-TR"
 
 local record M
     GetAccountActivityInput: GetAccountActivityInput

@@ -69,7 +69,7 @@ M.AzureBlobSasConfiguration = schema.new({
 })
 
 M.CancelTaskExecutionInput = schema.new({
-    id = id.from(_N, "CancelTaskExecutionInput"),
+    id = id.from(_N, "CancelTaskExecutionRequest"),
     type = "structure",
     members = {
         TaskExecutionArn = schema.new({
@@ -85,7 +85,7 @@ M.CancelTaskExecutionInput = schema.new({
 })
 
 M.CancelTaskExecutionOutput = schema.new({
-    id = id.from(_N, "CancelTaskExecutionOutput"),
+    id = id.from(_N, "CancelTaskExecutionResponse"),
     type = "structure",
 })
 
@@ -181,7 +181,7 @@ M.TagListEntry = schema.new({
 })
 
 M.CreateAgentInput = schema.new({
-    id = id.from(_N, "CreateAgentInput"),
+    id = id.from(_N, "CreateAgentRequest"),
     type = "structure",
     members = {
         ActivationKey = schema.new({
@@ -230,7 +230,7 @@ M.CreateAgentInput = schema.new({
 })
 
 M.CreateAgentOutput = schema.new({
-    id = id.from(_N, "CreateAgentOutput"),
+    id = id.from(_N, "CreateAgentResponse"),
     type = "structure",
     members = {
         AgentArn = schema.new({
@@ -262,7 +262,7 @@ M.CustomSecretConfig = schema.new({
 })
 
 M.CreateLocationAzureBlobInput = schema.new({
-    id = id.from(_N, "CreateLocationAzureBlobInput"),
+    id = id.from(_N, "CreateLocationAzureBlobRequest"),
     type = "structure",
     members = {
         ContainerUrl = schema.new({
@@ -340,7 +340,7 @@ M.CreateLocationAzureBlobInput = schema.new({
 })
 
 M.CreateLocationAzureBlobOutput = schema.new({
-    id = id.from(_N, "CreateLocationAzureBlobOutput"),
+    id = id.from(_N, "CreateLocationAzureBlobResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -379,7 +379,7 @@ M.Ec2Config = schema.new({
 })
 
 M.CreateLocationEfsInput = schema.new({
-    id = id.from(_N, "CreateLocationEfsInput"),
+    id = id.from(_N, "CreateLocationEfsRequest"),
     type = "structure",
     members = {
         Subdirectory = schema.new({
@@ -436,7 +436,7 @@ M.CreateLocationEfsInput = schema.new({
 })
 
 M.CreateLocationEfsOutput = schema.new({
-    id = id.from(_N, "CreateLocationEfsOutput"),
+    id = id.from(_N, "CreateLocationEfsResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -449,7 +449,7 @@ M.CreateLocationEfsOutput = schema.new({
 })
 
 M.CreateLocationFsxLustreInput = schema.new({
-    id = id.from(_N, "CreateLocationFsxLustreInput"),
+    id = id.from(_N, "CreateLocationFsxLustreRequest"),
     type = "structure",
     members = {
         FsxFilesystemArn = schema.new({
@@ -488,7 +488,7 @@ M.CreateLocationFsxLustreInput = schema.new({
 })
 
 M.CreateLocationFsxLustreOutput = schema.new({
-    id = id.from(_N, "CreateLocationFsxLustreOutput"),
+    id = id.from(_N, "CreateLocationFsxLustreResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -634,7 +634,7 @@ M.FsxProtocol = schema.new({
 })
 
 M.CreateLocationFsxOntapInput = schema.new({
-    id = id.from(_N, "CreateLocationFsxOntapInput"),
+    id = id.from(_N, "CreateLocationFsxOntapRequest"),
     type = "structure",
     members = {
         Protocol = schema.new({
@@ -683,7 +683,7 @@ M.CreateLocationFsxOntapInput = schema.new({
 })
 
 M.CreateLocationFsxOntapOutput = schema.new({
-    id = id.from(_N, "CreateLocationFsxOntapOutput"),
+    id = id.from(_N, "CreateLocationFsxOntapResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -696,7 +696,7 @@ M.CreateLocationFsxOntapOutput = schema.new({
 })
 
 M.CreateLocationFsxOpenZfsInput = schema.new({
-    id = id.from(_N, "CreateLocationFsxOpenZfsInput"),
+    id = id.from(_N, "CreateLocationFsxOpenZfsRequest"),
     type = "structure",
     members = {
         FsxFilesystemArn = schema.new({
@@ -745,7 +745,7 @@ M.CreateLocationFsxOpenZfsInput = schema.new({
 })
 
 M.CreateLocationFsxOpenZfsOutput = schema.new({
-    id = id.from(_N, "CreateLocationFsxOpenZfsOutput"),
+    id = id.from(_N, "CreateLocationFsxOpenZfsResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -758,7 +758,7 @@ M.CreateLocationFsxOpenZfsOutput = schema.new({
 })
 
 M.CreateLocationFsxWindowsInput = schema.new({
-    id = id.from(_N, "CreateLocationFsxWindowsInput"),
+    id = id.from(_N, "CreateLocationFsxWindowsRequest"),
     type = "structure",
     members = {
         Subdirectory = schema.new({
@@ -832,7 +832,7 @@ M.CreateLocationFsxWindowsInput = schema.new({
 })
 
 M.CreateLocationFsxWindowsOutput = schema.new({
-    id = id.from(_N, "CreateLocationFsxWindowsOutput"),
+    id = id.from(_N, "CreateLocationFsxWindowsResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -889,7 +889,7 @@ M.QopConfiguration = schema.new({
 })
 
 M.CreateLocationHdfsInput = schema.new({
-    id = id.from(_N, "CreateLocationHdfsInput"),
+    id = id.from(_N, "CreateLocationHdfsRequest"),
     type = "structure",
     members = {
         Subdirectory = schema.new({
@@ -1001,7 +1001,7 @@ M.CreateLocationHdfsInput = schema.new({
 })
 
 M.CreateLocationHdfsOutput = schema.new({
-    id = id.from(_N, "CreateLocationHdfsOutput"),
+    id = id.from(_N, "CreateLocationHdfsResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -1031,7 +1031,7 @@ M.OnPremConfig = schema.new({
 })
 
 M.CreateLocationNfsInput = schema.new({
-    id = id.from(_N, "CreateLocationNfsInput"),
+    id = id.from(_N, "CreateLocationNfsRequest"),
     type = "structure",
     members = {
         Subdirectory = schema.new({
@@ -1080,7 +1080,7 @@ M.CreateLocationNfsInput = schema.new({
 })
 
 M.CreateLocationNfsOutput = schema.new({
-    id = id.from(_N, "CreateLocationNfsOutput"),
+    id = id.from(_N, "CreateLocationNfsResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -1093,7 +1093,7 @@ M.CreateLocationNfsOutput = schema.new({
 })
 
 M.CreateLocationObjectStorageInput = schema.new({
-    id = id.from(_N, "CreateLocationObjectStorageInput"),
+    id = id.from(_N, "CreateLocationObjectStorageRequest"),
     type = "structure",
     members = {
         ServerHostname = schema.new({
@@ -1182,7 +1182,7 @@ M.CreateLocationObjectStorageInput = schema.new({
 })
 
 M.CreateLocationObjectStorageOutput = schema.new({
-    id = id.from(_N, "CreateLocationObjectStorageOutput"),
+    id = id.from(_N, "CreateLocationObjectStorageResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -1211,7 +1211,7 @@ M.S3Config = schema.new({
 })
 
 M.CreateLocationS3Input = schema.new({
-    id = id.from(_N, "CreateLocationS3Input"),
+    id = id.from(_N, "CreateLocationS3Request"),
     type = "structure",
     members = {
         Subdirectory = schema.new({
@@ -1263,7 +1263,7 @@ M.CreateLocationS3Input = schema.new({
 })
 
 M.CreateLocationS3Output = schema.new({
-    id = id.from(_N, "CreateLocationS3Output"),
+    id = id.from(_N, "CreateLocationS3Response"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -1276,7 +1276,7 @@ M.CreateLocationS3Output = schema.new({
 })
 
 M.CreateLocationSmbInput = schema.new({
-    id = id.from(_N, "CreateLocationSmbInput"),
+    id = id.from(_N, "CreateLocationSmbRequest"),
     type = "structure",
     members = {
         Subdirectory = schema.new({
@@ -1388,7 +1388,7 @@ M.CreateLocationSmbInput = schema.new({
 })
 
 M.CreateLocationSmbOutput = schema.new({
-    id = id.from(_N, "CreateLocationSmbOutput"),
+    id = id.from(_N, "CreateLocationSmbResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -1754,7 +1754,7 @@ M.TaskReportConfig = schema.new({
 })
 
 M.CreateTaskInput = schema.new({
-    id = id.from(_N, "CreateTaskInput"),
+    id = id.from(_N, "CreateTaskRequest"),
     type = "structure",
     members = {
         SourceLocationArn = schema.new({
@@ -1846,7 +1846,7 @@ M.CreateTaskInput = schema.new({
 })
 
 M.CreateTaskOutput = schema.new({
-    id = id.from(_N, "CreateTaskOutput"),
+    id = id.from(_N, "CreateTaskResponse"),
     type = "structure",
     members = {
         TaskArn = schema.new({
@@ -1859,7 +1859,7 @@ M.CreateTaskOutput = schema.new({
 })
 
 M.DeleteAgentInput = schema.new({
-    id = id.from(_N, "DeleteAgentInput"),
+    id = id.from(_N, "DeleteAgentRequest"),
     type = "structure",
     members = {
         AgentArn = schema.new({
@@ -1875,12 +1875,12 @@ M.DeleteAgentInput = schema.new({
 })
 
 M.DeleteAgentOutput = schema.new({
-    id = id.from(_N, "DeleteAgentOutput"),
+    id = id.from(_N, "DeleteAgentResponse"),
     type = "structure",
 })
 
 M.DeleteLocationInput = schema.new({
-    id = id.from(_N, "DeleteLocationInput"),
+    id = id.from(_N, "DeleteLocationRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -1896,12 +1896,12 @@ M.DeleteLocationInput = schema.new({
 })
 
 M.DeleteLocationOutput = schema.new({
-    id = id.from(_N, "DeleteLocationOutput"),
+    id = id.from(_N, "DeleteLocationResponse"),
     type = "structure",
 })
 
 M.DeleteTaskInput = schema.new({
-    id = id.from(_N, "DeleteTaskInput"),
+    id = id.from(_N, "DeleteTaskRequest"),
     type = "structure",
     members = {
         TaskArn = schema.new({
@@ -1917,12 +1917,12 @@ M.DeleteTaskInput = schema.new({
 })
 
 M.DeleteTaskOutput = schema.new({
-    id = id.from(_N, "DeleteTaskOutput"),
+    id = id.from(_N, "DeleteTaskResponse"),
     type = "structure",
 })
 
 M.DescribeAgentInput = schema.new({
-    id = id.from(_N, "DescribeAgentInput"),
+    id = id.from(_N, "DescribeAgentRequest"),
     type = "structure",
     members = {
         AgentArn = schema.new({
@@ -1971,7 +1971,7 @@ M.PrivateLinkConfig = schema.new({
 })
 
 M.DescribeAgentOutput = schema.new({
-    id = id.from(_N, "DescribeAgentOutput"),
+    id = id.from(_N, "DescribeAgentResponse"),
     type = "structure",
     members = {
         AgentArn = schema.new({
@@ -2028,7 +2028,7 @@ M.DescribeAgentOutput = schema.new({
 })
 
 M.DescribeLocationAzureBlobInput = schema.new({
-    id = id.from(_N, "DescribeLocationAzureBlobInput"),
+    id = id.from(_N, "DescribeLocationAzureBlobRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2044,7 +2044,7 @@ M.DescribeLocationAzureBlobInput = schema.new({
 })
 
 M.DescribeLocationAzureBlobOutput = schema.new({
-    id = id.from(_N, "DescribeLocationAzureBlobOutput"),
+    id = id.from(_N, "DescribeLocationAzureBlobResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2115,7 +2115,7 @@ M.DescribeLocationAzureBlobOutput = schema.new({
 })
 
 M.DescribeLocationEfsInput = schema.new({
-    id = id.from(_N, "DescribeLocationEfsInput"),
+    id = id.from(_N, "DescribeLocationEfsRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2131,7 +2131,7 @@ M.DescribeLocationEfsInput = schema.new({
 })
 
 M.DescribeLocationEfsOutput = schema.new({
-    id = id.from(_N, "DescribeLocationEfsOutput"),
+    id = id.from(_N, "DescribeLocationEfsResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2181,7 +2181,7 @@ M.DescribeLocationEfsOutput = schema.new({
 })
 
 M.DescribeLocationFsxLustreInput = schema.new({
-    id = id.from(_N, "DescribeLocationFsxLustreInput"),
+    id = id.from(_N, "DescribeLocationFsxLustreRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2197,7 +2197,7 @@ M.DescribeLocationFsxLustreInput = schema.new({
 })
 
 M.DescribeLocationFsxLustreOutput = schema.new({
-    id = id.from(_N, "DescribeLocationFsxLustreOutput"),
+    id = id.from(_N, "DescribeLocationFsxLustreResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2229,7 +2229,7 @@ M.DescribeLocationFsxLustreOutput = schema.new({
 })
 
 M.DescribeLocationFsxOntapInput = schema.new({
-    id = id.from(_N, "DescribeLocationFsxOntapInput"),
+    id = id.from(_N, "DescribeLocationFsxOntapRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2245,7 +2245,7 @@ M.DescribeLocationFsxOntapInput = schema.new({
 })
 
 M.DescribeLocationFsxOntapOutput = schema.new({
-    id = id.from(_N, "DescribeLocationFsxOntapOutput"),
+    id = id.from(_N, "DescribeLocationFsxOntapResponse"),
     type = "structure",
     members = {
         CreationTime = schema.new({
@@ -2296,7 +2296,7 @@ M.DescribeLocationFsxOntapOutput = schema.new({
 })
 
 M.DescribeLocationFsxOpenZfsInput = schema.new({
-    id = id.from(_N, "DescribeLocationFsxOpenZfsInput"),
+    id = id.from(_N, "DescribeLocationFsxOpenZfsRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2312,7 +2312,7 @@ M.DescribeLocationFsxOpenZfsInput = schema.new({
 })
 
 M.DescribeLocationFsxOpenZfsOutput = schema.new({
-    id = id.from(_N, "DescribeLocationFsxOpenZfsOutput"),
+    id = id.from(_N, "DescribeLocationFsxOpenZfsResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2351,7 +2351,7 @@ M.DescribeLocationFsxOpenZfsOutput = schema.new({
 })
 
 M.DescribeLocationFsxWindowsInput = schema.new({
-    id = id.from(_N, "DescribeLocationFsxWindowsInput"),
+    id = id.from(_N, "DescribeLocationFsxWindowsRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2367,7 +2367,7 @@ M.DescribeLocationFsxWindowsInput = schema.new({
 })
 
 M.DescribeLocationFsxWindowsOutput = schema.new({
-    id = id.from(_N, "DescribeLocationFsxWindowsOutput"),
+    id = id.from(_N, "DescribeLocationFsxWindowsResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2432,7 +2432,7 @@ M.DescribeLocationFsxWindowsOutput = schema.new({
 })
 
 M.DescribeLocationHdfsInput = schema.new({
-    id = id.from(_N, "DescribeLocationHdfsInput"),
+    id = id.from(_N, "DescribeLocationHdfsRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2448,7 +2448,7 @@ M.DescribeLocationHdfsInput = schema.new({
 })
 
 M.DescribeLocationHdfsOutput = schema.new({
-    id = id.from(_N, "DescribeLocationHdfsOutput"),
+    id = id.from(_N, "DescribeLocationHdfsResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2551,7 +2551,7 @@ M.DescribeLocationHdfsOutput = schema.new({
 })
 
 M.DescribeLocationNfsInput = schema.new({
-    id = id.from(_N, "DescribeLocationNfsInput"),
+    id = id.from(_N, "DescribeLocationNfsRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2567,7 +2567,7 @@ M.DescribeLocationNfsInput = schema.new({
 })
 
 M.DescribeLocationNfsOutput = schema.new({
-    id = id.from(_N, "DescribeLocationNfsOutput"),
+    id = id.from(_N, "DescribeLocationNfsResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2606,7 +2606,7 @@ M.DescribeLocationNfsOutput = schema.new({
 })
 
 M.DescribeLocationObjectStorageInput = schema.new({
-    id = id.from(_N, "DescribeLocationObjectStorageInput"),
+    id = id.from(_N, "DescribeLocationObjectStorageRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2622,7 +2622,7 @@ M.DescribeLocationObjectStorageInput = schema.new({
 })
 
 M.DescribeLocationObjectStorageOutput = schema.new({
-    id = id.from(_N, "DescribeLocationObjectStorageOutput"),
+    id = id.from(_N, "DescribeLocationObjectStorageResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2699,7 +2699,7 @@ M.DescribeLocationObjectStorageOutput = schema.new({
 })
 
 M.DescribeLocationS3Input = schema.new({
-    id = id.from(_N, "DescribeLocationS3Input"),
+    id = id.from(_N, "DescribeLocationS3Request"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2715,7 +2715,7 @@ M.DescribeLocationS3Input = schema.new({
 })
 
 M.DescribeLocationS3Output = schema.new({
-    id = id.from(_N, "DescribeLocationS3Output"),
+    id = id.from(_N, "DescribeLocationS3Response"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2760,7 +2760,7 @@ M.DescribeLocationS3Output = schema.new({
 })
 
 M.DescribeLocationSmbInput = schema.new({
-    id = id.from(_N, "DescribeLocationSmbInput"),
+    id = id.from(_N, "DescribeLocationSmbRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2776,7 +2776,7 @@ M.DescribeLocationSmbInput = schema.new({
 })
 
 M.DescribeLocationSmbOutput = schema.new({
-    id = id.from(_N, "DescribeLocationSmbOutput"),
+    id = id.from(_N, "DescribeLocationSmbResponse"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -2867,7 +2867,7 @@ M.DescribeLocationSmbOutput = schema.new({
 })
 
 M.DescribeTaskInput = schema.new({
-    id = id.from(_N, "DescribeTaskInput"),
+    id = id.from(_N, "DescribeTaskRequest"),
     type = "structure",
     members = {
         TaskArn = schema.new({
@@ -2908,7 +2908,7 @@ M.TaskScheduleDetails = schema.new({
 })
 
 M.DescribeTaskOutput = schema.new({
-    id = id.from(_N, "DescribeTaskOutput"),
+    id = id.from(_N, "DescribeTaskResponse"),
     type = "structure",
     members = {
         TaskArn = schema.new({
@@ -3044,7 +3044,7 @@ M.DescribeTaskOutput = schema.new({
 })
 
 M.DescribeTaskExecutionInput = schema.new({
-    id = id.from(_N, "DescribeTaskExecutionInput"),
+    id = id.from(_N, "DescribeTaskExecutionRequest"),
     type = "structure",
     members = {
         TaskExecutionArn = schema.new({
@@ -3291,7 +3291,7 @@ M.TaskExecutionResultDetail = schema.new({
 })
 
 M.DescribeTaskExecutionOutput = schema.new({
-    id = id.from(_N, "DescribeTaskExecutionOutput"),
+    id = id.from(_N, "DescribeTaskExecutionResponse"),
     type = "structure",
     members = {
         TaskExecutionArn = schema.new({
@@ -3552,7 +3552,7 @@ M.DescribeTaskExecutionOutput = schema.new({
 })
 
 M.ListAgentsInput = schema.new({
-    id = id.from(_N, "ListAgentsInput"),
+    id = id.from(_N, "ListAgentsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3571,7 +3571,7 @@ M.ListAgentsInput = schema.new({
 })
 
 M.ListAgentsOutput = schema.new({
-    id = id.from(_N, "ListAgentsOutput"),
+    id = id.from(_N, "ListAgentsResponse"),
     type = "structure",
     members = {
         Agents = schema.new({
@@ -3626,7 +3626,7 @@ M.LocationFilter = schema.new({
 })
 
 M.ListLocationsInput = schema.new({
-    id = id.from(_N, "ListLocationsInput"),
+    id = id.from(_N, "ListLocationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3671,7 +3671,7 @@ M.LocationListEntry = schema.new({
 })
 
 M.ListLocationsOutput = schema.new({
-    id = id.from(_N, "ListLocationsOutput"),
+    id = id.from(_N, "ListLocationsResponse"),
     type = "structure",
     members = {
         Locations = schema.new({
@@ -3691,7 +3691,7 @@ M.ListLocationsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3719,7 +3719,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -3739,7 +3739,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTaskExecutionsInput = schema.new({
-    id = id.from(_N, "ListTaskExecutionsInput"),
+    id = id.from(_N, "ListTaskExecutionsRequest"),
     type = "structure",
     members = {
         TaskArn = schema.new({
@@ -3789,7 +3789,7 @@ M.TaskExecutionListEntry = schema.new({
 })
 
 M.ListTaskExecutionsOutput = schema.new({
-    id = id.from(_N, "ListTaskExecutionsOutput"),
+    id = id.from(_N, "ListTaskExecutionsResponse"),
     type = "structure",
     members = {
         TaskExecutions = schema.new({
@@ -3844,7 +3844,7 @@ M.TaskFilter = schema.new({
 })
 
 M.ListTasksInput = schema.new({
-    id = id.from(_N, "ListTasksInput"),
+    id = id.from(_N, "ListTasksRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3901,7 +3901,7 @@ M.TaskListEntry = schema.new({
 })
 
 M.ListTasksOutput = schema.new({
-    id = id.from(_N, "ListTasksOutput"),
+    id = id.from(_N, "ListTasksResponse"),
     type = "structure",
     members = {
         Tasks = schema.new({
@@ -3921,7 +3921,7 @@ M.ListTasksOutput = schema.new({
 })
 
 M.StartTaskExecutionInput = schema.new({
-    id = id.from(_N, "StartTaskExecutionInput"),
+    id = id.from(_N, "StartTaskExecutionRequest"),
     type = "structure",
     members = {
         TaskArn = schema.new({
@@ -3979,7 +3979,7 @@ M.StartTaskExecutionInput = schema.new({
 })
 
 M.StartTaskExecutionOutput = schema.new({
-    id = id.from(_N, "StartTaskExecutionOutput"),
+    id = id.from(_N, "StartTaskExecutionResponse"),
     type = "structure",
     members = {
         TaskExecutionArn = schema.new({
@@ -3992,7 +3992,7 @@ M.StartTaskExecutionOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4018,12 +4018,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4049,12 +4049,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAgentInput = schema.new({
-    id = id.from(_N, "UpdateAgentInput"),
+    id = id.from(_N, "UpdateAgentRequest"),
     type = "structure",
     members = {
         AgentArn = schema.new({
@@ -4076,12 +4076,12 @@ M.UpdateAgentInput = schema.new({
 })
 
 M.UpdateAgentOutput = schema.new({
-    id = id.from(_N, "UpdateAgentOutput"),
+    id = id.from(_N, "UpdateAgentResponse"),
     type = "structure",
 })
 
 M.UpdateLocationAzureBlobInput = schema.new({
-    id = id.from(_N, "UpdateLocationAzureBlobInput"),
+    id = id.from(_N, "UpdateLocationAzureBlobRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -4149,12 +4149,12 @@ M.UpdateLocationAzureBlobInput = schema.new({
 })
 
 M.UpdateLocationAzureBlobOutput = schema.new({
-    id = id.from(_N, "UpdateLocationAzureBlobOutput"),
+    id = id.from(_N, "UpdateLocationAzureBlobResponse"),
     type = "structure",
 })
 
 M.UpdateLocationEfsInput = schema.new({
-    id = id.from(_N, "UpdateLocationEfsInput"),
+    id = id.from(_N, "UpdateLocationEfsRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -4194,12 +4194,12 @@ M.UpdateLocationEfsInput = schema.new({
 })
 
 M.UpdateLocationEfsOutput = schema.new({
-    id = id.from(_N, "UpdateLocationEfsOutput"),
+    id = id.from(_N, "UpdateLocationEfsResponse"),
     type = "structure",
 })
 
 M.UpdateLocationFsxLustreInput = schema.new({
-    id = id.from(_N, "UpdateLocationFsxLustreInput"),
+    id = id.from(_N, "UpdateLocationFsxLustreRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -4221,7 +4221,7 @@ M.UpdateLocationFsxLustreInput = schema.new({
 })
 
 M.UpdateLocationFsxLustreOutput = schema.new({
-    id = id.from(_N, "UpdateLocationFsxLustreOutput"),
+    id = id.from(_N, "UpdateLocationFsxLustreResponse"),
     type = "structure",
 })
 
@@ -4293,7 +4293,7 @@ M.FsxUpdateProtocol = schema.new({
 })
 
 M.UpdateLocationFsxOntapInput = schema.new({
-    id = id.from(_N, "UpdateLocationFsxOntapInput"),
+    id = id.from(_N, "UpdateLocationFsxOntapRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -4322,12 +4322,12 @@ M.UpdateLocationFsxOntapInput = schema.new({
 })
 
 M.UpdateLocationFsxOntapOutput = schema.new({
-    id = id.from(_N, "UpdateLocationFsxOntapOutput"),
+    id = id.from(_N, "UpdateLocationFsxOntapResponse"),
     type = "structure",
 })
 
 M.UpdateLocationFsxOpenZfsInput = schema.new({
-    id = id.from(_N, "UpdateLocationFsxOpenZfsInput"),
+    id = id.from(_N, "UpdateLocationFsxOpenZfsRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -4356,12 +4356,12 @@ M.UpdateLocationFsxOpenZfsInput = schema.new({
 })
 
 M.UpdateLocationFsxOpenZfsOutput = schema.new({
-    id = id.from(_N, "UpdateLocationFsxOpenZfsOutput"),
+    id = id.from(_N, "UpdateLocationFsxOpenZfsResponse"),
     type = "structure",
 })
 
 M.UpdateLocationFsxWindowsInput = schema.new({
-    id = id.from(_N, "UpdateLocationFsxWindowsInput"),
+    id = id.from(_N, "UpdateLocationFsxWindowsRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -4415,12 +4415,12 @@ M.UpdateLocationFsxWindowsInput = schema.new({
 })
 
 M.UpdateLocationFsxWindowsOutput = schema.new({
-    id = id.from(_N, "UpdateLocationFsxWindowsOutput"),
+    id = id.from(_N, "UpdateLocationFsxWindowsResponse"),
     type = "structure",
 })
 
 M.UpdateLocationHdfsInput = schema.new({
-    id = id.from(_N, "UpdateLocationHdfsInput"),
+    id = id.from(_N, "UpdateLocationHdfsRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -4525,12 +4525,12 @@ M.UpdateLocationHdfsInput = schema.new({
 })
 
 M.UpdateLocationHdfsOutput = schema.new({
-    id = id.from(_N, "UpdateLocationHdfsOutput"),
+    id = id.from(_N, "UpdateLocationHdfsResponse"),
     type = "structure",
 })
 
 M.UpdateLocationNfsInput = schema.new({
-    id = id.from(_N, "UpdateLocationNfsInput"),
+    id = id.from(_N, "UpdateLocationNfsRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -4572,12 +4572,12 @@ M.UpdateLocationNfsInput = schema.new({
 })
 
 M.UpdateLocationNfsOutput = schema.new({
-    id = id.from(_N, "UpdateLocationNfsOutput"),
+    id = id.from(_N, "UpdateLocationNfsResponse"),
     type = "structure",
 })
 
 M.UpdateLocationObjectStorageInput = schema.new({
-    id = id.from(_N, "UpdateLocationObjectStorageInput"),
+    id = id.from(_N, "UpdateLocationObjectStorageRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -4656,12 +4656,12 @@ M.UpdateLocationObjectStorageInput = schema.new({
 })
 
 M.UpdateLocationObjectStorageOutput = schema.new({
-    id = id.from(_N, "UpdateLocationObjectStorageOutput"),
+    id = id.from(_N, "UpdateLocationObjectStorageResponse"),
     type = "structure",
 })
 
 M.UpdateLocationS3Input = schema.new({
-    id = id.from(_N, "UpdateLocationS3Input"),
+    id = id.from(_N, "UpdateLocationS3Request"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -4696,12 +4696,12 @@ M.UpdateLocationS3Input = schema.new({
 })
 
 M.UpdateLocationS3Output = schema.new({
-    id = id.from(_N, "UpdateLocationS3Output"),
+    id = id.from(_N, "UpdateLocationS3Response"),
     type = "structure",
 })
 
 M.UpdateLocationSmbInput = schema.new({
-    id = id.from(_N, "UpdateLocationSmbInput"),
+    id = id.from(_N, "UpdateLocationSmbRequest"),
     type = "structure",
     members = {
         LocationArn = schema.new({
@@ -4806,12 +4806,12 @@ M.UpdateLocationSmbInput = schema.new({
 })
 
 M.UpdateLocationSmbOutput = schema.new({
-    id = id.from(_N, "UpdateLocationSmbOutput"),
+    id = id.from(_N, "UpdateLocationSmbResponse"),
     type = "structure",
 })
 
 M.UpdateTaskInput = schema.new({
-    id = id.from(_N, "UpdateTaskInput"),
+    id = id.from(_N, "UpdateTaskRequest"),
     type = "structure",
     members = {
         TaskArn = schema.new({
@@ -4881,12 +4881,12 @@ M.UpdateTaskInput = schema.new({
 })
 
 M.UpdateTaskOutput = schema.new({
-    id = id.from(_N, "UpdateTaskOutput"),
+    id = id.from(_N, "UpdateTaskResponse"),
     type = "structure",
 })
 
 M.UpdateTaskExecutionInput = schema.new({
-    id = id.from(_N, "UpdateTaskExecutionInput"),
+    id = id.from(_N, "UpdateTaskExecutionRequest"),
     type = "structure",
     members = {
         TaskExecutionArn = schema.new({
@@ -4912,8 +4912,22 @@ M.UpdateTaskExecutionInput = schema.new({
 })
 
 M.UpdateTaskExecutionOutput = schema.new({
-    id = id.from(_N, "UpdateTaskExecutionOutput"),
+    id = id.from(_N, "UpdateTaskExecutionResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

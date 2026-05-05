@@ -8,7 +8,7 @@ local _N = "com.amazonaws.workmailmessageflow"
 local M = {}
 
 M.GetRawMessageContentInput = schema.new({
-    id = id.from(_N, "GetRawMessageContentInput"),
+    id = id.from(_N, "GetRawMessageContentRequest"),
     type = "structure",
     members = {
         messageId = schema.new({
@@ -25,7 +25,7 @@ M.GetRawMessageContentInput = schema.new({
 })
 
 M.GetRawMessageContentOutput = schema.new({
-    id = id.from(_N, "GetRawMessageContentOutput"),
+    id = id.from(_N, "GetRawMessageContentResponse"),
     type = "structure",
     members = {
         messageContent = schema.new({
@@ -154,7 +154,7 @@ M.RawMessageContent = schema.new({
 })
 
 M.PutRawMessageContentInput = schema.new({
-    id = id.from(_N, "PutRawMessageContentInput"),
+    id = id.from(_N, "PutRawMessageContentRequest"),
     type = "structure",
     members = {
         messageId = schema.new({
@@ -181,8 +181,22 @@ M.PutRawMessageContentInput = schema.new({
 })
 
 M.PutRawMessageContentOutput = schema.new({
-    id = id.from(_N, "PutRawMessageContentOutput"),
+    id = id.from(_N, "PutRawMessageContentResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

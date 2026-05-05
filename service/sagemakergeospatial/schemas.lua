@@ -35,7 +35,7 @@ M.MultiPolygonGeometryInput = schema.new({
             type = "list",
             name = "Coordinates",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Document }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -52,7 +52,7 @@ M.PolygonGeometryInput = schema.new({
             type = "list",
             name = "Coordinates",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Document }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1624,7 +1624,7 @@ M.GetTileOutput = schema.new({
 })
 
 M.ListEarthObservationJobsInput = schema.new({
-    id = id.from(_N, "ListEarthObservationJobsInput"),
+    id = id.from(_N, "ListEarthObservationJobInput"),
     type = "structure",
     members = {
         StatusEquals = schema.new({
@@ -1731,7 +1731,7 @@ M.ListEarthObservationJobOutputConfig = schema.new({
 })
 
 M.ListEarthObservationJobsOutput = schema.new({
-    id = id.from(_N, "ListEarthObservationJobsOutput"),
+    id = id.from(_N, "ListEarthObservationJobOutput"),
     type = "structure",
     members = {
         EarthObservationJobSummaries = schema.new({
@@ -2175,7 +2175,7 @@ M.Geometry = schema.new({
             type = "list",
             name = "Coordinates",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Document }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -2731,7 +2731,7 @@ M.ListRasterDataCollectionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2748,7 +2748,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2833,7 +2833,7 @@ M.ListVectorEnrichmentJobOutputConfig = schema.new({
 })
 
 M.ListVectorEnrichmentJobsInput = schema.new({
-    id = id.from(_N, "ListVectorEnrichmentJobsInput"),
+    id = id.from(_N, "ListVectorEnrichmentJobInput"),
     type = "structure",
     members = {
         StatusEquals = schema.new({
@@ -2870,7 +2870,7 @@ M.ListVectorEnrichmentJobsInput = schema.new({
 })
 
 M.ListVectorEnrichmentJobsOutput = schema.new({
-    id = id.from(_N, "ListVectorEnrichmentJobsOutput"),
+    id = id.from(_N, "ListVectorEnrichmentJobOutput"),
     type = "structure",
     members = {
         VectorEnrichmentJobSummaries = schema.new({
@@ -2992,7 +2992,7 @@ M.SearchRasterDataCollectionOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3020,12 +3020,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3053,7 +3053,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -3250,5 +3250,19 @@ M.StopVectorEnrichmentJobOutput = schema.new({
     id = id.from(_N, "StopVectorEnrichmentJobOutput"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

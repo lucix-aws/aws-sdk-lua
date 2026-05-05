@@ -321,7 +321,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateApplicationInput = schema.new({
-    id = id.from(_N, "CreateApplicationInput"),
+    id = id.from(_N, "CreateApplicationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -389,7 +389,7 @@ M.CreateApplicationInput = schema.new({
 })
 
 M.CreateApplicationOutput = schema.new({
-    id = id.from(_N, "CreateApplicationOutput"),
+    id = id.from(_N, "CreateApplicationResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -645,7 +645,7 @@ M.ValidationException = schema.new({
 })
 
 M.CreateEnvironmentInput = schema.new({
-    id = id.from(_N, "CreateEnvironmentInput"),
+    id = id.from(_N, "CreateEnvironmentRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -693,7 +693,7 @@ M.CreateEnvironmentInput = schema.new({
 })
 
 M.CreateEnvironmentOutput = schema.new({
-    id = id.from(_N, "CreateEnvironmentOutput"),
+    id = id.from(_N, "CreateEnvironmentResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -819,7 +819,7 @@ M.UriPathRouteInput = schema.new({
 })
 
 M.CreateRouteInput = schema.new({
-    id = id.from(_N, "CreateRouteInput"),
+    id = id.from(_N, "CreateRouteRequest"),
     type = "structure",
     members = {
         EnvironmentIdentifier = schema.new({
@@ -895,7 +895,7 @@ M.CreateRouteInput = schema.new({
 })
 
 M.CreateRouteOutput = schema.new({
-    id = id.from(_N, "CreateRouteOutput"),
+    id = id.from(_N, "CreateRouteResponse"),
     type = "structure",
     members = {
         RouteId = schema.new({
@@ -1015,7 +1015,7 @@ M.UrlEndpointInput = schema.new({
 })
 
 M.CreateServiceInput = schema.new({
-    id = id.from(_N, "CreateServiceInput"),
+    id = id.from(_N, "CreateServiceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1103,7 +1103,7 @@ M.CreateServiceInput = schema.new({
 })
 
 M.CreateServiceOutput = schema.new({
-    id = id.from(_N, "CreateServiceOutput"),
+    id = id.from(_N, "CreateServiceResponse"),
     type = "structure",
     members = {
         ServiceId = schema.new({
@@ -1210,7 +1210,7 @@ M.CreateServiceOutput = schema.new({
 })
 
 M.DeleteApplicationInput = schema.new({
-    id = id.from(_N, "DeleteApplicationInput"),
+    id = id.from(_N, "DeleteApplicationRequest"),
     type = "structure",
     members = {
         EnvironmentIdentifier = schema.new({
@@ -1237,7 +1237,7 @@ M.DeleteApplicationInput = schema.new({
 })
 
 M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationOutput"),
+    id = id.from(_N, "DeleteApplicationResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1280,7 +1280,7 @@ M.DeleteApplicationOutput = schema.new({
 })
 
 M.DeleteEnvironmentInput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentInput"),
+    id = id.from(_N, "DeleteEnvironmentRequest"),
     type = "structure",
     members = {
         EnvironmentIdentifier = schema.new({
@@ -1297,7 +1297,7 @@ M.DeleteEnvironmentInput = schema.new({
 })
 
 M.DeleteEnvironmentOutput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentOutput"),
+    id = id.from(_N, "DeleteEnvironmentResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1334,7 +1334,7 @@ M.DeleteEnvironmentOutput = schema.new({
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -1351,12 +1351,12 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "DeleteResourcePolicyResponse"),
     type = "structure",
 })
 
 M.DeleteRouteInput = schema.new({
-    id = id.from(_N, "DeleteRouteInput"),
+    id = id.from(_N, "DeleteRouteRequest"),
     type = "structure",
     members = {
         EnvironmentIdentifier = schema.new({
@@ -1393,7 +1393,7 @@ M.DeleteRouteInput = schema.new({
 })
 
 M.DeleteRouteOutput = schema.new({
-    id = id.from(_N, "DeleteRouteOutput"),
+    id = id.from(_N, "DeleteRouteResponse"),
     type = "structure",
     members = {
         RouteId = schema.new({
@@ -1436,7 +1436,7 @@ M.DeleteRouteOutput = schema.new({
 })
 
 M.DeleteServiceInput = schema.new({
-    id = id.from(_N, "DeleteServiceInput"),
+    id = id.from(_N, "DeleteServiceRequest"),
     type = "structure",
     members = {
         EnvironmentIdentifier = schema.new({
@@ -1473,7 +1473,7 @@ M.DeleteServiceInput = schema.new({
 })
 
 M.DeleteServiceOutput = schema.new({
-    id = id.from(_N, "DeleteServiceOutput"),
+    id = id.from(_N, "DeleteServiceResponse"),
     type = "structure",
     members = {
         ServiceId = schema.new({
@@ -1654,7 +1654,7 @@ M.EnvironmentVpc = schema.new({
 })
 
 M.GetApplicationInput = schema.new({
-    id = id.from(_N, "GetApplicationInput"),
+    id = id.from(_N, "GetApplicationRequest"),
     type = "structure",
     members = {
         EnvironmentIdentifier = schema.new({
@@ -1681,7 +1681,7 @@ M.GetApplicationInput = schema.new({
 })
 
 M.GetApplicationOutput = schema.new({
-    id = id.from(_N, "GetApplicationOutput"),
+    id = id.from(_N, "GetApplicationResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1776,7 +1776,7 @@ M.GetApplicationOutput = schema.new({
 })
 
 M.GetEnvironmentInput = schema.new({
-    id = id.from(_N, "GetEnvironmentInput"),
+    id = id.from(_N, "GetEnvironmentRequest"),
     type = "structure",
     members = {
         EnvironmentIdentifier = schema.new({
@@ -1793,7 +1793,7 @@ M.GetEnvironmentInput = schema.new({
 })
 
 M.GetEnvironmentOutput = schema.new({
-    id = id.from(_N, "GetEnvironmentOutput"),
+    id = id.from(_N, "GetEnvironmentResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1875,7 +1875,7 @@ M.GetEnvironmentOutput = schema.new({
 })
 
 M.GetResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetResourcePolicyInput"),
+    id = id.from(_N, "GetResourcePolicyRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -1892,7 +1892,7 @@ M.GetResourcePolicyInput = schema.new({
 })
 
 M.GetResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetResourcePolicyOutput"),
+    id = id.from(_N, "GetResourcePolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -1905,7 +1905,7 @@ M.GetResourcePolicyOutput = schema.new({
 })
 
 M.GetRouteInput = schema.new({
-    id = id.from(_N, "GetRouteInput"),
+    id = id.from(_N, "GetRouteRequest"),
     type = "structure",
     members = {
         EnvironmentIdentifier = schema.new({
@@ -1942,7 +1942,7 @@ M.GetRouteInput = schema.new({
 })
 
 M.GetRouteOutput = schema.new({
-    id = id.from(_N, "GetRouteOutput"),
+    id = id.from(_N, "GetRouteResponse"),
     type = "structure",
     members = {
         RouteId = schema.new({
@@ -2063,7 +2063,7 @@ M.GetRouteOutput = schema.new({
 })
 
 M.GetServiceInput = schema.new({
-    id = id.from(_N, "GetServiceInput"),
+    id = id.from(_N, "GetServiceRequest"),
     type = "structure",
     members = {
         EnvironmentIdentifier = schema.new({
@@ -2132,7 +2132,7 @@ M.UrlEndpointConfig = schema.new({
 })
 
 M.GetServiceOutput = schema.new({
-    id = id.from(_N, "GetServiceOutput"),
+    id = id.from(_N, "GetServiceResponse"),
     type = "structure",
     members = {
         ServiceId = schema.new({
@@ -2278,7 +2278,7 @@ M.LambdaEndpointSummary = schema.new({
 })
 
 M.ListApplicationsInput = schema.new({
-    id = id.from(_N, "ListApplicationsInput"),
+    id = id.from(_N, "ListApplicationsRequest"),
     type = "structure",
     members = {
         EnvironmentIdentifier = schema.new({
@@ -2313,7 +2313,7 @@ M.ListApplicationsInput = schema.new({
 })
 
 M.ListApplicationsOutput = schema.new({
-    id = id.from(_N, "ListApplicationsOutput"),
+    id = id.from(_N, "ListApplicationsResponse"),
     type = "structure",
     members = {
         ApplicationSummaryList = schema.new({
@@ -2333,7 +2333,7 @@ M.ListApplicationsOutput = schema.new({
 })
 
 M.ListEnvironmentsInput = schema.new({
-    id = id.from(_N, "ListEnvironmentsInput"),
+    id = id.from(_N, "ListEnvironmentsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2358,7 +2358,7 @@ M.ListEnvironmentsInput = schema.new({
 })
 
 M.ListEnvironmentsOutput = schema.new({
-    id = id.from(_N, "ListEnvironmentsOutput"),
+    id = id.from(_N, "ListEnvironmentsResponse"),
     type = "structure",
     members = {
         EnvironmentSummaryList = schema.new({
@@ -2378,7 +2378,7 @@ M.ListEnvironmentsOutput = schema.new({
 })
 
 M.ListEnvironmentVpcsInput = schema.new({
-    id = id.from(_N, "ListEnvironmentVpcsInput"),
+    id = id.from(_N, "ListEnvironmentVpcsRequest"),
     type = "structure",
     members = {
         EnvironmentIdentifier = schema.new({
@@ -2413,7 +2413,7 @@ M.ListEnvironmentVpcsInput = schema.new({
 })
 
 M.ListEnvironmentVpcsOutput = schema.new({
-    id = id.from(_N, "ListEnvironmentVpcsOutput"),
+    id = id.from(_N, "ListEnvironmentVpcsResponse"),
     type = "structure",
     members = {
         EnvironmentVpcList = schema.new({
@@ -2433,7 +2433,7 @@ M.ListEnvironmentVpcsOutput = schema.new({
 })
 
 M.ListRoutesInput = schema.new({
-    id = id.from(_N, "ListRoutesInput"),
+    id = id.from(_N, "ListRoutesRequest"),
     type = "structure",
     members = {
         EnvironmentIdentifier = schema.new({
@@ -2599,7 +2599,7 @@ M.RouteSummary = schema.new({
 })
 
 M.ListRoutesOutput = schema.new({
-    id = id.from(_N, "ListRoutesOutput"),
+    id = id.from(_N, "ListRoutesResponse"),
     type = "structure",
     members = {
         RouteSummaryList = schema.new({
@@ -2619,7 +2619,7 @@ M.ListRoutesOutput = schema.new({
 })
 
 M.ListServicesInput = schema.new({
-    id = id.from(_N, "ListServicesInput"),
+    id = id.from(_N, "ListServicesRequest"),
     type = "structure",
     members = {
         EnvironmentIdentifier = schema.new({
@@ -2797,7 +2797,7 @@ M.ServiceSummary = schema.new({
 })
 
 M.ListServicesOutput = schema.new({
-    id = id.from(_N, "ListServicesOutput"),
+    id = id.from(_N, "ListServicesResponse"),
     type = "structure",
     members = {
         ServiceSummaryList = schema.new({
@@ -2817,7 +2817,7 @@ M.ListServicesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2834,7 +2834,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2849,7 +2849,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2874,12 +2874,12 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2907,12 +2907,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2940,12 +2940,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateRouteInput = schema.new({
-    id = id.from(_N, "UpdateRouteInput"),
+    id = id.from(_N, "UpdateRouteRequest"),
     type = "structure",
     members = {
         EnvironmentIdentifier = schema.new({
@@ -2991,7 +2991,7 @@ M.UpdateRouteInput = schema.new({
 })
 
 M.UpdateRouteOutput = schema.new({
-    id = id.from(_N, "UpdateRouteOutput"),
+    id = id.from(_N, "UpdateRouteResponse"),
     type = "structure",
     members = {
         RouteId = schema.new({
@@ -3032,5 +3032,19 @@ M.UpdateRouteOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

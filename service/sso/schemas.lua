@@ -33,7 +33,7 @@ M.AccountInfo = schema.new({
 })
 
 M.GetRoleCredentialsInput = schema.new({
-    id = id.from(_N, "GetRoleCredentialsInput"),
+    id = id.from(_N, "GetRoleCredentialsRequest"),
     type = "structure",
     members = {
         roleName = schema.new({
@@ -104,7 +104,7 @@ M.RoleCredentials = schema.new({
 })
 
 M.GetRoleCredentialsOutput = schema.new({
-    id = id.from(_N, "GetRoleCredentialsOutput"),
+    id = id.from(_N, "GetRoleCredentialsResponse"),
     type = "structure",
     members = {
         roleCredentials = schema.new({
@@ -182,7 +182,7 @@ M.UnauthorizedException = schema.new({
 })
 
 M.ListAccountRolesInput = schema.new({
-    id = id.from(_N, "ListAccountRolesInput"),
+    id = id.from(_N, "ListAccountRolesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -246,7 +246,7 @@ M.RoleInfo = schema.new({
 })
 
 M.ListAccountRolesOutput = schema.new({
-    id = id.from(_N, "ListAccountRolesOutput"),
+    id = id.from(_N, "ListAccountRolesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -266,7 +266,7 @@ M.ListAccountRolesOutput = schema.new({
 })
 
 M.ListAccountsInput = schema.new({
-    id = id.from(_N, "ListAccountsInput"),
+    id = id.from(_N, "ListAccountsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -301,7 +301,7 @@ M.ListAccountsInput = schema.new({
 })
 
 M.ListAccountsOutput = schema.new({
-    id = id.from(_N, "ListAccountsOutput"),
+    id = id.from(_N, "ListAccountsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -321,7 +321,7 @@ M.ListAccountsOutput = schema.new({
 })
 
 M.LogoutInput = schema.new({
-    id = id.from(_N, "LogoutInput"),
+    id = id.from(_N, "LogoutRequest"),
     type = "structure",
     members = {
         accessToken = schema.new({
@@ -338,8 +338,22 @@ M.LogoutInput = schema.new({
 })
 
 M.LogoutOutput = schema.new({
-    id = id.from(_N, "LogoutOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

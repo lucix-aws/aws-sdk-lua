@@ -451,7 +451,7 @@ M.DeleteConfigurationManagerInput = schema.new({
 })
 
 M.DeleteConfigurationManagerOutput = schema.new({
-    id = id.from(_N, "DeleteConfigurationManagerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -682,7 +682,7 @@ M.GetConfigurationManagerOutput = schema.new({
 })
 
 M.GetServiceSettingsInput = schema.new({
-    id = id.from(_N, "GetServiceSettingsInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -818,7 +818,7 @@ M.ListConfigurationsOutput = schema.new({
 })
 
 M.ListQuickSetupTypesInput = schema.new({
-    id = id.from(_N, "ListQuickSetupTypesInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -856,7 +856,7 @@ M.ListQuickSetupTypesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -892,7 +892,7 @@ M.TagEntry = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -934,7 +934,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -967,7 +967,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1025,7 +1025,7 @@ M.UpdateConfigurationDefinitionInput = schema.new({
 })
 
 M.UpdateConfigurationDefinitionOutput = schema.new({
-    id = id.from(_N, "UpdateConfigurationDefinitionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1059,7 +1059,7 @@ M.UpdateConfigurationManagerInput = schema.new({
 })
 
 M.UpdateConfigurationManagerOutput = schema.new({
-    id = id.from(_N, "UpdateConfigurationManagerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1077,8 +1077,22 @@ M.UpdateServiceSettingsInput = schema.new({
 })
 
 M.UpdateServiceSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateServiceSettingsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

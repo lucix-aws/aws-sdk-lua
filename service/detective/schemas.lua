@@ -8,7 +8,7 @@ local _N = "com.amazonaws.detective"
 local M = {}
 
 M.AcceptInvitationInput = schema.new({
-    id = id.from(_N, "AcceptInvitationInput"),
+    id = id.from(_N, "AcceptInvitationRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -24,7 +24,7 @@ M.AcceptInvitationInput = schema.new({
 })
 
 M.AcceptInvitationOutput = schema.new({
-    id = id.from(_N, "AcceptInvitationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -198,7 +198,7 @@ M.Administrator = schema.new({
 })
 
 M.BatchGetGraphMemberDatasourcesInput = schema.new({
-    id = id.from(_N, "BatchGetGraphMemberDatasourcesInput"),
+    id = id.from(_N, "BatchGetGraphMemberDatasourcesRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -261,7 +261,7 @@ M.MembershipDatasources = schema.new({
             name = "DatasourcePackageIngestHistory",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.TimestampForCollection }),
         }),
     },
 })
@@ -286,7 +286,7 @@ M.UnprocessedAccount = schema.new({
 })
 
 M.BatchGetGraphMemberDatasourcesOutput = schema.new({
-    id = id.from(_N, "BatchGetGraphMemberDatasourcesOutput"),
+    id = id.from(_N, "BatchGetGraphMemberDatasourcesResponse"),
     type = "structure",
     members = {
         MemberDatasources = schema.new({
@@ -307,7 +307,7 @@ M.BatchGetGraphMemberDatasourcesOutput = schema.new({
 })
 
 M.BatchGetMembershipDatasourcesInput = schema.new({
-    id = id.from(_N, "BatchGetMembershipDatasourcesInput"),
+    id = id.from(_N, "BatchGetMembershipDatasourcesRequest"),
     type = "structure",
     members = {
         GraphArns = schema.new({
@@ -343,7 +343,7 @@ M.UnprocessedGraph = schema.new({
 })
 
 M.BatchGetMembershipDatasourcesOutput = schema.new({
-    id = id.from(_N, "BatchGetMembershipDatasourcesOutput"),
+    id = id.from(_N, "BatchGetMembershipDatasourcesResponse"),
     type = "structure",
     members = {
         MembershipDatasources = schema.new({
@@ -364,7 +364,7 @@ M.BatchGetMembershipDatasourcesOutput = schema.new({
 })
 
 M.CreateGraphInput = schema.new({
-    id = id.from(_N, "CreateGraphInput"),
+    id = id.from(_N, "CreateGraphRequest"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -379,7 +379,7 @@ M.CreateGraphInput = schema.new({
 })
 
 M.CreateGraphOutput = schema.new({
-    id = id.from(_N, "CreateGraphOutput"),
+    id = id.from(_N, "CreateGraphResponse"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -415,7 +415,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.CreateMembersInput = schema.new({
-    id = id.from(_N, "CreateMembersInput"),
+    id = id.from(_N, "CreateMembersRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -597,7 +597,7 @@ M.MemberDetail = schema.new({
 })
 
 M.CreateMembersOutput = schema.new({
-    id = id.from(_N, "CreateMembersOutput"),
+    id = id.from(_N, "CreateMembersResponse"),
     type = "structure",
     members = {
         Members = schema.new({
@@ -618,7 +618,7 @@ M.CreateMembersOutput = schema.new({
 })
 
 M.DeleteGraphInput = schema.new({
-    id = id.from(_N, "DeleteGraphInput"),
+    id = id.from(_N, "DeleteGraphRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -634,12 +634,12 @@ M.DeleteGraphInput = schema.new({
 })
 
 M.DeleteGraphOutput = schema.new({
-    id = id.from(_N, "DeleteGraphOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMembersInput = schema.new({
-    id = id.from(_N, "DeleteMembersInput"),
+    id = id.from(_N, "DeleteMembersRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -665,7 +665,7 @@ M.DeleteMembersInput = schema.new({
 })
 
 M.DeleteMembersOutput = schema.new({
-    id = id.from(_N, "DeleteMembersOutput"),
+    id = id.from(_N, "DeleteMembersResponse"),
     type = "structure",
     members = {
         AccountIds = schema.new({
@@ -686,7 +686,7 @@ M.DeleteMembersOutput = schema.new({
 })
 
 M.DescribeOrganizationConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeOrganizationConfigurationInput"),
+    id = id.from(_N, "DescribeOrganizationConfigurationRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -702,7 +702,7 @@ M.DescribeOrganizationConfigurationInput = schema.new({
 })
 
 M.DescribeOrganizationConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeOrganizationConfigurationOutput"),
+    id = id.from(_N, "DescribeOrganizationConfigurationResponse"),
     type = "structure",
     members = {
         AutoEnable = schema.new({
@@ -734,17 +734,17 @@ M.TooManyRequestsException = schema.new({
 })
 
 M.DisableOrganizationAdminAccountInput = schema.new({
-    id = id.from(_N, "DisableOrganizationAdminAccountInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DisableOrganizationAdminAccountOutput = schema.new({
-    id = id.from(_N, "DisableOrganizationAdminAccountOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DisassociateMembershipInput = schema.new({
-    id = id.from(_N, "DisassociateMembershipInput"),
+    id = id.from(_N, "DisassociateMembershipRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -760,12 +760,12 @@ M.DisassociateMembershipInput = schema.new({
 })
 
 M.DisassociateMembershipOutput = schema.new({
-    id = id.from(_N, "DisassociateMembershipOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.EnableOrganizationAdminAccountInput = schema.new({
-    id = id.from(_N, "EnableOrganizationAdminAccountInput"),
+    id = id.from(_N, "EnableOrganizationAdminAccountRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -781,12 +781,12 @@ M.EnableOrganizationAdminAccountInput = schema.new({
 })
 
 M.EnableOrganizationAdminAccountOutput = schema.new({
-    id = id.from(_N, "EnableOrganizationAdminAccountOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetInvestigationInput = schema.new({
-    id = id.from(_N, "GetInvestigationInput"),
+    id = id.from(_N, "GetInvestigationRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -811,7 +811,7 @@ M.GetInvestigationInput = schema.new({
 })
 
 M.GetInvestigationOutput = schema.new({
-    id = id.from(_N, "GetInvestigationOutput"),
+    id = id.from(_N, "GetInvestigationResponse"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -887,7 +887,7 @@ M.GetInvestigationOutput = schema.new({
 })
 
 M.GetMembersInput = schema.new({
-    id = id.from(_N, "GetMembersInput"),
+    id = id.from(_N, "GetMembersRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -913,7 +913,7 @@ M.GetMembersInput = schema.new({
 })
 
 M.GetMembersOutput = schema.new({
-    id = id.from(_N, "GetMembersOutput"),
+    id = id.from(_N, "GetMembersResponse"),
     type = "structure",
     members = {
         MemberDetails = schema.new({
@@ -934,7 +934,7 @@ M.GetMembersOutput = schema.new({
 })
 
 M.ListDatasourcePackagesInput = schema.new({
-    id = id.from(_N, "ListDatasourcePackagesInput"),
+    id = id.from(_N, "ListDatasourcePackagesRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -983,7 +983,7 @@ M.DatasourcePackageIngestDetail = schema.new({
 })
 
 M.ListDatasourcePackagesOutput = schema.new({
-    id = id.from(_N, "ListDatasourcePackagesOutput"),
+    id = id.from(_N, "ListDatasourcePackagesResponse"),
     type = "structure",
     members = {
         DatasourcePackages = schema.new({
@@ -1004,7 +1004,7 @@ M.ListDatasourcePackagesOutput = schema.new({
 })
 
 M.ListGraphsInput = schema.new({
-    id = id.from(_N, "ListGraphsInput"),
+    id = id.from(_N, "ListGraphsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1045,7 +1045,7 @@ M.Graph = schema.new({
 })
 
 M.ListGraphsOutput = schema.new({
-    id = id.from(_N, "ListGraphsOutput"),
+    id = id.from(_N, "ListGraphsResponse"),
     type = "structure",
     members = {
         GraphList = schema.new({
@@ -1065,7 +1065,7 @@ M.ListGraphsOutput = schema.new({
 })
 
 M.ListIndicatorsInput = schema.new({
-    id = id.from(_N, "ListIndicatorsInput"),
+    id = id.from(_N, "ListIndicatorsRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -1412,7 +1412,7 @@ M.Indicator = schema.new({
 })
 
 M.ListIndicatorsOutput = schema.new({
-    id = id.from(_N, "ListIndicatorsOutput"),
+    id = id.from(_N, "ListIndicatorsResponse"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -1554,7 +1554,7 @@ M.SortCriteria = schema.new({
 })
 
 M.ListInvestigationsInput = schema.new({
-    id = id.from(_N, "ListInvestigationsInput"),
+    id = id.from(_N, "ListInvestigationsRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -1648,7 +1648,7 @@ M.InvestigationDetail = schema.new({
 })
 
 M.ListInvestigationsOutput = schema.new({
-    id = id.from(_N, "ListInvestigationsOutput"),
+    id = id.from(_N, "ListInvestigationsResponse"),
     type = "structure",
     members = {
         InvestigationDetails = schema.new({
@@ -1668,7 +1668,7 @@ M.ListInvestigationsOutput = schema.new({
 })
 
 M.ListInvitationsInput = schema.new({
-    id = id.from(_N, "ListInvitationsInput"),
+    id = id.from(_N, "ListInvitationsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1687,7 +1687,7 @@ M.ListInvitationsInput = schema.new({
 })
 
 M.ListInvitationsOutput = schema.new({
-    id = id.from(_N, "ListInvitationsOutput"),
+    id = id.from(_N, "ListInvitationsResponse"),
     type = "structure",
     members = {
         Invitations = schema.new({
@@ -1707,7 +1707,7 @@ M.ListInvitationsOutput = schema.new({
 })
 
 M.ListMembersInput = schema.new({
-    id = id.from(_N, "ListMembersInput"),
+    id = id.from(_N, "ListMembersRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -1735,7 +1735,7 @@ M.ListMembersInput = schema.new({
 })
 
 M.ListMembersOutput = schema.new({
-    id = id.from(_N, "ListMembersOutput"),
+    id = id.from(_N, "ListMembersResponse"),
     type = "structure",
     members = {
         MemberDetails = schema.new({
@@ -1755,7 +1755,7 @@ M.ListMembersOutput = schema.new({
 })
 
 M.ListOrganizationAdminAccountsInput = schema.new({
-    id = id.from(_N, "ListOrganizationAdminAccountsInput"),
+    id = id.from(_N, "ListOrganizationAdminAccountsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1774,7 +1774,7 @@ M.ListOrganizationAdminAccountsInput = schema.new({
 })
 
 M.ListOrganizationAdminAccountsOutput = schema.new({
-    id = id.from(_N, "ListOrganizationAdminAccountsOutput"),
+    id = id.from(_N, "ListOrganizationAdminAccountsResponse"),
     type = "structure",
     members = {
         Administrators = schema.new({
@@ -1794,7 +1794,7 @@ M.ListOrganizationAdminAccountsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1811,7 +1811,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1826,7 +1826,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.RejectInvitationInput = schema.new({
-    id = id.from(_N, "RejectInvitationInput"),
+    id = id.from(_N, "RejectInvitationRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -1842,12 +1842,12 @@ M.RejectInvitationInput = schema.new({
 })
 
 M.RejectInvitationOutput = schema.new({
-    id = id.from(_N, "RejectInvitationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StartInvestigationInput = schema.new({
-    id = id.from(_N, "StartInvestigationInput"),
+    id = id.from(_N, "StartInvestigationRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -1898,7 +1898,7 @@ M.StartInvestigationInput = schema.new({
 })
 
 M.StartInvestigationOutput = schema.new({
-    id = id.from(_N, "StartInvestigationOutput"),
+    id = id.from(_N, "StartInvestigationResponse"),
     type = "structure",
     members = {
         InvestigationId = schema.new({
@@ -1911,7 +1911,7 @@ M.StartInvestigationOutput = schema.new({
 })
 
 M.StartMonitoringMemberInput = schema.new({
-    id = id.from(_N, "StartMonitoringMemberInput"),
+    id = id.from(_N, "StartMonitoringMemberRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -1936,12 +1936,12 @@ M.StartMonitoringMemberInput = schema.new({
 })
 
 M.StartMonitoringMemberOutput = schema.new({
-    id = id.from(_N, "StartMonitoringMemberOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1969,12 +1969,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2002,12 +2002,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateDatasourcePackagesInput = schema.new({
-    id = id.from(_N, "UpdateDatasourcePackagesInput"),
+    id = id.from(_N, "UpdateDatasourcePackagesRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -2033,12 +2033,12 @@ M.UpdateDatasourcePackagesInput = schema.new({
 })
 
 M.UpdateDatasourcePackagesOutput = schema.new({
-    id = id.from(_N, "UpdateDatasourcePackagesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateInvestigationStateInput = schema.new({
-    id = id.from(_N, "UpdateInvestigationStateInput"),
+    id = id.from(_N, "UpdateInvestigationStateRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -2072,12 +2072,12 @@ M.UpdateInvestigationStateInput = schema.new({
 })
 
 M.UpdateInvestigationStateOutput = schema.new({
-    id = id.from(_N, "UpdateInvestigationStateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateOrganizationConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateOrganizationConfigurationInput"),
+    id = id.from(_N, "UpdateOrganizationConfigurationRequest"),
     type = "structure",
     members = {
         GraphArn = schema.new({
@@ -2102,8 +2102,22 @@ M.UpdateOrganizationConfigurationInput = schema.new({
 })
 
 M.UpdateOrganizationConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateOrganizationConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

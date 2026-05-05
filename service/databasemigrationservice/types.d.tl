@@ -2920,19 +2920,19 @@ local record InvalidResourceStateFault
     message: string
 end
 
-local type ReloadOptionValue = "data-reload" | "validate-only"
-
 local type ReplicationEndpointTypeValue = "source" | "target"
-
-local type OriginTypeValue = "SOURCE" | "TARGET"
 
 local type DmsSslModeValue = "none" | "require" | "verify-ca" | "verify-full"
 
+local type ReloadOptionValue = "data-reload" | "validate-only"
+
 local type StartReplicationMigrationTypeValue = "reload-target" | "resume-processing" | "start-replication"
 
-local type MigrationTypeValue = "full-load" | "cdc" | "full-load-and-cdc"
+local type OriginTypeValue = "SOURCE" | "TARGET"
 
 local type SourceType = "replication-instance"
+
+local type MigrationTypeValue = "full-load" | "cdc" | "full-load-and-cdc"
 
 local type StartReplicationTaskTypeValue = "start-replication" | "resume-processing" | "reload-target"
 

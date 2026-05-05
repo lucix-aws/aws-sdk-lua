@@ -156,7 +156,7 @@ M.AlexaForBusinessMetadata = schema.new({
 })
 
 M.AssociatePhoneNumberWithUserInput = schema.new({
-    id = id.from(_N, "AssociatePhoneNumberWithUserInput"),
+    id = id.from(_N, "AssociatePhoneNumberWithUserRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -192,7 +192,7 @@ M.AssociatePhoneNumberWithUserInput = schema.new({
 })
 
 M.AssociatePhoneNumberWithUserOutput = schema.new({
-    id = id.from(_N, "AssociatePhoneNumberWithUserOutput"),
+    id = id.from(_N, "AssociatePhoneNumberWithUserResponse"),
     type = "structure",
 })
 
@@ -351,7 +351,7 @@ M.UnauthorizedClientException = schema.new({
 })
 
 M.AssociateSigninDelegateGroupsWithAccountInput = schema.new({
-    id = id.from(_N, "AssociateSigninDelegateGroupsWithAccountInput"),
+    id = id.from(_N, "AssociateSigninDelegateGroupsWithAccountRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -378,7 +378,7 @@ M.AssociateSigninDelegateGroupsWithAccountInput = schema.new({
 })
 
 M.AssociateSigninDelegateGroupsWithAccountOutput = schema.new({
-    id = id.from(_N, "AssociateSigninDelegateGroupsWithAccountOutput"),
+    id = id.from(_N, "AssociateSigninDelegateGroupsWithAccountResponse"),
     type = "structure",
 })
 
@@ -402,7 +402,7 @@ M.MembershipItem = schema.new({
 })
 
 M.BatchCreateRoomMembershipInput = schema.new({
-    id = id.from(_N, "BatchCreateRoomMembershipInput"),
+    id = id.from(_N, "BatchCreateRoomMembershipRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -464,7 +464,7 @@ M.MemberError = schema.new({
 })
 
 M.BatchCreateRoomMembershipOutput = schema.new({
-    id = id.from(_N, "BatchCreateRoomMembershipOutput"),
+    id = id.from(_N, "BatchCreateRoomMembershipResponse"),
     type = "structure",
     members = {
         Errors = schema.new({
@@ -478,7 +478,7 @@ M.BatchCreateRoomMembershipOutput = schema.new({
 })
 
 M.BatchDeletePhoneNumberInput = schema.new({
-    id = id.from(_N, "BatchDeletePhoneNumberInput"),
+    id = id.from(_N, "BatchDeletePhoneNumberRequest"),
     type = "structure",
     members = {
         PhoneNumberIds = schema.new({
@@ -520,7 +520,7 @@ M.PhoneNumberError = schema.new({
 })
 
 M.BatchDeletePhoneNumberOutput = schema.new({
-    id = id.from(_N, "BatchDeletePhoneNumberOutput"),
+    id = id.from(_N, "BatchDeletePhoneNumberResponse"),
     type = "structure",
     members = {
         PhoneNumberErrors = schema.new({
@@ -534,7 +534,7 @@ M.BatchDeletePhoneNumberOutput = schema.new({
 })
 
 M.BatchSuspendUserInput = schema.new({
-    id = id.from(_N, "BatchSuspendUserInput"),
+    id = id.from(_N, "BatchSuspendUserRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -586,7 +586,7 @@ M.UserError = schema.new({
 })
 
 M.BatchSuspendUserOutput = schema.new({
-    id = id.from(_N, "BatchSuspendUserOutput"),
+    id = id.from(_N, "BatchSuspendUserResponse"),
     type = "structure",
     members = {
         UserErrors = schema.new({
@@ -600,7 +600,7 @@ M.BatchSuspendUserOutput = schema.new({
 })
 
 M.BatchUnsuspendUserInput = schema.new({
-    id = id.from(_N, "BatchUnsuspendUserInput"),
+    id = id.from(_N, "BatchUnsuspendUserRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -627,7 +627,7 @@ M.BatchUnsuspendUserInput = schema.new({
 })
 
 M.BatchUnsuspendUserOutput = schema.new({
-    id = id.from(_N, "BatchUnsuspendUserOutput"),
+    id = id.from(_N, "BatchUnsuspendUserResponse"),
     type = "structure",
     members = {
         UserErrors = schema.new({
@@ -669,7 +669,7 @@ M.UpdatePhoneNumberRequestItem = schema.new({
 })
 
 M.BatchUpdatePhoneNumberInput = schema.new({
-    id = id.from(_N, "BatchUpdatePhoneNumberInput"),
+    id = id.from(_N, "BatchUpdatePhoneNumberRequest"),
     type = "structure",
     members = {
         UpdatePhoneNumberRequestItems = schema.new({
@@ -686,7 +686,7 @@ M.BatchUpdatePhoneNumberInput = schema.new({
 })
 
 M.BatchUpdatePhoneNumberOutput = schema.new({
-    id = id.from(_N, "BatchUpdatePhoneNumberOutput"),
+    id = id.from(_N, "BatchUpdatePhoneNumberResponse"),
     type = "structure",
     members = {
         PhoneNumberErrors = schema.new({
@@ -735,7 +735,7 @@ M.UpdateUserRequestItem = schema.new({
 })
 
 M.BatchUpdateUserInput = schema.new({
-    id = id.from(_N, "BatchUpdateUserInput"),
+    id = id.from(_N, "BatchUpdateUserRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -762,7 +762,7 @@ M.BatchUpdateUserInput = schema.new({
 })
 
 M.BatchUpdateUserOutput = schema.new({
-    id = id.from(_N, "BatchUpdateUserOutput"),
+    id = id.from(_N, "BatchUpdateUserResponse"),
     type = "structure",
     members = {
         UserErrors = schema.new({
@@ -891,7 +891,7 @@ M.ConversationRetentionSettings = schema.new({
 })
 
 M.CreateAccountInput = schema.new({
-    id = id.from(_N, "CreateAccountInput"),
+    id = id.from(_N, "CreateAccountRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -907,7 +907,7 @@ M.CreateAccountInput = schema.new({
 })
 
 M.CreateAccountOutput = schema.new({
-    id = id.from(_N, "CreateAccountOutput"),
+    id = id.from(_N, "CreateAccountResponse"),
     type = "structure",
     members = {
         Account = schema.new({
@@ -921,7 +921,7 @@ M.CreateAccountOutput = schema.new({
 })
 
 M.CreateBotInput = schema.new({
-    id = id.from(_N, "CreateBotInput"),
+    id = id.from(_N, "CreateBotRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -953,7 +953,7 @@ M.CreateBotInput = schema.new({
 })
 
 M.CreateBotOutput = schema.new({
-    id = id.from(_N, "CreateBotOutput"),
+    id = id.from(_N, "CreateBotResponse"),
     type = "structure",
     members = {
         Bot = schema.new({
@@ -989,7 +989,7 @@ M.ResourceLimitExceededException = schema.new({
 })
 
 M.CreateMeetingDialOutInput = schema.new({
-    id = id.from(_N, "CreateMeetingDialOutInput"),
+    id = id.from(_N, "CreateMeetingDialOutRequest"),
     type = "structure",
     members = {
         MeetingId = schema.new({
@@ -1033,7 +1033,7 @@ M.CreateMeetingDialOutInput = schema.new({
 })
 
 M.CreateMeetingDialOutOutput = schema.new({
-    id = id.from(_N, "CreateMeetingDialOutOutput"),
+    id = id.from(_N, "CreateMeetingDialOutResponse"),
     type = "structure",
     members = {
         TransactionId = schema.new({
@@ -1046,7 +1046,7 @@ M.CreateMeetingDialOutOutput = schema.new({
 })
 
 M.CreatePhoneNumberOrderInput = schema.new({
-    id = id.from(_N, "CreatePhoneNumberOrderInput"),
+    id = id.from(_N, "CreatePhoneNumberOrderRequest"),
     type = "structure",
     members = {
         ProductType = schema.new({
@@ -1141,7 +1141,7 @@ M.PhoneNumberOrder = schema.new({
 })
 
 M.CreatePhoneNumberOrderOutput = schema.new({
-    id = id.from(_N, "CreatePhoneNumberOrderOutput"),
+    id = id.from(_N, "CreatePhoneNumberOrderResponse"),
     type = "structure",
     members = {
         PhoneNumberOrder = schema.new({
@@ -1155,7 +1155,7 @@ M.CreatePhoneNumberOrderOutput = schema.new({
 })
 
 M.CreateRoomInput = schema.new({
-    id = id.from(_N, "CreateRoomInput"),
+    id = id.from(_N, "CreateRoomRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1239,7 +1239,7 @@ M.Room = schema.new({
 })
 
 M.CreateRoomOutput = schema.new({
-    id = id.from(_N, "CreateRoomOutput"),
+    id = id.from(_N, "CreateRoomResponse"),
     type = "structure",
     members = {
         Room = schema.new({
@@ -1253,7 +1253,7 @@ M.CreateRoomOutput = schema.new({
 })
 
 M.CreateRoomMembershipInput = schema.new({
-    id = id.from(_N, "CreateRoomMembershipInput"),
+    id = id.from(_N, "CreateRoomMembershipRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1373,7 +1373,7 @@ M.RoomMembership = schema.new({
 })
 
 M.CreateRoomMembershipOutput = schema.new({
-    id = id.from(_N, "CreateRoomMembershipOutput"),
+    id = id.from(_N, "CreateRoomMembershipResponse"),
     type = "structure",
     members = {
         RoomMembership = schema.new({
@@ -1387,7 +1387,7 @@ M.CreateRoomMembershipOutput = schema.new({
 })
 
 M.CreateUserInput = schema.new({
-    id = id.from(_N, "CreateUserInput"),
+    id = id.from(_N, "CreateUserRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1517,7 +1517,7 @@ M.User = schema.new({
 })
 
 M.CreateUserOutput = schema.new({
-    id = id.from(_N, "CreateUserOutput"),
+    id = id.from(_N, "CreateUserResponse"),
     type = "structure",
     members = {
         User = schema.new({
@@ -1531,7 +1531,7 @@ M.CreateUserOutput = schema.new({
 })
 
 M.DeleteAccountInput = schema.new({
-    id = id.from(_N, "DeleteAccountInput"),
+    id = id.from(_N, "DeleteAccountRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1548,7 +1548,7 @@ M.DeleteAccountInput = schema.new({
 })
 
 M.DeleteAccountOutput = schema.new({
-    id = id.from(_N, "DeleteAccountOutput"),
+    id = id.from(_N, "DeleteAccountResponse"),
     type = "structure",
 })
 
@@ -1575,7 +1575,7 @@ M.UnprocessableEntityException = schema.new({
 })
 
 M.DeleteEventsConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteEventsConfigurationInput"),
+    id = id.from(_N, "DeleteEventsConfigurationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1602,12 +1602,12 @@ M.DeleteEventsConfigurationInput = schema.new({
 })
 
 M.DeleteEventsConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteEventsConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeletePhoneNumberInput = schema.new({
-    id = id.from(_N, "DeletePhoneNumberInput"),
+    id = id.from(_N, "DeletePhoneNumberRequest"),
     type = "structure",
     members = {
         PhoneNumberId = schema.new({
@@ -1624,12 +1624,12 @@ M.DeletePhoneNumberInput = schema.new({
 })
 
 M.DeletePhoneNumberOutput = schema.new({
-    id = id.from(_N, "DeletePhoneNumberOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRoomInput = schema.new({
-    id = id.from(_N, "DeleteRoomInput"),
+    id = id.from(_N, "DeleteRoomRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1656,12 +1656,12 @@ M.DeleteRoomInput = schema.new({
 })
 
 M.DeleteRoomOutput = schema.new({
-    id = id.from(_N, "DeleteRoomOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRoomMembershipInput = schema.new({
-    id = id.from(_N, "DeleteRoomMembershipInput"),
+    id = id.from(_N, "DeleteRoomMembershipRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1698,12 +1698,12 @@ M.DeleteRoomMembershipInput = schema.new({
 })
 
 M.DeleteRoomMembershipOutput = schema.new({
-    id = id.from(_N, "DeleteRoomMembershipOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DisassociatePhoneNumberFromUserInput = schema.new({
-    id = id.from(_N, "DisassociatePhoneNumberFromUserInput"),
+    id = id.from(_N, "DisassociatePhoneNumberFromUserRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1730,12 +1730,12 @@ M.DisassociatePhoneNumberFromUserInput = schema.new({
 })
 
 M.DisassociatePhoneNumberFromUserOutput = schema.new({
-    id = id.from(_N, "DisassociatePhoneNumberFromUserOutput"),
+    id = id.from(_N, "DisassociatePhoneNumberFromUserResponse"),
     type = "structure",
 })
 
 M.DisassociateSigninDelegateGroupsFromAccountInput = schema.new({
-    id = id.from(_N, "DisassociateSigninDelegateGroupsFromAccountInput"),
+    id = id.from(_N, "DisassociateSigninDelegateGroupsFromAccountRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1762,7 +1762,7 @@ M.DisassociateSigninDelegateGroupsFromAccountInput = schema.new({
 })
 
 M.DisassociateSigninDelegateGroupsFromAccountOutput = schema.new({
-    id = id.from(_N, "DisassociateSigninDelegateGroupsFromAccountOutput"),
+    id = id.from(_N, "DisassociateSigninDelegateGroupsFromAccountResponse"),
     type = "structure",
 })
 
@@ -1792,7 +1792,7 @@ M.EventsConfiguration = schema.new({
 })
 
 M.GetAccountInput = schema.new({
-    id = id.from(_N, "GetAccountInput"),
+    id = id.from(_N, "GetAccountRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1809,7 +1809,7 @@ M.GetAccountInput = schema.new({
 })
 
 M.GetAccountOutput = schema.new({
-    id = id.from(_N, "GetAccountOutput"),
+    id = id.from(_N, "GetAccountResponse"),
     type = "structure",
     members = {
         Account = schema.new({
@@ -1823,7 +1823,7 @@ M.GetAccountOutput = schema.new({
 })
 
 M.GetAccountSettingsInput = schema.new({
-    id = id.from(_N, "GetAccountSettingsInput"),
+    id = id.from(_N, "GetAccountSettingsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1840,7 +1840,7 @@ M.GetAccountSettingsInput = schema.new({
 })
 
 M.GetAccountSettingsOutput = schema.new({
-    id = id.from(_N, "GetAccountSettingsOutput"),
+    id = id.from(_N, "GetAccountSettingsResponse"),
     type = "structure",
     members = {
         AccountSettings = schema.new({
@@ -1854,7 +1854,7 @@ M.GetAccountSettingsOutput = schema.new({
 })
 
 M.GetBotInput = schema.new({
-    id = id.from(_N, "GetBotInput"),
+    id = id.from(_N, "GetBotRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1881,7 +1881,7 @@ M.GetBotInput = schema.new({
 })
 
 M.GetBotOutput = schema.new({
-    id = id.from(_N, "GetBotOutput"),
+    id = id.from(_N, "GetBotResponse"),
     type = "structure",
     members = {
         Bot = schema.new({
@@ -1895,7 +1895,7 @@ M.GetBotOutput = schema.new({
 })
 
 M.GetEventsConfigurationInput = schema.new({
-    id = id.from(_N, "GetEventsConfigurationInput"),
+    id = id.from(_N, "GetEventsConfigurationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1922,7 +1922,7 @@ M.GetEventsConfigurationInput = schema.new({
 })
 
 M.GetEventsConfigurationOutput = schema.new({
-    id = id.from(_N, "GetEventsConfigurationOutput"),
+    id = id.from(_N, "GetEventsConfigurationResponse"),
     type = "structure",
     members = {
         EventsConfiguration = schema.new({
@@ -1936,7 +1936,7 @@ M.GetEventsConfigurationOutput = schema.new({
 })
 
 M.GetGlobalSettingsInput = schema.new({
-    id = id.from(_N, "GetGlobalSettingsInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1954,7 +1954,7 @@ M.VoiceConnectorSettings = schema.new({
 })
 
 M.GetGlobalSettingsOutput = schema.new({
-    id = id.from(_N, "GetGlobalSettingsOutput"),
+    id = id.from(_N, "GetGlobalSettingsResponse"),
     type = "structure",
     members = {
         BusinessCalling = schema.new({
@@ -1975,7 +1975,7 @@ M.GetGlobalSettingsOutput = schema.new({
 })
 
 M.GetPhoneNumberInput = schema.new({
-    id = id.from(_N, "GetPhoneNumberInput"),
+    id = id.from(_N, "GetPhoneNumberRequest"),
     type = "structure",
     members = {
         PhoneNumberId = schema.new({
@@ -2159,7 +2159,7 @@ M.PhoneNumber = schema.new({
 })
 
 M.GetPhoneNumberOutput = schema.new({
-    id = id.from(_N, "GetPhoneNumberOutput"),
+    id = id.from(_N, "GetPhoneNumberResponse"),
     type = "structure",
     members = {
         PhoneNumber = schema.new({
@@ -2173,7 +2173,7 @@ M.GetPhoneNumberOutput = schema.new({
 })
 
 M.GetPhoneNumberOrderInput = schema.new({
-    id = id.from(_N, "GetPhoneNumberOrderInput"),
+    id = id.from(_N, "GetPhoneNumberOrderRequest"),
     type = "structure",
     members = {
         PhoneNumberOrderId = schema.new({
@@ -2190,7 +2190,7 @@ M.GetPhoneNumberOrderInput = schema.new({
 })
 
 M.GetPhoneNumberOrderOutput = schema.new({
-    id = id.from(_N, "GetPhoneNumberOrderOutput"),
+    id = id.from(_N, "GetPhoneNumberOrderResponse"),
     type = "structure",
     members = {
         PhoneNumberOrder = schema.new({
@@ -2204,12 +2204,12 @@ M.GetPhoneNumberOrderOutput = schema.new({
 })
 
 M.GetPhoneNumberSettingsInput = schema.new({
-    id = id.from(_N, "GetPhoneNumberSettingsInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetPhoneNumberSettingsOutput = schema.new({
-    id = id.from(_N, "GetPhoneNumberSettingsOutput"),
+    id = id.from(_N, "GetPhoneNumberSettingsResponse"),
     type = "structure",
     members = {
         CallingName = schema.new({
@@ -2231,7 +2231,7 @@ M.GetPhoneNumberSettingsOutput = schema.new({
 })
 
 M.GetRetentionSettingsInput = schema.new({
-    id = id.from(_N, "GetRetentionSettingsInput"),
+    id = id.from(_N, "GetRetentionSettingsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2282,7 +2282,7 @@ M.RetentionSettings = schema.new({
 })
 
 M.GetRetentionSettingsOutput = schema.new({
-    id = id.from(_N, "GetRetentionSettingsOutput"),
+    id = id.from(_N, "GetRetentionSettingsResponse"),
     type = "structure",
     members = {
         RetentionSettings = schema.new({
@@ -2305,7 +2305,7 @@ M.GetRetentionSettingsOutput = schema.new({
 })
 
 M.GetRoomInput = schema.new({
-    id = id.from(_N, "GetRoomInput"),
+    id = id.from(_N, "GetRoomRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2332,7 +2332,7 @@ M.GetRoomInput = schema.new({
 })
 
 M.GetRoomOutput = schema.new({
-    id = id.from(_N, "GetRoomOutput"),
+    id = id.from(_N, "GetRoomResponse"),
     type = "structure",
     members = {
         Room = schema.new({
@@ -2346,7 +2346,7 @@ M.GetRoomOutput = schema.new({
 })
 
 M.GetUserInput = schema.new({
-    id = id.from(_N, "GetUserInput"),
+    id = id.from(_N, "GetUserRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2373,7 +2373,7 @@ M.GetUserInput = schema.new({
 })
 
 M.GetUserOutput = schema.new({
-    id = id.from(_N, "GetUserOutput"),
+    id = id.from(_N, "GetUserResponse"),
     type = "structure",
     members = {
         User = schema.new({
@@ -2387,7 +2387,7 @@ M.GetUserOutput = schema.new({
 })
 
 M.GetUserSettingsInput = schema.new({
-    id = id.from(_N, "GetUserSettingsInput"),
+    id = id.from(_N, "GetUserSettingsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2465,7 +2465,7 @@ M.UserSettings = schema.new({
 })
 
 M.GetUserSettingsOutput = schema.new({
-    id = id.from(_N, "GetUserSettingsOutput"),
+    id = id.from(_N, "GetUserSettingsResponse"),
     type = "structure",
     members = {
         UserSettings = schema.new({
@@ -2510,7 +2510,7 @@ M.Invite = schema.new({
 })
 
 M.InviteUsersInput = schema.new({
-    id = id.from(_N, "InviteUsersInput"),
+    id = id.from(_N, "InviteUsersRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2543,7 +2543,7 @@ M.InviteUsersInput = schema.new({
 })
 
 M.InviteUsersOutput = schema.new({
-    id = id.from(_N, "InviteUsersOutput"),
+    id = id.from(_N, "InviteUsersResponse"),
     type = "structure",
     members = {
         Invites = schema.new({
@@ -2557,7 +2557,7 @@ M.InviteUsersOutput = schema.new({
 })
 
 M.ListAccountsInput = schema.new({
-    id = id.from(_N, "ListAccountsInput"),
+    id = id.from(_N, "ListAccountsRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2600,7 +2600,7 @@ M.ListAccountsInput = schema.new({
 })
 
 M.ListAccountsOutput = schema.new({
-    id = id.from(_N, "ListAccountsOutput"),
+    id = id.from(_N, "ListAccountsResponse"),
     type = "structure",
     members = {
         Accounts = schema.new({
@@ -2620,7 +2620,7 @@ M.ListAccountsOutput = schema.new({
 })
 
 M.ListBotsInput = schema.new({
-    id = id.from(_N, "ListBotsInput"),
+    id = id.from(_N, "ListBotsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2655,7 +2655,7 @@ M.ListBotsInput = schema.new({
 })
 
 M.ListBotsOutput = schema.new({
-    id = id.from(_N, "ListBotsOutput"),
+    id = id.from(_N, "ListBotsResponse"),
     type = "structure",
     members = {
         Bots = schema.new({
@@ -2675,7 +2675,7 @@ M.ListBotsOutput = schema.new({
 })
 
 M.ListPhoneNumberOrdersInput = schema.new({
-    id = id.from(_N, "ListPhoneNumberOrdersInput"),
+    id = id.from(_N, "ListPhoneNumberOrdersRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2700,7 +2700,7 @@ M.ListPhoneNumberOrdersInput = schema.new({
 })
 
 M.ListPhoneNumberOrdersOutput = schema.new({
-    id = id.from(_N, "ListPhoneNumberOrdersOutput"),
+    id = id.from(_N, "ListPhoneNumberOrdersResponse"),
     type = "structure",
     members = {
         PhoneNumberOrders = schema.new({
@@ -2720,7 +2720,7 @@ M.ListPhoneNumberOrdersOutput = schema.new({
 })
 
 M.ListPhoneNumbersInput = schema.new({
-    id = id.from(_N, "ListPhoneNumbersInput"),
+    id = id.from(_N, "ListPhoneNumbersRequest"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -2781,7 +2781,7 @@ M.ListPhoneNumbersInput = schema.new({
 })
 
 M.ListPhoneNumbersOutput = schema.new({
-    id = id.from(_N, "ListPhoneNumbersOutput"),
+    id = id.from(_N, "ListPhoneNumbersResponse"),
     type = "structure",
     members = {
         PhoneNumbers = schema.new({
@@ -2801,7 +2801,7 @@ M.ListPhoneNumbersOutput = schema.new({
 })
 
 M.ListRoomMembershipsInput = schema.new({
-    id = id.from(_N, "ListRoomMembershipsInput"),
+    id = id.from(_N, "ListRoomMembershipsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2846,7 +2846,7 @@ M.ListRoomMembershipsInput = schema.new({
 })
 
 M.ListRoomMembershipsOutput = schema.new({
-    id = id.from(_N, "ListRoomMembershipsOutput"),
+    id = id.from(_N, "ListRoomMembershipsResponse"),
     type = "structure",
     members = {
         RoomMemberships = schema.new({
@@ -2866,7 +2866,7 @@ M.ListRoomMembershipsOutput = schema.new({
 })
 
 M.ListRoomsInput = schema.new({
-    id = id.from(_N, "ListRoomsInput"),
+    id = id.from(_N, "ListRoomsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2910,7 +2910,7 @@ M.ListRoomsInput = schema.new({
 })
 
 M.ListRoomsOutput = schema.new({
-    id = id.from(_N, "ListRoomsOutput"),
+    id = id.from(_N, "ListRoomsResponse"),
     type = "structure",
     members = {
         Rooms = schema.new({
@@ -2930,7 +2930,7 @@ M.ListRoomsOutput = schema.new({
 })
 
 M.ListSupportedPhoneNumberCountriesInput = schema.new({
-    id = id.from(_N, "ListSupportedPhoneNumberCountriesInput"),
+    id = id.from(_N, "ListSupportedPhoneNumberCountriesRequest"),
     type = "structure",
     members = {
         ProductType = schema.new({
@@ -2967,7 +2967,7 @@ M.PhoneNumberCountry = schema.new({
 })
 
 M.ListSupportedPhoneNumberCountriesOutput = schema.new({
-    id = id.from(_N, "ListSupportedPhoneNumberCountriesOutput"),
+    id = id.from(_N, "ListSupportedPhoneNumberCountriesResponse"),
     type = "structure",
     members = {
         PhoneNumberCountries = schema.new({
@@ -2981,7 +2981,7 @@ M.ListSupportedPhoneNumberCountriesOutput = schema.new({
 })
 
 M.ListUsersInput = schema.new({
-    id = id.from(_N, "ListUsersInput"),
+    id = id.from(_N, "ListUsersRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3034,7 +3034,7 @@ M.ListUsersInput = schema.new({
 })
 
 M.ListUsersOutput = schema.new({
-    id = id.from(_N, "ListUsersOutput"),
+    id = id.from(_N, "ListUsersResponse"),
     type = "structure",
     members = {
         Users = schema.new({
@@ -3054,7 +3054,7 @@ M.ListUsersOutput = schema.new({
 })
 
 M.LogoutUserInput = schema.new({
-    id = id.from(_N, "LogoutUserInput"),
+    id = id.from(_N, "LogoutUserRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3081,12 +3081,12 @@ M.LogoutUserInput = schema.new({
 })
 
 M.LogoutUserOutput = schema.new({
-    id = id.from(_N, "LogoutUserOutput"),
+    id = id.from(_N, "LogoutUserResponse"),
     type = "structure",
 })
 
 M.PutEventsConfigurationInput = schema.new({
-    id = id.from(_N, "PutEventsConfigurationInput"),
+    id = id.from(_N, "PutEventsConfigurationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3125,7 +3125,7 @@ M.PutEventsConfigurationInput = schema.new({
 })
 
 M.PutEventsConfigurationOutput = schema.new({
-    id = id.from(_N, "PutEventsConfigurationOutput"),
+    id = id.from(_N, "PutEventsConfigurationResponse"),
     type = "structure",
     members = {
         EventsConfiguration = schema.new({
@@ -3139,7 +3139,7 @@ M.PutEventsConfigurationOutput = schema.new({
 })
 
 M.PutRetentionSettingsInput = schema.new({
-    id = id.from(_N, "PutRetentionSettingsInput"),
+    id = id.from(_N, "PutRetentionSettingsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3166,7 +3166,7 @@ M.PutRetentionSettingsInput = schema.new({
 })
 
 M.PutRetentionSettingsOutput = schema.new({
-    id = id.from(_N, "PutRetentionSettingsOutput"),
+    id = id.from(_N, "PutRetentionSettingsResponse"),
     type = "structure",
     members = {
         RetentionSettings = schema.new({
@@ -3189,7 +3189,7 @@ M.PutRetentionSettingsOutput = schema.new({
 })
 
 M.RedactConversationMessageInput = schema.new({
-    id = id.from(_N, "RedactConversationMessageInput"),
+    id = id.from(_N, "RedactConversationMessageRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3226,12 +3226,12 @@ M.RedactConversationMessageInput = schema.new({
 })
 
 M.RedactConversationMessageOutput = schema.new({
-    id = id.from(_N, "RedactConversationMessageOutput"),
+    id = id.from(_N, "RedactConversationMessageResponse"),
     type = "structure",
 })
 
 M.RedactRoomMessageInput = schema.new({
-    id = id.from(_N, "RedactRoomMessageInput"),
+    id = id.from(_N, "RedactRoomMessageRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3268,12 +3268,12 @@ M.RedactRoomMessageInput = schema.new({
 })
 
 M.RedactRoomMessageOutput = schema.new({
-    id = id.from(_N, "RedactRoomMessageOutput"),
+    id = id.from(_N, "RedactRoomMessageResponse"),
     type = "structure",
 })
 
 M.RegenerateSecurityTokenInput = schema.new({
-    id = id.from(_N, "RegenerateSecurityTokenInput"),
+    id = id.from(_N, "RegenerateSecurityTokenRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3300,7 +3300,7 @@ M.RegenerateSecurityTokenInput = schema.new({
 })
 
 M.RegenerateSecurityTokenOutput = schema.new({
-    id = id.from(_N, "RegenerateSecurityTokenOutput"),
+    id = id.from(_N, "RegenerateSecurityTokenResponse"),
     type = "structure",
     members = {
         Bot = schema.new({
@@ -3314,7 +3314,7 @@ M.RegenerateSecurityTokenOutput = schema.new({
 })
 
 M.ResetPersonalPINInput = schema.new({
-    id = id.from(_N, "ResetPersonalPINInput"),
+    id = id.from(_N, "ResetPersonalPINRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3341,7 +3341,7 @@ M.ResetPersonalPINInput = schema.new({
 })
 
 M.ResetPersonalPINOutput = schema.new({
-    id = id.from(_N, "ResetPersonalPINOutput"),
+    id = id.from(_N, "ResetPersonalPINResponse"),
     type = "structure",
     members = {
         User = schema.new({
@@ -3355,7 +3355,7 @@ M.ResetPersonalPINOutput = schema.new({
 })
 
 M.RestorePhoneNumberInput = schema.new({
-    id = id.from(_N, "RestorePhoneNumberInput"),
+    id = id.from(_N, "RestorePhoneNumberRequest"),
     type = "structure",
     members = {
         PhoneNumberId = schema.new({
@@ -3372,7 +3372,7 @@ M.RestorePhoneNumberInput = schema.new({
 })
 
 M.RestorePhoneNumberOutput = schema.new({
-    id = id.from(_N, "RestorePhoneNumberOutput"),
+    id = id.from(_N, "RestorePhoneNumberResponse"),
     type = "structure",
     members = {
         PhoneNumber = schema.new({
@@ -3386,7 +3386,7 @@ M.RestorePhoneNumberOutput = schema.new({
 })
 
 M.SearchAvailablePhoneNumbersInput = schema.new({
-    id = id.from(_N, "SearchAvailablePhoneNumbersInput"),
+    id = id.from(_N, "SearchAvailablePhoneNumbersRequest"),
     type = "structure",
     members = {
         AreaCode = schema.new({
@@ -3465,7 +3465,7 @@ M.SearchAvailablePhoneNumbersInput = schema.new({
 })
 
 M.SearchAvailablePhoneNumbersOutput = schema.new({
-    id = id.from(_N, "SearchAvailablePhoneNumbersOutput"),
+    id = id.from(_N, "SearchAvailablePhoneNumbersResponse"),
     type = "structure",
     members = {
         E164PhoneNumbers = schema.new({
@@ -3485,7 +3485,7 @@ M.SearchAvailablePhoneNumbersOutput = schema.new({
 })
 
 M.UpdateAccountInput = schema.new({
-    id = id.from(_N, "UpdateAccountInput"),
+    id = id.from(_N, "UpdateAccountRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3514,7 +3514,7 @@ M.UpdateAccountInput = schema.new({
 })
 
 M.UpdateAccountOutput = schema.new({
-    id = id.from(_N, "UpdateAccountOutput"),
+    id = id.from(_N, "UpdateAccountResponse"),
     type = "structure",
     members = {
         Account = schema.new({
@@ -3528,7 +3528,7 @@ M.UpdateAccountOutput = schema.new({
 })
 
 M.UpdateAccountSettingsInput = schema.new({
-    id = id.from(_N, "UpdateAccountSettingsInput"),
+    id = id.from(_N, "UpdateAccountSettingsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3555,12 +3555,12 @@ M.UpdateAccountSettingsInput = schema.new({
 })
 
 M.UpdateAccountSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateAccountSettingsOutput"),
+    id = id.from(_N, "UpdateAccountSettingsResponse"),
     type = "structure",
 })
 
 M.UpdateBotInput = schema.new({
-    id = id.from(_N, "UpdateBotInput"),
+    id = id.from(_N, "UpdateBotRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3593,7 +3593,7 @@ M.UpdateBotInput = schema.new({
 })
 
 M.UpdateBotOutput = schema.new({
-    id = id.from(_N, "UpdateBotOutput"),
+    id = id.from(_N, "UpdateBotResponse"),
     type = "structure",
     members = {
         Bot = schema.new({
@@ -3607,7 +3607,7 @@ M.UpdateBotOutput = schema.new({
 })
 
 M.UpdateGlobalSettingsInput = schema.new({
-    id = id.from(_N, "UpdateGlobalSettingsInput"),
+    id = id.from(_N, "UpdateGlobalSettingsRequest"),
     type = "structure",
     members = {
         BusinessCalling = schema.new({
@@ -3628,12 +3628,12 @@ M.UpdateGlobalSettingsInput = schema.new({
 })
 
 M.UpdateGlobalSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateGlobalSettingsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdatePhoneNumberInput = schema.new({
-    id = id.from(_N, "UpdatePhoneNumberInput"),
+    id = id.from(_N, "UpdatePhoneNumberRequest"),
     type = "structure",
     members = {
         PhoneNumberId = schema.new({
@@ -3662,7 +3662,7 @@ M.UpdatePhoneNumberInput = schema.new({
 })
 
 M.UpdatePhoneNumberOutput = schema.new({
-    id = id.from(_N, "UpdatePhoneNumberOutput"),
+    id = id.from(_N, "UpdatePhoneNumberResponse"),
     type = "structure",
     members = {
         PhoneNumber = schema.new({
@@ -3676,7 +3676,7 @@ M.UpdatePhoneNumberOutput = schema.new({
 })
 
 M.UpdatePhoneNumberSettingsInput = schema.new({
-    id = id.from(_N, "UpdatePhoneNumberSettingsInput"),
+    id = id.from(_N, "UpdatePhoneNumberSettingsRequest"),
     type = "structure",
     members = {
         CallingName = schema.new({
@@ -3692,12 +3692,12 @@ M.UpdatePhoneNumberSettingsInput = schema.new({
 })
 
 M.UpdatePhoneNumberSettingsOutput = schema.new({
-    id = id.from(_N, "UpdatePhoneNumberSettingsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateRoomInput = schema.new({
-    id = id.from(_N, "UpdateRoomInput"),
+    id = id.from(_N, "UpdateRoomRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3730,7 +3730,7 @@ M.UpdateRoomInput = schema.new({
 })
 
 M.UpdateRoomOutput = schema.new({
-    id = id.from(_N, "UpdateRoomOutput"),
+    id = id.from(_N, "UpdateRoomResponse"),
     type = "structure",
     members = {
         Room = schema.new({
@@ -3744,7 +3744,7 @@ M.UpdateRoomOutput = schema.new({
 })
 
 M.UpdateRoomMembershipInput = schema.new({
-    id = id.from(_N, "UpdateRoomMembershipInput"),
+    id = id.from(_N, "UpdateRoomMembershipRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3787,7 +3787,7 @@ M.UpdateRoomMembershipInput = schema.new({
 })
 
 M.UpdateRoomMembershipOutput = schema.new({
-    id = id.from(_N, "UpdateRoomMembershipOutput"),
+    id = id.from(_N, "UpdateRoomMembershipResponse"),
     type = "structure",
     members = {
         RoomMembership = schema.new({
@@ -3801,7 +3801,7 @@ M.UpdateRoomMembershipOutput = schema.new({
 })
 
 M.UpdateUserInput = schema.new({
-    id = id.from(_N, "UpdateUserInput"),
+    id = id.from(_N, "UpdateUserRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3847,7 +3847,7 @@ M.UpdateUserInput = schema.new({
 })
 
 M.UpdateUserOutput = schema.new({
-    id = id.from(_N, "UpdateUserOutput"),
+    id = id.from(_N, "UpdateUserResponse"),
     type = "structure",
     members = {
         User = schema.new({
@@ -3861,7 +3861,7 @@ M.UpdateUserOutput = schema.new({
 })
 
 M.UpdateUserSettingsInput = schema.new({
-    id = id.from(_N, "UpdateUserSettingsInput"),
+    id = id.from(_N, "UpdateUserSettingsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -3898,8 +3898,22 @@ M.UpdateUserSettingsInput = schema.new({
 })
 
 M.UpdateUserSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateUserSettingsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

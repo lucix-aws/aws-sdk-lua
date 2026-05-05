@@ -145,7 +145,7 @@ M.Association = schema.new({
 })
 
 M.GetDeviceInput = schema.new({
-    id = id.from(_N, "GetDeviceInput"),
+    id = id.from(_N, "GetDeviceRequest"),
     type = "structure",
     members = {
         deviceArn = schema.new({
@@ -193,7 +193,7 @@ M.DeviceQueueInfo = schema.new({
 })
 
 M.GetDeviceOutput = schema.new({
-    id = id.from(_N, "GetDeviceOutput"),
+    id = id.from(_N, "GetDeviceResponse"),
     type = "structure",
     members = {
         deviceArn = schema.new({
@@ -397,7 +397,7 @@ M.SearchDevicesFilter = schema.new({
 })
 
 M.SearchDevicesInput = schema.new({
-    id = id.from(_N, "SearchDevicesInput"),
+    id = id.from(_N, "SearchDevicesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -478,7 +478,7 @@ M.DeviceSummary = schema.new({
 })
 
 M.SearchDevicesOutput = schema.new({
-    id = id.from(_N, "SearchDevicesOutput"),
+    id = id.from(_N, "SearchDevicesResponse"),
     type = "structure",
     members = {
         devices = schema.new({
@@ -501,7 +501,7 @@ M.SearchDevicesOutput = schema.new({
 })
 
 M.CancelJobInput = schema.new({
-    id = id.from(_N, "CancelJobInput"),
+    id = id.from(_N, "CancelJobRequest"),
     type = "structure",
     members = {
         jobArn = schema.new({
@@ -518,7 +518,7 @@ M.CancelJobInput = schema.new({
 })
 
 M.CancelJobOutput = schema.new({
-    id = id.from(_N, "CancelJobOutput"),
+    id = id.from(_N, "CancelJobResponse"),
     type = "structure",
     members = {
         jobArn = schema.new({
@@ -728,7 +728,7 @@ M.JobStoppingCondition = schema.new({
 })
 
 M.CreateJobInput = schema.new({
-    id = id.from(_N, "CreateJobInput"),
+    id = id.from(_N, "CreateJobRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -847,7 +847,7 @@ M.CreateJobInput = schema.new({
 })
 
 M.CreateJobOutput = schema.new({
-    id = id.from(_N, "CreateJobOutput"),
+    id = id.from(_N, "CreateJobResponse"),
     type = "structure",
     members = {
         jobArn = schema.new({
@@ -911,7 +911,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.GetJobInput = schema.new({
-    id = id.from(_N, "GetJobInput"),
+    id = id.from(_N, "GetJobRequest"),
     type = "structure",
     members = {
         jobArn = schema.new({
@@ -997,7 +997,7 @@ M.HybridJobQueueInfo = schema.new({
 })
 
 M.GetJobOutput = schema.new({
-    id = id.from(_N, "GetJobOutput"),
+    id = id.from(_N, "GetJobResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -1210,7 +1210,7 @@ M.SearchJobsFilter = schema.new({
 })
 
 M.SearchJobsInput = schema.new({
-    id = id.from(_N, "SearchJobsInput"),
+    id = id.from(_N, "SearchJobsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1318,7 +1318,7 @@ M.JobSummary = schema.new({
 })
 
 M.SearchJobsOutput = schema.new({
-    id = id.from(_N, "SearchJobsOutput"),
+    id = id.from(_N, "SearchJobsResponse"),
     type = "structure",
     members = {
         jobs = schema.new({
@@ -1341,7 +1341,7 @@ M.SearchJobsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1358,7 +1358,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1373,7 +1373,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.CancelQuantumTaskInput = schema.new({
-    id = id.from(_N, "CancelQuantumTaskInput"),
+    id = id.from(_N, "CancelQuantumTaskRequest"),
     type = "structure",
     members = {
         quantumTaskArn = schema.new({
@@ -1400,7 +1400,7 @@ M.CancelQuantumTaskInput = schema.new({
 })
 
 M.CancelQuantumTaskOutput = schema.new({
-    id = id.from(_N, "CancelQuantumTaskOutput"),
+    id = id.from(_N, "CancelQuantumTaskResponse"),
     type = "structure",
     members = {
         quantumTaskArn = schema.new({
@@ -1438,7 +1438,7 @@ M.ExperimentalCapabilities = schema.new({
 })
 
 M.CreateQuantumTaskInput = schema.new({
-    id = id.from(_N, "CreateQuantumTaskInput"),
+    id = id.from(_N, "CreateQuantumTaskRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1541,7 +1541,7 @@ M.CreateQuantumTaskInput = schema.new({
 })
 
 M.CreateQuantumTaskOutput = schema.new({
-    id = id.from(_N, "CreateQuantumTaskOutput"),
+    id = id.from(_N, "CreateQuantumTaskResponse"),
     type = "structure",
     members = {
         quantumTaskArn = schema.new({
@@ -1557,7 +1557,7 @@ M.CreateQuantumTaskOutput = schema.new({
 })
 
 M.GetQuantumTaskInput = schema.new({
-    id = id.from(_N, "GetQuantumTaskInput"),
+    id = id.from(_N, "GetQuantumTaskRequest"),
     type = "structure",
     members = {
         quantumTaskArn = schema.new({
@@ -1621,7 +1621,7 @@ M.QuantumTaskQueueInfo = schema.new({
 })
 
 M.GetQuantumTaskOutput = schema.new({
-    id = id.from(_N, "GetQuantumTaskOutput"),
+    id = id.from(_N, "GetQuantumTaskResponse"),
     type = "structure",
     members = {
         quantumTaskArn = schema.new({
@@ -1803,7 +1803,7 @@ M.SearchQuantumTasksFilter = schema.new({
 })
 
 M.SearchQuantumTasksInput = schema.new({
-    id = id.from(_N, "SearchQuantumTasksInput"),
+    id = id.from(_N, "SearchQuantumTasksRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1920,7 +1920,7 @@ M.QuantumTaskSummary = schema.new({
 })
 
 M.SearchQuantumTasksOutput = schema.new({
-    id = id.from(_N, "SearchQuantumTasksOutput"),
+    id = id.from(_N, "SearchQuantumTasksResponse"),
     type = "structure",
     members = {
         quantumTasks = schema.new({
@@ -1970,7 +1970,7 @@ M.TimePeriod = schema.new({
 })
 
 M.CreateSpendingLimitInput = schema.new({
-    id = id.from(_N, "CreateSpendingLimitInput"),
+    id = id.from(_N, "CreateSpendingLimitRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -2020,7 +2020,7 @@ M.CreateSpendingLimitInput = schema.new({
 })
 
 M.CreateSpendingLimitOutput = schema.new({
-    id = id.from(_N, "CreateSpendingLimitOutput"),
+    id = id.from(_N, "CreateSpendingLimitResponse"),
     type = "structure",
     members = {
         spendingLimitArn = schema.new({
@@ -2036,7 +2036,7 @@ M.CreateSpendingLimitOutput = schema.new({
 })
 
 M.DeleteSpendingLimitInput = schema.new({
-    id = id.from(_N, "DeleteSpendingLimitInput"),
+    id = id.from(_N, "DeleteSpendingLimitRequest"),
     type = "structure",
     members = {
         spendingLimitArn = schema.new({
@@ -2053,7 +2053,7 @@ M.DeleteSpendingLimitInput = schema.new({
 })
 
 M.DeleteSpendingLimitOutput = schema.new({
-    id = id.from(_N, "DeleteSpendingLimitOutput"),
+    id = id.from(_N, "DeleteSpendingLimitResponse"),
     type = "structure",
 })
 
@@ -2093,7 +2093,7 @@ M.SearchSpendingLimitsFilter = schema.new({
 })
 
 M.SearchSpendingLimitsInput = schema.new({
-    id = id.from(_N, "SearchSpendingLimitsInput"),
+    id = id.from(_N, "SearchSpendingLimitsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2209,7 +2209,7 @@ M.SpendingLimitSummary = schema.new({
 })
 
 M.SearchSpendingLimitsOutput = schema.new({
-    id = id.from(_N, "SearchSpendingLimitsOutput"),
+    id = id.from(_N, "SearchSpendingLimitsResponse"),
     type = "structure",
     members = {
         spendingLimits = schema.new({
@@ -2232,7 +2232,7 @@ M.SearchSpendingLimitsOutput = schema.new({
 })
 
 M.UpdateSpendingLimitInput = schema.new({
-    id = id.from(_N, "UpdateSpendingLimitInput"),
+    id = id.from(_N, "UpdateSpendingLimitRequest"),
     type = "structure",
     members = {
         spendingLimitArn = schema.new({
@@ -2272,12 +2272,12 @@ M.UpdateSpendingLimitInput = schema.new({
 })
 
 M.UpdateSpendingLimitOutput = schema.new({
-    id = id.from(_N, "UpdateSpendingLimitOutput"),
+    id = id.from(_N, "UpdateSpendingLimitResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2305,12 +2305,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2338,8 +2338,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -2823,7 +2823,7 @@ M.DescribeContributorInsightsOutput = schema.new({
 })
 
 M.DescribeEndpointsInput = schema.new({
-    id = id.from(_N, "DescribeEndpointsInput"),
+    id = id.from(_N, "DescribeEndpointsRequest"),
     type = "structure",
 })
 
@@ -2854,7 +2854,7 @@ M.Endpoint = schema.new({
 })
 
 M.DescribeEndpointsOutput = schema.new({
-    id = id.from(_N, "DescribeEndpointsOutput"),
+    id = id.from(_N, "DescribeEndpointsResponse"),
     type = "structure",
     members = {
         Endpoints = schema.new({
@@ -3874,7 +3874,7 @@ M.EnableKinesisStreamingConfiguration = schema.new({
 })
 
 M.DisableKinesisStreamingDestinationInput = schema.new({
-    id = id.from(_N, "DisableKinesisStreamingDestinationInput"),
+    id = id.from(_N, "KinesisStreamingDestinationInput"),
     type = "structure",
     members = {
         TableName = schema.new({
@@ -3906,7 +3906,7 @@ M.DisableKinesisStreamingDestinationInput = schema.new({
 })
 
 M.DisableKinesisStreamingDestinationOutput = schema.new({
-    id = id.from(_N, "DisableKinesisStreamingDestinationOutput"),
+    id = id.from(_N, "KinesisStreamingDestinationOutput"),
     type = "structure",
     members = {
         TableName = schema.new({
@@ -3954,7 +3954,7 @@ M.DuplicateItemException = schema.new({
 })
 
 M.EnableKinesisStreamingDestinationInput = schema.new({
-    id = id.from(_N, "EnableKinesisStreamingDestinationInput"),
+    id = id.from(_N, "KinesisStreamingDestinationInput"),
     type = "structure",
     members = {
         TableName = schema.new({
@@ -3986,7 +3986,7 @@ M.EnableKinesisStreamingDestinationInput = schema.new({
 })
 
 M.EnableKinesisStreamingDestinationOutput = schema.new({
-    id = id.from(_N, "EnableKinesisStreamingDestinationOutput"),
+    id = id.from(_N, "KinesisStreamingDestinationOutput"),
     type = "structure",
     members = {
         TableName = schema.new({
@@ -5036,7 +5036,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5067,7 +5067,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -6813,7 +6813,7 @@ M.TransactWriteItemsOutput = schema.new({
             name = "ItemCollectionMetrics",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.ItemCollectionMetrics }),
         }),
     },
 })
@@ -7346,7 +7346,7 @@ M.BatchGetItemOutput = schema.new({
             name = "Responses",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.Document }),
         }),
         UnprocessedKeys = schema.new({
             id = id.from(_N, "BatchGetItemOutput", "UnprocessedKeys"),
@@ -7491,7 +7491,7 @@ M.BatchWriteItemInput = schema.new({
             name = "RequestItems",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.WriteRequest }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -7818,7 +7818,7 @@ M.BatchWriteItemOutput = schema.new({
             name = "UnprocessedItems",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.WriteRequest }),
         }),
         ItemCollectionMetrics = schema.new({
             id = id.from(_N, "BatchWriteItemOutput", "ItemCollectionMetrics"),
@@ -7826,7 +7826,7 @@ M.BatchWriteItemOutput = schema.new({
             name = "ItemCollectionMetrics",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.ItemCollectionMetrics }),
         }),
         ConsumedCapacity = schema.new({
             id = id.from(_N, "BatchWriteItemOutput", "ConsumedCapacity"),
@@ -8011,5 +8011,19 @@ M.TransactWriteItemsInput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

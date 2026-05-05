@@ -1697,13 +1697,13 @@ end
 
 local type BillScenarioStatus = "READY" | "LOCKED" | "FAILED" | "STALE"
 
-local type BillEstimateStatus = "IN_PROGRESS" | "COMPLETE" | "FAILED"
-
 local type WorkloadEstimateStatus = "UPDATING" | "VALID" | "INVALID" | "ACTION_NEEDED"
 
-local type WorkloadEstimateRateType = "BEFORE_DISCOUNTS" | "AFTER_DISCOUNTS" | "AFTER_DISCOUNTS_AND_COMMITMENTS"
-
 local type GroupSharingPreferenceEnum = "OPEN" | "PRIORITIZED" | "RESTRICTED"
+
+local type BillEstimateStatus = "IN_PROGRESS" | "COMPLETE" | "FAILED"
+
+local type WorkloadEstimateRateType = "BEFORE_DISCOUNTS" | "AFTER_DISCOUNTS" | "AFTER_DISCOUNTS_AND_COMMITMENTS"
 
 local type CurrencyCode = "USD"
 

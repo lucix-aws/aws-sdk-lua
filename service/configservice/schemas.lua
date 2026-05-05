@@ -629,7 +629,7 @@ M.AggregatorFilters = schema.new({
 })
 
 M.AssociateResourceTypesInput = schema.new({
-    id = id.from(_N, "AssociateResourceTypesInput"),
+    id = id.from(_N, "AssociateResourceTypesRequest"),
     type = "structure",
     members = {
         ConfigurationRecorderArn = schema.new({
@@ -834,7 +834,7 @@ M.ConfigurationRecorder = schema.new({
 })
 
 M.AssociateResourceTypesOutput = schema.new({
-    id = id.from(_N, "AssociateResourceTypesOutput"),
+    id = id.from(_N, "AssociateResourceTypesResponse"),
     type = "structure",
     members = {
         ConfigurationRecorder = schema.new({
@@ -1004,7 +1004,7 @@ M.BaseConfigurationItem = schema.new({
 })
 
 M.BatchGetAggregateResourceConfigInput = schema.new({
-    id = id.from(_N, "BatchGetAggregateResourceConfigInput"),
+    id = id.from(_N, "BatchGetAggregateResourceConfigRequest"),
     type = "structure",
     members = {
         ConfigurationAggregatorName = schema.new({
@@ -1030,7 +1030,7 @@ M.BatchGetAggregateResourceConfigInput = schema.new({
 })
 
 M.BatchGetAggregateResourceConfigOutput = schema.new({
-    id = id.from(_N, "BatchGetAggregateResourceConfigOutput"),
+    id = id.from(_N, "BatchGetAggregateResourceConfigResponse"),
     type = "structure",
     members = {
         BaseConfigurationItems = schema.new({
@@ -1092,7 +1092,7 @@ M.ResourceKey = schema.new({
 })
 
 M.BatchGetResourceConfigInput = schema.new({
-    id = id.from(_N, "BatchGetResourceConfigInput"),
+    id = id.from(_N, "BatchGetResourceConfigRequest"),
     type = "structure",
     members = {
         resourceKeys = schema.new({
@@ -1109,7 +1109,7 @@ M.BatchGetResourceConfigInput = schema.new({
 })
 
 M.BatchGetResourceConfigOutput = schema.new({
-    id = id.from(_N, "BatchGetResourceConfigOutput"),
+    id = id.from(_N, "BatchGetResourceConfigResponse"),
     type = "structure",
     members = {
         baseConfigurationItems = schema.new({
@@ -2456,7 +2456,7 @@ M.ConformancePackTemplateValidationException = schema.new({
 })
 
 M.DeleteAggregationAuthorizationInput = schema.new({
-    id = id.from(_N, "DeleteAggregationAuthorizationInput"),
+    id = id.from(_N, "DeleteAggregationAuthorizationRequest"),
     type = "structure",
     members = {
         AuthorizedAccountId = schema.new({
@@ -2481,7 +2481,7 @@ M.DeleteAggregationAuthorizationInput = schema.new({
 })
 
 M.DeleteAggregationAuthorizationOutput = schema.new({
-    id = id.from(_N, "DeleteAggregationAuthorizationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2502,7 +2502,7 @@ M.InvalidParameterValueException = schema.new({
 })
 
 M.DeleteConfigRuleInput = schema.new({
-    id = id.from(_N, "DeleteConfigRuleInput"),
+    id = id.from(_N, "DeleteConfigRuleRequest"),
     type = "structure",
     members = {
         ConfigRuleName = schema.new({
@@ -2518,7 +2518,7 @@ M.DeleteConfigRuleInput = schema.new({
 })
 
 M.DeleteConfigRuleOutput = schema.new({
-    id = id.from(_N, "DeleteConfigRuleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2555,7 +2555,7 @@ M.ResourceInUseException = schema.new({
 })
 
 M.DeleteConfigurationAggregatorInput = schema.new({
-    id = id.from(_N, "DeleteConfigurationAggregatorInput"),
+    id = id.from(_N, "DeleteConfigurationAggregatorRequest"),
     type = "structure",
     members = {
         ConfigurationAggregatorName = schema.new({
@@ -2571,12 +2571,12 @@ M.DeleteConfigurationAggregatorInput = schema.new({
 })
 
 M.DeleteConfigurationAggregatorOutput = schema.new({
-    id = id.from(_N, "DeleteConfigurationAggregatorOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteConfigurationRecorderInput = schema.new({
-    id = id.from(_N, "DeleteConfigurationRecorderInput"),
+    id = id.from(_N, "DeleteConfigurationRecorderRequest"),
     type = "structure",
     members = {
         ConfigurationRecorderName = schema.new({
@@ -2592,7 +2592,7 @@ M.DeleteConfigurationRecorderInput = schema.new({
 })
 
 M.DeleteConfigurationRecorderOutput = schema.new({
-    id = id.from(_N, "DeleteConfigurationRecorderOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2613,7 +2613,7 @@ M.UnmodifiableEntityException = schema.new({
 })
 
 M.DeleteConformancePackInput = schema.new({
-    id = id.from(_N, "DeleteConformancePackInput"),
+    id = id.from(_N, "DeleteConformancePackRequest"),
     type = "structure",
     members = {
         ConformancePackName = schema.new({
@@ -2629,7 +2629,7 @@ M.DeleteConformancePackInput = schema.new({
 })
 
 M.DeleteConformancePackOutput = schema.new({
-    id = id.from(_N, "DeleteConformancePackOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2650,7 +2650,7 @@ M.NoSuchConformancePackException = schema.new({
 })
 
 M.DeleteDeliveryChannelInput = schema.new({
-    id = id.from(_N, "DeleteDeliveryChannelInput"),
+    id = id.from(_N, "DeleteDeliveryChannelRequest"),
     type = "structure",
     members = {
         DeliveryChannelName = schema.new({
@@ -2666,7 +2666,7 @@ M.DeleteDeliveryChannelInput = schema.new({
 })
 
 M.DeleteDeliveryChannelOutput = schema.new({
-    id = id.from(_N, "DeleteDeliveryChannelOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2703,7 +2703,7 @@ M.NoSuchDeliveryChannelException = schema.new({
 })
 
 M.DeleteEvaluationResultsInput = schema.new({
-    id = id.from(_N, "DeleteEvaluationResultsInput"),
+    id = id.from(_N, "DeleteEvaluationResultsRequest"),
     type = "structure",
     members = {
         ConfigRuleName = schema.new({
@@ -2719,12 +2719,12 @@ M.DeleteEvaluationResultsInput = schema.new({
 })
 
 M.DeleteEvaluationResultsOutput = schema.new({
-    id = id.from(_N, "DeleteEvaluationResultsOutput"),
+    id = id.from(_N, "DeleteEvaluationResultsResponse"),
     type = "structure",
 })
 
 M.DeleteOrganizationConfigRuleInput = schema.new({
-    id = id.from(_N, "DeleteOrganizationConfigRuleInput"),
+    id = id.from(_N, "DeleteOrganizationConfigRuleRequest"),
     type = "structure",
     members = {
         OrganizationConfigRuleName = schema.new({
@@ -2740,7 +2740,7 @@ M.DeleteOrganizationConfigRuleInput = schema.new({
 })
 
 M.DeleteOrganizationConfigRuleOutput = schema.new({
-    id = id.from(_N, "DeleteOrganizationConfigRuleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2777,7 +2777,7 @@ M.OrganizationAccessDeniedException = schema.new({
 })
 
 M.DeleteOrganizationConformancePackInput = schema.new({
-    id = id.from(_N, "DeleteOrganizationConformancePackInput"),
+    id = id.from(_N, "DeleteOrganizationConformancePackRequest"),
     type = "structure",
     members = {
         OrganizationConformancePackName = schema.new({
@@ -2793,7 +2793,7 @@ M.DeleteOrganizationConformancePackInput = schema.new({
 })
 
 M.DeleteOrganizationConformancePackOutput = schema.new({
-    id = id.from(_N, "DeleteOrganizationConformancePackOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2814,7 +2814,7 @@ M.NoSuchOrganizationConformancePackException = schema.new({
 })
 
 M.DeletePendingAggregationRequestInput = schema.new({
-    id = id.from(_N, "DeletePendingAggregationRequestInput"),
+    id = id.from(_N, "DeletePendingAggregationRequestRequest"),
     type = "structure",
     members = {
         RequesterAccountId = schema.new({
@@ -2839,12 +2839,12 @@ M.DeletePendingAggregationRequestInput = schema.new({
 })
 
 M.DeletePendingAggregationRequestOutput = schema.new({
-    id = id.from(_N, "DeletePendingAggregationRequestOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRemediationConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteRemediationConfigurationInput"),
+    id = id.from(_N, "DeleteRemediationConfigurationRequest"),
     type = "structure",
     members = {
         ConfigRuleName = schema.new({
@@ -2866,7 +2866,7 @@ M.DeleteRemediationConfigurationInput = schema.new({
 })
 
 M.DeleteRemediationConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteRemediationConfigurationOutput"),
+    id = id.from(_N, "DeleteRemediationConfigurationResponse"),
     type = "structure",
 })
 
@@ -2938,7 +2938,7 @@ M.RemediationExceptionResourceKey = schema.new({
 })
 
 M.DeleteRemediationExceptionsInput = schema.new({
-    id = id.from(_N, "DeleteRemediationExceptionsInput"),
+    id = id.from(_N, "DeleteRemediationExceptionsRequest"),
     type = "structure",
     members = {
         ConfigRuleName = schema.new({
@@ -2984,7 +2984,7 @@ M.FailedDeleteRemediationExceptionsBatch = schema.new({
 })
 
 M.DeleteRemediationExceptionsOutput = schema.new({
-    id = id.from(_N, "DeleteRemediationExceptionsOutput"),
+    id = id.from(_N, "DeleteRemediationExceptionsResponse"),
     type = "structure",
     members = {
         FailedBatches = schema.new({
@@ -3014,7 +3014,7 @@ M.NoSuchRemediationExceptionException = schema.new({
 })
 
 M.DeleteResourceConfigInput = schema.new({
-    id = id.from(_N, "DeleteResourceConfigInput"),
+    id = id.from(_N, "DeleteResourceConfigRequest"),
     type = "structure",
     members = {
         ResourceType = schema.new({
@@ -3039,7 +3039,7 @@ M.DeleteResourceConfigInput = schema.new({
 })
 
 M.DeleteResourceConfigOutput = schema.new({
-    id = id.from(_N, "DeleteResourceConfigOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3060,7 +3060,7 @@ M.NoRunningConfigurationRecorderException = schema.new({
 })
 
 M.DeleteRetentionConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteRetentionConfigurationInput"),
+    id = id.from(_N, "DeleteRetentionConfigurationRequest"),
     type = "structure",
     members = {
         RetentionConfigurationName = schema.new({
@@ -3076,7 +3076,7 @@ M.DeleteRetentionConfigurationInput = schema.new({
 })
 
 M.DeleteRetentionConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteRetentionConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3097,7 +3097,7 @@ M.NoSuchRetentionConfigurationException = schema.new({
 })
 
 M.DeleteServiceLinkedConfigurationRecorderInput = schema.new({
-    id = id.from(_N, "DeleteServiceLinkedConfigurationRecorderInput"),
+    id = id.from(_N, "DeleteServiceLinkedConfigurationRecorderRequest"),
     type = "structure",
     members = {
         ServicePrincipal = schema.new({
@@ -3113,7 +3113,7 @@ M.DeleteServiceLinkedConfigurationRecorderInput = schema.new({
 })
 
 M.DeleteServiceLinkedConfigurationRecorderOutput = schema.new({
-    id = id.from(_N, "DeleteServiceLinkedConfigurationRecorderOutput"),
+    id = id.from(_N, "DeleteServiceLinkedConfigurationRecorderResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3138,7 +3138,7 @@ M.DeleteServiceLinkedConfigurationRecorderOutput = schema.new({
 })
 
 M.DeleteStoredQueryInput = schema.new({
-    id = id.from(_N, "DeleteStoredQueryInput"),
+    id = id.from(_N, "DeleteStoredQueryRequest"),
     type = "structure",
     members = {
         QueryName = schema.new({
@@ -3154,7 +3154,7 @@ M.DeleteStoredQueryInput = schema.new({
 })
 
 M.DeleteStoredQueryOutput = schema.new({
-    id = id.from(_N, "DeleteStoredQueryOutput"),
+    id = id.from(_N, "DeleteStoredQueryResponse"),
     type = "structure",
 })
 
@@ -3175,7 +3175,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DeliverConfigSnapshotInput = schema.new({
-    id = id.from(_N, "DeliverConfigSnapshotInput"),
+    id = id.from(_N, "DeliverConfigSnapshotRequest"),
     type = "structure",
     members = {
         deliveryChannelName = schema.new({
@@ -3191,7 +3191,7 @@ M.DeliverConfigSnapshotInput = schema.new({
 })
 
 M.DeliverConfigSnapshotOutput = schema.new({
-    id = id.from(_N, "DeliverConfigSnapshotOutput"),
+    id = id.from(_N, "DeliverConfigSnapshotResponse"),
     type = "structure",
     members = {
         configSnapshotId = schema.new({
@@ -3282,7 +3282,7 @@ M.DeliveryChannelStatus = schema.new({
 })
 
 M.DescribeAggregateComplianceByConfigRulesInput = schema.new({
-    id = id.from(_N, "DescribeAggregateComplianceByConfigRulesInput"),
+    id = id.from(_N, "DescribeAggregateComplianceByConfigRulesRequest"),
     type = "structure",
     members = {
         ConfigurationAggregatorName = schema.new({
@@ -3320,7 +3320,7 @@ M.DescribeAggregateComplianceByConfigRulesInput = schema.new({
 })
 
 M.DescribeAggregateComplianceByConfigRulesOutput = schema.new({
-    id = id.from(_N, "DescribeAggregateComplianceByConfigRulesOutput"),
+    id = id.from(_N, "DescribeAggregateComplianceByConfigRulesResponse"),
     type = "structure",
     members = {
         AggregateComplianceByConfigRules = schema.new({
@@ -3372,7 +3372,7 @@ M.InvalidNextTokenException = schema.new({
 })
 
 M.DescribeAggregateComplianceByConformancePacksInput = schema.new({
-    id = id.from(_N, "DescribeAggregateComplianceByConformancePacksInput"),
+    id = id.from(_N, "DescribeAggregateComplianceByConformancePacksRequest"),
     type = "structure",
     members = {
         ConfigurationAggregatorName = schema.new({
@@ -3410,7 +3410,7 @@ M.DescribeAggregateComplianceByConformancePacksInput = schema.new({
 })
 
 M.DescribeAggregateComplianceByConformancePacksOutput = schema.new({
-    id = id.from(_N, "DescribeAggregateComplianceByConformancePacksOutput"),
+    id = id.from(_N, "DescribeAggregateComplianceByConformancePacksResponse"),
     type = "structure",
     members = {
         AggregateComplianceByConformancePacks = schema.new({
@@ -3430,7 +3430,7 @@ M.DescribeAggregateComplianceByConformancePacksOutput = schema.new({
 })
 
 M.DescribeAggregationAuthorizationsInput = schema.new({
-    id = id.from(_N, "DescribeAggregationAuthorizationsInput"),
+    id = id.from(_N, "DescribeAggregationAuthorizationsRequest"),
     type = "structure",
     members = {
         Limit = schema.new({
@@ -3452,7 +3452,7 @@ M.DescribeAggregationAuthorizationsInput = schema.new({
 })
 
 M.DescribeAggregationAuthorizationsOutput = schema.new({
-    id = id.from(_N, "DescribeAggregationAuthorizationsOutput"),
+    id = id.from(_N, "DescribeAggregationAuthorizationsResponse"),
     type = "structure",
     members = {
         AggregationAuthorizations = schema.new({
@@ -3472,7 +3472,7 @@ M.DescribeAggregationAuthorizationsOutput = schema.new({
 })
 
 M.DescribeComplianceByConfigRuleInput = schema.new({
-    id = id.from(_N, "DescribeComplianceByConfigRuleInput"),
+    id = id.from(_N, "DescribeComplianceByConfigRuleRequest"),
     type = "structure",
     members = {
         ConfigRuleNames = schema.new({
@@ -3499,7 +3499,7 @@ M.DescribeComplianceByConfigRuleInput = schema.new({
 })
 
 M.DescribeComplianceByConfigRuleOutput = schema.new({
-    id = id.from(_N, "DescribeComplianceByConfigRuleOutput"),
+    id = id.from(_N, "DescribeComplianceByConfigRuleResponse"),
     type = "structure",
     members = {
         ComplianceByConfigRules = schema.new({
@@ -3519,7 +3519,7 @@ M.DescribeComplianceByConfigRuleOutput = schema.new({
 })
 
 M.DescribeComplianceByResourceInput = schema.new({
-    id = id.from(_N, "DescribeComplianceByResourceInput"),
+    id = id.from(_N, "DescribeComplianceByResourceRequest"),
     type = "structure",
     members = {
         ResourceType = schema.new({
@@ -3560,7 +3560,7 @@ M.DescribeComplianceByResourceInput = schema.new({
 })
 
 M.DescribeComplianceByResourceOutput = schema.new({
-    id = id.from(_N, "DescribeComplianceByResourceOutput"),
+    id = id.from(_N, "DescribeComplianceByResourceResponse"),
     type = "structure",
     members = {
         ComplianceByResources = schema.new({
@@ -3580,7 +3580,7 @@ M.DescribeComplianceByResourceOutput = schema.new({
 })
 
 M.DescribeConfigRuleEvaluationStatusInput = schema.new({
-    id = id.from(_N, "DescribeConfigRuleEvaluationStatusInput"),
+    id = id.from(_N, "DescribeConfigRuleEvaluationStatusRequest"),
     type = "structure",
     members = {
         ConfigRuleNames = schema.new({
@@ -3609,7 +3609,7 @@ M.DescribeConfigRuleEvaluationStatusInput = schema.new({
 })
 
 M.DescribeConfigRuleEvaluationStatusOutput = schema.new({
-    id = id.from(_N, "DescribeConfigRuleEvaluationStatusOutput"),
+    id = id.from(_N, "DescribeConfigRuleEvaluationStatusResponse"),
     type = "structure",
     members = {
         ConfigRulesEvaluationStatus = schema.new({
@@ -3642,7 +3642,7 @@ M.DescribeConfigRulesFilters = schema.new({
 })
 
 M.DescribeConfigRulesInput = schema.new({
-    id = id.from(_N, "DescribeConfigRulesInput"),
+    id = id.from(_N, "DescribeConfigRulesRequest"),
     type = "structure",
     members = {
         ConfigRuleNames = schema.new({
@@ -3669,7 +3669,7 @@ M.DescribeConfigRulesInput = schema.new({
 })
 
 M.DescribeConfigRulesOutput = schema.new({
-    id = id.from(_N, "DescribeConfigRulesOutput"),
+    id = id.from(_N, "DescribeConfigRulesResponse"),
     type = "structure",
     members = {
         ConfigRules = schema.new({
@@ -3689,7 +3689,7 @@ M.DescribeConfigRulesOutput = schema.new({
 })
 
 M.DescribeConfigurationAggregatorsInput = schema.new({
-    id = id.from(_N, "DescribeConfigurationAggregatorsInput"),
+    id = id.from(_N, "DescribeConfigurationAggregatorsRequest"),
     type = "structure",
     members = {
         ConfigurationAggregatorNames = schema.new({
@@ -3718,7 +3718,7 @@ M.DescribeConfigurationAggregatorsInput = schema.new({
 })
 
 M.DescribeConfigurationAggregatorsOutput = schema.new({
-    id = id.from(_N, "DescribeConfigurationAggregatorsOutput"),
+    id = id.from(_N, "DescribeConfigurationAggregatorsResponse"),
     type = "structure",
     members = {
         ConfigurationAggregators = schema.new({
@@ -3738,7 +3738,7 @@ M.DescribeConfigurationAggregatorsOutput = schema.new({
 })
 
 M.DescribeConfigurationAggregatorSourcesStatusInput = schema.new({
-    id = id.from(_N, "DescribeConfigurationAggregatorSourcesStatusInput"),
+    id = id.from(_N, "DescribeConfigurationAggregatorSourcesStatusRequest"),
     type = "structure",
     members = {
         ConfigurationAggregatorName = schema.new({
@@ -3776,7 +3776,7 @@ M.DescribeConfigurationAggregatorSourcesStatusInput = schema.new({
 })
 
 M.DescribeConfigurationAggregatorSourcesStatusOutput = schema.new({
-    id = id.from(_N, "DescribeConfigurationAggregatorSourcesStatusOutput"),
+    id = id.from(_N, "DescribeConfigurationAggregatorSourcesStatusResponse"),
     type = "structure",
     members = {
         AggregatedSourceStatusList = schema.new({
@@ -3796,7 +3796,7 @@ M.DescribeConfigurationAggregatorSourcesStatusOutput = schema.new({
 })
 
 M.DescribeConfigurationRecordersInput = schema.new({
-    id = id.from(_N, "DescribeConfigurationRecordersInput"),
+    id = id.from(_N, "DescribeConfigurationRecordersRequest"),
     type = "structure",
     members = {
         ConfigurationRecorderNames = schema.new({
@@ -3822,7 +3822,7 @@ M.DescribeConfigurationRecordersInput = schema.new({
 })
 
 M.DescribeConfigurationRecordersOutput = schema.new({
-    id = id.from(_N, "DescribeConfigurationRecordersOutput"),
+    id = id.from(_N, "DescribeConfigurationRecordersResponse"),
     type = "structure",
     members = {
         ConfigurationRecorders = schema.new({
@@ -3836,7 +3836,7 @@ M.DescribeConfigurationRecordersOutput = schema.new({
 })
 
 M.DescribeConfigurationRecorderStatusInput = schema.new({
-    id = id.from(_N, "DescribeConfigurationRecorderStatusInput"),
+    id = id.from(_N, "DescribeConfigurationRecorderStatusRequest"),
     type = "structure",
     members = {
         ConfigurationRecorderNames = schema.new({
@@ -3862,7 +3862,7 @@ M.DescribeConfigurationRecorderStatusInput = schema.new({
 })
 
 M.DescribeConfigurationRecorderStatusOutput = schema.new({
-    id = id.from(_N, "DescribeConfigurationRecorderStatusOutput"),
+    id = id.from(_N, "DescribeConfigurationRecorderStatusResponse"),
     type = "structure",
     members = {
         ConfigurationRecordersStatus = schema.new({
@@ -3876,7 +3876,7 @@ M.DescribeConfigurationRecorderStatusOutput = schema.new({
 })
 
 M.DescribeConformancePackComplianceInput = schema.new({
-    id = id.from(_N, "DescribeConformancePackComplianceInput"),
+    id = id.from(_N, "DescribeConformancePackComplianceRequest"),
     type = "structure",
     members = {
         ConformancePackName = schema.new({
@@ -3914,7 +3914,7 @@ M.DescribeConformancePackComplianceInput = schema.new({
 })
 
 M.DescribeConformancePackComplianceOutput = schema.new({
-    id = id.from(_N, "DescribeConformancePackComplianceOutput"),
+    id = id.from(_N, "DescribeConformancePackComplianceResponse"),
     type = "structure",
     members = {
         ConformancePackName = schema.new({
@@ -3962,7 +3962,7 @@ M.NoSuchConfigRuleInConformancePackException = schema.new({
 })
 
 M.DescribeConformancePacksInput = schema.new({
-    id = id.from(_N, "DescribeConformancePacksInput"),
+    id = id.from(_N, "DescribeConformancePacksRequest"),
     type = "structure",
     members = {
         ConformancePackNames = schema.new({
@@ -3991,7 +3991,7 @@ M.DescribeConformancePacksInput = schema.new({
 })
 
 M.DescribeConformancePacksOutput = schema.new({
-    id = id.from(_N, "DescribeConformancePacksOutput"),
+    id = id.from(_N, "DescribeConformancePacksResponse"),
     type = "structure",
     members = {
         ConformancePackDetails = schema.new({
@@ -4011,7 +4011,7 @@ M.DescribeConformancePacksOutput = schema.new({
 })
 
 M.DescribeConformancePackStatusInput = schema.new({
-    id = id.from(_N, "DescribeConformancePackStatusInput"),
+    id = id.from(_N, "DescribeConformancePackStatusRequest"),
     type = "structure",
     members = {
         ConformancePackNames = schema.new({
@@ -4040,7 +4040,7 @@ M.DescribeConformancePackStatusInput = schema.new({
 })
 
 M.DescribeConformancePackStatusOutput = schema.new({
-    id = id.from(_N, "DescribeConformancePackStatusOutput"),
+    id = id.from(_N, "DescribeConformancePackStatusResponse"),
     type = "structure",
     members = {
         ConformancePackStatusDetails = schema.new({
@@ -4060,7 +4060,7 @@ M.DescribeConformancePackStatusOutput = schema.new({
 })
 
 M.DescribeDeliveryChannelsInput = schema.new({
-    id = id.from(_N, "DescribeDeliveryChannelsInput"),
+    id = id.from(_N, "DescribeDeliveryChannelsRequest"),
     type = "structure",
     members = {
         DeliveryChannelNames = schema.new({
@@ -4074,7 +4074,7 @@ M.DescribeDeliveryChannelsInput = schema.new({
 })
 
 M.DescribeDeliveryChannelsOutput = schema.new({
-    id = id.from(_N, "DescribeDeliveryChannelsOutput"),
+    id = id.from(_N, "DescribeDeliveryChannelsResponse"),
     type = "structure",
     members = {
         DeliveryChannels = schema.new({
@@ -4088,7 +4088,7 @@ M.DescribeDeliveryChannelsOutput = schema.new({
 })
 
 M.DescribeDeliveryChannelStatusInput = schema.new({
-    id = id.from(_N, "DescribeDeliveryChannelStatusInput"),
+    id = id.from(_N, "DescribeDeliveryChannelStatusRequest"),
     type = "structure",
     members = {
         DeliveryChannelNames = schema.new({
@@ -4102,7 +4102,7 @@ M.DescribeDeliveryChannelStatusInput = schema.new({
 })
 
 M.DescribeDeliveryChannelStatusOutput = schema.new({
-    id = id.from(_N, "DescribeDeliveryChannelStatusOutput"),
+    id = id.from(_N, "DescribeDeliveryChannelStatusResponse"),
     type = "structure",
     members = {
         DeliveryChannelsStatus = schema.new({
@@ -4116,7 +4116,7 @@ M.DescribeDeliveryChannelStatusOutput = schema.new({
 })
 
 M.DescribeOrganizationConfigRulesInput = schema.new({
-    id = id.from(_N, "DescribeOrganizationConfigRulesInput"),
+    id = id.from(_N, "DescribeOrganizationConfigRulesRequest"),
     type = "structure",
     members = {
         OrganizationConfigRuleNames = schema.new({
@@ -4402,7 +4402,7 @@ M.OrganizationConfigRule = schema.new({
 })
 
 M.DescribeOrganizationConfigRulesOutput = schema.new({
-    id = id.from(_N, "DescribeOrganizationConfigRulesOutput"),
+    id = id.from(_N, "DescribeOrganizationConfigRulesResponse"),
     type = "structure",
     members = {
         OrganizationConfigRules = schema.new({
@@ -4422,7 +4422,7 @@ M.DescribeOrganizationConfigRulesOutput = schema.new({
 })
 
 M.DescribeOrganizationConfigRuleStatusesInput = schema.new({
-    id = id.from(_N, "DescribeOrganizationConfigRuleStatusesInput"),
+    id = id.from(_N, "DescribeOrganizationConfigRuleStatusesRequest"),
     type = "structure",
     members = {
         OrganizationConfigRuleNames = schema.new({
@@ -4494,7 +4494,7 @@ M.OrganizationConfigRuleStatus = schema.new({
 })
 
 M.DescribeOrganizationConfigRuleStatusesOutput = schema.new({
-    id = id.from(_N, "DescribeOrganizationConfigRuleStatusesOutput"),
+    id = id.from(_N, "DescribeOrganizationConfigRuleStatusesResponse"),
     type = "structure",
     members = {
         OrganizationConfigRuleStatuses = schema.new({
@@ -4514,7 +4514,7 @@ M.DescribeOrganizationConfigRuleStatusesOutput = schema.new({
 })
 
 M.DescribeOrganizationConformancePacksInput = schema.new({
-    id = id.from(_N, "DescribeOrganizationConformancePacksInput"),
+    id = id.from(_N, "DescribeOrganizationConformancePacksRequest"),
     type = "structure",
     members = {
         OrganizationConformancePackNames = schema.new({
@@ -4603,7 +4603,7 @@ M.OrganizationConformancePack = schema.new({
 })
 
 M.DescribeOrganizationConformancePacksOutput = schema.new({
-    id = id.from(_N, "DescribeOrganizationConformancePacksOutput"),
+    id = id.from(_N, "DescribeOrganizationConformancePacksResponse"),
     type = "structure",
     members = {
         OrganizationConformancePacks = schema.new({
@@ -4623,7 +4623,7 @@ M.DescribeOrganizationConformancePacksOutput = schema.new({
 })
 
 M.DescribeOrganizationConformancePackStatusesInput = schema.new({
-    id = id.from(_N, "DescribeOrganizationConformancePackStatusesInput"),
+    id = id.from(_N, "DescribeOrganizationConformancePackStatusesRequest"),
     type = "structure",
     members = {
         OrganizationConformancePackNames = schema.new({
@@ -4695,7 +4695,7 @@ M.OrganizationConformancePackStatus = schema.new({
 })
 
 M.DescribeOrganizationConformancePackStatusesOutput = schema.new({
-    id = id.from(_N, "DescribeOrganizationConformancePackStatusesOutput"),
+    id = id.from(_N, "DescribeOrganizationConformancePackStatusesResponse"),
     type = "structure",
     members = {
         OrganizationConformancePackStatuses = schema.new({
@@ -4715,7 +4715,7 @@ M.DescribeOrganizationConformancePackStatusesOutput = schema.new({
 })
 
 M.DescribePendingAggregationRequestsInput = schema.new({
-    id = id.from(_N, "DescribePendingAggregationRequestsInput"),
+    id = id.from(_N, "DescribePendingAggregationRequestsRequest"),
     type = "structure",
     members = {
         Limit = schema.new({
@@ -4756,7 +4756,7 @@ M.PendingAggregationRequest = schema.new({
 })
 
 M.DescribePendingAggregationRequestsOutput = schema.new({
-    id = id.from(_N, "DescribePendingAggregationRequestsOutput"),
+    id = id.from(_N, "DescribePendingAggregationRequestsResponse"),
     type = "structure",
     members = {
         PendingAggregationRequests = schema.new({
@@ -4776,7 +4776,7 @@ M.DescribePendingAggregationRequestsOutput = schema.new({
 })
 
 M.DescribeRemediationConfigurationsInput = schema.new({
-    id = id.from(_N, "DescribeRemediationConfigurationsInput"),
+    id = id.from(_N, "DescribeRemediationConfigurationsRequest"),
     type = "structure",
     members = {
         ConfigRuleNames = schema.new({
@@ -4974,7 +4974,7 @@ M.RemediationConfiguration = schema.new({
 })
 
 M.DescribeRemediationConfigurationsOutput = schema.new({
-    id = id.from(_N, "DescribeRemediationConfigurationsOutput"),
+    id = id.from(_N, "DescribeRemediationConfigurationsResponse"),
     type = "structure",
     members = {
         RemediationConfigurations = schema.new({
@@ -4988,7 +4988,7 @@ M.DescribeRemediationConfigurationsOutput = schema.new({
 })
 
 M.DescribeRemediationExceptionsInput = schema.new({
-    id = id.from(_N, "DescribeRemediationExceptionsInput"),
+    id = id.from(_N, "DescribeRemediationExceptionsRequest"),
     type = "structure",
     members = {
         ConfigRuleName = schema.new({
@@ -5072,7 +5072,7 @@ M.RemediationException = schema.new({
 })
 
 M.DescribeRemediationExceptionsOutput = schema.new({
-    id = id.from(_N, "DescribeRemediationExceptionsOutput"),
+    id = id.from(_N, "DescribeRemediationExceptionsResponse"),
     type = "structure",
     members = {
         RemediationExceptions = schema.new({
@@ -5092,7 +5092,7 @@ M.DescribeRemediationExceptionsOutput = schema.new({
 })
 
 M.DescribeRemediationExecutionStatusInput = schema.new({
-    id = id.from(_N, "DescribeRemediationExecutionStatusInput"),
+    id = id.from(_N, "DescribeRemediationExecutionStatusRequest"),
     type = "structure",
     members = {
         ConfigRuleName = schema.new({
@@ -5206,7 +5206,7 @@ M.RemediationExecutionStatus = schema.new({
 })
 
 M.DescribeRemediationExecutionStatusOutput = schema.new({
-    id = id.from(_N, "DescribeRemediationExecutionStatusOutput"),
+    id = id.from(_N, "DescribeRemediationExecutionStatusResponse"),
     type = "structure",
     members = {
         RemediationExecutionStatuses = schema.new({
@@ -5226,7 +5226,7 @@ M.DescribeRemediationExecutionStatusOutput = schema.new({
 })
 
 M.DescribeRetentionConfigurationsInput = schema.new({
-    id = id.from(_N, "DescribeRetentionConfigurationsInput"),
+    id = id.from(_N, "DescribeRetentionConfigurationsRequest"),
     type = "structure",
     members = {
         RetentionConfigurationNames = schema.new({
@@ -5271,7 +5271,7 @@ M.RetentionConfiguration = schema.new({
 })
 
 M.DescribeRetentionConfigurationsOutput = schema.new({
-    id = id.from(_N, "DescribeRetentionConfigurationsOutput"),
+    id = id.from(_N, "DescribeRetentionConfigurationsResponse"),
     type = "structure",
     members = {
         RetentionConfigurations = schema.new({
@@ -5291,7 +5291,7 @@ M.DescribeRetentionConfigurationsOutput = schema.new({
 })
 
 M.DisassociateResourceTypesInput = schema.new({
-    id = id.from(_N, "DisassociateResourceTypesInput"),
+    id = id.from(_N, "DisassociateResourceTypesRequest"),
     type = "structure",
     members = {
         ConfigurationRecorderArn = schema.new({
@@ -5317,7 +5317,7 @@ M.DisassociateResourceTypesInput = schema.new({
 })
 
 M.DisassociateResourceTypesOutput = schema.new({
-    id = id.from(_N, "DisassociateResourceTypesOutput"),
+    id = id.from(_N, "DisassociateResourceTypesResponse"),
     type = "structure",
     members = {
         ConfigurationRecorder = schema.new({
@@ -5564,7 +5564,7 @@ M.FieldInfo = schema.new({
 })
 
 M.GetAggregateComplianceDetailsByConfigRuleInput = schema.new({
-    id = id.from(_N, "GetAggregateComplianceDetailsByConfigRuleInput"),
+    id = id.from(_N, "GetAggregateComplianceDetailsByConfigRuleRequest"),
     type = "structure",
     members = {
         ConfigurationAggregatorName = schema.new({
@@ -5628,7 +5628,7 @@ M.GetAggregateComplianceDetailsByConfigRuleInput = schema.new({
 })
 
 M.GetAggregateComplianceDetailsByConfigRuleOutput = schema.new({
-    id = id.from(_N, "GetAggregateComplianceDetailsByConfigRuleOutput"),
+    id = id.from(_N, "GetAggregateComplianceDetailsByConfigRuleResponse"),
     type = "structure",
     members = {
         AggregateEvaluationResults = schema.new({
@@ -5648,7 +5648,7 @@ M.GetAggregateComplianceDetailsByConfigRuleOutput = schema.new({
 })
 
 M.GetAggregateConfigRuleComplianceSummaryInput = schema.new({
-    id = id.from(_N, "GetAggregateConfigRuleComplianceSummaryInput"),
+    id = id.from(_N, "GetAggregateConfigRuleComplianceSummaryRequest"),
     type = "structure",
     members = {
         ConfigurationAggregatorName = schema.new({
@@ -5692,7 +5692,7 @@ M.GetAggregateConfigRuleComplianceSummaryInput = schema.new({
 })
 
 M.GetAggregateConfigRuleComplianceSummaryOutput = schema.new({
-    id = id.from(_N, "GetAggregateConfigRuleComplianceSummaryOutput"),
+    id = id.from(_N, "GetAggregateConfigRuleComplianceSummaryResponse"),
     type = "structure",
     members = {
         GroupByKey = schema.new({
@@ -5718,7 +5718,7 @@ M.GetAggregateConfigRuleComplianceSummaryOutput = schema.new({
 })
 
 M.GetAggregateConformancePackComplianceSummaryInput = schema.new({
-    id = id.from(_N, "GetAggregateConformancePackComplianceSummaryInput"),
+    id = id.from(_N, "GetAggregateConformancePackComplianceSummaryRequest"),
     type = "structure",
     members = {
         ConfigurationAggregatorName = schema.new({
@@ -5762,7 +5762,7 @@ M.GetAggregateConformancePackComplianceSummaryInput = schema.new({
 })
 
 M.GetAggregateConformancePackComplianceSummaryOutput = schema.new({
-    id = id.from(_N, "GetAggregateConformancePackComplianceSummaryOutput"),
+    id = id.from(_N, "GetAggregateConformancePackComplianceSummaryResponse"),
     type = "structure",
     members = {
         AggregateConformancePackComplianceSummaries = schema.new({
@@ -5813,7 +5813,7 @@ M.ResourceCountFilters = schema.new({
 })
 
 M.GetAggregateDiscoveredResourceCountsInput = schema.new({
-    id = id.from(_N, "GetAggregateDiscoveredResourceCountsInput"),
+    id = id.from(_N, "GetAggregateDiscoveredResourceCountsRequest"),
     type = "structure",
     members = {
         ConfigurationAggregatorName = schema.new({
@@ -5883,7 +5883,7 @@ M.GroupedResourceCount = schema.new({
 })
 
 M.GetAggregateDiscoveredResourceCountsOutput = schema.new({
-    id = id.from(_N, "GetAggregateDiscoveredResourceCountsOutput"),
+    id = id.from(_N, "GetAggregateDiscoveredResourceCountsResponse"),
     type = "structure",
     members = {
         TotalDiscoveredResources = schema.new({
@@ -5919,7 +5919,7 @@ M.GetAggregateDiscoveredResourceCountsOutput = schema.new({
 })
 
 M.GetAggregateResourceConfigInput = schema.new({
-    id = id.from(_N, "GetAggregateResourceConfigInput"),
+    id = id.from(_N, "GetAggregateResourceConfigRequest"),
     type = "structure",
     members = {
         ConfigurationAggregatorName = schema.new({
@@ -5945,7 +5945,7 @@ M.GetAggregateResourceConfigInput = schema.new({
 })
 
 M.GetAggregateResourceConfigOutput = schema.new({
-    id = id.from(_N, "GetAggregateResourceConfigOutput"),
+    id = id.from(_N, "GetAggregateResourceConfigResponse"),
     type = "structure",
     members = {
         ConfigurationItem = schema.new({
@@ -5991,7 +5991,7 @@ M.ResourceNotDiscoveredException = schema.new({
 })
 
 M.GetComplianceDetailsByConfigRuleInput = schema.new({
-    id = id.from(_N, "GetComplianceDetailsByConfigRuleInput"),
+    id = id.from(_N, "GetComplianceDetailsByConfigRuleRequest"),
     type = "structure",
     members = {
         ConfigRuleName = schema.new({
@@ -6029,7 +6029,7 @@ M.GetComplianceDetailsByConfigRuleInput = schema.new({
 })
 
 M.GetComplianceDetailsByConfigRuleOutput = schema.new({
-    id = id.from(_N, "GetComplianceDetailsByConfigRuleOutput"),
+    id = id.from(_N, "GetComplianceDetailsByConfigRuleResponse"),
     type = "structure",
     members = {
         EvaluationResults = schema.new({
@@ -6049,7 +6049,7 @@ M.GetComplianceDetailsByConfigRuleOutput = schema.new({
 })
 
 M.GetComplianceDetailsByResourceInput = schema.new({
-    id = id.from(_N, "GetComplianceDetailsByResourceInput"),
+    id = id.from(_N, "GetComplianceDetailsByResourceRequest"),
     type = "structure",
     members = {
         ResourceType = schema.new({
@@ -6087,7 +6087,7 @@ M.GetComplianceDetailsByResourceInput = schema.new({
 })
 
 M.GetComplianceDetailsByResourceOutput = schema.new({
-    id = id.from(_N, "GetComplianceDetailsByResourceOutput"),
+    id = id.from(_N, "GetComplianceDetailsByResourceResponse"),
     type = "structure",
     members = {
         EvaluationResults = schema.new({
@@ -6107,12 +6107,12 @@ M.GetComplianceDetailsByResourceOutput = schema.new({
 })
 
 M.GetComplianceSummaryByConfigRuleInput = schema.new({
-    id = id.from(_N, "GetComplianceSummaryByConfigRuleInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetComplianceSummaryByConfigRuleOutput = schema.new({
-    id = id.from(_N, "GetComplianceSummaryByConfigRuleOutput"),
+    id = id.from(_N, "GetComplianceSummaryByConfigRuleResponse"),
     type = "structure",
     members = {
         ComplianceSummary = schema.new({
@@ -6126,7 +6126,7 @@ M.GetComplianceSummaryByConfigRuleOutput = schema.new({
 })
 
 M.GetComplianceSummaryByResourceTypeInput = schema.new({
-    id = id.from(_N, "GetComplianceSummaryByResourceTypeInput"),
+    id = id.from(_N, "GetComplianceSummaryByResourceTypeRequest"),
     type = "structure",
     members = {
         ResourceTypes = schema.new({
@@ -6140,7 +6140,7 @@ M.GetComplianceSummaryByResourceTypeInput = schema.new({
 })
 
 M.GetComplianceSummaryByResourceTypeOutput = schema.new({
-    id = id.from(_N, "GetComplianceSummaryByResourceTypeOutput"),
+    id = id.from(_N, "GetComplianceSummaryByResourceTypeResponse"),
     type = "structure",
     members = {
         ComplianceSummariesByResourceType = schema.new({
@@ -6154,7 +6154,7 @@ M.GetComplianceSummaryByResourceTypeOutput = schema.new({
 })
 
 M.GetConformancePackComplianceDetailsInput = schema.new({
-    id = id.from(_N, "GetConformancePackComplianceDetailsInput"),
+    id = id.from(_N, "GetConformancePackComplianceDetailsRequest"),
     type = "structure",
     members = {
         ConformancePackName = schema.new({
@@ -6192,7 +6192,7 @@ M.GetConformancePackComplianceDetailsInput = schema.new({
 })
 
 M.GetConformancePackComplianceDetailsOutput = schema.new({
-    id = id.from(_N, "GetConformancePackComplianceDetailsOutput"),
+    id = id.from(_N, "GetConformancePackComplianceDetailsResponse"),
     type = "structure",
     members = {
         ConformancePackName = schema.new({
@@ -6221,7 +6221,7 @@ M.GetConformancePackComplianceDetailsOutput = schema.new({
 })
 
 M.GetConformancePackComplianceSummaryInput = schema.new({
-    id = id.from(_N, "GetConformancePackComplianceSummaryInput"),
+    id = id.from(_N, "GetConformancePackComplianceSummaryRequest"),
     type = "structure",
     members = {
         ConformancePackNames = schema.new({
@@ -6253,7 +6253,7 @@ M.GetConformancePackComplianceSummaryInput = schema.new({
 })
 
 M.GetConformancePackComplianceSummaryOutput = schema.new({
-    id = id.from(_N, "GetConformancePackComplianceSummaryOutput"),
+    id = id.from(_N, "GetConformancePackComplianceSummaryResponse"),
     type = "structure",
     members = {
         ConformancePackComplianceSummaryList = schema.new({
@@ -6273,7 +6273,7 @@ M.GetConformancePackComplianceSummaryOutput = schema.new({
 })
 
 M.GetCustomRulePolicyInput = schema.new({
-    id = id.from(_N, "GetCustomRulePolicyInput"),
+    id = id.from(_N, "GetCustomRulePolicyRequest"),
     type = "structure",
     members = {
         ConfigRuleName = schema.new({
@@ -6286,7 +6286,7 @@ M.GetCustomRulePolicyInput = schema.new({
 })
 
 M.GetCustomRulePolicyOutput = schema.new({
-    id = id.from(_N, "GetCustomRulePolicyOutput"),
+    id = id.from(_N, "GetCustomRulePolicyResponse"),
     type = "structure",
     members = {
         PolicyText = schema.new({
@@ -6299,7 +6299,7 @@ M.GetCustomRulePolicyOutput = schema.new({
 })
 
 M.GetDiscoveredResourceCountsInput = schema.new({
-    id = id.from(_N, "GetDiscoveredResourceCountsInput"),
+    id = id.from(_N, "GetDiscoveredResourceCountsRequest"),
     type = "structure",
     members = {
         resourceTypes = schema.new({
@@ -6350,7 +6350,7 @@ M.ResourceCount = schema.new({
 })
 
 M.GetDiscoveredResourceCountsOutput = schema.new({
-    id = id.from(_N, "GetDiscoveredResourceCountsOutput"),
+    id = id.from(_N, "GetDiscoveredResourceCountsResponse"),
     type = "structure",
     members = {
         totalDiscoveredResources = schema.new({
@@ -6398,7 +6398,7 @@ M.StatusDetailFilters = schema.new({
 })
 
 M.GetOrganizationConfigRuleDetailedStatusInput = schema.new({
-    id = id.from(_N, "GetOrganizationConfigRuleDetailedStatusInput"),
+    id = id.from(_N, "GetOrganizationConfigRuleDetailedStatusRequest"),
     type = "structure",
     members = {
         OrganizationConfigRuleName = schema.new({
@@ -6488,7 +6488,7 @@ M.MemberAccountStatus = schema.new({
 })
 
 M.GetOrganizationConfigRuleDetailedStatusOutput = schema.new({
-    id = id.from(_N, "GetOrganizationConfigRuleDetailedStatusOutput"),
+    id = id.from(_N, "GetOrganizationConfigRuleDetailedStatusResponse"),
     type = "structure",
     members = {
         OrganizationConfigRuleDetailedStatus = schema.new({
@@ -6527,7 +6527,7 @@ M.OrganizationResourceDetailedStatusFilters = schema.new({
 })
 
 M.GetOrganizationConformancePackDetailedStatusInput = schema.new({
-    id = id.from(_N, "GetOrganizationConformancePackDetailedStatusInput"),
+    id = id.from(_N, "GetOrganizationConformancePackDetailedStatusRequest"),
     type = "structure",
     members = {
         OrganizationConformancePackName = schema.new({
@@ -6617,7 +6617,7 @@ M.OrganizationConformancePackDetailedStatus = schema.new({
 })
 
 M.GetOrganizationConformancePackDetailedStatusOutput = schema.new({
-    id = id.from(_N, "GetOrganizationConformancePackDetailedStatusOutput"),
+    id = id.from(_N, "GetOrganizationConformancePackDetailedStatusResponse"),
     type = "structure",
     members = {
         OrganizationConformancePackDetailedStatuses = schema.new({
@@ -6637,7 +6637,7 @@ M.GetOrganizationConformancePackDetailedStatusOutput = schema.new({
 })
 
 M.GetOrganizationCustomRulePolicyInput = schema.new({
-    id = id.from(_N, "GetOrganizationCustomRulePolicyInput"),
+    id = id.from(_N, "GetOrganizationCustomRulePolicyRequest"),
     type = "structure",
     members = {
         OrganizationConfigRuleName = schema.new({
@@ -6653,7 +6653,7 @@ M.GetOrganizationCustomRulePolicyInput = schema.new({
 })
 
 M.GetOrganizationCustomRulePolicyOutput = schema.new({
-    id = id.from(_N, "GetOrganizationCustomRulePolicyOutput"),
+    id = id.from(_N, "GetOrganizationCustomRulePolicyResponse"),
     type = "structure",
     members = {
         PolicyText = schema.new({
@@ -6666,7 +6666,7 @@ M.GetOrganizationCustomRulePolicyOutput = schema.new({
 })
 
 M.GetResourceConfigHistoryInput = schema.new({
-    id = id.from(_N, "GetResourceConfigHistoryInput"),
+    id = id.from(_N, "GetResourceConfigHistoryRequest"),
     type = "structure",
     members = {
         resourceType = schema.new({
@@ -6724,7 +6724,7 @@ M.GetResourceConfigHistoryInput = schema.new({
 })
 
 M.GetResourceConfigHistoryOutput = schema.new({
-    id = id.from(_N, "GetResourceConfigHistoryOutput"),
+    id = id.from(_N, "GetResourceConfigHistoryResponse"),
     type = "structure",
     members = {
         configurationItems = schema.new({
@@ -6760,7 +6760,7 @@ M.InvalidTimeRangeException = schema.new({
 })
 
 M.GetResourceEvaluationSummaryInput = schema.new({
-    id = id.from(_N, "GetResourceEvaluationSummaryInput"),
+    id = id.from(_N, "GetResourceEvaluationSummaryRequest"),
     type = "structure",
     members = {
         ResourceEvaluationId = schema.new({
@@ -6816,7 +6816,7 @@ M.ResourceDetails = schema.new({
 })
 
 M.GetResourceEvaluationSummaryOutput = schema.new({
-    id = id.from(_N, "GetResourceEvaluationSummaryOutput"),
+    id = id.from(_N, "GetResourceEvaluationSummaryResponse"),
     type = "structure",
     members = {
         ResourceEvaluationId = schema.new({
@@ -6868,7 +6868,7 @@ M.GetResourceEvaluationSummaryOutput = schema.new({
 })
 
 M.GetStoredQueryInput = schema.new({
-    id = id.from(_N, "GetStoredQueryInput"),
+    id = id.from(_N, "GetStoredQueryRequest"),
     type = "structure",
     members = {
         QueryName = schema.new({
@@ -6924,7 +6924,7 @@ M.StoredQuery = schema.new({
 })
 
 M.GetStoredQueryOutput = schema.new({
-    id = id.from(_N, "GetStoredQueryOutput"),
+    id = id.from(_N, "GetStoredQueryResponse"),
     type = "structure",
     members = {
         StoredQuery = schema.new({
@@ -7161,7 +7161,7 @@ M.ResourceFilters = schema.new({
 })
 
 M.ListAggregateDiscoveredResourcesInput = schema.new({
-    id = id.from(_N, "ListAggregateDiscoveredResourcesInput"),
+    id = id.from(_N, "ListAggregateDiscoveredResourcesRequest"),
     type = "structure",
     members = {
         ConfigurationAggregatorName = schema.new({
@@ -7208,7 +7208,7 @@ M.ListAggregateDiscoveredResourcesInput = schema.new({
 })
 
 M.ListAggregateDiscoveredResourcesOutput = schema.new({
-    id = id.from(_N, "ListAggregateDiscoveredResourcesOutput"),
+    id = id.from(_N, "ListAggregateDiscoveredResourcesResponse"),
     type = "structure",
     members = {
         ResourceIdentifiers = schema.new({
@@ -7228,7 +7228,7 @@ M.ListAggregateDiscoveredResourcesOutput = schema.new({
 })
 
 M.ListConfigurationRecordersInput = schema.new({
-    id = id.from(_N, "ListConfigurationRecordersInput"),
+    id = id.from(_N, "ListConfigurationRecordersRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -7257,7 +7257,7 @@ M.ListConfigurationRecordersInput = schema.new({
 })
 
 M.ListConfigurationRecordersOutput = schema.new({
-    id = id.from(_N, "ListConfigurationRecordersOutput"),
+    id = id.from(_N, "ListConfigurationRecordersResponse"),
     type = "structure",
     members = {
         ConfigurationRecorderSummaries = schema.new({
@@ -7280,7 +7280,7 @@ M.ListConfigurationRecordersOutput = schema.new({
 })
 
 M.ListConformancePackComplianceScoresInput = schema.new({
-    id = id.from(_N, "ListConformancePackComplianceScoresInput"),
+    id = id.from(_N, "ListConformancePackComplianceScoresRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -7321,7 +7321,7 @@ M.ListConformancePackComplianceScoresInput = schema.new({
 })
 
 M.ListConformancePackComplianceScoresOutput = schema.new({
-    id = id.from(_N, "ListConformancePackComplianceScoresOutput"),
+    id = id.from(_N, "ListConformancePackComplianceScoresResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7344,7 +7344,7 @@ M.ListConformancePackComplianceScoresOutput = schema.new({
 })
 
 M.ListDiscoveredResourcesInput = schema.new({
-    id = id.from(_N, "ListDiscoveredResourcesInput"),
+    id = id.from(_N, "ListDiscoveredResourcesRequest"),
     type = "structure",
     members = {
         resourceType = schema.new({
@@ -7428,7 +7428,7 @@ M.ResourceIdentifier = schema.new({
 })
 
 M.ListDiscoveredResourcesOutput = schema.new({
-    id = id.from(_N, "ListDiscoveredResourcesOutput"),
+    id = id.from(_N, "ListDiscoveredResourcesResponse"),
     type = "structure",
     members = {
         resourceIdentifiers = schema.new({
@@ -7493,7 +7493,7 @@ M.ResourceEvaluationFilters = schema.new({
 })
 
 M.ListResourceEvaluationsInput = schema.new({
-    id = id.from(_N, "ListResourceEvaluationsInput"),
+    id = id.from(_N, "ListResourceEvaluationsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -7547,7 +7547,7 @@ M.ResourceEvaluation = schema.new({
 })
 
 M.ListResourceEvaluationsOutput = schema.new({
-    id = id.from(_N, "ListResourceEvaluationsOutput"),
+    id = id.from(_N, "ListResourceEvaluationsResponse"),
     type = "structure",
     members = {
         ResourceEvaluations = schema.new({
@@ -7567,7 +7567,7 @@ M.ListResourceEvaluationsOutput = schema.new({
 })
 
 M.ListStoredQueriesInput = schema.new({
-    id = id.from(_N, "ListStoredQueriesInput"),
+    id = id.from(_N, "ListStoredQueriesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7629,7 +7629,7 @@ M.StoredQueryMetadata = schema.new({
 })
 
 M.ListStoredQueriesOutput = schema.new({
-    id = id.from(_N, "ListStoredQueriesOutput"),
+    id = id.from(_N, "ListStoredQueriesResponse"),
     type = "structure",
     members = {
         StoredQueryMetadata = schema.new({
@@ -7649,7 +7649,7 @@ M.ListStoredQueriesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -7699,7 +7699,7 @@ M.Tag = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -8009,7 +8009,7 @@ M.OrganizationCustomPolicyRuleMetadata = schema.new({
 })
 
 M.PutAggregationAuthorizationInput = schema.new({
-    id = id.from(_N, "PutAggregationAuthorizationInput"),
+    id = id.from(_N, "PutAggregationAuthorizationRequest"),
     type = "structure",
     members = {
         AuthorizedAccountId = schema.new({
@@ -8041,7 +8041,7 @@ M.PutAggregationAuthorizationInput = schema.new({
 })
 
 M.PutAggregationAuthorizationOutput = schema.new({
-    id = id.from(_N, "PutAggregationAuthorizationOutput"),
+    id = id.from(_N, "PutAggregationAuthorizationResponse"),
     type = "structure",
     members = {
         AggregationAuthorization = schema.new({
@@ -8055,7 +8055,7 @@ M.PutAggregationAuthorizationOutput = schema.new({
 })
 
 M.PutConfigRuleInput = schema.new({
-    id = id.from(_N, "PutConfigRuleInput"),
+    id = id.from(_N, "PutConfigRuleRequest"),
     type = "structure",
     members = {
         ConfigRule = schema.new({
@@ -8079,12 +8079,12 @@ M.PutConfigRuleInput = schema.new({
 })
 
 M.PutConfigRuleOutput = schema.new({
-    id = id.from(_N, "PutConfigRuleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutConfigurationAggregatorInput = schema.new({
-    id = id.from(_N, "PutConfigurationAggregatorInput"),
+    id = id.from(_N, "PutConfigurationAggregatorRequest"),
     type = "structure",
     members = {
         ConfigurationAggregatorName = schema.new({
@@ -8128,7 +8128,7 @@ M.PutConfigurationAggregatorInput = schema.new({
 })
 
 M.PutConfigurationAggregatorOutput = schema.new({
-    id = id.from(_N, "PutConfigurationAggregatorOutput"),
+    id = id.from(_N, "PutConfigurationAggregatorResponse"),
     type = "structure",
     members = {
         ConfigurationAggregator = schema.new({
@@ -8142,7 +8142,7 @@ M.PutConfigurationAggregatorOutput = schema.new({
 })
 
 M.PutConfigurationRecorderInput = schema.new({
-    id = id.from(_N, "PutConfigurationRecorderInput"),
+    id = id.from(_N, "PutConfigurationRecorderRequest"),
     type = "structure",
     members = {
         ConfigurationRecorder = schema.new({
@@ -8166,12 +8166,12 @@ M.PutConfigurationRecorderInput = schema.new({
 })
 
 M.PutConfigurationRecorderOutput = schema.new({
-    id = id.from(_N, "PutConfigurationRecorderOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutConformancePackInput = schema.new({
-    id = id.from(_N, "PutConformancePackInput"),
+    id = id.from(_N, "PutConformancePackRequest"),
     type = "structure",
     members = {
         ConformancePackName = schema.new({
@@ -8232,7 +8232,7 @@ M.PutConformancePackInput = schema.new({
 })
 
 M.PutConformancePackOutput = schema.new({
-    id = id.from(_N, "PutConformancePackOutput"),
+    id = id.from(_N, "PutConformancePackResponse"),
     type = "structure",
     members = {
         ConformancePackArn = schema.new({
@@ -8245,7 +8245,7 @@ M.PutConformancePackOutput = schema.new({
 })
 
 M.PutDeliveryChannelInput = schema.new({
-    id = id.from(_N, "PutDeliveryChannelInput"),
+    id = id.from(_N, "PutDeliveryChannelRequest"),
     type = "structure",
     members = {
         DeliveryChannel = schema.new({
@@ -8262,12 +8262,12 @@ M.PutDeliveryChannelInput = schema.new({
 })
 
 M.PutDeliveryChannelOutput = schema.new({
-    id = id.from(_N, "PutDeliveryChannelOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutEvaluationsInput = schema.new({
-    id = id.from(_N, "PutEvaluationsInput"),
+    id = id.from(_N, "PutEvaluationsRequest"),
     type = "structure",
     members = {
         Evaluations = schema.new({
@@ -8299,7 +8299,7 @@ M.PutEvaluationsInput = schema.new({
 })
 
 M.PutEvaluationsOutput = schema.new({
-    id = id.from(_N, "PutEvaluationsOutput"),
+    id = id.from(_N, "PutEvaluationsResponse"),
     type = "structure",
     members = {
         FailedEvaluations = schema.new({
@@ -8313,7 +8313,7 @@ M.PutEvaluationsOutput = schema.new({
 })
 
 M.PutExternalEvaluationInput = schema.new({
-    id = id.from(_N, "PutExternalEvaluationInput"),
+    id = id.from(_N, "PutExternalEvaluationRequest"),
     type = "structure",
     members = {
         ConfigRuleName = schema.new({
@@ -8339,12 +8339,12 @@ M.PutExternalEvaluationInput = schema.new({
 })
 
 M.PutExternalEvaluationOutput = schema.new({
-    id = id.from(_N, "PutExternalEvaluationOutput"),
+    id = id.from(_N, "PutExternalEvaluationResponse"),
     type = "structure",
 })
 
 M.PutOrganizationConfigRuleInput = schema.new({
-    id = id.from(_N, "PutOrganizationConfigRuleInput"),
+    id = id.from(_N, "PutOrganizationConfigRuleRequest"),
     type = "structure",
     members = {
         OrganizationConfigRuleName = schema.new({
@@ -8388,7 +8388,7 @@ M.PutOrganizationConfigRuleInput = schema.new({
 })
 
 M.PutOrganizationConfigRuleOutput = schema.new({
-    id = id.from(_N, "PutOrganizationConfigRuleOutput"),
+    id = id.from(_N, "PutOrganizationConfigRuleResponse"),
     type = "structure",
     members = {
         OrganizationConfigRuleArn = schema.new({
@@ -8401,7 +8401,7 @@ M.PutOrganizationConfigRuleOutput = schema.new({
 })
 
 M.PutOrganizationConformancePackInput = schema.new({
-    id = id.from(_N, "PutOrganizationConformancePackInput"),
+    id = id.from(_N, "PutOrganizationConformancePackRequest"),
     type = "structure",
     members = {
         OrganizationConformancePackName = schema.new({
@@ -8455,7 +8455,7 @@ M.PutOrganizationConformancePackInput = schema.new({
 })
 
 M.PutOrganizationConformancePackOutput = schema.new({
-    id = id.from(_N, "PutOrganizationConformancePackOutput"),
+    id = id.from(_N, "PutOrganizationConformancePackResponse"),
     type = "structure",
     members = {
         OrganizationConformancePackArn = schema.new({
@@ -8468,7 +8468,7 @@ M.PutOrganizationConformancePackOutput = schema.new({
 })
 
 M.PutRemediationConfigurationsInput = schema.new({
-    id = id.from(_N, "PutRemediationConfigurationsInput"),
+    id = id.from(_N, "PutRemediationConfigurationsRequest"),
     type = "structure",
     members = {
         RemediationConfigurations = schema.new({
@@ -8485,7 +8485,7 @@ M.PutRemediationConfigurationsInput = schema.new({
 })
 
 M.PutRemediationConfigurationsOutput = schema.new({
-    id = id.from(_N, "PutRemediationConfigurationsOutput"),
+    id = id.from(_N, "PutRemediationConfigurationsResponse"),
     type = "structure",
     members = {
         FailedBatches = schema.new({
@@ -8499,7 +8499,7 @@ M.PutRemediationConfigurationsOutput = schema.new({
 })
 
 M.PutRemediationExceptionsInput = schema.new({
-    id = id.from(_N, "PutRemediationExceptionsInput"),
+    id = id.from(_N, "PutRemediationExceptionsRequest"),
     type = "structure",
     members = {
         ConfigRuleName = schema.new({
@@ -8537,7 +8537,7 @@ M.PutRemediationExceptionsInput = schema.new({
 })
 
 M.PutRemediationExceptionsOutput = schema.new({
-    id = id.from(_N, "PutRemediationExceptionsOutput"),
+    id = id.from(_N, "PutRemediationExceptionsResponse"),
     type = "structure",
     members = {
         FailedBatches = schema.new({
@@ -8551,7 +8551,7 @@ M.PutRemediationExceptionsOutput = schema.new({
 })
 
 M.PutResourceConfigInput = schema.new({
-    id = id.from(_N, "PutResourceConfigInput"),
+    id = id.from(_N, "PutResourceConfigRequest"),
     type = "structure",
     members = {
         ResourceType = schema.new({
@@ -8608,12 +8608,12 @@ M.PutResourceConfigInput = schema.new({
 })
 
 M.PutResourceConfigOutput = schema.new({
-    id = id.from(_N, "PutResourceConfigOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutRetentionConfigurationInput = schema.new({
-    id = id.from(_N, "PutRetentionConfigurationInput"),
+    id = id.from(_N, "PutRetentionConfigurationRequest"),
     type = "structure",
     members = {
         RetentionPeriodInDays = schema.new({
@@ -8629,7 +8629,7 @@ M.PutRetentionConfigurationInput = schema.new({
 })
 
 M.PutRetentionConfigurationOutput = schema.new({
-    id = id.from(_N, "PutRetentionConfigurationOutput"),
+    id = id.from(_N, "PutRetentionConfigurationResponse"),
     type = "structure",
     members = {
         RetentionConfiguration = schema.new({
@@ -8643,7 +8643,7 @@ M.PutRetentionConfigurationOutput = schema.new({
 })
 
 M.PutServiceLinkedConfigurationRecorderInput = schema.new({
-    id = id.from(_N, "PutServiceLinkedConfigurationRecorderInput"),
+    id = id.from(_N, "PutServiceLinkedConfigurationRecorderRequest"),
     type = "structure",
     members = {
         ServicePrincipal = schema.new({
@@ -8666,7 +8666,7 @@ M.PutServiceLinkedConfigurationRecorderInput = schema.new({
 })
 
 M.PutServiceLinkedConfigurationRecorderOutput = schema.new({
-    id = id.from(_N, "PutServiceLinkedConfigurationRecorderOutput"),
+    id = id.from(_N, "PutServiceLinkedConfigurationRecorderResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -8685,7 +8685,7 @@ M.PutServiceLinkedConfigurationRecorderOutput = schema.new({
 })
 
 M.PutStoredQueryInput = schema.new({
-    id = id.from(_N, "PutStoredQueryInput"),
+    id = id.from(_N, "PutStoredQueryRequest"),
     type = "structure",
     members = {
         StoredQuery = schema.new({
@@ -8709,7 +8709,7 @@ M.PutStoredQueryInput = schema.new({
 })
 
 M.PutStoredQueryOutput = schema.new({
-    id = id.from(_N, "PutStoredQueryOutput"),
+    id = id.from(_N, "PutStoredQueryResponse"),
     type = "structure",
     members = {
         QueryArn = schema.new({
@@ -8768,7 +8768,7 @@ M.QueryInfo = schema.new({
 })
 
 M.SelectAggregateResourceConfigInput = schema.new({
-    id = id.from(_N, "SelectAggregateResourceConfigInput"),
+    id = id.from(_N, "SelectAggregateResourceConfigRequest"),
     type = "structure",
     members = {
         Expression = schema.new({
@@ -8817,7 +8817,7 @@ M.SelectAggregateResourceConfigInput = schema.new({
 })
 
 M.SelectAggregateResourceConfigOutput = schema.new({
-    id = id.from(_N, "SelectAggregateResourceConfigOutput"),
+    id = id.from(_N, "SelectAggregateResourceConfigResponse"),
     type = "structure",
     members = {
         Results = schema.new({
@@ -8844,7 +8844,7 @@ M.SelectAggregateResourceConfigOutput = schema.new({
 })
 
 M.SelectResourceConfigInput = schema.new({
-    id = id.from(_N, "SelectResourceConfigInput"),
+    id = id.from(_N, "SelectResourceConfigRequest"),
     type = "structure",
     members = {
         Expression = schema.new({
@@ -8875,7 +8875,7 @@ M.SelectResourceConfigInput = schema.new({
 })
 
 M.SelectResourceConfigOutput = schema.new({
-    id = id.from(_N, "SelectResourceConfigOutput"),
+    id = id.from(_N, "SelectResourceConfigResponse"),
     type = "structure",
     members = {
         Results = schema.new({
@@ -8902,7 +8902,7 @@ M.SelectResourceConfigOutput = schema.new({
 })
 
 M.StartConfigRulesEvaluationInput = schema.new({
-    id = id.from(_N, "StartConfigRulesEvaluationInput"),
+    id = id.from(_N, "StartConfigRulesEvaluationRequest"),
     type = "structure",
     members = {
         ConfigRuleNames = schema.new({
@@ -8916,12 +8916,12 @@ M.StartConfigRulesEvaluationInput = schema.new({
 })
 
 M.StartConfigRulesEvaluationOutput = schema.new({
-    id = id.from(_N, "StartConfigRulesEvaluationOutput"),
+    id = id.from(_N, "StartConfigRulesEvaluationResponse"),
     type = "structure",
 })
 
 M.StartConfigurationRecorderInput = schema.new({
-    id = id.from(_N, "StartConfigurationRecorderInput"),
+    id = id.from(_N, "StartConfigurationRecorderRequest"),
     type = "structure",
     members = {
         ConfigurationRecorderName = schema.new({
@@ -8937,12 +8937,12 @@ M.StartConfigurationRecorderInput = schema.new({
 })
 
 M.StartConfigurationRecorderOutput = schema.new({
-    id = id.from(_N, "StartConfigurationRecorderOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StartRemediationExecutionInput = schema.new({
-    id = id.from(_N, "StartRemediationExecutionInput"),
+    id = id.from(_N, "StartRemediationExecutionRequest"),
     type = "structure",
     members = {
         ConfigRuleName = schema.new({
@@ -8968,7 +8968,7 @@ M.StartRemediationExecutionInput = schema.new({
 })
 
 M.StartRemediationExecutionOutput = schema.new({
-    id = id.from(_N, "StartRemediationExecutionOutput"),
+    id = id.from(_N, "StartRemediationExecutionResponse"),
     type = "structure",
     members = {
         FailureMessage = schema.new({
@@ -8988,7 +8988,7 @@ M.StartRemediationExecutionOutput = schema.new({
 })
 
 M.StartResourceEvaluationInput = schema.new({
-    id = id.from(_N, "StartResourceEvaluationInput"),
+    id = id.from(_N, "StartResourceEvaluationRequest"),
     type = "structure",
     members = {
         ResourceDetails = schema.new({
@@ -9036,7 +9036,7 @@ M.StartResourceEvaluationInput = schema.new({
 })
 
 M.StartResourceEvaluationOutput = schema.new({
-    id = id.from(_N, "StartResourceEvaluationOutput"),
+    id = id.from(_N, "StartResourceEvaluationResponse"),
     type = "structure",
     members = {
         ResourceEvaluationId = schema.new({
@@ -9049,7 +9049,7 @@ M.StartResourceEvaluationOutput = schema.new({
 })
 
 M.StopConfigurationRecorderInput = schema.new({
-    id = id.from(_N, "StopConfigurationRecorderInput"),
+    id = id.from(_N, "StopConfigurationRecorderRequest"),
     type = "structure",
     members = {
         ConfigurationRecorderName = schema.new({
@@ -9065,12 +9065,12 @@ M.StopConfigurationRecorderInput = schema.new({
 })
 
 M.StopConfigurationRecorderOutput = schema.new({
-    id = id.from(_N, "StopConfigurationRecorderOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -9096,12 +9096,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -9127,8 +9127,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

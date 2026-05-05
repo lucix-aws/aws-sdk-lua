@@ -27,7 +27,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.AssociateVolumeInput = schema.new({
-    id = id.from(_N, "AssociateVolumeInput"),
+    id = id.from(_N, "AssociateVolumeRequest"),
     type = "structure",
     members = {
         WorkspaceInstanceId = schema.new({
@@ -61,7 +61,7 @@ M.AssociateVolumeInput = schema.new({
 })
 
 M.AssociateVolumeOutput = schema.new({
-    id = id.from(_N, "AssociateVolumeOutput"),
+    id = id.from(_N, "AssociateVolumeResponse"),
     type = "structure",
 })
 
@@ -496,7 +496,7 @@ M.TagSpecification = schema.new({
 })
 
 M.CreateVolumeInput = schema.new({
-    id = id.from(_N, "CreateVolumeInput"),
+    id = id.from(_N, "CreateVolumeRequest"),
     type = "structure",
     members = {
         AvailabilityZone = schema.new({
@@ -570,7 +570,7 @@ M.CreateVolumeInput = schema.new({
 })
 
 M.CreateVolumeOutput = schema.new({
-    id = id.from(_N, "CreateVolumeOutput"),
+    id = id.from(_N, "CreateVolumeResponse"),
     type = "structure",
     members = {
         VolumeId = schema.new({
@@ -1378,7 +1378,7 @@ M.ManagedInstanceRequest = schema.new({
 })
 
 M.CreateWorkspaceInstanceInput = schema.new({
-    id = id.from(_N, "CreateWorkspaceInstanceInput"),
+    id = id.from(_N, "CreateWorkspaceInstanceRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -1418,7 +1418,7 @@ M.CreateWorkspaceInstanceInput = schema.new({
 })
 
 M.CreateWorkspaceInstanceOutput = schema.new({
-    id = id.from(_N, "CreateWorkspaceInstanceOutput"),
+    id = id.from(_N, "CreateWorkspaceInstanceResponse"),
     type = "structure",
     members = {
         WorkspaceInstanceId = schema.new({
@@ -1431,7 +1431,7 @@ M.CreateWorkspaceInstanceOutput = schema.new({
 })
 
 M.DeleteVolumeInput = schema.new({
-    id = id.from(_N, "DeleteVolumeInput"),
+    id = id.from(_N, "DeleteVolumeRequest"),
     type = "structure",
     members = {
         VolumeId = schema.new({
@@ -1447,12 +1447,12 @@ M.DeleteVolumeInput = schema.new({
 })
 
 M.DeleteVolumeOutput = schema.new({
-    id = id.from(_N, "DeleteVolumeOutput"),
+    id = id.from(_N, "DeleteVolumeResponse"),
     type = "structure",
 })
 
 M.DeleteWorkspaceInstanceInput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceInstanceInput"),
+    id = id.from(_N, "DeleteWorkspaceInstanceRequest"),
     type = "structure",
     members = {
         WorkspaceInstanceId = schema.new({
@@ -1468,12 +1468,12 @@ M.DeleteWorkspaceInstanceInput = schema.new({
 })
 
 M.DeleteWorkspaceInstanceOutput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceInstanceOutput"),
+    id = id.from(_N, "DeleteWorkspaceInstanceResponse"),
     type = "structure",
 })
 
 M.DisassociateVolumeInput = schema.new({
-    id = id.from(_N, "DisassociateVolumeInput"),
+    id = id.from(_N, "DisassociateVolumeRequest"),
     type = "structure",
     members = {
         WorkspaceInstanceId = schema.new({
@@ -1510,7 +1510,7 @@ M.DisassociateVolumeInput = schema.new({
 })
 
 M.DisassociateVolumeOutput = schema.new({
-    id = id.from(_N, "DisassociateVolumeOutput"),
+    id = id.from(_N, "DisassociateVolumeResponse"),
     type = "structure",
 })
 
@@ -1553,7 +1553,7 @@ M.EC2ManagedInstance = schema.new({
 })
 
 M.GetWorkspaceInstanceInput = schema.new({
-    id = id.from(_N, "GetWorkspaceInstanceInput"),
+    id = id.from(_N, "GetWorkspaceInstanceRequest"),
     type = "structure",
     members = {
         WorkspaceInstanceId = schema.new({
@@ -1588,7 +1588,7 @@ M.WorkspaceInstanceError = schema.new({
 })
 
 M.GetWorkspaceInstanceOutput = schema.new({
-    id = id.from(_N, "GetWorkspaceInstanceOutput"),
+    id = id.from(_N, "GetWorkspaceInstanceResponse"),
     type = "structure",
     members = {
         WorkspaceInstanceErrors = schema.new({
@@ -1669,7 +1669,7 @@ M.InstanceConfigurationFilter = schema.new({
 })
 
 M.ListInstanceTypesInput = schema.new({
-    id = id.from(_N, "ListInstanceTypesInput"),
+    id = id.from(_N, "ListInstanceTypesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1740,7 +1740,7 @@ M.InstanceTypeInfo = schema.new({
 })
 
 M.ListInstanceTypesOutput = schema.new({
-    id = id.from(_N, "ListInstanceTypesOutput"),
+    id = id.from(_N, "ListInstanceTypesResponse"),
     type = "structure",
     members = {
         InstanceTypes = schema.new({
@@ -1763,7 +1763,7 @@ M.ListInstanceTypesOutput = schema.new({
 })
 
 M.ListRegionsInput = schema.new({
-    id = id.from(_N, "ListRegionsInput"),
+    id = id.from(_N, "ListRegionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1795,7 +1795,7 @@ M.Region = schema.new({
 })
 
 M.ListRegionsOutput = schema.new({
-    id = id.from(_N, "ListRegionsOutput"),
+    id = id.from(_N, "ListRegionsResponse"),
     type = "structure",
     members = {
         Regions = schema.new({
@@ -1818,7 +1818,7 @@ M.ListRegionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         WorkspaceInstanceId = schema.new({
@@ -1834,7 +1834,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1848,7 +1848,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListWorkspaceInstancesInput = schema.new({
-    id = id.from(_N, "ListWorkspaceInstancesInput"),
+    id = id.from(_N, "ListWorkspaceInstancesRequest"),
     type = "structure",
     members = {
         ProvisionStates = schema.new({
@@ -1900,7 +1900,7 @@ M.WorkspaceInstance = schema.new({
 })
 
 M.ListWorkspaceInstancesOutput = schema.new({
-    id = id.from(_N, "ListWorkspaceInstancesOutput"),
+    id = id.from(_N, "ListWorkspaceInstancesResponse"),
     type = "structure",
     members = {
         WorkspaceInstances = schema.new({
@@ -1923,7 +1923,7 @@ M.ListWorkspaceInstancesOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         WorkspaceInstanceId = schema.new({
@@ -1949,12 +1949,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         WorkspaceInstanceId = schema.new({
@@ -1980,8 +1980,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

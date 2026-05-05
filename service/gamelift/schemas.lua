@@ -4226,7 +4226,7 @@ M.DeleteAliasInput = schema.new({
 })
 
 M.DeleteAliasOutput = schema.new({
-    id = id.from(_N, "DeleteAliasOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4247,7 +4247,7 @@ M.DeleteBuildInput = schema.new({
 })
 
 M.DeleteBuildOutput = schema.new({
-    id = id.from(_N, "DeleteBuildOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4322,7 +4322,7 @@ M.DeleteFleetInput = schema.new({
 })
 
 M.DeleteFleetOutput = schema.new({
-    id = id.from(_N, "DeleteFleetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4524,7 +4524,7 @@ M.DeleteScalingPolicyInput = schema.new({
 })
 
 M.DeleteScalingPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteScalingPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4545,7 +4545,7 @@ M.DeleteScriptInput = schema.new({
 })
 
 M.DeleteScriptOutput = schema.new({
-    id = id.from(_N, "DeleteScriptOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4690,7 +4690,7 @@ M.DeregisterGameServerInput = schema.new({
 })
 
 M.DeregisterGameServerOutput = schema.new({
-    id = id.from(_N, "DeregisterGameServerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -8199,7 +8199,7 @@ M.ListScriptsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -8215,7 +8215,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -9002,7 +9002,7 @@ M.SuspendGameServerGroupOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -9028,7 +9028,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -9072,7 +9072,7 @@ M.TerminateGameSessionOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -9098,7 +9098,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -10067,5 +10067,19 @@ M.ValidateMatchmakingRuleSetOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

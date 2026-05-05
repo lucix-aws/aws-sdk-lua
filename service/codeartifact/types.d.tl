@@ -1962,21 +1962,21 @@ local record ValidationException
     reason: string
 end
 
+local type AllowPublish = "ALLOW" | "BLOCK"
+
 local type AllowUpstream = "ALLOW" | "BLOCK"
 
 local type PackageVersionStatus = "Published" | "Unfinished" | "Unlisted" | "Archived" | "Disposed" | "Deleted"
 
 local type EndpointType = "dualstack" | "ipv4"
 
-local type PackageVersionOriginType = "INTERNAL" | "EXTERNAL" | "UNKNOWN"
-
-local type AllowPublish = "ALLOW" | "BLOCK"
-
-local type PackageFormat = "npm" | "pypi" | "maven" | "nuget" | "generic" | "ruby" | "swift" | "cargo"
-
 local type PackageGroupOriginRestrictionType = "EXTERNAL_UPSTREAM" | "INTERNAL_UPSTREAM" | "PUBLISH"
 
 local type PackageGroupAssociationType = "STRONG" | "WEAK"
+
+local type PackageFormat = "npm" | "pypi" | "maven" | "nuget" | "generic" | "ruby" | "swift" | "cargo"
+
+local type PackageVersionOriginType = "INTERNAL" | "EXTERNAL" | "UNKNOWN"
 
 local type PackageVersionSortType = "PUBLISHED_TIME"
 

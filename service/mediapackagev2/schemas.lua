@@ -24,7 +24,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.CancelHarvestJobInput = schema.new({
-    id = id.from(_N, "CancelHarvestJobInput"),
+    id = id.from(_N, "CancelHarvestJobRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -80,7 +80,7 @@ M.CancelHarvestJobInput = schema.new({
 })
 
 M.CancelHarvestJobOutput = schema.new({
-    id = id.from(_N, "CancelHarvestJobOutput"),
+    id = id.from(_N, "CancelHarvestJobResponse"),
     type = "structure",
 })
 
@@ -258,7 +258,7 @@ M.ChannelGroupListConfiguration = schema.new({
 })
 
 M.DeleteChannelPolicyInput = schema.new({
-    id = id.from(_N, "DeleteChannelPolicyInput"),
+    id = id.from(_N, "DeleteChannelPolicyRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -285,12 +285,12 @@ M.DeleteChannelPolicyInput = schema.new({
 })
 
 M.DeleteChannelPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteChannelPolicyOutput"),
+    id = id.from(_N, "DeleteChannelPolicyResponse"),
     type = "structure",
 })
 
 M.GetChannelPolicyInput = schema.new({
-    id = id.from(_N, "GetChannelPolicyInput"),
+    id = id.from(_N, "GetChannelPolicyRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -317,7 +317,7 @@ M.GetChannelPolicyInput = schema.new({
 })
 
 M.GetChannelPolicyOutput = schema.new({
-    id = id.from(_N, "GetChannelPolicyOutput"),
+    id = id.from(_N, "GetChannelPolicyResponse"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -351,7 +351,7 @@ M.GetChannelPolicyOutput = schema.new({
 })
 
 M.PutChannelPolicyInput = schema.new({
-    id = id.from(_N, "PutChannelPolicyInput"),
+    id = id.from(_N, "PutChannelPolicyRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -387,7 +387,7 @@ M.PutChannelPolicyInput = schema.new({
 })
 
 M.PutChannelPolicyOutput = schema.new({
-    id = id.from(_N, "PutChannelPolicyOutput"),
+    id = id.from(_N, "PutChannelPolicyResponse"),
     type = "structure",
 })
 
@@ -424,7 +424,7 @@ M.OutputHeaderConfiguration = schema.new({
 })
 
 M.CreateChannelInput = schema.new({
-    id = id.from(_N, "CreateChannelInput"),
+    id = id.from(_N, "CreateChannelRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -516,7 +516,7 @@ M.IngestEndpoint = schema.new({
 })
 
 M.CreateChannelOutput = schema.new({
-    id = id.from(_N, "CreateChannelOutput"),
+    id = id.from(_N, "CreateChannelResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -631,7 +631,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.DeleteChannelInput = schema.new({
-    id = id.from(_N, "DeleteChannelInput"),
+    id = id.from(_N, "DeleteChannelRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -658,12 +658,12 @@ M.DeleteChannelInput = schema.new({
 })
 
 M.DeleteChannelOutput = schema.new({
-    id = id.from(_N, "DeleteChannelOutput"),
+    id = id.from(_N, "DeleteChannelResponse"),
     type = "structure",
 })
 
 M.GetChannelInput = schema.new({
-    id = id.from(_N, "GetChannelInput"),
+    id = id.from(_N, "GetChannelRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -690,7 +690,7 @@ M.GetChannelInput = schema.new({
 })
 
 M.GetChannelOutput = schema.new({
-    id = id.from(_N, "GetChannelOutput"),
+    id = id.from(_N, "GetChannelResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -795,7 +795,7 @@ M.GetChannelOutput = schema.new({
 })
 
 M.ListChannelsInput = schema.new({
-    id = id.from(_N, "ListChannelsInput"),
+    id = id.from(_N, "ListChannelsRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -895,7 +895,7 @@ M.ChannelListConfiguration = schema.new({
 })
 
 M.ListChannelsOutput = schema.new({
-    id = id.from(_N, "ListChannelsOutput"),
+    id = id.from(_N, "ListChannelsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -1749,7 +1749,7 @@ M.Segment = schema.new({
 })
 
 M.CreateOriginEndpointInput = schema.new({
-    id = id.from(_N, "CreateOriginEndpointInput"),
+    id = id.from(_N, "CreateOriginEndpointRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -2204,7 +2204,7 @@ M.GetMssManifestConfiguration = schema.new({
 })
 
 M.CreateOriginEndpointOutput = schema.new({
-    id = id.from(_N, "CreateOriginEndpointOutput"),
+    id = id.from(_N, "CreateOriginEndpointResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2351,7 +2351,7 @@ M.CreateOriginEndpointOutput = schema.new({
 })
 
 M.DeleteOriginEndpointInput = schema.new({
-    id = id.from(_N, "DeleteOriginEndpointInput"),
+    id = id.from(_N, "DeleteOriginEndpointRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -2388,12 +2388,12 @@ M.DeleteOriginEndpointInput = schema.new({
 })
 
 M.DeleteOriginEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteOriginEndpointOutput"),
+    id = id.from(_N, "DeleteOriginEndpointResponse"),
     type = "structure",
 })
 
 M.GetOriginEndpointInput = schema.new({
-    id = id.from(_N, "GetOriginEndpointInput"),
+    id = id.from(_N, "GetOriginEndpointRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -2430,7 +2430,7 @@ M.GetOriginEndpointInput = schema.new({
 })
 
 M.GetOriginEndpointOutput = schema.new({
-    id = id.from(_N, "GetOriginEndpointOutput"),
+    id = id.from(_N, "GetOriginEndpointResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2583,7 +2583,7 @@ M.GetOriginEndpointOutput = schema.new({
 })
 
 M.ListOriginEndpointsInput = schema.new({
-    id = id.from(_N, "ListOriginEndpointsInput"),
+    id = id.from(_N, "ListOriginEndpointsRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -2840,7 +2840,7 @@ M.OriginEndpointListConfiguration = schema.new({
 })
 
 M.ListOriginEndpointsOutput = schema.new({
-    id = id.from(_N, "ListOriginEndpointsOutput"),
+    id = id.from(_N, "ListOriginEndpointsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -2860,7 +2860,7 @@ M.ListOriginEndpointsOutput = schema.new({
 })
 
 M.DeleteOriginEndpointPolicyInput = schema.new({
-    id = id.from(_N, "DeleteOriginEndpointPolicyInput"),
+    id = id.from(_N, "DeleteOriginEndpointPolicyRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -2897,12 +2897,12 @@ M.DeleteOriginEndpointPolicyInput = schema.new({
 })
 
 M.DeleteOriginEndpointPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteOriginEndpointPolicyOutput"),
+    id = id.from(_N, "DeleteOriginEndpointPolicyResponse"),
     type = "structure",
 })
 
 M.GetOriginEndpointPolicyInput = schema.new({
-    id = id.from(_N, "GetOriginEndpointPolicyInput"),
+    id = id.from(_N, "GetOriginEndpointPolicyRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -2939,7 +2939,7 @@ M.GetOriginEndpointPolicyInput = schema.new({
 })
 
 M.GetOriginEndpointPolicyOutput = schema.new({
-    id = id.from(_N, "GetOriginEndpointPolicyOutput"),
+    id = id.from(_N, "GetOriginEndpointPolicyResponse"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -2989,7 +2989,7 @@ M.GetOriginEndpointPolicyOutput = schema.new({
 })
 
 M.PutOriginEndpointPolicyInput = schema.new({
-    id = id.from(_N, "PutOriginEndpointPolicyInput"),
+    id = id.from(_N, "PutOriginEndpointPolicyRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -3042,12 +3042,12 @@ M.PutOriginEndpointPolicyInput = schema.new({
 })
 
 M.PutOriginEndpointPolicyOutput = schema.new({
-    id = id.from(_N, "PutOriginEndpointPolicyOutput"),
+    id = id.from(_N, "PutOriginEndpointPolicyResponse"),
     type = "structure",
 })
 
 M.ResetOriginEndpointStateInput = schema.new({
-    id = id.from(_N, "ResetOriginEndpointStateInput"),
+    id = id.from(_N, "ResetOriginEndpointStateRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -3084,7 +3084,7 @@ M.ResetOriginEndpointStateInput = schema.new({
 })
 
 M.ResetOriginEndpointStateOutput = schema.new({
-    id = id.from(_N, "ResetOriginEndpointStateOutput"),
+    id = id.from(_N, "ResetOriginEndpointStateResponse"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -3136,7 +3136,7 @@ M.ResetOriginEndpointStateOutput = schema.new({
 })
 
 M.UpdateOriginEndpointInput = schema.new({
-    id = id.from(_N, "UpdateOriginEndpointInput"),
+    id = id.from(_N, "UpdateOriginEndpointRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -3251,7 +3251,7 @@ M.UpdateOriginEndpointInput = schema.new({
 })
 
 M.UpdateOriginEndpointOutput = schema.new({
-    id = id.from(_N, "UpdateOriginEndpointOutput"),
+    id = id.from(_N, "UpdateOriginEndpointResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3401,7 +3401,7 @@ M.UpdateOriginEndpointOutput = schema.new({
 })
 
 M.ResetChannelStateInput = schema.new({
-    id = id.from(_N, "ResetChannelStateInput"),
+    id = id.from(_N, "ResetChannelStateRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -3428,7 +3428,7 @@ M.ResetChannelStateInput = schema.new({
 })
 
 M.ResetChannelStateOutput = schema.new({
-    id = id.from(_N, "ResetChannelStateOutput"),
+    id = id.from(_N, "ResetChannelStateResponse"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -3471,7 +3471,7 @@ M.ResetChannelStateOutput = schema.new({
 })
 
 M.UpdateChannelInput = schema.new({
-    id = id.from(_N, "UpdateChannelInput"),
+    id = id.from(_N, "UpdateChannelRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -3527,7 +3527,7 @@ M.UpdateChannelInput = schema.new({
 })
 
 M.UpdateChannelOutput = schema.new({
-    id = id.from(_N, "UpdateChannelOutput"),
+    id = id.from(_N, "UpdateChannelResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3629,7 +3629,7 @@ M.UpdateChannelOutput = schema.new({
 })
 
 M.CreateChannelGroupInput = schema.new({
-    id = id.from(_N, "CreateChannelGroupInput"),
+    id = id.from(_N, "CreateChannelGroupRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -3672,7 +3672,7 @@ M.CreateChannelGroupInput = schema.new({
 })
 
 M.CreateChannelGroupOutput = schema.new({
-    id = id.from(_N, "CreateChannelGroupOutput"),
+    id = id.from(_N, "CreateChannelGroupResponse"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -3744,7 +3744,7 @@ M.CreateChannelGroupOutput = schema.new({
 })
 
 M.DeleteChannelGroupInput = schema.new({
-    id = id.from(_N, "DeleteChannelGroupInput"),
+    id = id.from(_N, "DeleteChannelGroupRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -3761,12 +3761,12 @@ M.DeleteChannelGroupInput = schema.new({
 })
 
 M.DeleteChannelGroupOutput = schema.new({
-    id = id.from(_N, "DeleteChannelGroupOutput"),
+    id = id.from(_N, "DeleteChannelGroupResponse"),
     type = "structure",
 })
 
 M.GetChannelGroupInput = schema.new({
-    id = id.from(_N, "GetChannelGroupInput"),
+    id = id.from(_N, "GetChannelGroupRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -3783,7 +3783,7 @@ M.GetChannelGroupInput = schema.new({
 })
 
 M.GetChannelGroupOutput = schema.new({
-    id = id.from(_N, "GetChannelGroupOutput"),
+    id = id.from(_N, "GetChannelGroupResponse"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -4001,7 +4001,7 @@ M.HarvesterScheduleConfiguration = schema.new({
 })
 
 M.CreateHarvestJobInput = schema.new({
-    id = id.from(_N, "CreateHarvestJobInput"),
+    id = id.from(_N, "CreateHarvestJobRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -4098,7 +4098,7 @@ M.CreateHarvestJobInput = schema.new({
 })
 
 M.CreateHarvestJobOutput = schema.new({
-    id = id.from(_N, "CreateHarvestJobOutput"),
+    id = id.from(_N, "CreateHarvestJobResponse"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -4233,7 +4233,7 @@ M.CreateHarvestJobOutput = schema.new({
 })
 
 M.GetHarvestJobInput = schema.new({
-    id = id.from(_N, "GetHarvestJobInput"),
+    id = id.from(_N, "GetHarvestJobRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -4280,7 +4280,7 @@ M.GetHarvestJobInput = schema.new({
 })
 
 M.GetHarvestJobOutput = schema.new({
-    id = id.from(_N, "GetHarvestJobOutput"),
+    id = id.from(_N, "GetHarvestJobResponse"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -4415,7 +4415,7 @@ M.GetHarvestJobOutput = schema.new({
 })
 
 M.ListHarvestJobsInput = schema.new({
-    id = id.from(_N, "ListHarvestJobsInput"),
+    id = id.from(_N, "ListHarvestJobsRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -4605,7 +4605,7 @@ M.HarvestJob = schema.new({
 })
 
 M.ListHarvestJobsOutput = schema.new({
-    id = id.from(_N, "ListHarvestJobsOutput"),
+    id = id.from(_N, "ListHarvestJobsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -4625,7 +4625,7 @@ M.ListHarvestJobsOutput = schema.new({
 })
 
 M.ListChannelGroupsInput = schema.new({
-    id = id.from(_N, "ListChannelGroupsInput"),
+    id = id.from(_N, "ListChannelGroupsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4651,7 +4651,7 @@ M.ListChannelGroupsInput = schema.new({
 })
 
 M.ListChannelGroupsOutput = schema.new({
-    id = id.from(_N, "ListChannelGroupsOutput"),
+    id = id.from(_N, "ListChannelGroupsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -4671,7 +4671,7 @@ M.ListChannelGroupsOutput = schema.new({
 })
 
 M.UpdateChannelGroupInput = schema.new({
-    id = id.from(_N, "UpdateChannelGroupInput"),
+    id = id.from(_N, "UpdateChannelGroupRequest"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -4703,7 +4703,7 @@ M.UpdateChannelGroupInput = schema.new({
 })
 
 M.UpdateChannelGroupOutput = schema.new({
-    id = id.from(_N, "UpdateChannelGroupOutput"),
+    id = id.from(_N, "UpdateChannelGroupResponse"),
     type = "structure",
     members = {
         ChannelGroupName = schema.new({
@@ -4778,7 +4778,7 @@ M.UpdateChannelGroupOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4795,7 +4795,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -4813,7 +4813,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4842,12 +4842,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4875,8 +4875,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

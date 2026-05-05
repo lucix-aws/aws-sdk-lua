@@ -730,13 +730,13 @@ end
 
 local type AssociationType = "DOWNSTREAM_SELLER" | "END_CUSTOMER" | "INTERNAL"
 
-local type HandshakeType = "START_SERVICE_PERIOD" | "REVOKE_SERVICE_PERIOD" | "PROGRAM_MANAGEMENT_ACCOUNT"
-
 local type Program = "SOLUTION_PROVIDER" | "DISTRIBUTION" | "DISTRIBUTION_SELLER"
+
+local type ResaleAccountModel = "DISTRIBUTOR" | "END_CUSTOMER" | "SOLUTION_PROVIDER"
 
 local type ParticipantType = "SENDER" | "RECEIVER"
 
-local type ResaleAccountModel = "DISTRIBUTOR" | "END_CUSTOMER" | "SOLUTION_PROVIDER"
+local type HandshakeType = "START_SERVICE_PERIOD" | "REVOKE_SERVICE_PERIOD" | "PROGRAM_MANAGEMENT_ACCOUNT"
 
 local type Sector = "COMMERCIAL" | "GOVERNMENT" | "GOVERNMENT_EXCEPTION"
 

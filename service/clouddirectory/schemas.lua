@@ -154,7 +154,7 @@ M.SchemaFacet = schema.new({
 })
 
 M.AddFacetToObjectInput = schema.new({
-    id = id.from(_N, "AddFacetToObjectInput"),
+    id = id.from(_N, "AddFacetToObjectRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -198,7 +198,7 @@ M.AddFacetToObjectInput = schema.new({
 })
 
 M.AddFacetToObjectOutput = schema.new({
-    id = id.from(_N, "AddFacetToObjectOutput"),
+    id = id.from(_N, "AddFacetToObjectResponse"),
     type = "structure",
 })
 
@@ -331,7 +331,7 @@ M.ValidationException = schema.new({
 })
 
 M.ApplySchemaInput = schema.new({
-    id = id.from(_N, "ApplySchemaInput"),
+    id = id.from(_N, "ApplySchemaRequest"),
     type = "structure",
     members = {
         PublishedSchemaArn = schema.new({
@@ -357,7 +357,7 @@ M.ApplySchemaInput = schema.new({
 })
 
 M.ApplySchemaOutput = schema.new({
-    id = id.from(_N, "ApplySchemaOutput"),
+    id = id.from(_N, "ApplySchemaResponse"),
     type = "structure",
     members = {
         AppliedSchemaArn = schema.new({
@@ -408,7 +408,7 @@ M.SchemaAlreadyExistsException = schema.new({
 })
 
 M.AttachObjectInput = schema.new({
-    id = id.from(_N, "AttachObjectInput"),
+    id = id.from(_N, "AttachObjectRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -454,7 +454,7 @@ M.AttachObjectInput = schema.new({
 })
 
 M.AttachObjectOutput = schema.new({
-    id = id.from(_N, "AttachObjectOutput"),
+    id = id.from(_N, "AttachObjectResponse"),
     type = "structure",
     members = {
         AttachedObjectIdentifier = schema.new({
@@ -483,7 +483,7 @@ M.LinkNameAlreadyInUseException = schema.new({
 })
 
 M.AttachPolicyInput = schema.new({
-    id = id.from(_N, "AttachPolicyInput"),
+    id = id.from(_N, "AttachPolicyRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -520,7 +520,7 @@ M.AttachPolicyInput = schema.new({
 })
 
 M.AttachPolicyOutput = schema.new({
-    id = id.from(_N, "AttachPolicyOutput"),
+    id = id.from(_N, "AttachPolicyResponse"),
     type = "structure",
 })
 
@@ -541,7 +541,7 @@ M.NotPolicyException = schema.new({
 })
 
 M.AttachToIndexInput = schema.new({
-    id = id.from(_N, "AttachToIndexInput"),
+    id = id.from(_N, "AttachToIndexRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -578,7 +578,7 @@ M.AttachToIndexInput = schema.new({
 })
 
 M.AttachToIndexOutput = schema.new({
-    id = id.from(_N, "AttachToIndexOutput"),
+    id = id.from(_N, "AttachToIndexResponse"),
     type = "structure",
     members = {
         AttachedObjectIdentifier = schema.new({
@@ -674,7 +674,7 @@ M.TypedLinkSchemaAndFacetName = schema.new({
 })
 
 M.AttachTypedLinkInput = schema.new({
-    id = id.from(_N, "AttachTypedLinkInput"),
+    id = id.from(_N, "AttachTypedLinkRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -778,7 +778,7 @@ M.TypedLinkSpecifier = schema.new({
 })
 
 M.AttachTypedLinkOutput = schema.new({
-    id = id.from(_N, "AttachTypedLinkOutput"),
+    id = id.from(_N, "AttachTypedLinkResponse"),
     type = "structure",
     members = {
         TypedLinkSpecifier = schema.new({
@@ -1422,7 +1422,7 @@ M.BatchReadOperation = schema.new({
 })
 
 M.BatchReadInput = schema.new({
-    id = id.from(_N, "BatchReadInput"),
+    id = id.from(_N, "BatchReadRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -1976,7 +1976,7 @@ M.BatchReadOperationResponse = schema.new({
 })
 
 M.BatchReadOutput = schema.new({
-    id = id.from(_N, "BatchReadOutput"),
+    id = id.from(_N, "BatchReadResponse"),
     type = "structure",
     members = {
         Responses = schema.new({
@@ -2682,7 +2682,7 @@ M.BatchWriteOperation = schema.new({
 })
 
 M.BatchWriteInput = schema.new({
-    id = id.from(_N, "BatchWriteInput"),
+    id = id.from(_N, "BatchWriteRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -2961,7 +2961,7 @@ M.BatchWriteOperationResponse = schema.new({
 })
 
 M.BatchWriteOutput = schema.new({
-    id = id.from(_N, "BatchWriteOutput"),
+    id = id.from(_N, "BatchWriteResponse"),
     type = "structure",
     members = {
         Responses = schema.new({
@@ -2975,7 +2975,7 @@ M.BatchWriteOutput = schema.new({
 })
 
 M.CreateDirectoryInput = schema.new({
-    id = id.from(_N, "CreateDirectoryInput"),
+    id = id.from(_N, "CreateDirectoryRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3001,7 +3001,7 @@ M.CreateDirectoryInput = schema.new({
 })
 
 M.CreateDirectoryOutput = schema.new({
-    id = id.from(_N, "CreateDirectoryOutput"),
+    id = id.from(_N, "CreateDirectoryResponse"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -3182,7 +3182,7 @@ M.FacetAttribute = schema.new({
 })
 
 M.CreateFacetInput = schema.new({
-    id = id.from(_N, "CreateFacetInput"),
+    id = id.from(_N, "CreateFacetRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -3227,7 +3227,7 @@ M.CreateFacetInput = schema.new({
 })
 
 M.CreateFacetOutput = schema.new({
-    id = id.from(_N, "CreateFacetOutput"),
+    id = id.from(_N, "CreateFacetResponse"),
     type = "structure",
 })
 
@@ -3264,7 +3264,7 @@ M.InvalidRuleException = schema.new({
 })
 
 M.CreateIndexInput = schema.new({
-    id = id.from(_N, "CreateIndexInput"),
+    id = id.from(_N, "CreateIndexRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -3314,7 +3314,7 @@ M.CreateIndexInput = schema.new({
 })
 
 M.CreateIndexOutput = schema.new({
-    id = id.from(_N, "CreateIndexOutput"),
+    id = id.from(_N, "CreateIndexResponse"),
     type = "structure",
     members = {
         ObjectIdentifier = schema.new({
@@ -3343,7 +3343,7 @@ M.UnsupportedIndexTypeException = schema.new({
 })
 
 M.CreateObjectInput = schema.new({
-    id = id.from(_N, "CreateObjectInput"),
+    id = id.from(_N, "CreateObjectRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -3390,7 +3390,7 @@ M.CreateObjectInput = schema.new({
 })
 
 M.CreateObjectOutput = schema.new({
-    id = id.from(_N, "CreateObjectOutput"),
+    id = id.from(_N, "CreateObjectResponse"),
     type = "structure",
     members = {
         ObjectIdentifier = schema.new({
@@ -3403,7 +3403,7 @@ M.CreateObjectOutput = schema.new({
 })
 
 M.CreateSchemaInput = schema.new({
-    id = id.from(_N, "CreateSchemaInput"),
+    id = id.from(_N, "CreateSchemaRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3419,7 +3419,7 @@ M.CreateSchemaInput = schema.new({
 })
 
 M.CreateSchemaOutput = schema.new({
-    id = id.from(_N, "CreateSchemaOutput"),
+    id = id.from(_N, "CreateSchemaResponse"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -3526,7 +3526,7 @@ M.TypedLinkFacet = schema.new({
 })
 
 M.CreateTypedLinkFacetInput = schema.new({
-    id = id.from(_N, "CreateTypedLinkFacetInput"),
+    id = id.from(_N, "CreateTypedLinkFacetRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -3553,12 +3553,12 @@ M.CreateTypedLinkFacetInput = schema.new({
 })
 
 M.CreateTypedLinkFacetOutput = schema.new({
-    id = id.from(_N, "CreateTypedLinkFacetOutput"),
+    id = id.from(_N, "CreateTypedLinkFacetResponse"),
     type = "structure",
 })
 
 M.DeleteDirectoryInput = schema.new({
-    id = id.from(_N, "DeleteDirectoryInput"),
+    id = id.from(_N, "DeleteDirectoryRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -3575,7 +3575,7 @@ M.DeleteDirectoryInput = schema.new({
 })
 
 M.DeleteDirectoryOutput = schema.new({
-    id = id.from(_N, "DeleteDirectoryOutput"),
+    id = id.from(_N, "DeleteDirectoryResponse"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -3623,7 +3623,7 @@ M.DirectoryNotDisabledException = schema.new({
 })
 
 M.DeleteFacetInput = schema.new({
-    id = id.from(_N, "DeleteFacetInput"),
+    id = id.from(_N, "DeleteFacetRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -3649,7 +3649,7 @@ M.DeleteFacetInput = schema.new({
 })
 
 M.DeleteFacetOutput = schema.new({
-    id = id.from(_N, "DeleteFacetOutput"),
+    id = id.from(_N, "DeleteFacetResponse"),
     type = "structure",
 })
 
@@ -3686,7 +3686,7 @@ M.FacetNotFoundException = schema.new({
 })
 
 M.DeleteObjectInput = schema.new({
-    id = id.from(_N, "DeleteObjectInput"),
+    id = id.from(_N, "DeleteObjectRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -3713,7 +3713,7 @@ M.DeleteObjectInput = schema.new({
 })
 
 M.DeleteObjectOutput = schema.new({
-    id = id.from(_N, "DeleteObjectOutput"),
+    id = id.from(_N, "DeleteObjectResponse"),
     type = "structure",
 })
 
@@ -3734,7 +3734,7 @@ M.ObjectNotDetachedException = schema.new({
 })
 
 M.DeleteSchemaInput = schema.new({
-    id = id.from(_N, "DeleteSchemaInput"),
+    id = id.from(_N, "DeleteSchemaRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -3751,7 +3751,7 @@ M.DeleteSchemaInput = schema.new({
 })
 
 M.DeleteSchemaOutput = schema.new({
-    id = id.from(_N, "DeleteSchemaOutput"),
+    id = id.from(_N, "DeleteSchemaResponse"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -3780,7 +3780,7 @@ M.StillContainsLinksException = schema.new({
 })
 
 M.DeleteTypedLinkFacetInput = schema.new({
-    id = id.from(_N, "DeleteTypedLinkFacetInput"),
+    id = id.from(_N, "DeleteTypedLinkFacetRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -3806,12 +3806,12 @@ M.DeleteTypedLinkFacetInput = schema.new({
 })
 
 M.DeleteTypedLinkFacetOutput = schema.new({
-    id = id.from(_N, "DeleteTypedLinkFacetOutput"),
+    id = id.from(_N, "DeleteTypedLinkFacetResponse"),
     type = "structure",
 })
 
 M.DetachFromIndexInput = schema.new({
-    id = id.from(_N, "DetachFromIndexInput"),
+    id = id.from(_N, "DetachFromIndexRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -3848,7 +3848,7 @@ M.DetachFromIndexInput = schema.new({
 })
 
 M.DetachFromIndexOutput = schema.new({
-    id = id.from(_N, "DetachFromIndexOutput"),
+    id = id.from(_N, "DetachFromIndexResponse"),
     type = "structure",
     members = {
         DetachedObjectIdentifier = schema.new({
@@ -3877,7 +3877,7 @@ M.ObjectAlreadyDetachedException = schema.new({
 })
 
 M.DetachObjectInput = schema.new({
-    id = id.from(_N, "DetachObjectInput"),
+    id = id.from(_N, "DetachObjectRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -3913,7 +3913,7 @@ M.DetachObjectInput = schema.new({
 })
 
 M.DetachObjectOutput = schema.new({
-    id = id.from(_N, "DetachObjectOutput"),
+    id = id.from(_N, "DetachObjectResponse"),
     type = "structure",
     members = {
         DetachedObjectIdentifier = schema.new({
@@ -3942,7 +3942,7 @@ M.NotNodeException = schema.new({
 })
 
 M.DetachPolicyInput = schema.new({
-    id = id.from(_N, "DetachPolicyInput"),
+    id = id.from(_N, "DetachPolicyRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -3979,12 +3979,12 @@ M.DetachPolicyInput = schema.new({
 })
 
 M.DetachPolicyOutput = schema.new({
-    id = id.from(_N, "DetachPolicyOutput"),
+    id = id.from(_N, "DetachPolicyResponse"),
     type = "structure",
 })
 
 M.DetachTypedLinkInput = schema.new({
-    id = id.from(_N, "DetachTypedLinkInput"),
+    id = id.from(_N, "DetachTypedLinkRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -4011,12 +4011,12 @@ M.DetachTypedLinkInput = schema.new({
 })
 
 M.DetachTypedLinkOutput = schema.new({
-    id = id.from(_N, "DetachTypedLinkOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DisableDirectoryInput = schema.new({
-    id = id.from(_N, "DisableDirectoryInput"),
+    id = id.from(_N, "DisableDirectoryRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -4033,7 +4033,7 @@ M.DisableDirectoryInput = schema.new({
 })
 
 M.DisableDirectoryOutput = schema.new({
-    id = id.from(_N, "DisableDirectoryOutput"),
+    id = id.from(_N, "DisableDirectoryResponse"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -4049,7 +4049,7 @@ M.DisableDirectoryOutput = schema.new({
 })
 
 M.EnableDirectoryInput = schema.new({
-    id = id.from(_N, "EnableDirectoryInput"),
+    id = id.from(_N, "EnableDirectoryRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -4066,7 +4066,7 @@ M.EnableDirectoryInput = schema.new({
 })
 
 M.EnableDirectoryOutput = schema.new({
-    id = id.from(_N, "EnableDirectoryOutput"),
+    id = id.from(_N, "EnableDirectoryResponse"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -4082,7 +4082,7 @@ M.EnableDirectoryOutput = schema.new({
 })
 
 M.GetAppliedSchemaVersionInput = schema.new({
-    id = id.from(_N, "GetAppliedSchemaVersionInput"),
+    id = id.from(_N, "GetAppliedSchemaVersionRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -4098,7 +4098,7 @@ M.GetAppliedSchemaVersionInput = schema.new({
 })
 
 M.GetAppliedSchemaVersionOutput = schema.new({
-    id = id.from(_N, "GetAppliedSchemaVersionOutput"),
+    id = id.from(_N, "GetAppliedSchemaVersionResponse"),
     type = "structure",
     members = {
         AppliedSchemaArn = schema.new({
@@ -4111,7 +4111,7 @@ M.GetAppliedSchemaVersionOutput = schema.new({
 })
 
 M.GetDirectoryInput = schema.new({
-    id = id.from(_N, "GetDirectoryInput"),
+    id = id.from(_N, "GetDirectoryRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -4159,7 +4159,7 @@ M.Directory = schema.new({
 })
 
 M.GetDirectoryOutput = schema.new({
-    id = id.from(_N, "GetDirectoryOutput"),
+    id = id.from(_N, "GetDirectoryResponse"),
     type = "structure",
     members = {
         Directory = schema.new({
@@ -4176,7 +4176,7 @@ M.GetDirectoryOutput = schema.new({
 })
 
 M.GetFacetInput = schema.new({
-    id = id.from(_N, "GetFacetInput"),
+    id = id.from(_N, "GetFacetRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -4227,7 +4227,7 @@ M.Facet = schema.new({
 })
 
 M.GetFacetOutput = schema.new({
-    id = id.from(_N, "GetFacetOutput"),
+    id = id.from(_N, "GetFacetResponse"),
     type = "structure",
     members = {
         Facet = schema.new({
@@ -4241,7 +4241,7 @@ M.GetFacetOutput = schema.new({
 })
 
 M.GetLinkAttributesInput = schema.new({
-    id = id.from(_N, "GetLinkAttributesInput"),
+    id = id.from(_N, "GetLinkAttributesRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -4284,7 +4284,7 @@ M.GetLinkAttributesInput = schema.new({
 })
 
 M.GetLinkAttributesOutput = schema.new({
-    id = id.from(_N, "GetLinkAttributesOutput"),
+    id = id.from(_N, "GetLinkAttributesResponse"),
     type = "structure",
     members = {
         Attributes = schema.new({
@@ -4298,7 +4298,7 @@ M.GetLinkAttributesOutput = schema.new({
 })
 
 M.GetObjectAttributesInput = schema.new({
-    id = id.from(_N, "GetObjectAttributesInput"),
+    id = id.from(_N, "GetObjectAttributesRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -4354,7 +4354,7 @@ M.GetObjectAttributesInput = schema.new({
 })
 
 M.GetObjectAttributesOutput = schema.new({
-    id = id.from(_N, "GetObjectAttributesOutput"),
+    id = id.from(_N, "GetObjectAttributesResponse"),
     type = "structure",
     members = {
         Attributes = schema.new({
@@ -4368,7 +4368,7 @@ M.GetObjectAttributesOutput = schema.new({
 })
 
 M.GetObjectInformationInput = schema.new({
-    id = id.from(_N, "GetObjectInformationInput"),
+    id = id.from(_N, "GetObjectInformationRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -4404,7 +4404,7 @@ M.GetObjectInformationInput = schema.new({
 })
 
 M.GetObjectInformationOutput = schema.new({
-    id = id.from(_N, "GetObjectInformationOutput"),
+    id = id.from(_N, "GetObjectInformationResponse"),
     type = "structure",
     members = {
         SchemaFacets = schema.new({
@@ -4424,7 +4424,7 @@ M.GetObjectInformationOutput = schema.new({
 })
 
 M.GetSchemaAsJsonInput = schema.new({
-    id = id.from(_N, "GetSchemaAsJsonInput"),
+    id = id.from(_N, "GetSchemaAsJsonRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -4441,7 +4441,7 @@ M.GetSchemaAsJsonInput = schema.new({
 })
 
 M.GetSchemaAsJsonOutput = schema.new({
-    id = id.from(_N, "GetSchemaAsJsonOutput"),
+    id = id.from(_N, "GetSchemaAsJsonResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4460,7 +4460,7 @@ M.GetSchemaAsJsonOutput = schema.new({
 })
 
 M.GetTypedLinkFacetInformationInput = schema.new({
-    id = id.from(_N, "GetTypedLinkFacetInformationInput"),
+    id = id.from(_N, "GetTypedLinkFacetInformationRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -4486,7 +4486,7 @@ M.GetTypedLinkFacetInformationInput = schema.new({
 })
 
 M.GetTypedLinkFacetInformationOutput = schema.new({
-    id = id.from(_N, "GetTypedLinkFacetInformationOutput"),
+    id = id.from(_N, "GetTypedLinkFacetInformationResponse"),
     type = "structure",
     members = {
         IdentityAttributeOrder = schema.new({
@@ -4516,7 +4516,7 @@ M.InvalidNextTokenException = schema.new({
 })
 
 M.ListAppliedSchemaArnsInput = schema.new({
-    id = id.from(_N, "ListAppliedSchemaArnsInput"),
+    id = id.from(_N, "ListAppliedSchemaArnsRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -4550,7 +4550,7 @@ M.ListAppliedSchemaArnsInput = schema.new({
 })
 
 M.ListAppliedSchemaArnsOutput = schema.new({
-    id = id.from(_N, "ListAppliedSchemaArnsOutput"),
+    id = id.from(_N, "ListAppliedSchemaArnsResponse"),
     type = "structure",
     members = {
         SchemaArns = schema.new({
@@ -4570,7 +4570,7 @@ M.ListAppliedSchemaArnsOutput = schema.new({
 })
 
 M.ListAttachedIndicesInput = schema.new({
-    id = id.from(_N, "ListAttachedIndicesInput"),
+    id = id.from(_N, "ListAttachedIndicesRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -4618,7 +4618,7 @@ M.ListAttachedIndicesInput = schema.new({
 })
 
 M.ListAttachedIndicesOutput = schema.new({
-    id = id.from(_N, "ListAttachedIndicesOutput"),
+    id = id.from(_N, "ListAttachedIndicesResponse"),
     type = "structure",
     members = {
         IndexAttachments = schema.new({
@@ -4638,7 +4638,7 @@ M.ListAttachedIndicesOutput = schema.new({
 })
 
 M.ListDevelopmentSchemaArnsInput = schema.new({
-    id = id.from(_N, "ListDevelopmentSchemaArnsInput"),
+    id = id.from(_N, "ListDevelopmentSchemaArnsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4657,7 +4657,7 @@ M.ListDevelopmentSchemaArnsInput = schema.new({
 })
 
 M.ListDevelopmentSchemaArnsOutput = schema.new({
-    id = id.from(_N, "ListDevelopmentSchemaArnsOutput"),
+    id = id.from(_N, "ListDevelopmentSchemaArnsResponse"),
     type = "structure",
     members = {
         SchemaArns = schema.new({
@@ -4677,7 +4677,7 @@ M.ListDevelopmentSchemaArnsOutput = schema.new({
 })
 
 M.ListDirectoriesInput = schema.new({
-    id = id.from(_N, "ListDirectoriesInput"),
+    id = id.from(_N, "ListDirectoriesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4702,7 +4702,7 @@ M.ListDirectoriesInput = schema.new({
 })
 
 M.ListDirectoriesOutput = schema.new({
-    id = id.from(_N, "ListDirectoriesOutput"),
+    id = id.from(_N, "ListDirectoriesResponse"),
     type = "structure",
     members = {
         Directories = schema.new({
@@ -4725,7 +4725,7 @@ M.ListDirectoriesOutput = schema.new({
 })
 
 M.ListFacetAttributesInput = schema.new({
-    id = id.from(_N, "ListFacetAttributesInput"),
+    id = id.from(_N, "ListFacetAttributesRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -4763,7 +4763,7 @@ M.ListFacetAttributesInput = schema.new({
 })
 
 M.ListFacetAttributesOutput = schema.new({
-    id = id.from(_N, "ListFacetAttributesOutput"),
+    id = id.from(_N, "ListFacetAttributesResponse"),
     type = "structure",
     members = {
         Attributes = schema.new({
@@ -4783,7 +4783,7 @@ M.ListFacetAttributesOutput = schema.new({
 })
 
 M.ListFacetNamesInput = schema.new({
-    id = id.from(_N, "ListFacetNamesInput"),
+    id = id.from(_N, "ListFacetNamesRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -4812,7 +4812,7 @@ M.ListFacetNamesInput = schema.new({
 })
 
 M.ListFacetNamesOutput = schema.new({
-    id = id.from(_N, "ListFacetNamesOutput"),
+    id = id.from(_N, "ListFacetNamesResponse"),
     type = "structure",
     members = {
         FacetNames = schema.new({
@@ -4832,7 +4832,7 @@ M.ListFacetNamesOutput = schema.new({
 })
 
 M.ListIncomingTypedLinksInput = schema.new({
-    id = id.from(_N, "ListIncomingTypedLinksInput"),
+    id = id.from(_N, "ListIncomingTypedLinksRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -4891,7 +4891,7 @@ M.ListIncomingTypedLinksInput = schema.new({
 })
 
 M.ListIncomingTypedLinksOutput = schema.new({
-    id = id.from(_N, "ListIncomingTypedLinksOutput"),
+    id = id.from(_N, "ListIncomingTypedLinksResponse"),
     type = "structure",
     members = {
         LinkSpecifiers = schema.new({
@@ -4911,7 +4911,7 @@ M.ListIncomingTypedLinksOutput = schema.new({
 })
 
 M.ListIndexInput = schema.new({
-    id = id.from(_N, "ListIndexInput"),
+    id = id.from(_N, "ListIndexRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -4966,7 +4966,7 @@ M.ListIndexInput = schema.new({
 })
 
 M.ListIndexOutput = schema.new({
-    id = id.from(_N, "ListIndexOutput"),
+    id = id.from(_N, "ListIndexResponse"),
     type = "structure",
     members = {
         IndexAttachments = schema.new({
@@ -4986,7 +4986,7 @@ M.ListIndexOutput = schema.new({
 })
 
 M.ListManagedSchemaArnsInput = schema.new({
-    id = id.from(_N, "ListManagedSchemaArnsInput"),
+    id = id.from(_N, "ListManagedSchemaArnsRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -5011,7 +5011,7 @@ M.ListManagedSchemaArnsInput = schema.new({
 })
 
 M.ListManagedSchemaArnsOutput = schema.new({
-    id = id.from(_N, "ListManagedSchemaArnsOutput"),
+    id = id.from(_N, "ListManagedSchemaArnsResponse"),
     type = "structure",
     members = {
         SchemaArns = schema.new({
@@ -5031,7 +5031,7 @@ M.ListManagedSchemaArnsOutput = schema.new({
 })
 
 M.ListObjectAttributesInput = schema.new({
-    id = id.from(_N, "ListObjectAttributesInput"),
+    id = id.from(_N, "ListObjectAttributesRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -5086,7 +5086,7 @@ M.ListObjectAttributesInput = schema.new({
 })
 
 M.ListObjectAttributesOutput = schema.new({
-    id = id.from(_N, "ListObjectAttributesOutput"),
+    id = id.from(_N, "ListObjectAttributesResponse"),
     type = "structure",
     members = {
         Attributes = schema.new({
@@ -5106,7 +5106,7 @@ M.ListObjectAttributesOutput = schema.new({
 })
 
 M.ListObjectChildrenInput = schema.new({
-    id = id.from(_N, "ListObjectChildrenInput"),
+    id = id.from(_N, "ListObjectChildrenRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -5154,7 +5154,7 @@ M.ListObjectChildrenInput = schema.new({
 })
 
 M.ListObjectChildrenOutput = schema.new({
-    id = id.from(_N, "ListObjectChildrenOutput"),
+    id = id.from(_N, "ListObjectChildrenResponse"),
     type = "structure",
     members = {
         Children = schema.new({
@@ -5175,7 +5175,7 @@ M.ListObjectChildrenOutput = schema.new({
 })
 
 M.ListObjectParentPathsInput = schema.new({
-    id = id.from(_N, "ListObjectParentPathsInput"),
+    id = id.from(_N, "ListObjectParentPathsRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -5214,7 +5214,7 @@ M.ListObjectParentPathsInput = schema.new({
 })
 
 M.ListObjectParentPathsOutput = schema.new({
-    id = id.from(_N, "ListObjectParentPathsOutput"),
+    id = id.from(_N, "ListObjectParentPathsResponse"),
     type = "structure",
     members = {
         PathToObjectIdentifiersList = schema.new({
@@ -5250,7 +5250,7 @@ M.CannotListParentOfRootException = schema.new({
 })
 
 M.ListObjectParentsInput = schema.new({
-    id = id.from(_N, "ListObjectParentsInput"),
+    id = id.from(_N, "ListObjectParentsRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -5307,7 +5307,7 @@ M.ListObjectParentsInput = schema.new({
 })
 
 M.ListObjectParentsOutput = schema.new({
-    id = id.from(_N, "ListObjectParentsOutput"),
+    id = id.from(_N, "ListObjectParentsResponse"),
     type = "structure",
     members = {
         Parents = schema.new({
@@ -5335,7 +5335,7 @@ M.ListObjectParentsOutput = schema.new({
 })
 
 M.ListObjectPoliciesInput = schema.new({
-    id = id.from(_N, "ListObjectPoliciesInput"),
+    id = id.from(_N, "ListObjectPoliciesRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -5383,7 +5383,7 @@ M.ListObjectPoliciesInput = schema.new({
 })
 
 M.ListObjectPoliciesOutput = schema.new({
-    id = id.from(_N, "ListObjectPoliciesOutput"),
+    id = id.from(_N, "ListObjectPoliciesResponse"),
     type = "structure",
     members = {
         AttachedPolicyIds = schema.new({
@@ -5403,7 +5403,7 @@ M.ListObjectPoliciesOutput = schema.new({
 })
 
 M.ListOutgoingTypedLinksInput = schema.new({
-    id = id.from(_N, "ListOutgoingTypedLinksInput"),
+    id = id.from(_N, "ListOutgoingTypedLinksRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -5462,7 +5462,7 @@ M.ListOutgoingTypedLinksInput = schema.new({
 })
 
 M.ListOutgoingTypedLinksOutput = schema.new({
-    id = id.from(_N, "ListOutgoingTypedLinksOutput"),
+    id = id.from(_N, "ListOutgoingTypedLinksResponse"),
     type = "structure",
     members = {
         TypedLinkSpecifiers = schema.new({
@@ -5482,7 +5482,7 @@ M.ListOutgoingTypedLinksOutput = schema.new({
 })
 
 M.ListPolicyAttachmentsInput = schema.new({
-    id = id.from(_N, "ListPolicyAttachmentsInput"),
+    id = id.from(_N, "ListPolicyAttachmentsRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -5530,7 +5530,7 @@ M.ListPolicyAttachmentsInput = schema.new({
 })
 
 M.ListPolicyAttachmentsOutput = schema.new({
-    id = id.from(_N, "ListPolicyAttachmentsOutput"),
+    id = id.from(_N, "ListPolicyAttachmentsResponse"),
     type = "structure",
     members = {
         ObjectIdentifiers = schema.new({
@@ -5550,7 +5550,7 @@ M.ListPolicyAttachmentsOutput = schema.new({
 })
 
 M.ListPublishedSchemaArnsInput = schema.new({
-    id = id.from(_N, "ListPublishedSchemaArnsInput"),
+    id = id.from(_N, "ListPublishedSchemaArnsRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -5575,7 +5575,7 @@ M.ListPublishedSchemaArnsInput = schema.new({
 })
 
 M.ListPublishedSchemaArnsOutput = schema.new({
-    id = id.from(_N, "ListPublishedSchemaArnsOutput"),
+    id = id.from(_N, "ListPublishedSchemaArnsResponse"),
     type = "structure",
     members = {
         SchemaArns = schema.new({
@@ -5611,7 +5611,7 @@ M.InvalidTaggingRequestException = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5658,7 +5658,7 @@ M.Tag = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -5678,7 +5678,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTypedLinkFacetAttributesInput = schema.new({
-    id = id.from(_N, "ListTypedLinkFacetAttributesInput"),
+    id = id.from(_N, "ListTypedLinkFacetAttributesRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -5716,7 +5716,7 @@ M.ListTypedLinkFacetAttributesInput = schema.new({
 })
 
 M.ListTypedLinkFacetAttributesOutput = schema.new({
-    id = id.from(_N, "ListTypedLinkFacetAttributesOutput"),
+    id = id.from(_N, "ListTypedLinkFacetAttributesResponse"),
     type = "structure",
     members = {
         Attributes = schema.new({
@@ -5736,7 +5736,7 @@ M.ListTypedLinkFacetAttributesOutput = schema.new({
 })
 
 M.ListTypedLinkFacetNamesInput = schema.new({
-    id = id.from(_N, "ListTypedLinkFacetNamesInput"),
+    id = id.from(_N, "ListTypedLinkFacetNamesRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -5765,7 +5765,7 @@ M.ListTypedLinkFacetNamesInput = schema.new({
 })
 
 M.ListTypedLinkFacetNamesOutput = schema.new({
-    id = id.from(_N, "ListTypedLinkFacetNamesOutput"),
+    id = id.from(_N, "ListTypedLinkFacetNamesResponse"),
     type = "structure",
     members = {
         FacetNames = schema.new({
@@ -5785,7 +5785,7 @@ M.ListTypedLinkFacetNamesOutput = schema.new({
 })
 
 M.LookupPolicyInput = schema.new({
-    id = id.from(_N, "LookupPolicyInput"),
+    id = id.from(_N, "LookupPolicyRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -5824,7 +5824,7 @@ M.LookupPolicyInput = schema.new({
 })
 
 M.LookupPolicyOutput = schema.new({
-    id = id.from(_N, "LookupPolicyOutput"),
+    id = id.from(_N, "LookupPolicyResponse"),
     type = "structure",
     members = {
         PolicyToPathList = schema.new({
@@ -5844,7 +5844,7 @@ M.LookupPolicyOutput = schema.new({
 })
 
 M.PublishSchemaInput = schema.new({
-    id = id.from(_N, "PublishSchemaInput"),
+    id = id.from(_N, "PublishSchemaRequest"),
     type = "structure",
     members = {
         DevelopmentSchemaArn = schema.new({
@@ -5882,7 +5882,7 @@ M.PublishSchemaInput = schema.new({
 })
 
 M.PublishSchemaOutput = schema.new({
-    id = id.from(_N, "PublishSchemaOutput"),
+    id = id.from(_N, "PublishSchemaResponse"),
     type = "structure",
     members = {
         PublishedSchemaArn = schema.new({
@@ -5927,7 +5927,7 @@ M.InvalidSchemaDocException = schema.new({
 })
 
 M.PutSchemaFromJsonInput = schema.new({
-    id = id.from(_N, "PutSchemaFromJsonInput"),
+    id = id.from(_N, "PutSchemaFromJsonRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -5953,7 +5953,7 @@ M.PutSchemaFromJsonInput = schema.new({
 })
 
 M.PutSchemaFromJsonOutput = schema.new({
-    id = id.from(_N, "PutSchemaFromJsonOutput"),
+    id = id.from(_N, "PutSchemaFromJsonResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -5966,7 +5966,7 @@ M.PutSchemaFromJsonOutput = schema.new({
 })
 
 M.RemoveFacetFromObjectInput = schema.new({
-    id = id.from(_N, "RemoveFacetFromObjectInput"),
+    id = id.from(_N, "RemoveFacetFromObjectRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -6003,12 +6003,12 @@ M.RemoveFacetFromObjectInput = schema.new({
 })
 
 M.RemoveFacetFromObjectOutput = schema.new({
-    id = id.from(_N, "RemoveFacetFromObjectOutput"),
+    id = id.from(_N, "RemoveFacetFromObjectResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6034,12 +6034,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6065,7 +6065,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -6106,7 +6106,7 @@ M.FacetAttributeUpdate = schema.new({
 })
 
 M.UpdateFacetInput = schema.new({
-    id = id.from(_N, "UpdateFacetInput"),
+    id = id.from(_N, "UpdateFacetRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -6145,12 +6145,12 @@ M.UpdateFacetInput = schema.new({
 })
 
 M.UpdateFacetOutput = schema.new({
-    id = id.from(_N, "UpdateFacetOutput"),
+    id = id.from(_N, "UpdateFacetResponse"),
     type = "structure",
 })
 
 M.UpdateLinkAttributesInput = schema.new({
-    id = id.from(_N, "UpdateLinkAttributesInput"),
+    id = id.from(_N, "UpdateLinkAttributesRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -6187,12 +6187,12 @@ M.UpdateLinkAttributesInput = schema.new({
 })
 
 M.UpdateLinkAttributesOutput = schema.new({
-    id = id.from(_N, "UpdateLinkAttributesOutput"),
+    id = id.from(_N, "UpdateLinkAttributesResponse"),
     type = "structure",
 })
 
 M.UpdateObjectAttributesInput = schema.new({
-    id = id.from(_N, "UpdateObjectAttributesInput"),
+    id = id.from(_N, "UpdateObjectAttributesRequest"),
     type = "structure",
     members = {
         DirectoryArn = schema.new({
@@ -6229,7 +6229,7 @@ M.UpdateObjectAttributesInput = schema.new({
 })
 
 M.UpdateObjectAttributesOutput = schema.new({
-    id = id.from(_N, "UpdateObjectAttributesOutput"),
+    id = id.from(_N, "UpdateObjectAttributesResponse"),
     type = "structure",
     members = {
         ObjectIdentifier = schema.new({
@@ -6242,7 +6242,7 @@ M.UpdateObjectAttributesOutput = schema.new({
 })
 
 M.UpdateSchemaInput = schema.new({
-    id = id.from(_N, "UpdateSchemaInput"),
+    id = id.from(_N, "UpdateSchemaRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -6268,7 +6268,7 @@ M.UpdateSchemaInput = schema.new({
 })
 
 M.UpdateSchemaOutput = schema.new({
-    id = id.from(_N, "UpdateSchemaOutput"),
+    id = id.from(_N, "UpdateSchemaResponse"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -6307,7 +6307,7 @@ M.TypedLinkFacetAttributeUpdate = schema.new({
 })
 
 M.UpdateTypedLinkFacetInput = schema.new({
-    id = id.from(_N, "UpdateTypedLinkFacetInput"),
+    id = id.from(_N, "UpdateTypedLinkFacetRequest"),
     type = "structure",
     members = {
         SchemaArn = schema.new({
@@ -6353,7 +6353,7 @@ M.UpdateTypedLinkFacetInput = schema.new({
 })
 
 M.UpdateTypedLinkFacetOutput = schema.new({
-    id = id.from(_N, "UpdateTypedLinkFacetOutput"),
+    id = id.from(_N, "UpdateTypedLinkFacetResponse"),
     type = "structure",
 })
 
@@ -6374,7 +6374,7 @@ M.IncompatibleSchemaException = schema.new({
 })
 
 M.UpgradeAppliedSchemaInput = schema.new({
-    id = id.from(_N, "UpgradeAppliedSchemaInput"),
+    id = id.from(_N, "UpgradeAppliedSchemaRequest"),
     type = "structure",
     members = {
         PublishedSchemaArn = schema.new({
@@ -6408,7 +6408,7 @@ M.UpgradeAppliedSchemaInput = schema.new({
 })
 
 M.UpgradeAppliedSchemaOutput = schema.new({
-    id = id.from(_N, "UpgradeAppliedSchemaOutput"),
+    id = id.from(_N, "UpgradeAppliedSchemaResponse"),
     type = "structure",
     members = {
         UpgradedSchemaArn = schema.new({
@@ -6427,7 +6427,7 @@ M.UpgradeAppliedSchemaOutput = schema.new({
 })
 
 M.UpgradePublishedSchemaInput = schema.new({
-    id = id.from(_N, "UpgradePublishedSchemaInput"),
+    id = id.from(_N, "UpgradePublishedSchemaRequest"),
     type = "structure",
     members = {
         DevelopmentSchemaArn = schema.new({
@@ -6470,7 +6470,7 @@ M.UpgradePublishedSchemaInput = schema.new({
 })
 
 M.UpgradePublishedSchemaOutput = schema.new({
-    id = id.from(_N, "UpgradePublishedSchemaOutput"),
+    id = id.from(_N, "UpgradePublishedSchemaResponse"),
     type = "structure",
     members = {
         UpgradedSchemaArn = schema.new({
@@ -6481,5 +6481,19 @@ M.UpgradePublishedSchemaOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

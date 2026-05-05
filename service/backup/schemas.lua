@@ -133,7 +133,7 @@ M.AssociateBackupVaultMpaApprovalTeamInput = schema.new({
 })
 
 M.AssociateBackupVaultMpaApprovalTeamOutput = schema.new({
-    id = id.from(_N, "AssociateBackupVaultMpaApprovalTeamOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3136,7 +3136,7 @@ M.DeleteBackupSelectionInput = schema.new({
 })
 
 M.DeleteBackupSelectionOutput = schema.new({
-    id = id.from(_N, "DeleteBackupSelectionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3158,7 +3158,7 @@ M.DeleteBackupVaultInput = schema.new({
 })
 
 M.DeleteBackupVaultOutput = schema.new({
-    id = id.from(_N, "DeleteBackupVaultOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3180,7 +3180,7 @@ M.DeleteBackupVaultAccessPolicyInput = schema.new({
 })
 
 M.DeleteBackupVaultAccessPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteBackupVaultAccessPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3202,7 +3202,7 @@ M.DeleteBackupVaultLockConfigurationInput = schema.new({
 })
 
 M.DeleteBackupVaultLockConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteBackupVaultLockConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3224,7 +3224,7 @@ M.DeleteBackupVaultNotificationsInput = schema.new({
 })
 
 M.DeleteBackupVaultNotificationsOutput = schema.new({
-    id = id.from(_N, "DeleteBackupVaultNotificationsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3246,7 +3246,7 @@ M.DeleteFrameworkInput = schema.new({
 })
 
 M.DeleteFrameworkOutput = schema.new({
-    id = id.from(_N, "DeleteFrameworkOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3278,7 +3278,7 @@ M.DeleteRecoveryPointInput = schema.new({
 })
 
 M.DeleteRecoveryPointOutput = schema.new({
-    id = id.from(_N, "DeleteRecoveryPointOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3300,7 +3300,7 @@ M.DeleteReportPlanInput = schema.new({
 })
 
 M.DeleteReportPlanOutput = schema.new({
-    id = id.from(_N, "DeleteReportPlanOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3322,7 +3322,7 @@ M.DeleteRestoreTestingPlanInput = schema.new({
 })
 
 M.DeleteRestoreTestingPlanOutput = schema.new({
-    id = id.from(_N, "DeleteRestoreTestingPlanOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3354,7 +3354,7 @@ M.DeleteRestoreTestingSelectionInput = schema.new({
 })
 
 M.DeleteRestoreTestingSelectionOutput = schema.new({
-    id = id.from(_N, "DeleteRestoreTestingSelectionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4967,7 +4967,7 @@ M.DisassociateBackupVaultMpaApprovalTeamInput = schema.new({
 })
 
 M.DisassociateBackupVaultMpaApprovalTeamOutput = schema.new({
-    id = id.from(_N, "DisassociateBackupVaultMpaApprovalTeamOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4999,7 +4999,7 @@ M.DisassociateRecoveryPointInput = schema.new({
 })
 
 M.DisassociateRecoveryPointOutput = schema.new({
-    id = id.from(_N, "DisassociateRecoveryPointOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5031,7 +5031,7 @@ M.DisassociateRecoveryPointFromParentInput = schema.new({
 })
 
 M.DisassociateRecoveryPointFromParentOutput = schema.new({
-    id = id.from(_N, "DisassociateRecoveryPointFromParentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -6001,7 +6001,7 @@ M.GetRestoreTestingSelectionOutput = schema.new({
 })
 
 M.GetSupportedResourceTypesInput = schema.new({
-    id = id.from(_N, "GetSupportedResourceTypesInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -9543,7 +9543,7 @@ M.PutBackupVaultAccessPolicyInput = schema.new({
 })
 
 M.PutBackupVaultAccessPolicyOutput = schema.new({
-    id = id.from(_N, "PutBackupVaultAccessPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -9583,7 +9583,7 @@ M.PutBackupVaultLockConfigurationInput = schema.new({
 })
 
 M.PutBackupVaultLockConfigurationOutput = schema.new({
-    id = id.from(_N, "PutBackupVaultLockConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -9624,7 +9624,7 @@ M.PutBackupVaultNotificationsInput = schema.new({
 })
 
 M.PutBackupVaultNotificationsOutput = schema.new({
-    id = id.from(_N, "PutBackupVaultNotificationsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -9661,7 +9661,7 @@ M.PutRestoreValidationResultInput = schema.new({
 })
 
 M.PutRestoreValidationResultOutput = schema.new({
-    id = id.from(_N, "PutRestoreValidationResultOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -9702,7 +9702,7 @@ M.RevokeRestoreAccessBackupVaultInput = schema.new({
 })
 
 M.RevokeRestoreAccessBackupVaultOutput = schema.new({
-    id = id.from(_N, "RevokeRestoreAccessBackupVaultOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -10142,7 +10142,7 @@ M.StopBackupJobInput = schema.new({
 })
 
 M.StopBackupJobOutput = schema.new({
-    id = id.from(_N, "StopBackupJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -10175,7 +10175,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -10207,7 +10207,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -10363,7 +10363,7 @@ M.UpdateGlobalSettingsInput = schema.new({
 })
 
 M.UpdateGlobalSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateGlobalSettingsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -10531,7 +10531,7 @@ M.UpdateRegionSettingsInput = schema.new({
 })
 
 M.UpdateRegionSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateRegionSettingsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -10927,5 +10927,19 @@ M.UpdateTieringConfigurationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

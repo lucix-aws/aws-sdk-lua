@@ -7845,7 +7845,7 @@ M.SageMakerRunConfigurationInput = schema.new({
             name = "trackingAssets",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -8145,7 +8145,7 @@ M.SageMakerRunConfigurationOutput = schema.new({
             name = "trackingAssets",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -10432,7 +10432,7 @@ M.EnvironmentDeploymentDetails = schema.new({
             name = "environmentFailureReasons",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.EnvironmentError }),
         }),
     },
 })
@@ -14648,7 +14648,7 @@ M.DeleteAssetFilterInput = schema.new({
 })
 
 M.DeleteAssetFilterOutput = schema.new({
-    id = id.from(_N, "DeleteAssetFilterOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -14742,7 +14742,7 @@ M.DeleteEnvironmentInput = schema.new({
 })
 
 M.DeleteEnvironmentOutput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -14784,7 +14784,7 @@ M.DeleteEnvironmentActionInput = schema.new({
 })
 
 M.DeleteEnvironmentActionOutput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentActionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -14816,7 +14816,7 @@ M.DeleteEnvironmentBlueprintInput = schema.new({
 })
 
 M.DeleteEnvironmentBlueprintOutput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentBlueprintOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -14848,7 +14848,7 @@ M.DeleteEnvironmentProfileInput = schema.new({
 })
 
 M.DeleteEnvironmentProfileOutput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentProfileOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -15127,7 +15127,7 @@ M.DeleteSubscriptionRequestInput = schema.new({
 })
 
 M.DeleteSubscriptionRequestOutput = schema.new({
-    id = id.from(_N, "DeleteSubscriptionRequestOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -15169,7 +15169,7 @@ M.DeleteSubscriptionTargetInput = schema.new({
 })
 
 M.DeleteSubscriptionTargetOutput = schema.new({
-    id = id.from(_N, "DeleteSubscriptionTargetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -16263,7 +16263,7 @@ M.GetEnvironmentBlueprintConfigurationOutput = schema.new({
             name = "regionalParameters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
         createdAt = schema.new({
             id = id.from(_N, "GetEnvironmentBlueprintConfigurationOutput", "createdAt"),
@@ -16381,7 +16381,7 @@ M.EnvironmentBlueprintConfigurationItem = schema.new({
             name = "regionalParameters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
         createdAt = schema.new({
             id = id.from(_N, "EnvironmentBlueprintConfigurationItem", "createdAt"),
@@ -16489,7 +16489,7 @@ M.PutEnvironmentBlueprintConfigurationInput = schema.new({
             name = "regionalParameters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
         globalParameters = schema.new({
             id = id.from(_N, "PutEnvironmentBlueprintConfigurationInput", "globalParameters"),
@@ -16562,7 +16562,7 @@ M.PutEnvironmentBlueprintConfigurationOutput = schema.new({
             name = "regionalParameters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
         createdAt = schema.new({
             id = id.from(_N, "PutEnvironmentBlueprintConfigurationOutput", "createdAt"),
@@ -24045,7 +24045,7 @@ M.ListSubscriptionTargetsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -24062,7 +24062,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -27915,7 +27915,7 @@ M.SearchUserProfilesOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -27943,12 +27943,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -27976,7 +27976,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -30886,5 +30886,19 @@ M.QueryGraphInput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

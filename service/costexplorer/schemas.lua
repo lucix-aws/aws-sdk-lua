@@ -769,7 +769,7 @@ M.ResourceTag = schema.new({
 })
 
 M.CreateAnomalyMonitorOutput = schema.new({
-    id = id.from(_N, "CreateAnomalyMonitorOutput"),
+    id = id.from(_N, "CreateAnomalyMonitorResponse"),
     type = "structure",
     members = {
         MonitorArn = schema.new({
@@ -801,7 +801,7 @@ M.LimitExceededException = schema.new({
 })
 
 M.CreateAnomalySubscriptionOutput = schema.new({
-    id = id.from(_N, "CreateAnomalySubscriptionOutput"),
+    id = id.from(_N, "CreateAnomalySubscriptionResponse"),
     type = "structure",
     members = {
         SubscriptionArn = schema.new({
@@ -920,7 +920,7 @@ M.CostCategorySplitChargeRule = schema.new({
 })
 
 M.CreateCostCategoryDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateCostCategoryDefinitionOutput"),
+    id = id.from(_N, "CreateCostCategoryDefinitionResponse"),
     type = "structure",
     members = {
         CostCategoryArn = schema.new({
@@ -955,7 +955,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.DeleteAnomalyMonitorInput = schema.new({
-    id = id.from(_N, "DeleteAnomalyMonitorInput"),
+    id = id.from(_N, "DeleteAnomalyMonitorRequest"),
     type = "structure",
     members = {
         MonitorArn = schema.new({
@@ -971,12 +971,12 @@ M.DeleteAnomalyMonitorInput = schema.new({
 })
 
 M.DeleteAnomalyMonitorOutput = schema.new({
-    id = id.from(_N, "DeleteAnomalyMonitorOutput"),
+    id = id.from(_N, "DeleteAnomalyMonitorResponse"),
     type = "structure",
 })
 
 M.DeleteAnomalySubscriptionInput = schema.new({
-    id = id.from(_N, "DeleteAnomalySubscriptionInput"),
+    id = id.from(_N, "DeleteAnomalySubscriptionRequest"),
     type = "structure",
     members = {
         SubscriptionArn = schema.new({
@@ -992,7 +992,7 @@ M.DeleteAnomalySubscriptionInput = schema.new({
 })
 
 M.DeleteAnomalySubscriptionOutput = schema.new({
-    id = id.from(_N, "DeleteAnomalySubscriptionOutput"),
+    id = id.from(_N, "DeleteAnomalySubscriptionResponse"),
     type = "structure",
 })
 
@@ -1013,7 +1013,7 @@ M.UnknownSubscriptionException = schema.new({
 })
 
 M.DeleteCostCategoryDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteCostCategoryDefinitionInput"),
+    id = id.from(_N, "DeleteCostCategoryDefinitionRequest"),
     type = "structure",
     members = {
         CostCategoryArn = schema.new({
@@ -1029,7 +1029,7 @@ M.DeleteCostCategoryDefinitionInput = schema.new({
 })
 
 M.DeleteCostCategoryDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteCostCategoryDefinitionOutput"),
+    id = id.from(_N, "DeleteCostCategoryDefinitionResponse"),
     type = "structure",
     members = {
         CostCategoryArn = schema.new({
@@ -1070,7 +1070,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DescribeCostCategoryDefinitionInput = schema.new({
-    id = id.from(_N, "DescribeCostCategoryDefinitionInput"),
+    id = id.from(_N, "DescribeCostCategoryDefinitionRequest"),
     type = "structure",
     members = {
         CostCategoryArn = schema.new({
@@ -1146,7 +1146,7 @@ M.TotalImpactFilter = schema.new({
 })
 
 M.GetAnomaliesInput = schema.new({
-    id = id.from(_N, "GetAnomaliesInput"),
+    id = id.from(_N, "GetAnomaliesRequest"),
     type = "structure",
     members = {
         MonitorArn = schema.new({
@@ -1194,7 +1194,7 @@ M.GetAnomaliesInput = schema.new({
 })
 
 M.GetAnomaliesOutput = schema.new({
-    id = id.from(_N, "GetAnomaliesOutput"),
+    id = id.from(_N, "GetAnomaliesResponse"),
     type = "structure",
     members = {
         Anomalies = schema.new({
@@ -1233,7 +1233,7 @@ M.InvalidNextTokenException = schema.new({
 })
 
 M.GetAnomalyMonitorsInput = schema.new({
-    id = id.from(_N, "GetAnomalyMonitorsInput"),
+    id = id.from(_N, "GetAnomalyMonitorsRequest"),
     type = "structure",
     members = {
         MonitorArnList = schema.new({
@@ -1259,7 +1259,7 @@ M.GetAnomalyMonitorsInput = schema.new({
 })
 
 M.GetAnomalySubscriptionsInput = schema.new({
-    id = id.from(_N, "GetAnomalySubscriptionsInput"),
+    id = id.from(_N, "GetAnomalySubscriptionsRequest"),
     type = "structure",
     members = {
         SubscriptionArnList = schema.new({
@@ -1307,7 +1307,7 @@ M.DataUnavailableException = schema.new({
 })
 
 M.GetApproximateUsageRecordsInput = schema.new({
-    id = id.from(_N, "GetApproximateUsageRecordsInput"),
+    id = id.from(_N, "GetApproximateUsageRecordsRequest"),
     type = "structure",
     members = {
         Granularity = schema.new({
@@ -1339,7 +1339,7 @@ M.GetApproximateUsageRecordsInput = schema.new({
 })
 
 M.GetApproximateUsageRecordsOutput = schema.new({
-    id = id.from(_N, "GetApproximateUsageRecordsOutput"),
+    id = id.from(_N, "GetApproximateUsageRecordsResponse"),
     type = "structure",
     members = {
         Services = schema.new({
@@ -1370,7 +1370,7 @@ M.GetApproximateUsageRecordsOutput = schema.new({
 })
 
 M.GetCommitmentPurchaseAnalysisInput = schema.new({
-    id = id.from(_N, "GetCommitmentPurchaseAnalysisInput"),
+    id = id.from(_N, "GetCommitmentPurchaseAnalysisRequest"),
     type = "structure",
     members = {
         AnalysisId = schema.new({
@@ -1386,7 +1386,7 @@ M.GetCommitmentPurchaseAnalysisInput = schema.new({
 })
 
 M.GetCommitmentPurchaseAnalysisOutput = schema.new({
-    id = id.from(_N, "GetCommitmentPurchaseAnalysisOutput"),
+    id = id.from(_N, "GetCommitmentPurchaseAnalysisResponse"),
     type = "structure",
     members = {
         EstimatedCompletionTime = schema.new({
@@ -1609,7 +1609,7 @@ M.ResultByTime = schema.new({
 })
 
 M.GetCostAndUsageOutput = schema.new({
-    id = id.from(_N, "GetCostAndUsageOutput"),
+    id = id.from(_N, "GetCostAndUsageResponse"),
     type = "structure",
     members = {
         NextPageToken = schema.new({
@@ -1690,7 +1690,7 @@ M.ComparisonMetricValue = schema.new({
 })
 
 M.GetCostAndUsageWithResourcesOutput = schema.new({
-    id = id.from(_N, "GetCostAndUsageWithResourcesOutput"),
+    id = id.from(_N, "GetCostAndUsageWithResourcesResponse"),
     type = "structure",
     members = {
         NextPageToken = schema.new({
@@ -1746,7 +1746,7 @@ M.SortDefinition = schema.new({
 })
 
 M.GetCostCategoriesOutput = schema.new({
-    id = id.from(_N, "GetCostCategoriesOutput"),
+    id = id.from(_N, "GetCostCategoriesResponse"),
     type = "structure",
     members = {
         NextPageToken = schema.new({
@@ -1850,7 +1850,7 @@ M.ForecastResult = schema.new({
 })
 
 M.GetCostForecastOutput = schema.new({
-    id = id.from(_N, "GetCostForecastOutput"),
+    id = id.from(_N, "GetCostForecastResponse"),
     type = "structure",
     members = {
         Total = schema.new({
@@ -1871,7 +1871,7 @@ M.GetCostForecastOutput = schema.new({
 })
 
 M.GetDimensionValuesOutput = schema.new({
-    id = id.from(_N, "GetDimensionValuesOutput"),
+    id = id.from(_N, "GetDimensionValuesResponse"),
     type = "structure",
     members = {
         DimensionValues = schema.new({
@@ -2065,7 +2065,7 @@ M.CoverageByTime = schema.new({
 })
 
 M.GetReservationCoverageOutput = schema.new({
-    id = id.from(_N, "GetReservationCoverageOutput"),
+    id = id.from(_N, "GetReservationCoverageResponse"),
     type = "structure",
     members = {
         CoveragesByTime = schema.new({
@@ -2771,7 +2771,7 @@ M.ReservationPurchaseRecommendation = schema.new({
 })
 
 M.GetReservationPurchaseRecommendationOutput = schema.new({
-    id = id.from(_N, "GetReservationPurchaseRecommendationOutput"),
+    id = id.from(_N, "GetReservationPurchaseRecommendationResponse"),
     type = "structure",
     members = {
         Metadata = schema.new({
@@ -2969,7 +2969,7 @@ M.UtilizationByTime = schema.new({
 })
 
 M.GetReservationUtilizationOutput = schema.new({
-    id = id.from(_N, "GetReservationUtilizationOutput"),
+    id = id.from(_N, "GetReservationUtilizationResponse"),
     type = "structure",
     members = {
         UtilizationsByTime = schema.new({
@@ -3526,7 +3526,7 @@ M.RightsizingRecommendationSummary = schema.new({
 })
 
 M.GetRightsizingRecommendationOutput = schema.new({
-    id = id.from(_N, "GetRightsizingRecommendationOutput"),
+    id = id.from(_N, "GetRightsizingRecommendationResponse"),
     type = "structure",
     members = {
         Metadata = schema.new({
@@ -3567,7 +3567,7 @@ M.GetRightsizingRecommendationOutput = schema.new({
 })
 
 M.GetSavingsPlanPurchaseRecommendationDetailsInput = schema.new({
-    id = id.from(_N, "GetSavingsPlanPurchaseRecommendationDetailsInput"),
+    id = id.from(_N, "GetSavingsPlanPurchaseRecommendationDetailsRequest"),
     type = "structure",
     members = {
         RecommendationDetailId = schema.new({
@@ -3765,7 +3765,7 @@ M.RecommendationDetailData = schema.new({
 })
 
 M.GetSavingsPlanPurchaseRecommendationDetailsOutput = schema.new({
-    id = id.from(_N, "GetSavingsPlanPurchaseRecommendationDetailsOutput"),
+    id = id.from(_N, "GetSavingsPlanPurchaseRecommendationDetailsResponse"),
     type = "structure",
     members = {
         RecommendationDetailId = schema.new({
@@ -3845,7 +3845,7 @@ M.SavingsPlansCoverage = schema.new({
 })
 
 M.GetSavingsPlansCoverageOutput = schema.new({
-    id = id.from(_N, "GetSavingsPlansCoverageOutput"),
+    id = id.from(_N, "GetSavingsPlansCoverageResponse"),
     type = "structure",
     members = {
         SavingsPlansCoverages = schema.new({
@@ -4152,7 +4152,7 @@ M.SavingsPlansPurchaseRecommendation = schema.new({
 })
 
 M.GetSavingsPlansPurchaseRecommendationOutput = schema.new({
-    id = id.from(_N, "GetSavingsPlansPurchaseRecommendationOutput"),
+    id = id.from(_N, "GetSavingsPlansPurchaseRecommendationResponse"),
     type = "structure",
     members = {
         Metadata = schema.new({
@@ -4326,7 +4326,7 @@ M.SavingsPlansUtilizationAggregates = schema.new({
 })
 
 M.GetSavingsPlansUtilizationOutput = schema.new({
-    id = id.from(_N, "GetSavingsPlansUtilizationOutput"),
+    id = id.from(_N, "GetSavingsPlansUtilizationResponse"),
     type = "structure",
     members = {
         SavingsPlansUtilizationsByTime = schema.new({
@@ -4392,7 +4392,7 @@ M.SavingsPlansUtilizationDetail = schema.new({
 })
 
 M.GetSavingsPlansUtilizationDetailsOutput = schema.new({
-    id = id.from(_N, "GetSavingsPlansUtilizationDetailsOutput"),
+    id = id.from(_N, "GetSavingsPlansUtilizationDetailsResponse"),
     type = "structure",
     members = {
         SavingsPlansUtilizationDetails = schema.new({
@@ -4432,7 +4432,7 @@ M.GetSavingsPlansUtilizationDetailsOutput = schema.new({
 })
 
 M.GetTagsOutput = schema.new({
-    id = id.from(_N, "GetTagsOutput"),
+    id = id.from(_N, "GetTagsResponse"),
     type = "structure",
     members = {
         NextPageToken = schema.new({
@@ -4473,7 +4473,7 @@ M.GetTagsOutput = schema.new({
 })
 
 M.GetUsageForecastOutput = schema.new({
-    id = id.from(_N, "GetUsageForecastOutput"),
+    id = id.from(_N, "GetUsageForecastResponse"),
     type = "structure",
     members = {
         Total = schema.new({
@@ -4510,7 +4510,7 @@ M.UnresolvableUsageUnitException = schema.new({
 })
 
 M.ListCommitmentPurchaseAnalysesInput = schema.new({
-    id = id.from(_N, "ListCommitmentPurchaseAnalysesInput"),
+    id = id.from(_N, "ListCommitmentPurchaseAnalysesRequest"),
     type = "structure",
     members = {
         AnalysisStatus = schema.new({
@@ -4545,7 +4545,7 @@ M.ListCommitmentPurchaseAnalysesInput = schema.new({
 })
 
 M.ListCommitmentPurchaseAnalysesOutput = schema.new({
-    id = id.from(_N, "ListCommitmentPurchaseAnalysesOutput"),
+    id = id.from(_N, "ListCommitmentPurchaseAnalysesResponse"),
     type = "structure",
     members = {
         AnalysisSummaryList = schema.new({
@@ -4565,7 +4565,7 @@ M.ListCommitmentPurchaseAnalysesOutput = schema.new({
 })
 
 M.ListCostAllocationTagBackfillHistoryInput = schema.new({
-    id = id.from(_N, "ListCostAllocationTagBackfillHistoryInput"),
+    id = id.from(_N, "ListCostAllocationTagBackfillHistoryRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4621,7 +4621,7 @@ M.CostAllocationTagBackfillRequest = schema.new({
 })
 
 M.ListCostAllocationTagBackfillHistoryOutput = schema.new({
-    id = id.from(_N, "ListCostAllocationTagBackfillHistoryOutput"),
+    id = id.from(_N, "ListCostAllocationTagBackfillHistoryResponse"),
     type = "structure",
     members = {
         BackfillRequests = schema.new({
@@ -4641,7 +4641,7 @@ M.ListCostAllocationTagBackfillHistoryOutput = schema.new({
 })
 
 M.ListCostAllocationTagsInput = schema.new({
-    id = id.from(_N, "ListCostAllocationTagsInput"),
+    id = id.from(_N, "ListCostAllocationTagsRequest"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -4725,7 +4725,7 @@ M.CostAllocationTag = schema.new({
 })
 
 M.ListCostAllocationTagsOutput = schema.new({
-    id = id.from(_N, "ListCostAllocationTagsOutput"),
+    id = id.from(_N, "ListCostAllocationTagsResponse"),
     type = "structure",
     members = {
         CostAllocationTags = schema.new({
@@ -4745,7 +4745,7 @@ M.ListCostAllocationTagsOutput = schema.new({
 })
 
 M.ListCostCategoryDefinitionsInput = schema.new({
-    id = id.from(_N, "ListCostCategoryDefinitionsInput"),
+    id = id.from(_N, "ListCostCategoryDefinitionsRequest"),
     type = "structure",
     members = {
         EffectiveOn = schema.new({
@@ -4844,7 +4844,7 @@ M.CostCategoryReference = schema.new({
 })
 
 M.ListCostCategoryDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListCostCategoryDefinitionsOutput"),
+    id = id.from(_N, "ListCostCategoryDefinitionsResponse"),
     type = "structure",
     members = {
         CostCategoryReferences = schema.new({
@@ -4864,7 +4864,7 @@ M.ListCostCategoryDefinitionsOutput = schema.new({
 })
 
 M.ListCostCategoryResourceAssociationsInput = schema.new({
-    id = id.from(_N, "ListCostCategoryResourceAssociationsInput"),
+    id = id.from(_N, "ListCostCategoryResourceAssociationsRequest"),
     type = "structure",
     members = {
         CostCategoryArn = schema.new({
@@ -4914,7 +4914,7 @@ M.CostCategoryResourceAssociation = schema.new({
 })
 
 M.ListCostCategoryResourceAssociationsOutput = schema.new({
-    id = id.from(_N, "ListCostCategoryResourceAssociationsOutput"),
+    id = id.from(_N, "ListCostCategoryResourceAssociationsResponse"),
     type = "structure",
     members = {
         CostCategoryResourceAssociations = schema.new({
@@ -4934,7 +4934,7 @@ M.ListCostCategoryResourceAssociationsOutput = schema.new({
 })
 
 M.ListSavingsPlansPurchaseRecommendationGenerationInput = schema.new({
-    id = id.from(_N, "ListSavingsPlansPurchaseRecommendationGenerationInput"),
+    id = id.from(_N, "ListSavingsPlansPurchaseRecommendationGenerationRequest"),
     type = "structure",
     members = {
         GenerationStatus = schema.new({
@@ -5006,7 +5006,7 @@ M.GenerationSummary = schema.new({
 })
 
 M.ListSavingsPlansPurchaseRecommendationGenerationOutput = schema.new({
-    id = id.from(_N, "ListSavingsPlansPurchaseRecommendationGenerationOutput"),
+    id = id.from(_N, "ListSavingsPlansPurchaseRecommendationGenerationResponse"),
     type = "structure",
     members = {
         GenerationSummaryList = schema.new({
@@ -5026,7 +5026,7 @@ M.ListSavingsPlansPurchaseRecommendationGenerationOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5042,7 +5042,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         ResourceTags = schema.new({
@@ -5056,7 +5056,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ProvideAnomalyFeedbackInput = schema.new({
-    id = id.from(_N, "ProvideAnomalyFeedbackInput"),
+    id = id.from(_N, "ProvideAnomalyFeedbackRequest"),
     type = "structure",
     members = {
         AnomalyId = schema.new({
@@ -5081,7 +5081,7 @@ M.ProvideAnomalyFeedbackInput = schema.new({
 })
 
 M.ProvideAnomalyFeedbackOutput = schema.new({
-    id = id.from(_N, "ProvideAnomalyFeedbackOutput"),
+    id = id.from(_N, "ProvideAnomalyFeedbackResponse"),
     type = "structure",
     members = {
         AnomalyId = schema.new({
@@ -5113,7 +5113,7 @@ M.GenerationExistsException = schema.new({
 })
 
 M.StartCommitmentPurchaseAnalysisInput = schema.new({
-    id = id.from(_N, "StartCommitmentPurchaseAnalysisInput"),
+    id = id.from(_N, "StartCommitmentPurchaseAnalysisRequest"),
     type = "structure",
     members = {
         CommitmentPurchaseAnalysisConfiguration = schema.new({
@@ -5130,7 +5130,7 @@ M.StartCommitmentPurchaseAnalysisInput = schema.new({
 })
 
 M.StartCommitmentPurchaseAnalysisOutput = schema.new({
-    id = id.from(_N, "StartCommitmentPurchaseAnalysisOutput"),
+    id = id.from(_N, "StartCommitmentPurchaseAnalysisResponse"),
     type = "structure",
     members = {
         AnalysisId = schema.new({
@@ -5180,7 +5180,7 @@ M.BackfillLimitExceededException = schema.new({
 })
 
 M.StartCostAllocationTagBackfillInput = schema.new({
-    id = id.from(_N, "StartCostAllocationTagBackfillInput"),
+    id = id.from(_N, "StartCostAllocationTagBackfillRequest"),
     type = "structure",
     members = {
         BackfillFrom = schema.new({
@@ -5196,7 +5196,7 @@ M.StartCostAllocationTagBackfillInput = schema.new({
 })
 
 M.StartCostAllocationTagBackfillOutput = schema.new({
-    id = id.from(_N, "StartCostAllocationTagBackfillOutput"),
+    id = id.from(_N, "StartCostAllocationTagBackfillResponse"),
     type = "structure",
     members = {
         BackfillRequest = schema.new({
@@ -5210,12 +5210,12 @@ M.StartCostAllocationTagBackfillOutput = schema.new({
 })
 
 M.StartSavingsPlansPurchaseRecommendationGenerationInput = schema.new({
-    id = id.from(_N, "StartSavingsPlansPurchaseRecommendationGenerationInput"),
+    id = id.from(_N, "StartSavingsPlansPurchaseRecommendationGenerationRequest"),
     type = "structure",
 })
 
 M.StartSavingsPlansPurchaseRecommendationGenerationOutput = schema.new({
-    id = id.from(_N, "StartSavingsPlansPurchaseRecommendationGenerationOutput"),
+    id = id.from(_N, "StartSavingsPlansPurchaseRecommendationGenerationResponse"),
     type = "structure",
     members = {
         RecommendationId = schema.new({
@@ -5240,7 +5240,7 @@ M.StartSavingsPlansPurchaseRecommendationGenerationOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5266,7 +5266,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -5293,7 +5293,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5319,12 +5319,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAnomalyMonitorInput = schema.new({
-    id = id.from(_N, "UpdateAnomalyMonitorInput"),
+    id = id.from(_N, "UpdateAnomalyMonitorRequest"),
     type = "structure",
     members = {
         MonitorArn = schema.new({
@@ -5346,7 +5346,7 @@ M.UpdateAnomalyMonitorInput = schema.new({
 })
 
 M.UpdateAnomalyMonitorOutput = schema.new({
-    id = id.from(_N, "UpdateAnomalyMonitorOutput"),
+    id = id.from(_N, "UpdateAnomalyMonitorResponse"),
     type = "structure",
     members = {
         MonitorArn = schema.new({
@@ -5362,7 +5362,7 @@ M.UpdateAnomalyMonitorOutput = schema.new({
 })
 
 M.UpdateAnomalySubscriptionOutput = schema.new({
-    id = id.from(_N, "UpdateAnomalySubscriptionOutput"),
+    id = id.from(_N, "UpdateAnomalySubscriptionResponse"),
     type = "structure",
     members = {
         SubscriptionArn = schema.new({
@@ -5403,7 +5403,7 @@ M.CostAllocationTagStatusEntry = schema.new({
 })
 
 M.UpdateCostAllocationTagsStatusInput = schema.new({
-    id = id.from(_N, "UpdateCostAllocationTagsStatusInput"),
+    id = id.from(_N, "UpdateCostAllocationTagsStatusRequest"),
     type = "structure",
     members = {
         CostAllocationTagsStatus = schema.new({
@@ -5445,7 +5445,7 @@ M.UpdateCostAllocationTagsStatusError = schema.new({
 })
 
 M.UpdateCostAllocationTagsStatusOutput = schema.new({
-    id = id.from(_N, "UpdateCostAllocationTagsStatusOutput"),
+    id = id.from(_N, "UpdateCostAllocationTagsStatusResponse"),
     type = "structure",
     members = {
         Errors = schema.new({
@@ -5459,7 +5459,7 @@ M.UpdateCostAllocationTagsStatusOutput = schema.new({
 })
 
 M.UpdateCostCategoryDefinitionOutput = schema.new({
-    id = id.from(_N, "UpdateCostCategoryDefinitionOutput"),
+    id = id.from(_N, "UpdateCostCategoryDefinitionResponse"),
     type = "structure",
     members = {
         CostCategoryArn = schema.new({
@@ -5752,7 +5752,7 @@ M.CostComparisonDriver = schema.new({
 })
 
 M.GetCostAndUsageComparisonsInput = schema.new({
-    id = id.from(_N, "GetCostAndUsageComparisonsInput"),
+    id = id.from(_N, "GetCostAndUsageComparisonsRequest"),
     type = "structure",
     members = {
         BillingViewArn = schema.new({
@@ -5820,7 +5820,7 @@ M.GetCostAndUsageComparisonsInput = schema.new({
 })
 
 M.GetCostAndUsageInput = schema.new({
-    id = id.from(_N, "GetCostAndUsageInput"),
+    id = id.from(_N, "GetCostAndUsageRequest"),
     type = "structure",
     members = {
         TimePeriod = schema.new({
@@ -5882,7 +5882,7 @@ M.GetCostAndUsageInput = schema.new({
 })
 
 M.GetCostAndUsageWithResourcesInput = schema.new({
-    id = id.from(_N, "GetCostAndUsageWithResourcesInput"),
+    id = id.from(_N, "GetCostAndUsageWithResourcesRequest"),
     type = "structure",
     members = {
         TimePeriod = schema.new({
@@ -5944,7 +5944,7 @@ M.GetCostAndUsageWithResourcesInput = schema.new({
 })
 
 M.GetCostCategoriesInput = schema.new({
-    id = id.from(_N, "GetCostCategoriesInput"),
+    id = id.from(_N, "GetCostCategoriesRequest"),
     type = "structure",
     members = {
         SearchString = schema.new({
@@ -6005,7 +6005,7 @@ M.GetCostCategoriesInput = schema.new({
 })
 
 M.GetCostComparisonDriversInput = schema.new({
-    id = id.from(_N, "GetCostComparisonDriversInput"),
+    id = id.from(_N, "GetCostComparisonDriversRequest"),
     type = "structure",
     members = {
         BillingViewArn = schema.new({
@@ -6073,7 +6073,7 @@ M.GetCostComparisonDriversInput = schema.new({
 })
 
 M.GetCostForecastInput = schema.new({
-    id = id.from(_N, "GetCostForecastInput"),
+    id = id.from(_N, "GetCostForecastRequest"),
     type = "structure",
     members = {
         TimePeriod = schema.new({
@@ -6127,7 +6127,7 @@ M.GetCostForecastInput = schema.new({
 })
 
 M.GetDimensionValuesInput = schema.new({
-    id = id.from(_N, "GetDimensionValuesInput"),
+    id = id.from(_N, "GetDimensionValuesRequest"),
     type = "structure",
     members = {
         SearchString = schema.new({
@@ -6197,7 +6197,7 @@ M.GetDimensionValuesInput = schema.new({
 })
 
 M.GetReservationCoverageInput = schema.new({
-    id = id.from(_N, "GetReservationCoverageInput"),
+    id = id.from(_N, "GetReservationCoverageRequest"),
     type = "structure",
     members = {
         TimePeriod = schema.new({
@@ -6260,7 +6260,7 @@ M.GetReservationCoverageInput = schema.new({
 })
 
 M.GetReservationPurchaseRecommendationInput = schema.new({
-    id = id.from(_N, "GetReservationPurchaseRecommendationInput"),
+    id = id.from(_N, "GetReservationPurchaseRecommendationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -6335,7 +6335,7 @@ M.GetReservationPurchaseRecommendationInput = schema.new({
 })
 
 M.GetReservationUtilizationInput = schema.new({
-    id = id.from(_N, "GetReservationUtilizationInput"),
+    id = id.from(_N, "GetReservationUtilizationRequest"),
     type = "structure",
     members = {
         TimePeriod = schema.new({
@@ -6391,7 +6391,7 @@ M.GetReservationUtilizationInput = schema.new({
 })
 
 M.GetRightsizingRecommendationInput = schema.new({
-    id = id.from(_N, "GetRightsizingRecommendationInput"),
+    id = id.from(_N, "GetRightsizingRecommendationRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -6436,7 +6436,7 @@ M.GetRightsizingRecommendationInput = schema.new({
 })
 
 M.GetSavingsPlansCoverageInput = schema.new({
-    id = id.from(_N, "GetSavingsPlansCoverageInput"),
+    id = id.from(_N, "GetSavingsPlansCoverageRequest"),
     type = "structure",
     members = {
         TimePeriod = schema.new({
@@ -6499,7 +6499,7 @@ M.GetSavingsPlansCoverageInput = schema.new({
 })
 
 M.GetSavingsPlansPurchaseRecommendationInput = schema.new({
-    id = id.from(_N, "GetSavingsPlansPurchaseRecommendationInput"),
+    id = id.from(_N, "GetSavingsPlansPurchaseRecommendationRequest"),
     type = "structure",
     members = {
         SavingsPlansType = schema.new({
@@ -6570,7 +6570,7 @@ M.GetSavingsPlansPurchaseRecommendationInput = schema.new({
 })
 
 M.GetSavingsPlansUtilizationDetailsInput = schema.new({
-    id = id.from(_N, "GetSavingsPlansUtilizationDetailsInput"),
+    id = id.from(_N, "GetSavingsPlansUtilizationDetailsRequest"),
     type = "structure",
     members = {
         TimePeriod = schema.new({
@@ -6620,7 +6620,7 @@ M.GetSavingsPlansUtilizationDetailsInput = schema.new({
 })
 
 M.GetSavingsPlansUtilizationInput = schema.new({
-    id = id.from(_N, "GetSavingsPlansUtilizationInput"),
+    id = id.from(_N, "GetSavingsPlansUtilizationRequest"),
     type = "structure",
     members = {
         TimePeriod = schema.new({
@@ -6657,7 +6657,7 @@ M.GetSavingsPlansUtilizationInput = schema.new({
 })
 
 M.GetTagsInput = schema.new({
-    id = id.from(_N, "GetTagsInput"),
+    id = id.from(_N, "GetTagsRequest"),
     type = "structure",
     members = {
         SearchString = schema.new({
@@ -6718,7 +6718,7 @@ M.GetTagsInput = schema.new({
 })
 
 M.GetUsageForecastInput = schema.new({
-    id = id.from(_N, "GetUsageForecastInput"),
+    id = id.from(_N, "GetUsageForecastRequest"),
     type = "structure",
     members = {
         TimePeriod = schema.new({
@@ -6772,7 +6772,7 @@ M.GetUsageForecastInput = schema.new({
 })
 
 M.UpdateAnomalySubscriptionInput = schema.new({
-    id = id.from(_N, "UpdateAnomalySubscriptionInput"),
+    id = id.from(_N, "UpdateAnomalySubscriptionRequest"),
     type = "structure",
     members = {
         SubscriptionArn = schema.new({
@@ -6827,7 +6827,7 @@ M.UpdateAnomalySubscriptionInput = schema.new({
 })
 
 M.CreateAnomalyMonitorInput = schema.new({
-    id = id.from(_N, "CreateAnomalyMonitorInput"),
+    id = id.from(_N, "CreateAnomalyMonitorRequest"),
     type = "structure",
     members = {
         AnomalyMonitor = schema.new({
@@ -6851,7 +6851,7 @@ M.CreateAnomalyMonitorInput = schema.new({
 })
 
 M.CreateAnomalySubscriptionInput = schema.new({
-    id = id.from(_N, "CreateAnomalySubscriptionInput"),
+    id = id.from(_N, "CreateAnomalySubscriptionRequest"),
     type = "structure",
     members = {
         AnomalySubscription = schema.new({
@@ -6954,7 +6954,7 @@ M.CostCategory = schema.new({
 })
 
 M.CreateCostCategoryDefinitionInput = schema.new({
-    id = id.from(_N, "CreateCostCategoryDefinitionInput"),
+    id = id.from(_N, "CreateCostCategoryDefinitionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -7015,7 +7015,7 @@ M.CreateCostCategoryDefinitionInput = schema.new({
 })
 
 M.GetAnomalyMonitorsOutput = schema.new({
-    id = id.from(_N, "GetAnomalyMonitorsOutput"),
+    id = id.from(_N, "GetAnomalyMonitorsResponse"),
     type = "structure",
     members = {
         AnomalyMonitors = schema.new({
@@ -7038,7 +7038,7 @@ M.GetAnomalyMonitorsOutput = schema.new({
 })
 
 M.GetAnomalySubscriptionsOutput = schema.new({
-    id = id.from(_N, "GetAnomalySubscriptionsOutput"),
+    id = id.from(_N, "GetAnomalySubscriptionsResponse"),
     type = "structure",
     members = {
         AnomalySubscriptions = schema.new({
@@ -7061,7 +7061,7 @@ M.GetAnomalySubscriptionsOutput = schema.new({
 })
 
 M.GetCostAndUsageComparisonsOutput = schema.new({
-    id = id.from(_N, "GetCostAndUsageComparisonsOutput"),
+    id = id.from(_N, "GetCostAndUsageComparisonsResponse"),
     type = "structure",
     members = {
         CostAndUsageComparisons = schema.new({
@@ -7089,7 +7089,7 @@ M.GetCostAndUsageComparisonsOutput = schema.new({
 })
 
 M.GetCostComparisonDriversOutput = schema.new({
-    id = id.from(_N, "GetCostComparisonDriversOutput"),
+    id = id.from(_N, "GetCostComparisonDriversResponse"),
     type = "structure",
     members = {
         CostComparisonDrivers = schema.new({
@@ -7109,7 +7109,7 @@ M.GetCostComparisonDriversOutput = schema.new({
 })
 
 M.UpdateCostCategoryDefinitionInput = schema.new({
-    id = id.from(_N, "UpdateCostCategoryDefinitionInput"),
+    id = id.from(_N, "UpdateCostCategoryDefinitionRequest"),
     type = "structure",
     members = {
         CostCategoryArn = schema.new({
@@ -7163,7 +7163,7 @@ M.UpdateCostCategoryDefinitionInput = schema.new({
 })
 
 M.DescribeCostCategoryDefinitionOutput = schema.new({
-    id = id.from(_N, "DescribeCostCategoryDefinitionOutput"),
+    id = id.from(_N, "DescribeCostCategoryDefinitionResponse"),
     type = "structure",
     members = {
         CostCategory = schema.new({
@@ -7175,5 +7175,19 @@ M.DescribeCostCategoryDefinitionOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

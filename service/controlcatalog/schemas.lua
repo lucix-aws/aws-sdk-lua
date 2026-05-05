@@ -121,7 +121,7 @@ M.InternalServerException = schema.new({
 })
 
 M.ListCommonControlsInput = schema.new({
-    id = id.from(_N, "ListCommonControlsInput"),
+    id = id.from(_N, "ListCommonControlsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -225,7 +225,7 @@ M.CommonControlSummary = schema.new({
 })
 
 M.ListCommonControlsOutput = schema.new({
-    id = id.from(_N, "ListCommonControlsOutput"),
+    id = id.from(_N, "ListCommonControlsResponse"),
     type = "structure",
     members = {
         CommonControls = schema.new({
@@ -280,7 +280,7 @@ M.ValidationException = schema.new({
 })
 
 M.GetControlInput = schema.new({
-    id = id.from(_N, "GetControlInput"),
+    id = id.from(_N, "GetControlRequest"),
     type = "structure",
     members = {
         ControlArn = schema.new({
@@ -357,7 +357,7 @@ M.RegionConfiguration = schema.new({
 })
 
 M.GetControlOutput = schema.new({
-    id = id.from(_N, "GetControlOutput"),
+    id = id.from(_N, "GetControlResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -501,7 +501,7 @@ M.ControlFilter = schema.new({
 })
 
 M.ListControlsInput = schema.new({
-    id = id.from(_N, "ListControlsInput"),
+    id = id.from(_N, "ListControlsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -628,7 +628,7 @@ M.ControlSummary = schema.new({
 })
 
 M.ListControlsOutput = schema.new({
-    id = id.from(_N, "ListControlsOutput"),
+    id = id.from(_N, "ListControlsResponse"),
     type = "structure",
     members = {
         Controls = schema.new({
@@ -651,7 +651,7 @@ M.ListControlsOutput = schema.new({
 })
 
 M.ListDomainsInput = schema.new({
-    id = id.from(_N, "ListDomainsInput"),
+    id = id.from(_N, "ListDomainsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -728,7 +728,7 @@ M.DomainSummary = schema.new({
 })
 
 M.ListDomainsOutput = schema.new({
-    id = id.from(_N, "ListDomainsOutput"),
+    id = id.from(_N, "ListDomainsResponse"),
     type = "structure",
     members = {
         Domains = schema.new({
@@ -779,7 +779,7 @@ M.ControlMappingFilter = schema.new({
 })
 
 M.ListControlMappingsInput = schema.new({
-    id = id.from(_N, "ListControlMappingsInput"),
+    id = id.from(_N, "ListControlMappingsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -921,7 +921,7 @@ M.ControlMapping = schema.new({
 })
 
 M.ListControlMappingsOutput = schema.new({
-    id = id.from(_N, "ListControlMappingsOutput"),
+    id = id.from(_N, "ListControlMappingsResponse"),
     type = "structure",
     members = {
         ControlMappings = schema.new({
@@ -971,7 +971,7 @@ M.ObjectiveFilter = schema.new({
 })
 
 M.ListObjectivesInput = schema.new({
-    id = id.from(_N, "ListObjectivesInput"),
+    id = id.from(_N, "ListObjectivesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1065,7 +1065,7 @@ M.ObjectiveSummary = schema.new({
 })
 
 M.ListObjectivesOutput = schema.new({
-    id = id.from(_N, "ListObjectivesOutput"),
+    id = id.from(_N, "ListObjectivesResponse"),
     type = "structure",
     members = {
         Objectives = schema.new({
@@ -1086,5 +1086,19 @@ M.ListObjectivesOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

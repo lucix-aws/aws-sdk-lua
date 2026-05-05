@@ -81,7 +81,7 @@ M.Tag = schema.new({
 })
 
 M.CreateRescoreExecutionPlanInput = schema.new({
-    id = id.from(_N, "CreateRescoreExecutionPlanInput"),
+    id = id.from(_N, "CreateRescoreExecutionPlanRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -126,7 +126,7 @@ M.CreateRescoreExecutionPlanInput = schema.new({
 })
 
 M.CreateRescoreExecutionPlanOutput = schema.new({
-    id = id.from(_N, "CreateRescoreExecutionPlanOutput"),
+    id = id.from(_N, "CreateRescoreExecutionPlanResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -215,7 +215,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteRescoreExecutionPlanInput = schema.new({
-    id = id.from(_N, "DeleteRescoreExecutionPlanInput"),
+    id = id.from(_N, "DeleteRescoreExecutionPlanRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -232,7 +232,7 @@ M.DeleteRescoreExecutionPlanInput = schema.new({
 })
 
 M.DeleteRescoreExecutionPlanOutput = schema.new({
-    id = id.from(_N, "DeleteRescoreExecutionPlanOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -253,7 +253,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DescribeRescoreExecutionPlanInput = schema.new({
-    id = id.from(_N, "DescribeRescoreExecutionPlanInput"),
+    id = id.from(_N, "DescribeRescoreExecutionPlanRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -270,7 +270,7 @@ M.DescribeRescoreExecutionPlanInput = schema.new({
 })
 
 M.DescribeRescoreExecutionPlanOutput = schema.new({
-    id = id.from(_N, "DescribeRescoreExecutionPlanOutput"),
+    id = id.from(_N, "DescribeRescoreExecutionPlanResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -332,7 +332,7 @@ M.DescribeRescoreExecutionPlanOutput = schema.new({
 })
 
 M.ListRescoreExecutionPlansInput = schema.new({
-    id = id.from(_N, "ListRescoreExecutionPlansInput"),
+    id = id.from(_N, "ListRescoreExecutionPlansRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -394,7 +394,7 @@ M.RescoreExecutionPlanSummary = schema.new({
 })
 
 M.ListRescoreExecutionPlansOutput = schema.new({
-    id = id.from(_N, "ListRescoreExecutionPlansOutput"),
+    id = id.from(_N, "ListRescoreExecutionPlansResponse"),
     type = "structure",
     members = {
         SummaryItems = schema.new({
@@ -414,7 +414,7 @@ M.ListRescoreExecutionPlansOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -430,7 +430,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -517,7 +517,7 @@ M.Document = schema.new({
 })
 
 M.RescoreInput = schema.new({
-    id = id.from(_N, "RescoreInput"),
+    id = id.from(_N, "RescoreRequest"),
     type = "structure",
     members = {
         RescoreExecutionPlanId = schema.new({
@@ -572,7 +572,7 @@ M.RescoreResultItem = schema.new({
 })
 
 M.RescoreOutput = schema.new({
-    id = id.from(_N, "RescoreOutput"),
+    id = id.from(_N, "RescoreResult"),
     type = "structure",
     members = {
         RescoreId = schema.new({
@@ -592,7 +592,7 @@ M.RescoreOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -618,12 +618,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -649,12 +649,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateRescoreExecutionPlanInput = schema.new({
-    id = id.from(_N, "UpdateRescoreExecutionPlanInput"),
+    id = id.from(_N, "UpdateRescoreExecutionPlanRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -690,8 +690,22 @@ M.UpdateRescoreExecutionPlanInput = schema.new({
 })
 
 M.UpdateRescoreExecutionPlanOutput = schema.new({
-    id = id.from(_N, "UpdateRescoreExecutionPlanOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

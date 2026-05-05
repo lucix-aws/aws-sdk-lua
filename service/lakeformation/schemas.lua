@@ -431,7 +431,7 @@ M.Resource = schema.new({
 })
 
 M.AddLFTagsToResourceInput = schema.new({
-    id = id.from(_N, "AddLFTagsToResourceInput"),
+    id = id.from(_N, "AddLFTagsToResourceRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -504,7 +504,7 @@ M.LFTagError = schema.new({
 })
 
 M.AddLFTagsToResourceOutput = schema.new({
-    id = id.from(_N, "AddLFTagsToResourceOutput"),
+    id = id.from(_N, "AddLFTagsToResourceResponse"),
     type = "structure",
     members = {
         Failures = schema.new({
@@ -661,7 +661,7 @@ M.AlreadyExistsException = schema.new({
 })
 
 M.AssumeDecoratedRoleWithSAMLInput = schema.new({
-    id = id.from(_N, "AssumeDecoratedRoleWithSAMLInput"),
+    id = id.from(_N, "AssumeDecoratedRoleWithSAMLRequest"),
     type = "structure",
     members = {
         SAMLAssertion = schema.new({
@@ -701,7 +701,7 @@ M.AssumeDecoratedRoleWithSAMLInput = schema.new({
 })
 
 M.AssumeDecoratedRoleWithSAMLOutput = schema.new({
-    id = id.from(_N, "AssumeDecoratedRoleWithSAMLOutput"),
+    id = id.from(_N, "AssumeDecoratedRoleWithSAMLResponse"),
     type = "structure",
     members = {
         AccessKeyId = schema.new({
@@ -822,7 +822,7 @@ M.BatchPermissionsRequestEntry = schema.new({
 })
 
 M.BatchGrantPermissionsInput = schema.new({
-    id = id.from(_N, "BatchGrantPermissionsInput"),
+    id = id.from(_N, "BatchGrantPermissionsRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -866,7 +866,7 @@ M.BatchPermissionsFailureEntry = schema.new({
 })
 
 M.BatchGrantPermissionsOutput = schema.new({
-    id = id.from(_N, "BatchGrantPermissionsOutput"),
+    id = id.from(_N, "BatchGrantPermissionsResponse"),
     type = "structure",
     members = {
         Failures = schema.new({
@@ -880,7 +880,7 @@ M.BatchGrantPermissionsOutput = schema.new({
 })
 
 M.BatchRevokePermissionsInput = schema.new({
-    id = id.from(_N, "BatchRevokePermissionsInput"),
+    id = id.from(_N, "BatchRevokePermissionsRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -903,7 +903,7 @@ M.BatchRevokePermissionsInput = schema.new({
 })
 
 M.BatchRevokePermissionsOutput = schema.new({
-    id = id.from(_N, "BatchRevokePermissionsOutput"),
+    id = id.from(_N, "BatchRevokePermissionsResponse"),
     type = "structure",
     members = {
         Failures = schema.new({
@@ -917,7 +917,7 @@ M.BatchRevokePermissionsOutput = schema.new({
 })
 
 M.CancelTransactionInput = schema.new({
-    id = id.from(_N, "CancelTransactionInput"),
+    id = id.from(_N, "CancelTransactionRequest"),
     type = "structure",
     members = {
         TransactionId = schema.new({
@@ -933,7 +933,7 @@ M.CancelTransactionInput = schema.new({
 })
 
 M.CancelTransactionOutput = schema.new({
-    id = id.from(_N, "CancelTransactionOutput"),
+    id = id.from(_N, "CancelTransactionResponse"),
     type = "structure",
 })
 
@@ -970,7 +970,7 @@ M.TransactionCommittedException = schema.new({
 })
 
 M.CommitTransactionInput = schema.new({
-    id = id.from(_N, "CommitTransactionInput"),
+    id = id.from(_N, "CommitTransactionRequest"),
     type = "structure",
     members = {
         TransactionId = schema.new({
@@ -986,7 +986,7 @@ M.CommitTransactionInput = schema.new({
 })
 
 M.CommitTransactionOutput = schema.new({
-    id = id.from(_N, "CommitTransactionOutput"),
+    id = id.from(_N, "CommitTransactionResponse"),
     type = "structure",
     members = {
         TransactionStatus = schema.new({
@@ -1105,7 +1105,7 @@ M.DataCellsFilter = schema.new({
 })
 
 M.CreateDataCellsFilterInput = schema.new({
-    id = id.from(_N, "CreateDataCellsFilterInput"),
+    id = id.from(_N, "CreateDataCellsFilterRequest"),
     type = "structure",
     members = {
         TableData = schema.new({
@@ -1122,7 +1122,7 @@ M.CreateDataCellsFilterInput = schema.new({
 })
 
 M.CreateDataCellsFilterOutput = schema.new({
-    id = id.from(_N, "CreateDataCellsFilterOutput"),
+    id = id.from(_N, "CreateDataCellsFilterResponse"),
     type = "structure",
 })
 
@@ -1213,7 +1213,7 @@ M.ServiceIntegrationUnion = schema.new({
 })
 
 M.CreateLakeFormationIdentityCenterConfigurationInput = schema.new({
-    id = id.from(_N, "CreateLakeFormationIdentityCenterConfigurationInput"),
+    id = id.from(_N, "CreateLakeFormationIdentityCenterConfigurationRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -1253,7 +1253,7 @@ M.CreateLakeFormationIdentityCenterConfigurationInput = schema.new({
 })
 
 M.CreateLakeFormationIdentityCenterConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateLakeFormationIdentityCenterConfigurationOutput"),
+    id = id.from(_N, "CreateLakeFormationIdentityCenterConfigurationResponse"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -1266,7 +1266,7 @@ M.CreateLakeFormationIdentityCenterConfigurationOutput = schema.new({
 })
 
 M.CreateLakeFormationOptInInput = schema.new({
-    id = id.from(_N, "CreateLakeFormationOptInInput"),
+    id = id.from(_N, "CreateLakeFormationOptInRequest"),
     type = "structure",
     members = {
         Principal = schema.new({
@@ -1300,12 +1300,12 @@ M.CreateLakeFormationOptInInput = schema.new({
 })
 
 M.CreateLakeFormationOptInOutput = schema.new({
-    id = id.from(_N, "CreateLakeFormationOptInOutput"),
+    id = id.from(_N, "CreateLakeFormationOptInResponse"),
     type = "structure",
 })
 
 M.CreateLFTagInput = schema.new({
-    id = id.from(_N, "CreateLFTagInput"),
+    id = id.from(_N, "CreateLFTagRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -1337,12 +1337,12 @@ M.CreateLFTagInput = schema.new({
 })
 
 M.CreateLFTagOutput = schema.new({
-    id = id.from(_N, "CreateLFTagOutput"),
+    id = id.from(_N, "CreateLFTagResponse"),
     type = "structure",
 })
 
 M.CreateLFTagExpressionInput = schema.new({
-    id = id.from(_N, "CreateLFTagExpressionInput"),
+    id = id.from(_N, "CreateLFTagExpressionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1380,12 +1380,12 @@ M.CreateLFTagExpressionInput = schema.new({
 })
 
 M.CreateLFTagExpressionOutput = schema.new({
-    id = id.from(_N, "CreateLFTagExpressionOutput"),
+    id = id.from(_N, "CreateLFTagExpressionResponse"),
     type = "structure",
 })
 
 M.DeleteDataCellsFilterInput = schema.new({
-    id = id.from(_N, "DeleteDataCellsFilterInput"),
+    id = id.from(_N, "DeleteDataCellsFilterRequest"),
     type = "structure",
     members = {
         TableCatalogId = schema.new({
@@ -1416,12 +1416,12 @@ M.DeleteDataCellsFilterInput = schema.new({
 })
 
 M.DeleteDataCellsFilterOutput = schema.new({
-    id = id.from(_N, "DeleteDataCellsFilterOutput"),
+    id = id.from(_N, "DeleteDataCellsFilterResponse"),
     type = "structure",
 })
 
 M.DeleteLakeFormationIdentityCenterConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteLakeFormationIdentityCenterConfigurationInput"),
+    id = id.from(_N, "DeleteLakeFormationIdentityCenterConfigurationRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -1434,12 +1434,12 @@ M.DeleteLakeFormationIdentityCenterConfigurationInput = schema.new({
 })
 
 M.DeleteLakeFormationIdentityCenterConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteLakeFormationIdentityCenterConfigurationOutput"),
+    id = id.from(_N, "DeleteLakeFormationIdentityCenterConfigurationResponse"),
     type = "structure",
 })
 
 M.DeleteLakeFormationOptInInput = schema.new({
-    id = id.from(_N, "DeleteLakeFormationOptInInput"),
+    id = id.from(_N, "DeleteLakeFormationOptInRequest"),
     type = "structure",
     members = {
         Principal = schema.new({
@@ -1473,12 +1473,12 @@ M.DeleteLakeFormationOptInInput = schema.new({
 })
 
 M.DeleteLakeFormationOptInOutput = schema.new({
-    id = id.from(_N, "DeleteLakeFormationOptInOutput"),
+    id = id.from(_N, "DeleteLakeFormationOptInResponse"),
     type = "structure",
 })
 
 M.DeleteLFTagInput = schema.new({
-    id = id.from(_N, "DeleteLFTagInput"),
+    id = id.from(_N, "DeleteLFTagRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -1500,12 +1500,12 @@ M.DeleteLFTagInput = schema.new({
 })
 
 M.DeleteLFTagOutput = schema.new({
-    id = id.from(_N, "DeleteLFTagOutput"),
+    id = id.from(_N, "DeleteLFTagResponse"),
     type = "structure",
 })
 
 M.DeleteLFTagExpressionInput = schema.new({
-    id = id.from(_N, "DeleteLFTagExpressionInput"),
+    id = id.from(_N, "DeleteLFTagExpressionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1527,7 +1527,7 @@ M.DeleteLFTagExpressionInput = schema.new({
 })
 
 M.DeleteLFTagExpressionOutput = schema.new({
-    id = id.from(_N, "DeleteLFTagExpressionOutput"),
+    id = id.from(_N, "DeleteLFTagExpressionResponse"),
     type = "structure",
 })
 
@@ -1554,7 +1554,7 @@ M.VirtualObject = schema.new({
 })
 
 M.DeleteObjectsOnCancelInput = schema.new({
-    id = id.from(_N, "DeleteObjectsOnCancelInput"),
+    id = id.from(_N, "DeleteObjectsOnCancelRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -1604,7 +1604,7 @@ M.DeleteObjectsOnCancelInput = schema.new({
 })
 
 M.DeleteObjectsOnCancelOutput = schema.new({
-    id = id.from(_N, "DeleteObjectsOnCancelOutput"),
+    id = id.from(_N, "DeleteObjectsOnCancelResponse"),
     type = "structure",
 })
 
@@ -1625,7 +1625,7 @@ M.ResourceNotReadyException = schema.new({
 })
 
 M.DeregisterResourceInput = schema.new({
-    id = id.from(_N, "DeregisterResourceInput"),
+    id = id.from(_N, "DeregisterResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1641,12 +1641,12 @@ M.DeregisterResourceInput = schema.new({
 })
 
 M.DeregisterResourceOutput = schema.new({
-    id = id.from(_N, "DeregisterResourceOutput"),
+    id = id.from(_N, "DeregisterResourceResponse"),
     type = "structure",
 })
 
 M.DescribeLakeFormationIdentityCenterConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeLakeFormationIdentityCenterConfigurationInput"),
+    id = id.from(_N, "DescribeLakeFormationIdentityCenterConfigurationRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -1659,7 +1659,7 @@ M.DescribeLakeFormationIdentityCenterConfigurationInput = schema.new({
 })
 
 M.DescribeLakeFormationIdentityCenterConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeLakeFormationIdentityCenterConfigurationOutput"),
+    id = id.from(_N, "DescribeLakeFormationIdentityCenterConfigurationResponse"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -1711,7 +1711,7 @@ M.DescribeLakeFormationIdentityCenterConfigurationOutput = schema.new({
 })
 
 M.DescribeResourceInput = schema.new({
-    id = id.from(_N, "DescribeResourceInput"),
+    id = id.from(_N, "DescribeResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1782,7 +1782,7 @@ M.ResourceInfo = schema.new({
 })
 
 M.DescribeResourceOutput = schema.new({
-    id = id.from(_N, "DescribeResourceOutput"),
+    id = id.from(_N, "DescribeResourceResponse"),
     type = "structure",
     members = {
         ResourceInfo = schema.new({
@@ -1796,7 +1796,7 @@ M.DescribeResourceOutput = schema.new({
 })
 
 M.DescribeTransactionInput = schema.new({
-    id = id.from(_N, "DescribeTransactionInput"),
+    id = id.from(_N, "DescribeTransactionRequest"),
     type = "structure",
     members = {
         TransactionId = schema.new({
@@ -1843,7 +1843,7 @@ M.TransactionDescription = schema.new({
 })
 
 M.DescribeTransactionOutput = schema.new({
-    id = id.from(_N, "DescribeTransactionOutput"),
+    id = id.from(_N, "DescribeTransactionResponse"),
     type = "structure",
     members = {
         TransactionDescription = schema.new({
@@ -1857,7 +1857,7 @@ M.DescribeTransactionOutput = schema.new({
 })
 
 M.ExtendTransactionInput = schema.new({
-    id = id.from(_N, "ExtendTransactionInput"),
+    id = id.from(_N, "ExtendTransactionRequest"),
     type = "structure",
     members = {
         TransactionId = schema.new({
@@ -1870,12 +1870,12 @@ M.ExtendTransactionInput = schema.new({
 })
 
 M.ExtendTransactionOutput = schema.new({
-    id = id.from(_N, "ExtendTransactionOutput"),
+    id = id.from(_N, "ExtendTransactionResponse"),
     type = "structure",
 })
 
 M.GetDataCellsFilterInput = schema.new({
-    id = id.from(_N, "GetDataCellsFilterInput"),
+    id = id.from(_N, "GetDataCellsFilterRequest"),
     type = "structure",
     members = {
         TableCatalogId = schema.new({
@@ -1918,7 +1918,7 @@ M.GetDataCellsFilterInput = schema.new({
 })
 
 M.GetDataCellsFilterOutput = schema.new({
-    id = id.from(_N, "GetDataCellsFilterOutput"),
+    id = id.from(_N, "GetDataCellsFilterResponse"),
     type = "structure",
     members = {
         DataCellsFilter = schema.new({
@@ -1932,12 +1932,12 @@ M.GetDataCellsFilterOutput = schema.new({
 })
 
 M.GetDataLakePrincipalInput = schema.new({
-    id = id.from(_N, "GetDataLakePrincipalInput"),
+    id = id.from(_N, "GetDataLakePrincipalRequest"),
     type = "structure",
 })
 
 M.GetDataLakePrincipalOutput = schema.new({
-    id = id.from(_N, "GetDataLakePrincipalOutput"),
+    id = id.from(_N, "GetDataLakePrincipalResponse"),
     type = "structure",
     members = {
         Identity = schema.new({
@@ -1950,7 +1950,7 @@ M.GetDataLakePrincipalOutput = schema.new({
 })
 
 M.GetDataLakeSettingsInput = schema.new({
-    id = id.from(_N, "GetDataLakeSettingsInput"),
+    id = id.from(_N, "GetDataLakeSettingsRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -2060,7 +2060,7 @@ M.DataLakeSettings = schema.new({
 })
 
 M.GetDataLakeSettingsOutput = schema.new({
-    id = id.from(_N, "GetDataLakeSettingsOutput"),
+    id = id.from(_N, "GetDataLakeSettingsResponse"),
     type = "structure",
     members = {
         DataLakeSettings = schema.new({
@@ -2074,7 +2074,7 @@ M.GetDataLakeSettingsOutput = schema.new({
 })
 
 M.GetEffectivePermissionsForPathInput = schema.new({
-    id = id.from(_N, "GetEffectivePermissionsForPathInput"),
+    id = id.from(_N, "GetEffectivePermissionsForPathRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -2183,7 +2183,7 @@ M.PrincipalResourcePermissions = schema.new({
 })
 
 M.GetEffectivePermissionsForPathOutput = schema.new({
-    id = id.from(_N, "GetEffectivePermissionsForPathOutput"),
+    id = id.from(_N, "GetEffectivePermissionsForPathResponse"),
     type = "structure",
     members = {
         Permissions = schema.new({
@@ -2203,7 +2203,7 @@ M.GetEffectivePermissionsForPathOutput = schema.new({
 })
 
 M.GetLFTagInput = schema.new({
-    id = id.from(_N, "GetLFTagInput"),
+    id = id.from(_N, "GetLFTagRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -2225,7 +2225,7 @@ M.GetLFTagInput = schema.new({
 })
 
 M.GetLFTagOutput = schema.new({
-    id = id.from(_N, "GetLFTagOutput"),
+    id = id.from(_N, "GetLFTagResponse"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -2251,7 +2251,7 @@ M.GetLFTagOutput = schema.new({
 })
 
 M.GetLFTagExpressionInput = schema.new({
-    id = id.from(_N, "GetLFTagExpressionInput"),
+    id = id.from(_N, "GetLFTagExpressionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2273,7 +2273,7 @@ M.GetLFTagExpressionInput = schema.new({
 })
 
 M.GetLFTagExpressionOutput = schema.new({
-    id = id.from(_N, "GetLFTagExpressionOutput"),
+    id = id.from(_N, "GetLFTagExpressionResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2305,7 +2305,7 @@ M.GetLFTagExpressionOutput = schema.new({
 })
 
 M.GetQueryStateInput = schema.new({
-    id = id.from(_N, "GetQueryStateInput"),
+    id = id.from(_N, "GetQueryStateRequest"),
     type = "structure",
     members = {
         QueryId = schema.new({
@@ -2321,7 +2321,7 @@ M.GetQueryStateInput = schema.new({
 })
 
 M.GetQueryStateOutput = schema.new({
-    id = id.from(_N, "GetQueryStateOutput"),
+    id = id.from(_N, "GetQueryStateResponse"),
     type = "structure",
     members = {
         Error = schema.new({
@@ -2359,7 +2359,7 @@ M.ExpiredException = schema.new({
 })
 
 M.GetQueryStatisticsInput = schema.new({
-    id = id.from(_N, "GetQueryStatisticsInput"),
+    id = id.from(_N, "GetQueryStatisticsRequest"),
     type = "structure",
     members = {
         QueryId = schema.new({
@@ -2452,7 +2452,7 @@ M.PlanningStatistics = schema.new({
 })
 
 M.GetQueryStatisticsOutput = schema.new({
-    id = id.from(_N, "GetQueryStatisticsOutput"),
+    id = id.from(_N, "GetQueryStatisticsResponse"),
     type = "structure",
     members = {
         ExecutionStatistics = schema.new({
@@ -2514,7 +2514,7 @@ M.ThrottledException = schema.new({
 })
 
 M.GetResourceLFTagsInput = schema.new({
-    id = id.from(_N, "GetResourceLFTagsInput"),
+    id = id.from(_N, "GetResourceLFTagsRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -2563,7 +2563,7 @@ M.ColumnLFTag = schema.new({
 })
 
 M.GetResourceLFTagsOutput = schema.new({
-    id = id.from(_N, "GetResourceLFTagsOutput"),
+    id = id.from(_N, "GetResourceLFTagsResponse"),
     type = "structure",
     members = {
         LFTagOnDatabase = schema.new({
@@ -2607,7 +2607,7 @@ M.GlueEncryptionException = schema.new({
 })
 
 M.GetTableObjectsInput = schema.new({
-    id = id.from(_N, "GetTableObjectsInput"),
+    id = id.from(_N, "GetTableObjectsRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -2717,7 +2717,7 @@ M.PartitionObjects = schema.new({
 })
 
 M.GetTableObjectsOutput = schema.new({
-    id = id.from(_N, "GetTableObjectsOutput"),
+    id = id.from(_N, "GetTableObjectsResponse"),
     type = "structure",
     members = {
         Objects = schema.new({
@@ -2753,7 +2753,7 @@ M.ConflictException = schema.new({
 })
 
 M.GetTemporaryDataLocationCredentialsInput = schema.new({
-    id = id.from(_N, "GetTemporaryDataLocationCredentialsInput"),
+    id = id.from(_N, "GetTemporaryDataLocationCredentialsRequest"),
     type = "structure",
     members = {
         DurationSeconds = schema.new({
@@ -2817,7 +2817,7 @@ M.TemporaryCredentials = schema.new({
 })
 
 M.GetTemporaryDataLocationCredentialsOutput = schema.new({
-    id = id.from(_N, "GetTemporaryDataLocationCredentialsOutput"),
+    id = id.from(_N, "GetTemporaryDataLocationCredentialsResponse"),
     type = "structure",
     members = {
         Credentials = schema.new({
@@ -2861,7 +2861,7 @@ M.PartitionValueList = schema.new({
 })
 
 M.GetTemporaryGluePartitionCredentialsInput = schema.new({
-    id = id.from(_N, "GetTemporaryGluePartitionCredentialsInput"),
+    id = id.from(_N, "GetTemporaryGluePartitionCredentialsRequest"),
     type = "structure",
     members = {
         TableArn = schema.new({
@@ -2914,7 +2914,7 @@ M.GetTemporaryGluePartitionCredentialsInput = schema.new({
 })
 
 M.GetTemporaryGluePartitionCredentialsOutput = schema.new({
-    id = id.from(_N, "GetTemporaryGluePartitionCredentialsOutput"),
+    id = id.from(_N, "GetTemporaryGluePartitionCredentialsResponse"),
     type = "structure",
     members = {
         AccessKeyId = schema.new({
@@ -3000,7 +3000,7 @@ M.QuerySessionContext = schema.new({
 })
 
 M.GetTemporaryGlueTableCredentialsInput = schema.new({
-    id = id.from(_N, "GetTemporaryGlueTableCredentialsInput"),
+    id = id.from(_N, "GetTemporaryGlueTableCredentialsRequest"),
     type = "structure",
     members = {
         TableArn = schema.new({
@@ -3056,7 +3056,7 @@ M.GetTemporaryGlueTableCredentialsInput = schema.new({
 })
 
 M.GetTemporaryGlueTableCredentialsOutput = schema.new({
-    id = id.from(_N, "GetTemporaryGlueTableCredentialsOutput"),
+    id = id.from(_N, "GetTemporaryGlueTableCredentialsResponse"),
     type = "structure",
     members = {
         AccessKeyId = schema.new({
@@ -3094,7 +3094,7 @@ M.GetTemporaryGlueTableCredentialsOutput = schema.new({
 })
 
 M.GetWorkUnitResultsInput = schema.new({
-    id = id.from(_N, "GetWorkUnitResultsInput"),
+    id = id.from(_N, "GetWorkUnitResultsRequest"),
     type = "structure",
     members = {
         QueryId = schema.new({
@@ -3129,7 +3129,7 @@ M.GetWorkUnitResultsInput = schema.new({
 })
 
 M.GetWorkUnitResultsOutput = schema.new({
-    id = id.from(_N, "GetWorkUnitResultsOutput"),
+    id = id.from(_N, "GetWorkUnitResultsResponse"),
     type = "structure",
     members = {
         ResultStream = schema.new({
@@ -3146,7 +3146,7 @@ M.GetWorkUnitResultsOutput = schema.new({
 })
 
 M.GetWorkUnitsInput = schema.new({
-    id = id.from(_N, "GetWorkUnitsInput"),
+    id = id.from(_N, "GetWorkUnitsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3210,7 +3210,7 @@ M.WorkUnitRange = schema.new({
 })
 
 M.GetWorkUnitsOutput = schema.new({
-    id = id.from(_N, "GetWorkUnitsOutput"),
+    id = id.from(_N, "GetWorkUnitsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3258,7 +3258,7 @@ M.WorkUnitsNotReadyYetException = schema.new({
 })
 
 M.GrantPermissionsInput = schema.new({
-    id = id.from(_N, "GrantPermissionsInput"),
+    id = id.from(_N, "GrantPermissionsRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -3315,12 +3315,12 @@ M.GrantPermissionsInput = schema.new({
 })
 
 M.GrantPermissionsOutput = schema.new({
-    id = id.from(_N, "GrantPermissionsOutput"),
+    id = id.from(_N, "GrantPermissionsResponse"),
     type = "structure",
 })
 
 M.ListDataCellsFilterInput = schema.new({
-    id = id.from(_N, "ListDataCellsFilterInput"),
+    id = id.from(_N, "ListDataCellsFilterRequest"),
     type = "structure",
     members = {
         Table = schema.new({
@@ -3346,7 +3346,7 @@ M.ListDataCellsFilterInput = schema.new({
 })
 
 M.ListDataCellsFilterOutput = schema.new({
-    id = id.from(_N, "ListDataCellsFilterOutput"),
+    id = id.from(_N, "ListDataCellsFilterResponse"),
     type = "structure",
     members = {
         DataCellsFilters = schema.new({
@@ -3366,7 +3366,7 @@ M.ListDataCellsFilterOutput = schema.new({
 })
 
 M.ListLakeFormationOptInsInput = schema.new({
-    id = id.from(_N, "ListLakeFormationOptInsInput"),
+    id = id.from(_N, "ListLakeFormationOptInsRequest"),
     type = "structure",
     members = {
         Principal = schema.new({
@@ -3439,7 +3439,7 @@ M.LakeFormationOptInsInfo = schema.new({
 })
 
 M.ListLakeFormationOptInsOutput = schema.new({
-    id = id.from(_N, "ListLakeFormationOptInsOutput"),
+    id = id.from(_N, "ListLakeFormationOptInsResponse"),
     type = "structure",
     members = {
         LakeFormationOptInsInfoList = schema.new({
@@ -3459,7 +3459,7 @@ M.ListLakeFormationOptInsOutput = schema.new({
 })
 
 M.ListLFTagExpressionsInput = schema.new({
-    id = id.from(_N, "ListLFTagExpressionsInput"),
+    id = id.from(_N, "ListLFTagExpressionsRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -3516,7 +3516,7 @@ M.LFTagExpression = schema.new({
 })
 
 M.ListLFTagExpressionsOutput = schema.new({
-    id = id.from(_N, "ListLFTagExpressionsOutput"),
+    id = id.from(_N, "ListLFTagExpressionsResponse"),
     type = "structure",
     members = {
         LFTagExpressions = schema.new({
@@ -3536,7 +3536,7 @@ M.ListLFTagExpressionsOutput = schema.new({
 })
 
 M.ListLFTagsInput = schema.new({
-    id = id.from(_N, "ListLFTagsInput"),
+    id = id.from(_N, "ListLFTagsRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -3567,7 +3567,7 @@ M.ListLFTagsInput = schema.new({
 })
 
 M.ListLFTagsOutput = schema.new({
-    id = id.from(_N, "ListLFTagsOutput"),
+    id = id.from(_N, "ListLFTagsResponse"),
     type = "structure",
     members = {
         LFTags = schema.new({
@@ -3587,7 +3587,7 @@ M.ListLFTagsOutput = schema.new({
 })
 
 M.ListPermissionsInput = schema.new({
-    id = id.from(_N, "ListPermissionsInput"),
+    id = id.from(_N, "ListPermissionsRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -3638,7 +3638,7 @@ M.ListPermissionsInput = schema.new({
 })
 
 M.ListPermissionsOutput = schema.new({
-    id = id.from(_N, "ListPermissionsOutput"),
+    id = id.from(_N, "ListPermissionsResponse"),
     type = "structure",
     members = {
         PrincipalResourcePermissions = schema.new({
@@ -3684,7 +3684,7 @@ M.FilterCondition = schema.new({
 })
 
 M.ListResourcesInput = schema.new({
-    id = id.from(_N, "ListResourcesInput"),
+    id = id.from(_N, "ListResourcesRequest"),
     type = "structure",
     members = {
         FilterConditionList = schema.new({
@@ -3710,7 +3710,7 @@ M.ListResourcesInput = schema.new({
 })
 
 M.ListResourcesOutput = schema.new({
-    id = id.from(_N, "ListResourcesOutput"),
+    id = id.from(_N, "ListResourcesResponse"),
     type = "structure",
     members = {
         ResourceInfoList = schema.new({
@@ -3730,7 +3730,7 @@ M.ListResourcesOutput = schema.new({
 })
 
 M.ListTableStorageOptimizersInput = schema.new({
-    id = id.from(_N, "ListTableStorageOptimizersInput"),
+    id = id.from(_N, "ListTableStorageOptimizersRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -3818,7 +3818,7 @@ M.StorageOptimizer = schema.new({
 })
 
 M.ListTableStorageOptimizersOutput = schema.new({
-    id = id.from(_N, "ListTableStorageOptimizersOutput"),
+    id = id.from(_N, "ListTableStorageOptimizersResponse"),
     type = "structure",
     members = {
         StorageOptimizerList = schema.new({
@@ -3838,7 +3838,7 @@ M.ListTableStorageOptimizersOutput = schema.new({
 })
 
 M.ListTransactionsInput = schema.new({
-    id = id.from(_N, "ListTransactionsInput"),
+    id = id.from(_N, "ListTransactionsRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -3869,7 +3869,7 @@ M.ListTransactionsInput = schema.new({
 })
 
 M.ListTransactionsOutput = schema.new({
-    id = id.from(_N, "ListTransactionsOutput"),
+    id = id.from(_N, "ListTransactionsResponse"),
     type = "structure",
     members = {
         Transactions = schema.new({
@@ -3889,7 +3889,7 @@ M.ListTransactionsOutput = schema.new({
 })
 
 M.PutDataLakeSettingsInput = schema.new({
-    id = id.from(_N, "PutDataLakeSettingsInput"),
+    id = id.from(_N, "PutDataLakeSettingsRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -3912,12 +3912,12 @@ M.PutDataLakeSettingsInput = schema.new({
 })
 
 M.PutDataLakeSettingsOutput = schema.new({
-    id = id.from(_N, "PutDataLakeSettingsOutput"),
+    id = id.from(_N, "PutDataLakeSettingsResponse"),
     type = "structure",
 })
 
 M.RegisterResourceInput = schema.new({
-    id = id.from(_N, "RegisterResourceInput"),
+    id = id.from(_N, "RegisterResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3972,12 +3972,12 @@ M.RegisterResourceInput = schema.new({
 })
 
 M.RegisterResourceOutput = schema.new({
-    id = id.from(_N, "RegisterResourceOutput"),
+    id = id.from(_N, "RegisterResourceResponse"),
     type = "structure",
 })
 
 M.RemoveLFTagsFromResourceInput = schema.new({
-    id = id.from(_N, "RemoveLFTagsFromResourceInput"),
+    id = id.from(_N, "RemoveLFTagsFromResourceRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -4010,7 +4010,7 @@ M.RemoveLFTagsFromResourceInput = schema.new({
 })
 
 M.RemoveLFTagsFromResourceOutput = schema.new({
-    id = id.from(_N, "RemoveLFTagsFromResourceOutput"),
+    id = id.from(_N, "RemoveLFTagsFromResourceResponse"),
     type = "structure",
     members = {
         Failures = schema.new({
@@ -4024,7 +4024,7 @@ M.RemoveLFTagsFromResourceOutput = schema.new({
 })
 
 M.RevokePermissionsInput = schema.new({
-    id = id.from(_N, "RevokePermissionsInput"),
+    id = id.from(_N, "RevokePermissionsRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -4081,12 +4081,12 @@ M.RevokePermissionsInput = schema.new({
 })
 
 M.RevokePermissionsOutput = schema.new({
-    id = id.from(_N, "RevokePermissionsOutput"),
+    id = id.from(_N, "RevokePermissionsResponse"),
     type = "structure",
 })
 
 M.SearchDatabasesByLFTagsInput = schema.new({
-    id = id.from(_N, "SearchDatabasesByLFTagsInput"),
+    id = id.from(_N, "SearchDatabasesByLFTagsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4142,7 +4142,7 @@ M.TaggedDatabase = schema.new({
 })
 
 M.SearchDatabasesByLFTagsOutput = schema.new({
-    id = id.from(_N, "SearchDatabasesByLFTagsOutput"),
+    id = id.from(_N, "SearchDatabasesByLFTagsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4162,7 +4162,7 @@ M.SearchDatabasesByLFTagsOutput = schema.new({
 })
 
 M.SearchTablesByLFTagsInput = schema.new({
-    id = id.from(_N, "SearchTablesByLFTagsInput"),
+    id = id.from(_N, "SearchTablesByLFTagsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4232,7 +4232,7 @@ M.TaggedTable = schema.new({
 })
 
 M.SearchTablesByLFTagsOutput = schema.new({
-    id = id.from(_N, "SearchTablesByLFTagsOutput"),
+    id = id.from(_N, "SearchTablesByLFTagsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4294,7 +4294,7 @@ M.QueryPlanningContext = schema.new({
 })
 
 M.StartQueryPlanningInput = schema.new({
-    id = id.from(_N, "StartQueryPlanningInput"),
+    id = id.from(_N, "StartQueryPlanningRequest"),
     type = "structure",
     members = {
         QueryPlanningContext = schema.new({
@@ -4320,7 +4320,7 @@ M.StartQueryPlanningInput = schema.new({
 })
 
 M.StartQueryPlanningOutput = schema.new({
-    id = id.from(_N, "StartQueryPlanningOutput"),
+    id = id.from(_N, "StartQueryPlanningResponse"),
     type = "structure",
     members = {
         QueryId = schema.new({
@@ -4336,7 +4336,7 @@ M.StartQueryPlanningOutput = schema.new({
 })
 
 M.StartTransactionInput = schema.new({
-    id = id.from(_N, "StartTransactionInput"),
+    id = id.from(_N, "StartTransactionRequest"),
     type = "structure",
     members = {
         TransactionType = schema.new({
@@ -4349,7 +4349,7 @@ M.StartTransactionInput = schema.new({
 })
 
 M.StartTransactionOutput = schema.new({
-    id = id.from(_N, "StartTransactionOutput"),
+    id = id.from(_N, "StartTransactionResponse"),
     type = "structure",
     members = {
         TransactionId = schema.new({
@@ -4362,7 +4362,7 @@ M.StartTransactionOutput = schema.new({
 })
 
 M.UpdateDataCellsFilterInput = schema.new({
-    id = id.from(_N, "UpdateDataCellsFilterInput"),
+    id = id.from(_N, "UpdateDataCellsFilterRequest"),
     type = "structure",
     members = {
         TableData = schema.new({
@@ -4379,12 +4379,12 @@ M.UpdateDataCellsFilterInput = schema.new({
 })
 
 M.UpdateDataCellsFilterOutput = schema.new({
-    id = id.from(_N, "UpdateDataCellsFilterOutput"),
+    id = id.from(_N, "UpdateDataCellsFilterResponse"),
     type = "structure",
 })
 
 M.UpdateLakeFormationIdentityCenterConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateLakeFormationIdentityCenterConfigurationInput"),
+    id = id.from(_N, "UpdateLakeFormationIdentityCenterConfigurationRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -4424,12 +4424,12 @@ M.UpdateLakeFormationIdentityCenterConfigurationInput = schema.new({
 })
 
 M.UpdateLakeFormationIdentityCenterConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateLakeFormationIdentityCenterConfigurationOutput"),
+    id = id.from(_N, "UpdateLakeFormationIdentityCenterConfigurationResponse"),
     type = "structure",
 })
 
 M.UpdateLFTagInput = schema.new({
-    id = id.from(_N, "UpdateLFTagInput"),
+    id = id.from(_N, "UpdateLFTagRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -4465,12 +4465,12 @@ M.UpdateLFTagInput = schema.new({
 })
 
 M.UpdateLFTagOutput = schema.new({
-    id = id.from(_N, "UpdateLFTagOutput"),
+    id = id.from(_N, "UpdateLFTagResponse"),
     type = "structure",
 })
 
 M.UpdateLFTagExpressionInput = schema.new({
-    id = id.from(_N, "UpdateLFTagExpressionInput"),
+    id = id.from(_N, "UpdateLFTagExpressionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4508,12 +4508,12 @@ M.UpdateLFTagExpressionInput = schema.new({
 })
 
 M.UpdateLFTagExpressionOutput = schema.new({
-    id = id.from(_N, "UpdateLFTagExpressionOutput"),
+    id = id.from(_N, "UpdateLFTagExpressionResponse"),
     type = "structure",
 })
 
 M.UpdateResourceInput = schema.new({
-    id = id.from(_N, "UpdateResourceInput"),
+    id = id.from(_N, "UpdateResourceRequest"),
     type = "structure",
     members = {
         RoleArn = schema.new({
@@ -4556,7 +4556,7 @@ M.UpdateResourceInput = schema.new({
 })
 
 M.UpdateResourceOutput = schema.new({
-    id = id.from(_N, "UpdateResourceOutput"),
+    id = id.from(_N, "UpdateResourceResponse"),
     type = "structure",
 })
 
@@ -4611,7 +4611,7 @@ M.WriteOperation = schema.new({
 })
 
 M.UpdateTableObjectsInput = schema.new({
-    id = id.from(_N, "UpdateTableObjectsInput"),
+    id = id.from(_N, "UpdateTableObjectsRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -4658,12 +4658,12 @@ M.UpdateTableObjectsInput = schema.new({
 })
 
 M.UpdateTableObjectsOutput = schema.new({
-    id = id.from(_N, "UpdateTableObjectsOutput"),
+    id = id.from(_N, "UpdateTableObjectsResponse"),
     type = "structure",
 })
 
 M.UpdateTableStorageOptimizerInput = schema.new({
-    id = id.from(_N, "UpdateTableStorageOptimizerInput"),
+    id = id.from(_N, "UpdateTableStorageOptimizerRequest"),
     type = "structure",
     members = {
         CatalogId = schema.new({
@@ -4696,7 +4696,7 @@ M.UpdateTableStorageOptimizerInput = schema.new({
             name = "StorageOptimizerConfig",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -4705,7 +4705,7 @@ M.UpdateTableStorageOptimizerInput = schema.new({
 })
 
 M.UpdateTableStorageOptimizerOutput = schema.new({
-    id = id.from(_N, "UpdateTableStorageOptimizerOutput"),
+    id = id.from(_N, "UpdateTableStorageOptimizerResponse"),
     type = "structure",
     members = {
         Result = schema.new({
@@ -4716,5 +4716,19 @@ M.UpdateTableStorageOptimizerOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

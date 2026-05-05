@@ -40,7 +40,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateEndpointInput = schema.new({
-    id = id.from(_N, "CreateEndpointInput"),
+    id = id.from(_N, "CreateEndpointRequest"),
     type = "structure",
     members = {
         OutpostId = schema.new({
@@ -86,7 +86,7 @@ M.CreateEndpointInput = schema.new({
 })
 
 M.CreateEndpointOutput = schema.new({
-    id = id.from(_N, "CreateEndpointOutput"),
+    id = id.from(_N, "CreateEndpointResult"),
     type = "structure",
     members = {
         EndpointArn = schema.new({
@@ -179,7 +179,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteEndpointInput = schema.new({
-    id = id.from(_N, "DeleteEndpointInput"),
+    id = id.from(_N, "DeleteEndpointRequest"),
     type = "structure",
     members = {
         EndpointId = schema.new({
@@ -206,7 +206,7 @@ M.DeleteEndpointInput = schema.new({
 })
 
 M.DeleteEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteEndpointOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -324,7 +324,7 @@ M.Endpoint = schema.new({
 })
 
 M.ListEndpointsInput = schema.new({
-    id = id.from(_N, "ListEndpointsInput"),
+    id = id.from(_N, "ListEndpointsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -350,7 +350,7 @@ M.ListEndpointsInput = schema.new({
 })
 
 M.ListEndpointsOutput = schema.new({
-    id = id.from(_N, "ListEndpointsOutput"),
+    id = id.from(_N, "ListEndpointsResult"),
     type = "structure",
     members = {
         Endpoints = schema.new({
@@ -370,7 +370,7 @@ M.ListEndpointsOutput = schema.new({
 })
 
 M.ListOutpostsWithS3Input = schema.new({
-    id = id.from(_N, "ListOutpostsWithS3Input"),
+    id = id.from(_N, "ListOutpostsWithS3Request"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -436,7 +436,7 @@ M.Outpost = schema.new({
 })
 
 M.ListOutpostsWithS3Output = schema.new({
-    id = id.from(_N, "ListOutpostsWithS3Output"),
+    id = id.from(_N, "ListOutpostsWithS3Result"),
     type = "structure",
     members = {
         Outposts = schema.new({
@@ -456,7 +456,7 @@ M.ListOutpostsWithS3Output = schema.new({
 })
 
 M.ListSharedEndpointsInput = schema.new({
-    id = id.from(_N, "ListSharedEndpointsInput"),
+    id = id.from(_N, "ListSharedEndpointsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -492,7 +492,7 @@ M.ListSharedEndpointsInput = schema.new({
 })
 
 M.ListSharedEndpointsOutput = schema.new({
-    id = id.from(_N, "ListSharedEndpointsOutput"),
+    id = id.from(_N, "ListSharedEndpointsResult"),
     type = "structure",
     members = {
         Endpoints = schema.new({
@@ -510,5 +510,19 @@ M.ListSharedEndpointsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -104,7 +104,7 @@ M.InvalidArgsException = schema.new({
 })
 
 M.SendSerialConsoleSSHPublicKeyInput = schema.new({
-    id = id.from(_N, "SendSerialConsoleSSHPublicKeyInput"),
+    id = id.from(_N, "SendSerialConsoleSSHPublicKeyRequest"),
     type = "structure",
     members = {
         InstanceId = schema.new({
@@ -138,7 +138,7 @@ M.SendSerialConsoleSSHPublicKeyInput = schema.new({
 })
 
 M.SendSerialConsoleSSHPublicKeyOutput = schema.new({
-    id = id.from(_N, "SendSerialConsoleSSHPublicKeyOutput"),
+    id = id.from(_N, "SendSerialConsoleSSHPublicKeyResponse"),
     type = "structure",
     members = {
         RequestId = schema.new({
@@ -256,7 +256,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.SendSSHPublicKeyInput = schema.new({
-    id = id.from(_N, "SendSSHPublicKeyInput"),
+    id = id.from(_N, "SendSSHPublicKeyRequest"),
     type = "structure",
     members = {
         InstanceId = schema.new({
@@ -296,7 +296,7 @@ M.SendSSHPublicKeyInput = schema.new({
 })
 
 M.SendSSHPublicKeyOutput = schema.new({
-    id = id.from(_N, "SendSSHPublicKeyOutput"),
+    id = id.from(_N, "SendSSHPublicKeyResponse"),
     type = "structure",
     members = {
         RequestId = schema.new({
@@ -316,5 +316,19 @@ M.SendSSHPublicKeyOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

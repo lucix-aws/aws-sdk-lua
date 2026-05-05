@@ -24,7 +24,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.GetBlueprintOptimizationStatusInput = schema.new({
-    id = id.from(_N, "GetBlueprintOptimizationStatusInput"),
+    id = id.from(_N, "GetBlueprintOptimizationStatusRequest"),
     type = "structure",
     members = {
         invocationArn = schema.new({
@@ -80,7 +80,7 @@ M.BlueprintOptimizationOutputConfiguration = schema.new({
 })
 
 M.GetBlueprintOptimizationStatusOutput = schema.new({
-    id = id.from(_N, "GetBlueprintOptimizationStatusOutput"),
+    id = id.from(_N, "GetBlueprintOptimizationStatusResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -306,7 +306,7 @@ M.Tag = schema.new({
 })
 
 M.InvokeBlueprintOptimizationAsyncInput = schema.new({
-    id = id.from(_N, "InvokeBlueprintOptimizationAsyncInput"),
+    id = id.from(_N, "InvokeBlueprintOptimizationAsyncRequest"),
     type = "structure",
     members = {
         blueprint = schema.new({
@@ -366,7 +366,7 @@ M.InvokeBlueprintOptimizationAsyncInput = schema.new({
 })
 
 M.InvokeBlueprintOptimizationAsyncOutput = schema.new({
-    id = id.from(_N, "InvokeBlueprintOptimizationAsyncOutput"),
+    id = id.from(_N, "InvokeBlueprintOptimizationAsyncResponse"),
     type = "structure",
     members = {
         invocationArn = schema.new({
@@ -414,7 +414,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateBlueprintInput = schema.new({
-    id = id.from(_N, "CreateBlueprintInput"),
+    id = id.from(_N, "CreateBlueprintRequest"),
     type = "structure",
     members = {
         blueprintName = schema.new({
@@ -588,7 +588,7 @@ M.Blueprint = schema.new({
 })
 
 M.CreateBlueprintOutput = schema.new({
-    id = id.from(_N, "CreateBlueprintOutput"),
+    id = id.from(_N, "CreateBlueprintResponse"),
     type = "structure",
     members = {
         blueprint = schema.new({
@@ -605,7 +605,7 @@ M.CreateBlueprintOutput = schema.new({
 })
 
 M.DeleteBlueprintInput = schema.new({
-    id = id.from(_N, "DeleteBlueprintInput"),
+    id = id.from(_N, "DeleteBlueprintRequest"),
     type = "structure",
     members = {
         blueprintArn = schema.new({
@@ -631,12 +631,12 @@ M.DeleteBlueprintInput = schema.new({
 })
 
 M.DeleteBlueprintOutput = schema.new({
-    id = id.from(_N, "DeleteBlueprintOutput"),
+    id = id.from(_N, "DeleteBlueprintResponse"),
     type = "structure",
 })
 
 M.GetBlueprintInput = schema.new({
-    id = id.from(_N, "GetBlueprintInput"),
+    id = id.from(_N, "GetBlueprintRequest"),
     type = "structure",
     members = {
         blueprintArn = schema.new({
@@ -665,7 +665,7 @@ M.GetBlueprintInput = schema.new({
 })
 
 M.GetBlueprintOutput = schema.new({
-    id = id.from(_N, "GetBlueprintOutput"),
+    id = id.from(_N, "GetBlueprintResponse"),
     type = "structure",
     members = {
         blueprint = schema.new({
@@ -704,7 +704,7 @@ M.DataAutomationProjectFilter = schema.new({
 })
 
 M.ListBlueprintsInput = schema.new({
-    id = id.from(_N, "ListBlueprintsInput"),
+    id = id.from(_N, "ListBlueprintsRequest"),
     type = "structure",
     members = {
         blueprintArn = schema.new({
@@ -804,7 +804,7 @@ M.BlueprintSummary = schema.new({
 })
 
 M.ListBlueprintsOutput = schema.new({
-    id = id.from(_N, "ListBlueprintsOutput"),
+    id = id.from(_N, "ListBlueprintsResponse"),
     type = "structure",
     members = {
         blueprints = schema.new({
@@ -827,7 +827,7 @@ M.ListBlueprintsOutput = schema.new({
 })
 
 M.UpdateBlueprintInput = schema.new({
-    id = id.from(_N, "UpdateBlueprintInput"),
+    id = id.from(_N, "UpdateBlueprintRequest"),
     type = "structure",
     members = {
         blueprintArn = schema.new({
@@ -866,7 +866,7 @@ M.UpdateBlueprintInput = schema.new({
 })
 
 M.UpdateBlueprintOutput = schema.new({
-    id = id.from(_N, "UpdateBlueprintOutput"),
+    id = id.from(_N, "UpdateBlueprintResponse"),
     type = "structure",
     members = {
         blueprint = schema.new({
@@ -883,7 +883,7 @@ M.UpdateBlueprintOutput = schema.new({
 })
 
 M.CopyBlueprintStageInput = schema.new({
-    id = id.from(_N, "CopyBlueprintStageInput"),
+    id = id.from(_N, "CopyBlueprintStageRequest"),
     type = "structure",
     members = {
         blueprintArn = schema.new({
@@ -927,12 +927,12 @@ M.CopyBlueprintStageInput = schema.new({
 })
 
 M.CopyBlueprintStageOutput = schema.new({
-    id = id.from(_N, "CopyBlueprintStageOutput"),
+    id = id.from(_N, "CopyBlueprintStageResponse"),
     type = "structure",
 })
 
 M.CreateBlueprintVersionInput = schema.new({
-    id = id.from(_N, "CreateBlueprintVersionInput"),
+    id = id.from(_N, "CreateBlueprintVersionRequest"),
     type = "structure",
     members = {
         blueprintArn = schema.new({
@@ -958,7 +958,7 @@ M.CreateBlueprintVersionInput = schema.new({
 })
 
 M.CreateBlueprintVersionOutput = schema.new({
-    id = id.from(_N, "CreateBlueprintVersionOutput"),
+    id = id.from(_N, "CreateBlueprintVersionResponse"),
     type = "structure",
     members = {
         blueprint = schema.new({
@@ -975,7 +975,7 @@ M.CreateBlueprintVersionOutput = schema.new({
 })
 
 M.GetDataAutomationLibraryIngestionJobInput = schema.new({
-    id = id.from(_N, "GetDataAutomationLibraryIngestionJobInput"),
+    id = id.from(_N, "GetDataAutomationLibraryIngestionJobRequest"),
     type = "structure",
     members = {
         libraryArn = schema.new({
@@ -1105,7 +1105,7 @@ M.DataAutomationLibraryIngestionJob = schema.new({
 })
 
 M.GetDataAutomationLibraryIngestionJobOutput = schema.new({
-    id = id.from(_N, "GetDataAutomationLibraryIngestionJobOutput"),
+    id = id.from(_N, "GetDataAutomationLibraryIngestionJobResponse"),
     type = "structure",
     members = {
         job = schema.new({
@@ -1285,7 +1285,7 @@ M.NotificationConfiguration = schema.new({
 })
 
 M.InvokeDataAutomationLibraryIngestionJobInput = schema.new({
-    id = id.from(_N, "InvokeDataAutomationLibraryIngestionJobInput"),
+    id = id.from(_N, "InvokeDataAutomationLibraryIngestionJobRequest"),
     type = "structure",
     members = {
         libraryArn = schema.new({
@@ -1363,7 +1363,7 @@ M.InvokeDataAutomationLibraryIngestionJobInput = schema.new({
 })
 
 M.InvokeDataAutomationLibraryIngestionJobOutput = schema.new({
-    id = id.from(_N, "InvokeDataAutomationLibraryIngestionJobOutput"),
+    id = id.from(_N, "InvokeDataAutomationLibraryIngestionJobResponse"),
     type = "structure",
     members = {
         jobArn = schema.new({
@@ -1376,7 +1376,7 @@ M.InvokeDataAutomationLibraryIngestionJobOutput = schema.new({
 })
 
 M.ListDataAutomationLibraryIngestionJobsInput = schema.new({
-    id = id.from(_N, "ListDataAutomationLibraryIngestionJobsInput"),
+    id = id.from(_N, "ListDataAutomationLibraryIngestionJobsRequest"),
     type = "structure",
     members = {
         libraryArn = schema.new({
@@ -1470,7 +1470,7 @@ M.DataAutomationLibraryIngestionJobSummary = schema.new({
 })
 
 M.ListDataAutomationLibraryIngestionJobsOutput = schema.new({
-    id = id.from(_N, "ListDataAutomationLibraryIngestionJobsOutput"),
+    id = id.from(_N, "ListDataAutomationLibraryIngestionJobsResponse"),
     type = "structure",
     members = {
         jobs = schema.new({
@@ -1490,7 +1490,7 @@ M.ListDataAutomationLibraryIngestionJobsOutput = schema.new({
 })
 
 M.CreateDataAutomationLibraryInput = schema.new({
-    id = id.from(_N, "CreateDataAutomationLibraryInput"),
+    id = id.from(_N, "CreateDataAutomationLibraryRequest"),
     type = "structure",
     members = {
         libraryName = schema.new({
@@ -1535,7 +1535,7 @@ M.CreateDataAutomationLibraryInput = schema.new({
 })
 
 M.CreateDataAutomationLibraryOutput = schema.new({
-    id = id.from(_N, "CreateDataAutomationLibraryOutput"),
+    id = id.from(_N, "CreateDataAutomationLibraryResponse"),
     type = "structure",
     members = {
         libraryArn = schema.new({
@@ -1554,7 +1554,7 @@ M.CreateDataAutomationLibraryOutput = schema.new({
 })
 
 M.DeleteDataAutomationLibraryInput = schema.new({
-    id = id.from(_N, "DeleteDataAutomationLibraryInput"),
+    id = id.from(_N, "DeleteDataAutomationLibraryRequest"),
     type = "structure",
     members = {
         libraryArn = schema.new({
@@ -1571,7 +1571,7 @@ M.DeleteDataAutomationLibraryInput = schema.new({
 })
 
 M.DeleteDataAutomationLibraryOutput = schema.new({
-    id = id.from(_N, "DeleteDataAutomationLibraryOutput"),
+    id = id.from(_N, "DeleteDataAutomationLibraryResponse"),
     type = "structure",
     members = {
         libraryArn = schema.new({
@@ -1590,7 +1590,7 @@ M.DeleteDataAutomationLibraryOutput = schema.new({
 })
 
 M.GetDataAutomationLibraryInput = schema.new({
-    id = id.from(_N, "GetDataAutomationLibraryInput"),
+    id = id.from(_N, "GetDataAutomationLibraryRequest"),
     type = "structure",
     members = {
         libraryArn = schema.new({
@@ -1703,7 +1703,7 @@ M.DataAutomationLibrary = schema.new({
 })
 
 M.GetDataAutomationLibraryOutput = schema.new({
-    id = id.from(_N, "GetDataAutomationLibraryOutput"),
+    id = id.from(_N, "GetDataAutomationLibraryResponse"),
     type = "structure",
     members = {
         library = schema.new({
@@ -1717,7 +1717,7 @@ M.GetDataAutomationLibraryOutput = schema.new({
 })
 
 M.ListDataAutomationLibrariesInput = schema.new({
-    id = id.from(_N, "ListDataAutomationLibrariesInput"),
+    id = id.from(_N, "ListDataAutomationLibrariesRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -1778,7 +1778,7 @@ M.DataAutomationLibrarySummary = schema.new({
 })
 
 M.ListDataAutomationLibrariesOutput = schema.new({
-    id = id.from(_N, "ListDataAutomationLibrariesOutput"),
+    id = id.from(_N, "ListDataAutomationLibrariesResponse"),
     type = "structure",
     members = {
         libraries = schema.new({
@@ -1798,7 +1798,7 @@ M.ListDataAutomationLibrariesOutput = schema.new({
 })
 
 M.UpdateDataAutomationLibraryInput = schema.new({
-    id = id.from(_N, "UpdateDataAutomationLibraryInput"),
+    id = id.from(_N, "UpdateDataAutomationLibraryRequest"),
     type = "structure",
     members = {
         libraryArn = schema.new({
@@ -1830,7 +1830,7 @@ M.UpdateDataAutomationLibraryInput = schema.new({
 })
 
 M.UpdateDataAutomationLibraryOutput = schema.new({
-    id = id.from(_N, "UpdateDataAutomationLibraryOutput"),
+    id = id.from(_N, "UpdateDataAutomationLibraryResponse"),
     type = "structure",
     members = {
         libraryArn = schema.new({
@@ -2765,7 +2765,7 @@ M.StandardOutputConfiguration = schema.new({
 })
 
 M.CreateDataAutomationProjectInput = schema.new({
-    id = id.from(_N, "CreateDataAutomationProjectInput"),
+    id = id.from(_N, "CreateDataAutomationProjectRequest"),
     type = "structure",
     members = {
         projectName = schema.new({
@@ -2856,7 +2856,7 @@ M.CreateDataAutomationProjectInput = schema.new({
 })
 
 M.CreateDataAutomationProjectOutput = schema.new({
-    id = id.from(_N, "CreateDataAutomationProjectOutput"),
+    id = id.from(_N, "CreateDataAutomationProjectResponse"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -2884,7 +2884,7 @@ M.CreateDataAutomationProjectOutput = schema.new({
 })
 
 M.DeleteDataAutomationProjectInput = schema.new({
-    id = id.from(_N, "DeleteDataAutomationProjectInput"),
+    id = id.from(_N, "DeleteDataAutomationProjectRequest"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -2901,7 +2901,7 @@ M.DeleteDataAutomationProjectInput = schema.new({
 })
 
 M.DeleteDataAutomationProjectOutput = schema.new({
-    id = id.from(_N, "DeleteDataAutomationProjectOutput"),
+    id = id.from(_N, "DeleteDataAutomationProjectResponse"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -2923,7 +2923,7 @@ M.DeleteDataAutomationProjectOutput = schema.new({
 })
 
 M.GetDataAutomationProjectInput = schema.new({
-    id = id.from(_N, "GetDataAutomationProjectInput"),
+    id = id.from(_N, "GetDataAutomationProjectRequest"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -3066,7 +3066,7 @@ M.DataAutomationProject = schema.new({
 })
 
 M.GetDataAutomationProjectOutput = schema.new({
-    id = id.from(_N, "GetDataAutomationProjectOutput"),
+    id = id.from(_N, "GetDataAutomationProjectResponse"),
     type = "structure",
     members = {
         project = schema.new({
@@ -3127,7 +3127,7 @@ M.DataAutomationLibraryFilter = schema.new({
 })
 
 M.ListDataAutomationProjectsInput = schema.new({
-    id = id.from(_N, "ListDataAutomationProjectsInput"),
+    id = id.from(_N, "ListDataAutomationProjectsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -3219,7 +3219,7 @@ M.DataAutomationProjectSummary = schema.new({
 })
 
 M.ListDataAutomationProjectsOutput = schema.new({
-    id = id.from(_N, "ListDataAutomationProjectsOutput"),
+    id = id.from(_N, "ListDataAutomationProjectsResponse"),
     type = "structure",
     members = {
         projects = schema.new({
@@ -3242,7 +3242,7 @@ M.ListDataAutomationProjectsOutput = schema.new({
 })
 
 M.UpdateDataAutomationProjectInput = schema.new({
-    id = id.from(_N, "UpdateDataAutomationProjectInput"),
+    id = id.from(_N, "UpdateDataAutomationProjectRequest"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -3309,7 +3309,7 @@ M.UpdateDataAutomationProjectInput = schema.new({
 })
 
 M.UpdateDataAutomationProjectOutput = schema.new({
-    id = id.from(_N, "UpdateDataAutomationProjectOutput"),
+    id = id.from(_N, "UpdateDataAutomationProjectResponse"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -3337,7 +3337,7 @@ M.UpdateDataAutomationProjectOutput = schema.new({
 })
 
 M.GetDataAutomationLibraryEntityInput = schema.new({
-    id = id.from(_N, "GetDataAutomationLibraryEntityInput"),
+    id = id.from(_N, "GetDataAutomationLibraryEntityRequest"),
     type = "structure",
     members = {
         libraryArn = schema.new({
@@ -3429,7 +3429,7 @@ M.EntityDetails = schema.new({
 })
 
 M.GetDataAutomationLibraryEntityOutput = schema.new({
-    id = id.from(_N, "GetDataAutomationLibraryEntityOutput"),
+    id = id.from(_N, "GetDataAutomationLibraryEntityResponse"),
     type = "structure",
     members = {
         entity = schema.new({
@@ -3443,7 +3443,7 @@ M.GetDataAutomationLibraryEntityOutput = schema.new({
 })
 
 M.ListDataAutomationLibraryEntitiesInput = schema.new({
-    id = id.from(_N, "ListDataAutomationLibraryEntitiesInput"),
+    id = id.from(_N, "ListDataAutomationLibraryEntitiesRequest"),
     type = "structure",
     members = {
         libraryArn = schema.new({
@@ -3536,7 +3536,7 @@ M.DataAutomationLibraryEntitySummary = schema.new({
 })
 
 M.ListDataAutomationLibraryEntitiesOutput = schema.new({
-    id = id.from(_N, "ListDataAutomationLibraryEntitiesOutput"),
+    id = id.from(_N, "ListDataAutomationLibraryEntitiesResponse"),
     type = "structure",
     members = {
         entities = schema.new({
@@ -3556,7 +3556,7 @@ M.ListDataAutomationLibraryEntitiesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceARN = schema.new({
@@ -3572,7 +3572,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -3586,7 +3586,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceARN = schema.new({
@@ -3612,12 +3612,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceARN = schema.new({
@@ -3643,8 +3643,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

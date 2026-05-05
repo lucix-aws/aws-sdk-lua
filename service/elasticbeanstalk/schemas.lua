@@ -8,7 +8,7 @@ local _N = "com.amazonaws.elasticbeanstalk"
 local M = {}
 
 M.AbortEnvironmentUpdateInput = schema.new({
-    id = id.from(_N, "AbortEnvironmentUpdateInput"),
+    id = id.from(_N, "AbortEnvironmentUpdateMessage"),
     type = "structure",
     members = {
         EnvironmentId = schema.new({
@@ -27,7 +27,7 @@ M.AbortEnvironmentUpdateInput = schema.new({
 })
 
 M.AbortEnvironmentUpdateOutput = schema.new({
-    id = id.from(_N, "AbortEnvironmentUpdateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -447,7 +447,7 @@ M.ApplicationVersionDescription = schema.new({
 })
 
 M.ApplyEnvironmentManagedActionInput = schema.new({
-    id = id.from(_N, "ApplyEnvironmentManagedActionInput"),
+    id = id.from(_N, "ApplyEnvironmentManagedActionRequest"),
     type = "structure",
     members = {
         EnvironmentName = schema.new({
@@ -475,7 +475,7 @@ M.ApplyEnvironmentManagedActionInput = schema.new({
 })
 
 M.ApplyEnvironmentManagedActionOutput = schema.new({
-    id = id.from(_N, "ApplyEnvironmentManagedActionOutput"),
+    id = id.from(_N, "ApplyEnvironmentManagedActionResult"),
     type = "structure",
     members = {
         ActionId = schema.new({
@@ -538,7 +538,7 @@ M.ManagedActionInvalidStateException = schema.new({
 })
 
 M.AssociateEnvironmentOperationsRoleInput = schema.new({
-    id = id.from(_N, "AssociateEnvironmentOperationsRoleInput"),
+    id = id.from(_N, "AssociateEnvironmentOperationsRoleMessage"),
     type = "structure",
     members = {
         EnvironmentName = schema.new({
@@ -563,7 +563,7 @@ M.AssociateEnvironmentOperationsRoleInput = schema.new({
 })
 
 M.AssociateEnvironmentOperationsRoleOutput = schema.new({
-    id = id.from(_N, "AssociateEnvironmentOperationsRoleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -601,7 +601,7 @@ M.SolutionStackDescription = schema.new({
 })
 
 M.CheckDNSAvailabilityInput = schema.new({
-    id = id.from(_N, "CheckDNSAvailabilityInput"),
+    id = id.from(_N, "CheckDNSAvailabilityMessage"),
     type = "structure",
     members = {
         CNAMEPrefix = schema.new({
@@ -617,7 +617,7 @@ M.CheckDNSAvailabilityInput = schema.new({
 })
 
 M.CheckDNSAvailabilityOutput = schema.new({
-    id = id.from(_N, "CheckDNSAvailabilityOutput"),
+    id = id.from(_N, "CheckDNSAvailabilityResultMessage"),
     type = "structure",
     members = {
         Available = schema.new({
@@ -636,7 +636,7 @@ M.CheckDNSAvailabilityOutput = schema.new({
 })
 
 M.ComposeEnvironmentsInput = schema.new({
-    id = id.from(_N, "ComposeEnvironmentsInput"),
+    id = id.from(_N, "ComposeEnvironmentsMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -904,7 +904,7 @@ M.EnvironmentDescription = schema.new({
 })
 
 M.ComposeEnvironmentsOutput = schema.new({
-    id = id.from(_N, "ComposeEnvironmentsOutput"),
+    id = id.from(_N, "EnvironmentDescriptionsMessage"),
     type = "structure",
     members = {
         Environments = schema.new({
@@ -959,7 +959,7 @@ M.Tag = schema.new({
 })
 
 M.CreateApplicationInput = schema.new({
-    id = id.from(_N, "CreateApplicationInput"),
+    id = id.from(_N, "CreateApplicationMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -995,7 +995,7 @@ M.CreateApplicationInput = schema.new({
 })
 
 M.CreateApplicationOutput = schema.new({
-    id = id.from(_N, "CreateApplicationOutput"),
+    id = id.from(_N, "ApplicationDescriptionMessage"),
     type = "structure",
     members = {
         Application = schema.new({
@@ -1084,7 +1084,7 @@ M.BuildConfiguration = schema.new({
 })
 
 M.CreateApplicationVersionInput = schema.new({
-    id = id.from(_N, "CreateApplicationVersionInput"),
+    id = id.from(_N, "CreateApplicationVersionMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -1155,7 +1155,7 @@ M.CreateApplicationVersionInput = schema.new({
 })
 
 M.CreateApplicationVersionOutput = schema.new({
-    id = id.from(_N, "CreateApplicationVersionOutput"),
+    id = id.from(_N, "ApplicationVersionDescriptionMessage"),
     type = "structure",
     members = {
         ApplicationVersion = schema.new({
@@ -1251,7 +1251,7 @@ M.SourceConfiguration = schema.new({
 })
 
 M.CreateConfigurationTemplateInput = schema.new({
-    id = id.from(_N, "CreateConfigurationTemplateInput"),
+    id = id.from(_N, "CreateConfigurationTemplateMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -1321,7 +1321,7 @@ M.CreateConfigurationTemplateInput = schema.new({
 })
 
 M.CreateConfigurationTemplateOutput = schema.new({
-    id = id.from(_N, "CreateConfigurationTemplateOutput"),
+    id = id.from(_N, "ConfigurationSettingsDescription"),
     type = "structure",
     members = {
         SolutionStackName = schema.new({
@@ -1446,7 +1446,7 @@ M.OptionSpecification = schema.new({
 })
 
 M.CreateEnvironmentInput = schema.new({
-    id = id.from(_N, "CreateEnvironmentInput"),
+    id = id.from(_N, "CreateEnvironmentMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -1544,7 +1544,7 @@ M.CreateEnvironmentInput = schema.new({
 })
 
 M.CreateEnvironmentOutput = schema.new({
-    id = id.from(_N, "CreateEnvironmentOutput"),
+    id = id.from(_N, "EnvironmentDescription"),
     type = "structure",
     members = {
         EnvironmentName = schema.new({
@@ -1680,7 +1680,7 @@ M.CreateEnvironmentOutput = schema.new({
 })
 
 M.CreatePlatformVersionInput = schema.new({
-    id = id.from(_N, "CreatePlatformVersionInput"),
+    id = id.from(_N, "CreatePlatformVersionRequest"),
     type = "structure",
     members = {
         PlatformName = schema.new({
@@ -1829,7 +1829,7 @@ M.PlatformSummary = schema.new({
 })
 
 M.CreatePlatformVersionOutput = schema.new({
-    id = id.from(_N, "CreatePlatformVersionOutput"),
+    id = id.from(_N, "CreatePlatformVersionResult"),
     type = "structure",
     members = {
         PlatformSummary = schema.new({
@@ -1866,12 +1866,12 @@ M.TooManyPlatformsException = schema.new({
 })
 
 M.CreateStorageLocationInput = schema.new({
-    id = id.from(_N, "CreateStorageLocationInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.CreateStorageLocationOutput = schema.new({
-    id = id.from(_N, "CreateStorageLocationOutput"),
+    id = id.from(_N, "CreateStorageLocationResultMessage"),
     type = "structure",
     members = {
         S3Bucket = schema.new({
@@ -1900,7 +1900,7 @@ M.S3SubscriptionRequiredException = schema.new({
 })
 
 M.DeleteApplicationInput = schema.new({
-    id = id.from(_N, "DeleteApplicationInput"),
+    id = id.from(_N, "DeleteApplicationMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -1922,7 +1922,7 @@ M.DeleteApplicationInput = schema.new({
 })
 
 M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1943,7 +1943,7 @@ M.OperationInProgressException = schema.new({
 })
 
 M.DeleteApplicationVersionInput = schema.new({
-    id = id.from(_N, "DeleteApplicationVersionInput"),
+    id = id.from(_N, "DeleteApplicationVersionMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -1974,7 +1974,7 @@ M.DeleteApplicationVersionInput = schema.new({
 })
 
 M.DeleteApplicationVersionOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationVersionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1995,7 +1995,7 @@ M.SourceBundleDeletionException = schema.new({
 })
 
 M.DeleteConfigurationTemplateInput = schema.new({
-    id = id.from(_N, "DeleteConfigurationTemplateInput"),
+    id = id.from(_N, "DeleteConfigurationTemplateMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -2020,12 +2020,12 @@ M.DeleteConfigurationTemplateInput = schema.new({
 })
 
 M.DeleteConfigurationTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteConfigurationTemplateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteEnvironmentConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentConfigurationInput"),
+    id = id.from(_N, "DeleteEnvironmentConfigurationMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -2050,12 +2050,12 @@ M.DeleteEnvironmentConfigurationInput = schema.new({
 })
 
 M.DeleteEnvironmentConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteEnvironmentConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeletePlatformVersionInput = schema.new({
-    id = id.from(_N, "DeletePlatformVersionInput"),
+    id = id.from(_N, "DeletePlatformVersionRequest"),
     type = "structure",
     members = {
         PlatformArn = schema.new({
@@ -2068,7 +2068,7 @@ M.DeletePlatformVersionInput = schema.new({
 })
 
 M.DeletePlatformVersionOutput = schema.new({
-    id = id.from(_N, "DeletePlatformVersionOutput"),
+    id = id.from(_N, "DeletePlatformVersionResult"),
     type = "structure",
     members = {
         PlatformSummary = schema.new({
@@ -2098,7 +2098,7 @@ M.PlatformVersionStillReferencedException = schema.new({
 })
 
 M.DescribeAccountAttributesInput = schema.new({
-    id = id.from(_N, "DescribeAccountAttributesInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2158,7 +2158,7 @@ M.ResourceQuotas = schema.new({
 })
 
 M.DescribeAccountAttributesOutput = schema.new({
-    id = id.from(_N, "DescribeAccountAttributesOutput"),
+    id = id.from(_N, "DescribeAccountAttributesResult"),
     type = "structure",
     members = {
         ResourceQuotas = schema.new({
@@ -2172,7 +2172,7 @@ M.DescribeAccountAttributesOutput = schema.new({
 })
 
 M.DescribeApplicationsInput = schema.new({
-    id = id.from(_N, "DescribeApplicationsInput"),
+    id = id.from(_N, "DescribeApplicationsMessage"),
     type = "structure",
     members = {
         ApplicationNames = schema.new({
@@ -2186,7 +2186,7 @@ M.DescribeApplicationsInput = schema.new({
 })
 
 M.DescribeApplicationsOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationsOutput"),
+    id = id.from(_N, "ApplicationDescriptionsMessage"),
     type = "structure",
     members = {
         Applications = schema.new({
@@ -2200,7 +2200,7 @@ M.DescribeApplicationsOutput = schema.new({
 })
 
 M.DescribeApplicationVersionsInput = schema.new({
-    id = id.from(_N, "DescribeApplicationVersionsInput"),
+    id = id.from(_N, "DescribeApplicationVersionsMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -2232,7 +2232,7 @@ M.DescribeApplicationVersionsInput = schema.new({
 })
 
 M.DescribeApplicationVersionsOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationVersionsOutput"),
+    id = id.from(_N, "ApplicationVersionDescriptionsMessage"),
     type = "structure",
     members = {
         ApplicationVersions = schema.new({
@@ -2252,7 +2252,7 @@ M.DescribeApplicationVersionsOutput = schema.new({
 })
 
 M.DescribeConfigurationOptionsInput = schema.new({
-    id = id.from(_N, "DescribeConfigurationOptionsInput"),
+    id = id.from(_N, "DescribeConfigurationOptionsMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -2390,7 +2390,7 @@ M.ConfigurationOptionDescription = schema.new({
 })
 
 M.DescribeConfigurationOptionsOutput = schema.new({
-    id = id.from(_N, "DescribeConfigurationOptionsOutput"),
+    id = id.from(_N, "ConfigurationOptionsDescription"),
     type = "structure",
     members = {
         SolutionStackName = schema.new({
@@ -2416,7 +2416,7 @@ M.DescribeConfigurationOptionsOutput = schema.new({
 })
 
 M.DescribeConfigurationSettingsInput = schema.new({
-    id = id.from(_N, "DescribeConfigurationSettingsInput"),
+    id = id.from(_N, "DescribeConfigurationSettingsMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -2512,7 +2512,7 @@ M.ConfigurationSettingsDescription = schema.new({
 })
 
 M.DescribeConfigurationSettingsOutput = schema.new({
-    id = id.from(_N, "DescribeConfigurationSettingsOutput"),
+    id = id.from(_N, "ConfigurationSettingsDescriptions"),
     type = "structure",
     members = {
         ConfigurationSettings = schema.new({
@@ -2526,7 +2526,7 @@ M.DescribeConfigurationSettingsOutput = schema.new({
 })
 
 M.DescribeEnvironmentHealthInput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentHealthInput"),
+    id = id.from(_N, "DescribeEnvironmentHealthRequest"),
     type = "structure",
     members = {
         EnvironmentName = schema.new({
@@ -2607,7 +2607,7 @@ M.InstanceHealthSummary = schema.new({
 })
 
 M.DescribeEnvironmentHealthOutput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentHealthOutput"),
+    id = id.from(_N, "DescribeEnvironmentHealthResult"),
     type = "structure",
     members = {
         EnvironmentName = schema.new({
@@ -2681,7 +2681,7 @@ M.InvalidRequestException = schema.new({
 })
 
 M.DescribeEnvironmentManagedActionHistoryInput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentManagedActionHistoryInput"),
+    id = id.from(_N, "DescribeEnvironmentManagedActionHistoryRequest"),
     type = "structure",
     members = {
         EnvironmentId = schema.new({
@@ -2767,7 +2767,7 @@ M.ManagedActionHistoryItem = schema.new({
 })
 
 M.DescribeEnvironmentManagedActionHistoryOutput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentManagedActionHistoryOutput"),
+    id = id.from(_N, "DescribeEnvironmentManagedActionHistoryResult"),
     type = "structure",
     members = {
         ManagedActionHistoryItems = schema.new({
@@ -2787,7 +2787,7 @@ M.DescribeEnvironmentManagedActionHistoryOutput = schema.new({
 })
 
 M.DescribeEnvironmentManagedActionsInput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentManagedActionsInput"),
+    id = id.from(_N, "DescribeEnvironmentManagedActionsRequest"),
     type = "structure",
     members = {
         EnvironmentName = schema.new({
@@ -2849,7 +2849,7 @@ M.ManagedAction = schema.new({
 })
 
 M.DescribeEnvironmentManagedActionsOutput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentManagedActionsOutput"),
+    id = id.from(_N, "DescribeEnvironmentManagedActionsResult"),
     type = "structure",
     members = {
         ManagedActions = schema.new({
@@ -2863,7 +2863,7 @@ M.DescribeEnvironmentManagedActionsOutput = schema.new({
 })
 
 M.DescribeEnvironmentResourcesInput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentResourcesInput"),
+    id = id.from(_N, "DescribeEnvironmentResourcesMessage"),
     type = "structure",
     members = {
         EnvironmentId = schema.new({
@@ -3028,7 +3028,7 @@ M.EnvironmentResourceDescription = schema.new({
 })
 
 M.DescribeEnvironmentResourcesOutput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentResourcesOutput"),
+    id = id.from(_N, "EnvironmentResourceDescriptionsMessage"),
     type = "structure",
     members = {
         EnvironmentResources = schema.new({
@@ -3042,7 +3042,7 @@ M.DescribeEnvironmentResourcesOutput = schema.new({
 })
 
 M.DescribeEnvironmentsInput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentsInput"),
+    id = id.from(_N, "DescribeEnvironmentsMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -3099,7 +3099,7 @@ M.DescribeEnvironmentsInput = schema.new({
 })
 
 M.DescribeEnvironmentsOutput = schema.new({
-    id = id.from(_N, "DescribeEnvironmentsOutput"),
+    id = id.from(_N, "EnvironmentDescriptionsMessage"),
     type = "structure",
     members = {
         Environments = schema.new({
@@ -3119,7 +3119,7 @@ M.DescribeEnvironmentsOutput = schema.new({
 })
 
 M.DescribeEventsInput = schema.new({
-    id = id.from(_N, "DescribeEventsInput"),
+    id = id.from(_N, "DescribeEventsMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -3259,7 +3259,7 @@ M.EventDescription = schema.new({
 })
 
 M.DescribeEventsOutput = schema.new({
-    id = id.from(_N, "DescribeEventsOutput"),
+    id = id.from(_N, "EventDescriptionsMessage"),
     type = "structure",
     members = {
         Events = schema.new({
@@ -3279,7 +3279,7 @@ M.DescribeEventsOutput = schema.new({
 })
 
 M.DescribeInstancesHealthInput = schema.new({
-    id = id.from(_N, "DescribeInstancesHealthInput"),
+    id = id.from(_N, "DescribeInstancesHealthRequest"),
     type = "structure",
     members = {
         EnvironmentName = schema.new({
@@ -3489,7 +3489,7 @@ M.SingleInstanceHealth = schema.new({
 })
 
 M.DescribeInstancesHealthOutput = schema.new({
-    id = id.from(_N, "DescribeInstancesHealthOutput"),
+    id = id.from(_N, "DescribeInstancesHealthResult"),
     type = "structure",
     members = {
         InstanceHealthList = schema.new({
@@ -3515,7 +3515,7 @@ M.DescribeInstancesHealthOutput = schema.new({
 })
 
 M.DescribePlatformVersionInput = schema.new({
-    id = id.from(_N, "DescribePlatformVersionInput"),
+    id = id.from(_N, "DescribePlatformVersionRequest"),
     type = "structure",
     members = {
         PlatformArn = schema.new({
@@ -3723,7 +3723,7 @@ M.PlatformDescription = schema.new({
 })
 
 M.DescribePlatformVersionOutput = schema.new({
-    id = id.from(_N, "DescribePlatformVersionOutput"),
+    id = id.from(_N, "DescribePlatformVersionResult"),
     type = "structure",
     members = {
         PlatformDescription = schema.new({
@@ -3737,7 +3737,7 @@ M.DescribePlatformVersionOutput = schema.new({
 })
 
 M.DisassociateEnvironmentOperationsRoleInput = schema.new({
-    id = id.from(_N, "DisassociateEnvironmentOperationsRoleInput"),
+    id = id.from(_N, "DisassociateEnvironmentOperationsRoleMessage"),
     type = "structure",
     members = {
         EnvironmentName = schema.new({
@@ -3753,17 +3753,17 @@ M.DisassociateEnvironmentOperationsRoleInput = schema.new({
 })
 
 M.DisassociateEnvironmentOperationsRoleOutput = schema.new({
-    id = id.from(_N, "DisassociateEnvironmentOperationsRoleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ListAvailableSolutionStacksInput = schema.new({
-    id = id.from(_N, "ListAvailableSolutionStacksInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ListAvailableSolutionStacksOutput = schema.new({
-    id = id.from(_N, "ListAvailableSolutionStacksOutput"),
+    id = id.from(_N, "ListAvailableSolutionStacksResultMessage"),
     type = "structure",
     members = {
         SolutionStacks = schema.new({
@@ -3810,7 +3810,7 @@ M.SearchFilter = schema.new({
 })
 
 M.ListPlatformBranchesInput = schema.new({
-    id = id.from(_N, "ListPlatformBranchesInput"),
+    id = id.from(_N, "ListPlatformBranchesRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -3877,7 +3877,7 @@ M.PlatformBranchSummary = schema.new({
 })
 
 M.ListPlatformBranchesOutput = schema.new({
-    id = id.from(_N, "ListPlatformBranchesOutput"),
+    id = id.from(_N, "ListPlatformBranchesResult"),
     type = "structure",
     members = {
         PlatformBranchSummaryList = schema.new({
@@ -3923,7 +3923,7 @@ M.PlatformFilter = schema.new({
 })
 
 M.ListPlatformVersionsInput = schema.new({
-    id = id.from(_N, "ListPlatformVersionsInput"),
+    id = id.from(_N, "ListPlatformVersionsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -3949,7 +3949,7 @@ M.ListPlatformVersionsInput = schema.new({
 })
 
 M.ListPlatformVersionsOutput = schema.new({
-    id = id.from(_N, "ListPlatformVersionsOutput"),
+    id = id.from(_N, "ListPlatformVersionsResult"),
     type = "structure",
     members = {
         PlatformSummaryList = schema.new({
@@ -3969,7 +3969,7 @@ M.ListPlatformVersionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceMessage"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3985,7 +3985,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ResourceTagsDescriptionMessage"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4037,7 +4037,7 @@ M.ResourceTypeNotSupportedException = schema.new({
 })
 
 M.RebuildEnvironmentInput = schema.new({
-    id = id.from(_N, "RebuildEnvironmentInput"),
+    id = id.from(_N, "RebuildEnvironmentMessage"),
     type = "structure",
     members = {
         EnvironmentId = schema.new({
@@ -4056,12 +4056,12 @@ M.RebuildEnvironmentInput = schema.new({
 })
 
 M.RebuildEnvironmentOutput = schema.new({
-    id = id.from(_N, "RebuildEnvironmentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RequestEnvironmentInfoInput = schema.new({
-    id = id.from(_N, "RequestEnvironmentInfoInput"),
+    id = id.from(_N, "RequestEnvironmentInfoMessage"),
     type = "structure",
     members = {
         EnvironmentId = schema.new({
@@ -4089,12 +4089,12 @@ M.RequestEnvironmentInfoInput = schema.new({
 })
 
 M.RequestEnvironmentInfoOutput = schema.new({
-    id = id.from(_N, "RequestEnvironmentInfoOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RestartAppServerInput = schema.new({
-    id = id.from(_N, "RestartAppServerInput"),
+    id = id.from(_N, "RestartAppServerMessage"),
     type = "structure",
     members = {
         EnvironmentId = schema.new({
@@ -4113,12 +4113,12 @@ M.RestartAppServerInput = schema.new({
 })
 
 M.RestartAppServerOutput = schema.new({
-    id = id.from(_N, "RestartAppServerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RetrieveEnvironmentInfoInput = schema.new({
-    id = id.from(_N, "RetrieveEnvironmentInfoInput"),
+    id = id.from(_N, "RetrieveEnvironmentInfoMessage"),
     type = "structure",
     members = {
         EnvironmentId = schema.new({
@@ -4177,7 +4177,7 @@ M.EnvironmentInfoDescription = schema.new({
 })
 
 M.RetrieveEnvironmentInfoOutput = schema.new({
-    id = id.from(_N, "RetrieveEnvironmentInfoOutput"),
+    id = id.from(_N, "RetrieveEnvironmentInfoResultMessage"),
     type = "structure",
     members = {
         EnvironmentInfo = schema.new({
@@ -4191,7 +4191,7 @@ M.RetrieveEnvironmentInfoOutput = schema.new({
 })
 
 M.SwapEnvironmentCNAMEsInput = schema.new({
-    id = id.from(_N, "SwapEnvironmentCNAMEsInput"),
+    id = id.from(_N, "SwapEnvironmentCNAMEsMessage"),
     type = "structure",
     members = {
         SourceEnvironmentId = schema.new({
@@ -4222,12 +4222,12 @@ M.SwapEnvironmentCNAMEsInput = schema.new({
 })
 
 M.SwapEnvironmentCNAMEsOutput = schema.new({
-    id = id.from(_N, "SwapEnvironmentCNAMEsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.TerminateEnvironmentInput = schema.new({
-    id = id.from(_N, "TerminateEnvironmentInput"),
+    id = id.from(_N, "TerminateEnvironmentMessage"),
     type = "structure",
     members = {
         EnvironmentId = schema.new({
@@ -4258,7 +4258,7 @@ M.TerminateEnvironmentInput = schema.new({
 })
 
 M.TerminateEnvironmentOutput = schema.new({
-    id = id.from(_N, "TerminateEnvironmentOutput"),
+    id = id.from(_N, "EnvironmentDescription"),
     type = "structure",
     members = {
         EnvironmentName = schema.new({
@@ -4394,7 +4394,7 @@ M.TerminateEnvironmentOutput = schema.new({
 })
 
 M.UpdateApplicationInput = schema.new({
-    id = id.from(_N, "UpdateApplicationInput"),
+    id = id.from(_N, "UpdateApplicationMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4416,7 +4416,7 @@ M.UpdateApplicationInput = schema.new({
 })
 
 M.UpdateApplicationOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationOutput"),
+    id = id.from(_N, "ApplicationDescriptionMessage"),
     type = "structure",
     members = {
         Application = schema.new({
@@ -4430,7 +4430,7 @@ M.UpdateApplicationOutput = schema.new({
 })
 
 M.UpdateApplicationResourceLifecycleInput = schema.new({
-    id = id.from(_N, "UpdateApplicationResourceLifecycleInput"),
+    id = id.from(_N, "UpdateApplicationResourceLifecycleMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4456,7 +4456,7 @@ M.UpdateApplicationResourceLifecycleInput = schema.new({
 })
 
 M.UpdateApplicationResourceLifecycleOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationResourceLifecycleOutput"),
+    id = id.from(_N, "ApplicationResourceLifecycleDescriptionMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4476,7 +4476,7 @@ M.UpdateApplicationResourceLifecycleOutput = schema.new({
 })
 
 M.UpdateApplicationVersionInput = schema.new({
-    id = id.from(_N, "UpdateApplicationVersionInput"),
+    id = id.from(_N, "UpdateApplicationVersionMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4507,7 +4507,7 @@ M.UpdateApplicationVersionInput = schema.new({
 })
 
 M.UpdateApplicationVersionOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationVersionOutput"),
+    id = id.from(_N, "ApplicationVersionDescriptionMessage"),
     type = "structure",
     members = {
         ApplicationVersion = schema.new({
@@ -4521,7 +4521,7 @@ M.UpdateApplicationVersionOutput = schema.new({
 })
 
 M.UpdateConfigurationTemplateInput = schema.new({
-    id = id.from(_N, "UpdateConfigurationTemplateInput"),
+    id = id.from(_N, "UpdateConfigurationTemplateMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4566,7 +4566,7 @@ M.UpdateConfigurationTemplateInput = schema.new({
 })
 
 M.UpdateConfigurationTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateConfigurationTemplateOutput"),
+    id = id.from(_N, "ConfigurationSettingsDescription"),
     type = "structure",
     members = {
         SolutionStackName = schema.new({
@@ -4634,7 +4634,7 @@ M.UpdateConfigurationTemplateOutput = schema.new({
 })
 
 M.UpdateEnvironmentInput = schema.new({
-    id = id.from(_N, "UpdateEnvironmentInput"),
+    id = id.from(_N, "UpdateEnvironmentMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4716,7 +4716,7 @@ M.UpdateEnvironmentInput = schema.new({
 })
 
 M.UpdateEnvironmentOutput = schema.new({
-    id = id.from(_N, "UpdateEnvironmentOutput"),
+    id = id.from(_N, "EnvironmentDescription"),
     type = "structure",
     members = {
         EnvironmentName = schema.new({
@@ -4868,7 +4868,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UpdateTagsForResourceInput = schema.new({
-    id = id.from(_N, "UpdateTagsForResourceInput"),
+    id = id.from(_N, "UpdateTagsForResourceMessage"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4898,12 +4898,12 @@ M.UpdateTagsForResourceInput = schema.new({
 })
 
 M.UpdateTagsForResourceOutput = schema.new({
-    id = id.from(_N, "UpdateTagsForResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ValidateConfigurationSettingsInput = schema.new({
-    id = id.from(_N, "ValidateConfigurationSettingsInput"),
+    id = id.from(_N, "ValidateConfigurationSettingsMessage"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4972,7 +4972,7 @@ M.ValidationMessage = schema.new({
 })
 
 M.ValidateConfigurationSettingsOutput = schema.new({
-    id = id.from(_N, "ValidateConfigurationSettingsOutput"),
+    id = id.from(_N, "ConfigurationSettingsValidationMessages"),
     type = "structure",
     members = {
         Messages = schema.new({
@@ -4984,5 +4984,19 @@ M.ValidateConfigurationSettingsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

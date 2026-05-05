@@ -27,7 +27,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -44,7 +44,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -131,7 +131,7 @@ M.StepInput = schema.new({
 })
 
 M.CreateWorkflowInput = schema.new({
-    id = id.from(_N, "CreateWorkflowInput"),
+    id = id.from(_N, "CreateMigrationWorkflowRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -194,7 +194,7 @@ M.CreateWorkflowInput = schema.new({
 })
 
 M.CreateWorkflowOutput = schema.new({
-    id = id.from(_N, "CreateWorkflowOutput"),
+    id = id.from(_N, "CreateMigrationWorkflowResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -310,7 +310,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.DeleteWorkflowInput = schema.new({
-    id = id.from(_N, "DeleteWorkflowInput"),
+    id = id.from(_N, "DeleteMigrationWorkflowRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -327,7 +327,7 @@ M.DeleteWorkflowInput = schema.new({
 })
 
 M.DeleteWorkflowOutput = schema.new({
-    id = id.from(_N, "DeleteWorkflowOutput"),
+    id = id.from(_N, "DeleteMigrationWorkflowResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -352,7 +352,7 @@ M.DeleteWorkflowOutput = schema.new({
 })
 
 M.GetWorkflowInput = schema.new({
-    id = id.from(_N, "GetWorkflowInput"),
+    id = id.from(_N, "GetMigrationWorkflowRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -388,7 +388,7 @@ M.Tool = schema.new({
 })
 
 M.GetWorkflowOutput = schema.new({
-    id = id.from(_N, "GetWorkflowOutput"),
+    id = id.from(_N, "GetMigrationWorkflowResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -520,7 +520,7 @@ M.GetWorkflowOutput = schema.new({
 })
 
 M.ListWorkflowsInput = schema.new({
-    id = id.from(_N, "ListWorkflowsInput"),
+    id = id.from(_N, "ListMigrationWorkflowsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -649,7 +649,7 @@ M.MigrationWorkflowSummary = schema.new({
 })
 
 M.ListWorkflowsOutput = schema.new({
-    id = id.from(_N, "ListWorkflowsOutput"),
+    id = id.from(_N, "ListMigrationWorkflowsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -672,7 +672,7 @@ M.ListWorkflowsOutput = schema.new({
 })
 
 M.StartWorkflowInput = schema.new({
-    id = id.from(_N, "StartWorkflowInput"),
+    id = id.from(_N, "StartMigrationWorkflowRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -689,7 +689,7 @@ M.StartWorkflowInput = schema.new({
 })
 
 M.StartWorkflowOutput = schema.new({
-    id = id.from(_N, "StartWorkflowOutput"),
+    id = id.from(_N, "StartMigrationWorkflowResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -726,7 +726,7 @@ M.StartWorkflowOutput = schema.new({
 })
 
 M.StopWorkflowInput = schema.new({
-    id = id.from(_N, "StopWorkflowInput"),
+    id = id.from(_N, "StopMigrationWorkflowRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -743,7 +743,7 @@ M.StopWorkflowInput = schema.new({
 })
 
 M.StopWorkflowOutput = schema.new({
-    id = id.from(_N, "StopWorkflowOutput"),
+    id = id.from(_N, "StopMigrationWorkflowResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -780,7 +780,7 @@ M.StopWorkflowOutput = schema.new({
 })
 
 M.UpdateWorkflowInput = schema.new({
-    id = id.from(_N, "UpdateWorkflowInput"),
+    id = id.from(_N, "UpdateMigrationWorkflowRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -824,7 +824,7 @@ M.UpdateWorkflowInput = schema.new({
 })
 
 M.UpdateWorkflowOutput = schema.new({
-    id = id.from(_N, "UpdateWorkflowOutput"),
+    id = id.from(_N, "UpdateMigrationWorkflowResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -940,7 +940,7 @@ M.TemplateSource = schema.new({
 })
 
 M.CreateTemplateInput = schema.new({
-    id = id.from(_N, "CreateTemplateInput"),
+    id = id.from(_N, "CreateTemplateRequest"),
     type = "structure",
     members = {
         templateName = schema.new({
@@ -989,7 +989,7 @@ M.CreateTemplateInput = schema.new({
 })
 
 M.CreateTemplateOutput = schema.new({
-    id = id.from(_N, "CreateTemplateOutput"),
+    id = id.from(_N, "CreateTemplateResponse"),
     type = "structure",
     members = {
         templateId = schema.new({
@@ -1016,7 +1016,7 @@ M.CreateTemplateOutput = schema.new({
 })
 
 M.DeleteTemplateInput = schema.new({
-    id = id.from(_N, "DeleteTemplateInput"),
+    id = id.from(_N, "DeleteTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1033,12 +1033,12 @@ M.DeleteTemplateInput = schema.new({
 })
 
 M.DeleteTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteTemplateOutput"),
+    id = id.from(_N, "DeleteTemplateResponse"),
     type = "structure",
 })
 
 M.GetTemplateInput = schema.new({
-    id = id.from(_N, "GetTemplateInput"),
+    id = id.from(_N, "GetMigrationWorkflowTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1080,7 +1080,7 @@ M.TemplateInput = schema.new({
 })
 
 M.GetTemplateOutput = schema.new({
-    id = id.from(_N, "GetTemplateOutput"),
+    id = id.from(_N, "GetMigrationWorkflowTemplateResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1163,7 +1163,7 @@ M.GetTemplateOutput = schema.new({
 })
 
 M.ListTemplatesInput = schema.new({
-    id = id.from(_N, "ListTemplatesInput"),
+    id = id.from(_N, "ListMigrationWorkflowTemplatesRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -1229,7 +1229,7 @@ M.TemplateSummary = schema.new({
 })
 
 M.ListTemplatesOutput = schema.new({
-    id = id.from(_N, "ListTemplatesOutput"),
+    id = id.from(_N, "ListMigrationWorkflowTemplatesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1252,7 +1252,7 @@ M.ListTemplatesOutput = schema.new({
 })
 
 M.UpdateTemplateInput = schema.new({
-    id = id.from(_N, "UpdateTemplateInput"),
+    id = id.from(_N, "UpdateTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1290,7 +1290,7 @@ M.UpdateTemplateInput = schema.new({
 })
 
 M.UpdateTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateTemplateOutput"),
+    id = id.from(_N, "UpdateTemplateResponse"),
     type = "structure",
     members = {
         templateId = schema.new({
@@ -1317,7 +1317,7 @@ M.UpdateTemplateOutput = schema.new({
 })
 
 M.ListPluginsInput = schema.new({
-    id = id.from(_N, "ListPluginsInput"),
+    id = id.from(_N, "ListPluginsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -1386,7 +1386,7 @@ M.PluginSummary = schema.new({
 })
 
 M.ListPluginsOutput = schema.new({
-    id = id.from(_N, "ListPluginsOutput"),
+    id = id.from(_N, "ListPluginsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1406,7 +1406,7 @@ M.ListPluginsOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1434,12 +1434,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.GetTemplateStepInput = schema.new({
-    id = id.from(_N, "GetTemplateStepInput"),
+    id = id.from(_N, "GetTemplateStepRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1578,7 +1578,7 @@ M.StepAutomationConfiguration = schema.new({
 })
 
 M.GetTemplateStepOutput = schema.new({
-    id = id.from(_N, "GetTemplateStepOutput"),
+    id = id.from(_N, "GetTemplateStepResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1655,7 +1655,7 @@ M.GetTemplateStepOutput = schema.new({
 })
 
 M.ListTemplateStepsInput = schema.new({
-    id = id.from(_N, "ListTemplateStepsInput"),
+    id = id.from(_N, "ListTemplateStepsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -1764,7 +1764,7 @@ M.TemplateStepSummary = schema.new({
 })
 
 M.ListTemplateStepsOutput = schema.new({
-    id = id.from(_N, "ListTemplateStepsOutput"),
+    id = id.from(_N, "ListTemplateStepsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1784,7 +1784,7 @@ M.ListTemplateStepsOutput = schema.new({
 })
 
 M.GetTemplateStepGroupInput = schema.new({
-    id = id.from(_N, "GetTemplateStepGroupInput"),
+    id = id.from(_N, "GetTemplateStepGroupRequest"),
     type = "structure",
     members = {
         templateId = schema.new({
@@ -1811,7 +1811,7 @@ M.GetTemplateStepGroupInput = schema.new({
 })
 
 M.GetTemplateStepGroupOutput = schema.new({
-    id = id.from(_N, "GetTemplateStepGroupOutput"),
+    id = id.from(_N, "GetTemplateStepGroupResponse"),
     type = "structure",
     members = {
         templateId = schema.new({
@@ -1881,7 +1881,7 @@ M.GetTemplateStepGroupOutput = schema.new({
 })
 
 M.ListTemplateStepGroupsInput = schema.new({
-    id = id.from(_N, "ListTemplateStepGroupsInput"),
+    id = id.from(_N, "ListTemplateStepGroupsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -1950,7 +1950,7 @@ M.TemplateStepGroupSummary = schema.new({
 })
 
 M.ListTemplateStepGroupsOutput = schema.new({
-    id = id.from(_N, "ListTemplateStepGroupsOutput"),
+    id = id.from(_N, "ListTemplateStepGroupsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1973,7 +1973,7 @@ M.ListTemplateStepGroupsOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2001,7 +2001,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -2103,7 +2103,7 @@ M.WorkflowStepAutomationConfiguration = schema.new({
 })
 
 M.CreateWorkflowStepInput = schema.new({
-    id = id.from(_N, "CreateWorkflowStepInput"),
+    id = id.from(_N, "CreateWorkflowStepRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2187,7 +2187,7 @@ M.CreateWorkflowStepInput = schema.new({
 })
 
 M.CreateWorkflowStepOutput = schema.new({
-    id = id.from(_N, "CreateWorkflowStepOutput"),
+    id = id.from(_N, "CreateWorkflowStepResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2218,7 +2218,7 @@ M.CreateWorkflowStepOutput = schema.new({
 })
 
 M.DeleteWorkflowStepInput = schema.new({
-    id = id.from(_N, "DeleteWorkflowStepInput"),
+    id = id.from(_N, "DeleteWorkflowStepRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2255,12 +2255,12 @@ M.DeleteWorkflowStepInput = schema.new({
 })
 
 M.DeleteWorkflowStepOutput = schema.new({
-    id = id.from(_N, "DeleteWorkflowStepOutput"),
+    id = id.from(_N, "DeleteWorkflowStepResponse"),
     type = "structure",
 })
 
 M.GetWorkflowStepInput = schema.new({
-    id = id.from(_N, "GetWorkflowStepInput"),
+    id = id.from(_N, "GetWorkflowStepRequest"),
     type = "structure",
     members = {
         workflowId = schema.new({
@@ -2297,7 +2297,7 @@ M.GetWorkflowStepInput = schema.new({
 })
 
 M.GetWorkflowStepOutput = schema.new({
-    id = id.from(_N, "GetWorkflowStepOutput"),
+    id = id.from(_N, "GetWorkflowStepResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2435,7 +2435,7 @@ M.GetWorkflowStepOutput = schema.new({
 })
 
 M.ListWorkflowStepsInput = schema.new({
-    id = id.from(_N, "ListWorkflowStepsInput"),
+    id = id.from(_N, "ListWorkflowStepsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2568,7 +2568,7 @@ M.WorkflowStepSummary = schema.new({
 })
 
 M.ListWorkflowStepsOutput = schema.new({
-    id = id.from(_N, "ListWorkflowStepsOutput"),
+    id = id.from(_N, "ListWorkflowStepsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2591,7 +2591,7 @@ M.ListWorkflowStepsOutput = schema.new({
 })
 
 M.RetryWorkflowStepInput = schema.new({
-    id = id.from(_N, "RetryWorkflowStepInput"),
+    id = id.from(_N, "RetryWorkflowStepRequest"),
     type = "structure",
     members = {
         workflowId = schema.new({
@@ -2628,7 +2628,7 @@ M.RetryWorkflowStepInput = schema.new({
 })
 
 M.RetryWorkflowStepOutput = schema.new({
-    id = id.from(_N, "RetryWorkflowStepOutput"),
+    id = id.from(_N, "RetryWorkflowStepResponse"),
     type = "structure",
     members = {
         stepGroupId = schema.new({
@@ -2659,7 +2659,7 @@ M.RetryWorkflowStepOutput = schema.new({
 })
 
 M.UpdateWorkflowStepInput = schema.new({
-    id = id.from(_N, "UpdateWorkflowStepInput"),
+    id = id.from(_N, "UpdateWorkflowStepRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2753,7 +2753,7 @@ M.UpdateWorkflowStepInput = schema.new({
 })
 
 M.UpdateWorkflowStepOutput = schema.new({
-    id = id.from(_N, "UpdateWorkflowStepOutput"),
+    id = id.from(_N, "UpdateWorkflowStepResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2784,7 +2784,7 @@ M.UpdateWorkflowStepOutput = schema.new({
 })
 
 M.CreateWorkflowStepGroupInput = schema.new({
-    id = id.from(_N, "CreateWorkflowStepGroupInput"),
+    id = id.from(_N, "CreateWorkflowStepGroupRequest"),
     type = "structure",
     members = {
         workflowId = schema.new({
@@ -2829,7 +2829,7 @@ M.CreateWorkflowStepGroupInput = schema.new({
 })
 
 M.CreateWorkflowStepGroupOutput = schema.new({
-    id = id.from(_N, "CreateWorkflowStepGroupOutput"),
+    id = id.from(_N, "CreateWorkflowStepGroupResponse"),
     type = "structure",
     members = {
         workflowId = schema.new({
@@ -2887,7 +2887,7 @@ M.CreateWorkflowStepGroupOutput = schema.new({
 })
 
 M.DeleteWorkflowStepGroupInput = schema.new({
-    id = id.from(_N, "DeleteWorkflowStepGroupInput"),
+    id = id.from(_N, "DeleteWorkflowStepGroupRequest"),
     type = "structure",
     members = {
         workflowId = schema.new({
@@ -2914,12 +2914,12 @@ M.DeleteWorkflowStepGroupInput = schema.new({
 })
 
 M.DeleteWorkflowStepGroupOutput = schema.new({
-    id = id.from(_N, "DeleteWorkflowStepGroupOutput"),
+    id = id.from(_N, "DeleteWorkflowStepGroupResponse"),
     type = "structure",
 })
 
 M.GetWorkflowStepGroupInput = schema.new({
-    id = id.from(_N, "GetWorkflowStepGroupInput"),
+    id = id.from(_N, "GetWorkflowStepGroupRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2946,7 +2946,7 @@ M.GetWorkflowStepGroupInput = schema.new({
 })
 
 M.GetWorkflowStepGroupOutput = schema.new({
-    id = id.from(_N, "GetWorkflowStepGroupOutput"),
+    id = id.from(_N, "GetWorkflowStepGroupResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -3028,7 +3028,7 @@ M.GetWorkflowStepGroupOutput = schema.new({
 })
 
 M.ListWorkflowStepGroupsInput = schema.new({
-    id = id.from(_N, "ListWorkflowStepGroupsInput"),
+    id = id.from(_N, "ListWorkflowStepGroupsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3109,7 +3109,7 @@ M.WorkflowStepGroupSummary = schema.new({
 })
 
 M.ListWorkflowStepGroupsOutput = schema.new({
-    id = id.from(_N, "ListWorkflowStepGroupsOutput"),
+    id = id.from(_N, "ListWorkflowStepGroupsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3132,7 +3132,7 @@ M.ListWorkflowStepGroupsOutput = schema.new({
 })
 
 M.UpdateWorkflowStepGroupInput = schema.new({
-    id = id.from(_N, "UpdateWorkflowStepGroupInput"),
+    id = id.from(_N, "UpdateWorkflowStepGroupRequest"),
     type = "structure",
     members = {
         workflowId = schema.new({
@@ -3185,7 +3185,7 @@ M.UpdateWorkflowStepGroupInput = schema.new({
 })
 
 M.UpdateWorkflowStepGroupOutput = schema.new({
-    id = id.from(_N, "UpdateWorkflowStepGroupOutput"),
+    id = id.from(_N, "UpdateWorkflowStepGroupResponse"),
     type = "structure",
     members = {
         workflowId = schema.new({
@@ -3241,5 +3241,19 @@ M.UpdateWorkflowStepGroupOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

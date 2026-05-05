@@ -354,7 +354,7 @@ M.ComputeSavingsPlans = schema.new({
 })
 
 M.GetPreferencesInput = schema.new({
-    id = id.from(_N, "GetPreferencesInput"),
+    id = id.from(_N, "GetPreferencesRequest"),
     type = "structure",
 })
 
@@ -378,7 +378,7 @@ M.PreferredCommitment = schema.new({
 })
 
 M.GetPreferencesOutput = schema.new({
-    id = id.from(_N, "GetPreferencesOutput"),
+    id = id.from(_N, "GetPreferencesResponse"),
     type = "structure",
     members = {
         savingsEstimationMode = schema.new({
@@ -496,7 +496,7 @@ M.ValidationException = schema.new({
 })
 
 M.GetRecommendationInput = schema.new({
-    id = id.from(_N, "GetRecommendationInput"),
+    id = id.from(_N, "GetRecommendationRequest"),
     type = "structure",
     members = {
         recommendationId = schema.new({
@@ -1984,7 +1984,7 @@ M.Tag = schema.new({
 })
 
 M.GetRecommendationOutput = schema.new({
-    id = id.from(_N, "GetRecommendationOutput"),
+    id = id.from(_N, "GetRecommendationResponse"),
     type = "structure",
     members = {
         recommendationId = schema.new({
@@ -2204,7 +2204,7 @@ M.TimePeriod = schema.new({
 })
 
 M.ListEfficiencyMetricsInput = schema.new({
-    id = id.from(_N, "ListEfficiencyMetricsInput"),
+    id = id.from(_N, "ListEfficiencyMetricsRequest"),
     type = "structure",
     members = {
         groupBy = schema.new({
@@ -2312,7 +2312,7 @@ M.EfficiencyMetricsByGroup = schema.new({
 })
 
 M.ListEfficiencyMetricsOutput = schema.new({
-    id = id.from(_N, "ListEfficiencyMetricsOutput"),
+    id = id.from(_N, "ListEfficiencyMetricsResponse"),
     type = "structure",
     members = {
         efficiencyMetricsByGroup = schema.new({
@@ -2332,7 +2332,7 @@ M.ListEfficiencyMetricsOutput = schema.new({
 })
 
 M.ListEnrollmentStatusesInput = schema.new({
-    id = id.from(_N, "ListEnrollmentStatusesInput"),
+    id = id.from(_N, "ListEnrollmentStatusesRequest"),
     type = "structure",
     members = {
         includeOrganizationInfo = schema.new({
@@ -2366,7 +2366,7 @@ M.ListEnrollmentStatusesInput = schema.new({
 })
 
 M.ListEnrollmentStatusesOutput = schema.new({
-    id = id.from(_N, "ListEnrollmentStatusesOutput"),
+    id = id.from(_N, "ListEnrollmentStatusesResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -2474,7 +2474,7 @@ M.Filter = schema.new({
 })
 
 M.ListRecommendationsInput = schema.new({
-    id = id.from(_N, "ListRecommendationsInput"),
+    id = id.from(_N, "ListRecommendationsRequest"),
     type = "structure",
     members = {
         filter = schema.new({
@@ -2650,7 +2650,7 @@ M.Recommendation = schema.new({
 })
 
 M.ListRecommendationsOutput = schema.new({
-    id = id.from(_N, "ListRecommendationsOutput"),
+    id = id.from(_N, "ListRecommendationsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -2670,7 +2670,7 @@ M.ListRecommendationsOutput = schema.new({
 })
 
 M.ListRecommendationSummariesInput = schema.new({
-    id = id.from(_N, "ListRecommendationSummariesInput"),
+    id = id.from(_N, "ListRecommendationSummariesRequest"),
     type = "structure",
     members = {
         filter = schema.new({
@@ -2750,7 +2750,7 @@ M.SummaryMetricsResult = schema.new({
 })
 
 M.ListRecommendationSummariesOutput = schema.new({
-    id = id.from(_N, "ListRecommendationSummariesOutput"),
+    id = id.from(_N, "ListRecommendationSummariesResponse"),
     type = "structure",
     members = {
         estimatedTotalDedupedSavings = schema.new({
@@ -2795,7 +2795,7 @@ M.ListRecommendationSummariesOutput = schema.new({
 })
 
 M.UpdateEnrollmentStatusInput = schema.new({
-    id = id.from(_N, "UpdateEnrollmentStatusInput"),
+    id = id.from(_N, "UpdateEnrollmentStatusRequest"),
     type = "structure",
     members = {
         status = schema.new({
@@ -2817,7 +2817,7 @@ M.UpdateEnrollmentStatusInput = schema.new({
 })
 
 M.UpdateEnrollmentStatusOutput = schema.new({
-    id = id.from(_N, "UpdateEnrollmentStatusOutput"),
+    id = id.from(_N, "UpdateEnrollmentStatusResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -2830,7 +2830,7 @@ M.UpdateEnrollmentStatusOutput = schema.new({
 })
 
 M.UpdatePreferencesInput = schema.new({
-    id = id.from(_N, "UpdatePreferencesInput"),
+    id = id.from(_N, "UpdatePreferencesRequest"),
     type = "structure",
     members = {
         savingsEstimationMode = schema.new({
@@ -2856,7 +2856,7 @@ M.UpdatePreferencesInput = schema.new({
 })
 
 M.UpdatePreferencesOutput = schema.new({
-    id = id.from(_N, "UpdatePreferencesOutput"),
+    id = id.from(_N, "UpdatePreferencesResponse"),
     type = "structure",
     members = {
         savingsEstimationMode = schema.new({
@@ -2880,5 +2880,19 @@ M.UpdatePreferencesOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

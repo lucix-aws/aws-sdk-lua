@@ -72,7 +72,7 @@ M.CloudWatchLogsDestination = schema.new({
 })
 
 M.CreateConfigurationSetInput = schema.new({
-    id = id.from(_N, "CreateConfigurationSetInput"),
+    id = id.from(_N, "CreateConfigurationSetRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -85,7 +85,7 @@ M.CreateConfigurationSetInput = schema.new({
 })
 
 M.CreateConfigurationSetOutput = schema.new({
-    id = id.from(_N, "CreateConfigurationSetOutput"),
+    id = id.from(_N, "CreateConfigurationSetResponse"),
     type = "structure",
 })
 
@@ -211,7 +211,7 @@ M.EventDestinationDefinition = schema.new({
 })
 
 M.CreateConfigurationSetEventDestinationInput = schema.new({
-    id = id.from(_N, "CreateConfigurationSetEventDestinationInput"),
+    id = id.from(_N, "CreateConfigurationSetEventDestinationRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -241,7 +241,7 @@ M.CreateConfigurationSetEventDestinationInput = schema.new({
 })
 
 M.CreateConfigurationSetEventDestinationOutput = schema.new({
-    id = id.from(_N, "CreateConfigurationSetEventDestinationOutput"),
+    id = id.from(_N, "CreateConfigurationSetEventDestinationResponse"),
     type = "structure",
 })
 
@@ -262,7 +262,7 @@ M.NotFoundException = schema.new({
 })
 
 M.DeleteConfigurationSetInput = schema.new({
-    id = id.from(_N, "DeleteConfigurationSetInput"),
+    id = id.from(_N, "DeleteConfigurationSetRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -279,12 +279,12 @@ M.DeleteConfigurationSetInput = schema.new({
 })
 
 M.DeleteConfigurationSetOutput = schema.new({
-    id = id.from(_N, "DeleteConfigurationSetOutput"),
+    id = id.from(_N, "DeleteConfigurationSetResponse"),
     type = "structure",
 })
 
 M.DeleteConfigurationSetEventDestinationInput = schema.new({
-    id = id.from(_N, "DeleteConfigurationSetEventDestinationInput"),
+    id = id.from(_N, "DeleteConfigurationSetEventDestinationRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -311,7 +311,7 @@ M.DeleteConfigurationSetEventDestinationInput = schema.new({
 })
 
 M.DeleteConfigurationSetEventDestinationOutput = schema.new({
-    id = id.from(_N, "DeleteConfigurationSetEventDestinationOutput"),
+    id = id.from(_N, "DeleteConfigurationSetEventDestinationResponse"),
     type = "structure",
 })
 
@@ -363,7 +363,7 @@ M.EventDestination = schema.new({
 })
 
 M.GetConfigurationSetEventDestinationsInput = schema.new({
-    id = id.from(_N, "GetConfigurationSetEventDestinationsInput"),
+    id = id.from(_N, "GetConfigurationSetEventDestinationsRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -380,7 +380,7 @@ M.GetConfigurationSetEventDestinationsInput = schema.new({
 })
 
 M.GetConfigurationSetEventDestinationsOutput = schema.new({
-    id = id.from(_N, "GetConfigurationSetEventDestinationsOutput"),
+    id = id.from(_N, "GetConfigurationSetEventDestinationsResponse"),
     type = "structure",
     members = {
         EventDestinations = schema.new({
@@ -394,7 +394,7 @@ M.GetConfigurationSetEventDestinationsOutput = schema.new({
 })
 
 M.ListConfigurationSetsInput = schema.new({
-    id = id.from(_N, "ListConfigurationSetsInput"),
+    id = id.from(_N, "ListConfigurationSetsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -419,7 +419,7 @@ M.ListConfigurationSetsInput = schema.new({
 })
 
 M.ListConfigurationSetsOutput = schema.new({
-    id = id.from(_N, "ListConfigurationSetsOutput"),
+    id = id.from(_N, "ListConfigurationSetsResponse"),
     type = "structure",
     members = {
         ConfigurationSets = schema.new({
@@ -517,7 +517,7 @@ M.VoiceMessageContent = schema.new({
 })
 
 M.SendVoiceMessageInput = schema.new({
-    id = id.from(_N, "SendVoiceMessageInput"),
+    id = id.from(_N, "SendVoiceMessageRequest"),
     type = "structure",
     members = {
         CallerId = schema.new({
@@ -555,7 +555,7 @@ M.SendVoiceMessageInput = schema.new({
 })
 
 M.SendVoiceMessageOutput = schema.new({
-    id = id.from(_N, "SendVoiceMessageOutput"),
+    id = id.from(_N, "SendVoiceMessageResponse"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -568,7 +568,7 @@ M.SendVoiceMessageOutput = schema.new({
 })
 
 M.UpdateConfigurationSetEventDestinationInput = schema.new({
-    id = id.from(_N, "UpdateConfigurationSetEventDestinationInput"),
+    id = id.from(_N, "UpdateConfigurationSetEventDestinationRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -602,8 +602,22 @@ M.UpdateConfigurationSetEventDestinationInput = schema.new({
 })
 
 M.UpdateConfigurationSetEventDestinationOutput = schema.new({
-    id = id.from(_N, "UpdateConfigurationSetEventDestinationOutput"),
+    id = id.from(_N, "UpdateConfigurationSetEventDestinationResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

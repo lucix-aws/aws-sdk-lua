@@ -514,7 +514,7 @@ M.Alarm = schema.new({
 })
 
 M.AllocateStaticIpInput = schema.new({
-    id = id.from(_N, "AllocateStaticIpInput"),
+    id = id.from(_N, "AllocateStaticIpRequest"),
     type = "structure",
     members = {
         staticIpName = schema.new({
@@ -610,7 +610,7 @@ M.Operation = schema.new({
 })
 
 M.AllocateStaticIpOutput = schema.new({
-    id = id.from(_N, "AllocateStaticIpOutput"),
+    id = id.from(_N, "AllocateStaticIpResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -828,7 +828,7 @@ M.UnauthenticatedException = schema.new({
 })
 
 M.AttachCertificateToDistributionInput = schema.new({
-    id = id.from(_N, "AttachCertificateToDistributionInput"),
+    id = id.from(_N, "AttachCertificateToDistributionRequest"),
     type = "structure",
     members = {
         distributionName = schema.new({
@@ -853,7 +853,7 @@ M.AttachCertificateToDistributionInput = schema.new({
 })
 
 M.AttachCertificateToDistributionOutput = schema.new({
-    id = id.from(_N, "AttachCertificateToDistributionOutput"),
+    id = id.from(_N, "AttachCertificateToDistributionResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -867,7 +867,7 @@ M.AttachCertificateToDistributionOutput = schema.new({
 })
 
 M.AttachDiskInput = schema.new({
-    id = id.from(_N, "AttachDiskInput"),
+    id = id.from(_N, "AttachDiskRequest"),
     type = "structure",
     members = {
         diskName = schema.new({
@@ -907,7 +907,7 @@ M.AttachDiskInput = schema.new({
 })
 
 M.AttachDiskOutput = schema.new({
-    id = id.from(_N, "AttachDiskOutput"),
+    id = id.from(_N, "AttachDiskResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -959,7 +959,7 @@ M.DiskMap = schema.new({
 })
 
 M.AttachInstancesToLoadBalancerInput = schema.new({
-    id = id.from(_N, "AttachInstancesToLoadBalancerInput"),
+    id = id.from(_N, "AttachInstancesToLoadBalancerRequest"),
     type = "structure",
     members = {
         loadBalancerName = schema.new({
@@ -985,7 +985,7 @@ M.AttachInstancesToLoadBalancerInput = schema.new({
 })
 
 M.AttachInstancesToLoadBalancerOutput = schema.new({
-    id = id.from(_N, "AttachInstancesToLoadBalancerOutput"),
+    id = id.from(_N, "AttachInstancesToLoadBalancerResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -999,7 +999,7 @@ M.AttachInstancesToLoadBalancerOutput = schema.new({
 })
 
 M.AttachLoadBalancerTlsCertificateInput = schema.new({
-    id = id.from(_N, "AttachLoadBalancerTlsCertificateInput"),
+    id = id.from(_N, "AttachLoadBalancerTlsCertificateRequest"),
     type = "structure",
     members = {
         loadBalancerName = schema.new({
@@ -1024,7 +1024,7 @@ M.AttachLoadBalancerTlsCertificateInput = schema.new({
 })
 
 M.AttachLoadBalancerTlsCertificateOutput = schema.new({
-    id = id.from(_N, "AttachLoadBalancerTlsCertificateOutput"),
+    id = id.from(_N, "AttachLoadBalancerTlsCertificateResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -1038,7 +1038,7 @@ M.AttachLoadBalancerTlsCertificateOutput = schema.new({
 })
 
 M.AttachStaticIpInput = schema.new({
-    id = id.from(_N, "AttachStaticIpInput"),
+    id = id.from(_N, "AttachStaticIpRequest"),
     type = "structure",
     members = {
         staticIpName = schema.new({
@@ -1063,7 +1063,7 @@ M.AttachStaticIpInput = schema.new({
 })
 
 M.AttachStaticIpOutput = schema.new({
-    id = id.from(_N, "AttachStaticIpOutput"),
+    id = id.from(_N, "AttachStaticIpResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -2064,7 +2064,7 @@ M.PortInfo = schema.new({
 })
 
 M.CloseInstancePublicPortsInput = schema.new({
-    id = id.from(_N, "CloseInstancePublicPortsInput"),
+    id = id.from(_N, "CloseInstancePublicPortsRequest"),
     type = "structure",
     members = {
         portInfo = schema.new({
@@ -2090,7 +2090,7 @@ M.CloseInstancePublicPortsInput = schema.new({
 })
 
 M.CloseInstancePublicPortsOutput = schema.new({
-    id = id.from(_N, "CloseInstancePublicPortsOutput"),
+    id = id.from(_N, "CloseInstancePublicPortsResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -2607,7 +2607,7 @@ M.ContainerService = schema.new({
             name = "publicDomainNames",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         url = schema.new({
             id = id.from(_N, "ContainerService", "url"),
@@ -2786,7 +2786,7 @@ M.ContainerServiceRegistryLogin = schema.new({
 })
 
 M.CopySnapshotInput = schema.new({
-    id = id.from(_N, "CopySnapshotInput"),
+    id = id.from(_N, "CopySnapshotRequest"),
     type = "structure",
     members = {
         sourceSnapshotName = schema.new({
@@ -2835,7 +2835,7 @@ M.CopySnapshotInput = schema.new({
 })
 
 M.CopySnapshotOutput = schema.new({
-    id = id.from(_N, "CopySnapshotOutput"),
+    id = id.from(_N, "CopySnapshotResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -2926,7 +2926,7 @@ M.CostEstimate = schema.new({
 })
 
 M.CreateBucketInput = schema.new({
-    id = id.from(_N, "CreateBucketInput"),
+    id = id.from(_N, "CreateBucketRequest"),
     type = "structure",
     members = {
         bucketName = schema.new({
@@ -2964,7 +2964,7 @@ M.CreateBucketInput = schema.new({
 })
 
 M.CreateBucketOutput = schema.new({
-    id = id.from(_N, "CreateBucketOutput"),
+    id = id.from(_N, "CreateBucketResult"),
     type = "structure",
     members = {
         bucket = schema.new({
@@ -2985,7 +2985,7 @@ M.CreateBucketOutput = schema.new({
 })
 
 M.CreateBucketAccessKeyInput = schema.new({
-    id = id.from(_N, "CreateBucketAccessKeyInput"),
+    id = id.from(_N, "CreateBucketAccessKeyRequest"),
     type = "structure",
     members = {
         bucketName = schema.new({
@@ -3001,7 +3001,7 @@ M.CreateBucketAccessKeyInput = schema.new({
 })
 
 M.CreateBucketAccessKeyOutput = schema.new({
-    id = id.from(_N, "CreateBucketAccessKeyOutput"),
+    id = id.from(_N, "CreateBucketAccessKeyResult"),
     type = "structure",
     members = {
         accessKey = schema.new({
@@ -3022,7 +3022,7 @@ M.CreateBucketAccessKeyOutput = schema.new({
 })
 
 M.CreateCertificateInput = schema.new({
-    id = id.from(_N, "CreateCertificateInput"),
+    id = id.from(_N, "CreateCertificateRequest"),
     type = "structure",
     members = {
         certificateName = schema.new({
@@ -3061,7 +3061,7 @@ M.CreateCertificateInput = schema.new({
 })
 
 M.CreateCertificateOutput = schema.new({
-    id = id.from(_N, "CreateCertificateOutput"),
+    id = id.from(_N, "CreateCertificateResult"),
     type = "structure",
     members = {
         certificate = schema.new({
@@ -3131,7 +3131,7 @@ M.InstanceEntry = schema.new({
 })
 
 M.CreateCloudFormationStackInput = schema.new({
-    id = id.from(_N, "CreateCloudFormationStackInput"),
+    id = id.from(_N, "CreateCloudFormationStackRequest"),
     type = "structure",
     members = {
         instances = schema.new({
@@ -3148,7 +3148,7 @@ M.CreateCloudFormationStackInput = schema.new({
 })
 
 M.CreateCloudFormationStackOutput = schema.new({
-    id = id.from(_N, "CreateCloudFormationStackOutput"),
+    id = id.from(_N, "CreateCloudFormationStackResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -3162,7 +3162,7 @@ M.CreateCloudFormationStackOutput = schema.new({
 })
 
 M.CreateContactMethodInput = schema.new({
-    id = id.from(_N, "CreateContactMethodInput"),
+    id = id.from(_N, "CreateContactMethodRequest"),
     type = "structure",
     members = {
         protocol = schema.new({
@@ -3194,7 +3194,7 @@ M.CreateContactMethodInput = schema.new({
 })
 
 M.CreateContactMethodOutput = schema.new({
-    id = id.from(_N, "CreateContactMethodOutput"),
+    id = id.from(_N, "CreateContactMethodResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -3222,7 +3222,7 @@ M.PrivateRegistryAccessRequest = schema.new({
 })
 
 M.CreateContainerServiceInput = schema.new({
-    id = id.from(_N, "CreateContainerServiceInput"),
+    id = id.from(_N, "CreateContainerServiceRequest"),
     type = "structure",
     members = {
         serviceName = schema.new({
@@ -3265,7 +3265,7 @@ M.CreateContainerServiceInput = schema.new({
             name = "publicDomainNames",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         deployment = schema.new({
             id = id.from(_N, "CreateContainerServiceInput", "deployment"),
@@ -3285,7 +3285,7 @@ M.CreateContainerServiceInput = schema.new({
 })
 
 M.CreateContainerServiceOutput = schema.new({
-    id = id.from(_N, "CreateContainerServiceOutput"),
+    id = id.from(_N, "CreateContainerServiceResult"),
     type = "structure",
     members = {
         containerService = schema.new({
@@ -3299,7 +3299,7 @@ M.CreateContainerServiceOutput = schema.new({
 })
 
 M.CreateContainerServiceDeploymentInput = schema.new({
-    id = id.from(_N, "CreateContainerServiceDeploymentInput"),
+    id = id.from(_N, "CreateContainerServiceDeploymentRequest"),
     type = "structure",
     members = {
         serviceName = schema.new({
@@ -3331,7 +3331,7 @@ M.CreateContainerServiceDeploymentInput = schema.new({
 })
 
 M.CreateContainerServiceDeploymentOutput = schema.new({
-    id = id.from(_N, "CreateContainerServiceDeploymentOutput"),
+    id = id.from(_N, "CreateContainerServiceDeploymentResult"),
     type = "structure",
     members = {
         containerService = schema.new({
@@ -3345,12 +3345,12 @@ M.CreateContainerServiceDeploymentOutput = schema.new({
 })
 
 M.CreateContainerServiceRegistryLoginInput = schema.new({
-    id = id.from(_N, "CreateContainerServiceRegistryLoginInput"),
+    id = id.from(_N, "CreateContainerServiceRegistryLoginRequest"),
     type = "structure",
 })
 
 M.CreateContainerServiceRegistryLoginOutput = schema.new({
-    id = id.from(_N, "CreateContainerServiceRegistryLoginOutput"),
+    id = id.from(_N, "CreateContainerServiceRegistryLoginResult"),
     type = "structure",
     members = {
         registryLogin = schema.new({
@@ -3364,7 +3364,7 @@ M.CreateContainerServiceRegistryLoginOutput = schema.new({
 })
 
 M.CreateDiskInput = schema.new({
-    id = id.from(_N, "CreateDiskInput"),
+    id = id.from(_N, "CreateDiskRequest"),
     type = "structure",
     members = {
         diskName = schema.new({
@@ -3412,7 +3412,7 @@ M.CreateDiskInput = schema.new({
 })
 
 M.CreateDiskOutput = schema.new({
-    id = id.from(_N, "CreateDiskOutput"),
+    id = id.from(_N, "CreateDiskResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -3426,7 +3426,7 @@ M.CreateDiskOutput = schema.new({
 })
 
 M.CreateDiskFromSnapshotInput = schema.new({
-    id = id.from(_N, "CreateDiskFromSnapshotInput"),
+    id = id.from(_N, "CreateDiskFromSnapshotRequest"),
     type = "structure",
     members = {
         diskName = schema.new({
@@ -3498,7 +3498,7 @@ M.CreateDiskFromSnapshotInput = schema.new({
 })
 
 M.CreateDiskFromSnapshotOutput = schema.new({
-    id = id.from(_N, "CreateDiskFromSnapshotOutput"),
+    id = id.from(_N, "CreateDiskFromSnapshotResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -3512,7 +3512,7 @@ M.CreateDiskFromSnapshotOutput = schema.new({
 })
 
 M.CreateDiskSnapshotInput = schema.new({
-    id = id.from(_N, "CreateDiskSnapshotInput"),
+    id = id.from(_N, "CreateDiskSnapshotRequest"),
     type = "structure",
     members = {
         diskName = schema.new({
@@ -3547,7 +3547,7 @@ M.CreateDiskSnapshotInput = schema.new({
 })
 
 M.CreateDiskSnapshotOutput = schema.new({
-    id = id.from(_N, "CreateDiskSnapshotOutput"),
+    id = id.from(_N, "CreateDiskSnapshotResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -3592,7 +3592,7 @@ M.InputOrigin = schema.new({
 })
 
 M.CreateDistributionInput = schema.new({
-    id = id.from(_N, "CreateDistributionInput"),
+    id = id.from(_N, "CreateDistributionRequest"),
     type = "structure",
     members = {
         distributionName = schema.new({
@@ -3853,7 +3853,7 @@ M.LightsailDistribution = schema.new({
 })
 
 M.CreateDistributionOutput = schema.new({
-    id = id.from(_N, "CreateDistributionOutput"),
+    id = id.from(_N, "CreateDistributionResult"),
     type = "structure",
     members = {
         distribution = schema.new({
@@ -3874,7 +3874,7 @@ M.CreateDistributionOutput = schema.new({
 })
 
 M.CreateDomainInput = schema.new({
-    id = id.from(_N, "CreateDomainInput"),
+    id = id.from(_N, "CreateDomainRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -3897,7 +3897,7 @@ M.CreateDomainInput = schema.new({
 })
 
 M.CreateDomainOutput = schema.new({
-    id = id.from(_N, "CreateDomainOutput"),
+    id = id.from(_N, "CreateDomainResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -3956,7 +3956,7 @@ M.DomainEntry = schema.new({
 })
 
 M.CreateDomainEntryInput = schema.new({
-    id = id.from(_N, "CreateDomainEntryInput"),
+    id = id.from(_N, "CreateDomainEntryRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -3982,7 +3982,7 @@ M.CreateDomainEntryInput = schema.new({
 })
 
 M.CreateDomainEntryOutput = schema.new({
-    id = id.from(_N, "CreateDomainEntryOutput"),
+    id = id.from(_N, "CreateDomainEntryResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -3996,7 +3996,7 @@ M.CreateDomainEntryOutput = schema.new({
 })
 
 M.CreateGUISessionAccessDetailsInput = schema.new({
-    id = id.from(_N, "CreateGUISessionAccessDetailsInput"),
+    id = id.from(_N, "CreateGUISessionAccessDetailsRequest"),
     type = "structure",
     members = {
         resourceName = schema.new({
@@ -4037,7 +4037,7 @@ M.Session = schema.new({
 })
 
 M.CreateGUISessionAccessDetailsOutput = schema.new({
-    id = id.from(_N, "CreateGUISessionAccessDetailsOutput"),
+    id = id.from(_N, "CreateGUISessionAccessDetailsResult"),
     type = "structure",
     members = {
         resourceName = schema.new({
@@ -4075,7 +4075,7 @@ M.CreateGUISessionAccessDetailsOutput = schema.new({
 })
 
 M.CreateInstancesInput = schema.new({
-    id = id.from(_N, "CreateInstancesInput"),
+    id = id.from(_N, "CreateInstancesRequest"),
     type = "structure",
     members = {
         instanceNames = schema.new({
@@ -4157,7 +4157,7 @@ M.CreateInstancesInput = schema.new({
 })
 
 M.CreateInstancesOutput = schema.new({
-    id = id.from(_N, "CreateInstancesOutput"),
+    id = id.from(_N, "CreateInstancesResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -4171,7 +4171,7 @@ M.CreateInstancesOutput = schema.new({
 })
 
 M.CreateInstancesFromSnapshotInput = schema.new({
-    id = id.from(_N, "CreateInstancesFromSnapshotInput"),
+    id = id.from(_N, "CreateInstancesFromSnapshotRequest"),
     type = "structure",
     members = {
         instanceNames = schema.new({
@@ -4190,7 +4190,7 @@ M.CreateInstancesFromSnapshotInput = schema.new({
             name = "attachedDiskMapping",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.DiskMap }),
         }),
         availabilityZone = schema.new({
             id = id.from(_N, "CreateInstancesFromSnapshotInput", "availabilityZone"),
@@ -4270,7 +4270,7 @@ M.CreateInstancesFromSnapshotInput = schema.new({
 })
 
 M.CreateInstancesFromSnapshotOutput = schema.new({
-    id = id.from(_N, "CreateInstancesFromSnapshotOutput"),
+    id = id.from(_N, "CreateInstancesFromSnapshotResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -4284,7 +4284,7 @@ M.CreateInstancesFromSnapshotOutput = schema.new({
 })
 
 M.CreateInstanceSnapshotInput = schema.new({
-    id = id.from(_N, "CreateInstanceSnapshotInput"),
+    id = id.from(_N, "CreateInstanceSnapshotRequest"),
     type = "structure",
     members = {
         instanceSnapshotName = schema.new({
@@ -4316,7 +4316,7 @@ M.CreateInstanceSnapshotInput = schema.new({
 })
 
 M.CreateInstanceSnapshotOutput = schema.new({
-    id = id.from(_N, "CreateInstanceSnapshotOutput"),
+    id = id.from(_N, "CreateInstanceSnapshotResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -4330,7 +4330,7 @@ M.CreateInstanceSnapshotOutput = schema.new({
 })
 
 M.CreateKeyPairInput = schema.new({
-    id = id.from(_N, "CreateKeyPairInput"),
+    id = id.from(_N, "CreateKeyPairRequest"),
     type = "structure",
     members = {
         keyPairName = schema.new({
@@ -4410,7 +4410,7 @@ M.KeyPair = schema.new({
 })
 
 M.CreateKeyPairOutput = schema.new({
-    id = id.from(_N, "CreateKeyPairOutput"),
+    id = id.from(_N, "CreateKeyPairResult"),
     type = "structure",
     members = {
         keyPair = schema.new({
@@ -4443,7 +4443,7 @@ M.CreateKeyPairOutput = schema.new({
 })
 
 M.CreateLoadBalancerInput = schema.new({
-    id = id.from(_N, "CreateLoadBalancerInput"),
+    id = id.from(_N, "CreateLoadBalancerRequest"),
     type = "structure",
     members = {
         loadBalancerName = schema.new({
@@ -4513,7 +4513,7 @@ M.CreateLoadBalancerInput = schema.new({
 })
 
 M.CreateLoadBalancerOutput = schema.new({
-    id = id.from(_N, "CreateLoadBalancerOutput"),
+    id = id.from(_N, "CreateLoadBalancerResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -4527,7 +4527,7 @@ M.CreateLoadBalancerOutput = schema.new({
 })
 
 M.CreateLoadBalancerTlsCertificateInput = schema.new({
-    id = id.from(_N, "CreateLoadBalancerTlsCertificateInput"),
+    id = id.from(_N, "CreateLoadBalancerTlsCertificateRequest"),
     type = "structure",
     members = {
         loadBalancerName = schema.new({
@@ -4575,7 +4575,7 @@ M.CreateLoadBalancerTlsCertificateInput = schema.new({
 })
 
 M.CreateLoadBalancerTlsCertificateOutput = schema.new({
-    id = id.from(_N, "CreateLoadBalancerTlsCertificateOutput"),
+    id = id.from(_N, "CreateLoadBalancerTlsCertificateResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -4589,7 +4589,7 @@ M.CreateLoadBalancerTlsCertificateOutput = schema.new({
 })
 
 M.CreateRelationalDatabaseInput = schema.new({
-    id = id.from(_N, "CreateRelationalDatabaseInput"),
+    id = id.from(_N, "CreateRelationalDatabaseRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -4678,7 +4678,7 @@ M.CreateRelationalDatabaseInput = schema.new({
 })
 
 M.CreateRelationalDatabaseOutput = schema.new({
-    id = id.from(_N, "CreateRelationalDatabaseOutput"),
+    id = id.from(_N, "CreateRelationalDatabaseResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -4692,7 +4692,7 @@ M.CreateRelationalDatabaseOutput = schema.new({
 })
 
 M.CreateRelationalDatabaseFromSnapshotInput = schema.new({
-    id = id.from(_N, "CreateRelationalDatabaseFromSnapshotInput"),
+    id = id.from(_N, "CreateRelationalDatabaseFromSnapshotRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -4757,7 +4757,7 @@ M.CreateRelationalDatabaseFromSnapshotInput = schema.new({
 })
 
 M.CreateRelationalDatabaseFromSnapshotOutput = schema.new({
-    id = id.from(_N, "CreateRelationalDatabaseFromSnapshotOutput"),
+    id = id.from(_N, "CreateRelationalDatabaseFromSnapshotResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -4771,7 +4771,7 @@ M.CreateRelationalDatabaseFromSnapshotOutput = schema.new({
 })
 
 M.CreateRelationalDatabaseSnapshotInput = schema.new({
-    id = id.from(_N, "CreateRelationalDatabaseSnapshotInput"),
+    id = id.from(_N, "CreateRelationalDatabaseSnapshotRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -4803,7 +4803,7 @@ M.CreateRelationalDatabaseSnapshotInput = schema.new({
 })
 
 M.CreateRelationalDatabaseSnapshotOutput = schema.new({
-    id = id.from(_N, "CreateRelationalDatabaseSnapshotOutput"),
+    id = id.from(_N, "CreateRelationalDatabaseSnapshotResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -4817,7 +4817,7 @@ M.CreateRelationalDatabaseSnapshotOutput = schema.new({
 })
 
 M.DeleteAlarmInput = schema.new({
-    id = id.from(_N, "DeleteAlarmInput"),
+    id = id.from(_N, "DeleteAlarmRequest"),
     type = "structure",
     members = {
         alarmName = schema.new({
@@ -4834,7 +4834,7 @@ M.DeleteAlarmInput = schema.new({
 })
 
 M.DeleteAlarmOutput = schema.new({
-    id = id.from(_N, "DeleteAlarmOutput"),
+    id = id.from(_N, "DeleteAlarmResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -4848,7 +4848,7 @@ M.DeleteAlarmOutput = schema.new({
 })
 
 M.DeleteAutoSnapshotInput = schema.new({
-    id = id.from(_N, "DeleteAutoSnapshotInput"),
+    id = id.from(_N, "DeleteAutoSnapshotRequest"),
     type = "structure",
     members = {
         resourceName = schema.new({
@@ -4873,7 +4873,7 @@ M.DeleteAutoSnapshotInput = schema.new({
 })
 
 M.DeleteAutoSnapshotOutput = schema.new({
-    id = id.from(_N, "DeleteAutoSnapshotOutput"),
+    id = id.from(_N, "DeleteAutoSnapshotResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -4887,7 +4887,7 @@ M.DeleteAutoSnapshotOutput = schema.new({
 })
 
 M.DeleteBucketInput = schema.new({
-    id = id.from(_N, "DeleteBucketInput"),
+    id = id.from(_N, "DeleteBucketRequest"),
     type = "structure",
     members = {
         bucketName = schema.new({
@@ -4909,7 +4909,7 @@ M.DeleteBucketInput = schema.new({
 })
 
 M.DeleteBucketOutput = schema.new({
-    id = id.from(_N, "DeleteBucketOutput"),
+    id = id.from(_N, "DeleteBucketResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -4923,7 +4923,7 @@ M.DeleteBucketOutput = schema.new({
 })
 
 M.DeleteBucketAccessKeyInput = schema.new({
-    id = id.from(_N, "DeleteBucketAccessKeyInput"),
+    id = id.from(_N, "DeleteBucketAccessKeyRequest"),
     type = "structure",
     members = {
         bucketName = schema.new({
@@ -4948,7 +4948,7 @@ M.DeleteBucketAccessKeyInput = schema.new({
 })
 
 M.DeleteBucketAccessKeyOutput = schema.new({
-    id = id.from(_N, "DeleteBucketAccessKeyOutput"),
+    id = id.from(_N, "DeleteBucketAccessKeyResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -4962,7 +4962,7 @@ M.DeleteBucketAccessKeyOutput = schema.new({
 })
 
 M.DeleteCertificateInput = schema.new({
-    id = id.from(_N, "DeleteCertificateInput"),
+    id = id.from(_N, "DeleteCertificateRequest"),
     type = "structure",
     members = {
         certificateName = schema.new({
@@ -4978,7 +4978,7 @@ M.DeleteCertificateInput = schema.new({
 })
 
 M.DeleteCertificateOutput = schema.new({
-    id = id.from(_N, "DeleteCertificateOutput"),
+    id = id.from(_N, "DeleteCertificateResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -4992,7 +4992,7 @@ M.DeleteCertificateOutput = schema.new({
 })
 
 M.DeleteContactMethodInput = schema.new({
-    id = id.from(_N, "DeleteContactMethodInput"),
+    id = id.from(_N, "DeleteContactMethodRequest"),
     type = "structure",
     members = {
         protocol = schema.new({
@@ -5008,7 +5008,7 @@ M.DeleteContactMethodInput = schema.new({
 })
 
 M.DeleteContactMethodOutput = schema.new({
-    id = id.from(_N, "DeleteContactMethodOutput"),
+    id = id.from(_N, "DeleteContactMethodResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -5022,7 +5022,7 @@ M.DeleteContactMethodOutput = schema.new({
 })
 
 M.DeleteContainerImageInput = schema.new({
-    id = id.from(_N, "DeleteContainerImageInput"),
+    id = id.from(_N, "DeleteContainerImageRequest"),
     type = "structure",
     members = {
         serviceName = schema.new({
@@ -5049,12 +5049,12 @@ M.DeleteContainerImageInput = schema.new({
 })
 
 M.DeleteContainerImageOutput = schema.new({
-    id = id.from(_N, "DeleteContainerImageOutput"),
+    id = id.from(_N, "DeleteContainerImageResult"),
     type = "structure",
 })
 
 M.DeleteContainerServiceInput = schema.new({
-    id = id.from(_N, "DeleteContainerServiceInput"),
+    id = id.from(_N, "DeleteContainerServiceRequest"),
     type = "structure",
     members = {
         serviceName = schema.new({
@@ -5071,12 +5071,12 @@ M.DeleteContainerServiceInput = schema.new({
 })
 
 M.DeleteContainerServiceOutput = schema.new({
-    id = id.from(_N, "DeleteContainerServiceOutput"),
+    id = id.from(_N, "DeleteContainerServiceResult"),
     type = "structure",
 })
 
 M.DeleteDiskInput = schema.new({
-    id = id.from(_N, "DeleteDiskInput"),
+    id = id.from(_N, "DeleteDiskRequest"),
     type = "structure",
     members = {
         diskName = schema.new({
@@ -5098,7 +5098,7 @@ M.DeleteDiskInput = schema.new({
 })
 
 M.DeleteDiskOutput = schema.new({
-    id = id.from(_N, "DeleteDiskOutput"),
+    id = id.from(_N, "DeleteDiskResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -5112,7 +5112,7 @@ M.DeleteDiskOutput = schema.new({
 })
 
 M.DeleteDiskSnapshotInput = schema.new({
-    id = id.from(_N, "DeleteDiskSnapshotInput"),
+    id = id.from(_N, "DeleteDiskSnapshotRequest"),
     type = "structure",
     members = {
         diskSnapshotName = schema.new({
@@ -5128,7 +5128,7 @@ M.DeleteDiskSnapshotInput = schema.new({
 })
 
 M.DeleteDiskSnapshotOutput = schema.new({
-    id = id.from(_N, "DeleteDiskSnapshotOutput"),
+    id = id.from(_N, "DeleteDiskSnapshotResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -5142,7 +5142,7 @@ M.DeleteDiskSnapshotOutput = schema.new({
 })
 
 M.DeleteDistributionInput = schema.new({
-    id = id.from(_N, "DeleteDistributionInput"),
+    id = id.from(_N, "DeleteDistributionRequest"),
     type = "structure",
     members = {
         distributionName = schema.new({
@@ -5155,7 +5155,7 @@ M.DeleteDistributionInput = schema.new({
 })
 
 M.DeleteDistributionOutput = schema.new({
-    id = id.from(_N, "DeleteDistributionOutput"),
+    id = id.from(_N, "DeleteDistributionResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -5169,7 +5169,7 @@ M.DeleteDistributionOutput = schema.new({
 })
 
 M.DeleteDomainInput = schema.new({
-    id = id.from(_N, "DeleteDomainInput"),
+    id = id.from(_N, "DeleteDomainRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -5185,7 +5185,7 @@ M.DeleteDomainInput = schema.new({
 })
 
 M.DeleteDomainOutput = schema.new({
-    id = id.from(_N, "DeleteDomainOutput"),
+    id = id.from(_N, "DeleteDomainResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -5199,7 +5199,7 @@ M.DeleteDomainOutput = schema.new({
 })
 
 M.DeleteDomainEntryInput = schema.new({
-    id = id.from(_N, "DeleteDomainEntryInput"),
+    id = id.from(_N, "DeleteDomainEntryRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -5225,7 +5225,7 @@ M.DeleteDomainEntryInput = schema.new({
 })
 
 M.DeleteDomainEntryOutput = schema.new({
-    id = id.from(_N, "DeleteDomainEntryOutput"),
+    id = id.from(_N, "DeleteDomainEntryResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -5239,7 +5239,7 @@ M.DeleteDomainEntryOutput = schema.new({
 })
 
 M.DeleteInstanceInput = schema.new({
-    id = id.from(_N, "DeleteInstanceInput"),
+    id = id.from(_N, "DeleteInstanceRequest"),
     type = "structure",
     members = {
         instanceName = schema.new({
@@ -5261,7 +5261,7 @@ M.DeleteInstanceInput = schema.new({
 })
 
 M.DeleteInstanceOutput = schema.new({
-    id = id.from(_N, "DeleteInstanceOutput"),
+    id = id.from(_N, "DeleteInstanceResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -5275,7 +5275,7 @@ M.DeleteInstanceOutput = schema.new({
 })
 
 M.DeleteInstanceSnapshotInput = schema.new({
-    id = id.from(_N, "DeleteInstanceSnapshotInput"),
+    id = id.from(_N, "DeleteInstanceSnapshotRequest"),
     type = "structure",
     members = {
         instanceSnapshotName = schema.new({
@@ -5291,7 +5291,7 @@ M.DeleteInstanceSnapshotInput = schema.new({
 })
 
 M.DeleteInstanceSnapshotOutput = schema.new({
-    id = id.from(_N, "DeleteInstanceSnapshotOutput"),
+    id = id.from(_N, "DeleteInstanceSnapshotResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -5305,7 +5305,7 @@ M.DeleteInstanceSnapshotOutput = schema.new({
 })
 
 M.DeleteKeyPairInput = schema.new({
-    id = id.from(_N, "DeleteKeyPairInput"),
+    id = id.from(_N, "DeleteKeyPairRequest"),
     type = "structure",
     members = {
         keyPairName = schema.new({
@@ -5327,7 +5327,7 @@ M.DeleteKeyPairInput = schema.new({
 })
 
 M.DeleteKeyPairOutput = schema.new({
-    id = id.from(_N, "DeleteKeyPairOutput"),
+    id = id.from(_N, "DeleteKeyPairResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -5341,7 +5341,7 @@ M.DeleteKeyPairOutput = schema.new({
 })
 
 M.DeleteKnownHostKeysInput = schema.new({
-    id = id.from(_N, "DeleteKnownHostKeysInput"),
+    id = id.from(_N, "DeleteKnownHostKeysRequest"),
     type = "structure",
     members = {
         instanceName = schema.new({
@@ -5357,7 +5357,7 @@ M.DeleteKnownHostKeysInput = schema.new({
 })
 
 M.DeleteKnownHostKeysOutput = schema.new({
-    id = id.from(_N, "DeleteKnownHostKeysOutput"),
+    id = id.from(_N, "DeleteKnownHostKeysResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -5371,7 +5371,7 @@ M.DeleteKnownHostKeysOutput = schema.new({
 })
 
 M.DeleteLoadBalancerInput = schema.new({
-    id = id.from(_N, "DeleteLoadBalancerInput"),
+    id = id.from(_N, "DeleteLoadBalancerRequest"),
     type = "structure",
     members = {
         loadBalancerName = schema.new({
@@ -5387,7 +5387,7 @@ M.DeleteLoadBalancerInput = schema.new({
 })
 
 M.DeleteLoadBalancerOutput = schema.new({
-    id = id.from(_N, "DeleteLoadBalancerOutput"),
+    id = id.from(_N, "DeleteLoadBalancerResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -5401,7 +5401,7 @@ M.DeleteLoadBalancerOutput = schema.new({
 })
 
 M.DeleteLoadBalancerTlsCertificateInput = schema.new({
-    id = id.from(_N, "DeleteLoadBalancerTlsCertificateInput"),
+    id = id.from(_N, "DeleteLoadBalancerTlsCertificateRequest"),
     type = "structure",
     members = {
         loadBalancerName = schema.new({
@@ -5432,7 +5432,7 @@ M.DeleteLoadBalancerTlsCertificateInput = schema.new({
 })
 
 M.DeleteLoadBalancerTlsCertificateOutput = schema.new({
-    id = id.from(_N, "DeleteLoadBalancerTlsCertificateOutput"),
+    id = id.from(_N, "DeleteLoadBalancerTlsCertificateResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -5446,7 +5446,7 @@ M.DeleteLoadBalancerTlsCertificateOutput = schema.new({
 })
 
 M.DeleteRelationalDatabaseInput = schema.new({
-    id = id.from(_N, "DeleteRelationalDatabaseInput"),
+    id = id.from(_N, "DeleteRelationalDatabaseRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -5474,7 +5474,7 @@ M.DeleteRelationalDatabaseInput = schema.new({
 })
 
 M.DeleteRelationalDatabaseOutput = schema.new({
-    id = id.from(_N, "DeleteRelationalDatabaseOutput"),
+    id = id.from(_N, "DeleteRelationalDatabaseResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -5488,7 +5488,7 @@ M.DeleteRelationalDatabaseOutput = schema.new({
 })
 
 M.DeleteRelationalDatabaseSnapshotInput = schema.new({
-    id = id.from(_N, "DeleteRelationalDatabaseSnapshotInput"),
+    id = id.from(_N, "DeleteRelationalDatabaseSnapshotRequest"),
     type = "structure",
     members = {
         relationalDatabaseSnapshotName = schema.new({
@@ -5504,7 +5504,7 @@ M.DeleteRelationalDatabaseSnapshotInput = schema.new({
 })
 
 M.DeleteRelationalDatabaseSnapshotOutput = schema.new({
-    id = id.from(_N, "DeleteRelationalDatabaseSnapshotOutput"),
+    id = id.from(_N, "DeleteRelationalDatabaseSnapshotResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -5518,7 +5518,7 @@ M.DeleteRelationalDatabaseSnapshotOutput = schema.new({
 })
 
 M.DetachCertificateFromDistributionInput = schema.new({
-    id = id.from(_N, "DetachCertificateFromDistributionInput"),
+    id = id.from(_N, "DetachCertificateFromDistributionRequest"),
     type = "structure",
     members = {
         distributionName = schema.new({
@@ -5534,7 +5534,7 @@ M.DetachCertificateFromDistributionInput = schema.new({
 })
 
 M.DetachCertificateFromDistributionOutput = schema.new({
-    id = id.from(_N, "DetachCertificateFromDistributionOutput"),
+    id = id.from(_N, "DetachCertificateFromDistributionResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -5548,7 +5548,7 @@ M.DetachCertificateFromDistributionOutput = schema.new({
 })
 
 M.DetachDiskInput = schema.new({
-    id = id.from(_N, "DetachDiskInput"),
+    id = id.from(_N, "DetachDiskRequest"),
     type = "structure",
     members = {
         diskName = schema.new({
@@ -5564,7 +5564,7 @@ M.DetachDiskInput = schema.new({
 })
 
 M.DetachDiskOutput = schema.new({
-    id = id.from(_N, "DetachDiskOutput"),
+    id = id.from(_N, "DetachDiskResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -5578,7 +5578,7 @@ M.DetachDiskOutput = schema.new({
 })
 
 M.DetachInstancesFromLoadBalancerInput = schema.new({
-    id = id.from(_N, "DetachInstancesFromLoadBalancerInput"),
+    id = id.from(_N, "DetachInstancesFromLoadBalancerRequest"),
     type = "structure",
     members = {
         loadBalancerName = schema.new({
@@ -5604,7 +5604,7 @@ M.DetachInstancesFromLoadBalancerInput = schema.new({
 })
 
 M.DetachInstancesFromLoadBalancerOutput = schema.new({
-    id = id.from(_N, "DetachInstancesFromLoadBalancerOutput"),
+    id = id.from(_N, "DetachInstancesFromLoadBalancerResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -5618,7 +5618,7 @@ M.DetachInstancesFromLoadBalancerOutput = schema.new({
 })
 
 M.DetachStaticIpInput = schema.new({
-    id = id.from(_N, "DetachStaticIpInput"),
+    id = id.from(_N, "DetachStaticIpRequest"),
     type = "structure",
     members = {
         staticIpName = schema.new({
@@ -5634,7 +5634,7 @@ M.DetachStaticIpInput = schema.new({
 })
 
 M.DetachStaticIpOutput = schema.new({
-    id = id.from(_N, "DetachStaticIpOutput"),
+    id = id.from(_N, "DetachStaticIpResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -5648,7 +5648,7 @@ M.DetachStaticIpOutput = schema.new({
 })
 
 M.DisableAddOnInput = schema.new({
-    id = id.from(_N, "DisableAddOnInput"),
+    id = id.from(_N, "DisableAddOnRequest"),
     type = "structure",
     members = {
         addOnType = schema.new({
@@ -5673,7 +5673,7 @@ M.DisableAddOnInput = schema.new({
 })
 
 M.DisableAddOnOutput = schema.new({
-    id = id.from(_N, "DisableAddOnOutput"),
+    id = id.from(_N, "DisableAddOnResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -6109,12 +6109,12 @@ M.Domain = schema.new({
 })
 
 M.DownloadDefaultKeyPairInput = schema.new({
-    id = id.from(_N, "DownloadDefaultKeyPairInput"),
+    id = id.from(_N, "DownloadDefaultKeyPairRequest"),
     type = "structure",
 })
 
 M.DownloadDefaultKeyPairOutput = schema.new({
-    id = id.from(_N, "DownloadDefaultKeyPairOutput"),
+    id = id.from(_N, "DownloadDefaultKeyPairResult"),
     type = "structure",
     members = {
         publicKeyBase64 = schema.new({
@@ -6139,7 +6139,7 @@ M.DownloadDefaultKeyPairOutput = schema.new({
 })
 
 M.EnableAddOnInput = schema.new({
-    id = id.from(_N, "EnableAddOnInput"),
+    id = id.from(_N, "EnableAddOnRequest"),
     type = "structure",
     members = {
         resourceName = schema.new({
@@ -6165,7 +6165,7 @@ M.EnableAddOnInput = schema.new({
 })
 
 M.EnableAddOnOutput = schema.new({
-    id = id.from(_N, "EnableAddOnOutput"),
+    id = id.from(_N, "EnableAddOnResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -6179,7 +6179,7 @@ M.EnableAddOnOutput = schema.new({
 })
 
 M.ExportSnapshotInput = schema.new({
-    id = id.from(_N, "ExportSnapshotInput"),
+    id = id.from(_N, "ExportSnapshotRequest"),
     type = "structure",
     members = {
         sourceSnapshotName = schema.new({
@@ -6195,7 +6195,7 @@ M.ExportSnapshotInput = schema.new({
 })
 
 M.ExportSnapshotOutput = schema.new({
-    id = id.from(_N, "ExportSnapshotOutput"),
+    id = id.from(_N, "ExportSnapshotResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -6350,7 +6350,7 @@ M.ExportSnapshotRecord = schema.new({
 })
 
 M.GetActiveNamesInput = schema.new({
-    id = id.from(_N, "GetActiveNamesInput"),
+    id = id.from(_N, "GetActiveNamesRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -6363,7 +6363,7 @@ M.GetActiveNamesInput = schema.new({
 })
 
 M.GetActiveNamesOutput = schema.new({
-    id = id.from(_N, "GetActiveNamesOutput"),
+    id = id.from(_N, "GetActiveNamesResult"),
     type = "structure",
     members = {
         activeNames = schema.new({
@@ -6383,7 +6383,7 @@ M.GetActiveNamesOutput = schema.new({
 })
 
 M.GetAlarmsInput = schema.new({
-    id = id.from(_N, "GetAlarmsInput"),
+    id = id.from(_N, "GetAlarmsRequest"),
     type = "structure",
     members = {
         alarmName = schema.new({
@@ -6417,7 +6417,7 @@ M.GetAlarmsInput = schema.new({
 })
 
 M.GetAlarmsOutput = schema.new({
-    id = id.from(_N, "GetAlarmsOutput"),
+    id = id.from(_N, "GetAlarmsResult"),
     type = "structure",
     members = {
         alarms = schema.new({
@@ -6437,7 +6437,7 @@ M.GetAlarmsOutput = schema.new({
 })
 
 M.GetAutoSnapshotsInput = schema.new({
-    id = id.from(_N, "GetAutoSnapshotsInput"),
+    id = id.from(_N, "GetAutoSnapshotsRequest"),
     type = "structure",
     members = {
         resourceName = schema.new({
@@ -6453,7 +6453,7 @@ M.GetAutoSnapshotsInput = schema.new({
 })
 
 M.GetAutoSnapshotsOutput = schema.new({
-    id = id.from(_N, "GetAutoSnapshotsOutput"),
+    id = id.from(_N, "GetAutoSnapshotsResult"),
     type = "structure",
     members = {
         resourceName = schema.new({
@@ -6479,7 +6479,7 @@ M.GetAutoSnapshotsOutput = schema.new({
 })
 
 M.GetBlueprintsInput = schema.new({
-    id = id.from(_N, "GetBlueprintsInput"),
+    id = id.from(_N, "GetBlueprintsRequest"),
     type = "structure",
     members = {
         includeInactive = schema.new({
@@ -6504,7 +6504,7 @@ M.GetBlueprintsInput = schema.new({
 })
 
 M.GetBlueprintsOutput = schema.new({
-    id = id.from(_N, "GetBlueprintsOutput"),
+    id = id.from(_N, "GetBlueprintsResult"),
     type = "structure",
     members = {
         blueprints = schema.new({
@@ -6524,7 +6524,7 @@ M.GetBlueprintsOutput = schema.new({
 })
 
 M.GetBucketAccessKeysInput = schema.new({
-    id = id.from(_N, "GetBucketAccessKeysInput"),
+    id = id.from(_N, "GetBucketAccessKeysRequest"),
     type = "structure",
     members = {
         bucketName = schema.new({
@@ -6540,7 +6540,7 @@ M.GetBucketAccessKeysInput = schema.new({
 })
 
 M.GetBucketAccessKeysOutput = schema.new({
-    id = id.from(_N, "GetBucketAccessKeysOutput"),
+    id = id.from(_N, "GetBucketAccessKeysResult"),
     type = "structure",
     members = {
         accessKeys = schema.new({
@@ -6554,7 +6554,7 @@ M.GetBucketAccessKeysOutput = schema.new({
 })
 
 M.GetBucketBundlesInput = schema.new({
-    id = id.from(_N, "GetBucketBundlesInput"),
+    id = id.from(_N, "GetBucketBundlesRequest"),
     type = "structure",
     members = {
         includeInactive = schema.new({
@@ -6567,7 +6567,7 @@ M.GetBucketBundlesInput = schema.new({
 })
 
 M.GetBucketBundlesOutput = schema.new({
-    id = id.from(_N, "GetBucketBundlesOutput"),
+    id = id.from(_N, "GetBucketBundlesResult"),
     type = "structure",
     members = {
         bundles = schema.new({
@@ -6581,7 +6581,7 @@ M.GetBucketBundlesOutput = schema.new({
 })
 
 M.GetBucketMetricDataInput = schema.new({
-    id = id.from(_N, "GetBucketMetricDataInput"),
+    id = id.from(_N, "GetBucketMetricDataRequest"),
     type = "structure",
     members = {
         bucketName = schema.new({
@@ -6701,7 +6701,7 @@ M.MetricDatapoint = schema.new({
 })
 
 M.GetBucketMetricDataOutput = schema.new({
-    id = id.from(_N, "GetBucketMetricDataOutput"),
+    id = id.from(_N, "GetBucketMetricDataResult"),
     type = "structure",
     members = {
         metricName = schema.new({
@@ -6721,7 +6721,7 @@ M.GetBucketMetricDataOutput = schema.new({
 })
 
 M.GetBucketsInput = schema.new({
-    id = id.from(_N, "GetBucketsInput"),
+    id = id.from(_N, "GetBucketsRequest"),
     type = "structure",
     members = {
         bucketName = schema.new({
@@ -6752,7 +6752,7 @@ M.GetBucketsInput = schema.new({
 })
 
 M.GetBucketsOutput = schema.new({
-    id = id.from(_N, "GetBucketsOutput"),
+    id = id.from(_N, "GetBucketsResult"),
     type = "structure",
     members = {
         buckets = schema.new({
@@ -6779,7 +6779,7 @@ M.GetBucketsOutput = schema.new({
 })
 
 M.GetBundlesInput = schema.new({
-    id = id.from(_N, "GetBundlesInput"),
+    id = id.from(_N, "GetBundlesRequest"),
     type = "structure",
     members = {
         includeInactive = schema.new({
@@ -6804,7 +6804,7 @@ M.GetBundlesInput = schema.new({
 })
 
 M.GetBundlesOutput = schema.new({
-    id = id.from(_N, "GetBundlesOutput"),
+    id = id.from(_N, "GetBundlesResult"),
     type = "structure",
     members = {
         bundles = schema.new({
@@ -6824,7 +6824,7 @@ M.GetBundlesOutput = schema.new({
 })
 
 M.GetCertificatesInput = schema.new({
-    id = id.from(_N, "GetCertificatesInput"),
+    id = id.from(_N, "GetCertificatesRequest"),
     type = "structure",
     members = {
         certificateStatuses = schema.new({
@@ -6859,7 +6859,7 @@ M.GetCertificatesInput = schema.new({
 })
 
 M.GetCertificatesOutput = schema.new({
-    id = id.from(_N, "GetCertificatesOutput"),
+    id = id.from(_N, "GetCertificatesResult"),
     type = "structure",
     members = {
         certificates = schema.new({
@@ -6879,7 +6879,7 @@ M.GetCertificatesOutput = schema.new({
 })
 
 M.GetCloudFormationStackRecordsInput = schema.new({
-    id = id.from(_N, "GetCloudFormationStackRecordsInput"),
+    id = id.from(_N, "GetCloudFormationStackRecordsRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -6892,7 +6892,7 @@ M.GetCloudFormationStackRecordsInput = schema.new({
 })
 
 M.GetCloudFormationStackRecordsOutput = schema.new({
-    id = id.from(_N, "GetCloudFormationStackRecordsOutput"),
+    id = id.from(_N, "GetCloudFormationStackRecordsResult"),
     type = "structure",
     members = {
         cloudFormationStackRecords = schema.new({
@@ -6912,7 +6912,7 @@ M.GetCloudFormationStackRecordsOutput = schema.new({
 })
 
 M.GetContactMethodsInput = schema.new({
-    id = id.from(_N, "GetContactMethodsInput"),
+    id = id.from(_N, "GetContactMethodsRequest"),
     type = "structure",
     members = {
         protocols = schema.new({
@@ -6929,7 +6929,7 @@ M.GetContactMethodsInput = schema.new({
 })
 
 M.GetContactMethodsOutput = schema.new({
-    id = id.from(_N, "GetContactMethodsOutput"),
+    id = id.from(_N, "GetContactMethodsResult"),
     type = "structure",
     members = {
         contactMethods = schema.new({
@@ -6943,12 +6943,12 @@ M.GetContactMethodsOutput = schema.new({
 })
 
 M.GetContainerAPIMetadataInput = schema.new({
-    id = id.from(_N, "GetContainerAPIMetadataInput"),
+    id = id.from(_N, "GetContainerAPIMetadataRequest"),
     type = "structure",
 })
 
 M.GetContainerAPIMetadataOutput = schema.new({
-    id = id.from(_N, "GetContainerAPIMetadataOutput"),
+    id = id.from(_N, "GetContainerAPIMetadataResult"),
     type = "structure",
     members = {
         metadata = schema.new({
@@ -6962,7 +6962,7 @@ M.GetContainerAPIMetadataOutput = schema.new({
 })
 
 M.GetContainerImagesInput = schema.new({
-    id = id.from(_N, "GetContainerImagesInput"),
+    id = id.from(_N, "GetContainerImagesRequest"),
     type = "structure",
     members = {
         serviceName = schema.new({
@@ -6979,7 +6979,7 @@ M.GetContainerImagesInput = schema.new({
 })
 
 M.GetContainerImagesOutput = schema.new({
-    id = id.from(_N, "GetContainerImagesOutput"),
+    id = id.from(_N, "GetContainerImagesResult"),
     type = "structure",
     members = {
         containerImages = schema.new({
@@ -6993,7 +6993,7 @@ M.GetContainerImagesOutput = schema.new({
 })
 
 M.GetContainerLogInput = schema.new({
-    id = id.from(_N, "GetContainerLogInput"),
+    id = id.from(_N, "GetContainerLogRequest"),
     type = "structure",
     members = {
         serviceName = schema.new({
@@ -7056,7 +7056,7 @@ M.GetContainerLogInput = schema.new({
 })
 
 M.GetContainerLogOutput = schema.new({
-    id = id.from(_N, "GetContainerLogOutput"),
+    id = id.from(_N, "GetContainerLogResult"),
     type = "structure",
     members = {
         logEvents = schema.new({
@@ -7076,7 +7076,7 @@ M.GetContainerLogOutput = schema.new({
 })
 
 M.GetContainerServiceDeploymentsInput = schema.new({
-    id = id.from(_N, "GetContainerServiceDeploymentsInput"),
+    id = id.from(_N, "GetContainerServiceDeploymentsRequest"),
     type = "structure",
     members = {
         serviceName = schema.new({
@@ -7093,7 +7093,7 @@ M.GetContainerServiceDeploymentsInput = schema.new({
 })
 
 M.GetContainerServiceDeploymentsOutput = schema.new({
-    id = id.from(_N, "GetContainerServiceDeploymentsOutput"),
+    id = id.from(_N, "GetContainerServiceDeploymentsResult"),
     type = "structure",
     members = {
         deployments = schema.new({
@@ -7107,7 +7107,7 @@ M.GetContainerServiceDeploymentsOutput = schema.new({
 })
 
 M.GetContainerServiceMetricDataInput = schema.new({
-    id = id.from(_N, "GetContainerServiceMetricDataInput"),
+    id = id.from(_N, "GetContainerServiceMetricDataRequest"),
     type = "structure",
     members = {
         serviceName = schema.new({
@@ -7175,7 +7175,7 @@ M.GetContainerServiceMetricDataInput = schema.new({
 })
 
 M.GetContainerServiceMetricDataOutput = schema.new({
-    id = id.from(_N, "GetContainerServiceMetricDataOutput"),
+    id = id.from(_N, "GetContainerServiceMetricDataResult"),
     type = "structure",
     members = {
         metricName = schema.new({
@@ -7195,12 +7195,12 @@ M.GetContainerServiceMetricDataOutput = schema.new({
 })
 
 M.GetContainerServicePowersInput = schema.new({
-    id = id.from(_N, "GetContainerServicePowersInput"),
+    id = id.from(_N, "GetContainerServicePowersRequest"),
     type = "structure",
 })
 
 M.GetContainerServicePowersOutput = schema.new({
-    id = id.from(_N, "GetContainerServicePowersOutput"),
+    id = id.from(_N, "GetContainerServicePowersResult"),
     type = "structure",
     members = {
         powers = schema.new({
@@ -7214,7 +7214,7 @@ M.GetContainerServicePowersOutput = schema.new({
 })
 
 M.GetContainerServicesInput = schema.new({
-    id = id.from(_N, "GetContainerServicesInput"),
+    id = id.from(_N, "GetContainerServicesRequest"),
     type = "structure",
     members = {
         serviceName = schema.new({
@@ -7230,7 +7230,7 @@ M.GetContainerServicesInput = schema.new({
 })
 
 M.GetContainerServicesOutput = schema.new({
-    id = id.from(_N, "GetContainerServicesOutput"),
+    id = id.from(_N, "ContainerServicesListResult"),
     type = "structure",
     members = {
         containerServices = schema.new({
@@ -7244,7 +7244,7 @@ M.GetContainerServicesOutput = schema.new({
 })
 
 M.GetCostEstimateInput = schema.new({
-    id = id.from(_N, "GetCostEstimateInput"),
+    id = id.from(_N, "GetCostEstimateRequest"),
     type = "structure",
     members = {
         resourceName = schema.new({
@@ -7316,7 +7316,7 @@ M.ResourceBudgetEstimate = schema.new({
 })
 
 M.GetCostEstimateOutput = schema.new({
-    id = id.from(_N, "GetCostEstimateOutput"),
+    id = id.from(_N, "GetCostEstimateResult"),
     type = "structure",
     members = {
         resourcesBudgetEstimate = schema.new({
@@ -7330,7 +7330,7 @@ M.GetCostEstimateOutput = schema.new({
 })
 
 M.GetDiskInput = schema.new({
-    id = id.from(_N, "GetDiskInput"),
+    id = id.from(_N, "GetDiskRequest"),
     type = "structure",
     members = {
         diskName = schema.new({
@@ -7346,7 +7346,7 @@ M.GetDiskInput = schema.new({
 })
 
 M.GetDiskOutput = schema.new({
-    id = id.from(_N, "GetDiskOutput"),
+    id = id.from(_N, "GetDiskResult"),
     type = "structure",
     members = {
         disk = schema.new({
@@ -7360,7 +7360,7 @@ M.GetDiskOutput = schema.new({
 })
 
 M.GetDisksInput = schema.new({
-    id = id.from(_N, "GetDisksInput"),
+    id = id.from(_N, "GetDisksRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -7373,7 +7373,7 @@ M.GetDisksInput = schema.new({
 })
 
 M.GetDisksOutput = schema.new({
-    id = id.from(_N, "GetDisksOutput"),
+    id = id.from(_N, "GetDisksResult"),
     type = "structure",
     members = {
         disks = schema.new({
@@ -7393,7 +7393,7 @@ M.GetDisksOutput = schema.new({
 })
 
 M.GetDiskSnapshotInput = schema.new({
-    id = id.from(_N, "GetDiskSnapshotInput"),
+    id = id.from(_N, "GetDiskSnapshotRequest"),
     type = "structure",
     members = {
         diskSnapshotName = schema.new({
@@ -7409,7 +7409,7 @@ M.GetDiskSnapshotInput = schema.new({
 })
 
 M.GetDiskSnapshotOutput = schema.new({
-    id = id.from(_N, "GetDiskSnapshotOutput"),
+    id = id.from(_N, "GetDiskSnapshotResult"),
     type = "structure",
     members = {
         diskSnapshot = schema.new({
@@ -7423,7 +7423,7 @@ M.GetDiskSnapshotOutput = schema.new({
 })
 
 M.GetDiskSnapshotsInput = schema.new({
-    id = id.from(_N, "GetDiskSnapshotsInput"),
+    id = id.from(_N, "GetDiskSnapshotsRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -7436,7 +7436,7 @@ M.GetDiskSnapshotsInput = schema.new({
 })
 
 M.GetDiskSnapshotsOutput = schema.new({
-    id = id.from(_N, "GetDiskSnapshotsOutput"),
+    id = id.from(_N, "GetDiskSnapshotsResult"),
     type = "structure",
     members = {
         diskSnapshots = schema.new({
@@ -7456,12 +7456,12 @@ M.GetDiskSnapshotsOutput = schema.new({
 })
 
 M.GetDistributionBundlesInput = schema.new({
-    id = id.from(_N, "GetDistributionBundlesInput"),
+    id = id.from(_N, "GetDistributionBundlesRequest"),
     type = "structure",
 })
 
 M.GetDistributionBundlesOutput = schema.new({
-    id = id.from(_N, "GetDistributionBundlesOutput"),
+    id = id.from(_N, "GetDistributionBundlesResult"),
     type = "structure",
     members = {
         bundles = schema.new({
@@ -7475,7 +7475,7 @@ M.GetDistributionBundlesOutput = schema.new({
 })
 
 M.GetDistributionLatestCacheResetInput = schema.new({
-    id = id.from(_N, "GetDistributionLatestCacheResetInput"),
+    id = id.from(_N, "GetDistributionLatestCacheResetRequest"),
     type = "structure",
     members = {
         distributionName = schema.new({
@@ -7488,7 +7488,7 @@ M.GetDistributionLatestCacheResetInput = schema.new({
 })
 
 M.GetDistributionLatestCacheResetOutput = schema.new({
-    id = id.from(_N, "GetDistributionLatestCacheResetOutput"),
+    id = id.from(_N, "GetDistributionLatestCacheResetResult"),
     type = "structure",
     members = {
         status = schema.new({
@@ -7507,7 +7507,7 @@ M.GetDistributionLatestCacheResetOutput = schema.new({
 })
 
 M.GetDistributionMetricDataInput = schema.new({
-    id = id.from(_N, "GetDistributionMetricDataInput"),
+    id = id.from(_N, "GetDistributionMetricDataRequest"),
     type = "structure",
     members = {
         distributionName = schema.new({
@@ -7578,7 +7578,7 @@ M.GetDistributionMetricDataInput = schema.new({
 })
 
 M.GetDistributionMetricDataOutput = schema.new({
-    id = id.from(_N, "GetDistributionMetricDataOutput"),
+    id = id.from(_N, "GetDistributionMetricDataResult"),
     type = "structure",
     members = {
         metricName = schema.new({
@@ -7598,7 +7598,7 @@ M.GetDistributionMetricDataOutput = schema.new({
 })
 
 M.GetDistributionsInput = schema.new({
-    id = id.from(_N, "GetDistributionsInput"),
+    id = id.from(_N, "GetDistributionsRequest"),
     type = "structure",
     members = {
         distributionName = schema.new({
@@ -7617,7 +7617,7 @@ M.GetDistributionsInput = schema.new({
 })
 
 M.GetDistributionsOutput = schema.new({
-    id = id.from(_N, "GetDistributionsOutput"),
+    id = id.from(_N, "GetDistributionsResult"),
     type = "structure",
     members = {
         distributions = schema.new({
@@ -7637,7 +7637,7 @@ M.GetDistributionsOutput = schema.new({
 })
 
 M.GetDomainInput = schema.new({
-    id = id.from(_N, "GetDomainInput"),
+    id = id.from(_N, "GetDomainRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -7653,7 +7653,7 @@ M.GetDomainInput = schema.new({
 })
 
 M.GetDomainOutput = schema.new({
-    id = id.from(_N, "GetDomainOutput"),
+    id = id.from(_N, "GetDomainResult"),
     type = "structure",
     members = {
         domain = schema.new({
@@ -7667,7 +7667,7 @@ M.GetDomainOutput = schema.new({
 })
 
 M.GetDomainsInput = schema.new({
-    id = id.from(_N, "GetDomainsInput"),
+    id = id.from(_N, "GetDomainsRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -7680,7 +7680,7 @@ M.GetDomainsInput = schema.new({
 })
 
 M.GetDomainsOutput = schema.new({
-    id = id.from(_N, "GetDomainsOutput"),
+    id = id.from(_N, "GetDomainsResult"),
     type = "structure",
     members = {
         domains = schema.new({
@@ -7700,7 +7700,7 @@ M.GetDomainsOutput = schema.new({
 })
 
 M.GetExportSnapshotRecordsInput = schema.new({
-    id = id.from(_N, "GetExportSnapshotRecordsInput"),
+    id = id.from(_N, "GetExportSnapshotRecordsRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -7713,7 +7713,7 @@ M.GetExportSnapshotRecordsInput = schema.new({
 })
 
 M.GetExportSnapshotRecordsOutput = schema.new({
-    id = id.from(_N, "GetExportSnapshotRecordsOutput"),
+    id = id.from(_N, "GetExportSnapshotRecordsResult"),
     type = "structure",
     members = {
         exportSnapshotRecords = schema.new({
@@ -7733,7 +7733,7 @@ M.GetExportSnapshotRecordsOutput = schema.new({
 })
 
 M.GetInstanceInput = schema.new({
-    id = id.from(_N, "GetInstanceInput"),
+    id = id.from(_N, "GetInstanceRequest"),
     type = "structure",
     members = {
         instanceName = schema.new({
@@ -8088,7 +8088,7 @@ M.Instance = schema.new({
 })
 
 M.GetInstanceOutput = schema.new({
-    id = id.from(_N, "GetInstanceOutput"),
+    id = id.from(_N, "GetInstanceResult"),
     type = "structure",
     members = {
         instance = schema.new({
@@ -8102,7 +8102,7 @@ M.GetInstanceOutput = schema.new({
 })
 
 M.GetInstanceAccessDetailsInput = schema.new({
-    id = id.from(_N, "GetInstanceAccessDetailsInput"),
+    id = id.from(_N, "GetInstanceAccessDetailsRequest"),
     type = "structure",
     members = {
         instanceName = schema.new({
@@ -8268,7 +8268,7 @@ M.InstanceAccessDetails = schema.new({
 })
 
 M.GetInstanceAccessDetailsOutput = schema.new({
-    id = id.from(_N, "GetInstanceAccessDetailsOutput"),
+    id = id.from(_N, "GetInstanceAccessDetailsResult"),
     type = "structure",
     members = {
         accessDetails = schema.new({
@@ -8282,7 +8282,7 @@ M.GetInstanceAccessDetailsOutput = schema.new({
 })
 
 M.GetInstanceMetricDataInput = schema.new({
-    id = id.from(_N, "GetInstanceMetricDataInput"),
+    id = id.from(_N, "GetInstanceMetricDataRequest"),
     type = "structure",
     members = {
         instanceName = schema.new({
@@ -8353,7 +8353,7 @@ M.GetInstanceMetricDataInput = schema.new({
 })
 
 M.GetInstanceMetricDataOutput = schema.new({
-    id = id.from(_N, "GetInstanceMetricDataOutput"),
+    id = id.from(_N, "GetInstanceMetricDataResult"),
     type = "structure",
     members = {
         metricName = schema.new({
@@ -8373,7 +8373,7 @@ M.GetInstanceMetricDataOutput = schema.new({
 })
 
 M.GetInstancePortStatesInput = schema.new({
-    id = id.from(_N, "GetInstancePortStatesInput"),
+    id = id.from(_N, "GetInstancePortStatesRequest"),
     type = "structure",
     members = {
         instanceName = schema.new({
@@ -8447,7 +8447,7 @@ M.InstancePortState = schema.new({
 })
 
 M.GetInstancePortStatesOutput = schema.new({
-    id = id.from(_N, "GetInstancePortStatesOutput"),
+    id = id.from(_N, "GetInstancePortStatesResult"),
     type = "structure",
     members = {
         portStates = schema.new({
@@ -8461,7 +8461,7 @@ M.GetInstancePortStatesOutput = schema.new({
 })
 
 M.GetInstancesInput = schema.new({
-    id = id.from(_N, "GetInstancesInput"),
+    id = id.from(_N, "GetInstancesRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -8474,7 +8474,7 @@ M.GetInstancesInput = schema.new({
 })
 
 M.GetInstancesOutput = schema.new({
-    id = id.from(_N, "GetInstancesOutput"),
+    id = id.from(_N, "GetInstancesResult"),
     type = "structure",
     members = {
         instances = schema.new({
@@ -8494,7 +8494,7 @@ M.GetInstancesOutput = schema.new({
 })
 
 M.GetInstanceSnapshotInput = schema.new({
-    id = id.from(_N, "GetInstanceSnapshotInput"),
+    id = id.from(_N, "GetInstanceSnapshotRequest"),
     type = "structure",
     members = {
         instanceSnapshotName = schema.new({
@@ -8616,7 +8616,7 @@ M.InstanceSnapshot = schema.new({
 })
 
 M.GetInstanceSnapshotOutput = schema.new({
-    id = id.from(_N, "GetInstanceSnapshotOutput"),
+    id = id.from(_N, "GetInstanceSnapshotResult"),
     type = "structure",
     members = {
         instanceSnapshot = schema.new({
@@ -8630,7 +8630,7 @@ M.GetInstanceSnapshotOutput = schema.new({
 })
 
 M.GetInstanceSnapshotsInput = schema.new({
-    id = id.from(_N, "GetInstanceSnapshotsInput"),
+    id = id.from(_N, "GetInstanceSnapshotsRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -8643,7 +8643,7 @@ M.GetInstanceSnapshotsInput = schema.new({
 })
 
 M.GetInstanceSnapshotsOutput = schema.new({
-    id = id.from(_N, "GetInstanceSnapshotsOutput"),
+    id = id.from(_N, "GetInstanceSnapshotsResult"),
     type = "structure",
     members = {
         instanceSnapshots = schema.new({
@@ -8663,7 +8663,7 @@ M.GetInstanceSnapshotsOutput = schema.new({
 })
 
 M.GetInstanceStateInput = schema.new({
-    id = id.from(_N, "GetInstanceStateInput"),
+    id = id.from(_N, "GetInstanceStateRequest"),
     type = "structure",
     members = {
         instanceName = schema.new({
@@ -8679,7 +8679,7 @@ M.GetInstanceStateInput = schema.new({
 })
 
 M.GetInstanceStateOutput = schema.new({
-    id = id.from(_N, "GetInstanceStateOutput"),
+    id = id.from(_N, "GetInstanceStateResult"),
     type = "structure",
     members = {
         state = schema.new({
@@ -8693,7 +8693,7 @@ M.GetInstanceStateOutput = schema.new({
 })
 
 M.GetKeyPairInput = schema.new({
-    id = id.from(_N, "GetKeyPairInput"),
+    id = id.from(_N, "GetKeyPairRequest"),
     type = "structure",
     members = {
         keyPairName = schema.new({
@@ -8709,7 +8709,7 @@ M.GetKeyPairInput = schema.new({
 })
 
 M.GetKeyPairOutput = schema.new({
-    id = id.from(_N, "GetKeyPairOutput"),
+    id = id.from(_N, "GetKeyPairResult"),
     type = "structure",
     members = {
         keyPair = schema.new({
@@ -8723,7 +8723,7 @@ M.GetKeyPairOutput = schema.new({
 })
 
 M.GetKeyPairsInput = schema.new({
-    id = id.from(_N, "GetKeyPairsInput"),
+    id = id.from(_N, "GetKeyPairsRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -8742,7 +8742,7 @@ M.GetKeyPairsInput = schema.new({
 })
 
 M.GetKeyPairsOutput = schema.new({
-    id = id.from(_N, "GetKeyPairsOutput"),
+    id = id.from(_N, "GetKeyPairsResult"),
     type = "structure",
     members = {
         keyPairs = schema.new({
@@ -8762,7 +8762,7 @@ M.GetKeyPairsOutput = schema.new({
 })
 
 M.GetLoadBalancerInput = schema.new({
-    id = id.from(_N, "GetLoadBalancerInput"),
+    id = id.from(_N, "GetLoadBalancerRequest"),
     type = "structure",
     members = {
         loadBalancerName = schema.new({
@@ -8950,7 +8950,7 @@ M.LoadBalancer = schema.new({
 })
 
 M.GetLoadBalancerOutput = schema.new({
-    id = id.from(_N, "GetLoadBalancerOutput"),
+    id = id.from(_N, "GetLoadBalancerResult"),
     type = "structure",
     members = {
         loadBalancer = schema.new({
@@ -8964,7 +8964,7 @@ M.GetLoadBalancerOutput = schema.new({
 })
 
 M.GetLoadBalancerMetricDataInput = schema.new({
-    id = id.from(_N, "GetLoadBalancerMetricDataInput"),
+    id = id.from(_N, "GetLoadBalancerMetricDataRequest"),
     type = "structure",
     members = {
         loadBalancerName = schema.new({
@@ -9035,7 +9035,7 @@ M.GetLoadBalancerMetricDataInput = schema.new({
 })
 
 M.GetLoadBalancerMetricDataOutput = schema.new({
-    id = id.from(_N, "GetLoadBalancerMetricDataOutput"),
+    id = id.from(_N, "GetLoadBalancerMetricDataResult"),
     type = "structure",
     members = {
         metricName = schema.new({
@@ -9055,7 +9055,7 @@ M.GetLoadBalancerMetricDataOutput = schema.new({
 })
 
 M.GetLoadBalancersInput = schema.new({
-    id = id.from(_N, "GetLoadBalancersInput"),
+    id = id.from(_N, "GetLoadBalancersRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -9068,7 +9068,7 @@ M.GetLoadBalancersInput = schema.new({
 })
 
 M.GetLoadBalancersOutput = schema.new({
-    id = id.from(_N, "GetLoadBalancersOutput"),
+    id = id.from(_N, "GetLoadBalancersResult"),
     type = "structure",
     members = {
         loadBalancers = schema.new({
@@ -9088,7 +9088,7 @@ M.GetLoadBalancersOutput = schema.new({
 })
 
 M.GetLoadBalancerTlsCertificatesInput = schema.new({
-    id = id.from(_N, "GetLoadBalancerTlsCertificatesInput"),
+    id = id.from(_N, "GetLoadBalancerTlsCertificatesRequest"),
     type = "structure",
     members = {
         loadBalancerName = schema.new({
@@ -9368,7 +9368,7 @@ M.LoadBalancerTlsCertificate = schema.new({
 })
 
 M.GetLoadBalancerTlsCertificatesOutput = schema.new({
-    id = id.from(_N, "GetLoadBalancerTlsCertificatesOutput"),
+    id = id.from(_N, "GetLoadBalancerTlsCertificatesResult"),
     type = "structure",
     members = {
         tlsCertificates = schema.new({
@@ -9382,7 +9382,7 @@ M.GetLoadBalancerTlsCertificatesOutput = schema.new({
 })
 
 M.GetLoadBalancerTlsPoliciesInput = schema.new({
-    id = id.from(_N, "GetLoadBalancerTlsPoliciesInput"),
+    id = id.from(_N, "GetLoadBalancerTlsPoliciesRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -9434,7 +9434,7 @@ M.LoadBalancerTlsPolicy = schema.new({
 })
 
 M.GetLoadBalancerTlsPoliciesOutput = schema.new({
-    id = id.from(_N, "GetLoadBalancerTlsPoliciesOutput"),
+    id = id.from(_N, "GetLoadBalancerTlsPoliciesResult"),
     type = "structure",
     members = {
         tlsPolicies = schema.new({
@@ -9454,7 +9454,7 @@ M.GetLoadBalancerTlsPoliciesOutput = schema.new({
 })
 
 M.GetOperationInput = schema.new({
-    id = id.from(_N, "GetOperationInput"),
+    id = id.from(_N, "GetOperationRequest"),
     type = "structure",
     members = {
         operationId = schema.new({
@@ -9470,7 +9470,7 @@ M.GetOperationInput = schema.new({
 })
 
 M.GetOperationOutput = schema.new({
-    id = id.from(_N, "GetOperationOutput"),
+    id = id.from(_N, "GetOperationResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -9484,7 +9484,7 @@ M.GetOperationOutput = schema.new({
 })
 
 M.GetOperationsInput = schema.new({
-    id = id.from(_N, "GetOperationsInput"),
+    id = id.from(_N, "GetOperationsRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -9497,7 +9497,7 @@ M.GetOperationsInput = schema.new({
 })
 
 M.GetOperationsOutput = schema.new({
-    id = id.from(_N, "GetOperationsOutput"),
+    id = id.from(_N, "GetOperationsResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -9517,7 +9517,7 @@ M.GetOperationsOutput = schema.new({
 })
 
 M.GetOperationsForResourceInput = schema.new({
-    id = id.from(_N, "GetOperationsForResourceInput"),
+    id = id.from(_N, "GetOperationsForResourceRequest"),
     type = "structure",
     members = {
         resourceName = schema.new({
@@ -9539,7 +9539,7 @@ M.GetOperationsForResourceInput = schema.new({
 })
 
 M.GetOperationsForResourceOutput = schema.new({
-    id = id.from(_N, "GetOperationsForResourceOutput"),
+    id = id.from(_N, "GetOperationsForResourceResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -9565,7 +9565,7 @@ M.GetOperationsForResourceOutput = schema.new({
 })
 
 M.GetRegionsInput = schema.new({
-    id = id.from(_N, "GetRegionsInput"),
+    id = id.from(_N, "GetRegionsRequest"),
     type = "structure",
     members = {
         includeAvailabilityZones = schema.new({
@@ -9629,7 +9629,7 @@ M.Region = schema.new({
 })
 
 M.GetRegionsOutput = schema.new({
-    id = id.from(_N, "GetRegionsOutput"),
+    id = id.from(_N, "GetRegionsResult"),
     type = "structure",
     members = {
         regions = schema.new({
@@ -9643,7 +9643,7 @@ M.GetRegionsOutput = schema.new({
 })
 
 M.GetRelationalDatabaseInput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseInput"),
+    id = id.from(_N, "GetRelationalDatabaseRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -9922,7 +9922,7 @@ M.RelationalDatabase = schema.new({
 })
 
 M.GetRelationalDatabaseOutput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseOutput"),
+    id = id.from(_N, "GetRelationalDatabaseResult"),
     type = "structure",
     members = {
         relationalDatabase = schema.new({
@@ -9936,7 +9936,7 @@ M.GetRelationalDatabaseOutput = schema.new({
 })
 
 M.GetRelationalDatabaseBlueprintsInput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseBlueprintsInput"),
+    id = id.from(_N, "GetRelationalDatabaseBlueprintsRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -9992,7 +9992,7 @@ M.RelationalDatabaseBlueprint = schema.new({
 })
 
 M.GetRelationalDatabaseBlueprintsOutput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseBlueprintsOutput"),
+    id = id.from(_N, "GetRelationalDatabaseBlueprintsResult"),
     type = "structure",
     members = {
         blueprints = schema.new({
@@ -10012,7 +10012,7 @@ M.GetRelationalDatabaseBlueprintsOutput = schema.new({
 })
 
 M.GetRelationalDatabaseBundlesInput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseBundlesInput"),
+    id = id.from(_N, "GetRelationalDatabaseBundlesRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -10092,7 +10092,7 @@ M.RelationalDatabaseBundle = schema.new({
 })
 
 M.GetRelationalDatabaseBundlesOutput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseBundlesOutput"),
+    id = id.from(_N, "GetRelationalDatabaseBundlesResult"),
     type = "structure",
     members = {
         bundles = schema.new({
@@ -10112,7 +10112,7 @@ M.GetRelationalDatabaseBundlesOutput = schema.new({
 })
 
 M.GetRelationalDatabaseEventsInput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseEventsInput"),
+    id = id.from(_N, "GetRelationalDatabaseEventsRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -10172,7 +10172,7 @@ M.RelationalDatabaseEvent = schema.new({
 })
 
 M.GetRelationalDatabaseEventsOutput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseEventsOutput"),
+    id = id.from(_N, "GetRelationalDatabaseEventsResult"),
     type = "structure",
     members = {
         relationalDatabaseEvents = schema.new({
@@ -10192,7 +10192,7 @@ M.GetRelationalDatabaseEventsOutput = schema.new({
 })
 
 M.GetRelationalDatabaseLogEventsInput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseLogEventsInput"),
+    id = id.from(_N, "GetRelationalDatabaseLogEventsRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -10260,7 +10260,7 @@ M.LogEvent = schema.new({
 })
 
 M.GetRelationalDatabaseLogEventsOutput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseLogEventsOutput"),
+    id = id.from(_N, "GetRelationalDatabaseLogEventsResult"),
     type = "structure",
     members = {
         resourceLogEvents = schema.new({
@@ -10286,7 +10286,7 @@ M.GetRelationalDatabaseLogEventsOutput = schema.new({
 })
 
 M.GetRelationalDatabaseLogStreamsInput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseLogStreamsInput"),
+    id = id.from(_N, "GetRelationalDatabaseLogStreamsRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -10302,7 +10302,7 @@ M.GetRelationalDatabaseLogStreamsInput = schema.new({
 })
 
 M.GetRelationalDatabaseLogStreamsOutput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseLogStreamsOutput"),
+    id = id.from(_N, "GetRelationalDatabaseLogStreamsResult"),
     type = "structure",
     members = {
         logStreams = schema.new({
@@ -10316,7 +10316,7 @@ M.GetRelationalDatabaseLogStreamsOutput = schema.new({
 })
 
 M.GetRelationalDatabaseMasterUserPasswordInput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseMasterUserPasswordInput"),
+    id = id.from(_N, "GetRelationalDatabaseMasterUserPasswordRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -10338,7 +10338,7 @@ M.GetRelationalDatabaseMasterUserPasswordInput = schema.new({
 })
 
 M.GetRelationalDatabaseMasterUserPasswordOutput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseMasterUserPasswordOutput"),
+    id = id.from(_N, "GetRelationalDatabaseMasterUserPasswordResult"),
     type = "structure",
     members = {
         masterUserPassword = schema.new({
@@ -10357,7 +10357,7 @@ M.GetRelationalDatabaseMasterUserPasswordOutput = schema.new({
 })
 
 M.GetRelationalDatabaseMetricDataInput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseMetricDataInput"),
+    id = id.from(_N, "GetRelationalDatabaseMetricDataRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -10428,7 +10428,7 @@ M.GetRelationalDatabaseMetricDataInput = schema.new({
 })
 
 M.GetRelationalDatabaseMetricDataOutput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseMetricDataOutput"),
+    id = id.from(_N, "GetRelationalDatabaseMetricDataResult"),
     type = "structure",
     members = {
         metricName = schema.new({
@@ -10448,7 +10448,7 @@ M.GetRelationalDatabaseMetricDataOutput = schema.new({
 })
 
 M.GetRelationalDatabaseParametersInput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseParametersInput"),
+    id = id.from(_N, "GetRelationalDatabaseParametersRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -10525,7 +10525,7 @@ M.RelationalDatabaseParameter = schema.new({
 })
 
 M.GetRelationalDatabaseParametersOutput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseParametersOutput"),
+    id = id.from(_N, "GetRelationalDatabaseParametersResult"),
     type = "structure",
     members = {
         parameters = schema.new({
@@ -10545,7 +10545,7 @@ M.GetRelationalDatabaseParametersOutput = schema.new({
 })
 
 M.GetRelationalDatabasesInput = schema.new({
-    id = id.from(_N, "GetRelationalDatabasesInput"),
+    id = id.from(_N, "GetRelationalDatabasesRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -10558,7 +10558,7 @@ M.GetRelationalDatabasesInput = schema.new({
 })
 
 M.GetRelationalDatabasesOutput = schema.new({
-    id = id.from(_N, "GetRelationalDatabasesOutput"),
+    id = id.from(_N, "GetRelationalDatabasesResult"),
     type = "structure",
     members = {
         relationalDatabases = schema.new({
@@ -10578,7 +10578,7 @@ M.GetRelationalDatabasesOutput = schema.new({
 })
 
 M.GetRelationalDatabaseSnapshotInput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseSnapshotInput"),
+    id = id.from(_N, "GetRelationalDatabaseSnapshotRequest"),
     type = "structure",
     members = {
         relationalDatabaseSnapshotName = schema.new({
@@ -10693,7 +10693,7 @@ M.RelationalDatabaseSnapshot = schema.new({
 })
 
 M.GetRelationalDatabaseSnapshotOutput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseSnapshotOutput"),
+    id = id.from(_N, "GetRelationalDatabaseSnapshotResult"),
     type = "structure",
     members = {
         relationalDatabaseSnapshot = schema.new({
@@ -10707,7 +10707,7 @@ M.GetRelationalDatabaseSnapshotOutput = schema.new({
 })
 
 M.GetRelationalDatabaseSnapshotsInput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseSnapshotsInput"),
+    id = id.from(_N, "GetRelationalDatabaseSnapshotsRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -10720,7 +10720,7 @@ M.GetRelationalDatabaseSnapshotsInput = schema.new({
 })
 
 M.GetRelationalDatabaseSnapshotsOutput = schema.new({
-    id = id.from(_N, "GetRelationalDatabaseSnapshotsOutput"),
+    id = id.from(_N, "GetRelationalDatabaseSnapshotsResult"),
     type = "structure",
     members = {
         relationalDatabaseSnapshots = schema.new({
@@ -10740,7 +10740,7 @@ M.GetRelationalDatabaseSnapshotsOutput = schema.new({
 })
 
 M.GetSetupHistoryInput = schema.new({
-    id = id.from(_N, "GetSetupHistoryInput"),
+    id = id.from(_N, "GetSetupHistoryRequest"),
     type = "structure",
     members = {
         resourceName = schema.new({
@@ -10915,7 +10915,7 @@ M.SetupHistory = schema.new({
 })
 
 M.GetSetupHistoryOutput = schema.new({
-    id = id.from(_N, "GetSetupHistoryOutput"),
+    id = id.from(_N, "GetSetupHistoryResult"),
     type = "structure",
     members = {
         setupHistory = schema.new({
@@ -10935,7 +10935,7 @@ M.GetSetupHistoryOutput = schema.new({
 })
 
 M.GetStaticIpInput = schema.new({
-    id = id.from(_N, "GetStaticIpInput"),
+    id = id.from(_N, "GetStaticIpRequest"),
     type = "structure",
     members = {
         staticIpName = schema.new({
@@ -11013,7 +11013,7 @@ M.StaticIp = schema.new({
 })
 
 M.GetStaticIpOutput = schema.new({
-    id = id.from(_N, "GetStaticIpOutput"),
+    id = id.from(_N, "GetStaticIpResult"),
     type = "structure",
     members = {
         staticIp = schema.new({
@@ -11027,7 +11027,7 @@ M.GetStaticIpOutput = schema.new({
 })
 
 M.GetStaticIpsInput = schema.new({
-    id = id.from(_N, "GetStaticIpsInput"),
+    id = id.from(_N, "GetStaticIpsRequest"),
     type = "structure",
     members = {
         pageToken = schema.new({
@@ -11040,7 +11040,7 @@ M.GetStaticIpsInput = schema.new({
 })
 
 M.GetStaticIpsOutput = schema.new({
-    id = id.from(_N, "GetStaticIpsOutput"),
+    id = id.from(_N, "GetStaticIpsResult"),
     type = "structure",
     members = {
         staticIps = schema.new({
@@ -11060,7 +11060,7 @@ M.GetStaticIpsOutput = schema.new({
 })
 
 M.ImportKeyPairInput = schema.new({
-    id = id.from(_N, "ImportKeyPairInput"),
+    id = id.from(_N, "ImportKeyPairRequest"),
     type = "structure",
     members = {
         keyPairName = schema.new({
@@ -11085,7 +11085,7 @@ M.ImportKeyPairInput = schema.new({
 })
 
 M.ImportKeyPairOutput = schema.new({
-    id = id.from(_N, "ImportKeyPairOutput"),
+    id = id.from(_N, "ImportKeyPairResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -11099,12 +11099,12 @@ M.ImportKeyPairOutput = schema.new({
 })
 
 M.IsVpcPeeredInput = schema.new({
-    id = id.from(_N, "IsVpcPeeredInput"),
+    id = id.from(_N, "IsVpcPeeredRequest"),
     type = "structure",
 })
 
 M.IsVpcPeeredOutput = schema.new({
-    id = id.from(_N, "IsVpcPeeredOutput"),
+    id = id.from(_N, "IsVpcPeeredResult"),
     type = "structure",
     members = {
         isPeered = schema.new({
@@ -11117,7 +11117,7 @@ M.IsVpcPeeredOutput = schema.new({
 })
 
 M.OpenInstancePublicPortsInput = schema.new({
-    id = id.from(_N, "OpenInstancePublicPortsInput"),
+    id = id.from(_N, "OpenInstancePublicPortsRequest"),
     type = "structure",
     members = {
         portInfo = schema.new({
@@ -11143,7 +11143,7 @@ M.OpenInstancePublicPortsInput = schema.new({
 })
 
 M.OpenInstancePublicPortsOutput = schema.new({
-    id = id.from(_N, "OpenInstancePublicPortsOutput"),
+    id = id.from(_N, "OpenInstancePublicPortsResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -11157,12 +11157,12 @@ M.OpenInstancePublicPortsOutput = schema.new({
 })
 
 M.PeerVpcInput = schema.new({
-    id = id.from(_N, "PeerVpcInput"),
+    id = id.from(_N, "PeerVpcRequest"),
     type = "structure",
 })
 
 M.PeerVpcOutput = schema.new({
-    id = id.from(_N, "PeerVpcOutput"),
+    id = id.from(_N, "PeerVpcResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -11176,7 +11176,7 @@ M.PeerVpcOutput = schema.new({
 })
 
 M.PutAlarmInput = schema.new({
-    id = id.from(_N, "PutAlarmInput"),
+    id = id.from(_N, "PutAlarmRequest"),
     type = "structure",
     members = {
         alarmName = schema.new({
@@ -11276,7 +11276,7 @@ M.PutAlarmInput = schema.new({
 })
 
 M.PutAlarmOutput = schema.new({
-    id = id.from(_N, "PutAlarmOutput"),
+    id = id.from(_N, "PutAlarmResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11290,7 +11290,7 @@ M.PutAlarmOutput = schema.new({
 })
 
 M.PutInstancePublicPortsInput = schema.new({
-    id = id.from(_N, "PutInstancePublicPortsInput"),
+    id = id.from(_N, "PutInstancePublicPortsRequest"),
     type = "structure",
     members = {
         portInfos = schema.new({
@@ -11316,7 +11316,7 @@ M.PutInstancePublicPortsInput = schema.new({
 })
 
 M.PutInstancePublicPortsOutput = schema.new({
-    id = id.from(_N, "PutInstancePublicPortsOutput"),
+    id = id.from(_N, "PutInstancePublicPortsResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -11330,7 +11330,7 @@ M.PutInstancePublicPortsOutput = schema.new({
 })
 
 M.RebootInstanceInput = schema.new({
-    id = id.from(_N, "RebootInstanceInput"),
+    id = id.from(_N, "RebootInstanceRequest"),
     type = "structure",
     members = {
         instanceName = schema.new({
@@ -11346,7 +11346,7 @@ M.RebootInstanceInput = schema.new({
 })
 
 M.RebootInstanceOutput = schema.new({
-    id = id.from(_N, "RebootInstanceOutput"),
+    id = id.from(_N, "RebootInstanceResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11360,7 +11360,7 @@ M.RebootInstanceOutput = schema.new({
 })
 
 M.RebootRelationalDatabaseInput = schema.new({
-    id = id.from(_N, "RebootRelationalDatabaseInput"),
+    id = id.from(_N, "RebootRelationalDatabaseRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -11376,7 +11376,7 @@ M.RebootRelationalDatabaseInput = schema.new({
 })
 
 M.RebootRelationalDatabaseOutput = schema.new({
-    id = id.from(_N, "RebootRelationalDatabaseOutput"),
+    id = id.from(_N, "RebootRelationalDatabaseResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11390,7 +11390,7 @@ M.RebootRelationalDatabaseOutput = schema.new({
 })
 
 M.RegisterContainerImageInput = schema.new({
-    id = id.from(_N, "RegisterContainerImageInput"),
+    id = id.from(_N, "RegisterContainerImageRequest"),
     type = "structure",
     members = {
         serviceName = schema.new({
@@ -11425,7 +11425,7 @@ M.RegisterContainerImageInput = schema.new({
 })
 
 M.RegisterContainerImageOutput = schema.new({
-    id = id.from(_N, "RegisterContainerImageOutput"),
+    id = id.from(_N, "RegisterContainerImageResult"),
     type = "structure",
     members = {
         containerImage = schema.new({
@@ -11439,7 +11439,7 @@ M.RegisterContainerImageOutput = schema.new({
 })
 
 M.ReleaseStaticIpInput = schema.new({
-    id = id.from(_N, "ReleaseStaticIpInput"),
+    id = id.from(_N, "ReleaseStaticIpRequest"),
     type = "structure",
     members = {
         staticIpName = schema.new({
@@ -11455,7 +11455,7 @@ M.ReleaseStaticIpInput = schema.new({
 })
 
 M.ReleaseStaticIpOutput = schema.new({
-    id = id.from(_N, "ReleaseStaticIpOutput"),
+    id = id.from(_N, "ReleaseStaticIpResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11469,7 +11469,7 @@ M.ReleaseStaticIpOutput = schema.new({
 })
 
 M.ResetDistributionCacheInput = schema.new({
-    id = id.from(_N, "ResetDistributionCacheInput"),
+    id = id.from(_N, "ResetDistributionCacheRequest"),
     type = "structure",
     members = {
         distributionName = schema.new({
@@ -11482,7 +11482,7 @@ M.ResetDistributionCacheInput = schema.new({
 })
 
 M.ResetDistributionCacheOutput = schema.new({
-    id = id.from(_N, "ResetDistributionCacheOutput"),
+    id = id.from(_N, "ResetDistributionCacheResult"),
     type = "structure",
     members = {
         status = schema.new({
@@ -11508,7 +11508,7 @@ M.ResetDistributionCacheOutput = schema.new({
 })
 
 M.SendContactMethodVerificationInput = schema.new({
-    id = id.from(_N, "SendContactMethodVerificationInput"),
+    id = id.from(_N, "SendContactMethodVerificationRequest"),
     type = "structure",
     members = {
         protocol = schema.new({
@@ -11524,7 +11524,7 @@ M.SendContactMethodVerificationInput = schema.new({
 })
 
 M.SendContactMethodVerificationOutput = schema.new({
-    id = id.from(_N, "SendContactMethodVerificationOutput"),
+    id = id.from(_N, "SendContactMethodVerificationResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11538,7 +11538,7 @@ M.SendContactMethodVerificationOutput = schema.new({
 })
 
 M.SetIpAddressTypeInput = schema.new({
-    id = id.from(_N, "SetIpAddressTypeInput"),
+    id = id.from(_N, "SetIpAddressTypeRequest"),
     type = "structure",
     members = {
         resourceType = schema.new({
@@ -11578,7 +11578,7 @@ M.SetIpAddressTypeInput = schema.new({
 })
 
 M.SetIpAddressTypeOutput = schema.new({
-    id = id.from(_N, "SetIpAddressTypeOutput"),
+    id = id.from(_N, "SetIpAddressTypeResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11592,7 +11592,7 @@ M.SetIpAddressTypeOutput = schema.new({
 })
 
 M.SetResourceAccessForBucketInput = schema.new({
-    id = id.from(_N, "SetResourceAccessForBucketInput"),
+    id = id.from(_N, "SetResourceAccessForBucketRequest"),
     type = "structure",
     members = {
         resourceName = schema.new({
@@ -11626,7 +11626,7 @@ M.SetResourceAccessForBucketInput = schema.new({
 })
 
 M.SetResourceAccessForBucketOutput = schema.new({
-    id = id.from(_N, "SetResourceAccessForBucketOutput"),
+    id = id.from(_N, "SetResourceAccessForBucketResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11640,7 +11640,7 @@ M.SetResourceAccessForBucketOutput = schema.new({
 })
 
 M.SetupInstanceHttpsInput = schema.new({
-    id = id.from(_N, "SetupInstanceHttpsInput"),
+    id = id.from(_N, "SetupInstanceHttpsRequest"),
     type = "structure",
     members = {
         instanceName = schema.new({
@@ -11684,7 +11684,7 @@ M.SetupInstanceHttpsInput = schema.new({
 })
 
 M.SetupInstanceHttpsOutput = schema.new({
-    id = id.from(_N, "SetupInstanceHttpsOutput"),
+    id = id.from(_N, "SetupInstanceHttpsResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11698,7 +11698,7 @@ M.SetupInstanceHttpsOutput = schema.new({
 })
 
 M.StartGUISessionInput = schema.new({
-    id = id.from(_N, "StartGUISessionInput"),
+    id = id.from(_N, "StartGUISessionRequest"),
     type = "structure",
     members = {
         resourceName = schema.new({
@@ -11714,7 +11714,7 @@ M.StartGUISessionInput = schema.new({
 })
 
 M.StartGUISessionOutput = schema.new({
-    id = id.from(_N, "StartGUISessionOutput"),
+    id = id.from(_N, "StartGUISessionResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11728,7 +11728,7 @@ M.StartGUISessionOutput = schema.new({
 })
 
 M.StartInstanceInput = schema.new({
-    id = id.from(_N, "StartInstanceInput"),
+    id = id.from(_N, "StartInstanceRequest"),
     type = "structure",
     members = {
         instanceName = schema.new({
@@ -11744,7 +11744,7 @@ M.StartInstanceInput = schema.new({
 })
 
 M.StartInstanceOutput = schema.new({
-    id = id.from(_N, "StartInstanceOutput"),
+    id = id.from(_N, "StartInstanceResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11758,7 +11758,7 @@ M.StartInstanceOutput = schema.new({
 })
 
 M.StartRelationalDatabaseInput = schema.new({
-    id = id.from(_N, "StartRelationalDatabaseInput"),
+    id = id.from(_N, "StartRelationalDatabaseRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -11774,7 +11774,7 @@ M.StartRelationalDatabaseInput = schema.new({
 })
 
 M.StartRelationalDatabaseOutput = schema.new({
-    id = id.from(_N, "StartRelationalDatabaseOutput"),
+    id = id.from(_N, "StartRelationalDatabaseResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11788,7 +11788,7 @@ M.StartRelationalDatabaseOutput = schema.new({
 })
 
 M.StopGUISessionInput = schema.new({
-    id = id.from(_N, "StopGUISessionInput"),
+    id = id.from(_N, "StopGUISessionRequest"),
     type = "structure",
     members = {
         resourceName = schema.new({
@@ -11804,7 +11804,7 @@ M.StopGUISessionInput = schema.new({
 })
 
 M.StopGUISessionOutput = schema.new({
-    id = id.from(_N, "StopGUISessionOutput"),
+    id = id.from(_N, "StopGUISessionResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11818,7 +11818,7 @@ M.StopGUISessionOutput = schema.new({
 })
 
 M.StopInstanceInput = schema.new({
-    id = id.from(_N, "StopInstanceInput"),
+    id = id.from(_N, "StopInstanceRequest"),
     type = "structure",
     members = {
         instanceName = schema.new({
@@ -11840,7 +11840,7 @@ M.StopInstanceInput = schema.new({
 })
 
 M.StopInstanceOutput = schema.new({
-    id = id.from(_N, "StopInstanceOutput"),
+    id = id.from(_N, "StopInstanceResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11854,7 +11854,7 @@ M.StopInstanceOutput = schema.new({
 })
 
 M.StopRelationalDatabaseInput = schema.new({
-    id = id.from(_N, "StopRelationalDatabaseInput"),
+    id = id.from(_N, "StopRelationalDatabaseRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -11876,7 +11876,7 @@ M.StopRelationalDatabaseInput = schema.new({
 })
 
 M.StopRelationalDatabaseOutput = schema.new({
-    id = id.from(_N, "StopRelationalDatabaseOutput"),
+    id = id.from(_N, "StopRelationalDatabaseResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11890,7 +11890,7 @@ M.StopRelationalDatabaseOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceName = schema.new({
@@ -11922,7 +11922,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11936,7 +11936,7 @@ M.TagResourceOutput = schema.new({
 })
 
 M.TestAlarmInput = schema.new({
-    id = id.from(_N, "TestAlarmInput"),
+    id = id.from(_N, "TestAlarmRequest"),
     type = "structure",
     members = {
         alarmName = schema.new({
@@ -11963,7 +11963,7 @@ M.TestAlarmInput = schema.new({
 })
 
 M.TestAlarmOutput = schema.new({
-    id = id.from(_N, "TestAlarmOutput"),
+    id = id.from(_N, "TestAlarmResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -11977,12 +11977,12 @@ M.TestAlarmOutput = schema.new({
 })
 
 M.UnpeerVpcInput = schema.new({
-    id = id.from(_N, "UnpeerVpcInput"),
+    id = id.from(_N, "UnpeerVpcRequest"),
     type = "structure",
 })
 
 M.UnpeerVpcOutput = schema.new({
-    id = id.from(_N, "UnpeerVpcOutput"),
+    id = id.from(_N, "UnpeerVpcResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -11996,7 +11996,7 @@ M.UnpeerVpcOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceName = schema.new({
@@ -12028,7 +12028,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -12042,7 +12042,7 @@ M.UntagResourceOutput = schema.new({
 })
 
 M.UpdateBucketInput = schema.new({
-    id = id.from(_N, "UpdateBucketInput"),
+    id = id.from(_N, "UpdateBucketRequest"),
     type = "structure",
     members = {
         bucketName = schema.new({
@@ -12092,7 +12092,7 @@ M.UpdateBucketInput = schema.new({
 })
 
 M.UpdateBucketOutput = schema.new({
-    id = id.from(_N, "UpdateBucketOutput"),
+    id = id.from(_N, "UpdateBucketResult"),
     type = "structure",
     members = {
         bucket = schema.new({
@@ -12113,7 +12113,7 @@ M.UpdateBucketOutput = schema.new({
 })
 
 M.UpdateBucketBundleInput = schema.new({
-    id = id.from(_N, "UpdateBucketBundleInput"),
+    id = id.from(_N, "UpdateBucketBundleRequest"),
     type = "structure",
     members = {
         bucketName = schema.new({
@@ -12138,7 +12138,7 @@ M.UpdateBucketBundleInput = schema.new({
 })
 
 M.UpdateBucketBundleOutput = schema.new({
-    id = id.from(_N, "UpdateBucketBundleOutput"),
+    id = id.from(_N, "UpdateBucketBundleResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -12152,7 +12152,7 @@ M.UpdateBucketBundleOutput = schema.new({
 })
 
 M.UpdateContainerServiceInput = schema.new({
-    id = id.from(_N, "UpdateContainerServiceInput"),
+    id = id.from(_N, "UpdateContainerServiceRequest"),
     type = "structure",
     members = {
         serviceName = schema.new({
@@ -12189,7 +12189,7 @@ M.UpdateContainerServiceInput = schema.new({
             name = "publicDomainNames",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         privateRegistryAccess = schema.new({
             id = id.from(_N, "UpdateContainerServiceInput", "privateRegistryAccess"),
@@ -12202,7 +12202,7 @@ M.UpdateContainerServiceInput = schema.new({
 })
 
 M.UpdateContainerServiceOutput = schema.new({
-    id = id.from(_N, "UpdateContainerServiceOutput"),
+    id = id.from(_N, "UpdateContainerServiceResult"),
     type = "structure",
     members = {
         containerService = schema.new({
@@ -12216,7 +12216,7 @@ M.UpdateContainerServiceOutput = schema.new({
 })
 
 M.UpdateDistributionInput = schema.new({
-    id = id.from(_N, "UpdateDistributionInput"),
+    id = id.from(_N, "UpdateDistributionRequest"),
     type = "structure",
     members = {
         distributionName = schema.new({
@@ -12284,7 +12284,7 @@ M.UpdateDistributionInput = schema.new({
 })
 
 M.UpdateDistributionOutput = schema.new({
-    id = id.from(_N, "UpdateDistributionOutput"),
+    id = id.from(_N, "UpdateDistributionResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -12298,7 +12298,7 @@ M.UpdateDistributionOutput = schema.new({
 })
 
 M.UpdateDistributionBundleInput = schema.new({
-    id = id.from(_N, "UpdateDistributionBundleInput"),
+    id = id.from(_N, "UpdateDistributionBundleRequest"),
     type = "structure",
     members = {
         distributionName = schema.new({
@@ -12317,7 +12317,7 @@ M.UpdateDistributionBundleInput = schema.new({
 })
 
 M.UpdateDistributionBundleOutput = schema.new({
-    id = id.from(_N, "UpdateDistributionBundleOutput"),
+    id = id.from(_N, "UpdateDistributionBundleResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -12331,7 +12331,7 @@ M.UpdateDistributionBundleOutput = schema.new({
 })
 
 M.UpdateDomainEntryInput = schema.new({
-    id = id.from(_N, "UpdateDomainEntryInput"),
+    id = id.from(_N, "UpdateDomainEntryRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -12357,7 +12357,7 @@ M.UpdateDomainEntryInput = schema.new({
 })
 
 M.UpdateDomainEntryOutput = schema.new({
-    id = id.from(_N, "UpdateDomainEntryOutput"),
+    id = id.from(_N, "UpdateDomainEntryResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -12371,7 +12371,7 @@ M.UpdateDomainEntryOutput = schema.new({
 })
 
 M.UpdateInstanceMetadataOptionsInput = schema.new({
-    id = id.from(_N, "UpdateInstanceMetadataOptionsInput"),
+    id = id.from(_N, "UpdateInstanceMetadataOptionsRequest"),
     type = "structure",
     members = {
         instanceName = schema.new({
@@ -12411,7 +12411,7 @@ M.UpdateInstanceMetadataOptionsInput = schema.new({
 })
 
 M.UpdateInstanceMetadataOptionsOutput = schema.new({
-    id = id.from(_N, "UpdateInstanceMetadataOptionsOutput"),
+    id = id.from(_N, "UpdateInstanceMetadataOptionsResult"),
     type = "structure",
     members = {
         operation = schema.new({
@@ -12425,7 +12425,7 @@ M.UpdateInstanceMetadataOptionsOutput = schema.new({
 })
 
 M.UpdateLoadBalancerAttributeInput = schema.new({
-    id = id.from(_N, "UpdateLoadBalancerAttributeInput"),
+    id = id.from(_N, "UpdateLoadBalancerAttributeRequest"),
     type = "structure",
     members = {
         loadBalancerName = schema.new({
@@ -12459,7 +12459,7 @@ M.UpdateLoadBalancerAttributeInput = schema.new({
 })
 
 M.UpdateLoadBalancerAttributeOutput = schema.new({
-    id = id.from(_N, "UpdateLoadBalancerAttributeOutput"),
+    id = id.from(_N, "UpdateLoadBalancerAttributeResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -12473,7 +12473,7 @@ M.UpdateLoadBalancerAttributeOutput = schema.new({
 })
 
 M.UpdateRelationalDatabaseInput = schema.new({
-    id = id.from(_N, "UpdateRelationalDatabaseInput"),
+    id = id.from(_N, "UpdateRelationalDatabaseRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -12549,7 +12549,7 @@ M.UpdateRelationalDatabaseInput = schema.new({
 })
 
 M.UpdateRelationalDatabaseOutput = schema.new({
-    id = id.from(_N, "UpdateRelationalDatabaseOutput"),
+    id = id.from(_N, "UpdateRelationalDatabaseResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -12563,7 +12563,7 @@ M.UpdateRelationalDatabaseOutput = schema.new({
 })
 
 M.UpdateRelationalDatabaseParametersInput = schema.new({
-    id = id.from(_N, "UpdateRelationalDatabaseParametersInput"),
+    id = id.from(_N, "UpdateRelationalDatabaseParametersRequest"),
     type = "structure",
     members = {
         relationalDatabaseName = schema.new({
@@ -12589,7 +12589,7 @@ M.UpdateRelationalDatabaseParametersInput = schema.new({
 })
 
 M.UpdateRelationalDatabaseParametersOutput = schema.new({
-    id = id.from(_N, "UpdateRelationalDatabaseParametersOutput"),
+    id = id.from(_N, "UpdateRelationalDatabaseParametersResult"),
     type = "structure",
     members = {
         operations = schema.new({
@@ -12601,5 +12601,19 @@ M.UpdateRelationalDatabaseParametersOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

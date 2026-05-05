@@ -1147,7 +1147,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.GetPatientInsightsJobInput = schema.new({
-    id = id.from(_N, "GetPatientInsightsJobInput"),
+    id = id.from(_N, "GetPatientInsightsJobRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -1356,7 +1356,7 @@ M.UserContext = schema.new({
 })
 
 M.GetPatientInsightsJobOutput = schema.new({
-    id = id.from(_N, "GetPatientInsightsJobOutput"),
+    id = id.from(_N, "GetPatientInsightsJobResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -2090,7 +2090,7 @@ M.StartMedicalScribeListeningSessionOutput = schema.new({
 })
 
 M.StartPatientInsightsJobInput = schema.new({
-    id = id.from(_N, "StartPatientInsightsJobInput"),
+    id = id.from(_N, "StartPatientInsightsJobRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -2176,7 +2176,7 @@ M.StartPatientInsightsJobInput = schema.new({
 })
 
 M.StartPatientInsightsJobOutput = schema.new({
-    id = id.from(_N, "StartPatientInsightsJobOutput"),
+    id = id.from(_N, "StartPatientInsightsJobResponse"),
     type = "structure",
     members = {
         jobArn = schema.new({
@@ -2238,7 +2238,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2271,8 +2271,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

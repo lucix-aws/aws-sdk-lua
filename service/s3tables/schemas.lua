@@ -56,7 +56,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateNamespaceInput = schema.new({
-    id = id.from(_N, "CreateNamespaceInput"),
+    id = id.from(_N, "CreateNamespaceRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -83,7 +83,7 @@ M.CreateNamespaceInput = schema.new({
 })
 
 M.CreateNamespaceOutput = schema.new({
-    id = id.from(_N, "CreateNamespaceOutput"),
+    id = id.from(_N, "CreateNamespaceResponse"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -561,7 +561,7 @@ M.StorageClassConfiguration = schema.new({
 })
 
 M.CreateTableInput = schema.new({
-    id = id.from(_N, "CreateTableInput"),
+    id = id.from(_N, "CreateTableRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -635,7 +635,7 @@ M.CreateTableInput = schema.new({
 })
 
 M.CreateTableOutput = schema.new({
-    id = id.from(_N, "CreateTableOutput"),
+    id = id.from(_N, "CreateTableResponse"),
     type = "structure",
     members = {
         tableARN = schema.new({
@@ -660,7 +660,7 @@ M.CreateTableOutput = schema.new({
 })
 
 M.CreateTableBucketInput = schema.new({
-    id = id.from(_N, "CreateTableBucketInput"),
+    id = id.from(_N, "CreateTableBucketRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -698,7 +698,7 @@ M.CreateTableBucketInput = schema.new({
 })
 
 M.CreateTableBucketOutput = schema.new({
-    id = id.from(_N, "CreateTableBucketOutput"),
+    id = id.from(_N, "CreateTableBucketResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -714,7 +714,7 @@ M.CreateTableBucketOutput = schema.new({
 })
 
 M.DeleteNamespaceInput = schema.new({
-    id = id.from(_N, "DeleteNamespaceInput"),
+    id = id.from(_N, "DeleteNamespaceRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -741,12 +741,12 @@ M.DeleteNamespaceInput = schema.new({
 })
 
 M.DeleteNamespaceOutput = schema.new({
-    id = id.from(_N, "DeleteNamespaceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTableInput = schema.new({
-    id = id.from(_N, "DeleteTableInput"),
+    id = id.from(_N, "DeleteTableRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -792,12 +792,12 @@ M.DeleteTableInput = schema.new({
 })
 
 M.DeleteTableOutput = schema.new({
-    id = id.from(_N, "DeleteTableOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTableBucketInput = schema.new({
-    id = id.from(_N, "DeleteTableBucketInput"),
+    id = id.from(_N, "DeleteTableBucketRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -814,12 +814,12 @@ M.DeleteTableBucketInput = schema.new({
 })
 
 M.DeleteTableBucketOutput = schema.new({
-    id = id.from(_N, "DeleteTableBucketOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTableBucketEncryptionInput = schema.new({
-    id = id.from(_N, "DeleteTableBucketEncryptionInput"),
+    id = id.from(_N, "DeleteTableBucketEncryptionRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -836,12 +836,12 @@ M.DeleteTableBucketEncryptionInput = schema.new({
 })
 
 M.DeleteTableBucketEncryptionOutput = schema.new({
-    id = id.from(_N, "DeleteTableBucketEncryptionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTableBucketMetricsConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteTableBucketMetricsConfigurationInput"),
+    id = id.from(_N, "DeleteTableBucketMetricsConfigurationRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -858,12 +858,12 @@ M.DeleteTableBucketMetricsConfigurationInput = schema.new({
 })
 
 M.DeleteTableBucketMetricsConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteTableBucketMetricsConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTableBucketPolicyInput = schema.new({
-    id = id.from(_N, "DeleteTableBucketPolicyInput"),
+    id = id.from(_N, "DeleteTableBucketPolicyRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -880,12 +880,12 @@ M.DeleteTableBucketPolicyInput = schema.new({
 })
 
 M.DeleteTableBucketPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteTableBucketPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTableBucketReplicationInput = schema.new({
-    id = id.from(_N, "DeleteTableBucketReplicationInput"),
+    id = id.from(_N, "DeleteTableBucketReplicationRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -911,12 +911,12 @@ M.DeleteTableBucketReplicationInput = schema.new({
 })
 
 M.DeleteTableBucketReplicationOutput = schema.new({
-    id = id.from(_N, "DeleteTableBucketReplicationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTablePolicyInput = schema.new({
-    id = id.from(_N, "DeleteTablePolicyInput"),
+    id = id.from(_N, "DeleteTablePolicyRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -953,12 +953,12 @@ M.DeleteTablePolicyInput = schema.new({
 })
 
 M.DeleteTablePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteTablePolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTableReplicationInput = schema.new({
-    id = id.from(_N, "DeleteTableReplicationInput"),
+    id = id.from(_N, "DeleteTableReplicationRequest"),
     type = "structure",
     members = {
         tableArn = schema.new({
@@ -985,12 +985,12 @@ M.DeleteTableReplicationInput = schema.new({
 })
 
 M.DeleteTableReplicationOutput = schema.new({
-    id = id.from(_N, "DeleteTableReplicationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetNamespaceInput = schema.new({
-    id = id.from(_N, "GetNamespaceInput"),
+    id = id.from(_N, "GetNamespaceRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -1017,7 +1017,7 @@ M.GetNamespaceInput = schema.new({
 })
 
 M.GetNamespaceOutput = schema.new({
-    id = id.from(_N, "GetNamespaceOutput"),
+    id = id.from(_N, "GetNamespaceResponse"),
     type = "structure",
     members = {
         namespace = schema.new({
@@ -1074,7 +1074,7 @@ M.GetNamespaceOutput = schema.new({
 })
 
 M.GetTableInput = schema.new({
-    id = id.from(_N, "GetTableInput"),
+    id = id.from(_N, "GetTableRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -1147,7 +1147,7 @@ M.ManagedTableInformation = schema.new({
 })
 
 M.GetTableOutput = schema.new({
-    id = id.from(_N, "GetTableOutput"),
+    id = id.from(_N, "GetTableResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1299,7 +1299,7 @@ M.GetTableOutput = schema.new({
 })
 
 M.GetTableBucketInput = schema.new({
-    id = id.from(_N, "GetTableBucketInput"),
+    id = id.from(_N, "GetTableBucketRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -1316,7 +1316,7 @@ M.GetTableBucketInput = schema.new({
 })
 
 M.GetTableBucketOutput = schema.new({
-    id = id.from(_N, "GetTableBucketOutput"),
+    id = id.from(_N, "GetTableBucketResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1372,7 +1372,7 @@ M.GetTableBucketOutput = schema.new({
 })
 
 M.GetTableBucketEncryptionInput = schema.new({
-    id = id.from(_N, "GetTableBucketEncryptionInput"),
+    id = id.from(_N, "GetTableBucketEncryptionRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -1389,7 +1389,7 @@ M.GetTableBucketEncryptionInput = schema.new({
 })
 
 M.GetTableBucketEncryptionOutput = schema.new({
-    id = id.from(_N, "GetTableBucketEncryptionOutput"),
+    id = id.from(_N, "GetTableBucketEncryptionResponse"),
     type = "structure",
     members = {
         encryptionConfiguration = schema.new({
@@ -1406,7 +1406,7 @@ M.GetTableBucketEncryptionOutput = schema.new({
 })
 
 M.GetTableBucketMaintenanceConfigurationInput = schema.new({
-    id = id.from(_N, "GetTableBucketMaintenanceConfigurationInput"),
+    id = id.from(_N, "GetTableBucketMaintenanceConfigurationRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -1476,7 +1476,7 @@ M.TableBucketMaintenanceConfigurationValue = schema.new({
 })
 
 M.GetTableBucketMaintenanceConfigurationOutput = schema.new({
-    id = id.from(_N, "GetTableBucketMaintenanceConfigurationOutput"),
+    id = id.from(_N, "GetTableBucketMaintenanceConfigurationResponse"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -1503,7 +1503,7 @@ M.GetTableBucketMaintenanceConfigurationOutput = schema.new({
 })
 
 M.GetTableBucketMetricsConfigurationInput = schema.new({
-    id = id.from(_N, "GetTableBucketMetricsConfigurationInput"),
+    id = id.from(_N, "GetTableBucketMetricsConfigurationRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -1520,7 +1520,7 @@ M.GetTableBucketMetricsConfigurationInput = schema.new({
 })
 
 M.GetTableBucketMetricsConfigurationOutput = schema.new({
-    id = id.from(_N, "GetTableBucketMetricsConfigurationOutput"),
+    id = id.from(_N, "GetTableBucketMetricsConfigurationResponse"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -1542,7 +1542,7 @@ M.GetTableBucketMetricsConfigurationOutput = schema.new({
 })
 
 M.GetTableBucketPolicyInput = schema.new({
-    id = id.from(_N, "GetTableBucketPolicyInput"),
+    id = id.from(_N, "GetTableBucketPolicyRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -1559,7 +1559,7 @@ M.GetTableBucketPolicyInput = schema.new({
 })
 
 M.GetTableBucketPolicyOutput = schema.new({
-    id = id.from(_N, "GetTableBucketPolicyOutput"),
+    id = id.from(_N, "GetTableBucketPolicyResponse"),
     type = "structure",
     members = {
         resourcePolicy = schema.new({
@@ -1575,7 +1575,7 @@ M.GetTableBucketPolicyOutput = schema.new({
 })
 
 M.GetTableBucketReplicationInput = schema.new({
-    id = id.from(_N, "GetTableBucketReplicationInput"),
+    id = id.from(_N, "GetTableBucketReplicationRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -1651,7 +1651,7 @@ M.TableBucketReplicationConfiguration = schema.new({
 })
 
 M.GetTableBucketReplicationOutput = schema.new({
-    id = id.from(_N, "GetTableBucketReplicationOutput"),
+    id = id.from(_N, "GetTableBucketReplicationResponse"),
     type = "structure",
     members = {
         versionToken = schema.new({
@@ -1677,7 +1677,7 @@ M.GetTableBucketReplicationOutput = schema.new({
 })
 
 M.GetTableBucketStorageClassInput = schema.new({
-    id = id.from(_N, "GetTableBucketStorageClassInput"),
+    id = id.from(_N, "GetTableBucketStorageClassRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -1694,7 +1694,7 @@ M.GetTableBucketStorageClassInput = schema.new({
 })
 
 M.GetTableBucketStorageClassOutput = schema.new({
-    id = id.from(_N, "GetTableBucketStorageClassOutput"),
+    id = id.from(_N, "GetTableBucketStorageClassResponse"),
     type = "structure",
     members = {
         storageClassConfiguration = schema.new({
@@ -1711,7 +1711,7 @@ M.GetTableBucketStorageClassOutput = schema.new({
 })
 
 M.GetTableEncryptionInput = schema.new({
-    id = id.from(_N, "GetTableEncryptionInput"),
+    id = id.from(_N, "GetTableEncryptionRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -1748,7 +1748,7 @@ M.GetTableEncryptionInput = schema.new({
 })
 
 M.GetTableEncryptionOutput = schema.new({
-    id = id.from(_N, "GetTableEncryptionOutput"),
+    id = id.from(_N, "GetTableEncryptionResponse"),
     type = "structure",
     members = {
         encryptionConfiguration = schema.new({
@@ -1765,7 +1765,7 @@ M.GetTableEncryptionOutput = schema.new({
 })
 
 M.GetTableMaintenanceConfigurationInput = schema.new({
-    id = id.from(_N, "GetTableMaintenanceConfigurationInput"),
+    id = id.from(_N, "GetTableMaintenanceConfigurationRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -1881,7 +1881,7 @@ M.TableMaintenanceConfigurationValue = schema.new({
 })
 
 M.GetTableMaintenanceConfigurationOutput = schema.new({
-    id = id.from(_N, "GetTableMaintenanceConfigurationOutput"),
+    id = id.from(_N, "GetTableMaintenanceConfigurationResponse"),
     type = "structure",
     members = {
         tableARN = schema.new({
@@ -1908,7 +1908,7 @@ M.GetTableMaintenanceConfigurationOutput = schema.new({
 })
 
 M.GetTableMaintenanceJobStatusInput = schema.new({
-    id = id.from(_N, "GetTableMaintenanceJobStatusInput"),
+    id = id.from(_N, "GetTableMaintenanceJobStatusRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -1976,7 +1976,7 @@ M.TableMaintenanceJobStatusValue = schema.new({
 })
 
 M.GetTableMaintenanceJobStatusOutput = schema.new({
-    id = id.from(_N, "GetTableMaintenanceJobStatusOutput"),
+    id = id.from(_N, "GetTableMaintenanceJobStatusResponse"),
     type = "structure",
     members = {
         tableARN = schema.new({
@@ -2003,7 +2003,7 @@ M.GetTableMaintenanceJobStatusOutput = schema.new({
 })
 
 M.GetTableMetadataLocationInput = schema.new({
-    id = id.from(_N, "GetTableMetadataLocationInput"),
+    id = id.from(_N, "GetTableMetadataLocationRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -2040,7 +2040,7 @@ M.GetTableMetadataLocationInput = schema.new({
 })
 
 M.GetTableMetadataLocationOutput = schema.new({
-    id = id.from(_N, "GetTableMetadataLocationOutput"),
+    id = id.from(_N, "GetTableMetadataLocationResponse"),
     type = "structure",
     members = {
         versionToken = schema.new({
@@ -2071,7 +2071,7 @@ M.GetTableMetadataLocationOutput = schema.new({
 })
 
 M.GetTablePolicyInput = schema.new({
-    id = id.from(_N, "GetTablePolicyInput"),
+    id = id.from(_N, "GetTablePolicyRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -2108,7 +2108,7 @@ M.GetTablePolicyInput = schema.new({
 })
 
 M.GetTablePolicyOutput = schema.new({
-    id = id.from(_N, "GetTablePolicyOutput"),
+    id = id.from(_N, "GetTablePolicyResponse"),
     type = "structure",
     members = {
         resourcePolicy = schema.new({
@@ -2124,7 +2124,7 @@ M.GetTablePolicyOutput = schema.new({
 })
 
 M.GetTableRecordExpirationConfigurationInput = schema.new({
-    id = id.from(_N, "GetTableRecordExpirationConfigurationInput"),
+    id = id.from(_N, "GetTableRecordExpirationConfigurationRequest"),
     type = "structure",
     members = {
         tableArn = schema.new({
@@ -2174,7 +2174,7 @@ M.TableRecordExpirationConfigurationValue = schema.new({
 })
 
 M.GetTableRecordExpirationConfigurationOutput = schema.new({
-    id = id.from(_N, "GetTableRecordExpirationConfigurationOutput"),
+    id = id.from(_N, "GetTableRecordExpirationConfigurationResponse"),
     type = "structure",
     members = {
         configuration = schema.new({
@@ -2207,7 +2207,7 @@ M.MethodNotAllowedException = schema.new({
 })
 
 M.GetTableRecordExpirationJobStatusInput = schema.new({
-    id = id.from(_N, "GetTableRecordExpirationJobStatusInput"),
+    id = id.from(_N, "GetTableRecordExpirationJobStatusRequest"),
     type = "structure",
     members = {
         tableArn = schema.new({
@@ -2249,7 +2249,7 @@ M.TableRecordExpirationJobMetrics = schema.new({
 })
 
 M.GetTableRecordExpirationJobStatusOutput = schema.new({
-    id = id.from(_N, "GetTableRecordExpirationJobStatusOutput"),
+    id = id.from(_N, "GetTableRecordExpirationJobStatusResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -2287,7 +2287,7 @@ M.GetTableRecordExpirationJobStatusOutput = schema.new({
 })
 
 M.GetTableReplicationInput = schema.new({
-    id = id.from(_N, "GetTableReplicationInput"),
+    id = id.from(_N, "GetTableReplicationRequest"),
     type = "structure",
     members = {
         tableArn = schema.new({
@@ -2347,7 +2347,7 @@ M.TableReplicationConfiguration = schema.new({
 })
 
 M.GetTableReplicationOutput = schema.new({
-    id = id.from(_N, "GetTableReplicationOutput"),
+    id = id.from(_N, "GetTableReplicationResponse"),
     type = "structure",
     members = {
         versionToken = schema.new({
@@ -2373,7 +2373,7 @@ M.GetTableReplicationOutput = schema.new({
 })
 
 M.GetTableReplicationStatusInput = schema.new({
-    id = id.from(_N, "GetTableReplicationStatusInput"),
+    id = id.from(_N, "GetTableReplicationStatusRequest"),
     type = "structure",
     members = {
         tableArn = schema.new({
@@ -2460,7 +2460,7 @@ M.ReplicationDestinationStatusModel = schema.new({
 })
 
 M.GetTableReplicationStatusOutput = schema.new({
-    id = id.from(_N, "GetTableReplicationStatusOutput"),
+    id = id.from(_N, "GetTableReplicationStatusResponse"),
     type = "structure",
     members = {
         sourceTableArn = schema.new({
@@ -2486,7 +2486,7 @@ M.GetTableReplicationStatusOutput = schema.new({
 })
 
 M.GetTableStorageClassInput = schema.new({
-    id = id.from(_N, "GetTableStorageClassInput"),
+    id = id.from(_N, "GetTableStorageClassRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -2523,7 +2523,7 @@ M.GetTableStorageClassInput = schema.new({
 })
 
 M.GetTableStorageClassOutput = schema.new({
-    id = id.from(_N, "GetTableStorageClassOutput"),
+    id = id.from(_N, "GetTableStorageClassResponse"),
     type = "structure",
     members = {
         storageClassConfiguration = schema.new({
@@ -2540,7 +2540,7 @@ M.GetTableStorageClassOutput = schema.new({
 })
 
 M.ListNamespacesInput = schema.new({
-    id = id.from(_N, "ListNamespacesInput"),
+    id = id.from(_N, "ListNamespacesRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -2641,7 +2641,7 @@ M.NamespaceSummary = schema.new({
 })
 
 M.ListNamespacesOutput = schema.new({
-    id = id.from(_N, "ListNamespacesOutput"),
+    id = id.from(_N, "ListNamespacesResponse"),
     type = "structure",
     members = {
         namespaces = schema.new({
@@ -2664,7 +2664,7 @@ M.ListNamespacesOutput = schema.new({
 })
 
 M.ListTableBucketsInput = schema.new({
-    id = id.from(_N, "ListTableBucketsInput"),
+    id = id.from(_N, "ListTableBucketsRequest"),
     type = "structure",
     members = {
         prefix = schema.new({
@@ -2763,7 +2763,7 @@ M.TableBucketSummary = schema.new({
 })
 
 M.ListTableBucketsOutput = schema.new({
-    id = id.from(_N, "ListTableBucketsOutput"),
+    id = id.from(_N, "ListTableBucketsResponse"),
     type = "structure",
     members = {
         tableBuckets = schema.new({
@@ -2786,7 +2786,7 @@ M.ListTableBucketsOutput = schema.new({
 })
 
 M.ListTablesInput = schema.new({
-    id = id.from(_N, "ListTablesInput"),
+    id = id.from(_N, "ListTablesRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -2921,7 +2921,7 @@ M.TableSummary = schema.new({
 })
 
 M.ListTablesOutput = schema.new({
-    id = id.from(_N, "ListTablesOutput"),
+    id = id.from(_N, "ListTablesResponse"),
     type = "structure",
     members = {
         tables = schema.new({
@@ -2944,7 +2944,7 @@ M.ListTablesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2961,7 +2961,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2976,7 +2976,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutTableBucketEncryptionInput = schema.new({
-    id = id.from(_N, "PutTableBucketEncryptionInput"),
+    id = id.from(_N, "PutTableBucketEncryptionRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -3003,12 +3003,12 @@ M.PutTableBucketEncryptionInput = schema.new({
 })
 
 M.PutTableBucketEncryptionOutput = schema.new({
-    id = id.from(_N, "PutTableBucketEncryptionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutTableBucketMaintenanceConfigurationInput = schema.new({
-    id = id.from(_N, "PutTableBucketMaintenanceConfigurationInput"),
+    id = id.from(_N, "PutTableBucketMaintenanceConfigurationRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -3045,12 +3045,12 @@ M.PutTableBucketMaintenanceConfigurationInput = schema.new({
 })
 
 M.PutTableBucketMaintenanceConfigurationOutput = schema.new({
-    id = id.from(_N, "PutTableBucketMaintenanceConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutTableBucketMetricsConfigurationInput = schema.new({
-    id = id.from(_N, "PutTableBucketMetricsConfigurationInput"),
+    id = id.from(_N, "PutTableBucketMetricsConfigurationRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -3067,12 +3067,12 @@ M.PutTableBucketMetricsConfigurationInput = schema.new({
 })
 
 M.PutTableBucketMetricsConfigurationOutput = schema.new({
-    id = id.from(_N, "PutTableBucketMetricsConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutTableBucketPolicyInput = schema.new({
-    id = id.from(_N, "PutTableBucketPolicyInput"),
+    id = id.from(_N, "PutTableBucketPolicyRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -3098,12 +3098,12 @@ M.PutTableBucketPolicyInput = schema.new({
 })
 
 M.PutTableBucketPolicyOutput = schema.new({
-    id = id.from(_N, "PutTableBucketPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutTableBucketReplicationInput = schema.new({
-    id = id.from(_N, "PutTableBucketReplicationInput"),
+    id = id.from(_N, "PutTableBucketReplicationRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -3139,7 +3139,7 @@ M.PutTableBucketReplicationInput = schema.new({
 })
 
 M.PutTableBucketReplicationOutput = schema.new({
-    id = id.from(_N, "PutTableBucketReplicationOutput"),
+    id = id.from(_N, "PutTableBucketReplicationResponse"),
     type = "structure",
     members = {
         versionToken = schema.new({
@@ -3164,7 +3164,7 @@ M.PutTableBucketReplicationOutput = schema.new({
 })
 
 M.PutTableBucketStorageClassInput = schema.new({
-    id = id.from(_N, "PutTableBucketStorageClassInput"),
+    id = id.from(_N, "PutTableBucketStorageClassRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -3191,12 +3191,12 @@ M.PutTableBucketStorageClassInput = schema.new({
 })
 
 M.PutTableBucketStorageClassOutput = schema.new({
-    id = id.from(_N, "PutTableBucketStorageClassOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutTableMaintenanceConfigurationInput = schema.new({
-    id = id.from(_N, "PutTableMaintenanceConfigurationInput"),
+    id = id.from(_N, "PutTableMaintenanceConfigurationRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -3253,12 +3253,12 @@ M.PutTableMaintenanceConfigurationInput = schema.new({
 })
 
 M.PutTableMaintenanceConfigurationOutput = schema.new({
-    id = id.from(_N, "PutTableMaintenanceConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutTablePolicyInput = schema.new({
-    id = id.from(_N, "PutTablePolicyInput"),
+    id = id.from(_N, "PutTablePolicyRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -3304,12 +3304,12 @@ M.PutTablePolicyInput = schema.new({
 })
 
 M.PutTablePolicyOutput = schema.new({
-    id = id.from(_N, "PutTablePolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutTableRecordExpirationConfigurationInput = schema.new({
-    id = id.from(_N, "PutTableRecordExpirationConfigurationInput"),
+    id = id.from(_N, "PutTableRecordExpirationConfigurationRequest"),
     type = "structure",
     members = {
         tableArn = schema.new({
@@ -3336,12 +3336,12 @@ M.PutTableRecordExpirationConfigurationInput = schema.new({
 })
 
 M.PutTableRecordExpirationConfigurationOutput = schema.new({
-    id = id.from(_N, "PutTableRecordExpirationConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutTableReplicationInput = schema.new({
-    id = id.from(_N, "PutTableReplicationInput"),
+    id = id.from(_N, "PutTableReplicationRequest"),
     type = "structure",
     members = {
         tableArn = schema.new({
@@ -3377,7 +3377,7 @@ M.PutTableReplicationInput = schema.new({
 })
 
 M.PutTableReplicationOutput = schema.new({
-    id = id.from(_N, "PutTableReplicationOutput"),
+    id = id.from(_N, "PutTableReplicationResponse"),
     type = "structure",
     members = {
         versionToken = schema.new({
@@ -3402,7 +3402,7 @@ M.PutTableReplicationOutput = schema.new({
 })
 
 M.RenameTableInput = schema.new({
-    id = id.from(_N, "RenameTableInput"),
+    id = id.from(_N, "RenameTableRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -3457,12 +3457,12 @@ M.RenameTableInput = schema.new({
 })
 
 M.RenameTableOutput = schema.new({
-    id = id.from(_N, "RenameTableOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateTableMetadataLocationInput = schema.new({
-    id = id.from(_N, "UpdateTableMetadataLocationInput"),
+    id = id.from(_N, "UpdateTableMetadataLocationRequest"),
     type = "structure",
     members = {
         tableBucketARN = schema.new({
@@ -3517,7 +3517,7 @@ M.UpdateTableMetadataLocationInput = schema.new({
 })
 
 M.UpdateTableMetadataLocationOutput = schema.new({
-    id = id.from(_N, "UpdateTableMetadataLocationOutput"),
+    id = id.from(_N, "UpdateTableMetadataLocationResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3570,7 +3570,7 @@ M.UpdateTableMetadataLocationOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3598,12 +3598,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3631,8 +3631,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

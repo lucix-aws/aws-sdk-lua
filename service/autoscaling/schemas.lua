@@ -218,7 +218,7 @@ M.AlreadyExistsFault = schema.new({
 })
 
 M.AttachInstancesInput = schema.new({
-    id = id.from(_N, "AttachInstancesInput"),
+    id = id.from(_N, "AttachInstancesQuery"),
     type = "structure",
     members = {
         InstanceIds = schema.new({
@@ -241,7 +241,7 @@ M.AttachInstancesInput = schema.new({
 })
 
 M.AttachInstancesOutput = schema.new({
-    id = id.from(_N, "AttachInstancesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -278,7 +278,7 @@ M.ServiceLinkedRoleFailure = schema.new({
 })
 
 M.AttachLoadBalancersInput = schema.new({
-    id = id.from(_N, "AttachLoadBalancersInput"),
+    id = id.from(_N, "AttachLoadBalancersType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -304,7 +304,7 @@ M.AttachLoadBalancersInput = schema.new({
 })
 
 M.AttachLoadBalancersOutput = schema.new({
-    id = id.from(_N, "AttachLoadBalancersOutput"),
+    id = id.from(_N, "AttachLoadBalancersResultType"),
     type = "structure",
 })
 
@@ -325,7 +325,7 @@ M.InstanceRefreshInProgressFault = schema.new({
 })
 
 M.AttachLoadBalancerTargetGroupsInput = schema.new({
-    id = id.from(_N, "AttachLoadBalancerTargetGroupsInput"),
+    id = id.from(_N, "AttachLoadBalancerTargetGroupsType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -351,7 +351,7 @@ M.AttachLoadBalancerTargetGroupsInput = schema.new({
 })
 
 M.AttachLoadBalancerTargetGroupsOutput = schema.new({
-    id = id.from(_N, "AttachLoadBalancerTargetGroupsOutput"),
+    id = id.from(_N, "AttachLoadBalancerTargetGroupsResultType"),
     type = "structure",
 })
 
@@ -378,7 +378,7 @@ M.TrafficSourceIdentifier = schema.new({
 })
 
 M.AttachTrafficSourcesInput = schema.new({
-    id = id.from(_N, "AttachTrafficSourcesInput"),
+    id = id.from(_N, "AttachTrafficSourcesType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -410,12 +410,12 @@ M.AttachTrafficSourcesInput = schema.new({
 })
 
 M.AttachTrafficSourcesOutput = schema.new({
-    id = id.from(_N, "AttachTrafficSourcesOutput"),
+    id = id.from(_N, "AttachTrafficSourcesResultType"),
     type = "structure",
 })
 
 M.BatchDeleteScheduledActionInput = schema.new({
-    id = id.from(_N, "BatchDeleteScheduledActionInput"),
+    id = id.from(_N, "BatchDeleteScheduledActionType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -469,7 +469,7 @@ M.FailedScheduledUpdateGroupActionRequest = schema.new({
 })
 
 M.BatchDeleteScheduledActionOutput = schema.new({
-    id = id.from(_N, "BatchDeleteScheduledActionOutput"),
+    id = id.from(_N, "BatchDeleteScheduledActionAnswer"),
     type = "structure",
     members = {
         FailedScheduledActions = schema.new({
@@ -541,7 +541,7 @@ M.ScheduledUpdateGroupActionRequest = schema.new({
 })
 
 M.BatchPutScheduledUpdateGroupActionInput = schema.new({
-    id = id.from(_N, "BatchPutScheduledUpdateGroupActionInput"),
+    id = id.from(_N, "BatchPutScheduledUpdateGroupActionType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -567,7 +567,7 @@ M.BatchPutScheduledUpdateGroupActionInput = schema.new({
 })
 
 M.BatchPutScheduledUpdateGroupActionOutput = schema.new({
-    id = id.from(_N, "BatchPutScheduledUpdateGroupActionOutput"),
+    id = id.from(_N, "BatchPutScheduledUpdateGroupActionAnswer"),
     type = "structure",
     members = {
         FailedScheduledUpdateGroupActions = schema.new({
@@ -597,7 +597,7 @@ M.LimitExceededFault = schema.new({
 })
 
 M.CancelInstanceRefreshInput = schema.new({
-    id = id.from(_N, "CancelInstanceRefreshInput"),
+    id = id.from(_N, "CancelInstanceRefreshType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -619,7 +619,7 @@ M.CancelInstanceRefreshInput = schema.new({
 })
 
 M.CancelInstanceRefreshOutput = schema.new({
-    id = id.from(_N, "CancelInstanceRefreshOutput"),
+    id = id.from(_N, "CancelInstanceRefreshAnswer"),
     type = "structure",
     members = {
         InstanceRefreshId = schema.new({
@@ -632,7 +632,7 @@ M.CancelInstanceRefreshOutput = schema.new({
 })
 
 M.CompleteLifecycleActionInput = schema.new({
-    id = id.from(_N, "CompleteLifecycleActionInput"),
+    id = id.from(_N, "CompleteLifecycleActionType"),
     type = "structure",
     members = {
         LifecycleHookName = schema.new({
@@ -678,7 +678,7 @@ M.CompleteLifecycleActionInput = schema.new({
 })
 
 M.CompleteLifecycleActionOutput = schema.new({
-    id = id.from(_N, "CompleteLifecycleActionOutput"),
+    id = id.from(_N, "CompleteLifecycleActionAnswer"),
     type = "structure",
 })
 
@@ -965,7 +965,7 @@ M.CpuPerformanceFactorRequest = schema.new({
             type = "list",
             name = "References",
             target_id = prelude.Document.id,
-            list_member = M.PerformanceFactorReferenceRequest,
+            list_member = schema.new({ type = "structure", target = M.PerformanceFactorReferenceRequest, traits = { [traits.XML_NAME] = { name = "item" } } }),
             traits = {
                 [traits.XML_NAME] = { name = "Reference" },
             },
@@ -1410,7 +1410,7 @@ M.Tag = schema.new({
 })
 
 M.CreateAutoScalingGroupInput = schema.new({
-    id = id.from(_N, "CreateAutoScalingGroupInput"),
+    id = id.from(_N, "CreateAutoScalingGroupType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -1651,7 +1651,7 @@ M.CreateAutoScalingGroupInput = schema.new({
 })
 
 M.CreateAutoScalingGroupOutput = schema.new({
-    id = id.from(_N, "CreateAutoScalingGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1778,7 +1778,7 @@ M.InstanceMetadataOptions = schema.new({
 })
 
 M.CreateLaunchConfigurationInput = schema.new({
-    id = id.from(_N, "CreateLaunchConfigurationInput"),
+    id = id.from(_N, "CreateLaunchConfigurationType"),
     type = "structure",
     members = {
         LaunchConfigurationName = schema.new({
@@ -1907,12 +1907,12 @@ M.CreateLaunchConfigurationInput = schema.new({
 })
 
 M.CreateLaunchConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateLaunchConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.CreateOrUpdateTagsInput = schema.new({
-    id = id.from(_N, "CreateOrUpdateTagsInput"),
+    id = id.from(_N, "CreateOrUpdateTagsType"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1929,7 +1929,7 @@ M.CreateOrUpdateTagsInput = schema.new({
 })
 
 M.CreateOrUpdateTagsOutput = schema.new({
-    id = id.from(_N, "CreateOrUpdateTagsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1950,7 +1950,7 @@ M.ResourceInUseFault = schema.new({
 })
 
 M.DeleteAutoScalingGroupInput = schema.new({
-    id = id.from(_N, "DeleteAutoScalingGroupInput"),
+    id = id.from(_N, "DeleteAutoScalingGroupType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -1972,7 +1972,7 @@ M.DeleteAutoScalingGroupInput = schema.new({
 })
 
 M.DeleteAutoScalingGroupOutput = schema.new({
-    id = id.from(_N, "DeleteAutoScalingGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1993,7 +1993,7 @@ M.ScalingActivityInProgressFault = schema.new({
 })
 
 M.DeleteLaunchConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteLaunchConfigurationInput"),
+    id = id.from(_N, "LaunchConfigurationNameType"),
     type = "structure",
     members = {
         LaunchConfigurationName = schema.new({
@@ -2009,12 +2009,12 @@ M.DeleteLaunchConfigurationInput = schema.new({
 })
 
 M.DeleteLaunchConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteLaunchConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteLifecycleHookInput = schema.new({
-    id = id.from(_N, "DeleteLifecycleHookInput"),
+    id = id.from(_N, "DeleteLifecycleHookType"),
     type = "structure",
     members = {
         LifecycleHookName = schema.new({
@@ -2039,12 +2039,12 @@ M.DeleteLifecycleHookInput = schema.new({
 })
 
 M.DeleteLifecycleHookOutput = schema.new({
-    id = id.from(_N, "DeleteLifecycleHookOutput"),
+    id = id.from(_N, "DeleteLifecycleHookAnswer"),
     type = "structure",
 })
 
 M.DeleteNotificationConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteNotificationConfigurationInput"),
+    id = id.from(_N, "DeleteNotificationConfigurationType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -2069,12 +2069,12 @@ M.DeleteNotificationConfigurationInput = schema.new({
 })
 
 M.DeleteNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteNotificationConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeletePolicyInput = schema.new({
-    id = id.from(_N, "DeletePolicyInput"),
+    id = id.from(_N, "DeletePolicyType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -2096,12 +2096,12 @@ M.DeletePolicyInput = schema.new({
 })
 
 M.DeletePolicyOutput = schema.new({
-    id = id.from(_N, "DeletePolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteScheduledActionInput = schema.new({
-    id = id.from(_N, "DeleteScheduledActionInput"),
+    id = id.from(_N, "DeleteScheduledActionType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -2126,12 +2126,12 @@ M.DeleteScheduledActionInput = schema.new({
 })
 
 M.DeleteScheduledActionOutput = schema.new({
-    id = id.from(_N, "DeleteScheduledActionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTagsInput = schema.new({
-    id = id.from(_N, "DeleteTagsInput"),
+    id = id.from(_N, "DeleteTagsType"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2148,12 +2148,12 @@ M.DeleteTagsInput = schema.new({
 })
 
 M.DeleteTagsOutput = schema.new({
-    id = id.from(_N, "DeleteTagsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteWarmPoolInput = schema.new({
-    id = id.from(_N, "DeleteWarmPoolInput"),
+    id = id.from(_N, "DeleteWarmPoolType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -2175,17 +2175,17 @@ M.DeleteWarmPoolInput = schema.new({
 })
 
 M.DeleteWarmPoolOutput = schema.new({
-    id = id.from(_N, "DeleteWarmPoolOutput"),
+    id = id.from(_N, "DeleteWarmPoolAnswer"),
     type = "structure",
 })
 
 M.DescribeAccountLimitsInput = schema.new({
-    id = id.from(_N, "DescribeAccountLimitsInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeAccountLimitsOutput = schema.new({
-    id = id.from(_N, "DescribeAccountLimitsOutput"),
+    id = id.from(_N, "DescribeAccountLimitsAnswer"),
     type = "structure",
     members = {
         MaxNumberOfAutoScalingGroups = schema.new({
@@ -2216,12 +2216,12 @@ M.DescribeAccountLimitsOutput = schema.new({
 })
 
 M.DescribeAdjustmentTypesInput = schema.new({
-    id = id.from(_N, "DescribeAdjustmentTypesInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeAdjustmentTypesOutput = schema.new({
-    id = id.from(_N, "DescribeAdjustmentTypesOutput"),
+    id = id.from(_N, "DescribeAdjustmentTypesAnswer"),
     type = "structure",
     members = {
         AdjustmentTypes = schema.new({
@@ -2255,7 +2255,7 @@ M.Filter = schema.new({
 })
 
 M.DescribeAutoScalingGroupsInput = schema.new({
-    id = id.from(_N, "DescribeAutoScalingGroupsInput"),
+    id = id.from(_N, "AutoScalingGroupNamesType"),
     type = "structure",
     members = {
         AutoScalingGroupNames = schema.new({
@@ -2804,7 +2804,7 @@ M.AutoScalingGroup = schema.new({
 })
 
 M.DescribeAutoScalingGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeAutoScalingGroupsOutput"),
+    id = id.from(_N, "AutoScalingGroupsType"),
     type = "structure",
     members = {
         AutoScalingGroups = schema.new({
@@ -2843,7 +2843,7 @@ M.InvalidNextToken = schema.new({
 })
 
 M.DescribeAutoScalingInstancesInput = schema.new({
-    id = id.from(_N, "DescribeAutoScalingInstancesInput"),
+    id = id.from(_N, "DescribeAutoScalingInstancesType"),
     type = "structure",
     members = {
         InstanceIds = schema.new({
@@ -2967,7 +2967,7 @@ M.AutoScalingInstanceDetails = schema.new({
 })
 
 M.DescribeAutoScalingInstancesOutput = schema.new({
-    id = id.from(_N, "DescribeAutoScalingInstancesOutput"),
+    id = id.from(_N, "AutoScalingInstancesType"),
     type = "structure",
     members = {
         AutoScalingInstances = schema.new({
@@ -2987,12 +2987,12 @@ M.DescribeAutoScalingInstancesOutput = schema.new({
 })
 
 M.DescribeAutoScalingNotificationTypesInput = schema.new({
-    id = id.from(_N, "DescribeAutoScalingNotificationTypesInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeAutoScalingNotificationTypesOutput = schema.new({
-    id = id.from(_N, "DescribeAutoScalingNotificationTypesOutput"),
+    id = id.from(_N, "DescribeAutoScalingNotificationTypesAnswer"),
     type = "structure",
     members = {
         AutoScalingNotificationTypes = schema.new({
@@ -3006,7 +3006,7 @@ M.DescribeAutoScalingNotificationTypesOutput = schema.new({
 })
 
 M.DescribeInstanceRefreshesInput = schema.new({
-    id = id.from(_N, "DescribeInstanceRefreshesInput"),
+    id = id.from(_N, "DescribeInstanceRefreshesType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -3323,7 +3323,7 @@ M.InstanceRefresh = schema.new({
 })
 
 M.DescribeInstanceRefreshesOutput = schema.new({
-    id = id.from(_N, "DescribeInstanceRefreshesOutput"),
+    id = id.from(_N, "DescribeInstanceRefreshesAnswer"),
     type = "structure",
     members = {
         InstanceRefreshes = schema.new({
@@ -3343,7 +3343,7 @@ M.DescribeInstanceRefreshesOutput = schema.new({
 })
 
 M.DescribeLaunchConfigurationsInput = schema.new({
-    id = id.from(_N, "DescribeLaunchConfigurationsInput"),
+    id = id.from(_N, "LaunchConfigurationNamesType"),
     type = "structure",
     members = {
         LaunchConfigurationNames = schema.new({
@@ -3513,7 +3513,7 @@ M.LaunchConfiguration = schema.new({
 })
 
 M.DescribeLaunchConfigurationsOutput = schema.new({
-    id = id.from(_N, "DescribeLaunchConfigurationsOutput"),
+    id = id.from(_N, "LaunchConfigurationsType"),
     type = "structure",
     members = {
         LaunchConfigurations = schema.new({
@@ -3536,7 +3536,7 @@ M.DescribeLaunchConfigurationsOutput = schema.new({
 })
 
 M.DescribeLifecycleHooksInput = schema.new({
-    id = id.from(_N, "DescribeLifecycleHooksInput"),
+    id = id.from(_N, "DescribeLifecycleHooksType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -3620,7 +3620,7 @@ M.LifecycleHook = schema.new({
 })
 
 M.DescribeLifecycleHooksOutput = schema.new({
-    id = id.from(_N, "DescribeLifecycleHooksOutput"),
+    id = id.from(_N, "DescribeLifecycleHooksAnswer"),
     type = "structure",
     members = {
         LifecycleHooks = schema.new({
@@ -3634,12 +3634,12 @@ M.DescribeLifecycleHooksOutput = schema.new({
 })
 
 M.DescribeLifecycleHookTypesInput = schema.new({
-    id = id.from(_N, "DescribeLifecycleHookTypesInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeLifecycleHookTypesOutput = schema.new({
-    id = id.from(_N, "DescribeLifecycleHookTypesOutput"),
+    id = id.from(_N, "DescribeLifecycleHookTypesAnswer"),
     type = "structure",
     members = {
         LifecycleHookTypes = schema.new({
@@ -3653,7 +3653,7 @@ M.DescribeLifecycleHookTypesOutput = schema.new({
 })
 
 M.DescribeLoadBalancersInput = schema.new({
-    id = id.from(_N, "DescribeLoadBalancersInput"),
+    id = id.from(_N, "DescribeLoadBalancersRequest"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -3700,7 +3700,7 @@ M.LoadBalancerState = schema.new({
 })
 
 M.DescribeLoadBalancersOutput = schema.new({
-    id = id.from(_N, "DescribeLoadBalancersOutput"),
+    id = id.from(_N, "DescribeLoadBalancersResponse"),
     type = "structure",
     members = {
         LoadBalancers = schema.new({
@@ -3720,7 +3720,7 @@ M.DescribeLoadBalancersOutput = schema.new({
 })
 
 M.DescribeLoadBalancerTargetGroupsInput = schema.new({
-    id = id.from(_N, "DescribeLoadBalancerTargetGroupsInput"),
+    id = id.from(_N, "DescribeLoadBalancerTargetGroupsRequest"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -3767,7 +3767,7 @@ M.LoadBalancerTargetGroupState = schema.new({
 })
 
 M.DescribeLoadBalancerTargetGroupsOutput = schema.new({
-    id = id.from(_N, "DescribeLoadBalancerTargetGroupsOutput"),
+    id = id.from(_N, "DescribeLoadBalancerTargetGroupsResponse"),
     type = "structure",
     members = {
         LoadBalancerTargetGroups = schema.new({
@@ -3787,7 +3787,7 @@ M.DescribeLoadBalancerTargetGroupsOutput = schema.new({
 })
 
 M.DescribeMetricCollectionTypesInput = schema.new({
-    id = id.from(_N, "DescribeMetricCollectionTypesInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3818,7 +3818,7 @@ M.MetricCollectionType = schema.new({
 })
 
 M.DescribeMetricCollectionTypesOutput = schema.new({
-    id = id.from(_N, "DescribeMetricCollectionTypesOutput"),
+    id = id.from(_N, "DescribeMetricCollectionTypesAnswer"),
     type = "structure",
     members = {
         Metrics = schema.new({
@@ -3839,7 +3839,7 @@ M.DescribeMetricCollectionTypesOutput = schema.new({
 })
 
 M.DescribeNotificationConfigurationsInput = schema.new({
-    id = id.from(_N, "DescribeNotificationConfigurationsInput"),
+    id = id.from(_N, "DescribeNotificationConfigurationsType"),
     type = "structure",
     members = {
         AutoScalingGroupNames = schema.new({
@@ -3890,7 +3890,7 @@ M.NotificationConfiguration = schema.new({
 })
 
 M.DescribeNotificationConfigurationsOutput = schema.new({
-    id = id.from(_N, "DescribeNotificationConfigurationsOutput"),
+    id = id.from(_N, "DescribeNotificationConfigurationsAnswer"),
     type = "structure",
     members = {
         NotificationConfigurations = schema.new({
@@ -3913,7 +3913,7 @@ M.DescribeNotificationConfigurationsOutput = schema.new({
 })
 
 M.DescribePoliciesInput = schema.new({
-    id = id.from(_N, "DescribePoliciesInput"),
+    id = id.from(_N, "DescribePoliciesType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -4627,7 +4627,7 @@ M.ScalingPolicy = schema.new({
 })
 
 M.DescribePoliciesOutput = schema.new({
-    id = id.from(_N, "DescribePoliciesOutput"),
+    id = id.from(_N, "PoliciesType"),
     type = "structure",
     members = {
         ScalingPolicies = schema.new({
@@ -4647,7 +4647,7 @@ M.DescribePoliciesOutput = schema.new({
 })
 
 M.DescribeScalingActivitiesInput = schema.new({
-    id = id.from(_N, "DescribeScalingActivitiesInput"),
+    id = id.from(_N, "DescribeScalingActivitiesType"),
     type = "structure",
     members = {
         ActivityIds = schema.new({
@@ -4692,7 +4692,7 @@ M.DescribeScalingActivitiesInput = schema.new({
 })
 
 M.DescribeScalingActivitiesOutput = schema.new({
-    id = id.from(_N, "DescribeScalingActivitiesOutput"),
+    id = id.from(_N, "ActivitiesType"),
     type = "structure",
     members = {
         Activities = schema.new({
@@ -4715,7 +4715,7 @@ M.DescribeScalingActivitiesOutput = schema.new({
 })
 
 M.DescribeScalingProcessTypesInput = schema.new({
-    id = id.from(_N, "DescribeScalingProcessTypesInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4736,7 +4736,7 @@ M.ProcessType = schema.new({
 })
 
 M.DescribeScalingProcessTypesOutput = schema.new({
-    id = id.from(_N, "DescribeScalingProcessTypesOutput"),
+    id = id.from(_N, "ProcessesType"),
     type = "structure",
     members = {
         Processes = schema.new({
@@ -4750,7 +4750,7 @@ M.DescribeScalingProcessTypesOutput = schema.new({
 })
 
 M.DescribeScheduledActionsInput = schema.new({
-    id = id.from(_N, "DescribeScheduledActionsInput"),
+    id = id.from(_N, "DescribeScheduledActionsType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -4867,7 +4867,7 @@ M.ScheduledUpdateGroupAction = schema.new({
 })
 
 M.DescribeScheduledActionsOutput = schema.new({
-    id = id.from(_N, "DescribeScheduledActionsOutput"),
+    id = id.from(_N, "ScheduledActionsType"),
     type = "structure",
     members = {
         ScheduledUpdateGroupActions = schema.new({
@@ -4887,7 +4887,7 @@ M.DescribeScheduledActionsOutput = schema.new({
 })
 
 M.DescribeTagsInput = schema.new({
-    id = id.from(_N, "DescribeTagsInput"),
+    id = id.from(_N, "DescribeTagsType"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -4913,7 +4913,7 @@ M.DescribeTagsInput = schema.new({
 })
 
 M.DescribeTagsOutput = schema.new({
-    id = id.from(_N, "DescribeTagsOutput"),
+    id = id.from(_N, "TagsType"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -4933,12 +4933,12 @@ M.DescribeTagsOutput = schema.new({
 })
 
 M.DescribeTerminationPolicyTypesInput = schema.new({
-    id = id.from(_N, "DescribeTerminationPolicyTypesInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeTerminationPolicyTypesOutput = schema.new({
-    id = id.from(_N, "DescribeTerminationPolicyTypesOutput"),
+    id = id.from(_N, "DescribeTerminationPolicyTypesAnswer"),
     type = "structure",
     members = {
         TerminationPolicyTypes = schema.new({
@@ -4952,7 +4952,7 @@ M.DescribeTerminationPolicyTypesOutput = schema.new({
 })
 
 M.DescribeTrafficSourcesInput = schema.new({
-    id = id.from(_N, "DescribeTrafficSourcesInput"),
+    id = id.from(_N, "DescribeTrafficSourcesRequest"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -5017,7 +5017,7 @@ M.TrafficSourceState = schema.new({
 })
 
 M.DescribeTrafficSourcesOutput = schema.new({
-    id = id.from(_N, "DescribeTrafficSourcesOutput"),
+    id = id.from(_N, "DescribeTrafficSourcesResponse"),
     type = "structure",
     members = {
         TrafficSources = schema.new({
@@ -5037,7 +5037,7 @@ M.DescribeTrafficSourcesOutput = schema.new({
 })
 
 M.DescribeWarmPoolInput = schema.new({
-    id = id.from(_N, "DescribeWarmPoolInput"),
+    id = id.from(_N, "DescribeWarmPoolType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -5065,7 +5065,7 @@ M.DescribeWarmPoolInput = schema.new({
 })
 
 M.DescribeWarmPoolOutput = schema.new({
-    id = id.from(_N, "DescribeWarmPoolOutput"),
+    id = id.from(_N, "DescribeWarmPoolAnswer"),
     type = "structure",
     members = {
         WarmPoolConfiguration = schema.new({
@@ -5092,7 +5092,7 @@ M.DescribeWarmPoolOutput = schema.new({
 })
 
 M.DetachInstancesInput = schema.new({
-    id = id.from(_N, "DetachInstancesInput"),
+    id = id.from(_N, "DetachInstancesQuery"),
     type = "structure",
     members = {
         InstanceIds = schema.new({
@@ -5124,7 +5124,7 @@ M.DetachInstancesInput = schema.new({
 })
 
 M.DetachInstancesOutput = schema.new({
-    id = id.from(_N, "DetachInstancesOutput"),
+    id = id.from(_N, "DetachInstancesAnswer"),
     type = "structure",
     members = {
         Activities = schema.new({
@@ -5138,7 +5138,7 @@ M.DetachInstancesOutput = schema.new({
 })
 
 M.DetachLoadBalancersInput = schema.new({
-    id = id.from(_N, "DetachLoadBalancersInput"),
+    id = id.from(_N, "DetachLoadBalancersType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -5164,12 +5164,12 @@ M.DetachLoadBalancersInput = schema.new({
 })
 
 M.DetachLoadBalancersOutput = schema.new({
-    id = id.from(_N, "DetachLoadBalancersOutput"),
+    id = id.from(_N, "DetachLoadBalancersResultType"),
     type = "structure",
 })
 
 M.DetachLoadBalancerTargetGroupsInput = schema.new({
-    id = id.from(_N, "DetachLoadBalancerTargetGroupsInput"),
+    id = id.from(_N, "DetachLoadBalancerTargetGroupsType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -5195,12 +5195,12 @@ M.DetachLoadBalancerTargetGroupsInput = schema.new({
 })
 
 M.DetachLoadBalancerTargetGroupsOutput = schema.new({
-    id = id.from(_N, "DetachLoadBalancerTargetGroupsOutput"),
+    id = id.from(_N, "DetachLoadBalancerTargetGroupsResultType"),
     type = "structure",
 })
 
 M.DetachTrafficSourcesInput = schema.new({
-    id = id.from(_N, "DetachTrafficSourcesInput"),
+    id = id.from(_N, "DetachTrafficSourcesType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -5226,12 +5226,12 @@ M.DetachTrafficSourcesInput = schema.new({
 })
 
 M.DetachTrafficSourcesOutput = schema.new({
-    id = id.from(_N, "DetachTrafficSourcesOutput"),
+    id = id.from(_N, "DetachTrafficSourcesResultType"),
     type = "structure",
 })
 
 M.DisableMetricsCollectionInput = schema.new({
-    id = id.from(_N, "DisableMetricsCollectionInput"),
+    id = id.from(_N, "DisableMetricsCollectionQuery"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -5254,12 +5254,12 @@ M.DisableMetricsCollectionInput = schema.new({
 })
 
 M.DisableMetricsCollectionOutput = schema.new({
-    id = id.from(_N, "DisableMetricsCollectionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.EnableMetricsCollectionInput = schema.new({
-    id = id.from(_N, "EnableMetricsCollectionInput"),
+    id = id.from(_N, "EnableMetricsCollectionQuery"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -5291,12 +5291,12 @@ M.EnableMetricsCollectionInput = schema.new({
 })
 
 M.EnableMetricsCollectionOutput = schema.new({
-    id = id.from(_N, "EnableMetricsCollectionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.EnterStandbyInput = schema.new({
-    id = id.from(_N, "EnterStandbyInput"),
+    id = id.from(_N, "EnterStandbyQuery"),
     type = "structure",
     members = {
         InstanceIds = schema.new({
@@ -5328,7 +5328,7 @@ M.EnterStandbyInput = schema.new({
 })
 
 M.EnterStandbyOutput = schema.new({
-    id = id.from(_N, "EnterStandbyOutput"),
+    id = id.from(_N, "EnterStandbyAnswer"),
     type = "structure",
     members = {
         Activities = schema.new({
@@ -5342,7 +5342,7 @@ M.EnterStandbyOutput = schema.new({
 })
 
 M.ExecutePolicyInput = schema.new({
-    id = id.from(_N, "ExecutePolicyInput"),
+    id = id.from(_N, "ExecutePolicyType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -5382,12 +5382,12 @@ M.ExecutePolicyInput = schema.new({
 })
 
 M.ExecutePolicyOutput = schema.new({
-    id = id.from(_N, "ExecutePolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ExitStandbyInput = schema.new({
-    id = id.from(_N, "ExitStandbyInput"),
+    id = id.from(_N, "ExitStandbyQuery"),
     type = "structure",
     members = {
         InstanceIds = schema.new({
@@ -5410,7 +5410,7 @@ M.ExitStandbyInput = schema.new({
 })
 
 M.ExitStandbyOutput = schema.new({
-    id = id.from(_N, "ExitStandbyOutput"),
+    id = id.from(_N, "ExitStandbyAnswer"),
     type = "structure",
     members = {
         Activities = schema.new({
@@ -5424,7 +5424,7 @@ M.ExitStandbyOutput = schema.new({
 })
 
 M.GetPredictiveScalingForecastInput = schema.new({
-    id = id.from(_N, "GetPredictiveScalingForecastInput"),
+    id = id.from(_N, "GetPredictiveScalingForecastType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -5531,7 +5531,7 @@ M.LoadForecast = schema.new({
 })
 
 M.GetPredictiveScalingForecastOutput = schema.new({
-    id = id.from(_N, "GetPredictiveScalingForecastOutput"),
+    id = id.from(_N, "GetPredictiveScalingForecastAnswer"),
     type = "structure",
     members = {
         LoadForecast = schema.new({
@@ -5583,7 +5583,7 @@ M.IdempotentParameterMismatchError = schema.new({
 })
 
 M.LaunchInstancesInput = schema.new({
-    id = id.from(_N, "LaunchInstancesInput"),
+    id = id.from(_N, "LaunchInstancesRequest"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -5738,7 +5738,7 @@ M.InstanceCollection = schema.new({
 })
 
 M.LaunchInstancesOutput = schema.new({
-    id = id.from(_N, "LaunchInstancesOutput"),
+    id = id.from(_N, "LaunchInstancesResult"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -5771,7 +5771,7 @@ M.LaunchInstancesOutput = schema.new({
 })
 
 M.PutLifecycleHookInput = schema.new({
-    id = id.from(_N, "PutLifecycleHookInput"),
+    id = id.from(_N, "PutLifecycleHookType"),
     type = "structure",
     members = {
         LifecycleHookName = schema.new({
@@ -5832,12 +5832,12 @@ M.PutLifecycleHookInput = schema.new({
 })
 
 M.PutLifecycleHookOutput = schema.new({
-    id = id.from(_N, "PutLifecycleHookOutput"),
+    id = id.from(_N, "PutLifecycleHookAnswer"),
     type = "structure",
 })
 
 M.PutNotificationConfigurationInput = schema.new({
-    id = id.from(_N, "PutNotificationConfigurationInput"),
+    id = id.from(_N, "PutNotificationConfigurationType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -5872,12 +5872,12 @@ M.PutNotificationConfigurationInput = schema.new({
 })
 
 M.PutNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "PutNotificationConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutScalingPolicyInput = schema.new({
-    id = id.from(_N, "PutScalingPolicyInput"),
+    id = id.from(_N, "PutScalingPolicyType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -5977,7 +5977,7 @@ M.PutScalingPolicyInput = schema.new({
 })
 
 M.PutScalingPolicyOutput = schema.new({
-    id = id.from(_N, "PutScalingPolicyOutput"),
+    id = id.from(_N, "PolicyARNType"),
     type = "structure",
     members = {
         PolicyARN = schema.new({
@@ -5997,7 +5997,7 @@ M.PutScalingPolicyOutput = schema.new({
 })
 
 M.PutScheduledUpdateGroupActionInput = schema.new({
-    id = id.from(_N, "PutScheduledUpdateGroupActionInput"),
+    id = id.from(_N, "PutScheduledUpdateGroupActionType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -6070,12 +6070,12 @@ M.PutScheduledUpdateGroupActionInput = schema.new({
 })
 
 M.PutScheduledUpdateGroupActionOutput = schema.new({
-    id = id.from(_N, "PutScheduledUpdateGroupActionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutWarmPoolInput = schema.new({
-    id = id.from(_N, "PutWarmPoolInput"),
+    id = id.from(_N, "PutWarmPoolType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -6116,12 +6116,12 @@ M.PutWarmPoolInput = schema.new({
 })
 
 M.PutWarmPoolOutput = schema.new({
-    id = id.from(_N, "PutWarmPoolOutput"),
+    id = id.from(_N, "PutWarmPoolAnswer"),
     type = "structure",
 })
 
 M.RecordLifecycleActionHeartbeatInput = schema.new({
-    id = id.from(_N, "RecordLifecycleActionHeartbeatInput"),
+    id = id.from(_N, "RecordLifecycleActionHeartbeatType"),
     type = "structure",
     members = {
         LifecycleHookName = schema.new({
@@ -6158,12 +6158,12 @@ M.RecordLifecycleActionHeartbeatInput = schema.new({
 })
 
 M.RecordLifecycleActionHeartbeatOutput = schema.new({
-    id = id.from(_N, "RecordLifecycleActionHeartbeatOutput"),
+    id = id.from(_N, "RecordLifecycleActionHeartbeatAnswer"),
     type = "structure",
 })
 
 M.ResumeProcessesInput = schema.new({
-    id = id.from(_N, "ResumeProcessesInput"),
+    id = id.from(_N, "ScalingProcessQuery"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -6186,7 +6186,7 @@ M.ResumeProcessesInput = schema.new({
 })
 
 M.ResumeProcessesOutput = schema.new({
-    id = id.from(_N, "ResumeProcessesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -6207,7 +6207,7 @@ M.IrreversibleInstanceRefreshFault = schema.new({
 })
 
 M.RollbackInstanceRefreshInput = schema.new({
-    id = id.from(_N, "RollbackInstanceRefreshInput"),
+    id = id.from(_N, "RollbackInstanceRefreshType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -6223,7 +6223,7 @@ M.RollbackInstanceRefreshInput = schema.new({
 })
 
 M.RollbackInstanceRefreshOutput = schema.new({
-    id = id.from(_N, "RollbackInstanceRefreshOutput"),
+    id = id.from(_N, "RollbackInstanceRefreshAnswer"),
     type = "structure",
     members = {
         InstanceRefreshId = schema.new({
@@ -6236,7 +6236,7 @@ M.RollbackInstanceRefreshOutput = schema.new({
 })
 
 M.SetDesiredCapacityInput = schema.new({
-    id = id.from(_N, "SetDesiredCapacityInput"),
+    id = id.from(_N, "SetDesiredCapacityType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -6267,12 +6267,12 @@ M.SetDesiredCapacityInput = schema.new({
 })
 
 M.SetDesiredCapacityOutput = schema.new({
-    id = id.from(_N, "SetDesiredCapacityOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.SetInstanceHealthInput = schema.new({
-    id = id.from(_N, "SetInstanceHealthInput"),
+    id = id.from(_N, "SetInstanceHealthQuery"),
     type = "structure",
     members = {
         InstanceId = schema.new({
@@ -6303,12 +6303,12 @@ M.SetInstanceHealthInput = schema.new({
 })
 
 M.SetInstanceHealthOutput = schema.new({
-    id = id.from(_N, "SetInstanceHealthOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.SetInstanceProtectionInput = schema.new({
-    id = id.from(_N, "SetInstanceProtectionInput"),
+    id = id.from(_N, "SetInstanceProtectionQuery"),
     type = "structure",
     members = {
         InstanceIds = schema.new({
@@ -6343,12 +6343,12 @@ M.SetInstanceProtectionInput = schema.new({
 })
 
 M.SetInstanceProtectionOutput = schema.new({
-    id = id.from(_N, "SetInstanceProtectionOutput"),
+    id = id.from(_N, "SetInstanceProtectionAnswer"),
     type = "structure",
 })
 
 M.StartInstanceRefreshInput = schema.new({
-    id = id.from(_N, "StartInstanceRefreshInput"),
+    id = id.from(_N, "StartInstanceRefreshType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -6384,7 +6384,7 @@ M.StartInstanceRefreshInput = schema.new({
 })
 
 M.StartInstanceRefreshOutput = schema.new({
-    id = id.from(_N, "StartInstanceRefreshOutput"),
+    id = id.from(_N, "StartInstanceRefreshAnswer"),
     type = "structure",
     members = {
         InstanceRefreshId = schema.new({
@@ -6397,7 +6397,7 @@ M.StartInstanceRefreshOutput = schema.new({
 })
 
 M.SuspendProcessesInput = schema.new({
-    id = id.from(_N, "SuspendProcessesInput"),
+    id = id.from(_N, "ScalingProcessQuery"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -6420,12 +6420,12 @@ M.SuspendProcessesInput = schema.new({
 })
 
 M.SuspendProcessesOutput = schema.new({
-    id = id.from(_N, "SuspendProcessesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.TerminateInstanceInAutoScalingGroupInput = schema.new({
-    id = id.from(_N, "TerminateInstanceInAutoScalingGroupInput"),
+    id = id.from(_N, "TerminateInstanceInAutoScalingGroupType"),
     type = "structure",
     members = {
         InstanceId = schema.new({
@@ -6450,7 +6450,7 @@ M.TerminateInstanceInAutoScalingGroupInput = schema.new({
 })
 
 M.TerminateInstanceInAutoScalingGroupOutput = schema.new({
-    id = id.from(_N, "TerminateInstanceInAutoScalingGroupOutput"),
+    id = id.from(_N, "ActivityType"),
     type = "structure",
     members = {
         Activity = schema.new({
@@ -6464,7 +6464,7 @@ M.TerminateInstanceInAutoScalingGroupOutput = schema.new({
 })
 
 M.UpdateAutoScalingGroupInput = schema.new({
-    id = id.from(_N, "UpdateAutoScalingGroupInput"),
+    id = id.from(_N, "UpdateAutoScalingGroupType"),
     type = "structure",
     members = {
         AutoScalingGroupName = schema.new({
@@ -6658,8 +6658,22 @@ M.UpdateAutoScalingGroupInput = schema.new({
 })
 
 M.UpdateAutoScalingGroupOutput = schema.new({
-    id = id.from(_N, "UpdateAutoScalingGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

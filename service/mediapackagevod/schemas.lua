@@ -913,7 +913,7 @@ M.PackagingGroup = schema.new({
 })
 
 M.ConfigureLogsInput = schema.new({
-    id = id.from(_N, "ConfigureLogsInput"),
+    id = id.from(_N, "ConfigureLogsRequest"),
     type = "structure",
     members = {
         EgressAccessLogs = schema.new({
@@ -940,7 +940,7 @@ M.ConfigureLogsInput = schema.new({
 })
 
 M.ConfigureLogsOutput = schema.new({
-    id = id.from(_N, "ConfigureLogsOutput"),
+    id = id.from(_N, "ConfigureLogsResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1128,7 +1128,7 @@ M.UnprocessableEntityException = schema.new({
 })
 
 M.CreateAssetInput = schema.new({
-    id = id.from(_N, "CreateAssetInput"),
+    id = id.from(_N, "CreateAssetRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1195,7 +1195,7 @@ M.CreateAssetInput = schema.new({
 })
 
 M.CreateAssetOutput = schema.new({
-    id = id.from(_N, "CreateAssetOutput"),
+    id = id.from(_N, "CreateAssetResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1286,7 +1286,7 @@ M.CreateAssetOutput = schema.new({
 })
 
 M.CreatePackagingConfigurationInput = schema.new({
-    id = id.from(_N, "CreatePackagingConfigurationInput"),
+    id = id.from(_N, "CreatePackagingConfigurationRequest"),
     type = "structure",
     members = {
         CmafPackage = schema.new({
@@ -1364,7 +1364,7 @@ M.CreatePackagingConfigurationInput = schema.new({
 })
 
 M.CreatePackagingConfigurationOutput = schema.new({
-    id = id.from(_N, "CreatePackagingConfigurationOutput"),
+    id = id.from(_N, "CreatePackagingConfigurationResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1458,7 +1458,7 @@ M.CreatePackagingConfigurationOutput = schema.new({
 })
 
 M.CreatePackagingGroupInput = schema.new({
-    id = id.from(_N, "CreatePackagingGroupInput"),
+    id = id.from(_N, "CreatePackagingGroupRequest"),
     type = "structure",
     members = {
         Authorization = schema.new({
@@ -1506,7 +1506,7 @@ M.CreatePackagingGroupInput = schema.new({
 })
 
 M.CreatePackagingGroupOutput = schema.new({
-    id = id.from(_N, "CreatePackagingGroupOutput"),
+    id = id.from(_N, "CreatePackagingGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1580,7 +1580,7 @@ M.CreatePackagingGroupOutput = schema.new({
 })
 
 M.DeleteAssetInput = schema.new({
-    id = id.from(_N, "DeleteAssetInput"),
+    id = id.from(_N, "DeleteAssetRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1597,12 +1597,12 @@ M.DeleteAssetInput = schema.new({
 })
 
 M.DeleteAssetOutput = schema.new({
-    id = id.from(_N, "DeleteAssetOutput"),
+    id = id.from(_N, "DeleteAssetResponse"),
     type = "structure",
 })
 
 M.DeletePackagingConfigurationInput = schema.new({
-    id = id.from(_N, "DeletePackagingConfigurationInput"),
+    id = id.from(_N, "DeletePackagingConfigurationRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1619,12 +1619,12 @@ M.DeletePackagingConfigurationInput = schema.new({
 })
 
 M.DeletePackagingConfigurationOutput = schema.new({
-    id = id.from(_N, "DeletePackagingConfigurationOutput"),
+    id = id.from(_N, "DeletePackagingConfigurationResponse"),
     type = "structure",
 })
 
 M.DeletePackagingGroupInput = schema.new({
-    id = id.from(_N, "DeletePackagingGroupInput"),
+    id = id.from(_N, "DeletePackagingGroupRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1641,12 +1641,12 @@ M.DeletePackagingGroupInput = schema.new({
 })
 
 M.DeletePackagingGroupOutput = schema.new({
-    id = id.from(_N, "DeletePackagingGroupOutput"),
+    id = id.from(_N, "DeletePackagingGroupResponse"),
     type = "structure",
 })
 
 M.DescribeAssetInput = schema.new({
-    id = id.from(_N, "DescribeAssetInput"),
+    id = id.from(_N, "DescribeAssetRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1663,7 +1663,7 @@ M.DescribeAssetInput = schema.new({
 })
 
 M.DescribeAssetOutput = schema.new({
-    id = id.from(_N, "DescribeAssetOutput"),
+    id = id.from(_N, "DescribeAssetResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1754,7 +1754,7 @@ M.DescribeAssetOutput = schema.new({
 })
 
 M.DescribePackagingConfigurationInput = schema.new({
-    id = id.from(_N, "DescribePackagingConfigurationInput"),
+    id = id.from(_N, "DescribePackagingConfigurationRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1771,7 +1771,7 @@ M.DescribePackagingConfigurationInput = schema.new({
 })
 
 M.DescribePackagingConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribePackagingConfigurationOutput"),
+    id = id.from(_N, "DescribePackagingConfigurationResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1865,7 +1865,7 @@ M.DescribePackagingConfigurationOutput = schema.new({
 })
 
 M.DescribePackagingGroupInput = schema.new({
-    id = id.from(_N, "DescribePackagingGroupInput"),
+    id = id.from(_N, "DescribePackagingGroupRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1882,7 +1882,7 @@ M.DescribePackagingGroupInput = schema.new({
 })
 
 M.DescribePackagingGroupOutput = schema.new({
-    id = id.from(_N, "DescribePackagingGroupOutput"),
+    id = id.from(_N, "DescribePackagingGroupResponse"),
     type = "structure",
     members = {
         ApproximateAssetCount = schema.new({
@@ -1965,7 +1965,7 @@ M.DescribePackagingGroupOutput = schema.new({
 })
 
 M.ListAssetsInput = schema.new({
-    id = id.from(_N, "ListAssetsInput"),
+    id = id.from(_N, "ListAssetsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1999,7 +1999,7 @@ M.ListAssetsInput = schema.new({
 })
 
 M.ListAssetsOutput = schema.new({
-    id = id.from(_N, "ListAssetsOutput"),
+    id = id.from(_N, "ListAssetsResponse"),
     type = "structure",
     members = {
         Assets = schema.new({
@@ -2025,7 +2025,7 @@ M.ListAssetsOutput = schema.new({
 })
 
 M.ListPackagingConfigurationsInput = schema.new({
-    id = id.from(_N, "ListPackagingConfigurationsInput"),
+    id = id.from(_N, "ListPackagingConfigurationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2059,7 +2059,7 @@ M.ListPackagingConfigurationsInput = schema.new({
 })
 
 M.ListPackagingConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListPackagingConfigurationsOutput"),
+    id = id.from(_N, "ListPackagingConfigurationsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2085,7 +2085,7 @@ M.ListPackagingConfigurationsOutput = schema.new({
 })
 
 M.ListPackagingGroupsInput = schema.new({
-    id = id.from(_N, "ListPackagingGroupsInput"),
+    id = id.from(_N, "ListPackagingGroupsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2110,7 +2110,7 @@ M.ListPackagingGroupsInput = schema.new({
 })
 
 M.ListPackagingGroupsOutput = schema.new({
-    id = id.from(_N, "ListPackagingGroupsOutput"),
+    id = id.from(_N, "ListPackagingGroupsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2136,7 +2136,7 @@ M.ListPackagingGroupsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2153,7 +2153,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2171,7 +2171,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2200,12 +2200,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2233,12 +2233,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdatePackagingGroupInput = schema.new({
-    id = id.from(_N, "UpdatePackagingGroupInput"),
+    id = id.from(_N, "UpdatePackagingGroupRequest"),
     type = "structure",
     members = {
         Authorization = schema.new({
@@ -2265,7 +2265,7 @@ M.UpdatePackagingGroupInput = schema.new({
 })
 
 M.UpdatePackagingGroupOutput = schema.new({
-    id = id.from(_N, "UpdatePackagingGroupOutput"),
+    id = id.from(_N, "UpdatePackagingGroupResponse"),
     type = "structure",
     members = {
         ApproximateAssetCount = schema.new({
@@ -2346,5 +2346,19 @@ M.UpdatePackagingGroupOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

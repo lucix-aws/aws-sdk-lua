@@ -311,7 +311,7 @@ M.ValidationException = schema.new({
 })
 
 M.CancelStatementInput = schema.new({
-    id = id.from(_N, "CancelStatementInput"),
+    id = id.from(_N, "CancelStatementRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -327,7 +327,7 @@ M.CancelStatementInput = schema.new({
 })
 
 M.CancelStatementOutput = schema.new({
-    id = id.from(_N, "CancelStatementOutput"),
+    id = id.from(_N, "CancelStatementResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -481,7 +481,7 @@ M.ColumnMetadata = schema.new({
 })
 
 M.DescribeStatementInput = schema.new({
-    id = id.from(_N, "DescribeStatementInput"),
+    id = id.from(_N, "DescribeStatementRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -585,7 +585,7 @@ M.SubStatementData = schema.new({
 })
 
 M.DescribeStatementOutput = schema.new({
-    id = id.from(_N, "DescribeStatementOutput"),
+    id = id.from(_N, "DescribeStatementResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -738,7 +738,7 @@ M.DescribeStatementOutput = schema.new({
 })
 
 M.DescribeTableInput = schema.new({
-    id = id.from(_N, "DescribeTableInput"),
+    id = id.from(_N, "DescribeTableRequest"),
     type = "structure",
     members = {
         ClusterIdentifier = schema.new({
@@ -811,7 +811,7 @@ M.DescribeTableInput = schema.new({
 })
 
 M.DescribeTableOutput = schema.new({
-    id = id.from(_N, "DescribeTableOutput"),
+    id = id.from(_N, "DescribeTableResponse"),
     type = "structure",
     members = {
         TableName = schema.new({
@@ -1075,7 +1075,7 @@ M.QueryRecords = schema.new({
 })
 
 M.GetStatementResultInput = schema.new({
-    id = id.from(_N, "GetStatementResultInput"),
+    id = id.from(_N, "GetStatementResultRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1097,7 +1097,7 @@ M.GetStatementResultInput = schema.new({
 })
 
 M.GetStatementResultOutput = schema.new({
-    id = id.from(_N, "GetStatementResultOutput"),
+    id = id.from(_N, "GetStatementResultResponse"),
     type = "structure",
     members = {
         Records = schema.new({
@@ -1105,7 +1105,7 @@ M.GetStatementResultOutput = schema.new({
             type = "list",
             name = "Records",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = M.Field }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1136,7 +1136,7 @@ M.GetStatementResultOutput = schema.new({
 })
 
 M.GetStatementResultV2Input = schema.new({
-    id = id.from(_N, "GetStatementResultV2Input"),
+    id = id.from(_N, "GetStatementResultV2Request"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1158,7 +1158,7 @@ M.GetStatementResultV2Input = schema.new({
 })
 
 M.GetStatementResultV2Output = schema.new({
-    id = id.from(_N, "GetStatementResultV2Output"),
+    id = id.from(_N, "GetStatementResultV2Response"),
     type = "structure",
     members = {
         Records = schema.new({
@@ -1203,7 +1203,7 @@ M.GetStatementResultV2Output = schema.new({
 })
 
 M.ListDatabasesInput = schema.new({
-    id = id.from(_N, "ListDatabasesInput"),
+    id = id.from(_N, "ListDatabasesRequest"),
     type = "structure",
     members = {
         ClusterIdentifier = schema.new({
@@ -1258,7 +1258,7 @@ M.ListDatabasesInput = schema.new({
 })
 
 M.ListDatabasesOutput = schema.new({
-    id = id.from(_N, "ListDatabasesOutput"),
+    id = id.from(_N, "ListDatabasesResponse"),
     type = "structure",
     members = {
         Databases = schema.new({
@@ -1278,7 +1278,7 @@ M.ListDatabasesOutput = schema.new({
 })
 
 M.ListSchemasInput = schema.new({
-    id = id.from(_N, "ListSchemasInput"),
+    id = id.from(_N, "ListSchemasRequest"),
     type = "structure",
     members = {
         ClusterIdentifier = schema.new({
@@ -1345,7 +1345,7 @@ M.ListSchemasInput = schema.new({
 })
 
 M.ListSchemasOutput = schema.new({
-    id = id.from(_N, "ListSchemasOutput"),
+    id = id.from(_N, "ListSchemasResponse"),
     type = "structure",
     members = {
         Schemas = schema.new({
@@ -1365,7 +1365,7 @@ M.ListSchemasOutput = schema.new({
 })
 
 M.ListStatementsInput = schema.new({
-    id = id.from(_N, "ListStatementsInput"),
+    id = id.from(_N, "ListStatementsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1507,7 +1507,7 @@ M.StatementData = schema.new({
 })
 
 M.ListStatementsOutput = schema.new({
-    id = id.from(_N, "ListStatementsOutput"),
+    id = id.from(_N, "ListStatementsResponse"),
     type = "structure",
     members = {
         Statements = schema.new({
@@ -1530,7 +1530,7 @@ M.ListStatementsOutput = schema.new({
 })
 
 M.ListTablesInput = schema.new({
-    id = id.from(_N, "ListTablesInput"),
+    id = id.from(_N, "ListTablesRequest"),
     type = "structure",
     members = {
         ClusterIdentifier = schema.new({
@@ -1628,7 +1628,7 @@ M.TableMember = schema.new({
 })
 
 M.ListTablesOutput = schema.new({
-    id = id.from(_N, "ListTablesOutput"),
+    id = id.from(_N, "ListTablesResponse"),
     type = "structure",
     members = {
         Tables = schema.new({
@@ -1646,5 +1646,19 @@ M.ListTablesOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

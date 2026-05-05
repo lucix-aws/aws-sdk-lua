@@ -24,7 +24,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.AssociateUserToPermissionGroupInput = schema.new({
-    id = id.from(_N, "AssociateUserToPermissionGroupInput"),
+    id = id.from(_N, "AssociateUserToPermissionGroupRequest"),
     type = "structure",
     members = {
         permissionGroupId = schema.new({
@@ -60,7 +60,7 @@ M.AssociateUserToPermissionGroupInput = schema.new({
 })
 
 M.AssociateUserToPermissionGroupOutput = schema.new({
-    id = id.from(_N, "AssociateUserToPermissionGroupOutput"),
+    id = id.from(_N, "AssociateUserToPermissionGroupResponse"),
     type = "structure",
     members = {
         statusCode = schema.new({
@@ -201,7 +201,7 @@ M.AwsCredentials = schema.new({
 })
 
 M.CreateChangesetInput = schema.new({
-    id = id.from(_N, "CreateChangesetInput"),
+    id = id.from(_N, "CreateChangesetRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -258,7 +258,7 @@ M.CreateChangesetInput = schema.new({
 })
 
 M.CreateChangesetOutput = schema.new({
-    id = id.from(_N, "CreateChangesetOutput"),
+    id = id.from(_N, "CreateChangesetResponse"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -411,7 +411,7 @@ M.SchemaUnion = schema.new({
 })
 
 M.CreateDatasetInput = schema.new({
-    id = id.from(_N, "CreateDatasetInput"),
+    id = id.from(_N, "CreateDatasetRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -481,7 +481,7 @@ M.CreateDatasetInput = schema.new({
 })
 
 M.CreateDatasetOutput = schema.new({
-    id = id.from(_N, "CreateDatasetOutput"),
+    id = id.from(_N, "CreateDatasetResponse"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -524,7 +524,7 @@ M.DataViewDestinationTypeParams = schema.new({
 })
 
 M.CreateDataViewInput = schema.new({
-    id = id.from(_N, "CreateDataViewInput"),
+    id = id.from(_N, "CreateDataViewRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -592,7 +592,7 @@ M.CreateDataViewInput = schema.new({
 })
 
 M.CreateDataViewOutput = schema.new({
-    id = id.from(_N, "CreateDataViewOutput"),
+    id = id.from(_N, "CreateDataViewResponse"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -611,7 +611,7 @@ M.CreateDataViewOutput = schema.new({
 })
 
 M.CreatePermissionGroupInput = schema.new({
-    id = id.from(_N, "CreatePermissionGroupInput"),
+    id = id.from(_N, "CreatePermissionGroupRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -652,7 +652,7 @@ M.CreatePermissionGroupInput = schema.new({
 })
 
 M.CreatePermissionGroupOutput = schema.new({
-    id = id.from(_N, "CreatePermissionGroupOutput"),
+    id = id.from(_N, "CreatePermissionGroupResponse"),
     type = "structure",
     members = {
         permissionGroupId = schema.new({
@@ -665,7 +665,7 @@ M.CreatePermissionGroupOutput = schema.new({
 })
 
 M.CreateUserInput = schema.new({
-    id = id.from(_N, "CreateUserInput"),
+    id = id.from(_N, "CreateUserRequest"),
     type = "structure",
     members = {
         emailAddress = schema.new({
@@ -723,7 +723,7 @@ M.CreateUserInput = schema.new({
 })
 
 M.CreateUserOutput = schema.new({
-    id = id.from(_N, "CreateUserOutput"),
+    id = id.from(_N, "CreateUserResponse"),
     type = "structure",
     members = {
         userId = schema.new({
@@ -736,7 +736,7 @@ M.CreateUserOutput = schema.new({
 })
 
 M.DeleteDatasetInput = schema.new({
-    id = id.from(_N, "DeleteDatasetInput"),
+    id = id.from(_N, "DeleteDatasetRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -763,7 +763,7 @@ M.DeleteDatasetInput = schema.new({
 })
 
 M.DeleteDatasetOutput = schema.new({
-    id = id.from(_N, "DeleteDatasetOutput"),
+    id = id.from(_N, "DeleteDatasetResponse"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -776,7 +776,7 @@ M.DeleteDatasetOutput = schema.new({
 })
 
 M.DeletePermissionGroupInput = schema.new({
-    id = id.from(_N, "DeletePermissionGroupInput"),
+    id = id.from(_N, "DeletePermissionGroupRequest"),
     type = "structure",
     members = {
         permissionGroupId = schema.new({
@@ -803,7 +803,7 @@ M.DeletePermissionGroupInput = schema.new({
 })
 
 M.DeletePermissionGroupOutput = schema.new({
-    id = id.from(_N, "DeletePermissionGroupOutput"),
+    id = id.from(_N, "DeletePermissionGroupResponse"),
     type = "structure",
     members = {
         permissionGroupId = schema.new({
@@ -816,7 +816,7 @@ M.DeletePermissionGroupOutput = schema.new({
 })
 
 M.DisableUserInput = schema.new({
-    id = id.from(_N, "DisableUserInput"),
+    id = id.from(_N, "DisableUserRequest"),
     type = "structure",
     members = {
         userId = schema.new({
@@ -842,7 +842,7 @@ M.DisableUserInput = schema.new({
 })
 
 M.DisableUserOutput = schema.new({
-    id = id.from(_N, "DisableUserOutput"),
+    id = id.from(_N, "DisableUserResponse"),
     type = "structure",
     members = {
         userId = schema.new({
@@ -855,7 +855,7 @@ M.DisableUserOutput = schema.new({
 })
 
 M.DisassociateUserFromPermissionGroupInput = schema.new({
-    id = id.from(_N, "DisassociateUserFromPermissionGroupInput"),
+    id = id.from(_N, "DisassociateUserFromPermissionGroupRequest"),
     type = "structure",
     members = {
         permissionGroupId = schema.new({
@@ -892,7 +892,7 @@ M.DisassociateUserFromPermissionGroupInput = schema.new({
 })
 
 M.DisassociateUserFromPermissionGroupOutput = schema.new({
-    id = id.from(_N, "DisassociateUserFromPermissionGroupOutput"),
+    id = id.from(_N, "DisassociateUserFromPermissionGroupResponse"),
     type = "structure",
     members = {
         statusCode = schema.new({
@@ -909,7 +909,7 @@ M.DisassociateUserFromPermissionGroupOutput = schema.new({
 })
 
 M.EnableUserInput = schema.new({
-    id = id.from(_N, "EnableUserInput"),
+    id = id.from(_N, "EnableUserRequest"),
     type = "structure",
     members = {
         userId = schema.new({
@@ -935,7 +935,7 @@ M.EnableUserInput = schema.new({
 })
 
 M.EnableUserOutput = schema.new({
-    id = id.from(_N, "EnableUserOutput"),
+    id = id.from(_N, "EnableUserResponse"),
     type = "structure",
     members = {
         userId = schema.new({
@@ -948,7 +948,7 @@ M.EnableUserOutput = schema.new({
 })
 
 M.GetChangesetInput = schema.new({
-    id = id.from(_N, "GetChangesetInput"),
+    id = id.from(_N, "GetChangesetRequest"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -994,7 +994,7 @@ M.ChangesetErrorInfo = schema.new({
 })
 
 M.GetChangesetOutput = schema.new({
-    id = id.from(_N, "GetChangesetOutput"),
+    id = id.from(_N, "GetChangesetResponse"),
     type = "structure",
     members = {
         changesetId = schema.new({
@@ -1093,7 +1093,7 @@ M.GetChangesetOutput = schema.new({
 })
 
 M.GetDatasetInput = schema.new({
-    id = id.from(_N, "GetDatasetInput"),
+    id = id.from(_N, "GetDatasetRequest"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -1110,7 +1110,7 @@ M.GetDatasetInput = schema.new({
 })
 
 M.GetDatasetOutput = schema.new({
-    id = id.from(_N, "GetDatasetOutput"),
+    id = id.from(_N, "GetDatasetResponse"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -1184,7 +1184,7 @@ M.GetDatasetOutput = schema.new({
 })
 
 M.GetDataViewInput = schema.new({
-    id = id.from(_N, "GetDataViewInput"),
+    id = id.from(_N, "GetDataViewRequest"),
     type = "structure",
     members = {
         dataViewId = schema.new({
@@ -1230,7 +1230,7 @@ M.DataViewErrorInfo = schema.new({
 })
 
 M.GetDataViewOutput = schema.new({
-    id = id.from(_N, "GetDataViewOutput"),
+    id = id.from(_N, "GetDataViewResponse"),
     type = "structure",
     members = {
         autoUpdate = schema.new({
@@ -1325,7 +1325,7 @@ M.GetDataViewOutput = schema.new({
 })
 
 M.GetExternalDataViewAccessDetailsInput = schema.new({
-    id = id.from(_N, "GetExternalDataViewAccessDetailsInput"),
+    id = id.from(_N, "GetExternalDataViewAccessDetailsRequest"),
     type = "structure",
     members = {
         dataViewId = schema.new({
@@ -1377,7 +1377,7 @@ M.S3Location = schema.new({
 })
 
 M.GetExternalDataViewAccessDetailsOutput = schema.new({
-    id = id.from(_N, "GetExternalDataViewAccessDetailsOutput"),
+    id = id.from(_N, "GetExternalDataViewAccessDetailsResponse"),
     type = "structure",
     members = {
         credentials = schema.new({
@@ -1398,7 +1398,7 @@ M.GetExternalDataViewAccessDetailsOutput = schema.new({
 })
 
 M.GetPermissionGroupInput = schema.new({
-    id = id.from(_N, "GetPermissionGroupInput"),
+    id = id.from(_N, "GetPermissionGroupRequest"),
     type = "structure",
     members = {
         permissionGroupId = schema.new({
@@ -1471,7 +1471,7 @@ M.PermissionGroup = schema.new({
 })
 
 M.GetPermissionGroupOutput = schema.new({
-    id = id.from(_N, "GetPermissionGroupOutput"),
+    id = id.from(_N, "GetPermissionGroupResponse"),
     type = "structure",
     members = {
         permissionGroup = schema.new({
@@ -1485,7 +1485,7 @@ M.GetPermissionGroupOutput = schema.new({
 })
 
 M.GetProgrammaticAccessCredentialsInput = schema.new({
-    id = id.from(_N, "GetProgrammaticAccessCredentialsInput"),
+    id = id.from(_N, "GetProgrammaticAccessCredentialsRequest"),
     type = "structure",
     members = {
         durationInMinutes = schema.new({
@@ -1536,7 +1536,7 @@ M.Credentials = schema.new({
 })
 
 M.GetProgrammaticAccessCredentialsOutput = schema.new({
-    id = id.from(_N, "GetProgrammaticAccessCredentialsOutput"),
+    id = id.from(_N, "GetProgrammaticAccessCredentialsResponse"),
     type = "structure",
     members = {
         credentials = schema.new({
@@ -1556,7 +1556,7 @@ M.GetProgrammaticAccessCredentialsOutput = schema.new({
 })
 
 M.GetUserInput = schema.new({
-    id = id.from(_N, "GetUserInput"),
+    id = id.from(_N, "GetUserRequest"),
     type = "structure",
     members = {
         userId = schema.new({
@@ -1573,7 +1573,7 @@ M.GetUserInput = schema.new({
 })
 
 M.GetUserOutput = schema.new({
-    id = id.from(_N, "GetUserOutput"),
+    id = id.from(_N, "GetUserResponse"),
     type = "structure",
     members = {
         userId = schema.new({
@@ -1673,7 +1673,7 @@ M.GetUserOutput = schema.new({
 })
 
 M.GetWorkingLocationInput = schema.new({
-    id = id.from(_N, "GetWorkingLocationInput"),
+    id = id.from(_N, "GetWorkingLocationRequest"),
     type = "structure",
     members = {
         locationType = schema.new({
@@ -1686,7 +1686,7 @@ M.GetWorkingLocationInput = schema.new({
 })
 
 M.GetWorkingLocationOutput = schema.new({
-    id = id.from(_N, "GetWorkingLocationOutput"),
+    id = id.from(_N, "GetWorkingLocationResponse"),
     type = "structure",
     members = {
         s3Uri = schema.new({
@@ -1711,7 +1711,7 @@ M.GetWorkingLocationOutput = schema.new({
 })
 
 M.ListChangesetsInput = schema.new({
-    id = id.from(_N, "ListChangesetsInput"),
+    id = id.from(_N, "ListChangesetsRequest"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -1845,7 +1845,7 @@ M.ChangesetSummary = schema.new({
 })
 
 M.ListChangesetsOutput = schema.new({
-    id = id.from(_N, "ListChangesetsOutput"),
+    id = id.from(_N, "ListChangesetsResponse"),
     type = "structure",
     members = {
         changesets = schema.new({
@@ -1865,7 +1865,7 @@ M.ListChangesetsOutput = schema.new({
 })
 
 M.ListDatasetsInput = schema.new({
-    id = id.from(_N, "ListDatasetsInput"),
+    id = id.from(_N, "ListDatasetsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1965,7 +1965,7 @@ M.Dataset = schema.new({
 })
 
 M.ListDatasetsOutput = schema.new({
-    id = id.from(_N, "ListDatasetsOutput"),
+    id = id.from(_N, "ListDatasetsResponse"),
     type = "structure",
     members = {
         datasets = schema.new({
@@ -1985,7 +1985,7 @@ M.ListDatasetsOutput = schema.new({
 })
 
 M.ListDataViewsInput = schema.new({
-    id = id.from(_N, "ListDataViewsInput"),
+    id = id.from(_N, "ListDataViewsRequest"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -2115,7 +2115,7 @@ M.DataViewSummary = schema.new({
 })
 
 M.ListDataViewsOutput = schema.new({
-    id = id.from(_N, "ListDataViewsOutput"),
+    id = id.from(_N, "ListDataViewsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2135,7 +2135,7 @@ M.ListDataViewsOutput = schema.new({
 })
 
 M.ListPermissionGroupsInput = schema.new({
-    id = id.from(_N, "ListPermissionGroupsInput"),
+    id = id.from(_N, "ListPermissionGroupsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2161,7 +2161,7 @@ M.ListPermissionGroupsInput = schema.new({
 })
 
 M.ListPermissionGroupsOutput = schema.new({
-    id = id.from(_N, "ListPermissionGroupsOutput"),
+    id = id.from(_N, "ListPermissionGroupsResponse"),
     type = "structure",
     members = {
         permissionGroups = schema.new({
@@ -2181,7 +2181,7 @@ M.ListPermissionGroupsOutput = schema.new({
 })
 
 M.ListPermissionGroupsByUserInput = schema.new({
-    id = id.from(_N, "ListPermissionGroupsByUserInput"),
+    id = id.from(_N, "ListPermissionGroupsByUserRequest"),
     type = "structure",
     members = {
         userId = schema.new({
@@ -2242,7 +2242,7 @@ M.PermissionGroupByUser = schema.new({
 })
 
 M.ListPermissionGroupsByUserOutput = schema.new({
-    id = id.from(_N, "ListPermissionGroupsByUserOutput"),
+    id = id.from(_N, "ListPermissionGroupsByUserResponse"),
     type = "structure",
     members = {
         permissionGroups = schema.new({
@@ -2262,7 +2262,7 @@ M.ListPermissionGroupsByUserOutput = schema.new({
 })
 
 M.ListUsersInput = schema.new({
-    id = id.from(_N, "ListUsersInput"),
+    id = id.from(_N, "ListUsersRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2388,7 +2388,7 @@ M.User = schema.new({
 })
 
 M.ListUsersOutput = schema.new({
-    id = id.from(_N, "ListUsersOutput"),
+    id = id.from(_N, "ListUsersResponse"),
     type = "structure",
     members = {
         users = schema.new({
@@ -2408,7 +2408,7 @@ M.ListUsersOutput = schema.new({
 })
 
 M.ListUsersByPermissionGroupInput = schema.new({
-    id = id.from(_N, "ListUsersByPermissionGroupInput"),
+    id = id.from(_N, "ListUsersByPermissionGroupRequest"),
     type = "structure",
     members = {
         permissionGroupId = schema.new({
@@ -2505,7 +2505,7 @@ M.UserByPermissionGroup = schema.new({
 })
 
 M.ListUsersByPermissionGroupOutput = schema.new({
-    id = id.from(_N, "ListUsersByPermissionGroupOutput"),
+    id = id.from(_N, "ListUsersByPermissionGroupResponse"),
     type = "structure",
     members = {
         users = schema.new({
@@ -2525,7 +2525,7 @@ M.ListUsersByPermissionGroupOutput = schema.new({
 })
 
 M.ResetUserPasswordInput = schema.new({
-    id = id.from(_N, "ResetUserPasswordInput"),
+    id = id.from(_N, "ResetUserPasswordRequest"),
     type = "structure",
     members = {
         userId = schema.new({
@@ -2551,7 +2551,7 @@ M.ResetUserPasswordInput = schema.new({
 })
 
 M.ResetUserPasswordOutput = schema.new({
-    id = id.from(_N, "ResetUserPasswordOutput"),
+    id = id.from(_N, "ResetUserPasswordResponse"),
     type = "structure",
     members = {
         userId = schema.new({
@@ -2570,7 +2570,7 @@ M.ResetUserPasswordOutput = schema.new({
 })
 
 M.UpdateChangesetInput = schema.new({
-    id = id.from(_N, "UpdateChangesetInput"),
+    id = id.from(_N, "UpdateChangesetRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -2628,7 +2628,7 @@ M.UpdateChangesetInput = schema.new({
 })
 
 M.UpdateChangesetOutput = schema.new({
-    id = id.from(_N, "UpdateChangesetOutput"),
+    id = id.from(_N, "UpdateChangesetResponse"),
     type = "structure",
     members = {
         changesetId = schema.new({
@@ -2647,7 +2647,7 @@ M.UpdateChangesetOutput = schema.new({
 })
 
 M.UpdateDatasetInput = schema.new({
-    id = id.from(_N, "UpdateDatasetInput"),
+    id = id.from(_N, "UpdateDatasetRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -2710,7 +2710,7 @@ M.UpdateDatasetInput = schema.new({
 })
 
 M.UpdateDatasetOutput = schema.new({
-    id = id.from(_N, "UpdateDatasetOutput"),
+    id = id.from(_N, "UpdateDatasetResponse"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -2723,7 +2723,7 @@ M.UpdateDatasetOutput = schema.new({
 })
 
 M.UpdatePermissionGroupInput = schema.new({
-    id = id.from(_N, "UpdatePermissionGroupInput"),
+    id = id.from(_N, "UpdatePermissionGroupRequest"),
     type = "structure",
     members = {
         permissionGroupId = schema.new({
@@ -2768,7 +2768,7 @@ M.UpdatePermissionGroupInput = schema.new({
 })
 
 M.UpdatePermissionGroupOutput = schema.new({
-    id = id.from(_N, "UpdatePermissionGroupOutput"),
+    id = id.from(_N, "UpdatePermissionGroupResponse"),
     type = "structure",
     members = {
         permissionGroupId = schema.new({
@@ -2781,7 +2781,7 @@ M.UpdatePermissionGroupOutput = schema.new({
 })
 
 M.UpdateUserInput = schema.new({
-    id = id.from(_N, "UpdateUserInput"),
+    id = id.from(_N, "UpdateUserRequest"),
     type = "structure",
     members = {
         userId = schema.new({
@@ -2837,7 +2837,7 @@ M.UpdateUserInput = schema.new({
 })
 
 M.UpdateUserOutput = schema.new({
-    id = id.from(_N, "UpdateUserOutput"),
+    id = id.from(_N, "UpdateUserResponse"),
     type = "structure",
     members = {
         userId = schema.new({
@@ -2848,5 +2848,19 @@ M.UpdateUserOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

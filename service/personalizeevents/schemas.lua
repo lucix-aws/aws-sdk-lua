@@ -126,7 +126,7 @@ M.InvalidInputException = schema.new({
 })
 
 M.PutActionInteractionsInput = schema.new({
-    id = id.from(_N, "PutActionInteractionsInput"),
+    id = id.from(_N, "PutActionInteractionsRequest"),
     type = "structure",
     members = {
         trackingId = schema.new({
@@ -152,7 +152,7 @@ M.PutActionInteractionsInput = schema.new({
 })
 
 M.PutActionInteractionsOutput = schema.new({
-    id = id.from(_N, "PutActionInteractionsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -189,7 +189,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.PutActionsInput = schema.new({
-    id = id.from(_N, "PutActionsInput"),
+    id = id.from(_N, "PutActionsRequest"),
     type = "structure",
     members = {
         datasetArn = schema.new({
@@ -215,7 +215,7 @@ M.PutActionsInput = schema.new({
 })
 
 M.PutActionsOutput = schema.new({
-    id = id.from(_N, "PutActionsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -308,7 +308,7 @@ M.Event = schema.new({
 })
 
 M.PutEventsInput = schema.new({
-    id = id.from(_N, "PutEventsInput"),
+    id = id.from(_N, "PutEventsRequest"),
     type = "structure",
     members = {
         trackingId = schema.new({
@@ -349,7 +349,7 @@ M.PutEventsInput = schema.new({
 })
 
 M.PutEventsOutput = schema.new({
-    id = id.from(_N, "PutEventsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -379,7 +379,7 @@ M.Item = schema.new({
 })
 
 M.PutItemsInput = schema.new({
-    id = id.from(_N, "PutItemsInput"),
+    id = id.from(_N, "PutItemsRequest"),
     type = "structure",
     members = {
         datasetArn = schema.new({
@@ -405,7 +405,7 @@ M.PutItemsInput = schema.new({
 })
 
 M.PutItemsOutput = schema.new({
-    id = id.from(_N, "PutItemsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -435,7 +435,7 @@ M.User = schema.new({
 })
 
 M.PutUsersInput = schema.new({
-    id = id.from(_N, "PutUsersInput"),
+    id = id.from(_N, "PutUsersRequest"),
     type = "structure",
     members = {
         datasetArn = schema.new({
@@ -461,8 +461,22 @@ M.PutUsersInput = schema.new({
 })
 
 M.PutUsersOutput = schema.new({
-    id = id.from(_N, "PutUsersOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

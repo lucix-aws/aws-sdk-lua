@@ -30,7 +30,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.AddProfilePermissionInput = schema.new({
-    id = id.from(_N, "AddProfilePermissionInput"),
+    id = id.from(_N, "AddProfilePermissionRequest"),
     type = "structure",
     members = {
         profileName = schema.new({
@@ -86,7 +86,7 @@ M.AddProfilePermissionInput = schema.new({
 })
 
 M.AddProfilePermissionOutput = schema.new({
-    id = id.from(_N, "AddProfilePermissionOutput"),
+    id = id.from(_N, "AddProfilePermissionResponse"),
     type = "structure",
     members = {
         revisionId = schema.new({
@@ -253,7 +253,7 @@ M.BadRequestException = schema.new({
 })
 
 M.CancelSigningProfileInput = schema.new({
-    id = id.from(_N, "CancelSigningProfileInput"),
+    id = id.from(_N, "CancelSigningProfileRequest"),
     type = "structure",
     members = {
         profileName = schema.new({
@@ -270,12 +270,12 @@ M.CancelSigningProfileInput = schema.new({
 })
 
 M.CancelSigningProfileOutput = schema.new({
-    id = id.from(_N, "CancelSigningProfileOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeSigningJobInput = schema.new({
-    id = id.from(_N, "DescribeSigningJobInput"),
+    id = id.from(_N, "DescribeSigningJobRequest"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -453,7 +453,7 @@ M.Source = schema.new({
 })
 
 M.DescribeSigningJobOutput = schema.new({
-    id = id.from(_N, "DescribeSigningJobOutput"),
+    id = id.from(_N, "DescribeSigningJobResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -640,7 +640,7 @@ M.EncryptionAlgorithmOptions = schema.new({
 })
 
 M.GetRevocationStatusInput = schema.new({
-    id = id.from(_N, "GetRevocationStatusInput"),
+    id = id.from(_N, "GetRevocationStatusRequest"),
     type = "structure",
     members = {
         signatureTimestamp = schema.new({
@@ -698,7 +698,7 @@ M.GetRevocationStatusInput = schema.new({
 })
 
 M.GetRevocationStatusOutput = schema.new({
-    id = id.from(_N, "GetRevocationStatusOutput"),
+    id = id.from(_N, "GetRevocationStatusResponse"),
     type = "structure",
     members = {
         revokedEntities = schema.new({
@@ -712,7 +712,7 @@ M.GetRevocationStatusOutput = schema.new({
 })
 
 M.GetSigningPlatformInput = schema.new({
-    id = id.from(_N, "GetSigningPlatformInput"),
+    id = id.from(_N, "GetSigningPlatformRequest"),
     type = "structure",
     members = {
         platformId = schema.new({
@@ -808,7 +808,7 @@ M.SigningImageFormat = schema.new({
 })
 
 M.GetSigningPlatformOutput = schema.new({
-    id = id.from(_N, "GetSigningPlatformOutput"),
+    id = id.from(_N, "GetSigningPlatformResponse"),
     type = "structure",
     members = {
         platformId = schema.new({
@@ -877,7 +877,7 @@ M.GetSigningPlatformOutput = schema.new({
 })
 
 M.GetSigningProfileInput = schema.new({
-    id = id.from(_N, "GetSigningProfileInput"),
+    id = id.from(_N, "GetSigningProfileRequest"),
     type = "structure",
     members = {
         profileName = schema.new({
@@ -950,7 +950,7 @@ M.SignatureValidityPeriod = schema.new({
 })
 
 M.GetSigningProfileOutput = schema.new({
-    id = id.from(_N, "GetSigningProfileOutput"),
+    id = id.from(_N, "GetSigningProfileResponse"),
     type = "structure",
     members = {
         profileName = schema.new({
@@ -1049,7 +1049,7 @@ M.GetSigningProfileOutput = schema.new({
 })
 
 M.ListProfilePermissionsInput = schema.new({
-    id = id.from(_N, "ListProfilePermissionsInput"),
+    id = id.from(_N, "ListProfilePermissionsRequest"),
     type = "structure",
     members = {
         profileName = schema.new({
@@ -1106,7 +1106,7 @@ M.Permission = schema.new({
 })
 
 M.ListProfilePermissionsOutput = schema.new({
-    id = id.from(_N, "ListProfilePermissionsOutput"),
+    id = id.from(_N, "ListProfilePermissionsResponse"),
     type = "structure",
     members = {
         revisionId = schema.new({
@@ -1141,7 +1141,7 @@ M.ListProfilePermissionsOutput = schema.new({
 })
 
 M.ListSigningJobsInput = schema.new({
-    id = id.from(_N, "ListSigningJobsInput"),
+    id = id.from(_N, "ListSigningJobsRequest"),
     type = "structure",
     members = {
         status = schema.new({
@@ -1327,7 +1327,7 @@ M.SigningJob = schema.new({
 })
 
 M.ListSigningJobsOutput = schema.new({
-    id = id.from(_N, "ListSigningJobsOutput"),
+    id = id.from(_N, "ListSigningJobsResponse"),
     type = "structure",
     members = {
         jobs = schema.new({
@@ -1347,7 +1347,7 @@ M.ListSigningJobsOutput = schema.new({
 })
 
 M.ListSigningPlatformsInput = schema.new({
-    id = id.from(_N, "ListSigningPlatformsInput"),
+    id = id.from(_N, "ListSigningPlatformsRequest"),
     type = "structure",
     members = {
         category = schema.new({
@@ -1468,7 +1468,7 @@ M.SigningPlatform = schema.new({
 })
 
 M.ListSigningPlatformsOutput = schema.new({
-    id = id.from(_N, "ListSigningPlatformsOutput"),
+    id = id.from(_N, "ListSigningPlatformsResponse"),
     type = "structure",
     members = {
         platforms = schema.new({
@@ -1488,7 +1488,7 @@ M.ListSigningPlatformsOutput = schema.new({
 })
 
 M.ListSigningProfilesInput = schema.new({
-    id = id.from(_N, "ListSigningProfilesInput"),
+    id = id.from(_N, "ListSigningProfilesRequest"),
     type = "structure",
     members = {
         includeCanceled = schema.new({
@@ -1621,7 +1621,7 @@ M.SigningProfile = schema.new({
 })
 
 M.ListSigningProfilesOutput = schema.new({
-    id = id.from(_N, "ListSigningProfilesOutput"),
+    id = id.from(_N, "ListSigningProfilesResponse"),
     type = "structure",
     members = {
         profiles = schema.new({
@@ -1641,7 +1641,7 @@ M.ListSigningProfilesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1658,7 +1658,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1695,7 +1695,7 @@ M.NotFoundException = schema.new({
 })
 
 M.PutSigningProfileInput = schema.new({
-    id = id.from(_N, "PutSigningProfileInput"),
+    id = id.from(_N, "PutSigningProfileRequest"),
     type = "structure",
     members = {
         profileName = schema.new({
@@ -1758,7 +1758,7 @@ M.PutSigningProfileInput = schema.new({
 })
 
 M.PutSigningProfileOutput = schema.new({
-    id = id.from(_N, "PutSigningProfileOutput"),
+    id = id.from(_N, "PutSigningProfileResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1783,7 +1783,7 @@ M.PutSigningProfileOutput = schema.new({
 })
 
 M.RemoveProfilePermissionInput = schema.new({
-    id = id.from(_N, "RemoveProfilePermissionInput"),
+    id = id.from(_N, "RemoveProfilePermissionRequest"),
     type = "structure",
     members = {
         profileName = schema.new({
@@ -1820,7 +1820,7 @@ M.RemoveProfilePermissionInput = schema.new({
 })
 
 M.RemoveProfilePermissionOutput = schema.new({
-    id = id.from(_N, "RemoveProfilePermissionOutput"),
+    id = id.from(_N, "RemoveProfilePermissionResponse"),
     type = "structure",
     members = {
         revisionId = schema.new({
@@ -1833,7 +1833,7 @@ M.RemoveProfilePermissionOutput = schema.new({
 })
 
 M.RevokeSignatureInput = schema.new({
-    id = id.from(_N, "RevokeSignatureInput"),
+    id = id.from(_N, "RevokeSignatureRequest"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -1865,12 +1865,12 @@ M.RevokeSignatureInput = schema.new({
 })
 
 M.RevokeSignatureOutput = schema.new({
-    id = id.from(_N, "RevokeSignatureOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RevokeSigningProfileInput = schema.new({
-    id = id.from(_N, "RevokeSigningProfileInput"),
+    id = id.from(_N, "RevokeSigningProfileRequest"),
     type = "structure",
     members = {
         profileName = schema.new({
@@ -1914,12 +1914,12 @@ M.RevokeSigningProfileInput = schema.new({
 })
 
 M.RevokeSigningProfileOutput = schema.new({
-    id = id.from(_N, "RevokeSigningProfileOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.SignPayloadInput = schema.new({
-    id = id.from(_N, "SignPayloadInput"),
+    id = id.from(_N, "SignPayloadRequest"),
     type = "structure",
     members = {
         profileName = schema.new({
@@ -1959,7 +1959,7 @@ M.SignPayloadInput = schema.new({
 })
 
 M.SignPayloadOutput = schema.new({
-    id = id.from(_N, "SignPayloadOutput"),
+    id = id.from(_N, "SignPayloadResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -1992,7 +1992,7 @@ M.SignPayloadOutput = schema.new({
 })
 
 M.StartSigningJobInput = schema.new({
-    id = id.from(_N, "StartSigningJobInput"),
+    id = id.from(_N, "StartSigningJobRequest"),
     type = "structure",
     members = {
         source = schema.new({
@@ -2044,7 +2044,7 @@ M.StartSigningJobInput = schema.new({
 })
 
 M.StartSigningJobOutput = schema.new({
-    id = id.from(_N, "StartSigningJobOutput"),
+    id = id.from(_N, "StartSigningJobResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -2085,7 +2085,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2113,12 +2113,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2146,8 +2146,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -27,7 +27,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.ActivateEmailContactInput = schema.new({
-    id = id.from(_N, "ActivateEmailContactInput"),
+    id = id.from(_N, "ActivateEmailContactRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -54,7 +54,7 @@ M.ActivateEmailContactInput = schema.new({
 })
 
 M.ActivateEmailContactOutput = schema.new({
-    id = id.from(_N, "ActivateEmailContactOutput"),
+    id = id.from(_N, "ActivateEmailContactResponse"),
     type = "structure",
 })
 
@@ -252,7 +252,7 @@ M.ValidationException = schema.new({
 })
 
 M.CreateEmailContactInput = schema.new({
-    id = id.from(_N, "CreateEmailContactInput"),
+    id = id.from(_N, "CreateEmailContactRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -285,7 +285,7 @@ M.CreateEmailContactInput = schema.new({
 })
 
 M.CreateEmailContactOutput = schema.new({
-    id = id.from(_N, "CreateEmailContactOutput"),
+    id = id.from(_N, "CreateEmailContactResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -356,7 +356,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.DeleteEmailContactInput = schema.new({
-    id = id.from(_N, "DeleteEmailContactInput"),
+    id = id.from(_N, "DeleteEmailContactRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -373,7 +373,7 @@ M.DeleteEmailContactInput = schema.new({
 })
 
 M.DeleteEmailContactOutput = schema.new({
-    id = id.from(_N, "DeleteEmailContactOutput"),
+    id = id.from(_N, "DeleteEmailContactResponse"),
     type = "structure",
 })
 
@@ -447,7 +447,7 @@ M.EmailContact = schema.new({
 })
 
 M.GetEmailContactInput = schema.new({
-    id = id.from(_N, "GetEmailContactInput"),
+    id = id.from(_N, "GetEmailContactRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -464,7 +464,7 @@ M.GetEmailContactInput = schema.new({
 })
 
 M.GetEmailContactOutput = schema.new({
-    id = id.from(_N, "GetEmailContactOutput"),
+    id = id.from(_N, "GetEmailContactResponse"),
     type = "structure",
     members = {
         emailContact = schema.new({
@@ -481,7 +481,7 @@ M.GetEmailContactOutput = schema.new({
 })
 
 M.ListEmailContactsInput = schema.new({
-    id = id.from(_N, "ListEmailContactsInput"),
+    id = id.from(_N, "ListEmailContactsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -506,7 +506,7 @@ M.ListEmailContactsInput = schema.new({
 })
 
 M.ListEmailContactsOutput = schema.new({
-    id = id.from(_N, "ListEmailContactsOutput"),
+    id = id.from(_N, "ListEmailContactsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -529,7 +529,7 @@ M.ListEmailContactsOutput = schema.new({
 })
 
 M.SendActivationCodeInput = schema.new({
-    id = id.from(_N, "SendActivationCodeInput"),
+    id = id.from(_N, "SendActivationCodeRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -546,12 +546,12 @@ M.SendActivationCodeInput = schema.new({
 })
 
 M.SendActivationCodeOutput = schema.new({
-    id = id.from(_N, "SendActivationCodeOutput"),
+    id = id.from(_N, "SendActivationCodeResponse"),
     type = "structure",
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -568,7 +568,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -583,7 +583,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -611,12 +611,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -644,8 +644,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

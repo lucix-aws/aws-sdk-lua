@@ -244,7 +244,7 @@ M.Tag = schema.new({
 })
 
 M.AssociateAwsAccountWithPartnerAccountInput = schema.new({
-    id = id.from(_N, "AssociateAwsAccountWithPartnerAccountInput"),
+    id = id.from(_N, "AssociateAwsAccountWithPartnerAccountRequest"),
     type = "structure",
     members = {
         Sidewalk = schema.new({
@@ -277,7 +277,7 @@ M.AssociateAwsAccountWithPartnerAccountInput = schema.new({
 })
 
 M.AssociateAwsAccountWithPartnerAccountOutput = schema.new({
-    id = id.from(_N, "AssociateAwsAccountWithPartnerAccountOutput"),
+    id = id.from(_N, "AssociateAwsAccountWithPartnerAccountResponse"),
     type = "structure",
     members = {
         Sidewalk = schema.new({
@@ -401,7 +401,7 @@ M.ValidationException = schema.new({
 })
 
 M.AssociateMulticastGroupWithFuotaTaskInput = schema.new({
-    id = id.from(_N, "AssociateMulticastGroupWithFuotaTaskInput"),
+    id = id.from(_N, "AssociateMulticastGroupWithFuotaTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -427,12 +427,12 @@ M.AssociateMulticastGroupWithFuotaTaskInput = schema.new({
 })
 
 M.AssociateMulticastGroupWithFuotaTaskOutput = schema.new({
-    id = id.from(_N, "AssociateMulticastGroupWithFuotaTaskOutput"),
+    id = id.from(_N, "AssociateMulticastGroupWithFuotaTaskResponse"),
     type = "structure",
 })
 
 M.AssociateWirelessDeviceWithFuotaTaskInput = schema.new({
-    id = id.from(_N, "AssociateWirelessDeviceWithFuotaTaskInput"),
+    id = id.from(_N, "AssociateWirelessDeviceWithFuotaTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -458,12 +458,12 @@ M.AssociateWirelessDeviceWithFuotaTaskInput = schema.new({
 })
 
 M.AssociateWirelessDeviceWithFuotaTaskOutput = schema.new({
-    id = id.from(_N, "AssociateWirelessDeviceWithFuotaTaskOutput"),
+    id = id.from(_N, "AssociateWirelessDeviceWithFuotaTaskResponse"),
     type = "structure",
 })
 
 M.AssociateWirelessDeviceWithMulticastGroupInput = schema.new({
-    id = id.from(_N, "AssociateWirelessDeviceWithMulticastGroupInput"),
+    id = id.from(_N, "AssociateWirelessDeviceWithMulticastGroupRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -489,12 +489,12 @@ M.AssociateWirelessDeviceWithMulticastGroupInput = schema.new({
 })
 
 M.AssociateWirelessDeviceWithMulticastGroupOutput = schema.new({
-    id = id.from(_N, "AssociateWirelessDeviceWithMulticastGroupOutput"),
+    id = id.from(_N, "AssociateWirelessDeviceWithMulticastGroupResponse"),
     type = "structure",
 })
 
 M.AssociateWirelessDeviceWithThingInput = schema.new({
-    id = id.from(_N, "AssociateWirelessDeviceWithThingInput"),
+    id = id.from(_N, "AssociateWirelessDeviceWithThingRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -520,12 +520,12 @@ M.AssociateWirelessDeviceWithThingInput = schema.new({
 })
 
 M.AssociateWirelessDeviceWithThingOutput = schema.new({
-    id = id.from(_N, "AssociateWirelessDeviceWithThingOutput"),
+    id = id.from(_N, "AssociateWirelessDeviceWithThingResponse"),
     type = "structure",
 })
 
 M.AssociateWirelessGatewayWithCertificateInput = schema.new({
-    id = id.from(_N, "AssociateWirelessGatewayWithCertificateInput"),
+    id = id.from(_N, "AssociateWirelessGatewayWithCertificateRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -551,7 +551,7 @@ M.AssociateWirelessGatewayWithCertificateInput = schema.new({
 })
 
 M.AssociateWirelessGatewayWithCertificateOutput = schema.new({
-    id = id.from(_N, "AssociateWirelessGatewayWithCertificateOutput"),
+    id = id.from(_N, "AssociateWirelessGatewayWithCertificateResponse"),
     type = "structure",
     members = {
         IotCertificateId = schema.new({
@@ -564,7 +564,7 @@ M.AssociateWirelessGatewayWithCertificateOutput = schema.new({
 })
 
 M.AssociateWirelessGatewayWithThingInput = schema.new({
-    id = id.from(_N, "AssociateWirelessGatewayWithThingInput"),
+    id = id.from(_N, "AssociateWirelessGatewayWithThingRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -590,7 +590,7 @@ M.AssociateWirelessGatewayWithThingInput = schema.new({
 })
 
 M.AssociateWirelessGatewayWithThingOutput = schema.new({
-    id = id.from(_N, "AssociateWirelessGatewayWithThingOutput"),
+    id = id.from(_N, "AssociateWirelessGatewayWithThingResponse"),
     type = "structure",
 })
 
@@ -615,7 +615,7 @@ M.Beaconing = schema.new({
 })
 
 M.CancelMulticastGroupSessionInput = schema.new({
-    id = id.from(_N, "CancelMulticastGroupSessionInput"),
+    id = id.from(_N, "CancelMulticastGroupSessionRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -632,7 +632,7 @@ M.CancelMulticastGroupSessionInput = schema.new({
 })
 
 M.CancelMulticastGroupSessionOutput = schema.new({
-    id = id.from(_N, "CancelMulticastGroupSessionOutput"),
+    id = id.from(_N, "CancelMulticastGroupSessionResponse"),
     type = "structure",
 })
 
@@ -1484,7 +1484,7 @@ M.ConnectionStatusResourceTypeEventConfiguration = schema.new({
 })
 
 M.CreateDestinationInput = schema.new({
-    id = id.from(_N, "CreateDestinationInput"),
+    id = id.from(_N, "CreateDestinationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1549,7 +1549,7 @@ M.CreateDestinationInput = schema.new({
 })
 
 M.CreateDestinationOutput = schema.new({
-    id = id.from(_N, "CreateDestinationOutput"),
+    id = id.from(_N, "CreateDestinationResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1704,7 +1704,7 @@ M.SidewalkCreateDeviceProfile = schema.new({
 })
 
 M.CreateDeviceProfileInput = schema.new({
-    id = id.from(_N, "CreateDeviceProfileInput"),
+    id = id.from(_N, "CreateDeviceProfileRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1747,7 +1747,7 @@ M.CreateDeviceProfileInput = schema.new({
 })
 
 M.CreateDeviceProfileOutput = schema.new({
-    id = id.from(_N, "CreateDeviceProfileOutput"),
+    id = id.from(_N, "CreateDeviceProfileResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1779,7 +1779,7 @@ M.LoRaWANFuotaTask = schema.new({
 })
 
 M.CreateFuotaTaskInput = schema.new({
-    id = id.from(_N, "CreateFuotaTaskInput"),
+    id = id.from(_N, "CreateFuotaTaskRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1863,7 +1863,7 @@ M.CreateFuotaTaskInput = schema.new({
 })
 
 M.CreateFuotaTaskOutput = schema.new({
-    id = id.from(_N, "CreateFuotaTaskOutput"),
+    id = id.from(_N, "CreateFuotaTaskResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1928,7 +1928,7 @@ M.LoRaWANMulticast = schema.new({
 })
 
 M.CreateMulticastGroupInput = schema.new({
-    id = id.from(_N, "CreateMulticastGroupInput"),
+    id = id.from(_N, "CreateMulticastGroupRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1973,7 +1973,7 @@ M.CreateMulticastGroupInput = schema.new({
 })
 
 M.CreateMulticastGroupOutput = schema.new({
-    id = id.from(_N, "CreateMulticastGroupOutput"),
+    id = id.from(_N, "CreateMulticastGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2017,7 +2017,7 @@ M.TraceContent = schema.new({
 })
 
 M.CreateNetworkAnalyzerConfigurationInput = schema.new({
-    id = id.from(_N, "CreateNetworkAnalyzerConfigurationInput"),
+    id = id.from(_N, "CreateNetworkAnalyzerConfigurationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2083,7 +2083,7 @@ M.CreateNetworkAnalyzerConfigurationInput = schema.new({
 })
 
 M.CreateNetworkAnalyzerConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateNetworkAnalyzerConfigurationOutput"),
+    id = id.from(_N, "CreateNetworkAnalyzerConfigurationResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2172,7 +2172,7 @@ M.LoRaWANServiceProfile = schema.new({
 })
 
 M.CreateServiceProfileInput = schema.new({
-    id = id.from(_N, "CreateServiceProfileInput"),
+    id = id.from(_N, "CreateServiceProfileRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2208,7 +2208,7 @@ M.CreateServiceProfileInput = schema.new({
 })
 
 M.CreateServiceProfileOutput = schema.new({
-    id = id.from(_N, "CreateServiceProfileOutput"),
+    id = id.from(_N, "CreateServiceProfileResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2446,7 +2446,7 @@ M.SidewalkCreateWirelessDevice = schema.new({
 })
 
 M.CreateWirelessDeviceInput = schema.new({
-    id = id.from(_N, "CreateWirelessDeviceInput"),
+    id = id.from(_N, "CreateWirelessDeviceRequest"),
     type = "structure",
     members = {
         Type = schema.new({
@@ -2519,7 +2519,7 @@ M.CreateWirelessDeviceInput = schema.new({
 })
 
 M.CreateWirelessDeviceOutput = schema.new({
-    id = id.from(_N, "CreateWirelessDeviceOutput"),
+    id = id.from(_N, "CreateWirelessDeviceResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2558,7 +2558,7 @@ M.LoRaWANGateway = schema.new({
             type = "list",
             name = "JoinEuiFilters",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.String }),
         }),
         NetIdFilters = schema.new({
             id = id.from(_N, "LoRaWANGateway", "NetIdFilters"),
@@ -2591,7 +2591,7 @@ M.LoRaWANGateway = schema.new({
 })
 
 M.CreateWirelessGatewayInput = schema.new({
-    id = id.from(_N, "CreateWirelessGatewayInput"),
+    id = id.from(_N, "CreateWirelessGatewayRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2636,7 +2636,7 @@ M.CreateWirelessGatewayInput = schema.new({
 })
 
 M.CreateWirelessGatewayOutput = schema.new({
-    id = id.from(_N, "CreateWirelessGatewayOutput"),
+    id = id.from(_N, "CreateWirelessGatewayResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2655,7 +2655,7 @@ M.CreateWirelessGatewayOutput = schema.new({
 })
 
 M.CreateWirelessGatewayTaskInput = schema.new({
-    id = id.from(_N, "CreateWirelessGatewayTaskInput"),
+    id = id.from(_N, "CreateWirelessGatewayTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2681,7 +2681,7 @@ M.CreateWirelessGatewayTaskInput = schema.new({
 })
 
 M.CreateWirelessGatewayTaskOutput = schema.new({
-    id = id.from(_N, "CreateWirelessGatewayTaskOutput"),
+    id = id.from(_N, "CreateWirelessGatewayTaskResponse"),
     type = "structure",
     members = {
         WirelessGatewayTaskDefinitionId = schema.new({
@@ -2784,7 +2784,7 @@ M.UpdateWirelessGatewayTaskCreate = schema.new({
 })
 
 M.CreateWirelessGatewayTaskDefinitionInput = schema.new({
-    id = id.from(_N, "CreateWirelessGatewayTaskDefinitionInput"),
+    id = id.from(_N, "CreateWirelessGatewayTaskDefinitionRequest"),
     type = "structure",
     members = {
         AutoCreateTasks = schema.new({
@@ -2830,7 +2830,7 @@ M.CreateWirelessGatewayTaskDefinitionInput = schema.new({
 })
 
 M.CreateWirelessGatewayTaskDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateWirelessGatewayTaskDefinitionOutput"),
+    id = id.from(_N, "CreateWirelessGatewayTaskDefinitionResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2889,7 +2889,7 @@ M.DakCertificateMetadata = schema.new({
 })
 
 M.DeleteDestinationInput = schema.new({
-    id = id.from(_N, "DeleteDestinationInput"),
+    id = id.from(_N, "DeleteDestinationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2906,12 +2906,12 @@ M.DeleteDestinationInput = schema.new({
 })
 
 M.DeleteDestinationOutput = schema.new({
-    id = id.from(_N, "DeleteDestinationOutput"),
+    id = id.from(_N, "DeleteDestinationResponse"),
     type = "structure",
 })
 
 M.DeleteDeviceProfileInput = schema.new({
-    id = id.from(_N, "DeleteDeviceProfileInput"),
+    id = id.from(_N, "DeleteDeviceProfileRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2928,12 +2928,12 @@ M.DeleteDeviceProfileInput = schema.new({
 })
 
 M.DeleteDeviceProfileOutput = schema.new({
-    id = id.from(_N, "DeleteDeviceProfileOutput"),
+    id = id.from(_N, "DeleteDeviceProfileResponse"),
     type = "structure",
 })
 
 M.DeleteFuotaTaskInput = schema.new({
-    id = id.from(_N, "DeleteFuotaTaskInput"),
+    id = id.from(_N, "DeleteFuotaTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2950,12 +2950,12 @@ M.DeleteFuotaTaskInput = schema.new({
 })
 
 M.DeleteFuotaTaskOutput = schema.new({
-    id = id.from(_N, "DeleteFuotaTaskOutput"),
+    id = id.from(_N, "DeleteFuotaTaskResponse"),
     type = "structure",
 })
 
 M.DeleteMulticastGroupInput = schema.new({
-    id = id.from(_N, "DeleteMulticastGroupInput"),
+    id = id.from(_N, "DeleteMulticastGroupRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2972,12 +2972,12 @@ M.DeleteMulticastGroupInput = schema.new({
 })
 
 M.DeleteMulticastGroupOutput = schema.new({
-    id = id.from(_N, "DeleteMulticastGroupOutput"),
+    id = id.from(_N, "DeleteMulticastGroupResponse"),
     type = "structure",
 })
 
 M.DeleteNetworkAnalyzerConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteNetworkAnalyzerConfigurationInput"),
+    id = id.from(_N, "DeleteNetworkAnalyzerConfigurationRequest"),
     type = "structure",
     members = {
         ConfigurationName = schema.new({
@@ -2994,12 +2994,12 @@ M.DeleteNetworkAnalyzerConfigurationInput = schema.new({
 })
 
 M.DeleteNetworkAnalyzerConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteNetworkAnalyzerConfigurationOutput"),
+    id = id.from(_N, "DeleteNetworkAnalyzerConfigurationResponse"),
     type = "structure",
 })
 
 M.DeleteQueuedMessagesInput = schema.new({
-    id = id.from(_N, "DeleteQueuedMessagesInput"),
+    id = id.from(_N, "DeleteQueuedMessagesRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3035,12 +3035,12 @@ M.DeleteQueuedMessagesInput = schema.new({
 })
 
 M.DeleteQueuedMessagesOutput = schema.new({
-    id = id.from(_N, "DeleteQueuedMessagesOutput"),
+    id = id.from(_N, "DeleteQueuedMessagesResponse"),
     type = "structure",
 })
 
 M.DeleteServiceProfileInput = schema.new({
-    id = id.from(_N, "DeleteServiceProfileInput"),
+    id = id.from(_N, "DeleteServiceProfileRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3057,12 +3057,12 @@ M.DeleteServiceProfileInput = schema.new({
 })
 
 M.DeleteServiceProfileOutput = schema.new({
-    id = id.from(_N, "DeleteServiceProfileOutput"),
+    id = id.from(_N, "DeleteServiceProfileResponse"),
     type = "structure",
 })
 
 M.DeleteWirelessDeviceInput = schema.new({
-    id = id.from(_N, "DeleteWirelessDeviceInput"),
+    id = id.from(_N, "DeleteWirelessDeviceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3079,12 +3079,12 @@ M.DeleteWirelessDeviceInput = schema.new({
 })
 
 M.DeleteWirelessDeviceOutput = schema.new({
-    id = id.from(_N, "DeleteWirelessDeviceOutput"),
+    id = id.from(_N, "DeleteWirelessDeviceResponse"),
     type = "structure",
 })
 
 M.DeleteWirelessDeviceImportTaskInput = schema.new({
-    id = id.from(_N, "DeleteWirelessDeviceImportTaskInput"),
+    id = id.from(_N, "DeleteWirelessDeviceImportTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3101,12 +3101,12 @@ M.DeleteWirelessDeviceImportTaskInput = schema.new({
 })
 
 M.DeleteWirelessDeviceImportTaskOutput = schema.new({
-    id = id.from(_N, "DeleteWirelessDeviceImportTaskOutput"),
+    id = id.from(_N, "DeleteWirelessDeviceImportTaskResponse"),
     type = "structure",
 })
 
 M.DeleteWirelessGatewayInput = schema.new({
-    id = id.from(_N, "DeleteWirelessGatewayInput"),
+    id = id.from(_N, "DeleteWirelessGatewayRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3123,12 +3123,12 @@ M.DeleteWirelessGatewayInput = schema.new({
 })
 
 M.DeleteWirelessGatewayOutput = schema.new({
-    id = id.from(_N, "DeleteWirelessGatewayOutput"),
+    id = id.from(_N, "DeleteWirelessGatewayResponse"),
     type = "structure",
 })
 
 M.DeleteWirelessGatewayTaskInput = schema.new({
-    id = id.from(_N, "DeleteWirelessGatewayTaskInput"),
+    id = id.from(_N, "DeleteWirelessGatewayTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3145,12 +3145,12 @@ M.DeleteWirelessGatewayTaskInput = schema.new({
 })
 
 M.DeleteWirelessGatewayTaskOutput = schema.new({
-    id = id.from(_N, "DeleteWirelessGatewayTaskOutput"),
+    id = id.from(_N, "DeleteWirelessGatewayTaskResponse"),
     type = "structure",
 })
 
 M.DeleteWirelessGatewayTaskDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteWirelessGatewayTaskDefinitionInput"),
+    id = id.from(_N, "DeleteWirelessGatewayTaskDefinitionRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3167,12 +3167,12 @@ M.DeleteWirelessGatewayTaskDefinitionInput = schema.new({
 })
 
 M.DeleteWirelessGatewayTaskDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteWirelessGatewayTaskDefinitionOutput"),
+    id = id.from(_N, "DeleteWirelessGatewayTaskDefinitionResponse"),
     type = "structure",
 })
 
 M.DeregisterWirelessDeviceInput = schema.new({
-    id = id.from(_N, "DeregisterWirelessDeviceInput"),
+    id = id.from(_N, "DeregisterWirelessDeviceRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -3198,7 +3198,7 @@ M.DeregisterWirelessDeviceInput = schema.new({
 })
 
 M.DeregisterWirelessDeviceOutput = schema.new({
-    id = id.from(_N, "DeregisterWirelessDeviceOutput"),
+    id = id.from(_N, "DeregisterWirelessDeviceResponse"),
     type = "structure",
 })
 
@@ -3350,7 +3350,7 @@ M.Dimension = schema.new({
 })
 
 M.DisassociateAwsAccountFromPartnerAccountInput = schema.new({
-    id = id.from(_N, "DisassociateAwsAccountFromPartnerAccountInput"),
+    id = id.from(_N, "DisassociateAwsAccountFromPartnerAccountRequest"),
     type = "structure",
     members = {
         PartnerAccountId = schema.new({
@@ -3377,12 +3377,12 @@ M.DisassociateAwsAccountFromPartnerAccountInput = schema.new({
 })
 
 M.DisassociateAwsAccountFromPartnerAccountOutput = schema.new({
-    id = id.from(_N, "DisassociateAwsAccountFromPartnerAccountOutput"),
+    id = id.from(_N, "DisassociateAwsAccountFromPartnerAccountResponse"),
     type = "structure",
 })
 
 M.DisassociateMulticastGroupFromFuotaTaskInput = schema.new({
-    id = id.from(_N, "DisassociateMulticastGroupFromFuotaTaskInput"),
+    id = id.from(_N, "DisassociateMulticastGroupFromFuotaTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3409,12 +3409,12 @@ M.DisassociateMulticastGroupFromFuotaTaskInput = schema.new({
 })
 
 M.DisassociateMulticastGroupFromFuotaTaskOutput = schema.new({
-    id = id.from(_N, "DisassociateMulticastGroupFromFuotaTaskOutput"),
+    id = id.from(_N, "DisassociateMulticastGroupFromFuotaTaskResponse"),
     type = "structure",
 })
 
 M.DisassociateWirelessDeviceFromFuotaTaskInput = schema.new({
-    id = id.from(_N, "DisassociateWirelessDeviceFromFuotaTaskInput"),
+    id = id.from(_N, "DisassociateWirelessDeviceFromFuotaTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3441,12 +3441,12 @@ M.DisassociateWirelessDeviceFromFuotaTaskInput = schema.new({
 })
 
 M.DisassociateWirelessDeviceFromFuotaTaskOutput = schema.new({
-    id = id.from(_N, "DisassociateWirelessDeviceFromFuotaTaskOutput"),
+    id = id.from(_N, "DisassociateWirelessDeviceFromFuotaTaskResponse"),
     type = "structure",
 })
 
 M.DisassociateWirelessDeviceFromMulticastGroupInput = schema.new({
-    id = id.from(_N, "DisassociateWirelessDeviceFromMulticastGroupInput"),
+    id = id.from(_N, "DisassociateWirelessDeviceFromMulticastGroupRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3473,12 +3473,12 @@ M.DisassociateWirelessDeviceFromMulticastGroupInput = schema.new({
 })
 
 M.DisassociateWirelessDeviceFromMulticastGroupOutput = schema.new({
-    id = id.from(_N, "DisassociateWirelessDeviceFromMulticastGroupOutput"),
+    id = id.from(_N, "DisassociateWirelessDeviceFromMulticastGroupResponse"),
     type = "structure",
 })
 
 M.DisassociateWirelessDeviceFromThingInput = schema.new({
-    id = id.from(_N, "DisassociateWirelessDeviceFromThingInput"),
+    id = id.from(_N, "DisassociateWirelessDeviceFromThingRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3495,12 +3495,12 @@ M.DisassociateWirelessDeviceFromThingInput = schema.new({
 })
 
 M.DisassociateWirelessDeviceFromThingOutput = schema.new({
-    id = id.from(_N, "DisassociateWirelessDeviceFromThingOutput"),
+    id = id.from(_N, "DisassociateWirelessDeviceFromThingResponse"),
     type = "structure",
 })
 
 M.DisassociateWirelessGatewayFromCertificateInput = schema.new({
-    id = id.from(_N, "DisassociateWirelessGatewayFromCertificateInput"),
+    id = id.from(_N, "DisassociateWirelessGatewayFromCertificateRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3517,12 +3517,12 @@ M.DisassociateWirelessGatewayFromCertificateInput = schema.new({
 })
 
 M.DisassociateWirelessGatewayFromCertificateOutput = schema.new({
-    id = id.from(_N, "DisassociateWirelessGatewayFromCertificateOutput"),
+    id = id.from(_N, "DisassociateWirelessGatewayFromCertificateResponse"),
     type = "structure",
 })
 
 M.DisassociateWirelessGatewayFromThingInput = schema.new({
-    id = id.from(_N, "DisassociateWirelessGatewayFromThingInput"),
+    id = id.from(_N, "DisassociateWirelessGatewayFromThingRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3539,7 +3539,7 @@ M.DisassociateWirelessGatewayFromThingInput = schema.new({
 })
 
 M.DisassociateWirelessGatewayFromThingOutput = schema.new({
-    id = id.from(_N, "DisassociateWirelessGatewayFromThingOutput"),
+    id = id.from(_N, "DisassociateWirelessGatewayFromThingResponse"),
     type = "structure",
 })
 
@@ -3885,7 +3885,7 @@ M.FuotaTaskLogOption = schema.new({
 })
 
 M.GetDestinationInput = schema.new({
-    id = id.from(_N, "GetDestinationInput"),
+    id = id.from(_N, "GetDestinationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3902,7 +3902,7 @@ M.GetDestinationInput = schema.new({
 })
 
 M.GetDestinationOutput = schema.new({
-    id = id.from(_N, "GetDestinationOutput"),
+    id = id.from(_N, "GetDestinationResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3945,7 +3945,7 @@ M.GetDestinationOutput = schema.new({
 })
 
 M.GetDeviceProfileInput = schema.new({
-    id = id.from(_N, "GetDeviceProfileInput"),
+    id = id.from(_N, "GetDeviceProfileRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3988,7 +3988,7 @@ M.SidewalkGetDeviceProfile = schema.new({
 })
 
 M.GetDeviceProfileOutput = schema.new({
-    id = id.from(_N, "GetDeviceProfileOutput"),
+    id = id.from(_N, "GetDeviceProfileResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -4027,7 +4027,7 @@ M.GetDeviceProfileOutput = schema.new({
 })
 
 M.GetEventConfigurationByResourceTypesInput = schema.new({
-    id = id.from(_N, "GetEventConfigurationByResourceTypesInput"),
+    id = id.from(_N, "GetEventConfigurationByResourceTypesRequest"),
     type = "structure",
 })
 
@@ -4087,7 +4087,7 @@ M.ProximityResourceTypeEventConfiguration = schema.new({
 })
 
 M.GetEventConfigurationByResourceTypesOutput = schema.new({
-    id = id.from(_N, "GetEventConfigurationByResourceTypesOutput"),
+    id = id.from(_N, "GetEventConfigurationByResourceTypesResponse"),
     type = "structure",
     members = {
         DeviceRegistrationState = schema.new({
@@ -4129,7 +4129,7 @@ M.GetEventConfigurationByResourceTypesOutput = schema.new({
 })
 
 M.GetFuotaTaskInput = schema.new({
-    id = id.from(_N, "GetFuotaTaskInput"),
+    id = id.from(_N, "GetFuotaTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -4168,7 +4168,7 @@ M.LoRaWANFuotaTaskGetInfo = schema.new({
 })
 
 M.GetFuotaTaskOutput = schema.new({
-    id = id.from(_N, "GetFuotaTaskOutput"),
+    id = id.from(_N, "GetFuotaTaskResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -4254,7 +4254,7 @@ M.GetFuotaTaskOutput = schema.new({
 })
 
 M.GetLogLevelsByResourceTypesInput = schema.new({
-    id = id.from(_N, "GetLogLevelsByResourceTypesInput"),
+    id = id.from(_N, "GetLogLevelsByResourceTypesRequest"),
     type = "structure",
 })
 
@@ -4373,7 +4373,7 @@ M.WirelessGatewayLogOption = schema.new({
 })
 
 M.GetLogLevelsByResourceTypesOutput = schema.new({
-    id = id.from(_N, "GetLogLevelsByResourceTypesOutput"),
+    id = id.from(_N, "GetLogLevelsByResourceTypesResponse"),
     type = "structure",
     members = {
         DefaultLogLevel = schema.new({
@@ -4407,7 +4407,7 @@ M.GetLogLevelsByResourceTypesOutput = schema.new({
 })
 
 M.GetMetricConfigurationInput = schema.new({
-    id = id.from(_N, "GetMetricConfigurationInput"),
+    id = id.from(_N, "GetMetricConfigurationRequest"),
     type = "structure",
 })
 
@@ -4425,7 +4425,7 @@ M.SummaryMetricConfiguration = schema.new({
 })
 
 M.GetMetricConfigurationOutput = schema.new({
-    id = id.from(_N, "GetMetricConfigurationOutput"),
+    id = id.from(_N, "GetMetricConfigurationResponse"),
     type = "structure",
     members = {
         SummaryMetric = schema.new({
@@ -4483,7 +4483,7 @@ M.SummaryMetricQuery = schema.new({
 })
 
 M.GetMetricsInput = schema.new({
-    id = id.from(_N, "GetMetricsInput"),
+    id = id.from(_N, "GetMetricsRequest"),
     type = "structure",
     members = {
         SummaryMetricQueries = schema.new({
@@ -4616,7 +4616,7 @@ M.SummaryMetricQueryResult = schema.new({
 })
 
 M.GetMetricsOutput = schema.new({
-    id = id.from(_N, "GetMetricsOutput"),
+    id = id.from(_N, "GetMetricsResponse"),
     type = "structure",
     members = {
         SummaryMetricQueryResults = schema.new({
@@ -4630,7 +4630,7 @@ M.GetMetricsOutput = schema.new({
 })
 
 M.GetMulticastGroupInput = schema.new({
-    id = id.from(_N, "GetMulticastGroupInput"),
+    id = id.from(_N, "GetMulticastGroupRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -4685,7 +4685,7 @@ M.LoRaWANMulticastGet = schema.new({
 })
 
 M.GetMulticastGroupOutput = schema.new({
-    id = id.from(_N, "GetMulticastGroupOutput"),
+    id = id.from(_N, "GetMulticastGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -4735,7 +4735,7 @@ M.GetMulticastGroupOutput = schema.new({
 })
 
 M.GetMulticastGroupSessionInput = schema.new({
-    id = id.from(_N, "GetMulticastGroupSessionInput"),
+    id = id.from(_N, "GetMulticastGroupSessionRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -4792,7 +4792,7 @@ M.LoRaWANMulticastSession = schema.new({
 })
 
 M.GetMulticastGroupSessionOutput = schema.new({
-    id = id.from(_N, "GetMulticastGroupSessionOutput"),
+    id = id.from(_N, "GetMulticastGroupSessionResponse"),
     type = "structure",
     members = {
         LoRaWAN = schema.new({
@@ -4806,7 +4806,7 @@ M.GetMulticastGroupSessionOutput = schema.new({
 })
 
 M.GetNetworkAnalyzerConfigurationInput = schema.new({
-    id = id.from(_N, "GetNetworkAnalyzerConfigurationInput"),
+    id = id.from(_N, "GetNetworkAnalyzerConfigurationRequest"),
     type = "structure",
     members = {
         ConfigurationName = schema.new({
@@ -4823,7 +4823,7 @@ M.GetNetworkAnalyzerConfigurationInput = schema.new({
 })
 
 M.GetNetworkAnalyzerConfigurationOutput = schema.new({
-    id = id.from(_N, "GetNetworkAnalyzerConfigurationOutput"),
+    id = id.from(_N, "GetNetworkAnalyzerConfigurationResponse"),
     type = "structure",
     members = {
         TraceContent = schema.new({
@@ -4876,7 +4876,7 @@ M.GetNetworkAnalyzerConfigurationOutput = schema.new({
 })
 
 M.GetPartnerAccountInput = schema.new({
-    id = id.from(_N, "GetPartnerAccountInput"),
+    id = id.from(_N, "GetPartnerAccountRequest"),
     type = "structure",
     members = {
         PartnerAccountId = schema.new({
@@ -4928,7 +4928,7 @@ M.SidewalkAccountInfoWithFingerprint = schema.new({
 })
 
 M.GetPartnerAccountOutput = schema.new({
-    id = id.from(_N, "GetPartnerAccountOutput"),
+    id = id.from(_N, "GetPartnerAccountResponse"),
     type = "structure",
     members = {
         Sidewalk = schema.new({
@@ -4951,7 +4951,7 @@ M.GetPartnerAccountOutput = schema.new({
 })
 
 M.GetPositionInput = schema.new({
-    id = id.from(_N, "GetPositionInput"),
+    id = id.from(_N, "GetPositionRequest"),
     type = "structure",
     members = {
         ResourceIdentifier = schema.new({
@@ -4978,7 +4978,7 @@ M.GetPositionInput = schema.new({
 })
 
 M.GetPositionOutput = schema.new({
-    id = id.from(_N, "GetPositionOutput"),
+    id = id.from(_N, "GetPositionResponse"),
     type = "structure",
     members = {
         Position = schema.new({
@@ -5023,7 +5023,7 @@ M.GetPositionOutput = schema.new({
 })
 
 M.GetPositionConfigurationInput = schema.new({
-    id = id.from(_N, "GetPositionConfigurationInput"),
+    id = id.from(_N, "GetPositionConfigurationRequest"),
     type = "structure",
     members = {
         ResourceIdentifier = schema.new({
@@ -5095,7 +5095,7 @@ M.PositionSolverDetails = schema.new({
 })
 
 M.GetPositionConfigurationOutput = schema.new({
-    id = id.from(_N, "GetPositionConfigurationOutput"),
+    id = id.from(_N, "GetPositionConfigurationResponse"),
     type = "structure",
     members = {
         Solvers = schema.new({
@@ -5206,7 +5206,7 @@ M.WiFiAccessPoint = schema.new({
 })
 
 M.GetPositionEstimateInput = schema.new({
-    id = id.from(_N, "GetPositionEstimateInput"),
+    id = id.from(_N, "GetPositionEstimateRequest"),
     type = "structure",
     members = {
         WiFiAccessPoints = schema.new({
@@ -5254,7 +5254,7 @@ M.GetPositionEstimateInput = schema.new({
 })
 
 M.GetPositionEstimateOutput = schema.new({
-    id = id.from(_N, "GetPositionEstimateOutput"),
+    id = id.from(_N, "GetPositionEstimateResponse"),
     type = "structure",
     members = {
         GeoJsonPayload = schema.new({
@@ -5270,7 +5270,7 @@ M.GetPositionEstimateOutput = schema.new({
 })
 
 M.GetResourceEventConfigurationInput = schema.new({
-    id = id.from(_N, "GetResourceEventConfigurationInput"),
+    id = id.from(_N, "GetResourceEventConfigurationRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -5306,7 +5306,7 @@ M.GetResourceEventConfigurationInput = schema.new({
 })
 
 M.GetResourceEventConfigurationOutput = schema.new({
-    id = id.from(_N, "GetResourceEventConfigurationOutput"),
+    id = id.from(_N, "GetResourceEventConfigurationResponse"),
     type = "structure",
     members = {
         DeviceRegistrationState = schema.new({
@@ -5348,7 +5348,7 @@ M.GetResourceEventConfigurationOutput = schema.new({
 })
 
 M.GetResourceLogLevelInput = schema.new({
-    id = id.from(_N, "GetResourceLogLevelInput"),
+    id = id.from(_N, "GetResourceLogLevelRequest"),
     type = "structure",
     members = {
         ResourceIdentifier = schema.new({
@@ -5375,7 +5375,7 @@ M.GetResourceLogLevelInput = schema.new({
 })
 
 M.GetResourceLogLevelOutput = schema.new({
-    id = id.from(_N, "GetResourceLogLevelOutput"),
+    id = id.from(_N, "GetResourceLogLevelResponse"),
     type = "structure",
     members = {
         LogLevel = schema.new({
@@ -5388,7 +5388,7 @@ M.GetResourceLogLevelOutput = schema.new({
 })
 
 M.GetResourcePositionInput = schema.new({
-    id = id.from(_N, "GetResourcePositionInput"),
+    id = id.from(_N, "GetResourcePositionRequest"),
     type = "structure",
     members = {
         ResourceIdentifier = schema.new({
@@ -5415,7 +5415,7 @@ M.GetResourcePositionInput = schema.new({
 })
 
 M.GetResourcePositionOutput = schema.new({
-    id = id.from(_N, "GetResourcePositionOutput"),
+    id = id.from(_N, "GetResourcePositionResponse"),
     type = "structure",
     members = {
         GeoJsonPayload = schema.new({
@@ -5431,7 +5431,7 @@ M.GetResourcePositionOutput = schema.new({
 })
 
 M.GetServiceEndpointInput = schema.new({
-    id = id.from(_N, "GetServiceEndpointInput"),
+    id = id.from(_N, "GetServiceEndpointRequest"),
     type = "structure",
     members = {
         ServiceType = schema.new({
@@ -5447,7 +5447,7 @@ M.GetServiceEndpointInput = schema.new({
 })
 
 M.GetServiceEndpointOutput = schema.new({
-    id = id.from(_N, "GetServiceEndpointOutput"),
+    id = id.from(_N, "GetServiceEndpointResponse"),
     type = "structure",
     members = {
         ServiceType = schema.new({
@@ -5472,7 +5472,7 @@ M.GetServiceEndpointOutput = schema.new({
 })
 
 M.GetServiceProfileInput = schema.new({
-    id = id.from(_N, "GetServiceProfileInput"),
+    id = id.from(_N, "GetServiceProfileRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -5664,7 +5664,7 @@ M.LoRaWANGetServiceProfileInfo = schema.new({
 })
 
 M.GetServiceProfileOutput = schema.new({
-    id = id.from(_N, "GetServiceProfileOutput"),
+    id = id.from(_N, "GetServiceProfileResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -5696,7 +5696,7 @@ M.GetServiceProfileOutput = schema.new({
 })
 
 M.GetWirelessDeviceInput = schema.new({
-    id = id.from(_N, "GetWirelessDeviceInput"),
+    id = id.from(_N, "GetWirelessDeviceRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -5787,7 +5787,7 @@ M.SidewalkDevice = schema.new({
 })
 
 M.GetWirelessDeviceOutput = schema.new({
-    id = id.from(_N, "GetWirelessDeviceOutput"),
+    id = id.from(_N, "GetWirelessDeviceResponse"),
     type = "structure",
     members = {
         Type = schema.new({
@@ -5862,7 +5862,7 @@ M.GetWirelessDeviceOutput = schema.new({
 })
 
 M.GetWirelessDeviceImportTaskInput = schema.new({
-    id = id.from(_N, "GetWirelessDeviceImportTaskInput"),
+    id = id.from(_N, "GetWirelessDeviceImportTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -5906,7 +5906,7 @@ M.SidewalkGetStartImportInfo = schema.new({
 })
 
 M.GetWirelessDeviceImportTaskOutput = schema.new({
-    id = id.from(_N, "GetWirelessDeviceImportTaskOutput"),
+    id = id.from(_N, "GetWirelessDeviceImportTaskResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -5989,7 +5989,7 @@ M.GetWirelessDeviceImportTaskOutput = schema.new({
 })
 
 M.GetWirelessDeviceStatisticsInput = schema.new({
-    id = id.from(_N, "GetWirelessDeviceStatisticsInput"),
+    id = id.from(_N, "GetWirelessDeviceStatisticsRequest"),
     type = "structure",
     members = {
         WirelessDeviceId = schema.new({
@@ -6156,7 +6156,7 @@ M.SidewalkDeviceMetadata = schema.new({
 })
 
 M.GetWirelessDeviceStatisticsOutput = schema.new({
-    id = id.from(_N, "GetWirelessDeviceStatisticsOutput"),
+    id = id.from(_N, "GetWirelessDeviceStatisticsResponse"),
     type = "structure",
     members = {
         WirelessDeviceId = schema.new({
@@ -6189,7 +6189,7 @@ M.GetWirelessDeviceStatisticsOutput = schema.new({
 })
 
 M.GetWirelessGatewayInput = schema.new({
-    id = id.from(_N, "GetWirelessGatewayInput"),
+    id = id.from(_N, "GetWirelessGatewayRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -6216,7 +6216,7 @@ M.GetWirelessGatewayInput = schema.new({
 })
 
 M.GetWirelessGatewayOutput = schema.new({
-    id = id.from(_N, "GetWirelessGatewayOutput"),
+    id = id.from(_N, "GetWirelessGatewayResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6266,7 +6266,7 @@ M.GetWirelessGatewayOutput = schema.new({
 })
 
 M.GetWirelessGatewayCertificateInput = schema.new({
-    id = id.from(_N, "GetWirelessGatewayCertificateInput"),
+    id = id.from(_N, "GetWirelessGatewayCertificateRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -6283,7 +6283,7 @@ M.GetWirelessGatewayCertificateInput = schema.new({
 })
 
 M.GetWirelessGatewayCertificateOutput = schema.new({
-    id = id.from(_N, "GetWirelessGatewayCertificateOutput"),
+    id = id.from(_N, "GetWirelessGatewayCertificateResponse"),
     type = "structure",
     members = {
         IotCertificateId = schema.new({
@@ -6302,7 +6302,7 @@ M.GetWirelessGatewayCertificateOutput = schema.new({
 })
 
 M.GetWirelessGatewayFirmwareInformationInput = schema.new({
-    id = id.from(_N, "GetWirelessGatewayFirmwareInformationInput"),
+    id = id.from(_N, "GetWirelessGatewayFirmwareInformationRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -6333,7 +6333,7 @@ M.LoRaWANGatewayCurrentVersion = schema.new({
 })
 
 M.GetWirelessGatewayFirmwareInformationOutput = schema.new({
-    id = id.from(_N, "GetWirelessGatewayFirmwareInformationOutput"),
+    id = id.from(_N, "GetWirelessGatewayFirmwareInformationResponse"),
     type = "structure",
     members = {
         LoRaWAN = schema.new({
@@ -6347,7 +6347,7 @@ M.GetWirelessGatewayFirmwareInformationOutput = schema.new({
 })
 
 M.GetWirelessGatewayStatisticsInput = schema.new({
-    id = id.from(_N, "GetWirelessGatewayStatisticsInput"),
+    id = id.from(_N, "GetWirelessGatewayStatisticsRequest"),
     type = "structure",
     members = {
         WirelessGatewayId = schema.new({
@@ -6364,7 +6364,7 @@ M.GetWirelessGatewayStatisticsInput = schema.new({
 })
 
 M.GetWirelessGatewayStatisticsOutput = schema.new({
-    id = id.from(_N, "GetWirelessGatewayStatisticsOutput"),
+    id = id.from(_N, "GetWirelessGatewayStatisticsResponse"),
     type = "structure",
     members = {
         WirelessGatewayId = schema.new({
@@ -6389,7 +6389,7 @@ M.GetWirelessGatewayStatisticsOutput = schema.new({
 })
 
 M.GetWirelessGatewayTaskInput = schema.new({
-    id = id.from(_N, "GetWirelessGatewayTaskInput"),
+    id = id.from(_N, "GetWirelessGatewayTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -6406,7 +6406,7 @@ M.GetWirelessGatewayTaskInput = schema.new({
 })
 
 M.GetWirelessGatewayTaskOutput = schema.new({
-    id = id.from(_N, "GetWirelessGatewayTaskOutput"),
+    id = id.from(_N, "GetWirelessGatewayTaskResponse"),
     type = "structure",
     members = {
         WirelessGatewayId = schema.new({
@@ -6443,7 +6443,7 @@ M.GetWirelessGatewayTaskOutput = schema.new({
 })
 
 M.GetWirelessGatewayTaskDefinitionInput = schema.new({
-    id = id.from(_N, "GetWirelessGatewayTaskDefinitionInput"),
+    id = id.from(_N, "GetWirelessGatewayTaskDefinitionRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -6460,7 +6460,7 @@ M.GetWirelessGatewayTaskDefinitionInput = schema.new({
 })
 
 M.GetWirelessGatewayTaskDefinitionOutput = schema.new({
-    id = id.from(_N, "GetWirelessGatewayTaskDefinitionOutput"),
+    id = id.from(_N, "GetWirelessGatewayTaskDefinitionResponse"),
     type = "structure",
     members = {
         AutoCreateTasks = schema.new({
@@ -6543,7 +6543,7 @@ M.ImportedWirelessDevice = schema.new({
 })
 
 M.ListDestinationsInput = schema.new({
-    id = id.from(_N, "ListDestinationsInput"),
+    id = id.from(_N, "ListDestinationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -6569,7 +6569,7 @@ M.ListDestinationsInput = schema.new({
 })
 
 M.ListDestinationsOutput = schema.new({
-    id = id.from(_N, "ListDestinationsOutput"),
+    id = id.from(_N, "ListDestinationsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6589,7 +6589,7 @@ M.ListDestinationsOutput = schema.new({
 })
 
 M.ListDeviceProfilesInput = schema.new({
-    id = id.from(_N, "ListDeviceProfilesInput"),
+    id = id.from(_N, "ListDeviceProfilesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6624,7 +6624,7 @@ M.ListDeviceProfilesInput = schema.new({
 })
 
 M.ListDeviceProfilesOutput = schema.new({
-    id = id.from(_N, "ListDeviceProfilesOutput"),
+    id = id.from(_N, "ListDeviceProfilesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6644,7 +6644,7 @@ M.ListDeviceProfilesOutput = schema.new({
 })
 
 M.ListDevicesForWirelessDeviceImportTaskInput = schema.new({
-    id = id.from(_N, "ListDevicesForWirelessDeviceImportTaskInput"),
+    id = id.from(_N, "ListDevicesForWirelessDeviceImportTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -6703,7 +6703,7 @@ M.SidewalkListDevicesForImportInfo = schema.new({
 })
 
 M.ListDevicesForWirelessDeviceImportTaskOutput = schema.new({
-    id = id.from(_N, "ListDevicesForWirelessDeviceImportTaskOutput"),
+    id = id.from(_N, "ListDevicesForWirelessDeviceImportTaskResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6742,7 +6742,7 @@ M.ListDevicesForWirelessDeviceImportTaskOutput = schema.new({
 })
 
 M.ListEventConfigurationsInput = schema.new({
-    id = id.from(_N, "ListEventConfigurationsInput"),
+    id = id.from(_N, "ListEventConfigurationsRequest"),
     type = "structure",
     members = {
         ResourceType = schema.new({
@@ -6778,7 +6778,7 @@ M.ListEventConfigurationsInput = schema.new({
 })
 
 M.ListEventConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListEventConfigurationsOutput"),
+    id = id.from(_N, "ListEventConfigurationsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6798,7 +6798,7 @@ M.ListEventConfigurationsOutput = schema.new({
 })
 
 M.ListFuotaTasksInput = schema.new({
-    id = id.from(_N, "ListFuotaTasksInput"),
+    id = id.from(_N, "ListFuotaTasksRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6824,7 +6824,7 @@ M.ListFuotaTasksInput = schema.new({
 })
 
 M.ListFuotaTasksOutput = schema.new({
-    id = id.from(_N, "ListFuotaTasksOutput"),
+    id = id.from(_N, "ListFuotaTasksResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6844,7 +6844,7 @@ M.ListFuotaTasksOutput = schema.new({
 })
 
 M.ListMulticastGroupsInput = schema.new({
-    id = id.from(_N, "ListMulticastGroupsInput"),
+    id = id.from(_N, "ListMulticastGroupsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6895,7 +6895,7 @@ M.MulticastGroup = schema.new({
 })
 
 M.ListMulticastGroupsOutput = schema.new({
-    id = id.from(_N, "ListMulticastGroupsOutput"),
+    id = id.from(_N, "ListMulticastGroupsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6915,7 +6915,7 @@ M.ListMulticastGroupsOutput = schema.new({
 })
 
 M.ListMulticastGroupsByFuotaTaskInput = schema.new({
-    id = id.from(_N, "ListMulticastGroupsByFuotaTaskInput"),
+    id = id.from(_N, "ListMulticastGroupsByFuotaTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -6964,7 +6964,7 @@ M.MulticastGroupByFuotaTask = schema.new({
 })
 
 M.ListMulticastGroupsByFuotaTaskOutput = schema.new({
-    id = id.from(_N, "ListMulticastGroupsByFuotaTaskOutput"),
+    id = id.from(_N, "ListMulticastGroupsByFuotaTaskResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6984,7 +6984,7 @@ M.ListMulticastGroupsByFuotaTaskOutput = schema.new({
 })
 
 M.ListNetworkAnalyzerConfigurationsInput = schema.new({
-    id = id.from(_N, "ListNetworkAnalyzerConfigurationsInput"),
+    id = id.from(_N, "ListNetworkAnalyzerConfigurationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -7029,7 +7029,7 @@ M.NetworkAnalyzerConfigurations = schema.new({
 })
 
 M.ListNetworkAnalyzerConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListNetworkAnalyzerConfigurationsOutput"),
+    id = id.from(_N, "ListNetworkAnalyzerConfigurationsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7049,7 +7049,7 @@ M.ListNetworkAnalyzerConfigurationsOutput = schema.new({
 })
 
 M.ListPartnerAccountsInput = schema.new({
-    id = id.from(_N, "ListPartnerAccountsInput"),
+    id = id.from(_N, "ListPartnerAccountsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7075,7 +7075,7 @@ M.ListPartnerAccountsInput = schema.new({
 })
 
 M.ListPartnerAccountsOutput = schema.new({
-    id = id.from(_N, "ListPartnerAccountsOutput"),
+    id = id.from(_N, "ListPartnerAccountsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7095,7 +7095,7 @@ M.ListPartnerAccountsOutput = schema.new({
 })
 
 M.ListPositionConfigurationsInput = schema.new({
-    id = id.from(_N, "ListPositionConfigurationsInput"),
+    id = id.from(_N, "ListPositionConfigurationsRequest"),
     type = "structure",
     members = {
         ResourceType = schema.new({
@@ -7162,7 +7162,7 @@ M.PositionConfigurationItem = schema.new({
 })
 
 M.ListPositionConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListPositionConfigurationsOutput"),
+    id = id.from(_N, "ListPositionConfigurationsResponse"),
     type = "structure",
     members = {
         PositionConfigurationList = schema.new({
@@ -7182,7 +7182,7 @@ M.ListPositionConfigurationsOutput = schema.new({
 })
 
 M.ListQueuedMessagesInput = schema.new({
-    id = id.from(_N, "ListQueuedMessagesInput"),
+    id = id.from(_N, "ListQueuedMessagesRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -7227,7 +7227,7 @@ M.ListQueuedMessagesInput = schema.new({
 })
 
 M.ListQueuedMessagesOutput = schema.new({
-    id = id.from(_N, "ListQueuedMessagesOutput"),
+    id = id.from(_N, "ListQueuedMessagesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7247,7 +7247,7 @@ M.ListQueuedMessagesOutput = schema.new({
 })
 
 M.ListServiceProfilesInput = schema.new({
-    id = id.from(_N, "ListServiceProfilesInput"),
+    id = id.from(_N, "ListServiceProfilesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7298,7 +7298,7 @@ M.ServiceProfile = schema.new({
 })
 
 M.ListServiceProfilesOutput = schema.new({
-    id = id.from(_N, "ListServiceProfilesOutput"),
+    id = id.from(_N, "ListServiceProfilesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7318,7 +7318,7 @@ M.ListServiceProfilesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -7335,7 +7335,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -7349,7 +7349,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListWirelessDeviceImportTasksInput = schema.new({
-    id = id.from(_N, "ListWirelessDeviceImportTasksInput"),
+    id = id.from(_N, "ListWirelessDeviceImportTasksRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -7458,7 +7458,7 @@ M.WirelessDeviceImportTask = schema.new({
 })
 
 M.ListWirelessDeviceImportTasksOutput = schema.new({
-    id = id.from(_N, "ListWirelessDeviceImportTasksOutput"),
+    id = id.from(_N, "ListWirelessDeviceImportTasksResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7478,7 +7478,7 @@ M.ListWirelessDeviceImportTasksOutput = schema.new({
 })
 
 M.ListWirelessDevicesInput = schema.new({
-    id = id.from(_N, "ListWirelessDevicesInput"),
+    id = id.from(_N, "ListWirelessDevicesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -7703,7 +7703,7 @@ M.WirelessDeviceStatistics = schema.new({
 })
 
 M.ListWirelessDevicesOutput = schema.new({
-    id = id.from(_N, "ListWirelessDevicesOutput"),
+    id = id.from(_N, "ListWirelessDevicesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7723,7 +7723,7 @@ M.ListWirelessDevicesOutput = schema.new({
 })
 
 M.ListWirelessGatewaysInput = schema.new({
-    id = id.from(_N, "ListWirelessGatewaysInput"),
+    id = id.from(_N, "ListWirelessGatewaysRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7793,7 +7793,7 @@ M.WirelessGatewayStatistics = schema.new({
 })
 
 M.ListWirelessGatewaysOutput = schema.new({
-    id = id.from(_N, "ListWirelessGatewaysOutput"),
+    id = id.from(_N, "ListWirelessGatewaysResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7813,7 +7813,7 @@ M.ListWirelessGatewaysOutput = schema.new({
 })
 
 M.ListWirelessGatewayTaskDefinitionsInput = schema.new({
-    id = id.from(_N, "ListWirelessGatewayTaskDefinitionsInput"),
+    id = id.from(_N, "ListWirelessGatewayTaskDefinitionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -7895,7 +7895,7 @@ M.UpdateWirelessGatewayTaskEntry = schema.new({
 })
 
 M.ListWirelessGatewayTaskDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListWirelessGatewayTaskDefinitionsOutput"),
+    id = id.from(_N, "ListWirelessGatewayTaskDefinitionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7954,7 +7954,7 @@ M.PositionSolverConfigurations = schema.new({
 })
 
 M.PutPositionConfigurationInput = schema.new({
-    id = id.from(_N, "PutPositionConfigurationInput"),
+    id = id.from(_N, "PutPositionConfigurationRequest"),
     type = "structure",
     members = {
         ResourceIdentifier = schema.new({
@@ -7994,12 +7994,12 @@ M.PutPositionConfigurationInput = schema.new({
 })
 
 M.PutPositionConfigurationOutput = schema.new({
-    id = id.from(_N, "PutPositionConfigurationOutput"),
+    id = id.from(_N, "PutPositionConfigurationResponse"),
     type = "structure",
 })
 
 M.PutResourceLogLevelInput = schema.new({
-    id = id.from(_N, "PutResourceLogLevelInput"),
+    id = id.from(_N, "PutResourceLogLevelRequest"),
     type = "structure",
     members = {
         ResourceIdentifier = schema.new({
@@ -8035,22 +8035,22 @@ M.PutResourceLogLevelInput = schema.new({
 })
 
 M.PutResourceLogLevelOutput = schema.new({
-    id = id.from(_N, "PutResourceLogLevelOutput"),
+    id = id.from(_N, "PutResourceLogLevelResponse"),
     type = "structure",
 })
 
 M.ResetAllResourceLogLevelsInput = schema.new({
-    id = id.from(_N, "ResetAllResourceLogLevelsInput"),
+    id = id.from(_N, "ResetAllResourceLogLevelsRequest"),
     type = "structure",
 })
 
 M.ResetAllResourceLogLevelsOutput = schema.new({
-    id = id.from(_N, "ResetAllResourceLogLevelsOutput"),
+    id = id.from(_N, "ResetAllResourceLogLevelsResponse"),
     type = "structure",
 })
 
 M.ResetResourceLogLevelInput = schema.new({
-    id = id.from(_N, "ResetResourceLogLevelInput"),
+    id = id.from(_N, "ResetResourceLogLevelRequest"),
     type = "structure",
     members = {
         ResourceIdentifier = schema.new({
@@ -8077,7 +8077,7 @@ M.ResetResourceLogLevelInput = schema.new({
 })
 
 M.ResetResourceLogLevelOutput = schema.new({
-    id = id.from(_N, "ResetResourceLogLevelOutput"),
+    id = id.from(_N, "ResetResourceLogLevelResponse"),
     type = "structure",
 })
 
@@ -8109,7 +8109,7 @@ M.MulticastWirelessMetadata = schema.new({
 })
 
 M.SendDataToMulticastGroupInput = schema.new({
-    id = id.from(_N, "SendDataToMulticastGroupInput"),
+    id = id.from(_N, "SendDataToMulticastGroupRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -8145,7 +8145,7 @@ M.SendDataToMulticastGroupInput = schema.new({
 })
 
 M.SendDataToMulticastGroupOutput = schema.new({
-    id = id.from(_N, "SendDataToMulticastGroupOutput"),
+    id = id.from(_N, "SendDataToMulticastGroupResponse"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -8204,7 +8204,7 @@ M.WirelessMetadata = schema.new({
 })
 
 M.SendDataToWirelessDeviceInput = schema.new({
-    id = id.from(_N, "SendDataToWirelessDeviceInput"),
+    id = id.from(_N, "SendDataToWirelessDeviceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -8246,7 +8246,7 @@ M.SendDataToWirelessDeviceInput = schema.new({
 })
 
 M.SendDataToWirelessDeviceOutput = schema.new({
-    id = id.from(_N, "SendDataToWirelessDeviceOutput"),
+    id = id.from(_N, "SendDataToWirelessDeviceResponse"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -8259,7 +8259,7 @@ M.SendDataToWirelessDeviceOutput = schema.new({
 })
 
 M.StartBulkAssociateWirelessDeviceWithMulticastGroupInput = schema.new({
-    id = id.from(_N, "StartBulkAssociateWirelessDeviceWithMulticastGroupInput"),
+    id = id.from(_N, "StartBulkAssociateWirelessDeviceWithMulticastGroupRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -8289,12 +8289,12 @@ M.StartBulkAssociateWirelessDeviceWithMulticastGroupInput = schema.new({
 })
 
 M.StartBulkAssociateWirelessDeviceWithMulticastGroupOutput = schema.new({
-    id = id.from(_N, "StartBulkAssociateWirelessDeviceWithMulticastGroupOutput"),
+    id = id.from(_N, "StartBulkAssociateWirelessDeviceWithMulticastGroupResponse"),
     type = "structure",
 })
 
 M.StartBulkDisassociateWirelessDeviceFromMulticastGroupInput = schema.new({
-    id = id.from(_N, "StartBulkDisassociateWirelessDeviceFromMulticastGroupInput"),
+    id = id.from(_N, "StartBulkDisassociateWirelessDeviceFromMulticastGroupRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -8324,7 +8324,7 @@ M.StartBulkDisassociateWirelessDeviceFromMulticastGroupInput = schema.new({
 })
 
 M.StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput = schema.new({
-    id = id.from(_N, "StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput"),
+    id = id.from(_N, "StartBulkDisassociateWirelessDeviceFromMulticastGroupResponse"),
     type = "structure",
 })
 
@@ -8345,7 +8345,7 @@ M.LoRaWANStartFuotaTask = schema.new({
 })
 
 M.StartFuotaTaskInput = schema.new({
-    id = id.from(_N, "StartFuotaTaskInput"),
+    id = id.from(_N, "StartFuotaTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -8369,12 +8369,12 @@ M.StartFuotaTaskInput = schema.new({
 })
 
 M.StartFuotaTaskOutput = schema.new({
-    id = id.from(_N, "StartFuotaTaskOutput"),
+    id = id.from(_N, "StartFuotaTaskResponse"),
     type = "structure",
 })
 
 M.StartMulticastGroupSessionInput = schema.new({
-    id = id.from(_N, "StartMulticastGroupSessionInput"),
+    id = id.from(_N, "StartMulticastGroupSessionRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -8401,7 +8401,7 @@ M.StartMulticastGroupSessionInput = schema.new({
 })
 
 M.StartMulticastGroupSessionOutput = schema.new({
-    id = id.from(_N, "StartMulticastGroupSessionOutput"),
+    id = id.from(_N, "StartMulticastGroupSessionResponse"),
     type = "structure",
 })
 
@@ -8426,7 +8426,7 @@ M.SidewalkSingleStartImportInfo = schema.new({
 })
 
 M.StartSingleWirelessDeviceImportTaskInput = schema.new({
-    id = id.from(_N, "StartSingleWirelessDeviceImportTaskInput"),
+    id = id.from(_N, "StartSingleWirelessDeviceImportTaskRequest"),
     type = "structure",
     members = {
         DestinationName = schema.new({
@@ -8480,7 +8480,7 @@ M.StartSingleWirelessDeviceImportTaskInput = schema.new({
 })
 
 M.StartSingleWirelessDeviceImportTaskOutput = schema.new({
-    id = id.from(_N, "StartSingleWirelessDeviceImportTaskOutput"),
+    id = id.from(_N, "StartSingleWirelessDeviceImportTaskResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -8525,7 +8525,7 @@ M.SidewalkStartImportInfo = schema.new({
 })
 
 M.StartWirelessDeviceImportTaskInput = schema.new({
-    id = id.from(_N, "StartWirelessDeviceImportTaskInput"),
+    id = id.from(_N, "StartWirelessDeviceImportTaskRequest"),
     type = "structure",
     members = {
         DestinationName = schema.new({
@@ -8573,7 +8573,7 @@ M.StartWirelessDeviceImportTaskInput = schema.new({
 })
 
 M.StartWirelessDeviceImportTaskOutput = schema.new({
-    id = id.from(_N, "StartWirelessDeviceImportTaskOutput"),
+    id = id.from(_N, "StartWirelessDeviceImportTaskResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -8592,7 +8592,7 @@ M.StartWirelessDeviceImportTaskOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -8619,7 +8619,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -8646,7 +8646,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.TestWirelessDeviceInput = schema.new({
-    id = id.from(_N, "TestWirelessDeviceInput"),
+    id = id.from(_N, "TestWirelessDeviceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -8663,7 +8663,7 @@ M.TestWirelessDeviceInput = schema.new({
 })
 
 M.TestWirelessDeviceOutput = schema.new({
-    id = id.from(_N, "TestWirelessDeviceOutput"),
+    id = id.from(_N, "TestWirelessDeviceResponse"),
     type = "structure",
     members = {
         Result = schema.new({
@@ -8676,7 +8676,7 @@ M.TestWirelessDeviceOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -8704,12 +8704,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateDestinationInput = schema.new({
-    id = id.from(_N, "UpdateDestinationInput"),
+    id = id.from(_N, "UpdateDestinationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -8750,12 +8750,12 @@ M.UpdateDestinationInput = schema.new({
 })
 
 M.UpdateDestinationOutput = schema.new({
-    id = id.from(_N, "UpdateDestinationOutput"),
+    id = id.from(_N, "UpdateDestinationResponse"),
     type = "structure",
 })
 
 M.UpdateEventConfigurationByResourceTypesInput = schema.new({
-    id = id.from(_N, "UpdateEventConfigurationByResourceTypesInput"),
+    id = id.from(_N, "UpdateEventConfigurationByResourceTypesRequest"),
     type = "structure",
     members = {
         DeviceRegistrationState = schema.new({
@@ -8797,12 +8797,12 @@ M.UpdateEventConfigurationByResourceTypesInput = schema.new({
 })
 
 M.UpdateEventConfigurationByResourceTypesOutput = schema.new({
-    id = id.from(_N, "UpdateEventConfigurationByResourceTypesOutput"),
+    id = id.from(_N, "UpdateEventConfigurationByResourceTypesResponse"),
     type = "structure",
 })
 
 M.UpdateFuotaTaskInput = schema.new({
-    id = id.from(_N, "UpdateFuotaTaskInput"),
+    id = id.from(_N, "UpdateFuotaTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -8874,12 +8874,12 @@ M.UpdateFuotaTaskInput = schema.new({
 })
 
 M.UpdateFuotaTaskOutput = schema.new({
-    id = id.from(_N, "UpdateFuotaTaskOutput"),
+    id = id.from(_N, "UpdateFuotaTaskResponse"),
     type = "structure",
 })
 
 M.UpdateLogLevelsByResourceTypesInput = schema.new({
-    id = id.from(_N, "UpdateLogLevelsByResourceTypesInput"),
+    id = id.from(_N, "UpdateLogLevelsByResourceTypesRequest"),
     type = "structure",
     members = {
         DefaultLogLevel = schema.new({
@@ -8913,12 +8913,12 @@ M.UpdateLogLevelsByResourceTypesInput = schema.new({
 })
 
 M.UpdateLogLevelsByResourceTypesOutput = schema.new({
-    id = id.from(_N, "UpdateLogLevelsByResourceTypesOutput"),
+    id = id.from(_N, "UpdateLogLevelsByResourceTypesResponse"),
     type = "structure",
 })
 
 M.UpdateMetricConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateMetricConfigurationInput"),
+    id = id.from(_N, "UpdateMetricConfigurationRequest"),
     type = "structure",
     members = {
         SummaryMetric = schema.new({
@@ -8932,12 +8932,12 @@ M.UpdateMetricConfigurationInput = schema.new({
 })
 
 M.UpdateMetricConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateMetricConfigurationOutput"),
+    id = id.from(_N, "UpdateMetricConfigurationResponse"),
     type = "structure",
 })
 
 M.UpdateMulticastGroupInput = schema.new({
-    id = id.from(_N, "UpdateMulticastGroupInput"),
+    id = id.from(_N, "UpdateMulticastGroupRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -8973,12 +8973,12 @@ M.UpdateMulticastGroupInput = schema.new({
 })
 
 M.UpdateMulticastGroupOutput = schema.new({
-    id = id.from(_N, "UpdateMulticastGroupOutput"),
+    id = id.from(_N, "UpdateMulticastGroupResponse"),
     type = "structure",
 })
 
 M.UpdateNetworkAnalyzerConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateNetworkAnalyzerConfigurationInput"),
+    id = id.from(_N, "UpdateNetworkAnalyzerConfigurationRequest"),
     type = "structure",
     members = {
         ConfigurationName = schema.new({
@@ -9050,7 +9050,7 @@ M.UpdateNetworkAnalyzerConfigurationInput = schema.new({
 })
 
 M.UpdateNetworkAnalyzerConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateNetworkAnalyzerConfigurationOutput"),
+    id = id.from(_N, "UpdateNetworkAnalyzerConfigurationResponse"),
     type = "structure",
 })
 
@@ -9068,7 +9068,7 @@ M.SidewalkUpdateAccount = schema.new({
 })
 
 M.UpdatePartnerAccountInput = schema.new({
-    id = id.from(_N, "UpdatePartnerAccountInput"),
+    id = id.from(_N, "UpdatePartnerAccountRequest"),
     type = "structure",
     members = {
         Sidewalk = schema.new({
@@ -9105,12 +9105,12 @@ M.UpdatePartnerAccountInput = schema.new({
 })
 
 M.UpdatePartnerAccountOutput = schema.new({
-    id = id.from(_N, "UpdatePartnerAccountOutput"),
+    id = id.from(_N, "UpdatePartnerAccountResponse"),
     type = "structure",
 })
 
 M.UpdatePositionInput = schema.new({
-    id = id.from(_N, "UpdatePositionInput"),
+    id = id.from(_N, "UpdatePositionRequest"),
     type = "structure",
     members = {
         ResourceIdentifier = schema.new({
@@ -9147,12 +9147,12 @@ M.UpdatePositionInput = schema.new({
 })
 
 M.UpdatePositionOutput = schema.new({
-    id = id.from(_N, "UpdatePositionOutput"),
+    id = id.from(_N, "UpdatePositionResponse"),
     type = "structure",
 })
 
 M.UpdateResourceEventConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateResourceEventConfigurationInput"),
+    id = id.from(_N, "UpdateResourceEventConfigurationRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -9223,12 +9223,12 @@ M.UpdateResourceEventConfigurationInput = schema.new({
 })
 
 M.UpdateResourceEventConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateResourceEventConfigurationOutput"),
+    id = id.from(_N, "UpdateResourceEventConfigurationResponse"),
     type = "structure",
 })
 
 M.UpdateResourcePositionInput = schema.new({
-    id = id.from(_N, "UpdateResourcePositionInput"),
+    id = id.from(_N, "UpdateResourcePositionRequest"),
     type = "structure",
     members = {
         ResourceIdentifier = schema.new({
@@ -9264,7 +9264,7 @@ M.UpdateResourcePositionInput = schema.new({
 })
 
 M.UpdateResourcePositionOutput = schema.new({
-    id = id.from(_N, "UpdateResourcePositionOutput"),
+    id = id.from(_N, "UpdateResourcePositionResponse"),
     type = "structure",
 })
 
@@ -9370,7 +9370,7 @@ M.SidewalkUpdateWirelessDevice = schema.new({
 })
 
 M.UpdateWirelessDeviceInput = schema.new({
-    id = id.from(_N, "UpdateWirelessDeviceInput"),
+    id = id.from(_N, "UpdateWirelessDeviceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -9425,7 +9425,7 @@ M.UpdateWirelessDeviceInput = schema.new({
 })
 
 M.UpdateWirelessDeviceOutput = schema.new({
-    id = id.from(_N, "UpdateWirelessDeviceOutput"),
+    id = id.from(_N, "UpdateWirelessDeviceResponse"),
     type = "structure",
 })
 
@@ -9443,7 +9443,7 @@ M.SidewalkUpdateImportInfo = schema.new({
 })
 
 M.UpdateWirelessDeviceImportTaskInput = schema.new({
-    id = id.from(_N, "UpdateWirelessDeviceImportTaskInput"),
+    id = id.from(_N, "UpdateWirelessDeviceImportTaskRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -9470,12 +9470,12 @@ M.UpdateWirelessDeviceImportTaskInput = schema.new({
 })
 
 M.UpdateWirelessDeviceImportTaskOutput = schema.new({
-    id = id.from(_N, "UpdateWirelessDeviceImportTaskOutput"),
+    id = id.from(_N, "UpdateWirelessDeviceImportTaskResponse"),
     type = "structure",
 })
 
 M.UpdateWirelessGatewayInput = schema.new({
-    id = id.from(_N, "UpdateWirelessGatewayInput"),
+    id = id.from(_N, "UpdateWirelessGatewayRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -9505,7 +9505,7 @@ M.UpdateWirelessGatewayInput = schema.new({
             type = "list",
             name = "JoinEuiFilters",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.String }),
         }),
         NetIdFilters = schema.new({
             id = id.from(_N, "UpdateWirelessGatewayInput", "NetIdFilters"),
@@ -9524,8 +9524,22 @@ M.UpdateWirelessGatewayInput = schema.new({
 })
 
 M.UpdateWirelessGatewayOutput = schema.new({
-    id = id.from(_N, "UpdateWirelessGatewayOutput"),
+    id = id.from(_N, "UpdateWirelessGatewayResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

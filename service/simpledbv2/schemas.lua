@@ -70,7 +70,7 @@ M.ExportSummary = schema.new({
 })
 
 M.GetExportInput = schema.new({
-    id = id.from(_N, "GetExportInput"),
+    id = id.from(_N, "GetExportRequest"),
     type = "structure",
     members = {
         exportArn = schema.new({
@@ -86,7 +86,7 @@ M.GetExportInput = schema.new({
 })
 
 M.GetExportOutput = schema.new({
-    id = id.from(_N, "GetExportOutput"),
+    id = id.from(_N, "GetExportResponse"),
     type = "structure",
     members = {
         exportArn = schema.new({
@@ -277,7 +277,7 @@ M.InvalidParameterCombinationException = schema.new({
 })
 
 M.ListExportsInput = schema.new({
-    id = id.from(_N, "ListExportsInput"),
+    id = id.from(_N, "ListExportsRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -302,7 +302,7 @@ M.ListExportsInput = schema.new({
 })
 
 M.ListExportsOutput = schema.new({
-    id = id.from(_N, "ListExportsOutput"),
+    id = id.from(_N, "ListExportsResponse"),
     type = "structure",
     members = {
         exportSummaries = schema.new({
@@ -363,7 +363,7 @@ M.NumberExportsLimitExceeded = schema.new({
 })
 
 M.StartDomainExportInput = schema.new({
-    id = id.from(_N, "StartDomainExportInput"),
+    id = id.from(_N, "StartDomainExportRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -421,7 +421,7 @@ M.StartDomainExportInput = schema.new({
 })
 
 M.StartDomainExportOutput = schema.new({
-    id = id.from(_N, "StartDomainExportOutput"),
+    id = id.from(_N, "StartDomainExportResponse"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -453,5 +453,19 @@ M.StartDomainExportOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

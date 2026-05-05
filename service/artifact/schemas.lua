@@ -77,12 +77,12 @@ M.ConflictException = schema.new({
 })
 
 M.GetAccountSettingsInput = schema.new({
-    id = id.from(_N, "GetAccountSettingsInput"),
+    id = id.from(_N, "GetAccountSettingsRequest"),
     type = "structure",
 })
 
 M.GetAccountSettingsOutput = schema.new({
-    id = id.from(_N, "GetAccountSettingsOutput"),
+    id = id.from(_N, "GetAccountSettingsResponse"),
     type = "structure",
     members = {
         accountSettings = schema.new({
@@ -316,7 +316,7 @@ M.ValidationException = schema.new({
 })
 
 M.PutAccountSettingsInput = schema.new({
-    id = id.from(_N, "PutAccountSettingsInput"),
+    id = id.from(_N, "PutAccountSettingsRequest"),
     type = "structure",
     members = {
         notificationSubscriptionStatus = schema.new({
@@ -329,7 +329,7 @@ M.PutAccountSettingsInput = schema.new({
 })
 
 M.PutAccountSettingsOutput = schema.new({
-    id = id.from(_N, "PutAccountSettingsOutput"),
+    id = id.from(_N, "PutAccountSettingsResponse"),
     type = "structure",
     members = {
         accountSettings = schema.new({
@@ -343,7 +343,7 @@ M.PutAccountSettingsOutput = schema.new({
 })
 
 M.ListCustomerAgreementsInput = schema.new({
-    id = id.from(_N, "ListCustomerAgreementsInput"),
+    id = id.from(_N, "ListCustomerAgreementsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -461,7 +461,7 @@ M.CustomerAgreementSummary = schema.new({
 })
 
 M.ListCustomerAgreementsOutput = schema.new({
-    id = id.from(_N, "ListCustomerAgreementsOutput"),
+    id = id.from(_N, "ListCustomerAgreementsResponse"),
     type = "structure",
     members = {
         customerAgreements = schema.new({
@@ -484,7 +484,7 @@ M.ListCustomerAgreementsOutput = schema.new({
 })
 
 M.GetReportInput = schema.new({
-    id = id.from(_N, "GetReportInput"),
+    id = id.from(_N, "GetReportRequest"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -520,7 +520,7 @@ M.GetReportInput = schema.new({
 })
 
 M.GetReportOutput = schema.new({
-    id = id.from(_N, "GetReportOutput"),
+    id = id.from(_N, "GetReportResponse"),
     type = "structure",
     members = {
         documentPresignedUrl = schema.new({
@@ -533,7 +533,7 @@ M.GetReportOutput = schema.new({
 })
 
 M.GetReportMetadataInput = schema.new({
-    id = id.from(_N, "GetReportMetadataInput"),
+    id = id.from(_N, "GetReportMetadataRequest"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -701,7 +701,7 @@ M.ReportDetail = schema.new({
 })
 
 M.GetReportMetadataOutput = schema.new({
-    id = id.from(_N, "GetReportMetadataOutput"),
+    id = id.from(_N, "GetReportMetadataResponse"),
     type = "structure",
     members = {
         reportDetails = schema.new({
@@ -715,7 +715,7 @@ M.GetReportMetadataOutput = schema.new({
 })
 
 M.GetTermForReportInput = schema.new({
-    id = id.from(_N, "GetTermForReportInput"),
+    id = id.from(_N, "GetTermForReportRequest"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -741,7 +741,7 @@ M.GetTermForReportInput = schema.new({
 })
 
 M.GetTermForReportOutput = schema.new({
-    id = id.from(_N, "GetTermForReportOutput"),
+    id = id.from(_N, "GetTermForReportResponse"),
     type = "structure",
     members = {
         documentPresignedUrl = schema.new({
@@ -760,7 +760,7 @@ M.GetTermForReportOutput = schema.new({
 })
 
 M.ListReportsInput = schema.new({
-    id = id.from(_N, "ListReportsInput"),
+    id = id.from(_N, "ListReportsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -888,7 +888,7 @@ M.ReportSummary = schema.new({
 })
 
 M.ListReportsOutput = schema.new({
-    id = id.from(_N, "ListReportsOutput"),
+    id = id.from(_N, "ListReportsResponse"),
     type = "structure",
     members = {
         reports = schema.new({
@@ -908,7 +908,7 @@ M.ListReportsOutput = schema.new({
 })
 
 M.ListReportVersionsInput = schema.new({
-    id = id.from(_N, "ListReportVersionsInput"),
+    id = id.from(_N, "ListReportVersionsRequest"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -943,7 +943,7 @@ M.ListReportVersionsInput = schema.new({
 })
 
 M.ListReportVersionsOutput = schema.new({
-    id = id.from(_N, "ListReportVersionsOutput"),
+    id = id.from(_N, "ListReportVersionsResponse"),
     type = "structure",
     members = {
         reports = schema.new({
@@ -964,5 +964,19 @@ M.ListReportVersionsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

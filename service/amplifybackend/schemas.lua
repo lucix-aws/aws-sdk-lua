@@ -27,7 +27,7 @@ M.BadRequestException = schema.new({
 })
 
 M.CloneBackendInput = schema.new({
-    id = id.from(_N, "CloneBackendInput"),
+    id = id.from(_N, "CloneBackendRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -64,7 +64,7 @@ M.CloneBackendInput = schema.new({
 })
 
 M.CloneBackendOutput = schema.new({
-    id = id.from(_N, "CloneBackendOutput"),
+    id = id.from(_N, "CloneBackendResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -205,7 +205,7 @@ M.ResourceConfig = schema.new({
 })
 
 M.CreateBackendInput = schema.new({
-    id = id.from(_N, "CreateBackendInput"),
+    id = id.from(_N, "CreateBackendRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -261,7 +261,7 @@ M.CreateBackendInput = schema.new({
 })
 
 M.CreateBackendOutput = schema.new({
-    id = id.from(_N, "CreateBackendOutput"),
+    id = id.from(_N, "CreateBackendResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -507,7 +507,7 @@ M.BackendAPIResourceConfig = schema.new({
 })
 
 M.CreateBackendAPIInput = schema.new({
-    id = id.from(_N, "CreateBackendAPIInput"),
+    id = id.from(_N, "CreateBackendAPIRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -555,7 +555,7 @@ M.CreateBackendAPIInput = schema.new({
 })
 
 M.CreateBackendAPIOutput = schema.new({
-    id = id.from(_N, "CreateBackendAPIOutput"),
+    id = id.from(_N, "CreateBackendAPIResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1145,7 +1145,7 @@ M.CreateBackendAuthResourceConfig = schema.new({
 })
 
 M.CreateBackendAuthInput = schema.new({
-    id = id.from(_N, "CreateBackendAuthInput"),
+    id = id.from(_N, "CreateBackendAuthRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1193,7 +1193,7 @@ M.CreateBackendAuthInput = schema.new({
 })
 
 M.CreateBackendAuthOutput = schema.new({
-    id = id.from(_N, "CreateBackendAuthOutput"),
+    id = id.from(_N, "CreateBackendAuthResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1254,7 +1254,7 @@ M.CreateBackendAuthOutput = schema.new({
 })
 
 M.CreateBackendConfigInput = schema.new({
-    id = id.from(_N, "CreateBackendConfigInput"),
+    id = id.from(_N, "CreateBackendConfigRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1280,7 +1280,7 @@ M.CreateBackendConfigInput = schema.new({
 })
 
 M.CreateBackendConfigOutput = schema.new({
-    id = id.from(_N, "CreateBackendConfigOutput"),
+    id = id.from(_N, "CreateBackendConfigResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1388,7 +1388,7 @@ M.CreateBackendStorageResourceConfig = schema.new({
 })
 
 M.CreateBackendStorageInput = schema.new({
-    id = id.from(_N, "CreateBackendStorageInput"),
+    id = id.from(_N, "CreateBackendStorageRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1436,7 +1436,7 @@ M.CreateBackendStorageInput = schema.new({
 })
 
 M.CreateBackendStorageOutput = schema.new({
-    id = id.from(_N, "CreateBackendStorageOutput"),
+    id = id.from(_N, "CreateBackendStorageResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1479,7 +1479,7 @@ M.CreateBackendStorageOutput = schema.new({
 })
 
 M.CreateTokenInput = schema.new({
-    id = id.from(_N, "CreateTokenInput"),
+    id = id.from(_N, "CreateTokenRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1496,7 +1496,7 @@ M.CreateTokenInput = schema.new({
 })
 
 M.CreateTokenOutput = schema.new({
-    id = id.from(_N, "CreateTokenOutput"),
+    id = id.from(_N, "CreateTokenResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1539,7 +1539,7 @@ M.CreateTokenOutput = schema.new({
 })
 
 M.DeleteBackendInput = schema.new({
-    id = id.from(_N, "DeleteBackendInput"),
+    id = id.from(_N, "DeleteBackendRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1566,7 +1566,7 @@ M.DeleteBackendInput = schema.new({
 })
 
 M.DeleteBackendOutput = schema.new({
-    id = id.from(_N, "DeleteBackendOutput"),
+    id = id.from(_N, "DeleteBackendResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1627,7 +1627,7 @@ M.DeleteBackendOutput = schema.new({
 })
 
 M.DeleteBackendAPIInput = schema.new({
-    id = id.from(_N, "DeleteBackendAPIInput"),
+    id = id.from(_N, "DeleteBackendAPIRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1674,7 +1674,7 @@ M.DeleteBackendAPIInput = schema.new({
 })
 
 M.DeleteBackendAPIOutput = schema.new({
-    id = id.from(_N, "DeleteBackendAPIOutput"),
+    id = id.from(_N, "DeleteBackendAPIResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1735,7 +1735,7 @@ M.DeleteBackendAPIOutput = schema.new({
 })
 
 M.DeleteBackendAuthInput = schema.new({
-    id = id.from(_N, "DeleteBackendAuthInput"),
+    id = id.from(_N, "DeleteBackendAuthRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1772,7 +1772,7 @@ M.DeleteBackendAuthInput = schema.new({
 })
 
 M.DeleteBackendAuthOutput = schema.new({
-    id = id.from(_N, "DeleteBackendAuthOutput"),
+    id = id.from(_N, "DeleteBackendAuthResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1833,7 +1833,7 @@ M.DeleteBackendAuthOutput = schema.new({
 })
 
 M.DeleteBackendStorageInput = schema.new({
-    id = id.from(_N, "DeleteBackendStorageInput"),
+    id = id.from(_N, "DeleteBackendStorageRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1880,7 +1880,7 @@ M.DeleteBackendStorageInput = schema.new({
 })
 
 M.DeleteBackendStorageOutput = schema.new({
-    id = id.from(_N, "DeleteBackendStorageOutput"),
+    id = id.from(_N, "DeleteBackendStorageResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1923,7 +1923,7 @@ M.DeleteBackendStorageOutput = schema.new({
 })
 
 M.DeleteTokenInput = schema.new({
-    id = id.from(_N, "DeleteTokenInput"),
+    id = id.from(_N, "DeleteTokenRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -1950,7 +1950,7 @@ M.DeleteTokenInput = schema.new({
 })
 
 M.DeleteTokenOutput = schema.new({
-    id = id.from(_N, "DeleteTokenOutput"),
+    id = id.from(_N, "DeleteTokenResponse"),
     type = "structure",
     members = {
         IsSuccess = schema.new({
@@ -1966,7 +1966,7 @@ M.DeleteTokenOutput = schema.new({
 })
 
 M.GenerateBackendAPIModelsInput = schema.new({
-    id = id.from(_N, "GenerateBackendAPIModelsInput"),
+    id = id.from(_N, "GenerateBackendAPIModelsRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2003,7 +2003,7 @@ M.GenerateBackendAPIModelsInput = schema.new({
 })
 
 M.GenerateBackendAPIModelsOutput = schema.new({
-    id = id.from(_N, "GenerateBackendAPIModelsOutput"),
+    id = id.from(_N, "GenerateBackendAPIModelsResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2064,7 +2064,7 @@ M.GenerateBackendAPIModelsOutput = schema.new({
 })
 
 M.GetBackendInput = schema.new({
-    id = id.from(_N, "GetBackendInput"),
+    id = id.from(_N, "GetBackendRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2090,7 +2090,7 @@ M.GetBackendInput = schema.new({
 })
 
 M.GetBackendOutput = schema.new({
-    id = id.from(_N, "GetBackendOutput"),
+    id = id.from(_N, "GetBackendResponse"),
     type = "structure",
     members = {
         AmplifyFeatureFlags = schema.new({
@@ -2161,7 +2161,7 @@ M.GetBackendOutput = schema.new({
 })
 
 M.GetBackendAPIInput = schema.new({
-    id = id.from(_N, "GetBackendAPIInput"),
+    id = id.from(_N, "GetBackendAPIRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2208,7 +2208,7 @@ M.GetBackendAPIInput = schema.new({
 })
 
 M.GetBackendAPIOutput = schema.new({
-    id = id.from(_N, "GetBackendAPIOutput"),
+    id = id.from(_N, "GetBackendAPIResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2261,7 +2261,7 @@ M.GetBackendAPIOutput = schema.new({
 })
 
 M.GetBackendAPIModelsInput = schema.new({
-    id = id.from(_N, "GetBackendAPIModelsInput"),
+    id = id.from(_N, "GetBackendAPIModelsRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2298,7 +2298,7 @@ M.GetBackendAPIModelsInput = schema.new({
 })
 
 M.GetBackendAPIModelsOutput = schema.new({
-    id = id.from(_N, "GetBackendAPIModelsOutput"),
+    id = id.from(_N, "GetBackendAPIModelsResponse"),
     type = "structure",
     members = {
         Models = schema.new({
@@ -2332,7 +2332,7 @@ M.GetBackendAPIModelsOutput = schema.new({
 })
 
 M.GetBackendAuthInput = schema.new({
-    id = id.from(_N, "GetBackendAuthInput"),
+    id = id.from(_N, "GetBackendAuthRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2369,7 +2369,7 @@ M.GetBackendAuthInput = schema.new({
 })
 
 M.GetBackendAuthOutput = schema.new({
-    id = id.from(_N, "GetBackendAuthOutput"),
+    id = id.from(_N, "GetBackendAuthResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2422,7 +2422,7 @@ M.GetBackendAuthOutput = schema.new({
 })
 
 M.GetBackendJobInput = schema.new({
-    id = id.from(_N, "GetBackendJobInput"),
+    id = id.from(_N, "GetBackendJobRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2459,7 +2459,7 @@ M.GetBackendJobInput = schema.new({
 })
 
 M.GetBackendJobOutput = schema.new({
-    id = id.from(_N, "GetBackendJobOutput"),
+    id = id.from(_N, "GetBackendJobResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2538,7 +2538,7 @@ M.GetBackendJobOutput = schema.new({
 })
 
 M.GetBackendStorageInput = schema.new({
-    id = id.from(_N, "GetBackendStorageInput"),
+    id = id.from(_N, "GetBackendStorageRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2621,7 +2621,7 @@ M.GetBackendStorageResourceConfig = schema.new({
 })
 
 M.GetBackendStorageOutput = schema.new({
-    id = id.from(_N, "GetBackendStorageOutput"),
+    id = id.from(_N, "GetBackendStorageResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2665,7 +2665,7 @@ M.GetBackendStorageOutput = schema.new({
 })
 
 M.GetTokenInput = schema.new({
-    id = id.from(_N, "GetTokenInput"),
+    id = id.from(_N, "GetTokenRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2692,7 +2692,7 @@ M.GetTokenInput = schema.new({
 })
 
 M.GetTokenOutput = schema.new({
-    id = id.from(_N, "GetTokenOutput"),
+    id = id.from(_N, "GetTokenResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2735,7 +2735,7 @@ M.GetTokenOutput = schema.new({
 })
 
 M.ImportBackendAuthInput = schema.new({
-    id = id.from(_N, "ImportBackendAuthInput"),
+    id = id.from(_N, "ImportBackendAuthRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2801,7 +2801,7 @@ M.ImportBackendAuthInput = schema.new({
 })
 
 M.ImportBackendAuthOutput = schema.new({
-    id = id.from(_N, "ImportBackendAuthOutput"),
+    id = id.from(_N, "ImportBackendAuthResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2862,7 +2862,7 @@ M.ImportBackendAuthOutput = schema.new({
 })
 
 M.ImportBackendStorageInput = schema.new({
-    id = id.from(_N, "ImportBackendStorageInput"),
+    id = id.from(_N, "ImportBackendStorageRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2908,7 +2908,7 @@ M.ImportBackendStorageInput = schema.new({
 })
 
 M.ImportBackendStorageOutput = schema.new({
-    id = id.from(_N, "ImportBackendStorageOutput"),
+    id = id.from(_N, "ImportBackendStorageResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -2951,7 +2951,7 @@ M.ImportBackendStorageOutput = schema.new({
 })
 
 M.ListBackendJobsInput = schema.new({
-    id = id.from(_N, "ListBackendJobsInput"),
+    id = id.from(_N, "ListBackendJobsRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -3104,7 +3104,7 @@ M.BackendJobRespObj = schema.new({
 })
 
 M.ListBackendJobsOutput = schema.new({
-    id = id.from(_N, "ListBackendJobsOutput"),
+    id = id.from(_N, "ListBackendJobsResponse"),
     type = "structure",
     members = {
         Jobs = schema.new({
@@ -3130,7 +3130,7 @@ M.ListBackendJobsOutput = schema.new({
 })
 
 M.ListS3BucketsInput = schema.new({
-    id = id.from(_N, "ListS3BucketsInput"),
+    id = id.from(_N, "ListS3BucketsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3171,7 +3171,7 @@ M.S3BucketInfo = schema.new({
 })
 
 M.ListS3BucketsOutput = schema.new({
-    id = id.from(_N, "ListS3BucketsOutput"),
+    id = id.from(_N, "ListS3BucketsResponse"),
     type = "structure",
     members = {
         Buckets = schema.new({
@@ -3197,7 +3197,7 @@ M.ListS3BucketsOutput = schema.new({
 })
 
 M.RemoveAllBackendsInput = schema.new({
-    id = id.from(_N, "RemoveAllBackendsInput"),
+    id = id.from(_N, "RemoveAllBackendsRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -3223,7 +3223,7 @@ M.RemoveAllBackendsInput = schema.new({
 })
 
 M.RemoveAllBackendsOutput = schema.new({
-    id = id.from(_N, "RemoveAllBackendsOutput"),
+    id = id.from(_N, "RemoveAllBackendsResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -3275,7 +3275,7 @@ M.RemoveAllBackendsOutput = schema.new({
 })
 
 M.RemoveBackendConfigInput = schema.new({
-    id = id.from(_N, "RemoveBackendConfigInput"),
+    id = id.from(_N, "RemoveBackendConfigRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -3292,7 +3292,7 @@ M.RemoveBackendConfigInput = schema.new({
 })
 
 M.RemoveBackendConfigOutput = schema.new({
-    id = id.from(_N, "RemoveBackendConfigOutput"),
+    id = id.from(_N, "RemoveBackendConfigResponse"),
     type = "structure",
     members = {
         Error = schema.new({
@@ -3308,7 +3308,7 @@ M.RemoveBackendConfigOutput = schema.new({
 })
 
 M.UpdateBackendAPIInput = schema.new({
-    id = id.from(_N, "UpdateBackendAPIInput"),
+    id = id.from(_N, "UpdateBackendAPIRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -3355,7 +3355,7 @@ M.UpdateBackendAPIInput = schema.new({
 })
 
 M.UpdateBackendAPIOutput = schema.new({
-    id = id.from(_N, "UpdateBackendAPIOutput"),
+    id = id.from(_N, "UpdateBackendAPIResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -3724,7 +3724,7 @@ M.UpdateBackendAuthResourceConfig = schema.new({
 })
 
 M.UpdateBackendAuthInput = schema.new({
-    id = id.from(_N, "UpdateBackendAuthInput"),
+    id = id.from(_N, "UpdateBackendAuthRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -3772,7 +3772,7 @@ M.UpdateBackendAuthInput = schema.new({
 })
 
 M.UpdateBackendAuthOutput = schema.new({
-    id = id.from(_N, "UpdateBackendAuthOutput"),
+    id = id.from(_N, "UpdateBackendAuthResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -3876,7 +3876,7 @@ M.LoginAuthConfigReqObj = schema.new({
 })
 
 M.UpdateBackendConfigInput = schema.new({
-    id = id.from(_N, "UpdateBackendConfigInput"),
+    id = id.from(_N, "UpdateBackendConfigRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -3903,7 +3903,7 @@ M.UpdateBackendConfigInput = schema.new({
 })
 
 M.UpdateBackendConfigOutput = schema.new({
-    id = id.from(_N, "UpdateBackendConfigOutput"),
+    id = id.from(_N, "UpdateBackendConfigResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -3947,7 +3947,7 @@ M.UpdateBackendConfigOutput = schema.new({
 })
 
 M.UpdateBackendJobInput = schema.new({
-    id = id.from(_N, "UpdateBackendJobInput"),
+    id = id.from(_N, "UpdateBackendJobRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -4002,7 +4002,7 @@ M.UpdateBackendJobInput = schema.new({
 })
 
 M.UpdateBackendJobOutput = schema.new({
-    id = id.from(_N, "UpdateBackendJobOutput"),
+    id = id.from(_N, "UpdateBackendJobResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -4109,7 +4109,7 @@ M.UpdateBackendStorageResourceConfig = schema.new({
 })
 
 M.UpdateBackendStorageInput = schema.new({
-    id = id.from(_N, "UpdateBackendStorageInput"),
+    id = id.from(_N, "UpdateBackendStorageRequest"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -4157,7 +4157,7 @@ M.UpdateBackendStorageInput = schema.new({
 })
 
 M.UpdateBackendStorageOutput = schema.new({
-    id = id.from(_N, "UpdateBackendStorageOutput"),
+    id = id.from(_N, "UpdateBackendStorageResponse"),
     type = "structure",
     members = {
         AppId = schema.new({
@@ -4198,5 +4198,19 @@ M.UpdateBackendStorageOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

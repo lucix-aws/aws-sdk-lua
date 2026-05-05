@@ -403,7 +403,7 @@ M.ReplicationSpecification = schema.new({
 })
 
 M.CreateKeyspaceInput = schema.new({
-    id = id.from(_N, "CreateKeyspaceInput"),
+    id = id.from(_N, "CreateKeyspaceRequest"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -433,7 +433,7 @@ M.CreateKeyspaceInput = schema.new({
 })
 
 M.CreateKeyspaceOutput = schema.new({
-    id = id.from(_N, "CreateKeyspaceOutput"),
+    id = id.from(_N, "CreateKeyspaceResponse"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -678,7 +678,7 @@ M.WarmThroughputSpecification = schema.new({
 })
 
 M.CreateTableInput = schema.new({
-    id = id.from(_N, "CreateTableInput"),
+    id = id.from(_N, "CreateTableRequest"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -796,7 +796,7 @@ M.CreateTableInput = schema.new({
 })
 
 M.CreateTableOutput = schema.new({
-    id = id.from(_N, "CreateTableOutput"),
+    id = id.from(_N, "CreateTableResponse"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -859,7 +859,7 @@ M.FieldDefinition = schema.new({
 })
 
 M.CreateTypeInput = schema.new({
-    id = id.from(_N, "CreateTypeInput"),
+    id = id.from(_N, "CreateTypeRequest"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -894,7 +894,7 @@ M.CreateTypeInput = schema.new({
 })
 
 M.CreateTypeOutput = schema.new({
-    id = id.from(_N, "CreateTypeOutput"),
+    id = id.from(_N, "CreateTypeResponse"),
     type = "structure",
     members = {
         keyspaceArn = schema.new({
@@ -919,7 +919,7 @@ M.CreateTypeOutput = schema.new({
 })
 
 M.DeleteKeyspaceInput = schema.new({
-    id = id.from(_N, "DeleteKeyspaceInput"),
+    id = id.from(_N, "DeleteKeyspaceRequest"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -935,12 +935,12 @@ M.DeleteKeyspaceInput = schema.new({
 })
 
 M.DeleteKeyspaceOutput = schema.new({
-    id = id.from(_N, "DeleteKeyspaceOutput"),
+    id = id.from(_N, "DeleteKeyspaceResponse"),
     type = "structure",
 })
 
 M.DeleteTableInput = schema.new({
-    id = id.from(_N, "DeleteTableInput"),
+    id = id.from(_N, "DeleteTableRequest"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -965,12 +965,12 @@ M.DeleteTableInput = schema.new({
 })
 
 M.DeleteTableOutput = schema.new({
-    id = id.from(_N, "DeleteTableOutput"),
+    id = id.from(_N, "DeleteTableResponse"),
     type = "structure",
 })
 
 M.DeleteTypeInput = schema.new({
-    id = id.from(_N, "DeleteTypeInput"),
+    id = id.from(_N, "DeleteTypeRequest"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -995,7 +995,7 @@ M.DeleteTypeInput = schema.new({
 })
 
 M.DeleteTypeOutput = schema.new({
-    id = id.from(_N, "DeleteTypeOutput"),
+    id = id.from(_N, "DeleteTypeResponse"),
     type = "structure",
     members = {
         keyspaceArn = schema.new({
@@ -1020,7 +1020,7 @@ M.DeleteTypeOutput = schema.new({
 })
 
 M.GetKeyspaceInput = schema.new({
-    id = id.from(_N, "GetKeyspaceInput"),
+    id = id.from(_N, "GetKeyspaceRequest"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -1067,7 +1067,7 @@ M.ReplicationGroupStatus = schema.new({
 })
 
 M.GetKeyspaceOutput = schema.new({
-    id = id.from(_N, "GetKeyspaceOutput"),
+    id = id.from(_N, "GetKeyspaceResponse"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -1115,7 +1115,7 @@ M.GetKeyspaceOutput = schema.new({
 })
 
 M.GetTableInput = schema.new({
-    id = id.from(_N, "GetTableInput"),
+    id = id.from(_N, "GetTableRequest"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -1229,7 +1229,7 @@ M.ReplicaSpecificationSummary = schema.new({
 })
 
 M.GetTableOutput = schema.new({
-    id = id.from(_N, "GetTableOutput"),
+    id = id.from(_N, "GetTableResponse"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -1357,7 +1357,7 @@ M.GetTableOutput = schema.new({
 })
 
 M.GetTableAutoScalingSettingsInput = schema.new({
-    id = id.from(_N, "GetTableAutoScalingSettingsInput"),
+    id = id.from(_N, "GetTableAutoScalingSettingsRequest"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -1402,7 +1402,7 @@ M.ReplicaAutoScalingSpecification = schema.new({
 })
 
 M.GetTableAutoScalingSettingsOutput = schema.new({
-    id = id.from(_N, "GetTableAutoScalingSettingsOutput"),
+    id = id.from(_N, "GetTableAutoScalingSettingsResponse"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -1450,7 +1450,7 @@ M.GetTableAutoScalingSettingsOutput = schema.new({
 })
 
 M.GetTypeInput = schema.new({
-    id = id.from(_N, "GetTypeInput"),
+    id = id.from(_N, "GetTypeRequest"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -1475,7 +1475,7 @@ M.GetTypeInput = schema.new({
 })
 
 M.GetTypeOutput = schema.new({
-    id = id.from(_N, "GetTypeOutput"),
+    id = id.from(_N, "GetTypeResponse"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -1551,7 +1551,7 @@ M.GetTypeOutput = schema.new({
 })
 
 M.ListKeyspacesInput = schema.new({
-    id = id.from(_N, "ListKeyspacesInput"),
+    id = id.from(_N, "ListKeyspacesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1611,7 +1611,7 @@ M.KeyspaceSummary = schema.new({
 })
 
 M.ListKeyspacesOutput = schema.new({
-    id = id.from(_N, "ListKeyspacesOutput"),
+    id = id.from(_N, "ListKeyspacesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1634,7 +1634,7 @@ M.ListKeyspacesOutput = schema.new({
 })
 
 M.ListTablesInput = schema.new({
-    id = id.from(_N, "ListTablesInput"),
+    id = id.from(_N, "ListTablesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1696,7 +1696,7 @@ M.TableSummary = schema.new({
 })
 
 M.ListTablesOutput = schema.new({
-    id = id.from(_N, "ListTablesOutput"),
+    id = id.from(_N, "ListTablesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1716,7 +1716,7 @@ M.ListTablesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1744,7 +1744,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1764,7 +1764,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTypesInput = schema.new({
-    id = id.from(_N, "ListTypesInput"),
+    id = id.from(_N, "ListTypesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1792,7 +1792,7 @@ M.ListTypesInput = schema.new({
 })
 
 M.ListTypesOutput = schema.new({
-    id = id.from(_N, "ListTypesOutput"),
+    id = id.from(_N, "ListTypesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1815,7 +1815,7 @@ M.ListTypesOutput = schema.new({
 })
 
 M.RestoreTableInput = schema.new({
-    id = id.from(_N, "RestoreTableInput"),
+    id = id.from(_N, "RestoreTableRequest"),
     type = "structure",
     members = {
         sourceKeyspaceName = schema.new({
@@ -1906,7 +1906,7 @@ M.RestoreTableInput = schema.new({
 })
 
 M.RestoreTableOutput = schema.new({
-    id = id.from(_N, "RestoreTableOutput"),
+    id = id.from(_N, "RestoreTableResponse"),
     type = "structure",
     members = {
         restoredTableARN = schema.new({
@@ -1922,7 +1922,7 @@ M.RestoreTableOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1948,12 +1948,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1979,12 +1979,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateKeyspaceInput = schema.new({
-    id = id.from(_N, "UpdateKeyspaceInput"),
+    id = id.from(_N, "UpdateKeyspaceRequest"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -2017,7 +2017,7 @@ M.UpdateKeyspaceInput = schema.new({
 })
 
 M.UpdateKeyspaceOutput = schema.new({
-    id = id.from(_N, "UpdateKeyspaceOutput"),
+    id = id.from(_N, "UpdateKeyspaceResponse"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2033,7 +2033,7 @@ M.UpdateKeyspaceOutput = schema.new({
 })
 
 M.UpdateTableInput = schema.new({
-    id = id.from(_N, "UpdateTableInput"),
+    id = id.from(_N, "UpdateTableRequest"),
     type = "structure",
     members = {
         keyspaceName = schema.new({
@@ -2134,7 +2134,7 @@ M.UpdateTableInput = schema.new({
 })
 
 M.UpdateTableOutput = schema.new({
-    id = id.from(_N, "UpdateTableOutput"),
+    id = id.from(_N, "UpdateTableResponse"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2148,5 +2148,19 @@ M.UpdateTableOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

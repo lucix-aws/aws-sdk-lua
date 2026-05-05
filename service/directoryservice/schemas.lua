@@ -8,7 +8,7 @@ local _N = "com.amazonaws.directoryservice"
 local M = {}
 
 M.AcceptSharedDirectoryInput = schema.new({
-    id = id.from(_N, "AcceptSharedDirectoryInput"),
+    id = id.from(_N, "AcceptSharedDirectoryRequest"),
     type = "structure",
     members = {
         SharedDirectoryId = schema.new({
@@ -85,7 +85,7 @@ M.SharedDirectory = schema.new({
 })
 
 M.AcceptSharedDirectoryOutput = schema.new({
-    id = id.from(_N, "AcceptSharedDirectoryOutput"),
+    id = id.from(_N, "AcceptSharedDirectoryResult"),
     type = "structure",
     members = {
         SharedDirectory = schema.new({
@@ -278,7 +278,7 @@ M.IpRoute = schema.new({
 })
 
 M.AddIpRoutesInput = schema.new({
-    id = id.from(_N, "AddIpRoutesInput"),
+    id = id.from(_N, "AddIpRoutesRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -313,7 +313,7 @@ M.AddIpRoutesInput = schema.new({
 })
 
 M.AddIpRoutesOutput = schema.new({
-    id = id.from(_N, "AddIpRoutesOutput"),
+    id = id.from(_N, "AddIpRoutesResult"),
     type = "structure",
 })
 
@@ -410,7 +410,7 @@ M.DirectoryVpcSettings = schema.new({
 })
 
 M.AddRegionInput = schema.new({
-    id = id.from(_N, "AddRegionInput"),
+    id = id.from(_N, "AddRegionRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -445,7 +445,7 @@ M.AddRegionInput = schema.new({
 })
 
 M.AddRegionOutput = schema.new({
-    id = id.from(_N, "AddRegionOutput"),
+    id = id.from(_N, "AddRegionResult"),
     type = "structure",
 })
 
@@ -563,7 +563,7 @@ M.Tag = schema.new({
 })
 
 M.AddTagsToResourceInput = schema.new({
-    id = id.from(_N, "AddTagsToResourceInput"),
+    id = id.from(_N, "AddTagsToResourceRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -589,7 +589,7 @@ M.AddTagsToResourceInput = schema.new({
 })
 
 M.AddTagsToResourceOutput = schema.new({
-    id = id.from(_N, "AddTagsToResourceOutput"),
+    id = id.from(_N, "AddTagsToResourceResult"),
     type = "structure",
 })
 
@@ -936,7 +936,7 @@ M.AuthenticationFailedException = schema.new({
 })
 
 M.CancelSchemaExtensionInput = schema.new({
-    id = id.from(_N, "CancelSchemaExtensionInput"),
+    id = id.from(_N, "CancelSchemaExtensionRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -961,7 +961,7 @@ M.CancelSchemaExtensionInput = schema.new({
 })
 
 M.CancelSchemaExtensionOutput = schema.new({
-    id = id.from(_N, "CancelSchemaExtensionOutput"),
+    id = id.from(_N, "CancelSchemaExtensionResult"),
     type = "structure",
 })
 
@@ -1296,7 +1296,7 @@ M.DirectoryConnectSettings = schema.new({
 })
 
 M.ConnectDirectoryInput = schema.new({
-    id = id.from(_N, "ConnectDirectoryInput"),
+    id = id.from(_N, "ConnectDirectoryRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1365,7 +1365,7 @@ M.ConnectDirectoryInput = schema.new({
 })
 
 M.ConnectDirectoryOutput = schema.new({
-    id = id.from(_N, "ConnectDirectoryOutput"),
+    id = id.from(_N, "ConnectDirectoryResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1400,7 +1400,7 @@ M.DirectoryLimitExceededException = schema.new({
 })
 
 M.CreateAliasInput = schema.new({
-    id = id.from(_N, "CreateAliasInput"),
+    id = id.from(_N, "CreateAliasRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1425,7 +1425,7 @@ M.CreateAliasInput = schema.new({
 })
 
 M.CreateAliasOutput = schema.new({
-    id = id.from(_N, "CreateAliasOutput"),
+    id = id.from(_N, "CreateAliasResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1444,7 +1444,7 @@ M.CreateAliasOutput = schema.new({
 })
 
 M.CreateComputerInput = schema.new({
-    id = id.from(_N, "CreateComputerInput"),
+    id = id.from(_N, "CreateComputerRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1491,7 +1491,7 @@ M.CreateComputerInput = schema.new({
 })
 
 M.CreateComputerOutput = schema.new({
-    id = id.from(_N, "CreateComputerOutput"),
+    id = id.from(_N, "CreateComputerResult"),
     type = "structure",
     members = {
         Computer = schema.new({
@@ -1505,7 +1505,7 @@ M.CreateComputerOutput = schema.new({
 })
 
 M.CreateConditionalForwarderInput = schema.new({
-    id = id.from(_N, "CreateConditionalForwarderInput"),
+    id = id.from(_N, "CreateConditionalForwarderRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1547,12 +1547,12 @@ M.CreateConditionalForwarderInput = schema.new({
 })
 
 M.CreateConditionalForwarderOutput = schema.new({
-    id = id.from(_N, "CreateConditionalForwarderOutput"),
+    id = id.from(_N, "CreateConditionalForwarderResult"),
     type = "structure",
 })
 
 M.CreateDirectoryInput = schema.new({
-    id = id.from(_N, "CreateDirectoryInput"),
+    id = id.from(_N, "CreateDirectoryRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1618,7 +1618,7 @@ M.CreateDirectoryInput = schema.new({
 })
 
 M.CreateDirectoryOutput = schema.new({
-    id = id.from(_N, "CreateDirectoryOutput"),
+    id = id.from(_N, "CreateDirectoryResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1631,7 +1631,7 @@ M.CreateDirectoryOutput = schema.new({
 })
 
 M.CreateHybridADInput = schema.new({
-    id = id.from(_N, "CreateHybridADInput"),
+    id = id.from(_N, "CreateHybridADRequest"),
     type = "structure",
     members = {
         SecretArn = schema.new({
@@ -1663,7 +1663,7 @@ M.CreateHybridADInput = schema.new({
 })
 
 M.CreateHybridADOutput = schema.new({
-    id = id.from(_N, "CreateHybridADOutput"),
+    id = id.from(_N, "CreateHybridADResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1676,7 +1676,7 @@ M.CreateHybridADOutput = schema.new({
 })
 
 M.CreateLogSubscriptionInput = schema.new({
-    id = id.from(_N, "CreateLogSubscriptionInput"),
+    id = id.from(_N, "CreateLogSubscriptionRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1701,7 +1701,7 @@ M.CreateLogSubscriptionInput = schema.new({
 })
 
 M.CreateLogSubscriptionOutput = schema.new({
-    id = id.from(_N, "CreateLogSubscriptionOutput"),
+    id = id.from(_N, "CreateLogSubscriptionResult"),
     type = "structure",
 })
 
@@ -1728,7 +1728,7 @@ M.InsufficientPermissionsException = schema.new({
 })
 
 M.CreateMicrosoftADInput = schema.new({
-    id = id.from(_N, "CreateMicrosoftADInput"),
+    id = id.from(_N, "CreateMicrosoftADRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1794,7 +1794,7 @@ M.CreateMicrosoftADInput = schema.new({
 })
 
 M.CreateMicrosoftADOutput = schema.new({
-    id = id.from(_N, "CreateMicrosoftADOutput"),
+    id = id.from(_N, "CreateMicrosoftADResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1807,7 +1807,7 @@ M.CreateMicrosoftADOutput = schema.new({
 })
 
 M.CreateSnapshotInput = schema.new({
-    id = id.from(_N, "CreateSnapshotInput"),
+    id = id.from(_N, "CreateSnapshotRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1829,7 +1829,7 @@ M.CreateSnapshotInput = schema.new({
 })
 
 M.CreateSnapshotOutput = schema.new({
-    id = id.from(_N, "CreateSnapshotOutput"),
+    id = id.from(_N, "CreateSnapshotResult"),
     type = "structure",
     members = {
         SnapshotId = schema.new({
@@ -1864,7 +1864,7 @@ M.SnapshotLimitExceededException = schema.new({
 })
 
 M.CreateTrustInput = schema.new({
-    id = id.from(_N, "CreateTrustInput"),
+    id = id.from(_N, "CreateTrustRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -1933,7 +1933,7 @@ M.CreateTrustInput = schema.new({
 })
 
 M.CreateTrustOutput = schema.new({
-    id = id.from(_N, "CreateTrustOutput"),
+    id = id.from(_N, "CreateTrustResult"),
     type = "structure",
     members = {
         TrustId = schema.new({
@@ -1946,7 +1946,7 @@ M.CreateTrustOutput = schema.new({
 })
 
 M.DeleteADAssessmentInput = schema.new({
-    id = id.from(_N, "DeleteADAssessmentInput"),
+    id = id.from(_N, "DeleteADAssessmentRequest"),
     type = "structure",
     members = {
         AssessmentId = schema.new({
@@ -1962,7 +1962,7 @@ M.DeleteADAssessmentInput = schema.new({
 })
 
 M.DeleteADAssessmentOutput = schema.new({
-    id = id.from(_N, "DeleteADAssessmentOutput"),
+    id = id.from(_N, "DeleteADAssessmentResult"),
     type = "structure",
     members = {
         AssessmentId = schema.new({
@@ -1975,7 +1975,7 @@ M.DeleteADAssessmentOutput = schema.new({
 })
 
 M.DeleteConditionalForwarderInput = schema.new({
-    id = id.from(_N, "DeleteConditionalForwarderInput"),
+    id = id.from(_N, "DeleteConditionalForwarderRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -2000,12 +2000,12 @@ M.DeleteConditionalForwarderInput = schema.new({
 })
 
 M.DeleteConditionalForwarderOutput = schema.new({
-    id = id.from(_N, "DeleteConditionalForwarderOutput"),
+    id = id.from(_N, "DeleteConditionalForwarderResult"),
     type = "structure",
 })
 
 M.DeleteDirectoryInput = schema.new({
-    id = id.from(_N, "DeleteDirectoryInput"),
+    id = id.from(_N, "DeleteDirectoryRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -2021,7 +2021,7 @@ M.DeleteDirectoryInput = schema.new({
 })
 
 M.DeleteDirectoryOutput = schema.new({
-    id = id.from(_N, "DeleteDirectoryOutput"),
+    id = id.from(_N, "DeleteDirectoryResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -2034,7 +2034,7 @@ M.DeleteDirectoryOutput = schema.new({
 })
 
 M.DeleteLogSubscriptionInput = schema.new({
-    id = id.from(_N, "DeleteLogSubscriptionInput"),
+    id = id.from(_N, "DeleteLogSubscriptionRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -2050,12 +2050,12 @@ M.DeleteLogSubscriptionInput = schema.new({
 })
 
 M.DeleteLogSubscriptionOutput = schema.new({
-    id = id.from(_N, "DeleteLogSubscriptionOutput"),
+    id = id.from(_N, "DeleteLogSubscriptionResult"),
     type = "structure",
 })
 
 M.DeleteSnapshotInput = schema.new({
-    id = id.from(_N, "DeleteSnapshotInput"),
+    id = id.from(_N, "DeleteSnapshotRequest"),
     type = "structure",
     members = {
         SnapshotId = schema.new({
@@ -2071,7 +2071,7 @@ M.DeleteSnapshotInput = schema.new({
 })
 
 M.DeleteSnapshotOutput = schema.new({
-    id = id.from(_N, "DeleteSnapshotOutput"),
+    id = id.from(_N, "DeleteSnapshotResult"),
     type = "structure",
     members = {
         SnapshotId = schema.new({
@@ -2084,7 +2084,7 @@ M.DeleteSnapshotOutput = schema.new({
 })
 
 M.DeleteTrustInput = schema.new({
-    id = id.from(_N, "DeleteTrustInput"),
+    id = id.from(_N, "DeleteTrustRequest"),
     type = "structure",
     members = {
         TrustId = schema.new({
@@ -2109,7 +2109,7 @@ M.DeleteTrustInput = schema.new({
 })
 
 M.DeleteTrustOutput = schema.new({
-    id = id.from(_N, "DeleteTrustOutput"),
+    id = id.from(_N, "DeleteTrustResult"),
     type = "structure",
     members = {
         TrustId = schema.new({
@@ -2122,7 +2122,7 @@ M.DeleteTrustOutput = schema.new({
 })
 
 M.DeregisterCertificateInput = schema.new({
-    id = id.from(_N, "DeregisterCertificateInput"),
+    id = id.from(_N, "DeregisterCertificateRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -2147,12 +2147,12 @@ M.DeregisterCertificateInput = schema.new({
 })
 
 M.DeregisterCertificateOutput = schema.new({
-    id = id.from(_N, "DeregisterCertificateOutput"),
+    id = id.from(_N, "DeregisterCertificateResult"),
     type = "structure",
 })
 
 M.DeregisterEventTopicInput = schema.new({
-    id = id.from(_N, "DeregisterEventTopicInput"),
+    id = id.from(_N, "DeregisterEventTopicRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -2177,12 +2177,12 @@ M.DeregisterEventTopicInput = schema.new({
 })
 
 M.DeregisterEventTopicOutput = schema.new({
-    id = id.from(_N, "DeregisterEventTopicOutput"),
+    id = id.from(_N, "DeregisterEventTopicResult"),
     type = "structure",
 })
 
 M.DescribeADAssessmentInput = schema.new({
-    id = id.from(_N, "DescribeADAssessmentInput"),
+    id = id.from(_N, "DescribeADAssessmentRequest"),
     type = "structure",
     members = {
         AssessmentId = schema.new({
@@ -2198,7 +2198,7 @@ M.DescribeADAssessmentInput = schema.new({
 })
 
 M.DescribeADAssessmentOutput = schema.new({
-    id = id.from(_N, "DescribeADAssessmentOutput"),
+    id = id.from(_N, "DescribeADAssessmentResult"),
     type = "structure",
     members = {
         Assessment = schema.new({
@@ -2219,7 +2219,7 @@ M.DescribeADAssessmentOutput = schema.new({
 })
 
 M.DescribeCAEnrollmentPolicyInput = schema.new({
-    id = id.from(_N, "DescribeCAEnrollmentPolicyInput"),
+    id = id.from(_N, "DescribeCAEnrollmentPolicyRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -2235,7 +2235,7 @@ M.DescribeCAEnrollmentPolicyInput = schema.new({
 })
 
 M.DescribeCAEnrollmentPolicyOutput = schema.new({
-    id = id.from(_N, "DescribeCAEnrollmentPolicyOutput"),
+    id = id.from(_N, "DescribeCAEnrollmentPolicyResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -2272,7 +2272,7 @@ M.DescribeCAEnrollmentPolicyOutput = schema.new({
 })
 
 M.DescribeCertificateInput = schema.new({
-    id = id.from(_N, "DescribeCertificateInput"),
+    id = id.from(_N, "DescribeCertificateRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -2297,7 +2297,7 @@ M.DescribeCertificateInput = schema.new({
 })
 
 M.DescribeCertificateOutput = schema.new({
-    id = id.from(_N, "DescribeCertificateOutput"),
+    id = id.from(_N, "DescribeCertificateResult"),
     type = "structure",
     members = {
         Certificate = schema.new({
@@ -2311,7 +2311,7 @@ M.DescribeCertificateOutput = schema.new({
 })
 
 M.DescribeClientAuthenticationSettingsInput = schema.new({
-    id = id.from(_N, "DescribeClientAuthenticationSettingsInput"),
+    id = id.from(_N, "DescribeClientAuthenticationSettingsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -2345,7 +2345,7 @@ M.DescribeClientAuthenticationSettingsInput = schema.new({
 })
 
 M.DescribeClientAuthenticationSettingsOutput = schema.new({
-    id = id.from(_N, "DescribeClientAuthenticationSettingsOutput"),
+    id = id.from(_N, "DescribeClientAuthenticationSettingsResult"),
     type = "structure",
     members = {
         ClientAuthenticationSettingsInfo = schema.new({
@@ -2365,7 +2365,7 @@ M.DescribeClientAuthenticationSettingsOutput = schema.new({
 })
 
 M.DescribeConditionalForwardersInput = schema.new({
-    id = id.from(_N, "DescribeConditionalForwardersInput"),
+    id = id.from(_N, "DescribeConditionalForwardersRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -2388,7 +2388,7 @@ M.DescribeConditionalForwardersInput = schema.new({
 })
 
 M.DescribeConditionalForwardersOutput = schema.new({
-    id = id.from(_N, "DescribeConditionalForwardersOutput"),
+    id = id.from(_N, "DescribeConditionalForwardersResult"),
     type = "structure",
     members = {
         ConditionalForwarders = schema.new({
@@ -2402,7 +2402,7 @@ M.DescribeConditionalForwardersOutput = schema.new({
 })
 
 M.DescribeDirectoriesInput = schema.new({
-    id = id.from(_N, "DescribeDirectoriesInput"),
+    id = id.from(_N, "DescribeDirectoriesRequest"),
     type = "structure",
     members = {
         DirectoryIds = schema.new({
@@ -2875,7 +2875,7 @@ M.DirectoryDescription = schema.new({
 })
 
 M.DescribeDirectoriesOutput = schema.new({
-    id = id.from(_N, "DescribeDirectoriesOutput"),
+    id = id.from(_N, "DescribeDirectoriesResult"),
     type = "structure",
     members = {
         DirectoryDescriptions = schema.new({
@@ -2917,7 +2917,7 @@ M.InvalidNextTokenException = schema.new({
 })
 
 M.DescribeDirectoryDataAccessInput = schema.new({
-    id = id.from(_N, "DescribeDirectoryDataAccessInput"),
+    id = id.from(_N, "DescribeDirectoryDataAccessRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -2933,7 +2933,7 @@ M.DescribeDirectoryDataAccessInput = schema.new({
 })
 
 M.DescribeDirectoryDataAccessOutput = schema.new({
-    id = id.from(_N, "DescribeDirectoryDataAccessOutput"),
+    id = id.from(_N, "DescribeDirectoryDataAccessResult"),
     type = "structure",
     members = {
         DataAccessStatus = schema.new({
@@ -2946,7 +2946,7 @@ M.DescribeDirectoryDataAccessOutput = schema.new({
 })
 
 M.DescribeDomainControllersInput = schema.new({
-    id = id.from(_N, "DescribeDomainControllersInput"),
+    id = id.from(_N, "DescribeDomainControllersRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -3054,7 +3054,7 @@ M.DomainController = schema.new({
 })
 
 M.DescribeDomainControllersOutput = schema.new({
-    id = id.from(_N, "DescribeDomainControllersOutput"),
+    id = id.from(_N, "DescribeDomainControllersResult"),
     type = "structure",
     members = {
         DomainControllers = schema.new({
@@ -3074,7 +3074,7 @@ M.DescribeDomainControllersOutput = schema.new({
 })
 
 M.DescribeEventTopicsInput = schema.new({
-    id = id.from(_N, "DescribeEventTopicsInput"),
+    id = id.from(_N, "DescribeEventTopicsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -3131,7 +3131,7 @@ M.EventTopic = schema.new({
 })
 
 M.DescribeEventTopicsOutput = schema.new({
-    id = id.from(_N, "DescribeEventTopicsOutput"),
+    id = id.from(_N, "DescribeEventTopicsResult"),
     type = "structure",
     members = {
         EventTopics = schema.new({
@@ -3145,7 +3145,7 @@ M.DescribeEventTopicsOutput = schema.new({
 })
 
 M.DescribeHybridADUpdateInput = schema.new({
-    id = id.from(_N, "DescribeHybridADUpdateInput"),
+    id = id.from(_N, "DescribeHybridADUpdateRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -3272,7 +3272,7 @@ M.HybridUpdateActivities = schema.new({
 })
 
 M.DescribeHybridADUpdateOutput = schema.new({
-    id = id.from(_N, "DescribeHybridADUpdateOutput"),
+    id = id.from(_N, "DescribeHybridADUpdateResult"),
     type = "structure",
     members = {
         UpdateActivities = schema.new({
@@ -3292,7 +3292,7 @@ M.DescribeHybridADUpdateOutput = schema.new({
 })
 
 M.DescribeLDAPSSettingsInput = schema.new({
-    id = id.from(_N, "DescribeLDAPSSettingsInput"),
+    id = id.from(_N, "DescribeLDAPSSettingsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -3351,7 +3351,7 @@ M.LDAPSSettingInfo = schema.new({
 })
 
 M.DescribeLDAPSSettingsOutput = schema.new({
-    id = id.from(_N, "DescribeLDAPSSettingsOutput"),
+    id = id.from(_N, "DescribeLDAPSSettingsResult"),
     type = "structure",
     members = {
         LDAPSSettingsInfo = schema.new({
@@ -3371,7 +3371,7 @@ M.DescribeLDAPSSettingsOutput = schema.new({
 })
 
 M.DescribeRegionsInput = schema.new({
-    id = id.from(_N, "DescribeRegionsInput"),
+    id = id.from(_N, "DescribeRegionsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -3461,7 +3461,7 @@ M.RegionDescription = schema.new({
 })
 
 M.DescribeRegionsOutput = schema.new({
-    id = id.from(_N, "DescribeRegionsOutput"),
+    id = id.from(_N, "DescribeRegionsResult"),
     type = "structure",
     members = {
         RegionsDescription = schema.new({
@@ -3481,7 +3481,7 @@ M.DescribeRegionsOutput = schema.new({
 })
 
 M.DescribeSettingsInput = schema.new({
-    id = id.from(_N, "DescribeSettingsInput"),
+    id = id.from(_N, "DescribeSettingsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -3584,7 +3584,7 @@ M.SettingEntry = schema.new({
 })
 
 M.DescribeSettingsOutput = schema.new({
-    id = id.from(_N, "DescribeSettingsOutput"),
+    id = id.from(_N, "DescribeSettingsResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -3610,7 +3610,7 @@ M.DescribeSettingsOutput = schema.new({
 })
 
 M.DescribeSharedDirectoriesInput = schema.new({
-    id = id.from(_N, "DescribeSharedDirectoriesInput"),
+    id = id.from(_N, "DescribeSharedDirectoriesRequest"),
     type = "structure",
     members = {
         OwnerDirectoryId = schema.new({
@@ -3645,7 +3645,7 @@ M.DescribeSharedDirectoriesInput = schema.new({
 })
 
 M.DescribeSharedDirectoriesOutput = schema.new({
-    id = id.from(_N, "DescribeSharedDirectoriesOutput"),
+    id = id.from(_N, "DescribeSharedDirectoriesResult"),
     type = "structure",
     members = {
         SharedDirectories = schema.new({
@@ -3665,7 +3665,7 @@ M.DescribeSharedDirectoriesOutput = schema.new({
 })
 
 M.DescribeSnapshotsInput = schema.new({
-    id = id.from(_N, "DescribeSnapshotsInput"),
+    id = id.from(_N, "DescribeSnapshotsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -3740,7 +3740,7 @@ M.Snapshot = schema.new({
 })
 
 M.DescribeSnapshotsOutput = schema.new({
-    id = id.from(_N, "DescribeSnapshotsOutput"),
+    id = id.from(_N, "DescribeSnapshotsResult"),
     type = "structure",
     members = {
         Snapshots = schema.new({
@@ -3760,7 +3760,7 @@ M.DescribeSnapshotsOutput = schema.new({
 })
 
 M.DescribeTrustsInput = schema.new({
-    id = id.from(_N, "DescribeTrustsInput"),
+    id = id.from(_N, "DescribeTrustsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -3865,7 +3865,7 @@ M.Trust = schema.new({
 })
 
 M.DescribeTrustsOutput = schema.new({
-    id = id.from(_N, "DescribeTrustsOutput"),
+    id = id.from(_N, "DescribeTrustsResult"),
     type = "structure",
     members = {
         Trusts = schema.new({
@@ -3885,7 +3885,7 @@ M.DescribeTrustsOutput = schema.new({
 })
 
 M.DescribeUpdateDirectoryInput = schema.new({
-    id = id.from(_N, "DescribeUpdateDirectoryInput"),
+    id = id.from(_N, "DescribeUpdateDirectoryRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4006,7 +4006,7 @@ M.UpdateInfoEntry = schema.new({
 })
 
 M.DescribeUpdateDirectoryOutput = schema.new({
-    id = id.from(_N, "DescribeUpdateDirectoryOutput"),
+    id = id.from(_N, "DescribeUpdateDirectoryResult"),
     type = "structure",
     members = {
         UpdateActivities = schema.new({
@@ -4162,7 +4162,7 @@ M.DisableAlreadyInProgressException = schema.new({
 })
 
 M.DisableCAEnrollmentPolicyInput = schema.new({
-    id = id.from(_N, "DisableCAEnrollmentPolicyInput"),
+    id = id.from(_N, "DisableCAEnrollmentPolicyRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4178,12 +4178,12 @@ M.DisableCAEnrollmentPolicyInput = schema.new({
 })
 
 M.DisableCAEnrollmentPolicyOutput = schema.new({
-    id = id.from(_N, "DisableCAEnrollmentPolicyOutput"),
+    id = id.from(_N, "DisableCAEnrollmentPolicyResult"),
     type = "structure",
 })
 
 M.DisableClientAuthenticationInput = schema.new({
-    id = id.from(_N, "DisableClientAuthenticationInput"),
+    id = id.from(_N, "DisableClientAuthenticationRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4208,7 +4208,7 @@ M.DisableClientAuthenticationInput = schema.new({
 })
 
 M.DisableClientAuthenticationOutput = schema.new({
-    id = id.from(_N, "DisableClientAuthenticationOutput"),
+    id = id.from(_N, "DisableClientAuthenticationResult"),
     type = "structure",
 })
 
@@ -4235,7 +4235,7 @@ M.InvalidClientAuthStatusException = schema.new({
 })
 
 M.DisableDirectoryDataAccessInput = schema.new({
-    id = id.from(_N, "DisableDirectoryDataAccessInput"),
+    id = id.from(_N, "DisableDirectoryDataAccessRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4251,12 +4251,12 @@ M.DisableDirectoryDataAccessInput = schema.new({
 })
 
 M.DisableDirectoryDataAccessOutput = schema.new({
-    id = id.from(_N, "DisableDirectoryDataAccessOutput"),
+    id = id.from(_N, "DisableDirectoryDataAccessResult"),
     type = "structure",
 })
 
 M.DisableLDAPSInput = schema.new({
-    id = id.from(_N, "DisableLDAPSInput"),
+    id = id.from(_N, "DisableLDAPSRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4281,7 +4281,7 @@ M.DisableLDAPSInput = schema.new({
 })
 
 M.DisableLDAPSOutput = schema.new({
-    id = id.from(_N, "DisableLDAPSOutput"),
+    id = id.from(_N, "DisableLDAPSResult"),
     type = "structure",
 })
 
@@ -4308,7 +4308,7 @@ M.InvalidLDAPSStatusException = schema.new({
 })
 
 M.DisableRadiusInput = schema.new({
-    id = id.from(_N, "DisableRadiusInput"),
+    id = id.from(_N, "DisableRadiusRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4324,12 +4324,12 @@ M.DisableRadiusInput = schema.new({
 })
 
 M.DisableRadiusOutput = schema.new({
-    id = id.from(_N, "DisableRadiusOutput"),
+    id = id.from(_N, "DisableRadiusResult"),
     type = "structure",
 })
 
 M.DisableSsoInput = schema.new({
-    id = id.from(_N, "DisableSsoInput"),
+    id = id.from(_N, "DisableSsoRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4357,7 +4357,7 @@ M.DisableSsoInput = schema.new({
 })
 
 M.DisableSsoOutput = schema.new({
-    id = id.from(_N, "DisableSsoOutput"),
+    id = id.from(_N, "DisableSsoResult"),
     type = "structure",
 })
 
@@ -4384,7 +4384,7 @@ M.EnableAlreadyInProgressException = schema.new({
 })
 
 M.EnableCAEnrollmentPolicyInput = schema.new({
-    id = id.from(_N, "EnableCAEnrollmentPolicyInput"),
+    id = id.from(_N, "EnableCAEnrollmentPolicyRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4409,12 +4409,12 @@ M.EnableCAEnrollmentPolicyInput = schema.new({
 })
 
 M.EnableCAEnrollmentPolicyOutput = schema.new({
-    id = id.from(_N, "EnableCAEnrollmentPolicyOutput"),
+    id = id.from(_N, "EnableCAEnrollmentPolicyResult"),
     type = "structure",
 })
 
 M.EnableClientAuthenticationInput = schema.new({
-    id = id.from(_N, "EnableClientAuthenticationInput"),
+    id = id.from(_N, "EnableClientAuthenticationRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4439,7 +4439,7 @@ M.EnableClientAuthenticationInput = schema.new({
 })
 
 M.EnableClientAuthenticationOutput = schema.new({
-    id = id.from(_N, "EnableClientAuthenticationOutput"),
+    id = id.from(_N, "EnableClientAuthenticationResult"),
     type = "structure",
 })
 
@@ -4466,7 +4466,7 @@ M.NoAvailableCertificateException = schema.new({
 })
 
 M.EnableDirectoryDataAccessInput = schema.new({
-    id = id.from(_N, "EnableDirectoryDataAccessInput"),
+    id = id.from(_N, "EnableDirectoryDataAccessRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4482,12 +4482,12 @@ M.EnableDirectoryDataAccessInput = schema.new({
 })
 
 M.EnableDirectoryDataAccessOutput = schema.new({
-    id = id.from(_N, "EnableDirectoryDataAccessOutput"),
+    id = id.from(_N, "EnableDirectoryDataAccessResult"),
     type = "structure",
 })
 
 M.EnableLDAPSInput = schema.new({
-    id = id.from(_N, "EnableLDAPSInput"),
+    id = id.from(_N, "EnableLDAPSRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4512,12 +4512,12 @@ M.EnableLDAPSInput = schema.new({
 })
 
 M.EnableLDAPSOutput = schema.new({
-    id = id.from(_N, "EnableLDAPSOutput"),
+    id = id.from(_N, "EnableLDAPSResult"),
     type = "structure",
 })
 
 M.EnableRadiusInput = schema.new({
-    id = id.from(_N, "EnableRadiusInput"),
+    id = id.from(_N, "EnableRadiusRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4543,12 +4543,12 @@ M.EnableRadiusInput = schema.new({
 })
 
 M.EnableRadiusOutput = schema.new({
-    id = id.from(_N, "EnableRadiusOutput"),
+    id = id.from(_N, "EnableRadiusResult"),
     type = "structure",
 })
 
 M.EnableSsoInput = schema.new({
-    id = id.from(_N, "EnableSsoInput"),
+    id = id.from(_N, "EnableSsoRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4576,17 +4576,17 @@ M.EnableSsoInput = schema.new({
 })
 
 M.EnableSsoOutput = schema.new({
-    id = id.from(_N, "EnableSsoOutput"),
+    id = id.from(_N, "EnableSsoResult"),
     type = "structure",
 })
 
 M.GetDirectoryLimitsInput = schema.new({
-    id = id.from(_N, "GetDirectoryLimitsInput"),
+    id = id.from(_N, "GetDirectoryLimitsRequest"),
     type = "structure",
 })
 
 M.GetDirectoryLimitsOutput = schema.new({
-    id = id.from(_N, "GetDirectoryLimitsOutput"),
+    id = id.from(_N, "GetDirectoryLimitsResult"),
     type = "structure",
     members = {
         DirectoryLimits = schema.new({
@@ -4600,7 +4600,7 @@ M.GetDirectoryLimitsOutput = schema.new({
 })
 
 M.GetSnapshotLimitsInput = schema.new({
-    id = id.from(_N, "GetSnapshotLimitsInput"),
+    id = id.from(_N, "GetSnapshotLimitsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4644,7 +4644,7 @@ M.SnapshotLimits = schema.new({
 })
 
 M.GetSnapshotLimitsOutput = schema.new({
-    id = id.from(_N, "GetSnapshotLimitsOutput"),
+    id = id.from(_N, "GetSnapshotLimitsResult"),
     type = "structure",
     members = {
         SnapshotLimits = schema.new({
@@ -4658,7 +4658,7 @@ M.GetSnapshotLimitsOutput = schema.new({
 })
 
 M.ListADAssessmentsInput = schema.new({
-    id = id.from(_N, "ListADAssessmentsInput"),
+    id = id.from(_N, "ListADAssessmentsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4683,7 +4683,7 @@ M.ListADAssessmentsInput = schema.new({
 })
 
 M.ListADAssessmentsOutput = schema.new({
-    id = id.from(_N, "ListADAssessmentsOutput"),
+    id = id.from(_N, "ListADAssessmentsResult"),
     type = "structure",
     members = {
         Assessments = schema.new({
@@ -4703,7 +4703,7 @@ M.ListADAssessmentsOutput = schema.new({
 })
 
 M.ListCertificatesInput = schema.new({
-    id = id.from(_N, "ListCertificatesInput"),
+    id = id.from(_N, "ListCertificatesRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4731,7 +4731,7 @@ M.ListCertificatesInput = schema.new({
 })
 
 M.ListCertificatesOutput = schema.new({
-    id = id.from(_N, "ListCertificatesOutput"),
+    id = id.from(_N, "ListCertificatesResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4751,7 +4751,7 @@ M.ListCertificatesOutput = schema.new({
 })
 
 M.ListIpRoutesInput = schema.new({
-    id = id.from(_N, "ListIpRoutesInput"),
+    id = id.from(_N, "ListIpRoutesRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4828,7 +4828,7 @@ M.IpRouteInfo = schema.new({
 })
 
 M.ListIpRoutesOutput = schema.new({
-    id = id.from(_N, "ListIpRoutesOutput"),
+    id = id.from(_N, "ListIpRoutesResult"),
     type = "structure",
     members = {
         IpRoutesInfo = schema.new({
@@ -4848,7 +4848,7 @@ M.ListIpRoutesOutput = schema.new({
 })
 
 M.ListLogSubscriptionsInput = schema.new({
-    id = id.from(_N, "ListLogSubscriptionsInput"),
+    id = id.from(_N, "ListLogSubscriptionsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4898,7 +4898,7 @@ M.LogSubscription = schema.new({
 })
 
 M.ListLogSubscriptionsOutput = schema.new({
-    id = id.from(_N, "ListLogSubscriptionsOutput"),
+    id = id.from(_N, "ListLogSubscriptionsResult"),
     type = "structure",
     members = {
         LogSubscriptions = schema.new({
@@ -4918,7 +4918,7 @@ M.ListLogSubscriptionsOutput = schema.new({
 })
 
 M.ListSchemaExtensionsInput = schema.new({
-    id = id.from(_N, "ListSchemaExtensionsInput"),
+    id = id.from(_N, "ListSchemaExtensionsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -4995,7 +4995,7 @@ M.SchemaExtensionInfo = schema.new({
 })
 
 M.ListSchemaExtensionsOutput = schema.new({
-    id = id.from(_N, "ListSchemaExtensionsOutput"),
+    id = id.from(_N, "ListSchemaExtensionsResult"),
     type = "structure",
     members = {
         SchemaExtensionsInfo = schema.new({
@@ -5015,7 +5015,7 @@ M.ListSchemaExtensionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -5043,7 +5043,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResult"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -5085,7 +5085,7 @@ M.InvalidCertificateException = schema.new({
 })
 
 M.RegisterCertificateInput = schema.new({
-    id = id.from(_N, "RegisterCertificateInput"),
+    id = id.from(_N, "RegisterCertificateRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -5123,7 +5123,7 @@ M.RegisterCertificateInput = schema.new({
 })
 
 M.RegisterCertificateOutput = schema.new({
-    id = id.from(_N, "RegisterCertificateOutput"),
+    id = id.from(_N, "RegisterCertificateResult"),
     type = "structure",
     members = {
         CertificateId = schema.new({
@@ -5136,7 +5136,7 @@ M.RegisterCertificateOutput = schema.new({
 })
 
 M.RegisterEventTopicInput = schema.new({
-    id = id.from(_N, "RegisterEventTopicInput"),
+    id = id.from(_N, "RegisterEventTopicRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -5161,12 +5161,12 @@ M.RegisterEventTopicInput = schema.new({
 })
 
 M.RegisterEventTopicOutput = schema.new({
-    id = id.from(_N, "RegisterEventTopicOutput"),
+    id = id.from(_N, "RegisterEventTopicResult"),
     type = "structure",
 })
 
 M.RejectSharedDirectoryInput = schema.new({
-    id = id.from(_N, "RejectSharedDirectoryInput"),
+    id = id.from(_N, "RejectSharedDirectoryRequest"),
     type = "structure",
     members = {
         SharedDirectoryId = schema.new({
@@ -5182,7 +5182,7 @@ M.RejectSharedDirectoryInput = schema.new({
 })
 
 M.RejectSharedDirectoryOutput = schema.new({
-    id = id.from(_N, "RejectSharedDirectoryOutput"),
+    id = id.from(_N, "RejectSharedDirectoryResult"),
     type = "structure",
     members = {
         SharedDirectoryId = schema.new({
@@ -5195,7 +5195,7 @@ M.RejectSharedDirectoryOutput = schema.new({
 })
 
 M.RemoveIpRoutesInput = schema.new({
-    id = id.from(_N, "RemoveIpRoutesInput"),
+    id = id.from(_N, "RemoveIpRoutesRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -5228,12 +5228,12 @@ M.RemoveIpRoutesInput = schema.new({
 })
 
 M.RemoveIpRoutesOutput = schema.new({
-    id = id.from(_N, "RemoveIpRoutesOutput"),
+    id = id.from(_N, "RemoveIpRoutesResult"),
     type = "structure",
 })
 
 M.RemoveRegionInput = schema.new({
-    id = id.from(_N, "RemoveRegionInput"),
+    id = id.from(_N, "RemoveRegionRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -5249,12 +5249,12 @@ M.RemoveRegionInput = schema.new({
 })
 
 M.RemoveRegionOutput = schema.new({
-    id = id.from(_N, "RemoveRegionOutput"),
+    id = id.from(_N, "RemoveRegionResult"),
     type = "structure",
 })
 
 M.RemoveTagsFromResourceInput = schema.new({
-    id = id.from(_N, "RemoveTagsFromResourceInput"),
+    id = id.from(_N, "RemoveTagsFromResourceRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -5280,7 +5280,7 @@ M.RemoveTagsFromResourceInput = schema.new({
 })
 
 M.RemoveTagsFromResourceOutput = schema.new({
-    id = id.from(_N, "RemoveTagsFromResourceOutput"),
+    id = id.from(_N, "RemoveTagsFromResourceResult"),
     type = "structure",
 })
 
@@ -5307,7 +5307,7 @@ M.InvalidPasswordException = schema.new({
 })
 
 M.ResetUserPasswordInput = schema.new({
-    id = id.from(_N, "ResetUserPasswordInput"),
+    id = id.from(_N, "ResetUserPasswordRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -5341,7 +5341,7 @@ M.ResetUserPasswordInput = schema.new({
 })
 
 M.ResetUserPasswordOutput = schema.new({
-    id = id.from(_N, "ResetUserPasswordOutput"),
+    id = id.from(_N, "ResetUserPasswordResult"),
     type = "structure",
 })
 
@@ -5368,7 +5368,7 @@ M.UserDoesNotExistException = schema.new({
 })
 
 M.RestoreFromSnapshotInput = schema.new({
-    id = id.from(_N, "RestoreFromSnapshotInput"),
+    id = id.from(_N, "RestoreFromSnapshotRequest"),
     type = "structure",
     members = {
         SnapshotId = schema.new({
@@ -5384,7 +5384,7 @@ M.RestoreFromSnapshotInput = schema.new({
 })
 
 M.RestoreFromSnapshotOutput = schema.new({
-    id = id.from(_N, "RestoreFromSnapshotOutput"),
+    id = id.from(_N, "RestoreFromSnapshotResult"),
     type = "structure",
 })
 
@@ -5458,7 +5458,7 @@ M.ShareTarget = schema.new({
 })
 
 M.ShareDirectoryInput = schema.new({
-    id = id.from(_N, "ShareDirectoryInput"),
+    id = id.from(_N, "ShareDirectoryRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -5499,7 +5499,7 @@ M.ShareDirectoryInput = schema.new({
 })
 
 M.ShareDirectoryOutput = schema.new({
-    id = id.from(_N, "ShareDirectoryOutput"),
+    id = id.from(_N, "ShareDirectoryResult"),
     type = "structure",
     members = {
         SharedDirectoryId = schema.new({
@@ -5534,7 +5534,7 @@ M.ShareLimitExceededException = schema.new({
 })
 
 M.StartADAssessmentInput = schema.new({
-    id = id.from(_N, "StartADAssessmentInput"),
+    id = id.from(_N, "StartADAssessmentRequest"),
     type = "structure",
     members = {
         AssessmentConfiguration = schema.new({
@@ -5554,7 +5554,7 @@ M.StartADAssessmentInput = schema.new({
 })
 
 M.StartADAssessmentOutput = schema.new({
-    id = id.from(_N, "StartADAssessmentOutput"),
+    id = id.from(_N, "StartADAssessmentResult"),
     type = "structure",
     members = {
         AssessmentId = schema.new({
@@ -5567,7 +5567,7 @@ M.StartADAssessmentOutput = schema.new({
 })
 
 M.StartSchemaExtensionInput = schema.new({
-    id = id.from(_N, "StartSchemaExtensionInput"),
+    id = id.from(_N, "StartSchemaExtensionRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -5611,7 +5611,7 @@ M.StartSchemaExtensionInput = schema.new({
 })
 
 M.StartSchemaExtensionOutput = schema.new({
-    id = id.from(_N, "StartSchemaExtensionOutput"),
+    id = id.from(_N, "StartSchemaExtensionResult"),
     type = "structure",
     members = {
         SchemaExtensionId = schema.new({
@@ -5649,7 +5649,7 @@ M.UnshareTarget = schema.new({
 })
 
 M.UnshareDirectoryInput = schema.new({
-    id = id.from(_N, "UnshareDirectoryInput"),
+    id = id.from(_N, "UnshareDirectoryRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -5675,7 +5675,7 @@ M.UnshareDirectoryInput = schema.new({
 })
 
 M.UnshareDirectoryOutput = schema.new({
-    id = id.from(_N, "UnshareDirectoryOutput"),
+    id = id.from(_N, "UnshareDirectoryResult"),
     type = "structure",
     members = {
         SharedDirectoryId = schema.new({
@@ -5688,7 +5688,7 @@ M.UnshareDirectoryOutput = schema.new({
 })
 
 M.UpdateConditionalForwarderInput = schema.new({
-    id = id.from(_N, "UpdateConditionalForwarderInput"),
+    id = id.from(_N, "UpdateConditionalForwarderRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -5730,7 +5730,7 @@ M.UpdateConditionalForwarderInput = schema.new({
 })
 
 M.UpdateConditionalForwarderOutput = schema.new({
-    id = id.from(_N, "UpdateConditionalForwarderOutput"),
+    id = id.from(_N, "UpdateConditionalForwarderResult"),
     type = "structure",
 })
 
@@ -5768,7 +5768,7 @@ M.NetworkUpdateSettings = schema.new({
 })
 
 M.UpdateDirectorySetupInput = schema.new({
-    id = id.from(_N, "UpdateDirectorySetupInput"),
+    id = id.from(_N, "UpdateDirectorySetupRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -5823,7 +5823,7 @@ M.UpdateDirectorySetupInput = schema.new({
 })
 
 M.UpdateDirectorySetupOutput = schema.new({
-    id = id.from(_N, "UpdateDirectorySetupOutput"),
+    id = id.from(_N, "UpdateDirectorySetupResult"),
     type = "structure",
 })
 
@@ -5871,7 +5871,7 @@ M.HybridCustomerInstancesSettings = schema.new({
 })
 
 M.UpdateHybridADInput = schema.new({
-    id = id.from(_N, "UpdateHybridADInput"),
+    id = id.from(_N, "UpdateHybridADRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -5901,7 +5901,7 @@ M.UpdateHybridADInput = schema.new({
 })
 
 M.UpdateHybridADOutput = schema.new({
-    id = id.from(_N, "UpdateHybridADOutput"),
+    id = id.from(_N, "UpdateHybridADResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -5942,7 +5942,7 @@ M.DomainControllerLimitExceededException = schema.new({
 })
 
 M.UpdateNumberOfDomainControllersInput = schema.new({
-    id = id.from(_N, "UpdateNumberOfDomainControllersInput"),
+    id = id.from(_N, "UpdateNumberOfDomainControllersRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -5967,12 +5967,12 @@ M.UpdateNumberOfDomainControllersInput = schema.new({
 })
 
 M.UpdateNumberOfDomainControllersOutput = schema.new({
-    id = id.from(_N, "UpdateNumberOfDomainControllersOutput"),
+    id = id.from(_N, "UpdateNumberOfDomainControllersResult"),
     type = "structure",
 })
 
 M.UpdateRadiusInput = schema.new({
-    id = id.from(_N, "UpdateRadiusInput"),
+    id = id.from(_N, "UpdateRadiusRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -5998,7 +5998,7 @@ M.UpdateRadiusInput = schema.new({
 })
 
 M.UpdateRadiusOutput = schema.new({
-    id = id.from(_N, "UpdateRadiusOutput"),
+    id = id.from(_N, "UpdateRadiusResult"),
     type = "structure",
 })
 
@@ -6072,7 +6072,7 @@ M.Setting = schema.new({
 })
 
 M.UpdateSettingsInput = schema.new({
-    id = id.from(_N, "UpdateSettingsInput"),
+    id = id.from(_N, "UpdateSettingsRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -6098,7 +6098,7 @@ M.UpdateSettingsInput = schema.new({
 })
 
 M.UpdateSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateSettingsOutput"),
+    id = id.from(_N, "UpdateSettingsResult"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -6111,7 +6111,7 @@ M.UpdateSettingsOutput = schema.new({
 })
 
 M.UpdateTrustInput = schema.new({
-    id = id.from(_N, "UpdateTrustInput"),
+    id = id.from(_N, "UpdateTrustRequest"),
     type = "structure",
     members = {
         TrustId = schema.new({
@@ -6133,7 +6133,7 @@ M.UpdateTrustInput = schema.new({
 })
 
 M.UpdateTrustOutput = schema.new({
-    id = id.from(_N, "UpdateTrustOutput"),
+    id = id.from(_N, "UpdateTrustResult"),
     type = "structure",
     members = {
         RequestId = schema.new({
@@ -6152,7 +6152,7 @@ M.UpdateTrustOutput = schema.new({
 })
 
 M.VerifyTrustInput = schema.new({
-    id = id.from(_N, "VerifyTrustInput"),
+    id = id.from(_N, "VerifyTrustRequest"),
     type = "structure",
     members = {
         TrustId = schema.new({
@@ -6168,7 +6168,7 @@ M.VerifyTrustInput = schema.new({
 })
 
 M.VerifyTrustOutput = schema.new({
-    id = id.from(_N, "VerifyTrustOutput"),
+    id = id.from(_N, "VerifyTrustResult"),
     type = "structure",
     members = {
         TrustId = schema.new({
@@ -6179,5 +6179,19 @@ M.VerifyTrustOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -342,7 +342,7 @@ M.MetricDefinitionRequest = schema.new({
 })
 
 M.BatchCreateRumMetricDefinitionsInput = schema.new({
-    id = id.from(_N, "BatchCreateRumMetricDefinitionsInput"),
+    id = id.from(_N, "BatchCreateRumMetricDefinitionsRequest"),
     type = "structure",
     members = {
         AppMonitorName = schema.new({
@@ -476,7 +476,7 @@ M.MetricDefinition = schema.new({
 })
 
 M.BatchCreateRumMetricDefinitionsOutput = schema.new({
-    id = id.from(_N, "BatchCreateRumMetricDefinitionsOutput"),
+    id = id.from(_N, "BatchCreateRumMetricDefinitionsResponse"),
     type = "structure",
     members = {
         Errors = schema.new({
@@ -674,7 +674,7 @@ M.ValidationException = schema.new({
 })
 
 M.BatchDeleteRumMetricDefinitionsInput = schema.new({
-    id = id.from(_N, "BatchDeleteRumMetricDefinitionsInput"),
+    id = id.from(_N, "BatchDeleteRumMetricDefinitionsRequest"),
     type = "structure",
     members = {
         AppMonitorName = schema.new({
@@ -755,7 +755,7 @@ M.BatchDeleteRumMetricDefinitionsError = schema.new({
 })
 
 M.BatchDeleteRumMetricDefinitionsOutput = schema.new({
-    id = id.from(_N, "BatchDeleteRumMetricDefinitionsOutput"),
+    id = id.from(_N, "BatchDeleteRumMetricDefinitionsResponse"),
     type = "structure",
     members = {
         Errors = schema.new({
@@ -779,7 +779,7 @@ M.BatchDeleteRumMetricDefinitionsOutput = schema.new({
 })
 
 M.BatchGetRumMetricDefinitionsInput = schema.new({
-    id = id.from(_N, "BatchGetRumMetricDefinitionsInput"),
+    id = id.from(_N, "BatchGetRumMetricDefinitionsRequest"),
     type = "structure",
     members = {
         AppMonitorName = schema.new({
@@ -833,7 +833,7 @@ M.BatchGetRumMetricDefinitionsInput = schema.new({
 })
 
 M.BatchGetRumMetricDefinitionsOutput = schema.new({
-    id = id.from(_N, "BatchGetRumMetricDefinitionsOutput"),
+    id = id.from(_N, "BatchGetRumMetricDefinitionsResponse"),
     type = "structure",
     members = {
         MetricDefinitions = schema.new({
@@ -853,7 +853,7 @@ M.BatchGetRumMetricDefinitionsOutput = schema.new({
 })
 
 M.CreateAppMonitorInput = schema.new({
-    id = id.from(_N, "CreateAppMonitorInput"),
+    id = id.from(_N, "CreateAppMonitorRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -923,7 +923,7 @@ M.CreateAppMonitorInput = schema.new({
 })
 
 M.CreateAppMonitorOutput = schema.new({
-    id = id.from(_N, "CreateAppMonitorOutput"),
+    id = id.from(_N, "CreateAppMonitorResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -936,7 +936,7 @@ M.CreateAppMonitorOutput = schema.new({
 })
 
 M.DeleteAppMonitorInput = schema.new({
-    id = id.from(_N, "DeleteAppMonitorInput"),
+    id = id.from(_N, "DeleteAppMonitorRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -953,12 +953,12 @@ M.DeleteAppMonitorInput = schema.new({
 })
 
 M.DeleteAppMonitorOutput = schema.new({
-    id = id.from(_N, "DeleteAppMonitorOutput"),
+    id = id.from(_N, "DeleteAppMonitorResponse"),
     type = "structure",
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -984,7 +984,7 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "DeleteResourcePolicyResponse"),
     type = "structure",
     members = {
         PolicyRevisionId = schema.new({
@@ -1035,7 +1035,7 @@ M.PolicyNotFoundException = schema.new({
 })
 
 M.DeleteRumMetricsDestinationInput = schema.new({
-    id = id.from(_N, "DeleteRumMetricsDestinationInput"),
+    id = id.from(_N, "DeleteRumMetricsDestinationRequest"),
     type = "structure",
     members = {
         AppMonitorName = schema.new({
@@ -1071,12 +1071,12 @@ M.DeleteRumMetricsDestinationInput = schema.new({
 })
 
 M.DeleteRumMetricsDestinationOutput = schema.new({
-    id = id.from(_N, "DeleteRumMetricsDestinationOutput"),
+    id = id.from(_N, "DeleteRumMetricsDestinationResponse"),
     type = "structure",
 })
 
 M.GetAppMonitorInput = schema.new({
-    id = id.from(_N, "GetAppMonitorInput"),
+    id = id.from(_N, "GetAppMonitorRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1093,7 +1093,7 @@ M.GetAppMonitorInput = schema.new({
 })
 
 M.GetAppMonitorOutput = schema.new({
-    id = id.from(_N, "GetAppMonitorOutput"),
+    id = id.from(_N, "GetAppMonitorResponse"),
     type = "structure",
     members = {
         AppMonitor = schema.new({
@@ -1153,7 +1153,7 @@ M.TimeRange = schema.new({
 })
 
 M.GetAppMonitorDataInput = schema.new({
-    id = id.from(_N, "GetAppMonitorDataInput"),
+    id = id.from(_N, "GetAppMonitorDataRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1202,7 +1202,7 @@ M.GetAppMonitorDataInput = schema.new({
 })
 
 M.GetAppMonitorDataOutput = schema.new({
-    id = id.from(_N, "GetAppMonitorDataOutput"),
+    id = id.from(_N, "GetAppMonitorDataResponse"),
     type = "structure",
     members = {
         Events = schema.new({
@@ -1222,7 +1222,7 @@ M.GetAppMonitorDataOutput = schema.new({
 })
 
 M.GetResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetResourcePolicyInput"),
+    id = id.from(_N, "GetResourcePolicyRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1239,7 +1239,7 @@ M.GetResourcePolicyInput = schema.new({
 })
 
 M.GetResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetResourcePolicyOutput"),
+    id = id.from(_N, "GetResourcePolicyResponse"),
     type = "structure",
     members = {
         PolicyDocument = schema.new({
@@ -1258,7 +1258,7 @@ M.GetResourcePolicyOutput = schema.new({
 })
 
 M.ListAppMonitorsInput = schema.new({
-    id = id.from(_N, "ListAppMonitorsInput"),
+    id = id.from(_N, "ListAppMonitorsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1326,7 +1326,7 @@ M.AppMonitorSummary = schema.new({
 })
 
 M.ListAppMonitorsOutput = schema.new({
-    id = id.from(_N, "ListAppMonitorsOutput"),
+    id = id.from(_N, "ListAppMonitorsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1346,7 +1346,7 @@ M.ListAppMonitorsOutput = schema.new({
 })
 
 M.ListRumMetricsDestinationsInput = schema.new({
-    id = id.from(_N, "ListRumMetricsDestinationsInput"),
+    id = id.from(_N, "ListRumMetricsDestinationsRequest"),
     type = "structure",
     members = {
         AppMonitorName = schema.new({
@@ -1406,7 +1406,7 @@ M.MetricDestinationSummary = schema.new({
 })
 
 M.ListRumMetricsDestinationsOutput = schema.new({
-    id = id.from(_N, "ListRumMetricsDestinationsOutput"),
+    id = id.from(_N, "ListRumMetricsDestinationsResponse"),
     type = "structure",
     members = {
         Destinations = schema.new({
@@ -1464,7 +1464,7 @@ M.PolicySizeLimitExceededException = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1496,7 +1496,7 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResponse"),
     type = "structure",
     members = {
         PolicyDocument = schema.new({
@@ -1515,7 +1515,7 @@ M.PutResourcePolicyOutput = schema.new({
 })
 
 M.PutRumMetricsDestinationInput = schema.new({
-    id = id.from(_N, "PutRumMetricsDestinationInput"),
+    id = id.from(_N, "PutRumMetricsDestinationRequest"),
     type = "structure",
     members = {
         AppMonitorName = schema.new({
@@ -1553,12 +1553,12 @@ M.PutRumMetricsDestinationInput = schema.new({
 })
 
 M.PutRumMetricsDestinationOutput = schema.new({
-    id = id.from(_N, "PutRumMetricsDestinationOutput"),
+    id = id.from(_N, "PutRumMetricsDestinationResponse"),
     type = "structure",
 })
 
 M.UpdateAppMonitorInput = schema.new({
-    id = id.from(_N, "UpdateAppMonitorInput"),
+    id = id.from(_N, "UpdateAppMonitorRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1615,12 +1615,12 @@ M.UpdateAppMonitorInput = schema.new({
 })
 
 M.UpdateAppMonitorOutput = schema.new({
-    id = id.from(_N, "UpdateAppMonitorOutput"),
+    id = id.from(_N, "UpdateAppMonitorResponse"),
     type = "structure",
 })
 
 M.UpdateRumMetricDefinitionInput = schema.new({
-    id = id.from(_N, "UpdateRumMetricDefinitionInput"),
+    id = id.from(_N, "UpdateRumMetricDefinitionRequest"),
     type = "structure",
     members = {
         AppMonitorName = schema.new({
@@ -1671,12 +1671,12 @@ M.UpdateRumMetricDefinitionInput = schema.new({
 })
 
 M.UpdateRumMetricDefinitionOutput = schema.new({
-    id = id.from(_N, "UpdateRumMetricDefinitionOutput"),
+    id = id.from(_N, "UpdateRumMetricDefinitionResponse"),
     type = "structure",
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1693,7 +1693,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1795,7 +1795,7 @@ M.UserDetails = schema.new({
 })
 
 M.PutRumEventsInput = schema.new({
-    id = id.from(_N, "PutRumEventsInput"),
+    id = id.from(_N, "PutRumEventsRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1857,12 +1857,12 @@ M.PutRumEventsInput = schema.new({
 })
 
 M.PutRumEventsOutput = schema.new({
-    id = id.from(_N, "PutRumEventsOutput"),
+    id = id.from(_N, "PutRumEventsResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1890,12 +1890,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1923,8 +1923,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

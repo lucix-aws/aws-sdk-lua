@@ -54,7 +54,7 @@ M.CancelQueryInput = schema.new({
 })
 
 M.CancelQueryOutput = schema.new({
-    id = id.from(_N, "CancelQueryOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4055,5 +4055,19 @@ M.UntagResourceOutput = schema.new({
     id = id.from(_N, "UntagResourceOutput"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

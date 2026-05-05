@@ -64,7 +64,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateAccessLogSubscriptionInput = schema.new({
-    id = id.from(_N, "CreateAccessLogSubscriptionInput"),
+    id = id.from(_N, "CreateAccessLogSubscriptionRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -112,7 +112,7 @@ M.CreateAccessLogSubscriptionInput = schema.new({
 })
 
 M.CreateAccessLogSubscriptionOutput = schema.new({
-    id = id.from(_N, "CreateAccessLogSubscriptionOutput"),
+    id = id.from(_N, "CreateAccessLogSubscriptionResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -335,7 +335,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteAccessLogSubscriptionInput = schema.new({
-    id = id.from(_N, "DeleteAccessLogSubscriptionInput"),
+    id = id.from(_N, "DeleteAccessLogSubscriptionRequest"),
     type = "structure",
     members = {
         accessLogSubscriptionIdentifier = schema.new({
@@ -352,12 +352,12 @@ M.DeleteAccessLogSubscriptionInput = schema.new({
 })
 
 M.DeleteAccessLogSubscriptionOutput = schema.new({
-    id = id.from(_N, "DeleteAccessLogSubscriptionOutput"),
+    id = id.from(_N, "DeleteAccessLogSubscriptionResponse"),
     type = "structure",
 })
 
 M.GetAccessLogSubscriptionInput = schema.new({
-    id = id.from(_N, "GetAccessLogSubscriptionInput"),
+    id = id.from(_N, "GetAccessLogSubscriptionRequest"),
     type = "structure",
     members = {
         accessLogSubscriptionIdentifier = schema.new({
@@ -374,7 +374,7 @@ M.GetAccessLogSubscriptionInput = schema.new({
 })
 
 M.GetAccessLogSubscriptionOutput = schema.new({
-    id = id.from(_N, "GetAccessLogSubscriptionOutput"),
+    id = id.from(_N, "GetAccessLogSubscriptionResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -458,7 +458,7 @@ M.GetAccessLogSubscriptionOutput = schema.new({
 })
 
 M.ListAccessLogSubscriptionsInput = schema.new({
-    id = id.from(_N, "ListAccessLogSubscriptionsInput"),
+    id = id.from(_N, "ListAccessLogSubscriptionsRequest"),
     type = "structure",
     members = {
         resourceIdentifier = schema.new({
@@ -577,7 +577,7 @@ M.AccessLogSubscriptionSummary = schema.new({
 })
 
 M.ListAccessLogSubscriptionsOutput = schema.new({
-    id = id.from(_N, "ListAccessLogSubscriptionsOutput"),
+    id = id.from(_N, "ListAccessLogSubscriptionsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -600,7 +600,7 @@ M.ListAccessLogSubscriptionsOutput = schema.new({
 })
 
 M.UpdateAccessLogSubscriptionInput = schema.new({
-    id = id.from(_N, "UpdateAccessLogSubscriptionInput"),
+    id = id.from(_N, "UpdateAccessLogSubscriptionRequest"),
     type = "structure",
     members = {
         accessLogSubscriptionIdentifier = schema.new({
@@ -626,7 +626,7 @@ M.UpdateAccessLogSubscriptionInput = schema.new({
 })
 
 M.UpdateAccessLogSubscriptionOutput = schema.new({
-    id = id.from(_N, "UpdateAccessLogSubscriptionOutput"),
+    id = id.from(_N, "UpdateAccessLogSubscriptionResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -943,7 +943,7 @@ M.RuleUpdate = schema.new({
 })
 
 M.BatchUpdateRuleInput = schema.new({
-    id = id.from(_N, "BatchUpdateRuleInput"),
+    id = id.from(_N, "BatchUpdateRuleRequest"),
     type = "structure",
     members = {
         serviceIdentifier = schema.new({
@@ -1056,7 +1056,7 @@ M.RuleUpdateFailure = schema.new({
 })
 
 M.BatchUpdateRuleOutput = schema.new({
-    id = id.from(_N, "BatchUpdateRuleOutput"),
+    id = id.from(_N, "BatchUpdateRuleResponse"),
     type = "structure",
     members = {
         successful = schema.new({
@@ -1077,7 +1077,7 @@ M.BatchUpdateRuleOutput = schema.new({
 })
 
 M.CreateListenerInput = schema.new({
-    id = id.from(_N, "CreateListenerInput"),
+    id = id.from(_N, "CreateListenerRequest"),
     type = "structure",
     members = {
         serviceIdentifier = schema.new({
@@ -1145,7 +1145,7 @@ M.CreateListenerInput = schema.new({
 })
 
 M.CreateListenerOutput = schema.new({
-    id = id.from(_N, "CreateListenerOutput"),
+    id = id.from(_N, "CreateListenerResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1313,7 +1313,7 @@ M.ResourceConfigurationDefinition = schema.new({
 })
 
 M.CreateResourceConfigurationInput = schema.new({
-    id = id.from(_N, "CreateResourceConfigurationInput"),
+    id = id.from(_N, "CreateResourceConfigurationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1411,7 +1411,7 @@ M.CreateResourceConfigurationInput = schema.new({
 })
 
 M.CreateResourceConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateResourceConfigurationOutput"),
+    id = id.from(_N, "CreateResourceConfigurationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1525,7 +1525,7 @@ M.CreateResourceConfigurationOutput = schema.new({
 })
 
 M.CreateResourceGatewayInput = schema.new({
-    id = id.from(_N, "CreateResourceGatewayInput"),
+    id = id.from(_N, "CreateResourceGatewayRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1590,7 +1590,7 @@ M.CreateResourceGatewayInput = schema.new({
 })
 
 M.CreateResourceGatewayOutput = schema.new({
-    id = id.from(_N, "CreateResourceGatewayOutput"),
+    id = id.from(_N, "CreateResourceGatewayResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1653,7 +1653,7 @@ M.CreateResourceGatewayOutput = schema.new({
 })
 
 M.CreateRuleInput = schema.new({
-    id = id.from(_N, "CreateRuleInput"),
+    id = id.from(_N, "CreateRuleRequest"),
     type = "structure",
     members = {
         serviceIdentifier = schema.new({
@@ -1735,7 +1735,7 @@ M.CreateRuleInput = schema.new({
 })
 
 M.CreateRuleOutput = schema.new({
-    id = id.from(_N, "CreateRuleOutput"),
+    id = id.from(_N, "CreateRuleResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1780,7 +1780,7 @@ M.CreateRuleOutput = schema.new({
 })
 
 M.CreateServiceInput = schema.new({
-    id = id.from(_N, "CreateServiceInput"),
+    id = id.from(_N, "CreateServiceRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1850,7 +1850,7 @@ M.DnsEntry = schema.new({
 })
 
 M.CreateServiceOutput = schema.new({
-    id = id.from(_N, "CreateServiceOutput"),
+    id = id.from(_N, "CreateServiceResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1919,7 +1919,7 @@ M.SharingConfig = schema.new({
 })
 
 M.CreateServiceNetworkInput = schema.new({
-    id = id.from(_N, "CreateServiceNetworkInput"),
+    id = id.from(_N, "CreateServiceNetworkRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1965,7 +1965,7 @@ M.CreateServiceNetworkInput = schema.new({
 })
 
 M.CreateServiceNetworkOutput = schema.new({
-    id = id.from(_N, "CreateServiceNetworkOutput"),
+    id = id.from(_N, "CreateServiceNetworkResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2003,7 +2003,7 @@ M.CreateServiceNetworkOutput = schema.new({
 })
 
 M.CreateServiceNetworkResourceAssociationInput = schema.new({
-    id = id.from(_N, "CreateServiceNetworkResourceAssociationInput"),
+    id = id.from(_N, "CreateServiceNetworkResourceAssociationRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -2051,7 +2051,7 @@ M.CreateServiceNetworkResourceAssociationInput = schema.new({
 })
 
 M.CreateServiceNetworkResourceAssociationOutput = schema.new({
-    id = id.from(_N, "CreateServiceNetworkResourceAssociationOutput"),
+    id = id.from(_N, "CreateServiceNetworkResourceAssociationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2088,7 +2088,7 @@ M.CreateServiceNetworkResourceAssociationOutput = schema.new({
 })
 
 M.CreateServiceNetworkServiceAssociationInput = schema.new({
-    id = id.from(_N, "CreateServiceNetworkServiceAssociationInput"),
+    id = id.from(_N, "CreateServiceNetworkServiceAssociationRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -2130,7 +2130,7 @@ M.CreateServiceNetworkServiceAssociationInput = schema.new({
 })
 
 M.CreateServiceNetworkServiceAssociationOutput = schema.new({
-    id = id.from(_N, "CreateServiceNetworkServiceAssociationOutput"),
+    id = id.from(_N, "CreateServiceNetworkServiceAssociationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2194,7 +2194,7 @@ M.DnsOptions = schema.new({
 })
 
 M.CreateServiceNetworkVpcAssociationInput = schema.new({
-    id = id.from(_N, "CreateServiceNetworkVpcAssociationInput"),
+    id = id.from(_N, "CreateServiceNetworkVpcAssociationRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -2256,7 +2256,7 @@ M.CreateServiceNetworkVpcAssociationInput = schema.new({
 })
 
 M.CreateServiceNetworkVpcAssociationOutput = schema.new({
-    id = id.from(_N, "CreateServiceNetworkVpcAssociationOutput"),
+    id = id.from(_N, "CreateServiceNetworkVpcAssociationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2438,7 +2438,7 @@ M.TargetGroupConfig = schema.new({
 })
 
 M.CreateTargetGroupInput = schema.new({
-    id = id.from(_N, "CreateTargetGroupInput"),
+    id = id.from(_N, "CreateTargetGroupRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2487,7 +2487,7 @@ M.CreateTargetGroupInput = schema.new({
 })
 
 M.CreateTargetGroupOutput = schema.new({
-    id = id.from(_N, "CreateTargetGroupOutput"),
+    id = id.from(_N, "CreateTargetGroupResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2531,7 +2531,7 @@ M.CreateTargetGroupOutput = schema.new({
 })
 
 M.DeleteAuthPolicyInput = schema.new({
-    id = id.from(_N, "DeleteAuthPolicyInput"),
+    id = id.from(_N, "DeleteAuthPolicyRequest"),
     type = "structure",
     members = {
         resourceIdentifier = schema.new({
@@ -2548,12 +2548,12 @@ M.DeleteAuthPolicyInput = schema.new({
 })
 
 M.DeleteAuthPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteAuthPolicyOutput"),
+    id = id.from(_N, "DeleteAuthPolicyResponse"),
     type = "structure",
 })
 
 M.DeleteDomainVerificationInput = schema.new({
-    id = id.from(_N, "DeleteDomainVerificationInput"),
+    id = id.from(_N, "DeleteDomainVerificationRequest"),
     type = "structure",
     members = {
         domainVerificationIdentifier = schema.new({
@@ -2570,12 +2570,12 @@ M.DeleteDomainVerificationInput = schema.new({
 })
 
 M.DeleteDomainVerificationOutput = schema.new({
-    id = id.from(_N, "DeleteDomainVerificationOutput"),
+    id = id.from(_N, "DeleteDomainVerificationResponse"),
     type = "structure",
 })
 
 M.DeleteListenerInput = schema.new({
-    id = id.from(_N, "DeleteListenerInput"),
+    id = id.from(_N, "DeleteListenerRequest"),
     type = "structure",
     members = {
         serviceIdentifier = schema.new({
@@ -2602,12 +2602,12 @@ M.DeleteListenerInput = schema.new({
 })
 
 M.DeleteListenerOutput = schema.new({
-    id = id.from(_N, "DeleteListenerOutput"),
+    id = id.from(_N, "DeleteListenerResponse"),
     type = "structure",
 })
 
 M.DeleteResourceConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteResourceConfigurationInput"),
+    id = id.from(_N, "DeleteResourceConfigurationRequest"),
     type = "structure",
     members = {
         resourceConfigurationIdentifier = schema.new({
@@ -2624,12 +2624,12 @@ M.DeleteResourceConfigurationInput = schema.new({
 })
 
 M.DeleteResourceConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteResourceConfigurationOutput"),
+    id = id.from(_N, "DeleteResourceConfigurationResponse"),
     type = "structure",
 })
 
 M.DeleteResourceEndpointAssociationInput = schema.new({
-    id = id.from(_N, "DeleteResourceEndpointAssociationInput"),
+    id = id.from(_N, "DeleteResourceEndpointAssociationRequest"),
     type = "structure",
     members = {
         resourceEndpointAssociationIdentifier = schema.new({
@@ -2646,7 +2646,7 @@ M.DeleteResourceEndpointAssociationInput = schema.new({
 })
 
 M.DeleteResourceEndpointAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteResourceEndpointAssociationOutput"),
+    id = id.from(_N, "DeleteResourceEndpointAssociationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2683,7 +2683,7 @@ M.DeleteResourceEndpointAssociationOutput = schema.new({
 })
 
 M.DeleteResourceGatewayInput = schema.new({
-    id = id.from(_N, "DeleteResourceGatewayInput"),
+    id = id.from(_N, "DeleteResourceGatewayRequest"),
     type = "structure",
     members = {
         resourceGatewayIdentifier = schema.new({
@@ -2700,7 +2700,7 @@ M.DeleteResourceGatewayInput = schema.new({
 })
 
 M.DeleteResourceGatewayOutput = schema.new({
-    id = id.from(_N, "DeleteResourceGatewayOutput"),
+    id = id.from(_N, "DeleteResourceGatewayResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2731,7 +2731,7 @@ M.DeleteResourceGatewayOutput = schema.new({
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2748,12 +2748,12 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "DeleteResourcePolicyResponse"),
     type = "structure",
 })
 
 M.DeleteRuleInput = schema.new({
-    id = id.from(_N, "DeleteRuleInput"),
+    id = id.from(_N, "DeleteRuleRequest"),
     type = "structure",
     members = {
         serviceIdentifier = schema.new({
@@ -2790,12 +2790,12 @@ M.DeleteRuleInput = schema.new({
 })
 
 M.DeleteRuleOutput = schema.new({
-    id = id.from(_N, "DeleteRuleOutput"),
+    id = id.from(_N, "DeleteRuleResponse"),
     type = "structure",
 })
 
 M.DeleteServiceInput = schema.new({
-    id = id.from(_N, "DeleteServiceInput"),
+    id = id.from(_N, "DeleteServiceRequest"),
     type = "structure",
     members = {
         serviceIdentifier = schema.new({
@@ -2812,7 +2812,7 @@ M.DeleteServiceInput = schema.new({
 })
 
 M.DeleteServiceOutput = schema.new({
-    id = id.from(_N, "DeleteServiceOutput"),
+    id = id.from(_N, "DeleteServiceResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2843,7 +2843,7 @@ M.DeleteServiceOutput = schema.new({
 })
 
 M.DeleteServiceNetworkInput = schema.new({
-    id = id.from(_N, "DeleteServiceNetworkInput"),
+    id = id.from(_N, "DeleteServiceNetworkRequest"),
     type = "structure",
     members = {
         serviceNetworkIdentifier = schema.new({
@@ -2860,12 +2860,12 @@ M.DeleteServiceNetworkInput = schema.new({
 })
 
 M.DeleteServiceNetworkOutput = schema.new({
-    id = id.from(_N, "DeleteServiceNetworkOutput"),
+    id = id.from(_N, "DeleteServiceNetworkResponse"),
     type = "structure",
 })
 
 M.DeleteServiceNetworkResourceAssociationInput = schema.new({
-    id = id.from(_N, "DeleteServiceNetworkResourceAssociationInput"),
+    id = id.from(_N, "DeleteServiceNetworkResourceAssociationRequest"),
     type = "structure",
     members = {
         serviceNetworkResourceAssociationIdentifier = schema.new({
@@ -2882,7 +2882,7 @@ M.DeleteServiceNetworkResourceAssociationInput = schema.new({
 })
 
 M.DeleteServiceNetworkResourceAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteServiceNetworkResourceAssociationOutput"),
+    id = id.from(_N, "DeleteServiceNetworkResourceAssociationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2907,7 +2907,7 @@ M.DeleteServiceNetworkResourceAssociationOutput = schema.new({
 })
 
 M.DeleteServiceNetworkServiceAssociationInput = schema.new({
-    id = id.from(_N, "DeleteServiceNetworkServiceAssociationInput"),
+    id = id.from(_N, "DeleteServiceNetworkServiceAssociationRequest"),
     type = "structure",
     members = {
         serviceNetworkServiceAssociationIdentifier = schema.new({
@@ -2924,7 +2924,7 @@ M.DeleteServiceNetworkServiceAssociationInput = schema.new({
 })
 
 M.DeleteServiceNetworkServiceAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteServiceNetworkServiceAssociationOutput"),
+    id = id.from(_N, "DeleteServiceNetworkServiceAssociationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2949,7 +2949,7 @@ M.DeleteServiceNetworkServiceAssociationOutput = schema.new({
 })
 
 M.DeleteServiceNetworkVpcAssociationInput = schema.new({
-    id = id.from(_N, "DeleteServiceNetworkVpcAssociationInput"),
+    id = id.from(_N, "DeleteServiceNetworkVpcAssociationRequest"),
     type = "structure",
     members = {
         serviceNetworkVpcAssociationIdentifier = schema.new({
@@ -2966,7 +2966,7 @@ M.DeleteServiceNetworkVpcAssociationInput = schema.new({
 })
 
 M.DeleteServiceNetworkVpcAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteServiceNetworkVpcAssociationOutput"),
+    id = id.from(_N, "DeleteServiceNetworkVpcAssociationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2991,7 +2991,7 @@ M.DeleteServiceNetworkVpcAssociationOutput = schema.new({
 })
 
 M.DeleteTargetGroupInput = schema.new({
-    id = id.from(_N, "DeleteTargetGroupInput"),
+    id = id.from(_N, "DeleteTargetGroupRequest"),
     type = "structure",
     members = {
         targetGroupIdentifier = schema.new({
@@ -3008,7 +3008,7 @@ M.DeleteTargetGroupInput = schema.new({
 })
 
 M.DeleteTargetGroupOutput = schema.new({
-    id = id.from(_N, "DeleteTargetGroupOutput"),
+    id = id.from(_N, "DeleteTargetGroupResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -3055,7 +3055,7 @@ M.Target = schema.new({
 })
 
 M.DeregisterTargetsInput = schema.new({
-    id = id.from(_N, "DeregisterTargetsInput"),
+    id = id.from(_N, "DeregisterTargetsRequest"),
     type = "structure",
     members = {
         targetGroupIdentifier = schema.new({
@@ -3113,7 +3113,7 @@ M.TargetFailure = schema.new({
 })
 
 M.DeregisterTargetsOutput = schema.new({
-    id = id.from(_N, "DeregisterTargetsOutput"),
+    id = id.from(_N, "DeregisterTargetsResponse"),
     type = "structure",
     members = {
         successful = schema.new({
@@ -3134,7 +3134,7 @@ M.DeregisterTargetsOutput = schema.new({
 })
 
 M.GetDomainVerificationInput = schema.new({
-    id = id.from(_N, "GetDomainVerificationInput"),
+    id = id.from(_N, "GetDomainVerificationRequest"),
     type = "structure",
     members = {
         domainVerificationIdentifier = schema.new({
@@ -3176,7 +3176,7 @@ M.TxtMethodConfig = schema.new({
 })
 
 M.GetDomainVerificationOutput = schema.new({
-    id = id.from(_N, "GetDomainVerificationOutput"),
+    id = id.from(_N, "GetDomainVerificationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -3256,7 +3256,7 @@ M.GetDomainVerificationOutput = schema.new({
 })
 
 M.ListDomainVerificationsInput = schema.new({
-    id = id.from(_N, "ListDomainVerificationsInput"),
+    id = id.from(_N, "ListDomainVerificationsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -3361,7 +3361,7 @@ M.DomainVerificationSummary = schema.new({
 })
 
 M.ListDomainVerificationsOutput = schema.new({
-    id = id.from(_N, "ListDomainVerificationsOutput"),
+    id = id.from(_N, "ListDomainVerificationsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -3384,7 +3384,7 @@ M.ListDomainVerificationsOutput = schema.new({
 })
 
 M.StartDomainVerificationInput = schema.new({
-    id = id.from(_N, "StartDomainVerificationInput"),
+    id = id.from(_N, "StartDomainVerificationRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -3417,7 +3417,7 @@ M.StartDomainVerificationInput = schema.new({
 })
 
 M.StartDomainVerificationOutput = schema.new({
-    id = id.from(_N, "StartDomainVerificationOutput"),
+    id = id.from(_N, "StartDomainVerificationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -3467,7 +3467,7 @@ M.StartDomainVerificationOutput = schema.new({
 })
 
 M.GetAuthPolicyInput = schema.new({
-    id = id.from(_N, "GetAuthPolicyInput"),
+    id = id.from(_N, "GetAuthPolicyRequest"),
     type = "structure",
     members = {
         resourceIdentifier = schema.new({
@@ -3484,7 +3484,7 @@ M.GetAuthPolicyInput = schema.new({
 })
 
 M.GetAuthPolicyOutput = schema.new({
-    id = id.from(_N, "GetAuthPolicyOutput"),
+    id = id.from(_N, "GetAuthPolicyResponse"),
     type = "structure",
     members = {
         policy = schema.new({
@@ -3521,7 +3521,7 @@ M.GetAuthPolicyOutput = schema.new({
 })
 
 M.GetListenerInput = schema.new({
-    id = id.from(_N, "GetListenerInput"),
+    id = id.from(_N, "GetListenerRequest"),
     type = "structure",
     members = {
         serviceIdentifier = schema.new({
@@ -3548,7 +3548,7 @@ M.GetListenerInput = schema.new({
 })
 
 M.GetListenerOutput = schema.new({
-    id = id.from(_N, "GetListenerOutput"),
+    id = id.from(_N, "GetListenerResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3622,7 +3622,7 @@ M.GetListenerOutput = schema.new({
 })
 
 M.GetResourceConfigurationInput = schema.new({
-    id = id.from(_N, "GetResourceConfigurationInput"),
+    id = id.from(_N, "GetResourceConfigurationRequest"),
     type = "structure",
     members = {
         resourceConfigurationIdentifier = schema.new({
@@ -3639,7 +3639,7 @@ M.GetResourceConfigurationInput = schema.new({
 })
 
 M.GetResourceConfigurationOutput = schema.new({
-    id = id.from(_N, "GetResourceConfigurationOutput"),
+    id = id.from(_N, "GetResourceConfigurationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -3774,7 +3774,7 @@ M.GetResourceConfigurationOutput = schema.new({
 })
 
 M.GetResourceGatewayInput = schema.new({
-    id = id.from(_N, "GetResourceGatewayInput"),
+    id = id.from(_N, "GetResourceGatewayRequest"),
     type = "structure",
     members = {
         resourceGatewayIdentifier = schema.new({
@@ -3791,7 +3791,7 @@ M.GetResourceGatewayInput = schema.new({
 })
 
 M.GetResourceGatewayOutput = schema.new({
-    id = id.from(_N, "GetResourceGatewayOutput"),
+    id = id.from(_N, "GetResourceGatewayResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3872,7 +3872,7 @@ M.GetResourceGatewayOutput = schema.new({
 })
 
 M.GetResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetResourcePolicyInput"),
+    id = id.from(_N, "GetResourcePolicyRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3889,7 +3889,7 @@ M.GetResourcePolicyInput = schema.new({
 })
 
 M.GetResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetResourcePolicyOutput"),
+    id = id.from(_N, "GetResourcePolicyResponse"),
     type = "structure",
     members = {
         policy = schema.new({
@@ -3902,7 +3902,7 @@ M.GetResourcePolicyOutput = schema.new({
 })
 
 M.GetRuleInput = schema.new({
-    id = id.from(_N, "GetRuleInput"),
+    id = id.from(_N, "GetRuleRequest"),
     type = "structure",
     members = {
         serviceIdentifier = schema.new({
@@ -3939,7 +3939,7 @@ M.GetRuleInput = schema.new({
 })
 
 M.GetRuleOutput = schema.new({
-    id = id.from(_N, "GetRuleOutput"),
+    id = id.from(_N, "GetRuleResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4008,7 +4008,7 @@ M.GetRuleOutput = schema.new({
 })
 
 M.GetServiceInput = schema.new({
-    id = id.from(_N, "GetServiceInput"),
+    id = id.from(_N, "GetServiceRequest"),
     type = "structure",
     members = {
         serviceIdentifier = schema.new({
@@ -4025,7 +4025,7 @@ M.GetServiceInput = schema.new({
 })
 
 M.GetServiceOutput = schema.new({
-    id = id.from(_N, "GetServiceOutput"),
+    id = id.from(_N, "GetServiceResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4111,7 +4111,7 @@ M.GetServiceOutput = schema.new({
 })
 
 M.GetServiceNetworkInput = schema.new({
-    id = id.from(_N, "GetServiceNetworkInput"),
+    id = id.from(_N, "GetServiceNetworkRequest"),
     type = "structure",
     members = {
         serviceNetworkIdentifier = schema.new({
@@ -4128,7 +4128,7 @@ M.GetServiceNetworkInput = schema.new({
 })
 
 M.GetServiceNetworkOutput = schema.new({
-    id = id.from(_N, "GetServiceNetworkOutput"),
+    id = id.from(_N, "GetServiceNetworkResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4196,7 +4196,7 @@ M.GetServiceNetworkOutput = schema.new({
 })
 
 M.GetServiceNetworkResourceAssociationInput = schema.new({
-    id = id.from(_N, "GetServiceNetworkResourceAssociationInput"),
+    id = id.from(_N, "GetServiceNetworkResourceAssociationRequest"),
     type = "structure",
     members = {
         serviceNetworkResourceAssociationIdentifier = schema.new({
@@ -4213,7 +4213,7 @@ M.GetServiceNetworkResourceAssociationInput = schema.new({
 })
 
 M.GetServiceNetworkResourceAssociationOutput = schema.new({
-    id = id.from(_N, "GetServiceNetworkResourceAssociationOutput"),
+    id = id.from(_N, "GetServiceNetworkResourceAssociationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4342,7 +4342,7 @@ M.GetServiceNetworkResourceAssociationOutput = schema.new({
 })
 
 M.GetServiceNetworkServiceAssociationInput = schema.new({
-    id = id.from(_N, "GetServiceNetworkServiceAssociationInput"),
+    id = id.from(_N, "GetServiceNetworkServiceAssociationRequest"),
     type = "structure",
     members = {
         serviceNetworkServiceAssociationIdentifier = schema.new({
@@ -4359,7 +4359,7 @@ M.GetServiceNetworkServiceAssociationInput = schema.new({
 })
 
 M.GetServiceNetworkServiceAssociationOutput = schema.new({
-    id = id.from(_N, "GetServiceNetworkServiceAssociationOutput"),
+    id = id.from(_N, "GetServiceNetworkServiceAssociationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4460,7 +4460,7 @@ M.GetServiceNetworkServiceAssociationOutput = schema.new({
 })
 
 M.GetServiceNetworkVpcAssociationInput = schema.new({
-    id = id.from(_N, "GetServiceNetworkVpcAssociationInput"),
+    id = id.from(_N, "GetServiceNetworkVpcAssociationRequest"),
     type = "structure",
     members = {
         serviceNetworkVpcAssociationIdentifier = schema.new({
@@ -4477,7 +4477,7 @@ M.GetServiceNetworkVpcAssociationInput = schema.new({
 })
 
 M.GetServiceNetworkVpcAssociationOutput = schema.new({
-    id = id.from(_N, "GetServiceNetworkVpcAssociationOutput"),
+    id = id.from(_N, "GetServiceNetworkVpcAssociationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4582,7 +4582,7 @@ M.GetServiceNetworkVpcAssociationOutput = schema.new({
 })
 
 M.GetTargetGroupInput = schema.new({
-    id = id.from(_N, "GetTargetGroupInput"),
+    id = id.from(_N, "GetTargetGroupRequest"),
     type = "structure",
     members = {
         targetGroupIdentifier = schema.new({
@@ -4599,7 +4599,7 @@ M.GetTargetGroupInput = schema.new({
 })
 
 M.GetTargetGroupOutput = schema.new({
-    id = id.from(_N, "GetTargetGroupOutput"),
+    id = id.from(_N, "GetTargetGroupResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4680,7 +4680,7 @@ M.GetTargetGroupOutput = schema.new({
 })
 
 M.ListListenersInput = schema.new({
-    id = id.from(_N, "ListListenersInput"),
+    id = id.from(_N, "ListListenersRequest"),
     type = "structure",
     members = {
         serviceIdentifier = schema.new({
@@ -4770,7 +4770,7 @@ M.ListenerSummary = schema.new({
 })
 
 M.ListListenersOutput = schema.new({
-    id = id.from(_N, "ListListenersOutput"),
+    id = id.from(_N, "ListListenersResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -4793,7 +4793,7 @@ M.ListListenersOutput = schema.new({
 })
 
 M.UpdateListenerInput = schema.new({
-    id = id.from(_N, "UpdateListenerInput"),
+    id = id.from(_N, "UpdateListenerRequest"),
     type = "structure",
     members = {
         serviceIdentifier = schema.new({
@@ -4830,7 +4830,7 @@ M.UpdateListenerInput = schema.new({
 })
 
 M.UpdateListenerOutput = schema.new({
-    id = id.from(_N, "UpdateListenerOutput"),
+    id = id.from(_N, "UpdateListenerResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4886,7 +4886,7 @@ M.UpdateListenerOutput = schema.new({
 })
 
 M.ListResourceConfigurationsInput = schema.new({
-    id = id.from(_N, "ListResourceConfigurationsInput"),
+    id = id.from(_N, "ListResourceConfigurationsRequest"),
     type = "structure",
     members = {
         resourceGatewayIdentifier = schema.new({
@@ -5029,7 +5029,7 @@ M.ResourceConfigurationSummary = schema.new({
 })
 
 M.ListResourceConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListResourceConfigurationsOutput"),
+    id = id.from(_N, "ListResourceConfigurationsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -5049,7 +5049,7 @@ M.ListResourceConfigurationsOutput = schema.new({
 })
 
 M.ListResourceEndpointAssociationsInput = schema.new({
-    id = id.from(_N, "ListResourceEndpointAssociationsInput"),
+    id = id.from(_N, "ListResourceEndpointAssociationsRequest"),
     type = "structure",
     members = {
         resourceConfigurationIdentifier = schema.new({
@@ -5175,7 +5175,7 @@ M.ResourceEndpointAssociationSummary = schema.new({
 })
 
 M.ListResourceEndpointAssociationsOutput = schema.new({
-    id = id.from(_N, "ListResourceEndpointAssociationsOutput"),
+    id = id.from(_N, "ListResourceEndpointAssociationsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -5198,7 +5198,7 @@ M.ListResourceEndpointAssociationsOutput = schema.new({
 })
 
 M.ListResourceGatewaysInput = schema.new({
-    id = id.from(_N, "ListResourceGatewaysInput"),
+    id = id.from(_N, "ListResourceGatewaysRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -5304,7 +5304,7 @@ M.ResourceGatewaySummary = schema.new({
 })
 
 M.ListResourceGatewaysOutput = schema.new({
-    id = id.from(_N, "ListResourceGatewaysOutput"),
+    id = id.from(_N, "ListResourceGatewaysResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -5324,7 +5324,7 @@ M.ListResourceGatewaysOutput = schema.new({
 })
 
 M.ListRulesInput = schema.new({
-    id = id.from(_N, "ListRulesInput"),
+    id = id.from(_N, "ListRulesRequest"),
     type = "structure",
     members = {
         serviceIdentifier = schema.new({
@@ -5424,7 +5424,7 @@ M.RuleSummary = schema.new({
 })
 
 M.ListRulesOutput = schema.new({
-    id = id.from(_N, "ListRulesOutput"),
+    id = id.from(_N, "ListRulesResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -5447,7 +5447,7 @@ M.ListRulesOutput = schema.new({
 })
 
 M.ListServiceNetworkResourceAssociationsInput = schema.new({
-    id = id.from(_N, "ListServiceNetworkResourceAssociationsInput"),
+    id = id.from(_N, "ListServiceNetworkResourceAssociationsRequest"),
     type = "structure",
     members = {
         serviceNetworkIdentifier = schema.new({
@@ -5607,7 +5607,7 @@ M.ServiceNetworkResourceAssociationSummary = schema.new({
 })
 
 M.ListServiceNetworkResourceAssociationsOutput = schema.new({
-    id = id.from(_N, "ListServiceNetworkResourceAssociationsOutput"),
+    id = id.from(_N, "ListServiceNetworkResourceAssociationsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -5630,7 +5630,7 @@ M.ListServiceNetworkResourceAssociationsOutput = schema.new({
 })
 
 M.ListServiceNetworksInput = schema.new({
-    id = id.from(_N, "ListServiceNetworksInput"),
+    id = id.from(_N, "ListServiceNetworksRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -5716,7 +5716,7 @@ M.ServiceNetworkSummary = schema.new({
 })
 
 M.ListServiceNetworksOutput = schema.new({
-    id = id.from(_N, "ListServiceNetworksOutput"),
+    id = id.from(_N, "ListServiceNetworksResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -5739,7 +5739,7 @@ M.ListServiceNetworksOutput = schema.new({
 })
 
 M.ListServiceNetworkServiceAssociationsInput = schema.new({
-    id = id.from(_N, "ListServiceNetworkServiceAssociationsInput"),
+    id = id.from(_N, "ListServiceNetworkServiceAssociationsRequest"),
     type = "structure",
     members = {
         serviceNetworkIdentifier = schema.new({
@@ -5871,7 +5871,7 @@ M.ServiceNetworkServiceAssociationSummary = schema.new({
 })
 
 M.ListServiceNetworkServiceAssociationsOutput = schema.new({
-    id = id.from(_N, "ListServiceNetworkServiceAssociationsOutput"),
+    id = id.from(_N, "ListServiceNetworkServiceAssociationsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -5894,7 +5894,7 @@ M.ListServiceNetworkServiceAssociationsOutput = schema.new({
 })
 
 M.ListServiceNetworkVpcAssociationsInput = schema.new({
-    id = id.from(_N, "ListServiceNetworkVpcAssociationsInput"),
+    id = id.from(_N, "ListServiceNetworkVpcAssociationsRequest"),
     type = "structure",
     members = {
         serviceNetworkIdentifier = schema.new({
@@ -6023,7 +6023,7 @@ M.ServiceNetworkVpcAssociationSummary = schema.new({
 })
 
 M.ListServiceNetworkVpcAssociationsOutput = schema.new({
-    id = id.from(_N, "ListServiceNetworkVpcAssociationsOutput"),
+    id = id.from(_N, "ListServiceNetworkVpcAssociationsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -6046,7 +6046,7 @@ M.ListServiceNetworkVpcAssociationsOutput = schema.new({
 })
 
 M.ListServiceNetworkVpcEndpointAssociationsInput = schema.new({
-    id = id.from(_N, "ListServiceNetworkVpcEndpointAssociationsInput"),
+    id = id.from(_N, "ListServiceNetworkVpcEndpointAssociationsRequest"),
     type = "structure",
     members = {
         serviceNetworkIdentifier = schema.new({
@@ -6133,7 +6133,7 @@ M.ServiceNetworkEndpointAssociation = schema.new({
 })
 
 M.ListServiceNetworkVpcEndpointAssociationsOutput = schema.new({
-    id = id.from(_N, "ListServiceNetworkVpcEndpointAssociationsOutput"),
+    id = id.from(_N, "ListServiceNetworkVpcEndpointAssociationsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -6156,7 +6156,7 @@ M.ListServiceNetworkVpcEndpointAssociationsOutput = schema.new({
 })
 
 M.ListServicesInput = schema.new({
-    id = id.from(_N, "ListServicesInput"),
+    id = id.from(_N, "ListServicesRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -6243,7 +6243,7 @@ M.ServiceSummary = schema.new({
 })
 
 M.ListServicesOutput = schema.new({
-    id = id.from(_N, "ListServicesOutput"),
+    id = id.from(_N, "ListServicesResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -6263,7 +6263,7 @@ M.ListServicesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6280,7 +6280,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -6295,7 +6295,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTargetGroupsInput = schema.new({
-    id = id.from(_N, "ListTargetGroupsInput"),
+    id = id.from(_N, "ListTargetGroupsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -6430,7 +6430,7 @@ M.TargetGroupSummary = schema.new({
 })
 
 M.ListTargetGroupsOutput = schema.new({
-    id = id.from(_N, "ListTargetGroupsOutput"),
+    id = id.from(_N, "ListTargetGroupsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -6450,7 +6450,7 @@ M.ListTargetGroupsOutput = schema.new({
 })
 
 M.ListTargetsInput = schema.new({
-    id = id.from(_N, "ListTargetsInput"),
+    id = id.from(_N, "ListTargetsRequest"),
     type = "structure",
     members = {
         targetGroupIdentifier = schema.new({
@@ -6523,7 +6523,7 @@ M.TargetSummary = schema.new({
 })
 
 M.ListTargetsOutput = schema.new({
-    id = id.from(_N, "ListTargetsOutput"),
+    id = id.from(_N, "ListTargetsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -6546,7 +6546,7 @@ M.ListTargetsOutput = schema.new({
 })
 
 M.PutAuthPolicyInput = schema.new({
-    id = id.from(_N, "PutAuthPolicyInput"),
+    id = id.from(_N, "PutAuthPolicyRequest"),
     type = "structure",
     members = {
         resourceIdentifier = schema.new({
@@ -6572,7 +6572,7 @@ M.PutAuthPolicyInput = schema.new({
 })
 
 M.PutAuthPolicyOutput = schema.new({
-    id = id.from(_N, "PutAuthPolicyOutput"),
+    id = id.from(_N, "PutAuthPolicyResponse"),
     type = "structure",
     members = {
         policy = schema.new({
@@ -6591,7 +6591,7 @@ M.PutAuthPolicyOutput = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6617,12 +6617,12 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResponse"),
     type = "structure",
 })
 
 M.UpdateResourceConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateResourceConfigurationInput"),
+    id = id.from(_N, "UpdateResourceConfigurationRequest"),
     type = "structure",
     members = {
         resourceConfigurationIdentifier = schema.new({
@@ -6659,7 +6659,7 @@ M.UpdateResourceConfigurationInput = schema.new({
 })
 
 M.UpdateResourceConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateResourceConfigurationOutput"),
+    id = id.from(_N, "UpdateResourceConfigurationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6734,7 +6734,7 @@ M.UpdateResourceConfigurationOutput = schema.new({
 })
 
 M.UpdateResourceGatewayInput = schema.new({
-    id = id.from(_N, "UpdateResourceGatewayInput"),
+    id = id.from(_N, "UpdateResourceGatewayRequest"),
     type = "structure",
     members = {
         resourceGatewayIdentifier = schema.new({
@@ -6758,7 +6758,7 @@ M.UpdateResourceGatewayInput = schema.new({
 })
 
 M.UpdateResourceGatewayOutput = schema.new({
-    id = id.from(_N, "UpdateResourceGatewayOutput"),
+    id = id.from(_N, "UpdateResourceGatewayResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -6815,7 +6815,7 @@ M.UpdateResourceGatewayOutput = schema.new({
 })
 
 M.UpdateRuleInput = schema.new({
-    id = id.from(_N, "UpdateRuleInput"),
+    id = id.from(_N, "UpdateRuleRequest"),
     type = "structure",
     members = {
         serviceIdentifier = schema.new({
@@ -6872,7 +6872,7 @@ M.UpdateRuleInput = schema.new({
 })
 
 M.UpdateRuleOutput = schema.new({
-    id = id.from(_N, "UpdateRuleOutput"),
+    id = id.from(_N, "UpdateRuleResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -6923,7 +6923,7 @@ M.UpdateRuleOutput = schema.new({
 })
 
 M.UpdateServiceInput = schema.new({
-    id = id.from(_N, "UpdateServiceInput"),
+    id = id.from(_N, "UpdateServiceRequest"),
     type = "structure",
     members = {
         serviceIdentifier = schema.new({
@@ -6952,7 +6952,7 @@ M.UpdateServiceInput = schema.new({
 })
 
 M.UpdateServiceOutput = schema.new({
-    id = id.from(_N, "UpdateServiceOutput"),
+    id = id.from(_N, "UpdateServiceResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6995,7 +6995,7 @@ M.UpdateServiceOutput = schema.new({
 })
 
 M.UpdateServiceNetworkInput = schema.new({
-    id = id.from(_N, "UpdateServiceNetworkInput"),
+    id = id.from(_N, "UpdateServiceNetworkRequest"),
     type = "structure",
     members = {
         serviceNetworkIdentifier = schema.new({
@@ -7021,7 +7021,7 @@ M.UpdateServiceNetworkInput = schema.new({
 })
 
 M.UpdateServiceNetworkOutput = schema.new({
-    id = id.from(_N, "UpdateServiceNetworkOutput"),
+    id = id.from(_N, "UpdateServiceNetworkResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -7052,7 +7052,7 @@ M.UpdateServiceNetworkOutput = schema.new({
 })
 
 M.UpdateServiceNetworkVpcAssociationInput = schema.new({
-    id = id.from(_N, "UpdateServiceNetworkVpcAssociationInput"),
+    id = id.from(_N, "UpdateServiceNetworkVpcAssociationRequest"),
     type = "structure",
     members = {
         serviceNetworkVpcAssociationIdentifier = schema.new({
@@ -7079,7 +7079,7 @@ M.UpdateServiceNetworkVpcAssociationInput = schema.new({
 })
 
 M.UpdateServiceNetworkVpcAssociationOutput = schema.new({
-    id = id.from(_N, "UpdateServiceNetworkVpcAssociationOutput"),
+    id = id.from(_N, "UpdateServiceNetworkVpcAssociationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -7117,7 +7117,7 @@ M.UpdateServiceNetworkVpcAssociationOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -7145,12 +7145,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.RegisterTargetsInput = schema.new({
-    id = id.from(_N, "RegisterTargetsInput"),
+    id = id.from(_N, "RegisterTargetsRequest"),
     type = "structure",
     members = {
         targetGroupIdentifier = schema.new({
@@ -7177,7 +7177,7 @@ M.RegisterTargetsInput = schema.new({
 })
 
 M.RegisterTargetsOutput = schema.new({
-    id = id.from(_N, "RegisterTargetsOutput"),
+    id = id.from(_N, "RegisterTargetsResponse"),
     type = "structure",
     members = {
         successful = schema.new({
@@ -7198,7 +7198,7 @@ M.RegisterTargetsOutput = schema.new({
 })
 
 M.UpdateTargetGroupInput = schema.new({
-    id = id.from(_N, "UpdateTargetGroupInput"),
+    id = id.from(_N, "UpdateTargetGroupRequest"),
     type = "structure",
     members = {
         targetGroupIdentifier = schema.new({
@@ -7225,7 +7225,7 @@ M.UpdateTargetGroupInput = schema.new({
 })
 
 M.UpdateTargetGroupOutput = schema.new({
-    id = id.from(_N, "UpdateTargetGroupOutput"),
+    id = id.from(_N, "UpdateTargetGroupResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -7269,7 +7269,7 @@ M.UpdateTargetGroupOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -7297,8 +7297,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -27,7 +27,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.CreateChatTokenInput = schema.new({
-    id = id.from(_N, "CreateChatTokenInput"),
+    id = id.from(_N, "CreateChatTokenRequest"),
     type = "structure",
     members = {
         roomIdentifier = schema.new({
@@ -73,7 +73,7 @@ M.CreateChatTokenInput = schema.new({
 })
 
 M.CreateChatTokenOutput = schema.new({
-    id = id.from(_N, "CreateChatTokenOutput"),
+    id = id.from(_N, "CreateChatTokenResponse"),
     type = "structure",
     members = {
         token = schema.new({
@@ -333,7 +333,7 @@ M.DestinationConfiguration = schema.new({
 })
 
 M.CreateLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "CreateLoggingConfigurationInput"),
+    id = id.from(_N, "CreateLoggingConfigurationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -364,7 +364,7 @@ M.CreateLoggingConfigurationInput = schema.new({
 })
 
 M.CreateLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateLoggingConfigurationOutput"),
+    id = id.from(_N, "CreateLoggingConfigurationResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -494,7 +494,7 @@ M.MessageReviewHandler = schema.new({
 })
 
 M.CreateRoomInput = schema.new({
-    id = id.from(_N, "CreateRoomInput"),
+    id = id.from(_N, "CreateRoomRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -541,7 +541,7 @@ M.CreateRoomInput = schema.new({
 })
 
 M.CreateRoomOutput = schema.new({
-    id = id.from(_N, "CreateRoomOutput"),
+    id = id.from(_N, "CreateRoomResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -618,7 +618,7 @@ M.CreateRoomOutput = schema.new({
 })
 
 M.DeleteLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteLoggingConfigurationInput"),
+    id = id.from(_N, "DeleteLoggingConfigurationRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -634,12 +634,12 @@ M.DeleteLoggingConfigurationInput = schema.new({
 })
 
 M.DeleteLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteLoggingConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMessageInput = schema.new({
-    id = id.from(_N, "DeleteMessageInput"),
+    id = id.from(_N, "DeleteMessageRequest"),
     type = "structure",
     members = {
         roomIdentifier = schema.new({
@@ -670,7 +670,7 @@ M.DeleteMessageInput = schema.new({
 })
 
 M.DeleteMessageOutput = schema.new({
-    id = id.from(_N, "DeleteMessageOutput"),
+    id = id.from(_N, "DeleteMessageResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -730,7 +730,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.DeleteRoomInput = schema.new({
-    id = id.from(_N, "DeleteRoomInput"),
+    id = id.from(_N, "DeleteRoomRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -746,12 +746,12 @@ M.DeleteRoomInput = schema.new({
 })
 
 M.DeleteRoomOutput = schema.new({
-    id = id.from(_N, "DeleteRoomOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DisconnectUserInput = schema.new({
-    id = id.from(_N, "DisconnectUserInput"),
+    id = id.from(_N, "DisconnectUserRequest"),
     type = "structure",
     members = {
         roomIdentifier = schema.new({
@@ -782,12 +782,12 @@ M.DisconnectUserInput = schema.new({
 })
 
 M.DisconnectUserOutput = schema.new({
-    id = id.from(_N, "DisconnectUserOutput"),
+    id = id.from(_N, "DisconnectUserResponse"),
     type = "structure",
 })
 
 M.GetLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "GetLoggingConfigurationInput"),
+    id = id.from(_N, "GetLoggingConfigurationRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -803,7 +803,7 @@ M.GetLoggingConfigurationInput = schema.new({
 })
 
 M.GetLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "GetLoggingConfigurationOutput"),
+    id = id.from(_N, "GetLoggingConfigurationResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -867,7 +867,7 @@ M.GetLoggingConfigurationOutput = schema.new({
 })
 
 M.GetRoomInput = schema.new({
-    id = id.from(_N, "GetRoomInput"),
+    id = id.from(_N, "GetRoomRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -883,7 +883,7 @@ M.GetRoomInput = schema.new({
 })
 
 M.GetRoomOutput = schema.new({
-    id = id.from(_N, "GetRoomOutput"),
+    id = id.from(_N, "GetRoomResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -960,7 +960,7 @@ M.GetRoomOutput = schema.new({
 })
 
 M.ListLoggingConfigurationsInput = schema.new({
-    id = id.from(_N, "ListLoggingConfigurationsInput"),
+    id = id.from(_N, "ListLoggingConfigurationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1043,7 +1043,7 @@ M.LoggingConfigurationSummary = schema.new({
 })
 
 M.ListLoggingConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListLoggingConfigurationsOutput"),
+    id = id.from(_N, "ListLoggingConfigurationsResponse"),
     type = "structure",
     members = {
         loggingConfigurations = schema.new({
@@ -1066,7 +1066,7 @@ M.ListLoggingConfigurationsOutput = schema.new({
 })
 
 M.ListRoomsInput = schema.new({
-    id = id.from(_N, "ListRoomsInput"),
+    id = id.from(_N, "ListRoomsRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1168,7 +1168,7 @@ M.RoomSummary = schema.new({
 })
 
 M.ListRoomsOutput = schema.new({
-    id = id.from(_N, "ListRoomsOutput"),
+    id = id.from(_N, "ListRoomsResponse"),
     type = "structure",
     members = {
         rooms = schema.new({
@@ -1210,7 +1210,7 @@ M.InternalServerException = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1227,7 +1227,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1245,7 +1245,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.SendEventInput = schema.new({
-    id = id.from(_N, "SendEventInput"),
+    id = id.from(_N, "SendEventRequest"),
     type = "structure",
     members = {
         roomIdentifier = schema.new({
@@ -1278,7 +1278,7 @@ M.SendEventInput = schema.new({
 })
 
 M.SendEventOutput = schema.new({
-    id = id.from(_N, "SendEventOutput"),
+    id = id.from(_N, "SendEventResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1291,7 +1291,7 @@ M.SendEventOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1319,12 +1319,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1352,12 +1352,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateLoggingConfigurationInput"),
+    id = id.from(_N, "UpdateLoggingConfigurationRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -1386,7 +1386,7 @@ M.UpdateLoggingConfigurationInput = schema.new({
 })
 
 M.UpdateLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateLoggingConfigurationOutput"),
+    id = id.from(_N, "UpdateLoggingConfigurationResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1450,7 +1450,7 @@ M.UpdateLoggingConfigurationOutput = schema.new({
 })
 
 M.UpdateRoomInput = schema.new({
-    id = id.from(_N, "UpdateRoomInput"),
+    id = id.from(_N, "UpdateRoomRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -1498,7 +1498,7 @@ M.UpdateRoomInput = schema.new({
 })
 
 M.UpdateRoomOutput = schema.new({
-    id = id.from(_N, "UpdateRoomOutput"),
+    id = id.from(_N, "UpdateRoomResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1573,5 +1573,19 @@ M.UpdateRoomOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

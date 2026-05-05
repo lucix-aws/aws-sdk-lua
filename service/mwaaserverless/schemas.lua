@@ -55,7 +55,7 @@ M.InternalServerException = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -72,7 +72,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -246,7 +246,7 @@ M.ValidationException = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -274,12 +274,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.GetTaskInstanceInput = schema.new({
-    id = id.from(_N, "GetTaskInstanceInput"),
+    id = id.from(_N, "GetTaskInstanceRequest"),
     type = "structure",
     members = {
         WorkflowArn = schema.new({
@@ -316,7 +316,7 @@ M.GetTaskInstanceInput = schema.new({
 })
 
 M.GetTaskInstanceOutput = schema.new({
-    id = id.from(_N, "GetTaskInstanceOutput"),
+    id = id.from(_N, "GetTaskInstanceResponse"),
     type = "structure",
     members = {
         WorkflowArn = schema.new({
@@ -433,7 +433,7 @@ M.GetTaskInstanceOutput = schema.new({
 })
 
 M.ListTaskInstancesInput = schema.new({
-    id = id.from(_N, "ListTaskInstancesInput"),
+    id = id.from(_N, "ListTaskInstancesRequest"),
     type = "structure",
     members = {
         WorkflowArn = schema.new({
@@ -528,7 +528,7 @@ M.TaskInstanceSummary = schema.new({
 })
 
 M.ListTaskInstancesOutput = schema.new({
-    id = id.from(_N, "ListTaskInstancesOutput"),
+    id = id.from(_N, "ListTaskInstancesResponse"),
     type = "structure",
     members = {
         TaskInstances = schema.new({
@@ -548,7 +548,7 @@ M.ListTaskInstancesOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -576,7 +576,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -708,7 +708,7 @@ M.NetworkConfiguration = schema.new({
 })
 
 M.CreateWorkflowInput = schema.new({
-    id = id.from(_N, "CreateWorkflowInput"),
+    id = id.from(_N, "CreateWorkflowRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -799,7 +799,7 @@ M.CreateWorkflowInput = schema.new({
 })
 
 M.CreateWorkflowOutput = schema.new({
-    id = id.from(_N, "CreateWorkflowOutput"),
+    id = id.from(_N, "CreateWorkflowResponse"),
     type = "structure",
     members = {
         WorkflowArn = schema.new({
@@ -910,7 +910,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.DeleteWorkflowInput = schema.new({
-    id = id.from(_N, "DeleteWorkflowInput"),
+    id = id.from(_N, "DeleteWorkflowRequest"),
     type = "structure",
     members = {
         WorkflowArn = schema.new({
@@ -936,7 +936,7 @@ M.DeleteWorkflowInput = schema.new({
 })
 
 M.DeleteWorkflowOutput = schema.new({
-    id = id.from(_N, "DeleteWorkflowOutput"),
+    id = id.from(_N, "DeleteWorkflowResponse"),
     type = "structure",
     members = {
         WorkflowArn = schema.new({
@@ -958,7 +958,7 @@ M.DeleteWorkflowOutput = schema.new({
 })
 
 M.GetWorkflowInput = schema.new({
-    id = id.from(_N, "GetWorkflowInput"),
+    id = id.from(_N, "GetWorkflowRequest"),
     type = "structure",
     members = {
         WorkflowArn = schema.new({
@@ -997,7 +997,7 @@ M.ScheduleConfiguration = schema.new({
 })
 
 M.GetWorkflowOutput = schema.new({
-    id = id.from(_N, "GetWorkflowOutput"),
+    id = id.from(_N, "GetWorkflowResponse"),
     type = "structure",
     members = {
         WorkflowArn = schema.new({
@@ -1114,7 +1114,7 @@ M.GetWorkflowOutput = schema.new({
 })
 
 M.ListWorkflowsInput = schema.new({
-    id = id.from(_N, "ListWorkflowsInput"),
+    id = id.from(_N, "ListWorkflowsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1204,7 +1204,7 @@ M.WorkflowSummary = schema.new({
 })
 
 M.ListWorkflowsOutput = schema.new({
-    id = id.from(_N, "ListWorkflowsOutput"),
+    id = id.from(_N, "ListWorkflowsResponse"),
     type = "structure",
     members = {
         Workflows = schema.new({
@@ -1227,7 +1227,7 @@ M.ListWorkflowsOutput = schema.new({
 })
 
 M.UpdateWorkflowInput = schema.new({
-    id = id.from(_N, "UpdateWorkflowInput"),
+    id = id.from(_N, "UpdateWorkflowRequest"),
     type = "structure",
     members = {
         WorkflowArn = schema.new({
@@ -1295,7 +1295,7 @@ M.UpdateWorkflowInput = schema.new({
 })
 
 M.UpdateWorkflowOutput = schema.new({
-    id = id.from(_N, "UpdateWorkflowOutput"),
+    id = id.from(_N, "UpdateWorkflowResponse"),
     type = "structure",
     members = {
         WorkflowArn = schema.new({
@@ -1333,7 +1333,7 @@ M.UpdateWorkflowOutput = schema.new({
 })
 
 M.GetWorkflowRunInput = schema.new({
-    id = id.from(_N, "GetWorkflowRunInput"),
+    id = id.from(_N, "GetWorkflowRunRequest"),
     type = "structure",
     members = {
         WorkflowArn = schema.new({
@@ -1452,7 +1452,7 @@ M.WorkflowRunDetail = schema.new({
 })
 
 M.GetWorkflowRunOutput = schema.new({
-    id = id.from(_N, "GetWorkflowRunOutput"),
+    id = id.from(_N, "GetWorkflowRunResponse"),
     type = "structure",
     members = {
         WorkflowArn = schema.new({
@@ -1498,7 +1498,7 @@ M.GetWorkflowRunOutput = schema.new({
 })
 
 M.ListWorkflowRunsInput = schema.new({
-    id = id.from(_N, "ListWorkflowRunsInput"),
+    id = id.from(_N, "ListWorkflowRunsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1621,7 +1621,7 @@ M.WorkflowRunSummary = schema.new({
 })
 
 M.ListWorkflowRunsOutput = schema.new({
-    id = id.from(_N, "ListWorkflowRunsOutput"),
+    id = id.from(_N, "ListWorkflowRunsResponse"),
     type = "structure",
     members = {
         WorkflowRuns = schema.new({
@@ -1641,7 +1641,7 @@ M.ListWorkflowRunsOutput = schema.new({
 })
 
 M.StartWorkflowRunInput = schema.new({
-    id = id.from(_N, "StartWorkflowRunInput"),
+    id = id.from(_N, "StartWorkflowRunRequest"),
     type = "structure",
     members = {
         WorkflowArn = schema.new({
@@ -1681,7 +1681,7 @@ M.StartWorkflowRunInput = schema.new({
 })
 
 M.StartWorkflowRunOutput = schema.new({
-    id = id.from(_N, "StartWorkflowRunOutput"),
+    id = id.from(_N, "StartWorkflowRunResponse"),
     type = "structure",
     members = {
         RunId = schema.new({
@@ -1709,7 +1709,7 @@ M.StartWorkflowRunOutput = schema.new({
 })
 
 M.StopWorkflowRunInput = schema.new({
-    id = id.from(_N, "StopWorkflowRunInput"),
+    id = id.from(_N, "StopWorkflowRunRequest"),
     type = "structure",
     members = {
         WorkflowArn = schema.new({
@@ -1736,7 +1736,7 @@ M.StopWorkflowRunInput = schema.new({
 })
 
 M.StopWorkflowRunOutput = schema.new({
-    id = id.from(_N, "StopWorkflowRunOutput"),
+    id = id.from(_N, "StopWorkflowRunResponse"),
     type = "structure",
     members = {
         WorkflowArn = schema.new({
@@ -1767,7 +1767,7 @@ M.StopWorkflowRunOutput = schema.new({
 })
 
 M.ListWorkflowVersionsInput = schema.new({
-    id = id.from(_N, "ListWorkflowVersionsInput"),
+    id = id.from(_N, "ListWorkflowVersionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1872,7 +1872,7 @@ M.WorkflowVersionSummary = schema.new({
 })
 
 M.ListWorkflowVersionsOutput = schema.new({
-    id = id.from(_N, "ListWorkflowVersionsOutput"),
+    id = id.from(_N, "ListWorkflowVersionsResponse"),
     type = "structure",
     members = {
         WorkflowVersions = schema.new({
@@ -1890,5 +1890,19 @@ M.ListWorkflowVersionsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -144,7 +144,7 @@ M.InvalidChannelARN = schema.new({
 })
 
 M.PutAuditEventsInput = schema.new({
-    id = id.from(_N, "PutAuditEventsInput"),
+    id = id.from(_N, "PutAuditEventsRequest"),
     type = "structure",
     members = {
         auditEvents = schema.new({
@@ -214,7 +214,7 @@ M.ResultErrorEntry = schema.new({
 })
 
 M.PutAuditEventsOutput = schema.new({
-    id = id.from(_N, "PutAuditEventsOutput"),
+    id = id.from(_N, "PutAuditEventsResponse"),
     type = "structure",
     members = {
         successful = schema.new({
@@ -255,5 +255,19 @@ M.UnsupportedOperationException = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

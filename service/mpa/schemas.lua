@@ -131,7 +131,7 @@ M.PolicyReference = schema.new({
 })
 
 M.CreateApprovalTeamInput = schema.new({
-    id = id.from(_N, "CreateApprovalTeamInput"),
+    id = id.from(_N, "CreateApprovalTeamRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -203,7 +203,7 @@ M.CreateApprovalTeamInput = schema.new({
 })
 
 M.CreateApprovalTeamOutput = schema.new({
-    id = id.from(_N, "CreateApprovalTeamOutput"),
+    id = id.from(_N, "CreateApprovalTeamResponse"),
     type = "structure",
     members = {
         CreationTime = schema.new({
@@ -313,7 +313,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteInactiveApprovalTeamVersionInput = schema.new({
-    id = id.from(_N, "DeleteInactiveApprovalTeamVersionInput"),
+    id = id.from(_N, "DeleteInactiveApprovalTeamVersionRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -340,7 +340,7 @@ M.DeleteInactiveApprovalTeamVersionInput = schema.new({
 })
 
 M.DeleteInactiveApprovalTeamVersionOutput = schema.new({
-    id = id.from(_N, "DeleteInactiveApprovalTeamVersionOutput"),
+    id = id.from(_N, "DeleteInactiveApprovalTeamVersionResponse"),
     type = "structure",
 })
 
@@ -364,7 +364,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.GetApprovalTeamInput = schema.new({
-    id = id.from(_N, "GetApprovalTeamInput"),
+    id = id.from(_N, "GetApprovalTeamRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -540,7 +540,7 @@ M.PendingUpdate = schema.new({
 })
 
 M.GetApprovalTeamOutput = schema.new({
-    id = id.from(_N, "GetApprovalTeamOutput"),
+    id = id.from(_N, "GetApprovalTeamResponse"),
     type = "structure",
     members = {
         CreationTime = schema.new({
@@ -647,7 +647,7 @@ M.GetApprovalTeamOutput = schema.new({
 })
 
 M.ListApprovalTeamsInput = schema.new({
-    id = id.from(_N, "ListApprovalTeamsInput"),
+    id = id.from(_N, "ListApprovalTeamsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -738,7 +738,7 @@ M.ListApprovalTeamsResponseApprovalTeam = schema.new({
 })
 
 M.ListApprovalTeamsOutput = schema.new({
-    id = id.from(_N, "ListApprovalTeamsOutput"),
+    id = id.from(_N, "ListApprovalTeamsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -758,7 +758,7 @@ M.ListApprovalTeamsOutput = schema.new({
 })
 
 M.StartActiveApprovalTeamDeletionInput = schema.new({
-    id = id.from(_N, "StartActiveApprovalTeamDeletionInput"),
+    id = id.from(_N, "StartActiveApprovalTeamDeletionRequest"),
     type = "structure",
     members = {
         PendingWindowDays = schema.new({
@@ -781,7 +781,7 @@ M.StartActiveApprovalTeamDeletionInput = schema.new({
 })
 
 M.StartActiveApprovalTeamDeletionOutput = schema.new({
-    id = id.from(_N, "StartActiveApprovalTeamDeletionOutput"),
+    id = id.from(_N, "StartActiveApprovalTeamDeletionResponse"),
     type = "structure",
     members = {
         DeletionCompletionTime = schema.new({
@@ -806,7 +806,7 @@ M.StartActiveApprovalTeamDeletionOutput = schema.new({
 })
 
 M.StartApprovalTeamBaselineInput = schema.new({
-    id = id.from(_N, "StartApprovalTeamBaselineInput"),
+    id = id.from(_N, "StartApprovalTeamBaselineRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -830,7 +830,7 @@ M.StartApprovalTeamBaselineInput = schema.new({
 })
 
 M.StartApprovalTeamBaselineOutput = schema.new({
-    id = id.from(_N, "StartApprovalTeamBaselineOutput"),
+    id = id.from(_N, "StartApprovalTeamBaselineResponse"),
     type = "structure",
     members = {
         BaselineSessionArn = schema.new({
@@ -843,7 +843,7 @@ M.StartApprovalTeamBaselineOutput = schema.new({
 })
 
 M.UpdateApprovalTeamInput = schema.new({
-    id = id.from(_N, "UpdateApprovalTeamInput"),
+    id = id.from(_N, "UpdateApprovalTeamRequest"),
     type = "structure",
     members = {
         ApprovalStrategy = schema.new({
@@ -887,7 +887,7 @@ M.UpdateApprovalTeamInput = schema.new({
 })
 
 M.UpdateApprovalTeamOutput = schema.new({
-    id = id.from(_N, "UpdateApprovalTeamOutput"),
+    id = id.from(_N, "UpdateApprovalTeamResponse"),
     type = "structure",
     members = {
         VersionId = schema.new({
@@ -900,7 +900,7 @@ M.UpdateApprovalTeamOutput = schema.new({
 })
 
 M.GetPolicyVersionInput = schema.new({
-    id = id.from(_N, "GetPolicyVersionInput"),
+    id = id.from(_N, "GetPolicyVersionRequest"),
     type = "structure",
     members = {
         PolicyVersionArn = schema.new({
@@ -1022,7 +1022,7 @@ M.PolicyVersion = schema.new({
 })
 
 M.GetPolicyVersionOutput = schema.new({
-    id = id.from(_N, "GetPolicyVersionOutput"),
+    id = id.from(_N, "GetPolicyVersionResponse"),
     type = "structure",
     members = {
         PolicyVersion = schema.new({
@@ -1039,7 +1039,7 @@ M.GetPolicyVersionOutput = schema.new({
 })
 
 M.GetResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetResourcePolicyInput"),
+    id = id.from(_N, "GetResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1073,7 +1073,7 @@ M.GetResourcePolicyInput = schema.new({
 })
 
 M.GetResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetResourcePolicyOutput"),
+    id = id.from(_N, "GetResourcePolicyResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1180,7 +1180,7 @@ M.IdentitySourceParameters = schema.new({
 })
 
 M.CreateIdentitySourceInput = schema.new({
-    id = id.from(_N, "CreateIdentitySourceInput"),
+    id = id.from(_N, "CreateIdentitySourceRequest"),
     type = "structure",
     members = {
         IdentitySourceParameters = schema.new({
@@ -1214,7 +1214,7 @@ M.CreateIdentitySourceInput = schema.new({
 })
 
 M.CreateIdentitySourceOutput = schema.new({
-    id = id.from(_N, "CreateIdentitySourceOutput"),
+    id = id.from(_N, "CreateIdentitySourceResponse"),
     type = "structure",
     members = {
         IdentitySourceType = schema.new({
@@ -1242,7 +1242,7 @@ M.CreateIdentitySourceOutput = schema.new({
 })
 
 M.DeleteIdentitySourceInput = schema.new({
-    id = id.from(_N, "DeleteIdentitySourceInput"),
+    id = id.from(_N, "DeleteIdentitySourceRequest"),
     type = "structure",
     members = {
         IdentitySourceArn = schema.new({
@@ -1259,12 +1259,12 @@ M.DeleteIdentitySourceInput = schema.new({
 })
 
 M.DeleteIdentitySourceOutput = schema.new({
-    id = id.from(_N, "DeleteIdentitySourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetIdentitySourceInput = schema.new({
-    id = id.from(_N, "GetIdentitySourceInput"),
+    id = id.from(_N, "GetIdentitySourceRequest"),
     type = "structure",
     members = {
         IdentitySourceArn = schema.new({
@@ -1320,7 +1320,7 @@ M.IdentitySourceParametersForGet = schema.new({
 })
 
 M.GetIdentitySourceOutput = schema.new({
-    id = id.from(_N, "GetIdentitySourceOutput"),
+    id = id.from(_N, "GetIdentitySourceResponse"),
     type = "structure",
     members = {
         IdentitySourceType = schema.new({
@@ -1373,7 +1373,7 @@ M.GetIdentitySourceOutput = schema.new({
 })
 
 M.ListIdentitySourcesInput = schema.new({
-    id = id.from(_N, "ListIdentitySourcesInput"),
+    id = id.from(_N, "ListIdentitySourcesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1491,7 +1491,7 @@ M.IdentitySourceForList = schema.new({
 })
 
 M.ListIdentitySourcesOutput = schema.new({
-    id = id.from(_N, "ListIdentitySourcesOutput"),
+    id = id.from(_N, "ListIdentitySourcesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1511,7 +1511,7 @@ M.ListIdentitySourcesOutput = schema.new({
 })
 
 M.ListPoliciesInput = schema.new({
-    id = id.from(_N, "ListPoliciesInput"),
+    id = id.from(_N, "ListPoliciesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1580,7 +1580,7 @@ M.Policy = schema.new({
 })
 
 M.ListPoliciesOutput = schema.new({
-    id = id.from(_N, "ListPoliciesOutput"),
+    id = id.from(_N, "ListPoliciesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1600,7 +1600,7 @@ M.ListPoliciesOutput = schema.new({
 })
 
 M.ListPolicyVersionsInput = schema.new({
-    id = id.from(_N, "ListPolicyVersionsInput"),
+    id = id.from(_N, "ListPolicyVersionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1732,7 +1732,7 @@ M.PolicyVersionSummary = schema.new({
 })
 
 M.ListPolicyVersionsOutput = schema.new({
-    id = id.from(_N, "ListPolicyVersionsOutput"),
+    id = id.from(_N, "ListPolicyVersionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1752,7 +1752,7 @@ M.ListPolicyVersionsOutput = schema.new({
 })
 
 M.ListResourcePoliciesInput = schema.new({
-    id = id.from(_N, "ListResourcePoliciesInput"),
+    id = id.from(_N, "ListResourcePoliciesRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1813,7 +1813,7 @@ M.ListResourcePoliciesResponseResourcePolicy = schema.new({
 })
 
 M.ListResourcePoliciesOutput = schema.new({
-    id = id.from(_N, "ListResourcePoliciesOutput"),
+    id = id.from(_N, "ListResourcePoliciesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1833,7 +1833,7 @@ M.ListResourcePoliciesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1850,7 +1850,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1865,7 +1865,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.CancelSessionInput = schema.new({
-    id = id.from(_N, "CancelSessionInput"),
+    id = id.from(_N, "CancelSessionRequest"),
     type = "structure",
     members = {
         SessionArn = schema.new({
@@ -1882,12 +1882,12 @@ M.CancelSessionInput = schema.new({
 })
 
 M.CancelSessionOutput = schema.new({
-    id = id.from(_N, "CancelSessionOutput"),
+    id = id.from(_N, "CancelSessionResponse"),
     type = "structure",
 })
 
 M.GetSessionInput = schema.new({
-    id = id.from(_N, "GetSessionInput"),
+    id = id.from(_N, "GetSessionRequest"),
     type = "structure",
     members = {
         SessionArn = schema.new({
@@ -1944,7 +1944,7 @@ M.GetSessionResponseApproverResponse = schema.new({
 })
 
 M.GetSessionOutput = schema.new({
-    id = id.from(_N, "GetSessionOutput"),
+    id = id.from(_N, "GetSessionResponse"),
     type = "structure",
     members = {
         SessionArn = schema.new({
@@ -2134,7 +2134,7 @@ M.Filter = schema.new({
 })
 
 M.ListSessionsInput = schema.new({
-    id = id.from(_N, "ListSessionsInput"),
+    id = id.from(_N, "ListSessionsRequest"),
     type = "structure",
     members = {
         ApprovalTeamArn = schema.new({
@@ -2298,7 +2298,7 @@ M.ListSessionsResponseSession = schema.new({
 })
 
 M.ListSessionsOutput = schema.new({
-    id = id.from(_N, "ListSessionsOutput"),
+    id = id.from(_N, "ListSessionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2318,7 +2318,7 @@ M.ListSessionsOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2346,7 +2346,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -2376,7 +2376,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2403,8 +2403,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

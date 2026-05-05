@@ -466,7 +466,7 @@ M.AssociateLensesInput = schema.new({
 })
 
 M.AssociateLensesOutput = schema.new({
-    id = id.from(_N, "AssociateLensesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -679,7 +679,7 @@ M.AssociateProfilesInput = schema.new({
 })
 
 M.AssociateProfilesOutput = schema.new({
-    id = id.from(_N, "AssociateProfilesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1865,7 +1865,7 @@ M.DeleteLensInput = schema.new({
 })
 
 M.DeleteLensOutput = schema.new({
-    id = id.from(_N, "DeleteLensOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1908,7 +1908,7 @@ M.DeleteLensShareInput = schema.new({
 })
 
 M.DeleteLensShareOutput = schema.new({
-    id = id.from(_N, "DeleteLensShareOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1941,7 +1941,7 @@ M.DeleteProfileInput = schema.new({
 })
 
 M.DeleteProfileOutput = schema.new({
-    id = id.from(_N, "DeleteProfileOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1984,7 +1984,7 @@ M.DeleteProfileShareInput = schema.new({
 })
 
 M.DeleteProfileShareOutput = schema.new({
-    id = id.from(_N, "DeleteProfileShareOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2017,7 +2017,7 @@ M.DeleteReviewTemplateInput = schema.new({
 })
 
 M.DeleteReviewTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteReviewTemplateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2060,7 +2060,7 @@ M.DeleteTemplateShareInput = schema.new({
 })
 
 M.DeleteTemplateShareOutput = schema.new({
-    id = id.from(_N, "DeleteTemplateShareOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2093,7 +2093,7 @@ M.DeleteWorkloadInput = schema.new({
 })
 
 M.DeleteWorkloadOutput = schema.new({
-    id = id.from(_N, "DeleteWorkloadOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2136,7 +2136,7 @@ M.DeleteWorkloadShareInput = schema.new({
 })
 
 M.DeleteWorkloadShareOutput = schema.new({
-    id = id.from(_N, "DeleteWorkloadShareOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2168,7 +2168,7 @@ M.DisassociateLensesInput = schema.new({
 })
 
 M.DisassociateLensesOutput = schema.new({
-    id = id.from(_N, "DisassociateLensesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2200,7 +2200,7 @@ M.DisassociateProfilesInput = schema.new({
 })
 
 M.DisassociateProfilesOutput = schema.new({
-    id = id.from(_N, "DisassociateProfilesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2398,7 +2398,7 @@ M.GetConsolidatedReportOutput = schema.new({
 })
 
 M.GetGlobalSettingsInput = schema.new({
-    id = id.from(_N, "GetGlobalSettingsInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -6532,7 +6532,7 @@ M.UpdateGlobalSettingsInput = schema.new({
 })
 
 M.UpdateGlobalSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateGlobalSettingsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -6573,7 +6573,7 @@ M.UpdateIntegrationInput = schema.new({
 })
 
 M.UpdateIntegrationOutput = schema.new({
-    id = id.from(_N, "UpdateIntegrationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -7237,7 +7237,7 @@ M.UpgradeLensReviewInput = schema.new({
 })
 
 M.UpgradeLensReviewOutput = schema.new({
-    id = id.from(_N, "UpgradeLensReviewOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -7284,7 +7284,7 @@ M.UpgradeProfileVersionInput = schema.new({
 })
 
 M.UpgradeProfileVersionOutput = schema.new({
-    id = id.from(_N, "UpgradeProfileVersionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -7322,8 +7322,22 @@ M.UpgradeReviewTemplateLensReviewInput = schema.new({
 })
 
 M.UpgradeReviewTemplateLensReviewOutput = schema.new({
-    id = id.from(_N, "UpgradeReviewTemplateLensReviewOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

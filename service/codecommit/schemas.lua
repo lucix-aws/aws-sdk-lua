@@ -421,7 +421,7 @@ M.AssociateApprovalRuleTemplateWithRepositoryInput = schema.new({
 })
 
 M.AssociateApprovalRuleTemplateWithRepositoryOutput = schema.new({
-    id = id.from(_N, "AssociateApprovalRuleTemplateWithRepositoryOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2141,7 +2141,7 @@ M.CreateBranchInput = schema.new({
 })
 
 M.CreateBranchOutput = schema.new({
-    id = id.from(_N, "CreateBranchOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4920,7 +4920,7 @@ M.DisassociateApprovalRuleTemplateFromRepositoryInput = schema.new({
 })
 
 M.DisassociateApprovalRuleTemplateFromRepositoryOutput = schema.new({
-    id = id.from(_N, "DisassociateApprovalRuleTemplateFromRepositoryOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -6798,7 +6798,7 @@ M.ListBranchesOutput = schema.new({
 })
 
 M.ListFileCommitHistoryInput = schema.new({
-    id = id.from(_N, "ListFileCommitHistoryInput"),
+    id = id.from(_N, "ListFileCommitHistoryRequest"),
     type = "structure",
     members = {
         repositoryName = schema.new({
@@ -6874,7 +6874,7 @@ M.FileVersion = schema.new({
 })
 
 M.ListFileCommitHistoryOutput = schema.new({
-    id = id.from(_N, "ListFileCommitHistoryOutput"),
+    id = id.from(_N, "ListFileCommitHistoryResponse"),
     type = "structure",
     members = {
         revisionDag = schema.new({
@@ -7821,7 +7821,7 @@ M.OverridePullRequestApprovalRulesInput = schema.new({
 })
 
 M.OverridePullRequestApprovalRulesOutput = schema.new({
-    id = id.from(_N, "OverridePullRequestApprovalRulesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -8243,7 +8243,7 @@ M.PutCommentReactionInput = schema.new({
 })
 
 M.PutCommentReactionOutput = schema.new({
-    id = id.from(_N, "PutCommentReactionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -8693,7 +8693,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -8838,7 +8838,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -9071,7 +9071,7 @@ M.UpdateDefaultBranchInput = schema.new({
 })
 
 M.UpdateDefaultBranchOutput = schema.new({
-    id = id.from(_N, "UpdateDefaultBranchOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -9215,7 +9215,7 @@ M.UpdatePullRequestApprovalStateInput = schema.new({
 })
 
 M.UpdatePullRequestApprovalStateOutput = schema.new({
-    id = id.from(_N, "UpdatePullRequestApprovalStateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -9400,7 +9400,7 @@ M.UpdateRepositoryDescriptionInput = schema.new({
 })
 
 M.UpdateRepositoryDescriptionOutput = schema.new({
-    id = id.from(_N, "UpdateRepositoryDescriptionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -9496,8 +9496,22 @@ M.UpdateRepositoryNameInput = schema.new({
 })
 
 M.UpdateRepositoryNameOutput = schema.new({
-    id = id.from(_N, "UpdateRepositoryNameOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

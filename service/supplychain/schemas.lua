@@ -89,7 +89,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateBillOfMaterialsImportJobInput = schema.new({
-    id = id.from(_N, "CreateBillOfMaterialsImportJobInput"),
+    id = id.from(_N, "CreateBillOfMaterialsImportJobRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -124,7 +124,7 @@ M.CreateBillOfMaterialsImportJobInput = schema.new({
 })
 
 M.CreateBillOfMaterialsImportJobOutput = schema.new({
-    id = id.from(_N, "CreateBillOfMaterialsImportJobOutput"),
+    id = id.from(_N, "CreateBillOfMaterialsImportJobResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -220,7 +220,7 @@ M.ValidationException = schema.new({
 })
 
 M.GetBillOfMaterialsImportJobInput = schema.new({
-    id = id.from(_N, "GetBillOfMaterialsImportJobInput"),
+    id = id.from(_N, "GetBillOfMaterialsImportJobRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -247,7 +247,7 @@ M.GetBillOfMaterialsImportJobInput = schema.new({
 })
 
 M.GetBillOfMaterialsImportJobOutput = schema.new({
-    id = id.from(_N, "GetBillOfMaterialsImportJobOutput"),
+    id = id.from(_N, "GetBillOfMaterialsImportJobResponse"),
     type = "structure",
     members = {
         job = schema.new({
@@ -586,7 +586,7 @@ M.DataIntegrationFlowTransformation = schema.new({
 })
 
 M.CreateDataIntegrationFlowInput = schema.new({
-    id = id.from(_N, "CreateDataIntegrationFlowInput"),
+    id = id.from(_N, "CreateDataIntegrationFlowRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -651,7 +651,7 @@ M.CreateDataIntegrationFlowInput = schema.new({
 })
 
 M.CreateDataIntegrationFlowOutput = schema.new({
-    id = id.from(_N, "CreateDataIntegrationFlowOutput"),
+    id = id.from(_N, "CreateDataIntegrationFlowResponse"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -818,7 +818,7 @@ M.DataLakeDatasetSchema = schema.new({
 })
 
 M.CreateDataLakeDatasetInput = schema.new({
-    id = id.from(_N, "CreateDataLakeDatasetInput"),
+    id = id.from(_N, "CreateDataLakeDatasetRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -967,7 +967,7 @@ M.DataLakeDataset = schema.new({
 })
 
 M.CreateDataLakeDatasetOutput = schema.new({
-    id = id.from(_N, "CreateDataLakeDatasetOutput"),
+    id = id.from(_N, "CreateDataLakeDatasetResponse"),
     type = "structure",
     members = {
         dataset = schema.new({
@@ -984,7 +984,7 @@ M.CreateDataLakeDatasetOutput = schema.new({
 })
 
 M.CreateDataLakeNamespaceInput = schema.new({
-    id = id.from(_N, "CreateDataLakeNamespaceInput"),
+    id = id.from(_N, "CreateDataLakeNamespaceRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -1083,7 +1083,7 @@ M.DataLakeNamespace = schema.new({
 })
 
 M.CreateDataLakeNamespaceOutput = schema.new({
-    id = id.from(_N, "CreateDataLakeNamespaceOutput"),
+    id = id.from(_N, "CreateDataLakeNamespaceResponse"),
     type = "structure",
     members = {
         namespace = schema.new({
@@ -1100,7 +1100,7 @@ M.CreateDataLakeNamespaceOutput = schema.new({
 })
 
 M.CreateInstanceInput = schema.new({
-    id = id.from(_N, "CreateInstanceInput"),
+    id = id.from(_N, "CreateInstanceRequest"),
     type = "structure",
     members = {
         instanceName = schema.new({
@@ -1230,7 +1230,7 @@ M.Instance = schema.new({
 })
 
 M.CreateInstanceOutput = schema.new({
-    id = id.from(_N, "CreateInstanceOutput"),
+    id = id.from(_N, "CreateInstanceResponse"),
     type = "structure",
     members = {
         instance = schema.new({
@@ -1617,7 +1617,7 @@ M.DataIntegrationFlowExecution = schema.new({
 })
 
 M.DeleteDataIntegrationFlowInput = schema.new({
-    id = id.from(_N, "DeleteDataIntegrationFlowInput"),
+    id = id.from(_N, "DeleteDataIntegrationFlowRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -1644,7 +1644,7 @@ M.DeleteDataIntegrationFlowInput = schema.new({
 })
 
 M.DeleteDataIntegrationFlowOutput = schema.new({
-    id = id.from(_N, "DeleteDataIntegrationFlowOutput"),
+    id = id.from(_N, "DeleteDataIntegrationFlowResponse"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -1669,7 +1669,7 @@ M.DeleteDataIntegrationFlowOutput = schema.new({
 })
 
 M.GetDataIntegrationFlowInput = schema.new({
-    id = id.from(_N, "GetDataIntegrationFlowInput"),
+    id = id.from(_N, "GetDataIntegrationFlowRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -1696,7 +1696,7 @@ M.GetDataIntegrationFlowInput = schema.new({
 })
 
 M.GetDataIntegrationFlowOutput = schema.new({
-    id = id.from(_N, "GetDataIntegrationFlowOutput"),
+    id = id.from(_N, "GetDataIntegrationFlowResponse"),
     type = "structure",
     members = {
         flow = schema.new({
@@ -1713,7 +1713,7 @@ M.GetDataIntegrationFlowOutput = schema.new({
 })
 
 M.ListDataIntegrationFlowsInput = schema.new({
-    id = id.from(_N, "ListDataIntegrationFlowsInput"),
+    id = id.from(_N, "ListDataIntegrationFlowsRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -1749,7 +1749,7 @@ M.ListDataIntegrationFlowsInput = schema.new({
 })
 
 M.ListDataIntegrationFlowsOutput = schema.new({
-    id = id.from(_N, "ListDataIntegrationFlowsOutput"),
+    id = id.from(_N, "ListDataIntegrationFlowsResponse"),
     type = "structure",
     members = {
         flows = schema.new({
@@ -1772,7 +1772,7 @@ M.ListDataIntegrationFlowsOutput = schema.new({
 })
 
 M.UpdateDataIntegrationFlowInput = schema.new({
-    id = id.from(_N, "UpdateDataIntegrationFlowInput"),
+    id = id.from(_N, "UpdateDataIntegrationFlowRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -1820,7 +1820,7 @@ M.UpdateDataIntegrationFlowInput = schema.new({
 })
 
 M.UpdateDataIntegrationFlowOutput = schema.new({
-    id = id.from(_N, "UpdateDataIntegrationFlowOutput"),
+    id = id.from(_N, "UpdateDataIntegrationFlowResponse"),
     type = "structure",
     members = {
         flow = schema.new({
@@ -1837,7 +1837,7 @@ M.UpdateDataIntegrationFlowOutput = schema.new({
 })
 
 M.DeleteDataLakeDatasetInput = schema.new({
-    id = id.from(_N, "DeleteDataLakeDatasetInput"),
+    id = id.from(_N, "DeleteDataLakeDatasetRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -1874,7 +1874,7 @@ M.DeleteDataLakeDatasetInput = schema.new({
 })
 
 M.DeleteDataLakeDatasetOutput = schema.new({
-    id = id.from(_N, "DeleteDataLakeDatasetOutput"),
+    id = id.from(_N, "DeleteDataLakeDatasetResponse"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -1908,7 +1908,7 @@ M.DeleteDataLakeDatasetOutput = schema.new({
 })
 
 M.GetDataLakeDatasetInput = schema.new({
-    id = id.from(_N, "GetDataLakeDatasetInput"),
+    id = id.from(_N, "GetDataLakeDatasetRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -1945,7 +1945,7 @@ M.GetDataLakeDatasetInput = schema.new({
 })
 
 M.GetDataLakeDatasetOutput = schema.new({
-    id = id.from(_N, "GetDataLakeDatasetOutput"),
+    id = id.from(_N, "GetDataLakeDatasetResponse"),
     type = "structure",
     members = {
         dataset = schema.new({
@@ -1962,7 +1962,7 @@ M.GetDataLakeDatasetOutput = schema.new({
 })
 
 M.ListDataLakeDatasetsInput = schema.new({
-    id = id.from(_N, "ListDataLakeDatasetsInput"),
+    id = id.from(_N, "ListDataLakeDatasetsRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -2008,7 +2008,7 @@ M.ListDataLakeDatasetsInput = schema.new({
 })
 
 M.ListDataLakeDatasetsOutput = schema.new({
-    id = id.from(_N, "ListDataLakeDatasetsOutput"),
+    id = id.from(_N, "ListDataLakeDatasetsResponse"),
     type = "structure",
     members = {
         datasets = schema.new({
@@ -2031,7 +2031,7 @@ M.ListDataLakeDatasetsOutput = schema.new({
 })
 
 M.UpdateDataLakeDatasetInput = schema.new({
-    id = id.from(_N, "UpdateDataLakeDatasetInput"),
+    id = id.from(_N, "UpdateDataLakeDatasetRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -2074,7 +2074,7 @@ M.UpdateDataLakeDatasetInput = schema.new({
 })
 
 M.UpdateDataLakeDatasetOutput = schema.new({
-    id = id.from(_N, "UpdateDataLakeDatasetOutput"),
+    id = id.from(_N, "UpdateDataLakeDatasetResponse"),
     type = "structure",
     members = {
         dataset = schema.new({
@@ -2091,7 +2091,7 @@ M.UpdateDataLakeDatasetOutput = schema.new({
 })
 
 M.DeleteDataLakeNamespaceInput = schema.new({
-    id = id.from(_N, "DeleteDataLakeNamespaceInput"),
+    id = id.from(_N, "DeleteDataLakeNamespaceRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -2118,7 +2118,7 @@ M.DeleteDataLakeNamespaceInput = schema.new({
 })
 
 M.DeleteDataLakeNamespaceOutput = schema.new({
-    id = id.from(_N, "DeleteDataLakeNamespaceOutput"),
+    id = id.from(_N, "DeleteDataLakeNamespaceResponse"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -2143,7 +2143,7 @@ M.DeleteDataLakeNamespaceOutput = schema.new({
 })
 
 M.GetDataLakeNamespaceInput = schema.new({
-    id = id.from(_N, "GetDataLakeNamespaceInput"),
+    id = id.from(_N, "GetDataLakeNamespaceRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -2170,7 +2170,7 @@ M.GetDataLakeNamespaceInput = schema.new({
 })
 
 M.GetDataLakeNamespaceOutput = schema.new({
-    id = id.from(_N, "GetDataLakeNamespaceOutput"),
+    id = id.from(_N, "GetDataLakeNamespaceResponse"),
     type = "structure",
     members = {
         namespace = schema.new({
@@ -2187,7 +2187,7 @@ M.GetDataLakeNamespaceOutput = schema.new({
 })
 
 M.ListDataLakeNamespacesInput = schema.new({
-    id = id.from(_N, "ListDataLakeNamespacesInput"),
+    id = id.from(_N, "ListDataLakeNamespacesRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -2223,7 +2223,7 @@ M.ListDataLakeNamespacesInput = schema.new({
 })
 
 M.ListDataLakeNamespacesOutput = schema.new({
-    id = id.from(_N, "ListDataLakeNamespacesOutput"),
+    id = id.from(_N, "ListDataLakeNamespacesResponse"),
     type = "structure",
     members = {
         namespaces = schema.new({
@@ -2246,7 +2246,7 @@ M.ListDataLakeNamespacesOutput = schema.new({
 })
 
 M.UpdateDataLakeNamespaceInput = schema.new({
-    id = id.from(_N, "UpdateDataLakeNamespaceInput"),
+    id = id.from(_N, "UpdateDataLakeNamespaceRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -2279,7 +2279,7 @@ M.UpdateDataLakeNamespaceInput = schema.new({
 })
 
 M.UpdateDataLakeNamespaceOutput = schema.new({
-    id = id.from(_N, "UpdateDataLakeNamespaceOutput"),
+    id = id.from(_N, "UpdateDataLakeNamespaceResponse"),
     type = "structure",
     members = {
         namespace = schema.new({
@@ -2296,7 +2296,7 @@ M.UpdateDataLakeNamespaceOutput = schema.new({
 })
 
 M.DeleteInstanceInput = schema.new({
-    id = id.from(_N, "DeleteInstanceInput"),
+    id = id.from(_N, "DeleteInstanceRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -2313,7 +2313,7 @@ M.DeleteInstanceInput = schema.new({
 })
 
 M.DeleteInstanceOutput = schema.new({
-    id = id.from(_N, "DeleteInstanceOutput"),
+    id = id.from(_N, "DeleteInstanceResponse"),
     type = "structure",
     members = {
         instance = schema.new({
@@ -2330,7 +2330,7 @@ M.DeleteInstanceOutput = schema.new({
 })
 
 M.GetDataIntegrationEventInput = schema.new({
-    id = id.from(_N, "GetDataIntegrationEventInput"),
+    id = id.from(_N, "GetDataIntegrationEventRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -2357,7 +2357,7 @@ M.GetDataIntegrationEventInput = schema.new({
 })
 
 M.GetDataIntegrationEventOutput = schema.new({
-    id = id.from(_N, "GetDataIntegrationEventOutput"),
+    id = id.from(_N, "GetDataIntegrationEventResponse"),
     type = "structure",
     members = {
         event = schema.new({
@@ -2374,7 +2374,7 @@ M.GetDataIntegrationEventOutput = schema.new({
 })
 
 M.GetDataIntegrationFlowExecutionInput = schema.new({
-    id = id.from(_N, "GetDataIntegrationFlowExecutionInput"),
+    id = id.from(_N, "GetDataIntegrationFlowExecutionRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -2411,7 +2411,7 @@ M.GetDataIntegrationFlowExecutionInput = schema.new({
 })
 
 M.GetDataIntegrationFlowExecutionOutput = schema.new({
-    id = id.from(_N, "GetDataIntegrationFlowExecutionOutput"),
+    id = id.from(_N, "GetDataIntegrationFlowExecutionResponse"),
     type = "structure",
     members = {
         flowExecution = schema.new({
@@ -2428,7 +2428,7 @@ M.GetDataIntegrationFlowExecutionOutput = schema.new({
 })
 
 M.GetInstanceInput = schema.new({
-    id = id.from(_N, "GetInstanceInput"),
+    id = id.from(_N, "GetInstanceRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -2445,7 +2445,7 @@ M.GetInstanceInput = schema.new({
 })
 
 M.GetInstanceOutput = schema.new({
-    id = id.from(_N, "GetInstanceOutput"),
+    id = id.from(_N, "GetInstanceResponse"),
     type = "structure",
     members = {
         instance = schema.new({
@@ -2462,7 +2462,7 @@ M.GetInstanceOutput = schema.new({
 })
 
 M.ListInstancesInput = schema.new({
-    id = id.from(_N, "ListInstancesInput"),
+    id = id.from(_N, "ListInstancesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2508,7 +2508,7 @@ M.ListInstancesInput = schema.new({
 })
 
 M.ListInstancesOutput = schema.new({
-    id = id.from(_N, "ListInstancesOutput"),
+    id = id.from(_N, "ListInstancesResponse"),
     type = "structure",
     members = {
         instances = schema.new({
@@ -2531,7 +2531,7 @@ M.ListInstancesOutput = schema.new({
 })
 
 M.UpdateInstanceInput = schema.new({
-    id = id.from(_N, "UpdateInstanceInput"),
+    id = id.from(_N, "UpdateInstanceRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -2560,7 +2560,7 @@ M.UpdateInstanceInput = schema.new({
 })
 
 M.UpdateInstanceOutput = schema.new({
-    id = id.from(_N, "UpdateInstanceOutput"),
+    id = id.from(_N, "UpdateInstanceResponse"),
     type = "structure",
     members = {
         instance = schema.new({
@@ -2577,7 +2577,7 @@ M.UpdateInstanceOutput = schema.new({
 })
 
 M.ListDataIntegrationEventsInput = schema.new({
-    id = id.from(_N, "ListDataIntegrationEventsInput"),
+    id = id.from(_N, "ListDataIntegrationEventsRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -2622,7 +2622,7 @@ M.ListDataIntegrationEventsInput = schema.new({
 })
 
 M.ListDataIntegrationEventsOutput = schema.new({
-    id = id.from(_N, "ListDataIntegrationEventsOutput"),
+    id = id.from(_N, "ListDataIntegrationEventsResponse"),
     type = "structure",
     members = {
         events = schema.new({
@@ -2645,7 +2645,7 @@ M.ListDataIntegrationEventsOutput = schema.new({
 })
 
 M.ListDataIntegrationFlowExecutionsInput = schema.new({
-    id = id.from(_N, "ListDataIntegrationFlowExecutionsInput"),
+    id = id.from(_N, "ListDataIntegrationFlowExecutionsRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -2691,7 +2691,7 @@ M.ListDataIntegrationFlowExecutionsInput = schema.new({
 })
 
 M.ListDataIntegrationFlowExecutionsOutput = schema.new({
-    id = id.from(_N, "ListDataIntegrationFlowExecutionsOutput"),
+    id = id.from(_N, "ListDataIntegrationFlowExecutionsResponse"),
     type = "structure",
     members = {
         flowExecutions = schema.new({
@@ -2714,7 +2714,7 @@ M.ListDataIntegrationFlowExecutionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2731,7 +2731,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2749,7 +2749,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.SendDataIntegrationEventInput = schema.new({
-    id = id.from(_N, "SendDataIntegrationEventInput"),
+    id = id.from(_N, "SendDataIntegrationEventRequest"),
     type = "structure",
     members = {
         instanceId = schema.new({
@@ -2818,7 +2818,7 @@ M.SendDataIntegrationEventInput = schema.new({
 })
 
 M.SendDataIntegrationEventOutput = schema.new({
-    id = id.from(_N, "SendDataIntegrationEventOutput"),
+    id = id.from(_N, "SendDataIntegrationEventResponse"),
     type = "structure",
     members = {
         eventId = schema.new({
@@ -2834,7 +2834,7 @@ M.SendDataIntegrationEventOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2862,12 +2862,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2895,8 +2895,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

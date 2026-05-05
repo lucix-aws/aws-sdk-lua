@@ -57,7 +57,7 @@ M.BatchGetRecordIdentifier = schema.new({
 })
 
 M.BatchGetRecordInput = schema.new({
-    id = id.from(_N, "BatchGetRecordInput"),
+    id = id.from(_N, "BatchGetRecordRequest"),
     type = "structure",
     members = {
         Identifiers = schema.new({
@@ -193,7 +193,7 @@ M.BatchGetRecordResultDetail = schema.new({
 })
 
 M.BatchGetRecordOutput = schema.new({
-    id = id.from(_N, "BatchGetRecordOutput"),
+    id = id.from(_N, "BatchGetRecordResponse"),
     type = "structure",
     members = {
         Records = schema.new({
@@ -278,7 +278,7 @@ M.ValidationError = schema.new({
 })
 
 M.DeleteRecordInput = schema.new({
-    id = id.from(_N, "DeleteRecordInput"),
+    id = id.from(_N, "DeleteRecordRequest"),
     type = "structure",
     members = {
         FeatureGroupName = schema.new({
@@ -334,12 +334,12 @@ M.DeleteRecordInput = schema.new({
 })
 
 M.DeleteRecordOutput = schema.new({
-    id = id.from(_N, "DeleteRecordOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetRecordInput = schema.new({
-    id = id.from(_N, "GetRecordInput"),
+    id = id.from(_N, "GetRecordRequest"),
     type = "structure",
     members = {
         FeatureGroupName = schema.new({
@@ -385,7 +385,7 @@ M.GetRecordInput = schema.new({
 })
 
 M.GetRecordOutput = schema.new({
-    id = id.from(_N, "GetRecordOutput"),
+    id = id.from(_N, "GetRecordResponse"),
     type = "structure",
     members = {
         Record = schema.new({
@@ -446,7 +446,7 @@ M.TtlDuration = schema.new({
 })
 
 M.PutRecordInput = schema.new({
-    id = id.from(_N, "PutRecordInput"),
+    id = id.from(_N, "PutRecordRequest"),
     type = "structure",
     members = {
         FeatureGroupName = schema.new({
@@ -487,8 +487,22 @@ M.PutRecordInput = schema.new({
 })
 
 M.PutRecordOutput = schema.new({
-    id = id.from(_N, "PutRecordOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

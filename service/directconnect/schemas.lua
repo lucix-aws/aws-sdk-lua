@@ -21,7 +21,7 @@ M.RouteFilterPrefix = schema.new({
 })
 
 M.AcceptDirectConnectGatewayAssociationProposalInput = schema.new({
-    id = id.from(_N, "AcceptDirectConnectGatewayAssociationProposalInput"),
+    id = id.from(_N, "AcceptDirectConnectGatewayAssociationProposalRequest"),
     type = "structure",
     members = {
         directConnectGatewayId = schema.new({
@@ -194,7 +194,7 @@ M.DirectConnectGatewayAssociation = schema.new({
 })
 
 M.AcceptDirectConnectGatewayAssociationProposalOutput = schema.new({
-    id = id.from(_N, "AcceptDirectConnectGatewayAssociationProposalOutput"),
+    id = id.from(_N, "AcceptDirectConnectGatewayAssociationProposalResult"),
     type = "structure",
     members = {
         directConnectGatewayAssociation = schema.new({
@@ -259,7 +259,7 @@ M.CustomerAgreement = schema.new({
 })
 
 M.AllocateConnectionOnInterconnectInput = schema.new({
-    id = id.from(_N, "AllocateConnectionOnInterconnectInput"),
+    id = id.from(_N, "AllocateConnectionOnInterconnectRequest"),
     type = "structure",
     members = {
         bandwidth = schema.new({
@@ -365,7 +365,7 @@ M.Tag = schema.new({
 })
 
 M.AllocateConnectionOnInterconnectOutput = schema.new({
-    id = id.from(_N, "AllocateConnectionOnInterconnectOutput"),
+    id = id.from(_N, "Connection"),
     type = "structure",
     members = {
         ownerAccount = schema.new({
@@ -515,7 +515,7 @@ M.AllocateConnectionOnInterconnectOutput = schema.new({
 })
 
 M.AllocateHostedConnectionInput = schema.new({
-    id = id.from(_N, "AllocateHostedConnectionInput"),
+    id = id.from(_N, "AllocateHostedConnectionRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -575,7 +575,7 @@ M.AllocateHostedConnectionInput = schema.new({
 })
 
 M.AllocateHostedConnectionOutput = schema.new({
-    id = id.from(_N, "AllocateHostedConnectionOutput"),
+    id = id.from(_N, "Connection"),
     type = "structure",
     members = {
         ownerAccount = schema.new({
@@ -835,7 +835,7 @@ M.NewPrivateVirtualInterfaceAllocation = schema.new({
 })
 
 M.AllocatePrivateVirtualInterfaceInput = schema.new({
-    id = id.from(_N, "AllocatePrivateVirtualInterfaceInput"),
+    id = id.from(_N, "AllocatePrivateVirtualInterfaceRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -946,7 +946,7 @@ M.BGPPeer = schema.new({
 })
 
 M.AllocatePrivateVirtualInterfaceOutput = schema.new({
-    id = id.from(_N, "AllocatePrivateVirtualInterfaceOutput"),
+    id = id.from(_N, "VirtualInterface"),
     type = "structure",
     members = {
         ownerAccount = schema.new({
@@ -1203,7 +1203,7 @@ M.NewPublicVirtualInterfaceAllocation = schema.new({
 })
 
 M.AllocatePublicVirtualInterfaceInput = schema.new({
-    id = id.from(_N, "AllocatePublicVirtualInterfaceInput"),
+    id = id.from(_N, "AllocatePublicVirtualInterfaceRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -1238,7 +1238,7 @@ M.AllocatePublicVirtualInterfaceInput = schema.new({
 })
 
 M.AllocatePublicVirtualInterfaceOutput = schema.new({
-    id = id.from(_N, "AllocatePublicVirtualInterfaceOutput"),
+    id = id.from(_N, "VirtualInterface"),
     type = "structure",
     members = {
         ownerAccount = schema.new({
@@ -1490,7 +1490,7 @@ M.NewTransitVirtualInterfaceAllocation = schema.new({
 })
 
 M.AllocateTransitVirtualInterfaceInput = schema.new({
-    id = id.from(_N, "AllocateTransitVirtualInterfaceInput"),
+    id = id.from(_N, "AllocateTransitVirtualInterfaceRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -1703,7 +1703,7 @@ M.VirtualInterface = schema.new({
 })
 
 M.AllocateTransitVirtualInterfaceOutput = schema.new({
-    id = id.from(_N, "AllocateTransitVirtualInterfaceOutput"),
+    id = id.from(_N, "AllocateTransitVirtualInterfaceResult"),
     type = "structure",
     members = {
         virtualInterface = schema.new({
@@ -1717,7 +1717,7 @@ M.AllocateTransitVirtualInterfaceOutput = schema.new({
 })
 
 M.AssociateConnectionWithLagInput = schema.new({
-    id = id.from(_N, "AssociateConnectionWithLagInput"),
+    id = id.from(_N, "AssociateConnectionWithLagRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -1742,7 +1742,7 @@ M.AssociateConnectionWithLagInput = schema.new({
 })
 
 M.AssociateConnectionWithLagOutput = schema.new({
-    id = id.from(_N, "AssociateConnectionWithLagOutput"),
+    id = id.from(_N, "Connection"),
     type = "structure",
     members = {
         ownerAccount = schema.new({
@@ -1892,7 +1892,7 @@ M.AssociateConnectionWithLagOutput = schema.new({
 })
 
 M.AssociateHostedConnectionInput = schema.new({
-    id = id.from(_N, "AssociateHostedConnectionInput"),
+    id = id.from(_N, "AssociateHostedConnectionRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -1917,7 +1917,7 @@ M.AssociateHostedConnectionInput = schema.new({
 })
 
 M.AssociateHostedConnectionOutput = schema.new({
-    id = id.from(_N, "AssociateHostedConnectionOutput"),
+    id = id.from(_N, "Connection"),
     type = "structure",
     members = {
         ownerAccount = schema.new({
@@ -2067,7 +2067,7 @@ M.AssociateHostedConnectionOutput = schema.new({
 })
 
 M.AssociateMacSecKeyInput = schema.new({
-    id = id.from(_N, "AssociateMacSecKeyInput"),
+    id = id.from(_N, "AssociateMacSecKeyRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -2101,7 +2101,7 @@ M.AssociateMacSecKeyInput = schema.new({
 })
 
 M.AssociateMacSecKeyOutput = schema.new({
-    id = id.from(_N, "AssociateMacSecKeyOutput"),
+    id = id.from(_N, "AssociateMacSecKeyResponse"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -2121,7 +2121,7 @@ M.AssociateMacSecKeyOutput = schema.new({
 })
 
 M.AssociateVirtualInterfaceInput = schema.new({
-    id = id.from(_N, "AssociateVirtualInterfaceInput"),
+    id = id.from(_N, "AssociateVirtualInterfaceRequest"),
     type = "structure",
     members = {
         virtualInterfaceId = schema.new({
@@ -2146,7 +2146,7 @@ M.AssociateVirtualInterfaceInput = schema.new({
 })
 
 M.AssociateVirtualInterfaceOutput = schema.new({
-    id = id.from(_N, "AssociateVirtualInterfaceOutput"),
+    id = id.from(_N, "VirtualInterface"),
     type = "structure",
     members = {
         ownerAccount = schema.new({
@@ -2324,7 +2324,7 @@ M.AssociateVirtualInterfaceOutput = schema.new({
 })
 
 M.ConfirmConnectionInput = schema.new({
-    id = id.from(_N, "ConfirmConnectionInput"),
+    id = id.from(_N, "ConfirmConnectionRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -2340,7 +2340,7 @@ M.ConfirmConnectionInput = schema.new({
 })
 
 M.ConfirmConnectionOutput = schema.new({
-    id = id.from(_N, "ConfirmConnectionOutput"),
+    id = id.from(_N, "ConfirmConnectionResponse"),
     type = "structure",
     members = {
         connectionState = schema.new({
@@ -2353,7 +2353,7 @@ M.ConfirmConnectionOutput = schema.new({
 })
 
 M.ConfirmCustomerAgreementInput = schema.new({
-    id = id.from(_N, "ConfirmCustomerAgreementInput"),
+    id = id.from(_N, "ConfirmCustomerAgreementRequest"),
     type = "structure",
     members = {
         agreementName = schema.new({
@@ -2366,7 +2366,7 @@ M.ConfirmCustomerAgreementInput = schema.new({
 })
 
 M.ConfirmCustomerAgreementOutput = schema.new({
-    id = id.from(_N, "ConfirmCustomerAgreementOutput"),
+    id = id.from(_N, "ConfirmCustomerAgreementResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -2379,7 +2379,7 @@ M.ConfirmCustomerAgreementOutput = schema.new({
 })
 
 M.ConfirmPrivateVirtualInterfaceInput = schema.new({
-    id = id.from(_N, "ConfirmPrivateVirtualInterfaceInput"),
+    id = id.from(_N, "ConfirmPrivateVirtualInterfaceRequest"),
     type = "structure",
     members = {
         virtualInterfaceId = schema.new({
@@ -2407,7 +2407,7 @@ M.ConfirmPrivateVirtualInterfaceInput = schema.new({
 })
 
 M.ConfirmPrivateVirtualInterfaceOutput = schema.new({
-    id = id.from(_N, "ConfirmPrivateVirtualInterfaceOutput"),
+    id = id.from(_N, "ConfirmPrivateVirtualInterfaceResponse"),
     type = "structure",
     members = {
         virtualInterfaceState = schema.new({
@@ -2420,7 +2420,7 @@ M.ConfirmPrivateVirtualInterfaceOutput = schema.new({
 })
 
 M.ConfirmPublicVirtualInterfaceInput = schema.new({
-    id = id.from(_N, "ConfirmPublicVirtualInterfaceInput"),
+    id = id.from(_N, "ConfirmPublicVirtualInterfaceRequest"),
     type = "structure",
     members = {
         virtualInterfaceId = schema.new({
@@ -2436,7 +2436,7 @@ M.ConfirmPublicVirtualInterfaceInput = schema.new({
 })
 
 M.ConfirmPublicVirtualInterfaceOutput = schema.new({
-    id = id.from(_N, "ConfirmPublicVirtualInterfaceOutput"),
+    id = id.from(_N, "ConfirmPublicVirtualInterfaceResponse"),
     type = "structure",
     members = {
         virtualInterfaceState = schema.new({
@@ -2449,7 +2449,7 @@ M.ConfirmPublicVirtualInterfaceOutput = schema.new({
 })
 
 M.ConfirmTransitVirtualInterfaceInput = schema.new({
-    id = id.from(_N, "ConfirmTransitVirtualInterfaceInput"),
+    id = id.from(_N, "ConfirmTransitVirtualInterfaceRequest"),
     type = "structure",
     members = {
         virtualInterfaceId = schema.new({
@@ -2474,7 +2474,7 @@ M.ConfirmTransitVirtualInterfaceInput = schema.new({
 })
 
 M.ConfirmTransitVirtualInterfaceOutput = schema.new({
-    id = id.from(_N, "ConfirmTransitVirtualInterfaceOutput"),
+    id = id.from(_N, "ConfirmTransitVirtualInterfaceResponse"),
     type = "structure",
     members = {
         virtualInterfaceState = schema.new({
@@ -2683,7 +2683,7 @@ M.NewBGPPeer = schema.new({
 })
 
 M.CreateBGPPeerInput = schema.new({
-    id = id.from(_N, "CreateBGPPeerInput"),
+    id = id.from(_N, "CreateBGPPeerRequest"),
     type = "structure",
     members = {
         virtualInterfaceId = schema.new({
@@ -2703,7 +2703,7 @@ M.CreateBGPPeerInput = schema.new({
 })
 
 M.CreateBGPPeerOutput = schema.new({
-    id = id.from(_N, "CreateBGPPeerOutput"),
+    id = id.from(_N, "CreateBGPPeerResponse"),
     type = "structure",
     members = {
         virtualInterface = schema.new({
@@ -2717,7 +2717,7 @@ M.CreateBGPPeerOutput = schema.new({
 })
 
 M.CreateConnectionInput = schema.new({
-    id = id.from(_N, "CreateConnectionInput"),
+    id = id.from(_N, "CreateConnectionRequest"),
     type = "structure",
     members = {
         location = schema.new({
@@ -2776,7 +2776,7 @@ M.CreateConnectionInput = schema.new({
 })
 
 M.CreateConnectionOutput = schema.new({
-    id = id.from(_N, "CreateConnectionOutput"),
+    id = id.from(_N, "Connection"),
     type = "structure",
     members = {
         ownerAccount = schema.new({
@@ -2926,7 +2926,7 @@ M.CreateConnectionOutput = schema.new({
 })
 
 M.CreateDirectConnectGatewayInput = schema.new({
-    id = id.from(_N, "CreateDirectConnectGatewayInput"),
+    id = id.from(_N, "CreateDirectConnectGatewayRequest"),
     type = "structure",
     members = {
         directConnectGatewayName = schema.new({
@@ -3005,7 +3005,7 @@ M.DirectConnectGateway = schema.new({
 })
 
 M.CreateDirectConnectGatewayOutput = schema.new({
-    id = id.from(_N, "CreateDirectConnectGatewayOutput"),
+    id = id.from(_N, "CreateDirectConnectGatewayResult"),
     type = "structure",
     members = {
         directConnectGateway = schema.new({
@@ -3019,7 +3019,7 @@ M.CreateDirectConnectGatewayOutput = schema.new({
 })
 
 M.CreateDirectConnectGatewayAssociationInput = schema.new({
-    id = id.from(_N, "CreateDirectConnectGatewayAssociationInput"),
+    id = id.from(_N, "CreateDirectConnectGatewayAssociationRequest"),
     type = "structure",
     members = {
         directConnectGatewayId = schema.new({
@@ -3054,7 +3054,7 @@ M.CreateDirectConnectGatewayAssociationInput = schema.new({
 })
 
 M.CreateDirectConnectGatewayAssociationOutput = schema.new({
-    id = id.from(_N, "CreateDirectConnectGatewayAssociationOutput"),
+    id = id.from(_N, "CreateDirectConnectGatewayAssociationResult"),
     type = "structure",
     members = {
         directConnectGatewayAssociation = schema.new({
@@ -3068,7 +3068,7 @@ M.CreateDirectConnectGatewayAssociationOutput = schema.new({
 })
 
 M.CreateDirectConnectGatewayAssociationProposalInput = schema.new({
-    id = id.from(_N, "CreateDirectConnectGatewayAssociationProposalInput"),
+    id = id.from(_N, "CreateDirectConnectGatewayAssociationProposalRequest"),
     type = "structure",
     members = {
         directConnectGatewayId = schema.new({
@@ -3168,7 +3168,7 @@ M.DirectConnectGatewayAssociationProposal = schema.new({
 })
 
 M.CreateDirectConnectGatewayAssociationProposalOutput = schema.new({
-    id = id.from(_N, "CreateDirectConnectGatewayAssociationProposalOutput"),
+    id = id.from(_N, "CreateDirectConnectGatewayAssociationProposalResult"),
     type = "structure",
     members = {
         directConnectGatewayAssociationProposal = schema.new({
@@ -3182,7 +3182,7 @@ M.CreateDirectConnectGatewayAssociationProposalOutput = schema.new({
 })
 
 M.CreateInterconnectInput = schema.new({
-    id = id.from(_N, "CreateInterconnectInput"),
+    id = id.from(_N, "CreateInterconnectRequest"),
     type = "structure",
     members = {
         interconnectName = schema.new({
@@ -3241,7 +3241,7 @@ M.CreateInterconnectInput = schema.new({
 })
 
 M.CreateInterconnectOutput = schema.new({
-    id = id.from(_N, "CreateInterconnectOutput"),
+    id = id.from(_N, "Interconnect"),
     type = "structure",
     members = {
         interconnectId = schema.new({
@@ -3364,7 +3364,7 @@ M.CreateInterconnectOutput = schema.new({
 })
 
 M.CreateLagInput = schema.new({
-    id = id.from(_N, "CreateLagInput"),
+    id = id.from(_N, "CreateLagRequest"),
     type = "structure",
     members = {
         numberOfConnections = schema.new({
@@ -3440,7 +3440,7 @@ M.CreateLagInput = schema.new({
 })
 
 M.CreateLagOutput = schema.new({
-    id = id.from(_N, "CreateLagOutput"),
+    id = id.from(_N, "Lag"),
     type = "structure",
     members = {
         connectionsBandwidth = schema.new({
@@ -3681,7 +3681,7 @@ M.NewPrivateVirtualInterface = schema.new({
 })
 
 M.CreatePrivateVirtualInterfaceInput = schema.new({
-    id = id.from(_N, "CreatePrivateVirtualInterfaceInput"),
+    id = id.from(_N, "CreatePrivateVirtualInterfaceRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -3707,7 +3707,7 @@ M.CreatePrivateVirtualInterfaceInput = schema.new({
 })
 
 M.CreatePrivateVirtualInterfaceOutput = schema.new({
-    id = id.from(_N, "CreatePrivateVirtualInterfaceOutput"),
+    id = id.from(_N, "VirtualInterface"),
     type = "structure",
     members = {
         ownerAccount = schema.new({
@@ -3964,7 +3964,7 @@ M.NewPublicVirtualInterface = schema.new({
 })
 
 M.CreatePublicVirtualInterfaceInput = schema.new({
-    id = id.from(_N, "CreatePublicVirtualInterfaceInput"),
+    id = id.from(_N, "CreatePublicVirtualInterfaceRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -3990,7 +3990,7 @@ M.CreatePublicVirtualInterfaceInput = schema.new({
 })
 
 M.CreatePublicVirtualInterfaceOutput = schema.new({
-    id = id.from(_N, "CreatePublicVirtualInterfaceOutput"),
+    id = id.from(_N, "VirtualInterface"),
     type = "structure",
     members = {
         ownerAccount = schema.new({
@@ -4254,7 +4254,7 @@ M.NewTransitVirtualInterface = schema.new({
 })
 
 M.CreateTransitVirtualInterfaceInput = schema.new({
-    id = id.from(_N, "CreateTransitVirtualInterfaceInput"),
+    id = id.from(_N, "CreateTransitVirtualInterfaceRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -4280,7 +4280,7 @@ M.CreateTransitVirtualInterfaceInput = schema.new({
 })
 
 M.CreateTransitVirtualInterfaceOutput = schema.new({
-    id = id.from(_N, "CreateTransitVirtualInterfaceOutput"),
+    id = id.from(_N, "CreateTransitVirtualInterfaceResult"),
     type = "structure",
     members = {
         virtualInterface = schema.new({
@@ -4294,7 +4294,7 @@ M.CreateTransitVirtualInterfaceOutput = schema.new({
 })
 
 M.DeleteBGPPeerInput = schema.new({
-    id = id.from(_N, "DeleteBGPPeerInput"),
+    id = id.from(_N, "DeleteBGPPeerRequest"),
     type = "structure",
     members = {
         virtualInterfaceId = schema.new({
@@ -4334,7 +4334,7 @@ M.DeleteBGPPeerInput = schema.new({
 })
 
 M.DeleteBGPPeerOutput = schema.new({
-    id = id.from(_N, "DeleteBGPPeerOutput"),
+    id = id.from(_N, "DeleteBGPPeerResponse"),
     type = "structure",
     members = {
         virtualInterface = schema.new({
@@ -4348,7 +4348,7 @@ M.DeleteBGPPeerOutput = schema.new({
 })
 
 M.DeleteConnectionInput = schema.new({
-    id = id.from(_N, "DeleteConnectionInput"),
+    id = id.from(_N, "DeleteConnectionRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -4364,7 +4364,7 @@ M.DeleteConnectionInput = schema.new({
 })
 
 M.DeleteConnectionOutput = schema.new({
-    id = id.from(_N, "DeleteConnectionOutput"),
+    id = id.from(_N, "Connection"),
     type = "structure",
     members = {
         ownerAccount = schema.new({
@@ -4514,7 +4514,7 @@ M.DeleteConnectionOutput = schema.new({
 })
 
 M.DeleteDirectConnectGatewayInput = schema.new({
-    id = id.from(_N, "DeleteDirectConnectGatewayInput"),
+    id = id.from(_N, "DeleteDirectConnectGatewayRequest"),
     type = "structure",
     members = {
         directConnectGatewayId = schema.new({
@@ -4530,7 +4530,7 @@ M.DeleteDirectConnectGatewayInput = schema.new({
 })
 
 M.DeleteDirectConnectGatewayOutput = schema.new({
-    id = id.from(_N, "DeleteDirectConnectGatewayOutput"),
+    id = id.from(_N, "DeleteDirectConnectGatewayResult"),
     type = "structure",
     members = {
         directConnectGateway = schema.new({
@@ -4544,7 +4544,7 @@ M.DeleteDirectConnectGatewayOutput = schema.new({
 })
 
 M.DeleteDirectConnectGatewayAssociationInput = schema.new({
-    id = id.from(_N, "DeleteDirectConnectGatewayAssociationInput"),
+    id = id.from(_N, "DeleteDirectConnectGatewayAssociationRequest"),
     type = "structure",
     members = {
         associationId = schema.new({
@@ -4569,7 +4569,7 @@ M.DeleteDirectConnectGatewayAssociationInput = schema.new({
 })
 
 M.DeleteDirectConnectGatewayAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteDirectConnectGatewayAssociationOutput"),
+    id = id.from(_N, "DeleteDirectConnectGatewayAssociationResult"),
     type = "structure",
     members = {
         directConnectGatewayAssociation = schema.new({
@@ -4583,7 +4583,7 @@ M.DeleteDirectConnectGatewayAssociationOutput = schema.new({
 })
 
 M.DeleteDirectConnectGatewayAssociationProposalInput = schema.new({
-    id = id.from(_N, "DeleteDirectConnectGatewayAssociationProposalInput"),
+    id = id.from(_N, "DeleteDirectConnectGatewayAssociationProposalRequest"),
     type = "structure",
     members = {
         proposalId = schema.new({
@@ -4599,7 +4599,7 @@ M.DeleteDirectConnectGatewayAssociationProposalInput = schema.new({
 })
 
 M.DeleteDirectConnectGatewayAssociationProposalOutput = schema.new({
-    id = id.from(_N, "DeleteDirectConnectGatewayAssociationProposalOutput"),
+    id = id.from(_N, "DeleteDirectConnectGatewayAssociationProposalResult"),
     type = "structure",
     members = {
         directConnectGatewayAssociationProposal = schema.new({
@@ -4613,7 +4613,7 @@ M.DeleteDirectConnectGatewayAssociationProposalOutput = schema.new({
 })
 
 M.DeleteInterconnectInput = schema.new({
-    id = id.from(_N, "DeleteInterconnectInput"),
+    id = id.from(_N, "DeleteInterconnectRequest"),
     type = "structure",
     members = {
         interconnectId = schema.new({
@@ -4629,7 +4629,7 @@ M.DeleteInterconnectInput = schema.new({
 })
 
 M.DeleteInterconnectOutput = schema.new({
-    id = id.from(_N, "DeleteInterconnectOutput"),
+    id = id.from(_N, "DeleteInterconnectResponse"),
     type = "structure",
     members = {
         interconnectState = schema.new({
@@ -4642,7 +4642,7 @@ M.DeleteInterconnectOutput = schema.new({
 })
 
 M.DeleteLagInput = schema.new({
-    id = id.from(_N, "DeleteLagInput"),
+    id = id.from(_N, "DeleteLagRequest"),
     type = "structure",
     members = {
         lagId = schema.new({
@@ -4658,7 +4658,7 @@ M.DeleteLagInput = schema.new({
 })
 
 M.DeleteLagOutput = schema.new({
-    id = id.from(_N, "DeleteLagOutput"),
+    id = id.from(_N, "Lag"),
     type = "structure",
     members = {
         connectionsBandwidth = schema.new({
@@ -4803,7 +4803,7 @@ M.DeleteLagOutput = schema.new({
 })
 
 M.DeleteVirtualInterfaceInput = schema.new({
-    id = id.from(_N, "DeleteVirtualInterfaceInput"),
+    id = id.from(_N, "DeleteVirtualInterfaceRequest"),
     type = "structure",
     members = {
         virtualInterfaceId = schema.new({
@@ -4819,7 +4819,7 @@ M.DeleteVirtualInterfaceInput = schema.new({
 })
 
 M.DeleteVirtualInterfaceOutput = schema.new({
-    id = id.from(_N, "DeleteVirtualInterfaceOutput"),
+    id = id.from(_N, "DeleteVirtualInterfaceResponse"),
     type = "structure",
     members = {
         virtualInterfaceState = schema.new({
@@ -4832,7 +4832,7 @@ M.DeleteVirtualInterfaceOutput = schema.new({
 })
 
 M.DescribeConnectionLoaInput = schema.new({
-    id = id.from(_N, "DescribeConnectionLoaInput"),
+    id = id.from(_N, "DescribeConnectionLoaRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -4879,7 +4879,7 @@ M.Loa = schema.new({
 })
 
 M.DescribeConnectionLoaOutput = schema.new({
-    id = id.from(_N, "DescribeConnectionLoaOutput"),
+    id = id.from(_N, "DescribeConnectionLoaResponse"),
     type = "structure",
     members = {
         loa = schema.new({
@@ -4893,7 +4893,7 @@ M.DescribeConnectionLoaOutput = schema.new({
 })
 
 M.DescribeConnectionsInput = schema.new({
-    id = id.from(_N, "DescribeConnectionsInput"),
+    id = id.from(_N, "DescribeConnectionsRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -4918,7 +4918,7 @@ M.DescribeConnectionsInput = schema.new({
 })
 
 M.DescribeConnectionsOutput = schema.new({
-    id = id.from(_N, "DescribeConnectionsOutput"),
+    id = id.from(_N, "Connections"),
     type = "structure",
     members = {
         connections = schema.new({
@@ -4938,7 +4938,7 @@ M.DescribeConnectionsOutput = schema.new({
 })
 
 M.DescribeConnectionsOnInterconnectInput = schema.new({
-    id = id.from(_N, "DescribeConnectionsOnInterconnectInput"),
+    id = id.from(_N, "DescribeConnectionsOnInterconnectRequest"),
     type = "structure",
     members = {
         interconnectId = schema.new({
@@ -4954,7 +4954,7 @@ M.DescribeConnectionsOnInterconnectInput = schema.new({
 })
 
 M.DescribeConnectionsOnInterconnectOutput = schema.new({
-    id = id.from(_N, "DescribeConnectionsOnInterconnectOutput"),
+    id = id.from(_N, "Connections"),
     type = "structure",
     members = {
         connections = schema.new({
@@ -4974,12 +4974,12 @@ M.DescribeConnectionsOnInterconnectOutput = schema.new({
 })
 
 M.DescribeCustomerMetadataInput = schema.new({
-    id = id.from(_N, "DescribeCustomerMetadataInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeCustomerMetadataOutput = schema.new({
-    id = id.from(_N, "DescribeCustomerMetadataOutput"),
+    id = id.from(_N, "DescribeCustomerMetadataResponse"),
     type = "structure",
     members = {
         agreements = schema.new({
@@ -4999,7 +4999,7 @@ M.DescribeCustomerMetadataOutput = schema.new({
 })
 
 M.DescribeDirectConnectGatewayAssociationProposalsInput = schema.new({
-    id = id.from(_N, "DescribeDirectConnectGatewayAssociationProposalsInput"),
+    id = id.from(_N, "DescribeDirectConnectGatewayAssociationProposalsRequest"),
     type = "structure",
     members = {
         directConnectGatewayId = schema.new({
@@ -5036,7 +5036,7 @@ M.DescribeDirectConnectGatewayAssociationProposalsInput = schema.new({
 })
 
 M.DescribeDirectConnectGatewayAssociationProposalsOutput = schema.new({
-    id = id.from(_N, "DescribeDirectConnectGatewayAssociationProposalsOutput"),
+    id = id.from(_N, "DescribeDirectConnectGatewayAssociationProposalsResult"),
     type = "structure",
     members = {
         directConnectGatewayAssociationProposals = schema.new({
@@ -5056,7 +5056,7 @@ M.DescribeDirectConnectGatewayAssociationProposalsOutput = schema.new({
 })
 
 M.DescribeDirectConnectGatewayAssociationsInput = schema.new({
-    id = id.from(_N, "DescribeDirectConnectGatewayAssociationsInput"),
+    id = id.from(_N, "DescribeDirectConnectGatewayAssociationsRequest"),
     type = "structure",
     members = {
         associationId = schema.new({
@@ -5099,7 +5099,7 @@ M.DescribeDirectConnectGatewayAssociationsInput = schema.new({
 })
 
 M.DescribeDirectConnectGatewayAssociationsOutput = schema.new({
-    id = id.from(_N, "DescribeDirectConnectGatewayAssociationsOutput"),
+    id = id.from(_N, "DescribeDirectConnectGatewayAssociationsResult"),
     type = "structure",
     members = {
         directConnectGatewayAssociations = schema.new({
@@ -5119,7 +5119,7 @@ M.DescribeDirectConnectGatewayAssociationsOutput = schema.new({
 })
 
 M.DescribeDirectConnectGatewayAttachmentsInput = schema.new({
-    id = id.from(_N, "DescribeDirectConnectGatewayAttachmentsInput"),
+    id = id.from(_N, "DescribeDirectConnectGatewayAttachmentsRequest"),
     type = "structure",
     members = {
         directConnectGatewayId = schema.new({
@@ -5199,7 +5199,7 @@ M.DirectConnectGatewayAttachment = schema.new({
 })
 
 M.DescribeDirectConnectGatewayAttachmentsOutput = schema.new({
-    id = id.from(_N, "DescribeDirectConnectGatewayAttachmentsOutput"),
+    id = id.from(_N, "DescribeDirectConnectGatewayAttachmentsResult"),
     type = "structure",
     members = {
         directConnectGatewayAttachments = schema.new({
@@ -5219,7 +5219,7 @@ M.DescribeDirectConnectGatewayAttachmentsOutput = schema.new({
 })
 
 M.DescribeDirectConnectGatewaysInput = schema.new({
-    id = id.from(_N, "DescribeDirectConnectGatewaysInput"),
+    id = id.from(_N, "DescribeDirectConnectGatewaysRequest"),
     type = "structure",
     members = {
         directConnectGatewayId = schema.new({
@@ -5244,7 +5244,7 @@ M.DescribeDirectConnectGatewaysInput = schema.new({
 })
 
 M.DescribeDirectConnectGatewaysOutput = schema.new({
-    id = id.from(_N, "DescribeDirectConnectGatewaysOutput"),
+    id = id.from(_N, "DescribeDirectConnectGatewaysResult"),
     type = "structure",
     members = {
         directConnectGateways = schema.new({
@@ -5264,7 +5264,7 @@ M.DescribeDirectConnectGatewaysOutput = schema.new({
 })
 
 M.DescribeHostedConnectionsInput = schema.new({
-    id = id.from(_N, "DescribeHostedConnectionsInput"),
+    id = id.from(_N, "DescribeHostedConnectionsRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -5292,7 +5292,7 @@ M.DescribeHostedConnectionsInput = schema.new({
 })
 
 M.DescribeHostedConnectionsOutput = schema.new({
-    id = id.from(_N, "DescribeHostedConnectionsOutput"),
+    id = id.from(_N, "Connections"),
     type = "structure",
     members = {
         connections = schema.new({
@@ -5312,7 +5312,7 @@ M.DescribeHostedConnectionsOutput = schema.new({
 })
 
 M.DescribeInterconnectLoaInput = schema.new({
-    id = id.from(_N, "DescribeInterconnectLoaInput"),
+    id = id.from(_N, "DescribeInterconnectLoaRequest"),
     type = "structure",
     members = {
         interconnectId = schema.new({
@@ -5340,7 +5340,7 @@ M.DescribeInterconnectLoaInput = schema.new({
 })
 
 M.DescribeInterconnectLoaOutput = schema.new({
-    id = id.from(_N, "DescribeInterconnectLoaOutput"),
+    id = id.from(_N, "DescribeInterconnectLoaResponse"),
     type = "structure",
     members = {
         loa = schema.new({
@@ -5354,7 +5354,7 @@ M.DescribeInterconnectLoaOutput = schema.new({
 })
 
 M.DescribeInterconnectsInput = schema.new({
-    id = id.from(_N, "DescribeInterconnectsInput"),
+    id = id.from(_N, "DescribeInterconnectsRequest"),
     type = "structure",
     members = {
         interconnectId = schema.new({
@@ -5502,7 +5502,7 @@ M.Interconnect = schema.new({
 })
 
 M.DescribeInterconnectsOutput = schema.new({
-    id = id.from(_N, "DescribeInterconnectsOutput"),
+    id = id.from(_N, "Interconnects"),
     type = "structure",
     members = {
         interconnects = schema.new({
@@ -5522,7 +5522,7 @@ M.DescribeInterconnectsOutput = schema.new({
 })
 
 M.DescribeLagsInput = schema.new({
-    id = id.from(_N, "DescribeLagsInput"),
+    id = id.from(_N, "DescribeLagsRequest"),
     type = "structure",
     members = {
         lagId = schema.new({
@@ -5692,7 +5692,7 @@ M.Lag = schema.new({
 })
 
 M.DescribeLagsOutput = schema.new({
-    id = id.from(_N, "DescribeLagsOutput"),
+    id = id.from(_N, "Lags"),
     type = "structure",
     members = {
         lags = schema.new({
@@ -5712,7 +5712,7 @@ M.DescribeLagsOutput = schema.new({
 })
 
 M.DescribeLoaInput = schema.new({
-    id = id.from(_N, "DescribeLoaInput"),
+    id = id.from(_N, "DescribeLoaRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -5740,7 +5740,7 @@ M.DescribeLoaInput = schema.new({
 })
 
 M.DescribeLoaOutput = schema.new({
-    id = id.from(_N, "DescribeLoaOutput"),
+    id = id.from(_N, "Loa"),
     type = "structure",
     members = {
         loaContent = schema.new({
@@ -5759,7 +5759,7 @@ M.DescribeLoaOutput = schema.new({
 })
 
 M.DescribeLocationsInput = schema.new({
-    id = id.from(_N, "DescribeLocationsInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5810,7 +5810,7 @@ M.Location = schema.new({
 })
 
 M.DescribeLocationsOutput = schema.new({
-    id = id.from(_N, "DescribeLocationsOutput"),
+    id = id.from(_N, "Locations"),
     type = "structure",
     members = {
         locations = schema.new({
@@ -5824,7 +5824,7 @@ M.DescribeLocationsOutput = schema.new({
 })
 
 M.DescribeRouterConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeRouterConfigurationInput"),
+    id = id.from(_N, "DescribeRouterConfigurationRequest"),
     type = "structure",
     members = {
         virtualInterfaceId = schema.new({
@@ -5889,7 +5889,7 @@ M.RouterType = schema.new({
 })
 
 M.DescribeRouterConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeRouterConfigurationOutput"),
+    id = id.from(_N, "DescribeRouterConfigurationResponse"),
     type = "structure",
     members = {
         customerRouterConfig = schema.new({
@@ -5921,7 +5921,7 @@ M.DescribeRouterConfigurationOutput = schema.new({
 })
 
 M.DescribeTagsInput = schema.new({
-    id = id.from(_N, "DescribeTagsInput"),
+    id = id.from(_N, "DescribeTagsRequest"),
     type = "structure",
     members = {
         resourceArns = schema.new({
@@ -5958,7 +5958,7 @@ M.ResourceTag = schema.new({
 })
 
 M.DescribeTagsOutput = schema.new({
-    id = id.from(_N, "DescribeTagsOutput"),
+    id = id.from(_N, "DescribeTagsResponse"),
     type = "structure",
     members = {
         resourceTags = schema.new({
@@ -5972,7 +5972,7 @@ M.DescribeTagsOutput = schema.new({
 })
 
 M.DescribeVirtualGatewaysInput = schema.new({
-    id = id.from(_N, "DescribeVirtualGatewaysInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5996,7 +5996,7 @@ M.VirtualGateway = schema.new({
 })
 
 M.DescribeVirtualGatewaysOutput = schema.new({
-    id = id.from(_N, "DescribeVirtualGatewaysOutput"),
+    id = id.from(_N, "VirtualGateways"),
     type = "structure",
     members = {
         virtualGateways = schema.new({
@@ -6010,7 +6010,7 @@ M.DescribeVirtualGatewaysOutput = schema.new({
 })
 
 M.DescribeVirtualInterfacesInput = schema.new({
-    id = id.from(_N, "DescribeVirtualInterfacesInput"),
+    id = id.from(_N, "DescribeVirtualInterfacesRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -6041,7 +6041,7 @@ M.DescribeVirtualInterfacesInput = schema.new({
 })
 
 M.DescribeVirtualInterfacesOutput = schema.new({
-    id = id.from(_N, "DescribeVirtualInterfacesOutput"),
+    id = id.from(_N, "VirtualInterfaces"),
     type = "structure",
     members = {
         virtualInterfaces = schema.new({
@@ -6061,7 +6061,7 @@ M.DescribeVirtualInterfacesOutput = schema.new({
 })
 
 M.DisassociateConnectionFromLagInput = schema.new({
-    id = id.from(_N, "DisassociateConnectionFromLagInput"),
+    id = id.from(_N, "DisassociateConnectionFromLagRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -6086,7 +6086,7 @@ M.DisassociateConnectionFromLagInput = schema.new({
 })
 
 M.DisassociateConnectionFromLagOutput = schema.new({
-    id = id.from(_N, "DisassociateConnectionFromLagOutput"),
+    id = id.from(_N, "Connection"),
     type = "structure",
     members = {
         ownerAccount = schema.new({
@@ -6236,7 +6236,7 @@ M.DisassociateConnectionFromLagOutput = schema.new({
 })
 
 M.DisassociateMacSecKeyInput = schema.new({
-    id = id.from(_N, "DisassociateMacSecKeyInput"),
+    id = id.from(_N, "DisassociateMacSecKeyRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -6261,7 +6261,7 @@ M.DisassociateMacSecKeyInput = schema.new({
 })
 
 M.DisassociateMacSecKeyOutput = schema.new({
-    id = id.from(_N, "DisassociateMacSecKeyOutput"),
+    id = id.from(_N, "DisassociateMacSecKeyResponse"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -6281,7 +6281,7 @@ M.DisassociateMacSecKeyOutput = schema.new({
 })
 
 M.ListVirtualInterfaceTestHistoryInput = schema.new({
-    id = id.from(_N, "ListVirtualInterfaceTestHistoryInput"),
+    id = id.from(_N, "ListVirtualInterfaceTestHistoryRequest"),
     type = "structure",
     members = {
         testId = schema.new({
@@ -6381,7 +6381,7 @@ M.VirtualInterfaceTestHistory = schema.new({
 })
 
 M.ListVirtualInterfaceTestHistoryOutput = schema.new({
-    id = id.from(_N, "ListVirtualInterfaceTestHistoryOutput"),
+    id = id.from(_N, "ListVirtualInterfaceTestHistoryResponse"),
     type = "structure",
     members = {
         virtualInterfaceTestHistory = schema.new({
@@ -6401,7 +6401,7 @@ M.ListVirtualInterfaceTestHistoryOutput = schema.new({
 })
 
 M.StartBgpFailoverTestInput = schema.new({
-    id = id.from(_N, "StartBgpFailoverTestInput"),
+    id = id.from(_N, "StartBgpFailoverTestRequest"),
     type = "structure",
     members = {
         virtualInterfaceId = schema.new({
@@ -6430,7 +6430,7 @@ M.StartBgpFailoverTestInput = schema.new({
 })
 
 M.StartBgpFailoverTestOutput = schema.new({
-    id = id.from(_N, "StartBgpFailoverTestOutput"),
+    id = id.from(_N, "StartBgpFailoverTestResponse"),
     type = "structure",
     members = {
         virtualInterfaceTest = schema.new({
@@ -6444,7 +6444,7 @@ M.StartBgpFailoverTestOutput = schema.new({
 })
 
 M.StopBgpFailoverTestInput = schema.new({
-    id = id.from(_N, "StopBgpFailoverTestInput"),
+    id = id.from(_N, "StopBgpFailoverTestRequest"),
     type = "structure",
     members = {
         virtualInterfaceId = schema.new({
@@ -6460,7 +6460,7 @@ M.StopBgpFailoverTestInput = schema.new({
 })
 
 M.StopBgpFailoverTestOutput = schema.new({
-    id = id.from(_N, "StopBgpFailoverTestOutput"),
+    id = id.from(_N, "StopBgpFailoverTestResponse"),
     type = "structure",
     members = {
         virtualInterfaceTest = schema.new({
@@ -6474,7 +6474,7 @@ M.StopBgpFailoverTestOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6500,12 +6500,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6531,12 +6531,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateConnectionInput = schema.new({
-    id = id.from(_N, "UpdateConnectionInput"),
+    id = id.from(_N, "UpdateConnectionRequest"),
     type = "structure",
     members = {
         connectionId = schema.new({
@@ -6564,7 +6564,7 @@ M.UpdateConnectionInput = schema.new({
 })
 
 M.UpdateConnectionOutput = schema.new({
-    id = id.from(_N, "UpdateConnectionOutput"),
+    id = id.from(_N, "Connection"),
     type = "structure",
     members = {
         ownerAccount = schema.new({
@@ -6714,7 +6714,7 @@ M.UpdateConnectionOutput = schema.new({
 })
 
 M.UpdateDirectConnectGatewayInput = schema.new({
-    id = id.from(_N, "UpdateDirectConnectGatewayInput"),
+    id = id.from(_N, "UpdateDirectConnectGatewayRequest"),
     type = "structure",
     members = {
         directConnectGatewayId = schema.new({
@@ -6739,7 +6739,7 @@ M.UpdateDirectConnectGatewayInput = schema.new({
 })
 
 M.UpdateDirectConnectGatewayOutput = schema.new({
-    id = id.from(_N, "UpdateDirectConnectGatewayOutput"),
+    id = id.from(_N, "UpdateDirectConnectGatewayResponse"),
     type = "structure",
     members = {
         directConnectGateway = schema.new({
@@ -6753,7 +6753,7 @@ M.UpdateDirectConnectGatewayOutput = schema.new({
 })
 
 M.UpdateDirectConnectGatewayAssociationInput = schema.new({
-    id = id.from(_N, "UpdateDirectConnectGatewayAssociationInput"),
+    id = id.from(_N, "UpdateDirectConnectGatewayAssociationRequest"),
     type = "structure",
     members = {
         associationId = schema.new({
@@ -6780,7 +6780,7 @@ M.UpdateDirectConnectGatewayAssociationInput = schema.new({
 })
 
 M.UpdateDirectConnectGatewayAssociationOutput = schema.new({
-    id = id.from(_N, "UpdateDirectConnectGatewayAssociationOutput"),
+    id = id.from(_N, "UpdateDirectConnectGatewayAssociationResult"),
     type = "structure",
     members = {
         directConnectGatewayAssociation = schema.new({
@@ -6794,7 +6794,7 @@ M.UpdateDirectConnectGatewayAssociationOutput = schema.new({
 })
 
 M.UpdateLagInput = schema.new({
-    id = id.from(_N, "UpdateLagInput"),
+    id = id.from(_N, "UpdateLagRequest"),
     type = "structure",
     members = {
         lagId = schema.new({
@@ -6831,7 +6831,7 @@ M.UpdateLagInput = schema.new({
 })
 
 M.UpdateLagOutput = schema.new({
-    id = id.from(_N, "UpdateLagOutput"),
+    id = id.from(_N, "Lag"),
     type = "structure",
     members = {
         connectionsBandwidth = schema.new({
@@ -6976,7 +6976,7 @@ M.UpdateLagOutput = schema.new({
 })
 
 M.UpdateVirtualInterfaceAttributesInput = schema.new({
-    id = id.from(_N, "UpdateVirtualInterfaceAttributesInput"),
+    id = id.from(_N, "UpdateVirtualInterfaceAttributesRequest"),
     type = "structure",
     members = {
         virtualInterfaceId = schema.new({
@@ -7010,7 +7010,7 @@ M.UpdateVirtualInterfaceAttributesInput = schema.new({
 })
 
 M.UpdateVirtualInterfaceAttributesOutput = schema.new({
-    id = id.from(_N, "UpdateVirtualInterfaceAttributesOutput"),
+    id = id.from(_N, "VirtualInterface"),
     type = "structure",
     members = {
         ownerAccount = schema.new({
@@ -7186,5 +7186,19 @@ M.UpdateVirtualInterfaceAttributesOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

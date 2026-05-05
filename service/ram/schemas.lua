@@ -8,7 +8,7 @@ local _N = "com.amazonaws.ram"
 local M = {}
 
 M.AcceptResourceShareInvitationInput = schema.new({
-    id = id.from(_N, "AcceptResourceShareInvitationInput"),
+    id = id.from(_N, "AcceptResourceShareInvitationRequest"),
     type = "structure",
     members = {
         resourceShareInvitationArn = schema.new({
@@ -141,7 +141,7 @@ M.ResourceShareInvitation = schema.new({
             type = "list",
             name = "resourceShareAssociations",
             target_id = prelude.Document.id,
-            list_member = M.ResourceShareAssociation,
+            list_member = schema.new({ type = "structure", target = M.ResourceShareAssociation, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         receiverArn = schema.new({
             id = id.from(_N, "ResourceShareInvitation", "receiverArn"),
@@ -153,7 +153,7 @@ M.ResourceShareInvitation = schema.new({
 })
 
 M.AcceptResourceShareInvitationOutput = schema.new({
-    id = id.from(_N, "AcceptResourceShareInvitationOutput"),
+    id = id.from(_N, "AcceptResourceShareInvitationResponse"),
     type = "structure",
     members = {
         resourceShareInvitation = schema.new({
@@ -363,7 +363,7 @@ M.ServiceUnavailableException = schema.new({
 })
 
 M.AssociateResourceShareInput = schema.new({
-    id = id.from(_N, "AssociateResourceShareInput"),
+    id = id.from(_N, "AssociateResourceShareRequest"),
     type = "structure",
     members = {
         resourceShareArn = schema.new({
@@ -380,14 +380,14 @@ M.AssociateResourceShareInput = schema.new({
             type = "list",
             name = "resourceArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         principals = schema.new({
             id = id.from(_N, "AssociateResourceShareInput", "principals"),
             type = "list",
             name = "principals",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         clientToken = schema.new({
             id = id.from(_N, "AssociateResourceShareInput", "clientToken"),
@@ -400,13 +400,13 @@ M.AssociateResourceShareInput = schema.new({
             type = "list",
             name = "sources",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
 
 M.AssociateResourceShareOutput = schema.new({
-    id = id.from(_N, "AssociateResourceShareOutput"),
+    id = id.from(_N, "AssociateResourceShareResponse"),
     type = "structure",
     members = {
         resourceShareAssociations = schema.new({
@@ -414,7 +414,7 @@ M.AssociateResourceShareOutput = schema.new({
             type = "list",
             name = "resourceShareAssociations",
             target_id = prelude.Document.id,
-            list_member = M.ResourceShareAssociation,
+            list_member = schema.new({ type = "structure", target = M.ResourceShareAssociation, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         clientToken = schema.new({
             id = id.from(_N, "AssociateResourceShareOutput", "clientToken"),
@@ -521,7 +521,7 @@ M.UnknownResourceException = schema.new({
 })
 
 M.AssociateResourceSharePermissionInput = schema.new({
-    id = id.from(_N, "AssociateResourceSharePermissionInput"),
+    id = id.from(_N, "AssociateResourceSharePermissionRequest"),
     type = "structure",
     members = {
         resourceShareArn = schema.new({
@@ -564,7 +564,7 @@ M.AssociateResourceSharePermissionInput = schema.new({
 })
 
 M.AssociateResourceSharePermissionOutput = schema.new({
-    id = id.from(_N, "AssociateResourceSharePermissionOutput"),
+    id = id.from(_N, "AssociateResourceSharePermissionResponse"),
     type = "structure",
     members = {
         returnValue = schema.new({
@@ -602,7 +602,7 @@ M.Tag = schema.new({
 })
 
 M.CreatePermissionInput = schema.new({
-    id = id.from(_N, "CreatePermissionInput"),
+    id = id.from(_N, "CreatePermissionRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -729,7 +729,7 @@ M.ResourceSharePermissionSummary = schema.new({
 })
 
 M.CreatePermissionOutput = schema.new({
-    id = id.from(_N, "CreatePermissionOutput"),
+    id = id.from(_N, "CreatePermissionResponse"),
     type = "structure",
     members = {
         permission = schema.new({
@@ -825,7 +825,7 @@ M.PermissionLimitExceededException = schema.new({
 })
 
 M.CreatePermissionVersionInput = schema.new({
-    id = id.from(_N, "CreatePermissionVersionInput"),
+    id = id.from(_N, "CreatePermissionVersionRequest"),
     type = "structure",
     members = {
         permissionArn = schema.new({
@@ -942,7 +942,7 @@ M.ResourceSharePermissionDetail = schema.new({
 })
 
 M.CreatePermissionVersionOutput = schema.new({
-    id = id.from(_N, "CreatePermissionVersionOutput"),
+    id = id.from(_N, "CreatePermissionVersionResponse"),
     type = "structure",
     members = {
         permission = schema.new({
@@ -994,7 +994,7 @@ M.ResourceShareConfiguration = schema.new({
 })
 
 M.CreateResourceShareInput = schema.new({
-    id = id.from(_N, "CreateResourceShareInput"),
+    id = id.from(_N, "CreateResourceShareRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1011,14 +1011,14 @@ M.CreateResourceShareInput = schema.new({
             type = "list",
             name = "resourceArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         principals = schema.new({
             id = id.from(_N, "CreateResourceShareInput", "principals"),
             type = "list",
             name = "principals",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         tags = schema.new({
             id = id.from(_N, "CreateResourceShareInput", "tags"),
@@ -1044,14 +1044,14 @@ M.CreateResourceShareInput = schema.new({
             type = "list",
             name = "permissionArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         sources = schema.new({
             id = id.from(_N, "CreateResourceShareInput", "sources"),
             type = "list",
             name = "sources",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         resourceShareConfiguration = schema.new({
             id = id.from(_N, "CreateResourceShareInput", "resourceShareConfiguration"),
@@ -1139,7 +1139,7 @@ M.ResourceShare = schema.new({
 })
 
 M.CreateResourceShareOutput = schema.new({
-    id = id.from(_N, "CreateResourceShareOutput"),
+    id = id.from(_N, "CreateResourceShareResponse"),
     type = "structure",
     members = {
         resourceShare = schema.new({
@@ -1197,7 +1197,7 @@ M.TagPolicyViolationException = schema.new({
 })
 
 M.DeletePermissionInput = schema.new({
-    id = id.from(_N, "DeletePermissionInput"),
+    id = id.from(_N, "DeletePermissionRequest"),
     type = "structure",
     members = {
         permissionArn = schema.new({
@@ -1223,7 +1223,7 @@ M.DeletePermissionInput = schema.new({
 })
 
 M.DeletePermissionOutput = schema.new({
-    id = id.from(_N, "DeletePermissionOutput"),
+    id = id.from(_N, "DeletePermissionResponse"),
     type = "structure",
     members = {
         returnValue = schema.new({
@@ -1251,7 +1251,7 @@ M.DeletePermissionOutput = schema.new({
 })
 
 M.DeletePermissionVersionInput = schema.new({
-    id = id.from(_N, "DeletePermissionVersionInput"),
+    id = id.from(_N, "DeletePermissionVersionRequest"),
     type = "structure",
     members = {
         permissionArn = schema.new({
@@ -1287,7 +1287,7 @@ M.DeletePermissionVersionInput = schema.new({
 })
 
 M.DeletePermissionVersionOutput = schema.new({
-    id = id.from(_N, "DeletePermissionVersionOutput"),
+    id = id.from(_N, "DeletePermissionVersionResponse"),
     type = "structure",
     members = {
         returnValue = schema.new({
@@ -1315,7 +1315,7 @@ M.DeletePermissionVersionOutput = schema.new({
 })
 
 M.DeleteResourceShareInput = schema.new({
-    id = id.from(_N, "DeleteResourceShareInput"),
+    id = id.from(_N, "DeleteResourceShareRequest"),
     type = "structure",
     members = {
         resourceShareArn = schema.new({
@@ -1341,7 +1341,7 @@ M.DeleteResourceShareInput = schema.new({
 })
 
 M.DeleteResourceShareOutput = schema.new({
-    id = id.from(_N, "DeleteResourceShareOutput"),
+    id = id.from(_N, "DeleteResourceShareResponse"),
     type = "structure",
     members = {
         returnValue = schema.new({
@@ -1363,7 +1363,7 @@ M.DeleteResourceShareOutput = schema.new({
 })
 
 M.DisassociateResourceShareInput = schema.new({
-    id = id.from(_N, "DisassociateResourceShareInput"),
+    id = id.from(_N, "DisassociateResourceShareRequest"),
     type = "structure",
     members = {
         resourceShareArn = schema.new({
@@ -1380,14 +1380,14 @@ M.DisassociateResourceShareInput = schema.new({
             type = "list",
             name = "resourceArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         principals = schema.new({
             id = id.from(_N, "DisassociateResourceShareInput", "principals"),
             type = "list",
             name = "principals",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         clientToken = schema.new({
             id = id.from(_N, "DisassociateResourceShareInput", "clientToken"),
@@ -1400,13 +1400,13 @@ M.DisassociateResourceShareInput = schema.new({
             type = "list",
             name = "sources",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
 
 M.DisassociateResourceShareOutput = schema.new({
-    id = id.from(_N, "DisassociateResourceShareOutput"),
+    id = id.from(_N, "DisassociateResourceShareResponse"),
     type = "structure",
     members = {
         resourceShareAssociations = schema.new({
@@ -1414,7 +1414,7 @@ M.DisassociateResourceShareOutput = schema.new({
             type = "list",
             name = "resourceShareAssociations",
             target_id = prelude.Document.id,
-            list_member = M.ResourceShareAssociation,
+            list_member = schema.new({ type = "structure", target = M.ResourceShareAssociation, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         clientToken = schema.new({
             id = id.from(_N, "DisassociateResourceShareOutput", "clientToken"),
@@ -1426,7 +1426,7 @@ M.DisassociateResourceShareOutput = schema.new({
 })
 
 M.DisassociateResourceSharePermissionInput = schema.new({
-    id = id.from(_N, "DisassociateResourceSharePermissionInput"),
+    id = id.from(_N, "DisassociateResourceSharePermissionRequest"),
     type = "structure",
     members = {
         resourceShareArn = schema.new({
@@ -1457,7 +1457,7 @@ M.DisassociateResourceSharePermissionInput = schema.new({
 })
 
 M.DisassociateResourceSharePermissionOutput = schema.new({
-    id = id.from(_N, "DisassociateResourceSharePermissionOutput"),
+    id = id.from(_N, "DisassociateResourceSharePermissionResponse"),
     type = "structure",
     members = {
         returnValue = schema.new({
@@ -1476,12 +1476,12 @@ M.DisassociateResourceSharePermissionOutput = schema.new({
 })
 
 M.EnableSharingWithAwsOrganizationInput = schema.new({
-    id = id.from(_N, "EnableSharingWithAwsOrganizationInput"),
+    id = id.from(_N, "EnableSharingWithAwsOrganizationRequest"),
     type = "structure",
 })
 
 M.EnableSharingWithAwsOrganizationOutput = schema.new({
-    id = id.from(_N, "EnableSharingWithAwsOrganizationOutput"),
+    id = id.from(_N, "EnableSharingWithAwsOrganizationResponse"),
     type = "structure",
     members = {
         returnValue = schema.new({
@@ -1497,7 +1497,7 @@ M.EnableSharingWithAwsOrganizationOutput = schema.new({
 })
 
 M.GetPermissionInput = schema.new({
-    id = id.from(_N, "GetPermissionInput"),
+    id = id.from(_N, "GetPermissionRequest"),
     type = "structure",
     members = {
         permissionArn = schema.new({
@@ -1519,7 +1519,7 @@ M.GetPermissionInput = schema.new({
 })
 
 M.GetPermissionOutput = schema.new({
-    id = id.from(_N, "GetPermissionOutput"),
+    id = id.from(_N, "GetPermissionResponse"),
     type = "structure",
     members = {
         permission = schema.new({
@@ -1533,7 +1533,7 @@ M.GetPermissionOutput = schema.new({
 })
 
 M.GetResourcePoliciesInput = schema.new({
-    id = id.from(_N, "GetResourcePoliciesInput"),
+    id = id.from(_N, "GetResourcePoliciesRequest"),
     type = "structure",
     members = {
         resourceArns = schema.new({
@@ -1541,7 +1541,7 @@ M.GetResourcePoliciesInput = schema.new({
             type = "list",
             name = "resourceArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1568,7 +1568,7 @@ M.GetResourcePoliciesInput = schema.new({
 })
 
 M.GetResourcePoliciesOutput = schema.new({
-    id = id.from(_N, "GetResourcePoliciesOutput"),
+    id = id.from(_N, "GetResourcePoliciesResponse"),
     type = "structure",
     members = {
         policies = schema.new({
@@ -1576,7 +1576,7 @@ M.GetResourcePoliciesOutput = schema.new({
             type = "list",
             name = "policies",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "GetResourcePoliciesOutput", "nextToken"),
@@ -1626,7 +1626,7 @@ M.ResourceArnNotFoundException = schema.new({
 })
 
 M.GetResourceShareAssociationsInput = schema.new({
-    id = id.from(_N, "GetResourceShareAssociationsInput"),
+    id = id.from(_N, "GetResourceShareAssociationsRequest"),
     type = "structure",
     members = {
         associationType = schema.new({
@@ -1643,7 +1643,7 @@ M.GetResourceShareAssociationsInput = schema.new({
             type = "list",
             name = "resourceShareArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         resourceArn = schema.new({
             id = id.from(_N, "GetResourceShareAssociationsInput", "resourceArn"),
@@ -1679,7 +1679,7 @@ M.GetResourceShareAssociationsInput = schema.new({
 })
 
 M.GetResourceShareAssociationsOutput = schema.new({
-    id = id.from(_N, "GetResourceShareAssociationsOutput"),
+    id = id.from(_N, "GetResourceShareAssociationsResponse"),
     type = "structure",
     members = {
         resourceShareAssociations = schema.new({
@@ -1687,7 +1687,7 @@ M.GetResourceShareAssociationsOutput = schema.new({
             type = "list",
             name = "resourceShareAssociations",
             target_id = prelude.Document.id,
-            list_member = M.ResourceShareAssociation,
+            list_member = schema.new({ type = "structure", target = M.ResourceShareAssociation, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "GetResourceShareAssociationsOutput", "nextToken"),
@@ -1699,7 +1699,7 @@ M.GetResourceShareAssociationsOutput = schema.new({
 })
 
 M.GetResourceShareInvitationsInput = schema.new({
-    id = id.from(_N, "GetResourceShareInvitationsInput"),
+    id = id.from(_N, "GetResourceShareInvitationsRequest"),
     type = "structure",
     members = {
         resourceShareInvitationArns = schema.new({
@@ -1707,14 +1707,14 @@ M.GetResourceShareInvitationsInput = schema.new({
             type = "list",
             name = "resourceShareInvitationArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         resourceShareArns = schema.new({
             id = id.from(_N, "GetResourceShareInvitationsInput", "resourceShareArns"),
             type = "list",
             name = "resourceShareArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "GetResourceShareInvitationsInput", "nextToken"),
@@ -1732,7 +1732,7 @@ M.GetResourceShareInvitationsInput = schema.new({
 })
 
 M.GetResourceShareInvitationsOutput = schema.new({
-    id = id.from(_N, "GetResourceShareInvitationsOutput"),
+    id = id.from(_N, "GetResourceShareInvitationsResponse"),
     type = "structure",
     members = {
         resourceShareInvitations = schema.new({
@@ -1740,7 +1740,7 @@ M.GetResourceShareInvitationsOutput = schema.new({
             type = "list",
             name = "resourceShareInvitations",
             target_id = prelude.Document.id,
-            list_member = M.ResourceShareInvitation,
+            list_member = schema.new({ type = "structure", target = M.ResourceShareInvitation, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "GetResourceShareInvitationsOutput", "nextToken"),
@@ -1791,7 +1791,7 @@ M.TagFilter = schema.new({
 })
 
 M.GetResourceSharesInput = schema.new({
-    id = id.from(_N, "GetResourceSharesInput"),
+    id = id.from(_N, "GetResourceSharesRequest"),
     type = "structure",
     members = {
         resourceShareArns = schema.new({
@@ -1799,7 +1799,7 @@ M.GetResourceSharesInput = schema.new({
             type = "list",
             name = "resourceShareArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         resourceShareStatus = schema.new({
             id = id.from(_N, "GetResourceSharesInput", "resourceShareStatus"),
@@ -1857,7 +1857,7 @@ M.GetResourceSharesInput = schema.new({
 })
 
 M.GetResourceSharesOutput = schema.new({
-    id = id.from(_N, "GetResourceSharesOutput"),
+    id = id.from(_N, "GetResourceSharesResponse"),
     type = "structure",
     members = {
         resourceShares = schema.new({
@@ -1865,7 +1865,7 @@ M.GetResourceSharesOutput = schema.new({
             type = "list",
             name = "resourceShares",
             target_id = prelude.Document.id,
-            list_member = M.ResourceShare,
+            list_member = schema.new({ type = "structure", target = M.ResourceShare, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "GetResourceSharesOutput", "nextToken"),
@@ -1877,7 +1877,7 @@ M.GetResourceSharesOutput = schema.new({
 })
 
 M.ListPendingInvitationResourcesInput = schema.new({
-    id = id.from(_N, "ListPendingInvitationResourcesInput"),
+    id = id.from(_N, "ListPendingInvitationResourcesRequest"),
     type = "structure",
     members = {
         resourceShareInvitationArn = schema.new({
@@ -1972,7 +1972,7 @@ M.Resource = schema.new({
 })
 
 M.ListPendingInvitationResourcesOutput = schema.new({
-    id = id.from(_N, "ListPendingInvitationResourcesOutput"),
+    id = id.from(_N, "ListPendingInvitationResourcesResponse"),
     type = "structure",
     members = {
         resources = schema.new({
@@ -1980,7 +1980,7 @@ M.ListPendingInvitationResourcesOutput = schema.new({
             type = "list",
             name = "resources",
             target_id = prelude.Document.id,
-            list_member = M.Resource,
+            list_member = schema.new({ type = "structure", target = M.Resource, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListPendingInvitationResourcesOutput", "nextToken"),
@@ -2011,7 +2011,7 @@ M.MissingRequiredParameterException = schema.new({
 })
 
 M.ListPermissionAssociationsInput = schema.new({
-    id = id.from(_N, "ListPermissionAssociationsInput"),
+    id = id.from(_N, "ListPermissionAssociationsRequest"),
     type = "structure",
     members = {
         permissionArn = schema.new({
@@ -2121,7 +2121,7 @@ M.AssociatedPermission = schema.new({
 })
 
 M.ListPermissionAssociationsOutput = schema.new({
-    id = id.from(_N, "ListPermissionAssociationsOutput"),
+    id = id.from(_N, "ListPermissionAssociationsResponse"),
     type = "structure",
     members = {
         permissions = schema.new({
@@ -2129,7 +2129,7 @@ M.ListPermissionAssociationsOutput = schema.new({
             type = "list",
             name = "permissions",
             target_id = prelude.Document.id,
-            list_member = M.AssociatedPermission,
+            list_member = schema.new({ type = "structure", target = M.AssociatedPermission, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListPermissionAssociationsOutput", "nextToken"),
@@ -2141,7 +2141,7 @@ M.ListPermissionAssociationsOutput = schema.new({
 })
 
 M.ListPermissionsInput = schema.new({
-    id = id.from(_N, "ListPermissionsInput"),
+    id = id.from(_N, "ListPermissionsRequest"),
     type = "structure",
     members = {
         resourceType = schema.new({
@@ -2172,7 +2172,7 @@ M.ListPermissionsInput = schema.new({
 })
 
 M.ListPermissionsOutput = schema.new({
-    id = id.from(_N, "ListPermissionsOutput"),
+    id = id.from(_N, "ListPermissionsResponse"),
     type = "structure",
     members = {
         permissions = schema.new({
@@ -2180,7 +2180,7 @@ M.ListPermissionsOutput = schema.new({
             type = "list",
             name = "permissions",
             target_id = prelude.Document.id,
-            list_member = M.ResourceSharePermissionSummary,
+            list_member = schema.new({ type = "structure", target = M.ResourceSharePermissionSummary, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListPermissionsOutput", "nextToken"),
@@ -2192,7 +2192,7 @@ M.ListPermissionsOutput = schema.new({
 })
 
 M.ListPermissionVersionsInput = schema.new({
-    id = id.from(_N, "ListPermissionVersionsInput"),
+    id = id.from(_N, "ListPermissionVersionsRequest"),
     type = "structure",
     members = {
         permissionArn = schema.new({
@@ -2220,7 +2220,7 @@ M.ListPermissionVersionsInput = schema.new({
 })
 
 M.ListPermissionVersionsOutput = schema.new({
-    id = id.from(_N, "ListPermissionVersionsOutput"),
+    id = id.from(_N, "ListPermissionVersionsResponse"),
     type = "structure",
     members = {
         permissions = schema.new({
@@ -2228,7 +2228,7 @@ M.ListPermissionVersionsOutput = schema.new({
             type = "list",
             name = "permissions",
             target_id = prelude.Document.id,
-            list_member = M.ResourceSharePermissionSummary,
+            list_member = schema.new({ type = "structure", target = M.ResourceSharePermissionSummary, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListPermissionVersionsOutput", "nextToken"),
@@ -2240,7 +2240,7 @@ M.ListPermissionVersionsOutput = schema.new({
 })
 
 M.ListPrincipalsInput = schema.new({
-    id = id.from(_N, "ListPrincipalsInput"),
+    id = id.from(_N, "ListPrincipalsRequest"),
     type = "structure",
     members = {
         resourceOwner = schema.new({
@@ -2263,7 +2263,7 @@ M.ListPrincipalsInput = schema.new({
             type = "list",
             name = "principals",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         resourceType = schema.new({
             id = id.from(_N, "ListPrincipalsInput", "resourceType"),
@@ -2276,7 +2276,7 @@ M.ListPrincipalsInput = schema.new({
             type = "list",
             name = "resourceShareArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListPrincipalsInput", "nextToken"),
@@ -2331,7 +2331,7 @@ M.Principal = schema.new({
 })
 
 M.ListPrincipalsOutput = schema.new({
-    id = id.from(_N, "ListPrincipalsOutput"),
+    id = id.from(_N, "ListPrincipalsResponse"),
     type = "structure",
     members = {
         principals = schema.new({
@@ -2339,7 +2339,7 @@ M.ListPrincipalsOutput = schema.new({
             type = "list",
             name = "principals",
             target_id = prelude.Document.id,
-            list_member = M.Principal,
+            list_member = schema.new({ type = "structure", target = M.Principal, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListPrincipalsOutput", "nextToken"),
@@ -2351,7 +2351,7 @@ M.ListPrincipalsOutput = schema.new({
 })
 
 M.ListReplacePermissionAssociationsWorkInput = schema.new({
-    id = id.from(_N, "ListReplacePermissionAssociationsWorkInput"),
+    id = id.from(_N, "ListReplacePermissionAssociationsWorkRequest"),
     type = "structure",
     members = {
         workIds = schema.new({
@@ -2359,7 +2359,7 @@ M.ListReplacePermissionAssociationsWorkInput = schema.new({
             type = "list",
             name = "workIds",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         status = schema.new({
             id = id.from(_N, "ListReplacePermissionAssociationsWorkInput", "status"),
@@ -2444,7 +2444,7 @@ M.ReplacePermissionAssociationsWork = schema.new({
 })
 
 M.ListReplacePermissionAssociationsWorkOutput = schema.new({
-    id = id.from(_N, "ListReplacePermissionAssociationsWorkOutput"),
+    id = id.from(_N, "ListReplacePermissionAssociationsWorkResponse"),
     type = "structure",
     members = {
         replacePermissionAssociationsWorks = schema.new({
@@ -2452,7 +2452,7 @@ M.ListReplacePermissionAssociationsWorkOutput = schema.new({
             type = "list",
             name = "replacePermissionAssociationsWorks",
             target_id = prelude.Document.id,
-            list_member = M.ReplacePermissionAssociationsWork,
+            list_member = schema.new({ type = "structure", target = M.ReplacePermissionAssociationsWork, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListReplacePermissionAssociationsWorkOutput", "nextToken"),
@@ -2483,7 +2483,7 @@ M.InvalidResourceTypeException = schema.new({
 })
 
 M.ListResourcesInput = schema.new({
-    id = id.from(_N, "ListResourcesInput"),
+    id = id.from(_N, "ListResourcesRequest"),
     type = "structure",
     members = {
         resourceOwner = schema.new({
@@ -2512,14 +2512,14 @@ M.ListResourcesInput = schema.new({
             type = "list",
             name = "resourceArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         resourceShareArns = schema.new({
             id = id.from(_N, "ListResourcesInput", "resourceShareArns"),
             type = "list",
             name = "resourceShareArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListResourcesInput", "nextToken"),
@@ -2543,7 +2543,7 @@ M.ListResourcesInput = schema.new({
 })
 
 M.ListResourcesOutput = schema.new({
-    id = id.from(_N, "ListResourcesOutput"),
+    id = id.from(_N, "ListResourcesResponse"),
     type = "structure",
     members = {
         resources = schema.new({
@@ -2551,7 +2551,7 @@ M.ListResourcesOutput = schema.new({
             type = "list",
             name = "resources",
             target_id = prelude.Document.id,
-            list_member = M.Resource,
+            list_member = schema.new({ type = "structure", target = M.Resource, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListResourcesOutput", "nextToken"),
@@ -2563,7 +2563,7 @@ M.ListResourcesOutput = schema.new({
 })
 
 M.ListResourceSharePermissionsInput = schema.new({
-    id = id.from(_N, "ListResourceSharePermissionsInput"),
+    id = id.from(_N, "ListResourceSharePermissionsRequest"),
     type = "structure",
     members = {
         resourceShareArn = schema.new({
@@ -2591,7 +2591,7 @@ M.ListResourceSharePermissionsInput = schema.new({
 })
 
 M.ListResourceSharePermissionsOutput = schema.new({
-    id = id.from(_N, "ListResourceSharePermissionsOutput"),
+    id = id.from(_N, "ListResourceSharePermissionsResponse"),
     type = "structure",
     members = {
         permissions = schema.new({
@@ -2599,7 +2599,7 @@ M.ListResourceSharePermissionsOutput = schema.new({
             type = "list",
             name = "permissions",
             target_id = prelude.Document.id,
-            list_member = M.ResourceSharePermissionSummary,
+            list_member = schema.new({ type = "structure", target = M.ResourceSharePermissionSummary, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListResourceSharePermissionsOutput", "nextToken"),
@@ -2611,7 +2611,7 @@ M.ListResourceSharePermissionsOutput = schema.new({
 })
 
 M.ListResourceTypesInput = schema.new({
-    id = id.from(_N, "ListResourceTypesInput"),
+    id = id.from(_N, "ListResourceTypesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2661,7 +2661,7 @@ M.ServiceNameAndResourceType = schema.new({
 })
 
 M.ListResourceTypesOutput = schema.new({
-    id = id.from(_N, "ListResourceTypesOutput"),
+    id = id.from(_N, "ListResourceTypesResponse"),
     type = "structure",
     members = {
         resourceTypes = schema.new({
@@ -2669,7 +2669,7 @@ M.ListResourceTypesOutput = schema.new({
             type = "list",
             name = "resourceTypes",
             target_id = prelude.Document.id,
-            list_member = M.ServiceNameAndResourceType,
+            list_member = schema.new({ type = "structure", target = M.ServiceNameAndResourceType, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListResourceTypesOutput", "nextToken"),
@@ -2681,7 +2681,7 @@ M.ListResourceTypesOutput = schema.new({
 })
 
 M.ListSourceAssociationsInput = schema.new({
-    id = id.from(_N, "ListSourceAssociationsInput"),
+    id = id.from(_N, "ListSourceAssociationsRequest"),
     type = "structure",
     members = {
         resourceShareArns = schema.new({
@@ -2689,7 +2689,7 @@ M.ListSourceAssociationsInput = schema.new({
             type = "list",
             name = "resourceShareArns",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         sourceId = schema.new({
             id = id.from(_N, "ListSourceAssociationsInput", "sourceId"),
@@ -2774,7 +2774,7 @@ M.AssociatedSource = schema.new({
 })
 
 M.ListSourceAssociationsOutput = schema.new({
-    id = id.from(_N, "ListSourceAssociationsOutput"),
+    id = id.from(_N, "ListSourceAssociationsResponse"),
     type = "structure",
     members = {
         sourceAssociations = schema.new({
@@ -2782,7 +2782,7 @@ M.ListSourceAssociationsOutput = schema.new({
             type = "list",
             name = "sourceAssociations",
             target_id = prelude.Document.id,
-            list_member = M.AssociatedSource,
+            list_member = schema.new({ type = "structure", target = M.AssociatedSource, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListSourceAssociationsOutput", "nextToken"),
@@ -2794,7 +2794,7 @@ M.ListSourceAssociationsOutput = schema.new({
 })
 
 M.PromotePermissionCreatedFromPolicyInput = schema.new({
-    id = id.from(_N, "PromotePermissionCreatedFromPolicyInput"),
+    id = id.from(_N, "PromotePermissionCreatedFromPolicyRequest"),
     type = "structure",
     members = {
         permissionArn = schema.new({
@@ -2825,7 +2825,7 @@ M.PromotePermissionCreatedFromPolicyInput = schema.new({
 })
 
 M.PromotePermissionCreatedFromPolicyOutput = schema.new({
-    id = id.from(_N, "PromotePermissionCreatedFromPolicyOutput"),
+    id = id.from(_N, "PromotePermissionCreatedFromPolicyResponse"),
     type = "structure",
     members = {
         permission = schema.new({
@@ -2845,7 +2845,7 @@ M.PromotePermissionCreatedFromPolicyOutput = schema.new({
 })
 
 M.PromoteResourceShareCreatedFromPolicyInput = schema.new({
-    id = id.from(_N, "PromoteResourceShareCreatedFromPolicyInput"),
+    id = id.from(_N, "PromoteResourceShareCreatedFromPolicyRequest"),
     type = "structure",
     members = {
         resourceShareArn = schema.new({
@@ -2862,7 +2862,7 @@ M.PromoteResourceShareCreatedFromPolicyInput = schema.new({
 })
 
 M.PromoteResourceShareCreatedFromPolicyOutput = schema.new({
-    id = id.from(_N, "PromoteResourceShareCreatedFromPolicyOutput"),
+    id = id.from(_N, "PromoteResourceShareCreatedFromPolicyResponse"),
     type = "structure",
     members = {
         returnValue = schema.new({
@@ -2897,7 +2897,7 @@ M.UnmatchedPolicyPermissionException = schema.new({
 })
 
 M.RejectResourceShareInvitationInput = schema.new({
-    id = id.from(_N, "RejectResourceShareInvitationInput"),
+    id = id.from(_N, "RejectResourceShareInvitationRequest"),
     type = "structure",
     members = {
         resourceShareInvitationArn = schema.new({
@@ -2919,7 +2919,7 @@ M.RejectResourceShareInvitationInput = schema.new({
 })
 
 M.RejectResourceShareInvitationOutput = schema.new({
-    id = id.from(_N, "RejectResourceShareInvitationOutput"),
+    id = id.from(_N, "RejectResourceShareInvitationResponse"),
     type = "structure",
     members = {
         resourceShareInvitation = schema.new({
@@ -2939,7 +2939,7 @@ M.RejectResourceShareInvitationOutput = schema.new({
 })
 
 M.ReplacePermissionAssociationsInput = schema.new({
-    id = id.from(_N, "ReplacePermissionAssociationsInput"),
+    id = id.from(_N, "ReplacePermissionAssociationsRequest"),
     type = "structure",
     members = {
         fromPermissionArn = schema.new({
@@ -2976,7 +2976,7 @@ M.ReplacePermissionAssociationsInput = schema.new({
 })
 
 M.ReplacePermissionAssociationsOutput = schema.new({
-    id = id.from(_N, "ReplacePermissionAssociationsOutput"),
+    id = id.from(_N, "ReplacePermissionAssociationsResponse"),
     type = "structure",
     members = {
         replacePermissionAssociationsWork = schema.new({
@@ -2996,7 +2996,7 @@ M.ReplacePermissionAssociationsOutput = schema.new({
 })
 
 M.SetDefaultPermissionVersionInput = schema.new({
-    id = id.from(_N, "SetDefaultPermissionVersionInput"),
+    id = id.from(_N, "SetDefaultPermissionVersionRequest"),
     type = "structure",
     members = {
         permissionArn = schema.new({
@@ -3027,7 +3027,7 @@ M.SetDefaultPermissionVersionInput = schema.new({
 })
 
 M.SetDefaultPermissionVersionOutput = schema.new({
-    id = id.from(_N, "SetDefaultPermissionVersionOutput"),
+    id = id.from(_N, "SetDefaultPermissionVersionResponse"),
     type = "structure",
     members = {
         returnValue = schema.new({
@@ -3049,7 +3049,7 @@ M.SetDefaultPermissionVersionOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceShareArn = schema.new({
@@ -3078,12 +3078,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceShareArn = schema.new({
@@ -3112,12 +3112,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateResourceShareInput = schema.new({
-    id = id.from(_N, "UpdateResourceShareInput"),
+    id = id.from(_N, "UpdateResourceShareRequest"),
     type = "structure",
     members = {
         resourceShareArn = schema.new({
@@ -3151,7 +3151,7 @@ M.UpdateResourceShareInput = schema.new({
 })
 
 M.UpdateResourceShareOutput = schema.new({
-    id = id.from(_N, "UpdateResourceShareOutput"),
+    id = id.from(_N, "UpdateResourceShareResponse"),
     type = "structure",
     members = {
         resourceShare = schema.new({
@@ -3169,5 +3169,19 @@ M.UpdateResourceShareOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

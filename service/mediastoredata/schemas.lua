@@ -24,7 +24,7 @@ M.ContainerNotFoundException = schema.new({
 })
 
 M.DeleteObjectInput = schema.new({
-    id = id.from(_N, "DeleteObjectInput"),
+    id = id.from(_N, "DeleteObjectRequest"),
     type = "structure",
     members = {
         Path = schema.new({
@@ -41,7 +41,7 @@ M.DeleteObjectInput = schema.new({
 })
 
 M.DeleteObjectOutput = schema.new({
-    id = id.from(_N, "DeleteObjectOutput"),
+    id = id.from(_N, "DeleteObjectResponse"),
     type = "structure",
 })
 
@@ -78,7 +78,7 @@ M.ObjectNotFoundException = schema.new({
 })
 
 M.DescribeObjectInput = schema.new({
-    id = id.from(_N, "DescribeObjectInput"),
+    id = id.from(_N, "DescribeObjectRequest"),
     type = "structure",
     members = {
         Path = schema.new({
@@ -95,7 +95,7 @@ M.DescribeObjectInput = schema.new({
 })
 
 M.DescribeObjectOutput = schema.new({
-    id = id.from(_N, "DescribeObjectOutput"),
+    id = id.from(_N, "DescribeObjectResponse"),
     type = "structure",
     members = {
         ETag = schema.new({
@@ -147,7 +147,7 @@ M.DescribeObjectOutput = schema.new({
 })
 
 M.GetObjectInput = schema.new({
-    id = id.from(_N, "GetObjectInput"),
+    id = id.from(_N, "GetObjectRequest"),
     type = "structure",
     members = {
         Path = schema.new({
@@ -173,7 +173,7 @@ M.GetObjectInput = schema.new({
 })
 
 M.GetObjectOutput = schema.new({
-    id = id.from(_N, "GetObjectOutput"),
+    id = id.from(_N, "GetObjectResponse"),
     type = "structure",
     members = {
         Body = schema.new({
@@ -314,7 +314,7 @@ M.Item = schema.new({
 })
 
 M.ListItemsInput = schema.new({
-    id = id.from(_N, "ListItemsInput"),
+    id = id.from(_N, "ListItemsRequest"),
     type = "structure",
     members = {
         Path = schema.new({
@@ -348,7 +348,7 @@ M.ListItemsInput = schema.new({
 })
 
 M.ListItemsOutput = schema.new({
-    id = id.from(_N, "ListItemsOutput"),
+    id = id.from(_N, "ListItemsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -368,7 +368,7 @@ M.ListItemsOutput = schema.new({
 })
 
 M.PutObjectInput = schema.new({
-    id = id.from(_N, "PutObjectInput"),
+    id = id.from(_N, "PutObjectRequest"),
     type = "structure",
     members = {
         Body = schema.new({
@@ -431,7 +431,7 @@ M.PutObjectInput = schema.new({
 })
 
 M.PutObjectOutput = schema.new({
-    id = id.from(_N, "PutObjectOutput"),
+    id = id.from(_N, "PutObjectResponse"),
     type = "structure",
     members = {
         ContentSHA256 = schema.new({
@@ -454,5 +454,19 @@ M.PutObjectOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

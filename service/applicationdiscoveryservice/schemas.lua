@@ -123,7 +123,7 @@ M.AgentInfo = schema.new({
 })
 
 M.AssociateConfigurationItemsToApplicationInput = schema.new({
-    id = id.from(_N, "AssociateConfigurationItemsToApplicationInput"),
+    id = id.from(_N, "AssociateConfigurationItemsToApplicationRequest"),
     type = "structure",
     members = {
         applicationConfigurationId = schema.new({
@@ -149,7 +149,7 @@ M.AssociateConfigurationItemsToApplicationInput = schema.new({
 })
 
 M.AssociateConfigurationItemsToApplicationOutput = schema.new({
-    id = id.from(_N, "AssociateConfigurationItemsToApplicationOutput"),
+    id = id.from(_N, "AssociateConfigurationItemsToApplicationResponse"),
     type = "structure",
 })
 
@@ -259,7 +259,7 @@ M.DeleteAgent = schema.new({
 })
 
 M.BatchDeleteAgentsInput = schema.new({
-    id = id.from(_N, "BatchDeleteAgentsInput"),
+    id = id.from(_N, "BatchDeleteAgentsRequest"),
     type = "structure",
     members = {
         deleteAgents = schema.new({
@@ -310,7 +310,7 @@ M.BatchDeleteAgentError = schema.new({
 })
 
 M.BatchDeleteAgentsOutput = schema.new({
-    id = id.from(_N, "BatchDeleteAgentsOutput"),
+    id = id.from(_N, "BatchDeleteAgentsResponse"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -324,7 +324,7 @@ M.BatchDeleteAgentsOutput = schema.new({
 })
 
 M.BatchDeleteImportDataInput = schema.new({
-    id = id.from(_N, "BatchDeleteImportDataInput"),
+    id = id.from(_N, "BatchDeleteImportDataRequest"),
     type = "structure",
     members = {
         importTaskIds = schema.new({
@@ -375,7 +375,7 @@ M.BatchDeleteImportDataError = schema.new({
 })
 
 M.BatchDeleteImportDataOutput = schema.new({
-    id = id.from(_N, "BatchDeleteImportDataOutput"),
+    id = id.from(_N, "BatchDeleteImportDataResponse"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -389,7 +389,7 @@ M.BatchDeleteImportDataOutput = schema.new({
 })
 
 M.CreateApplicationInput = schema.new({
-    id = id.from(_N, "CreateApplicationInput"),
+    id = id.from(_N, "CreateApplicationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -417,7 +417,7 @@ M.CreateApplicationInput = schema.new({
 })
 
 M.CreateApplicationOutput = schema.new({
-    id = id.from(_N, "CreateApplicationOutput"),
+    id = id.from(_N, "CreateApplicationResponse"),
     type = "structure",
     members = {
         configurationId = schema.new({
@@ -455,7 +455,7 @@ M.Tag = schema.new({
 })
 
 M.CreateTagsInput = schema.new({
-    id = id.from(_N, "CreateTagsInput"),
+    id = id.from(_N, "CreateTagsRequest"),
     type = "structure",
     members = {
         configurationIds = schema.new({
@@ -473,7 +473,7 @@ M.CreateTagsInput = schema.new({
             type = "list",
             name = "tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "item" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -482,7 +482,7 @@ M.CreateTagsInput = schema.new({
 })
 
 M.CreateTagsOutput = schema.new({
-    id = id.from(_N, "CreateTagsOutput"),
+    id = id.from(_N, "CreateTagsResponse"),
     type = "structure",
 })
 
@@ -503,7 +503,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DeleteApplicationsInput = schema.new({
-    id = id.from(_N, "DeleteApplicationsInput"),
+    id = id.from(_N, "DeleteApplicationsRequest"),
     type = "structure",
     members = {
         configurationIds = schema.new({
@@ -520,12 +520,12 @@ M.DeleteApplicationsInput = schema.new({
 })
 
 M.DeleteApplicationsOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationsOutput"),
+    id = id.from(_N, "DeleteApplicationsResponse"),
     type = "structure",
 })
 
 M.DeleteTagsInput = schema.new({
-    id = id.from(_N, "DeleteTagsInput"),
+    id = id.from(_N, "DeleteTagsRequest"),
     type = "structure",
     members = {
         configurationIds = schema.new({
@@ -543,13 +543,13 @@ M.DeleteTagsInput = schema.new({
             type = "list",
             name = "tags",
             target_id = prelude.Document.id,
-            list_member = M.Tag,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
 
 M.DeleteTagsOutput = schema.new({
-    id = id.from(_N, "DeleteTagsOutput"),
+    id = id.from(_N, "DeleteTagsResponse"),
     type = "structure",
 })
 
@@ -571,7 +571,7 @@ M.Filter = schema.new({
             type = "list",
             name = "values",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -589,7 +589,7 @@ M.Filter = schema.new({
 })
 
 M.DescribeAgentsInput = schema.new({
-    id = id.from(_N, "DescribeAgentsInput"),
+    id = id.from(_N, "DescribeAgentsRequest"),
     type = "structure",
     members = {
         agentIds = schema.new({
@@ -625,7 +625,7 @@ M.DescribeAgentsInput = schema.new({
 })
 
 M.DescribeAgentsOutput = schema.new({
-    id = id.from(_N, "DescribeAgentsOutput"),
+    id = id.from(_N, "DescribeAgentsResponse"),
     type = "structure",
     members = {
         agentsInfo = schema.new({
@@ -645,7 +645,7 @@ M.DescribeAgentsOutput = schema.new({
 })
 
 M.DescribeBatchDeleteConfigurationTaskInput = schema.new({
-    id = id.from(_N, "DescribeBatchDeleteConfigurationTaskInput"),
+    id = id.from(_N, "DescribeBatchDeleteConfigurationTaskRequest"),
     type = "structure",
     members = {
         taskId = schema.new({
@@ -782,7 +782,7 @@ M.BatchDeleteConfigurationTask = schema.new({
 })
 
 M.DescribeBatchDeleteConfigurationTaskOutput = schema.new({
-    id = id.from(_N, "DescribeBatchDeleteConfigurationTaskOutput"),
+    id = id.from(_N, "DescribeBatchDeleteConfigurationTaskResponse"),
     type = "structure",
     members = {
         task = schema.new({
@@ -796,7 +796,7 @@ M.DescribeBatchDeleteConfigurationTaskOutput = schema.new({
 })
 
 M.DescribeConfigurationsInput = schema.new({
-    id = id.from(_N, "DescribeConfigurationsInput"),
+    id = id.from(_N, "DescribeConfigurationsRequest"),
     type = "structure",
     members = {
         configurationIds = schema.new({
@@ -813,7 +813,7 @@ M.DescribeConfigurationsInput = schema.new({
 })
 
 M.DescribeConfigurationsOutput = schema.new({
-    id = id.from(_N, "DescribeConfigurationsOutput"),
+    id = id.from(_N, "DescribeConfigurationsResponse"),
     type = "structure",
     members = {
         configurations = schema.new({
@@ -827,7 +827,7 @@ M.DescribeConfigurationsOutput = schema.new({
 })
 
 M.DescribeContinuousExportsInput = schema.new({
-    id = id.from(_N, "DescribeContinuousExportsInput"),
+    id = id.from(_N, "DescribeContinuousExportsRequest"),
     type = "structure",
     members = {
         exportIds = schema.new({
@@ -910,7 +910,7 @@ M.ContinuousExportDescription = schema.new({
 })
 
 M.DescribeContinuousExportsOutput = schema.new({
-    id = id.from(_N, "DescribeContinuousExportsOutput"),
+    id = id.from(_N, "DescribeContinuousExportsResponse"),
     type = "structure",
     members = {
         descriptions = schema.new({
@@ -946,7 +946,7 @@ M.OperationNotPermittedException = schema.new({
 })
 
 M.DescribeExportConfigurationsInput = schema.new({
-    id = id.from(_N, "DescribeExportConfigurationsInput"),
+    id = id.from(_N, "DescribeExportConfigurationsRequest"),
     type = "structure",
     members = {
         exportIds = schema.new({
@@ -1045,7 +1045,7 @@ M.ExportInfo = schema.new({
 })
 
 M.DescribeExportConfigurationsOutput = schema.new({
-    id = id.from(_N, "DescribeExportConfigurationsOutput"),
+    id = id.from(_N, "DescribeExportConfigurationsResponse"),
     type = "structure",
     members = {
         exportsInfo = schema.new({
@@ -1082,7 +1082,7 @@ M.ExportFilter = schema.new({
             type = "list",
             name = "values",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1100,7 +1100,7 @@ M.ExportFilter = schema.new({
 })
 
 M.DescribeExportTasksInput = schema.new({
-    id = id.from(_N, "DescribeExportTasksInput"),
+    id = id.from(_N, "DescribeExportTasksRequest"),
     type = "structure",
     members = {
         exportIds = schema.new({
@@ -1136,7 +1136,7 @@ M.DescribeExportTasksInput = schema.new({
 })
 
 M.DescribeExportTasksOutput = schema.new({
-    id = id.from(_N, "DescribeExportTasksOutput"),
+    id = id.from(_N, "DescribeExportTasksResponse"),
     type = "structure",
     members = {
         exportsInfo = schema.new({
@@ -1176,7 +1176,7 @@ M.ImportTaskFilter = schema.new({
 })
 
 M.DescribeImportTasksInput = schema.new({
-    id = id.from(_N, "DescribeImportTasksInput"),
+    id = id.from(_N, "DescribeImportTasksRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -1305,7 +1305,7 @@ M.ImportTask = schema.new({
 })
 
 M.DescribeImportTasksOutput = schema.new({
-    id = id.from(_N, "DescribeImportTasksOutput"),
+    id = id.from(_N, "DescribeImportTasksResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1342,7 +1342,7 @@ M.TagFilter = schema.new({
             type = "list",
             name = "values",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1351,7 +1351,7 @@ M.TagFilter = schema.new({
 })
 
 M.DescribeTagsInput = schema.new({
-    id = id.from(_N, "DescribeTagsInput"),
+    id = id.from(_N, "DescribeTagsRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -1417,7 +1417,7 @@ M.ConfigurationTag = schema.new({
 })
 
 M.DescribeTagsOutput = schema.new({
-    id = id.from(_N, "DescribeTagsOutput"),
+    id = id.from(_N, "DescribeTagsResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1425,7 +1425,7 @@ M.DescribeTagsOutput = schema.new({
             type = "list",
             name = "tags",
             target_id = prelude.Document.id,
-            list_member = M.ConfigurationTag,
+            list_member = schema.new({ type = "structure", target = M.ConfigurationTag, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "DescribeTagsOutput", "nextToken"),
@@ -1437,7 +1437,7 @@ M.DescribeTagsOutput = schema.new({
 })
 
 M.DisassociateConfigurationItemsFromApplicationInput = schema.new({
-    id = id.from(_N, "DisassociateConfigurationItemsFromApplicationInput"),
+    id = id.from(_N, "DisassociateConfigurationItemsFromApplicationRequest"),
     type = "structure",
     members = {
         applicationConfigurationId = schema.new({
@@ -1463,17 +1463,17 @@ M.DisassociateConfigurationItemsFromApplicationInput = schema.new({
 })
 
 M.DisassociateConfigurationItemsFromApplicationOutput = schema.new({
-    id = id.from(_N, "DisassociateConfigurationItemsFromApplicationOutput"),
+    id = id.from(_N, "DisassociateConfigurationItemsFromApplicationResponse"),
     type = "structure",
 })
 
 M.ExportConfigurationsInput = schema.new({
-    id = id.from(_N, "ExportConfigurationsInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ExportConfigurationsOutput = schema.new({
-    id = id.from(_N, "ExportConfigurationsOutput"),
+    id = id.from(_N, "ExportConfigurationsResponse"),
     type = "structure",
     members = {
         exportId = schema.new({
@@ -1486,7 +1486,7 @@ M.ExportConfigurationsOutput = schema.new({
 })
 
 M.GetDiscoverySummaryInput = schema.new({
-    id = id.from(_N, "GetDiscoverySummaryInput"),
+    id = id.from(_N, "GetDiscoverySummaryRequest"),
     type = "structure",
 })
 
@@ -1799,7 +1799,7 @@ M.CustomerMeCollectorInfo = schema.new({
 })
 
 M.GetDiscoverySummaryOutput = schema.new({
-    id = id.from(_N, "GetDiscoverySummaryOutput"),
+    id = id.from(_N, "GetDiscoverySummaryResponse"),
     type = "structure",
     members = {
         servers = schema.new({
@@ -1892,7 +1892,7 @@ M.OrderByElement = schema.new({
 })
 
 M.ListConfigurationsInput = schema.new({
-    id = id.from(_N, "ListConfigurationsInput"),
+    id = id.from(_N, "ListConfigurationsRequest"),
     type = "structure",
     members = {
         configurationType = schema.new({
@@ -1937,7 +1937,7 @@ M.ListConfigurationsInput = schema.new({
 })
 
 M.ListConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListConfigurationsOutput"),
+    id = id.from(_N, "ListConfigurationsResponse"),
     type = "structure",
     members = {
         configurations = schema.new({
@@ -1957,7 +1957,7 @@ M.ListConfigurationsOutput = schema.new({
 })
 
 M.ListServerNeighborsInput = schema.new({
-    id = id.from(_N, "ListServerNeighborsInput"),
+    id = id.from(_N, "ListServerNeighborsRequest"),
     type = "structure",
     members = {
         configurationId = schema.new({
@@ -2051,7 +2051,7 @@ M.NeighborConnectionDetail = schema.new({
 })
 
 M.ListServerNeighborsOutput = schema.new({
-    id = id.from(_N, "ListServerNeighborsOutput"),
+    id = id.from(_N, "ListServerNeighborsResponse"),
     type = "structure",
     members = {
         neighbors = schema.new({
@@ -2099,7 +2099,7 @@ M.LimitExceededException = schema.new({
 })
 
 M.StartBatchDeleteConfigurationTaskInput = schema.new({
-    id = id.from(_N, "StartBatchDeleteConfigurationTaskInput"),
+    id = id.from(_N, "StartBatchDeleteConfigurationTaskRequest"),
     type = "structure",
     members = {
         configurationType = schema.new({
@@ -2125,7 +2125,7 @@ M.StartBatchDeleteConfigurationTaskInput = schema.new({
 })
 
 M.StartBatchDeleteConfigurationTaskOutput = schema.new({
-    id = id.from(_N, "StartBatchDeleteConfigurationTaskOutput"),
+    id = id.from(_N, "StartBatchDeleteConfigurationTaskResponse"),
     type = "structure",
     members = {
         taskId = schema.new({
@@ -2170,12 +2170,12 @@ M.ResourceInUseException = schema.new({
 })
 
 M.StartContinuousExportInput = schema.new({
-    id = id.from(_N, "StartContinuousExportInput"),
+    id = id.from(_N, "StartContinuousExportRequest"),
     type = "structure",
 })
 
 M.StartContinuousExportOutput = schema.new({
-    id = id.from(_N, "StartContinuousExportOutput"),
+    id = id.from(_N, "StartContinuousExportResponse"),
     type = "structure",
     members = {
         exportId = schema.new({
@@ -2214,7 +2214,7 @@ M.StartContinuousExportOutput = schema.new({
 })
 
 M.StartDataCollectionByAgentIdsInput = schema.new({
-    id = id.from(_N, "StartDataCollectionByAgentIdsInput"),
+    id = id.from(_N, "StartDataCollectionByAgentIdsRequest"),
     type = "structure",
     members = {
         agentIds = schema.new({
@@ -2231,7 +2231,7 @@ M.StartDataCollectionByAgentIdsInput = schema.new({
 })
 
 M.StartDataCollectionByAgentIdsOutput = schema.new({
-    id = id.from(_N, "StartDataCollectionByAgentIdsOutput"),
+    id = id.from(_N, "StartDataCollectionByAgentIdsResponse"),
     type = "structure",
     members = {
         agentsConfigurationStatus = schema.new({
@@ -2368,7 +2368,7 @@ M.ExportPreferences = schema.new({
 })
 
 M.StartExportTaskInput = schema.new({
-    id = id.from(_N, "StartExportTaskInput"),
+    id = id.from(_N, "StartExportTaskRequest"),
     type = "structure",
     members = {
         exportDataFormat = schema.new({
@@ -2408,7 +2408,7 @@ M.StartExportTaskInput = schema.new({
 })
 
 M.StartExportTaskOutput = schema.new({
-    id = id.from(_N, "StartExportTaskOutput"),
+    id = id.from(_N, "StartExportTaskResponse"),
     type = "structure",
     members = {
         exportId = schema.new({
@@ -2421,7 +2421,7 @@ M.StartExportTaskOutput = schema.new({
 })
 
 M.StartImportTaskInput = schema.new({
-    id = id.from(_N, "StartImportTaskInput"),
+    id = id.from(_N, "StartImportTaskRequest"),
     type = "structure",
     members = {
         clientRequestToken = schema.new({
@@ -2455,7 +2455,7 @@ M.StartImportTaskInput = schema.new({
 })
 
 M.StartImportTaskOutput = schema.new({
-    id = id.from(_N, "StartImportTaskOutput"),
+    id = id.from(_N, "StartImportTaskResponse"),
     type = "structure",
     members = {
         task = schema.new({
@@ -2469,7 +2469,7 @@ M.StartImportTaskOutput = schema.new({
 })
 
 M.StopContinuousExportInput = schema.new({
-    id = id.from(_N, "StopContinuousExportInput"),
+    id = id.from(_N, "StopContinuousExportRequest"),
     type = "structure",
     members = {
         exportId = schema.new({
@@ -2485,7 +2485,7 @@ M.StopContinuousExportInput = schema.new({
 })
 
 M.StopContinuousExportOutput = schema.new({
-    id = id.from(_N, "StopContinuousExportOutput"),
+    id = id.from(_N, "StopContinuousExportResponse"),
     type = "structure",
     members = {
         startTime = schema.new({
@@ -2504,7 +2504,7 @@ M.StopContinuousExportOutput = schema.new({
 })
 
 M.StopDataCollectionByAgentIdsInput = schema.new({
-    id = id.from(_N, "StopDataCollectionByAgentIdsInput"),
+    id = id.from(_N, "StopDataCollectionByAgentIdsRequest"),
     type = "structure",
     members = {
         agentIds = schema.new({
@@ -2521,7 +2521,7 @@ M.StopDataCollectionByAgentIdsInput = schema.new({
 })
 
 M.StopDataCollectionByAgentIdsOutput = schema.new({
-    id = id.from(_N, "StopDataCollectionByAgentIdsOutput"),
+    id = id.from(_N, "StopDataCollectionByAgentIdsResponse"),
     type = "structure",
     members = {
         agentsConfigurationStatus = schema.new({
@@ -2535,7 +2535,7 @@ M.StopDataCollectionByAgentIdsOutput = schema.new({
 })
 
 M.UpdateApplicationInput = schema.new({
-    id = id.from(_N, "UpdateApplicationInput"),
+    id = id.from(_N, "UpdateApplicationRequest"),
     type = "structure",
     members = {
         configurationId = schema.new({
@@ -2569,8 +2569,22 @@ M.UpdateApplicationInput = schema.new({
 })
 
 M.UpdateApplicationOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationOutput"),
+    id = id.from(_N, "UpdateApplicationResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

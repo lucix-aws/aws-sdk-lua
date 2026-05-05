@@ -220,7 +220,7 @@ M.CustomRoutingEndpointConfiguration = schema.new({
 })
 
 M.AddCustomRoutingEndpointsInput = schema.new({
-    id = id.from(_N, "AddCustomRoutingEndpointsInput"),
+    id = id.from(_N, "AddCustomRoutingEndpointsRequest"),
     type = "structure",
     members = {
         EndpointConfigurations = schema.new({
@@ -259,7 +259,7 @@ M.CustomRoutingEndpointDescription = schema.new({
 })
 
 M.AddCustomRoutingEndpointsOutput = schema.new({
-    id = id.from(_N, "AddCustomRoutingEndpointsOutput"),
+    id = id.from(_N, "AddCustomRoutingEndpointsResponse"),
     type = "structure",
     members = {
         EndpointDescriptions = schema.new({
@@ -406,7 +406,7 @@ M.EndpointConfiguration = schema.new({
 })
 
 M.AddEndpointsInput = schema.new({
-    id = id.from(_N, "AddEndpointsInput"),
+    id = id.from(_N, "AddEndpointsRequest"),
     type = "structure",
     members = {
         EndpointConfigurations = schema.new({
@@ -469,7 +469,7 @@ M.EndpointDescription = schema.new({
 })
 
 M.AddEndpointsOutput = schema.new({
-    id = id.from(_N, "AddEndpointsOutput"),
+    id = id.from(_N, "AddEndpointsResponse"),
     type = "structure",
     members = {
         EndpointDescriptions = schema.new({
@@ -505,7 +505,7 @@ M.TransactionInProgressException = schema.new({
 })
 
 M.AdvertiseByoipCidrInput = schema.new({
-    id = id.from(_N, "AdvertiseByoipCidrInput"),
+    id = id.from(_N, "AdvertiseByoipCidrRequest"),
     type = "structure",
     members = {
         Cidr = schema.new({
@@ -566,7 +566,7 @@ M.ByoipCidr = schema.new({
 })
 
 M.AdvertiseByoipCidrOutput = schema.new({
-    id = id.from(_N, "AdvertiseByoipCidrOutput"),
+    id = id.from(_N, "AdvertiseByoipCidrResponse"),
     type = "structure",
     members = {
         ByoipCidr = schema.new({
@@ -612,7 +612,7 @@ M.IncorrectCidrStateException = schema.new({
 })
 
 M.AllowCustomRoutingTrafficInput = schema.new({
-    id = id.from(_N, "AllowCustomRoutingTrafficInput"),
+    id = id.from(_N, "AllowCustomRoutingTrafficRequest"),
     type = "structure",
     members = {
         EndpointGroupArn = schema.new({
@@ -657,7 +657,7 @@ M.AllowCustomRoutingTrafficInput = schema.new({
 })
 
 M.AllowCustomRoutingTrafficOutput = schema.new({
-    id = id.from(_N, "AllowCustomRoutingTrafficOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -833,7 +833,7 @@ M.Tag = schema.new({
 })
 
 M.CreateAcceleratorInput = schema.new({
-    id = id.from(_N, "CreateAcceleratorInput"),
+    id = id.from(_N, "CreateAcceleratorRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -885,7 +885,7 @@ M.CreateAcceleratorInput = schema.new({
 })
 
 M.CreateAcceleratorOutput = schema.new({
-    id = id.from(_N, "CreateAcceleratorOutput"),
+    id = id.from(_N, "CreateAcceleratorResponse"),
     type = "structure",
     members = {
         Accelerator = schema.new({
@@ -899,7 +899,7 @@ M.CreateAcceleratorOutput = schema.new({
 })
 
 M.CreateCrossAccountAttachmentInput = schema.new({
-    id = id.from(_N, "CreateCrossAccountAttachmentInput"),
+    id = id.from(_N, "CreateCrossAccountAttachmentRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -946,7 +946,7 @@ M.CreateCrossAccountAttachmentInput = schema.new({
 })
 
 M.CreateCrossAccountAttachmentOutput = schema.new({
-    id = id.from(_N, "CreateCrossAccountAttachmentOutput"),
+    id = id.from(_N, "CreateCrossAccountAttachmentResponse"),
     type = "structure",
     members = {
         CrossAccountAttachment = schema.new({
@@ -960,7 +960,7 @@ M.CreateCrossAccountAttachmentOutput = schema.new({
 })
 
 M.CreateCustomRoutingAcceleratorInput = schema.new({
-    id = id.from(_N, "CreateCustomRoutingAcceleratorInput"),
+    id = id.from(_N, "CreateCustomRoutingAcceleratorRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1074,7 +1074,7 @@ M.CustomRoutingAccelerator = schema.new({
 })
 
 M.CreateCustomRoutingAcceleratorOutput = schema.new({
-    id = id.from(_N, "CreateCustomRoutingAcceleratorOutput"),
+    id = id.from(_N, "CreateCustomRoutingAcceleratorResponse"),
     type = "structure",
     members = {
         Accelerator = schema.new({
@@ -1123,7 +1123,7 @@ M.CustomRoutingDestinationConfiguration = schema.new({
 })
 
 M.CreateCustomRoutingEndpointGroupInput = schema.new({
-    id = id.from(_N, "CreateCustomRoutingEndpointGroupInput"),
+    id = id.from(_N, "CreateCustomRoutingEndpointGroupRequest"),
     type = "structure",
     members = {
         ListenerArn = schema.new({
@@ -1227,7 +1227,7 @@ M.CustomRoutingEndpointGroup = schema.new({
 })
 
 M.CreateCustomRoutingEndpointGroupOutput = schema.new({
-    id = id.from(_N, "CreateCustomRoutingEndpointGroupOutput"),
+    id = id.from(_N, "CreateCustomRoutingEndpointGroupResponse"),
     type = "structure",
     members = {
         EndpointGroup = schema.new({
@@ -1308,7 +1308,7 @@ M.PortRange = schema.new({
 })
 
 M.CreateCustomRoutingListenerInput = schema.new({
-    id = id.from(_N, "CreateCustomRoutingListenerInput"),
+    id = id.from(_N, "CreateCustomRoutingListenerRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -1364,7 +1364,7 @@ M.CustomRoutingListener = schema.new({
 })
 
 M.CreateCustomRoutingListenerOutput = schema.new({
-    id = id.from(_N, "CreateCustomRoutingListenerOutput"),
+    id = id.from(_N, "CreateCustomRoutingListenerResponse"),
     type = "structure",
     members = {
         Listener = schema.new({
@@ -1397,7 +1397,7 @@ M.PortOverride = schema.new({
 })
 
 M.CreateEndpointGroupInput = schema.new({
-    id = id.from(_N, "CreateEndpointGroupInput"),
+    id = id.from(_N, "CreateEndpointGroupRequest"),
     type = "structure",
     members = {
         ListenerArn = schema.new({
@@ -1551,7 +1551,7 @@ M.EndpointGroup = schema.new({
 })
 
 M.CreateEndpointGroupOutput = schema.new({
-    id = id.from(_N, "CreateEndpointGroupOutput"),
+    id = id.from(_N, "CreateEndpointGroupResponse"),
     type = "structure",
     members = {
         EndpointGroup = schema.new({
@@ -1565,7 +1565,7 @@ M.CreateEndpointGroupOutput = schema.new({
 })
 
 M.CreateListenerInput = schema.new({
-    id = id.from(_N, "CreateListenerInput"),
+    id = id.from(_N, "CreateListenerRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -1648,7 +1648,7 @@ M.Listener = schema.new({
 })
 
 M.CreateListenerOutput = schema.new({
-    id = id.from(_N, "CreateListenerOutput"),
+    id = id.from(_N, "CreateListenerResponse"),
     type = "structure",
     members = {
         Listener = schema.new({
@@ -1712,7 +1712,7 @@ M.CustomRoutingAcceleratorAttributes = schema.new({
 })
 
 M.DeleteAcceleratorInput = schema.new({
-    id = id.from(_N, "DeleteAcceleratorInput"),
+    id = id.from(_N, "DeleteAcceleratorRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -1728,12 +1728,12 @@ M.DeleteAcceleratorInput = schema.new({
 })
 
 M.DeleteAcceleratorOutput = schema.new({
-    id = id.from(_N, "DeleteAcceleratorOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteCrossAccountAttachmentInput = schema.new({
-    id = id.from(_N, "DeleteCrossAccountAttachmentInput"),
+    id = id.from(_N, "DeleteCrossAccountAttachmentRequest"),
     type = "structure",
     members = {
         AttachmentArn = schema.new({
@@ -1749,12 +1749,12 @@ M.DeleteCrossAccountAttachmentInput = schema.new({
 })
 
 M.DeleteCrossAccountAttachmentOutput = schema.new({
-    id = id.from(_N, "DeleteCrossAccountAttachmentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteCustomRoutingAcceleratorInput = schema.new({
-    id = id.from(_N, "DeleteCustomRoutingAcceleratorInput"),
+    id = id.from(_N, "DeleteCustomRoutingAcceleratorRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -1770,12 +1770,12 @@ M.DeleteCustomRoutingAcceleratorInput = schema.new({
 })
 
 M.DeleteCustomRoutingAcceleratorOutput = schema.new({
-    id = id.from(_N, "DeleteCustomRoutingAcceleratorOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteCustomRoutingEndpointGroupInput = schema.new({
-    id = id.from(_N, "DeleteCustomRoutingEndpointGroupInput"),
+    id = id.from(_N, "DeleteCustomRoutingEndpointGroupRequest"),
     type = "structure",
     members = {
         EndpointGroupArn = schema.new({
@@ -1791,12 +1791,12 @@ M.DeleteCustomRoutingEndpointGroupInput = schema.new({
 })
 
 M.DeleteCustomRoutingEndpointGroupOutput = schema.new({
-    id = id.from(_N, "DeleteCustomRoutingEndpointGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteCustomRoutingListenerInput = schema.new({
-    id = id.from(_N, "DeleteCustomRoutingListenerInput"),
+    id = id.from(_N, "DeleteCustomRoutingListenerRequest"),
     type = "structure",
     members = {
         ListenerArn = schema.new({
@@ -1812,12 +1812,12 @@ M.DeleteCustomRoutingListenerInput = schema.new({
 })
 
 M.DeleteCustomRoutingListenerOutput = schema.new({
-    id = id.from(_N, "DeleteCustomRoutingListenerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteEndpointGroupInput = schema.new({
-    id = id.from(_N, "DeleteEndpointGroupInput"),
+    id = id.from(_N, "DeleteEndpointGroupRequest"),
     type = "structure",
     members = {
         EndpointGroupArn = schema.new({
@@ -1833,12 +1833,12 @@ M.DeleteEndpointGroupInput = schema.new({
 })
 
 M.DeleteEndpointGroupOutput = schema.new({
-    id = id.from(_N, "DeleteEndpointGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteListenerInput = schema.new({
-    id = id.from(_N, "DeleteListenerInput"),
+    id = id.from(_N, "DeleteListenerRequest"),
     type = "structure",
     members = {
         ListenerArn = schema.new({
@@ -1854,12 +1854,12 @@ M.DeleteListenerInput = schema.new({
 })
 
 M.DeleteListenerOutput = schema.new({
-    id = id.from(_N, "DeleteListenerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DenyCustomRoutingTrafficInput = schema.new({
-    id = id.from(_N, "DenyCustomRoutingTrafficInput"),
+    id = id.from(_N, "DenyCustomRoutingTrafficRequest"),
     type = "structure",
     members = {
         EndpointGroupArn = schema.new({
@@ -1904,12 +1904,12 @@ M.DenyCustomRoutingTrafficInput = schema.new({
 })
 
 M.DenyCustomRoutingTrafficOutput = schema.new({
-    id = id.from(_N, "DenyCustomRoutingTrafficOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeprovisionByoipCidrInput = schema.new({
-    id = id.from(_N, "DeprovisionByoipCidrInput"),
+    id = id.from(_N, "DeprovisionByoipCidrRequest"),
     type = "structure",
     members = {
         Cidr = schema.new({
@@ -1925,7 +1925,7 @@ M.DeprovisionByoipCidrInput = schema.new({
 })
 
 M.DeprovisionByoipCidrOutput = schema.new({
-    id = id.from(_N, "DeprovisionByoipCidrOutput"),
+    id = id.from(_N, "DeprovisionByoipCidrResponse"),
     type = "structure",
     members = {
         ByoipCidr = schema.new({
@@ -1939,7 +1939,7 @@ M.DeprovisionByoipCidrOutput = schema.new({
 })
 
 M.DescribeAcceleratorInput = schema.new({
-    id = id.from(_N, "DescribeAcceleratorInput"),
+    id = id.from(_N, "DescribeAcceleratorRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -1955,7 +1955,7 @@ M.DescribeAcceleratorInput = schema.new({
 })
 
 M.DescribeAcceleratorOutput = schema.new({
-    id = id.from(_N, "DescribeAcceleratorOutput"),
+    id = id.from(_N, "DescribeAcceleratorResponse"),
     type = "structure",
     members = {
         Accelerator = schema.new({
@@ -1969,7 +1969,7 @@ M.DescribeAcceleratorOutput = schema.new({
 })
 
 M.DescribeAcceleratorAttributesInput = schema.new({
-    id = id.from(_N, "DescribeAcceleratorAttributesInput"),
+    id = id.from(_N, "DescribeAcceleratorAttributesRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -1985,7 +1985,7 @@ M.DescribeAcceleratorAttributesInput = schema.new({
 })
 
 M.DescribeAcceleratorAttributesOutput = schema.new({
-    id = id.from(_N, "DescribeAcceleratorAttributesOutput"),
+    id = id.from(_N, "DescribeAcceleratorAttributesResponse"),
     type = "structure",
     members = {
         AcceleratorAttributes = schema.new({
@@ -1999,7 +1999,7 @@ M.DescribeAcceleratorAttributesOutput = schema.new({
 })
 
 M.DescribeCrossAccountAttachmentInput = schema.new({
-    id = id.from(_N, "DescribeCrossAccountAttachmentInput"),
+    id = id.from(_N, "DescribeCrossAccountAttachmentRequest"),
     type = "structure",
     members = {
         AttachmentArn = schema.new({
@@ -2015,7 +2015,7 @@ M.DescribeCrossAccountAttachmentInput = schema.new({
 })
 
 M.DescribeCrossAccountAttachmentOutput = schema.new({
-    id = id.from(_N, "DescribeCrossAccountAttachmentOutput"),
+    id = id.from(_N, "DescribeCrossAccountAttachmentResponse"),
     type = "structure",
     members = {
         CrossAccountAttachment = schema.new({
@@ -2029,7 +2029,7 @@ M.DescribeCrossAccountAttachmentOutput = schema.new({
 })
 
 M.DescribeCustomRoutingAcceleratorInput = schema.new({
-    id = id.from(_N, "DescribeCustomRoutingAcceleratorInput"),
+    id = id.from(_N, "DescribeCustomRoutingAcceleratorRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -2045,7 +2045,7 @@ M.DescribeCustomRoutingAcceleratorInput = schema.new({
 })
 
 M.DescribeCustomRoutingAcceleratorOutput = schema.new({
-    id = id.from(_N, "DescribeCustomRoutingAcceleratorOutput"),
+    id = id.from(_N, "DescribeCustomRoutingAcceleratorResponse"),
     type = "structure",
     members = {
         Accelerator = schema.new({
@@ -2059,7 +2059,7 @@ M.DescribeCustomRoutingAcceleratorOutput = schema.new({
 })
 
 M.DescribeCustomRoutingAcceleratorAttributesInput = schema.new({
-    id = id.from(_N, "DescribeCustomRoutingAcceleratorAttributesInput"),
+    id = id.from(_N, "DescribeCustomRoutingAcceleratorAttributesRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -2075,7 +2075,7 @@ M.DescribeCustomRoutingAcceleratorAttributesInput = schema.new({
 })
 
 M.DescribeCustomRoutingAcceleratorAttributesOutput = schema.new({
-    id = id.from(_N, "DescribeCustomRoutingAcceleratorAttributesOutput"),
+    id = id.from(_N, "DescribeCustomRoutingAcceleratorAttributesResponse"),
     type = "structure",
     members = {
         AcceleratorAttributes = schema.new({
@@ -2089,7 +2089,7 @@ M.DescribeCustomRoutingAcceleratorAttributesOutput = schema.new({
 })
 
 M.DescribeCustomRoutingEndpointGroupInput = schema.new({
-    id = id.from(_N, "DescribeCustomRoutingEndpointGroupInput"),
+    id = id.from(_N, "DescribeCustomRoutingEndpointGroupRequest"),
     type = "structure",
     members = {
         EndpointGroupArn = schema.new({
@@ -2105,7 +2105,7 @@ M.DescribeCustomRoutingEndpointGroupInput = schema.new({
 })
 
 M.DescribeCustomRoutingEndpointGroupOutput = schema.new({
-    id = id.from(_N, "DescribeCustomRoutingEndpointGroupOutput"),
+    id = id.from(_N, "DescribeCustomRoutingEndpointGroupResponse"),
     type = "structure",
     members = {
         EndpointGroup = schema.new({
@@ -2119,7 +2119,7 @@ M.DescribeCustomRoutingEndpointGroupOutput = schema.new({
 })
 
 M.DescribeCustomRoutingListenerInput = schema.new({
-    id = id.from(_N, "DescribeCustomRoutingListenerInput"),
+    id = id.from(_N, "DescribeCustomRoutingListenerRequest"),
     type = "structure",
     members = {
         ListenerArn = schema.new({
@@ -2135,7 +2135,7 @@ M.DescribeCustomRoutingListenerInput = schema.new({
 })
 
 M.DescribeCustomRoutingListenerOutput = schema.new({
-    id = id.from(_N, "DescribeCustomRoutingListenerOutput"),
+    id = id.from(_N, "DescribeCustomRoutingListenerResponse"),
     type = "structure",
     members = {
         Listener = schema.new({
@@ -2149,7 +2149,7 @@ M.DescribeCustomRoutingListenerOutput = schema.new({
 })
 
 M.DescribeEndpointGroupInput = schema.new({
-    id = id.from(_N, "DescribeEndpointGroupInput"),
+    id = id.from(_N, "DescribeEndpointGroupRequest"),
     type = "structure",
     members = {
         EndpointGroupArn = schema.new({
@@ -2165,7 +2165,7 @@ M.DescribeEndpointGroupInput = schema.new({
 })
 
 M.DescribeEndpointGroupOutput = schema.new({
-    id = id.from(_N, "DescribeEndpointGroupOutput"),
+    id = id.from(_N, "DescribeEndpointGroupResponse"),
     type = "structure",
     members = {
         EndpointGroup = schema.new({
@@ -2179,7 +2179,7 @@ M.DescribeEndpointGroupOutput = schema.new({
 })
 
 M.DescribeListenerInput = schema.new({
-    id = id.from(_N, "DescribeListenerInput"),
+    id = id.from(_N, "DescribeListenerRequest"),
     type = "structure",
     members = {
         ListenerArn = schema.new({
@@ -2195,7 +2195,7 @@ M.DescribeListenerInput = schema.new({
 })
 
 M.DescribeListenerOutput = schema.new({
-    id = id.from(_N, "DescribeListenerOutput"),
+    id = id.from(_N, "DescribeListenerResponse"),
     type = "structure",
     members = {
         Listener = schema.new({
@@ -2339,7 +2339,7 @@ M.InvalidNextTokenException = schema.new({
 })
 
 M.ListAcceleratorsInput = schema.new({
-    id = id.from(_N, "ListAcceleratorsInput"),
+    id = id.from(_N, "ListAcceleratorsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2358,7 +2358,7 @@ M.ListAcceleratorsInput = schema.new({
 })
 
 M.ListAcceleratorsOutput = schema.new({
-    id = id.from(_N, "ListAcceleratorsOutput"),
+    id = id.from(_N, "ListAcceleratorsResponse"),
     type = "structure",
     members = {
         Accelerators = schema.new({
@@ -2378,7 +2378,7 @@ M.ListAcceleratorsOutput = schema.new({
 })
 
 M.ListByoipCidrsInput = schema.new({
-    id = id.from(_N, "ListByoipCidrsInput"),
+    id = id.from(_N, "ListByoipCidrsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2397,7 +2397,7 @@ M.ListByoipCidrsInput = schema.new({
 })
 
 M.ListByoipCidrsOutput = schema.new({
-    id = id.from(_N, "ListByoipCidrsOutput"),
+    id = id.from(_N, "ListByoipCidrsResponse"),
     type = "structure",
     members = {
         ByoipCidrs = schema.new({
@@ -2417,7 +2417,7 @@ M.ListByoipCidrsOutput = schema.new({
 })
 
 M.ListCrossAccountAttachmentsInput = schema.new({
-    id = id.from(_N, "ListCrossAccountAttachmentsInput"),
+    id = id.from(_N, "ListCrossAccountAttachmentsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2436,7 +2436,7 @@ M.ListCrossAccountAttachmentsInput = schema.new({
 })
 
 M.ListCrossAccountAttachmentsOutput = schema.new({
-    id = id.from(_N, "ListCrossAccountAttachmentsOutput"),
+    id = id.from(_N, "ListCrossAccountAttachmentsResponse"),
     type = "structure",
     members = {
         CrossAccountAttachments = schema.new({
@@ -2456,12 +2456,12 @@ M.ListCrossAccountAttachmentsOutput = schema.new({
 })
 
 M.ListCrossAccountResourceAccountsInput = schema.new({
-    id = id.from(_N, "ListCrossAccountResourceAccountsInput"),
+    id = id.from(_N, "ListCrossAccountResourceAccountsRequest"),
     type = "structure",
 })
 
 M.ListCrossAccountResourceAccountsOutput = schema.new({
-    id = id.from(_N, "ListCrossAccountResourceAccountsOutput"),
+    id = id.from(_N, "ListCrossAccountResourceAccountsResponse"),
     type = "structure",
     members = {
         ResourceOwnerAwsAccountIds = schema.new({
@@ -2475,7 +2475,7 @@ M.ListCrossAccountResourceAccountsOutput = schema.new({
 })
 
 M.ListCrossAccountResourcesInput = schema.new({
-    id = id.from(_N, "ListCrossAccountResourcesInput"),
+    id = id.from(_N, "ListCrossAccountResourcesRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -2509,7 +2509,7 @@ M.ListCrossAccountResourcesInput = schema.new({
 })
 
 M.ListCrossAccountResourcesOutput = schema.new({
-    id = id.from(_N, "ListCrossAccountResourcesOutput"),
+    id = id.from(_N, "ListCrossAccountResourcesResponse"),
     type = "structure",
     members = {
         CrossAccountResources = schema.new({
@@ -2529,7 +2529,7 @@ M.ListCrossAccountResourcesOutput = schema.new({
 })
 
 M.ListCustomRoutingAcceleratorsInput = schema.new({
-    id = id.from(_N, "ListCustomRoutingAcceleratorsInput"),
+    id = id.from(_N, "ListCustomRoutingAcceleratorsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2548,7 +2548,7 @@ M.ListCustomRoutingAcceleratorsInput = schema.new({
 })
 
 M.ListCustomRoutingAcceleratorsOutput = schema.new({
-    id = id.from(_N, "ListCustomRoutingAcceleratorsOutput"),
+    id = id.from(_N, "ListCustomRoutingAcceleratorsResponse"),
     type = "structure",
     members = {
         Accelerators = schema.new({
@@ -2568,7 +2568,7 @@ M.ListCustomRoutingAcceleratorsOutput = schema.new({
 })
 
 M.ListCustomRoutingEndpointGroupsInput = schema.new({
-    id = id.from(_N, "ListCustomRoutingEndpointGroupsInput"),
+    id = id.from(_N, "ListCustomRoutingEndpointGroupsRequest"),
     type = "structure",
     members = {
         ListenerArn = schema.new({
@@ -2596,7 +2596,7 @@ M.ListCustomRoutingEndpointGroupsInput = schema.new({
 })
 
 M.ListCustomRoutingEndpointGroupsOutput = schema.new({
-    id = id.from(_N, "ListCustomRoutingEndpointGroupsOutput"),
+    id = id.from(_N, "ListCustomRoutingEndpointGroupsResponse"),
     type = "structure",
     members = {
         EndpointGroups = schema.new({
@@ -2616,7 +2616,7 @@ M.ListCustomRoutingEndpointGroupsOutput = schema.new({
 })
 
 M.ListCustomRoutingListenersInput = schema.new({
-    id = id.from(_N, "ListCustomRoutingListenersInput"),
+    id = id.from(_N, "ListCustomRoutingListenersRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -2644,7 +2644,7 @@ M.ListCustomRoutingListenersInput = schema.new({
 })
 
 M.ListCustomRoutingListenersOutput = schema.new({
-    id = id.from(_N, "ListCustomRoutingListenersOutput"),
+    id = id.from(_N, "ListCustomRoutingListenersResponse"),
     type = "structure",
     members = {
         Listeners = schema.new({
@@ -2664,7 +2664,7 @@ M.ListCustomRoutingListenersOutput = schema.new({
 })
 
 M.ListCustomRoutingPortMappingsInput = schema.new({
-    id = id.from(_N, "ListCustomRoutingPortMappingsInput"),
+    id = id.from(_N, "ListCustomRoutingPortMappingsRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -2743,7 +2743,7 @@ M.PortMapping = schema.new({
 })
 
 M.ListCustomRoutingPortMappingsOutput = schema.new({
-    id = id.from(_N, "ListCustomRoutingPortMappingsOutput"),
+    id = id.from(_N, "ListCustomRoutingPortMappingsResponse"),
     type = "structure",
     members = {
         PortMappings = schema.new({
@@ -2763,7 +2763,7 @@ M.ListCustomRoutingPortMappingsOutput = schema.new({
 })
 
 M.ListCustomRoutingPortMappingsByDestinationInput = schema.new({
-    id = id.from(_N, "ListCustomRoutingPortMappingsByDestinationInput"),
+    id = id.from(_N, "ListCustomRoutingPortMappingsByDestinationRequest"),
     type = "structure",
     members = {
         EndpointId = schema.new({
@@ -2800,7 +2800,7 @@ M.ListCustomRoutingPortMappingsByDestinationInput = schema.new({
 })
 
 M.ListCustomRoutingPortMappingsByDestinationOutput = schema.new({
-    id = id.from(_N, "ListCustomRoutingPortMappingsByDestinationOutput"),
+    id = id.from(_N, "ListCustomRoutingPortMappingsByDestinationResponse"),
     type = "structure",
     members = {
         DestinationPortMappings = schema.new({
@@ -2820,7 +2820,7 @@ M.ListCustomRoutingPortMappingsByDestinationOutput = schema.new({
 })
 
 M.ListEndpointGroupsInput = schema.new({
-    id = id.from(_N, "ListEndpointGroupsInput"),
+    id = id.from(_N, "ListEndpointGroupsRequest"),
     type = "structure",
     members = {
         ListenerArn = schema.new({
@@ -2848,7 +2848,7 @@ M.ListEndpointGroupsInput = schema.new({
 })
 
 M.ListEndpointGroupsOutput = schema.new({
-    id = id.from(_N, "ListEndpointGroupsOutput"),
+    id = id.from(_N, "ListEndpointGroupsResponse"),
     type = "structure",
     members = {
         EndpointGroups = schema.new({
@@ -2868,7 +2868,7 @@ M.ListEndpointGroupsOutput = schema.new({
 })
 
 M.ListListenersInput = schema.new({
-    id = id.from(_N, "ListListenersInput"),
+    id = id.from(_N, "ListListenersRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -2896,7 +2896,7 @@ M.ListListenersInput = schema.new({
 })
 
 M.ListListenersOutput = schema.new({
-    id = id.from(_N, "ListListenersOutput"),
+    id = id.from(_N, "ListListenersResponse"),
     type = "structure",
     members = {
         Listeners = schema.new({
@@ -2916,7 +2916,7 @@ M.ListListenersOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2932,7 +2932,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2946,7 +2946,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ProvisionByoipCidrInput = schema.new({
-    id = id.from(_N, "ProvisionByoipCidrInput"),
+    id = id.from(_N, "ProvisionByoipCidrRequest"),
     type = "structure",
     members = {
         Cidr = schema.new({
@@ -2972,7 +2972,7 @@ M.ProvisionByoipCidrInput = schema.new({
 })
 
 M.ProvisionByoipCidrOutput = schema.new({
-    id = id.from(_N, "ProvisionByoipCidrOutput"),
+    id = id.from(_N, "ProvisionByoipCidrResponse"),
     type = "structure",
     members = {
         ByoipCidr = schema.new({
@@ -2986,7 +2986,7 @@ M.ProvisionByoipCidrOutput = schema.new({
 })
 
 M.RemoveCustomRoutingEndpointsInput = schema.new({
-    id = id.from(_N, "RemoveCustomRoutingEndpointsInput"),
+    id = id.from(_N, "RemoveCustomRoutingEndpointsRequest"),
     type = "structure",
     members = {
         EndpointIds = schema.new({
@@ -3012,12 +3012,12 @@ M.RemoveCustomRoutingEndpointsInput = schema.new({
 })
 
 M.RemoveCustomRoutingEndpointsOutput = schema.new({
-    id = id.from(_N, "RemoveCustomRoutingEndpointsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RemoveEndpointsInput = schema.new({
-    id = id.from(_N, "RemoveEndpointsInput"),
+    id = id.from(_N, "RemoveEndpointsRequest"),
     type = "structure",
     members = {
         EndpointIdentifiers = schema.new({
@@ -3043,12 +3043,12 @@ M.RemoveEndpointsInput = schema.new({
 })
 
 M.RemoveEndpointsOutput = schema.new({
-    id = id.from(_N, "RemoveEndpointsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3074,12 +3074,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3105,12 +3105,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAcceleratorInput = schema.new({
-    id = id.from(_N, "UpdateAcceleratorInput"),
+    id = id.from(_N, "UpdateAcceleratorRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -3151,7 +3151,7 @@ M.UpdateAcceleratorInput = schema.new({
 })
 
 M.UpdateAcceleratorOutput = schema.new({
-    id = id.from(_N, "UpdateAcceleratorOutput"),
+    id = id.from(_N, "UpdateAcceleratorResponse"),
     type = "structure",
     members = {
         Accelerator = schema.new({
@@ -3165,7 +3165,7 @@ M.UpdateAcceleratorOutput = schema.new({
 })
 
 M.UpdateAcceleratorAttributesInput = schema.new({
-    id = id.from(_N, "UpdateAcceleratorAttributesInput"),
+    id = id.from(_N, "UpdateAcceleratorAttributesRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -3199,7 +3199,7 @@ M.UpdateAcceleratorAttributesInput = schema.new({
 })
 
 M.UpdateAcceleratorAttributesOutput = schema.new({
-    id = id.from(_N, "UpdateAcceleratorAttributesOutput"),
+    id = id.from(_N, "UpdateAcceleratorAttributesResponse"),
     type = "structure",
     members = {
         AcceleratorAttributes = schema.new({
@@ -3213,7 +3213,7 @@ M.UpdateAcceleratorAttributesOutput = schema.new({
 })
 
 M.UpdateCrossAccountAttachmentInput = schema.new({
-    id = id.from(_N, "UpdateCrossAccountAttachmentInput"),
+    id = id.from(_N, "UpdateCrossAccountAttachmentRequest"),
     type = "structure",
     members = {
         AttachmentArn = schema.new({
@@ -3263,7 +3263,7 @@ M.UpdateCrossAccountAttachmentInput = schema.new({
 })
 
 M.UpdateCrossAccountAttachmentOutput = schema.new({
-    id = id.from(_N, "UpdateCrossAccountAttachmentOutput"),
+    id = id.from(_N, "UpdateCrossAccountAttachmentResponse"),
     type = "structure",
     members = {
         CrossAccountAttachment = schema.new({
@@ -3277,7 +3277,7 @@ M.UpdateCrossAccountAttachmentOutput = schema.new({
 })
 
 M.UpdateCustomRoutingAcceleratorInput = schema.new({
-    id = id.from(_N, "UpdateCustomRoutingAcceleratorInput"),
+    id = id.from(_N, "UpdateCustomRoutingAcceleratorRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -3318,7 +3318,7 @@ M.UpdateCustomRoutingAcceleratorInput = schema.new({
 })
 
 M.UpdateCustomRoutingAcceleratorOutput = schema.new({
-    id = id.from(_N, "UpdateCustomRoutingAcceleratorOutput"),
+    id = id.from(_N, "UpdateCustomRoutingAcceleratorResponse"),
     type = "structure",
     members = {
         Accelerator = schema.new({
@@ -3332,7 +3332,7 @@ M.UpdateCustomRoutingAcceleratorOutput = schema.new({
 })
 
 M.UpdateCustomRoutingAcceleratorAttributesInput = schema.new({
-    id = id.from(_N, "UpdateCustomRoutingAcceleratorAttributesInput"),
+    id = id.from(_N, "UpdateCustomRoutingAcceleratorAttributesRequest"),
     type = "structure",
     members = {
         AcceleratorArn = schema.new({
@@ -3366,7 +3366,7 @@ M.UpdateCustomRoutingAcceleratorAttributesInput = schema.new({
 })
 
 M.UpdateCustomRoutingAcceleratorAttributesOutput = schema.new({
-    id = id.from(_N, "UpdateCustomRoutingAcceleratorAttributesOutput"),
+    id = id.from(_N, "UpdateCustomRoutingAcceleratorAttributesResponse"),
     type = "structure",
     members = {
         AcceleratorAttributes = schema.new({
@@ -3380,7 +3380,7 @@ M.UpdateCustomRoutingAcceleratorAttributesOutput = schema.new({
 })
 
 M.UpdateCustomRoutingListenerInput = schema.new({
-    id = id.from(_N, "UpdateCustomRoutingListenerInput"),
+    id = id.from(_N, "UpdateCustomRoutingListenerRequest"),
     type = "structure",
     members = {
         ListenerArn = schema.new({
@@ -3406,7 +3406,7 @@ M.UpdateCustomRoutingListenerInput = schema.new({
 })
 
 M.UpdateCustomRoutingListenerOutput = schema.new({
-    id = id.from(_N, "UpdateCustomRoutingListenerOutput"),
+    id = id.from(_N, "UpdateCustomRoutingListenerResponse"),
     type = "structure",
     members = {
         Listener = schema.new({
@@ -3420,7 +3420,7 @@ M.UpdateCustomRoutingListenerOutput = schema.new({
 })
 
 M.UpdateEndpointGroupInput = schema.new({
-    id = id.from(_N, "UpdateEndpointGroupInput"),
+    id = id.from(_N, "UpdateEndpointGroupRequest"),
     type = "structure",
     members = {
         EndpointGroupArn = schema.new({
@@ -3486,7 +3486,7 @@ M.UpdateEndpointGroupInput = schema.new({
 })
 
 M.UpdateEndpointGroupOutput = schema.new({
-    id = id.from(_N, "UpdateEndpointGroupOutput"),
+    id = id.from(_N, "UpdateEndpointGroupResponse"),
     type = "structure",
     members = {
         EndpointGroup = schema.new({
@@ -3500,7 +3500,7 @@ M.UpdateEndpointGroupOutput = schema.new({
 })
 
 M.UpdateListenerInput = schema.new({
-    id = id.from(_N, "UpdateListenerInput"),
+    id = id.from(_N, "UpdateListenerRequest"),
     type = "structure",
     members = {
         ListenerArn = schema.new({
@@ -3535,7 +3535,7 @@ M.UpdateListenerInput = schema.new({
 })
 
 M.UpdateListenerOutput = schema.new({
-    id = id.from(_N, "UpdateListenerOutput"),
+    id = id.from(_N, "UpdateListenerResponse"),
     type = "structure",
     members = {
         Listener = schema.new({
@@ -3549,7 +3549,7 @@ M.UpdateListenerOutput = schema.new({
 })
 
 M.WithdrawByoipCidrInput = schema.new({
-    id = id.from(_N, "WithdrawByoipCidrInput"),
+    id = id.from(_N, "WithdrawByoipCidrRequest"),
     type = "structure",
     members = {
         Cidr = schema.new({
@@ -3565,7 +3565,7 @@ M.WithdrawByoipCidrInput = schema.new({
 })
 
 M.WithdrawByoipCidrOutput = schema.new({
-    id = id.from(_N, "WithdrawByoipCidrOutput"),
+    id = id.from(_N, "WithdrawByoipCidrResponse"),
     type = "structure",
     members = {
         ByoipCidr = schema.new({
@@ -3577,5 +3577,19 @@ M.WithdrawByoipCidrOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

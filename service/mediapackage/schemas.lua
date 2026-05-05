@@ -1394,7 +1394,7 @@ M.CmafPackageCreateOrUpdateParameters = schema.new({
 })
 
 M.ConfigureLogsInput = schema.new({
-    id = id.from(_N, "ConfigureLogsInput"),
+    id = id.from(_N, "ConfigureLogsRequest"),
     type = "structure",
     members = {
         EgressAccessLogs = schema.new({
@@ -1431,7 +1431,7 @@ M.ConfigureLogsInput = schema.new({
 })
 
 M.ConfigureLogsOutput = schema.new({
-    id = id.from(_N, "ConfigureLogsOutput"),
+    id = id.from(_N, "ConfigureLogsResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1629,7 +1629,7 @@ M.UnprocessableEntityException = schema.new({
 })
 
 M.CreateChannelInput = schema.new({
-    id = id.from(_N, "CreateChannelInput"),
+    id = id.from(_N, "CreateChannelRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -1666,7 +1666,7 @@ M.CreateChannelInput = schema.new({
 })
 
 M.CreateChannelOutput = schema.new({
-    id = id.from(_N, "CreateChannelOutput"),
+    id = id.from(_N, "CreateChannelResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1750,7 +1750,7 @@ M.CreateChannelOutput = schema.new({
 })
 
 M.CreateHarvestJobInput = schema.new({
-    id = id.from(_N, "CreateHarvestJobInput"),
+    id = id.from(_N, "CreateHarvestJobRequest"),
     type = "structure",
     members = {
         EndTime = schema.new({
@@ -1808,7 +1808,7 @@ M.CreateHarvestJobInput = schema.new({
 })
 
 M.CreateHarvestJobOutput = schema.new({
-    id = id.from(_N, "CreateHarvestJobOutput"),
+    id = id.from(_N, "CreateHarvestJobResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1897,7 +1897,7 @@ M.CreateHarvestJobOutput = schema.new({
 })
 
 M.CreateOriginEndpointInput = schema.new({
-    id = id.from(_N, "CreateOriginEndpointInput"),
+    id = id.from(_N, "CreateOriginEndpointRequest"),
     type = "structure",
     members = {
         Authorization = schema.new({
@@ -2040,7 +2040,7 @@ M.CreateOriginEndpointInput = schema.new({
 })
 
 M.CreateOriginEndpointOutput = schema.new({
-    id = id.from(_N, "CreateOriginEndpointOutput"),
+    id = id.from(_N, "CreateOriginEndpointResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2208,7 +2208,7 @@ M.CreateOriginEndpointOutput = schema.new({
 })
 
 M.DeleteChannelInput = schema.new({
-    id = id.from(_N, "DeleteChannelInput"),
+    id = id.from(_N, "DeleteChannelRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2225,12 +2225,12 @@ M.DeleteChannelInput = schema.new({
 })
 
 M.DeleteChannelOutput = schema.new({
-    id = id.from(_N, "DeleteChannelOutput"),
+    id = id.from(_N, "DeleteChannelResponse"),
     type = "structure",
 })
 
 M.DeleteOriginEndpointInput = schema.new({
-    id = id.from(_N, "DeleteOriginEndpointInput"),
+    id = id.from(_N, "DeleteOriginEndpointRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2247,12 +2247,12 @@ M.DeleteOriginEndpointInput = schema.new({
 })
 
 M.DeleteOriginEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteOriginEndpointOutput"),
+    id = id.from(_N, "DeleteOriginEndpointResponse"),
     type = "structure",
 })
 
 M.DescribeChannelInput = schema.new({
-    id = id.from(_N, "DescribeChannelInput"),
+    id = id.from(_N, "DescribeChannelRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2269,7 +2269,7 @@ M.DescribeChannelInput = schema.new({
 })
 
 M.DescribeChannelOutput = schema.new({
-    id = id.from(_N, "DescribeChannelOutput"),
+    id = id.from(_N, "DescribeChannelResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2353,7 +2353,7 @@ M.DescribeChannelOutput = schema.new({
 })
 
 M.DescribeHarvestJobInput = schema.new({
-    id = id.from(_N, "DescribeHarvestJobInput"),
+    id = id.from(_N, "DescribeHarvestJobRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2370,7 +2370,7 @@ M.DescribeHarvestJobInput = schema.new({
 })
 
 M.DescribeHarvestJobOutput = schema.new({
-    id = id.from(_N, "DescribeHarvestJobOutput"),
+    id = id.from(_N, "DescribeHarvestJobResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2459,7 +2459,7 @@ M.DescribeHarvestJobOutput = schema.new({
 })
 
 M.DescribeOriginEndpointInput = schema.new({
-    id = id.from(_N, "DescribeOriginEndpointInput"),
+    id = id.from(_N, "DescribeOriginEndpointRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2476,7 +2476,7 @@ M.DescribeOriginEndpointInput = schema.new({
 })
 
 M.DescribeOriginEndpointOutput = schema.new({
-    id = id.from(_N, "DescribeOriginEndpointOutput"),
+    id = id.from(_N, "DescribeOriginEndpointResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2644,7 +2644,7 @@ M.DescribeOriginEndpointOutput = schema.new({
 })
 
 M.ListChannelsInput = schema.new({
-    id = id.from(_N, "ListChannelsInput"),
+    id = id.from(_N, "ListChannelsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2669,7 +2669,7 @@ M.ListChannelsInput = schema.new({
 })
 
 M.ListChannelsOutput = schema.new({
-    id = id.from(_N, "ListChannelsOutput"),
+    id = id.from(_N, "ListChannelsResponse"),
     type = "structure",
     members = {
         Channels = schema.new({
@@ -2695,7 +2695,7 @@ M.ListChannelsOutput = schema.new({
 })
 
 M.ListHarvestJobsInput = schema.new({
-    id = id.from(_N, "ListHarvestJobsInput"),
+    id = id.from(_N, "ListHarvestJobsRequest"),
     type = "structure",
     members = {
         IncludeChannelId = schema.new({
@@ -2738,7 +2738,7 @@ M.ListHarvestJobsInput = schema.new({
 })
 
 M.ListHarvestJobsOutput = schema.new({
-    id = id.from(_N, "ListHarvestJobsOutput"),
+    id = id.from(_N, "ListHarvestJobsResponse"),
     type = "structure",
     members = {
         HarvestJobs = schema.new({
@@ -2764,7 +2764,7 @@ M.ListHarvestJobsOutput = schema.new({
 })
 
 M.ListOriginEndpointsInput = schema.new({
-    id = id.from(_N, "ListOriginEndpointsInput"),
+    id = id.from(_N, "ListOriginEndpointsRequest"),
     type = "structure",
     members = {
         ChannelId = schema.new({
@@ -2798,7 +2798,7 @@ M.ListOriginEndpointsInput = schema.new({
 })
 
 M.ListOriginEndpointsOutput = schema.new({
-    id = id.from(_N, "ListOriginEndpointsOutput"),
+    id = id.from(_N, "ListOriginEndpointsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2824,7 +2824,7 @@ M.ListOriginEndpointsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2841,7 +2841,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2859,7 +2859,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.RotateChannelCredentialsInput = schema.new({
-    id = id.from(_N, "RotateChannelCredentialsInput"),
+    id = id.from(_N, "RotateChannelCredentialsRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2876,7 +2876,7 @@ M.RotateChannelCredentialsInput = schema.new({
 })
 
 M.RotateChannelCredentialsOutput = schema.new({
-    id = id.from(_N, "RotateChannelCredentialsOutput"),
+    id = id.from(_N, "RotateChannelCredentialsResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2960,7 +2960,7 @@ M.RotateChannelCredentialsOutput = schema.new({
 })
 
 M.RotateIngestEndpointCredentialsInput = schema.new({
-    id = id.from(_N, "RotateIngestEndpointCredentialsInput"),
+    id = id.from(_N, "RotateIngestEndpointCredentialsRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2987,7 +2987,7 @@ M.RotateIngestEndpointCredentialsInput = schema.new({
 })
 
 M.RotateIngestEndpointCredentialsOutput = schema.new({
-    id = id.from(_N, "RotateIngestEndpointCredentialsOutput"),
+    id = id.from(_N, "RotateIngestEndpointCredentialsResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3071,7 +3071,7 @@ M.RotateIngestEndpointCredentialsOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3100,12 +3100,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3133,12 +3133,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateChannelInput = schema.new({
-    id = id.from(_N, "UpdateChannelInput"),
+    id = id.from(_N, "UpdateChannelRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -3164,7 +3164,7 @@ M.UpdateChannelInput = schema.new({
 })
 
 M.UpdateChannelOutput = schema.new({
-    id = id.from(_N, "UpdateChannelOutput"),
+    id = id.from(_N, "UpdateChannelResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3248,7 +3248,7 @@ M.UpdateChannelOutput = schema.new({
 })
 
 M.UpdateOriginEndpointInput = schema.new({
-    id = id.from(_N, "UpdateOriginEndpointInput"),
+    id = id.from(_N, "UpdateOriginEndpointRequest"),
     type = "structure",
     members = {
         Authorization = schema.new({
@@ -3370,7 +3370,7 @@ M.UpdateOriginEndpointInput = schema.new({
 })
 
 M.UpdateOriginEndpointOutput = schema.new({
-    id = id.from(_N, "UpdateOriginEndpointOutput"),
+    id = id.from(_N, "UpdateOriginEndpointResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3536,5 +3536,19 @@ M.UpdateOriginEndpointOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

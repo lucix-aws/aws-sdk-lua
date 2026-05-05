@@ -266,7 +266,7 @@ M.ManifestPayload = schema.new({
 })
 
 M.CreateApplicationInstanceInput = schema.new({
-    id = id.from(_N, "CreateApplicationInstanceInput"),
+    id = id.from(_N, "CreateApplicationInstanceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -331,7 +331,7 @@ M.CreateApplicationInstanceInput = schema.new({
 })
 
 M.CreateApplicationInstanceOutput = schema.new({
-    id = id.from(_N, "CreateApplicationInstanceOutput"),
+    id = id.from(_N, "CreateApplicationInstanceResponse"),
     type = "structure",
     members = {
         ApplicationInstanceId = schema.new({
@@ -559,7 +559,7 @@ M.DeviceJobConfig = schema.new({
 })
 
 M.CreateJobForDevicesInput = schema.new({
-    id = id.from(_N, "CreateJobForDevicesInput"),
+    id = id.from(_N, "CreateJobForDevicesRequest"),
     type = "structure",
     members = {
         DeviceIds = schema.new({
@@ -611,7 +611,7 @@ M.Job = schema.new({
 })
 
 M.CreateJobForDevicesOutput = schema.new({
-    id = id.from(_N, "CreateJobForDevicesOutput"),
+    id = id.from(_N, "CreateJobForDevicesResponse"),
     type = "structure",
     members = {
         Jobs = schema.new({
@@ -692,7 +692,7 @@ M.JobResourceTags = schema.new({
 })
 
 M.CreateNodeFromTemplateJobInput = schema.new({
-    id = id.from(_N, "CreateNodeFromTemplateJobInput"),
+    id = id.from(_N, "CreateNodeFromTemplateJobRequest"),
     type = "structure",
     members = {
         TemplateType = schema.new({
@@ -759,7 +759,7 @@ M.CreateNodeFromTemplateJobInput = schema.new({
 })
 
 M.CreateNodeFromTemplateJobOutput = schema.new({
-    id = id.from(_N, "CreateNodeFromTemplateJobOutput"),
+    id = id.from(_N, "CreateNodeFromTemplateJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -775,7 +775,7 @@ M.CreateNodeFromTemplateJobOutput = schema.new({
 })
 
 M.CreatePackageInput = schema.new({
-    id = id.from(_N, "CreatePackageInput"),
+    id = id.from(_N, "CreatePackageRequest"),
     type = "structure",
     members = {
         PackageName = schema.new({
@@ -851,7 +851,7 @@ M.StorageLocation = schema.new({
 })
 
 M.CreatePackageOutput = schema.new({
-    id = id.from(_N, "CreatePackageOutput"),
+    id = id.from(_N, "CreatePackageResponse"),
     type = "structure",
     members = {
         PackageId = schema.new({
@@ -990,7 +990,7 @@ M.PackageImportJobOutputConfig = schema.new({
 })
 
 M.CreatePackageImportJobInput = schema.new({
-    id = id.from(_N, "CreatePackageImportJobInput"),
+    id = id.from(_N, "CreatePackageImportJobRequest"),
     type = "structure",
     members = {
         JobType = schema.new({
@@ -1042,7 +1042,7 @@ M.CreatePackageImportJobInput = schema.new({
 })
 
 M.CreatePackageImportJobOutput = schema.new({
-    id = id.from(_N, "CreatePackageImportJobOutput"),
+    id = id.from(_N, "CreatePackageImportJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1058,7 +1058,7 @@ M.CreatePackageImportJobOutput = schema.new({
 })
 
 M.DeleteDeviceInput = schema.new({
-    id = id.from(_N, "DeleteDeviceInput"),
+    id = id.from(_N, "DeleteDeviceRequest"),
     type = "structure",
     members = {
         DeviceId = schema.new({
@@ -1075,7 +1075,7 @@ M.DeleteDeviceInput = schema.new({
 })
 
 M.DeleteDeviceOutput = schema.new({
-    id = id.from(_N, "DeleteDeviceOutput"),
+    id = id.from(_N, "DeleteDeviceResponse"),
     type = "structure",
     members = {
         DeviceId = schema.new({
@@ -1088,7 +1088,7 @@ M.DeleteDeviceOutput = schema.new({
 })
 
 M.DeletePackageInput = schema.new({
-    id = id.from(_N, "DeletePackageInput"),
+    id = id.from(_N, "DeletePackageRequest"),
     type = "structure",
     members = {
         PackageId = schema.new({
@@ -1115,12 +1115,12 @@ M.DeletePackageInput = schema.new({
 })
 
 M.DeletePackageOutput = schema.new({
-    id = id.from(_N, "DeletePackageOutput"),
+    id = id.from(_N, "DeletePackageResponse"),
     type = "structure",
 })
 
 M.DeregisterPackageVersionInput = schema.new({
-    id = id.from(_N, "DeregisterPackageVersionInput"),
+    id = id.from(_N, "DeregisterPackageVersionRequest"),
     type = "structure",
     members = {
         OwnerAccount = schema.new({
@@ -1175,12 +1175,12 @@ M.DeregisterPackageVersionInput = schema.new({
 })
 
 M.DeregisterPackageVersionOutput = schema.new({
-    id = id.from(_N, "DeregisterPackageVersionOutput"),
+    id = id.from(_N, "DeregisterPackageVersionResponse"),
     type = "structure",
 })
 
 M.DescribeApplicationInstanceInput = schema.new({
-    id = id.from(_N, "DescribeApplicationInstanceInput"),
+    id = id.from(_N, "DescribeApplicationInstanceRequest"),
     type = "structure",
     members = {
         ApplicationInstanceId = schema.new({
@@ -1197,7 +1197,7 @@ M.DescribeApplicationInstanceInput = schema.new({
 })
 
 M.DescribeApplicationInstanceOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationInstanceOutput"),
+    id = id.from(_N, "DescribeApplicationInstanceResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1297,7 +1297,7 @@ M.DescribeApplicationInstanceOutput = schema.new({
 })
 
 M.DescribeApplicationInstanceDetailsInput = schema.new({
-    id = id.from(_N, "DescribeApplicationInstanceDetailsInput"),
+    id = id.from(_N, "DescribeApplicationInstanceDetailsRequest"),
     type = "structure",
     members = {
         ApplicationInstanceId = schema.new({
@@ -1314,7 +1314,7 @@ M.DescribeApplicationInstanceDetailsInput = schema.new({
 })
 
 M.DescribeApplicationInstanceDetailsOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationInstanceDetailsOutput"),
+    id = id.from(_N, "DescribeApplicationInstanceDetailsResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1371,7 +1371,7 @@ M.DescribeApplicationInstanceDetailsOutput = schema.new({
 })
 
 M.DescribeDeviceInput = schema.new({
-    id = id.from(_N, "DescribeDeviceInput"),
+    id = id.from(_N, "DescribeDeviceRequest"),
     type = "structure",
     members = {
         DeviceId = schema.new({
@@ -1609,7 +1609,7 @@ M.NetworkPayload = schema.new({
 })
 
 M.DescribeDeviceOutput = schema.new({
-    id = id.from(_N, "DescribeDeviceOutput"),
+    id = id.from(_N, "DescribeDeviceResponse"),
     type = "structure",
     members = {
         DeviceId = schema.new({
@@ -1742,7 +1742,7 @@ M.DescribeDeviceOutput = schema.new({
 })
 
 M.DescribeDeviceJobInput = schema.new({
-    id = id.from(_N, "DescribeDeviceJobInput"),
+    id = id.from(_N, "DescribeDeviceJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1759,7 +1759,7 @@ M.DescribeDeviceJobInput = schema.new({
 })
 
 M.DescribeDeviceJobOutput = schema.new({
-    id = id.from(_N, "DescribeDeviceJobOutput"),
+    id = id.from(_N, "DescribeDeviceJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1820,7 +1820,7 @@ M.DescribeDeviceJobOutput = schema.new({
 })
 
 M.DescribeNodeInput = schema.new({
-    id = id.from(_N, "DescribeNodeInput"),
+    id = id.from(_N, "DescribeNodeRequest"),
     type = "structure",
     members = {
         NodeId = schema.new({
@@ -1938,7 +1938,7 @@ M.NodeInterface = schema.new({
 })
 
 M.DescribeNodeOutput = schema.new({
-    id = id.from(_N, "DescribeNodeOutput"),
+    id = id.from(_N, "DescribeNodeResponse"),
     type = "structure",
     members = {
         NodeId = schema.new({
@@ -2066,7 +2066,7 @@ M.DescribeNodeOutput = schema.new({
 })
 
 M.DescribeNodeFromTemplateJobInput = schema.new({
-    id = id.from(_N, "DescribeNodeFromTemplateJobInput"),
+    id = id.from(_N, "DescribeNodeFromTemplateJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2083,7 +2083,7 @@ M.DescribeNodeFromTemplateJobInput = schema.new({
 })
 
 M.DescribeNodeFromTemplateJobOutput = schema.new({
-    id = id.from(_N, "DescribeNodeFromTemplateJobOutput"),
+    id = id.from(_N, "DescribeNodeFromTemplateJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2195,7 +2195,7 @@ M.DescribeNodeFromTemplateJobOutput = schema.new({
 })
 
 M.DescribePackageInput = schema.new({
-    id = id.from(_N, "DescribePackageInput"),
+    id = id.from(_N, "DescribePackageRequest"),
     type = "structure",
     members = {
         PackageId = schema.new({
@@ -2212,7 +2212,7 @@ M.DescribePackageInput = schema.new({
 })
 
 M.DescribePackageOutput = schema.new({
-    id = id.from(_N, "DescribePackageOutput"),
+    id = id.from(_N, "DescribePackageResponse"),
     type = "structure",
     members = {
         PackageId = schema.new({
@@ -2290,7 +2290,7 @@ M.DescribePackageOutput = schema.new({
 })
 
 M.DescribePackageImportJobInput = schema.new({
-    id = id.from(_N, "DescribePackageImportJobInput"),
+    id = id.from(_N, "DescribePackageImportJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2376,7 +2376,7 @@ M.PackageImportJobOutput = schema.new({
 })
 
 M.DescribePackageImportJobOutput = schema.new({
-    id = id.from(_N, "DescribePackageImportJobOutput"),
+    id = id.from(_N, "DescribePackageImportJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2480,7 +2480,7 @@ M.DescribePackageImportJobOutput = schema.new({
 })
 
 M.DescribePackageVersionInput = schema.new({
-    id = id.from(_N, "DescribePackageVersionInput"),
+    id = id.from(_N, "DescribePackageVersionRequest"),
     type = "structure",
     members = {
         OwnerAccount = schema.new({
@@ -2525,7 +2525,7 @@ M.DescribePackageVersionInput = schema.new({
 })
 
 M.DescribePackageVersionOutput = schema.new({
-    id = id.from(_N, "DescribePackageVersionOutput"),
+    id = id.from(_N, "DescribePackageVersionResponse"),
     type = "structure",
     members = {
         OwnerAccount = schema.new({
@@ -2736,7 +2736,7 @@ M.DeviceJob = schema.new({
 })
 
 M.ListApplicationInstanceDependenciesInput = schema.new({
-    id = id.from(_N, "ListApplicationInstanceDependenciesInput"),
+    id = id.from(_N, "ListApplicationInstanceDependenciesRequest"),
     type = "structure",
     members = {
         ApplicationInstanceId = schema.new({
@@ -2806,7 +2806,7 @@ M.PackageObject = schema.new({
 })
 
 M.ListApplicationInstanceDependenciesOutput = schema.new({
-    id = id.from(_N, "ListApplicationInstanceDependenciesOutput"),
+    id = id.from(_N, "ListApplicationInstanceDependenciesResponse"),
     type = "structure",
     members = {
         PackageObjects = schema.new({
@@ -2826,7 +2826,7 @@ M.ListApplicationInstanceDependenciesOutput = schema.new({
 })
 
 M.ListApplicationInstanceNodeInstancesInput = schema.new({
-    id = id.from(_N, "ListApplicationInstanceNodeInstancesInput"),
+    id = id.from(_N, "ListApplicationInstanceNodeInstancesRequest"),
     type = "structure",
     members = {
         ApplicationInstanceId = schema.new({
@@ -2917,7 +2917,7 @@ M.NodeInstance = schema.new({
 })
 
 M.ListApplicationInstanceNodeInstancesOutput = schema.new({
-    id = id.from(_N, "ListApplicationInstanceNodeInstancesOutput"),
+    id = id.from(_N, "ListApplicationInstanceNodeInstancesResponse"),
     type = "structure",
     members = {
         NodeInstances = schema.new({
@@ -2937,7 +2937,7 @@ M.ListApplicationInstanceNodeInstancesOutput = schema.new({
 })
 
 M.ListApplicationInstancesInput = schema.new({
-    id = id.from(_N, "ListApplicationInstancesInput"),
+    id = id.from(_N, "ListApplicationInstancesRequest"),
     type = "structure",
     members = {
         DeviceId = schema.new({
@@ -2981,7 +2981,7 @@ M.ListApplicationInstancesInput = schema.new({
 })
 
 M.ListApplicationInstancesOutput = schema.new({
-    id = id.from(_N, "ListApplicationInstancesOutput"),
+    id = id.from(_N, "ListApplicationInstancesResponse"),
     type = "structure",
     members = {
         ApplicationInstances = schema.new({
@@ -3001,7 +3001,7 @@ M.ListApplicationInstancesOutput = schema.new({
 })
 
 M.ListDevicesInput = schema.new({
-    id = id.from(_N, "ListDevicesInput"),
+    id = id.from(_N, "ListDevicesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3063,7 +3063,7 @@ M.ListDevicesInput = schema.new({
 })
 
 M.ListDevicesOutput = schema.new({
-    id = id.from(_N, "ListDevicesOutput"),
+    id = id.from(_N, "ListDevicesResponse"),
     type = "structure",
     members = {
         Devices = schema.new({
@@ -3086,7 +3086,7 @@ M.ListDevicesOutput = schema.new({
 })
 
 M.ListDevicesJobsInput = schema.new({
-    id = id.from(_N, "ListDevicesJobsInput"),
+    id = id.from(_N, "ListDevicesJobsRequest"),
     type = "structure",
     members = {
         DeviceId = schema.new({
@@ -3121,7 +3121,7 @@ M.ListDevicesJobsInput = schema.new({
 })
 
 M.ListDevicesJobsOutput = schema.new({
-    id = id.from(_N, "ListDevicesJobsOutput"),
+    id = id.from(_N, "ListDevicesJobsResponse"),
     type = "structure",
     members = {
         DeviceJobs = schema.new({
@@ -3141,7 +3141,7 @@ M.ListDevicesJobsOutput = schema.new({
 })
 
 M.ListNodeFromTemplateJobsInput = schema.new({
-    id = id.from(_N, "ListNodeFromTemplateJobsInput"),
+    id = id.from(_N, "ListNodeFromTemplateJobsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3210,7 +3210,7 @@ M.NodeFromTemplateJob = schema.new({
 })
 
 M.ListNodeFromTemplateJobsOutput = schema.new({
-    id = id.from(_N, "ListNodeFromTemplateJobsOutput"),
+    id = id.from(_N, "ListNodeFromTemplateJobsResponse"),
     type = "structure",
     members = {
         NodeFromTemplateJobs = schema.new({
@@ -3233,7 +3233,7 @@ M.ListNodeFromTemplateJobsOutput = schema.new({
 })
 
 M.ListNodesInput = schema.new({
-    id = id.from(_N, "ListNodesInput"),
+    id = id.from(_N, "ListNodesRequest"),
     type = "structure",
     members = {
         Category = schema.new({
@@ -3401,7 +3401,7 @@ M.Node = schema.new({
 })
 
 M.ListNodesOutput = schema.new({
-    id = id.from(_N, "ListNodesOutput"),
+    id = id.from(_N, "ListNodesResponse"),
     type = "structure",
     members = {
         Nodes = schema.new({
@@ -3421,7 +3421,7 @@ M.ListNodesOutput = schema.new({
 })
 
 M.ListPackageImportJobsInput = schema.new({
-    id = id.from(_N, "ListPackageImportJobsInput"),
+    id = id.from(_N, "ListPackageImportJobsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3490,7 +3490,7 @@ M.PackageImportJob = schema.new({
 })
 
 M.ListPackageImportJobsOutput = schema.new({
-    id = id.from(_N, "ListPackageImportJobsOutput"),
+    id = id.from(_N, "ListPackageImportJobsResponse"),
     type = "structure",
     members = {
         PackageImportJobs = schema.new({
@@ -3513,7 +3513,7 @@ M.ListPackageImportJobsOutput = schema.new({
 })
 
 M.ListPackagesInput = schema.new({
-    id = id.from(_N, "ListPackagesInput"),
+    id = id.from(_N, "ListPackagesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3578,7 +3578,7 @@ M.PackageListItem = schema.new({
 })
 
 M.ListPackagesOutput = schema.new({
-    id = id.from(_N, "ListPackagesOutput"),
+    id = id.from(_N, "ListPackagesResponse"),
     type = "structure",
     members = {
         Packages = schema.new({
@@ -3598,7 +3598,7 @@ M.ListPackagesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3615,7 +3615,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -3655,7 +3655,7 @@ M.NodeSignal = schema.new({
 })
 
 M.ProvisionDeviceInput = schema.new({
-    id = id.from(_N, "ProvisionDeviceInput"),
+    id = id.from(_N, "ProvisionDeviceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3692,7 +3692,7 @@ M.ProvisionDeviceInput = schema.new({
 })
 
 M.ProvisionDeviceOutput = schema.new({
-    id = id.from(_N, "ProvisionDeviceOutput"),
+    id = id.from(_N, "ProvisionDeviceResponse"),
     type = "structure",
     members = {
         DeviceId = schema.new({
@@ -3735,7 +3735,7 @@ M.ProvisionDeviceOutput = schema.new({
 })
 
 M.RegisterPackageVersionInput = schema.new({
-    id = id.from(_N, "RegisterPackageVersionInput"),
+    id = id.from(_N, "RegisterPackageVersionRequest"),
     type = "structure",
     members = {
         OwnerAccount = schema.new({
@@ -3787,12 +3787,12 @@ M.RegisterPackageVersionInput = schema.new({
 })
 
 M.RegisterPackageVersionOutput = schema.new({
-    id = id.from(_N, "RegisterPackageVersionOutput"),
+    id = id.from(_N, "RegisterPackageVersionResponse"),
     type = "structure",
 })
 
 M.RemoveApplicationInstanceInput = schema.new({
-    id = id.from(_N, "RemoveApplicationInstanceInput"),
+    id = id.from(_N, "RemoveApplicationInstanceRequest"),
     type = "structure",
     members = {
         ApplicationInstanceId = schema.new({
@@ -3809,12 +3809,12 @@ M.RemoveApplicationInstanceInput = schema.new({
 })
 
 M.RemoveApplicationInstanceOutput = schema.new({
-    id = id.from(_N, "RemoveApplicationInstanceOutput"),
+    id = id.from(_N, "RemoveApplicationInstanceResponse"),
     type = "structure",
 })
 
 M.SignalApplicationInstanceNodeInstancesInput = schema.new({
-    id = id.from(_N, "SignalApplicationInstanceNodeInstancesInput"),
+    id = id.from(_N, "SignalApplicationInstanceNodeInstancesRequest"),
     type = "structure",
     members = {
         ApplicationInstanceId = schema.new({
@@ -3841,7 +3841,7 @@ M.SignalApplicationInstanceNodeInstancesInput = schema.new({
 })
 
 M.SignalApplicationInstanceNodeInstancesOutput = schema.new({
-    id = id.from(_N, "SignalApplicationInstanceNodeInstancesOutput"),
+    id = id.from(_N, "SignalApplicationInstanceNodeInstancesResponse"),
     type = "structure",
     members = {
         ApplicationInstanceId = schema.new({
@@ -3857,7 +3857,7 @@ M.SignalApplicationInstanceNodeInstancesOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3885,12 +3885,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3918,12 +3918,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateDeviceMetadataInput = schema.new({
-    id = id.from(_N, "UpdateDeviceMetadataInput"),
+    id = id.from(_N, "UpdateDeviceMetadataRequest"),
     type = "structure",
     members = {
         DeviceId = schema.new({
@@ -3946,7 +3946,7 @@ M.UpdateDeviceMetadataInput = schema.new({
 })
 
 M.UpdateDeviceMetadataOutput = schema.new({
-    id = id.from(_N, "UpdateDeviceMetadataOutput"),
+    id = id.from(_N, "UpdateDeviceMetadataResponse"),
     type = "structure",
     members = {
         DeviceId = schema.new({
@@ -3957,5 +3957,19 @@ M.UpdateDeviceMetadataOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

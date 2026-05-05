@@ -823,7 +823,7 @@ M.VersionInformation = schema.new({
 })
 
 M.AssociateRoleToGroupInput = schema.new({
-    id = id.from(_N, "AssociateRoleToGroupInput"),
+    id = id.from(_N, "AssociateRoleToGroupRequest"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -849,7 +849,7 @@ M.AssociateRoleToGroupInput = schema.new({
 })
 
 M.AssociateRoleToGroupOutput = schema.new({
-    id = id.from(_N, "AssociateRoleToGroupOutput"),
+    id = id.from(_N, "AssociateRoleToGroupResponse"),
     type = "structure",
     members = {
         AssociatedAt = schema.new({
@@ -927,7 +927,7 @@ M.InternalServerErrorException = schema.new({
 })
 
 M.AssociateServiceRoleToAccountInput = schema.new({
-    id = id.from(_N, "AssociateServiceRoleToAccountInput"),
+    id = id.from(_N, "AssociateServiceRoleToAccountRequest"),
     type = "structure",
     members = {
         RoleArn = schema.new({
@@ -943,7 +943,7 @@ M.AssociateServiceRoleToAccountInput = schema.new({
 })
 
 M.AssociateServiceRoleToAccountOutput = schema.new({
-    id = id.from(_N, "AssociateServiceRoleToAccountOutput"),
+    id = id.from(_N, "AssociateServiceRoleToAccountResponse"),
     type = "structure",
     members = {
         AssociatedAt = schema.new({
@@ -1090,7 +1090,7 @@ M.CoreDefinitionVersion = schema.new({
 })
 
 M.CreateConnectorDefinitionInput = schema.new({
-    id = id.from(_N, "CreateConnectorDefinitionInput"),
+    id = id.from(_N, "CreateConnectorDefinitionRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -1127,7 +1127,7 @@ M.CreateConnectorDefinitionInput = schema.new({
 })
 
 M.CreateConnectorDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateConnectorDefinitionOutput"),
+    id = id.from(_N, "CreateConnectorDefinitionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1176,7 +1176,7 @@ M.CreateConnectorDefinitionOutput = schema.new({
 })
 
 M.CreateConnectorDefinitionVersionInput = schema.new({
-    id = id.from(_N, "CreateConnectorDefinitionVersionInput"),
+    id = id.from(_N, "CreateConnectorDefinitionVersionRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -1209,7 +1209,7 @@ M.CreateConnectorDefinitionVersionInput = schema.new({
 })
 
 M.CreateConnectorDefinitionVersionOutput = schema.new({
-    id = id.from(_N, "CreateConnectorDefinitionVersionOutput"),
+    id = id.from(_N, "CreateConnectorDefinitionVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1240,7 +1240,7 @@ M.CreateConnectorDefinitionVersionOutput = schema.new({
 })
 
 M.CreateCoreDefinitionInput = schema.new({
-    id = id.from(_N, "CreateCoreDefinitionInput"),
+    id = id.from(_N, "CreateCoreDefinitionRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -1277,7 +1277,7 @@ M.CreateCoreDefinitionInput = schema.new({
 })
 
 M.CreateCoreDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateCoreDefinitionOutput"),
+    id = id.from(_N, "CreateCoreDefinitionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1326,7 +1326,7 @@ M.CreateCoreDefinitionOutput = schema.new({
 })
 
 M.CreateCoreDefinitionVersionInput = schema.new({
-    id = id.from(_N, "CreateCoreDefinitionVersionInput"),
+    id = id.from(_N, "CreateCoreDefinitionVersionRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -1359,7 +1359,7 @@ M.CreateCoreDefinitionVersionInput = schema.new({
 })
 
 M.CreateCoreDefinitionVersionOutput = schema.new({
-    id = id.from(_N, "CreateCoreDefinitionVersionOutput"),
+    id = id.from(_N, "CreateCoreDefinitionVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1390,7 +1390,7 @@ M.CreateCoreDefinitionVersionOutput = schema.new({
 })
 
 M.CreateDeploymentInput = schema.new({
-    id = id.from(_N, "CreateDeploymentInput"),
+    id = id.from(_N, "CreateDeploymentRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -1437,7 +1437,7 @@ M.CreateDeploymentInput = schema.new({
 })
 
 M.CreateDeploymentOutput = schema.new({
-    id = id.from(_N, "CreateDeploymentOutput"),
+    id = id.from(_N, "CreateDeploymentResponse"),
     type = "structure",
     members = {
         DeploymentArn = schema.new({
@@ -1470,7 +1470,7 @@ M.DeviceDefinitionVersion = schema.new({
 })
 
 M.CreateDeviceDefinitionInput = schema.new({
-    id = id.from(_N, "CreateDeviceDefinitionInput"),
+    id = id.from(_N, "CreateDeviceDefinitionRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -1507,7 +1507,7 @@ M.CreateDeviceDefinitionInput = schema.new({
 })
 
 M.CreateDeviceDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateDeviceDefinitionOutput"),
+    id = id.from(_N, "CreateDeviceDefinitionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1556,7 +1556,7 @@ M.CreateDeviceDefinitionOutput = schema.new({
 })
 
 M.CreateDeviceDefinitionVersionInput = schema.new({
-    id = id.from(_N, "CreateDeviceDefinitionVersionInput"),
+    id = id.from(_N, "CreateDeviceDefinitionVersionRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -1589,7 +1589,7 @@ M.CreateDeviceDefinitionVersionInput = schema.new({
 })
 
 M.CreateDeviceDefinitionVersionOutput = schema.new({
-    id = id.from(_N, "CreateDeviceDefinitionVersionOutput"),
+    id = id.from(_N, "CreateDeviceDefinitionVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1675,7 +1675,7 @@ M.FunctionDefinitionVersion = schema.new({
 })
 
 M.CreateFunctionDefinitionInput = schema.new({
-    id = id.from(_N, "CreateFunctionDefinitionInput"),
+    id = id.from(_N, "CreateFunctionDefinitionRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -1712,7 +1712,7 @@ M.CreateFunctionDefinitionInput = schema.new({
 })
 
 M.CreateFunctionDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateFunctionDefinitionOutput"),
+    id = id.from(_N, "CreateFunctionDefinitionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1761,7 +1761,7 @@ M.CreateFunctionDefinitionOutput = schema.new({
 })
 
 M.CreateFunctionDefinitionVersionInput = schema.new({
-    id = id.from(_N, "CreateFunctionDefinitionVersionInput"),
+    id = id.from(_N, "CreateFunctionDefinitionVersionRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -1801,7 +1801,7 @@ M.CreateFunctionDefinitionVersionInput = schema.new({
 })
 
 M.CreateFunctionDefinitionVersionOutput = schema.new({
-    id = id.from(_N, "CreateFunctionDefinitionVersionOutput"),
+    id = id.from(_N, "CreateFunctionDefinitionVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1881,7 +1881,7 @@ M.GroupVersion = schema.new({
 })
 
 M.CreateGroupInput = schema.new({
-    id = id.from(_N, "CreateGroupInput"),
+    id = id.from(_N, "CreateGroupRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -1921,7 +1921,7 @@ M.CreateGroupInput = schema.new({
 })
 
 M.CreateGroupOutput = schema.new({
-    id = id.from(_N, "CreateGroupOutput"),
+    id = id.from(_N, "CreateGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1970,7 +1970,7 @@ M.CreateGroupOutput = schema.new({
 })
 
 M.CreateGroupCertificateAuthorityInput = schema.new({
-    id = id.from(_N, "CreateGroupCertificateAuthorityInput"),
+    id = id.from(_N, "CreateGroupCertificateAuthorityRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -1996,7 +1996,7 @@ M.CreateGroupCertificateAuthorityInput = schema.new({
 })
 
 M.CreateGroupCertificateAuthorityOutput = schema.new({
-    id = id.from(_N, "CreateGroupCertificateAuthorityOutput"),
+    id = id.from(_N, "CreateGroupCertificateAuthorityResponse"),
     type = "structure",
     members = {
         GroupCertificateAuthorityArn = schema.new({
@@ -2009,7 +2009,7 @@ M.CreateGroupCertificateAuthorityOutput = schema.new({
 })
 
 M.CreateGroupVersionInput = schema.new({
-    id = id.from(_N, "CreateGroupVersionInput"),
+    id = id.from(_N, "CreateGroupVersionRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -2077,7 +2077,7 @@ M.CreateGroupVersionInput = schema.new({
 })
 
 M.CreateGroupVersionOutput = schema.new({
-    id = id.from(_N, "CreateGroupVersionOutput"),
+    id = id.from(_N, "CreateGroupVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2122,7 +2122,7 @@ M.LoggerDefinitionVersion = schema.new({
 })
 
 M.CreateLoggerDefinitionInput = schema.new({
-    id = id.from(_N, "CreateLoggerDefinitionInput"),
+    id = id.from(_N, "CreateLoggerDefinitionRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -2159,7 +2159,7 @@ M.CreateLoggerDefinitionInput = schema.new({
 })
 
 M.CreateLoggerDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateLoggerDefinitionOutput"),
+    id = id.from(_N, "CreateLoggerDefinitionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2208,7 +2208,7 @@ M.CreateLoggerDefinitionOutput = schema.new({
 })
 
 M.CreateLoggerDefinitionVersionInput = schema.new({
-    id = id.from(_N, "CreateLoggerDefinitionVersionInput"),
+    id = id.from(_N, "CreateLoggerDefinitionVersionRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -2241,7 +2241,7 @@ M.CreateLoggerDefinitionVersionInput = schema.new({
 })
 
 M.CreateLoggerDefinitionVersionOutput = schema.new({
-    id = id.from(_N, "CreateLoggerDefinitionVersionOutput"),
+    id = id.from(_N, "CreateLoggerDefinitionVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2286,7 +2286,7 @@ M.ResourceDefinitionVersion = schema.new({
 })
 
 M.CreateResourceDefinitionInput = schema.new({
-    id = id.from(_N, "CreateResourceDefinitionInput"),
+    id = id.from(_N, "CreateResourceDefinitionRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -2323,7 +2323,7 @@ M.CreateResourceDefinitionInput = schema.new({
 })
 
 M.CreateResourceDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateResourceDefinitionOutput"),
+    id = id.from(_N, "CreateResourceDefinitionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2372,7 +2372,7 @@ M.CreateResourceDefinitionOutput = schema.new({
 })
 
 M.CreateResourceDefinitionVersionInput = schema.new({
-    id = id.from(_N, "CreateResourceDefinitionVersionInput"),
+    id = id.from(_N, "CreateResourceDefinitionVersionRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -2405,7 +2405,7 @@ M.CreateResourceDefinitionVersionInput = schema.new({
 })
 
 M.CreateResourceDefinitionVersionOutput = schema.new({
-    id = id.from(_N, "CreateResourceDefinitionVersionOutput"),
+    id = id.from(_N, "CreateResourceDefinitionVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2436,7 +2436,7 @@ M.CreateResourceDefinitionVersionOutput = schema.new({
 })
 
 M.CreateSoftwareUpdateJobInput = schema.new({
-    id = id.from(_N, "CreateSoftwareUpdateJobInput"),
+    id = id.from(_N, "CreateSoftwareUpdateJobRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -2504,7 +2504,7 @@ M.CreateSoftwareUpdateJobInput = schema.new({
 })
 
 M.CreateSoftwareUpdateJobOutput = schema.new({
-    id = id.from(_N, "CreateSoftwareUpdateJobOutput"),
+    id = id.from(_N, "CreateSoftwareUpdateJobResponse"),
     type = "structure",
     members = {
         IotJobArn = schema.new({
@@ -2543,7 +2543,7 @@ M.SubscriptionDefinitionVersion = schema.new({
 })
 
 M.CreateSubscriptionDefinitionInput = schema.new({
-    id = id.from(_N, "CreateSubscriptionDefinitionInput"),
+    id = id.from(_N, "CreateSubscriptionDefinitionRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -2580,7 +2580,7 @@ M.CreateSubscriptionDefinitionInput = schema.new({
 })
 
 M.CreateSubscriptionDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateSubscriptionDefinitionOutput"),
+    id = id.from(_N, "CreateSubscriptionDefinitionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2629,7 +2629,7 @@ M.CreateSubscriptionDefinitionOutput = schema.new({
 })
 
 M.CreateSubscriptionDefinitionVersionInput = schema.new({
-    id = id.from(_N, "CreateSubscriptionDefinitionVersionInput"),
+    id = id.from(_N, "CreateSubscriptionDefinitionVersionRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -2662,7 +2662,7 @@ M.CreateSubscriptionDefinitionVersionInput = schema.new({
 })
 
 M.CreateSubscriptionDefinitionVersionOutput = schema.new({
-    id = id.from(_N, "CreateSubscriptionDefinitionVersionOutput"),
+    id = id.from(_N, "CreateSubscriptionDefinitionVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2693,7 +2693,7 @@ M.CreateSubscriptionDefinitionVersionOutput = schema.new({
 })
 
 M.DeleteConnectorDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteConnectorDefinitionInput"),
+    id = id.from(_N, "DeleteConnectorDefinitionRequest"),
     type = "structure",
     members = {
         ConnectorDefinitionId = schema.new({
@@ -2710,12 +2710,12 @@ M.DeleteConnectorDefinitionInput = schema.new({
 })
 
 M.DeleteConnectorDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteConnectorDefinitionOutput"),
+    id = id.from(_N, "DeleteConnectorDefinitionResponse"),
     type = "structure",
 })
 
 M.DeleteCoreDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteCoreDefinitionInput"),
+    id = id.from(_N, "DeleteCoreDefinitionRequest"),
     type = "structure",
     members = {
         CoreDefinitionId = schema.new({
@@ -2732,12 +2732,12 @@ M.DeleteCoreDefinitionInput = schema.new({
 })
 
 M.DeleteCoreDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteCoreDefinitionOutput"),
+    id = id.from(_N, "DeleteCoreDefinitionResponse"),
     type = "structure",
 })
 
 M.DeleteDeviceDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteDeviceDefinitionInput"),
+    id = id.from(_N, "DeleteDeviceDefinitionRequest"),
     type = "structure",
     members = {
         DeviceDefinitionId = schema.new({
@@ -2754,12 +2754,12 @@ M.DeleteDeviceDefinitionInput = schema.new({
 })
 
 M.DeleteDeviceDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteDeviceDefinitionOutput"),
+    id = id.from(_N, "DeleteDeviceDefinitionResponse"),
     type = "structure",
 })
 
 M.DeleteFunctionDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteFunctionDefinitionInput"),
+    id = id.from(_N, "DeleteFunctionDefinitionRequest"),
     type = "structure",
     members = {
         FunctionDefinitionId = schema.new({
@@ -2776,12 +2776,12 @@ M.DeleteFunctionDefinitionInput = schema.new({
 })
 
 M.DeleteFunctionDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteFunctionDefinitionOutput"),
+    id = id.from(_N, "DeleteFunctionDefinitionResponse"),
     type = "structure",
 })
 
 M.DeleteGroupInput = schema.new({
-    id = id.from(_N, "DeleteGroupInput"),
+    id = id.from(_N, "DeleteGroupRequest"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -2798,12 +2798,12 @@ M.DeleteGroupInput = schema.new({
 })
 
 M.DeleteGroupOutput = schema.new({
-    id = id.from(_N, "DeleteGroupOutput"),
+    id = id.from(_N, "DeleteGroupResponse"),
     type = "structure",
 })
 
 M.DeleteLoggerDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteLoggerDefinitionInput"),
+    id = id.from(_N, "DeleteLoggerDefinitionRequest"),
     type = "structure",
     members = {
         LoggerDefinitionId = schema.new({
@@ -2820,12 +2820,12 @@ M.DeleteLoggerDefinitionInput = schema.new({
 })
 
 M.DeleteLoggerDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteLoggerDefinitionOutput"),
+    id = id.from(_N, "DeleteLoggerDefinitionResponse"),
     type = "structure",
 })
 
 M.DeleteResourceDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteResourceDefinitionInput"),
+    id = id.from(_N, "DeleteResourceDefinitionRequest"),
     type = "structure",
     members = {
         ResourceDefinitionId = schema.new({
@@ -2842,12 +2842,12 @@ M.DeleteResourceDefinitionInput = schema.new({
 })
 
 M.DeleteResourceDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteResourceDefinitionOutput"),
+    id = id.from(_N, "DeleteResourceDefinitionResponse"),
     type = "structure",
 })
 
 M.DeleteSubscriptionDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteSubscriptionDefinitionInput"),
+    id = id.from(_N, "DeleteSubscriptionDefinitionRequest"),
     type = "structure",
     members = {
         SubscriptionDefinitionId = schema.new({
@@ -2864,7 +2864,7 @@ M.DeleteSubscriptionDefinitionInput = schema.new({
 })
 
 M.DeleteSubscriptionDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteSubscriptionDefinitionOutput"),
+    id = id.from(_N, "DeleteSubscriptionDefinitionResponse"),
     type = "structure",
 })
 
@@ -2906,7 +2906,7 @@ M.Deployment = schema.new({
 })
 
 M.DisassociateRoleFromGroupInput = schema.new({
-    id = id.from(_N, "DisassociateRoleFromGroupInput"),
+    id = id.from(_N, "DisassociateRoleFromGroupRequest"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -2923,7 +2923,7 @@ M.DisassociateRoleFromGroupInput = schema.new({
 })
 
 M.DisassociateRoleFromGroupOutput = schema.new({
-    id = id.from(_N, "DisassociateRoleFromGroupOutput"),
+    id = id.from(_N, "DisassociateRoleFromGroupResponse"),
     type = "structure",
     members = {
         DisassociatedAt = schema.new({
@@ -2936,12 +2936,12 @@ M.DisassociateRoleFromGroupOutput = schema.new({
 })
 
 M.DisassociateServiceRoleFromAccountInput = schema.new({
-    id = id.from(_N, "DisassociateServiceRoleFromAccountInput"),
+    id = id.from(_N, "DisassociateServiceRoleFromAccountRequest"),
     type = "structure",
 })
 
 M.DisassociateServiceRoleFromAccountOutput = schema.new({
-    id = id.from(_N, "DisassociateServiceRoleFromAccountOutput"),
+    id = id.from(_N, "DisassociateServiceRoleFromAccountResponse"),
     type = "structure",
     members = {
         DisassociatedAt = schema.new({
@@ -2954,7 +2954,7 @@ M.DisassociateServiceRoleFromAccountOutput = schema.new({
 })
 
 M.GetAssociatedRoleInput = schema.new({
-    id = id.from(_N, "GetAssociatedRoleInput"),
+    id = id.from(_N, "GetAssociatedRoleRequest"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -2971,7 +2971,7 @@ M.GetAssociatedRoleInput = schema.new({
 })
 
 M.GetAssociatedRoleOutput = schema.new({
-    id = id.from(_N, "GetAssociatedRoleOutput"),
+    id = id.from(_N, "GetAssociatedRoleResponse"),
     type = "structure",
     members = {
         AssociatedAt = schema.new({
@@ -2990,7 +2990,7 @@ M.GetAssociatedRoleOutput = schema.new({
 })
 
 M.GetBulkDeploymentStatusInput = schema.new({
-    id = id.from(_N, "GetBulkDeploymentStatusInput"),
+    id = id.from(_N, "GetBulkDeploymentStatusRequest"),
     type = "structure",
     members = {
         BulkDeploymentId = schema.new({
@@ -3007,7 +3007,7 @@ M.GetBulkDeploymentStatusInput = schema.new({
 })
 
 M.GetBulkDeploymentStatusOutput = schema.new({
-    id = id.from(_N, "GetBulkDeploymentStatusOutput"),
+    id = id.from(_N, "GetBulkDeploymentStatusResponse"),
     type = "structure",
     members = {
         BulkDeploymentMetrics = schema.new({
@@ -3054,7 +3054,7 @@ M.GetBulkDeploymentStatusOutput = schema.new({
 })
 
 M.GetConnectivityInfoInput = schema.new({
-    id = id.from(_N, "GetConnectivityInfoInput"),
+    id = id.from(_N, "GetConnectivityInfoRequest"),
     type = "structure",
     members = {
         ThingName = schema.new({
@@ -3071,7 +3071,7 @@ M.GetConnectivityInfoInput = schema.new({
 })
 
 M.GetConnectivityInfoOutput = schema.new({
-    id = id.from(_N, "GetConnectivityInfoOutput"),
+    id = id.from(_N, "GetConnectivityInfoResponse"),
     type = "structure",
     members = {
         ConnectivityInfo = schema.new({
@@ -3094,7 +3094,7 @@ M.GetConnectivityInfoOutput = schema.new({
 })
 
 M.GetConnectorDefinitionInput = schema.new({
-    id = id.from(_N, "GetConnectorDefinitionInput"),
+    id = id.from(_N, "GetConnectorDefinitionRequest"),
     type = "structure",
     members = {
         ConnectorDefinitionId = schema.new({
@@ -3111,7 +3111,7 @@ M.GetConnectorDefinitionInput = schema.new({
 })
 
 M.GetConnectorDefinitionOutput = schema.new({
-    id = id.from(_N, "GetConnectorDefinitionOutput"),
+    id = id.from(_N, "GetConnectorDefinitionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3168,7 +3168,7 @@ M.GetConnectorDefinitionOutput = schema.new({
 })
 
 M.GetConnectorDefinitionVersionInput = schema.new({
-    id = id.from(_N, "GetConnectorDefinitionVersionInput"),
+    id = id.from(_N, "GetConnectorDefinitionVersionRequest"),
     type = "structure",
     members = {
         ConnectorDefinitionId = schema.new({
@@ -3204,7 +3204,7 @@ M.GetConnectorDefinitionVersionInput = schema.new({
 })
 
 M.GetConnectorDefinitionVersionOutput = schema.new({
-    id = id.from(_N, "GetConnectorDefinitionVersionOutput"),
+    id = id.from(_N, "GetConnectorDefinitionVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3248,7 +3248,7 @@ M.GetConnectorDefinitionVersionOutput = schema.new({
 })
 
 M.GetCoreDefinitionInput = schema.new({
-    id = id.from(_N, "GetCoreDefinitionInput"),
+    id = id.from(_N, "GetCoreDefinitionRequest"),
     type = "structure",
     members = {
         CoreDefinitionId = schema.new({
@@ -3265,7 +3265,7 @@ M.GetCoreDefinitionInput = schema.new({
 })
 
 M.GetCoreDefinitionOutput = schema.new({
-    id = id.from(_N, "GetCoreDefinitionOutput"),
+    id = id.from(_N, "GetCoreDefinitionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3322,7 +3322,7 @@ M.GetCoreDefinitionOutput = schema.new({
 })
 
 M.GetCoreDefinitionVersionInput = schema.new({
-    id = id.from(_N, "GetCoreDefinitionVersionInput"),
+    id = id.from(_N, "GetCoreDefinitionVersionRequest"),
     type = "structure",
     members = {
         CoreDefinitionId = schema.new({
@@ -3349,7 +3349,7 @@ M.GetCoreDefinitionVersionInput = schema.new({
 })
 
 M.GetCoreDefinitionVersionOutput = schema.new({
-    id = id.from(_N, "GetCoreDefinitionVersionOutput"),
+    id = id.from(_N, "GetCoreDefinitionVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3393,7 +3393,7 @@ M.GetCoreDefinitionVersionOutput = schema.new({
 })
 
 M.GetDeploymentStatusInput = schema.new({
-    id = id.from(_N, "GetDeploymentStatusInput"),
+    id = id.from(_N, "GetDeploymentStatusRequest"),
     type = "structure",
     members = {
         DeploymentId = schema.new({
@@ -3420,7 +3420,7 @@ M.GetDeploymentStatusInput = schema.new({
 })
 
 M.GetDeploymentStatusOutput = schema.new({
-    id = id.from(_N, "GetDeploymentStatusOutput"),
+    id = id.from(_N, "GetDeploymentStatusResponse"),
     type = "structure",
     members = {
         DeploymentStatus = schema.new({
@@ -3458,7 +3458,7 @@ M.GetDeploymentStatusOutput = schema.new({
 })
 
 M.GetDeviceDefinitionInput = schema.new({
-    id = id.from(_N, "GetDeviceDefinitionInput"),
+    id = id.from(_N, "GetDeviceDefinitionRequest"),
     type = "structure",
     members = {
         DeviceDefinitionId = schema.new({
@@ -3475,7 +3475,7 @@ M.GetDeviceDefinitionInput = schema.new({
 })
 
 M.GetDeviceDefinitionOutput = schema.new({
-    id = id.from(_N, "GetDeviceDefinitionOutput"),
+    id = id.from(_N, "GetDeviceDefinitionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3532,7 +3532,7 @@ M.GetDeviceDefinitionOutput = schema.new({
 })
 
 M.GetDeviceDefinitionVersionInput = schema.new({
-    id = id.from(_N, "GetDeviceDefinitionVersionInput"),
+    id = id.from(_N, "GetDeviceDefinitionVersionRequest"),
     type = "structure",
     members = {
         DeviceDefinitionId = schema.new({
@@ -3568,7 +3568,7 @@ M.GetDeviceDefinitionVersionInput = schema.new({
 })
 
 M.GetDeviceDefinitionVersionOutput = schema.new({
-    id = id.from(_N, "GetDeviceDefinitionVersionOutput"),
+    id = id.from(_N, "GetDeviceDefinitionVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3612,7 +3612,7 @@ M.GetDeviceDefinitionVersionOutput = schema.new({
 })
 
 M.GetFunctionDefinitionInput = schema.new({
-    id = id.from(_N, "GetFunctionDefinitionInput"),
+    id = id.from(_N, "GetFunctionDefinitionRequest"),
     type = "structure",
     members = {
         FunctionDefinitionId = schema.new({
@@ -3629,7 +3629,7 @@ M.GetFunctionDefinitionInput = schema.new({
 })
 
 M.GetFunctionDefinitionOutput = schema.new({
-    id = id.from(_N, "GetFunctionDefinitionOutput"),
+    id = id.from(_N, "GetFunctionDefinitionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3686,7 +3686,7 @@ M.GetFunctionDefinitionOutput = schema.new({
 })
 
 M.GetFunctionDefinitionVersionInput = schema.new({
-    id = id.from(_N, "GetFunctionDefinitionVersionInput"),
+    id = id.from(_N, "GetFunctionDefinitionVersionRequest"),
     type = "structure",
     members = {
         FunctionDefinitionId = schema.new({
@@ -3722,7 +3722,7 @@ M.GetFunctionDefinitionVersionInput = schema.new({
 })
 
 M.GetFunctionDefinitionVersionOutput = schema.new({
-    id = id.from(_N, "GetFunctionDefinitionVersionOutput"),
+    id = id.from(_N, "GetFunctionDefinitionVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3766,7 +3766,7 @@ M.GetFunctionDefinitionVersionOutput = schema.new({
 })
 
 M.GetGroupInput = schema.new({
-    id = id.from(_N, "GetGroupInput"),
+    id = id.from(_N, "GetGroupRequest"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -3783,7 +3783,7 @@ M.GetGroupInput = schema.new({
 })
 
 M.GetGroupOutput = schema.new({
-    id = id.from(_N, "GetGroupOutput"),
+    id = id.from(_N, "GetGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3840,7 +3840,7 @@ M.GetGroupOutput = schema.new({
 })
 
 M.GetGroupCertificateAuthorityInput = schema.new({
-    id = id.from(_N, "GetGroupCertificateAuthorityInput"),
+    id = id.from(_N, "GetGroupCertificateAuthorityRequest"),
     type = "structure",
     members = {
         CertificateAuthorityId = schema.new({
@@ -3867,7 +3867,7 @@ M.GetGroupCertificateAuthorityInput = schema.new({
 })
 
 M.GetGroupCertificateAuthorityOutput = schema.new({
-    id = id.from(_N, "GetGroupCertificateAuthorityOutput"),
+    id = id.from(_N, "GetGroupCertificateAuthorityResponse"),
     type = "structure",
     members = {
         GroupCertificateAuthorityArn = schema.new({
@@ -3892,7 +3892,7 @@ M.GetGroupCertificateAuthorityOutput = schema.new({
 })
 
 M.GetGroupCertificateConfigurationInput = schema.new({
-    id = id.from(_N, "GetGroupCertificateConfigurationInput"),
+    id = id.from(_N, "GetGroupCertificateConfigurationRequest"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -3909,7 +3909,7 @@ M.GetGroupCertificateConfigurationInput = schema.new({
 })
 
 M.GetGroupCertificateConfigurationOutput = schema.new({
-    id = id.from(_N, "GetGroupCertificateConfigurationOutput"),
+    id = id.from(_N, "GetGroupCertificateConfigurationResponse"),
     type = "structure",
     members = {
         CertificateAuthorityExpiryInMilliseconds = schema.new({
@@ -3934,7 +3934,7 @@ M.GetGroupCertificateConfigurationOutput = schema.new({
 })
 
 M.GetGroupVersionInput = schema.new({
-    id = id.from(_N, "GetGroupVersionInput"),
+    id = id.from(_N, "GetGroupVersionRequest"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -3961,7 +3961,7 @@ M.GetGroupVersionInput = schema.new({
 })
 
 M.GetGroupVersionOutput = schema.new({
-    id = id.from(_N, "GetGroupVersionOutput"),
+    id = id.from(_N, "GetGroupVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3999,7 +3999,7 @@ M.GetGroupVersionOutput = schema.new({
 })
 
 M.GetLoggerDefinitionInput = schema.new({
-    id = id.from(_N, "GetLoggerDefinitionInput"),
+    id = id.from(_N, "GetLoggerDefinitionRequest"),
     type = "structure",
     members = {
         LoggerDefinitionId = schema.new({
@@ -4016,7 +4016,7 @@ M.GetLoggerDefinitionInput = schema.new({
 })
 
 M.GetLoggerDefinitionOutput = schema.new({
-    id = id.from(_N, "GetLoggerDefinitionOutput"),
+    id = id.from(_N, "GetLoggerDefinitionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -4073,7 +4073,7 @@ M.GetLoggerDefinitionOutput = schema.new({
 })
 
 M.GetLoggerDefinitionVersionInput = schema.new({
-    id = id.from(_N, "GetLoggerDefinitionVersionInput"),
+    id = id.from(_N, "GetLoggerDefinitionVersionRequest"),
     type = "structure",
     members = {
         LoggerDefinitionId = schema.new({
@@ -4109,7 +4109,7 @@ M.GetLoggerDefinitionVersionInput = schema.new({
 })
 
 M.GetLoggerDefinitionVersionOutput = schema.new({
-    id = id.from(_N, "GetLoggerDefinitionVersionOutput"),
+    id = id.from(_N, "GetLoggerDefinitionVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -4147,7 +4147,7 @@ M.GetLoggerDefinitionVersionOutput = schema.new({
 })
 
 M.GetResourceDefinitionInput = schema.new({
-    id = id.from(_N, "GetResourceDefinitionInput"),
+    id = id.from(_N, "GetResourceDefinitionRequest"),
     type = "structure",
     members = {
         ResourceDefinitionId = schema.new({
@@ -4164,7 +4164,7 @@ M.GetResourceDefinitionInput = schema.new({
 })
 
 M.GetResourceDefinitionOutput = schema.new({
-    id = id.from(_N, "GetResourceDefinitionOutput"),
+    id = id.from(_N, "GetResourceDefinitionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -4221,7 +4221,7 @@ M.GetResourceDefinitionOutput = schema.new({
 })
 
 M.GetResourceDefinitionVersionInput = schema.new({
-    id = id.from(_N, "GetResourceDefinitionVersionInput"),
+    id = id.from(_N, "GetResourceDefinitionVersionRequest"),
     type = "structure",
     members = {
         ResourceDefinitionId = schema.new({
@@ -4248,7 +4248,7 @@ M.GetResourceDefinitionVersionInput = schema.new({
 })
 
 M.GetResourceDefinitionVersionOutput = schema.new({
-    id = id.from(_N, "GetResourceDefinitionVersionOutput"),
+    id = id.from(_N, "GetResourceDefinitionVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -4286,12 +4286,12 @@ M.GetResourceDefinitionVersionOutput = schema.new({
 })
 
 M.GetServiceRoleForAccountInput = schema.new({
-    id = id.from(_N, "GetServiceRoleForAccountInput"),
+    id = id.from(_N, "GetServiceRoleForAccountRequest"),
     type = "structure",
 })
 
 M.GetServiceRoleForAccountOutput = schema.new({
-    id = id.from(_N, "GetServiceRoleForAccountOutput"),
+    id = id.from(_N, "GetServiceRoleForAccountResponse"),
     type = "structure",
     members = {
         AssociatedAt = schema.new({
@@ -4310,7 +4310,7 @@ M.GetServiceRoleForAccountOutput = schema.new({
 })
 
 M.GetSubscriptionDefinitionInput = schema.new({
-    id = id.from(_N, "GetSubscriptionDefinitionInput"),
+    id = id.from(_N, "GetSubscriptionDefinitionRequest"),
     type = "structure",
     members = {
         SubscriptionDefinitionId = schema.new({
@@ -4327,7 +4327,7 @@ M.GetSubscriptionDefinitionInput = schema.new({
 })
 
 M.GetSubscriptionDefinitionOutput = schema.new({
-    id = id.from(_N, "GetSubscriptionDefinitionOutput"),
+    id = id.from(_N, "GetSubscriptionDefinitionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -4384,7 +4384,7 @@ M.GetSubscriptionDefinitionOutput = schema.new({
 })
 
 M.GetSubscriptionDefinitionVersionInput = schema.new({
-    id = id.from(_N, "GetSubscriptionDefinitionVersionInput"),
+    id = id.from(_N, "GetSubscriptionDefinitionVersionRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4420,7 +4420,7 @@ M.GetSubscriptionDefinitionVersionInput = schema.new({
 })
 
 M.GetSubscriptionDefinitionVersionOutput = schema.new({
-    id = id.from(_N, "GetSubscriptionDefinitionVersionOutput"),
+    id = id.from(_N, "GetSubscriptionDefinitionVersionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -4464,7 +4464,7 @@ M.GetSubscriptionDefinitionVersionOutput = schema.new({
 })
 
 M.GetThingRuntimeConfigurationInput = schema.new({
-    id = id.from(_N, "GetThingRuntimeConfigurationInput"),
+    id = id.from(_N, "GetThingRuntimeConfigurationRequest"),
     type = "structure",
     members = {
         ThingName = schema.new({
@@ -4517,7 +4517,7 @@ M.RuntimeConfiguration = schema.new({
 })
 
 M.GetThingRuntimeConfigurationOutput = schema.new({
-    id = id.from(_N, "GetThingRuntimeConfigurationOutput"),
+    id = id.from(_N, "GetThingRuntimeConfigurationResponse"),
     type = "structure",
     members = {
         RuntimeConfiguration = schema.new({
@@ -4531,7 +4531,7 @@ M.GetThingRuntimeConfigurationOutput = schema.new({
 })
 
 M.ListBulkDeploymentDetailedReportsInput = schema.new({
-    id = id.from(_N, "ListBulkDeploymentDetailedReportsInput"),
+    id = id.from(_N, "ListBulkDeploymentDetailedReportsRequest"),
     type = "structure",
     members = {
         BulkDeploymentId = schema.new({
@@ -4566,7 +4566,7 @@ M.ListBulkDeploymentDetailedReportsInput = schema.new({
 })
 
 M.ListBulkDeploymentDetailedReportsOutput = schema.new({
-    id = id.from(_N, "ListBulkDeploymentDetailedReportsOutput"),
+    id = id.from(_N, "ListBulkDeploymentDetailedReportsResponse"),
     type = "structure",
     members = {
         Deployments = schema.new({
@@ -4586,7 +4586,7 @@ M.ListBulkDeploymentDetailedReportsOutput = schema.new({
 })
 
 M.ListBulkDeploymentsInput = schema.new({
-    id = id.from(_N, "ListBulkDeploymentsInput"),
+    id = id.from(_N, "ListBulkDeploymentsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4611,7 +4611,7 @@ M.ListBulkDeploymentsInput = schema.new({
 })
 
 M.ListBulkDeploymentsOutput = schema.new({
-    id = id.from(_N, "ListBulkDeploymentsOutput"),
+    id = id.from(_N, "ListBulkDeploymentsResponse"),
     type = "structure",
     members = {
         BulkDeployments = schema.new({
@@ -4631,7 +4631,7 @@ M.ListBulkDeploymentsOutput = schema.new({
 })
 
 M.ListConnectorDefinitionsInput = schema.new({
-    id = id.from(_N, "ListConnectorDefinitionsInput"),
+    id = id.from(_N, "ListConnectorDefinitionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4656,7 +4656,7 @@ M.ListConnectorDefinitionsInput = schema.new({
 })
 
 M.ListConnectorDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListConnectorDefinitionsOutput"),
+    id = id.from(_N, "ListConnectorDefinitionsResponse"),
     type = "structure",
     members = {
         Definitions = schema.new({
@@ -4676,7 +4676,7 @@ M.ListConnectorDefinitionsOutput = schema.new({
 })
 
 M.ListConnectorDefinitionVersionsInput = schema.new({
-    id = id.from(_N, "ListConnectorDefinitionVersionsInput"),
+    id = id.from(_N, "ListConnectorDefinitionVersionsRequest"),
     type = "structure",
     members = {
         ConnectorDefinitionId = schema.new({
@@ -4711,7 +4711,7 @@ M.ListConnectorDefinitionVersionsInput = schema.new({
 })
 
 M.ListConnectorDefinitionVersionsOutput = schema.new({
-    id = id.from(_N, "ListConnectorDefinitionVersionsOutput"),
+    id = id.from(_N, "ListConnectorDefinitionVersionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4731,7 +4731,7 @@ M.ListConnectorDefinitionVersionsOutput = schema.new({
 })
 
 M.ListCoreDefinitionsInput = schema.new({
-    id = id.from(_N, "ListCoreDefinitionsInput"),
+    id = id.from(_N, "ListCoreDefinitionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4756,7 +4756,7 @@ M.ListCoreDefinitionsInput = schema.new({
 })
 
 M.ListCoreDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListCoreDefinitionsOutput"),
+    id = id.from(_N, "ListCoreDefinitionsResponse"),
     type = "structure",
     members = {
         Definitions = schema.new({
@@ -4776,7 +4776,7 @@ M.ListCoreDefinitionsOutput = schema.new({
 })
 
 M.ListCoreDefinitionVersionsInput = schema.new({
-    id = id.from(_N, "ListCoreDefinitionVersionsInput"),
+    id = id.from(_N, "ListCoreDefinitionVersionsRequest"),
     type = "structure",
     members = {
         CoreDefinitionId = schema.new({
@@ -4811,7 +4811,7 @@ M.ListCoreDefinitionVersionsInput = schema.new({
 })
 
 M.ListCoreDefinitionVersionsOutput = schema.new({
-    id = id.from(_N, "ListCoreDefinitionVersionsOutput"),
+    id = id.from(_N, "ListCoreDefinitionVersionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4831,7 +4831,7 @@ M.ListCoreDefinitionVersionsOutput = schema.new({
 })
 
 M.ListDeploymentsInput = schema.new({
-    id = id.from(_N, "ListDeploymentsInput"),
+    id = id.from(_N, "ListDeploymentsRequest"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -4866,7 +4866,7 @@ M.ListDeploymentsInput = schema.new({
 })
 
 M.ListDeploymentsOutput = schema.new({
-    id = id.from(_N, "ListDeploymentsOutput"),
+    id = id.from(_N, "ListDeploymentsResponse"),
     type = "structure",
     members = {
         Deployments = schema.new({
@@ -4886,7 +4886,7 @@ M.ListDeploymentsOutput = schema.new({
 })
 
 M.ListDeviceDefinitionsInput = schema.new({
-    id = id.from(_N, "ListDeviceDefinitionsInput"),
+    id = id.from(_N, "ListDeviceDefinitionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4911,7 +4911,7 @@ M.ListDeviceDefinitionsInput = schema.new({
 })
 
 M.ListDeviceDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListDeviceDefinitionsOutput"),
+    id = id.from(_N, "ListDeviceDefinitionsResponse"),
     type = "structure",
     members = {
         Definitions = schema.new({
@@ -4931,7 +4931,7 @@ M.ListDeviceDefinitionsOutput = schema.new({
 })
 
 M.ListDeviceDefinitionVersionsInput = schema.new({
-    id = id.from(_N, "ListDeviceDefinitionVersionsInput"),
+    id = id.from(_N, "ListDeviceDefinitionVersionsRequest"),
     type = "structure",
     members = {
         DeviceDefinitionId = schema.new({
@@ -4966,7 +4966,7 @@ M.ListDeviceDefinitionVersionsInput = schema.new({
 })
 
 M.ListDeviceDefinitionVersionsOutput = schema.new({
-    id = id.from(_N, "ListDeviceDefinitionVersionsOutput"),
+    id = id.from(_N, "ListDeviceDefinitionVersionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4986,7 +4986,7 @@ M.ListDeviceDefinitionVersionsOutput = schema.new({
 })
 
 M.ListFunctionDefinitionsInput = schema.new({
-    id = id.from(_N, "ListFunctionDefinitionsInput"),
+    id = id.from(_N, "ListFunctionDefinitionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -5011,7 +5011,7 @@ M.ListFunctionDefinitionsInput = schema.new({
 })
 
 M.ListFunctionDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListFunctionDefinitionsOutput"),
+    id = id.from(_N, "ListFunctionDefinitionsResponse"),
     type = "structure",
     members = {
         Definitions = schema.new({
@@ -5031,7 +5031,7 @@ M.ListFunctionDefinitionsOutput = schema.new({
 })
 
 M.ListFunctionDefinitionVersionsInput = schema.new({
-    id = id.from(_N, "ListFunctionDefinitionVersionsInput"),
+    id = id.from(_N, "ListFunctionDefinitionVersionsRequest"),
     type = "structure",
     members = {
         FunctionDefinitionId = schema.new({
@@ -5066,7 +5066,7 @@ M.ListFunctionDefinitionVersionsInput = schema.new({
 })
 
 M.ListFunctionDefinitionVersionsOutput = schema.new({
-    id = id.from(_N, "ListFunctionDefinitionVersionsOutput"),
+    id = id.from(_N, "ListFunctionDefinitionVersionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5086,7 +5086,7 @@ M.ListFunctionDefinitionVersionsOutput = schema.new({
 })
 
 M.ListGroupCertificateAuthoritiesInput = schema.new({
-    id = id.from(_N, "ListGroupCertificateAuthoritiesInput"),
+    id = id.from(_N, "ListGroupCertificateAuthoritiesRequest"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -5103,7 +5103,7 @@ M.ListGroupCertificateAuthoritiesInput = schema.new({
 })
 
 M.ListGroupCertificateAuthoritiesOutput = schema.new({
-    id = id.from(_N, "ListGroupCertificateAuthoritiesOutput"),
+    id = id.from(_N, "ListGroupCertificateAuthoritiesResponse"),
     type = "structure",
     members = {
         GroupCertificateAuthorities = schema.new({
@@ -5117,7 +5117,7 @@ M.ListGroupCertificateAuthoritiesOutput = schema.new({
 })
 
 M.ListGroupsInput = schema.new({
-    id = id.from(_N, "ListGroupsInput"),
+    id = id.from(_N, "ListGroupsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -5142,7 +5142,7 @@ M.ListGroupsInput = schema.new({
 })
 
 M.ListGroupsOutput = schema.new({
-    id = id.from(_N, "ListGroupsOutput"),
+    id = id.from(_N, "ListGroupsResponse"),
     type = "structure",
     members = {
         Groups = schema.new({
@@ -5162,7 +5162,7 @@ M.ListGroupsOutput = schema.new({
 })
 
 M.ListGroupVersionsInput = schema.new({
-    id = id.from(_N, "ListGroupVersionsInput"),
+    id = id.from(_N, "ListGroupVersionsRequest"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -5197,7 +5197,7 @@ M.ListGroupVersionsInput = schema.new({
 })
 
 M.ListGroupVersionsOutput = schema.new({
-    id = id.from(_N, "ListGroupVersionsOutput"),
+    id = id.from(_N, "ListGroupVersionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5217,7 +5217,7 @@ M.ListGroupVersionsOutput = schema.new({
 })
 
 M.ListLoggerDefinitionsInput = schema.new({
-    id = id.from(_N, "ListLoggerDefinitionsInput"),
+    id = id.from(_N, "ListLoggerDefinitionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -5242,7 +5242,7 @@ M.ListLoggerDefinitionsInput = schema.new({
 })
 
 M.ListLoggerDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListLoggerDefinitionsOutput"),
+    id = id.from(_N, "ListLoggerDefinitionsResponse"),
     type = "structure",
     members = {
         Definitions = schema.new({
@@ -5262,7 +5262,7 @@ M.ListLoggerDefinitionsOutput = schema.new({
 })
 
 M.ListLoggerDefinitionVersionsInput = schema.new({
-    id = id.from(_N, "ListLoggerDefinitionVersionsInput"),
+    id = id.from(_N, "ListLoggerDefinitionVersionsRequest"),
     type = "structure",
     members = {
         LoggerDefinitionId = schema.new({
@@ -5297,7 +5297,7 @@ M.ListLoggerDefinitionVersionsInput = schema.new({
 })
 
 M.ListLoggerDefinitionVersionsOutput = schema.new({
-    id = id.from(_N, "ListLoggerDefinitionVersionsOutput"),
+    id = id.from(_N, "ListLoggerDefinitionVersionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5317,7 +5317,7 @@ M.ListLoggerDefinitionVersionsOutput = schema.new({
 })
 
 M.ListResourceDefinitionsInput = schema.new({
-    id = id.from(_N, "ListResourceDefinitionsInput"),
+    id = id.from(_N, "ListResourceDefinitionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -5342,7 +5342,7 @@ M.ListResourceDefinitionsInput = schema.new({
 })
 
 M.ListResourceDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListResourceDefinitionsOutput"),
+    id = id.from(_N, "ListResourceDefinitionsResponse"),
     type = "structure",
     members = {
         Definitions = schema.new({
@@ -5362,7 +5362,7 @@ M.ListResourceDefinitionsOutput = schema.new({
 })
 
 M.ListResourceDefinitionVersionsInput = schema.new({
-    id = id.from(_N, "ListResourceDefinitionVersionsInput"),
+    id = id.from(_N, "ListResourceDefinitionVersionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -5397,7 +5397,7 @@ M.ListResourceDefinitionVersionsInput = schema.new({
 })
 
 M.ListResourceDefinitionVersionsOutput = schema.new({
-    id = id.from(_N, "ListResourceDefinitionVersionsOutput"),
+    id = id.from(_N, "ListResourceDefinitionVersionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5417,7 +5417,7 @@ M.ListResourceDefinitionVersionsOutput = schema.new({
 })
 
 M.ListSubscriptionDefinitionsInput = schema.new({
-    id = id.from(_N, "ListSubscriptionDefinitionsInput"),
+    id = id.from(_N, "ListSubscriptionDefinitionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -5442,7 +5442,7 @@ M.ListSubscriptionDefinitionsInput = schema.new({
 })
 
 M.ListSubscriptionDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListSubscriptionDefinitionsOutput"),
+    id = id.from(_N, "ListSubscriptionDefinitionsResponse"),
     type = "structure",
     members = {
         Definitions = schema.new({
@@ -5462,7 +5462,7 @@ M.ListSubscriptionDefinitionsOutput = schema.new({
 })
 
 M.ListSubscriptionDefinitionVersionsInput = schema.new({
-    id = id.from(_N, "ListSubscriptionDefinitionVersionsInput"),
+    id = id.from(_N, "ListSubscriptionDefinitionVersionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -5497,7 +5497,7 @@ M.ListSubscriptionDefinitionVersionsInput = schema.new({
 })
 
 M.ListSubscriptionDefinitionVersionsOutput = schema.new({
-    id = id.from(_N, "ListSubscriptionDefinitionVersionsOutput"),
+    id = id.from(_N, "ListSubscriptionDefinitionVersionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5517,7 +5517,7 @@ M.ListSubscriptionDefinitionVersionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5534,7 +5534,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -5549,7 +5549,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ResetDeploymentsInput = schema.new({
-    id = id.from(_N, "ResetDeploymentsInput"),
+    id = id.from(_N, "ResetDeploymentsRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -5581,7 +5581,7 @@ M.ResetDeploymentsInput = schema.new({
 })
 
 M.ResetDeploymentsOutput = schema.new({
-    id = id.from(_N, "ResetDeploymentsOutput"),
+    id = id.from(_N, "ResetDeploymentsResponse"),
     type = "structure",
     members = {
         DeploymentArn = schema.new({
@@ -5600,7 +5600,7 @@ M.ResetDeploymentsOutput = schema.new({
 })
 
 M.StartBulkDeploymentInput = schema.new({
-    id = id.from(_N, "StartBulkDeploymentInput"),
+    id = id.from(_N, "StartBulkDeploymentRequest"),
     type = "structure",
     members = {
         AmznClientToken = schema.new({
@@ -5642,7 +5642,7 @@ M.StartBulkDeploymentInput = schema.new({
 })
 
 M.StartBulkDeploymentOutput = schema.new({
-    id = id.from(_N, "StartBulkDeploymentOutput"),
+    id = id.from(_N, "StartBulkDeploymentResponse"),
     type = "structure",
     members = {
         BulkDeploymentArn = schema.new({
@@ -5661,7 +5661,7 @@ M.StartBulkDeploymentOutput = schema.new({
 })
 
 M.StopBulkDeploymentInput = schema.new({
-    id = id.from(_N, "StopBulkDeploymentInput"),
+    id = id.from(_N, "StopBulkDeploymentRequest"),
     type = "structure",
     members = {
         BulkDeploymentId = schema.new({
@@ -5678,12 +5678,12 @@ M.StopBulkDeploymentInput = schema.new({
 })
 
 M.StopBulkDeploymentOutput = schema.new({
-    id = id.from(_N, "StopBulkDeploymentOutput"),
+    id = id.from(_N, "StopBulkDeploymentResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5708,12 +5708,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5741,12 +5741,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateConnectivityInfoInput = schema.new({
-    id = id.from(_N, "UpdateConnectivityInfoInput"),
+    id = id.from(_N, "UpdateConnectivityInfoRequest"),
     type = "structure",
     members = {
         ConnectivityInfo = schema.new({
@@ -5770,7 +5770,7 @@ M.UpdateConnectivityInfoInput = schema.new({
 })
 
 M.UpdateConnectivityInfoOutput = schema.new({
-    id = id.from(_N, "UpdateConnectivityInfoOutput"),
+    id = id.from(_N, "UpdateConnectivityInfoResponse"),
     type = "structure",
     members = {
         Message = schema.new({
@@ -5792,7 +5792,7 @@ M.UpdateConnectivityInfoOutput = schema.new({
 })
 
 M.UpdateConnectorDefinitionInput = schema.new({
-    id = id.from(_N, "UpdateConnectorDefinitionInput"),
+    id = id.from(_N, "UpdateConnectorDefinitionRequest"),
     type = "structure",
     members = {
         ConnectorDefinitionId = schema.new({
@@ -5815,12 +5815,12 @@ M.UpdateConnectorDefinitionInput = schema.new({
 })
 
 M.UpdateConnectorDefinitionOutput = schema.new({
-    id = id.from(_N, "UpdateConnectorDefinitionOutput"),
+    id = id.from(_N, "UpdateConnectorDefinitionResponse"),
     type = "structure",
 })
 
 M.UpdateCoreDefinitionInput = schema.new({
-    id = id.from(_N, "UpdateCoreDefinitionInput"),
+    id = id.from(_N, "UpdateCoreDefinitionRequest"),
     type = "structure",
     members = {
         CoreDefinitionId = schema.new({
@@ -5843,12 +5843,12 @@ M.UpdateCoreDefinitionInput = schema.new({
 })
 
 M.UpdateCoreDefinitionOutput = schema.new({
-    id = id.from(_N, "UpdateCoreDefinitionOutput"),
+    id = id.from(_N, "UpdateCoreDefinitionResponse"),
     type = "structure",
 })
 
 M.UpdateDeviceDefinitionInput = schema.new({
-    id = id.from(_N, "UpdateDeviceDefinitionInput"),
+    id = id.from(_N, "UpdateDeviceDefinitionRequest"),
     type = "structure",
     members = {
         DeviceDefinitionId = schema.new({
@@ -5871,12 +5871,12 @@ M.UpdateDeviceDefinitionInput = schema.new({
 })
 
 M.UpdateDeviceDefinitionOutput = schema.new({
-    id = id.from(_N, "UpdateDeviceDefinitionOutput"),
+    id = id.from(_N, "UpdateDeviceDefinitionResponse"),
     type = "structure",
 })
 
 M.UpdateFunctionDefinitionInput = schema.new({
-    id = id.from(_N, "UpdateFunctionDefinitionInput"),
+    id = id.from(_N, "UpdateFunctionDefinitionRequest"),
     type = "structure",
     members = {
         FunctionDefinitionId = schema.new({
@@ -5899,12 +5899,12 @@ M.UpdateFunctionDefinitionInput = schema.new({
 })
 
 M.UpdateFunctionDefinitionOutput = schema.new({
-    id = id.from(_N, "UpdateFunctionDefinitionOutput"),
+    id = id.from(_N, "UpdateFunctionDefinitionResponse"),
     type = "structure",
 })
 
 M.UpdateGroupInput = schema.new({
-    id = id.from(_N, "UpdateGroupInput"),
+    id = id.from(_N, "UpdateGroupRequest"),
     type = "structure",
     members = {
         GroupId = schema.new({
@@ -5927,12 +5927,12 @@ M.UpdateGroupInput = schema.new({
 })
 
 M.UpdateGroupOutput = schema.new({
-    id = id.from(_N, "UpdateGroupOutput"),
+    id = id.from(_N, "UpdateGroupResponse"),
     type = "structure",
 })
 
 M.UpdateGroupCertificateConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateGroupCertificateConfigurationInput"),
+    id = id.from(_N, "UpdateGroupCertificateConfigurationRequest"),
     type = "structure",
     members = {
         CertificateExpiryInMilliseconds = schema.new({
@@ -5955,7 +5955,7 @@ M.UpdateGroupCertificateConfigurationInput = schema.new({
 })
 
 M.UpdateGroupCertificateConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateGroupCertificateConfigurationOutput"),
+    id = id.from(_N, "UpdateGroupCertificateConfigurationResponse"),
     type = "structure",
     members = {
         CertificateAuthorityExpiryInMilliseconds = schema.new({
@@ -5980,7 +5980,7 @@ M.UpdateGroupCertificateConfigurationOutput = schema.new({
 })
 
 M.UpdateLoggerDefinitionInput = schema.new({
-    id = id.from(_N, "UpdateLoggerDefinitionInput"),
+    id = id.from(_N, "UpdateLoggerDefinitionRequest"),
     type = "structure",
     members = {
         LoggerDefinitionId = schema.new({
@@ -6003,12 +6003,12 @@ M.UpdateLoggerDefinitionInput = schema.new({
 })
 
 M.UpdateLoggerDefinitionOutput = schema.new({
-    id = id.from(_N, "UpdateLoggerDefinitionOutput"),
+    id = id.from(_N, "UpdateLoggerDefinitionResponse"),
     type = "structure",
 })
 
 M.UpdateResourceDefinitionInput = schema.new({
-    id = id.from(_N, "UpdateResourceDefinitionInput"),
+    id = id.from(_N, "UpdateResourceDefinitionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6031,12 +6031,12 @@ M.UpdateResourceDefinitionInput = schema.new({
 })
 
 M.UpdateResourceDefinitionOutput = schema.new({
-    id = id.from(_N, "UpdateResourceDefinitionOutput"),
+    id = id.from(_N, "UpdateResourceDefinitionResponse"),
     type = "structure",
 })
 
 M.UpdateSubscriptionDefinitionInput = schema.new({
-    id = id.from(_N, "UpdateSubscriptionDefinitionInput"),
+    id = id.from(_N, "UpdateSubscriptionDefinitionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6059,7 +6059,7 @@ M.UpdateSubscriptionDefinitionInput = schema.new({
 })
 
 M.UpdateSubscriptionDefinitionOutput = schema.new({
-    id = id.from(_N, "UpdateSubscriptionDefinitionOutput"),
+    id = id.from(_N, "UpdateSubscriptionDefinitionResponse"),
     type = "structure",
 })
 
@@ -6080,7 +6080,7 @@ M.TelemetryConfigurationUpdate = schema.new({
 })
 
 M.UpdateThingRuntimeConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateThingRuntimeConfigurationInput"),
+    id = id.from(_N, "UpdateThingRuntimeConfigurationRequest"),
     type = "structure",
     members = {
         TelemetryConfiguration = schema.new({
@@ -6104,8 +6104,22 @@ M.UpdateThingRuntimeConfigurationInput = schema.new({
 })
 
 M.UpdateThingRuntimeConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateThingRuntimeConfigurationOutput"),
+    id = id.from(_N, "UpdateThingRuntimeConfigurationResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

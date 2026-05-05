@@ -170,7 +170,7 @@ M.TrackingOptions = schema.new({
 })
 
 M.CreateConfigurationSetInput = schema.new({
-    id = id.from(_N, "CreateConfigurationSetInput"),
+    id = id.from(_N, "CreateConfigurationSetRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -221,7 +221,7 @@ M.CreateConfigurationSetInput = schema.new({
 })
 
 M.CreateConfigurationSetOutput = schema.new({
-    id = id.from(_N, "CreateConfigurationSetOutput"),
+    id = id.from(_N, "CreateConfigurationSetResponse"),
     type = "structure",
 })
 
@@ -430,7 +430,7 @@ M.EventDestinationDefinition = schema.new({
 })
 
 M.CreateConfigurationSetEventDestinationInput = schema.new({
-    id = id.from(_N, "CreateConfigurationSetEventDestinationInput"),
+    id = id.from(_N, "CreateConfigurationSetEventDestinationRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -466,12 +466,12 @@ M.CreateConfigurationSetEventDestinationInput = schema.new({
 })
 
 M.CreateConfigurationSetEventDestinationOutput = schema.new({
-    id = id.from(_N, "CreateConfigurationSetEventDestinationOutput"),
+    id = id.from(_N, "CreateConfigurationSetEventDestinationResponse"),
     type = "structure",
 })
 
 M.CreateDedicatedIpPoolInput = schema.new({
-    id = id.from(_N, "CreateDedicatedIpPoolInput"),
+    id = id.from(_N, "CreateDedicatedIpPoolRequest"),
     type = "structure",
     members = {
         PoolName = schema.new({
@@ -494,7 +494,7 @@ M.CreateDedicatedIpPoolInput = schema.new({
 })
 
 M.CreateDedicatedIpPoolOutput = schema.new({
-    id = id.from(_N, "CreateDedicatedIpPoolOutput"),
+    id = id.from(_N, "CreateDedicatedIpPoolResponse"),
     type = "structure",
 })
 
@@ -632,7 +632,7 @@ M.EmailContent = schema.new({
 })
 
 M.CreateDeliverabilityTestReportInput = schema.new({
-    id = id.from(_N, "CreateDeliverabilityTestReportInput"),
+    id = id.from(_N, "CreateDeliverabilityTestReportRequest"),
     type = "structure",
     members = {
         ReportName = schema.new({
@@ -671,7 +671,7 @@ M.CreateDeliverabilityTestReportInput = schema.new({
 })
 
 M.CreateDeliverabilityTestReportOutput = schema.new({
-    id = id.from(_N, "CreateDeliverabilityTestReportOutput"),
+    id = id.from(_N, "CreateDeliverabilityTestReportResponse"),
     type = "structure",
     members = {
         ReportId = schema.new({
@@ -744,7 +744,7 @@ M.SendingPausedException = schema.new({
 })
 
 M.CreateEmailIdentityInput = schema.new({
-    id = id.from(_N, "CreateEmailIdentityInput"),
+    id = id.from(_N, "CreateEmailIdentityRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -796,7 +796,7 @@ M.DkimAttributes = schema.new({
 })
 
 M.CreateEmailIdentityOutput = schema.new({
-    id = id.from(_N, "CreateEmailIdentityOutput"),
+    id = id.from(_N, "CreateEmailIdentityResponse"),
     type = "structure",
     members = {
         IdentityType = schema.new({
@@ -825,7 +825,7 @@ M.CreateEmailIdentityOutput = schema.new({
 })
 
 M.DeleteConfigurationSetInput = schema.new({
-    id = id.from(_N, "DeleteConfigurationSetInput"),
+    id = id.from(_N, "DeleteConfigurationSetRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -842,12 +842,12 @@ M.DeleteConfigurationSetInput = schema.new({
 })
 
 M.DeleteConfigurationSetOutput = schema.new({
-    id = id.from(_N, "DeleteConfigurationSetOutput"),
+    id = id.from(_N, "DeleteConfigurationSetResponse"),
     type = "structure",
 })
 
 M.DeleteConfigurationSetEventDestinationInput = schema.new({
-    id = id.from(_N, "DeleteConfigurationSetEventDestinationInput"),
+    id = id.from(_N, "DeleteConfigurationSetEventDestinationRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -874,12 +874,12 @@ M.DeleteConfigurationSetEventDestinationInput = schema.new({
 })
 
 M.DeleteConfigurationSetEventDestinationOutput = schema.new({
-    id = id.from(_N, "DeleteConfigurationSetEventDestinationOutput"),
+    id = id.from(_N, "DeleteConfigurationSetEventDestinationResponse"),
     type = "structure",
 })
 
 M.DeleteDedicatedIpPoolInput = schema.new({
-    id = id.from(_N, "DeleteDedicatedIpPoolInput"),
+    id = id.from(_N, "DeleteDedicatedIpPoolRequest"),
     type = "structure",
     members = {
         PoolName = schema.new({
@@ -896,12 +896,12 @@ M.DeleteDedicatedIpPoolInput = schema.new({
 })
 
 M.DeleteDedicatedIpPoolOutput = schema.new({
-    id = id.from(_N, "DeleteDedicatedIpPoolOutput"),
+    id = id.from(_N, "DeleteDedicatedIpPoolResponse"),
     type = "structure",
 })
 
 M.DeleteEmailIdentityInput = schema.new({
-    id = id.from(_N, "DeleteEmailIdentityInput"),
+    id = id.from(_N, "DeleteEmailIdentityRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -918,12 +918,12 @@ M.DeleteEmailIdentityInput = schema.new({
 })
 
 M.DeleteEmailIdentityOutput = schema.new({
-    id = id.from(_N, "DeleteEmailIdentityOutput"),
+    id = id.from(_N, "DeleteEmailIdentityResponse"),
     type = "structure",
 })
 
 M.GetAccountInput = schema.new({
-    id = id.from(_N, "GetAccountInput"),
+    id = id.from(_N, "GetAccountRequest"),
     type = "structure",
 })
 
@@ -962,7 +962,7 @@ M.SendQuota = schema.new({
 })
 
 M.GetAccountOutput = schema.new({
-    id = id.from(_N, "GetAccountOutput"),
+    id = id.from(_N, "GetAccountResponse"),
     type = "structure",
     members = {
         SendQuota = schema.new({
@@ -1009,7 +1009,7 @@ M.GetAccountOutput = schema.new({
 })
 
 M.GetBlacklistReportsInput = schema.new({
-    id = id.from(_N, "GetBlacklistReportsInput"),
+    id = id.from(_N, "GetBlacklistReportsRequest"),
     type = "structure",
     members = {
         BlacklistItemNames = schema.new({
@@ -1052,7 +1052,7 @@ M.BlacklistEntry = schema.new({
 })
 
 M.GetBlacklistReportsOutput = schema.new({
-    id = id.from(_N, "GetBlacklistReportsOutput"),
+    id = id.from(_N, "GetBlacklistReportsResponse"),
     type = "structure",
     members = {
         BlacklistReport = schema.new({
@@ -1061,7 +1061,7 @@ M.GetBlacklistReportsOutput = schema.new({
             name = "BlacklistReport",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.BlacklistEntry }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1070,7 +1070,7 @@ M.GetBlacklistReportsOutput = schema.new({
 })
 
 M.GetConfigurationSetInput = schema.new({
-    id = id.from(_N, "GetConfigurationSetInput"),
+    id = id.from(_N, "GetConfigurationSetRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -1087,7 +1087,7 @@ M.GetConfigurationSetInput = schema.new({
 })
 
 M.GetConfigurationSetOutput = schema.new({
-    id = id.from(_N, "GetConfigurationSetOutput"),
+    id = id.from(_N, "GetConfigurationSetResponse"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -1135,7 +1135,7 @@ M.GetConfigurationSetOutput = schema.new({
 })
 
 M.GetConfigurationSetEventDestinationsInput = schema.new({
-    id = id.from(_N, "GetConfigurationSetEventDestinationsInput"),
+    id = id.from(_N, "GetConfigurationSetEventDestinationsRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -1215,7 +1215,7 @@ M.EventDestination = schema.new({
 })
 
 M.GetConfigurationSetEventDestinationsOutput = schema.new({
-    id = id.from(_N, "GetConfigurationSetEventDestinationsOutput"),
+    id = id.from(_N, "GetConfigurationSetEventDestinationsResponse"),
     type = "structure",
     members = {
         EventDestinations = schema.new({
@@ -1229,7 +1229,7 @@ M.GetConfigurationSetEventDestinationsOutput = schema.new({
 })
 
 M.GetDedicatedIpInput = schema.new({
-    id = id.from(_N, "GetDedicatedIpInput"),
+    id = id.from(_N, "GetDedicatedIpRequest"),
     type = "structure",
     members = {
         Ip = schema.new({
@@ -1286,7 +1286,7 @@ M.DedicatedIp = schema.new({
 })
 
 M.GetDedicatedIpOutput = schema.new({
-    id = id.from(_N, "GetDedicatedIpOutput"),
+    id = id.from(_N, "GetDedicatedIpResponse"),
     type = "structure",
     members = {
         DedicatedIp = schema.new({
@@ -1300,7 +1300,7 @@ M.GetDedicatedIpOutput = schema.new({
 })
 
 M.GetDedicatedIpsInput = schema.new({
-    id = id.from(_N, "GetDedicatedIpsInput"),
+    id = id.from(_N, "GetDedicatedIpsRequest"),
     type = "structure",
     members = {
         PoolName = schema.new({
@@ -1334,7 +1334,7 @@ M.GetDedicatedIpsInput = schema.new({
 })
 
 M.GetDedicatedIpsOutput = schema.new({
-    id = id.from(_N, "GetDedicatedIpsOutput"),
+    id = id.from(_N, "GetDedicatedIpsResponse"),
     type = "structure",
     members = {
         DedicatedIps = schema.new({
@@ -1354,7 +1354,7 @@ M.GetDedicatedIpsOutput = schema.new({
 })
 
 M.GetDeliverabilityDashboardOptionsInput = schema.new({
-    id = id.from(_N, "GetDeliverabilityDashboardOptionsInput"),
+    id = id.from(_N, "GetDeliverabilityDashboardOptionsRequest"),
     type = "structure",
 })
 
@@ -1408,7 +1408,7 @@ M.DomainDeliverabilityTrackingOption = schema.new({
 })
 
 M.GetDeliverabilityDashboardOptionsOutput = schema.new({
-    id = id.from(_N, "GetDeliverabilityDashboardOptionsOutput"),
+    id = id.from(_N, "GetDeliverabilityDashboardOptionsResponse"),
     type = "structure",
     members = {
         DashboardEnabled = schema.new({
@@ -1451,7 +1451,7 @@ M.GetDeliverabilityDashboardOptionsOutput = schema.new({
 })
 
 M.GetDeliverabilityTestReportInput = schema.new({
-    id = id.from(_N, "GetDeliverabilityTestReportInput"),
+    id = id.from(_N, "GetDeliverabilityTestReportRequest"),
     type = "structure",
     members = {
         ReportId = schema.new({
@@ -1568,7 +1568,7 @@ M.IspPlacement = schema.new({
 })
 
 M.GetDeliverabilityTestReportOutput = schema.new({
-    id = id.from(_N, "GetDeliverabilityTestReportOutput"),
+    id = id.from(_N, "GetDeliverabilityTestReportResponse"),
     type = "structure",
     members = {
         DeliverabilityTestReport = schema.new({
@@ -1618,7 +1618,7 @@ M.GetDeliverabilityTestReportOutput = schema.new({
 })
 
 M.GetDomainDeliverabilityCampaignInput = schema.new({
-    id = id.from(_N, "GetDomainDeliverabilityCampaignInput"),
+    id = id.from(_N, "GetDomainDeliverabilityCampaignRequest"),
     type = "structure",
     members = {
         CampaignId = schema.new({
@@ -1728,7 +1728,7 @@ M.DomainDeliverabilityCampaign = schema.new({
 })
 
 M.GetDomainDeliverabilityCampaignOutput = schema.new({
-    id = id.from(_N, "GetDomainDeliverabilityCampaignOutput"),
+    id = id.from(_N, "GetDomainDeliverabilityCampaignResponse"),
     type = "structure",
     members = {
         DomainDeliverabilityCampaign = schema.new({
@@ -1745,7 +1745,7 @@ M.GetDomainDeliverabilityCampaignOutput = schema.new({
 })
 
 M.GetDomainStatisticsReportInput = schema.new({
-    id = id.from(_N, "GetDomainStatisticsReportInput"),
+    id = id.from(_N, "GetDomainStatisticsReportRequest"),
     type = "structure",
     members = {
         Domain = schema.new({
@@ -1904,7 +1904,7 @@ M.OverallVolume = schema.new({
 })
 
 M.GetDomainStatisticsReportOutput = schema.new({
-    id = id.from(_N, "GetDomainStatisticsReportOutput"),
+    id = id.from(_N, "GetDomainStatisticsReportResponse"),
     type = "structure",
     members = {
         OverallVolume = schema.new({
@@ -1931,7 +1931,7 @@ M.GetDomainStatisticsReportOutput = schema.new({
 })
 
 M.GetEmailIdentityInput = schema.new({
-    id = id.from(_N, "GetEmailIdentityInput"),
+    id = id.from(_N, "GetEmailIdentityRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -1982,7 +1982,7 @@ M.MailFromAttributes = schema.new({
 })
 
 M.GetEmailIdentityOutput = schema.new({
-    id = id.from(_N, "GetEmailIdentityOutput"),
+    id = id.from(_N, "GetEmailIdentityResponse"),
     type = "structure",
     members = {
         IdentityType = schema.new({
@@ -2034,7 +2034,7 @@ M.GetEmailIdentityOutput = schema.new({
 })
 
 M.ListConfigurationSetsInput = schema.new({
-    id = id.from(_N, "ListConfigurationSetsInput"),
+    id = id.from(_N, "ListConfigurationSetsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2059,7 +2059,7 @@ M.ListConfigurationSetsInput = schema.new({
 })
 
 M.ListConfigurationSetsOutput = schema.new({
-    id = id.from(_N, "ListConfigurationSetsOutput"),
+    id = id.from(_N, "ListConfigurationSetsResponse"),
     type = "structure",
     members = {
         ConfigurationSets = schema.new({
@@ -2079,7 +2079,7 @@ M.ListConfigurationSetsOutput = schema.new({
 })
 
 M.ListDedicatedIpPoolsInput = schema.new({
-    id = id.from(_N, "ListDedicatedIpPoolsInput"),
+    id = id.from(_N, "ListDedicatedIpPoolsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2104,7 +2104,7 @@ M.ListDedicatedIpPoolsInput = schema.new({
 })
 
 M.ListDedicatedIpPoolsOutput = schema.new({
-    id = id.from(_N, "ListDedicatedIpPoolsOutput"),
+    id = id.from(_N, "ListDedicatedIpPoolsResponse"),
     type = "structure",
     members = {
         DedicatedIpPools = schema.new({
@@ -2124,7 +2124,7 @@ M.ListDedicatedIpPoolsOutput = schema.new({
 })
 
 M.ListDeliverabilityTestReportsInput = schema.new({
-    id = id.from(_N, "ListDeliverabilityTestReportsInput"),
+    id = id.from(_N, "ListDeliverabilityTestReportsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2149,7 +2149,7 @@ M.ListDeliverabilityTestReportsInput = schema.new({
 })
 
 M.ListDeliverabilityTestReportsOutput = schema.new({
-    id = id.from(_N, "ListDeliverabilityTestReportsOutput"),
+    id = id.from(_N, "ListDeliverabilityTestReportsResponse"),
     type = "structure",
     members = {
         DeliverabilityTestReports = schema.new({
@@ -2172,7 +2172,7 @@ M.ListDeliverabilityTestReportsOutput = schema.new({
 })
 
 M.ListDomainDeliverabilityCampaignsInput = schema.new({
-    id = id.from(_N, "ListDomainDeliverabilityCampaignsInput"),
+    id = id.from(_N, "ListDomainDeliverabilityCampaignsRequest"),
     type = "structure",
     members = {
         StartDate = schema.new({
@@ -2227,7 +2227,7 @@ M.ListDomainDeliverabilityCampaignsInput = schema.new({
 })
 
 M.ListDomainDeliverabilityCampaignsOutput = schema.new({
-    id = id.from(_N, "ListDomainDeliverabilityCampaignsOutput"),
+    id = id.from(_N, "ListDomainDeliverabilityCampaignsResponse"),
     type = "structure",
     members = {
         DomainDeliverabilityCampaigns = schema.new({
@@ -2250,7 +2250,7 @@ M.ListDomainDeliverabilityCampaignsOutput = schema.new({
 })
 
 M.ListEmailIdentitiesInput = schema.new({
-    id = id.from(_N, "ListEmailIdentitiesInput"),
+    id = id.from(_N, "ListEmailIdentitiesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2303,7 +2303,7 @@ M.IdentityInfo = schema.new({
 })
 
 M.ListEmailIdentitiesOutput = schema.new({
-    id = id.from(_N, "ListEmailIdentitiesOutput"),
+    id = id.from(_N, "ListEmailIdentitiesResponse"),
     type = "structure",
     members = {
         EmailIdentities = schema.new({
@@ -2323,7 +2323,7 @@ M.ListEmailIdentitiesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2340,7 +2340,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2357,7 +2357,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutAccountDedicatedIpWarmupAttributesInput = schema.new({
-    id = id.from(_N, "PutAccountDedicatedIpWarmupAttributesInput"),
+    id = id.from(_N, "PutAccountDedicatedIpWarmupAttributesRequest"),
     type = "structure",
     members = {
         AutoWarmupEnabled = schema.new({
@@ -2373,12 +2373,12 @@ M.PutAccountDedicatedIpWarmupAttributesInput = schema.new({
 })
 
 M.PutAccountDedicatedIpWarmupAttributesOutput = schema.new({
-    id = id.from(_N, "PutAccountDedicatedIpWarmupAttributesOutput"),
+    id = id.from(_N, "PutAccountDedicatedIpWarmupAttributesResponse"),
     type = "structure",
 })
 
 M.PutAccountSendingAttributesInput = schema.new({
-    id = id.from(_N, "PutAccountSendingAttributesInput"),
+    id = id.from(_N, "PutAccountSendingAttributesRequest"),
     type = "structure",
     members = {
         SendingEnabled = schema.new({
@@ -2394,12 +2394,12 @@ M.PutAccountSendingAttributesInput = schema.new({
 })
 
 M.PutAccountSendingAttributesOutput = schema.new({
-    id = id.from(_N, "PutAccountSendingAttributesOutput"),
+    id = id.from(_N, "PutAccountSendingAttributesResponse"),
     type = "structure",
 })
 
 M.PutConfigurationSetDeliveryOptionsInput = schema.new({
-    id = id.from(_N, "PutConfigurationSetDeliveryOptionsInput"),
+    id = id.from(_N, "PutConfigurationSetDeliveryOptionsRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -2428,12 +2428,12 @@ M.PutConfigurationSetDeliveryOptionsInput = schema.new({
 })
 
 M.PutConfigurationSetDeliveryOptionsOutput = schema.new({
-    id = id.from(_N, "PutConfigurationSetDeliveryOptionsOutput"),
+    id = id.from(_N, "PutConfigurationSetDeliveryOptionsResponse"),
     type = "structure",
 })
 
 M.PutConfigurationSetReputationOptionsInput = schema.new({
-    id = id.from(_N, "PutConfigurationSetReputationOptionsInput"),
+    id = id.from(_N, "PutConfigurationSetReputationOptionsRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -2459,12 +2459,12 @@ M.PutConfigurationSetReputationOptionsInput = schema.new({
 })
 
 M.PutConfigurationSetReputationOptionsOutput = schema.new({
-    id = id.from(_N, "PutConfigurationSetReputationOptionsOutput"),
+    id = id.from(_N, "PutConfigurationSetReputationOptionsResponse"),
     type = "structure",
 })
 
 M.PutConfigurationSetSendingOptionsInput = schema.new({
-    id = id.from(_N, "PutConfigurationSetSendingOptionsInput"),
+    id = id.from(_N, "PutConfigurationSetSendingOptionsRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -2490,12 +2490,12 @@ M.PutConfigurationSetSendingOptionsInput = schema.new({
 })
 
 M.PutConfigurationSetSendingOptionsOutput = schema.new({
-    id = id.from(_N, "PutConfigurationSetSendingOptionsOutput"),
+    id = id.from(_N, "PutConfigurationSetSendingOptionsResponse"),
     type = "structure",
 })
 
 M.PutConfigurationSetTrackingOptionsInput = schema.new({
-    id = id.from(_N, "PutConfigurationSetTrackingOptionsInput"),
+    id = id.from(_N, "PutConfigurationSetTrackingOptionsRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -2518,12 +2518,12 @@ M.PutConfigurationSetTrackingOptionsInput = schema.new({
 })
 
 M.PutConfigurationSetTrackingOptionsOutput = schema.new({
-    id = id.from(_N, "PutConfigurationSetTrackingOptionsOutput"),
+    id = id.from(_N, "PutConfigurationSetTrackingOptionsResponse"),
     type = "structure",
 })
 
 M.PutDedicatedIpInPoolInput = schema.new({
-    id = id.from(_N, "PutDedicatedIpInPoolInput"),
+    id = id.from(_N, "PutDedicatedIpInPoolRequest"),
     type = "structure",
     members = {
         Ip = schema.new({
@@ -2549,12 +2549,12 @@ M.PutDedicatedIpInPoolInput = schema.new({
 })
 
 M.PutDedicatedIpInPoolOutput = schema.new({
-    id = id.from(_N, "PutDedicatedIpInPoolOutput"),
+    id = id.from(_N, "PutDedicatedIpInPoolResponse"),
     type = "structure",
 })
 
 M.PutDedicatedIpWarmupAttributesInput = schema.new({
-    id = id.from(_N, "PutDedicatedIpWarmupAttributesInput"),
+    id = id.from(_N, "PutDedicatedIpWarmupAttributesRequest"),
     type = "structure",
     members = {
         Ip = schema.new({
@@ -2580,12 +2580,12 @@ M.PutDedicatedIpWarmupAttributesInput = schema.new({
 })
 
 M.PutDedicatedIpWarmupAttributesOutput = schema.new({
-    id = id.from(_N, "PutDedicatedIpWarmupAttributesOutput"),
+    id = id.from(_N, "PutDedicatedIpWarmupAttributesResponse"),
     type = "structure",
 })
 
 M.PutDeliverabilityDashboardOptionInput = schema.new({
-    id = id.from(_N, "PutDeliverabilityDashboardOptionInput"),
+    id = id.from(_N, "PutDeliverabilityDashboardOptionRequest"),
     type = "structure",
     members = {
         DashboardEnabled = schema.new({
@@ -2609,12 +2609,12 @@ M.PutDeliverabilityDashboardOptionInput = schema.new({
 })
 
 M.PutDeliverabilityDashboardOptionOutput = schema.new({
-    id = id.from(_N, "PutDeliverabilityDashboardOptionOutput"),
+    id = id.from(_N, "PutDeliverabilityDashboardOptionResponse"),
     type = "structure",
 })
 
 M.PutEmailIdentityDkimAttributesInput = schema.new({
-    id = id.from(_N, "PutEmailIdentityDkimAttributesInput"),
+    id = id.from(_N, "PutEmailIdentityDkimAttributesRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -2640,12 +2640,12 @@ M.PutEmailIdentityDkimAttributesInput = schema.new({
 })
 
 M.PutEmailIdentityDkimAttributesOutput = schema.new({
-    id = id.from(_N, "PutEmailIdentityDkimAttributesOutput"),
+    id = id.from(_N, "PutEmailIdentityDkimAttributesResponse"),
     type = "structure",
 })
 
 M.PutEmailIdentityFeedbackAttributesInput = schema.new({
-    id = id.from(_N, "PutEmailIdentityFeedbackAttributesInput"),
+    id = id.from(_N, "PutEmailIdentityFeedbackAttributesRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -2671,12 +2671,12 @@ M.PutEmailIdentityFeedbackAttributesInput = schema.new({
 })
 
 M.PutEmailIdentityFeedbackAttributesOutput = schema.new({
-    id = id.from(_N, "PutEmailIdentityFeedbackAttributesOutput"),
+    id = id.from(_N, "PutEmailIdentityFeedbackAttributesResponse"),
     type = "structure",
 })
 
 M.PutEmailIdentityMailFromAttributesInput = schema.new({
-    id = id.from(_N, "PutEmailIdentityMailFromAttributesInput"),
+    id = id.from(_N, "PutEmailIdentityMailFromAttributesRequest"),
     type = "structure",
     members = {
         EmailIdentity = schema.new({
@@ -2705,7 +2705,7 @@ M.PutEmailIdentityMailFromAttributesInput = schema.new({
 })
 
 M.PutEmailIdentityMailFromAttributesOutput = schema.new({
-    id = id.from(_N, "PutEmailIdentityMailFromAttributesOutput"),
+    id = id.from(_N, "PutEmailIdentityMailFromAttributesResponse"),
     type = "structure",
 })
 
@@ -2763,7 +2763,7 @@ M.MessageTag = schema.new({
 })
 
 M.SendEmailInput = schema.new({
-    id = id.from(_N, "SendEmailInput"),
+    id = id.from(_N, "SendEmailRequest"),
     type = "structure",
     members = {
         FromEmailAddress = schema.new({
@@ -2822,7 +2822,7 @@ M.SendEmailInput = schema.new({
 })
 
 M.SendEmailOutput = schema.new({
-    id = id.from(_N, "SendEmailOutput"),
+    id = id.from(_N, "SendEmailResponse"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -2835,7 +2835,7 @@ M.SendEmailOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2861,12 +2861,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2894,12 +2894,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateConfigurationSetEventDestinationInput = schema.new({
-    id = id.from(_N, "UpdateConfigurationSetEventDestinationInput"),
+    id = id.from(_N, "UpdateConfigurationSetEventDestinationRequest"),
     type = "structure",
     members = {
         ConfigurationSetName = schema.new({
@@ -2936,8 +2936,22 @@ M.UpdateConfigurationSetEventDestinationInput = schema.new({
 })
 
 M.UpdateConfigurationSetEventDestinationOutput = schema.new({
-    id = id.from(_N, "UpdateConfigurationSetEventDestinationOutput"),
+    id = id.from(_N, "UpdateConfigurationSetEventDestinationResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

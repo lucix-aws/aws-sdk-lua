@@ -111,7 +111,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.StartConfigurationSessionInput = schema.new({
-    id = id.from(_N, "StartConfigurationSessionInput"),
+    id = id.from(_N, "StartConfigurationSessionRequest"),
     type = "structure",
     members = {
         ApplicationIdentifier = schema.new({
@@ -151,7 +151,7 @@ M.StartConfigurationSessionInput = schema.new({
 })
 
 M.StartConfigurationSessionOutput = schema.new({
-    id = id.from(_N, "StartConfigurationSessionOutput"),
+    id = id.from(_N, "StartConfigurationSessionResponse"),
     type = "structure",
     members = {
         InitialConfigurationToken = schema.new({
@@ -180,7 +180,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.GetLatestConfigurationInput = schema.new({
-    id = id.from(_N, "GetLatestConfigurationInput"),
+    id = id.from(_N, "GetLatestConfigurationRequest"),
     type = "structure",
     members = {
         ConfigurationToken = schema.new({
@@ -197,7 +197,7 @@ M.GetLatestConfigurationInput = schema.new({
 })
 
 M.GetLatestConfigurationOutput = schema.new({
-    id = id.from(_N, "GetLatestConfigurationOutput"),
+    id = id.from(_N, "GetLatestConfigurationResponse"),
     type = "structure",
     members = {
         NextPollConfigurationToken = schema.new({
@@ -248,5 +248,19 @@ M.GetLatestConfigurationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

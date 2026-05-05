@@ -46,7 +46,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateAccessTokenInput = schema.new({
-    id = id.from(_N, "CreateAccessTokenInput"),
+    id = id.from(_N, "CreateAccessTokenRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -71,7 +71,7 @@ M.CreateAccessTokenInput = schema.new({
 })
 
 M.CreateAccessTokenOutput = schema.new({
-    id = id.from(_N, "CreateAccessTokenOutput"),
+    id = id.from(_N, "CreateAccessTokenResponse"),
     type = "structure",
     members = {
         secret = schema.new({
@@ -191,7 +191,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteAccessTokenInput = schema.new({
-    id = id.from(_N, "DeleteAccessTokenInput"),
+    id = id.from(_N, "DeleteAccessTokenRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -208,12 +208,12 @@ M.DeleteAccessTokenInput = schema.new({
 })
 
 M.DeleteAccessTokenOutput = schema.new({
-    id = id.from(_N, "DeleteAccessTokenOutput"),
+    id = id.from(_N, "DeleteAccessTokenResponse"),
     type = "structure",
 })
 
 M.ListAccessTokensInput = schema.new({
-    id = id.from(_N, "ListAccessTokensInput"),
+    id = id.from(_N, "ListAccessTokensRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -266,7 +266,7 @@ M.AccessTokenSummary = schema.new({
 })
 
 M.ListAccessTokensOutput = schema.new({
-    id = id.from(_N, "ListAccessTokensOutput"),
+    id = id.from(_N, "ListAccessTokensResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -289,7 +289,7 @@ M.ListAccessTokensOutput = schema.new({
 })
 
 M.GetUserDetailsInput = schema.new({
-    id = id.from(_N, "GetUserDetailsInput"),
+    id = id.from(_N, "GetUserDetailsRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -333,7 +333,7 @@ M.EmailAddress = schema.new({
 })
 
 M.GetUserDetailsOutput = schema.new({
-    id = id.from(_N, "GetUserDetailsOutput"),
+    id = id.from(_N, "GetUserDetailsResponse"),
     type = "structure",
     members = {
         userId = schema.new({
@@ -371,7 +371,7 @@ M.GetUserDetailsOutput = schema.new({
 })
 
 M.DeleteSpaceInput = schema.new({
-    id = id.from(_N, "DeleteSpaceInput"),
+    id = id.from(_N, "DeleteSpaceRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -388,7 +388,7 @@ M.DeleteSpaceInput = schema.new({
 })
 
 M.DeleteSpaceOutput = schema.new({
-    id = id.from(_N, "DeleteSpaceOutput"),
+    id = id.from(_N, "DeleteSpaceResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -410,7 +410,7 @@ M.DeleteSpaceOutput = schema.new({
 })
 
 M.ListEventLogsInput = schema.new({
-    id = id.from(_N, "ListEventLogsInput"),
+    id = id.from(_N, "ListEventLogsRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -666,7 +666,7 @@ M.EventLogEntry = schema.new({
 })
 
 M.ListEventLogsOutput = schema.new({
-    id = id.from(_N, "ListEventLogsOutput"),
+    id = id.from(_N, "ListEventLogsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -689,7 +689,7 @@ M.ListEventLogsOutput = schema.new({
 })
 
 M.GetSpaceInput = schema.new({
-    id = id.from(_N, "GetSpaceInput"),
+    id = id.from(_N, "GetSpaceRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -706,7 +706,7 @@ M.GetSpaceInput = schema.new({
 })
 
 M.GetSpaceOutput = schema.new({
-    id = id.from(_N, "GetSpaceOutput"),
+    id = id.from(_N, "GetSpaceResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -775,7 +775,7 @@ M.Filter = schema.new({
 })
 
 M.ListDevEnvironmentsInput = schema.new({
-    id = id.from(_N, "ListDevEnvironmentsInput"),
+    id = id.from(_N, "ListDevEnvironmentsRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -994,7 +994,7 @@ M.DevEnvironmentSummary = schema.new({
 })
 
 M.ListDevEnvironmentsOutput = schema.new({
-    id = id.from(_N, "ListDevEnvironmentsOutput"),
+    id = id.from(_N, "ListDevEnvironmentsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -1017,7 +1017,7 @@ M.ListDevEnvironmentsOutput = schema.new({
 })
 
 M.ListSpacesInput = schema.new({
-    id = id.from(_N, "ListSpacesInput"),
+    id = id.from(_N, "ListSpacesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1067,7 +1067,7 @@ M.SpaceSummary = schema.new({
 })
 
 M.ListSpacesOutput = schema.new({
-    id = id.from(_N, "ListSpacesOutput"),
+    id = id.from(_N, "ListSpacesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1087,7 +1087,7 @@ M.ListSpacesOutput = schema.new({
 })
 
 M.CreateProjectInput = schema.new({
-    id = id.from(_N, "CreateProjectInput"),
+    id = id.from(_N, "CreateProjectRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -1119,7 +1119,7 @@ M.CreateProjectInput = schema.new({
 })
 
 M.CreateProjectOutput = schema.new({
-    id = id.from(_N, "CreateProjectOutput"),
+    id = id.from(_N, "CreateProjectResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -1153,7 +1153,7 @@ M.CreateProjectOutput = schema.new({
 })
 
 M.DeleteProjectInput = schema.new({
-    id = id.from(_N, "DeleteProjectInput"),
+    id = id.from(_N, "DeleteProjectRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -1180,7 +1180,7 @@ M.DeleteProjectInput = schema.new({
 })
 
 M.DeleteProjectOutput = schema.new({
-    id = id.from(_N, "DeleteProjectOutput"),
+    id = id.from(_N, "DeleteProjectResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -1268,7 +1268,7 @@ M.RepositoryInput = schema.new({
 })
 
 M.CreateDevEnvironmentInput = schema.new({
-    id = id.from(_N, "CreateDevEnvironmentInput"),
+    id = id.from(_N, "CreateDevEnvironmentRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -1355,7 +1355,7 @@ M.CreateDevEnvironmentInput = schema.new({
 })
 
 M.CreateDevEnvironmentOutput = schema.new({
-    id = id.from(_N, "CreateDevEnvironmentOutput"),
+    id = id.from(_N, "CreateDevEnvironmentResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -1395,7 +1395,7 @@ M.CreateDevEnvironmentOutput = schema.new({
 })
 
 M.DeleteDevEnvironmentInput = schema.new({
-    id = id.from(_N, "DeleteDevEnvironmentInput"),
+    id = id.from(_N, "DeleteDevEnvironmentRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -1432,7 +1432,7 @@ M.DeleteDevEnvironmentInput = schema.new({
 })
 
 M.DeleteDevEnvironmentOutput = schema.new({
-    id = id.from(_N, "DeleteDevEnvironmentOutput"),
+    id = id.from(_N, "DeleteDevEnvironmentResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -1466,7 +1466,7 @@ M.DeleteDevEnvironmentOutput = schema.new({
 })
 
 M.GetDevEnvironmentInput = schema.new({
-    id = id.from(_N, "GetDevEnvironmentInput"),
+    id = id.from(_N, "GetDevEnvironmentRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -1503,7 +1503,7 @@ M.GetDevEnvironmentInput = schema.new({
 })
 
 M.GetDevEnvironmentOutput = schema.new({
-    id = id.from(_N, "GetDevEnvironmentOutput"),
+    id = id.from(_N, "GetDevEnvironmentResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -1629,7 +1629,7 @@ M.GetDevEnvironmentOutput = schema.new({
 })
 
 M.ListDevEnvironmentSessionsInput = schema.new({
-    id = id.from(_N, "ListDevEnvironmentSessionsInput"),
+    id = id.from(_N, "ListDevEnvironmentSessionsRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -1731,7 +1731,7 @@ M.DevEnvironmentSessionSummary = schema.new({
 })
 
 M.ListDevEnvironmentSessionsOutput = schema.new({
-    id = id.from(_N, "ListDevEnvironmentSessionsOutput"),
+    id = id.from(_N, "ListDevEnvironmentSessionsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -1754,7 +1754,7 @@ M.ListDevEnvironmentSessionsOutput = schema.new({
 })
 
 M.StartDevEnvironmentInput = schema.new({
-    id = id.from(_N, "StartDevEnvironmentInput"),
+    id = id.from(_N, "StartDevEnvironmentRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -1813,7 +1813,7 @@ M.StartDevEnvironmentInput = schema.new({
 })
 
 M.StartDevEnvironmentOutput = schema.new({
-    id = id.from(_N, "StartDevEnvironmentOutput"),
+    id = id.from(_N, "StartDevEnvironmentResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -1902,7 +1902,7 @@ M.DevEnvironmentSessionConfiguration = schema.new({
 })
 
 M.StartDevEnvironmentSessionInput = schema.new({
-    id = id.from(_N, "StartDevEnvironmentSessionInput"),
+    id = id.from(_N, "StartDevEnvironmentSessionRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -1974,7 +1974,7 @@ M.DevEnvironmentAccessDetails = schema.new({
 })
 
 M.StartDevEnvironmentSessionOutput = schema.new({
-    id = id.from(_N, "StartDevEnvironmentSessionOutput"),
+    id = id.from(_N, "StartDevEnvironmentSessionResponse"),
     type = "structure",
     members = {
         accessDetails = schema.new({
@@ -2024,7 +2024,7 @@ M.StartDevEnvironmentSessionOutput = schema.new({
 })
 
 M.StopDevEnvironmentInput = schema.new({
-    id = id.from(_N, "StopDevEnvironmentInput"),
+    id = id.from(_N, "StopDevEnvironmentRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2061,7 +2061,7 @@ M.StopDevEnvironmentInput = schema.new({
 })
 
 M.StopDevEnvironmentOutput = schema.new({
-    id = id.from(_N, "StopDevEnvironmentOutput"),
+    id = id.from(_N, "StopDevEnvironmentResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2104,7 +2104,7 @@ M.StopDevEnvironmentOutput = schema.new({
 })
 
 M.StopDevEnvironmentSessionInput = schema.new({
-    id = id.from(_N, "StopDevEnvironmentSessionInput"),
+    id = id.from(_N, "StopDevEnvironmentSessionRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2151,7 +2151,7 @@ M.StopDevEnvironmentSessionInput = schema.new({
 })
 
 M.StopDevEnvironmentSessionOutput = schema.new({
-    id = id.from(_N, "StopDevEnvironmentSessionOutput"),
+    id = id.from(_N, "StopDevEnvironmentSessionResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2194,7 +2194,7 @@ M.StopDevEnvironmentSessionOutput = schema.new({
 })
 
 M.UpdateDevEnvironmentInput = schema.new({
-    id = id.from(_N, "UpdateDevEnvironmentInput"),
+    id = id.from(_N, "UpdateDevEnvironmentRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2265,7 +2265,7 @@ M.UpdateDevEnvironmentInput = schema.new({
 })
 
 M.UpdateDevEnvironmentOutput = schema.new({
-    id = id.from(_N, "UpdateDevEnvironmentOutput"),
+    id = id.from(_N, "UpdateDevEnvironmentResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2333,7 +2333,7 @@ M.UpdateDevEnvironmentOutput = schema.new({
 })
 
 M.GetProjectInput = schema.new({
-    id = id.from(_N, "GetProjectInput"),
+    id = id.from(_N, "GetProjectRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2360,7 +2360,7 @@ M.GetProjectInput = schema.new({
 })
 
 M.GetProjectOutput = schema.new({
-    id = id.from(_N, "GetProjectOutput"),
+    id = id.from(_N, "GetProjectResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2426,7 +2426,7 @@ M.ProjectListFilter = schema.new({
 })
 
 M.ListProjectsInput = schema.new({
-    id = id.from(_N, "ListProjectsInput"),
+    id = id.from(_N, "ListProjectsRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2490,7 +2490,7 @@ M.ProjectSummary = schema.new({
 })
 
 M.ListProjectsOutput = schema.new({
-    id = id.from(_N, "ListProjectsOutput"),
+    id = id.from(_N, "ListProjectsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2510,7 +2510,7 @@ M.ListProjectsOutput = schema.new({
 })
 
 M.CreateSourceRepositoryInput = schema.new({
-    id = id.from(_N, "CreateSourceRepositoryInput"),
+    id = id.from(_N, "CreateSourceRepositoryRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2553,7 +2553,7 @@ M.CreateSourceRepositoryInput = schema.new({
 })
 
 M.CreateSourceRepositoryOutput = schema.new({
-    id = id.from(_N, "CreateSourceRepositoryOutput"),
+    id = id.from(_N, "CreateSourceRepositoryResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2593,7 +2593,7 @@ M.CreateSourceRepositoryOutput = schema.new({
 })
 
 M.DeleteSourceRepositoryInput = schema.new({
-    id = id.from(_N, "DeleteSourceRepositoryInput"),
+    id = id.from(_N, "DeleteSourceRepositoryRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2630,7 +2630,7 @@ M.DeleteSourceRepositoryInput = schema.new({
 })
 
 M.DeleteSourceRepositoryOutput = schema.new({
-    id = id.from(_N, "DeleteSourceRepositoryOutput"),
+    id = id.from(_N, "DeleteSourceRepositoryResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2664,7 +2664,7 @@ M.DeleteSourceRepositoryOutput = schema.new({
 })
 
 M.GetSourceRepositoryInput = schema.new({
-    id = id.from(_N, "GetSourceRepositoryInput"),
+    id = id.from(_N, "GetSourceRepositoryRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2701,7 +2701,7 @@ M.GetSourceRepositoryInput = schema.new({
 })
 
 M.GetSourceRepositoryOutput = schema.new({
-    id = id.from(_N, "GetSourceRepositoryOutput"),
+    id = id.from(_N, "GetSourceRepositoryResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2767,7 +2767,7 @@ M.GetSourceRepositoryOutput = schema.new({
 })
 
 M.GetSourceRepositoryCloneUrlsInput = schema.new({
-    id = id.from(_N, "GetSourceRepositoryCloneUrlsInput"),
+    id = id.from(_N, "GetSourceRepositoryCloneUrlsRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2804,7 +2804,7 @@ M.GetSourceRepositoryCloneUrlsInput = schema.new({
 })
 
 M.GetSourceRepositoryCloneUrlsOutput = schema.new({
-    id = id.from(_N, "GetSourceRepositoryCloneUrlsOutput"),
+    id = id.from(_N, "GetSourceRepositoryCloneUrlsResponse"),
     type = "structure",
     members = {
         https = schema.new({
@@ -2820,7 +2820,7 @@ M.GetSourceRepositoryCloneUrlsOutput = schema.new({
 })
 
 M.ListSourceRepositoriesInput = schema.new({
-    id = id.from(_N, "ListSourceRepositoriesInput"),
+    id = id.from(_N, "ListSourceRepositoriesRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2916,7 +2916,7 @@ M.ListSourceRepositoriesItem = schema.new({
 })
 
 M.ListSourceRepositoriesOutput = schema.new({
-    id = id.from(_N, "ListSourceRepositoriesOutput"),
+    id = id.from(_N, "ListSourceRepositoriesResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -2936,7 +2936,7 @@ M.ListSourceRepositoriesOutput = schema.new({
 })
 
 M.CreateSourceRepositoryBranchInput = schema.new({
-    id = id.from(_N, "CreateSourceRepositoryBranchInput"),
+    id = id.from(_N, "CreateSourceRepositoryBranchRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -2989,7 +2989,7 @@ M.CreateSourceRepositoryBranchInput = schema.new({
 })
 
 M.CreateSourceRepositoryBranchOutput = schema.new({
-    id = id.from(_N, "CreateSourceRepositoryBranchOutput"),
+    id = id.from(_N, "CreateSourceRepositoryBranchResponse"),
     type = "structure",
     members = {
         ref = schema.new({
@@ -3023,7 +3023,7 @@ M.CreateSourceRepositoryBranchOutput = schema.new({
 })
 
 M.ListSourceRepositoryBranchesInput = schema.new({
-    id = id.from(_N, "ListSourceRepositoryBranchesInput"),
+    id = id.from(_N, "ListSourceRepositoryBranchesRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -3106,7 +3106,7 @@ M.ListSourceRepositoryBranchesItem = schema.new({
 })
 
 M.ListSourceRepositoryBranchesOutput = schema.new({
-    id = id.from(_N, "ListSourceRepositoryBranchesOutput"),
+    id = id.from(_N, "ListSourceRepositoryBranchesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3129,7 +3129,7 @@ M.ListSourceRepositoryBranchesOutput = schema.new({
 })
 
 M.UpdateProjectInput = schema.new({
-    id = id.from(_N, "UpdateProjectInput"),
+    id = id.from(_N, "UpdateProjectRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -3162,7 +3162,7 @@ M.UpdateProjectInput = schema.new({
 })
 
 M.UpdateProjectOutput = schema.new({
-    id = id.from(_N, "UpdateProjectOutput"),
+    id = id.from(_N, "UpdateProjectResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -3193,7 +3193,7 @@ M.UpdateProjectOutput = schema.new({
 })
 
 M.GetWorkflowInput = schema.new({
-    id = id.from(_N, "GetWorkflowInput"),
+    id = id.from(_N, "GetWorkflowRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -3246,7 +3246,7 @@ M.WorkflowDefinition = schema.new({
 })
 
 M.GetWorkflowOutput = schema.new({
-    id = id.from(_N, "GetWorkflowOutput"),
+    id = id.from(_N, "GetWorkflowResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -3354,7 +3354,7 @@ M.WorkflowSortCriteria = schema.new({
 })
 
 M.ListWorkflowsInput = schema.new({
-    id = id.from(_N, "ListWorkflowsInput"),
+    id = id.from(_N, "ListWorkflowsRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -3513,7 +3513,7 @@ M.WorkflowSummary = schema.new({
 })
 
 M.ListWorkflowsOutput = schema.new({
-    id = id.from(_N, "ListWorkflowsOutput"),
+    id = id.from(_N, "ListWorkflowsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3533,7 +3533,7 @@ M.ListWorkflowsOutput = schema.new({
 })
 
 M.GetWorkflowRunInput = schema.new({
-    id = id.from(_N, "GetWorkflowRunInput"),
+    id = id.from(_N, "GetWorkflowRunRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -3575,7 +3575,7 @@ M.WorkflowRunStatusReason = schema.new({
 })
 
 M.GetWorkflowRunOutput = schema.new({
-    id = id.from(_N, "GetWorkflowRunOutput"),
+    id = id.from(_N, "GetWorkflowRunResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -3668,7 +3668,7 @@ M.WorkflowRunSortCriteria = schema.new({
 })
 
 M.ListWorkflowRunsInput = schema.new({
-    id = id.from(_N, "ListWorkflowRunsInput"),
+    id = id.from(_N, "ListWorkflowRunsRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -3808,7 +3808,7 @@ M.WorkflowRunSummary = schema.new({
 })
 
 M.ListWorkflowRunsOutput = schema.new({
-    id = id.from(_N, "ListWorkflowRunsOutput"),
+    id = id.from(_N, "ListWorkflowRunsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3828,7 +3828,7 @@ M.ListWorkflowRunsOutput = schema.new({
 })
 
 M.StartWorkflowRunInput = schema.new({
-    id = id.from(_N, "StartWorkflowRunInput"),
+    id = id.from(_N, "StartWorkflowRunRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -3874,7 +3874,7 @@ M.StartWorkflowRunInput = schema.new({
 })
 
 M.StartWorkflowRunOutput = schema.new({
-    id = id.from(_N, "StartWorkflowRunOutput"),
+    id = id.from(_N, "StartWorkflowRunResponse"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -3917,7 +3917,7 @@ M.StartWorkflowRunOutput = schema.new({
 })
 
 M.GetSubscriptionInput = schema.new({
-    id = id.from(_N, "GetSubscriptionInput"),
+    id = id.from(_N, "GetSubscriptionRequest"),
     type = "structure",
     members = {
         spaceName = schema.new({
@@ -3934,7 +3934,7 @@ M.GetSubscriptionInput = schema.new({
 })
 
 M.GetSubscriptionOutput = schema.new({
-    id = id.from(_N, "GetSubscriptionOutput"),
+    id = id.from(_N, "GetSubscriptionResponse"),
     type = "structure",
     members = {
         subscriptionType = schema.new({
@@ -3968,7 +3968,7 @@ M.GetSubscriptionOutput = schema.new({
 })
 
 M.UpdateSpaceInput = schema.new({
-    id = id.from(_N, "UpdateSpaceInput"),
+    id = id.from(_N, "UpdateSpaceRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3991,7 +3991,7 @@ M.UpdateSpaceInput = schema.new({
 })
 
 M.UpdateSpaceOutput = schema.new({
-    id = id.from(_N, "UpdateSpaceOutput"),
+    id = id.from(_N, "UpdateSpaceResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4016,12 +4016,12 @@ M.UpdateSpaceOutput = schema.new({
 })
 
 M.VerifySessionInput = schema.new({
-    id = id.from(_N, "VerifySessionInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.VerifySessionOutput = schema.new({
-    id = id.from(_N, "VerifySessionOutput"),
+    id = id.from(_N, "VerifySessionResponse"),
     type = "structure",
     members = {
         identity = schema.new({
@@ -4032,5 +4032,19 @@ M.VerifySessionOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

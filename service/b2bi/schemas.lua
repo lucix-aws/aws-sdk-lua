@@ -371,7 +371,7 @@ M.Tag = schema.new({
 })
 
 M.CreateCapabilityInput = schema.new({
-    id = id.from(_N, "CreateCapabilityInput"),
+    id = id.from(_N, "CreateCapabilityRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -429,7 +429,7 @@ M.CreateCapabilityInput = schema.new({
 })
 
 M.CreateCapabilityOutput = schema.new({
-    id = id.from(_N, "CreateCapabilityOutput"),
+    id = id.from(_N, "CreateCapabilityResponse"),
     type = "structure",
     members = {
         capabilityId = schema.new({
@@ -651,7 +651,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteCapabilityInput = schema.new({
-    id = id.from(_N, "DeleteCapabilityInput"),
+    id = id.from(_N, "DeleteCapabilityRequest"),
     type = "structure",
     members = {
         capabilityId = schema.new({
@@ -668,12 +668,12 @@ M.DeleteCapabilityInput = schema.new({
 })
 
 M.DeleteCapabilityOutput = schema.new({
-    id = id.from(_N, "DeleteCapabilityOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetCapabilityInput = schema.new({
-    id = id.from(_N, "GetCapabilityInput"),
+    id = id.from(_N, "GetCapabilityRequest"),
     type = "structure",
     members = {
         capabilityId = schema.new({
@@ -690,7 +690,7 @@ M.GetCapabilityInput = schema.new({
 })
 
 M.GetCapabilityOutput = schema.new({
-    id = id.from(_N, "GetCapabilityOutput"),
+    id = id.from(_N, "GetCapabilityResponse"),
     type = "structure",
     members = {
         capabilityId = schema.new({
@@ -772,7 +772,7 @@ M.GetCapabilityOutput = schema.new({
 })
 
 M.ListCapabilitiesInput = schema.new({
-    id = id.from(_N, "ListCapabilitiesInput"),
+    id = id.from(_N, "ListCapabilitiesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -853,7 +853,7 @@ M.CapabilitySummary = schema.new({
 })
 
 M.ListCapabilitiesOutput = schema.new({
-    id = id.from(_N, "ListCapabilitiesOutput"),
+    id = id.from(_N, "ListCapabilitiesResponse"),
     type = "structure",
     members = {
         capabilities = schema.new({
@@ -876,7 +876,7 @@ M.ListCapabilitiesOutput = schema.new({
 })
 
 M.UpdateCapabilityInput = schema.new({
-    id = id.from(_N, "UpdateCapabilityInput"),
+    id = id.from(_N, "UpdateCapabilityRequest"),
     type = "structure",
     members = {
         capabilityId = schema.new({
@@ -913,7 +913,7 @@ M.UpdateCapabilityInput = schema.new({
 })
 
 M.UpdateCapabilityOutput = schema.new({
-    id = id.from(_N, "UpdateCapabilityOutput"),
+    id = id.from(_N, "UpdateCapabilityResponse"),
     type = "structure",
     members = {
         capabilityId = schema.new({
@@ -1009,7 +1009,7 @@ M.TemplateDetails = schema.new({
 })
 
 M.CreateStarterMappingTemplateInput = schema.new({
-    id = id.from(_N, "CreateStarterMappingTemplateInput"),
+    id = id.from(_N, "CreateStarterMappingTemplateRequest"),
     type = "structure",
     members = {
         outputSampleLocation = schema.new({
@@ -1042,7 +1042,7 @@ M.CreateStarterMappingTemplateInput = schema.new({
 })
 
 M.CreateStarterMappingTemplateOutput = schema.new({
-    id = id.from(_N, "CreateStarterMappingTemplateOutput"),
+    id = id.from(_N, "CreateStarterMappingTemplateResponse"),
     type = "structure",
     members = {
         mappingTemplate = schema.new({
@@ -1058,7 +1058,7 @@ M.CreateStarterMappingTemplateOutput = schema.new({
 })
 
 M.GenerateMappingInput = schema.new({
-    id = id.from(_N, "GenerateMappingInput"),
+    id = id.from(_N, "GenerateMappingRequest"),
     type = "structure",
     members = {
         inputFileContent = schema.new({
@@ -1092,7 +1092,7 @@ M.GenerateMappingInput = schema.new({
 })
 
 M.GenerateMappingOutput = schema.new({
-    id = id.from(_N, "GenerateMappingOutput"),
+    id = id.from(_N, "GenerateMappingResponse"),
     type = "structure",
     members = {
         mappingTemplate = schema.new({
@@ -1114,7 +1114,7 @@ M.GenerateMappingOutput = schema.new({
 })
 
 M.GetTransformerJobInput = schema.new({
-    id = id.from(_N, "GetTransformerJobInput"),
+    id = id.from(_N, "GetTransformerJobRequest"),
     type = "structure",
     members = {
         transformerJobId = schema.new({
@@ -1141,7 +1141,7 @@ M.GetTransformerJobInput = schema.new({
 })
 
 M.GetTransformerJobOutput = schema.new({
-    id = id.from(_N, "GetTransformerJobOutput"),
+    id = id.from(_N, "GetTransformerJobResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -1170,7 +1170,7 @@ M.GetTransformerJobOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1187,7 +1187,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1509,7 +1509,7 @@ M.CapabilityOptions = schema.new({
 })
 
 M.CreatePartnershipInput = schema.new({
-    id = id.from(_N, "CreatePartnershipInput"),
+    id = id.from(_N, "CreatePartnershipRequest"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -1582,7 +1582,7 @@ M.CreatePartnershipInput = schema.new({
 })
 
 M.CreatePartnershipOutput = schema.new({
-    id = id.from(_N, "CreatePartnershipOutput"),
+    id = id.from(_N, "CreatePartnershipResponse"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -1667,7 +1667,7 @@ M.CreatePartnershipOutput = schema.new({
 })
 
 M.DeletePartnershipInput = schema.new({
-    id = id.from(_N, "DeletePartnershipInput"),
+    id = id.from(_N, "DeletePartnershipRequest"),
     type = "structure",
     members = {
         partnershipId = schema.new({
@@ -1684,12 +1684,12 @@ M.DeletePartnershipInput = schema.new({
 })
 
 M.DeletePartnershipOutput = schema.new({
-    id = id.from(_N, "DeletePartnershipOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetPartnershipInput = schema.new({
-    id = id.from(_N, "GetPartnershipInput"),
+    id = id.from(_N, "GetPartnershipRequest"),
     type = "structure",
     members = {
         partnershipId = schema.new({
@@ -1706,7 +1706,7 @@ M.GetPartnershipInput = schema.new({
 })
 
 M.GetPartnershipOutput = schema.new({
-    id = id.from(_N, "GetPartnershipOutput"),
+    id = id.from(_N, "GetPartnershipResponse"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -1800,7 +1800,7 @@ M.GetPartnershipOutput = schema.new({
 })
 
 M.ListPartnershipsInput = schema.new({
-    id = id.from(_N, "ListPartnershipsInput"),
+    id = id.from(_N, "ListPartnershipsRequest"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -1907,7 +1907,7 @@ M.PartnershipSummary = schema.new({
 })
 
 M.ListPartnershipsOutput = schema.new({
-    id = id.from(_N, "ListPartnershipsOutput"),
+    id = id.from(_N, "ListPartnershipsResponse"),
     type = "structure",
     members = {
         partnerships = schema.new({
@@ -1930,7 +1930,7 @@ M.ListPartnershipsOutput = schema.new({
 })
 
 M.UpdatePartnershipInput = schema.new({
-    id = id.from(_N, "UpdatePartnershipInput"),
+    id = id.from(_N, "UpdatePartnershipRequest"),
     type = "structure",
     members = {
         partnershipId = schema.new({
@@ -1967,7 +1967,7 @@ M.UpdatePartnershipInput = schema.new({
 })
 
 M.UpdatePartnershipOutput = schema.new({
-    id = id.from(_N, "UpdatePartnershipOutput"),
+    id = id.from(_N, "UpdatePartnershipResponse"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -2061,7 +2061,7 @@ M.UpdatePartnershipOutput = schema.new({
 })
 
 M.CreateProfileInput = schema.new({
-    id = id.from(_N, "CreateProfileInput"),
+    id = id.from(_N, "CreateProfileRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2126,7 +2126,7 @@ M.CreateProfileInput = schema.new({
 })
 
 M.CreateProfileOutput = schema.new({
-    id = id.from(_N, "CreateProfileOutput"),
+    id = id.from(_N, "CreateProfileResponse"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -2209,7 +2209,7 @@ M.CreateProfileOutput = schema.new({
 })
 
 M.DeleteProfileInput = schema.new({
-    id = id.from(_N, "DeleteProfileInput"),
+    id = id.from(_N, "DeleteProfileRequest"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -2226,12 +2226,12 @@ M.DeleteProfileInput = schema.new({
 })
 
 M.DeleteProfileOutput = schema.new({
-    id = id.from(_N, "DeleteProfileOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetProfileInput = schema.new({
-    id = id.from(_N, "GetProfileInput"),
+    id = id.from(_N, "GetProfileRequest"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -2248,7 +2248,7 @@ M.GetProfileInput = schema.new({
 })
 
 M.GetProfileOutput = schema.new({
-    id = id.from(_N, "GetProfileOutput"),
+    id = id.from(_N, "GetProfileResponse"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -2340,7 +2340,7 @@ M.GetProfileOutput = schema.new({
 })
 
 M.ListProfilesInput = schema.new({
-    id = id.from(_N, "ListProfilesInput"),
+    id = id.from(_N, "ListProfilesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2433,7 +2433,7 @@ M.ProfileSummary = schema.new({
 })
 
 M.ListProfilesOutput = schema.new({
-    id = id.from(_N, "ListProfilesOutput"),
+    id = id.from(_N, "ListProfilesResponse"),
     type = "structure",
     members = {
         profiles = schema.new({
@@ -2456,7 +2456,7 @@ M.ListProfilesOutput = schema.new({
 })
 
 M.UpdateProfileInput = schema.new({
-    id = id.from(_N, "UpdateProfileInput"),
+    id = id.from(_N, "UpdateProfileRequest"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -2497,7 +2497,7 @@ M.UpdateProfileInput = schema.new({
 })
 
 M.UpdateProfileOutput = schema.new({
-    id = id.from(_N, "UpdateProfileOutput"),
+    id = id.from(_N, "UpdateProfileResponse"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -2589,7 +2589,7 @@ M.UpdateProfileOutput = schema.new({
 })
 
 M.StartTransformerJobInput = schema.new({
-    id = id.from(_N, "StartTransformerJobInput"),
+    id = id.from(_N, "StartTransformerJobRequest"),
     type = "structure",
     members = {
         inputFile = schema.new({
@@ -2634,7 +2634,7 @@ M.StartTransformerJobInput = schema.new({
 })
 
 M.StartTransformerJobOutput = schema.new({
-    id = id.from(_N, "StartTransformerJobOutput"),
+    id = id.from(_N, "StartTransformerJobResponse"),
     type = "structure",
     members = {
         transformerJobId = schema.new({
@@ -2650,7 +2650,7 @@ M.StartTransformerJobOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2677,7 +2677,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2786,7 +2786,7 @@ M.ConversionTarget = schema.new({
 })
 
 M.TestConversionInput = schema.new({
-    id = id.from(_N, "TestConversionInput"),
+    id = id.from(_N, "TestConversionRequest"),
     type = "structure",
     members = {
         source = schema.new({
@@ -2813,7 +2813,7 @@ M.TestConversionInput = schema.new({
 })
 
 M.TestConversionOutput = schema.new({
-    id = id.from(_N, "TestConversionOutput"),
+    id = id.from(_N, "TestConversionResponse"),
     type = "structure",
     members = {
         convertedFileContent = schema.new({
@@ -2836,7 +2836,7 @@ M.TestConversionOutput = schema.new({
 })
 
 M.TestMappingInput = schema.new({
-    id = id.from(_N, "TestMappingInput"),
+    id = id.from(_N, "TestMappingRequest"),
     type = "structure",
     members = {
         inputFileContent = schema.new({
@@ -2870,7 +2870,7 @@ M.TestMappingInput = schema.new({
 })
 
 M.TestMappingOutput = schema.new({
-    id = id.from(_N, "TestMappingOutput"),
+    id = id.from(_N, "TestMappingResponse"),
     type = "structure",
     members = {
         mappedFileContent = schema.new({
@@ -2886,7 +2886,7 @@ M.TestMappingOutput = schema.new({
 })
 
 M.TestParsingInput = schema.new({
-    id = id.from(_N, "TestParsingInput"),
+    id = id.from(_N, "TestParsingRequest"),
     type = "structure",
     members = {
         inputFile = schema.new({
@@ -2929,7 +2929,7 @@ M.TestParsingInput = schema.new({
 })
 
 M.TestParsingOutput = schema.new({
-    id = id.from(_N, "TestParsingOutput"),
+    id = id.from(_N, "TestParsingResponse"),
     type = "structure",
     members = {
         parsedFileContent = schema.new({
@@ -3100,7 +3100,7 @@ M.SampleDocuments = schema.new({
 })
 
 M.CreateTransformerInput = schema.new({
-    id = id.from(_N, "CreateTransformerInput"),
+    id = id.from(_N, "CreateTransformerRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3185,7 +3185,7 @@ M.CreateTransformerInput = schema.new({
 })
 
 M.CreateTransformerOutput = schema.new({
-    id = id.from(_N, "CreateTransformerOutput"),
+    id = id.from(_N, "CreateTransformerResponse"),
     type = "structure",
     members = {
         transformerId = schema.new({
@@ -3300,7 +3300,7 @@ M.CreateTransformerOutput = schema.new({
 })
 
 M.DeleteTransformerInput = schema.new({
-    id = id.from(_N, "DeleteTransformerInput"),
+    id = id.from(_N, "DeleteTransformerRequest"),
     type = "structure",
     members = {
         transformerId = schema.new({
@@ -3317,12 +3317,12 @@ M.DeleteTransformerInput = schema.new({
 })
 
 M.DeleteTransformerOutput = schema.new({
-    id = id.from(_N, "DeleteTransformerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetTransformerInput = schema.new({
-    id = id.from(_N, "GetTransformerInput"),
+    id = id.from(_N, "GetTransformerRequest"),
     type = "structure",
     members = {
         transformerId = schema.new({
@@ -3339,7 +3339,7 @@ M.GetTransformerInput = schema.new({
 })
 
 M.GetTransformerOutput = schema.new({
-    id = id.from(_N, "GetTransformerOutput"),
+    id = id.from(_N, "GetTransformerResponse"),
     type = "structure",
     members = {
         transformerId = schema.new({
@@ -3463,7 +3463,7 @@ M.GetTransformerOutput = schema.new({
 })
 
 M.ListTransformersInput = schema.new({
-    id = id.from(_N, "ListTransformersInput"),
+    id = id.from(_N, "ListTransformersRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3603,7 +3603,7 @@ M.TransformerSummary = schema.new({
 })
 
 M.ListTransformersOutput = schema.new({
-    id = id.from(_N, "ListTransformersOutput"),
+    id = id.from(_N, "ListTransformersResponse"),
     type = "structure",
     members = {
         transformers = schema.new({
@@ -3626,7 +3626,7 @@ M.ListTransformersOutput = schema.new({
 })
 
 M.UpdateTransformerInput = schema.new({
-    id = id.from(_N, "UpdateTransformerInput"),
+    id = id.from(_N, "UpdateTransformerRequest"),
     type = "structure",
     members = {
         transformerId = schema.new({
@@ -3708,7 +3708,7 @@ M.UpdateTransformerInput = schema.new({
 })
 
 M.UpdateTransformerOutput = schema.new({
-    id = id.from(_N, "UpdateTransformerOutput"),
+    id = id.from(_N, "UpdateTransformerResponse"),
     type = "structure",
     members = {
         transformerId = schema.new({
@@ -3836,7 +3836,7 @@ M.UpdateTransformerOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -3864,8 +3864,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

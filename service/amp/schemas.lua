@@ -64,7 +64,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateAlertManagerDefinitionInput = schema.new({
-    id = id.from(_N, "CreateAlertManagerDefinitionInput"),
+    id = id.from(_N, "CreateAlertManagerDefinitionRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -121,7 +121,7 @@ M.AlertManagerDefinitionStatus = schema.new({
 })
 
 M.CreateAlertManagerDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateAlertManagerDefinitionOutput"),
+    id = id.from(_N, "CreateAlertManagerDefinitionResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -358,7 +358,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteAlertManagerDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteAlertManagerDefinitionInput"),
+    id = id.from(_N, "DeleteAlertManagerDefinitionRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -385,12 +385,12 @@ M.DeleteAlertManagerDefinitionInput = schema.new({
 })
 
 M.DeleteAlertManagerDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteAlertManagerDefinitionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeAlertManagerDefinitionInput = schema.new({
-    id = id.from(_N, "DescribeAlertManagerDefinitionInput"),
+    id = id.from(_N, "DescribeAlertManagerDefinitionRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -451,7 +451,7 @@ M.AlertManagerDefinitionDescription = schema.new({
 })
 
 M.DescribeAlertManagerDefinitionOutput = schema.new({
-    id = id.from(_N, "DescribeAlertManagerDefinitionOutput"),
+    id = id.from(_N, "DescribeAlertManagerDefinitionResponse"),
     type = "structure",
     members = {
         alertManagerDefinition = schema.new({
@@ -468,7 +468,7 @@ M.DescribeAlertManagerDefinitionOutput = schema.new({
 })
 
 M.PutAlertManagerDefinitionInput = schema.new({
-    id = id.from(_N, "PutAlertManagerDefinitionInput"),
+    id = id.from(_N, "PutAlertManagerDefinitionRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -503,7 +503,7 @@ M.PutAlertManagerDefinitionInput = schema.new({
 })
 
 M.PutAlertManagerDefinitionOutput = schema.new({
-    id = id.from(_N, "PutAlertManagerDefinitionOutput"),
+    id = id.from(_N, "PutAlertManagerDefinitionResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -520,12 +520,12 @@ M.PutAlertManagerDefinitionOutput = schema.new({
 })
 
 M.GetDefaultScraperConfigurationInput = schema.new({
-    id = id.from(_N, "GetDefaultScraperConfigurationInput"),
+    id = id.from(_N, "GetDefaultScraperConfigurationRequest"),
     type = "structure",
 })
 
 M.GetDefaultScraperConfigurationOutput = schema.new({
-    id = id.from(_N, "GetDefaultScraperConfigurationOutput"),
+    id = id.from(_N, "GetDefaultScraperConfigurationResponse"),
     type = "structure",
     members = {
         configuration = schema.new({
@@ -541,7 +541,7 @@ M.GetDefaultScraperConfigurationOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -558,7 +558,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -716,7 +716,7 @@ M.Source = schema.new({
 })
 
 M.CreateScraperInput = schema.new({
-    id = id.from(_N, "CreateScraperInput"),
+    id = id.from(_N, "CreateScraperRequest"),
     type = "structure",
     members = {
         alias = schema.new({
@@ -799,7 +799,7 @@ M.ScraperStatus = schema.new({
 })
 
 M.CreateScraperOutput = schema.new({
-    id = id.from(_N, "CreateScraperOutput"),
+    id = id.from(_N, "CreateScraperResponse"),
     type = "structure",
     members = {
         scraperId = schema.new({
@@ -842,7 +842,7 @@ M.CreateScraperOutput = schema.new({
 })
 
 M.DeleteScraperInput = schema.new({
-    id = id.from(_N, "DeleteScraperInput"),
+    id = id.from(_N, "DeleteScraperRequest"),
     type = "structure",
     members = {
         scraperId = schema.new({
@@ -869,7 +869,7 @@ M.DeleteScraperInput = schema.new({
 })
 
 M.DeleteScraperOutput = schema.new({
-    id = id.from(_N, "DeleteScraperOutput"),
+    id = id.from(_N, "DeleteScraperResponse"),
     type = "structure",
     members = {
         scraperId = schema.new({
@@ -895,7 +895,7 @@ M.DeleteScraperOutput = schema.new({
 })
 
 M.DescribeScraperInput = schema.new({
-    id = id.from(_N, "DescribeScraperInput"),
+    id = id.from(_N, "DescribeScraperRequest"),
     type = "structure",
     members = {
         scraperId = schema.new({
@@ -1031,7 +1031,7 @@ M.ScraperDescription = schema.new({
 })
 
 M.DescribeScraperOutput = schema.new({
-    id = id.from(_N, "DescribeScraperOutput"),
+    id = id.from(_N, "DescribeScraperResponse"),
     type = "structure",
     members = {
         scraper = schema.new({
@@ -1048,7 +1048,7 @@ M.DescribeScraperOutput = schema.new({
 })
 
 M.ListScrapersInput = schema.new({
-    id = id.from(_N, "ListScrapersInput"),
+    id = id.from(_N, "ListScrapersRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -1057,7 +1057,7 @@ M.ListScrapersInput = schema.new({
             name = "filters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
             traits = {
                 [traits.HTTP_QUERY_PARAMS] = {},
             },
@@ -1193,7 +1193,7 @@ M.ScraperSummary = schema.new({
 })
 
 M.ListScrapersOutput = schema.new({
-    id = id.from(_N, "ListScrapersOutput"),
+    id = id.from(_N, "ListScrapersResponse"),
     type = "structure",
     members = {
         scrapers = schema.new({
@@ -1216,7 +1216,7 @@ M.ListScrapersOutput = schema.new({
 })
 
 M.DeleteScraperLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteScraperLoggingConfigurationInput"),
+    id = id.from(_N, "DeleteScraperLoggingConfigurationRequest"),
     type = "structure",
     members = {
         scraperId = schema.new({
@@ -1243,12 +1243,12 @@ M.DeleteScraperLoggingConfigurationInput = schema.new({
 })
 
 M.DeleteScraperLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteScraperLoggingConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeScraperLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeScraperLoggingConfigurationInput"),
+    id = id.from(_N, "DescribeScraperLoggingConfigurationRequest"),
     type = "structure",
     members = {
         scraperId = schema.new({
@@ -1355,7 +1355,7 @@ M.ScraperLoggingConfigurationStatus = schema.new({
 })
 
 M.DescribeScraperLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeScraperLoggingConfigurationOutput"),
+    id = id.from(_N, "DescribeScraperLoggingConfigurationResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -1410,7 +1410,7 @@ M.DescribeScraperLoggingConfigurationOutput = schema.new({
 })
 
 M.UpdateScraperLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateScraperLoggingConfigurationInput"),
+    id = id.from(_N, "UpdateScraperLoggingConfigurationRequest"),
     type = "structure",
     members = {
         scraperId = schema.new({
@@ -1444,7 +1444,7 @@ M.UpdateScraperLoggingConfigurationInput = schema.new({
 })
 
 M.UpdateScraperLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateScraperLoggingConfigurationOutput"),
+    id = id.from(_N, "UpdateScraperLoggingConfigurationResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -1461,7 +1461,7 @@ M.UpdateScraperLoggingConfigurationOutput = schema.new({
 })
 
 M.UpdateScraperInput = schema.new({
-    id = id.from(_N, "UpdateScraperInput"),
+    id = id.from(_N, "UpdateScraperRequest"),
     type = "structure",
     members = {
         scraperId = schema.new({
@@ -1514,7 +1514,7 @@ M.UpdateScraperInput = schema.new({
 })
 
 M.UpdateScraperOutput = schema.new({
-    id = id.from(_N, "UpdateScraperOutput"),
+    id = id.from(_N, "UpdateScraperResponse"),
     type = "structure",
     members = {
         scraperId = schema.new({
@@ -1557,7 +1557,7 @@ M.UpdateScraperOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1585,12 +1585,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1618,7 +1618,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -1723,7 +1723,7 @@ M.AnomalyDetectorMissingDataAction = schema.new({
 })
 
 M.CreateAnomalyDetectorInput = schema.new({
-    id = id.from(_N, "CreateAnomalyDetectorInput"),
+    id = id.from(_N, "CreateAnomalyDetectorRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -1822,7 +1822,7 @@ M.AnomalyDetectorStatus = schema.new({
 })
 
 M.CreateAnomalyDetectorOutput = schema.new({
-    id = id.from(_N, "CreateAnomalyDetectorOutput"),
+    id = id.from(_N, "CreateAnomalyDetectorResponse"),
     type = "structure",
     members = {
         anomalyDetectorId = schema.new({
@@ -1865,7 +1865,7 @@ M.CreateAnomalyDetectorOutput = schema.new({
 })
 
 M.DeleteAnomalyDetectorInput = schema.new({
-    id = id.from(_N, "DeleteAnomalyDetectorInput"),
+    id = id.from(_N, "DeleteAnomalyDetectorRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -1902,12 +1902,12 @@ M.DeleteAnomalyDetectorInput = schema.new({
 })
 
 M.DeleteAnomalyDetectorOutput = schema.new({
-    id = id.from(_N, "DeleteAnomalyDetectorOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeAnomalyDetectorInput = schema.new({
-    id = id.from(_N, "DescribeAnomalyDetectorInput"),
+    id = id.from(_N, "DescribeAnomalyDetectorRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2032,7 +2032,7 @@ M.AnomalyDetectorDescription = schema.new({
 })
 
 M.DescribeAnomalyDetectorOutput = schema.new({
-    id = id.from(_N, "DescribeAnomalyDetectorOutput"),
+    id = id.from(_N, "DescribeAnomalyDetectorResponse"),
     type = "structure",
     members = {
         anomalyDetector = schema.new({
@@ -2049,7 +2049,7 @@ M.DescribeAnomalyDetectorOutput = schema.new({
 })
 
 M.ListAnomalyDetectorsInput = schema.new({
-    id = id.from(_N, "ListAnomalyDetectorsInput"),
+    id = id.from(_N, "ListAnomalyDetectorsRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2163,7 +2163,7 @@ M.AnomalyDetectorSummary = schema.new({
 })
 
 M.ListAnomalyDetectorsOutput = schema.new({
-    id = id.from(_N, "ListAnomalyDetectorsOutput"),
+    id = id.from(_N, "ListAnomalyDetectorsResponse"),
     type = "structure",
     members = {
         anomalyDetectors = schema.new({
@@ -2186,7 +2186,7 @@ M.ListAnomalyDetectorsOutput = schema.new({
 })
 
 M.PutAnomalyDetectorInput = schema.new({
-    id = id.from(_N, "PutAnomalyDetectorInput"),
+    id = id.from(_N, "PutAnomalyDetectorRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2256,7 +2256,7 @@ M.PutAnomalyDetectorInput = schema.new({
 })
 
 M.PutAnomalyDetectorOutput = schema.new({
-    id = id.from(_N, "PutAnomalyDetectorOutput"),
+    id = id.from(_N, "PutAnomalyDetectorResponse"),
     type = "structure",
     members = {
         anomalyDetectorId = schema.new({
@@ -2299,7 +2299,7 @@ M.PutAnomalyDetectorOutput = schema.new({
 })
 
 M.CreateWorkspaceInput = schema.new({
-    id = id.from(_N, "CreateWorkspaceInput"),
+    id = id.from(_N, "CreateWorkspaceRequest"),
     type = "structure",
     members = {
         alias = schema.new({
@@ -2351,7 +2351,7 @@ M.WorkspaceStatus = schema.new({
 })
 
 M.CreateWorkspaceOutput = schema.new({
-    id = id.from(_N, "CreateWorkspaceOutput"),
+    id = id.from(_N, "CreateWorkspaceResponse"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2400,7 +2400,7 @@ M.CreateWorkspaceOutput = schema.new({
 })
 
 M.DeleteWorkspaceInput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceInput"),
+    id = id.from(_N, "DeleteWorkspaceRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2427,12 +2427,12 @@ M.DeleteWorkspaceInput = schema.new({
 })
 
 M.DeleteWorkspaceOutput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeWorkspaceInput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceInput"),
+    id = id.from(_N, "DescribeWorkspaceRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2519,7 +2519,7 @@ M.WorkspaceDescription = schema.new({
 })
 
 M.DescribeWorkspaceOutput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceOutput"),
+    id = id.from(_N, "DescribeWorkspaceResponse"),
     type = "structure",
     members = {
         workspace = schema.new({
@@ -2536,7 +2536,7 @@ M.DescribeWorkspaceOutput = schema.new({
 })
 
 M.ListWorkspacesInput = schema.new({
-    id = id.from(_N, "ListWorkspacesInput"),
+    id = id.from(_N, "ListWorkspacesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2634,7 +2634,7 @@ M.WorkspaceSummary = schema.new({
 })
 
 M.ListWorkspacesOutput = schema.new({
-    id = id.from(_N, "ListWorkspacesOutput"),
+    id = id.from(_N, "ListWorkspacesResponse"),
     type = "structure",
     members = {
         workspaces = schema.new({
@@ -2657,7 +2657,7 @@ M.ListWorkspacesOutput = schema.new({
 })
 
 M.CreateLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "CreateLoggingConfigurationInput"),
+    id = id.from(_N, "CreateLoggingConfigurationRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2714,7 +2714,7 @@ M.LoggingConfigurationStatus = schema.new({
 })
 
 M.CreateLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateLoggingConfigurationOutput"),
+    id = id.from(_N, "CreateLoggingConfigurationResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -2731,7 +2731,7 @@ M.CreateLoggingConfigurationOutput = schema.new({
 })
 
 M.DeleteLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteLoggingConfigurationInput"),
+    id = id.from(_N, "DeleteLoggingConfigurationRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2758,12 +2758,12 @@ M.DeleteLoggingConfigurationInput = schema.new({
 })
 
 M.DeleteLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteLoggingConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeLoggingConfigurationInput"),
+    id = id.from(_N, "DescribeLoggingConfigurationRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2833,7 +2833,7 @@ M.LoggingConfigurationMetadata = schema.new({
 })
 
 M.DescribeLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeLoggingConfigurationOutput"),
+    id = id.from(_N, "DescribeLoggingConfigurationResponse"),
     type = "structure",
     members = {
         loggingConfiguration = schema.new({
@@ -2850,7 +2850,7 @@ M.DescribeLoggingConfigurationOutput = schema.new({
 })
 
 M.UpdateLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateLoggingConfigurationInput"),
+    id = id.from(_N, "UpdateLoggingConfigurationRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2885,7 +2885,7 @@ M.UpdateLoggingConfigurationInput = schema.new({
 })
 
 M.UpdateLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateLoggingConfigurationOutput"),
+    id = id.from(_N, "UpdateLoggingConfigurationResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -2945,7 +2945,7 @@ M.LoggingDestination = schema.new({
 })
 
 M.CreateQueryLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "CreateQueryLoggingConfigurationInput"),
+    id = id.from(_N, "CreateQueryLoggingConfigurationRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3003,7 +3003,7 @@ M.QueryLoggingConfigurationStatus = schema.new({
 })
 
 M.CreateQueryLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateQueryLoggingConfigurationOutput"),
+    id = id.from(_N, "CreateQueryLoggingConfigurationResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -3020,7 +3020,7 @@ M.CreateQueryLoggingConfigurationOutput = schema.new({
 })
 
 M.DeleteQueryLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteQueryLoggingConfigurationInput"),
+    id = id.from(_N, "DeleteQueryLoggingConfigurationRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3047,12 +3047,12 @@ M.DeleteQueryLoggingConfigurationInput = schema.new({
 })
 
 M.DeleteQueryLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteQueryLoggingConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeQueryLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeQueryLoggingConfigurationInput"),
+    id = id.from(_N, "DescribeQueryLoggingConfigurationRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3123,7 +3123,7 @@ M.QueryLoggingConfigurationMetadata = schema.new({
 })
 
 M.DescribeQueryLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeQueryLoggingConfigurationOutput"),
+    id = id.from(_N, "DescribeQueryLoggingConfigurationResponse"),
     type = "structure",
     members = {
         queryLoggingConfiguration = schema.new({
@@ -3140,7 +3140,7 @@ M.DescribeQueryLoggingConfigurationOutput = schema.new({
 })
 
 M.UpdateQueryLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateQueryLoggingConfigurationInput"),
+    id = id.from(_N, "UpdateQueryLoggingConfigurationRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3176,7 +3176,7 @@ M.UpdateQueryLoggingConfigurationInput = schema.new({
 })
 
 M.UpdateQueryLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateQueryLoggingConfigurationOutput"),
+    id = id.from(_N, "UpdateQueryLoggingConfigurationResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -3193,7 +3193,7 @@ M.UpdateQueryLoggingConfigurationOutput = schema.new({
 })
 
 M.CreateRuleGroupsNamespaceInput = schema.new({
-    id = id.from(_N, "CreateRuleGroupsNamespaceInput"),
+    id = id.from(_N, "CreateRuleGroupsNamespaceRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3267,7 +3267,7 @@ M.RuleGroupsNamespaceStatus = schema.new({
 })
 
 M.CreateRuleGroupsNamespaceOutput = schema.new({
-    id = id.from(_N, "CreateRuleGroupsNamespaceOutput"),
+    id = id.from(_N, "CreateRuleGroupsNamespaceResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3310,7 +3310,7 @@ M.CreateRuleGroupsNamespaceOutput = schema.new({
 })
 
 M.DeleteRuleGroupsNamespaceInput = schema.new({
-    id = id.from(_N, "DeleteRuleGroupsNamespaceInput"),
+    id = id.from(_N, "DeleteRuleGroupsNamespaceRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3347,12 +3347,12 @@ M.DeleteRuleGroupsNamespaceInput = schema.new({
 })
 
 M.DeleteRuleGroupsNamespaceOutput = schema.new({
-    id = id.from(_N, "DeleteRuleGroupsNamespaceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeRuleGroupsNamespaceInput = schema.new({
-    id = id.from(_N, "DescribeRuleGroupsNamespaceInput"),
+    id = id.from(_N, "DescribeRuleGroupsNamespaceRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3449,7 +3449,7 @@ M.RuleGroupsNamespaceDescription = schema.new({
 })
 
 M.DescribeRuleGroupsNamespaceOutput = schema.new({
-    id = id.from(_N, "DescribeRuleGroupsNamespaceOutput"),
+    id = id.from(_N, "DescribeRuleGroupsNamespaceResponse"),
     type = "structure",
     members = {
         ruleGroupsNamespace = schema.new({
@@ -3466,7 +3466,7 @@ M.DescribeRuleGroupsNamespaceOutput = schema.new({
 })
 
 M.ListRuleGroupsNamespacesInput = schema.new({
-    id = id.from(_N, "ListRuleGroupsNamespacesInput"),
+    id = id.from(_N, "ListRuleGroupsNamespacesRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3571,7 +3571,7 @@ M.RuleGroupsNamespaceSummary = schema.new({
 })
 
 M.ListRuleGroupsNamespacesOutput = schema.new({
-    id = id.from(_N, "ListRuleGroupsNamespacesOutput"),
+    id = id.from(_N, "ListRuleGroupsNamespacesResponse"),
     type = "structure",
     members = {
         ruleGroupsNamespaces = schema.new({
@@ -3594,7 +3594,7 @@ M.ListRuleGroupsNamespacesOutput = schema.new({
 })
 
 M.PutRuleGroupsNamespaceInput = schema.new({
-    id = id.from(_N, "PutRuleGroupsNamespaceInput"),
+    id = id.from(_N, "PutRuleGroupsNamespaceRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3639,7 +3639,7 @@ M.PutRuleGroupsNamespaceInput = schema.new({
 })
 
 M.PutRuleGroupsNamespaceOutput = schema.new({
-    id = id.from(_N, "PutRuleGroupsNamespaceOutput"),
+    id = id.from(_N, "PutRuleGroupsNamespaceResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3682,7 +3682,7 @@ M.PutRuleGroupsNamespaceOutput = schema.new({
 })
 
 M.UpdateWorkspaceAliasInput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceAliasInput"),
+    id = id.from(_N, "UpdateWorkspaceAliasRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3714,12 +3714,12 @@ M.UpdateWorkspaceAliasInput = schema.new({
 })
 
 M.UpdateWorkspaceAliasOutput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceAliasOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeWorkspaceConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceConfigurationInput"),
+    id = id.from(_N, "DescribeWorkspaceConfigurationRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3829,7 +3829,7 @@ M.WorkspaceConfigurationDescription = schema.new({
 })
 
 M.DescribeWorkspaceConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeWorkspaceConfigurationOutput"),
+    id = id.from(_N, "DescribeWorkspaceConfigurationResponse"),
     type = "structure",
     members = {
         workspaceConfiguration = schema.new({
@@ -3846,7 +3846,7 @@ M.DescribeWorkspaceConfigurationOutput = schema.new({
 })
 
 M.UpdateWorkspaceConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceConfigurationInput"),
+    id = id.from(_N, "UpdateWorkspaceConfigurationRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3885,7 +3885,7 @@ M.UpdateWorkspaceConfigurationInput = schema.new({
 })
 
 M.UpdateWorkspaceConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceConfigurationOutput"),
+    id = id.from(_N, "UpdateWorkspaceConfigurationResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -3902,7 +3902,7 @@ M.UpdateWorkspaceConfigurationOutput = schema.new({
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3938,12 +3938,12 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeResourcePolicyInput = schema.new({
-    id = id.from(_N, "DescribeResourcePolicyInput"),
+    id = id.from(_N, "DescribeResourcePolicyRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3960,7 +3960,7 @@ M.DescribeResourcePolicyInput = schema.new({
 })
 
 M.DescribeResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DescribeResourcePolicyOutput"),
+    id = id.from(_N, "DescribeResourcePolicyResponse"),
     type = "structure",
     members = {
         policyDocument = schema.new({
@@ -3994,7 +3994,7 @@ M.DescribeResourcePolicyOutput = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -4035,7 +4035,7 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResponse"),
     type = "structure",
     members = {
         policyStatus = schema.new({
@@ -4058,5 +4058,19 @@ M.PutResourcePolicyOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

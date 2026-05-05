@@ -123,7 +123,7 @@ M.BatchCreateUserRequestItem = schema.new({
 })
 
 M.BatchCreateUserInput = schema.new({
-    id = id.from(_N, "BatchCreateUserInput"),
+    id = id.from(_N, "BatchCreateUserRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -310,7 +310,7 @@ M.User = schema.new({
 })
 
 M.BatchCreateUserOutput = schema.new({
-    id = id.from(_N, "BatchCreateUserOutput"),
+    id = id.from(_N, "BatchCreateUserResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -465,7 +465,7 @@ M.ValidationError = schema.new({
 })
 
 M.BatchDeleteUserInput = schema.new({
-    id = id.from(_N, "BatchDeleteUserInput"),
+    id = id.from(_N, "BatchDeleteUserRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -518,7 +518,7 @@ M.BatchUserSuccessResponseItem = schema.new({
 })
 
 M.BatchDeleteUserOutput = schema.new({
-    id = id.from(_N, "BatchDeleteUserOutput"),
+    id = id.from(_N, "BatchDeleteUserResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -589,7 +589,7 @@ M.BatchDeviceSuccessResponseItem = schema.new({
 })
 
 M.BatchLookupUserUnameInput = schema.new({
-    id = id.from(_N, "BatchLookupUserUnameInput"),
+    id = id.from(_N, "BatchLookupUserUnameRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -679,7 +679,7 @@ M.BatchUnameSuccessResponseItem = schema.new({
 })
 
 M.BatchLookupUserUnameOutput = schema.new({
-    id = id.from(_N, "BatchLookupUserUnameOutput"),
+    id = id.from(_N, "BatchLookupUserUnameResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -706,7 +706,7 @@ M.BatchLookupUserUnameOutput = schema.new({
 })
 
 M.BatchReinviteUserInput = schema.new({
-    id = id.from(_N, "BatchReinviteUserInput"),
+    id = id.from(_N, "BatchReinviteUserRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -743,7 +743,7 @@ M.BatchReinviteUserInput = schema.new({
 })
 
 M.BatchReinviteUserOutput = schema.new({
-    id = id.from(_N, "BatchReinviteUserOutput"),
+    id = id.from(_N, "BatchReinviteUserResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -770,7 +770,7 @@ M.BatchReinviteUserOutput = schema.new({
 })
 
 M.BatchResetDevicesForUserInput = schema.new({
-    id = id.from(_N, "BatchResetDevicesForUserInput"),
+    id = id.from(_N, "BatchResetDevicesForUserRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -817,7 +817,7 @@ M.BatchResetDevicesForUserInput = schema.new({
 })
 
 M.BatchResetDevicesForUserOutput = schema.new({
-    id = id.from(_N, "BatchResetDevicesForUserOutput"),
+    id = id.from(_N, "BatchResetDevicesForUserResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -844,7 +844,7 @@ M.BatchResetDevicesForUserOutput = schema.new({
 })
 
 M.BatchToggleUserSuspendStatusInput = schema.new({
-    id = id.from(_N, "BatchToggleUserSuspendStatusInput"),
+    id = id.from(_N, "BatchToggleUserSuspendStatusRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -891,7 +891,7 @@ M.BatchToggleUserSuspendStatusInput = schema.new({
 })
 
 M.BatchToggleUserSuspendStatusOutput = schema.new({
-    id = id.from(_N, "BatchToggleUserSuspendStatusOutput"),
+    id = id.from(_N, "BatchToggleUserSuspendStatusResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -1053,7 +1053,7 @@ M.CallingSettings = schema.new({
 })
 
 M.CreateBotInput = schema.new({
-    id = id.from(_N, "CreateBotInput"),
+    id = id.from(_N, "CreateBotRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -1103,7 +1103,7 @@ M.CreateBotInput = schema.new({
 })
 
 M.CreateBotOutput = schema.new({
-    id = id.from(_N, "CreateBotOutput"),
+    id = id.from(_N, "CreateBotResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -1149,7 +1149,7 @@ M.CreateBotOutput = schema.new({
 })
 
 M.CreateDataRetentionBotInput = schema.new({
-    id = id.from(_N, "CreateDataRetentionBotInput"),
+    id = id.from(_N, "CreateDataRetentionBotRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -1166,7 +1166,7 @@ M.CreateDataRetentionBotInput = schema.new({
 })
 
 M.CreateDataRetentionBotOutput = schema.new({
-    id = id.from(_N, "CreateDataRetentionBotOutput"),
+    id = id.from(_N, "CreateDataRetentionBotResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -1179,7 +1179,7 @@ M.CreateDataRetentionBotOutput = schema.new({
 })
 
 M.CreateDataRetentionBotChallengeInput = schema.new({
-    id = id.from(_N, "CreateDataRetentionBotChallengeInput"),
+    id = id.from(_N, "CreateDataRetentionBotChallengeRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -1196,7 +1196,7 @@ M.CreateDataRetentionBotChallengeInput = schema.new({
 })
 
 M.CreateDataRetentionBotChallengeOutput = schema.new({
-    id = id.from(_N, "CreateDataRetentionBotChallengeOutput"),
+    id = id.from(_N, "CreateDataRetentionBotChallengeResponse"),
     type = "structure",
     members = {
         challenge = schema.new({
@@ -1212,7 +1212,7 @@ M.CreateDataRetentionBotChallengeOutput = schema.new({
 })
 
 M.CreateNetworkInput = schema.new({
-    id = id.from(_N, "CreateNetworkInput"),
+    id = id.from(_N, "CreateNetworkRequest"),
     type = "structure",
     members = {
         networkName = schema.new({
@@ -1249,7 +1249,7 @@ M.CreateNetworkInput = schema.new({
 })
 
 M.CreateNetworkOutput = schema.new({
-    id = id.from(_N, "CreateNetworkOutput"),
+    id = id.from(_N, "CreateNetworkResponse"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -1382,7 +1382,7 @@ M.SecurityGroupSettingsRequest = schema.new({
 })
 
 M.CreateSecurityGroupInput = schema.new({
-    id = id.from(_N, "CreateSecurityGroupInput"),
+    id = id.from(_N, "CreateSecurityGroupRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -1786,7 +1786,7 @@ M.SecurityGroup = schema.new({
 })
 
 M.CreateSecurityGroupOutput = schema.new({
-    id = id.from(_N, "CreateSecurityGroupOutput"),
+    id = id.from(_N, "CreateSecurityGroupResponse"),
     type = "structure",
     members = {
         securityGroup = schema.new({
@@ -1803,7 +1803,7 @@ M.CreateSecurityGroupOutput = schema.new({
 })
 
 M.DeleteBotInput = schema.new({
-    id = id.from(_N, "DeleteBotInput"),
+    id = id.from(_N, "DeleteBotRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -1830,7 +1830,7 @@ M.DeleteBotInput = schema.new({
 })
 
 M.DeleteBotOutput = schema.new({
-    id = id.from(_N, "DeleteBotOutput"),
+    id = id.from(_N, "DeleteBotResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -1843,7 +1843,7 @@ M.DeleteBotOutput = schema.new({
 })
 
 M.DeleteDataRetentionBotInput = schema.new({
-    id = id.from(_N, "DeleteDataRetentionBotInput"),
+    id = id.from(_N, "DeleteDataRetentionBotRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -1860,7 +1860,7 @@ M.DeleteDataRetentionBotInput = schema.new({
 })
 
 M.DeleteDataRetentionBotOutput = schema.new({
-    id = id.from(_N, "DeleteDataRetentionBotOutput"),
+    id = id.from(_N, "DeleteDataRetentionBotResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -1873,7 +1873,7 @@ M.DeleteDataRetentionBotOutput = schema.new({
 })
 
 M.DeleteNetworkInput = schema.new({
-    id = id.from(_N, "DeleteNetworkInput"),
+    id = id.from(_N, "DeleteNetworkRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -1900,7 +1900,7 @@ M.DeleteNetworkInput = schema.new({
 })
 
 M.DeleteNetworkOutput = schema.new({
-    id = id.from(_N, "DeleteNetworkOutput"),
+    id = id.from(_N, "DeleteNetworkResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -1913,7 +1913,7 @@ M.DeleteNetworkOutput = schema.new({
 })
 
 M.DeleteSecurityGroupInput = schema.new({
-    id = id.from(_N, "DeleteSecurityGroupInput"),
+    id = id.from(_N, "DeleteSecurityGroupRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -1940,7 +1940,7 @@ M.DeleteSecurityGroupInput = schema.new({
 })
 
 M.DeleteSecurityGroupOutput = schema.new({
-    id = id.from(_N, "DeleteSecurityGroupOutput"),
+    id = id.from(_N, "DeleteSecurityGroupResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -1965,7 +1965,7 @@ M.DeleteSecurityGroupOutput = schema.new({
 })
 
 M.GetBotInput = schema.new({
-    id = id.from(_N, "GetBotInput"),
+    id = id.from(_N, "GetBotRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -1992,7 +1992,7 @@ M.GetBotInput = schema.new({
 })
 
 M.GetBotOutput = schema.new({
-    id = id.from(_N, "GetBotOutput"),
+    id = id.from(_N, "GetBotResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -2059,7 +2059,7 @@ M.GetBotOutput = schema.new({
 })
 
 M.GetBotsCountInput = schema.new({
-    id = id.from(_N, "GetBotsCountInput"),
+    id = id.from(_N, "GetBotsCountRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -2076,7 +2076,7 @@ M.GetBotsCountInput = schema.new({
 })
 
 M.GetBotsCountOutput = schema.new({
-    id = id.from(_N, "GetBotsCountOutput"),
+    id = id.from(_N, "GetBotsCountResponse"),
     type = "structure",
     members = {
         pending = schema.new({
@@ -2110,7 +2110,7 @@ M.GetBotsCountOutput = schema.new({
 })
 
 M.GetDataRetentionBotInput = schema.new({
-    id = id.from(_N, "GetDataRetentionBotInput"),
+    id = id.from(_N, "GetDataRetentionBotRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -2127,7 +2127,7 @@ M.GetDataRetentionBotInput = schema.new({
 })
 
 M.GetDataRetentionBotOutput = schema.new({
-    id = id.from(_N, "GetDataRetentionBotOutput"),
+    id = id.from(_N, "GetDataRetentionBotResponse"),
     type = "structure",
     members = {
         botName = schema.new({
@@ -2170,7 +2170,7 @@ M.GetDataRetentionBotOutput = schema.new({
 })
 
 M.GetGuestUserHistoryCountInput = schema.new({
-    id = id.from(_N, "GetGuestUserHistoryCountInput"),
+    id = id.from(_N, "GetGuestUserHistoryCountRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -2212,7 +2212,7 @@ M.GuestUserHistoryCount = schema.new({
 })
 
 M.GetGuestUserHistoryCountOutput = schema.new({
-    id = id.from(_N, "GetGuestUserHistoryCountOutput"),
+    id = id.from(_N, "GetGuestUserHistoryCountResponse"),
     type = "structure",
     members = {
         history = schema.new({
@@ -2229,7 +2229,7 @@ M.GetGuestUserHistoryCountOutput = schema.new({
 })
 
 M.GetNetworkInput = schema.new({
-    id = id.from(_N, "GetNetworkInput"),
+    id = id.from(_N, "GetNetworkRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -2246,7 +2246,7 @@ M.GetNetworkInput = schema.new({
 })
 
 M.GetNetworkOutput = schema.new({
-    id = id.from(_N, "GetNetworkOutput"),
+    id = id.from(_N, "GetNetworkResponse"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -2322,7 +2322,7 @@ M.GetNetworkOutput = schema.new({
 })
 
 M.GetNetworkSettingsInput = schema.new({
-    id = id.from(_N, "GetNetworkSettingsInput"),
+    id = id.from(_N, "GetNetworkSettingsRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -2373,7 +2373,7 @@ M.Setting = schema.new({
 })
 
 M.GetNetworkSettingsOutput = schema.new({
-    id = id.from(_N, "GetNetworkSettingsOutput"),
+    id = id.from(_N, "GetNetworkSettingsResponse"),
     type = "structure",
     members = {
         settings = schema.new({
@@ -2390,7 +2390,7 @@ M.GetNetworkSettingsOutput = schema.new({
 })
 
 M.GetOidcInfoInput = schema.new({
-    id = id.from(_N, "GetOidcInfoInput"),
+    id = id.from(_N, "GetOidcInfoRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -2628,7 +2628,7 @@ M.OidcTokenInfo = schema.new({
 })
 
 M.GetOidcInfoOutput = schema.new({
-    id = id.from(_N, "GetOidcInfoOutput"),
+    id = id.from(_N, "GetOidcInfoResponse"),
     type = "structure",
     members = {
         openidConnectInfo = schema.new({
@@ -2649,7 +2649,7 @@ M.GetOidcInfoOutput = schema.new({
 })
 
 M.GetOpentdfConfigInput = schema.new({
-    id = id.from(_N, "GetOpentdfConfigInput"),
+    id = id.from(_N, "GetOpentdfConfigRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -2666,7 +2666,7 @@ M.GetOpentdfConfigInput = schema.new({
 })
 
 M.GetOpentdfConfigOutput = schema.new({
-    id = id.from(_N, "GetOpentdfConfigOutput"),
+    id = id.from(_N, "GetOpentdfConfigResponse"),
     type = "structure",
     members = {
         clientId = schema.new({
@@ -2709,7 +2709,7 @@ M.GetOpentdfConfigOutput = schema.new({
 })
 
 M.GetSecurityGroupInput = schema.new({
-    id = id.from(_N, "GetSecurityGroupInput"),
+    id = id.from(_N, "GetSecurityGroupRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -2736,7 +2736,7 @@ M.GetSecurityGroupInput = schema.new({
 })
 
 M.GetSecurityGroupOutput = schema.new({
-    id = id.from(_N, "GetSecurityGroupOutput"),
+    id = id.from(_N, "GetSecurityGroupResponse"),
     type = "structure",
     members = {
         securityGroup = schema.new({
@@ -2753,7 +2753,7 @@ M.GetSecurityGroupOutput = schema.new({
 })
 
 M.GetUserInput = schema.new({
-    id = id.from(_N, "GetUserInput"),
+    id = id.from(_N, "GetUserRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -2800,7 +2800,7 @@ M.GetUserInput = schema.new({
 })
 
 M.GetUserOutput = schema.new({
-    id = id.from(_N, "GetUserOutput"),
+    id = id.from(_N, "GetUserResponse"),
     type = "structure",
     members = {
         userId = schema.new({
@@ -2871,7 +2871,7 @@ M.GetUserOutput = schema.new({
 })
 
 M.GetUsersCountInput = schema.new({
-    id = id.from(_N, "GetUsersCountInput"),
+    id = id.from(_N, "GetUsersCountRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -2888,7 +2888,7 @@ M.GetUsersCountInput = schema.new({
 })
 
 M.GetUsersCountOutput = schema.new({
-    id = id.from(_N, "GetUsersCountOutput"),
+    id = id.from(_N, "GetUsersCountResponse"),
     type = "structure",
     members = {
         pending = schema.new({
@@ -2974,7 +2974,7 @@ M.GuestUser = schema.new({
 })
 
 M.ListBlockedGuestUsersInput = schema.new({
-    id = id.from(_N, "ListBlockedGuestUsersInput"),
+    id = id.from(_N, "ListBlockedGuestUsersRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -3045,7 +3045,7 @@ M.ListBlockedGuestUsersInput = schema.new({
 })
 
 M.ListBlockedGuestUsersOutput = schema.new({
-    id = id.from(_N, "ListBlockedGuestUsersOutput"),
+    id = id.from(_N, "ListBlockedGuestUsersResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3068,7 +3068,7 @@ M.ListBlockedGuestUsersOutput = schema.new({
 })
 
 M.ListBotsInput = schema.new({
-    id = id.from(_N, "ListBotsInput"),
+    id = id.from(_N, "ListBotsRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -3157,7 +3157,7 @@ M.ListBotsInput = schema.new({
 })
 
 M.ListBotsOutput = schema.new({
-    id = id.from(_N, "ListBotsOutput"),
+    id = id.from(_N, "ListBotsResponse"),
     type = "structure",
     members = {
         bots = schema.new({
@@ -3180,7 +3180,7 @@ M.ListBotsOutput = schema.new({
 })
 
 M.ListDevicesForUserInput = schema.new({
-    id = id.from(_N, "ListDevicesForUserInput"),
+    id = id.from(_N, "ListDevicesForUserRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -3243,7 +3243,7 @@ M.ListDevicesForUserInput = schema.new({
 })
 
 M.ListDevicesForUserOutput = schema.new({
-    id = id.from(_N, "ListDevicesForUserOutput"),
+    id = id.from(_N, "ListDevicesForUserResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3266,7 +3266,7 @@ M.ListDevicesForUserOutput = schema.new({
 })
 
 M.ListGuestUsersInput = schema.new({
-    id = id.from(_N, "ListGuestUsersInput"),
+    id = id.from(_N, "ListGuestUsersRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -3337,7 +3337,7 @@ M.ListGuestUsersInput = schema.new({
 })
 
 M.ListGuestUsersOutput = schema.new({
-    id = id.from(_N, "ListGuestUsersOutput"),
+    id = id.from(_N, "ListGuestUsersResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3360,7 +3360,7 @@ M.ListGuestUsersOutput = schema.new({
 })
 
 M.ListNetworksInput = schema.new({
-    id = id.from(_N, "ListNetworksInput"),
+    id = id.from(_N, "ListNetworksRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -3479,7 +3479,7 @@ M.Network = schema.new({
 })
 
 M.ListNetworksOutput = schema.new({
-    id = id.from(_N, "ListNetworksOutput"),
+    id = id.from(_N, "ListNetworksResponse"),
     type = "structure",
     members = {
         networks = schema.new({
@@ -3502,7 +3502,7 @@ M.ListNetworksOutput = schema.new({
 })
 
 M.ListSecurityGroupsInput = schema.new({
-    id = id.from(_N, "ListSecurityGroupsInput"),
+    id = id.from(_N, "ListSecurityGroupsRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -3555,7 +3555,7 @@ M.ListSecurityGroupsInput = schema.new({
 })
 
 M.ListSecurityGroupsOutput = schema.new({
-    id = id.from(_N, "ListSecurityGroupsOutput"),
+    id = id.from(_N, "ListSecurityGroupsResponse"),
     type = "structure",
     members = {
         securityGroups = schema.new({
@@ -3575,7 +3575,7 @@ M.ListSecurityGroupsOutput = schema.new({
 })
 
 M.ListSecurityGroupUsersInput = schema.new({
-    id = id.from(_N, "ListSecurityGroupUsersInput"),
+    id = id.from(_N, "ListSecurityGroupUsersRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -3638,7 +3638,7 @@ M.ListSecurityGroupUsersInput = schema.new({
 })
 
 M.ListSecurityGroupUsersOutput = schema.new({
-    id = id.from(_N, "ListSecurityGroupUsersOutput"),
+    id = id.from(_N, "ListSecurityGroupUsersResponse"),
     type = "structure",
     members = {
         users = schema.new({
@@ -3661,7 +3661,7 @@ M.ListSecurityGroupUsersOutput = schema.new({
 })
 
 M.ListUsersInput = schema.new({
-    id = id.from(_N, "ListUsersInput"),
+    id = id.from(_N, "ListUsersRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -3759,7 +3759,7 @@ M.ListUsersInput = schema.new({
 })
 
 M.ListUsersOutput = schema.new({
-    id = id.from(_N, "ListUsersOutput"),
+    id = id.from(_N, "ListUsersResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3824,7 +3824,7 @@ M.NetworkSettings = schema.new({
 })
 
 M.RegisterOidcConfigInput = schema.new({
-    id = id.from(_N, "RegisterOidcConfigInput"),
+    id = id.from(_N, "RegisterOidcConfigRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -3898,7 +3898,7 @@ M.RegisterOidcConfigInput = schema.new({
 })
 
 M.RegisterOidcConfigOutput = schema.new({
-    id = id.from(_N, "RegisterOidcConfigOutput"),
+    id = id.from(_N, "RegisterOidcConfigResponse"),
     type = "structure",
     members = {
         applicationName = schema.new({
@@ -3998,7 +3998,7 @@ M.RegisterOidcConfigOutput = schema.new({
 })
 
 M.RegisterOidcConfigTestInput = schema.new({
-    id = id.from(_N, "RegisterOidcConfigTestInput"),
+    id = id.from(_N, "RegisterOidcConfigTestRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -4045,7 +4045,7 @@ M.RegisterOidcConfigTestInput = schema.new({
 })
 
 M.RegisterOidcConfigTestOutput = schema.new({
-    id = id.from(_N, "RegisterOidcConfigTestOutput"),
+    id = id.from(_N, "RegisterOidcConfigTestResponse"),
     type = "structure",
     members = {
         tokenEndpoint = schema.new({
@@ -4128,7 +4128,7 @@ M.RegisterOidcConfigTestOutput = schema.new({
 })
 
 M.RegisterOpentdfConfigInput = schema.new({
-    id = id.from(_N, "RegisterOpentdfConfigInput"),
+    id = id.from(_N, "RegisterOpentdfConfigRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -4190,7 +4190,7 @@ M.RegisterOpentdfConfigInput = schema.new({
 })
 
 M.RegisterOpentdfConfigOutput = schema.new({
-    id = id.from(_N, "RegisterOpentdfConfigOutput"),
+    id = id.from(_N, "RegisterOpentdfConfigResponse"),
     type = "structure",
     members = {
         clientId = schema.new({
@@ -4233,7 +4233,7 @@ M.RegisterOpentdfConfigOutput = schema.new({
 })
 
 M.UpdateBotInput = schema.new({
-    id = id.from(_N, "UpdateBotInput"),
+    id = id.from(_N, "UpdateBotRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -4284,7 +4284,7 @@ M.UpdateBotInput = schema.new({
 })
 
 M.UpdateBotOutput = schema.new({
-    id = id.from(_N, "UpdateBotOutput"),
+    id = id.from(_N, "UpdateBotResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -4297,7 +4297,7 @@ M.UpdateBotOutput = schema.new({
 })
 
 M.UpdateDataRetentionInput = schema.new({
-    id = id.from(_N, "UpdateDataRetentionInput"),
+    id = id.from(_N, "UpdateDataRetentionRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -4323,7 +4323,7 @@ M.UpdateDataRetentionInput = schema.new({
 })
 
 M.UpdateDataRetentionOutput = schema.new({
-    id = id.from(_N, "UpdateDataRetentionOutput"),
+    id = id.from(_N, "UpdateDataRetentionResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -4336,7 +4336,7 @@ M.UpdateDataRetentionOutput = schema.new({
 })
 
 M.UpdateGuestUserInput = schema.new({
-    id = id.from(_N, "UpdateGuestUserInput"),
+    id = id.from(_N, "UpdateGuestUserRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -4372,7 +4372,7 @@ M.UpdateGuestUserInput = schema.new({
 })
 
 M.UpdateGuestUserOutput = schema.new({
-    id = id.from(_N, "UpdateGuestUserOutput"),
+    id = id.from(_N, "UpdateGuestUserResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -4385,7 +4385,7 @@ M.UpdateGuestUserOutput = schema.new({
 })
 
 M.UpdateNetworkInput = schema.new({
-    id = id.from(_N, "UpdateNetworkInput"),
+    id = id.from(_N, "UpdateNetworkRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -4427,7 +4427,7 @@ M.UpdateNetworkInput = schema.new({
 })
 
 M.UpdateNetworkOutput = schema.new({
-    id = id.from(_N, "UpdateNetworkOutput"),
+    id = id.from(_N, "UpdateNetworkResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -4440,7 +4440,7 @@ M.UpdateNetworkOutput = schema.new({
 })
 
 M.UpdateNetworkSettingsInput = schema.new({
-    id = id.from(_N, "UpdateNetworkSettingsInput"),
+    id = id.from(_N, "UpdateNetworkSettingsRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -4467,7 +4467,7 @@ M.UpdateNetworkSettingsInput = schema.new({
 })
 
 M.UpdateNetworkSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateNetworkSettingsOutput"),
+    id = id.from(_N, "UpdateNetworkSettingsResponse"),
     type = "structure",
     members = {
         settings = schema.new({
@@ -4484,7 +4484,7 @@ M.UpdateNetworkSettingsOutput = schema.new({
 })
 
 M.UpdateSecurityGroupInput = schema.new({
-    id = id.from(_N, "UpdateSecurityGroupInput"),
+    id = id.from(_N, "UpdateSecurityGroupRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -4524,7 +4524,7 @@ M.UpdateSecurityGroupInput = schema.new({
 })
 
 M.UpdateSecurityGroupOutput = schema.new({
-    id = id.from(_N, "UpdateSecurityGroupOutput"),
+    id = id.from(_N, "UpdateSecurityGroupResponse"),
     type = "structure",
     members = {
         securityGroup = schema.new({
@@ -4591,7 +4591,7 @@ M.UpdateUserDetails = schema.new({
 })
 
 M.UpdateUserInput = schema.new({
-    id = id.from(_N, "UpdateUserInput"),
+    id = id.from(_N, "UpdateUserRequest"),
     type = "structure",
     members = {
         networkId = schema.new({
@@ -4624,7 +4624,7 @@ M.UpdateUserInput = schema.new({
 })
 
 M.UpdateUserOutput = schema.new({
-    id = id.from(_N, "UpdateUserOutput"),
+    id = id.from(_N, "UpdateUserResponse"),
     type = "structure",
     members = {
         userId = schema.new({
@@ -4711,5 +4711,19 @@ M.UpdateUserOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

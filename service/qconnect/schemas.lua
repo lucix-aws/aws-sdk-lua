@@ -24,7 +24,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.ActivateMessageTemplateInput = schema.new({
-    id = id.from(_N, "ActivateMessageTemplateInput"),
+    id = id.from(_N, "ActivateMessageTemplateRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -60,7 +60,7 @@ M.ActivateMessageTemplateInput = schema.new({
 })
 
 M.ActivateMessageTemplateOutput = schema.new({
-    id = id.from(_N, "ActivateMessageTemplateOutput"),
+    id = id.from(_N, "ActivateMessageTemplateResponse"),
     type = "structure",
     members = {
         messageTemplateArn = schema.new({
@@ -928,7 +928,7 @@ M.AIAgentConfiguration = schema.new({
 })
 
 M.CreateAIAgentInput = schema.new({
-    id = id.from(_N, "CreateAIAgentInput"),
+    id = id.from(_N, "CreateAIAgentRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1117,7 +1117,7 @@ M.AIAgentData = schema.new({
 })
 
 M.CreateAIAgentOutput = schema.new({
-    id = id.from(_N, "CreateAIAgentOutput"),
+    id = id.from(_N, "CreateAIAgentResponse"),
     type = "structure",
     members = {
         aiAgent = schema.new({
@@ -1163,7 +1163,7 @@ M.UnauthorizedException = schema.new({
 })
 
 M.CreateAIAgentVersionInput = schema.new({
-    id = id.from(_N, "CreateAIAgentVersionInput"),
+    id = id.from(_N, "CreateAIAgentVersionRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -1205,7 +1205,7 @@ M.CreateAIAgentVersionInput = schema.new({
 })
 
 M.CreateAIAgentVersionOutput = schema.new({
-    id = id.from(_N, "CreateAIAgentVersionOutput"),
+    id = id.from(_N, "CreateAIAgentVersionResponse"),
     type = "structure",
     members = {
         aiAgent = schema.new({
@@ -1225,7 +1225,7 @@ M.CreateAIAgentVersionOutput = schema.new({
 })
 
 M.DeleteAIAgentInput = schema.new({
-    id = id.from(_N, "DeleteAIAgentInput"),
+    id = id.from(_N, "DeleteAIAgentRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -1252,12 +1252,12 @@ M.DeleteAIAgentInput = schema.new({
 })
 
 M.DeleteAIAgentOutput = schema.new({
-    id = id.from(_N, "DeleteAIAgentOutput"),
+    id = id.from(_N, "DeleteAIAgentResponse"),
     type = "structure",
 })
 
 M.DeleteAIAgentVersionInput = schema.new({
-    id = id.from(_N, "DeleteAIAgentVersionInput"),
+    id = id.from(_N, "DeleteAIAgentVersionRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -1294,12 +1294,12 @@ M.DeleteAIAgentVersionInput = schema.new({
 })
 
 M.DeleteAIAgentVersionOutput = schema.new({
-    id = id.from(_N, "DeleteAIAgentVersionOutput"),
+    id = id.from(_N, "DeleteAIAgentVersionResponse"),
     type = "structure",
 })
 
 M.GetAIAgentInput = schema.new({
-    id = id.from(_N, "GetAIAgentInput"),
+    id = id.from(_N, "GetAIAgentRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -1326,7 +1326,7 @@ M.GetAIAgentInput = schema.new({
 })
 
 M.GetAIAgentOutput = schema.new({
-    id = id.from(_N, "GetAIAgentOutput"),
+    id = id.from(_N, "GetAIAgentResponse"),
     type = "structure",
     members = {
         aiAgent = schema.new({
@@ -1346,7 +1346,7 @@ M.GetAIAgentOutput = schema.new({
 })
 
 M.ListAIAgentsInput = schema.new({
-    id = id.from(_N, "ListAIAgentsInput"),
+    id = id.from(_N, "ListAIAgentsRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -1499,7 +1499,7 @@ M.AIAgentSummary = schema.new({
 })
 
 M.ListAIAgentsOutput = schema.new({
-    id = id.from(_N, "ListAIAgentsOutput"),
+    id = id.from(_N, "ListAIAgentsResponse"),
     type = "structure",
     members = {
         aiAgentSummaries = schema.new({
@@ -1522,7 +1522,7 @@ M.ListAIAgentsOutput = schema.new({
 })
 
 M.ListAIAgentVersionsInput = schema.new({
-    id = id.from(_N, "ListAIAgentVersionsInput"),
+    id = id.from(_N, "ListAIAgentVersionsRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -1596,7 +1596,7 @@ M.AIAgentVersionSummary = schema.new({
 })
 
 M.ListAIAgentVersionsOutput = schema.new({
-    id = id.from(_N, "ListAIAgentVersionsOutput"),
+    id = id.from(_N, "ListAIAgentVersionsResponse"),
     type = "structure",
     members = {
         aiAgentVersionSummaries = schema.new({
@@ -1619,7 +1619,7 @@ M.ListAIAgentVersionsOutput = schema.new({
 })
 
 M.UpdateAIAgentInput = schema.new({
-    id = id.from(_N, "UpdateAIAgentInput"),
+    id = id.from(_N, "UpdateAIAgentRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1677,7 +1677,7 @@ M.UpdateAIAgentInput = schema.new({
 })
 
 M.UpdateAIAgentOutput = schema.new({
-    id = id.from(_N, "UpdateAIAgentOutput"),
+    id = id.from(_N, "UpdateAIAgentResponse"),
     type = "structure",
     members = {
         aiAgent = schema.new({
@@ -1998,7 +1998,7 @@ M.AIGuardrailWordPolicyConfig = schema.new({
 })
 
 M.CreateAIGuardrailInput = schema.new({
-    id = id.from(_N, "CreateAIGuardrailInput"),
+    id = id.from(_N, "CreateAIGuardrailRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -2249,7 +2249,7 @@ M.AIGuardrailData = schema.new({
 })
 
 M.CreateAIGuardrailOutput = schema.new({
-    id = id.from(_N, "CreateAIGuardrailOutput"),
+    id = id.from(_N, "CreateAIGuardrailResponse"),
     type = "structure",
     members = {
         aiGuardrail = schema.new({
@@ -2263,7 +2263,7 @@ M.CreateAIGuardrailOutput = schema.new({
 })
 
 M.CreateAIGuardrailVersionInput = schema.new({
-    id = id.from(_N, "CreateAIGuardrailVersionInput"),
+    id = id.from(_N, "CreateAIGuardrailVersionRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -2305,7 +2305,7 @@ M.CreateAIGuardrailVersionInput = schema.new({
 })
 
 M.CreateAIGuardrailVersionOutput = schema.new({
-    id = id.from(_N, "CreateAIGuardrailVersionOutput"),
+    id = id.from(_N, "CreateAIGuardrailVersionResponse"),
     type = "structure",
     members = {
         aiGuardrail = schema.new({
@@ -2325,7 +2325,7 @@ M.CreateAIGuardrailVersionOutput = schema.new({
 })
 
 M.DeleteAIGuardrailInput = schema.new({
-    id = id.from(_N, "DeleteAIGuardrailInput"),
+    id = id.from(_N, "DeleteAIGuardrailRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -2352,12 +2352,12 @@ M.DeleteAIGuardrailInput = schema.new({
 })
 
 M.DeleteAIGuardrailOutput = schema.new({
-    id = id.from(_N, "DeleteAIGuardrailOutput"),
+    id = id.from(_N, "DeleteAIGuardrailResponse"),
     type = "structure",
 })
 
 M.DeleteAIGuardrailVersionInput = schema.new({
-    id = id.from(_N, "DeleteAIGuardrailVersionInput"),
+    id = id.from(_N, "DeleteAIGuardrailVersionRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -2394,12 +2394,12 @@ M.DeleteAIGuardrailVersionInput = schema.new({
 })
 
 M.DeleteAIGuardrailVersionOutput = schema.new({
-    id = id.from(_N, "DeleteAIGuardrailVersionOutput"),
+    id = id.from(_N, "DeleteAIGuardrailVersionResponse"),
     type = "structure",
 })
 
 M.GetAIGuardrailInput = schema.new({
-    id = id.from(_N, "GetAIGuardrailInput"),
+    id = id.from(_N, "GetAIGuardrailRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -2426,7 +2426,7 @@ M.GetAIGuardrailInput = schema.new({
 })
 
 M.GetAIGuardrailOutput = schema.new({
-    id = id.from(_N, "GetAIGuardrailOutput"),
+    id = id.from(_N, "GetAIGuardrailResponse"),
     type = "structure",
     members = {
         aiGuardrail = schema.new({
@@ -2446,7 +2446,7 @@ M.GetAIGuardrailOutput = schema.new({
 })
 
 M.ListAIGuardrailsInput = schema.new({
-    id = id.from(_N, "ListAIGuardrailsInput"),
+    id = id.from(_N, "ListAIGuardrailsRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -2568,7 +2568,7 @@ M.AIGuardrailSummary = schema.new({
 })
 
 M.ListAIGuardrailsOutput = schema.new({
-    id = id.from(_N, "ListAIGuardrailsOutput"),
+    id = id.from(_N, "ListAIGuardrailsResponse"),
     type = "structure",
     members = {
         aiGuardrailSummaries = schema.new({
@@ -2591,7 +2591,7 @@ M.ListAIGuardrailsOutput = schema.new({
 })
 
 M.ListAIGuardrailVersionsInput = schema.new({
-    id = id.from(_N, "ListAIGuardrailVersionsInput"),
+    id = id.from(_N, "ListAIGuardrailVersionsRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -2656,7 +2656,7 @@ M.AIGuardrailVersionSummary = schema.new({
 })
 
 M.ListAIGuardrailVersionsOutput = schema.new({
-    id = id.from(_N, "ListAIGuardrailVersionsOutput"),
+    id = id.from(_N, "ListAIGuardrailVersionsResponse"),
     type = "structure",
     members = {
         aiGuardrailVersionSummaries = schema.new({
@@ -2679,7 +2679,7 @@ M.ListAIGuardrailVersionsOutput = schema.new({
 })
 
 M.UpdateAIGuardrailInput = schema.new({
-    id = id.from(_N, "UpdateAIGuardrailInput"),
+    id = id.from(_N, "UpdateAIGuardrailRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -2783,7 +2783,7 @@ M.UpdateAIGuardrailInput = schema.new({
 })
 
 M.UpdateAIGuardrailOutput = schema.new({
-    id = id.from(_N, "UpdateAIGuardrailOutput"),
+    id = id.from(_N, "UpdateAIGuardrailResponse"),
     type = "structure",
     members = {
         aiGuardrail = schema.new({
@@ -2874,7 +2874,7 @@ M.AIPromptTemplateConfiguration = schema.new({
 })
 
 M.CreateAIPromptInput = schema.new({
-    id = id.from(_N, "CreateAIPromptInput"),
+    id = id.from(_N, "CreateAIPromptRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -3131,7 +3131,7 @@ M.AIPromptData = schema.new({
 })
 
 M.CreateAIPromptOutput = schema.new({
-    id = id.from(_N, "CreateAIPromptOutput"),
+    id = id.from(_N, "CreateAIPromptResponse"),
     type = "structure",
     members = {
         aiPrompt = schema.new({
@@ -3145,7 +3145,7 @@ M.CreateAIPromptOutput = schema.new({
 })
 
 M.CreateAIPromptVersionInput = schema.new({
-    id = id.from(_N, "CreateAIPromptVersionInput"),
+    id = id.from(_N, "CreateAIPromptVersionRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -3187,7 +3187,7 @@ M.CreateAIPromptVersionInput = schema.new({
 })
 
 M.CreateAIPromptVersionOutput = schema.new({
-    id = id.from(_N, "CreateAIPromptVersionOutput"),
+    id = id.from(_N, "CreateAIPromptVersionResponse"),
     type = "structure",
     members = {
         aiPrompt = schema.new({
@@ -3207,7 +3207,7 @@ M.CreateAIPromptVersionOutput = schema.new({
 })
 
 M.DeleteAIPromptInput = schema.new({
-    id = id.from(_N, "DeleteAIPromptInput"),
+    id = id.from(_N, "DeleteAIPromptRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -3234,12 +3234,12 @@ M.DeleteAIPromptInput = schema.new({
 })
 
 M.DeleteAIPromptOutput = schema.new({
-    id = id.from(_N, "DeleteAIPromptOutput"),
+    id = id.from(_N, "DeleteAIPromptResponse"),
     type = "structure",
 })
 
 M.DeleteAIPromptVersionInput = schema.new({
-    id = id.from(_N, "DeleteAIPromptVersionInput"),
+    id = id.from(_N, "DeleteAIPromptVersionRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -3276,12 +3276,12 @@ M.DeleteAIPromptVersionInput = schema.new({
 })
 
 M.DeleteAIPromptVersionOutput = schema.new({
-    id = id.from(_N, "DeleteAIPromptVersionOutput"),
+    id = id.from(_N, "DeleteAIPromptVersionResponse"),
     type = "structure",
 })
 
 M.GetAIPromptInput = schema.new({
-    id = id.from(_N, "GetAIPromptInput"),
+    id = id.from(_N, "GetAIPromptRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -3308,7 +3308,7 @@ M.GetAIPromptInput = schema.new({
 })
 
 M.GetAIPromptOutput = schema.new({
-    id = id.from(_N, "GetAIPromptOutput"),
+    id = id.from(_N, "GetAIPromptResponse"),
     type = "structure",
     members = {
         aiPrompt = schema.new({
@@ -3328,7 +3328,7 @@ M.GetAIPromptOutput = schema.new({
 })
 
 M.ListAIPromptsInput = schema.new({
-    id = id.from(_N, "ListAIPromptsInput"),
+    id = id.from(_N, "ListAIPromptsRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -3501,7 +3501,7 @@ M.AIPromptSummary = schema.new({
 })
 
 M.ListAIPromptsOutput = schema.new({
-    id = id.from(_N, "ListAIPromptsOutput"),
+    id = id.from(_N, "ListAIPromptsResponse"),
     type = "structure",
     members = {
         aiPromptSummaries = schema.new({
@@ -3524,7 +3524,7 @@ M.ListAIPromptsOutput = schema.new({
 })
 
 M.ListAIPromptVersionsInput = schema.new({
-    id = id.from(_N, "ListAIPromptVersionsInput"),
+    id = id.from(_N, "ListAIPromptVersionsRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -3598,7 +3598,7 @@ M.AIPromptVersionSummary = schema.new({
 })
 
 M.ListAIPromptVersionsOutput = schema.new({
-    id = id.from(_N, "ListAIPromptVersionsOutput"),
+    id = id.from(_N, "ListAIPromptVersionsResponse"),
     type = "structure",
     members = {
         aiPromptVersionSummaries = schema.new({
@@ -3621,7 +3621,7 @@ M.ListAIPromptVersionsOutput = schema.new({
 })
 
 M.UpdateAIPromptInput = schema.new({
-    id = id.from(_N, "UpdateAIPromptInput"),
+    id = id.from(_N, "UpdateAIPromptRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -3692,7 +3692,7 @@ M.UpdateAIPromptInput = schema.new({
 })
 
 M.UpdateAIPromptOutput = schema.new({
-    id = id.from(_N, "UpdateAIPromptOutput"),
+    id = id.from(_N, "UpdateAIPromptResponse"),
     type = "structure",
     members = {
         aiPrompt = schema.new({
@@ -3787,7 +3787,7 @@ M.AssistantAssociationInputData = schema.new({
 })
 
 M.CreateAssistantAssociationInput = schema.new({
-    id = id.from(_N, "CreateAssistantAssociationInput"),
+    id = id.from(_N, "CreateAssistantAssociationRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -3950,7 +3950,7 @@ M.AssistantAssociationData = schema.new({
 })
 
 M.CreateAssistantAssociationOutput = schema.new({
-    id = id.from(_N, "CreateAssistantAssociationOutput"),
+    id = id.from(_N, "CreateAssistantAssociationResponse"),
     type = "structure",
     members = {
         assistantAssociation = schema.new({
@@ -3964,7 +3964,7 @@ M.CreateAssistantAssociationOutput = schema.new({
 })
 
 M.DeleteAssistantAssociationInput = schema.new({
-    id = id.from(_N, "DeleteAssistantAssociationInput"),
+    id = id.from(_N, "DeleteAssistantAssociationRequest"),
     type = "structure",
     members = {
         assistantAssociationId = schema.new({
@@ -3991,12 +3991,12 @@ M.DeleteAssistantAssociationInput = schema.new({
 })
 
 M.DeleteAssistantAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteAssistantAssociationOutput"),
+    id = id.from(_N, "DeleteAssistantAssociationResponse"),
     type = "structure",
 })
 
 M.GetAssistantAssociationInput = schema.new({
-    id = id.from(_N, "GetAssistantAssociationInput"),
+    id = id.from(_N, "GetAssistantAssociationRequest"),
     type = "structure",
     members = {
         assistantAssociationId = schema.new({
@@ -4023,7 +4023,7 @@ M.GetAssistantAssociationInput = schema.new({
 })
 
 M.GetAssistantAssociationOutput = schema.new({
-    id = id.from(_N, "GetAssistantAssociationOutput"),
+    id = id.from(_N, "GetAssistantAssociationResponse"),
     type = "structure",
     members = {
         assistantAssociation = schema.new({
@@ -4037,7 +4037,7 @@ M.GetAssistantAssociationOutput = schema.new({
 })
 
 M.ListAssistantAssociationsInput = schema.new({
-    id = id.from(_N, "ListAssistantAssociationsInput"),
+    id = id.from(_N, "ListAssistantAssociationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4142,7 +4142,7 @@ M.AssistantAssociationSummary = schema.new({
 })
 
 M.ListAssistantAssociationsOutput = schema.new({
-    id = id.from(_N, "ListAssistantAssociationsOutput"),
+    id = id.from(_N, "ListAssistantAssociationsResponse"),
     type = "structure",
     members = {
         assistantAssociationSummaries = schema.new({
@@ -4178,7 +4178,7 @@ M.ServerSideEncryptionConfiguration = schema.new({
 })
 
 M.CreateAssistantInput = schema.new({
-    id = id.from(_N, "CreateAssistantInput"),
+    id = id.from(_N, "CreateAssistantRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -4383,7 +4383,7 @@ M.AssistantData = schema.new({
 })
 
 M.CreateAssistantOutput = schema.new({
-    id = id.from(_N, "CreateAssistantOutput"),
+    id = id.from(_N, "CreateAssistantResponse"),
     type = "structure",
     members = {
         assistant = schema.new({
@@ -4397,7 +4397,7 @@ M.CreateAssistantOutput = schema.new({
 })
 
 M.DeleteAssistantInput = schema.new({
-    id = id.from(_N, "DeleteAssistantInput"),
+    id = id.from(_N, "DeleteAssistantRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -4414,12 +4414,12 @@ M.DeleteAssistantInput = schema.new({
 })
 
 M.DeleteAssistantOutput = schema.new({
-    id = id.from(_N, "DeleteAssistantOutput"),
+    id = id.from(_N, "DeleteAssistantResponse"),
     type = "structure",
 })
 
 M.GetAssistantInput = schema.new({
-    id = id.from(_N, "GetAssistantInput"),
+    id = id.from(_N, "GetAssistantRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -4436,7 +4436,7 @@ M.GetAssistantInput = schema.new({
 })
 
 M.GetAssistantOutput = schema.new({
-    id = id.from(_N, "GetAssistantOutput"),
+    id = id.from(_N, "GetAssistantResponse"),
     type = "structure",
     members = {
         assistant = schema.new({
@@ -4450,7 +4450,7 @@ M.GetAssistantOutput = schema.new({
 })
 
 M.GetRecommendationsInput = schema.new({
-    id = id.from(_N, "GetRecommendationsInput"),
+    id = id.from(_N, "GetRecommendationsRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -5069,7 +5069,7 @@ M.RecommendationTrigger = schema.new({
 })
 
 M.ListAssistantsInput = schema.new({
-    id = id.from(_N, "ListAssistantsInput"),
+    id = id.from(_N, "ListAssistantsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5196,7 +5196,7 @@ M.AssistantSummary = schema.new({
 })
 
 M.ListAssistantsOutput = schema.new({
-    id = id.from(_N, "ListAssistantsOutput"),
+    id = id.from(_N, "ListAssistantsResponse"),
     type = "structure",
     members = {
         assistantSummaries = schema.new({
@@ -5219,7 +5219,7 @@ M.ListAssistantsOutput = schema.new({
 })
 
 M.NotifyRecommendationsReceivedInput = schema.new({
-    id = id.from(_N, "NotifyRecommendationsReceivedInput"),
+    id = id.from(_N, "NotifyRecommendationsReceivedRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -5275,7 +5275,7 @@ M.NotifyRecommendationsReceivedError = schema.new({
 })
 
 M.NotifyRecommendationsReceivedOutput = schema.new({
-    id = id.from(_N, "NotifyRecommendationsReceivedOutput"),
+    id = id.from(_N, "NotifyRecommendationsReceivedResponse"),
     type = "structure",
     members = {
         recommendationIds = schema.new({
@@ -5326,7 +5326,7 @@ M.ContentFeedbackData = schema.new({
 })
 
 M.PutFeedbackInput = schema.new({
-    id = id.from(_N, "PutFeedbackInput"),
+    id = id.from(_N, "PutFeedbackRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -5371,7 +5371,7 @@ M.PutFeedbackInput = schema.new({
 })
 
 M.PutFeedbackOutput = schema.new({
-    id = id.from(_N, "PutFeedbackOutput"),
+    id = id.from(_N, "PutFeedbackResponse"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -5548,7 +5548,7 @@ M.QueryInputData = schema.new({
 })
 
 M.QueryAssistantInput = schema.new({
-    id = id.from(_N, "QueryAssistantInput"),
+    id = id.from(_N, "QueryAssistantRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -5625,7 +5625,7 @@ M.RequestTimeoutException = schema.new({
 })
 
 M.RemoveAssistantAIAgentInput = schema.new({
-    id = id.from(_N, "RemoveAssistantAIAgentInput"),
+    id = id.from(_N, "RemoveAssistantAIAgentRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -5661,7 +5661,7 @@ M.RemoveAssistantAIAgentInput = schema.new({
 })
 
 M.RemoveAssistantAIAgentOutput = schema.new({
-    id = id.from(_N, "RemoveAssistantAIAgentOutput"),
+    id = id.from(_N, "RemoveAssistantAIAgentResponse"),
     type = "structure",
 })
 
@@ -5764,7 +5764,7 @@ M.RetrieveResult = schema.new({
 })
 
 M.RetrieveOutput = schema.new({
-    id = id.from(_N, "RetrieveOutput"),
+    id = id.from(_N, "RetrieveResponse"),
     type = "structure",
     members = {
         results = schema.new({
@@ -5832,7 +5832,7 @@ M.SearchExpression = schema.new({
 })
 
 M.SearchSessionsInput = schema.new({
-    id = id.from(_N, "SearchSessionsInput"),
+    id = id.from(_N, "SearchSessionsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5920,7 +5920,7 @@ M.SessionSummary = schema.new({
 })
 
 M.SearchSessionsOutput = schema.new({
-    id = id.from(_N, "SearchSessionsOutput"),
+    id = id.from(_N, "SearchSessionsResponse"),
     type = "structure",
     members = {
         sessionSummaries = schema.new({
@@ -5943,7 +5943,7 @@ M.SearchSessionsOutput = schema.new({
 })
 
 M.CreateSessionInput = schema.new({
-    id = id.from(_N, "CreateSessionInput"),
+    id = id.from(_N, "CreateSessionRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -6125,7 +6125,7 @@ M.SessionData = schema.new({
 })
 
 M.CreateSessionOutput = schema.new({
-    id = id.from(_N, "CreateSessionOutput"),
+    id = id.from(_N, "CreateSessionResponse"),
     type = "structure",
     members = {
         session = schema.new({
@@ -6139,7 +6139,7 @@ M.CreateSessionOutput = schema.new({
 })
 
 M.GetNextMessageInput = schema.new({
-    id = id.from(_N, "GetNextMessageInput"),
+    id = id.from(_N, "GetNextMessageRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -6419,7 +6419,7 @@ M.MessageOutput = schema.new({
 })
 
 M.GetNextMessageOutput = schema.new({
-    id = id.from(_N, "GetNextMessageOutput"),
+    id = id.from(_N, "GetNextMessageResponse"),
     type = "structure",
     members = {
         type = schema.new({
@@ -6499,7 +6499,7 @@ M.UnprocessableContentException = schema.new({
 })
 
 M.GetSessionInput = schema.new({
-    id = id.from(_N, "GetSessionInput"),
+    id = id.from(_N, "GetSessionRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -6526,7 +6526,7 @@ M.GetSessionInput = schema.new({
 })
 
 M.GetSessionOutput = schema.new({
-    id = id.from(_N, "GetSessionOutput"),
+    id = id.from(_N, "GetSessionResponse"),
     type = "structure",
     members = {
         session = schema.new({
@@ -6540,7 +6540,7 @@ M.GetSessionOutput = schema.new({
 })
 
 M.ListMessagesInput = schema.new({
-    id = id.from(_N, "ListMessagesInput"),
+    id = id.from(_N, "ListMessagesRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -6594,7 +6594,7 @@ M.ListMessagesInput = schema.new({
 })
 
 M.ListMessagesOutput = schema.new({
-    id = id.from(_N, "ListMessagesOutput"),
+    id = id.from(_N, "ListMessagesResponse"),
     type = "structure",
     members = {
         messages = schema.new({
@@ -6617,7 +6617,7 @@ M.ListMessagesOutput = schema.new({
 })
 
 M.ListSpansInput = schema.new({
-    id = id.from(_N, "ListSpansInput"),
+    id = id.from(_N, "ListSpansRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -6860,7 +6860,7 @@ M.MessageInput = schema.new({
 })
 
 M.SendMessageInput = schema.new({
-    id = id.from(_N, "SendMessageInput"),
+    id = id.from(_N, "SendMessageRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -6955,7 +6955,7 @@ M.SendMessageInput = schema.new({
 })
 
 M.SendMessageOutput = schema.new({
-    id = id.from(_N, "SendMessageOutput"),
+    id = id.from(_N, "SendMessageResponse"),
     type = "structure",
     members = {
         requestMessageId = schema.new({
@@ -6987,7 +6987,7 @@ M.SendMessageOutput = schema.new({
 })
 
 M.UpdateSessionInput = schema.new({
-    id = id.from(_N, "UpdateSessionInput"),
+    id = id.from(_N, "UpdateSessionRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -7051,7 +7051,7 @@ M.UpdateSessionInput = schema.new({
 })
 
 M.UpdateSessionOutput = schema.new({
-    id = id.from(_N, "UpdateSessionOutput"),
+    id = id.from(_N, "UpdateSessionResponse"),
     type = "structure",
     members = {
         session = schema.new({
@@ -7065,7 +7065,7 @@ M.UpdateSessionOutput = schema.new({
 })
 
 M.UpdateSessionDataInput = schema.new({
-    id = id.from(_N, "UpdateSessionDataInput"),
+    id = id.from(_N, "UpdateSessionDataRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -7108,7 +7108,7 @@ M.UpdateSessionDataInput = schema.new({
 })
 
 M.UpdateSessionDataOutput = schema.new({
-    id = id.from(_N, "UpdateSessionDataOutput"),
+    id = id.from(_N, "UpdateSessionDataResponse"),
     type = "structure",
     members = {
         sessionArn = schema.new({
@@ -7152,7 +7152,7 @@ M.UpdateSessionDataOutput = schema.new({
 })
 
 M.UpdateAssistantAIAgentInput = schema.new({
-    id = id.from(_N, "UpdateAssistantAIAgentInput"),
+    id = id.from(_N, "UpdateAssistantAIAgentRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -7194,7 +7194,7 @@ M.UpdateAssistantAIAgentInput = schema.new({
 })
 
 M.UpdateAssistantAIAgentOutput = schema.new({
-    id = id.from(_N, "UpdateAssistantAIAgentOutput"),
+    id = id.from(_N, "UpdateAssistantAIAgentResponse"),
     type = "structure",
     members = {
         assistant = schema.new({
@@ -7426,7 +7426,7 @@ M.ContentAssociationContents = schema.new({
 })
 
 M.CreateContentAssociationInput = schema.new({
-    id = id.from(_N, "CreateContentAssociationInput"),
+    id = id.from(_N, "CreateContentAssociationRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -7577,7 +7577,7 @@ M.ContentAssociationData = schema.new({
 })
 
 M.CreateContentAssociationOutput = schema.new({
-    id = id.from(_N, "CreateContentAssociationOutput"),
+    id = id.from(_N, "CreateContentAssociationResponse"),
     type = "structure",
     members = {
         contentAssociation = schema.new({
@@ -7591,7 +7591,7 @@ M.CreateContentAssociationOutput = schema.new({
 })
 
 M.DeleteContentAssociationInput = schema.new({
-    id = id.from(_N, "DeleteContentAssociationInput"),
+    id = id.from(_N, "DeleteContentAssociationRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -7628,12 +7628,12 @@ M.DeleteContentAssociationInput = schema.new({
 })
 
 M.DeleteContentAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteContentAssociationOutput"),
+    id = id.from(_N, "DeleteContentAssociationResponse"),
     type = "structure",
 })
 
 M.GetContentAssociationInput = schema.new({
-    id = id.from(_N, "GetContentAssociationInput"),
+    id = id.from(_N, "GetContentAssociationRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -7670,7 +7670,7 @@ M.GetContentAssociationInput = schema.new({
 })
 
 M.GetContentAssociationOutput = schema.new({
-    id = id.from(_N, "GetContentAssociationOutput"),
+    id = id.from(_N, "GetContentAssociationResponse"),
     type = "structure",
     members = {
         contentAssociation = schema.new({
@@ -7684,7 +7684,7 @@ M.GetContentAssociationOutput = schema.new({
 })
 
 M.ListContentAssociationsInput = schema.new({
-    id = id.from(_N, "ListContentAssociationsInput"),
+    id = id.from(_N, "ListContentAssociationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -7817,7 +7817,7 @@ M.ContentAssociationSummary = schema.new({
 })
 
 M.ListContentAssociationsOutput = schema.new({
-    id = id.from(_N, "ListContentAssociationsOutput"),
+    id = id.from(_N, "ListContentAssociationsResponse"),
     type = "structure",
     members = {
         contentAssociationSummaries = schema.new({
@@ -7840,7 +7840,7 @@ M.ListContentAssociationsOutput = schema.new({
 })
 
 M.CreateContentInput = schema.new({
-    id = id.from(_N, "CreateContentInput"),
+    id = id.from(_N, "CreateContentRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -8044,7 +8044,7 @@ M.ContentData = schema.new({
 })
 
 M.CreateContentOutput = schema.new({
-    id = id.from(_N, "CreateContentOutput"),
+    id = id.from(_N, "CreateContentResponse"),
     type = "structure",
     members = {
         content = schema.new({
@@ -8058,7 +8058,7 @@ M.CreateContentOutput = schema.new({
 })
 
 M.DeleteContentInput = schema.new({
-    id = id.from(_N, "DeleteContentInput"),
+    id = id.from(_N, "DeleteContentRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -8085,12 +8085,12 @@ M.DeleteContentInput = schema.new({
 })
 
 M.DeleteContentOutput = schema.new({
-    id = id.from(_N, "DeleteContentOutput"),
+    id = id.from(_N, "DeleteContentResponse"),
     type = "structure",
 })
 
 M.GetContentInput = schema.new({
-    id = id.from(_N, "GetContentInput"),
+    id = id.from(_N, "GetContentRequest"),
     type = "structure",
     members = {
         contentId = schema.new({
@@ -8117,7 +8117,7 @@ M.GetContentInput = schema.new({
 })
 
 M.GetContentOutput = schema.new({
-    id = id.from(_N, "GetContentOutput"),
+    id = id.from(_N, "GetContentResponse"),
     type = "structure",
     members = {
         content = schema.new({
@@ -8131,7 +8131,7 @@ M.GetContentOutput = schema.new({
 })
 
 M.GetContentSummaryInput = schema.new({
-    id = id.from(_N, "GetContentSummaryInput"),
+    id = id.from(_N, "GetContentSummaryRequest"),
     type = "structure",
     members = {
         contentId = schema.new({
@@ -8265,7 +8265,7 @@ M.ContentSummary = schema.new({
 })
 
 M.GetContentSummaryOutput = schema.new({
-    id = id.from(_N, "GetContentSummaryOutput"),
+    id = id.from(_N, "GetContentSummaryResponse"),
     type = "structure",
     members = {
         contentSummary = schema.new({
@@ -8279,7 +8279,7 @@ M.GetContentSummaryOutput = schema.new({
 })
 
 M.ListContentsInput = schema.new({
-    id = id.from(_N, "ListContentsInput"),
+    id = id.from(_N, "ListContentsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -8314,7 +8314,7 @@ M.ListContentsInput = schema.new({
 })
 
 M.ListContentsOutput = schema.new({
-    id = id.from(_N, "ListContentsOutput"),
+    id = id.from(_N, "ListContentsResponse"),
     type = "structure",
     members = {
         contentSummaries = schema.new({
@@ -8353,7 +8353,7 @@ M.PreconditionFailedException = schema.new({
 })
 
 M.UpdateContentInput = schema.new({
-    id = id.from(_N, "UpdateContentInput"),
+    id = id.from(_N, "UpdateContentRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -8418,7 +8418,7 @@ M.UpdateContentInput = schema.new({
 })
 
 M.UpdateContentOutput = schema.new({
-    id = id.from(_N, "UpdateContentOutput"),
+    id = id.from(_N, "UpdateContentResponse"),
     type = "structure",
     members = {
         content = schema.new({
@@ -8608,7 +8608,7 @@ M.VectorIngestionConfiguration = schema.new({
 })
 
 M.CreateKnowledgeBaseInput = schema.new({
-    id = id.from(_N, "CreateKnowledgeBaseInput"),
+    id = id.from(_N, "CreateKnowledgeBaseRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -8800,7 +8800,7 @@ M.KnowledgeBaseData = schema.new({
 })
 
 M.CreateKnowledgeBaseOutput = schema.new({
-    id = id.from(_N, "CreateKnowledgeBaseOutput"),
+    id = id.from(_N, "CreateKnowledgeBaseResponse"),
     type = "structure",
     members = {
         knowledgeBase = schema.new({
@@ -9744,7 +9744,7 @@ M.MessageTemplateSourceConfiguration = schema.new({
 })
 
 M.CreateMessageTemplateInput = schema.new({
-    id = id.from(_N, "CreateMessageTemplateInput"),
+    id = id.from(_N, "CreateMessageTemplateRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -10063,7 +10063,7 @@ M.MessageTemplateData = schema.new({
 })
 
 M.CreateMessageTemplateOutput = schema.new({
-    id = id.from(_N, "CreateMessageTemplateOutput"),
+    id = id.from(_N, "CreateMessageTemplateResponse"),
     type = "structure",
     members = {
         messageTemplate = schema.new({
@@ -10077,7 +10077,7 @@ M.CreateMessageTemplateOutput = schema.new({
 })
 
 M.CreateMessageTemplateAttachmentInput = schema.new({
-    id = id.from(_N, "CreateMessageTemplateAttachmentInput"),
+    id = id.from(_N, "CreateMessageTemplateAttachmentRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -10200,7 +10200,7 @@ M.MessageTemplateAttachment = schema.new({
 })
 
 M.CreateMessageTemplateAttachmentOutput = schema.new({
-    id = id.from(_N, "CreateMessageTemplateAttachmentOutput"),
+    id = id.from(_N, "CreateMessageTemplateAttachmentResponse"),
     type = "structure",
     members = {
         attachment = schema.new({
@@ -10214,7 +10214,7 @@ M.CreateMessageTemplateAttachmentOutput = schema.new({
 })
 
 M.CreateMessageTemplateVersionInput = schema.new({
-    id = id.from(_N, "CreateMessageTemplateVersionInput"),
+    id = id.from(_N, "CreateMessageTemplateVersionRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -10426,7 +10426,7 @@ M.ExtendedMessageTemplateData = schema.new({
 })
 
 M.CreateMessageTemplateVersionOutput = schema.new({
-    id = id.from(_N, "CreateMessageTemplateVersionOutput"),
+    id = id.from(_N, "CreateMessageTemplateVersionResponse"),
     type = "structure",
     members = {
         messageTemplate = schema.new({
@@ -10453,7 +10453,7 @@ M.QuickResponseDataProvider = schema.new({
 })
 
 M.CreateQuickResponseInput = schema.new({
-    id = id.from(_N, "CreateQuickResponseInput"),
+    id = id.from(_N, "CreateQuickResponseRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -10733,7 +10733,7 @@ M.QuickResponseData = schema.new({
 })
 
 M.CreateQuickResponseOutput = schema.new({
-    id = id.from(_N, "CreateQuickResponseOutput"),
+    id = id.from(_N, "CreateQuickResponseResponse"),
     type = "structure",
     members = {
         quickResponse = schema.new({
@@ -10747,7 +10747,7 @@ M.CreateQuickResponseOutput = schema.new({
 })
 
 M.DeactivateMessageTemplateInput = schema.new({
-    id = id.from(_N, "DeactivateMessageTemplateInput"),
+    id = id.from(_N, "DeactivateMessageTemplateRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -10783,7 +10783,7 @@ M.DeactivateMessageTemplateInput = schema.new({
 })
 
 M.DeactivateMessageTemplateOutput = schema.new({
-    id = id.from(_N, "DeactivateMessageTemplateOutput"),
+    id = id.from(_N, "DeactivateMessageTemplateResponse"),
     type = "structure",
     members = {
         messageTemplateArn = schema.new({
@@ -10817,7 +10817,7 @@ M.DeactivateMessageTemplateOutput = schema.new({
 })
 
 M.DeleteImportJobInput = schema.new({
-    id = id.from(_N, "DeleteImportJobInput"),
+    id = id.from(_N, "DeleteImportJobRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -10844,12 +10844,12 @@ M.DeleteImportJobInput = schema.new({
 })
 
 M.DeleteImportJobOutput = schema.new({
-    id = id.from(_N, "DeleteImportJobOutput"),
+    id = id.from(_N, "DeleteImportJobResponse"),
     type = "structure",
 })
 
 M.DeleteKnowledgeBaseInput = schema.new({
-    id = id.from(_N, "DeleteKnowledgeBaseInput"),
+    id = id.from(_N, "DeleteKnowledgeBaseRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -10866,12 +10866,12 @@ M.DeleteKnowledgeBaseInput = schema.new({
 })
 
 M.DeleteKnowledgeBaseOutput = schema.new({
-    id = id.from(_N, "DeleteKnowledgeBaseOutput"),
+    id = id.from(_N, "DeleteKnowledgeBaseResponse"),
     type = "structure",
 })
 
 M.DeleteMessageTemplateInput = schema.new({
-    id = id.from(_N, "DeleteMessageTemplateInput"),
+    id = id.from(_N, "DeleteMessageTemplateRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -10898,12 +10898,12 @@ M.DeleteMessageTemplateInput = schema.new({
 })
 
 M.DeleteMessageTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteMessageTemplateOutput"),
+    id = id.from(_N, "DeleteMessageTemplateResponse"),
     type = "structure",
 })
 
 M.DeleteMessageTemplateAttachmentInput = schema.new({
-    id = id.from(_N, "DeleteMessageTemplateAttachmentInput"),
+    id = id.from(_N, "DeleteMessageTemplateAttachmentRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -10940,12 +10940,12 @@ M.DeleteMessageTemplateAttachmentInput = schema.new({
 })
 
 M.DeleteMessageTemplateAttachmentOutput = schema.new({
-    id = id.from(_N, "DeleteMessageTemplateAttachmentOutput"),
+    id = id.from(_N, "DeleteMessageTemplateAttachmentResponse"),
     type = "structure",
 })
 
 M.DeleteQuickResponseInput = schema.new({
-    id = id.from(_N, "DeleteQuickResponseInput"),
+    id = id.from(_N, "DeleteQuickResponseRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -10972,7 +10972,7 @@ M.DeleteQuickResponseInput = schema.new({
 })
 
 M.DeleteQuickResponseOutput = schema.new({
-    id = id.from(_N, "DeleteQuickResponseOutput"),
+    id = id.from(_N, "DeleteQuickResponseResponse"),
     type = "structure",
 })
 
@@ -11003,7 +11003,7 @@ M.ExternalSourceConfiguration = schema.new({
 })
 
 M.GetImportJobInput = schema.new({
-    id = id.from(_N, "GetImportJobInput"),
+    id = id.from(_N, "GetImportJobRequest"),
     type = "structure",
     members = {
         importJobId = schema.new({
@@ -11151,7 +11151,7 @@ M.ImportJobData = schema.new({
 })
 
 M.GetImportJobOutput = schema.new({
-    id = id.from(_N, "GetImportJobOutput"),
+    id = id.from(_N, "GetImportJobResponse"),
     type = "structure",
     members = {
         importJob = schema.new({
@@ -11165,7 +11165,7 @@ M.GetImportJobOutput = schema.new({
 })
 
 M.GetKnowledgeBaseInput = schema.new({
-    id = id.from(_N, "GetKnowledgeBaseInput"),
+    id = id.from(_N, "GetKnowledgeBaseRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -11182,7 +11182,7 @@ M.GetKnowledgeBaseInput = schema.new({
 })
 
 M.GetKnowledgeBaseOutput = schema.new({
-    id = id.from(_N, "GetKnowledgeBaseOutput"),
+    id = id.from(_N, "GetKnowledgeBaseResponse"),
     type = "structure",
     members = {
         knowledgeBase = schema.new({
@@ -11196,7 +11196,7 @@ M.GetKnowledgeBaseOutput = schema.new({
 })
 
 M.GetMessageTemplateInput = schema.new({
-    id = id.from(_N, "GetMessageTemplateInput"),
+    id = id.from(_N, "GetMessageTemplateRequest"),
     type = "structure",
     members = {
         messageTemplateId = schema.new({
@@ -11223,7 +11223,7 @@ M.GetMessageTemplateInput = schema.new({
 })
 
 M.GetMessageTemplateOutput = schema.new({
-    id = id.from(_N, "GetMessageTemplateOutput"),
+    id = id.from(_N, "GetMessageTemplateResponse"),
     type = "structure",
     members = {
         messageTemplate = schema.new({
@@ -11237,7 +11237,7 @@ M.GetMessageTemplateOutput = schema.new({
 })
 
 M.GetQuickResponseInput = schema.new({
-    id = id.from(_N, "GetQuickResponseInput"),
+    id = id.from(_N, "GetQuickResponseRequest"),
     type = "structure",
     members = {
         quickResponseId = schema.new({
@@ -11264,7 +11264,7 @@ M.GetQuickResponseInput = schema.new({
 })
 
 M.GetQuickResponseOutput = schema.new({
-    id = id.from(_N, "GetQuickResponseOutput"),
+    id = id.from(_N, "GetQuickResponseResponse"),
     type = "structure",
     members = {
         quickResponse = schema.new({
@@ -11374,7 +11374,7 @@ M.ImportJobSummary = schema.new({
 })
 
 M.ListImportJobsInput = schema.new({
-    id = id.from(_N, "ListImportJobsInput"),
+    id = id.from(_N, "ListImportJobsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -11409,7 +11409,7 @@ M.ListImportJobsInput = schema.new({
 })
 
 M.ListImportJobsOutput = schema.new({
-    id = id.from(_N, "ListImportJobsOutput"),
+    id = id.from(_N, "ListImportJobsResponse"),
     type = "structure",
     members = {
         importJobSummaries = schema.new({
@@ -11432,7 +11432,7 @@ M.ListImportJobsOutput = schema.new({
 })
 
 M.ListKnowledgeBasesInput = schema.new({
-    id = id.from(_N, "ListKnowledgeBasesInput"),
+    id = id.from(_N, "ListKnowledgeBasesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -11551,7 +11551,7 @@ M.KnowledgeBaseSummary = schema.new({
 })
 
 M.ListKnowledgeBasesOutput = schema.new({
-    id = id.from(_N, "ListKnowledgeBasesOutput"),
+    id = id.from(_N, "ListKnowledgeBasesResponse"),
     type = "structure",
     members = {
         knowledgeBaseSummaries = schema.new({
@@ -11574,7 +11574,7 @@ M.ListKnowledgeBasesOutput = schema.new({
 })
 
 M.ListMessageTemplatesInput = schema.new({
-    id = id.from(_N, "ListMessageTemplatesInput"),
+    id = id.from(_N, "ListMessageTemplatesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -11732,7 +11732,7 @@ M.MessageTemplateSummary = schema.new({
 })
 
 M.ListMessageTemplatesOutput = schema.new({
-    id = id.from(_N, "ListMessageTemplatesOutput"),
+    id = id.from(_N, "ListMessageTemplatesResponse"),
     type = "structure",
     members = {
         messageTemplateSummaries = schema.new({
@@ -11755,7 +11755,7 @@ M.ListMessageTemplatesOutput = schema.new({
 })
 
 M.ListMessageTemplateVersionsInput = schema.new({
-    id = id.from(_N, "ListMessageTemplateVersionsInput"),
+    id = id.from(_N, "ListMessageTemplateVersionsRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -11885,7 +11885,7 @@ M.MessageTemplateVersionSummary = schema.new({
 })
 
 M.ListMessageTemplateVersionsOutput = schema.new({
-    id = id.from(_N, "ListMessageTemplateVersionsOutput"),
+    id = id.from(_N, "ListMessageTemplateVersionsResponse"),
     type = "structure",
     members = {
         messageTemplateVersionSummaries = schema.new({
@@ -11908,7 +11908,7 @@ M.ListMessageTemplateVersionsOutput = schema.new({
 })
 
 M.RenderMessageTemplateInput = schema.new({
-    id = id.from(_N, "RenderMessageTemplateInput"),
+    id = id.from(_N, "RenderMessageTemplateRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -11945,7 +11945,7 @@ M.RenderMessageTemplateInput = schema.new({
 })
 
 M.RenderMessageTemplateOutput = schema.new({
-    id = id.from(_N, "RenderMessageTemplateOutput"),
+    id = id.from(_N, "RenderMessageTemplateResponse"),
     type = "structure",
     members = {
         content = schema.new({
@@ -11980,7 +11980,7 @@ M.RenderMessageTemplateOutput = schema.new({
 })
 
 M.UpdateMessageTemplateInput = schema.new({
-    id = id.from(_N, "UpdateMessageTemplateInput"),
+    id = id.from(_N, "UpdateMessageTemplateRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -12034,7 +12034,7 @@ M.UpdateMessageTemplateInput = schema.new({
 })
 
 M.UpdateMessageTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateMessageTemplateOutput"),
+    id = id.from(_N, "UpdateMessageTemplateResponse"),
     type = "structure",
     members = {
         messageTemplate = schema.new({
@@ -12048,7 +12048,7 @@ M.UpdateMessageTemplateOutput = schema.new({
 })
 
 M.UpdateMessageTemplateMetadataInput = schema.new({
-    id = id.from(_N, "UpdateMessageTemplateMetadataInput"),
+    id = id.from(_N, "UpdateMessageTemplateMetadataRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -12094,7 +12094,7 @@ M.UpdateMessageTemplateMetadataInput = schema.new({
 })
 
 M.UpdateMessageTemplateMetadataOutput = schema.new({
-    id = id.from(_N, "UpdateMessageTemplateMetadataOutput"),
+    id = id.from(_N, "UpdateMessageTemplateMetadataResponse"),
     type = "structure",
     members = {
         messageTemplate = schema.new({
@@ -12108,7 +12108,7 @@ M.UpdateMessageTemplateMetadataOutput = schema.new({
 })
 
 M.ListQuickResponsesInput = schema.new({
-    id = id.from(_N, "ListQuickResponsesInput"),
+    id = id.from(_N, "ListQuickResponsesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -12266,7 +12266,7 @@ M.QuickResponseSummary = schema.new({
 })
 
 M.ListQuickResponsesOutput = schema.new({
-    id = id.from(_N, "ListQuickResponsesOutput"),
+    id = id.from(_N, "ListQuickResponsesResponse"),
     type = "structure",
     members = {
         quickResponseSummaries = schema.new({
@@ -12289,7 +12289,7 @@ M.ListQuickResponsesOutput = schema.new({
 })
 
 M.UpdateQuickResponseInput = schema.new({
-    id = id.from(_N, "UpdateQuickResponseInput"),
+    id = id.from(_N, "UpdateQuickResponseRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -12391,7 +12391,7 @@ M.UpdateQuickResponseInput = schema.new({
 })
 
 M.UpdateQuickResponseOutput = schema.new({
-    id = id.from(_N, "UpdateQuickResponseOutput"),
+    id = id.from(_N, "UpdateQuickResponseResponse"),
     type = "structure",
     members = {
         quickResponse = schema.new({
@@ -12405,7 +12405,7 @@ M.UpdateQuickResponseOutput = schema.new({
 })
 
 M.RemoveKnowledgeBaseTemplateUriInput = schema.new({
-    id = id.from(_N, "RemoveKnowledgeBaseTemplateUriInput"),
+    id = id.from(_N, "RemoveKnowledgeBaseTemplateUriRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -12422,12 +12422,12 @@ M.RemoveKnowledgeBaseTemplateUriInput = schema.new({
 })
 
 M.RemoveKnowledgeBaseTemplateUriOutput = schema.new({
-    id = id.from(_N, "RemoveKnowledgeBaseTemplateUriOutput"),
+    id = id.from(_N, "RemoveKnowledgeBaseTemplateUriResponse"),
     type = "structure",
 })
 
 M.SearchContentInput = schema.new({
-    id = id.from(_N, "SearchContentInput"),
+    id = id.from(_N, "SearchContentRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -12472,7 +12472,7 @@ M.SearchContentInput = schema.new({
 })
 
 M.SearchContentOutput = schema.new({
-    id = id.from(_N, "SearchContentOutput"),
+    id = id.from(_N, "SearchContentResponse"),
     type = "structure",
     members = {
         contentSummaries = schema.new({
@@ -12630,7 +12630,7 @@ M.MessageTemplateSearchExpression = schema.new({
 })
 
 M.SearchMessageTemplatesInput = schema.new({
-    id = id.from(_N, "SearchMessageTemplatesInput"),
+    id = id.from(_N, "SearchMessageTemplatesRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -12817,7 +12817,7 @@ M.MessageTemplateSearchResultData = schema.new({
 })
 
 M.SearchMessageTemplatesOutput = schema.new({
-    id = id.from(_N, "SearchMessageTemplatesOutput"),
+    id = id.from(_N, "SearchMessageTemplatesResponse"),
     type = "structure",
     members = {
         results = schema.new({
@@ -12975,7 +12975,7 @@ M.QuickResponseSearchExpression = schema.new({
 })
 
 M.SearchQuickResponsesInput = schema.new({
-    id = id.from(_N, "SearchQuickResponsesInput"),
+    id = id.from(_N, "SearchQuickResponsesRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -13197,7 +13197,7 @@ M.QuickResponseSearchResultData = schema.new({
 })
 
 M.SearchQuickResponsesOutput = schema.new({
-    id = id.from(_N, "SearchQuickResponsesOutput"),
+    id = id.from(_N, "SearchQuickResponsesResponse"),
     type = "structure",
     members = {
         results = schema.new({
@@ -13220,7 +13220,7 @@ M.SearchQuickResponsesOutput = schema.new({
 })
 
 M.StartContentUploadInput = schema.new({
-    id = id.from(_N, "StartContentUploadInput"),
+    id = id.from(_N, "StartContentUploadRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -13252,7 +13252,7 @@ M.StartContentUploadInput = schema.new({
 })
 
 M.StartContentUploadOutput = schema.new({
-    id = id.from(_N, "StartContentUploadOutput"),
+    id = id.from(_N, "StartContentUploadResponse"),
     type = "structure",
     members = {
         uploadId = schema.new({
@@ -13298,7 +13298,7 @@ M.StartContentUploadOutput = schema.new({
 })
 
 M.StartImportJobInput = schema.new({
-    id = id.from(_N, "StartImportJobInput"),
+    id = id.from(_N, "StartImportJobRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -13357,7 +13357,7 @@ M.StartImportJobInput = schema.new({
 })
 
 M.StartImportJobOutput = schema.new({
-    id = id.from(_N, "StartImportJobOutput"),
+    id = id.from(_N, "StartImportJobResponse"),
     type = "structure",
     members = {
         importJob = schema.new({
@@ -13371,7 +13371,7 @@ M.StartImportJobOutput = schema.new({
 })
 
 M.UpdateKnowledgeBaseTemplateUriInput = schema.new({
-    id = id.from(_N, "UpdateKnowledgeBaseTemplateUriInput"),
+    id = id.from(_N, "UpdateKnowledgeBaseTemplateUriRequest"),
     type = "structure",
     members = {
         knowledgeBaseId = schema.new({
@@ -13397,7 +13397,7 @@ M.UpdateKnowledgeBaseTemplateUriInput = schema.new({
 })
 
 M.UpdateKnowledgeBaseTemplateUriOutput = schema.new({
-    id = id.from(_N, "UpdateKnowledgeBaseTemplateUriOutput"),
+    id = id.from(_N, "UpdateKnowledgeBaseTemplateUriResponse"),
     type = "structure",
     members = {
         knowledgeBase = schema.new({
@@ -13411,7 +13411,7 @@ M.UpdateKnowledgeBaseTemplateUriOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -13428,7 +13428,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -13443,7 +13443,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -13471,7 +13471,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -13498,7 +13498,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -13526,7 +13526,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -13776,7 +13776,7 @@ M.RetrievalConfiguration = schema.new({
 })
 
 M.RetrieveInput = schema.new({
-    id = id.from(_N, "RetrieveInput"),
+    id = id.from(_N, "RetrieveRequest"),
     type = "structure",
     members = {
         assistantId = schema.new({
@@ -14451,7 +14451,7 @@ M.Span = schema.new({
 })
 
 M.GetRecommendationsOutput = schema.new({
-    id = id.from(_N, "GetRecommendationsOutput"),
+    id = id.from(_N, "GetRecommendationsResponse"),
     type = "structure",
     members = {
         recommendations = schema.new({
@@ -14475,7 +14475,7 @@ M.GetRecommendationsOutput = schema.new({
 })
 
 M.QueryAssistantOutput = schema.new({
-    id = id.from(_N, "QueryAssistantOutput"),
+    id = id.from(_N, "QueryAssistantResponse"),
     type = "structure",
     members = {
         results = schema.new({
@@ -14498,7 +14498,7 @@ M.QueryAssistantOutput = schema.new({
 })
 
 M.ListSpansOutput = schema.new({
-    id = id.from(_N, "ListSpansOutput"),
+    id = id.from(_N, "ListSpansResponse"),
     type = "structure",
     members = {
         spans = schema.new({
@@ -14519,5 +14519,19 @@ M.ListSpansOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

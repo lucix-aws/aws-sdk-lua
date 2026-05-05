@@ -54,7 +54,7 @@ M.AddTagsToOnPremisesInstancesInput = schema.new({
 })
 
 M.AddTagsToOnPremisesInstancesOutput = schema.new({
-    id = id.from(_N, "AddTagsToOnPremisesInstancesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -910,7 +910,7 @@ M.EC2TagSet = schema.new({
             type = "list",
             name = "ec2TagSetList",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = M.EC2TagFilter }),
         }),
     },
 })
@@ -1095,7 +1095,7 @@ M.OnPremisesTagSet = schema.new({
             type = "list",
             name = "onPremisesTagSetList",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = M.TagFilter }),
         }),
     },
 })
@@ -2596,7 +2596,7 @@ M.ContinueDeploymentInput = schema.new({
 })
 
 M.ContinueDeploymentOutput = schema.new({
-    id = id.from(_N, "ContinueDeploymentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3821,7 +3821,7 @@ M.DeleteApplicationInput = schema.new({
 })
 
 M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3842,7 +3842,7 @@ M.DeleteDeploymentConfigInput = schema.new({
 })
 
 M.DeleteDeploymentConfigOutput = schema.new({
-    id = id.from(_N, "DeleteDeploymentConfigOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4058,7 +4058,7 @@ M.DeregisterOnPremisesInstanceInput = schema.new({
 })
 
 M.DeregisterOnPremisesInstanceOutput = schema.new({
-    id = id.from(_N, "DeregisterOnPremisesInstanceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4947,7 +4947,7 @@ M.ListDeploymentTargetsInput = schema.new({
             name = "targetFilters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -5276,7 +5276,7 @@ M.RegisterApplicationRevisionInput = schema.new({
 })
 
 M.RegisterApplicationRevisionOutput = schema.new({
-    id = id.from(_N, "RegisterApplicationRevisionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5437,7 +5437,7 @@ M.RegisterOnPremisesInstanceInput = schema.new({
 })
 
 M.RegisterOnPremisesInstanceOutput = schema.new({
-    id = id.from(_N, "RegisterOnPremisesInstanceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5469,7 +5469,7 @@ M.RemoveTagsFromOnPremisesInstancesInput = schema.new({
 })
 
 M.RemoveTagsFromOnPremisesInstancesOutput = schema.new({
-    id = id.from(_N, "RemoveTagsFromOnPremisesInstancesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5487,7 +5487,7 @@ M.SkipWaitTimeForInstanceTerminationInput = schema.new({
 })
 
 M.SkipWaitTimeForInstanceTerminationOutput = schema.new({
-    id = id.from(_N, "SkipWaitTimeForInstanceTerminationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5614,7 +5614,7 @@ M.UpdateApplicationInput = schema.new({
 })
 
 M.UpdateApplicationOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5770,5 +5770,19 @@ M.UpdateDeploymentGroupOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

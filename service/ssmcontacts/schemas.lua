@@ -8,7 +8,7 @@ local _N = "com.amazonaws.ssmcontacts"
 local M = {}
 
 M.AcceptPageInput = schema.new({
-    id = id.from(_N, "AcceptPageInput"),
+    id = id.from(_N, "AcceptPageRequest"),
     type = "structure",
     members = {
         PageId = schema.new({
@@ -60,7 +60,7 @@ M.AcceptPageInput = schema.new({
 })
 
 M.AcceptPageOutput = schema.new({
-    id = id.from(_N, "AcceptPageOutput"),
+    id = id.from(_N, "AcceptPageResult"),
     type = "structure",
 })
 
@@ -248,7 +248,7 @@ M.ValidationException = schema.new({
 })
 
 M.ActivateContactChannelInput = schema.new({
-    id = id.from(_N, "ActivateContactChannelInput"),
+    id = id.from(_N, "ActivateContactChannelRequest"),
     type = "structure",
     members = {
         ContactChannelId = schema.new({
@@ -273,7 +273,7 @@ M.ActivateContactChannelInput = schema.new({
 })
 
 M.ActivateContactChannelOutput = schema.new({
-    id = id.from(_N, "ActivateContactChannelOutput"),
+    id = id.from(_N, "ActivateContactChannelResult"),
     type = "structure",
 })
 
@@ -639,7 +639,7 @@ M.Tag = schema.new({
 })
 
 M.CreateContactInput = schema.new({
-    id = id.from(_N, "CreateContactInput"),
+    id = id.from(_N, "CreateContactRequest"),
     type = "structure",
     members = {
         Alias = schema.new({
@@ -696,7 +696,7 @@ M.CreateContactInput = schema.new({
 })
 
 M.CreateContactOutput = schema.new({
-    id = id.from(_N, "CreateContactOutput"),
+    id = id.from(_N, "CreateContactResult"),
     type = "structure",
     members = {
         ContactArn = schema.new({
@@ -780,7 +780,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.CreateContactChannelInput = schema.new({
-    id = id.from(_N, "CreateContactChannelInput"),
+    id = id.from(_N, "CreateContactChannelRequest"),
     type = "structure",
     members = {
         ContactId = schema.new({
@@ -839,7 +839,7 @@ M.CreateContactChannelInput = schema.new({
 })
 
 M.CreateContactChannelOutput = schema.new({
-    id = id.from(_N, "CreateContactChannelOutput"),
+    id = id.from(_N, "CreateContactChannelResult"),
     type = "structure",
     members = {
         ContactChannelArn = schema.new({
@@ -946,7 +946,7 @@ M.RecurrenceSettings = schema.new({
             name = "ShiftCoverages",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.CoverageTime }),
         }),
         RecurrenceMultiplier = schema.new({
             id = id.from(_N, "RecurrenceSettings", "RecurrenceMultiplier"),
@@ -961,7 +961,7 @@ M.RecurrenceSettings = schema.new({
 })
 
 M.CreateRotationInput = schema.new({
-    id = id.from(_N, "CreateRotationInput"),
+    id = id.from(_N, "CreateRotationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1025,7 +1025,7 @@ M.CreateRotationInput = schema.new({
 })
 
 M.CreateRotationOutput = schema.new({
-    id = id.from(_N, "CreateRotationOutput"),
+    id = id.from(_N, "CreateRotationResult"),
     type = "structure",
     members = {
         RotationArn = schema.new({
@@ -1041,7 +1041,7 @@ M.CreateRotationOutput = schema.new({
 })
 
 M.CreateRotationOverrideInput = schema.new({
-    id = id.from(_N, "CreateRotationOverrideInput"),
+    id = id.from(_N, "CreateRotationOverrideRequest"),
     type = "structure",
     members = {
         RotationId = schema.new({
@@ -1091,7 +1091,7 @@ M.CreateRotationOverrideInput = schema.new({
 })
 
 M.CreateRotationOverrideOutput = schema.new({
-    id = id.from(_N, "CreateRotationOverrideOutput"),
+    id = id.from(_N, "CreateRotationOverrideResult"),
     type = "structure",
     members = {
         RotationOverrideId = schema.new({
@@ -1107,7 +1107,7 @@ M.CreateRotationOverrideOutput = schema.new({
 })
 
 M.DeactivateContactChannelInput = schema.new({
-    id = id.from(_N, "DeactivateContactChannelInput"),
+    id = id.from(_N, "DeactivateContactChannelRequest"),
     type = "structure",
     members = {
         ContactChannelId = schema.new({
@@ -1123,12 +1123,12 @@ M.DeactivateContactChannelInput = schema.new({
 })
 
 M.DeactivateContactChannelOutput = schema.new({
-    id = id.from(_N, "DeactivateContactChannelOutput"),
+    id = id.from(_N, "DeactivateContactChannelResult"),
     type = "structure",
 })
 
 M.DeleteContactInput = schema.new({
-    id = id.from(_N, "DeleteContactInput"),
+    id = id.from(_N, "DeleteContactRequest"),
     type = "structure",
     members = {
         ContactId = schema.new({
@@ -1144,12 +1144,12 @@ M.DeleteContactInput = schema.new({
 })
 
 M.DeleteContactOutput = schema.new({
-    id = id.from(_N, "DeleteContactOutput"),
+    id = id.from(_N, "DeleteContactResult"),
     type = "structure",
 })
 
 M.DeleteContactChannelInput = schema.new({
-    id = id.from(_N, "DeleteContactChannelInput"),
+    id = id.from(_N, "DeleteContactChannelRequest"),
     type = "structure",
     members = {
         ContactChannelId = schema.new({
@@ -1165,12 +1165,12 @@ M.DeleteContactChannelInput = schema.new({
 })
 
 M.DeleteContactChannelOutput = schema.new({
-    id = id.from(_N, "DeleteContactChannelOutput"),
+    id = id.from(_N, "DeleteContactChannelResult"),
     type = "structure",
 })
 
 M.DeleteRotationInput = schema.new({
-    id = id.from(_N, "DeleteRotationInput"),
+    id = id.from(_N, "DeleteRotationRequest"),
     type = "structure",
     members = {
         RotationId = schema.new({
@@ -1186,12 +1186,12 @@ M.DeleteRotationInput = schema.new({
 })
 
 M.DeleteRotationOutput = schema.new({
-    id = id.from(_N, "DeleteRotationOutput"),
+    id = id.from(_N, "DeleteRotationResult"),
     type = "structure",
 })
 
 M.DeleteRotationOverrideInput = schema.new({
-    id = id.from(_N, "DeleteRotationOverrideInput"),
+    id = id.from(_N, "DeleteRotationOverrideRequest"),
     type = "structure",
     members = {
         RotationId = schema.new({
@@ -1216,12 +1216,12 @@ M.DeleteRotationOverrideInput = schema.new({
 })
 
 M.DeleteRotationOverrideOutput = schema.new({
-    id = id.from(_N, "DeleteRotationOverrideOutput"),
+    id = id.from(_N, "DeleteRotationOverrideResult"),
     type = "structure",
 })
 
 M.DescribeEngagementInput = schema.new({
-    id = id.from(_N, "DescribeEngagementInput"),
+    id = id.from(_N, "DescribeEngagementRequest"),
     type = "structure",
     members = {
         EngagementId = schema.new({
@@ -1237,7 +1237,7 @@ M.DescribeEngagementInput = schema.new({
 })
 
 M.DescribeEngagementOutput = schema.new({
-    id = id.from(_N, "DescribeEngagementOutput"),
+    id = id.from(_N, "DescribeEngagementResult"),
     type = "structure",
     members = {
         ContactArn = schema.new({
@@ -1319,7 +1319,7 @@ M.DescribeEngagementOutput = schema.new({
 })
 
 M.DescribePageInput = schema.new({
-    id = id.from(_N, "DescribePageInput"),
+    id = id.from(_N, "DescribePageRequest"),
     type = "structure",
     members = {
         PageId = schema.new({
@@ -1335,7 +1335,7 @@ M.DescribePageInput = schema.new({
 })
 
 M.DescribePageOutput = schema.new({
-    id = id.from(_N, "DescribePageOutput"),
+    id = id.from(_N, "DescribePageResult"),
     type = "structure",
     members = {
         PageArn = schema.new({
@@ -1484,7 +1484,7 @@ M.Engagement = schema.new({
 })
 
 M.GetContactInput = schema.new({
-    id = id.from(_N, "GetContactInput"),
+    id = id.from(_N, "GetContactRequest"),
     type = "structure",
     members = {
         ContactId = schema.new({
@@ -1500,7 +1500,7 @@ M.GetContactInput = schema.new({
 })
 
 M.GetContactOutput = schema.new({
-    id = id.from(_N, "GetContactOutput"),
+    id = id.from(_N, "GetContactResult"),
     type = "structure",
     members = {
         ContactArn = schema.new({
@@ -1550,7 +1550,7 @@ M.GetContactOutput = schema.new({
 })
 
 M.GetContactChannelInput = schema.new({
-    id = id.from(_N, "GetContactChannelInput"),
+    id = id.from(_N, "GetContactChannelRequest"),
     type = "structure",
     members = {
         ContactChannelId = schema.new({
@@ -1566,7 +1566,7 @@ M.GetContactChannelInput = schema.new({
 })
 
 M.GetContactChannelOutput = schema.new({
-    id = id.from(_N, "GetContactChannelOutput"),
+    id = id.from(_N, "GetContactChannelResult"),
     type = "structure",
     members = {
         ContactArn = schema.new({
@@ -1625,7 +1625,7 @@ M.GetContactChannelOutput = schema.new({
 })
 
 M.GetContactPolicyInput = schema.new({
-    id = id.from(_N, "GetContactPolicyInput"),
+    id = id.from(_N, "GetContactPolicyRequest"),
     type = "structure",
     members = {
         ContactArn = schema.new({
@@ -1641,7 +1641,7 @@ M.GetContactPolicyInput = schema.new({
 })
 
 M.GetContactPolicyOutput = schema.new({
-    id = id.from(_N, "GetContactPolicyOutput"),
+    id = id.from(_N, "GetContactPolicyResult"),
     type = "structure",
     members = {
         ContactArn = schema.new({
@@ -1660,7 +1660,7 @@ M.GetContactPolicyOutput = schema.new({
 })
 
 M.GetRotationInput = schema.new({
-    id = id.from(_N, "GetRotationInput"),
+    id = id.from(_N, "GetRotationRequest"),
     type = "structure",
     members = {
         RotationId = schema.new({
@@ -1676,7 +1676,7 @@ M.GetRotationInput = schema.new({
 })
 
 M.GetRotationOutput = schema.new({
-    id = id.from(_N, "GetRotationOutput"),
+    id = id.from(_N, "GetRotationResult"),
     type = "structure",
     members = {
         RotationArn = schema.new({
@@ -1739,7 +1739,7 @@ M.GetRotationOutput = schema.new({
 })
 
 M.GetRotationOverrideInput = schema.new({
-    id = id.from(_N, "GetRotationOverrideInput"),
+    id = id.from(_N, "GetRotationOverrideRequest"),
     type = "structure",
     members = {
         RotationId = schema.new({
@@ -1764,7 +1764,7 @@ M.GetRotationOverrideInput = schema.new({
 })
 
 M.GetRotationOverrideOutput = schema.new({
-    id = id.from(_N, "GetRotationOverrideOutput"),
+    id = id.from(_N, "GetRotationOverrideResult"),
     type = "structure",
     members = {
         RotationOverrideId = schema.new({
@@ -1808,7 +1808,7 @@ M.GetRotationOverrideOutput = schema.new({
 })
 
 M.ListContactChannelsInput = schema.new({
-    id = id.from(_N, "ListContactChannelsInput"),
+    id = id.from(_N, "ListContactChannelsRequest"),
     type = "structure",
     members = {
         ContactId = schema.new({
@@ -1836,7 +1836,7 @@ M.ListContactChannelsInput = schema.new({
 })
 
 M.ListContactChannelsOutput = schema.new({
-    id = id.from(_N, "ListContactChannelsOutput"),
+    id = id.from(_N, "ListContactChannelsResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1859,7 +1859,7 @@ M.ListContactChannelsOutput = schema.new({
 })
 
 M.ListContactsInput = schema.new({
-    id = id.from(_N, "ListContactsInput"),
+    id = id.from(_N, "ListContactsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1890,7 +1890,7 @@ M.ListContactsInput = schema.new({
 })
 
 M.ListContactsOutput = schema.new({
-    id = id.from(_N, "ListContactsOutput"),
+    id = id.from(_N, "ListContactsResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1929,7 +1929,7 @@ M.TimeRange = schema.new({
 })
 
 M.ListEngagementsInput = schema.new({
-    id = id.from(_N, "ListEngagementsInput"),
+    id = id.from(_N, "ListEngagementsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1961,7 +1961,7 @@ M.ListEngagementsInput = schema.new({
 })
 
 M.ListEngagementsOutput = schema.new({
-    id = id.from(_N, "ListEngagementsOutput"),
+    id = id.from(_N, "ListEngagementsResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1984,7 +1984,7 @@ M.ListEngagementsOutput = schema.new({
 })
 
 M.ListPageReceiptsInput = schema.new({
-    id = id.from(_N, "ListPageReceiptsInput"),
+    id = id.from(_N, "ListPageReceiptsRequest"),
     type = "structure",
     members = {
         PageId = schema.new({
@@ -2049,7 +2049,7 @@ M.Receipt = schema.new({
 })
 
 M.ListPageReceiptsOutput = schema.new({
-    id = id.from(_N, "ListPageReceiptsOutput"),
+    id = id.from(_N, "ListPageReceiptsResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2069,7 +2069,7 @@ M.ListPageReceiptsOutput = schema.new({
 })
 
 M.ListPageResolutionsInput = schema.new({
-    id = id.from(_N, "ListPageResolutionsInput"),
+    id = id.from(_N, "ListPageResolutionsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2125,7 +2125,7 @@ M.ResolutionContact = schema.new({
 })
 
 M.ListPageResolutionsOutput = schema.new({
-    id = id.from(_N, "ListPageResolutionsOutput"),
+    id = id.from(_N, "ListPageResolutionsResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2148,7 +2148,7 @@ M.ListPageResolutionsOutput = schema.new({
 })
 
 M.ListPagesByContactInput = schema.new({
-    id = id.from(_N, "ListPagesByContactInput"),
+    id = id.from(_N, "ListPagesByContactRequest"),
     type = "structure",
     members = {
         ContactId = schema.new({
@@ -2243,7 +2243,7 @@ M.Page = schema.new({
 })
 
 M.ListPagesByContactOutput = schema.new({
-    id = id.from(_N, "ListPagesByContactOutput"),
+    id = id.from(_N, "ListPagesByContactResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2266,7 +2266,7 @@ M.ListPagesByContactOutput = schema.new({
 })
 
 M.ListPagesByEngagementInput = schema.new({
-    id = id.from(_N, "ListPagesByEngagementInput"),
+    id = id.from(_N, "ListPagesByEngagementRequest"),
     type = "structure",
     members = {
         EngagementId = schema.new({
@@ -2294,7 +2294,7 @@ M.ListPagesByEngagementInput = schema.new({
 })
 
 M.ListPagesByEngagementOutput = schema.new({
-    id = id.from(_N, "ListPagesByEngagementOutput"),
+    id = id.from(_N, "ListPagesByEngagementResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2343,7 +2343,7 @@ M.PreviewOverride = schema.new({
 })
 
 M.ListPreviewRotationShiftsInput = schema.new({
-    id = id.from(_N, "ListPreviewRotationShiftsInput"),
+    id = id.from(_N, "ListPreviewRotationShiftsRequest"),
     type = "structure",
     members = {
         RotationStartTime = schema.new({
@@ -2481,7 +2481,7 @@ M.RotationShift = schema.new({
 })
 
 M.ListPreviewRotationShiftsOutput = schema.new({
-    id = id.from(_N, "ListPreviewRotationShiftsOutput"),
+    id = id.from(_N, "ListPreviewRotationShiftsResult"),
     type = "structure",
     members = {
         RotationShifts = schema.new({
@@ -2501,7 +2501,7 @@ M.ListPreviewRotationShiftsOutput = schema.new({
 })
 
 M.ListRotationOverridesInput = schema.new({
-    id = id.from(_N, "ListRotationOverridesInput"),
+    id = id.from(_N, "ListRotationOverridesRequest"),
     type = "structure",
     members = {
         RotationId = schema.new({
@@ -2600,7 +2600,7 @@ M.RotationOverride = schema.new({
 })
 
 M.ListRotationOverridesOutput = schema.new({
-    id = id.from(_N, "ListRotationOverridesOutput"),
+    id = id.from(_N, "ListRotationOverridesResult"),
     type = "structure",
     members = {
         RotationOverrides = schema.new({
@@ -2620,7 +2620,7 @@ M.ListRotationOverridesOutput = schema.new({
 })
 
 M.ListRotationsInput = schema.new({
-    id = id.from(_N, "ListRotationsInput"),
+    id = id.from(_N, "ListRotationsRequest"),
     type = "structure",
     members = {
         RotationNamePrefix = schema.new({
@@ -2696,7 +2696,7 @@ M.Rotation = schema.new({
 })
 
 M.ListRotationsOutput = schema.new({
-    id = id.from(_N, "ListRotationsOutput"),
+    id = id.from(_N, "ListRotationsResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2719,7 +2719,7 @@ M.ListRotationsOutput = schema.new({
 })
 
 M.ListRotationShiftsInput = schema.new({
-    id = id.from(_N, "ListRotationShiftsInput"),
+    id = id.from(_N, "ListRotationShiftsRequest"),
     type = "structure",
     members = {
         RotationId = schema.new({
@@ -2762,7 +2762,7 @@ M.ListRotationShiftsInput = schema.new({
 })
 
 M.ListRotationShiftsOutput = schema.new({
-    id = id.from(_N, "ListRotationShiftsOutput"),
+    id = id.from(_N, "ListRotationShiftsResult"),
     type = "structure",
     members = {
         RotationShifts = schema.new({
@@ -2782,7 +2782,7 @@ M.ListRotationShiftsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2798,7 +2798,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResult"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2812,7 +2812,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutContactPolicyInput = schema.new({
-    id = id.from(_N, "PutContactPolicyInput"),
+    id = id.from(_N, "PutContactPolicyRequest"),
     type = "structure",
     members = {
         ContactArn = schema.new({
@@ -2837,12 +2837,12 @@ M.PutContactPolicyInput = schema.new({
 })
 
 M.PutContactPolicyOutput = schema.new({
-    id = id.from(_N, "PutContactPolicyOutput"),
+    id = id.from(_N, "PutContactPolicyResult"),
     type = "structure",
 })
 
 M.SendActivationCodeInput = schema.new({
-    id = id.from(_N, "SendActivationCodeInput"),
+    id = id.from(_N, "SendActivationCodeRequest"),
     type = "structure",
     members = {
         ContactChannelId = schema.new({
@@ -2858,12 +2858,12 @@ M.SendActivationCodeInput = schema.new({
 })
 
 M.SendActivationCodeOutput = schema.new({
-    id = id.from(_N, "SendActivationCodeOutput"),
+    id = id.from(_N, "SendActivationCodeResult"),
     type = "structure",
 })
 
 M.StartEngagementInput = schema.new({
-    id = id.from(_N, "StartEngagementInput"),
+    id = id.from(_N, "StartEngagementRequest"),
     type = "structure",
     members = {
         ContactId = schema.new({
@@ -2933,7 +2933,7 @@ M.StartEngagementInput = schema.new({
 })
 
 M.StartEngagementOutput = schema.new({
-    id = id.from(_N, "StartEngagementOutput"),
+    id = id.from(_N, "StartEngagementResult"),
     type = "structure",
     members = {
         EngagementArn = schema.new({
@@ -2949,7 +2949,7 @@ M.StartEngagementOutput = schema.new({
 })
 
 M.StopEngagementInput = schema.new({
-    id = id.from(_N, "StopEngagementInput"),
+    id = id.from(_N, "StopEngagementRequest"),
     type = "structure",
     members = {
         EngagementId = schema.new({
@@ -2971,12 +2971,12 @@ M.StopEngagementInput = schema.new({
 })
 
 M.StopEngagementOutput = schema.new({
-    id = id.from(_N, "StopEngagementOutput"),
+    id = id.from(_N, "StopEngagementResult"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -3002,12 +3002,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResult"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -3033,12 +3033,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResult"),
     type = "structure",
 })
 
 M.UpdateContactInput = schema.new({
-    id = id.from(_N, "UpdateContactInput"),
+    id = id.from(_N, "UpdateContactRequest"),
     type = "structure",
     members = {
         ContactId = schema.new({
@@ -3067,12 +3067,12 @@ M.UpdateContactInput = schema.new({
 })
 
 M.UpdateContactOutput = schema.new({
-    id = id.from(_N, "UpdateContactOutput"),
+    id = id.from(_N, "UpdateContactResult"),
     type = "structure",
 })
 
 M.UpdateContactChannelInput = schema.new({
-    id = id.from(_N, "UpdateContactChannelInput"),
+    id = id.from(_N, "UpdateContactChannelRequest"),
     type = "structure",
     members = {
         ContactChannelId = schema.new({
@@ -3101,12 +3101,12 @@ M.UpdateContactChannelInput = schema.new({
 })
 
 M.UpdateContactChannelOutput = schema.new({
-    id = id.from(_N, "UpdateContactChannelOutput"),
+    id = id.from(_N, "UpdateContactChannelResult"),
     type = "structure",
 })
 
 M.UpdateRotationInput = schema.new({
-    id = id.from(_N, "UpdateRotationInput"),
+    id = id.from(_N, "UpdateRotationRequest"),
     type = "structure",
     members = {
         RotationId = schema.new({
@@ -3151,8 +3151,22 @@ M.UpdateRotationInput = schema.new({
 })
 
 M.UpdateRotationOutput = schema.new({
-    id = id.from(_N, "UpdateRotationOutput"),
+    id = id.from(_N, "UpdateRotationResult"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -8,7 +8,7 @@ local _N = "com.amazonaws.apprunner"
 local M = {}
 
 M.AssociateCustomDomainInput = schema.new({
-    id = id.from(_N, "AssociateCustomDomainInput"),
+    id = id.from(_N, "AssociateCustomDomainRequest"),
     type = "structure",
     members = {
         ServiceArn = schema.new({
@@ -136,7 +136,7 @@ M.VpcDNSTarget = schema.new({
 })
 
 M.AssociateCustomDomainOutput = schema.new({
-    id = id.from(_N, "AssociateCustomDomainOutput"),
+    id = id.from(_N, "AssociateCustomDomainResponse"),
     type = "structure",
     members = {
         DNSTarget = schema.new({
@@ -248,7 +248,7 @@ M.Tag = schema.new({
 })
 
 M.CreateAutoScalingConfigurationInput = schema.new({
-    id = id.from(_N, "CreateAutoScalingConfigurationInput"),
+    id = id.from(_N, "CreateAutoScalingConfigurationRequest"),
     type = "structure",
     members = {
         AutoScalingConfigurationName = schema.new({
@@ -368,7 +368,7 @@ M.AutoScalingConfiguration = schema.new({
 })
 
 M.CreateAutoScalingConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateAutoScalingConfigurationOutput"),
+    id = id.from(_N, "CreateAutoScalingConfigurationResponse"),
     type = "structure",
     members = {
         AutoScalingConfiguration = schema.new({
@@ -401,7 +401,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.CreateConnectionInput = schema.new({
-    id = id.from(_N, "CreateConnectionInput"),
+    id = id.from(_N, "CreateConnectionRequest"),
     type = "structure",
     members = {
         ConnectionName = schema.new({
@@ -470,7 +470,7 @@ M.Connection = schema.new({
 })
 
 M.CreateConnectionOutput = schema.new({
-    id = id.from(_N, "CreateConnectionOutput"),
+    id = id.from(_N, "CreateConnectionResponse"),
     type = "structure",
     members = {
         Connection = schema.new({
@@ -503,7 +503,7 @@ M.TraceConfiguration = schema.new({
 })
 
 M.CreateObservabilityConfigurationInput = schema.new({
-    id = id.from(_N, "CreateObservabilityConfigurationInput"),
+    id = id.from(_N, "CreateObservabilityConfigurationRequest"),
     type = "structure",
     members = {
         ObservabilityConfigurationName = schema.new({
@@ -595,7 +595,7 @@ M.ObservabilityConfiguration = schema.new({
 })
 
 M.CreateObservabilityConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateObservabilityConfigurationOutput"),
+    id = id.from(_N, "CreateObservabilityConfigurationResponse"),
     type = "structure",
     members = {
         ObservabilityConfiguration = schema.new({
@@ -1038,7 +1038,7 @@ M.SourceConfiguration = schema.new({
 })
 
 M.CreateServiceInput = schema.new({
-    id = id.from(_N, "CreateServiceInput"),
+    id = id.from(_N, "CreateServiceRequest"),
     type = "structure",
     members = {
         ServiceName = schema.new({
@@ -1298,7 +1298,7 @@ M.Service = schema.new({
 })
 
 M.CreateServiceOutput = schema.new({
-    id = id.from(_N, "CreateServiceOutput"),
+    id = id.from(_N, "CreateServiceResponse"),
     type = "structure",
     members = {
         Service = schema.new({
@@ -1324,7 +1324,7 @@ M.CreateServiceOutput = schema.new({
 })
 
 M.CreateVpcConnectorInput = schema.new({
-    id = id.from(_N, "CreateVpcConnectorInput"),
+    id = id.from(_N, "CreateVpcConnectorRequest"),
     type = "structure",
     members = {
         VpcConnectorName = schema.new({
@@ -1424,7 +1424,7 @@ M.VpcConnector = schema.new({
 })
 
 M.CreateVpcConnectorOutput = schema.new({
-    id = id.from(_N, "CreateVpcConnectorOutput"),
+    id = id.from(_N, "CreateVpcConnectorResponse"),
     type = "structure",
     members = {
         VpcConnector = schema.new({
@@ -1460,7 +1460,7 @@ M.IngressVpcConfiguration = schema.new({
 })
 
 M.CreateVpcIngressConnectionInput = schema.new({
-    id = id.from(_N, "CreateVpcIngressConnectionInput"),
+    id = id.from(_N, "CreateVpcIngressConnectionRequest"),
     type = "structure",
     members = {
         ServiceArn = schema.new({
@@ -1564,7 +1564,7 @@ M.VpcIngressConnection = schema.new({
 })
 
 M.CreateVpcIngressConnectionOutput = schema.new({
-    id = id.from(_N, "CreateVpcIngressConnectionOutput"),
+    id = id.from(_N, "CreateVpcIngressConnectionResponse"),
     type = "structure",
     members = {
         VpcIngressConnection = schema.new({
@@ -1581,7 +1581,7 @@ M.CreateVpcIngressConnectionOutput = schema.new({
 })
 
 M.DeleteAutoScalingConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteAutoScalingConfigurationInput"),
+    id = id.from(_N, "DeleteAutoScalingConfigurationRequest"),
     type = "structure",
     members = {
         AutoScalingConfigurationArn = schema.new({
@@ -1606,7 +1606,7 @@ M.DeleteAutoScalingConfigurationInput = schema.new({
 })
 
 M.DeleteAutoScalingConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteAutoScalingConfigurationOutput"),
+    id = id.from(_N, "DeleteAutoScalingConfigurationResponse"),
     type = "structure",
     members = {
         AutoScalingConfiguration = schema.new({
@@ -1639,7 +1639,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DeleteConnectionInput = schema.new({
-    id = id.from(_N, "DeleteConnectionInput"),
+    id = id.from(_N, "DeleteConnectionRequest"),
     type = "structure",
     members = {
         ConnectionArn = schema.new({
@@ -1655,7 +1655,7 @@ M.DeleteConnectionInput = schema.new({
 })
 
 M.DeleteConnectionOutput = schema.new({
-    id = id.from(_N, "DeleteConnectionOutput"),
+    id = id.from(_N, "DeleteConnectionResponse"),
     type = "structure",
     members = {
         Connection = schema.new({
@@ -1669,7 +1669,7 @@ M.DeleteConnectionOutput = schema.new({
 })
 
 M.DeleteObservabilityConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteObservabilityConfigurationInput"),
+    id = id.from(_N, "DeleteObservabilityConfigurationRequest"),
     type = "structure",
     members = {
         ObservabilityConfigurationArn = schema.new({
@@ -1685,7 +1685,7 @@ M.DeleteObservabilityConfigurationInput = schema.new({
 })
 
 M.DeleteObservabilityConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteObservabilityConfigurationOutput"),
+    id = id.from(_N, "DeleteObservabilityConfigurationResponse"),
     type = "structure",
     members = {
         ObservabilityConfiguration = schema.new({
@@ -1702,7 +1702,7 @@ M.DeleteObservabilityConfigurationOutput = schema.new({
 })
 
 M.DeleteServiceInput = schema.new({
-    id = id.from(_N, "DeleteServiceInput"),
+    id = id.from(_N, "DeleteServiceRequest"),
     type = "structure",
     members = {
         ServiceArn = schema.new({
@@ -1718,7 +1718,7 @@ M.DeleteServiceInput = schema.new({
 })
 
 M.DeleteServiceOutput = schema.new({
-    id = id.from(_N, "DeleteServiceOutput"),
+    id = id.from(_N, "DeleteServiceResponse"),
     type = "structure",
     members = {
         Service = schema.new({
@@ -1744,7 +1744,7 @@ M.DeleteServiceOutput = schema.new({
 })
 
 M.DeleteVpcConnectorInput = schema.new({
-    id = id.from(_N, "DeleteVpcConnectorInput"),
+    id = id.from(_N, "DeleteVpcConnectorRequest"),
     type = "structure",
     members = {
         VpcConnectorArn = schema.new({
@@ -1760,7 +1760,7 @@ M.DeleteVpcConnectorInput = schema.new({
 })
 
 M.DeleteVpcConnectorOutput = schema.new({
-    id = id.from(_N, "DeleteVpcConnectorOutput"),
+    id = id.from(_N, "DeleteVpcConnectorResponse"),
     type = "structure",
     members = {
         VpcConnector = schema.new({
@@ -1777,7 +1777,7 @@ M.DeleteVpcConnectorOutput = schema.new({
 })
 
 M.DeleteVpcIngressConnectionInput = schema.new({
-    id = id.from(_N, "DeleteVpcIngressConnectionInput"),
+    id = id.from(_N, "DeleteVpcIngressConnectionRequest"),
     type = "structure",
     members = {
         VpcIngressConnectionArn = schema.new({
@@ -1793,7 +1793,7 @@ M.DeleteVpcIngressConnectionInput = schema.new({
 })
 
 M.DeleteVpcIngressConnectionOutput = schema.new({
-    id = id.from(_N, "DeleteVpcIngressConnectionOutput"),
+    id = id.from(_N, "DeleteVpcIngressConnectionResponse"),
     type = "structure",
     members = {
         VpcIngressConnection = schema.new({
@@ -1810,7 +1810,7 @@ M.DeleteVpcIngressConnectionOutput = schema.new({
 })
 
 M.DescribeAutoScalingConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeAutoScalingConfigurationInput"),
+    id = id.from(_N, "DescribeAutoScalingConfigurationRequest"),
     type = "structure",
     members = {
         AutoScalingConfigurationArn = schema.new({
@@ -1826,7 +1826,7 @@ M.DescribeAutoScalingConfigurationInput = schema.new({
 })
 
 M.DescribeAutoScalingConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeAutoScalingConfigurationOutput"),
+    id = id.from(_N, "DescribeAutoScalingConfigurationResponse"),
     type = "structure",
     members = {
         AutoScalingConfiguration = schema.new({
@@ -1843,7 +1843,7 @@ M.DescribeAutoScalingConfigurationOutput = schema.new({
 })
 
 M.DescribeCustomDomainsInput = schema.new({
-    id = id.from(_N, "DescribeCustomDomainsInput"),
+    id = id.from(_N, "DescribeCustomDomainsRequest"),
     type = "structure",
     members = {
         ServiceArn = schema.new({
@@ -1871,7 +1871,7 @@ M.DescribeCustomDomainsInput = schema.new({
 })
 
 M.DescribeCustomDomainsOutput = schema.new({
-    id = id.from(_N, "DescribeCustomDomainsOutput"),
+    id = id.from(_N, "DescribeCustomDomainsResponse"),
     type = "structure",
     members = {
         DNSTarget = schema.new({
@@ -1922,7 +1922,7 @@ M.DescribeCustomDomainsOutput = schema.new({
 })
 
 M.DescribeObservabilityConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeObservabilityConfigurationInput"),
+    id = id.from(_N, "DescribeObservabilityConfigurationRequest"),
     type = "structure",
     members = {
         ObservabilityConfigurationArn = schema.new({
@@ -1938,7 +1938,7 @@ M.DescribeObservabilityConfigurationInput = schema.new({
 })
 
 M.DescribeObservabilityConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeObservabilityConfigurationOutput"),
+    id = id.from(_N, "DescribeObservabilityConfigurationResponse"),
     type = "structure",
     members = {
         ObservabilityConfiguration = schema.new({
@@ -1955,7 +1955,7 @@ M.DescribeObservabilityConfigurationOutput = schema.new({
 })
 
 M.DescribeServiceInput = schema.new({
-    id = id.from(_N, "DescribeServiceInput"),
+    id = id.from(_N, "DescribeServiceRequest"),
     type = "structure",
     members = {
         ServiceArn = schema.new({
@@ -1971,7 +1971,7 @@ M.DescribeServiceInput = schema.new({
 })
 
 M.DescribeServiceOutput = schema.new({
-    id = id.from(_N, "DescribeServiceOutput"),
+    id = id.from(_N, "DescribeServiceResponse"),
     type = "structure",
     members = {
         Service = schema.new({
@@ -1988,7 +1988,7 @@ M.DescribeServiceOutput = schema.new({
 })
 
 M.DescribeVpcConnectorInput = schema.new({
-    id = id.from(_N, "DescribeVpcConnectorInput"),
+    id = id.from(_N, "DescribeVpcConnectorRequest"),
     type = "structure",
     members = {
         VpcConnectorArn = schema.new({
@@ -2004,7 +2004,7 @@ M.DescribeVpcConnectorInput = schema.new({
 })
 
 M.DescribeVpcConnectorOutput = schema.new({
-    id = id.from(_N, "DescribeVpcConnectorOutput"),
+    id = id.from(_N, "DescribeVpcConnectorResponse"),
     type = "structure",
     members = {
         VpcConnector = schema.new({
@@ -2021,7 +2021,7 @@ M.DescribeVpcConnectorOutput = schema.new({
 })
 
 M.DescribeVpcIngressConnectionInput = schema.new({
-    id = id.from(_N, "DescribeVpcIngressConnectionInput"),
+    id = id.from(_N, "DescribeVpcIngressConnectionRequest"),
     type = "structure",
     members = {
         VpcIngressConnectionArn = schema.new({
@@ -2037,7 +2037,7 @@ M.DescribeVpcIngressConnectionInput = schema.new({
 })
 
 M.DescribeVpcIngressConnectionOutput = schema.new({
-    id = id.from(_N, "DescribeVpcIngressConnectionOutput"),
+    id = id.from(_N, "DescribeVpcIngressConnectionResponse"),
     type = "structure",
     members = {
         VpcIngressConnection = schema.new({
@@ -2054,7 +2054,7 @@ M.DescribeVpcIngressConnectionOutput = schema.new({
 })
 
 M.DisassociateCustomDomainInput = schema.new({
-    id = id.from(_N, "DisassociateCustomDomainInput"),
+    id = id.from(_N, "DisassociateCustomDomainRequest"),
     type = "structure",
     members = {
         ServiceArn = schema.new({
@@ -2079,7 +2079,7 @@ M.DisassociateCustomDomainInput = schema.new({
 })
 
 M.DisassociateCustomDomainOutput = schema.new({
-    id = id.from(_N, "DisassociateCustomDomainOutput"),
+    id = id.from(_N, "DisassociateCustomDomainResponse"),
     type = "structure",
     members = {
         DNSTarget = schema.new({
@@ -2124,7 +2124,7 @@ M.DisassociateCustomDomainOutput = schema.new({
 })
 
 M.ListAutoScalingConfigurationsInput = schema.new({
-    id = id.from(_N, "ListAutoScalingConfigurationsInput"),
+    id = id.from(_N, "ListAutoScalingConfigurationsRequest"),
     type = "structure",
     members = {
         AutoScalingConfigurationName = schema.new({
@@ -2158,7 +2158,7 @@ M.ListAutoScalingConfigurationsInput = schema.new({
 })
 
 M.ListAutoScalingConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListAutoScalingConfigurationsOutput"),
+    id = id.from(_N, "ListAutoScalingConfigurationsResponse"),
     type = "structure",
     members = {
         AutoScalingConfigurationSummaryList = schema.new({
@@ -2181,7 +2181,7 @@ M.ListAutoScalingConfigurationsOutput = schema.new({
 })
 
 M.ListConnectionsInput = schema.new({
-    id = id.from(_N, "ListConnectionsInput"),
+    id = id.from(_N, "ListConnectionsRequest"),
     type = "structure",
     members = {
         ConnectionName = schema.new({
@@ -2243,7 +2243,7 @@ M.ConnectionSummary = schema.new({
 })
 
 M.ListConnectionsOutput = schema.new({
-    id = id.from(_N, "ListConnectionsOutput"),
+    id = id.from(_N, "ListConnectionsResponse"),
     type = "structure",
     members = {
         ConnectionSummaryList = schema.new({
@@ -2266,7 +2266,7 @@ M.ListConnectionsOutput = schema.new({
 })
 
 M.ListObservabilityConfigurationsInput = schema.new({
-    id = id.from(_N, "ListObservabilityConfigurationsInput"),
+    id = id.from(_N, "ListObservabilityConfigurationsRequest"),
     type = "structure",
     members = {
         ObservabilityConfigurationName = schema.new({
@@ -2328,7 +2328,7 @@ M.ObservabilityConfigurationSummary = schema.new({
 })
 
 M.ListObservabilityConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListObservabilityConfigurationsOutput"),
+    id = id.from(_N, "ListObservabilityConfigurationsResponse"),
     type = "structure",
     members = {
         ObservabilityConfigurationSummaryList = schema.new({
@@ -2351,7 +2351,7 @@ M.ListObservabilityConfigurationsOutput = schema.new({
 })
 
 M.ListOperationsInput = schema.new({
-    id = id.from(_N, "ListOperationsInput"),
+    id = id.from(_N, "ListOperationsRequest"),
     type = "structure",
     members = {
         ServiceArn = schema.new({
@@ -2428,7 +2428,7 @@ M.OperationSummary = schema.new({
 })
 
 M.ListOperationsOutput = schema.new({
-    id = id.from(_N, "ListOperationsOutput"),
+    id = id.from(_N, "ListOperationsResponse"),
     type = "structure",
     members = {
         OperationSummaryList = schema.new({
@@ -2448,7 +2448,7 @@ M.ListOperationsOutput = schema.new({
 })
 
 M.ListServicesInput = schema.new({
-    id = id.from(_N, "ListServicesInput"),
+    id = id.from(_N, "ListServicesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2516,7 +2516,7 @@ M.ServiceSummary = schema.new({
 })
 
 M.ListServicesOutput = schema.new({
-    id = id.from(_N, "ListServicesOutput"),
+    id = id.from(_N, "ListServicesResponse"),
     type = "structure",
     members = {
         ServiceSummaryList = schema.new({
@@ -2539,7 +2539,7 @@ M.ListServicesOutput = schema.new({
 })
 
 M.ListServicesForAutoScalingConfigurationInput = schema.new({
-    id = id.from(_N, "ListServicesForAutoScalingConfigurationInput"),
+    id = id.from(_N, "ListServicesForAutoScalingConfigurationRequest"),
     type = "structure",
     members = {
         AutoScalingConfigurationArn = schema.new({
@@ -2567,7 +2567,7 @@ M.ListServicesForAutoScalingConfigurationInput = schema.new({
 })
 
 M.ListServicesForAutoScalingConfigurationOutput = schema.new({
-    id = id.from(_N, "ListServicesForAutoScalingConfigurationOutput"),
+    id = id.from(_N, "ListServicesForAutoScalingConfigurationResponse"),
     type = "structure",
     members = {
         ServiceArnList = schema.new({
@@ -2590,7 +2590,7 @@ M.ListServicesForAutoScalingConfigurationOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2606,7 +2606,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2620,7 +2620,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListVpcConnectorsInput = schema.new({
-    id = id.from(_N, "ListVpcConnectorsInput"),
+    id = id.from(_N, "ListVpcConnectorsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2639,7 +2639,7 @@ M.ListVpcConnectorsInput = schema.new({
 })
 
 M.ListVpcConnectorsOutput = schema.new({
-    id = id.from(_N, "ListVpcConnectorsOutput"),
+    id = id.from(_N, "ListVpcConnectorsResponse"),
     type = "structure",
     members = {
         VpcConnectors = schema.new({
@@ -2681,7 +2681,7 @@ M.ListVpcIngressConnectionsFilter = schema.new({
 })
 
 M.ListVpcIngressConnectionsInput = schema.new({
-    id = id.from(_N, "ListVpcIngressConnectionsInput"),
+    id = id.from(_N, "ListVpcIngressConnectionsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -2726,7 +2726,7 @@ M.VpcIngressConnectionSummary = schema.new({
 })
 
 M.ListVpcIngressConnectionsOutput = schema.new({
-    id = id.from(_N, "ListVpcIngressConnectionsOutput"),
+    id = id.from(_N, "ListVpcIngressConnectionsResponse"),
     type = "structure",
     members = {
         VpcIngressConnectionSummaryList = schema.new({
@@ -2749,7 +2749,7 @@ M.ListVpcIngressConnectionsOutput = schema.new({
 })
 
 M.PauseServiceInput = schema.new({
-    id = id.from(_N, "PauseServiceInput"),
+    id = id.from(_N, "PauseServiceRequest"),
     type = "structure",
     members = {
         ServiceArn = schema.new({
@@ -2765,7 +2765,7 @@ M.PauseServiceInput = schema.new({
 })
 
 M.PauseServiceOutput = schema.new({
-    id = id.from(_N, "PauseServiceOutput"),
+    id = id.from(_N, "PauseServiceResponse"),
     type = "structure",
     members = {
         Service = schema.new({
@@ -2788,7 +2788,7 @@ M.PauseServiceOutput = schema.new({
 })
 
 M.ResumeServiceInput = schema.new({
-    id = id.from(_N, "ResumeServiceInput"),
+    id = id.from(_N, "ResumeServiceRequest"),
     type = "structure",
     members = {
         ServiceArn = schema.new({
@@ -2804,7 +2804,7 @@ M.ResumeServiceInput = schema.new({
 })
 
 M.ResumeServiceOutput = schema.new({
-    id = id.from(_N, "ResumeServiceOutput"),
+    id = id.from(_N, "ResumeServiceResponse"),
     type = "structure",
     members = {
         Service = schema.new({
@@ -2827,7 +2827,7 @@ M.ResumeServiceOutput = schema.new({
 })
 
 M.StartDeploymentInput = schema.new({
-    id = id.from(_N, "StartDeploymentInput"),
+    id = id.from(_N, "StartDeploymentRequest"),
     type = "structure",
     members = {
         ServiceArn = schema.new({
@@ -2843,7 +2843,7 @@ M.StartDeploymentInput = schema.new({
 })
 
 M.StartDeploymentOutput = schema.new({
-    id = id.from(_N, "StartDeploymentOutput"),
+    id = id.from(_N, "StartDeploymentResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -2859,7 +2859,7 @@ M.StartDeploymentOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2885,12 +2885,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2916,12 +2916,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateDefaultAutoScalingConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateDefaultAutoScalingConfigurationInput"),
+    id = id.from(_N, "UpdateDefaultAutoScalingConfigurationRequest"),
     type = "structure",
     members = {
         AutoScalingConfigurationArn = schema.new({
@@ -2937,7 +2937,7 @@ M.UpdateDefaultAutoScalingConfigurationInput = schema.new({
 })
 
 M.UpdateDefaultAutoScalingConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateDefaultAutoScalingConfigurationOutput"),
+    id = id.from(_N, "UpdateDefaultAutoScalingConfigurationResponse"),
     type = "structure",
     members = {
         AutoScalingConfiguration = schema.new({
@@ -2954,7 +2954,7 @@ M.UpdateDefaultAutoScalingConfigurationOutput = schema.new({
 })
 
 M.UpdateServiceInput = schema.new({
-    id = id.from(_N, "UpdateServiceInput"),
+    id = id.from(_N, "UpdateServiceRequest"),
     type = "structure",
     members = {
         ServiceArn = schema.new({
@@ -3011,7 +3011,7 @@ M.UpdateServiceInput = schema.new({
 })
 
 M.UpdateServiceOutput = schema.new({
-    id = id.from(_N, "UpdateServiceOutput"),
+    id = id.from(_N, "UpdateServiceResponse"),
     type = "structure",
     members = {
         Service = schema.new({
@@ -3037,7 +3037,7 @@ M.UpdateServiceOutput = schema.new({
 })
 
 M.UpdateVpcIngressConnectionInput = schema.new({
-    id = id.from(_N, "UpdateVpcIngressConnectionInput"),
+    id = id.from(_N, "UpdateVpcIngressConnectionRequest"),
     type = "structure",
     members = {
         VpcIngressConnectionArn = schema.new({
@@ -3063,7 +3063,7 @@ M.UpdateVpcIngressConnectionInput = schema.new({
 })
 
 M.UpdateVpcIngressConnectionOutput = schema.new({
-    id = id.from(_N, "UpdateVpcIngressConnectionOutput"),
+    id = id.from(_N, "UpdateVpcIngressConnectionResponse"),
     type = "structure",
     members = {
         VpcIngressConnection = schema.new({
@@ -3078,5 +3078,19 @@ M.UpdateVpcIngressConnectionOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

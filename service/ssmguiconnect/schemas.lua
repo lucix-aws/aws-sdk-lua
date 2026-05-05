@@ -114,7 +114,7 @@ M.ConnectionRecordingPreferences = schema.new({
 })
 
 M.DeleteConnectionRecordingPreferencesInput = schema.new({
-    id = id.from(_N, "DeleteConnectionRecordingPreferencesInput"),
+    id = id.from(_N, "DeleteConnectionRecordingPreferencesRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -130,7 +130,7 @@ M.DeleteConnectionRecordingPreferencesInput = schema.new({
 })
 
 M.DeleteConnectionRecordingPreferencesOutput = schema.new({
-    id = id.from(_N, "DeleteConnectionRecordingPreferencesOutput"),
+    id = id.from(_N, "DeleteConnectionRecordingPreferencesResponse"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -238,12 +238,12 @@ M.ValidationException = schema.new({
 })
 
 M.GetConnectionRecordingPreferencesInput = schema.new({
-    id = id.from(_N, "GetConnectionRecordingPreferencesInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetConnectionRecordingPreferencesOutput = schema.new({
-    id = id.from(_N, "GetConnectionRecordingPreferencesOutput"),
+    id = id.from(_N, "GetConnectionRecordingPreferencesResponse"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -263,7 +263,7 @@ M.GetConnectionRecordingPreferencesOutput = schema.new({
 })
 
 M.UpdateConnectionRecordingPreferencesInput = schema.new({
-    id = id.from(_N, "UpdateConnectionRecordingPreferencesInput"),
+    id = id.from(_N, "UpdateConnectionRecordingPreferencesRequest"),
     type = "structure",
     members = {
         ConnectionRecordingPreferences = schema.new({
@@ -289,7 +289,7 @@ M.UpdateConnectionRecordingPreferencesInput = schema.new({
 })
 
 M.UpdateConnectionRecordingPreferencesOutput = schema.new({
-    id = id.from(_N, "UpdateConnectionRecordingPreferencesOutput"),
+    id = id.from(_N, "UpdateConnectionRecordingPreferencesResponse"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -307,5 +307,19 @@ M.UpdateConnectionRecordingPreferencesOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

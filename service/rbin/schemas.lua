@@ -122,7 +122,7 @@ M.Tag = schema.new({
 })
 
 M.CreateRuleInput = schema.new({
-    id = id.from(_N, "CreateRuleInput"),
+    id = id.from(_N, "CreateRuleRequest"),
     type = "structure",
     members = {
         RetentionPeriod = schema.new({
@@ -182,7 +182,7 @@ M.CreateRuleInput = schema.new({
 })
 
 M.CreateRuleOutput = schema.new({
-    id = id.from(_N, "CreateRuleOutput"),
+    id = id.from(_N, "CreateRuleResponse"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -342,7 +342,7 @@ M.ConflictException = schema.new({
 })
 
 M.DeleteRuleInput = schema.new({
-    id = id.from(_N, "DeleteRuleInput"),
+    id = id.from(_N, "DeleteRuleRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -359,7 +359,7 @@ M.DeleteRuleInput = schema.new({
 })
 
 M.DeleteRuleOutput = schema.new({
-    id = id.from(_N, "DeleteRuleOutput"),
+    id = id.from(_N, "DeleteRuleResponse"),
     type = "structure",
 })
 
@@ -386,7 +386,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.GetRuleInput = schema.new({
-    id = id.from(_N, "GetRuleInput"),
+    id = id.from(_N, "GetRuleRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -403,7 +403,7 @@ M.GetRuleInput = schema.new({
 })
 
 M.GetRuleOutput = schema.new({
-    id = id.from(_N, "GetRuleOutput"),
+    id = id.from(_N, "GetRuleResponse"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -480,7 +480,7 @@ M.GetRuleOutput = schema.new({
 })
 
 M.ListRulesInput = schema.new({
-    id = id.from(_N, "ListRulesInput"),
+    id = id.from(_N, "ListRulesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -566,7 +566,7 @@ M.RuleSummary = schema.new({
 })
 
 M.ListRulesOutput = schema.new({
-    id = id.from(_N, "ListRulesOutput"),
+    id = id.from(_N, "ListRulesResponse"),
     type = "structure",
     members = {
         Rules = schema.new({
@@ -586,7 +586,7 @@ M.ListRulesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -603,7 +603,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -617,7 +617,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.LockRuleInput = schema.new({
-    id = id.from(_N, "LockRuleInput"),
+    id = id.from(_N, "LockRuleRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -644,7 +644,7 @@ M.LockRuleInput = schema.new({
 })
 
 M.LockRuleOutput = schema.new({
-    id = id.from(_N, "LockRuleOutput"),
+    id = id.from(_N, "LockRuleResponse"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -715,7 +715,7 @@ M.LockRuleOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -742,12 +742,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UnlockRuleInput = schema.new({
-    id = id.from(_N, "UnlockRuleInput"),
+    id = id.from(_N, "UnlockRuleRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -764,7 +764,7 @@ M.UnlockRuleInput = schema.new({
 })
 
 M.UnlockRuleOutput = schema.new({
-    id = id.from(_N, "UnlockRuleOutput"),
+    id = id.from(_N, "UnlockRuleResponse"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -841,7 +841,7 @@ M.UnlockRuleOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -869,12 +869,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateRuleInput = schema.new({
-    id = id.from(_N, "UpdateRuleInput"),
+    id = id.from(_N, "UpdateRuleRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -924,7 +924,7 @@ M.UpdateRuleInput = schema.new({
 })
 
 M.UpdateRuleOutput = schema.new({
-    id = id.from(_N, "UpdateRuleOutput"),
+    id = id.from(_N, "UpdateRuleResponse"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -992,5 +992,19 @@ M.UpdateRuleOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

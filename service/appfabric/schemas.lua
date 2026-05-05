@@ -398,7 +398,7 @@ M.AuthRequest = schema.new({
 })
 
 M.BatchGetUserAccessTasksInput = schema.new({
-    id = id.from(_N, "BatchGetUserAccessTasksInput"),
+    id = id.from(_N, "BatchGetUserAccessTasksRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -523,7 +523,7 @@ M.UserAccessResultItem = schema.new({
 })
 
 M.BatchGetUserAccessTasksOutput = schema.new({
-    id = id.from(_N, "BatchGetUserAccessTasksOutput"),
+    id = id.from(_N, "BatchGetUserAccessTasksResponse"),
     type = "structure",
     members = {
         userAccessResultsList = schema.new({
@@ -739,7 +739,7 @@ M.ConflictException = schema.new({
 })
 
 M.ConnectAppAuthorizationInput = schema.new({
-    id = id.from(_N, "ConnectAppAuthorizationInput"),
+    id = id.from(_N, "ConnectAppAuthorizationRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -773,7 +773,7 @@ M.ConnectAppAuthorizationInput = schema.new({
 })
 
 M.ConnectAppAuthorizationOutput = schema.new({
-    id = id.from(_N, "ConnectAppAuthorizationOutput"),
+    id = id.from(_N, "ConnectAppAuthorizationResponse"),
     type = "structure",
     members = {
         appAuthorizationSummary = schema.new({
@@ -861,7 +861,7 @@ M.Tag = schema.new({
 })
 
 M.CreateAppAuthorizationInput = schema.new({
-    id = id.from(_N, "CreateAppAuthorizationInput"),
+    id = id.from(_N, "CreateAppAuthorizationRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -932,7 +932,7 @@ M.CreateAppAuthorizationInput = schema.new({
 })
 
 M.CreateAppAuthorizationOutput = schema.new({
-    id = id.from(_N, "CreateAppAuthorizationOutput"),
+    id = id.from(_N, "CreateAppAuthorizationResponse"),
     type = "structure",
     members = {
         appAuthorization = schema.new({
@@ -1004,7 +1004,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.CreateAppBundleInput = schema.new({
-    id = id.from(_N, "CreateAppBundleInput"),
+    id = id.from(_N, "CreateAppBundleRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1033,7 +1033,7 @@ M.CreateAppBundleInput = schema.new({
 })
 
 M.CreateAppBundleOutput = schema.new({
-    id = id.from(_N, "CreateAppBundleOutput"),
+    id = id.from(_N, "CreateAppBundleResponse"),
     type = "structure",
     members = {
         appBundle = schema.new({
@@ -1050,7 +1050,7 @@ M.CreateAppBundleOutput = schema.new({
 })
 
 M.CreateIngestionInput = schema.new({
-    id = id.from(_N, "CreateIngestionInput"),
+    id = id.from(_N, "CreateIngestionRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -1197,7 +1197,7 @@ M.Ingestion = schema.new({
 })
 
 M.CreateIngestionOutput = schema.new({
-    id = id.from(_N, "CreateIngestionOutput"),
+    id = id.from(_N, "CreateIngestionResponse"),
     type = "structure",
     members = {
         ingestion = schema.new({
@@ -1242,7 +1242,7 @@ M.ProcessingConfiguration = schema.new({
 })
 
 M.CreateIngestionDestinationInput = schema.new({
-    id = id.from(_N, "CreateIngestionDestinationInput"),
+    id = id.from(_N, "CreateIngestionDestinationRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -1380,7 +1380,7 @@ M.IngestionDestination = schema.new({
 })
 
 M.CreateIngestionDestinationOutput = schema.new({
-    id = id.from(_N, "CreateIngestionDestinationOutput"),
+    id = id.from(_N, "CreateIngestionDestinationResponse"),
     type = "structure",
     members = {
         ingestionDestination = schema.new({
@@ -1397,7 +1397,7 @@ M.CreateIngestionDestinationOutput = schema.new({
 })
 
 M.DeleteAppAuthorizationInput = schema.new({
-    id = id.from(_N, "DeleteAppAuthorizationInput"),
+    id = id.from(_N, "DeleteAppAuthorizationRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -1424,12 +1424,12 @@ M.DeleteAppAuthorizationInput = schema.new({
 })
 
 M.DeleteAppAuthorizationOutput = schema.new({
-    id = id.from(_N, "DeleteAppAuthorizationOutput"),
+    id = id.from(_N, "DeleteAppAuthorizationResponse"),
     type = "structure",
 })
 
 M.DeleteAppBundleInput = schema.new({
-    id = id.from(_N, "DeleteAppBundleInput"),
+    id = id.from(_N, "DeleteAppBundleRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -1446,12 +1446,12 @@ M.DeleteAppBundleInput = schema.new({
 })
 
 M.DeleteAppBundleOutput = schema.new({
-    id = id.from(_N, "DeleteAppBundleOutput"),
+    id = id.from(_N, "DeleteAppBundleResponse"),
     type = "structure",
 })
 
 M.DeleteIngestionInput = schema.new({
-    id = id.from(_N, "DeleteIngestionInput"),
+    id = id.from(_N, "DeleteIngestionRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -1478,12 +1478,12 @@ M.DeleteIngestionInput = schema.new({
 })
 
 M.DeleteIngestionOutput = schema.new({
-    id = id.from(_N, "DeleteIngestionOutput"),
+    id = id.from(_N, "DeleteIngestionResponse"),
     type = "structure",
 })
 
 M.DeleteIngestionDestinationInput = schema.new({
-    id = id.from(_N, "DeleteIngestionDestinationInput"),
+    id = id.from(_N, "DeleteIngestionDestinationRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -1520,12 +1520,12 @@ M.DeleteIngestionDestinationInput = schema.new({
 })
 
 M.DeleteIngestionDestinationOutput = schema.new({
-    id = id.from(_N, "DeleteIngestionDestinationOutput"),
+    id = id.from(_N, "DeleteIngestionDestinationResponse"),
     type = "structure",
 })
 
 M.GetAppAuthorizationInput = schema.new({
-    id = id.from(_N, "GetAppAuthorizationInput"),
+    id = id.from(_N, "GetAppAuthorizationRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -1552,7 +1552,7 @@ M.GetAppAuthorizationInput = schema.new({
 })
 
 M.GetAppAuthorizationOutput = schema.new({
-    id = id.from(_N, "GetAppAuthorizationOutput"),
+    id = id.from(_N, "GetAppAuthorizationResponse"),
     type = "structure",
     members = {
         appAuthorization = schema.new({
@@ -1569,7 +1569,7 @@ M.GetAppAuthorizationOutput = schema.new({
 })
 
 M.GetAppBundleInput = schema.new({
-    id = id.from(_N, "GetAppBundleInput"),
+    id = id.from(_N, "GetAppBundleRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -1586,7 +1586,7 @@ M.GetAppBundleInput = schema.new({
 })
 
 M.GetAppBundleOutput = schema.new({
-    id = id.from(_N, "GetAppBundleOutput"),
+    id = id.from(_N, "GetAppBundleResponse"),
     type = "structure",
     members = {
         appBundle = schema.new({
@@ -1603,7 +1603,7 @@ M.GetAppBundleOutput = schema.new({
 })
 
 M.GetIngestionInput = schema.new({
-    id = id.from(_N, "GetIngestionInput"),
+    id = id.from(_N, "GetIngestionRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -1630,7 +1630,7 @@ M.GetIngestionInput = schema.new({
 })
 
 M.GetIngestionOutput = schema.new({
-    id = id.from(_N, "GetIngestionOutput"),
+    id = id.from(_N, "GetIngestionResponse"),
     type = "structure",
     members = {
         ingestion = schema.new({
@@ -1647,7 +1647,7 @@ M.GetIngestionOutput = schema.new({
 })
 
 M.GetIngestionDestinationInput = schema.new({
-    id = id.from(_N, "GetIngestionDestinationInput"),
+    id = id.from(_N, "GetIngestionDestinationRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -1684,7 +1684,7 @@ M.GetIngestionDestinationInput = schema.new({
 })
 
 M.GetIngestionDestinationOutput = schema.new({
-    id = id.from(_N, "GetIngestionDestinationOutput"),
+    id = id.from(_N, "GetIngestionDestinationResponse"),
     type = "structure",
     members = {
         ingestionDestination = schema.new({
@@ -1701,7 +1701,7 @@ M.GetIngestionDestinationOutput = schema.new({
 })
 
 M.ListAppAuthorizationsInput = schema.new({
-    id = id.from(_N, "ListAppAuthorizationsInput"),
+    id = id.from(_N, "ListAppAuthorizationsRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -1736,7 +1736,7 @@ M.ListAppAuthorizationsInput = schema.new({
 })
 
 M.ListAppAuthorizationsOutput = schema.new({
-    id = id.from(_N, "ListAppAuthorizationsOutput"),
+    id = id.from(_N, "ListAppAuthorizationsResponse"),
     type = "structure",
     members = {
         appAuthorizationSummaryList = schema.new({
@@ -1759,7 +1759,7 @@ M.ListAppAuthorizationsOutput = schema.new({
 })
 
 M.ListAppBundlesInput = schema.new({
-    id = id.from(_N, "ListAppBundlesInput"),
+    id = id.from(_N, "ListAppBundlesRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -1784,7 +1784,7 @@ M.ListAppBundlesInput = schema.new({
 })
 
 M.ListAppBundlesOutput = schema.new({
-    id = id.from(_N, "ListAppBundlesOutput"),
+    id = id.from(_N, "ListAppBundlesResponse"),
     type = "structure",
     members = {
         appBundleSummaryList = schema.new({
@@ -1807,7 +1807,7 @@ M.ListAppBundlesOutput = schema.new({
 })
 
 M.ListIngestionDestinationsInput = schema.new({
-    id = id.from(_N, "ListIngestionDestinationsInput"),
+    id = id.from(_N, "ListIngestionDestinationsRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -1868,7 +1868,7 @@ M.IngestionDestinationSummary = schema.new({
 })
 
 M.ListIngestionDestinationsOutput = schema.new({
-    id = id.from(_N, "ListIngestionDestinationsOutput"),
+    id = id.from(_N, "ListIngestionDestinationsResponse"),
     type = "structure",
     members = {
         ingestionDestinations = schema.new({
@@ -1891,7 +1891,7 @@ M.ListIngestionDestinationsOutput = schema.new({
 })
 
 M.ListIngestionsInput = schema.new({
-    id = id.from(_N, "ListIngestionsInput"),
+    id = id.from(_N, "ListIngestionsRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -1969,7 +1969,7 @@ M.IngestionSummary = schema.new({
 })
 
 M.ListIngestionsOutput = schema.new({
-    id = id.from(_N, "ListIngestionsOutput"),
+    id = id.from(_N, "ListIngestionsResponse"),
     type = "structure",
     members = {
         ingestions = schema.new({
@@ -1992,7 +1992,7 @@ M.ListIngestionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2009,7 +2009,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2023,7 +2023,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.StartIngestionInput = schema.new({
-    id = id.from(_N, "StartIngestionInput"),
+    id = id.from(_N, "StartIngestionRequest"),
     type = "structure",
     members = {
         ingestionIdentifier = schema.new({
@@ -2050,12 +2050,12 @@ M.StartIngestionInput = schema.new({
 })
 
 M.StartIngestionOutput = schema.new({
-    id = id.from(_N, "StartIngestionOutput"),
+    id = id.from(_N, "StartIngestionResponse"),
     type = "structure",
 })
 
 M.StartUserAccessTasksInput = schema.new({
-    id = id.from(_N, "StartUserAccessTasksInput"),
+    id = id.from(_N, "StartUserAccessTasksRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -2118,7 +2118,7 @@ M.UserAccessTaskItem = schema.new({
 })
 
 M.StartUserAccessTasksOutput = schema.new({
-    id = id.from(_N, "StartUserAccessTasksOutput"),
+    id = id.from(_N, "StartUserAccessTasksResponse"),
     type = "structure",
     members = {
         userAccessTasksList = schema.new({
@@ -2132,7 +2132,7 @@ M.StartUserAccessTasksOutput = schema.new({
 })
 
 M.StopIngestionInput = schema.new({
-    id = id.from(_N, "StopIngestionInput"),
+    id = id.from(_N, "StopIngestionRequest"),
     type = "structure",
     members = {
         ingestionIdentifier = schema.new({
@@ -2159,12 +2159,12 @@ M.StopIngestionInput = schema.new({
 })
 
 M.StopIngestionOutput = schema.new({
-    id = id.from(_N, "StopIngestionOutput"),
+    id = id.from(_N, "StopIngestionResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2191,12 +2191,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2224,12 +2224,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAppAuthorizationInput = schema.new({
-    id = id.from(_N, "UpdateAppAuthorizationInput"),
+    id = id.from(_N, "UpdateAppAuthorizationRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -2270,7 +2270,7 @@ M.UpdateAppAuthorizationInput = schema.new({
 })
 
 M.UpdateAppAuthorizationOutput = schema.new({
-    id = id.from(_N, "UpdateAppAuthorizationOutput"),
+    id = id.from(_N, "UpdateAppAuthorizationResponse"),
     type = "structure",
     members = {
         appAuthorization = schema.new({
@@ -2287,7 +2287,7 @@ M.UpdateAppAuthorizationOutput = schema.new({
 })
 
 M.UpdateIngestionDestinationInput = schema.new({
-    id = id.from(_N, "UpdateIngestionDestinationInput"),
+    id = id.from(_N, "UpdateIngestionDestinationRequest"),
     type = "structure",
     members = {
         appBundleIdentifier = schema.new({
@@ -2334,7 +2334,7 @@ M.UpdateIngestionDestinationInput = schema.new({
 })
 
 M.UpdateIngestionDestinationOutput = schema.new({
-    id = id.from(_N, "UpdateIngestionDestinationOutput"),
+    id = id.from(_N, "UpdateIngestionDestinationResponse"),
     type = "structure",
     members = {
         ingestionDestination = schema.new({
@@ -2349,5 +2349,19 @@ M.UpdateIngestionDestinationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

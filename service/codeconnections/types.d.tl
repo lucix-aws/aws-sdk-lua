@@ -717,15 +717,15 @@ local record UpdateOutOfSyncException
     Message: string
 end
 
-local type TriggerResourceUpdateOn = "ANY_CHANGE" | "FILE_CHANGE"
-
 local type PullRequestComment = "ENABLED" | "DISABLED"
+
+local type ProviderType = "Bitbucket" | "GitHub" | "GitHubEnterpriseServer" | "GitLab" | "GitLabSelfManaged" | "AzureDevOps"
 
 local type SyncConfigurationType = "CFN_STACK_SYNC"
 
 local type PublishDeploymentStatus = "ENABLED" | "DISABLED"
 
-local type ProviderType = "Bitbucket" | "GitHub" | "GitHubEnterpriseServer" | "GitLab" | "GitLabSelfManaged" | "AzureDevOps"
+local type TriggerResourceUpdateOn = "ANY_CHANGE" | "FILE_CHANGE"
 
 local record M
     CreateConnectionInput: CreateConnectionInput

@@ -8,7 +8,7 @@ local _N = "com.amazonaws.omics"
 local M = {}
 
 M.AbortMultipartReadSetUploadInput = schema.new({
-    id = id.from(_N, "AbortMultipartReadSetUploadInput"),
+    id = id.from(_N, "AbortMultipartReadSetUploadRequest"),
     type = "structure",
     members = {
         sequenceStoreId = schema.new({
@@ -35,7 +35,7 @@ M.AbortMultipartReadSetUploadInput = schema.new({
 })
 
 M.AbortMultipartReadSetUploadOutput = schema.new({
-    id = id.from(_N, "AbortMultipartReadSetUploadOutput"),
+    id = id.from(_N, "AbortMultipartReadSetUploadResponse"),
     type = "structure",
 })
 
@@ -192,7 +192,7 @@ M.ValidationException = schema.new({
 })
 
 M.AcceptShareInput = schema.new({
-    id = id.from(_N, "AcceptShareInput"),
+    id = id.from(_N, "AcceptShareRequest"),
     type = "structure",
     members = {
         shareId = schema.new({
@@ -209,7 +209,7 @@ M.AcceptShareInput = schema.new({
 })
 
 M.AcceptShareOutput = schema.new({
-    id = id.from(_N, "AcceptShareOutput"),
+    id = id.from(_N, "AcceptShareResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -397,7 +397,7 @@ M.AnnotationImportItemSource = schema.new({
 })
 
 M.CancelAnnotationImportJobInput = schema.new({
-    id = id.from(_N, "CancelAnnotationImportJobInput"),
+    id = id.from(_N, "CancelAnnotationImportRequest"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -414,12 +414,12 @@ M.CancelAnnotationImportJobInput = schema.new({
 })
 
 M.CancelAnnotationImportJobOutput = schema.new({
-    id = id.from(_N, "CancelAnnotationImportJobOutput"),
+    id = id.from(_N, "CancelAnnotationImportResponse"),
     type = "structure",
 })
 
 M.GetAnnotationImportJobInput = schema.new({
-    id = id.from(_N, "GetAnnotationImportJobInput"),
+    id = id.from(_N, "GetAnnotationImportRequest"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -560,7 +560,7 @@ M.FormatOptions = schema.new({
 })
 
 M.GetAnnotationImportJobOutput = schema.new({
-    id = id.from(_N, "GetAnnotationImportJobOutput"),
+    id = id.from(_N, "GetAnnotationImportResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -717,7 +717,7 @@ M.ListAnnotationImportJobsFilter = schema.new({
 })
 
 M.ListAnnotationImportJobsInput = schema.new({
-    id = id.from(_N, "ListAnnotationImportJobsInput"),
+    id = id.from(_N, "ListAnnotationImportJobsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -860,7 +860,7 @@ M.AnnotationImportJobItem = schema.new({
 })
 
 M.ListAnnotationImportJobsOutput = schema.new({
-    id = id.from(_N, "ListAnnotationImportJobsOutput"),
+    id = id.from(_N, "ListAnnotationImportJobsResponse"),
     type = "structure",
     members = {
         annotationImportJobs = schema.new({
@@ -880,7 +880,7 @@ M.ListAnnotationImportJobsOutput = schema.new({
 })
 
 M.StartAnnotationImportJobInput = schema.new({
-    id = id.from(_N, "StartAnnotationImportJobInput"),
+    id = id.from(_N, "StartAnnotationImportRequest"),
     type = "structure",
     members = {
         destinationName = schema.new({
@@ -945,7 +945,7 @@ M.StartAnnotationImportJobInput = schema.new({
 })
 
 M.StartAnnotationImportJobOutput = schema.new({
-    id = id.from(_N, "StartAnnotationImportJobOutput"),
+    id = id.from(_N, "StartAnnotationImportResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -1038,7 +1038,7 @@ M.StoreOptions = schema.new({
 })
 
 M.CreateAnnotationStoreInput = schema.new({
-    id = id.from(_N, "CreateAnnotationStoreInput"),
+    id = id.from(_N, "CreateAnnotationStoreRequest"),
     type = "structure",
     members = {
         reference = schema.new({
@@ -1101,7 +1101,7 @@ M.CreateAnnotationStoreInput = schema.new({
 })
 
 M.CreateAnnotationStoreOutput = schema.new({
-    id = id.from(_N, "CreateAnnotationStoreOutput"),
+    id = id.from(_N, "CreateAnnotationStoreResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1177,7 +1177,7 @@ M.CreateAnnotationStoreOutput = schema.new({
 })
 
 M.DeleteAnnotationStoreInput = schema.new({
-    id = id.from(_N, "DeleteAnnotationStoreInput"),
+    id = id.from(_N, "DeleteAnnotationStoreRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1204,7 +1204,7 @@ M.DeleteAnnotationStoreInput = schema.new({
 })
 
 M.DeleteAnnotationStoreOutput = schema.new({
-    id = id.from(_N, "DeleteAnnotationStoreOutput"),
+    id = id.from(_N, "DeleteAnnotationStoreResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -1220,7 +1220,7 @@ M.DeleteAnnotationStoreOutput = schema.new({
 })
 
 M.GetAnnotationStoreInput = schema.new({
-    id = id.from(_N, "GetAnnotationStoreInput"),
+    id = id.from(_N, "GetAnnotationStoreRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1237,7 +1237,7 @@ M.GetAnnotationStoreInput = schema.new({
 })
 
 M.GetAnnotationStoreOutput = schema.new({
-    id = id.from(_N, "GetAnnotationStoreOutput"),
+    id = id.from(_N, "GetAnnotationStoreResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1399,7 +1399,7 @@ M.ListAnnotationStoresFilter = schema.new({
 })
 
 M.ListAnnotationStoresInput = schema.new({
-    id = id.from(_N, "ListAnnotationStoresInput"),
+    id = id.from(_N, "ListAnnotationStoresRequest"),
     type = "structure",
     members = {
         ids = schema.new({
@@ -1563,7 +1563,7 @@ M.AnnotationStoreItem = schema.new({
 })
 
 M.ListAnnotationStoresOutput = schema.new({
-    id = id.from(_N, "ListAnnotationStoresOutput"),
+    id = id.from(_N, "ListAnnotationStoresResponse"),
     type = "structure",
     members = {
         annotationStores = schema.new({
@@ -1583,7 +1583,7 @@ M.ListAnnotationStoresOutput = schema.new({
 })
 
 M.UpdateAnnotationStoreInput = schema.new({
-    id = id.from(_N, "UpdateAnnotationStoreInput"),
+    id = id.from(_N, "UpdateAnnotationStoreRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1606,7 +1606,7 @@ M.UpdateAnnotationStoreInput = schema.new({
 })
 
 M.UpdateAnnotationStoreOutput = schema.new({
-    id = id.from(_N, "UpdateAnnotationStoreOutput"),
+    id = id.from(_N, "UpdateAnnotationStoreResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1740,7 +1740,7 @@ M.VersionOptions = schema.new({
 })
 
 M.CreateAnnotationStoreVersionInput = schema.new({
-    id = id.from(_N, "CreateAnnotationStoreVersionInput"),
+    id = id.from(_N, "CreateAnnotationStoreVersionRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1787,7 +1787,7 @@ M.CreateAnnotationStoreVersionInput = schema.new({
 })
 
 M.CreateAnnotationStoreVersionOutput = schema.new({
-    id = id.from(_N, "CreateAnnotationStoreVersionOutput"),
+    id = id.from(_N, "CreateAnnotationStoreVersionResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1859,7 +1859,7 @@ M.CreateAnnotationStoreVersionOutput = schema.new({
 })
 
 M.DeleteAnnotationStoreVersionsInput = schema.new({
-    id = id.from(_N, "DeleteAnnotationStoreVersionsInput"),
+    id = id.from(_N, "DeleteAnnotationStoreVersionsRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1921,7 +1921,7 @@ M.VersionDeleteError = schema.new({
 })
 
 M.DeleteAnnotationStoreVersionsOutput = schema.new({
-    id = id.from(_N, "DeleteAnnotationStoreVersionsOutput"),
+    id = id.from(_N, "DeleteAnnotationStoreVersionsResponse"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -1935,7 +1935,7 @@ M.DeleteAnnotationStoreVersionsOutput = schema.new({
 })
 
 M.GetAnnotationStoreVersionInput = schema.new({
-    id = id.from(_N, "GetAnnotationStoreVersionInput"),
+    id = id.from(_N, "GetAnnotationStoreVersionRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1962,7 +1962,7 @@ M.GetAnnotationStoreVersionInput = schema.new({
 })
 
 M.GetAnnotationStoreVersionOutput = schema.new({
-    id = id.from(_N, "GetAnnotationStoreVersionOutput"),
+    id = id.from(_N, "GetAnnotationStoreVersionResponse"),
     type = "structure",
     members = {
         storeId = schema.new({
@@ -2107,7 +2107,7 @@ M.ListAnnotationStoreVersionsFilter = schema.new({
 })
 
 M.ListAnnotationStoreVersionsInput = schema.new({
-    id = id.from(_N, "ListAnnotationStoreVersionsInput"),
+    id = id.from(_N, "ListAnnotationStoreVersionsRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2263,7 +2263,7 @@ M.AnnotationStoreVersionItem = schema.new({
 })
 
 M.ListAnnotationStoreVersionsOutput = schema.new({
-    id = id.from(_N, "ListAnnotationStoreVersionsOutput"),
+    id = id.from(_N, "ListAnnotationStoreVersionsResponse"),
     type = "structure",
     members = {
         annotationStoreVersions = schema.new({
@@ -2283,7 +2283,7 @@ M.ListAnnotationStoreVersionsOutput = schema.new({
 })
 
 M.UpdateAnnotationStoreVersionInput = schema.new({
-    id = id.from(_N, "UpdateAnnotationStoreVersionInput"),
+    id = id.from(_N, "UpdateAnnotationStoreVersionRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2316,7 +2316,7 @@ M.UpdateAnnotationStoreVersionInput = schema.new({
 })
 
 M.UpdateAnnotationStoreVersionOutput = schema.new({
-    id = id.from(_N, "UpdateAnnotationStoreVersionOutput"),
+    id = id.from(_N, "UpdateAnnotationStoreVersionResponse"),
     type = "structure",
     members = {
         storeId = schema.new({
@@ -2403,7 +2403,7 @@ M.UpdateAnnotationStoreVersionOutput = schema.new({
 })
 
 M.BatchDeleteReadSetInput = schema.new({
-    id = id.from(_N, "BatchDeleteReadSetInput"),
+    id = id.from(_N, "BatchDeleteReadSetRequest"),
     type = "structure",
     members = {
         ids = schema.new({
@@ -2464,7 +2464,7 @@ M.ReadSetBatchError = schema.new({
 })
 
 M.BatchDeleteReadSetOutput = schema.new({
-    id = id.from(_N, "BatchDeleteReadSetOutput"),
+    id = id.from(_N, "BatchDeleteReadSetResponse"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -2598,7 +2598,7 @@ M.BatchRunSettings = schema.new({
 })
 
 M.CancelRunInput = schema.new({
-    id = id.from(_N, "CancelRunInput"),
+    id = id.from(_N, "CancelRunRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2615,12 +2615,12 @@ M.CancelRunInput = schema.new({
 })
 
 M.CancelRunOutput = schema.new({
-    id = id.from(_N, "CancelRunOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.CancelRunBatchInput = schema.new({
-    id = id.from(_N, "CancelRunBatchInput"),
+    id = id.from(_N, "CancelRunBatchRequest"),
     type = "structure",
     members = {
         batchId = schema.new({
@@ -2636,12 +2636,12 @@ M.CancelRunBatchInput = schema.new({
 })
 
 M.CancelRunBatchOutput = schema.new({
-    id = id.from(_N, "CancelRunBatchOutput"),
+    id = id.from(_N, "CancelRunBatchResponse"),
     type = "structure",
 })
 
 M.CancelVariantImportJobInput = schema.new({
-    id = id.from(_N, "CancelVariantImportJobInput"),
+    id = id.from(_N, "CancelVariantImportRequest"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -2658,7 +2658,7 @@ M.CancelVariantImportJobInput = schema.new({
 })
 
 M.CancelVariantImportJobOutput = schema.new({
-    id = id.from(_N, "CancelVariantImportJobOutput"),
+    id = id.from(_N, "CancelVariantImportResponse"),
     type = "structure",
 })
 
@@ -2697,7 +2697,7 @@ M.CompleteReadSetUploadPartListItem = schema.new({
 })
 
 M.CompleteMultipartReadSetUploadInput = schema.new({
-    id = id.from(_N, "CompleteMultipartReadSetUploadInput"),
+    id = id.from(_N, "CompleteMultipartReadSetUploadRequest"),
     type = "structure",
     members = {
         sequenceStoreId = schema.new({
@@ -2734,7 +2734,7 @@ M.CompleteMultipartReadSetUploadInput = schema.new({
 })
 
 M.CompleteMultipartReadSetUploadOutput = schema.new({
-    id = id.from(_N, "CompleteMultipartReadSetUploadOutput"),
+    id = id.from(_N, "CompleteMultipartReadSetUploadResponse"),
     type = "structure",
     members = {
         readSetId = schema.new({
@@ -2850,7 +2850,7 @@ M.RunConfigurations = schema.new({
 })
 
 M.CreateConfigurationInput = schema.new({
-    id = id.from(_N, "CreateConfigurationInput"),
+    id = id.from(_N, "CreateConfigurationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2941,7 +2941,7 @@ M.RunConfigurationsResponse = schema.new({
 })
 
 M.CreateConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateConfigurationOutput"),
+    id = id.from(_N, "CreateConfigurationResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3002,7 +3002,7 @@ M.CreateConfigurationOutput = schema.new({
 })
 
 M.DeleteConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteConfigurationInput"),
+    id = id.from(_N, "DeleteConfigurationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3019,12 +3019,12 @@ M.DeleteConfigurationInput = schema.new({
 })
 
 M.DeleteConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetConfigurationInput = schema.new({
-    id = id.from(_N, "GetConfigurationInput"),
+    id = id.from(_N, "GetConfigurationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3041,7 +3041,7 @@ M.GetConfigurationInput = schema.new({
 })
 
 M.GetConfigurationOutput = schema.new({
-    id = id.from(_N, "GetConfigurationOutput"),
+    id = id.from(_N, "GetConfigurationResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3102,7 +3102,7 @@ M.GetConfigurationOutput = schema.new({
 })
 
 M.ListConfigurationsInput = schema.new({
-    id = id.from(_N, "ListConfigurationsInput"),
+    id = id.from(_N, "ListConfigurationsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -3127,7 +3127,7 @@ M.ListConfigurationsInput = schema.new({
 })
 
 M.ListConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListConfigurationsOutput"),
+    id = id.from(_N, "ListConfigurationsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -3218,7 +3218,7 @@ M.ContainerRegistryMap = schema.new({
 })
 
 M.CreateMultipartReadSetUploadInput = schema.new({
-    id = id.from(_N, "CreateMultipartReadSetUploadInput"),
+    id = id.from(_N, "CreateMultipartReadSetUploadRequest"),
     type = "structure",
     members = {
         sequenceStoreId = schema.new({
@@ -3303,7 +3303,7 @@ M.CreateMultipartReadSetUploadInput = schema.new({
 })
 
 M.CreateMultipartReadSetUploadOutput = schema.new({
-    id = id.from(_N, "CreateMultipartReadSetUploadOutput"),
+    id = id.from(_N, "CreateMultipartReadSetUploadResponse"),
     type = "structure",
     members = {
         sequenceStoreId = schema.new({
@@ -3400,7 +3400,7 @@ M.CreateMultipartReadSetUploadOutput = schema.new({
 })
 
 M.CreateReferenceStoreInput = schema.new({
-    id = id.from(_N, "CreateReferenceStoreInput"),
+    id = id.from(_N, "CreateReferenceStoreRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3443,7 +3443,7 @@ M.CreateReferenceStoreInput = schema.new({
 })
 
 M.CreateReferenceStoreOutput = schema.new({
-    id = id.from(_N, "CreateReferenceStoreOutput"),
+    id = id.from(_N, "CreateReferenceStoreResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -3497,7 +3497,7 @@ M.CreateReferenceStoreOutput = schema.new({
 })
 
 M.CreateRunCacheInput = schema.new({
-    id = id.from(_N, "CreateRunCacheInput"),
+    id = id.from(_N, "CreateRunCacheRequest"),
     type = "structure",
     members = {
         cacheBehavior = schema.new({
@@ -3555,7 +3555,7 @@ M.CreateRunCacheInput = schema.new({
 })
 
 M.CreateRunCacheOutput = schema.new({
-    id = id.from(_N, "CreateRunCacheOutput"),
+    id = id.from(_N, "CreateRunCacheResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3588,7 +3588,7 @@ M.CreateRunCacheOutput = schema.new({
 })
 
 M.CreateRunGroupInput = schema.new({
-    id = id.from(_N, "CreateRunGroupInput"),
+    id = id.from(_N, "CreateRunGroupRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3643,7 +3643,7 @@ M.CreateRunGroupInput = schema.new({
 })
 
 M.CreateRunGroupOutput = schema.new({
-    id = id.from(_N, "CreateRunGroupOutput"),
+    id = id.from(_N, "CreateRunGroupResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3683,7 +3683,7 @@ M.S3AccessConfig = schema.new({
 })
 
 M.CreateSequenceStoreInput = schema.new({
-    id = id.from(_N, "CreateSequenceStoreInput"),
+    id = id.from(_N, "CreateSequenceStoreRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3780,7 +3780,7 @@ M.SequenceStoreS3Access = schema.new({
 })
 
 M.CreateSequenceStoreOutput = schema.new({
-    id = id.from(_N, "CreateSequenceStoreOutput"),
+    id = id.from(_N, "CreateSequenceStoreResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -3872,7 +3872,7 @@ M.CreateSequenceStoreOutput = schema.new({
 })
 
 M.CreateShareInput = schema.new({
-    id = id.from(_N, "CreateShareInput"),
+    id = id.from(_N, "CreateShareRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3903,7 +3903,7 @@ M.CreateShareInput = schema.new({
 })
 
 M.CreateShareOutput = schema.new({
-    id = id.from(_N, "CreateShareOutput"),
+    id = id.from(_N, "CreateShareResponse"),
     type = "structure",
     members = {
         shareId = schema.new({
@@ -3928,7 +3928,7 @@ M.CreateShareOutput = schema.new({
 })
 
 M.CreateVariantStoreInput = schema.new({
-    id = id.from(_N, "CreateVariantStoreInput"),
+    id = id.from(_N, "CreateVariantStoreRequest"),
     type = "structure",
     members = {
         reference = schema.new({
@@ -3972,7 +3972,7 @@ M.CreateVariantStoreInput = schema.new({
 })
 
 M.CreateVariantStoreOutput = schema.new({
-    id = id.from(_N, "CreateVariantStoreOutput"),
+    id = id.from(_N, "CreateVariantStoreResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4109,7 +4109,7 @@ M.WorkflowParameter = schema.new({
 })
 
 M.CreateWorkflowInput = schema.new({
-    id = id.from(_N, "CreateWorkflowInput"),
+    id = id.from(_N, "CreateWorkflowRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4249,7 +4249,7 @@ M.CreateWorkflowInput = schema.new({
 })
 
 M.CreateWorkflowOutput = schema.new({
-    id = id.from(_N, "CreateWorkflowOutput"),
+    id = id.from(_N, "CreateWorkflowResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4288,7 +4288,7 @@ M.CreateWorkflowOutput = schema.new({
 })
 
 M.CreateWorkflowVersionInput = schema.new({
-    id = id.from(_N, "CreateWorkflowVersionInput"),
+    id = id.from(_N, "CreateWorkflowVersionRequest"),
     type = "structure",
     members = {
         workflowId = schema.new({
@@ -4441,7 +4441,7 @@ M.CreateWorkflowVersionInput = schema.new({
 })
 
 M.CreateWorkflowVersionOutput = schema.new({
-    id = id.from(_N, "CreateWorkflowVersionOutput"),
+    id = id.from(_N, "CreateWorkflowVersionResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4659,7 +4659,7 @@ M.DefinitionRepositoryDetails = schema.new({
 })
 
 M.DeleteBatchInput = schema.new({
-    id = id.from(_N, "DeleteBatchInput"),
+    id = id.from(_N, "DeleteBatchRequest"),
     type = "structure",
     members = {
         batchId = schema.new({
@@ -4676,12 +4676,12 @@ M.DeleteBatchInput = schema.new({
 })
 
 M.DeleteBatchOutput = schema.new({
-    id = id.from(_N, "DeleteBatchOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteReferenceInput = schema.new({
-    id = id.from(_N, "DeleteReferenceInput"),
+    id = id.from(_N, "DeleteReferenceRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4708,12 +4708,12 @@ M.DeleteReferenceInput = schema.new({
 })
 
 M.DeleteReferenceOutput = schema.new({
-    id = id.from(_N, "DeleteReferenceOutput"),
+    id = id.from(_N, "DeleteReferenceResponse"),
     type = "structure",
 })
 
 M.DeleteReferenceStoreInput = schema.new({
-    id = id.from(_N, "DeleteReferenceStoreInput"),
+    id = id.from(_N, "DeleteReferenceStoreRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4730,12 +4730,12 @@ M.DeleteReferenceStoreInput = schema.new({
 })
 
 M.DeleteReferenceStoreOutput = schema.new({
-    id = id.from(_N, "DeleteReferenceStoreOutput"),
+    id = id.from(_N, "DeleteReferenceStoreResponse"),
     type = "structure",
 })
 
 M.DeleteRunInput = schema.new({
-    id = id.from(_N, "DeleteRunInput"),
+    id = id.from(_N, "DeleteRunRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4752,12 +4752,12 @@ M.DeleteRunInput = schema.new({
 })
 
 M.DeleteRunOutput = schema.new({
-    id = id.from(_N, "DeleteRunOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRunBatchInput = schema.new({
-    id = id.from(_N, "DeleteRunBatchInput"),
+    id = id.from(_N, "DeleteRunBatchRequest"),
     type = "structure",
     members = {
         batchId = schema.new({
@@ -4773,12 +4773,12 @@ M.DeleteRunBatchInput = schema.new({
 })
 
 M.DeleteRunBatchOutput = schema.new({
-    id = id.from(_N, "DeleteRunBatchOutput"),
+    id = id.from(_N, "DeleteRunBatchResponse"),
     type = "structure",
 })
 
 M.DeleteRunCacheInput = schema.new({
-    id = id.from(_N, "DeleteRunCacheInput"),
+    id = id.from(_N, "DeleteRunCacheRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4795,12 +4795,12 @@ M.DeleteRunCacheInput = schema.new({
 })
 
 M.DeleteRunCacheOutput = schema.new({
-    id = id.from(_N, "DeleteRunCacheOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRunGroupInput = schema.new({
-    id = id.from(_N, "DeleteRunGroupInput"),
+    id = id.from(_N, "DeleteRunGroupRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4817,12 +4817,12 @@ M.DeleteRunGroupInput = schema.new({
 })
 
 M.DeleteRunGroupOutput = schema.new({
-    id = id.from(_N, "DeleteRunGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteS3AccessPolicyInput = schema.new({
-    id = id.from(_N, "DeleteS3AccessPolicyInput"),
+    id = id.from(_N, "DeleteS3AccessPolicyRequest"),
     type = "structure",
     members = {
         s3AccessPointArn = schema.new({
@@ -4839,12 +4839,12 @@ M.DeleteS3AccessPolicyInput = schema.new({
 })
 
 M.DeleteS3AccessPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteS3AccessPolicyOutput"),
+    id = id.from(_N, "DeleteS3AccessPolicyResponse"),
     type = "structure",
 })
 
 M.DeleteSequenceStoreInput = schema.new({
-    id = id.from(_N, "DeleteSequenceStoreInput"),
+    id = id.from(_N, "DeleteSequenceStoreRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4861,12 +4861,12 @@ M.DeleteSequenceStoreInput = schema.new({
 })
 
 M.DeleteSequenceStoreOutput = schema.new({
-    id = id.from(_N, "DeleteSequenceStoreOutput"),
+    id = id.from(_N, "DeleteSequenceStoreResponse"),
     type = "structure",
 })
 
 M.DeleteShareInput = schema.new({
-    id = id.from(_N, "DeleteShareInput"),
+    id = id.from(_N, "DeleteShareRequest"),
     type = "structure",
     members = {
         shareId = schema.new({
@@ -4883,7 +4883,7 @@ M.DeleteShareInput = schema.new({
 })
 
 M.DeleteShareOutput = schema.new({
-    id = id.from(_N, "DeleteShareOutput"),
+    id = id.from(_N, "DeleteShareResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -4896,7 +4896,7 @@ M.DeleteShareOutput = schema.new({
 })
 
 M.DeleteVariantStoreInput = schema.new({
-    id = id.from(_N, "DeleteVariantStoreInput"),
+    id = id.from(_N, "DeleteVariantStoreRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4923,7 +4923,7 @@ M.DeleteVariantStoreInput = schema.new({
 })
 
 M.DeleteVariantStoreOutput = schema.new({
-    id = id.from(_N, "DeleteVariantStoreOutput"),
+    id = id.from(_N, "DeleteVariantStoreResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -4939,7 +4939,7 @@ M.DeleteVariantStoreOutput = schema.new({
 })
 
 M.DeleteWorkflowInput = schema.new({
-    id = id.from(_N, "DeleteWorkflowInput"),
+    id = id.from(_N, "DeleteWorkflowRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -4956,12 +4956,12 @@ M.DeleteWorkflowInput = schema.new({
 })
 
 M.DeleteWorkflowOutput = schema.new({
-    id = id.from(_N, "DeleteWorkflowOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteWorkflowVersionInput = schema.new({
-    id = id.from(_N, "DeleteWorkflowVersionInput"),
+    id = id.from(_N, "DeleteWorkflowVersionRequest"),
     type = "structure",
     members = {
         workflowId = schema.new({
@@ -4988,7 +4988,7 @@ M.DeleteWorkflowVersionInput = schema.new({
 })
 
 M.DeleteWorkflowVersionOutput = schema.new({
-    id = id.from(_N, "DeleteWorkflowVersionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5231,7 +5231,7 @@ M.Filter = schema.new({
 })
 
 M.GetBatchInput = schema.new({
-    id = id.from(_N, "GetBatchInput"),
+    id = id.from(_N, "GetBatchRequest"),
     type = "structure",
     members = {
         batchId = schema.new({
@@ -5352,7 +5352,7 @@ M.SubmissionSummary = schema.new({
 })
 
 M.GetBatchOutput = schema.new({
-    id = id.from(_N, "GetBatchOutput"),
+    id = id.from(_N, "GetBatchResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -5466,7 +5466,7 @@ M.GetBatchOutput = schema.new({
 })
 
 M.GetReadSetInput = schema.new({
-    id = id.from(_N, "GetReadSetInput"),
+    id = id.from(_N, "GetReadSetRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -5512,7 +5512,7 @@ M.GetReadSetInput = schema.new({
 })
 
 M.GetReadSetOutput = schema.new({
-    id = id.from(_N, "GetReadSetOutput"),
+    id = id.from(_N, "GetReadSetResponse"),
     type = "structure",
     members = {
         payload = schema.new({
@@ -5548,7 +5548,7 @@ M.RangeNotSatisfiableException = schema.new({
 })
 
 M.GetReadSetActivationJobInput = schema.new({
-    id = id.from(_N, "GetReadSetActivationJobInput"),
+    id = id.from(_N, "GetReadSetActivationJobRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -5575,7 +5575,7 @@ M.GetReadSetActivationJobInput = schema.new({
 })
 
 M.GetReadSetActivationJobOutput = schema.new({
-    id = id.from(_N, "GetReadSetActivationJobOutput"),
+    id = id.from(_N, "GetReadSetActivationJobResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -5641,7 +5641,7 @@ M.GetReadSetActivationJobOutput = schema.new({
 })
 
 M.GetReadSetExportJobInput = schema.new({
-    id = id.from(_N, "GetReadSetExportJobInput"),
+    id = id.from(_N, "GetReadSetExportJobRequest"),
     type = "structure",
     members = {
         sequenceStoreId = schema.new({
@@ -5668,7 +5668,7 @@ M.GetReadSetExportJobInput = schema.new({
 })
 
 M.GetReadSetExportJobOutput = schema.new({
-    id = id.from(_N, "GetReadSetExportJobOutput"),
+    id = id.from(_N, "GetReadSetExportJobResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -5743,7 +5743,7 @@ M.GetReadSetExportJobOutput = schema.new({
 })
 
 M.GetReadSetImportJobInput = schema.new({
-    id = id.from(_N, "GetReadSetImportJobInput"),
+    id = id.from(_N, "GetReadSetImportJobRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -5889,7 +5889,7 @@ M.ImportReadSetSourceItem = schema.new({
 })
 
 M.GetReadSetImportJobOutput = schema.new({
-    id = id.from(_N, "GetReadSetImportJobOutput"),
+    id = id.from(_N, "GetReadSetImportJobResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -5967,7 +5967,7 @@ M.GetReadSetImportJobOutput = schema.new({
 })
 
 M.GetReadSetMetadataInput = schema.new({
-    id = id.from(_N, "GetReadSetMetadataInput"),
+    id = id.from(_N, "GetReadSetMetadataRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6053,7 +6053,7 @@ M.SequenceInformation = schema.new({
 })
 
 M.GetReadSetMetadataOutput = schema.new({
-    id = id.from(_N, "GetReadSetMetadataOutput"),
+    id = id.from(_N, "GetReadSetMetadataResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6184,7 +6184,7 @@ M.GetReadSetMetadataOutput = schema.new({
 })
 
 M.GetReferenceInput = schema.new({
-    id = id.from(_N, "GetReferenceInput"),
+    id = id.from(_N, "GetReferenceRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6239,7 +6239,7 @@ M.GetReferenceInput = schema.new({
 })
 
 M.GetReferenceOutput = schema.new({
-    id = id.from(_N, "GetReferenceOutput"),
+    id = id.from(_N, "GetReferenceResponse"),
     type = "structure",
     members = {
         payload = schema.new({
@@ -6256,7 +6256,7 @@ M.GetReferenceOutput = schema.new({
 })
 
 M.GetReferenceImportJobInput = schema.new({
-    id = id.from(_N, "GetReferenceImportJobInput"),
+    id = id.from(_N, "GetReferenceImportJobRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6337,7 +6337,7 @@ M.ImportReferenceSourceItem = schema.new({
 })
 
 M.GetReferenceImportJobOutput = schema.new({
-    id = id.from(_N, "GetReferenceImportJobOutput"),
+    id = id.from(_N, "GetReferenceImportJobResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6415,7 +6415,7 @@ M.GetReferenceImportJobOutput = schema.new({
 })
 
 M.GetReferenceMetadataInput = schema.new({
-    id = id.from(_N, "GetReferenceMetadataInput"),
+    id = id.from(_N, "GetReferenceMetadataRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6463,7 +6463,7 @@ M.ReferenceFiles = schema.new({
 })
 
 M.GetReferenceMetadataOutput = schema.new({
-    id = id.from(_N, "GetReferenceMetadataOutput"),
+    id = id.from(_N, "GetReferenceMetadataResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6563,7 +6563,7 @@ M.GetReferenceMetadataOutput = schema.new({
 })
 
 M.GetReferenceStoreInput = schema.new({
-    id = id.from(_N, "GetReferenceStoreInput"),
+    id = id.from(_N, "GetReferenceStoreRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6580,7 +6580,7 @@ M.GetReferenceStoreInput = schema.new({
 })
 
 M.GetReferenceStoreOutput = schema.new({
-    id = id.from(_N, "GetReferenceStoreOutput"),
+    id = id.from(_N, "GetReferenceStoreResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6634,7 +6634,7 @@ M.GetReferenceStoreOutput = schema.new({
 })
 
 M.GetRunInput = schema.new({
-    id = id.from(_N, "GetRunInput"),
+    id = id.from(_N, "GetRunRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6680,7 +6680,7 @@ M.RunLogLocation = schema.new({
 })
 
 M.GetRunOutput = schema.new({
-    id = id.from(_N, "GetRunOutput"),
+    id = id.from(_N, "GetRunResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -6943,7 +6943,7 @@ M.GetRunOutput = schema.new({
 })
 
 M.GetRunCacheInput = schema.new({
-    id = id.from(_N, "GetRunCacheInput"),
+    id = id.from(_N, "GetRunCacheRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6960,7 +6960,7 @@ M.GetRunCacheInput = schema.new({
 })
 
 M.GetRunCacheOutput = schema.new({
-    id = id.from(_N, "GetRunCacheOutput"),
+    id = id.from(_N, "GetRunCacheResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -7032,7 +7032,7 @@ M.GetRunCacheOutput = schema.new({
 })
 
 M.GetRunGroupInput = schema.new({
-    id = id.from(_N, "GetRunGroupInput"),
+    id = id.from(_N, "GetRunGroupRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -7049,7 +7049,7 @@ M.GetRunGroupInput = schema.new({
 })
 
 M.GetRunGroupOutput = schema.new({
-    id = id.from(_N, "GetRunGroupOutput"),
+    id = id.from(_N, "GetRunGroupResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -7115,7 +7115,7 @@ M.GetRunGroupOutput = schema.new({
 })
 
 M.GetRunTaskInput = schema.new({
-    id = id.from(_N, "GetRunTaskInput"),
+    id = id.from(_N, "GetRunTaskRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -7167,7 +7167,7 @@ M.ImageDetails = schema.new({
 })
 
 M.GetRunTaskOutput = schema.new({
-    id = id.from(_N, "GetRunTaskOutput"),
+    id = id.from(_N, "GetRunTaskResponse"),
     type = "structure",
     members = {
         taskId = schema.new({
@@ -7280,7 +7280,7 @@ M.GetRunTaskOutput = schema.new({
 })
 
 M.GetS3AccessPolicyInput = schema.new({
-    id = id.from(_N, "GetS3AccessPolicyInput"),
+    id = id.from(_N, "GetS3AccessPolicyRequest"),
     type = "structure",
     members = {
         s3AccessPointArn = schema.new({
@@ -7297,7 +7297,7 @@ M.GetS3AccessPolicyInput = schema.new({
 })
 
 M.GetS3AccessPolicyOutput = schema.new({
-    id = id.from(_N, "GetS3AccessPolicyOutput"),
+    id = id.from(_N, "GetS3AccessPolicyResponse"),
     type = "structure",
     members = {
         s3AccessPointArn = schema.new({
@@ -7344,7 +7344,7 @@ M.GetS3AccessPolicyOutput = schema.new({
 })
 
 M.GetSequenceStoreInput = schema.new({
-    id = id.from(_N, "GetSequenceStoreInput"),
+    id = id.from(_N, "GetSequenceStoreRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -7361,7 +7361,7 @@ M.GetSequenceStoreInput = schema.new({
 })
 
 M.GetSequenceStoreOutput = schema.new({
-    id = id.from(_N, "GetSequenceStoreOutput"),
+    id = id.from(_N, "GetSequenceStoreResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -7462,7 +7462,7 @@ M.GetSequenceStoreOutput = schema.new({
 })
 
 M.GetShareInput = schema.new({
-    id = id.from(_N, "GetShareInput"),
+    id = id.from(_N, "GetShareRequest"),
     type = "structure",
     members = {
         shareId = schema.new({
@@ -7552,7 +7552,7 @@ M.ShareDetails = schema.new({
 })
 
 M.GetShareOutput = schema.new({
-    id = id.from(_N, "GetShareOutput"),
+    id = id.from(_N, "GetShareResponse"),
     type = "structure",
     members = {
         share = schema.new({
@@ -7566,7 +7566,7 @@ M.GetShareOutput = schema.new({
 })
 
 M.GetVariantImportJobInput = schema.new({
-    id = id.from(_N, "GetVariantImportJobInput"),
+    id = id.from(_N, "GetVariantImportRequest"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -7614,7 +7614,7 @@ M.VariantImportItemDetail = schema.new({
 })
 
 M.GetVariantImportJobOutput = schema.new({
-    id = id.from(_N, "GetVariantImportJobOutput"),
+    id = id.from(_N, "GetVariantImportResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -7729,7 +7729,7 @@ M.GetVariantImportJobOutput = schema.new({
 })
 
 M.GetVariantStoreInput = schema.new({
-    id = id.from(_N, "GetVariantStoreInput"),
+    id = id.from(_N, "GetVariantStoreRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -7746,7 +7746,7 @@ M.GetVariantStoreInput = schema.new({
 })
 
 M.GetVariantStoreOutput = schema.new({
-    id = id.from(_N, "GetVariantStoreOutput"),
+    id = id.from(_N, "GetVariantStoreResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -7873,7 +7873,7 @@ M.GetVariantStoreOutput = schema.new({
 })
 
 M.GetWorkflowInput = schema.new({
-    id = id.from(_N, "GetWorkflowInput"),
+    id = id.from(_N, "GetWorkflowRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -7918,7 +7918,7 @@ M.GetWorkflowInput = schema.new({
 })
 
 M.GetWorkflowOutput = schema.new({
-    id = id.from(_N, "GetWorkflowOutput"),
+    id = id.from(_N, "GetWorkflowResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -8074,7 +8074,7 @@ M.GetWorkflowOutput = schema.new({
 })
 
 M.GetWorkflowVersionInput = schema.new({
-    id = id.from(_N, "GetWorkflowVersionInput"),
+    id = id.from(_N, "GetWorkflowVersionRequest"),
     type = "structure",
     members = {
         workflowId = schema.new({
@@ -8129,7 +8129,7 @@ M.GetWorkflowVersionInput = schema.new({
 })
 
 M.GetWorkflowVersionOutput = schema.new({
-    id = id.from(_N, "GetWorkflowVersionOutput"),
+    id = id.from(_N, "GetWorkflowVersionResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -8477,7 +8477,7 @@ M.ImportReferenceJobItem = schema.new({
 })
 
 M.ListBatchInput = schema.new({
-    id = id.from(_N, "ListBatchInput"),
+    id = id.from(_N, "ListBatchRequest"),
     type = "structure",
     members = {
         maxItems = schema.new({
@@ -8529,7 +8529,7 @@ M.ListBatchInput = schema.new({
 })
 
 M.ListBatchOutput = schema.new({
-    id = id.from(_N, "ListBatchOutput"),
+    id = id.from(_N, "ListBatchResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -8549,7 +8549,7 @@ M.ListBatchOutput = schema.new({
 })
 
 M.ListMultipartReadSetUploadsInput = schema.new({
-    id = id.from(_N, "ListMultipartReadSetUploadsInput"),
+    id = id.from(_N, "ListMultipartReadSetUploadsRequest"),
     type = "structure",
     members = {
         sequenceStoreId = schema.new({
@@ -8684,7 +8684,7 @@ M.MultipartReadSetUploadListItem = schema.new({
 })
 
 M.ListMultipartReadSetUploadsOutput = schema.new({
-    id = id.from(_N, "ListMultipartReadSetUploadsOutput"),
+    id = id.from(_N, "ListMultipartReadSetUploadsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -8704,7 +8704,7 @@ M.ListMultipartReadSetUploadsOutput = schema.new({
 })
 
 M.ListReadSetActivationJobsInput = schema.new({
-    id = id.from(_N, "ListReadSetActivationJobsInput"),
+    id = id.from(_N, "ListReadSetActivationJobsRequest"),
     type = "structure",
     members = {
         sequenceStoreId = schema.new({
@@ -8746,7 +8746,7 @@ M.ListReadSetActivationJobsInput = schema.new({
 })
 
 M.ListReadSetActivationJobsOutput = schema.new({
-    id = id.from(_N, "ListReadSetActivationJobsOutput"),
+    id = id.from(_N, "ListReadSetActivationJobsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -8766,7 +8766,7 @@ M.ListReadSetActivationJobsOutput = schema.new({
 })
 
 M.ListReadSetExportJobsInput = schema.new({
-    id = id.from(_N, "ListReadSetExportJobsInput"),
+    id = id.from(_N, "ListReadSetExportJobsRequest"),
     type = "structure",
     members = {
         sequenceStoreId = schema.new({
@@ -8808,7 +8808,7 @@ M.ListReadSetExportJobsInput = schema.new({
 })
 
 M.ListReadSetExportJobsOutput = schema.new({
-    id = id.from(_N, "ListReadSetExportJobsOutput"),
+    id = id.from(_N, "ListReadSetExportJobsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -8828,7 +8828,7 @@ M.ListReadSetExportJobsOutput = schema.new({
 })
 
 M.ListReadSetImportJobsInput = schema.new({
-    id = id.from(_N, "ListReadSetImportJobsInput"),
+    id = id.from(_N, "ListReadSetImportJobsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -8870,7 +8870,7 @@ M.ListReadSetImportJobsInput = schema.new({
 })
 
 M.ListReadSetImportJobsOutput = schema.new({
-    id = id.from(_N, "ListReadSetImportJobsOutput"),
+    id = id.from(_N, "ListReadSetImportJobsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -8957,7 +8957,7 @@ M.ReadSetFilter = schema.new({
 })
 
 M.ListReadSetsInput = schema.new({
-    id = id.from(_N, "ListReadSetsInput"),
+    id = id.from(_N, "ListReadSetsRequest"),
     type = "structure",
     members = {
         sequenceStoreId = schema.new({
@@ -9117,7 +9117,7 @@ M.ReadSetListItem = schema.new({
 })
 
 M.ListReadSetsOutput = schema.new({
-    id = id.from(_N, "ListReadSetsOutput"),
+    id = id.from(_N, "ListReadSetsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -9165,7 +9165,7 @@ M.ReadSetUploadPartListFilter = schema.new({
 })
 
 M.ListReadSetUploadPartsInput = schema.new({
-    id = id.from(_N, "ListReadSetUploadPartsInput"),
+    id = id.from(_N, "ListReadSetUploadPartsRequest"),
     type = "structure",
     members = {
         sequenceStoreId = schema.new({
@@ -9287,7 +9287,7 @@ M.ReadSetUploadPartListItem = schema.new({
 })
 
 M.ListReadSetUploadPartsOutput = schema.new({
-    id = id.from(_N, "ListReadSetUploadPartsOutput"),
+    id = id.from(_N, "ListReadSetUploadPartsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -9307,7 +9307,7 @@ M.ListReadSetUploadPartsOutput = schema.new({
 })
 
 M.ListReferenceImportJobsInput = schema.new({
-    id = id.from(_N, "ListReferenceImportJobsInput"),
+    id = id.from(_N, "ListReferenceImportJobsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -9349,7 +9349,7 @@ M.ListReferenceImportJobsInput = schema.new({
 })
 
 M.ListReferenceImportJobsOutput = schema.new({
-    id = id.from(_N, "ListReferenceImportJobsOutput"),
+    id = id.from(_N, "ListReferenceImportJobsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -9406,7 +9406,7 @@ M.ReferenceFilter = schema.new({
 })
 
 M.ListReferencesInput = schema.new({
-    id = id.from(_N, "ListReferencesInput"),
+    id = id.from(_N, "ListReferencesRequest"),
     type = "structure",
     members = {
         referenceStoreId = schema.new({
@@ -9529,7 +9529,7 @@ M.ReferenceListItem = schema.new({
 })
 
 M.ListReferencesOutput = schema.new({
-    id = id.from(_N, "ListReferencesOutput"),
+    id = id.from(_N, "ListReferencesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -9583,7 +9583,7 @@ M.ReferenceStoreFilter = schema.new({
 })
 
 M.ListReferenceStoresInput = schema.new({
-    id = id.from(_N, "ListReferenceStoresInput"),
+    id = id.from(_N, "ListReferenceStoresRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -9669,7 +9669,7 @@ M.ReferenceStoreDetail = schema.new({
 })
 
 M.ListReferenceStoresOutput = schema.new({
-    id = id.from(_N, "ListReferenceStoresOutput"),
+    id = id.from(_N, "ListReferenceStoresResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -9692,7 +9692,7 @@ M.ListReferenceStoresOutput = schema.new({
 })
 
 M.ListRunCachesInput = schema.new({
-    id = id.from(_N, "ListRunCachesInput"),
+    id = id.from(_N, "ListRunCachesRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -9769,7 +9769,7 @@ M.RunCacheListItem = schema.new({
 })
 
 M.ListRunCachesOutput = schema.new({
-    id = id.from(_N, "ListRunCachesOutput"),
+    id = id.from(_N, "ListRunCachesResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -9789,7 +9789,7 @@ M.ListRunCachesOutput = schema.new({
 })
 
 M.ListRunGroupsInput = schema.new({
-    id = id.from(_N, "ListRunGroupsInput"),
+    id = id.from(_N, "ListRunGroupsRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -9881,7 +9881,7 @@ M.RunGroupListItem = schema.new({
 })
 
 M.ListRunGroupsOutput = schema.new({
-    id = id.from(_N, "ListRunGroupsOutput"),
+    id = id.from(_N, "ListRunGroupsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -9901,7 +9901,7 @@ M.ListRunGroupsOutput = schema.new({
 })
 
 M.ListRunsInput = schema.new({
-    id = id.from(_N, "ListRunsInput"),
+    id = id.from(_N, "ListRunsRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -10056,7 +10056,7 @@ M.RunListItem = schema.new({
 })
 
 M.ListRunsOutput = schema.new({
-    id = id.from(_N, "ListRunsOutput"),
+    id = id.from(_N, "ListRunsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -10076,7 +10076,7 @@ M.ListRunsOutput = schema.new({
 })
 
 M.ListRunsInBatchInput = schema.new({
-    id = id.from(_N, "ListRunsInBatchInput"),
+    id = id.from(_N, "ListRunsInBatchRequest"),
     type = "structure",
     members = {
         batchId = schema.new({
@@ -10187,7 +10187,7 @@ M.RunBatchListItem = schema.new({
 })
 
 M.ListRunsInBatchOutput = schema.new({
-    id = id.from(_N, "ListRunsInBatchOutput"),
+    id = id.from(_N, "ListRunsInBatchResponse"),
     type = "structure",
     members = {
         runs = schema.new({
@@ -10207,7 +10207,7 @@ M.ListRunsInBatchOutput = schema.new({
 })
 
 M.ListRunTasksInput = schema.new({
-    id = id.from(_N, "ListRunTasksInput"),
+    id = id.from(_N, "ListRunTasksRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -10339,7 +10339,7 @@ M.TaskListItem = schema.new({
 })
 
 M.ListRunTasksOutput = schema.new({
-    id = id.from(_N, "ListRunTasksOutput"),
+    id = id.from(_N, "ListRunTasksResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -10414,7 +10414,7 @@ M.SequenceStoreFilter = schema.new({
 })
 
 M.ListSequenceStoresInput = schema.new({
-    id = id.from(_N, "ListSequenceStoresInput"),
+    id = id.from(_N, "ListSequenceStoresRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -10533,7 +10533,7 @@ M.SequenceStoreDetail = schema.new({
 })
 
 M.ListSequenceStoresOutput = schema.new({
-    id = id.from(_N, "ListSequenceStoresOutput"),
+    id = id.from(_N, "ListSequenceStoresResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -10556,7 +10556,7 @@ M.ListSequenceStoresOutput = schema.new({
 })
 
 M.ListSharesInput = schema.new({
-    id = id.from(_N, "ListSharesInput"),
+    id = id.from(_N, "ListSharesRequest"),
     type = "structure",
     members = {
         resourceOwner = schema.new({
@@ -10597,7 +10597,7 @@ M.ListSharesInput = schema.new({
 })
 
 M.ListSharesOutput = schema.new({
-    id = id.from(_N, "ListSharesOutput"),
+    id = id.from(_N, "ListSharesResponse"),
     type = "structure",
     members = {
         shares = schema.new({
@@ -10620,7 +10620,7 @@ M.ListSharesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -10637,7 +10637,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -10674,7 +10674,7 @@ M.ListVariantImportJobsFilter = schema.new({
 })
 
 M.ListVariantImportJobsInput = schema.new({
-    id = id.from(_N, "ListVariantImportJobsInput"),
+    id = id.from(_N, "ListVariantImportJobsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -10808,7 +10808,7 @@ M.VariantImportJobItem = schema.new({
 })
 
 M.ListVariantImportJobsOutput = schema.new({
-    id = id.from(_N, "ListVariantImportJobsOutput"),
+    id = id.from(_N, "ListVariantImportJobsResponse"),
     type = "structure",
     members = {
         variantImportJobs = schema.new({
@@ -10841,7 +10841,7 @@ M.ListVariantStoresFilter = schema.new({
 })
 
 M.ListVariantStoresInput = schema.new({
-    id = id.from(_N, "ListVariantStoresInput"),
+    id = id.from(_N, "ListVariantStoresRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -10996,7 +10996,7 @@ M.VariantStoreItem = schema.new({
 })
 
 M.ListVariantStoresOutput = schema.new({
-    id = id.from(_N, "ListVariantStoresOutput"),
+    id = id.from(_N, "ListVariantStoresResponse"),
     type = "structure",
     members = {
         variantStores = schema.new({
@@ -11016,7 +11016,7 @@ M.ListVariantStoresOutput = schema.new({
 })
 
 M.ListWorkflowsInput = schema.new({
-    id = id.from(_N, "ListWorkflowsInput"),
+    id = id.from(_N, "ListWorkflowsRequest"),
     type = "structure",
     members = {
         type = schema.new({
@@ -11119,7 +11119,7 @@ M.WorkflowListItem = schema.new({
 })
 
 M.ListWorkflowsOutput = schema.new({
-    id = id.from(_N, "ListWorkflowsOutput"),
+    id = id.from(_N, "ListWorkflowsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -11139,7 +11139,7 @@ M.ListWorkflowsOutput = schema.new({
 })
 
 M.ListWorkflowVersionsInput = schema.new({
-    id = id.from(_N, "ListWorkflowVersionsInput"),
+    id = id.from(_N, "ListWorkflowVersionsRequest"),
     type = "structure",
     members = {
         workflowId = schema.new({
@@ -11258,7 +11258,7 @@ M.WorkflowVersionListItem = schema.new({
 })
 
 M.ListWorkflowVersionsOutput = schema.new({
-    id = id.from(_N, "ListWorkflowVersionsOutput"),
+    id = id.from(_N, "ListWorkflowVersionsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -11278,7 +11278,7 @@ M.ListWorkflowVersionsOutput = schema.new({
 })
 
 M.PutS3AccessPolicyInput = schema.new({
-    id = id.from(_N, "PutS3AccessPolicyInput"),
+    id = id.from(_N, "PutS3AccessPolicyRequest"),
     type = "structure",
     members = {
         s3AccessPointArn = schema.new({
@@ -11308,7 +11308,7 @@ M.PutS3AccessPolicyInput = schema.new({
 })
 
 M.PutS3AccessPolicyOutput = schema.new({
-    id = id.from(_N, "PutS3AccessPolicyOutput"),
+    id = id.from(_N, "PutS3AccessPolicyResponse"),
     type = "structure",
     members = {
         s3AccessPointArn = schema.new({
@@ -11372,7 +11372,7 @@ M.StartReferenceImportJobSourceItem = schema.new({
 })
 
 M.StartReferenceImportJobInput = schema.new({
-    id = id.from(_N, "StartReferenceImportJobInput"),
+    id = id.from(_N, "StartReferenceImportJobRequest"),
     type = "structure",
     members = {
         referenceStoreId = schema.new({
@@ -11414,7 +11414,7 @@ M.StartReferenceImportJobInput = schema.new({
 })
 
 M.StartReferenceImportJobOutput = schema.new({
-    id = id.from(_N, "StartReferenceImportJobOutput"),
+    id = id.from(_N, "StartReferenceImportJobResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -11467,7 +11467,7 @@ M.StartReferenceImportJobOutput = schema.new({
 })
 
 M.StartRunBatchInput = schema.new({
-    id = id.from(_N, "StartRunBatchInput"),
+    id = id.from(_N, "StartRunBatchRequest"),
     type = "structure",
     members = {
         batchName = schema.new({
@@ -11518,7 +11518,7 @@ M.StartRunBatchInput = schema.new({
 })
 
 M.StartRunBatchOutput = schema.new({
-    id = id.from(_N, "StartRunBatchOutput"),
+    id = id.from(_N, "StartRunBatchResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -11557,7 +11557,7 @@ M.StartRunBatchOutput = schema.new({
 })
 
 M.UpdateRunCacheInput = schema.new({
-    id = id.from(_N, "UpdateRunCacheInput"),
+    id = id.from(_N, "UpdateRunCacheRequest"),
     type = "structure",
     members = {
         cacheBehavior = schema.new({
@@ -11592,12 +11592,12 @@ M.UpdateRunCacheInput = schema.new({
 })
 
 M.UpdateRunCacheOutput = schema.new({
-    id = id.from(_N, "UpdateRunCacheOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateRunGroupInput = schema.new({
-    id = id.from(_N, "UpdateRunGroupInput"),
+    id = id.from(_N, "UpdateRunGroupRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -11644,12 +11644,12 @@ M.UpdateRunGroupInput = schema.new({
 })
 
 M.UpdateRunGroupOutput = schema.new({
-    id = id.from(_N, "UpdateRunGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StartRunInput = schema.new({
-    id = id.from(_N, "StartRunInput"),
+    id = id.from(_N, "StartRunRequest"),
     type = "structure",
     members = {
         workflowId = schema.new({
@@ -11794,7 +11794,7 @@ M.StartRunInput = schema.new({
 })
 
 M.StartRunOutput = schema.new({
-    id = id.from(_N, "StartRunOutput"),
+    id = id.from(_N, "StartRunResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -11868,7 +11868,7 @@ M.StartReadSetActivationJobSourceItem = schema.new({
 })
 
 M.StartReadSetActivationJobInput = schema.new({
-    id = id.from(_N, "StartReadSetActivationJobInput"),
+    id = id.from(_N, "StartReadSetActivationJobRequest"),
     type = "structure",
     members = {
         sequenceStoreId = schema.new({
@@ -11901,7 +11901,7 @@ M.StartReadSetActivationJobInput = schema.new({
 })
 
 M.StartReadSetActivationJobOutput = schema.new({
-    id = id.from(_N, "StartReadSetActivationJobOutput"),
+    id = id.from(_N, "StartReadSetActivationJobResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -11945,7 +11945,7 @@ M.StartReadSetActivationJobOutput = schema.new({
 })
 
 M.StartReadSetExportJobInput = schema.new({
-    id = id.from(_N, "StartReadSetExportJobInput"),
+    id = id.from(_N, "StartReadSetExportJobRequest"),
     type = "structure",
     members = {
         sequenceStoreId = schema.new({
@@ -11996,7 +11996,7 @@ M.StartReadSetExportJobInput = schema.new({
 })
 
 M.StartReadSetExportJobOutput = schema.new({
-    id = id.from(_N, "StartReadSetExportJobOutput"),
+    id = id.from(_N, "StartReadSetExportJobResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -12125,7 +12125,7 @@ M.StartReadSetImportJobSourceItem = schema.new({
 })
 
 M.StartReadSetImportJobInput = schema.new({
-    id = id.from(_N, "StartReadSetImportJobInput"),
+    id = id.from(_N, "StartReadSetImportJobRequest"),
     type = "structure",
     members = {
         sequenceStoreId = schema.new({
@@ -12167,7 +12167,7 @@ M.StartReadSetImportJobInput = schema.new({
 })
 
 M.StartReadSetImportJobOutput = schema.new({
-    id = id.from(_N, "StartReadSetImportJobOutput"),
+    id = id.from(_N, "StartReadSetImportJobResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -12220,7 +12220,7 @@ M.StartReadSetImportJobOutput = schema.new({
 })
 
 M.UpdateSequenceStoreInput = schema.new({
-    id = id.from(_N, "UpdateSequenceStoreInput"),
+    id = id.from(_N, "UpdateSequenceStoreRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -12278,7 +12278,7 @@ M.UpdateSequenceStoreInput = schema.new({
 })
 
 M.UpdateSequenceStoreOutput = schema.new({
-    id = id.from(_N, "UpdateSequenceStoreOutput"),
+    id = id.from(_N, "UpdateSequenceStoreResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -12379,7 +12379,7 @@ M.UpdateSequenceStoreOutput = schema.new({
 })
 
 M.UploadReadSetPartInput = schema.new({
-    id = id.from(_N, "UploadReadSetPartInput"),
+    id = id.from(_N, "UploadReadSetPartRequest"),
     type = "structure",
     members = {
         sequenceStoreId = schema.new({
@@ -12436,7 +12436,7 @@ M.UploadReadSetPartInput = schema.new({
 })
 
 M.UploadReadSetPartOutput = schema.new({
-    id = id.from(_N, "UploadReadSetPartOutput"),
+    id = id.from(_N, "UploadReadSetPartResponse"),
     type = "structure",
     members = {
         checksum = schema.new({
@@ -12452,7 +12452,7 @@ M.UploadReadSetPartOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -12480,12 +12480,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -12513,7 +12513,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -12534,7 +12534,7 @@ M.VariantImportItemSource = schema.new({
 })
 
 M.StartVariantImportJobInput = schema.new({
-    id = id.from(_N, "StartVariantImportJobInput"),
+    id = id.from(_N, "StartVariantImportRequest"),
     type = "structure",
     members = {
         destinationName = schema.new({
@@ -12586,7 +12586,7 @@ M.StartVariantImportJobInput = schema.new({
 })
 
 M.StartVariantImportJobOutput = schema.new({
-    id = id.from(_N, "StartVariantImportJobOutput"),
+    id = id.from(_N, "StartVariantImportResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -12602,7 +12602,7 @@ M.StartVariantImportJobOutput = schema.new({
 })
 
 M.UpdateVariantStoreInput = schema.new({
-    id = id.from(_N, "UpdateVariantStoreInput"),
+    id = id.from(_N, "UpdateVariantStoreRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -12625,7 +12625,7 @@ M.UpdateVariantStoreInput = schema.new({
 })
 
 M.UpdateVariantStoreOutput = schema.new({
-    id = id.from(_N, "UpdateVariantStoreOutput"),
+    id = id.from(_N, "UpdateVariantStoreResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -12704,7 +12704,7 @@ M.UpdateVariantStoreOutput = schema.new({
 })
 
 M.UpdateWorkflowInput = schema.new({
-    id = id.from(_N, "UpdateWorkflowInput"),
+    id = id.from(_N, "UpdateWorkflowRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -12754,12 +12754,12 @@ M.UpdateWorkflowInput = schema.new({
 })
 
 M.UpdateWorkflowOutput = schema.new({
-    id = id.from(_N, "UpdateWorkflowOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateWorkflowVersionInput = schema.new({
-    id = id.from(_N, "UpdateWorkflowVersionInput"),
+    id = id.from(_N, "UpdateWorkflowVersionRequest"),
     type = "structure",
     members = {
         workflowId = schema.new({
@@ -12813,8 +12813,22 @@ M.UpdateWorkflowVersionInput = schema.new({
 })
 
 M.UpdateWorkflowVersionOutput = schema.new({
-    id = id.from(_N, "UpdateWorkflowVersionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -367,7 +367,7 @@ M.QueriesConfig = schema.new({
 })
 
 M.AnalyzeDocumentInput = schema.new({
-    id = id.from(_N, "AnalyzeDocumentInput"),
+    id = id.from(_N, "AnalyzeDocumentRequest"),
     type = "structure",
     members = {
         Document = schema.new({
@@ -673,7 +673,7 @@ M.HumanLoopActivationOutput = schema.new({
 })
 
 M.AnalyzeDocumentOutput = schema.new({
-    id = id.from(_N, "AnalyzeDocumentOutput"),
+    id = id.from(_N, "AnalyzeDocumentResponse"),
     type = "structure",
     members = {
         DocumentMetadata = schema.new({
@@ -923,7 +923,7 @@ M.UnsupportedDocumentException = schema.new({
 })
 
 M.AnalyzeExpenseInput = schema.new({
-    id = id.from(_N, "AnalyzeExpenseInput"),
+    id = id.from(_N, "AnalyzeExpenseRequest"),
     type = "structure",
     members = {
         Document = schema.new({
@@ -1140,7 +1140,7 @@ M.ExpenseDocument = schema.new({
 })
 
 M.AnalyzeExpenseOutput = schema.new({
-    id = id.from(_N, "AnalyzeExpenseOutput"),
+    id = id.from(_N, "AnalyzeExpenseResponse"),
     type = "structure",
     members = {
         DocumentMetadata = schema.new({
@@ -1161,7 +1161,7 @@ M.AnalyzeExpenseOutput = schema.new({
 })
 
 M.AnalyzeIDInput = schema.new({
-    id = id.from(_N, "AnalyzeIDInput"),
+    id = id.from(_N, "AnalyzeIDRequest"),
     type = "structure",
     members = {
         DocumentPages = schema.new({
@@ -1274,7 +1274,7 @@ M.IdentityDocument = schema.new({
 })
 
 M.AnalyzeIDOutput = schema.new({
-    id = id.from(_N, "AnalyzeIDOutput"),
+    id = id.from(_N, "AnalyzeIDResponse"),
     type = "structure",
     members = {
         IdentityDocuments = schema.new({
@@ -1323,7 +1323,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateAdapterInput = schema.new({
-    id = id.from(_N, "CreateAdapterInput"),
+    id = id.from(_N, "CreateAdapterRequest"),
     type = "structure",
     members = {
         AdapterName = schema.new({
@@ -1378,7 +1378,7 @@ M.CreateAdapterInput = schema.new({
 })
 
 M.CreateAdapterOutput = schema.new({
-    id = id.from(_N, "CreateAdapterOutput"),
+    id = id.from(_N, "CreateAdapterResponse"),
     type = "structure",
     members = {
         AdapterId = schema.new({
@@ -1501,7 +1501,7 @@ M.OutputConfig = schema.new({
 })
 
 M.CreateAdapterVersionInput = schema.new({
-    id = id.from(_N, "CreateAdapterVersionInput"),
+    id = id.from(_N, "CreateAdapterVersionRequest"),
     type = "structure",
     members = {
         AdapterId = schema.new({
@@ -1560,7 +1560,7 @@ M.CreateAdapterVersionInput = schema.new({
 })
 
 M.CreateAdapterVersionOutput = schema.new({
-    id = id.from(_N, "CreateAdapterVersionOutput"),
+    id = id.from(_N, "CreateAdapterVersionResponse"),
     type = "structure",
     members = {
         AdapterId = schema.new({
@@ -1623,7 +1623,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DeleteAdapterInput = schema.new({
-    id = id.from(_N, "DeleteAdapterInput"),
+    id = id.from(_N, "DeleteAdapterRequest"),
     type = "structure",
     members = {
         AdapterId = schema.new({
@@ -1639,12 +1639,12 @@ M.DeleteAdapterInput = schema.new({
 })
 
 M.DeleteAdapterOutput = schema.new({
-    id = id.from(_N, "DeleteAdapterOutput"),
+    id = id.from(_N, "DeleteAdapterResponse"),
     type = "structure",
 })
 
 M.DeleteAdapterVersionInput = schema.new({
-    id = id.from(_N, "DeleteAdapterVersionInput"),
+    id = id.from(_N, "DeleteAdapterVersionRequest"),
     type = "structure",
     members = {
         AdapterId = schema.new({
@@ -1669,12 +1669,12 @@ M.DeleteAdapterVersionInput = schema.new({
 })
 
 M.DeleteAdapterVersionOutput = schema.new({
-    id = id.from(_N, "DeleteAdapterVersionOutput"),
+    id = id.from(_N, "DeleteAdapterVersionResponse"),
     type = "structure",
 })
 
 M.DetectDocumentTextInput = schema.new({
-    id = id.from(_N, "DetectDocumentTextInput"),
+    id = id.from(_N, "DetectDocumentTextRequest"),
     type = "structure",
     members = {
         Document = schema.new({
@@ -1691,7 +1691,7 @@ M.DetectDocumentTextInput = schema.new({
 })
 
 M.DetectDocumentTextOutput = schema.new({
-    id = id.from(_N, "DetectDocumentTextOutput"),
+    id = id.from(_N, "DetectDocumentTextResponse"),
     type = "structure",
     members = {
         DocumentMetadata = schema.new({
@@ -1940,7 +1940,7 @@ M.Extraction = schema.new({
 })
 
 M.GetAdapterInput = schema.new({
-    id = id.from(_N, "GetAdapterInput"),
+    id = id.from(_N, "GetAdapterRequest"),
     type = "structure",
     members = {
         AdapterId = schema.new({
@@ -1956,7 +1956,7 @@ M.GetAdapterInput = schema.new({
 })
 
 M.GetAdapterOutput = schema.new({
-    id = id.from(_N, "GetAdapterOutput"),
+    id = id.from(_N, "GetAdapterResponse"),
     type = "structure",
     members = {
         AdapterId = schema.new({
@@ -2008,7 +2008,7 @@ M.GetAdapterOutput = schema.new({
 })
 
 M.GetAdapterVersionInput = schema.new({
-    id = id.from(_N, "GetAdapterVersionInput"),
+    id = id.from(_N, "GetAdapterVersionRequest"),
     type = "structure",
     members = {
         AdapterId = schema.new({
@@ -2033,7 +2033,7 @@ M.GetAdapterVersionInput = schema.new({
 })
 
 M.GetAdapterVersionOutput = schema.new({
-    id = id.from(_N, "GetAdapterVersionOutput"),
+    id = id.from(_N, "GetAdapterVersionResponse"),
     type = "structure",
     members = {
         AdapterId = schema.new({
@@ -2112,7 +2112,7 @@ M.GetAdapterVersionOutput = schema.new({
 })
 
 M.GetDocumentAnalysisInput = schema.new({
-    id = id.from(_N, "GetDocumentAnalysisInput"),
+    id = id.from(_N, "GetDocumentAnalysisRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2160,7 +2160,7 @@ M.Warning = schema.new({
 })
 
 M.GetDocumentAnalysisOutput = schema.new({
-    id = id.from(_N, "GetDocumentAnalysisOutput"),
+    id = id.from(_N, "GetDocumentAnalysisResponse"),
     type = "structure",
     members = {
         DocumentMetadata = schema.new({
@@ -2234,7 +2234,7 @@ M.InvalidJobIdException = schema.new({
 })
 
 M.GetDocumentTextDetectionInput = schema.new({
-    id = id.from(_N, "GetDocumentTextDetectionInput"),
+    id = id.from(_N, "GetDocumentTextDetectionRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2262,7 +2262,7 @@ M.GetDocumentTextDetectionInput = schema.new({
 })
 
 M.GetDocumentTextDetectionOutput = schema.new({
-    id = id.from(_N, "GetDocumentTextDetectionOutput"),
+    id = id.from(_N, "GetDocumentTextDetectionResponse"),
     type = "structure",
     members = {
         DocumentMetadata = schema.new({
@@ -2314,7 +2314,7 @@ M.GetDocumentTextDetectionOutput = schema.new({
 })
 
 M.GetExpenseAnalysisInput = schema.new({
-    id = id.from(_N, "GetExpenseAnalysisInput"),
+    id = id.from(_N, "GetExpenseAnalysisRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2342,7 +2342,7 @@ M.GetExpenseAnalysisInput = schema.new({
 })
 
 M.GetExpenseAnalysisOutput = schema.new({
-    id = id.from(_N, "GetExpenseAnalysisOutput"),
+    id = id.from(_N, "GetExpenseAnalysisResponse"),
     type = "structure",
     members = {
         DocumentMetadata = schema.new({
@@ -2394,7 +2394,7 @@ M.GetExpenseAnalysisOutput = schema.new({
 })
 
 M.GetLendingAnalysisInput = schema.new({
-    id = id.from(_N, "GetLendingAnalysisInput"),
+    id = id.from(_N, "GetLendingAnalysisRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2495,7 +2495,7 @@ M.LendingResult = schema.new({
 })
 
 M.GetLendingAnalysisOutput = schema.new({
-    id = id.from(_N, "GetLendingAnalysisOutput"),
+    id = id.from(_N, "GetLendingAnalysisResponse"),
     type = "structure",
     members = {
         DocumentMetadata = schema.new({
@@ -2547,7 +2547,7 @@ M.GetLendingAnalysisOutput = schema.new({
 })
 
 M.GetLendingAnalysisSummaryInput = schema.new({
-    id = id.from(_N, "GetLendingAnalysisSummaryInput"),
+    id = id.from(_N, "GetLendingAnalysisSummaryRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2584,7 +2584,7 @@ M.LendingSummary = schema.new({
 })
 
 M.GetLendingAnalysisSummaryOutput = schema.new({
-    id = id.from(_N, "GetLendingAnalysisSummaryOutput"),
+    id = id.from(_N, "GetLendingAnalysisSummaryResponse"),
     type = "structure",
     members = {
         DocumentMetadata = schema.new({
@@ -2630,7 +2630,7 @@ M.GetLendingAnalysisSummaryOutput = schema.new({
 })
 
 M.ListAdaptersInput = schema.new({
-    id = id.from(_N, "ListAdaptersInput"),
+    id = id.from(_N, "ListAdaptersRequest"),
     type = "structure",
     members = {
         AfterCreationTime = schema.new({
@@ -2661,7 +2661,7 @@ M.ListAdaptersInput = schema.new({
 })
 
 M.ListAdaptersOutput = schema.new({
-    id = id.from(_N, "ListAdaptersOutput"),
+    id = id.from(_N, "ListAdaptersResponse"),
     type = "structure",
     members = {
         Adapters = schema.new({
@@ -2681,7 +2681,7 @@ M.ListAdaptersOutput = schema.new({
 })
 
 M.ListAdapterVersionsInput = schema.new({
-    id = id.from(_N, "ListAdapterVersionsInput"),
+    id = id.from(_N, "ListAdapterVersionsRequest"),
     type = "structure",
     members = {
         AdapterId = schema.new({
@@ -2718,7 +2718,7 @@ M.ListAdapterVersionsInput = schema.new({
 })
 
 M.ListAdapterVersionsOutput = schema.new({
-    id = id.from(_N, "ListAdapterVersionsOutput"),
+    id = id.from(_N, "ListAdapterVersionsResponse"),
     type = "structure",
     members = {
         AdapterVersions = schema.new({
@@ -2738,7 +2738,7 @@ M.ListAdapterVersionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2754,7 +2754,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2794,7 +2794,7 @@ M.NotificationChannel = schema.new({
 })
 
 M.StartDocumentAnalysisInput = schema.new({
-    id = id.from(_N, "StartDocumentAnalysisInput"),
+    id = id.from(_N, "StartDocumentAnalysisRequest"),
     type = "structure",
     members = {
         DocumentLocation = schema.new({
@@ -2867,7 +2867,7 @@ M.StartDocumentAnalysisInput = schema.new({
 })
 
 M.StartDocumentAnalysisOutput = schema.new({
-    id = id.from(_N, "StartDocumentAnalysisOutput"),
+    id = id.from(_N, "StartDocumentAnalysisResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2880,7 +2880,7 @@ M.StartDocumentAnalysisOutput = schema.new({
 })
 
 M.StartDocumentTextDetectionInput = schema.new({
-    id = id.from(_N, "StartDocumentTextDetectionInput"),
+    id = id.from(_N, "StartDocumentTextDetectionRequest"),
     type = "structure",
     members = {
         DocumentLocation = schema.new({
@@ -2929,7 +2929,7 @@ M.StartDocumentTextDetectionInput = schema.new({
 })
 
 M.StartDocumentTextDetectionOutput = schema.new({
-    id = id.from(_N, "StartDocumentTextDetectionOutput"),
+    id = id.from(_N, "StartDocumentTextDetectionResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2942,7 +2942,7 @@ M.StartDocumentTextDetectionOutput = schema.new({
 })
 
 M.StartExpenseAnalysisInput = schema.new({
-    id = id.from(_N, "StartExpenseAnalysisInput"),
+    id = id.from(_N, "StartExpenseAnalysisRequest"),
     type = "structure",
     members = {
         DocumentLocation = schema.new({
@@ -2991,7 +2991,7 @@ M.StartExpenseAnalysisInput = schema.new({
 })
 
 M.StartExpenseAnalysisOutput = schema.new({
-    id = id.from(_N, "StartExpenseAnalysisOutput"),
+    id = id.from(_N, "StartExpenseAnalysisResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -3004,7 +3004,7 @@ M.StartExpenseAnalysisOutput = schema.new({
 })
 
 M.StartLendingAnalysisInput = schema.new({
-    id = id.from(_N, "StartLendingAnalysisInput"),
+    id = id.from(_N, "StartLendingAnalysisRequest"),
     type = "structure",
     members = {
         DocumentLocation = schema.new({
@@ -3053,7 +3053,7 @@ M.StartLendingAnalysisInput = schema.new({
 })
 
 M.StartLendingAnalysisOutput = schema.new({
-    id = id.from(_N, "StartLendingAnalysisOutput"),
+    id = id.from(_N, "StartLendingAnalysisResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -3066,7 +3066,7 @@ M.StartLendingAnalysisOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -3093,12 +3093,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -3124,12 +3124,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAdapterInput = schema.new({
-    id = id.from(_N, "UpdateAdapterInput"),
+    id = id.from(_N, "UpdateAdapterRequest"),
     type = "structure",
     members = {
         AdapterId = schema.new({
@@ -3163,7 +3163,7 @@ M.UpdateAdapterInput = schema.new({
 })
 
 M.UpdateAdapterOutput = schema.new({
-    id = id.from(_N, "UpdateAdapterOutput"),
+    id = id.from(_N, "UpdateAdapterResponse"),
     type = "structure",
     members = {
         AdapterId = schema.new({
@@ -3205,5 +3205,19 @@ M.UpdateAdapterOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

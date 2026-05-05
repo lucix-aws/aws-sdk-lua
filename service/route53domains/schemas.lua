@@ -8,7 +8,7 @@ local _N = "com.amazonaws.route53domains"
 local M = {}
 
 M.AcceptDomainTransferFromAnotherAwsAccountInput = schema.new({
-    id = id.from(_N, "AcceptDomainTransferFromAnotherAwsAccountInput"),
+    id = id.from(_N, "AcceptDomainTransferFromAnotherAwsAccountRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -33,7 +33,7 @@ M.AcceptDomainTransferFromAnotherAwsAccountInput = schema.new({
 })
 
 M.AcceptDomainTransferFromAnotherAwsAccountOutput = schema.new({
-    id = id.from(_N, "AcceptDomainTransferFromAnotherAwsAccountOutput"),
+    id = id.from(_N, "AcceptDomainTransferFromAnotherAwsAccountResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -135,7 +135,7 @@ M.DnssecSigningAttributes = schema.new({
 })
 
 M.AssociateDelegationSignerToDomainInput = schema.new({
-    id = id.from(_N, "AssociateDelegationSignerToDomainInput"),
+    id = id.from(_N, "AssociateDelegationSignerToDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -161,7 +161,7 @@ M.AssociateDelegationSignerToDomainInput = schema.new({
 })
 
 M.AssociateDelegationSignerToDomainOutput = schema.new({
-    id = id.from(_N, "AssociateDelegationSignerToDomainOutput"),
+    id = id.from(_N, "AssociateDelegationSignerToDomainResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -268,7 +268,7 @@ M.BillingRecord = schema.new({
 })
 
 M.CancelDomainTransferToAnotherAwsAccountInput = schema.new({
-    id = id.from(_N, "CancelDomainTransferToAnotherAwsAccountInput"),
+    id = id.from(_N, "CancelDomainTransferToAnotherAwsAccountRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -284,7 +284,7 @@ M.CancelDomainTransferToAnotherAwsAccountInput = schema.new({
 })
 
 M.CancelDomainTransferToAnotherAwsAccountOutput = schema.new({
-    id = id.from(_N, "CancelDomainTransferToAnotherAwsAccountOutput"),
+    id = id.from(_N, "CancelDomainTransferToAnotherAwsAccountResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -297,7 +297,7 @@ M.CancelDomainTransferToAnotherAwsAccountOutput = schema.new({
 })
 
 M.CheckDomainAvailabilityInput = schema.new({
-    id = id.from(_N, "CheckDomainAvailabilityInput"),
+    id = id.from(_N, "CheckDomainAvailabilityRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -319,7 +319,7 @@ M.CheckDomainAvailabilityInput = schema.new({
 })
 
 M.CheckDomainAvailabilityOutput = schema.new({
-    id = id.from(_N, "CheckDomainAvailabilityOutput"),
+    id = id.from(_N, "CheckDomainAvailabilityResponse"),
     type = "structure",
     members = {
         Availability = schema.new({
@@ -332,7 +332,7 @@ M.CheckDomainAvailabilityOutput = schema.new({
 })
 
 M.CheckDomainTransferabilityInput = schema.new({
-    id = id.from(_N, "CheckDomainTransferabilityInput"),
+    id = id.from(_N, "CheckDomainTransferabilityRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -367,7 +367,7 @@ M.DomainTransferability = schema.new({
 })
 
 M.CheckDomainTransferabilityOutput = schema.new({
-    id = id.from(_N, "CheckDomainTransferabilityOutput"),
+    id = id.from(_N, "CheckDomainTransferabilityResponse"),
     type = "structure",
     members = {
         Transferability = schema.new({
@@ -530,7 +530,7 @@ M.ContactDetail = schema.new({
 })
 
 M.DeleteDomainInput = schema.new({
-    id = id.from(_N, "DeleteDomainInput"),
+    id = id.from(_N, "DeleteDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -546,7 +546,7 @@ M.DeleteDomainInput = schema.new({
 })
 
 M.DeleteDomainOutput = schema.new({
-    id = id.from(_N, "DeleteDomainOutput"),
+    id = id.from(_N, "DeleteDomainResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -559,7 +559,7 @@ M.DeleteDomainOutput = schema.new({
 })
 
 M.DeleteTagsForDomainInput = schema.new({
-    id = id.from(_N, "DeleteTagsForDomainInput"),
+    id = id.from(_N, "DeleteTagsForDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -585,12 +585,12 @@ M.DeleteTagsForDomainInput = schema.new({
 })
 
 M.DeleteTagsForDomainOutput = schema.new({
-    id = id.from(_N, "DeleteTagsForDomainOutput"),
+    id = id.from(_N, "DeleteTagsForDomainResponse"),
     type = "structure",
 })
 
 M.DisableDomainAutoRenewInput = schema.new({
-    id = id.from(_N, "DisableDomainAutoRenewInput"),
+    id = id.from(_N, "DisableDomainAutoRenewRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -606,12 +606,12 @@ M.DisableDomainAutoRenewInput = schema.new({
 })
 
 M.DisableDomainAutoRenewOutput = schema.new({
-    id = id.from(_N, "DisableDomainAutoRenewOutput"),
+    id = id.from(_N, "DisableDomainAutoRenewResponse"),
     type = "structure",
 })
 
 M.DisableDomainTransferLockInput = schema.new({
-    id = id.from(_N, "DisableDomainTransferLockInput"),
+    id = id.from(_N, "DisableDomainTransferLockRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -627,7 +627,7 @@ M.DisableDomainTransferLockInput = schema.new({
 })
 
 M.DisableDomainTransferLockOutput = schema.new({
-    id = id.from(_N, "DisableDomainTransferLockOutput"),
+    id = id.from(_N, "DisableDomainTransferLockResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -640,7 +640,7 @@ M.DisableDomainTransferLockOutput = schema.new({
 })
 
 M.DisassociateDelegationSignerFromDomainInput = schema.new({
-    id = id.from(_N, "DisassociateDelegationSignerFromDomainInput"),
+    id = id.from(_N, "DisassociateDelegationSignerFromDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -665,7 +665,7 @@ M.DisassociateDelegationSignerFromDomainInput = schema.new({
 })
 
 M.DisassociateDelegationSignerFromDomainOutput = schema.new({
-    id = id.from(_N, "DisassociateDelegationSignerFromDomainOutput"),
+    id = id.from(_N, "DisassociateDelegationSignerFromDomainResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -851,7 +851,7 @@ M.DomainSummary = schema.new({
 })
 
 M.EnableDomainAutoRenewInput = schema.new({
-    id = id.from(_N, "EnableDomainAutoRenewInput"),
+    id = id.from(_N, "EnableDomainAutoRenewRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -867,12 +867,12 @@ M.EnableDomainAutoRenewInput = schema.new({
 })
 
 M.EnableDomainAutoRenewOutput = schema.new({
-    id = id.from(_N, "EnableDomainAutoRenewOutput"),
+    id = id.from(_N, "EnableDomainAutoRenewResponse"),
     type = "structure",
 })
 
 M.EnableDomainTransferLockInput = schema.new({
-    id = id.from(_N, "EnableDomainTransferLockInput"),
+    id = id.from(_N, "EnableDomainTransferLockRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -888,7 +888,7 @@ M.EnableDomainTransferLockInput = schema.new({
 })
 
 M.EnableDomainTransferLockOutput = schema.new({
-    id = id.from(_N, "EnableDomainTransferLockOutput"),
+    id = id.from(_N, "EnableDomainTransferLockResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -936,7 +936,7 @@ M.FilterCondition = schema.new({
 })
 
 M.GetContactReachabilityStatusInput = schema.new({
-    id = id.from(_N, "GetContactReachabilityStatusInput"),
+    id = id.from(_N, "GetContactReachabilityStatusRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -949,7 +949,7 @@ M.GetContactReachabilityStatusInput = schema.new({
 })
 
 M.GetContactReachabilityStatusOutput = schema.new({
-    id = id.from(_N, "GetContactReachabilityStatusOutput"),
+    id = id.from(_N, "GetContactReachabilityStatusResponse"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -968,7 +968,7 @@ M.GetContactReachabilityStatusOutput = schema.new({
 })
 
 M.GetDomainDetailInput = schema.new({
-    id = id.from(_N, "GetDomainDetailInput"),
+    id = id.from(_N, "GetDomainDetailRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1007,7 +1007,7 @@ M.Nameserver = schema.new({
 })
 
 M.GetDomainDetailOutput = schema.new({
-    id = id.from(_N, "GetDomainDetailOutput"),
+    id = id.from(_N, "GetDomainDetailResponse"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1165,7 +1165,7 @@ M.GetDomainDetailOutput = schema.new({
 })
 
 M.GetDomainSuggestionsInput = schema.new({
-    id = id.from(_N, "GetDomainSuggestionsInput"),
+    id = id.from(_N, "GetDomainSuggestionsRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1200,7 +1200,7 @@ M.GetDomainSuggestionsInput = schema.new({
 })
 
 M.GetDomainSuggestionsOutput = schema.new({
-    id = id.from(_N, "GetDomainSuggestionsOutput"),
+    id = id.from(_N, "GetDomainSuggestionsResponse"),
     type = "structure",
     members = {
         SuggestionsList = schema.new({
@@ -1214,7 +1214,7 @@ M.GetDomainSuggestionsOutput = schema.new({
 })
 
 M.GetOperationDetailInput = schema.new({
-    id = id.from(_N, "GetOperationDetailInput"),
+    id = id.from(_N, "GetOperationDetailRequest"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -1230,7 +1230,7 @@ M.GetOperationDetailInput = schema.new({
 })
 
 M.GetOperationDetailOutput = schema.new({
-    id = id.from(_N, "GetOperationDetailOutput"),
+    id = id.from(_N, "GetOperationDetailResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -1310,7 +1310,7 @@ M.SortCondition = schema.new({
 })
 
 M.ListDomainsInput = schema.new({
-    id = id.from(_N, "ListDomainsInput"),
+    id = id.from(_N, "ListDomainsRequest"),
     type = "structure",
     members = {
         FilterConditions = schema.new({
@@ -1343,7 +1343,7 @@ M.ListDomainsInput = schema.new({
 })
 
 M.ListDomainsOutput = schema.new({
-    id = id.from(_N, "ListDomainsOutput"),
+    id = id.from(_N, "ListDomainsResponse"),
     type = "structure",
     members = {
         Domains = schema.new({
@@ -1363,7 +1363,7 @@ M.ListDomainsOutput = schema.new({
 })
 
 M.ListOperationsInput = schema.new({
-    id = id.from(_N, "ListOperationsInput"),
+    id = id.from(_N, "ListOperationsRequest"),
     type = "structure",
     members = {
         SubmittedSince = schema.new({
@@ -1469,7 +1469,7 @@ M.OperationSummary = schema.new({
 })
 
 M.ListOperationsOutput = schema.new({
-    id = id.from(_N, "ListOperationsOutput"),
+    id = id.from(_N, "ListOperationsResponse"),
     type = "structure",
     members = {
         Operations = schema.new({
@@ -1489,7 +1489,7 @@ M.ListOperationsOutput = schema.new({
 })
 
 M.ListPricesInput = schema.new({
-    id = id.from(_N, "ListPricesInput"),
+    id = id.from(_N, "ListPricesRequest"),
     type = "structure",
     members = {
         Tld = schema.new({
@@ -1514,7 +1514,7 @@ M.ListPricesInput = schema.new({
 })
 
 M.ListPricesOutput = schema.new({
-    id = id.from(_N, "ListPricesOutput"),
+    id = id.from(_N, "ListPricesResponse"),
     type = "structure",
     members = {
         Prices = schema.new({
@@ -1534,7 +1534,7 @@ M.ListPricesOutput = schema.new({
 })
 
 M.ListTagsForDomainInput = schema.new({
-    id = id.from(_N, "ListTagsForDomainInput"),
+    id = id.from(_N, "ListTagsForDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1569,7 +1569,7 @@ M.Tag = schema.new({
 })
 
 M.ListTagsForDomainOutput = schema.new({
-    id = id.from(_N, "ListTagsForDomainOutput"),
+    id = id.from(_N, "ListTagsForDomainResponse"),
     type = "structure",
     members = {
         TagList = schema.new({
@@ -1583,7 +1583,7 @@ M.ListTagsForDomainOutput = schema.new({
 })
 
 M.PushDomainInput = schema.new({
-    id = id.from(_N, "PushDomainInput"),
+    id = id.from(_N, "PushDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1608,12 +1608,12 @@ M.PushDomainInput = schema.new({
 })
 
 M.PushDomainOutput = schema.new({
-    id = id.from(_N, "PushDomainOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RegisterDomainInput = schema.new({
-    id = id.from(_N, "RegisterDomainInput"),
+    id = id.from(_N, "RegisterDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1711,7 +1711,7 @@ M.RegisterDomainInput = schema.new({
 })
 
 M.RegisterDomainOutput = schema.new({
-    id = id.from(_N, "RegisterDomainOutput"),
+    id = id.from(_N, "RegisterDomainResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -1724,7 +1724,7 @@ M.RegisterDomainOutput = schema.new({
 })
 
 M.RejectDomainTransferFromAnotherAwsAccountInput = schema.new({
-    id = id.from(_N, "RejectDomainTransferFromAnotherAwsAccountInput"),
+    id = id.from(_N, "RejectDomainTransferFromAnotherAwsAccountRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1740,7 +1740,7 @@ M.RejectDomainTransferFromAnotherAwsAccountInput = schema.new({
 })
 
 M.RejectDomainTransferFromAnotherAwsAccountOutput = schema.new({
-    id = id.from(_N, "RejectDomainTransferFromAnotherAwsAccountOutput"),
+    id = id.from(_N, "RejectDomainTransferFromAnotherAwsAccountResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -1753,7 +1753,7 @@ M.RejectDomainTransferFromAnotherAwsAccountOutput = schema.new({
 })
 
 M.RenewDomainInput = schema.new({
-    id = id.from(_N, "RenewDomainInput"),
+    id = id.from(_N, "RenewDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1785,7 +1785,7 @@ M.RenewDomainInput = schema.new({
 })
 
 M.RenewDomainOutput = schema.new({
-    id = id.from(_N, "RenewDomainOutput"),
+    id = id.from(_N, "RenewDomainResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -1798,7 +1798,7 @@ M.RenewDomainOutput = schema.new({
 })
 
 M.ResendContactReachabilityEmailInput = schema.new({
-    id = id.from(_N, "ResendContactReachabilityEmailInput"),
+    id = id.from(_N, "ResendContactReachabilityEmailRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -1811,7 +1811,7 @@ M.ResendContactReachabilityEmailInput = schema.new({
 })
 
 M.ResendContactReachabilityEmailOutput = schema.new({
-    id = id.from(_N, "ResendContactReachabilityEmailOutput"),
+    id = id.from(_N, "ResendContactReachabilityEmailResponse"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -1836,7 +1836,7 @@ M.ResendContactReachabilityEmailOutput = schema.new({
 })
 
 M.ResendOperationAuthorizationInput = schema.new({
-    id = id.from(_N, "ResendOperationAuthorizationInput"),
+    id = id.from(_N, "ResendOperationAuthorizationRequest"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -1852,12 +1852,12 @@ M.ResendOperationAuthorizationInput = schema.new({
 })
 
 M.ResendOperationAuthorizationOutput = schema.new({
-    id = id.from(_N, "ResendOperationAuthorizationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RetrieveDomainAuthCodeInput = schema.new({
-    id = id.from(_N, "RetrieveDomainAuthCodeInput"),
+    id = id.from(_N, "RetrieveDomainAuthCodeRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1873,7 +1873,7 @@ M.RetrieveDomainAuthCodeInput = schema.new({
 })
 
 M.RetrieveDomainAuthCodeOutput = schema.new({
-    id = id.from(_N, "RetrieveDomainAuthCodeOutput"),
+    id = id.from(_N, "RetrieveDomainAuthCodeResponse"),
     type = "structure",
     members = {
         AuthCode = schema.new({
@@ -1886,7 +1886,7 @@ M.RetrieveDomainAuthCodeOutput = schema.new({
 })
 
 M.TransferDomainInput = schema.new({
-    id = id.from(_N, "TransferDomainInput"),
+    id = id.from(_N, "TransferDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1997,7 +1997,7 @@ M.TransferDomainInput = schema.new({
 })
 
 M.TransferDomainOutput = schema.new({
-    id = id.from(_N, "TransferDomainOutput"),
+    id = id.from(_N, "TransferDomainResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -2010,7 +2010,7 @@ M.TransferDomainOutput = schema.new({
 })
 
 M.TransferDomainToAnotherAwsAccountInput = schema.new({
-    id = id.from(_N, "TransferDomainToAnotherAwsAccountInput"),
+    id = id.from(_N, "TransferDomainToAnotherAwsAccountRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2035,7 +2035,7 @@ M.TransferDomainToAnotherAwsAccountInput = schema.new({
 })
 
 M.TransferDomainToAnotherAwsAccountOutput = schema.new({
-    id = id.from(_N, "TransferDomainToAnotherAwsAccountOutput"),
+    id = id.from(_N, "TransferDomainToAnotherAwsAccountResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -2054,7 +2054,7 @@ M.TransferDomainToAnotherAwsAccountOutput = schema.new({
 })
 
 M.UpdateDomainContactInput = schema.new({
-    id = id.from(_N, "UpdateDomainContactInput"),
+    id = id.from(_N, "UpdateDomainContactRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2105,7 +2105,7 @@ M.UpdateDomainContactInput = schema.new({
 })
 
 M.UpdateDomainContactOutput = schema.new({
-    id = id.from(_N, "UpdateDomainContactOutput"),
+    id = id.from(_N, "UpdateDomainContactResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -2118,7 +2118,7 @@ M.UpdateDomainContactOutput = schema.new({
 })
 
 M.UpdateDomainContactPrivacyInput = schema.new({
-    id = id.from(_N, "UpdateDomainContactPrivacyInput"),
+    id = id.from(_N, "UpdateDomainContactPrivacyRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2158,7 +2158,7 @@ M.UpdateDomainContactPrivacyInput = schema.new({
 })
 
 M.UpdateDomainContactPrivacyOutput = schema.new({
-    id = id.from(_N, "UpdateDomainContactPrivacyOutput"),
+    id = id.from(_N, "UpdateDomainContactPrivacyResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -2171,7 +2171,7 @@ M.UpdateDomainContactPrivacyOutput = schema.new({
 })
 
 M.UpdateDomainNameserversInput = schema.new({
-    id = id.from(_N, "UpdateDomainNameserversInput"),
+    id = id.from(_N, "UpdateDomainNameserversRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2203,7 +2203,7 @@ M.UpdateDomainNameserversInput = schema.new({
 })
 
 M.UpdateDomainNameserversOutput = schema.new({
-    id = id.from(_N, "UpdateDomainNameserversOutput"),
+    id = id.from(_N, "UpdateDomainNameserversResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -2216,7 +2216,7 @@ M.UpdateDomainNameserversOutput = schema.new({
 })
 
 M.UpdateTagsForDomainInput = schema.new({
-    id = id.from(_N, "UpdateTagsForDomainInput"),
+    id = id.from(_N, "UpdateTagsForDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2239,12 +2239,12 @@ M.UpdateTagsForDomainInput = schema.new({
 })
 
 M.UpdateTagsForDomainOutput = schema.new({
-    id = id.from(_N, "UpdateTagsForDomainOutput"),
+    id = id.from(_N, "UpdateTagsForDomainResponse"),
     type = "structure",
 })
 
 M.ViewBillingInput = schema.new({
-    id = id.from(_N, "ViewBillingInput"),
+    id = id.from(_N, "ViewBillingRequest"),
     type = "structure",
     members = {
         Start = schema.new({
@@ -2275,7 +2275,7 @@ M.ViewBillingInput = schema.new({
 })
 
 M.ViewBillingOutput = schema.new({
-    id = id.from(_N, "ViewBillingOutput"),
+    id = id.from(_N, "ViewBillingResponse"),
     type = "structure",
     members = {
         NextPageMarker = schema.new({
@@ -2293,5 +2293,19 @@ M.ViewBillingOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

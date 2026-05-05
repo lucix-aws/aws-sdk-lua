@@ -24,7 +24,7 @@ M.CloudWatchLoggingOption = schema.new({
 })
 
 M.AddApplicationCloudWatchLoggingOptionInput = schema.new({
-    id = id.from(_N, "AddApplicationCloudWatchLoggingOptionInput"),
+    id = id.from(_N, "AddApplicationCloudWatchLoggingOptionRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -90,7 +90,7 @@ M.CloudWatchLoggingOptionDescription = schema.new({
 })
 
 M.AddApplicationCloudWatchLoggingOptionOutput = schema.new({
-    id = id.from(_N, "AddApplicationCloudWatchLoggingOptionOutput"),
+    id = id.from(_N, "AddApplicationCloudWatchLoggingOptionResponse"),
     type = "structure",
     members = {
         ApplicationARN = schema.new({
@@ -499,7 +499,7 @@ M.Input = schema.new({
 })
 
 M.AddApplicationInputInput = schema.new({
-    id = id.from(_N, "AddApplicationInputInput"),
+    id = id.from(_N, "AddApplicationInputRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -695,7 +695,7 @@ M.InputDescription = schema.new({
 })
 
 M.AddApplicationInputOutput = schema.new({
-    id = id.from(_N, "AddApplicationInputOutput"),
+    id = id.from(_N, "AddApplicationInputResponse"),
     type = "structure",
     members = {
         ApplicationARN = schema.new({
@@ -737,7 +737,7 @@ M.CodeValidationException = schema.new({
 })
 
 M.AddApplicationInputProcessingConfigurationInput = schema.new({
-    id = id.from(_N, "AddApplicationInputProcessingConfigurationInput"),
+    id = id.from(_N, "AddApplicationInputProcessingConfigurationRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -781,7 +781,7 @@ M.AddApplicationInputProcessingConfigurationInput = schema.new({
 })
 
 M.AddApplicationInputProcessingConfigurationOutput = schema.new({
-    id = id.from(_N, "AddApplicationInputProcessingConfigurationOutput"),
+    id = id.from(_N, "AddApplicationInputProcessingConfigurationResponse"),
     type = "structure",
     members = {
         ApplicationARN = schema.new({
@@ -924,7 +924,7 @@ M.Output = schema.new({
 })
 
 M.AddApplicationOutputInput = schema.new({
-    id = id.from(_N, "AddApplicationOutputInput"),
+    id = id.from(_N, "AddApplicationOutputRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -1072,7 +1072,7 @@ M.OutputDescription = schema.new({
 })
 
 M.AddApplicationOutputOutput = schema.new({
-    id = id.from(_N, "AddApplicationOutputOutput"),
+    id = id.from(_N, "AddApplicationOutputResponse"),
     type = "structure",
     members = {
         ApplicationARN = schema.new({
@@ -1150,7 +1150,7 @@ M.ReferenceDataSource = schema.new({
 })
 
 M.AddApplicationReferenceDataSourceInput = schema.new({
-    id = id.from(_N, "AddApplicationReferenceDataSourceInput"),
+    id = id.from(_N, "AddApplicationReferenceDataSourceRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -1258,7 +1258,7 @@ M.ReferenceDataSourceDescription = schema.new({
 })
 
 M.AddApplicationReferenceDataSourceOutput = schema.new({
-    id = id.from(_N, "AddApplicationReferenceDataSourceOutput"),
+    id = id.from(_N, "AddApplicationReferenceDataSourceResponse"),
     type = "structure",
     members = {
         ApplicationARN = schema.new({
@@ -1311,7 +1311,7 @@ M.VpcConfiguration = schema.new({
 })
 
 M.AddApplicationVpcConfigurationInput = schema.new({
-    id = id.from(_N, "AddApplicationVpcConfigurationInput"),
+    id = id.from(_N, "AddApplicationVpcConfigurationRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -1394,7 +1394,7 @@ M.VpcConfigurationDescription = schema.new({
 })
 
 M.AddApplicationVpcConfigurationOutput = schema.new({
-    id = id.from(_N, "AddApplicationVpcConfigurationOutput"),
+    id = id.from(_N, "AddApplicationVpcConfigurationResponse"),
     type = "structure",
     members = {
         ApplicationARN = schema.new({
@@ -3878,7 +3878,7 @@ M.Tag = schema.new({
 })
 
 M.CreateApplicationInput = schema.new({
-    id = id.from(_N, "CreateApplicationInput"),
+    id = id.from(_N, "CreateApplicationRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -3945,7 +3945,7 @@ M.CreateApplicationInput = schema.new({
 })
 
 M.CreateApplicationOutput = schema.new({
-    id = id.from(_N, "CreateApplicationOutput"),
+    id = id.from(_N, "CreateApplicationResponse"),
     type = "structure",
     members = {
         ApplicationDetail = schema.new({
@@ -4010,7 +4010,7 @@ M.UnsupportedOperationException = schema.new({
 })
 
 M.CreateApplicationPresignedUrlInput = schema.new({
-    id = id.from(_N, "CreateApplicationPresignedUrlInput"),
+    id = id.from(_N, "CreateApplicationPresignedUrlRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4041,7 +4041,7 @@ M.CreateApplicationPresignedUrlInput = schema.new({
 })
 
 M.CreateApplicationPresignedUrlOutput = schema.new({
-    id = id.from(_N, "CreateApplicationPresignedUrlOutput"),
+    id = id.from(_N, "CreateApplicationPresignedUrlResponse"),
     type = "structure",
     members = {
         AuthorizedUrl = schema.new({
@@ -4054,7 +4054,7 @@ M.CreateApplicationPresignedUrlOutput = schema.new({
 })
 
 M.CreateApplicationSnapshotInput = schema.new({
-    id = id.from(_N, "CreateApplicationSnapshotInput"),
+    id = id.from(_N, "CreateApplicationSnapshotRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4079,12 +4079,12 @@ M.CreateApplicationSnapshotInput = schema.new({
 })
 
 M.CreateApplicationSnapshotOutput = schema.new({
-    id = id.from(_N, "CreateApplicationSnapshotOutput"),
+    id = id.from(_N, "CreateApplicationSnapshotResponse"),
     type = "structure",
 })
 
 M.DeleteApplicationInput = schema.new({
-    id = id.from(_N, "DeleteApplicationInput"),
+    id = id.from(_N, "DeleteApplicationRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4109,12 +4109,12 @@ M.DeleteApplicationInput = schema.new({
 })
 
 M.DeleteApplicationOperationOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationOperationOutput"),
+    id = id.from(_N, "DeleteApplicationResponse"),
     type = "structure",
 })
 
 M.DeleteApplicationCloudWatchLoggingOptionInput = schema.new({
-    id = id.from(_N, "DeleteApplicationCloudWatchLoggingOptionInput"),
+    id = id.from(_N, "DeleteApplicationCloudWatchLoggingOptionRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4151,7 +4151,7 @@ M.DeleteApplicationCloudWatchLoggingOptionInput = schema.new({
 })
 
 M.DeleteApplicationCloudWatchLoggingOptionOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationCloudWatchLoggingOptionOutput"),
+    id = id.from(_N, "DeleteApplicationCloudWatchLoggingOptionResponse"),
     type = "structure",
     members = {
         ApplicationARN = schema.new({
@@ -4183,7 +4183,7 @@ M.DeleteApplicationCloudWatchLoggingOptionOutput = schema.new({
 })
 
 M.DeleteApplicationInputProcessingConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteApplicationInputProcessingConfigurationInput"),
+    id = id.from(_N, "DeleteApplicationInputProcessingConfigurationRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4217,7 +4217,7 @@ M.DeleteApplicationInputProcessingConfigurationInput = schema.new({
 })
 
 M.DeleteApplicationInputProcessingConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationInputProcessingConfigurationOutput"),
+    id = id.from(_N, "DeleteApplicationInputProcessingConfigurationResponse"),
     type = "structure",
     members = {
         ApplicationARN = schema.new({
@@ -4236,7 +4236,7 @@ M.DeleteApplicationInputProcessingConfigurationOutput = schema.new({
 })
 
 M.DeleteApplicationOutputInput = schema.new({
-    id = id.from(_N, "DeleteApplicationOutputInput"),
+    id = id.from(_N, "DeleteApplicationOutputRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4270,7 +4270,7 @@ M.DeleteApplicationOutputInput = schema.new({
 })
 
 M.DeleteApplicationOutputOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationOutputOutput"),
+    id = id.from(_N, "DeleteApplicationOutputResponse"),
     type = "structure",
     members = {
         ApplicationARN = schema.new({
@@ -4289,7 +4289,7 @@ M.DeleteApplicationOutputOutput = schema.new({
 })
 
 M.DeleteApplicationReferenceDataSourceInput = schema.new({
-    id = id.from(_N, "DeleteApplicationReferenceDataSourceInput"),
+    id = id.from(_N, "DeleteApplicationReferenceDataSourceRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4323,7 +4323,7 @@ M.DeleteApplicationReferenceDataSourceInput = schema.new({
 })
 
 M.DeleteApplicationReferenceDataSourceOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationReferenceDataSourceOutput"),
+    id = id.from(_N, "DeleteApplicationReferenceDataSourceResponse"),
     type = "structure",
     members = {
         ApplicationARN = schema.new({
@@ -4342,7 +4342,7 @@ M.DeleteApplicationReferenceDataSourceOutput = schema.new({
 })
 
 M.DeleteApplicationSnapshotInput = schema.new({
-    id = id.from(_N, "DeleteApplicationSnapshotInput"),
+    id = id.from(_N, "DeleteApplicationSnapshotRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4376,12 +4376,12 @@ M.DeleteApplicationSnapshotInput = schema.new({
 })
 
 M.DeleteApplicationSnapshotOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationSnapshotOutput"),
+    id = id.from(_N, "DeleteApplicationSnapshotResponse"),
     type = "structure",
 })
 
 M.DeleteApplicationVpcConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteApplicationVpcConfigurationInput"),
+    id = id.from(_N, "DeleteApplicationVpcConfigurationRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4418,7 +4418,7 @@ M.DeleteApplicationVpcConfigurationInput = schema.new({
 })
 
 M.DeleteApplicationVpcConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationVpcConfigurationOutput"),
+    id = id.from(_N, "DeleteApplicationVpcConfigurationResponse"),
     type = "structure",
     members = {
         ApplicationARN = schema.new({
@@ -4443,7 +4443,7 @@ M.DeleteApplicationVpcConfigurationOutput = schema.new({
 })
 
 M.DescribeApplicationInput = schema.new({
-    id = id.from(_N, "DescribeApplicationInput"),
+    id = id.from(_N, "DescribeApplicationRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4465,7 +4465,7 @@ M.DescribeApplicationInput = schema.new({
 })
 
 M.DescribeApplicationOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationOutput"),
+    id = id.from(_N, "DescribeApplicationResponse"),
     type = "structure",
     members = {
         ApplicationDetail = schema.new({
@@ -4482,7 +4482,7 @@ M.DescribeApplicationOutput = schema.new({
 })
 
 M.DescribeApplicationOperationInput = schema.new({
-    id = id.from(_N, "DescribeApplicationOperationInput"),
+    id = id.from(_N, "DescribeApplicationOperationRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4507,7 +4507,7 @@ M.DescribeApplicationOperationInput = schema.new({
 })
 
 M.DescribeApplicationOperationOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationOperationOutput"),
+    id = id.from(_N, "DescribeApplicationOperationResponse"),
     type = "structure",
     members = {
         ApplicationOperationInfoDetails = schema.new({
@@ -4521,7 +4521,7 @@ M.DescribeApplicationOperationOutput = schema.new({
 })
 
 M.DescribeApplicationSnapshotInput = schema.new({
-    id = id.from(_N, "DescribeApplicationSnapshotInput"),
+    id = id.from(_N, "DescribeApplicationSnapshotRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4599,7 +4599,7 @@ M.SnapshotDetails = schema.new({
 })
 
 M.DescribeApplicationSnapshotOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationSnapshotOutput"),
+    id = id.from(_N, "DescribeApplicationSnapshotResponse"),
     type = "structure",
     members = {
         SnapshotDetails = schema.new({
@@ -4616,7 +4616,7 @@ M.DescribeApplicationSnapshotOutput = schema.new({
 })
 
 M.DescribeApplicationVersionInput = schema.new({
-    id = id.from(_N, "DescribeApplicationVersionInput"),
+    id = id.from(_N, "DescribeApplicationVersionRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4641,7 +4641,7 @@ M.DescribeApplicationVersionInput = schema.new({
 })
 
 M.DescribeApplicationVersionOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationVersionOutput"),
+    id = id.from(_N, "DescribeApplicationVersionResponse"),
     type = "structure",
     members = {
         ApplicationVersionDetail = schema.new({
@@ -4680,7 +4680,7 @@ M.S3Configuration = schema.new({
 })
 
 M.DiscoverInputSchemaInput = schema.new({
-    id = id.from(_N, "DiscoverInputSchemaInput"),
+    id = id.from(_N, "DiscoverInputSchemaRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -4723,7 +4723,7 @@ M.DiscoverInputSchemaInput = schema.new({
 })
 
 M.DiscoverInputSchemaOutput = schema.new({
-    id = id.from(_N, "DiscoverInputSchemaOutput"),
+    id = id.from(_N, "DiscoverInputSchemaResponse"),
     type = "structure",
     members = {
         InputSchema = schema.new({
@@ -4738,7 +4738,7 @@ M.DiscoverInputSchemaOutput = schema.new({
             type = "list",
             name = "ParsedInputRecords",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.String }),
         }),
         ProcessedInputRecords = schema.new({
             id = id.from(_N, "DiscoverInputSchemaOutput", "ProcessedInputRecords"),
@@ -4820,7 +4820,7 @@ M.UnableToDetectSchemaException = schema.new({
 })
 
 M.ListApplicationOperationsInput = schema.new({
-    id = id.from(_N, "ListApplicationOperationsInput"),
+    id = id.from(_N, "ListApplicationOperationsRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4860,7 +4860,7 @@ M.ListApplicationOperationsInput = schema.new({
 })
 
 M.ListApplicationOperationsOutput = schema.new({
-    id = id.from(_N, "ListApplicationOperationsOutput"),
+    id = id.from(_N, "ListApplicationOperationsResponse"),
     type = "structure",
     members = {
         ApplicationOperationInfoList = schema.new({
@@ -4880,7 +4880,7 @@ M.ListApplicationOperationsOutput = schema.new({
 })
 
 M.ListApplicationsInput = schema.new({
-    id = id.from(_N, "ListApplicationsInput"),
+    id = id.from(_N, "ListApplicationsRequest"),
     type = "structure",
     members = {
         Limit = schema.new({
@@ -4899,7 +4899,7 @@ M.ListApplicationsInput = schema.new({
 })
 
 M.ListApplicationsOutput = schema.new({
-    id = id.from(_N, "ListApplicationsOutput"),
+    id = id.from(_N, "ListApplicationsResponse"),
     type = "structure",
     members = {
         ApplicationSummaries = schema.new({
@@ -4922,7 +4922,7 @@ M.ListApplicationsOutput = schema.new({
 })
 
 M.ListApplicationSnapshotsInput = schema.new({
-    id = id.from(_N, "ListApplicationSnapshotsInput"),
+    id = id.from(_N, "ListApplicationSnapshotsRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4950,7 +4950,7 @@ M.ListApplicationSnapshotsInput = schema.new({
 })
 
 M.ListApplicationSnapshotsOutput = schema.new({
-    id = id.from(_N, "ListApplicationSnapshotsOutput"),
+    id = id.from(_N, "ListApplicationSnapshotsResponse"),
     type = "structure",
     members = {
         SnapshotSummaries = schema.new({
@@ -4970,7 +4970,7 @@ M.ListApplicationSnapshotsOutput = schema.new({
 })
 
 M.ListApplicationVersionsInput = schema.new({
-    id = id.from(_N, "ListApplicationVersionsInput"),
+    id = id.from(_N, "ListApplicationVersionsRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -4998,7 +4998,7 @@ M.ListApplicationVersionsInput = schema.new({
 })
 
 M.ListApplicationVersionsOutput = schema.new({
-    id = id.from(_N, "ListApplicationVersionsOutput"),
+    id = id.from(_N, "ListApplicationVersionsResponse"),
     type = "structure",
     members = {
         ApplicationVersionSummaries = schema.new({
@@ -5018,7 +5018,7 @@ M.ListApplicationVersionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -5034,7 +5034,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -5048,7 +5048,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.RollbackApplicationInput = schema.new({
-    id = id.from(_N, "RollbackApplicationInput"),
+    id = id.from(_N, "RollbackApplicationRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -5073,7 +5073,7 @@ M.RollbackApplicationInput = schema.new({
 })
 
 M.RollbackApplicationOutput = schema.new({
-    id = id.from(_N, "RollbackApplicationOutput"),
+    id = id.from(_N, "RollbackApplicationResponse"),
     type = "structure",
     members = {
         ApplicationDetail = schema.new({
@@ -5150,7 +5150,7 @@ M.RunConfiguration = schema.new({
 })
 
 M.StartApplicationInput = schema.new({
-    id = id.from(_N, "StartApplicationInput"),
+    id = id.from(_N, "StartApplicationRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -5173,7 +5173,7 @@ M.StartApplicationInput = schema.new({
 })
 
 M.StartApplicationOutput = schema.new({
-    id = id.from(_N, "StartApplicationOutput"),
+    id = id.from(_N, "StartApplicationResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -5186,7 +5186,7 @@ M.StartApplicationOutput = schema.new({
 })
 
 M.StopApplicationInput = schema.new({
-    id = id.from(_N, "StopApplicationInput"),
+    id = id.from(_N, "StopApplicationRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -5208,7 +5208,7 @@ M.StopApplicationInput = schema.new({
 })
 
 M.StopApplicationOutput = schema.new({
-    id = id.from(_N, "StopApplicationOutput"),
+    id = id.from(_N, "StopApplicationResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -5221,7 +5221,7 @@ M.StopApplicationOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -5247,12 +5247,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -5278,7 +5278,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -5304,7 +5304,7 @@ M.RunConfigurationUpdate = schema.new({
 })
 
 M.UpdateApplicationInput = schema.new({
-    id = id.from(_N, "UpdateApplicationInput"),
+    id = id.from(_N, "UpdateApplicationRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -5365,7 +5365,7 @@ M.UpdateApplicationInput = schema.new({
 })
 
 M.UpdateApplicationOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationOutput"),
+    id = id.from(_N, "UpdateApplicationResponse"),
     type = "structure",
     members = {
         ApplicationDetail = schema.new({
@@ -5388,7 +5388,7 @@ M.UpdateApplicationOutput = schema.new({
 })
 
 M.UpdateApplicationMaintenanceConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateApplicationMaintenanceConfigurationInput"),
+    id = id.from(_N, "UpdateApplicationMaintenanceConfigurationRequest"),
     type = "structure",
     members = {
         ApplicationName = schema.new({
@@ -5414,7 +5414,7 @@ M.UpdateApplicationMaintenanceConfigurationInput = schema.new({
 })
 
 M.UpdateApplicationMaintenanceConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationMaintenanceConfigurationOutput"),
+    id = id.from(_N, "UpdateApplicationMaintenanceConfigurationResponse"),
     type = "structure",
     members = {
         ApplicationARN = schema.new({
@@ -5432,5 +5432,19 @@ M.UpdateApplicationMaintenanceConfigurationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

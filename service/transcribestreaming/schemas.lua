@@ -749,7 +749,7 @@ M.ClinicalNoteGenerationSettings = schema.new({
 })
 
 M.GetMedicalScribeStreamInput = schema.new({
-    id = id.from(_N, "GetMedicalScribeStreamInput"),
+    id = id.from(_N, "GetMedicalScribeStreamRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -954,7 +954,7 @@ M.MedicalScribeStreamDetails = schema.new({
 })
 
 M.GetMedicalScribeStreamOutput = schema.new({
-    id = id.from(_N, "GetMedicalScribeStreamOutput"),
+    id = id.from(_N, "GetMedicalScribeStreamResponse"),
     type = "structure",
     members = {
         MedicalScribeStreamDetails = schema.new({
@@ -1645,7 +1645,7 @@ M.Result = schema.new({
 })
 
 M.StartCallAnalyticsStreamTranscriptionInput = schema.new({
-    id = id.from(_N, "StartCallAnalyticsStreamTranscriptionInput"),
+    id = id.from(_N, "StartCallAnalyticsStreamTranscriptionRequest"),
     type = "structure",
     members = {
         LanguageCode = schema.new({
@@ -1829,7 +1829,7 @@ M.StartCallAnalyticsStreamTranscriptionInput = schema.new({
 })
 
 M.StartCallAnalyticsStreamTranscriptionOutput = schema.new({
-    id = id.from(_N, "StartCallAnalyticsStreamTranscriptionOutput"),
+    id = id.from(_N, "StartCallAnalyticsStreamTranscriptionResponse"),
     type = "structure",
     members = {
         RequestId = schema.new({
@@ -2019,7 +2019,7 @@ M.StartCallAnalyticsStreamTranscriptionOutput = schema.new({
 })
 
 M.StartMedicalScribeStreamInput = schema.new({
-    id = id.from(_N, "StartMedicalScribeStreamInput"),
+    id = id.from(_N, "StartMedicalScribeStreamRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -2076,7 +2076,7 @@ M.StartMedicalScribeStreamInput = schema.new({
 })
 
 M.StartMedicalScribeStreamOutput = schema.new({
-    id = id.from(_N, "StartMedicalScribeStreamOutput"),
+    id = id.from(_N, "StartMedicalScribeStreamResponse"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -2138,7 +2138,7 @@ M.StartMedicalScribeStreamOutput = schema.new({
 })
 
 M.StartMedicalStreamTranscriptionInput = schema.new({
-    id = id.from(_N, "StartMedicalStreamTranscriptionInput"),
+    id = id.from(_N, "StartMedicalStreamTranscriptionRequest"),
     type = "structure",
     members = {
         LanguageCode = schema.new({
@@ -2262,7 +2262,7 @@ M.StartMedicalStreamTranscriptionInput = schema.new({
 })
 
 M.StartMedicalStreamTranscriptionOutput = schema.new({
-    id = id.from(_N, "StartMedicalStreamTranscriptionOutput"),
+    id = id.from(_N, "StartMedicalStreamTranscriptionResponse"),
     type = "structure",
     members = {
         RequestId = schema.new({
@@ -2389,7 +2389,7 @@ M.StartMedicalStreamTranscriptionOutput = schema.new({
 })
 
 M.StartStreamTranscriptionInput = schema.new({
-    id = id.from(_N, "StartStreamTranscriptionInput"),
+    id = id.from(_N, "StartStreamTranscriptionRequest"),
     type = "structure",
     members = {
         LanguageCode = schema.new({
@@ -2698,7 +2698,7 @@ M.TranscriptResultStream = schema.new({
 })
 
 M.StartStreamTranscriptionOutput = schema.new({
-    id = id.from(_N, "StartStreamTranscriptionOutput"),
+    id = id.from(_N, "StartStreamTranscriptionResponse"),
     type = "structure",
     members = {
         RequestId = schema.new({
@@ -2934,5 +2934,19 @@ M.StartStreamTranscriptionOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

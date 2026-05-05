@@ -8,7 +8,7 @@ local _N = "com.amazonaws.sagemakeredge"
 local M = {}
 
 M.GetDeploymentsInput = schema.new({
-    id = id.from(_N, "GetDeploymentsInput"),
+    id = id.from(_N, "GetDeploymentsRequest"),
     type = "structure",
     members = {
         DeviceName = schema.new({
@@ -116,7 +116,7 @@ M.EdgeDeployment = schema.new({
 })
 
 M.GetDeploymentsOutput = schema.new({
-    id = id.from(_N, "GetDeploymentsOutput"),
+    id = id.from(_N, "GetDeploymentsResult"),
     type = "structure",
     members = {
         Deployments = schema.new({
@@ -146,7 +146,7 @@ M.InternalServiceException = schema.new({
 })
 
 M.GetDeviceRegistrationInput = schema.new({
-    id = id.from(_N, "GetDeviceRegistrationInput"),
+    id = id.from(_N, "GetDeviceRegistrationRequest"),
     type = "structure",
     members = {
         DeviceName = schema.new({
@@ -171,7 +171,7 @@ M.GetDeviceRegistrationInput = schema.new({
 })
 
 M.GetDeviceRegistrationOutput = schema.new({
-    id = id.from(_N, "GetDeviceRegistrationOutput"),
+    id = id.from(_N, "GetDeviceRegistrationResult"),
     type = "structure",
     members = {
         DeviceRegistration = schema.new({
@@ -358,7 +358,7 @@ M.Model = schema.new({
 })
 
 M.SendHeartbeatInput = schema.new({
-    id = id.from(_N, "SendHeartbeatInput"),
+    id = id.from(_N, "SendHeartbeatRequest"),
     type = "structure",
     members = {
         AgentMetrics = schema.new({
@@ -413,8 +413,22 @@ M.SendHeartbeatInput = schema.new({
 })
 
 M.SendHeartbeatOutput = schema.new({
-    id = id.from(_N, "SendHeartbeatOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -1401,7 +1401,7 @@ M.OpenZFSVolumeConfiguration = schema.new({
 })
 
 M.AssociateFileSystemAliasesInput = schema.new({
-    id = id.from(_N, "AssociateFileSystemAliasesInput"),
+    id = id.from(_N, "AssociateFileSystemAliasesRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -1436,7 +1436,7 @@ M.AssociateFileSystemAliasesInput = schema.new({
 })
 
 M.AssociateFileSystemAliasesOutput = schema.new({
-    id = id.from(_N, "AssociateFileSystemAliasesOutput"),
+    id = id.from(_N, "AssociateFileSystemAliasesResponse"),
     type = "structure",
     members = {
         Aliases = schema.new({
@@ -1526,7 +1526,7 @@ M.AutoImportPolicy = schema.new({
 })
 
 M.CancelDataRepositoryTaskInput = schema.new({
-    id = id.from(_N, "CancelDataRepositoryTaskInput"),
+    id = id.from(_N, "CancelDataRepositoryTaskRequest"),
     type = "structure",
     members = {
         TaskId = schema.new({
@@ -1542,7 +1542,7 @@ M.CancelDataRepositoryTaskInput = schema.new({
 })
 
 M.CancelDataRepositoryTaskOutput = schema.new({
-    id = id.from(_N, "CancelDataRepositoryTaskOutput"),
+    id = id.from(_N, "CancelDataRepositoryTaskResponse"),
     type = "structure",
     members = {
         Lifecycle = schema.new({
@@ -1625,7 +1625,7 @@ M.BackupNotFound = schema.new({
 })
 
 M.CopyBackupInput = schema.new({
-    id = id.from(_N, "CopyBackupInput"),
+    id = id.from(_N, "CopyBackupRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -1824,7 +1824,7 @@ M.SourceBackupUnavailable = schema.new({
 })
 
 M.CopySnapshotAndUpdateVolumeInput = schema.new({
-    id = id.from(_N, "CopySnapshotAndUpdateVolumeInput"),
+    id = id.from(_N, "CopySnapshotAndUpdateVolumeRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -2073,7 +2073,7 @@ M.CreateAndAttachS3AccessPointS3Configuration = schema.new({
 })
 
 M.CreateAndAttachS3AccessPointInput = schema.new({
-    id = id.from(_N, "CreateAndAttachS3AccessPointInput"),
+    id = id.from(_N, "CreateAndAttachS3AccessPointRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -2253,7 +2253,7 @@ M.S3AccessPointAttachment = schema.new({
 })
 
 M.CreateAndAttachS3AccessPointOutput = schema.new({
-    id = id.from(_N, "CreateAndAttachS3AccessPointOutput"),
+    id = id.from(_N, "CreateAndAttachS3AccessPointResponse"),
     type = "structure",
     members = {
         S3AccessPointAttachment = schema.new({
@@ -2368,7 +2368,7 @@ M.BackupInProgress = schema.new({
 })
 
 M.CreateBackupInput = schema.new({
-    id = id.from(_N, "CreateBackupInput"),
+    id = id.from(_N, "CreateBackupRequest"),
     type = "structure",
     members = {
         FileSystemId = schema.new({
@@ -2424,7 +2424,7 @@ M.S3DataRepositoryConfiguration = schema.new({
 })
 
 M.CreateDataRepositoryAssociationInput = schema.new({
-    id = id.from(_N, "CreateDataRepositoryAssociationInput"),
+    id = id.from(_N, "CreateDataRepositoryAssociationRequest"),
     type = "structure",
     members = {
         FileSystemId = schema.new({
@@ -2628,7 +2628,7 @@ M.DataRepositoryAssociation = schema.new({
 })
 
 M.CreateDataRepositoryAssociationOutput = schema.new({
-    id = id.from(_N, "CreateDataRepositoryAssociationOutput"),
+    id = id.from(_N, "CreateDataRepositoryAssociationResponse"),
     type = "structure",
     members = {
         Association = schema.new({
@@ -2709,7 +2709,7 @@ M.CompletionReport = schema.new({
 })
 
 M.CreateDataRepositoryTaskInput = schema.new({
-    id = id.from(_N, "CreateDataRepositoryTaskInput"),
+    id = id.from(_N, "CreateDataRepositoryTaskRequest"),
     type = "structure",
     members = {
         Type = schema.new({
@@ -2951,7 +2951,7 @@ M.DataRepositoryTask = schema.new({
 })
 
 M.CreateDataRepositoryTaskOutput = schema.new({
-    id = id.from(_N, "CreateDataRepositoryTaskOutput"),
+    id = id.from(_N, "CreateDataRepositoryTaskResponse"),
     type = "structure",
     members = {
         DataRepositoryTask = schema.new({
@@ -3100,7 +3100,7 @@ M.CreateFileCacheLustreConfiguration = schema.new({
 })
 
 M.CreateFileCacheInput = schema.new({
-    id = id.from(_N, "CreateFileCacheInput"),
+    id = id.from(_N, "CreateFileCacheRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -3372,7 +3372,7 @@ M.FileCacheCreating = schema.new({
 })
 
 M.CreateFileCacheOutput = schema.new({
-    id = id.from(_N, "CreateFileCacheOutput"),
+    id = id.from(_N, "CreateFileCacheResponse"),
     type = "structure",
     members = {
         FileCache = schema.new({
@@ -4031,7 +4031,7 @@ M.CreateFileSystemWindowsConfiguration = schema.new({
 })
 
 M.CreateFileSystemInput = schema.new({
-    id = id.from(_N, "CreateFileSystemInput"),
+    id = id.from(_N, "CreateFileSystemRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -4186,7 +4186,7 @@ M.MissingFileSystemConfiguration = schema.new({
 })
 
 M.CreateFileSystemFromBackupInput = schema.new({
-    id = id.from(_N, "CreateFileSystemFromBackupInput"),
+    id = id.from(_N, "CreateFileSystemFromBackupRequest"),
     type = "structure",
     members = {
         BackupId = schema.new({
@@ -4286,7 +4286,7 @@ M.CreateFileSystemFromBackupInput = schema.new({
 })
 
 M.CreateSnapshotInput = schema.new({
-    id = id.from(_N, "CreateSnapshotInput"),
+    id = id.from(_N, "CreateSnapshotRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -4350,7 +4350,7 @@ M.CreateSvmActiveDirectoryConfiguration = schema.new({
 })
 
 M.CreateStorageVirtualMachineInput = schema.new({
-    id = id.from(_N, "CreateStorageVirtualMachineInput"),
+    id = id.from(_N, "CreateStorageVirtualMachineRequest"),
     type = "structure",
     members = {
         ActiveDirectoryConfiguration = schema.new({
@@ -4581,7 +4581,7 @@ M.StorageVirtualMachine = schema.new({
 })
 
 M.CreateStorageVirtualMachineOutput = schema.new({
-    id = id.from(_N, "CreateStorageVirtualMachineOutput"),
+    id = id.from(_N, "CreateStorageVirtualMachineResponse"),
     type = "structure",
     members = {
         StorageVirtualMachine = schema.new({
@@ -4852,7 +4852,7 @@ M.CreateOpenZFSVolumeConfiguration = schema.new({
 })
 
 M.CreateVolumeInput = schema.new({
-    id = id.from(_N, "CreateVolumeInput"),
+    id = id.from(_N, "CreateVolumeRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -4939,7 +4939,7 @@ M.StorageVirtualMachineNotFound = schema.new({
 })
 
 M.CreateVolumeFromBackupInput = schema.new({
-    id = id.from(_N, "CreateVolumeFromBackupInput"),
+    id = id.from(_N, "CreateVolumeFromBackupRequest"),
     type = "structure",
     members = {
         BackupId = schema.new({
@@ -5031,7 +5031,7 @@ M.BackupRestoring = schema.new({
 })
 
 M.DeleteBackupInput = schema.new({
-    id = id.from(_N, "DeleteBackupInput"),
+    id = id.from(_N, "DeleteBackupRequest"),
     type = "structure",
     members = {
         BackupId = schema.new({
@@ -5056,7 +5056,7 @@ M.DeleteBackupInput = schema.new({
 })
 
 M.DeleteBackupOutput = schema.new({
-    id = id.from(_N, "DeleteBackupOutput"),
+    id = id.from(_N, "DeleteBackupResponse"),
     type = "structure",
     members = {
         BackupId = schema.new({
@@ -5091,7 +5091,7 @@ M.DataRepositoryAssociationNotFound = schema.new({
 })
 
 M.DeleteDataRepositoryAssociationInput = schema.new({
-    id = id.from(_N, "DeleteDataRepositoryAssociationInput"),
+    id = id.from(_N, "DeleteDataRepositoryAssociationRequest"),
     type = "structure",
     members = {
         AssociationId = schema.new({
@@ -5122,7 +5122,7 @@ M.DeleteDataRepositoryAssociationInput = schema.new({
 })
 
 M.DeleteDataRepositoryAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteDataRepositoryAssociationOutput"),
+    id = id.from(_N, "DeleteDataRepositoryAssociationResponse"),
     type = "structure",
     members = {
         AssociationId = schema.new({
@@ -5147,7 +5147,7 @@ M.DeleteDataRepositoryAssociationOutput = schema.new({
 })
 
 M.DeleteFileCacheInput = schema.new({
-    id = id.from(_N, "DeleteFileCacheInput"),
+    id = id.from(_N, "DeleteFileCacheRequest"),
     type = "structure",
     members = {
         FileCacheId = schema.new({
@@ -5172,7 +5172,7 @@ M.DeleteFileCacheInput = schema.new({
 })
 
 M.DeleteFileCacheOutput = schema.new({
-    id = id.from(_N, "DeleteFileCacheOutput"),
+    id = id.from(_N, "DeleteFileCacheResponse"),
     type = "structure",
     members = {
         FileCacheId = schema.new({
@@ -5274,7 +5274,7 @@ M.DeleteFileSystemWindowsConfiguration = schema.new({
 })
 
 M.DeleteFileSystemInput = schema.new({
-    id = id.from(_N, "DeleteFileSystemInput"),
+    id = id.from(_N, "DeleteFileSystemRequest"),
     type = "structure",
     members = {
         FileSystemId = schema.new({
@@ -5380,7 +5380,7 @@ M.DeleteFileSystemWindowsResponse = schema.new({
 })
 
 M.DeleteFileSystemOutput = schema.new({
-    id = id.from(_N, "DeleteFileSystemOutput"),
+    id = id.from(_N, "DeleteFileSystemResponse"),
     type = "structure",
     members = {
         FileSystemId = schema.new({
@@ -5420,7 +5420,7 @@ M.DeleteFileSystemOutput = schema.new({
 })
 
 M.DeleteSnapshotInput = schema.new({
-    id = id.from(_N, "DeleteSnapshotInput"),
+    id = id.from(_N, "DeleteSnapshotRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -5445,7 +5445,7 @@ M.DeleteSnapshotInput = schema.new({
 })
 
 M.DeleteSnapshotOutput = schema.new({
-    id = id.from(_N, "DeleteSnapshotOutput"),
+    id = id.from(_N, "DeleteSnapshotResponse"),
     type = "structure",
     members = {
         SnapshotId = schema.new({
@@ -5480,7 +5480,7 @@ M.SnapshotNotFound = schema.new({
 })
 
 M.DeleteStorageVirtualMachineInput = schema.new({
-    id = id.from(_N, "DeleteStorageVirtualMachineInput"),
+    id = id.from(_N, "DeleteStorageVirtualMachineRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -5505,7 +5505,7 @@ M.DeleteStorageVirtualMachineInput = schema.new({
 })
 
 M.DeleteStorageVirtualMachineOutput = schema.new({
-    id = id.from(_N, "DeleteStorageVirtualMachineOutput"),
+    id = id.from(_N, "DeleteStorageVirtualMachineResponse"),
     type = "structure",
     members = {
         StorageVirtualMachineId = schema.new({
@@ -5564,7 +5564,7 @@ M.DeleteVolumeOpenZFSConfiguration = schema.new({
 })
 
 M.DeleteVolumeInput = schema.new({
-    id = id.from(_N, "DeleteVolumeInput"),
+    id = id.from(_N, "DeleteVolumeRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -5623,7 +5623,7 @@ M.DeleteVolumeOntapResponse = schema.new({
 })
 
 M.DeleteVolumeOutput = schema.new({
-    id = id.from(_N, "DeleteVolumeOutput"),
+    id = id.from(_N, "DeleteVolumeResponse"),
     type = "structure",
     members = {
         VolumeId = schema.new({
@@ -5669,7 +5669,7 @@ M.Filter = schema.new({
 })
 
 M.DescribeBackupsInput = schema.new({
-    id = id.from(_N, "DescribeBackupsInput"),
+    id = id.from(_N, "DescribeBackupsRequest"),
     type = "structure",
     members = {
         BackupIds = schema.new({
@@ -5702,7 +5702,7 @@ M.DescribeBackupsInput = schema.new({
 })
 
 M.DescribeDataRepositoryAssociationsInput = schema.new({
-    id = id.from(_N, "DescribeDataRepositoryAssociationsInput"),
+    id = id.from(_N, "DescribeDataRepositoryAssociationsRequest"),
     type = "structure",
     members = {
         AssociationIds = schema.new({
@@ -5735,7 +5735,7 @@ M.DescribeDataRepositoryAssociationsInput = schema.new({
 })
 
 M.DescribeDataRepositoryAssociationsOutput = schema.new({
-    id = id.from(_N, "DescribeDataRepositoryAssociationsOutput"),
+    id = id.from(_N, "DescribeDataRepositoryAssociationsResponse"),
     type = "structure",
     members = {
         Associations = schema.new({
@@ -5791,7 +5791,7 @@ M.DataRepositoryTaskFilter = schema.new({
 })
 
 M.DescribeDataRepositoryTasksInput = schema.new({
-    id = id.from(_N, "DescribeDataRepositoryTasksInput"),
+    id = id.from(_N, "DescribeDataRepositoryTasksRequest"),
     type = "structure",
     members = {
         TaskIds = schema.new({
@@ -5824,7 +5824,7 @@ M.DescribeDataRepositoryTasksInput = schema.new({
 })
 
 M.DescribeDataRepositoryTasksOutput = schema.new({
-    id = id.from(_N, "DescribeDataRepositoryTasksOutput"),
+    id = id.from(_N, "DescribeDataRepositoryTasksResponse"),
     type = "structure",
     members = {
         DataRepositoryTasks = schema.new({
@@ -5844,7 +5844,7 @@ M.DescribeDataRepositoryTasksOutput = schema.new({
 })
 
 M.DescribeFileCachesInput = schema.new({
-    id = id.from(_N, "DescribeFileCachesInput"),
+    id = id.from(_N, "DescribeFileCachesRequest"),
     type = "structure",
     members = {
         FileCacheIds = schema.new({
@@ -5978,7 +5978,7 @@ M.FileCache = schema.new({
 })
 
 M.DescribeFileCachesOutput = schema.new({
-    id = id.from(_N, "DescribeFileCachesOutput"),
+    id = id.from(_N, "DescribeFileCachesResponse"),
     type = "structure",
     members = {
         FileCaches = schema.new({
@@ -5998,7 +5998,7 @@ M.DescribeFileCachesOutput = schema.new({
 })
 
 M.DescribeFileSystemAliasesInput = schema.new({
-    id = id.from(_N, "DescribeFileSystemAliasesInput"),
+    id = id.from(_N, "DescribeFileSystemAliasesRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -6035,7 +6035,7 @@ M.DescribeFileSystemAliasesInput = schema.new({
 })
 
 M.DescribeFileSystemAliasesOutput = schema.new({
-    id = id.from(_N, "DescribeFileSystemAliasesOutput"),
+    id = id.from(_N, "DescribeFileSystemAliasesResponse"),
     type = "structure",
     members = {
         Aliases = schema.new({
@@ -6055,7 +6055,7 @@ M.DescribeFileSystemAliasesOutput = schema.new({
 })
 
 M.DescribeFileSystemsInput = schema.new({
-    id = id.from(_N, "DescribeFileSystemsInput"),
+    id = id.from(_N, "DescribeFileSystemsRequest"),
     type = "structure",
     members = {
         FileSystemIds = schema.new({
@@ -6101,7 +6101,7 @@ M.S3AccessPointAttachmentsFilter = schema.new({
 })
 
 M.DescribeS3AccessPointAttachmentsInput = schema.new({
-    id = id.from(_N, "DescribeS3AccessPointAttachmentsInput"),
+    id = id.from(_N, "DescribeS3AccessPointAttachmentsRequest"),
     type = "structure",
     members = {
         Names = schema.new({
@@ -6134,7 +6134,7 @@ M.DescribeS3AccessPointAttachmentsInput = schema.new({
 })
 
 M.DescribeS3AccessPointAttachmentsOutput = schema.new({
-    id = id.from(_N, "DescribeS3AccessPointAttachmentsOutput"),
+    id = id.from(_N, "DescribeS3AccessPointAttachmentsResponse"),
     type = "structure",
     members = {
         S3AccessPointAttachments = schema.new({
@@ -6170,12 +6170,12 @@ M.S3AccessPointAttachmentNotFound = schema.new({
 })
 
 M.DescribeSharedVpcConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeSharedVpcConfigurationInput"),
+    id = id.from(_N, "DescribeSharedVpcConfigurationRequest"),
     type = "structure",
 })
 
 M.DescribeSharedVpcConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeSharedVpcConfigurationOutput"),
+    id = id.from(_N, "DescribeSharedVpcConfigurationResponse"),
     type = "structure",
     members = {
         EnableFsxRouteTableUpdatesFromParticipantAccounts = schema.new({
@@ -6208,7 +6208,7 @@ M.SnapshotFilter = schema.new({
 })
 
 M.DescribeSnapshotsInput = schema.new({
-    id = id.from(_N, "DescribeSnapshotsInput"),
+    id = id.from(_N, "DescribeSnapshotsRequest"),
     type = "structure",
     members = {
         SnapshotIds = schema.new({
@@ -6267,7 +6267,7 @@ M.StorageVirtualMachineFilter = schema.new({
 })
 
 M.DescribeStorageVirtualMachinesInput = schema.new({
-    id = id.from(_N, "DescribeStorageVirtualMachinesInput"),
+    id = id.from(_N, "DescribeStorageVirtualMachinesRequest"),
     type = "structure",
     members = {
         StorageVirtualMachineIds = schema.new({
@@ -6300,7 +6300,7 @@ M.DescribeStorageVirtualMachinesInput = schema.new({
 })
 
 M.DescribeStorageVirtualMachinesOutput = schema.new({
-    id = id.from(_N, "DescribeStorageVirtualMachinesOutput"),
+    id = id.from(_N, "DescribeStorageVirtualMachinesResponse"),
     type = "structure",
     members = {
         StorageVirtualMachines = schema.new({
@@ -6340,7 +6340,7 @@ M.VolumeFilter = schema.new({
 })
 
 M.DescribeVolumesInput = schema.new({
-    id = id.from(_N, "DescribeVolumesInput"),
+    id = id.from(_N, "DescribeVolumesRequest"),
     type = "structure",
     members = {
         VolumeIds = schema.new({
@@ -6373,7 +6373,7 @@ M.DescribeVolumesInput = schema.new({
 })
 
 M.DetachAndDeleteS3AccessPointInput = schema.new({
-    id = id.from(_N, "DetachAndDeleteS3AccessPointInput"),
+    id = id.from(_N, "DetachAndDeleteS3AccessPointRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -6398,7 +6398,7 @@ M.DetachAndDeleteS3AccessPointInput = schema.new({
 })
 
 M.DetachAndDeleteS3AccessPointOutput = schema.new({
-    id = id.from(_N, "DetachAndDeleteS3AccessPointOutput"),
+    id = id.from(_N, "DetachAndDeleteS3AccessPointResponse"),
     type = "structure",
     members = {
         Lifecycle = schema.new({
@@ -6417,7 +6417,7 @@ M.DetachAndDeleteS3AccessPointOutput = schema.new({
 })
 
 M.DisassociateFileSystemAliasesInput = schema.new({
-    id = id.from(_N, "DisassociateFileSystemAliasesInput"),
+    id = id.from(_N, "DisassociateFileSystemAliasesRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -6452,7 +6452,7 @@ M.DisassociateFileSystemAliasesInput = schema.new({
 })
 
 M.DisassociateFileSystemAliasesOutput = schema.new({
-    id = id.from(_N, "DisassociateFileSystemAliasesOutput"),
+    id = id.from(_N, "DisassociateFileSystemAliasesResponse"),
     type = "structure",
     members = {
         Aliases = schema.new({
@@ -6466,7 +6466,7 @@ M.DisassociateFileSystemAliasesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -6494,7 +6494,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -6589,7 +6589,7 @@ M.ResourceNotFound = schema.new({
 })
 
 M.ReleaseFileSystemNfsV3LocksInput = schema.new({
-    id = id.from(_N, "ReleaseFileSystemNfsV3LocksInput"),
+    id = id.from(_N, "ReleaseFileSystemNfsV3LocksRequest"),
     type = "structure",
     members = {
         FileSystemId = schema.new({
@@ -6614,7 +6614,7 @@ M.ReleaseFileSystemNfsV3LocksInput = schema.new({
 })
 
 M.RestoreVolumeFromSnapshotInput = schema.new({
-    id = id.from(_N, "RestoreVolumeFromSnapshotInput"),
+    id = id.from(_N, "RestoreVolumeFromSnapshotRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -6655,7 +6655,7 @@ M.RestoreVolumeFromSnapshotInput = schema.new({
 })
 
 M.StartMisconfiguredStateRecoveryInput = schema.new({
-    id = id.from(_N, "StartMisconfiguredStateRecoveryInput"),
+    id = id.from(_N, "StartMisconfiguredStateRecoveryRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -6680,7 +6680,7 @@ M.StartMisconfiguredStateRecoveryInput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -6706,12 +6706,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -6737,12 +6737,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateDataRepositoryAssociationInput = schema.new({
-    id = id.from(_N, "UpdateDataRepositoryAssociationInput"),
+    id = id.from(_N, "UpdateDataRepositoryAssociationRequest"),
     type = "structure",
     members = {
         AssociationId = schema.new({
@@ -6780,7 +6780,7 @@ M.UpdateDataRepositoryAssociationInput = schema.new({
 })
 
 M.UpdateDataRepositoryAssociationOutput = schema.new({
-    id = id.from(_N, "UpdateDataRepositoryAssociationOutput"),
+    id = id.from(_N, "UpdateDataRepositoryAssociationResponse"),
     type = "structure",
     members = {
         Association = schema.new({
@@ -6807,7 +6807,7 @@ M.UpdateFileCacheLustreConfiguration = schema.new({
 })
 
 M.UpdateFileCacheInput = schema.new({
-    id = id.from(_N, "UpdateFileCacheInput"),
+    id = id.from(_N, "UpdateFileCacheRequest"),
     type = "structure",
     members = {
         FileCacheId = schema.new({
@@ -6839,7 +6839,7 @@ M.UpdateFileCacheInput = schema.new({
 })
 
 M.UpdateFileCacheOutput = schema.new({
-    id = id.from(_N, "UpdateFileCacheOutput"),
+    id = id.from(_N, "UpdateFileCacheResponse"),
     type = "structure",
     members = {
         FileCache = schema.new({
@@ -7211,7 +7211,7 @@ M.UpdateFileSystemWindowsConfiguration = schema.new({
 })
 
 M.UpdateFileSystemInput = schema.new({
-    id = id.from(_N, "UpdateFileSystemInput"),
+    id = id.from(_N, "UpdateFileSystemRequest"),
     type = "structure",
     members = {
         FileSystemId = schema.new({
@@ -7288,7 +7288,7 @@ M.UpdateFileSystemInput = schema.new({
 })
 
 M.UpdateSharedVpcConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateSharedVpcConfigurationInput"),
+    id = id.from(_N, "UpdateSharedVpcConfigurationRequest"),
     type = "structure",
     members = {
         EnableFsxRouteTableUpdatesFromParticipantAccounts = schema.new({
@@ -7310,7 +7310,7 @@ M.UpdateSharedVpcConfigurationInput = schema.new({
 })
 
 M.UpdateSharedVpcConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateSharedVpcConfigurationOutput"),
+    id = id.from(_N, "UpdateSharedVpcConfigurationResponse"),
     type = "structure",
     members = {
         EnableFsxRouteTableUpdatesFromParticipantAccounts = schema.new({
@@ -7323,7 +7323,7 @@ M.UpdateSharedVpcConfigurationOutput = schema.new({
 })
 
 M.UpdateSnapshotInput = schema.new({
-    id = id.from(_N, "UpdateSnapshotInput"),
+    id = id.from(_N, "UpdateSnapshotRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -7377,7 +7377,7 @@ M.UpdateSvmActiveDirectoryConfiguration = schema.new({
 })
 
 M.UpdateStorageVirtualMachineInput = schema.new({
-    id = id.from(_N, "UpdateStorageVirtualMachineInput"),
+    id = id.from(_N, "UpdateStorageVirtualMachineRequest"),
     type = "structure",
     members = {
         ActiveDirectoryConfiguration = schema.new({
@@ -7415,7 +7415,7 @@ M.UpdateStorageVirtualMachineInput = schema.new({
 })
 
 M.UpdateStorageVirtualMachineOutput = schema.new({
-    id = id.from(_N, "UpdateStorageVirtualMachineOutput"),
+    id = id.from(_N, "UpdateStorageVirtualMachineResponse"),
     type = "structure",
     members = {
         StorageVirtualMachine = schema.new({
@@ -7582,7 +7582,7 @@ M.UpdateOpenZFSVolumeConfiguration = schema.new({
 })
 
 M.UpdateVolumeInput = schema.new({
-    id = id.from(_N, "UpdateVolumeInput"),
+    id = id.from(_N, "UpdateVolumeRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -8000,7 +8000,7 @@ M.Volume = schema.new({
 })
 
 M.CopySnapshotAndUpdateVolumeOutput = schema.new({
-    id = id.from(_N, "CopySnapshotAndUpdateVolumeOutput"),
+    id = id.from(_N, "CopySnapshotAndUpdateVolumeResponse"),
     type = "structure",
     members = {
         VolumeId = schema.new({
@@ -8026,7 +8026,7 @@ M.CopySnapshotAndUpdateVolumeOutput = schema.new({
 })
 
 M.RestoreVolumeFromSnapshotOutput = schema.new({
-    id = id.from(_N, "RestoreVolumeFromSnapshotOutput"),
+    id = id.from(_N, "RestoreVolumeFromSnapshotResponse"),
     type = "structure",
     members = {
         VolumeId = schema.new({
@@ -8052,7 +8052,7 @@ M.RestoreVolumeFromSnapshotOutput = schema.new({
 })
 
 M.CreateFileSystemFromBackupOutput = schema.new({
-    id = id.from(_N, "CreateFileSystemFromBackupOutput"),
+    id = id.from(_N, "CreateFileSystemFromBackupResponse"),
     type = "structure",
     members = {
         FileSystem = schema.new({
@@ -8066,7 +8066,7 @@ M.CreateFileSystemFromBackupOutput = schema.new({
 })
 
 M.CreateFileSystemOutput = schema.new({
-    id = id.from(_N, "CreateFileSystemOutput"),
+    id = id.from(_N, "CreateFileSystemResponse"),
     type = "structure",
     members = {
         FileSystem = schema.new({
@@ -8080,7 +8080,7 @@ M.CreateFileSystemOutput = schema.new({
 })
 
 M.CreateSnapshotOutput = schema.new({
-    id = id.from(_N, "CreateSnapshotOutput"),
+    id = id.from(_N, "CreateSnapshotResponse"),
     type = "structure",
     members = {
         Snapshot = schema.new({
@@ -8094,7 +8094,7 @@ M.CreateSnapshotOutput = schema.new({
 })
 
 M.CreateVolumeFromBackupOutput = schema.new({
-    id = id.from(_N, "CreateVolumeFromBackupOutput"),
+    id = id.from(_N, "CreateVolumeFromBackupResponse"),
     type = "structure",
     members = {
         Volume = schema.new({
@@ -8108,7 +8108,7 @@ M.CreateVolumeFromBackupOutput = schema.new({
 })
 
 M.CreateVolumeOutput = schema.new({
-    id = id.from(_N, "CreateVolumeOutput"),
+    id = id.from(_N, "CreateVolumeResponse"),
     type = "structure",
     members = {
         Volume = schema.new({
@@ -8122,7 +8122,7 @@ M.CreateVolumeOutput = schema.new({
 })
 
 M.ReleaseFileSystemNfsV3LocksOutput = schema.new({
-    id = id.from(_N, "ReleaseFileSystemNfsV3LocksOutput"),
+    id = id.from(_N, "ReleaseFileSystemNfsV3LocksResponse"),
     type = "structure",
     members = {
         FileSystem = schema.new({
@@ -8136,7 +8136,7 @@ M.ReleaseFileSystemNfsV3LocksOutput = schema.new({
 })
 
 M.StartMisconfiguredStateRecoveryOutput = schema.new({
-    id = id.from(_N, "StartMisconfiguredStateRecoveryOutput"),
+    id = id.from(_N, "StartMisconfiguredStateRecoveryResponse"),
     type = "structure",
     members = {
         FileSystem = schema.new({
@@ -8150,7 +8150,7 @@ M.StartMisconfiguredStateRecoveryOutput = schema.new({
 })
 
 M.UpdateFileSystemOutput = schema.new({
-    id = id.from(_N, "UpdateFileSystemOutput"),
+    id = id.from(_N, "UpdateFileSystemResponse"),
     type = "structure",
     members = {
         FileSystem = schema.new({
@@ -8164,7 +8164,7 @@ M.UpdateFileSystemOutput = schema.new({
 })
 
 M.UpdateSnapshotOutput = schema.new({
-    id = id.from(_N, "UpdateSnapshotOutput"),
+    id = id.from(_N, "UpdateSnapshotResponse"),
     type = "structure",
     members = {
         Snapshot = schema.new({
@@ -8178,7 +8178,7 @@ M.UpdateSnapshotOutput = schema.new({
 })
 
 M.UpdateVolumeOutput = schema.new({
-    id = id.from(_N, "UpdateVolumeOutput"),
+    id = id.from(_N, "UpdateVolumeResponse"),
     type = "structure",
     members = {
         Volume = schema.new({
@@ -8192,7 +8192,7 @@ M.UpdateVolumeOutput = schema.new({
 })
 
 M.DescribeFileSystemsOutput = schema.new({
-    id = id.from(_N, "DescribeFileSystemsOutput"),
+    id = id.from(_N, "DescribeFileSystemsResponse"),
     type = "structure",
     members = {
         FileSystems = schema.new({
@@ -8212,7 +8212,7 @@ M.DescribeFileSystemsOutput = schema.new({
 })
 
 M.DescribeSnapshotsOutput = schema.new({
-    id = id.from(_N, "DescribeSnapshotsOutput"),
+    id = id.from(_N, "DescribeSnapshotsResponse"),
     type = "structure",
     members = {
         Snapshots = schema.new({
@@ -8232,7 +8232,7 @@ M.DescribeSnapshotsOutput = schema.new({
 })
 
 M.DescribeVolumesOutput = schema.new({
-    id = id.from(_N, "DescribeVolumesOutput"),
+    id = id.from(_N, "DescribeVolumesResponse"),
     type = "structure",
     members = {
         Volumes = schema.new({
@@ -8381,7 +8381,7 @@ M.Backup = schema.new({
 })
 
 M.CopyBackupOutput = schema.new({
-    id = id.from(_N, "CopyBackupOutput"),
+    id = id.from(_N, "CopyBackupResponse"),
     type = "structure",
     members = {
         Backup = schema.new({
@@ -8395,7 +8395,7 @@ M.CopyBackupOutput = schema.new({
 })
 
 M.CreateBackupOutput = schema.new({
-    id = id.from(_N, "CreateBackupOutput"),
+    id = id.from(_N, "CreateBackupResponse"),
     type = "structure",
     members = {
         Backup = schema.new({
@@ -8409,7 +8409,7 @@ M.CreateBackupOutput = schema.new({
 })
 
 M.DescribeBackupsOutput = schema.new({
-    id = id.from(_N, "DescribeBackupsOutput"),
+    id = id.from(_N, "DescribeBackupsResponse"),
     type = "structure",
     members = {
         Backups = schema.new({
@@ -8427,5 +8427,19 @@ M.DescribeBackupsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

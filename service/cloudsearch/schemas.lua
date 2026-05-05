@@ -30,7 +30,7 @@ M.BaseException = schema.new({
 })
 
 M.BuildSuggestersInput = schema.new({
-    id = id.from(_N, "BuildSuggestersInput"),
+    id = id.from(_N, "BuildSuggestersRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -46,7 +46,7 @@ M.BuildSuggestersInput = schema.new({
 })
 
 M.BuildSuggestersOutput = schema.new({
-    id = id.from(_N, "BuildSuggestersOutput"),
+    id = id.from(_N, "BuildSuggestersResponse"),
     type = "structure",
     members = {
         FieldNames = schema.new({
@@ -126,7 +126,7 @@ M.ValidationException = schema.new({
 })
 
 M.CreateDomainInput = schema.new({
-    id = id.from(_N, "CreateDomainInput"),
+    id = id.from(_N, "CreateDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -277,7 +277,7 @@ M.DomainStatus = schema.new({
 })
 
 M.CreateDomainOutput = schema.new({
-    id = id.from(_N, "CreateDomainOutput"),
+    id = id.from(_N, "CreateDomainResponse"),
     type = "structure",
     members = {
         DomainStatus = schema.new({
@@ -404,7 +404,7 @@ M.AnalysisScheme = schema.new({
 })
 
 M.DefineAnalysisSchemeInput = schema.new({
-    id = id.from(_N, "DefineAnalysisSchemeInput"),
+    id = id.from(_N, "DefineAnalysisSchemeRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -506,7 +506,7 @@ M.AnalysisSchemeStatus = schema.new({
 })
 
 M.DefineAnalysisSchemeOutput = schema.new({
-    id = id.from(_N, "DefineAnalysisSchemeOutput"),
+    id = id.from(_N, "DefineAnalysisSchemeResponse"),
     type = "structure",
     members = {
         AnalysisScheme = schema.new({
@@ -570,7 +570,7 @@ M.Expression = schema.new({
 })
 
 M.DefineExpressionInput = schema.new({
-    id = id.from(_N, "DefineExpressionInput"),
+    id = id.from(_N, "DefineExpressionRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -623,7 +623,7 @@ M.ExpressionStatus = schema.new({
 })
 
 M.DefineExpressionOutput = schema.new({
-    id = id.from(_N, "DefineExpressionOutput"),
+    id = id.from(_N, "DefineExpressionResponse"),
     type = "structure",
     members = {
         Expression = schema.new({
@@ -1185,7 +1185,7 @@ M.IndexField = schema.new({
 })
 
 M.DefineIndexFieldInput = schema.new({
-    id = id.from(_N, "DefineIndexFieldInput"),
+    id = id.from(_N, "DefineIndexFieldRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1238,7 +1238,7 @@ M.IndexFieldStatus = schema.new({
 })
 
 M.DefineIndexFieldOutput = schema.new({
-    id = id.from(_N, "DefineIndexFieldOutput"),
+    id = id.from(_N, "DefineIndexFieldResponse"),
     type = "structure",
     members = {
         IndexField = schema.new({
@@ -1309,7 +1309,7 @@ M.Suggester = schema.new({
 })
 
 M.DefineSuggesterInput = schema.new({
-    id = id.from(_N, "DefineSuggesterInput"),
+    id = id.from(_N, "DefineSuggesterRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1362,7 +1362,7 @@ M.SuggesterStatus = schema.new({
 })
 
 M.DefineSuggesterOutput = schema.new({
-    id = id.from(_N, "DefineSuggesterOutput"),
+    id = id.from(_N, "DefineSuggesterResponse"),
     type = "structure",
     members = {
         Suggester = schema.new({
@@ -1379,7 +1379,7 @@ M.DefineSuggesterOutput = schema.new({
 })
 
 M.DeleteAnalysisSchemeInput = schema.new({
-    id = id.from(_N, "DeleteAnalysisSchemeInput"),
+    id = id.from(_N, "DeleteAnalysisSchemeRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1404,7 +1404,7 @@ M.DeleteAnalysisSchemeInput = schema.new({
 })
 
 M.DeleteAnalysisSchemeOutput = schema.new({
-    id = id.from(_N, "DeleteAnalysisSchemeOutput"),
+    id = id.from(_N, "DeleteAnalysisSchemeResponse"),
     type = "structure",
     members = {
         AnalysisScheme = schema.new({
@@ -1421,7 +1421,7 @@ M.DeleteAnalysisSchemeOutput = schema.new({
 })
 
 M.DeleteDomainInput = schema.new({
-    id = id.from(_N, "DeleteDomainInput"),
+    id = id.from(_N, "DeleteDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1437,7 +1437,7 @@ M.DeleteDomainInput = schema.new({
 })
 
 M.DeleteDomainOutput = schema.new({
-    id = id.from(_N, "DeleteDomainOutput"),
+    id = id.from(_N, "DeleteDomainResponse"),
     type = "structure",
     members = {
         DomainStatus = schema.new({
@@ -1451,7 +1451,7 @@ M.DeleteDomainOutput = schema.new({
 })
 
 M.DeleteExpressionInput = schema.new({
-    id = id.from(_N, "DeleteExpressionInput"),
+    id = id.from(_N, "DeleteExpressionRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1476,7 +1476,7 @@ M.DeleteExpressionInput = schema.new({
 })
 
 M.DeleteExpressionOutput = schema.new({
-    id = id.from(_N, "DeleteExpressionOutput"),
+    id = id.from(_N, "DeleteExpressionResponse"),
     type = "structure",
     members = {
         Expression = schema.new({
@@ -1493,7 +1493,7 @@ M.DeleteExpressionOutput = schema.new({
 })
 
 M.DeleteIndexFieldInput = schema.new({
-    id = id.from(_N, "DeleteIndexFieldInput"),
+    id = id.from(_N, "DeleteIndexFieldRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1518,7 +1518,7 @@ M.DeleteIndexFieldInput = schema.new({
 })
 
 M.DeleteIndexFieldOutput = schema.new({
-    id = id.from(_N, "DeleteIndexFieldOutput"),
+    id = id.from(_N, "DeleteIndexFieldResponse"),
     type = "structure",
     members = {
         IndexField = schema.new({
@@ -1535,7 +1535,7 @@ M.DeleteIndexFieldOutput = schema.new({
 })
 
 M.DeleteSuggesterInput = schema.new({
-    id = id.from(_N, "DeleteSuggesterInput"),
+    id = id.from(_N, "DeleteSuggesterRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1560,7 +1560,7 @@ M.DeleteSuggesterInput = schema.new({
 })
 
 M.DeleteSuggesterOutput = schema.new({
-    id = id.from(_N, "DeleteSuggesterOutput"),
+    id = id.from(_N, "DeleteSuggesterResponse"),
     type = "structure",
     members = {
         Suggester = schema.new({
@@ -1577,7 +1577,7 @@ M.DeleteSuggesterOutput = schema.new({
 })
 
 M.DescribeAnalysisSchemesInput = schema.new({
-    id = id.from(_N, "DescribeAnalysisSchemesInput"),
+    id = id.from(_N, "DescribeAnalysisSchemesRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1606,7 +1606,7 @@ M.DescribeAnalysisSchemesInput = schema.new({
 })
 
 M.DescribeAnalysisSchemesOutput = schema.new({
-    id = id.from(_N, "DescribeAnalysisSchemesOutput"),
+    id = id.from(_N, "DescribeAnalysisSchemesResponse"),
     type = "structure",
     members = {
         AnalysisSchemes = schema.new({
@@ -1623,7 +1623,7 @@ M.DescribeAnalysisSchemesOutput = schema.new({
 })
 
 M.DescribeAvailabilityOptionsInput = schema.new({
-    id = id.from(_N, "DescribeAvailabilityOptionsInput"),
+    id = id.from(_N, "DescribeAvailabilityOptionsRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1672,7 +1672,7 @@ M.AvailabilityOptionsStatus = schema.new({
 })
 
 M.DescribeAvailabilityOptionsOutput = schema.new({
-    id = id.from(_N, "DescribeAvailabilityOptionsOutput"),
+    id = id.from(_N, "DescribeAvailabilityOptionsResponse"),
     type = "structure",
     members = {
         AvailabilityOptions = schema.new({
@@ -1708,7 +1708,7 @@ M.DisabledOperationException = schema.new({
 })
 
 M.DescribeDomainEndpointOptionsInput = schema.new({
-    id = id.from(_N, "DescribeDomainEndpointOptionsInput"),
+    id = id.from(_N, "DescribeDomainEndpointOptionsRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1776,7 +1776,7 @@ M.DomainEndpointOptionsStatus = schema.new({
 })
 
 M.DescribeDomainEndpointOptionsOutput = schema.new({
-    id = id.from(_N, "DescribeDomainEndpointOptionsOutput"),
+    id = id.from(_N, "DescribeDomainEndpointOptionsResponse"),
     type = "structure",
     members = {
         DomainEndpointOptions = schema.new({
@@ -1790,7 +1790,7 @@ M.DescribeDomainEndpointOptionsOutput = schema.new({
 })
 
 M.DescribeDomainsInput = schema.new({
-    id = id.from(_N, "DescribeDomainsInput"),
+    id = id.from(_N, "DescribeDomainsRequest"),
     type = "structure",
     members = {
         DomainNames = schema.new({
@@ -1804,7 +1804,7 @@ M.DescribeDomainsInput = schema.new({
 })
 
 M.DescribeDomainsOutput = schema.new({
-    id = id.from(_N, "DescribeDomainsOutput"),
+    id = id.from(_N, "DescribeDomainsResponse"),
     type = "structure",
     members = {
         DomainStatusList = schema.new({
@@ -1821,7 +1821,7 @@ M.DescribeDomainsOutput = schema.new({
 })
 
 M.DescribeExpressionsInput = schema.new({
-    id = id.from(_N, "DescribeExpressionsInput"),
+    id = id.from(_N, "DescribeExpressionsRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1850,7 +1850,7 @@ M.DescribeExpressionsInput = schema.new({
 })
 
 M.DescribeExpressionsOutput = schema.new({
-    id = id.from(_N, "DescribeExpressionsOutput"),
+    id = id.from(_N, "DescribeExpressionsResponse"),
     type = "structure",
     members = {
         Expressions = schema.new({
@@ -1867,7 +1867,7 @@ M.DescribeExpressionsOutput = schema.new({
 })
 
 M.DescribeIndexFieldsInput = schema.new({
-    id = id.from(_N, "DescribeIndexFieldsInput"),
+    id = id.from(_N, "DescribeIndexFieldsRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1896,7 +1896,7 @@ M.DescribeIndexFieldsInput = schema.new({
 })
 
 M.DescribeIndexFieldsOutput = schema.new({
-    id = id.from(_N, "DescribeIndexFieldsOutput"),
+    id = id.from(_N, "DescribeIndexFieldsResponse"),
     type = "structure",
     members = {
         IndexFields = schema.new({
@@ -1913,7 +1913,7 @@ M.DescribeIndexFieldsOutput = schema.new({
 })
 
 M.DescribeScalingParametersInput = schema.new({
-    id = id.from(_N, "DescribeScalingParametersInput"),
+    id = id.from(_N, "DescribeScalingParametersRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1987,7 +1987,7 @@ M.ScalingParametersStatus = schema.new({
 })
 
 M.DescribeScalingParametersOutput = schema.new({
-    id = id.from(_N, "DescribeScalingParametersOutput"),
+    id = id.from(_N, "DescribeScalingParametersResponse"),
     type = "structure",
     members = {
         ScalingParameters = schema.new({
@@ -2004,7 +2004,7 @@ M.DescribeScalingParametersOutput = schema.new({
 })
 
 M.DescribeServiceAccessPoliciesInput = schema.new({
-    id = id.from(_N, "DescribeServiceAccessPoliciesInput"),
+    id = id.from(_N, "DescribeServiceAccessPoliciesRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2052,7 +2052,7 @@ M.AccessPoliciesStatus = schema.new({
 })
 
 M.DescribeServiceAccessPoliciesOutput = schema.new({
-    id = id.from(_N, "DescribeServiceAccessPoliciesOutput"),
+    id = id.from(_N, "DescribeServiceAccessPoliciesResponse"),
     type = "structure",
     members = {
         AccessPolicies = schema.new({
@@ -2069,7 +2069,7 @@ M.DescribeServiceAccessPoliciesOutput = schema.new({
 })
 
 M.DescribeSuggestersInput = schema.new({
-    id = id.from(_N, "DescribeSuggestersInput"),
+    id = id.from(_N, "DescribeSuggestersRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2098,7 +2098,7 @@ M.DescribeSuggestersInput = schema.new({
 })
 
 M.DescribeSuggestersOutput = schema.new({
-    id = id.from(_N, "DescribeSuggestersOutput"),
+    id = id.from(_N, "DescribeSuggestersResponse"),
     type = "structure",
     members = {
         Suggesters = schema.new({
@@ -2115,7 +2115,7 @@ M.DescribeSuggestersOutput = schema.new({
 })
 
 M.IndexDocumentsInput = schema.new({
-    id = id.from(_N, "IndexDocumentsInput"),
+    id = id.from(_N, "IndexDocumentsRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2131,7 +2131,7 @@ M.IndexDocumentsInput = schema.new({
 })
 
 M.IndexDocumentsOutput = schema.new({
-    id = id.from(_N, "IndexDocumentsOutput"),
+    id = id.from(_N, "IndexDocumentsResponse"),
     type = "structure",
     members = {
         FieldNames = schema.new({
@@ -2145,12 +2145,12 @@ M.IndexDocumentsOutput = schema.new({
 })
 
 M.ListDomainNamesInput = schema.new({
-    id = id.from(_N, "ListDomainNamesInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ListDomainNamesOutput = schema.new({
-    id = id.from(_N, "ListDomainNamesOutput"),
+    id = id.from(_N, "ListDomainNamesResponse"),
     type = "structure",
     members = {
         DomainNames = schema.new({
@@ -2165,7 +2165,7 @@ M.ListDomainNamesOutput = schema.new({
 })
 
 M.UpdateAvailabilityOptionsInput = schema.new({
-    id = id.from(_N, "UpdateAvailabilityOptionsInput"),
+    id = id.from(_N, "UpdateAvailabilityOptionsRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2190,7 +2190,7 @@ M.UpdateAvailabilityOptionsInput = schema.new({
 })
 
 M.UpdateAvailabilityOptionsOutput = schema.new({
-    id = id.from(_N, "UpdateAvailabilityOptionsOutput"),
+    id = id.from(_N, "UpdateAvailabilityOptionsResponse"),
     type = "structure",
     members = {
         AvailabilityOptions = schema.new({
@@ -2204,7 +2204,7 @@ M.UpdateAvailabilityOptionsOutput = schema.new({
 })
 
 M.UpdateDomainEndpointOptionsInput = schema.new({
-    id = id.from(_N, "UpdateDomainEndpointOptionsInput"),
+    id = id.from(_N, "UpdateDomainEndpointOptionsRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2230,7 +2230,7 @@ M.UpdateDomainEndpointOptionsInput = schema.new({
 })
 
 M.UpdateDomainEndpointOptionsOutput = schema.new({
-    id = id.from(_N, "UpdateDomainEndpointOptionsOutput"),
+    id = id.from(_N, "UpdateDomainEndpointOptionsResponse"),
     type = "structure",
     members = {
         DomainEndpointOptions = schema.new({
@@ -2244,7 +2244,7 @@ M.UpdateDomainEndpointOptionsOutput = schema.new({
 })
 
 M.UpdateScalingParametersInput = schema.new({
-    id = id.from(_N, "UpdateScalingParametersInput"),
+    id = id.from(_N, "UpdateScalingParametersRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2270,7 +2270,7 @@ M.UpdateScalingParametersInput = schema.new({
 })
 
 M.UpdateScalingParametersOutput = schema.new({
-    id = id.from(_N, "UpdateScalingParametersOutput"),
+    id = id.from(_N, "UpdateScalingParametersResponse"),
     type = "structure",
     members = {
         ScalingParameters = schema.new({
@@ -2287,7 +2287,7 @@ M.UpdateScalingParametersOutput = schema.new({
 })
 
 M.UpdateServiceAccessPoliciesInput = schema.new({
-    id = id.from(_N, "UpdateServiceAccessPoliciesInput"),
+    id = id.from(_N, "UpdateServiceAccessPoliciesRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -2312,7 +2312,7 @@ M.UpdateServiceAccessPoliciesInput = schema.new({
 })
 
 M.UpdateServiceAccessPoliciesOutput = schema.new({
-    id = id.from(_N, "UpdateServiceAccessPoliciesOutput"),
+    id = id.from(_N, "UpdateServiceAccessPoliciesResponse"),
     type = "structure",
     members = {
         AccessPolicies = schema.new({
@@ -2327,5 +2327,19 @@ M.UpdateServiceAccessPoliciesOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

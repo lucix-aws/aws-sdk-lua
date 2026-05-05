@@ -151,7 +151,7 @@ M.AnalysisReportSummary = schema.new({
 })
 
 M.CreatePerformanceAnalysisReportInput = schema.new({
-    id = id.from(_N, "CreatePerformanceAnalysisReportInput"),
+    id = id.from(_N, "CreatePerformanceAnalysisReportRequest"),
     type = "structure",
     members = {
         ServiceType = schema.new({
@@ -201,7 +201,7 @@ M.CreatePerformanceAnalysisReportInput = schema.new({
 })
 
 M.CreatePerformanceAnalysisReportOutput = schema.new({
-    id = id.from(_N, "CreatePerformanceAnalysisReportOutput"),
+    id = id.from(_N, "CreatePerformanceAnalysisReportResponse"),
     type = "structure",
     members = {
         AnalysisReportId = schema.new({
@@ -287,7 +287,7 @@ M.DataPoint = schema.new({
 })
 
 M.DeletePerformanceAnalysisReportInput = schema.new({
-    id = id.from(_N, "DeletePerformanceAnalysisReportInput"),
+    id = id.from(_N, "DeletePerformanceAnalysisReportRequest"),
     type = "structure",
     members = {
         ServiceType = schema.new({
@@ -321,7 +321,7 @@ M.DeletePerformanceAnalysisReportInput = schema.new({
 })
 
 M.DeletePerformanceAnalysisReportOutput = schema.new({
-    id = id.from(_N, "DeletePerformanceAnalysisReportOutput"),
+    id = id.from(_N, "DeletePerformanceAnalysisReportResponse"),
     type = "structure",
 })
 
@@ -355,7 +355,7 @@ M.DimensionGroup = schema.new({
 })
 
 M.DescribeDimensionKeysInput = schema.new({
-    id = id.from(_N, "DescribeDimensionKeysInput"),
+    id = id.from(_N, "DescribeDimensionKeysRequest"),
     type = "structure",
     members = {
         ServiceType = schema.new({
@@ -511,7 +511,7 @@ M.ResponsePartitionKey = schema.new({
 })
 
 M.DescribeDimensionKeysOutput = schema.new({
-    id = id.from(_N, "DescribeDimensionKeysOutput"),
+    id = id.from(_N, "DescribeDimensionKeysResponse"),
     type = "structure",
     members = {
         AlignedStartTime = schema.new({
@@ -621,7 +621,7 @@ M.FeatureMetadata = schema.new({
 })
 
 M.GetDimensionKeyDetailsInput = schema.new({
-    id = id.from(_N, "GetDimensionKeyDetailsInput"),
+    id = id.from(_N, "GetDimensionKeyDetailsRequest"),
     type = "structure",
     members = {
         ServiceType = schema.new({
@@ -671,7 +671,7 @@ M.GetDimensionKeyDetailsInput = schema.new({
 })
 
 M.GetDimensionKeyDetailsOutput = schema.new({
-    id = id.from(_N, "GetDimensionKeyDetailsOutput"),
+    id = id.from(_N, "GetDimensionKeyDetailsResponse"),
     type = "structure",
     members = {
         Dimensions = schema.new({
@@ -685,7 +685,7 @@ M.GetDimensionKeyDetailsOutput = schema.new({
 })
 
 M.GetPerformanceAnalysisReportInput = schema.new({
-    id = id.from(_N, "GetPerformanceAnalysisReportInput"),
+    id = id.from(_N, "GetPerformanceAnalysisReportRequest"),
     type = "structure",
     members = {
         ServiceType = schema.new({
@@ -731,7 +731,7 @@ M.GetPerformanceAnalysisReportInput = schema.new({
 })
 
 M.GetResourceMetadataInput = schema.new({
-    id = id.from(_N, "GetResourceMetadataInput"),
+    id = id.from(_N, "GetResourceMetadataRequest"),
     type = "structure",
     members = {
         ServiceType = schema.new({
@@ -756,7 +756,7 @@ M.GetResourceMetadataInput = schema.new({
 })
 
 M.GetResourceMetadataOutput = schema.new({
-    id = id.from(_N, "GetResourceMetadataOutput"),
+    id = id.from(_N, "GetResourceMetadataResponse"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -808,7 +808,7 @@ M.MetricQuery = schema.new({
 })
 
 M.GetResourceMetricsInput = schema.new({
-    id = id.from(_N, "GetResourceMetricsInput"),
+    id = id.from(_N, "GetResourceMetricsRequest"),
     type = "structure",
     members = {
         ServiceType = schema.new({
@@ -930,7 +930,7 @@ M.MetricKeyDataPoints = schema.new({
 })
 
 M.GetResourceMetricsOutput = schema.new({
-    id = id.from(_N, "GetResourceMetricsOutput"),
+    id = id.from(_N, "GetResourceMetricsResponse"),
     type = "structure",
     members = {
         AlignedStartTime = schema.new({
@@ -968,7 +968,7 @@ M.GetResourceMetricsOutput = schema.new({
 })
 
 M.ListAvailableResourceDimensionsInput = schema.new({
-    id = id.from(_N, "ListAvailableResourceDimensionsInput"),
+    id = id.from(_N, "ListAvailableResourceDimensionsRequest"),
     type = "structure",
     members = {
         ServiceType = schema.new({
@@ -1042,7 +1042,7 @@ M.MetricDimensionGroups = schema.new({
 })
 
 M.ListAvailableResourceDimensionsOutput = schema.new({
-    id = id.from(_N, "ListAvailableResourceDimensionsOutput"),
+    id = id.from(_N, "ListAvailableResourceDimensionsResponse"),
     type = "structure",
     members = {
         MetricDimensions = schema.new({
@@ -1062,7 +1062,7 @@ M.ListAvailableResourceDimensionsOutput = schema.new({
 })
 
 M.ListAvailableResourceMetricsInput = schema.new({
-    id = id.from(_N, "ListAvailableResourceMetricsInput"),
+    id = id.from(_N, "ListAvailableResourceMetricsRequest"),
     type = "structure",
     members = {
         ServiceType = schema.new({
@@ -1134,7 +1134,7 @@ M.ResponseResourceMetric = schema.new({
 })
 
 M.ListAvailableResourceMetricsOutput = schema.new({
-    id = id.from(_N, "ListAvailableResourceMetricsOutput"),
+    id = id.from(_N, "ListAvailableResourceMetricsResponse"),
     type = "structure",
     members = {
         Metrics = schema.new({
@@ -1154,7 +1154,7 @@ M.ListAvailableResourceMetricsOutput = schema.new({
 })
 
 M.ListPerformanceAnalysisReportsInput = schema.new({
-    id = id.from(_N, "ListPerformanceAnalysisReportsInput"),
+    id = id.from(_N, "ListPerformanceAnalysisReportsRequest"),
     type = "structure",
     members = {
         ServiceType = schema.new({
@@ -1197,7 +1197,7 @@ M.ListPerformanceAnalysisReportsInput = schema.new({
 })
 
 M.ListPerformanceAnalysisReportsOutput = schema.new({
-    id = id.from(_N, "ListPerformanceAnalysisReportsOutput"),
+    id = id.from(_N, "ListPerformanceAnalysisReportsResponse"),
     type = "structure",
     members = {
         AnalysisReports = schema.new({
@@ -1217,7 +1217,7 @@ M.ListPerformanceAnalysisReportsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ServiceType = schema.new({
@@ -1242,7 +1242,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1256,7 +1256,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ServiceType = schema.new({
@@ -1291,12 +1291,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ServiceType = schema.new({
@@ -1331,7 +1331,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -1475,7 +1475,7 @@ M.AnalysisReport = schema.new({
 })
 
 M.GetPerformanceAnalysisReportOutput = schema.new({
-    id = id.from(_N, "GetPerformanceAnalysisReportOutput"),
+    id = id.from(_N, "GetPerformanceAnalysisReportResponse"),
     type = "structure",
     members = {
         AnalysisReport = schema.new({
@@ -1487,5 +1487,19 @@ M.GetPerformanceAnalysisReportOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

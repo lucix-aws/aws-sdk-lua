@@ -134,7 +134,7 @@ M.UserUnion = schema.new({
 })
 
 M.CreateCaseInput = schema.new({
-    id = id.from(_N, "CreateCaseInput"),
+    id = id.from(_N, "CreateCaseRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -194,7 +194,7 @@ M.CreateCaseInput = schema.new({
 })
 
 M.CreateCaseOutput = schema.new({
-    id = id.from(_N, "CreateCaseOutput"),
+    id = id.from(_N, "CreateCaseResponse"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -322,7 +322,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteCaseInput = schema.new({
-    id = id.from(_N, "DeleteCaseInput"),
+    id = id.from(_N, "DeleteCaseRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -349,7 +349,7 @@ M.DeleteCaseInput = schema.new({
 })
 
 M.DeleteCaseOutput = schema.new({
-    id = id.from(_N, "DeleteCaseOutput"),
+    id = id.from(_N, "DeleteCaseResponse"),
     type = "structure",
 })
 
@@ -370,7 +370,7 @@ M.FieldIdentifier = schema.new({
 })
 
 M.GetCaseInput = schema.new({
-    id = id.from(_N, "GetCaseInput"),
+    id = id.from(_N, "GetCaseRequest"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -413,7 +413,7 @@ M.GetCaseInput = schema.new({
 })
 
 M.GetCaseOutput = schema.new({
-    id = id.from(_N, "GetCaseOutput"),
+    id = id.from(_N, "GetCaseResponse"),
     type = "structure",
     members = {
         fields = schema.new({
@@ -453,7 +453,7 @@ M.GetCaseOutput = schema.new({
 })
 
 M.GetCaseAuditEventsInput = schema.new({
-    id = id.from(_N, "GetCaseAuditEventsInput"),
+    id = id.from(_N, "GetCaseAuditEventsRequest"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -650,7 +650,7 @@ M.AuditEvent = schema.new({
 })
 
 M.GetCaseAuditEventsOutput = schema.new({
-    id = id.from(_N, "GetCaseAuditEventsOutput"),
+    id = id.from(_N, "GetCaseAuditEventsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -673,7 +673,7 @@ M.GetCaseAuditEventsOutput = schema.new({
 })
 
 M.ListCasesForContactInput = schema.new({
-    id = id.from(_N, "ListCasesForContactInput"),
+    id = id.from(_N, "ListCasesForContactRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -739,7 +739,7 @@ M.CaseSummary = schema.new({
 })
 
 M.ListCasesForContactOutput = schema.new({
-    id = id.from(_N, "ListCasesForContactOutput"),
+    id = id.from(_N, "ListCasesForContactResponse"),
     type = "structure",
     members = {
         cases = schema.new({
@@ -962,7 +962,7 @@ M.RelatedItemInputContent = schema.new({
 })
 
 M.CreateRelatedItemInput = schema.new({
-    id = id.from(_N, "CreateRelatedItemInput"),
+    id = id.from(_N, "CreateRelatedItemRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -1015,7 +1015,7 @@ M.CreateRelatedItemInput = schema.new({
 })
 
 M.CreateRelatedItemOutput = schema.new({
-    id = id.from(_N, "CreateRelatedItemOutput"),
+    id = id.from(_N, "CreateRelatedItemResponse"),
     type = "structure",
     members = {
         relatedItemId = schema.new({
@@ -1059,7 +1059,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.DeleteRelatedItemInput = schema.new({
-    id = id.from(_N, "DeleteRelatedItemInput"),
+    id = id.from(_N, "DeleteRelatedItemRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -1096,7 +1096,7 @@ M.DeleteRelatedItemInput = schema.new({
 })
 
 M.DeleteRelatedItemOutput = schema.new({
-    id = id.from(_N, "DeleteRelatedItemOutput"),
+    id = id.from(_N, "DeleteRelatedItemResponse"),
     type = "structure",
 })
 
@@ -1489,7 +1489,7 @@ M.SearchRelatedItemsResponseItem = schema.new({
 })
 
 M.SearchRelatedItemsOutput = schema.new({
-    id = id.from(_N, "SearchRelatedItemsOutput"),
+    id = id.from(_N, "SearchRelatedItemsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1575,7 +1575,7 @@ M.RelatedItemUpdateContent = schema.new({
 })
 
 M.UpdateRelatedItemInput = schema.new({
-    id = id.from(_N, "UpdateRelatedItemInput"),
+    id = id.from(_N, "UpdateRelatedItemRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -1629,7 +1629,7 @@ M.UpdateRelatedItemInput = schema.new({
 })
 
 M.UpdateRelatedItemOutput = schema.new({
-    id = id.from(_N, "UpdateRelatedItemOutput"),
+    id = id.from(_N, "UpdateRelatedItemResponse"),
     type = "structure",
     members = {
         relatedItemId = schema.new({
@@ -1809,7 +1809,7 @@ M.SearchCasesResponseItem = schema.new({
 })
 
 M.SearchCasesOutput = schema.new({
-    id = id.from(_N, "SearchCasesOutput"),
+    id = id.from(_N, "SearchCasesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1841,7 +1841,7 @@ M.SearchCasesOutput = schema.new({
 })
 
 M.UpdateCaseInput = schema.new({
-    id = id.from(_N, "UpdateCaseInput"),
+    id = id.from(_N, "UpdateCaseRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -1885,7 +1885,7 @@ M.UpdateCaseInput = schema.new({
 })
 
 M.UpdateCaseOutput = schema.new({
-    id = id.from(_N, "UpdateCaseOutput"),
+    id = id.from(_N, "UpdateCaseResponse"),
     type = "structure",
 })
 
@@ -1906,7 +1906,7 @@ M.CaseRuleIdentifier = schema.new({
 })
 
 M.BatchGetCaseRuleInput = schema.new({
-    id = id.from(_N, "BatchGetCaseRuleInput"),
+    id = id.from(_N, "BatchGetCaseRuleRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -2105,7 +2105,7 @@ M.CaseRuleError = schema.new({
 })
 
 M.CreateCaseRuleOutput = schema.new({
-    id = id.from(_N, "CreateCaseRuleOutput"),
+    id = id.from(_N, "CreateCaseRuleResponse"),
     type = "structure",
     members = {
         caseRuleId = schema.new({
@@ -2130,7 +2130,7 @@ M.CreateCaseRuleOutput = schema.new({
 })
 
 M.DeleteCaseRuleInput = schema.new({
-    id = id.from(_N, "DeleteCaseRuleInput"),
+    id = id.from(_N, "DeleteCaseRuleRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -2157,12 +2157,12 @@ M.DeleteCaseRuleInput = schema.new({
 })
 
 M.DeleteCaseRuleOutput = schema.new({
-    id = id.from(_N, "DeleteCaseRuleOutput"),
+    id = id.from(_N, "DeleteCaseRuleResponse"),
     type = "structure",
 })
 
 M.ListCaseRulesInput = schema.new({
-    id = id.from(_N, "ListCaseRulesInput"),
+    id = id.from(_N, "ListCaseRulesRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -2246,7 +2246,7 @@ M.CaseRuleSummary = schema.new({
 })
 
 M.ListCaseRulesOutput = schema.new({
-    id = id.from(_N, "ListCaseRulesOutput"),
+    id = id.from(_N, "ListCaseRulesResponse"),
     type = "structure",
     members = {
         caseRules = schema.new({
@@ -2269,12 +2269,12 @@ M.ListCaseRulesOutput = schema.new({
 })
 
 M.UpdateCaseRuleOutput = schema.new({
-    id = id.from(_N, "UpdateCaseRuleOutput"),
+    id = id.from(_N, "UpdateCaseRuleResponse"),
     type = "structure",
 })
 
 M.CreateDomainInput = schema.new({
-    id = id.from(_N, "CreateDomainInput"),
+    id = id.from(_N, "CreateDomainRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2290,7 +2290,7 @@ M.CreateDomainInput = schema.new({
 })
 
 M.CreateDomainOutput = schema.new({
-    id = id.from(_N, "CreateDomainOutput"),
+    id = id.from(_N, "CreateDomainResponse"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -2324,7 +2324,7 @@ M.CreateDomainOutput = schema.new({
 })
 
 M.DeleteDomainInput = schema.new({
-    id = id.from(_N, "DeleteDomainInput"),
+    id = id.from(_N, "DeleteDomainRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -2341,12 +2341,12 @@ M.DeleteDomainInput = schema.new({
 })
 
 M.DeleteDomainOutput = schema.new({
-    id = id.from(_N, "DeleteDomainOutput"),
+    id = id.from(_N, "DeleteDomainResponse"),
     type = "structure",
 })
 
 M.GetCaseEventConfigurationInput = schema.new({
-    id = id.from(_N, "GetCaseEventConfigurationInput"),
+    id = id.from(_N, "GetCaseEventConfigurationRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -2440,7 +2440,7 @@ M.EventBridgeConfiguration = schema.new({
 })
 
 M.GetCaseEventConfigurationOutput = schema.new({
-    id = id.from(_N, "GetCaseEventConfigurationOutput"),
+    id = id.from(_N, "GetCaseEventConfigurationResponse"),
     type = "structure",
     members = {
         eventBridge = schema.new({
@@ -2457,7 +2457,7 @@ M.GetCaseEventConfigurationOutput = schema.new({
 })
 
 M.GetDomainInput = schema.new({
-    id = id.from(_N, "GetDomainInput"),
+    id = id.from(_N, "GetDomainRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -2474,7 +2474,7 @@ M.GetDomainInput = schema.new({
 })
 
 M.GetDomainOutput = schema.new({
-    id = id.from(_N, "GetDomainOutput"),
+    id = id.from(_N, "GetDomainResponse"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -2538,7 +2538,7 @@ M.GetDomainOutput = schema.new({
 })
 
 M.ListDomainsInput = schema.new({
-    id = id.from(_N, "ListDomainsInput"),
+    id = id.from(_N, "ListDomainsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2597,7 +2597,7 @@ M.DomainSummary = schema.new({
 })
 
 M.ListDomainsOutput = schema.new({
-    id = id.from(_N, "ListDomainsOutput"),
+    id = id.from(_N, "ListDomainsResponse"),
     type = "structure",
     members = {
         domains = schema.new({
@@ -2620,7 +2620,7 @@ M.ListDomainsOutput = schema.new({
 })
 
 M.PutCaseEventConfigurationInput = schema.new({
-    id = id.from(_N, "PutCaseEventConfigurationInput"),
+    id = id.from(_N, "PutCaseEventConfigurationRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -2647,7 +2647,7 @@ M.PutCaseEventConfigurationInput = schema.new({
 })
 
 M.PutCaseEventConfigurationOutput = schema.new({
-    id = id.from(_N, "PutCaseEventConfigurationOutput"),
+    id = id.from(_N, "PutCaseEventConfigurationResponse"),
     type = "structure",
 })
 
@@ -2749,7 +2749,7 @@ M.SearchAllRelatedItemsResponseItem = schema.new({
 })
 
 M.SearchAllRelatedItemsOutput = schema.new({
-    id = id.from(_N, "SearchAllRelatedItemsOutput"),
+    id = id.from(_N, "SearchAllRelatedItemsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2772,7 +2772,7 @@ M.SearchAllRelatedItemsOutput = schema.new({
 })
 
 M.BatchGetFieldInput = schema.new({
-    id = id.from(_N, "BatchGetFieldInput"),
+    id = id.from(_N, "BatchGetFieldRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -2960,7 +2960,7 @@ M.GetFieldResponse = schema.new({
 })
 
 M.BatchGetFieldOutput = schema.new({
-    id = id.from(_N, "BatchGetFieldOutput"),
+    id = id.from(_N, "BatchGetFieldResponse"),
     type = "structure",
     members = {
         fields = schema.new({
@@ -3021,7 +3021,7 @@ M.FieldOption = schema.new({
 })
 
 M.BatchPutFieldOptionsInput = schema.new({
-    id = id.from(_N, "BatchPutFieldOptionsInput"),
+    id = id.from(_N, "BatchPutFieldOptionsRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -3092,7 +3092,7 @@ M.FieldOptionError = schema.new({
 })
 
 M.BatchPutFieldOptionsOutput = schema.new({
-    id = id.from(_N, "BatchPutFieldOptionsOutput"),
+    id = id.from(_N, "BatchPutFieldOptionsResponse"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -3106,7 +3106,7 @@ M.BatchPutFieldOptionsOutput = schema.new({
 })
 
 M.CreateFieldInput = schema.new({
-    id = id.from(_N, "CreateFieldInput"),
+    id = id.from(_N, "CreateFieldRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -3154,7 +3154,7 @@ M.CreateFieldInput = schema.new({
 })
 
 M.CreateFieldOutput = schema.new({
-    id = id.from(_N, "CreateFieldOutput"),
+    id = id.from(_N, "CreateFieldResponse"),
     type = "structure",
     members = {
         fieldId = schema.new({
@@ -3179,7 +3179,7 @@ M.CreateFieldOutput = schema.new({
 })
 
 M.DeleteFieldInput = schema.new({
-    id = id.from(_N, "DeleteFieldInput"),
+    id = id.from(_N, "DeleteFieldRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -3206,12 +3206,12 @@ M.DeleteFieldInput = schema.new({
 })
 
 M.DeleteFieldOutput = schema.new({
-    id = id.from(_N, "DeleteFieldOutput"),
+    id = id.from(_N, "DeleteFieldResponse"),
     type = "structure",
 })
 
 M.ListFieldOptionsInput = schema.new({
-    id = id.from(_N, "ListFieldOptionsInput"),
+    id = id.from(_N, "ListFieldOptionsRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -3266,7 +3266,7 @@ M.ListFieldOptionsInput = schema.new({
 })
 
 M.ListFieldOptionsOutput = schema.new({
-    id = id.from(_N, "ListFieldOptionsOutput"),
+    id = id.from(_N, "ListFieldOptionsResponse"),
     type = "structure",
     members = {
         options = schema.new({
@@ -3289,7 +3289,7 @@ M.ListFieldOptionsOutput = schema.new({
 })
 
 M.ListFieldsInput = schema.new({
-    id = id.from(_N, "ListFieldsInput"),
+    id = id.from(_N, "ListFieldsRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -3383,7 +3383,7 @@ M.FieldSummary = schema.new({
 })
 
 M.ListFieldsOutput = schema.new({
-    id = id.from(_N, "ListFieldsOutput"),
+    id = id.from(_N, "ListFieldsResponse"),
     type = "structure",
     members = {
         fields = schema.new({
@@ -3406,7 +3406,7 @@ M.ListFieldsOutput = schema.new({
 })
 
 M.UpdateFieldInput = schema.new({
-    id = id.from(_N, "UpdateFieldInput"),
+    id = id.from(_N, "UpdateFieldRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -3452,7 +3452,7 @@ M.UpdateFieldInput = schema.new({
 })
 
 M.UpdateFieldOutput = schema.new({
-    id = id.from(_N, "UpdateFieldOutput"),
+    id = id.from(_N, "UpdateFieldResponse"),
     type = "structure",
 })
 
@@ -3559,7 +3559,7 @@ M.LayoutContent = schema.new({
 })
 
 M.CreateLayoutInput = schema.new({
-    id = id.from(_N, "CreateLayoutInput"),
+    id = id.from(_N, "CreateLayoutRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -3595,7 +3595,7 @@ M.CreateLayoutInput = schema.new({
 })
 
 M.CreateLayoutOutput = schema.new({
-    id = id.from(_N, "CreateLayoutOutput"),
+    id = id.from(_N, "CreateLayoutResponse"),
     type = "structure",
     members = {
         layoutId = schema.new({
@@ -3620,7 +3620,7 @@ M.CreateLayoutOutput = schema.new({
 })
 
 M.DeleteLayoutInput = schema.new({
-    id = id.from(_N, "DeleteLayoutInput"),
+    id = id.from(_N, "DeleteLayoutRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -3647,12 +3647,12 @@ M.DeleteLayoutInput = schema.new({
 })
 
 M.DeleteLayoutOutput = schema.new({
-    id = id.from(_N, "DeleteLayoutOutput"),
+    id = id.from(_N, "DeleteLayoutResponse"),
     type = "structure",
 })
 
 M.GetLayoutInput = schema.new({
-    id = id.from(_N, "GetLayoutInput"),
+    id = id.from(_N, "GetLayoutRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -3679,7 +3679,7 @@ M.GetLayoutInput = schema.new({
 })
 
 M.GetLayoutOutput = schema.new({
-    id = id.from(_N, "GetLayoutOutput"),
+    id = id.from(_N, "GetLayoutResponse"),
     type = "structure",
     members = {
         layoutId = schema.new({
@@ -3758,7 +3758,7 @@ M.GetLayoutOutput = schema.new({
 })
 
 M.ListLayoutsInput = schema.new({
-    id = id.from(_N, "ListLayoutsInput"),
+    id = id.from(_N, "ListLayoutsRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -3827,7 +3827,7 @@ M.LayoutSummary = schema.new({
 })
 
 M.ListLayoutsOutput = schema.new({
-    id = id.from(_N, "ListLayoutsOutput"),
+    id = id.from(_N, "ListLayoutsResponse"),
     type = "structure",
     members = {
         layouts = schema.new({
@@ -3850,7 +3850,7 @@ M.ListLayoutsOutput = schema.new({
 })
 
 M.UpdateLayoutInput = schema.new({
-    id = id.from(_N, "UpdateLayoutInput"),
+    id = id.from(_N, "UpdateLayoutRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -3890,12 +3890,12 @@ M.UpdateLayoutInput = schema.new({
 })
 
 M.UpdateLayoutOutput = schema.new({
-    id = id.from(_N, "UpdateLayoutOutput"),
+    id = id.from(_N, "UpdateLayoutResponse"),
     type = "structure",
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3912,7 +3912,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -3927,7 +3927,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3955,7 +3955,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4041,7 +4041,7 @@ M.TagPropagationConfiguration = schema.new({
 })
 
 M.CreateTemplateInput = schema.new({
-    id = id.from(_N, "CreateTemplateInput"),
+    id = id.from(_N, "CreateTemplateRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -4107,7 +4107,7 @@ M.CreateTemplateInput = schema.new({
 })
 
 M.CreateTemplateOutput = schema.new({
-    id = id.from(_N, "CreateTemplateOutput"),
+    id = id.from(_N, "CreateTemplateResponse"),
     type = "structure",
     members = {
         templateId = schema.new({
@@ -4132,7 +4132,7 @@ M.CreateTemplateOutput = schema.new({
 })
 
 M.DeleteTemplateInput = schema.new({
-    id = id.from(_N, "DeleteTemplateInput"),
+    id = id.from(_N, "DeleteTemplateRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -4159,12 +4159,12 @@ M.DeleteTemplateInput = schema.new({
 })
 
 M.DeleteTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteTemplateOutput"),
+    id = id.from(_N, "DeleteTemplateResponse"),
     type = "structure",
 })
 
 M.GetTemplateInput = schema.new({
-    id = id.from(_N, "GetTemplateInput"),
+    id = id.from(_N, "GetTemplateRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -4191,7 +4191,7 @@ M.GetTemplateInput = schema.new({
 })
 
 M.GetTemplateOutput = schema.new({
-    id = id.from(_N, "GetTemplateOutput"),
+    id = id.from(_N, "GetTemplateResponse"),
     type = "structure",
     members = {
         templateId = schema.new({
@@ -4303,7 +4303,7 @@ M.GetTemplateOutput = schema.new({
 })
 
 M.ListTemplatesInput = schema.new({
-    id = id.from(_N, "ListTemplatesInput"),
+    id = id.from(_N, "ListTemplatesRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -4398,7 +4398,7 @@ M.TemplateSummary = schema.new({
 })
 
 M.ListTemplatesOutput = schema.new({
-    id = id.from(_N, "ListTemplatesOutput"),
+    id = id.from(_N, "ListTemplatesResponse"),
     type = "structure",
     members = {
         templates = schema.new({
@@ -4421,7 +4421,7 @@ M.ListTemplatesOutput = schema.new({
 })
 
 M.UpdateTemplateInput = schema.new({
-    id = id.from(_N, "UpdateTemplateInput"),
+    id = id.from(_N, "UpdateTemplateRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -4494,12 +4494,12 @@ M.UpdateTemplateInput = schema.new({
 })
 
 M.UpdateTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateTemplateOutput"),
+    id = id.from(_N, "UpdateTemplateResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4527,7 +4527,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4727,7 +4727,7 @@ M.RequiredCaseRule = schema.new({
 })
 
 M.SearchCasesInput = schema.new({
-    id = id.from(_N, "SearchCasesInput"),
+    id = id.from(_N, "SearchCasesRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -4835,7 +4835,7 @@ M.RelatedItemTypeFilter = schema.new({
 })
 
 M.SearchAllRelatedItemsInput = schema.new({
-    id = id.from(_N, "SearchAllRelatedItemsInput"),
+    id = id.from(_N, "SearchAllRelatedItemsRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -4881,7 +4881,7 @@ M.SearchAllRelatedItemsInput = schema.new({
 })
 
 M.SearchRelatedItemsInput = schema.new({
-    id = id.from(_N, "SearchRelatedItemsInput"),
+    id = id.from(_N, "SearchRelatedItemsRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -4958,7 +4958,7 @@ M.CaseRuleDetails = schema.new({
 })
 
 M.CreateCaseRuleInput = schema.new({
-    id = id.from(_N, "CreateCaseRuleInput"),
+    id = id.from(_N, "CreateCaseRuleRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -5085,7 +5085,7 @@ M.GetCaseRuleResponse = schema.new({
 })
 
 M.UpdateCaseRuleInput = schema.new({
-    id = id.from(_N, "UpdateCaseRuleInput"),
+    id = id.from(_N, "UpdateCaseRuleRequest"),
     type = "structure",
     members = {
         domainId = schema.new({
@@ -5131,7 +5131,7 @@ M.UpdateCaseRuleInput = schema.new({
 })
 
 M.BatchGetCaseRuleOutput = schema.new({
-    id = id.from(_N, "BatchGetCaseRuleOutput"),
+    id = id.from(_N, "BatchGetCaseRuleResponse"),
     type = "structure",
     members = {
         caseRules = schema.new({
@@ -5163,5 +5163,19 @@ M.BatchGetCaseRuleOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

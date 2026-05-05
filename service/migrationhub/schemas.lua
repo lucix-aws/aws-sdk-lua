@@ -71,7 +71,7 @@ M.CreatedArtifact = schema.new({
 })
 
 M.AssociateCreatedArtifactInput = schema.new({
-    id = id.from(_N, "AssociateCreatedArtifactInput"),
+    id = id.from(_N, "AssociateCreatedArtifactRequest"),
     type = "structure",
     members = {
         ProgressUpdateStream = schema.new({
@@ -115,7 +115,7 @@ M.AssociateCreatedArtifactInput = schema.new({
 })
 
 M.AssociateCreatedArtifactOutput = schema.new({
-    id = id.from(_N, "AssociateCreatedArtifactOutput"),
+    id = id.from(_N, "AssociateCreatedArtifactResult"),
     type = "structure",
 })
 
@@ -283,7 +283,7 @@ M.DiscoveredResource = schema.new({
 })
 
 M.AssociateDiscoveredResourceInput = schema.new({
-    id = id.from(_N, "AssociateDiscoveredResourceInput"),
+    id = id.from(_N, "AssociateDiscoveredResourceRequest"),
     type = "structure",
     members = {
         ProgressUpdateStream = schema.new({
@@ -327,7 +327,7 @@ M.AssociateDiscoveredResourceInput = schema.new({
 })
 
 M.AssociateDiscoveredResourceOutput = schema.new({
-    id = id.from(_N, "AssociateDiscoveredResourceOutput"),
+    id = id.from(_N, "AssociateDiscoveredResourceResult"),
     type = "structure",
 })
 
@@ -376,7 +376,7 @@ M.SourceResource = schema.new({
 })
 
 M.AssociateSourceResourceInput = schema.new({
-    id = id.from(_N, "AssociateSourceResourceInput"),
+    id = id.from(_N, "AssociateSourceResourceRequest"),
     type = "structure",
     members = {
         ProgressUpdateStream = schema.new({
@@ -420,12 +420,12 @@ M.AssociateSourceResourceInput = schema.new({
 })
 
 M.AssociateSourceResourceOutput = schema.new({
-    id = id.from(_N, "AssociateSourceResourceOutput"),
+    id = id.from(_N, "AssociateSourceResourceResult"),
     type = "structure",
 })
 
 M.CreateProgressUpdateStreamInput = schema.new({
-    id = id.from(_N, "CreateProgressUpdateStreamInput"),
+    id = id.from(_N, "CreateProgressUpdateStreamRequest"),
     type = "structure",
     members = {
         ProgressUpdateStreamName = schema.new({
@@ -450,12 +450,12 @@ M.CreateProgressUpdateStreamInput = schema.new({
 })
 
 M.CreateProgressUpdateStreamOutput = schema.new({
-    id = id.from(_N, "CreateProgressUpdateStreamOutput"),
+    id = id.from(_N, "CreateProgressUpdateStreamResult"),
     type = "structure",
 })
 
 M.DeleteProgressUpdateStreamInput = schema.new({
-    id = id.from(_N, "DeleteProgressUpdateStreamInput"),
+    id = id.from(_N, "DeleteProgressUpdateStreamRequest"),
     type = "structure",
     members = {
         ProgressUpdateStreamName = schema.new({
@@ -480,12 +480,12 @@ M.DeleteProgressUpdateStreamInput = schema.new({
 })
 
 M.DeleteProgressUpdateStreamOutput = schema.new({
-    id = id.from(_N, "DeleteProgressUpdateStreamOutput"),
+    id = id.from(_N, "DeleteProgressUpdateStreamResult"),
     type = "structure",
 })
 
 M.DescribeApplicationStateInput = schema.new({
-    id = id.from(_N, "DescribeApplicationStateInput"),
+    id = id.from(_N, "DescribeApplicationStateRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -501,7 +501,7 @@ M.DescribeApplicationStateInput = schema.new({
 })
 
 M.DescribeApplicationStateOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationStateOutput"),
+    id = id.from(_N, "DescribeApplicationStateResult"),
     type = "structure",
     members = {
         ApplicationStatus = schema.new({
@@ -520,7 +520,7 @@ M.DescribeApplicationStateOutput = schema.new({
 })
 
 M.DescribeMigrationTaskInput = schema.new({
-    id = id.from(_N, "DescribeMigrationTaskInput"),
+    id = id.from(_N, "DescribeMigrationTaskRequest"),
     type = "structure",
     members = {
         ProgressUpdateStream = schema.new({
@@ -637,7 +637,7 @@ M.MigrationTask = schema.new({
 })
 
 M.DescribeMigrationTaskOutput = schema.new({
-    id = id.from(_N, "DescribeMigrationTaskOutput"),
+    id = id.from(_N, "DescribeMigrationTaskResult"),
     type = "structure",
     members = {
         MigrationTask = schema.new({
@@ -651,7 +651,7 @@ M.DescribeMigrationTaskOutput = schema.new({
 })
 
 M.DisassociateCreatedArtifactInput = schema.new({
-    id = id.from(_N, "DisassociateCreatedArtifactInput"),
+    id = id.from(_N, "DisassociateCreatedArtifactRequest"),
     type = "structure",
     members = {
         ProgressUpdateStream = schema.new({
@@ -694,12 +694,12 @@ M.DisassociateCreatedArtifactInput = schema.new({
 })
 
 M.DisassociateCreatedArtifactOutput = schema.new({
-    id = id.from(_N, "DisassociateCreatedArtifactOutput"),
+    id = id.from(_N, "DisassociateCreatedArtifactResult"),
     type = "structure",
 })
 
 M.DisassociateDiscoveredResourceInput = schema.new({
-    id = id.from(_N, "DisassociateDiscoveredResourceInput"),
+    id = id.from(_N, "DisassociateDiscoveredResourceRequest"),
     type = "structure",
     members = {
         ProgressUpdateStream = schema.new({
@@ -742,12 +742,12 @@ M.DisassociateDiscoveredResourceInput = schema.new({
 })
 
 M.DisassociateDiscoveredResourceOutput = schema.new({
-    id = id.from(_N, "DisassociateDiscoveredResourceOutput"),
+    id = id.from(_N, "DisassociateDiscoveredResourceResult"),
     type = "structure",
 })
 
 M.DisassociateSourceResourceInput = schema.new({
-    id = id.from(_N, "DisassociateSourceResourceInput"),
+    id = id.from(_N, "DisassociateSourceResourceRequest"),
     type = "structure",
     members = {
         ProgressUpdateStream = schema.new({
@@ -790,12 +790,12 @@ M.DisassociateSourceResourceInput = schema.new({
 })
 
 M.DisassociateSourceResourceOutput = schema.new({
-    id = id.from(_N, "DisassociateSourceResourceOutput"),
+    id = id.from(_N, "DisassociateSourceResourceResult"),
     type = "structure",
 })
 
 M.ImportMigrationTaskInput = schema.new({
-    id = id.from(_N, "ImportMigrationTaskInput"),
+    id = id.from(_N, "ImportMigrationTaskRequest"),
     type = "structure",
     members = {
         ProgressUpdateStream = schema.new({
@@ -829,12 +829,12 @@ M.ImportMigrationTaskInput = schema.new({
 })
 
 M.ImportMigrationTaskOutput = schema.new({
-    id = id.from(_N, "ImportMigrationTaskOutput"),
+    id = id.from(_N, "ImportMigrationTaskResult"),
     type = "structure",
 })
 
 M.ListApplicationStatesInput = schema.new({
-    id = id.from(_N, "ListApplicationStatesInput"),
+    id = id.from(_N, "ListApplicationStatesRequest"),
     type = "structure",
     members = {
         ApplicationIds = schema.new({
@@ -860,7 +860,7 @@ M.ListApplicationStatesInput = schema.new({
 })
 
 M.ListApplicationStatesOutput = schema.new({
-    id = id.from(_N, "ListApplicationStatesOutput"),
+    id = id.from(_N, "ListApplicationStatesResult"),
     type = "structure",
     members = {
         ApplicationStateList = schema.new({
@@ -880,7 +880,7 @@ M.ListApplicationStatesOutput = schema.new({
 })
 
 M.ListCreatedArtifactsInput = schema.new({
-    id = id.from(_N, "ListCreatedArtifactsInput"),
+    id = id.from(_N, "ListCreatedArtifactsRequest"),
     type = "structure",
     members = {
         ProgressUpdateStream = schema.new({
@@ -917,7 +917,7 @@ M.ListCreatedArtifactsInput = schema.new({
 })
 
 M.ListCreatedArtifactsOutput = schema.new({
-    id = id.from(_N, "ListCreatedArtifactsOutput"),
+    id = id.from(_N, "ListCreatedArtifactsResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -937,7 +937,7 @@ M.ListCreatedArtifactsOutput = schema.new({
 })
 
 M.ListDiscoveredResourcesInput = schema.new({
-    id = id.from(_N, "ListDiscoveredResourcesInput"),
+    id = id.from(_N, "ListDiscoveredResourcesRequest"),
     type = "structure",
     members = {
         ProgressUpdateStream = schema.new({
@@ -974,7 +974,7 @@ M.ListDiscoveredResourcesInput = schema.new({
 })
 
 M.ListDiscoveredResourcesOutput = schema.new({
-    id = id.from(_N, "ListDiscoveredResourcesOutput"),
+    id = id.from(_N, "ListDiscoveredResourcesResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -994,7 +994,7 @@ M.ListDiscoveredResourcesOutput = schema.new({
 })
 
 M.ListMigrationTasksInput = schema.new({
-    id = id.from(_N, "ListMigrationTasksInput"),
+    id = id.from(_N, "ListMigrationTasksRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1062,7 +1062,7 @@ M.MigrationTaskSummary = schema.new({
 })
 
 M.ListMigrationTasksOutput = schema.new({
-    id = id.from(_N, "ListMigrationTasksOutput"),
+    id = id.from(_N, "ListMigrationTasksResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1082,7 +1082,7 @@ M.ListMigrationTasksOutput = schema.new({
 })
 
 M.ListMigrationTaskUpdatesInput = schema.new({
-    id = id.from(_N, "ListMigrationTaskUpdatesInput"),
+    id = id.from(_N, "ListMigrationTaskUpdatesRequest"),
     type = "structure",
     members = {
         ProgressUpdateStream = schema.new({
@@ -1145,7 +1145,7 @@ M.MigrationTaskUpdate = schema.new({
 })
 
 M.ListMigrationTaskUpdatesOutput = schema.new({
-    id = id.from(_N, "ListMigrationTaskUpdatesOutput"),
+    id = id.from(_N, "ListMigrationTaskUpdatesResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1165,7 +1165,7 @@ M.ListMigrationTaskUpdatesOutput = schema.new({
 })
 
 M.ListProgressUpdateStreamsInput = schema.new({
-    id = id.from(_N, "ListProgressUpdateStreamsInput"),
+    id = id.from(_N, "ListProgressUpdateStreamsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1197,7 +1197,7 @@ M.ProgressUpdateStreamSummary = schema.new({
 })
 
 M.ListProgressUpdateStreamsOutput = schema.new({
-    id = id.from(_N, "ListProgressUpdateStreamsOutput"),
+    id = id.from(_N, "ListProgressUpdateStreamsResult"),
     type = "structure",
     members = {
         ProgressUpdateStreamSummaryList = schema.new({
@@ -1217,7 +1217,7 @@ M.ListProgressUpdateStreamsOutput = schema.new({
 })
 
 M.ListSourceResourcesInput = schema.new({
-    id = id.from(_N, "ListSourceResourcesInput"),
+    id = id.from(_N, "ListSourceResourcesRequest"),
     type = "structure",
     members = {
         ProgressUpdateStream = schema.new({
@@ -1254,7 +1254,7 @@ M.ListSourceResourcesInput = schema.new({
 })
 
 M.ListSourceResourcesOutput = schema.new({
-    id = id.from(_N, "ListSourceResourcesOutput"),
+    id = id.from(_N, "ListSourceResourcesResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1274,7 +1274,7 @@ M.ListSourceResourcesOutput = schema.new({
 })
 
 M.NotifyApplicationStateInput = schema.new({
-    id = id.from(_N, "NotifyApplicationStateInput"),
+    id = id.from(_N, "NotifyApplicationStateRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1314,12 +1314,12 @@ M.NotifyApplicationStateInput = schema.new({
 })
 
 M.NotifyApplicationStateOutput = schema.new({
-    id = id.from(_N, "NotifyApplicationStateOutput"),
+    id = id.from(_N, "NotifyApplicationStateResult"),
     type = "structure",
 })
 
 M.NotifyMigrationTaskStateInput = schema.new({
-    id = id.from(_N, "NotifyMigrationTaskStateInput"),
+    id = id.from(_N, "NotifyMigrationTaskStateRequest"),
     type = "structure",
     members = {
         ProgressUpdateStream = schema.new({
@@ -1382,12 +1382,12 @@ M.NotifyMigrationTaskStateInput = schema.new({
 })
 
 M.NotifyMigrationTaskStateOutput = schema.new({
-    id = id.from(_N, "NotifyMigrationTaskStateOutput"),
+    id = id.from(_N, "NotifyMigrationTaskStateResult"),
     type = "structure",
 })
 
 M.PutResourceAttributesInput = schema.new({
-    id = id.from(_N, "PutResourceAttributesInput"),
+    id = id.from(_N, "PutResourceAttributesRequest"),
     type = "structure",
     members = {
         ProgressUpdateStream = schema.new({
@@ -1431,8 +1431,22 @@ M.PutResourceAttributesInput = schema.new({
 })
 
 M.PutResourceAttributesOutput = schema.new({
-    id = id.from(_N, "PutResourceAttributesOutput"),
+    id = id.from(_N, "PutResourceAttributesResult"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

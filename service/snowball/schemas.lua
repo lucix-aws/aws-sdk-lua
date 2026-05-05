@@ -108,7 +108,7 @@ M.Address = schema.new({
 })
 
 M.CancelClusterInput = schema.new({
-    id = id.from(_N, "CancelClusterInput"),
+    id = id.from(_N, "CancelClusterRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -124,7 +124,7 @@ M.CancelClusterInput = schema.new({
 })
 
 M.CancelClusterOutput = schema.new({
-    id = id.from(_N, "CancelClusterOutput"),
+    id = id.from(_N, "CancelClusterResult"),
     type = "structure",
 })
 
@@ -183,7 +183,7 @@ M.KMSRequestFailedException = schema.new({
 })
 
 M.CancelJobInput = schema.new({
-    id = id.from(_N, "CancelJobInput"),
+    id = id.from(_N, "CancelJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -199,12 +199,12 @@ M.CancelJobInput = schema.new({
 })
 
 M.CancelJobOutput = schema.new({
-    id = id.from(_N, "CancelJobOutput"),
+    id = id.from(_N, "CancelJobResult"),
     type = "structure",
 })
 
 M.CreateAddressInput = schema.new({
-    id = id.from(_N, "CreateAddressInput"),
+    id = id.from(_N, "CreateAddressRequest"),
     type = "structure",
     members = {
         Address = schema.new({
@@ -221,7 +221,7 @@ M.CreateAddressInput = schema.new({
 })
 
 M.CreateAddressOutput = schema.new({
-    id = id.from(_N, "CreateAddressOutput"),
+    id = id.from(_N, "CreateAddressResult"),
     type = "structure",
     members = {
         AddressId = schema.new({
@@ -605,7 +605,7 @@ M.TaxDocuments = schema.new({
 })
 
 M.CreateClusterInput = schema.new({
-    id = id.from(_N, "CreateClusterInput"),
+    id = id.from(_N, "CreateClusterRequest"),
     type = "structure",
     members = {
         JobType = schema.new({
@@ -786,7 +786,7 @@ M.JobListEntry = schema.new({
 })
 
 M.CreateClusterOutput = schema.new({
-    id = id.from(_N, "CreateClusterOutput"),
+    id = id.from(_N, "CreateClusterResult"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -947,7 +947,7 @@ M.PickupDetails = schema.new({
 })
 
 M.CreateJobInput = schema.new({
-    id = id.from(_N, "CreateJobInput"),
+    id = id.from(_N, "CreateJobRequest"),
     type = "structure",
     members = {
         JobType = schema.new({
@@ -1074,7 +1074,7 @@ M.CreateJobInput = schema.new({
 })
 
 M.CreateJobOutput = schema.new({
-    id = id.from(_N, "CreateJobOutput"),
+    id = id.from(_N, "CreateJobResult"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1087,7 +1087,7 @@ M.CreateJobOutput = schema.new({
 })
 
 M.CreateLongTermPricingInput = schema.new({
-    id = id.from(_N, "CreateLongTermPricingInput"),
+    id = id.from(_N, "CreateLongTermPricingRequest"),
     type = "structure",
     members = {
         LongTermPricingType = schema.new({
@@ -1118,7 +1118,7 @@ M.CreateLongTermPricingInput = schema.new({
 })
 
 M.CreateLongTermPricingOutput = schema.new({
-    id = id.from(_N, "CreateLongTermPricingOutput"),
+    id = id.from(_N, "CreateLongTermPricingResult"),
     type = "structure",
     members = {
         LongTermPricingId = schema.new({
@@ -1153,7 +1153,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateReturnShippingLabelInput = schema.new({
-    id = id.from(_N, "CreateReturnShippingLabelInput"),
+    id = id.from(_N, "CreateReturnShippingLabelRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1175,7 +1175,7 @@ M.CreateReturnShippingLabelInput = schema.new({
 })
 
 M.CreateReturnShippingLabelOutput = schema.new({
-    id = id.from(_N, "CreateReturnShippingLabelOutput"),
+    id = id.from(_N, "CreateReturnShippingLabelResult"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -1204,7 +1204,7 @@ M.ReturnShippingLabelAlreadyExistsException = schema.new({
 })
 
 M.DescribeAddressInput = schema.new({
-    id = id.from(_N, "DescribeAddressInput"),
+    id = id.from(_N, "DescribeAddressRequest"),
     type = "structure",
     members = {
         AddressId = schema.new({
@@ -1220,7 +1220,7 @@ M.DescribeAddressInput = schema.new({
 })
 
 M.DescribeAddressOutput = schema.new({
-    id = id.from(_N, "DescribeAddressOutput"),
+    id = id.from(_N, "DescribeAddressResult"),
     type = "structure",
     members = {
         Address = schema.new({
@@ -1234,7 +1234,7 @@ M.DescribeAddressOutput = schema.new({
 })
 
 M.DescribeAddressesInput = schema.new({
-    id = id.from(_N, "DescribeAddressesInput"),
+    id = id.from(_N, "DescribeAddressesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1253,7 +1253,7 @@ M.DescribeAddressesInput = schema.new({
 })
 
 M.DescribeAddressesOutput = schema.new({
-    id = id.from(_N, "DescribeAddressesOutput"),
+    id = id.from(_N, "DescribeAddressesResult"),
     type = "structure",
     members = {
         Addresses = schema.new({
@@ -1289,7 +1289,7 @@ M.InvalidNextTokenException = schema.new({
 })
 
 M.DescribeClusterInput = schema.new({
-    id = id.from(_N, "DescribeClusterInput"),
+    id = id.from(_N, "DescribeClusterRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -1406,7 +1406,7 @@ M.ClusterMetadata = schema.new({
 })
 
 M.DescribeClusterOutput = schema.new({
-    id = id.from(_N, "DescribeClusterOutput"),
+    id = id.from(_N, "DescribeClusterResult"),
     type = "structure",
     members = {
         ClusterMetadata = schema.new({
@@ -1420,7 +1420,7 @@ M.DescribeClusterOutput = schema.new({
 })
 
 M.DescribeJobInput = schema.new({
-    id = id.from(_N, "DescribeJobInput"),
+    id = id.from(_N, "DescribeJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1716,7 +1716,7 @@ M.JobMetadata = schema.new({
 })
 
 M.DescribeJobOutput = schema.new({
-    id = id.from(_N, "DescribeJobOutput"),
+    id = id.from(_N, "DescribeJobResult"),
     type = "structure",
     members = {
         JobMetadata = schema.new({
@@ -1737,7 +1737,7 @@ M.DescribeJobOutput = schema.new({
 })
 
 M.DescribeReturnShippingLabelInput = schema.new({
-    id = id.from(_N, "DescribeReturnShippingLabelInput"),
+    id = id.from(_N, "DescribeReturnShippingLabelRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1753,7 +1753,7 @@ M.DescribeReturnShippingLabelInput = schema.new({
 })
 
 M.DescribeReturnShippingLabelOutput = schema.new({
-    id = id.from(_N, "DescribeReturnShippingLabelOutput"),
+    id = id.from(_N, "DescribeReturnShippingLabelResult"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -1778,7 +1778,7 @@ M.DescribeReturnShippingLabelOutput = schema.new({
 })
 
 M.GetJobManifestInput = schema.new({
-    id = id.from(_N, "GetJobManifestInput"),
+    id = id.from(_N, "GetJobManifestRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1794,7 +1794,7 @@ M.GetJobManifestInput = schema.new({
 })
 
 M.GetJobManifestOutput = schema.new({
-    id = id.from(_N, "GetJobManifestOutput"),
+    id = id.from(_N, "GetJobManifestResult"),
     type = "structure",
     members = {
         ManifestURI = schema.new({
@@ -1807,7 +1807,7 @@ M.GetJobManifestOutput = schema.new({
 })
 
 M.GetJobUnlockCodeInput = schema.new({
-    id = id.from(_N, "GetJobUnlockCodeInput"),
+    id = id.from(_N, "GetJobUnlockCodeRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1823,7 +1823,7 @@ M.GetJobUnlockCodeInput = schema.new({
 })
 
 M.GetJobUnlockCodeOutput = schema.new({
-    id = id.from(_N, "GetJobUnlockCodeOutput"),
+    id = id.from(_N, "GetJobUnlockCodeResult"),
     type = "structure",
     members = {
         UnlockCode = schema.new({
@@ -1836,12 +1836,12 @@ M.GetJobUnlockCodeOutput = schema.new({
 })
 
 M.GetSnowballUsageInput = schema.new({
-    id = id.from(_N, "GetSnowballUsageInput"),
+    id = id.from(_N, "GetSnowballUsageRequest"),
     type = "structure",
 })
 
 M.GetSnowballUsageOutput = schema.new({
-    id = id.from(_N, "GetSnowballUsageOutput"),
+    id = id.from(_N, "GetSnowballUsageResult"),
     type = "structure",
     members = {
         SnowballLimit = schema.new({
@@ -1860,7 +1860,7 @@ M.GetSnowballUsageOutput = schema.new({
 })
 
 M.GetSoftwareUpdatesInput = schema.new({
-    id = id.from(_N, "GetSoftwareUpdatesInput"),
+    id = id.from(_N, "GetSoftwareUpdatesRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1876,7 +1876,7 @@ M.GetSoftwareUpdatesInput = schema.new({
 })
 
 M.GetSoftwareUpdatesOutput = schema.new({
-    id = id.from(_N, "GetSoftwareUpdatesOutput"),
+    id = id.from(_N, "GetSoftwareUpdatesResult"),
     type = "structure",
     members = {
         UpdatesURI = schema.new({
@@ -1889,7 +1889,7 @@ M.GetSoftwareUpdatesOutput = schema.new({
 })
 
 M.ListClusterJobsInput = schema.new({
-    id = id.from(_N, "ListClusterJobsInput"),
+    id = id.from(_N, "ListClusterJobsRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -1917,7 +1917,7 @@ M.ListClusterJobsInput = schema.new({
 })
 
 M.ListClusterJobsOutput = schema.new({
-    id = id.from(_N, "ListClusterJobsOutput"),
+    id = id.from(_N, "ListClusterJobsResult"),
     type = "structure",
     members = {
         JobListEntries = schema.new({
@@ -1937,7 +1937,7 @@ M.ListClusterJobsOutput = schema.new({
 })
 
 M.ListClustersInput = schema.new({
-    id = id.from(_N, "ListClustersInput"),
+    id = id.from(_N, "ListClustersRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1987,7 +1987,7 @@ M.ClusterListEntry = schema.new({
 })
 
 M.ListClustersOutput = schema.new({
-    id = id.from(_N, "ListClustersOutput"),
+    id = id.from(_N, "ListClustersResult"),
     type = "structure",
     members = {
         ClusterListEntries = schema.new({
@@ -2007,7 +2007,7 @@ M.ListClustersOutput = schema.new({
 })
 
 M.ListCompatibleImagesInput = schema.new({
-    id = id.from(_N, "ListCompatibleImagesInput"),
+    id = id.from(_N, "ListCompatibleImagesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2045,7 +2045,7 @@ M.CompatibleImage = schema.new({
 })
 
 M.ListCompatibleImagesOutput = schema.new({
-    id = id.from(_N, "ListCompatibleImagesOutput"),
+    id = id.from(_N, "ListCompatibleImagesResult"),
     type = "structure",
     members = {
         CompatibleImages = schema.new({
@@ -2065,7 +2065,7 @@ M.ListCompatibleImagesOutput = schema.new({
 })
 
 M.ListJobsInput = schema.new({
-    id = id.from(_N, "ListJobsInput"),
+    id = id.from(_N, "ListJobsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2084,7 +2084,7 @@ M.ListJobsInput = schema.new({
 })
 
 M.ListJobsOutput = schema.new({
-    id = id.from(_N, "ListJobsOutput"),
+    id = id.from(_N, "ListJobsResult"),
     type = "structure",
     members = {
         JobListEntries = schema.new({
@@ -2104,7 +2104,7 @@ M.ListJobsOutput = schema.new({
 })
 
 M.ListLongTermPricingInput = schema.new({
-    id = id.from(_N, "ListLongTermPricingInput"),
+    id = id.from(_N, "ListLongTermPricingRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2191,7 +2191,7 @@ M.LongTermPricingListEntry = schema.new({
 })
 
 M.ListLongTermPricingOutput = schema.new({
-    id = id.from(_N, "ListLongTermPricingOutput"),
+    id = id.from(_N, "ListLongTermPricingResult"),
     type = "structure",
     members = {
         LongTermPricingEntries = schema.new({
@@ -2211,7 +2211,7 @@ M.ListLongTermPricingOutput = schema.new({
 })
 
 M.ListPickupLocationsInput = schema.new({
-    id = id.from(_N, "ListPickupLocationsInput"),
+    id = id.from(_N, "ListPickupLocationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2230,7 +2230,7 @@ M.ListPickupLocationsInput = schema.new({
 })
 
 M.ListPickupLocationsOutput = schema.new({
-    id = id.from(_N, "ListPickupLocationsOutput"),
+    id = id.from(_N, "ListPickupLocationsResult"),
     type = "structure",
     members = {
         Addresses = schema.new({
@@ -2283,7 +2283,7 @@ M.DependentService = schema.new({
 })
 
 M.ListServiceVersionsInput = schema.new({
-    id = id.from(_N, "ListServiceVersionsInput"),
+    id = id.from(_N, "ListServiceVersionsRequest"),
     type = "structure",
     members = {
         ServiceName = schema.new({
@@ -2318,7 +2318,7 @@ M.ListServiceVersionsInput = schema.new({
 })
 
 M.ListServiceVersionsOutput = schema.new({
-    id = id.from(_N, "ListServiceVersionsOutput"),
+    id = id.from(_N, "ListServiceVersionsResult"),
     type = "structure",
     members = {
         ServiceVersions = schema.new({
@@ -2357,7 +2357,7 @@ M.ListServiceVersionsOutput = schema.new({
 })
 
 M.UpdateClusterInput = schema.new({
-    id = id.from(_N, "UpdateClusterInput"),
+    id = id.from(_N, "UpdateClusterRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -2424,12 +2424,12 @@ M.UpdateClusterInput = schema.new({
 })
 
 M.UpdateClusterOutput = schema.new({
-    id = id.from(_N, "UpdateClusterOutput"),
+    id = id.from(_N, "UpdateClusterResult"),
     type = "structure",
 })
 
 M.UpdateJobInput = schema.new({
-    id = id.from(_N, "UpdateJobInput"),
+    id = id.from(_N, "UpdateJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2509,12 +2509,12 @@ M.UpdateJobInput = schema.new({
 })
 
 M.UpdateJobOutput = schema.new({
-    id = id.from(_N, "UpdateJobOutput"),
+    id = id.from(_N, "UpdateJobResult"),
     type = "structure",
 })
 
 M.UpdateJobShipmentStateInput = schema.new({
-    id = id.from(_N, "UpdateJobShipmentStateInput"),
+    id = id.from(_N, "UpdateJobShipmentStateRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -2539,12 +2539,12 @@ M.UpdateJobShipmentStateInput = schema.new({
 })
 
 M.UpdateJobShipmentStateOutput = schema.new({
-    id = id.from(_N, "UpdateJobShipmentStateOutput"),
+    id = id.from(_N, "UpdateJobShipmentStateResult"),
     type = "structure",
 })
 
 M.UpdateLongTermPricingInput = schema.new({
-    id = id.from(_N, "UpdateLongTermPricingInput"),
+    id = id.from(_N, "UpdateLongTermPricingRequest"),
     type = "structure",
     members = {
         LongTermPricingId = schema.new({
@@ -2572,8 +2572,22 @@ M.UpdateLongTermPricingInput = schema.new({
 })
 
 M.UpdateLongTermPricingOutput = schema.new({
-    id = id.from(_N, "UpdateLongTermPricingOutput"),
+    id = id.from(_N, "UpdateLongTermPricingResult"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

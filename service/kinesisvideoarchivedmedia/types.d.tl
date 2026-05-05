@@ -236,23 +236,23 @@ local record ResourceNotFoundException
     Message: string
 end
 
-local type HLSDisplayFragmentTimestamp = "ALWAYS" | "NEVER"
-
-local type HLSDiscontinuityMode = "ALWAYS" | "NEVER" | "ON_DISCONTINUITY"
+local type DASHPlaybackMode = "LIVE" | "LIVE_REPLAY" | "ON_DEMAND"
 
 local type DASHDisplayFragmentTimestamp = "ALWAYS" | "NEVER"
 
-local type DASHPlaybackMode = "LIVE" | "LIVE_REPLAY" | "ON_DEMAND"
-
-local type ImageSelectorType = "PRODUCER_TIMESTAMP" | "SERVER_TIMESTAMP"
-
-local type DASHDisplayFragmentNumber = "ALWAYS" | "NEVER"
-
-local type HLSPlaybackMode = "LIVE" | "LIVE_REPLAY" | "ON_DEMAND"
+local type HLSDiscontinuityMode = "ALWAYS" | "NEVER" | "ON_DISCONTINUITY"
 
 local type Format = "JPEG" | "PNG"
 
+local type HLSPlaybackMode = "LIVE" | "LIVE_REPLAY" | "ON_DEMAND"
+
+local type DASHDisplayFragmentNumber = "ALWAYS" | "NEVER"
+
+local type HLSDisplayFragmentTimestamp = "ALWAYS" | "NEVER"
+
 local type ContainerFormat = "FRAGMENTED_MP4" | "MPEG_TS"
+
+local type ImageSelectorType = "PRODUCER_TIMESTAMP" | "SERVER_TIMESTAMP"
 
 local record M
     GetClipInput: GetClipInput

@@ -412,7 +412,7 @@ M.ConnectorSummary = schema.new({
 })
 
 M.CreateConnectorInput = schema.new({
-    id = id.from(_N, "CreateConnectorInput"),
+    id = id.from(_N, "CreateConnectorRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -464,7 +464,7 @@ M.CreateConnectorInput = schema.new({
 })
 
 M.CreateConnectorOutput = schema.new({
-    id = id.from(_N, "CreateConnectorOutput"),
+    id = id.from(_N, "CreateConnectorResponse"),
     type = "structure",
     members = {
         ConnectorArn = schema.new({
@@ -644,7 +644,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteConnectorInput = schema.new({
-    id = id.from(_N, "DeleteConnectorInput"),
+    id = id.from(_N, "DeleteConnectorRequest"),
     type = "structure",
     members = {
         ConnectorArn = schema.new({
@@ -661,12 +661,12 @@ M.DeleteConnectorInput = schema.new({
 })
 
 M.DeleteConnectorOutput = schema.new({
-    id = id.from(_N, "DeleteConnectorOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetConnectorInput = schema.new({
-    id = id.from(_N, "GetConnectorInput"),
+    id = id.from(_N, "GetConnectorRequest"),
     type = "structure",
     members = {
         ConnectorArn = schema.new({
@@ -683,7 +683,7 @@ M.GetConnectorInput = schema.new({
 })
 
 M.GetConnectorOutput = schema.new({
-    id = id.from(_N, "GetConnectorOutput"),
+    id = id.from(_N, "GetConnectorResponse"),
     type = "structure",
     members = {
         Connector = schema.new({
@@ -697,7 +697,7 @@ M.GetConnectorOutput = schema.new({
 })
 
 M.ListConnectorsInput = schema.new({
-    id = id.from(_N, "ListConnectorsInput"),
+    id = id.from(_N, "ListConnectorsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -722,7 +722,7 @@ M.ListConnectorsInput = schema.new({
 })
 
 M.ListConnectorsOutput = schema.new({
-    id = id.from(_N, "ListConnectorsOutput"),
+    id = id.from(_N, "ListConnectorsResponse"),
     type = "structure",
     members = {
         Connectors = schema.new({
@@ -742,7 +742,7 @@ M.ListConnectorsOutput = schema.new({
 })
 
 M.CreateDirectoryRegistrationInput = schema.new({
-    id = id.from(_N, "CreateDirectoryRegistrationInput"),
+    id = id.from(_N, "CreateDirectoryRegistrationRequest"),
     type = "structure",
     members = {
         DirectoryId = schema.new({
@@ -775,7 +775,7 @@ M.CreateDirectoryRegistrationInput = schema.new({
 })
 
 M.CreateDirectoryRegistrationOutput = schema.new({
-    id = id.from(_N, "CreateDirectoryRegistrationOutput"),
+    id = id.from(_N, "CreateDirectoryRegistrationResponse"),
     type = "structure",
     members = {
         DirectoryRegistrationArn = schema.new({
@@ -788,7 +788,7 @@ M.CreateDirectoryRegistrationOutput = schema.new({
 })
 
 M.CreateServicePrincipalNameInput = schema.new({
-    id = id.from(_N, "CreateServicePrincipalNameInput"),
+    id = id.from(_N, "CreateServicePrincipalNameRequest"),
     type = "structure",
     members = {
         DirectoryRegistrationArn = schema.new({
@@ -824,7 +824,7 @@ M.CreateServicePrincipalNameInput = schema.new({
 })
 
 M.CreateServicePrincipalNameOutput = schema.new({
-    id = id.from(_N, "CreateServicePrincipalNameOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1906,7 +1906,7 @@ M.TemplateDefinition = schema.new({
 })
 
 M.CreateTemplateInput = schema.new({
-    id = id.from(_N, "CreateTemplateInput"),
+    id = id.from(_N, "CreateTemplateRequest"),
     type = "structure",
     members = {
         ConnectorArn = schema.new({
@@ -1958,7 +1958,7 @@ M.CreateTemplateInput = schema.new({
 })
 
 M.CreateTemplateOutput = schema.new({
-    id = id.from(_N, "CreateTemplateOutput"),
+    id = id.from(_N, "CreateTemplateResponse"),
     type = "structure",
     members = {
         TemplateArn = schema.new({
@@ -1971,7 +1971,7 @@ M.CreateTemplateOutput = schema.new({
 })
 
 M.CreateTemplateGroupAccessControlEntryInput = schema.new({
-    id = id.from(_N, "CreateTemplateGroupAccessControlEntryInput"),
+    id = id.from(_N, "CreateTemplateGroupAccessControlEntryRequest"),
     type = "structure",
     members = {
         TemplateArn = schema.new({
@@ -2025,12 +2025,12 @@ M.CreateTemplateGroupAccessControlEntryInput = schema.new({
 })
 
 M.CreateTemplateGroupAccessControlEntryOutput = schema.new({
-    id = id.from(_N, "CreateTemplateGroupAccessControlEntryOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDirectoryRegistrationInput = schema.new({
-    id = id.from(_N, "DeleteDirectoryRegistrationInput"),
+    id = id.from(_N, "DeleteDirectoryRegistrationRequest"),
     type = "structure",
     members = {
         DirectoryRegistrationArn = schema.new({
@@ -2047,12 +2047,12 @@ M.DeleteDirectoryRegistrationInput = schema.new({
 })
 
 M.DeleteDirectoryRegistrationOutput = schema.new({
-    id = id.from(_N, "DeleteDirectoryRegistrationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteServicePrincipalNameInput = schema.new({
-    id = id.from(_N, "DeleteServicePrincipalNameInput"),
+    id = id.from(_N, "DeleteServicePrincipalNameRequest"),
     type = "structure",
     members = {
         DirectoryRegistrationArn = schema.new({
@@ -2079,12 +2079,12 @@ M.DeleteServicePrincipalNameInput = schema.new({
 })
 
 M.DeleteServicePrincipalNameOutput = schema.new({
-    id = id.from(_N, "DeleteServicePrincipalNameOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTemplateInput = schema.new({
-    id = id.from(_N, "DeleteTemplateInput"),
+    id = id.from(_N, "DeleteTemplateRequest"),
     type = "structure",
     members = {
         TemplateArn = schema.new({
@@ -2101,12 +2101,12 @@ M.DeleteTemplateInput = schema.new({
 })
 
 M.DeleteTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteTemplateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTemplateGroupAccessControlEntryInput = schema.new({
-    id = id.from(_N, "DeleteTemplateGroupAccessControlEntryInput"),
+    id = id.from(_N, "DeleteTemplateGroupAccessControlEntryRequest"),
     type = "structure",
     members = {
         TemplateArn = schema.new({
@@ -2133,7 +2133,7 @@ M.DeleteTemplateGroupAccessControlEntryInput = schema.new({
 })
 
 M.DeleteTemplateGroupAccessControlEntryOutput = schema.new({
-    id = id.from(_N, "DeleteTemplateGroupAccessControlEntryOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2224,7 +2224,7 @@ M.DirectoryRegistrationSummary = schema.new({
 })
 
 M.GetDirectoryRegistrationInput = schema.new({
-    id = id.from(_N, "GetDirectoryRegistrationInput"),
+    id = id.from(_N, "GetDirectoryRegistrationRequest"),
     type = "structure",
     members = {
         DirectoryRegistrationArn = schema.new({
@@ -2241,7 +2241,7 @@ M.GetDirectoryRegistrationInput = schema.new({
 })
 
 M.GetDirectoryRegistrationOutput = schema.new({
-    id = id.from(_N, "GetDirectoryRegistrationOutput"),
+    id = id.from(_N, "GetDirectoryRegistrationResponse"),
     type = "structure",
     members = {
         DirectoryRegistration = schema.new({
@@ -2255,7 +2255,7 @@ M.GetDirectoryRegistrationOutput = schema.new({
 })
 
 M.ListDirectoryRegistrationsInput = schema.new({
-    id = id.from(_N, "ListDirectoryRegistrationsInput"),
+    id = id.from(_N, "ListDirectoryRegistrationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2280,7 +2280,7 @@ M.ListDirectoryRegistrationsInput = schema.new({
 })
 
 M.ListDirectoryRegistrationsOutput = schema.new({
-    id = id.from(_N, "ListDirectoryRegistrationsOutput"),
+    id = id.from(_N, "ListDirectoryRegistrationsResponse"),
     type = "structure",
     members = {
         DirectoryRegistrations = schema.new({
@@ -2300,7 +2300,7 @@ M.ListDirectoryRegistrationsOutput = schema.new({
 })
 
 M.GetServicePrincipalNameInput = schema.new({
-    id = id.from(_N, "GetServicePrincipalNameInput"),
+    id = id.from(_N, "GetServicePrincipalNameRequest"),
     type = "structure",
     members = {
         DirectoryRegistrationArn = schema.new({
@@ -2370,7 +2370,7 @@ M.ServicePrincipalName = schema.new({
 })
 
 M.GetServicePrincipalNameOutput = schema.new({
-    id = id.from(_N, "GetServicePrincipalNameOutput"),
+    id = id.from(_N, "GetServicePrincipalNameResponse"),
     type = "structure",
     members = {
         ServicePrincipalName = schema.new({
@@ -2384,7 +2384,7 @@ M.GetServicePrincipalNameOutput = schema.new({
 })
 
 M.GetTemplateInput = schema.new({
-    id = id.from(_N, "GetTemplateInput"),
+    id = id.from(_N, "GetTemplateRequest"),
     type = "structure",
     members = {
         TemplateArn = schema.new({
@@ -2495,7 +2495,7 @@ M.Template = schema.new({
 })
 
 M.GetTemplateOutput = schema.new({
-    id = id.from(_N, "GetTemplateOutput"),
+    id = id.from(_N, "GetTemplateResponse"),
     type = "structure",
     members = {
         Template = schema.new({
@@ -2509,7 +2509,7 @@ M.GetTemplateOutput = schema.new({
 })
 
 M.GetTemplateGroupAccessControlEntryInput = schema.new({
-    id = id.from(_N, "GetTemplateGroupAccessControlEntryInput"),
+    id = id.from(_N, "GetTemplateGroupAccessControlEntryRequest"),
     type = "structure",
     members = {
         TemplateArn = schema.new({
@@ -2536,7 +2536,7 @@ M.GetTemplateGroupAccessControlEntryInput = schema.new({
 })
 
 M.GetTemplateGroupAccessControlEntryOutput = schema.new({
-    id = id.from(_N, "GetTemplateGroupAccessControlEntryOutput"),
+    id = id.from(_N, "GetTemplateGroupAccessControlEntryResponse"),
     type = "structure",
     members = {
         AccessControlEntry = schema.new({
@@ -2550,7 +2550,7 @@ M.GetTemplateGroupAccessControlEntryOutput = schema.new({
 })
 
 M.ListServicePrincipalNamesInput = schema.new({
-    id = id.from(_N, "ListServicePrincipalNamesInput"),
+    id = id.from(_N, "ListServicePrincipalNamesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2628,7 +2628,7 @@ M.ServicePrincipalNameSummary = schema.new({
 })
 
 M.ListServicePrincipalNamesOutput = schema.new({
-    id = id.from(_N, "ListServicePrincipalNamesOutput"),
+    id = id.from(_N, "ListServicePrincipalNamesResponse"),
     type = "structure",
     members = {
         ServicePrincipalNames = schema.new({
@@ -2648,7 +2648,7 @@ M.ListServicePrincipalNamesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2665,7 +2665,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2680,7 +2680,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTemplateGroupAccessControlEntriesInput = schema.new({
-    id = id.from(_N, "ListTemplateGroupAccessControlEntriesInput"),
+    id = id.from(_N, "ListTemplateGroupAccessControlEntriesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2715,7 +2715,7 @@ M.ListTemplateGroupAccessControlEntriesInput = schema.new({
 })
 
 M.ListTemplateGroupAccessControlEntriesOutput = schema.new({
-    id = id.from(_N, "ListTemplateGroupAccessControlEntriesOutput"),
+    id = id.from(_N, "ListTemplateGroupAccessControlEntriesResponse"),
     type = "structure",
     members = {
         AccessControlEntries = schema.new({
@@ -2735,7 +2735,7 @@ M.ListTemplateGroupAccessControlEntriesOutput = schema.new({
 })
 
 M.ListTemplatesInput = schema.new({
-    id = id.from(_N, "ListTemplatesInput"),
+    id = id.from(_N, "ListTemplatesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2839,7 +2839,7 @@ M.TemplateSummary = schema.new({
 })
 
 M.ListTemplatesOutput = schema.new({
-    id = id.from(_N, "ListTemplatesOutput"),
+    id = id.from(_N, "ListTemplatesResponse"),
     type = "structure",
     members = {
         Templates = schema.new({
@@ -2859,7 +2859,7 @@ M.ListTemplatesOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2887,12 +2887,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateTemplateGroupAccessControlEntryInput = schema.new({
-    id = id.from(_N, "UpdateTemplateGroupAccessControlEntryInput"),
+    id = id.from(_N, "UpdateTemplateGroupAccessControlEntryRequest"),
     type = "structure",
     members = {
         TemplateArn = schema.new({
@@ -2932,12 +2932,12 @@ M.UpdateTemplateGroupAccessControlEntryInput = schema.new({
 })
 
 M.UpdateTemplateGroupAccessControlEntryOutput = schema.new({
-    id = id.from(_N, "UpdateTemplateGroupAccessControlEntryOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateTemplateInput = schema.new({
-    id = id.from(_N, "UpdateTemplateInput"),
+    id = id.from(_N, "UpdateTemplateRequest"),
     type = "structure",
     members = {
         TemplateArn = schema.new({
@@ -2967,12 +2967,12 @@ M.UpdateTemplateInput = schema.new({
 })
 
 M.UpdateTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateTemplateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3000,8 +3000,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

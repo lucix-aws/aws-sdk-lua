@@ -8,7 +8,7 @@ local _N = "com.amazonaws.partnercentralchannel"
 local M = {}
 
 M.AcceptChannelHandshakeInput = schema.new({
-    id = id.from(_N, "AcceptChannelHandshakeInput"),
+    id = id.from(_N, "AcceptChannelHandshakeRequest"),
     type = "structure",
     members = {
         catalog = schema.new({
@@ -58,7 +58,7 @@ M.AcceptChannelHandshakeDetail = schema.new({
 })
 
 M.AcceptChannelHandshakeOutput = schema.new({
-    id = id.from(_N, "AcceptChannelHandshakeOutput"),
+    id = id.from(_N, "AcceptChannelHandshakeResponse"),
     type = "structure",
     members = {
         channelHandshakeDetail = schema.new({
@@ -247,7 +247,7 @@ M.ValidationException = schema.new({
 })
 
 M.CancelChannelHandshakeInput = schema.new({
-    id = id.from(_N, "CancelChannelHandshakeInput"),
+    id = id.from(_N, "CancelChannelHandshakeRequest"),
     type = "structure",
     members = {
         catalog = schema.new({
@@ -297,7 +297,7 @@ M.CancelChannelHandshakeDetail = schema.new({
 })
 
 M.CancelChannelHandshakeOutput = schema.new({
-    id = id.from(_N, "CancelChannelHandshakeOutput"),
+    id = id.from(_N, "CancelChannelHandshakeResponse"),
     type = "structure",
     members = {
         channelHandshakeDetail = schema.new({
@@ -462,7 +462,7 @@ M.Tag = schema.new({
 })
 
 M.CreateChannelHandshakeInput = schema.new({
-    id = id.from(_N, "CreateChannelHandshakeInput"),
+    id = id.from(_N, "CreateChannelHandshakeRequest"),
     type = "structure",
     members = {
         handshakeType = schema.new({
@@ -538,7 +538,7 @@ M.CreateChannelHandshakeDetail = schema.new({
 })
 
 M.CreateChannelHandshakeOutput = schema.new({
-    id = id.from(_N, "CreateChannelHandshakeOutput"),
+    id = id.from(_N, "CreateChannelHandshakeResponse"),
     type = "structure",
     members = {
         channelHandshakeDetail = schema.new({
@@ -771,7 +771,7 @@ M.ListChannelHandshakesTypeSort = schema.new({
 })
 
 M.ListChannelHandshakesInput = schema.new({
-    id = id.from(_N, "ListChannelHandshakesInput"),
+    id = id.from(_N, "ListChannelHandshakesRequest"),
     type = "structure",
     members = {
         handshakeType = schema.new({
@@ -1067,7 +1067,7 @@ M.ChannelHandshakeSummary = schema.new({
 })
 
 M.ListChannelHandshakesOutput = schema.new({
-    id = id.from(_N, "ListChannelHandshakesOutput"),
+    id = id.from(_N, "ListChannelHandshakesResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -1087,7 +1087,7 @@ M.ListChannelHandshakesOutput = schema.new({
 })
 
 M.RejectChannelHandshakeInput = schema.new({
-    id = id.from(_N, "RejectChannelHandshakeInput"),
+    id = id.from(_N, "RejectChannelHandshakeRequest"),
     type = "structure",
     members = {
         catalog = schema.new({
@@ -1137,7 +1137,7 @@ M.RejectChannelHandshakeDetail = schema.new({
 })
 
 M.RejectChannelHandshakeOutput = schema.new({
-    id = id.from(_N, "RejectChannelHandshakeOutput"),
+    id = id.from(_N, "RejectChannelHandshakeResponse"),
     type = "structure",
     members = {
         channelHandshakeDetail = schema.new({
@@ -1151,7 +1151,7 @@ M.RejectChannelHandshakeOutput = schema.new({
 })
 
 M.CreateProgramManagementAccountInput = schema.new({
-    id = id.from(_N, "CreateProgramManagementAccountInput"),
+    id = id.from(_N, "CreateProgramManagementAccountRequest"),
     type = "structure",
     members = {
         catalog = schema.new({
@@ -1229,7 +1229,7 @@ M.CreateProgramManagementAccountDetail = schema.new({
 })
 
 M.CreateProgramManagementAccountOutput = schema.new({
-    id = id.from(_N, "CreateProgramManagementAccountOutput"),
+    id = id.from(_N, "CreateProgramManagementAccountResponse"),
     type = "structure",
     members = {
         programManagementAccountDetail = schema.new({
@@ -1364,7 +1364,7 @@ M.SupportPlan = schema.new({
 })
 
 M.CreateRelationshipInput = schema.new({
-    id = id.from(_N, "CreateRelationshipInput"),
+    id = id.from(_N, "CreateRelationshipRequest"),
     type = "structure",
     members = {
         catalog = schema.new({
@@ -1473,7 +1473,7 @@ M.CreateRelationshipDetail = schema.new({
 })
 
 M.CreateRelationshipOutput = schema.new({
-    id = id.from(_N, "CreateRelationshipOutput"),
+    id = id.from(_N, "CreateRelationshipResponse"),
     type = "structure",
     members = {
         relationshipDetail = schema.new({
@@ -1487,7 +1487,7 @@ M.CreateRelationshipOutput = schema.new({
 })
 
 M.DeleteProgramManagementAccountInput = schema.new({
-    id = id.from(_N, "DeleteProgramManagementAccountInput"),
+    id = id.from(_N, "DeleteProgramManagementAccountRequest"),
     type = "structure",
     members = {
         catalog = schema.new({
@@ -1521,12 +1521,12 @@ M.DeleteProgramManagementAccountInput = schema.new({
 })
 
 M.DeleteProgramManagementAccountOutput = schema.new({
-    id = id.from(_N, "DeleteProgramManagementAccountOutput"),
+    id = id.from(_N, "DeleteProgramManagementAccountResponse"),
     type = "structure",
 })
 
 M.DeleteRelationshipInput = schema.new({
-    id = id.from(_N, "DeleteRelationshipInput"),
+    id = id.from(_N, "DeleteRelationshipRequest"),
     type = "structure",
     members = {
         catalog = schema.new({
@@ -1569,12 +1569,12 @@ M.DeleteRelationshipInput = schema.new({
 })
 
 M.DeleteRelationshipOutput = schema.new({
-    id = id.from(_N, "DeleteRelationshipOutput"),
+    id = id.from(_N, "DeleteRelationshipResponse"),
     type = "structure",
 })
 
 M.GetRelationshipInput = schema.new({
-    id = id.from(_N, "GetRelationshipInput"),
+    id = id.from(_N, "GetRelationshipRequest"),
     type = "structure",
     members = {
         catalog = schema.new({
@@ -1702,7 +1702,7 @@ M.RelationshipDetail = schema.new({
 })
 
 M.GetRelationshipOutput = schema.new({
-    id = id.from(_N, "GetRelationshipOutput"),
+    id = id.from(_N, "GetRelationshipResponse"),
     type = "structure",
     members = {
         relationshipDetail = schema.new({
@@ -1741,7 +1741,7 @@ M.ListProgramManagementAccountsSortBase = schema.new({
 })
 
 M.ListProgramManagementAccountsInput = schema.new({
-    id = id.from(_N, "ListProgramManagementAccountsInput"),
+    id = id.from(_N, "ListProgramManagementAccountsRequest"),
     type = "structure",
     members = {
         catalog = schema.new({
@@ -1889,7 +1889,7 @@ M.ProgramManagementAccountSummary = schema.new({
 })
 
 M.ListProgramManagementAccountsOutput = schema.new({
-    id = id.from(_N, "ListProgramManagementAccountsOutput"),
+    id = id.from(_N, "ListProgramManagementAccountsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -1934,7 +1934,7 @@ M.ListRelationshipsSortBase = schema.new({
 })
 
 M.ListRelationshipsInput = schema.new({
-    id = id.from(_N, "ListRelationshipsInput"),
+    id = id.from(_N, "ListRelationshipsRequest"),
     type = "structure",
     members = {
         catalog = schema.new({
@@ -2088,7 +2088,7 @@ M.RelationshipSummary = schema.new({
 })
 
 M.ListRelationshipsOutput = schema.new({
-    id = id.from(_N, "ListRelationshipsOutput"),
+    id = id.from(_N, "ListRelationshipsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -2108,7 +2108,7 @@ M.ListRelationshipsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2124,7 +2124,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2138,7 +2138,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.UpdateProgramManagementAccountInput = schema.new({
-    id = id.from(_N, "UpdateProgramManagementAccountInput"),
+    id = id.from(_N, "UpdateProgramManagementAccountRequest"),
     type = "structure",
     members = {
         catalog = schema.new({
@@ -2206,7 +2206,7 @@ M.UpdateProgramManagementAccountDetail = schema.new({
 })
 
 M.UpdateProgramManagementAccountOutput = schema.new({
-    id = id.from(_N, "UpdateProgramManagementAccountOutput"),
+    id = id.from(_N, "UpdateProgramManagementAccountResponse"),
     type = "structure",
     members = {
         programManagementAccountDetail = schema.new({
@@ -2220,7 +2220,7 @@ M.UpdateProgramManagementAccountOutput = schema.new({
 })
 
 M.UpdateRelationshipInput = schema.new({
-    id = id.from(_N, "UpdateRelationshipInput"),
+    id = id.from(_N, "UpdateRelationshipRequest"),
     type = "structure",
     members = {
         catalog = schema.new({
@@ -2304,7 +2304,7 @@ M.UpdateRelationshipDetail = schema.new({
 })
 
 M.UpdateRelationshipOutput = schema.new({
-    id = id.from(_N, "UpdateRelationshipOutput"),
+    id = id.from(_N, "UpdateRelationshipResponse"),
     type = "structure",
     members = {
         relationshipDetail = schema.new({
@@ -2318,7 +2318,7 @@ M.UpdateRelationshipOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2344,12 +2344,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2375,8 +2375,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

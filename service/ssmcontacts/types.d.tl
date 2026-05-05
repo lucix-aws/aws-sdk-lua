@@ -1638,11 +1638,11 @@ end
 
 local type ContactType = "PERSONAL" | "ESCALATION" | "ONCALL_SCHEDULE"
 
-local type AcceptType = "DELIVERED" | "READ"
-
 local type AcceptCodeValidation = "IGNORE" | "ENFORCE"
 
 local type ActivationStatus = "ACTIVATED" | "NOT_ACTIVATED"
+
+local type AcceptType = "DELIVERED" | "READ"
 
 local type ChannelType = "SMS" | "VOICE" | "EMAIL"
 

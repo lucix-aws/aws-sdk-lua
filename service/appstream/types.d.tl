@@ -2294,19 +2294,13 @@ local record ResourceNotFoundException
     Message: string
 end
 
+local type ThemeState = "ENABLED" | "DISABLED"
+
+local type VisibilityType = "PUBLIC" | "PRIVATE" | "SHARED"
+
 local type MessageAction = "SUPPRESS" | "RESEND"
 
-local type ThemeStyling = "LIGHT_BLUE" | "BLUE" | "PINK" | "RED"
-
-local type AppVisibility = "ALL" | "ASSOCIATED"
-
-local type AppBlockBuilderPlatformType = "WINDOWS_SERVER_2019"
-
-local type AgentSoftwareVersion = "CURRENT_LATEST" | "ALWAYS_LATEST"
-
-local type FleetType = "ALWAYS_ON" | "ON_DEMAND" | "ELASTIC"
-
-local type PlatformType = "WINDOWS" | "WINDOWS_SERVER_2016" | "WINDOWS_SERVER_2019" | "WINDOWS_SERVER_2022" | "WINDOWS_SERVER_2025" | "AMAZON_LINUX2" | "RHEL8" | "ROCKY_LINUX8" | "UBUNTU_PRO_2404"
+local type PackagingType = "CUSTOM" | "APPSTREAM2"
 
 local type AuthenticationType = "API" | "SAML" | "USERPOOL" | "AWS_AD"
 
@@ -2314,11 +2308,17 @@ local type UsageReportSchedule = "DAILY"
 
 local type StreamView = "APP" | "DESKTOP"
 
-local type ThemeState = "ENABLED" | "DISABLED"
+local type ThemeStyling = "LIGHT_BLUE" | "BLUE" | "PINK" | "RED"
 
-local type PackagingType = "CUSTOM" | "APPSTREAM2"
+local type AppBlockBuilderPlatformType = "WINDOWS_SERVER_2019"
 
-local type VisibilityType = "PUBLIC" | "PRIVATE" | "SHARED"
+local type AgentSoftwareVersion = "CURRENT_LATEST" | "ALWAYS_LATEST"
+
+local type AppVisibility = "ALL" | "ASSOCIATED"
+
+local type FleetType = "ALWAYS_ON" | "ON_DEMAND" | "ELASTIC"
+
+local type PlatformType = "WINDOWS" | "WINDOWS_SERVER_2016" | "WINDOWS_SERVER_2019" | "WINDOWS_SERVER_2022" | "WINDOWS_SERVER_2025" | "AMAZON_LINUX2" | "RHEL8" | "ROCKY_LINUX8" | "UBUNTU_PRO_2404"
 
 local record M
     AssociateAppBlockBuilderAppBlockInput: AssociateAppBlockBuilderAppBlockInput

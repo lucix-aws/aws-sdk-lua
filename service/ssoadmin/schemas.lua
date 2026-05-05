@@ -221,7 +221,7 @@ M.AccountAssignmentOperationStatusMetadata = schema.new({
 })
 
 M.AddRegionInput = schema.new({
-    id = id.from(_N, "AddRegionInput"),
+    id = id.from(_N, "AddRegionRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -246,7 +246,7 @@ M.AddRegionInput = schema.new({
 })
 
 M.AddRegionOutput = schema.new({
-    id = id.from(_N, "AddRegionOutput"),
+    id = id.from(_N, "AddRegionResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -470,7 +470,7 @@ M.Application = schema.new({
 })
 
 M.DeleteApplicationAccessScopeInput = schema.new({
-    id = id.from(_N, "DeleteApplicationAccessScopeInput"),
+    id = id.from(_N, "DeleteApplicationAccessScopeRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -495,7 +495,7 @@ M.DeleteApplicationAccessScopeInput = schema.new({
 })
 
 M.DeleteApplicationAccessScopeOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationAccessScopeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -522,7 +522,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.GetApplicationAccessScopeInput = schema.new({
-    id = id.from(_N, "GetApplicationAccessScopeInput"),
+    id = id.from(_N, "GetApplicationAccessScopeRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -547,7 +547,7 @@ M.GetApplicationAccessScopeInput = schema.new({
 })
 
 M.GetApplicationAccessScopeOutput = schema.new({
-    id = id.from(_N, "GetApplicationAccessScopeOutput"),
+    id = id.from(_N, "GetApplicationAccessScopeResponse"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -570,7 +570,7 @@ M.GetApplicationAccessScopeOutput = schema.new({
 })
 
 M.ListApplicationAccessScopesInput = schema.new({
-    id = id.from(_N, "ListApplicationAccessScopesInput"),
+    id = id.from(_N, "ListApplicationAccessScopesRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -624,7 +624,7 @@ M.ScopeDetails = schema.new({
 })
 
 M.ListApplicationAccessScopesOutput = schema.new({
-    id = id.from(_N, "ListApplicationAccessScopesOutput"),
+    id = id.from(_N, "ListApplicationAccessScopesResponse"),
     type = "structure",
     members = {
         Scopes = schema.new({
@@ -647,7 +647,7 @@ M.ListApplicationAccessScopesOutput = schema.new({
 })
 
 M.PutApplicationAccessScopeInput = schema.new({
-    id = id.from(_N, "PutApplicationAccessScopeInput"),
+    id = id.from(_N, "PutApplicationAccessScopeRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -679,7 +679,7 @@ M.PutApplicationAccessScopeInput = schema.new({
 })
 
 M.PutApplicationAccessScopeOutput = schema.new({
-    id = id.from(_N, "PutApplicationAccessScopeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -743,7 +743,7 @@ M.ApplicationAssignmentForPrincipal = schema.new({
 })
 
 M.DeleteApplicationAuthenticationMethodInput = schema.new({
-    id = id.from(_N, "DeleteApplicationAuthenticationMethodInput"),
+    id = id.from(_N, "DeleteApplicationAuthenticationMethodRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -768,12 +768,12 @@ M.DeleteApplicationAuthenticationMethodInput = schema.new({
 })
 
 M.DeleteApplicationAuthenticationMethodOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationAuthenticationMethodOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetApplicationAuthenticationMethodInput = schema.new({
-    id = id.from(_N, "GetApplicationAuthenticationMethodInput"),
+    id = id.from(_N, "GetApplicationAuthenticationMethodRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -828,7 +828,7 @@ M.AuthenticationMethod = schema.new({
 })
 
 M.GetApplicationAuthenticationMethodOutput = schema.new({
-    id = id.from(_N, "GetApplicationAuthenticationMethodOutput"),
+    id = id.from(_N, "GetApplicationAuthenticationMethodResponse"),
     type = "structure",
     members = {
         AuthenticationMethod = schema.new({
@@ -842,7 +842,7 @@ M.GetApplicationAuthenticationMethodOutput = schema.new({
 })
 
 M.ListApplicationAuthenticationMethodsInput = schema.new({
-    id = id.from(_N, "ListApplicationAuthenticationMethodsInput"),
+    id = id.from(_N, "ListApplicationAuthenticationMethodsRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -884,7 +884,7 @@ M.AuthenticationMethodItem = schema.new({
 })
 
 M.ListApplicationAuthenticationMethodsOutput = schema.new({
-    id = id.from(_N, "ListApplicationAuthenticationMethodsOutput"),
+    id = id.from(_N, "ListApplicationAuthenticationMethodsResponse"),
     type = "structure",
     members = {
         AuthenticationMethods = schema.new({
@@ -904,7 +904,7 @@ M.ListApplicationAuthenticationMethodsOutput = schema.new({
 })
 
 M.PutApplicationAuthenticationMethodInput = schema.new({
-    id = id.from(_N, "PutApplicationAuthenticationMethodInput"),
+    id = id.from(_N, "PutApplicationAuthenticationMethodRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -939,12 +939,12 @@ M.PutApplicationAuthenticationMethodInput = schema.new({
 })
 
 M.PutApplicationAuthenticationMethodOutput = schema.new({
-    id = id.from(_N, "PutApplicationAuthenticationMethodOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteApplicationGrantInput = schema.new({
-    id = id.from(_N, "DeleteApplicationGrantInput"),
+    id = id.from(_N, "DeleteApplicationGrantRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -969,12 +969,12 @@ M.DeleteApplicationGrantInput = schema.new({
 })
 
 M.DeleteApplicationGrantOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationGrantOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetApplicationGrantInput = schema.new({
-    id = id.from(_N, "GetApplicationGrantInput"),
+    id = id.from(_N, "GetApplicationGrantRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -1092,7 +1092,7 @@ M.Grant = schema.new({
 })
 
 M.GetApplicationGrantOutput = schema.new({
-    id = id.from(_N, "GetApplicationGrantOutput"),
+    id = id.from(_N, "GetApplicationGrantResponse"),
     type = "structure",
     members = {
         Grant = schema.new({
@@ -1109,7 +1109,7 @@ M.GetApplicationGrantOutput = schema.new({
 })
 
 M.ListApplicationGrantsInput = schema.new({
-    id = id.from(_N, "ListApplicationGrantsInput"),
+    id = id.from(_N, "ListApplicationGrantsRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -1157,7 +1157,7 @@ M.GrantItem = schema.new({
 })
 
 M.ListApplicationGrantsOutput = schema.new({
-    id = id.from(_N, "ListApplicationGrantsOutput"),
+    id = id.from(_N, "ListApplicationGrantsResponse"),
     type = "structure",
     members = {
         Grants = schema.new({
@@ -1180,7 +1180,7 @@ M.ListApplicationGrantsOutput = schema.new({
 })
 
 M.PutApplicationGrantInput = schema.new({
-    id = id.from(_N, "PutApplicationGrantInput"),
+    id = id.from(_N, "PutApplicationGrantRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -1215,7 +1215,7 @@ M.PutApplicationGrantInput = schema.new({
 })
 
 M.PutApplicationGrantOutput = schema.new({
-    id = id.from(_N, "PutApplicationGrantOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1337,7 +1337,7 @@ M.CustomerManagedPolicyReference = schema.new({
 })
 
 M.AttachCustomerManagedPolicyReferenceToPermissionSetInput = schema.new({
-    id = id.from(_N, "AttachCustomerManagedPolicyReferenceToPermissionSetInput"),
+    id = id.from(_N, "AttachCustomerManagedPolicyReferenceToPermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -1372,7 +1372,7 @@ M.AttachCustomerManagedPolicyReferenceToPermissionSetInput = schema.new({
 })
 
 M.AttachCustomerManagedPolicyReferenceToPermissionSetOutput = schema.new({
-    id = id.from(_N, "AttachCustomerManagedPolicyReferenceToPermissionSetOutput"),
+    id = id.from(_N, "AttachCustomerManagedPolicyReferenceToPermissionSetResponse"),
     type = "structure",
 })
 
@@ -1396,7 +1396,7 @@ M.AttachedManagedPolicy = schema.new({
 })
 
 M.AttachManagedPolicyToPermissionSetInput = schema.new({
-    id = id.from(_N, "AttachManagedPolicyToPermissionSetInput"),
+    id = id.from(_N, "AttachManagedPolicyToPermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -1430,12 +1430,12 @@ M.AttachManagedPolicyToPermissionSetInput = schema.new({
 })
 
 M.AttachManagedPolicyToPermissionSetOutput = schema.new({
-    id = id.from(_N, "AttachManagedPolicyToPermissionSetOutput"),
+    id = id.from(_N, "AttachManagedPolicyToPermissionSetResponse"),
     type = "structure",
 })
 
 M.CreateAccountAssignmentInput = schema.new({
-    id = id.from(_N, "CreateAccountAssignmentInput"),
+    id = id.from(_N, "CreateAccountAssignmentRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -1496,7 +1496,7 @@ M.CreateAccountAssignmentInput = schema.new({
 })
 
 M.CreateAccountAssignmentOutput = schema.new({
-    id = id.from(_N, "CreateAccountAssignmentOutput"),
+    id = id.from(_N, "CreateAccountAssignmentResponse"),
     type = "structure",
     members = {
         AccountAssignmentCreationStatus = schema.new({
@@ -1535,7 +1535,7 @@ M.Tag = schema.new({
 })
 
 M.CreateApplicationInput = schema.new({
-    id = id.from(_N, "CreateApplicationInput"),
+    id = id.from(_N, "CreateApplicationRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -1604,7 +1604,7 @@ M.CreateApplicationInput = schema.new({
 })
 
 M.CreateApplicationOutput = schema.new({
-    id = id.from(_N, "CreateApplicationOutput"),
+    id = id.from(_N, "CreateApplicationResponse"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -1629,7 +1629,7 @@ M.CreateApplicationOutput = schema.new({
 })
 
 M.CreateApplicationAssignmentInput = schema.new({
-    id = id.from(_N, "CreateApplicationAssignmentInput"),
+    id = id.from(_N, "CreateApplicationAssignmentRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -1663,12 +1663,12 @@ M.CreateApplicationAssignmentInput = schema.new({
 })
 
 M.CreateApplicationAssignmentOutput = schema.new({
-    id = id.from(_N, "CreateApplicationAssignmentOutput"),
+    id = id.from(_N, "CreateApplicationAssignmentResponse"),
     type = "structure",
 })
 
 M.CreateInstanceInput = schema.new({
-    id = id.from(_N, "CreateInstanceInput"),
+    id = id.from(_N, "CreateInstanceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1697,7 +1697,7 @@ M.CreateInstanceInput = schema.new({
 })
 
 M.CreateInstanceOutput = schema.new({
-    id = id.from(_N, "CreateInstanceOutput"),
+    id = id.from(_N, "CreateInstanceResponse"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -1727,7 +1727,7 @@ M.InstanceAccessControlAttributeConfiguration = schema.new({
 })
 
 M.CreateInstanceAccessControlAttributeConfigurationInput = schema.new({
-    id = id.from(_N, "CreateInstanceAccessControlAttributeConfigurationInput"),
+    id = id.from(_N, "CreateInstanceAccessControlAttributeConfigurationRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -1753,12 +1753,12 @@ M.CreateInstanceAccessControlAttributeConfigurationInput = schema.new({
 })
 
 M.CreateInstanceAccessControlAttributeConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateInstanceAccessControlAttributeConfigurationOutput"),
+    id = id.from(_N, "CreateInstanceAccessControlAttributeConfigurationResponse"),
     type = "structure",
 })
 
 M.CreatePermissionSetInput = schema.new({
-    id = id.from(_N, "CreatePermissionSetInput"),
+    id = id.from(_N, "CreatePermissionSetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1851,7 +1851,7 @@ M.PermissionSet = schema.new({
 })
 
 M.CreatePermissionSetOutput = schema.new({
-    id = id.from(_N, "CreatePermissionSetOutput"),
+    id = id.from(_N, "CreatePermissionSetResponse"),
     type = "structure",
     members = {
         PermissionSet = schema.new({
@@ -1922,7 +1922,7 @@ M.TrustedTokenIssuerConfiguration = schema.new({
 })
 
 M.CreateTrustedTokenIssuerInput = schema.new({
-    id = id.from(_N, "CreateTrustedTokenIssuerInput"),
+    id = id.from(_N, "CreateTrustedTokenIssuerRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -1982,7 +1982,7 @@ M.CreateTrustedTokenIssuerInput = schema.new({
 })
 
 M.CreateTrustedTokenIssuerOutput = schema.new({
-    id = id.from(_N, "CreateTrustedTokenIssuerOutput"),
+    id = id.from(_N, "CreateTrustedTokenIssuerResponse"),
     type = "structure",
     members = {
         TrustedTokenIssuerArn = schema.new({
@@ -1995,7 +1995,7 @@ M.CreateTrustedTokenIssuerOutput = schema.new({
 })
 
 M.DeleteAccountAssignmentInput = schema.new({
-    id = id.from(_N, "DeleteAccountAssignmentInput"),
+    id = id.from(_N, "DeleteAccountAssignmentRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -2056,7 +2056,7 @@ M.DeleteAccountAssignmentInput = schema.new({
 })
 
 M.DeleteAccountAssignmentOutput = schema.new({
-    id = id.from(_N, "DeleteAccountAssignmentOutput"),
+    id = id.from(_N, "DeleteAccountAssignmentResponse"),
     type = "structure",
     members = {
         AccountAssignmentDeletionStatus = schema.new({
@@ -2070,7 +2070,7 @@ M.DeleteAccountAssignmentOutput = schema.new({
 })
 
 M.DeleteApplicationInput = schema.new({
-    id = id.from(_N, "DeleteApplicationInput"),
+    id = id.from(_N, "DeleteApplicationRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -2086,12 +2086,12 @@ M.DeleteApplicationInput = schema.new({
 })
 
 M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationOutput"),
+    id = id.from(_N, "DeleteApplicationResponse"),
     type = "structure",
 })
 
 M.DeleteApplicationAssignmentInput = schema.new({
-    id = id.from(_N, "DeleteApplicationAssignmentInput"),
+    id = id.from(_N, "DeleteApplicationAssignmentRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -2125,12 +2125,12 @@ M.DeleteApplicationAssignmentInput = schema.new({
 })
 
 M.DeleteApplicationAssignmentOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationAssignmentOutput"),
+    id = id.from(_N, "DeleteApplicationAssignmentResponse"),
     type = "structure",
 })
 
 M.DeleteInlinePolicyFromPermissionSetInput = schema.new({
-    id = id.from(_N, "DeleteInlinePolicyFromPermissionSetInput"),
+    id = id.from(_N, "DeleteInlinePolicyFromPermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -2155,12 +2155,12 @@ M.DeleteInlinePolicyFromPermissionSetInput = schema.new({
 })
 
 M.DeleteInlinePolicyFromPermissionSetOutput = schema.new({
-    id = id.from(_N, "DeleteInlinePolicyFromPermissionSetOutput"),
+    id = id.from(_N, "DeleteInlinePolicyFromPermissionSetResponse"),
     type = "structure",
 })
 
 M.DeleteInstanceInput = schema.new({
-    id = id.from(_N, "DeleteInstanceInput"),
+    id = id.from(_N, "DeleteInstanceRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -2176,12 +2176,12 @@ M.DeleteInstanceInput = schema.new({
 })
 
 M.DeleteInstanceOutput = schema.new({
-    id = id.from(_N, "DeleteInstanceOutput"),
+    id = id.from(_N, "DeleteInstanceResponse"),
     type = "structure",
 })
 
 M.DeleteInstanceAccessControlAttributeConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteInstanceAccessControlAttributeConfigurationInput"),
+    id = id.from(_N, "DeleteInstanceAccessControlAttributeConfigurationRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -2197,12 +2197,12 @@ M.DeleteInstanceAccessControlAttributeConfigurationInput = schema.new({
 })
 
 M.DeleteInstanceAccessControlAttributeConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteInstanceAccessControlAttributeConfigurationOutput"),
+    id = id.from(_N, "DeleteInstanceAccessControlAttributeConfigurationResponse"),
     type = "structure",
 })
 
 M.DeletePermissionsBoundaryFromPermissionSetInput = schema.new({
-    id = id.from(_N, "DeletePermissionsBoundaryFromPermissionSetInput"),
+    id = id.from(_N, "DeletePermissionsBoundaryFromPermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -2227,12 +2227,12 @@ M.DeletePermissionsBoundaryFromPermissionSetInput = schema.new({
 })
 
 M.DeletePermissionsBoundaryFromPermissionSetOutput = schema.new({
-    id = id.from(_N, "DeletePermissionsBoundaryFromPermissionSetOutput"),
+    id = id.from(_N, "DeletePermissionsBoundaryFromPermissionSetResponse"),
     type = "structure",
 })
 
 M.DeletePermissionSetInput = schema.new({
-    id = id.from(_N, "DeletePermissionSetInput"),
+    id = id.from(_N, "DeletePermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -2257,12 +2257,12 @@ M.DeletePermissionSetInput = schema.new({
 })
 
 M.DeletePermissionSetOutput = schema.new({
-    id = id.from(_N, "DeletePermissionSetOutput"),
+    id = id.from(_N, "DeletePermissionSetResponse"),
     type = "structure",
 })
 
 M.DeleteTrustedTokenIssuerInput = schema.new({
-    id = id.from(_N, "DeleteTrustedTokenIssuerInput"),
+    id = id.from(_N, "DeleteTrustedTokenIssuerRequest"),
     type = "structure",
     members = {
         TrustedTokenIssuerArn = schema.new({
@@ -2278,12 +2278,12 @@ M.DeleteTrustedTokenIssuerInput = schema.new({
 })
 
 M.DeleteTrustedTokenIssuerOutput = schema.new({
-    id = id.from(_N, "DeleteTrustedTokenIssuerOutput"),
+    id = id.from(_N, "DeleteTrustedTokenIssuerResponse"),
     type = "structure",
 })
 
 M.DescribeAccountAssignmentCreationStatusInput = schema.new({
-    id = id.from(_N, "DescribeAccountAssignmentCreationStatusInput"),
+    id = id.from(_N, "DescribeAccountAssignmentCreationStatusRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -2308,7 +2308,7 @@ M.DescribeAccountAssignmentCreationStatusInput = schema.new({
 })
 
 M.DescribeAccountAssignmentCreationStatusOutput = schema.new({
-    id = id.from(_N, "DescribeAccountAssignmentCreationStatusOutput"),
+    id = id.from(_N, "DescribeAccountAssignmentCreationStatusResponse"),
     type = "structure",
     members = {
         AccountAssignmentCreationStatus = schema.new({
@@ -2322,7 +2322,7 @@ M.DescribeAccountAssignmentCreationStatusOutput = schema.new({
 })
 
 M.DescribeAccountAssignmentDeletionStatusInput = schema.new({
-    id = id.from(_N, "DescribeAccountAssignmentDeletionStatusInput"),
+    id = id.from(_N, "DescribeAccountAssignmentDeletionStatusRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -2347,7 +2347,7 @@ M.DescribeAccountAssignmentDeletionStatusInput = schema.new({
 })
 
 M.DescribeAccountAssignmentDeletionStatusOutput = schema.new({
-    id = id.from(_N, "DescribeAccountAssignmentDeletionStatusOutput"),
+    id = id.from(_N, "DescribeAccountAssignmentDeletionStatusResponse"),
     type = "structure",
     members = {
         AccountAssignmentDeletionStatus = schema.new({
@@ -2361,7 +2361,7 @@ M.DescribeAccountAssignmentDeletionStatusOutput = schema.new({
 })
 
 M.DescribeApplicationInput = schema.new({
-    id = id.from(_N, "DescribeApplicationInput"),
+    id = id.from(_N, "DescribeApplicationRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -2377,7 +2377,7 @@ M.DescribeApplicationInput = schema.new({
 })
 
 M.DescribeApplicationOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationOutput"),
+    id = id.from(_N, "DescribeApplicationResponse"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -2451,7 +2451,7 @@ M.DescribeApplicationOutput = schema.new({
 })
 
 M.DescribeApplicationAssignmentInput = schema.new({
-    id = id.from(_N, "DescribeApplicationAssignmentInput"),
+    id = id.from(_N, "DescribeApplicationAssignmentRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -2485,7 +2485,7 @@ M.DescribeApplicationAssignmentInput = schema.new({
 })
 
 M.DescribeApplicationAssignmentOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationAssignmentOutput"),
+    id = id.from(_N, "DescribeApplicationAssignmentResponse"),
     type = "structure",
     members = {
         PrincipalType = schema.new({
@@ -2510,7 +2510,7 @@ M.DescribeApplicationAssignmentOutput = schema.new({
 })
 
 M.DescribeApplicationProviderInput = schema.new({
-    id = id.from(_N, "DescribeApplicationProviderInput"),
+    id = id.from(_N, "DescribeApplicationProviderRequest"),
     type = "structure",
     members = {
         ApplicationProviderArn = schema.new({
@@ -2526,7 +2526,7 @@ M.DescribeApplicationProviderInput = schema.new({
 })
 
 M.DescribeApplicationProviderOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationProviderOutput"),
+    id = id.from(_N, "DescribeApplicationProviderResponse"),
     type = "structure",
     members = {
         ApplicationProviderArn = schema.new({
@@ -2562,7 +2562,7 @@ M.DescribeApplicationProviderOutput = schema.new({
 })
 
 M.DescribeInstanceInput = schema.new({
-    id = id.from(_N, "DescribeInstanceInput"),
+    id = id.from(_N, "DescribeInstanceRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -2609,7 +2609,7 @@ M.EncryptionConfigurationDetails = schema.new({
 })
 
 M.DescribeInstanceOutput = schema.new({
-    id = id.from(_N, "DescribeInstanceOutput"),
+    id = id.from(_N, "DescribeInstanceResponse"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -2665,7 +2665,7 @@ M.DescribeInstanceOutput = schema.new({
 })
 
 M.DescribeInstanceAccessControlAttributeConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeInstanceAccessControlAttributeConfigurationInput"),
+    id = id.from(_N, "DescribeInstanceAccessControlAttributeConfigurationRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -2681,7 +2681,7 @@ M.DescribeInstanceAccessControlAttributeConfigurationInput = schema.new({
 })
 
 M.DescribeInstanceAccessControlAttributeConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeInstanceAccessControlAttributeConfigurationOutput"),
+    id = id.from(_N, "DescribeInstanceAccessControlAttributeConfigurationResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -2707,7 +2707,7 @@ M.DescribeInstanceAccessControlAttributeConfigurationOutput = schema.new({
 })
 
 M.DescribePermissionSetInput = schema.new({
-    id = id.from(_N, "DescribePermissionSetInput"),
+    id = id.from(_N, "DescribePermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -2732,7 +2732,7 @@ M.DescribePermissionSetInput = schema.new({
 })
 
 M.DescribePermissionSetOutput = schema.new({
-    id = id.from(_N, "DescribePermissionSetOutput"),
+    id = id.from(_N, "DescribePermissionSetResponse"),
     type = "structure",
     members = {
         PermissionSet = schema.new({
@@ -2746,7 +2746,7 @@ M.DescribePermissionSetOutput = schema.new({
 })
 
 M.DescribePermissionSetProvisioningStatusInput = schema.new({
-    id = id.from(_N, "DescribePermissionSetProvisioningStatusInput"),
+    id = id.from(_N, "DescribePermissionSetProvisioningStatusRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -2814,7 +2814,7 @@ M.PermissionSetProvisioningStatus = schema.new({
 })
 
 M.DescribePermissionSetProvisioningStatusOutput = schema.new({
-    id = id.from(_N, "DescribePermissionSetProvisioningStatusOutput"),
+    id = id.from(_N, "DescribePermissionSetProvisioningStatusResponse"),
     type = "structure",
     members = {
         PermissionSetProvisioningStatus = schema.new({
@@ -2828,7 +2828,7 @@ M.DescribePermissionSetProvisioningStatusOutput = schema.new({
 })
 
 M.DescribeRegionInput = schema.new({
-    id = id.from(_N, "DescribeRegionInput"),
+    id = id.from(_N, "DescribeRegionRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -2853,7 +2853,7 @@ M.DescribeRegionInput = schema.new({
 })
 
 M.DescribeRegionOutput = schema.new({
-    id = id.from(_N, "DescribeRegionOutput"),
+    id = id.from(_N, "DescribeRegionResponse"),
     type = "structure",
     members = {
         RegionName = schema.new({
@@ -2887,7 +2887,7 @@ M.DescribeRegionOutput = schema.new({
 })
 
 M.DescribeTrustedTokenIssuerInput = schema.new({
-    id = id.from(_N, "DescribeTrustedTokenIssuerInput"),
+    id = id.from(_N, "DescribeTrustedTokenIssuerRequest"),
     type = "structure",
     members = {
         TrustedTokenIssuerArn = schema.new({
@@ -2903,7 +2903,7 @@ M.DescribeTrustedTokenIssuerInput = schema.new({
 })
 
 M.DescribeTrustedTokenIssuerOutput = schema.new({
-    id = id.from(_N, "DescribeTrustedTokenIssuerOutput"),
+    id = id.from(_N, "DescribeTrustedTokenIssuerResponse"),
     type = "structure",
     members = {
         TrustedTokenIssuerArn = schema.new({
@@ -2935,7 +2935,7 @@ M.DescribeTrustedTokenIssuerOutput = schema.new({
 })
 
 M.DetachCustomerManagedPolicyReferenceFromPermissionSetInput = schema.new({
-    id = id.from(_N, "DetachCustomerManagedPolicyReferenceFromPermissionSetInput"),
+    id = id.from(_N, "DetachCustomerManagedPolicyReferenceFromPermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -2970,12 +2970,12 @@ M.DetachCustomerManagedPolicyReferenceFromPermissionSetInput = schema.new({
 })
 
 M.DetachCustomerManagedPolicyReferenceFromPermissionSetOutput = schema.new({
-    id = id.from(_N, "DetachCustomerManagedPolicyReferenceFromPermissionSetOutput"),
+    id = id.from(_N, "DetachCustomerManagedPolicyReferenceFromPermissionSetResponse"),
     type = "structure",
 })
 
 M.DetachManagedPolicyFromPermissionSetInput = schema.new({
-    id = id.from(_N, "DetachManagedPolicyFromPermissionSetInput"),
+    id = id.from(_N, "DetachManagedPolicyFromPermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -3009,7 +3009,7 @@ M.DetachManagedPolicyFromPermissionSetInput = schema.new({
 })
 
 M.DetachManagedPolicyFromPermissionSetOutput = schema.new({
-    id = id.from(_N, "DetachManagedPolicyFromPermissionSetOutput"),
+    id = id.from(_N, "DetachManagedPolicyFromPermissionSetResponse"),
     type = "structure",
 })
 
@@ -3036,7 +3036,7 @@ M.EncryptionConfiguration = schema.new({
 })
 
 M.GetApplicationAssignmentConfigurationInput = schema.new({
-    id = id.from(_N, "GetApplicationAssignmentConfigurationInput"),
+    id = id.from(_N, "GetApplicationAssignmentConfigurationRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -3052,7 +3052,7 @@ M.GetApplicationAssignmentConfigurationInput = schema.new({
 })
 
 M.GetApplicationAssignmentConfigurationOutput = schema.new({
-    id = id.from(_N, "GetApplicationAssignmentConfigurationOutput"),
+    id = id.from(_N, "GetApplicationAssignmentConfigurationResponse"),
     type = "structure",
     members = {
         AssignmentRequired = schema.new({
@@ -3069,7 +3069,7 @@ M.GetApplicationAssignmentConfigurationOutput = schema.new({
 })
 
 M.GetApplicationSessionConfigurationInput = schema.new({
-    id = id.from(_N, "GetApplicationSessionConfigurationInput"),
+    id = id.from(_N, "GetApplicationSessionConfigurationRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -3085,7 +3085,7 @@ M.GetApplicationSessionConfigurationInput = schema.new({
 })
 
 M.GetApplicationSessionConfigurationOutput = schema.new({
-    id = id.from(_N, "GetApplicationSessionConfigurationOutput"),
+    id = id.from(_N, "GetApplicationSessionConfigurationResponse"),
     type = "structure",
     members = {
         UserBackgroundSessionApplicationStatus = schema.new({
@@ -3098,7 +3098,7 @@ M.GetApplicationSessionConfigurationOutput = schema.new({
 })
 
 M.GetInlinePolicyForPermissionSetInput = schema.new({
-    id = id.from(_N, "GetInlinePolicyForPermissionSetInput"),
+    id = id.from(_N, "GetInlinePolicyForPermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -3123,7 +3123,7 @@ M.GetInlinePolicyForPermissionSetInput = schema.new({
 })
 
 M.GetInlinePolicyForPermissionSetOutput = schema.new({
-    id = id.from(_N, "GetInlinePolicyForPermissionSetOutput"),
+    id = id.from(_N, "GetInlinePolicyForPermissionSetResponse"),
     type = "structure",
     members = {
         InlinePolicy = schema.new({
@@ -3136,7 +3136,7 @@ M.GetInlinePolicyForPermissionSetOutput = schema.new({
 })
 
 M.GetPermissionsBoundaryForPermissionSetInput = schema.new({
-    id = id.from(_N, "GetPermissionsBoundaryForPermissionSetInput"),
+    id = id.from(_N, "GetPermissionsBoundaryForPermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -3181,7 +3181,7 @@ M.PermissionsBoundary = schema.new({
 })
 
 M.GetPermissionsBoundaryForPermissionSetOutput = schema.new({
-    id = id.from(_N, "GetPermissionsBoundaryForPermissionSetOutput"),
+    id = id.from(_N, "GetPermissionsBoundaryForPermissionSetResponse"),
     type = "structure",
     members = {
         PermissionsBoundary = schema.new({
@@ -3257,7 +3257,7 @@ M.OperationStatusFilter = schema.new({
 })
 
 M.ListAccountAssignmentCreationStatusInput = schema.new({
-    id = id.from(_N, "ListAccountAssignmentCreationStatusInput"),
+    id = id.from(_N, "ListAccountAssignmentCreationStatusRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -3292,7 +3292,7 @@ M.ListAccountAssignmentCreationStatusInput = schema.new({
 })
 
 M.ListAccountAssignmentCreationStatusOutput = schema.new({
-    id = id.from(_N, "ListAccountAssignmentCreationStatusOutput"),
+    id = id.from(_N, "ListAccountAssignmentCreationStatusResponse"),
     type = "structure",
     members = {
         AccountAssignmentsCreationStatus = schema.new({
@@ -3312,7 +3312,7 @@ M.ListAccountAssignmentCreationStatusOutput = schema.new({
 })
 
 M.ListAccountAssignmentDeletionStatusInput = schema.new({
-    id = id.from(_N, "ListAccountAssignmentDeletionStatusInput"),
+    id = id.from(_N, "ListAccountAssignmentDeletionStatusRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -3347,7 +3347,7 @@ M.ListAccountAssignmentDeletionStatusInput = schema.new({
 })
 
 M.ListAccountAssignmentDeletionStatusOutput = schema.new({
-    id = id.from(_N, "ListAccountAssignmentDeletionStatusOutput"),
+    id = id.from(_N, "ListAccountAssignmentDeletionStatusResponse"),
     type = "structure",
     members = {
         AccountAssignmentsDeletionStatus = schema.new({
@@ -3367,7 +3367,7 @@ M.ListAccountAssignmentDeletionStatusOutput = schema.new({
 })
 
 M.ListAccountAssignmentsInput = schema.new({
-    id = id.from(_N, "ListAccountAssignmentsInput"),
+    id = id.from(_N, "ListAccountAssignmentsRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -3413,7 +3413,7 @@ M.ListAccountAssignmentsInput = schema.new({
 })
 
 M.ListAccountAssignmentsOutput = schema.new({
-    id = id.from(_N, "ListAccountAssignmentsOutput"),
+    id = id.from(_N, "ListAccountAssignmentsResponse"),
     type = "structure",
     members = {
         AccountAssignments = schema.new({
@@ -3446,7 +3446,7 @@ M.ListAccountAssignmentsFilter = schema.new({
 })
 
 M.ListAccountAssignmentsForPrincipalInput = schema.new({
-    id = id.from(_N, "ListAccountAssignmentsForPrincipalInput"),
+    id = id.from(_N, "ListAccountAssignmentsForPrincipalRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -3502,7 +3502,7 @@ M.ListAccountAssignmentsForPrincipalInput = schema.new({
 })
 
 M.ListAccountAssignmentsForPrincipalOutput = schema.new({
-    id = id.from(_N, "ListAccountAssignmentsForPrincipalOutput"),
+    id = id.from(_N, "ListAccountAssignmentsForPrincipalResponse"),
     type = "structure",
     members = {
         AccountAssignments = schema.new({
@@ -3522,7 +3522,7 @@ M.ListAccountAssignmentsForPrincipalOutput = schema.new({
 })
 
 M.ListAccountsForProvisionedPermissionSetInput = schema.new({
-    id = id.from(_N, "ListAccountsForProvisionedPermissionSetInput"),
+    id = id.from(_N, "ListAccountsForProvisionedPermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -3565,7 +3565,7 @@ M.ListAccountsForProvisionedPermissionSetInput = schema.new({
 })
 
 M.ListAccountsForProvisionedPermissionSetOutput = schema.new({
-    id = id.from(_N, "ListAccountsForProvisionedPermissionSetOutput"),
+    id = id.from(_N, "ListAccountsForProvisionedPermissionSetResponse"),
     type = "structure",
     members = {
         AccountIds = schema.new({
@@ -3585,7 +3585,7 @@ M.ListAccountsForProvisionedPermissionSetOutput = schema.new({
 })
 
 M.ListApplicationAssignmentsInput = schema.new({
-    id = id.from(_N, "ListApplicationAssignmentsInput"),
+    id = id.from(_N, "ListApplicationAssignmentsRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -3613,7 +3613,7 @@ M.ListApplicationAssignmentsInput = schema.new({
 })
 
 M.ListApplicationAssignmentsOutput = schema.new({
-    id = id.from(_N, "ListApplicationAssignmentsOutput"),
+    id = id.from(_N, "ListApplicationAssignmentsResponse"),
     type = "structure",
     members = {
         ApplicationAssignments = schema.new({
@@ -3646,7 +3646,7 @@ M.ListApplicationAssignmentsFilter = schema.new({
 })
 
 M.ListApplicationAssignmentsForPrincipalInput = schema.new({
-    id = id.from(_N, "ListApplicationAssignmentsForPrincipalInput"),
+    id = id.from(_N, "ListApplicationAssignmentsForPrincipalRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -3702,7 +3702,7 @@ M.ListApplicationAssignmentsForPrincipalInput = schema.new({
 })
 
 M.ListApplicationAssignmentsForPrincipalOutput = schema.new({
-    id = id.from(_N, "ListApplicationAssignmentsForPrincipalOutput"),
+    id = id.from(_N, "ListApplicationAssignmentsForPrincipalResponse"),
     type = "structure",
     members = {
         ApplicationAssignments = schema.new({
@@ -3722,7 +3722,7 @@ M.ListApplicationAssignmentsForPrincipalOutput = schema.new({
 })
 
 M.ListApplicationProvidersInput = schema.new({
-    id = id.from(_N, "ListApplicationProvidersInput"),
+    id = id.from(_N, "ListApplicationProvidersRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3741,7 +3741,7 @@ M.ListApplicationProvidersInput = schema.new({
 })
 
 M.ListApplicationProvidersOutput = schema.new({
-    id = id.from(_N, "ListApplicationProvidersOutput"),
+    id = id.from(_N, "ListApplicationProvidersResponse"),
     type = "structure",
     members = {
         ApplicationProviders = schema.new({
@@ -3780,7 +3780,7 @@ M.ListApplicationsFilter = schema.new({
 })
 
 M.ListApplicationsInput = schema.new({
-    id = id.from(_N, "ListApplicationsInput"),
+    id = id.from(_N, "ListApplicationsRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -3815,7 +3815,7 @@ M.ListApplicationsInput = schema.new({
 })
 
 M.ListApplicationsOutput = schema.new({
-    id = id.from(_N, "ListApplicationsOutput"),
+    id = id.from(_N, "ListApplicationsResponse"),
     type = "structure",
     members = {
         Applications = schema.new({
@@ -3835,7 +3835,7 @@ M.ListApplicationsOutput = schema.new({
 })
 
 M.ListCustomerManagedPolicyReferencesInPermissionSetInput = schema.new({
-    id = id.from(_N, "ListCustomerManagedPolicyReferencesInPermissionSetInput"),
+    id = id.from(_N, "ListCustomerManagedPolicyReferencesInPermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -3872,7 +3872,7 @@ M.ListCustomerManagedPolicyReferencesInPermissionSetInput = schema.new({
 })
 
 M.ListCustomerManagedPolicyReferencesInPermissionSetOutput = schema.new({
-    id = id.from(_N, "ListCustomerManagedPolicyReferencesInPermissionSetOutput"),
+    id = id.from(_N, "ListCustomerManagedPolicyReferencesInPermissionSetResponse"),
     type = "structure",
     members = {
         CustomerManagedPolicyReferences = schema.new({
@@ -3892,7 +3892,7 @@ M.ListCustomerManagedPolicyReferencesInPermissionSetOutput = schema.new({
 })
 
 M.ListInstancesInput = schema.new({
-    id = id.from(_N, "ListInstancesInput"),
+    id = id.from(_N, "ListInstancesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3911,7 +3911,7 @@ M.ListInstancesInput = schema.new({
 })
 
 M.ListInstancesOutput = schema.new({
-    id = id.from(_N, "ListInstancesOutput"),
+    id = id.from(_N, "ListInstancesResponse"),
     type = "structure",
     members = {
         Instances = schema.new({
@@ -3931,7 +3931,7 @@ M.ListInstancesOutput = schema.new({
 })
 
 M.ListManagedPoliciesInPermissionSetInput = schema.new({
-    id = id.from(_N, "ListManagedPoliciesInPermissionSetInput"),
+    id = id.from(_N, "ListManagedPoliciesInPermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -3968,7 +3968,7 @@ M.ListManagedPoliciesInPermissionSetInput = schema.new({
 })
 
 M.ListManagedPoliciesInPermissionSetOutput = schema.new({
-    id = id.from(_N, "ListManagedPoliciesInPermissionSetOutput"),
+    id = id.from(_N, "ListManagedPoliciesInPermissionSetResponse"),
     type = "structure",
     members = {
         AttachedManagedPolicies = schema.new({
@@ -3988,7 +3988,7 @@ M.ListManagedPoliciesInPermissionSetOutput = schema.new({
 })
 
 M.ListPermissionSetProvisioningStatusInput = schema.new({
-    id = id.from(_N, "ListPermissionSetProvisioningStatusInput"),
+    id = id.from(_N, "ListPermissionSetProvisioningStatusRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -4048,7 +4048,7 @@ M.PermissionSetProvisioningStatusMetadata = schema.new({
 })
 
 M.ListPermissionSetProvisioningStatusOutput = schema.new({
-    id = id.from(_N, "ListPermissionSetProvisioningStatusOutput"),
+    id = id.from(_N, "ListPermissionSetProvisioningStatusResponse"),
     type = "structure",
     members = {
         PermissionSetsProvisioningStatus = schema.new({
@@ -4068,7 +4068,7 @@ M.ListPermissionSetProvisioningStatusOutput = schema.new({
 })
 
 M.ListPermissionSetsInput = schema.new({
-    id = id.from(_N, "ListPermissionSetsInput"),
+    id = id.from(_N, "ListPermissionSetsRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -4096,7 +4096,7 @@ M.ListPermissionSetsInput = schema.new({
 })
 
 M.ListPermissionSetsOutput = schema.new({
-    id = id.from(_N, "ListPermissionSetsOutput"),
+    id = id.from(_N, "ListPermissionSetsResponse"),
     type = "structure",
     members = {
         PermissionSets = schema.new({
@@ -4116,7 +4116,7 @@ M.ListPermissionSetsOutput = schema.new({
 })
 
 M.ListPermissionSetsProvisionedToAccountInput = schema.new({
-    id = id.from(_N, "ListPermissionSetsProvisionedToAccountInput"),
+    id = id.from(_N, "ListPermissionSetsProvisionedToAccountRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -4159,7 +4159,7 @@ M.ListPermissionSetsProvisionedToAccountInput = schema.new({
 })
 
 M.ListPermissionSetsProvisionedToAccountOutput = schema.new({
-    id = id.from(_N, "ListPermissionSetsProvisionedToAccountOutput"),
+    id = id.from(_N, "ListPermissionSetsProvisionedToAccountResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4179,7 +4179,7 @@ M.ListPermissionSetsProvisionedToAccountOutput = schema.new({
 })
 
 M.ListRegionsInput = schema.new({
-    id = id.from(_N, "ListRegionsInput"),
+    id = id.from(_N, "ListRegionsRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -4241,7 +4241,7 @@ M.RegionMetadata = schema.new({
 })
 
 M.ListRegionsOutput = schema.new({
-    id = id.from(_N, "ListRegionsOutput"),
+    id = id.from(_N, "ListRegionsResponse"),
     type = "structure",
     members = {
         Regions = schema.new({
@@ -4261,7 +4261,7 @@ M.ListRegionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -4289,7 +4289,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -4309,7 +4309,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTrustedTokenIssuersInput = schema.new({
-    id = id.from(_N, "ListTrustedTokenIssuersInput"),
+    id = id.from(_N, "ListTrustedTokenIssuersRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -4362,7 +4362,7 @@ M.TrustedTokenIssuerMetadata = schema.new({
 })
 
 M.ListTrustedTokenIssuersOutput = schema.new({
-    id = id.from(_N, "ListTrustedTokenIssuersOutput"),
+    id = id.from(_N, "ListTrustedTokenIssuersResponse"),
     type = "structure",
     members = {
         TrustedTokenIssuers = schema.new({
@@ -4407,7 +4407,7 @@ M.OidcJwtUpdateConfiguration = schema.new({
 })
 
 M.ProvisionPermissionSetInput = schema.new({
-    id = id.from(_N, "ProvisionPermissionSetInput"),
+    id = id.from(_N, "ProvisionPermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -4447,7 +4447,7 @@ M.ProvisionPermissionSetInput = schema.new({
 })
 
 M.ProvisionPermissionSetOutput = schema.new({
-    id = id.from(_N, "ProvisionPermissionSetOutput"),
+    id = id.from(_N, "ProvisionPermissionSetResponse"),
     type = "structure",
     members = {
         PermissionSetProvisioningStatus = schema.new({
@@ -4461,7 +4461,7 @@ M.ProvisionPermissionSetOutput = schema.new({
 })
 
 M.PutApplicationAssignmentConfigurationInput = schema.new({
-    id = id.from(_N, "PutApplicationAssignmentConfigurationInput"),
+    id = id.from(_N, "PutApplicationAssignmentConfigurationRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -4487,12 +4487,12 @@ M.PutApplicationAssignmentConfigurationInput = schema.new({
 })
 
 M.PutApplicationAssignmentConfigurationOutput = schema.new({
-    id = id.from(_N, "PutApplicationAssignmentConfigurationOutput"),
+    id = id.from(_N, "PutApplicationAssignmentConfigurationResponse"),
     type = "structure",
 })
 
 M.PutApplicationSessionConfigurationInput = schema.new({
-    id = id.from(_N, "PutApplicationSessionConfigurationInput"),
+    id = id.from(_N, "PutApplicationSessionConfigurationRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -4514,12 +4514,12 @@ M.PutApplicationSessionConfigurationInput = schema.new({
 })
 
 M.PutApplicationSessionConfigurationOutput = schema.new({
-    id = id.from(_N, "PutApplicationSessionConfigurationOutput"),
+    id = id.from(_N, "PutApplicationSessionConfigurationResponse"),
     type = "structure",
 })
 
 M.PutInlinePolicyToPermissionSetInput = schema.new({
-    id = id.from(_N, "PutInlinePolicyToPermissionSetInput"),
+    id = id.from(_N, "PutInlinePolicyToPermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -4553,12 +4553,12 @@ M.PutInlinePolicyToPermissionSetInput = schema.new({
 })
 
 M.PutInlinePolicyToPermissionSetOutput = schema.new({
-    id = id.from(_N, "PutInlinePolicyToPermissionSetOutput"),
+    id = id.from(_N, "PutInlinePolicyToPermissionSetResponse"),
     type = "structure",
 })
 
 M.PutPermissionsBoundaryToPermissionSetInput = schema.new({
-    id = id.from(_N, "PutPermissionsBoundaryToPermissionSetInput"),
+    id = id.from(_N, "PutPermissionsBoundaryToPermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -4593,12 +4593,12 @@ M.PutPermissionsBoundaryToPermissionSetInput = schema.new({
 })
 
 M.PutPermissionsBoundaryToPermissionSetOutput = schema.new({
-    id = id.from(_N, "PutPermissionsBoundaryToPermissionSetOutput"),
+    id = id.from(_N, "PutPermissionsBoundaryToPermissionSetResponse"),
     type = "structure",
 })
 
 M.RemoveRegionInput = schema.new({
-    id = id.from(_N, "RemoveRegionInput"),
+    id = id.from(_N, "RemoveRegionRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -4623,7 +4623,7 @@ M.RemoveRegionInput = schema.new({
 })
 
 M.RemoveRegionOutput = schema.new({
-    id = id.from(_N, "RemoveRegionOutput"),
+    id = id.from(_N, "RemoveRegionResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -4636,7 +4636,7 @@ M.RemoveRegionOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -4668,12 +4668,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -4705,7 +4705,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -4724,7 +4724,7 @@ M.UpdateApplicationPortalOptions = schema.new({
 })
 
 M.UpdateApplicationInput = schema.new({
-    id = id.from(_N, "UpdateApplicationInput"),
+    id = id.from(_N, "UpdateApplicationRequest"),
     type = "structure",
     members = {
         ApplicationArn = schema.new({
@@ -4765,12 +4765,12 @@ M.UpdateApplicationInput = schema.new({
 })
 
 M.UpdateApplicationOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationOutput"),
+    id = id.from(_N, "UpdateApplicationResponse"),
     type = "structure",
 })
 
 M.UpdateInstanceInput = schema.new({
-    id = id.from(_N, "UpdateInstanceInput"),
+    id = id.from(_N, "UpdateInstanceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4799,12 +4799,12 @@ M.UpdateInstanceInput = schema.new({
 })
 
 M.UpdateInstanceOutput = schema.new({
-    id = id.from(_N, "UpdateInstanceOutput"),
+    id = id.from(_N, "UpdateInstanceResponse"),
     type = "structure",
 })
 
 M.UpdateInstanceAccessControlAttributeConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateInstanceAccessControlAttributeConfigurationInput"),
+    id = id.from(_N, "UpdateInstanceAccessControlAttributeConfigurationRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -4830,12 +4830,12 @@ M.UpdateInstanceAccessControlAttributeConfigurationInput = schema.new({
 })
 
 M.UpdateInstanceAccessControlAttributeConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateInstanceAccessControlAttributeConfigurationOutput"),
+    id = id.from(_N, "UpdateInstanceAccessControlAttributeConfigurationResponse"),
     type = "structure",
 })
 
 M.UpdatePermissionSetInput = schema.new({
-    id = id.from(_N, "UpdatePermissionSetInput"),
+    id = id.from(_N, "UpdatePermissionSetRequest"),
     type = "structure",
     members = {
         InstanceArn = schema.new({
@@ -4878,7 +4878,7 @@ M.UpdatePermissionSetInput = schema.new({
 })
 
 M.UpdatePermissionSetOutput = schema.new({
-    id = id.from(_N, "UpdatePermissionSetOutput"),
+    id = id.from(_N, "UpdatePermissionSetResponse"),
     type = "structure",
 })
 
@@ -4897,7 +4897,7 @@ M.TrustedTokenIssuerUpdateConfiguration = schema.new({
 })
 
 M.UpdateTrustedTokenIssuerInput = schema.new({
-    id = id.from(_N, "UpdateTrustedTokenIssuerInput"),
+    id = id.from(_N, "UpdateTrustedTokenIssuerRequest"),
     type = "structure",
     members = {
         TrustedTokenIssuerArn = schema.new({
@@ -4926,8 +4926,22 @@ M.UpdateTrustedTokenIssuerInput = schema.new({
 })
 
 M.UpdateTrustedTokenIssuerOutput = schema.new({
-    id = id.from(_N, "UpdateTrustedTokenIssuerOutput"),
+    id = id.from(_N, "UpdateTrustedTokenIssuerResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

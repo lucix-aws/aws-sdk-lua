@@ -8,7 +8,7 @@ local _N = "com.amazonaws.dataexchange"
 local M = {}
 
 M.AcceptDataGrantInput = schema.new({
-    id = id.from(_N, "AcceptDataGrantInput"),
+    id = id.from(_N, "AcceptDataGrantRequest"),
     type = "structure",
     members = {
         DataGrantArn = schema.new({
@@ -25,7 +25,7 @@ M.AcceptDataGrantInput = schema.new({
 })
 
 M.AcceptDataGrantOutput = schema.new({
-    id = id.from(_N, "AcceptDataGrantOutput"),
+    id = id.from(_N, "AcceptDataGrantResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -951,7 +951,7 @@ M.AssetSourceEntry = schema.new({
 })
 
 M.CancelJobInput = schema.new({
-    id = id.from(_N, "CancelJobInput"),
+    id = id.from(_N, "CancelJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -968,12 +968,12 @@ M.CancelJobInput = schema.new({
 })
 
 M.CancelJobOutput = schema.new({
-    id = id.from(_N, "CancelJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.CreateDataGrantInput = schema.new({
-    id = id.from(_N, "CreateDataGrantInput"),
+    id = id.from(_N, "CreateDataGrantRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1039,7 +1039,7 @@ M.CreateDataGrantInput = schema.new({
 })
 
 M.CreateDataGrantOutput = schema.new({
-    id = id.from(_N, "CreateDataGrantOutput"),
+    id = id.from(_N, "CreateDataGrantResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1219,7 +1219,7 @@ M.ServiceLimitExceededException = schema.new({
 })
 
 M.CreateDataSetInput = schema.new({
-    id = id.from(_N, "CreateDataSetInput"),
+    id = id.from(_N, "CreateDataSetRequest"),
     type = "structure",
     members = {
         AssetType = schema.new({
@@ -1280,7 +1280,7 @@ M.OriginDetails = schema.new({
 })
 
 M.CreateDataSetOutput = schema.new({
-    id = id.from(_N, "CreateDataSetOutput"),
+    id = id.from(_N, "CreateDataSetResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1392,7 +1392,7 @@ M.Event = schema.new({
 })
 
 M.CreateEventActionInput = schema.new({
-    id = id.from(_N, "CreateEventActionInput"),
+    id = id.from(_N, "CreateEventActionRequest"),
     type = "structure",
     members = {
         Action = schema.new({
@@ -1427,7 +1427,7 @@ M.CreateEventActionInput = schema.new({
 })
 
 M.CreateEventActionOutput = schema.new({
-    id = id.from(_N, "CreateEventActionOutput"),
+    id = id.from(_N, "CreateEventActionResponse"),
     type = "structure",
     members = {
         Action = schema.new({
@@ -2090,7 +2090,7 @@ M.RequestDetails = schema.new({
 })
 
 M.CreateJobInput = schema.new({
-    id = id.from(_N, "CreateJobInput"),
+    id = id.from(_N, "CreateJobRequest"),
     type = "structure",
     members = {
         AssetConfiguration = schema.new({
@@ -2740,7 +2740,7 @@ M.JobError = schema.new({
 })
 
 M.CreateJobOutput = schema.new({
-    id = id.from(_N, "CreateJobOutput"),
+    id = id.from(_N, "CreateJobResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2810,7 +2810,7 @@ M.CreateJobOutput = schema.new({
 })
 
 M.CreateRevisionInput = schema.new({
-    id = id.from(_N, "CreateRevisionInput"),
+    id = id.from(_N, "CreateRevisionRequest"),
     type = "structure",
     members = {
         Comment = schema.new({
@@ -2841,7 +2841,7 @@ M.CreateRevisionInput = schema.new({
 })
 
 M.CreateRevisionOutput = schema.new({
-    id = id.from(_N, "CreateRevisionOutput"),
+    id = id.from(_N, "CreateRevisionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2937,7 +2937,7 @@ M.CreateRevisionOutput = schema.new({
 })
 
 M.DeleteAssetInput = schema.new({
-    id = id.from(_N, "DeleteAssetInput"),
+    id = id.from(_N, "DeleteAssetRequest"),
     type = "structure",
     members = {
         AssetId = schema.new({
@@ -2974,12 +2974,12 @@ M.DeleteAssetInput = schema.new({
 })
 
 M.DeleteAssetOutput = schema.new({
-    id = id.from(_N, "DeleteAssetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDataGrantInput = schema.new({
-    id = id.from(_N, "DeleteDataGrantInput"),
+    id = id.from(_N, "DeleteDataGrantRequest"),
     type = "structure",
     members = {
         DataGrantId = schema.new({
@@ -2996,12 +2996,12 @@ M.DeleteDataGrantInput = schema.new({
 })
 
 M.DeleteDataGrantOutput = schema.new({
-    id = id.from(_N, "DeleteDataGrantOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDataSetInput = schema.new({
-    id = id.from(_N, "DeleteDataSetInput"),
+    id = id.from(_N, "DeleteDataSetRequest"),
     type = "structure",
     members = {
         DataSetId = schema.new({
@@ -3018,12 +3018,12 @@ M.DeleteDataSetInput = schema.new({
 })
 
 M.DeleteDataSetOutput = schema.new({
-    id = id.from(_N, "DeleteDataSetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteEventActionInput = schema.new({
-    id = id.from(_N, "DeleteEventActionInput"),
+    id = id.from(_N, "DeleteEventActionRequest"),
     type = "structure",
     members = {
         EventActionId = schema.new({
@@ -3040,12 +3040,12 @@ M.DeleteEventActionInput = schema.new({
 })
 
 M.DeleteEventActionOutput = schema.new({
-    id = id.from(_N, "DeleteEventActionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRevisionInput = schema.new({
-    id = id.from(_N, "DeleteRevisionInput"),
+    id = id.from(_N, "DeleteRevisionRequest"),
     type = "structure",
     members = {
         DataSetId = schema.new({
@@ -3072,12 +3072,12 @@ M.DeleteRevisionInput = schema.new({
 })
 
 M.DeleteRevisionOutput = schema.new({
-    id = id.from(_N, "DeleteRevisionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetAssetInput = schema.new({
-    id = id.from(_N, "GetAssetInput"),
+    id = id.from(_N, "GetAssetRequest"),
     type = "structure",
     members = {
         AssetId = schema.new({
@@ -3114,7 +3114,7 @@ M.GetAssetInput = schema.new({
 })
 
 M.GetAssetOutput = schema.new({
-    id = id.from(_N, "GetAssetOutput"),
+    id = id.from(_N, "GetAssetResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3196,7 +3196,7 @@ M.GetAssetOutput = schema.new({
 })
 
 M.GetDataGrantInput = schema.new({
-    id = id.from(_N, "GetDataGrantInput"),
+    id = id.from(_N, "GetDataGrantRequest"),
     type = "structure",
     members = {
         DataGrantId = schema.new({
@@ -3213,7 +3213,7 @@ M.GetDataGrantInput = schema.new({
 })
 
 M.GetDataGrantOutput = schema.new({
-    id = id.from(_N, "GetDataGrantOutput"),
+    id = id.from(_N, "GetDataGrantResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3359,7 +3359,7 @@ M.GetDataGrantOutput = schema.new({
 })
 
 M.GetDataSetInput = schema.new({
-    id = id.from(_N, "GetDataSetInput"),
+    id = id.from(_N, "GetDataSetRequest"),
     type = "structure",
     members = {
         DataSetId = schema.new({
@@ -3376,7 +3376,7 @@ M.GetDataSetInput = schema.new({
 })
 
 M.GetDataSetOutput = schema.new({
-    id = id.from(_N, "GetDataSetOutput"),
+    id = id.from(_N, "GetDataSetResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3458,7 +3458,7 @@ M.GetDataSetOutput = schema.new({
 })
 
 M.GetEventActionInput = schema.new({
-    id = id.from(_N, "GetEventActionInput"),
+    id = id.from(_N, "GetEventActionRequest"),
     type = "structure",
     members = {
         EventActionId = schema.new({
@@ -3475,7 +3475,7 @@ M.GetEventActionInput = schema.new({
 })
 
 M.GetEventActionOutput = schema.new({
-    id = id.from(_N, "GetEventActionOutput"),
+    id = id.from(_N, "GetEventActionResponse"),
     type = "structure",
     members = {
         Action = schema.new({
@@ -3534,7 +3534,7 @@ M.GetEventActionOutput = schema.new({
 })
 
 M.GetJobInput = schema.new({
-    id = id.from(_N, "GetJobInput"),
+    id = id.from(_N, "GetJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -3551,7 +3551,7 @@ M.GetJobInput = schema.new({
 })
 
 M.GetJobOutput = schema.new({
-    id = id.from(_N, "GetJobOutput"),
+    id = id.from(_N, "GetJobResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3621,7 +3621,7 @@ M.GetJobOutput = schema.new({
 })
 
 M.GetReceivedDataGrantInput = schema.new({
-    id = id.from(_N, "GetReceivedDataGrantInput"),
+    id = id.from(_N, "GetReceivedDataGrantRequest"),
     type = "structure",
     members = {
         DataGrantArn = schema.new({
@@ -3638,7 +3638,7 @@ M.GetReceivedDataGrantInput = schema.new({
 })
 
 M.GetReceivedDataGrantOutput = schema.new({
-    id = id.from(_N, "GetReceivedDataGrantOutput"),
+    id = id.from(_N, "GetReceivedDataGrantResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3764,7 +3764,7 @@ M.GetReceivedDataGrantOutput = schema.new({
 })
 
 M.GetRevisionInput = schema.new({
-    id = id.from(_N, "GetRevisionInput"),
+    id = id.from(_N, "GetRevisionRequest"),
     type = "structure",
     members = {
         DataSetId = schema.new({
@@ -3791,7 +3791,7 @@ M.GetRevisionInput = schema.new({
 })
 
 M.GetRevisionOutput = schema.new({
-    id = id.from(_N, "GetRevisionOutput"),
+    id = id.from(_N, "GetRevisionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3887,7 +3887,7 @@ M.GetRevisionOutput = schema.new({
 })
 
 M.ListDataGrantsInput = schema.new({
-    id = id.from(_N, "ListDataGrantsInput"),
+    id = id.from(_N, "ListDataGrantsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4036,7 +4036,7 @@ M.DataGrantSummaryEntry = schema.new({
 })
 
 M.ListDataGrantsOutput = schema.new({
-    id = id.from(_N, "ListDataGrantsOutput"),
+    id = id.from(_N, "ListDataGrantsResponse"),
     type = "structure",
     members = {
         DataGrantSummaries = schema.new({
@@ -4056,7 +4056,7 @@ M.ListDataGrantsOutput = schema.new({
 })
 
 M.ListDataSetRevisionsInput = schema.new({
-    id = id.from(_N, "ListDataSetRevisionsInput"),
+    id = id.from(_N, "ListDataSetRevisionsRequest"),
     type = "structure",
     members = {
         DataSetId = schema.new({
@@ -4197,7 +4197,7 @@ M.RevisionEntry = schema.new({
 })
 
 M.ListDataSetRevisionsOutput = schema.new({
-    id = id.from(_N, "ListDataSetRevisionsOutput"),
+    id = id.from(_N, "ListDataSetRevisionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4217,7 +4217,7 @@ M.ListDataSetRevisionsOutput = schema.new({
 })
 
 M.ListDataSetsInput = schema.new({
-    id = id.from(_N, "ListDataSetsInput"),
+    id = id.from(_N, "ListDataSetsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4352,7 +4352,7 @@ M.DataSetEntry = schema.new({
 })
 
 M.ListDataSetsOutput = schema.new({
-    id = id.from(_N, "ListDataSetsOutput"),
+    id = id.from(_N, "ListDataSetsResponse"),
     type = "structure",
     members = {
         DataSets = schema.new({
@@ -4372,7 +4372,7 @@ M.ListDataSetsOutput = schema.new({
 })
 
 M.ListEventActionsInput = schema.new({
-    id = id.from(_N, "ListEventActionsInput"),
+    id = id.from(_N, "ListEventActionsRequest"),
     type = "structure",
     members = {
         EventSourceId = schema.new({
@@ -4478,7 +4478,7 @@ M.EventActionEntry = schema.new({
 })
 
 M.ListEventActionsOutput = schema.new({
-    id = id.from(_N, "ListEventActionsOutput"),
+    id = id.from(_N, "ListEventActionsResponse"),
     type = "structure",
     members = {
         EventActions = schema.new({
@@ -4498,7 +4498,7 @@ M.ListEventActionsOutput = schema.new({
 })
 
 M.ListJobsInput = schema.new({
-    id = id.from(_N, "ListJobsInput"),
+    id = id.from(_N, "ListJobsRequest"),
     type = "structure",
     members = {
         DataSetId = schema.new({
@@ -4635,7 +4635,7 @@ M.JobEntry = schema.new({
 })
 
 M.ListJobsOutput = schema.new({
-    id = id.from(_N, "ListJobsOutput"),
+    id = id.from(_N, "ListJobsResponse"),
     type = "structure",
     members = {
         Jobs = schema.new({
@@ -4655,7 +4655,7 @@ M.ListJobsOutput = schema.new({
 })
 
 M.ListReceivedDataGrantsInput = schema.new({
-    id = id.from(_N, "ListReceivedDataGrantsInput"),
+    id = id.from(_N, "ListReceivedDataGrantsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4805,7 +4805,7 @@ M.ReceivedDataGrantSummariesEntry = schema.new({
 })
 
 M.ListReceivedDataGrantsOutput = schema.new({
-    id = id.from(_N, "ListReceivedDataGrantsOutput"),
+    id = id.from(_N, "ListReceivedDataGrantsResponse"),
     type = "structure",
     members = {
         DataGrantSummaries = schema.new({
@@ -4825,7 +4825,7 @@ M.ListReceivedDataGrantsOutput = schema.new({
 })
 
 M.ListRevisionAssetsInput = schema.new({
-    id = id.from(_N, "ListRevisionAssetsInput"),
+    id = id.from(_N, "ListRevisionAssetsRequest"),
     type = "structure",
     members = {
         DataSetId = schema.new({
@@ -4871,7 +4871,7 @@ M.ListRevisionAssetsInput = schema.new({
 })
 
 M.ListRevisionAssetsOutput = schema.new({
-    id = id.from(_N, "ListRevisionAssetsOutput"),
+    id = id.from(_N, "ListRevisionAssetsResponse"),
     type = "structure",
     members = {
         Assets = schema.new({
@@ -4891,7 +4891,7 @@ M.ListRevisionAssetsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4908,7 +4908,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -4926,7 +4926,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.RevokeRevisionInput = schema.new({
-    id = id.from(_N, "RevokeRevisionInput"),
+    id = id.from(_N, "RevokeRevisionRequest"),
     type = "structure",
     members = {
         DataSetId = schema.new({
@@ -4962,7 +4962,7 @@ M.RevokeRevisionInput = schema.new({
 })
 
 M.RevokeRevisionOutput = schema.new({
-    id = id.from(_N, "RevokeRevisionOutput"),
+    id = id.from(_N, "RevokeRevisionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -5050,7 +5050,7 @@ M.RevokeRevisionOutput = schema.new({
 })
 
 M.SendApiAssetInput = schema.new({
-    id = id.from(_N, "SendApiAssetInput"),
+    id = id.from(_N, "SendApiAssetRequest"),
     type = "structure",
     members = {
         Body = schema.new({
@@ -5136,7 +5136,7 @@ M.SendApiAssetInput = schema.new({
 })
 
 M.SendApiAssetOutput = schema.new({
-    id = id.from(_N, "SendApiAssetOutput"),
+    id = id.from(_N, "SendApiAssetResponse"),
     type = "structure",
     members = {
         Body = schema.new({
@@ -5402,7 +5402,7 @@ M.ScopeDetails = schema.new({
 })
 
 M.SendDataSetNotificationInput = schema.new({
-    id = id.from(_N, "SendDataSetNotificationInput"),
+    id = id.from(_N, "SendDataSetNotificationRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -5457,12 +5457,12 @@ M.SendDataSetNotificationInput = schema.new({
 })
 
 M.SendDataSetNotificationOutput = schema.new({
-    id = id.from(_N, "SendDataSetNotificationOutput"),
+    id = id.from(_N, "SendDataSetNotificationResponse"),
     type = "structure",
 })
 
 M.StartJobInput = schema.new({
-    id = id.from(_N, "StartJobInput"),
+    id = id.from(_N, "StartJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -5479,12 +5479,12 @@ M.StartJobInput = schema.new({
 })
 
 M.StartJobOutput = schema.new({
-    id = id.from(_N, "StartJobOutput"),
+    id = id.from(_N, "StartJobResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5513,12 +5513,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5546,12 +5546,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateAssetInput = schema.new({
-    id = id.from(_N, "UpdateAssetInput"),
+    id = id.from(_N, "UpdateAssetRequest"),
     type = "structure",
     members = {
         AssetId = schema.new({
@@ -5597,7 +5597,7 @@ M.UpdateAssetInput = schema.new({
 })
 
 M.UpdateAssetOutput = schema.new({
-    id = id.from(_N, "UpdateAssetOutput"),
+    id = id.from(_N, "UpdateAssetResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -5671,7 +5671,7 @@ M.UpdateAssetOutput = schema.new({
 })
 
 M.UpdateDataSetInput = schema.new({
-    id = id.from(_N, "UpdateDataSetInput"),
+    id = id.from(_N, "UpdateDataSetRequest"),
     type = "structure",
     members = {
         DataSetId = schema.new({
@@ -5700,7 +5700,7 @@ M.UpdateDataSetInput = schema.new({
 })
 
 M.UpdateDataSetOutput = schema.new({
-    id = id.from(_N, "UpdateDataSetOutput"),
+    id = id.from(_N, "UpdateDataSetResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -5774,7 +5774,7 @@ M.UpdateDataSetOutput = schema.new({
 })
 
 M.UpdateEventActionInput = schema.new({
-    id = id.from(_N, "UpdateEventActionInput"),
+    id = id.from(_N, "UpdateEventActionRequest"),
     type = "structure",
     members = {
         Action = schema.new({
@@ -5798,7 +5798,7 @@ M.UpdateEventActionInput = schema.new({
 })
 
 M.UpdateEventActionOutput = schema.new({
-    id = id.from(_N, "UpdateEventActionOutput"),
+    id = id.from(_N, "UpdateEventActionResponse"),
     type = "structure",
     members = {
         Action = schema.new({
@@ -5849,7 +5849,7 @@ M.UpdateEventActionOutput = schema.new({
 })
 
 M.UpdateRevisionInput = schema.new({
-    id = id.from(_N, "UpdateRevisionInput"),
+    id = id.from(_N, "UpdateRevisionRequest"),
     type = "structure",
     members = {
         Comment = schema.new({
@@ -5891,7 +5891,7 @@ M.UpdateRevisionInput = schema.new({
 })
 
 M.UpdateRevisionOutput = schema.new({
-    id = id.from(_N, "UpdateRevisionOutput"),
+    id = id.from(_N, "UpdateRevisionResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -5977,5 +5977,19 @@ M.UpdateRevisionOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

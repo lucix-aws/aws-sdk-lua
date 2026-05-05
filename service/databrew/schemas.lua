@@ -41,7 +41,7 @@ M.AllowedStatistics = schema.new({
 })
 
 M.BatchDeleteRecipeVersionInput = schema.new({
-    id = id.from(_N, "BatchDeleteRecipeVersionInput"),
+    id = id.from(_N, "BatchDeleteRecipeVersionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -93,7 +93,7 @@ M.RecipeVersionErrorDetail = schema.new({
 })
 
 M.BatchDeleteRecipeVersionOutput = schema.new({
-    id = id.from(_N, "BatchDeleteRecipeVersionOutput"),
+    id = id.from(_N, "BatchDeleteRecipeVersionResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -563,7 +563,7 @@ M.PathOptions = schema.new({
 })
 
 M.CreateDatasetInput = schema.new({
-    id = id.from(_N, "CreateDatasetInput"),
+    id = id.from(_N, "CreateDatasetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -617,7 +617,7 @@ M.CreateDatasetInput = schema.new({
 })
 
 M.CreateDatasetOutput = schema.new({
-    id = id.from(_N, "CreateDatasetOutput"),
+    id = id.from(_N, "CreateDatasetResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -840,7 +840,7 @@ M.ValidationConfiguration = schema.new({
 })
 
 M.CreateProfileJobInput = schema.new({
-    id = id.from(_N, "CreateProfileJobInput"),
+    id = id.from(_N, "CreateProfileJobRequest"),
     type = "structure",
     members = {
         DatasetName = schema.new({
@@ -958,7 +958,7 @@ M.CreateProfileJobInput = schema.new({
 })
 
 M.CreateProfileJobOutput = schema.new({
-    id = id.from(_N, "CreateProfileJobOutput"),
+    id = id.from(_N, "CreateProfileJobResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -996,7 +996,7 @@ M.Sample = schema.new({
 })
 
 M.CreateProjectInput = schema.new({
-    id = id.from(_N, "CreateProjectInput"),
+    id = id.from(_N, "CreateProjectRequest"),
     type = "structure",
     members = {
         DatasetName = schema.new({
@@ -1054,7 +1054,7 @@ M.CreateProjectInput = schema.new({
 })
 
 M.CreateProjectOutput = schema.new({
-    id = id.from(_N, "CreateProjectOutput"),
+    id = id.from(_N, "CreateProjectResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1165,7 +1165,7 @@ M.RecipeStep = schema.new({
 })
 
 M.CreateRecipeInput = schema.new({
-    id = id.from(_N, "CreateRecipeInput"),
+    id = id.from(_N, "CreateRecipeRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -1205,7 +1205,7 @@ M.CreateRecipeInput = schema.new({
 })
 
 M.CreateRecipeOutput = schema.new({
-    id = id.from(_N, "CreateRecipeOutput"),
+    id = id.from(_N, "CreateRecipeResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1454,7 +1454,7 @@ M.RecipeReference = schema.new({
 })
 
 M.CreateRecipeJobInput = schema.new({
-    id = id.from(_N, "CreateRecipeJobInput"),
+    id = id.from(_N, "CreateRecipeJobRequest"),
     type = "structure",
     members = {
         DatasetName = schema.new({
@@ -1572,7 +1572,7 @@ M.CreateRecipeJobInput = schema.new({
 })
 
 M.CreateRecipeJobOutput = schema.new({
-    id = id.from(_N, "CreateRecipeJobOutput"),
+    id = id.from(_N, "CreateRecipeJobResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1673,7 +1673,7 @@ M.Rule = schema.new({
 })
 
 M.CreateRulesetInput = schema.new({
-    id = id.from(_N, "CreateRulesetInput"),
+    id = id.from(_N, "CreateRulesetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1722,7 +1722,7 @@ M.CreateRulesetInput = schema.new({
 })
 
 M.CreateRulesetOutput = schema.new({
-    id = id.from(_N, "CreateRulesetOutput"),
+    id = id.from(_N, "CreateRulesetResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1738,7 +1738,7 @@ M.CreateRulesetOutput = schema.new({
 })
 
 M.CreateScheduleInput = schema.new({
-    id = id.from(_N, "CreateScheduleInput"),
+    id = id.from(_N, "CreateScheduleRequest"),
     type = "structure",
     members = {
         JobNames = schema.new({
@@ -1778,7 +1778,7 @@ M.CreateScheduleInput = schema.new({
 })
 
 M.CreateScheduleOutput = schema.new({
-    id = id.from(_N, "CreateScheduleOutput"),
+    id = id.from(_N, "CreateScheduleResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1794,7 +1794,7 @@ M.CreateScheduleOutput = schema.new({
 })
 
 M.DeleteDatasetInput = schema.new({
-    id = id.from(_N, "DeleteDatasetInput"),
+    id = id.from(_N, "DeleteDatasetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1811,7 +1811,7 @@ M.DeleteDatasetInput = schema.new({
 })
 
 M.DeleteDatasetOutput = schema.new({
-    id = id.from(_N, "DeleteDatasetOutput"),
+    id = id.from(_N, "DeleteDatasetResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1827,7 +1827,7 @@ M.DeleteDatasetOutput = schema.new({
 })
 
 M.DeleteJobInput = schema.new({
-    id = id.from(_N, "DeleteJobInput"),
+    id = id.from(_N, "DeleteJobRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1844,7 +1844,7 @@ M.DeleteJobInput = schema.new({
 })
 
 M.DeleteJobOutput = schema.new({
-    id = id.from(_N, "DeleteJobOutput"),
+    id = id.from(_N, "DeleteJobResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1860,7 +1860,7 @@ M.DeleteJobOutput = schema.new({
 })
 
 M.DeleteProjectInput = schema.new({
-    id = id.from(_N, "DeleteProjectInput"),
+    id = id.from(_N, "DeleteProjectRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1877,7 +1877,7 @@ M.DeleteProjectInput = schema.new({
 })
 
 M.DeleteProjectOutput = schema.new({
-    id = id.from(_N, "DeleteProjectOutput"),
+    id = id.from(_N, "DeleteProjectResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1893,7 +1893,7 @@ M.DeleteProjectOutput = schema.new({
 })
 
 M.DeleteRecipeVersionInput = schema.new({
-    id = id.from(_N, "DeleteRecipeVersionInput"),
+    id = id.from(_N, "DeleteRecipeVersionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1920,7 +1920,7 @@ M.DeleteRecipeVersionInput = schema.new({
 })
 
 M.DeleteRecipeVersionOutput = schema.new({
-    id = id.from(_N, "DeleteRecipeVersionOutput"),
+    id = id.from(_N, "DeleteRecipeVersionResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1945,7 +1945,7 @@ M.DeleteRecipeVersionOutput = schema.new({
 })
 
 M.DeleteRulesetInput = schema.new({
-    id = id.from(_N, "DeleteRulesetInput"),
+    id = id.from(_N, "DeleteRulesetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1962,7 +1962,7 @@ M.DeleteRulesetInput = schema.new({
 })
 
 M.DeleteRulesetOutput = schema.new({
-    id = id.from(_N, "DeleteRulesetOutput"),
+    id = id.from(_N, "DeleteRulesetResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1978,7 +1978,7 @@ M.DeleteRulesetOutput = schema.new({
 })
 
 M.DeleteScheduleInput = schema.new({
-    id = id.from(_N, "DeleteScheduleInput"),
+    id = id.from(_N, "DeleteScheduleRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1995,7 +1995,7 @@ M.DeleteScheduleInput = schema.new({
 })
 
 M.DeleteScheduleOutput = schema.new({
-    id = id.from(_N, "DeleteScheduleOutput"),
+    id = id.from(_N, "DeleteScheduleResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2011,7 +2011,7 @@ M.DeleteScheduleOutput = schema.new({
 })
 
 M.DescribeDatasetInput = schema.new({
-    id = id.from(_N, "DescribeDatasetInput"),
+    id = id.from(_N, "DescribeDatasetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2028,7 +2028,7 @@ M.DescribeDatasetInput = schema.new({
 })
 
 M.DescribeDatasetOutput = schema.new({
-    id = id.from(_N, "DescribeDatasetOutput"),
+    id = id.from(_N, "DescribeDatasetResponse"),
     type = "structure",
     members = {
         CreatedBy = schema.new({
@@ -2118,7 +2118,7 @@ M.DescribeDatasetOutput = schema.new({
 })
 
 M.DescribeJobInput = schema.new({
-    id = id.from(_N, "DescribeJobInput"),
+    id = id.from(_N, "DescribeJobRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2135,7 +2135,7 @@ M.DescribeJobInput = schema.new({
 })
 
 M.DescribeJobOutput = schema.new({
-    id = id.from(_N, "DescribeJobOutput"),
+    id = id.from(_N, "DescribeJobResponse"),
     type = "structure",
     members = {
         CreateDate = schema.new({
@@ -2307,7 +2307,7 @@ M.DescribeJobOutput = schema.new({
 })
 
 M.DescribeJobRunInput = schema.new({
-    id = id.from(_N, "DescribeJobRunInput"),
+    id = id.from(_N, "DescribeJobRunRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2334,7 +2334,7 @@ M.DescribeJobRunInput = schema.new({
 })
 
 M.DescribeJobRunOutput = schema.new({
-    id = id.from(_N, "DescribeJobRunOutput"),
+    id = id.from(_N, "DescribeJobRunResponse"),
     type = "structure",
     members = {
         Attempt = schema.new({
@@ -2471,7 +2471,7 @@ M.DescribeJobRunOutput = schema.new({
 })
 
 M.DescribeProjectInput = schema.new({
-    id = id.from(_N, "DescribeProjectInput"),
+    id = id.from(_N, "DescribeProjectRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2488,7 +2488,7 @@ M.DescribeProjectInput = schema.new({
 })
 
 M.DescribeProjectOutput = schema.new({
-    id = id.from(_N, "DescribeProjectOutput"),
+    id = id.from(_N, "DescribeProjectResponse"),
     type = "structure",
     members = {
         CreateDate = schema.new({
@@ -2585,7 +2585,7 @@ M.DescribeProjectOutput = schema.new({
 })
 
 M.DescribeRecipeInput = schema.new({
-    id = id.from(_N, "DescribeRecipeInput"),
+    id = id.from(_N, "DescribeRecipeRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2611,7 +2611,7 @@ M.DescribeRecipeInput = schema.new({
 })
 
 M.DescribeRecipeOutput = schema.new({
-    id = id.from(_N, "DescribeRecipeOutput"),
+    id = id.from(_N, "DescribeRecipeResponse"),
     type = "structure",
     members = {
         CreatedBy = schema.new({
@@ -2702,7 +2702,7 @@ M.DescribeRecipeOutput = schema.new({
 })
 
 M.DescribeRulesetInput = schema.new({
-    id = id.from(_N, "DescribeRulesetInput"),
+    id = id.from(_N, "DescribeRulesetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2719,7 +2719,7 @@ M.DescribeRulesetInput = schema.new({
 })
 
 M.DescribeRulesetOutput = schema.new({
-    id = id.from(_N, "DescribeRulesetOutput"),
+    id = id.from(_N, "DescribeRulesetResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2792,7 +2792,7 @@ M.DescribeRulesetOutput = schema.new({
 })
 
 M.DescribeScheduleInput = schema.new({
-    id = id.from(_N, "DescribeScheduleInput"),
+    id = id.from(_N, "DescribeScheduleRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2809,7 +2809,7 @@ M.DescribeScheduleInput = schema.new({
 })
 
 M.DescribeScheduleOutput = schema.new({
-    id = id.from(_N, "DescribeScheduleOutput"),
+    id = id.from(_N, "DescribeScheduleResponse"),
     type = "structure",
     members = {
         CreateDate = schema.new({
@@ -2876,7 +2876,7 @@ M.DescribeScheduleOutput = schema.new({
 })
 
 M.ListDatasetsInput = schema.new({
-    id = id.from(_N, "ListDatasetsInput"),
+    id = id.from(_N, "ListDatasetsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2997,7 +2997,7 @@ M.Dataset = schema.new({
 })
 
 M.ListDatasetsOutput = schema.new({
-    id = id.from(_N, "ListDatasetsOutput"),
+    id = id.from(_N, "ListDatasetsResponse"),
     type = "structure",
     members = {
         Datasets = schema.new({
@@ -3020,7 +3020,7 @@ M.ListDatasetsOutput = schema.new({
 })
 
 M.ListJobRunsInput = schema.new({
-    id = id.from(_N, "ListJobRunsInput"),
+    id = id.from(_N, "ListJobRunsRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3182,7 +3182,7 @@ M.JobRun = schema.new({
 })
 
 M.ListJobRunsOutput = schema.new({
-    id = id.from(_N, "ListJobRunsOutput"),
+    id = id.from(_N, "ListJobRunsResponse"),
     type = "structure",
     members = {
         JobRuns = schema.new({
@@ -3205,7 +3205,7 @@ M.ListJobRunsOutput = schema.new({
 })
 
 M.ListJobsInput = schema.new({
-    id = id.from(_N, "ListJobsInput"),
+    id = id.from(_N, "ListJobsRequest"),
     type = "structure",
     members = {
         DatasetName = schema.new({
@@ -3419,7 +3419,7 @@ M.Job = schema.new({
 })
 
 M.ListJobsOutput = schema.new({
-    id = id.from(_N, "ListJobsOutput"),
+    id = id.from(_N, "ListJobsResponse"),
     type = "structure",
     members = {
         Jobs = schema.new({
@@ -3442,7 +3442,7 @@ M.ListJobsOutput = schema.new({
 })
 
 M.ListProjectsInput = schema.new({
-    id = id.from(_N, "ListProjectsInput"),
+    id = id.from(_N, "ListProjectsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3567,7 +3567,7 @@ M.Project = schema.new({
 })
 
 M.ListProjectsOutput = schema.new({
-    id = id.from(_N, "ListProjectsOutput"),
+    id = id.from(_N, "ListProjectsResponse"),
     type = "structure",
     members = {
         Projects = schema.new({
@@ -3590,7 +3590,7 @@ M.ListProjectsOutput = schema.new({
 })
 
 M.ListRecipesInput = schema.new({
-    id = id.from(_N, "ListRecipesInput"),
+    id = id.from(_N, "ListRecipesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3715,7 +3715,7 @@ M.Recipe = schema.new({
 })
 
 M.ListRecipesOutput = schema.new({
-    id = id.from(_N, "ListRecipesOutput"),
+    id = id.from(_N, "ListRecipesResponse"),
     type = "structure",
     members = {
         Recipes = schema.new({
@@ -3738,7 +3738,7 @@ M.ListRecipesOutput = schema.new({
 })
 
 M.ListRecipeVersionsInput = schema.new({
-    id = id.from(_N, "ListRecipeVersionsInput"),
+    id = id.from(_N, "ListRecipeVersionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3773,7 +3773,7 @@ M.ListRecipeVersionsInput = schema.new({
 })
 
 M.ListRecipeVersionsOutput = schema.new({
-    id = id.from(_N, "ListRecipeVersionsOutput"),
+    id = id.from(_N, "ListRecipeVersionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3796,7 +3796,7 @@ M.ListRecipeVersionsOutput = schema.new({
 })
 
 M.ListRulesetsInput = schema.new({
-    id = id.from(_N, "ListRulesetsInput"),
+    id = id.from(_N, "ListRulesetsRequest"),
     type = "structure",
     members = {
         TargetArn = schema.new({
@@ -3914,7 +3914,7 @@ M.RulesetItem = schema.new({
 })
 
 M.ListRulesetsOutput = schema.new({
-    id = id.from(_N, "ListRulesetsOutput"),
+    id = id.from(_N, "ListRulesetsResponse"),
     type = "structure",
     members = {
         Rulesets = schema.new({
@@ -3937,7 +3937,7 @@ M.ListRulesetsOutput = schema.new({
 })
 
 M.ListSchedulesInput = schema.new({
-    id = id.from(_N, "ListSchedulesInput"),
+    id = id.from(_N, "ListSchedulesRequest"),
     type = "structure",
     members = {
         JobName = schema.new({
@@ -4044,7 +4044,7 @@ M.Schedule = schema.new({
 })
 
 M.ListSchedulesOutput = schema.new({
-    id = id.from(_N, "ListSchedulesOutput"),
+    id = id.from(_N, "ListSchedulesResponse"),
     type = "structure",
     members = {
         Schedules = schema.new({
@@ -4067,7 +4067,7 @@ M.ListSchedulesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4084,7 +4084,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -4099,7 +4099,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PublishRecipeInput = schema.new({
-    id = id.from(_N, "PublishRecipeInput"),
+    id = id.from(_N, "PublishRecipeRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -4122,7 +4122,7 @@ M.PublishRecipeInput = schema.new({
 })
 
 M.PublishRecipeOutput = schema.new({
-    id = id.from(_N, "PublishRecipeOutput"),
+    id = id.from(_N, "PublishRecipeResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4185,7 +4185,7 @@ M.ViewFrame = schema.new({
 })
 
 M.SendProjectSessionActionInput = schema.new({
-    id = id.from(_N, "SendProjectSessionActionInput"),
+    id = id.from(_N, "SendProjectSessionActionRequest"),
     type = "structure",
     members = {
         Preview = schema.new({
@@ -4237,7 +4237,7 @@ M.SendProjectSessionActionInput = schema.new({
 })
 
 M.SendProjectSessionActionOutput = schema.new({
-    id = id.from(_N, "SendProjectSessionActionOutput"),
+    id = id.from(_N, "SendProjectSessionActionResponse"),
     type = "structure",
     members = {
         Result = schema.new({
@@ -4265,7 +4265,7 @@ M.SendProjectSessionActionOutput = schema.new({
 })
 
 M.StartJobRunInput = schema.new({
-    id = id.from(_N, "StartJobRunInput"),
+    id = id.from(_N, "StartJobRunRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4282,7 +4282,7 @@ M.StartJobRunInput = schema.new({
 })
 
 M.StartJobRunOutput = schema.new({
-    id = id.from(_N, "StartJobRunOutput"),
+    id = id.from(_N, "StartJobRunResponse"),
     type = "structure",
     members = {
         RunId = schema.new({
@@ -4298,7 +4298,7 @@ M.StartJobRunOutput = schema.new({
 })
 
 M.StartProjectSessionInput = schema.new({
-    id = id.from(_N, "StartProjectSessionInput"),
+    id = id.from(_N, "StartProjectSessionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4324,7 +4324,7 @@ M.StartProjectSessionInput = schema.new({
 })
 
 M.StartProjectSessionOutput = schema.new({
-    id = id.from(_N, "StartProjectSessionOutput"),
+    id = id.from(_N, "StartProjectSessionResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4346,7 +4346,7 @@ M.StartProjectSessionOutput = schema.new({
 })
 
 M.StopJobRunInput = schema.new({
-    id = id.from(_N, "StopJobRunInput"),
+    id = id.from(_N, "StopJobRunRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4373,7 +4373,7 @@ M.StopJobRunInput = schema.new({
 })
 
 M.StopJobRunOutput = schema.new({
-    id = id.from(_N, "StopJobRunOutput"),
+    id = id.from(_N, "StopJobRunResponse"),
     type = "structure",
     members = {
         RunId = schema.new({
@@ -4389,7 +4389,7 @@ M.StopJobRunOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4417,12 +4417,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4450,12 +4450,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateDatasetInput = schema.new({
-    id = id.from(_N, "UpdateDatasetInput"),
+    id = id.from(_N, "UpdateDatasetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4502,7 +4502,7 @@ M.UpdateDatasetInput = schema.new({
 })
 
 M.UpdateDatasetOutput = schema.new({
-    id = id.from(_N, "UpdateDatasetOutput"),
+    id = id.from(_N, "UpdateDatasetResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4518,7 +4518,7 @@ M.UpdateDatasetOutput = schema.new({
 })
 
 M.UpdateProfileJobInput = schema.new({
-    id = id.from(_N, "UpdateProfileJobInput"),
+    id = id.from(_N, "UpdateProfileJobRequest"),
     type = "structure",
     members = {
         Configuration = schema.new({
@@ -4620,7 +4620,7 @@ M.UpdateProfileJobInput = schema.new({
 })
 
 M.UpdateProfileJobOutput = schema.new({
-    id = id.from(_N, "UpdateProfileJobOutput"),
+    id = id.from(_N, "UpdateProfileJobResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4636,7 +4636,7 @@ M.UpdateProfileJobOutput = schema.new({
 })
 
 M.UpdateProjectInput = schema.new({
-    id = id.from(_N, "UpdateProjectInput"),
+    id = id.from(_N, "UpdateProjectRequest"),
     type = "structure",
     members = {
         Sample = schema.new({
@@ -4669,7 +4669,7 @@ M.UpdateProjectInput = schema.new({
 })
 
 M.UpdateProjectOutput = schema.new({
-    id = id.from(_N, "UpdateProjectOutput"),
+    id = id.from(_N, "UpdateProjectResponse"),
     type = "structure",
     members = {
         LastModifiedDate = schema.new({
@@ -4691,7 +4691,7 @@ M.UpdateProjectOutput = schema.new({
 })
 
 M.UpdateRecipeInput = schema.new({
-    id = id.from(_N, "UpdateRecipeInput"),
+    id = id.from(_N, "UpdateRecipeRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -4721,7 +4721,7 @@ M.UpdateRecipeInput = schema.new({
 })
 
 M.UpdateRecipeOutput = schema.new({
-    id = id.from(_N, "UpdateRecipeOutput"),
+    id = id.from(_N, "UpdateRecipeResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4737,7 +4737,7 @@ M.UpdateRecipeOutput = schema.new({
 })
 
 M.UpdateRecipeJobInput = schema.new({
-    id = id.from(_N, "UpdateRecipeJobInput"),
+    id = id.from(_N, "UpdateRecipeJobRequest"),
     type = "structure",
     members = {
         EncryptionKeyArn = schema.new({
@@ -4829,7 +4829,7 @@ M.UpdateRecipeJobInput = schema.new({
 })
 
 M.UpdateRecipeJobOutput = schema.new({
-    id = id.from(_N, "UpdateRecipeJobOutput"),
+    id = id.from(_N, "UpdateRecipeJobResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4845,7 +4845,7 @@ M.UpdateRecipeJobOutput = schema.new({
 })
 
 M.UpdateRulesetInput = schema.new({
-    id = id.from(_N, "UpdateRulesetInput"),
+    id = id.from(_N, "UpdateRulesetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4878,7 +4878,7 @@ M.UpdateRulesetInput = schema.new({
 })
 
 M.UpdateRulesetOutput = schema.new({
-    id = id.from(_N, "UpdateRulesetOutput"),
+    id = id.from(_N, "UpdateRulesetResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4894,7 +4894,7 @@ M.UpdateRulesetOutput = schema.new({
 })
 
 M.UpdateScheduleInput = schema.new({
-    id = id.from(_N, "UpdateScheduleInput"),
+    id = id.from(_N, "UpdateScheduleRequest"),
     type = "structure",
     members = {
         JobNames = schema.new({
@@ -4927,7 +4927,7 @@ M.UpdateScheduleInput = schema.new({
 })
 
 M.UpdateScheduleOutput = schema.new({
-    id = id.from(_N, "UpdateScheduleOutput"),
+    id = id.from(_N, "UpdateScheduleResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4941,5 +4941,19 @@ M.UpdateScheduleOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

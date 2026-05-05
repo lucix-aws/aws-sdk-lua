@@ -53,7 +53,7 @@ M.AddPermissionInput = schema.new({
 })
 
 M.AddPermissionOutput = schema.new({
-    id = id.from(_N, "AddPermissionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -138,7 +138,7 @@ M.CheckIfPhoneNumberIsOptedOutInput = schema.new({
 })
 
 M.CheckIfPhoneNumberIsOptedOutOutput = schema.new({
-    id = id.from(_N, "CheckIfPhoneNumberIsOptedOutOutput"),
+    id = id.from(_N, "CheckIfPhoneNumberIsOptedOutResponse"),
     type = "structure",
     members = {
         isOptedOut = schema.new({
@@ -201,7 +201,7 @@ M.ConfirmSubscriptionInput = schema.new({
 })
 
 M.ConfirmSubscriptionOutput = schema.new({
-    id = id.from(_N, "ConfirmSubscriptionOutput"),
+    id = id.from(_N, "ConfirmSubscriptionResponse"),
     type = "structure",
     members = {
         SubscriptionArn = schema.new({
@@ -298,7 +298,7 @@ M.CreatePlatformApplicationInput = schema.new({
 })
 
 M.CreatePlatformApplicationOutput = schema.new({
-    id = id.from(_N, "CreatePlatformApplicationOutput"),
+    id = id.from(_N, "CreatePlatformApplicationResponse"),
     type = "structure",
     members = {
         PlatformApplicationArn = schema.new({
@@ -350,7 +350,7 @@ M.CreatePlatformEndpointInput = schema.new({
 })
 
 M.CreatePlatformEndpointOutput = schema.new({
-    id = id.from(_N, "CreatePlatformEndpointOutput"),
+    id = id.from(_N, "CreateEndpointResponse"),
     type = "structure",
     members = {
         EndpointArn = schema.new({
@@ -385,7 +385,7 @@ M.CreateSMSSandboxPhoneNumberInput = schema.new({
 })
 
 M.CreateSMSSandboxPhoneNumberOutput = schema.new({
-    id = id.from(_N, "CreateSMSSandboxPhoneNumberOutput"),
+    id = id.from(_N, "CreateSMSSandboxPhoneNumberResult"),
     type = "structure",
 })
 
@@ -500,7 +500,7 @@ M.CreateTopicInput = schema.new({
 })
 
 M.CreateTopicOutput = schema.new({
-    id = id.from(_N, "CreateTopicOutput"),
+    id = id.from(_N, "CreateTopicResponse"),
     type = "structure",
     members = {
         TopicArn = schema.new({
@@ -609,7 +609,7 @@ M.DeleteEndpointInput = schema.new({
 })
 
 M.DeleteEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteEndpointOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -630,7 +630,7 @@ M.DeletePlatformApplicationInput = schema.new({
 })
 
 M.DeletePlatformApplicationOutput = schema.new({
-    id = id.from(_N, "DeletePlatformApplicationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -651,7 +651,7 @@ M.DeleteSMSSandboxPhoneNumberInput = schema.new({
 })
 
 M.DeleteSMSSandboxPhoneNumberOutput = schema.new({
-    id = id.from(_N, "DeleteSMSSandboxPhoneNumberOutput"),
+    id = id.from(_N, "DeleteSMSSandboxPhoneNumberResult"),
     type = "structure",
 })
 
@@ -688,7 +688,7 @@ M.DeleteTopicInput = schema.new({
 })
 
 M.DeleteTopicOutput = schema.new({
-    id = id.from(_N, "DeleteTopicOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -725,7 +725,7 @@ M.GetDataProtectionPolicyInput = schema.new({
 })
 
 M.GetDataProtectionPolicyOutput = schema.new({
-    id = id.from(_N, "GetDataProtectionPolicyOutput"),
+    id = id.from(_N, "GetDataProtectionPolicyResponse"),
     type = "structure",
     members = {
         DataProtectionPolicy = schema.new({
@@ -754,7 +754,7 @@ M.GetEndpointAttributesInput = schema.new({
 })
 
 M.GetEndpointAttributesOutput = schema.new({
-    id = id.from(_N, "GetEndpointAttributesOutput"),
+    id = id.from(_N, "GetEndpointAttributesResponse"),
     type = "structure",
     members = {
         Attributes = schema.new({
@@ -785,7 +785,7 @@ M.GetPlatformApplicationAttributesInput = schema.new({
 })
 
 M.GetPlatformApplicationAttributesOutput = schema.new({
-    id = id.from(_N, "GetPlatformApplicationAttributesOutput"),
+    id = id.from(_N, "GetPlatformApplicationAttributesResponse"),
     type = "structure",
     members = {
         Attributes = schema.new({
@@ -814,7 +814,7 @@ M.GetSMSAttributesInput = schema.new({
 })
 
 M.GetSMSAttributesOutput = schema.new({
-    id = id.from(_N, "GetSMSAttributesOutput"),
+    id = id.from(_N, "GetSMSAttributesResponse"),
     type = "structure",
     members = {
         attributes = schema.new({
@@ -834,7 +834,7 @@ M.GetSMSSandboxAccountStatusInput = schema.new({
 })
 
 M.GetSMSSandboxAccountStatusOutput = schema.new({
-    id = id.from(_N, "GetSMSSandboxAccountStatusOutput"),
+    id = id.from(_N, "GetSMSSandboxAccountStatusResult"),
     type = "structure",
     members = {
         IsInSandbox = schema.new({
@@ -867,7 +867,7 @@ M.GetSubscriptionAttributesInput = schema.new({
 })
 
 M.GetSubscriptionAttributesOutput = schema.new({
-    id = id.from(_N, "GetSubscriptionAttributesOutput"),
+    id = id.from(_N, "GetSubscriptionAttributesResponse"),
     type = "structure",
     members = {
         Attributes = schema.new({
@@ -898,7 +898,7 @@ M.GetTopicAttributesInput = schema.new({
 })
 
 M.GetTopicAttributesOutput = schema.new({
-    id = id.from(_N, "GetTopicAttributesOutput"),
+    id = id.from(_N, "GetTopicAttributesResponse"),
     type = "structure",
     members = {
         Attributes = schema.new({
@@ -956,7 +956,7 @@ M.Endpoint = schema.new({
 })
 
 M.ListEndpointsByPlatformApplicationOutput = schema.new({
-    id = id.from(_N, "ListEndpointsByPlatformApplicationOutput"),
+    id = id.from(_N, "ListEndpointsByPlatformApplicationResponse"),
     type = "structure",
     members = {
         Endpoints = schema.new({
@@ -976,7 +976,7 @@ M.ListEndpointsByPlatformApplicationOutput = schema.new({
 })
 
 M.ListOriginationNumbersInput = schema.new({
-    id = id.from(_N, "ListOriginationNumbersInput"),
+    id = id.from(_N, "ListOriginationNumbersRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1039,7 +1039,7 @@ M.PhoneNumberInformation = schema.new({
 })
 
 M.ListOriginationNumbersOutput = schema.new({
-    id = id.from(_N, "ListOriginationNumbersOutput"),
+    id = id.from(_N, "ListOriginationNumbersResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1091,7 +1091,7 @@ M.ListPhoneNumbersOptedOutInput = schema.new({
 })
 
 M.ListPhoneNumbersOptedOutOutput = schema.new({
-    id = id.from(_N, "ListPhoneNumbersOptedOutOutput"),
+    id = id.from(_N, "ListPhoneNumbersOptedOutResponse"),
     type = "structure",
     members = {
         phoneNumbers = schema.new({
@@ -1145,7 +1145,7 @@ M.PlatformApplication = schema.new({
 })
 
 M.ListPlatformApplicationsOutput = schema.new({
-    id = id.from(_N, "ListPlatformApplicationsOutput"),
+    id = id.from(_N, "ListPlatformApplicationsResponse"),
     type = "structure",
     members = {
         PlatformApplications = schema.new({
@@ -1203,7 +1203,7 @@ M.SMSSandboxPhoneNumber = schema.new({
 })
 
 M.ListSMSSandboxPhoneNumbersOutput = schema.new({
-    id = id.from(_N, "ListSMSSandboxPhoneNumbersOutput"),
+    id = id.from(_N, "ListSMSSandboxPhoneNumbersResult"),
     type = "structure",
     members = {
         PhoneNumbers = schema.new({
@@ -1276,7 +1276,7 @@ M.Subscription = schema.new({
 })
 
 M.ListSubscriptionsOutput = schema.new({
-    id = id.from(_N, "ListSubscriptionsOutput"),
+    id = id.from(_N, "ListSubscriptionsResponse"),
     type = "structure",
     members = {
         Subscriptions = schema.new({
@@ -1318,7 +1318,7 @@ M.ListSubscriptionsByTopicInput = schema.new({
 })
 
 M.ListSubscriptionsByTopicOutput = schema.new({
-    id = id.from(_N, "ListSubscriptionsByTopicOutput"),
+    id = id.from(_N, "ListSubscriptionsByTopicResponse"),
     type = "structure",
     members = {
         Subscriptions = schema.new({
@@ -1338,7 +1338,7 @@ M.ListSubscriptionsByTopicOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1354,7 +1354,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1394,7 +1394,7 @@ M.Topic = schema.new({
 })
 
 M.ListTopicsOutput = schema.new({
-    id = id.from(_N, "ListTopicsOutput"),
+    id = id.from(_N, "ListTopicsResponse"),
     type = "structure",
     members = {
         Topics = schema.new({
@@ -1430,7 +1430,7 @@ M.OptInPhoneNumberInput = schema.new({
 })
 
 M.OptInPhoneNumberOutput = schema.new({
-    id = id.from(_N, "OptInPhoneNumberOutput"),
+    id = id.from(_N, "OptInPhoneNumberResponse"),
     type = "structure",
 })
 
@@ -1654,8 +1654,8 @@ M.PublishInput = schema.new({
             type = "map",
             name = "MessageAttributes",
             target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = M.MessageAttributeValue,
+            map_key = schema.new({ type = "string", traits = { [traits.XML_NAME] = { name = "Name" } } }),
+            map_value = schema.new({ type = "structure", target = M.MessageAttributeValue, traits = { [traits.XML_NAME] = { name = "Value" } } }),
         }),
         MessageDeduplicationId = schema.new({
             id = id.from(_N, "PublishInput", "MessageDeduplicationId"),
@@ -1673,7 +1673,7 @@ M.PublishInput = schema.new({
 })
 
 M.PublishOutput = schema.new({
-    id = id.from(_N, "PublishOutput"),
+    id = id.from(_N, "PublishResponse"),
     type = "structure",
     members = {
         MessageId = schema.new({
@@ -1794,8 +1794,8 @@ M.PublishBatchRequestEntry = schema.new({
             type = "map",
             name = "MessageAttributes",
             target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = M.MessageAttributeValue,
+            map_key = schema.new({ type = "string", traits = { [traits.XML_NAME] = { name = "Name" } } }),
+            map_value = schema.new({ type = "structure", target = M.MessageAttributeValue, traits = { [traits.XML_NAME] = { name = "Value" } } }),
         }),
         MessageDeduplicationId = schema.new({
             id = id.from(_N, "PublishBatchRequestEntry", "MessageDeduplicationId"),
@@ -1905,7 +1905,7 @@ M.PublishBatchResultEntry = schema.new({
 })
 
 M.PublishBatchOutput = schema.new({
-    id = id.from(_N, "PublishBatchOutput"),
+    id = id.from(_N, "PublishBatchResponse"),
     type = "structure",
     members = {
         Successful = schema.new({
@@ -1967,7 +1967,7 @@ M.PutDataProtectionPolicyInput = schema.new({
 })
 
 M.PutDataProtectionPolicyOutput = schema.new({
-    id = id.from(_N, "PutDataProtectionPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1997,7 +1997,7 @@ M.RemovePermissionInput = schema.new({
 })
 
 M.RemovePermissionOutput = schema.new({
-    id = id.from(_N, "RemovePermissionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2029,7 +2029,7 @@ M.SetEndpointAttributesInput = schema.new({
 })
 
 M.SetEndpointAttributesOutput = schema.new({
-    id = id.from(_N, "SetEndpointAttributesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2061,7 +2061,7 @@ M.SetPlatformApplicationAttributesInput = schema.new({
 })
 
 M.SetPlatformApplicationAttributesOutput = schema.new({
-    id = id.from(_N, "SetPlatformApplicationAttributesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2084,7 +2084,7 @@ M.SetSMSAttributesInput = schema.new({
 })
 
 M.SetSMSAttributesOutput = schema.new({
-    id = id.from(_N, "SetSMSAttributesOutput"),
+    id = id.from(_N, "SetSMSAttributesResponse"),
     type = "structure",
 })
 
@@ -2120,7 +2120,7 @@ M.SetSubscriptionAttributesInput = schema.new({
 })
 
 M.SetSubscriptionAttributesOutput = schema.new({
-    id = id.from(_N, "SetSubscriptionAttributesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2156,7 +2156,7 @@ M.SetTopicAttributesInput = schema.new({
 })
 
 M.SetTopicAttributesOutput = schema.new({
-    id = id.from(_N, "SetTopicAttributesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2209,7 +2209,7 @@ M.SubscribeInput = schema.new({
 })
 
 M.SubscribeOutput = schema.new({
-    id = id.from(_N, "SubscribeOutput"),
+    id = id.from(_N, "SubscribeResponse"),
     type = "structure",
     members = {
         SubscriptionArn = schema.new({
@@ -2222,7 +2222,7 @@ M.SubscribeOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2248,7 +2248,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -2269,12 +2269,12 @@ M.UnsubscribeInput = schema.new({
 })
 
 M.UnsubscribeOutput = schema.new({
-    id = id.from(_N, "UnsubscribeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2300,7 +2300,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -2358,8 +2358,22 @@ M.VerifySMSSandboxPhoneNumberInput = schema.new({
 })
 
 M.VerifySMSSandboxPhoneNumberOutput = schema.new({
-    id = id.from(_N, "VerifySMSSandboxPhoneNumberOutput"),
+    id = id.from(_N, "VerifySMSSandboxPhoneNumberResult"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

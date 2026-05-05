@@ -108,7 +108,7 @@ M.SuiteDefinitionConfiguration = schema.new({
 })
 
 M.CreateSuiteDefinitionInput = schema.new({
-    id = id.from(_N, "CreateSuiteDefinitionInput"),
+    id = id.from(_N, "CreateSuiteDefinitionRequest"),
     type = "structure",
     members = {
         suiteDefinitionConfiguration = schema.new({
@@ -142,7 +142,7 @@ M.CreateSuiteDefinitionInput = schema.new({
 })
 
 M.CreateSuiteDefinitionOutput = schema.new({
-    id = id.from(_N, "CreateSuiteDefinitionOutput"),
+    id = id.from(_N, "CreateSuiteDefinitionResponse"),
     type = "structure",
     members = {
         suiteDefinitionId = schema.new({
@@ -205,7 +205,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteSuiteDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteSuiteDefinitionInput"),
+    id = id.from(_N, "DeleteSuiteDefinitionRequest"),
     type = "structure",
     members = {
         suiteDefinitionId = schema.new({
@@ -222,12 +222,12 @@ M.DeleteSuiteDefinitionInput = schema.new({
 })
 
 M.DeleteSuiteDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteSuiteDefinitionOutput"),
+    id = id.from(_N, "DeleteSuiteDefinitionResponse"),
     type = "structure",
 })
 
 M.GetEndpointInput = schema.new({
-    id = id.from(_N, "GetEndpointInput"),
+    id = id.from(_N, "GetEndpointRequest"),
     type = "structure",
     members = {
         thingArn = schema.new({
@@ -270,7 +270,7 @@ M.GetEndpointInput = schema.new({
 })
 
 M.GetEndpointOutput = schema.new({
-    id = id.from(_N, "GetEndpointOutput"),
+    id = id.from(_N, "GetEndpointResponse"),
     type = "structure",
     members = {
         endpoint = schema.new({
@@ -299,7 +299,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.GetSuiteDefinitionInput = schema.new({
-    id = id.from(_N, "GetSuiteDefinitionInput"),
+    id = id.from(_N, "GetSuiteDefinitionRequest"),
     type = "structure",
     members = {
         suiteDefinitionId = schema.new({
@@ -325,7 +325,7 @@ M.GetSuiteDefinitionInput = schema.new({
 })
 
 M.GetSuiteDefinitionOutput = schema.new({
-    id = id.from(_N, "GetSuiteDefinitionOutput"),
+    id = id.from(_N, "GetSuiteDefinitionResponse"),
     type = "structure",
     members = {
         suiteDefinitionId = schema.new({
@@ -383,7 +383,7 @@ M.GetSuiteDefinitionOutput = schema.new({
 })
 
 M.GetSuiteRunInput = schema.new({
-    id = id.from(_N, "GetSuiteRunInput"),
+    id = id.from(_N, "GetSuiteRunRequest"),
     type = "structure",
     members = {
         suiteDefinitionId = schema.new({
@@ -585,7 +585,7 @@ M.TestResult = schema.new({
 })
 
 M.GetSuiteRunOutput = schema.new({
-    id = id.from(_N, "GetSuiteRunOutput"),
+    id = id.from(_N, "GetSuiteRunResponse"),
     type = "structure",
     members = {
         suiteDefinitionId = schema.new({
@@ -662,7 +662,7 @@ M.GetSuiteRunOutput = schema.new({
 })
 
 M.GetSuiteRunReportInput = schema.new({
-    id = id.from(_N, "GetSuiteRunReportInput"),
+    id = id.from(_N, "GetSuiteRunReportRequest"),
     type = "structure",
     members = {
         suiteDefinitionId = schema.new({
@@ -689,7 +689,7 @@ M.GetSuiteRunReportInput = schema.new({
 })
 
 M.GetSuiteRunReportOutput = schema.new({
-    id = id.from(_N, "GetSuiteRunReportOutput"),
+    id = id.from(_N, "GetSuiteRunReportResponse"),
     type = "structure",
     members = {
         qualificationReportDownloadUrl = schema.new({
@@ -702,7 +702,7 @@ M.GetSuiteRunReportOutput = schema.new({
 })
 
 M.ListSuiteDefinitionsInput = schema.new({
-    id = id.from(_N, "ListSuiteDefinitionsInput"),
+    id = id.from(_N, "ListSuiteDefinitionsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -777,7 +777,7 @@ M.SuiteDefinitionInformation = schema.new({
 })
 
 M.ListSuiteDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListSuiteDefinitionsOutput"),
+    id = id.from(_N, "ListSuiteDefinitionsResponse"),
     type = "structure",
     members = {
         suiteDefinitionInformationList = schema.new({
@@ -797,7 +797,7 @@ M.ListSuiteDefinitionsOutput = schema.new({
 })
 
 M.ListSuiteRunsInput = schema.new({
-    id = id.from(_N, "ListSuiteRunsInput"),
+    id = id.from(_N, "ListSuiteRunsRequest"),
     type = "structure",
     members = {
         suiteDefinitionId = schema.new({
@@ -907,7 +907,7 @@ M.SuiteRunInformation = schema.new({
 })
 
 M.ListSuiteRunsOutput = schema.new({
-    id = id.from(_N, "ListSuiteRunsOutput"),
+    id = id.from(_N, "ListSuiteRunsResponse"),
     type = "structure",
     members = {
         suiteRunsList = schema.new({
@@ -927,7 +927,7 @@ M.ListSuiteRunsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -944,7 +944,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -959,7 +959,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.StartSuiteRunInput = schema.new({
-    id = id.from(_N, "StartSuiteRunInput"),
+    id = id.from(_N, "StartSuiteRunRequest"),
     type = "structure",
     members = {
         suiteDefinitionId = schema.new({
@@ -1000,7 +1000,7 @@ M.StartSuiteRunInput = schema.new({
 })
 
 M.StartSuiteRunOutput = schema.new({
-    id = id.from(_N, "StartSuiteRunOutput"),
+    id = id.from(_N, "StartSuiteRunResponse"),
     type = "structure",
     members = {
         suiteRunId = schema.new({
@@ -1031,7 +1031,7 @@ M.StartSuiteRunOutput = schema.new({
 })
 
 M.StopSuiteRunInput = schema.new({
-    id = id.from(_N, "StopSuiteRunInput"),
+    id = id.from(_N, "StopSuiteRunRequest"),
     type = "structure",
     members = {
         suiteDefinitionId = schema.new({
@@ -1058,12 +1058,12 @@ M.StopSuiteRunInput = schema.new({
 })
 
 M.StopSuiteRunOutput = schema.new({
-    id = id.from(_N, "StopSuiteRunOutput"),
+    id = id.from(_N, "StopSuiteRunResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1091,12 +1091,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1124,12 +1124,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateSuiteDefinitionInput = schema.new({
-    id = id.from(_N, "UpdateSuiteDefinitionInput"),
+    id = id.from(_N, "UpdateSuiteDefinitionRequest"),
     type = "structure",
     members = {
         suiteDefinitionId = schema.new({
@@ -1156,7 +1156,7 @@ M.UpdateSuiteDefinitionInput = schema.new({
 })
 
 M.UpdateSuiteDefinitionOutput = schema.new({
-    id = id.from(_N, "UpdateSuiteDefinitionOutput"),
+    id = id.from(_N, "UpdateSuiteDefinitionResponse"),
     type = "structure",
     members = {
         suiteDefinitionId = schema.new({
@@ -1197,5 +1197,19 @@ M.UpdateSuiteDefinitionOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

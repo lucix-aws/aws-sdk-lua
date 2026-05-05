@@ -24,7 +24,7 @@ M.ConflictException = schema.new({
 })
 
 M.DeleteConnectionInput = schema.new({
-    id = id.from(_N, "DeleteConnectionInput"),
+    id = id.from(_N, "DeleteConnectionRequest"),
     type = "structure",
     members = {
         clientId = schema.new({
@@ -61,7 +61,7 @@ M.DeleteConnectionInput = schema.new({
 })
 
 M.DeleteConnectionOutput = schema.new({
-    id = id.from(_N, "DeleteConnectionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -146,7 +146,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.DeleteThingShadowInput = schema.new({
-    id = id.from(_N, "DeleteThingShadowInput"),
+    id = id.from(_N, "DeleteThingShadowRequest"),
     type = "structure",
     members = {
         thingName = schema.new({
@@ -172,7 +172,7 @@ M.DeleteThingShadowInput = schema.new({
 })
 
 M.DeleteThingShadowOutput = schema.new({
-    id = id.from(_N, "DeleteThingShadowOutput"),
+    id = id.from(_N, "DeleteThingShadowResponse"),
     type = "structure",
     members = {
         payload = schema.new({
@@ -253,7 +253,7 @@ M.UnsupportedDocumentEncodingException = schema.new({
 })
 
 M.GetRetainedMessageInput = schema.new({
-    id = id.from(_N, "GetRetainedMessageInput"),
+    id = id.from(_N, "GetRetainedMessageRequest"),
     type = "structure",
     members = {
         topic = schema.new({
@@ -270,7 +270,7 @@ M.GetRetainedMessageInput = schema.new({
 })
 
 M.GetRetainedMessageOutput = schema.new({
-    id = id.from(_N, "GetRetainedMessageOutput"),
+    id = id.from(_N, "GetRetainedMessageResponse"),
     type = "structure",
     members = {
         topic = schema.new({
@@ -313,7 +313,7 @@ M.GetRetainedMessageOutput = schema.new({
 })
 
 M.GetThingShadowInput = schema.new({
-    id = id.from(_N, "GetThingShadowInput"),
+    id = id.from(_N, "GetThingShadowRequest"),
     type = "structure",
     members = {
         thingName = schema.new({
@@ -339,7 +339,7 @@ M.GetThingShadowInput = schema.new({
 })
 
 M.GetThingShadowOutput = schema.new({
-    id = id.from(_N, "GetThingShadowOutput"),
+    id = id.from(_N, "GetThingShadowResponse"),
     type = "structure",
     members = {
         payload = schema.new({
@@ -355,7 +355,7 @@ M.GetThingShadowOutput = schema.new({
 })
 
 M.ListNamedShadowsForThingInput = schema.new({
-    id = id.from(_N, "ListNamedShadowsForThingInput"),
+    id = id.from(_N, "ListNamedShadowsForThingRequest"),
     type = "structure",
     members = {
         thingName = schema.new({
@@ -390,7 +390,7 @@ M.ListNamedShadowsForThingInput = schema.new({
 })
 
 M.ListNamedShadowsForThingOutput = schema.new({
-    id = id.from(_N, "ListNamedShadowsForThingOutput"),
+    id = id.from(_N, "ListNamedShadowsForThingResponse"),
     type = "structure",
     members = {
         results = schema.new({
@@ -419,7 +419,7 @@ M.ListNamedShadowsForThingOutput = schema.new({
 })
 
 M.ListRetainedMessagesInput = schema.new({
-    id = id.from(_N, "ListRetainedMessagesInput"),
+    id = id.from(_N, "ListRetainedMessagesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -484,7 +484,7 @@ M.RetainedMessageSummary = schema.new({
 })
 
 M.ListRetainedMessagesOutput = schema.new({
-    id = id.from(_N, "ListRetainedMessagesOutput"),
+    id = id.from(_N, "ListRetainedMessagesResponse"),
     type = "structure",
     members = {
         retainedTopics = schema.new({
@@ -504,7 +504,7 @@ M.ListRetainedMessagesOutput = schema.new({
 })
 
 M.PublishInput = schema.new({
-    id = id.from(_N, "PublishInput"),
+    id = id.from(_N, "PublishRequest"),
     type = "structure",
     members = {
         topic = schema.new({
@@ -609,7 +609,7 @@ M.PublishInput = schema.new({
 })
 
 M.PublishOutput = schema.new({
-    id = id.from(_N, "PublishOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -630,7 +630,7 @@ M.RequestEntityTooLargeException = schema.new({
 })
 
 M.UpdateThingShadowInput = schema.new({
-    id = id.from(_N, "UpdateThingShadowInput"),
+    id = id.from(_N, "UpdateThingShadowRequest"),
     type = "structure",
     members = {
         thingName = schema.new({
@@ -666,7 +666,7 @@ M.UpdateThingShadowInput = schema.new({
 })
 
 M.UpdateThingShadowOutput = schema.new({
-    id = id.from(_N, "UpdateThingShadowOutput"),
+    id = id.from(_N, "UpdateThingShadowResponse"),
     type = "structure",
     members = {
         payload = schema.new({
@@ -680,5 +680,19 @@ M.UpdateThingShadowOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -1318,7 +1318,7 @@ M.DeleteCentralizationRuleForOrganizationInput = schema.new({
 })
 
 M.DeleteCentralizationRuleForOrganizationOutput = schema.new({
-    id = id.from(_N, "DeleteCentralizationRuleForOrganizationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1367,7 +1367,7 @@ M.DeleteS3TableIntegrationInput = schema.new({
 })
 
 M.DeleteS3TableIntegrationOutput = schema.new({
-    id = id.from(_N, "DeleteS3TableIntegrationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1425,7 +1425,7 @@ M.DeleteTelemetryRuleInput = schema.new({
 })
 
 M.DeleteTelemetryRuleOutput = schema.new({
-    id = id.from(_N, "DeleteTelemetryRuleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1446,7 +1446,7 @@ M.DeleteTelemetryRuleForOrganizationInput = schema.new({
 })
 
 M.DeleteTelemetryRuleForOrganizationOutput = schema.new({
-    id = id.from(_N, "DeleteTelemetryRuleForOrganizationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1589,7 +1589,7 @@ M.GetS3TableIntegrationOutput = schema.new({
 })
 
 M.GetTelemetryEnrichmentStatusInput = schema.new({
-    id = id.from(_N, "GetTelemetryEnrichmentStatusInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1613,7 +1613,7 @@ M.GetTelemetryEnrichmentStatusOutput = schema.new({
 })
 
 M.GetTelemetryEvaluationStatusInput = schema.new({
-    id = id.from(_N, "GetTelemetryEvaluationStatusInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1681,7 +1681,7 @@ M.GetTelemetryEvaluationStatusOutput = schema.new({
 })
 
 M.GetTelemetryEvaluationStatusForOrganizationInput = schema.new({
-    id = id.from(_N, "GetTelemetryEvaluationStatusForOrganizationInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2571,7 +2571,7 @@ M.ListTelemetryRulesForOrganizationOutput = schema.new({
 })
 
 M.StartTelemetryEnrichmentInput = schema.new({
-    id = id.from(_N, "StartTelemetryEnrichmentInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2615,7 +2615,7 @@ M.StartTelemetryEvaluationInput = schema.new({
 })
 
 M.StartTelemetryEvaluationOutput = schema.new({
-    id = id.from(_N, "StartTelemetryEvaluationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2640,12 +2640,12 @@ M.StartTelemetryEvaluationForOrganizationInput = schema.new({
 })
 
 M.StartTelemetryEvaluationForOrganizationOutput = schema.new({
-    id = id.from(_N, "StartTelemetryEvaluationForOrganizationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopTelemetryEnrichmentInput = schema.new({
-    id = id.from(_N, "StopTelemetryEnrichmentInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2663,22 +2663,22 @@ M.StopTelemetryEnrichmentOutput = schema.new({
 })
 
 M.StopTelemetryEvaluationInput = schema.new({
-    id = id.from(_N, "StopTelemetryEvaluationInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopTelemetryEvaluationOutput = schema.new({
-    id = id.from(_N, "StopTelemetryEvaluationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopTelemetryEvaluationForOrganizationInput = schema.new({
-    id = id.from(_N, "StopTelemetryEvaluationForOrganizationInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopTelemetryEvaluationForOrganizationOutput = schema.new({
-    id = id.from(_N, "StopTelemetryEvaluationForOrganizationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2710,7 +2710,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2866,7 +2866,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3017,5 +3017,19 @@ M.ValidateTelemetryPipelineConfigurationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

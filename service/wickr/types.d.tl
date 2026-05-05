@@ -1852,9 +1852,9 @@ end
 
 local type AccessLevel = "STANDARD" | "PREMIUM"
 
-local type SortDirection = "ASC" | "DESC"
-
 local type DataRetentionActionType = "ENABLE" | "DISABLE" | "PUBKEY_MSG_ACK"
+
+local type SortDirection = "ASC" | "DESC"
 
 local type UserStatus = 1 | 2
 

@@ -44,7 +44,7 @@ M.CancelSolNetworkOperationInput = schema.new({
 })
 
 M.CancelSolNetworkOperationOutput = schema.new({
-    id = id.from(_N, "CancelSolNetworkOperationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -401,7 +401,7 @@ M.DeleteSolFunctionPackageInput = schema.new({
 })
 
 M.DeleteSolFunctionPackageOutput = schema.new({
-    id = id.from(_N, "DeleteSolFunctionPackageOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -423,7 +423,7 @@ M.DeleteSolNetworkInstanceInput = schema.new({
 })
 
 M.DeleteSolNetworkInstanceOutput = schema.new({
-    id = id.from(_N, "DeleteSolNetworkInstanceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -445,7 +445,7 @@ M.DeleteSolNetworkPackageInput = schema.new({
 })
 
 M.DeleteSolNetworkPackageOutput = schema.new({
-    id = id.from(_N, "DeleteSolNetworkPackageOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3342,5 +3342,19 @@ M.ValidateSolNetworkPackageContentOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

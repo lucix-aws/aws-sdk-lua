@@ -52,7 +52,7 @@ M.ActiveTimeRange = schema.new({
 })
 
 M.AssociateSourceViewsInput = schema.new({
-    id = id.from(_N, "AssociateSourceViewsInput"),
+    id = id.from(_N, "AssociateSourceViewsRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -78,7 +78,7 @@ M.AssociateSourceViewsInput = schema.new({
 })
 
 M.AssociateSourceViewsOutput = schema.new({
-    id = id.from(_N, "AssociateSourceViewsOutput"),
+    id = id.from(_N, "AssociateSourceViewsResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -494,7 +494,7 @@ M.ResourceTag = schema.new({
 })
 
 M.CreateBillingViewInput = schema.new({
-    id = id.from(_N, "CreateBillingViewInput"),
+    id = id.from(_N, "CreateBillingViewRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -550,7 +550,7 @@ M.CreateBillingViewInput = schema.new({
 })
 
 M.CreateBillingViewOutput = schema.new({
-    id = id.from(_N, "CreateBillingViewOutput"),
+    id = id.from(_N, "CreateBillingViewResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -572,7 +572,7 @@ M.CreateBillingViewOutput = schema.new({
 })
 
 M.DeleteBillingViewInput = schema.new({
-    id = id.from(_N, "DeleteBillingViewInput"),
+    id = id.from(_N, "DeleteBillingViewRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -597,7 +597,7 @@ M.DeleteBillingViewInput = schema.new({
 })
 
 M.DeleteBillingViewOutput = schema.new({
-    id = id.from(_N, "DeleteBillingViewOutput"),
+    id = id.from(_N, "DeleteBillingViewResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -613,7 +613,7 @@ M.DeleteBillingViewOutput = schema.new({
 })
 
 M.DisassociateSourceViewsInput = schema.new({
-    id = id.from(_N, "DisassociateSourceViewsInput"),
+    id = id.from(_N, "DisassociateSourceViewsRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -639,7 +639,7 @@ M.DisassociateSourceViewsInput = schema.new({
 })
 
 M.DisassociateSourceViewsOutput = schema.new({
-    id = id.from(_N, "DisassociateSourceViewsOutput"),
+    id = id.from(_N, "DisassociateSourceViewsResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -655,7 +655,7 @@ M.DisassociateSourceViewsOutput = schema.new({
 })
 
 M.GetBillingViewInput = schema.new({
-    id = id.from(_N, "GetBillingViewInput"),
+    id = id.from(_N, "GetBillingViewRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -778,7 +778,7 @@ M.BillingViewElement = schema.new({
 })
 
 M.GetBillingViewOutput = schema.new({
-    id = id.from(_N, "GetBillingViewOutput"),
+    id = id.from(_N, "GetBillingViewResponse"),
     type = "structure",
     members = {
         billingView = schema.new({
@@ -795,7 +795,7 @@ M.GetBillingViewOutput = schema.new({
 })
 
 M.GetResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetResourcePolicyInput"),
+    id = id.from(_N, "GetResourcePolicyRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -811,7 +811,7 @@ M.GetResourcePolicyInput = schema.new({
 })
 
 M.GetResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetResourcePolicyOutput"),
+    id = id.from(_N, "GetResourcePolicyResponse"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -858,7 +858,7 @@ M.StringSearch = schema.new({
 })
 
 M.ListBillingViewsInput = schema.new({
-    id = id.from(_N, "ListBillingViewsInput"),
+    id = id.from(_N, "ListBillingViewsRequest"),
     type = "structure",
     members = {
         activeTimeRange = schema.new({
@@ -967,7 +967,7 @@ M.BillingViewListElement = schema.new({
 })
 
 M.ListBillingViewsOutput = schema.new({
-    id = id.from(_N, "ListBillingViewsOutput"),
+    id = id.from(_N, "ListBillingViewsResponse"),
     type = "structure",
     members = {
         billingViews = schema.new({
@@ -990,7 +990,7 @@ M.ListBillingViewsOutput = schema.new({
 })
 
 M.ListSourceViewsForBillingViewInput = schema.new({
-    id = id.from(_N, "ListSourceViewsForBillingViewInput"),
+    id = id.from(_N, "ListSourceViewsForBillingViewRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1018,7 +1018,7 @@ M.ListSourceViewsForBillingViewInput = schema.new({
 })
 
 M.ListSourceViewsForBillingViewOutput = schema.new({
-    id = id.from(_N, "ListSourceViewsForBillingViewOutput"),
+    id = id.from(_N, "ListSourceViewsForBillingViewResponse"),
     type = "structure",
     members = {
         sourceViews = schema.new({
@@ -1041,7 +1041,7 @@ M.ListSourceViewsForBillingViewOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1057,7 +1057,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         resourceTags = schema.new({
@@ -1071,7 +1071,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1097,12 +1097,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1128,12 +1128,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateBillingViewInput = schema.new({
-    id = id.from(_N, "UpdateBillingViewInput"),
+    id = id.from(_N, "UpdateBillingViewRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1168,7 +1168,7 @@ M.UpdateBillingViewInput = schema.new({
 })
 
 M.UpdateBillingViewOutput = schema.new({
-    id = id.from(_N, "UpdateBillingViewOutput"),
+    id = id.from(_N, "UpdateBillingViewResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1188,5 +1188,19 @@ M.UpdateBillingViewOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

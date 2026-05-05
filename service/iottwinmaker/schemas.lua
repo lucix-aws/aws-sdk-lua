@@ -149,7 +149,7 @@ M.ValidationException = schema.new({
 })
 
 M.CancelMetadataTransferJobInput = schema.new({
-    id = id.from(_N, "CancelMetadataTransferJobInput"),
+    id = id.from(_N, "CancelMetadataTransferJobRequest"),
     type = "structure",
     members = {
         metadataTransferJobId = schema.new({
@@ -242,7 +242,7 @@ M.MetadataTransferJobStatus = schema.new({
 })
 
 M.CancelMetadataTransferJobOutput = schema.new({
-    id = id.from(_N, "CancelMetadataTransferJobOutput"),
+    id = id.from(_N, "CancelMetadataTransferJobResponse"),
     type = "structure",
     members = {
         metadataTransferJobId = schema.new({
@@ -424,7 +424,7 @@ M.PropertyGroupRequest = schema.new({
 })
 
 M.CreateComponentTypeOutput = schema.new({
-    id = id.from(_N, "CreateComponentTypeOutput"),
+    id = id.from(_N, "CreateComponentTypeResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -500,7 +500,7 @@ M.ComponentPropertyGroupRequest = schema.new({
 })
 
 M.CreateEntityOutput = schema.new({
-    id = id.from(_N, "CreateEntityOutput"),
+    id = id.from(_N, "CreateEntityResponse"),
     type = "structure",
     members = {
         entityId = schema.new({
@@ -831,7 +831,7 @@ M.SourceConfiguration = schema.new({
 })
 
 M.CreateMetadataTransferJobInput = schema.new({
-    id = id.from(_N, "CreateMetadataTransferJobInput"),
+    id = id.from(_N, "CreateMetadataTransferJobRequest"),
     type = "structure",
     members = {
         metadataTransferJobId = schema.new({
@@ -870,7 +870,7 @@ M.CreateMetadataTransferJobInput = schema.new({
 })
 
 M.CreateMetadataTransferJobOutput = schema.new({
-    id = id.from(_N, "CreateMetadataTransferJobOutput"),
+    id = id.from(_N, "CreateMetadataTransferJobResponse"),
     type = "structure",
     members = {
         metadataTransferJobId = schema.new({
@@ -914,7 +914,7 @@ M.CreateMetadataTransferJobOutput = schema.new({
 })
 
 M.CreateSceneInput = schema.new({
-    id = id.from(_N, "CreateSceneInput"),
+    id = id.from(_N, "CreateSceneRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -978,7 +978,7 @@ M.CreateSceneInput = schema.new({
 })
 
 M.CreateSceneOutput = schema.new({
-    id = id.from(_N, "CreateSceneOutput"),
+    id = id.from(_N, "CreateSceneResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1003,7 +1003,7 @@ M.CreateSceneOutput = schema.new({
 })
 
 M.CreateSyncJobInput = schema.new({
-    id = id.from(_N, "CreateSyncJobInput"),
+    id = id.from(_N, "CreateSyncJobRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -1047,7 +1047,7 @@ M.CreateSyncJobInput = schema.new({
 })
 
 M.CreateSyncJobOutput = schema.new({
-    id = id.from(_N, "CreateSyncJobOutput"),
+    id = id.from(_N, "CreateSyncJobResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1081,7 +1081,7 @@ M.CreateSyncJobOutput = schema.new({
 })
 
 M.CreateWorkspaceInput = schema.new({
-    id = id.from(_N, "CreateWorkspaceInput"),
+    id = id.from(_N, "CreateWorkspaceRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -1124,7 +1124,7 @@ M.CreateWorkspaceInput = schema.new({
 })
 
 M.CreateWorkspaceOutput = schema.new({
-    id = id.from(_N, "CreateWorkspaceOutput"),
+    id = id.from(_N, "CreateWorkspaceResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1149,7 +1149,7 @@ M.CreateWorkspaceOutput = schema.new({
 })
 
 M.DeleteComponentTypeInput = schema.new({
-    id = id.from(_N, "DeleteComponentTypeInput"),
+    id = id.from(_N, "DeleteComponentTypeRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -1176,7 +1176,7 @@ M.DeleteComponentTypeInput = schema.new({
 })
 
 M.DeleteComponentTypeOutput = schema.new({
-    id = id.from(_N, "DeleteComponentTypeOutput"),
+    id = id.from(_N, "DeleteComponentTypeResponse"),
     type = "structure",
     members = {
         state = schema.new({
@@ -1192,7 +1192,7 @@ M.DeleteComponentTypeOutput = schema.new({
 })
 
 M.DeleteEntityInput = schema.new({
-    id = id.from(_N, "DeleteEntityInput"),
+    id = id.from(_N, "DeleteEntityRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -1228,7 +1228,7 @@ M.DeleteEntityInput = schema.new({
 })
 
 M.DeleteEntityOutput = schema.new({
-    id = id.from(_N, "DeleteEntityOutput"),
+    id = id.from(_N, "DeleteEntityResponse"),
     type = "structure",
     members = {
         state = schema.new({
@@ -1244,7 +1244,7 @@ M.DeleteEntityOutput = schema.new({
 })
 
 M.DeleteSceneInput = schema.new({
-    id = id.from(_N, "DeleteSceneInput"),
+    id = id.from(_N, "DeleteSceneRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -1271,12 +1271,12 @@ M.DeleteSceneInput = schema.new({
 })
 
 M.DeleteSceneOutput = schema.new({
-    id = id.from(_N, "DeleteSceneOutput"),
+    id = id.from(_N, "DeleteSceneResponse"),
     type = "structure",
 })
 
 M.DeleteSyncJobInput = schema.new({
-    id = id.from(_N, "DeleteSyncJobInput"),
+    id = id.from(_N, "DeleteSyncJobRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -1303,7 +1303,7 @@ M.DeleteSyncJobInput = schema.new({
 })
 
 M.DeleteSyncJobOutput = schema.new({
-    id = id.from(_N, "DeleteSyncJobOutput"),
+    id = id.from(_N, "DeleteSyncJobResponse"),
     type = "structure",
     members = {
         state = schema.new({
@@ -1319,7 +1319,7 @@ M.DeleteSyncJobOutput = schema.new({
 })
 
 M.DeleteWorkspaceInput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceInput"),
+    id = id.from(_N, "DeleteWorkspaceRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -1336,7 +1336,7 @@ M.DeleteWorkspaceInput = schema.new({
 })
 
 M.DeleteWorkspaceOutput = schema.new({
-    id = id.from(_N, "DeleteWorkspaceOutput"),
+    id = id.from(_N, "DeleteWorkspaceResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -1349,7 +1349,7 @@ M.DeleteWorkspaceOutput = schema.new({
 })
 
 M.ExecuteQueryInput = schema.new({
-    id = id.from(_N, "ExecuteQueryInput"),
+    id = id.from(_N, "ExecuteQueryRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -1419,7 +1419,7 @@ M.Row = schema.new({
 })
 
 M.ExecuteQueryOutput = schema.new({
-    id = id.from(_N, "ExecuteQueryOutput"),
+    id = id.from(_N, "ExecuteQueryResponse"),
     type = "structure",
     members = {
         columnDescriptions = schema.new({
@@ -1462,7 +1462,7 @@ M.QueryTimeoutException = schema.new({
 })
 
 M.GetComponentTypeInput = schema.new({
-    id = id.from(_N, "GetComponentTypeInput"),
+    id = id.from(_N, "GetComponentTypeRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -1596,7 +1596,7 @@ M.Status = schema.new({
 })
 
 M.GetEntityInput = schema.new({
-    id = id.from(_N, "GetEntityInput"),
+    id = id.from(_N, "GetEntityRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -1725,7 +1725,7 @@ M.ComponentSummary = schema.new({
 })
 
 M.GetMetadataTransferJobInput = schema.new({
-    id = id.from(_N, "GetMetadataTransferJobInput"),
+    id = id.from(_N, "GetMetadataTransferJobRequest"),
     type = "structure",
     members = {
         metadataTransferJobId = schema.new({
@@ -1742,7 +1742,7 @@ M.GetMetadataTransferJobInput = schema.new({
 })
 
 M.GetMetadataTransferJobOutput = schema.new({
-    id = id.from(_N, "GetMetadataTransferJobOutput"),
+    id = id.from(_N, "GetMetadataTransferJobResponse"),
     type = "structure",
     members = {
         metadataTransferJobId = schema.new({
@@ -1843,7 +1843,7 @@ M.GetMetadataTransferJobOutput = schema.new({
 })
 
 M.GetPricingPlanInput = schema.new({
-    id = id.from(_N, "GetPricingPlanInput"),
+    id = id.from(_N, "GetPricingPlanRequest"),
     type = "structure",
 })
 
@@ -1927,7 +1927,7 @@ M.PricingPlan = schema.new({
 })
 
 M.GetPricingPlanOutput = schema.new({
-    id = id.from(_N, "GetPricingPlanOutput"),
+    id = id.from(_N, "GetPricingPlanResponse"),
     type = "structure",
     members = {
         currentPricingPlan = schema.new({
@@ -2024,7 +2024,7 @@ M.InterpolationParameters = schema.new({
 })
 
 M.GetSceneInput = schema.new({
-    id = id.from(_N, "GetSceneInput"),
+    id = id.from(_N, "GetSceneRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2070,7 +2070,7 @@ M.SceneError = schema.new({
 })
 
 M.GetSceneOutput = schema.new({
-    id = id.from(_N, "GetSceneOutput"),
+    id = id.from(_N, "GetSceneResponse"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2167,7 +2167,7 @@ M.GetSceneOutput = schema.new({
 })
 
 M.GetSyncJobInput = schema.new({
-    id = id.from(_N, "GetSyncJobInput"),
+    id = id.from(_N, "GetSyncJobRequest"),
     type = "structure",
     members = {
         syncSource = schema.new({
@@ -2213,7 +2213,7 @@ M.SyncJobStatus = schema.new({
 })
 
 M.GetSyncJobOutput = schema.new({
-    id = id.from(_N, "GetSyncJobOutput"),
+    id = id.from(_N, "GetSyncJobResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2284,7 +2284,7 @@ M.GetSyncJobOutput = schema.new({
 })
 
 M.GetWorkspaceInput = schema.new({
-    id = id.from(_N, "GetWorkspaceInput"),
+    id = id.from(_N, "GetWorkspaceRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2301,7 +2301,7 @@ M.GetWorkspaceInput = schema.new({
 })
 
 M.GetWorkspaceOutput = schema.new({
-    id = id.from(_N, "GetWorkspaceOutput"),
+    id = id.from(_N, "GetWorkspaceResponse"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2369,7 +2369,7 @@ M.GetWorkspaceOutput = schema.new({
 })
 
 M.ListComponentsInput = schema.new({
-    id = id.from(_N, "ListComponentsInput"),
+    id = id.from(_N, "ListComponentsRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2414,7 +2414,7 @@ M.ListComponentsInput = schema.new({
 })
 
 M.ListComponentsOutput = schema.new({
-    id = id.from(_N, "ListComponentsOutput"),
+    id = id.from(_N, "ListComponentsResponse"),
     type = "structure",
     members = {
         componentSummaries = schema.new({
@@ -2462,7 +2462,7 @@ M.ListComponentTypesFilter = schema.new({
 })
 
 M.ListComponentTypesInput = schema.new({
-    id = id.from(_N, "ListComponentTypesInput"),
+    id = id.from(_N, "ListComponentTypesRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2560,7 +2560,7 @@ M.ComponentTypeSummary = schema.new({
 })
 
 M.ListComponentTypesOutput = schema.new({
-    id = id.from(_N, "ListComponentTypesOutput"),
+    id = id.from(_N, "ListComponentTypesResponse"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2623,7 +2623,7 @@ M.ListEntitiesFilter = schema.new({
 })
 
 M.ListEntitiesInput = schema.new({
-    id = id.from(_N, "ListEntitiesInput"),
+    id = id.from(_N, "ListEntitiesRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2739,7 +2739,7 @@ M.EntitySummary = schema.new({
 })
 
 M.ListEntitiesOutput = schema.new({
-    id = id.from(_N, "ListEntitiesOutput"),
+    id = id.from(_N, "ListEntitiesResponse"),
     type = "structure",
     members = {
         entitySummaries = schema.new({
@@ -2778,7 +2778,7 @@ M.ListMetadataTransferJobsFilter = schema.new({
 })
 
 M.ListMetadataTransferJobsInput = schema.new({
-    id = id.from(_N, "ListMetadataTransferJobsInput"),
+    id = id.from(_N, "ListMetadataTransferJobsRequest"),
     type = "structure",
     members = {
         sourceType = schema.new({
@@ -2882,7 +2882,7 @@ M.MetadataTransferJobSummary = schema.new({
 })
 
 M.ListMetadataTransferJobsOutput = schema.new({
-    id = id.from(_N, "ListMetadataTransferJobsOutput"),
+    id = id.from(_N, "ListMetadataTransferJobsResponse"),
     type = "structure",
     members = {
         metadataTransferJobSummaries = schema.new({
@@ -2905,7 +2905,7 @@ M.ListMetadataTransferJobsOutput = schema.new({
 })
 
 M.ListPropertiesInput = schema.new({
-    id = id.from(_N, "ListPropertiesInput"),
+    id = id.from(_N, "ListPropertiesRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -2955,7 +2955,7 @@ M.ListPropertiesInput = schema.new({
 })
 
 M.ListScenesInput = schema.new({
-    id = id.from(_N, "ListScenesInput"),
+    id = id.from(_N, "ListScenesRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3042,7 +3042,7 @@ M.SceneSummary = schema.new({
 })
 
 M.ListScenesOutput = schema.new({
-    id = id.from(_N, "ListScenesOutput"),
+    id = id.from(_N, "ListScenesResponse"),
     type = "structure",
     members = {
         sceneSummaries = schema.new({
@@ -3062,7 +3062,7 @@ M.ListScenesOutput = schema.new({
 })
 
 M.ListSyncJobsInput = schema.new({
-    id = id.from(_N, "ListSyncJobsInput"),
+    id = id.from(_N, "ListSyncJobsRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3135,7 +3135,7 @@ M.SyncJobSummary = schema.new({
 })
 
 M.ListSyncJobsOutput = schema.new({
-    id = id.from(_N, "ListSyncJobsOutput"),
+    id = id.from(_N, "ListSyncJobsResponse"),
     type = "structure",
     members = {
         syncJobSummaries = schema.new({
@@ -3186,7 +3186,7 @@ M.SyncResourceFilter = schema.new({
 })
 
 M.ListSyncResourcesInput = schema.new({
-    id = id.from(_N, "ListSyncResourcesInput"),
+    id = id.from(_N, "ListSyncResourcesRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3290,7 +3290,7 @@ M.SyncResourceSummary = schema.new({
 })
 
 M.ListSyncResourcesOutput = schema.new({
-    id = id.from(_N, "ListSyncResourcesOutput"),
+    id = id.from(_N, "ListSyncResourcesResponse"),
     type = "structure",
     members = {
         syncResources = schema.new({
@@ -3310,7 +3310,7 @@ M.ListSyncResourcesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceARN = schema.new({
@@ -3338,7 +3338,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -3359,7 +3359,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListWorkspacesInput = schema.new({
-    id = id.from(_N, "ListWorkspacesInput"),
+    id = id.from(_N, "ListWorkspacesRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -3434,7 +3434,7 @@ M.WorkspaceSummary = schema.new({
 })
 
 M.ListWorkspacesOutput = schema.new({
-    id = id.from(_N, "ListWorkspacesOutput"),
+    id = id.from(_N, "ListWorkspacesResponse"),
     type = "structure",
     members = {
         workspaceSummaries = schema.new({
@@ -3454,7 +3454,7 @@ M.ListWorkspacesOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceARN = schema.new({
@@ -3481,7 +3481,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -3502,7 +3502,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceARN = schema.new({
@@ -3530,12 +3530,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateComponentTypeOutput = schema.new({
-    id = id.from(_N, "UpdateComponentTypeOutput"),
+    id = id.from(_N, "UpdateComponentTypeResponse"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3600,7 +3600,7 @@ M.ParentEntityUpdateRequest = schema.new({
 })
 
 M.UpdateEntityOutput = schema.new({
-    id = id.from(_N, "UpdateEntityOutput"),
+    id = id.from(_N, "UpdateEntityResponse"),
     type = "structure",
     members = {
         updateDateTime = schema.new({
@@ -3625,7 +3625,7 @@ M.UpdateEntityOutput = schema.new({
 })
 
 M.UpdatePricingPlanInput = schema.new({
-    id = id.from(_N, "UpdatePricingPlanInput"),
+    id = id.from(_N, "UpdatePricingPlanRequest"),
     type = "structure",
     members = {
         pricingMode = schema.new({
@@ -3648,7 +3648,7 @@ M.UpdatePricingPlanInput = schema.new({
 })
 
 M.UpdatePricingPlanOutput = schema.new({
-    id = id.from(_N, "UpdatePricingPlanOutput"),
+    id = id.from(_N, "UpdatePricingPlanResponse"),
     type = "structure",
     members = {
         currentPricingPlan = schema.new({
@@ -3672,7 +3672,7 @@ M.UpdatePricingPlanOutput = schema.new({
 })
 
 M.UpdateSceneInput = schema.new({
-    id = id.from(_N, "UpdateSceneInput"),
+    id = id.from(_N, "UpdateSceneRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3726,7 +3726,7 @@ M.UpdateSceneInput = schema.new({
 })
 
 M.UpdateSceneOutput = schema.new({
-    id = id.from(_N, "UpdateSceneOutput"),
+    id = id.from(_N, "UpdateSceneResponse"),
     type = "structure",
     members = {
         updateDateTime = schema.new({
@@ -3742,7 +3742,7 @@ M.UpdateSceneOutput = schema.new({
 })
 
 M.UpdateWorkspaceInput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceInput"),
+    id = id.from(_N, "UpdateWorkspaceRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -3777,7 +3777,7 @@ M.UpdateWorkspaceInput = schema.new({
 })
 
 M.UpdateWorkspaceOutput = schema.new({
-    id = id.from(_N, "UpdateWorkspaceOutput"),
+    id = id.from(_N, "UpdateWorkspaceResponse"),
     type = "structure",
     members = {
         updateDateTime = schema.new({
@@ -3980,7 +3980,7 @@ M.DataType = schema.new({
 })
 
 M.GetPropertyValueHistoryInput = schema.new({
-    id = id.from(_N, "GetPropertyValueHistoryInput"),
+    id = id.from(_N, "GetPropertyValueHistoryRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -4191,7 +4191,7 @@ M.BatchPutPropertyError = schema.new({
 })
 
 M.GetPropertyValueInput = schema.new({
-    id = id.from(_N, "GetPropertyValueInput"),
+    id = id.from(_N, "GetPropertyValueRequest"),
     type = "structure",
     members = {
         componentName = schema.new({
@@ -4267,7 +4267,7 @@ M.GetPropertyValueInput = schema.new({
 })
 
 M.BatchPutPropertyValuesInput = schema.new({
-    id = id.from(_N, "BatchPutPropertyValuesInput"),
+    id = id.from(_N, "BatchPutPropertyValuesRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -4294,7 +4294,7 @@ M.BatchPutPropertyValuesInput = schema.new({
 })
 
 M.GetPropertyValueHistoryOutput = schema.new({
-    id = id.from(_N, "GetPropertyValueHistoryOutput"),
+    id = id.from(_N, "GetPropertyValueHistoryResponse"),
     type = "structure",
     members = {
         propertyValues = schema.new({
@@ -4494,7 +4494,7 @@ M.PropertyDefinitionResponse = schema.new({
 })
 
 M.BatchPutPropertyValuesOutput = schema.new({
-    id = id.from(_N, "BatchPutPropertyValuesOutput"),
+    id = id.from(_N, "BatchPutPropertyValuesResponse"),
     type = "structure",
     members = {
         errorEntries = schema.new({
@@ -4511,7 +4511,7 @@ M.BatchPutPropertyValuesOutput = schema.new({
 })
 
 M.GetPropertyValueOutput = schema.new({
-    id = id.from(_N, "GetPropertyValueOutput"),
+    id = id.from(_N, "GetPropertyValueResponse"),
     type = "structure",
     members = {
         propertyValues = schema.new({
@@ -4533,13 +4533,13 @@ M.GetPropertyValueOutput = schema.new({
             type = "list",
             name = "tabularPropertyValues",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Document }),
         }),
     },
 })
 
 M.CreateComponentTypeInput = schema.new({
-    id = id.from(_N, "CreateComponentTypeInput"),
+    id = id.from(_N, "CreateComponentTypeRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -4631,7 +4631,7 @@ M.CreateComponentTypeInput = schema.new({
 })
 
 M.GetComponentTypeOutput = schema.new({
-    id = id.from(_N, "GetComponentTypeOutput"),
+    id = id.from(_N, "GetComponentTypeResponse"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -4765,7 +4765,7 @@ M.GetComponentTypeOutput = schema.new({
 })
 
 M.UpdateComponentTypeInput = schema.new({
-    id = id.from(_N, "UpdateComponentTypeInput"),
+    id = id.from(_N, "UpdateComponentTypeRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -5159,7 +5159,7 @@ M.CompositeComponentUpdateRequest = schema.new({
 })
 
 M.ListPropertiesOutput = schema.new({
-    id = id.from(_N, "ListPropertiesOutput"),
+    id = id.from(_N, "ListPropertiesResponse"),
     type = "structure",
     members = {
         propertySummaries = schema.new({
@@ -5182,7 +5182,7 @@ M.ListPropertiesOutput = schema.new({
 })
 
 M.GetEntityOutput = schema.new({
-    id = id.from(_N, "GetEntityOutput"),
+    id = id.from(_N, "GetEntityResponse"),
     type = "structure",
     members = {
         entityId = schema.new({
@@ -5297,7 +5297,7 @@ M.GetEntityOutput = schema.new({
 })
 
 M.CreateEntityInput = schema.new({
-    id = id.from(_N, "CreateEntityInput"),
+    id = id.from(_N, "CreateEntityRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -5365,7 +5365,7 @@ M.CreateEntityInput = schema.new({
 })
 
 M.UpdateEntityInput = schema.new({
-    id = id.from(_N, "UpdateEntityInput"),
+    id = id.from(_N, "UpdateEntityRequest"),
     type = "structure",
     members = {
         workspaceId = schema.new({
@@ -5425,5 +5425,19 @@ M.UpdateEntityInput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

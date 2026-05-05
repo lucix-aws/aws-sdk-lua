@@ -85,7 +85,7 @@ M.Tag = schema.new({
 })
 
 M.CreateProfileInput = schema.new({
-    id = id.from(_N, "CreateProfileInput"),
+    id = id.from(_N, "CreateProfileRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -255,7 +255,7 @@ M.ProfileDetail = schema.new({
 })
 
 M.CreateProfileOutput = schema.new({
-    id = id.from(_N, "CreateProfileOutput"),
+    id = id.from(_N, "ProfileDetailResponse"),
     type = "structure",
     members = {
         profile = schema.new({
@@ -361,7 +361,7 @@ M.Source = schema.new({
 })
 
 M.CreateTrustAnchorInput = schema.new({
-    id = id.from(_N, "CreateTrustAnchorInput"),
+    id = id.from(_N, "CreateTrustAnchorRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -513,7 +513,7 @@ M.TrustAnchorDetail = schema.new({
 })
 
 M.CreateTrustAnchorOutput = schema.new({
-    id = id.from(_N, "CreateTrustAnchorOutput"),
+    id = id.from(_N, "TrustAnchorDetailResponse"),
     type = "structure",
     members = {
         trustAnchor = schema.new({
@@ -576,7 +576,7 @@ M.CredentialSummary = schema.new({
 })
 
 M.DeleteCrlInput = schema.new({
-    id = id.from(_N, "DeleteCrlInput"),
+    id = id.from(_N, "ScalarCrlRequest"),
     type = "structure",
     members = {
         crlId = schema.new({
@@ -654,7 +654,7 @@ M.CrlDetail = schema.new({
 })
 
 M.DeleteCrlOutput = schema.new({
-    id = id.from(_N, "DeleteCrlOutput"),
+    id = id.from(_N, "CrlDetailResponse"),
     type = "structure",
     members = {
         crl = schema.new({
@@ -687,7 +687,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DisableCrlInput = schema.new({
-    id = id.from(_N, "DisableCrlInput"),
+    id = id.from(_N, "ScalarCrlRequest"),
     type = "structure",
     members = {
         crlId = schema.new({
@@ -704,7 +704,7 @@ M.DisableCrlInput = schema.new({
 })
 
 M.DisableCrlOutput = schema.new({
-    id = id.from(_N, "DisableCrlOutput"),
+    id = id.from(_N, "CrlDetailResponse"),
     type = "structure",
     members = {
         crl = schema.new({
@@ -721,7 +721,7 @@ M.DisableCrlOutput = schema.new({
 })
 
 M.EnableCrlInput = schema.new({
-    id = id.from(_N, "EnableCrlInput"),
+    id = id.from(_N, "ScalarCrlRequest"),
     type = "structure",
     members = {
         crlId = schema.new({
@@ -738,7 +738,7 @@ M.EnableCrlInput = schema.new({
 })
 
 M.EnableCrlOutput = schema.new({
-    id = id.from(_N, "EnableCrlOutput"),
+    id = id.from(_N, "CrlDetailResponse"),
     type = "structure",
     members = {
         crl = schema.new({
@@ -755,7 +755,7 @@ M.EnableCrlOutput = schema.new({
 })
 
 M.GetCrlInput = schema.new({
-    id = id.from(_N, "GetCrlInput"),
+    id = id.from(_N, "ScalarCrlRequest"),
     type = "structure",
     members = {
         crlId = schema.new({
@@ -772,7 +772,7 @@ M.GetCrlInput = schema.new({
 })
 
 M.GetCrlOutput = schema.new({
-    id = id.from(_N, "GetCrlOutput"),
+    id = id.from(_N, "CrlDetailResponse"),
     type = "structure",
     members = {
         crl = schema.new({
@@ -789,7 +789,7 @@ M.GetCrlOutput = schema.new({
 })
 
 M.ImportCrlInput = schema.new({
-    id = id.from(_N, "ImportCrlInput"),
+    id = id.from(_N, "ImportCrlRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -836,7 +836,7 @@ M.ImportCrlInput = schema.new({
 })
 
 M.ImportCrlOutput = schema.new({
-    id = id.from(_N, "ImportCrlOutput"),
+    id = id.from(_N, "CrlDetailResponse"),
     type = "structure",
     members = {
         crl = schema.new({
@@ -853,7 +853,7 @@ M.ImportCrlOutput = schema.new({
 })
 
 M.ListCrlsInput = schema.new({
-    id = id.from(_N, "ListCrlsInput"),
+    id = id.from(_N, "ListRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -878,7 +878,7 @@ M.ListCrlsInput = schema.new({
 })
 
 M.ListCrlsOutput = schema.new({
-    id = id.from(_N, "ListCrlsOutput"),
+    id = id.from(_N, "ListCrlsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -898,7 +898,7 @@ M.ListCrlsOutput = schema.new({
 })
 
 M.UpdateCrlInput = schema.new({
-    id = id.from(_N, "UpdateCrlInput"),
+    id = id.from(_N, "UpdateCrlRequest"),
     type = "structure",
     members = {
         crlId = schema.new({
@@ -927,7 +927,7 @@ M.UpdateCrlInput = schema.new({
 })
 
 M.UpdateCrlOutput = schema.new({
-    id = id.from(_N, "UpdateCrlOutput"),
+    id = id.from(_N, "CrlDetailResponse"),
     type = "structure",
     members = {
         crl = schema.new({
@@ -944,7 +944,7 @@ M.UpdateCrlOutput = schema.new({
 })
 
 M.DeleteAttributeMappingInput = schema.new({
-    id = id.from(_N, "DeleteAttributeMappingInput"),
+    id = id.from(_N, "DeleteAttributeMappingRequest"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -981,7 +981,7 @@ M.DeleteAttributeMappingInput = schema.new({
 })
 
 M.DeleteAttributeMappingOutput = schema.new({
-    id = id.from(_N, "DeleteAttributeMappingOutput"),
+    id = id.from(_N, "DeleteAttributeMappingResponse"),
     type = "structure",
     members = {
         profile = schema.new({
@@ -998,7 +998,7 @@ M.DeleteAttributeMappingOutput = schema.new({
 })
 
 M.DeleteProfileInput = schema.new({
-    id = id.from(_N, "DeleteProfileInput"),
+    id = id.from(_N, "ScalarProfileRequest"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -1015,7 +1015,7 @@ M.DeleteProfileInput = schema.new({
 })
 
 M.DeleteProfileOutput = schema.new({
-    id = id.from(_N, "DeleteProfileOutput"),
+    id = id.from(_N, "ProfileDetailResponse"),
     type = "structure",
     members = {
         profile = schema.new({
@@ -1029,7 +1029,7 @@ M.DeleteProfileOutput = schema.new({
 })
 
 M.DeleteTrustAnchorInput = schema.new({
-    id = id.from(_N, "DeleteTrustAnchorInput"),
+    id = id.from(_N, "ScalarTrustAnchorRequest"),
     type = "structure",
     members = {
         trustAnchorId = schema.new({
@@ -1046,7 +1046,7 @@ M.DeleteTrustAnchorInput = schema.new({
 })
 
 M.DeleteTrustAnchorOutput = schema.new({
-    id = id.from(_N, "DeleteTrustAnchorOutput"),
+    id = id.from(_N, "TrustAnchorDetailResponse"),
     type = "structure",
     members = {
         trustAnchor = schema.new({
@@ -1063,7 +1063,7 @@ M.DeleteTrustAnchorOutput = schema.new({
 })
 
 M.DisableProfileInput = schema.new({
-    id = id.from(_N, "DisableProfileInput"),
+    id = id.from(_N, "ScalarProfileRequest"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -1080,7 +1080,7 @@ M.DisableProfileInput = schema.new({
 })
 
 M.DisableProfileOutput = schema.new({
-    id = id.from(_N, "DisableProfileOutput"),
+    id = id.from(_N, "ProfileDetailResponse"),
     type = "structure",
     members = {
         profile = schema.new({
@@ -1094,7 +1094,7 @@ M.DisableProfileOutput = schema.new({
 })
 
 M.DisableTrustAnchorInput = schema.new({
-    id = id.from(_N, "DisableTrustAnchorInput"),
+    id = id.from(_N, "ScalarTrustAnchorRequest"),
     type = "structure",
     members = {
         trustAnchorId = schema.new({
@@ -1111,7 +1111,7 @@ M.DisableTrustAnchorInput = schema.new({
 })
 
 M.DisableTrustAnchorOutput = schema.new({
-    id = id.from(_N, "DisableTrustAnchorOutput"),
+    id = id.from(_N, "TrustAnchorDetailResponse"),
     type = "structure",
     members = {
         trustAnchor = schema.new({
@@ -1128,7 +1128,7 @@ M.DisableTrustAnchorOutput = schema.new({
 })
 
 M.EnableProfileInput = schema.new({
-    id = id.from(_N, "EnableProfileInput"),
+    id = id.from(_N, "ScalarProfileRequest"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -1145,7 +1145,7 @@ M.EnableProfileInput = schema.new({
 })
 
 M.EnableProfileOutput = schema.new({
-    id = id.from(_N, "EnableProfileOutput"),
+    id = id.from(_N, "ProfileDetailResponse"),
     type = "structure",
     members = {
         profile = schema.new({
@@ -1159,7 +1159,7 @@ M.EnableProfileOutput = schema.new({
 })
 
 M.EnableTrustAnchorInput = schema.new({
-    id = id.from(_N, "EnableTrustAnchorInput"),
+    id = id.from(_N, "ScalarTrustAnchorRequest"),
     type = "structure",
     members = {
         trustAnchorId = schema.new({
@@ -1176,7 +1176,7 @@ M.EnableTrustAnchorInput = schema.new({
 })
 
 M.EnableTrustAnchorOutput = schema.new({
-    id = id.from(_N, "EnableTrustAnchorOutput"),
+    id = id.from(_N, "TrustAnchorDetailResponse"),
     type = "structure",
     members = {
         trustAnchor = schema.new({
@@ -1193,7 +1193,7 @@ M.EnableTrustAnchorOutput = schema.new({
 })
 
 M.GetProfileInput = schema.new({
-    id = id.from(_N, "GetProfileInput"),
+    id = id.from(_N, "ScalarProfileRequest"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -1210,7 +1210,7 @@ M.GetProfileInput = schema.new({
 })
 
 M.GetProfileOutput = schema.new({
-    id = id.from(_N, "GetProfileOutput"),
+    id = id.from(_N, "ProfileDetailResponse"),
     type = "structure",
     members = {
         profile = schema.new({
@@ -1224,7 +1224,7 @@ M.GetProfileOutput = schema.new({
 })
 
 M.GetSubjectInput = schema.new({
-    id = id.from(_N, "GetSubjectInput"),
+    id = id.from(_N, "ScalarSubjectRequest"),
     type = "structure",
     members = {
         subjectId = schema.new({
@@ -1343,7 +1343,7 @@ M.SubjectDetail = schema.new({
 })
 
 M.GetSubjectOutput = schema.new({
-    id = id.from(_N, "GetSubjectOutput"),
+    id = id.from(_N, "SubjectDetailResponse"),
     type = "structure",
     members = {
         subject = schema.new({
@@ -1357,7 +1357,7 @@ M.GetSubjectOutput = schema.new({
 })
 
 M.GetTrustAnchorInput = schema.new({
-    id = id.from(_N, "GetTrustAnchorInput"),
+    id = id.from(_N, "ScalarTrustAnchorRequest"),
     type = "structure",
     members = {
         trustAnchorId = schema.new({
@@ -1374,7 +1374,7 @@ M.GetTrustAnchorInput = schema.new({
 })
 
 M.GetTrustAnchorOutput = schema.new({
-    id = id.from(_N, "GetTrustAnchorOutput"),
+    id = id.from(_N, "TrustAnchorDetailResponse"),
     type = "structure",
     members = {
         trustAnchor = schema.new({
@@ -1391,7 +1391,7 @@ M.GetTrustAnchorOutput = schema.new({
 })
 
 M.ListProfilesInput = schema.new({
-    id = id.from(_N, "ListProfilesInput"),
+    id = id.from(_N, "ListRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1416,7 +1416,7 @@ M.ListProfilesInput = schema.new({
 })
 
 M.ListProfilesOutput = schema.new({
-    id = id.from(_N, "ListProfilesOutput"),
+    id = id.from(_N, "ListProfilesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1436,7 +1436,7 @@ M.ListProfilesOutput = schema.new({
 })
 
 M.ListSubjectsInput = schema.new({
-    id = id.from(_N, "ListSubjectsInput"),
+    id = id.from(_N, "ListRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1519,7 +1519,7 @@ M.SubjectSummary = schema.new({
 })
 
 M.ListSubjectsOutput = schema.new({
-    id = id.from(_N, "ListSubjectsOutput"),
+    id = id.from(_N, "ListSubjectsResponse"),
     type = "structure",
     members = {
         subjects = schema.new({
@@ -1539,7 +1539,7 @@ M.ListSubjectsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1556,7 +1556,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1570,7 +1570,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTrustAnchorsInput = schema.new({
-    id = id.from(_N, "ListTrustAnchorsInput"),
+    id = id.from(_N, "ListRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1595,7 +1595,7 @@ M.ListTrustAnchorsInput = schema.new({
 })
 
 M.ListTrustAnchorsOutput = schema.new({
-    id = id.from(_N, "ListTrustAnchorsOutput"),
+    id = id.from(_N, "ListTrustAnchorsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1637,7 +1637,7 @@ M.NotificationSettingKey = schema.new({
 })
 
 M.PutAttributeMappingInput = schema.new({
-    id = id.from(_N, "PutAttributeMappingInput"),
+    id = id.from(_N, "PutAttributeMappingRequest"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -1673,7 +1673,7 @@ M.PutAttributeMappingInput = schema.new({
 })
 
 M.PutAttributeMappingOutput = schema.new({
-    id = id.from(_N, "PutAttributeMappingOutput"),
+    id = id.from(_N, "PutAttributeMappingResponse"),
     type = "structure",
     members = {
         profile = schema.new({
@@ -1690,7 +1690,7 @@ M.PutAttributeMappingOutput = schema.new({
 })
 
 M.UpdateProfileInput = schema.new({
-    id = id.from(_N, "UpdateProfileInput"),
+    id = id.from(_N, "UpdateProfileRequest"),
     type = "structure",
     members = {
         profileId = schema.new({
@@ -1745,7 +1745,7 @@ M.UpdateProfileInput = schema.new({
 })
 
 M.UpdateProfileOutput = schema.new({
-    id = id.from(_N, "UpdateProfileOutput"),
+    id = id.from(_N, "ProfileDetailResponse"),
     type = "structure",
     members = {
         profile = schema.new({
@@ -1759,7 +1759,7 @@ M.UpdateProfileOutput = schema.new({
 })
 
 M.PutNotificationSettingsInput = schema.new({
-    id = id.from(_N, "PutNotificationSettingsInput"),
+    id = id.from(_N, "PutNotificationSettingsRequest"),
     type = "structure",
     members = {
         trustAnchorId = schema.new({
@@ -1785,7 +1785,7 @@ M.PutNotificationSettingsInput = schema.new({
 })
 
 M.PutNotificationSettingsOutput = schema.new({
-    id = id.from(_N, "PutNotificationSettingsOutput"),
+    id = id.from(_N, "PutNotificationSettingsResponse"),
     type = "structure",
     members = {
         trustAnchor = schema.new({
@@ -1802,7 +1802,7 @@ M.PutNotificationSettingsOutput = schema.new({
 })
 
 M.ResetNotificationSettingsInput = schema.new({
-    id = id.from(_N, "ResetNotificationSettingsInput"),
+    id = id.from(_N, "ResetNotificationSettingsRequest"),
     type = "structure",
     members = {
         trustAnchorId = schema.new({
@@ -1828,7 +1828,7 @@ M.ResetNotificationSettingsInput = schema.new({
 })
 
 M.ResetNotificationSettingsOutput = schema.new({
-    id = id.from(_N, "ResetNotificationSettingsOutput"),
+    id = id.from(_N, "ResetNotificationSettingsResponse"),
     type = "structure",
     members = {
         trustAnchor = schema.new({
@@ -1845,7 +1845,7 @@ M.ResetNotificationSettingsOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1871,7 +1871,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -1892,7 +1892,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UpdateTrustAnchorInput = schema.new({
-    id = id.from(_N, "UpdateTrustAnchorInput"),
+    id = id.from(_N, "UpdateTrustAnchorRequest"),
     type = "structure",
     members = {
         trustAnchorId = schema.new({
@@ -1922,7 +1922,7 @@ M.UpdateTrustAnchorInput = schema.new({
 })
 
 M.UpdateTrustAnchorOutput = schema.new({
-    id = id.from(_N, "UpdateTrustAnchorOutput"),
+    id = id.from(_N, "TrustAnchorDetailResponse"),
     type = "structure",
     members = {
         trustAnchor = schema.new({
@@ -1939,7 +1939,7 @@ M.UpdateTrustAnchorOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1965,8 +1965,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

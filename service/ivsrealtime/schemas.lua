@@ -215,7 +215,7 @@ M.Video = schema.new({
 })
 
 M.CreateEncoderConfigurationInput = schema.new({
-    id = id.from(_N, "CreateEncoderConfigurationInput"),
+    id = id.from(_N, "CreateEncoderConfigurationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -280,7 +280,7 @@ M.EncoderConfiguration = schema.new({
 })
 
 M.CreateEncoderConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateEncoderConfigurationOutput"),
+    id = id.from(_N, "CreateEncoderConfigurationResponse"),
     type = "structure",
     members = {
         encoderConfiguration = schema.new({
@@ -734,7 +734,7 @@ M.ValidationException = schema.new({
 })
 
 M.CreateIngestConfigurationInput = schema.new({
-    id = id.from(_N, "CreateIngestConfigurationInput"),
+    id = id.from(_N, "CreateIngestConfigurationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -926,7 +926,7 @@ M.IngestConfiguration = schema.new({
 })
 
 M.CreateIngestConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateIngestConfigurationOutput"),
+    id = id.from(_N, "CreateIngestConfigurationResponse"),
     type = "structure",
     members = {
         ingestConfiguration = schema.new({
@@ -940,7 +940,7 @@ M.CreateIngestConfigurationOutput = schema.new({
 })
 
 M.CreateParticipantTokenInput = schema.new({
-    id = id.from(_N, "CreateParticipantTokenInput"),
+    id = id.from(_N, "CreateParticipantTokenRequest"),
     type = "structure",
     members = {
         stageArn = schema.new({
@@ -1038,7 +1038,7 @@ M.ParticipantToken = schema.new({
 })
 
 M.CreateParticipantTokenOutput = schema.new({
-    id = id.from(_N, "CreateParticipantTokenOutput"),
+    id = id.from(_N, "CreateParticipantTokenResponse"),
     type = "structure",
     members = {
         participantToken = schema.new({
@@ -1183,7 +1183,7 @@ M.ParticipantTokenConfiguration = schema.new({
 })
 
 M.CreateStageInput = schema.new({
-    id = id.from(_N, "CreateStageInput"),
+    id = id.from(_N, "CreateStageRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1299,7 +1299,7 @@ M.Stage = schema.new({
 })
 
 M.CreateStageOutput = schema.new({
-    id = id.from(_N, "CreateStageOutput"),
+    id = id.from(_N, "CreateStageResponse"),
     type = "structure",
     members = {
         stage = schema.new({
@@ -1336,7 +1336,7 @@ M.S3StorageConfiguration = schema.new({
 })
 
 M.CreateStorageConfigurationInput = schema.new({
-    id = id.from(_N, "CreateStorageConfigurationInput"),
+    id = id.from(_N, "CreateStorageConfigurationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1404,7 +1404,7 @@ M.StorageConfiguration = schema.new({
 })
 
 M.CreateStorageConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateStorageConfigurationOutput"),
+    id = id.from(_N, "CreateStorageConfigurationResponse"),
     type = "structure",
     members = {
         storageConfiguration = schema.new({
@@ -1418,7 +1418,7 @@ M.CreateStorageConfigurationOutput = schema.new({
 })
 
 M.DeleteEncoderConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteEncoderConfigurationInput"),
+    id = id.from(_N, "DeleteEncoderConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1434,12 +1434,12 @@ M.DeleteEncoderConfigurationInput = schema.new({
 })
 
 M.DeleteEncoderConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteEncoderConfigurationOutput"),
+    id = id.from(_N, "DeleteEncoderConfigurationResponse"),
     type = "structure",
 })
 
 M.DeleteIngestConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteIngestConfigurationInput"),
+    id = id.from(_N, "DeleteIngestConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1464,12 +1464,12 @@ M.DeleteIngestConfigurationInput = schema.new({
 })
 
 M.DeleteIngestConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteIngestConfigurationOutput"),
+    id = id.from(_N, "DeleteIngestConfigurationResponse"),
     type = "structure",
 })
 
 M.DeletePublicKeyInput = schema.new({
-    id = id.from(_N, "DeletePublicKeyInput"),
+    id = id.from(_N, "DeletePublicKeyRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1485,12 +1485,12 @@ M.DeletePublicKeyInput = schema.new({
 })
 
 M.DeletePublicKeyOutput = schema.new({
-    id = id.from(_N, "DeletePublicKeyOutput"),
+    id = id.from(_N, "DeletePublicKeyResponse"),
     type = "structure",
 })
 
 M.DeleteStageInput = schema.new({
-    id = id.from(_N, "DeleteStageInput"),
+    id = id.from(_N, "DeleteStageRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1506,12 +1506,12 @@ M.DeleteStageInput = schema.new({
 })
 
 M.DeleteStageOutput = schema.new({
-    id = id.from(_N, "DeleteStageOutput"),
+    id = id.from(_N, "DeleteStageResponse"),
     type = "structure",
 })
 
 M.DeleteStorageConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteStorageConfigurationInput"),
+    id = id.from(_N, "DeleteStorageConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1527,12 +1527,12 @@ M.DeleteStorageConfigurationInput = schema.new({
 })
 
 M.DeleteStorageConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteStorageConfigurationOutput"),
+    id = id.from(_N, "DeleteStorageConfigurationResponse"),
     type = "structure",
 })
 
 M.DisconnectParticipantInput = schema.new({
-    id = id.from(_N, "DisconnectParticipantInput"),
+    id = id.from(_N, "DisconnectParticipantRequest"),
     type = "structure",
     members = {
         stageArn = schema.new({
@@ -1563,12 +1563,12 @@ M.DisconnectParticipantInput = schema.new({
 })
 
 M.DisconnectParticipantOutput = schema.new({
-    id = id.from(_N, "DisconnectParticipantOutput"),
+    id = id.from(_N, "DisconnectParticipantResponse"),
     type = "structure",
 })
 
 M.GetCompositionInput = schema.new({
-    id = id.from(_N, "GetCompositionInput"),
+    id = id.from(_N, "GetCompositionRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2051,7 +2051,7 @@ M.Composition = schema.new({
 })
 
 M.GetCompositionOutput = schema.new({
-    id = id.from(_N, "GetCompositionOutput"),
+    id = id.from(_N, "GetCompositionResponse"),
     type = "structure",
     members = {
         composition = schema.new({
@@ -2065,7 +2065,7 @@ M.GetCompositionOutput = schema.new({
 })
 
 M.GetEncoderConfigurationInput = schema.new({
-    id = id.from(_N, "GetEncoderConfigurationInput"),
+    id = id.from(_N, "GetEncoderConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2081,7 +2081,7 @@ M.GetEncoderConfigurationInput = schema.new({
 })
 
 M.GetEncoderConfigurationOutput = schema.new({
-    id = id.from(_N, "GetEncoderConfigurationOutput"),
+    id = id.from(_N, "GetEncoderConfigurationResponse"),
     type = "structure",
     members = {
         encoderConfiguration = schema.new({
@@ -2095,7 +2095,7 @@ M.GetEncoderConfigurationOutput = schema.new({
 })
 
 M.GetIngestConfigurationInput = schema.new({
-    id = id.from(_N, "GetIngestConfigurationInput"),
+    id = id.from(_N, "GetIngestConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2111,7 +2111,7 @@ M.GetIngestConfigurationInput = schema.new({
 })
 
 M.GetIngestConfigurationOutput = schema.new({
-    id = id.from(_N, "GetIngestConfigurationOutput"),
+    id = id.from(_N, "GetIngestConfigurationResponse"),
     type = "structure",
     members = {
         ingestConfiguration = schema.new({
@@ -2125,7 +2125,7 @@ M.GetIngestConfigurationOutput = schema.new({
 })
 
 M.GetParticipantInput = schema.new({
-    id = id.from(_N, "GetParticipantInput"),
+    id = id.from(_N, "GetParticipantRequest"),
     type = "structure",
     members = {
         stageArn = schema.new({
@@ -2309,7 +2309,7 @@ M.Participant = schema.new({
 })
 
 M.GetParticipantOutput = schema.new({
-    id = id.from(_N, "GetParticipantOutput"),
+    id = id.from(_N, "GetParticipantResponse"),
     type = "structure",
     members = {
         participant = schema.new({
@@ -2323,7 +2323,7 @@ M.GetParticipantOutput = schema.new({
 })
 
 M.GetPublicKeyInput = schema.new({
-    id = id.from(_N, "GetPublicKeyInput"),
+    id = id.from(_N, "GetPublicKeyRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2378,7 +2378,7 @@ M.PublicKey = schema.new({
 })
 
 M.GetPublicKeyOutput = schema.new({
-    id = id.from(_N, "GetPublicKeyOutput"),
+    id = id.from(_N, "GetPublicKeyResponse"),
     type = "structure",
     members = {
         publicKey = schema.new({
@@ -2392,7 +2392,7 @@ M.GetPublicKeyOutput = schema.new({
 })
 
 M.GetStageInput = schema.new({
-    id = id.from(_N, "GetStageInput"),
+    id = id.from(_N, "GetStageRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2408,7 +2408,7 @@ M.GetStageInput = schema.new({
 })
 
 M.GetStageOutput = schema.new({
-    id = id.from(_N, "GetStageOutput"),
+    id = id.from(_N, "GetStageResponse"),
     type = "structure",
     members = {
         stage = schema.new({
@@ -2422,7 +2422,7 @@ M.GetStageOutput = schema.new({
 })
 
 M.GetStageSessionInput = schema.new({
-    id = id.from(_N, "GetStageSessionInput"),
+    id = id.from(_N, "GetStageSessionRequest"),
     type = "structure",
     members = {
         stageArn = schema.new({
@@ -2478,7 +2478,7 @@ M.StageSession = schema.new({
 })
 
 M.GetStageSessionOutput = schema.new({
-    id = id.from(_N, "GetStageSessionOutput"),
+    id = id.from(_N, "GetStageSessionResponse"),
     type = "structure",
     members = {
         stageSession = schema.new({
@@ -2492,7 +2492,7 @@ M.GetStageSessionOutput = schema.new({
 })
 
 M.GetStorageConfigurationInput = schema.new({
-    id = id.from(_N, "GetStorageConfigurationInput"),
+    id = id.from(_N, "GetStorageConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2508,7 +2508,7 @@ M.GetStorageConfigurationInput = schema.new({
 })
 
 M.GetStorageConfigurationOutput = schema.new({
-    id = id.from(_N, "GetStorageConfigurationOutput"),
+    id = id.from(_N, "GetStorageConfigurationResponse"),
     type = "structure",
     members = {
         storageConfiguration = schema.new({
@@ -2522,7 +2522,7 @@ M.GetStorageConfigurationOutput = schema.new({
 })
 
 M.ImportPublicKeyInput = schema.new({
-    id = id.from(_N, "ImportPublicKeyInput"),
+    id = id.from(_N, "ImportPublicKeyRequest"),
     type = "structure",
     members = {
         publicKeyMaterial = schema.new({
@@ -2552,7 +2552,7 @@ M.ImportPublicKeyInput = schema.new({
 })
 
 M.ImportPublicKeyOutput = schema.new({
-    id = id.from(_N, "ImportPublicKeyOutput"),
+    id = id.from(_N, "ImportPublicKeyResponse"),
     type = "structure",
     members = {
         publicKey = schema.new({
@@ -2566,7 +2566,7 @@ M.ImportPublicKeyOutput = schema.new({
 })
 
 M.ListCompositionsInput = schema.new({
-    id = id.from(_N, "ListCompositionsInput"),
+    id = id.from(_N, "ListCompositionsRequest"),
     type = "structure",
     members = {
         filterByStageArn = schema.new({
@@ -2710,7 +2710,7 @@ M.CompositionSummary = schema.new({
 })
 
 M.ListCompositionsOutput = schema.new({
-    id = id.from(_N, "ListCompositionsOutput"),
+    id = id.from(_N, "ListCompositionsResponse"),
     type = "structure",
     members = {
         compositions = schema.new({
@@ -2733,7 +2733,7 @@ M.ListCompositionsOutput = schema.new({
 })
 
 M.ListEncoderConfigurationsInput = schema.new({
-    id = id.from(_N, "ListEncoderConfigurationsInput"),
+    id = id.from(_N, "ListEncoderConfigurationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2782,7 +2782,7 @@ M.EncoderConfigurationSummary = schema.new({
 })
 
 M.ListEncoderConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListEncoderConfigurationsOutput"),
+    id = id.from(_N, "ListEncoderConfigurationsResponse"),
     type = "structure",
     members = {
         encoderConfigurations = schema.new({
@@ -2805,7 +2805,7 @@ M.ListEncoderConfigurationsOutput = schema.new({
 })
 
 M.ListIngestConfigurationsInput = schema.new({
-    id = id.from(_N, "ListIngestConfigurationsInput"),
+    id = id.from(_N, "ListIngestConfigurationsRequest"),
     type = "structure",
     members = {
         filterByStageArn = schema.new({
@@ -2909,7 +2909,7 @@ M.IngestConfigurationSummary = schema.new({
 })
 
 M.ListIngestConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListIngestConfigurationsOutput"),
+    id = id.from(_N, "ListIngestConfigurationsResponse"),
     type = "structure",
     members = {
         ingestConfigurations = schema.new({
@@ -2932,7 +2932,7 @@ M.ListIngestConfigurationsOutput = schema.new({
 })
 
 M.ListParticipantEventsInput = schema.new({
-    id = id.from(_N, "ListParticipantEventsInput"),
+    id = id.from(_N, "ListParticipantEventsRequest"),
     type = "structure",
     members = {
         stageArn = schema.new({
@@ -3090,7 +3090,7 @@ M.Event = schema.new({
 })
 
 M.ListParticipantEventsOutput = schema.new({
-    id = id.from(_N, "ListParticipantEventsOutput"),
+    id = id.from(_N, "ListParticipantEventsResponse"),
     type = "structure",
     members = {
         events = schema.new({
@@ -3113,7 +3113,7 @@ M.ListParticipantEventsOutput = schema.new({
 })
 
 M.ListParticipantReplicasInput = schema.new({
-    id = id.from(_N, "ListParticipantReplicasInput"),
+    id = id.from(_N, "ListParticipantReplicasRequest"),
     type = "structure",
     members = {
         sourceStageArn = schema.new({
@@ -3211,7 +3211,7 @@ M.ParticipantReplica = schema.new({
 })
 
 M.ListParticipantReplicasOutput = schema.new({
-    id = id.from(_N, "ListParticipantReplicasOutput"),
+    id = id.from(_N, "ListParticipantReplicasResponse"),
     type = "structure",
     members = {
         replicas = schema.new({
@@ -3234,7 +3234,7 @@ M.ListParticipantReplicasOutput = schema.new({
 })
 
 M.ListParticipantsInput = schema.new({
-    id = id.from(_N, "ListParticipantsInput"),
+    id = id.from(_N, "ListParticipantsRequest"),
     type = "structure",
     members = {
         stageArn = schema.new({
@@ -3386,7 +3386,7 @@ M.ParticipantSummary = schema.new({
 })
 
 M.ListParticipantsOutput = schema.new({
-    id = id.from(_N, "ListParticipantsOutput"),
+    id = id.from(_N, "ListParticipantsResponse"),
     type = "structure",
     members = {
         participants = schema.new({
@@ -3409,7 +3409,7 @@ M.ListParticipantsOutput = schema.new({
 })
 
 M.ListPublicKeysInput = schema.new({
-    id = id.from(_N, "ListPublicKeysInput"),
+    id = id.from(_N, "ListPublicKeysRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3455,7 +3455,7 @@ M.PublicKeySummary = schema.new({
 })
 
 M.ListPublicKeysOutput = schema.new({
-    id = id.from(_N, "ListPublicKeysOutput"),
+    id = id.from(_N, "ListPublicKeysResponse"),
     type = "structure",
     members = {
         publicKeys = schema.new({
@@ -3478,7 +3478,7 @@ M.ListPublicKeysOutput = schema.new({
 })
 
 M.ListStagesInput = schema.new({
-    id = id.from(_N, "ListStagesInput"),
+    id = id.from(_N, "ListStagesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3533,7 +3533,7 @@ M.StageSummary = schema.new({
 })
 
 M.ListStagesOutput = schema.new({
-    id = id.from(_N, "ListStagesOutput"),
+    id = id.from(_N, "ListStagesResponse"),
     type = "structure",
     members = {
         stages = schema.new({
@@ -3556,7 +3556,7 @@ M.ListStagesOutput = schema.new({
 })
 
 M.ListStageSessionsInput = schema.new({
-    id = id.from(_N, "ListStageSessionsInput"),
+    id = id.from(_N, "ListStageSessionsRequest"),
     type = "structure",
     members = {
         stageArn = schema.new({
@@ -3615,7 +3615,7 @@ M.StageSessionSummary = schema.new({
 })
 
 M.ListStageSessionsOutput = schema.new({
-    id = id.from(_N, "ListStageSessionsOutput"),
+    id = id.from(_N, "ListStageSessionsResponse"),
     type = "structure",
     members = {
         stageSessions = schema.new({
@@ -3638,7 +3638,7 @@ M.ListStageSessionsOutput = schema.new({
 })
 
 M.ListStorageConfigurationsInput = schema.new({
-    id = id.from(_N, "ListStorageConfigurationsInput"),
+    id = id.from(_N, "ListStorageConfigurationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3694,7 +3694,7 @@ M.StorageConfigurationSummary = schema.new({
 })
 
 M.ListStorageConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListStorageConfigurationsOutput"),
+    id = id.from(_N, "ListStorageConfigurationsResponse"),
     type = "structure",
     members = {
         storageConfigurations = schema.new({
@@ -3717,7 +3717,7 @@ M.ListStorageConfigurationsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3734,7 +3734,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -3752,7 +3752,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.StartCompositionInput = schema.new({
-    id = id.from(_N, "StartCompositionInput"),
+    id = id.from(_N, "StartCompositionRequest"),
     type = "structure",
     members = {
         stageArn = schema.new({
@@ -3802,7 +3802,7 @@ M.StartCompositionInput = schema.new({
 })
 
 M.StartCompositionOutput = schema.new({
-    id = id.from(_N, "StartCompositionOutput"),
+    id = id.from(_N, "StartCompositionResponse"),
     type = "structure",
     members = {
         composition = schema.new({
@@ -3816,7 +3816,7 @@ M.StartCompositionOutput = schema.new({
 })
 
 M.StartParticipantReplicationInput = schema.new({
-    id = id.from(_N, "StartParticipantReplicationInput"),
+    id = id.from(_N, "StartParticipantReplicationRequest"),
     type = "structure",
     members = {
         sourceStageArn = schema.new({
@@ -3864,7 +3864,7 @@ M.StartParticipantReplicationInput = schema.new({
 })
 
 M.StartParticipantReplicationOutput = schema.new({
-    id = id.from(_N, "StartParticipantReplicationOutput"),
+    id = id.from(_N, "StartParticipantReplicationResponse"),
     type = "structure",
     members = {
         accessControlAllowOrigin = schema.new({
@@ -3934,7 +3934,7 @@ M.StartParticipantReplicationOutput = schema.new({
 })
 
 M.StopCompositionInput = schema.new({
-    id = id.from(_N, "StopCompositionInput"),
+    id = id.from(_N, "StopCompositionRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3950,12 +3950,12 @@ M.StopCompositionInput = schema.new({
 })
 
 M.StopCompositionOutput = schema.new({
-    id = id.from(_N, "StopCompositionOutput"),
+    id = id.from(_N, "StopCompositionResponse"),
     type = "structure",
 })
 
 M.StopParticipantReplicationInput = schema.new({
-    id = id.from(_N, "StopParticipantReplicationInput"),
+    id = id.from(_N, "StopParticipantReplicationRequest"),
     type = "structure",
     members = {
         sourceStageArn = schema.new({
@@ -3989,7 +3989,7 @@ M.StopParticipantReplicationInput = schema.new({
 })
 
 M.StopParticipantReplicationOutput = schema.new({
-    id = id.from(_N, "StopParticipantReplicationOutput"),
+    id = id.from(_N, "StopParticipantReplicationResponse"),
     type = "structure",
     members = {
         accessControlAllowOrigin = schema.new({
@@ -4059,7 +4059,7 @@ M.StopParticipantReplicationOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4087,12 +4087,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4120,12 +4120,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateIngestConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateIngestConfigurationInput"),
+    id = id.from(_N, "UpdateIngestConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4156,7 +4156,7 @@ M.UpdateIngestConfigurationInput = schema.new({
 })
 
 M.UpdateIngestConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateIngestConfigurationOutput"),
+    id = id.from(_N, "UpdateIngestConfigurationResponse"),
     type = "structure",
     members = {
         ingestConfiguration = schema.new({
@@ -4170,7 +4170,7 @@ M.UpdateIngestConfigurationOutput = schema.new({
 })
 
 M.UpdateStageInput = schema.new({
-    id = id.from(_N, "UpdateStageInput"),
+    id = id.from(_N, "UpdateStageRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4199,7 +4199,7 @@ M.UpdateStageInput = schema.new({
 })
 
 M.UpdateStageOutput = schema.new({
-    id = id.from(_N, "UpdateStageOutput"),
+    id = id.from(_N, "UpdateStageResponse"),
     type = "structure",
     members = {
         stage = schema.new({
@@ -4211,5 +4211,19 @@ M.UpdateStageOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

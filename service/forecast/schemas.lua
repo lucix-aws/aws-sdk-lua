@@ -60,7 +60,7 @@ M.AdditionalDataset = schema.new({
             name = "Configuration",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -220,7 +220,7 @@ M.TimeAlignmentBoundary = schema.new({
 })
 
 M.CreateAutoPredictorInput = schema.new({
-    id = id.from(_N, "CreateAutoPredictorInput"),
+    id = id.from(_N, "CreateAutoPredictorRequest"),
     type = "structure",
     members = {
         PredictorName = schema.new({
@@ -315,7 +315,7 @@ M.CreateAutoPredictorInput = schema.new({
 })
 
 M.CreateAutoPredictorOutput = schema.new({
-    id = id.from(_N, "CreateAutoPredictorOutput"),
+    id = id.from(_N, "CreateAutoPredictorResponse"),
     type = "structure",
     members = {
         PredictorArn = schema.new({
@@ -441,7 +441,7 @@ M.Schema = schema.new({
 })
 
 M.CreateDatasetInput = schema.new({
-    id = id.from(_N, "CreateDatasetInput"),
+    id = id.from(_N, "CreateDatasetRequest"),
     type = "structure",
     members = {
         DatasetName = schema.new({
@@ -505,7 +505,7 @@ M.CreateDatasetInput = schema.new({
 })
 
 M.CreateDatasetOutput = schema.new({
-    id = id.from(_N, "CreateDatasetOutput"),
+    id = id.from(_N, "CreateDatasetResponse"),
     type = "structure",
     members = {
         DatasetArn = schema.new({
@@ -518,7 +518,7 @@ M.CreateDatasetOutput = schema.new({
 })
 
 M.CreateDatasetGroupInput = schema.new({
-    id = id.from(_N, "CreateDatasetGroupInput"),
+    id = id.from(_N, "CreateDatasetGroupRequest"),
     type = "structure",
     members = {
         DatasetGroupName = schema.new({
@@ -557,7 +557,7 @@ M.CreateDatasetGroupInput = schema.new({
 })
 
 M.CreateDatasetGroupOutput = schema.new({
-    id = id.from(_N, "CreateDatasetGroupOutput"),
+    id = id.from(_N, "CreateDatasetGroupResponse"),
     type = "structure",
     members = {
         DatasetGroupArn = schema.new({
@@ -618,7 +618,7 @@ M.DataSource = schema.new({
 })
 
 M.CreateDatasetImportJobInput = schema.new({
-    id = id.from(_N, "CreateDatasetImportJobInput"),
+    id = id.from(_N, "CreateDatasetImportJobRequest"),
     type = "structure",
     members = {
         DatasetImportJobName = schema.new({
@@ -699,7 +699,7 @@ M.CreateDatasetImportJobInput = schema.new({
 })
 
 M.CreateDatasetImportJobOutput = schema.new({
-    id = id.from(_N, "CreateDatasetImportJobOutput"),
+    id = id.from(_N, "CreateDatasetImportJobResponse"),
     type = "structure",
     members = {
         DatasetImportJobArn = schema.new({
@@ -737,7 +737,7 @@ M.ExplainabilityConfig = schema.new({
 })
 
 M.CreateExplainabilityInput = schema.new({
-    id = id.from(_N, "CreateExplainabilityInput"),
+    id = id.from(_N, "CreateExplainabilityRequest"),
     type = "structure",
     members = {
         ExplainabilityName = schema.new({
@@ -811,7 +811,7 @@ M.CreateExplainabilityInput = schema.new({
 })
 
 M.CreateExplainabilityOutput = schema.new({
-    id = id.from(_N, "CreateExplainabilityOutput"),
+    id = id.from(_N, "CreateExplainabilityResponse"),
     type = "structure",
     members = {
         ExplainabilityArn = schema.new({
@@ -841,7 +841,7 @@ M.DataDestination = schema.new({
 })
 
 M.CreateExplainabilityExportInput = schema.new({
-    id = id.from(_N, "CreateExplainabilityExportInput"),
+    id = id.from(_N, "CreateExplainabilityExportRequest"),
     type = "structure",
     members = {
         ExplainabilityExportName = schema.new({
@@ -889,7 +889,7 @@ M.CreateExplainabilityExportInput = schema.new({
 })
 
 M.CreateExplainabilityExportOutput = schema.new({
-    id = id.from(_N, "CreateExplainabilityExportOutput"),
+    id = id.from(_N, "CreateExplainabilityExportResponse"),
     type = "structure",
     members = {
         ExplainabilityExportArn = schema.new({
@@ -943,7 +943,7 @@ M.TimeSeriesSelector = schema.new({
 })
 
 M.CreateForecastInput = schema.new({
-    id = id.from(_N, "CreateForecastInput"),
+    id = id.from(_N, "CreateForecastRequest"),
     type = "structure",
     members = {
         ForecastName = schema.new({
@@ -989,7 +989,7 @@ M.CreateForecastInput = schema.new({
 })
 
 M.CreateForecastOutput = schema.new({
-    id = id.from(_N, "CreateForecastOutput"),
+    id = id.from(_N, "CreateForecastResponse"),
     type = "structure",
     members = {
         ForecastArn = schema.new({
@@ -1002,7 +1002,7 @@ M.CreateForecastOutput = schema.new({
 })
 
 M.CreateForecastExportJobInput = schema.new({
-    id = id.from(_N, "CreateForecastExportJobInput"),
+    id = id.from(_N, "CreateForecastExportJobRequest"),
     type = "structure",
     members = {
         ForecastExportJobName = schema.new({
@@ -1050,7 +1050,7 @@ M.CreateForecastExportJobInput = schema.new({
 })
 
 M.CreateForecastExportJobOutput = schema.new({
-    id = id.from(_N, "CreateForecastExportJobOutput"),
+    id = id.from(_N, "CreateForecastExportJobResponse"),
     type = "structure",
     members = {
         ForecastExportJobArn = schema.new({
@@ -1063,7 +1063,7 @@ M.CreateForecastExportJobOutput = schema.new({
 })
 
 M.CreateMonitorInput = schema.new({
-    id = id.from(_N, "CreateMonitorInput"),
+    id = id.from(_N, "CreateMonitorRequest"),
     type = "structure",
     members = {
         MonitorName = schema.new({
@@ -1095,7 +1095,7 @@ M.CreateMonitorInput = schema.new({
 })
 
 M.CreateMonitorOutput = schema.new({
-    id = id.from(_N, "CreateMonitorOutput"),
+    id = id.from(_N, "CreateMonitorResponse"),
     type = "structure",
     members = {
         MonitorArn = schema.new({
@@ -1400,7 +1400,7 @@ M.InputDataConfig = schema.new({
 })
 
 M.CreatePredictorInput = schema.new({
-    id = id.from(_N, "CreatePredictorInput"),
+    id = id.from(_N, "CreatePredictorRequest"),
     type = "structure",
     members = {
         PredictorName = schema.new({
@@ -1518,7 +1518,7 @@ M.CreatePredictorInput = schema.new({
 })
 
 M.CreatePredictorOutput = schema.new({
-    id = id.from(_N, "CreatePredictorOutput"),
+    id = id.from(_N, "CreatePredictorResponse"),
     type = "structure",
     members = {
         PredictorArn = schema.new({
@@ -1531,7 +1531,7 @@ M.CreatePredictorOutput = schema.new({
 })
 
 M.CreatePredictorBacktestExportJobInput = schema.new({
-    id = id.from(_N, "CreatePredictorBacktestExportJobInput"),
+    id = id.from(_N, "CreatePredictorBacktestExportJobRequest"),
     type = "structure",
     members = {
         PredictorBacktestExportJobName = schema.new({
@@ -1579,7 +1579,7 @@ M.CreatePredictorBacktestExportJobInput = schema.new({
 })
 
 M.CreatePredictorBacktestExportJobOutput = schema.new({
-    id = id.from(_N, "CreatePredictorBacktestExportJobOutput"),
+    id = id.from(_N, "CreatePredictorBacktestExportJobResponse"),
     type = "structure",
     members = {
         PredictorBacktestExportJobArn = schema.new({
@@ -1592,7 +1592,7 @@ M.CreatePredictorBacktestExportJobOutput = schema.new({
 })
 
 M.CreateWhatIfAnalysisInput = schema.new({
-    id = id.from(_N, "CreateWhatIfAnalysisInput"),
+    id = id.from(_N, "CreateWhatIfAnalysisRequest"),
     type = "structure",
     members = {
         WhatIfAnalysisName = schema.new({
@@ -1631,7 +1631,7 @@ M.CreateWhatIfAnalysisInput = schema.new({
 })
 
 M.CreateWhatIfAnalysisOutput = schema.new({
-    id = id.from(_N, "CreateWhatIfAnalysisOutput"),
+    id = id.from(_N, "CreateWhatIfAnalysisResponse"),
     type = "structure",
     members = {
         WhatIfAnalysisArn = schema.new({
@@ -1738,7 +1738,7 @@ M.TimeSeriesTransformation = schema.new({
 })
 
 M.CreateWhatIfForecastInput = schema.new({
-    id = id.from(_N, "CreateWhatIfForecastInput"),
+    id = id.from(_N, "CreateWhatIfForecastRequest"),
     type = "structure",
     members = {
         WhatIfForecastName = schema.new({
@@ -1784,7 +1784,7 @@ M.CreateWhatIfForecastInput = schema.new({
 })
 
 M.CreateWhatIfForecastOutput = schema.new({
-    id = id.from(_N, "CreateWhatIfForecastOutput"),
+    id = id.from(_N, "CreateWhatIfForecastResponse"),
     type = "structure",
     members = {
         WhatIfForecastArn = schema.new({
@@ -1797,7 +1797,7 @@ M.CreateWhatIfForecastOutput = schema.new({
 })
 
 M.CreateWhatIfForecastExportInput = schema.new({
-    id = id.from(_N, "CreateWhatIfForecastExportInput"),
+    id = id.from(_N, "CreateWhatIfForecastExportRequest"),
     type = "structure",
     members = {
         WhatIfForecastExportName = schema.new({
@@ -1846,7 +1846,7 @@ M.CreateWhatIfForecastExportInput = schema.new({
 })
 
 M.CreateWhatIfForecastExportOutput = schema.new({
-    id = id.from(_N, "CreateWhatIfForecastExportOutput"),
+    id = id.from(_N, "CreateWhatIfForecastExportResponse"),
     type = "structure",
     members = {
         WhatIfForecastExportArn = schema.new({
@@ -1859,7 +1859,7 @@ M.CreateWhatIfForecastExportOutput = schema.new({
 })
 
 M.DeleteDatasetInput = schema.new({
-    id = id.from(_N, "DeleteDatasetInput"),
+    id = id.from(_N, "DeleteDatasetRequest"),
     type = "structure",
     members = {
         DatasetArn = schema.new({
@@ -1875,12 +1875,12 @@ M.DeleteDatasetInput = schema.new({
 })
 
 M.DeleteDatasetOutput = schema.new({
-    id = id.from(_N, "DeleteDatasetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDatasetGroupInput = schema.new({
-    id = id.from(_N, "DeleteDatasetGroupInput"),
+    id = id.from(_N, "DeleteDatasetGroupRequest"),
     type = "structure",
     members = {
         DatasetGroupArn = schema.new({
@@ -1896,12 +1896,12 @@ M.DeleteDatasetGroupInput = schema.new({
 })
 
 M.DeleteDatasetGroupOutput = schema.new({
-    id = id.from(_N, "DeleteDatasetGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDatasetImportJobInput = schema.new({
-    id = id.from(_N, "DeleteDatasetImportJobInput"),
+    id = id.from(_N, "DeleteDatasetImportJobRequest"),
     type = "structure",
     members = {
         DatasetImportJobArn = schema.new({
@@ -1917,12 +1917,12 @@ M.DeleteDatasetImportJobInput = schema.new({
 })
 
 M.DeleteDatasetImportJobOutput = schema.new({
-    id = id.from(_N, "DeleteDatasetImportJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteExplainabilityInput = schema.new({
-    id = id.from(_N, "DeleteExplainabilityInput"),
+    id = id.from(_N, "DeleteExplainabilityRequest"),
     type = "structure",
     members = {
         ExplainabilityArn = schema.new({
@@ -1938,12 +1938,12 @@ M.DeleteExplainabilityInput = schema.new({
 })
 
 M.DeleteExplainabilityOutput = schema.new({
-    id = id.from(_N, "DeleteExplainabilityOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteExplainabilityExportInput = schema.new({
-    id = id.from(_N, "DeleteExplainabilityExportInput"),
+    id = id.from(_N, "DeleteExplainabilityExportRequest"),
     type = "structure",
     members = {
         ExplainabilityExportArn = schema.new({
@@ -1959,12 +1959,12 @@ M.DeleteExplainabilityExportInput = schema.new({
 })
 
 M.DeleteExplainabilityExportOutput = schema.new({
-    id = id.from(_N, "DeleteExplainabilityExportOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteForecastInput = schema.new({
-    id = id.from(_N, "DeleteForecastInput"),
+    id = id.from(_N, "DeleteForecastRequest"),
     type = "structure",
     members = {
         ForecastArn = schema.new({
@@ -1980,12 +1980,12 @@ M.DeleteForecastInput = schema.new({
 })
 
 M.DeleteForecastOutput = schema.new({
-    id = id.from(_N, "DeleteForecastOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteForecastExportJobInput = schema.new({
-    id = id.from(_N, "DeleteForecastExportJobInput"),
+    id = id.from(_N, "DeleteForecastExportJobRequest"),
     type = "structure",
     members = {
         ForecastExportJobArn = schema.new({
@@ -2001,12 +2001,12 @@ M.DeleteForecastExportJobInput = schema.new({
 })
 
 M.DeleteForecastExportJobOutput = schema.new({
-    id = id.from(_N, "DeleteForecastExportJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMonitorInput = schema.new({
-    id = id.from(_N, "DeleteMonitorInput"),
+    id = id.from(_N, "DeleteMonitorRequest"),
     type = "structure",
     members = {
         MonitorArn = schema.new({
@@ -2022,12 +2022,12 @@ M.DeleteMonitorInput = schema.new({
 })
 
 M.DeleteMonitorOutput = schema.new({
-    id = id.from(_N, "DeleteMonitorOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeletePredictorInput = schema.new({
-    id = id.from(_N, "DeletePredictorInput"),
+    id = id.from(_N, "DeletePredictorRequest"),
     type = "structure",
     members = {
         PredictorArn = schema.new({
@@ -2043,12 +2043,12 @@ M.DeletePredictorInput = schema.new({
 })
 
 M.DeletePredictorOutput = schema.new({
-    id = id.from(_N, "DeletePredictorOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeletePredictorBacktestExportJobInput = schema.new({
-    id = id.from(_N, "DeletePredictorBacktestExportJobInput"),
+    id = id.from(_N, "DeletePredictorBacktestExportJobRequest"),
     type = "structure",
     members = {
         PredictorBacktestExportJobArn = schema.new({
@@ -2064,12 +2064,12 @@ M.DeletePredictorBacktestExportJobInput = schema.new({
 })
 
 M.DeletePredictorBacktestExportJobOutput = schema.new({
-    id = id.from(_N, "DeletePredictorBacktestExportJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteResourceTreeInput = schema.new({
-    id = id.from(_N, "DeleteResourceTreeInput"),
+    id = id.from(_N, "DeleteResourceTreeRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2085,12 +2085,12 @@ M.DeleteResourceTreeInput = schema.new({
 })
 
 M.DeleteResourceTreeOutput = schema.new({
-    id = id.from(_N, "DeleteResourceTreeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteWhatIfAnalysisInput = schema.new({
-    id = id.from(_N, "DeleteWhatIfAnalysisInput"),
+    id = id.from(_N, "DeleteWhatIfAnalysisRequest"),
     type = "structure",
     members = {
         WhatIfAnalysisArn = schema.new({
@@ -2106,12 +2106,12 @@ M.DeleteWhatIfAnalysisInput = schema.new({
 })
 
 M.DeleteWhatIfAnalysisOutput = schema.new({
-    id = id.from(_N, "DeleteWhatIfAnalysisOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteWhatIfForecastInput = schema.new({
-    id = id.from(_N, "DeleteWhatIfForecastInput"),
+    id = id.from(_N, "DeleteWhatIfForecastRequest"),
     type = "structure",
     members = {
         WhatIfForecastArn = schema.new({
@@ -2127,12 +2127,12 @@ M.DeleteWhatIfForecastInput = schema.new({
 })
 
 M.DeleteWhatIfForecastOutput = schema.new({
-    id = id.from(_N, "DeleteWhatIfForecastOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteWhatIfForecastExportInput = schema.new({
-    id = id.from(_N, "DeleteWhatIfForecastExportInput"),
+    id = id.from(_N, "DeleteWhatIfForecastExportRequest"),
     type = "structure",
     members = {
         WhatIfForecastExportArn = schema.new({
@@ -2148,12 +2148,12 @@ M.DeleteWhatIfForecastExportInput = schema.new({
 })
 
 M.DeleteWhatIfForecastExportOutput = schema.new({
-    id = id.from(_N, "DeleteWhatIfForecastExportOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeAutoPredictorInput = schema.new({
-    id = id.from(_N, "DescribeAutoPredictorInput"),
+    id = id.from(_N, "DescribeAutoPredictorRequest"),
     type = "structure",
     members = {
         PredictorArn = schema.new({
@@ -2226,7 +2226,7 @@ M.ReferencePredictorSummary = schema.new({
 })
 
 M.DescribeAutoPredictorOutput = schema.new({
-    id = id.from(_N, "DescribeAutoPredictorOutput"),
+    id = id.from(_N, "DescribeAutoPredictorResponse"),
     type = "structure",
     members = {
         PredictorArn = schema.new({
@@ -2356,7 +2356,7 @@ M.DescribeAutoPredictorOutput = schema.new({
 })
 
 M.DescribeDatasetInput = schema.new({
-    id = id.from(_N, "DescribeDatasetInput"),
+    id = id.from(_N, "DescribeDatasetRequest"),
     type = "structure",
     members = {
         DatasetArn = schema.new({
@@ -2372,7 +2372,7 @@ M.DescribeDatasetInput = schema.new({
 })
 
 M.DescribeDatasetOutput = schema.new({
-    id = id.from(_N, "DescribeDatasetOutput"),
+    id = id.from(_N, "DescribeDatasetResponse"),
     type = "structure",
     members = {
         DatasetArn = schema.new({
@@ -2441,7 +2441,7 @@ M.DescribeDatasetOutput = schema.new({
 })
 
 M.DescribeDatasetGroupInput = schema.new({
-    id = id.from(_N, "DescribeDatasetGroupInput"),
+    id = id.from(_N, "DescribeDatasetGroupRequest"),
     type = "structure",
     members = {
         DatasetGroupArn = schema.new({
@@ -2457,7 +2457,7 @@ M.DescribeDatasetGroupInput = schema.new({
 })
 
 M.DescribeDatasetGroupOutput = schema.new({
-    id = id.from(_N, "DescribeDatasetGroupOutput"),
+    id = id.from(_N, "DescribeDatasetGroupResponse"),
     type = "structure",
     members = {
         DatasetGroupName = schema.new({
@@ -2507,7 +2507,7 @@ M.DescribeDatasetGroupOutput = schema.new({
 })
 
 M.DescribeDatasetImportJobInput = schema.new({
-    id = id.from(_N, "DescribeDatasetImportJobInput"),
+    id = id.from(_N, "DescribeDatasetImportJobRequest"),
     type = "structure",
     members = {
         DatasetImportJobArn = schema.new({
@@ -2602,7 +2602,7 @@ M.Statistics = schema.new({
 })
 
 M.DescribeDatasetImportJobOutput = schema.new({
-    id = id.from(_N, "DescribeDatasetImportJobOutput"),
+    id = id.from(_N, "DescribeDatasetImportJobResponse"),
     type = "structure",
     members = {
         DatasetImportJobName = schema.new({
@@ -2717,7 +2717,7 @@ M.DescribeDatasetImportJobOutput = schema.new({
 })
 
 M.DescribeExplainabilityInput = schema.new({
-    id = id.from(_N, "DescribeExplainabilityInput"),
+    id = id.from(_N, "DescribeExplainabilityRequest"),
     type = "structure",
     members = {
         ExplainabilityArn = schema.new({
@@ -2733,7 +2733,7 @@ M.DescribeExplainabilityInput = schema.new({
 })
 
 M.DescribeExplainabilityOutput = schema.new({
-    id = id.from(_N, "DescribeExplainabilityOutput"),
+    id = id.from(_N, "DescribeExplainabilityResponse"),
     type = "structure",
     members = {
         ExplainabilityArn = schema.new({
@@ -2827,7 +2827,7 @@ M.DescribeExplainabilityOutput = schema.new({
 })
 
 M.DescribeExplainabilityExportInput = schema.new({
-    id = id.from(_N, "DescribeExplainabilityExportInput"),
+    id = id.from(_N, "DescribeExplainabilityExportRequest"),
     type = "structure",
     members = {
         ExplainabilityExportArn = schema.new({
@@ -2843,7 +2843,7 @@ M.DescribeExplainabilityExportInput = schema.new({
 })
 
 M.DescribeExplainabilityExportOutput = schema.new({
-    id = id.from(_N, "DescribeExplainabilityExportOutput"),
+    id = id.from(_N, "DescribeExplainabilityExportResponse"),
     type = "structure",
     members = {
         ExplainabilityExportArn = schema.new({
@@ -2905,7 +2905,7 @@ M.DescribeExplainabilityExportOutput = schema.new({
 })
 
 M.DescribeForecastInput = schema.new({
-    id = id.from(_N, "DescribeForecastInput"),
+    id = id.from(_N, "DescribeForecastRequest"),
     type = "structure",
     members = {
         ForecastArn = schema.new({
@@ -2921,7 +2921,7 @@ M.DescribeForecastInput = schema.new({
 })
 
 M.DescribeForecastOutput = schema.new({
-    id = id.from(_N, "DescribeForecastOutput"),
+    id = id.from(_N, "DescribeForecastResponse"),
     type = "structure",
     members = {
         ForecastArn = schema.new({
@@ -2996,7 +2996,7 @@ M.DescribeForecastOutput = schema.new({
 })
 
 M.DescribeForecastExportJobInput = schema.new({
-    id = id.from(_N, "DescribeForecastExportJobInput"),
+    id = id.from(_N, "DescribeForecastExportJobRequest"),
     type = "structure",
     members = {
         ForecastExportJobArn = schema.new({
@@ -3012,7 +3012,7 @@ M.DescribeForecastExportJobInput = schema.new({
 })
 
 M.DescribeForecastExportJobOutput = schema.new({
-    id = id.from(_N, "DescribeForecastExportJobOutput"),
+    id = id.from(_N, "DescribeForecastExportJobResponse"),
     type = "structure",
     members = {
         ForecastExportJobArn = schema.new({
@@ -3074,7 +3074,7 @@ M.DescribeForecastExportJobOutput = schema.new({
 })
 
 M.DescribeMonitorInput = schema.new({
-    id = id.from(_N, "DescribeMonitorInput"),
+    id = id.from(_N, "DescribeMonitorRequest"),
     type = "structure",
     members = {
         MonitorArn = schema.new({
@@ -3137,7 +3137,7 @@ M.Baseline = schema.new({
 })
 
 M.DescribeMonitorOutput = schema.new({
-    id = id.from(_N, "DescribeMonitorOutput"),
+    id = id.from(_N, "DescribeMonitorResponse"),
     type = "structure",
     members = {
         MonitorName = schema.new({
@@ -3211,7 +3211,7 @@ M.DescribeMonitorOutput = schema.new({
 })
 
 M.DescribePredictorInput = schema.new({
-    id = id.from(_N, "DescribePredictorInput"),
+    id = id.from(_N, "DescribePredictorRequest"),
     type = "structure",
     members = {
         PredictorArn = schema.new({
@@ -3292,7 +3292,7 @@ M.PredictorExecutionDetails = schema.new({
 })
 
 M.DescribePredictorOutput = schema.new({
-    id = id.from(_N, "DescribePredictorOutput"),
+    id = id.from(_N, "DescribePredictorResponse"),
     type = "structure",
     members = {
         PredictorArn = schema.new({
@@ -3454,7 +3454,7 @@ M.DescribePredictorOutput = schema.new({
 })
 
 M.DescribePredictorBacktestExportJobInput = schema.new({
-    id = id.from(_N, "DescribePredictorBacktestExportJobInput"),
+    id = id.from(_N, "DescribePredictorBacktestExportJobRequest"),
     type = "structure",
     members = {
         PredictorBacktestExportJobArn = schema.new({
@@ -3470,7 +3470,7 @@ M.DescribePredictorBacktestExportJobInput = schema.new({
 })
 
 M.DescribePredictorBacktestExportJobOutput = schema.new({
-    id = id.from(_N, "DescribePredictorBacktestExportJobOutput"),
+    id = id.from(_N, "DescribePredictorBacktestExportJobResponse"),
     type = "structure",
     members = {
         PredictorBacktestExportJobArn = schema.new({
@@ -3532,7 +3532,7 @@ M.DescribePredictorBacktestExportJobOutput = schema.new({
 })
 
 M.DescribeWhatIfAnalysisInput = schema.new({
-    id = id.from(_N, "DescribeWhatIfAnalysisInput"),
+    id = id.from(_N, "DescribeWhatIfAnalysisRequest"),
     type = "structure",
     members = {
         WhatIfAnalysisArn = schema.new({
@@ -3548,7 +3548,7 @@ M.DescribeWhatIfAnalysisInput = schema.new({
 })
 
 M.DescribeWhatIfAnalysisOutput = schema.new({
-    id = id.from(_N, "DescribeWhatIfAnalysisOutput"),
+    id = id.from(_N, "DescribeWhatIfAnalysisResponse"),
     type = "structure",
     members = {
         WhatIfAnalysisName = schema.new({
@@ -3610,7 +3610,7 @@ M.DescribeWhatIfAnalysisOutput = schema.new({
 })
 
 M.DescribeWhatIfForecastInput = schema.new({
-    id = id.from(_N, "DescribeWhatIfForecastInput"),
+    id = id.from(_N, "DescribeWhatIfForecastRequest"),
     type = "structure",
     members = {
         WhatIfForecastArn = schema.new({
@@ -3626,7 +3626,7 @@ M.DescribeWhatIfForecastInput = schema.new({
 })
 
 M.DescribeWhatIfForecastOutput = schema.new({
-    id = id.from(_N, "DescribeWhatIfForecastOutput"),
+    id = id.from(_N, "DescribeWhatIfForecastResponse"),
     type = "structure",
     members = {
         WhatIfForecastName = schema.new({
@@ -3702,7 +3702,7 @@ M.DescribeWhatIfForecastOutput = schema.new({
 })
 
 M.DescribeWhatIfForecastExportInput = schema.new({
-    id = id.from(_N, "DescribeWhatIfForecastExportInput"),
+    id = id.from(_N, "DescribeWhatIfForecastExportRequest"),
     type = "structure",
     members = {
         WhatIfForecastExportArn = schema.new({
@@ -3718,7 +3718,7 @@ M.DescribeWhatIfForecastExportInput = schema.new({
 })
 
 M.DescribeWhatIfForecastExportOutput = schema.new({
-    id = id.from(_N, "DescribeWhatIfForecastExportOutput"),
+    id = id.from(_N, "DescribeWhatIfForecastExportResponse"),
     type = "structure",
     members = {
         WhatIfForecastExportArn = schema.new({
@@ -3787,7 +3787,7 @@ M.DescribeWhatIfForecastExportOutput = schema.new({
 })
 
 M.GetAccuracyMetricsInput = schema.new({
-    id = id.from(_N, "GetAccuracyMetricsInput"),
+    id = id.from(_N, "GetAccuracyMetricsRequest"),
     type = "structure",
     members = {
         PredictorArn = schema.new({
@@ -3950,7 +3950,7 @@ M.EvaluationResult = schema.new({
 })
 
 M.GetAccuracyMetricsOutput = schema.new({
-    id = id.from(_N, "GetAccuracyMetricsOutput"),
+    id = id.from(_N, "GetAccuracyMetricsResponse"),
     type = "structure",
     members = {
         PredictorEvaluationResults = schema.new({
@@ -3998,7 +3998,7 @@ M.InvalidNextTokenException = schema.new({
 })
 
 M.ListDatasetGroupsInput = schema.new({
-    id = id.from(_N, "ListDatasetGroupsInput"),
+    id = id.from(_N, "ListDatasetGroupsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4048,7 +4048,7 @@ M.DatasetGroupSummary = schema.new({
 })
 
 M.ListDatasetGroupsOutput = schema.new({
-    id = id.from(_N, "ListDatasetGroupsOutput"),
+    id = id.from(_N, "ListDatasetGroupsResponse"),
     type = "structure",
     members = {
         DatasetGroups = schema.new({
@@ -4102,7 +4102,7 @@ M.Filter = schema.new({
 })
 
 M.ListDatasetImportJobsInput = schema.new({
-    id = id.from(_N, "ListDatasetImportJobsInput"),
+    id = id.from(_N, "ListDatasetImportJobsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4184,7 +4184,7 @@ M.DatasetImportJobSummary = schema.new({
 })
 
 M.ListDatasetImportJobsOutput = schema.new({
-    id = id.from(_N, "ListDatasetImportJobsOutput"),
+    id = id.from(_N, "ListDatasetImportJobsResponse"),
     type = "structure",
     members = {
         DatasetImportJobs = schema.new({
@@ -4204,7 +4204,7 @@ M.ListDatasetImportJobsOutput = schema.new({
 })
 
 M.ListDatasetsInput = schema.new({
-    id = id.from(_N, "ListDatasetsInput"),
+    id = id.from(_N, "ListDatasetsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4266,7 +4266,7 @@ M.DatasetSummary = schema.new({
 })
 
 M.ListDatasetsOutput = schema.new({
-    id = id.from(_N, "ListDatasetsOutput"),
+    id = id.from(_N, "ListDatasetsResponse"),
     type = "structure",
     members = {
         Datasets = schema.new({
@@ -4286,7 +4286,7 @@ M.ListDatasetsOutput = schema.new({
 })
 
 M.ListExplainabilitiesInput = schema.new({
-    id = id.from(_N, "ListExplainabilitiesInput"),
+    id = id.from(_N, "ListExplainabilitiesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4368,7 +4368,7 @@ M.ExplainabilitySummary = schema.new({
 })
 
 M.ListExplainabilitiesOutput = schema.new({
-    id = id.from(_N, "ListExplainabilitiesOutput"),
+    id = id.from(_N, "ListExplainabilitiesResponse"),
     type = "structure",
     members = {
         Explainabilities = schema.new({
@@ -4388,7 +4388,7 @@ M.ListExplainabilitiesOutput = schema.new({
 })
 
 M.ListExplainabilityExportsInput = schema.new({
-    id = id.from(_N, "ListExplainabilityExportsInput"),
+    id = id.from(_N, "ListExplainabilityExportsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4464,7 +4464,7 @@ M.ExplainabilityExportSummary = schema.new({
 })
 
 M.ListExplainabilityExportsOutput = schema.new({
-    id = id.from(_N, "ListExplainabilityExportsOutput"),
+    id = id.from(_N, "ListExplainabilityExportsResponse"),
     type = "structure",
     members = {
         ExplainabilityExports = schema.new({
@@ -4484,7 +4484,7 @@ M.ListExplainabilityExportsOutput = schema.new({
 })
 
 M.ListForecastExportJobsInput = schema.new({
-    id = id.from(_N, "ListForecastExportJobsInput"),
+    id = id.from(_N, "ListForecastExportJobsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4560,7 +4560,7 @@ M.ForecastExportJobSummary = schema.new({
 })
 
 M.ListForecastExportJobsOutput = schema.new({
-    id = id.from(_N, "ListForecastExportJobsOutput"),
+    id = id.from(_N, "ListForecastExportJobsResponse"),
     type = "structure",
     members = {
         ForecastExportJobs = schema.new({
@@ -4580,7 +4580,7 @@ M.ListForecastExportJobsOutput = schema.new({
 })
 
 M.ListForecastsInput = schema.new({
-    id = id.from(_N, "ListForecastsInput"),
+    id = id.from(_N, "ListForecastsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4667,7 +4667,7 @@ M.ForecastSummary = schema.new({
 })
 
 M.ListForecastsOutput = schema.new({
-    id = id.from(_N, "ListForecastsOutput"),
+    id = id.from(_N, "ListForecastsResponse"),
     type = "structure",
     members = {
         Forecasts = schema.new({
@@ -4687,7 +4687,7 @@ M.ListForecastsOutput = schema.new({
 })
 
 M.ListMonitorEvaluationsInput = schema.new({
-    id = id.from(_N, "ListMonitorEvaluationsInput"),
+    id = id.from(_N, "ListMonitorEvaluationsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4861,7 +4861,7 @@ M.PredictorMonitorEvaluation = schema.new({
 })
 
 M.ListMonitorEvaluationsOutput = schema.new({
-    id = id.from(_N, "ListMonitorEvaluationsOutput"),
+    id = id.from(_N, "ListMonitorEvaluationsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4881,7 +4881,7 @@ M.ListMonitorEvaluationsOutput = schema.new({
 })
 
 M.ListMonitorsInput = schema.new({
-    id = id.from(_N, "ListMonitorsInput"),
+    id = id.from(_N, "ListMonitorsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4950,7 +4950,7 @@ M.MonitorSummary = schema.new({
 })
 
 M.ListMonitorsOutput = schema.new({
-    id = id.from(_N, "ListMonitorsOutput"),
+    id = id.from(_N, "ListMonitorsResponse"),
     type = "structure",
     members = {
         Monitors = schema.new({
@@ -4970,7 +4970,7 @@ M.ListMonitorsOutput = schema.new({
 })
 
 M.ListPredictorBacktestExportJobsInput = schema.new({
-    id = id.from(_N, "ListPredictorBacktestExportJobsInput"),
+    id = id.from(_N, "ListPredictorBacktestExportJobsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5046,7 +5046,7 @@ M.PredictorBacktestExportJobSummary = schema.new({
 })
 
 M.ListPredictorBacktestExportJobsOutput = schema.new({
-    id = id.from(_N, "ListPredictorBacktestExportJobsOutput"),
+    id = id.from(_N, "ListPredictorBacktestExportJobsResponse"),
     type = "structure",
     members = {
         PredictorBacktestExportJobs = schema.new({
@@ -5066,7 +5066,7 @@ M.ListPredictorBacktestExportJobsOutput = schema.new({
 })
 
 M.ListPredictorsInput = schema.new({
-    id = id.from(_N, "ListPredictorsInput"),
+    id = id.from(_N, "ListPredictorsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5154,7 +5154,7 @@ M.PredictorSummary = schema.new({
 })
 
 M.ListPredictorsOutput = schema.new({
-    id = id.from(_N, "ListPredictorsOutput"),
+    id = id.from(_N, "ListPredictorsResponse"),
     type = "structure",
     members = {
         Predictors = schema.new({
@@ -5174,7 +5174,7 @@ M.ListPredictorsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5190,7 +5190,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -5204,7 +5204,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListWhatIfAnalysesInput = schema.new({
-    id = id.from(_N, "ListWhatIfAnalysesInput"),
+    id = id.from(_N, "ListWhatIfAnalysesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5279,7 +5279,7 @@ M.WhatIfAnalysisSummary = schema.new({
 })
 
 M.ListWhatIfAnalysesOutput = schema.new({
-    id = id.from(_N, "ListWhatIfAnalysesOutput"),
+    id = id.from(_N, "ListWhatIfAnalysesResponse"),
     type = "structure",
     members = {
         WhatIfAnalyses = schema.new({
@@ -5299,7 +5299,7 @@ M.ListWhatIfAnalysesOutput = schema.new({
 })
 
 M.ListWhatIfForecastExportsInput = schema.new({
-    id = id.from(_N, "ListWhatIfForecastExportsInput"),
+    id = id.from(_N, "ListWhatIfForecastExportsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5382,7 +5382,7 @@ M.WhatIfForecastExportSummary = schema.new({
 })
 
 M.ListWhatIfForecastExportsOutput = schema.new({
-    id = id.from(_N, "ListWhatIfForecastExportsOutput"),
+    id = id.from(_N, "ListWhatIfForecastExportsResponse"),
     type = "structure",
     members = {
         WhatIfForecastExports = schema.new({
@@ -5402,7 +5402,7 @@ M.ListWhatIfForecastExportsOutput = schema.new({
 })
 
 M.ListWhatIfForecastsInput = schema.new({
-    id = id.from(_N, "ListWhatIfForecastsInput"),
+    id = id.from(_N, "ListWhatIfForecastsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5477,7 +5477,7 @@ M.WhatIfForecastSummary = schema.new({
 })
 
 M.ListWhatIfForecastsOutput = schema.new({
-    id = id.from(_N, "ListWhatIfForecastsOutput"),
+    id = id.from(_N, "ListWhatIfForecastsResponse"),
     type = "structure",
     members = {
         WhatIfForecasts = schema.new({
@@ -5497,7 +5497,7 @@ M.ListWhatIfForecastsOutput = schema.new({
 })
 
 M.ResumeResourceInput = schema.new({
-    id = id.from(_N, "ResumeResourceInput"),
+    id = id.from(_N, "ResumeResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5513,12 +5513,12 @@ M.ResumeResourceInput = schema.new({
 })
 
 M.ResumeResourceOutput = schema.new({
-    id = id.from(_N, "ResumeResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopResourceInput = schema.new({
-    id = id.from(_N, "StopResourceInput"),
+    id = id.from(_N, "StopResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5534,12 +5534,12 @@ M.StopResourceInput = schema.new({
 })
 
 M.StopResourceOutput = schema.new({
-    id = id.from(_N, "StopResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5565,12 +5565,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5596,12 +5596,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateDatasetGroupInput = schema.new({
-    id = id.from(_N, "UpdateDatasetGroupInput"),
+    id = id.from(_N, "UpdateDatasetGroupRequest"),
     type = "structure",
     members = {
         DatasetGroupArn = schema.new({
@@ -5627,8 +5627,22 @@ M.UpdateDatasetGroupInput = schema.new({
 })
 
 M.UpdateDatasetGroupOutput = schema.new({
-    id = id.from(_N, "UpdateDatasetGroupOutput"),
+    id = id.from(_N, "UpdateDatasetGroupResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

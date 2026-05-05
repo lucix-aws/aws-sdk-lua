@@ -1052,7 +1052,7 @@ M.AddressConfiguration = schema.new({
             name = "Substitutions",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         TitleOverride = schema.new({
             id = id.from(_N, "AddressConfiguration", "TitleOverride"),
@@ -1254,7 +1254,7 @@ M.ADMMessage = schema.new({
             name = "Substitutions",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         Title = schema.new({
             id = id.from(_N, "ADMMessage", "Title"),
@@ -1559,7 +1559,7 @@ M.APNSMessage = schema.new({
             name = "Substitutions",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         ThreadId = schema.new({
             id = id.from(_N, "APNSMessage", "ThreadId"),
@@ -2676,7 +2676,7 @@ M.BaiduMessage = schema.new({
             name = "Substitutions",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         TimeToLive = schema.new({
             id = id.from(_N, "BaiduMessage", "TimeToLive"),
@@ -3952,7 +3952,7 @@ M.CreateApplicationRequest = schema.new({
 })
 
 M.CreateAppInput = schema.new({
-    id = id.from(_N, "CreateAppInput"),
+    id = id.from(_N, "CreateAppRequest"),
     type = "structure",
     members = {
         CreateApplicationRequest = schema.new({
@@ -3970,7 +3970,7 @@ M.CreateAppInput = schema.new({
 })
 
 M.CreateAppOutput = schema.new({
-    id = id.from(_N, "CreateAppOutput"),
+    id = id.from(_N, "CreateAppResponse"),
     type = "structure",
     members = {
         ApplicationResponse = schema.new({
@@ -4297,7 +4297,7 @@ M.WriteCampaignRequest = schema.new({
 })
 
 M.CreateCampaignInput = schema.new({
-    id = id.from(_N, "CreateCampaignInput"),
+    id = id.from(_N, "CreateCampaignRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -4325,7 +4325,7 @@ M.CreateCampaignInput = schema.new({
 })
 
 M.CreateCampaignOutput = schema.new({
-    id = id.from(_N, "CreateCampaignOutput"),
+    id = id.from(_N, "CreateCampaignResponse"),
     type = "structure",
     members = {
         CampaignResponse = schema.new({
@@ -4404,7 +4404,7 @@ M.EmailTemplateRequest = schema.new({
 })
 
 M.CreateEmailTemplateInput = schema.new({
-    id = id.from(_N, "CreateEmailTemplateInput"),
+    id = id.from(_N, "CreateEmailTemplateRequest"),
     type = "structure",
     members = {
         EmailTemplateRequest = schema.new({
@@ -4457,7 +4457,7 @@ M.CreateTemplateMessageBody = schema.new({
 })
 
 M.CreateEmailTemplateOutput = schema.new({
-    id = id.from(_N, "CreateEmailTemplateOutput"),
+    id = id.from(_N, "CreateEmailTemplateResponse"),
     type = "structure",
     members = {
         CreateTemplateMessageBody = schema.new({
@@ -4512,7 +4512,7 @@ M.ExportJobRequest = schema.new({
 })
 
 M.CreateExportJobInput = schema.new({
-    id = id.from(_N, "CreateExportJobInput"),
+    id = id.from(_N, "CreateExportJobRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -4682,7 +4682,7 @@ M.ExportJobResponse = schema.new({
 })
 
 M.CreateExportJobOutput = schema.new({
-    id = id.from(_N, "CreateExportJobOutput"),
+    id = id.from(_N, "CreateExportJobResponse"),
     type = "structure",
     members = {
         ExportJobResponse = schema.new({
@@ -4764,7 +4764,7 @@ M.ImportJobRequest = schema.new({
 })
 
 M.CreateImportJobInput = schema.new({
-    id = id.from(_N, "CreateImportJobInput"),
+    id = id.from(_N, "CreateImportJobRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -4961,7 +4961,7 @@ M.ImportJobResponse = schema.new({
 })
 
 M.CreateImportJobOutput = schema.new({
-    id = id.from(_N, "CreateImportJobOutput"),
+    id = id.from(_N, "CreateImportJobResponse"),
     type = "structure",
     members = {
         ImportJobResponse = schema.new({
@@ -5024,7 +5024,7 @@ M.InAppTemplateRequest = schema.new({
 })
 
 M.CreateInAppTemplateInput = schema.new({
-    id = id.from(_N, "CreateInAppTemplateInput"),
+    id = id.from(_N, "CreateInAppTemplateRequest"),
     type = "structure",
     members = {
         InAppTemplateRequest = schema.new({
@@ -5077,7 +5077,7 @@ M.TemplateCreateMessageBody = schema.new({
 })
 
 M.CreateInAppTemplateOutput = schema.new({
-    id = id.from(_N, "CreateInAppTemplateOutput"),
+    id = id.from(_N, "CreateInAppTemplateResponse"),
     type = "structure",
     members = {
         TemplateCreateMessageBody = schema.new({
@@ -5186,7 +5186,7 @@ M.OpenHours = schema.new({
             name = "EMAIL",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.OpenHoursRule }),
         }),
         SMS = schema.new({
             id = id.from(_N, "OpenHours", "SMS"),
@@ -5194,7 +5194,7 @@ M.OpenHours = schema.new({
             name = "SMS",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.OpenHoursRule }),
         }),
         PUSH = schema.new({
             id = id.from(_N, "OpenHours", "PUSH"),
@@ -5202,7 +5202,7 @@ M.OpenHours = schema.new({
             name = "PUSH",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.OpenHoursRule }),
         }),
         VOICE = schema.new({
             id = id.from(_N, "OpenHours", "VOICE"),
@@ -5210,7 +5210,7 @@ M.OpenHours = schema.new({
             name = "VOICE",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.OpenHoursRule }),
         }),
         CUSTOM = schema.new({
             id = id.from(_N, "OpenHours", "CUSTOM"),
@@ -5218,7 +5218,7 @@ M.OpenHours = schema.new({
             name = "CUSTOM",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.OpenHoursRule }),
         }),
     },
 })
@@ -5462,7 +5462,7 @@ M.WriteJourneyRequest = schema.new({
 })
 
 M.CreateJourneyInput = schema.new({
-    id = id.from(_N, "CreateJourneyInput"),
+    id = id.from(_N, "CreateJourneyRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -5653,7 +5653,7 @@ M.JourneyResponse = schema.new({
 })
 
 M.CreateJourneyOutput = schema.new({
-    id = id.from(_N, "CreateJourneyOutput"),
+    id = id.from(_N, "CreateJourneyResponse"),
     type = "structure",
     members = {
         JourneyResponse = schema.new({
@@ -5779,7 +5779,7 @@ M.PushNotificationTemplateRequest = schema.new({
 })
 
 M.CreatePushTemplateInput = schema.new({
-    id = id.from(_N, "CreatePushTemplateInput"),
+    id = id.from(_N, "CreatePushTemplateRequest"),
     type = "structure",
     members = {
         PushNotificationTemplateRequest = schema.new({
@@ -5807,7 +5807,7 @@ M.CreatePushTemplateInput = schema.new({
 })
 
 M.CreatePushTemplateOutput = schema.new({
-    id = id.from(_N, "CreatePushTemplateOutput"),
+    id = id.from(_N, "CreatePushTemplateResponse"),
     type = "structure",
     members = {
         CreateTemplateMessageBody = schema.new({
@@ -5894,7 +5894,7 @@ M.CreateRecommenderConfigurationShape = schema.new({
 })
 
 M.CreateRecommenderConfigurationInput = schema.new({
-    id = id.from(_N, "CreateRecommenderConfigurationInput"),
+    id = id.from(_N, "CreateRecommenderConfigurationRequest"),
     type = "structure",
     members = {
         CreateRecommenderConfiguration = schema.new({
@@ -6008,7 +6008,7 @@ M.RecommenderConfigurationResponse = schema.new({
 })
 
 M.CreateRecommenderConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateRecommenderConfigurationOutput"),
+    id = id.from(_N, "CreateRecommenderConfigurationResponse"),
     type = "structure",
     members = {
         RecommenderConfigurationResponse = schema.new({
@@ -6139,7 +6139,7 @@ M.WriteSegmentRequest = schema.new({
 })
 
 M.CreateSegmentInput = schema.new({
-    id = id.from(_N, "CreateSegmentInput"),
+    id = id.from(_N, "CreateSegmentRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -6329,7 +6329,7 @@ M.SegmentResponse = schema.new({
 })
 
 M.CreateSegmentOutput = schema.new({
-    id = id.from(_N, "CreateSegmentOutput"),
+    id = id.from(_N, "CreateSegmentResponse"),
     type = "structure",
     members = {
         SegmentResponse = schema.new({
@@ -6389,7 +6389,7 @@ M.SMSTemplateRequest = schema.new({
 })
 
 M.CreateSmsTemplateInput = schema.new({
-    id = id.from(_N, "CreateSmsTemplateInput"),
+    id = id.from(_N, "CreateSmsTemplateRequest"),
     type = "structure",
     members = {
         SMSTemplateRequest = schema.new({
@@ -6417,7 +6417,7 @@ M.CreateSmsTemplateInput = schema.new({
 })
 
 M.CreateSmsTemplateOutput = schema.new({
-    id = id.from(_N, "CreateSmsTemplateOutput"),
+    id = id.from(_N, "CreateSmsTemplateResponse"),
     type = "structure",
     members = {
         CreateTemplateMessageBody = schema.new({
@@ -6483,7 +6483,7 @@ M.VoiceTemplateRequest = schema.new({
 })
 
 M.CreateVoiceTemplateInput = schema.new({
-    id = id.from(_N, "CreateVoiceTemplateInput"),
+    id = id.from(_N, "CreateVoiceTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -6511,7 +6511,7 @@ M.CreateVoiceTemplateInput = schema.new({
 })
 
 M.CreateVoiceTemplateOutput = schema.new({
-    id = id.from(_N, "CreateVoiceTemplateOutput"),
+    id = id.from(_N, "CreateVoiceTemplateResponse"),
     type = "structure",
     members = {
         CreateTemplateMessageBody = schema.new({
@@ -6544,7 +6544,7 @@ M.DefaultMessage = schema.new({
             name = "Substitutions",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -6585,7 +6585,7 @@ M.DefaultPushNotificationMessage = schema.new({
             name = "Substitutions",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         Title = schema.new({
             id = id.from(_N, "DefaultPushNotificationMessage", "Title"),
@@ -6603,7 +6603,7 @@ M.DefaultPushNotificationMessage = schema.new({
 })
 
 M.DeleteAdmChannelInput = schema.new({
-    id = id.from(_N, "DeleteAdmChannelInput"),
+    id = id.from(_N, "DeleteAdmChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -6620,7 +6620,7 @@ M.DeleteAdmChannelInput = schema.new({
 })
 
 M.DeleteAdmChannelOutput = schema.new({
-    id = id.from(_N, "DeleteAdmChannelOutput"),
+    id = id.from(_N, "DeleteAdmChannelResponse"),
     type = "structure",
     members = {
         ADMChannelResponse = schema.new({
@@ -6638,7 +6638,7 @@ M.DeleteAdmChannelOutput = schema.new({
 })
 
 M.DeleteApnsChannelInput = schema.new({
-    id = id.from(_N, "DeleteApnsChannelInput"),
+    id = id.from(_N, "DeleteApnsChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -6655,7 +6655,7 @@ M.DeleteApnsChannelInput = schema.new({
 })
 
 M.DeleteApnsChannelOutput = schema.new({
-    id = id.from(_N, "DeleteApnsChannelOutput"),
+    id = id.from(_N, "DeleteApnsChannelResponse"),
     type = "structure",
     members = {
         APNSChannelResponse = schema.new({
@@ -6673,7 +6673,7 @@ M.DeleteApnsChannelOutput = schema.new({
 })
 
 M.DeleteApnsSandboxChannelInput = schema.new({
-    id = id.from(_N, "DeleteApnsSandboxChannelInput"),
+    id = id.from(_N, "DeleteApnsSandboxChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -6690,7 +6690,7 @@ M.DeleteApnsSandboxChannelInput = schema.new({
 })
 
 M.DeleteApnsSandboxChannelOutput = schema.new({
-    id = id.from(_N, "DeleteApnsSandboxChannelOutput"),
+    id = id.from(_N, "DeleteApnsSandboxChannelResponse"),
     type = "structure",
     members = {
         APNSSandboxChannelResponse = schema.new({
@@ -6708,7 +6708,7 @@ M.DeleteApnsSandboxChannelOutput = schema.new({
 })
 
 M.DeleteApnsVoipChannelInput = schema.new({
-    id = id.from(_N, "DeleteApnsVoipChannelInput"),
+    id = id.from(_N, "DeleteApnsVoipChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -6725,7 +6725,7 @@ M.DeleteApnsVoipChannelInput = schema.new({
 })
 
 M.DeleteApnsVoipChannelOutput = schema.new({
-    id = id.from(_N, "DeleteApnsVoipChannelOutput"),
+    id = id.from(_N, "DeleteApnsVoipChannelResponse"),
     type = "structure",
     members = {
         APNSVoipChannelResponse = schema.new({
@@ -6743,7 +6743,7 @@ M.DeleteApnsVoipChannelOutput = schema.new({
 })
 
 M.DeleteApnsVoipSandboxChannelInput = schema.new({
-    id = id.from(_N, "DeleteApnsVoipSandboxChannelInput"),
+    id = id.from(_N, "DeleteApnsVoipSandboxChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -6760,7 +6760,7 @@ M.DeleteApnsVoipSandboxChannelInput = schema.new({
 })
 
 M.DeleteApnsVoipSandboxChannelOutput = schema.new({
-    id = id.from(_N, "DeleteApnsVoipSandboxChannelOutput"),
+    id = id.from(_N, "DeleteApnsVoipSandboxChannelResponse"),
     type = "structure",
     members = {
         APNSVoipSandboxChannelResponse = schema.new({
@@ -6778,7 +6778,7 @@ M.DeleteApnsVoipSandboxChannelOutput = schema.new({
 })
 
 M.DeleteAppInput = schema.new({
-    id = id.from(_N, "DeleteAppInput"),
+    id = id.from(_N, "DeleteAppRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -6795,7 +6795,7 @@ M.DeleteAppInput = schema.new({
 })
 
 M.DeleteAppOutput = schema.new({
-    id = id.from(_N, "DeleteAppOutput"),
+    id = id.from(_N, "DeleteAppResponse"),
     type = "structure",
     members = {
         ApplicationResponse = schema.new({
@@ -6813,7 +6813,7 @@ M.DeleteAppOutput = schema.new({
 })
 
 M.DeleteBaiduChannelInput = schema.new({
-    id = id.from(_N, "DeleteBaiduChannelInput"),
+    id = id.from(_N, "DeleteBaiduChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -6830,7 +6830,7 @@ M.DeleteBaiduChannelInput = schema.new({
 })
 
 M.DeleteBaiduChannelOutput = schema.new({
-    id = id.from(_N, "DeleteBaiduChannelOutput"),
+    id = id.from(_N, "DeleteBaiduChannelResponse"),
     type = "structure",
     members = {
         BaiduChannelResponse = schema.new({
@@ -6848,7 +6848,7 @@ M.DeleteBaiduChannelOutput = schema.new({
 })
 
 M.DeleteCampaignInput = schema.new({
-    id = id.from(_N, "DeleteCampaignInput"),
+    id = id.from(_N, "DeleteCampaignRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -6875,7 +6875,7 @@ M.DeleteCampaignInput = schema.new({
 })
 
 M.DeleteCampaignOutput = schema.new({
-    id = id.from(_N, "DeleteCampaignOutput"),
+    id = id.from(_N, "DeleteCampaignResponse"),
     type = "structure",
     members = {
         CampaignResponse = schema.new({
@@ -6893,7 +6893,7 @@ M.DeleteCampaignOutput = schema.new({
 })
 
 M.DeleteEmailChannelInput = schema.new({
-    id = id.from(_N, "DeleteEmailChannelInput"),
+    id = id.from(_N, "DeleteEmailChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -7016,7 +7016,7 @@ M.EmailChannelResponse = schema.new({
 })
 
 M.DeleteEmailChannelOutput = schema.new({
-    id = id.from(_N, "DeleteEmailChannelOutput"),
+    id = id.from(_N, "DeleteEmailChannelResponse"),
     type = "structure",
     members = {
         EmailChannelResponse = schema.new({
@@ -7034,7 +7034,7 @@ M.DeleteEmailChannelOutput = schema.new({
 })
 
 M.DeleteEmailTemplateInput = schema.new({
-    id = id.from(_N, "DeleteEmailTemplateInput"),
+    id = id.from(_N, "DeleteEmailTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -7079,7 +7079,7 @@ M.MessageBody = schema.new({
 })
 
 M.DeleteEmailTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteEmailTemplateOutput"),
+    id = id.from(_N, "DeleteEmailTemplateResponse"),
     type = "structure",
     members = {
         MessageBody = schema.new({
@@ -7097,7 +7097,7 @@ M.DeleteEmailTemplateOutput = schema.new({
 })
 
 M.DeleteEndpointInput = schema.new({
-    id = id.from(_N, "DeleteEndpointInput"),
+    id = id.from(_N, "DeleteEndpointRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -7231,7 +7231,7 @@ M.EndpointUser = schema.new({
             name = "UserAttributes",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         UserId = schema.new({
             id = id.from(_N, "EndpointUser", "UserId"),
@@ -7264,7 +7264,7 @@ M.EndpointResponse = schema.new({
             name = "Attributes",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         ChannelType = schema.new({
             id = id.from(_N, "EndpointResponse", "ChannelType"),
@@ -7347,7 +7347,7 @@ M.EndpointResponse = schema.new({
 })
 
 M.DeleteEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteEndpointOutput"),
+    id = id.from(_N, "DeleteEndpointResponse"),
     type = "structure",
     members = {
         EndpointResponse = schema.new({
@@ -7365,7 +7365,7 @@ M.DeleteEndpointOutput = schema.new({
 })
 
 M.DeleteEventStreamInput = schema.new({
-    id = id.from(_N, "DeleteEventStreamInput"),
+    id = id.from(_N, "DeleteEventStreamRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -7434,7 +7434,7 @@ M.EventStream = schema.new({
 })
 
 M.DeleteEventStreamOutput = schema.new({
-    id = id.from(_N, "DeleteEventStreamOutput"),
+    id = id.from(_N, "DeleteEventStreamResponse"),
     type = "structure",
     members = {
         EventStream = schema.new({
@@ -7452,7 +7452,7 @@ M.DeleteEventStreamOutput = schema.new({
 })
 
 M.DeleteGcmChannelInput = schema.new({
-    id = id.from(_N, "DeleteGcmChannelInput"),
+    id = id.from(_N, "DeleteGcmChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -7557,7 +7557,7 @@ M.GCMChannelResponse = schema.new({
 })
 
 M.DeleteGcmChannelOutput = schema.new({
-    id = id.from(_N, "DeleteGcmChannelOutput"),
+    id = id.from(_N, "DeleteGcmChannelResponse"),
     type = "structure",
     members = {
         GCMChannelResponse = schema.new({
@@ -7575,7 +7575,7 @@ M.DeleteGcmChannelOutput = schema.new({
 })
 
 M.DeleteInAppTemplateInput = schema.new({
-    id = id.from(_N, "DeleteInAppTemplateInput"),
+    id = id.from(_N, "DeleteInAppTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -7601,7 +7601,7 @@ M.DeleteInAppTemplateInput = schema.new({
 })
 
 M.DeleteInAppTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteInAppTemplateOutput"),
+    id = id.from(_N, "DeleteInAppTemplateResponse"),
     type = "structure",
     members = {
         MessageBody = schema.new({
@@ -7619,7 +7619,7 @@ M.DeleteInAppTemplateOutput = schema.new({
 })
 
 M.DeleteJourneyInput = schema.new({
-    id = id.from(_N, "DeleteJourneyInput"),
+    id = id.from(_N, "DeleteJourneyRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -7646,7 +7646,7 @@ M.DeleteJourneyInput = schema.new({
 })
 
 M.DeleteJourneyOutput = schema.new({
-    id = id.from(_N, "DeleteJourneyOutput"),
+    id = id.from(_N, "DeleteJourneyResponse"),
     type = "structure",
     members = {
         JourneyResponse = schema.new({
@@ -7664,7 +7664,7 @@ M.DeleteJourneyOutput = schema.new({
 })
 
 M.DeletePushTemplateInput = schema.new({
-    id = id.from(_N, "DeletePushTemplateInput"),
+    id = id.from(_N, "DeletePushTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -7690,7 +7690,7 @@ M.DeletePushTemplateInput = schema.new({
 })
 
 M.DeletePushTemplateOutput = schema.new({
-    id = id.from(_N, "DeletePushTemplateOutput"),
+    id = id.from(_N, "DeletePushTemplateResponse"),
     type = "structure",
     members = {
         MessageBody = schema.new({
@@ -7708,7 +7708,7 @@ M.DeletePushTemplateOutput = schema.new({
 })
 
 M.DeleteRecommenderConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteRecommenderConfigurationInput"),
+    id = id.from(_N, "DeleteRecommenderConfigurationRequest"),
     type = "structure",
     members = {
         RecommenderId = schema.new({
@@ -7725,7 +7725,7 @@ M.DeleteRecommenderConfigurationInput = schema.new({
 })
 
 M.DeleteRecommenderConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteRecommenderConfigurationOutput"),
+    id = id.from(_N, "DeleteRecommenderConfigurationResponse"),
     type = "structure",
     members = {
         RecommenderConfigurationResponse = schema.new({
@@ -7743,7 +7743,7 @@ M.DeleteRecommenderConfigurationOutput = schema.new({
 })
 
 M.DeleteSegmentInput = schema.new({
-    id = id.from(_N, "DeleteSegmentInput"),
+    id = id.from(_N, "DeleteSegmentRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -7770,7 +7770,7 @@ M.DeleteSegmentInput = schema.new({
 })
 
 M.DeleteSegmentOutput = schema.new({
-    id = id.from(_N, "DeleteSegmentOutput"),
+    id = id.from(_N, "DeleteSegmentResponse"),
     type = "structure",
     members = {
         SegmentResponse = schema.new({
@@ -7788,7 +7788,7 @@ M.DeleteSegmentOutput = schema.new({
 })
 
 M.DeleteSmsChannelInput = schema.new({
-    id = id.from(_N, "DeleteSmsChannelInput"),
+    id = id.from(_N, "DeleteSmsChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -7899,7 +7899,7 @@ M.SMSChannelResponse = schema.new({
 })
 
 M.DeleteSmsChannelOutput = schema.new({
-    id = id.from(_N, "DeleteSmsChannelOutput"),
+    id = id.from(_N, "DeleteSmsChannelResponse"),
     type = "structure",
     members = {
         SMSChannelResponse = schema.new({
@@ -7917,7 +7917,7 @@ M.DeleteSmsChannelOutput = schema.new({
 })
 
 M.DeleteSmsTemplateInput = schema.new({
-    id = id.from(_N, "DeleteSmsTemplateInput"),
+    id = id.from(_N, "DeleteSmsTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -7943,7 +7943,7 @@ M.DeleteSmsTemplateInput = schema.new({
 })
 
 M.DeleteSmsTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteSmsTemplateOutput"),
+    id = id.from(_N, "DeleteSmsTemplateResponse"),
     type = "structure",
     members = {
         MessageBody = schema.new({
@@ -7961,7 +7961,7 @@ M.DeleteSmsTemplateOutput = schema.new({
 })
 
 M.DeleteUserEndpointsInput = schema.new({
-    id = id.from(_N, "DeleteUserEndpointsInput"),
+    id = id.from(_N, "DeleteUserEndpointsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -8005,7 +8005,7 @@ M.EndpointsResponse = schema.new({
 })
 
 M.DeleteUserEndpointsOutput = schema.new({
-    id = id.from(_N, "DeleteUserEndpointsOutput"),
+    id = id.from(_N, "DeleteUserEndpointsResponse"),
     type = "structure",
     members = {
         EndpointsResponse = schema.new({
@@ -8023,7 +8023,7 @@ M.DeleteUserEndpointsOutput = schema.new({
 })
 
 M.DeleteVoiceChannelInput = schema.new({
-    id = id.from(_N, "DeleteVoiceChannelInput"),
+    id = id.from(_N, "DeleteVoiceChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -8110,7 +8110,7 @@ M.VoiceChannelResponse = schema.new({
 })
 
 M.DeleteVoiceChannelOutput = schema.new({
-    id = id.from(_N, "DeleteVoiceChannelOutput"),
+    id = id.from(_N, "DeleteVoiceChannelResponse"),
     type = "structure",
     members = {
         VoiceChannelResponse = schema.new({
@@ -8128,7 +8128,7 @@ M.DeleteVoiceChannelOutput = schema.new({
 })
 
 M.DeleteVoiceTemplateInput = schema.new({
-    id = id.from(_N, "DeleteVoiceTemplateInput"),
+    id = id.from(_N, "DeleteVoiceTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -8154,7 +8154,7 @@ M.DeleteVoiceTemplateInput = schema.new({
 })
 
 M.DeleteVoiceTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteVoiceTemplateOutput"),
+    id = id.from(_N, "DeleteVoiceTemplateResponse"),
     type = "structure",
     members = {
         MessageBody = schema.new({
@@ -8287,7 +8287,7 @@ M.EmailMessage = schema.new({
             name = "Substitutions",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -8388,7 +8388,7 @@ M.GCMMessage = schema.new({
             name = "Substitutions",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         TimeToLive = schema.new({
             id = id.from(_N, "GCMMessage", "TimeToLive"),
@@ -8457,7 +8457,7 @@ M.SMSMessage = schema.new({
             name = "Substitutions",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         EntityId = schema.new({
             id = id.from(_N, "SMSMessage", "EntityId"),
@@ -8502,7 +8502,7 @@ M.VoiceMessage = schema.new({
             name = "Substitutions",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         VoiceId = schema.new({
             id = id.from(_N, "VoiceMessage", "VoiceId"),
@@ -8757,7 +8757,7 @@ M.EndpointBatchItem = schema.new({
             name = "Attributes",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         ChannelType = schema.new({
             id = id.from(_N, "EndpointBatchItem", "ChannelType"),
@@ -8928,7 +8928,7 @@ M.EndpointRequest = schema.new({
             name = "Attributes",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         ChannelType = schema.new({
             id = id.from(_N, "EndpointRequest", "ChannelType"),
@@ -9022,7 +9022,7 @@ M.EndpointSendConfiguration = schema.new({
             name = "Substitutions",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         TitleOverride = schema.new({
             id = id.from(_N, "EndpointSendConfiguration", "TitleOverride"),
@@ -9183,7 +9183,7 @@ M.PublicEndpoint = schema.new({
             name = "Attributes",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         ChannelType = schema.new({
             id = id.from(_N, "PublicEndpoint", "ChannelType"),
@@ -9385,7 +9385,7 @@ M.GCMChannelRequest = schema.new({
 })
 
 M.GetAdmChannelInput = schema.new({
-    id = id.from(_N, "GetAdmChannelInput"),
+    id = id.from(_N, "GetAdmChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -9402,7 +9402,7 @@ M.GetAdmChannelInput = schema.new({
 })
 
 M.GetAdmChannelOutput = schema.new({
-    id = id.from(_N, "GetAdmChannelOutput"),
+    id = id.from(_N, "GetAdmChannelResponse"),
     type = "structure",
     members = {
         ADMChannelResponse = schema.new({
@@ -9420,7 +9420,7 @@ M.GetAdmChannelOutput = schema.new({
 })
 
 M.GetApnsChannelInput = schema.new({
-    id = id.from(_N, "GetApnsChannelInput"),
+    id = id.from(_N, "GetApnsChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -9437,7 +9437,7 @@ M.GetApnsChannelInput = schema.new({
 })
 
 M.GetApnsChannelOutput = schema.new({
-    id = id.from(_N, "GetApnsChannelOutput"),
+    id = id.from(_N, "GetApnsChannelResponse"),
     type = "structure",
     members = {
         APNSChannelResponse = schema.new({
@@ -9455,7 +9455,7 @@ M.GetApnsChannelOutput = schema.new({
 })
 
 M.GetApnsSandboxChannelInput = schema.new({
-    id = id.from(_N, "GetApnsSandboxChannelInput"),
+    id = id.from(_N, "GetApnsSandboxChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -9472,7 +9472,7 @@ M.GetApnsSandboxChannelInput = schema.new({
 })
 
 M.GetApnsSandboxChannelOutput = schema.new({
-    id = id.from(_N, "GetApnsSandboxChannelOutput"),
+    id = id.from(_N, "GetApnsSandboxChannelResponse"),
     type = "structure",
     members = {
         APNSSandboxChannelResponse = schema.new({
@@ -9490,7 +9490,7 @@ M.GetApnsSandboxChannelOutput = schema.new({
 })
 
 M.GetApnsVoipChannelInput = schema.new({
-    id = id.from(_N, "GetApnsVoipChannelInput"),
+    id = id.from(_N, "GetApnsVoipChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -9507,7 +9507,7 @@ M.GetApnsVoipChannelInput = schema.new({
 })
 
 M.GetApnsVoipChannelOutput = schema.new({
-    id = id.from(_N, "GetApnsVoipChannelOutput"),
+    id = id.from(_N, "GetApnsVoipChannelResponse"),
     type = "structure",
     members = {
         APNSVoipChannelResponse = schema.new({
@@ -9525,7 +9525,7 @@ M.GetApnsVoipChannelOutput = schema.new({
 })
 
 M.GetApnsVoipSandboxChannelInput = schema.new({
-    id = id.from(_N, "GetApnsVoipSandboxChannelInput"),
+    id = id.from(_N, "GetApnsVoipSandboxChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -9542,7 +9542,7 @@ M.GetApnsVoipSandboxChannelInput = schema.new({
 })
 
 M.GetApnsVoipSandboxChannelOutput = schema.new({
-    id = id.from(_N, "GetApnsVoipSandboxChannelOutput"),
+    id = id.from(_N, "GetApnsVoipSandboxChannelResponse"),
     type = "structure",
     members = {
         APNSVoipSandboxChannelResponse = schema.new({
@@ -9560,7 +9560,7 @@ M.GetApnsVoipSandboxChannelOutput = schema.new({
 })
 
 M.GetAppInput = schema.new({
-    id = id.from(_N, "GetAppInput"),
+    id = id.from(_N, "GetAppRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -9577,7 +9577,7 @@ M.GetAppInput = schema.new({
 })
 
 M.GetAppOutput = schema.new({
-    id = id.from(_N, "GetAppOutput"),
+    id = id.from(_N, "GetAppResponse"),
     type = "structure",
     members = {
         ApplicationResponse = schema.new({
@@ -9595,7 +9595,7 @@ M.GetAppOutput = schema.new({
 })
 
 M.GetApplicationDateRangeKpiInput = schema.new({
-    id = id.from(_N, "GetApplicationDateRangeKpiInput"),
+    id = id.from(_N, "GetApplicationDateRangeKpiRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -9666,7 +9666,7 @@ M.GetApplicationDateRangeKpiInput = schema.new({
 })
 
 M.GetApplicationDateRangeKpiOutput = schema.new({
-    id = id.from(_N, "GetApplicationDateRangeKpiOutput"),
+    id = id.from(_N, "GetApplicationDateRangeKpiResponse"),
     type = "structure",
     members = {
         ApplicationDateRangeKpiResponse = schema.new({
@@ -9684,7 +9684,7 @@ M.GetApplicationDateRangeKpiOutput = schema.new({
 })
 
 M.GetApplicationSettingsInput = schema.new({
-    id = id.from(_N, "GetApplicationSettingsInput"),
+    id = id.from(_N, "GetApplicationSettingsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -9701,7 +9701,7 @@ M.GetApplicationSettingsInput = schema.new({
 })
 
 M.GetApplicationSettingsOutput = schema.new({
-    id = id.from(_N, "GetApplicationSettingsOutput"),
+    id = id.from(_N, "GetApplicationSettingsResponse"),
     type = "structure",
     members = {
         ApplicationSettingsResource = schema.new({
@@ -9719,7 +9719,7 @@ M.GetApplicationSettingsOutput = schema.new({
 })
 
 M.GetAppsInput = schema.new({
-    id = id.from(_N, "GetAppsInput"),
+    id = id.from(_N, "GetAppsRequest"),
     type = "structure",
     members = {
         PageSize = schema.new({
@@ -9744,7 +9744,7 @@ M.GetAppsInput = schema.new({
 })
 
 M.GetAppsOutput = schema.new({
-    id = id.from(_N, "GetAppsOutput"),
+    id = id.from(_N, "GetAppsResponse"),
     type = "structure",
     members = {
         ApplicationsResponse = schema.new({
@@ -9762,7 +9762,7 @@ M.GetAppsOutput = schema.new({
 })
 
 M.GetBaiduChannelInput = schema.new({
-    id = id.from(_N, "GetBaiduChannelInput"),
+    id = id.from(_N, "GetBaiduChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -9779,7 +9779,7 @@ M.GetBaiduChannelInput = schema.new({
 })
 
 M.GetBaiduChannelOutput = schema.new({
-    id = id.from(_N, "GetBaiduChannelOutput"),
+    id = id.from(_N, "GetBaiduChannelResponse"),
     type = "structure",
     members = {
         BaiduChannelResponse = schema.new({
@@ -9797,7 +9797,7 @@ M.GetBaiduChannelOutput = schema.new({
 })
 
 M.GetCampaignInput = schema.new({
-    id = id.from(_N, "GetCampaignInput"),
+    id = id.from(_N, "GetCampaignRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -9824,7 +9824,7 @@ M.GetCampaignInput = schema.new({
 })
 
 M.GetCampaignOutput = schema.new({
-    id = id.from(_N, "GetCampaignOutput"),
+    id = id.from(_N, "GetCampaignResponse"),
     type = "structure",
     members = {
         CampaignResponse = schema.new({
@@ -9842,7 +9842,7 @@ M.GetCampaignOutput = schema.new({
 })
 
 M.GetCampaignActivitiesInput = schema.new({
-    id = id.from(_N, "GetCampaignActivitiesInput"),
+    id = id.from(_N, "GetCampaignActivitiesRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -9887,7 +9887,7 @@ M.GetCampaignActivitiesInput = schema.new({
 })
 
 M.GetCampaignActivitiesOutput = schema.new({
-    id = id.from(_N, "GetCampaignActivitiesOutput"),
+    id = id.from(_N, "GetCampaignActivitiesResponse"),
     type = "structure",
     members = {
         ActivitiesResponse = schema.new({
@@ -9905,7 +9905,7 @@ M.GetCampaignActivitiesOutput = schema.new({
 })
 
 M.GetCampaignDateRangeKpiInput = schema.new({
-    id = id.from(_N, "GetCampaignDateRangeKpiInput"),
+    id = id.from(_N, "GetCampaignDateRangeKpiRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -9986,7 +9986,7 @@ M.GetCampaignDateRangeKpiInput = schema.new({
 })
 
 M.GetCampaignDateRangeKpiOutput = schema.new({
-    id = id.from(_N, "GetCampaignDateRangeKpiOutput"),
+    id = id.from(_N, "GetCampaignDateRangeKpiResponse"),
     type = "structure",
     members = {
         CampaignDateRangeKpiResponse = schema.new({
@@ -10004,7 +10004,7 @@ M.GetCampaignDateRangeKpiOutput = schema.new({
 })
 
 M.GetCampaignsInput = schema.new({
-    id = id.from(_N, "GetCampaignsInput"),
+    id = id.from(_N, "GetCampaignsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -10039,7 +10039,7 @@ M.GetCampaignsInput = schema.new({
 })
 
 M.GetCampaignsOutput = schema.new({
-    id = id.from(_N, "GetCampaignsOutput"),
+    id = id.from(_N, "GetCampaignsResponse"),
     type = "structure",
     members = {
         CampaignsResponse = schema.new({
@@ -10057,7 +10057,7 @@ M.GetCampaignsOutput = schema.new({
 })
 
 M.GetCampaignVersionInput = schema.new({
-    id = id.from(_N, "GetCampaignVersionInput"),
+    id = id.from(_N, "GetCampaignVersionRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -10094,7 +10094,7 @@ M.GetCampaignVersionInput = schema.new({
 })
 
 M.GetCampaignVersionOutput = schema.new({
-    id = id.from(_N, "GetCampaignVersionOutput"),
+    id = id.from(_N, "GetCampaignVersionResponse"),
     type = "structure",
     members = {
         CampaignResponse = schema.new({
@@ -10112,7 +10112,7 @@ M.GetCampaignVersionOutput = schema.new({
 })
 
 M.GetCampaignVersionsInput = schema.new({
-    id = id.from(_N, "GetCampaignVersionsInput"),
+    id = id.from(_N, "GetCampaignVersionsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -10157,7 +10157,7 @@ M.GetCampaignVersionsInput = schema.new({
 })
 
 M.GetCampaignVersionsOutput = schema.new({
-    id = id.from(_N, "GetCampaignVersionsOutput"),
+    id = id.from(_N, "GetCampaignVersionsResponse"),
     type = "structure",
     members = {
         CampaignsResponse = schema.new({
@@ -10175,7 +10175,7 @@ M.GetCampaignVersionsOutput = schema.new({
 })
 
 M.GetChannelsInput = schema.new({
-    id = id.from(_N, "GetChannelsInput"),
+    id = id.from(_N, "GetChannelsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -10192,7 +10192,7 @@ M.GetChannelsInput = schema.new({
 })
 
 M.GetChannelsOutput = schema.new({
-    id = id.from(_N, "GetChannelsOutput"),
+    id = id.from(_N, "GetChannelsResponse"),
     type = "structure",
     members = {
         ChannelsResponse = schema.new({
@@ -10210,7 +10210,7 @@ M.GetChannelsOutput = schema.new({
 })
 
 M.GetEmailChannelInput = schema.new({
-    id = id.from(_N, "GetEmailChannelInput"),
+    id = id.from(_N, "GetEmailChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -10227,7 +10227,7 @@ M.GetEmailChannelInput = schema.new({
 })
 
 M.GetEmailChannelOutput = schema.new({
-    id = id.from(_N, "GetEmailChannelOutput"),
+    id = id.from(_N, "GetEmailChannelResponse"),
     type = "structure",
     members = {
         EmailChannelResponse = schema.new({
@@ -10245,7 +10245,7 @@ M.GetEmailChannelOutput = schema.new({
 })
 
 M.GetEmailTemplateInput = schema.new({
-    id = id.from(_N, "GetEmailTemplateInput"),
+    id = id.from(_N, "GetEmailTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -10271,7 +10271,7 @@ M.GetEmailTemplateInput = schema.new({
 })
 
 M.GetEmailTemplateOutput = schema.new({
-    id = id.from(_N, "GetEmailTemplateOutput"),
+    id = id.from(_N, "GetEmailTemplateResponse"),
     type = "structure",
     members = {
         EmailTemplateResponse = schema.new({
@@ -10289,7 +10289,7 @@ M.GetEmailTemplateOutput = schema.new({
 })
 
 M.GetEndpointInput = schema.new({
-    id = id.from(_N, "GetEndpointInput"),
+    id = id.from(_N, "GetEndpointRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -10316,7 +10316,7 @@ M.GetEndpointInput = schema.new({
 })
 
 M.GetEndpointOutput = schema.new({
-    id = id.from(_N, "GetEndpointOutput"),
+    id = id.from(_N, "GetEndpointResponse"),
     type = "structure",
     members = {
         EndpointResponse = schema.new({
@@ -10334,7 +10334,7 @@ M.GetEndpointOutput = schema.new({
 })
 
 M.GetEventStreamInput = schema.new({
-    id = id.from(_N, "GetEventStreamInput"),
+    id = id.from(_N, "GetEventStreamRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -10351,7 +10351,7 @@ M.GetEventStreamInput = schema.new({
 })
 
 M.GetEventStreamOutput = schema.new({
-    id = id.from(_N, "GetEventStreamOutput"),
+    id = id.from(_N, "GetEventStreamResponse"),
     type = "structure",
     members = {
         EventStream = schema.new({
@@ -10369,7 +10369,7 @@ M.GetEventStreamOutput = schema.new({
 })
 
 M.GetExportJobInput = schema.new({
-    id = id.from(_N, "GetExportJobInput"),
+    id = id.from(_N, "GetExportJobRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -10396,7 +10396,7 @@ M.GetExportJobInput = schema.new({
 })
 
 M.GetExportJobOutput = schema.new({
-    id = id.from(_N, "GetExportJobOutput"),
+    id = id.from(_N, "GetExportJobResponse"),
     type = "structure",
     members = {
         ExportJobResponse = schema.new({
@@ -10414,7 +10414,7 @@ M.GetExportJobOutput = schema.new({
 })
 
 M.GetExportJobsInput = schema.new({
-    id = id.from(_N, "GetExportJobsInput"),
+    id = id.from(_N, "GetExportJobsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -10449,7 +10449,7 @@ M.GetExportJobsInput = schema.new({
 })
 
 M.GetExportJobsOutput = schema.new({
-    id = id.from(_N, "GetExportJobsOutput"),
+    id = id.from(_N, "GetExportJobsResponse"),
     type = "structure",
     members = {
         ExportJobsResponse = schema.new({
@@ -10467,7 +10467,7 @@ M.GetExportJobsOutput = schema.new({
 })
 
 M.GetGcmChannelInput = schema.new({
-    id = id.from(_N, "GetGcmChannelInput"),
+    id = id.from(_N, "GetGcmChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -10484,7 +10484,7 @@ M.GetGcmChannelInput = schema.new({
 })
 
 M.GetGcmChannelOutput = schema.new({
-    id = id.from(_N, "GetGcmChannelOutput"),
+    id = id.from(_N, "GetGcmChannelResponse"),
     type = "structure",
     members = {
         GCMChannelResponse = schema.new({
@@ -10502,7 +10502,7 @@ M.GetGcmChannelOutput = schema.new({
 })
 
 M.GetImportJobInput = schema.new({
-    id = id.from(_N, "GetImportJobInput"),
+    id = id.from(_N, "GetImportJobRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -10529,7 +10529,7 @@ M.GetImportJobInput = schema.new({
 })
 
 M.GetImportJobOutput = schema.new({
-    id = id.from(_N, "GetImportJobOutput"),
+    id = id.from(_N, "GetImportJobResponse"),
     type = "structure",
     members = {
         ImportJobResponse = schema.new({
@@ -10547,7 +10547,7 @@ M.GetImportJobOutput = schema.new({
 })
 
 M.GetImportJobsInput = schema.new({
-    id = id.from(_N, "GetImportJobsInput"),
+    id = id.from(_N, "GetImportJobsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -10605,7 +10605,7 @@ M.ImportJobsResponse = schema.new({
 })
 
 M.GetImportJobsOutput = schema.new({
-    id = id.from(_N, "GetImportJobsOutput"),
+    id = id.from(_N, "GetImportJobsResponse"),
     type = "structure",
     members = {
         ImportJobsResponse = schema.new({
@@ -10623,7 +10623,7 @@ M.GetImportJobsOutput = schema.new({
 })
 
 M.GetInAppMessagesInput = schema.new({
-    id = id.from(_N, "GetInAppMessagesInput"),
+    id = id.from(_N, "GetInAppMessagesRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -10776,7 +10776,7 @@ M.InAppMessagesResponse = schema.new({
 })
 
 M.GetInAppMessagesOutput = schema.new({
-    id = id.from(_N, "GetInAppMessagesOutput"),
+    id = id.from(_N, "GetInAppMessagesResponse"),
     type = "structure",
     members = {
         InAppMessagesResponse = schema.new({
@@ -10794,7 +10794,7 @@ M.GetInAppMessagesOutput = schema.new({
 })
 
 M.GetInAppTemplateInput = schema.new({
-    id = id.from(_N, "GetInAppTemplateInput"),
+    id = id.from(_N, "GetInAppTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -10913,7 +10913,7 @@ M.InAppTemplateResponse = schema.new({
 })
 
 M.GetInAppTemplateOutput = schema.new({
-    id = id.from(_N, "GetInAppTemplateOutput"),
+    id = id.from(_N, "GetInAppTemplateResponse"),
     type = "structure",
     members = {
         InAppTemplateResponse = schema.new({
@@ -10931,7 +10931,7 @@ M.GetInAppTemplateOutput = schema.new({
 })
 
 M.GetJourneyInput = schema.new({
-    id = id.from(_N, "GetJourneyInput"),
+    id = id.from(_N, "GetJourneyRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -10958,7 +10958,7 @@ M.GetJourneyInput = schema.new({
 })
 
 M.GetJourneyOutput = schema.new({
-    id = id.from(_N, "GetJourneyOutput"),
+    id = id.from(_N, "GetJourneyResponse"),
     type = "structure",
     members = {
         JourneyResponse = schema.new({
@@ -10976,7 +10976,7 @@ M.GetJourneyOutput = schema.new({
 })
 
 M.GetJourneyDateRangeKpiInput = schema.new({
-    id = id.from(_N, "GetJourneyDateRangeKpiInput"),
+    id = id.from(_N, "GetJourneyDateRangeKpiRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -11133,7 +11133,7 @@ M.JourneyDateRangeKpiResponse = schema.new({
 })
 
 M.GetJourneyDateRangeKpiOutput = schema.new({
-    id = id.from(_N, "GetJourneyDateRangeKpiOutput"),
+    id = id.from(_N, "GetJourneyDateRangeKpiResponse"),
     type = "structure",
     members = {
         JourneyDateRangeKpiResponse = schema.new({
@@ -11151,7 +11151,7 @@ M.GetJourneyDateRangeKpiOutput = schema.new({
 })
 
 M.GetJourneyExecutionActivityMetricsInput = schema.new({
-    id = id.from(_N, "GetJourneyExecutionActivityMetricsInput"),
+    id = id.from(_N, "GetJourneyExecutionActivityMetricsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -11269,7 +11269,7 @@ M.JourneyExecutionActivityMetricsResponse = schema.new({
 })
 
 M.GetJourneyExecutionActivityMetricsOutput = schema.new({
-    id = id.from(_N, "GetJourneyExecutionActivityMetricsOutput"),
+    id = id.from(_N, "GetJourneyExecutionActivityMetricsResponse"),
     type = "structure",
     members = {
         JourneyExecutionActivityMetricsResponse = schema.new({
@@ -11287,7 +11287,7 @@ M.GetJourneyExecutionActivityMetricsOutput = schema.new({
 })
 
 M.GetJourneyExecutionMetricsInput = schema.new({
-    id = id.from(_N, "GetJourneyExecutionMetricsInput"),
+    id = id.from(_N, "GetJourneyExecutionMetricsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -11377,7 +11377,7 @@ M.JourneyExecutionMetricsResponse = schema.new({
 })
 
 M.GetJourneyExecutionMetricsOutput = schema.new({
-    id = id.from(_N, "GetJourneyExecutionMetricsOutput"),
+    id = id.from(_N, "GetJourneyExecutionMetricsResponse"),
     type = "structure",
     members = {
         JourneyExecutionMetricsResponse = schema.new({
@@ -11395,7 +11395,7 @@ M.GetJourneyExecutionMetricsOutput = schema.new({
 })
 
 M.GetJourneyRunExecutionActivityMetricsInput = schema.new({
-    id = id.from(_N, "GetJourneyRunExecutionActivityMetricsInput"),
+    id = id.from(_N, "GetJourneyRunExecutionActivityMetricsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -11532,7 +11532,7 @@ M.JourneyRunExecutionActivityMetricsResponse = schema.new({
 })
 
 M.GetJourneyRunExecutionActivityMetricsOutput = schema.new({
-    id = id.from(_N, "GetJourneyRunExecutionActivityMetricsOutput"),
+    id = id.from(_N, "GetJourneyRunExecutionActivityMetricsResponse"),
     type = "structure",
     members = {
         JourneyRunExecutionActivityMetricsResponse = schema.new({
@@ -11550,7 +11550,7 @@ M.GetJourneyRunExecutionActivityMetricsOutput = schema.new({
 })
 
 M.GetJourneyRunExecutionMetricsInput = schema.new({
-    id = id.from(_N, "GetJourneyRunExecutionMetricsInput"),
+    id = id.from(_N, "GetJourneyRunExecutionMetricsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -11659,7 +11659,7 @@ M.JourneyRunExecutionMetricsResponse = schema.new({
 })
 
 M.GetJourneyRunExecutionMetricsOutput = schema.new({
-    id = id.from(_N, "GetJourneyRunExecutionMetricsOutput"),
+    id = id.from(_N, "GetJourneyRunExecutionMetricsResponse"),
     type = "structure",
     members = {
         JourneyRunExecutionMetricsResponse = schema.new({
@@ -11677,7 +11677,7 @@ M.GetJourneyRunExecutionMetricsOutput = schema.new({
 })
 
 M.GetJourneyRunsInput = schema.new({
-    id = id.from(_N, "GetJourneyRunsInput"),
+    id = id.from(_N, "GetJourneyRunsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -11788,7 +11788,7 @@ M.JourneyRunsResponse = schema.new({
 })
 
 M.GetJourneyRunsOutput = schema.new({
-    id = id.from(_N, "GetJourneyRunsOutput"),
+    id = id.from(_N, "GetJourneyRunsResponse"),
     type = "structure",
     members = {
         JourneyRunsResponse = schema.new({
@@ -11806,7 +11806,7 @@ M.GetJourneyRunsOutput = schema.new({
 })
 
 M.GetPushTemplateInput = schema.new({
-    id = id.from(_N, "GetPushTemplateInput"),
+    id = id.from(_N, "GetPushTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -11951,7 +11951,7 @@ M.PushNotificationTemplateResponse = schema.new({
 })
 
 M.GetPushTemplateOutput = schema.new({
-    id = id.from(_N, "GetPushTemplateOutput"),
+    id = id.from(_N, "GetPushTemplateResponse"),
     type = "structure",
     members = {
         PushNotificationTemplateResponse = schema.new({
@@ -11969,7 +11969,7 @@ M.GetPushTemplateOutput = schema.new({
 })
 
 M.GetRecommenderConfigurationInput = schema.new({
-    id = id.from(_N, "GetRecommenderConfigurationInput"),
+    id = id.from(_N, "GetRecommenderConfigurationRequest"),
     type = "structure",
     members = {
         RecommenderId = schema.new({
@@ -11986,7 +11986,7 @@ M.GetRecommenderConfigurationInput = schema.new({
 })
 
 M.GetRecommenderConfigurationOutput = schema.new({
-    id = id.from(_N, "GetRecommenderConfigurationOutput"),
+    id = id.from(_N, "GetRecommenderConfigurationResponse"),
     type = "structure",
     members = {
         RecommenderConfigurationResponse = schema.new({
@@ -12004,7 +12004,7 @@ M.GetRecommenderConfigurationOutput = schema.new({
 })
 
 M.GetRecommenderConfigurationsInput = schema.new({
-    id = id.from(_N, "GetRecommenderConfigurationsInput"),
+    id = id.from(_N, "GetRecommenderConfigurationsRequest"),
     type = "structure",
     members = {
         PageSize = schema.new({
@@ -12052,7 +12052,7 @@ M.ListRecommenderConfigurationsResponse = schema.new({
 })
 
 M.GetRecommenderConfigurationsOutput = schema.new({
-    id = id.from(_N, "GetRecommenderConfigurationsOutput"),
+    id = id.from(_N, "GetRecommenderConfigurationsResponse"),
     type = "structure",
     members = {
         ListRecommenderConfigurationsResponse = schema.new({
@@ -12070,7 +12070,7 @@ M.GetRecommenderConfigurationsOutput = schema.new({
 })
 
 M.GetSegmentInput = schema.new({
-    id = id.from(_N, "GetSegmentInput"),
+    id = id.from(_N, "GetSegmentRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -12097,7 +12097,7 @@ M.GetSegmentInput = schema.new({
 })
 
 M.GetSegmentOutput = schema.new({
-    id = id.from(_N, "GetSegmentOutput"),
+    id = id.from(_N, "GetSegmentResponse"),
     type = "structure",
     members = {
         SegmentResponse = schema.new({
@@ -12115,7 +12115,7 @@ M.GetSegmentOutput = schema.new({
 })
 
 M.GetSegmentExportJobsInput = schema.new({
-    id = id.from(_N, "GetSegmentExportJobsInput"),
+    id = id.from(_N, "GetSegmentExportJobsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -12160,7 +12160,7 @@ M.GetSegmentExportJobsInput = schema.new({
 })
 
 M.GetSegmentExportJobsOutput = schema.new({
-    id = id.from(_N, "GetSegmentExportJobsOutput"),
+    id = id.from(_N, "GetSegmentExportJobsResponse"),
     type = "structure",
     members = {
         ExportJobsResponse = schema.new({
@@ -12178,7 +12178,7 @@ M.GetSegmentExportJobsOutput = schema.new({
 })
 
 M.GetSegmentImportJobsInput = schema.new({
-    id = id.from(_N, "GetSegmentImportJobsInput"),
+    id = id.from(_N, "GetSegmentImportJobsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -12223,7 +12223,7 @@ M.GetSegmentImportJobsInput = schema.new({
 })
 
 M.GetSegmentImportJobsOutput = schema.new({
-    id = id.from(_N, "GetSegmentImportJobsOutput"),
+    id = id.from(_N, "GetSegmentImportJobsResponse"),
     type = "structure",
     members = {
         ImportJobsResponse = schema.new({
@@ -12241,7 +12241,7 @@ M.GetSegmentImportJobsOutput = schema.new({
 })
 
 M.GetSegmentsInput = schema.new({
-    id = id.from(_N, "GetSegmentsInput"),
+    id = id.from(_N, "GetSegmentsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -12299,7 +12299,7 @@ M.SegmentsResponse = schema.new({
 })
 
 M.GetSegmentsOutput = schema.new({
-    id = id.from(_N, "GetSegmentsOutput"),
+    id = id.from(_N, "GetSegmentsResponse"),
     type = "structure",
     members = {
         SegmentsResponse = schema.new({
@@ -12317,7 +12317,7 @@ M.GetSegmentsOutput = schema.new({
 })
 
 M.GetSegmentVersionInput = schema.new({
-    id = id.from(_N, "GetSegmentVersionInput"),
+    id = id.from(_N, "GetSegmentVersionRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -12354,7 +12354,7 @@ M.GetSegmentVersionInput = schema.new({
 })
 
 M.GetSegmentVersionOutput = schema.new({
-    id = id.from(_N, "GetSegmentVersionOutput"),
+    id = id.from(_N, "GetSegmentVersionResponse"),
     type = "structure",
     members = {
         SegmentResponse = schema.new({
@@ -12372,7 +12372,7 @@ M.GetSegmentVersionOutput = schema.new({
 })
 
 M.GetSegmentVersionsInput = schema.new({
-    id = id.from(_N, "GetSegmentVersionsInput"),
+    id = id.from(_N, "GetSegmentVersionsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -12417,7 +12417,7 @@ M.GetSegmentVersionsInput = schema.new({
 })
 
 M.GetSegmentVersionsOutput = schema.new({
-    id = id.from(_N, "GetSegmentVersionsOutput"),
+    id = id.from(_N, "GetSegmentVersionsResponse"),
     type = "structure",
     members = {
         SegmentsResponse = schema.new({
@@ -12435,7 +12435,7 @@ M.GetSegmentVersionsOutput = schema.new({
 })
 
 M.GetSmsChannelInput = schema.new({
-    id = id.from(_N, "GetSmsChannelInput"),
+    id = id.from(_N, "GetSmsChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -12452,7 +12452,7 @@ M.GetSmsChannelInput = schema.new({
 })
 
 M.GetSmsChannelOutput = schema.new({
-    id = id.from(_N, "GetSmsChannelOutput"),
+    id = id.from(_N, "GetSmsChannelResponse"),
     type = "structure",
     members = {
         SMSChannelResponse = schema.new({
@@ -12470,7 +12470,7 @@ M.GetSmsChannelOutput = schema.new({
 })
 
 M.GetSmsTemplateInput = schema.new({
-    id = id.from(_N, "GetSmsTemplateInput"),
+    id = id.from(_N, "GetSmsTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -12586,7 +12586,7 @@ M.SMSTemplateResponse = schema.new({
 })
 
 M.GetSmsTemplateOutput = schema.new({
-    id = id.from(_N, "GetSmsTemplateOutput"),
+    id = id.from(_N, "GetSmsTemplateResponse"),
     type = "structure",
     members = {
         SMSTemplateResponse = schema.new({
@@ -12604,7 +12604,7 @@ M.GetSmsTemplateOutput = schema.new({
 })
 
 M.GetUserEndpointsInput = schema.new({
-    id = id.from(_N, "GetUserEndpointsInput"),
+    id = id.from(_N, "GetUserEndpointsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -12631,7 +12631,7 @@ M.GetUserEndpointsInput = schema.new({
 })
 
 M.GetUserEndpointsOutput = schema.new({
-    id = id.from(_N, "GetUserEndpointsOutput"),
+    id = id.from(_N, "GetUserEndpointsResponse"),
     type = "structure",
     members = {
         EndpointsResponse = schema.new({
@@ -12649,7 +12649,7 @@ M.GetUserEndpointsOutput = schema.new({
 })
 
 M.GetVoiceChannelInput = schema.new({
-    id = id.from(_N, "GetVoiceChannelInput"),
+    id = id.from(_N, "GetVoiceChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -12666,7 +12666,7 @@ M.GetVoiceChannelInput = schema.new({
 })
 
 M.GetVoiceChannelOutput = schema.new({
-    id = id.from(_N, "GetVoiceChannelOutput"),
+    id = id.from(_N, "GetVoiceChannelResponse"),
     type = "structure",
     members = {
         VoiceChannelResponse = schema.new({
@@ -12684,7 +12684,7 @@ M.GetVoiceChannelOutput = schema.new({
 })
 
 M.GetVoiceTemplateInput = schema.new({
-    id = id.from(_N, "GetVoiceTemplateInput"),
+    id = id.from(_N, "GetVoiceTemplateRequest"),
     type = "structure",
     members = {
         TemplateName = schema.new({
@@ -12806,7 +12806,7 @@ M.VoiceTemplateResponse = schema.new({
 })
 
 M.GetVoiceTemplateOutput = schema.new({
-    id = id.from(_N, "GetVoiceTemplateOutput"),
+    id = id.from(_N, "GetVoiceTemplateResponse"),
     type = "structure",
     members = {
         VoiceTemplateResponse = schema.new({
@@ -12860,7 +12860,7 @@ M.JourneyStateRequest = schema.new({
 })
 
 M.ListJourneysInput = schema.new({
-    id = id.from(_N, "ListJourneysInput"),
+    id = id.from(_N, "ListJourneysRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -12895,7 +12895,7 @@ M.ListJourneysInput = schema.new({
 })
 
 M.ListJourneysOutput = schema.new({
-    id = id.from(_N, "ListJourneysOutput"),
+    id = id.from(_N, "ListJourneysResponse"),
     type = "structure",
     members = {
         JourneysResponse = schema.new({
@@ -13052,7 +13052,7 @@ M.TemplateVersionResponse = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -13088,7 +13088,7 @@ M.TagsModel = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         TagsModel = schema.new({
@@ -13106,7 +13106,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTemplatesInput = schema.new({
-    id = id.from(_N, "ListTemplatesInput"),
+    id = id.from(_N, "ListTemplatesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -13172,7 +13172,7 @@ M.TemplatesResponse = schema.new({
 })
 
 M.ListTemplatesOutput = schema.new({
-    id = id.from(_N, "ListTemplatesOutput"),
+    id = id.from(_N, "ListTemplatesResponse"),
     type = "structure",
     members = {
         TemplatesResponse = schema.new({
@@ -13190,7 +13190,7 @@ M.ListTemplatesOutput = schema.new({
 })
 
 M.ListTemplateVersionsInput = schema.new({
-    id = id.from(_N, "ListTemplateVersionsInput"),
+    id = id.from(_N, "ListTemplateVersionsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -13270,7 +13270,7 @@ M.TemplateVersionsResponse = schema.new({
 })
 
 M.ListTemplateVersionsOutput = schema.new({
-    id = id.from(_N, "ListTemplateVersionsOutput"),
+    id = id.from(_N, "ListTemplateVersionsResponse"),
     type = "structure",
     members = {
         TemplateVersionsResponse = schema.new({
@@ -13533,7 +13533,7 @@ M.NumberValidateResponse = schema.new({
 })
 
 M.PhoneNumberValidateInput = schema.new({
-    id = id.from(_N, "PhoneNumberValidateInput"),
+    id = id.from(_N, "PhoneNumberValidateRequest"),
     type = "structure",
     members = {
         NumberValidateRequest = schema.new({
@@ -13551,7 +13551,7 @@ M.PhoneNumberValidateInput = schema.new({
 })
 
 M.PhoneNumberValidateOutput = schema.new({
-    id = id.from(_N, "PhoneNumberValidateOutput"),
+    id = id.from(_N, "PhoneNumberValidateResponse"),
     type = "structure",
     members = {
         NumberValidateResponse = schema.new({
@@ -13569,7 +13569,7 @@ M.PhoneNumberValidateOutput = schema.new({
 })
 
 M.PutEventsInput = schema.new({
-    id = id.from(_N, "PutEventsInput"),
+    id = id.from(_N, "PutEventsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -13597,7 +13597,7 @@ M.PutEventsInput = schema.new({
 })
 
 M.PutEventsOutput = schema.new({
-    id = id.from(_N, "PutEventsOutput"),
+    id = id.from(_N, "PutEventsResponse"),
     type = "structure",
     members = {
         EventsResponse = schema.new({
@@ -13640,7 +13640,7 @@ M.WriteEventStream = schema.new({
 })
 
 M.PutEventStreamInput = schema.new({
-    id = id.from(_N, "PutEventStreamInput"),
+    id = id.from(_N, "PutEventStreamRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -13668,7 +13668,7 @@ M.PutEventStreamInput = schema.new({
 })
 
 M.PutEventStreamOutput = schema.new({
-    id = id.from(_N, "PutEventStreamOutput"),
+    id = id.from(_N, "PutEventStreamResponse"),
     type = "structure",
     members = {
         EventStream = schema.new({
@@ -13700,7 +13700,7 @@ M.UpdateAttributesRequest = schema.new({
 })
 
 M.RemoveAttributesInput = schema.new({
-    id = id.from(_N, "RemoveAttributesInput"),
+    id = id.from(_N, "RemoveAttributesRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -13738,7 +13738,7 @@ M.RemoveAttributesInput = schema.new({
 })
 
 M.RemoveAttributesOutput = schema.new({
-    id = id.from(_N, "RemoveAttributesOutput"),
+    id = id.from(_N, "RemoveAttributesResponse"),
     type = "structure",
     members = {
         AttributesResource = schema.new({
@@ -13756,7 +13756,7 @@ M.RemoveAttributesOutput = schema.new({
 })
 
 M.SendMessagesInput = schema.new({
-    id = id.from(_N, "SendMessagesInput"),
+    id = id.from(_N, "SendMessagesRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -13784,7 +13784,7 @@ M.SendMessagesInput = schema.new({
 })
 
 M.SendMessagesOutput = schema.new({
-    id = id.from(_N, "SendMessagesOutput"),
+    id = id.from(_N, "SendMessagesResponse"),
     type = "structure",
     members = {
         MessageResponse = schema.new({
@@ -13890,7 +13890,7 @@ M.SendOTPMessageRequestParameters = schema.new({
 })
 
 M.SendOTPMessageInput = schema.new({
-    id = id.from(_N, "SendOTPMessageInput"),
+    id = id.from(_N, "SendOTPMessageRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -13918,7 +13918,7 @@ M.SendOTPMessageInput = schema.new({
 })
 
 M.SendOTPMessageOutput = schema.new({
-    id = id.from(_N, "SendOTPMessageOutput"),
+    id = id.from(_N, "SendOTPMessageResponse"),
     type = "structure",
     members = {
         MessageResponse = schema.new({
@@ -13985,7 +13985,7 @@ M.SendUsersMessageRequest = schema.new({
 })
 
 M.SendUsersMessagesInput = schema.new({
-    id = id.from(_N, "SendUsersMessagesInput"),
+    id = id.from(_N, "SendUsersMessagesRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -14037,13 +14037,13 @@ M.SendUsersMessageResponse = schema.new({
             name = "Result",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.EndpointMessageResult }),
         }),
     },
 })
 
 M.SendUsersMessagesOutput = schema.new({
-    id = id.from(_N, "SendUsersMessagesOutput"),
+    id = id.from(_N, "SendUsersMessagesResponse"),
     type = "structure",
     members = {
         SendUsersMessageResponse = schema.new({
@@ -14061,7 +14061,7 @@ M.SendUsersMessagesOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -14089,12 +14089,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -14122,12 +14122,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateAdmChannelInput = schema.new({
-    id = id.from(_N, "UpdateAdmChannelInput"),
+    id = id.from(_N, "UpdateAdmChannelRequest"),
     type = "structure",
     members = {
         ADMChannelRequest = schema.new({
@@ -14155,7 +14155,7 @@ M.UpdateAdmChannelInput = schema.new({
 })
 
 M.UpdateAdmChannelOutput = schema.new({
-    id = id.from(_N, "UpdateAdmChannelOutput"),
+    id = id.from(_N, "UpdateAdmChannelResponse"),
     type = "structure",
     members = {
         ADMChannelResponse = schema.new({
@@ -14173,7 +14173,7 @@ M.UpdateAdmChannelOutput = schema.new({
 })
 
 M.UpdateApnsChannelInput = schema.new({
-    id = id.from(_N, "UpdateApnsChannelInput"),
+    id = id.from(_N, "UpdateApnsChannelRequest"),
     type = "structure",
     members = {
         APNSChannelRequest = schema.new({
@@ -14201,7 +14201,7 @@ M.UpdateApnsChannelInput = schema.new({
 })
 
 M.UpdateApnsChannelOutput = schema.new({
-    id = id.from(_N, "UpdateApnsChannelOutput"),
+    id = id.from(_N, "UpdateApnsChannelResponse"),
     type = "structure",
     members = {
         APNSChannelResponse = schema.new({
@@ -14219,7 +14219,7 @@ M.UpdateApnsChannelOutput = schema.new({
 })
 
 M.UpdateApnsSandboxChannelInput = schema.new({
-    id = id.from(_N, "UpdateApnsSandboxChannelInput"),
+    id = id.from(_N, "UpdateApnsSandboxChannelRequest"),
     type = "structure",
     members = {
         APNSSandboxChannelRequest = schema.new({
@@ -14247,7 +14247,7 @@ M.UpdateApnsSandboxChannelInput = schema.new({
 })
 
 M.UpdateApnsSandboxChannelOutput = schema.new({
-    id = id.from(_N, "UpdateApnsSandboxChannelOutput"),
+    id = id.from(_N, "UpdateApnsSandboxChannelResponse"),
     type = "structure",
     members = {
         APNSSandboxChannelResponse = schema.new({
@@ -14265,7 +14265,7 @@ M.UpdateApnsSandboxChannelOutput = schema.new({
 })
 
 M.UpdateApnsVoipChannelInput = schema.new({
-    id = id.from(_N, "UpdateApnsVoipChannelInput"),
+    id = id.from(_N, "UpdateApnsVoipChannelRequest"),
     type = "structure",
     members = {
         APNSVoipChannelRequest = schema.new({
@@ -14293,7 +14293,7 @@ M.UpdateApnsVoipChannelInput = schema.new({
 })
 
 M.UpdateApnsVoipChannelOutput = schema.new({
-    id = id.from(_N, "UpdateApnsVoipChannelOutput"),
+    id = id.from(_N, "UpdateApnsVoipChannelResponse"),
     type = "structure",
     members = {
         APNSVoipChannelResponse = schema.new({
@@ -14311,7 +14311,7 @@ M.UpdateApnsVoipChannelOutput = schema.new({
 })
 
 M.UpdateApnsVoipSandboxChannelInput = schema.new({
-    id = id.from(_N, "UpdateApnsVoipSandboxChannelInput"),
+    id = id.from(_N, "UpdateApnsVoipSandboxChannelRequest"),
     type = "structure",
     members = {
         APNSVoipSandboxChannelRequest = schema.new({
@@ -14339,7 +14339,7 @@ M.UpdateApnsVoipSandboxChannelInput = schema.new({
 })
 
 M.UpdateApnsVoipSandboxChannelOutput = schema.new({
-    id = id.from(_N, "UpdateApnsVoipSandboxChannelOutput"),
+    id = id.from(_N, "UpdateApnsVoipSandboxChannelResponse"),
     type = "structure",
     members = {
         APNSVoipSandboxChannelResponse = schema.new({
@@ -14404,7 +14404,7 @@ M.WriteApplicationSettingsRequest = schema.new({
 })
 
 M.UpdateApplicationSettingsInput = schema.new({
-    id = id.from(_N, "UpdateApplicationSettingsInput"),
+    id = id.from(_N, "UpdateApplicationSettingsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -14432,7 +14432,7 @@ M.UpdateApplicationSettingsInput = schema.new({
 })
 
 M.UpdateApplicationSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationSettingsOutput"),
+    id = id.from(_N, "UpdateApplicationSettingsResponse"),
     type = "structure",
     members = {
         ApplicationSettingsResource = schema.new({
@@ -14450,7 +14450,7 @@ M.UpdateApplicationSettingsOutput = schema.new({
 })
 
 M.UpdateBaiduChannelInput = schema.new({
-    id = id.from(_N, "UpdateBaiduChannelInput"),
+    id = id.from(_N, "UpdateBaiduChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -14478,7 +14478,7 @@ M.UpdateBaiduChannelInput = schema.new({
 })
 
 M.UpdateBaiduChannelOutput = schema.new({
-    id = id.from(_N, "UpdateBaiduChannelOutput"),
+    id = id.from(_N, "UpdateBaiduChannelResponse"),
     type = "structure",
     members = {
         BaiduChannelResponse = schema.new({
@@ -14496,7 +14496,7 @@ M.UpdateBaiduChannelOutput = schema.new({
 })
 
 M.UpdateCampaignInput = schema.new({
-    id = id.from(_N, "UpdateCampaignInput"),
+    id = id.from(_N, "UpdateCampaignRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -14534,7 +14534,7 @@ M.UpdateCampaignInput = schema.new({
 })
 
 M.UpdateCampaignOutput = schema.new({
-    id = id.from(_N, "UpdateCampaignOutput"),
+    id = id.from(_N, "UpdateCampaignResponse"),
     type = "structure",
     members = {
         CampaignResponse = schema.new({
@@ -14552,7 +14552,7 @@ M.UpdateCampaignOutput = schema.new({
 })
 
 M.UpdateEmailChannelInput = schema.new({
-    id = id.from(_N, "UpdateEmailChannelInput"),
+    id = id.from(_N, "UpdateEmailChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -14580,7 +14580,7 @@ M.UpdateEmailChannelInput = schema.new({
 })
 
 M.UpdateEmailChannelOutput = schema.new({
-    id = id.from(_N, "UpdateEmailChannelOutput"),
+    id = id.from(_N, "UpdateEmailChannelResponse"),
     type = "structure",
     members = {
         EmailChannelResponse = schema.new({
@@ -14598,7 +14598,7 @@ M.UpdateEmailChannelOutput = schema.new({
 })
 
 M.UpdateEmailTemplateInput = schema.new({
-    id = id.from(_N, "UpdateEmailTemplateInput"),
+    id = id.from(_N, "UpdateEmailTemplateRequest"),
     type = "structure",
     members = {
         CreateNewVersion = schema.new({
@@ -14644,7 +14644,7 @@ M.UpdateEmailTemplateInput = schema.new({
 })
 
 M.UpdateEmailTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateEmailTemplateOutput"),
+    id = id.from(_N, "UpdateEmailTemplateResponse"),
     type = "structure",
     members = {
         MessageBody = schema.new({
@@ -14662,7 +14662,7 @@ M.UpdateEmailTemplateOutput = schema.new({
 })
 
 M.UpdateEndpointInput = schema.new({
-    id = id.from(_N, "UpdateEndpointInput"),
+    id = id.from(_N, "UpdateEndpointRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -14700,7 +14700,7 @@ M.UpdateEndpointInput = schema.new({
 })
 
 M.UpdateEndpointOutput = schema.new({
-    id = id.from(_N, "UpdateEndpointOutput"),
+    id = id.from(_N, "UpdateEndpointResponse"),
     type = "structure",
     members = {
         MessageBody = schema.new({
@@ -14718,7 +14718,7 @@ M.UpdateEndpointOutput = schema.new({
 })
 
 M.UpdateEndpointsBatchInput = schema.new({
-    id = id.from(_N, "UpdateEndpointsBatchInput"),
+    id = id.from(_N, "UpdateEndpointsBatchRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -14746,7 +14746,7 @@ M.UpdateEndpointsBatchInput = schema.new({
 })
 
 M.UpdateEndpointsBatchOutput = schema.new({
-    id = id.from(_N, "UpdateEndpointsBatchOutput"),
+    id = id.from(_N, "UpdateEndpointsBatchResponse"),
     type = "structure",
     members = {
         MessageBody = schema.new({
@@ -14764,7 +14764,7 @@ M.UpdateEndpointsBatchOutput = schema.new({
 })
 
 M.UpdateGcmChannelInput = schema.new({
-    id = id.from(_N, "UpdateGcmChannelInput"),
+    id = id.from(_N, "UpdateGcmChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -14792,7 +14792,7 @@ M.UpdateGcmChannelInput = schema.new({
 })
 
 M.UpdateGcmChannelOutput = schema.new({
-    id = id.from(_N, "UpdateGcmChannelOutput"),
+    id = id.from(_N, "UpdateGcmChannelResponse"),
     type = "structure",
     members = {
         GCMChannelResponse = schema.new({
@@ -14810,7 +14810,7 @@ M.UpdateGcmChannelOutput = schema.new({
 })
 
 M.UpdateInAppTemplateInput = schema.new({
-    id = id.from(_N, "UpdateInAppTemplateInput"),
+    id = id.from(_N, "UpdateInAppTemplateRequest"),
     type = "structure",
     members = {
         CreateNewVersion = schema.new({
@@ -14856,7 +14856,7 @@ M.UpdateInAppTemplateInput = schema.new({
 })
 
 M.UpdateInAppTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateInAppTemplateOutput"),
+    id = id.from(_N, "UpdateInAppTemplateResponse"),
     type = "structure",
     members = {
         MessageBody = schema.new({
@@ -14874,7 +14874,7 @@ M.UpdateInAppTemplateOutput = schema.new({
 })
 
 M.UpdateJourneyInput = schema.new({
-    id = id.from(_N, "UpdateJourneyInput"),
+    id = id.from(_N, "UpdateJourneyRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -14912,7 +14912,7 @@ M.UpdateJourneyInput = schema.new({
 })
 
 M.UpdateJourneyOutput = schema.new({
-    id = id.from(_N, "UpdateJourneyOutput"),
+    id = id.from(_N, "UpdateJourneyResponse"),
     type = "structure",
     members = {
         JourneyResponse = schema.new({
@@ -14930,7 +14930,7 @@ M.UpdateJourneyOutput = schema.new({
 })
 
 M.UpdateJourneyStateInput = schema.new({
-    id = id.from(_N, "UpdateJourneyStateInput"),
+    id = id.from(_N, "UpdateJourneyStateRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -14968,7 +14968,7 @@ M.UpdateJourneyStateInput = schema.new({
 })
 
 M.UpdateJourneyStateOutput = schema.new({
-    id = id.from(_N, "UpdateJourneyStateOutput"),
+    id = id.from(_N, "UpdateJourneyStateResponse"),
     type = "structure",
     members = {
         JourneyResponse = schema.new({
@@ -14986,7 +14986,7 @@ M.UpdateJourneyStateOutput = schema.new({
 })
 
 M.UpdatePushTemplateInput = schema.new({
-    id = id.from(_N, "UpdatePushTemplateInput"),
+    id = id.from(_N, "UpdatePushTemplateRequest"),
     type = "structure",
     members = {
         CreateNewVersion = schema.new({
@@ -15032,7 +15032,7 @@ M.UpdatePushTemplateInput = schema.new({
 })
 
 M.UpdatePushTemplateOutput = schema.new({
-    id = id.from(_N, "UpdatePushTemplateOutput"),
+    id = id.from(_N, "UpdatePushTemplateResponse"),
     type = "structure",
     members = {
         MessageBody = schema.new({
@@ -15119,7 +15119,7 @@ M.UpdateRecommenderConfigurationShape = schema.new({
 })
 
 M.UpdateRecommenderConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateRecommenderConfigurationInput"),
+    id = id.from(_N, "UpdateRecommenderConfigurationRequest"),
     type = "structure",
     members = {
         RecommenderId = schema.new({
@@ -15147,7 +15147,7 @@ M.UpdateRecommenderConfigurationInput = schema.new({
 })
 
 M.UpdateRecommenderConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateRecommenderConfigurationOutput"),
+    id = id.from(_N, "UpdateRecommenderConfigurationResponse"),
     type = "structure",
     members = {
         RecommenderConfigurationResponse = schema.new({
@@ -15165,7 +15165,7 @@ M.UpdateRecommenderConfigurationOutput = schema.new({
 })
 
 M.UpdateSegmentInput = schema.new({
-    id = id.from(_N, "UpdateSegmentInput"),
+    id = id.from(_N, "UpdateSegmentRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -15203,7 +15203,7 @@ M.UpdateSegmentInput = schema.new({
 })
 
 M.UpdateSegmentOutput = schema.new({
-    id = id.from(_N, "UpdateSegmentOutput"),
+    id = id.from(_N, "UpdateSegmentResponse"),
     type = "structure",
     members = {
         SegmentResponse = schema.new({
@@ -15246,7 +15246,7 @@ M.SMSChannelRequest = schema.new({
 })
 
 M.UpdateSmsChannelInput = schema.new({
-    id = id.from(_N, "UpdateSmsChannelInput"),
+    id = id.from(_N, "UpdateSmsChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -15274,7 +15274,7 @@ M.UpdateSmsChannelInput = schema.new({
 })
 
 M.UpdateSmsChannelOutput = schema.new({
-    id = id.from(_N, "UpdateSmsChannelOutput"),
+    id = id.from(_N, "UpdateSmsChannelResponse"),
     type = "structure",
     members = {
         SMSChannelResponse = schema.new({
@@ -15292,7 +15292,7 @@ M.UpdateSmsChannelOutput = schema.new({
 })
 
 M.UpdateSmsTemplateInput = schema.new({
-    id = id.from(_N, "UpdateSmsTemplateInput"),
+    id = id.from(_N, "UpdateSmsTemplateRequest"),
     type = "structure",
     members = {
         CreateNewVersion = schema.new({
@@ -15338,7 +15338,7 @@ M.UpdateSmsTemplateInput = schema.new({
 })
 
 M.UpdateSmsTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateSmsTemplateOutput"),
+    id = id.from(_N, "UpdateSmsTemplateResponse"),
     type = "structure",
     members = {
         MessageBody = schema.new({
@@ -15369,7 +15369,7 @@ M.TemplateActiveVersionRequest = schema.new({
 })
 
 M.UpdateTemplateActiveVersionInput = schema.new({
-    id = id.from(_N, "UpdateTemplateActiveVersionInput"),
+    id = id.from(_N, "UpdateTemplateActiveVersionRequest"),
     type = "structure",
     members = {
         TemplateActiveVersionRequest = schema.new({
@@ -15407,7 +15407,7 @@ M.UpdateTemplateActiveVersionInput = schema.new({
 })
 
 M.UpdateTemplateActiveVersionOutput = schema.new({
-    id = id.from(_N, "UpdateTemplateActiveVersionOutput"),
+    id = id.from(_N, "UpdateTemplateActiveVersionResponse"),
     type = "structure",
     members = {
         MessageBody = schema.new({
@@ -15438,7 +15438,7 @@ M.VoiceChannelRequest = schema.new({
 })
 
 M.UpdateVoiceChannelInput = schema.new({
-    id = id.from(_N, "UpdateVoiceChannelInput"),
+    id = id.from(_N, "UpdateVoiceChannelRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -15466,7 +15466,7 @@ M.UpdateVoiceChannelInput = schema.new({
 })
 
 M.UpdateVoiceChannelOutput = schema.new({
-    id = id.from(_N, "UpdateVoiceChannelOutput"),
+    id = id.from(_N, "UpdateVoiceChannelResponse"),
     type = "structure",
     members = {
         VoiceChannelResponse = schema.new({
@@ -15484,7 +15484,7 @@ M.UpdateVoiceChannelOutput = schema.new({
 })
 
 M.UpdateVoiceTemplateInput = schema.new({
-    id = id.from(_N, "UpdateVoiceTemplateInput"),
+    id = id.from(_N, "UpdateVoiceTemplateRequest"),
     type = "structure",
     members = {
         CreateNewVersion = schema.new({
@@ -15530,7 +15530,7 @@ M.UpdateVoiceTemplateInput = schema.new({
 })
 
 M.UpdateVoiceTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateVoiceTemplateOutput"),
+    id = id.from(_N, "UpdateVoiceTemplateResponse"),
     type = "structure",
     members = {
         MessageBody = schema.new({
@@ -15582,7 +15582,7 @@ M.VerifyOTPMessageRequestParameters = schema.new({
 })
 
 M.VerifyOTPMessageInput = schema.new({
-    id = id.from(_N, "VerifyOTPMessageInput"),
+    id = id.from(_N, "VerifyOTPMessageRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -15623,7 +15623,7 @@ M.VerificationResponse = schema.new({
 })
 
 M.VerifyOTPMessageOutput = schema.new({
-    id = id.from(_N, "VerifyOTPMessageOutput"),
+    id = id.from(_N, "VerifyOTPMessageResponse"),
     type = "structure",
     members = {
         VerificationResponse = schema.new({
@@ -15639,5 +15639,19 @@ M.VerifyOTPMessageOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -167,7 +167,7 @@ M.CreateAttendeeRequestItem = schema.new({
 })
 
 M.BatchCreateAttendeeInput = schema.new({
-    id = id.from(_N, "BatchCreateAttendeeInput"),
+    id = id.from(_N, "BatchCreateAttendeeRequest"),
     type = "structure",
     members = {
         MeetingId = schema.new({
@@ -219,7 +219,7 @@ M.CreateAttendeeError = schema.new({
 })
 
 M.BatchCreateAttendeeOutput = schema.new({
-    id = id.from(_N, "BatchCreateAttendeeOutput"),
+    id = id.from(_N, "BatchCreateAttendeeResponse"),
     type = "structure",
     members = {
         Attendees = schema.new({
@@ -473,7 +473,7 @@ M.UnprocessableEntityException = schema.new({
 })
 
 M.BatchUpdateAttendeeCapabilitiesExceptInput = schema.new({
-    id = id.from(_N, "BatchUpdateAttendeeCapabilitiesExceptInput"),
+    id = id.from(_N, "BatchUpdateAttendeeCapabilitiesExceptRequest"),
     type = "structure",
     members = {
         MeetingId = schema.new({
@@ -510,7 +510,7 @@ M.BatchUpdateAttendeeCapabilitiesExceptInput = schema.new({
 })
 
 M.BatchUpdateAttendeeCapabilitiesExceptOutput = schema.new({
-    id = id.from(_N, "BatchUpdateAttendeeCapabilitiesExceptOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -543,7 +543,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateAttendeeInput = schema.new({
-    id = id.from(_N, "CreateAttendeeInput"),
+    id = id.from(_N, "CreateAttendeeRequest"),
     type = "structure",
     members = {
         MeetingId = schema.new({
@@ -576,7 +576,7 @@ M.CreateAttendeeInput = schema.new({
 })
 
 M.CreateAttendeeOutput = schema.new({
-    id = id.from(_N, "CreateAttendeeOutput"),
+    id = id.from(_N, "CreateAttendeeResponse"),
     type = "structure",
     members = {
         Attendee = schema.new({
@@ -701,7 +701,7 @@ M.Tag = schema.new({
 })
 
 M.CreateMeetingInput = schema.new({
-    id = id.from(_N, "CreateMeetingInput"),
+    id = id.from(_N, "CreateMeetingRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -901,7 +901,7 @@ M.Meeting = schema.new({
 })
 
 M.CreateMeetingOutput = schema.new({
-    id = id.from(_N, "CreateMeetingOutput"),
+    id = id.from(_N, "CreateMeetingResponse"),
     type = "structure",
     members = {
         Meeting = schema.new({
@@ -915,7 +915,7 @@ M.CreateMeetingOutput = schema.new({
 })
 
 M.CreateMeetingWithAttendeesInput = schema.new({
-    id = id.from(_N, "CreateMeetingWithAttendeesInput"),
+    id = id.from(_N, "CreateMeetingWithAttendeesRequest"),
     type = "structure",
     members = {
         ClientRequestToken = schema.new({
@@ -1006,7 +1006,7 @@ M.CreateMeetingWithAttendeesInput = schema.new({
 })
 
 M.CreateMeetingWithAttendeesOutput = schema.new({
-    id = id.from(_N, "CreateMeetingWithAttendeesOutput"),
+    id = id.from(_N, "CreateMeetingWithAttendeesResponse"),
     type = "structure",
     members = {
         Meeting = schema.new({
@@ -1034,7 +1034,7 @@ M.CreateMeetingWithAttendeesOutput = schema.new({
 })
 
 M.DeleteAttendeeInput = schema.new({
-    id = id.from(_N, "DeleteAttendeeInput"),
+    id = id.from(_N, "DeleteAttendeeRequest"),
     type = "structure",
     members = {
         MeetingId = schema.new({
@@ -1061,12 +1061,12 @@ M.DeleteAttendeeInput = schema.new({
 })
 
 M.DeleteAttendeeOutput = schema.new({
-    id = id.from(_N, "DeleteAttendeeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMeetingInput = schema.new({
-    id = id.from(_N, "DeleteMeetingInput"),
+    id = id.from(_N, "DeleteMeetingRequest"),
     type = "structure",
     members = {
         MeetingId = schema.new({
@@ -1083,12 +1083,12 @@ M.DeleteMeetingInput = schema.new({
 })
 
 M.DeleteMeetingOutput = schema.new({
-    id = id.from(_N, "DeleteMeetingOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetAttendeeInput = schema.new({
-    id = id.from(_N, "GetAttendeeInput"),
+    id = id.from(_N, "GetAttendeeRequest"),
     type = "structure",
     members = {
         MeetingId = schema.new({
@@ -1115,7 +1115,7 @@ M.GetAttendeeInput = schema.new({
 })
 
 M.GetAttendeeOutput = schema.new({
-    id = id.from(_N, "GetAttendeeOutput"),
+    id = id.from(_N, "GetAttendeeResponse"),
     type = "structure",
     members = {
         Attendee = schema.new({
@@ -1129,7 +1129,7 @@ M.GetAttendeeOutput = schema.new({
 })
 
 M.GetMeetingInput = schema.new({
-    id = id.from(_N, "GetMeetingInput"),
+    id = id.from(_N, "GetMeetingRequest"),
     type = "structure",
     members = {
         MeetingId = schema.new({
@@ -1146,7 +1146,7 @@ M.GetMeetingInput = schema.new({
 })
 
 M.GetMeetingOutput = schema.new({
-    id = id.from(_N, "GetMeetingOutput"),
+    id = id.from(_N, "GetMeetingResponse"),
     type = "structure",
     members = {
         Meeting = schema.new({
@@ -1160,7 +1160,7 @@ M.GetMeetingOutput = schema.new({
 })
 
 M.ListAttendeesInput = schema.new({
-    id = id.from(_N, "ListAttendeesInput"),
+    id = id.from(_N, "ListAttendeesRequest"),
     type = "structure",
     members = {
         MeetingId = schema.new({
@@ -1195,7 +1195,7 @@ M.ListAttendeesInput = schema.new({
 })
 
 M.ListAttendeesOutput = schema.new({
-    id = id.from(_N, "ListAttendeesOutput"),
+    id = id.from(_N, "ListAttendeesResponse"),
     type = "structure",
     members = {
         Attendees = schema.new({
@@ -1215,7 +1215,7 @@ M.ListAttendeesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1232,7 +1232,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1462,7 +1462,7 @@ M.TranscriptionConfiguration = schema.new({
 })
 
 M.StartMeetingTranscriptionInput = schema.new({
-    id = id.from(_N, "StartMeetingTranscriptionInput"),
+    id = id.from(_N, "StartMeetingTranscriptionRequest"),
     type = "structure",
     members = {
         MeetingId = schema.new({
@@ -1489,12 +1489,12 @@ M.StartMeetingTranscriptionInput = schema.new({
 })
 
 M.StartMeetingTranscriptionOutput = schema.new({
-    id = id.from(_N, "StartMeetingTranscriptionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StopMeetingTranscriptionInput = schema.new({
-    id = id.from(_N, "StopMeetingTranscriptionInput"),
+    id = id.from(_N, "StopMeetingTranscriptionRequest"),
     type = "structure",
     members = {
         MeetingId = schema.new({
@@ -1511,12 +1511,12 @@ M.StopMeetingTranscriptionInput = schema.new({
 })
 
 M.StopMeetingTranscriptionOutput = schema.new({
-    id = id.from(_N, "StopMeetingTranscriptionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1542,7 +1542,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -1581,7 +1581,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1607,12 +1607,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAttendeeCapabilitiesInput = schema.new({
-    id = id.from(_N, "UpdateAttendeeCapabilitiesInput"),
+    id = id.from(_N, "UpdateAttendeeCapabilitiesRequest"),
     type = "structure",
     members = {
         MeetingId = schema.new({
@@ -1649,7 +1649,7 @@ M.UpdateAttendeeCapabilitiesInput = schema.new({
 })
 
 M.UpdateAttendeeCapabilitiesOutput = schema.new({
-    id = id.from(_N, "UpdateAttendeeCapabilitiesOutput"),
+    id = id.from(_N, "UpdateAttendeeCapabilitiesResponse"),
     type = "structure",
     members = {
         Attendee = schema.new({
@@ -1661,5 +1661,19 @@ M.UpdateAttendeeCapabilitiesOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

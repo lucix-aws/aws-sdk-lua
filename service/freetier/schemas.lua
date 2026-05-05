@@ -111,7 +111,7 @@ M.ActivitySummary = schema.new({
 })
 
 M.GetAccountActivityInput = schema.new({
-    id = id.from(_N, "GetAccountActivityInput"),
+    id = id.from(_N, "GetAccountActivityRequest"),
     type = "structure",
     members = {
         activityId = schema.new({
@@ -133,7 +133,7 @@ M.GetAccountActivityInput = schema.new({
 })
 
 M.GetAccountActivityOutput = schema.new({
-    id = id.from(_N, "GetAccountActivityOutput"),
+    id = id.from(_N, "GetAccountActivityResponse"),
     type = "structure",
     members = {
         activityId = schema.new({
@@ -304,12 +304,12 @@ M.ValidationException = schema.new({
 })
 
 M.GetAccountPlanStateInput = schema.new({
-    id = id.from(_N, "GetAccountPlanStateInput"),
+    id = id.from(_N, "GetAccountPlanStateRequest"),
     type = "structure",
 })
 
 M.GetAccountPlanStateOutput = schema.new({
-    id = id.from(_N, "GetAccountPlanStateOutput"),
+    id = id.from(_N, "GetAccountPlanStateResponse"),
     type = "structure",
     members = {
         accountId = schema.new({
@@ -471,7 +471,7 @@ M.FreeTierUsage = schema.new({
 })
 
 M.GetFreeTierUsageOutput = schema.new({
-    id = id.from(_N, "GetFreeTierUsageOutput"),
+    id = id.from(_N, "GetFreeTierUsageResponse"),
     type = "structure",
     members = {
         freeTierUsages = schema.new({
@@ -494,7 +494,7 @@ M.GetFreeTierUsageOutput = schema.new({
 })
 
 M.ListAccountActivitiesInput = schema.new({
-    id = id.from(_N, "ListAccountActivitiesInput"),
+    id = id.from(_N, "ListAccountActivitiesRequest"),
     type = "structure",
     members = {
         filterActivityStatuses = schema.new({
@@ -529,7 +529,7 @@ M.ListAccountActivitiesInput = schema.new({
 })
 
 M.ListAccountActivitiesOutput = schema.new({
-    id = id.from(_N, "ListAccountActivitiesOutput"),
+    id = id.from(_N, "ListAccountActivitiesResponse"),
     type = "structure",
     members = {
         activities = schema.new({
@@ -552,7 +552,7 @@ M.ListAccountActivitiesOutput = schema.new({
 })
 
 M.UpgradeAccountPlanInput = schema.new({
-    id = id.from(_N, "UpgradeAccountPlanInput"),
+    id = id.from(_N, "UpgradeAccountPlanRequest"),
     type = "structure",
     members = {
         accountPlanType = schema.new({
@@ -568,7 +568,7 @@ M.UpgradeAccountPlanInput = schema.new({
 })
 
 M.UpgradeAccountPlanOutput = schema.new({
-    id = id.from(_N, "UpgradeAccountPlanOutput"),
+    id = id.from(_N, "UpgradeAccountPlanResponse"),
     type = "structure",
     members = {
         accountId = schema.new({
@@ -637,7 +637,7 @@ M.Expression = schema.new({
 })
 
 M.GetFreeTierUsageInput = schema.new({
-    id = id.from(_N, "GetFreeTierUsageInput"),
+    id = id.from(_N, "GetFreeTierUsageRequest"),
     type = "structure",
     members = {
         filter = schema.new({
@@ -664,5 +664,19 @@ M.GetFreeTierUsageInput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

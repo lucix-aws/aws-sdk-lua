@@ -60,7 +60,7 @@ M.AddTagsToStreamInput = schema.new({
 })
 
 M.AddTagsToStreamOutput = schema.new({
-    id = id.from(_N, "AddTagsToStreamOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -350,7 +350,7 @@ M.CreateStreamInput = schema.new({
 })
 
 M.CreateStreamOutput = schema.new({
-    id = id.from(_N, "CreateStreamOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -405,7 +405,7 @@ M.DecreaseStreamRetentionPeriodInput = schema.new({
 })
 
 M.DecreaseStreamRetentionPeriodOutput = schema.new({
-    id = id.from(_N, "DecreaseStreamRetentionPeriodOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -432,7 +432,7 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -468,7 +468,7 @@ M.DeleteStreamInput = schema.new({
 })
 
 M.DeleteStreamOutput = schema.new({
-    id = id.from(_N, "DeleteStreamOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -504,7 +504,7 @@ M.DeregisterStreamConsumerInput = schema.new({
 })
 
 M.DeregisterStreamConsumerOutput = schema.new({
-    id = id.from(_N, "DeregisterStreamConsumerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1107,7 +1107,7 @@ M.DisableEnhancedMonitoringInput = schema.new({
 })
 
 M.DisableEnhancedMonitoringOutput = schema.new({
-    id = id.from(_N, "DisableEnhancedMonitoringOutput"),
+    id = id.from(_N, "EnhancedMonitoringOutput"),
     type = "structure",
     members = {
         StreamName = schema.new({
@@ -1175,7 +1175,7 @@ M.EnableEnhancedMonitoringInput = schema.new({
 })
 
 M.EnableEnhancedMonitoringOutput = schema.new({
-    id = id.from(_N, "EnableEnhancedMonitoringOutput"),
+    id = id.from(_N, "EnhancedMonitoringOutput"),
     type = "structure",
     members = {
         StreamName = schema.new({
@@ -1624,7 +1624,7 @@ M.IncreaseStreamRetentionPeriodInput = schema.new({
 })
 
 M.IncreaseStreamRetentionPeriodOutput = schema.new({
-    id = id.from(_N, "IncreaseStreamRetentionPeriodOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2068,7 +2068,7 @@ M.MergeShardsInput = schema.new({
 })
 
 M.MergeShardsOutput = schema.new({
-    id = id.from(_N, "MergeShardsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2316,7 +2316,7 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2412,7 +2412,7 @@ M.RemoveTagsFromStreamInput = schema.new({
 })
 
 M.RemoveTagsFromStreamOutput = schema.new({
-    id = id.from(_N, "RemoveTagsFromStreamOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2460,7 +2460,7 @@ M.SplitShardInput = schema.new({
 })
 
 M.SplitShardOutput = schema.new({
-    id = id.from(_N, "SplitShardOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2508,7 +2508,7 @@ M.StartStreamEncryptionInput = schema.new({
 })
 
 M.StartStreamEncryptionOutput = schema.new({
-    id = id.from(_N, "StartStreamEncryptionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2556,7 +2556,7 @@ M.StopStreamEncryptionInput = schema.new({
 })
 
 M.StopStreamEncryptionOutput = schema.new({
-    id = id.from(_N, "StopStreamEncryptionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2799,7 +2799,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2836,7 +2836,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2916,7 +2916,7 @@ M.UpdateMaxRecordSizeInput = schema.new({
 })
 
 M.UpdateMaxRecordSizeOutput = schema.new({
-    id = id.from(_N, "UpdateMaxRecordSizeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3033,7 +3033,7 @@ M.UpdateStreamModeInput = schema.new({
 })
 
 M.UpdateStreamModeOutput = schema.new({
-    id = id.from(_N, "UpdateStreamModeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3096,5 +3096,19 @@ M.UpdateStreamWarmThroughputOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

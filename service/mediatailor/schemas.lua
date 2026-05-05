@@ -1044,7 +1044,7 @@ M.PlaybackConfiguration = schema.new({
             name = "ConfigurationAliases",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
         DashConfiguration = schema.new({
             id = id.from(_N, "PlaybackConfiguration", "DashConfiguration"),
@@ -1888,7 +1888,7 @@ M.BadRequestException = schema.new({
 })
 
 M.DeleteChannelPolicyInput = schema.new({
-    id = id.from(_N, "DeleteChannelPolicyInput"),
+    id = id.from(_N, "DeleteChannelPolicyRequest"),
     type = "structure",
     members = {
         ChannelName = schema.new({
@@ -1905,12 +1905,12 @@ M.DeleteChannelPolicyInput = schema.new({
 })
 
 M.DeleteChannelPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteChannelPolicyOutput"),
+    id = id.from(_N, "DeleteChannelPolicyResponse"),
     type = "structure",
 })
 
 M.GetChannelPolicyInput = schema.new({
-    id = id.from(_N, "GetChannelPolicyInput"),
+    id = id.from(_N, "GetChannelPolicyRequest"),
     type = "structure",
     members = {
         ChannelName = schema.new({
@@ -1927,7 +1927,7 @@ M.GetChannelPolicyInput = schema.new({
 })
 
 M.GetChannelPolicyOutput = schema.new({
-    id = id.from(_N, "GetChannelPolicyOutput"),
+    id = id.from(_N, "GetChannelPolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -1940,7 +1940,7 @@ M.GetChannelPolicyOutput = schema.new({
 })
 
 M.PutChannelPolicyInput = schema.new({
-    id = id.from(_N, "PutChannelPolicyInput"),
+    id = id.from(_N, "PutChannelPolicyRequest"),
     type = "structure",
     members = {
         ChannelName = schema.new({
@@ -1966,12 +1966,12 @@ M.PutChannelPolicyInput = schema.new({
 })
 
 M.PutChannelPolicyOutput = schema.new({
-    id = id.from(_N, "PutChannelPolicyOutput"),
+    id = id.from(_N, "PutChannelPolicyResponse"),
     type = "structure",
 })
 
 M.ConfigureLogsForChannelInput = schema.new({
-    id = id.from(_N, "ConfigureLogsForChannelInput"),
+    id = id.from(_N, "ConfigureLogsForChannelRequest"),
     type = "structure",
     members = {
         ChannelName = schema.new({
@@ -1997,7 +1997,7 @@ M.ConfigureLogsForChannelInput = schema.new({
 })
 
 M.ConfigureLogsForChannelOutput = schema.new({
-    id = id.from(_N, "ConfigureLogsForChannelOutput"),
+    id = id.from(_N, "ConfigureLogsForChannelResponse"),
     type = "structure",
     members = {
         ChannelName = schema.new({
@@ -2072,7 +2072,7 @@ M.TimeShiftConfiguration = schema.new({
 })
 
 M.CreateChannelInput = schema.new({
-    id = id.from(_N, "CreateChannelInput"),
+    id = id.from(_N, "CreateChannelRequest"),
     type = "structure",
     members = {
         ChannelName = schema.new({
@@ -2146,7 +2146,7 @@ M.CreateChannelInput = schema.new({
 })
 
 M.CreateChannelOutput = schema.new({
-    id = id.from(_N, "CreateChannelOutput"),
+    id = id.from(_N, "CreateChannelResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2240,7 +2240,7 @@ M.CreateChannelOutput = schema.new({
 })
 
 M.DeleteChannelInput = schema.new({
-    id = id.from(_N, "DeleteChannelInput"),
+    id = id.from(_N, "DeleteChannelRequest"),
     type = "structure",
     members = {
         ChannelName = schema.new({
@@ -2257,12 +2257,12 @@ M.DeleteChannelInput = schema.new({
 })
 
 M.DeleteChannelOutput = schema.new({
-    id = id.from(_N, "DeleteChannelOutput"),
+    id = id.from(_N, "DeleteChannelResponse"),
     type = "structure",
 })
 
 M.DescribeChannelInput = schema.new({
-    id = id.from(_N, "DescribeChannelInput"),
+    id = id.from(_N, "DescribeChannelRequest"),
     type = "structure",
     members = {
         ChannelName = schema.new({
@@ -2279,7 +2279,7 @@ M.DescribeChannelInput = schema.new({
 })
 
 M.DescribeChannelOutput = schema.new({
-    id = id.from(_N, "DescribeChannelOutput"),
+    id = id.from(_N, "DescribeChannelResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2383,7 +2383,7 @@ M.DescribeChannelOutput = schema.new({
 })
 
 M.GetChannelScheduleInput = schema.new({
-    id = id.from(_N, "GetChannelScheduleInput"),
+    id = id.from(_N, "GetChannelScheduleRequest"),
     type = "structure",
     members = {
         ChannelName = schema.new({
@@ -2436,7 +2436,7 @@ M.GetChannelScheduleInput = schema.new({
 })
 
 M.GetChannelScheduleOutput = schema.new({
-    id = id.from(_N, "GetChannelScheduleOutput"),
+    id = id.from(_N, "GetChannelScheduleResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -2456,7 +2456,7 @@ M.GetChannelScheduleOutput = schema.new({
 })
 
 M.ListChannelsInput = schema.new({
-    id = id.from(_N, "ListChannelsInput"),
+    id = id.from(_N, "ListChannelsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2481,7 +2481,7 @@ M.ListChannelsInput = schema.new({
 })
 
 M.ListChannelsOutput = schema.new({
-    id = id.from(_N, "ListChannelsOutput"),
+    id = id.from(_N, "ListChannelsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -2568,7 +2568,7 @@ M.ScheduleConfiguration = schema.new({
 })
 
 M.CreateProgramInput = schema.new({
-    id = id.from(_N, "CreateProgramInput"),
+    id = id.from(_N, "CreateProgramRequest"),
     type = "structure",
     members = {
         AdBreaks = schema.new({
@@ -2651,7 +2651,7 @@ M.CreateProgramInput = schema.new({
 })
 
 M.CreateProgramOutput = schema.new({
-    id = id.from(_N, "CreateProgramOutput"),
+    id = id.from(_N, "CreateProgramResponse"),
     type = "structure",
     members = {
         AdBreaks = schema.new({
@@ -2750,7 +2750,7 @@ M.CreateProgramOutput = schema.new({
 })
 
 M.DeleteProgramInput = schema.new({
-    id = id.from(_N, "DeleteProgramInput"),
+    id = id.from(_N, "DeleteProgramRequest"),
     type = "structure",
     members = {
         ChannelName = schema.new({
@@ -2777,12 +2777,12 @@ M.DeleteProgramInput = schema.new({
 })
 
 M.DeleteProgramOutput = schema.new({
-    id = id.from(_N, "DeleteProgramOutput"),
+    id = id.from(_N, "DeleteProgramResponse"),
     type = "structure",
 })
 
 M.DescribeProgramInput = schema.new({
-    id = id.from(_N, "DescribeProgramInput"),
+    id = id.from(_N, "DescribeProgramRequest"),
     type = "structure",
     members = {
         ChannelName = schema.new({
@@ -2809,7 +2809,7 @@ M.DescribeProgramInput = schema.new({
 })
 
 M.DescribeProgramOutput = schema.new({
-    id = id.from(_N, "DescribeProgramOutput"),
+    id = id.from(_N, "DescribeProgramResponse"),
     type = "structure",
     members = {
         AdBreaks = schema.new({
@@ -2948,7 +2948,7 @@ M.UpdateProgramScheduleConfiguration = schema.new({
 })
 
 M.UpdateProgramInput = schema.new({
-    id = id.from(_N, "UpdateProgramInput"),
+    id = id.from(_N, "UpdateProgramRequest"),
     type = "structure",
     members = {
         AdBreaks = schema.new({
@@ -2999,7 +2999,7 @@ M.UpdateProgramInput = schema.new({
 })
 
 M.UpdateProgramOutput = schema.new({
-    id = id.from(_N, "UpdateProgramOutput"),
+    id = id.from(_N, "UpdateProgramResponse"),
     type = "structure",
     members = {
         AdBreaks = schema.new({
@@ -3098,7 +3098,7 @@ M.UpdateProgramOutput = schema.new({
 })
 
 M.StartChannelInput = schema.new({
-    id = id.from(_N, "StartChannelInput"),
+    id = id.from(_N, "StartChannelRequest"),
     type = "structure",
     members = {
         ChannelName = schema.new({
@@ -3115,12 +3115,12 @@ M.StartChannelInput = schema.new({
 })
 
 M.StartChannelOutput = schema.new({
-    id = id.from(_N, "StartChannelOutput"),
+    id = id.from(_N, "StartChannelResponse"),
     type = "structure",
 })
 
 M.StopChannelInput = schema.new({
-    id = id.from(_N, "StopChannelInput"),
+    id = id.from(_N, "StopChannelRequest"),
     type = "structure",
     members = {
         ChannelName = schema.new({
@@ -3137,12 +3137,12 @@ M.StopChannelInput = schema.new({
 })
 
 M.StopChannelOutput = schema.new({
-    id = id.from(_N, "StopChannelOutput"),
+    id = id.from(_N, "StopChannelResponse"),
     type = "structure",
 })
 
 M.UpdateChannelInput = schema.new({
-    id = id.from(_N, "UpdateChannelInput"),
+    id = id.from(_N, "UpdateChannelRequest"),
     type = "structure",
     members = {
         ChannelName = schema.new({
@@ -3190,7 +3190,7 @@ M.UpdateChannelInput = schema.new({
 })
 
 M.UpdateChannelOutput = schema.new({
-    id = id.from(_N, "UpdateChannelOutput"),
+    id = id.from(_N, "UpdateChannelResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3284,7 +3284,7 @@ M.UpdateChannelOutput = schema.new({
 })
 
 M.ConfigureLogsForPlaybackConfigurationInput = schema.new({
-    id = id.from(_N, "ConfigureLogsForPlaybackConfigurationInput"),
+    id = id.from(_N, "ConfigureLogsForPlaybackConfigurationRequest"),
     type = "structure",
     members = {
         PercentEnabled = schema.new({
@@ -3331,7 +3331,7 @@ M.ConfigureLogsForPlaybackConfigurationInput = schema.new({
 })
 
 M.ConfigureLogsForPlaybackConfigurationOutput = schema.new({
-    id = id.from(_N, "ConfigureLogsForPlaybackConfigurationOutput"),
+    id = id.from(_N, "ConfigureLogsForPlaybackConfigurationResponse"),
     type = "structure",
     members = {
         PercentEnabled = schema.new({
@@ -3375,7 +3375,7 @@ M.ConfigureLogsForPlaybackConfigurationOutput = schema.new({
 })
 
 M.CreateLiveSourceInput = schema.new({
-    id = id.from(_N, "CreateLiveSourceInput"),
+    id = id.from(_N, "CreateLiveSourceRequest"),
     type = "structure",
     members = {
         HttpPackageConfigurations = schema.new({
@@ -3423,7 +3423,7 @@ M.CreateLiveSourceInput = schema.new({
 })
 
 M.CreateLiveSourceOutput = schema.new({
-    id = id.from(_N, "CreateLiveSourceOutput"),
+    id = id.from(_N, "CreateLiveSourceResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3484,7 +3484,7 @@ M.CreateLiveSourceOutput = schema.new({
 })
 
 M.CreatePrefetchScheduleInput = schema.new({
-    id = id.from(_N, "CreatePrefetchScheduleInput"),
+    id = id.from(_N, "CreatePrefetchScheduleRequest"),
     type = "structure",
     members = {
         Consumption = schema.new({
@@ -3555,7 +3555,7 @@ M.CreatePrefetchScheduleInput = schema.new({
 })
 
 M.CreatePrefetchScheduleOutput = schema.new({
-    id = id.from(_N, "CreatePrefetchScheduleOutput"),
+    id = id.from(_N, "CreatePrefetchScheduleResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3624,7 +3624,7 @@ M.CreatePrefetchScheduleOutput = schema.new({
 })
 
 M.CreateSourceLocationInput = schema.new({
-    id = id.from(_N, "CreateSourceLocationInput"),
+    id = id.from(_N, "CreateSourceLocationRequest"),
     type = "structure",
     members = {
         AccessConfiguration = schema.new({
@@ -3683,7 +3683,7 @@ M.CreateSourceLocationInput = schema.new({
 })
 
 M.CreateSourceLocationOutput = schema.new({
-    id = id.from(_N, "CreateSourceLocationOutput"),
+    id = id.from(_N, "CreateSourceLocationResponse"),
     type = "structure",
     members = {
         AccessConfiguration = schema.new({
@@ -3759,7 +3759,7 @@ M.CreateSourceLocationOutput = schema.new({
 })
 
 M.CreateVodSourceInput = schema.new({
-    id = id.from(_N, "CreateVodSourceInput"),
+    id = id.from(_N, "CreateVodSourceRequest"),
     type = "structure",
     members = {
         HttpPackageConfigurations = schema.new({
@@ -3807,7 +3807,7 @@ M.CreateVodSourceInput = schema.new({
 })
 
 M.CreateVodSourceOutput = schema.new({
-    id = id.from(_N, "CreateVodSourceOutput"),
+    id = id.from(_N, "CreateVodSourceResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3887,7 +3887,7 @@ M.DashConfigurationForPut = schema.new({
 })
 
 M.DeleteLiveSourceInput = schema.new({
-    id = id.from(_N, "DeleteLiveSourceInput"),
+    id = id.from(_N, "DeleteLiveSourceRequest"),
     type = "structure",
     members = {
         LiveSourceName = schema.new({
@@ -3914,12 +3914,12 @@ M.DeleteLiveSourceInput = schema.new({
 })
 
 M.DeleteLiveSourceOutput = schema.new({
-    id = id.from(_N, "DeleteLiveSourceOutput"),
+    id = id.from(_N, "DeleteLiveSourceResponse"),
     type = "structure",
 })
 
 M.DeletePlaybackConfigurationInput = schema.new({
-    id = id.from(_N, "DeletePlaybackConfigurationInput"),
+    id = id.from(_N, "DeletePlaybackConfigurationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3936,12 +3936,12 @@ M.DeletePlaybackConfigurationInput = schema.new({
 })
 
 M.DeletePlaybackConfigurationOutput = schema.new({
-    id = id.from(_N, "DeletePlaybackConfigurationOutput"),
+    id = id.from(_N, "DeletePlaybackConfigurationResponse"),
     type = "structure",
 })
 
 M.DeletePrefetchScheduleInput = schema.new({
-    id = id.from(_N, "DeletePrefetchScheduleInput"),
+    id = id.from(_N, "DeletePrefetchScheduleRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3968,12 +3968,12 @@ M.DeletePrefetchScheduleInput = schema.new({
 })
 
 M.DeletePrefetchScheduleOutput = schema.new({
-    id = id.from(_N, "DeletePrefetchScheduleOutput"),
+    id = id.from(_N, "DeletePrefetchScheduleResponse"),
     type = "structure",
 })
 
 M.DeleteSourceLocationInput = schema.new({
-    id = id.from(_N, "DeleteSourceLocationInput"),
+    id = id.from(_N, "DeleteSourceLocationRequest"),
     type = "structure",
     members = {
         SourceLocationName = schema.new({
@@ -3990,12 +3990,12 @@ M.DeleteSourceLocationInput = schema.new({
 })
 
 M.DeleteSourceLocationOutput = schema.new({
-    id = id.from(_N, "DeleteSourceLocationOutput"),
+    id = id.from(_N, "DeleteSourceLocationResponse"),
     type = "structure",
 })
 
 M.DeleteVodSourceInput = schema.new({
-    id = id.from(_N, "DeleteVodSourceInput"),
+    id = id.from(_N, "DeleteVodSourceRequest"),
     type = "structure",
     members = {
         SourceLocationName = schema.new({
@@ -4022,12 +4022,12 @@ M.DeleteVodSourceInput = schema.new({
 })
 
 M.DeleteVodSourceOutput = schema.new({
-    id = id.from(_N, "DeleteVodSourceOutput"),
+    id = id.from(_N, "DeleteVodSourceResponse"),
     type = "structure",
 })
 
 M.DescribeLiveSourceInput = schema.new({
-    id = id.from(_N, "DescribeLiveSourceInput"),
+    id = id.from(_N, "DescribeLiveSourceRequest"),
     type = "structure",
     members = {
         LiveSourceName = schema.new({
@@ -4054,7 +4054,7 @@ M.DescribeLiveSourceInput = schema.new({
 })
 
 M.DescribeLiveSourceOutput = schema.new({
-    id = id.from(_N, "DescribeLiveSourceOutput"),
+    id = id.from(_N, "DescribeLiveSourceResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -4115,7 +4115,7 @@ M.DescribeLiveSourceOutput = schema.new({
 })
 
 M.DescribeSourceLocationInput = schema.new({
-    id = id.from(_N, "DescribeSourceLocationInput"),
+    id = id.from(_N, "DescribeSourceLocationRequest"),
     type = "structure",
     members = {
         SourceLocationName = schema.new({
@@ -4132,7 +4132,7 @@ M.DescribeSourceLocationInput = schema.new({
 })
 
 M.DescribeSourceLocationOutput = schema.new({
-    id = id.from(_N, "DescribeSourceLocationOutput"),
+    id = id.from(_N, "DescribeSourceLocationResponse"),
     type = "structure",
     members = {
         AccessConfiguration = schema.new({
@@ -4208,7 +4208,7 @@ M.DescribeSourceLocationOutput = schema.new({
 })
 
 M.DescribeVodSourceInput = schema.new({
-    id = id.from(_N, "DescribeVodSourceInput"),
+    id = id.from(_N, "DescribeVodSourceRequest"),
     type = "structure",
     members = {
         SourceLocationName = schema.new({
@@ -4235,7 +4235,7 @@ M.DescribeVodSourceInput = schema.new({
 })
 
 M.DescribeVodSourceOutput = schema.new({
-    id = id.from(_N, "DescribeVodSourceOutput"),
+    id = id.from(_N, "DescribeVodSourceResponse"),
     type = "structure",
     members = {
         AdBreakOpportunities = schema.new({
@@ -4303,7 +4303,7 @@ M.DescribeVodSourceOutput = schema.new({
 })
 
 M.GetPlaybackConfigurationInput = schema.new({
-    id = id.from(_N, "GetPlaybackConfigurationInput"),
+    id = id.from(_N, "GetPlaybackConfigurationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4320,7 +4320,7 @@ M.GetPlaybackConfigurationInput = schema.new({
 })
 
 M.GetPlaybackConfigurationOutput = schema.new({
-    id = id.from(_N, "GetPlaybackConfigurationOutput"),
+    id = id.from(_N, "GetPlaybackConfigurationResponse"),
     type = "structure",
     members = {
         AdDecisionServerUrl = schema.new({
@@ -4356,7 +4356,7 @@ M.GetPlaybackConfigurationOutput = schema.new({
             name = "ConfigurationAliases",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
         DashConfiguration = schema.new({
             id = id.from(_N, "GetPlaybackConfigurationOutput", "DashConfiguration"),
@@ -4479,7 +4479,7 @@ M.GetPlaybackConfigurationOutput = schema.new({
 })
 
 M.GetPrefetchScheduleInput = schema.new({
-    id = id.from(_N, "GetPrefetchScheduleInput"),
+    id = id.from(_N, "GetPrefetchScheduleRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4506,7 +4506,7 @@ M.GetPrefetchScheduleInput = schema.new({
 })
 
 M.GetPrefetchScheduleOutput = schema.new({
-    id = id.from(_N, "GetPrefetchScheduleOutput"),
+    id = id.from(_N, "GetPrefetchScheduleResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -4575,7 +4575,7 @@ M.GetPrefetchScheduleOutput = schema.new({
 })
 
 M.ListAlertsInput = schema.new({
-    id = id.from(_N, "ListAlertsInput"),
+    id = id.from(_N, "ListAlertsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4610,7 +4610,7 @@ M.ListAlertsInput = schema.new({
 })
 
 M.ListAlertsOutput = schema.new({
-    id = id.from(_N, "ListAlertsOutput"),
+    id = id.from(_N, "ListAlertsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -4630,7 +4630,7 @@ M.ListAlertsOutput = schema.new({
 })
 
 M.ListLiveSourcesInput = schema.new({
-    id = id.from(_N, "ListLiveSourcesInput"),
+    id = id.from(_N, "ListLiveSourcesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4665,7 +4665,7 @@ M.ListLiveSourcesInput = schema.new({
 })
 
 M.ListLiveSourcesOutput = schema.new({
-    id = id.from(_N, "ListLiveSourcesOutput"),
+    id = id.from(_N, "ListLiveSourcesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -4685,7 +4685,7 @@ M.ListLiveSourcesOutput = schema.new({
 })
 
 M.ListPlaybackConfigurationsInput = schema.new({
-    id = id.from(_N, "ListPlaybackConfigurationsInput"),
+    id = id.from(_N, "ListPlaybackConfigurationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4710,7 +4710,7 @@ M.ListPlaybackConfigurationsInput = schema.new({
 })
 
 M.ListPlaybackConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListPlaybackConfigurationsOutput"),
+    id = id.from(_N, "ListPlaybackConfigurationsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -4730,7 +4730,7 @@ M.ListPlaybackConfigurationsOutput = schema.new({
 })
 
 M.ListPrefetchSchedulesInput = schema.new({
-    id = id.from(_N, "ListPrefetchSchedulesInput"),
+    id = id.from(_N, "ListPrefetchSchedulesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4771,7 +4771,7 @@ M.ListPrefetchSchedulesInput = schema.new({
 })
 
 M.ListPrefetchSchedulesOutput = schema.new({
-    id = id.from(_N, "ListPrefetchSchedulesOutput"),
+    id = id.from(_N, "ListPrefetchSchedulesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -4791,7 +4791,7 @@ M.ListPrefetchSchedulesOutput = schema.new({
 })
 
 M.ListSourceLocationsInput = schema.new({
-    id = id.from(_N, "ListSourceLocationsInput"),
+    id = id.from(_N, "ListSourceLocationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4816,7 +4816,7 @@ M.ListSourceLocationsInput = schema.new({
 })
 
 M.ListSourceLocationsOutput = schema.new({
-    id = id.from(_N, "ListSourceLocationsOutput"),
+    id = id.from(_N, "ListSourceLocationsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -4836,7 +4836,7 @@ M.ListSourceLocationsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4853,7 +4853,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -4871,7 +4871,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListVodSourcesInput = schema.new({
-    id = id.from(_N, "ListVodSourcesInput"),
+    id = id.from(_N, "ListVodSourcesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -4906,7 +4906,7 @@ M.ListVodSourcesInput = schema.new({
 })
 
 M.ListVodSourcesOutput = schema.new({
-    id = id.from(_N, "ListVodSourcesOutput"),
+    id = id.from(_N, "ListVodSourcesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -4926,7 +4926,7 @@ M.ListVodSourcesOutput = schema.new({
 })
 
 M.UpdateLiveSourceInput = schema.new({
-    id = id.from(_N, "UpdateLiveSourceInput"),
+    id = id.from(_N, "UpdateLiveSourceRequest"),
     type = "structure",
     members = {
         HttpPackageConfigurations = schema.new({
@@ -4963,7 +4963,7 @@ M.UpdateLiveSourceInput = schema.new({
 })
 
 M.UpdateLiveSourceOutput = schema.new({
-    id = id.from(_N, "UpdateLiveSourceOutput"),
+    id = id.from(_N, "UpdateLiveSourceResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -5024,7 +5024,7 @@ M.UpdateLiveSourceOutput = schema.new({
 })
 
 M.PutPlaybackConfigurationInput = schema.new({
-    id = id.from(_N, "PutPlaybackConfigurationInput"),
+    id = id.from(_N, "PutPlaybackConfigurationRequest"),
     type = "structure",
     members = {
         AdDecisionServerUrl = schema.new({
@@ -5060,7 +5060,7 @@ M.PutPlaybackConfigurationInput = schema.new({
             name = "ConfigurationAliases",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
         DashConfiguration = schema.new({
             id = id.from(_N, "PutPlaybackConfigurationInput", "DashConfiguration"),
@@ -5154,7 +5154,7 @@ M.PutPlaybackConfigurationInput = schema.new({
 })
 
 M.PutPlaybackConfigurationOutput = schema.new({
-    id = id.from(_N, "PutPlaybackConfigurationOutput"),
+    id = id.from(_N, "PutPlaybackConfigurationResponse"),
     type = "structure",
     members = {
         AdDecisionServerUrl = schema.new({
@@ -5190,7 +5190,7 @@ M.PutPlaybackConfigurationOutput = schema.new({
             name = "ConfigurationAliases",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
         DashConfiguration = schema.new({
             id = id.from(_N, "PutPlaybackConfigurationOutput", "DashConfiguration"),
@@ -5313,7 +5313,7 @@ M.PutPlaybackConfigurationOutput = schema.new({
 })
 
 M.UpdateSourceLocationInput = schema.new({
-    id = id.from(_N, "UpdateSourceLocationInput"),
+    id = id.from(_N, "UpdateSourceLocationRequest"),
     type = "structure",
     members = {
         AccessConfiguration = schema.new({
@@ -5361,7 +5361,7 @@ M.UpdateSourceLocationInput = schema.new({
 })
 
 M.UpdateSourceLocationOutput = schema.new({
-    id = id.from(_N, "UpdateSourceLocationOutput"),
+    id = id.from(_N, "UpdateSourceLocationResponse"),
     type = "structure",
     members = {
         AccessConfiguration = schema.new({
@@ -5437,7 +5437,7 @@ M.UpdateSourceLocationOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5466,12 +5466,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5499,12 +5499,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateVodSourceInput = schema.new({
-    id = id.from(_N, "UpdateVodSourceInput"),
+    id = id.from(_N, "UpdateVodSourceRequest"),
     type = "structure",
     members = {
         HttpPackageConfigurations = schema.new({
@@ -5541,7 +5541,7 @@ M.UpdateVodSourceInput = schema.new({
 })
 
 M.UpdateVodSourceOutput = schema.new({
-    id = id.from(_N, "UpdateVodSourceOutput"),
+    id = id.from(_N, "UpdateVodSourceResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -5600,5 +5600,19 @@ M.UpdateVodSourceOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

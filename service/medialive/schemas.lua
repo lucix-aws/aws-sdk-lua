@@ -14167,7 +14167,7 @@ M.VideoDescription = schema.new({
 })
 
 M.AcceptInputDeviceTransferInput = schema.new({
-    id = id.from(_N, "AcceptInputDeviceTransferInput"),
+    id = id.from(_N, "AcceptInputDeviceTransferRequest"),
     type = "structure",
     members = {
         InputDeviceId = schema.new({
@@ -14184,7 +14184,7 @@ M.AcceptInputDeviceTransferInput = schema.new({
 })
 
 M.AcceptInputDeviceTransferOutput = schema.new({
-    id = id.from(_N, "AcceptInputDeviceTransferOutput"),
+    id = id.from(_N, "AcceptInputDeviceTransferResponse"),
     type = "structure",
 })
 
@@ -14631,7 +14631,7 @@ M.AvailConfiguration = schema.new({
 })
 
 M.BatchDeleteInput = schema.new({
-    id = id.from(_N, "BatchDeleteInput"),
+    id = id.from(_N, "BatchDeleteRequest"),
     type = "structure",
     members = {
         ChannelIds = schema.new({
@@ -14678,7 +14678,7 @@ M.BatchDeleteInput = schema.new({
 })
 
 M.BatchDeleteOutput = schema.new({
-    id = id.from(_N, "BatchDeleteOutput"),
+    id = id.from(_N, "BatchDeleteResponse"),
     type = "structure",
     members = {
         Failed = schema.new({
@@ -14777,7 +14777,7 @@ M.BatchScheduleActionDeleteResult = schema.new({
 })
 
 M.BatchStartInput = schema.new({
-    id = id.from(_N, "BatchStartInput"),
+    id = id.from(_N, "BatchStartRequest"),
     type = "structure",
     members = {
         ChannelIds = schema.new({
@@ -14804,7 +14804,7 @@ M.BatchStartInput = schema.new({
 })
 
 M.BatchStartOutput = schema.new({
-    id = id.from(_N, "BatchStartOutput"),
+    id = id.from(_N, "BatchStartResponse"),
     type = "structure",
     members = {
         Failed = schema.new({
@@ -14831,7 +14831,7 @@ M.BatchStartOutput = schema.new({
 })
 
 M.BatchStopInput = schema.new({
-    id = id.from(_N, "BatchStopInput"),
+    id = id.from(_N, "BatchStopRequest"),
     type = "structure",
     members = {
         ChannelIds = schema.new({
@@ -14858,7 +14858,7 @@ M.BatchStopInput = schema.new({
 })
 
 M.BatchStopOutput = schema.new({
-    id = id.from(_N, "BatchStopOutput"),
+    id = id.from(_N, "BatchStopResponse"),
     type = "structure",
     members = {
         Failed = schema.new({
@@ -14885,7 +14885,7 @@ M.BatchStopOutput = schema.new({
 })
 
 M.BatchUpdateScheduleInput = schema.new({
-    id = id.from(_N, "BatchUpdateScheduleInput"),
+    id = id.from(_N, "BatchUpdateScheduleRequest"),
     type = "structure",
     members = {
         ChannelId = schema.new({
@@ -14922,7 +14922,7 @@ M.BatchUpdateScheduleInput = schema.new({
 })
 
 M.BatchUpdateScheduleOutput = schema.new({
-    id = id.from(_N, "BatchUpdateScheduleOutput"),
+    id = id.from(_N, "BatchUpdateScheduleResponse"),
     type = "structure",
     members = {
         Creates = schema.new({
@@ -15003,7 +15003,7 @@ M.BlackoutSlate = schema.new({
 })
 
 M.CancelInputDeviceTransferInput = schema.new({
-    id = id.from(_N, "CancelInputDeviceTransferInput"),
+    id = id.from(_N, "CancelInputDeviceTransferRequest"),
     type = "structure",
     members = {
         InputDeviceId = schema.new({
@@ -15020,7 +15020,7 @@ M.CancelInputDeviceTransferInput = schema.new({
 })
 
 M.CancelInputDeviceTransferOutput = schema.new({
-    id = id.from(_N, "CancelInputDeviceTransferOutput"),
+    id = id.from(_N, "CancelInputDeviceTransferResponse"),
     type = "structure",
 })
 
@@ -15810,7 +15810,7 @@ M.ChannelEngineVersionRequest = schema.new({
 })
 
 M.ClaimDeviceInput = schema.new({
-    id = id.from(_N, "ClaimDeviceInput"),
+    id = id.from(_N, "ClaimDeviceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -15826,7 +15826,7 @@ M.ClaimDeviceInput = schema.new({
 })
 
 M.ClaimDeviceOutput = schema.new({
-    id = id.from(_N, "ClaimDeviceOutput"),
+    id = id.from(_N, "ClaimDeviceResponse"),
     type = "structure",
 })
 
@@ -16030,7 +16030,7 @@ M.VpcOutputSettings = schema.new({
 })
 
 M.CreateChannelInput = schema.new({
-    id = id.from(_N, "CreateChannelInput"),
+    id = id.from(_N, "CreateChannelRequest"),
     type = "structure",
     members = {
         CdiInputSpecification = schema.new({
@@ -16232,7 +16232,7 @@ M.CreateChannelInput = schema.new({
 })
 
 M.CreateChannelOutput = schema.new({
-    id = id.from(_N, "CreateChannelOutput"),
+    id = id.from(_N, "CreateChannelResponse"),
     type = "structure",
     members = {
         Channel = schema.new({
@@ -16249,7 +16249,7 @@ M.CreateChannelOutput = schema.new({
 })
 
 M.CreateChannelPlacementGroupInput = schema.new({
-    id = id.from(_N, "CreateChannelPlacementGroupInput"),
+    id = id.from(_N, "CreateChannelPlacementGroupRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -16306,7 +16306,7 @@ M.CreateChannelPlacementGroupInput = schema.new({
 })
 
 M.CreateChannelPlacementGroupOutput = schema.new({
-    id = id.from(_N, "CreateChannelPlacementGroupOutput"),
+    id = id.from(_N, "CreateChannelPlacementGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -16378,7 +16378,7 @@ M.CreateChannelPlacementGroupOutput = schema.new({
 })
 
 M.CreateCloudWatchAlarmTemplateInput = schema.new({
-    id = id.from(_N, "CreateCloudWatchAlarmTemplateInput"),
+    id = id.from(_N, "CreateCloudWatchAlarmTemplateRequest"),
     type = "structure",
     members = {
         ComparisonOperator = schema.new({
@@ -16524,7 +16524,7 @@ M.CreateCloudWatchAlarmTemplateInput = schema.new({
 })
 
 M.CreateCloudWatchAlarmTemplateOutput = schema.new({
-    id = id.from(_N, "CreateCloudWatchAlarmTemplateOutput"),
+    id = id.from(_N, "CreateCloudWatchAlarmTemplateResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -16694,7 +16694,7 @@ M.CreateCloudWatchAlarmTemplateOutput = schema.new({
 })
 
 M.CreateCloudWatchAlarmTemplateGroupInput = schema.new({
-    id = id.from(_N, "CreateCloudWatchAlarmTemplateGroupInput"),
+    id = id.from(_N, "CreateCloudWatchAlarmTemplateGroupRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -16741,7 +16741,7 @@ M.CreateCloudWatchAlarmTemplateGroupInput = schema.new({
 })
 
 M.CreateCloudWatchAlarmTemplateGroupOutput = schema.new({
-    id = id.from(_N, "CreateCloudWatchAlarmTemplateGroupOutput"),
+    id = id.from(_N, "CreateCloudWatchAlarmTemplateGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -16821,7 +16821,7 @@ M.CreateCloudWatchAlarmTemplateGroupOutput = schema.new({
 })
 
 M.CreateClusterInput = schema.new({
-    id = id.from(_N, "CreateClusterInput"),
+    id = id.from(_N, "CreateClusterRequest"),
     type = "structure",
     members = {
         ClusterType = schema.new({
@@ -16886,7 +16886,7 @@ M.CreateClusterInput = schema.new({
 })
 
 M.CreateClusterOutput = schema.new({
-    id = id.from(_N, "CreateClusterOutput"),
+    id = id.from(_N, "CreateClusterResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -16967,7 +16967,7 @@ M.CreateClusterOutput = schema.new({
 })
 
 M.CreateEventBridgeRuleTemplateInput = schema.new({
-    id = id.from(_N, "CreateEventBridgeRuleTemplateInput"),
+    id = id.from(_N, "CreateEventBridgeRuleTemplateRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -17044,7 +17044,7 @@ M.CreateEventBridgeRuleTemplateInput = schema.new({
 })
 
 M.CreateEventBridgeRuleTemplateOutput = schema.new({
-    id = id.from(_N, "CreateEventBridgeRuleTemplateOutput"),
+    id = id.from(_N, "CreateEventBridgeRuleTemplateResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -17152,7 +17152,7 @@ M.CreateEventBridgeRuleTemplateOutput = schema.new({
 })
 
 M.CreateEventBridgeRuleTemplateGroupInput = schema.new({
-    id = id.from(_N, "CreateEventBridgeRuleTemplateGroupInput"),
+    id = id.from(_N, "CreateEventBridgeRuleTemplateGroupRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -17199,7 +17199,7 @@ M.CreateEventBridgeRuleTemplateGroupInput = schema.new({
 })
 
 M.CreateEventBridgeRuleTemplateGroupOutput = schema.new({
-    id = id.from(_N, "CreateEventBridgeRuleTemplateGroupOutput"),
+    id = id.from(_N, "CreateEventBridgeRuleTemplateGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -17450,7 +17450,7 @@ M.InputVpcRequest = schema.new({
 })
 
 M.CreateInputInput = schema.new({
-    id = id.from(_N, "CreateInputInput"),
+    id = id.from(_N, "CreateInputRequest"),
     type = "structure",
     members = {
         Destinations = schema.new({
@@ -17624,7 +17624,7 @@ M.CreateInputInput = schema.new({
 })
 
 M.CreateInputOutput = schema.new({
-    id = id.from(_N, "CreateInputOutput"),
+    id = id.from(_N, "CreateInputResponse"),
     type = "structure",
     members = {
         Input = schema.new({
@@ -17641,7 +17641,7 @@ M.CreateInputOutput = schema.new({
 })
 
 M.CreateInputSecurityGroupInput = schema.new({
-    id = id.from(_N, "CreateInputSecurityGroupInput"),
+    id = id.from(_N, "CreateInputSecurityGroupRequest"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -17669,7 +17669,7 @@ M.CreateInputSecurityGroupInput = schema.new({
 })
 
 M.CreateInputSecurityGroupOutput = schema.new({
-    id = id.from(_N, "CreateInputSecurityGroupOutput"),
+    id = id.from(_N, "CreateInputSecurityGroupResponse"),
     type = "structure",
     members = {
         SecurityGroup = schema.new({
@@ -17731,7 +17731,7 @@ M.MultiplexSettings = schema.new({
 })
 
 M.CreateMultiplexInput = schema.new({
-    id = id.from(_N, "CreateMultiplexInput"),
+    id = id.from(_N, "CreateMultiplexRequest"),
     type = "structure",
     members = {
         AvailabilityZones = schema.new({
@@ -17894,7 +17894,7 @@ M.Multiplex = schema.new({
 })
 
 M.CreateMultiplexOutput = schema.new({
-    id = id.from(_N, "CreateMultiplexOutput"),
+    id = id.from(_N, "CreateMultiplexResponse"),
     type = "structure",
     members = {
         Multiplex = schema.new({
@@ -18044,7 +18044,7 @@ M.MultiplexProgramSettings = schema.new({
 })
 
 M.CreateMultiplexProgramInput = schema.new({
-    id = id.from(_N, "CreateMultiplexProgramInput"),
+    id = id.from(_N, "CreateMultiplexProgramRequest"),
     type = "structure",
     members = {
         MultiplexId = schema.new({
@@ -18313,7 +18313,7 @@ M.MultiplexProgram = schema.new({
 })
 
 M.CreateMultiplexProgramOutput = schema.new({
-    id = id.from(_N, "CreateMultiplexProgramOutput"),
+    id = id.from(_N, "CreateMultiplexProgramResponse"),
     type = "structure",
     members = {
         MultiplexProgram = schema.new({
@@ -18330,7 +18330,7 @@ M.CreateMultiplexProgramOutput = schema.new({
 })
 
 M.CreateNetworkInput = schema.new({
-    id = id.from(_N, "CreateNetworkInput"),
+    id = id.from(_N, "CreateNetworkRequest"),
     type = "structure",
     members = {
         IpPools = schema.new({
@@ -18387,7 +18387,7 @@ M.CreateNetworkInput = schema.new({
 })
 
 M.CreateNetworkOutput = schema.new({
-    id = id.from(_N, "CreateNetworkOutput"),
+    id = id.from(_N, "CreateNetworkResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -18460,7 +18460,7 @@ M.CreateNetworkOutput = schema.new({
 })
 
 M.CreateNodeInput = schema.new({
-    id = id.from(_N, "CreateNodeInput"),
+    id = id.from(_N, "CreateNodeRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -18526,7 +18526,7 @@ M.CreateNodeInput = schema.new({
 })
 
 M.CreateNodeOutput = schema.new({
-    id = id.from(_N, "CreateNodeOutput"),
+    id = id.from(_N, "CreateNodeResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -18635,7 +18635,7 @@ M.CreateNodeOutput = schema.new({
 })
 
 M.CreateNodeRegistrationScriptInput = schema.new({
-    id = id.from(_N, "CreateNodeRegistrationScriptInput"),
+    id = id.from(_N, "CreateNodeRegistrationScriptRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -18699,7 +18699,7 @@ M.CreateNodeRegistrationScriptInput = schema.new({
 })
 
 M.CreateNodeRegistrationScriptOutput = schema.new({
-    id = id.from(_N, "CreateNodeRegistrationScriptOutput"),
+    id = id.from(_N, "CreateNodeRegistrationScriptResponse"),
     type = "structure",
     members = {
         NodeRegistrationScript = schema.new({
@@ -18715,7 +18715,7 @@ M.CreateNodeRegistrationScriptOutput = schema.new({
 })
 
 M.CreatePartnerInputInput = schema.new({
-    id = id.from(_N, "CreatePartnerInputInput"),
+    id = id.from(_N, "CreatePartnerInputRequest"),
     type = "structure",
     members = {
         InputId = schema.new({
@@ -18753,7 +18753,7 @@ M.CreatePartnerInputInput = schema.new({
 })
 
 M.CreatePartnerInputOutput = schema.new({
-    id = id.from(_N, "CreatePartnerInputOutput"),
+    id = id.from(_N, "CreatePartnerInputResponse"),
     type = "structure",
     members = {
         Input = schema.new({
@@ -18770,7 +18770,7 @@ M.CreatePartnerInputOutput = schema.new({
 })
 
 M.CreateSdiSourceInput = schema.new({
-    id = id.from(_N, "CreateSdiSourceInput"),
+    id = id.from(_N, "CreateSdiSourceRequest"),
     type = "structure",
     members = {
         Mode = schema.new({
@@ -18896,7 +18896,7 @@ M.SdiSource = schema.new({
 })
 
 M.CreateSdiSourceOutput = schema.new({
-    id = id.from(_N, "CreateSdiSourceOutput"),
+    id = id.from(_N, "CreateSdiSourceResponse"),
     type = "structure",
     members = {
         SdiSource = schema.new({
@@ -18913,7 +18913,7 @@ M.CreateSdiSourceOutput = schema.new({
 })
 
 M.CreateSignalMapInput = schema.new({
-    id = id.from(_N, "CreateSignalMapInput"),
+    id = id.from(_N, "CreateSignalMapRequest"),
     type = "structure",
     members = {
         CloudWatchAlarmTemplateGroupIdentifiers = schema.new({
@@ -19088,7 +19088,7 @@ M.MonitorDeployment = schema.new({
 })
 
 M.CreateSignalMapOutput = schema.new({
-    id = id.from(_N, "CreateSignalMapOutput"),
+    id = id.from(_N, "CreateSignalMapResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -19279,7 +19279,7 @@ M.CreateSignalMapOutput = schema.new({
 })
 
 M.CreateTagsInput = schema.new({
-    id = id.from(_N, "CreateTagsInput"),
+    id = id.from(_N, "CreateTagsRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -19307,12 +19307,12 @@ M.CreateTagsInput = schema.new({
 })
 
 M.CreateTagsOutput = schema.new({
-    id = id.from(_N, "CreateTagsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteChannelInput = schema.new({
-    id = id.from(_N, "DeleteChannelInput"),
+    id = id.from(_N, "DeleteChannelRequest"),
     type = "structure",
     members = {
         ChannelId = schema.new({
@@ -19329,7 +19329,7 @@ M.DeleteChannelInput = schema.new({
 })
 
 M.DeleteChannelOutput = schema.new({
-    id = id.from(_N, "DeleteChannelOutput"),
+    id = id.from(_N, "DeleteChannelResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -19559,7 +19559,7 @@ M.DeleteChannelOutput = schema.new({
 })
 
 M.DeleteChannelPlacementGroupInput = schema.new({
-    id = id.from(_N, "DeleteChannelPlacementGroupInput"),
+    id = id.from(_N, "DeleteChannelPlacementGroupRequest"),
     type = "structure",
     members = {
         ChannelPlacementGroupId = schema.new({
@@ -19586,7 +19586,7 @@ M.DeleteChannelPlacementGroupInput = schema.new({
 })
 
 M.DeleteChannelPlacementGroupOutput = schema.new({
-    id = id.from(_N, "DeleteChannelPlacementGroupOutput"),
+    id = id.from(_N, "DeleteChannelPlacementGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -19658,7 +19658,7 @@ M.DeleteChannelPlacementGroupOutput = schema.new({
 })
 
 M.DeleteCloudWatchAlarmTemplateInput = schema.new({
-    id = id.from(_N, "DeleteCloudWatchAlarmTemplateInput"),
+    id = id.from(_N, "DeleteCloudWatchAlarmTemplateRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -19675,12 +19675,12 @@ M.DeleteCloudWatchAlarmTemplateInput = schema.new({
 })
 
 M.DeleteCloudWatchAlarmTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteCloudWatchAlarmTemplateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteCloudWatchAlarmTemplateGroupInput = schema.new({
-    id = id.from(_N, "DeleteCloudWatchAlarmTemplateGroupInput"),
+    id = id.from(_N, "DeleteCloudWatchAlarmTemplateGroupRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -19697,12 +19697,12 @@ M.DeleteCloudWatchAlarmTemplateGroupInput = schema.new({
 })
 
 M.DeleteCloudWatchAlarmTemplateGroupOutput = schema.new({
-    id = id.from(_N, "DeleteCloudWatchAlarmTemplateGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteClusterInput = schema.new({
-    id = id.from(_N, "DeleteClusterInput"),
+    id = id.from(_N, "DeleteClusterRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -19719,7 +19719,7 @@ M.DeleteClusterInput = schema.new({
 })
 
 M.DeleteClusterOutput = schema.new({
-    id = id.from(_N, "DeleteClusterOutput"),
+    id = id.from(_N, "DeleteClusterResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -19800,7 +19800,7 @@ M.DeleteClusterOutput = schema.new({
 })
 
 M.DeleteEventBridgeRuleTemplateInput = schema.new({
-    id = id.from(_N, "DeleteEventBridgeRuleTemplateInput"),
+    id = id.from(_N, "DeleteEventBridgeRuleTemplateRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -19817,12 +19817,12 @@ M.DeleteEventBridgeRuleTemplateInput = schema.new({
 })
 
 M.DeleteEventBridgeRuleTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteEventBridgeRuleTemplateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteEventBridgeRuleTemplateGroupInput = schema.new({
-    id = id.from(_N, "DeleteEventBridgeRuleTemplateGroupInput"),
+    id = id.from(_N, "DeleteEventBridgeRuleTemplateGroupRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -19839,12 +19839,12 @@ M.DeleteEventBridgeRuleTemplateGroupInput = schema.new({
 })
 
 M.DeleteEventBridgeRuleTemplateGroupOutput = schema.new({
-    id = id.from(_N, "DeleteEventBridgeRuleTemplateGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteInputInput = schema.new({
-    id = id.from(_N, "DeleteInputInput"),
+    id = id.from(_N, "DeleteInputRequest"),
     type = "structure",
     members = {
         InputId = schema.new({
@@ -19861,12 +19861,12 @@ M.DeleteInputInput = schema.new({
 })
 
 M.DeleteInputOutput = schema.new({
-    id = id.from(_N, "DeleteInputOutput"),
+    id = id.from(_N, "DeleteInputResponse"),
     type = "structure",
 })
 
 M.DeleteInputSecurityGroupInput = schema.new({
-    id = id.from(_N, "DeleteInputSecurityGroupInput"),
+    id = id.from(_N, "DeleteInputSecurityGroupRequest"),
     type = "structure",
     members = {
         InputSecurityGroupId = schema.new({
@@ -19883,12 +19883,12 @@ M.DeleteInputSecurityGroupInput = schema.new({
 })
 
 M.DeleteInputSecurityGroupOutput = schema.new({
-    id = id.from(_N, "DeleteInputSecurityGroupOutput"),
+    id = id.from(_N, "DeleteInputSecurityGroupResponse"),
     type = "structure",
 })
 
 M.DeleteMultiplexInput = schema.new({
-    id = id.from(_N, "DeleteMultiplexInput"),
+    id = id.from(_N, "DeleteMultiplexRequest"),
     type = "structure",
     members = {
         MultiplexId = schema.new({
@@ -19905,7 +19905,7 @@ M.DeleteMultiplexInput = schema.new({
 })
 
 M.DeleteMultiplexOutput = schema.new({
-    id = id.from(_N, "DeleteMultiplexOutput"),
+    id = id.from(_N, "DeleteMultiplexResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -20007,7 +20007,7 @@ M.DeleteMultiplexOutput = schema.new({
 })
 
 M.DeleteMultiplexProgramInput = schema.new({
-    id = id.from(_N, "DeleteMultiplexProgramInput"),
+    id = id.from(_N, "DeleteMultiplexProgramRequest"),
     type = "structure",
     members = {
         MultiplexId = schema.new({
@@ -20034,7 +20034,7 @@ M.DeleteMultiplexProgramInput = schema.new({
 })
 
 M.DeleteMultiplexProgramOutput = schema.new({
-    id = id.from(_N, "DeleteMultiplexProgramOutput"),
+    id = id.from(_N, "DeleteMultiplexProgramResponse"),
     type = "structure",
     members = {
         ChannelId = schema.new({
@@ -20089,7 +20089,7 @@ M.DeleteMultiplexProgramOutput = schema.new({
 })
 
 M.DeleteNetworkInput = schema.new({
-    id = id.from(_N, "DeleteNetworkInput"),
+    id = id.from(_N, "DeleteNetworkRequest"),
     type = "structure",
     members = {
         NetworkId = schema.new({
@@ -20106,7 +20106,7 @@ M.DeleteNetworkInput = schema.new({
 })
 
 M.DeleteNetworkOutput = schema.new({
-    id = id.from(_N, "DeleteNetworkOutput"),
+    id = id.from(_N, "DeleteNetworkResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -20179,7 +20179,7 @@ M.DeleteNetworkOutput = schema.new({
 })
 
 M.DeleteNodeInput = schema.new({
-    id = id.from(_N, "DeleteNodeInput"),
+    id = id.from(_N, "DeleteNodeRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -20206,7 +20206,7 @@ M.DeleteNodeInput = schema.new({
 })
 
 M.DeleteNodeOutput = schema.new({
-    id = id.from(_N, "DeleteNodeOutput"),
+    id = id.from(_N, "DeleteNodeResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -20315,7 +20315,7 @@ M.DeleteNodeOutput = schema.new({
 })
 
 M.DeleteReservationInput = schema.new({
-    id = id.from(_N, "DeleteReservationInput"),
+    id = id.from(_N, "DeleteReservationRequest"),
     type = "structure",
     members = {
         ReservationId = schema.new({
@@ -20332,7 +20332,7 @@ M.DeleteReservationInput = schema.new({
 })
 
 M.DeleteReservationOutput = schema.new({
-    id = id.from(_N, "DeleteReservationOutput"),
+    id = id.from(_N, "DeleteReservationResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -20514,7 +20514,7 @@ M.DeleteReservationOutput = schema.new({
 })
 
 M.DeleteScheduleInput = schema.new({
-    id = id.from(_N, "DeleteScheduleInput"),
+    id = id.from(_N, "DeleteScheduleRequest"),
     type = "structure",
     members = {
         ChannelId = schema.new({
@@ -20531,12 +20531,12 @@ M.DeleteScheduleInput = schema.new({
 })
 
 M.DeleteScheduleOutput = schema.new({
-    id = id.from(_N, "DeleteScheduleOutput"),
+    id = id.from(_N, "DeleteScheduleResponse"),
     type = "structure",
 })
 
 M.DeleteSdiSourceInput = schema.new({
-    id = id.from(_N, "DeleteSdiSourceInput"),
+    id = id.from(_N, "DeleteSdiSourceRequest"),
     type = "structure",
     members = {
         SdiSourceId = schema.new({
@@ -20553,7 +20553,7 @@ M.DeleteSdiSourceInput = schema.new({
 })
 
 M.DeleteSdiSourceOutput = schema.new({
-    id = id.from(_N, "DeleteSdiSourceOutput"),
+    id = id.from(_N, "DeleteSdiSourceResponse"),
     type = "structure",
     members = {
         SdiSource = schema.new({
@@ -20570,7 +20570,7 @@ M.DeleteSdiSourceOutput = schema.new({
 })
 
 M.DeleteSignalMapInput = schema.new({
-    id = id.from(_N, "DeleteSignalMapInput"),
+    id = id.from(_N, "DeleteSignalMapRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -20587,12 +20587,12 @@ M.DeleteSignalMapInput = schema.new({
 })
 
 M.DeleteSignalMapOutput = schema.new({
-    id = id.from(_N, "DeleteSignalMapOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTagsInput = schema.new({
-    id = id.from(_N, "DeleteTagsInput"),
+    id = id.from(_N, "DeleteTagsRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -20620,17 +20620,17 @@ M.DeleteTagsInput = schema.new({
 })
 
 M.DeleteTagsOutput = schema.new({
-    id = id.from(_N, "DeleteTagsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeAccountConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeAccountConfigurationInput"),
+    id = id.from(_N, "DescribeAccountConfigurationRequest"),
     type = "structure",
 })
 
 M.DescribeAccountConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeAccountConfigurationOutput"),
+    id = id.from(_N, "DescribeAccountConfigurationResponse"),
     type = "structure",
     members = {
         AccountConfiguration = schema.new({
@@ -20647,7 +20647,7 @@ M.DescribeAccountConfigurationOutput = schema.new({
 })
 
 M.DescribeChannelInput = schema.new({
-    id = id.from(_N, "DescribeChannelInput"),
+    id = id.from(_N, "DescribeChannelRequest"),
     type = "structure",
     members = {
         ChannelId = schema.new({
@@ -20664,7 +20664,7 @@ M.DescribeChannelInput = schema.new({
 })
 
 M.DescribeChannelOutput = schema.new({
-    id = id.from(_N, "DescribeChannelOutput"),
+    id = id.from(_N, "DescribeChannelResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -20894,7 +20894,7 @@ M.DescribeChannelOutput = schema.new({
 })
 
 M.DescribeChannelPlacementGroupInput = schema.new({
-    id = id.from(_N, "DescribeChannelPlacementGroupInput"),
+    id = id.from(_N, "DescribeChannelPlacementGroupRequest"),
     type = "structure",
     members = {
         ChannelPlacementGroupId = schema.new({
@@ -20921,7 +20921,7 @@ M.DescribeChannelPlacementGroupInput = schema.new({
 })
 
 M.DescribeChannelPlacementGroupOutput = schema.new({
-    id = id.from(_N, "DescribeChannelPlacementGroupOutput"),
+    id = id.from(_N, "DescribeChannelPlacementGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -20993,7 +20993,7 @@ M.DescribeChannelPlacementGroupOutput = schema.new({
 })
 
 M.DescribeClusterInput = schema.new({
-    id = id.from(_N, "DescribeClusterInput"),
+    id = id.from(_N, "DescribeClusterRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -21010,7 +21010,7 @@ M.DescribeClusterInput = schema.new({
 })
 
 M.DescribeClusterOutput = schema.new({
-    id = id.from(_N, "DescribeClusterOutput"),
+    id = id.from(_N, "DescribeClusterResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -21091,7 +21091,7 @@ M.DescribeClusterOutput = schema.new({
 })
 
 M.DescribeInputInput = schema.new({
-    id = id.from(_N, "DescribeInputInput"),
+    id = id.from(_N, "DescribeInputRequest"),
     type = "structure",
     members = {
         InputId = schema.new({
@@ -21108,7 +21108,7 @@ M.DescribeInputInput = schema.new({
 })
 
 M.DescribeInputOutput = schema.new({
-    id = id.from(_N, "DescribeInputOutput"),
+    id = id.from(_N, "DescribeInputResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -21327,7 +21327,7 @@ M.DescribeInputOutput = schema.new({
 })
 
 M.DescribeInputDeviceInput = schema.new({
-    id = id.from(_N, "DescribeInputDeviceInput"),
+    id = id.from(_N, "DescribeInputDeviceRequest"),
     type = "structure",
     members = {
         InputDeviceId = schema.new({
@@ -21344,7 +21344,7 @@ M.DescribeInputDeviceInput = schema.new({
 })
 
 M.DescribeInputDeviceOutput = schema.new({
-    id = id.from(_N, "DescribeInputDeviceOutput"),
+    id = id.from(_N, "DescribeInputDeviceResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -21501,7 +21501,7 @@ M.DescribeInputDeviceOutput = schema.new({
 })
 
 M.DescribeInputDeviceThumbnailInput = schema.new({
-    id = id.from(_N, "DescribeInputDeviceThumbnailInput"),
+    id = id.from(_N, "DescribeInputDeviceThumbnailRequest"),
     type = "structure",
     members = {
         InputDeviceId = schema.new({
@@ -21528,7 +21528,7 @@ M.DescribeInputDeviceThumbnailInput = schema.new({
 })
 
 M.DescribeInputDeviceThumbnailOutput = schema.new({
-    id = id.from(_N, "DescribeInputDeviceThumbnailOutput"),
+    id = id.from(_N, "DescribeInputDeviceThumbnailResponse"),
     type = "structure",
     members = {
         Body = schema.new({
@@ -21582,7 +21582,7 @@ M.DescribeInputDeviceThumbnailOutput = schema.new({
 })
 
 M.DescribeInputSecurityGroupInput = schema.new({
-    id = id.from(_N, "DescribeInputSecurityGroupInput"),
+    id = id.from(_N, "DescribeInputSecurityGroupRequest"),
     type = "structure",
     members = {
         InputSecurityGroupId = schema.new({
@@ -21599,7 +21599,7 @@ M.DescribeInputSecurityGroupInput = schema.new({
 })
 
 M.DescribeInputSecurityGroupOutput = schema.new({
-    id = id.from(_N, "DescribeInputSecurityGroupOutput"),
+    id = id.from(_N, "DescribeInputSecurityGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -21674,7 +21674,7 @@ M.DescribeInputSecurityGroupOutput = schema.new({
 })
 
 M.DescribeMultiplexInput = schema.new({
-    id = id.from(_N, "DescribeMultiplexInput"),
+    id = id.from(_N, "DescribeMultiplexRequest"),
     type = "structure",
     members = {
         MultiplexId = schema.new({
@@ -21691,7 +21691,7 @@ M.DescribeMultiplexInput = schema.new({
 })
 
 M.DescribeMultiplexOutput = schema.new({
-    id = id.from(_N, "DescribeMultiplexOutput"),
+    id = id.from(_N, "DescribeMultiplexResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -21793,7 +21793,7 @@ M.DescribeMultiplexOutput = schema.new({
 })
 
 M.DescribeMultiplexProgramInput = schema.new({
-    id = id.from(_N, "DescribeMultiplexProgramInput"),
+    id = id.from(_N, "DescribeMultiplexProgramRequest"),
     type = "structure",
     members = {
         MultiplexId = schema.new({
@@ -21820,7 +21820,7 @@ M.DescribeMultiplexProgramInput = schema.new({
 })
 
 M.DescribeMultiplexProgramOutput = schema.new({
-    id = id.from(_N, "DescribeMultiplexProgramOutput"),
+    id = id.from(_N, "DescribeMultiplexProgramResponse"),
     type = "structure",
     members = {
         ChannelId = schema.new({
@@ -21875,7 +21875,7 @@ M.DescribeMultiplexProgramOutput = schema.new({
 })
 
 M.DescribeNetworkInput = schema.new({
-    id = id.from(_N, "DescribeNetworkInput"),
+    id = id.from(_N, "DescribeNetworkRequest"),
     type = "structure",
     members = {
         NetworkId = schema.new({
@@ -21892,7 +21892,7 @@ M.DescribeNetworkInput = schema.new({
 })
 
 M.DescribeNetworkOutput = schema.new({
-    id = id.from(_N, "DescribeNetworkOutput"),
+    id = id.from(_N, "DescribeNetworkResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -21965,7 +21965,7 @@ M.DescribeNetworkOutput = schema.new({
 })
 
 M.DescribeNodeInput = schema.new({
-    id = id.from(_N, "DescribeNodeInput"),
+    id = id.from(_N, "DescribeNodeRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -21992,7 +21992,7 @@ M.DescribeNodeInput = schema.new({
 })
 
 M.DescribeNodeOutput = schema.new({
-    id = id.from(_N, "DescribeNodeOutput"),
+    id = id.from(_N, "DescribeNodeResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -22101,7 +22101,7 @@ M.DescribeNodeOutput = schema.new({
 })
 
 M.DescribeOfferingInput = schema.new({
-    id = id.from(_N, "DescribeOfferingInput"),
+    id = id.from(_N, "DescribeOfferingRequest"),
     type = "structure",
     members = {
         OfferingId = schema.new({
@@ -22118,7 +22118,7 @@ M.DescribeOfferingInput = schema.new({
 })
 
 M.DescribeOfferingOutput = schema.new({
-    id = id.from(_N, "DescribeOfferingOutput"),
+    id = id.from(_N, "DescribeOfferingResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -22225,7 +22225,7 @@ M.DescribeOfferingOutput = schema.new({
 })
 
 M.DescribeReservationInput = schema.new({
-    id = id.from(_N, "DescribeReservationInput"),
+    id = id.from(_N, "DescribeReservationRequest"),
     type = "structure",
     members = {
         ReservationId = schema.new({
@@ -22242,7 +22242,7 @@ M.DescribeReservationInput = schema.new({
 })
 
 M.DescribeReservationOutput = schema.new({
-    id = id.from(_N, "DescribeReservationOutput"),
+    id = id.from(_N, "DescribeReservationResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -22424,7 +22424,7 @@ M.DescribeReservationOutput = schema.new({
 })
 
 M.DescribeScheduleInput = schema.new({
-    id = id.from(_N, "DescribeScheduleInput"),
+    id = id.from(_N, "DescribeScheduleRequest"),
     type = "structure",
     members = {
         ChannelId = schema.new({
@@ -22459,7 +22459,7 @@ M.DescribeScheduleInput = schema.new({
 })
 
 M.DescribeScheduleOutput = schema.new({
-    id = id.from(_N, "DescribeScheduleOutput"),
+    id = id.from(_N, "DescribeScheduleResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -22485,7 +22485,7 @@ M.DescribeScheduleOutput = schema.new({
 })
 
 M.DescribeSdiSourceInput = schema.new({
-    id = id.from(_N, "DescribeSdiSourceInput"),
+    id = id.from(_N, "DescribeSdiSourceRequest"),
     type = "structure",
     members = {
         SdiSourceId = schema.new({
@@ -22502,7 +22502,7 @@ M.DescribeSdiSourceInput = schema.new({
 })
 
 M.DescribeSdiSourceOutput = schema.new({
-    id = id.from(_N, "DescribeSdiSourceOutput"),
+    id = id.from(_N, "DescribeSdiSourceResponse"),
     type = "structure",
     members = {
         SdiSource = schema.new({
@@ -22519,7 +22519,7 @@ M.DescribeSdiSourceOutput = schema.new({
 })
 
 M.DescribeThumbnailsInput = schema.new({
-    id = id.from(_N, "DescribeThumbnailsInput"),
+    id = id.from(_N, "DescribeThumbnailsRequest"),
     type = "structure",
     members = {
         ChannelId = schema.new({
@@ -22556,7 +22556,7 @@ M.DescribeThumbnailsInput = schema.new({
 })
 
 M.DescribeThumbnailsOutput = schema.new({
-    id = id.from(_N, "DescribeThumbnailsOutput"),
+    id = id.from(_N, "DescribeThumbnailsResponse"),
     type = "structure",
     members = {
         ThumbnailDetails = schema.new({
@@ -22573,7 +22573,7 @@ M.DescribeThumbnailsOutput = schema.new({
 })
 
 M.GetCloudWatchAlarmTemplateInput = schema.new({
-    id = id.from(_N, "GetCloudWatchAlarmTemplateInput"),
+    id = id.from(_N, "GetCloudWatchAlarmTemplateRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -22590,7 +22590,7 @@ M.GetCloudWatchAlarmTemplateInput = schema.new({
 })
 
 M.GetCloudWatchAlarmTemplateOutput = schema.new({
-    id = id.from(_N, "GetCloudWatchAlarmTemplateOutput"),
+    id = id.from(_N, "GetCloudWatchAlarmTemplateResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -22760,7 +22760,7 @@ M.GetCloudWatchAlarmTemplateOutput = schema.new({
 })
 
 M.GetCloudWatchAlarmTemplateGroupInput = schema.new({
-    id = id.from(_N, "GetCloudWatchAlarmTemplateGroupInput"),
+    id = id.from(_N, "GetCloudWatchAlarmTemplateGroupRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -22777,7 +22777,7 @@ M.GetCloudWatchAlarmTemplateGroupInput = schema.new({
 })
 
 M.GetCloudWatchAlarmTemplateGroupOutput = schema.new({
-    id = id.from(_N, "GetCloudWatchAlarmTemplateGroupOutput"),
+    id = id.from(_N, "GetCloudWatchAlarmTemplateGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -22857,7 +22857,7 @@ M.GetCloudWatchAlarmTemplateGroupOutput = schema.new({
 })
 
 M.GetEventBridgeRuleTemplateInput = schema.new({
-    id = id.from(_N, "GetEventBridgeRuleTemplateInput"),
+    id = id.from(_N, "GetEventBridgeRuleTemplateRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -22874,7 +22874,7 @@ M.GetEventBridgeRuleTemplateInput = schema.new({
 })
 
 M.GetEventBridgeRuleTemplateOutput = schema.new({
-    id = id.from(_N, "GetEventBridgeRuleTemplateOutput"),
+    id = id.from(_N, "GetEventBridgeRuleTemplateResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -22982,7 +22982,7 @@ M.GetEventBridgeRuleTemplateOutput = schema.new({
 })
 
 M.GetEventBridgeRuleTemplateGroupInput = schema.new({
-    id = id.from(_N, "GetEventBridgeRuleTemplateGroupInput"),
+    id = id.from(_N, "GetEventBridgeRuleTemplateGroupRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -22999,7 +22999,7 @@ M.GetEventBridgeRuleTemplateGroupInput = schema.new({
 })
 
 M.GetEventBridgeRuleTemplateGroupOutput = schema.new({
-    id = id.from(_N, "GetEventBridgeRuleTemplateGroupOutput"),
+    id = id.from(_N, "GetEventBridgeRuleTemplateGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -23079,7 +23079,7 @@ M.GetEventBridgeRuleTemplateGroupOutput = schema.new({
 })
 
 M.GetSignalMapInput = schema.new({
-    id = id.from(_N, "GetSignalMapInput"),
+    id = id.from(_N, "GetSignalMapRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -23096,7 +23096,7 @@ M.GetSignalMapInput = schema.new({
 })
 
 M.GetSignalMapOutput = schema.new({
-    id = id.from(_N, "GetSignalMapOutput"),
+    id = id.from(_N, "GetSignalMapResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -23402,7 +23402,7 @@ M.InputDeviceConfigurableSettings = schema.new({
 })
 
 M.ListAlertsInput = schema.new({
-    id = id.from(_N, "ListAlertsInput"),
+    id = id.from(_N, "ListAlertsRequest"),
     type = "structure",
     members = {
         ChannelId = schema.new({
@@ -23446,7 +23446,7 @@ M.ListAlertsInput = schema.new({
 })
 
 M.ListAlertsOutput = schema.new({
-    id = id.from(_N, "ListAlertsOutput"),
+    id = id.from(_N, "ListAlertsResponse"),
     type = "structure",
     members = {
         Alerts = schema.new({
@@ -23472,7 +23472,7 @@ M.ListAlertsOutput = schema.new({
 })
 
 M.ListChannelPlacementGroupsInput = schema.new({
-    id = id.from(_N, "ListChannelPlacementGroupsInput"),
+    id = id.from(_N, "ListChannelPlacementGroupsRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -23507,7 +23507,7 @@ M.ListChannelPlacementGroupsInput = schema.new({
 })
 
 M.ListChannelPlacementGroupsOutput = schema.new({
-    id = id.from(_N, "ListChannelPlacementGroupsOutput"),
+    id = id.from(_N, "ListChannelPlacementGroupsResponse"),
     type = "structure",
     members = {
         ChannelPlacementGroups = schema.new({
@@ -23533,7 +23533,7 @@ M.ListChannelPlacementGroupsOutput = schema.new({
 })
 
 M.ListChannelsInput = schema.new({
-    id = id.from(_N, "ListChannelsInput"),
+    id = id.from(_N, "ListChannelsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -23558,7 +23558,7 @@ M.ListChannelsInput = schema.new({
 })
 
 M.ListChannelsOutput = schema.new({
-    id = id.from(_N, "ListChannelsOutput"),
+    id = id.from(_N, "ListChannelsResponse"),
     type = "structure",
     members = {
         Channels = schema.new({
@@ -23584,7 +23584,7 @@ M.ListChannelsOutput = schema.new({
 })
 
 M.ListCloudWatchAlarmTemplateGroupsInput = schema.new({
-    id = id.from(_N, "ListCloudWatchAlarmTemplateGroupsInput"),
+    id = id.from(_N, "ListCloudWatchAlarmTemplateGroupsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -23627,7 +23627,7 @@ M.ListCloudWatchAlarmTemplateGroupsInput = schema.new({
 })
 
 M.ListCloudWatchAlarmTemplateGroupsOutput = schema.new({
-    id = id.from(_N, "ListCloudWatchAlarmTemplateGroupsOutput"),
+    id = id.from(_N, "ListCloudWatchAlarmTemplateGroupsResponse"),
     type = "structure",
     members = {
         CloudWatchAlarmTemplateGroups = schema.new({
@@ -23653,7 +23653,7 @@ M.ListCloudWatchAlarmTemplateGroupsOutput = schema.new({
 })
 
 M.ListCloudWatchAlarmTemplatesInput = schema.new({
-    id = id.from(_N, "ListCloudWatchAlarmTemplatesInput"),
+    id = id.from(_N, "ListCloudWatchAlarmTemplatesRequest"),
     type = "structure",
     members = {
         GroupIdentifier = schema.new({
@@ -23705,7 +23705,7 @@ M.ListCloudWatchAlarmTemplatesInput = schema.new({
 })
 
 M.ListCloudWatchAlarmTemplatesOutput = schema.new({
-    id = id.from(_N, "ListCloudWatchAlarmTemplatesOutput"),
+    id = id.from(_N, "ListCloudWatchAlarmTemplatesResponse"),
     type = "structure",
     members = {
         CloudWatchAlarmTemplates = schema.new({
@@ -23731,7 +23731,7 @@ M.ListCloudWatchAlarmTemplatesOutput = schema.new({
 })
 
 M.ListClusterAlertsInput = schema.new({
-    id = id.from(_N, "ListClusterAlertsInput"),
+    id = id.from(_N, "ListClusterAlertsRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -23775,7 +23775,7 @@ M.ListClusterAlertsInput = schema.new({
 })
 
 M.ListClusterAlertsOutput = schema.new({
-    id = id.from(_N, "ListClusterAlertsOutput"),
+    id = id.from(_N, "ListClusterAlertsResponse"),
     type = "structure",
     members = {
         Alerts = schema.new({
@@ -23801,7 +23801,7 @@ M.ListClusterAlertsOutput = schema.new({
 })
 
 M.ListClustersInput = schema.new({
-    id = id.from(_N, "ListClustersInput"),
+    id = id.from(_N, "ListClustersRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -23826,7 +23826,7 @@ M.ListClustersInput = schema.new({
 })
 
 M.ListClustersOutput = schema.new({
-    id = id.from(_N, "ListClustersOutput"),
+    id = id.from(_N, "ListClustersResponse"),
     type = "structure",
     members = {
         Clusters = schema.new({
@@ -23852,7 +23852,7 @@ M.ListClustersOutput = schema.new({
 })
 
 M.ListEventBridgeRuleTemplateGroupsInput = schema.new({
-    id = id.from(_N, "ListEventBridgeRuleTemplateGroupsInput"),
+    id = id.from(_N, "ListEventBridgeRuleTemplateGroupsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -23886,7 +23886,7 @@ M.ListEventBridgeRuleTemplateGroupsInput = schema.new({
 })
 
 M.ListEventBridgeRuleTemplateGroupsOutput = schema.new({
-    id = id.from(_N, "ListEventBridgeRuleTemplateGroupsOutput"),
+    id = id.from(_N, "ListEventBridgeRuleTemplateGroupsResponse"),
     type = "structure",
     members = {
         EventBridgeRuleTemplateGroups = schema.new({
@@ -23912,7 +23912,7 @@ M.ListEventBridgeRuleTemplateGroupsOutput = schema.new({
 })
 
 M.ListEventBridgeRuleTemplatesInput = schema.new({
-    id = id.from(_N, "ListEventBridgeRuleTemplatesInput"),
+    id = id.from(_N, "ListEventBridgeRuleTemplatesRequest"),
     type = "structure",
     members = {
         GroupIdentifier = schema.new({
@@ -23955,7 +23955,7 @@ M.ListEventBridgeRuleTemplatesInput = schema.new({
 })
 
 M.ListEventBridgeRuleTemplatesOutput = schema.new({
-    id = id.from(_N, "ListEventBridgeRuleTemplatesOutput"),
+    id = id.from(_N, "ListEventBridgeRuleTemplatesResponse"),
     type = "structure",
     members = {
         EventBridgeRuleTemplates = schema.new({
@@ -23981,7 +23981,7 @@ M.ListEventBridgeRuleTemplatesOutput = schema.new({
 })
 
 M.ListInputDevicesInput = schema.new({
-    id = id.from(_N, "ListInputDevicesInput"),
+    id = id.from(_N, "ListInputDevicesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -24006,7 +24006,7 @@ M.ListInputDevicesInput = schema.new({
 })
 
 M.ListInputDevicesOutput = schema.new({
-    id = id.from(_N, "ListInputDevicesOutput"),
+    id = id.from(_N, "ListInputDevicesResponse"),
     type = "structure",
     members = {
         InputDevices = schema.new({
@@ -24032,7 +24032,7 @@ M.ListInputDevicesOutput = schema.new({
 })
 
 M.ListInputDeviceTransfersInput = schema.new({
-    id = id.from(_N, "ListInputDeviceTransfersInput"),
+    id = id.from(_N, "ListInputDeviceTransfersRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -24067,7 +24067,7 @@ M.ListInputDeviceTransfersInput = schema.new({
 })
 
 M.ListInputDeviceTransfersOutput = schema.new({
-    id = id.from(_N, "ListInputDeviceTransfersOutput"),
+    id = id.from(_N, "ListInputDeviceTransfersResponse"),
     type = "structure",
     members = {
         InputDeviceTransfers = schema.new({
@@ -24093,7 +24093,7 @@ M.ListInputDeviceTransfersOutput = schema.new({
 })
 
 M.ListInputsInput = schema.new({
-    id = id.from(_N, "ListInputsInput"),
+    id = id.from(_N, "ListInputsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -24118,7 +24118,7 @@ M.ListInputsInput = schema.new({
 })
 
 M.ListInputsOutput = schema.new({
-    id = id.from(_N, "ListInputsOutput"),
+    id = id.from(_N, "ListInputsResponse"),
     type = "structure",
     members = {
         Inputs = schema.new({
@@ -24144,7 +24144,7 @@ M.ListInputsOutput = schema.new({
 })
 
 M.ListInputSecurityGroupsInput = schema.new({
-    id = id.from(_N, "ListInputSecurityGroupsInput"),
+    id = id.from(_N, "ListInputSecurityGroupsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -24169,7 +24169,7 @@ M.ListInputSecurityGroupsInput = schema.new({
 })
 
 M.ListInputSecurityGroupsOutput = schema.new({
-    id = id.from(_N, "ListInputSecurityGroupsOutput"),
+    id = id.from(_N, "ListInputSecurityGroupsResponse"),
     type = "structure",
     members = {
         InputSecurityGroups = schema.new({
@@ -24195,7 +24195,7 @@ M.ListInputSecurityGroupsOutput = schema.new({
 })
 
 M.ListMultiplexAlertsInput = schema.new({
-    id = id.from(_N, "ListMultiplexAlertsInput"),
+    id = id.from(_N, "ListMultiplexAlertsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -24239,7 +24239,7 @@ M.ListMultiplexAlertsInput = schema.new({
 })
 
 M.ListMultiplexAlertsOutput = schema.new({
-    id = id.from(_N, "ListMultiplexAlertsOutput"),
+    id = id.from(_N, "ListMultiplexAlertsResponse"),
     type = "structure",
     members = {
         Alerts = schema.new({
@@ -24265,7 +24265,7 @@ M.ListMultiplexAlertsOutput = schema.new({
 })
 
 M.ListMultiplexesInput = schema.new({
-    id = id.from(_N, "ListMultiplexesInput"),
+    id = id.from(_N, "ListMultiplexesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -24290,7 +24290,7 @@ M.ListMultiplexesInput = schema.new({
 })
 
 M.ListMultiplexesOutput = schema.new({
-    id = id.from(_N, "ListMultiplexesOutput"),
+    id = id.from(_N, "ListMultiplexesResponse"),
     type = "structure",
     members = {
         Multiplexes = schema.new({
@@ -24316,7 +24316,7 @@ M.ListMultiplexesOutput = schema.new({
 })
 
 M.ListMultiplexProgramsInput = schema.new({
-    id = id.from(_N, "ListMultiplexProgramsInput"),
+    id = id.from(_N, "ListMultiplexProgramsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -24351,7 +24351,7 @@ M.ListMultiplexProgramsInput = schema.new({
 })
 
 M.ListMultiplexProgramsOutput = schema.new({
-    id = id.from(_N, "ListMultiplexProgramsOutput"),
+    id = id.from(_N, "ListMultiplexProgramsResponse"),
     type = "structure",
     members = {
         MultiplexPrograms = schema.new({
@@ -24377,7 +24377,7 @@ M.ListMultiplexProgramsOutput = schema.new({
 })
 
 M.ListNetworksInput = schema.new({
-    id = id.from(_N, "ListNetworksInput"),
+    id = id.from(_N, "ListNetworksRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -24402,7 +24402,7 @@ M.ListNetworksInput = schema.new({
 })
 
 M.ListNetworksOutput = schema.new({
-    id = id.from(_N, "ListNetworksOutput"),
+    id = id.from(_N, "ListNetworksResponse"),
     type = "structure",
     members = {
         Networks = schema.new({
@@ -24428,7 +24428,7 @@ M.ListNetworksOutput = schema.new({
 })
 
 M.ListNodesInput = schema.new({
-    id = id.from(_N, "ListNodesInput"),
+    id = id.from(_N, "ListNodesRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -24463,7 +24463,7 @@ M.ListNodesInput = schema.new({
 })
 
 M.ListNodesOutput = schema.new({
-    id = id.from(_N, "ListNodesOutput"),
+    id = id.from(_N, "ListNodesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -24489,7 +24489,7 @@ M.ListNodesOutput = schema.new({
 })
 
 M.ListOfferingsInput = schema.new({
-    id = id.from(_N, "ListOfferingsInput"),
+    id = id.from(_N, "ListOfferingsRequest"),
     type = "structure",
     members = {
         ChannelClass = schema.new({
@@ -24604,7 +24604,7 @@ M.ListOfferingsInput = schema.new({
 })
 
 M.ListOfferingsOutput = schema.new({
-    id = id.from(_N, "ListOfferingsOutput"),
+    id = id.from(_N, "ListOfferingsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -24630,7 +24630,7 @@ M.ListOfferingsOutput = schema.new({
 })
 
 M.ListReservationsInput = schema.new({
-    id = id.from(_N, "ListReservationsInput"),
+    id = id.from(_N, "ListReservationsRequest"),
     type = "structure",
     members = {
         ChannelClass = schema.new({
@@ -24727,7 +24727,7 @@ M.ListReservationsInput = schema.new({
 })
 
 M.ListReservationsOutput = schema.new({
-    id = id.from(_N, "ListReservationsOutput"),
+    id = id.from(_N, "ListReservationsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -24753,7 +24753,7 @@ M.ListReservationsOutput = schema.new({
 })
 
 M.ListSdiSourcesInput = schema.new({
-    id = id.from(_N, "ListSdiSourcesInput"),
+    id = id.from(_N, "ListSdiSourcesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -24778,7 +24778,7 @@ M.ListSdiSourcesInput = schema.new({
 })
 
 M.ListSdiSourcesOutput = schema.new({
-    id = id.from(_N, "ListSdiSourcesOutput"),
+    id = id.from(_N, "ListSdiSourcesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -24804,7 +24804,7 @@ M.ListSdiSourcesOutput = schema.new({
 })
 
 M.ListSignalMapsInput = schema.new({
-    id = id.from(_N, "ListSignalMapsInput"),
+    id = id.from(_N, "ListSignalMapsRequest"),
     type = "structure",
     members = {
         CloudWatchAlarmTemplateGroupIdentifier = schema.new({
@@ -24847,7 +24847,7 @@ M.ListSignalMapsInput = schema.new({
 })
 
 M.ListSignalMapsOutput = schema.new({
-    id = id.from(_N, "ListSignalMapsOutput"),
+    id = id.from(_N, "ListSignalMapsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -24873,7 +24873,7 @@ M.ListSignalMapsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -24890,7 +24890,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -24908,12 +24908,12 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListVersionsInput = schema.new({
-    id = id.from(_N, "ListVersionsInput"),
+    id = id.from(_N, "ListVersionsRequest"),
     type = "structure",
 })
 
 M.ListVersionsOutput = schema.new({
-    id = id.from(_N, "ListVersionsOutput"),
+    id = id.from(_N, "ListVersionsResponse"),
     type = "structure",
     members = {
         Versions = schema.new({
@@ -24964,7 +24964,7 @@ M.MaintenanceUpdateSettings = schema.new({
 })
 
 M.PurchaseOfferingInput = schema.new({
-    id = id.from(_N, "PurchaseOfferingInput"),
+    id = id.from(_N, "PurchaseOfferingRequest"),
     type = "structure",
     members = {
         Count = schema.new({
@@ -25040,7 +25040,7 @@ M.PurchaseOfferingInput = schema.new({
 })
 
 M.PurchaseOfferingOutput = schema.new({
-    id = id.from(_N, "PurchaseOfferingOutput"),
+    id = id.from(_N, "PurchaseOfferingResponse"),
     type = "structure",
     members = {
         Reservation = schema.new({
@@ -25057,7 +25057,7 @@ M.PurchaseOfferingOutput = schema.new({
 })
 
 M.RebootInputDeviceInput = schema.new({
-    id = id.from(_N, "RebootInputDeviceInput"),
+    id = id.from(_N, "RebootInputDeviceRequest"),
     type = "structure",
     members = {
         Force = schema.new({
@@ -25083,12 +25083,12 @@ M.RebootInputDeviceInput = schema.new({
 })
 
 M.RebootInputDeviceOutput = schema.new({
-    id = id.from(_N, "RebootInputDeviceOutput"),
+    id = id.from(_N, "RebootInputDeviceResponse"),
     type = "structure",
 })
 
 M.RejectInputDeviceTransferInput = schema.new({
-    id = id.from(_N, "RejectInputDeviceTransferInput"),
+    id = id.from(_N, "RejectInputDeviceTransferRequest"),
     type = "structure",
     members = {
         InputDeviceId = schema.new({
@@ -25105,12 +25105,12 @@ M.RejectInputDeviceTransferInput = schema.new({
 })
 
 M.RejectInputDeviceTransferOutput = schema.new({
-    id = id.from(_N, "RejectInputDeviceTransferOutput"),
+    id = id.from(_N, "RejectInputDeviceTransferResponse"),
     type = "structure",
 })
 
 M.RestartChannelPipelinesInput = schema.new({
-    id = id.from(_N, "RestartChannelPipelinesInput"),
+    id = id.from(_N, "RestartChannelPipelinesRequest"),
     type = "structure",
     members = {
         ChannelId = schema.new({
@@ -25137,7 +25137,7 @@ M.RestartChannelPipelinesInput = schema.new({
 })
 
 M.RestartChannelPipelinesOutput = schema.new({
-    id = id.from(_N, "RestartChannelPipelinesOutput"),
+    id = id.from(_N, "RestartChannelPipelinesResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -25376,7 +25376,7 @@ M.RestartChannelPipelinesOutput = schema.new({
 })
 
 M.StartChannelInput = schema.new({
-    id = id.from(_N, "StartChannelInput"),
+    id = id.from(_N, "StartChannelRequest"),
     type = "structure",
     members = {
         ChannelId = schema.new({
@@ -25393,7 +25393,7 @@ M.StartChannelInput = schema.new({
 })
 
 M.StartChannelOutput = schema.new({
-    id = id.from(_N, "StartChannelOutput"),
+    id = id.from(_N, "StartChannelResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -25623,7 +25623,7 @@ M.StartChannelOutput = schema.new({
 })
 
 M.StartDeleteMonitorDeploymentInput = schema.new({
-    id = id.from(_N, "StartDeleteMonitorDeploymentInput"),
+    id = id.from(_N, "StartDeleteMonitorDeploymentRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -25640,7 +25640,7 @@ M.StartDeleteMonitorDeploymentInput = schema.new({
 })
 
 M.StartDeleteMonitorDeploymentOutput = schema.new({
-    id = id.from(_N, "StartDeleteMonitorDeploymentOutput"),
+    id = id.from(_N, "StartDeleteMonitorDeploymentResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -25831,7 +25831,7 @@ M.StartDeleteMonitorDeploymentOutput = schema.new({
 })
 
 M.StartInputDeviceInput = schema.new({
-    id = id.from(_N, "StartInputDeviceInput"),
+    id = id.from(_N, "StartInputDeviceRequest"),
     type = "structure",
     members = {
         InputDeviceId = schema.new({
@@ -25848,12 +25848,12 @@ M.StartInputDeviceInput = schema.new({
 })
 
 M.StartInputDeviceOutput = schema.new({
-    id = id.from(_N, "StartInputDeviceOutput"),
+    id = id.from(_N, "StartInputDeviceResponse"),
     type = "structure",
 })
 
 M.StartInputDeviceMaintenanceWindowInput = schema.new({
-    id = id.from(_N, "StartInputDeviceMaintenanceWindowInput"),
+    id = id.from(_N, "StartInputDeviceMaintenanceWindowRequest"),
     type = "structure",
     members = {
         InputDeviceId = schema.new({
@@ -25870,12 +25870,12 @@ M.StartInputDeviceMaintenanceWindowInput = schema.new({
 })
 
 M.StartInputDeviceMaintenanceWindowOutput = schema.new({
-    id = id.from(_N, "StartInputDeviceMaintenanceWindowOutput"),
+    id = id.from(_N, "StartInputDeviceMaintenanceWindowResponse"),
     type = "structure",
 })
 
 M.StartMonitorDeploymentInput = schema.new({
-    id = id.from(_N, "StartMonitorDeploymentInput"),
+    id = id.from(_N, "StartMonitorDeploymentRequest"),
     type = "structure",
     members = {
         DryRun = schema.new({
@@ -25901,7 +25901,7 @@ M.StartMonitorDeploymentInput = schema.new({
 })
 
 M.StartMonitorDeploymentOutput = schema.new({
-    id = id.from(_N, "StartMonitorDeploymentOutput"),
+    id = id.from(_N, "StartMonitorDeploymentResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -26092,7 +26092,7 @@ M.StartMonitorDeploymentOutput = schema.new({
 })
 
 M.StartMultiplexInput = schema.new({
-    id = id.from(_N, "StartMultiplexInput"),
+    id = id.from(_N, "StartMultiplexRequest"),
     type = "structure",
     members = {
         MultiplexId = schema.new({
@@ -26109,7 +26109,7 @@ M.StartMultiplexInput = schema.new({
 })
 
 M.StartMultiplexOutput = schema.new({
-    id = id.from(_N, "StartMultiplexOutput"),
+    id = id.from(_N, "StartMultiplexResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -26211,7 +26211,7 @@ M.StartMultiplexOutput = schema.new({
 })
 
 M.StartUpdateSignalMapInput = schema.new({
-    id = id.from(_N, "StartUpdateSignalMapInput"),
+    id = id.from(_N, "StartUpdateSignalMapRequest"),
     type = "structure",
     members = {
         CloudWatchAlarmTemplateGroupIdentifiers = schema.new({
@@ -26284,7 +26284,7 @@ M.StartUpdateSignalMapInput = schema.new({
 })
 
 M.StartUpdateSignalMapOutput = schema.new({
-    id = id.from(_N, "StartUpdateSignalMapOutput"),
+    id = id.from(_N, "StartUpdateSignalMapResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -26475,7 +26475,7 @@ M.StartUpdateSignalMapOutput = schema.new({
 })
 
 M.StopChannelInput = schema.new({
-    id = id.from(_N, "StopChannelInput"),
+    id = id.from(_N, "StopChannelRequest"),
     type = "structure",
     members = {
         ChannelId = schema.new({
@@ -26492,7 +26492,7 @@ M.StopChannelInput = schema.new({
 })
 
 M.StopChannelOutput = schema.new({
-    id = id.from(_N, "StopChannelOutput"),
+    id = id.from(_N, "StopChannelResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -26722,7 +26722,7 @@ M.StopChannelOutput = schema.new({
 })
 
 M.StopInputDeviceInput = schema.new({
-    id = id.from(_N, "StopInputDeviceInput"),
+    id = id.from(_N, "StopInputDeviceRequest"),
     type = "structure",
     members = {
         InputDeviceId = schema.new({
@@ -26739,12 +26739,12 @@ M.StopInputDeviceInput = schema.new({
 })
 
 M.StopInputDeviceOutput = schema.new({
-    id = id.from(_N, "StopInputDeviceOutput"),
+    id = id.from(_N, "StopInputDeviceResponse"),
     type = "structure",
 })
 
 M.StopMultiplexInput = schema.new({
-    id = id.from(_N, "StopMultiplexInput"),
+    id = id.from(_N, "StopMultiplexRequest"),
     type = "structure",
     members = {
         MultiplexId = schema.new({
@@ -26761,7 +26761,7 @@ M.StopMultiplexInput = schema.new({
 })
 
 M.StopMultiplexOutput = schema.new({
-    id = id.from(_N, "StopMultiplexOutput"),
+    id = id.from(_N, "StopMultiplexResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -26863,7 +26863,7 @@ M.StopMultiplexOutput = schema.new({
 })
 
 M.TransferInputDeviceInput = schema.new({
-    id = id.from(_N, "TransferInputDeviceInput"),
+    id = id.from(_N, "TransferInputDeviceRequest"),
     type = "structure",
     members = {
         InputDeviceId = schema.new({
@@ -26907,12 +26907,12 @@ M.TransferInputDeviceInput = schema.new({
 })
 
 M.TransferInputDeviceOutput = schema.new({
-    id = id.from(_N, "TransferInputDeviceOutput"),
+    id = id.from(_N, "TransferInputDeviceResponse"),
     type = "structure",
 })
 
 M.UpdateAccountConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateAccountConfigurationInput"),
+    id = id.from(_N, "UpdateAccountConfigurationRequest"),
     type = "structure",
     members = {
         AccountConfiguration = schema.new({
@@ -26929,7 +26929,7 @@ M.UpdateAccountConfigurationInput = schema.new({
 })
 
 M.UpdateAccountConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateAccountConfigurationOutput"),
+    id = id.from(_N, "UpdateAccountConfigurationResponse"),
     type = "structure",
     members = {
         AccountConfiguration = schema.new({
@@ -26962,7 +26962,7 @@ M.SpecialRouterSettings = schema.new({
 })
 
 M.UpdateChannelInput = schema.new({
-    id = id.from(_N, "UpdateChannelInput"),
+    id = id.from(_N, "UpdateChannelRequest"),
     type = "structure",
     members = {
         CdiInputSpecification = schema.new({
@@ -27135,7 +27135,7 @@ M.UpdateChannelInput = schema.new({
 })
 
 M.UpdateChannelOutput = schema.new({
-    id = id.from(_N, "UpdateChannelOutput"),
+    id = id.from(_N, "UpdateChannelResponse"),
     type = "structure",
     members = {
         Channel = schema.new({
@@ -27152,7 +27152,7 @@ M.UpdateChannelOutput = schema.new({
 })
 
 M.UpdateChannelClassInput = schema.new({
-    id = id.from(_N, "UpdateChannelClassInput"),
+    id = id.from(_N, "UpdateChannelClassRequest"),
     type = "structure",
     members = {
         ChannelClass = schema.new({
@@ -27189,7 +27189,7 @@ M.UpdateChannelClassInput = schema.new({
 })
 
 M.UpdateChannelClassOutput = schema.new({
-    id = id.from(_N, "UpdateChannelClassOutput"),
+    id = id.from(_N, "UpdateChannelClassResponse"),
     type = "structure",
     members = {
         Channel = schema.new({
@@ -27206,7 +27206,7 @@ M.UpdateChannelClassOutput = schema.new({
 })
 
 M.UpdateChannelPlacementGroupInput = schema.new({
-    id = id.from(_N, "UpdateChannelPlacementGroupInput"),
+    id = id.from(_N, "UpdateChannelPlacementGroupRequest"),
     type = "structure",
     members = {
         ChannelPlacementGroupId = schema.new({
@@ -27252,7 +27252,7 @@ M.UpdateChannelPlacementGroupInput = schema.new({
 })
 
 M.UpdateChannelPlacementGroupOutput = schema.new({
-    id = id.from(_N, "UpdateChannelPlacementGroupOutput"),
+    id = id.from(_N, "UpdateChannelPlacementGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -27324,7 +27324,7 @@ M.UpdateChannelPlacementGroupOutput = schema.new({
 })
 
 M.UpdateCloudWatchAlarmTemplateInput = schema.new({
-    id = id.from(_N, "UpdateCloudWatchAlarmTemplateInput"),
+    id = id.from(_N, "UpdateCloudWatchAlarmTemplateRequest"),
     type = "structure",
     members = {
         ComparisonOperator = schema.new({
@@ -27449,7 +27449,7 @@ M.UpdateCloudWatchAlarmTemplateInput = schema.new({
 })
 
 M.UpdateCloudWatchAlarmTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateCloudWatchAlarmTemplateOutput"),
+    id = id.from(_N, "UpdateCloudWatchAlarmTemplateResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -27619,7 +27619,7 @@ M.UpdateCloudWatchAlarmTemplateOutput = schema.new({
 })
 
 M.UpdateCloudWatchAlarmTemplateGroupInput = schema.new({
-    id = id.from(_N, "UpdateCloudWatchAlarmTemplateGroupInput"),
+    id = id.from(_N, "UpdateCloudWatchAlarmTemplateGroupRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -27645,7 +27645,7 @@ M.UpdateCloudWatchAlarmTemplateGroupInput = schema.new({
 })
 
 M.UpdateCloudWatchAlarmTemplateGroupOutput = schema.new({
-    id = id.from(_N, "UpdateCloudWatchAlarmTemplateGroupOutput"),
+    id = id.from(_N, "UpdateCloudWatchAlarmTemplateGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -27725,7 +27725,7 @@ M.UpdateCloudWatchAlarmTemplateGroupOutput = schema.new({
 })
 
 M.UpdateClusterInput = schema.new({
-    id = id.from(_N, "UpdateClusterInput"),
+    id = id.from(_N, "UpdateClusterRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -27761,7 +27761,7 @@ M.UpdateClusterInput = schema.new({
 })
 
 M.UpdateClusterOutput = schema.new({
-    id = id.from(_N, "UpdateClusterOutput"),
+    id = id.from(_N, "UpdateClusterResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -27833,7 +27833,7 @@ M.UpdateClusterOutput = schema.new({
 })
 
 M.UpdateEventBridgeRuleTemplateInput = schema.new({
-    id = id.from(_N, "UpdateEventBridgeRuleTemplateInput"),
+    id = id.from(_N, "UpdateEventBridgeRuleTemplateRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -27896,7 +27896,7 @@ M.UpdateEventBridgeRuleTemplateInput = schema.new({
 })
 
 M.UpdateEventBridgeRuleTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateEventBridgeRuleTemplateOutput"),
+    id = id.from(_N, "UpdateEventBridgeRuleTemplateResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -28004,7 +28004,7 @@ M.UpdateEventBridgeRuleTemplateOutput = schema.new({
 })
 
 M.UpdateEventBridgeRuleTemplateGroupInput = schema.new({
-    id = id.from(_N, "UpdateEventBridgeRuleTemplateGroupInput"),
+    id = id.from(_N, "UpdateEventBridgeRuleTemplateGroupRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -28030,7 +28030,7 @@ M.UpdateEventBridgeRuleTemplateGroupInput = schema.new({
 })
 
 M.UpdateEventBridgeRuleTemplateGroupOutput = schema.new({
-    id = id.from(_N, "UpdateEventBridgeRuleTemplateGroupOutput"),
+    id = id.from(_N, "UpdateEventBridgeRuleTemplateGroupResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -28127,7 +28127,7 @@ M.MulticastSettingsUpdateRequest = schema.new({
 })
 
 M.UpdateInputInput = schema.new({
-    id = id.from(_N, "UpdateInputInput"),
+    id = id.from(_N, "UpdateInputRequest"),
     type = "structure",
     members = {
         Destinations = schema.new({
@@ -28262,7 +28262,7 @@ M.UpdateInputInput = schema.new({
 })
 
 M.UpdateInputOutput = schema.new({
-    id = id.from(_N, "UpdateInputOutput"),
+    id = id.from(_N, "UpdateInputResponse"),
     type = "structure",
     members = {
         Input = schema.new({
@@ -28279,7 +28279,7 @@ M.UpdateInputOutput = schema.new({
 })
 
 M.UpdateInputDeviceInput = schema.new({
-    id = id.from(_N, "UpdateInputDeviceInput"),
+    id = id.from(_N, "UpdateInputDeviceRequest"),
     type = "structure",
     members = {
         HdDeviceSettings = schema.new({
@@ -28334,7 +28334,7 @@ M.UpdateInputDeviceInput = schema.new({
 })
 
 M.UpdateInputDeviceOutput = schema.new({
-    id = id.from(_N, "UpdateInputDeviceOutput"),
+    id = id.from(_N, "UpdateInputDeviceResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -28491,7 +28491,7 @@ M.UpdateInputDeviceOutput = schema.new({
 })
 
 M.UpdateInputSecurityGroupInput = schema.new({
-    id = id.from(_N, "UpdateInputSecurityGroupInput"),
+    id = id.from(_N, "UpdateInputSecurityGroupRequest"),
     type = "structure",
     members = {
         InputSecurityGroupId = schema.new({
@@ -28529,7 +28529,7 @@ M.UpdateInputSecurityGroupInput = schema.new({
 })
 
 M.UpdateInputSecurityGroupOutput = schema.new({
-    id = id.from(_N, "UpdateInputSecurityGroupOutput"),
+    id = id.from(_N, "UpdateInputSecurityGroupResponse"),
     type = "structure",
     members = {
         SecurityGroup = schema.new({
@@ -28546,7 +28546,7 @@ M.UpdateInputSecurityGroupOutput = schema.new({
 })
 
 M.UpdateMultiplexInput = schema.new({
-    id = id.from(_N, "UpdateMultiplexInput"),
+    id = id.from(_N, "UpdateMultiplexRequest"),
     type = "structure",
     members = {
         MultiplexId = schema.new({
@@ -28593,7 +28593,7 @@ M.UpdateMultiplexInput = schema.new({
 })
 
 M.UpdateMultiplexOutput = schema.new({
-    id = id.from(_N, "UpdateMultiplexOutput"),
+    id = id.from(_N, "UpdateMultiplexResponse"),
     type = "structure",
     members = {
         Multiplex = schema.new({
@@ -28610,7 +28610,7 @@ M.UpdateMultiplexOutput = schema.new({
 })
 
 M.UpdateMultiplexProgramInput = schema.new({
-    id = id.from(_N, "UpdateMultiplexProgramInput"),
+    id = id.from(_N, "UpdateMultiplexProgramRequest"),
     type = "structure",
     members = {
         MultiplexId = schema.new({
@@ -28647,7 +28647,7 @@ M.UpdateMultiplexProgramInput = schema.new({
 })
 
 M.UpdateMultiplexProgramOutput = schema.new({
-    id = id.from(_N, "UpdateMultiplexProgramOutput"),
+    id = id.from(_N, "UpdateMultiplexProgramResponse"),
     type = "structure",
     members = {
         MultiplexProgram = schema.new({
@@ -28664,7 +28664,7 @@ M.UpdateMultiplexProgramOutput = schema.new({
 })
 
 M.UpdateNetworkInput = schema.new({
-    id = id.from(_N, "UpdateNetworkInput"),
+    id = id.from(_N, "UpdateNetworkRequest"),
     type = "structure",
     members = {
         IpPools = schema.new({
@@ -28710,7 +28710,7 @@ M.UpdateNetworkInput = schema.new({
 })
 
 M.UpdateNetworkOutput = schema.new({
-    id = id.from(_N, "UpdateNetworkOutput"),
+    id = id.from(_N, "UpdateNetworkResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -28817,7 +28817,7 @@ M.SdiSourceMappingUpdateRequest = schema.new({
 })
 
 M.UpdateNodeInput = schema.new({
-    id = id.from(_N, "UpdateNodeInput"),
+    id = id.from(_N, "UpdateNodeRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -28872,7 +28872,7 @@ M.UpdateNodeInput = schema.new({
 })
 
 M.UpdateNodeOutput = schema.new({
-    id = id.from(_N, "UpdateNodeOutput"),
+    id = id.from(_N, "UpdateNodeResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -28981,7 +28981,7 @@ M.UpdateNodeOutput = schema.new({
 })
 
 M.UpdateNodeStateInput = schema.new({
-    id = id.from(_N, "UpdateNodeStateInput"),
+    id = id.from(_N, "UpdateNodeStateRequest"),
     type = "structure",
     members = {
         ClusterId = schema.new({
@@ -29017,7 +29017,7 @@ M.UpdateNodeStateInput = schema.new({
 })
 
 M.UpdateNodeStateOutput = schema.new({
-    id = id.from(_N, "UpdateNodeStateOutput"),
+    id = id.from(_N, "UpdateNodeStateResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -29126,7 +29126,7 @@ M.UpdateNodeStateOutput = schema.new({
 })
 
 M.UpdateReservationInput = schema.new({
-    id = id.from(_N, "UpdateReservationInput"),
+    id = id.from(_N, "UpdateReservationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -29162,7 +29162,7 @@ M.UpdateReservationInput = schema.new({
 })
 
 M.UpdateReservationOutput = schema.new({
-    id = id.from(_N, "UpdateReservationOutput"),
+    id = id.from(_N, "UpdateReservationResponse"),
     type = "structure",
     members = {
         Reservation = schema.new({
@@ -29179,7 +29179,7 @@ M.UpdateReservationOutput = schema.new({
 })
 
 M.UpdateSdiSourceInput = schema.new({
-    id = id.from(_N, "UpdateSdiSourceInput"),
+    id = id.from(_N, "UpdateSdiSourceRequest"),
     type = "structure",
     members = {
         Mode = schema.new({
@@ -29223,7 +29223,7 @@ M.UpdateSdiSourceInput = schema.new({
 })
 
 M.UpdateSdiSourceOutput = schema.new({
-    id = id.from(_N, "UpdateSdiSourceOutput"),
+    id = id.from(_N, "UpdateSdiSourceResponse"),
     type = "structure",
     members = {
         SdiSource = schema.new({
@@ -29238,5 +29238,19 @@ M.UpdateSdiSourceOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

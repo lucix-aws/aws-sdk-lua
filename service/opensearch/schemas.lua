@@ -8,7 +8,7 @@ local _N = "com.amazonaws.opensearch"
 local M = {}
 
 M.AcceptInboundConnectionInput = schema.new({
-    id = id.from(_N, "AcceptInboundConnectionInput"),
+    id = id.from(_N, "AcceptInboundConnectionRequest"),
     type = "structure",
     members = {
         ConnectionId = schema.new({
@@ -126,7 +126,7 @@ M.InboundConnection = schema.new({
 })
 
 M.AcceptInboundConnectionOutput = schema.new({
-    id = id.from(_N, "AcceptInboundConnectionOutput"),
+    id = id.from(_N, "AcceptInboundConnectionResponse"),
     type = "structure",
     members = {
         Connection = schema.new({
@@ -306,7 +306,7 @@ M.DataSourceType = schema.new({
 })
 
 M.AddDataSourceInput = schema.new({
-    id = id.from(_N, "AddDataSourceInput"),
+    id = id.from(_N, "AddDataSourceRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -348,7 +348,7 @@ M.AddDataSourceInput = schema.new({
 })
 
 M.AddDataSourceOutput = schema.new({
-    id = id.from(_N, "AddDataSourceOutput"),
+    id = id.from(_N, "AddDataSourceResponse"),
     type = "structure",
     members = {
         Message = schema.new({
@@ -535,7 +535,7 @@ M.Tag = schema.new({
 })
 
 M.AddDirectQueryDataSourceInput = schema.new({
-    id = id.from(_N, "AddDirectQueryDataSourceInput"),
+    id = id.from(_N, "AddDirectQueryDataSourceRequest"),
     type = "structure",
     members = {
         DataSourceName = schema.new({
@@ -587,7 +587,7 @@ M.AddDirectQueryDataSourceInput = schema.new({
 })
 
 M.AddDirectQueryDataSourceOutput = schema.new({
-    id = id.from(_N, "AddDirectQueryDataSourceOutput"),
+    id = id.from(_N, "AddDirectQueryDataSourceResponse"),
     type = "structure",
     members = {
         DataSourceArn = schema.new({
@@ -620,7 +620,7 @@ M.AdditionalLimit = schema.new({
 })
 
 M.AddTagsInput = schema.new({
-    id = id.from(_N, "AddTagsInput"),
+    id = id.from(_N, "AddTagsRequest"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -646,7 +646,7 @@ M.AddTagsInput = schema.new({
 })
 
 M.AddTagsOutput = schema.new({
-    id = id.from(_N, "AddTagsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1249,7 +1249,7 @@ M.PackageAssociationConfiguration = schema.new({
 })
 
 M.AssociatePackageInput = schema.new({
-    id = id.from(_N, "AssociatePackageInput"),
+    id = id.from(_N, "AssociatePackageRequest"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -1385,7 +1385,7 @@ M.DomainPackageDetails = schema.new({
 })
 
 M.AssociatePackageOutput = schema.new({
-    id = id.from(_N, "AssociatePackageOutput"),
+    id = id.from(_N, "AssociatePackageResponse"),
     type = "structure",
     members = {
         DomainPackageDetails = schema.new({
@@ -1445,7 +1445,7 @@ M.PackageDetailsForAssociation = schema.new({
 })
 
 M.AssociatePackagesInput = schema.new({
-    id = id.from(_N, "AssociatePackagesInput"),
+    id = id.from(_N, "AssociatePackagesRequest"),
     type = "structure",
     members = {
         PackageList = schema.new({
@@ -1471,7 +1471,7 @@ M.AssociatePackagesInput = schema.new({
 })
 
 M.AssociatePackagesOutput = schema.new({
-    id = id.from(_N, "AssociatePackagesOutput"),
+    id = id.from(_N, "AssociatePackagesResponse"),
     type = "structure",
     members = {
         DomainPackageDetailsList = schema.new({
@@ -1499,7 +1499,7 @@ M.ServiceOptions = schema.new({
 })
 
 M.AuthorizeVpcEndpointAccessInput = schema.new({
-    id = id.from(_N, "AuthorizeVpcEndpointAccessInput"),
+    id = id.from(_N, "AuthorizeVpcEndpointAccessRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1561,7 +1561,7 @@ M.AuthorizedPrincipal = schema.new({
 })
 
 M.AuthorizeVpcEndpointAccessOutput = schema.new({
-    id = id.from(_N, "AuthorizeVpcEndpointAccessOutput"),
+    id = id.from(_N, "AuthorizeVpcEndpointAccessResponse"),
     type = "structure",
     members = {
         AuthorizedPrincipal = schema.new({
@@ -1578,7 +1578,7 @@ M.AuthorizeVpcEndpointAccessOutput = schema.new({
 })
 
 M.CancelDomainConfigChangeInput = schema.new({
-    id = id.from(_N, "CancelDomainConfigChangeInput"),
+    id = id.from(_N, "CancelDomainConfigChangeRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1626,7 +1626,7 @@ M.CancelledChangeProperty = schema.new({
 })
 
 M.CancelDomainConfigChangeOutput = schema.new({
-    id = id.from(_N, "CancelDomainConfigChangeOutput"),
+    id = id.from(_N, "CancelDomainConfigChangeResponse"),
     type = "structure",
     members = {
         CancelledChangeIds = schema.new({
@@ -1653,7 +1653,7 @@ M.CancelDomainConfigChangeOutput = schema.new({
 })
 
 M.CancelServiceSoftwareUpdateInput = schema.new({
-    id = id.from(_N, "CancelServiceSoftwareUpdateInput"),
+    id = id.from(_N, "CancelServiceSoftwareUpdateRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1724,7 +1724,7 @@ M.ServiceSoftwareOptions = schema.new({
 })
 
 M.CancelServiceSoftwareUpdateOutput = schema.new({
-    id = id.from(_N, "CancelServiceSoftwareUpdateOutput"),
+    id = id.from(_N, "CancelServiceSoftwareUpdateResponse"),
     type = "structure",
     members = {
         ServiceSoftwareOptions = schema.new({
@@ -1807,7 +1807,7 @@ M.IamIdentityCenterOptionsInput = schema.new({
 })
 
 M.CreateApplicationInput = schema.new({
-    id = id.from(_N, "CreateApplicationInput"),
+    id = id.from(_N, "CreateApplicationRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1897,7 +1897,7 @@ M.IamIdentityCenterOptions = schema.new({
 })
 
 M.CreateApplicationOutput = schema.new({
-    id = id.from(_N, "CreateApplicationOutput"),
+    id = id.from(_N, "CreateApplicationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2518,7 +2518,7 @@ M.VPCOptions = schema.new({
 })
 
 M.CreateDomainInput = schema.new({
-    id = id.from(_N, "CreateDomainInput"),
+    id = id.from(_N, "CreateDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -3115,7 +3115,7 @@ M.DomainStatus = schema.new({
 })
 
 M.CreateDomainOutput = schema.new({
-    id = id.from(_N, "CreateDomainOutput"),
+    id = id.from(_N, "CreateDomainResponse"),
     type = "structure",
     members = {
         DomainStatus = schema.new({
@@ -3161,7 +3161,7 @@ M.ResourceAlreadyExistsException = schema.new({
 })
 
 M.CreateIndexInput = schema.new({
-    id = id.from(_N, "CreateIndexInput"),
+    id = id.from(_N, "CreateIndexRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -3196,7 +3196,7 @@ M.CreateIndexInput = schema.new({
 })
 
 M.CreateIndexOutput = schema.new({
-    id = id.from(_N, "CreateIndexOutput"),
+    id = id.from(_N, "CreateIndexResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -3261,7 +3261,7 @@ M.ConnectionProperties = schema.new({
 })
 
 M.CreateOutboundConnectionInput = schema.new({
-    id = id.from(_N, "CreateOutboundConnectionInput"),
+    id = id.from(_N, "CreateOutboundConnectionRequest"),
     type = "structure",
     members = {
         LocalDomainInfo = schema.new({
@@ -3329,7 +3329,7 @@ M.OutboundConnectionStatus = schema.new({
 })
 
 M.CreateOutboundConnectionOutput = schema.new({
-    id = id.from(_N, "CreateOutboundConnectionOutput"),
+    id = id.from(_N, "CreateOutboundConnectionResponse"),
     type = "structure",
     members = {
         LocalDomainInfo = schema.new({
@@ -3476,7 +3476,7 @@ M.PackageVendingOptions = schema.new({
 })
 
 M.CreatePackageInput = schema.new({
-    id = id.from(_N, "CreatePackageInput"),
+    id = id.from(_N, "CreatePackageRequest"),
     type = "structure",
     members = {
         PackageName = schema.new({
@@ -3690,7 +3690,7 @@ M.PackageDetails = schema.new({
 })
 
 M.CreatePackageOutput = schema.new({
-    id = id.from(_N, "CreatePackageOutput"),
+    id = id.from(_N, "CreatePackageResponse"),
     type = "structure",
     members = {
         PackageDetails = schema.new({
@@ -3704,7 +3704,7 @@ M.CreatePackageOutput = schema.new({
 })
 
 M.CreateVpcEndpointInput = schema.new({
-    id = id.from(_N, "CreateVpcEndpointInput"),
+    id = id.from(_N, "CreateVpcEndpointRequest"),
     type = "structure",
     members = {
         DomainArn = schema.new({
@@ -3780,7 +3780,7 @@ M.VpcEndpoint = schema.new({
 })
 
 M.CreateVpcEndpointOutput = schema.new({
-    id = id.from(_N, "CreateVpcEndpointOutput"),
+    id = id.from(_N, "CreateVpcEndpointResponse"),
     type = "structure",
     members = {
         VpcEndpoint = schema.new({
@@ -3797,7 +3797,7 @@ M.CreateVpcEndpointOutput = schema.new({
 })
 
 M.DeleteApplicationInput = schema.new({
-    id = id.from(_N, "DeleteApplicationInput"),
+    id = id.from(_N, "DeleteApplicationRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -3814,12 +3814,12 @@ M.DeleteApplicationInput = schema.new({
 })
 
 M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationOutput"),
+    id = id.from(_N, "DeleteApplicationResponse"),
     type = "structure",
 })
 
 M.DeleteDataSourceInput = schema.new({
-    id = id.from(_N, "DeleteDataSourceInput"),
+    id = id.from(_N, "DeleteDataSourceRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -3846,7 +3846,7 @@ M.DeleteDataSourceInput = schema.new({
 })
 
 M.DeleteDataSourceOutput = schema.new({
-    id = id.from(_N, "DeleteDataSourceOutput"),
+    id = id.from(_N, "DeleteDataSourceResponse"),
     type = "structure",
     members = {
         Message = schema.new({
@@ -3859,7 +3859,7 @@ M.DeleteDataSourceOutput = schema.new({
 })
 
 M.DeleteDirectQueryDataSourceInput = schema.new({
-    id = id.from(_N, "DeleteDirectQueryDataSourceInput"),
+    id = id.from(_N, "DeleteDirectQueryDataSourceRequest"),
     type = "structure",
     members = {
         DataSourceName = schema.new({
@@ -3876,12 +3876,12 @@ M.DeleteDirectQueryDataSourceInput = schema.new({
 })
 
 M.DeleteDirectQueryDataSourceOutput = schema.new({
-    id = id.from(_N, "DeleteDirectQueryDataSourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDomainInput = schema.new({
-    id = id.from(_N, "DeleteDomainInput"),
+    id = id.from(_N, "DeleteDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -3898,7 +3898,7 @@ M.DeleteDomainInput = schema.new({
 })
 
 M.DeleteDomainOutput = schema.new({
-    id = id.from(_N, "DeleteDomainOutput"),
+    id = id.from(_N, "DeleteDomainResponse"),
     type = "structure",
     members = {
         DomainStatus = schema.new({
@@ -3912,7 +3912,7 @@ M.DeleteDomainOutput = schema.new({
 })
 
 M.DeleteInboundConnectionInput = schema.new({
-    id = id.from(_N, "DeleteInboundConnectionInput"),
+    id = id.from(_N, "DeleteInboundConnectionRequest"),
     type = "structure",
     members = {
         ConnectionId = schema.new({
@@ -3929,7 +3929,7 @@ M.DeleteInboundConnectionInput = schema.new({
 })
 
 M.DeleteInboundConnectionOutput = schema.new({
-    id = id.from(_N, "DeleteInboundConnectionOutput"),
+    id = id.from(_N, "DeleteInboundConnectionResponse"),
     type = "structure",
     members = {
         Connection = schema.new({
@@ -3943,7 +3943,7 @@ M.DeleteInboundConnectionOutput = schema.new({
 })
 
 M.DeleteIndexInput = schema.new({
-    id = id.from(_N, "DeleteIndexInput"),
+    id = id.from(_N, "DeleteIndexRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -3970,7 +3970,7 @@ M.DeleteIndexInput = schema.new({
 })
 
 M.DeleteIndexOutput = schema.new({
-    id = id.from(_N, "DeleteIndexOutput"),
+    id = id.from(_N, "DeleteIndexResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -3986,7 +3986,7 @@ M.DeleteIndexOutput = schema.new({
 })
 
 M.DeleteOutboundConnectionInput = schema.new({
-    id = id.from(_N, "DeleteOutboundConnectionInput"),
+    id = id.from(_N, "DeleteOutboundConnectionRequest"),
     type = "structure",
     members = {
         ConnectionId = schema.new({
@@ -4056,7 +4056,7 @@ M.OutboundConnection = schema.new({
 })
 
 M.DeleteOutboundConnectionOutput = schema.new({
-    id = id.from(_N, "DeleteOutboundConnectionOutput"),
+    id = id.from(_N, "DeleteOutboundConnectionResponse"),
     type = "structure",
     members = {
         Connection = schema.new({
@@ -4070,7 +4070,7 @@ M.DeleteOutboundConnectionOutput = schema.new({
 })
 
 M.DeletePackageInput = schema.new({
-    id = id.from(_N, "DeletePackageInput"),
+    id = id.from(_N, "DeletePackageRequest"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -4087,7 +4087,7 @@ M.DeletePackageInput = schema.new({
 })
 
 M.DeletePackageOutput = schema.new({
-    id = id.from(_N, "DeletePackageOutput"),
+    id = id.from(_N, "DeletePackageResponse"),
     type = "structure",
     members = {
         PackageDetails = schema.new({
@@ -4101,7 +4101,7 @@ M.DeletePackageOutput = schema.new({
 })
 
 M.DeleteVpcEndpointInput = schema.new({
-    id = id.from(_N, "DeleteVpcEndpointInput"),
+    id = id.from(_N, "DeleteVpcEndpointRequest"),
     type = "structure",
     members = {
         VpcEndpointId = schema.new({
@@ -4149,7 +4149,7 @@ M.VpcEndpointSummary = schema.new({
 })
 
 M.DeleteVpcEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteVpcEndpointOutput"),
+    id = id.from(_N, "DeleteVpcEndpointResponse"),
     type = "structure",
     members = {
         VpcEndpointSummary = schema.new({
@@ -4166,7 +4166,7 @@ M.DeleteVpcEndpointOutput = schema.new({
 })
 
 M.DeregisterCapabilityInput = schema.new({
-    id = id.from(_N, "DeregisterCapabilityInput"),
+    id = id.from(_N, "DeregisterCapabilityRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -4193,7 +4193,7 @@ M.DeregisterCapabilityInput = schema.new({
 })
 
 M.DeregisterCapabilityOutput = schema.new({
-    id = id.from(_N, "DeregisterCapabilityOutput"),
+    id = id.from(_N, "DeregisterCapabilityResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -4206,7 +4206,7 @@ M.DeregisterCapabilityOutput = schema.new({
 })
 
 M.DescribeDomainInput = schema.new({
-    id = id.from(_N, "DescribeDomainInput"),
+    id = id.from(_N, "DescribeDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -4223,7 +4223,7 @@ M.DescribeDomainInput = schema.new({
 })
 
 M.DescribeDomainOutput = schema.new({
-    id = id.from(_N, "DescribeDomainOutput"),
+    id = id.from(_N, "DescribeDomainResponse"),
     type = "structure",
     members = {
         DomainStatus = schema.new({
@@ -4240,7 +4240,7 @@ M.DescribeDomainOutput = schema.new({
 })
 
 M.DescribeDomainAutoTunesInput = schema.new({
-    id = id.from(_N, "DescribeDomainAutoTunesInput"),
+    id = id.from(_N, "DescribeDomainAutoTunesRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -4341,7 +4341,7 @@ M.AutoTune = schema.new({
 })
 
 M.DescribeDomainAutoTunesOutput = schema.new({
-    id = id.from(_N, "DescribeDomainAutoTunesOutput"),
+    id = id.from(_N, "DescribeDomainAutoTunesResponse"),
     type = "structure",
     members = {
         AutoTunes = schema.new({
@@ -4361,7 +4361,7 @@ M.DescribeDomainAutoTunesOutput = schema.new({
 })
 
 M.DescribeDomainChangeProgressInput = schema.new({
-    id = id.from(_N, "DescribeDomainChangeProgressInput"),
+    id = id.from(_N, "DescribeDomainChangeProgressRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -4491,7 +4491,7 @@ M.ChangeProgressStatusDetails = schema.new({
 })
 
 M.DescribeDomainChangeProgressOutput = schema.new({
-    id = id.from(_N, "DescribeDomainChangeProgressOutput"),
+    id = id.from(_N, "DescribeDomainChangeProgressResponse"),
     type = "structure",
     members = {
         ChangeProgressStatus = schema.new({
@@ -4505,7 +4505,7 @@ M.DescribeDomainChangeProgressOutput = schema.new({
 })
 
 M.DescribeDomainConfigInput = schema.new({
-    id = id.from(_N, "DescribeDomainConfigInput"),
+    id = id.from(_N, "DescribeDomainConfigRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -5177,7 +5177,7 @@ M.DomainConfig = schema.new({
 })
 
 M.DescribeDomainConfigOutput = schema.new({
-    id = id.from(_N, "DescribeDomainConfigOutput"),
+    id = id.from(_N, "DescribeDomainConfigResponse"),
     type = "structure",
     members = {
         DomainConfig = schema.new({
@@ -5194,7 +5194,7 @@ M.DescribeDomainConfigOutput = schema.new({
 })
 
 M.DescribeDomainHealthInput = schema.new({
-    id = id.from(_N, "DescribeDomainHealthInput"),
+    id = id.from(_N, "DescribeDomainHealthRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -5268,7 +5268,7 @@ M.EnvironmentInfo = schema.new({
 })
 
 M.DescribeDomainHealthOutput = schema.new({
-    id = id.from(_N, "DescribeDomainHealthOutput"),
+    id = id.from(_N, "DescribeDomainHealthResponse"),
     type = "structure",
     members = {
         DomainState = schema.new({
@@ -5354,7 +5354,7 @@ M.DescribeDomainHealthOutput = schema.new({
 })
 
 M.DescribeDomainNodesInput = schema.new({
-    id = id.from(_N, "DescribeDomainNodesInput"),
+    id = id.from(_N, "DescribeDomainNodesRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -5426,7 +5426,7 @@ M.DomainNodesStatus = schema.new({
 })
 
 M.DescribeDomainNodesOutput = schema.new({
-    id = id.from(_N, "DescribeDomainNodesOutput"),
+    id = id.from(_N, "DescribeDomainNodesResponse"),
     type = "structure",
     members = {
         DomainNodesStatusList = schema.new({
@@ -5440,7 +5440,7 @@ M.DescribeDomainNodesOutput = schema.new({
 })
 
 M.DescribeDomainsInput = schema.new({
-    id = id.from(_N, "DescribeDomainsInput"),
+    id = id.from(_N, "DescribeDomainsRequest"),
     type = "structure",
     members = {
         DomainNames = schema.new({
@@ -5457,7 +5457,7 @@ M.DescribeDomainsInput = schema.new({
 })
 
 M.DescribeDomainsOutput = schema.new({
-    id = id.from(_N, "DescribeDomainsOutput"),
+    id = id.from(_N, "DescribeDomainsResponse"),
     type = "structure",
     members = {
         DomainStatusList = schema.new({
@@ -5474,7 +5474,7 @@ M.DescribeDomainsOutput = schema.new({
 })
 
 M.DescribeDryRunProgressInput = schema.new({
-    id = id.from(_N, "DescribeDryRunProgressInput"),
+    id = id.from(_N, "DescribeDryRunProgressRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -5597,7 +5597,7 @@ M.DryRunResults = schema.new({
 })
 
 M.DescribeDryRunProgressOutput = schema.new({
-    id = id.from(_N, "DescribeDryRunProgressOutput"),
+    id = id.from(_N, "DescribeDryRunProgressResponse"),
     type = "structure",
     members = {
         DryRunProgressStatus = schema.new({
@@ -5645,7 +5645,7 @@ M.Filter = schema.new({
 })
 
 M.DescribeInboundConnectionsInput = schema.new({
-    id = id.from(_N, "DescribeInboundConnectionsInput"),
+    id = id.from(_N, "DescribeInboundConnectionsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -5674,7 +5674,7 @@ M.DescribeInboundConnectionsInput = schema.new({
 })
 
 M.DescribeInboundConnectionsOutput = schema.new({
-    id = id.from(_N, "DescribeInboundConnectionsOutput"),
+    id = id.from(_N, "DescribeInboundConnectionsResponse"),
     type = "structure",
     members = {
         Connections = schema.new({
@@ -5732,7 +5732,7 @@ M.InsightEntity = schema.new({
 })
 
 M.DescribeInsightDetailsInput = schema.new({
-    id = id.from(_N, "DescribeInsightDetailsInput"),
+    id = id.from(_N, "DescribeInsightDetailsRequest"),
     type = "structure",
     members = {
         Entity = schema.new({
@@ -5798,7 +5798,7 @@ M.InsightField = schema.new({
 })
 
 M.DescribeInsightDetailsOutput = schema.new({
-    id = id.from(_N, "DescribeInsightDetailsOutput"),
+    id = id.from(_N, "DescribeInsightDetailsResponse"),
     type = "structure",
     members = {
         Fields = schema.new({
@@ -5815,7 +5815,7 @@ M.DescribeInsightDetailsOutput = schema.new({
 })
 
 M.DescribeInstanceTypeLimitsInput = schema.new({
-    id = id.from(_N, "DescribeInstanceTypeLimitsInput"),
+    id = id.from(_N, "DescribeInstanceTypeLimitsRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -5964,7 +5964,7 @@ M.Limits = schema.new({
 })
 
 M.DescribeInstanceTypeLimitsOutput = schema.new({
-    id = id.from(_N, "DescribeInstanceTypeLimitsOutput"),
+    id = id.from(_N, "DescribeInstanceTypeLimitsResponse"),
     type = "structure",
     members = {
         LimitsByRole = schema.new({
@@ -5979,7 +5979,7 @@ M.DescribeInstanceTypeLimitsOutput = schema.new({
 })
 
 M.DescribeOutboundConnectionsInput = schema.new({
-    id = id.from(_N, "DescribeOutboundConnectionsInput"),
+    id = id.from(_N, "DescribeOutboundConnectionsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -6008,7 +6008,7 @@ M.DescribeOutboundConnectionsInput = schema.new({
 })
 
 M.DescribeOutboundConnectionsOutput = schema.new({
-    id = id.from(_N, "DescribeOutboundConnectionsOutput"),
+    id = id.from(_N, "DescribeOutboundConnectionsResponse"),
     type = "structure",
     members = {
         Connections = schema.new({
@@ -6048,7 +6048,7 @@ M.DescribePackagesFilter = schema.new({
 })
 
 M.DescribePackagesInput = schema.new({
-    id = id.from(_N, "DescribePackagesInput"),
+    id = id.from(_N, "DescribePackagesRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -6077,7 +6077,7 @@ M.DescribePackagesInput = schema.new({
 })
 
 M.DescribePackagesOutput = schema.new({
-    id = id.from(_N, "DescribePackagesOutput"),
+    id = id.from(_N, "DescribePackagesResponse"),
     type = "structure",
     members = {
         PackageDetailsList = schema.new({
@@ -6097,7 +6097,7 @@ M.DescribePackagesOutput = schema.new({
 })
 
 M.DescribeReservedInstanceOfferingsInput = schema.new({
-    id = id.from(_N, "DescribeReservedInstanceOfferingsInput"),
+    id = id.from(_N, "DescribeReservedInstanceOfferingsRequest"),
     type = "structure",
     members = {
         ReservedInstanceOfferingId = schema.new({
@@ -6204,13 +6204,13 @@ M.ReservedInstanceOffering = schema.new({
             type = "list",
             name = "RecurringCharges",
             target_id = prelude.Document.id,
-            list_member = M.RecurringCharge,
+            list_member = schema.new({ type = "structure", target = M.RecurringCharge, traits = { [traits.XML_NAME] = { name = "RecurringCharge" } } }),
         }),
     },
 })
 
 M.DescribeReservedInstanceOfferingsOutput = schema.new({
-    id = id.from(_N, "DescribeReservedInstanceOfferingsOutput"),
+    id = id.from(_N, "DescribeReservedInstanceOfferingsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6224,13 +6224,13 @@ M.DescribeReservedInstanceOfferingsOutput = schema.new({
             type = "list",
             name = "ReservedInstanceOfferings",
             target_id = prelude.Document.id,
-            list_member = M.ReservedInstanceOffering,
+            list_member = schema.new({ type = "structure", target = M.ReservedInstanceOffering, traits = { [traits.XML_NAME] = { name = "ReservedInstanceOffering" } } }),
         }),
     },
 })
 
 M.DescribeReservedInstancesInput = schema.new({
-    id = id.from(_N, "DescribeReservedInstancesInput"),
+    id = id.from(_N, "DescribeReservedInstancesRequest"),
     type = "structure",
     members = {
         ReservedInstanceId = schema.new({
@@ -6357,13 +6357,13 @@ M.ReservedInstance = schema.new({
             type = "list",
             name = "RecurringCharges",
             target_id = prelude.Document.id,
-            list_member = M.RecurringCharge,
+            list_member = schema.new({ type = "structure", target = M.RecurringCharge, traits = { [traits.XML_NAME] = { name = "RecurringCharge" } } }),
         }),
     },
 })
 
 M.DescribeReservedInstancesOutput = schema.new({
-    id = id.from(_N, "DescribeReservedInstancesOutput"),
+    id = id.from(_N, "DescribeReservedInstancesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6383,7 +6383,7 @@ M.DescribeReservedInstancesOutput = schema.new({
 })
 
 M.DescribeVpcEndpointsInput = schema.new({
-    id = id.from(_N, "DescribeVpcEndpointsInput"),
+    id = id.from(_N, "DescribeVpcEndpointsRequest"),
     type = "structure",
     members = {
         VpcEndpointIds = schema.new({
@@ -6425,7 +6425,7 @@ M.VpcEndpointError = schema.new({
 })
 
 M.DescribeVpcEndpointsOutput = schema.new({
-    id = id.from(_N, "DescribeVpcEndpointsOutput"),
+    id = id.from(_N, "DescribeVpcEndpointsResponse"),
     type = "structure",
     members = {
         VpcEndpoints = schema.new({
@@ -6452,7 +6452,7 @@ M.DescribeVpcEndpointsOutput = schema.new({
 })
 
 M.DissociatePackageInput = schema.new({
-    id = id.from(_N, "DissociatePackageInput"),
+    id = id.from(_N, "DissociatePackageRequest"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -6479,7 +6479,7 @@ M.DissociatePackageInput = schema.new({
 })
 
 M.DissociatePackageOutput = schema.new({
-    id = id.from(_N, "DissociatePackageOutput"),
+    id = id.from(_N, "DissociatePackageResponse"),
     type = "structure",
     members = {
         DomainPackageDetails = schema.new({
@@ -6493,7 +6493,7 @@ M.DissociatePackageOutput = schema.new({
 })
 
 M.DissociatePackagesInput = schema.new({
-    id = id.from(_N, "DissociatePackagesInput"),
+    id = id.from(_N, "DissociatePackagesRequest"),
     type = "structure",
     members = {
         PackageList = schema.new({
@@ -6519,7 +6519,7 @@ M.DissociatePackagesInput = schema.new({
 })
 
 M.DissociatePackagesOutput = schema.new({
-    id = id.from(_N, "DissociatePackagesOutput"),
+    id = id.from(_N, "DissociatePackagesResponse"),
     type = "structure",
     members = {
         DomainPackageDetailsList = schema.new({
@@ -6533,7 +6533,7 @@ M.DissociatePackagesOutput = schema.new({
 })
 
 M.GetApplicationInput = schema.new({
-    id = id.from(_N, "GetApplicationInput"),
+    id = id.from(_N, "GetApplicationRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6550,7 +6550,7 @@ M.GetApplicationInput = schema.new({
 })
 
 M.GetApplicationOutput = schema.new({
-    id = id.from(_N, "GetApplicationOutput"),
+    id = id.from(_N, "GetApplicationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -6626,7 +6626,7 @@ M.GetApplicationOutput = schema.new({
 })
 
 M.GetCapabilityInput = schema.new({
-    id = id.from(_N, "GetCapabilityInput"),
+    id = id.from(_N, "GetCapabilityRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -6686,7 +6686,7 @@ M.CapabilityFailure = schema.new({
 })
 
 M.GetCapabilityOutput = schema.new({
-    id = id.from(_N, "GetCapabilityOutput"),
+    id = id.from(_N, "GetCapabilityResponse"),
     type = "structure",
     members = {
         capabilityName = schema.new({
@@ -6725,7 +6725,7 @@ M.GetCapabilityOutput = schema.new({
 })
 
 M.GetCompatibleVersionsInput = schema.new({
-    id = id.from(_N, "GetCompatibleVersionsInput"),
+    id = id.from(_N, "GetCompatibleVersionsRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -6761,7 +6761,7 @@ M.CompatibleVersionsMap = schema.new({
 })
 
 M.GetCompatibleVersionsOutput = schema.new({
-    id = id.from(_N, "GetCompatibleVersionsOutput"),
+    id = id.from(_N, "GetCompatibleVersionsResponse"),
     type = "structure",
     members = {
         CompatibleVersions = schema.new({
@@ -6775,7 +6775,7 @@ M.GetCompatibleVersionsOutput = schema.new({
 })
 
 M.GetDataSourceInput = schema.new({
-    id = id.from(_N, "GetDataSourceInput"),
+    id = id.from(_N, "GetDataSourceRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -6802,7 +6802,7 @@ M.GetDataSourceInput = schema.new({
 })
 
 M.GetDataSourceOutput = schema.new({
-    id = id.from(_N, "GetDataSourceOutput"),
+    id = id.from(_N, "GetDataSourceResponse"),
     type = "structure",
     members = {
         DataSourceType = schema.new({
@@ -6834,12 +6834,12 @@ M.GetDataSourceOutput = schema.new({
 })
 
 M.GetDefaultApplicationSettingInput = schema.new({
-    id = id.from(_N, "GetDefaultApplicationSettingInput"),
+    id = id.from(_N, "GetDefaultApplicationSettingRequest"),
     type = "structure",
 })
 
 M.GetDefaultApplicationSettingOutput = schema.new({
-    id = id.from(_N, "GetDefaultApplicationSettingOutput"),
+    id = id.from(_N, "GetDefaultApplicationSettingResponse"),
     type = "structure",
     members = {
         applicationArn = schema.new({
@@ -6852,7 +6852,7 @@ M.GetDefaultApplicationSettingOutput = schema.new({
 })
 
 M.GetDirectQueryDataSourceInput = schema.new({
-    id = id.from(_N, "GetDirectQueryDataSourceInput"),
+    id = id.from(_N, "GetDirectQueryDataSourceRequest"),
     type = "structure",
     members = {
         DataSourceName = schema.new({
@@ -6869,7 +6869,7 @@ M.GetDirectQueryDataSourceInput = schema.new({
 })
 
 M.GetDirectQueryDataSourceOutput = schema.new({
-    id = id.from(_N, "GetDirectQueryDataSourceOutput"),
+    id = id.from(_N, "GetDirectQueryDataSourceResponse"),
     type = "structure",
     members = {
         DataSourceName = schema.new({
@@ -6914,7 +6914,7 @@ M.GetDirectQueryDataSourceOutput = schema.new({
 })
 
 M.GetDomainMaintenanceStatusInput = schema.new({
-    id = id.from(_N, "GetDomainMaintenanceStatusInput"),
+    id = id.from(_N, "GetDomainMaintenanceStatusRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -6941,7 +6941,7 @@ M.GetDomainMaintenanceStatusInput = schema.new({
 })
 
 M.GetDomainMaintenanceStatusOutput = schema.new({
-    id = id.from(_N, "GetDomainMaintenanceStatusOutput"),
+    id = id.from(_N, "GetDomainMaintenanceStatusResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -6984,7 +6984,7 @@ M.GetDomainMaintenanceStatusOutput = schema.new({
 })
 
 M.GetIndexInput = schema.new({
-    id = id.from(_N, "GetIndexInput"),
+    id = id.from(_N, "GetIndexRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -7011,7 +7011,7 @@ M.GetIndexInput = schema.new({
 })
 
 M.GetIndexOutput = schema.new({
-    id = id.from(_N, "GetIndexOutput"),
+    id = id.from(_N, "GetIndexResponse"),
     type = "structure",
     members = {
         IndexSchema = schema.new({
@@ -7027,7 +7027,7 @@ M.GetIndexOutput = schema.new({
 })
 
 M.GetPackageVersionHistoryInput = schema.new({
-    id = id.from(_N, "GetPackageVersionHistoryInput"),
+    id = id.from(_N, "GetPackageVersionHistoryRequest"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -7102,7 +7102,7 @@ M.PackageVersionHistory = schema.new({
 })
 
 M.GetPackageVersionHistoryOutput = schema.new({
-    id = id.from(_N, "GetPackageVersionHistoryOutput"),
+    id = id.from(_N, "GetPackageVersionHistoryResponse"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -7128,7 +7128,7 @@ M.GetPackageVersionHistoryOutput = schema.new({
 })
 
 M.GetUpgradeHistoryInput = schema.new({
-    id = id.from(_N, "GetUpgradeHistoryInput"),
+    id = id.from(_N, "GetUpgradeHistoryRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -7228,7 +7228,7 @@ M.UpgradeHistory = schema.new({
 })
 
 M.GetUpgradeHistoryOutput = schema.new({
-    id = id.from(_N, "GetUpgradeHistoryOutput"),
+    id = id.from(_N, "GetUpgradeHistoryResponse"),
     type = "structure",
     members = {
         UpgradeHistories = schema.new({
@@ -7248,7 +7248,7 @@ M.GetUpgradeHistoryOutput = schema.new({
 })
 
 M.GetUpgradeStatusInput = schema.new({
-    id = id.from(_N, "GetUpgradeStatusInput"),
+    id = id.from(_N, "GetUpgradeStatusRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -7265,7 +7265,7 @@ M.GetUpgradeStatusInput = schema.new({
 })
 
 M.GetUpgradeStatusOutput = schema.new({
-    id = id.from(_N, "GetUpgradeStatusOutput"),
+    id = id.from(_N, "GetUpgradeStatusResponse"),
     type = "structure",
     members = {
         UpgradeStep = schema.new({
@@ -7290,7 +7290,7 @@ M.GetUpgradeStatusOutput = schema.new({
 })
 
 M.ListApplicationsInput = schema.new({
-    id = id.from(_N, "ListApplicationsInput"),
+    id = id.from(_N, "ListApplicationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -7375,7 +7375,7 @@ M.ApplicationSummary = schema.new({
 })
 
 M.ListApplicationsOutput = schema.new({
-    id = id.from(_N, "ListApplicationsOutput"),
+    id = id.from(_N, "ListApplicationsResponse"),
     type = "structure",
     members = {
         ApplicationSummaries = schema.new({
@@ -7395,7 +7395,7 @@ M.ListApplicationsOutput = schema.new({
 })
 
 M.ListDataSourcesInput = schema.new({
-    id = id.from(_N, "ListDataSourcesInput"),
+    id = id.from(_N, "ListDataSourcesRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -7444,7 +7444,7 @@ M.DataSourceDetails = schema.new({
 })
 
 M.ListDataSourcesOutput = schema.new({
-    id = id.from(_N, "ListDataSourcesOutput"),
+    id = id.from(_N, "ListDataSourcesResponse"),
     type = "structure",
     members = {
         DataSources = schema.new({
@@ -7458,7 +7458,7 @@ M.ListDataSourcesOutput = schema.new({
 })
 
 M.ListDirectQueryDataSourcesInput = schema.new({
-    id = id.from(_N, "ListDirectQueryDataSourcesInput"),
+    id = id.from(_N, "ListDirectQueryDataSourcesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7520,7 +7520,7 @@ M.DirectQueryDataSource = schema.new({
 })
 
 M.ListDirectQueryDataSourcesOutput = schema.new({
-    id = id.from(_N, "ListDirectQueryDataSourcesOutput"),
+    id = id.from(_N, "ListDirectQueryDataSourcesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -7540,7 +7540,7 @@ M.ListDirectQueryDataSourcesOutput = schema.new({
 })
 
 M.ListDomainMaintenancesInput = schema.new({
-    id = id.from(_N, "ListDomainMaintenancesInput"),
+    id = id.from(_N, "ListDomainMaintenancesRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -7649,7 +7649,7 @@ M.DomainMaintenanceDetails = schema.new({
 })
 
 M.ListDomainMaintenancesOutput = schema.new({
-    id = id.from(_N, "ListDomainMaintenancesOutput"),
+    id = id.from(_N, "ListDomainMaintenancesResponse"),
     type = "structure",
     members = {
         DomainMaintenances = schema.new({
@@ -7669,7 +7669,7 @@ M.ListDomainMaintenancesOutput = schema.new({
 })
 
 M.ListDomainNamesInput = schema.new({
-    id = id.from(_N, "ListDomainNamesInput"),
+    id = id.from(_N, "ListDomainNamesRequest"),
     type = "structure",
     members = {
         EngineType = schema.new({
@@ -7704,7 +7704,7 @@ M.DomainInfo = schema.new({
 })
 
 M.ListDomainNamesOutput = schema.new({
-    id = id.from(_N, "ListDomainNamesOutput"),
+    id = id.from(_N, "ListDomainNamesResponse"),
     type = "structure",
     members = {
         DomainNames = schema.new({
@@ -7718,7 +7718,7 @@ M.ListDomainNamesOutput = schema.new({
 })
 
 M.ListDomainsForPackageInput = schema.new({
-    id = id.from(_N, "ListDomainsForPackageInput"),
+    id = id.from(_N, "ListDomainsForPackageRequest"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -7754,7 +7754,7 @@ M.ListDomainsForPackageInput = schema.new({
 })
 
 M.ListDomainsForPackageOutput = schema.new({
-    id = id.from(_N, "ListDomainsForPackageOutput"),
+    id = id.from(_N, "ListDomainsForPackageResponse"),
     type = "structure",
     members = {
         DomainPackageDetailsList = schema.new({
@@ -7799,7 +7799,7 @@ M.InsightTimeRange = schema.new({
 })
 
 M.ListInsightsInput = schema.new({
-    id = id.from(_N, "ListInsightsInput"),
+    id = id.from(_N, "ListInsightsRequest"),
     type = "structure",
     members = {
         Entity = schema.new({
@@ -7896,7 +7896,7 @@ M.Insight = schema.new({
 })
 
 M.ListInsightsOutput = schema.new({
-    id = id.from(_N, "ListInsightsOutput"),
+    id = id.from(_N, "ListInsightsResponse"),
     type = "structure",
     members = {
         Insights = schema.new({
@@ -7916,7 +7916,7 @@ M.ListInsightsOutput = schema.new({
 })
 
 M.ListInstanceTypeDetailsInput = schema.new({
-    id = id.from(_N, "ListInstanceTypeDetailsInput"),
+    id = id.from(_N, "ListInstanceTypeDetailsRequest"),
     type = "structure",
     members = {
         EngineVersion = schema.new({
@@ -8036,7 +8036,7 @@ M.InstanceTypeDetails = schema.new({
 })
 
 M.ListInstanceTypeDetailsOutput = schema.new({
-    id = id.from(_N, "ListInstanceTypeDetailsOutput"),
+    id = id.from(_N, "ListInstanceTypeDetailsResponse"),
     type = "structure",
     members = {
         InstanceTypeDetails = schema.new({
@@ -8056,7 +8056,7 @@ M.ListInstanceTypeDetailsOutput = schema.new({
 })
 
 M.ListPackagesForDomainInput = schema.new({
-    id = id.from(_N, "ListPackagesForDomainInput"),
+    id = id.from(_N, "ListPackagesForDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -8092,7 +8092,7 @@ M.ListPackagesForDomainInput = schema.new({
 })
 
 M.ListPackagesForDomainOutput = schema.new({
-    id = id.from(_N, "ListPackagesForDomainOutput"),
+    id = id.from(_N, "ListPackagesForDomainResponse"),
     type = "structure",
     members = {
         DomainPackageDetailsList = schema.new({
@@ -8112,7 +8112,7 @@ M.ListPackagesForDomainOutput = schema.new({
 })
 
 M.ListScheduledActionsInput = schema.new({
-    id = id.from(_N, "ListScheduledActionsInput"),
+    id = id.from(_N, "ListScheduledActionsRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -8221,7 +8221,7 @@ M.ScheduledAction = schema.new({
 })
 
 M.ListScheduledActionsOutput = schema.new({
-    id = id.from(_N, "ListScheduledActionsOutput"),
+    id = id.from(_N, "ListScheduledActionsResponse"),
     type = "structure",
     members = {
         ScheduledActions = schema.new({
@@ -8241,7 +8241,7 @@ M.ListScheduledActionsOutput = schema.new({
 })
 
 M.ListTagsInput = schema.new({
-    id = id.from(_N, "ListTagsInput"),
+    id = id.from(_N, "ListTagsRequest"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -8258,7 +8258,7 @@ M.ListTagsInput = schema.new({
 })
 
 M.ListTagsOutput = schema.new({
-    id = id.from(_N, "ListTagsOutput"),
+    id = id.from(_N, "ListTagsResponse"),
     type = "structure",
     members = {
         TagList = schema.new({
@@ -8272,7 +8272,7 @@ M.ListTagsOutput = schema.new({
 })
 
 M.ListVersionsInput = schema.new({
-    id = id.from(_N, "ListVersionsInput"),
+    id = id.from(_N, "ListVersionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -8298,7 +8298,7 @@ M.ListVersionsInput = schema.new({
 })
 
 M.ListVersionsOutput = schema.new({
-    id = id.from(_N, "ListVersionsOutput"),
+    id = id.from(_N, "ListVersionsResponse"),
     type = "structure",
     members = {
         Versions = schema.new({
@@ -8318,7 +8318,7 @@ M.ListVersionsOutput = schema.new({
 })
 
 M.ListVpcEndpointAccessInput = schema.new({
-    id = id.from(_N, "ListVpcEndpointAccessInput"),
+    id = id.from(_N, "ListVpcEndpointAccessRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -8344,7 +8344,7 @@ M.ListVpcEndpointAccessInput = schema.new({
 })
 
 M.ListVpcEndpointAccessOutput = schema.new({
-    id = id.from(_N, "ListVpcEndpointAccessOutput"),
+    id = id.from(_N, "ListVpcEndpointAccessResponse"),
     type = "structure",
     members = {
         AuthorizedPrincipalList = schema.new({
@@ -8370,7 +8370,7 @@ M.ListVpcEndpointAccessOutput = schema.new({
 })
 
 M.ListVpcEndpointsInput = schema.new({
-    id = id.from(_N, "ListVpcEndpointsInput"),
+    id = id.from(_N, "ListVpcEndpointsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -8386,7 +8386,7 @@ M.ListVpcEndpointsInput = schema.new({
 })
 
 M.ListVpcEndpointsOutput = schema.new({
-    id = id.from(_N, "ListVpcEndpointsOutput"),
+    id = id.from(_N, "ListVpcEndpointsResponse"),
     type = "structure",
     members = {
         VpcEndpointSummaryList = schema.new({
@@ -8412,7 +8412,7 @@ M.ListVpcEndpointsOutput = schema.new({
 })
 
 M.ListVpcEndpointsForDomainInput = schema.new({
-    id = id.from(_N, "ListVpcEndpointsForDomainInput"),
+    id = id.from(_N, "ListVpcEndpointsForDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -8438,7 +8438,7 @@ M.ListVpcEndpointsForDomainInput = schema.new({
 })
 
 M.ListVpcEndpointsForDomainOutput = schema.new({
-    id = id.from(_N, "ListVpcEndpointsForDomainOutput"),
+    id = id.from(_N, "ListVpcEndpointsForDomainResponse"),
     type = "structure",
     members = {
         VpcEndpointSummaryList = schema.new({
@@ -8464,7 +8464,7 @@ M.ListVpcEndpointsForDomainOutput = schema.new({
 })
 
 M.PurchaseReservedInstanceOfferingInput = schema.new({
-    id = id.from(_N, "PurchaseReservedInstanceOfferingInput"),
+    id = id.from(_N, "PurchaseReservedInstanceOfferingRequest"),
     type = "structure",
     members = {
         ReservedInstanceOfferingId = schema.new({
@@ -8495,7 +8495,7 @@ M.PurchaseReservedInstanceOfferingInput = schema.new({
 })
 
 M.PurchaseReservedInstanceOfferingOutput = schema.new({
-    id = id.from(_N, "PurchaseReservedInstanceOfferingOutput"),
+    id = id.from(_N, "PurchaseReservedInstanceOfferingResponse"),
     type = "structure",
     members = {
         ReservedInstanceId = schema.new({
@@ -8514,7 +8514,7 @@ M.PurchaseReservedInstanceOfferingOutput = schema.new({
 })
 
 M.PutDefaultApplicationSettingInput = schema.new({
-    id = id.from(_N, "PutDefaultApplicationSettingInput"),
+    id = id.from(_N, "PutDefaultApplicationSettingRequest"),
     type = "structure",
     members = {
         applicationArn = schema.new({
@@ -8539,7 +8539,7 @@ M.PutDefaultApplicationSettingInput = schema.new({
 })
 
 M.PutDefaultApplicationSettingOutput = schema.new({
-    id = id.from(_N, "PutDefaultApplicationSettingOutput"),
+    id = id.from(_N, "PutDefaultApplicationSettingResponse"),
     type = "structure",
     members = {
         applicationArn = schema.new({
@@ -8566,7 +8566,7 @@ M.CapabilityBaseRequestConfig = schema.new({
 })
 
 M.RegisterCapabilityInput = schema.new({
-    id = id.from(_N, "RegisterCapabilityInput"),
+    id = id.from(_N, "RegisterCapabilityRequest"),
     type = "structure",
     members = {
         applicationId = schema.new({
@@ -8616,7 +8616,7 @@ M.CapabilityBaseResponseConfig = schema.new({
 })
 
 M.RegisterCapabilityOutput = schema.new({
-    id = id.from(_N, "RegisterCapabilityOutput"),
+    id = id.from(_N, "RegisterCapabilityResponse"),
     type = "structure",
     members = {
         capabilityName = schema.new({
@@ -8664,7 +8664,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.RejectInboundConnectionInput = schema.new({
-    id = id.from(_N, "RejectInboundConnectionInput"),
+    id = id.from(_N, "RejectInboundConnectionRequest"),
     type = "structure",
     members = {
         ConnectionId = schema.new({
@@ -8681,7 +8681,7 @@ M.RejectInboundConnectionInput = schema.new({
 })
 
 M.RejectInboundConnectionOutput = schema.new({
-    id = id.from(_N, "RejectInboundConnectionOutput"),
+    id = id.from(_N, "RejectInboundConnectionResponse"),
     type = "structure",
     members = {
         Connection = schema.new({
@@ -8695,7 +8695,7 @@ M.RejectInboundConnectionOutput = schema.new({
 })
 
 M.RemoveTagsInput = schema.new({
-    id = id.from(_N, "RemoveTagsInput"),
+    id = id.from(_N, "RemoveTagsRequest"),
     type = "structure",
     members = {
         ARN = schema.new({
@@ -8721,12 +8721,12 @@ M.RemoveTagsInput = schema.new({
 })
 
 M.RemoveTagsOutput = schema.new({
-    id = id.from(_N, "RemoveTagsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RevokeVpcEndpointAccessInput = schema.new({
-    id = id.from(_N, "RevokeVpcEndpointAccessInput"),
+    id = id.from(_N, "RevokeVpcEndpointAccessRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -8762,12 +8762,12 @@ M.RevokeVpcEndpointAccessInput = schema.new({
 })
 
 M.RevokeVpcEndpointAccessOutput = schema.new({
-    id = id.from(_N, "RevokeVpcEndpointAccessOutput"),
+    id = id.from(_N, "RevokeVpcEndpointAccessResponse"),
     type = "structure",
 })
 
 M.RollbackServiceSoftwareUpdateInput = schema.new({
-    id = id.from(_N, "RollbackServiceSoftwareUpdateInput"),
+    id = id.from(_N, "RollbackServiceSoftwareUpdateRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -8814,7 +8814,7 @@ M.RollbackServiceSoftwareOptions = schema.new({
 })
 
 M.RollbackServiceSoftwareUpdateOutput = schema.new({
-    id = id.from(_N, "RollbackServiceSoftwareUpdateOutput"),
+    id = id.from(_N, "RollbackServiceSoftwareUpdateResponse"),
     type = "structure",
     members = {
         RollbackServiceSoftwareOptions = schema.new({
@@ -8828,7 +8828,7 @@ M.RollbackServiceSoftwareUpdateOutput = schema.new({
 })
 
 M.StartDomainMaintenanceInput = schema.new({
-    id = id.from(_N, "StartDomainMaintenanceInput"),
+    id = id.from(_N, "StartDomainMaintenanceRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -8860,7 +8860,7 @@ M.StartDomainMaintenanceInput = schema.new({
 })
 
 M.StartDomainMaintenanceOutput = schema.new({
-    id = id.from(_N, "StartDomainMaintenanceOutput"),
+    id = id.from(_N, "StartDomainMaintenanceResponse"),
     type = "structure",
     members = {
         MaintenanceId = schema.new({
@@ -8873,7 +8873,7 @@ M.StartDomainMaintenanceOutput = schema.new({
 })
 
 M.StartServiceSoftwareUpdateInput = schema.new({
-    id = id.from(_N, "StartServiceSoftwareUpdateInput"),
+    id = id.from(_N, "StartServiceSoftwareUpdateRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -8901,7 +8901,7 @@ M.StartServiceSoftwareUpdateInput = schema.new({
 })
 
 M.StartServiceSoftwareUpdateOutput = schema.new({
-    id = id.from(_N, "StartServiceSoftwareUpdateOutput"),
+    id = id.from(_N, "StartServiceSoftwareUpdateResponse"),
     type = "structure",
     members = {
         ServiceSoftwareOptions = schema.new({
@@ -8915,7 +8915,7 @@ M.StartServiceSoftwareUpdateOutput = schema.new({
 })
 
 M.UpdateApplicationInput = schema.new({
-    id = id.from(_N, "UpdateApplicationInput"),
+    id = id.from(_N, "UpdateApplicationRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -8946,7 +8946,7 @@ M.UpdateApplicationInput = schema.new({
 })
 
 M.UpdateApplicationOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationOutput"),
+    id = id.from(_N, "UpdateApplicationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -9004,7 +9004,7 @@ M.UpdateApplicationOutput = schema.new({
 })
 
 M.UpdateDataSourceInput = schema.new({
-    id = id.from(_N, "UpdateDataSourceInput"),
+    id = id.from(_N, "UpdateDataSourceRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -9053,7 +9053,7 @@ M.UpdateDataSourceInput = schema.new({
 })
 
 M.UpdateDataSourceOutput = schema.new({
-    id = id.from(_N, "UpdateDataSourceOutput"),
+    id = id.from(_N, "UpdateDataSourceResponse"),
     type = "structure",
     members = {
         Message = schema.new({
@@ -9066,7 +9066,7 @@ M.UpdateDataSourceOutput = schema.new({
 })
 
 M.UpdateDirectQueryDataSourceInput = schema.new({
-    id = id.from(_N, "UpdateDirectQueryDataSourceInput"),
+    id = id.from(_N, "UpdateDirectQueryDataSourceRequest"),
     type = "structure",
     members = {
         DataSourceName = schema.new({
@@ -9112,7 +9112,7 @@ M.UpdateDirectQueryDataSourceInput = schema.new({
 })
 
 M.UpdateDirectQueryDataSourceOutput = schema.new({
-    id = id.from(_N, "UpdateDirectQueryDataSourceOutput"),
+    id = id.from(_N, "UpdateDirectQueryDataSourceResponse"),
     type = "structure",
     members = {
         DataSourceArn = schema.new({
@@ -9125,7 +9125,7 @@ M.UpdateDirectQueryDataSourceOutput = schema.new({
 })
 
 M.UpdateDomainConfigInput = schema.new({
-    id = id.from(_N, "UpdateDomainConfigInput"),
+    id = id.from(_N, "UpdateDomainConfigRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -9287,7 +9287,7 @@ M.UpdateDomainConfigInput = schema.new({
 })
 
 M.UpdateDomainConfigOutput = schema.new({
-    id = id.from(_N, "UpdateDomainConfigOutput"),
+    id = id.from(_N, "UpdateDomainConfigResponse"),
     type = "structure",
     members = {
         DomainConfig = schema.new({
@@ -9318,7 +9318,7 @@ M.UpdateDomainConfigOutput = schema.new({
 })
 
 M.UpdateIndexInput = schema.new({
-    id = id.from(_N, "UpdateIndexInput"),
+    id = id.from(_N, "UpdateIndexRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -9354,7 +9354,7 @@ M.UpdateIndexInput = schema.new({
 })
 
 M.UpdateIndexOutput = schema.new({
-    id = id.from(_N, "UpdateIndexOutput"),
+    id = id.from(_N, "UpdateIndexResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -9370,7 +9370,7 @@ M.UpdateIndexOutput = schema.new({
 })
 
 M.UpdatePackageInput = schema.new({
-    id = id.from(_N, "UpdatePackageInput"),
+    id = id.from(_N, "UpdatePackageRequest"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -9422,7 +9422,7 @@ M.UpdatePackageInput = schema.new({
 })
 
 M.UpdatePackageOutput = schema.new({
-    id = id.from(_N, "UpdatePackageOutput"),
+    id = id.from(_N, "UpdatePackageResponse"),
     type = "structure",
     members = {
         PackageDetails = schema.new({
@@ -9436,7 +9436,7 @@ M.UpdatePackageOutput = schema.new({
 })
 
 M.UpdatePackageScopeInput = schema.new({
-    id = id.from(_N, "UpdatePackageScopeInput"),
+    id = id.from(_N, "UpdatePackageScopeRequest"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -9471,7 +9471,7 @@ M.UpdatePackageScopeInput = schema.new({
 })
 
 M.UpdatePackageScopeOutput = schema.new({
-    id = id.from(_N, "UpdatePackageScopeOutput"),
+    id = id.from(_N, "UpdatePackageScopeResponse"),
     type = "structure",
     members = {
         PackageID = schema.new({
@@ -9520,7 +9520,7 @@ M.SlotNotAvailableException = schema.new({
 })
 
 M.UpdateScheduledActionInput = schema.new({
-    id = id.from(_N, "UpdateScheduledActionInput"),
+    id = id.from(_N, "UpdateScheduledActionRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -9570,7 +9570,7 @@ M.UpdateScheduledActionInput = schema.new({
 })
 
 M.UpdateScheduledActionOutput = schema.new({
-    id = id.from(_N, "UpdateScheduledActionOutput"),
+    id = id.from(_N, "UpdateScheduledActionResponse"),
     type = "structure",
     members = {
         ScheduledAction = schema.new({
@@ -9584,7 +9584,7 @@ M.UpdateScheduledActionOutput = schema.new({
 })
 
 M.UpdateVpcEndpointInput = schema.new({
-    id = id.from(_N, "UpdateVpcEndpointInput"),
+    id = id.from(_N, "UpdateVpcEndpointRequest"),
     type = "structure",
     members = {
         VpcEndpointId = schema.new({
@@ -9610,7 +9610,7 @@ M.UpdateVpcEndpointInput = schema.new({
 })
 
 M.UpdateVpcEndpointOutput = schema.new({
-    id = id.from(_N, "UpdateVpcEndpointOutput"),
+    id = id.from(_N, "UpdateVpcEndpointResponse"),
     type = "structure",
     members = {
         VpcEndpoint = schema.new({
@@ -9627,7 +9627,7 @@ M.UpdateVpcEndpointOutput = schema.new({
 })
 
 M.UpgradeDomainInput = schema.new({
-    id = id.from(_N, "UpgradeDomainInput"),
+    id = id.from(_N, "UpgradeDomainRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -9666,7 +9666,7 @@ M.UpgradeDomainInput = schema.new({
 })
 
 M.UpgradeDomainOutput = schema.new({
-    id = id.from(_N, "UpgradeDomainOutput"),
+    id = id.from(_N, "UpgradeDomainResponse"),
     type = "structure",
     members = {
         UpgradeId = schema.new({
@@ -9710,5 +9710,19 @@ M.UpgradeDomainOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

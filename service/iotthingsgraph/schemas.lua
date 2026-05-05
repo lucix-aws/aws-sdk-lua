@@ -8,7 +8,7 @@ local _N = "com.amazonaws.iotthingsgraph"
 local M = {}
 
 M.AssociateEntityToThingInput = schema.new({
-    id = id.from(_N, "AssociateEntityToThingInput"),
+    id = id.from(_N, "AssociateEntityToThingRequest"),
     type = "structure",
     members = {
         thingName = schema.new({
@@ -39,7 +39,7 @@ M.AssociateEntityToThingInput = schema.new({
 })
 
 M.AssociateEntityToThingOutput = schema.new({
-    id = id.from(_N, "AssociateEntityToThingOutput"),
+    id = id.from(_N, "AssociateEntityToThingResponse"),
     type = "structure",
 })
 
@@ -133,7 +133,7 @@ M.DefinitionDocument = schema.new({
 })
 
 M.CreateFlowTemplateInput = schema.new({
-    id = id.from(_N, "CreateFlowTemplateInput"),
+    id = id.from(_N, "CreateFlowTemplateRequest"),
     type = "structure",
     members = {
         definition = schema.new({
@@ -187,7 +187,7 @@ M.FlowTemplateSummary = schema.new({
 })
 
 M.CreateFlowTemplateOutput = schema.new({
-    id = id.from(_N, "CreateFlowTemplateOutput"),
+    id = id.from(_N, "CreateFlowTemplateResponse"),
     type = "structure",
     members = {
         summary = schema.new({
@@ -280,7 +280,7 @@ M.Tag = schema.new({
 })
 
 M.CreateSystemInstanceInput = schema.new({
-    id = id.from(_N, "CreateSystemInstanceInput"),
+    id = id.from(_N, "CreateSystemInstanceRequest"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -399,7 +399,7 @@ M.SystemInstanceSummary = schema.new({
 })
 
 M.CreateSystemInstanceOutput = schema.new({
-    id = id.from(_N, "CreateSystemInstanceOutput"),
+    id = id.from(_N, "CreateSystemInstanceResponse"),
     type = "structure",
     members = {
         summary = schema.new({
@@ -413,7 +413,7 @@ M.CreateSystemInstanceOutput = schema.new({
 })
 
 M.CreateSystemTemplateInput = schema.new({
-    id = id.from(_N, "CreateSystemTemplateInput"),
+    id = id.from(_N, "CreateSystemTemplateRequest"),
     type = "structure",
     members = {
         definition = schema.new({
@@ -467,7 +467,7 @@ M.SystemTemplateSummary = schema.new({
 })
 
 M.CreateSystemTemplateOutput = schema.new({
-    id = id.from(_N, "CreateSystemTemplateOutput"),
+    id = id.from(_N, "CreateSystemTemplateResponse"),
     type = "structure",
     members = {
         summary = schema.new({
@@ -481,7 +481,7 @@ M.CreateSystemTemplateOutput = schema.new({
 })
 
 M.DeleteFlowTemplateInput = schema.new({
-    id = id.from(_N, "DeleteFlowTemplateInput"),
+    id = id.from(_N, "DeleteFlowTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -497,7 +497,7 @@ M.DeleteFlowTemplateInput = schema.new({
 })
 
 M.DeleteFlowTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteFlowTemplateOutput"),
+    id = id.from(_N, "DeleteFlowTemplateResponse"),
     type = "structure",
 })
 
@@ -518,12 +518,12 @@ M.ResourceInUseException = schema.new({
 })
 
 M.DeleteNamespaceInput = schema.new({
-    id = id.from(_N, "DeleteNamespaceInput"),
+    id = id.from(_N, "DeleteNamespaceRequest"),
     type = "structure",
 })
 
 M.DeleteNamespaceOutput = schema.new({
-    id = id.from(_N, "DeleteNamespaceOutput"),
+    id = id.from(_N, "DeleteNamespaceResponse"),
     type = "structure",
     members = {
         namespaceArn = schema.new({
@@ -542,7 +542,7 @@ M.DeleteNamespaceOutput = schema.new({
 })
 
 M.DeleteSystemInstanceInput = schema.new({
-    id = id.from(_N, "DeleteSystemInstanceInput"),
+    id = id.from(_N, "DeleteSystemInstanceRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -555,12 +555,12 @@ M.DeleteSystemInstanceInput = schema.new({
 })
 
 M.DeleteSystemInstanceOutput = schema.new({
-    id = id.from(_N, "DeleteSystemInstanceOutput"),
+    id = id.from(_N, "DeleteSystemInstanceResponse"),
     type = "structure",
 })
 
 M.DeleteSystemTemplateInput = schema.new({
-    id = id.from(_N, "DeleteSystemTemplateInput"),
+    id = id.from(_N, "DeleteSystemTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -576,7 +576,7 @@ M.DeleteSystemTemplateInput = schema.new({
 })
 
 M.DeleteSystemTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteSystemTemplateOutput"),
+    id = id.from(_N, "DeleteSystemTemplateResponse"),
     type = "structure",
 })
 
@@ -600,7 +600,7 @@ M.DependencyRevision = schema.new({
 })
 
 M.DeploySystemInstanceInput = schema.new({
-    id = id.from(_N, "DeploySystemInstanceInput"),
+    id = id.from(_N, "DeploySystemInstanceRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -613,7 +613,7 @@ M.DeploySystemInstanceInput = schema.new({
 })
 
 M.DeploySystemInstanceOutput = schema.new({
-    id = id.from(_N, "DeploySystemInstanceOutput"),
+    id = id.from(_N, "DeploySystemInstanceResponse"),
     type = "structure",
     members = {
         summary = schema.new({
@@ -636,7 +636,7 @@ M.DeploySystemInstanceOutput = schema.new({
 })
 
 M.DeprecateFlowTemplateInput = schema.new({
-    id = id.from(_N, "DeprecateFlowTemplateInput"),
+    id = id.from(_N, "DeprecateFlowTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -652,12 +652,12 @@ M.DeprecateFlowTemplateInput = schema.new({
 })
 
 M.DeprecateFlowTemplateOutput = schema.new({
-    id = id.from(_N, "DeprecateFlowTemplateOutput"),
+    id = id.from(_N, "DeprecateFlowTemplateResponse"),
     type = "structure",
 })
 
 M.DeprecateSystemTemplateInput = schema.new({
-    id = id.from(_N, "DeprecateSystemTemplateInput"),
+    id = id.from(_N, "DeprecateSystemTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -673,12 +673,12 @@ M.DeprecateSystemTemplateInput = schema.new({
 })
 
 M.DeprecateSystemTemplateOutput = schema.new({
-    id = id.from(_N, "DeprecateSystemTemplateOutput"),
+    id = id.from(_N, "DeprecateSystemTemplateResponse"),
     type = "structure",
 })
 
 M.DescribeNamespaceInput = schema.new({
-    id = id.from(_N, "DescribeNamespaceInput"),
+    id = id.from(_N, "DescribeNamespaceRequest"),
     type = "structure",
     members = {
         namespaceName = schema.new({
@@ -691,7 +691,7 @@ M.DescribeNamespaceInput = schema.new({
 })
 
 M.DescribeNamespaceOutput = schema.new({
-    id = id.from(_N, "DescribeNamespaceOutput"),
+    id = id.from(_N, "DescribeNamespaceResponse"),
     type = "structure",
     members = {
         namespaceArn = schema.new({
@@ -728,7 +728,7 @@ M.DescribeNamespaceOutput = schema.new({
 })
 
 M.DissociateEntityFromThingInput = schema.new({
-    id = id.from(_N, "DissociateEntityFromThingInput"),
+    id = id.from(_N, "DissociateEntityFromThingRequest"),
     type = "structure",
     members = {
         thingName = schema.new({
@@ -753,7 +753,7 @@ M.DissociateEntityFromThingInput = schema.new({
 })
 
 M.DissociateEntityFromThingOutput = schema.new({
-    id = id.from(_N, "DissociateEntityFromThingOutput"),
+    id = id.from(_N, "DissociateEntityFromThingResponse"),
     type = "structure",
 })
 
@@ -943,7 +943,7 @@ M.FlowTemplateFilter = schema.new({
 })
 
 M.GetEntitiesInput = schema.new({
-    id = id.from(_N, "GetEntitiesInput"),
+    id = id.from(_N, "GetEntitiesRequest"),
     type = "structure",
     members = {
         ids = schema.new({
@@ -966,7 +966,7 @@ M.GetEntitiesInput = schema.new({
 })
 
 M.GetEntitiesOutput = schema.new({
-    id = id.from(_N, "GetEntitiesOutput"),
+    id = id.from(_N, "GetEntitiesResponse"),
     type = "structure",
     members = {
         descriptions = schema.new({
@@ -980,7 +980,7 @@ M.GetEntitiesOutput = schema.new({
 })
 
 M.GetFlowTemplateInput = schema.new({
-    id = id.from(_N, "GetFlowTemplateInput"),
+    id = id.from(_N, "GetFlowTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1002,7 +1002,7 @@ M.GetFlowTemplateInput = schema.new({
 })
 
 M.GetFlowTemplateOutput = schema.new({
-    id = id.from(_N, "GetFlowTemplateOutput"),
+    id = id.from(_N, "GetFlowTemplateResponse"),
     type = "structure",
     members = {
         description = schema.new({
@@ -1016,7 +1016,7 @@ M.GetFlowTemplateOutput = schema.new({
 })
 
 M.GetFlowTemplateRevisionsInput = schema.new({
-    id = id.from(_N, "GetFlowTemplateRevisionsInput"),
+    id = id.from(_N, "GetFlowTemplateRevisionsRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1044,7 +1044,7 @@ M.GetFlowTemplateRevisionsInput = schema.new({
 })
 
 M.GetFlowTemplateRevisionsOutput = schema.new({
-    id = id.from(_N, "GetFlowTemplateRevisionsOutput"),
+    id = id.from(_N, "GetFlowTemplateRevisionsResponse"),
     type = "structure",
     members = {
         summaries = schema.new({
@@ -1064,12 +1064,12 @@ M.GetFlowTemplateRevisionsOutput = schema.new({
 })
 
 M.GetNamespaceDeletionStatusInput = schema.new({
-    id = id.from(_N, "GetNamespaceDeletionStatusInput"),
+    id = id.from(_N, "GetNamespaceDeletionStatusRequest"),
     type = "structure",
 })
 
 M.GetNamespaceDeletionStatusOutput = schema.new({
-    id = id.from(_N, "GetNamespaceDeletionStatusOutput"),
+    id = id.from(_N, "GetNamespaceDeletionStatusResponse"),
     type = "structure",
     members = {
         namespaceArn = schema.new({
@@ -1106,7 +1106,7 @@ M.GetNamespaceDeletionStatusOutput = schema.new({
 })
 
 M.GetSystemInstanceInput = schema.new({
-    id = id.from(_N, "GetSystemInstanceInput"),
+    id = id.from(_N, "GetSystemInstanceRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1175,7 +1175,7 @@ M.SystemInstanceDescription = schema.new({
 })
 
 M.GetSystemInstanceOutput = schema.new({
-    id = id.from(_N, "GetSystemInstanceOutput"),
+    id = id.from(_N, "GetSystemInstanceResponse"),
     type = "structure",
     members = {
         description = schema.new({
@@ -1189,7 +1189,7 @@ M.GetSystemInstanceOutput = schema.new({
 })
 
 M.GetSystemTemplateInput = schema.new({
-    id = id.from(_N, "GetSystemTemplateInput"),
+    id = id.from(_N, "GetSystemTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1238,7 +1238,7 @@ M.SystemTemplateDescription = schema.new({
 })
 
 M.GetSystemTemplateOutput = schema.new({
-    id = id.from(_N, "GetSystemTemplateOutput"),
+    id = id.from(_N, "GetSystemTemplateResponse"),
     type = "structure",
     members = {
         description = schema.new({
@@ -1252,7 +1252,7 @@ M.GetSystemTemplateOutput = schema.new({
 })
 
 M.GetSystemTemplateRevisionsInput = schema.new({
-    id = id.from(_N, "GetSystemTemplateRevisionsInput"),
+    id = id.from(_N, "GetSystemTemplateRevisionsRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1280,7 +1280,7 @@ M.GetSystemTemplateRevisionsInput = schema.new({
 })
 
 M.GetSystemTemplateRevisionsOutput = schema.new({
-    id = id.from(_N, "GetSystemTemplateRevisionsOutput"),
+    id = id.from(_N, "GetSystemTemplateRevisionsResponse"),
     type = "structure",
     members = {
         summaries = schema.new({
@@ -1300,7 +1300,7 @@ M.GetSystemTemplateRevisionsOutput = schema.new({
 })
 
 M.GetUploadStatusInput = schema.new({
-    id = id.from(_N, "GetUploadStatusInput"),
+    id = id.from(_N, "GetUploadStatusRequest"),
     type = "structure",
     members = {
         uploadId = schema.new({
@@ -1316,7 +1316,7 @@ M.GetUploadStatusInput = schema.new({
 })
 
 M.GetUploadStatusOutput = schema.new({
-    id = id.from(_N, "GetUploadStatusOutput"),
+    id = id.from(_N, "GetUploadStatusResponse"),
     type = "structure",
     members = {
         uploadId = schema.new({
@@ -1375,7 +1375,7 @@ M.GetUploadStatusOutput = schema.new({
 })
 
 M.ListFlowExecutionMessagesInput = schema.new({
-    id = id.from(_N, "ListFlowExecutionMessagesInput"),
+    id = id.from(_N, "ListFlowExecutionMessagesRequest"),
     type = "structure",
     members = {
         flowExecutionId = schema.new({
@@ -1403,7 +1403,7 @@ M.ListFlowExecutionMessagesInput = schema.new({
 })
 
 M.ListFlowExecutionMessagesOutput = schema.new({
-    id = id.from(_N, "ListFlowExecutionMessagesOutput"),
+    id = id.from(_N, "ListFlowExecutionMessagesResponse"),
     type = "structure",
     members = {
         messages = schema.new({
@@ -1423,7 +1423,7 @@ M.ListFlowExecutionMessagesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -1451,7 +1451,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1471,7 +1471,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.SearchEntitiesInput = schema.new({
-    id = id.from(_N, "SearchEntitiesInput"),
+    id = id.from(_N, "SearchEntitiesRequest"),
     type = "structure",
     members = {
         entityTypes = schema.new({
@@ -1513,7 +1513,7 @@ M.SearchEntitiesInput = schema.new({
 })
 
 M.SearchEntitiesOutput = schema.new({
-    id = id.from(_N, "SearchEntitiesOutput"),
+    id = id.from(_N, "SearchEntitiesResponse"),
     type = "structure",
     members = {
         descriptions = schema.new({
@@ -1533,7 +1533,7 @@ M.SearchEntitiesOutput = schema.new({
 })
 
 M.SearchFlowExecutionsInput = schema.new({
-    id = id.from(_N, "SearchFlowExecutionsInput"),
+    id = id.from(_N, "SearchFlowExecutionsRequest"),
     type = "structure",
     members = {
         systemInstanceId = schema.new({
@@ -1579,7 +1579,7 @@ M.SearchFlowExecutionsInput = schema.new({
 })
 
 M.SearchFlowExecutionsOutput = schema.new({
-    id = id.from(_N, "SearchFlowExecutionsOutput"),
+    id = id.from(_N, "SearchFlowExecutionsResponse"),
     type = "structure",
     members = {
         summaries = schema.new({
@@ -1599,7 +1599,7 @@ M.SearchFlowExecutionsOutput = schema.new({
 })
 
 M.SearchFlowTemplatesInput = schema.new({
-    id = id.from(_N, "SearchFlowTemplatesInput"),
+    id = id.from(_N, "SearchFlowTemplatesRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -1625,7 +1625,7 @@ M.SearchFlowTemplatesInput = schema.new({
 })
 
 M.SearchFlowTemplatesOutput = schema.new({
-    id = id.from(_N, "SearchFlowTemplatesOutput"),
+    id = id.from(_N, "SearchFlowTemplatesResponse"),
     type = "structure",
     members = {
         summaries = schema.new({
@@ -1665,7 +1665,7 @@ M.SystemInstanceFilter = schema.new({
 })
 
 M.SearchSystemInstancesInput = schema.new({
-    id = id.from(_N, "SearchSystemInstancesInput"),
+    id = id.from(_N, "SearchSystemInstancesRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -1691,7 +1691,7 @@ M.SearchSystemInstancesInput = schema.new({
 })
 
 M.SearchSystemInstancesOutput = schema.new({
-    id = id.from(_N, "SearchSystemInstancesOutput"),
+    id = id.from(_N, "SearchSystemInstancesResponse"),
     type = "structure",
     members = {
         summaries = schema.new({
@@ -1737,7 +1737,7 @@ M.SystemTemplateFilter = schema.new({
 })
 
 M.SearchSystemTemplatesInput = schema.new({
-    id = id.from(_N, "SearchSystemTemplatesInput"),
+    id = id.from(_N, "SearchSystemTemplatesRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -1763,7 +1763,7 @@ M.SearchSystemTemplatesInput = schema.new({
 })
 
 M.SearchSystemTemplatesOutput = schema.new({
-    id = id.from(_N, "SearchSystemTemplatesOutput"),
+    id = id.from(_N, "SearchSystemTemplatesResponse"),
     type = "structure",
     members = {
         summaries = schema.new({
@@ -1783,7 +1783,7 @@ M.SearchSystemTemplatesOutput = schema.new({
 })
 
 M.SearchThingsInput = schema.new({
-    id = id.from(_N, "SearchThingsInput"),
+    id = id.from(_N, "SearchThingsRequest"),
     type = "structure",
     members = {
         entityId = schema.new({
@@ -1836,7 +1836,7 @@ M.Thing = schema.new({
 })
 
 M.SearchThingsOutput = schema.new({
-    id = id.from(_N, "SearchThingsOutput"),
+    id = id.from(_N, "SearchThingsResponse"),
     type = "structure",
     members = {
         things = schema.new({
@@ -1856,7 +1856,7 @@ M.SearchThingsOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1882,12 +1882,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UndeploySystemInstanceInput = schema.new({
-    id = id.from(_N, "UndeploySystemInstanceInput"),
+    id = id.from(_N, "UndeploySystemInstanceRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1900,7 +1900,7 @@ M.UndeploySystemInstanceInput = schema.new({
 })
 
 M.UndeploySystemInstanceOutput = schema.new({
-    id = id.from(_N, "UndeploySystemInstanceOutput"),
+    id = id.from(_N, "UndeploySystemInstanceResponse"),
     type = "structure",
     members = {
         summary = schema.new({
@@ -1914,7 +1914,7 @@ M.UndeploySystemInstanceOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1940,12 +1940,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateFlowTemplateInput = schema.new({
-    id = id.from(_N, "UpdateFlowTemplateInput"),
+    id = id.from(_N, "UpdateFlowTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1977,7 +1977,7 @@ M.UpdateFlowTemplateInput = schema.new({
 })
 
 M.UpdateFlowTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateFlowTemplateOutput"),
+    id = id.from(_N, "UpdateFlowTemplateResponse"),
     type = "structure",
     members = {
         summary = schema.new({
@@ -1991,7 +1991,7 @@ M.UpdateFlowTemplateOutput = schema.new({
 })
 
 M.UpdateSystemTemplateInput = schema.new({
-    id = id.from(_N, "UpdateSystemTemplateInput"),
+    id = id.from(_N, "UpdateSystemTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -2023,7 +2023,7 @@ M.UpdateSystemTemplateInput = schema.new({
 })
 
 M.UpdateSystemTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateSystemTemplateOutput"),
+    id = id.from(_N, "UpdateSystemTemplateResponse"),
     type = "structure",
     members = {
         summary = schema.new({
@@ -2037,7 +2037,7 @@ M.UpdateSystemTemplateOutput = schema.new({
 })
 
 M.UploadEntityDefinitionsInput = schema.new({
-    id = id.from(_N, "UploadEntityDefinitionsInput"),
+    id = id.from(_N, "UploadEntityDefinitionsRequest"),
     type = "structure",
     members = {
         document = schema.new({
@@ -2069,7 +2069,7 @@ M.UploadEntityDefinitionsInput = schema.new({
 })
 
 M.UploadEntityDefinitionsOutput = schema.new({
-    id = id.from(_N, "UploadEntityDefinitionsOutput"),
+    id = id.from(_N, "UploadEntityDefinitionsResponse"),
     type = "structure",
     members = {
         uploadId = schema.new({
@@ -2083,5 +2083,19 @@ M.UploadEntityDefinitionsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

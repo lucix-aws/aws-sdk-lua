@@ -45,7 +45,7 @@ M.DataQuery = schema.new({
             name = "TableConfigurations",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
     },
 })
@@ -260,7 +260,7 @@ M.ResourceTag = schema.new({
 })
 
 M.CreateExportInput = schema.new({
-    id = id.from(_N, "CreateExportInput"),
+    id = id.from(_N, "CreateExportRequest"),
     type = "structure",
     members = {
         Export = schema.new({
@@ -284,7 +284,7 @@ M.CreateExportInput = schema.new({
 })
 
 M.CreateExportOutput = schema.new({
-    id = id.from(_N, "CreateExportOutput"),
+    id = id.from(_N, "CreateExportResponse"),
     type = "structure",
     members = {
         ExportArn = schema.new({
@@ -453,7 +453,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteExportInput = schema.new({
-    id = id.from(_N, "DeleteExportInput"),
+    id = id.from(_N, "DeleteExportRequest"),
     type = "structure",
     members = {
         ExportArn = schema.new({
@@ -469,7 +469,7 @@ M.DeleteExportInput = schema.new({
 })
 
 M.DeleteExportOutput = schema.new({
-    id = id.from(_N, "DeleteExportOutput"),
+    id = id.from(_N, "DeleteExportResponse"),
     type = "structure",
     members = {
         ExportArn = schema.new({
@@ -519,7 +519,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.GetExportInput = schema.new({
-    id = id.from(_N, "GetExportInput"),
+    id = id.from(_N, "GetExportRequest"),
     type = "structure",
     members = {
         ExportArn = schema.new({
@@ -581,7 +581,7 @@ M.ExportStatus = schema.new({
 })
 
 M.GetExportOutput = schema.new({
-    id = id.from(_N, "GetExportOutput"),
+    id = id.from(_N, "GetExportResponse"),
     type = "structure",
     members = {
         Export = schema.new({
@@ -602,7 +602,7 @@ M.GetExportOutput = schema.new({
 })
 
 M.ListExportsInput = schema.new({
-    id = id.from(_N, "ListExportsInput"),
+    id = id.from(_N, "ListExportsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -659,7 +659,7 @@ M.ExportReference = schema.new({
 })
 
 M.ListExportsOutput = schema.new({
-    id = id.from(_N, "ListExportsOutput"),
+    id = id.from(_N, "ListExportsResponse"),
     type = "structure",
     members = {
         Exports = schema.new({
@@ -679,7 +679,7 @@ M.ListExportsOutput = schema.new({
 })
 
 M.UpdateExportInput = schema.new({
-    id = id.from(_N, "UpdateExportInput"),
+    id = id.from(_N, "UpdateExportRequest"),
     type = "structure",
     members = {
         ExportArn = schema.new({
@@ -705,7 +705,7 @@ M.UpdateExportInput = schema.new({
 })
 
 M.UpdateExportOutput = schema.new({
-    id = id.from(_N, "UpdateExportOutput"),
+    id = id.from(_N, "UpdateExportResponse"),
     type = "structure",
     members = {
         ExportArn = schema.new({
@@ -718,7 +718,7 @@ M.UpdateExportOutput = schema.new({
 })
 
 M.GetExecutionInput = schema.new({
-    id = id.from(_N, "GetExecutionInput"),
+    id = id.from(_N, "GetExecutionRequest"),
     type = "structure",
     members = {
         ExportArn = schema.new({
@@ -789,7 +789,7 @@ M.ExecutionStatus = schema.new({
 })
 
 M.GetExecutionOutput = schema.new({
-    id = id.from(_N, "GetExecutionOutput"),
+    id = id.from(_N, "GetExecutionResponse"),
     type = "structure",
     members = {
         ExecutionId = schema.new({
@@ -816,7 +816,7 @@ M.GetExecutionOutput = schema.new({
 })
 
 M.GetTableInput = schema.new({
-    id = id.from(_N, "GetTableInput"),
+    id = id.from(_N, "GetTableRequest"),
     type = "structure",
     members = {
         TableName = schema.new({
@@ -865,7 +865,7 @@ M.Column = schema.new({
 })
 
 M.GetTableOutput = schema.new({
-    id = id.from(_N, "GetTableOutput"),
+    id = id.from(_N, "GetTableResponse"),
     type = "structure",
     members = {
         TableName = schema.new({
@@ -899,7 +899,7 @@ M.GetTableOutput = schema.new({
 })
 
 M.ListExecutionsInput = schema.new({
-    id = id.from(_N, "ListExecutionsInput"),
+    id = id.from(_N, "ListExecutionsRequest"),
     type = "structure",
     members = {
         ExportArn = schema.new({
@@ -956,7 +956,7 @@ M.ExecutionReference = schema.new({
 })
 
 M.ListExecutionsOutput = schema.new({
-    id = id.from(_N, "ListExecutionsOutput"),
+    id = id.from(_N, "ListExecutionsResponse"),
     type = "structure",
     members = {
         Executions = schema.new({
@@ -976,7 +976,7 @@ M.ListExecutionsOutput = schema.new({
 })
 
 M.ListTablesInput = schema.new({
-    id = id.from(_N, "ListTablesInput"),
+    id = id.from(_N, "ListTablesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1056,7 +1056,7 @@ M.Table = schema.new({
 })
 
 M.ListTablesOutput = schema.new({
-    id = id.from(_N, "ListTablesOutput"),
+    id = id.from(_N, "ListTablesResponse"),
     type = "structure",
     members = {
         Tables = schema.new({
@@ -1076,7 +1076,7 @@ M.ListTablesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1107,7 +1107,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         ResourceTags = schema.new({
@@ -1127,7 +1127,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1153,12 +1153,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1184,8 +1184,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

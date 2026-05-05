@@ -115,9 +115,9 @@ local record InternalServerError
     Message: string
 end
 
-local type StorageClass = "TEMPORAL"
-
 local type UploadAvailability = "STANDARD" | "STREAMING"
+
+local type StorageClass = "TEMPORAL"
 
 local record M
     DeleteObjectInput: DeleteObjectInput

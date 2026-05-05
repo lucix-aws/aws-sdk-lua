@@ -111,7 +111,7 @@ M.CreateIdentityPoolInput = schema.new({
 })
 
 M.CreateIdentityPoolOutput = schema.new({
-    id = id.from(_N, "CreateIdentityPoolOutput"),
+    id = id.from(_N, "IdentityPool"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -327,7 +327,7 @@ M.UnprocessedIdentityId = schema.new({
 })
 
 M.DeleteIdentitiesOutput = schema.new({
-    id = id.from(_N, "DeleteIdentitiesOutput"),
+    id = id.from(_N, "DeleteIdentitiesResponse"),
     type = "structure",
     members = {
         UnprocessedIdentityIds = schema.new({
@@ -357,7 +357,7 @@ M.DeleteIdentityPoolInput = schema.new({
 })
 
 M.DeleteIdentityPoolOutput = schema.new({
-    id = id.from(_N, "DeleteIdentityPoolOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -394,7 +394,7 @@ M.DescribeIdentityInput = schema.new({
 })
 
 M.DescribeIdentityOutput = schema.new({
-    id = id.from(_N, "DescribeIdentityOutput"),
+    id = id.from(_N, "IdentityDescription"),
     type = "structure",
     members = {
         IdentityId = schema.new({
@@ -442,7 +442,7 @@ M.DescribeIdentityPoolInput = schema.new({
 })
 
 M.DescribeIdentityPoolOutput = schema.new({
-    id = id.from(_N, "DescribeIdentityPoolOutput"),
+    id = id.from(_N, "IdentityPool"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -603,7 +603,7 @@ M.Credentials = schema.new({
 })
 
 M.GetCredentialsForIdentityOutput = schema.new({
-    id = id.from(_N, "GetCredentialsForIdentityOutput"),
+    id = id.from(_N, "GetCredentialsForIdentityResponse"),
     type = "structure",
     members = {
         IdentityId = schema.new({
@@ -669,7 +669,7 @@ M.GetIdInput = schema.new({
 })
 
 M.GetIdOutput = schema.new({
-    id = id.from(_N, "GetIdOutput"),
+    id = id.from(_N, "GetIdResponse"),
     type = "structure",
     members = {
         IdentityId = schema.new({
@@ -787,7 +787,7 @@ M.RoleMapping = schema.new({
 })
 
 M.GetIdentityPoolRolesOutput = schema.new({
-    id = id.from(_N, "GetIdentityPoolRolesOutput"),
+    id = id.from(_N, "GetIdentityPoolRolesResponse"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -840,7 +840,7 @@ M.GetOpenIdTokenInput = schema.new({
 })
 
 M.GetOpenIdTokenOutput = schema.new({
-    id = id.from(_N, "GetOpenIdTokenOutput"),
+    id = id.from(_N, "GetOpenIdTokenResponse"),
     type = "structure",
     members = {
         IdentityId = schema.new({
@@ -922,7 +922,7 @@ M.GetOpenIdTokenForDeveloperIdentityInput = schema.new({
 })
 
 M.GetOpenIdTokenForDeveloperIdentityOutput = schema.new({
-    id = id.from(_N, "GetOpenIdTokenForDeveloperIdentityOutput"),
+    id = id.from(_N, "GetOpenIdTokenForDeveloperIdentityResponse"),
     type = "structure",
     members = {
         IdentityId = schema.new({
@@ -966,7 +966,7 @@ M.GetPrincipalTagAttributeMapInput = schema.new({
 })
 
 M.GetPrincipalTagAttributeMapOutput = schema.new({
-    id = id.from(_N, "GetPrincipalTagAttributeMapOutput"),
+    id = id.from(_N, "GetPrincipalTagAttributeMapResponse"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -1071,7 +1071,7 @@ M.IdentityDescription = schema.new({
 })
 
 M.ListIdentitiesOutput = schema.new({
-    id = id.from(_N, "ListIdentitiesOutput"),
+    id = id.from(_N, "ListIdentitiesResponse"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -1138,7 +1138,7 @@ M.IdentityPoolShortDescription = schema.new({
 })
 
 M.ListIdentityPoolsOutput = schema.new({
-    id = id.from(_N, "ListIdentityPoolsOutput"),
+    id = id.from(_N, "ListIdentityPoolsResponse"),
     type = "structure",
     members = {
         IdentityPools = schema.new({
@@ -1174,7 +1174,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1229,7 +1229,7 @@ M.LookupDeveloperIdentityInput = schema.new({
 })
 
 M.LookupDeveloperIdentityOutput = schema.new({
-    id = id.from(_N, "LookupDeveloperIdentityOutput"),
+    id = id.from(_N, "LookupDeveloperIdentityResponse"),
     type = "structure",
     members = {
         IdentityId = schema.new({
@@ -1298,7 +1298,7 @@ M.MergeDeveloperIdentitiesInput = schema.new({
 })
 
 M.MergeDeveloperIdentitiesOutput = schema.new({
-    id = id.from(_N, "MergeDeveloperIdentitiesOutput"),
+    id = id.from(_N, "MergeDeveloperIdentitiesResponse"),
     type = "structure",
     members = {
         IdentityId = schema.new({
@@ -1362,7 +1362,7 @@ M.SetIdentityPoolRolesInput = schema.new({
 })
 
 M.SetIdentityPoolRolesOutput = schema.new({
-    id = id.from(_N, "SetIdentityPoolRolesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1406,7 +1406,7 @@ M.SetPrincipalTagAttributeMapInput = schema.new({
 })
 
 M.SetPrincipalTagAttributeMapOutput = schema.new({
-    id = id.from(_N, "SetPrincipalTagAttributeMapOutput"),
+    id = id.from(_N, "SetPrincipalTagAttributeMapResponse"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -1466,7 +1466,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -1514,7 +1514,7 @@ M.UnlinkDeveloperIdentityInput = schema.new({
 })
 
 M.UnlinkDeveloperIdentityOutput = schema.new({
-    id = id.from(_N, "UnlinkDeveloperIdentityOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1556,7 +1556,7 @@ M.UnlinkIdentityInput = schema.new({
 })
 
 M.UnlinkIdentityOutput = schema.new({
-    id = id.from(_N, "UnlinkIdentityOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1587,12 +1587,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateIdentityPoolInput = schema.new({
-    id = id.from(_N, "UpdateIdentityPoolInput"),
+    id = id.from(_N, "IdentityPool"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -1676,7 +1676,7 @@ M.UpdateIdentityPoolInput = schema.new({
 })
 
 M.UpdateIdentityPoolOutput = schema.new({
-    id = id.from(_N, "UpdateIdentityPoolOutput"),
+    id = id.from(_N, "IdentityPool"),
     type = "structure",
     members = {
         IdentityPoolId = schema.new({
@@ -1758,5 +1758,19 @@ M.UpdateIdentityPoolOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

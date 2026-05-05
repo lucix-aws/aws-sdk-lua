@@ -506,7 +506,7 @@ M.CancelUpdateStackInput = schema.new({
 })
 
 M.CancelUpdateStackOutput = schema.new({
-    id = id.from(_N, "CancelUpdateStackOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2258,7 +2258,7 @@ M.DeleteGeneratedTemplateInput = schema.new({
 })
 
 M.DeleteGeneratedTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteGeneratedTemplateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2320,7 +2320,7 @@ M.DeleteStackInput = schema.new({
 })
 
 M.DeleteStackOutput = schema.new({
-    id = id.from(_N, "DeleteStackOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5607,7 +5607,7 @@ M.ExecuteStackRefactorInput = schema.new({
 })
 
 M.ExecuteStackRefactorOutput = schema.new({
-    id = id.from(_N, "ExecuteStackRefactorOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -8815,7 +8815,7 @@ M.SetStackPolicyInput = schema.new({
 })
 
 M.SetStackPolicyOutput = schema.new({
-    id = id.from(_N, "SetStackPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -8952,7 +8952,7 @@ M.SignalResourceInput = schema.new({
 })
 
 M.SignalResourceOutput = schema.new({
-    id = id.from(_N, "SignalResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -9654,5 +9654,19 @@ M.ValidateTemplateOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -63,7 +63,7 @@ M.AccountSettingsNotificationConfiguration = schema.new({
 })
 
 M.CancelQueryInput = schema.new({
-    id = id.from(_N, "CancelQueryInput"),
+    id = id.from(_N, "CancelQueryRequest"),
     type = "structure",
     members = {
         QueryId = schema.new({
@@ -79,7 +79,7 @@ M.CancelQueryInput = schema.new({
 })
 
 M.CancelQueryOutput = schema.new({
-    id = id.from(_N, "CancelQueryOutput"),
+    id = id.from(_N, "CancelQueryResponse"),
     type = "structure",
     members = {
         CancellationMessage = schema.new({
@@ -476,7 +476,7 @@ M.TargetConfiguration = schema.new({
 })
 
 M.CreateScheduledQueryInput = schema.new({
-    id = id.from(_N, "CreateScheduledQueryInput"),
+    id = id.from(_N, "CreateScheduledQueryRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -569,7 +569,7 @@ M.CreateScheduledQueryInput = schema.new({
 })
 
 M.CreateScheduledQueryOutput = schema.new({
-    id = id.from(_N, "CreateScheduledQueryOutput"),
+    id = id.from(_N, "CreateScheduledQueryResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -601,7 +601,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.DeleteScheduledQueryInput = schema.new({
-    id = id.from(_N, "DeleteScheduledQueryInput"),
+    id = id.from(_N, "DeleteScheduledQueryRequest"),
     type = "structure",
     members = {
         ScheduledQueryArn = schema.new({
@@ -617,7 +617,7 @@ M.DeleteScheduledQueryInput = schema.new({
 })
 
 M.DeleteScheduledQueryOutput = schema.new({
-    id = id.from(_N, "DeleteScheduledQueryOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -644,7 +644,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DescribeAccountSettingsInput = schema.new({
-    id = id.from(_N, "DescribeAccountSettingsInput"),
+    id = id.from(_N, "DescribeAccountSettingsRequest"),
     type = "structure",
 })
 
@@ -721,7 +721,7 @@ M.QueryComputeResponse = schema.new({
 })
 
 M.DescribeAccountSettingsOutput = schema.new({
-    id = id.from(_N, "DescribeAccountSettingsOutput"),
+    id = id.from(_N, "DescribeAccountSettingsResponse"),
     type = "structure",
     members = {
         MaxQueryTCU = schema.new({
@@ -747,7 +747,7 @@ M.DescribeAccountSettingsOutput = schema.new({
 })
 
 M.DescribeEndpointsInput = schema.new({
-    id = id.from(_N, "DescribeEndpointsInput"),
+    id = id.from(_N, "DescribeEndpointsRequest"),
     type = "structure",
 })
 
@@ -778,7 +778,7 @@ M.Endpoint = schema.new({
 })
 
 M.DescribeEndpointsOutput = schema.new({
-    id = id.from(_N, "DescribeEndpointsOutput"),
+    id = id.from(_N, "DescribeEndpointsResponse"),
     type = "structure",
     members = {
         Endpoints = schema.new({
@@ -795,7 +795,7 @@ M.DescribeEndpointsOutput = schema.new({
 })
 
 M.DescribeScheduledQueryInput = schema.new({
-    id = id.from(_N, "DescribeScheduledQueryInput"),
+    id = id.from(_N, "DescribeScheduledQueryRequest"),
     type = "structure",
     members = {
         ScheduledQueryArn = schema.new({
@@ -1205,7 +1205,7 @@ M.ScheduledQueryDescription = schema.new({
 })
 
 M.DescribeScheduledQueryOutput = schema.new({
-    id = id.from(_N, "DescribeScheduledQueryOutput"),
+    id = id.from(_N, "DescribeScheduledQueryResponse"),
     type = "structure",
     members = {
         ScheduledQuery = schema.new({
@@ -1238,7 +1238,7 @@ M.ScheduledQueryInsights = schema.new({
 })
 
 M.ExecuteScheduledQueryInput = schema.new({
-    id = id.from(_N, "ExecuteScheduledQueryInput"),
+    id = id.from(_N, "ExecuteScheduledQueryRequest"),
     type = "structure",
     members = {
         ScheduledQueryArn = schema.new({
@@ -1279,12 +1279,12 @@ M.ExecuteScheduledQueryInput = schema.new({
 })
 
 M.ExecuteScheduledQueryOutput = schema.new({
-    id = id.from(_N, "ExecuteScheduledQueryOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ListScheduledQueriesInput = schema.new({
-    id = id.from(_N, "ListScheduledQueriesInput"),
+    id = id.from(_N, "ListScheduledQueriesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1408,7 +1408,7 @@ M.ScheduledQuery = schema.new({
 })
 
 M.ListScheduledQueriesOutput = schema.new({
-    id = id.from(_N, "ListScheduledQueriesOutput"),
+    id = id.from(_N, "ListScheduledQueriesResponse"),
     type = "structure",
     members = {
         ScheduledQueries = schema.new({
@@ -1431,7 +1431,7 @@ M.ListScheduledQueriesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1459,7 +1459,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1482,7 +1482,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PrepareQueryInput = schema.new({
-    id = id.from(_N, "PrepareQueryInput"),
+    id = id.from(_N, "PrepareQueryRequest"),
     type = "structure",
     members = {
         QueryString = schema.new({
@@ -1559,7 +1559,7 @@ M.QueryInsights = schema.new({
 })
 
 M.QueryInput = schema.new({
-    id = id.from(_N, "QueryInput"),
+    id = id.from(_N, "QueryRequest"),
     type = "structure",
     members = {
         QueryString = schema.new({
@@ -1732,7 +1732,7 @@ M.QueryComputeRequest = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1758,12 +1758,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1789,12 +1789,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAccountSettingsInput = schema.new({
-    id = id.from(_N, "UpdateAccountSettingsInput"),
+    id = id.from(_N, "UpdateAccountSettingsRequest"),
     type = "structure",
     members = {
         MaxQueryTCU = schema.new({
@@ -1820,7 +1820,7 @@ M.UpdateAccountSettingsInput = schema.new({
 })
 
 M.UpdateAccountSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateAccountSettingsOutput"),
+    id = id.from(_N, "UpdateAccountSettingsResponse"),
     type = "structure",
     members = {
         MaxQueryTCU = schema.new({
@@ -1846,7 +1846,7 @@ M.UpdateAccountSettingsOutput = schema.new({
 })
 
 M.UpdateScheduledQueryInput = schema.new({
-    id = id.from(_N, "UpdateScheduledQueryInput"),
+    id = id.from(_N, "UpdateScheduledQueryRequest"),
     type = "structure",
     members = {
         ScheduledQueryArn = schema.new({
@@ -1871,7 +1871,7 @@ M.UpdateScheduledQueryInput = schema.new({
 })
 
 M.UpdateScheduledQueryOutput = schema.new({
-    id = id.from(_N, "UpdateScheduledQueryOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2080,7 +2080,7 @@ M.Row = schema.new({
 })
 
 M.QueryOutput = schema.new({
-    id = id.from(_N, "QueryOutput"),
+    id = id.from(_N, "QueryResponse"),
     type = "structure",
     members = {
         QueryId = schema.new({
@@ -2136,7 +2136,7 @@ M.QueryOutput = schema.new({
 })
 
 M.PrepareQueryOutput = schema.new({
-    id = id.from(_N, "PrepareQueryOutput"),
+    id = id.from(_N, "PrepareQueryResponse"),
     type = "structure",
     members = {
         QueryString = schema.new({
@@ -2170,5 +2170,19 @@ M.PrepareQueryOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

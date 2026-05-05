@@ -842,7 +842,7 @@ M.DeleteAlarmMuteRuleInput = schema.new({
 })
 
 M.DeleteAlarmMuteRuleOutput = schema.new({
-    id = id.from(_N, "DeleteAlarmMuteRuleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -864,7 +864,7 @@ M.DeleteAlarmsInput = schema.new({
 })
 
 M.DeleteAlarmsOutput = schema.new({
-    id = id.from(_N, "DeleteAlarmsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1816,7 +1816,7 @@ M.DisableAlarmActionsInput = schema.new({
 })
 
 M.DisableAlarmActionsOutput = schema.new({
-    id = id.from(_N, "DisableAlarmActionsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1869,7 +1869,7 @@ M.EnableAlarmActionsInput = schema.new({
 })
 
 M.EnableAlarmActionsOutput = schema.new({
-    id = id.from(_N, "EnableAlarmActionsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3468,7 +3468,7 @@ M.PutAlarmMuteRuleInput = schema.new({
 })
 
 M.PutAlarmMuteRuleOutput = schema.new({
-    id = id.from(_N, "PutAlarmMuteRuleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3621,7 +3621,7 @@ M.PutCompositeAlarmInput = schema.new({
 })
 
 M.PutCompositeAlarmOutput = schema.new({
-    id = id.from(_N, "PutCompositeAlarmOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3945,7 +3945,7 @@ M.PutMetricAlarmInput = schema.new({
 })
 
 M.PutMetricAlarmOutput = schema.new({
-    id = id.from(_N, "PutMetricAlarmOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3986,7 +3986,7 @@ M.PutMetricDataInput = schema.new({
 })
 
 M.PutMetricDataOutput = schema.new({
-    id = id.from(_N, "PutMetricDataOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4137,7 +4137,7 @@ M.SetAlarmStateInput = schema.new({
 })
 
 M.SetAlarmStateOutput = schema.new({
-    id = id.from(_N, "SetAlarmStateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -4266,5 +4266,19 @@ M.UntagResourceOutput = schema.new({
     id = id.from(_N, "UntagResourceOutput"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

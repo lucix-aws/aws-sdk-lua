@@ -228,7 +228,7 @@ M.Tag = schema.new({
 })
 
 M.CreateAccessPointInput = schema.new({
-    id = id.from(_N, "CreateAccessPointInput"),
+    id = id.from(_N, "CreateAccessPointRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -274,7 +274,7 @@ M.CreateAccessPointInput = schema.new({
 })
 
 M.CreateAccessPointOutput = schema.new({
-    id = id.from(_N, "CreateAccessPointOutput"),
+    id = id.from(_N, "CreateAccessPointResponse"),
     type = "structure",
     members = {
         accessPointArn = schema.new({
@@ -487,7 +487,7 @@ M.ValidationException = schema.new({
 })
 
 M.CreateFileSystemInput = schema.new({
-    id = id.from(_N, "CreateFileSystemInput"),
+    id = id.from(_N, "CreateFileSystemRequest"),
     type = "structure",
     members = {
         bucket = schema.new({
@@ -546,7 +546,7 @@ M.CreateFileSystemInput = schema.new({
 })
 
 M.CreateFileSystemOutput = schema.new({
-    id = id.from(_N, "CreateFileSystemOutput"),
+    id = id.from(_N, "CreateFileSystemResponse"),
     type = "structure",
     members = {
         creationTime = schema.new({
@@ -635,7 +635,7 @@ M.CreateFileSystemOutput = schema.new({
 })
 
 M.CreateMountTargetInput = schema.new({
-    id = id.from(_N, "CreateMountTargetInput"),
+    id = id.from(_N, "CreateMountTargetRequest"),
     type = "structure",
     members = {
         fileSystemId = schema.new({
@@ -685,7 +685,7 @@ M.CreateMountTargetInput = schema.new({
 })
 
 M.CreateMountTargetOutput = schema.new({
-    id = id.from(_N, "CreateMountTargetOutput"),
+    id = id.from(_N, "CreateMountTargetResponse"),
     type = "structure",
     members = {
         availabilityZoneId = schema.new({
@@ -774,7 +774,7 @@ M.CreateMountTargetOutput = schema.new({
 })
 
 M.DeleteAccessPointInput = schema.new({
-    id = id.from(_N, "DeleteAccessPointInput"),
+    id = id.from(_N, "DeleteAccessPointRequest"),
     type = "structure",
     members = {
         accessPointId = schema.new({
@@ -791,12 +791,12 @@ M.DeleteAccessPointInput = schema.new({
 })
 
 M.DeleteAccessPointOutput = schema.new({
-    id = id.from(_N, "DeleteAccessPointOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteFileSystemInput = schema.new({
-    id = id.from(_N, "DeleteFileSystemInput"),
+    id = id.from(_N, "DeleteFileSystemRequest"),
     type = "structure",
     members = {
         fileSystemId = schema.new({
@@ -822,12 +822,12 @@ M.DeleteFileSystemInput = schema.new({
 })
 
 M.DeleteFileSystemOutput = schema.new({
-    id = id.from(_N, "DeleteFileSystemOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteFileSystemPolicyInput = schema.new({
-    id = id.from(_N, "DeleteFileSystemPolicyInput"),
+    id = id.from(_N, "DeleteFileSystemPolicyRequest"),
     type = "structure",
     members = {
         fileSystemId = schema.new({
@@ -844,12 +844,12 @@ M.DeleteFileSystemPolicyInput = schema.new({
 })
 
 M.DeleteFileSystemPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteFileSystemPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMountTargetInput = schema.new({
-    id = id.from(_N, "DeleteMountTargetInput"),
+    id = id.from(_N, "DeleteMountTargetRequest"),
     type = "structure",
     members = {
         mountTargetId = schema.new({
@@ -866,7 +866,7 @@ M.DeleteMountTargetInput = schema.new({
 })
 
 M.DeleteMountTargetOutput = schema.new({
-    id = id.from(_N, "DeleteMountTargetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -970,7 +970,7 @@ M.ListFileSystemsDescription = schema.new({
 })
 
 M.GetAccessPointInput = schema.new({
-    id = id.from(_N, "GetAccessPointInput"),
+    id = id.from(_N, "GetAccessPointRequest"),
     type = "structure",
     members = {
         accessPointId = schema.new({
@@ -987,7 +987,7 @@ M.GetAccessPointInput = schema.new({
 })
 
 M.GetAccessPointOutput = schema.new({
-    id = id.from(_N, "GetAccessPointOutput"),
+    id = id.from(_N, "GetAccessPointResponse"),
     type = "structure",
     members = {
         accessPointArn = schema.new({
@@ -1075,7 +1075,7 @@ M.GetAccessPointOutput = schema.new({
 })
 
 M.GetFileSystemInput = schema.new({
-    id = id.from(_N, "GetFileSystemInput"),
+    id = id.from(_N, "GetFileSystemRequest"),
     type = "structure",
     members = {
         fileSystemId = schema.new({
@@ -1092,7 +1092,7 @@ M.GetFileSystemInput = schema.new({
 })
 
 M.GetFileSystemOutput = schema.new({
-    id = id.from(_N, "GetFileSystemOutput"),
+    id = id.from(_N, "GetFileSystemResponse"),
     type = "structure",
     members = {
         creationTime = schema.new({
@@ -1181,7 +1181,7 @@ M.GetFileSystemOutput = schema.new({
 })
 
 M.GetFileSystemPolicyInput = schema.new({
-    id = id.from(_N, "GetFileSystemPolicyInput"),
+    id = id.from(_N, "GetFileSystemPolicyRequest"),
     type = "structure",
     members = {
         fileSystemId = schema.new({
@@ -1198,7 +1198,7 @@ M.GetFileSystemPolicyInput = schema.new({
 })
 
 M.GetFileSystemPolicyOutput = schema.new({
-    id = id.from(_N, "GetFileSystemPolicyOutput"),
+    id = id.from(_N, "GetFileSystemPolicyResponse"),
     type = "structure",
     members = {
         fileSystemId = schema.new({
@@ -1224,7 +1224,7 @@ M.GetFileSystemPolicyOutput = schema.new({
 })
 
 M.GetMountTargetInput = schema.new({
-    id = id.from(_N, "GetMountTargetInput"),
+    id = id.from(_N, "GetMountTargetRequest"),
     type = "structure",
     members = {
         mountTargetId = schema.new({
@@ -1241,7 +1241,7 @@ M.GetMountTargetInput = schema.new({
 })
 
 M.GetMountTargetOutput = schema.new({
-    id = id.from(_N, "GetMountTargetOutput"),
+    id = id.from(_N, "GetMountTargetResponse"),
     type = "structure",
     members = {
         availabilityZoneId = schema.new({
@@ -1330,7 +1330,7 @@ M.GetMountTargetOutput = schema.new({
 })
 
 M.GetSynchronizationConfigurationInput = schema.new({
-    id = id.from(_N, "GetSynchronizationConfigurationInput"),
+    id = id.from(_N, "GetSynchronizationConfigurationRequest"),
     type = "structure",
     members = {
         fileSystemId = schema.new({
@@ -1384,7 +1384,7 @@ M.ImportDataRule = schema.new({
 })
 
 M.GetSynchronizationConfigurationOutput = schema.new({
-    id = id.from(_N, "GetSynchronizationConfigurationOutput"),
+    id = id.from(_N, "GetSynchronizationConfigurationResponse"),
     type = "structure",
     members = {
         latestVersionNumber = schema.new({
@@ -1422,7 +1422,7 @@ M.GetSynchronizationConfigurationOutput = schema.new({
 })
 
 M.ListAccessPointsInput = schema.new({
-    id = id.from(_N, "ListAccessPointsInput"),
+    id = id.from(_N, "ListAccessPointsRequest"),
     type = "structure",
     members = {
         fileSystemId = schema.new({
@@ -1458,7 +1458,7 @@ M.ListAccessPointsInput = schema.new({
 })
 
 M.ListAccessPointsOutput = schema.new({
-    id = id.from(_N, "ListAccessPointsOutput"),
+    id = id.from(_N, "ListAccessPointsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1481,7 +1481,7 @@ M.ListAccessPointsOutput = schema.new({
 })
 
 M.ListFileSystemsInput = schema.new({
-    id = id.from(_N, "ListFileSystemsInput"),
+    id = id.from(_N, "ListFileSystemsRequest"),
     type = "structure",
     members = {
         bucket = schema.new({
@@ -1516,7 +1516,7 @@ M.ListFileSystemsInput = schema.new({
 })
 
 M.ListFileSystemsOutput = schema.new({
-    id = id.from(_N, "ListFileSystemsOutput"),
+    id = id.from(_N, "ListFileSystemsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1539,7 +1539,7 @@ M.ListFileSystemsOutput = schema.new({
 })
 
 M.ListMountTargetsInput = schema.new({
-    id = id.from(_N, "ListMountTargetsInput"),
+    id = id.from(_N, "ListMountTargetsRequest"),
     type = "structure",
     members = {
         fileSystemId = schema.new({
@@ -1665,7 +1665,7 @@ M.ListMountTargetsDescription = schema.new({
 })
 
 M.ListMountTargetsOutput = schema.new({
-    id = id.from(_N, "ListMountTargetsOutput"),
+    id = id.from(_N, "ListMountTargetsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1688,7 +1688,7 @@ M.ListMountTargetsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceId = schema.new({
@@ -1723,7 +1723,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1743,7 +1743,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutFileSystemPolicyInput = schema.new({
-    id = id.from(_N, "PutFileSystemPolicyInput"),
+    id = id.from(_N, "PutFileSystemPolicyRequest"),
     type = "structure",
     members = {
         fileSystemId = schema.new({
@@ -1770,12 +1770,12 @@ M.PutFileSystemPolicyInput = schema.new({
 })
 
 M.PutFileSystemPolicyOutput = schema.new({
-    id = id.from(_N, "PutFileSystemPolicyOutput"),
+    id = id.from(_N, "PutFileSystemPolicyResponse"),
     type = "structure",
 })
 
 M.PutSynchronizationConfigurationInput = schema.new({
-    id = id.from(_N, "PutSynchronizationConfigurationInput"),
+    id = id.from(_N, "PutSynchronizationConfigurationRequest"),
     type = "structure",
     members = {
         fileSystemId = schema.new({
@@ -1823,12 +1823,12 @@ M.PutSynchronizationConfigurationInput = schema.new({
 })
 
 M.PutSynchronizationConfigurationOutput = schema.new({
-    id = id.from(_N, "PutSynchronizationConfigurationOutput"),
+    id = id.from(_N, "PutSynchronizationConfigurationResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceId = schema.new({
@@ -1855,12 +1855,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceId = schema.new({
@@ -1888,12 +1888,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateMountTargetInput = schema.new({
-    id = id.from(_N, "UpdateMountTargetInput"),
+    id = id.from(_N, "UpdateMountTargetRequest"),
     type = "structure",
     members = {
         mountTargetId = schema.new({
@@ -1920,7 +1920,7 @@ M.UpdateMountTargetInput = schema.new({
 })
 
 M.UpdateMountTargetOutput = schema.new({
-    id = id.from(_N, "UpdateMountTargetOutput"),
+    id = id.from(_N, "UpdateMountTargetResponse"),
     type = "structure",
     members = {
         availabilityZoneId = schema.new({
@@ -2007,5 +2007,19 @@ M.UpdateMountTargetOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

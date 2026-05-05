@@ -28,7 +28,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.GetGlyphsInput = schema.new({
-    id = id.from(_N, "GetGlyphsInput"),
+    id = id.from(_N, "GetGlyphsRequest"),
     type = "structure",
     members = {
         FontStack = schema.new({
@@ -55,7 +55,7 @@ M.GetGlyphsInput = schema.new({
 })
 
 M.GetGlyphsOutput = schema.new({
-    id = id.from(_N, "GetGlyphsOutput"),
+    id = id.from(_N, "GetGlyphsResponse"),
     type = "structure",
     members = {
         Blob = schema.new({
@@ -98,7 +98,7 @@ M.GetGlyphsOutput = schema.new({
 })
 
 M.GetSpritesInput = schema.new({
-    id = id.from(_N, "GetSpritesInput"),
+    id = id.from(_N, "GetSpritesRequest"),
     type = "structure",
     members = {
         FileName = schema.new({
@@ -145,7 +145,7 @@ M.GetSpritesInput = schema.new({
 })
 
 M.GetSpritesOutput = schema.new({
-    id = id.from(_N, "GetSpritesOutput"),
+    id = id.from(_N, "GetSpritesResponse"),
     type = "structure",
     members = {
         Blob = schema.new({
@@ -188,7 +188,7 @@ M.GetSpritesOutput = schema.new({
 })
 
 M.GetStaticMapInput = schema.new({
-    id = id.from(_N, "GetStaticMapInput"),
+    id = id.from(_N, "GetStaticMapRequest"),
     type = "structure",
     members = {
         BoundingBox = schema.new({
@@ -380,7 +380,7 @@ M.GetStaticMapInput = schema.new({
 })
 
 M.GetStaticMapOutput = schema.new({
-    id = id.from(_N, "GetStaticMapOutput"),
+    id = id.from(_N, "GetStaticMapResponse"),
     type = "structure",
     members = {
         Blob = schema.new({
@@ -541,7 +541,7 @@ M.ValidationException = schema.new({
 })
 
 M.GetStyleDescriptorInput = schema.new({
-    id = id.from(_N, "GetStyleDescriptorInput"),
+    id = id.from(_N, "GetStyleDescriptorRequest"),
     type = "structure",
     members = {
         Style = schema.new({
@@ -631,7 +631,7 @@ M.GetStyleDescriptorInput = schema.new({
 })
 
 M.GetStyleDescriptorOutput = schema.new({
-    id = id.from(_N, "GetStyleDescriptorOutput"),
+    id = id.from(_N, "GetStyleDescriptorResponse"),
     type = "structure",
     members = {
         Blob = schema.new({
@@ -674,7 +674,7 @@ M.GetStyleDescriptorOutput = schema.new({
 })
 
 M.GetTileInput = schema.new({
-    id = id.from(_N, "GetTileInput"),
+    id = id.from(_N, "GetTileRequest"),
     type = "structure",
     members = {
         AdditionalFeatures = schema.new({
@@ -740,7 +740,7 @@ M.GetTileInput = schema.new({
 })
 
 M.GetTileOutput = schema.new({
-    id = id.from(_N, "GetTileOutput"),
+    id = id.from(_N, "GetTileResponse"),
     type = "structure",
     members = {
         Blob = schema.new({
@@ -811,5 +811,19 @@ M.ResourceNotFoundException = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

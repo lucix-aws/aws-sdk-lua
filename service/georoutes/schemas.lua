@@ -55,7 +55,7 @@ M.Corridor = schema.new({
             type = "list",
             name = "LineString",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Double }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -120,7 +120,7 @@ M.IsolineAvoidanceAreaGeometry = schema.new({
             type = "list",
             name = "Polygon",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Document }),
         }),
         PolylineCorridor = schema.new({
             id = id.from(_N, "IsolineAvoidanceAreaGeometry", "PolylineCorridor"),
@@ -820,7 +820,7 @@ M.IsolineTravelModeOptions = schema.new({
 })
 
 M.CalculateIsolinesInput = schema.new({
-    id = id.from(_N, "CalculateIsolinesInput"),
+    id = id.from(_N, "CalculateIsolinesRequest"),
     type = "structure",
     members = {
         Allow = schema.new({
@@ -959,7 +959,7 @@ M.IsolineConnectionGeometry = schema.new({
             type = "list",
             name = "LineString",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Double }),
         }),
         Polyline = schema.new({
             id = id.from(_N, "IsolineConnectionGeometry", "Polyline"),
@@ -1014,7 +1014,7 @@ M.IsolineShapeGeometry = schema.new({
             type = "list",
             name = "Polygon",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Document }),
         }),
         PolylinePolygon = schema.new({
             id = id.from(_N, "IsolineShapeGeometry", "PolylinePolygon"),
@@ -1072,7 +1072,7 @@ M.Isoline = schema.new({
 })
 
 M.CalculateIsolinesOutput = schema.new({
-    id = id.from(_N, "CalculateIsolinesOutput"),
+    id = id.from(_N, "CalculateIsolinesResponse"),
     type = "structure",
     members = {
         ArrivalTime = schema.new({
@@ -1276,7 +1276,7 @@ M.RouteMatrixAvoidanceAreaGeometry = schema.new({
             type = "list",
             name = "Polygon",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Document }),
         }),
         PolylinePolygon = schema.new({
             id = id.from(_N, "RouteMatrixAvoidanceAreaGeometry", "PolylinePolygon"),
@@ -1678,7 +1678,7 @@ M.RouteMatrixBoundaryGeometry = schema.new({
             type = "list",
             name = "Polygon",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Document }),
         }),
     },
 })
@@ -1981,7 +1981,7 @@ M.RouteMatrixTravelModeOptions = schema.new({
 })
 
 M.CalculateRouteMatrixInput = schema.new({
-    id = id.from(_N, "CalculateRouteMatrixInput"),
+    id = id.from(_N, "CalculateRouteMatrixRequest"),
     type = "structure",
     members = {
         Allow = schema.new({
@@ -2116,7 +2116,7 @@ M.RouteMatrixEntry = schema.new({
 })
 
 M.CalculateRouteMatrixOutput = schema.new({
-    id = id.from(_N, "CalculateRouteMatrixOutput"),
+    id = id.from(_N, "CalculateRouteMatrixResponse"),
     type = "structure",
     members = {
         ErrorCount = schema.new({
@@ -2143,7 +2143,7 @@ M.CalculateRouteMatrixOutput = schema.new({
             type = "list",
             name = "RouteMatrix",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = M.RouteMatrixEntry }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -2203,7 +2203,7 @@ M.RouteAvoidanceAreaGeometry = schema.new({
             type = "list",
             name = "Polygon",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Document }),
         }),
         PolylineCorridor = schema.new({
             id = id.from(_N, "RouteAvoidanceAreaGeometry", "PolylineCorridor"),
@@ -3040,7 +3040,7 @@ M.RouteWaypoint = schema.new({
 })
 
 M.CalculateRoutesInput = schema.new({
-    id = id.from(_N, "CalculateRoutesInput"),
+    id = id.from(_N, "CalculateRoutesRequest"),
     type = "structure",
     members = {
         Allow = schema.new({
@@ -3756,7 +3756,7 @@ M.RouteLegGeometry = schema.new({
             type = "list",
             name = "LineString",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Double }),
         }),
         Polyline = schema.new({
             id = id.from(_N, "RouteLegGeometry", "Polyline"),
@@ -6284,7 +6284,7 @@ M.Route = schema.new({
 })
 
 M.CalculateRoutesOutput = schema.new({
-    id = id.from(_N, "CalculateRoutesOutput"),
+    id = id.from(_N, "CalculateRoutesResponse"),
     type = "structure",
     members = {
         LegGeometryFormat = schema.new({
@@ -6919,7 +6919,7 @@ M.WaypointOptimizationWaypoint = schema.new({
 })
 
 M.OptimizeWaypointsInput = schema.new({
-    id = id.from(_N, "OptimizeWaypointsInput"),
+    id = id.from(_N, "OptimizeWaypointsRequest"),
     type = "structure",
     members = {
         Avoid = schema.new({
@@ -7247,7 +7247,7 @@ M.WaypointOptimizationTimeBreakdown = schema.new({
 })
 
 M.OptimizeWaypointsOutput = schema.new({
-    id = id.from(_N, "OptimizeWaypointsOutput"),
+    id = id.from(_N, "OptimizeWaypointsResponse"),
     type = "structure",
     members = {
         Connections = schema.new({
@@ -7455,7 +7455,7 @@ M.RoadSnapTravelModeOptions = schema.new({
 })
 
 M.SnapToRoadsInput = schema.new({
-    id = id.from(_N, "SnapToRoadsInput"),
+    id = id.from(_N, "SnapToRoadsRequest"),
     type = "structure",
     members = {
         Key = schema.new({
@@ -7552,7 +7552,7 @@ M.RoadSnapSnappedGeometry = schema.new({
             type = "list",
             name = "LineString",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.Double }),
         }),
         Polyline = schema.new({
             id = id.from(_N, "RoadSnapSnappedGeometry", "Polyline"),
@@ -7600,7 +7600,7 @@ M.RoadSnapSnappedTracePoint = schema.new({
 })
 
 M.SnapToRoadsOutput = schema.new({
-    id = id.from(_N, "SnapToRoadsOutput"),
+    id = id.from(_N, "SnapToRoadsResponse"),
     type = "structure",
     members = {
         Notices = schema.new({
@@ -7651,5 +7651,19 @@ M.SnapToRoadsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

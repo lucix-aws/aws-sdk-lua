@@ -134,7 +134,7 @@ M.CopyImageSetInformation = schema.new({
 })
 
 M.CopyImageSetInput = schema.new({
-    id = id.from(_N, "CopyImageSetInput"),
+    id = id.from(_N, "CopyImageSetRequest"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -300,7 +300,7 @@ M.CopySourceImageSetProperties = schema.new({
 })
 
 M.CopyImageSetOutput = schema.new({
-    id = id.from(_N, "CopyImageSetOutput"),
+    id = id.from(_N, "CopyImageSetResponse"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -431,7 +431,7 @@ M.ValidationException = schema.new({
 })
 
 M.CreateDatastoreInput = schema.new({
-    id = id.from(_N, "CreateDatastoreInput"),
+    id = id.from(_N, "CreateDatastoreRequest"),
     type = "structure",
     members = {
         datastoreName = schema.new({
@@ -480,7 +480,7 @@ M.CreateDatastoreInput = schema.new({
 })
 
 M.CreateDatastoreOutput = schema.new({
-    id = id.from(_N, "CreateDatastoreOutput"),
+    id = id.from(_N, "CreateDatastoreResponse"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -505,7 +505,7 @@ M.CreateDatastoreOutput = schema.new({
 })
 
 M.DeleteDatastoreInput = schema.new({
-    id = id.from(_N, "DeleteDatastoreInput"),
+    id = id.from(_N, "DeleteDatastoreRequest"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -522,7 +522,7 @@ M.DeleteDatastoreInput = schema.new({
 })
 
 M.DeleteDatastoreOutput = schema.new({
-    id = id.from(_N, "DeleteDatastoreOutput"),
+    id = id.from(_N, "DeleteDatastoreResponse"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -547,7 +547,7 @@ M.DeleteDatastoreOutput = schema.new({
 })
 
 M.GetDatastoreInput = schema.new({
-    id = id.from(_N, "GetDatastoreInput"),
+    id = id.from(_N, "GetDatastoreRequest"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -634,7 +634,7 @@ M.DatastoreProperties = schema.new({
 })
 
 M.GetDatastoreOutput = schema.new({
-    id = id.from(_N, "GetDatastoreOutput"),
+    id = id.from(_N, "GetDatastoreResponse"),
     type = "structure",
     members = {
         datastoreProperties = schema.new({
@@ -651,7 +651,7 @@ M.GetDatastoreOutput = schema.new({
 })
 
 M.ListDatastoresInput = schema.new({
-    id = id.from(_N, "ListDatastoresInput"),
+    id = id.from(_N, "ListDatastoresRequest"),
     type = "structure",
     members = {
         datastoreStatus = schema.new({
@@ -737,7 +737,7 @@ M.DatastoreSummary = schema.new({
 })
 
 M.ListDatastoresOutput = schema.new({
-    id = id.from(_N, "ListDatastoresOutput"),
+    id = id.from(_N, "ListDatastoresResponse"),
     type = "structure",
     members = {
         datastoreSummaries = schema.new({
@@ -757,7 +757,7 @@ M.ListDatastoresOutput = schema.new({
 })
 
 M.DeleteImageSetInput = schema.new({
-    id = id.from(_N, "DeleteImageSetInput"),
+    id = id.from(_N, "DeleteImageSetRequest"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -784,7 +784,7 @@ M.DeleteImageSetInput = schema.new({
 })
 
 M.DeleteImageSetOutput = schema.new({
-    id = id.from(_N, "DeleteImageSetOutput"),
+    id = id.from(_N, "DeleteImageSetResponse"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -827,7 +827,7 @@ M.DeleteImageSetOutput = schema.new({
 })
 
 M.GetDICOMImportJobInput = schema.new({
-    id = id.from(_N, "GetDICOMImportJobInput"),
+    id = id.from(_N, "GetDICOMImportJobRequest"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -942,7 +942,7 @@ M.DICOMImportJobProperties = schema.new({
 })
 
 M.GetDICOMImportJobOutput = schema.new({
-    id = id.from(_N, "GetDICOMImportJobOutput"),
+    id = id.from(_N, "GetDICOMImportJobResponse"),
     type = "structure",
     members = {
         jobProperties = schema.new({
@@ -994,7 +994,7 @@ M.ImageFrameInformation = schema.new({
 })
 
 M.GetImageFrameInput = schema.new({
-    id = id.from(_N, "GetImageFrameInput"),
+    id = id.from(_N, "GetImageFrameRequest"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -1032,7 +1032,7 @@ M.GetImageFrameInput = schema.new({
 })
 
 M.GetImageFrameOutput = schema.new({
-    id = id.from(_N, "GetImageFrameOutput"),
+    id = id.from(_N, "GetImageFrameResponse"),
     type = "structure",
     members = {
         imageFrameBlob = schema.new({
@@ -1077,7 +1077,7 @@ M.NotAcceptableException = schema.new({
 })
 
 M.GetImageSetInput = schema.new({
-    id = id.from(_N, "GetImageSetInput"),
+    id = id.from(_N, "GetImageSetRequest"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -1126,7 +1126,7 @@ M.Overrides = schema.new({
 })
 
 M.GetImageSetOutput = schema.new({
-    id = id.from(_N, "GetImageSetOutput"),
+    id = id.from(_N, "GetImageSetResponse"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -1230,7 +1230,7 @@ M.GetImageSetOutput = schema.new({
 })
 
 M.GetImageSetMetadataInput = schema.new({
-    id = id.from(_N, "GetImageSetMetadataInput"),
+    id = id.from(_N, "GetImageSetMetadataRequest"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -1266,7 +1266,7 @@ M.GetImageSetMetadataInput = schema.new({
 })
 
 M.GetImageSetMetadataOutput = schema.new({
-    id = id.from(_N, "GetImageSetMetadataOutput"),
+    id = id.from(_N, "GetImageSetMetadataResponse"),
     type = "structure",
     members = {
         imageSetMetadataBlob = schema.new({
@@ -1301,7 +1301,7 @@ M.GetImageSetMetadataOutput = schema.new({
 })
 
 M.ListDICOMImportJobsInput = schema.new({
-    id = id.from(_N, "ListDICOMImportJobsInput"),
+    id = id.from(_N, "ListDICOMImportJobsRequest"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -1412,7 +1412,7 @@ M.DICOMImportJobSummary = schema.new({
 })
 
 M.ListDICOMImportJobsOutput = schema.new({
-    id = id.from(_N, "ListDICOMImportJobsOutput"),
+    id = id.from(_N, "ListDICOMImportJobsResponse"),
     type = "structure",
     members = {
         jobSummaries = schema.new({
@@ -1435,7 +1435,7 @@ M.ListDICOMImportJobsOutput = schema.new({
 })
 
 M.ListImageSetVersionsInput = schema.new({
-    id = id.from(_N, "ListImageSetVersionsInput"),
+    id = id.from(_N, "ListImageSetVersionsRequest"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -1557,7 +1557,7 @@ M.ImageSetProperties = schema.new({
 })
 
 M.ListImageSetVersionsOutput = schema.new({
-    id = id.from(_N, "ListImageSetVersionsOutput"),
+    id = id.from(_N, "ListImageSetVersionsResponse"),
     type = "structure",
     members = {
         imageSetPropertiesList = schema.new({
@@ -1580,7 +1580,7 @@ M.ListImageSetVersionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1597,7 +1597,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1771,7 +1771,7 @@ M.SearchCriteria = schema.new({
 })
 
 M.SearchImageSetsInput = schema.new({
-    id = id.from(_N, "SearchImageSetsInput"),
+    id = id.from(_N, "SearchImageSetsRequest"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -1984,7 +1984,7 @@ M.ImageSetsMetadataSummary = schema.new({
 })
 
 M.SearchImageSetsOutput = schema.new({
-    id = id.from(_N, "SearchImageSetsOutput"),
+    id = id.from(_N, "SearchImageSetsResponse"),
     type = "structure",
     members = {
         imageSetsMetadataSummaries = schema.new({
@@ -2014,7 +2014,7 @@ M.SearchImageSetsOutput = schema.new({
 })
 
 M.StartDICOMImportJobInput = schema.new({
-    id = id.from(_N, "StartDICOMImportJobInput"),
+    id = id.from(_N, "StartDICOMImportJobRequest"),
     type = "structure",
     members = {
         jobName = schema.new({
@@ -2080,7 +2080,7 @@ M.StartDICOMImportJobInput = schema.new({
 })
 
 M.StartDICOMImportJobOutput = schema.new({
-    id = id.from(_N, "StartDICOMImportJobOutput"),
+    id = id.from(_N, "StartDICOMImportJobResponse"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -2123,7 +2123,7 @@ M.StartDICOMImportJobOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2151,12 +2151,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2184,7 +2184,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -2228,7 +2228,7 @@ M.MetadataUpdates = schema.new({
 })
 
 M.UpdateImageSetMetadataInput = schema.new({
-    id = id.from(_N, "UpdateImageSetMetadataInput"),
+    id = id.from(_N, "UpdateImageSetMetadataRequest"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -2294,7 +2294,7 @@ M.UpdateImageSetMetadataInput = schema.new({
 })
 
 M.UpdateImageSetMetadataOutput = schema.new({
-    id = id.from(_N, "UpdateImageSetMetadataOutput"),
+    id = id.from(_N, "UpdateImageSetMetadataResponse"),
     type = "structure",
     members = {
         datastoreId = schema.new({
@@ -2359,5 +2359,19 @@ M.UpdateImageSetMetadataOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

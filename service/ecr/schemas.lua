@@ -8,7 +8,7 @@ local _N = "com.amazonaws.ecr"
 local M = {}
 
 M.BatchCheckLayerAvailabilityInput = schema.new({
-    id = id.from(_N, "BatchCheckLayerAvailabilityInput"),
+    id = id.from(_N, "BatchCheckLayerAvailabilityRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -96,7 +96,7 @@ M.Layer = schema.new({
 })
 
 M.BatchCheckLayerAvailabilityOutput = schema.new({
-    id = id.from(_N, "BatchCheckLayerAvailabilityOutput"),
+    id = id.from(_N, "BatchCheckLayerAvailabilityResponse"),
     type = "structure",
     members = {
         layers = schema.new({
@@ -184,7 +184,7 @@ M.ImageIdentifier = schema.new({
 })
 
 M.BatchDeleteImageInput = schema.new({
-    id = id.from(_N, "BatchDeleteImageInput"),
+    id = id.from(_N, "BatchDeleteImageRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -242,7 +242,7 @@ M.ImageFailure = schema.new({
 })
 
 M.BatchDeleteImageOutput = schema.new({
-    id = id.from(_N, "BatchDeleteImageOutput"),
+    id = id.from(_N, "BatchDeleteImageResponse"),
     type = "structure",
     members = {
         imageIds = schema.new({
@@ -263,7 +263,7 @@ M.BatchDeleteImageOutput = schema.new({
 })
 
 M.BatchGetImageInput = schema.new({
-    id = id.from(_N, "BatchGetImageInput"),
+    id = id.from(_N, "BatchGetImageRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -340,7 +340,7 @@ M.Image = schema.new({
 })
 
 M.BatchGetImageOutput = schema.new({
-    id = id.from(_N, "BatchGetImageOutput"),
+    id = id.from(_N, "BatchGetImageResponse"),
     type = "structure",
     members = {
         images = schema.new({
@@ -393,7 +393,7 @@ M.UnableToGetUpstreamImageException = schema.new({
 })
 
 M.BatchGetRepositoryScanningConfigurationInput = schema.new({
-    id = id.from(_N, "BatchGetRepositoryScanningConfigurationInput"),
+    id = id.from(_N, "BatchGetRepositoryScanningConfigurationRequest"),
     type = "structure",
     members = {
         repositoryNames = schema.new({
@@ -501,7 +501,7 @@ M.RepositoryScanningConfiguration = schema.new({
 })
 
 M.BatchGetRepositoryScanningConfigurationOutput = schema.new({
-    id = id.from(_N, "BatchGetRepositoryScanningConfigurationOutput"),
+    id = id.from(_N, "BatchGetRepositoryScanningConfigurationResponse"),
     type = "structure",
     members = {
         scanningConfigurations = schema.new({
@@ -538,7 +538,7 @@ M.ValidationException = schema.new({
 })
 
 M.CompleteLayerUploadInput = schema.new({
-    id = id.from(_N, "CompleteLayerUploadInput"),
+    id = id.from(_N, "CompleteLayerUploadRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -579,7 +579,7 @@ M.CompleteLayerUploadInput = schema.new({
 })
 
 M.CompleteLayerUploadOutput = schema.new({
-    id = id.from(_N, "CompleteLayerUploadOutput"),
+    id = id.from(_N, "CompleteLayerUploadResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -712,7 +712,7 @@ M.UploadNotFoundException = schema.new({
 })
 
 M.CreatePullThroughCacheRuleInput = schema.new({
-    id = id.from(_N, "CreatePullThroughCacheRuleInput"),
+    id = id.from(_N, "CreatePullThroughCacheRuleRequest"),
     type = "structure",
     members = {
         ecrRepositoryPrefix = schema.new({
@@ -767,7 +767,7 @@ M.CreatePullThroughCacheRuleInput = schema.new({
 })
 
 M.CreatePullThroughCacheRuleOutput = schema.new({
-    id = id.from(_N, "CreatePullThroughCacheRuleOutput"),
+    id = id.from(_N, "CreatePullThroughCacheRuleResponse"),
     type = "structure",
     members = {
         ecrRepositoryPrefix = schema.new({
@@ -990,7 +990,7 @@ M.Tag = schema.new({
 })
 
 M.CreateRepositoryInput = schema.new({
-    id = id.from(_N, "CreateRepositoryInput"),
+    id = id.from(_N, "CreateRepositoryRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -1110,7 +1110,7 @@ M.Repository = schema.new({
 })
 
 M.CreateRepositoryOutput = schema.new({
-    id = id.from(_N, "CreateRepositoryOutput"),
+    id = id.from(_N, "CreateRepositoryResponse"),
     type = "structure",
     members = {
         repository = schema.new({
@@ -1194,7 +1194,7 @@ M.EncryptionConfigurationForRepositoryCreationTemplate = schema.new({
 })
 
 M.CreateRepositoryCreationTemplateInput = schema.new({
-    id = id.from(_N, "CreateRepositoryCreationTemplateInput"),
+    id = id.from(_N, "CreateRepositoryCreationTemplateRequest"),
     type = "structure",
     members = {
         prefix = schema.new({
@@ -1354,7 +1354,7 @@ M.RepositoryCreationTemplate = schema.new({
 })
 
 M.CreateRepositoryCreationTemplateOutput = schema.new({
-    id = id.from(_N, "CreateRepositoryCreationTemplateOutput"),
+    id = id.from(_N, "CreateRepositoryCreationTemplateResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -1390,7 +1390,7 @@ M.TemplateAlreadyExistsException = schema.new({
 })
 
 M.DeleteLifecyclePolicyInput = schema.new({
-    id = id.from(_N, "DeleteLifecyclePolicyInput"),
+    id = id.from(_N, "DeleteLifecyclePolicyRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -1412,7 +1412,7 @@ M.DeleteLifecyclePolicyInput = schema.new({
 })
 
 M.DeleteLifecyclePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteLifecyclePolicyOutput"),
+    id = id.from(_N, "DeleteLifecyclePolicyResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -1459,7 +1459,7 @@ M.LifecyclePolicyNotFoundException = schema.new({
 })
 
 M.DeletePullThroughCacheRuleInput = schema.new({
-    id = id.from(_N, "DeletePullThroughCacheRuleInput"),
+    id = id.from(_N, "DeletePullThroughCacheRuleRequest"),
     type = "structure",
     members = {
         ecrRepositoryPrefix = schema.new({
@@ -1481,7 +1481,7 @@ M.DeletePullThroughCacheRuleInput = schema.new({
 })
 
 M.DeletePullThroughCacheRuleOutput = schema.new({
-    id = id.from(_N, "DeletePullThroughCacheRuleOutput"),
+    id = id.from(_N, "DeletePullThroughCacheRuleResponse"),
     type = "structure",
     members = {
         ecrRepositoryPrefix = schema.new({
@@ -1546,12 +1546,12 @@ M.PullThroughCacheRuleNotFoundException = schema.new({
 })
 
 M.DeleteRegistryPolicyInput = schema.new({
-    id = id.from(_N, "DeleteRegistryPolicyInput"),
+    id = id.from(_N, "DeleteRegistryPolicyRequest"),
     type = "structure",
 })
 
 M.DeleteRegistryPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteRegistryPolicyOutput"),
+    id = id.from(_N, "DeleteRegistryPolicyResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -1586,7 +1586,7 @@ M.RegistryPolicyNotFoundException = schema.new({
 })
 
 M.DeleteRepositoryInput = schema.new({
-    id = id.from(_N, "DeleteRepositoryInput"),
+    id = id.from(_N, "DeleteRepositoryRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -1617,7 +1617,7 @@ M.DeleteRepositoryInput = schema.new({
 })
 
 M.DeleteRepositoryOutput = schema.new({
-    id = id.from(_N, "DeleteRepositoryOutput"),
+    id = id.from(_N, "DeleteRepositoryResponse"),
     type = "structure",
     members = {
         repository = schema.new({
@@ -1647,7 +1647,7 @@ M.RepositoryNotEmptyException = schema.new({
 })
 
 M.DeleteRepositoryCreationTemplateInput = schema.new({
-    id = id.from(_N, "DeleteRepositoryCreationTemplateInput"),
+    id = id.from(_N, "DeleteRepositoryCreationTemplateRequest"),
     type = "structure",
     members = {
         prefix = schema.new({
@@ -1663,7 +1663,7 @@ M.DeleteRepositoryCreationTemplateInput = schema.new({
 })
 
 M.DeleteRepositoryCreationTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteRepositoryCreationTemplateOutput"),
+    id = id.from(_N, "DeleteRepositoryCreationTemplateResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -1699,7 +1699,7 @@ M.TemplateNotFoundException = schema.new({
 })
 
 M.DeleteRepositoryPolicyInput = schema.new({
-    id = id.from(_N, "DeleteRepositoryPolicyInput"),
+    id = id.from(_N, "DeleteRepositoryPolicyRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -1721,7 +1721,7 @@ M.DeleteRepositoryPolicyInput = schema.new({
 })
 
 M.DeleteRepositoryPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteRepositoryPolicyOutput"),
+    id = id.from(_N, "DeleteRepositoryPolicyResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -1762,7 +1762,7 @@ M.RepositoryPolicyNotFoundException = schema.new({
 })
 
 M.DeleteSigningConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteSigningConfigurationInput"),
+    id = id.from(_N, "DeleteSigningConfigurationRequest"),
     type = "structure",
 })
 
@@ -1832,7 +1832,7 @@ M.SigningConfiguration = schema.new({
 })
 
 M.DeleteSigningConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteSigningConfigurationOutput"),
+    id = id.from(_N, "DeleteSigningConfigurationResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -1868,7 +1868,7 @@ M.SigningConfigurationNotFoundException = schema.new({
 })
 
 M.DeregisterPullTimeUpdateExclusionInput = schema.new({
-    id = id.from(_N, "DeregisterPullTimeUpdateExclusionInput"),
+    id = id.from(_N, "DeregisterPullTimeUpdateExclusionRequest"),
     type = "structure",
     members = {
         principalArn = schema.new({
@@ -1884,7 +1884,7 @@ M.DeregisterPullTimeUpdateExclusionInput = schema.new({
 })
 
 M.DeregisterPullTimeUpdateExclusionOutput = schema.new({
-    id = id.from(_N, "DeregisterPullTimeUpdateExclusionOutput"),
+    id = id.from(_N, "DeregisterPullTimeUpdateExclusionResponse"),
     type = "structure",
     members = {
         principalArn = schema.new({
@@ -1913,7 +1913,7 @@ M.ExclusionNotFoundException = schema.new({
 })
 
 M.DescribeImageReplicationStatusInput = schema.new({
-    id = id.from(_N, "DescribeImageReplicationStatusInput"),
+    id = id.from(_N, "DescribeImageReplicationStatusRequest"),
     type = "structure",
     members = {
         repositoryName = schema.new({
@@ -1976,7 +1976,7 @@ M.ImageReplicationStatus = schema.new({
 })
 
 M.DescribeImageReplicationStatusOutput = schema.new({
-    id = id.from(_N, "DescribeImageReplicationStatusOutput"),
+    id = id.from(_N, "DescribeImageReplicationStatusResponse"),
     type = "structure",
     members = {
         repositoryName = schema.new({
@@ -2038,7 +2038,7 @@ M.DescribeImagesFilter = schema.new({
 })
 
 M.DescribeImagesInput = schema.new({
-    id = id.from(_N, "DescribeImagesInput"),
+    id = id.from(_N, "DescribeImagesRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -2232,7 +2232,7 @@ M.ImageDetail = schema.new({
 })
 
 M.DescribeImagesOutput = schema.new({
-    id = id.from(_N, "DescribeImagesOutput"),
+    id = id.from(_N, "DescribeImagesResponse"),
     type = "structure",
     members = {
         imageDetails = schema.new({
@@ -2252,7 +2252,7 @@ M.DescribeImagesOutput = schema.new({
 })
 
 M.DescribeImageScanFindingsInput = schema.new({
-    id = id.from(_N, "DescribeImageScanFindingsInput"),
+    id = id.from(_N, "DescribeImageScanFindingsRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -2902,7 +2902,7 @@ M.ImageScanFindings = schema.new({
 })
 
 M.DescribeImageScanFindingsOutput = schema.new({
-    id = id.from(_N, "DescribeImageScanFindingsOutput"),
+    id = id.from(_N, "DescribeImageScanFindingsResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -2964,7 +2964,7 @@ M.ScanNotFoundException = schema.new({
 })
 
 M.DescribeImageSigningStatusInput = schema.new({
-    id = id.from(_N, "DescribeImageSigningStatusInput"),
+    id = id.from(_N, "DescribeImageSigningStatusRequest"),
     type = "structure",
     members = {
         repositoryName = schema.new({
@@ -3027,7 +3027,7 @@ M.ImageSigningStatus = schema.new({
 })
 
 M.DescribeImageSigningStatusOutput = schema.new({
-    id = id.from(_N, "DescribeImageSigningStatusOutput"),
+    id = id.from(_N, "DescribeImageSigningStatusResponse"),
     type = "structure",
     members = {
         repositoryName = schema.new({
@@ -3060,7 +3060,7 @@ M.DescribeImageSigningStatusOutput = schema.new({
 })
 
 M.DescribePullThroughCacheRulesInput = schema.new({
-    id = id.from(_N, "DescribePullThroughCacheRulesInput"),
+    id = id.from(_N, "DescribePullThroughCacheRulesRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -3153,7 +3153,7 @@ M.PullThroughCacheRule = schema.new({
 })
 
 M.DescribePullThroughCacheRulesOutput = schema.new({
-    id = id.from(_N, "DescribePullThroughCacheRulesOutput"),
+    id = id.from(_N, "DescribePullThroughCacheRulesResponse"),
     type = "structure",
     members = {
         pullThroughCacheRules = schema.new({
@@ -3173,7 +3173,7 @@ M.DescribePullThroughCacheRulesOutput = schema.new({
 })
 
 M.DescribeRegistryInput = schema.new({
-    id = id.from(_N, "DescribeRegistryInput"),
+    id = id.from(_N, "DescribeRegistryRequest"),
     type = "structure",
 })
 
@@ -3269,7 +3269,7 @@ M.ReplicationConfiguration = schema.new({
 })
 
 M.DescribeRegistryOutput = schema.new({
-    id = id.from(_N, "DescribeRegistryOutput"),
+    id = id.from(_N, "DescribeRegistryResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -3289,7 +3289,7 @@ M.DescribeRegistryOutput = schema.new({
 })
 
 M.DescribeRepositoriesInput = schema.new({
-    id = id.from(_N, "DescribeRepositoriesInput"),
+    id = id.from(_N, "DescribeRepositoriesRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -3321,7 +3321,7 @@ M.DescribeRepositoriesInput = schema.new({
 })
 
 M.DescribeRepositoriesOutput = schema.new({
-    id = id.from(_N, "DescribeRepositoriesOutput"),
+    id = id.from(_N, "DescribeRepositoriesResponse"),
     type = "structure",
     members = {
         repositories = schema.new({
@@ -3341,7 +3341,7 @@ M.DescribeRepositoriesOutput = schema.new({
 })
 
 M.DescribeRepositoryCreationTemplatesInput = schema.new({
-    id = id.from(_N, "DescribeRepositoryCreationTemplatesInput"),
+    id = id.from(_N, "DescribeRepositoryCreationTemplatesRequest"),
     type = "structure",
     members = {
         prefixes = schema.new({
@@ -3367,7 +3367,7 @@ M.DescribeRepositoryCreationTemplatesInput = schema.new({
 })
 
 M.DescribeRepositoryCreationTemplatesOutput = schema.new({
-    id = id.from(_N, "DescribeRepositoryCreationTemplatesOutput"),
+    id = id.from(_N, "DescribeRepositoryCreationTemplatesResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -3393,7 +3393,7 @@ M.DescribeRepositoryCreationTemplatesOutput = schema.new({
 })
 
 M.GetAccountSettingInput = schema.new({
-    id = id.from(_N, "GetAccountSettingInput"),
+    id = id.from(_N, "GetAccountSettingRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3409,7 +3409,7 @@ M.GetAccountSettingInput = schema.new({
 })
 
 M.GetAccountSettingOutput = schema.new({
-    id = id.from(_N, "GetAccountSettingOutput"),
+    id = id.from(_N, "GetAccountSettingResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3428,7 +3428,7 @@ M.GetAccountSettingOutput = schema.new({
 })
 
 M.GetAuthorizationTokenInput = schema.new({
-    id = id.from(_N, "GetAuthorizationTokenInput"),
+    id = id.from(_N, "GetAuthorizationTokenRequest"),
     type = "structure",
     members = {
         registryIds = schema.new({
@@ -3467,7 +3467,7 @@ M.AuthorizationData = schema.new({
 })
 
 M.GetAuthorizationTokenOutput = schema.new({
-    id = id.from(_N, "GetAuthorizationTokenOutput"),
+    id = id.from(_N, "GetAuthorizationTokenResponse"),
     type = "structure",
     members = {
         authorizationData = schema.new({
@@ -3481,7 +3481,7 @@ M.GetAuthorizationTokenOutput = schema.new({
 })
 
 M.GetDownloadUrlForLayerInput = schema.new({
-    id = id.from(_N, "GetDownloadUrlForLayerInput"),
+    id = id.from(_N, "GetDownloadUrlForLayerRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -3512,7 +3512,7 @@ M.GetDownloadUrlForLayerInput = schema.new({
 })
 
 M.GetDownloadUrlForLayerOutput = schema.new({
-    id = id.from(_N, "GetDownloadUrlForLayerOutput"),
+    id = id.from(_N, "GetDownloadUrlForLayerResponse"),
     type = "structure",
     members = {
         downloadUrl = schema.new({
@@ -3579,7 +3579,7 @@ M.UnableToGetUpstreamLayerException = schema.new({
 })
 
 M.GetLifecyclePolicyInput = schema.new({
-    id = id.from(_N, "GetLifecyclePolicyInput"),
+    id = id.from(_N, "GetLifecyclePolicyRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -3601,7 +3601,7 @@ M.GetLifecyclePolicyInput = schema.new({
 })
 
 M.GetLifecyclePolicyOutput = schema.new({
-    id = id.from(_N, "GetLifecyclePolicyOutput"),
+    id = id.from(_N, "GetLifecyclePolicyResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -3645,7 +3645,7 @@ M.LifecyclePolicyPreviewFilter = schema.new({
 })
 
 M.GetLifecyclePolicyPreviewInput = schema.new({
-    id = id.from(_N, "GetLifecyclePolicyPreviewInput"),
+    id = id.from(_N, "GetLifecyclePolicyPreviewRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -3796,7 +3796,7 @@ M.LifecyclePolicyPreviewSummary = schema.new({
 })
 
 M.GetLifecyclePolicyPreviewOutput = schema.new({
-    id = id.from(_N, "GetLifecyclePolicyPreviewOutput"),
+    id = id.from(_N, "GetLifecyclePolicyPreviewResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -3863,12 +3863,12 @@ M.LifecyclePolicyPreviewNotFoundException = schema.new({
 })
 
 M.GetRegistryPolicyInput = schema.new({
-    id = id.from(_N, "GetRegistryPolicyInput"),
+    id = id.from(_N, "GetRegistryPolicyRequest"),
     type = "structure",
 })
 
 M.GetRegistryPolicyOutput = schema.new({
-    id = id.from(_N, "GetRegistryPolicyOutput"),
+    id = id.from(_N, "GetRegistryPolicyResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -3887,7 +3887,7 @@ M.GetRegistryPolicyOutput = schema.new({
 })
 
 M.GetRegistryScanningConfigurationInput = schema.new({
-    id = id.from(_N, "GetRegistryScanningConfigurationInput"),
+    id = id.from(_N, "GetRegistryScanningConfigurationRequest"),
     type = "structure",
 })
 
@@ -3938,7 +3938,7 @@ M.RegistryScanningConfiguration = schema.new({
 })
 
 M.GetRegistryScanningConfigurationOutput = schema.new({
-    id = id.from(_N, "GetRegistryScanningConfigurationOutput"),
+    id = id.from(_N, "GetRegistryScanningConfigurationResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -3958,7 +3958,7 @@ M.GetRegistryScanningConfigurationOutput = schema.new({
 })
 
 M.GetRepositoryPolicyInput = schema.new({
-    id = id.from(_N, "GetRepositoryPolicyInput"),
+    id = id.from(_N, "GetRepositoryPolicyRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -3980,7 +3980,7 @@ M.GetRepositoryPolicyInput = schema.new({
 })
 
 M.GetRepositoryPolicyOutput = schema.new({
-    id = id.from(_N, "GetRepositoryPolicyOutput"),
+    id = id.from(_N, "GetRepositoryPolicyResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -4005,12 +4005,12 @@ M.GetRepositoryPolicyOutput = schema.new({
 })
 
 M.GetSigningConfigurationInput = schema.new({
-    id = id.from(_N, "GetSigningConfigurationInput"),
+    id = id.from(_N, "GetSigningConfigurationRequest"),
     type = "structure",
 })
 
 M.GetSigningConfigurationOutput = schema.new({
-    id = id.from(_N, "GetSigningConfigurationOutput"),
+    id = id.from(_N, "GetSigningConfigurationResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -4030,7 +4030,7 @@ M.GetSigningConfigurationOutput = schema.new({
 })
 
 M.InitiateLayerUploadInput = schema.new({
-    id = id.from(_N, "InitiateLayerUploadInput"),
+    id = id.from(_N, "InitiateLayerUploadRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -4052,7 +4052,7 @@ M.InitiateLayerUploadInput = schema.new({
 })
 
 M.InitiateLayerUploadOutput = schema.new({
-    id = id.from(_N, "InitiateLayerUploadOutput"),
+    id = id.from(_N, "InitiateLayerUploadResponse"),
     type = "structure",
     members = {
         uploadId = schema.new({
@@ -4107,7 +4107,7 @@ M.SubjectIdentifier = schema.new({
 })
 
 M.ListImageReferrersInput = schema.new({
-    id = id.from(_N, "ListImageReferrersInput"),
+    id = id.from(_N, "ListImageReferrersRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -4212,7 +4212,7 @@ M.ImageReferrer = schema.new({
 })
 
 M.ListImageReferrersOutput = schema.new({
-    id = id.from(_N, "ListImageReferrersOutput"),
+    id = id.from(_N, "ListImageReferrersResponse"),
     type = "structure",
     members = {
         referrers = schema.new({
@@ -4267,7 +4267,7 @@ M.ListImagesFilter = schema.new({
 })
 
 M.ListImagesInput = schema.new({
-    id = id.from(_N, "ListImagesInput"),
+    id = id.from(_N, "ListImagesRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -4308,7 +4308,7 @@ M.ListImagesInput = schema.new({
 })
 
 M.ListImagesOutput = schema.new({
-    id = id.from(_N, "ListImagesOutput"),
+    id = id.from(_N, "ListImagesResponse"),
     type = "structure",
     members = {
         imageIds = schema.new({
@@ -4328,7 +4328,7 @@ M.ListImagesOutput = schema.new({
 })
 
 M.ListPullTimeUpdateExclusionsInput = schema.new({
-    id = id.from(_N, "ListPullTimeUpdateExclusionsInput"),
+    id = id.from(_N, "ListPullTimeUpdateExclusionsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -4347,7 +4347,7 @@ M.ListPullTimeUpdateExclusionsInput = schema.new({
 })
 
 M.ListPullTimeUpdateExclusionsOutput = schema.new({
-    id = id.from(_N, "ListPullTimeUpdateExclusionsOutput"),
+    id = id.from(_N, "ListPullTimeUpdateExclusionsResponse"),
     type = "structure",
     members = {
         pullTimeUpdateExclusions = schema.new({
@@ -4367,7 +4367,7 @@ M.ListPullTimeUpdateExclusionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4383,7 +4383,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -4397,7 +4397,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutAccountSettingInput = schema.new({
-    id = id.from(_N, "PutAccountSettingInput"),
+    id = id.from(_N, "PutAccountSettingRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4422,7 +4422,7 @@ M.PutAccountSettingInput = schema.new({
 })
 
 M.PutAccountSettingOutput = schema.new({
-    id = id.from(_N, "PutAccountSettingOutput"),
+    id = id.from(_N, "PutAccountSettingResponse"),
     type = "structure",
     members = {
         name = schema.new({
@@ -4489,7 +4489,7 @@ M.ImageTagAlreadyExistsException = schema.new({
 })
 
 M.PutImageInput = schema.new({
-    id = id.from(_N, "PutImageInput"),
+    id = id.from(_N, "PutImageRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -4538,7 +4538,7 @@ M.PutImageInput = schema.new({
 })
 
 M.PutImageOutput = schema.new({
-    id = id.from(_N, "PutImageOutput"),
+    id = id.from(_N, "PutImageResponse"),
     type = "structure",
     members = {
         image = schema.new({
@@ -4568,7 +4568,7 @@ M.ReferencedImagesNotFoundException = schema.new({
 })
 
 M.PutImageScanningConfigurationInput = schema.new({
-    id = id.from(_N, "PutImageScanningConfigurationInput"),
+    id = id.from(_N, "PutImageScanningConfigurationRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -4600,7 +4600,7 @@ M.PutImageScanningConfigurationInput = schema.new({
 })
 
 M.PutImageScanningConfigurationOutput = schema.new({
-    id = id.from(_N, "PutImageScanningConfigurationOutput"),
+    id = id.from(_N, "PutImageScanningConfigurationResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -4626,7 +4626,7 @@ M.PutImageScanningConfigurationOutput = schema.new({
 })
 
 M.PutImageTagMutabilityInput = schema.new({
-    id = id.from(_N, "PutImageTagMutabilityInput"),
+    id = id.from(_N, "PutImageTagMutabilityRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -4664,7 +4664,7 @@ M.PutImageTagMutabilityInput = schema.new({
 })
 
 M.PutImageTagMutabilityOutput = schema.new({
-    id = id.from(_N, "PutImageTagMutabilityOutput"),
+    id = id.from(_N, "PutImageTagMutabilityResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -4696,7 +4696,7 @@ M.PutImageTagMutabilityOutput = schema.new({
 })
 
 M.PutLifecyclePolicyInput = schema.new({
-    id = id.from(_N, "PutLifecyclePolicyInput"),
+    id = id.from(_N, "PutLifecyclePolicyRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -4727,7 +4727,7 @@ M.PutLifecyclePolicyInput = schema.new({
 })
 
 M.PutLifecyclePolicyOutput = schema.new({
-    id = id.from(_N, "PutLifecyclePolicyOutput"),
+    id = id.from(_N, "PutLifecyclePolicyResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -4752,7 +4752,7 @@ M.PutLifecyclePolicyOutput = schema.new({
 })
 
 M.PutRegistryPolicyInput = schema.new({
-    id = id.from(_N, "PutRegistryPolicyInput"),
+    id = id.from(_N, "PutRegistryPolicyRequest"),
     type = "structure",
     members = {
         policyText = schema.new({
@@ -4768,7 +4768,7 @@ M.PutRegistryPolicyInput = schema.new({
 })
 
 M.PutRegistryPolicyOutput = schema.new({
-    id = id.from(_N, "PutRegistryPolicyOutput"),
+    id = id.from(_N, "PutRegistryPolicyResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -4803,7 +4803,7 @@ M.BlockedByOrganizationPolicyException = schema.new({
 })
 
 M.PutRegistryScanningConfigurationInput = schema.new({
-    id = id.from(_N, "PutRegistryScanningConfigurationInput"),
+    id = id.from(_N, "PutRegistryScanningConfigurationRequest"),
     type = "structure",
     members = {
         scanType = schema.new({
@@ -4823,7 +4823,7 @@ M.PutRegistryScanningConfigurationInput = schema.new({
 })
 
 M.PutRegistryScanningConfigurationOutput = schema.new({
-    id = id.from(_N, "PutRegistryScanningConfigurationOutput"),
+    id = id.from(_N, "PutRegistryScanningConfigurationResponse"),
     type = "structure",
     members = {
         registryScanningConfiguration = schema.new({
@@ -4837,7 +4837,7 @@ M.PutRegistryScanningConfigurationOutput = schema.new({
 })
 
 M.PutReplicationConfigurationInput = schema.new({
-    id = id.from(_N, "PutReplicationConfigurationInput"),
+    id = id.from(_N, "PutReplicationConfigurationRequest"),
     type = "structure",
     members = {
         replicationConfiguration = schema.new({
@@ -4854,7 +4854,7 @@ M.PutReplicationConfigurationInput = schema.new({
 })
 
 M.PutReplicationConfigurationOutput = schema.new({
-    id = id.from(_N, "PutReplicationConfigurationOutput"),
+    id = id.from(_N, "PutReplicationConfigurationResponse"),
     type = "structure",
     members = {
         replicationConfiguration = schema.new({
@@ -4868,7 +4868,7 @@ M.PutReplicationConfigurationOutput = schema.new({
 })
 
 M.PutSigningConfigurationInput = schema.new({
-    id = id.from(_N, "PutSigningConfigurationInput"),
+    id = id.from(_N, "PutSigningConfigurationRequest"),
     type = "structure",
     members = {
         signingConfiguration = schema.new({
@@ -4885,7 +4885,7 @@ M.PutSigningConfigurationInput = schema.new({
 })
 
 M.PutSigningConfigurationOutput = schema.new({
-    id = id.from(_N, "PutSigningConfigurationOutput"),
+    id = id.from(_N, "PutSigningConfigurationResponse"),
     type = "structure",
     members = {
         signingConfiguration = schema.new({
@@ -4915,7 +4915,7 @@ M.ExclusionAlreadyExistsException = schema.new({
 })
 
 M.RegisterPullTimeUpdateExclusionInput = schema.new({
-    id = id.from(_N, "RegisterPullTimeUpdateExclusionInput"),
+    id = id.from(_N, "RegisterPullTimeUpdateExclusionRequest"),
     type = "structure",
     members = {
         principalArn = schema.new({
@@ -4931,7 +4931,7 @@ M.RegisterPullTimeUpdateExclusionInput = schema.new({
 })
 
 M.RegisterPullTimeUpdateExclusionOutput = schema.new({
-    id = id.from(_N, "RegisterPullTimeUpdateExclusionOutput"),
+    id = id.from(_N, "RegisterPullTimeUpdateExclusionResponse"),
     type = "structure",
     members = {
         principalArn = schema.new({
@@ -4950,7 +4950,7 @@ M.RegisterPullTimeUpdateExclusionOutput = schema.new({
 })
 
 M.SetRepositoryPolicyInput = schema.new({
-    id = id.from(_N, "SetRepositoryPolicyInput"),
+    id = id.from(_N, "SetRepositoryPolicyRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -4990,7 +4990,7 @@ M.SetRepositoryPolicyInput = schema.new({
 })
 
 M.SetRepositoryPolicyOutput = schema.new({
-    id = id.from(_N, "SetRepositoryPolicyOutput"),
+    id = id.from(_N, "SetRepositoryPolicyResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -5031,7 +5031,7 @@ M.ImageArchivedException = schema.new({
 })
 
 M.StartImageScanInput = schema.new({
-    id = id.from(_N, "StartImageScanInput"),
+    id = id.from(_N, "StartImageScanRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -5063,7 +5063,7 @@ M.StartImageScanInput = schema.new({
 })
 
 M.StartImageScanOutput = schema.new({
-    id = id.from(_N, "StartImageScanOutput"),
+    id = id.from(_N, "StartImageScanResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -5128,7 +5128,7 @@ M.LifecyclePolicyPreviewInProgressException = schema.new({
 })
 
 M.StartLifecyclePolicyPreviewInput = schema.new({
-    id = id.from(_N, "StartLifecyclePolicyPreviewInput"),
+    id = id.from(_N, "StartLifecyclePolicyPreviewRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -5156,7 +5156,7 @@ M.StartLifecyclePolicyPreviewInput = schema.new({
 })
 
 M.StartLifecyclePolicyPreviewOutput = schema.new({
-    id = id.from(_N, "StartLifecyclePolicyPreviewOutput"),
+    id = id.from(_N, "StartLifecyclePolicyPreviewResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -5187,7 +5187,7 @@ M.StartLifecyclePolicyPreviewOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5213,12 +5213,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5244,7 +5244,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -5265,7 +5265,7 @@ M.ImageStorageClassUpdateNotSupportedException = schema.new({
 })
 
 M.UpdateImageStorageClassInput = schema.new({
-    id = id.from(_N, "UpdateImageStorageClassInput"),
+    id = id.from(_N, "UpdateImageStorageClassRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -5306,7 +5306,7 @@ M.UpdateImageStorageClassInput = schema.new({
 })
 
 M.UpdateImageStorageClassOutput = schema.new({
-    id = id.from(_N, "UpdateImageStorageClassOutput"),
+    id = id.from(_N, "UpdateImageStorageClassResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -5338,7 +5338,7 @@ M.UpdateImageStorageClassOutput = schema.new({
 })
 
 M.UpdatePullThroughCacheRuleInput = schema.new({
-    id = id.from(_N, "UpdatePullThroughCacheRuleInput"),
+    id = id.from(_N, "UpdatePullThroughCacheRuleRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -5372,7 +5372,7 @@ M.UpdatePullThroughCacheRuleInput = schema.new({
 })
 
 M.UpdatePullThroughCacheRuleOutput = schema.new({
-    id = id.from(_N, "UpdatePullThroughCacheRuleOutput"),
+    id = id.from(_N, "UpdatePullThroughCacheRuleResponse"),
     type = "structure",
     members = {
         ecrRepositoryPrefix = schema.new({
@@ -5415,7 +5415,7 @@ M.UpdatePullThroughCacheRuleOutput = schema.new({
 })
 
 M.UpdateRepositoryCreationTemplateInput = schema.new({
-    id = id.from(_N, "UpdateRepositoryCreationTemplateInput"),
+    id = id.from(_N, "UpdateRepositoryCreationTemplateRequest"),
     type = "structure",
     members = {
         prefix = schema.new({
@@ -5489,7 +5489,7 @@ M.UpdateRepositoryCreationTemplateInput = schema.new({
 })
 
 M.UpdateRepositoryCreationTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateRepositoryCreationTemplateOutput"),
+    id = id.from(_N, "UpdateRepositoryCreationTemplateResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -5549,7 +5549,7 @@ M.InvalidLayerPartException = schema.new({
 })
 
 M.UploadLayerPartInput = schema.new({
-    id = id.from(_N, "UploadLayerPartInput"),
+    id = id.from(_N, "UploadLayerPartRequest"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -5607,7 +5607,7 @@ M.UploadLayerPartInput = schema.new({
 })
 
 M.UploadLayerPartOutput = schema.new({
-    id = id.from(_N, "UploadLayerPartOutput"),
+    id = id.from(_N, "UploadLayerPartResponse"),
     type = "structure",
     members = {
         registryId = schema.new({
@@ -5638,7 +5638,7 @@ M.UploadLayerPartOutput = schema.new({
 })
 
 M.ValidatePullThroughCacheRuleInput = schema.new({
-    id = id.from(_N, "ValidatePullThroughCacheRuleInput"),
+    id = id.from(_N, "ValidatePullThroughCacheRuleRequest"),
     type = "structure",
     members = {
         ecrRepositoryPrefix = schema.new({
@@ -5660,7 +5660,7 @@ M.ValidatePullThroughCacheRuleInput = schema.new({
 })
 
 M.ValidatePullThroughCacheRuleOutput = schema.new({
-    id = id.from(_N, "ValidatePullThroughCacheRuleOutput"),
+    id = id.from(_N, "ValidatePullThroughCacheRuleResponse"),
     type = "structure",
     members = {
         ecrRepositoryPrefix = schema.new({
@@ -5716,5 +5716,19 @@ M.ValidatePullThroughCacheRuleOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

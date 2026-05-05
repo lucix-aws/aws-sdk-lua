@@ -8,7 +8,7 @@ local _N = "com.amazonaws.apigatewaymanagementapi"
 local M = {}
 
 M.DeleteConnectionInput = schema.new({
-    id = id.from(_N, "DeleteConnectionInput"),
+    id = id.from(_N, "DeleteConnectionRequest"),
     type = "structure",
     members = {
         ConnectionId = schema.new({
@@ -25,7 +25,7 @@ M.DeleteConnectionInput = schema.new({
 })
 
 M.DeleteConnectionOutput = schema.new({
-    id = id.from(_N, "DeleteConnectionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -54,7 +54,7 @@ M.LimitExceededException = schema.new({
 })
 
 M.GetConnectionInput = schema.new({
-    id = id.from(_N, "GetConnectionInput"),
+    id = id.from(_N, "GetConnectionRequest"),
     type = "structure",
     members = {
         ConnectionId = schema.new({
@@ -98,7 +98,7 @@ M.Identity = schema.new({
 })
 
 M.GetConnectionOutput = schema.new({
-    id = id.from(_N, "GetConnectionOutput"),
+    id = id.from(_N, "GetConnectionResponse"),
     type = "structure",
     members = {
         ConnectedAt = schema.new({
@@ -160,7 +160,7 @@ M.PayloadTooLargeException = schema.new({
 })
 
 M.PostToConnectionInput = schema.new({
-    id = id.from(_N, "PostToConnectionInput"),
+    id = id.from(_N, "PostToConnectionRequest"),
     type = "structure",
     members = {
         Data = schema.new({
@@ -187,8 +187,22 @@ M.PostToConnectionInput = schema.new({
 })
 
 M.PostToConnectionOutput = schema.new({
-    id = id.from(_N, "PostToConnectionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

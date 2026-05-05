@@ -33,7 +33,7 @@ M.Tag = schema.new({
 })
 
 M.CreateHttpNamespaceInput = schema.new({
-    id = id.from(_N, "CreateHttpNamespaceInput"),
+    id = id.from(_N, "CreateHttpNamespaceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -71,7 +71,7 @@ M.CreateHttpNamespaceInput = schema.new({
 })
 
 M.CreateHttpNamespaceOutput = schema.new({
-    id = id.from(_N, "CreateHttpNamespaceOutput"),
+    id = id.from(_N, "CreateHttpNamespaceResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -238,7 +238,7 @@ M.PrivateDnsNamespaceProperties = schema.new({
 })
 
 M.CreatePrivateDnsNamespaceInput = schema.new({
-    id = id.from(_N, "CreatePrivateDnsNamespaceInput"),
+    id = id.from(_N, "CreatePrivateDnsNamespaceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -292,7 +292,7 @@ M.CreatePrivateDnsNamespaceInput = schema.new({
 })
 
 M.CreatePrivateDnsNamespaceOutput = schema.new({
-    id = id.from(_N, "CreatePrivateDnsNamespaceOutput"),
+    id = id.from(_N, "CreatePrivateDnsNamespaceResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -339,7 +339,7 @@ M.PublicDnsNamespaceProperties = schema.new({
 })
 
 M.CreatePublicDnsNamespaceInput = schema.new({
-    id = id.from(_N, "CreatePublicDnsNamespaceInput"),
+    id = id.from(_N, "CreatePublicDnsNamespaceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -384,7 +384,7 @@ M.CreatePublicDnsNamespaceInput = schema.new({
 })
 
 M.CreatePublicDnsNamespaceOutput = schema.new({
-    id = id.from(_N, "CreatePublicDnsNamespaceOutput"),
+    id = id.from(_N, "CreatePublicDnsNamespaceResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -492,7 +492,7 @@ M.HealthCheckCustomConfig = schema.new({
 })
 
 M.CreateServiceInput = schema.new({
-    id = id.from(_N, "CreateServiceInput"),
+    id = id.from(_N, "CreateServiceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -657,7 +657,7 @@ M.Service = schema.new({
 })
 
 M.CreateServiceOutput = schema.new({
-    id = id.from(_N, "CreateServiceOutput"),
+    id = id.from(_N, "CreateServiceResponse"),
     type = "structure",
     members = {
         Service = schema.new({
@@ -737,7 +737,7 @@ M.CustomHealthNotFound = schema.new({
 })
 
 M.DeleteNamespaceInput = schema.new({
-    id = id.from(_N, "DeleteNamespaceInput"),
+    id = id.from(_N, "DeleteNamespaceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -753,7 +753,7 @@ M.DeleteNamespaceInput = schema.new({
 })
 
 M.DeleteNamespaceOutput = schema.new({
-    id = id.from(_N, "DeleteNamespaceOutput"),
+    id = id.from(_N, "DeleteNamespaceResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -782,7 +782,7 @@ M.ResourceInUse = schema.new({
 })
 
 M.DeleteServiceInput = schema.new({
-    id = id.from(_N, "DeleteServiceInput"),
+    id = id.from(_N, "DeleteServiceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -798,7 +798,7 @@ M.DeleteServiceInput = schema.new({
 })
 
 M.DeleteServiceOutput = schema.new({
-    id = id.from(_N, "DeleteServiceOutput"),
+    id = id.from(_N, "DeleteServiceResponse"),
     type = "structure",
 })
 
@@ -819,7 +819,7 @@ M.ServiceNotFound = schema.new({
 })
 
 M.DeleteServiceAttributesInput = schema.new({
-    id = id.from(_N, "DeleteServiceAttributesInput"),
+    id = id.from(_N, "DeleteServiceAttributesRequest"),
     type = "structure",
     members = {
         ServiceId = schema.new({
@@ -845,12 +845,12 @@ M.DeleteServiceAttributesInput = schema.new({
 })
 
 M.DeleteServiceAttributesOutput = schema.new({
-    id = id.from(_N, "DeleteServiceAttributesOutput"),
+    id = id.from(_N, "DeleteServiceAttributesResponse"),
     type = "structure",
 })
 
 M.DeregisterInstanceInput = schema.new({
-    id = id.from(_N, "DeregisterInstanceInput"),
+    id = id.from(_N, "DeregisterInstanceRequest"),
     type = "structure",
     members = {
         ServiceId = schema.new({
@@ -875,7 +875,7 @@ M.DeregisterInstanceInput = schema.new({
 })
 
 M.DeregisterInstanceOutput = schema.new({
-    id = id.from(_N, "DeregisterInstanceOutput"),
+    id = id.from(_N, "DeregisterInstanceResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -904,7 +904,7 @@ M.InstanceNotFound = schema.new({
 })
 
 M.DiscoverInstancesInput = schema.new({
-    id = id.from(_N, "DiscoverInstancesInput"),
+    id = id.from(_N, "DiscoverInstancesRequest"),
     type = "structure",
     members = {
         NamespaceName = schema.new({
@@ -1002,7 +1002,7 @@ M.HttpInstanceSummary = schema.new({
 })
 
 M.DiscoverInstancesOutput = schema.new({
-    id = id.from(_N, "DiscoverInstancesOutput"),
+    id = id.from(_N, "DiscoverInstancesResponse"),
     type = "structure",
     members = {
         Instances = schema.new({
@@ -1038,7 +1038,7 @@ M.RequestLimitExceeded = schema.new({
 })
 
 M.DiscoverInstancesRevisionInput = schema.new({
-    id = id.from(_N, "DiscoverInstancesRevisionInput"),
+    id = id.from(_N, "DiscoverInstancesRevisionRequest"),
     type = "structure",
     members = {
         NamespaceName = schema.new({
@@ -1069,7 +1069,7 @@ M.DiscoverInstancesRevisionInput = schema.new({
 })
 
 M.DiscoverInstancesRevisionOutput = schema.new({
-    id = id.from(_N, "DiscoverInstancesRevisionOutput"),
+    id = id.from(_N, "DiscoverInstancesRevisionResponse"),
     type = "structure",
     members = {
         InstancesRevision = schema.new({
@@ -1119,7 +1119,7 @@ M.DnsProperties = schema.new({
 })
 
 M.GetInstanceInput = schema.new({
-    id = id.from(_N, "GetInstanceInput"),
+    id = id.from(_N, "GetInstanceRequest"),
     type = "structure",
     members = {
         ServiceId = schema.new({
@@ -1180,7 +1180,7 @@ M.Instance = schema.new({
 })
 
 M.GetInstanceOutput = schema.new({
-    id = id.from(_N, "GetInstanceOutput"),
+    id = id.from(_N, "GetInstanceResponse"),
     type = "structure",
     members = {
         ResourceOwner = schema.new({
@@ -1200,7 +1200,7 @@ M.GetInstanceOutput = schema.new({
 })
 
 M.GetInstancesHealthStatusInput = schema.new({
-    id = id.from(_N, "GetInstancesHealthStatusInput"),
+    id = id.from(_N, "GetInstancesHealthStatusRequest"),
     type = "structure",
     members = {
         ServiceId = schema.new({
@@ -1217,7 +1217,7 @@ M.GetInstancesHealthStatusInput = schema.new({
             type = "list",
             name = "Instances",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "InstanceId" } } }),
         }),
         MaxResults = schema.new({
             id = id.from(_N, "GetInstancesHealthStatusInput", "MaxResults"),
@@ -1235,7 +1235,7 @@ M.GetInstancesHealthStatusInput = schema.new({
 })
 
 M.GetInstancesHealthStatusOutput = schema.new({
-    id = id.from(_N, "GetInstancesHealthStatusOutput"),
+    id = id.from(_N, "GetInstancesHealthStatusResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -1256,7 +1256,7 @@ M.GetInstancesHealthStatusOutput = schema.new({
 })
 
 M.GetNamespaceInput = schema.new({
-    id = id.from(_N, "GetNamespaceInput"),
+    id = id.from(_N, "GetNamespaceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1374,7 +1374,7 @@ M.Namespace = schema.new({
 })
 
 M.GetNamespaceOutput = schema.new({
-    id = id.from(_N, "GetNamespaceOutput"),
+    id = id.from(_N, "GetNamespaceResponse"),
     type = "structure",
     members = {
         Namespace = schema.new({
@@ -1388,7 +1388,7 @@ M.GetNamespaceOutput = schema.new({
 })
 
 M.GetOperationInput = schema.new({
-    id = id.from(_N, "GetOperationInput"),
+    id = id.from(_N, "GetOperationRequest"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -1473,7 +1473,7 @@ M.Operation = schema.new({
 })
 
 M.GetOperationOutput = schema.new({
-    id = id.from(_N, "GetOperationOutput"),
+    id = id.from(_N, "GetOperationResponse"),
     type = "structure",
     members = {
         Operation = schema.new({
@@ -1503,7 +1503,7 @@ M.OperationNotFound = schema.new({
 })
 
 M.GetServiceInput = schema.new({
-    id = id.from(_N, "GetServiceInput"),
+    id = id.from(_N, "GetServiceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1519,7 +1519,7 @@ M.GetServiceInput = schema.new({
 })
 
 M.GetServiceOutput = schema.new({
-    id = id.from(_N, "GetServiceOutput"),
+    id = id.from(_N, "GetServiceResponse"),
     type = "structure",
     members = {
         Service = schema.new({
@@ -1533,7 +1533,7 @@ M.GetServiceOutput = schema.new({
 })
 
 M.GetServiceAttributesInput = schema.new({
-    id = id.from(_N, "GetServiceAttributesInput"),
+    id = id.from(_N, "GetServiceAttributesRequest"),
     type = "structure",
     members = {
         ServiceId = schema.new({
@@ -1576,7 +1576,7 @@ M.ServiceAttributes = schema.new({
 })
 
 M.GetServiceAttributesOutput = schema.new({
-    id = id.from(_N, "GetServiceAttributesOutput"),
+    id = id.from(_N, "GetServiceAttributesResponse"),
     type = "structure",
     members = {
         ServiceAttributes = schema.new({
@@ -1633,7 +1633,7 @@ M.InstanceSummary = schema.new({
 })
 
 M.ListInstancesInput = schema.new({
-    id = id.from(_N, "ListInstancesInput"),
+    id = id.from(_N, "ListInstancesRequest"),
     type = "structure",
     members = {
         ServiceId = schema.new({
@@ -1661,7 +1661,7 @@ M.ListInstancesInput = schema.new({
 })
 
 M.ListInstancesOutput = schema.new({
-    id = id.from(_N, "ListInstancesOutput"),
+    id = id.from(_N, "ListInstancesResponse"),
     type = "structure",
     members = {
         ResourceOwner = schema.new({
@@ -1675,7 +1675,7 @@ M.ListInstancesOutput = schema.new({
             type = "list",
             name = "Instances",
             target_id = prelude.Document.id,
-            list_member = M.InstanceSummary,
+            list_member = schema.new({ type = "structure", target = M.InstanceSummary, traits = { [traits.XML_NAME] = { name = "InstanceSummary" } } }),
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListInstancesOutput", "NextToken"),
@@ -1704,7 +1704,7 @@ M.NamespaceFilter = schema.new({
             type = "list",
             name = "Values",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1719,7 +1719,7 @@ M.NamespaceFilter = schema.new({
 })
 
 M.ListNamespacesInput = schema.new({
-    id = id.from(_N, "ListNamespacesInput"),
+    id = id.from(_N, "ListNamespacesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1739,7 +1739,7 @@ M.ListNamespacesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.NamespaceFilter,
+            list_member = schema.new({ type = "structure", target = M.NamespaceFilter, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
@@ -1807,7 +1807,7 @@ M.NamespaceSummary = schema.new({
 })
 
 M.ListNamespacesOutput = schema.new({
-    id = id.from(_N, "ListNamespacesOutput"),
+    id = id.from(_N, "ListNamespacesResponse"),
     type = "structure",
     members = {
         Namespaces = schema.new({
@@ -1844,7 +1844,7 @@ M.OperationFilter = schema.new({
             type = "list",
             name = "Values",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1859,7 +1859,7 @@ M.OperationFilter = schema.new({
 })
 
 M.ListOperationsInput = schema.new({
-    id = id.from(_N, "ListOperationsInput"),
+    id = id.from(_N, "ListOperationsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1879,7 +1879,7 @@ M.ListOperationsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.OperationFilter,
+            list_member = schema.new({ type = "structure", target = M.OperationFilter, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
@@ -1904,7 +1904,7 @@ M.OperationSummary = schema.new({
 })
 
 M.ListOperationsOutput = schema.new({
-    id = id.from(_N, "ListOperationsOutput"),
+    id = id.from(_N, "ListOperationsResponse"),
     type = "structure",
     members = {
         Operations = schema.new({
@@ -1912,7 +1912,7 @@ M.ListOperationsOutput = schema.new({
             type = "list",
             name = "Operations",
             target_id = prelude.Document.id,
-            list_member = M.OperationSummary,
+            list_member = schema.new({ type = "structure", target = M.OperationSummary, traits = { [traits.XML_NAME] = { name = "OperationSummary" } } }),
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListOperationsOutput", "NextToken"),
@@ -1941,7 +1941,7 @@ M.ServiceFilter = schema.new({
             type = "list",
             name = "Values",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1956,7 +1956,7 @@ M.ServiceFilter = schema.new({
 })
 
 M.ListServicesInput = schema.new({
-    id = id.from(_N, "ListServicesInput"),
+    id = id.from(_N, "ListServicesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1976,7 +1976,7 @@ M.ListServicesInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.ServiceFilter,
+            list_member = schema.new({ type = "structure", target = M.ServiceFilter, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
@@ -2064,7 +2064,7 @@ M.ServiceSummary = schema.new({
 })
 
 M.ListServicesOutput = schema.new({
-    id = id.from(_N, "ListServicesOutput"),
+    id = id.from(_N, "ListServicesResponse"),
     type = "structure",
     members = {
         Services = schema.new({
@@ -2084,7 +2084,7 @@ M.ListServicesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2100,7 +2100,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2254,7 +2254,7 @@ M.PublicDnsNamespaceChange = schema.new({
 })
 
 M.RegisterInstanceInput = schema.new({
-    id = id.from(_N, "RegisterInstanceInput"),
+    id = id.from(_N, "RegisterInstanceRequest"),
     type = "structure",
     members = {
         ServiceId = schema.new({
@@ -2299,7 +2299,7 @@ M.RegisterInstanceInput = schema.new({
 })
 
 M.RegisterInstanceOutput = schema.new({
-    id = id.from(_N, "RegisterInstanceOutput"),
+    id = id.from(_N, "RegisterInstanceResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -2312,7 +2312,7 @@ M.RegisterInstanceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2338,12 +2338,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2369,12 +2369,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateHttpNamespaceInput = schema.new({
-    id = id.from(_N, "UpdateHttpNamespaceInput"),
+    id = id.from(_N, "UpdateHttpNamespaceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2409,7 +2409,7 @@ M.UpdateHttpNamespaceInput = schema.new({
 })
 
 M.UpdateHttpNamespaceOutput = schema.new({
-    id = id.from(_N, "UpdateHttpNamespaceOutput"),
+    id = id.from(_N, "UpdateHttpNamespaceResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -2422,7 +2422,7 @@ M.UpdateHttpNamespaceOutput = schema.new({
 })
 
 M.UpdateInstanceCustomHealthStatusInput = schema.new({
-    id = id.from(_N, "UpdateInstanceCustomHealthStatusInput"),
+    id = id.from(_N, "UpdateInstanceCustomHealthStatusRequest"),
     type = "structure",
     members = {
         ServiceId = schema.new({
@@ -2456,12 +2456,12 @@ M.UpdateInstanceCustomHealthStatusInput = schema.new({
 })
 
 M.UpdateInstanceCustomHealthStatusOutput = schema.new({
-    id = id.from(_N, "UpdateInstanceCustomHealthStatusOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdatePrivateDnsNamespaceInput = schema.new({
-    id = id.from(_N, "UpdatePrivateDnsNamespaceInput"),
+    id = id.from(_N, "UpdatePrivateDnsNamespaceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2496,7 +2496,7 @@ M.UpdatePrivateDnsNamespaceInput = schema.new({
 })
 
 M.UpdatePrivateDnsNamespaceOutput = schema.new({
-    id = id.from(_N, "UpdatePrivateDnsNamespaceOutput"),
+    id = id.from(_N, "UpdatePrivateDnsNamespaceResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -2509,7 +2509,7 @@ M.UpdatePrivateDnsNamespaceOutput = schema.new({
 })
 
 M.UpdatePublicDnsNamespaceInput = schema.new({
-    id = id.from(_N, "UpdatePublicDnsNamespaceInput"),
+    id = id.from(_N, "UpdatePublicDnsNamespaceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2544,7 +2544,7 @@ M.UpdatePublicDnsNamespaceInput = schema.new({
 })
 
 M.UpdatePublicDnsNamespaceOutput = schema.new({
-    id = id.from(_N, "UpdatePublicDnsNamespaceOutput"),
+    id = id.from(_N, "UpdatePublicDnsNamespaceResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -2584,7 +2584,7 @@ M.ServiceChange = schema.new({
 })
 
 M.UpdateServiceInput = schema.new({
-    id = id.from(_N, "UpdateServiceInput"),
+    id = id.from(_N, "UpdateServiceRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2610,7 +2610,7 @@ M.UpdateServiceInput = schema.new({
 })
 
 M.UpdateServiceOutput = schema.new({
-    id = id.from(_N, "UpdateServiceOutput"),
+    id = id.from(_N, "UpdateServiceResponse"),
     type = "structure",
     members = {
         OperationId = schema.new({
@@ -2639,7 +2639,7 @@ M.ServiceAttributesLimitExceededException = schema.new({
 })
 
 M.UpdateServiceAttributesInput = schema.new({
-    id = id.from(_N, "UpdateServiceAttributesInput"),
+    id = id.from(_N, "UpdateServiceAttributesRequest"),
     type = "structure",
     members = {
         ServiceId = schema.new({
@@ -2666,8 +2666,22 @@ M.UpdateServiceAttributesInput = schema.new({
 })
 
 M.UpdateServiceAttributesOutput = schema.new({
-    id = id.from(_N, "UpdateServiceAttributesOutput"),
+    id = id.from(_N, "UpdateServiceAttributesResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

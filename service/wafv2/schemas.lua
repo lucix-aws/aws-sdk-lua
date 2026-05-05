@@ -2027,7 +2027,7 @@ M.ApplicationConfig = schema.new({
 })
 
 M.AssociateWebACLInput = schema.new({
-    id = id.from(_N, "AssociateWebACLInput"),
+    id = id.from(_N, "AssociateWebACLRequest"),
     type = "structure",
     members = {
         WebACLArn = schema.new({
@@ -2052,7 +2052,7 @@ M.AssociateWebACLInput = schema.new({
 })
 
 M.AssociateWebACLOutput = schema.new({
-    id = id.from(_N, "AssociateWebACLOutput"),
+    id = id.from(_N, "AssociateWebACLResponse"),
     type = "structure",
 })
 
@@ -2372,7 +2372,7 @@ M.VisibilityConfig = schema.new({
 })
 
 M.CheckCapacityOutput = schema.new({
-    id = id.from(_N, "CheckCapacityOutput"),
+    id = id.from(_N, "CheckCapacityResponse"),
     type = "structure",
     members = {
         Capacity = schema.new({
@@ -2436,7 +2436,7 @@ M.WAFSubscriptionNotFoundException = schema.new({
 })
 
 M.CreateAPIKeyInput = schema.new({
-    id = id.from(_N, "CreateAPIKeyInput"),
+    id = id.from(_N, "CreateAPIKeyRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -2462,7 +2462,7 @@ M.CreateAPIKeyInput = schema.new({
 })
 
 M.CreateAPIKeyOutput = schema.new({
-    id = id.from(_N, "CreateAPIKeyOutput"),
+    id = id.from(_N, "CreateAPIKeyResponse"),
     type = "structure",
     members = {
         APIKey = schema.new({
@@ -2500,7 +2500,7 @@ M.Tag = schema.new({
 })
 
 M.CreateIPSetInput = schema.new({
-    id = id.from(_N, "CreateIPSetInput"),
+    id = id.from(_N, "CreateIPSetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2594,7 +2594,7 @@ M.IPSetSummary = schema.new({
 })
 
 M.CreateIPSetOutput = schema.new({
-    id = id.from(_N, "CreateIPSetOutput"),
+    id = id.from(_N, "CreateIPSetResponse"),
     type = "structure",
     members = {
         Summary = schema.new({
@@ -2672,7 +2672,7 @@ M.WAFTagOperationInternalErrorException = schema.new({
 })
 
 M.CreateRegexPatternSetInput = schema.new({
-    id = id.from(_N, "CreateRegexPatternSetInput"),
+    id = id.from(_N, "CreateRegexPatternSetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2757,7 +2757,7 @@ M.RegexPatternSetSummary = schema.new({
 })
 
 M.CreateRegexPatternSetOutput = schema.new({
-    id = id.from(_N, "CreateRegexPatternSetOutput"),
+    id = id.from(_N, "CreateRegexPatternSetResponse"),
     type = "structure",
     members = {
         Summary = schema.new({
@@ -2833,7 +2833,7 @@ M.RuleGroupSummary = schema.new({
 })
 
 M.CreateRuleGroupOutput = schema.new({
-    id = id.from(_N, "CreateRuleGroupOutput"),
+    id = id.from(_N, "CreateRuleGroupResponse"),
     type = "structure",
     members = {
         Summary = schema.new({
@@ -3005,7 +3005,7 @@ M.WebACLSummary = schema.new({
 })
 
 M.CreateWebACLOutput = schema.new({
-    id = id.from(_N, "CreateWebACLOutput"),
+    id = id.from(_N, "CreateWebACLResponse"),
     type = "structure",
     members = {
         Summary = schema.new({
@@ -3035,7 +3035,7 @@ M.WAFConfigurationWarningException = schema.new({
 })
 
 M.DeleteAPIKeyInput = schema.new({
-    id = id.from(_N, "DeleteAPIKeyInput"),
+    id = id.from(_N, "DeleteAPIKeyRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -3060,12 +3060,12 @@ M.DeleteAPIKeyInput = schema.new({
 })
 
 M.DeleteAPIKeyOutput = schema.new({
-    id = id.from(_N, "DeleteAPIKeyOutput"),
+    id = id.from(_N, "DeleteAPIKeyResponse"),
     type = "structure",
 })
 
 M.DeleteFirewallManagerRuleGroupsInput = schema.new({
-    id = id.from(_N, "DeleteFirewallManagerRuleGroupsInput"),
+    id = id.from(_N, "DeleteFirewallManagerRuleGroupsRequest"),
     type = "structure",
     members = {
         WebACLArn = schema.new({
@@ -3090,7 +3090,7 @@ M.DeleteFirewallManagerRuleGroupsInput = schema.new({
 })
 
 M.DeleteFirewallManagerRuleGroupsOutput = schema.new({
-    id = id.from(_N, "DeleteFirewallManagerRuleGroupsOutput"),
+    id = id.from(_N, "DeleteFirewallManagerRuleGroupsResponse"),
     type = "structure",
     members = {
         NextWebACLLockToken = schema.new({
@@ -3103,7 +3103,7 @@ M.DeleteFirewallManagerRuleGroupsOutput = schema.new({
 })
 
 M.DeleteIPSetInput = schema.new({
-    id = id.from(_N, "DeleteIPSetInput"),
+    id = id.from(_N, "DeleteIPSetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3146,7 +3146,7 @@ M.DeleteIPSetInput = schema.new({
 })
 
 M.DeleteIPSetOutput = schema.new({
-    id = id.from(_N, "DeleteIPSetOutput"),
+    id = id.from(_N, "DeleteIPSetResponse"),
     type = "structure",
 })
 
@@ -3167,7 +3167,7 @@ M.WAFAssociatedItemException = schema.new({
 })
 
 M.DeleteLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteLoggingConfigurationInput"),
+    id = id.from(_N, "DeleteLoggingConfigurationRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3195,12 +3195,12 @@ M.DeleteLoggingConfigurationInput = schema.new({
 })
 
 M.DeleteLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteLoggingConfigurationOutput"),
+    id = id.from(_N, "DeleteLoggingConfigurationResponse"),
     type = "structure",
 })
 
 M.DeletePermissionPolicyInput = schema.new({
-    id = id.from(_N, "DeletePermissionPolicyInput"),
+    id = id.from(_N, "DeletePermissionPolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3216,12 +3216,12 @@ M.DeletePermissionPolicyInput = schema.new({
 })
 
 M.DeletePermissionPolicyOutput = schema.new({
-    id = id.from(_N, "DeletePermissionPolicyOutput"),
+    id = id.from(_N, "DeletePermissionPolicyResponse"),
     type = "structure",
 })
 
 M.DeleteRegexPatternSetInput = schema.new({
-    id = id.from(_N, "DeleteRegexPatternSetInput"),
+    id = id.from(_N, "DeleteRegexPatternSetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3264,12 +3264,12 @@ M.DeleteRegexPatternSetInput = schema.new({
 })
 
 M.DeleteRegexPatternSetOutput = schema.new({
-    id = id.from(_N, "DeleteRegexPatternSetOutput"),
+    id = id.from(_N, "DeleteRegexPatternSetResponse"),
     type = "structure",
 })
 
 M.DeleteRuleGroupInput = schema.new({
-    id = id.from(_N, "DeleteRuleGroupInput"),
+    id = id.from(_N, "DeleteRuleGroupRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3312,12 +3312,12 @@ M.DeleteRuleGroupInput = schema.new({
 })
 
 M.DeleteRuleGroupOutput = schema.new({
-    id = id.from(_N, "DeleteRuleGroupOutput"),
+    id = id.from(_N, "DeleteRuleGroupResponse"),
     type = "structure",
 })
 
 M.DeleteWebACLInput = schema.new({
-    id = id.from(_N, "DeleteWebACLInput"),
+    id = id.from(_N, "DeleteWebACLRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3360,12 +3360,12 @@ M.DeleteWebACLInput = schema.new({
 })
 
 M.DeleteWebACLOutput = schema.new({
-    id = id.from(_N, "DeleteWebACLOutput"),
+    id = id.from(_N, "DeleteWebACLResponse"),
     type = "structure",
 })
 
 M.DescribeAllManagedProductsInput = schema.new({
-    id = id.from(_N, "DescribeAllManagedProductsInput"),
+    id = id.from(_N, "DescribeAllManagedProductsRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -3448,7 +3448,7 @@ M.ManagedProductDescriptor = schema.new({
 })
 
 M.DescribeAllManagedProductsOutput = schema.new({
-    id = id.from(_N, "DescribeAllManagedProductsOutput"),
+    id = id.from(_N, "DescribeAllManagedProductsResponse"),
     type = "structure",
     members = {
         ManagedProducts = schema.new({
@@ -3462,7 +3462,7 @@ M.DescribeAllManagedProductsOutput = schema.new({
 })
 
 M.DescribeManagedProductsByVendorInput = schema.new({
-    id = id.from(_N, "DescribeManagedProductsByVendorInput"),
+    id = id.from(_N, "DescribeManagedProductsByVendorRequest"),
     type = "structure",
     members = {
         VendorName = schema.new({
@@ -3487,7 +3487,7 @@ M.DescribeManagedProductsByVendorInput = schema.new({
 })
 
 M.DescribeManagedProductsByVendorOutput = schema.new({
-    id = id.from(_N, "DescribeManagedProductsByVendorOutput"),
+    id = id.from(_N, "DescribeManagedProductsByVendorResponse"),
     type = "structure",
     members = {
         ManagedProducts = schema.new({
@@ -3501,7 +3501,7 @@ M.DescribeManagedProductsByVendorOutput = schema.new({
 })
 
 M.DescribeManagedRuleGroupInput = schema.new({
-    id = id.from(_N, "DescribeManagedRuleGroupInput"),
+    id = id.from(_N, "DescribeManagedRuleGroupRequest"),
     type = "structure",
     members = {
         VendorName = schema.new({
@@ -3574,7 +3574,7 @@ M.RuleSummary = schema.new({
 })
 
 M.DescribeManagedRuleGroupOutput = schema.new({
-    id = id.from(_N, "DescribeManagedRuleGroupOutput"),
+    id = id.from(_N, "DescribeManagedRuleGroupResponse"),
     type = "structure",
     members = {
         VersionName = schema.new({
@@ -3626,7 +3626,7 @@ M.DescribeManagedRuleGroupOutput = schema.new({
 })
 
 M.DisassociateWebACLInput = schema.new({
-    id = id.from(_N, "DisassociateWebACLInput"),
+    id = id.from(_N, "DisassociateWebACLRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3642,12 +3642,12 @@ M.DisassociateWebACLInput = schema.new({
 })
 
 M.DisassociateWebACLOutput = schema.new({
-    id = id.from(_N, "DisassociateWebACLOutput"),
+    id = id.from(_N, "DisassociateWebACLResponse"),
     type = "structure",
 })
 
 M.GenerateMobileSdkReleaseUrlInput = schema.new({
-    id = id.from(_N, "GenerateMobileSdkReleaseUrlInput"),
+    id = id.from(_N, "GenerateMobileSdkReleaseUrlRequest"),
     type = "structure",
     members = {
         Platform = schema.new({
@@ -3672,7 +3672,7 @@ M.GenerateMobileSdkReleaseUrlInput = schema.new({
 })
 
 M.GenerateMobileSdkReleaseUrlOutput = schema.new({
-    id = id.from(_N, "GenerateMobileSdkReleaseUrlOutput"),
+    id = id.from(_N, "GenerateMobileSdkReleaseUrlResponse"),
     type = "structure",
     members = {
         Url = schema.new({
@@ -3685,7 +3685,7 @@ M.GenerateMobileSdkReleaseUrlOutput = schema.new({
 })
 
 M.GetDecryptedAPIKeyInput = schema.new({
-    id = id.from(_N, "GetDecryptedAPIKeyInput"),
+    id = id.from(_N, "GetDecryptedAPIKeyRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -3710,7 +3710,7 @@ M.GetDecryptedAPIKeyInput = schema.new({
 })
 
 M.GetDecryptedAPIKeyOutput = schema.new({
-    id = id.from(_N, "GetDecryptedAPIKeyOutput"),
+    id = id.from(_N, "GetDecryptedAPIKeyResponse"),
     type = "structure",
     members = {
         TokenDomains = schema.new({
@@ -3730,7 +3730,7 @@ M.GetDecryptedAPIKeyOutput = schema.new({
 })
 
 M.GetIPSetInput = schema.new({
-    id = id.from(_N, "GetIPSetInput"),
+    id = id.from(_N, "GetIPSetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3823,7 +3823,7 @@ M.IPSet = schema.new({
 })
 
 M.GetIPSetOutput = schema.new({
-    id = id.from(_N, "GetIPSetOutput"),
+    id = id.from(_N, "GetIPSetResponse"),
     type = "structure",
     members = {
         IPSet = schema.new({
@@ -3843,7 +3843,7 @@ M.GetIPSetOutput = schema.new({
 })
 
 M.GetLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "GetLoggingConfigurationInput"),
+    id = id.from(_N, "GetLoggingConfigurationRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4030,7 +4030,7 @@ M.LoggingConfiguration = schema.new({
 })
 
 M.GetLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "GetLoggingConfigurationOutput"),
+    id = id.from(_N, "GetLoggingConfigurationResponse"),
     type = "structure",
     members = {
         LoggingConfiguration = schema.new({
@@ -4044,7 +4044,7 @@ M.GetLoggingConfigurationOutput = schema.new({
 })
 
 M.GetManagedRuleSetInput = schema.new({
-    id = id.from(_N, "GetManagedRuleSetInput"),
+    id = id.from(_N, "GetManagedRuleSetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4181,7 +4181,7 @@ M.ManagedRuleSet = schema.new({
 })
 
 M.GetManagedRuleSetOutput = schema.new({
-    id = id.from(_N, "GetManagedRuleSetOutput"),
+    id = id.from(_N, "GetManagedRuleSetResponse"),
     type = "structure",
     members = {
         ManagedRuleSet = schema.new({
@@ -4201,7 +4201,7 @@ M.GetManagedRuleSetOutput = schema.new({
 })
 
 M.GetMobileSdkReleaseInput = schema.new({
-    id = id.from(_N, "GetMobileSdkReleaseInput"),
+    id = id.from(_N, "GetMobileSdkReleaseRequest"),
     type = "structure",
     members = {
         Platform = schema.new({
@@ -4258,7 +4258,7 @@ M.MobileSdkRelease = schema.new({
 })
 
 M.GetMobileSdkReleaseOutput = schema.new({
-    id = id.from(_N, "GetMobileSdkReleaseOutput"),
+    id = id.from(_N, "GetMobileSdkReleaseResponse"),
     type = "structure",
     members = {
         MobileSdkRelease = schema.new({
@@ -4272,7 +4272,7 @@ M.GetMobileSdkReleaseOutput = schema.new({
 })
 
 M.GetPermissionPolicyInput = schema.new({
-    id = id.from(_N, "GetPermissionPolicyInput"),
+    id = id.from(_N, "GetPermissionPolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4288,7 +4288,7 @@ M.GetPermissionPolicyInput = schema.new({
 })
 
 M.GetPermissionPolicyOutput = schema.new({
-    id = id.from(_N, "GetPermissionPolicyOutput"),
+    id = id.from(_N, "GetPermissionPolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -4301,7 +4301,7 @@ M.GetPermissionPolicyOutput = schema.new({
 })
 
 M.GetRateBasedStatementManagedKeysInput = schema.new({
-    id = id.from(_N, "GetRateBasedStatementManagedKeysInput"),
+    id = id.from(_N, "GetRateBasedStatementManagedKeysRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -4370,7 +4370,7 @@ M.RateBasedStatementManagedKeysIPSet = schema.new({
 })
 
 M.GetRateBasedStatementManagedKeysOutput = schema.new({
-    id = id.from(_N, "GetRateBasedStatementManagedKeysOutput"),
+    id = id.from(_N, "GetRateBasedStatementManagedKeysResponse"),
     type = "structure",
     members = {
         ManagedKeysIPV4 = schema.new({
@@ -4407,7 +4407,7 @@ M.WAFUnsupportedAggregateKeyTypeException = schema.new({
 })
 
 M.GetRegexPatternSetInput = schema.new({
-    id = id.from(_N, "GetRegexPatternSetInput"),
+    id = id.from(_N, "GetRegexPatternSetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4479,7 +4479,7 @@ M.RegexPatternSet = schema.new({
 })
 
 M.GetRegexPatternSetOutput = schema.new({
-    id = id.from(_N, "GetRegexPatternSetOutput"),
+    id = id.from(_N, "GetRegexPatternSetResponse"),
     type = "structure",
     members = {
         RegexPatternSet = schema.new({
@@ -4499,7 +4499,7 @@ M.GetRegexPatternSetOutput = schema.new({
 })
 
 M.GetRuleGroupInput = schema.new({
-    id = id.from(_N, "GetRuleGroupInput"),
+    id = id.from(_N, "GetRuleGroupRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4555,7 +4555,7 @@ M.TimeWindow = schema.new({
 })
 
 M.GetSampledRequestsInput = schema.new({
-    id = id.from(_N, "GetSampledRequestsInput"),
+    id = id.from(_N, "GetSampledRequestsRequest"),
     type = "structure",
     members = {
         WebAclArn = schema.new({
@@ -4806,7 +4806,7 @@ M.SampledHTTPRequest = schema.new({
 })
 
 M.GetSampledRequestsOutput = schema.new({
-    id = id.from(_N, "GetSampledRequestsOutput"),
+    id = id.from(_N, "GetSampledRequestsResponse"),
     type = "structure",
     members = {
         SampledRequests = schema.new({
@@ -4836,7 +4836,7 @@ M.GetSampledRequestsOutput = schema.new({
 })
 
 M.GetTopPathStatisticsByTrafficInput = schema.new({
-    id = id.from(_N, "GetTopPathStatisticsByTrafficInput"),
+    id = id.from(_N, "GetTopPathStatisticsByTrafficRequest"),
     type = "structure",
     members = {
         WebAclArn = schema.new({
@@ -5030,7 +5030,7 @@ M.PathStatistics = schema.new({
 })
 
 M.GetTopPathStatisticsByTrafficOutput = schema.new({
-    id = id.from(_N, "GetTopPathStatisticsByTrafficOutput"),
+    id = id.from(_N, "GetTopPathStatisticsByTrafficResponse"),
     type = "structure",
     members = {
         PathStatistics = schema.new({
@@ -5070,7 +5070,7 @@ M.GetTopPathStatisticsByTrafficOutput = schema.new({
 })
 
 M.GetWebACLInput = schema.new({
-    id = id.from(_N, "GetWebACLInput"),
+    id = id.from(_N, "GetWebACLRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -5101,7 +5101,7 @@ M.GetWebACLInput = schema.new({
 })
 
 M.GetWebACLForResourceInput = schema.new({
-    id = id.from(_N, "GetWebACLForResourceInput"),
+    id = id.from(_N, "GetWebACLForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5117,7 +5117,7 @@ M.GetWebACLForResourceInput = schema.new({
 })
 
 M.ListAPIKeysInput = schema.new({
-    id = id.from(_N, "ListAPIKeysInput"),
+    id = id.from(_N, "ListAPIKeysRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -5145,7 +5145,7 @@ M.ListAPIKeysInput = schema.new({
 })
 
 M.ListAPIKeysOutput = schema.new({
-    id = id.from(_N, "ListAPIKeysOutput"),
+    id = id.from(_N, "ListAPIKeysResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -5171,7 +5171,7 @@ M.ListAPIKeysOutput = schema.new({
 })
 
 M.ListAvailableManagedRuleGroupsInput = schema.new({
-    id = id.from(_N, "ListAvailableManagedRuleGroupsInput"),
+    id = id.from(_N, "ListAvailableManagedRuleGroupsRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -5233,7 +5233,7 @@ M.ManagedRuleGroupSummary = schema.new({
 })
 
 M.ListAvailableManagedRuleGroupsOutput = schema.new({
-    id = id.from(_N, "ListAvailableManagedRuleGroupsOutput"),
+    id = id.from(_N, "ListAvailableManagedRuleGroupsResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -5253,7 +5253,7 @@ M.ListAvailableManagedRuleGroupsOutput = schema.new({
 })
 
 M.ListAvailableManagedRuleGroupVersionsInput = schema.new({
-    id = id.from(_N, "ListAvailableManagedRuleGroupVersionsInput"),
+    id = id.from(_N, "ListAvailableManagedRuleGroupVersionsRequest"),
     type = "structure",
     members = {
         VendorName = schema.new({
@@ -5318,7 +5318,7 @@ M.ManagedRuleGroupVersion = schema.new({
 })
 
 M.ListAvailableManagedRuleGroupVersionsOutput = schema.new({
-    id = id.from(_N, "ListAvailableManagedRuleGroupVersionsOutput"),
+    id = id.from(_N, "ListAvailableManagedRuleGroupVersionsResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -5344,7 +5344,7 @@ M.ListAvailableManagedRuleGroupVersionsOutput = schema.new({
 })
 
 M.ListIPSetsInput = schema.new({
-    id = id.from(_N, "ListIPSetsInput"),
+    id = id.from(_N, "ListIPSetsRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -5372,7 +5372,7 @@ M.ListIPSetsInput = schema.new({
 })
 
 M.ListIPSetsOutput = schema.new({
-    id = id.from(_N, "ListIPSetsOutput"),
+    id = id.from(_N, "ListIPSetsResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -5392,7 +5392,7 @@ M.ListIPSetsOutput = schema.new({
 })
 
 M.ListLoggingConfigurationsInput = schema.new({
-    id = id.from(_N, "ListLoggingConfigurationsInput"),
+    id = id.from(_N, "ListLoggingConfigurationsRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -5426,7 +5426,7 @@ M.ListLoggingConfigurationsInput = schema.new({
 })
 
 M.ListLoggingConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListLoggingConfigurationsOutput"),
+    id = id.from(_N, "ListLoggingConfigurationsResponse"),
     type = "structure",
     members = {
         LoggingConfigurations = schema.new({
@@ -5446,7 +5446,7 @@ M.ListLoggingConfigurationsOutput = schema.new({
 })
 
 M.ListManagedRuleSetsInput = schema.new({
-    id = id.from(_N, "ListManagedRuleSetsInput"),
+    id = id.from(_N, "ListManagedRuleSetsRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -5517,7 +5517,7 @@ M.ManagedRuleSetSummary = schema.new({
 })
 
 M.ListManagedRuleSetsOutput = schema.new({
-    id = id.from(_N, "ListManagedRuleSetsOutput"),
+    id = id.from(_N, "ListManagedRuleSetsResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -5537,7 +5537,7 @@ M.ListManagedRuleSetsOutput = schema.new({
 })
 
 M.ListMobileSdkReleasesInput = schema.new({
-    id = id.from(_N, "ListMobileSdkReleasesInput"),
+    id = id.from(_N, "ListMobileSdkReleasesRequest"),
     type = "structure",
     members = {
         Platform = schema.new({
@@ -5584,7 +5584,7 @@ M.ReleaseSummary = schema.new({
 })
 
 M.ListMobileSdkReleasesOutput = schema.new({
-    id = id.from(_N, "ListMobileSdkReleasesOutput"),
+    id = id.from(_N, "ListMobileSdkReleasesResponse"),
     type = "structure",
     members = {
         ReleaseSummaries = schema.new({
@@ -5604,7 +5604,7 @@ M.ListMobileSdkReleasesOutput = schema.new({
 })
 
 M.ListRegexPatternSetsInput = schema.new({
-    id = id.from(_N, "ListRegexPatternSetsInput"),
+    id = id.from(_N, "ListRegexPatternSetsRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -5632,7 +5632,7 @@ M.ListRegexPatternSetsInput = schema.new({
 })
 
 M.ListRegexPatternSetsOutput = schema.new({
-    id = id.from(_N, "ListRegexPatternSetsOutput"),
+    id = id.from(_N, "ListRegexPatternSetsResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -5652,7 +5652,7 @@ M.ListRegexPatternSetsOutput = schema.new({
 })
 
 M.ListResourcesForWebACLInput = schema.new({
-    id = id.from(_N, "ListResourcesForWebACLInput"),
+    id = id.from(_N, "ListResourcesForWebACLRequest"),
     type = "structure",
     members = {
         WebACLArn = schema.new({
@@ -5674,7 +5674,7 @@ M.ListResourcesForWebACLInput = schema.new({
 })
 
 M.ListResourcesForWebACLOutput = schema.new({
-    id = id.from(_N, "ListResourcesForWebACLOutput"),
+    id = id.from(_N, "ListResourcesForWebACLResponse"),
     type = "structure",
     members = {
         ResourceArns = schema.new({
@@ -5688,7 +5688,7 @@ M.ListResourcesForWebACLOutput = schema.new({
 })
 
 M.ListRuleGroupsInput = schema.new({
-    id = id.from(_N, "ListRuleGroupsInput"),
+    id = id.from(_N, "ListRuleGroupsRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -5716,7 +5716,7 @@ M.ListRuleGroupsInput = schema.new({
 })
 
 M.ListRuleGroupsOutput = schema.new({
-    id = id.from(_N, "ListRuleGroupsOutput"),
+    id = id.from(_N, "ListRuleGroupsResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -5736,7 +5736,7 @@ M.ListRuleGroupsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -5784,7 +5784,7 @@ M.TagInfoForResource = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -5804,7 +5804,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListWebACLsInput = schema.new({
-    id = id.from(_N, "ListWebACLsInput"),
+    id = id.from(_N, "ListWebACLsRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -5832,7 +5832,7 @@ M.ListWebACLsInput = schema.new({
 })
 
 M.ListWebACLsOutput = schema.new({
-    id = id.from(_N, "ListWebACLsOutput"),
+    id = id.from(_N, "ListWebACLsResponse"),
     type = "structure",
     members = {
         NextMarker = schema.new({
@@ -5852,7 +5852,7 @@ M.ListWebACLsOutput = schema.new({
 })
 
 M.PutLoggingConfigurationInput = schema.new({
-    id = id.from(_N, "PutLoggingConfigurationInput"),
+    id = id.from(_N, "PutLoggingConfigurationRequest"),
     type = "structure",
     members = {
         LoggingConfiguration = schema.new({
@@ -5869,7 +5869,7 @@ M.PutLoggingConfigurationInput = schema.new({
 })
 
 M.PutLoggingConfigurationOutput = schema.new({
-    id = id.from(_N, "PutLoggingConfigurationOutput"),
+    id = id.from(_N, "PutLoggingConfigurationResponse"),
     type = "structure",
     members = {
         LoggingConfiguration = schema.new({
@@ -5934,7 +5934,7 @@ M.VersionToPublish = schema.new({
 })
 
 M.PutManagedRuleSetVersionsInput = schema.new({
-    id = id.from(_N, "PutManagedRuleSetVersionsInput"),
+    id = id.from(_N, "PutManagedRuleSetVersionsRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -5991,7 +5991,7 @@ M.PutManagedRuleSetVersionsInput = schema.new({
 })
 
 M.PutManagedRuleSetVersionsOutput = schema.new({
-    id = id.from(_N, "PutManagedRuleSetVersionsOutput"),
+    id = id.from(_N, "PutManagedRuleSetVersionsResponse"),
     type = "structure",
     members = {
         NextLockToken = schema.new({
@@ -6004,7 +6004,7 @@ M.PutManagedRuleSetVersionsOutput = schema.new({
 })
 
 M.PutPermissionPolicyInput = schema.new({
-    id = id.from(_N, "PutPermissionPolicyInput"),
+    id = id.from(_N, "PutPermissionPolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6029,7 +6029,7 @@ M.PutPermissionPolicyInput = schema.new({
 })
 
 M.PutPermissionPolicyOutput = schema.new({
-    id = id.from(_N, "PutPermissionPolicyOutput"),
+    id = id.from(_N, "PutPermissionPolicyResponse"),
     type = "structure",
 })
 
@@ -6050,7 +6050,7 @@ M.WAFInvalidPermissionPolicyException = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -6076,12 +6076,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -6107,12 +6107,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateIPSetInput = schema.new({
-    id = id.from(_N, "UpdateIPSetInput"),
+    id = id.from(_N, "UpdateIPSetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6171,7 +6171,7 @@ M.UpdateIPSetInput = schema.new({
 })
 
 M.UpdateIPSetOutput = schema.new({
-    id = id.from(_N, "UpdateIPSetOutput"),
+    id = id.from(_N, "UpdateIPSetResponse"),
     type = "structure",
     members = {
         NextLockToken = schema.new({
@@ -6184,7 +6184,7 @@ M.UpdateIPSetOutput = schema.new({
 })
 
 M.UpdateManagedRuleSetVersionExpiryDateInput = schema.new({
-    id = id.from(_N, "UpdateManagedRuleSetVersionExpiryDateInput"),
+    id = id.from(_N, "UpdateManagedRuleSetVersionExpiryDateRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6245,7 +6245,7 @@ M.UpdateManagedRuleSetVersionExpiryDateInput = schema.new({
 })
 
 M.UpdateManagedRuleSetVersionExpiryDateOutput = schema.new({
-    id = id.from(_N, "UpdateManagedRuleSetVersionExpiryDateOutput"),
+    id = id.from(_N, "UpdateManagedRuleSetVersionExpiryDateResponse"),
     type = "structure",
     members = {
         ExpiringVersion = schema.new({
@@ -6270,7 +6270,7 @@ M.UpdateManagedRuleSetVersionExpiryDateOutput = schema.new({
 })
 
 M.UpdateRegexPatternSetInput = schema.new({
-    id = id.from(_N, "UpdateRegexPatternSetInput"),
+    id = id.from(_N, "UpdateRegexPatternSetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6329,7 +6329,7 @@ M.UpdateRegexPatternSetInput = schema.new({
 })
 
 M.UpdateRegexPatternSetOutput = schema.new({
-    id = id.from(_N, "UpdateRegexPatternSetOutput"),
+    id = id.from(_N, "UpdateRegexPatternSetResponse"),
     type = "structure",
     members = {
         NextLockToken = schema.new({
@@ -6342,7 +6342,7 @@ M.UpdateRegexPatternSetOutput = schema.new({
 })
 
 M.UpdateRuleGroupOutput = schema.new({
-    id = id.from(_N, "UpdateRuleGroupOutput"),
+    id = id.from(_N, "UpdateRuleGroupResponse"),
     type = "structure",
     members = {
         NextLockToken = schema.new({
@@ -6355,7 +6355,7 @@ M.UpdateRuleGroupOutput = schema.new({
 })
 
 M.UpdateWebACLOutput = schema.new({
-    id = id.from(_N, "UpdateWebACLOutput"),
+    id = id.from(_N, "UpdateWebACLResponse"),
     type = "structure",
     members = {
         NextLockToken = schema.new({
@@ -6810,7 +6810,7 @@ M.FirewallManagerRuleGroup = schema.new({
 })
 
 M.CheckCapacityInput = schema.new({
-    id = id.from(_N, "CheckCapacityInput"),
+    id = id.from(_N, "CheckCapacityRequest"),
     type = "structure",
     members = {
         Scope = schema.new({
@@ -6836,7 +6836,7 @@ M.CheckCapacityInput = schema.new({
 })
 
 M.CreateRuleGroupInput = schema.new({
-    id = id.from(_N, "CreateRuleGroupInput"),
+    id = id.from(_N, "CreateRuleGroupRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6908,7 +6908,7 @@ M.CreateRuleGroupInput = schema.new({
 })
 
 M.CreateWebACLInput = schema.new({
-    id = id.from(_N, "CreateWebACLInput"),
+    id = id.from(_N, "CreateWebACLRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -7124,7 +7124,7 @@ M.RuleGroup = schema.new({
 })
 
 M.UpdateRuleGroupInput = schema.new({
-    id = id.from(_N, "UpdateRuleGroupInput"),
+    id = id.from(_N, "UpdateRuleGroupRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -7198,7 +7198,7 @@ M.UpdateRuleGroupInput = schema.new({
 })
 
 M.UpdateWebACLInput = schema.new({
-    id = id.from(_N, "UpdateWebACLInput"),
+    id = id.from(_N, "UpdateWebACLRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -7331,7 +7331,7 @@ M.UpdateWebACLInput = schema.new({
 })
 
 M.GetRuleGroupOutput = schema.new({
-    id = id.from(_N, "GetRuleGroupOutput"),
+    id = id.from(_N, "GetRuleGroupResponse"),
     type = "structure",
     members = {
         RuleGroup = schema.new({
@@ -7522,7 +7522,7 @@ M.WebACL = schema.new({
 })
 
 M.GetWebACLForResourceOutput = schema.new({
-    id = id.from(_N, "GetWebACLForResourceOutput"),
+    id = id.from(_N, "GetWebACLForResourceResponse"),
     type = "structure",
     members = {
         WebACL = schema.new({
@@ -7536,7 +7536,7 @@ M.GetWebACLForResourceOutput = schema.new({
 })
 
 M.GetWebACLOutput = schema.new({
-    id = id.from(_N, "GetWebACLOutput"),
+    id = id.from(_N, "GetWebACLResponse"),
     type = "structure",
     members = {
         WebACL = schema.new({
@@ -7560,5 +7560,19 @@ M.GetWebACLOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -43,7 +43,7 @@ M.Account = schema.new({
 })
 
 M.AssociateSourceNetworkStackInput = schema.new({
-    id = id.from(_N, "AssociateSourceNetworkStackInput"),
+    id = id.from(_N, "AssociateSourceNetworkStackRequest"),
     type = "structure",
     members = {
         sourceNetworkID = schema.new({
@@ -353,7 +353,7 @@ M.Job = schema.new({
 })
 
 M.AssociateSourceNetworkStackOutput = schema.new({
-    id = id.from(_N, "AssociateSourceNetworkStackOutput"),
+    id = id.from(_N, "AssociateSourceNetworkStackResponse"),
     type = "structure",
     members = {
         job = schema.new({
@@ -654,7 +654,7 @@ M.ConversionProperties = schema.new({
             name = "volumeToConversionMap",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
         rootVolumeName = schema.new({
             id = id.from(_N, "ConversionProperties", "rootVolumeName"),
@@ -688,7 +688,7 @@ M.ConversionProperties = schema.new({
             name = "volumeToProductCodes",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.ProductCode }),
         }),
     },
 })
@@ -716,7 +716,7 @@ M.CPU = schema.new({
 })
 
 M.CreateExtendedSourceServerInput = schema.new({
-    id = id.from(_N, "CreateExtendedSourceServerInput"),
+    id = id.from(_N, "CreateExtendedSourceServerRequest"),
     type = "structure",
     members = {
         sourceServerArn = schema.new({
@@ -1321,7 +1321,7 @@ M.SourceServer = schema.new({
 })
 
 M.CreateExtendedSourceServerOutput = schema.new({
-    id = id.from(_N, "CreateExtendedSourceServerOutput"),
+    id = id.from(_N, "CreateExtendedSourceServerResponse"),
     type = "structure",
     members = {
         sourceServer = schema.new({
@@ -1348,7 +1348,7 @@ M.Licensing = schema.new({
 })
 
 M.CreateLaunchConfigurationTemplateInput = schema.new({
-    id = id.from(_N, "CreateLaunchConfigurationTemplateInput"),
+    id = id.from(_N, "CreateLaunchConfigurationTemplateRequest"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1488,7 +1488,7 @@ M.LaunchConfigurationTemplate = schema.new({
 })
 
 M.CreateLaunchConfigurationTemplateOutput = schema.new({
-    id = id.from(_N, "CreateLaunchConfigurationTemplateOutput"),
+    id = id.from(_N, "CreateLaunchConfigurationTemplateResponse"),
     type = "structure",
     members = {
         launchConfigurationTemplate = schema.new({
@@ -1551,7 +1551,7 @@ M.PITPolicyRule = schema.new({
 })
 
 M.CreateReplicationConfigurationTemplateInput = schema.new({
-    id = id.from(_N, "CreateReplicationConfigurationTemplateInput"),
+    id = id.from(_N, "CreateReplicationConfigurationTemplateRequest"),
     type = "structure",
     members = {
         stagingAreaSubnetId = schema.new({
@@ -1679,7 +1679,7 @@ M.CreateReplicationConfigurationTemplateInput = schema.new({
 })
 
 M.CreateReplicationConfigurationTemplateOutput = schema.new({
-    id = id.from(_N, "CreateReplicationConfigurationTemplateOutput"),
+    id = id.from(_N, "ReplicationConfigurationTemplate"),
     type = "structure",
     members = {
         replicationConfigurationTemplateID = schema.new({
@@ -1806,7 +1806,7 @@ M.CreateReplicationConfigurationTemplateOutput = schema.new({
 })
 
 M.CreateSourceNetworkInput = schema.new({
-    id = id.from(_N, "CreateSourceNetworkInput"),
+    id = id.from(_N, "CreateSourceNetworkRequest"),
     type = "structure",
     members = {
         vpcID = schema.new({
@@ -1848,7 +1848,7 @@ M.CreateSourceNetworkInput = schema.new({
 })
 
 M.CreateSourceNetworkOutput = schema.new({
-    id = id.from(_N, "CreateSourceNetworkOutput"),
+    id = id.from(_N, "CreateSourceNetworkResponse"),
     type = "structure",
     members = {
         sourceNetworkID = schema.new({
@@ -1861,7 +1861,7 @@ M.CreateSourceNetworkOutput = schema.new({
 })
 
 M.DeleteJobInput = schema.new({
-    id = id.from(_N, "DeleteJobInput"),
+    id = id.from(_N, "DeleteJobRequest"),
     type = "structure",
     members = {
         jobID = schema.new({
@@ -1877,12 +1877,12 @@ M.DeleteJobInput = schema.new({
 })
 
 M.DeleteJobOutput = schema.new({
-    id = id.from(_N, "DeleteJobOutput"),
+    id = id.from(_N, "DeleteJobResponse"),
     type = "structure",
 })
 
 M.DeleteLaunchActionInput = schema.new({
-    id = id.from(_N, "DeleteLaunchActionInput"),
+    id = id.from(_N, "DeleteLaunchActionRequest"),
     type = "structure",
     members = {
         resourceId = schema.new({
@@ -1907,12 +1907,12 @@ M.DeleteLaunchActionInput = schema.new({
 })
 
 M.DeleteLaunchActionOutput = schema.new({
-    id = id.from(_N, "DeleteLaunchActionOutput"),
+    id = id.from(_N, "DeleteLaunchActionResponse"),
     type = "structure",
 })
 
 M.DeleteLaunchConfigurationTemplateInput = schema.new({
-    id = id.from(_N, "DeleteLaunchConfigurationTemplateInput"),
+    id = id.from(_N, "DeleteLaunchConfigurationTemplateRequest"),
     type = "structure",
     members = {
         launchConfigurationTemplateID = schema.new({
@@ -1928,12 +1928,12 @@ M.DeleteLaunchConfigurationTemplateInput = schema.new({
 })
 
 M.DeleteLaunchConfigurationTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteLaunchConfigurationTemplateOutput"),
+    id = id.from(_N, "DeleteLaunchConfigurationTemplateResponse"),
     type = "structure",
 })
 
 M.DeleteRecoveryInstanceInput = schema.new({
-    id = id.from(_N, "DeleteRecoveryInstanceInput"),
+    id = id.from(_N, "DeleteRecoveryInstanceRequest"),
     type = "structure",
     members = {
         recoveryInstanceID = schema.new({
@@ -1949,12 +1949,12 @@ M.DeleteRecoveryInstanceInput = schema.new({
 })
 
 M.DeleteRecoveryInstanceOutput = schema.new({
-    id = id.from(_N, "DeleteRecoveryInstanceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteReplicationConfigurationTemplateInput = schema.new({
-    id = id.from(_N, "DeleteReplicationConfigurationTemplateInput"),
+    id = id.from(_N, "DeleteReplicationConfigurationTemplateRequest"),
     type = "structure",
     members = {
         replicationConfigurationTemplateID = schema.new({
@@ -1970,12 +1970,12 @@ M.DeleteReplicationConfigurationTemplateInput = schema.new({
 })
 
 M.DeleteReplicationConfigurationTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteReplicationConfigurationTemplateOutput"),
+    id = id.from(_N, "DeleteReplicationConfigurationTemplateResponse"),
     type = "structure",
 })
 
 M.DeleteSourceNetworkInput = schema.new({
-    id = id.from(_N, "DeleteSourceNetworkInput"),
+    id = id.from(_N, "DeleteSourceNetworkRequest"),
     type = "structure",
     members = {
         sourceNetworkID = schema.new({
@@ -1991,12 +1991,12 @@ M.DeleteSourceNetworkInput = schema.new({
 })
 
 M.DeleteSourceNetworkOutput = schema.new({
-    id = id.from(_N, "DeleteSourceNetworkOutput"),
+    id = id.from(_N, "DeleteSourceNetworkResponse"),
     type = "structure",
 })
 
 M.DeleteSourceServerInput = schema.new({
-    id = id.from(_N, "DeleteSourceServerInput"),
+    id = id.from(_N, "DeleteSourceServerRequest"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -2012,12 +2012,12 @@ M.DeleteSourceServerInput = schema.new({
 })
 
 M.DeleteSourceServerOutput = schema.new({
-    id = id.from(_N, "DeleteSourceServerOutput"),
+    id = id.from(_N, "DeleteSourceServerResponse"),
     type = "structure",
 })
 
 M.DescribeJobLogItemsInput = schema.new({
-    id = id.from(_N, "DescribeJobLogItemsInput"),
+    id = id.from(_N, "DescribeJobLogItemsRequest"),
     type = "structure",
     members = {
         jobID = schema.new({
@@ -2179,7 +2179,7 @@ M.JobLog = schema.new({
 })
 
 M.DescribeJobLogItemsOutput = schema.new({
-    id = id.from(_N, "DescribeJobLogItemsOutput"),
+    id = id.from(_N, "DescribeJobLogItemsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -2225,7 +2225,7 @@ M.DescribeJobsRequestFilters = schema.new({
 })
 
 M.DescribeJobsInput = schema.new({
-    id = id.from(_N, "DescribeJobsInput"),
+    id = id.from(_N, "DescribeJobsRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -2251,7 +2251,7 @@ M.DescribeJobsInput = schema.new({
 })
 
 M.DescribeJobsOutput = schema.new({
-    id = id.from(_N, "DescribeJobsOutput"),
+    id = id.from(_N, "DescribeJobsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -2271,7 +2271,7 @@ M.DescribeJobsOutput = schema.new({
 })
 
 M.DescribeLaunchConfigurationTemplatesInput = schema.new({
-    id = id.from(_N, "DescribeLaunchConfigurationTemplatesInput"),
+    id = id.from(_N, "DescribeLaunchConfigurationTemplatesRequest"),
     type = "structure",
     members = {
         launchConfigurationTemplateIDs = schema.new({
@@ -2297,7 +2297,7 @@ M.DescribeLaunchConfigurationTemplatesInput = schema.new({
 })
 
 M.DescribeLaunchConfigurationTemplatesOutput = schema.new({
-    id = id.from(_N, "DescribeLaunchConfigurationTemplatesOutput"),
+    id = id.from(_N, "DescribeLaunchConfigurationTemplatesResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -2338,7 +2338,7 @@ M.DescribeRecoveryInstancesRequestFilters = schema.new({
 })
 
 M.DescribeRecoveryInstancesInput = schema.new({
-    id = id.from(_N, "DescribeRecoveryInstancesInput"),
+    id = id.from(_N, "DescribeRecoveryInstancesRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -2789,7 +2789,7 @@ M.RecoveryInstance = schema.new({
 })
 
 M.DescribeRecoveryInstancesOutput = schema.new({
-    id = id.from(_N, "DescribeRecoveryInstancesOutput"),
+    id = id.from(_N, "DescribeRecoveryInstancesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2828,7 +2828,7 @@ M.DescribeRecoverySnapshotsRequestFilters = schema.new({
 })
 
 M.DescribeRecoverySnapshotsInput = schema.new({
-    id = id.from(_N, "DescribeRecoverySnapshotsInput"),
+    id = id.from(_N, "DescribeRecoverySnapshotsRequest"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -2916,7 +2916,7 @@ M.RecoverySnapshot = schema.new({
 })
 
 M.DescribeRecoverySnapshotsOutput = schema.new({
-    id = id.from(_N, "DescribeRecoverySnapshotsOutput"),
+    id = id.from(_N, "DescribeRecoverySnapshotsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -2936,7 +2936,7 @@ M.DescribeRecoverySnapshotsOutput = schema.new({
 })
 
 M.DescribeReplicationConfigurationTemplatesInput = schema.new({
-    id = id.from(_N, "DescribeReplicationConfigurationTemplatesInput"),
+    id = id.from(_N, "DescribeReplicationConfigurationTemplatesRequest"),
     type = "structure",
     members = {
         replicationConfigurationTemplateIDs = schema.new({
@@ -3089,7 +3089,7 @@ M.ReplicationConfigurationTemplate = schema.new({
 })
 
 M.DescribeReplicationConfigurationTemplatesOutput = schema.new({
-    id = id.from(_N, "DescribeReplicationConfigurationTemplatesOutput"),
+    id = id.from(_N, "DescribeReplicationConfigurationTemplatesResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -3135,7 +3135,7 @@ M.DescribeSourceNetworksRequestFilters = schema.new({
 })
 
 M.DescribeSourceNetworksInput = schema.new({
-    id = id.from(_N, "DescribeSourceNetworksInput"),
+    id = id.from(_N, "DescribeSourceNetworksRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -3265,7 +3265,7 @@ M.SourceNetwork = schema.new({
 })
 
 M.DescribeSourceNetworksOutput = schema.new({
-    id = id.from(_N, "DescribeSourceNetworksOutput"),
+    id = id.from(_N, "DescribeSourceNetworksResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -3312,7 +3312,7 @@ M.DescribeSourceServersRequestFilters = schema.new({
 })
 
 M.DescribeSourceServersInput = schema.new({
-    id = id.from(_N, "DescribeSourceServersInput"),
+    id = id.from(_N, "DescribeSourceServersRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -3338,7 +3338,7 @@ M.DescribeSourceServersInput = schema.new({
 })
 
 M.DescribeSourceServersOutput = schema.new({
-    id = id.from(_N, "DescribeSourceServersOutput"),
+    id = id.from(_N, "DescribeSourceServersResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -3358,7 +3358,7 @@ M.DescribeSourceServersOutput = schema.new({
 })
 
 M.DisconnectRecoveryInstanceInput = schema.new({
-    id = id.from(_N, "DisconnectRecoveryInstanceInput"),
+    id = id.from(_N, "DisconnectRecoveryInstanceRequest"),
     type = "structure",
     members = {
         recoveryInstanceID = schema.new({
@@ -3374,12 +3374,12 @@ M.DisconnectRecoveryInstanceInput = schema.new({
 })
 
 M.DisconnectRecoveryInstanceOutput = schema.new({
-    id = id.from(_N, "DisconnectRecoveryInstanceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DisconnectSourceServerInput = schema.new({
-    id = id.from(_N, "DisconnectSourceServerInput"),
+    id = id.from(_N, "DisconnectSourceServerRequest"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -3395,7 +3395,7 @@ M.DisconnectSourceServerInput = schema.new({
 })
 
 M.DisconnectSourceServerOutput = schema.new({
-    id = id.from(_N, "DisconnectSourceServerOutput"),
+    id = id.from(_N, "SourceServer"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -3493,17 +3493,17 @@ M.DisconnectSourceServerOutput = schema.new({
 })
 
 M.InitializeServiceInput = schema.new({
-    id = id.from(_N, "InitializeServiceInput"),
+    id = id.from(_N, "InitializeServiceRequest"),
     type = "structure",
 })
 
 M.InitializeServiceOutput = schema.new({
-    id = id.from(_N, "InitializeServiceOutput"),
+    id = id.from(_N, "InitializeServiceResponse"),
     type = "structure",
 })
 
 M.UpdateLaunchConfigurationTemplateInput = schema.new({
-    id = id.from(_N, "UpdateLaunchConfigurationTemplateInput"),
+    id = id.from(_N, "UpdateLaunchConfigurationTemplateRequest"),
     type = "structure",
     members = {
         launchConfigurationTemplateID = schema.new({
@@ -3568,7 +3568,7 @@ M.UpdateLaunchConfigurationTemplateInput = schema.new({
 })
 
 M.UpdateLaunchConfigurationTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateLaunchConfigurationTemplateOutput"),
+    id = id.from(_N, "UpdateLaunchConfigurationTemplateResponse"),
     type = "structure",
     members = {
         launchConfigurationTemplate = schema.new({
@@ -3582,7 +3582,7 @@ M.UpdateLaunchConfigurationTemplateOutput = schema.new({
 })
 
 M.ListExtensibleSourceServersInput = schema.new({
-    id = id.from(_N, "ListExtensibleSourceServersInput"),
+    id = id.from(_N, "ListExtensibleSourceServersRequest"),
     type = "structure",
     members = {
         stagingAccountID = schema.new({
@@ -3637,7 +3637,7 @@ M.StagingSourceServer = schema.new({
 })
 
 M.ListExtensibleSourceServersOutput = schema.new({
-    id = id.from(_N, "ListExtensibleSourceServersOutput"),
+    id = id.from(_N, "ListExtensibleSourceServersResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -3671,7 +3671,7 @@ M.LaunchActionsRequestFilters = schema.new({
 })
 
 M.ListLaunchActionsInput = schema.new({
-    id = id.from(_N, "ListLaunchActionsInput"),
+    id = id.from(_N, "ListLaunchActionsRequest"),
     type = "structure",
     members = {
         resourceId = schema.new({
@@ -3706,7 +3706,7 @@ M.ListLaunchActionsInput = schema.new({
 })
 
 M.ListLaunchActionsOutput = schema.new({
-    id = id.from(_N, "ListLaunchActionsOutput"),
+    id = id.from(_N, "ListLaunchActionsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -3726,7 +3726,7 @@ M.ListLaunchActionsOutput = schema.new({
 })
 
 M.ListStagingAccountsInput = schema.new({
-    id = id.from(_N, "ListStagingAccountsInput"),
+    id = id.from(_N, "ListStagingAccountsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -3752,7 +3752,7 @@ M.ListStagingAccountsInput = schema.new({
 })
 
 M.ListStagingAccountsOutput = schema.new({
-    id = id.from(_N, "ListStagingAccountsOutput"),
+    id = id.from(_N, "ListStagingAccountsResponse"),
     type = "structure",
     members = {
         accounts = schema.new({
@@ -3772,7 +3772,7 @@ M.ListStagingAccountsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3789,7 +3789,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -3804,7 +3804,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutLaunchActionInput = schema.new({
-    id = id.from(_N, "PutLaunchActionInput"),
+    id = id.from(_N, "PutLaunchActionRequest"),
     type = "structure",
     members = {
         resourceId = schema.new({
@@ -3909,7 +3909,7 @@ M.PutLaunchActionInput = schema.new({
 })
 
 M.PutLaunchActionOutput = schema.new({
-    id = id.from(_N, "PutLaunchActionOutput"),
+    id = id.from(_N, "PutLaunchActionResponse"),
     type = "structure",
     members = {
         resourceId = schema.new({
@@ -3990,7 +3990,7 @@ M.PutLaunchActionOutput = schema.new({
 })
 
 M.GetFailbackReplicationConfigurationInput = schema.new({
-    id = id.from(_N, "GetFailbackReplicationConfigurationInput"),
+    id = id.from(_N, "GetFailbackReplicationConfigurationRequest"),
     type = "structure",
     members = {
         recoveryInstanceID = schema.new({
@@ -4006,7 +4006,7 @@ M.GetFailbackReplicationConfigurationInput = schema.new({
 })
 
 M.GetFailbackReplicationConfigurationOutput = schema.new({
-    id = id.from(_N, "GetFailbackReplicationConfigurationOutput"),
+    id = id.from(_N, "GetFailbackReplicationConfigurationResponse"),
     type = "structure",
     members = {
         recoveryInstanceID = schema.new({
@@ -4049,7 +4049,7 @@ M.GetFailbackReplicationConfigurationOutput = schema.new({
 })
 
 M.ReverseReplicationInput = schema.new({
-    id = id.from(_N, "ReverseReplicationInput"),
+    id = id.from(_N, "ReverseReplicationRequest"),
     type = "structure",
     members = {
         recoveryInstanceID = schema.new({
@@ -4065,7 +4065,7 @@ M.ReverseReplicationInput = schema.new({
 })
 
 M.ReverseReplicationOutput = schema.new({
-    id = id.from(_N, "ReverseReplicationOutput"),
+    id = id.from(_N, "ReverseReplicationResponse"),
     type = "structure",
     members = {
         reversedDirectionSourceServerArn = schema.new({
@@ -4078,7 +4078,7 @@ M.ReverseReplicationOutput = schema.new({
 })
 
 M.StartFailbackLaunchInput = schema.new({
-    id = id.from(_N, "StartFailbackLaunchInput"),
+    id = id.from(_N, "StartFailbackLaunchRequest"),
     type = "structure",
     members = {
         recoveryInstanceIDs = schema.new({
@@ -4103,7 +4103,7 @@ M.StartFailbackLaunchInput = schema.new({
 })
 
 M.StartFailbackLaunchOutput = schema.new({
-    id = id.from(_N, "StartFailbackLaunchOutput"),
+    id = id.from(_N, "StartFailbackLaunchResponse"),
     type = "structure",
     members = {
         job = schema.new({
@@ -4117,7 +4117,7 @@ M.StartFailbackLaunchOutput = schema.new({
 })
 
 M.StopFailbackInput = schema.new({
-    id = id.from(_N, "StopFailbackInput"),
+    id = id.from(_N, "StopFailbackRequest"),
     type = "structure",
     members = {
         recoveryInstanceID = schema.new({
@@ -4133,12 +4133,12 @@ M.StopFailbackInput = schema.new({
 })
 
 M.StopFailbackOutput = schema.new({
-    id = id.from(_N, "StopFailbackOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.TerminateRecoveryInstancesInput = schema.new({
-    id = id.from(_N, "TerminateRecoveryInstancesInput"),
+    id = id.from(_N, "TerminateRecoveryInstancesRequest"),
     type = "structure",
     members = {
         recoveryInstanceIDs = schema.new({
@@ -4155,7 +4155,7 @@ M.TerminateRecoveryInstancesInput = schema.new({
 })
 
 M.TerminateRecoveryInstancesOutput = schema.new({
-    id = id.from(_N, "TerminateRecoveryInstancesOutput"),
+    id = id.from(_N, "TerminateRecoveryInstancesResponse"),
     type = "structure",
     members = {
         job = schema.new({
@@ -4169,7 +4169,7 @@ M.TerminateRecoveryInstancesOutput = schema.new({
 })
 
 M.UpdateFailbackReplicationConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateFailbackReplicationConfigurationInput"),
+    id = id.from(_N, "UpdateFailbackReplicationConfigurationRequest"),
     type = "structure",
     members = {
         recoveryInstanceID = schema.new({
@@ -4212,12 +4212,12 @@ M.UpdateFailbackReplicationConfigurationInput = schema.new({
 })
 
 M.UpdateFailbackReplicationConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateFailbackReplicationConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateReplicationConfigurationTemplateInput = schema.new({
-    id = id.from(_N, "UpdateReplicationConfigurationTemplateInput"),
+    id = id.from(_N, "UpdateReplicationConfigurationTemplateRequest"),
     type = "structure",
     members = {
         replicationConfigurationTemplateID = schema.new({
@@ -4336,7 +4336,7 @@ M.UpdateReplicationConfigurationTemplateInput = schema.new({
 })
 
 M.UpdateReplicationConfigurationTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateReplicationConfigurationTemplateOutput"),
+    id = id.from(_N, "ReplicationConfigurationTemplate"),
     type = "structure",
     members = {
         replicationConfigurationTemplateID = schema.new({
@@ -4463,7 +4463,7 @@ M.UpdateReplicationConfigurationTemplateOutput = schema.new({
 })
 
 M.ExportSourceNetworkCfnTemplateInput = schema.new({
-    id = id.from(_N, "ExportSourceNetworkCfnTemplateInput"),
+    id = id.from(_N, "ExportSourceNetworkCfnTemplateRequest"),
     type = "structure",
     members = {
         sourceNetworkID = schema.new({
@@ -4479,7 +4479,7 @@ M.ExportSourceNetworkCfnTemplateInput = schema.new({
 })
 
 M.ExportSourceNetworkCfnTemplateOutput = schema.new({
-    id = id.from(_N, "ExportSourceNetworkCfnTemplateOutput"),
+    id = id.from(_N, "ExportSourceNetworkCfnTemplateResponse"),
     type = "structure",
     members = {
         s3DestinationUrl = schema.new({
@@ -4514,7 +4514,7 @@ M.StartSourceNetworkRecoveryRequestNetworkEntry = schema.new({
 })
 
 M.StartSourceNetworkRecoveryInput = schema.new({
-    id = id.from(_N, "StartSourceNetworkRecoveryInput"),
+    id = id.from(_N, "StartSourceNetworkRecoveryRequest"),
     type = "structure",
     members = {
         sourceNetworks = schema.new({
@@ -4545,7 +4545,7 @@ M.StartSourceNetworkRecoveryInput = schema.new({
 })
 
 M.StartSourceNetworkRecoveryOutput = schema.new({
-    id = id.from(_N, "StartSourceNetworkRecoveryOutput"),
+    id = id.from(_N, "StartSourceNetworkRecoveryResponse"),
     type = "structure",
     members = {
         job = schema.new({
@@ -4559,7 +4559,7 @@ M.StartSourceNetworkRecoveryOutput = schema.new({
 })
 
 M.StartSourceNetworkReplicationInput = schema.new({
-    id = id.from(_N, "StartSourceNetworkReplicationInput"),
+    id = id.from(_N, "StartSourceNetworkReplicationRequest"),
     type = "structure",
     members = {
         sourceNetworkID = schema.new({
@@ -4575,7 +4575,7 @@ M.StartSourceNetworkReplicationInput = schema.new({
 })
 
 M.StartSourceNetworkReplicationOutput = schema.new({
-    id = id.from(_N, "StartSourceNetworkReplicationOutput"),
+    id = id.from(_N, "StartSourceNetworkReplicationResponse"),
     type = "structure",
     members = {
         sourceNetwork = schema.new({
@@ -4589,7 +4589,7 @@ M.StartSourceNetworkReplicationOutput = schema.new({
 })
 
 M.StopSourceNetworkReplicationInput = schema.new({
-    id = id.from(_N, "StopSourceNetworkReplicationInput"),
+    id = id.from(_N, "StopSourceNetworkReplicationRequest"),
     type = "structure",
     members = {
         sourceNetworkID = schema.new({
@@ -4605,7 +4605,7 @@ M.StopSourceNetworkReplicationInput = schema.new({
 })
 
 M.StopSourceNetworkReplicationOutput = schema.new({
-    id = id.from(_N, "StopSourceNetworkReplicationOutput"),
+    id = id.from(_N, "StopSourceNetworkReplicationResponse"),
     type = "structure",
     members = {
         sourceNetwork = schema.new({
@@ -4619,7 +4619,7 @@ M.StopSourceNetworkReplicationOutput = schema.new({
 })
 
 M.GetLaunchConfigurationInput = schema.new({
-    id = id.from(_N, "GetLaunchConfigurationInput"),
+    id = id.from(_N, "GetLaunchConfigurationRequest"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -4648,7 +4648,7 @@ M.LaunchIntoInstanceProperties = schema.new({
 })
 
 M.GetLaunchConfigurationOutput = schema.new({
-    id = id.from(_N, "GetLaunchConfigurationOutput"),
+    id = id.from(_N, "LaunchConfiguration"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -4717,7 +4717,7 @@ M.GetLaunchConfigurationOutput = schema.new({
 })
 
 M.GetReplicationConfigurationInput = schema.new({
-    id = id.from(_N, "GetReplicationConfigurationInput"),
+    id = id.from(_N, "GetReplicationConfigurationRequest"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -4782,7 +4782,7 @@ M.ReplicationConfigurationReplicatedDisk = schema.new({
 })
 
 M.GetReplicationConfigurationOutput = schema.new({
-    id = id.from(_N, "GetReplicationConfigurationOutput"),
+    id = id.from(_N, "ReplicationConfiguration"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -4905,7 +4905,7 @@ M.GetReplicationConfigurationOutput = schema.new({
 })
 
 M.RetryDataReplicationInput = schema.new({
-    id = id.from(_N, "RetryDataReplicationInput"),
+    id = id.from(_N, "RetryDataReplicationRequest"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -4921,7 +4921,7 @@ M.RetryDataReplicationInput = schema.new({
 })
 
 M.RetryDataReplicationOutput = schema.new({
-    id = id.from(_N, "RetryDataReplicationOutput"),
+    id = id.from(_N, "SourceServer"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -5041,7 +5041,7 @@ M.StartRecoveryRequestSourceServer = schema.new({
 })
 
 M.StartRecoveryInput = schema.new({
-    id = id.from(_N, "StartRecoveryInput"),
+    id = id.from(_N, "StartRecoveryRequest"),
     type = "structure",
     members = {
         sourceServers = schema.new({
@@ -5072,7 +5072,7 @@ M.StartRecoveryInput = schema.new({
 })
 
 M.StartRecoveryOutput = schema.new({
-    id = id.from(_N, "StartRecoveryOutput"),
+    id = id.from(_N, "StartRecoveryResponse"),
     type = "structure",
     members = {
         job = schema.new({
@@ -5086,7 +5086,7 @@ M.StartRecoveryOutput = schema.new({
 })
 
 M.StartReplicationInput = schema.new({
-    id = id.from(_N, "StartReplicationInput"),
+    id = id.from(_N, "StartReplicationRequest"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -5102,7 +5102,7 @@ M.StartReplicationInput = schema.new({
 })
 
 M.StartReplicationOutput = schema.new({
-    id = id.from(_N, "StartReplicationOutput"),
+    id = id.from(_N, "StartReplicationResponse"),
     type = "structure",
     members = {
         sourceServer = schema.new({
@@ -5116,7 +5116,7 @@ M.StartReplicationOutput = schema.new({
 })
 
 M.StopReplicationInput = schema.new({
-    id = id.from(_N, "StopReplicationInput"),
+    id = id.from(_N, "StopReplicationRequest"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -5132,7 +5132,7 @@ M.StopReplicationInput = schema.new({
 })
 
 M.StopReplicationOutput = schema.new({
-    id = id.from(_N, "StopReplicationOutput"),
+    id = id.from(_N, "StopReplicationResponse"),
     type = "structure",
     members = {
         sourceServer = schema.new({
@@ -5146,7 +5146,7 @@ M.StopReplicationOutput = schema.new({
 })
 
 M.UpdateLaunchConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateLaunchConfigurationInput"),
+    id = id.from(_N, "UpdateLaunchConfigurationRequest"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -5212,7 +5212,7 @@ M.UpdateLaunchConfigurationInput = schema.new({
 })
 
 M.UpdateLaunchConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateLaunchConfigurationOutput"),
+    id = id.from(_N, "LaunchConfiguration"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -5281,7 +5281,7 @@ M.UpdateLaunchConfigurationOutput = schema.new({
 })
 
 M.UpdateReplicationConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateReplicationConfigurationInput"),
+    id = id.from(_N, "UpdateReplicationConfigurationRequest"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -5407,7 +5407,7 @@ M.UpdateReplicationConfigurationInput = schema.new({
 })
 
 M.UpdateReplicationConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateReplicationConfigurationOutput"),
+    id = id.from(_N, "ReplicationConfiguration"),
     type = "structure",
     members = {
         sourceServerID = schema.new({
@@ -5530,7 +5530,7 @@ M.UpdateReplicationConfigurationOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5558,12 +5558,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5591,8 +5591,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -904,12 +904,12 @@ M.DeleteResourceExplorerSetupOutput = schema.new({
 })
 
 M.DisassociateDefaultViewInput = schema.new({
-    id = id.from(_N, "DisassociateDefaultViewInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DisassociateDefaultViewOutput = schema.new({
-    id = id.from(_N, "DisassociateDefaultViewOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -933,7 +933,7 @@ M.ErrorDetails = schema.new({
 })
 
 M.GetAccountLevelServiceConfigurationInput = schema.new({
-    id = id.from(_N, "GetAccountLevelServiceConfigurationInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -974,7 +974,7 @@ M.GetAccountLevelServiceConfigurationOutput = schema.new({
 })
 
 M.GetDefaultViewInput = schema.new({
-    id = id.from(_N, "GetDefaultViewInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -992,7 +992,7 @@ M.GetDefaultViewOutput = schema.new({
 })
 
 M.GetIndexInput = schema.new({
-    id = id.from(_N, "GetIndexInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1293,7 +1293,7 @@ M.GetResourceExplorerSetupOutput = schema.new({
 })
 
 M.GetServiceIndexInput = schema.new({
-    id = id.from(_N, "GetServiceIndexInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2052,5 +2052,19 @@ M.UntagResourceOutput = schema.new({
     id = id.from(_N, "UntagResourceOutput"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -151,7 +151,7 @@ M.FindingIdentifier = schema.new({
 })
 
 M.BatchGetFindingsInput = schema.new({
-    id = id.from(_N, "BatchGetFindingsInput"),
+    id = id.from(_N, "BatchGetFindingsRequest"),
     type = "structure",
     members = {
         findingIdentifiers = schema.new({
@@ -493,7 +493,7 @@ M.Finding = schema.new({
 })
 
 M.BatchGetFindingsOutput = schema.new({
-    id = id.from(_N, "BatchGetFindingsOutput"),
+    id = id.from(_N, "BatchGetFindingsResponse"),
     type = "structure",
     members = {
         findings = schema.new({
@@ -710,7 +710,7 @@ M.ResourceId = schema.new({
 })
 
 M.CreateScanInput = schema.new({
-    id = id.from(_N, "CreateScanInput"),
+    id = id.from(_N, "CreateScanRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -765,7 +765,7 @@ M.CreateScanInput = schema.new({
 })
 
 M.CreateScanOutput = schema.new({
-    id = id.from(_N, "CreateScanOutput"),
+    id = id.from(_N, "CreateScanResponse"),
     type = "structure",
     members = {
         scanName = schema.new({
@@ -861,7 +861,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.CreateUploadUrlInput = schema.new({
-    id = id.from(_N, "CreateUploadUrlInput"),
+    id = id.from(_N, "CreateUploadUrlRequest"),
     type = "structure",
     members = {
         scanName = schema.new({
@@ -877,7 +877,7 @@ M.CreateUploadUrlInput = schema.new({
 })
 
 M.CreateUploadUrlOutput = schema.new({
-    id = id.from(_N, "CreateUploadUrlOutput"),
+    id = id.from(_N, "CreateUploadUrlResponse"),
     type = "structure",
     members = {
         s3Url = schema.new({
@@ -913,7 +913,7 @@ M.CreateUploadUrlOutput = schema.new({
 })
 
 M.GetAccountConfigurationInput = schema.new({
-    id = id.from(_N, "GetAccountConfigurationInput"),
+    id = id.from(_N, "GetAccountConfigurationRequest"),
     type = "structure",
 })
 
@@ -931,7 +931,7 @@ M.EncryptionConfig = schema.new({
 })
 
 M.GetAccountConfigurationOutput = schema.new({
-    id = id.from(_N, "GetAccountConfigurationOutput"),
+    id = id.from(_N, "GetAccountConfigurationResponse"),
     type = "structure",
     members = {
         encryptionConfig = schema.new({
@@ -948,7 +948,7 @@ M.GetAccountConfigurationOutput = schema.new({
 })
 
 M.GetFindingsInput = schema.new({
-    id = id.from(_N, "GetFindingsInput"),
+    id = id.from(_N, "GetFindingsRequest"),
     type = "structure",
     members = {
         scanName = schema.new({
@@ -992,7 +992,7 @@ M.GetFindingsInput = schema.new({
 })
 
 M.GetFindingsOutput = schema.new({
-    id = id.from(_N, "GetFindingsOutput"),
+    id = id.from(_N, "GetFindingsResponse"),
     type = "structure",
     members = {
         findings = schema.new({
@@ -1012,7 +1012,7 @@ M.GetFindingsOutput = schema.new({
 })
 
 M.GetMetricsSummaryInput = schema.new({
-    id = id.from(_N, "GetMetricsSummaryInput"),
+    id = id.from(_N, "GetMetricsSummaryRequest"),
     type = "structure",
     members = {
         date = schema.new({
@@ -1108,7 +1108,7 @@ M.MetricsSummary = schema.new({
 })
 
 M.GetMetricsSummaryOutput = schema.new({
-    id = id.from(_N, "GetMetricsSummaryOutput"),
+    id = id.from(_N, "GetMetricsSummaryResponse"),
     type = "structure",
     members = {
         metricsSummary = schema.new({
@@ -1122,7 +1122,7 @@ M.GetMetricsSummaryOutput = schema.new({
 })
 
 M.GetScanInput = schema.new({
-    id = id.from(_N, "GetScanInput"),
+    id = id.from(_N, "GetScanRequest"),
     type = "structure",
     members = {
         scanName = schema.new({
@@ -1148,7 +1148,7 @@ M.GetScanInput = schema.new({
 })
 
 M.GetScanOutput = schema.new({
-    id = id.from(_N, "GetScanOutput"),
+    id = id.from(_N, "GetScanResponse"),
     type = "structure",
     members = {
         scanName = schema.new({
@@ -1224,7 +1224,7 @@ M.GetScanOutput = schema.new({
 })
 
 M.ListFindingsMetricsInput = schema.new({
-    id = id.from(_N, "ListFindingsMetricsInput"),
+    id = id.from(_N, "ListFindingsMetricsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1269,7 +1269,7 @@ M.ListFindingsMetricsInput = schema.new({
 })
 
 M.ListFindingsMetricsOutput = schema.new({
-    id = id.from(_N, "ListFindingsMetricsOutput"),
+    id = id.from(_N, "ListFindingsMetricsResponse"),
     type = "structure",
     members = {
         findingsMetrics = schema.new({
@@ -1289,7 +1289,7 @@ M.ListFindingsMetricsOutput = schema.new({
 })
 
 M.ListScansInput = schema.new({
-    id = id.from(_N, "ListScansInput"),
+    id = id.from(_N, "ListScansRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1369,7 +1369,7 @@ M.ScanSummary = schema.new({
 })
 
 M.ListScansOutput = schema.new({
-    id = id.from(_N, "ListScansOutput"),
+    id = id.from(_N, "ListScansResponse"),
     type = "structure",
     members = {
         summaries = schema.new({
@@ -1389,7 +1389,7 @@ M.ListScansOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1406,7 +1406,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1421,7 +1421,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1449,12 +1449,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1482,12 +1482,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAccountConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateAccountConfigurationInput"),
+    id = id.from(_N, "UpdateAccountConfigurationRequest"),
     type = "structure",
     members = {
         encryptionConfig = schema.new({
@@ -1504,7 +1504,7 @@ M.UpdateAccountConfigurationInput = schema.new({
 })
 
 M.UpdateAccountConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateAccountConfigurationOutput"),
+    id = id.from(_N, "UpdateAccountConfigurationResponse"),
     type = "structure",
     members = {
         encryptionConfig = schema.new({
@@ -1519,5 +1519,19 @@ M.UpdateAccountConfigurationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

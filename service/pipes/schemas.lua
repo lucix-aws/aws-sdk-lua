@@ -1931,7 +1931,7 @@ M.PipeTargetParameters = schema.new({
 })
 
 M.CreatePipeInput = schema.new({
-    id = id.from(_N, "CreatePipeInput"),
+    id = id.from(_N, "CreatePipeRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2035,7 +2035,7 @@ M.CreatePipeInput = schema.new({
 })
 
 M.CreatePipeOutput = schema.new({
-    id = id.from(_N, "CreatePipeOutput"),
+    id = id.from(_N, "CreatePipeResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2265,7 +2265,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeletePipeInput = schema.new({
-    id = id.from(_N, "DeletePipeInput"),
+    id = id.from(_N, "DeletePipeRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2282,7 +2282,7 @@ M.DeletePipeInput = schema.new({
 })
 
 M.DeletePipeOutput = schema.new({
-    id = id.from(_N, "DeletePipeOutput"),
+    id = id.from(_N, "DeletePipeResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2325,7 +2325,7 @@ M.DeletePipeOutput = schema.new({
 })
 
 M.DescribePipeInput = schema.new({
-    id = id.from(_N, "DescribePipeInput"),
+    id = id.from(_N, "DescribePipeRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2427,7 +2427,7 @@ M.PipeLogConfiguration = schema.new({
 })
 
 M.DescribePipeOutput = schema.new({
-    id = id.from(_N, "DescribePipeOutput"),
+    id = id.from(_N, "DescribePipeResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2548,7 +2548,7 @@ M.DescribePipeOutput = schema.new({
 })
 
 M.ListPipesInput = schema.new({
-    id = id.from(_N, "ListPipesInput"),
+    id = id.from(_N, "ListPipesRequest"),
     type = "structure",
     members = {
         NamePrefix = schema.new({
@@ -2685,7 +2685,7 @@ M.Pipe = schema.new({
 })
 
 M.ListPipesOutput = schema.new({
-    id = id.from(_N, "ListPipesOutput"),
+    id = id.from(_N, "ListPipesResponse"),
     type = "structure",
     members = {
         Pipes = schema.new({
@@ -2705,7 +2705,7 @@ M.ListPipesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2722,7 +2722,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2737,7 +2737,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.StartPipeInput = schema.new({
-    id = id.from(_N, "StartPipeInput"),
+    id = id.from(_N, "StartPipeRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2754,7 +2754,7 @@ M.StartPipeInput = schema.new({
 })
 
 M.StartPipeOutput = schema.new({
-    id = id.from(_N, "StartPipeOutput"),
+    id = id.from(_N, "StartPipeResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2797,7 +2797,7 @@ M.StartPipeOutput = schema.new({
 })
 
 M.StopPipeInput = schema.new({
-    id = id.from(_N, "StopPipeInput"),
+    id = id.from(_N, "StopPipeRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2814,7 +2814,7 @@ M.StopPipeInput = schema.new({
 })
 
 M.StopPipeOutput = schema.new({
-    id = id.from(_N, "StopPipeOutput"),
+    id = id.from(_N, "StopPipeResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3162,7 +3162,7 @@ M.UpdatePipeSourceParameters = schema.new({
 })
 
 M.UpdatePipeInput = schema.new({
-    id = id.from(_N, "UpdatePipeInput"),
+    id = id.from(_N, "UpdatePipeRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3246,7 +3246,7 @@ M.UpdatePipeInput = schema.new({
 })
 
 M.UpdatePipeOutput = schema.new({
-    id = id.from(_N, "UpdatePipeOutput"),
+    id = id.from(_N, "UpdatePipeResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3289,7 +3289,7 @@ M.UpdatePipeOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3317,12 +3317,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3350,8 +3350,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

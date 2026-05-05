@@ -40,7 +40,7 @@ M.InternalServerException = schema.new({
 })
 
 M.ListAutoshiftsInput = schema.new({
-    id = id.from(_N, "ListAutoshiftsInput"),
+    id = id.from(_N, "ListAutoshiftsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -114,7 +114,7 @@ M.AutoshiftSummary = schema.new({
 })
 
 M.ListAutoshiftsOutput = schema.new({
-    id = id.from(_N, "ListAutoshiftsOutput"),
+    id = id.from(_N, "ListAutoshiftsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -212,12 +212,12 @@ M.AutoshiftInResource = schema.new({
 })
 
 M.GetAutoshiftObserverNotificationStatusInput = schema.new({
-    id = id.from(_N, "GetAutoshiftObserverNotificationStatusInput"),
+    id = id.from(_N, "GetAutoshiftObserverNotificationStatusRequest"),
     type = "structure",
 })
 
 M.GetAutoshiftObserverNotificationStatusOutput = schema.new({
-    id = id.from(_N, "GetAutoshiftObserverNotificationStatusOutput"),
+    id = id.from(_N, "GetAutoshiftObserverNotificationStatusResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -233,7 +233,7 @@ M.GetAutoshiftObserverNotificationStatusOutput = schema.new({
 })
 
 M.UpdateAutoshiftObserverNotificationStatusInput = schema.new({
-    id = id.from(_N, "UpdateAutoshiftObserverNotificationStatusInput"),
+    id = id.from(_N, "UpdateAutoshiftObserverNotificationStatusRequest"),
     type = "structure",
     members = {
         status = schema.new({
@@ -249,7 +249,7 @@ M.UpdateAutoshiftObserverNotificationStatusInput = schema.new({
 })
 
 M.UpdateAutoshiftObserverNotificationStatusOutput = schema.new({
-    id = id.from(_N, "UpdateAutoshiftObserverNotificationStatusOutput"),
+    id = id.from(_N, "UpdateAutoshiftObserverNotificationStatusResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -290,7 +290,7 @@ M.ControlCondition = schema.new({
 })
 
 M.CancelPracticeRunInput = schema.new({
-    id = id.from(_N, "CancelPracticeRunInput"),
+    id = id.from(_N, "CancelPracticeRunRequest"),
     type = "structure",
     members = {
         zonalShiftId = schema.new({
@@ -307,7 +307,7 @@ M.CancelPracticeRunInput = schema.new({
 })
 
 M.CancelPracticeRunOutput = schema.new({
-    id = id.from(_N, "CancelPracticeRunOutput"),
+    id = id.from(_N, "CancelPracticeRunResponse"),
     type = "structure",
     members = {
         zonalShiftId = schema.new({
@@ -430,7 +430,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.CancelZonalShiftInput = schema.new({
-    id = id.from(_N, "CancelZonalShiftInput"),
+    id = id.from(_N, "CancelZonalShiftRequest"),
     type = "structure",
     members = {
         zonalShiftId = schema.new({
@@ -447,7 +447,7 @@ M.CancelZonalShiftInput = schema.new({
 })
 
 M.CancelZonalShiftOutput = schema.new({
-    id = id.from(_N, "CancelZonalShiftOutput"),
+    id = id.from(_N, "ZonalShift"),
     type = "structure",
     members = {
         zonalShiftId = schema.new({
@@ -517,7 +517,7 @@ M.CancelZonalShiftOutput = schema.new({
 })
 
 M.CreatePracticeRunConfigurationInput = schema.new({
-    id = id.from(_N, "CreatePracticeRunConfigurationInput"),
+    id = id.from(_N, "CreatePracticeRunConfigurationRequest"),
     type = "structure",
     members = {
         resourceIdentifier = schema.new({
@@ -619,7 +619,7 @@ M.PracticeRunConfiguration = schema.new({
 })
 
 M.CreatePracticeRunConfigurationOutput = schema.new({
-    id = id.from(_N, "CreatePracticeRunConfigurationOutput"),
+    id = id.from(_N, "CreatePracticeRunConfigurationResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -663,7 +663,7 @@ M.CreatePracticeRunConfigurationOutput = schema.new({
 })
 
 M.DeletePracticeRunConfigurationInput = schema.new({
-    id = id.from(_N, "DeletePracticeRunConfigurationInput"),
+    id = id.from(_N, "DeletePracticeRunConfigurationRequest"),
     type = "structure",
     members = {
         resourceIdentifier = schema.new({
@@ -680,7 +680,7 @@ M.DeletePracticeRunConfigurationInput = schema.new({
 })
 
 M.DeletePracticeRunConfigurationOutput = schema.new({
-    id = id.from(_N, "DeletePracticeRunConfigurationOutput"),
+    id = id.from(_N, "DeletePracticeRunConfigurationResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -714,7 +714,7 @@ M.DeletePracticeRunConfigurationOutput = schema.new({
 })
 
 M.GetManagedResourceInput = schema.new({
-    id = id.from(_N, "GetManagedResourceInput"),
+    id = id.from(_N, "GetManagedResourceRequest"),
     type = "structure",
     members = {
         resourceIdentifier = schema.new({
@@ -813,7 +813,7 @@ M.ZonalShiftInResource = schema.new({
 })
 
 M.GetManagedResourceOutput = schema.new({
-    id = id.from(_N, "GetManagedResourceOutput"),
+    id = id.from(_N, "GetManagedResourceResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -873,7 +873,7 @@ M.GetManagedResourceOutput = schema.new({
 })
 
 M.ListManagedResourcesInput = schema.new({
-    id = id.from(_N, "ListManagedResourcesInput"),
+    id = id.from(_N, "ListManagedResourcesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -961,7 +961,7 @@ M.ManagedResourceSummary = schema.new({
 })
 
 M.ListManagedResourcesOutput = schema.new({
-    id = id.from(_N, "ListManagedResourcesOutput"),
+    id = id.from(_N, "ListManagedResourcesResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -984,7 +984,7 @@ M.ListManagedResourcesOutput = schema.new({
 })
 
 M.ListZonalShiftsInput = schema.new({
-    id = id.from(_N, "ListZonalShiftsInput"),
+    id = id.from(_N, "ListZonalShiftsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1109,7 +1109,7 @@ M.ZonalShiftSummary = schema.new({
 })
 
 M.ListZonalShiftsOutput = schema.new({
-    id = id.from(_N, "ListZonalShiftsOutput"),
+    id = id.from(_N, "ListZonalShiftsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -1129,7 +1129,7 @@ M.ListZonalShiftsOutput = schema.new({
 })
 
 M.UpdateZonalAutoshiftConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateZonalAutoshiftConfigurationInput"),
+    id = id.from(_N, "UpdateZonalAutoshiftConfigurationRequest"),
     type = "structure",
     members = {
         resourceIdentifier = schema.new({
@@ -1155,7 +1155,7 @@ M.UpdateZonalAutoshiftConfigurationInput = schema.new({
 })
 
 M.UpdateZonalAutoshiftConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateZonalAutoshiftConfigurationOutput"),
+    id = id.from(_N, "UpdateZonalAutoshiftConfigurationResponse"),
     type = "structure",
     members = {
         resourceIdentifier = schema.new({
@@ -1180,7 +1180,7 @@ M.UpdateZonalAutoshiftConfigurationOutput = schema.new({
 })
 
 M.UpdatePracticeRunConfigurationInput = schema.new({
-    id = id.from(_N, "UpdatePracticeRunConfigurationInput"),
+    id = id.from(_N, "UpdatePracticeRunConfigurationRequest"),
     type = "structure",
     members = {
         resourceIdentifier = schema.new({
@@ -1232,7 +1232,7 @@ M.UpdatePracticeRunConfigurationInput = schema.new({
 })
 
 M.UpdatePracticeRunConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdatePracticeRunConfigurationOutput"),
+    id = id.from(_N, "UpdatePracticeRunConfigurationResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1276,7 +1276,7 @@ M.UpdatePracticeRunConfigurationOutput = schema.new({
 })
 
 M.UpdateZonalShiftInput = schema.new({
-    id = id.from(_N, "UpdateZonalShiftInput"),
+    id = id.from(_N, "UpdateZonalShiftRequest"),
     type = "structure",
     members = {
         zonalShiftId = schema.new({
@@ -1305,7 +1305,7 @@ M.UpdateZonalShiftInput = schema.new({
 })
 
 M.UpdateZonalShiftOutput = schema.new({
-    id = id.from(_N, "UpdateZonalShiftOutput"),
+    id = id.from(_N, "ZonalShift"),
     type = "structure",
     members = {
         zonalShiftId = schema.new({
@@ -1375,7 +1375,7 @@ M.UpdateZonalShiftOutput = schema.new({
 })
 
 M.StartPracticeRunInput = schema.new({
-    id = id.from(_N, "StartPracticeRunInput"),
+    id = id.from(_N, "StartPracticeRunRequest"),
     type = "structure",
     members = {
         resourceIdentifier = schema.new({
@@ -1409,7 +1409,7 @@ M.StartPracticeRunInput = schema.new({
 })
 
 M.StartPracticeRunOutput = schema.new({
-    id = id.from(_N, "StartPracticeRunOutput"),
+    id = id.from(_N, "StartPracticeRunResponse"),
     type = "structure",
     members = {
         zonalShiftId = schema.new({
@@ -1479,7 +1479,7 @@ M.StartPracticeRunOutput = schema.new({
 })
 
 M.StartZonalShiftInput = schema.new({
-    id = id.from(_N, "StartZonalShiftInput"),
+    id = id.from(_N, "StartZonalShiftRequest"),
     type = "structure",
     members = {
         resourceIdentifier = schema.new({
@@ -1522,7 +1522,7 @@ M.StartZonalShiftInput = schema.new({
 })
 
 M.StartZonalShiftOutput = schema.new({
-    id = id.from(_N, "StartZonalShiftOutput"),
+    id = id.from(_N, "ZonalShift"),
     type = "structure",
     members = {
         zonalShiftId = schema.new({
@@ -1590,5 +1590,19 @@ M.StartZonalShiftOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -576,7 +576,7 @@ M.Tag = schema.new({
 })
 
 M.CreateCertificateAuthorityInput = schema.new({
-    id = id.from(_N, "CreateCertificateAuthorityInput"),
+    id = id.from(_N, "CreateCertificateAuthorityRequest"),
     type = "structure",
     members = {
         CertificateAuthorityConfiguration = schema.new({
@@ -634,7 +634,7 @@ M.CreateCertificateAuthorityInput = schema.new({
 })
 
 M.CreateCertificateAuthorityOutput = schema.new({
-    id = id.from(_N, "CreateCertificateAuthorityOutput"),
+    id = id.from(_N, "CreateCertificateAuthorityResponse"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -711,7 +711,7 @@ M.LimitExceededException = schema.new({
 })
 
 M.CreateCertificateAuthorityAuditReportInput = schema.new({
-    id = id.from(_N, "CreateCertificateAuthorityAuditReportInput"),
+    id = id.from(_N, "CreateCertificateAuthorityAuditReportRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -745,7 +745,7 @@ M.CreateCertificateAuthorityAuditReportInput = schema.new({
 })
 
 M.CreateCertificateAuthorityAuditReportOutput = schema.new({
-    id = id.from(_N, "CreateCertificateAuthorityAuditReportOutput"),
+    id = id.from(_N, "CreateCertificateAuthorityAuditReportResponse"),
     type = "structure",
     members = {
         AuditReportId = schema.new({
@@ -844,7 +844,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.CreatePermissionInput = schema.new({
-    id = id.from(_N, "CreatePermissionInput"),
+    id = id.from(_N, "CreatePermissionRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -885,7 +885,7 @@ M.CreatePermissionInput = schema.new({
 })
 
 M.CreatePermissionOutput = schema.new({
-    id = id.from(_N, "CreatePermissionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -922,7 +922,7 @@ M.ConcurrentModificationException = schema.new({
 })
 
 M.DeleteCertificateAuthorityInput = schema.new({
-    id = id.from(_N, "DeleteCertificateAuthorityInput"),
+    id = id.from(_N, "DeleteCertificateAuthorityRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -944,12 +944,12 @@ M.DeleteCertificateAuthorityInput = schema.new({
 })
 
 M.DeleteCertificateAuthorityOutput = schema.new({
-    id = id.from(_N, "DeleteCertificateAuthorityOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeletePermissionInput = schema.new({
-    id = id.from(_N, "DeletePermissionInput"),
+    id = id.from(_N, "DeletePermissionRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -980,12 +980,12 @@ M.DeletePermissionInput = schema.new({
 })
 
 M.DeletePermissionOutput = schema.new({
-    id = id.from(_N, "DeletePermissionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeletePolicyInput = schema.new({
-    id = id.from(_N, "DeletePolicyInput"),
+    id = id.from(_N, "DeletePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1001,7 +1001,7 @@ M.DeletePolicyInput = schema.new({
 })
 
 M.DeletePolicyOutput = schema.new({
-    id = id.from(_N, "DeletePolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1022,7 +1022,7 @@ M.LockoutPreventedException = schema.new({
 })
 
 M.DescribeCertificateAuthorityInput = schema.new({
-    id = id.from(_N, "DescribeCertificateAuthorityInput"),
+    id = id.from(_N, "DescribeCertificateAuthorityRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -1137,7 +1137,7 @@ M.CertificateAuthority = schema.new({
 })
 
 M.DescribeCertificateAuthorityOutput = schema.new({
-    id = id.from(_N, "DescribeCertificateAuthorityOutput"),
+    id = id.from(_N, "DescribeCertificateAuthorityResponse"),
     type = "structure",
     members = {
         CertificateAuthority = schema.new({
@@ -1151,7 +1151,7 @@ M.DescribeCertificateAuthorityOutput = schema.new({
 })
 
 M.DescribeCertificateAuthorityAuditReportInput = schema.new({
-    id = id.from(_N, "DescribeCertificateAuthorityAuditReportInput"),
+    id = id.from(_N, "DescribeCertificateAuthorityAuditReportRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -1176,7 +1176,7 @@ M.DescribeCertificateAuthorityAuditReportInput = schema.new({
 })
 
 M.DescribeCertificateAuthorityAuditReportOutput = schema.new({
-    id = id.from(_N, "DescribeCertificateAuthorityAuditReportOutput"),
+    id = id.from(_N, "DescribeCertificateAuthorityAuditReportResponse"),
     type = "structure",
     members = {
         AuditReportStatus = schema.new({
@@ -1207,7 +1207,7 @@ M.DescribeCertificateAuthorityAuditReportOutput = schema.new({
 })
 
 M.GetCertificateInput = schema.new({
-    id = id.from(_N, "GetCertificateInput"),
+    id = id.from(_N, "GetCertificateRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -1232,7 +1232,7 @@ M.GetCertificateInput = schema.new({
 })
 
 M.GetCertificateOutput = schema.new({
-    id = id.from(_N, "GetCertificateOutput"),
+    id = id.from(_N, "GetCertificateResponse"),
     type = "structure",
     members = {
         Certificate = schema.new({
@@ -1251,7 +1251,7 @@ M.GetCertificateOutput = schema.new({
 })
 
 M.GetCertificateAuthorityCertificateInput = schema.new({
-    id = id.from(_N, "GetCertificateAuthorityCertificateInput"),
+    id = id.from(_N, "GetCertificateAuthorityCertificateRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -1267,7 +1267,7 @@ M.GetCertificateAuthorityCertificateInput = schema.new({
 })
 
 M.GetCertificateAuthorityCertificateOutput = schema.new({
-    id = id.from(_N, "GetCertificateAuthorityCertificateOutput"),
+    id = id.from(_N, "GetCertificateAuthorityCertificateResponse"),
     type = "structure",
     members = {
         Certificate = schema.new({
@@ -1286,7 +1286,7 @@ M.GetCertificateAuthorityCertificateOutput = schema.new({
 })
 
 M.GetCertificateAuthorityCsrInput = schema.new({
-    id = id.from(_N, "GetCertificateAuthorityCsrInput"),
+    id = id.from(_N, "GetCertificateAuthorityCsrRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -1302,7 +1302,7 @@ M.GetCertificateAuthorityCsrInput = schema.new({
 })
 
 M.GetCertificateAuthorityCsrOutput = schema.new({
-    id = id.from(_N, "GetCertificateAuthorityCsrOutput"),
+    id = id.from(_N, "GetCertificateAuthorityCsrResponse"),
     type = "structure",
     members = {
         Csr = schema.new({
@@ -1315,7 +1315,7 @@ M.GetCertificateAuthorityCsrOutput = schema.new({
 })
 
 M.GetPolicyInput = schema.new({
-    id = id.from(_N, "GetPolicyInput"),
+    id = id.from(_N, "GetPolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1331,7 +1331,7 @@ M.GetPolicyInput = schema.new({
 })
 
 M.GetPolicyOutput = schema.new({
-    id = id.from(_N, "GetPolicyOutput"),
+    id = id.from(_N, "GetPolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -1360,7 +1360,7 @@ M.CertificateMismatchException = schema.new({
 })
 
 M.ImportCertificateAuthorityCertificateInput = schema.new({
-    id = id.from(_N, "ImportCertificateAuthorityCertificateInput"),
+    id = id.from(_N, "ImportCertificateAuthorityCertificateRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -1391,7 +1391,7 @@ M.ImportCertificateAuthorityCertificateInput = schema.new({
 })
 
 M.ImportCertificateAuthorityCertificateOutput = schema.new({
-    id = id.from(_N, "ImportCertificateAuthorityCertificateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1634,7 +1634,7 @@ M.Validity = schema.new({
 })
 
 M.IssueCertificateInput = schema.new({
-    id = id.from(_N, "IssueCertificateInput"),
+    id = id.from(_N, "IssueCertificateRequest"),
     type = "structure",
     members = {
         ApiPassthrough = schema.new({
@@ -1704,7 +1704,7 @@ M.IssueCertificateInput = schema.new({
 })
 
 M.IssueCertificateOutput = schema.new({
-    id = id.from(_N, "IssueCertificateOutput"),
+    id = id.from(_N, "IssueCertificateResponse"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -1749,7 +1749,7 @@ M.InvalidNextTokenException = schema.new({
 })
 
 M.ListCertificateAuthoritiesInput = schema.new({
-    id = id.from(_N, "ListCertificateAuthoritiesInput"),
+    id = id.from(_N, "ListCertificateAuthoritiesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1774,7 +1774,7 @@ M.ListCertificateAuthoritiesInput = schema.new({
 })
 
 M.ListCertificateAuthoritiesOutput = schema.new({
-    id = id.from(_N, "ListCertificateAuthoritiesOutput"),
+    id = id.from(_N, "ListCertificateAuthoritiesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1794,7 +1794,7 @@ M.ListCertificateAuthoritiesOutput = schema.new({
 })
 
 M.ListPermissionsInput = schema.new({
-    id = id.from(_N, "ListPermissionsInput"),
+    id = id.from(_N, "ListPermissionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1866,7 +1866,7 @@ M.Permission = schema.new({
 })
 
 M.ListPermissionsOutput = schema.new({
-    id = id.from(_N, "ListPermissionsOutput"),
+    id = id.from(_N, "ListPermissionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1886,7 +1886,7 @@ M.ListPermissionsOutput = schema.new({
 })
 
 M.ListTagsInput = schema.new({
-    id = id.from(_N, "ListTagsInput"),
+    id = id.from(_N, "ListTagsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1914,7 +1914,7 @@ M.ListTagsInput = schema.new({
 })
 
 M.ListTagsOutput = schema.new({
-    id = id.from(_N, "ListTagsOutput"),
+    id = id.from(_N, "ListTagsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1934,7 +1934,7 @@ M.ListTagsOutput = schema.new({
 })
 
 M.PutPolicyInput = schema.new({
-    id = id.from(_N, "PutPolicyInput"),
+    id = id.from(_N, "PutPolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1959,12 +1959,12 @@ M.PutPolicyInput = schema.new({
 })
 
 M.PutPolicyOutput = schema.new({
-    id = id.from(_N, "PutPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RestoreCertificateAuthorityInput = schema.new({
-    id = id.from(_N, "RestoreCertificateAuthorityInput"),
+    id = id.from(_N, "RestoreCertificateAuthorityRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -1980,7 +1980,7 @@ M.RestoreCertificateAuthorityInput = schema.new({
 })
 
 M.RestoreCertificateAuthorityOutput = schema.new({
-    id = id.from(_N, "RestoreCertificateAuthorityOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2001,7 +2001,7 @@ M.RequestAlreadyProcessedException = schema.new({
 })
 
 M.RevokeCertificateInput = schema.new({
-    id = id.from(_N, "RevokeCertificateInput"),
+    id = id.from(_N, "RevokeCertificateRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -2035,12 +2035,12 @@ M.RevokeCertificateInput = schema.new({
 })
 
 M.RevokeCertificateOutput = schema.new({
-    id = id.from(_N, "RevokeCertificateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.TagCertificateAuthorityInput = schema.new({
-    id = id.from(_N, "TagCertificateAuthorityInput"),
+    id = id.from(_N, "TagCertificateAuthorityRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -2066,7 +2066,7 @@ M.TagCertificateAuthorityInput = schema.new({
 })
 
 M.TagCertificateAuthorityOutput = schema.new({
-    id = id.from(_N, "TagCertificateAuthorityOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2087,7 +2087,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UntagCertificateAuthorityInput = schema.new({
-    id = id.from(_N, "UntagCertificateAuthorityInput"),
+    id = id.from(_N, "UntagCertificateAuthorityRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -2113,12 +2113,12 @@ M.UntagCertificateAuthorityInput = schema.new({
 })
 
 M.UntagCertificateAuthorityOutput = schema.new({
-    id = id.from(_N, "UntagCertificateAuthorityOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateCertificateAuthorityInput = schema.new({
-    id = id.from(_N, "UpdateCertificateAuthorityInput"),
+    id = id.from(_N, "UpdateCertificateAuthorityRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -2147,8 +2147,22 @@ M.UpdateCertificateAuthorityInput = schema.new({
 })
 
 M.UpdateCertificateAuthorityOutput = schema.new({
-    id = id.from(_N, "UpdateCertificateAuthorityOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -155,7 +155,7 @@ M.IdentityProvider = schema.new({
 })
 
 M.AssociateUserInput = schema.new({
-    id = id.from(_N, "AssociateUserInput"),
+    id = id.from(_N, "AssociateUserRequest"),
     type = "structure",
     members = {
         Username = schema.new({
@@ -278,7 +278,7 @@ M.InstanceUserSummary = schema.new({
 })
 
 M.AssociateUserOutput = schema.new({
-    id = id.from(_N, "AssociateUserOutput"),
+    id = id.from(_N, "AssociateUserResponse"),
     type = "structure",
     members = {
         InstanceUserSummary = schema.new({
@@ -448,7 +448,7 @@ M.LicenseServerSettings = schema.new({
 })
 
 M.CreateLicenseServerEndpointInput = schema.new({
-    id = id.from(_N, "CreateLicenseServerEndpointInput"),
+    id = id.from(_N, "CreateLicenseServerEndpointRequest"),
     type = "structure",
     members = {
         IdentityProviderArn = schema.new({
@@ -482,7 +482,7 @@ M.CreateLicenseServerEndpointInput = schema.new({
 })
 
 M.CreateLicenseServerEndpointOutput = schema.new({
-    id = id.from(_N, "CreateLicenseServerEndpointOutput"),
+    id = id.from(_N, "CreateLicenseServerEndpointResponse"),
     type = "structure",
     members = {
         IdentityProviderArn = schema.new({
@@ -501,7 +501,7 @@ M.CreateLicenseServerEndpointOutput = schema.new({
 })
 
 M.DeleteLicenseServerEndpointInput = schema.new({
-    id = id.from(_N, "DeleteLicenseServerEndpointInput"),
+    id = id.from(_N, "DeleteLicenseServerEndpointRequest"),
     type = "structure",
     members = {
         LicenseServerEndpointArn = schema.new({
@@ -633,7 +633,7 @@ M.LicenseServerEndpoint = schema.new({
 })
 
 M.DeleteLicenseServerEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteLicenseServerEndpointOutput"),
+    id = id.from(_N, "DeleteLicenseServerEndpointResponse"),
     type = "structure",
     members = {
         LicenseServerEndpoint = schema.new({
@@ -647,7 +647,7 @@ M.DeleteLicenseServerEndpointOutput = schema.new({
 })
 
 M.DeregisterIdentityProviderInput = schema.new({
-    id = id.from(_N, "DeregisterIdentityProviderInput"),
+    id = id.from(_N, "DeregisterIdentityProviderRequest"),
     type = "structure",
     members = {
         IdentityProvider = schema.new({
@@ -762,7 +762,7 @@ M.IdentityProviderSummary = schema.new({
 })
 
 M.DeregisterIdentityProviderOutput = schema.new({
-    id = id.from(_N, "DeregisterIdentityProviderOutput"),
+    id = id.from(_N, "DeregisterIdentityProviderResponse"),
     type = "structure",
     members = {
         IdentityProviderSummary = schema.new({
@@ -779,7 +779,7 @@ M.DeregisterIdentityProviderOutput = schema.new({
 })
 
 M.DisassociateUserInput = schema.new({
-    id = id.from(_N, "DisassociateUserInput"),
+    id = id.from(_N, "DisassociateUserRequest"),
     type = "structure",
     members = {
         Username = schema.new({
@@ -817,7 +817,7 @@ M.DisassociateUserInput = schema.new({
 })
 
 M.DisassociateUserOutput = schema.new({
-    id = id.from(_N, "DisassociateUserOutput"),
+    id = id.from(_N, "DisassociateUserResponse"),
     type = "structure",
     members = {
         InstanceUserSummary = schema.new({
@@ -919,7 +919,7 @@ M.InstanceSummary = schema.new({
 })
 
 M.ListIdentityProvidersInput = schema.new({
-    id = id.from(_N, "ListIdentityProvidersInput"),
+    id = id.from(_N, "ListIdentityProvidersRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -945,7 +945,7 @@ M.ListIdentityProvidersInput = schema.new({
 })
 
 M.ListIdentityProvidersOutput = schema.new({
-    id = id.from(_N, "ListIdentityProvidersOutput"),
+    id = id.from(_N, "ListIdentityProvidersResponse"),
     type = "structure",
     members = {
         IdentityProviderSummaries = schema.new({
@@ -968,7 +968,7 @@ M.ListIdentityProvidersOutput = schema.new({
 })
 
 M.ListInstancesInput = schema.new({
-    id = id.from(_N, "ListInstancesInput"),
+    id = id.from(_N, "ListInstancesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -994,7 +994,7 @@ M.ListInstancesInput = schema.new({
 })
 
 M.ListInstancesOutput = schema.new({
-    id = id.from(_N, "ListInstancesOutput"),
+    id = id.from(_N, "ListInstancesResponse"),
     type = "structure",
     members = {
         InstanceSummaries = schema.new({
@@ -1014,7 +1014,7 @@ M.ListInstancesOutput = schema.new({
 })
 
 M.ListLicenseServerEndpointsInput = schema.new({
-    id = id.from(_N, "ListLicenseServerEndpointsInput"),
+    id = id.from(_N, "ListLicenseServerEndpointsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1040,7 +1040,7 @@ M.ListLicenseServerEndpointsInput = schema.new({
 })
 
 M.ListLicenseServerEndpointsOutput = schema.new({
-    id = id.from(_N, "ListLicenseServerEndpointsOutput"),
+    id = id.from(_N, "ListLicenseServerEndpointsResponse"),
     type = "structure",
     members = {
         LicenseServerEndpoints = schema.new({
@@ -1060,7 +1060,7 @@ M.ListLicenseServerEndpointsOutput = schema.new({
 })
 
 M.ListProductSubscriptionsInput = schema.new({
-    id = id.from(_N, "ListProductSubscriptionsInput"),
+    id = id.from(_N, "ListProductSubscriptionsRequest"),
     type = "structure",
     members = {
         Product = schema.new({
@@ -1176,7 +1176,7 @@ M.ProductUserSummary = schema.new({
 })
 
 M.ListProductSubscriptionsOutput = schema.new({
-    id = id.from(_N, "ListProductSubscriptionsOutput"),
+    id = id.from(_N, "ListProductSubscriptionsResponse"),
     type = "structure",
     members = {
         ProductUserSummaries = schema.new({
@@ -1196,7 +1196,7 @@ M.ListProductSubscriptionsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1213,7 +1213,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1228,7 +1228,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListUserAssociationsInput = schema.new({
-    id = id.from(_N, "ListUserAssociationsInput"),
+    id = id.from(_N, "ListUserAssociationsRequest"),
     type = "structure",
     members = {
         InstanceId = schema.new({
@@ -1273,7 +1273,7 @@ M.ListUserAssociationsInput = schema.new({
 })
 
 M.ListUserAssociationsOutput = schema.new({
-    id = id.from(_N, "ListUserAssociationsOutput"),
+    id = id.from(_N, "ListUserAssociationsResponse"),
     type = "structure",
     members = {
         InstanceUserSummaries = schema.new({
@@ -1293,7 +1293,7 @@ M.ListUserAssociationsOutput = schema.new({
 })
 
 M.RegisterIdentityProviderInput = schema.new({
-    id = id.from(_N, "RegisterIdentityProviderInput"),
+    id = id.from(_N, "RegisterIdentityProviderRequest"),
     type = "structure",
     members = {
         IdentityProvider = schema.new({
@@ -1334,7 +1334,7 @@ M.RegisterIdentityProviderInput = schema.new({
 })
 
 M.RegisterIdentityProviderOutput = schema.new({
-    id = id.from(_N, "RegisterIdentityProviderOutput"),
+    id = id.from(_N, "RegisterIdentityProviderResponse"),
     type = "structure",
     members = {
         IdentityProviderSummary = schema.new({
@@ -1351,7 +1351,7 @@ M.RegisterIdentityProviderOutput = schema.new({
 })
 
 M.StartProductSubscriptionInput = schema.new({
-    id = id.from(_N, "StartProductSubscriptionInput"),
+    id = id.from(_N, "StartProductSubscriptionRequest"),
     type = "structure",
     members = {
         Username = schema.new({
@@ -1400,7 +1400,7 @@ M.StartProductSubscriptionInput = schema.new({
 })
 
 M.StartProductSubscriptionOutput = schema.new({
-    id = id.from(_N, "StartProductSubscriptionOutput"),
+    id = id.from(_N, "StartProductSubscriptionResponse"),
     type = "structure",
     members = {
         ProductUserSummary = schema.new({
@@ -1417,7 +1417,7 @@ M.StartProductSubscriptionOutput = schema.new({
 })
 
 M.StopProductSubscriptionInput = schema.new({
-    id = id.from(_N, "StopProductSubscriptionInput"),
+    id = id.from(_N, "StopProductSubscriptionRequest"),
     type = "structure",
     members = {
         Username = schema.new({
@@ -1455,7 +1455,7 @@ M.StopProductSubscriptionInput = schema.new({
 })
 
 M.StopProductSubscriptionOutput = schema.new({
-    id = id.from(_N, "StopProductSubscriptionOutput"),
+    id = id.from(_N, "StopProductSubscriptionResponse"),
     type = "structure",
     members = {
         ProductUserSummary = schema.new({
@@ -1472,7 +1472,7 @@ M.StopProductSubscriptionOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1500,12 +1500,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1533,7 +1533,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -1571,7 +1571,7 @@ M.UpdateSettings = schema.new({
 })
 
 M.UpdateIdentityProviderSettingsInput = schema.new({
-    id = id.from(_N, "UpdateIdentityProviderSettingsInput"),
+    id = id.from(_N, "UpdateIdentityProviderSettingsRequest"),
     type = "structure",
     members = {
         IdentityProvider = schema.new({
@@ -1607,7 +1607,7 @@ M.UpdateIdentityProviderSettingsInput = schema.new({
 })
 
 M.UpdateIdentityProviderSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateIdentityProviderSettingsOutput"),
+    id = id.from(_N, "UpdateIdentityProviderSettingsResponse"),
     type = "structure",
     members = {
         IdentityProviderSummary = schema.new({
@@ -1622,5 +1622,19 @@ M.UpdateIdentityProviderSettingsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

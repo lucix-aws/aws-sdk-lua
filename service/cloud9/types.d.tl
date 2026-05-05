@@ -611,9 +611,9 @@ local record TooManyRequestsException
     code: number
 end
 
-local type ConnectionType = "CONNECT_SSH" | "CONNECT_SSM"
-
 local type EnvironmentStatus = "error" | "creating" | "connecting" | "ready" | "stopping" | "stopped" | "deleting"
+
+local type ConnectionType = "CONNECT_SSH" | "CONNECT_SSM"
 
 local type MemberPermissions = "read-write" | "read-only"
 

@@ -793,7 +793,7 @@ M.PolicyDetails = schema.new({
 })
 
 M.CreateLifecyclePolicyInput = schema.new({
-    id = id.from(_N, "CreateLifecyclePolicyInput"),
+    id = id.from(_N, "CreateLifecyclePolicyRequest"),
     type = "structure",
     members = {
         ExecutionRoleArn = schema.new({
@@ -886,7 +886,7 @@ M.CreateLifecyclePolicyInput = schema.new({
 })
 
 M.CreateLifecyclePolicyOutput = schema.new({
-    id = id.from(_N, "CreateLifecyclePolicyOutput"),
+    id = id.from(_N, "CreateLifecyclePolicyResponse"),
     type = "structure",
     members = {
         PolicyId = schema.new({
@@ -985,7 +985,7 @@ M.LimitExceededException = schema.new({
 })
 
 M.DeleteLifecyclePolicyInput = schema.new({
-    id = id.from(_N, "DeleteLifecyclePolicyInput"),
+    id = id.from(_N, "DeleteLifecyclePolicyRequest"),
     type = "structure",
     members = {
         PolicyId = schema.new({
@@ -1002,7 +1002,7 @@ M.DeleteLifecyclePolicyInput = schema.new({
 })
 
 M.DeleteLifecyclePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteLifecyclePolicyOutput"),
+    id = id.from(_N, "DeleteLifecyclePolicyResponse"),
     type = "structure",
 })
 
@@ -1042,7 +1042,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.GetLifecyclePoliciesInput = schema.new({
-    id = id.from(_N, "GetLifecyclePoliciesInput"),
+    id = id.from(_N, "GetLifecyclePoliciesRequest"),
     type = "structure",
     members = {
         PolicyIds = schema.new({
@@ -1152,7 +1152,7 @@ M.LifecyclePolicySummary = schema.new({
 })
 
 M.GetLifecyclePoliciesOutput = schema.new({
-    id = id.from(_N, "GetLifecyclePoliciesOutput"),
+    id = id.from(_N, "GetLifecyclePoliciesResponse"),
     type = "structure",
     members = {
         Policies = schema.new({
@@ -1166,7 +1166,7 @@ M.GetLifecyclePoliciesOutput = schema.new({
 })
 
 M.GetLifecyclePolicyInput = schema.new({
-    id = id.from(_N, "GetLifecyclePolicyInput"),
+    id = id.from(_N, "GetLifecyclePolicyRequest"),
     type = "structure",
     members = {
         PolicyId = schema.new({
@@ -1265,7 +1265,7 @@ M.LifecyclePolicy = schema.new({
 })
 
 M.GetLifecyclePolicyOutput = schema.new({
-    id = id.from(_N, "GetLifecyclePolicyOutput"),
+    id = id.from(_N, "GetLifecyclePolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -1279,7 +1279,7 @@ M.GetLifecyclePolicyOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1296,7 +1296,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1311,7 +1311,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1339,12 +1339,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1372,12 +1372,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateLifecyclePolicyInput = schema.new({
-    id = id.from(_N, "UpdateLifecyclePolicyInput"),
+    id = id.from(_N, "UpdateLifecyclePolicyRequest"),
     type = "structure",
     members = {
         PolicyId = schema.new({
@@ -1457,8 +1457,22 @@ M.UpdateLifecyclePolicyInput = schema.new({
 })
 
 M.UpdateLifecyclePolicyOutput = schema.new({
-    id = id.from(_N, "UpdateLifecyclePolicyOutput"),
+    id = id.from(_N, "UpdateLifecyclePolicyResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

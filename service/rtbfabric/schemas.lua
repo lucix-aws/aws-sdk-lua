@@ -128,7 +128,7 @@ M.LinkLogSettings = schema.new({
 })
 
 M.AcceptLinkInput = schema.new({
-    id = id.from(_N, "AcceptLinkInput"),
+    id = id.from(_N, "AcceptLinkRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -427,7 +427,7 @@ M.ModuleConfiguration = schema.new({
 })
 
 M.AcceptLinkOutput = schema.new({
-    id = id.from(_N, "AcceptLinkOutput"),
+    id = id.from(_N, "AcceptLinkResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -736,7 +736,7 @@ M.AutoScalingGroupsConfiguration = schema.new({
 })
 
 M.CreateInboundExternalLinkInput = schema.new({
-    id = id.from(_N, "CreateInboundExternalLinkInput"),
+    id = id.from(_N, "CreateInboundExternalLinkRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -788,7 +788,7 @@ M.CreateInboundExternalLinkInput = schema.new({
 })
 
 M.CreateInboundExternalLinkOutput = schema.new({
-    id = id.from(_N, "CreateInboundExternalLinkOutput"),
+    id = id.from(_N, "CreateInboundExternalLinkResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -850,7 +850,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.CreateLinkInput = schema.new({
-    id = id.from(_N, "CreateLinkInput"),
+    id = id.from(_N, "CreateLinkRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -913,7 +913,7 @@ M.CreateLinkInput = schema.new({
 })
 
 M.CreateLinkOutput = schema.new({
-    id = id.from(_N, "CreateLinkOutput"),
+    id = id.from(_N, "CreateLinkResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -1020,7 +1020,7 @@ M.CreateLinkOutput = schema.new({
 })
 
 M.CreateOutboundExternalLinkInput = schema.new({
-    id = id.from(_N, "CreateOutboundExternalLinkInput"),
+    id = id.from(_N, "CreateOutboundExternalLinkRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1081,7 +1081,7 @@ M.CreateOutboundExternalLinkInput = schema.new({
 })
 
 M.CreateOutboundExternalLinkOutput = schema.new({
-    id = id.from(_N, "CreateOutboundExternalLinkOutput"),
+    id = id.from(_N, "CreateOutboundExternalLinkResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -1115,7 +1115,7 @@ M.CreateOutboundExternalLinkOutput = schema.new({
 })
 
 M.CreateRequesterGatewayInput = schema.new({
-    id = id.from(_N, "CreateRequesterGatewayInput"),
+    id = id.from(_N, "CreateRequesterGatewayRequest"),
     type = "structure",
     members = {
         vpcId = schema.new({
@@ -1175,7 +1175,7 @@ M.CreateRequesterGatewayInput = schema.new({
 })
 
 M.CreateRequesterGatewayOutput = schema.new({
-    id = id.from(_N, "CreateRequesterGatewayOutput"),
+    id = id.from(_N, "CreateRequesterGatewayResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -1325,7 +1325,7 @@ M.TrustStoreConfiguration = schema.new({
 })
 
 M.CreateResponderGatewayInput = schema.new({
-    id = id.from(_N, "CreateResponderGatewayInput"),
+    id = id.from(_N, "CreateResponderGatewayRequest"),
     type = "structure",
     members = {
         vpcId = schema.new({
@@ -1436,7 +1436,7 @@ M.CreateResponderGatewayInput = schema.new({
 })
 
 M.CreateResponderGatewayOutput = schema.new({
-    id = id.from(_N, "CreateResponderGatewayOutput"),
+    id = id.from(_N, "CreateResponderGatewayResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -1474,7 +1474,7 @@ M.CreateResponderGatewayOutput = schema.new({
 })
 
 M.DeleteInboundExternalLinkInput = schema.new({
-    id = id.from(_N, "DeleteInboundExternalLinkInput"),
+    id = id.from(_N, "DeleteInboundExternalLinkRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -1501,7 +1501,7 @@ M.DeleteInboundExternalLinkInput = schema.new({
 })
 
 M.DeleteInboundExternalLinkOutput = schema.new({
-    id = id.from(_N, "DeleteInboundExternalLinkOutput"),
+    id = id.from(_N, "DeleteInboundExternalLinkResponse"),
     type = "structure",
     members = {
         linkId = schema.new({
@@ -1526,7 +1526,7 @@ M.DeleteInboundExternalLinkOutput = schema.new({
 })
 
 M.DeleteLinkInput = schema.new({
-    id = id.from(_N, "DeleteLinkInput"),
+    id = id.from(_N, "DeleteLinkRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -1553,7 +1553,7 @@ M.DeleteLinkInput = schema.new({
 })
 
 M.DeleteLinkOutput = schema.new({
-    id = id.from(_N, "DeleteLinkOutput"),
+    id = id.from(_N, "DeleteLinkResponse"),
     type = "structure",
     members = {
         linkId = schema.new({
@@ -1578,7 +1578,7 @@ M.DeleteLinkOutput = schema.new({
 })
 
 M.DeleteOutboundExternalLinkInput = schema.new({
-    id = id.from(_N, "DeleteOutboundExternalLinkInput"),
+    id = id.from(_N, "DeleteOutboundExternalLinkRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -1605,7 +1605,7 @@ M.DeleteOutboundExternalLinkInput = schema.new({
 })
 
 M.DeleteOutboundExternalLinkOutput = schema.new({
-    id = id.from(_N, "DeleteOutboundExternalLinkOutput"),
+    id = id.from(_N, "DeleteOutboundExternalLinkResponse"),
     type = "structure",
     members = {
         linkId = schema.new({
@@ -1630,7 +1630,7 @@ M.DeleteOutboundExternalLinkOutput = schema.new({
 })
 
 M.DeleteRequesterGatewayInput = schema.new({
-    id = id.from(_N, "DeleteRequesterGatewayInput"),
+    id = id.from(_N, "DeleteRequesterGatewayRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -1647,7 +1647,7 @@ M.DeleteRequesterGatewayInput = schema.new({
 })
 
 M.DeleteRequesterGatewayOutput = schema.new({
-    id = id.from(_N, "DeleteRequesterGatewayOutput"),
+    id = id.from(_N, "DeleteRequesterGatewayResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -1672,7 +1672,7 @@ M.DeleteRequesterGatewayOutput = schema.new({
 })
 
 M.DeleteResponderGatewayInput = schema.new({
-    id = id.from(_N, "DeleteResponderGatewayInput"),
+    id = id.from(_N, "DeleteResponderGatewayRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -1689,7 +1689,7 @@ M.DeleteResponderGatewayInput = schema.new({
 })
 
 M.DeleteResponderGatewayOutput = schema.new({
-    id = id.from(_N, "DeleteResponderGatewayOutput"),
+    id = id.from(_N, "DeleteResponderGatewayResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -1714,7 +1714,7 @@ M.DeleteResponderGatewayOutput = schema.new({
 })
 
 M.GetLinkInput = schema.new({
-    id = id.from(_N, "GetLinkInput"),
+    id = id.from(_N, "GetLinkRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -1741,7 +1741,7 @@ M.GetLinkInput = schema.new({
 })
 
 M.GetLinkOutput = schema.new({
-    id = id.from(_N, "GetLinkOutput"),
+    id = id.from(_N, "GetLinkResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -1862,7 +1862,7 @@ M.GetLinkOutput = schema.new({
 })
 
 M.ListLinksInput = schema.new({
-    id = id.from(_N, "ListLinksInput"),
+    id = id.from(_N, "ListLinksRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -2012,7 +2012,7 @@ M.ListLinksResponseStructure = schema.new({
 })
 
 M.ListLinksOutput = schema.new({
-    id = id.from(_N, "ListLinksOutput"),
+    id = id.from(_N, "ListLinksResponse"),
     type = "structure",
     members = {
         links = schema.new({
@@ -2032,7 +2032,7 @@ M.ListLinksOutput = schema.new({
 })
 
 M.RejectLinkInput = schema.new({
-    id = id.from(_N, "RejectLinkInput"),
+    id = id.from(_N, "RejectLinkRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -2059,7 +2059,7 @@ M.RejectLinkInput = schema.new({
 })
 
 M.RejectLinkOutput = schema.new({
-    id = id.from(_N, "RejectLinkOutput"),
+    id = id.from(_N, "RejectLinkResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -2160,7 +2160,7 @@ M.RejectLinkOutput = schema.new({
 })
 
 M.UpdateLinkInput = schema.new({
-    id = id.from(_N, "UpdateLinkInput"),
+    id = id.from(_N, "UpdateLinkRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -2200,7 +2200,7 @@ M.UpdateLinkInput = schema.new({
 })
 
 M.UpdateLinkOutput = schema.new({
-    id = id.from(_N, "UpdateLinkOutput"),
+    id = id.from(_N, "UpdateLinkResponse"),
     type = "structure",
     members = {
         linkId = schema.new({
@@ -2225,7 +2225,7 @@ M.UpdateLinkOutput = schema.new({
 })
 
 M.UpdateLinkModuleFlowInput = schema.new({
-    id = id.from(_N, "UpdateLinkModuleFlowInput"),
+    id = id.from(_N, "UpdateLinkModuleFlowRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -2272,7 +2272,7 @@ M.UpdateLinkModuleFlowInput = schema.new({
 })
 
 M.UpdateLinkModuleFlowOutput = schema.new({
-    id = id.from(_N, "UpdateLinkModuleFlowOutput"),
+    id = id.from(_N, "UpdateLinkModuleFlowResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -2306,7 +2306,7 @@ M.UpdateLinkModuleFlowOutput = schema.new({
 })
 
 M.GetInboundExternalLinkInput = schema.new({
-    id = id.from(_N, "GetInboundExternalLinkInput"),
+    id = id.from(_N, "GetInboundExternalLinkRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -2333,7 +2333,7 @@ M.GetInboundExternalLinkInput = schema.new({
 })
 
 M.GetInboundExternalLinkOutput = schema.new({
-    id = id.from(_N, "GetInboundExternalLinkOutput"),
+    id = id.from(_N, "GetInboundExternalLinkResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -2430,7 +2430,7 @@ M.GetInboundExternalLinkOutput = schema.new({
 })
 
 M.GetOutboundExternalLinkInput = schema.new({
-    id = id.from(_N, "GetOutboundExternalLinkInput"),
+    id = id.from(_N, "GetOutboundExternalLinkRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -2457,7 +2457,7 @@ M.GetOutboundExternalLinkInput = schema.new({
 })
 
 M.GetOutboundExternalLinkOutput = schema.new({
-    id = id.from(_N, "GetOutboundExternalLinkOutput"),
+    id = id.from(_N, "GetOutboundExternalLinkResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -2554,7 +2554,7 @@ M.GetOutboundExternalLinkOutput = schema.new({
 })
 
 M.GetRequesterGatewayInput = schema.new({
-    id = id.from(_N, "GetRequesterGatewayInput"),
+    id = id.from(_N, "GetRequesterGatewayRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -2571,7 +2571,7 @@ M.GetRequesterGatewayInput = schema.new({
 })
 
 M.GetRequesterGatewayOutput = schema.new({
-    id = id.from(_N, "GetRequesterGatewayOutput"),
+    id = id.from(_N, "GetRequesterGatewayResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -2672,7 +2672,7 @@ M.GetRequesterGatewayOutput = schema.new({
 })
 
 M.GetResponderGatewayInput = schema.new({
-    id = id.from(_N, "GetResponderGatewayInput"),
+    id = id.from(_N, "GetResponderGatewayRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -2689,7 +2689,7 @@ M.GetResponderGatewayInput = schema.new({
 })
 
 M.GetResponderGatewayOutput = schema.new({
-    id = id.from(_N, "GetResponderGatewayOutput"),
+    id = id.from(_N, "GetResponderGatewayResponse"),
     type = "structure",
     members = {
         vpcId = schema.new({
@@ -2844,7 +2844,7 @@ M.GetResponderGatewayOutput = schema.new({
 })
 
 M.ListRequesterGatewaysInput = schema.new({
-    id = id.from(_N, "ListRequesterGatewaysInput"),
+    id = id.from(_N, "ListRequesterGatewaysRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2870,7 +2870,7 @@ M.ListRequesterGatewaysInput = schema.new({
 })
 
 M.ListRequesterGatewaysOutput = schema.new({
-    id = id.from(_N, "ListRequesterGatewaysOutput"),
+    id = id.from(_N, "ListRequesterGatewaysResponse"),
     type = "structure",
     members = {
         gatewayIds = schema.new({
@@ -2890,7 +2890,7 @@ M.ListRequesterGatewaysOutput = schema.new({
 })
 
 M.ListResponderGatewaysInput = schema.new({
-    id = id.from(_N, "ListResponderGatewaysInput"),
+    id = id.from(_N, "ListResponderGatewaysRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2916,7 +2916,7 @@ M.ListResponderGatewaysInput = schema.new({
 })
 
 M.ListResponderGatewaysOutput = schema.new({
-    id = id.from(_N, "ListResponderGatewaysOutput"),
+    id = id.from(_N, "ListResponderGatewaysResponse"),
     type = "structure",
     members = {
         gatewayIds = schema.new({
@@ -2936,7 +2936,7 @@ M.ListResponderGatewaysOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2953,7 +2953,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2968,7 +2968,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.UpdateRequesterGatewayInput = schema.new({
-    id = id.from(_N, "UpdateRequesterGatewayInput"),
+    id = id.from(_N, "UpdateRequesterGatewayRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -3001,7 +3001,7 @@ M.UpdateRequesterGatewayInput = schema.new({
 })
 
 M.UpdateRequesterGatewayOutput = schema.new({
-    id = id.from(_N, "UpdateRequesterGatewayOutput"),
+    id = id.from(_N, "UpdateRequesterGatewayResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -3026,7 +3026,7 @@ M.UpdateRequesterGatewayOutput = schema.new({
 })
 
 M.UpdateResponderGatewayInput = schema.new({
-    id = id.from(_N, "UpdateResponderGatewayInput"),
+    id = id.from(_N, "UpdateResponderGatewayRequest"),
     type = "structure",
     members = {
         domainName = schema.new({
@@ -3104,7 +3104,7 @@ M.UpdateResponderGatewayInput = schema.new({
 })
 
 M.UpdateResponderGatewayOutput = schema.new({
-    id = id.from(_N, "UpdateResponderGatewayOutput"),
+    id = id.from(_N, "UpdateResponderGatewayResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -3129,7 +3129,7 @@ M.UpdateResponderGatewayOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3157,12 +3157,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3190,8 +3190,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

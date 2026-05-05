@@ -383,7 +383,7 @@ M.ActorSummary = schema.new({
 })
 
 M.GetAgentCardInput = schema.new({
-    id = id.from(_N, "GetAgentCardInput"),
+    id = id.from(_N, "GetAgentCardRequest"),
     type = "structure",
     members = {
         runtimeSessionId = schema.new({
@@ -419,7 +419,7 @@ M.GetAgentCardInput = schema.new({
 })
 
 M.GetAgentCardOutput = schema.new({
-    id = id.from(_N, "GetAgentCardOutput"),
+    id = id.from(_N, "GetAgentCardResponse"),
     type = "structure",
     members = {
         runtimeSessionId = schema.new({
@@ -594,7 +594,7 @@ M.ValidationException = schema.new({
 })
 
 M.InvokeAgentRuntimeInput = schema.new({
-    id = id.from(_N, "InvokeAgentRuntimeInput"),
+    id = id.from(_N, "InvokeAgentRuntimeRequest"),
     type = "structure",
     members = {
         contentType = schema.new({
@@ -730,7 +730,7 @@ M.InvokeAgentRuntimeInput = schema.new({
 })
 
 M.InvokeAgentRuntimeOutput = schema.new({
-    id = id.from(_N, "InvokeAgentRuntimeOutput"),
+    id = id.from(_N, "InvokeAgentRuntimeResponse"),
     type = "structure",
     members = {
         runtimeSessionId = schema.new({
@@ -851,7 +851,7 @@ M.InvokeAgentRuntimeCommandRequestBody = schema.new({
 })
 
 M.InvokeAgentRuntimeCommandInput = schema.new({
-    id = id.from(_N, "InvokeAgentRuntimeCommandInput"),
+    id = id.from(_N, "InvokeAgentRuntimeCommandRequest"),
     type = "structure",
     members = {
         contentType = schema.new({
@@ -1101,7 +1101,7 @@ M.InvokeAgentRuntimeCommandStreamOutput = schema.new({
 })
 
 M.InvokeAgentRuntimeCommandOutput = schema.new({
-    id = id.from(_N, "InvokeAgentRuntimeCommandOutput"),
+    id = id.from(_N, "InvokeAgentRuntimeCommandResponse"),
     type = "structure",
     members = {
         runtimeSessionId = schema.new({
@@ -1199,7 +1199,7 @@ M.ConflictException = schema.new({
 })
 
 M.StopRuntimeSessionInput = schema.new({
-    id = id.from(_N, "StopRuntimeSessionInput"),
+    id = id.from(_N, "StopRuntimeSessionRequest"),
     type = "structure",
     members = {
         runtimeSessionId = schema.new({
@@ -1244,7 +1244,7 @@ M.StopRuntimeSessionInput = schema.new({
 })
 
 M.StopRuntimeSessionOutput = schema.new({
-    id = id.from(_N, "StopRuntimeSessionOutput"),
+    id = id.from(_N, "StopRuntimeSessionResponse"),
     type = "structure",
     members = {
         runtimeSessionId = schema.new({
@@ -1490,7 +1490,7 @@ M.AgentTracesConfig = schema.new({
 })
 
 M.SaveBrowserSessionProfileInput = schema.new({
-    id = id.from(_N, "SaveBrowserSessionProfileInput"),
+    id = id.from(_N, "SaveBrowserSessionProfileRequest"),
     type = "structure",
     members = {
         traceId = schema.new({
@@ -1552,7 +1552,7 @@ M.SaveBrowserSessionProfileInput = schema.new({
 })
 
 M.SaveBrowserSessionProfileOutput = schema.new({
-    id = id.from(_N, "SaveBrowserSessionProfileOutput"),
+    id = id.from(_N, "SaveBrowserSessionProfileResponse"),
     type = "structure",
     members = {
         profileIdentifier = schema.new({
@@ -1599,7 +1599,7 @@ M.SaveBrowserSessionProfileOutput = schema.new({
 })
 
 M.GetBrowserSessionInput = schema.new({
-    id = id.from(_N, "GetBrowserSessionInput"),
+    id = id.from(_N, "GetBrowserSessionRequest"),
     type = "structure",
     members = {
         browserIdentifier = schema.new({
@@ -1982,7 +1982,7 @@ M.ViewPort = schema.new({
 })
 
 M.GetBrowserSessionOutput = schema.new({
-    id = id.from(_N, "GetBrowserSessionOutput"),
+    id = id.from(_N, "GetBrowserSessionResponse"),
     type = "structure",
     members = {
         browserIdentifier = schema.new({
@@ -2381,7 +2381,7 @@ M.BrowserAction = schema.new({
 })
 
 M.InvokeBrowserInput = schema.new({
-    id = id.from(_N, "InvokeBrowserInput"),
+    id = id.from(_N, "InvokeBrowserRequest"),
     type = "structure",
     members = {
         browserIdentifier = schema.new({
@@ -2663,7 +2663,7 @@ M.BrowserActionResult = schema.new({
 })
 
 M.InvokeBrowserOutput = schema.new({
-    id = id.from(_N, "InvokeBrowserOutput"),
+    id = id.from(_N, "InvokeBrowserResponse"),
     type = "structure",
     members = {
         result = schema.new({
@@ -2690,7 +2690,7 @@ M.InvokeBrowserOutput = schema.new({
 })
 
 M.ListBrowserSessionsInput = schema.new({
-    id = id.from(_N, "ListBrowserSessionsInput"),
+    id = id.from(_N, "ListBrowserSessionsRequest"),
     type = "structure",
     members = {
         browserIdentifier = schema.new({
@@ -2787,7 +2787,7 @@ M.BrowserSessionSummary = schema.new({
 })
 
 M.ListBrowserSessionsOutput = schema.new({
-    id = id.from(_N, "ListBrowserSessionsOutput"),
+    id = id.from(_N, "ListBrowserSessionsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -2810,7 +2810,7 @@ M.ListBrowserSessionsOutput = schema.new({
 })
 
 M.StartBrowserSessionInput = schema.new({
-    id = id.from(_N, "StartBrowserSessionInput"),
+    id = id.from(_N, "StartBrowserSessionRequest"),
     type = "structure",
     members = {
         traceId = schema.new({
@@ -2911,7 +2911,7 @@ M.StartBrowserSessionInput = schema.new({
 })
 
 M.StartBrowserSessionOutput = schema.new({
-    id = id.from(_N, "StartBrowserSessionOutput"),
+    id = id.from(_N, "StartBrowserSessionResponse"),
     type = "structure",
     members = {
         browserIdentifier = schema.new({
@@ -2956,7 +2956,7 @@ M.StartBrowserSessionOutput = schema.new({
 })
 
 M.StopBrowserSessionInput = schema.new({
-    id = id.from(_N, "StopBrowserSessionInput"),
+    id = id.from(_N, "StopBrowserSessionRequest"),
     type = "structure",
     members = {
         traceId = schema.new({
@@ -3010,7 +3010,7 @@ M.StopBrowserSessionInput = schema.new({
 })
 
 M.StopBrowserSessionOutput = schema.new({
-    id = id.from(_N, "StopBrowserSessionOutput"),
+    id = id.from(_N, "StopBrowserSessionResponse"),
     type = "structure",
     members = {
         browserIdentifier = schema.new({
@@ -3075,7 +3075,7 @@ M.StreamUpdate = schema.new({
 })
 
 M.UpdateBrowserStreamInput = schema.new({
-    id = id.from(_N, "UpdateBrowserStreamInput"),
+    id = id.from(_N, "UpdateBrowserStreamRequest"),
     type = "structure",
     members = {
         browserIdentifier = schema.new({
@@ -3121,7 +3121,7 @@ M.UpdateBrowserStreamInput = schema.new({
 })
 
 M.UpdateBrowserStreamOutput = schema.new({
-    id = id.from(_N, "UpdateBrowserStreamOutput"),
+    id = id.from(_N, "UpdateBrowserStreamResponse"),
     type = "structure",
     members = {
         browserIdentifier = schema.new({
@@ -3169,7 +3169,7 @@ M.UpdateBrowserStreamOutput = schema.new({
 })
 
 M.GetCodeInterpreterSessionInput = schema.new({
-    id = id.from(_N, "GetCodeInterpreterSessionInput"),
+    id = id.from(_N, "GetCodeInterpreterSessionRequest"),
     type = "structure",
     members = {
         codeInterpreterIdentifier = schema.new({
@@ -3196,7 +3196,7 @@ M.GetCodeInterpreterSessionInput = schema.new({
 })
 
 M.GetCodeInterpreterSessionOutput = schema.new({
-    id = id.from(_N, "GetCodeInterpreterSessionOutput"),
+    id = id.from(_N, "GetCodeInterpreterSessionResponse"),
     type = "structure",
     members = {
         codeInterpreterIdentifier = schema.new({
@@ -3259,7 +3259,7 @@ M.GetCodeInterpreterSessionOutput = schema.new({
 })
 
 M.ListCodeInterpreterSessionsInput = schema.new({
-    id = id.from(_N, "ListCodeInterpreterSessionsInput"),
+    id = id.from(_N, "ListCodeInterpreterSessionsRequest"),
     type = "structure",
     members = {
         codeInterpreterIdentifier = schema.new({
@@ -3356,7 +3356,7 @@ M.CodeInterpreterSessionSummary = schema.new({
 })
 
 M.ListCodeInterpreterSessionsOutput = schema.new({
-    id = id.from(_N, "ListCodeInterpreterSessionsOutput"),
+    id = id.from(_N, "ListCodeInterpreterSessionsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -3379,7 +3379,7 @@ M.ListCodeInterpreterSessionsOutput = schema.new({
 })
 
 M.StartCodeInterpreterSessionInput = schema.new({
-    id = id.from(_N, "StartCodeInterpreterSessionInput"),
+    id = id.from(_N, "StartCodeInterpreterSessionRequest"),
     type = "structure",
     members = {
         traceId = schema.new({
@@ -3445,7 +3445,7 @@ M.StartCodeInterpreterSessionInput = schema.new({
 })
 
 M.StartCodeInterpreterSessionOutput = schema.new({
-    id = id.from(_N, "StartCodeInterpreterSessionOutput"),
+    id = id.from(_N, "StartCodeInterpreterSessionResponse"),
     type = "structure",
     members = {
         codeInterpreterIdentifier = schema.new({
@@ -3483,7 +3483,7 @@ M.StartCodeInterpreterSessionOutput = schema.new({
 })
 
 M.StopCodeInterpreterSessionInput = schema.new({
-    id = id.from(_N, "StopCodeInterpreterSessionInput"),
+    id = id.from(_N, "StopCodeInterpreterSessionRequest"),
     type = "structure",
     members = {
         traceId = schema.new({
@@ -3537,7 +3537,7 @@ M.StopCodeInterpreterSessionInput = schema.new({
 })
 
 M.StopCodeInterpreterSessionOutput = schema.new({
-    id = id.from(_N, "StopCodeInterpreterSessionOutput"),
+    id = id.from(_N, "StopCodeInterpreterSessionResponse"),
     type = "structure",
     members = {
         codeInterpreterIdentifier = schema.new({
@@ -3594,7 +3594,7 @@ M.UserIdentifier = schema.new({
 })
 
 M.CompleteResourceTokenAuthInput = schema.new({
-    id = id.from(_N, "CompleteResourceTokenAuthInput"),
+    id = id.from(_N, "CompleteResourceTokenAuthRequest"),
     type = "structure",
     members = {
         userIdentifier = schema.new({
@@ -3620,7 +3620,7 @@ M.CompleteResourceTokenAuthInput = schema.new({
 })
 
 M.CompleteResourceTokenAuthOutput = schema.new({
-    id = id.from(_N, "CompleteResourceTokenAuthOutput"),
+    id = id.from(_N, "CompleteResourceTokenAuthResponse"),
     type = "structure",
 })
 
@@ -3736,7 +3736,7 @@ M.Variant = schema.new({
 })
 
 M.CreateABTestInput = schema.new({
-    id = id.from(_N, "CreateABTestInput"),
+    id = id.from(_N, "CreateABTestRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3818,7 +3818,7 @@ M.CreateABTestInput = schema.new({
 })
 
 M.CreateABTestOutput = schema.new({
-    id = id.from(_N, "CreateABTestOutput"),
+    id = id.from(_N, "CreateABTestResponse"),
     type = "structure",
     members = {
         abTestId = schema.new({
@@ -3876,7 +3876,7 @@ M.CreateABTestOutput = schema.new({
 })
 
 M.DeleteABTestInput = schema.new({
-    id = id.from(_N, "DeleteABTestInput"),
+    id = id.from(_N, "DeleteABTestRequest"),
     type = "structure",
     members = {
         abTestId = schema.new({
@@ -3893,7 +3893,7 @@ M.DeleteABTestInput = schema.new({
 })
 
 M.DeleteABTestOutput = schema.new({
-    id = id.from(_N, "DeleteABTestOutput"),
+    id = id.from(_N, "DeleteABTestResponse"),
     type = "structure",
     members = {
         abTestId = schema.new({
@@ -3927,7 +3927,7 @@ M.DeleteABTestOutput = schema.new({
 })
 
 M.DeleteBatchEvaluationInput = schema.new({
-    id = id.from(_N, "DeleteBatchEvaluationInput"),
+    id = id.from(_N, "DeleteBatchEvaluationRequest"),
     type = "structure",
     members = {
         batchEvaluationId = schema.new({
@@ -3944,7 +3944,7 @@ M.DeleteBatchEvaluationInput = schema.new({
 })
 
 M.DeleteBatchEvaluationOutput = schema.new({
-    id = id.from(_N, "DeleteBatchEvaluationOutput"),
+    id = id.from(_N, "DeleteBatchEvaluationResponse"),
     type = "structure",
     members = {
         batchEvaluationId = schema.new({
@@ -3978,7 +3978,7 @@ M.DeleteBatchEvaluationOutput = schema.new({
 })
 
 M.DeleteRecommendationInput = schema.new({
-    id = id.from(_N, "DeleteRecommendationInput"),
+    id = id.from(_N, "DeleteRecommendationRequest"),
     type = "structure",
     members = {
         recommendationId = schema.new({
@@ -3995,7 +3995,7 @@ M.DeleteRecommendationInput = schema.new({
 })
 
 M.DeleteRecommendationOutput = schema.new({
-    id = id.from(_N, "DeleteRecommendationOutput"),
+    id = id.from(_N, "DeleteRecommendationResponse"),
     type = "structure",
     members = {
         recommendationId = schema.new({
@@ -4178,7 +4178,7 @@ M.EvaluationTarget = schema.new({
 })
 
 M.EvaluateInput = schema.new({
-    id = id.from(_N, "EvaluateInput"),
+    id = id.from(_N, "EvaluateRequest"),
     type = "structure",
     members = {
         evaluatorId = schema.new({
@@ -4332,7 +4332,7 @@ M.EvaluationResultContent = schema.new({
 })
 
 M.EvaluateOutput = schema.new({
-    id = id.from(_N, "EvaluateOutput"),
+    id = id.from(_N, "EvaluateResponse"),
     type = "structure",
     members = {
         evaluationResults = schema.new({
@@ -4349,7 +4349,7 @@ M.EvaluateOutput = schema.new({
 })
 
 M.GetABTestInput = schema.new({
-    id = id.from(_N, "GetABTestInput"),
+    id = id.from(_N, "GetABTestRequest"),
     type = "structure",
     members = {
         abTestId = schema.new({
@@ -4366,7 +4366,7 @@ M.GetABTestInput = schema.new({
 })
 
 M.GetABTestOutput = schema.new({
-    id = id.from(_N, "GetABTestOutput"),
+    id = id.from(_N, "GetABTestResponse"),
     type = "structure",
     members = {
         abTestId = schema.new({
@@ -4522,7 +4522,7 @@ M.GetABTestOutput = schema.new({
 })
 
 M.GetBatchEvaluationInput = schema.new({
-    id = id.from(_N, "GetBatchEvaluationInput"),
+    id = id.from(_N, "GetBatchEvaluationRequest"),
     type = "structure",
     members = {
         batchEvaluationId = schema.new({
@@ -4777,7 +4777,7 @@ M.OutputConfig = schema.new({
 })
 
 M.GetBatchEvaluationOutput = schema.new({
-    id = id.from(_N, "GetBatchEvaluationOutput"),
+    id = id.from(_N, "GetBatchEvaluationResponse"),
     type = "structure",
     members = {
         batchEvaluationId = schema.new({
@@ -4880,7 +4880,7 @@ M.GetBatchEvaluationOutput = schema.new({
 })
 
 M.GetRecommendationInput = schema.new({
-    id = id.from(_N, "GetRecommendationInput"),
+    id = id.from(_N, "GetRecommendationRequest"),
     type = "structure",
     members = {
         recommendationId = schema.new({
@@ -5339,7 +5339,7 @@ M.RecommendationResult = schema.new({
 })
 
 M.GetRecommendationOutput = schema.new({
-    id = id.from(_N, "GetRecommendationOutput"),
+    id = id.from(_N, "GetRecommendationResponse"),
     type = "structure",
     members = {
         recommendationId = schema.new({
@@ -5434,7 +5434,7 @@ M.GetRecommendationOutput = schema.new({
 })
 
 M.ListABTestsInput = schema.new({
-    id = id.from(_N, "ListABTestsInput"),
+    id = id.from(_N, "ListABTestsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -5459,7 +5459,7 @@ M.ListABTestsInput = schema.new({
 })
 
 M.ListABTestsOutput = schema.new({
-    id = id.from(_N, "ListABTestsOutput"),
+    id = id.from(_N, "ListABTestsResponse"),
     type = "structure",
     members = {
         abTests = schema.new({
@@ -5482,7 +5482,7 @@ M.ListABTestsOutput = schema.new({
 })
 
 M.ListBatchEvaluationsInput = schema.new({
-    id = id.from(_N, "ListBatchEvaluationsInput"),
+    id = id.from(_N, "ListBatchEvaluationsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -5596,7 +5596,7 @@ M.BatchEvaluationSummary = schema.new({
 })
 
 M.ListBatchEvaluationsOutput = schema.new({
-    id = id.from(_N, "ListBatchEvaluationsOutput"),
+    id = id.from(_N, "ListBatchEvaluationsResponse"),
     type = "structure",
     members = {
         batchEvaluations = schema.new({
@@ -5619,7 +5619,7 @@ M.ListBatchEvaluationsOutput = schema.new({
 })
 
 M.ListRecommendationsInput = schema.new({
-    id = id.from(_N, "ListRecommendationsInput"),
+    id = id.from(_N, "ListRecommendationsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -5731,7 +5731,7 @@ M.RecommendationSummary = schema.new({
 })
 
 M.ListRecommendationsOutput = schema.new({
-    id = id.from(_N, "ListRecommendationsOutput"),
+    id = id.from(_N, "ListRecommendationsResponse"),
     type = "structure",
     members = {
         recommendationSummaries = schema.new({
@@ -5881,7 +5881,7 @@ M.EvaluationMetadata = schema.new({
 })
 
 M.StartBatchEvaluationInput = schema.new({
-    id = id.from(_N, "StartBatchEvaluationInput"),
+    id = id.from(_N, "StartBatchEvaluationRequest"),
     type = "structure",
     members = {
         batchEvaluationName = schema.new({
@@ -5936,7 +5936,7 @@ M.StartBatchEvaluationInput = schema.new({
 })
 
 M.StartBatchEvaluationOutput = schema.new({
-    id = id.from(_N, "StartBatchEvaluationOutput"),
+    id = id.from(_N, "StartBatchEvaluationResponse"),
     type = "structure",
     members = {
         batchEvaluationId = schema.new({
@@ -6009,7 +6009,7 @@ M.StartBatchEvaluationOutput = schema.new({
 })
 
 M.StartRecommendationInput = schema.new({
-    id = id.from(_N, "StartRecommendationInput"),
+    id = id.from(_N, "StartRecommendationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -6059,7 +6059,7 @@ M.StartRecommendationInput = schema.new({
 })
 
 M.StartRecommendationOutput = schema.new({
-    id = id.from(_N, "StartRecommendationOutput"),
+    id = id.from(_N, "StartRecommendationResponse"),
     type = "structure",
     members = {
         recommendationId = schema.new({
@@ -6147,7 +6147,7 @@ M.StartRecommendationOutput = schema.new({
 })
 
 M.StopBatchEvaluationInput = schema.new({
-    id = id.from(_N, "StopBatchEvaluationInput"),
+    id = id.from(_N, "StopBatchEvaluationRequest"),
     type = "structure",
     members = {
         batchEvaluationId = schema.new({
@@ -6164,7 +6164,7 @@ M.StopBatchEvaluationInput = schema.new({
 })
 
 M.StopBatchEvaluationOutput = schema.new({
-    id = id.from(_N, "StopBatchEvaluationOutput"),
+    id = id.from(_N, "StopBatchEvaluationResponse"),
     type = "structure",
     members = {
         batchEvaluationId = schema.new({
@@ -6204,7 +6204,7 @@ M.StopBatchEvaluationOutput = schema.new({
 })
 
 M.UpdateABTestInput = schema.new({
-    id = id.from(_N, "UpdateABTestInput"),
+    id = id.from(_N, "UpdateABTestRequest"),
     type = "structure",
     members = {
         abTestId = schema.new({
@@ -6275,7 +6275,7 @@ M.UpdateABTestInput = schema.new({
 })
 
 M.UpdateABTestOutput = schema.new({
-    id = id.from(_N, "UpdateABTestOutput"),
+    id = id.from(_N, "UpdateABTestResponse"),
     type = "structure",
     members = {
         abTestId = schema.new({
@@ -6327,7 +6327,7 @@ M.UpdateABTestOutput = schema.new({
 })
 
 M.GetResourceApiKeyInput = schema.new({
-    id = id.from(_N, "GetResourceApiKeyInput"),
+    id = id.from(_N, "GetResourceApiKeyRequest"),
     type = "structure",
     members = {
         workloadIdentityToken = schema.new({
@@ -6352,7 +6352,7 @@ M.GetResourceApiKeyInput = schema.new({
 })
 
 M.GetResourceApiKeyOutput = schema.new({
-    id = id.from(_N, "GetResourceApiKeyOutput"),
+    id = id.from(_N, "GetResourceApiKeyResponse"),
     type = "structure",
     members = {
         apiKey = schema.new({
@@ -6368,7 +6368,7 @@ M.GetResourceApiKeyOutput = schema.new({
 })
 
 M.GetResourceOauth2TokenInput = schema.new({
-    id = id.from(_N, "GetResourceOauth2TokenInput"),
+    id = id.from(_N, "GetResourceOauth2TokenRequest"),
     type = "structure",
     members = {
         workloadIdentityToken = schema.new({
@@ -6458,7 +6458,7 @@ M.GetResourceOauth2TokenInput = schema.new({
 })
 
 M.GetResourceOauth2TokenOutput = schema.new({
-    id = id.from(_N, "GetResourceOauth2TokenOutput"),
+    id = id.from(_N, "GetResourceOauth2TokenResponse"),
     type = "structure",
     members = {
         authorizationUrl = schema.new({
@@ -6489,7 +6489,7 @@ M.GetResourceOauth2TokenOutput = schema.new({
 })
 
 M.GetWorkloadAccessTokenInput = schema.new({
-    id = id.from(_N, "GetWorkloadAccessTokenInput"),
+    id = id.from(_N, "GetWorkloadAccessTokenRequest"),
     type = "structure",
     members = {
         workloadName = schema.new({
@@ -6505,7 +6505,7 @@ M.GetWorkloadAccessTokenInput = schema.new({
 })
 
 M.GetWorkloadAccessTokenOutput = schema.new({
-    id = id.from(_N, "GetWorkloadAccessTokenOutput"),
+    id = id.from(_N, "GetWorkloadAccessTokenResponse"),
     type = "structure",
     members = {
         workloadAccessToken = schema.new({
@@ -6521,7 +6521,7 @@ M.GetWorkloadAccessTokenOutput = schema.new({
 })
 
 M.GetWorkloadAccessTokenForJWTInput = schema.new({
-    id = id.from(_N, "GetWorkloadAccessTokenForJWTInput"),
+    id = id.from(_N, "GetWorkloadAccessTokenForJWTRequest"),
     type = "structure",
     members = {
         workloadName = schema.new({
@@ -6546,7 +6546,7 @@ M.GetWorkloadAccessTokenForJWTInput = schema.new({
 })
 
 M.GetWorkloadAccessTokenForJWTOutput = schema.new({
-    id = id.from(_N, "GetWorkloadAccessTokenForJWTOutput"),
+    id = id.from(_N, "GetWorkloadAccessTokenForJWTResponse"),
     type = "structure",
     members = {
         workloadAccessToken = schema.new({
@@ -6562,7 +6562,7 @@ M.GetWorkloadAccessTokenForJWTOutput = schema.new({
 })
 
 M.GetWorkloadAccessTokenForUserIdInput = schema.new({
-    id = id.from(_N, "GetWorkloadAccessTokenForUserIdInput"),
+    id = id.from(_N, "GetWorkloadAccessTokenForUserIdRequest"),
     type = "structure",
     members = {
         workloadName = schema.new({
@@ -6587,7 +6587,7 @@ M.GetWorkloadAccessTokenForUserIdInput = schema.new({
 })
 
 M.GetWorkloadAccessTokenForUserIdOutput = schema.new({
-    id = id.from(_N, "GetWorkloadAccessTokenForUserIdOutput"),
+    id = id.from(_N, "GetWorkloadAccessTokenForUserIdResponse"),
     type = "structure",
     members = {
         workloadAccessToken = schema.new({
@@ -6700,7 +6700,7 @@ M.ToolArguments = schema.new({
 })
 
 M.InvokeCodeInterpreterInput = schema.new({
-    id = id.from(_N, "InvokeCodeInterpreterInput"),
+    id = id.from(_N, "InvokeCodeInterpreterRequest"),
     type = "structure",
     members = {
         codeInterpreterIdentifier = schema.new({
@@ -7001,7 +7001,7 @@ M.CodeInterpreterStreamOutput = schema.new({
 })
 
 M.InvokeCodeInterpreterOutput = schema.new({
-    id = id.from(_N, "InvokeCodeInterpreterOutput"),
+    id = id.from(_N, "InvokeCodeInterpreterResponse"),
     type = "structure",
     members = {
         sessionId = schema.new({
@@ -7664,7 +7664,7 @@ M.HarnessTool = schema.new({
 })
 
 M.InvokeHarnessInput = schema.new({
-    id = id.from(_N, "InvokeHarnessInput"),
+    id = id.from(_N, "InvokeHarnessRequest"),
     type = "structure",
     members = {
         harnessArn = schema.new({
@@ -8193,7 +8193,7 @@ M.InvokeHarnessStreamOutput = schema.new({
 })
 
 M.InvokeHarnessOutput = schema.new({
-    id = id.from(_N, "InvokeHarnessOutput"),
+    id = id.from(_N, "InvokeHarnessResponse"),
     type = "structure",
     members = {
         stream = schema.new({
@@ -10163,7 +10163,7 @@ M.StartMemoryExtractionJobOutput = schema.new({
 })
 
 M.SearchRegistryRecordsInput = schema.new({
-    id = id.from(_N, "SearchRegistryRecordsInput"),
+    id = id.from(_N, "SearchRegistryRecordsRequest"),
     type = "structure",
     members = {
         searchQuery = schema.new({
@@ -10429,7 +10429,7 @@ M.RegistryRecordSummary = schema.new({
 })
 
 M.SearchRegistryRecordsOutput = schema.new({
-    id = id.from(_N, "SearchRegistryRecordsOutput"),
+    id = id.from(_N, "SearchRegistryRecordsResponse"),
     type = "structure",
     members = {
         registryRecords = schema.new({
@@ -10444,5 +10444,19 @@ M.SearchRegistryRecordsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

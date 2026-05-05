@@ -1267,7 +1267,7 @@ M.NewCustomVocabularyItem = schema.new({
 })
 
 M.BatchCreateCustomVocabularyItemInput = schema.new({
-    id = id.from(_N, "BatchCreateCustomVocabularyItemInput"),
+    id = id.from(_N, "BatchCreateCustomVocabularyItemRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -1376,7 +1376,7 @@ M.CustomVocabularyItem = schema.new({
 })
 
 M.BatchCreateCustomVocabularyItemOutput = schema.new({
-    id = id.from(_N, "BatchCreateCustomVocabularyItemOutput"),
+    id = id.from(_N, "BatchCreateCustomVocabularyItemResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -1521,7 +1521,7 @@ M.CustomVocabularyEntryId = schema.new({
 })
 
 M.BatchDeleteCustomVocabularyItemInput = schema.new({
-    id = id.from(_N, "BatchDeleteCustomVocabularyItemInput"),
+    id = id.from(_N, "BatchDeleteCustomVocabularyItemRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -1568,7 +1568,7 @@ M.BatchDeleteCustomVocabularyItemInput = schema.new({
 })
 
 M.BatchDeleteCustomVocabularyItemOutput = schema.new({
-    id = id.from(_N, "BatchDeleteCustomVocabularyItemOutput"),
+    id = id.from(_N, "BatchDeleteCustomVocabularyItemResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -1607,7 +1607,7 @@ M.BatchDeleteCustomVocabularyItemOutput = schema.new({
 })
 
 M.BatchUpdateCustomVocabularyItemInput = schema.new({
-    id = id.from(_N, "BatchUpdateCustomVocabularyItemInput"),
+    id = id.from(_N, "BatchUpdateCustomVocabularyItemRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -1654,7 +1654,7 @@ M.BatchUpdateCustomVocabularyItemInput = schema.new({
 })
 
 M.BatchUpdateCustomVocabularyItemOutput = schema.new({
-    id = id.from(_N, "BatchUpdateCustomVocabularyItemOutput"),
+    id = id.from(_N, "BatchUpdateCustomVocabularyItemResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -3022,7 +3022,7 @@ M.BotVersionSummary = schema.new({
 })
 
 M.BuildBotLocaleInput = schema.new({
-    id = id.from(_N, "BuildBotLocaleInput"),
+    id = id.from(_N, "BuildBotLocaleRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -3059,7 +3059,7 @@ M.BuildBotLocaleInput = schema.new({
 })
 
 M.BuildBotLocaleOutput = schema.new({
-    id = id.from(_N, "BuildBotLocaleOutput"),
+    id = id.from(_N, "BuildBotLocaleResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -3907,7 +3907,7 @@ M.ConversationLogSettings = schema.new({
 })
 
 M.CreateBotInput = schema.new({
-    id = id.from(_N, "CreateBotInput"),
+    id = id.from(_N, "CreateBotRequest"),
     type = "structure",
     members = {
         botName = schema.new({
@@ -3993,7 +3993,7 @@ M.CreateBotInput = schema.new({
 })
 
 M.CreateBotOutput = schema.new({
-    id = id.from(_N, "CreateBotOutput"),
+    id = id.from(_N, "CreateBotResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -4102,7 +4102,7 @@ M.SentimentAnalysisSettings = schema.new({
 })
 
 M.CreateBotAliasInput = schema.new({
-    id = id.from(_N, "CreateBotAliasInput"),
+    id = id.from(_N, "CreateBotAliasRequest"),
     type = "structure",
     members = {
         botAliasName = schema.new({
@@ -4170,7 +4170,7 @@ M.CreateBotAliasInput = schema.new({
 })
 
 M.CreateBotAliasOutput = schema.new({
-    id = id.from(_N, "CreateBotAliasOutput"),
+    id = id.from(_N, "CreateBotAliasResponse"),
     type = "structure",
     members = {
         botAliasId = schema.new({
@@ -4374,7 +4374,7 @@ M.GenerativeAISettings = schema.new({
 })
 
 M.CreateBotLocaleInput = schema.new({
-    id = id.from(_N, "CreateBotLocaleInput"),
+    id = id.from(_N, "CreateBotLocaleRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -4459,7 +4459,7 @@ M.CreateBotLocaleInput = schema.new({
 })
 
 M.CreateBotLocaleOutput = schema.new({
-    id = id.from(_N, "CreateBotLocaleOutput"),
+    id = id.from(_N, "CreateBotLocaleResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -4548,7 +4548,7 @@ M.CreateBotLocaleOutput = schema.new({
 })
 
 M.CreateBotReplicaInput = schema.new({
-    id = id.from(_N, "CreateBotReplicaInput"),
+    id = id.from(_N, "CreateBotReplicaRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -4574,7 +4574,7 @@ M.CreateBotReplicaInput = schema.new({
 })
 
 M.CreateBotReplicaOutput = schema.new({
-    id = id.from(_N, "CreateBotReplicaOutput"),
+    id = id.from(_N, "CreateBotReplicaResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -4611,7 +4611,7 @@ M.CreateBotReplicaOutput = schema.new({
 })
 
 M.CreateBotVersionInput = schema.new({
-    id = id.from(_N, "CreateBotVersionInput"),
+    id = id.from(_N, "CreateBotVersionRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -4645,7 +4645,7 @@ M.CreateBotVersionInput = schema.new({
 })
 
 M.CreateBotVersionOutput = schema.new({
-    id = id.from(_N, "CreateBotVersionOutput"),
+    id = id.from(_N, "CreateBotVersionResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -4775,7 +4775,7 @@ M.ExportResourceSpecification = schema.new({
 })
 
 M.CreateExportInput = schema.new({
-    id = id.from(_N, "CreateExportInput"),
+    id = id.from(_N, "CreateExportRequest"),
     type = "structure",
     members = {
         resourceSpecification = schema.new({
@@ -4807,7 +4807,7 @@ M.CreateExportInput = schema.new({
 })
 
 M.CreateExportOutput = schema.new({
-    id = id.from(_N, "CreateExportOutput"),
+    id = id.from(_N, "CreateExportResponse"),
     type = "structure",
     members = {
         exportId = schema.new({
@@ -5372,7 +5372,7 @@ M.SampleUtterance = schema.new({
 })
 
 M.CreateResourcePolicyInput = schema.new({
-    id = id.from(_N, "CreateResourcePolicyInput"),
+    id = id.from(_N, "CreateResourcePolicyRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5398,7 +5398,7 @@ M.CreateResourcePolicyInput = schema.new({
 })
 
 M.CreateResourcePolicyOutput = schema.new({
-    id = id.from(_N, "CreateResourcePolicyOutput"),
+    id = id.from(_N, "CreateResourcePolicyResponse"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5436,7 +5436,7 @@ M.Principal = schema.new({
 })
 
 M.CreateResourcePolicyStatementInput = schema.new({
-    id = id.from(_N, "CreateResourcePolicyStatementInput"),
+    id = id.from(_N, "CreateResourcePolicyStatementRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5493,7 +5493,7 @@ M.CreateResourcePolicyStatementInput = schema.new({
             name = "condition",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
         expectedRevisionId = schema.new({
             id = id.from(_N, "CreateResourcePolicyStatementInput", "expectedRevisionId"),
@@ -5508,7 +5508,7 @@ M.CreateResourcePolicyStatementInput = schema.new({
 })
 
 M.CreateResourcePolicyStatementOutput = schema.new({
-    id = id.from(_N, "CreateResourcePolicyStatementOutput"),
+    id = id.from(_N, "CreateResourcePolicyStatementResponse"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5916,7 +5916,7 @@ M.SlotValueSelectionSetting = schema.new({
 })
 
 M.CreateSlotTypeInput = schema.new({
-    id = id.from(_N, "CreateSlotTypeInput"),
+    id = id.from(_N, "CreateSlotTypeRequest"),
     type = "structure",
     members = {
         slotTypeName = schema.new({
@@ -6002,7 +6002,7 @@ M.CreateSlotTypeInput = schema.new({
 })
 
 M.CreateSlotTypeOutput = schema.new({
-    id = id.from(_N, "CreateSlotTypeOutput"),
+    id = id.from(_N, "CreateSlotTypeResponse"),
     type = "structure",
     members = {
         slotTypeId = schema.new({
@@ -6133,7 +6133,7 @@ M.TestSetDiscrepancyReportResourceTarget = schema.new({
 })
 
 M.CreateTestSetDiscrepancyReportInput = schema.new({
-    id = id.from(_N, "CreateTestSetDiscrepancyReportInput"),
+    id = id.from(_N, "CreateTestSetDiscrepancyReportRequest"),
     type = "structure",
     members = {
         testSetId = schema.new({
@@ -6160,7 +6160,7 @@ M.CreateTestSetDiscrepancyReportInput = schema.new({
 })
 
 M.CreateTestSetDiscrepancyReportOutput = schema.new({
-    id = id.from(_N, "CreateTestSetDiscrepancyReportOutput"),
+    id = id.from(_N, "CreateTestSetDiscrepancyReportResponse"),
     type = "structure",
     members = {
         testSetDiscrepancyReportId = schema.new({
@@ -6192,12 +6192,12 @@ M.CreateTestSetDiscrepancyReportOutput = schema.new({
 })
 
 M.CreateUploadUrlInput = schema.new({
-    id = id.from(_N, "CreateUploadUrlInput"),
+    id = id.from(_N, "CreateUploadUrlRequest"),
     type = "structure",
 })
 
 M.CreateUploadUrlOutput = schema.new({
-    id = id.from(_N, "CreateUploadUrlOutput"),
+    id = id.from(_N, "CreateUploadUrlResponse"),
     type = "structure",
     members = {
         importId = schema.new({
@@ -6275,7 +6275,7 @@ M.DateRangeFilter = schema.new({
 })
 
 M.DeleteBotInput = schema.new({
-    id = id.from(_N, "DeleteBotInput"),
+    id = id.from(_N, "DeleteBotRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -6302,7 +6302,7 @@ M.DeleteBotInput = schema.new({
 })
 
 M.DeleteBotOutput = schema.new({
-    id = id.from(_N, "DeleteBotOutput"),
+    id = id.from(_N, "DeleteBotResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -6321,7 +6321,7 @@ M.DeleteBotOutput = schema.new({
 })
 
 M.DeleteBotAliasInput = schema.new({
-    id = id.from(_N, "DeleteBotAliasInput"),
+    id = id.from(_N, "DeleteBotAliasRequest"),
     type = "structure",
     members = {
         botAliasId = schema.new({
@@ -6358,7 +6358,7 @@ M.DeleteBotAliasInput = schema.new({
 })
 
 M.DeleteBotAliasOutput = schema.new({
-    id = id.from(_N, "DeleteBotAliasOutput"),
+    id = id.from(_N, "DeleteBotAliasResponse"),
     type = "structure",
     members = {
         botAliasId = schema.new({
@@ -6383,7 +6383,7 @@ M.DeleteBotAliasOutput = schema.new({
 })
 
 M.DeleteBotAnalyzerRecommendationInput = schema.new({
-    id = id.from(_N, "DeleteBotAnalyzerRecommendationInput"),
+    id = id.from(_N, "DeleteBotAnalyzerRecommendationRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -6410,12 +6410,12 @@ M.DeleteBotAnalyzerRecommendationInput = schema.new({
 })
 
 M.DeleteBotAnalyzerRecommendationOutput = schema.new({
-    id = id.from(_N, "DeleteBotAnalyzerRecommendationOutput"),
+    id = id.from(_N, "DeleteBotAnalyzerRecommendationResponse"),
     type = "structure",
 })
 
 M.DeleteBotLocaleInput = schema.new({
-    id = id.from(_N, "DeleteBotLocaleInput"),
+    id = id.from(_N, "DeleteBotLocaleRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -6452,7 +6452,7 @@ M.DeleteBotLocaleInput = schema.new({
 })
 
 M.DeleteBotLocaleOutput = schema.new({
-    id = id.from(_N, "DeleteBotLocaleOutput"),
+    id = id.from(_N, "DeleteBotLocaleResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -6483,7 +6483,7 @@ M.DeleteBotLocaleOutput = schema.new({
 })
 
 M.DeleteBotReplicaInput = schema.new({
-    id = id.from(_N, "DeleteBotReplicaInput"),
+    id = id.from(_N, "DeleteBotReplicaRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -6510,7 +6510,7 @@ M.DeleteBotReplicaInput = schema.new({
 })
 
 M.DeleteBotReplicaOutput = schema.new({
-    id = id.from(_N, "DeleteBotReplicaOutput"),
+    id = id.from(_N, "DeleteBotReplicaResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -6535,7 +6535,7 @@ M.DeleteBotReplicaOutput = schema.new({
 })
 
 M.DeleteBotVersionInput = schema.new({
-    id = id.from(_N, "DeleteBotVersionInput"),
+    id = id.from(_N, "DeleteBotVersionRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -6572,7 +6572,7 @@ M.DeleteBotVersionInput = schema.new({
 })
 
 M.DeleteBotVersionOutput = schema.new({
-    id = id.from(_N, "DeleteBotVersionOutput"),
+    id = id.from(_N, "DeleteBotVersionResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -6597,7 +6597,7 @@ M.DeleteBotVersionOutput = schema.new({
 })
 
 M.DeleteCustomVocabularyInput = schema.new({
-    id = id.from(_N, "DeleteCustomVocabularyInput"),
+    id = id.from(_N, "DeleteCustomVocabularyRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -6634,7 +6634,7 @@ M.DeleteCustomVocabularyInput = schema.new({
 })
 
 M.DeleteCustomVocabularyOutput = schema.new({
-    id = id.from(_N, "DeleteCustomVocabularyOutput"),
+    id = id.from(_N, "DeleteCustomVocabularyResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -6665,7 +6665,7 @@ M.DeleteCustomVocabularyOutput = schema.new({
 })
 
 M.DeleteExportInput = schema.new({
-    id = id.from(_N, "DeleteExportInput"),
+    id = id.from(_N, "DeleteExportRequest"),
     type = "structure",
     members = {
         exportId = schema.new({
@@ -6682,7 +6682,7 @@ M.DeleteExportInput = schema.new({
 })
 
 M.DeleteExportOutput = schema.new({
-    id = id.from(_N, "DeleteExportOutput"),
+    id = id.from(_N, "DeleteExportResponse"),
     type = "structure",
     members = {
         exportId = schema.new({
@@ -6701,7 +6701,7 @@ M.DeleteExportOutput = schema.new({
 })
 
 M.DeleteImportInput = schema.new({
-    id = id.from(_N, "DeleteImportInput"),
+    id = id.from(_N, "DeleteImportRequest"),
     type = "structure",
     members = {
         importId = schema.new({
@@ -6718,7 +6718,7 @@ M.DeleteImportInput = schema.new({
 })
 
 M.DeleteImportOutput = schema.new({
-    id = id.from(_N, "DeleteImportOutput"),
+    id = id.from(_N, "DeleteImportResponse"),
     type = "structure",
     members = {
         importId = schema.new({
@@ -6737,7 +6737,7 @@ M.DeleteImportOutput = schema.new({
 })
 
 M.DeleteIntentInput = schema.new({
-    id = id.from(_N, "DeleteIntentInput"),
+    id = id.from(_N, "DeleteIntentRequest"),
     type = "structure",
     members = {
         intentId = schema.new({
@@ -6784,12 +6784,12 @@ M.DeleteIntentInput = schema.new({
 })
 
 M.DeleteIntentOutput = schema.new({
-    id = id.from(_N, "DeleteIntentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6815,7 +6815,7 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "DeleteResourcePolicyResponse"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6834,7 +6834,7 @@ M.DeleteResourcePolicyOutput = schema.new({
 })
 
 M.DeleteResourcePolicyStatementInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyStatementInput"),
+    id = id.from(_N, "DeleteResourcePolicyStatementRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6870,7 +6870,7 @@ M.DeleteResourcePolicyStatementInput = schema.new({
 })
 
 M.DeleteResourcePolicyStatementOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyStatementOutput"),
+    id = id.from(_N, "DeleteResourcePolicyStatementResponse"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -6889,7 +6889,7 @@ M.DeleteResourcePolicyStatementOutput = schema.new({
 })
 
 M.DeleteSlotInput = schema.new({
-    id = id.from(_N, "DeleteSlotInput"),
+    id = id.from(_N, "DeleteSlotRequest"),
     type = "structure",
     members = {
         slotId = schema.new({
@@ -6946,12 +6946,12 @@ M.DeleteSlotInput = schema.new({
 })
 
 M.DeleteSlotOutput = schema.new({
-    id = id.from(_N, "DeleteSlotOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteSlotTypeInput = schema.new({
-    id = id.from(_N, "DeleteSlotTypeInput"),
+    id = id.from(_N, "DeleteSlotTypeRequest"),
     type = "structure",
     members = {
         slotTypeId = schema.new({
@@ -7008,12 +7008,12 @@ M.DeleteSlotTypeInput = schema.new({
 })
 
 M.DeleteSlotTypeOutput = schema.new({
-    id = id.from(_N, "DeleteSlotTypeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTestSetInput = schema.new({
-    id = id.from(_N, "DeleteTestSetInput"),
+    id = id.from(_N, "DeleteTestSetRequest"),
     type = "structure",
     members = {
         testSetId = schema.new({
@@ -7030,12 +7030,12 @@ M.DeleteTestSetInput = schema.new({
 })
 
 M.DeleteTestSetOutput = schema.new({
-    id = id.from(_N, "DeleteTestSetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteUtterancesInput = schema.new({
-    id = id.from(_N, "DeleteUtterancesInput"),
+    id = id.from(_N, "DeleteUtterancesRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -7070,12 +7070,12 @@ M.DeleteUtterancesInput = schema.new({
 })
 
 M.DeleteUtterancesOutput = schema.new({
-    id = id.from(_N, "DeleteUtterancesOutput"),
+    id = id.from(_N, "DeleteUtterancesResponse"),
     type = "structure",
 })
 
 M.DescribeBotInput = schema.new({
-    id = id.from(_N, "DescribeBotInput"),
+    id = id.from(_N, "DescribeBotRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -7092,7 +7092,7 @@ M.DescribeBotInput = schema.new({
 })
 
 M.DescribeBotOutput = schema.new({
-    id = id.from(_N, "DescribeBotOutput"),
+    id = id.from(_N, "DescribeBotResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -7181,7 +7181,7 @@ M.DescribeBotOutput = schema.new({
 })
 
 M.DescribeBotAliasInput = schema.new({
-    id = id.from(_N, "DescribeBotAliasInput"),
+    id = id.from(_N, "DescribeBotAliasRequest"),
     type = "structure",
     members = {
         botAliasId = schema.new({
@@ -7233,7 +7233,7 @@ M.ParentBotNetwork = schema.new({
 })
 
 M.DescribeBotAliasOutput = schema.new({
-    id = id.from(_N, "DescribeBotAliasOutput"),
+    id = id.from(_N, "DescribeBotAliasResponse"),
     type = "structure",
     members = {
         botAliasId = schema.new({
@@ -7324,7 +7324,7 @@ M.DescribeBotAliasOutput = schema.new({
 })
 
 M.DescribeBotAnalyzerRecommendationInput = schema.new({
-    id = id.from(_N, "DescribeBotAnalyzerRecommendationInput"),
+    id = id.from(_N, "DescribeBotAnalyzerRecommendationRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -7363,7 +7363,7 @@ M.DescribeBotAnalyzerRecommendationInput = schema.new({
 })
 
 M.DescribeBotAnalyzerRecommendationOutput = schema.new({
-    id = id.from(_N, "DescribeBotAnalyzerRecommendationOutput"),
+    id = id.from(_N, "DescribeBotAnalyzerRecommendationResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -7413,7 +7413,7 @@ M.DescribeBotAnalyzerRecommendationOutput = schema.new({
 })
 
 M.DescribeBotLocaleInput = schema.new({
-    id = id.from(_N, "DescribeBotLocaleInput"),
+    id = id.from(_N, "DescribeBotLocaleRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -7450,7 +7450,7 @@ M.DescribeBotLocaleInput = schema.new({
 })
 
 M.DescribeBotLocaleOutput = schema.new({
-    id = id.from(_N, "DescribeBotLocaleOutput"),
+    id = id.from(_N, "DescribeBotLocaleResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -7584,7 +7584,7 @@ M.DescribeBotLocaleOutput = schema.new({
 })
 
 M.DescribeBotRecommendationInput = schema.new({
-    id = id.from(_N, "DescribeBotRecommendationInput"),
+    id = id.from(_N, "DescribeBotRecommendationRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -7757,7 +7757,7 @@ M.TranscriptSourceSetting = schema.new({
 })
 
 M.DescribeBotRecommendationOutput = schema.new({
-    id = id.from(_N, "DescribeBotRecommendationOutput"),
+    id = id.from(_N, "DescribeBotRecommendationResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -7834,7 +7834,7 @@ M.DescribeBotRecommendationOutput = schema.new({
 })
 
 M.DescribeBotReplicaInput = schema.new({
-    id = id.from(_N, "DescribeBotReplicaInput"),
+    id = id.from(_N, "DescribeBotReplicaRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -7861,7 +7861,7 @@ M.DescribeBotReplicaInput = schema.new({
 })
 
 M.DescribeBotReplicaOutput = schema.new({
-    id = id.from(_N, "DescribeBotReplicaOutput"),
+    id = id.from(_N, "DescribeBotReplicaResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -7905,7 +7905,7 @@ M.DescribeBotReplicaOutput = schema.new({
 })
 
 M.DescribeBotResourceGenerationInput = schema.new({
-    id = id.from(_N, "DescribeBotResourceGenerationInput"),
+    id = id.from(_N, "DescribeBotResourceGenerationRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -7952,7 +7952,7 @@ M.DescribeBotResourceGenerationInput = schema.new({
 })
 
 M.DescribeBotResourceGenerationOutput = schema.new({
-    id = id.from(_N, "DescribeBotResourceGenerationOutput"),
+    id = id.from(_N, "DescribeBotResourceGenerationResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -8026,7 +8026,7 @@ M.DescribeBotResourceGenerationOutput = schema.new({
 })
 
 M.DescribeBotVersionInput = schema.new({
-    id = id.from(_N, "DescribeBotVersionInput"),
+    id = id.from(_N, "DescribeBotVersionRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -8053,7 +8053,7 @@ M.DescribeBotVersionInput = schema.new({
 })
 
 M.DescribeBotVersionOutput = schema.new({
-    id = id.from(_N, "DescribeBotVersionOutput"),
+    id = id.from(_N, "DescribeBotVersionResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -8142,7 +8142,7 @@ M.DescribeBotVersionOutput = schema.new({
 })
 
 M.DescribeCustomVocabularyMetadataInput = schema.new({
-    id = id.from(_N, "DescribeCustomVocabularyMetadataInput"),
+    id = id.from(_N, "DescribeCustomVocabularyMetadataRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -8179,7 +8179,7 @@ M.DescribeCustomVocabularyMetadataInput = schema.new({
 })
 
 M.DescribeCustomVocabularyMetadataOutput = schema.new({
-    id = id.from(_N, "DescribeCustomVocabularyMetadataOutput"),
+    id = id.from(_N, "DescribeCustomVocabularyMetadataResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -8222,7 +8222,7 @@ M.DescribeCustomVocabularyMetadataOutput = schema.new({
 })
 
 M.DescribeExportInput = schema.new({
-    id = id.from(_N, "DescribeExportInput"),
+    id = id.from(_N, "DescribeExportRequest"),
     type = "structure",
     members = {
         exportId = schema.new({
@@ -8239,7 +8239,7 @@ M.DescribeExportInput = schema.new({
 })
 
 M.DescribeExportOutput = schema.new({
-    id = id.from(_N, "DescribeExportOutput"),
+    id = id.from(_N, "DescribeExportResponse"),
     type = "structure",
     members = {
         exportId = schema.new({
@@ -8296,7 +8296,7 @@ M.DescribeExportOutput = schema.new({
 })
 
 M.DescribeImportInput = schema.new({
-    id = id.from(_N, "DescribeImportInput"),
+    id = id.from(_N, "DescribeImportRequest"),
     type = "structure",
     members = {
         importId = schema.new({
@@ -8472,7 +8472,7 @@ M.ImportResourceSpecification = schema.new({
 })
 
 M.DescribeImportOutput = schema.new({
-    id = id.from(_N, "DescribeImportOutput"),
+    id = id.from(_N, "DescribeImportResponse"),
     type = "structure",
     members = {
         importId = schema.new({
@@ -8535,7 +8535,7 @@ M.DescribeImportOutput = schema.new({
 })
 
 M.DescribeIntentInput = schema.new({
-    id = id.from(_N, "DescribeIntentInput"),
+    id = id.from(_N, "DescribeIntentRequest"),
     type = "structure",
     members = {
         intentId = schema.new({
@@ -8607,7 +8607,7 @@ M.SlotPriority = schema.new({
 })
 
 M.DescribeResourcePolicyInput = schema.new({
-    id = id.from(_N, "DescribeResourcePolicyInput"),
+    id = id.from(_N, "DescribeResourcePolicyRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -8624,7 +8624,7 @@ M.DescribeResourcePolicyInput = schema.new({
 })
 
 M.DescribeResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DescribeResourcePolicyOutput"),
+    id = id.from(_N, "DescribeResourcePolicyResponse"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -8649,7 +8649,7 @@ M.DescribeResourcePolicyOutput = schema.new({
 })
 
 M.DescribeSlotInput = schema.new({
-    id = id.from(_N, "DescribeSlotInput"),
+    id = id.from(_N, "DescribeSlotRequest"),
     type = "structure",
     members = {
         slotId = schema.new({
@@ -8706,7 +8706,7 @@ M.DescribeSlotInput = schema.new({
 })
 
 M.DescribeSlotTypeInput = schema.new({
-    id = id.from(_N, "DescribeSlotTypeInput"),
+    id = id.from(_N, "DescribeSlotTypeRequest"),
     type = "structure",
     members = {
         slotTypeId = schema.new({
@@ -8753,7 +8753,7 @@ M.DescribeSlotTypeInput = schema.new({
 })
 
 M.DescribeSlotTypeOutput = schema.new({
-    id = id.from(_N, "DescribeSlotTypeOutput"),
+    id = id.from(_N, "DescribeSlotTypeResponse"),
     type = "structure",
     members = {
         slotTypeId = schema.new({
@@ -8842,7 +8842,7 @@ M.DescribeSlotTypeOutput = schema.new({
 })
 
 M.DescribeTestExecutionInput = schema.new({
-    id = id.from(_N, "DescribeTestExecutionInput"),
+    id = id.from(_N, "DescribeTestExecutionRequest"),
     type = "structure",
     members = {
         testExecutionId = schema.new({
@@ -8873,7 +8873,7 @@ M.TestExecutionTarget = schema.new({
 })
 
 M.DescribeTestExecutionOutput = schema.new({
-    id = id.from(_N, "DescribeTestExecutionOutput"),
+    id = id.from(_N, "DescribeTestExecutionResponse"),
     type = "structure",
     members = {
         testExecutionId = schema.new({
@@ -8942,7 +8942,7 @@ M.DescribeTestExecutionOutput = schema.new({
 })
 
 M.DescribeTestSetInput = schema.new({
-    id = id.from(_N, "DescribeTestSetInput"),
+    id = id.from(_N, "DescribeTestSetRequest"),
     type = "structure",
     members = {
         testSetId = schema.new({
@@ -8959,7 +8959,7 @@ M.DescribeTestSetInput = schema.new({
 })
 
 M.DescribeTestSetOutput = schema.new({
-    id = id.from(_N, "DescribeTestSetOutput"),
+    id = id.from(_N, "DescribeTestSetResponse"),
     type = "structure",
     members = {
         testSetId = schema.new({
@@ -9027,7 +9027,7 @@ M.DescribeTestSetOutput = schema.new({
 })
 
 M.DescribeTestSetDiscrepancyReportInput = schema.new({
-    id = id.from(_N, "DescribeTestSetDiscrepancyReportInput"),
+    id = id.from(_N, "DescribeTestSetDiscrepancyReportRequest"),
     type = "structure",
     members = {
         testSetDiscrepancyReportId = schema.new({
@@ -9130,7 +9130,7 @@ M.TestSetDiscrepancyErrors = schema.new({
 })
 
 M.DescribeTestSetDiscrepancyReportOutput = schema.new({
-    id = id.from(_N, "DescribeTestSetDiscrepancyReportOutput"),
+    id = id.from(_N, "DescribeTestSetDiscrepancyReportResponse"),
     type = "structure",
     members = {
         testSetDiscrepancyReportId = schema.new({
@@ -9194,7 +9194,7 @@ M.DescribeTestSetDiscrepancyReportOutput = schema.new({
 })
 
 M.DescribeTestSetGenerationInput = schema.new({
-    id = id.from(_N, "DescribeTestSetGenerationInput"),
+    id = id.from(_N, "DescribeTestSetGenerationRequest"),
     type = "structure",
     members = {
         testSetGenerationId = schema.new({
@@ -9225,7 +9225,7 @@ M.TestSetGenerationDataSource = schema.new({
 })
 
 M.DescribeTestSetGenerationOutput = schema.new({
-    id = id.from(_N, "DescribeTestSetGenerationOutput"),
+    id = id.from(_N, "DescribeTestSetGenerationResponse"),
     type = "structure",
     members = {
         testSetGenerationId = schema.new({
@@ -9405,7 +9405,7 @@ M.ExportSummary = schema.new({
 })
 
 M.GenerateBotElementInput = schema.new({
-    id = id.from(_N, "GenerateBotElementInput"),
+    id = id.from(_N, "GenerateBotElementRequest"),
     type = "structure",
     members = {
         intentId = schema.new({
@@ -9451,7 +9451,7 @@ M.GenerateBotElementInput = schema.new({
 })
 
 M.GenerateBotElementOutput = schema.new({
-    id = id.from(_N, "GenerateBotElementOutput"),
+    id = id.from(_N, "GenerateBotElementResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -9545,7 +9545,7 @@ M.GenerationSummary = schema.new({
 })
 
 M.GetTestExecutionArtifactsUrlInput = schema.new({
-    id = id.from(_N, "GetTestExecutionArtifactsUrlInput"),
+    id = id.from(_N, "GetTestExecutionArtifactsUrlRequest"),
     type = "structure",
     members = {
         testExecutionId = schema.new({
@@ -9562,7 +9562,7 @@ M.GetTestExecutionArtifactsUrlInput = schema.new({
 })
 
 M.GetTestExecutionArtifactsUrlOutput = schema.new({
-    id = id.from(_N, "GetTestExecutionArtifactsUrlOutput"),
+    id = id.from(_N, "GetTestExecutionArtifactsUrlResponse"),
     type = "structure",
     members = {
         testExecutionId = schema.new({
@@ -10086,7 +10086,7 @@ M.UtteranceAggregationDuration = schema.new({
 })
 
 M.ListAggregatedUtterancesInput = schema.new({
-    id = id.from(_N, "ListAggregatedUtterancesInput"),
+    id = id.from(_N, "ListAggregatedUtterancesRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10160,7 +10160,7 @@ M.ListAggregatedUtterancesInput = schema.new({
 })
 
 M.ListAggregatedUtterancesOutput = schema.new({
-    id = id.from(_N, "ListAggregatedUtterancesOutput"),
+    id = id.from(_N, "ListAggregatedUtterancesResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10229,7 +10229,7 @@ M.ListAggregatedUtterancesOutput = schema.new({
 })
 
 M.ListBotAliasesInput = schema.new({
-    id = id.from(_N, "ListBotAliasesInput"),
+    id = id.from(_N, "ListBotAliasesRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10258,7 +10258,7 @@ M.ListBotAliasesInput = schema.new({
 })
 
 M.ListBotAliasesOutput = schema.new({
-    id = id.from(_N, "ListBotAliasesOutput"),
+    id = id.from(_N, "ListBotAliasesResponse"),
     type = "structure",
     members = {
         botAliasSummaries = schema.new({
@@ -10284,7 +10284,7 @@ M.ListBotAliasesOutput = schema.new({
 })
 
 M.ListBotAliasReplicasInput = schema.new({
-    id = id.from(_N, "ListBotAliasReplicasInput"),
+    id = id.from(_N, "ListBotAliasReplicasRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10323,7 +10323,7 @@ M.ListBotAliasReplicasInput = schema.new({
 })
 
 M.ListBotAliasReplicasOutput = schema.new({
-    id = id.from(_N, "ListBotAliasReplicasOutput"),
+    id = id.from(_N, "ListBotAliasReplicasResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10361,7 +10361,7 @@ M.ListBotAliasReplicasOutput = schema.new({
 })
 
 M.ListBotAnalyzerHistoryInput = schema.new({
-    id = id.from(_N, "ListBotAnalyzerHistoryInput"),
+    id = id.from(_N, "ListBotAnalyzerHistoryRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10402,7 +10402,7 @@ M.ListBotAnalyzerHistoryInput = schema.new({
 })
 
 M.ListBotAnalyzerHistoryOutput = schema.new({
-    id = id.from(_N, "ListBotAnalyzerHistoryOutput"),
+    id = id.from(_N, "ListBotAnalyzerHistoryResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10440,7 +10440,7 @@ M.ListBotAnalyzerHistoryOutput = schema.new({
 })
 
 M.ListBotLocalesInput = schema.new({
-    id = id.from(_N, "ListBotLocalesInput"),
+    id = id.from(_N, "ListBotLocalesRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10493,7 +10493,7 @@ M.ListBotLocalesInput = schema.new({
 })
 
 M.ListBotLocalesOutput = schema.new({
-    id = id.from(_N, "ListBotLocalesOutput"),
+    id = id.from(_N, "ListBotLocalesResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10525,7 +10525,7 @@ M.ListBotLocalesOutput = schema.new({
 })
 
 M.ListBotRecommendationsInput = schema.new({
-    id = id.from(_N, "ListBotRecommendationsInput"),
+    id = id.from(_N, "ListBotRecommendationsRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10574,7 +10574,7 @@ M.ListBotRecommendationsInput = schema.new({
 })
 
 M.ListBotRecommendationsOutput = schema.new({
-    id = id.from(_N, "ListBotRecommendationsOutput"),
+    id = id.from(_N, "ListBotRecommendationsResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10612,7 +10612,7 @@ M.ListBotRecommendationsOutput = schema.new({
 })
 
 M.ListBotReplicasInput = schema.new({
-    id = id.from(_N, "ListBotReplicasInput"),
+    id = id.from(_N, "ListBotReplicasRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10629,7 +10629,7 @@ M.ListBotReplicasInput = schema.new({
 })
 
 M.ListBotReplicasOutput = schema.new({
-    id = id.from(_N, "ListBotReplicasOutput"),
+    id = id.from(_N, "ListBotReplicasResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10655,7 +10655,7 @@ M.ListBotReplicasOutput = schema.new({
 })
 
 M.ListBotResourceGenerationsInput = schema.new({
-    id = id.from(_N, "ListBotResourceGenerationsInput"),
+    id = id.from(_N, "ListBotResourceGenerationsRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10711,7 +10711,7 @@ M.ListBotResourceGenerationsInput = schema.new({
 })
 
 M.ListBotResourceGenerationsOutput = schema.new({
-    id = id.from(_N, "ListBotResourceGenerationsOutput"),
+    id = id.from(_N, "ListBotResourceGenerationsResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10749,7 +10749,7 @@ M.ListBotResourceGenerationsOutput = schema.new({
 })
 
 M.ListBotsInput = schema.new({
-    id = id.from(_N, "ListBotsInput"),
+    id = id.from(_N, "ListBotsRequest"),
     type = "structure",
     members = {
         sortBy = schema.new({
@@ -10782,7 +10782,7 @@ M.ListBotsInput = schema.new({
 })
 
 M.ListBotsOutput = schema.new({
-    id = id.from(_N, "ListBotsOutput"),
+    id = id.from(_N, "ListBotsResponse"),
     type = "structure",
     members = {
         botSummaries = schema.new({
@@ -10802,7 +10802,7 @@ M.ListBotsOutput = schema.new({
 })
 
 M.ListBotVersionReplicasInput = schema.new({
-    id = id.from(_N, "ListBotVersionReplicasInput"),
+    id = id.from(_N, "ListBotVersionReplicasRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10848,7 +10848,7 @@ M.ListBotVersionReplicasInput = schema.new({
 })
 
 M.ListBotVersionReplicasOutput = schema.new({
-    id = id.from(_N, "ListBotVersionReplicasOutput"),
+    id = id.from(_N, "ListBotVersionReplicasResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10886,7 +10886,7 @@ M.ListBotVersionReplicasOutput = schema.new({
 })
 
 M.ListBotVersionsInput = schema.new({
-    id = id.from(_N, "ListBotVersionsInput"),
+    id = id.from(_N, "ListBotVersionsRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10922,7 +10922,7 @@ M.ListBotVersionsInput = schema.new({
 })
 
 M.ListBotVersionsOutput = schema.new({
-    id = id.from(_N, "ListBotVersionsOutput"),
+    id = id.from(_N, "ListBotVersionsResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -10948,7 +10948,7 @@ M.ListBotVersionsOutput = schema.new({
 })
 
 M.ListBuiltInIntentsInput = schema.new({
-    id = id.from(_N, "ListBuiltInIntentsInput"),
+    id = id.from(_N, "ListBuiltInIntentsRequest"),
     type = "structure",
     members = {
         localeId = schema.new({
@@ -10984,7 +10984,7 @@ M.ListBuiltInIntentsInput = schema.new({
 })
 
 M.ListBuiltInIntentsOutput = schema.new({
-    id = id.from(_N, "ListBuiltInIntentsOutput"),
+    id = id.from(_N, "ListBuiltInIntentsResponse"),
     type = "structure",
     members = {
         builtInIntentSummaries = schema.new({
@@ -11010,7 +11010,7 @@ M.ListBuiltInIntentsOutput = schema.new({
 })
 
 M.ListBuiltInSlotTypesInput = schema.new({
-    id = id.from(_N, "ListBuiltInSlotTypesInput"),
+    id = id.from(_N, "ListBuiltInSlotTypesRequest"),
     type = "structure",
     members = {
         localeId = schema.new({
@@ -11046,7 +11046,7 @@ M.ListBuiltInSlotTypesInput = schema.new({
 })
 
 M.ListBuiltInSlotTypesOutput = schema.new({
-    id = id.from(_N, "ListBuiltInSlotTypesOutput"),
+    id = id.from(_N, "ListBuiltInSlotTypesResponse"),
     type = "structure",
     members = {
         builtInSlotTypeSummaries = schema.new({
@@ -11072,7 +11072,7 @@ M.ListBuiltInSlotTypesOutput = schema.new({
 })
 
 M.ListCustomVocabularyItemsInput = schema.new({
-    id = id.from(_N, "ListCustomVocabularyItemsInput"),
+    id = id.from(_N, "ListCustomVocabularyItemsRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -11121,7 +11121,7 @@ M.ListCustomVocabularyItemsInput = schema.new({
 })
 
 M.ListCustomVocabularyItemsOutput = schema.new({
-    id = id.from(_N, "ListCustomVocabularyItemsOutput"),
+    id = id.from(_N, "ListCustomVocabularyItemsResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -11159,7 +11159,7 @@ M.ListCustomVocabularyItemsOutput = schema.new({
 })
 
 M.ListExportsInput = schema.new({
-    id = id.from(_N, "ListExportsInput"),
+    id = id.from(_N, "ListExportsRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -11210,7 +11210,7 @@ M.ListExportsInput = schema.new({
 })
 
 M.ListExportsOutput = schema.new({
-    id = id.from(_N, "ListExportsOutput"),
+    id = id.from(_N, "ListExportsResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -11248,7 +11248,7 @@ M.ListExportsOutput = schema.new({
 })
 
 M.ListImportsInput = schema.new({
-    id = id.from(_N, "ListImportsInput"),
+    id = id.from(_N, "ListImportsRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -11299,7 +11299,7 @@ M.ListImportsInput = schema.new({
 })
 
 M.ListImportsOutput = schema.new({
-    id = id.from(_N, "ListImportsOutput"),
+    id = id.from(_N, "ListImportsResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -11337,7 +11337,7 @@ M.ListImportsOutput = schema.new({
 })
 
 M.ListIntentMetricsInput = schema.new({
-    id = id.from(_N, "ListIntentMetricsInput"),
+    id = id.from(_N, "ListIntentMetricsRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -11415,7 +11415,7 @@ M.ListIntentMetricsInput = schema.new({
 })
 
 M.ListIntentMetricsOutput = schema.new({
-    id = id.from(_N, "ListIntentMetricsOutput"),
+    id = id.from(_N, "ListIntentMetricsResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -11441,7 +11441,7 @@ M.ListIntentMetricsOutput = schema.new({
 })
 
 M.ListIntentPathsInput = schema.new({
-    id = id.from(_N, "ListIntentPathsInput"),
+    id = id.from(_N, "ListIntentPathsRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -11492,7 +11492,7 @@ M.ListIntentPathsInput = schema.new({
 })
 
 M.ListIntentPathsOutput = schema.new({
-    id = id.from(_N, "ListIntentPathsOutput"),
+    id = id.from(_N, "ListIntentPathsResponse"),
     type = "structure",
     members = {
         nodeSummaries = schema.new({
@@ -11506,7 +11506,7 @@ M.ListIntentPathsOutput = schema.new({
 })
 
 M.ListIntentsInput = schema.new({
-    id = id.from(_N, "ListIntentsInput"),
+    id = id.from(_N, "ListIntentsRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -11569,7 +11569,7 @@ M.ListIntentsInput = schema.new({
 })
 
 M.ListIntentsOutput = schema.new({
-    id = id.from(_N, "ListIntentsOutput"),
+    id = id.from(_N, "ListIntentsResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -11607,7 +11607,7 @@ M.ListIntentsOutput = schema.new({
 })
 
 M.ListIntentStageMetricsInput = schema.new({
-    id = id.from(_N, "ListIntentStageMetricsInput"),
+    id = id.from(_N, "ListIntentStageMetricsRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -11685,7 +11685,7 @@ M.ListIntentStageMetricsInput = schema.new({
 })
 
 M.ListIntentStageMetricsOutput = schema.new({
-    id = id.from(_N, "ListIntentStageMetricsOutput"),
+    id = id.from(_N, "ListIntentStageMetricsResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -11711,7 +11711,7 @@ M.ListIntentStageMetricsOutput = schema.new({
 })
 
 M.ListRecommendedIntentsInput = schema.new({
-    id = id.from(_N, "ListRecommendedIntentsInput"),
+    id = id.from(_N, "ListRecommendedIntentsRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -11795,7 +11795,7 @@ M.RecommendedIntentSummary = schema.new({
 })
 
 M.ListRecommendedIntentsOutput = schema.new({
-    id = id.from(_N, "ListRecommendedIntentsOutput"),
+    id = id.from(_N, "ListRecommendedIntentsResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -11864,7 +11864,7 @@ M.SessionDataSortBy = schema.new({
 })
 
 M.ListSessionAnalyticsDataInput = schema.new({
-    id = id.from(_N, "ListSessionAnalyticsDataInput"),
+    id = id.from(_N, "ListSessionAnalyticsDataRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -12011,7 +12011,7 @@ M.SessionSpecification = schema.new({
 })
 
 M.ListSessionAnalyticsDataOutput = schema.new({
-    id = id.from(_N, "ListSessionAnalyticsDataOutput"),
+    id = id.from(_N, "ListSessionAnalyticsDataResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -12037,7 +12037,7 @@ M.ListSessionAnalyticsDataOutput = schema.new({
 })
 
 M.ListSessionMetricsInput = schema.new({
-    id = id.from(_N, "ListSessionMetricsInput"),
+    id = id.from(_N, "ListSessionMetricsRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -12115,7 +12115,7 @@ M.ListSessionMetricsInput = schema.new({
 })
 
 M.ListSessionMetricsOutput = schema.new({
-    id = id.from(_N, "ListSessionMetricsOutput"),
+    id = id.from(_N, "ListSessionMetricsResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -12201,7 +12201,7 @@ M.SlotSortBy = schema.new({
 })
 
 M.ListSlotsInput = schema.new({
-    id = id.from(_N, "ListSlotsInput"),
+    id = id.from(_N, "ListSlotsRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -12324,7 +12324,7 @@ M.SlotSummary = schema.new({
 })
 
 M.ListSlotsOutput = schema.new({
-    id = id.from(_N, "ListSlotsOutput"),
+    id = id.from(_N, "ListSlotsResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -12428,7 +12428,7 @@ M.SlotTypeSortBy = schema.new({
 })
 
 M.ListSlotTypesInput = schema.new({
-    id = id.from(_N, "ListSlotTypesInput"),
+    id = id.from(_N, "ListSlotTypesRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -12534,7 +12534,7 @@ M.SlotTypeSummary = schema.new({
 })
 
 M.ListSlotTypesOutput = schema.new({
-    id = id.from(_N, "ListSlotTypesOutput"),
+    id = id.from(_N, "ListSlotTypesResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -12572,7 +12572,7 @@ M.ListSlotTypesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceARN = schema.new({
@@ -12589,7 +12589,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -12627,7 +12627,7 @@ M.TestExecutionResultFilterBy = schema.new({
 })
 
 M.ListTestExecutionResultItemsInput = schema.new({
-    id = id.from(_N, "ListTestExecutionResultItemsInput"),
+    id = id.from(_N, "ListTestExecutionResultItemsRequest"),
     type = "structure",
     members = {
         testExecutionId = schema.new({
@@ -12789,7 +12789,7 @@ M.TestExecutionSortBy = schema.new({
 })
 
 M.ListTestExecutionsInput = schema.new({
-    id = id.from(_N, "ListTestExecutionsInput"),
+    id = id.from(_N, "ListTestExecutionsRequest"),
     type = "structure",
     members = {
         sortBy = schema.new({
@@ -12877,7 +12877,7 @@ M.TestExecutionSummary = schema.new({
 })
 
 M.ListTestExecutionsOutput = schema.new({
-    id = id.from(_N, "ListTestExecutionsOutput"),
+    id = id.from(_N, "ListTestExecutionsResponse"),
     type = "structure",
     members = {
         testExecutions = schema.new({
@@ -12897,7 +12897,7 @@ M.ListTestExecutionsOutput = schema.new({
 })
 
 M.ListTestSetRecordsInput = schema.new({
-    id = id.from(_N, "ListTestSetRecordsInput"),
+    id = id.from(_N, "ListTestSetRecordsRequest"),
     type = "structure",
     members = {
         testSetId = schema.new({
@@ -12951,7 +12951,7 @@ M.TestSetSortBy = schema.new({
 })
 
 M.ListTestSetsInput = schema.new({
-    id = id.from(_N, "ListTestSetsInput"),
+    id = id.from(_N, "ListTestSetsRequest"),
     type = "structure",
     members = {
         sortBy = schema.new({
@@ -13045,7 +13045,7 @@ M.TestSetSummary = schema.new({
 })
 
 M.ListTestSetsOutput = schema.new({
-    id = id.from(_N, "ListTestSetsOutput"),
+    id = id.from(_N, "ListTestSetsResponse"),
     type = "structure",
     members = {
         testSets = schema.new({
@@ -13090,7 +13090,7 @@ M.UtteranceDataSortBy = schema.new({
 })
 
 M.ListUtteranceAnalyticsDataInput = schema.new({
-    id = id.from(_N, "ListUtteranceAnalyticsDataInput"),
+    id = id.from(_N, "ListUtteranceAnalyticsDataRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -13320,7 +13320,7 @@ M.UtteranceSpecification = schema.new({
 })
 
 M.ListUtteranceAnalyticsDataOutput = schema.new({
-    id = id.from(_N, "ListUtteranceAnalyticsDataOutput"),
+    id = id.from(_N, "ListUtteranceAnalyticsDataResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -13346,7 +13346,7 @@ M.ListUtteranceAnalyticsDataOutput = schema.new({
 })
 
 M.ListUtteranceMetricsInput = schema.new({
-    id = id.from(_N, "ListUtteranceMetricsInput"),
+    id = id.from(_N, "ListUtteranceMetricsRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -13431,7 +13431,7 @@ M.ListUtteranceMetricsInput = schema.new({
 })
 
 M.ListUtteranceMetricsOutput = schema.new({
-    id = id.from(_N, "ListUtteranceMetricsOutput"),
+    id = id.from(_N, "ListUtteranceMetricsResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -13457,7 +13457,7 @@ M.ListUtteranceMetricsOutput = schema.new({
 })
 
 M.SearchAssociatedTranscriptsInput = schema.new({
-    id = id.from(_N, "SearchAssociatedTranscriptsInput"),
+    id = id.from(_N, "SearchAssociatedTranscriptsRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -13532,7 +13532,7 @@ M.SearchAssociatedTranscriptsInput = schema.new({
 })
 
 M.SearchAssociatedTranscriptsOutput = schema.new({
-    id = id.from(_N, "SearchAssociatedTranscriptsOutput"),
+    id = id.from(_N, "SearchAssociatedTranscriptsResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -13582,7 +13582,7 @@ M.SearchAssociatedTranscriptsOutput = schema.new({
 })
 
 M.StartBotAnalyzerInput = schema.new({
-    id = id.from(_N, "StartBotAnalyzerInput"),
+    id = id.from(_N, "StartBotAnalyzerRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -13620,7 +13620,7 @@ M.StartBotAnalyzerInput = schema.new({
 })
 
 M.StartBotAnalyzerOutput = schema.new({
-    id = id.from(_N, "StartBotAnalyzerOutput"),
+    id = id.from(_N, "StartBotAnalyzerResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -13663,7 +13663,7 @@ M.StartBotAnalyzerOutput = schema.new({
 })
 
 M.StartBotRecommendationInput = schema.new({
-    id = id.from(_N, "StartBotRecommendationInput"),
+    id = id.from(_N, "StartBotRecommendationRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -13717,7 +13717,7 @@ M.StartBotRecommendationInput = schema.new({
 })
 
 M.StartBotRecommendationOutput = schema.new({
-    id = id.from(_N, "StartBotRecommendationOutput"),
+    id = id.from(_N, "StartBotRecommendationResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -13774,7 +13774,7 @@ M.StartBotRecommendationOutput = schema.new({
 })
 
 M.StartBotResourceGenerationInput = schema.new({
-    id = id.from(_N, "StartBotResourceGenerationInput"),
+    id = id.from(_N, "StartBotResourceGenerationRequest"),
     type = "structure",
     members = {
         generationInputPrompt = schema.new({
@@ -13820,7 +13820,7 @@ M.StartBotResourceGenerationInput = schema.new({
 })
 
 M.StartBotResourceGenerationOutput = schema.new({
-    id = id.from(_N, "StartBotResourceGenerationOutput"),
+    id = id.from(_N, "StartBotResourceGenerationResponse"),
     type = "structure",
     members = {
         generationInputPrompt = schema.new({
@@ -13869,7 +13869,7 @@ M.StartBotResourceGenerationOutput = schema.new({
 })
 
 M.StartImportInput = schema.new({
-    id = id.from(_N, "StartImportInput"),
+    id = id.from(_N, "StartImportRequest"),
     type = "structure",
     members = {
         importId = schema.new({
@@ -13910,7 +13910,7 @@ M.StartImportInput = schema.new({
 })
 
 M.StartImportOutput = schema.new({
-    id = id.from(_N, "StartImportOutput"),
+    id = id.from(_N, "StartImportResponse"),
     type = "structure",
     members = {
         importId = schema.new({
@@ -13948,7 +13948,7 @@ M.StartImportOutput = schema.new({
 })
 
 M.StartTestExecutionInput = schema.new({
-    id = id.from(_N, "StartTestExecutionInput"),
+    id = id.from(_N, "StartTestExecutionRequest"),
     type = "structure",
     members = {
         testSetId = schema.new({
@@ -13990,7 +13990,7 @@ M.StartTestExecutionInput = schema.new({
 })
 
 M.StartTestExecutionOutput = schema.new({
-    id = id.from(_N, "StartTestExecutionOutput"),
+    id = id.from(_N, "StartTestExecutionResponse"),
     type = "structure",
     members = {
         testExecutionId = schema.new({
@@ -14034,7 +14034,7 @@ M.StartTestExecutionOutput = schema.new({
 })
 
 M.StartTestSetGenerationInput = schema.new({
-    id = id.from(_N, "StartTestSetGenerationInput"),
+    id = id.from(_N, "StartTestSetGenerationRequest"),
     type = "structure",
     members = {
         testSetName = schema.new({
@@ -14093,7 +14093,7 @@ M.StartTestSetGenerationInput = schema.new({
 })
 
 M.StartTestSetGenerationOutput = schema.new({
-    id = id.from(_N, "StartTestSetGenerationOutput"),
+    id = id.from(_N, "StartTestSetGenerationResponse"),
     type = "structure",
     members = {
         testSetGenerationId = schema.new({
@@ -14158,7 +14158,7 @@ M.StartTestSetGenerationOutput = schema.new({
 })
 
 M.StopBotAnalyzerInput = schema.new({
-    id = id.from(_N, "StopBotAnalyzerInput"),
+    id = id.from(_N, "StopBotAnalyzerRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -14185,7 +14185,7 @@ M.StopBotAnalyzerInput = schema.new({
 })
 
 M.StopBotAnalyzerOutput = schema.new({
-    id = id.from(_N, "StopBotAnalyzerOutput"),
+    id = id.from(_N, "StopBotAnalyzerResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -14222,7 +14222,7 @@ M.StopBotAnalyzerOutput = schema.new({
 })
 
 M.StopBotRecommendationInput = schema.new({
-    id = id.from(_N, "StopBotRecommendationInput"),
+    id = id.from(_N, "StopBotRecommendationRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -14269,7 +14269,7 @@ M.StopBotRecommendationInput = schema.new({
 })
 
 M.StopBotRecommendationOutput = schema.new({
-    id = id.from(_N, "StopBotRecommendationOutput"),
+    id = id.from(_N, "StopBotRecommendationResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -14306,7 +14306,7 @@ M.StopBotRecommendationOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceARN = schema.new({
@@ -14334,12 +14334,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceARN = schema.new({
@@ -14367,12 +14367,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateBotInput = schema.new({
-    id = id.from(_N, "UpdateBotInput"),
+    id = id.from(_N, "UpdateBotRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -14452,7 +14452,7 @@ M.UpdateBotInput = schema.new({
 })
 
 M.UpdateBotOutput = schema.new({
-    id = id.from(_N, "UpdateBotOutput"),
+    id = id.from(_N, "UpdateBotResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -14534,7 +14534,7 @@ M.UpdateBotOutput = schema.new({
 })
 
 M.UpdateBotAliasInput = schema.new({
-    id = id.from(_N, "UpdateBotAliasInput"),
+    id = id.from(_N, "UpdateBotAliasRequest"),
     type = "structure",
     members = {
         botAliasId = schema.new({
@@ -14604,7 +14604,7 @@ M.UpdateBotAliasInput = schema.new({
 })
 
 M.UpdateBotAliasOutput = schema.new({
-    id = id.from(_N, "UpdateBotAliasOutput"),
+    id = id.from(_N, "UpdateBotAliasResponse"),
     type = "structure",
     members = {
         botAliasId = schema.new({
@@ -14681,7 +14681,7 @@ M.UpdateBotAliasOutput = schema.new({
 })
 
 M.UpdateBotLocaleInput = schema.new({
-    id = id.from(_N, "UpdateBotLocaleInput"),
+    id = id.from(_N, "UpdateBotLocaleRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -14767,7 +14767,7 @@ M.UpdateBotLocaleInput = schema.new({
 })
 
 M.UpdateBotLocaleOutput = schema.new({
-    id = id.from(_N, "UpdateBotLocaleOutput"),
+    id = id.from(_N, "UpdateBotLocaleResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -14876,7 +14876,7 @@ M.UpdateBotLocaleOutput = schema.new({
 })
 
 M.UpdateBotRecommendationInput = schema.new({
-    id = id.from(_N, "UpdateBotRecommendationInput"),
+    id = id.from(_N, "UpdateBotRecommendationRequest"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -14933,7 +14933,7 @@ M.UpdateBotRecommendationInput = schema.new({
 })
 
 M.UpdateBotRecommendationOutput = schema.new({
-    id = id.from(_N, "UpdateBotRecommendationOutput"),
+    id = id.from(_N, "UpdateBotRecommendationResponse"),
     type = "structure",
     members = {
         botId = schema.new({
@@ -14996,7 +14996,7 @@ M.UpdateBotRecommendationOutput = schema.new({
 })
 
 M.UpdateExportInput = schema.new({
-    id = id.from(_N, "UpdateExportInput"),
+    id = id.from(_N, "UpdateExportRequest"),
     type = "structure",
     members = {
         exportId = schema.new({
@@ -15019,7 +15019,7 @@ M.UpdateExportInput = schema.new({
 })
 
 M.UpdateExportOutput = schema.new({
-    id = id.from(_N, "UpdateExportOutput"),
+    id = id.from(_N, "UpdateExportResponse"),
     type = "structure",
     members = {
         exportId = schema.new({
@@ -15063,7 +15063,7 @@ M.UpdateExportOutput = schema.new({
 })
 
 M.UpdateResourcePolicyInput = schema.new({
-    id = id.from(_N, "UpdateResourcePolicyInput"),
+    id = id.from(_N, "UpdateResourcePolicyRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -15098,7 +15098,7 @@ M.UpdateResourcePolicyInput = schema.new({
 })
 
 M.UpdateResourcePolicyOutput = schema.new({
-    id = id.from(_N, "UpdateResourcePolicyOutput"),
+    id = id.from(_N, "UpdateResourcePolicyResponse"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -15117,7 +15117,7 @@ M.UpdateResourcePolicyOutput = schema.new({
 })
 
 M.UpdateSlotTypeInput = schema.new({
-    id = id.from(_N, "UpdateSlotTypeInput"),
+    id = id.from(_N, "UpdateSlotTypeRequest"),
     type = "structure",
     members = {
         slotTypeId = schema.new({
@@ -15213,7 +15213,7 @@ M.UpdateSlotTypeInput = schema.new({
 })
 
 M.UpdateSlotTypeOutput = schema.new({
-    id = id.from(_N, "UpdateSlotTypeOutput"),
+    id = id.from(_N, "UpdateSlotTypeResponse"),
     type = "structure",
     members = {
         slotTypeId = schema.new({
@@ -15302,7 +15302,7 @@ M.UpdateSlotTypeOutput = schema.new({
 })
 
 M.UpdateTestSetInput = schema.new({
-    id = id.from(_N, "UpdateTestSetInput"),
+    id = id.from(_N, "UpdateTestSetRequest"),
     type = "structure",
     members = {
         testSetId = schema.new({
@@ -15334,7 +15334,7 @@ M.UpdateTestSetInput = schema.new({
 })
 
 M.UpdateTestSetOutput = schema.new({
-    id = id.from(_N, "UpdateTestSetOutput"),
+    id = id.from(_N, "UpdateTestSetResponse"),
     type = "structure",
     members = {
         testSetId = schema.new({
@@ -15481,7 +15481,7 @@ M.RuntimeHints = schema.new({
             name = "slotHints",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.RuntimeHintDetails }),
         }),
     },
 })
@@ -15951,7 +15951,7 @@ M.UserTurnResult = schema.new({
 })
 
 M.ListTestSetRecordsOutput = schema.new({
-    id = id.from(_N, "ListTestSetRecordsOutput"),
+    id = id.from(_N, "ListTestSetRecordsResponse"),
     type = "structure",
     members = {
         testSetRecords = schema.new({
@@ -16083,7 +16083,7 @@ M.TestExecutionResultItems = schema.new({
 })
 
 M.ListTestExecutionResultItemsOutput = schema.new({
-    id = id.from(_N, "ListTestExecutionResultItemsOutput"),
+    id = id.from(_N, "ListTestExecutionResultItemsResponse"),
     type = "structure",
     members = {
         testExecutionResults = schema.new({
@@ -16577,7 +16577,7 @@ M.IntentConfirmationSetting = schema.new({
 })
 
 M.CreateSlotInput = schema.new({
-    id = id.from(_N, "CreateSlotInput"),
+    id = id.from(_N, "CreateSlotRequest"),
     type = "structure",
     members = {
         slotName = schema.new({
@@ -16676,7 +16676,7 @@ M.CreateSlotInput = schema.new({
 })
 
 M.CreateSlotOutput = schema.new({
-    id = id.from(_N, "CreateSlotOutput"),
+    id = id.from(_N, "CreateSlotResponse"),
     type = "structure",
     members = {
         slotId = schema.new({
@@ -16765,7 +16765,7 @@ M.CreateSlotOutput = schema.new({
 })
 
 M.DescribeSlotOutput = schema.new({
-    id = id.from(_N, "DescribeSlotOutput"),
+    id = id.from(_N, "DescribeSlotResponse"),
     type = "structure",
     members = {
         slotId = schema.new({
@@ -16860,7 +16860,7 @@ M.DescribeSlotOutput = schema.new({
 })
 
 M.UpdateSlotInput = schema.new({
-    id = id.from(_N, "UpdateSlotInput"),
+    id = id.from(_N, "UpdateSlotRequest"),
     type = "structure",
     members = {
         slotId = schema.new({
@@ -16969,7 +16969,7 @@ M.UpdateSlotInput = schema.new({
 })
 
 M.UpdateSlotOutput = schema.new({
-    id = id.from(_N, "UpdateSlotOutput"),
+    id = id.from(_N, "UpdateSlotResponse"),
     type = "structure",
     members = {
         slotId = schema.new({
@@ -17064,7 +17064,7 @@ M.UpdateSlotOutput = schema.new({
 })
 
 M.CreateIntentInput = schema.new({
-    id = id.from(_N, "CreateIntentInput"),
+    id = id.from(_N, "CreateIntentRequest"),
     type = "structure",
     members = {
         intentName = schema.new({
@@ -17205,7 +17205,7 @@ M.CreateIntentInput = schema.new({
 })
 
 M.CreateIntentOutput = schema.new({
-    id = id.from(_N, "CreateIntentOutput"),
+    id = id.from(_N, "CreateIntentResponse"),
     type = "structure",
     members = {
         intentId = schema.new({
@@ -17343,7 +17343,7 @@ M.CreateIntentOutput = schema.new({
 })
 
 M.DescribeIntentOutput = schema.new({
-    id = id.from(_N, "DescribeIntentOutput"),
+    id = id.from(_N, "DescribeIntentResponse"),
     type = "structure",
     members = {
         intentId = schema.new({
@@ -17494,7 +17494,7 @@ M.DescribeIntentOutput = schema.new({
 })
 
 M.UpdateIntentInput = schema.new({
-    id = id.from(_N, "UpdateIntentInput"),
+    id = id.from(_N, "UpdateIntentRequest"),
     type = "structure",
     members = {
         intentId = schema.new({
@@ -17652,7 +17652,7 @@ M.UpdateIntentInput = schema.new({
 })
 
 M.UpdateIntentOutput = schema.new({
-    id = id.from(_N, "UpdateIntentOutput"),
+    id = id.from(_N, "UpdateIntentResponse"),
     type = "structure",
     members = {
         intentId = schema.new({
@@ -17801,5 +17801,19 @@ M.UpdateIntentOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

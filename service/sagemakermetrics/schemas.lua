@@ -72,7 +72,7 @@ M.MetricQuery = schema.new({
 })
 
 M.BatchGetMetricsInput = schema.new({
-    id = id.from(_N, "BatchGetMetricsInput"),
+    id = id.from(_N, "BatchGetMetricsRequest"),
     type = "structure",
     members = {
         MetricQueries = schema.new({
@@ -131,7 +131,7 @@ M.MetricQueryResult = schema.new({
 })
 
 M.BatchGetMetricsOutput = schema.new({
-    id = id.from(_N, "BatchGetMetricsOutput"),
+    id = id.from(_N, "BatchGetMetricsResponse"),
     type = "structure",
     members = {
         MetricQueryResults = schema.new({
@@ -185,7 +185,7 @@ M.RawMetricData = schema.new({
 })
 
 M.BatchPutMetricsInput = schema.new({
-    id = id.from(_N, "BatchPutMetricsInput"),
+    id = id.from(_N, "BatchPutMetricsRequest"),
     type = "structure",
     members = {
         TrialComponentName = schema.new({
@@ -230,7 +230,7 @@ M.BatchPutMetricsError = schema.new({
 })
 
 M.BatchPutMetricsOutput = schema.new({
-    id = id.from(_N, "BatchPutMetricsOutput"),
+    id = id.from(_N, "BatchPutMetricsResponse"),
     type = "structure",
     members = {
         Errors = schema.new({
@@ -242,5 +242,19 @@ M.BatchPutMetricsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

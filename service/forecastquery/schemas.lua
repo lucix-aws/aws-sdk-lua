@@ -56,7 +56,7 @@ M.LimitExceededException = schema.new({
 })
 
 M.QueryForecastInput = schema.new({
-    id = id.from(_N, "QueryForecastInput"),
+    id = id.from(_N, "QueryForecastRequest"),
     type = "structure",
     members = {
         ForecastArn = schema.new({
@@ -129,13 +129,13 @@ M.Forecast = schema.new({
             name = "Predictions",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.DataPoint }),
         }),
     },
 })
 
 M.QueryForecastOutput = schema.new({
-    id = id.from(_N, "QueryForecastOutput"),
+    id = id.from(_N, "QueryForecastResponse"),
     type = "structure",
     members = {
         Forecast = schema.new({
@@ -181,7 +181,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.QueryWhatIfForecastInput = schema.new({
-    id = id.from(_N, "QueryWhatIfForecastInput"),
+    id = id.from(_N, "QueryWhatIfForecastRequest"),
     type = "structure",
     members = {
         WhatIfForecastArn = schema.new({
@@ -226,7 +226,7 @@ M.QueryWhatIfForecastInput = schema.new({
 })
 
 M.QueryWhatIfForecastOutput = schema.new({
-    id = id.from(_N, "QueryWhatIfForecastOutput"),
+    id = id.from(_N, "QueryWhatIfForecastResponse"),
     type = "structure",
     members = {
         Forecast = schema.new({
@@ -238,5 +238,19 @@ M.QueryWhatIfForecastOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

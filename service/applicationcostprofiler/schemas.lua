@@ -24,7 +24,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.DeleteReportDefinitionInput = schema.new({
-    id = id.from(_N, "DeleteReportDefinitionInput"),
+    id = id.from(_N, "DeleteReportDefinitionRequest"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -41,7 +41,7 @@ M.DeleteReportDefinitionInput = schema.new({
 })
 
 M.DeleteReportDefinitionOutput = schema.new({
-    id = id.from(_N, "DeleteReportDefinitionOutput"),
+    id = id.from(_N, "DeleteReportDefinitionResult"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -102,7 +102,7 @@ M.ValidationException = schema.new({
 })
 
 M.GetReportDefinitionInput = schema.new({
-    id = id.from(_N, "GetReportDefinitionInput"),
+    id = id.from(_N, "GetReportDefinitionRequest"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -144,7 +144,7 @@ M.S3Location = schema.new({
 })
 
 M.GetReportDefinitionOutput = schema.new({
-    id = id.from(_N, "GetReportDefinitionOutput"),
+    id = id.from(_N, "GetReportDefinitionResult"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -246,7 +246,7 @@ M.SourceS3Location = schema.new({
 })
 
 M.ImportApplicationUsageInput = schema.new({
-    id = id.from(_N, "ImportApplicationUsageInput"),
+    id = id.from(_N, "ImportApplicationUsageRequest"),
     type = "structure",
     members = {
         sourceS3Location = schema.new({
@@ -263,7 +263,7 @@ M.ImportApplicationUsageInput = schema.new({
 })
 
 M.ImportApplicationUsageOutput = schema.new({
-    id = id.from(_N, "ImportApplicationUsageOutput"),
+    id = id.from(_N, "ImportApplicationUsageResult"),
     type = "structure",
     members = {
         importId = schema.new({
@@ -279,7 +279,7 @@ M.ImportApplicationUsageOutput = schema.new({
 })
 
 M.ListReportDefinitionsInput = schema.new({
-    id = id.from(_N, "ListReportDefinitionsInput"),
+    id = id.from(_N, "ListReportDefinitionsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -354,7 +354,7 @@ M.ReportDefinition = schema.new({
 })
 
 M.ListReportDefinitionsOutput = schema.new({
-    id = id.from(_N, "ListReportDefinitionsOutput"),
+    id = id.from(_N, "ListReportDefinitionsResult"),
     type = "structure",
     members = {
         reportDefinitions = schema.new({
@@ -374,7 +374,7 @@ M.ListReportDefinitionsOutput = schema.new({
 })
 
 M.PutReportDefinitionInput = schema.new({
-    id = id.from(_N, "PutReportDefinitionInput"),
+    id = id.from(_N, "PutReportDefinitionRequest"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -427,7 +427,7 @@ M.PutReportDefinitionInput = schema.new({
 })
 
 M.PutReportDefinitionOutput = schema.new({
-    id = id.from(_N, "PutReportDefinitionOutput"),
+    id = id.from(_N, "PutReportDefinitionResult"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -456,7 +456,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.UpdateReportDefinitionInput = schema.new({
-    id = id.from(_N, "UpdateReportDefinitionInput"),
+    id = id.from(_N, "UpdateReportDefinitionRequest"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -510,7 +510,7 @@ M.UpdateReportDefinitionInput = schema.new({
 })
 
 M.UpdateReportDefinitionOutput = schema.new({
-    id = id.from(_N, "UpdateReportDefinitionOutput"),
+    id = id.from(_N, "UpdateReportDefinitionResult"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -521,5 +521,19 @@ M.UpdateReportDefinitionOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

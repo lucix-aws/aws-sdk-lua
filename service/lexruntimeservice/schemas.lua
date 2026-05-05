@@ -96,7 +96,7 @@ M.ConflictException = schema.new({
 })
 
 M.DeleteSessionInput = schema.new({
-    id = id.from(_N, "DeleteSessionInput"),
+    id = id.from(_N, "DeleteSessionRequest"),
     type = "structure",
     members = {
         botName = schema.new({
@@ -133,7 +133,7 @@ M.DeleteSessionInput = schema.new({
 })
 
 M.DeleteSessionOutput = schema.new({
-    id = id.from(_N, "DeleteSessionOutput"),
+    id = id.from(_N, "DeleteSessionResponse"),
     type = "structure",
     members = {
         botName = schema.new({
@@ -221,7 +221,7 @@ M.NotFoundException = schema.new({
 })
 
 M.GetSessionInput = schema.new({
-    id = id.from(_N, "GetSessionInput"),
+    id = id.from(_N, "GetSessionRequest"),
     type = "structure",
     members = {
         botName = schema.new({
@@ -375,7 +375,7 @@ M.IntentSummary = schema.new({
 })
 
 M.GetSessionOutput = schema.new({
-    id = id.from(_N, "GetSessionOutput"),
+    id = id.from(_N, "GetSessionResponse"),
     type = "structure",
     members = {
         recentIntentSummaryView = schema.new({
@@ -481,7 +481,7 @@ M.NotAcceptableException = schema.new({
 })
 
 M.PostContentInput = schema.new({
-    id = id.from(_N, "PostContentInput"),
+    id = id.from(_N, "PostContentRequest"),
     type = "structure",
     members = {
         botName = schema.new({
@@ -586,7 +586,7 @@ M.PostContentInput = schema.new({
 })
 
 M.PostContentOutput = schema.new({
-    id = id.from(_N, "PostContentOutput"),
+    id = id.from(_N, "PostContentResponse"),
     type = "structure",
     members = {
         contentType = schema.new({
@@ -808,7 +808,7 @@ M.UnsupportedMediaTypeException = schema.new({
 })
 
 M.PostTextInput = schema.new({
-    id = id.from(_N, "PostTextInput"),
+    id = id.from(_N, "PostTextRequest"),
     type = "structure",
     members = {
         botName = schema.new({
@@ -1029,7 +1029,7 @@ M.SentimentResponse = schema.new({
 })
 
 M.PostTextOutput = schema.new({
-    id = id.from(_N, "PostTextOutput"),
+    id = id.from(_N, "PostTextResponse"),
     type = "structure",
     members = {
         intentName = schema.new({
@@ -1129,7 +1129,7 @@ M.PostTextOutput = schema.new({
 })
 
 M.PutSessionInput = schema.new({
-    id = id.from(_N, "PutSessionInput"),
+    id = id.from(_N, "PutSessionRequest"),
     type = "structure",
     members = {
         botName = schema.new({
@@ -1204,7 +1204,7 @@ M.PutSessionInput = schema.new({
 })
 
 M.PutSessionOutput = schema.new({
-    id = id.from(_N, "PutSessionOutput"),
+    id = id.from(_N, "PutSessionResponse"),
     type = "structure",
     members = {
         contentType = schema.new({
@@ -1330,5 +1330,19 @@ M.PutSessionOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

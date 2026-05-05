@@ -40,7 +40,7 @@ M.ConflictException = schema.new({
 })
 
 M.DeleteKeyInput = schema.new({
-    id = id.from(_N, "DeleteKeyInput"),
+    id = id.from(_N, "DeleteKeyRequest"),
     type = "structure",
     members = {
         KvsARN = schema.new({
@@ -77,7 +77,7 @@ M.DeleteKeyInput = schema.new({
 })
 
 M.DeleteKeyOutput = schema.new({
-    id = id.from(_N, "DeleteKeyOutput"),
+    id = id.from(_N, "DeleteKeyResponse"),
     type = "structure",
     members = {
         ItemCount = schema.new({
@@ -176,7 +176,7 @@ M.ValidationException = schema.new({
 })
 
 M.DescribeKeyValueStoreInput = schema.new({
-    id = id.from(_N, "DescribeKeyValueStoreInput"),
+    id = id.from(_N, "DescribeKeyValueStoreRequest"),
     type = "structure",
     members = {
         KvsARN = schema.new({
@@ -193,7 +193,7 @@ M.DescribeKeyValueStoreInput = schema.new({
 })
 
 M.DescribeKeyValueStoreOutput = schema.new({
-    id = id.from(_N, "DescribeKeyValueStoreOutput"),
+    id = id.from(_N, "DescribeKeyValueStoreResponse"),
     type = "structure",
     members = {
         ItemCount = schema.new({
@@ -264,7 +264,7 @@ M.DescribeKeyValueStoreOutput = schema.new({
 })
 
 M.GetKeyInput = schema.new({
-    id = id.from(_N, "GetKeyInput"),
+    id = id.from(_N, "GetKeyRequest"),
     type = "structure",
     members = {
         KvsARN = schema.new({
@@ -291,7 +291,7 @@ M.GetKeyInput = schema.new({
 })
 
 M.GetKeyOutput = schema.new({
-    id = id.from(_N, "GetKeyOutput"),
+    id = id.from(_N, "GetKeyResponse"),
     type = "structure",
     members = {
         Key = schema.new({
@@ -334,7 +334,7 @@ M.GetKeyOutput = schema.new({
 })
 
 M.ListKeysInput = schema.new({
-    id = id.from(_N, "ListKeysInput"),
+    id = id.from(_N, "ListKeysRequest"),
     type = "structure",
     members = {
         KvsARN = schema.new({
@@ -395,7 +395,7 @@ M.ListKeysResponseListItem = schema.new({
 })
 
 M.ListKeysOutput = schema.new({
-    id = id.from(_N, "ListKeysOutput"),
+    id = id.from(_N, "ListKeysResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -415,7 +415,7 @@ M.ListKeysOutput = schema.new({
 })
 
 M.PutKeyInput = schema.new({
-    id = id.from(_N, "PutKeyInput"),
+    id = id.from(_N, "PutKeyRequest"),
     type = "structure",
     members = {
         Key = schema.new({
@@ -461,7 +461,7 @@ M.PutKeyInput = schema.new({
 })
 
 M.PutKeyOutput = schema.new({
-    id = id.from(_N, "PutKeyOutput"),
+    id = id.from(_N, "PutKeyResponse"),
     type = "structure",
     members = {
         ItemCount = schema.new({
@@ -537,7 +537,7 @@ M.PutKeyRequestListItem = schema.new({
 })
 
 M.UpdateKeysInput = schema.new({
-    id = id.from(_N, "UpdateKeysInput"),
+    id = id.from(_N, "UpdateKeysRequest"),
     type = "structure",
     members = {
         KvsARN = schema.new({
@@ -578,7 +578,7 @@ M.UpdateKeysInput = schema.new({
 })
 
 M.UpdateKeysOutput = schema.new({
-    id = id.from(_N, "UpdateKeysOutput"),
+    id = id.from(_N, "UpdateKeysResponse"),
     type = "structure",
     members = {
         ItemCount = schema.new({
@@ -611,5 +611,19 @@ M.UpdateKeysOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

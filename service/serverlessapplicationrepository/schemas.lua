@@ -478,7 +478,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateApplicationInput = schema.new({
-    id = id.from(_N, "CreateApplicationInput"),
+    id = id.from(_N, "CreateApplicationRequest"),
     type = "structure",
     members = {
         Author = schema.new({
@@ -721,7 +721,7 @@ M.Version = schema.new({
 })
 
 M.CreateApplicationOutput = schema.new({
-    id = id.from(_N, "CreateApplicationOutput"),
+    id = id.from(_N, "CreateApplicationResponse"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -931,7 +931,7 @@ M.TooManyRequestsException = schema.new({
 })
 
 M.CreateApplicationVersionInput = schema.new({
-    id = id.from(_N, "CreateApplicationVersionInput"),
+    id = id.from(_N, "CreateApplicationVersionRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -994,7 +994,7 @@ M.CreateApplicationVersionInput = schema.new({
 })
 
 M.CreateApplicationVersionOutput = schema.new({
-    id = id.from(_N, "CreateApplicationVersionOutput"),
+    id = id.from(_N, "CreateApplicationVersionResponse"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1110,7 +1110,7 @@ M.RollbackConfiguration = schema.new({
 })
 
 M.CreateCloudFormationChangeSetInput = schema.new({
-    id = id.from(_N, "CreateCloudFormationChangeSetInput"),
+    id = id.from(_N, "CreateCloudFormationChangeSetRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1242,7 +1242,7 @@ M.CreateCloudFormationChangeSetInput = schema.new({
 })
 
 M.CreateCloudFormationChangeSetOutput = schema.new({
-    id = id.from(_N, "CreateCloudFormationChangeSetOutput"),
+    id = id.from(_N, "CreateCloudFormationChangeSetResponse"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1285,7 +1285,7 @@ M.CreateCloudFormationChangeSetOutput = schema.new({
 })
 
 M.CreateCloudFormationTemplateInput = schema.new({
-    id = id.from(_N, "CreateCloudFormationTemplateInput"),
+    id = id.from(_N, "CreateCloudFormationTemplateRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1311,7 +1311,7 @@ M.CreateCloudFormationTemplateInput = schema.new({
 })
 
 M.CreateCloudFormationTemplateOutput = schema.new({
-    id = id.from(_N, "CreateCloudFormationTemplateOutput"),
+    id = id.from(_N, "CreateCloudFormationTemplateResponse"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1409,7 +1409,7 @@ M.NotFoundException = schema.new({
 })
 
 M.DeleteApplicationInput = schema.new({
-    id = id.from(_N, "DeleteApplicationInput"),
+    id = id.from(_N, "DeleteApplicationRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1426,12 +1426,12 @@ M.DeleteApplicationInput = schema.new({
 })
 
 M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetApplicationInput = schema.new({
-    id = id.from(_N, "GetApplicationInput"),
+    id = id.from(_N, "GetApplicationRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1457,7 +1457,7 @@ M.GetApplicationInput = schema.new({
 })
 
 M.GetApplicationOutput = schema.new({
-    id = id.from(_N, "GetApplicationOutput"),
+    id = id.from(_N, "GetApplicationResponse"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1583,7 +1583,7 @@ M.GetApplicationOutput = schema.new({
 })
 
 M.GetApplicationPolicyInput = schema.new({
-    id = id.from(_N, "GetApplicationPolicyInput"),
+    id = id.from(_N, "GetApplicationPolicyRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1600,7 +1600,7 @@ M.GetApplicationPolicyInput = schema.new({
 })
 
 M.GetApplicationPolicyOutput = schema.new({
-    id = id.from(_N, "GetApplicationPolicyOutput"),
+    id = id.from(_N, "GetApplicationPolicyResponse"),
     type = "structure",
     members = {
         Statements = schema.new({
@@ -1617,7 +1617,7 @@ M.GetApplicationPolicyOutput = schema.new({
 })
 
 M.GetCloudFormationTemplateInput = schema.new({
-    id = id.from(_N, "GetCloudFormationTemplateInput"),
+    id = id.from(_N, "GetCloudFormationTemplateRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1644,7 +1644,7 @@ M.GetCloudFormationTemplateInput = schema.new({
 })
 
 M.GetCloudFormationTemplateOutput = schema.new({
-    id = id.from(_N, "GetCloudFormationTemplateOutput"),
+    id = id.from(_N, "GetCloudFormationTemplateResponse"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1714,7 +1714,7 @@ M.GetCloudFormationTemplateOutput = schema.new({
 })
 
 M.ListApplicationDependenciesInput = schema.new({
-    id = id.from(_N, "ListApplicationDependenciesInput"),
+    id = id.from(_N, "ListApplicationDependenciesRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1758,7 +1758,7 @@ M.ListApplicationDependenciesInput = schema.new({
 })
 
 M.ListApplicationDependenciesOutput = schema.new({
-    id = id.from(_N, "ListApplicationDependenciesOutput"),
+    id = id.from(_N, "ListApplicationDependenciesResponse"),
     type = "structure",
     members = {
         Dependencies = schema.new({
@@ -1784,7 +1784,7 @@ M.ListApplicationDependenciesOutput = schema.new({
 })
 
 M.ListApplicationsInput = schema.new({
-    id = id.from(_N, "ListApplicationsInput"),
+    id = id.from(_N, "ListApplicationsRequest"),
     type = "structure",
     members = {
         MaxItems = schema.new({
@@ -1809,7 +1809,7 @@ M.ListApplicationsInput = schema.new({
 })
 
 M.ListApplicationsOutput = schema.new({
-    id = id.from(_N, "ListApplicationsOutput"),
+    id = id.from(_N, "ListApplicationsResponse"),
     type = "structure",
     members = {
         Applications = schema.new({
@@ -1835,7 +1835,7 @@ M.ListApplicationsOutput = schema.new({
 })
 
 M.ListApplicationVersionsInput = schema.new({
-    id = id.from(_N, "ListApplicationVersionsInput"),
+    id = id.from(_N, "ListApplicationVersionsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1870,7 +1870,7 @@ M.ListApplicationVersionsInput = schema.new({
 })
 
 M.ListApplicationVersionsOutput = schema.new({
-    id = id.from(_N, "ListApplicationVersionsOutput"),
+    id = id.from(_N, "ListApplicationVersionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1896,7 +1896,7 @@ M.ListApplicationVersionsOutput = schema.new({
 })
 
 M.PutApplicationPolicyInput = schema.new({
-    id = id.from(_N, "PutApplicationPolicyInput"),
+    id = id.from(_N, "PutApplicationPolicyRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1924,7 +1924,7 @@ M.PutApplicationPolicyInput = schema.new({
 })
 
 M.PutApplicationPolicyOutput = schema.new({
-    id = id.from(_N, "PutApplicationPolicyOutput"),
+    id = id.from(_N, "PutApplicationPolicyResponse"),
     type = "structure",
     members = {
         Statements = schema.new({
@@ -1941,7 +1941,7 @@ M.PutApplicationPolicyOutput = schema.new({
 })
 
 M.UnshareApplicationInput = schema.new({
-    id = id.from(_N, "UnshareApplicationInput"),
+    id = id.from(_N, "UnshareApplicationRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1968,12 +1968,12 @@ M.UnshareApplicationInput = schema.new({
 })
 
 M.UnshareApplicationOutput = schema.new({
-    id = id.from(_N, "UnshareApplicationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateApplicationInput = schema.new({
-    id = id.from(_N, "UpdateApplicationInput"),
+    id = id.from(_N, "UpdateApplicationRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -2045,7 +2045,7 @@ M.UpdateApplicationInput = schema.new({
 })
 
 M.UpdateApplicationOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationOutput"),
+    id = id.from(_N, "UpdateApplicationResponse"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -2169,5 +2169,19 @@ M.UpdateApplicationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

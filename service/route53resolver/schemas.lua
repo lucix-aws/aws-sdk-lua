@@ -49,7 +49,7 @@ M.Tag = schema.new({
 })
 
 M.AssociateFirewallRuleGroupInput = schema.new({
-    id = id.from(_N, "AssociateFirewallRuleGroupInput"),
+    id = id.from(_N, "AssociateFirewallRuleGroupRequest"),
     type = "structure",
     members = {
         CreatorRequestId = schema.new({
@@ -200,7 +200,7 @@ M.FirewallRuleGroupAssociation = schema.new({
 })
 
 M.AssociateFirewallRuleGroupOutput = schema.new({
-    id = id.from(_N, "AssociateFirewallRuleGroupOutput"),
+    id = id.from(_N, "AssociateFirewallRuleGroupResponse"),
     type = "structure",
     members = {
         FirewallRuleGroupAssociation = schema.new({
@@ -353,7 +353,7 @@ M.IpAddressUpdate = schema.new({
 })
 
 M.AssociateResolverEndpointIpAddressInput = schema.new({
-    id = id.from(_N, "AssociateResolverEndpointIpAddressInput"),
+    id = id.from(_N, "AssociateResolverEndpointIpAddressRequest"),
     type = "structure",
     members = {
         ResolverEndpointId = schema.new({
@@ -496,7 +496,7 @@ M.ResolverEndpoint = schema.new({
 })
 
 M.AssociateResolverEndpointIpAddressOutput = schema.new({
-    id = id.from(_N, "AssociateResolverEndpointIpAddressOutput"),
+    id = id.from(_N, "AssociateResolverEndpointIpAddressResponse"),
     type = "structure",
     members = {
         ResolverEndpoint = schema.new({
@@ -573,7 +573,7 @@ M.ResourceExistsException = schema.new({
 })
 
 M.AssociateResolverQueryLogConfigInput = schema.new({
-    id = id.from(_N, "AssociateResolverQueryLogConfigInput"),
+    id = id.from(_N, "AssociateResolverQueryLogConfigRequest"),
     type = "structure",
     members = {
         ResolverQueryLogConfigId = schema.new({
@@ -647,7 +647,7 @@ M.ResolverQueryLogConfigAssociation = schema.new({
 })
 
 M.AssociateResolverQueryLogConfigOutput = schema.new({
-    id = id.from(_N, "AssociateResolverQueryLogConfigOutput"),
+    id = id.from(_N, "AssociateResolverQueryLogConfigResponse"),
     type = "structure",
     members = {
         ResolverQueryLogConfigAssociation = schema.new({
@@ -661,7 +661,7 @@ M.AssociateResolverQueryLogConfigOutput = schema.new({
 })
 
 M.AssociateResolverRuleInput = schema.new({
-    id = id.from(_N, "AssociateResolverRuleInput"),
+    id = id.from(_N, "AssociateResolverRuleRequest"),
     type = "structure",
     members = {
         ResolverRuleId = schema.new({
@@ -735,7 +735,7 @@ M.ResolverRuleAssociation = schema.new({
 })
 
 M.AssociateResolverRuleOutput = schema.new({
-    id = id.from(_N, "AssociateResolverRuleOutput"),
+    id = id.from(_N, "AssociateResolverRuleResponse"),
     type = "structure",
     members = {
         ResolverRuleAssociation = schema.new({
@@ -771,7 +771,7 @@ M.ResourceUnavailableException = schema.new({
 })
 
 M.CreateFirewallDomainListInput = schema.new({
-    id = id.from(_N, "CreateFirewallDomainListInput"),
+    id = id.from(_N, "CreateFirewallDomainListRequest"),
     type = "structure",
     members = {
         CreatorRequestId = schema.new({
@@ -871,7 +871,7 @@ M.FirewallDomainList = schema.new({
 })
 
 M.CreateFirewallDomainListOutput = schema.new({
-    id = id.from(_N, "CreateFirewallDomainListOutput"),
+    id = id.from(_N, "CreateFirewallDomainListResponse"),
     type = "structure",
     members = {
         FirewallDomainList = schema.new({
@@ -885,7 +885,7 @@ M.CreateFirewallDomainListOutput = schema.new({
 })
 
 M.CreateFirewallRuleInput = schema.new({
-    id = id.from(_N, "CreateFirewallRuleInput"),
+    id = id.from(_N, "CreateFirewallRuleRequest"),
     type = "structure",
     members = {
         CreatorRequestId = schema.new({
@@ -1101,7 +1101,7 @@ M.FirewallRule = schema.new({
 })
 
 M.CreateFirewallRuleOutput = schema.new({
-    id = id.from(_N, "CreateFirewallRuleOutput"),
+    id = id.from(_N, "CreateFirewallRuleResponse"),
     type = "structure",
     members = {
         FirewallRule = schema.new({
@@ -1115,7 +1115,7 @@ M.CreateFirewallRuleOutput = schema.new({
 })
 
 M.CreateFirewallRuleGroupInput = schema.new({
-    id = id.from(_N, "CreateFirewallRuleGroupInput"),
+    id = id.from(_N, "CreateFirewallRuleGroupRequest"),
     type = "structure",
     members = {
         CreatorRequestId = schema.new({
@@ -1221,7 +1221,7 @@ M.FirewallRuleGroup = schema.new({
 })
 
 M.CreateFirewallRuleGroupOutput = schema.new({
-    id = id.from(_N, "CreateFirewallRuleGroupOutput"),
+    id = id.from(_N, "CreateFirewallRuleGroupResponse"),
     type = "structure",
     members = {
         FirewallRuleGroup = schema.new({
@@ -1235,7 +1235,7 @@ M.CreateFirewallRuleGroupOutput = schema.new({
 })
 
 M.CreateOutpostResolverInput = schema.new({
-    id = id.from(_N, "CreateOutpostResolverInput"),
+    id = id.from(_N, "CreateOutpostResolverRequest"),
     type = "structure",
     members = {
         CreatorRequestId = schema.new({
@@ -1364,7 +1364,7 @@ M.OutpostResolver = schema.new({
 })
 
 M.CreateOutpostResolverOutput = schema.new({
-    id = id.from(_N, "CreateOutpostResolverOutput"),
+    id = id.from(_N, "CreateOutpostResolverResponse"),
     type = "structure",
     members = {
         OutpostResolver = schema.new({
@@ -1422,7 +1422,7 @@ M.IpAddressRequest = schema.new({
 })
 
 M.CreateResolverEndpointInput = schema.new({
-    id = id.from(_N, "CreateResolverEndpointInput"),
+    id = id.from(_N, "CreateResolverEndpointRequest"),
     type = "structure",
     members = {
         CreatorRequestId = schema.new({
@@ -1517,7 +1517,7 @@ M.CreateResolverEndpointInput = schema.new({
 })
 
 M.CreateResolverEndpointOutput = schema.new({
-    id = id.from(_N, "CreateResolverEndpointOutput"),
+    id = id.from(_N, "CreateResolverEndpointResponse"),
     type = "structure",
     members = {
         ResolverEndpoint = schema.new({
@@ -1531,7 +1531,7 @@ M.CreateResolverEndpointOutput = schema.new({
 })
 
 M.CreateResolverQueryLogConfigInput = schema.new({
-    id = id.from(_N, "CreateResolverQueryLogConfigInput"),
+    id = id.from(_N, "CreateResolverQueryLogConfigRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1643,7 +1643,7 @@ M.ResolverQueryLogConfig = schema.new({
 })
 
 M.CreateResolverQueryLogConfigOutput = schema.new({
-    id = id.from(_N, "CreateResolverQueryLogConfigOutput"),
+    id = id.from(_N, "CreateResolverQueryLogConfigResponse"),
     type = "structure",
     members = {
         ResolverQueryLogConfig = schema.new({
@@ -1694,7 +1694,7 @@ M.TargetAddress = schema.new({
 })
 
 M.CreateResolverRuleInput = schema.new({
-    id = id.from(_N, "CreateResolverRuleInput"),
+    id = id.from(_N, "CreateResolverRuleRequest"),
     type = "structure",
     members = {
         CreatorRequestId = schema.new({
@@ -1855,7 +1855,7 @@ M.ResolverRule = schema.new({
 })
 
 M.CreateResolverRuleOutput = schema.new({
-    id = id.from(_N, "CreateResolverRuleOutput"),
+    id = id.from(_N, "CreateResolverRuleResponse"),
     type = "structure",
     members = {
         ResolverRule = schema.new({
@@ -1869,7 +1869,7 @@ M.CreateResolverRuleOutput = schema.new({
 })
 
 M.DeleteFirewallDomainListInput = schema.new({
-    id = id.from(_N, "DeleteFirewallDomainListInput"),
+    id = id.from(_N, "DeleteFirewallDomainListRequest"),
     type = "structure",
     members = {
         FirewallDomainListId = schema.new({
@@ -1885,7 +1885,7 @@ M.DeleteFirewallDomainListInput = schema.new({
 })
 
 M.DeleteFirewallDomainListOutput = schema.new({
-    id = id.from(_N, "DeleteFirewallDomainListOutput"),
+    id = id.from(_N, "DeleteFirewallDomainListResponse"),
     type = "structure",
     members = {
         FirewallDomainList = schema.new({
@@ -1899,7 +1899,7 @@ M.DeleteFirewallDomainListOutput = schema.new({
 })
 
 M.DeleteFirewallRuleInput = schema.new({
-    id = id.from(_N, "DeleteFirewallRuleInput"),
+    id = id.from(_N, "DeleteFirewallRuleRequest"),
     type = "structure",
     members = {
         FirewallRuleGroupId = schema.new({
@@ -1933,7 +1933,7 @@ M.DeleteFirewallRuleInput = schema.new({
 })
 
 M.DeleteFirewallRuleOutput = schema.new({
-    id = id.from(_N, "DeleteFirewallRuleOutput"),
+    id = id.from(_N, "DeleteFirewallRuleResponse"),
     type = "structure",
     members = {
         FirewallRule = schema.new({
@@ -1947,7 +1947,7 @@ M.DeleteFirewallRuleOutput = schema.new({
 })
 
 M.DeleteFirewallRuleGroupInput = schema.new({
-    id = id.from(_N, "DeleteFirewallRuleGroupInput"),
+    id = id.from(_N, "DeleteFirewallRuleGroupRequest"),
     type = "structure",
     members = {
         FirewallRuleGroupId = schema.new({
@@ -1963,7 +1963,7 @@ M.DeleteFirewallRuleGroupInput = schema.new({
 })
 
 M.DeleteFirewallRuleGroupOutput = schema.new({
-    id = id.from(_N, "DeleteFirewallRuleGroupOutput"),
+    id = id.from(_N, "DeleteFirewallRuleGroupResponse"),
     type = "structure",
     members = {
         FirewallRuleGroup = schema.new({
@@ -1977,7 +1977,7 @@ M.DeleteFirewallRuleGroupOutput = schema.new({
 })
 
 M.DeleteOutpostResolverInput = schema.new({
-    id = id.from(_N, "DeleteOutpostResolverInput"),
+    id = id.from(_N, "DeleteOutpostResolverRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1993,7 +1993,7 @@ M.DeleteOutpostResolverInput = schema.new({
 })
 
 M.DeleteOutpostResolverOutput = schema.new({
-    id = id.from(_N, "DeleteOutpostResolverOutput"),
+    id = id.from(_N, "DeleteOutpostResolverResponse"),
     type = "structure",
     members = {
         OutpostResolver = schema.new({
@@ -2007,7 +2007,7 @@ M.DeleteOutpostResolverOutput = schema.new({
 })
 
 M.DeleteResolverEndpointInput = schema.new({
-    id = id.from(_N, "DeleteResolverEndpointInput"),
+    id = id.from(_N, "DeleteResolverEndpointRequest"),
     type = "structure",
     members = {
         ResolverEndpointId = schema.new({
@@ -2023,7 +2023,7 @@ M.DeleteResolverEndpointInput = schema.new({
 })
 
 M.DeleteResolverEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteResolverEndpointOutput"),
+    id = id.from(_N, "DeleteResolverEndpointResponse"),
     type = "structure",
     members = {
         ResolverEndpoint = schema.new({
@@ -2037,7 +2037,7 @@ M.DeleteResolverEndpointOutput = schema.new({
 })
 
 M.DeleteResolverQueryLogConfigInput = schema.new({
-    id = id.from(_N, "DeleteResolverQueryLogConfigInput"),
+    id = id.from(_N, "DeleteResolverQueryLogConfigRequest"),
     type = "structure",
     members = {
         ResolverQueryLogConfigId = schema.new({
@@ -2053,7 +2053,7 @@ M.DeleteResolverQueryLogConfigInput = schema.new({
 })
 
 M.DeleteResolverQueryLogConfigOutput = schema.new({
-    id = id.from(_N, "DeleteResolverQueryLogConfigOutput"),
+    id = id.from(_N, "DeleteResolverQueryLogConfigResponse"),
     type = "structure",
     members = {
         ResolverQueryLogConfig = schema.new({
@@ -2067,7 +2067,7 @@ M.DeleteResolverQueryLogConfigOutput = schema.new({
 })
 
 M.DeleteResolverRuleInput = schema.new({
-    id = id.from(_N, "DeleteResolverRuleInput"),
+    id = id.from(_N, "DeleteResolverRuleRequest"),
     type = "structure",
     members = {
         ResolverRuleId = schema.new({
@@ -2083,7 +2083,7 @@ M.DeleteResolverRuleInput = schema.new({
 })
 
 M.DeleteResolverRuleOutput = schema.new({
-    id = id.from(_N, "DeleteResolverRuleOutput"),
+    id = id.from(_N, "DeleteResolverRuleResponse"),
     type = "structure",
     members = {
         ResolverRule = schema.new({
@@ -2119,7 +2119,7 @@ M.ResourceInUseException = schema.new({
 })
 
 M.DisassociateFirewallRuleGroupInput = schema.new({
-    id = id.from(_N, "DisassociateFirewallRuleGroupInput"),
+    id = id.from(_N, "DisassociateFirewallRuleGroupRequest"),
     type = "structure",
     members = {
         FirewallRuleGroupAssociationId = schema.new({
@@ -2135,7 +2135,7 @@ M.DisassociateFirewallRuleGroupInput = schema.new({
 })
 
 M.DisassociateFirewallRuleGroupOutput = schema.new({
-    id = id.from(_N, "DisassociateFirewallRuleGroupOutput"),
+    id = id.from(_N, "DisassociateFirewallRuleGroupResponse"),
     type = "structure",
     members = {
         FirewallRuleGroupAssociation = schema.new({
@@ -2149,7 +2149,7 @@ M.DisassociateFirewallRuleGroupOutput = schema.new({
 })
 
 M.DisassociateResolverEndpointIpAddressInput = schema.new({
-    id = id.from(_N, "DisassociateResolverEndpointIpAddressInput"),
+    id = id.from(_N, "DisassociateResolverEndpointIpAddressRequest"),
     type = "structure",
     members = {
         ResolverEndpointId = schema.new({
@@ -2175,7 +2175,7 @@ M.DisassociateResolverEndpointIpAddressInput = schema.new({
 })
 
 M.DisassociateResolverEndpointIpAddressOutput = schema.new({
-    id = id.from(_N, "DisassociateResolverEndpointIpAddressOutput"),
+    id = id.from(_N, "DisassociateResolverEndpointIpAddressResponse"),
     type = "structure",
     members = {
         ResolverEndpoint = schema.new({
@@ -2189,7 +2189,7 @@ M.DisassociateResolverEndpointIpAddressOutput = schema.new({
 })
 
 M.DisassociateResolverQueryLogConfigInput = schema.new({
-    id = id.from(_N, "DisassociateResolverQueryLogConfigInput"),
+    id = id.from(_N, "DisassociateResolverQueryLogConfigRequest"),
     type = "structure",
     members = {
         ResolverQueryLogConfigId = schema.new({
@@ -2214,7 +2214,7 @@ M.DisassociateResolverQueryLogConfigInput = schema.new({
 })
 
 M.DisassociateResolverQueryLogConfigOutput = schema.new({
-    id = id.from(_N, "DisassociateResolverQueryLogConfigOutput"),
+    id = id.from(_N, "DisassociateResolverQueryLogConfigResponse"),
     type = "structure",
     members = {
         ResolverQueryLogConfigAssociation = schema.new({
@@ -2228,7 +2228,7 @@ M.DisassociateResolverQueryLogConfigOutput = schema.new({
 })
 
 M.DisassociateResolverRuleInput = schema.new({
-    id = id.from(_N, "DisassociateResolverRuleInput"),
+    id = id.from(_N, "DisassociateResolverRuleRequest"),
     type = "structure",
     members = {
         VPCId = schema.new({
@@ -2253,7 +2253,7 @@ M.DisassociateResolverRuleInput = schema.new({
 })
 
 M.DisassociateResolverRuleOutput = schema.new({
-    id = id.from(_N, "DisassociateResolverRuleOutput"),
+    id = id.from(_N, "DisassociateResolverRuleResponse"),
     type = "structure",
     members = {
         ResolverRuleAssociation = schema.new({
@@ -2398,7 +2398,7 @@ M.FirewallRuleGroupMetadata = schema.new({
 })
 
 M.GetFirewallConfigInput = schema.new({
-    id = id.from(_N, "GetFirewallConfigInput"),
+    id = id.from(_N, "GetFirewallConfigRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -2414,7 +2414,7 @@ M.GetFirewallConfigInput = schema.new({
 })
 
 M.GetFirewallConfigOutput = schema.new({
-    id = id.from(_N, "GetFirewallConfigOutput"),
+    id = id.from(_N, "GetFirewallConfigResponse"),
     type = "structure",
     members = {
         FirewallConfig = schema.new({
@@ -2428,7 +2428,7 @@ M.GetFirewallConfigOutput = schema.new({
 })
 
 M.GetFirewallDomainListInput = schema.new({
-    id = id.from(_N, "GetFirewallDomainListInput"),
+    id = id.from(_N, "GetFirewallDomainListRequest"),
     type = "structure",
     members = {
         FirewallDomainListId = schema.new({
@@ -2444,7 +2444,7 @@ M.GetFirewallDomainListInput = schema.new({
 })
 
 M.GetFirewallDomainListOutput = schema.new({
-    id = id.from(_N, "GetFirewallDomainListOutput"),
+    id = id.from(_N, "GetFirewallDomainListResponse"),
     type = "structure",
     members = {
         FirewallDomainList = schema.new({
@@ -2458,7 +2458,7 @@ M.GetFirewallDomainListOutput = schema.new({
 })
 
 M.GetFirewallRuleGroupInput = schema.new({
-    id = id.from(_N, "GetFirewallRuleGroupInput"),
+    id = id.from(_N, "GetFirewallRuleGroupRequest"),
     type = "structure",
     members = {
         FirewallRuleGroupId = schema.new({
@@ -2474,7 +2474,7 @@ M.GetFirewallRuleGroupInput = schema.new({
 })
 
 M.GetFirewallRuleGroupOutput = schema.new({
-    id = id.from(_N, "GetFirewallRuleGroupOutput"),
+    id = id.from(_N, "GetFirewallRuleGroupResponse"),
     type = "structure",
     members = {
         FirewallRuleGroup = schema.new({
@@ -2488,7 +2488,7 @@ M.GetFirewallRuleGroupOutput = schema.new({
 })
 
 M.GetFirewallRuleGroupAssociationInput = schema.new({
-    id = id.from(_N, "GetFirewallRuleGroupAssociationInput"),
+    id = id.from(_N, "GetFirewallRuleGroupAssociationRequest"),
     type = "structure",
     members = {
         FirewallRuleGroupAssociationId = schema.new({
@@ -2504,7 +2504,7 @@ M.GetFirewallRuleGroupAssociationInput = schema.new({
 })
 
 M.GetFirewallRuleGroupAssociationOutput = schema.new({
-    id = id.from(_N, "GetFirewallRuleGroupAssociationOutput"),
+    id = id.from(_N, "GetFirewallRuleGroupAssociationResponse"),
     type = "structure",
     members = {
         FirewallRuleGroupAssociation = schema.new({
@@ -2518,7 +2518,7 @@ M.GetFirewallRuleGroupAssociationOutput = schema.new({
 })
 
 M.GetFirewallRuleGroupPolicyInput = schema.new({
-    id = id.from(_N, "GetFirewallRuleGroupPolicyInput"),
+    id = id.from(_N, "GetFirewallRuleGroupPolicyRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2534,7 +2534,7 @@ M.GetFirewallRuleGroupPolicyInput = schema.new({
 })
 
 M.GetFirewallRuleGroupPolicyOutput = schema.new({
-    id = id.from(_N, "GetFirewallRuleGroupPolicyOutput"),
+    id = id.from(_N, "GetFirewallRuleGroupPolicyResponse"),
     type = "structure",
     members = {
         FirewallRuleGroupPolicy = schema.new({
@@ -2547,7 +2547,7 @@ M.GetFirewallRuleGroupPolicyOutput = schema.new({
 })
 
 M.GetOutpostResolverInput = schema.new({
-    id = id.from(_N, "GetOutpostResolverInput"),
+    id = id.from(_N, "GetOutpostResolverRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2563,7 +2563,7 @@ M.GetOutpostResolverInput = schema.new({
 })
 
 M.GetOutpostResolverOutput = schema.new({
-    id = id.from(_N, "GetOutpostResolverOutput"),
+    id = id.from(_N, "GetOutpostResolverResponse"),
     type = "structure",
     members = {
         OutpostResolver = schema.new({
@@ -2577,7 +2577,7 @@ M.GetOutpostResolverOutput = schema.new({
 })
 
 M.GetResolverConfigInput = schema.new({
-    id = id.from(_N, "GetResolverConfigInput"),
+    id = id.from(_N, "GetResolverConfigRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -2624,7 +2624,7 @@ M.ResolverConfig = schema.new({
 })
 
 M.GetResolverConfigOutput = schema.new({
-    id = id.from(_N, "GetResolverConfigOutput"),
+    id = id.from(_N, "GetResolverConfigResponse"),
     type = "structure",
     members = {
         ResolverConfig = schema.new({
@@ -2638,7 +2638,7 @@ M.GetResolverConfigOutput = schema.new({
 })
 
 M.GetResolverDnssecConfigInput = schema.new({
-    id = id.from(_N, "GetResolverDnssecConfigInput"),
+    id = id.from(_N, "GetResolverDnssecConfigRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -2685,7 +2685,7 @@ M.ResolverDnssecConfig = schema.new({
 })
 
 M.GetResolverDnssecConfigOutput = schema.new({
-    id = id.from(_N, "GetResolverDnssecConfigOutput"),
+    id = id.from(_N, "GetResolverDnssecConfigResponse"),
     type = "structure",
     members = {
         ResolverDNSSECConfig = schema.new({
@@ -2699,7 +2699,7 @@ M.GetResolverDnssecConfigOutput = schema.new({
 })
 
 M.GetResolverEndpointInput = schema.new({
-    id = id.from(_N, "GetResolverEndpointInput"),
+    id = id.from(_N, "GetResolverEndpointRequest"),
     type = "structure",
     members = {
         ResolverEndpointId = schema.new({
@@ -2715,7 +2715,7 @@ M.GetResolverEndpointInput = schema.new({
 })
 
 M.GetResolverEndpointOutput = schema.new({
-    id = id.from(_N, "GetResolverEndpointOutput"),
+    id = id.from(_N, "GetResolverEndpointResponse"),
     type = "structure",
     members = {
         ResolverEndpoint = schema.new({
@@ -2729,7 +2729,7 @@ M.GetResolverEndpointOutput = schema.new({
 })
 
 M.GetResolverQueryLogConfigInput = schema.new({
-    id = id.from(_N, "GetResolverQueryLogConfigInput"),
+    id = id.from(_N, "GetResolverQueryLogConfigRequest"),
     type = "structure",
     members = {
         ResolverQueryLogConfigId = schema.new({
@@ -2745,7 +2745,7 @@ M.GetResolverQueryLogConfigInput = schema.new({
 })
 
 M.GetResolverQueryLogConfigOutput = schema.new({
-    id = id.from(_N, "GetResolverQueryLogConfigOutput"),
+    id = id.from(_N, "GetResolverQueryLogConfigResponse"),
     type = "structure",
     members = {
         ResolverQueryLogConfig = schema.new({
@@ -2759,7 +2759,7 @@ M.GetResolverQueryLogConfigOutput = schema.new({
 })
 
 M.GetResolverQueryLogConfigAssociationInput = schema.new({
-    id = id.from(_N, "GetResolverQueryLogConfigAssociationInput"),
+    id = id.from(_N, "GetResolverQueryLogConfigAssociationRequest"),
     type = "structure",
     members = {
         ResolverQueryLogConfigAssociationId = schema.new({
@@ -2775,7 +2775,7 @@ M.GetResolverQueryLogConfigAssociationInput = schema.new({
 })
 
 M.GetResolverQueryLogConfigAssociationOutput = schema.new({
-    id = id.from(_N, "GetResolverQueryLogConfigAssociationOutput"),
+    id = id.from(_N, "GetResolverQueryLogConfigAssociationResponse"),
     type = "structure",
     members = {
         ResolverQueryLogConfigAssociation = schema.new({
@@ -2789,7 +2789,7 @@ M.GetResolverQueryLogConfigAssociationOutput = schema.new({
 })
 
 M.GetResolverQueryLogConfigPolicyInput = schema.new({
-    id = id.from(_N, "GetResolverQueryLogConfigPolicyInput"),
+    id = id.from(_N, "GetResolverQueryLogConfigPolicyRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2805,7 +2805,7 @@ M.GetResolverQueryLogConfigPolicyInput = schema.new({
 })
 
 M.GetResolverQueryLogConfigPolicyOutput = schema.new({
-    id = id.from(_N, "GetResolverQueryLogConfigPolicyOutput"),
+    id = id.from(_N, "GetResolverQueryLogConfigPolicyResponse"),
     type = "structure",
     members = {
         ResolverQueryLogConfigPolicy = schema.new({
@@ -2834,7 +2834,7 @@ M.UnknownResourceException = schema.new({
 })
 
 M.GetResolverRuleInput = schema.new({
-    id = id.from(_N, "GetResolverRuleInput"),
+    id = id.from(_N, "GetResolverRuleRequest"),
     type = "structure",
     members = {
         ResolverRuleId = schema.new({
@@ -2850,7 +2850,7 @@ M.GetResolverRuleInput = schema.new({
 })
 
 M.GetResolverRuleOutput = schema.new({
-    id = id.from(_N, "GetResolverRuleOutput"),
+    id = id.from(_N, "GetResolverRuleResponse"),
     type = "structure",
     members = {
         ResolverRule = schema.new({
@@ -2864,7 +2864,7 @@ M.GetResolverRuleOutput = schema.new({
 })
 
 M.GetResolverRuleAssociationInput = schema.new({
-    id = id.from(_N, "GetResolverRuleAssociationInput"),
+    id = id.from(_N, "GetResolverRuleAssociationRequest"),
     type = "structure",
     members = {
         ResolverRuleAssociationId = schema.new({
@@ -2880,7 +2880,7 @@ M.GetResolverRuleAssociationInput = schema.new({
 })
 
 M.GetResolverRuleAssociationOutput = schema.new({
-    id = id.from(_N, "GetResolverRuleAssociationOutput"),
+    id = id.from(_N, "GetResolverRuleAssociationResponse"),
     type = "structure",
     members = {
         ResolverRuleAssociation = schema.new({
@@ -2894,7 +2894,7 @@ M.GetResolverRuleAssociationOutput = schema.new({
 })
 
 M.GetResolverRulePolicyInput = schema.new({
-    id = id.from(_N, "GetResolverRulePolicyInput"),
+    id = id.from(_N, "GetResolverRulePolicyRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2910,7 +2910,7 @@ M.GetResolverRulePolicyInput = schema.new({
 })
 
 M.GetResolverRulePolicyOutput = schema.new({
-    id = id.from(_N, "GetResolverRulePolicyOutput"),
+    id = id.from(_N, "GetResolverRulePolicyResponse"),
     type = "structure",
     members = {
         ResolverRulePolicy = schema.new({
@@ -2923,7 +2923,7 @@ M.GetResolverRulePolicyOutput = schema.new({
 })
 
 M.ImportFirewallDomainsInput = schema.new({
-    id = id.from(_N, "ImportFirewallDomainsInput"),
+    id = id.from(_N, "ImportFirewallDomainsRequest"),
     type = "structure",
     members = {
         FirewallDomainListId = schema.new({
@@ -2957,7 +2957,7 @@ M.ImportFirewallDomainsInput = schema.new({
 })
 
 M.ImportFirewallDomainsOutput = schema.new({
-    id = id.from(_N, "ImportFirewallDomainsOutput"),
+    id = id.from(_N, "ImportFirewallDomainsResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3091,7 +3091,7 @@ M.IpAddressResponse = schema.new({
 })
 
 M.ListFirewallConfigsInput = schema.new({
-    id = id.from(_N, "ListFirewallConfigsInput"),
+    id = id.from(_N, "ListFirewallConfigsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3110,7 +3110,7 @@ M.ListFirewallConfigsInput = schema.new({
 })
 
 M.ListFirewallConfigsOutput = schema.new({
-    id = id.from(_N, "ListFirewallConfigsOutput"),
+    id = id.from(_N, "ListFirewallConfigsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3130,7 +3130,7 @@ M.ListFirewallConfigsOutput = schema.new({
 })
 
 M.ListFirewallDomainListsInput = schema.new({
-    id = id.from(_N, "ListFirewallDomainListsInput"),
+    id = id.from(_N, "ListFirewallDomainListsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3149,7 +3149,7 @@ M.ListFirewallDomainListsInput = schema.new({
 })
 
 M.ListFirewallDomainListsOutput = schema.new({
-    id = id.from(_N, "ListFirewallDomainListsOutput"),
+    id = id.from(_N, "ListFirewallDomainListsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3169,7 +3169,7 @@ M.ListFirewallDomainListsOutput = schema.new({
 })
 
 M.ListFirewallDomainsInput = schema.new({
-    id = id.from(_N, "ListFirewallDomainsInput"),
+    id = id.from(_N, "ListFirewallDomainsRequest"),
     type = "structure",
     members = {
         FirewallDomainListId = schema.new({
@@ -3197,7 +3197,7 @@ M.ListFirewallDomainsInput = schema.new({
 })
 
 M.ListFirewallDomainsOutput = schema.new({
-    id = id.from(_N, "ListFirewallDomainsOutput"),
+    id = id.from(_N, "ListFirewallDomainsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3217,7 +3217,7 @@ M.ListFirewallDomainsOutput = schema.new({
 })
 
 M.ListFirewallRuleGroupAssociationsInput = schema.new({
-    id = id.from(_N, "ListFirewallRuleGroupAssociationsInput"),
+    id = id.from(_N, "ListFirewallRuleGroupAssociationsRequest"),
     type = "structure",
     members = {
         FirewallRuleGroupId = schema.new({
@@ -3260,7 +3260,7 @@ M.ListFirewallRuleGroupAssociationsInput = schema.new({
 })
 
 M.ListFirewallRuleGroupAssociationsOutput = schema.new({
-    id = id.from(_N, "ListFirewallRuleGroupAssociationsOutput"),
+    id = id.from(_N, "ListFirewallRuleGroupAssociationsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3280,7 +3280,7 @@ M.ListFirewallRuleGroupAssociationsOutput = schema.new({
 })
 
 M.ListFirewallRuleGroupsInput = schema.new({
-    id = id.from(_N, "ListFirewallRuleGroupsInput"),
+    id = id.from(_N, "ListFirewallRuleGroupsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3299,7 +3299,7 @@ M.ListFirewallRuleGroupsInput = schema.new({
 })
 
 M.ListFirewallRuleGroupsOutput = schema.new({
-    id = id.from(_N, "ListFirewallRuleGroupsOutput"),
+    id = id.from(_N, "ListFirewallRuleGroupsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3319,7 +3319,7 @@ M.ListFirewallRuleGroupsOutput = schema.new({
 })
 
 M.ListFirewallRulesInput = schema.new({
-    id = id.from(_N, "ListFirewallRulesInput"),
+    id = id.from(_N, "ListFirewallRulesRequest"),
     type = "structure",
     members = {
         FirewallRuleGroupId = schema.new({
@@ -3359,7 +3359,7 @@ M.ListFirewallRulesInput = schema.new({
 })
 
 M.ListFirewallRulesOutput = schema.new({
-    id = id.from(_N, "ListFirewallRulesOutput"),
+    id = id.from(_N, "ListFirewallRulesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3379,7 +3379,7 @@ M.ListFirewallRulesOutput = schema.new({
 })
 
 M.ListOutpostResolversInput = schema.new({
-    id = id.from(_N, "ListOutpostResolversInput"),
+    id = id.from(_N, "ListOutpostResolversRequest"),
     type = "structure",
     members = {
         OutpostArn = schema.new({
@@ -3404,7 +3404,7 @@ M.ListOutpostResolversInput = schema.new({
 })
 
 M.ListOutpostResolversOutput = schema.new({
-    id = id.from(_N, "ListOutpostResolversOutput"),
+    id = id.from(_N, "ListOutpostResolversResponse"),
     type = "structure",
     members = {
         OutpostResolvers = schema.new({
@@ -3424,7 +3424,7 @@ M.ListOutpostResolversOutput = schema.new({
 })
 
 M.ListResolverConfigsInput = schema.new({
-    id = id.from(_N, "ListResolverConfigsInput"),
+    id = id.from(_N, "ListResolverConfigsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3443,7 +3443,7 @@ M.ListResolverConfigsInput = schema.new({
 })
 
 M.ListResolverConfigsOutput = schema.new({
-    id = id.from(_N, "ListResolverConfigsOutput"),
+    id = id.from(_N, "ListResolverConfigsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3463,7 +3463,7 @@ M.ListResolverConfigsOutput = schema.new({
 })
 
 M.ListResolverDnssecConfigsInput = schema.new({
-    id = id.from(_N, "ListResolverDnssecConfigsInput"),
+    id = id.from(_N, "ListResolverDnssecConfigsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3489,7 +3489,7 @@ M.ListResolverDnssecConfigsInput = schema.new({
 })
 
 M.ListResolverDnssecConfigsOutput = schema.new({
-    id = id.from(_N, "ListResolverDnssecConfigsOutput"),
+    id = id.from(_N, "ListResolverDnssecConfigsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3509,7 +3509,7 @@ M.ListResolverDnssecConfigsOutput = schema.new({
 })
 
 M.ListResolverEndpointIpAddressesInput = schema.new({
-    id = id.from(_N, "ListResolverEndpointIpAddressesInput"),
+    id = id.from(_N, "ListResolverEndpointIpAddressesRequest"),
     type = "structure",
     members = {
         ResolverEndpointId = schema.new({
@@ -3537,7 +3537,7 @@ M.ListResolverEndpointIpAddressesInput = schema.new({
 })
 
 M.ListResolverEndpointIpAddressesOutput = schema.new({
-    id = id.from(_N, "ListResolverEndpointIpAddressesOutput"),
+    id = id.from(_N, "ListResolverEndpointIpAddressesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3563,7 +3563,7 @@ M.ListResolverEndpointIpAddressesOutput = schema.new({
 })
 
 M.ListResolverEndpointsInput = schema.new({
-    id = id.from(_N, "ListResolverEndpointsInput"),
+    id = id.from(_N, "ListResolverEndpointsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3589,7 +3589,7 @@ M.ListResolverEndpointsInput = schema.new({
 })
 
 M.ListResolverEndpointsOutput = schema.new({
-    id = id.from(_N, "ListResolverEndpointsOutput"),
+    id = id.from(_N, "ListResolverEndpointsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3615,7 +3615,7 @@ M.ListResolverEndpointsOutput = schema.new({
 })
 
 M.ListResolverQueryLogConfigAssociationsInput = schema.new({
-    id = id.from(_N, "ListResolverQueryLogConfigAssociationsInput"),
+    id = id.from(_N, "ListResolverQueryLogConfigAssociationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3653,7 +3653,7 @@ M.ListResolverQueryLogConfigAssociationsInput = schema.new({
 })
 
 M.ListResolverQueryLogConfigAssociationsOutput = schema.new({
-    id = id.from(_N, "ListResolverQueryLogConfigAssociationsOutput"),
+    id = id.from(_N, "ListResolverQueryLogConfigAssociationsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3691,7 +3691,7 @@ M.ListResolverQueryLogConfigAssociationsOutput = schema.new({
 })
 
 M.ListResolverQueryLogConfigsInput = schema.new({
-    id = id.from(_N, "ListResolverQueryLogConfigsInput"),
+    id = id.from(_N, "ListResolverQueryLogConfigsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3729,7 +3729,7 @@ M.ListResolverQueryLogConfigsInput = schema.new({
 })
 
 M.ListResolverQueryLogConfigsOutput = schema.new({
-    id = id.from(_N, "ListResolverQueryLogConfigsOutput"),
+    id = id.from(_N, "ListResolverQueryLogConfigsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3767,7 +3767,7 @@ M.ListResolverQueryLogConfigsOutput = schema.new({
 })
 
 M.ListResolverRuleAssociationsInput = schema.new({
-    id = id.from(_N, "ListResolverRuleAssociationsInput"),
+    id = id.from(_N, "ListResolverRuleAssociationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3793,7 +3793,7 @@ M.ListResolverRuleAssociationsInput = schema.new({
 })
 
 M.ListResolverRuleAssociationsOutput = schema.new({
-    id = id.from(_N, "ListResolverRuleAssociationsOutput"),
+    id = id.from(_N, "ListResolverRuleAssociationsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3819,7 +3819,7 @@ M.ListResolverRuleAssociationsOutput = schema.new({
 })
 
 M.ListResolverRulesInput = schema.new({
-    id = id.from(_N, "ListResolverRulesInput"),
+    id = id.from(_N, "ListResolverRulesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -3845,7 +3845,7 @@ M.ListResolverRulesInput = schema.new({
 })
 
 M.ListResolverRulesOutput = schema.new({
-    id = id.from(_N, "ListResolverRulesOutput"),
+    id = id.from(_N, "ListResolverRulesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3871,7 +3871,7 @@ M.ListResolverRulesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3899,7 +3899,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -3919,7 +3919,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutFirewallRuleGroupPolicyInput = schema.new({
-    id = id.from(_N, "PutFirewallRuleGroupPolicyInput"),
+    id = id.from(_N, "PutFirewallRuleGroupPolicyRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3944,7 +3944,7 @@ M.PutFirewallRuleGroupPolicyInput = schema.new({
 })
 
 M.PutFirewallRuleGroupPolicyOutput = schema.new({
-    id = id.from(_N, "PutFirewallRuleGroupPolicyOutput"),
+    id = id.from(_N, "PutFirewallRuleGroupPolicyResponse"),
     type = "structure",
     members = {
         ReturnValue = schema.new({
@@ -3960,7 +3960,7 @@ M.PutFirewallRuleGroupPolicyOutput = schema.new({
 })
 
 M.PutResolverQueryLogConfigPolicyInput = schema.new({
-    id = id.from(_N, "PutResolverQueryLogConfigPolicyInput"),
+    id = id.from(_N, "PutResolverQueryLogConfigPolicyRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -3985,7 +3985,7 @@ M.PutResolverQueryLogConfigPolicyInput = schema.new({
 })
 
 M.PutResolverQueryLogConfigPolicyOutput = schema.new({
-    id = id.from(_N, "PutResolverQueryLogConfigPolicyOutput"),
+    id = id.from(_N, "PutResolverQueryLogConfigPolicyResponse"),
     type = "structure",
     members = {
         ReturnValue = schema.new({
@@ -4001,7 +4001,7 @@ M.PutResolverQueryLogConfigPolicyOutput = schema.new({
 })
 
 M.PutResolverRulePolicyInput = schema.new({
-    id = id.from(_N, "PutResolverRulePolicyInput"),
+    id = id.from(_N, "PutResolverRulePolicyRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -4026,7 +4026,7 @@ M.PutResolverRulePolicyInput = schema.new({
 })
 
 M.PutResolverRulePolicyOutput = schema.new({
-    id = id.from(_N, "PutResolverRulePolicyOutput"),
+    id = id.from(_N, "PutResolverRulePolicyResponse"),
     type = "structure",
     members = {
         ReturnValue = schema.new({
@@ -4068,7 +4068,7 @@ M.ResolverRuleConfig = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4094,12 +4094,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4125,12 +4125,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateFirewallConfigInput = schema.new({
-    id = id.from(_N, "UpdateFirewallConfigInput"),
+    id = id.from(_N, "UpdateFirewallConfigRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -4155,7 +4155,7 @@ M.UpdateFirewallConfigInput = schema.new({
 })
 
 M.UpdateFirewallConfigOutput = schema.new({
-    id = id.from(_N, "UpdateFirewallConfigOutput"),
+    id = id.from(_N, "UpdateFirewallConfigResponse"),
     type = "structure",
     members = {
         FirewallConfig = schema.new({
@@ -4169,7 +4169,7 @@ M.UpdateFirewallConfigOutput = schema.new({
 })
 
 M.UpdateFirewallDomainsInput = schema.new({
-    id = id.from(_N, "UpdateFirewallDomainsInput"),
+    id = id.from(_N, "UpdateFirewallDomainsRequest"),
     type = "structure",
     members = {
         FirewallDomainListId = schema.new({
@@ -4204,7 +4204,7 @@ M.UpdateFirewallDomainsInput = schema.new({
 })
 
 M.UpdateFirewallDomainsOutput = schema.new({
-    id = id.from(_N, "UpdateFirewallDomainsOutput"),
+    id = id.from(_N, "UpdateFirewallDomainsResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -4235,7 +4235,7 @@ M.UpdateFirewallDomainsOutput = schema.new({
 })
 
 M.UpdateFirewallRuleInput = schema.new({
-    id = id.from(_N, "UpdateFirewallRuleInput"),
+    id = id.from(_N, "UpdateFirewallRuleRequest"),
     type = "structure",
     members = {
         FirewallRuleGroupId = schema.new({
@@ -4329,7 +4329,7 @@ M.UpdateFirewallRuleInput = schema.new({
 })
 
 M.UpdateFirewallRuleOutput = schema.new({
-    id = id.from(_N, "UpdateFirewallRuleOutput"),
+    id = id.from(_N, "UpdateFirewallRuleResponse"),
     type = "structure",
     members = {
         FirewallRule = schema.new({
@@ -4343,7 +4343,7 @@ M.UpdateFirewallRuleOutput = schema.new({
 })
 
 M.UpdateFirewallRuleGroupAssociationInput = schema.new({
-    id = id.from(_N, "UpdateFirewallRuleGroupAssociationInput"),
+    id = id.from(_N, "UpdateFirewallRuleGroupAssociationRequest"),
     type = "structure",
     members = {
         FirewallRuleGroupAssociationId = schema.new({
@@ -4377,7 +4377,7 @@ M.UpdateFirewallRuleGroupAssociationInput = schema.new({
 })
 
 M.UpdateFirewallRuleGroupAssociationOutput = schema.new({
-    id = id.from(_N, "UpdateFirewallRuleGroupAssociationOutput"),
+    id = id.from(_N, "UpdateFirewallRuleGroupAssociationResponse"),
     type = "structure",
     members = {
         FirewallRuleGroupAssociation = schema.new({
@@ -4391,7 +4391,7 @@ M.UpdateFirewallRuleGroupAssociationOutput = schema.new({
 })
 
 M.UpdateOutpostResolverInput = schema.new({
-    id = id.from(_N, "UpdateOutpostResolverInput"),
+    id = id.from(_N, "UpdateOutpostResolverRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -4425,7 +4425,7 @@ M.UpdateOutpostResolverInput = schema.new({
 })
 
 M.UpdateOutpostResolverOutput = schema.new({
-    id = id.from(_N, "UpdateOutpostResolverOutput"),
+    id = id.from(_N, "UpdateOutpostResolverResponse"),
     type = "structure",
     members = {
         OutpostResolver = schema.new({
@@ -4439,7 +4439,7 @@ M.UpdateOutpostResolverOutput = schema.new({
 })
 
 M.UpdateResolverConfigInput = schema.new({
-    id = id.from(_N, "UpdateResolverConfigInput"),
+    id = id.from(_N, "UpdateResolverConfigRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -4464,7 +4464,7 @@ M.UpdateResolverConfigInput = schema.new({
 })
 
 M.UpdateResolverConfigOutput = schema.new({
-    id = id.from(_N, "UpdateResolverConfigOutput"),
+    id = id.from(_N, "UpdateResolverConfigResponse"),
     type = "structure",
     members = {
         ResolverConfig = schema.new({
@@ -4478,7 +4478,7 @@ M.UpdateResolverConfigOutput = schema.new({
 })
 
 M.UpdateResolverDnssecConfigInput = schema.new({
-    id = id.from(_N, "UpdateResolverDnssecConfigInput"),
+    id = id.from(_N, "UpdateResolverDnssecConfigRequest"),
     type = "structure",
     members = {
         ResourceId = schema.new({
@@ -4503,7 +4503,7 @@ M.UpdateResolverDnssecConfigInput = schema.new({
 })
 
 M.UpdateResolverDnssecConfigOutput = schema.new({
-    id = id.from(_N, "UpdateResolverDnssecConfigOutput"),
+    id = id.from(_N, "UpdateResolverDnssecConfigResponse"),
     type = "structure",
     members = {
         ResolverDNSSECConfig = schema.new({
@@ -4542,7 +4542,7 @@ M.UpdateIpAddress = schema.new({
 })
 
 M.UpdateResolverEndpointInput = schema.new({
-    id = id.from(_N, "UpdateResolverEndpointInput"),
+    id = id.from(_N, "UpdateResolverEndpointRequest"),
     type = "structure",
     members = {
         ResolverEndpointId = schema.new({
@@ -4596,7 +4596,7 @@ M.UpdateResolverEndpointInput = schema.new({
 })
 
 M.UpdateResolverEndpointOutput = schema.new({
-    id = id.from(_N, "UpdateResolverEndpointOutput"),
+    id = id.from(_N, "UpdateResolverEndpointResponse"),
     type = "structure",
     members = {
         ResolverEndpoint = schema.new({
@@ -4610,7 +4610,7 @@ M.UpdateResolverEndpointOutput = schema.new({
 })
 
 M.UpdateResolverRuleInput = schema.new({
-    id = id.from(_N, "UpdateResolverRuleInput"),
+    id = id.from(_N, "UpdateResolverRuleRequest"),
     type = "structure",
     members = {
         ResolverRuleId = schema.new({
@@ -4636,7 +4636,7 @@ M.UpdateResolverRuleInput = schema.new({
 })
 
 M.UpdateResolverRuleOutput = schema.new({
-    id = id.from(_N, "UpdateResolverRuleOutput"),
+    id = id.from(_N, "UpdateResolverRuleResponse"),
     type = "structure",
     members = {
         ResolverRule = schema.new({
@@ -4648,5 +4648,19 @@ M.UpdateResolverRuleOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

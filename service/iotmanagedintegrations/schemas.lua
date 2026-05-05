@@ -139,7 +139,7 @@ M.GeneralAuthorizationName = schema.new({
 })
 
 M.CreateAccountAssociationInput = schema.new({
-    id = id.from(_N, "CreateAccountAssociationInput"),
+    id = id.from(_N, "CreateAccountAssociationRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -191,7 +191,7 @@ M.CreateAccountAssociationInput = schema.new({
 })
 
 M.CreateAccountAssociationOutput = schema.new({
-    id = id.from(_N, "CreateAccountAssociationOutput"),
+    id = id.from(_N, "CreateAccountAssociationResponse"),
     type = "structure",
     members = {
         OAuthAuthorizationUrl = schema.new({
@@ -340,7 +340,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteAccountAssociationInput = schema.new({
-    id = id.from(_N, "DeleteAccountAssociationInput"),
+    id = id.from(_N, "DeleteAccountAssociationRequest"),
     type = "structure",
     members = {
         AccountAssociationId = schema.new({
@@ -357,12 +357,12 @@ M.DeleteAccountAssociationInput = schema.new({
 })
 
 M.DeleteAccountAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteAccountAssociationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetAccountAssociationInput = schema.new({
-    id = id.from(_N, "GetAccountAssociationInput"),
+    id = id.from(_N, "GetAccountAssociationRequest"),
     type = "structure",
     members = {
         AccountAssociationId = schema.new({
@@ -379,7 +379,7 @@ M.GetAccountAssociationInput = schema.new({
 })
 
 M.GetAccountAssociationOutput = schema.new({
-    id = id.from(_N, "GetAccountAssociationOutput"),
+    id = id.from(_N, "GetAccountAssociationResponse"),
     type = "structure",
     members = {
         AccountAssociationId = schema.new({
@@ -459,7 +459,7 @@ M.GetAccountAssociationOutput = schema.new({
 })
 
 M.ListAccountAssociationsInput = schema.new({
-    id = id.from(_N, "ListAccountAssociationsInput"),
+    id = id.from(_N, "ListAccountAssociationsRequest"),
     type = "structure",
     members = {
         ConnectorDestinationId = schema.new({
@@ -493,7 +493,7 @@ M.ListAccountAssociationsInput = schema.new({
 })
 
 M.ListAccountAssociationsOutput = schema.new({
-    id = id.from(_N, "ListAccountAssociationsOutput"),
+    id = id.from(_N, "ListAccountAssociationsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -513,7 +513,7 @@ M.ListAccountAssociationsOutput = schema.new({
 })
 
 M.StartAccountAssociationRefreshInput = schema.new({
-    id = id.from(_N, "StartAccountAssociationRefreshInput"),
+    id = id.from(_N, "StartAccountAssociationRefreshRequest"),
     type = "structure",
     members = {
         AccountAssociationId = schema.new({
@@ -530,7 +530,7 @@ M.StartAccountAssociationRefreshInput = schema.new({
 })
 
 M.StartAccountAssociationRefreshOutput = schema.new({
-    id = id.from(_N, "StartAccountAssociationRefreshOutput"),
+    id = id.from(_N, "StartAccountAssociationRefreshResponse"),
     type = "structure",
     members = {
         OAuthAuthorizationUrl = schema.new({
@@ -547,7 +547,7 @@ M.StartAccountAssociationRefreshOutput = schema.new({
 })
 
 M.UpdateAccountAssociationInput = schema.new({
-    id = id.from(_N, "UpdateAccountAssociationInput"),
+    id = id.from(_N, "UpdateAccountAssociationRequest"),
     type = "structure",
     members = {
         AccountAssociationId = schema.new({
@@ -576,7 +576,7 @@ M.UpdateAccountAssociationInput = schema.new({
 })
 
 M.UpdateAccountAssociationOutput = schema.new({
-    id = id.from(_N, "UpdateAccountAssociationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1035,7 +1035,7 @@ M.EndpointConfig = schema.new({
 })
 
 M.CreateCloudConnectorInput = schema.new({
-    id = id.from(_N, "CreateCloudConnectorInput"),
+    id = id.from(_N, "CreateCloudConnectorRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1082,7 +1082,7 @@ M.CreateCloudConnectorInput = schema.new({
 })
 
 M.CreateCloudConnectorOutput = schema.new({
-    id = id.from(_N, "CreateCloudConnectorOutput"),
+    id = id.from(_N, "CreateCloudConnectorResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1095,7 +1095,7 @@ M.CreateCloudConnectorOutput = schema.new({
 })
 
 M.DeleteCloudConnectorInput = schema.new({
-    id = id.from(_N, "DeleteCloudConnectorInput"),
+    id = id.from(_N, "DeleteCloudConnectorRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -1112,12 +1112,12 @@ M.DeleteCloudConnectorInput = schema.new({
 })
 
 M.DeleteCloudConnectorOutput = schema.new({
-    id = id.from(_N, "DeleteCloudConnectorOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetCloudConnectorInput = schema.new({
-    id = id.from(_N, "GetCloudConnectorInput"),
+    id = id.from(_N, "GetCloudConnectorRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -1134,7 +1134,7 @@ M.GetCloudConnectorInput = schema.new({
 })
 
 M.GetCloudConnectorOutput = schema.new({
-    id = id.from(_N, "GetCloudConnectorOutput"),
+    id = id.from(_N, "GetCloudConnectorResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1184,7 +1184,7 @@ M.GetCloudConnectorOutput = schema.new({
 })
 
 M.ListCloudConnectorsInput = schema.new({
-    id = id.from(_N, "ListCloudConnectorsInput"),
+    id = id.from(_N, "ListCloudConnectorsRequest"),
     type = "structure",
     members = {
         Type = schema.new({
@@ -1277,7 +1277,7 @@ M.ConnectorItem = schema.new({
 })
 
 M.ListCloudConnectorsOutput = schema.new({
-    id = id.from(_N, "ListCloudConnectorsOutput"),
+    id = id.from(_N, "ListCloudConnectorsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -1297,7 +1297,7 @@ M.ListCloudConnectorsOutput = schema.new({
 })
 
 M.UpdateCloudConnectorInput = schema.new({
-    id = id.from(_N, "UpdateCloudConnectorInput"),
+    id = id.from(_N, "UpdateCloudConnectorRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -1326,7 +1326,7 @@ M.UpdateCloudConnectorInput = schema.new({
 })
 
 M.UpdateCloudConnectorOutput = schema.new({
-    id = id.from(_N, "UpdateCloudConnectorOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1474,7 +1474,7 @@ M.ConnectorDestinationSummary = schema.new({
 })
 
 M.CreateConnectorDestinationInput = schema.new({
-    id = id.from(_N, "CreateConnectorDestinationInput"),
+    id = id.from(_N, "CreateConnectorDestinationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1534,7 +1534,7 @@ M.CreateConnectorDestinationInput = schema.new({
 })
 
 M.CreateConnectorDestinationOutput = schema.new({
-    id = id.from(_N, "CreateConnectorDestinationOutput"),
+    id = id.from(_N, "CreateConnectorDestinationResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1547,7 +1547,7 @@ M.CreateConnectorDestinationOutput = schema.new({
 })
 
 M.DeleteConnectorDestinationInput = schema.new({
-    id = id.from(_N, "DeleteConnectorDestinationInput"),
+    id = id.from(_N, "DeleteConnectorDestinationRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -1564,12 +1564,12 @@ M.DeleteConnectorDestinationInput = schema.new({
 })
 
 M.DeleteConnectorDestinationOutput = schema.new({
-    id = id.from(_N, "DeleteConnectorDestinationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetConnectorDestinationInput = schema.new({
-    id = id.from(_N, "GetConnectorDestinationInput"),
+    id = id.from(_N, "GetConnectorDestinationRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -1586,7 +1586,7 @@ M.GetConnectorDestinationInput = schema.new({
 })
 
 M.GetConnectorDestinationOutput = schema.new({
-    id = id.from(_N, "GetConnectorDestinationOutput"),
+    id = id.from(_N, "GetConnectorDestinationResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1643,7 +1643,7 @@ M.GetConnectorDestinationOutput = schema.new({
 })
 
 M.ListConnectorDestinationsInput = schema.new({
-    id = id.from(_N, "ListConnectorDestinationsInput"),
+    id = id.from(_N, "ListConnectorDestinationsRequest"),
     type = "structure",
     members = {
         CloudConnectorId = schema.new({
@@ -1677,7 +1677,7 @@ M.ListConnectorDestinationsInput = schema.new({
 })
 
 M.ListConnectorDestinationsOutput = schema.new({
-    id = id.from(_N, "ListConnectorDestinationsOutput"),
+    id = id.from(_N, "ListConnectorDestinationsResponse"),
     type = "structure",
     members = {
         ConnectorDestinationList = schema.new({
@@ -1697,7 +1697,7 @@ M.ListConnectorDestinationsOutput = schema.new({
 })
 
 M.UpdateConnectorDestinationInput = schema.new({
-    id = id.from(_N, "UpdateConnectorDestinationInput"),
+    id = id.from(_N, "UpdateConnectorDestinationRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -1746,12 +1746,12 @@ M.UpdateConnectorDestinationInput = schema.new({
 })
 
 M.UpdateConnectorDestinationOutput = schema.new({
-    id = id.from(_N, "UpdateConnectorDestinationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.CreateCredentialLockerInput = schema.new({
-    id = id.from(_N, "CreateCredentialLockerInput"),
+    id = id.from(_N, "CreateCredentialLockerRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1781,7 +1781,7 @@ M.CreateCredentialLockerInput = schema.new({
 })
 
 M.CreateCredentialLockerOutput = schema.new({
-    id = id.from(_N, "CreateCredentialLockerOutput"),
+    id = id.from(_N, "CreateCredentialLockerResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1822,7 +1822,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.CreateDestinationInput = schema.new({
-    id = id.from(_N, "CreateDestinationInput"),
+    id = id.from(_N, "CreateDestinationRequest"),
     type = "structure",
     members = {
         DeliveryDestinationArn = schema.new({
@@ -1888,7 +1888,7 @@ M.CreateDestinationInput = schema.new({
 })
 
 M.CreateDestinationOutput = schema.new({
-    id = id.from(_N, "CreateDestinationOutput"),
+    id = id.from(_N, "CreateDestinationResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1901,7 +1901,7 @@ M.CreateDestinationOutput = schema.new({
 })
 
 M.CreateEventLogConfigurationInput = schema.new({
-    id = id.from(_N, "CreateEventLogConfigurationInput"),
+    id = id.from(_N, "CreateEventLogConfigurationRequest"),
     type = "structure",
     members = {
         ResourceType = schema.new({
@@ -1941,7 +1941,7 @@ M.CreateEventLogConfigurationInput = schema.new({
 })
 
 M.CreateEventLogConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateEventLogConfigurationOutput"),
+    id = id.from(_N, "CreateEventLogConfigurationResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -1979,7 +1979,7 @@ M.WiFiSimpleSetupConfiguration = schema.new({
 })
 
 M.CreateManagedThingInput = schema.new({
-    id = id.from(_N, "CreateManagedThingInput"),
+    id = id.from(_N, "CreateManagedThingRequest"),
     type = "structure",
     members = {
         Role = schema.new({
@@ -2107,7 +2107,7 @@ M.CreateManagedThingInput = schema.new({
 })
 
 M.CreateManagedThingOutput = schema.new({
-    id = id.from(_N, "CreateManagedThingOutput"),
+    id = id.from(_N, "CreateManagedThingResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2132,7 +2132,7 @@ M.CreateManagedThingOutput = schema.new({
 })
 
 M.CreateNotificationConfigurationInput = schema.new({
-    id = id.from(_N, "CreateNotificationConfigurationInput"),
+    id = id.from(_N, "CreateNotificationConfigurationRequest"),
     type = "structure",
     members = {
         EventType = schema.new({
@@ -2174,7 +2174,7 @@ M.CreateNotificationConfigurationInput = schema.new({
 })
 
 M.CreateNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateNotificationConfigurationOutput"),
+    id = id.from(_N, "CreateNotificationConfigurationResponse"),
     type = "structure",
     members = {
         EventType = schema.new({
@@ -2271,7 +2271,7 @@ M.OtaTaskExecutionRetryConfig = schema.new({
 })
 
 M.CreateOtaTaskInput = schema.new({
-    id = id.from(_N, "CreateOtaTaskInput"),
+    id = id.from(_N, "CreateOtaTaskRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -2364,7 +2364,7 @@ M.CreateOtaTaskInput = schema.new({
 })
 
 M.CreateOtaTaskOutput = schema.new({
-    id = id.from(_N, "CreateOtaTaskOutput"),
+    id = id.from(_N, "CreateOtaTaskResponse"),
     type = "structure",
     members = {
         TaskId = schema.new({
@@ -2509,7 +2509,7 @@ M.PushConfig = schema.new({
 })
 
 M.CreateOtaTaskConfigurationInput = schema.new({
-    id = id.from(_N, "CreateOtaTaskConfigurationInput"),
+    id = id.from(_N, "CreateOtaTaskConfigurationRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -2544,7 +2544,7 @@ M.CreateOtaTaskConfigurationInput = schema.new({
 })
 
 M.CreateOtaTaskConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateOtaTaskConfigurationOutput"),
+    id = id.from(_N, "CreateOtaTaskConfigurationResponse"),
     type = "structure",
     members = {
         TaskConfigurationId = schema.new({
@@ -2557,7 +2557,7 @@ M.CreateOtaTaskConfigurationOutput = schema.new({
 })
 
 M.CreateProvisioningProfileInput = schema.new({
-    id = id.from(_N, "CreateProvisioningProfileInput"),
+    id = id.from(_N, "CreateProvisioningProfileRequest"),
     type = "structure",
     members = {
         ProvisioningType = schema.new({
@@ -2608,7 +2608,7 @@ M.CreateProvisioningProfileInput = schema.new({
 })
 
 M.CreateProvisioningProfileOutput = schema.new({
-    id = id.from(_N, "CreateProvisioningProfileOutput"),
+    id = id.from(_N, "CreateProvisioningProfileResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -2688,7 +2688,7 @@ M.CredentialLockerSummary = schema.new({
 })
 
 M.DeleteCredentialLockerInput = schema.new({
-    id = id.from(_N, "DeleteCredentialLockerInput"),
+    id = id.from(_N, "DeleteCredentialLockerRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -2705,12 +2705,12 @@ M.DeleteCredentialLockerInput = schema.new({
 })
 
 M.DeleteCredentialLockerOutput = schema.new({
-    id = id.from(_N, "DeleteCredentialLockerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetCredentialLockerInput = schema.new({
-    id = id.from(_N, "GetCredentialLockerInput"),
+    id = id.from(_N, "GetCredentialLockerRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -2727,7 +2727,7 @@ M.GetCredentialLockerInput = schema.new({
 })
 
 M.GetCredentialLockerOutput = schema.new({
-    id = id.from(_N, "GetCredentialLockerOutput"),
+    id = id.from(_N, "GetCredentialLockerResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2766,7 +2766,7 @@ M.GetCredentialLockerOutput = schema.new({
 })
 
 M.ListCredentialLockersInput = schema.new({
-    id = id.from(_N, "ListCredentialLockersInput"),
+    id = id.from(_N, "ListCredentialLockersRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2791,7 +2791,7 @@ M.ListCredentialLockersInput = schema.new({
 })
 
 M.ListCredentialLockersOutput = schema.new({
-    id = id.from(_N, "ListCredentialLockersOutput"),
+    id = id.from(_N, "ListCredentialLockersResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -2811,7 +2811,7 @@ M.ListCredentialLockersOutput = schema.new({
 })
 
 M.DeleteDestinationInput = schema.new({
-    id = id.from(_N, "DeleteDestinationInput"),
+    id = id.from(_N, "DeleteDestinationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2828,12 +2828,12 @@ M.DeleteDestinationInput = schema.new({
 })
 
 M.DeleteDestinationOutput = schema.new({
-    id = id.from(_N, "DeleteDestinationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteEventLogConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteEventLogConfigurationInput"),
+    id = id.from(_N, "DeleteEventLogConfigurationRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -2850,12 +2850,12 @@ M.DeleteEventLogConfigurationInput = schema.new({
 })
 
 M.DeleteEventLogConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteEventLogConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteManagedThingInput = schema.new({
-    id = id.from(_N, "DeleteManagedThingInput"),
+    id = id.from(_N, "DeleteManagedThingRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -2881,12 +2881,12 @@ M.DeleteManagedThingInput = schema.new({
 })
 
 M.DeleteManagedThingOutput = schema.new({
-    id = id.from(_N, "DeleteManagedThingOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteNotificationConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteNotificationConfigurationInput"),
+    id = id.from(_N, "DeleteNotificationConfigurationRequest"),
     type = "structure",
     members = {
         EventType = schema.new({
@@ -2903,12 +2903,12 @@ M.DeleteNotificationConfigurationInput = schema.new({
 })
 
 M.DeleteNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteNotificationConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteOtaTaskInput = schema.new({
-    id = id.from(_N, "DeleteOtaTaskInput"),
+    id = id.from(_N, "DeleteOtaTaskRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -2925,7 +2925,7 @@ M.DeleteOtaTaskInput = schema.new({
 })
 
 M.DeleteOtaTaskOutput = schema.new({
-    id = id.from(_N, "DeleteOtaTaskOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2946,7 +2946,7 @@ M.LimitExceededException = schema.new({
 })
 
 M.DeleteOtaTaskConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteOtaTaskConfigurationInput"),
+    id = id.from(_N, "DeleteOtaTaskConfigurationRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -2963,12 +2963,12 @@ M.DeleteOtaTaskConfigurationInput = schema.new({
 })
 
 M.DeleteOtaTaskConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteOtaTaskConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteProvisioningProfileInput = schema.new({
-    id = id.from(_N, "DeleteProvisioningProfileInput"),
+    id = id.from(_N, "DeleteProvisioningProfileRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -2985,12 +2985,12 @@ M.DeleteProvisioningProfileInput = schema.new({
 })
 
 M.DeleteProvisioningProfileOutput = schema.new({
-    id = id.from(_N, "DeleteProvisioningProfileOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeregisterAccountAssociationInput = schema.new({
-    id = id.from(_N, "DeregisterAccountAssociationInput"),
+    id = id.from(_N, "DeregisterAccountAssociationRequest"),
     type = "structure",
     members = {
         ManagedThingId = schema.new({
@@ -3015,7 +3015,7 @@ M.DeregisterAccountAssociationInput = schema.new({
 })
 
 M.DeregisterAccountAssociationOutput = schema.new({
-    id = id.from(_N, "DeregisterAccountAssociationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3057,7 +3057,7 @@ M.DestinationSummary = schema.new({
 })
 
 M.GetDestinationInput = schema.new({
-    id = id.from(_N, "GetDestinationInput"),
+    id = id.from(_N, "GetDestinationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3074,7 +3074,7 @@ M.GetDestinationInput = schema.new({
 })
 
 M.GetDestinationOutput = schema.new({
-    id = id.from(_N, "GetDestinationOutput"),
+    id = id.from(_N, "GetDestinationResponse"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -3131,7 +3131,7 @@ M.GetDestinationOutput = schema.new({
 })
 
 M.ListDestinationsInput = schema.new({
-    id = id.from(_N, "ListDestinationsInput"),
+    id = id.from(_N, "ListDestinationsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3156,7 +3156,7 @@ M.ListDestinationsInput = schema.new({
 })
 
 M.ListDestinationsOutput = schema.new({
-    id = id.from(_N, "ListDestinationsOutput"),
+    id = id.from(_N, "ListDestinationsResponse"),
     type = "structure",
     members = {
         DestinationList = schema.new({
@@ -3176,7 +3176,7 @@ M.ListDestinationsOutput = schema.new({
 })
 
 M.UpdateDestinationInput = schema.new({
-    id = id.from(_N, "UpdateDestinationInput"),
+    id = id.from(_N, "UpdateDestinationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3217,7 +3217,7 @@ M.UpdateDestinationInput = schema.new({
 })
 
 M.UpdateDestinationOutput = schema.new({
-    id = id.from(_N, "UpdateDestinationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -3489,7 +3489,7 @@ M.DeviceDiscoverySummary = schema.new({
 })
 
 M.GetDeviceDiscoveryInput = schema.new({
-    id = id.from(_N, "GetDeviceDiscoveryInput"),
+    id = id.from(_N, "GetDeviceDiscoveryRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -3506,7 +3506,7 @@ M.GetDeviceDiscoveryInput = schema.new({
 })
 
 M.GetDeviceDiscoveryOutput = schema.new({
-    id = id.from(_N, "GetDeviceDiscoveryOutput"),
+    id = id.from(_N, "GetDeviceDiscoveryResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3590,7 +3590,7 @@ M.GetDeviceDiscoveryOutput = schema.new({
 })
 
 M.ListDeviceDiscoveriesInput = schema.new({
-    id = id.from(_N, "ListDeviceDiscoveriesInput"),
+    id = id.from(_N, "ListDeviceDiscoveriesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3633,7 +3633,7 @@ M.ListDeviceDiscoveriesInput = schema.new({
 })
 
 M.ListDeviceDiscoveriesOutput = schema.new({
-    id = id.from(_N, "ListDeviceDiscoveriesOutput"),
+    id = id.from(_N, "ListDeviceDiscoveriesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -3653,7 +3653,7 @@ M.ListDeviceDiscoveriesOutput = schema.new({
 })
 
 M.ListDiscoveredDevicesInput = schema.new({
-    id = id.from(_N, "ListDiscoveredDevicesInput"),
+    id = id.from(_N, "ListDiscoveredDevicesRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -3750,7 +3750,7 @@ M.DiscoveredDeviceSummary = schema.new({
 })
 
 M.ListDiscoveredDevicesOutput = schema.new({
-    id = id.from(_N, "ListDiscoveredDevicesOutput"),
+    id = id.from(_N, "ListDiscoveredDevicesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -3770,7 +3770,7 @@ M.ListDiscoveredDevicesOutput = schema.new({
 })
 
 M.StartDeviceDiscoveryInput = schema.new({
-    id = id.from(_N, "StartDeviceDiscoveryInput"),
+    id = id.from(_N, "StartDeviceDiscoveryRequest"),
     type = "structure",
     members = {
         DiscoveryType = schema.new({
@@ -3857,7 +3857,7 @@ M.StartDeviceDiscoveryInput = schema.new({
 })
 
 M.StartDeviceDiscoveryOutput = schema.new({
-    id = id.from(_N, "StartDeviceDiscoveryOutput"),
+    id = id.from(_N, "StartDeviceDiscoveryResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3907,7 +3907,7 @@ M.EventLogConfigurationSummary = schema.new({
 })
 
 M.GetEventLogConfigurationInput = schema.new({
-    id = id.from(_N, "GetEventLogConfigurationInput"),
+    id = id.from(_N, "GetEventLogConfigurationRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3924,7 +3924,7 @@ M.GetEventLogConfigurationInput = schema.new({
 })
 
 M.GetEventLogConfigurationOutput = schema.new({
-    id = id.from(_N, "GetEventLogConfigurationOutput"),
+    id = id.from(_N, "GetEventLogConfigurationResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -3955,7 +3955,7 @@ M.GetEventLogConfigurationOutput = schema.new({
 })
 
 M.ListEventLogConfigurationsInput = schema.new({
-    id = id.from(_N, "ListEventLogConfigurationsInput"),
+    id = id.from(_N, "ListEventLogConfigurationsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3980,7 +3980,7 @@ M.ListEventLogConfigurationsInput = schema.new({
 })
 
 M.ListEventLogConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListEventLogConfigurationsOutput"),
+    id = id.from(_N, "ListEventLogConfigurationsResponse"),
     type = "structure",
     members = {
         EventLogConfigurationList = schema.new({
@@ -4000,7 +4000,7 @@ M.ListEventLogConfigurationsOutput = schema.new({
 })
 
 M.UpdateEventLogConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateEventLogConfigurationInput"),
+    id = id.from(_N, "UpdateEventLogConfigurationRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -4026,17 +4026,17 @@ M.UpdateEventLogConfigurationInput = schema.new({
 })
 
 M.UpdateEventLogConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateEventLogConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetCustomEndpointInput = schema.new({
-    id = id.from(_N, "GetCustomEndpointInput"),
+    id = id.from(_N, "GetCustomEndpointRequest"),
     type = "structure",
 })
 
 M.GetCustomEndpointOutput = schema.new({
-    id = id.from(_N, "GetCustomEndpointOutput"),
+    id = id.from(_N, "GetCustomEndpointResponse"),
     type = "structure",
     members = {
         EndpointAddress = schema.new({
@@ -4052,12 +4052,12 @@ M.GetCustomEndpointOutput = schema.new({
 })
 
 M.GetDefaultEncryptionConfigurationInput = schema.new({
-    id = id.from(_N, "GetDefaultEncryptionConfigurationInput"),
+    id = id.from(_N, "GetDefaultEncryptionConfigurationRequest"),
     type = "structure",
 })
 
 M.GetDefaultEncryptionConfigurationOutput = schema.new({
-    id = id.from(_N, "GetDefaultEncryptionConfigurationOutput"),
+    id = id.from(_N, "GetDefaultEncryptionConfigurationResponse"),
     type = "structure",
     members = {
         configurationStatus = schema.new({
@@ -4105,12 +4105,12 @@ M.InternalFailureException = schema.new({
 })
 
 M.GetHubConfigurationInput = schema.new({
-    id = id.from(_N, "GetHubConfigurationInput"),
+    id = id.from(_N, "GetHubConfigurationRequest"),
     type = "structure",
 })
 
 M.GetHubConfigurationOutput = schema.new({
-    id = id.from(_N, "GetHubConfigurationOutput"),
+    id = id.from(_N, "GetHubConfigurationResponse"),
     type = "structure",
     members = {
         HubTokenTimerExpirySettingInSeconds = schema.new({
@@ -4129,7 +4129,7 @@ M.GetHubConfigurationOutput = schema.new({
 })
 
 M.GetManagedThingInput = schema.new({
-    id = id.from(_N, "GetManagedThingInput"),
+    id = id.from(_N, "GetManagedThingRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -4146,7 +4146,7 @@ M.GetManagedThingInput = schema.new({
 })
 
 M.GetManagedThingOutput = schema.new({
-    id = id.from(_N, "GetManagedThingOutput"),
+    id = id.from(_N, "GetManagedThingResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -4320,7 +4320,7 @@ M.GetManagedThingOutput = schema.new({
 })
 
 M.GetManagedThingCapabilitiesInput = schema.new({
-    id = id.from(_N, "GetManagedThingCapabilitiesInput"),
+    id = id.from(_N, "GetManagedThingCapabilitiesRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -4337,7 +4337,7 @@ M.GetManagedThingCapabilitiesInput = schema.new({
 })
 
 M.GetManagedThingCapabilitiesOutput = schema.new({
-    id = id.from(_N, "GetManagedThingCapabilitiesOutput"),
+    id = id.from(_N, "GetManagedThingCapabilitiesResponse"),
     type = "structure",
     members = {
         ManagedThingId = schema.new({
@@ -4363,7 +4363,7 @@ M.GetManagedThingCapabilitiesOutput = schema.new({
 })
 
 M.GetManagedThingCertificateInput = schema.new({
-    id = id.from(_N, "GetManagedThingCertificateInput"),
+    id = id.from(_N, "GetManagedThingCertificateRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -4380,7 +4380,7 @@ M.GetManagedThingCertificateInput = schema.new({
 })
 
 M.GetManagedThingCertificateOutput = schema.new({
-    id = id.from(_N, "GetManagedThingCertificateOutput"),
+    id = id.from(_N, "GetManagedThingCertificateResponse"),
     type = "structure",
     members = {
         ManagedThingId = schema.new({
@@ -4399,7 +4399,7 @@ M.GetManagedThingCertificateOutput = schema.new({
 })
 
 M.GetManagedThingConnectivityDataInput = schema.new({
-    id = id.from(_N, "GetManagedThingConnectivityDataInput"),
+    id = id.from(_N, "GetManagedThingConnectivityDataRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -4416,7 +4416,7 @@ M.GetManagedThingConnectivityDataInput = schema.new({
 })
 
 M.GetManagedThingConnectivityDataOutput = schema.new({
-    id = id.from(_N, "GetManagedThingConnectivityDataOutput"),
+    id = id.from(_N, "GetManagedThingConnectivityDataResponse"),
     type = "structure",
     members = {
         ManagedThingId = schema.new({
@@ -4447,7 +4447,7 @@ M.GetManagedThingConnectivityDataOutput = schema.new({
 })
 
 M.GetManagedThingMetaDataInput = schema.new({
-    id = id.from(_N, "GetManagedThingMetaDataInput"),
+    id = id.from(_N, "GetManagedThingMetaDataRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -4464,7 +4464,7 @@ M.GetManagedThingMetaDataInput = schema.new({
 })
 
 M.GetManagedThingMetaDataOutput = schema.new({
-    id = id.from(_N, "GetManagedThingMetaDataOutput"),
+    id = id.from(_N, "GetManagedThingMetaDataResponse"),
     type = "structure",
     members = {
         ManagedThingId = schema.new({
@@ -4485,7 +4485,7 @@ M.GetManagedThingMetaDataOutput = schema.new({
 })
 
 M.GetManagedThingStateInput = schema.new({
-    id = id.from(_N, "GetManagedThingStateInput"),
+    id = id.from(_N, "GetManagedThingStateRequest"),
     type = "structure",
     members = {
         ManagedThingId = schema.new({
@@ -4568,7 +4568,7 @@ M.StateEndpoint = schema.new({
 })
 
 M.GetManagedThingStateOutput = schema.new({
-    id = id.from(_N, "GetManagedThingStateOutput"),
+    id = id.from(_N, "GetManagedThingStateResponse"),
     type = "structure",
     members = {
         Endpoints = schema.new({
@@ -4585,7 +4585,7 @@ M.GetManagedThingStateOutput = schema.new({
 })
 
 M.GetNotificationConfigurationInput = schema.new({
-    id = id.from(_N, "GetNotificationConfigurationInput"),
+    id = id.from(_N, "GetNotificationConfigurationRequest"),
     type = "structure",
     members = {
         EventType = schema.new({
@@ -4602,7 +4602,7 @@ M.GetNotificationConfigurationInput = schema.new({
 })
 
 M.GetNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "GetNotificationConfigurationOutput"),
+    id = id.from(_N, "GetNotificationConfigurationResponse"),
     type = "structure",
     members = {
         EventType = schema.new({
@@ -4641,7 +4641,7 @@ M.GetNotificationConfigurationOutput = schema.new({
 })
 
 M.GetOtaTaskInput = schema.new({
-    id = id.from(_N, "GetOtaTaskInput"),
+    id = id.from(_N, "GetOtaTaskRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -4720,7 +4720,7 @@ M.TaskProcessingDetails = schema.new({
 })
 
 M.GetOtaTaskOutput = schema.new({
-    id = id.from(_N, "GetOtaTaskOutput"),
+    id = id.from(_N, "GetOtaTaskResponse"),
     type = "structure",
     members = {
         TaskId = schema.new({
@@ -4835,7 +4835,7 @@ M.GetOtaTaskOutput = schema.new({
 })
 
 M.GetOtaTaskConfigurationInput = schema.new({
-    id = id.from(_N, "GetOtaTaskConfigurationInput"),
+    id = id.from(_N, "GetOtaTaskConfigurationRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -4852,7 +4852,7 @@ M.GetOtaTaskConfigurationInput = schema.new({
 })
 
 M.GetOtaTaskConfigurationOutput = schema.new({
-    id = id.from(_N, "GetOtaTaskConfigurationOutput"),
+    id = id.from(_N, "GetOtaTaskConfigurationResponse"),
     type = "structure",
     members = {
         TaskConfigurationId = schema.new({
@@ -4890,7 +4890,7 @@ M.GetOtaTaskConfigurationOutput = schema.new({
 })
 
 M.GetProvisioningProfileInput = schema.new({
-    id = id.from(_N, "GetProvisioningProfileInput"),
+    id = id.from(_N, "GetProvisioningProfileRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -4907,7 +4907,7 @@ M.GetProvisioningProfileInput = schema.new({
 })
 
 M.GetProvisioningProfileOutput = schema.new({
-    id = id.from(_N, "GetProvisioningProfileOutput"),
+    id = id.from(_N, "GetProvisioningProfileResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -4958,7 +4958,7 @@ M.GetProvisioningProfileOutput = schema.new({
 })
 
 M.GetRuntimeLogConfigurationInput = schema.new({
-    id = id.from(_N, "GetRuntimeLogConfigurationInput"),
+    id = id.from(_N, "GetRuntimeLogConfigurationRequest"),
     type = "structure",
     members = {
         ManagedThingId = schema.new({
@@ -5030,7 +5030,7 @@ M.RuntimeLogConfigurations = schema.new({
 })
 
 M.GetRuntimeLogConfigurationOutput = schema.new({
-    id = id.from(_N, "GetRuntimeLogConfigurationOutput"),
+    id = id.from(_N, "GetRuntimeLogConfigurationResponse"),
     type = "structure",
     members = {
         ManagedThingId = schema.new({
@@ -5050,7 +5050,7 @@ M.GetRuntimeLogConfigurationOutput = schema.new({
 })
 
 M.GetSchemaVersionInput = schema.new({
-    id = id.from(_N, "GetSchemaVersionInput"),
+    id = id.from(_N, "GetSchemaVersionRequest"),
     type = "structure",
     members = {
         Type = schema.new({
@@ -5086,7 +5086,7 @@ M.GetSchemaVersionInput = schema.new({
 })
 
 M.GetSchemaVersionOutput = schema.new({
-    id = id.from(_N, "GetSchemaVersionOutput"),
+    id = id.from(_N, "GetSchemaVersionResponse"),
     type = "structure",
     members = {
         SchemaId = schema.new({
@@ -5135,7 +5135,7 @@ M.GetSchemaVersionOutput = schema.new({
 })
 
 M.PutHubConfigurationInput = schema.new({
-    id = id.from(_N, "PutHubConfigurationInput"),
+    id = id.from(_N, "PutHubConfigurationRequest"),
     type = "structure",
     members = {
         HubTokenTimerExpirySettingInSeconds = schema.new({
@@ -5151,7 +5151,7 @@ M.PutHubConfigurationInput = schema.new({
 })
 
 M.PutHubConfigurationOutput = schema.new({
-    id = id.from(_N, "PutHubConfigurationOutput"),
+    id = id.from(_N, "PutHubConfigurationResponse"),
     type = "structure",
     members = {
         HubTokenTimerExpirySettingInSeconds = schema.new({
@@ -5180,7 +5180,7 @@ M.InvalidRequestException = schema.new({
 })
 
 M.PutDefaultEncryptionConfigurationInput = schema.new({
-    id = id.from(_N, "PutDefaultEncryptionConfigurationInput"),
+    id = id.from(_N, "PutDefaultEncryptionConfigurationRequest"),
     type = "structure",
     members = {
         encryptionType = schema.new({
@@ -5202,7 +5202,7 @@ M.PutDefaultEncryptionConfigurationInput = schema.new({
 })
 
 M.PutDefaultEncryptionConfigurationOutput = schema.new({
-    id = id.from(_N, "PutDefaultEncryptionConfigurationOutput"),
+    id = id.from(_N, "PutDefaultEncryptionConfigurationResponse"),
     type = "structure",
     members = {
         configurationStatus = schema.new({
@@ -5234,7 +5234,7 @@ M.PutDefaultEncryptionConfigurationOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5251,7 +5251,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -5266,7 +5266,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListManagedThingAccountAssociationsInput = schema.new({
-    id = id.from(_N, "ListManagedThingAccountAssociationsInput"),
+    id = id.from(_N, "ListManagedThingAccountAssociationsRequest"),
     type = "structure",
     members = {
         ManagedThingId = schema.new({
@@ -5334,7 +5334,7 @@ M.ManagedThingAssociation = schema.new({
 })
 
 M.ListManagedThingAccountAssociationsOutput = schema.new({
-    id = id.from(_N, "ListManagedThingAccountAssociationsOutput"),
+    id = id.from(_N, "ListManagedThingAccountAssociationsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -5354,7 +5354,7 @@ M.ListManagedThingAccountAssociationsOutput = schema.new({
 })
 
 M.RegisterAccountAssociationInput = schema.new({
-    id = id.from(_N, "RegisterAccountAssociationInput"),
+    id = id.from(_N, "RegisterAccountAssociationRequest"),
     type = "structure",
     members = {
         ManagedThingId = schema.new({
@@ -5388,7 +5388,7 @@ M.RegisterAccountAssociationInput = schema.new({
 })
 
 M.RegisterAccountAssociationOutput = schema.new({
-    id = id.from(_N, "RegisterAccountAssociationOutput"),
+    id = id.from(_N, "RegisterAccountAssociationResponse"),
     type = "structure",
     members = {
         AccountAssociationId = schema.new({
@@ -5413,7 +5413,7 @@ M.RegisterAccountAssociationOutput = schema.new({
 })
 
 M.SendManagedThingCommandInput = schema.new({
-    id = id.from(_N, "SendManagedThingCommandInput"),
+    id = id.from(_N, "SendManagedThingCommandRequest"),
     type = "structure",
     members = {
         ManagedThingId = schema.new({
@@ -5452,7 +5452,7 @@ M.SendManagedThingCommandInput = schema.new({
 })
 
 M.SendManagedThingCommandOutput = schema.new({
-    id = id.from(_N, "SendManagedThingCommandOutput"),
+    id = id.from(_N, "SendManagedThingCommandResponse"),
     type = "structure",
     members = {
         TraceId = schema.new({
@@ -5465,7 +5465,7 @@ M.SendManagedThingCommandOutput = schema.new({
 })
 
 M.ListManagedThingsInput = schema.new({
-    id = id.from(_N, "ListManagedThingsInput"),
+    id = id.from(_N, "ListManagedThingsRequest"),
     type = "structure",
     members = {
         OwnerFilter = schema.new({
@@ -5692,7 +5692,7 @@ M.ManagedThingSummary = schema.new({
 })
 
 M.ListManagedThingsOutput = schema.new({
-    id = id.from(_N, "ListManagedThingsOutput"),
+    id = id.from(_N, "ListManagedThingsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -5712,7 +5712,7 @@ M.ListManagedThingsOutput = schema.new({
 })
 
 M.ListManagedThingSchemasInput = schema.new({
-    id = id.from(_N, "ListManagedThingSchemasInput"),
+    id = id.from(_N, "ListManagedThingSchemasRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -5790,7 +5790,7 @@ M.ManagedThingSchemaListItem = schema.new({
 })
 
 M.ListManagedThingSchemasOutput = schema.new({
-    id = id.from(_N, "ListManagedThingSchemasOutput"),
+    id = id.from(_N, "ListManagedThingSchemasResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -5810,7 +5810,7 @@ M.ListManagedThingSchemasOutput = schema.new({
 })
 
 M.UpdateManagedThingInput = schema.new({
-    id = id.from(_N, "UpdateManagedThingInput"),
+    id = id.from(_N, "UpdateManagedThingRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -5910,12 +5910,12 @@ M.UpdateManagedThingInput = schema.new({
 })
 
 M.UpdateManagedThingOutput = schema.new({
-    id = id.from(_N, "UpdateManagedThingOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ListNotificationConfigurationsInput = schema.new({
-    id = id.from(_N, "ListNotificationConfigurationsInput"),
+    id = id.from(_N, "ListNotificationConfigurationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -5959,7 +5959,7 @@ M.NotificationConfigurationSummary = schema.new({
 })
 
 M.ListNotificationConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListNotificationConfigurationsOutput"),
+    id = id.from(_N, "ListNotificationConfigurationsResponse"),
     type = "structure",
     members = {
         NotificationConfigurationList = schema.new({
@@ -5979,7 +5979,7 @@ M.ListNotificationConfigurationsOutput = schema.new({
 })
 
 M.UpdateNotificationConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateNotificationConfigurationInput"),
+    id = id.from(_N, "UpdateNotificationConfigurationRequest"),
     type = "structure",
     members = {
         EventType = schema.new({
@@ -6005,12 +6005,12 @@ M.UpdateNotificationConfigurationInput = schema.new({
 })
 
 M.UpdateNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateNotificationConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ListOtaTaskConfigurationsInput = schema.new({
-    id = id.from(_N, "ListOtaTaskConfigurationsInput"),
+    id = id.from(_N, "ListOtaTaskConfigurationsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6060,7 +6060,7 @@ M.OtaTaskConfigurationSummary = schema.new({
 })
 
 M.ListOtaTaskConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListOtaTaskConfigurationsOutput"),
+    id = id.from(_N, "ListOtaTaskConfigurationsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -6080,7 +6080,7 @@ M.ListOtaTaskConfigurationsOutput = schema.new({
 })
 
 M.ListOtaTaskExecutionsInput = schema.new({
-    id = id.from(_N, "ListOtaTaskExecutionsInput"),
+    id = id.from(_N, "ListOtaTaskExecutionsRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -6178,7 +6178,7 @@ M.OtaTaskExecutionSummaries = schema.new({
 })
 
 M.ListOtaTaskExecutionsOutput = schema.new({
-    id = id.from(_N, "ListOtaTaskExecutionsOutput"),
+    id = id.from(_N, "ListOtaTaskExecutionsResponse"),
     type = "structure",
     members = {
         ExecutionSummaries = schema.new({
@@ -6198,7 +6198,7 @@ M.ListOtaTaskExecutionsOutput = schema.new({
 })
 
 M.ListOtaTasksInput = schema.new({
-    id = id.from(_N, "ListOtaTasksInput"),
+    id = id.from(_N, "ListOtaTasksRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6266,7 +6266,7 @@ M.OtaTaskSummary = schema.new({
 })
 
 M.ListOtaTasksOutput = schema.new({
-    id = id.from(_N, "ListOtaTasksOutput"),
+    id = id.from(_N, "ListOtaTasksResponse"),
     type = "structure",
     members = {
         Tasks = schema.new({
@@ -6286,7 +6286,7 @@ M.ListOtaTasksOutput = schema.new({
 })
 
 M.UpdateOtaTaskInput = schema.new({
-    id = id.from(_N, "UpdateOtaTaskInput"),
+    id = id.from(_N, "UpdateOtaTaskRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -6315,12 +6315,12 @@ M.UpdateOtaTaskInput = schema.new({
 })
 
 M.UpdateOtaTaskOutput = schema.new({
-    id = id.from(_N, "UpdateOtaTaskOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ListProvisioningProfilesInput = schema.new({
-    id = id.from(_N, "ListProvisioningProfilesInput"),
+    id = id.from(_N, "ListProvisioningProfilesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6382,7 +6382,7 @@ M.ProvisioningProfileSummary = schema.new({
 })
 
 M.ListProvisioningProfilesOutput = schema.new({
-    id = id.from(_N, "ListProvisioningProfilesOutput"),
+    id = id.from(_N, "ListProvisioningProfilesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -6402,12 +6402,12 @@ M.ListProvisioningProfilesOutput = schema.new({
 })
 
 M.RegisterCustomEndpointInput = schema.new({
-    id = id.from(_N, "RegisterCustomEndpointInput"),
+    id = id.from(_N, "RegisterCustomEndpointRequest"),
     type = "structure",
 })
 
 M.RegisterCustomEndpointOutput = schema.new({
-    id = id.from(_N, "RegisterCustomEndpointOutput"),
+    id = id.from(_N, "RegisterCustomEndpointResponse"),
     type = "structure",
     members = {
         EndpointAddress = schema.new({
@@ -6423,7 +6423,7 @@ M.RegisterCustomEndpointOutput = schema.new({
 })
 
 M.PutRuntimeLogConfigurationInput = schema.new({
-    id = id.from(_N, "PutRuntimeLogConfigurationInput"),
+    id = id.from(_N, "PutRuntimeLogConfigurationRequest"),
     type = "structure",
     members = {
         ManagedThingId = schema.new({
@@ -6450,12 +6450,12 @@ M.PutRuntimeLogConfigurationInput = schema.new({
 })
 
 M.PutRuntimeLogConfigurationOutput = schema.new({
-    id = id.from(_N, "PutRuntimeLogConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ResetRuntimeLogConfigurationInput = schema.new({
-    id = id.from(_N, "ResetRuntimeLogConfigurationInput"),
+    id = id.from(_N, "ResetRuntimeLogConfigurationRequest"),
     type = "structure",
     members = {
         ManagedThingId = schema.new({
@@ -6472,12 +6472,12 @@ M.ResetRuntimeLogConfigurationInput = schema.new({
 })
 
 M.ResetRuntimeLogConfigurationOutput = schema.new({
-    id = id.from(_N, "ResetRuntimeLogConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ListSchemaVersionsInput = schema.new({
-    id = id.from(_N, "ListSchemaVersionsInput"),
+    id = id.from(_N, "ListSchemaVersionsRequest"),
     type = "structure",
     members = {
         Type = schema.new({
@@ -6591,7 +6591,7 @@ M.SchemaVersionListItem = schema.new({
 })
 
 M.ListSchemaVersionsOutput = schema.new({
-    id = id.from(_N, "ListSchemaVersionsOutput"),
+    id = id.from(_N, "ListSchemaVersionsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -6666,7 +6666,7 @@ M.MatterEndpoint = schema.new({
 })
 
 M.SendConnectorEventInput = schema.new({
-    id = id.from(_N, "SendConnectorEventInput"),
+    id = id.from(_N, "SendConnectorEventRequest"),
     type = "structure",
     members = {
         ConnectorId = schema.new({
@@ -6748,7 +6748,7 @@ M.SendConnectorEventInput = schema.new({
 })
 
 M.SendConnectorEventOutput = schema.new({
-    id = id.from(_N, "SendConnectorEventOutput"),
+    id = id.from(_N, "SendConnectorEventResponse"),
     type = "structure",
     members = {
         ConnectorId = schema.new({
@@ -6764,7 +6764,7 @@ M.SendConnectorEventOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6792,12 +6792,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6825,8 +6825,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

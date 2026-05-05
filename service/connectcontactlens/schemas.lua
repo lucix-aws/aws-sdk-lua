@@ -59,7 +59,7 @@ M.InvalidRequestException = schema.new({
 })
 
 M.ListRealtimeContactAnalysisSegmentsInput = schema.new({
-    id = id.from(_N, "ListRealtimeContactAnalysisSegmentsInput"),
+    id = id.from(_N, "ListRealtimeContactAnalysisSegmentsRequest"),
     type = "structure",
     members = {
         InstanceId = schema.new({
@@ -338,7 +338,7 @@ M.RealtimeContactAnalysisSegment = schema.new({
 })
 
 M.ListRealtimeContactAnalysisSegmentsOutput = schema.new({
-    id = id.from(_N, "ListRealtimeContactAnalysisSegmentsOutput"),
+    id = id.from(_N, "ListRealtimeContactAnalysisSegmentsResponse"),
     type = "structure",
     members = {
         Segments = schema.new({
@@ -394,5 +394,19 @@ M.ThrottlingException = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

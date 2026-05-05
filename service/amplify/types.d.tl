@@ -1110,11 +1110,11 @@ end
 
 local type JobType = "RELEASE" | "RETRY" | "MANUAL" | "WEB_HOOK"
 
-local type SourceUrlType = "ZIP" | "BUCKET_PREFIX"
-
 local type Stage = "PRODUCTION" | "BETA" | "DEVELOPMENT" | "EXPERIMENTAL" | "PULL_REQUEST"
 
 local type Platform = "WEB" | "WEB_DYNAMIC" | "WEB_COMPUTE"
+
+local type SourceUrlType = "ZIP" | "BUCKET_PREFIX"
 
 local record M
     CreateAppInput: CreateAppInput

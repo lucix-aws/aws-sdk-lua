@@ -49,7 +49,7 @@ M.AssumedRoleUser = schema.new({
 })
 
 M.AssumeRoleForPodIdentityInput = schema.new({
-    id = id.from(_N, "AssumeRoleForPodIdentityInput"),
+    id = id.from(_N, "AssumeRoleForPodIdentityRequest"),
     type = "structure",
     members = {
         clusterName = schema.new({
@@ -168,7 +168,7 @@ M.Subject = schema.new({
 })
 
 M.AssumeRoleForPodIdentityOutput = schema.new({
-    id = id.from(_N, "AssumeRoleForPodIdentityOutput"),
+    id = id.from(_N, "AssumeRoleForPodIdentityResponse"),
     type = "structure",
     members = {
         subject = schema.new({
@@ -350,5 +350,19 @@ M.ThrottlingException = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

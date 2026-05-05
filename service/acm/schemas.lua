@@ -186,7 +186,7 @@ M.Tag = schema.new({
 })
 
 M.AddTagsToCertificateInput = schema.new({
-    id = id.from(_N, "AddTagsToCertificateInput"),
+    id = id.from(_N, "AddTagsToCertificateRequest"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -212,7 +212,7 @@ M.AddTagsToCertificateInput = schema.new({
 })
 
 M.AddTagsToCertificateOutput = schema.new({
-    id = id.from(_N, "AddTagsToCertificateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -930,7 +930,7 @@ M.ConflictException = schema.new({
 })
 
 M.DeleteCertificateInput = schema.new({
-    id = id.from(_N, "DeleteCertificateInput"),
+    id = id.from(_N, "DeleteCertificateRequest"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -946,7 +946,7 @@ M.DeleteCertificateInput = schema.new({
 })
 
 M.DeleteCertificateOutput = schema.new({
-    id = id.from(_N, "DeleteCertificateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -967,7 +967,7 @@ M.ResourceInUseException = schema.new({
 })
 
 M.DescribeCertificateInput = schema.new({
-    id = id.from(_N, "DescribeCertificateInput"),
+    id = id.from(_N, "DescribeCertificateRequest"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -983,7 +983,7 @@ M.DescribeCertificateInput = schema.new({
 })
 
 M.DescribeCertificateOutput = schema.new({
-    id = id.from(_N, "DescribeCertificateOutput"),
+    id = id.from(_N, "DescribeCertificateResponse"),
     type = "structure",
     members = {
         Certificate = schema.new({
@@ -997,7 +997,7 @@ M.DescribeCertificateOutput = schema.new({
 })
 
 M.ExportCertificateInput = schema.new({
-    id = id.from(_N, "ExportCertificateInput"),
+    id = id.from(_N, "ExportCertificateRequest"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -1022,7 +1022,7 @@ M.ExportCertificateInput = schema.new({
 })
 
 M.ExportCertificateOutput = schema.new({
-    id = id.from(_N, "ExportCertificateOutput"),
+    id = id.from(_N, "ExportCertificateResponse"),
     type = "structure",
     members = {
         Certificate = schema.new({
@@ -1063,7 +1063,7 @@ M.RequestInProgressException = schema.new({
 })
 
 M.GetAccountConfigurationInput = schema.new({
-    id = id.from(_N, "GetAccountConfigurationInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1081,7 +1081,7 @@ M.ExpiryEventsConfiguration = schema.new({
 })
 
 M.GetAccountConfigurationOutput = schema.new({
-    id = id.from(_N, "GetAccountConfigurationOutput"),
+    id = id.from(_N, "GetAccountConfigurationResponse"),
     type = "structure",
     members = {
         ExpiryEvents = schema.new({
@@ -1095,7 +1095,7 @@ M.GetAccountConfigurationOutput = schema.new({
 })
 
 M.GetCertificateInput = schema.new({
-    id = id.from(_N, "GetCertificateInput"),
+    id = id.from(_N, "GetCertificateRequest"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -1111,7 +1111,7 @@ M.GetCertificateInput = schema.new({
 })
 
 M.GetCertificateOutput = schema.new({
-    id = id.from(_N, "GetCertificateOutput"),
+    id = id.from(_N, "GetCertificateResponse"),
     type = "structure",
     members = {
         Certificate = schema.new({
@@ -1130,7 +1130,7 @@ M.GetCertificateOutput = schema.new({
 })
 
 M.ImportCertificateInput = schema.new({
-    id = id.from(_N, "ImportCertificateInput"),
+    id = id.from(_N, "ImportCertificateRequest"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -1174,7 +1174,7 @@ M.ImportCertificateInput = schema.new({
 })
 
 M.ImportCertificateOutput = schema.new({
-    id = id.from(_N, "ImportCertificateOutput"),
+    id = id.from(_N, "ImportCertificateResponse"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -1259,7 +1259,7 @@ M.Filters = schema.new({
 })
 
 M.ListCertificatesInput = schema.new({
-    id = id.from(_N, "ListCertificatesInput"),
+    id = id.from(_N, "ListCertificatesRequest"),
     type = "structure",
     members = {
         CertificateStatuses = schema.new({
@@ -1434,7 +1434,7 @@ M.CertificateSummary = schema.new({
 })
 
 M.ListCertificatesOutput = schema.new({
-    id = id.from(_N, "ListCertificatesOutput"),
+    id = id.from(_N, "ListCertificatesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1470,7 +1470,7 @@ M.ValidationException = schema.new({
 })
 
 M.ListTagsForCertificateInput = schema.new({
-    id = id.from(_N, "ListTagsForCertificateInput"),
+    id = id.from(_N, "ListTagsForCertificateRequest"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -1486,7 +1486,7 @@ M.ListTagsForCertificateInput = schema.new({
 })
 
 M.ListTagsForCertificateOutput = schema.new({
-    id = id.from(_N, "ListTagsForCertificateOutput"),
+    id = id.from(_N, "ListTagsForCertificateResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1500,7 +1500,7 @@ M.ListTagsForCertificateOutput = schema.new({
 })
 
 M.PutAccountConfigurationInput = schema.new({
-    id = id.from(_N, "PutAccountConfigurationInput"),
+    id = id.from(_N, "PutAccountConfigurationRequest"),
     type = "structure",
     members = {
         ExpiryEvents = schema.new({
@@ -1523,12 +1523,12 @@ M.PutAccountConfigurationInput = schema.new({
 })
 
 M.PutAccountConfigurationOutput = schema.new({
-    id = id.from(_N, "PutAccountConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RemoveTagsFromCertificateInput = schema.new({
-    id = id.from(_N, "RemoveTagsFromCertificateInput"),
+    id = id.from(_N, "RemoveTagsFromCertificateRequest"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -1554,12 +1554,12 @@ M.RemoveTagsFromCertificateInput = schema.new({
 })
 
 M.RemoveTagsFromCertificateOutput = schema.new({
-    id = id.from(_N, "RemoveTagsFromCertificateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RenewCertificateInput = schema.new({
-    id = id.from(_N, "RenewCertificateInput"),
+    id = id.from(_N, "RenewCertificateRequest"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -1575,7 +1575,7 @@ M.RenewCertificateInput = schema.new({
 })
 
 M.RenewCertificateOutput = schema.new({
-    id = id.from(_N, "RenewCertificateOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1621,7 +1621,7 @@ M.DomainValidationOption = schema.new({
 })
 
 M.RequestCertificateInput = schema.new({
-    id = id.from(_N, "RequestCertificateInput"),
+    id = id.from(_N, "RequestCertificateRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -1695,7 +1695,7 @@ M.RequestCertificateInput = schema.new({
 })
 
 M.RequestCertificateOutput = schema.new({
-    id = id.from(_N, "RequestCertificateOutput"),
+    id = id.from(_N, "RequestCertificateResponse"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -1724,7 +1724,7 @@ M.InvalidStateException = schema.new({
 })
 
 M.ResendValidationEmailInput = schema.new({
-    id = id.from(_N, "ResendValidationEmailInput"),
+    id = id.from(_N, "ResendValidationEmailRequest"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -1758,12 +1758,12 @@ M.ResendValidationEmailInput = schema.new({
 })
 
 M.ResendValidationEmailOutput = schema.new({
-    id = id.from(_N, "ResendValidationEmailOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RevokeCertificateInput = schema.new({
-    id = id.from(_N, "RevokeCertificateInput"),
+    id = id.from(_N, "RevokeCertificateRequest"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -1788,7 +1788,7 @@ M.RevokeCertificateInput = schema.new({
 })
 
 M.RevokeCertificateOutput = schema.new({
-    id = id.from(_N, "RevokeCertificateOutput"),
+    id = id.from(_N, "RevokeCertificateResponse"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -2102,7 +2102,7 @@ M.CertificateSearchResult = schema.new({
 })
 
 M.SearchCertificatesOutput = schema.new({
-    id = id.from(_N, "SearchCertificatesOutput"),
+    id = id.from(_N, "SearchCertificatesResponse"),
     type = "structure",
     members = {
         Results = schema.new({
@@ -2122,7 +2122,7 @@ M.SearchCertificatesOutput = schema.new({
 })
 
 M.UpdateCertificateOptionsInput = schema.new({
-    id = id.from(_N, "UpdateCertificateOptionsInput"),
+    id = id.from(_N, "UpdateCertificateOptionsRequest"),
     type = "structure",
     members = {
         CertificateArn = schema.new({
@@ -2148,7 +2148,7 @@ M.UpdateCertificateOptionsInput = schema.new({
 })
 
 M.UpdateCertificateOptionsOutput = schema.new({
-    id = id.from(_N, "UpdateCertificateOptionsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2188,7 +2188,7 @@ M.CertificateFilterStatement = schema.new({
 })
 
 M.SearchCertificatesInput = schema.new({
-    id = id.from(_N, "SearchCertificatesInput"),
+    id = id.from(_N, "SearchCertificatesRequest"),
     type = "structure",
     members = {
         FilterStatement = schema.new({
@@ -2233,5 +2233,19 @@ M.SearchCertificatesInput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

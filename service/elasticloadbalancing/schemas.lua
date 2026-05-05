@@ -648,7 +648,7 @@ M.Listener = schema.new({
 })
 
 M.CreateLoadBalancerInput = schema.new({
-    id = id.from(_N, "CreateLoadBalancerInput"),
+    id = id.from(_N, "CreateAccessPointInput"),
     type = "structure",
     members = {
         LoadBalancerName = schema.new({
@@ -708,7 +708,7 @@ M.CreateLoadBalancerInput = schema.new({
 })
 
 M.CreateLoadBalancerOutput = schema.new({
-    id = id.from(_N, "CreateLoadBalancerOutput"),
+    id = id.from(_N, "CreateAccessPointOutput"),
     type = "structure",
     members = {
         DNSName = schema.new({
@@ -801,7 +801,7 @@ M.UnsupportedProtocolException = schema.new({
 })
 
 M.CreateLoadBalancerListenersInput = schema.new({
-    id = id.from(_N, "CreateLoadBalancerListenersInput"),
+    id = id.from(_N, "CreateLoadBalancerListenerInput"),
     type = "structure",
     members = {
         LoadBalancerName = schema.new({
@@ -827,7 +827,7 @@ M.CreateLoadBalancerListenersInput = schema.new({
 })
 
 M.CreateLoadBalancerListenersOutput = schema.new({
-    id = id.from(_N, "CreateLoadBalancerListenersOutput"),
+    id = id.from(_N, "CreateLoadBalancerListenerOutput"),
     type = "structure",
 })
 
@@ -946,7 +946,7 @@ M.CrossZoneLoadBalancing = schema.new({
 })
 
 M.DeleteLoadBalancerInput = schema.new({
-    id = id.from(_N, "DeleteLoadBalancerInput"),
+    id = id.from(_N, "DeleteAccessPointInput"),
     type = "structure",
     members = {
         LoadBalancerName = schema.new({
@@ -962,12 +962,12 @@ M.DeleteLoadBalancerInput = schema.new({
 })
 
 M.DeleteLoadBalancerOutput = schema.new({
-    id = id.from(_N, "DeleteLoadBalancerOutput"),
+    id = id.from(_N, "DeleteAccessPointOutput"),
     type = "structure",
 })
 
 M.DeleteLoadBalancerListenersInput = schema.new({
-    id = id.from(_N, "DeleteLoadBalancerListenersInput"),
+    id = id.from(_N, "DeleteLoadBalancerListenerInput"),
     type = "structure",
     members = {
         LoadBalancerName = schema.new({
@@ -993,7 +993,7 @@ M.DeleteLoadBalancerListenersInput = schema.new({
 })
 
 M.DeleteLoadBalancerListenersOutput = schema.new({
-    id = id.from(_N, "DeleteLoadBalancerListenersOutput"),
+    id = id.from(_N, "DeleteLoadBalancerListenerOutput"),
     type = "structure",
 })
 
@@ -1057,7 +1057,7 @@ M.Instance = schema.new({
 })
 
 M.DeregisterInstancesFromLoadBalancerInput = schema.new({
-    id = id.from(_N, "DeregisterInstancesFromLoadBalancerInput"),
+    id = id.from(_N, "DeregisterEndPointsInput"),
     type = "structure",
     members = {
         LoadBalancerName = schema.new({
@@ -1083,7 +1083,7 @@ M.DeregisterInstancesFromLoadBalancerInput = schema.new({
 })
 
 M.DeregisterInstancesFromLoadBalancerOutput = schema.new({
-    id = id.from(_N, "DeregisterInstancesFromLoadBalancerOutput"),
+    id = id.from(_N, "DeregisterEndPointsOutput"),
     type = "structure",
     members = {
         Instances = schema.new({
@@ -1171,7 +1171,7 @@ M.DescribeAccountLimitsOutput = schema.new({
 })
 
 M.DescribeInstanceHealthInput = schema.new({
-    id = id.from(_N, "DescribeInstanceHealthInput"),
+    id = id.from(_N, "DescribeEndPointStateInput"),
     type = "structure",
     members = {
         LoadBalancerName = schema.new({
@@ -1225,7 +1225,7 @@ M.InstanceState = schema.new({
 })
 
 M.DescribeInstanceHealthOutput = schema.new({
-    id = id.from(_N, "DescribeInstanceHealthOutput"),
+    id = id.from(_N, "DescribeEndPointStateOutput"),
     type = "structure",
     members = {
         InstanceStates = schema.new({
@@ -1513,7 +1513,7 @@ M.DescribeLoadBalancerPolicyTypesOutput = schema.new({
 })
 
 M.DescribeLoadBalancersInput = schema.new({
-    id = id.from(_N, "DescribeLoadBalancersInput"),
+    id = id.from(_N, "DescribeAccessPointsInput"),
     type = "structure",
     members = {
         LoadBalancerNames = schema.new({
@@ -1738,7 +1738,7 @@ M.LoadBalancerDescription = schema.new({
 })
 
 M.DescribeLoadBalancersOutput = schema.new({
-    id = id.from(_N, "DescribeLoadBalancersOutput"),
+    id = id.from(_N, "DescribeAccessPointsOutput"),
     type = "structure",
     members = {
         LoadBalancerDescriptions = schema.new({
@@ -1849,7 +1849,7 @@ M.DetachLoadBalancerFromSubnetsOutput = schema.new({
 })
 
 M.DisableAvailabilityZonesForLoadBalancerInput = schema.new({
-    id = id.from(_N, "DisableAvailabilityZonesForLoadBalancerInput"),
+    id = id.from(_N, "RemoveAvailabilityZonesInput"),
     type = "structure",
     members = {
         LoadBalancerName = schema.new({
@@ -1875,7 +1875,7 @@ M.DisableAvailabilityZonesForLoadBalancerInput = schema.new({
 })
 
 M.DisableAvailabilityZonesForLoadBalancerOutput = schema.new({
-    id = id.from(_N, "DisableAvailabilityZonesForLoadBalancerOutput"),
+    id = id.from(_N, "RemoveAvailabilityZonesOutput"),
     type = "structure",
     members = {
         AvailabilityZones = schema.new({
@@ -1889,7 +1889,7 @@ M.DisableAvailabilityZonesForLoadBalancerOutput = schema.new({
 })
 
 M.EnableAvailabilityZonesForLoadBalancerInput = schema.new({
-    id = id.from(_N, "EnableAvailabilityZonesForLoadBalancerInput"),
+    id = id.from(_N, "AddAvailabilityZonesInput"),
     type = "structure",
     members = {
         LoadBalancerName = schema.new({
@@ -1915,7 +1915,7 @@ M.EnableAvailabilityZonesForLoadBalancerInput = schema.new({
 })
 
 M.EnableAvailabilityZonesForLoadBalancerOutput = schema.new({
-    id = id.from(_N, "EnableAvailabilityZonesForLoadBalancerOutput"),
+    id = id.from(_N, "AddAvailabilityZonesOutput"),
     type = "structure",
     members = {
         AvailabilityZones = schema.new({
@@ -1975,7 +1975,7 @@ M.ModifyLoadBalancerAttributesOutput = schema.new({
 })
 
 M.RegisterInstancesWithLoadBalancerInput = schema.new({
-    id = id.from(_N, "RegisterInstancesWithLoadBalancerInput"),
+    id = id.from(_N, "RegisterEndPointsInput"),
     type = "structure",
     members = {
         LoadBalancerName = schema.new({
@@ -2001,7 +2001,7 @@ M.RegisterInstancesWithLoadBalancerInput = schema.new({
 })
 
 M.RegisterInstancesWithLoadBalancerOutput = schema.new({
-    id = id.from(_N, "RegisterInstancesWithLoadBalancerOutput"),
+    id = id.from(_N, "RegisterEndPointsOutput"),
     type = "structure",
     members = {
         Instances = schema.new({
@@ -2195,5 +2195,19 @@ M.SetLoadBalancerPoliciesOfListenerOutput = schema.new({
     id = id.from(_N, "SetLoadBalancerPoliciesOfListenerOutput"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

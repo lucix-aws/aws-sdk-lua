@@ -1588,7 +1588,7 @@ M.AssociateConfigurationRequest = schema.new({
 })
 
 M.AssociateMemberInput = schema.new({
-    id = id.from(_N, "AssociateMemberInput"),
+    id = id.from(_N, "AssociateMemberRequest"),
     type = "structure",
     members = {
         accountId = schema.new({
@@ -1604,7 +1604,7 @@ M.AssociateMemberInput = schema.new({
 })
 
 M.AssociateMemberOutput = schema.new({
-    id = id.from(_N, "AssociateMemberOutput"),
+    id = id.from(_N, "AssociateMemberResponse"),
     type = "structure",
     members = {
         accountId = schema.new({
@@ -2187,7 +2187,7 @@ M.BadRequestException = schema.new({
 })
 
 M.BatchAssociateCodeSecurityScanConfigurationInput = schema.new({
-    id = id.from(_N, "BatchAssociateCodeSecurityScanConfigurationInput"),
+    id = id.from(_N, "BatchAssociateCodeSecurityScanConfigurationRequest"),
     type = "structure",
     members = {
         associateConfigurationRequests = schema.new({
@@ -2256,7 +2256,7 @@ M.SuccessfulAssociationResult = schema.new({
 })
 
 M.BatchAssociateCodeSecurityScanConfigurationOutput = schema.new({
-    id = id.from(_N, "BatchAssociateCodeSecurityScanConfigurationOutput"),
+    id = id.from(_N, "BatchAssociateCodeSecurityScanConfigurationResponse"),
     type = "structure",
     members = {
         failedAssociations = schema.new({
@@ -2359,7 +2359,7 @@ M.DisassociateConfigurationRequest = schema.new({
 })
 
 M.BatchDisassociateCodeSecurityScanConfigurationInput = schema.new({
-    id = id.from(_N, "BatchDisassociateCodeSecurityScanConfigurationInput"),
+    id = id.from(_N, "BatchDisassociateCodeSecurityScanConfigurationRequest"),
     type = "structure",
     members = {
         disassociateConfigurationRequests = schema.new({
@@ -2376,7 +2376,7 @@ M.BatchDisassociateCodeSecurityScanConfigurationInput = schema.new({
 })
 
 M.BatchDisassociateCodeSecurityScanConfigurationOutput = schema.new({
-    id = id.from(_N, "BatchDisassociateCodeSecurityScanConfigurationOutput"),
+    id = id.from(_N, "BatchDisassociateCodeSecurityScanConfigurationResponse"),
     type = "structure",
     members = {
         failedAssociations = schema.new({
@@ -2397,7 +2397,7 @@ M.BatchDisassociateCodeSecurityScanConfigurationOutput = schema.new({
 })
 
 M.BatchGetAccountStatusInput = schema.new({
-    id = id.from(_N, "BatchGetAccountStatusInput"),
+    id = id.from(_N, "BatchGetAccountStatusRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -2458,7 +2458,7 @@ M.FailedAccount = schema.new({
 })
 
 M.BatchGetAccountStatusOutput = schema.new({
-    id = id.from(_N, "BatchGetAccountStatusOutput"),
+    id = id.from(_N, "BatchGetAccountStatusResponse"),
     type = "structure",
     members = {
         accounts = schema.new({
@@ -2482,7 +2482,7 @@ M.BatchGetAccountStatusOutput = schema.new({
 })
 
 M.BatchGetCodeSnippetInput = schema.new({
-    id = id.from(_N, "BatchGetCodeSnippetInput"),
+    id = id.from(_N, "BatchGetCodeSnippetRequest"),
     type = "structure",
     members = {
         findingArns = schema.new({
@@ -2616,7 +2616,7 @@ M.CodeSnippetError = schema.new({
 })
 
 M.BatchGetCodeSnippetOutput = schema.new({
-    id = id.from(_N, "BatchGetCodeSnippetOutput"),
+    id = id.from(_N, "BatchGetCodeSnippetResponse"),
     type = "structure",
     members = {
         codeSnippetResults = schema.new({
@@ -2637,7 +2637,7 @@ M.BatchGetCodeSnippetOutput = schema.new({
 })
 
 M.BatchGetFindingDetailsInput = schema.new({
-    id = id.from(_N, "BatchGetFindingDetailsInput"),
+    id = id.from(_N, "BatchGetFindingDetailsRequest"),
     type = "structure",
     members = {
         findingArns = schema.new({
@@ -2831,7 +2831,7 @@ M.FindingDetail = schema.new({
 })
 
 M.BatchGetFindingDetailsOutput = schema.new({
-    id = id.from(_N, "BatchGetFindingDetailsOutput"),
+    id = id.from(_N, "BatchGetFindingDetailsResponse"),
     type = "structure",
     members = {
         findingDetails = schema.new({
@@ -2852,7 +2852,7 @@ M.BatchGetFindingDetailsOutput = schema.new({
 })
 
 M.BatchGetFreeTrialInfoInput = schema.new({
-    id = id.from(_N, "BatchGetFreeTrialInfoInput"),
+    id = id.from(_N, "BatchGetFreeTrialInfoRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -2972,7 +2972,7 @@ M.FreeTrialInfoError = schema.new({
 })
 
 M.BatchGetFreeTrialInfoOutput = schema.new({
-    id = id.from(_N, "BatchGetFreeTrialInfoOutput"),
+    id = id.from(_N, "BatchGetFreeTrialInfoResponse"),
     type = "structure",
     members = {
         accounts = schema.new({
@@ -2999,7 +2999,7 @@ M.BatchGetFreeTrialInfoOutput = schema.new({
 })
 
 M.BatchGetMemberEc2DeepInspectionStatusInput = schema.new({
-    id = id.from(_N, "BatchGetMemberEc2DeepInspectionStatusInput"),
+    id = id.from(_N, "BatchGetMemberEc2DeepInspectionStatusRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -3069,7 +3069,7 @@ M.FailedMemberAccountEc2DeepInspectionStatusState = schema.new({
 })
 
 M.BatchGetMemberEc2DeepInspectionStatusOutput = schema.new({
-    id = id.from(_N, "BatchGetMemberEc2DeepInspectionStatusOutput"),
+    id = id.from(_N, "BatchGetMemberEc2DeepInspectionStatusResponse"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -3115,7 +3115,7 @@ M.MemberAccountEc2DeepInspectionStatus = schema.new({
 })
 
 M.BatchUpdateMemberEc2DeepInspectionStatusInput = schema.new({
-    id = id.from(_N, "BatchUpdateMemberEc2DeepInspectionStatusInput"),
+    id = id.from(_N, "BatchUpdateMemberEc2DeepInspectionStatusRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -3132,7 +3132,7 @@ M.BatchUpdateMemberEc2DeepInspectionStatusInput = schema.new({
 })
 
 M.BatchUpdateMemberEc2DeepInspectionStatusOutput = schema.new({
-    id = id.from(_N, "BatchUpdateMemberEc2DeepInspectionStatusOutput"),
+    id = id.from(_N, "BatchUpdateMemberEc2DeepInspectionStatusResponse"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -3153,7 +3153,7 @@ M.BatchUpdateMemberEc2DeepInspectionStatusOutput = schema.new({
 })
 
 M.CancelFindingsReportInput = schema.new({
-    id = id.from(_N, "CancelFindingsReportInput"),
+    id = id.from(_N, "CancelFindingsReportRequest"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -3169,7 +3169,7 @@ M.CancelFindingsReportInput = schema.new({
 })
 
 M.CancelFindingsReportOutput = schema.new({
-    id = id.from(_N, "CancelFindingsReportOutput"),
+    id = id.from(_N, "CancelFindingsReportResponse"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -3185,7 +3185,7 @@ M.CancelFindingsReportOutput = schema.new({
 })
 
 M.CancelSbomExportInput = schema.new({
-    id = id.from(_N, "CancelSbomExportInput"),
+    id = id.from(_N, "CancelSbomExportRequest"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -3201,7 +3201,7 @@ M.CancelSbomExportInput = schema.new({
 })
 
 M.CancelSbomExportOutput = schema.new({
-    id = id.from(_N, "CancelSbomExportOutput"),
+    id = id.from(_N, "CancelSbomExportResponse"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -3402,7 +3402,7 @@ M.CisTargets = schema.new({
             name = "targetResourceTags",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -4114,7 +4114,7 @@ M.CisTargetResourceAggregation = schema.new({
             name = "targetResourceTags",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         statusCounts = schema.new({
             id = id.from(_N, "CisTargetResourceAggregation", "statusCounts"),
@@ -5343,7 +5343,7 @@ M.CreateCisTargets = schema.new({
             name = "targetResourceTags",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5352,7 +5352,7 @@ M.CreateCisTargets = schema.new({
 })
 
 M.CreateCisScanConfigurationInput = schema.new({
-    id = id.from(_N, "CreateCisScanConfigurationInput"),
+    id = id.from(_N, "CreateCisScanConfigurationRequest"),
     type = "structure",
     members = {
         scanName = schema.new({
@@ -5405,7 +5405,7 @@ M.CreateCisScanConfigurationInput = schema.new({
 })
 
 M.CreateCisScanConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateCisScanConfigurationOutput"),
+    id = id.from(_N, "CreateCisScanConfigurationResponse"),
     type = "structure",
     members = {
         scanConfigurationArn = schema.new({
@@ -5457,7 +5457,7 @@ M.CreateIntegrationDetail = schema.new({
 })
 
 M.CreateCodeSecurityIntegrationInput = schema.new({
-    id = id.from(_N, "CreateCodeSecurityIntegrationInput"),
+    id = id.from(_N, "CreateCodeSecurityIntegrationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -5497,7 +5497,7 @@ M.CreateCodeSecurityIntegrationInput = schema.new({
 })
 
 M.CreateCodeSecurityIntegrationOutput = schema.new({
-    id = id.from(_N, "CreateCodeSecurityIntegrationOutput"),
+    id = id.from(_N, "CreateCodeSecurityIntegrationResponse"),
     type = "structure",
     members = {
         integrationArn = schema.new({
@@ -5528,7 +5528,7 @@ M.CreateCodeSecurityIntegrationOutput = schema.new({
 })
 
 M.CreateCodeSecurityScanConfigurationInput = schema.new({
-    id = id.from(_N, "CreateCodeSecurityScanConfigurationInput"),
+    id = id.from(_N, "CreateCodeSecurityScanConfigurationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -5578,7 +5578,7 @@ M.CreateCodeSecurityScanConfigurationInput = schema.new({
 })
 
 M.CreateCodeSecurityScanConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateCodeSecurityScanConfigurationOutput"),
+    id = id.from(_N, "CreateCodeSecurityScanConfigurationResponse"),
     type = "structure",
     members = {
         scanConfigurationArn = schema.new({
@@ -6005,7 +6005,7 @@ M.FilterCriteria = schema.new({
 })
 
 M.CreateFilterInput = schema.new({
-    id = id.from(_N, "CreateFilterInput"),
+    id = id.from(_N, "CreateFilterRequest"),
     type = "structure",
     members = {
         action = schema.new({
@@ -6060,7 +6060,7 @@ M.CreateFilterInput = schema.new({
 })
 
 M.CreateFilterOutput = schema.new({
-    id = id.from(_N, "CreateFilterOutput"),
+    id = id.from(_N, "CreateFilterResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -6107,7 +6107,7 @@ M.Destination = schema.new({
 })
 
 M.CreateFindingsReportInput = schema.new({
-    id = id.from(_N, "CreateFindingsReportInput"),
+    id = id.from(_N, "CreateFindingsReportRequest"),
     type = "structure",
     members = {
         filterCriteria = schema.new({
@@ -6140,7 +6140,7 @@ M.CreateFindingsReportInput = schema.new({
 })
 
 M.CreateFindingsReportOutput = schema.new({
-    id = id.from(_N, "CreateFindingsReportOutput"),
+    id = id.from(_N, "CreateFindingsReportResponse"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -6272,7 +6272,7 @@ M.ResourceFilterCriteria = schema.new({
 })
 
 M.CreateSbomExportInput = schema.new({
-    id = id.from(_N, "CreateSbomExportInput"),
+    id = id.from(_N, "CreateSbomExportRequest"),
     type = "structure",
     members = {
         resourceFilterCriteria = schema.new({
@@ -6305,7 +6305,7 @@ M.CreateSbomExportInput = schema.new({
 })
 
 M.CreateSbomExportOutput = schema.new({
-    id = id.from(_N, "CreateSbomExportOutput"),
+    id = id.from(_N, "CreateSbomExportResponse"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -6546,7 +6546,7 @@ M.DelegatedAdminAccount = schema.new({
 })
 
 M.DeleteCisScanConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteCisScanConfigurationInput"),
+    id = id.from(_N, "DeleteCisScanConfigurationRequest"),
     type = "structure",
     members = {
         scanConfigurationArn = schema.new({
@@ -6562,7 +6562,7 @@ M.DeleteCisScanConfigurationInput = schema.new({
 })
 
 M.DeleteCisScanConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteCisScanConfigurationOutput"),
+    id = id.from(_N, "DeleteCisScanConfigurationResponse"),
     type = "structure",
     members = {
         scanConfigurationArn = schema.new({
@@ -6578,7 +6578,7 @@ M.DeleteCisScanConfigurationOutput = schema.new({
 })
 
 M.DeleteCodeSecurityIntegrationInput = schema.new({
-    id = id.from(_N, "DeleteCodeSecurityIntegrationInput"),
+    id = id.from(_N, "DeleteCodeSecurityIntegrationRequest"),
     type = "structure",
     members = {
         integrationArn = schema.new({
@@ -6594,7 +6594,7 @@ M.DeleteCodeSecurityIntegrationInput = schema.new({
 })
 
 M.DeleteCodeSecurityIntegrationOutput = schema.new({
-    id = id.from(_N, "DeleteCodeSecurityIntegrationOutput"),
+    id = id.from(_N, "DeleteCodeSecurityIntegrationResponse"),
     type = "structure",
     members = {
         integrationArn = schema.new({
@@ -6607,7 +6607,7 @@ M.DeleteCodeSecurityIntegrationOutput = schema.new({
 })
 
 M.DeleteCodeSecurityScanConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteCodeSecurityScanConfigurationInput"),
+    id = id.from(_N, "DeleteCodeSecurityScanConfigurationRequest"),
     type = "structure",
     members = {
         scanConfigurationArn = schema.new({
@@ -6623,7 +6623,7 @@ M.DeleteCodeSecurityScanConfigurationInput = schema.new({
 })
 
 M.DeleteCodeSecurityScanConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteCodeSecurityScanConfigurationOutput"),
+    id = id.from(_N, "DeleteCodeSecurityScanConfigurationResponse"),
     type = "structure",
     members = {
         scanConfigurationArn = schema.new({
@@ -6636,7 +6636,7 @@ M.DeleteCodeSecurityScanConfigurationOutput = schema.new({
 })
 
 M.DeleteFilterInput = schema.new({
-    id = id.from(_N, "DeleteFilterInput"),
+    id = id.from(_N, "DeleteFilterRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -6652,7 +6652,7 @@ M.DeleteFilterInput = schema.new({
 })
 
 M.DeleteFilterOutput = schema.new({
-    id = id.from(_N, "DeleteFilterOutput"),
+    id = id.from(_N, "DeleteFilterResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -6668,12 +6668,12 @@ M.DeleteFilterOutput = schema.new({
 })
 
 M.DescribeOrganizationConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeOrganizationConfigurationInput"),
+    id = id.from(_N, "DescribeOrganizationConfigurationRequest"),
     type = "structure",
 })
 
 M.DescribeOrganizationConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeOrganizationConfigurationOutput"),
+    id = id.from(_N, "DescribeOrganizationConfigurationResponse"),
     type = "structure",
     members = {
         autoEnable = schema.new({
@@ -6693,7 +6693,7 @@ M.DescribeOrganizationConfigurationOutput = schema.new({
 })
 
 M.DisableInput = schema.new({
-    id = id.from(_N, "DisableInput"),
+    id = id.from(_N, "DisableRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -6714,7 +6714,7 @@ M.DisableInput = schema.new({
 })
 
 M.DisableOutput = schema.new({
-    id = id.from(_N, "DisableOutput"),
+    id = id.from(_N, "DisableResponse"),
     type = "structure",
     members = {
         accounts = schema.new({
@@ -6738,7 +6738,7 @@ M.DisableOutput = schema.new({
 })
 
 M.DisableDelegatedAdminAccountInput = schema.new({
-    id = id.from(_N, "DisableDelegatedAdminAccountInput"),
+    id = id.from(_N, "DisableDelegatedAdminAccountRequest"),
     type = "structure",
     members = {
         delegatedAdminAccountId = schema.new({
@@ -6754,7 +6754,7 @@ M.DisableDelegatedAdminAccountInput = schema.new({
 })
 
 M.DisableDelegatedAdminAccountOutput = schema.new({
-    id = id.from(_N, "DisableDelegatedAdminAccountOutput"),
+    id = id.from(_N, "DisableDelegatedAdminAccountResponse"),
     type = "structure",
     members = {
         delegatedAdminAccountId = schema.new({
@@ -6770,7 +6770,7 @@ M.DisableDelegatedAdminAccountOutput = schema.new({
 })
 
 M.DisassociateMemberInput = schema.new({
-    id = id.from(_N, "DisassociateMemberInput"),
+    id = id.from(_N, "DisassociateMemberRequest"),
     type = "structure",
     members = {
         accountId = schema.new({
@@ -6786,7 +6786,7 @@ M.DisassociateMemberInput = schema.new({
 })
 
 M.DisassociateMemberOutput = schema.new({
-    id = id.from(_N, "DisassociateMemberOutput"),
+    id = id.from(_N, "DisassociateMemberResponse"),
     type = "structure",
     members = {
         accountId = schema.new({
@@ -6930,7 +6930,7 @@ M.EcrConfigurationState = schema.new({
 })
 
 M.EnableInput = schema.new({
-    id = id.from(_N, "EnableInput"),
+    id = id.from(_N, "EnableRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -6963,7 +6963,7 @@ M.EnableInput = schema.new({
 })
 
 M.EnableOutput = schema.new({
-    id = id.from(_N, "EnableOutput"),
+    id = id.from(_N, "EnableResponse"),
     type = "structure",
     members = {
         accounts = schema.new({
@@ -6987,7 +6987,7 @@ M.EnableOutput = schema.new({
 })
 
 M.EnableDelegatedAdminAccountInput = schema.new({
-    id = id.from(_N, "EnableDelegatedAdminAccountInput"),
+    id = id.from(_N, "EnableDelegatedAdminAccountRequest"),
     type = "structure",
     members = {
         delegatedAdminAccountId = schema.new({
@@ -7012,7 +7012,7 @@ M.EnableDelegatedAdminAccountInput = schema.new({
 })
 
 M.EnableDelegatedAdminAccountOutput = schema.new({
-    id = id.from(_N, "EnableDelegatedAdminAccountOutput"),
+    id = id.from(_N, "EnableDelegatedAdminAccountResponse"),
     type = "structure",
     members = {
         delegatedAdminAccountId = schema.new({
@@ -7734,7 +7734,7 @@ M.Finding = schema.new({
 })
 
 M.GetCisScanReportInput = schema.new({
-    id = id.from(_N, "GetCisScanReportInput"),
+    id = id.from(_N, "GetCisScanReportRequest"),
     type = "structure",
     members = {
         scanArn = schema.new({
@@ -7766,7 +7766,7 @@ M.GetCisScanReportInput = schema.new({
 })
 
 M.GetCisScanReportOutput = schema.new({
-    id = id.from(_N, "GetCisScanReportOutput"),
+    id = id.from(_N, "GetCisScanReportResponse"),
     type = "structure",
     members = {
         url = schema.new({
@@ -7785,7 +7785,7 @@ M.GetCisScanReportOutput = schema.new({
 })
 
 M.GetCisScanResultDetailsInput = schema.new({
-    id = id.from(_N, "GetCisScanResultDetailsInput"),
+    id = id.from(_N, "GetCisScanResultDetailsRequest"),
     type = "structure",
     members = {
         scanArn = schema.new({
@@ -7856,7 +7856,7 @@ M.GetCisScanResultDetailsInput = schema.new({
 })
 
 M.GetCisScanResultDetailsOutput = schema.new({
-    id = id.from(_N, "GetCisScanResultDetailsOutput"),
+    id = id.from(_N, "GetCisScanResultDetailsResponse"),
     type = "structure",
     members = {
         scanResultDetails = schema.new({
@@ -7876,7 +7876,7 @@ M.GetCisScanResultDetailsOutput = schema.new({
 })
 
 M.GetClustersForImageInput = schema.new({
-    id = id.from(_N, "GetClustersForImageInput"),
+    id = id.from(_N, "GetClustersForImageRequest"),
     type = "structure",
     members = {
         filter = schema.new({
@@ -7905,7 +7905,7 @@ M.GetClustersForImageInput = schema.new({
 })
 
 M.GetClustersForImageOutput = schema.new({
-    id = id.from(_N, "GetClustersForImageOutput"),
+    id = id.from(_N, "GetClustersForImageResponse"),
     type = "structure",
     members = {
         cluster = schema.new({
@@ -7928,7 +7928,7 @@ M.GetClustersForImageOutput = schema.new({
 })
 
 M.GetCodeSecurityIntegrationInput = schema.new({
-    id = id.from(_N, "GetCodeSecurityIntegrationInput"),
+    id = id.from(_N, "GetCodeSecurityIntegrationRequest"),
     type = "structure",
     members = {
         integrationArn = schema.new({
@@ -7952,7 +7952,7 @@ M.GetCodeSecurityIntegrationInput = schema.new({
 })
 
 M.GetCodeSecurityIntegrationOutput = schema.new({
-    id = id.from(_N, "GetCodeSecurityIntegrationOutput"),
+    id = id.from(_N, "GetCodeSecurityIntegrationResponse"),
     type = "structure",
     members = {
         integrationArn = schema.new({
@@ -8036,7 +8036,7 @@ M.GetCodeSecurityIntegrationOutput = schema.new({
 })
 
 M.GetCodeSecurityScanInput = schema.new({
-    id = id.from(_N, "GetCodeSecurityScanInput"),
+    id = id.from(_N, "GetCodeSecurityScanRequest"),
     type = "structure",
     members = {
         resource = schema.new({
@@ -8062,7 +8062,7 @@ M.GetCodeSecurityScanInput = schema.new({
 })
 
 M.GetCodeSecurityScanOutput = schema.new({
-    id = id.from(_N, "GetCodeSecurityScanOutput"),
+    id = id.from(_N, "GetCodeSecurityScanResponse"),
     type = "structure",
     members = {
         scanId = schema.new({
@@ -8118,7 +8118,7 @@ M.GetCodeSecurityScanOutput = schema.new({
 })
 
 M.GetCodeSecurityScanConfigurationInput = schema.new({
-    id = id.from(_N, "GetCodeSecurityScanConfigurationInput"),
+    id = id.from(_N, "GetCodeSecurityScanConfigurationRequest"),
     type = "structure",
     members = {
         scanConfigurationArn = schema.new({
@@ -8134,7 +8134,7 @@ M.GetCodeSecurityScanConfigurationInput = schema.new({
 })
 
 M.GetCodeSecurityScanConfigurationOutput = schema.new({
-    id = id.from(_N, "GetCodeSecurityScanConfigurationOutput"),
+    id = id.from(_N, "GetCodeSecurityScanConfigurationResponse"),
     type = "structure",
     members = {
         scanConfigurationArn = schema.new({
@@ -8193,12 +8193,12 @@ M.GetCodeSecurityScanConfigurationOutput = schema.new({
 })
 
 M.GetConfigurationInput = schema.new({
-    id = id.from(_N, "GetConfigurationInput"),
+    id = id.from(_N, "GetConfigurationRequest"),
     type = "structure",
 })
 
 M.GetConfigurationOutput = schema.new({
-    id = id.from(_N, "GetConfigurationOutput"),
+    id = id.from(_N, "GetConfigurationResponse"),
     type = "structure",
     members = {
         ecrConfiguration = schema.new({
@@ -8219,12 +8219,12 @@ M.GetConfigurationOutput = schema.new({
 })
 
 M.GetDelegatedAdminAccountInput = schema.new({
-    id = id.from(_N, "GetDelegatedAdminAccountInput"),
+    id = id.from(_N, "GetDelegatedAdminAccountRequest"),
     type = "structure",
 })
 
 M.GetDelegatedAdminAccountOutput = schema.new({
-    id = id.from(_N, "GetDelegatedAdminAccountOutput"),
+    id = id.from(_N, "GetDelegatedAdminAccountResponse"),
     type = "structure",
     members = {
         delegatedAdmin = schema.new({
@@ -8238,12 +8238,12 @@ M.GetDelegatedAdminAccountOutput = schema.new({
 })
 
 M.GetEc2DeepInspectionConfigurationInput = schema.new({
-    id = id.from(_N, "GetEc2DeepInspectionConfigurationInput"),
+    id = id.from(_N, "GetEc2DeepInspectionConfigurationRequest"),
     type = "structure",
 })
 
 M.GetEc2DeepInspectionConfigurationOutput = schema.new({
-    id = id.from(_N, "GetEc2DeepInspectionConfigurationOutput"),
+    id = id.from(_N, "GetEc2DeepInspectionConfigurationResponse"),
     type = "structure",
     members = {
         packagePaths = schema.new({
@@ -8276,7 +8276,7 @@ M.GetEc2DeepInspectionConfigurationOutput = schema.new({
 })
 
 M.GetEncryptionKeyInput = schema.new({
-    id = id.from(_N, "GetEncryptionKeyInput"),
+    id = id.from(_N, "GetEncryptionKeyRequest"),
     type = "structure",
     members = {
         scanType = schema.new({
@@ -8303,7 +8303,7 @@ M.GetEncryptionKeyInput = schema.new({
 })
 
 M.GetEncryptionKeyOutput = schema.new({
-    id = id.from(_N, "GetEncryptionKeyOutput"),
+    id = id.from(_N, "GetEncryptionKeyResponse"),
     type = "structure",
     members = {
         kmsKeyId = schema.new({
@@ -8319,7 +8319,7 @@ M.GetEncryptionKeyOutput = schema.new({
 })
 
 M.GetFindingsReportStatusInput = schema.new({
-    id = id.from(_N, "GetFindingsReportStatusInput"),
+    id = id.from(_N, "GetFindingsReportStatusRequest"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -8332,7 +8332,7 @@ M.GetFindingsReportStatusInput = schema.new({
 })
 
 M.GetFindingsReportStatusOutput = schema.new({
-    id = id.from(_N, "GetFindingsReportStatusOutput"),
+    id = id.from(_N, "GetFindingsReportStatusResponse"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -8377,7 +8377,7 @@ M.GetFindingsReportStatusOutput = schema.new({
 })
 
 M.GetMemberInput = schema.new({
-    id = id.from(_N, "GetMemberInput"),
+    id = id.from(_N, "GetMemberRequest"),
     type = "structure",
     members = {
         accountId = schema.new({
@@ -8424,7 +8424,7 @@ M.Member = schema.new({
 })
 
 M.GetMemberOutput = schema.new({
-    id = id.from(_N, "GetMemberOutput"),
+    id = id.from(_N, "GetMemberResponse"),
     type = "structure",
     members = {
         member = schema.new({
@@ -8438,7 +8438,7 @@ M.GetMemberOutput = schema.new({
 })
 
 M.GetSbomExportInput = schema.new({
-    id = id.from(_N, "GetSbomExportInput"),
+    id = id.from(_N, "GetSbomExportRequest"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -8454,7 +8454,7 @@ M.GetSbomExportInput = schema.new({
 })
 
 M.GetSbomExportOutput = schema.new({
-    id = id.from(_N, "GetSbomExportOutput"),
+    id = id.from(_N, "GetSbomExportResponse"),
     type = "structure",
     members = {
         reportId = schema.new({
@@ -8505,7 +8505,7 @@ M.GetSbomExportOutput = schema.new({
 })
 
 M.ListAccountPermissionsInput = schema.new({
-    id = id.from(_N, "ListAccountPermissionsInput"),
+    id = id.from(_N, "ListAccountPermissionsRequest"),
     type = "structure",
     members = {
         service = schema.new({
@@ -8555,7 +8555,7 @@ M.Permission = schema.new({
 })
 
 M.ListAccountPermissionsOutput = schema.new({
-    id = id.from(_N, "ListAccountPermissionsOutput"),
+    id = id.from(_N, "ListAccountPermissionsResponse"),
     type = "structure",
     members = {
         permissions = schema.new({
@@ -8606,7 +8606,7 @@ M.ListCisScanConfigurationsFilterCriteria = schema.new({
 })
 
 M.ListCisScanConfigurationsInput = schema.new({
-    id = id.from(_N, "ListCisScanConfigurationsInput"),
+    id = id.from(_N, "ListCisScanConfigurationsRequest"),
     type = "structure",
     members = {
         filterCriteria = schema.new({
@@ -8650,7 +8650,7 @@ M.ListCisScanConfigurationsInput = schema.new({
 })
 
 M.ListCisScanConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListCisScanConfigurationsOutput"),
+    id = id.from(_N, "ListCisScanConfigurationsResponse"),
     type = "structure",
     members = {
         scanConfigurations = schema.new({
@@ -8670,7 +8670,7 @@ M.ListCisScanConfigurationsOutput = schema.new({
 })
 
 M.ListCisScanResultsAggregatedByChecksInput = schema.new({
-    id = id.from(_N, "ListCisScanResultsAggregatedByChecksInput"),
+    id = id.from(_N, "ListCisScanResultsAggregatedByChecksRequest"),
     type = "structure",
     members = {
         scanArn = schema.new({
@@ -8723,7 +8723,7 @@ M.ListCisScanResultsAggregatedByChecksInput = schema.new({
 })
 
 M.ListCisScanResultsAggregatedByChecksOutput = schema.new({
-    id = id.from(_N, "ListCisScanResultsAggregatedByChecksOutput"),
+    id = id.from(_N, "ListCisScanResultsAggregatedByChecksResponse"),
     type = "structure",
     members = {
         checkAggregations = schema.new({
@@ -8743,7 +8743,7 @@ M.ListCisScanResultsAggregatedByChecksOutput = schema.new({
 })
 
 M.ListCisScanResultsAggregatedByTargetResourceInput = schema.new({
-    id = id.from(_N, "ListCisScanResultsAggregatedByTargetResourceInput"),
+    id = id.from(_N, "ListCisScanResultsAggregatedByTargetResourceRequest"),
     type = "structure",
     members = {
         scanArn = schema.new({
@@ -8796,7 +8796,7 @@ M.ListCisScanResultsAggregatedByTargetResourceInput = schema.new({
 })
 
 M.ListCisScanResultsAggregatedByTargetResourceOutput = schema.new({
-    id = id.from(_N, "ListCisScanResultsAggregatedByTargetResourceOutput"),
+    id = id.from(_N, "ListCisScanResultsAggregatedByTargetResourceResponse"),
     type = "structure",
     members = {
         targetResourceAggregations = schema.new({
@@ -8893,7 +8893,7 @@ M.ListCisScansFilterCriteria = schema.new({
 })
 
 M.ListCisScansInput = schema.new({
-    id = id.from(_N, "ListCisScansInput"),
+    id = id.from(_N, "ListCisScansRequest"),
     type = "structure",
     members = {
         filterCriteria = schema.new({
@@ -8943,7 +8943,7 @@ M.ListCisScansInput = schema.new({
 })
 
 M.ListCisScansOutput = schema.new({
-    id = id.from(_N, "ListCisScansOutput"),
+    id = id.from(_N, "ListCisScansResponse"),
     type = "structure",
     members = {
         scans = schema.new({
@@ -8963,7 +8963,7 @@ M.ListCisScansOutput = schema.new({
 })
 
 M.ListCodeSecurityIntegrationsInput = schema.new({
-    id = id.from(_N, "ListCodeSecurityIntegrationsInput"),
+    id = id.from(_N, "ListCodeSecurityIntegrationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -8988,7 +8988,7 @@ M.ListCodeSecurityIntegrationsInput = schema.new({
 })
 
 M.ListCodeSecurityIntegrationsOutput = schema.new({
-    id = id.from(_N, "ListCodeSecurityIntegrationsOutput"),
+    id = id.from(_N, "ListCodeSecurityIntegrationsResponse"),
     type = "structure",
     members = {
         integrations = schema.new({
@@ -9008,7 +9008,7 @@ M.ListCodeSecurityIntegrationsOutput = schema.new({
 })
 
 M.ListCodeSecurityScanConfigurationAssociationsInput = schema.new({
-    id = id.from(_N, "ListCodeSecurityScanConfigurationAssociationsInput"),
+    id = id.from(_N, "ListCodeSecurityScanConfigurationAssociationsRequest"),
     type = "structure",
     members = {
         scanConfigurationArn = schema.new({
@@ -9042,7 +9042,7 @@ M.ListCodeSecurityScanConfigurationAssociationsInput = schema.new({
 })
 
 M.ListCodeSecurityScanConfigurationAssociationsOutput = schema.new({
-    id = id.from(_N, "ListCodeSecurityScanConfigurationAssociationsOutput"),
+    id = id.from(_N, "ListCodeSecurityScanConfigurationAssociationsResponse"),
     type = "structure",
     members = {
         associations = schema.new({
@@ -9062,7 +9062,7 @@ M.ListCodeSecurityScanConfigurationAssociationsOutput = schema.new({
 })
 
 M.ListCodeSecurityScanConfigurationsInput = schema.new({
-    id = id.from(_N, "ListCodeSecurityScanConfigurationsInput"),
+    id = id.from(_N, "ListCodeSecurityScanConfigurationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -9087,7 +9087,7 @@ M.ListCodeSecurityScanConfigurationsInput = schema.new({
 })
 
 M.ListCodeSecurityScanConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListCodeSecurityScanConfigurationsOutput"),
+    id = id.from(_N, "ListCodeSecurityScanConfigurationsResponse"),
     type = "structure",
     members = {
         configurations = schema.new({
@@ -9107,7 +9107,7 @@ M.ListCodeSecurityScanConfigurationsOutput = schema.new({
 })
 
 M.ListCoverageInput = schema.new({
-    id = id.from(_N, "ListCoverageInput"),
+    id = id.from(_N, "ListCoverageRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -9133,7 +9133,7 @@ M.ListCoverageInput = schema.new({
 })
 
 M.ListCoverageOutput = schema.new({
-    id = id.from(_N, "ListCoverageOutput"),
+    id = id.from(_N, "ListCoverageResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -9153,7 +9153,7 @@ M.ListCoverageOutput = schema.new({
 })
 
 M.ListCoverageStatisticsInput = schema.new({
-    id = id.from(_N, "ListCoverageStatisticsInput"),
+    id = id.from(_N, "ListCoverageStatisticsRequest"),
     type = "structure",
     members = {
         filterCriteria = schema.new({
@@ -9179,7 +9179,7 @@ M.ListCoverageStatisticsInput = schema.new({
 })
 
 M.ListCoverageStatisticsOutput = schema.new({
-    id = id.from(_N, "ListCoverageStatisticsOutput"),
+    id = id.from(_N, "ListCoverageStatisticsResponse"),
     type = "structure",
     members = {
         countsByGroup = schema.new({
@@ -9208,7 +9208,7 @@ M.ListCoverageStatisticsOutput = schema.new({
 })
 
 M.ListDelegatedAdminAccountsInput = schema.new({
-    id = id.from(_N, "ListDelegatedAdminAccountsInput"),
+    id = id.from(_N, "ListDelegatedAdminAccountsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -9227,7 +9227,7 @@ M.ListDelegatedAdminAccountsInput = schema.new({
 })
 
 M.ListDelegatedAdminAccountsOutput = schema.new({
-    id = id.from(_N, "ListDelegatedAdminAccountsOutput"),
+    id = id.from(_N, "ListDelegatedAdminAccountsResponse"),
     type = "structure",
     members = {
         delegatedAdminAccounts = schema.new({
@@ -9247,7 +9247,7 @@ M.ListDelegatedAdminAccountsOutput = schema.new({
 })
 
 M.ListFiltersInput = schema.new({
-    id = id.from(_N, "ListFiltersInput"),
+    id = id.from(_N, "ListFiltersRequest"),
     type = "structure",
     members = {
         arns = schema.new({
@@ -9279,7 +9279,7 @@ M.ListFiltersInput = schema.new({
 })
 
 M.ListFiltersOutput = schema.new({
-    id = id.from(_N, "ListFiltersOutput"),
+    id = id.from(_N, "ListFiltersResponse"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -9302,7 +9302,7 @@ M.ListFiltersOutput = schema.new({
 })
 
 M.ListFindingAggregationsInput = schema.new({
-    id = id.from(_N, "ListFindingAggregationsInput"),
+    id = id.from(_N, "ListFindingAggregationsRequest"),
     type = "structure",
     members = {
         aggregationType = schema.new({
@@ -9344,7 +9344,7 @@ M.ListFindingAggregationsInput = schema.new({
 })
 
 M.ListFindingAggregationsOutput = schema.new({
-    id = id.from(_N, "ListFindingAggregationsOutput"),
+    id = id.from(_N, "ListFindingAggregationsResponse"),
     type = "structure",
     members = {
         aggregationType = schema.new({
@@ -9398,7 +9398,7 @@ M.SortCriteria = schema.new({
 })
 
 M.ListFindingsInput = schema.new({
-    id = id.from(_N, "ListFindingsInput"),
+    id = id.from(_N, "ListFindingsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -9431,7 +9431,7 @@ M.ListFindingsInput = schema.new({
 })
 
 M.ListFindingsOutput = schema.new({
-    id = id.from(_N, "ListFindingsOutput"),
+    id = id.from(_N, "ListFindingsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -9451,7 +9451,7 @@ M.ListFindingsOutput = schema.new({
 })
 
 M.ListMembersInput = schema.new({
-    id = id.from(_N, "ListMembersInput"),
+    id = id.from(_N, "ListMembersRequest"),
     type = "structure",
     members = {
         onlyAssociated = schema.new({
@@ -9476,7 +9476,7 @@ M.ListMembersInput = schema.new({
 })
 
 M.ListMembersOutput = schema.new({
-    id = id.from(_N, "ListMembersOutput"),
+    id = id.from(_N, "ListMembersResponse"),
     type = "structure",
     members = {
         members = schema.new({
@@ -9496,7 +9496,7 @@ M.ListMembersOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -9513,7 +9513,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -9528,7 +9528,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListUsageTotalsInput = schema.new({
-    id = id.from(_N, "ListUsageTotalsInput"),
+    id = id.from(_N, "ListUsageTotalsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -9611,7 +9611,7 @@ M.UsageTotal = schema.new({
 })
 
 M.ListUsageTotalsOutput = schema.new({
-    id = id.from(_N, "ListUsageTotalsOutput"),
+    id = id.from(_N, "ListUsageTotalsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -9631,7 +9631,7 @@ M.ListUsageTotalsOutput = schema.new({
 })
 
 M.ResetEncryptionKeyInput = schema.new({
-    id = id.from(_N, "ResetEncryptionKeyInput"),
+    id = id.from(_N, "ResetEncryptionKeyRequest"),
     type = "structure",
     members = {
         scanType = schema.new({
@@ -9656,7 +9656,7 @@ M.ResetEncryptionKeyInput = schema.new({
 })
 
 M.ResetEncryptionKeyOutput = schema.new({
-    id = id.from(_N, "ResetEncryptionKeyOutput"),
+    id = id.from(_N, "ResetEncryptionKeyResponse"),
     type = "structure",
 })
 
@@ -9678,7 +9678,7 @@ M.SearchVulnerabilitiesFilterCriteria = schema.new({
 })
 
 M.SearchVulnerabilitiesInput = schema.new({
-    id = id.from(_N, "SearchVulnerabilitiesInput"),
+    id = id.from(_N, "SearchVulnerabilitiesRequest"),
     type = "structure",
     members = {
         filterCriteria = schema.new({
@@ -9830,7 +9830,7 @@ M.Vulnerability = schema.new({
 })
 
 M.SearchVulnerabilitiesOutput = schema.new({
-    id = id.from(_N, "SearchVulnerabilitiesOutput"),
+    id = id.from(_N, "SearchVulnerabilitiesResponse"),
     type = "structure",
     members = {
         vulnerabilities = schema.new({
@@ -9853,7 +9853,7 @@ M.SearchVulnerabilitiesOutput = schema.new({
 })
 
 M.SendCisSessionHealthInput = schema.new({
-    id = id.from(_N, "SendCisSessionHealthInput"),
+    id = id.from(_N, "SendCisSessionHealthRequest"),
     type = "structure",
     members = {
         scanJobId = schema.new({
@@ -9878,12 +9878,12 @@ M.SendCisSessionHealthInput = schema.new({
 })
 
 M.SendCisSessionHealthOutput = schema.new({
-    id = id.from(_N, "SendCisSessionHealthOutput"),
+    id = id.from(_N, "SendCisSessionHealthResponse"),
     type = "structure",
 })
 
 M.SendCisSessionTelemetryInput = schema.new({
-    id = id.from(_N, "SendCisSessionTelemetryInput"),
+    id = id.from(_N, "SendCisSessionTelemetryRequest"),
     type = "structure",
     members = {
         scanJobId = schema.new({
@@ -9918,7 +9918,7 @@ M.SendCisSessionTelemetryInput = schema.new({
 })
 
 M.SendCisSessionTelemetryOutput = schema.new({
-    id = id.from(_N, "SendCisSessionTelemetryOutput"),
+    id = id.from(_N, "SendCisSessionTelemetryResponse"),
     type = "structure",
 })
 
@@ -9939,7 +9939,7 @@ M.StartCisSessionMessage = schema.new({
 })
 
 M.StartCisSessionInput = schema.new({
-    id = id.from(_N, "StartCisSessionInput"),
+    id = id.from(_N, "StartCisSessionRequest"),
     type = "structure",
     members = {
         scanJobId = schema.new({
@@ -9965,12 +9965,12 @@ M.StartCisSessionInput = schema.new({
 })
 
 M.StartCisSessionOutput = schema.new({
-    id = id.from(_N, "StartCisSessionOutput"),
+    id = id.from(_N, "StartCisSessionResponse"),
     type = "structure",
 })
 
 M.StartCodeSecurityScanInput = schema.new({
-    id = id.from(_N, "StartCodeSecurityScanInput"),
+    id = id.from(_N, "StartCodeSecurityScanRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -9996,7 +9996,7 @@ M.StartCodeSecurityScanInput = schema.new({
 })
 
 M.StartCodeSecurityScanOutput = schema.new({
-    id = id.from(_N, "StartCodeSecurityScanOutput"),
+    id = id.from(_N, "StartCodeSecurityScanResponse"),
     type = "structure",
     members = {
         scanId = schema.new({
@@ -10145,7 +10145,7 @@ M.StopCisSessionMessage = schema.new({
 })
 
 M.StopCisSessionInput = schema.new({
-    id = id.from(_N, "StopCisSessionInput"),
+    id = id.from(_N, "StopCisSessionRequest"),
     type = "structure",
     members = {
         scanJobId = schema.new({
@@ -10180,12 +10180,12 @@ M.StopCisSessionInput = schema.new({
 })
 
 M.StopCisSessionOutput = schema.new({
-    id = id.from(_N, "StopCisSessionOutput"),
+    id = id.from(_N, "StopCisSessionResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -10213,12 +10213,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -10246,7 +10246,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -10267,13 +10267,13 @@ M.UpdateCisTargets = schema.new({
             name = "targetResourceTags",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
 
 M.UpdateCisScanConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateCisScanConfigurationInput"),
+    id = id.from(_N, "UpdateCisScanConfigurationRequest"),
     type = "structure",
     members = {
         scanConfigurationArn = schema.new({
@@ -10315,7 +10315,7 @@ M.UpdateCisScanConfigurationInput = schema.new({
 })
 
 M.UpdateCisScanConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateCisScanConfigurationOutput"),
+    id = id.from(_N, "UpdateCisScanConfigurationResponse"),
     type = "structure",
     members = {
         scanConfigurationArn = schema.new({
@@ -10393,7 +10393,7 @@ M.UpdateIntegrationDetails = schema.new({
 })
 
 M.UpdateCodeSecurityIntegrationInput = schema.new({
-    id = id.from(_N, "UpdateCodeSecurityIntegrationInput"),
+    id = id.from(_N, "UpdateCodeSecurityIntegrationRequest"),
     type = "structure",
     members = {
         integrationArn = schema.new({
@@ -10419,7 +10419,7 @@ M.UpdateCodeSecurityIntegrationInput = schema.new({
 })
 
 M.UpdateCodeSecurityIntegrationOutput = schema.new({
-    id = id.from(_N, "UpdateCodeSecurityIntegrationOutput"),
+    id = id.from(_N, "UpdateCodeSecurityIntegrationResponse"),
     type = "structure",
     members = {
         integrationArn = schema.new({
@@ -10444,7 +10444,7 @@ M.UpdateCodeSecurityIntegrationOutput = schema.new({
 })
 
 M.UpdateCodeSecurityScanConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateCodeSecurityScanConfigurationInput"),
+    id = id.from(_N, "UpdateCodeSecurityScanConfigurationRequest"),
     type = "structure",
     members = {
         scanConfigurationArn = schema.new({
@@ -10470,7 +10470,7 @@ M.UpdateCodeSecurityScanConfigurationInput = schema.new({
 })
 
 M.UpdateCodeSecurityScanConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateCodeSecurityScanConfigurationOutput"),
+    id = id.from(_N, "UpdateCodeSecurityScanConfigurationResponse"),
     type = "structure",
     members = {
         scanConfigurationArn = schema.new({
@@ -10483,7 +10483,7 @@ M.UpdateCodeSecurityScanConfigurationOutput = schema.new({
 })
 
 M.UpdateConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateConfigurationInput"),
+    id = id.from(_N, "UpdateConfigurationRequest"),
     type = "structure",
     members = {
         ecrConfiguration = schema.new({
@@ -10504,12 +10504,12 @@ M.UpdateConfigurationInput = schema.new({
 })
 
 M.UpdateConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateConfigurationOutput"),
+    id = id.from(_N, "UpdateConfigurationResponse"),
     type = "structure",
 })
 
 M.UpdateEc2DeepInspectionConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateEc2DeepInspectionConfigurationInput"),
+    id = id.from(_N, "UpdateEc2DeepInspectionConfigurationRequest"),
     type = "structure",
     members = {
         activateDeepInspection = schema.new({
@@ -10529,7 +10529,7 @@ M.UpdateEc2DeepInspectionConfigurationInput = schema.new({
 })
 
 M.UpdateEc2DeepInspectionConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateEc2DeepInspectionConfigurationOutput"),
+    id = id.from(_N, "UpdateEc2DeepInspectionConfigurationResponse"),
     type = "structure",
     members = {
         packagePaths = schema.new({
@@ -10562,7 +10562,7 @@ M.UpdateEc2DeepInspectionConfigurationOutput = schema.new({
 })
 
 M.UpdateEncryptionKeyInput = schema.new({
-    id = id.from(_N, "UpdateEncryptionKeyInput"),
+    id = id.from(_N, "UpdateEncryptionKeyRequest"),
     type = "structure",
     members = {
         kmsKeyId = schema.new({
@@ -10596,12 +10596,12 @@ M.UpdateEncryptionKeyInput = schema.new({
 })
 
 M.UpdateEncryptionKeyOutput = schema.new({
-    id = id.from(_N, "UpdateEncryptionKeyOutput"),
+    id = id.from(_N, "UpdateEncryptionKeyResponse"),
     type = "structure",
 })
 
 M.UpdateFilterInput = schema.new({
-    id = id.from(_N, "UpdateFilterInput"),
+    id = id.from(_N, "UpdateFilterRequest"),
     type = "structure",
     members = {
         action = schema.new({
@@ -10648,7 +10648,7 @@ M.UpdateFilterInput = schema.new({
 })
 
 M.UpdateFilterOutput = schema.new({
-    id = id.from(_N, "UpdateFilterOutput"),
+    id = id.from(_N, "UpdateFilterResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -10664,7 +10664,7 @@ M.UpdateFilterOutput = schema.new({
 })
 
 M.UpdateOrganizationConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateOrganizationConfigurationInput"),
+    id = id.from(_N, "UpdateOrganizationConfigurationRequest"),
     type = "structure",
     members = {
         autoEnable = schema.new({
@@ -10681,7 +10681,7 @@ M.UpdateOrganizationConfigurationInput = schema.new({
 })
 
 M.UpdateOrganizationConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateOrganizationConfigurationOutput"),
+    id = id.from(_N, "UpdateOrganizationConfigurationResponse"),
     type = "structure",
     members = {
         autoEnable = schema.new({
@@ -10698,7 +10698,7 @@ M.UpdateOrganizationConfigurationOutput = schema.new({
 })
 
 M.UpdateOrgEc2DeepInspectionConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateOrgEc2DeepInspectionConfigurationInput"),
+    id = id.from(_N, "UpdateOrgEc2DeepInspectionConfigurationRequest"),
     type = "structure",
     members = {
         orgPackagePaths = schema.new({
@@ -10715,8 +10715,22 @@ M.UpdateOrgEc2DeepInspectionConfigurationInput = schema.new({
 })
 
 M.UpdateOrgEc2DeepInspectionConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateOrgEc2DeepInspectionConfigurationOutput"),
+    id = id.from(_N, "UpdateOrgEc2DeepInspectionConfigurationResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

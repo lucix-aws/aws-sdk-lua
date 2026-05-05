@@ -14232,7 +14232,7 @@ M.Queue = schema.new({
 })
 
 M.AssociateCertificateInput = schema.new({
-    id = id.from(_N, "AssociateCertificateInput"),
+    id = id.from(_N, "AssociateCertificateRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -14249,7 +14249,7 @@ M.AssociateCertificateInput = schema.new({
 })
 
 M.AssociateCertificateOutput = schema.new({
-    id = id.from(_N, "AssociateCertificateOutput"),
+    id = id.from(_N, "AssociateCertificateResponse"),
     type = "structure",
 })
 
@@ -14387,7 +14387,7 @@ M.TooManyRequestsException = schema.new({
 })
 
 M.CancelJobInput = schema.new({
-    id = id.from(_N, "CancelJobInput"),
+    id = id.from(_N, "CancelJobRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -14404,12 +14404,12 @@ M.CancelJobInput = schema.new({
 })
 
 M.CancelJobOutput = schema.new({
-    id = id.from(_N, "CancelJobOutput"),
+    id = id.from(_N, "CancelJobResponse"),
     type = "structure",
 })
 
 M.CreateJobInput = schema.new({
-    id = id.from(_N, "CreateJobInput"),
+    id = id.from(_N, "CreateJobRequest"),
     type = "structure",
     members = {
         AccelerationSettings = schema.new({
@@ -14552,7 +14552,7 @@ M.CreateJobInput = schema.new({
 })
 
 M.CreateJobOutput = schema.new({
-    id = id.from(_N, "CreateJobOutput"),
+    id = id.from(_N, "CreateJobResponse"),
     type = "structure",
     members = {
         Job = schema.new({
@@ -14569,7 +14569,7 @@ M.CreateJobOutput = schema.new({
 })
 
 M.CreateJobTemplateInput = schema.new({
-    id = id.from(_N, "CreateJobTemplateInput"),
+    id = id.from(_N, "CreateJobTemplateRequest"),
     type = "structure",
     members = {
         AccelerationSettings = schema.new({
@@ -14673,7 +14673,7 @@ M.CreateJobTemplateInput = schema.new({
 })
 
 M.CreateJobTemplateOutput = schema.new({
-    id = id.from(_N, "CreateJobTemplateOutput"),
+    id = id.from(_N, "CreateJobTemplateResponse"),
     type = "structure",
     members = {
         JobTemplate = schema.new({
@@ -14690,7 +14690,7 @@ M.CreateJobTemplateOutput = schema.new({
 })
 
 M.CreatePresetInput = schema.new({
-    id = id.from(_N, "CreatePresetInput"),
+    id = id.from(_N, "CreatePresetRequest"),
     type = "structure",
     members = {
         Category = schema.new({
@@ -14747,7 +14747,7 @@ M.CreatePresetInput = schema.new({
 })
 
 M.CreatePresetOutput = schema.new({
-    id = id.from(_N, "CreatePresetOutput"),
+    id = id.from(_N, "CreatePresetResponse"),
     type = "structure",
     members = {
         Preset = schema.new({
@@ -14801,7 +14801,7 @@ M.ReservationPlanSettings = schema.new({
 })
 
 M.CreateQueueInput = schema.new({
-    id = id.from(_N, "CreateQueueInput"),
+    id = id.from(_N, "CreateQueueRequest"),
     type = "structure",
     members = {
         ConcurrentJobs = schema.new({
@@ -14884,7 +14884,7 @@ M.CreateQueueInput = schema.new({
 })
 
 M.CreateQueueOutput = schema.new({
-    id = id.from(_N, "CreateQueueOutput"),
+    id = id.from(_N, "CreateQueueResponse"),
     type = "structure",
     members = {
         Queue = schema.new({
@@ -14901,7 +14901,7 @@ M.CreateQueueOutput = schema.new({
 })
 
 M.CreateResourceShareInput = schema.new({
-    id = id.from(_N, "CreateResourceShareInput"),
+    id = id.from(_N, "CreateResourceShareRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -14928,12 +14928,12 @@ M.CreateResourceShareInput = schema.new({
 })
 
 M.CreateResourceShareOutput = schema.new({
-    id = id.from(_N, "CreateResourceShareOutput"),
+    id = id.from(_N, "CreateResourceShareResponse"),
     type = "structure",
 })
 
 M.DeleteJobTemplateInput = schema.new({
-    id = id.from(_N, "DeleteJobTemplateInput"),
+    id = id.from(_N, "DeleteJobTemplateRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -14950,22 +14950,22 @@ M.DeleteJobTemplateInput = schema.new({
 })
 
 M.DeleteJobTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteJobTemplateOutput"),
+    id = id.from(_N, "DeleteJobTemplateResponse"),
     type = "structure",
 })
 
 M.DeletePolicyInput = schema.new({
-    id = id.from(_N, "DeletePolicyInput"),
+    id = id.from(_N, "DeletePolicyRequest"),
     type = "structure",
 })
 
 M.DeletePolicyOutput = schema.new({
-    id = id.from(_N, "DeletePolicyOutput"),
+    id = id.from(_N, "DeletePolicyResponse"),
     type = "structure",
 })
 
 M.DeletePresetInput = schema.new({
-    id = id.from(_N, "DeletePresetInput"),
+    id = id.from(_N, "DeletePresetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -14982,12 +14982,12 @@ M.DeletePresetInput = schema.new({
 })
 
 M.DeletePresetOutput = schema.new({
-    id = id.from(_N, "DeletePresetOutput"),
+    id = id.from(_N, "DeletePresetResponse"),
     type = "structure",
 })
 
 M.DeleteQueueInput = schema.new({
-    id = id.from(_N, "DeleteQueueInput"),
+    id = id.from(_N, "DeleteQueueRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -15004,12 +15004,12 @@ M.DeleteQueueInput = schema.new({
 })
 
 M.DeleteQueueOutput = schema.new({
-    id = id.from(_N, "DeleteQueueOutput"),
+    id = id.from(_N, "DeleteQueueResponse"),
     type = "structure",
 })
 
 M.DescribeEndpointsInput = schema.new({
-    id = id.from(_N, "DescribeEndpointsInput"),
+    id = id.from(_N, "DescribeEndpointsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -15043,7 +15043,7 @@ M.DescribeEndpointsInput = schema.new({
 })
 
 M.DescribeEndpointsOutput = schema.new({
-    id = id.from(_N, "DescribeEndpointsOutput"),
+    id = id.from(_N, "DescribeEndpointsResponse"),
     type = "structure",
     members = {
         Endpoints = schema.new({
@@ -15069,7 +15069,7 @@ M.DescribeEndpointsOutput = schema.new({
 })
 
 M.DisassociateCertificateInput = schema.new({
-    id = id.from(_N, "DisassociateCertificateInput"),
+    id = id.from(_N, "DisassociateCertificateRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -15086,12 +15086,12 @@ M.DisassociateCertificateInput = schema.new({
 })
 
 M.DisassociateCertificateOutput = schema.new({
-    id = id.from(_N, "DisassociateCertificateOutput"),
+    id = id.from(_N, "DisassociateCertificateResponse"),
     type = "structure",
 })
 
 M.GetJobInput = schema.new({
-    id = id.from(_N, "GetJobInput"),
+    id = id.from(_N, "GetJobRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -15108,7 +15108,7 @@ M.GetJobInput = schema.new({
 })
 
 M.GetJobOutput = schema.new({
-    id = id.from(_N, "GetJobOutput"),
+    id = id.from(_N, "GetJobResponse"),
     type = "structure",
     members = {
         Job = schema.new({
@@ -15125,7 +15125,7 @@ M.GetJobOutput = schema.new({
 })
 
 M.GetJobsQueryResultsInput = schema.new({
-    id = id.from(_N, "GetJobsQueryResultsInput"),
+    id = id.from(_N, "GetJobsQueryResultsRequest"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -15142,7 +15142,7 @@ M.GetJobsQueryResultsInput = schema.new({
 })
 
 M.GetJobsQueryResultsOutput = schema.new({
-    id = id.from(_N, "GetJobsQueryResultsOutput"),
+    id = id.from(_N, "GetJobsQueryResultsResponse"),
     type = "structure",
     members = {
         Jobs = schema.new({
@@ -15177,7 +15177,7 @@ M.GetJobsQueryResultsOutput = schema.new({
 })
 
 M.GetJobTemplateInput = schema.new({
-    id = id.from(_N, "GetJobTemplateInput"),
+    id = id.from(_N, "GetJobTemplateRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -15194,7 +15194,7 @@ M.GetJobTemplateInput = schema.new({
 })
 
 M.GetJobTemplateOutput = schema.new({
-    id = id.from(_N, "GetJobTemplateOutput"),
+    id = id.from(_N, "GetJobTemplateResponse"),
     type = "structure",
     members = {
         JobTemplate = schema.new({
@@ -15211,7 +15211,7 @@ M.GetJobTemplateOutput = schema.new({
 })
 
 M.GetPolicyInput = schema.new({
-    id = id.from(_N, "GetPolicyInput"),
+    id = id.from(_N, "GetPolicyRequest"),
     type = "structure",
 })
 
@@ -15250,7 +15250,7 @@ M.Policy = schema.new({
 })
 
 M.GetPolicyOutput = schema.new({
-    id = id.from(_N, "GetPolicyOutput"),
+    id = id.from(_N, "GetPolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -15267,7 +15267,7 @@ M.GetPolicyOutput = schema.new({
 })
 
 M.GetPresetInput = schema.new({
-    id = id.from(_N, "GetPresetInput"),
+    id = id.from(_N, "GetPresetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -15284,7 +15284,7 @@ M.GetPresetInput = schema.new({
 })
 
 M.GetPresetOutput = schema.new({
-    id = id.from(_N, "GetPresetOutput"),
+    id = id.from(_N, "GetPresetResponse"),
     type = "structure",
     members = {
         Preset = schema.new({
@@ -15301,7 +15301,7 @@ M.GetPresetOutput = schema.new({
 })
 
 M.GetQueueInput = schema.new({
-    id = id.from(_N, "GetQueueInput"),
+    id = id.from(_N, "GetQueueRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -15318,7 +15318,7 @@ M.GetQueueInput = schema.new({
 })
 
 M.GetQueueOutput = schema.new({
-    id = id.from(_N, "GetQueueOutput"),
+    id = id.from(_N, "GetQueueResponse"),
     type = "structure",
     members = {
         Queue = schema.new({
@@ -15335,7 +15335,7 @@ M.GetQueueOutput = schema.new({
 })
 
 M.ListJobsInput = schema.new({
-    id = id.from(_N, "ListJobsInput"),
+    id = id.from(_N, "ListJobsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -15387,7 +15387,7 @@ M.ListJobsInput = schema.new({
 })
 
 M.ListJobsOutput = schema.new({
-    id = id.from(_N, "ListJobsOutput"),
+    id = id.from(_N, "ListJobsResponse"),
     type = "structure",
     members = {
         Jobs = schema.new({
@@ -15413,7 +15413,7 @@ M.ListJobsOutput = schema.new({
 })
 
 M.ListJobTemplatesInput = schema.new({
-    id = id.from(_N, "ListJobTemplatesInput"),
+    id = id.from(_N, "ListJobTemplatesRequest"),
     type = "structure",
     members = {
         Category = schema.new({
@@ -15465,7 +15465,7 @@ M.ListJobTemplatesInput = schema.new({
 })
 
 M.ListJobTemplatesOutput = schema.new({
-    id = id.from(_N, "ListJobTemplatesOutput"),
+    id = id.from(_N, "ListJobTemplatesResponse"),
     type = "structure",
     members = {
         JobTemplates = schema.new({
@@ -15491,7 +15491,7 @@ M.ListJobTemplatesOutput = schema.new({
 })
 
 M.ListPresetsInput = schema.new({
-    id = id.from(_N, "ListPresetsInput"),
+    id = id.from(_N, "ListPresetsRequest"),
     type = "structure",
     members = {
         Category = schema.new({
@@ -15543,7 +15543,7 @@ M.ListPresetsInput = schema.new({
 })
 
 M.ListPresetsOutput = schema.new({
-    id = id.from(_N, "ListPresetsOutput"),
+    id = id.from(_N, "ListPresetsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -15569,7 +15569,7 @@ M.ListPresetsOutput = schema.new({
 })
 
 M.ListQueuesInput = schema.new({
-    id = id.from(_N, "ListQueuesInput"),
+    id = id.from(_N, "ListQueuesRequest"),
     type = "structure",
     members = {
         ListBy = schema.new({
@@ -15612,7 +15612,7 @@ M.ListQueuesInput = schema.new({
 })
 
 M.ListQueuesOutput = schema.new({
-    id = id.from(_N, "ListQueuesOutput"),
+    id = id.from(_N, "ListQueuesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -15656,7 +15656,7 @@ M.ListQueuesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -15700,7 +15700,7 @@ M.ResourceTags = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         ResourceTags = schema.new({
@@ -15717,7 +15717,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListVersionsInput = schema.new({
-    id = id.from(_N, "ListVersionsInput"),
+    id = id.from(_N, "ListVersionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -15742,7 +15742,7 @@ M.ListVersionsInput = schema.new({
 })
 
 M.ListVersionsOutput = schema.new({
-    id = id.from(_N, "ListVersionsOutput"),
+    id = id.from(_N, "ListVersionsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -15768,7 +15768,7 @@ M.ListVersionsOutput = schema.new({
 })
 
 M.ProbeInput = schema.new({
-    id = id.from(_N, "ProbeInput"),
+    id = id.from(_N, "ProbeRequest"),
     type = "structure",
     members = {
         InputFiles = schema.new({
@@ -15785,7 +15785,7 @@ M.ProbeInput = schema.new({
 })
 
 M.ProbeOutput = schema.new({
-    id = id.from(_N, "ProbeOutput"),
+    id = id.from(_N, "ProbeResponse"),
     type = "structure",
     members = {
         ProbeResults = schema.new({
@@ -15802,7 +15802,7 @@ M.ProbeOutput = schema.new({
 })
 
 M.PutPolicyInput = schema.new({
-    id = id.from(_N, "PutPolicyInput"),
+    id = id.from(_N, "PutPolicyRequest"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -15820,7 +15820,7 @@ M.PutPolicyInput = schema.new({
 })
 
 M.PutPolicyOutput = schema.new({
-    id = id.from(_N, "PutPolicyOutput"),
+    id = id.from(_N, "PutPolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -15837,7 +15837,7 @@ M.PutPolicyOutput = schema.new({
 })
 
 M.SearchJobsInput = schema.new({
-    id = id.from(_N, "SearchJobsInput"),
+    id = id.from(_N, "SearchJobsRequest"),
     type = "structure",
     members = {
         InputFile = schema.new({
@@ -15898,7 +15898,7 @@ M.SearchJobsInput = schema.new({
 })
 
 M.SearchJobsOutput = schema.new({
-    id = id.from(_N, "SearchJobsOutput"),
+    id = id.from(_N, "SearchJobsResponse"),
     type = "structure",
     members = {
         Jobs = schema.new({
@@ -15924,7 +15924,7 @@ M.SearchJobsOutput = schema.new({
 })
 
 M.StartJobsQueryInput = schema.new({
-    id = id.from(_N, "StartJobsQueryInput"),
+    id = id.from(_N, "StartJobsQueryRequest"),
     type = "structure",
     members = {
         FilterList = schema.new({
@@ -15968,7 +15968,7 @@ M.StartJobsQueryInput = schema.new({
 })
 
 M.StartJobsQueryOutput = schema.new({
-    id = id.from(_N, "StartJobsQueryOutput"),
+    id = id.from(_N, "StartJobsQueryResponse"),
     type = "structure",
     members = {
         Id = schema.new({
@@ -15984,7 +15984,7 @@ M.StartJobsQueryOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -16013,12 +16013,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -16045,12 +16045,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateJobTemplateInput = schema.new({
-    id = id.from(_N, "UpdateJobTemplateInput"),
+    id = id.from(_N, "UpdateJobTemplateRequest"),
     type = "structure",
     members = {
         AccelerationSettings = schema.new({
@@ -16142,7 +16142,7 @@ M.UpdateJobTemplateInput = schema.new({
 })
 
 M.UpdateJobTemplateOutput = schema.new({
-    id = id.from(_N, "UpdateJobTemplateOutput"),
+    id = id.from(_N, "UpdateJobTemplateResponse"),
     type = "structure",
     members = {
         JobTemplate = schema.new({
@@ -16159,7 +16159,7 @@ M.UpdateJobTemplateOutput = schema.new({
 })
 
 M.UpdatePresetInput = schema.new({
-    id = id.from(_N, "UpdatePresetInput"),
+    id = id.from(_N, "UpdatePresetRequest"),
     type = "structure",
     members = {
         Category = schema.new({
@@ -16204,7 +16204,7 @@ M.UpdatePresetInput = schema.new({
 })
 
 M.UpdatePresetOutput = schema.new({
-    id = id.from(_N, "UpdatePresetOutput"),
+    id = id.from(_N, "UpdatePresetResponse"),
     type = "structure",
     members = {
         Preset = schema.new({
@@ -16221,7 +16221,7 @@ M.UpdatePresetOutput = schema.new({
 })
 
 M.UpdateQueueInput = schema.new({
-    id = id.from(_N, "UpdateQueueInput"),
+    id = id.from(_N, "UpdateQueueRequest"),
     type = "structure",
     members = {
         ConcurrentJobs = schema.new({
@@ -16284,7 +16284,7 @@ M.UpdateQueueInput = schema.new({
 })
 
 M.UpdateQueueOutput = schema.new({
-    id = id.from(_N, "UpdateQueueOutput"),
+    id = id.from(_N, "UpdateQueueResponse"),
     type = "structure",
     members = {
         Queue = schema.new({
@@ -16299,5 +16299,19 @@ M.UpdateQueueOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

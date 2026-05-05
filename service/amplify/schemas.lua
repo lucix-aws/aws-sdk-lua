@@ -162,7 +162,7 @@ M.JobConfig = schema.new({
 })
 
 M.CreateAppInput = schema.new({
-    id = id.from(_N, "CreateAppInput"),
+    id = id.from(_N, "CreateAppRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -597,7 +597,7 @@ M.App = schema.new({
 })
 
 M.CreateAppOutput = schema.new({
-    id = id.from(_N, "CreateAppOutput"),
+    id = id.from(_N, "CreateAppResult"),
     type = "structure",
     members = {
         app = schema.new({
@@ -678,7 +678,7 @@ M.UnauthorizedException = schema.new({
 })
 
 M.CreateBackendEnvironmentInput = schema.new({
-    id = id.from(_N, "CreateBackendEnvironmentInput"),
+    id = id.from(_N, "CreateBackendEnvironmentRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -771,7 +771,7 @@ M.BackendEnvironment = schema.new({
 })
 
 M.CreateBackendEnvironmentOutput = schema.new({
-    id = id.from(_N, "CreateBackendEnvironmentOutput"),
+    id = id.from(_N, "CreateBackendEnvironmentResult"),
     type = "structure",
     members = {
         backendEnvironment = schema.new({
@@ -817,7 +817,7 @@ M.Backend = schema.new({
 })
 
 M.CreateBranchInput = schema.new({
-    id = id.from(_N, "CreateBranchInput"),
+    id = id.from(_N, "CreateBranchRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1207,7 +1207,7 @@ M.Branch = schema.new({
 })
 
 M.CreateBranchOutput = schema.new({
-    id = id.from(_N, "CreateBranchOutput"),
+    id = id.from(_N, "CreateBranchResult"),
     type = "structure",
     members = {
         branch = schema.new({
@@ -1224,7 +1224,7 @@ M.CreateBranchOutput = schema.new({
 })
 
 M.CreateDeploymentInput = schema.new({
-    id = id.from(_N, "CreateDeploymentInput"),
+    id = id.from(_N, "CreateDeploymentRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1259,7 +1259,7 @@ M.CreateDeploymentInput = schema.new({
 })
 
 M.CreateDeploymentOutput = schema.new({
-    id = id.from(_N, "CreateDeploymentOutput"),
+    id = id.from(_N, "CreateDeploymentResult"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -1339,7 +1339,7 @@ M.SubDomainSetting = schema.new({
 })
 
 M.CreateDomainAssociationInput = schema.new({
-    id = id.from(_N, "CreateDomainAssociationInput"),
+    id = id.from(_N, "CreateDomainAssociationRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1558,7 +1558,7 @@ M.DomainAssociation = schema.new({
 })
 
 M.CreateDomainAssociationOutput = schema.new({
-    id = id.from(_N, "CreateDomainAssociationOutput"),
+    id = id.from(_N, "CreateDomainAssociationResult"),
     type = "structure",
     members = {
         domainAssociation = schema.new({
@@ -1575,7 +1575,7 @@ M.CreateDomainAssociationOutput = schema.new({
 })
 
 M.CreateWebhookInput = schema.new({
-    id = id.from(_N, "CreateWebhookInput"),
+    id = id.from(_N, "CreateWebhookRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1683,7 +1683,7 @@ M.Webhook = schema.new({
 })
 
 M.CreateWebhookOutput = schema.new({
-    id = id.from(_N, "CreateWebhookOutput"),
+    id = id.from(_N, "CreateWebhookResult"),
     type = "structure",
     members = {
         webhook = schema.new({
@@ -1700,7 +1700,7 @@ M.CreateWebhookOutput = schema.new({
 })
 
 M.DeleteAppInput = schema.new({
-    id = id.from(_N, "DeleteAppInput"),
+    id = id.from(_N, "DeleteAppRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1717,7 +1717,7 @@ M.DeleteAppInput = schema.new({
 })
 
 M.DeleteAppOutput = schema.new({
-    id = id.from(_N, "DeleteAppOutput"),
+    id = id.from(_N, "DeleteAppResult"),
     type = "structure",
     members = {
         app = schema.new({
@@ -1734,7 +1734,7 @@ M.DeleteAppOutput = schema.new({
 })
 
 M.DeleteBackendEnvironmentInput = schema.new({
-    id = id.from(_N, "DeleteBackendEnvironmentInput"),
+    id = id.from(_N, "DeleteBackendEnvironmentRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1761,7 +1761,7 @@ M.DeleteBackendEnvironmentInput = schema.new({
 })
 
 M.DeleteBackendEnvironmentOutput = schema.new({
-    id = id.from(_N, "DeleteBackendEnvironmentOutput"),
+    id = id.from(_N, "DeleteBackendEnvironmentResult"),
     type = "structure",
     members = {
         backendEnvironment = schema.new({
@@ -1778,7 +1778,7 @@ M.DeleteBackendEnvironmentOutput = schema.new({
 })
 
 M.DeleteBranchInput = schema.new({
-    id = id.from(_N, "DeleteBranchInput"),
+    id = id.from(_N, "DeleteBranchRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1805,7 +1805,7 @@ M.DeleteBranchInput = schema.new({
 })
 
 M.DeleteBranchOutput = schema.new({
-    id = id.from(_N, "DeleteBranchOutput"),
+    id = id.from(_N, "DeleteBranchResult"),
     type = "structure",
     members = {
         branch = schema.new({
@@ -1822,7 +1822,7 @@ M.DeleteBranchOutput = schema.new({
 })
 
 M.DeleteDomainAssociationInput = schema.new({
-    id = id.from(_N, "DeleteDomainAssociationInput"),
+    id = id.from(_N, "DeleteDomainAssociationRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -1849,7 +1849,7 @@ M.DeleteDomainAssociationInput = schema.new({
 })
 
 M.DeleteDomainAssociationOutput = schema.new({
-    id = id.from(_N, "DeleteDomainAssociationOutput"),
+    id = id.from(_N, "DeleteDomainAssociationResult"),
     type = "structure",
     members = {
         domainAssociation = schema.new({
@@ -1866,7 +1866,7 @@ M.DeleteDomainAssociationOutput = schema.new({
 })
 
 M.DeleteJobInput = schema.new({
-    id = id.from(_N, "DeleteJobInput"),
+    id = id.from(_N, "DeleteJobRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2000,7 +2000,7 @@ M.JobSummary = schema.new({
 })
 
 M.DeleteJobOutput = schema.new({
-    id = id.from(_N, "DeleteJobOutput"),
+    id = id.from(_N, "DeleteJobResult"),
     type = "structure",
     members = {
         jobSummary = schema.new({
@@ -2017,7 +2017,7 @@ M.DeleteJobOutput = schema.new({
 })
 
 M.DeleteWebhookInput = schema.new({
-    id = id.from(_N, "DeleteWebhookInput"),
+    id = id.from(_N, "DeleteWebhookRequest"),
     type = "structure",
     members = {
         webhookId = schema.new({
@@ -2034,7 +2034,7 @@ M.DeleteWebhookInput = schema.new({
 })
 
 M.DeleteWebhookOutput = schema.new({
-    id = id.from(_N, "DeleteWebhookOutput"),
+    id = id.from(_N, "DeleteWebhookResult"),
     type = "structure",
     members = {
         webhook = schema.new({
@@ -2051,7 +2051,7 @@ M.DeleteWebhookOutput = schema.new({
 })
 
 M.GenerateAccessLogsInput = schema.new({
-    id = id.from(_N, "GenerateAccessLogsInput"),
+    id = id.from(_N, "GenerateAccessLogsRequest"),
     type = "structure",
     members = {
         startTime = schema.new({
@@ -2089,7 +2089,7 @@ M.GenerateAccessLogsInput = schema.new({
 })
 
 M.GenerateAccessLogsOutput = schema.new({
-    id = id.from(_N, "GenerateAccessLogsOutput"),
+    id = id.from(_N, "GenerateAccessLogsResult"),
     type = "structure",
     members = {
         logUrl = schema.new({
@@ -2102,7 +2102,7 @@ M.GenerateAccessLogsOutput = schema.new({
 })
 
 M.GetAppInput = schema.new({
-    id = id.from(_N, "GetAppInput"),
+    id = id.from(_N, "GetAppRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2119,7 +2119,7 @@ M.GetAppInput = schema.new({
 })
 
 M.GetAppOutput = schema.new({
-    id = id.from(_N, "GetAppOutput"),
+    id = id.from(_N, "GetAppResult"),
     type = "structure",
     members = {
         app = schema.new({
@@ -2136,7 +2136,7 @@ M.GetAppOutput = schema.new({
 })
 
 M.GetArtifactUrlInput = schema.new({
-    id = id.from(_N, "GetArtifactUrlInput"),
+    id = id.from(_N, "GetArtifactUrlRequest"),
     type = "structure",
     members = {
         artifactId = schema.new({
@@ -2153,7 +2153,7 @@ M.GetArtifactUrlInput = schema.new({
 })
 
 M.GetArtifactUrlOutput = schema.new({
-    id = id.from(_N, "GetArtifactUrlOutput"),
+    id = id.from(_N, "GetArtifactUrlResult"),
     type = "structure",
     members = {
         artifactId = schema.new({
@@ -2178,7 +2178,7 @@ M.GetArtifactUrlOutput = schema.new({
 })
 
 M.GetBackendEnvironmentInput = schema.new({
-    id = id.from(_N, "GetBackendEnvironmentInput"),
+    id = id.from(_N, "GetBackendEnvironmentRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2205,7 +2205,7 @@ M.GetBackendEnvironmentInput = schema.new({
 })
 
 M.GetBackendEnvironmentOutput = schema.new({
-    id = id.from(_N, "GetBackendEnvironmentOutput"),
+    id = id.from(_N, "GetBackendEnvironmentResult"),
     type = "structure",
     members = {
         backendEnvironment = schema.new({
@@ -2222,7 +2222,7 @@ M.GetBackendEnvironmentOutput = schema.new({
 })
 
 M.GetBranchInput = schema.new({
-    id = id.from(_N, "GetBranchInput"),
+    id = id.from(_N, "GetBranchRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2249,7 +2249,7 @@ M.GetBranchInput = schema.new({
 })
 
 M.GetBranchOutput = schema.new({
-    id = id.from(_N, "GetBranchOutput"),
+    id = id.from(_N, "GetBranchResult"),
     type = "structure",
     members = {
         branch = schema.new({
@@ -2266,7 +2266,7 @@ M.GetBranchOutput = schema.new({
 })
 
 M.GetDomainAssociationInput = schema.new({
-    id = id.from(_N, "GetDomainAssociationInput"),
+    id = id.from(_N, "GetDomainAssociationRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2293,7 +2293,7 @@ M.GetDomainAssociationInput = schema.new({
 })
 
 M.GetDomainAssociationOutput = schema.new({
-    id = id.from(_N, "GetDomainAssociationOutput"),
+    id = id.from(_N, "GetDomainAssociationResult"),
     type = "structure",
     members = {
         domainAssociation = schema.new({
@@ -2310,7 +2310,7 @@ M.GetDomainAssociationOutput = schema.new({
 })
 
 M.GetJobInput = schema.new({
-    id = id.from(_N, "GetJobInput"),
+    id = id.from(_N, "GetJobRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2461,7 +2461,7 @@ M.Job = schema.new({
 })
 
 M.GetJobOutput = schema.new({
-    id = id.from(_N, "GetJobOutput"),
+    id = id.from(_N, "GetJobResult"),
     type = "structure",
     members = {
         job = schema.new({
@@ -2478,7 +2478,7 @@ M.GetJobOutput = schema.new({
 })
 
 M.GetWebhookInput = schema.new({
-    id = id.from(_N, "GetWebhookInput"),
+    id = id.from(_N, "GetWebhookRequest"),
     type = "structure",
     members = {
         webhookId = schema.new({
@@ -2495,7 +2495,7 @@ M.GetWebhookInput = schema.new({
 })
 
 M.GetWebhookOutput = schema.new({
-    id = id.from(_N, "GetWebhookOutput"),
+    id = id.from(_N, "GetWebhookResult"),
     type = "structure",
     members = {
         webhook = schema.new({
@@ -2512,7 +2512,7 @@ M.GetWebhookOutput = schema.new({
 })
 
 M.ListAppsInput = schema.new({
-    id = id.from(_N, "ListAppsInput"),
+    id = id.from(_N, "ListAppsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2538,7 +2538,7 @@ M.ListAppsInput = schema.new({
 })
 
 M.ListAppsOutput = schema.new({
-    id = id.from(_N, "ListAppsOutput"),
+    id = id.from(_N, "ListAppsResult"),
     type = "structure",
     members = {
         apps = schema.new({
@@ -2561,7 +2561,7 @@ M.ListAppsOutput = schema.new({
 })
 
 M.ListArtifactsInput = schema.new({
-    id = id.from(_N, "ListArtifactsInput"),
+    id = id.from(_N, "ListArtifactsRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2642,7 +2642,7 @@ M.Artifact = schema.new({
 })
 
 M.ListArtifactsOutput = schema.new({
-    id = id.from(_N, "ListArtifactsOutput"),
+    id = id.from(_N, "ListArtifactsResult"),
     type = "structure",
     members = {
         artifacts = schema.new({
@@ -2665,7 +2665,7 @@ M.ListArtifactsOutput = schema.new({
 })
 
 M.ListBackendEnvironmentsInput = schema.new({
-    id = id.from(_N, "ListBackendEnvironmentsInput"),
+    id = id.from(_N, "ListBackendEnvironmentsRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2710,7 +2710,7 @@ M.ListBackendEnvironmentsInput = schema.new({
 })
 
 M.ListBackendEnvironmentsOutput = schema.new({
-    id = id.from(_N, "ListBackendEnvironmentsOutput"),
+    id = id.from(_N, "ListBackendEnvironmentsResult"),
     type = "structure",
     members = {
         backendEnvironments = schema.new({
@@ -2733,7 +2733,7 @@ M.ListBackendEnvironmentsOutput = schema.new({
 })
 
 M.ListBranchesInput = schema.new({
-    id = id.from(_N, "ListBranchesInput"),
+    id = id.from(_N, "ListBranchesRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2769,7 +2769,7 @@ M.ListBranchesInput = schema.new({
 })
 
 M.ListBranchesOutput = schema.new({
-    id = id.from(_N, "ListBranchesOutput"),
+    id = id.from(_N, "ListBranchesResult"),
     type = "structure",
     members = {
         branches = schema.new({
@@ -2792,7 +2792,7 @@ M.ListBranchesOutput = schema.new({
 })
 
 M.ListDomainAssociationsInput = schema.new({
-    id = id.from(_N, "ListDomainAssociationsInput"),
+    id = id.from(_N, "ListDomainAssociationsRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2828,7 +2828,7 @@ M.ListDomainAssociationsInput = schema.new({
 })
 
 M.ListDomainAssociationsOutput = schema.new({
-    id = id.from(_N, "ListDomainAssociationsOutput"),
+    id = id.from(_N, "ListDomainAssociationsResult"),
     type = "structure",
     members = {
         domainAssociations = schema.new({
@@ -2851,7 +2851,7 @@ M.ListDomainAssociationsOutput = schema.new({
 })
 
 M.ListJobsInput = schema.new({
-    id = id.from(_N, "ListJobsInput"),
+    id = id.from(_N, "ListJobsRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -2897,7 +2897,7 @@ M.ListJobsInput = schema.new({
 })
 
 M.ListJobsOutput = schema.new({
-    id = id.from(_N, "ListJobsOutput"),
+    id = id.from(_N, "ListJobsResult"),
     type = "structure",
     members = {
         jobSummaries = schema.new({
@@ -2920,7 +2920,7 @@ M.ListJobsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2937,7 +2937,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2980,7 +2980,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.ListWebhooksInput = schema.new({
-    id = id.from(_N, "ListWebhooksInput"),
+    id = id.from(_N, "ListWebhooksRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -3016,7 +3016,7 @@ M.ListWebhooksInput = schema.new({
 })
 
 M.ListWebhooksOutput = schema.new({
-    id = id.from(_N, "ListWebhooksOutput"),
+    id = id.from(_N, "ListWebhooksResult"),
     type = "structure",
     members = {
         webhooks = schema.new({
@@ -3039,7 +3039,7 @@ M.ListWebhooksOutput = schema.new({
 })
 
 M.StartDeploymentInput = schema.new({
-    id = id.from(_N, "StartDeploymentInput"),
+    id = id.from(_N, "StartDeploymentRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -3084,7 +3084,7 @@ M.StartDeploymentInput = schema.new({
 })
 
 M.StartDeploymentOutput = schema.new({
-    id = id.from(_N, "StartDeploymentOutput"),
+    id = id.from(_N, "StartDeploymentResult"),
     type = "structure",
     members = {
         jobSummary = schema.new({
@@ -3101,7 +3101,7 @@ M.StartDeploymentOutput = schema.new({
 })
 
 M.StartJobInput = schema.new({
-    id = id.from(_N, "StartJobInput"),
+    id = id.from(_N, "StartJobRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -3167,7 +3167,7 @@ M.StartJobInput = schema.new({
 })
 
 M.StartJobOutput = schema.new({
-    id = id.from(_N, "StartJobOutput"),
+    id = id.from(_N, "StartJobResult"),
     type = "structure",
     members = {
         jobSummary = schema.new({
@@ -3184,7 +3184,7 @@ M.StartJobOutput = schema.new({
 })
 
 M.StopJobInput = schema.new({
-    id = id.from(_N, "StopJobInput"),
+    id = id.from(_N, "StopJobRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -3221,7 +3221,7 @@ M.StopJobInput = schema.new({
 })
 
 M.StopJobOutput = schema.new({
-    id = id.from(_N, "StopJobOutput"),
+    id = id.from(_N, "StopJobResult"),
     type = "structure",
     members = {
         jobSummary = schema.new({
@@ -3238,7 +3238,7 @@ M.StopJobOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3266,12 +3266,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3299,12 +3299,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAppInput = schema.new({
-    id = id.from(_N, "UpdateAppInput"),
+    id = id.from(_N, "UpdateAppRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -3454,7 +3454,7 @@ M.UpdateAppInput = schema.new({
 })
 
 M.UpdateAppOutput = schema.new({
-    id = id.from(_N, "UpdateAppOutput"),
+    id = id.from(_N, "UpdateAppResult"),
     type = "structure",
     members = {
         app = schema.new({
@@ -3471,7 +3471,7 @@ M.UpdateAppOutput = schema.new({
 })
 
 M.UpdateBranchInput = schema.new({
-    id = id.from(_N, "UpdateBranchInput"),
+    id = id.from(_N, "UpdateBranchRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -3609,7 +3609,7 @@ M.UpdateBranchInput = schema.new({
 })
 
 M.UpdateBranchOutput = schema.new({
-    id = id.from(_N, "UpdateBranchOutput"),
+    id = id.from(_N, "UpdateBranchResult"),
     type = "structure",
     members = {
         branch = schema.new({
@@ -3626,7 +3626,7 @@ M.UpdateBranchOutput = schema.new({
 })
 
 M.UpdateDomainAssociationInput = schema.new({
-    id = id.from(_N, "UpdateDomainAssociationInput"),
+    id = id.from(_N, "UpdateDomainAssociationRequest"),
     type = "structure",
     members = {
         appId = schema.new({
@@ -3686,7 +3686,7 @@ M.UpdateDomainAssociationInput = schema.new({
 })
 
 M.UpdateDomainAssociationOutput = schema.new({
-    id = id.from(_N, "UpdateDomainAssociationOutput"),
+    id = id.from(_N, "UpdateDomainAssociationResult"),
     type = "structure",
     members = {
         domainAssociation = schema.new({
@@ -3703,7 +3703,7 @@ M.UpdateDomainAssociationOutput = schema.new({
 })
 
 M.UpdateWebhookInput = schema.new({
-    id = id.from(_N, "UpdateWebhookInput"),
+    id = id.from(_N, "UpdateWebhookRequest"),
     type = "structure",
     members = {
         webhookId = schema.new({
@@ -3732,7 +3732,7 @@ M.UpdateWebhookInput = schema.new({
 })
 
 M.UpdateWebhookOutput = schema.new({
-    id = id.from(_N, "UpdateWebhookOutput"),
+    id = id.from(_N, "UpdateWebhookResult"),
     type = "structure",
     members = {
         webhook = schema.new({
@@ -3747,5 +3747,19 @@ M.UpdateWebhookOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -58,7 +58,7 @@ M.AugmentedManifestsListItem = schema.new({
 })
 
 M.BatchDetectDominantLanguageInput = schema.new({
-    id = id.from(_N, "BatchDetectDominantLanguageInput"),
+    id = id.from(_N, "BatchDetectDominantLanguageRequest"),
     type = "structure",
     members = {
         TextList = schema.new({
@@ -139,7 +139,7 @@ M.BatchDetectDominantLanguageItemResult = schema.new({
 })
 
 M.BatchDetectDominantLanguageOutput = schema.new({
-    id = id.from(_N, "BatchDetectDominantLanguageOutput"),
+    id = id.from(_N, "BatchDetectDominantLanguageResponse"),
     type = "structure",
     members = {
         ResultList = schema.new({
@@ -256,7 +256,7 @@ M.TextSizeLimitExceededException = schema.new({
 })
 
 M.BatchDetectEntitiesInput = schema.new({
-    id = id.from(_N, "BatchDetectEntitiesInput"),
+    id = id.from(_N, "BatchDetectEntitiesRequest"),
     type = "structure",
     members = {
         TextList = schema.new({
@@ -403,7 +403,7 @@ M.BatchDetectEntitiesItemResult = schema.new({
 })
 
 M.BatchDetectEntitiesOutput = schema.new({
-    id = id.from(_N, "BatchDetectEntitiesOutput"),
+    id = id.from(_N, "BatchDetectEntitiesResponse"),
     type = "structure",
     members = {
         ResultList = schema.new({
@@ -446,7 +446,7 @@ M.UnsupportedLanguageException = schema.new({
 })
 
 M.BatchDetectKeyPhrasesInput = schema.new({
-    id = id.from(_N, "BatchDetectKeyPhrasesInput"),
+    id = id.from(_N, "BatchDetectKeyPhrasesRequest"),
     type = "structure",
     members = {
         TextList = schema.new({
@@ -523,7 +523,7 @@ M.BatchDetectKeyPhrasesItemResult = schema.new({
 })
 
 M.BatchDetectKeyPhrasesOutput = schema.new({
-    id = id.from(_N, "BatchDetectKeyPhrasesOutput"),
+    id = id.from(_N, "BatchDetectKeyPhrasesResponse"),
     type = "structure",
     members = {
         ResultList = schema.new({
@@ -550,7 +550,7 @@ M.BatchDetectKeyPhrasesOutput = schema.new({
 })
 
 M.BatchDetectSentimentInput = schema.new({
-    id = id.from(_N, "BatchDetectSentimentInput"),
+    id = id.from(_N, "BatchDetectSentimentRequest"),
     type = "structure",
     members = {
         TextList = schema.new({
@@ -633,7 +633,7 @@ M.BatchDetectSentimentItemResult = schema.new({
 })
 
 M.BatchDetectSentimentOutput = schema.new({
-    id = id.from(_N, "BatchDetectSentimentOutput"),
+    id = id.from(_N, "BatchDetectSentimentResponse"),
     type = "structure",
     members = {
         ResultList = schema.new({
@@ -660,7 +660,7 @@ M.BatchDetectSentimentOutput = schema.new({
 })
 
 M.BatchDetectSyntaxInput = schema.new({
-    id = id.from(_N, "BatchDetectSyntaxInput"),
+    id = id.from(_N, "BatchDetectSyntaxRequest"),
     type = "structure",
     members = {
         TextList = schema.new({
@@ -763,7 +763,7 @@ M.BatchDetectSyntaxItemResult = schema.new({
 })
 
 M.BatchDetectSyntaxOutput = schema.new({
-    id = id.from(_N, "BatchDetectSyntaxOutput"),
+    id = id.from(_N, "BatchDetectSyntaxResponse"),
     type = "structure",
     members = {
         ResultList = schema.new({
@@ -790,7 +790,7 @@ M.BatchDetectSyntaxOutput = schema.new({
 })
 
 M.BatchDetectTargetedSentimentInput = schema.new({
-    id = id.from(_N, "BatchDetectTargetedSentimentInput"),
+    id = id.from(_N, "BatchDetectTargetedSentimentRequest"),
     type = "structure",
     members = {
         TextList = schema.new({
@@ -927,7 +927,7 @@ M.BatchDetectTargetedSentimentItemResult = schema.new({
 })
 
 M.BatchDetectTargetedSentimentOutput = schema.new({
-    id = id.from(_N, "BatchDetectTargetedSentimentOutput"),
+    id = id.from(_N, "BatchDetectTargetedSentimentResponse"),
     type = "structure",
     members = {
         ResultList = schema.new({
@@ -1206,7 +1206,7 @@ M.DocumentReaderConfig = schema.new({
 })
 
 M.ClassifyDocumentInput = schema.new({
-    id = id.from(_N, "ClassifyDocumentInput"),
+    id = id.from(_N, "ClassifyDocumentRequest"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -1399,7 +1399,7 @@ M.WarningsListItem = schema.new({
 })
 
 M.ClassifyDocumentOutput = schema.new({
-    id = id.from(_N, "ClassifyDocumentOutput"),
+    id = id.from(_N, "ClassifyDocumentResponse"),
     type = "structure",
     members = {
         Classes = schema.new({
@@ -1464,7 +1464,7 @@ M.ResourceUnavailableException = schema.new({
 })
 
 M.ContainsPiiEntitiesInput = schema.new({
-    id = id.from(_N, "ContainsPiiEntitiesInput"),
+    id = id.from(_N, "ContainsPiiEntitiesRequest"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -1508,7 +1508,7 @@ M.EntityLabel = schema.new({
 })
 
 M.ContainsPiiEntitiesOutput = schema.new({
-    id = id.from(_N, "ContainsPiiEntitiesOutput"),
+    id = id.from(_N, "ContainsPiiEntitiesResponse"),
     type = "structure",
     members = {
         Labels = schema.new({
@@ -1729,7 +1729,7 @@ M.Tag = schema.new({
 })
 
 M.CreateDatasetInput = schema.new({
-    id = id.from(_N, "CreateDatasetInput"),
+    id = id.from(_N, "CreateDatasetRequest"),
     type = "structure",
     members = {
         FlywheelArn = schema.new({
@@ -1792,7 +1792,7 @@ M.CreateDatasetInput = schema.new({
 })
 
 M.CreateDatasetOutput = schema.new({
-    id = id.from(_N, "CreateDatasetOutput"),
+    id = id.from(_N, "CreateDatasetResponse"),
     type = "structure",
     members = {
         DatasetArn = schema.new({
@@ -2017,7 +2017,7 @@ M.VpcConfig = schema.new({
 })
 
 M.CreateDocumentClassifierInput = schema.new({
-    id = id.from(_N, "CreateDocumentClassifierInput"),
+    id = id.from(_N, "CreateDocumentClassifierRequest"),
     type = "structure",
     members = {
         DocumentClassifierName = schema.new({
@@ -2121,7 +2121,7 @@ M.CreateDocumentClassifierInput = schema.new({
 })
 
 M.CreateDocumentClassifierOutput = schema.new({
-    id = id.from(_N, "CreateDocumentClassifierOutput"),
+    id = id.from(_N, "CreateDocumentClassifierResponse"),
     type = "structure",
     members = {
         DocumentClassifierArn = schema.new({
@@ -2150,7 +2150,7 @@ M.KmsKeyValidationException = schema.new({
 })
 
 M.CreateEndpointInput = schema.new({
-    id = id.from(_N, "CreateEndpointInput"),
+    id = id.from(_N, "CreateEndpointRequest"),
     type = "structure",
     members = {
         EndpointName = schema.new({
@@ -2209,7 +2209,7 @@ M.CreateEndpointInput = schema.new({
 })
 
 M.CreateEndpointOutput = schema.new({
-    id = id.from(_N, "CreateEndpointOutput"),
+    id = id.from(_N, "CreateEndpointResponse"),
     type = "structure",
     members = {
         EndpointArn = schema.new({
@@ -2361,7 +2361,7 @@ M.EntityRecognizerInputDataConfig = schema.new({
 })
 
 M.CreateEntityRecognizerInput = schema.new({
-    id = id.from(_N, "CreateEntityRecognizerInput"),
+    id = id.from(_N, "CreateEntityRecognizerRequest"),
     type = "structure",
     members = {
         RecognizerName = schema.new({
@@ -2452,7 +2452,7 @@ M.CreateEntityRecognizerInput = schema.new({
 })
 
 M.CreateEntityRecognizerOutput = schema.new({
-    id = id.from(_N, "CreateEntityRecognizerOutput"),
+    id = id.from(_N, "CreateEntityRecognizerResponse"),
     type = "structure",
     members = {
         EntityRecognizerArn = schema.new({
@@ -2567,7 +2567,7 @@ M.TaskConfig = schema.new({
 })
 
 M.CreateFlywheelInput = schema.new({
-    id = id.from(_N, "CreateFlywheelInput"),
+    id = id.from(_N, "CreateFlywheelRequest"),
     type = "structure",
     members = {
         FlywheelName = schema.new({
@@ -2643,7 +2643,7 @@ M.CreateFlywheelInput = schema.new({
 })
 
 M.CreateFlywheelOutput = schema.new({
-    id = id.from(_N, "CreateFlywheelOutput"),
+    id = id.from(_N, "CreateFlywheelResponse"),
     type = "structure",
     members = {
         FlywheelArn = schema.new({
@@ -2662,7 +2662,7 @@ M.CreateFlywheelOutput = schema.new({
 })
 
 M.DeleteDocumentClassifierInput = schema.new({
-    id = id.from(_N, "DeleteDocumentClassifierInput"),
+    id = id.from(_N, "DeleteDocumentClassifierRequest"),
     type = "structure",
     members = {
         DocumentClassifierArn = schema.new({
@@ -2678,12 +2678,12 @@ M.DeleteDocumentClassifierInput = schema.new({
 })
 
 M.DeleteDocumentClassifierOutput = schema.new({
-    id = id.from(_N, "DeleteDocumentClassifierOutput"),
+    id = id.from(_N, "DeleteDocumentClassifierResponse"),
     type = "structure",
 })
 
 M.DeleteEndpointInput = schema.new({
-    id = id.from(_N, "DeleteEndpointInput"),
+    id = id.from(_N, "DeleteEndpointRequest"),
     type = "structure",
     members = {
         EndpointArn = schema.new({
@@ -2699,12 +2699,12 @@ M.DeleteEndpointInput = schema.new({
 })
 
 M.DeleteEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteEndpointOutput"),
+    id = id.from(_N, "DeleteEndpointResponse"),
     type = "structure",
 })
 
 M.DeleteEntityRecognizerInput = schema.new({
-    id = id.from(_N, "DeleteEntityRecognizerInput"),
+    id = id.from(_N, "DeleteEntityRecognizerRequest"),
     type = "structure",
     members = {
         EntityRecognizerArn = schema.new({
@@ -2720,12 +2720,12 @@ M.DeleteEntityRecognizerInput = schema.new({
 })
 
 M.DeleteEntityRecognizerOutput = schema.new({
-    id = id.from(_N, "DeleteEntityRecognizerOutput"),
+    id = id.from(_N, "DeleteEntityRecognizerResponse"),
     type = "structure",
 })
 
 M.DeleteFlywheelInput = schema.new({
-    id = id.from(_N, "DeleteFlywheelInput"),
+    id = id.from(_N, "DeleteFlywheelRequest"),
     type = "structure",
     members = {
         FlywheelArn = schema.new({
@@ -2741,12 +2741,12 @@ M.DeleteFlywheelInput = schema.new({
 })
 
 M.DeleteFlywheelOutput = schema.new({
-    id = id.from(_N, "DeleteFlywheelOutput"),
+    id = id.from(_N, "DeleteFlywheelResponse"),
     type = "structure",
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2768,12 +2768,12 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "DeleteResourcePolicyResponse"),
     type = "structure",
 })
 
 M.DescribeDatasetInput = schema.new({
-    id = id.from(_N, "DescribeDatasetInput"),
+    id = id.from(_N, "DescribeDatasetRequest"),
     type = "structure",
     members = {
         DatasetArn = schema.new({
@@ -2856,7 +2856,7 @@ M.DatasetProperties = schema.new({
 })
 
 M.DescribeDatasetOutput = schema.new({
-    id = id.from(_N, "DescribeDatasetOutput"),
+    id = id.from(_N, "DescribeDatasetResponse"),
     type = "structure",
     members = {
         DatasetProperties = schema.new({
@@ -2870,7 +2870,7 @@ M.DescribeDatasetOutput = schema.new({
 })
 
 M.DescribeDocumentClassificationJobInput = schema.new({
-    id = id.from(_N, "DescribeDocumentClassificationJobInput"),
+    id = id.from(_N, "DescribeDocumentClassificationJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -3031,7 +3031,7 @@ M.DocumentClassificationJobProperties = schema.new({
 })
 
 M.DescribeDocumentClassificationJobOutput = schema.new({
-    id = id.from(_N, "DescribeDocumentClassificationJobOutput"),
+    id = id.from(_N, "DescribeDocumentClassificationJobResponse"),
     type = "structure",
     members = {
         DocumentClassificationJobProperties = schema.new({
@@ -3061,7 +3061,7 @@ M.JobNotFoundException = schema.new({
 })
 
 M.DescribeDocumentClassifierInput = schema.new({
-    id = id.from(_N, "DescribeDocumentClassifierInput"),
+    id = id.from(_N, "DescribeDocumentClassifierRequest"),
     type = "structure",
     members = {
         DocumentClassifierArn = schema.new({
@@ -3202,7 +3202,7 @@ M.DocumentClassifierProperties = schema.new({
 })
 
 M.DescribeDocumentClassifierOutput = schema.new({
-    id = id.from(_N, "DescribeDocumentClassifierOutput"),
+    id = id.from(_N, "DescribeDocumentClassifierResponse"),
     type = "structure",
     members = {
         DocumentClassifierProperties = schema.new({
@@ -3216,7 +3216,7 @@ M.DescribeDocumentClassifierOutput = schema.new({
 })
 
 M.DescribeDominantLanguageDetectionJobInput = schema.new({
-    id = id.from(_N, "DescribeDominantLanguageDetectionJobInput"),
+    id = id.from(_N, "DescribeDominantLanguageDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -3314,7 +3314,7 @@ M.DominantLanguageDetectionJobProperties = schema.new({
 })
 
 M.DescribeDominantLanguageDetectionJobOutput = schema.new({
-    id = id.from(_N, "DescribeDominantLanguageDetectionJobOutput"),
+    id = id.from(_N, "DescribeDominantLanguageDetectionJobResponse"),
     type = "structure",
     members = {
         DominantLanguageDetectionJobProperties = schema.new({
@@ -3328,7 +3328,7 @@ M.DescribeDominantLanguageDetectionJobOutput = schema.new({
 })
 
 M.DescribeEndpointInput = schema.new({
-    id = id.from(_N, "DescribeEndpointInput"),
+    id = id.from(_N, "DescribeEndpointRequest"),
     type = "structure",
     members = {
         EndpointArn = schema.new({
@@ -3423,7 +3423,7 @@ M.EndpointProperties = schema.new({
 })
 
 M.DescribeEndpointOutput = schema.new({
-    id = id.from(_N, "DescribeEndpointOutput"),
+    id = id.from(_N, "DescribeEndpointResponse"),
     type = "structure",
     members = {
         EndpointProperties = schema.new({
@@ -3437,7 +3437,7 @@ M.DescribeEndpointOutput = schema.new({
 })
 
 M.DescribeEntitiesDetectionJobInput = schema.new({
-    id = id.from(_N, "DescribeEntitiesDetectionJobInput"),
+    id = id.from(_N, "DescribeEntitiesDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -3553,7 +3553,7 @@ M.EntitiesDetectionJobProperties = schema.new({
 })
 
 M.DescribeEntitiesDetectionJobOutput = schema.new({
-    id = id.from(_N, "DescribeEntitiesDetectionJobOutput"),
+    id = id.from(_N, "DescribeEntitiesDetectionJobResponse"),
     type = "structure",
     members = {
         EntitiesDetectionJobProperties = schema.new({
@@ -3567,7 +3567,7 @@ M.DescribeEntitiesDetectionJobOutput = schema.new({
 })
 
 M.DescribeEntityRecognizerInput = schema.new({
-    id = id.from(_N, "DescribeEntityRecognizerInput"),
+    id = id.from(_N, "DescribeEntityRecognizerRequest"),
     type = "structure",
     members = {
         EntityRecognizerArn = schema.new({
@@ -3824,7 +3824,7 @@ M.EntityRecognizerProperties = schema.new({
 })
 
 M.DescribeEntityRecognizerOutput = schema.new({
-    id = id.from(_N, "DescribeEntityRecognizerOutput"),
+    id = id.from(_N, "DescribeEntityRecognizerResponse"),
     type = "structure",
     members = {
         EntityRecognizerProperties = schema.new({
@@ -3838,7 +3838,7 @@ M.DescribeEntityRecognizerOutput = schema.new({
 })
 
 M.DescribeEventsDetectionJobInput = schema.new({
-    id = id.from(_N, "DescribeEventsDetectionJobInput"),
+    id = id.from(_N, "DescribeEventsDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -3936,7 +3936,7 @@ M.EventsDetectionJobProperties = schema.new({
 })
 
 M.DescribeEventsDetectionJobOutput = schema.new({
-    id = id.from(_N, "DescribeEventsDetectionJobOutput"),
+    id = id.from(_N, "DescribeEventsDetectionJobResponse"),
     type = "structure",
     members = {
         EventsDetectionJobProperties = schema.new({
@@ -3950,7 +3950,7 @@ M.DescribeEventsDetectionJobOutput = schema.new({
 })
 
 M.DescribeFlywheelInput = schema.new({
-    id = id.from(_N, "DescribeFlywheelInput"),
+    id = id.from(_N, "DescribeFlywheelRequest"),
     type = "structure",
     members = {
         FlywheelArn = schema.new({
@@ -4047,7 +4047,7 @@ M.FlywheelProperties = schema.new({
 })
 
 M.DescribeFlywheelOutput = schema.new({
-    id = id.from(_N, "DescribeFlywheelOutput"),
+    id = id.from(_N, "DescribeFlywheelResponse"),
     type = "structure",
     members = {
         FlywheelProperties = schema.new({
@@ -4061,7 +4061,7 @@ M.DescribeFlywheelOutput = schema.new({
 })
 
 M.DescribeFlywheelIterationInput = schema.new({
-    id = id.from(_N, "DescribeFlywheelIterationInput"),
+    id = id.from(_N, "DescribeFlywheelIterationRequest"),
     type = "structure",
     members = {
         FlywheelArn = schema.new({
@@ -4192,7 +4192,7 @@ M.FlywheelIterationProperties = schema.new({
 })
 
 M.DescribeFlywheelIterationOutput = schema.new({
-    id = id.from(_N, "DescribeFlywheelIterationOutput"),
+    id = id.from(_N, "DescribeFlywheelIterationResponse"),
     type = "structure",
     members = {
         FlywheelIterationProperties = schema.new({
@@ -4206,7 +4206,7 @@ M.DescribeFlywheelIterationOutput = schema.new({
 })
 
 M.DescribeKeyPhrasesDetectionJobInput = schema.new({
-    id = id.from(_N, "DescribeKeyPhrasesDetectionJobInput"),
+    id = id.from(_N, "DescribeKeyPhrasesDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -4310,7 +4310,7 @@ M.KeyPhrasesDetectionJobProperties = schema.new({
 })
 
 M.DescribeKeyPhrasesDetectionJobOutput = schema.new({
-    id = id.from(_N, "DescribeKeyPhrasesDetectionJobOutput"),
+    id = id.from(_N, "DescribeKeyPhrasesDetectionJobResponse"),
     type = "structure",
     members = {
         KeyPhrasesDetectionJobProperties = schema.new({
@@ -4324,7 +4324,7 @@ M.DescribeKeyPhrasesDetectionJobOutput = schema.new({
 })
 
 M.DescribePiiEntitiesDetectionJobInput = schema.new({
-    id = id.from(_N, "DescribePiiEntitiesDetectionJobInput"),
+    id = id.from(_N, "DescribePiiEntitiesDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -4476,7 +4476,7 @@ M.PiiEntitiesDetectionJobProperties = schema.new({
 })
 
 M.DescribePiiEntitiesDetectionJobOutput = schema.new({
-    id = id.from(_N, "DescribePiiEntitiesDetectionJobOutput"),
+    id = id.from(_N, "DescribePiiEntitiesDetectionJobResponse"),
     type = "structure",
     members = {
         PiiEntitiesDetectionJobProperties = schema.new({
@@ -4490,7 +4490,7 @@ M.DescribePiiEntitiesDetectionJobOutput = schema.new({
 })
 
 M.DescribeResourcePolicyInput = schema.new({
-    id = id.from(_N, "DescribeResourcePolicyInput"),
+    id = id.from(_N, "DescribeResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4506,7 +4506,7 @@ M.DescribeResourcePolicyInput = schema.new({
 })
 
 M.DescribeResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DescribeResourcePolicyOutput"),
+    id = id.from(_N, "DescribeResourcePolicyResponse"),
     type = "structure",
     members = {
         ResourcePolicy = schema.new({
@@ -4537,7 +4537,7 @@ M.DescribeResourcePolicyOutput = schema.new({
 })
 
 M.DescribeSentimentDetectionJobInput = schema.new({
-    id = id.from(_N, "DescribeSentimentDetectionJobInput"),
+    id = id.from(_N, "DescribeSentimentDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -4641,7 +4641,7 @@ M.SentimentDetectionJobProperties = schema.new({
 })
 
 M.DescribeSentimentDetectionJobOutput = schema.new({
-    id = id.from(_N, "DescribeSentimentDetectionJobOutput"),
+    id = id.from(_N, "DescribeSentimentDetectionJobResponse"),
     type = "structure",
     members = {
         SentimentDetectionJobProperties = schema.new({
@@ -4655,7 +4655,7 @@ M.DescribeSentimentDetectionJobOutput = schema.new({
 })
 
 M.DescribeTargetedSentimentDetectionJobInput = schema.new({
-    id = id.from(_N, "DescribeTargetedSentimentDetectionJobInput"),
+    id = id.from(_N, "DescribeTargetedSentimentDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -4759,7 +4759,7 @@ M.TargetedSentimentDetectionJobProperties = schema.new({
 })
 
 M.DescribeTargetedSentimentDetectionJobOutput = schema.new({
-    id = id.from(_N, "DescribeTargetedSentimentDetectionJobOutput"),
+    id = id.from(_N, "DescribeTargetedSentimentDetectionJobResponse"),
     type = "structure",
     members = {
         TargetedSentimentDetectionJobProperties = schema.new({
@@ -4773,7 +4773,7 @@ M.DescribeTargetedSentimentDetectionJobOutput = schema.new({
 })
 
 M.DescribeTopicsDetectionJobInput = schema.new({
-    id = id.from(_N, "DescribeTopicsDetectionJobInput"),
+    id = id.from(_N, "DescribeTopicsDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -4877,7 +4877,7 @@ M.TopicsDetectionJobProperties = schema.new({
 })
 
 M.DescribeTopicsDetectionJobOutput = schema.new({
-    id = id.from(_N, "DescribeTopicsDetectionJobOutput"),
+    id = id.from(_N, "DescribeTopicsDetectionJobResponse"),
     type = "structure",
     members = {
         TopicsDetectionJobProperties = schema.new({
@@ -4891,7 +4891,7 @@ M.DescribeTopicsDetectionJobOutput = schema.new({
 })
 
 M.DetectDominantLanguageInput = schema.new({
-    id = id.from(_N, "DetectDominantLanguageInput"),
+    id = id.from(_N, "DetectDominantLanguageRequest"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -4907,7 +4907,7 @@ M.DetectDominantLanguageInput = schema.new({
 })
 
 M.DetectDominantLanguageOutput = schema.new({
-    id = id.from(_N, "DetectDominantLanguageOutput"),
+    id = id.from(_N, "DetectDominantLanguageResponse"),
     type = "structure",
     members = {
         Languages = schema.new({
@@ -4921,7 +4921,7 @@ M.DetectDominantLanguageOutput = schema.new({
 })
 
 M.DetectEntitiesInput = schema.new({
-    id = id.from(_N, "DetectEntitiesInput"),
+    id = id.from(_N, "DetectEntitiesRequest"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -4959,7 +4959,7 @@ M.DetectEntitiesInput = schema.new({
 })
 
 M.DetectEntitiesOutput = schema.new({
-    id = id.from(_N, "DetectEntitiesOutput"),
+    id = id.from(_N, "DetectEntitiesResponse"),
     type = "structure",
     members = {
         Entities = schema.new({
@@ -5001,7 +5001,7 @@ M.DetectEntitiesOutput = schema.new({
 })
 
 M.DetectKeyPhrasesInput = schema.new({
-    id = id.from(_N, "DetectKeyPhrasesInput"),
+    id = id.from(_N, "DetectKeyPhrasesRequest"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -5026,7 +5026,7 @@ M.DetectKeyPhrasesInput = schema.new({
 })
 
 M.DetectKeyPhrasesOutput = schema.new({
-    id = id.from(_N, "DetectKeyPhrasesOutput"),
+    id = id.from(_N, "DetectKeyPhrasesResponse"),
     type = "structure",
     members = {
         KeyPhrases = schema.new({
@@ -5040,7 +5040,7 @@ M.DetectKeyPhrasesOutput = schema.new({
 })
 
 M.DetectPiiEntitiesInput = schema.new({
-    id = id.from(_N, "DetectPiiEntitiesInput"),
+    id = id.from(_N, "DetectPiiEntitiesRequest"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -5096,7 +5096,7 @@ M.PiiEntity = schema.new({
 })
 
 M.DetectPiiEntitiesOutput = schema.new({
-    id = id.from(_N, "DetectPiiEntitiesOutput"),
+    id = id.from(_N, "DetectPiiEntitiesResponse"),
     type = "structure",
     members = {
         Entities = schema.new({
@@ -5110,7 +5110,7 @@ M.DetectPiiEntitiesOutput = schema.new({
 })
 
 M.DetectSentimentInput = schema.new({
-    id = id.from(_N, "DetectSentimentInput"),
+    id = id.from(_N, "DetectSentimentRequest"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -5135,7 +5135,7 @@ M.DetectSentimentInput = schema.new({
 })
 
 M.DetectSentimentOutput = schema.new({
-    id = id.from(_N, "DetectSentimentOutput"),
+    id = id.from(_N, "DetectSentimentResponse"),
     type = "structure",
     members = {
         Sentiment = schema.new({
@@ -5155,7 +5155,7 @@ M.DetectSentimentOutput = schema.new({
 })
 
 M.DetectSyntaxInput = schema.new({
-    id = id.from(_N, "DetectSyntaxInput"),
+    id = id.from(_N, "DetectSyntaxRequest"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -5180,7 +5180,7 @@ M.DetectSyntaxInput = schema.new({
 })
 
 M.DetectSyntaxOutput = schema.new({
-    id = id.from(_N, "DetectSyntaxOutput"),
+    id = id.from(_N, "DetectSyntaxResponse"),
     type = "structure",
     members = {
         SyntaxTokens = schema.new({
@@ -5194,7 +5194,7 @@ M.DetectSyntaxOutput = schema.new({
 })
 
 M.DetectTargetedSentimentInput = schema.new({
-    id = id.from(_N, "DetectTargetedSentimentInput"),
+    id = id.from(_N, "DetectTargetedSentimentRequest"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -5219,7 +5219,7 @@ M.DetectTargetedSentimentInput = schema.new({
 })
 
 M.DetectTargetedSentimentOutput = schema.new({
-    id = id.from(_N, "DetectTargetedSentimentOutput"),
+    id = id.from(_N, "DetectTargetedSentimentResponse"),
     type = "structure",
     members = {
         Entities = schema.new({
@@ -5249,7 +5249,7 @@ M.TextSegment = schema.new({
 })
 
 M.DetectToxicContentInput = schema.new({
-    id = id.from(_N, "DetectToxicContentInput"),
+    id = id.from(_N, "DetectToxicContentRequest"),
     type = "structure",
     members = {
         TextSegments = schema.new({
@@ -5314,7 +5314,7 @@ M.ToxicLabels = schema.new({
 })
 
 M.DetectToxicContentOutput = schema.new({
-    id = id.from(_N, "DetectToxicContentOutput"),
+    id = id.from(_N, "DetectToxicContentResponse"),
     type = "structure",
     members = {
         ResultList = schema.new({
@@ -5328,7 +5328,7 @@ M.DetectToxicContentOutput = schema.new({
 })
 
 M.ImportModelInput = schema.new({
-    id = id.from(_N, "ImportModelInput"),
+    id = id.from(_N, "ImportModelRequest"),
     type = "structure",
     members = {
         SourceModelArn = schema.new({
@@ -5375,7 +5375,7 @@ M.ImportModelInput = schema.new({
 })
 
 M.ImportModelOutput = schema.new({
-    id = id.from(_N, "ImportModelOutput"),
+    id = id.from(_N, "ImportModelResponse"),
     type = "structure",
     members = {
         ModelArn = schema.new({
@@ -5435,7 +5435,7 @@ M.DatasetFilter = schema.new({
 })
 
 M.ListDatasetsInput = schema.new({
-    id = id.from(_N, "ListDatasetsInput"),
+    id = id.from(_N, "ListDatasetsRequest"),
     type = "structure",
     members = {
         FlywheelArn = schema.new({
@@ -5467,7 +5467,7 @@ M.ListDatasetsInput = schema.new({
 })
 
 M.ListDatasetsOutput = schema.new({
-    id = id.from(_N, "ListDatasetsOutput"),
+    id = id.from(_N, "ListDatasetsResponse"),
     type = "structure",
     members = {
         DatasetPropertiesList = schema.new({
@@ -5518,7 +5518,7 @@ M.DocumentClassificationJobFilter = schema.new({
 })
 
 M.ListDocumentClassificationJobsInput = schema.new({
-    id = id.from(_N, "ListDocumentClassificationJobsInput"),
+    id = id.from(_N, "ListDocumentClassificationJobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -5544,7 +5544,7 @@ M.ListDocumentClassificationJobsInput = schema.new({
 })
 
 M.ListDocumentClassificationJobsOutput = schema.new({
-    id = id.from(_N, "ListDocumentClassificationJobsOutput"),
+    id = id.from(_N, "ListDocumentClassificationJobsResponse"),
     type = "structure",
     members = {
         DocumentClassificationJobPropertiesList = schema.new({
@@ -5595,7 +5595,7 @@ M.DocumentClassifierFilter = schema.new({
 })
 
 M.ListDocumentClassifiersInput = schema.new({
-    id = id.from(_N, "ListDocumentClassifiersInput"),
+    id = id.from(_N, "ListDocumentClassifiersRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -5621,7 +5621,7 @@ M.ListDocumentClassifiersInput = schema.new({
 })
 
 M.ListDocumentClassifiersOutput = schema.new({
-    id = id.from(_N, "ListDocumentClassifiersOutput"),
+    id = id.from(_N, "ListDocumentClassifiersResponse"),
     type = "structure",
     members = {
         DocumentClassifierPropertiesList = schema.new({
@@ -5641,7 +5641,7 @@ M.ListDocumentClassifiersOutput = schema.new({
 })
 
 M.ListDocumentClassifierSummariesInput = schema.new({
-    id = id.from(_N, "ListDocumentClassifierSummariesInput"),
+    id = id.from(_N, "ListDocumentClassifierSummariesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -5697,7 +5697,7 @@ M.DocumentClassifierSummary = schema.new({
 })
 
 M.ListDocumentClassifierSummariesOutput = schema.new({
-    id = id.from(_N, "ListDocumentClassifierSummariesOutput"),
+    id = id.from(_N, "ListDocumentClassifierSummariesResponse"),
     type = "structure",
     members = {
         DocumentClassifierSummariesList = schema.new({
@@ -5748,7 +5748,7 @@ M.DominantLanguageDetectionJobFilter = schema.new({
 })
 
 M.ListDominantLanguageDetectionJobsInput = schema.new({
-    id = id.from(_N, "ListDominantLanguageDetectionJobsInput"),
+    id = id.from(_N, "ListDominantLanguageDetectionJobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -5774,7 +5774,7 @@ M.ListDominantLanguageDetectionJobsInput = schema.new({
 })
 
 M.ListDominantLanguageDetectionJobsOutput = schema.new({
-    id = id.from(_N, "ListDominantLanguageDetectionJobsOutput"),
+    id = id.from(_N, "ListDominantLanguageDetectionJobsResponse"),
     type = "structure",
     members = {
         DominantLanguageDetectionJobPropertiesList = schema.new({
@@ -5825,7 +5825,7 @@ M.EndpointFilter = schema.new({
 })
 
 M.ListEndpointsInput = schema.new({
-    id = id.from(_N, "ListEndpointsInput"),
+    id = id.from(_N, "ListEndpointsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -5851,7 +5851,7 @@ M.ListEndpointsInput = schema.new({
 })
 
 M.ListEndpointsOutput = schema.new({
-    id = id.from(_N, "ListEndpointsOutput"),
+    id = id.from(_N, "ListEndpointsResponse"),
     type = "structure",
     members = {
         EndpointPropertiesList = schema.new({
@@ -5902,7 +5902,7 @@ M.EntitiesDetectionJobFilter = schema.new({
 })
 
 M.ListEntitiesDetectionJobsInput = schema.new({
-    id = id.from(_N, "ListEntitiesDetectionJobsInput"),
+    id = id.from(_N, "ListEntitiesDetectionJobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -5928,7 +5928,7 @@ M.ListEntitiesDetectionJobsInput = schema.new({
 })
 
 M.ListEntitiesDetectionJobsOutput = schema.new({
-    id = id.from(_N, "ListEntitiesDetectionJobsOutput"),
+    id = id.from(_N, "ListEntitiesDetectionJobsResponse"),
     type = "structure",
     members = {
         EntitiesDetectionJobPropertiesList = schema.new({
@@ -5979,7 +5979,7 @@ M.EntityRecognizerFilter = schema.new({
 })
 
 M.ListEntityRecognizersInput = schema.new({
-    id = id.from(_N, "ListEntityRecognizersInput"),
+    id = id.from(_N, "ListEntityRecognizersRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -6005,7 +6005,7 @@ M.ListEntityRecognizersInput = schema.new({
 })
 
 M.ListEntityRecognizersOutput = schema.new({
-    id = id.from(_N, "ListEntityRecognizersOutput"),
+    id = id.from(_N, "ListEntityRecognizersResponse"),
     type = "structure",
     members = {
         EntityRecognizerPropertiesList = schema.new({
@@ -6025,7 +6025,7 @@ M.ListEntityRecognizersOutput = schema.new({
 })
 
 M.ListEntityRecognizerSummariesInput = schema.new({
-    id = id.from(_N, "ListEntityRecognizerSummariesInput"),
+    id = id.from(_N, "ListEntityRecognizerSummariesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -6081,7 +6081,7 @@ M.EntityRecognizerSummary = schema.new({
 })
 
 M.ListEntityRecognizerSummariesOutput = schema.new({
-    id = id.from(_N, "ListEntityRecognizerSummariesOutput"),
+    id = id.from(_N, "ListEntityRecognizerSummariesResponse"),
     type = "structure",
     members = {
         EntityRecognizerSummariesList = schema.new({
@@ -6132,7 +6132,7 @@ M.EventsDetectionJobFilter = schema.new({
 })
 
 M.ListEventsDetectionJobsInput = schema.new({
-    id = id.from(_N, "ListEventsDetectionJobsInput"),
+    id = id.from(_N, "ListEventsDetectionJobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -6158,7 +6158,7 @@ M.ListEventsDetectionJobsInput = schema.new({
 })
 
 M.ListEventsDetectionJobsOutput = schema.new({
-    id = id.from(_N, "ListEventsDetectionJobsOutput"),
+    id = id.from(_N, "ListEventsDetectionJobsResponse"),
     type = "structure",
     members = {
         EventsDetectionJobPropertiesList = schema.new({
@@ -6197,7 +6197,7 @@ M.FlywheelIterationFilter = schema.new({
 })
 
 M.ListFlywheelIterationHistoryInput = schema.new({
-    id = id.from(_N, "ListFlywheelIterationHistoryInput"),
+    id = id.from(_N, "ListFlywheelIterationHistoryRequest"),
     type = "structure",
     members = {
         FlywheelArn = schema.new({
@@ -6232,7 +6232,7 @@ M.ListFlywheelIterationHistoryInput = schema.new({
 })
 
 M.ListFlywheelIterationHistoryOutput = schema.new({
-    id = id.from(_N, "ListFlywheelIterationHistoryOutput"),
+    id = id.from(_N, "ListFlywheelIterationHistoryResponse"),
     type = "structure",
     members = {
         FlywheelIterationPropertiesList = schema.new({
@@ -6277,7 +6277,7 @@ M.FlywheelFilter = schema.new({
 })
 
 M.ListFlywheelsInput = schema.new({
-    id = id.from(_N, "ListFlywheelsInput"),
+    id = id.from(_N, "ListFlywheelsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -6364,7 +6364,7 @@ M.FlywheelSummary = schema.new({
 })
 
 M.ListFlywheelsOutput = schema.new({
-    id = id.from(_N, "ListFlywheelsOutput"),
+    id = id.from(_N, "ListFlywheelsResponse"),
     type = "structure",
     members = {
         FlywheelSummaryList = schema.new({
@@ -6415,7 +6415,7 @@ M.KeyPhrasesDetectionJobFilter = schema.new({
 })
 
 M.ListKeyPhrasesDetectionJobsInput = schema.new({
-    id = id.from(_N, "ListKeyPhrasesDetectionJobsInput"),
+    id = id.from(_N, "ListKeyPhrasesDetectionJobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -6441,7 +6441,7 @@ M.ListKeyPhrasesDetectionJobsInput = schema.new({
 })
 
 M.ListKeyPhrasesDetectionJobsOutput = schema.new({
-    id = id.from(_N, "ListKeyPhrasesDetectionJobsOutput"),
+    id = id.from(_N, "ListKeyPhrasesDetectionJobsResponse"),
     type = "structure",
     members = {
         KeyPhrasesDetectionJobPropertiesList = schema.new({
@@ -6492,7 +6492,7 @@ M.PiiEntitiesDetectionJobFilter = schema.new({
 })
 
 M.ListPiiEntitiesDetectionJobsInput = schema.new({
-    id = id.from(_N, "ListPiiEntitiesDetectionJobsInput"),
+    id = id.from(_N, "ListPiiEntitiesDetectionJobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -6518,7 +6518,7 @@ M.ListPiiEntitiesDetectionJobsInput = schema.new({
 })
 
 M.ListPiiEntitiesDetectionJobsOutput = schema.new({
-    id = id.from(_N, "ListPiiEntitiesDetectionJobsOutput"),
+    id = id.from(_N, "ListPiiEntitiesDetectionJobsResponse"),
     type = "structure",
     members = {
         PiiEntitiesDetectionJobPropertiesList = schema.new({
@@ -6569,7 +6569,7 @@ M.SentimentDetectionJobFilter = schema.new({
 })
 
 M.ListSentimentDetectionJobsInput = schema.new({
-    id = id.from(_N, "ListSentimentDetectionJobsInput"),
+    id = id.from(_N, "ListSentimentDetectionJobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -6595,7 +6595,7 @@ M.ListSentimentDetectionJobsInput = schema.new({
 })
 
 M.ListSentimentDetectionJobsOutput = schema.new({
-    id = id.from(_N, "ListSentimentDetectionJobsOutput"),
+    id = id.from(_N, "ListSentimentDetectionJobsResponse"),
     type = "structure",
     members = {
         SentimentDetectionJobPropertiesList = schema.new({
@@ -6615,7 +6615,7 @@ M.ListSentimentDetectionJobsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6631,7 +6631,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6682,7 +6682,7 @@ M.TargetedSentimentDetectionJobFilter = schema.new({
 })
 
 M.ListTargetedSentimentDetectionJobsInput = schema.new({
-    id = id.from(_N, "ListTargetedSentimentDetectionJobsInput"),
+    id = id.from(_N, "ListTargetedSentimentDetectionJobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -6708,7 +6708,7 @@ M.ListTargetedSentimentDetectionJobsInput = schema.new({
 })
 
 M.ListTargetedSentimentDetectionJobsOutput = schema.new({
-    id = id.from(_N, "ListTargetedSentimentDetectionJobsOutput"),
+    id = id.from(_N, "ListTargetedSentimentDetectionJobsResponse"),
     type = "structure",
     members = {
         TargetedSentimentDetectionJobPropertiesList = schema.new({
@@ -6759,7 +6759,7 @@ M.TopicsDetectionJobFilter = schema.new({
 })
 
 M.ListTopicsDetectionJobsInput = schema.new({
-    id = id.from(_N, "ListTopicsDetectionJobsInput"),
+    id = id.from(_N, "ListTopicsDetectionJobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -6785,7 +6785,7 @@ M.ListTopicsDetectionJobsInput = schema.new({
 })
 
 M.ListTopicsDetectionJobsOutput = schema.new({
-    id = id.from(_N, "ListTopicsDetectionJobsOutput"),
+    id = id.from(_N, "ListTopicsDetectionJobsResponse"),
     type = "structure",
     members = {
         TopicsDetectionJobPropertiesList = schema.new({
@@ -6805,7 +6805,7 @@ M.ListTopicsDetectionJobsOutput = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6836,7 +6836,7 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResponse"),
     type = "structure",
     members = {
         PolicyRevisionId = schema.new({
@@ -6849,7 +6849,7 @@ M.PutResourcePolicyOutput = schema.new({
 })
 
 M.StartDocumentClassificationJobInput = schema.new({
-    id = id.from(_N, "StartDocumentClassificationJobInput"),
+    id = id.from(_N, "StartDocumentClassificationJobRequest"),
     type = "structure",
     members = {
         JobName = schema.new({
@@ -6932,7 +6932,7 @@ M.StartDocumentClassificationJobInput = schema.new({
 })
 
 M.StartDocumentClassificationJobOutput = schema.new({
-    id = id.from(_N, "StartDocumentClassificationJobOutput"),
+    id = id.from(_N, "StartDocumentClassificationJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -6963,7 +6963,7 @@ M.StartDocumentClassificationJobOutput = schema.new({
 })
 
 M.StartDominantLanguageDetectionJobInput = schema.new({
-    id = id.from(_N, "StartDominantLanguageDetectionJobInput"),
+    id = id.from(_N, "StartDominantLanguageDetectionJobRequest"),
     type = "structure",
     members = {
         InputDataConfig = schema.new({
@@ -7034,7 +7034,7 @@ M.StartDominantLanguageDetectionJobInput = schema.new({
 })
 
 M.StartDominantLanguageDetectionJobOutput = schema.new({
-    id = id.from(_N, "StartDominantLanguageDetectionJobOutput"),
+    id = id.from(_N, "StartDominantLanguageDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7059,7 +7059,7 @@ M.StartDominantLanguageDetectionJobOutput = schema.new({
 })
 
 M.StartEntitiesDetectionJobInput = schema.new({
-    id = id.from(_N, "StartEntitiesDetectionJobInput"),
+    id = id.from(_N, "StartEntitiesDetectionJobRequest"),
     type = "structure",
     members = {
         InputDataConfig = schema.new({
@@ -7151,7 +7151,7 @@ M.StartEntitiesDetectionJobInput = schema.new({
 })
 
 M.StartEntitiesDetectionJobOutput = schema.new({
-    id = id.from(_N, "StartEntitiesDetectionJobOutput"),
+    id = id.from(_N, "StartEntitiesDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7182,7 +7182,7 @@ M.StartEntitiesDetectionJobOutput = schema.new({
 })
 
 M.StartEventsDetectionJobInput = schema.new({
-    id = id.from(_N, "StartEventsDetectionJobInput"),
+    id = id.from(_N, "StartEventsDetectionJobRequest"),
     type = "structure",
     members = {
         InputDataConfig = schema.new({
@@ -7259,7 +7259,7 @@ M.StartEventsDetectionJobInput = schema.new({
 })
 
 M.StartEventsDetectionJobOutput = schema.new({
-    id = id.from(_N, "StartEventsDetectionJobOutput"),
+    id = id.from(_N, "StartEventsDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7284,7 +7284,7 @@ M.StartEventsDetectionJobOutput = schema.new({
 })
 
 M.StartFlywheelIterationInput = schema.new({
-    id = id.from(_N, "StartFlywheelIterationInput"),
+    id = id.from(_N, "StartFlywheelIterationRequest"),
     type = "structure",
     members = {
         FlywheelArn = schema.new({
@@ -7306,7 +7306,7 @@ M.StartFlywheelIterationInput = schema.new({
 })
 
 M.StartFlywheelIterationOutput = schema.new({
-    id = id.from(_N, "StartFlywheelIterationOutput"),
+    id = id.from(_N, "StartFlywheelIterationResponse"),
     type = "structure",
     members = {
         FlywheelArn = schema.new({
@@ -7325,7 +7325,7 @@ M.StartFlywheelIterationOutput = schema.new({
 })
 
 M.StartKeyPhrasesDetectionJobInput = schema.new({
-    id = id.from(_N, "StartKeyPhrasesDetectionJobInput"),
+    id = id.from(_N, "StartKeyPhrasesDetectionJobRequest"),
     type = "structure",
     members = {
         InputDataConfig = schema.new({
@@ -7405,7 +7405,7 @@ M.StartKeyPhrasesDetectionJobInput = schema.new({
 })
 
 M.StartKeyPhrasesDetectionJobOutput = schema.new({
-    id = id.from(_N, "StartKeyPhrasesDetectionJobOutput"),
+    id = id.from(_N, "StartKeyPhrasesDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7430,7 +7430,7 @@ M.StartKeyPhrasesDetectionJobOutput = schema.new({
 })
 
 M.StartPiiEntitiesDetectionJobInput = schema.new({
-    id = id.from(_N, "StartPiiEntitiesDetectionJobInput"),
+    id = id.from(_N, "StartPiiEntitiesDetectionJobRequest"),
     type = "structure",
     members = {
         InputDataConfig = schema.new({
@@ -7513,7 +7513,7 @@ M.StartPiiEntitiesDetectionJobInput = schema.new({
 })
 
 M.StartPiiEntitiesDetectionJobOutput = schema.new({
-    id = id.from(_N, "StartPiiEntitiesDetectionJobOutput"),
+    id = id.from(_N, "StartPiiEntitiesDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7538,7 +7538,7 @@ M.StartPiiEntitiesDetectionJobOutput = schema.new({
 })
 
 M.StartSentimentDetectionJobInput = schema.new({
-    id = id.from(_N, "StartSentimentDetectionJobInput"),
+    id = id.from(_N, "StartSentimentDetectionJobRequest"),
     type = "structure",
     members = {
         InputDataConfig = schema.new({
@@ -7618,7 +7618,7 @@ M.StartSentimentDetectionJobInput = schema.new({
 })
 
 M.StartSentimentDetectionJobOutput = schema.new({
-    id = id.from(_N, "StartSentimentDetectionJobOutput"),
+    id = id.from(_N, "StartSentimentDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7643,7 +7643,7 @@ M.StartSentimentDetectionJobOutput = schema.new({
 })
 
 M.StartTargetedSentimentDetectionJobInput = schema.new({
-    id = id.from(_N, "StartTargetedSentimentDetectionJobInput"),
+    id = id.from(_N, "StartTargetedSentimentDetectionJobRequest"),
     type = "structure",
     members = {
         InputDataConfig = schema.new({
@@ -7723,7 +7723,7 @@ M.StartTargetedSentimentDetectionJobInput = schema.new({
 })
 
 M.StartTargetedSentimentDetectionJobOutput = schema.new({
-    id = id.from(_N, "StartTargetedSentimentDetectionJobOutput"),
+    id = id.from(_N, "StartTargetedSentimentDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7748,7 +7748,7 @@ M.StartTargetedSentimentDetectionJobOutput = schema.new({
 })
 
 M.StartTopicsDetectionJobInput = schema.new({
-    id = id.from(_N, "StartTopicsDetectionJobInput"),
+    id = id.from(_N, "StartTopicsDetectionJobRequest"),
     type = "structure",
     members = {
         InputDataConfig = schema.new({
@@ -7825,7 +7825,7 @@ M.StartTopicsDetectionJobInput = schema.new({
 })
 
 M.StartTopicsDetectionJobOutput = schema.new({
-    id = id.from(_N, "StartTopicsDetectionJobOutput"),
+    id = id.from(_N, "StartTopicsDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7850,7 +7850,7 @@ M.StartTopicsDetectionJobOutput = schema.new({
 })
 
 M.StopDominantLanguageDetectionJobInput = schema.new({
-    id = id.from(_N, "StopDominantLanguageDetectionJobInput"),
+    id = id.from(_N, "StopDominantLanguageDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7866,7 +7866,7 @@ M.StopDominantLanguageDetectionJobInput = schema.new({
 })
 
 M.StopDominantLanguageDetectionJobOutput = schema.new({
-    id = id.from(_N, "StopDominantLanguageDetectionJobOutput"),
+    id = id.from(_N, "StopDominantLanguageDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7885,7 +7885,7 @@ M.StopDominantLanguageDetectionJobOutput = schema.new({
 })
 
 M.StopEntitiesDetectionJobInput = schema.new({
-    id = id.from(_N, "StopEntitiesDetectionJobInput"),
+    id = id.from(_N, "StopEntitiesDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7901,7 +7901,7 @@ M.StopEntitiesDetectionJobInput = schema.new({
 })
 
 M.StopEntitiesDetectionJobOutput = schema.new({
-    id = id.from(_N, "StopEntitiesDetectionJobOutput"),
+    id = id.from(_N, "StopEntitiesDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7920,7 +7920,7 @@ M.StopEntitiesDetectionJobOutput = schema.new({
 })
 
 M.StopEventsDetectionJobInput = schema.new({
-    id = id.from(_N, "StopEventsDetectionJobInput"),
+    id = id.from(_N, "StopEventsDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7936,7 +7936,7 @@ M.StopEventsDetectionJobInput = schema.new({
 })
 
 M.StopEventsDetectionJobOutput = schema.new({
-    id = id.from(_N, "StopEventsDetectionJobOutput"),
+    id = id.from(_N, "StopEventsDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7955,7 +7955,7 @@ M.StopEventsDetectionJobOutput = schema.new({
 })
 
 M.StopKeyPhrasesDetectionJobInput = schema.new({
-    id = id.from(_N, "StopKeyPhrasesDetectionJobInput"),
+    id = id.from(_N, "StopKeyPhrasesDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7971,7 +7971,7 @@ M.StopKeyPhrasesDetectionJobInput = schema.new({
 })
 
 M.StopKeyPhrasesDetectionJobOutput = schema.new({
-    id = id.from(_N, "StopKeyPhrasesDetectionJobOutput"),
+    id = id.from(_N, "StopKeyPhrasesDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -7990,7 +7990,7 @@ M.StopKeyPhrasesDetectionJobOutput = schema.new({
 })
 
 M.StopPiiEntitiesDetectionJobInput = schema.new({
-    id = id.from(_N, "StopPiiEntitiesDetectionJobInput"),
+    id = id.from(_N, "StopPiiEntitiesDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -8006,7 +8006,7 @@ M.StopPiiEntitiesDetectionJobInput = schema.new({
 })
 
 M.StopPiiEntitiesDetectionJobOutput = schema.new({
-    id = id.from(_N, "StopPiiEntitiesDetectionJobOutput"),
+    id = id.from(_N, "StopPiiEntitiesDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -8025,7 +8025,7 @@ M.StopPiiEntitiesDetectionJobOutput = schema.new({
 })
 
 M.StopSentimentDetectionJobInput = schema.new({
-    id = id.from(_N, "StopSentimentDetectionJobInput"),
+    id = id.from(_N, "StopSentimentDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -8041,7 +8041,7 @@ M.StopSentimentDetectionJobInput = schema.new({
 })
 
 M.StopSentimentDetectionJobOutput = schema.new({
-    id = id.from(_N, "StopSentimentDetectionJobOutput"),
+    id = id.from(_N, "StopSentimentDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -8060,7 +8060,7 @@ M.StopSentimentDetectionJobOutput = schema.new({
 })
 
 M.StopTargetedSentimentDetectionJobInput = schema.new({
-    id = id.from(_N, "StopTargetedSentimentDetectionJobInput"),
+    id = id.from(_N, "StopTargetedSentimentDetectionJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -8076,7 +8076,7 @@ M.StopTargetedSentimentDetectionJobInput = schema.new({
 })
 
 M.StopTargetedSentimentDetectionJobOutput = schema.new({
-    id = id.from(_N, "StopTargetedSentimentDetectionJobOutput"),
+    id = id.from(_N, "StopTargetedSentimentDetectionJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -8095,7 +8095,7 @@ M.StopTargetedSentimentDetectionJobOutput = schema.new({
 })
 
 M.StopTrainingDocumentClassifierInput = schema.new({
-    id = id.from(_N, "StopTrainingDocumentClassifierInput"),
+    id = id.from(_N, "StopTrainingDocumentClassifierRequest"),
     type = "structure",
     members = {
         DocumentClassifierArn = schema.new({
@@ -8111,12 +8111,12 @@ M.StopTrainingDocumentClassifierInput = schema.new({
 })
 
 M.StopTrainingDocumentClassifierOutput = schema.new({
-    id = id.from(_N, "StopTrainingDocumentClassifierOutput"),
+    id = id.from(_N, "StopTrainingDocumentClassifierResponse"),
     type = "structure",
 })
 
 M.StopTrainingEntityRecognizerInput = schema.new({
-    id = id.from(_N, "StopTrainingEntityRecognizerInput"),
+    id = id.from(_N, "StopTrainingEntityRecognizerRequest"),
     type = "structure",
     members = {
         EntityRecognizerArn = schema.new({
@@ -8132,7 +8132,7 @@ M.StopTrainingEntityRecognizerInput = schema.new({
 })
 
 M.StopTrainingEntityRecognizerOutput = schema.new({
-    id = id.from(_N, "StopTrainingEntityRecognizerOutput"),
+    id = id.from(_N, "StopTrainingEntityRecognizerResponse"),
     type = "structure",
 })
 
@@ -8153,7 +8153,7 @@ M.ConcurrentModificationException = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -8179,7 +8179,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -8200,7 +8200,7 @@ M.TooManyTagKeysException = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -8226,12 +8226,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateEndpointInput = schema.new({
-    id = id.from(_N, "UpdateEndpointInput"),
+    id = id.from(_N, "UpdateEndpointRequest"),
     type = "structure",
     members = {
         EndpointArn = schema.new({
@@ -8271,7 +8271,7 @@ M.UpdateEndpointInput = schema.new({
 })
 
 M.UpdateEndpointOutput = schema.new({
-    id = id.from(_N, "UpdateEndpointOutput"),
+    id = id.from(_N, "UpdateEndpointResponse"),
     type = "structure",
     members = {
         DesiredModelArn = schema.new({
@@ -8310,7 +8310,7 @@ M.UpdateDataSecurityConfig = schema.new({
 })
 
 M.UpdateFlywheelInput = schema.new({
-    id = id.from(_N, "UpdateFlywheelInput"),
+    id = id.from(_N, "UpdateFlywheelRequest"),
     type = "structure",
     members = {
         FlywheelArn = schema.new({
@@ -8345,7 +8345,7 @@ M.UpdateFlywheelInput = schema.new({
 })
 
 M.UpdateFlywheelOutput = schema.new({
-    id = id.from(_N, "UpdateFlywheelOutput"),
+    id = id.from(_N, "UpdateFlywheelResponse"),
     type = "structure",
     members = {
         FlywheelProperties = schema.new({
@@ -8357,5 +8357,19 @@ M.UpdateFlywheelOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

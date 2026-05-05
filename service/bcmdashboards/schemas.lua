@@ -259,7 +259,7 @@ M.DateTimeRange = schema.new({
 })
 
 M.CreateDashboardOutput = schema.new({
-    id = id.from(_N, "CreateDashboardOutput"),
+    id = id.from(_N, "CreateDashboardResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -485,7 +485,7 @@ M.ScheduledReportInput = schema.new({
 })
 
 M.CreateScheduledReportInput = schema.new({
-    id = id.from(_N, "CreateScheduledReportInput"),
+    id = id.from(_N, "CreateScheduledReportRequest"),
     type = "structure",
     members = {
         scheduledReport = schema.new({
@@ -519,7 +519,7 @@ M.CreateScheduledReportInput = schema.new({
 })
 
 M.CreateScheduledReportOutput = schema.new({
-    id = id.from(_N, "CreateScheduledReportOutput"),
+    id = id.from(_N, "CreateScheduledReportResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -535,7 +535,7 @@ M.CreateScheduledReportOutput = schema.new({
 })
 
 M.DeleteDashboardInput = schema.new({
-    id = id.from(_N, "DeleteDashboardInput"),
+    id = id.from(_N, "DeleteDashboardRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -551,7 +551,7 @@ M.DeleteDashboardInput = schema.new({
 })
 
 M.DeleteDashboardOutput = schema.new({
-    id = id.from(_N, "DeleteDashboardOutput"),
+    id = id.from(_N, "DeleteDashboardResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -567,7 +567,7 @@ M.DeleteDashboardOutput = schema.new({
 })
 
 M.DeleteScheduledReportInput = schema.new({
-    id = id.from(_N, "DeleteScheduledReportInput"),
+    id = id.from(_N, "DeleteScheduledReportRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -583,7 +583,7 @@ M.DeleteScheduledReportInput = schema.new({
 })
 
 M.DeleteScheduledReportOutput = schema.new({
-    id = id.from(_N, "DeleteScheduledReportOutput"),
+    id = id.from(_N, "DeleteScheduledReportResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -618,7 +618,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.ExecuteScheduledReportInput = schema.new({
-    id = id.from(_N, "ExecuteScheduledReportInput"),
+    id = id.from(_N, "ExecuteScheduledReportRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -679,7 +679,7 @@ M.HealthStatus = schema.new({
 })
 
 M.ExecuteScheduledReportOutput = schema.new({
-    id = id.from(_N, "ExecuteScheduledReportOutput"),
+    id = id.from(_N, "ExecuteScheduledReportResponse"),
     type = "structure",
     members = {
         healthStatus = schema.new({
@@ -699,7 +699,7 @@ M.ExecuteScheduledReportOutput = schema.new({
 })
 
 M.GetDashboardInput = schema.new({
-    id = id.from(_N, "GetDashboardInput"),
+    id = id.from(_N, "GetDashboardRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -715,7 +715,7 @@ M.GetDashboardInput = schema.new({
 })
 
 M.GetResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetResourcePolicyInput"),
+    id = id.from(_N, "GetResourcePolicyRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -731,7 +731,7 @@ M.GetResourcePolicyInput = schema.new({
 })
 
 M.GetResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetResourcePolicyOutput"),
+    id = id.from(_N, "GetResourcePolicyResponse"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -756,7 +756,7 @@ M.GetResourcePolicyOutput = schema.new({
 })
 
 M.GetScheduledReportInput = schema.new({
-    id = id.from(_N, "GetScheduledReportInput"),
+    id = id.from(_N, "GetScheduledReportRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -867,7 +867,7 @@ M.ScheduledReport = schema.new({
 })
 
 M.GetScheduledReportOutput = schema.new({
-    id = id.from(_N, "GetScheduledReportOutput"),
+    id = id.from(_N, "GetScheduledReportResponse"),
     type = "structure",
     members = {
         scheduledReport = schema.new({
@@ -884,7 +884,7 @@ M.GetScheduledReportOutput = schema.new({
 })
 
 M.ListDashboardsInput = schema.new({
-    id = id.from(_N, "ListDashboardsInput"),
+    id = id.from(_N, "ListDashboardsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -964,7 +964,7 @@ M.DashboardReference = schema.new({
 })
 
 M.ListDashboardsOutput = schema.new({
-    id = id.from(_N, "ListDashboardsOutput"),
+    id = id.from(_N, "ListDashboardsResponse"),
     type = "structure",
     members = {
         dashboards = schema.new({
@@ -987,7 +987,7 @@ M.ListDashboardsOutput = schema.new({
 })
 
 M.ListScheduledReportsInput = schema.new({
-    id = id.from(_N, "ListScheduledReportsInput"),
+    id = id.from(_N, "ListScheduledReportsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1084,7 +1084,7 @@ M.ScheduledReportSummary = schema.new({
 })
 
 M.ListScheduledReportsOutput = schema.new({
-    id = id.from(_N, "ListScheduledReportsOutput"),
+    id = id.from(_N, "ListScheduledReportsResponse"),
     type = "structure",
     members = {
         scheduledReports = schema.new({
@@ -1107,7 +1107,7 @@ M.ListScheduledReportsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1123,7 +1123,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         resourceTags = schema.new({
@@ -1137,7 +1137,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1163,12 +1163,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1194,12 +1194,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateDashboardOutput = schema.new({
-    id = id.from(_N, "UpdateDashboardOutput"),
+    id = id.from(_N, "UpdateDashboardResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1215,7 +1215,7 @@ M.UpdateDashboardOutput = schema.new({
 })
 
 M.UpdateScheduledReportInput = schema.new({
-    id = id.from(_N, "UpdateScheduledReportInput"),
+    id = id.from(_N, "UpdateScheduledReportRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1294,7 +1294,7 @@ M.UpdateScheduledReportInput = schema.new({
 })
 
 M.UpdateScheduledReportOutput = schema.new({
-    id = id.from(_N, "UpdateScheduledReportOutput"),
+    id = id.from(_N, "UpdateScheduledReportResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1698,7 +1698,7 @@ M.Widget = schema.new({
 })
 
 M.CreateDashboardInput = schema.new({
-    id = id.from(_N, "CreateDashboardInput"),
+    id = id.from(_N, "CreateDashboardRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1737,7 +1737,7 @@ M.CreateDashboardInput = schema.new({
 })
 
 M.GetDashboardOutput = schema.new({
-    id = id.from(_N, "GetDashboardOutput"),
+    id = id.from(_N, "GetDashboardResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1805,7 +1805,7 @@ M.GetDashboardOutput = schema.new({
 })
 
 M.UpdateDashboardInput = schema.new({
-    id = id.from(_N, "UpdateDashboardInput"),
+    id = id.from(_N, "UpdateDashboardRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1841,5 +1841,19 @@ M.UpdateDashboardInput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

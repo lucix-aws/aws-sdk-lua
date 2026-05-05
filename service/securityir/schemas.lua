@@ -27,7 +27,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.BatchGetMemberAccountDetailsInput = schema.new({
-    id = id.from(_N, "BatchGetMemberAccountDetailsInput"),
+    id = id.from(_N, "BatchGetMemberAccountDetailsRequest"),
     type = "structure",
     members = {
         membershipId = schema.new({
@@ -113,7 +113,7 @@ M.GetMembershipAccountDetailItem = schema.new({
 })
 
 M.BatchGetMemberAccountDetailsOutput = schema.new({
-    id = id.from(_N, "BatchGetMemberAccountDetailsOutput"),
+    id = id.from(_N, "BatchGetMemberAccountDetailsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -411,7 +411,7 @@ M.ValidationException = schema.new({
 })
 
 M.CancelMembershipInput = schema.new({
-    id = id.from(_N, "CancelMembershipInput"),
+    id = id.from(_N, "CancelMembershipRequest"),
     type = "structure",
     members = {
         membershipId = schema.new({
@@ -428,7 +428,7 @@ M.CancelMembershipInput = schema.new({
 })
 
 M.CancelMembershipOutput = schema.new({
-    id = id.from(_N, "CancelMembershipOutput"),
+    id = id.from(_N, "CancelMembershipResponse"),
     type = "structure",
     members = {
         membershipId = schema.new({
@@ -444,7 +444,7 @@ M.CancelMembershipOutput = schema.new({
 })
 
 M.CloseCaseInput = schema.new({
-    id = id.from(_N, "CloseCaseInput"),
+    id = id.from(_N, "CloseCaseRequest"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -461,7 +461,7 @@ M.CloseCaseInput = schema.new({
 })
 
 M.CloseCaseOutput = schema.new({
-    id = id.from(_N, "CloseCaseOutput"),
+    id = id.from(_N, "CloseCaseResponse"),
     type = "structure",
     members = {
         caseStatus = schema.new({
@@ -546,7 +546,7 @@ M.Watcher = schema.new({
 })
 
 M.CreateCaseInput = schema.new({
-    id = id.from(_N, "CreateCaseInput"),
+    id = id.from(_N, "CreateCaseRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -656,7 +656,7 @@ M.CreateCaseInput = schema.new({
 })
 
 M.CreateCaseOutput = schema.new({
-    id = id.from(_N, "CreateCaseOutput"),
+    id = id.from(_N, "CreateCaseResponse"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -672,7 +672,7 @@ M.CreateCaseOutput = schema.new({
 })
 
 M.CreateCaseCommentInput = schema.new({
-    id = id.from(_N, "CreateCaseCommentInput"),
+    id = id.from(_N, "CreateCaseCommentRequest"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -707,7 +707,7 @@ M.CreateCaseCommentInput = schema.new({
 })
 
 M.CreateCaseCommentOutput = schema.new({
-    id = id.from(_N, "CreateCaseCommentOutput"),
+    id = id.from(_N, "CreateCaseCommentResponse"),
     type = "structure",
     members = {
         commentId = schema.new({
@@ -723,7 +723,7 @@ M.CreateCaseCommentOutput = schema.new({
 })
 
 M.GetCaseInput = schema.new({
-    id = id.from(_N, "GetCaseInput"),
+    id = id.from(_N, "GetCaseRequest"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -817,7 +817,7 @@ M.CaseMetadataEntry = schema.new({
 })
 
 M.GetCaseOutput = schema.new({
-    id = id.from(_N, "GetCaseOutput"),
+    id = id.from(_N, "GetCaseResponse"),
     type = "structure",
     members = {
         title = schema.new({
@@ -951,7 +951,7 @@ M.GetCaseOutput = schema.new({
 })
 
 M.GetCaseAttachmentDownloadUrlInput = schema.new({
-    id = id.from(_N, "GetCaseAttachmentDownloadUrlInput"),
+    id = id.from(_N, "GetCaseAttachmentDownloadUrlRequest"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -978,7 +978,7 @@ M.GetCaseAttachmentDownloadUrlInput = schema.new({
 })
 
 M.GetCaseAttachmentDownloadUrlOutput = schema.new({
-    id = id.from(_N, "GetCaseAttachmentDownloadUrlOutput"),
+    id = id.from(_N, "GetCaseAttachmentDownloadUrlResponse"),
     type = "structure",
     members = {
         attachmentPresignedUrl = schema.new({
@@ -994,7 +994,7 @@ M.GetCaseAttachmentDownloadUrlOutput = schema.new({
 })
 
 M.GetCaseAttachmentUploadUrlInput = schema.new({
-    id = id.from(_N, "GetCaseAttachmentUploadUrlInput"),
+    id = id.from(_N, "GetCaseAttachmentUploadUrlRequest"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -1038,7 +1038,7 @@ M.GetCaseAttachmentUploadUrlInput = schema.new({
 })
 
 M.GetCaseAttachmentUploadUrlOutput = schema.new({
-    id = id.from(_N, "GetCaseAttachmentUploadUrlOutput"),
+    id = id.from(_N, "GetCaseAttachmentUploadUrlResponse"),
     type = "structure",
     members = {
         attachmentPresignedUrl = schema.new({
@@ -1054,7 +1054,7 @@ M.GetCaseAttachmentUploadUrlOutput = schema.new({
 })
 
 M.ListCaseEditsInput = schema.new({
-    id = id.from(_N, "ListCaseEditsInput"),
+    id = id.from(_N, "ListCaseEditsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1114,7 +1114,7 @@ M.CaseEditItem = schema.new({
 })
 
 M.ListCaseEditsOutput = schema.new({
-    id = id.from(_N, "ListCaseEditsOutput"),
+    id = id.from(_N, "ListCaseEditsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1140,7 +1140,7 @@ M.ListCaseEditsOutput = schema.new({
 })
 
 M.ListCasesInput = schema.new({
-    id = id.from(_N, "ListCasesInput"),
+    id = id.from(_N, "ListCasesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1229,7 +1229,7 @@ M.ListCasesItem = schema.new({
 })
 
 M.ListCasesOutput = schema.new({
-    id = id.from(_N, "ListCasesOutput"),
+    id = id.from(_N, "ListCasesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1255,7 +1255,7 @@ M.ListCasesOutput = schema.new({
 })
 
 M.ListCommentsInput = schema.new({
-    id = id.from(_N, "ListCommentsInput"),
+    id = id.from(_N, "ListCommentsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1330,7 +1330,7 @@ M.ListCommentsItem = schema.new({
 })
 
 M.ListCommentsOutput = schema.new({
-    id = id.from(_N, "ListCommentsOutput"),
+    id = id.from(_N, "ListCommentsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1356,7 +1356,7 @@ M.ListCommentsOutput = schema.new({
 })
 
 M.ListInvestigationsInput = schema.new({
-    id = id.from(_N, "ListInvestigationsInput"),
+    id = id.from(_N, "ListInvestigationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1484,7 +1484,7 @@ M.InvestigationAction = schema.new({
 })
 
 M.ListInvestigationsOutput = schema.new({
-    id = id.from(_N, "ListInvestigationsOutput"),
+    id = id.from(_N, "ListInvestigationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1507,7 +1507,7 @@ M.ListInvestigationsOutput = schema.new({
 })
 
 M.SendFeedbackInput = schema.new({
-    id = id.from(_N, "SendFeedbackInput"),
+    id = id.from(_N, "SendFeedbackRequest"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -1549,12 +1549,12 @@ M.SendFeedbackInput = schema.new({
 })
 
 M.SendFeedbackOutput = schema.new({
-    id = id.from(_N, "SendFeedbackOutput"),
+    id = id.from(_N, "SendFeedbackResponse"),
     type = "structure",
 })
 
 M.UpdateCaseInput = schema.new({
-    id = id.from(_N, "UpdateCaseInput"),
+    id = id.from(_N, "UpdateCaseRequest"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -1678,12 +1678,12 @@ M.UpdateCaseInput = schema.new({
 })
 
 M.UpdateCaseOutput = schema.new({
-    id = id.from(_N, "UpdateCaseOutput"),
+    id = id.from(_N, "UpdateCaseResponse"),
     type = "structure",
 })
 
 M.UpdateCaseCommentInput = schema.new({
-    id = id.from(_N, "UpdateCaseCommentInput"),
+    id = id.from(_N, "UpdateCaseCommentRequest"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -1719,7 +1719,7 @@ M.UpdateCaseCommentInput = schema.new({
 })
 
 M.UpdateCaseCommentOutput = schema.new({
-    id = id.from(_N, "UpdateCaseCommentOutput"),
+    id = id.from(_N, "UpdateCaseCommentResponse"),
     type = "structure",
     members = {
         commentId = schema.new({
@@ -1741,7 +1741,7 @@ M.UpdateCaseCommentOutput = schema.new({
 })
 
 M.UpdateCaseStatusInput = schema.new({
-    id = id.from(_N, "UpdateCaseStatusInput"),
+    id = id.from(_N, "UpdateCaseStatusRequest"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -1767,7 +1767,7 @@ M.UpdateCaseStatusInput = schema.new({
 })
 
 M.UpdateCaseStatusOutput = schema.new({
-    id = id.from(_N, "UpdateCaseStatusOutput"),
+    id = id.from(_N, "UpdateCaseStatusResponse"),
     type = "structure",
     members = {
         caseStatus = schema.new({
@@ -1780,7 +1780,7 @@ M.UpdateCaseStatusOutput = schema.new({
 })
 
 M.UpdateResolverTypeInput = schema.new({
-    id = id.from(_N, "UpdateResolverTypeInput"),
+    id = id.from(_N, "UpdateResolverTypeRequest"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -1806,7 +1806,7 @@ M.UpdateResolverTypeInput = schema.new({
 })
 
 M.UpdateResolverTypeOutput = schema.new({
-    id = id.from(_N, "UpdateResolverTypeOutput"),
+    id = id.from(_N, "UpdateResolverTypeResponse"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -1900,7 +1900,7 @@ M.OptInFeature = schema.new({
 })
 
 M.CreateMembershipInput = schema.new({
-    id = id.from(_N, "CreateMembershipInput"),
+    id = id.from(_N, "CreateMembershipRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -1959,7 +1959,7 @@ M.CreateMembershipInput = schema.new({
 })
 
 M.CreateMembershipOutput = schema.new({
-    id = id.from(_N, "CreateMembershipOutput"),
+    id = id.from(_N, "CreateMembershipResponse"),
     type = "structure",
     members = {
         membershipId = schema.new({
@@ -1975,7 +1975,7 @@ M.CreateMembershipOutput = schema.new({
 })
 
 M.GetMembershipInput = schema.new({
-    id = id.from(_N, "GetMembershipInput"),
+    id = id.from(_N, "GetMembershipRequest"),
     type = "structure",
     members = {
         membershipId = schema.new({
@@ -2012,7 +2012,7 @@ M.MembershipAccountsConfigurations = schema.new({
 })
 
 M.GetMembershipOutput = schema.new({
-    id = id.from(_N, "GetMembershipOutput"),
+    id = id.from(_N, "GetMembershipResponse"),
     type = "structure",
     members = {
         membershipId = schema.new({
@@ -2143,7 +2143,7 @@ M.ListMembershipItem = schema.new({
 })
 
 M.ListMembershipsInput = schema.new({
-    id = id.from(_N, "ListMembershipsInput"),
+    id = id.from(_N, "ListMembershipsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2162,7 +2162,7 @@ M.ListMembershipsInput = schema.new({
 })
 
 M.ListMembershipsOutput = schema.new({
-    id = id.from(_N, "ListMembershipsOutput"),
+    id = id.from(_N, "ListMembershipsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2244,7 +2244,7 @@ M.MembershipAccountsConfigurationsUpdate = schema.new({
 })
 
 M.UpdateMembershipInput = schema.new({
-    id = id.from(_N, "UpdateMembershipInput"),
+    id = id.from(_N, "UpdateMembershipRequest"),
     type = "structure",
     members = {
         membershipId = schema.new({
@@ -2294,7 +2294,7 @@ M.UpdateMembershipInput = schema.new({
 })
 
 M.UpdateMembershipOutput = schema.new({
-    id = id.from(_N, "UpdateMembershipOutput"),
+    id = id.from(_N, "UpdateMembershipResponse"),
     type = "structure",
 })
 
@@ -2363,5 +2363,19 @@ M.UntagResourceOutput = schema.new({
     id = id.from(_N, "UntagResourceOutput"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

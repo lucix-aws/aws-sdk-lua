@@ -24,12 +24,12 @@ M.AccessDeniedException = schema.new({
 })
 
 M.AssociateServiceQuotaTemplateInput = schema.new({
-    id = id.from(_N, "AssociateServiceQuotaTemplateInput"),
+    id = id.from(_N, "AssociateServiceQuotaTemplateRequest"),
     type = "structure",
 })
 
 M.AssociateServiceQuotaTemplateOutput = schema.new({
-    id = id.from(_N, "AssociateServiceQuotaTemplateOutput"),
+    id = id.from(_N, "AssociateServiceQuotaTemplateResponse"),
     type = "structure",
 })
 
@@ -146,7 +146,7 @@ M.TooManyRequestsException = schema.new({
 })
 
 M.CreateSupportCaseInput = schema.new({
-    id = id.from(_N, "CreateSupportCaseInput"),
+    id = id.from(_N, "CreateSupportCaseRequest"),
     type = "structure",
     members = {
         RequestId = schema.new({
@@ -162,7 +162,7 @@ M.CreateSupportCaseInput = schema.new({
 })
 
 M.CreateSupportCaseOutput = schema.new({
-    id = id.from(_N, "CreateSupportCaseOutput"),
+    id = id.from(_N, "CreateSupportCaseResponse"),
     type = "structure",
 })
 
@@ -231,7 +231,7 @@ M.ResourceAlreadyExistsException = schema.new({
 })
 
 M.DeleteServiceQuotaIncreaseRequestFromTemplateInput = schema.new({
-    id = id.from(_N, "DeleteServiceQuotaIncreaseRequestFromTemplateInput"),
+    id = id.from(_N, "DeleteServiceQuotaIncreaseRequestFromTemplateRequest"),
     type = "structure",
     members = {
         ServiceCode = schema.new({
@@ -265,17 +265,17 @@ M.DeleteServiceQuotaIncreaseRequestFromTemplateInput = schema.new({
 })
 
 M.DeleteServiceQuotaIncreaseRequestFromTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteServiceQuotaIncreaseRequestFromTemplateOutput"),
+    id = id.from(_N, "DeleteServiceQuotaIncreaseRequestFromTemplateResponse"),
     type = "structure",
 })
 
 M.DisassociateServiceQuotaTemplateInput = schema.new({
-    id = id.from(_N, "DisassociateServiceQuotaTemplateInput"),
+    id = id.from(_N, "DisassociateServiceQuotaTemplateRequest"),
     type = "structure",
 })
 
 M.DisassociateServiceQuotaTemplateOutput = schema.new({
-    id = id.from(_N, "DisassociateServiceQuotaTemplateOutput"),
+    id = id.from(_N, "DisassociateServiceQuotaTemplateResponse"),
     type = "structure",
 })
 
@@ -334,12 +334,12 @@ M.QuotaInfo = schema.new({
 })
 
 M.GetAssociationForServiceQuotaTemplateInput = schema.new({
-    id = id.from(_N, "GetAssociationForServiceQuotaTemplateInput"),
+    id = id.from(_N, "GetAssociationForServiceQuotaTemplateRequest"),
     type = "structure",
 })
 
 M.GetAssociationForServiceQuotaTemplateOutput = schema.new({
-    id = id.from(_N, "GetAssociationForServiceQuotaTemplateOutput"),
+    id = id.from(_N, "GetAssociationForServiceQuotaTemplateResponse"),
     type = "structure",
     members = {
         ServiceQuotaTemplateAssociationStatus = schema.new({
@@ -352,12 +352,12 @@ M.GetAssociationForServiceQuotaTemplateOutput = schema.new({
 })
 
 M.GetAutoManagementConfigurationInput = schema.new({
-    id = id.from(_N, "GetAutoManagementConfigurationInput"),
+    id = id.from(_N, "GetAutoManagementConfigurationRequest"),
     type = "structure",
 })
 
 M.GetAutoManagementConfigurationOutput = schema.new({
-    id = id.from(_N, "GetAutoManagementConfigurationOutput"),
+    id = id.from(_N, "GetAutoManagementConfigurationResponse"),
     type = "structure",
     members = {
         OptInLevel = schema.new({
@@ -390,13 +390,13 @@ M.GetAutoManagementConfigurationOutput = schema.new({
             name = "ExclusionList",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.QuotaInfo }),
         }),
     },
 })
 
 M.GetAWSDefaultServiceQuotaInput = schema.new({
-    id = id.from(_N, "GetAWSDefaultServiceQuotaInput"),
+    id = id.from(_N, "GetAWSDefaultServiceQuotaRequest"),
     type = "structure",
     members = {
         ServiceCode = schema.new({
@@ -605,7 +605,7 @@ M.ServiceQuota = schema.new({
 })
 
 M.GetAWSDefaultServiceQuotaOutput = schema.new({
-    id = id.from(_N, "GetAWSDefaultServiceQuotaOutput"),
+    id = id.from(_N, "GetAWSDefaultServiceQuotaResponse"),
     type = "structure",
     members = {
         Quota = schema.new({
@@ -619,7 +619,7 @@ M.GetAWSDefaultServiceQuotaOutput = schema.new({
 })
 
 M.GetQuotaUtilizationReportInput = schema.new({
-    id = id.from(_N, "GetQuotaUtilizationReportInput"),
+    id = id.from(_N, "GetQuotaUtilizationReportRequest"),
     type = "structure",
     members = {
         ReportId = schema.new({
@@ -711,7 +711,7 @@ M.QuotaUtilizationInfo = schema.new({
 })
 
 M.GetQuotaUtilizationReportOutput = schema.new({
-    id = id.from(_N, "GetQuotaUtilizationReportOutput"),
+    id = id.from(_N, "GetQuotaUtilizationReportResponse"),
     type = "structure",
     members = {
         ReportId = schema.new({
@@ -767,7 +767,7 @@ M.GetQuotaUtilizationReportOutput = schema.new({
 })
 
 M.GetRequestedServiceQuotaChangeInput = schema.new({
-    id = id.from(_N, "GetRequestedServiceQuotaChangeInput"),
+    id = id.from(_N, "GetRequestedServiceQuotaChangeRequest"),
     type = "structure",
     members = {
         RequestId = schema.new({
@@ -896,7 +896,7 @@ M.RequestedServiceQuotaChange = schema.new({
 })
 
 M.GetRequestedServiceQuotaChangeOutput = schema.new({
-    id = id.from(_N, "GetRequestedServiceQuotaChangeOutput"),
+    id = id.from(_N, "GetRequestedServiceQuotaChangeResponse"),
     type = "structure",
     members = {
         RequestedQuota = schema.new({
@@ -910,7 +910,7 @@ M.GetRequestedServiceQuotaChangeOutput = schema.new({
 })
 
 M.GetServiceQuotaInput = schema.new({
-    id = id.from(_N, "GetServiceQuotaInput"),
+    id = id.from(_N, "GetServiceQuotaRequest"),
     type = "structure",
     members = {
         ServiceCode = schema.new({
@@ -941,7 +941,7 @@ M.GetServiceQuotaInput = schema.new({
 })
 
 M.GetServiceQuotaOutput = schema.new({
-    id = id.from(_N, "GetServiceQuotaOutput"),
+    id = id.from(_N, "GetServiceQuotaResponse"),
     type = "structure",
     members = {
         Quota = schema.new({
@@ -955,7 +955,7 @@ M.GetServiceQuotaOutput = schema.new({
 })
 
 M.GetServiceQuotaIncreaseRequestFromTemplateInput = schema.new({
-    id = id.from(_N, "GetServiceQuotaIncreaseRequestFromTemplateInput"),
+    id = id.from(_N, "GetServiceQuotaIncreaseRequestFromTemplateRequest"),
     type = "structure",
     members = {
         ServiceCode = schema.new({
@@ -1047,7 +1047,7 @@ M.ServiceQuotaIncreaseRequestInTemplate = schema.new({
 })
 
 M.GetServiceQuotaIncreaseRequestFromTemplateOutput = schema.new({
-    id = id.from(_N, "GetServiceQuotaIncreaseRequestFromTemplateOutput"),
+    id = id.from(_N, "GetServiceQuotaIncreaseRequestFromTemplateResponse"),
     type = "structure",
     members = {
         ServiceQuotaIncreaseRequestInTemplate = schema.new({
@@ -1102,7 +1102,7 @@ M.InvalidPaginationTokenException = schema.new({
 })
 
 M.ListAWSDefaultServiceQuotasInput = schema.new({
-    id = id.from(_N, "ListAWSDefaultServiceQuotasInput"),
+    id = id.from(_N, "ListAWSDefaultServiceQuotasRequest"),
     type = "structure",
     members = {
         ServiceCode = schema.new({
@@ -1130,7 +1130,7 @@ M.ListAWSDefaultServiceQuotasInput = schema.new({
 })
 
 M.ListAWSDefaultServiceQuotasOutput = schema.new({
-    id = id.from(_N, "ListAWSDefaultServiceQuotasOutput"),
+    id = id.from(_N, "ListAWSDefaultServiceQuotasResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1150,7 +1150,7 @@ M.ListAWSDefaultServiceQuotasOutput = schema.new({
 })
 
 M.ListRequestedServiceQuotaChangeHistoryInput = schema.new({
-    id = id.from(_N, "ListRequestedServiceQuotaChangeHistoryInput"),
+    id = id.from(_N, "ListRequestedServiceQuotaChangeHistoryRequest"),
     type = "structure",
     members = {
         ServiceCode = schema.new({
@@ -1187,7 +1187,7 @@ M.ListRequestedServiceQuotaChangeHistoryInput = schema.new({
 })
 
 M.ListRequestedServiceQuotaChangeHistoryOutput = schema.new({
-    id = id.from(_N, "ListRequestedServiceQuotaChangeHistoryOutput"),
+    id = id.from(_N, "ListRequestedServiceQuotaChangeHistoryResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1207,7 +1207,7 @@ M.ListRequestedServiceQuotaChangeHistoryOutput = schema.new({
 })
 
 M.ListRequestedServiceQuotaChangeHistoryByQuotaInput = schema.new({
-    id = id.from(_N, "ListRequestedServiceQuotaChangeHistoryByQuotaInput"),
+    id = id.from(_N, "ListRequestedServiceQuotaChangeHistoryByQuotaRequest"),
     type = "structure",
     members = {
         ServiceCode = schema.new({
@@ -1256,7 +1256,7 @@ M.ListRequestedServiceQuotaChangeHistoryByQuotaInput = schema.new({
 })
 
 M.ListRequestedServiceQuotaChangeHistoryByQuotaOutput = schema.new({
-    id = id.from(_N, "ListRequestedServiceQuotaChangeHistoryByQuotaOutput"),
+    id = id.from(_N, "ListRequestedServiceQuotaChangeHistoryByQuotaResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1276,7 +1276,7 @@ M.ListRequestedServiceQuotaChangeHistoryByQuotaOutput = schema.new({
 })
 
 M.ListServiceQuotaIncreaseRequestsInTemplateInput = schema.new({
-    id = id.from(_N, "ListServiceQuotaIncreaseRequestsInTemplateInput"),
+    id = id.from(_N, "ListServiceQuotaIncreaseRequestsInTemplateRequest"),
     type = "structure",
     members = {
         ServiceCode = schema.new({
@@ -1307,7 +1307,7 @@ M.ListServiceQuotaIncreaseRequestsInTemplateInput = schema.new({
 })
 
 M.ListServiceQuotaIncreaseRequestsInTemplateOutput = schema.new({
-    id = id.from(_N, "ListServiceQuotaIncreaseRequestsInTemplateOutput"),
+    id = id.from(_N, "ListServiceQuotaIncreaseRequestsInTemplateResponse"),
     type = "structure",
     members = {
         ServiceQuotaIncreaseRequestInTemplateList = schema.new({
@@ -1327,7 +1327,7 @@ M.ListServiceQuotaIncreaseRequestsInTemplateOutput = schema.new({
 })
 
 M.ListServiceQuotasInput = schema.new({
-    id = id.from(_N, "ListServiceQuotasInput"),
+    id = id.from(_N, "ListServiceQuotasRequest"),
     type = "structure",
     members = {
         ServiceCode = schema.new({
@@ -1367,7 +1367,7 @@ M.ListServiceQuotasInput = schema.new({
 })
 
 M.ListServiceQuotasOutput = schema.new({
-    id = id.from(_N, "ListServiceQuotasOutput"),
+    id = id.from(_N, "ListServiceQuotasResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1387,7 +1387,7 @@ M.ListServiceQuotasOutput = schema.new({
 })
 
 M.ListServicesInput = schema.new({
-    id = id.from(_N, "ListServicesInput"),
+    id = id.from(_N, "ListServicesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1425,7 +1425,7 @@ M.ServiceInfo = schema.new({
 })
 
 M.ListServicesOutput = schema.new({
-    id = id.from(_N, "ListServicesOutput"),
+    id = id.from(_N, "ListServicesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1445,7 +1445,7 @@ M.ListServicesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1461,7 +1461,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1475,7 +1475,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutServiceQuotaIncreaseRequestIntoTemplateInput = schema.new({
-    id = id.from(_N, "PutServiceQuotaIncreaseRequestIntoTemplateInput"),
+    id = id.from(_N, "PutServiceQuotaIncreaseRequestIntoTemplateRequest"),
     type = "structure",
     members = {
         QuotaCode = schema.new({
@@ -1518,7 +1518,7 @@ M.PutServiceQuotaIncreaseRequestIntoTemplateInput = schema.new({
 })
 
 M.PutServiceQuotaIncreaseRequestIntoTemplateOutput = schema.new({
-    id = id.from(_N, "PutServiceQuotaIncreaseRequestIntoTemplateOutput"),
+    id = id.from(_N, "PutServiceQuotaIncreaseRequestIntoTemplateResponse"),
     type = "structure",
     members = {
         ServiceQuotaIncreaseRequestInTemplate = schema.new({
@@ -1548,7 +1548,7 @@ M.QuotaExceededException = schema.new({
 })
 
 M.RequestServiceQuotaIncreaseInput = schema.new({
-    id = id.from(_N, "RequestServiceQuotaIncreaseInput"),
+    id = id.from(_N, "RequestServiceQuotaIncreaseRequest"),
     type = "structure",
     members = {
         ServiceCode = schema.new({
@@ -1594,7 +1594,7 @@ M.RequestServiceQuotaIncreaseInput = schema.new({
 })
 
 M.RequestServiceQuotaIncreaseOutput = schema.new({
-    id = id.from(_N, "RequestServiceQuotaIncreaseOutput"),
+    id = id.from(_N, "RequestServiceQuotaIncreaseResponse"),
     type = "structure",
     members = {
         RequestedQuota = schema.new({
@@ -1608,7 +1608,7 @@ M.RequestServiceQuotaIncreaseOutput = schema.new({
 })
 
 M.StartAutoManagementInput = schema.new({
-    id = id.from(_N, "StartAutoManagementInput"),
+    id = id.from(_N, "StartAutoManagementRequest"),
     type = "structure",
     members = {
         OptInLevel = schema.new({
@@ -1641,23 +1641,23 @@ M.StartAutoManagementInput = schema.new({
             name = "ExclusionList",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
 
 M.StartAutoManagementOutput = schema.new({
-    id = id.from(_N, "StartAutoManagementOutput"),
+    id = id.from(_N, "StartAutoManagementResponse"),
     type = "structure",
 })
 
 M.StartQuotaUtilizationReportInput = schema.new({
-    id = id.from(_N, "StartQuotaUtilizationReportInput"),
+    id = id.from(_N, "StartQuotaUtilizationReportRequest"),
     type = "structure",
 })
 
 M.StartQuotaUtilizationReportOutput = schema.new({
-    id = id.from(_N, "StartQuotaUtilizationReportOutput"),
+    id = id.from(_N, "StartQuotaUtilizationReportResponse"),
     type = "structure",
     members = {
         ReportId = schema.new({
@@ -1682,12 +1682,12 @@ M.StartQuotaUtilizationReportOutput = schema.new({
 })
 
 M.StopAutoManagementInput = schema.new({
-    id = id.from(_N, "StopAutoManagementInput"),
+    id = id.from(_N, "StopAutoManagementRequest"),
     type = "structure",
 })
 
 M.StopAutoManagementOutput = schema.new({
-    id = id.from(_N, "StopAutoManagementOutput"),
+    id = id.from(_N, "StopAutoManagementResponse"),
     type = "structure",
 })
 
@@ -1708,7 +1708,7 @@ M.TagPolicyViolationException = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1734,7 +1734,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -1755,7 +1755,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1781,12 +1781,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAutoManagementInput = schema.new({
-    id = id.from(_N, "UpdateAutoManagementInput"),
+    id = id.from(_N, "UpdateAutoManagementRequest"),
     type = "structure",
     members = {
         OptInType = schema.new({
@@ -1807,14 +1807,28 @@ M.UpdateAutoManagementInput = schema.new({
             name = "ExclusionList",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
 
 M.UpdateAutoManagementOutput = schema.new({
-    id = id.from(_N, "UpdateAutoManagementOutput"),
+    id = id.from(_N, "UpdateAutoManagementResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

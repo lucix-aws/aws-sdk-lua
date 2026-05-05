@@ -790,7 +790,7 @@ M.ResourceTag = schema.new({
 })
 
 M.CreateBudgetOutput = schema.new({
-    id = id.from(_N, "CreateBudgetOutput"),
+    id = id.from(_N, "CreateBudgetResponse"),
     type = "structure",
 })
 
@@ -907,7 +907,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.CreateBudgetActionInput = schema.new({
-    id = id.from(_N, "CreateBudgetActionInput"),
+    id = id.from(_N, "CreateBudgetActionRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1005,7 +1005,7 @@ M.CreateBudgetActionInput = schema.new({
 })
 
 M.CreateBudgetActionOutput = schema.new({
-    id = id.from(_N, "CreateBudgetActionOutput"),
+    id = id.from(_N, "CreateBudgetActionResponse"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1039,7 +1039,7 @@ M.CreateBudgetActionOutput = schema.new({
 })
 
 M.CreateNotificationInput = schema.new({
-    id = id.from(_N, "CreateNotificationInput"),
+    id = id.from(_N, "CreateNotificationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1084,12 +1084,12 @@ M.CreateNotificationInput = schema.new({
 })
 
 M.CreateNotificationOutput = schema.new({
-    id = id.from(_N, "CreateNotificationOutput"),
+    id = id.from(_N, "CreateNotificationResponse"),
     type = "structure",
 })
 
 M.CreateSubscriberInput = schema.new({
-    id = id.from(_N, "CreateSubscriberInput"),
+    id = id.from(_N, "CreateSubscriberRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1134,12 +1134,12 @@ M.CreateSubscriberInput = schema.new({
 })
 
 M.CreateSubscriberOutput = schema.new({
-    id = id.from(_N, "CreateSubscriberOutput"),
+    id = id.from(_N, "CreateSubscriberResponse"),
     type = "structure",
 })
 
 M.DeleteBudgetInput = schema.new({
-    id = id.from(_N, "DeleteBudgetInput"),
+    id = id.from(_N, "DeleteBudgetRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1164,12 +1164,12 @@ M.DeleteBudgetInput = schema.new({
 })
 
 M.DeleteBudgetOutput = schema.new({
-    id = id.from(_N, "DeleteBudgetOutput"),
+    id = id.from(_N, "DeleteBudgetResponse"),
     type = "structure",
 })
 
 M.DeleteBudgetActionInput = schema.new({
-    id = id.from(_N, "DeleteBudgetActionInput"),
+    id = id.from(_N, "DeleteBudgetActionRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1203,7 +1203,7 @@ M.DeleteBudgetActionInput = schema.new({
 })
 
 M.DeleteBudgetActionOutput = schema.new({
-    id = id.from(_N, "DeleteBudgetActionOutput"),
+    id = id.from(_N, "DeleteBudgetActionResponse"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1254,7 +1254,7 @@ M.ResourceLockedException = schema.new({
 })
 
 M.DeleteNotificationInput = schema.new({
-    id = id.from(_N, "DeleteNotificationInput"),
+    id = id.from(_N, "DeleteNotificationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1289,12 +1289,12 @@ M.DeleteNotificationInput = schema.new({
 })
 
 M.DeleteNotificationOutput = schema.new({
-    id = id.from(_N, "DeleteNotificationOutput"),
+    id = id.from(_N, "DeleteNotificationResponse"),
     type = "structure",
 })
 
 M.DeleteSubscriberInput = schema.new({
-    id = id.from(_N, "DeleteSubscriberInput"),
+    id = id.from(_N, "DeleteSubscriberRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1339,12 +1339,12 @@ M.DeleteSubscriberInput = schema.new({
 })
 
 M.DeleteSubscriberOutput = schema.new({
-    id = id.from(_N, "DeleteSubscriberOutput"),
+    id = id.from(_N, "DeleteSubscriberResponse"),
     type = "structure",
 })
 
 M.DescribeBudgetInput = schema.new({
-    id = id.from(_N, "DescribeBudgetInput"),
+    id = id.from(_N, "DescribeBudgetRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1375,7 +1375,7 @@ M.DescribeBudgetInput = schema.new({
 })
 
 M.DescribeBudgetActionInput = schema.new({
-    id = id.from(_N, "DescribeBudgetActionInput"),
+    id = id.from(_N, "DescribeBudgetActionRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1409,7 +1409,7 @@ M.DescribeBudgetActionInput = schema.new({
 })
 
 M.DescribeBudgetActionOutput = schema.new({
-    id = id.from(_N, "DescribeBudgetActionOutput"),
+    id = id.from(_N, "DescribeBudgetActionResponse"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1444,7 +1444,7 @@ M.DescribeBudgetActionOutput = schema.new({
 })
 
 M.DescribeBudgetActionHistoriesInput = schema.new({
-    id = id.from(_N, "DescribeBudgetActionHistoriesInput"),
+    id = id.from(_N, "DescribeBudgetActionHistoriesRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1497,7 +1497,7 @@ M.DescribeBudgetActionHistoriesInput = schema.new({
 })
 
 M.DescribeBudgetActionHistoriesOutput = schema.new({
-    id = id.from(_N, "DescribeBudgetActionHistoriesOutput"),
+    id = id.from(_N, "DescribeBudgetActionHistoriesResponse"),
     type = "structure",
     members = {
         ActionHistories = schema.new({
@@ -1536,7 +1536,7 @@ M.InvalidNextTokenException = schema.new({
 })
 
 M.DescribeBudgetActionsForAccountInput = schema.new({
-    id = id.from(_N, "DescribeBudgetActionsForAccountInput"),
+    id = id.from(_N, "DescribeBudgetActionsForAccountRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1564,7 +1564,7 @@ M.DescribeBudgetActionsForAccountInput = schema.new({
 })
 
 M.DescribeBudgetActionsForAccountOutput = schema.new({
-    id = id.from(_N, "DescribeBudgetActionsForAccountOutput"),
+    id = id.from(_N, "DescribeBudgetActionsForAccountResponse"),
     type = "structure",
     members = {
         Actions = schema.new({
@@ -1587,7 +1587,7 @@ M.DescribeBudgetActionsForAccountOutput = schema.new({
 })
 
 M.DescribeBudgetActionsForBudgetInput = schema.new({
-    id = id.from(_N, "DescribeBudgetActionsForBudgetInput"),
+    id = id.from(_N, "DescribeBudgetActionsForBudgetRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1624,7 +1624,7 @@ M.DescribeBudgetActionsForBudgetInput = schema.new({
 })
 
 M.DescribeBudgetActionsForBudgetOutput = schema.new({
-    id = id.from(_N, "DescribeBudgetActionsForBudgetOutput"),
+    id = id.from(_N, "DescribeBudgetActionsForBudgetResponse"),
     type = "structure",
     members = {
         Actions = schema.new({
@@ -1647,7 +1647,7 @@ M.DescribeBudgetActionsForBudgetOutput = schema.new({
 })
 
 M.DescribeBudgetNotificationsForAccountInput = schema.new({
-    id = id.from(_N, "DescribeBudgetNotificationsForAccountInput"),
+    id = id.from(_N, "DescribeBudgetNotificationsForAccountRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1695,7 +1695,7 @@ M.BudgetNotificationsForAccount = schema.new({
 })
 
 M.DescribeBudgetNotificationsForAccountOutput = schema.new({
-    id = id.from(_N, "DescribeBudgetNotificationsForAccountOutput"),
+    id = id.from(_N, "DescribeBudgetNotificationsForAccountResponse"),
     type = "structure",
     members = {
         BudgetNotificationsForAccount = schema.new({
@@ -1731,7 +1731,7 @@ M.ExpiredNextTokenException = schema.new({
 })
 
 M.DescribeBudgetPerformanceHistoryInput = schema.new({
-    id = id.from(_N, "DescribeBudgetPerformanceHistoryInput"),
+    id = id.from(_N, "DescribeBudgetPerformanceHistoryRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1803,7 +1803,7 @@ M.BudgetedAndActualAmounts = schema.new({
 })
 
 M.DescribeBudgetsInput = schema.new({
-    id = id.from(_N, "DescribeBudgetsInput"),
+    id = id.from(_N, "DescribeBudgetsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1837,7 +1837,7 @@ M.DescribeBudgetsInput = schema.new({
 })
 
 M.DescribeNotificationsForBudgetInput = schema.new({
-    id = id.from(_N, "DescribeNotificationsForBudgetInput"),
+    id = id.from(_N, "DescribeNotificationsForBudgetRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1874,7 +1874,7 @@ M.DescribeNotificationsForBudgetInput = schema.new({
 })
 
 M.DescribeNotificationsForBudgetOutput = schema.new({
-    id = id.from(_N, "DescribeNotificationsForBudgetOutput"),
+    id = id.from(_N, "DescribeNotificationsForBudgetResponse"),
     type = "structure",
     members = {
         Notifications = schema.new({
@@ -1894,7 +1894,7 @@ M.DescribeNotificationsForBudgetOutput = schema.new({
 })
 
 M.DescribeSubscribersForNotificationInput = schema.new({
-    id = id.from(_N, "DescribeSubscribersForNotificationInput"),
+    id = id.from(_N, "DescribeSubscribersForNotificationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1941,7 +1941,7 @@ M.DescribeSubscribersForNotificationInput = schema.new({
 })
 
 M.DescribeSubscribersForNotificationOutput = schema.new({
-    id = id.from(_N, "DescribeSubscribersForNotificationOutput"),
+    id = id.from(_N, "DescribeSubscribersForNotificationResponse"),
     type = "structure",
     members = {
         Subscribers = schema.new({
@@ -1961,7 +1961,7 @@ M.DescribeSubscribersForNotificationOutput = schema.new({
 })
 
 M.ExecuteBudgetActionInput = schema.new({
-    id = id.from(_N, "ExecuteBudgetActionInput"),
+    id = id.from(_N, "ExecuteBudgetActionRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2004,7 +2004,7 @@ M.ExecuteBudgetActionInput = schema.new({
 })
 
 M.ExecuteBudgetActionOutput = schema.new({
-    id = id.from(_N, "ExecuteBudgetActionOutput"),
+    id = id.from(_N, "ExecuteBudgetActionResponse"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2047,7 +2047,7 @@ M.ExecuteBudgetActionOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2063,7 +2063,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         ResourceTags = schema.new({
@@ -2077,7 +2077,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2103,12 +2103,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2134,17 +2134,17 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateBudgetOutput = schema.new({
-    id = id.from(_N, "UpdateBudgetOutput"),
+    id = id.from(_N, "UpdateBudgetResponse"),
     type = "structure",
 })
 
 M.UpdateBudgetActionInput = schema.new({
-    id = id.from(_N, "UpdateBudgetActionInput"),
+    id = id.from(_N, "UpdateBudgetActionRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2217,7 +2217,7 @@ M.UpdateBudgetActionInput = schema.new({
 })
 
 M.UpdateBudgetActionOutput = schema.new({
-    id = id.from(_N, "UpdateBudgetActionOutput"),
+    id = id.from(_N, "UpdateBudgetActionResponse"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2262,7 +2262,7 @@ M.UpdateBudgetActionOutput = schema.new({
 })
 
 M.UpdateNotificationInput = schema.new({
-    id = id.from(_N, "UpdateNotificationInput"),
+    id = id.from(_N, "UpdateNotificationRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2307,12 +2307,12 @@ M.UpdateNotificationInput = schema.new({
 })
 
 M.UpdateNotificationOutput = schema.new({
-    id = id.from(_N, "UpdateNotificationOutput"),
+    id = id.from(_N, "UpdateNotificationResponse"),
     type = "structure",
 })
 
 M.UpdateSubscriberInput = schema.new({
-    id = id.from(_N, "UpdateSubscriberInput"),
+    id = id.from(_N, "UpdateSubscriberRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2367,7 +2367,7 @@ M.UpdateSubscriberInput = schema.new({
 })
 
 M.UpdateSubscriberOutput = schema.new({
-    id = id.from(_N, "UpdateSubscriberOutput"),
+    id = id.from(_N, "UpdateSubscriberResponse"),
     type = "structure",
 })
 
@@ -2454,7 +2454,7 @@ M.Budget = schema.new({
             name = "CostFilters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         CostTypes = schema.new({
             id = id.from(_N, "Budget", "CostTypes"),
@@ -2560,7 +2560,7 @@ M.BudgetPerformanceHistory = schema.new({
             name = "CostFilters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         CostTypes = schema.new({
             id = id.from(_N, "BudgetPerformanceHistory", "CostTypes"),
@@ -2606,7 +2606,7 @@ M.BudgetPerformanceHistory = schema.new({
 })
 
 M.CreateBudgetInput = schema.new({
-    id = id.from(_N, "CreateBudgetInput"),
+    id = id.from(_N, "CreateBudgetRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2646,7 +2646,7 @@ M.CreateBudgetInput = schema.new({
 })
 
 M.DescribeBudgetOutput = schema.new({
-    id = id.from(_N, "DescribeBudgetOutput"),
+    id = id.from(_N, "DescribeBudgetResponse"),
     type = "structure",
     members = {
         Budget = schema.new({
@@ -2660,7 +2660,7 @@ M.DescribeBudgetOutput = schema.new({
 })
 
 M.DescribeBudgetPerformanceHistoryOutput = schema.new({
-    id = id.from(_N, "DescribeBudgetPerformanceHistoryOutput"),
+    id = id.from(_N, "DescribeBudgetPerformanceHistoryResponse"),
     type = "structure",
     members = {
         BudgetPerformanceHistory = schema.new({
@@ -2680,7 +2680,7 @@ M.DescribeBudgetPerformanceHistoryOutput = schema.new({
 })
 
 M.UpdateBudgetInput = schema.new({
-    id = id.from(_N, "UpdateBudgetInput"),
+    id = id.from(_N, "UpdateBudgetRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -2706,7 +2706,7 @@ M.UpdateBudgetInput = schema.new({
 })
 
 M.DescribeBudgetsOutput = schema.new({
-    id = id.from(_N, "DescribeBudgetsOutput"),
+    id = id.from(_N, "DescribeBudgetsResponse"),
     type = "structure",
     members = {
         Budgets = schema.new({
@@ -2724,5 +2724,19 @@ M.DescribeBudgetsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

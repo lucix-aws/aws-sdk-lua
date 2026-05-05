@@ -182,7 +182,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateChallengeInput = schema.new({
-    id = id.from(_N, "CreateChallengeInput"),
+    id = id.from(_N, "CreateChallengeRequest"),
     type = "structure",
     members = {
         ConnectorArn = schema.new({
@@ -215,7 +215,7 @@ M.CreateChallengeInput = schema.new({
 })
 
 M.CreateChallengeOutput = schema.new({
-    id = id.from(_N, "CreateChallengeOutput"),
+    id = id.from(_N, "CreateChallengeResponse"),
     type = "structure",
     members = {
         Challenge = schema.new({
@@ -375,7 +375,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteChallengeInput = schema.new({
-    id = id.from(_N, "DeleteChallengeInput"),
+    id = id.from(_N, "DeleteChallengeRequest"),
     type = "structure",
     members = {
         ChallengeArn = schema.new({
@@ -392,12 +392,12 @@ M.DeleteChallengeInput = schema.new({
 })
 
 M.DeleteChallengeOutput = schema.new({
-    id = id.from(_N, "DeleteChallengeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetChallengeMetadataInput = schema.new({
-    id = id.from(_N, "GetChallengeMetadataInput"),
+    id = id.from(_N, "GetChallengeMetadataRequest"),
     type = "structure",
     members = {
         ChallengeArn = schema.new({
@@ -414,7 +414,7 @@ M.GetChallengeMetadataInput = schema.new({
 })
 
 M.GetChallengeMetadataOutput = schema.new({
-    id = id.from(_N, "GetChallengeMetadataOutput"),
+    id = id.from(_N, "GetChallengeMetadataResponse"),
     type = "structure",
     members = {
         ChallengeMetadata = schema.new({
@@ -428,7 +428,7 @@ M.GetChallengeMetadataOutput = schema.new({
 })
 
 M.GetChallengePasswordInput = schema.new({
-    id = id.from(_N, "GetChallengePasswordInput"),
+    id = id.from(_N, "GetChallengePasswordRequest"),
     type = "structure",
     members = {
         ChallengeArn = schema.new({
@@ -445,7 +445,7 @@ M.GetChallengePasswordInput = schema.new({
 })
 
 M.GetChallengePasswordOutput = schema.new({
-    id = id.from(_N, "GetChallengePasswordOutput"),
+    id = id.from(_N, "GetChallengePasswordResponse"),
     type = "structure",
     members = {
         Password = schema.new({
@@ -458,7 +458,7 @@ M.GetChallengePasswordOutput = schema.new({
 })
 
 M.ListChallengeMetadataInput = schema.new({
-    id = id.from(_N, "ListChallengeMetadataInput"),
+    id = id.from(_N, "ListChallengeMetadataRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -493,7 +493,7 @@ M.ListChallengeMetadataInput = schema.new({
 })
 
 M.ListChallengeMetadataOutput = schema.new({
-    id = id.from(_N, "ListChallengeMetadataOutput"),
+    id = id.from(_N, "ListChallengeMetadataResponse"),
     type = "structure",
     members = {
         Challenges = schema.new({
@@ -715,7 +715,7 @@ M.ConnectorSummary = schema.new({
 })
 
 M.CreateConnectorInput = schema.new({
-    id = id.from(_N, "CreateConnectorInput"),
+    id = id.from(_N, "CreateConnectorRequest"),
     type = "structure",
     members = {
         CertificateAuthorityArn = schema.new({
@@ -761,7 +761,7 @@ M.CreateConnectorInput = schema.new({
 })
 
 M.CreateConnectorOutput = schema.new({
-    id = id.from(_N, "CreateConnectorOutput"),
+    id = id.from(_N, "CreateConnectorResponse"),
     type = "structure",
     members = {
         ConnectorArn = schema.new({
@@ -774,7 +774,7 @@ M.CreateConnectorOutput = schema.new({
 })
 
 M.DeleteConnectorInput = schema.new({
-    id = id.from(_N, "DeleteConnectorInput"),
+    id = id.from(_N, "DeleteConnectorRequest"),
     type = "structure",
     members = {
         ConnectorArn = schema.new({
@@ -791,12 +791,12 @@ M.DeleteConnectorInput = schema.new({
 })
 
 M.DeleteConnectorOutput = schema.new({
-    id = id.from(_N, "DeleteConnectorOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetConnectorInput = schema.new({
-    id = id.from(_N, "GetConnectorInput"),
+    id = id.from(_N, "GetConnectorRequest"),
     type = "structure",
     members = {
         ConnectorArn = schema.new({
@@ -813,7 +813,7 @@ M.GetConnectorInput = schema.new({
 })
 
 M.GetConnectorOutput = schema.new({
-    id = id.from(_N, "GetConnectorOutput"),
+    id = id.from(_N, "GetConnectorResponse"),
     type = "structure",
     members = {
         Connector = schema.new({
@@ -827,7 +827,7 @@ M.GetConnectorOutput = schema.new({
 })
 
 M.ListConnectorsInput = schema.new({
-    id = id.from(_N, "ListConnectorsInput"),
+    id = id.from(_N, "ListConnectorsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -852,7 +852,7 @@ M.ListConnectorsInput = schema.new({
 })
 
 M.ListConnectorsOutput = schema.new({
-    id = id.from(_N, "ListConnectorsOutput"),
+    id = id.from(_N, "ListConnectorsResponse"),
     type = "structure",
     members = {
         Connectors = schema.new({
@@ -872,7 +872,7 @@ M.ListConnectorsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -889,7 +889,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -904,7 +904,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -932,12 +932,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -965,8 +965,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

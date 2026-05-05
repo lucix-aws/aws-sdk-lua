@@ -286,7 +286,7 @@ M.AppsListData = schema.new({
             name = "PreviousAppsList",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.App }),
         }),
     },
 })
@@ -324,7 +324,7 @@ M.AppsListDataSummary = schema.new({
 })
 
 M.AssociateAdminAccountInput = schema.new({
-    id = id.from(_N, "AssociateAdminAccountInput"),
+    id = id.from(_N, "AssociateAdminAccountRequest"),
     type = "structure",
     members = {
         AdminAccount = schema.new({
@@ -340,7 +340,7 @@ M.AssociateAdminAccountInput = schema.new({
 })
 
 M.AssociateAdminAccountOutput = schema.new({
-    id = id.from(_N, "AssociateAdminAccountOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -425,7 +425,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.AssociateThirdPartyFirewallInput = schema.new({
-    id = id.from(_N, "AssociateThirdPartyFirewallInput"),
+    id = id.from(_N, "AssociateThirdPartyFirewallRequest"),
     type = "structure",
     members = {
         ThirdPartyFirewall = schema.new({
@@ -441,7 +441,7 @@ M.AssociateThirdPartyFirewallInput = schema.new({
 })
 
 M.AssociateThirdPartyFirewallOutput = schema.new({
-    id = id.from(_N, "AssociateThirdPartyFirewallOutput"),
+    id = id.from(_N, "AssociateThirdPartyFirewallResponse"),
     type = "structure",
     members = {
         ThirdPartyFirewallStatus = schema.new({
@@ -494,7 +494,7 @@ M.AwsEc2InstanceViolation = schema.new({
 })
 
 M.BatchAssociateResourceInput = schema.new({
-    id = id.from(_N, "BatchAssociateResourceInput"),
+    id = id.from(_N, "BatchAssociateResourceRequest"),
     type = "structure",
     members = {
         ResourceSetIdentifier = schema.new({
@@ -539,7 +539,7 @@ M.FailedItem = schema.new({
 })
 
 M.BatchAssociateResourceOutput = schema.new({
-    id = id.from(_N, "BatchAssociateResourceOutput"),
+    id = id.from(_N, "BatchAssociateResourceResponse"),
     type = "structure",
     members = {
         ResourceSetIdentifier = schema.new({
@@ -565,7 +565,7 @@ M.BatchAssociateResourceOutput = schema.new({
 })
 
 M.BatchDisassociateResourceInput = schema.new({
-    id = id.from(_N, "BatchDisassociateResourceInput"),
+    id = id.from(_N, "BatchDisassociateResourceRequest"),
     type = "structure",
     members = {
         ResourceSetIdentifier = schema.new({
@@ -591,7 +591,7 @@ M.BatchDisassociateResourceInput = schema.new({
 })
 
 M.BatchDisassociateResourceOutput = schema.new({
-    id = id.from(_N, "BatchDisassociateResourceOutput"),
+    id = id.from(_N, "BatchDisassociateResourceResponse"),
     type = "structure",
     members = {
         ResourceSetIdentifier = schema.new({
@@ -617,7 +617,7 @@ M.BatchDisassociateResourceOutput = schema.new({
 })
 
 M.DeleteAppsListInput = schema.new({
-    id = id.from(_N, "DeleteAppsListInput"),
+    id = id.from(_N, "DeleteAppsListRequest"),
     type = "structure",
     members = {
         ListId = schema.new({
@@ -633,22 +633,22 @@ M.DeleteAppsListInput = schema.new({
 })
 
 M.DeleteAppsListOutput = schema.new({
-    id = id.from(_N, "DeleteAppsListOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteNotificationChannelInput = schema.new({
-    id = id.from(_N, "DeleteNotificationChannelInput"),
+    id = id.from(_N, "DeleteNotificationChannelRequest"),
     type = "structure",
 })
 
 M.DeleteNotificationChannelOutput = schema.new({
-    id = id.from(_N, "DeleteNotificationChannelOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeletePolicyInput = schema.new({
-    id = id.from(_N, "DeletePolicyInput"),
+    id = id.from(_N, "DeletePolicyRequest"),
     type = "structure",
     members = {
         PolicyId = schema.new({
@@ -673,12 +673,12 @@ M.DeletePolicyInput = schema.new({
 })
 
 M.DeletePolicyOutput = schema.new({
-    id = id.from(_N, "DeletePolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteProtocolsListInput = schema.new({
-    id = id.from(_N, "DeleteProtocolsListInput"),
+    id = id.from(_N, "DeleteProtocolsListRequest"),
     type = "structure",
     members = {
         ListId = schema.new({
@@ -694,12 +694,12 @@ M.DeleteProtocolsListInput = schema.new({
 })
 
 M.DeleteProtocolsListOutput = schema.new({
-    id = id.from(_N, "DeleteProtocolsListOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteResourceSetInput = schema.new({
-    id = id.from(_N, "DeleteResourceSetInput"),
+    id = id.from(_N, "DeleteResourceSetRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -715,22 +715,22 @@ M.DeleteResourceSetInput = schema.new({
 })
 
 M.DeleteResourceSetOutput = schema.new({
-    id = id.from(_N, "DeleteResourceSetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DisassociateAdminAccountInput = schema.new({
-    id = id.from(_N, "DisassociateAdminAccountInput"),
+    id = id.from(_N, "DisassociateAdminAccountRequest"),
     type = "structure",
 })
 
 M.DisassociateAdminAccountOutput = schema.new({
-    id = id.from(_N, "DisassociateAdminAccountOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DisassociateThirdPartyFirewallInput = schema.new({
-    id = id.from(_N, "DisassociateThirdPartyFirewallInput"),
+    id = id.from(_N, "DisassociateThirdPartyFirewallRequest"),
     type = "structure",
     members = {
         ThirdPartyFirewall = schema.new({
@@ -746,7 +746,7 @@ M.DisassociateThirdPartyFirewallInput = schema.new({
 })
 
 M.DisassociateThirdPartyFirewallOutput = schema.new({
-    id = id.from(_N, "DisassociateThirdPartyFirewallOutput"),
+    id = id.from(_N, "DisassociateThirdPartyFirewallResponse"),
     type = "structure",
     members = {
         ThirdPartyFirewallStatus = schema.new({
@@ -759,12 +759,12 @@ M.DisassociateThirdPartyFirewallOutput = schema.new({
 })
 
 M.GetAdminAccountInput = schema.new({
-    id = id.from(_N, "GetAdminAccountInput"),
+    id = id.from(_N, "GetAdminAccountRequest"),
     type = "structure",
 })
 
 M.GetAdminAccountOutput = schema.new({
-    id = id.from(_N, "GetAdminAccountOutput"),
+    id = id.from(_N, "GetAdminAccountResponse"),
     type = "structure",
     members = {
         AdminAccount = schema.new({
@@ -783,7 +783,7 @@ M.GetAdminAccountOutput = schema.new({
 })
 
 M.GetAdminScopeInput = schema.new({
-    id = id.from(_N, "GetAdminScopeInput"),
+    id = id.from(_N, "GetAdminScopeRequest"),
     type = "structure",
     members = {
         AdminAccount = schema.new({
@@ -799,7 +799,7 @@ M.GetAdminScopeInput = schema.new({
 })
 
 M.GetAdminScopeOutput = schema.new({
-    id = id.from(_N, "GetAdminScopeOutput"),
+    id = id.from(_N, "GetAdminScopeResponse"),
     type = "structure",
     members = {
         AdminScope = schema.new({
@@ -819,7 +819,7 @@ M.GetAdminScopeOutput = schema.new({
 })
 
 M.GetAppsListInput = schema.new({
-    id = id.from(_N, "GetAppsListInput"),
+    id = id.from(_N, "GetAppsListRequest"),
     type = "structure",
     members = {
         ListId = schema.new({
@@ -844,7 +844,7 @@ M.GetAppsListInput = schema.new({
 })
 
 M.GetAppsListOutput = schema.new({
-    id = id.from(_N, "GetAppsListOutput"),
+    id = id.from(_N, "GetAppsListResponse"),
     type = "structure",
     members = {
         AppsList = schema.new({
@@ -864,7 +864,7 @@ M.GetAppsListOutput = schema.new({
 })
 
 M.GetComplianceDetailInput = schema.new({
-    id = id.from(_N, "GetComplianceDetailInput"),
+    id = id.from(_N, "GetComplianceDetailRequest"),
     type = "structure",
     members = {
         PolicyId = schema.new({
@@ -977,7 +977,7 @@ M.PolicyComplianceDetail = schema.new({
 })
 
 M.GetComplianceDetailOutput = schema.new({
-    id = id.from(_N, "GetComplianceDetailOutput"),
+    id = id.from(_N, "GetComplianceDetailResponse"),
     type = "structure",
     members = {
         PolicyComplianceDetail = schema.new({
@@ -991,12 +991,12 @@ M.GetComplianceDetailOutput = schema.new({
 })
 
 M.GetNotificationChannelInput = schema.new({
-    id = id.from(_N, "GetNotificationChannelInput"),
+    id = id.from(_N, "GetNotificationChannelRequest"),
     type = "structure",
 })
 
 M.GetNotificationChannelOutput = schema.new({
-    id = id.from(_N, "GetNotificationChannelOutput"),
+    id = id.from(_N, "GetNotificationChannelResponse"),
     type = "structure",
     members = {
         SnsTopicArn = schema.new({
@@ -1015,7 +1015,7 @@ M.GetNotificationChannelOutput = schema.new({
 })
 
 M.GetPolicyInput = schema.new({
-    id = id.from(_N, "GetPolicyInput"),
+    id = id.from(_N, "GetPolicyRequest"),
     type = "structure",
     members = {
         PolicyId = schema.new({
@@ -1382,7 +1382,7 @@ M.Policy = schema.new({
             name = "IncludeMap",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         ExcludeMap = schema.new({
             id = id.from(_N, "Policy", "ExcludeMap"),
@@ -1390,7 +1390,7 @@ M.Policy = schema.new({
             name = "ExcludeMap",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         ResourceSetIds = schema.new({
             id = id.from(_N, "Policy", "ResourceSetIds"),
@@ -1421,7 +1421,7 @@ M.Policy = schema.new({
 })
 
 M.GetPolicyOutput = schema.new({
-    id = id.from(_N, "GetPolicyOutput"),
+    id = id.from(_N, "GetPolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -1457,7 +1457,7 @@ M.InvalidTypeException = schema.new({
 })
 
 M.GetProtectionStatusInput = schema.new({
-    id = id.from(_N, "GetProtectionStatusInput"),
+    id = id.from(_N, "GetProtectionStatusRequest"),
     type = "structure",
     members = {
         PolicyId = schema.new({
@@ -1503,7 +1503,7 @@ M.GetProtectionStatusInput = schema.new({
 })
 
 M.GetProtectionStatusOutput = schema.new({
-    id = id.from(_N, "GetProtectionStatusOutput"),
+    id = id.from(_N, "GetProtectionStatusResponse"),
     type = "structure",
     members = {
         AdminAccountId = schema.new({
@@ -1534,7 +1534,7 @@ M.GetProtectionStatusOutput = schema.new({
 })
 
 M.GetProtocolsListInput = schema.new({
-    id = id.from(_N, "GetProtocolsListInput"),
+    id = id.from(_N, "GetProtocolsListRequest"),
     type = "structure",
     members = {
         ListId = schema.new({
@@ -1611,13 +1611,13 @@ M.ProtocolsListData = schema.new({
             name = "PreviousProtocolsList",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
 
 M.GetProtocolsListOutput = schema.new({
-    id = id.from(_N, "GetProtocolsListOutput"),
+    id = id.from(_N, "GetProtocolsListResponse"),
     type = "structure",
     members = {
         ProtocolsList = schema.new({
@@ -1637,7 +1637,7 @@ M.GetProtocolsListOutput = schema.new({
 })
 
 M.GetResourceSetInput = schema.new({
-    id = id.from(_N, "GetResourceSetInput"),
+    id = id.from(_N, "GetResourceSetRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -1709,7 +1709,7 @@ M.ResourceSet = schema.new({
 })
 
 M.GetResourceSetOutput = schema.new({
-    id = id.from(_N, "GetResourceSetOutput"),
+    id = id.from(_N, "GetResourceSetResponse"),
     type = "structure",
     members = {
         ResourceSet = schema.new({
@@ -1735,7 +1735,7 @@ M.GetResourceSetOutput = schema.new({
 })
 
 M.GetThirdPartyFirewallAssociationStatusInput = schema.new({
-    id = id.from(_N, "GetThirdPartyFirewallAssociationStatusInput"),
+    id = id.from(_N, "GetThirdPartyFirewallAssociationStatusRequest"),
     type = "structure",
     members = {
         ThirdPartyFirewall = schema.new({
@@ -1751,7 +1751,7 @@ M.GetThirdPartyFirewallAssociationStatusInput = schema.new({
 })
 
 M.GetThirdPartyFirewallAssociationStatusOutput = schema.new({
-    id = id.from(_N, "GetThirdPartyFirewallAssociationStatusOutput"),
+    id = id.from(_N, "GetThirdPartyFirewallAssociationStatusResponse"),
     type = "structure",
     members = {
         ThirdPartyFirewallStatus = schema.new({
@@ -1770,7 +1770,7 @@ M.GetThirdPartyFirewallAssociationStatusOutput = schema.new({
 })
 
 M.GetViolationDetailsInput = schema.new({
-    id = id.from(_N, "GetViolationDetailsInput"),
+    id = id.from(_N, "GetViolationDetailsRequest"),
     type = "structure",
     members = {
         PolicyId = schema.new({
@@ -4004,7 +4004,7 @@ M.ViolationDetail = schema.new({
 })
 
 M.GetViolationDetailsOutput = schema.new({
-    id = id.from(_N, "GetViolationDetailsOutput"),
+    id = id.from(_N, "GetViolationDetailsResponse"),
     type = "structure",
     members = {
         ViolationDetail = schema.new({
@@ -4018,7 +4018,7 @@ M.GetViolationDetailsOutput = schema.new({
 })
 
 M.ListAdminAccountsForOrganizationInput = schema.new({
-    id = id.from(_N, "ListAdminAccountsForOrganizationInput"),
+    id = id.from(_N, "ListAdminAccountsForOrganizationRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4037,7 +4037,7 @@ M.ListAdminAccountsForOrganizationInput = schema.new({
 })
 
 M.ListAdminAccountsForOrganizationOutput = schema.new({
-    id = id.from(_N, "ListAdminAccountsForOrganizationOutput"),
+    id = id.from(_N, "ListAdminAccountsForOrganizationResponse"),
     type = "structure",
     members = {
         AdminAccounts = schema.new({
@@ -4057,7 +4057,7 @@ M.ListAdminAccountsForOrganizationOutput = schema.new({
 })
 
 M.ListAdminsManagingAccountInput = schema.new({
-    id = id.from(_N, "ListAdminsManagingAccountInput"),
+    id = id.from(_N, "ListAdminsManagingAccountRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4076,7 +4076,7 @@ M.ListAdminsManagingAccountInput = schema.new({
 })
 
 M.ListAdminsManagingAccountOutput = schema.new({
-    id = id.from(_N, "ListAdminsManagingAccountOutput"),
+    id = id.from(_N, "ListAdminsManagingAccountResponse"),
     type = "structure",
     members = {
         AdminAccounts = schema.new({
@@ -4096,7 +4096,7 @@ M.ListAdminsManagingAccountOutput = schema.new({
 })
 
 M.ListAppsListsInput = schema.new({
-    id = id.from(_N, "ListAppsListsInput"),
+    id = id.from(_N, "ListAppsListsRequest"),
     type = "structure",
     members = {
         DefaultLists = schema.new({
@@ -4127,7 +4127,7 @@ M.ListAppsListsInput = schema.new({
 })
 
 M.ListAppsListsOutput = schema.new({
-    id = id.from(_N, "ListAppsListsOutput"),
+    id = id.from(_N, "ListAppsListsResponse"),
     type = "structure",
     members = {
         AppsLists = schema.new({
@@ -4147,7 +4147,7 @@ M.ListAppsListsOutput = schema.new({
 })
 
 M.ListComplianceStatusInput = schema.new({
-    id = id.from(_N, "ListComplianceStatusInput"),
+    id = id.from(_N, "ListComplianceStatusRequest"),
     type = "structure",
     members = {
         PolicyId = schema.new({
@@ -4258,7 +4258,7 @@ M.PolicyComplianceStatus = schema.new({
 })
 
 M.ListComplianceStatusOutput = schema.new({
-    id = id.from(_N, "ListComplianceStatusOutput"),
+    id = id.from(_N, "ListComplianceStatusResponse"),
     type = "structure",
     members = {
         PolicyComplianceStatusList = schema.new({
@@ -4278,7 +4278,7 @@ M.ListComplianceStatusOutput = schema.new({
 })
 
 M.ListDiscoveredResourcesInput = schema.new({
-    id = id.from(_N, "ListDiscoveredResourcesInput"),
+    id = id.from(_N, "ListDiscoveredResourcesRequest"),
     type = "structure",
     members = {
         MemberAccountIds = schema.new({
@@ -4347,7 +4347,7 @@ M.DiscoveredResource = schema.new({
 })
 
 M.ListDiscoveredResourcesOutput = schema.new({
-    id = id.from(_N, "ListDiscoveredResourcesOutput"),
+    id = id.from(_N, "ListDiscoveredResourcesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -4367,7 +4367,7 @@ M.ListDiscoveredResourcesOutput = schema.new({
 })
 
 M.ListMemberAccountsInput = schema.new({
-    id = id.from(_N, "ListMemberAccountsInput"),
+    id = id.from(_N, "ListMemberAccountsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4386,7 +4386,7 @@ M.ListMemberAccountsInput = schema.new({
 })
 
 M.ListMemberAccountsOutput = schema.new({
-    id = id.from(_N, "ListMemberAccountsOutput"),
+    id = id.from(_N, "ListMemberAccountsResponse"),
     type = "structure",
     members = {
         MemberAccounts = schema.new({
@@ -4406,7 +4406,7 @@ M.ListMemberAccountsOutput = schema.new({
 })
 
 M.ListPoliciesInput = schema.new({
-    id = id.from(_N, "ListPoliciesInput"),
+    id = id.from(_N, "ListPoliciesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4486,7 +4486,7 @@ M.PolicySummary = schema.new({
 })
 
 M.ListPoliciesOutput = schema.new({
-    id = id.from(_N, "ListPoliciesOutput"),
+    id = id.from(_N, "ListPoliciesResponse"),
     type = "structure",
     members = {
         PolicyList = schema.new({
@@ -4506,7 +4506,7 @@ M.ListPoliciesOutput = schema.new({
 })
 
 M.ListProtocolsListsInput = schema.new({
-    id = id.from(_N, "ListProtocolsListsInput"),
+    id = id.from(_N, "ListProtocolsListsRequest"),
     type = "structure",
     members = {
         DefaultLists = schema.new({
@@ -4569,7 +4569,7 @@ M.ProtocolsListDataSummary = schema.new({
 })
 
 M.ListProtocolsListsOutput = schema.new({
-    id = id.from(_N, "ListProtocolsListsOutput"),
+    id = id.from(_N, "ListProtocolsListsResponse"),
     type = "structure",
     members = {
         ProtocolsLists = schema.new({
@@ -4589,7 +4589,7 @@ M.ListProtocolsListsOutput = schema.new({
 })
 
 M.ListResourceSetResourcesInput = schema.new({
-    id = id.from(_N, "ListResourceSetResourcesInput"),
+    id = id.from(_N, "ListResourceSetResourcesRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -4639,7 +4639,7 @@ M.Resource = schema.new({
 })
 
 M.ListResourceSetResourcesOutput = schema.new({
-    id = id.from(_N, "ListResourceSetResourcesOutput"),
+    id = id.from(_N, "ListResourceSetResourcesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -4662,7 +4662,7 @@ M.ListResourceSetResourcesOutput = schema.new({
 })
 
 M.ListResourceSetsInput = schema.new({
-    id = id.from(_N, "ListResourceSetsInput"),
+    id = id.from(_N, "ListResourceSetsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4718,7 +4718,7 @@ M.ResourceSetSummary = schema.new({
 })
 
 M.ListResourceSetsOutput = schema.new({
-    id = id.from(_N, "ListResourceSetsOutput"),
+    id = id.from(_N, "ListResourceSetsResponse"),
     type = "structure",
     members = {
         ResourceSets = schema.new({
@@ -4738,7 +4738,7 @@ M.ListResourceSetsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4754,7 +4754,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         TagList = schema.new({
@@ -4768,7 +4768,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListThirdPartyFirewallFirewallPoliciesInput = schema.new({
-    id = id.from(_N, "ListThirdPartyFirewallFirewallPoliciesInput"),
+    id = id.from(_N, "ListThirdPartyFirewallFirewallPoliciesRequest"),
     type = "structure",
     members = {
         ThirdPartyFirewall = schema.new({
@@ -4818,7 +4818,7 @@ M.ThirdPartyFirewallFirewallPolicy = schema.new({
 })
 
 M.ListThirdPartyFirewallFirewallPoliciesOutput = schema.new({
-    id = id.from(_N, "ListThirdPartyFirewallFirewallPoliciesOutput"),
+    id = id.from(_N, "ListThirdPartyFirewallFirewallPoliciesResponse"),
     type = "structure",
     members = {
         ThirdPartyFirewallFirewallPolicies = schema.new({
@@ -4838,7 +4838,7 @@ M.ListThirdPartyFirewallFirewallPoliciesOutput = schema.new({
 })
 
 M.PutAdminAccountInput = schema.new({
-    id = id.from(_N, "PutAdminAccountInput"),
+    id = id.from(_N, "PutAdminAccountRequest"),
     type = "structure",
     members = {
         AdminAccount = schema.new({
@@ -4861,12 +4861,12 @@ M.PutAdminAccountInput = schema.new({
 })
 
 M.PutAdminAccountOutput = schema.new({
-    id = id.from(_N, "PutAdminAccountOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutAppsListInput = schema.new({
-    id = id.from(_N, "PutAppsListInput"),
+    id = id.from(_N, "PutAppsListRequest"),
     type = "structure",
     members = {
         AppsList = schema.new({
@@ -4890,7 +4890,7 @@ M.PutAppsListInput = schema.new({
 })
 
 M.PutAppsListOutput = schema.new({
-    id = id.from(_N, "PutAppsListOutput"),
+    id = id.from(_N, "PutAppsListResponse"),
     type = "structure",
     members = {
         AppsList = schema.new({
@@ -4910,7 +4910,7 @@ M.PutAppsListOutput = schema.new({
 })
 
 M.PutNotificationChannelInput = schema.new({
-    id = id.from(_N, "PutNotificationChannelInput"),
+    id = id.from(_N, "PutNotificationChannelRequest"),
     type = "structure",
     members = {
         SnsTopicArn = schema.new({
@@ -4935,12 +4935,12 @@ M.PutNotificationChannelInput = schema.new({
 })
 
 M.PutNotificationChannelOutput = schema.new({
-    id = id.from(_N, "PutNotificationChannelOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutPolicyInput = schema.new({
-    id = id.from(_N, "PutPolicyInput"),
+    id = id.from(_N, "PutPolicyRequest"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -4964,7 +4964,7 @@ M.PutPolicyInput = schema.new({
 })
 
 M.PutPolicyOutput = schema.new({
-    id = id.from(_N, "PutPolicyOutput"),
+    id = id.from(_N, "PutPolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -4984,7 +4984,7 @@ M.PutPolicyOutput = schema.new({
 })
 
 M.PutProtocolsListInput = schema.new({
-    id = id.from(_N, "PutProtocolsListInput"),
+    id = id.from(_N, "PutProtocolsListRequest"),
     type = "structure",
     members = {
         ProtocolsList = schema.new({
@@ -5008,7 +5008,7 @@ M.PutProtocolsListInput = schema.new({
 })
 
 M.PutProtocolsListOutput = schema.new({
-    id = id.from(_N, "PutProtocolsListOutput"),
+    id = id.from(_N, "PutProtocolsListResponse"),
     type = "structure",
     members = {
         ProtocolsList = schema.new({
@@ -5028,7 +5028,7 @@ M.PutProtocolsListOutput = schema.new({
 })
 
 M.PutResourceSetInput = schema.new({
-    id = id.from(_N, "PutResourceSetInput"),
+    id = id.from(_N, "PutResourceSetRequest"),
     type = "structure",
     members = {
         ResourceSet = schema.new({
@@ -5052,7 +5052,7 @@ M.PutResourceSetInput = schema.new({
 })
 
 M.PutResourceSetOutput = schema.new({
-    id = id.from(_N, "PutResourceSetOutput"),
+    id = id.from(_N, "PutResourceSetResponse"),
     type = "structure",
     members = {
         ResourceSet = schema.new({
@@ -5078,7 +5078,7 @@ M.PutResourceSetOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5104,12 +5104,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5135,8 +5135,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -97,7 +97,7 @@ M.ApplicationLayerAutomaticResponseConfiguration = schema.new({
 })
 
 M.AssociateDRTLogBucketInput = schema.new({
-    id = id.from(_N, "AssociateDRTLogBucketInput"),
+    id = id.from(_N, "AssociateDRTLogBucketRequest"),
     type = "structure",
     members = {
         LogBucket = schema.new({
@@ -113,7 +113,7 @@ M.AssociateDRTLogBucketInput = schema.new({
 })
 
 M.AssociateDRTLogBucketOutput = schema.new({
-    id = id.from(_N, "AssociateDRTLogBucketOutput"),
+    id = id.from(_N, "AssociateDRTLogBucketResponse"),
     type = "structure",
 })
 
@@ -289,7 +289,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.AssociateDRTRoleInput = schema.new({
-    id = id.from(_N, "AssociateDRTRoleInput"),
+    id = id.from(_N, "AssociateDRTRoleRequest"),
     type = "structure",
     members = {
         RoleArn = schema.new({
@@ -305,12 +305,12 @@ M.AssociateDRTRoleInput = schema.new({
 })
 
 M.AssociateDRTRoleOutput = schema.new({
-    id = id.from(_N, "AssociateDRTRoleOutput"),
+    id = id.from(_N, "AssociateDRTRoleResponse"),
     type = "structure",
 })
 
 M.AssociateHealthCheckInput = schema.new({
-    id = id.from(_N, "AssociateHealthCheckInput"),
+    id = id.from(_N, "AssociateHealthCheckRequest"),
     type = "structure",
     members = {
         ProtectionId = schema.new({
@@ -335,7 +335,7 @@ M.AssociateHealthCheckInput = schema.new({
 })
 
 M.AssociateHealthCheckOutput = schema.new({
-    id = id.from(_N, "AssociateHealthCheckOutput"),
+    id = id.from(_N, "AssociateHealthCheckResponse"),
     type = "structure",
 })
 
@@ -384,7 +384,7 @@ M.EmergencyContact = schema.new({
 })
 
 M.AssociateProactiveEngagementDetailsInput = schema.new({
-    id = id.from(_N, "AssociateProactiveEngagementDetailsInput"),
+    id = id.from(_N, "AssociateProactiveEngagementDetailsRequest"),
     type = "structure",
     members = {
         EmergencyContactList = schema.new({
@@ -401,7 +401,7 @@ M.AssociateProactiveEngagementDetailsInput = schema.new({
 })
 
 M.AssociateProactiveEngagementDetailsOutput = schema.new({
-    id = id.from(_N, "AssociateProactiveEngagementDetailsOutput"),
+    id = id.from(_N, "AssociateProactiveEngagementDetailsResponse"),
     type = "structure",
 })
 
@@ -794,7 +794,7 @@ M.Tag = schema.new({
 })
 
 M.CreateProtectionInput = schema.new({
-    id = id.from(_N, "CreateProtectionInput"),
+    id = id.from(_N, "CreateProtectionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -826,7 +826,7 @@ M.CreateProtectionInput = schema.new({
 })
 
 M.CreateProtectionOutput = schema.new({
-    id = id.from(_N, "CreateProtectionOutput"),
+    id = id.from(_N, "CreateProtectionResponse"),
     type = "structure",
     members = {
         ProtectionId = schema.new({
@@ -861,7 +861,7 @@ M.ResourceAlreadyExistsException = schema.new({
 })
 
 M.CreateProtectionGroupInput = schema.new({
-    id = id.from(_N, "CreateProtectionGroupInput"),
+    id = id.from(_N, "CreateProtectionGroupRequest"),
     type = "structure",
     members = {
         ProtectionGroupId = schema.new({
@@ -915,22 +915,22 @@ M.CreateProtectionGroupInput = schema.new({
 })
 
 M.CreateProtectionGroupOutput = schema.new({
-    id = id.from(_N, "CreateProtectionGroupOutput"),
+    id = id.from(_N, "CreateProtectionGroupResponse"),
     type = "structure",
 })
 
 M.CreateSubscriptionInput = schema.new({
-    id = id.from(_N, "CreateSubscriptionInput"),
+    id = id.from(_N, "CreateSubscriptionRequest"),
     type = "structure",
 })
 
 M.CreateSubscriptionOutput = schema.new({
-    id = id.from(_N, "CreateSubscriptionOutput"),
+    id = id.from(_N, "CreateSubscriptionResponse"),
     type = "structure",
 })
 
 M.DeleteProtectionInput = schema.new({
-    id = id.from(_N, "DeleteProtectionInput"),
+    id = id.from(_N, "DeleteProtectionRequest"),
     type = "structure",
     members = {
         ProtectionId = schema.new({
@@ -946,12 +946,12 @@ M.DeleteProtectionInput = schema.new({
 })
 
 M.DeleteProtectionOutput = schema.new({
-    id = id.from(_N, "DeleteProtectionOutput"),
+    id = id.from(_N, "DeleteProtectionResponse"),
     type = "structure",
 })
 
 M.DeleteProtectionGroupInput = schema.new({
-    id = id.from(_N, "DeleteProtectionGroupInput"),
+    id = id.from(_N, "DeleteProtectionGroupRequest"),
     type = "structure",
     members = {
         ProtectionGroupId = schema.new({
@@ -967,17 +967,17 @@ M.DeleteProtectionGroupInput = schema.new({
 })
 
 M.DeleteProtectionGroupOutput = schema.new({
-    id = id.from(_N, "DeleteProtectionGroupOutput"),
+    id = id.from(_N, "DeleteProtectionGroupResponse"),
     type = "structure",
 })
 
 M.DeleteSubscriptionInput = schema.new({
-    id = id.from(_N, "DeleteSubscriptionInput"),
+    id = id.from(_N, "DeleteSubscriptionRequest"),
     type = "structure",
 })
 
 M.DeleteSubscriptionOutput = schema.new({
-    id = id.from(_N, "DeleteSubscriptionOutput"),
+    id = id.from(_N, "DeleteSubscriptionResponse"),
     type = "structure",
 })
 
@@ -998,7 +998,7 @@ M.LockedSubscriptionException = schema.new({
 })
 
 M.DescribeAttackInput = schema.new({
-    id = id.from(_N, "DescribeAttackInput"),
+    id = id.from(_N, "DescribeAttackRequest"),
     type = "structure",
     members = {
         AttackId = schema.new({
@@ -1014,7 +1014,7 @@ M.DescribeAttackInput = schema.new({
 })
 
 M.DescribeAttackOutput = schema.new({
-    id = id.from(_N, "DescribeAttackOutput"),
+    id = id.from(_N, "DescribeAttackResponse"),
     type = "structure",
     members = {
         Attack = schema.new({
@@ -1028,7 +1028,7 @@ M.DescribeAttackOutput = schema.new({
 })
 
 M.DescribeAttackStatisticsInput = schema.new({
-    id = id.from(_N, "DescribeAttackStatisticsInput"),
+    id = id.from(_N, "DescribeAttackStatisticsRequest"),
     type = "structure",
 })
 
@@ -1052,7 +1052,7 @@ M.TimeRange = schema.new({
 })
 
 M.DescribeAttackStatisticsOutput = schema.new({
-    id = id.from(_N, "DescribeAttackStatisticsOutput"),
+    id = id.from(_N, "DescribeAttackStatisticsResponse"),
     type = "structure",
     members = {
         TimeRange = schema.new({
@@ -1079,12 +1079,12 @@ M.DescribeAttackStatisticsOutput = schema.new({
 })
 
 M.DescribeDRTAccessInput = schema.new({
-    id = id.from(_N, "DescribeDRTAccessInput"),
+    id = id.from(_N, "DescribeDRTAccessRequest"),
     type = "structure",
 })
 
 M.DescribeDRTAccessOutput = schema.new({
-    id = id.from(_N, "DescribeDRTAccessOutput"),
+    id = id.from(_N, "DescribeDRTAccessResponse"),
     type = "structure",
     members = {
         RoleArn = schema.new({
@@ -1104,12 +1104,12 @@ M.DescribeDRTAccessOutput = schema.new({
 })
 
 M.DescribeEmergencyContactSettingsInput = schema.new({
-    id = id.from(_N, "DescribeEmergencyContactSettingsInput"),
+    id = id.from(_N, "DescribeEmergencyContactSettingsRequest"),
     type = "structure",
 })
 
 M.DescribeEmergencyContactSettingsOutput = schema.new({
-    id = id.from(_N, "DescribeEmergencyContactSettingsOutput"),
+    id = id.from(_N, "DescribeEmergencyContactSettingsResponse"),
     type = "structure",
     members = {
         EmergencyContactList = schema.new({
@@ -1123,7 +1123,7 @@ M.DescribeEmergencyContactSettingsOutput = schema.new({
 })
 
 M.DescribeProtectionInput = schema.new({
-    id = id.from(_N, "DescribeProtectionInput"),
+    id = id.from(_N, "DescribeProtectionRequest"),
     type = "structure",
     members = {
         ProtectionId = schema.new({
@@ -1187,7 +1187,7 @@ M.Protection = schema.new({
 })
 
 M.DescribeProtectionOutput = schema.new({
-    id = id.from(_N, "DescribeProtectionOutput"),
+    id = id.from(_N, "DescribeProtectionResponse"),
     type = "structure",
     members = {
         Protection = schema.new({
@@ -1201,7 +1201,7 @@ M.DescribeProtectionOutput = schema.new({
 })
 
 M.DescribeProtectionGroupInput = schema.new({
-    id = id.from(_N, "DescribeProtectionGroupInput"),
+    id = id.from(_N, "DescribeProtectionGroupRequest"),
     type = "structure",
     members = {
         ProtectionGroupId = schema.new({
@@ -1273,7 +1273,7 @@ M.ProtectionGroup = schema.new({
 })
 
 M.DescribeProtectionGroupOutput = schema.new({
-    id = id.from(_N, "DescribeProtectionGroupOutput"),
+    id = id.from(_N, "DescribeProtectionGroupResponse"),
     type = "structure",
     members = {
         ProtectionGroup = schema.new({
@@ -1290,7 +1290,7 @@ M.DescribeProtectionGroupOutput = schema.new({
 })
 
 M.DescribeSubscriptionInput = schema.new({
-    id = id.from(_N, "DescribeSubscriptionInput"),
+    id = id.from(_N, "DescribeSubscriptionRequest"),
     type = "structure",
 })
 
@@ -1485,7 +1485,7 @@ M.Subscription = schema.new({
 })
 
 M.DescribeSubscriptionOutput = schema.new({
-    id = id.from(_N, "DescribeSubscriptionOutput"),
+    id = id.from(_N, "DescribeSubscriptionResponse"),
     type = "structure",
     members = {
         Subscription = schema.new({
@@ -1499,7 +1499,7 @@ M.DescribeSubscriptionOutput = schema.new({
 })
 
 M.DisableApplicationLayerAutomaticResponseInput = schema.new({
-    id = id.from(_N, "DisableApplicationLayerAutomaticResponseInput"),
+    id = id.from(_N, "DisableApplicationLayerAutomaticResponseRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1515,22 +1515,22 @@ M.DisableApplicationLayerAutomaticResponseInput = schema.new({
 })
 
 M.DisableApplicationLayerAutomaticResponseOutput = schema.new({
-    id = id.from(_N, "DisableApplicationLayerAutomaticResponseOutput"),
+    id = id.from(_N, "DisableApplicationLayerAutomaticResponseResponse"),
     type = "structure",
 })
 
 M.DisableProactiveEngagementInput = schema.new({
-    id = id.from(_N, "DisableProactiveEngagementInput"),
+    id = id.from(_N, "DisableProactiveEngagementRequest"),
     type = "structure",
 })
 
 M.DisableProactiveEngagementOutput = schema.new({
-    id = id.from(_N, "DisableProactiveEngagementOutput"),
+    id = id.from(_N, "DisableProactiveEngagementResponse"),
     type = "structure",
 })
 
 M.DisassociateDRTLogBucketInput = schema.new({
-    id = id.from(_N, "DisassociateDRTLogBucketInput"),
+    id = id.from(_N, "DisassociateDRTLogBucketRequest"),
     type = "structure",
     members = {
         LogBucket = schema.new({
@@ -1546,22 +1546,22 @@ M.DisassociateDRTLogBucketInput = schema.new({
 })
 
 M.DisassociateDRTLogBucketOutput = schema.new({
-    id = id.from(_N, "DisassociateDRTLogBucketOutput"),
+    id = id.from(_N, "DisassociateDRTLogBucketResponse"),
     type = "structure",
 })
 
 M.DisassociateDRTRoleInput = schema.new({
-    id = id.from(_N, "DisassociateDRTRoleInput"),
+    id = id.from(_N, "DisassociateDRTRoleRequest"),
     type = "structure",
 })
 
 M.DisassociateDRTRoleOutput = schema.new({
-    id = id.from(_N, "DisassociateDRTRoleOutput"),
+    id = id.from(_N, "DisassociateDRTRoleResponse"),
     type = "structure",
 })
 
 M.DisassociateHealthCheckInput = schema.new({
-    id = id.from(_N, "DisassociateHealthCheckInput"),
+    id = id.from(_N, "DisassociateHealthCheckRequest"),
     type = "structure",
     members = {
         ProtectionId = schema.new({
@@ -1586,12 +1586,12 @@ M.DisassociateHealthCheckInput = schema.new({
 })
 
 M.DisassociateHealthCheckOutput = schema.new({
-    id = id.from(_N, "DisassociateHealthCheckOutput"),
+    id = id.from(_N, "DisassociateHealthCheckResponse"),
     type = "structure",
 })
 
 M.EnableApplicationLayerAutomaticResponseInput = schema.new({
-    id = id.from(_N, "EnableApplicationLayerAutomaticResponseInput"),
+    id = id.from(_N, "EnableApplicationLayerAutomaticResponseRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1617,27 +1617,27 @@ M.EnableApplicationLayerAutomaticResponseInput = schema.new({
 })
 
 M.EnableApplicationLayerAutomaticResponseOutput = schema.new({
-    id = id.from(_N, "EnableApplicationLayerAutomaticResponseOutput"),
+    id = id.from(_N, "EnableApplicationLayerAutomaticResponseResponse"),
     type = "structure",
 })
 
 M.EnableProactiveEngagementInput = schema.new({
-    id = id.from(_N, "EnableProactiveEngagementInput"),
+    id = id.from(_N, "EnableProactiveEngagementRequest"),
     type = "structure",
 })
 
 M.EnableProactiveEngagementOutput = schema.new({
-    id = id.from(_N, "EnableProactiveEngagementOutput"),
+    id = id.from(_N, "EnableProactiveEngagementResponse"),
     type = "structure",
 })
 
 M.GetSubscriptionStateInput = schema.new({
-    id = id.from(_N, "GetSubscriptionStateInput"),
+    id = id.from(_N, "GetSubscriptionStateRequest"),
     type = "structure",
 })
 
 M.GetSubscriptionStateOutput = schema.new({
-    id = id.from(_N, "GetSubscriptionStateOutput"),
+    id = id.from(_N, "GetSubscriptionStateResponse"),
     type = "structure",
     members = {
         SubscriptionState = schema.new({
@@ -1653,7 +1653,7 @@ M.GetSubscriptionStateOutput = schema.new({
 })
 
 M.ListAttacksInput = schema.new({
-    id = id.from(_N, "ListAttacksInput"),
+    id = id.from(_N, "ListAttacksRequest"),
     type = "structure",
     members = {
         ResourceArns = schema.new({
@@ -1693,7 +1693,7 @@ M.ListAttacksInput = schema.new({
 })
 
 M.ListAttacksOutput = schema.new({
-    id = id.from(_N, "ListAttacksOutput"),
+    id = id.from(_N, "ListAttacksResponse"),
     type = "structure",
     members = {
         AttackSummaries = schema.new({
@@ -1764,7 +1764,7 @@ M.InclusionProtectionGroupFilters = schema.new({
 })
 
 M.ListProtectionGroupsInput = schema.new({
-    id = id.from(_N, "ListProtectionGroupsInput"),
+    id = id.from(_N, "ListProtectionGroupsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1790,7 +1790,7 @@ M.ListProtectionGroupsInput = schema.new({
 })
 
 M.ListProtectionGroupsOutput = schema.new({
-    id = id.from(_N, "ListProtectionGroupsOutput"),
+    id = id.from(_N, "ListProtectionGroupsResponse"),
     type = "structure",
     members = {
         ProtectionGroups = schema.new({
@@ -1841,7 +1841,7 @@ M.InclusionProtectionFilters = schema.new({
 })
 
 M.ListProtectionsInput = schema.new({
-    id = id.from(_N, "ListProtectionsInput"),
+    id = id.from(_N, "ListProtectionsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1867,7 +1867,7 @@ M.ListProtectionsInput = schema.new({
 })
 
 M.ListProtectionsOutput = schema.new({
-    id = id.from(_N, "ListProtectionsOutput"),
+    id = id.from(_N, "ListProtectionsResponse"),
     type = "structure",
     members = {
         Protections = schema.new({
@@ -1887,7 +1887,7 @@ M.ListProtectionsOutput = schema.new({
 })
 
 M.ListResourcesInProtectionGroupInput = schema.new({
-    id = id.from(_N, "ListResourcesInProtectionGroupInput"),
+    id = id.from(_N, "ListResourcesInProtectionGroupRequest"),
     type = "structure",
     members = {
         ProtectionGroupId = schema.new({
@@ -1915,7 +1915,7 @@ M.ListResourcesInProtectionGroupInput = schema.new({
 })
 
 M.ListResourcesInProtectionGroupOutput = schema.new({
-    id = id.from(_N, "ListResourcesInProtectionGroupOutput"),
+    id = id.from(_N, "ListResourcesInProtectionGroupResponse"),
     type = "structure",
     members = {
         ResourceArns = schema.new({
@@ -1938,7 +1938,7 @@ M.ListResourcesInProtectionGroupOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1954,7 +1954,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1968,7 +1968,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1994,12 +1994,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2025,12 +2025,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateApplicationLayerAutomaticResponseInput = schema.new({
-    id = id.from(_N, "UpdateApplicationLayerAutomaticResponseInput"),
+    id = id.from(_N, "UpdateApplicationLayerAutomaticResponseRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2056,12 +2056,12 @@ M.UpdateApplicationLayerAutomaticResponseInput = schema.new({
 })
 
 M.UpdateApplicationLayerAutomaticResponseOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationLayerAutomaticResponseOutput"),
+    id = id.from(_N, "UpdateApplicationLayerAutomaticResponseResponse"),
     type = "structure",
 })
 
 M.UpdateEmergencyContactSettingsInput = schema.new({
-    id = id.from(_N, "UpdateEmergencyContactSettingsInput"),
+    id = id.from(_N, "UpdateEmergencyContactSettingsRequest"),
     type = "structure",
     members = {
         EmergencyContactList = schema.new({
@@ -2075,12 +2075,12 @@ M.UpdateEmergencyContactSettingsInput = schema.new({
 })
 
 M.UpdateEmergencyContactSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateEmergencyContactSettingsOutput"),
+    id = id.from(_N, "UpdateEmergencyContactSettingsResponse"),
     type = "structure",
 })
 
 M.UpdateProtectionGroupInput = schema.new({
-    id = id.from(_N, "UpdateProtectionGroupInput"),
+    id = id.from(_N, "UpdateProtectionGroupRequest"),
     type = "structure",
     members = {
         ProtectionGroupId = schema.new({
@@ -2127,12 +2127,12 @@ M.UpdateProtectionGroupInput = schema.new({
 })
 
 M.UpdateProtectionGroupOutput = schema.new({
-    id = id.from(_N, "UpdateProtectionGroupOutput"),
+    id = id.from(_N, "UpdateProtectionGroupResponse"),
     type = "structure",
 })
 
 M.UpdateSubscriptionInput = schema.new({
-    id = id.from(_N, "UpdateSubscriptionInput"),
+    id = id.from(_N, "UpdateSubscriptionRequest"),
     type = "structure",
     members = {
         AutoRenew = schema.new({
@@ -2145,8 +2145,22 @@ M.UpdateSubscriptionInput = schema.new({
 })
 
 M.UpdateSubscriptionOutput = schema.new({
-    id = id.from(_N, "UpdateSubscriptionOutput"),
+    id = id.from(_N, "UpdateSubscriptionResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -228,7 +228,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.ApprovePlanExecutionStepInput = schema.new({
-    id = id.from(_N, "ApprovePlanExecutionStepInput"),
+    id = id.from(_N, "ApprovePlanExecutionStepRequest"),
     type = "structure",
     members = {
         planArn = schema.new({
@@ -277,7 +277,7 @@ M.ApprovePlanExecutionStepInput = schema.new({
 })
 
 M.ApprovePlanExecutionStepOutput = schema.new({
-    id = id.from(_N, "ApprovePlanExecutionStepOutput"),
+    id = id.from(_N, "ApprovePlanExecutionStepResponse"),
     type = "structure",
 })
 
@@ -301,7 +301,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.CancelPlanExecutionInput = schema.new({
-    id = id.from(_N, "CancelPlanExecutionInput"),
+    id = id.from(_N, "CancelPlanExecutionRequest"),
     type = "structure",
     members = {
         planArn = schema.new({
@@ -332,12 +332,12 @@ M.CancelPlanExecutionInput = schema.new({
 })
 
 M.CancelPlanExecutionOutput = schema.new({
-    id = id.from(_N, "CancelPlanExecutionOutput"),
+    id = id.from(_N, "CancelPlanExecutionResponse"),
     type = "structure",
 })
 
 M.GetPlanEvaluationStatusInput = schema.new({
-    id = id.from(_N, "GetPlanEvaluationStatusInput"),
+    id = id.from(_N, "GetPlanEvaluationStatusRequest"),
     type = "structure",
     members = {
         planArn = schema.new({
@@ -446,7 +446,7 @@ M.ResourceWarning = schema.new({
 })
 
 M.GetPlanEvaluationStatusOutput = schema.new({
-    id = id.from(_N, "GetPlanEvaluationStatusOutput"),
+    id = id.from(_N, "GetPlanEvaluationStatusResponse"),
     type = "structure",
     members = {
         planArn = schema.new({
@@ -499,7 +499,7 @@ M.GetPlanEvaluationStatusOutput = schema.new({
 })
 
 M.GetPlanExecutionInput = schema.new({
-    id = id.from(_N, "GetPlanExecutionInput"),
+    id = id.from(_N, "GetPlanExecutionRequest"),
     type = "structure",
     members = {
         planArn = schema.new({
@@ -826,7 +826,7 @@ M.ArcRoutingControlConfiguration = schema.new({
             name = "regionAndRoutingControls",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.ArcRoutingControlState }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1676,7 +1676,7 @@ M.StepState = schema.new({
 })
 
 M.GetPlanInRegionInput = schema.new({
-    id = id.from(_N, "GetPlanInRegionInput"),
+    id = id.from(_N, "GetPlanInRegionRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1692,7 +1692,7 @@ M.GetPlanInRegionInput = schema.new({
 })
 
 M.ListPlanExecutionEventsInput = schema.new({
-    id = id.from(_N, "ListPlanExecutionEventsInput"),
+    id = id.from(_N, "ListPlanExecutionEventsRequest"),
     type = "structure",
     members = {
         planArn = schema.new({
@@ -1803,7 +1803,7 @@ M.ExecutionEvent = schema.new({
 })
 
 M.ListPlanExecutionEventsOutput = schema.new({
-    id = id.from(_N, "ListPlanExecutionEventsOutput"),
+    id = id.from(_N, "ListPlanExecutionEventsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -1823,7 +1823,7 @@ M.ListPlanExecutionEventsOutput = schema.new({
 })
 
 M.ListPlanExecutionsInput = schema.new({
-    id = id.from(_N, "ListPlanExecutionsInput"),
+    id = id.from(_N, "ListPlanExecutionsRequest"),
     type = "structure",
     members = {
         planArn = schema.new({
@@ -1860,7 +1860,7 @@ M.ListPlanExecutionsInput = schema.new({
 })
 
 M.ListPlanExecutionsOutput = schema.new({
-    id = id.from(_N, "ListPlanExecutionsOutput"),
+    id = id.from(_N, "ListPlanExecutionsResponse"),
     type = "structure",
     members = {
         items = schema.new({
@@ -1880,7 +1880,7 @@ M.ListPlanExecutionsOutput = schema.new({
 })
 
 M.ListPlansInRegionInput = schema.new({
-    id = id.from(_N, "ListPlansInRegionInput"),
+    id = id.from(_N, "ListPlansInRegionRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -1899,7 +1899,7 @@ M.ListPlansInRegionInput = schema.new({
 })
 
 M.ListPlansInRegionOutput = schema.new({
-    id = id.from(_N, "ListPlansInRegionOutput"),
+    id = id.from(_N, "ListPlansInRegionResponse"),
     type = "structure",
     members = {
         plans = schema.new({
@@ -1938,7 +1938,7 @@ M.InternalServerException = schema.new({
 })
 
 M.ListRoute53HealthChecksInput = schema.new({
-    id = id.from(_N, "ListRoute53HealthChecksInput"),
+    id = id.from(_N, "ListRoute53HealthChecksRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2024,7 +2024,7 @@ M.Route53HealthCheck = schema.new({
 })
 
 M.ListRoute53HealthChecksOutput = schema.new({
-    id = id.from(_N, "ListRoute53HealthChecksOutput"),
+    id = id.from(_N, "ListRoute53HealthChecksResponse"),
     type = "structure",
     members = {
         healthChecks = schema.new({
@@ -2063,7 +2063,7 @@ M.IllegalArgumentException = schema.new({
 })
 
 M.ListRoute53HealthChecksInRegionInput = schema.new({
-    id = id.from(_N, "ListRoute53HealthChecksInRegionInput"),
+    id = id.from(_N, "ListRoute53HealthChecksInRegionRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2103,7 +2103,7 @@ M.ListRoute53HealthChecksInRegionInput = schema.new({
 })
 
 M.ListRoute53HealthChecksInRegionOutput = schema.new({
-    id = id.from(_N, "ListRoute53HealthChecksInRegionOutput"),
+    id = id.from(_N, "ListRoute53HealthChecksInRegionResponse"),
     type = "structure",
     members = {
         healthChecks = schema.new({
@@ -2123,7 +2123,7 @@ M.ListRoute53HealthChecksInRegionOutput = schema.new({
 })
 
 M.DeletePlanInput = schema.new({
-    id = id.from(_N, "DeletePlanInput"),
+    id = id.from(_N, "DeletePlanRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2139,7 +2139,7 @@ M.DeletePlanInput = schema.new({
 })
 
 M.DeletePlanOutput = schema.new({
-    id = id.from(_N, "DeletePlanOutput"),
+    id = id.from(_N, "DeletePlanResponse"),
     type = "structure",
 })
 
@@ -2163,7 +2163,7 @@ M.IllegalStateException = schema.new({
 })
 
 M.GetPlanInput = schema.new({
-    id = id.from(_N, "GetPlanInput"),
+    id = id.from(_N, "GetPlanRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2179,7 +2179,7 @@ M.GetPlanInput = schema.new({
 })
 
 M.ListPlansInput = schema.new({
-    id = id.from(_N, "ListPlansInput"),
+    id = id.from(_N, "ListPlansRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2198,7 +2198,7 @@ M.ListPlansInput = schema.new({
 })
 
 M.ListPlansOutput = schema.new({
-    id = id.from(_N, "ListPlansOutput"),
+    id = id.from(_N, "ListPlansResponse"),
     type = "structure",
     members = {
         plans = schema.new({
@@ -2218,7 +2218,7 @@ M.ListPlansOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2234,7 +2234,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         resourceTags = schema.new({
@@ -2249,7 +2249,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2276,12 +2276,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2307,12 +2307,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.StartPlanExecutionInput = schema.new({
-    id = id.from(_N, "StartPlanExecutionInput"),
+    id = id.from(_N, "StartPlanExecutionRequest"),
     type = "structure",
     members = {
         planArn = schema.new({
@@ -2373,7 +2373,7 @@ M.StartPlanExecutionInput = schema.new({
 })
 
 M.StartPlanExecutionOutput = schema.new({
-    id = id.from(_N, "StartPlanExecutionOutput"),
+    id = id.from(_N, "StartPlanExecutionResponse"),
     type = "structure",
     members = {
         executionId = schema.new({
@@ -2410,7 +2410,7 @@ M.StartPlanExecutionOutput = schema.new({
 })
 
 M.UpdatePlanExecutionInput = schema.new({
-    id = id.from(_N, "UpdatePlanExecutionInput"),
+    id = id.from(_N, "UpdatePlanExecutionRequest"),
     type = "structure",
     members = {
         planArn = schema.new({
@@ -2450,12 +2450,12 @@ M.UpdatePlanExecutionInput = schema.new({
 })
 
 M.UpdatePlanExecutionOutput = schema.new({
-    id = id.from(_N, "UpdatePlanExecutionOutput"),
+    id = id.from(_N, "UpdatePlanExecutionResponse"),
     type = "structure",
 })
 
 M.UpdatePlanExecutionStepInput = schema.new({
-    id = id.from(_N, "UpdatePlanExecutionStepInput"),
+    id = id.from(_N, "UpdatePlanExecutionStepRequest"),
     type = "structure",
     members = {
         planArn = schema.new({
@@ -2507,7 +2507,7 @@ M.UpdatePlanExecutionStepInput = schema.new({
 })
 
 M.UpdatePlanExecutionStepOutput = schema.new({
-    id = id.from(_N, "UpdatePlanExecutionStepOutput"),
+    id = id.from(_N, "UpdatePlanExecutionStepResponse"),
     type = "structure",
 })
 
@@ -2703,7 +2703,7 @@ M.Workflow = schema.new({
 })
 
 M.CreatePlanInput = schema.new({
-    id = id.from(_N, "CreatePlanInput"),
+    id = id.from(_N, "CreatePlanRequest"),
     type = "structure",
     members = {
         description = schema.new({
@@ -2929,7 +2929,7 @@ M.Plan = schema.new({
 })
 
 M.UpdatePlanInput = schema.new({
-    id = id.from(_N, "UpdatePlanInput"),
+    id = id.from(_N, "UpdatePlanRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2998,7 +2998,7 @@ M.UpdatePlanInput = schema.new({
 })
 
 M.CreatePlanOutput = schema.new({
-    id = id.from(_N, "CreatePlanOutput"),
+    id = id.from(_N, "CreatePlanResponse"),
     type = "structure",
     members = {
         plan = schema.new({
@@ -3012,7 +3012,7 @@ M.CreatePlanOutput = schema.new({
 })
 
 M.GetPlanExecutionOutput = schema.new({
-    id = id.from(_N, "GetPlanExecutionOutput"),
+    id = id.from(_N, "GetPlanExecutionResponse"),
     type = "structure",
     members = {
         planArn = schema.new({
@@ -3145,7 +3145,7 @@ M.GetPlanExecutionOutput = schema.new({
 })
 
 M.GetPlanInRegionOutput = schema.new({
-    id = id.from(_N, "GetPlanInRegionOutput"),
+    id = id.from(_N, "GetPlanInRegionResponse"),
     type = "structure",
     members = {
         plan = schema.new({
@@ -3159,7 +3159,7 @@ M.GetPlanInRegionOutput = schema.new({
 })
 
 M.GetPlanOutput = schema.new({
-    id = id.from(_N, "GetPlanOutput"),
+    id = id.from(_N, "GetPlanResponse"),
     type = "structure",
     members = {
         plan = schema.new({
@@ -3173,7 +3173,7 @@ M.GetPlanOutput = schema.new({
 })
 
 M.UpdatePlanOutput = schema.new({
-    id = id.from(_N, "UpdatePlanOutput"),
+    id = id.from(_N, "UpdatePlanResponse"),
     type = "structure",
     members = {
         plan = schema.new({
@@ -3185,5 +3185,19 @@ M.UpdatePlanOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

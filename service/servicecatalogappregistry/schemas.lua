@@ -212,7 +212,7 @@ M.AppRegistryConfiguration = schema.new({
 })
 
 M.AssociateAttributeGroupInput = schema.new({
-    id = id.from(_N, "AssociateAttributeGroupInput"),
+    id = id.from(_N, "AssociateAttributeGroupRequest"),
     type = "structure",
     members = {
         application = schema.new({
@@ -239,7 +239,7 @@ M.AssociateAttributeGroupInput = schema.new({
 })
 
 M.AssociateAttributeGroupOutput = schema.new({
-    id = id.from(_N, "AssociateAttributeGroupOutput"),
+    id = id.from(_N, "AssociateAttributeGroupResponse"),
     type = "structure",
     members = {
         applicationArn = schema.new({
@@ -338,7 +338,7 @@ M.ValidationException = schema.new({
 })
 
 M.AssociateResourceInput = schema.new({
-    id = id.from(_N, "AssociateResourceInput"),
+    id = id.from(_N, "AssociateResourceRequest"),
     type = "structure",
     members = {
         application = schema.new({
@@ -382,7 +382,7 @@ M.AssociateResourceInput = schema.new({
 })
 
 M.AssociateResourceOutput = schema.new({
-    id = id.from(_N, "AssociateResourceOutput"),
+    id = id.from(_N, "AssociateResourceResponse"),
     type = "structure",
     members = {
         applicationArn = schema.new({
@@ -576,7 +576,7 @@ M.AttributeGroupSummary = schema.new({
 })
 
 M.CreateApplicationInput = schema.new({
-    id = id.from(_N, "CreateApplicationInput"),
+    id = id.from(_N, "CreateApplicationRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -616,7 +616,7 @@ M.CreateApplicationInput = schema.new({
 })
 
 M.CreateApplicationOutput = schema.new({
-    id = id.from(_N, "CreateApplicationOutput"),
+    id = id.from(_N, "CreateApplicationResponse"),
     type = "structure",
     members = {
         application = schema.new({
@@ -630,7 +630,7 @@ M.CreateApplicationOutput = schema.new({
 })
 
 M.CreateAttributeGroupInput = schema.new({
-    id = id.from(_N, "CreateAttributeGroupInput"),
+    id = id.from(_N, "CreateAttributeGroupRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -679,7 +679,7 @@ M.CreateAttributeGroupInput = schema.new({
 })
 
 M.CreateAttributeGroupOutput = schema.new({
-    id = id.from(_N, "CreateAttributeGroupOutput"),
+    id = id.from(_N, "CreateAttributeGroupResponse"),
     type = "structure",
     members = {
         attributeGroup = schema.new({
@@ -693,7 +693,7 @@ M.CreateAttributeGroupOutput = schema.new({
 })
 
 M.DeleteApplicationInput = schema.new({
-    id = id.from(_N, "DeleteApplicationInput"),
+    id = id.from(_N, "DeleteApplicationRequest"),
     type = "structure",
     members = {
         application = schema.new({
@@ -710,7 +710,7 @@ M.DeleteApplicationInput = schema.new({
 })
 
 M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationOutput"),
+    id = id.from(_N, "DeleteApplicationResponse"),
     type = "structure",
     members = {
         application = schema.new({
@@ -724,7 +724,7 @@ M.DeleteApplicationOutput = schema.new({
 })
 
 M.DeleteAttributeGroupInput = schema.new({
-    id = id.from(_N, "DeleteAttributeGroupInput"),
+    id = id.from(_N, "DeleteAttributeGroupRequest"),
     type = "structure",
     members = {
         attributeGroup = schema.new({
@@ -741,7 +741,7 @@ M.DeleteAttributeGroupInput = schema.new({
 })
 
 M.DeleteAttributeGroupOutput = schema.new({
-    id = id.from(_N, "DeleteAttributeGroupOutput"),
+    id = id.from(_N, "DeleteAttributeGroupResponse"),
     type = "structure",
     members = {
         attributeGroup = schema.new({
@@ -755,7 +755,7 @@ M.DeleteAttributeGroupOutput = schema.new({
 })
 
 M.DisassociateAttributeGroupInput = schema.new({
-    id = id.from(_N, "DisassociateAttributeGroupInput"),
+    id = id.from(_N, "DisassociateAttributeGroupRequest"),
     type = "structure",
     members = {
         application = schema.new({
@@ -782,7 +782,7 @@ M.DisassociateAttributeGroupInput = schema.new({
 })
 
 M.DisassociateAttributeGroupOutput = schema.new({
-    id = id.from(_N, "DisassociateAttributeGroupOutput"),
+    id = id.from(_N, "DisassociateAttributeGroupResponse"),
     type = "structure",
     members = {
         applicationArn = schema.new({
@@ -801,7 +801,7 @@ M.DisassociateAttributeGroupOutput = schema.new({
 })
 
 M.DisassociateResourceInput = schema.new({
-    id = id.from(_N, "DisassociateResourceInput"),
+    id = id.from(_N, "DisassociateResourceRequest"),
     type = "structure",
     members = {
         application = schema.new({
@@ -838,7 +838,7 @@ M.DisassociateResourceInput = schema.new({
 })
 
 M.DisassociateResourceOutput = schema.new({
-    id = id.from(_N, "DisassociateResourceOutput"),
+    id = id.from(_N, "DisassociateResourceResponse"),
     type = "structure",
     members = {
         applicationArn = schema.new({
@@ -857,7 +857,7 @@ M.DisassociateResourceOutput = schema.new({
 })
 
 M.GetApplicationInput = schema.new({
-    id = id.from(_N, "GetApplicationInput"),
+    id = id.from(_N, "GetApplicationRequest"),
     type = "structure",
     members = {
         application = schema.new({
@@ -920,7 +920,7 @@ M.Integrations = schema.new({
 })
 
 M.GetApplicationOutput = schema.new({
-    id = id.from(_N, "GetApplicationOutput"),
+    id = id.from(_N, "GetApplicationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1001,7 +1001,7 @@ M.GetApplicationOutput = schema.new({
 })
 
 M.GetAssociatedResourceInput = schema.new({
-    id = id.from(_N, "GetAssociatedResourceInput"),
+    id = id.from(_N, "GetAssociatedResourceRequest"),
     type = "structure",
     members = {
         application = schema.new({
@@ -1115,7 +1115,7 @@ M.Resource = schema.new({
 })
 
 M.GetAssociatedResourceOutput = schema.new({
-    id = id.from(_N, "GetAssociatedResourceOutput"),
+    id = id.from(_N, "GetAssociatedResourceResponse"),
     type = "structure",
     members = {
         resource = schema.new({
@@ -1143,7 +1143,7 @@ M.GetAssociatedResourceOutput = schema.new({
 })
 
 M.GetAttributeGroupInput = schema.new({
-    id = id.from(_N, "GetAttributeGroupInput"),
+    id = id.from(_N, "GetAttributeGroupRequest"),
     type = "structure",
     members = {
         attributeGroup = schema.new({
@@ -1160,7 +1160,7 @@ M.GetAttributeGroupInput = schema.new({
 })
 
 M.GetAttributeGroupOutput = schema.new({
-    id = id.from(_N, "GetAttributeGroupOutput"),
+    id = id.from(_N, "GetAttributeGroupResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1229,12 +1229,12 @@ M.GetAttributeGroupOutput = schema.new({
 })
 
 M.GetConfigurationInput = schema.new({
-    id = id.from(_N, "GetConfigurationInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetConfigurationOutput = schema.new({
-    id = id.from(_N, "GetConfigurationOutput"),
+    id = id.from(_N, "GetConfigurationResponse"),
     type = "structure",
     members = {
         configuration = schema.new({
@@ -1248,7 +1248,7 @@ M.GetConfigurationOutput = schema.new({
 })
 
 M.ListApplicationsInput = schema.new({
-    id = id.from(_N, "ListApplicationsInput"),
+    id = id.from(_N, "ListApplicationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1273,7 +1273,7 @@ M.ListApplicationsInput = schema.new({
 })
 
 M.ListApplicationsOutput = schema.new({
-    id = id.from(_N, "ListApplicationsOutput"),
+    id = id.from(_N, "ListApplicationsResponse"),
     type = "structure",
     members = {
         applications = schema.new({
@@ -1293,7 +1293,7 @@ M.ListApplicationsOutput = schema.new({
 })
 
 M.ListAssociatedAttributeGroupsInput = schema.new({
-    id = id.from(_N, "ListAssociatedAttributeGroupsInput"),
+    id = id.from(_N, "ListAssociatedAttributeGroupsRequest"),
     type = "structure",
     members = {
         application = schema.new({
@@ -1328,7 +1328,7 @@ M.ListAssociatedAttributeGroupsInput = schema.new({
 })
 
 M.ListAssociatedAttributeGroupsOutput = schema.new({
-    id = id.from(_N, "ListAssociatedAttributeGroupsOutput"),
+    id = id.from(_N, "ListAssociatedAttributeGroupsResponse"),
     type = "structure",
     members = {
         attributeGroups = schema.new({
@@ -1348,7 +1348,7 @@ M.ListAssociatedAttributeGroupsOutput = schema.new({
 })
 
 M.ListAssociatedResourcesInput = schema.new({
-    id = id.from(_N, "ListAssociatedResourcesInput"),
+    id = id.from(_N, "ListAssociatedResourcesRequest"),
     type = "structure",
     members = {
         application = schema.new({
@@ -1435,7 +1435,7 @@ M.ResourceInfo = schema.new({
 })
 
 M.ListAssociatedResourcesOutput = schema.new({
-    id = id.from(_N, "ListAssociatedResourcesOutput"),
+    id = id.from(_N, "ListAssociatedResourcesResponse"),
     type = "structure",
     members = {
         resources = schema.new({
@@ -1455,7 +1455,7 @@ M.ListAssociatedResourcesOutput = schema.new({
 })
 
 M.ListAttributeGroupsInput = schema.new({
-    id = id.from(_N, "ListAttributeGroupsInput"),
+    id = id.from(_N, "ListAttributeGroupsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1480,7 +1480,7 @@ M.ListAttributeGroupsInput = schema.new({
 })
 
 M.ListAttributeGroupsOutput = schema.new({
-    id = id.from(_N, "ListAttributeGroupsOutput"),
+    id = id.from(_N, "ListAttributeGroupsResponse"),
     type = "structure",
     members = {
         attributeGroups = schema.new({
@@ -1500,7 +1500,7 @@ M.ListAttributeGroupsOutput = schema.new({
 })
 
 M.ListAttributeGroupsForApplicationInput = schema.new({
-    id = id.from(_N, "ListAttributeGroupsForApplicationInput"),
+    id = id.from(_N, "ListAttributeGroupsForApplicationRequest"),
     type = "structure",
     members = {
         application = schema.new({
@@ -1535,7 +1535,7 @@ M.ListAttributeGroupsForApplicationInput = schema.new({
 })
 
 M.ListAttributeGroupsForApplicationOutput = schema.new({
-    id = id.from(_N, "ListAttributeGroupsForApplicationOutput"),
+    id = id.from(_N, "ListAttributeGroupsForApplicationResponse"),
     type = "structure",
     members = {
         attributeGroupsDetails = schema.new({
@@ -1555,7 +1555,7 @@ M.ListAttributeGroupsForApplicationOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1572,7 +1572,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1587,7 +1587,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutConfigurationInput = schema.new({
-    id = id.from(_N, "PutConfigurationInput"),
+    id = id.from(_N, "PutConfigurationRequest"),
     type = "structure",
     members = {
         configuration = schema.new({
@@ -1604,12 +1604,12 @@ M.PutConfigurationInput = schema.new({
 })
 
 M.PutConfigurationOutput = schema.new({
-    id = id.from(_N, "PutConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.SyncResourceInput = schema.new({
-    id = id.from(_N, "SyncResourceInput"),
+    id = id.from(_N, "SyncResourceRequest"),
     type = "structure",
     members = {
         resourceType = schema.new({
@@ -1636,7 +1636,7 @@ M.SyncResourceInput = schema.new({
 })
 
 M.SyncResourceOutput = schema.new({
-    id = id.from(_N, "SyncResourceOutput"),
+    id = id.from(_N, "SyncResourceResponse"),
     type = "structure",
     members = {
         applicationArn = schema.new({
@@ -1661,7 +1661,7 @@ M.SyncResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1689,12 +1689,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1722,12 +1722,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateApplicationInput = schema.new({
-    id = id.from(_N, "UpdateApplicationInput"),
+    id = id.from(_N, "UpdateApplicationRequest"),
     type = "structure",
     members = {
         application = schema.new({
@@ -1756,7 +1756,7 @@ M.UpdateApplicationInput = schema.new({
 })
 
 M.UpdateApplicationOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationOutput"),
+    id = id.from(_N, "UpdateApplicationResponse"),
     type = "structure",
     members = {
         application = schema.new({
@@ -1770,7 +1770,7 @@ M.UpdateApplicationOutput = schema.new({
 })
 
 M.UpdateAttributeGroupInput = schema.new({
-    id = id.from(_N, "UpdateAttributeGroupInput"),
+    id = id.from(_N, "UpdateAttributeGroupRequest"),
     type = "structure",
     members = {
         attributeGroup = schema.new({
@@ -1805,7 +1805,7 @@ M.UpdateAttributeGroupInput = schema.new({
 })
 
 M.UpdateAttributeGroupOutput = schema.new({
-    id = id.from(_N, "UpdateAttributeGroupOutput"),
+    id = id.from(_N, "UpdateAttributeGroupResponse"),
     type = "structure",
     members = {
         attributeGroup = schema.new({
@@ -1817,5 +1817,19 @@ M.UpdateAttributeGroupOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

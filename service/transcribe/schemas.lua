@@ -790,7 +790,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateCallAnalyticsCategoryInput = schema.new({
-    id = id.from(_N, "CreateCallAnalyticsCategoryInput"),
+    id = id.from(_N, "CreateCallAnalyticsCategoryRequest"),
     type = "structure",
     members = {
         CategoryName = schema.new({
@@ -830,7 +830,7 @@ M.CreateCallAnalyticsCategoryInput = schema.new({
 })
 
 M.CreateCallAnalyticsCategoryOutput = schema.new({
-    id = id.from(_N, "CreateCallAnalyticsCategoryOutput"),
+    id = id.from(_N, "CreateCallAnalyticsCategoryResponse"),
     type = "structure",
     members = {
         CategoryProperties = schema.new({
@@ -907,7 +907,7 @@ M.InputDataConfig = schema.new({
 })
 
 M.CreateLanguageModelInput = schema.new({
-    id = id.from(_N, "CreateLanguageModelInput"),
+    id = id.from(_N, "CreateLanguageModelRequest"),
     type = "structure",
     members = {
         LanguageCode = schema.new({
@@ -959,7 +959,7 @@ M.CreateLanguageModelInput = schema.new({
 })
 
 M.CreateLanguageModelOutput = schema.new({
-    id = id.from(_N, "CreateLanguageModelOutput"),
+    id = id.from(_N, "CreateLanguageModelResponse"),
     type = "structure",
     members = {
         LanguageCode = schema.new({
@@ -997,7 +997,7 @@ M.CreateLanguageModelOutput = schema.new({
 })
 
 M.CreateMedicalVocabularyInput = schema.new({
-    id = id.from(_N, "CreateMedicalVocabularyInput"),
+    id = id.from(_N, "CreateMedicalVocabularyRequest"),
     type = "structure",
     members = {
         VocabularyName = schema.new({
@@ -1039,7 +1039,7 @@ M.CreateMedicalVocabularyInput = schema.new({
 })
 
 M.CreateMedicalVocabularyOutput = schema.new({
-    id = id.from(_N, "CreateMedicalVocabularyOutput"),
+    id = id.from(_N, "CreateMedicalVocabularyResponse"),
     type = "structure",
     members = {
         VocabularyName = schema.new({
@@ -1076,7 +1076,7 @@ M.CreateMedicalVocabularyOutput = schema.new({
 })
 
 M.CreateVocabularyInput = schema.new({
-    id = id.from(_N, "CreateVocabularyInput"),
+    id = id.from(_N, "CreateVocabularyRequest"),
     type = "structure",
     members = {
         VocabularyName = schema.new({
@@ -1128,7 +1128,7 @@ M.CreateVocabularyInput = schema.new({
 })
 
 M.CreateVocabularyOutput = schema.new({
-    id = id.from(_N, "CreateVocabularyOutput"),
+    id = id.from(_N, "CreateVocabularyResponse"),
     type = "structure",
     members = {
         VocabularyName = schema.new({
@@ -1165,7 +1165,7 @@ M.CreateVocabularyOutput = schema.new({
 })
 
 M.CreateVocabularyFilterInput = schema.new({
-    id = id.from(_N, "CreateVocabularyFilterInput"),
+    id = id.from(_N, "CreateVocabularyFilterRequest"),
     type = "structure",
     members = {
         VocabularyFilterName = schema.new({
@@ -1217,7 +1217,7 @@ M.CreateVocabularyFilterInput = schema.new({
 })
 
 M.CreateVocabularyFilterOutput = schema.new({
-    id = id.from(_N, "CreateVocabularyFilterOutput"),
+    id = id.from(_N, "CreateVocabularyFilterResponse"),
     type = "structure",
     members = {
         VocabularyFilterName = schema.new({
@@ -1242,7 +1242,7 @@ M.CreateVocabularyFilterOutput = schema.new({
 })
 
 M.DeleteCallAnalyticsCategoryInput = schema.new({
-    id = id.from(_N, "DeleteCallAnalyticsCategoryInput"),
+    id = id.from(_N, "DeleteCallAnalyticsCategoryRequest"),
     type = "structure",
     members = {
         CategoryName = schema.new({
@@ -1259,7 +1259,7 @@ M.DeleteCallAnalyticsCategoryInput = schema.new({
 })
 
 M.DeleteCallAnalyticsCategoryOutput = schema.new({
-    id = id.from(_N, "DeleteCallAnalyticsCategoryOutput"),
+    id = id.from(_N, "DeleteCallAnalyticsCategoryResponse"),
     type = "structure",
 })
 
@@ -1280,7 +1280,7 @@ M.NotFoundException = schema.new({
 })
 
 M.DeleteCallAnalyticsJobInput = schema.new({
-    id = id.from(_N, "DeleteCallAnalyticsJobInput"),
+    id = id.from(_N, "DeleteCallAnalyticsJobRequest"),
     type = "structure",
     members = {
         CallAnalyticsJobName = schema.new({
@@ -1297,12 +1297,12 @@ M.DeleteCallAnalyticsJobInput = schema.new({
 })
 
 M.DeleteCallAnalyticsJobOutput = schema.new({
-    id = id.from(_N, "DeleteCallAnalyticsJobOutput"),
+    id = id.from(_N, "DeleteCallAnalyticsJobResponse"),
     type = "structure",
 })
 
 M.DeleteLanguageModelInput = schema.new({
-    id = id.from(_N, "DeleteLanguageModelInput"),
+    id = id.from(_N, "DeleteLanguageModelRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -1319,12 +1319,12 @@ M.DeleteLanguageModelInput = schema.new({
 })
 
 M.DeleteLanguageModelOutput = schema.new({
-    id = id.from(_N, "DeleteLanguageModelOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMedicalScribeJobInput = schema.new({
-    id = id.from(_N, "DeleteMedicalScribeJobInput"),
+    id = id.from(_N, "DeleteMedicalScribeJobRequest"),
     type = "structure",
     members = {
         MedicalScribeJobName = schema.new({
@@ -1341,12 +1341,12 @@ M.DeleteMedicalScribeJobInput = schema.new({
 })
 
 M.DeleteMedicalScribeJobOutput = schema.new({
-    id = id.from(_N, "DeleteMedicalScribeJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMedicalTranscriptionJobInput = schema.new({
-    id = id.from(_N, "DeleteMedicalTranscriptionJobInput"),
+    id = id.from(_N, "DeleteMedicalTranscriptionJobRequest"),
     type = "structure",
     members = {
         MedicalTranscriptionJobName = schema.new({
@@ -1363,12 +1363,12 @@ M.DeleteMedicalTranscriptionJobInput = schema.new({
 })
 
 M.DeleteMedicalTranscriptionJobOutput = schema.new({
-    id = id.from(_N, "DeleteMedicalTranscriptionJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteMedicalVocabularyInput = schema.new({
-    id = id.from(_N, "DeleteMedicalVocabularyInput"),
+    id = id.from(_N, "DeleteMedicalVocabularyRequest"),
     type = "structure",
     members = {
         VocabularyName = schema.new({
@@ -1385,12 +1385,12 @@ M.DeleteMedicalVocabularyInput = schema.new({
 })
 
 M.DeleteMedicalVocabularyOutput = schema.new({
-    id = id.from(_N, "DeleteMedicalVocabularyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTranscriptionJobInput = schema.new({
-    id = id.from(_N, "DeleteTranscriptionJobInput"),
+    id = id.from(_N, "DeleteTranscriptionJobRequest"),
     type = "structure",
     members = {
         TranscriptionJobName = schema.new({
@@ -1407,12 +1407,12 @@ M.DeleteTranscriptionJobInput = schema.new({
 })
 
 M.DeleteTranscriptionJobOutput = schema.new({
-    id = id.from(_N, "DeleteTranscriptionJobOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteVocabularyInput = schema.new({
-    id = id.from(_N, "DeleteVocabularyInput"),
+    id = id.from(_N, "DeleteVocabularyRequest"),
     type = "structure",
     members = {
         VocabularyName = schema.new({
@@ -1429,12 +1429,12 @@ M.DeleteVocabularyInput = schema.new({
 })
 
 M.DeleteVocabularyOutput = schema.new({
-    id = id.from(_N, "DeleteVocabularyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteVocabularyFilterInput = schema.new({
-    id = id.from(_N, "DeleteVocabularyFilterInput"),
+    id = id.from(_N, "DeleteVocabularyFilterRequest"),
     type = "structure",
     members = {
         VocabularyFilterName = schema.new({
@@ -1451,12 +1451,12 @@ M.DeleteVocabularyFilterInput = schema.new({
 })
 
 M.DeleteVocabularyFilterOutput = schema.new({
-    id = id.from(_N, "DeleteVocabularyFilterOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeLanguageModelInput = schema.new({
-    id = id.from(_N, "DescribeLanguageModelInput"),
+    id = id.from(_N, "DescribeLanguageModelRequest"),
     type = "structure",
     members = {
         ModelName = schema.new({
@@ -1535,7 +1535,7 @@ M.LanguageModel = schema.new({
 })
 
 M.DescribeLanguageModelOutput = schema.new({
-    id = id.from(_N, "DescribeLanguageModelOutput"),
+    id = id.from(_N, "DescribeLanguageModelResponse"),
     type = "structure",
     members = {
         LanguageModel = schema.new({
@@ -1549,7 +1549,7 @@ M.DescribeLanguageModelOutput = schema.new({
 })
 
 M.GetCallAnalyticsCategoryInput = schema.new({
-    id = id.from(_N, "GetCallAnalyticsCategoryInput"),
+    id = id.from(_N, "GetCallAnalyticsCategoryRequest"),
     type = "structure",
     members = {
         CategoryName = schema.new({
@@ -1566,7 +1566,7 @@ M.GetCallAnalyticsCategoryInput = schema.new({
 })
 
 M.GetCallAnalyticsCategoryOutput = schema.new({
-    id = id.from(_N, "GetCallAnalyticsCategoryOutput"),
+    id = id.from(_N, "GetCallAnalyticsCategoryResponse"),
     type = "structure",
     members = {
         CategoryProperties = schema.new({
@@ -1580,7 +1580,7 @@ M.GetCallAnalyticsCategoryOutput = schema.new({
 })
 
 M.GetCallAnalyticsJobInput = schema.new({
-    id = id.from(_N, "GetCallAnalyticsJobInput"),
+    id = id.from(_N, "GetCallAnalyticsJobRequest"),
     type = "structure",
     members = {
         CallAnalyticsJobName = schema.new({
@@ -1597,7 +1597,7 @@ M.GetCallAnalyticsJobInput = schema.new({
 })
 
 M.GetCallAnalyticsJobOutput = schema.new({
-    id = id.from(_N, "GetCallAnalyticsJobOutput"),
+    id = id.from(_N, "GetCallAnalyticsJobResponse"),
     type = "structure",
     members = {
         CallAnalyticsJob = schema.new({
@@ -1611,7 +1611,7 @@ M.GetCallAnalyticsJobOutput = schema.new({
 })
 
 M.GetMedicalScribeJobInput = schema.new({
-    id = id.from(_N, "GetMedicalScribeJobInput"),
+    id = id.from(_N, "GetMedicalScribeJobRequest"),
     type = "structure",
     members = {
         MedicalScribeJobName = schema.new({
@@ -1825,7 +1825,7 @@ M.MedicalScribeJob = schema.new({
 })
 
 M.GetMedicalScribeJobOutput = schema.new({
-    id = id.from(_N, "GetMedicalScribeJobOutput"),
+    id = id.from(_N, "GetMedicalScribeJobResponse"),
     type = "structure",
     members = {
         MedicalScribeJob = schema.new({
@@ -1839,7 +1839,7 @@ M.GetMedicalScribeJobOutput = schema.new({
 })
 
 M.GetMedicalTranscriptionJobInput = schema.new({
-    id = id.from(_N, "GetMedicalTranscriptionJobInput"),
+    id = id.from(_N, "GetMedicalTranscriptionJobRequest"),
     type = "structure",
     members = {
         MedicalTranscriptionJobName = schema.new({
@@ -2019,7 +2019,7 @@ M.MedicalTranscriptionJob = schema.new({
 })
 
 M.GetMedicalTranscriptionJobOutput = schema.new({
-    id = id.from(_N, "GetMedicalTranscriptionJobOutput"),
+    id = id.from(_N, "GetMedicalTranscriptionJobResponse"),
     type = "structure",
     members = {
         MedicalTranscriptionJob = schema.new({
@@ -2033,7 +2033,7 @@ M.GetMedicalTranscriptionJobOutput = schema.new({
 })
 
 M.GetMedicalVocabularyInput = schema.new({
-    id = id.from(_N, "GetMedicalVocabularyInput"),
+    id = id.from(_N, "GetMedicalVocabularyRequest"),
     type = "structure",
     members = {
         VocabularyName = schema.new({
@@ -2050,7 +2050,7 @@ M.GetMedicalVocabularyInput = schema.new({
 })
 
 M.GetMedicalVocabularyOutput = schema.new({
-    id = id.from(_N, "GetMedicalVocabularyOutput"),
+    id = id.from(_N, "GetMedicalVocabularyResponse"),
     type = "structure",
     members = {
         VocabularyName = schema.new({
@@ -2093,7 +2093,7 @@ M.GetMedicalVocabularyOutput = schema.new({
 })
 
 M.GetTranscriptionJobInput = schema.new({
-    id = id.from(_N, "GetTranscriptionJobInput"),
+    id = id.from(_N, "GetTranscriptionJobRequest"),
     type = "structure",
     members = {
         TranscriptionJobName = schema.new({
@@ -2424,7 +2424,7 @@ M.TranscriptionJob = schema.new({
 })
 
 M.GetTranscriptionJobOutput = schema.new({
-    id = id.from(_N, "GetTranscriptionJobOutput"),
+    id = id.from(_N, "GetTranscriptionJobResponse"),
     type = "structure",
     members = {
         TranscriptionJob = schema.new({
@@ -2438,7 +2438,7 @@ M.GetTranscriptionJobOutput = schema.new({
 })
 
 M.GetVocabularyInput = schema.new({
-    id = id.from(_N, "GetVocabularyInput"),
+    id = id.from(_N, "GetVocabularyRequest"),
     type = "structure",
     members = {
         VocabularyName = schema.new({
@@ -2455,7 +2455,7 @@ M.GetVocabularyInput = schema.new({
 })
 
 M.GetVocabularyOutput = schema.new({
-    id = id.from(_N, "GetVocabularyOutput"),
+    id = id.from(_N, "GetVocabularyResponse"),
     type = "structure",
     members = {
         VocabularyName = schema.new({
@@ -2498,7 +2498,7 @@ M.GetVocabularyOutput = schema.new({
 })
 
 M.GetVocabularyFilterInput = schema.new({
-    id = id.from(_N, "GetVocabularyFilterInput"),
+    id = id.from(_N, "GetVocabularyFilterRequest"),
     type = "structure",
     members = {
         VocabularyFilterName = schema.new({
@@ -2515,7 +2515,7 @@ M.GetVocabularyFilterInput = schema.new({
 })
 
 M.GetVocabularyFilterOutput = schema.new({
-    id = id.from(_N, "GetVocabularyFilterOutput"),
+    id = id.from(_N, "GetVocabularyFilterResponse"),
     type = "structure",
     members = {
         VocabularyFilterName = schema.new({
@@ -2546,7 +2546,7 @@ M.GetVocabularyFilterOutput = schema.new({
 })
 
 M.ListCallAnalyticsCategoriesInput = schema.new({
-    id = id.from(_N, "ListCallAnalyticsCategoriesInput"),
+    id = id.from(_N, "ListCallAnalyticsCategoriesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2571,7 +2571,7 @@ M.ListCallAnalyticsCategoriesInput = schema.new({
 })
 
 M.ListCallAnalyticsCategoriesOutput = schema.new({
-    id = id.from(_N, "ListCallAnalyticsCategoriesOutput"),
+    id = id.from(_N, "ListCallAnalyticsCategoriesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2591,7 +2591,7 @@ M.ListCallAnalyticsCategoriesOutput = schema.new({
 })
 
 M.ListCallAnalyticsJobsInput = schema.new({
-    id = id.from(_N, "ListCallAnalyticsJobsInput"),
+    id = id.from(_N, "ListCallAnalyticsJobsRequest"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -2634,7 +2634,7 @@ M.ListCallAnalyticsJobsInput = schema.new({
 })
 
 M.ListCallAnalyticsJobsOutput = schema.new({
-    id = id.from(_N, "ListCallAnalyticsJobsOutput"),
+    id = id.from(_N, "ListCallAnalyticsJobsResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -2660,7 +2660,7 @@ M.ListCallAnalyticsJobsOutput = schema.new({
 })
 
 M.ListLanguageModelsInput = schema.new({
-    id = id.from(_N, "ListLanguageModelsInput"),
+    id = id.from(_N, "ListLanguageModelsRequest"),
     type = "structure",
     members = {
         StatusEquals = schema.new({
@@ -2703,7 +2703,7 @@ M.ListLanguageModelsInput = schema.new({
 })
 
 M.ListLanguageModelsOutput = schema.new({
-    id = id.from(_N, "ListLanguageModelsOutput"),
+    id = id.from(_N, "ListLanguageModelsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2723,7 +2723,7 @@ M.ListLanguageModelsOutput = schema.new({
 })
 
 M.ListMedicalScribeJobsInput = schema.new({
-    id = id.from(_N, "ListMedicalScribeJobsInput"),
+    id = id.from(_N, "ListMedicalScribeJobsRequest"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -2815,7 +2815,7 @@ M.MedicalScribeJobSummary = schema.new({
 })
 
 M.ListMedicalScribeJobsOutput = schema.new({
-    id = id.from(_N, "ListMedicalScribeJobsOutput"),
+    id = id.from(_N, "ListMedicalScribeJobsResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -2841,7 +2841,7 @@ M.ListMedicalScribeJobsOutput = schema.new({
 })
 
 M.ListMedicalTranscriptionJobsInput = schema.new({
-    id = id.from(_N, "ListMedicalTranscriptionJobsInput"),
+    id = id.from(_N, "ListMedicalTranscriptionJobsRequest"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -2957,7 +2957,7 @@ M.MedicalTranscriptionJobSummary = schema.new({
 })
 
 M.ListMedicalTranscriptionJobsOutput = schema.new({
-    id = id.from(_N, "ListMedicalTranscriptionJobsOutput"),
+    id = id.from(_N, "ListMedicalTranscriptionJobsResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -2983,7 +2983,7 @@ M.ListMedicalTranscriptionJobsOutput = schema.new({
 })
 
 M.ListMedicalVocabulariesInput = schema.new({
-    id = id.from(_N, "ListMedicalVocabulariesInput"),
+    id = id.from(_N, "ListMedicalVocabulariesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3057,7 +3057,7 @@ M.VocabularyInfo = schema.new({
 })
 
 M.ListMedicalVocabulariesOutput = schema.new({
-    id = id.from(_N, "ListMedicalVocabulariesOutput"),
+    id = id.from(_N, "ListMedicalVocabulariesResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -3083,7 +3083,7 @@ M.ListMedicalVocabulariesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3100,7 +3100,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3120,7 +3120,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTranscriptionJobsInput = schema.new({
-    id = id.from(_N, "ListTranscriptionJobsInput"),
+    id = id.from(_N, "ListTranscriptionJobsRequest"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -3264,7 +3264,7 @@ M.TranscriptionJobSummary = schema.new({
 })
 
 M.ListTranscriptionJobsOutput = schema.new({
-    id = id.from(_N, "ListTranscriptionJobsOutput"),
+    id = id.from(_N, "ListTranscriptionJobsResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -3290,7 +3290,7 @@ M.ListTranscriptionJobsOutput = schema.new({
 })
 
 M.ListVocabulariesInput = schema.new({
-    id = id.from(_N, "ListVocabulariesInput"),
+    id = id.from(_N, "ListVocabulariesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3333,7 +3333,7 @@ M.ListVocabulariesInput = schema.new({
 })
 
 M.ListVocabulariesOutput = schema.new({
-    id = id.from(_N, "ListVocabulariesOutput"),
+    id = id.from(_N, "ListVocabulariesResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -3359,7 +3359,7 @@ M.ListVocabulariesOutput = schema.new({
 })
 
 M.ListVocabularyFiltersInput = schema.new({
-    id = id.from(_N, "ListVocabularyFiltersInput"),
+    id = id.from(_N, "ListVocabularyFiltersRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3418,7 +3418,7 @@ M.VocabularyFilterInfo = schema.new({
 })
 
 M.ListVocabularyFiltersOutput = schema.new({
-    id = id.from(_N, "ListVocabularyFiltersOutput"),
+    id = id.from(_N, "ListVocabularyFiltersResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -3465,7 +3465,7 @@ M.MedicalScribeContext = schema.new({
 })
 
 M.StartCallAnalyticsJobInput = schema.new({
-    id = id.from(_N, "StartCallAnalyticsJobInput"),
+    id = id.from(_N, "StartCallAnalyticsJobRequest"),
     type = "structure",
     members = {
         CallAnalyticsJobName = schema.new({
@@ -3531,7 +3531,7 @@ M.StartCallAnalyticsJobInput = schema.new({
 })
 
 M.StartCallAnalyticsJobOutput = schema.new({
-    id = id.from(_N, "StartCallAnalyticsJobOutput"),
+    id = id.from(_N, "StartCallAnalyticsJobResponse"),
     type = "structure",
     members = {
         CallAnalyticsJob = schema.new({
@@ -3545,7 +3545,7 @@ M.StartCallAnalyticsJobOutput = schema.new({
 })
 
 M.StartMedicalScribeJobInput = schema.new({
-    id = id.from(_N, "StartMedicalScribeJobInput"),
+    id = id.from(_N, "StartMedicalScribeJobRequest"),
     type = "structure",
     members = {
         MedicalScribeJobName = schema.new({
@@ -3635,7 +3635,7 @@ M.StartMedicalScribeJobInput = schema.new({
 })
 
 M.StartMedicalScribeJobOutput = schema.new({
-    id = id.from(_N, "StartMedicalScribeJobOutput"),
+    id = id.from(_N, "StartMedicalScribeJobResponse"),
     type = "structure",
     members = {
         MedicalScribeJob = schema.new({
@@ -3649,7 +3649,7 @@ M.StartMedicalScribeJobOutput = schema.new({
 })
 
 M.StartMedicalTranscriptionJobInput = schema.new({
-    id = id.from(_N, "StartMedicalTranscriptionJobInput"),
+    id = id.from(_N, "StartMedicalTranscriptionJobRequest"),
     type = "structure",
     members = {
         MedicalTranscriptionJobName = schema.new({
@@ -3764,7 +3764,7 @@ M.StartMedicalTranscriptionJobInput = schema.new({
 })
 
 M.StartMedicalTranscriptionJobOutput = schema.new({
-    id = id.from(_N, "StartMedicalTranscriptionJobOutput"),
+    id = id.from(_N, "StartMedicalTranscriptionJobResponse"),
     type = "structure",
     members = {
         MedicalTranscriptionJob = schema.new({
@@ -3798,7 +3798,7 @@ M.Subtitles = schema.new({
 })
 
 M.StartTranscriptionJobInput = schema.new({
-    id = id.from(_N, "StartTranscriptionJobInput"),
+    id = id.from(_N, "StartTranscriptionJobRequest"),
     type = "structure",
     members = {
         TranscriptionJobName = schema.new({
@@ -3945,7 +3945,7 @@ M.StartTranscriptionJobInput = schema.new({
 })
 
 M.StartTranscriptionJobOutput = schema.new({
-    id = id.from(_N, "StartTranscriptionJobOutput"),
+    id = id.from(_N, "StartTranscriptionJobResponse"),
     type = "structure",
     members = {
         TranscriptionJob = schema.new({
@@ -3959,7 +3959,7 @@ M.StartTranscriptionJobOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3986,12 +3986,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4019,12 +4019,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateCallAnalyticsCategoryInput = schema.new({
-    id = id.from(_N, "UpdateCallAnalyticsCategoryInput"),
+    id = id.from(_N, "UpdateCallAnalyticsCategoryRequest"),
     type = "structure",
     members = {
         CategoryName = schema.new({
@@ -4057,7 +4057,7 @@ M.UpdateCallAnalyticsCategoryInput = schema.new({
 })
 
 M.UpdateCallAnalyticsCategoryOutput = schema.new({
-    id = id.from(_N, "UpdateCallAnalyticsCategoryOutput"),
+    id = id.from(_N, "UpdateCallAnalyticsCategoryResponse"),
     type = "structure",
     members = {
         CategoryProperties = schema.new({
@@ -4071,7 +4071,7 @@ M.UpdateCallAnalyticsCategoryOutput = schema.new({
 })
 
 M.UpdateMedicalVocabularyInput = schema.new({
-    id = id.from(_N, "UpdateMedicalVocabularyInput"),
+    id = id.from(_N, "UpdateMedicalVocabularyRequest"),
     type = "structure",
     members = {
         VocabularyName = schema.new({
@@ -4106,7 +4106,7 @@ M.UpdateMedicalVocabularyInput = schema.new({
 })
 
 M.UpdateMedicalVocabularyOutput = schema.new({
-    id = id.from(_N, "UpdateMedicalVocabularyOutput"),
+    id = id.from(_N, "UpdateMedicalVocabularyResponse"),
     type = "structure",
     members = {
         VocabularyName = schema.new({
@@ -4137,7 +4137,7 @@ M.UpdateMedicalVocabularyOutput = schema.new({
 })
 
 M.UpdateVocabularyInput = schema.new({
-    id = id.from(_N, "UpdateVocabularyInput"),
+    id = id.from(_N, "UpdateVocabularyRequest"),
     type = "structure",
     members = {
         VocabularyName = schema.new({
@@ -4182,7 +4182,7 @@ M.UpdateVocabularyInput = schema.new({
 })
 
 M.UpdateVocabularyOutput = schema.new({
-    id = id.from(_N, "UpdateVocabularyOutput"),
+    id = id.from(_N, "UpdateVocabularyResponse"),
     type = "structure",
     members = {
         VocabularyName = schema.new({
@@ -4213,7 +4213,7 @@ M.UpdateVocabularyOutput = schema.new({
 })
 
 M.UpdateVocabularyFilterInput = schema.new({
-    id = id.from(_N, "UpdateVocabularyFilterInput"),
+    id = id.from(_N, "UpdateVocabularyFilterRequest"),
     type = "structure",
     members = {
         VocabularyFilterName = schema.new({
@@ -4249,7 +4249,7 @@ M.UpdateVocabularyFilterInput = schema.new({
 })
 
 M.UpdateVocabularyFilterOutput = schema.new({
-    id = id.from(_N, "UpdateVocabularyFilterOutput"),
+    id = id.from(_N, "UpdateVocabularyFilterResponse"),
     type = "structure",
     members = {
         VocabularyFilterName = schema.new({
@@ -4272,5 +4272,19 @@ M.UpdateVocabularyFilterOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

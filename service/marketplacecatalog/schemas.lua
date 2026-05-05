@@ -203,7 +203,7 @@ M.EntityRequest = schema.new({
 })
 
 M.BatchDescribeEntitiesInput = schema.new({
-    id = id.from(_N, "BatchDescribeEntitiesInput"),
+    id = id.from(_N, "BatchDescribeEntitiesRequest"),
     type = "structure",
     members = {
         EntityRequestList = schema.new({
@@ -276,7 +276,7 @@ M.BatchDescribeErrorDetail = schema.new({
 })
 
 M.BatchDescribeEntitiesOutput = schema.new({
-    id = id.from(_N, "BatchDescribeEntitiesOutput"),
+    id = id.from(_N, "BatchDescribeEntitiesResponse"),
     type = "structure",
     members = {
         EntityDetails = schema.new({
@@ -347,7 +347,7 @@ M.ValidationException = schema.new({
 })
 
 M.CancelChangeSetInput = schema.new({
-    id = id.from(_N, "CancelChangeSetInput"),
+    id = id.from(_N, "CancelChangeSetRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -374,7 +374,7 @@ M.CancelChangeSetInput = schema.new({
 })
 
 M.CancelChangeSetOutput = schema.new({
-    id = id.from(_N, "CancelChangeSetOutput"),
+    id = id.from(_N, "CancelChangeSetResponse"),
     type = "structure",
     members = {
         ChangeSetId = schema.new({
@@ -425,7 +425,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DeleteResourcePolicyInput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyInput"),
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -442,12 +442,12 @@ M.DeleteResourcePolicyInput = schema.new({
 })
 
 M.DeleteResourcePolicyOutput = schema.new({
-    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    id = id.from(_N, "DeleteResourcePolicyResponse"),
     type = "structure",
 })
 
 M.DescribeChangeSetInput = schema.new({
-    id = id.from(_N, "DescribeChangeSetInput"),
+    id = id.from(_N, "DescribeChangeSetRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -560,7 +560,7 @@ M.ChangeSummary = schema.new({
 })
 
 M.DescribeChangeSetOutput = schema.new({
-    id = id.from(_N, "DescribeChangeSetOutput"),
+    id = id.from(_N, "DescribeChangeSetResponse"),
     type = "structure",
     members = {
         ChangeSetId = schema.new({
@@ -628,7 +628,7 @@ M.DescribeChangeSetOutput = schema.new({
 })
 
 M.DescribeEntityInput = schema.new({
-    id = id.from(_N, "DescribeEntityInput"),
+    id = id.from(_N, "DescribeEntityRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -655,7 +655,7 @@ M.DescribeEntityInput = schema.new({
 })
 
 M.DescribeEntityOutput = schema.new({
-    id = id.from(_N, "DescribeEntityOutput"),
+    id = id.from(_N, "DescribeEntityResponse"),
     type = "structure",
     members = {
         EntityType = schema.new({
@@ -714,7 +714,7 @@ M.ResourceNotSupportedException = schema.new({
 })
 
 M.GetResourcePolicyInput = schema.new({
-    id = id.from(_N, "GetResourcePolicyInput"),
+    id = id.from(_N, "GetResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -731,7 +731,7 @@ M.GetResourcePolicyInput = schema.new({
 })
 
 M.GetResourcePolicyOutput = schema.new({
-    id = id.from(_N, "GetResourcePolicyOutput"),
+    id = id.from(_N, "GetResourcePolicyResponse"),
     type = "structure",
     members = {
         Policy = schema.new({
@@ -783,7 +783,7 @@ M.Sort = schema.new({
 })
 
 M.ListChangeSetsInput = schema.new({
-    id = id.from(_N, "ListChangeSetsInput"),
+    id = id.from(_N, "ListChangeSetsRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -881,7 +881,7 @@ M.ChangeSetSummaryListItem = schema.new({
 })
 
 M.ListChangeSetsOutput = schema.new({
-    id = id.from(_N, "ListChangeSetsOutput"),
+    id = id.from(_N, "ListChangeSetsResponse"),
     type = "structure",
     members = {
         ChangeSetSummaryList = schema.new({
@@ -2509,7 +2509,7 @@ M.EntityTypeSort = schema.new({
 })
 
 M.ListEntitiesInput = schema.new({
-    id = id.from(_N, "ListEntitiesInput"),
+    id = id.from(_N, "ListEntitiesRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -2929,7 +2929,7 @@ M.EntitySummary = schema.new({
 })
 
 M.ListEntitiesOutput = schema.new({
-    id = id.from(_N, "ListEntitiesOutput"),
+    id = id.from(_N, "ListEntitiesResponse"),
     type = "structure",
     members = {
         EntitySummaryList = schema.new({
@@ -2949,7 +2949,7 @@ M.ListEntitiesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2990,7 +2990,7 @@ M.Tag = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3010,7 +3010,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutResourcePolicyInput = schema.new({
-    id = id.from(_N, "PutResourcePolicyInput"),
+    id = id.from(_N, "PutResourcePolicyRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3035,7 +3035,7 @@ M.PutResourcePolicyInput = schema.new({
 })
 
 M.PutResourcePolicyOutput = schema.new({
-    id = id.from(_N, "PutResourcePolicyOutput"),
+    id = id.from(_N, "PutResourcePolicyResponse"),
     type = "structure",
 })
 
@@ -3107,7 +3107,7 @@ M.Change = schema.new({
 })
 
 M.StartChangeSetInput = schema.new({
-    id = id.from(_N, "StartChangeSetInput"),
+    id = id.from(_N, "StartChangeSetRequest"),
     type = "structure",
     members = {
         Catalog = schema.new({
@@ -3161,7 +3161,7 @@ M.StartChangeSetInput = schema.new({
 })
 
 M.StartChangeSetOutput = schema.new({
-    id = id.from(_N, "StartChangeSetOutput"),
+    id = id.from(_N, "StartChangeSetResponse"),
     type = "structure",
     members = {
         ChangeSetId = schema.new({
@@ -3180,7 +3180,7 @@ M.StartChangeSetOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3206,12 +3206,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -3237,8 +3237,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

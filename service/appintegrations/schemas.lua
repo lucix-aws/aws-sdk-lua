@@ -162,7 +162,7 @@ M.Subscription = schema.new({
 })
 
 M.CreateApplicationInput = schema.new({
-    id = id.from(_N, "CreateApplicationInput"),
+    id = id.from(_N, "CreateApplicationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -276,7 +276,7 @@ M.CreateApplicationInput = schema.new({
 })
 
 M.CreateApplicationOutput = schema.new({
-    id = id.from(_N, "CreateApplicationOutput"),
+    id = id.from(_N, "CreateApplicationResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -410,7 +410,7 @@ M.FileConfiguration = schema.new({
             name = "Filters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -444,7 +444,7 @@ M.ScheduleConfiguration = schema.new({
 })
 
 M.CreateDataIntegrationInput = schema.new({
-    id = id.from(_N, "CreateDataIntegrationInput"),
+    id = id.from(_N, "CreateDataIntegrationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -514,13 +514,13 @@ M.CreateDataIntegrationInput = schema.new({
             name = "ObjectConfiguration",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document }),
         }),
     },
 })
 
 M.CreateDataIntegrationOutput = schema.new({
-    id = id.from(_N, "CreateDataIntegrationOutput"),
+    id = id.from(_N, "CreateDataIntegrationResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -593,7 +593,7 @@ M.CreateDataIntegrationOutput = schema.new({
             name = "ObjectConfiguration",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document }),
         }),
     },
 })
@@ -651,7 +651,7 @@ M.ExecutionConfiguration = schema.new({
 })
 
 M.CreateDataIntegrationAssociationInput = schema.new({
-    id = id.from(_N, "CreateDataIntegrationAssociationInput"),
+    id = id.from(_N, "CreateDataIntegrationAssociationRequest"),
     type = "structure",
     members = {
         DataIntegrationIdentifier = schema.new({
@@ -676,7 +676,7 @@ M.CreateDataIntegrationAssociationInput = schema.new({
             name = "ObjectConfiguration",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document }),
         }),
         DestinationURI = schema.new({
             id = id.from(_N, "CreateDataIntegrationAssociationInput", "DestinationURI"),
@@ -712,7 +712,7 @@ M.CreateDataIntegrationAssociationInput = schema.new({
 })
 
 M.CreateDataIntegrationAssociationOutput = schema.new({
-    id = id.from(_N, "CreateDataIntegrationAssociationOutput"),
+    id = id.from(_N, "CreateDataIntegrationAssociationResponse"),
     type = "structure",
     members = {
         DataIntegrationAssociationId = schema.new({
@@ -763,7 +763,7 @@ M.EventFilter = schema.new({
 })
 
 M.CreateEventIntegrationInput = schema.new({
-    id = id.from(_N, "CreateEventIntegrationInput"),
+    id = id.from(_N, "CreateEventIntegrationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -821,7 +821,7 @@ M.CreateEventIntegrationInput = schema.new({
 })
 
 M.CreateEventIntegrationOutput = schema.new({
-    id = id.from(_N, "CreateEventIntegrationOutput"),
+    id = id.from(_N, "CreateEventIntegrationResponse"),
     type = "structure",
     members = {
         EventIntegrationArn = schema.new({
@@ -834,7 +834,7 @@ M.CreateEventIntegrationOutput = schema.new({
 })
 
 M.DeleteApplicationInput = schema.new({
-    id = id.from(_N, "DeleteApplicationInput"),
+    id = id.from(_N, "DeleteApplicationRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -851,12 +851,12 @@ M.DeleteApplicationInput = schema.new({
 })
 
 M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationOutput"),
+    id = id.from(_N, "DeleteApplicationResponse"),
     type = "structure",
 })
 
 M.DeleteDataIntegrationInput = schema.new({
-    id = id.from(_N, "DeleteDataIntegrationInput"),
+    id = id.from(_N, "DeleteDataIntegrationRequest"),
     type = "structure",
     members = {
         DataIntegrationIdentifier = schema.new({
@@ -873,12 +873,12 @@ M.DeleteDataIntegrationInput = schema.new({
 })
 
 M.DeleteDataIntegrationOutput = schema.new({
-    id = id.from(_N, "DeleteDataIntegrationOutput"),
+    id = id.from(_N, "DeleteDataIntegrationResponse"),
     type = "structure",
 })
 
 M.DeleteEventIntegrationInput = schema.new({
-    id = id.from(_N, "DeleteEventIntegrationInput"),
+    id = id.from(_N, "DeleteEventIntegrationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -895,12 +895,12 @@ M.DeleteEventIntegrationInput = schema.new({
 })
 
 M.DeleteEventIntegrationOutput = schema.new({
-    id = id.from(_N, "DeleteEventIntegrationOutput"),
+    id = id.from(_N, "DeleteEventIntegrationResponse"),
     type = "structure",
 })
 
 M.GetApplicationInput = schema.new({
-    id = id.from(_N, "GetApplicationInput"),
+    id = id.from(_N, "GetApplicationRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -917,7 +917,7 @@ M.GetApplicationInput = schema.new({
 })
 
 M.GetApplicationOutput = schema.new({
-    id = id.from(_N, "GetApplicationOutput"),
+    id = id.from(_N, "GetApplicationResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1037,7 +1037,7 @@ M.GetApplicationOutput = schema.new({
 })
 
 M.GetDataIntegrationInput = schema.new({
-    id = id.from(_N, "GetDataIntegrationInput"),
+    id = id.from(_N, "GetDataIntegrationRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -1054,7 +1054,7 @@ M.GetDataIntegrationInput = schema.new({
 })
 
 M.GetDataIntegrationOutput = schema.new({
-    id = id.from(_N, "GetDataIntegrationOutput"),
+    id = id.from(_N, "GetDataIntegrationResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1121,13 +1121,13 @@ M.GetDataIntegrationOutput = schema.new({
             name = "ObjectConfiguration",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document }),
         }),
     },
 })
 
 M.GetEventIntegrationInput = schema.new({
-    id = id.from(_N, "GetEventIntegrationInput"),
+    id = id.from(_N, "GetEventIntegrationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1144,7 +1144,7 @@ M.GetEventIntegrationInput = schema.new({
 })
 
 M.GetEventIntegrationOutput = schema.new({
-    id = id.from(_N, "GetEventIntegrationOutput"),
+    id = id.from(_N, "GetEventIntegrationResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1190,7 +1190,7 @@ M.GetEventIntegrationOutput = schema.new({
 })
 
 M.ListApplicationAssociationsInput = schema.new({
-    id = id.from(_N, "ListApplicationAssociationsInput"),
+    id = id.from(_N, "ListApplicationAssociationsRequest"),
     type = "structure",
     members = {
         ApplicationId = schema.new({
@@ -1250,7 +1250,7 @@ M.ApplicationAssociationSummary = schema.new({
 })
 
 M.ListApplicationAssociationsOutput = schema.new({
-    id = id.from(_N, "ListApplicationAssociationsOutput"),
+    id = id.from(_N, "ListApplicationAssociationsResponse"),
     type = "structure",
     members = {
         ApplicationAssociations = schema.new({
@@ -1270,7 +1270,7 @@ M.ListApplicationAssociationsOutput = schema.new({
 })
 
 M.ListApplicationsInput = schema.new({
-    id = id.from(_N, "ListApplicationsInput"),
+    id = id.from(_N, "ListApplicationsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1362,7 +1362,7 @@ M.ApplicationSummary = schema.new({
 })
 
 M.ListApplicationsOutput = schema.new({
-    id = id.from(_N, "ListApplicationsOutput"),
+    id = id.from(_N, "ListApplicationsResponse"),
     type = "structure",
     members = {
         Applications = schema.new({
@@ -1382,7 +1382,7 @@ M.ListApplicationsOutput = schema.new({
 })
 
 M.ListDataIntegrationAssociationsInput = schema.new({
-    id = id.from(_N, "ListDataIntegrationAssociationsInput"),
+    id = id.from(_N, "ListDataIntegrationAssociationsRequest"),
     type = "structure",
     members = {
         DataIntegrationIdentifier = schema.new({
@@ -1481,7 +1481,7 @@ M.DataIntegrationAssociationSummary = schema.new({
 })
 
 M.ListDataIntegrationAssociationsOutput = schema.new({
-    id = id.from(_N, "ListDataIntegrationAssociationsOutput"),
+    id = id.from(_N, "ListDataIntegrationAssociationsResponse"),
     type = "structure",
     members = {
         DataIntegrationAssociations = schema.new({
@@ -1501,7 +1501,7 @@ M.ListDataIntegrationAssociationsOutput = schema.new({
 })
 
 M.ListDataIntegrationsInput = schema.new({
-    id = id.from(_N, "ListDataIntegrationsInput"),
+    id = id.from(_N, "ListDataIntegrationsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1551,7 +1551,7 @@ M.DataIntegrationSummary = schema.new({
 })
 
 M.ListDataIntegrationsOutput = schema.new({
-    id = id.from(_N, "ListDataIntegrationsOutput"),
+    id = id.from(_N, "ListDataIntegrationsResponse"),
     type = "structure",
     members = {
         DataIntegrations = schema.new({
@@ -1571,7 +1571,7 @@ M.ListDataIntegrationsOutput = schema.new({
 })
 
 M.ListEventIntegrationAssociationsInput = schema.new({
-    id = id.from(_N, "ListEventIntegrationAssociationsInput"),
+    id = id.from(_N, "ListEventIntegrationAssociationsRequest"),
     type = "structure",
     members = {
         EventIntegrationName = schema.new({
@@ -1651,7 +1651,7 @@ M.EventIntegrationAssociation = schema.new({
 })
 
 M.ListEventIntegrationAssociationsOutput = schema.new({
-    id = id.from(_N, "ListEventIntegrationAssociationsOutput"),
+    id = id.from(_N, "ListEventIntegrationAssociationsResponse"),
     type = "structure",
     members = {
         EventIntegrationAssociations = schema.new({
@@ -1671,7 +1671,7 @@ M.ListEventIntegrationAssociationsOutput = schema.new({
 })
 
 M.ListEventIntegrationsInput = schema.new({
-    id = id.from(_N, "ListEventIntegrationsInput"),
+    id = id.from(_N, "ListEventIntegrationsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1742,7 +1742,7 @@ M.EventIntegration = schema.new({
 })
 
 M.ListEventIntegrationsOutput = schema.new({
-    id = id.from(_N, "ListEventIntegrationsOutput"),
+    id = id.from(_N, "ListEventIntegrationsResponse"),
     type = "structure",
     members = {
         EventIntegrations = schema.new({
@@ -1762,7 +1762,7 @@ M.ListEventIntegrationsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1779,7 +1779,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1794,7 +1794,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1822,12 +1822,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1855,12 +1855,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateApplicationInput = schema.new({
-    id = id.from(_N, "UpdateApplicationInput"),
+    id = id.from(_N, "UpdateApplicationRequest"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1952,12 +1952,12 @@ M.UpdateApplicationInput = schema.new({
 })
 
 M.UpdateApplicationOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationOutput"),
+    id = id.from(_N, "UpdateApplicationResponse"),
     type = "structure",
 })
 
 M.UpdateDataIntegrationInput = schema.new({
-    id = id.from(_N, "UpdateDataIntegrationInput"),
+    id = id.from(_N, "UpdateDataIntegrationRequest"),
     type = "structure",
     members = {
         Identifier = schema.new({
@@ -1986,12 +1986,12 @@ M.UpdateDataIntegrationInput = schema.new({
 })
 
 M.UpdateDataIntegrationOutput = schema.new({
-    id = id.from(_N, "UpdateDataIntegrationOutput"),
+    id = id.from(_N, "UpdateDataIntegrationResponse"),
     type = "structure",
 })
 
 M.UpdateDataIntegrationAssociationInput = schema.new({
-    id = id.from(_N, "UpdateDataIntegrationAssociationInput"),
+    id = id.from(_N, "UpdateDataIntegrationAssociationRequest"),
     type = "structure",
     members = {
         DataIntegrationIdentifier = schema.new({
@@ -2028,12 +2028,12 @@ M.UpdateDataIntegrationAssociationInput = schema.new({
 })
 
 M.UpdateDataIntegrationAssociationOutput = schema.new({
-    id = id.from(_N, "UpdateDataIntegrationAssociationOutput"),
+    id = id.from(_N, "UpdateDataIntegrationAssociationResponse"),
     type = "structure",
 })
 
 M.UpdateEventIntegrationInput = schema.new({
-    id = id.from(_N, "UpdateEventIntegrationInput"),
+    id = id.from(_N, "UpdateEventIntegrationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2056,8 +2056,22 @@ M.UpdateEventIntegrationInput = schema.new({
 })
 
 M.UpdateEventIntegrationOutput = schema.new({
-    id = id.from(_N, "UpdateEventIntegrationOutput"),
+    id = id.from(_N, "UpdateEventIntegrationResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

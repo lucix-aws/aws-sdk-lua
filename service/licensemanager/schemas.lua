@@ -8,7 +8,7 @@ local _N = "com.amazonaws.licensemanager"
 local M = {}
 
 M.AcceptGrantInput = schema.new({
-    id = id.from(_N, "AcceptGrantInput"),
+    id = id.from(_N, "AcceptGrantRequest"),
     type = "structure",
     members = {
         GrantArn = schema.new({
@@ -24,7 +24,7 @@ M.AcceptGrantInput = schema.new({
 })
 
 M.AcceptGrantOutput = schema.new({
-    id = id.from(_N, "AcceptGrantOutput"),
+    id = id.from(_N, "AcceptGrantResponse"),
     type = "structure",
     members = {
         GrantArn = schema.new({
@@ -274,7 +274,7 @@ M.AutomatedDiscoveryInformation = schema.new({
 })
 
 M.CheckInLicenseInput = schema.new({
-    id = id.from(_N, "CheckInLicenseInput"),
+    id = id.from(_N, "CheckInLicenseRequest"),
     type = "structure",
     members = {
         LicenseConsumptionToken = schema.new({
@@ -296,7 +296,7 @@ M.CheckInLicenseInput = schema.new({
 })
 
 M.CheckInLicenseOutput = schema.new({
-    id = id.from(_N, "CheckInLicenseOutput"),
+    id = id.from(_N, "CheckInLicenseResponse"),
     type = "structure",
 })
 
@@ -383,7 +383,7 @@ M.EntitlementData = schema.new({
 })
 
 M.CheckoutBorrowLicenseInput = schema.new({
-    id = id.from(_N, "CheckoutBorrowLicenseInput"),
+    id = id.from(_N, "CheckoutBorrowLicenseRequest"),
     type = "structure",
     members = {
         LicenseArn = schema.new({
@@ -440,7 +440,7 @@ M.CheckoutBorrowLicenseInput = schema.new({
 })
 
 M.CheckoutBorrowLicenseOutput = schema.new({
-    id = id.from(_N, "CheckoutBorrowLicenseOutput"),
+    id = id.from(_N, "CheckoutBorrowLicenseResponse"),
     type = "structure",
     members = {
         LicenseArn = schema.new({
@@ -570,7 +570,7 @@ M.UnsupportedDigitalSignatureMethodException = schema.new({
 })
 
 M.CheckoutLicenseInput = schema.new({
-    id = id.from(_N, "CheckoutLicenseInput"),
+    id = id.from(_N, "CheckoutLicenseRequest"),
     type = "structure",
     members = {
         ProductSKU = schema.new({
@@ -635,7 +635,7 @@ M.CheckoutLicenseInput = schema.new({
 })
 
 M.CheckoutLicenseOutput = schema.new({
-    id = id.from(_N, "CheckoutLicenseOutput"),
+    id = id.from(_N, "CheckoutLicenseResponse"),
     type = "structure",
     members = {
         CheckoutType = schema.new({
@@ -710,7 +710,7 @@ M.Tag = schema.new({
 })
 
 M.CreateGrantInput = schema.new({
-    id = id.from(_N, "CreateGrantInput"),
+    id = id.from(_N, "CreateGrantRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -780,7 +780,7 @@ M.CreateGrantInput = schema.new({
 })
 
 M.CreateGrantOutput = schema.new({
-    id = id.from(_N, "CreateGrantOutput"),
+    id = id.from(_N, "CreateGrantResponse"),
     type = "structure",
     members = {
         GrantArn = schema.new({
@@ -818,7 +818,7 @@ M.Options = schema.new({
 })
 
 M.CreateGrantVersionInput = schema.new({
-    id = id.from(_N, "CreateGrantVersionInput"),
+    id = id.from(_N, "CreateGrantVersionRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -881,7 +881,7 @@ M.CreateGrantVersionInput = schema.new({
 })
 
 M.CreateGrantVersionOutput = schema.new({
-    id = id.from(_N, "CreateGrantVersionOutput"),
+    id = id.from(_N, "CreateGrantVersionResponse"),
     type = "structure",
     members = {
         GrantArn = schema.new({
@@ -1067,7 +1067,7 @@ M.DatetimeRange = schema.new({
 })
 
 M.CreateLicenseInput = schema.new({
-    id = id.from(_N, "CreateLicenseInput"),
+    id = id.from(_N, "CreateLicenseRequest"),
     type = "structure",
     members = {
         LicenseName = schema.new({
@@ -1182,7 +1182,7 @@ M.CreateLicenseInput = schema.new({
 })
 
 M.CreateLicenseOutput = schema.new({
-    id = id.from(_N, "CreateLicenseOutput"),
+    id = id.from(_N, "CreateLicenseResponse"),
     type = "structure",
     members = {
         LicenseArn = schema.new({
@@ -1245,7 +1245,7 @@ M.LicenseAssetGroupProperty = schema.new({
 })
 
 M.CreateLicenseAssetGroupInput = schema.new({
-    id = id.from(_N, "CreateLicenseAssetGroupInput"),
+    id = id.from(_N, "CreateLicenseAssetGroupRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1310,7 +1310,7 @@ M.CreateLicenseAssetGroupInput = schema.new({
 })
 
 M.CreateLicenseAssetGroupOutput = schema.new({
-    id = id.from(_N, "CreateLicenseAssetGroupOutput"),
+    id = id.from(_N, "CreateLicenseAssetGroupResponse"),
     type = "structure",
     members = {
         LicenseAssetGroupArn = schema.new({
@@ -1492,7 +1492,7 @@ M.LicenseAssetRule = schema.new({
 })
 
 M.CreateLicenseAssetRulesetInput = schema.new({
-    id = id.from(_N, "CreateLicenseAssetRulesetInput"),
+    id = id.from(_N, "CreateLicenseAssetRulesetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1540,7 +1540,7 @@ M.CreateLicenseAssetRulesetInput = schema.new({
 })
 
 M.CreateLicenseAssetRulesetOutput = schema.new({
-    id = id.from(_N, "CreateLicenseAssetRulesetOutput"),
+    id = id.from(_N, "CreateLicenseAssetRulesetResponse"),
     type = "structure",
     members = {
         LicenseAssetRulesetArn = schema.new({
@@ -1614,7 +1614,7 @@ M.ProductInformation = schema.new({
 })
 
 M.CreateLicenseConfigurationInput = schema.new({
-    id = id.from(_N, "CreateLicenseConfigurationInput"),
+    id = id.from(_N, "CreateLicenseConfigurationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1690,7 +1690,7 @@ M.CreateLicenseConfigurationInput = schema.new({
 })
 
 M.CreateLicenseConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateLicenseConfigurationOutput"),
+    id = id.from(_N, "CreateLicenseConfigurationResponse"),
     type = "structure",
     members = {
         LicenseConfigurationArn = schema.new({
@@ -1748,7 +1748,7 @@ M.LicenseConversionContext = schema.new({
 })
 
 M.CreateLicenseConversionTaskForResourceInput = schema.new({
-    id = id.from(_N, "CreateLicenseConversionTaskForResourceInput"),
+    id = id.from(_N, "CreateLicenseConversionTaskForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1784,7 +1784,7 @@ M.CreateLicenseConversionTaskForResourceInput = schema.new({
 })
 
 M.CreateLicenseConversionTaskForResourceOutput = schema.new({
-    id = id.from(_N, "CreateLicenseConversionTaskForResourceOutput"),
+    id = id.from(_N, "CreateLicenseConversionTaskForResourceResponse"),
     type = "structure",
     members = {
         LicenseConversionTaskId = schema.new({
@@ -1852,7 +1852,7 @@ M.ReportFrequency = schema.new({
 })
 
 M.CreateLicenseManagerReportGeneratorInput = schema.new({
-    id = id.from(_N, "CreateLicenseManagerReportGeneratorInput"),
+    id = id.from(_N, "CreateLicenseManagerReportGeneratorRequest"),
     type = "structure",
     members = {
         ReportGeneratorName = schema.new({
@@ -1920,7 +1920,7 @@ M.CreateLicenseManagerReportGeneratorInput = schema.new({
 })
 
 M.CreateLicenseManagerReportGeneratorOutput = schema.new({
-    id = id.from(_N, "CreateLicenseManagerReportGeneratorOutput"),
+    id = id.from(_N, "CreateLicenseManagerReportGeneratorResponse"),
     type = "structure",
     members = {
         LicenseManagerReportGeneratorArn = schema.new({
@@ -1933,7 +1933,7 @@ M.CreateLicenseManagerReportGeneratorOutput = schema.new({
 })
 
 M.CreateLicenseVersionInput = schema.new({
-    id = id.from(_N, "CreateLicenseVersionInput"),
+    id = id.from(_N, "CreateLicenseVersionRequest"),
     type = "structure",
     members = {
         LicenseArn = schema.new({
@@ -2047,7 +2047,7 @@ M.CreateLicenseVersionInput = schema.new({
 })
 
 M.CreateLicenseVersionOutput = schema.new({
-    id = id.from(_N, "CreateLicenseVersionOutput"),
+    id = id.from(_N, "CreateLicenseVersionResponse"),
     type = "structure",
     members = {
         LicenseArn = schema.new({
@@ -2072,7 +2072,7 @@ M.CreateLicenseVersionOutput = schema.new({
 })
 
 M.CreateTokenInput = schema.new({
-    id = id.from(_N, "CreateTokenInput"),
+    id = id.from(_N, "CreateTokenRequest"),
     type = "structure",
     members = {
         LicenseArn = schema.new({
@@ -2117,7 +2117,7 @@ M.CreateTokenInput = schema.new({
 })
 
 M.CreateTokenOutput = schema.new({
-    id = id.from(_N, "CreateTokenOutput"),
+    id = id.from(_N, "CreateTokenResponse"),
     type = "structure",
     members = {
         TokenId = schema.new({
@@ -2142,7 +2142,7 @@ M.CreateTokenOutput = schema.new({
 })
 
 M.DeleteGrantInput = schema.new({
-    id = id.from(_N, "DeleteGrantInput"),
+    id = id.from(_N, "DeleteGrantRequest"),
     type = "structure",
     members = {
         GrantArn = schema.new({
@@ -2173,7 +2173,7 @@ M.DeleteGrantInput = schema.new({
 })
 
 M.DeleteGrantOutput = schema.new({
-    id = id.from(_N, "DeleteGrantOutput"),
+    id = id.from(_N, "DeleteGrantResponse"),
     type = "structure",
     members = {
         GrantArn = schema.new({
@@ -2198,7 +2198,7 @@ M.DeleteGrantOutput = schema.new({
 })
 
 M.DeleteLicenseInput = schema.new({
-    id = id.from(_N, "DeleteLicenseInput"),
+    id = id.from(_N, "DeleteLicenseRequest"),
     type = "structure",
     members = {
         LicenseArn = schema.new({
@@ -2223,7 +2223,7 @@ M.DeleteLicenseInput = schema.new({
 })
 
 M.DeleteLicenseOutput = schema.new({
-    id = id.from(_N, "DeleteLicenseOutput"),
+    id = id.from(_N, "DeleteLicenseResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -2242,7 +2242,7 @@ M.DeleteLicenseOutput = schema.new({
 })
 
 M.DeleteLicenseAssetGroupInput = schema.new({
-    id = id.from(_N, "DeleteLicenseAssetGroupInput"),
+    id = id.from(_N, "DeleteLicenseAssetGroupRequest"),
     type = "structure",
     members = {
         LicenseAssetGroupArn = schema.new({
@@ -2258,7 +2258,7 @@ M.DeleteLicenseAssetGroupInput = schema.new({
 })
 
 M.DeleteLicenseAssetGroupOutput = schema.new({
-    id = id.from(_N, "DeleteLicenseAssetGroupOutput"),
+    id = id.from(_N, "DeleteLicenseAssetGroupResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -2274,7 +2274,7 @@ M.DeleteLicenseAssetGroupOutput = schema.new({
 })
 
 M.DeleteLicenseAssetRulesetInput = schema.new({
-    id = id.from(_N, "DeleteLicenseAssetRulesetInput"),
+    id = id.from(_N, "DeleteLicenseAssetRulesetRequest"),
     type = "structure",
     members = {
         LicenseAssetRulesetArn = schema.new({
@@ -2290,12 +2290,12 @@ M.DeleteLicenseAssetRulesetInput = schema.new({
 })
 
 M.DeleteLicenseAssetRulesetOutput = schema.new({
-    id = id.from(_N, "DeleteLicenseAssetRulesetOutput"),
+    id = id.from(_N, "DeleteLicenseAssetRulesetResponse"),
     type = "structure",
 })
 
 M.DeleteLicenseConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteLicenseConfigurationInput"),
+    id = id.from(_N, "DeleteLicenseConfigurationRequest"),
     type = "structure",
     members = {
         LicenseConfigurationArn = schema.new({
@@ -2311,12 +2311,12 @@ M.DeleteLicenseConfigurationInput = schema.new({
 })
 
 M.DeleteLicenseConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteLicenseConfigurationOutput"),
+    id = id.from(_N, "DeleteLicenseConfigurationResponse"),
     type = "structure",
 })
 
 M.DeleteLicenseManagerReportGeneratorInput = schema.new({
-    id = id.from(_N, "DeleteLicenseManagerReportGeneratorInput"),
+    id = id.from(_N, "DeleteLicenseManagerReportGeneratorRequest"),
     type = "structure",
     members = {
         LicenseManagerReportGeneratorArn = schema.new({
@@ -2332,12 +2332,12 @@ M.DeleteLicenseManagerReportGeneratorInput = schema.new({
 })
 
 M.DeleteLicenseManagerReportGeneratorOutput = schema.new({
-    id = id.from(_N, "DeleteLicenseManagerReportGeneratorOutput"),
+    id = id.from(_N, "DeleteLicenseManagerReportGeneratorResponse"),
     type = "structure",
 })
 
 M.DeleteTokenInput = schema.new({
-    id = id.from(_N, "DeleteTokenInput"),
+    id = id.from(_N, "DeleteTokenRequest"),
     type = "structure",
     members = {
         TokenId = schema.new({
@@ -2353,12 +2353,12 @@ M.DeleteTokenInput = schema.new({
 })
 
 M.DeleteTokenOutput = schema.new({
-    id = id.from(_N, "DeleteTokenOutput"),
+    id = id.from(_N, "DeleteTokenResponse"),
     type = "structure",
 })
 
 M.ExtendLicenseConsumptionInput = schema.new({
-    id = id.from(_N, "ExtendLicenseConsumptionInput"),
+    id = id.from(_N, "ExtendLicenseConsumptionRequest"),
     type = "structure",
     members = {
         LicenseConsumptionToken = schema.new({
@@ -2383,7 +2383,7 @@ M.ExtendLicenseConsumptionInput = schema.new({
 })
 
 M.ExtendLicenseConsumptionOutput = schema.new({
-    id = id.from(_N, "ExtendLicenseConsumptionOutput"),
+    id = id.from(_N, "ExtendLicenseConsumptionResponse"),
     type = "structure",
     members = {
         LicenseConsumptionToken = schema.new({
@@ -2402,7 +2402,7 @@ M.ExtendLicenseConsumptionOutput = schema.new({
 })
 
 M.GetAccessTokenInput = schema.new({
-    id = id.from(_N, "GetAccessTokenInput"),
+    id = id.from(_N, "GetAccessTokenRequest"),
     type = "structure",
     members = {
         Token = schema.new({
@@ -2425,7 +2425,7 @@ M.GetAccessTokenInput = schema.new({
 })
 
 M.GetAccessTokenOutput = schema.new({
-    id = id.from(_N, "GetAccessTokenOutput"),
+    id = id.from(_N, "GetAccessTokenResponse"),
     type = "structure",
     members = {
         AccessToken = schema.new({
@@ -2438,7 +2438,7 @@ M.GetAccessTokenOutput = schema.new({
 })
 
 M.GetGrantInput = schema.new({
-    id = id.from(_N, "GetGrantInput"),
+    id = id.from(_N, "GetGrantRequest"),
     type = "structure",
     members = {
         GrantArn = schema.new({
@@ -2562,7 +2562,7 @@ M.Grant = schema.new({
 })
 
 M.GetGrantOutput = schema.new({
-    id = id.from(_N, "GetGrantOutput"),
+    id = id.from(_N, "GetGrantResponse"),
     type = "structure",
     members = {
         Grant = schema.new({
@@ -2576,7 +2576,7 @@ M.GetGrantOutput = schema.new({
 })
 
 M.GetLicenseInput = schema.new({
-    id = id.from(_N, "GetLicenseInput"),
+    id = id.from(_N, "GetLicenseRequest"),
     type = "structure",
     members = {
         LicenseArn = schema.new({
@@ -2719,7 +2719,7 @@ M.License = schema.new({
 })
 
 M.GetLicenseOutput = schema.new({
-    id = id.from(_N, "GetLicenseOutput"),
+    id = id.from(_N, "GetLicenseResponse"),
     type = "structure",
     members = {
         License = schema.new({
@@ -2733,7 +2733,7 @@ M.GetLicenseOutput = schema.new({
 })
 
 M.GetLicenseAssetGroupInput = schema.new({
-    id = id.from(_N, "GetLicenseAssetGroupInput"),
+    id = id.from(_N, "GetLicenseAssetGroupRequest"),
     type = "structure",
     members = {
         LicenseAssetGroupArn = schema.new({
@@ -2831,7 +2831,7 @@ M.LicenseAssetGroup = schema.new({
 })
 
 M.GetLicenseAssetGroupOutput = schema.new({
-    id = id.from(_N, "GetLicenseAssetGroupOutput"),
+    id = id.from(_N, "GetLicenseAssetGroupResponse"),
     type = "structure",
     members = {
         LicenseAssetGroup = schema.new({
@@ -2848,7 +2848,7 @@ M.GetLicenseAssetGroupOutput = schema.new({
 })
 
 M.GetLicenseAssetRulesetInput = schema.new({
-    id = id.from(_N, "GetLicenseAssetRulesetInput"),
+    id = id.from(_N, "GetLicenseAssetRulesetRequest"),
     type = "structure",
     members = {
         LicenseAssetRulesetArn = schema.new({
@@ -2905,7 +2905,7 @@ M.LicenseAssetRuleset = schema.new({
 })
 
 M.GetLicenseAssetRulesetOutput = schema.new({
-    id = id.from(_N, "GetLicenseAssetRulesetOutput"),
+    id = id.from(_N, "GetLicenseAssetRulesetResponse"),
     type = "structure",
     members = {
         LicenseAssetRuleset = schema.new({
@@ -2922,7 +2922,7 @@ M.GetLicenseAssetRulesetOutput = schema.new({
 })
 
 M.GetLicenseConfigurationInput = schema.new({
-    id = id.from(_N, "GetLicenseConfigurationInput"),
+    id = id.from(_N, "GetLicenseConfigurationRequest"),
     type = "structure",
     members = {
         LicenseConfigurationArn = schema.new({
@@ -2976,7 +2976,7 @@ M.ManagedResourceSummary = schema.new({
 })
 
 M.GetLicenseConfigurationOutput = schema.new({
-    id = id.from(_N, "GetLicenseConfigurationOutput"),
+    id = id.from(_N, "GetLicenseConfigurationResponse"),
     type = "structure",
     members = {
         LicenseConfigurationId = schema.new({
@@ -3097,7 +3097,7 @@ M.GetLicenseConfigurationOutput = schema.new({
 })
 
 M.GetLicenseConversionTaskInput = schema.new({
-    id = id.from(_N, "GetLicenseConversionTaskInput"),
+    id = id.from(_N, "GetLicenseConversionTaskRequest"),
     type = "structure",
     members = {
         LicenseConversionTaskId = schema.new({
@@ -3113,7 +3113,7 @@ M.GetLicenseConversionTaskInput = schema.new({
 })
 
 M.GetLicenseConversionTaskOutput = schema.new({
-    id = id.from(_N, "GetLicenseConversionTaskOutput"),
+    id = id.from(_N, "GetLicenseConversionTaskResponse"),
     type = "structure",
     members = {
         LicenseConversionTaskId = schema.new({
@@ -3176,7 +3176,7 @@ M.GetLicenseConversionTaskOutput = schema.new({
 })
 
 M.GetLicenseManagerReportGeneratorInput = schema.new({
-    id = id.from(_N, "GetLicenseManagerReportGeneratorInput"),
+    id = id.from(_N, "GetLicenseManagerReportGeneratorRequest"),
     type = "structure",
     members = {
         LicenseManagerReportGeneratorArn = schema.new({
@@ -3301,7 +3301,7 @@ M.ReportGenerator = schema.new({
 })
 
 M.GetLicenseManagerReportGeneratorOutput = schema.new({
-    id = id.from(_N, "GetLicenseManagerReportGeneratorOutput"),
+    id = id.from(_N, "GetLicenseManagerReportGeneratorResponse"),
     type = "structure",
     members = {
         ReportGenerator = schema.new({
@@ -3315,7 +3315,7 @@ M.GetLicenseManagerReportGeneratorOutput = schema.new({
 })
 
 M.GetLicenseUsageInput = schema.new({
-    id = id.from(_N, "GetLicenseUsageInput"),
+    id = id.from(_N, "GetLicenseUsageRequest"),
     type = "structure",
     members = {
         LicenseArn = schema.new({
@@ -3385,7 +3385,7 @@ M.LicenseUsage = schema.new({
 })
 
 M.GetLicenseUsageOutput = schema.new({
-    id = id.from(_N, "GetLicenseUsageOutput"),
+    id = id.from(_N, "GetLicenseUsageResponse"),
     type = "structure",
     members = {
         LicenseUsage = schema.new({
@@ -3399,7 +3399,7 @@ M.GetLicenseUsageOutput = schema.new({
 })
 
 M.GetServiceSettingsInput = schema.new({
-    id = id.from(_N, "GetServiceSettingsInput"),
+    id = id.from(_N, "GetServiceSettingsRequest"),
     type = "structure",
 })
 
@@ -3483,7 +3483,7 @@ M.ServiceStatus = schema.new({
 })
 
 M.GetServiceSettingsOutput = schema.new({
-    id = id.from(_N, "GetServiceSettingsOutput"),
+    id = id.from(_N, "GetServiceSettingsResponse"),
     type = "structure",
     members = {
         S3BucketArn = schema.new({
@@ -3541,7 +3541,7 @@ M.GetServiceSettingsOutput = schema.new({
 })
 
 M.ListAssetsForLicenseAssetGroupInput = schema.new({
-    id = id.from(_N, "ListAssetsForLicenseAssetGroupInput"),
+    id = id.from(_N, "ListAssetsForLicenseAssetGroupRequest"),
     type = "structure",
     members = {
         LicenseAssetGroupArn = schema.new({
@@ -3578,7 +3578,7 @@ M.ListAssetsForLicenseAssetGroupInput = schema.new({
 })
 
 M.ListAssetsForLicenseAssetGroupOutput = schema.new({
-    id = id.from(_N, "ListAssetsForLicenseAssetGroupOutput"),
+    id = id.from(_N, "ListAssetsForLicenseAssetGroupResponse"),
     type = "structure",
     members = {
         Assets = schema.new({
@@ -3614,7 +3614,7 @@ M.FilterLimitExceededException = schema.new({
 })
 
 M.ListAssociationsForLicenseConfigurationInput = schema.new({
-    id = id.from(_N, "ListAssociationsForLicenseConfigurationInput"),
+    id = id.from(_N, "ListAssociationsForLicenseConfigurationRequest"),
     type = "structure",
     members = {
         LicenseConfigurationArn = schema.new({
@@ -3679,7 +3679,7 @@ M.LicenseConfigurationAssociation = schema.new({
 })
 
 M.ListAssociationsForLicenseConfigurationOutput = schema.new({
-    id = id.from(_N, "ListAssociationsForLicenseConfigurationOutput"),
+    id = id.from(_N, "ListAssociationsForLicenseConfigurationResponse"),
     type = "structure",
     members = {
         LicenseConfigurationAssociations = schema.new({
@@ -3713,13 +3713,13 @@ M.Filter = schema.new({
             type = "list",
             name = "Values",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
 
 M.ListDistributedGrantsInput = schema.new({
-    id = id.from(_N, "ListDistributedGrantsInput"),
+    id = id.from(_N, "ListDistributedGrantsRequest"),
     type = "structure",
     members = {
         GrantArns = schema.new({
@@ -3752,7 +3752,7 @@ M.ListDistributedGrantsInput = schema.new({
 })
 
 M.ListDistributedGrantsOutput = schema.new({
-    id = id.from(_N, "ListDistributedGrantsOutput"),
+    id = id.from(_N, "ListDistributedGrantsResponse"),
     type = "structure",
     members = {
         Grants = schema.new({
@@ -3772,7 +3772,7 @@ M.ListDistributedGrantsOutput = schema.new({
 })
 
 M.ListFailuresForLicenseConfigurationOperationsInput = schema.new({
-    id = id.from(_N, "ListFailuresForLicenseConfigurationOperationsInput"),
+    id = id.from(_N, "ListFailuresForLicenseConfigurationOperationsRequest"),
     type = "structure",
     members = {
         LicenseConfigurationArn = schema.new({
@@ -3856,7 +3856,7 @@ M.LicenseOperationFailure = schema.new({
 })
 
 M.ListFailuresForLicenseConfigurationOperationsOutput = schema.new({
-    id = id.from(_N, "ListFailuresForLicenseConfigurationOperationsOutput"),
+    id = id.from(_N, "ListFailuresForLicenseConfigurationOperationsResponse"),
     type = "structure",
     members = {
         LicenseOperationFailureList = schema.new({
@@ -3876,7 +3876,7 @@ M.ListFailuresForLicenseConfigurationOperationsOutput = schema.new({
 })
 
 M.ListLicenseAssetGroupsInput = schema.new({
-    id = id.from(_N, "ListLicenseAssetGroupsInput"),
+    id = id.from(_N, "ListLicenseAssetGroupsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -3884,7 +3884,7 @@ M.ListLicenseAssetGroupsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         MaxResults = schema.new({
             id = id.from(_N, "ListLicenseAssetGroupsInput", "MaxResults"),
@@ -3902,7 +3902,7 @@ M.ListLicenseAssetGroupsInput = schema.new({
 })
 
 M.ListLicenseAssetGroupsOutput = schema.new({
-    id = id.from(_N, "ListLicenseAssetGroupsOutput"),
+    id = id.from(_N, "ListLicenseAssetGroupsResponse"),
     type = "structure",
     members = {
         LicenseAssetGroups = schema.new({
@@ -3922,7 +3922,7 @@ M.ListLicenseAssetGroupsOutput = schema.new({
 })
 
 M.ListLicenseAssetRulesetsInput = schema.new({
-    id = id.from(_N, "ListLicenseAssetRulesetsInput"),
+    id = id.from(_N, "ListLicenseAssetRulesetsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -3930,7 +3930,7 @@ M.ListLicenseAssetRulesetsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
         ShowAWSManagedLicenseAssetRulesets = schema.new({
             id = id.from(_N, "ListLicenseAssetRulesetsInput", "ShowAWSManagedLicenseAssetRulesets"),
@@ -3957,7 +3957,7 @@ M.ListLicenseAssetRulesetsInput = schema.new({
 })
 
 M.ListLicenseAssetRulesetsOutput = schema.new({
-    id = id.from(_N, "ListLicenseAssetRulesetsOutput"),
+    id = id.from(_N, "ListLicenseAssetRulesetsResponse"),
     type = "structure",
     members = {
         LicenseAssetRulesets = schema.new({
@@ -3977,7 +3977,7 @@ M.ListLicenseAssetRulesetsOutput = schema.new({
 })
 
 M.ListLicenseConfigurationsInput = schema.new({
-    id = id.from(_N, "ListLicenseConfigurationsInput"),
+    id = id.from(_N, "ListLicenseConfigurationsRequest"),
     type = "structure",
     members = {
         LicenseConfigurationArns = schema.new({
@@ -4004,7 +4004,7 @@ M.ListLicenseConfigurationsInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
@@ -4124,7 +4124,7 @@ M.LicenseConfiguration = schema.new({
 })
 
 M.ListLicenseConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListLicenseConfigurationsOutput"),
+    id = id.from(_N, "ListLicenseConfigurationsResponse"),
     type = "structure",
     members = {
         LicenseConfigurations = schema.new({
@@ -4144,7 +4144,7 @@ M.ListLicenseConfigurationsOutput = schema.new({
 })
 
 M.ListLicenseConfigurationsForOrganizationInput = schema.new({
-    id = id.from(_N, "ListLicenseConfigurationsForOrganizationInput"),
+    id = id.from(_N, "ListLicenseConfigurationsForOrganizationRequest"),
     type = "structure",
     members = {
         LicenseConfigurationArns = schema.new({
@@ -4171,13 +4171,13 @@ M.ListLicenseConfigurationsForOrganizationInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
 
 M.ListLicenseConfigurationsForOrganizationOutput = schema.new({
-    id = id.from(_N, "ListLicenseConfigurationsForOrganizationOutput"),
+    id = id.from(_N, "ListLicenseConfigurationsForOrganizationResponse"),
     type = "structure",
     members = {
         LicenseConfigurations = schema.new({
@@ -4197,7 +4197,7 @@ M.ListLicenseConfigurationsForOrganizationOutput = schema.new({
 })
 
 M.ListLicenseConversionTasksInput = schema.new({
-    id = id.from(_N, "ListLicenseConversionTasksInput"),
+    id = id.from(_N, "ListLicenseConversionTasksRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -4217,7 +4217,7 @@ M.ListLicenseConversionTasksInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
@@ -4286,7 +4286,7 @@ M.LicenseConversionTask = schema.new({
 })
 
 M.ListLicenseConversionTasksOutput = schema.new({
-    id = id.from(_N, "ListLicenseConversionTasksOutput"),
+    id = id.from(_N, "ListLicenseConversionTasksResponse"),
     type = "structure",
     members = {
         LicenseConversionTasks = schema.new({
@@ -4306,7 +4306,7 @@ M.ListLicenseConversionTasksOutput = schema.new({
 })
 
 M.ListLicenseManagerReportGeneratorsInput = schema.new({
-    id = id.from(_N, "ListLicenseManagerReportGeneratorsInput"),
+    id = id.from(_N, "ListLicenseManagerReportGeneratorsRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -4332,7 +4332,7 @@ M.ListLicenseManagerReportGeneratorsInput = schema.new({
 })
 
 M.ListLicenseManagerReportGeneratorsOutput = schema.new({
-    id = id.from(_N, "ListLicenseManagerReportGeneratorsOutput"),
+    id = id.from(_N, "ListLicenseManagerReportGeneratorsResponse"),
     type = "structure",
     members = {
         ReportGenerators = schema.new({
@@ -4352,7 +4352,7 @@ M.ListLicenseManagerReportGeneratorsOutput = schema.new({
 })
 
 M.ListLicensesInput = schema.new({
-    id = id.from(_N, "ListLicensesInput"),
+    id = id.from(_N, "ListLicensesRequest"),
     type = "structure",
     members = {
         LicenseArns = schema.new({
@@ -4385,7 +4385,7 @@ M.ListLicensesInput = schema.new({
 })
 
 M.ListLicensesOutput = schema.new({
-    id = id.from(_N, "ListLicensesOutput"),
+    id = id.from(_N, "ListLicensesResponse"),
     type = "structure",
     members = {
         Licenses = schema.new({
@@ -4405,7 +4405,7 @@ M.ListLicensesOutput = schema.new({
 })
 
 M.ListLicenseSpecificationsForResourceInput = schema.new({
-    id = id.from(_N, "ListLicenseSpecificationsForResourceInput"),
+    id = id.from(_N, "ListLicenseSpecificationsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -4455,7 +4455,7 @@ M.LicenseSpecification = schema.new({
 })
 
 M.ListLicenseSpecificationsForResourceOutput = schema.new({
-    id = id.from(_N, "ListLicenseSpecificationsForResourceOutput"),
+    id = id.from(_N, "ListLicenseSpecificationsForResourceResponse"),
     type = "structure",
     members = {
         LicenseSpecifications = schema.new({
@@ -4475,7 +4475,7 @@ M.ListLicenseSpecificationsForResourceOutput = schema.new({
 })
 
 M.ListLicenseVersionsInput = schema.new({
-    id = id.from(_N, "ListLicenseVersionsInput"),
+    id = id.from(_N, "ListLicenseVersionsRequest"),
     type = "structure",
     members = {
         LicenseArn = schema.new({
@@ -4503,7 +4503,7 @@ M.ListLicenseVersionsInput = schema.new({
 })
 
 M.ListLicenseVersionsOutput = schema.new({
-    id = id.from(_N, "ListLicenseVersionsOutput"),
+    id = id.from(_N, "ListLicenseVersionsResponse"),
     type = "structure",
     members = {
         Licenses = schema.new({
@@ -4523,7 +4523,7 @@ M.ListLicenseVersionsOutput = schema.new({
 })
 
 M.ListReceivedGrantsInput = schema.new({
-    id = id.from(_N, "ListReceivedGrantsInput"),
+    id = id.from(_N, "ListReceivedGrantsRequest"),
     type = "structure",
     members = {
         GrantArns = schema.new({
@@ -4556,7 +4556,7 @@ M.ListReceivedGrantsInput = schema.new({
 })
 
 M.ListReceivedGrantsOutput = schema.new({
-    id = id.from(_N, "ListReceivedGrantsOutput"),
+    id = id.from(_N, "ListReceivedGrantsResponse"),
     type = "structure",
     members = {
         Grants = schema.new({
@@ -4576,7 +4576,7 @@ M.ListReceivedGrantsOutput = schema.new({
 })
 
 M.ListReceivedGrantsForOrganizationInput = schema.new({
-    id = id.from(_N, "ListReceivedGrantsForOrganizationInput"),
+    id = id.from(_N, "ListReceivedGrantsForOrganizationRequest"),
     type = "structure",
     members = {
         LicenseArn = schema.new({
@@ -4611,7 +4611,7 @@ M.ListReceivedGrantsForOrganizationInput = schema.new({
 })
 
 M.ListReceivedGrantsForOrganizationOutput = schema.new({
-    id = id.from(_N, "ListReceivedGrantsForOrganizationOutput"),
+    id = id.from(_N, "ListReceivedGrantsForOrganizationResponse"),
     type = "structure",
     members = {
         Grants = schema.new({
@@ -4631,7 +4631,7 @@ M.ListReceivedGrantsForOrganizationOutput = schema.new({
 })
 
 M.ListReceivedLicensesInput = schema.new({
-    id = id.from(_N, "ListReceivedLicensesInput"),
+    id = id.from(_N, "ListReceivedLicensesRequest"),
     type = "structure",
     members = {
         LicenseArns = schema.new({
@@ -4793,7 +4793,7 @@ M.GrantedLicense = schema.new({
 })
 
 M.ListReceivedLicensesOutput = schema.new({
-    id = id.from(_N, "ListReceivedLicensesOutput"),
+    id = id.from(_N, "ListReceivedLicensesResponse"),
     type = "structure",
     members = {
         Licenses = schema.new({
@@ -4813,7 +4813,7 @@ M.ListReceivedLicensesOutput = schema.new({
 })
 
 M.ListReceivedLicensesForOrganizationInput = schema.new({
-    id = id.from(_N, "ListReceivedLicensesForOrganizationInput"),
+    id = id.from(_N, "ListReceivedLicensesForOrganizationRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -4839,7 +4839,7 @@ M.ListReceivedLicensesForOrganizationInput = schema.new({
 })
 
 M.ListReceivedLicensesForOrganizationOutput = schema.new({
-    id = id.from(_N, "ListReceivedLicensesForOrganizationOutput"),
+    id = id.from(_N, "ListReceivedLicensesForOrganizationResponse"),
     type = "structure",
     members = {
         Licenses = schema.new({
@@ -4912,7 +4912,7 @@ M.InventoryFilter = schema.new({
 })
 
 M.ListResourceInventoryInput = schema.new({
-    id = id.from(_N, "ListResourceInventoryInput"),
+    id = id.from(_N, "ListResourceInventoryRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -5018,7 +5018,7 @@ M.ResourceInventory = schema.new({
 })
 
 M.ListResourceInventoryOutput = schema.new({
-    id = id.from(_N, "ListResourceInventoryOutput"),
+    id = id.from(_N, "ListResourceInventoryResponse"),
     type = "structure",
     members = {
         ResourceInventoryList = schema.new({
@@ -5038,7 +5038,7 @@ M.ListResourceInventoryOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5054,7 +5054,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -5068,7 +5068,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTokensInput = schema.new({
-    id = id.from(_N, "ListTokensInput"),
+    id = id.from(_N, "ListTokensRequest"),
     type = "structure",
     members = {
         TokenIds = schema.new({
@@ -5152,7 +5152,7 @@ M.TokenData = schema.new({
 })
 
 M.ListTokensOutput = schema.new({
-    id = id.from(_N, "ListTokensOutput"),
+    id = id.from(_N, "ListTokensResponse"),
     type = "structure",
     members = {
         Tokens = schema.new({
@@ -5172,7 +5172,7 @@ M.ListTokensOutput = schema.new({
 })
 
 M.ListUsageForLicenseConfigurationInput = schema.new({
-    id = id.from(_N, "ListUsageForLicenseConfigurationInput"),
+    id = id.from(_N, "ListUsageForLicenseConfigurationRequest"),
     type = "structure",
     members = {
         LicenseConfigurationArn = schema.new({
@@ -5201,7 +5201,7 @@ M.ListUsageForLicenseConfigurationInput = schema.new({
             type = "list",
             name = "Filters",
             target_id = prelude.Document.id,
-            list_member = M.Filter,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
     },
 })
@@ -5250,7 +5250,7 @@ M.LicenseConfigurationUsage = schema.new({
 })
 
 M.ListUsageForLicenseConfigurationOutput = schema.new({
-    id = id.from(_N, "ListUsageForLicenseConfigurationOutput"),
+    id = id.from(_N, "ListUsageForLicenseConfigurationResponse"),
     type = "structure",
     members = {
         LicenseConfigurationUsageList = schema.new({
@@ -5270,7 +5270,7 @@ M.ListUsageForLicenseConfigurationOutput = schema.new({
 })
 
 M.RejectGrantInput = schema.new({
-    id = id.from(_N, "RejectGrantInput"),
+    id = id.from(_N, "RejectGrantRequest"),
     type = "structure",
     members = {
         GrantArn = schema.new({
@@ -5286,7 +5286,7 @@ M.RejectGrantInput = schema.new({
 })
 
 M.RejectGrantOutput = schema.new({
-    id = id.from(_N, "RejectGrantOutput"),
+    id = id.from(_N, "RejectGrantResponse"),
     type = "structure",
     members = {
         GrantArn = schema.new({
@@ -5311,7 +5311,7 @@ M.RejectGrantOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5337,12 +5337,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5368,12 +5368,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateLicenseAssetGroupInput = schema.new({
-    id = id.from(_N, "UpdateLicenseAssetGroupInput"),
+    id = id.from(_N, "UpdateLicenseAssetGroupRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -5440,7 +5440,7 @@ M.UpdateLicenseAssetGroupInput = schema.new({
 })
 
 M.UpdateLicenseAssetGroupOutput = schema.new({
-    id = id.from(_N, "UpdateLicenseAssetGroupOutput"),
+    id = id.from(_N, "UpdateLicenseAssetGroupResponse"),
     type = "structure",
     members = {
         LicenseAssetGroupArn = schema.new({
@@ -5465,7 +5465,7 @@ M.UpdateLicenseAssetGroupOutput = schema.new({
 })
 
 M.UpdateLicenseAssetRulesetInput = schema.new({
-    id = id.from(_N, "UpdateLicenseAssetRulesetInput"),
+    id = id.from(_N, "UpdateLicenseAssetRulesetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -5512,7 +5512,7 @@ M.UpdateLicenseAssetRulesetInput = schema.new({
 })
 
 M.UpdateLicenseAssetRulesetOutput = schema.new({
-    id = id.from(_N, "UpdateLicenseAssetRulesetOutput"),
+    id = id.from(_N, "UpdateLicenseAssetRulesetResponse"),
     type = "structure",
     members = {
         LicenseAssetRulesetArn = schema.new({
@@ -5528,7 +5528,7 @@ M.UpdateLicenseAssetRulesetOutput = schema.new({
 })
 
 M.UpdateLicenseConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateLicenseConfigurationInput"),
+    id = id.from(_N, "UpdateLicenseConfigurationRequest"),
     type = "structure",
     members = {
         LicenseConfigurationArn = schema.new({
@@ -5600,12 +5600,12 @@ M.UpdateLicenseConfigurationInput = schema.new({
 })
 
 M.UpdateLicenseConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateLicenseConfigurationOutput"),
+    id = id.from(_N, "UpdateLicenseConfigurationResponse"),
     type = "structure",
 })
 
 M.UpdateLicenseManagerReportGeneratorInput = schema.new({
-    id = id.from(_N, "UpdateLicenseManagerReportGeneratorInput"),
+    id = id.from(_N, "UpdateLicenseManagerReportGeneratorRequest"),
     type = "structure",
     members = {
         LicenseManagerReportGeneratorArn = schema.new({
@@ -5675,7 +5675,7 @@ M.UpdateLicenseManagerReportGeneratorInput = schema.new({
 })
 
 M.UpdateLicenseManagerReportGeneratorOutput = schema.new({
-    id = id.from(_N, "UpdateLicenseManagerReportGeneratorOutput"),
+    id = id.from(_N, "UpdateLicenseManagerReportGeneratorResponse"),
     type = "structure",
 })
 
@@ -5712,7 +5712,7 @@ M.LicenseUsageException = schema.new({
 })
 
 M.UpdateLicenseSpecificationsForResourceInput = schema.new({
-    id = id.from(_N, "UpdateLicenseSpecificationsForResourceInput"),
+    id = id.from(_N, "UpdateLicenseSpecificationsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -5742,12 +5742,12 @@ M.UpdateLicenseSpecificationsForResourceInput = schema.new({
 })
 
 M.UpdateLicenseSpecificationsForResourceOutput = schema.new({
-    id = id.from(_N, "UpdateLicenseSpecificationsForResourceOutput"),
+    id = id.from(_N, "UpdateLicenseSpecificationsForResourceResponse"),
     type = "structure",
 })
 
 M.UpdateServiceSettingsInput = schema.new({
-    id = id.from(_N, "UpdateServiceSettingsInput"),
+    id = id.from(_N, "UpdateServiceSettingsRequest"),
     type = "structure",
     members = {
         S3BucketArn = schema.new({
@@ -5786,8 +5786,22 @@ M.UpdateServiceSettingsInput = schema.new({
 })
 
 M.UpdateServiceSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateServiceSettingsOutput"),
+    id = id.from(_N, "UpdateServiceSettingsResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

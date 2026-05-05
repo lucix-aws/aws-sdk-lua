@@ -115,7 +115,7 @@ M.UsageRecord = schema.new({
 })
 
 M.BatchMeterUsageInput = schema.new({
-    id = id.from(_N, "BatchMeterUsageInput"),
+    id = id.from(_N, "BatchMeterUsageRequest"),
     type = "structure",
     members = {
         UsageRecords = schema.new({
@@ -167,7 +167,7 @@ M.UsageRecordResult = schema.new({
 })
 
 M.BatchMeterUsageOutput = schema.new({
-    id = id.from(_N, "BatchMeterUsageOutput"),
+    id = id.from(_N, "BatchMeterUsageResult"),
     type = "structure",
     members = {
         Results = schema.new({
@@ -412,7 +412,7 @@ M.InvalidEndpointRegionException = schema.new({
 })
 
 M.MeterUsageInput = schema.new({
-    id = id.from(_N, "MeterUsageInput"),
+    id = id.from(_N, "MeterUsageRequest"),
     type = "structure",
     members = {
         ProductCode = schema.new({
@@ -474,7 +474,7 @@ M.MeterUsageInput = schema.new({
 })
 
 M.MeterUsageOutput = schema.new({
-    id = id.from(_N, "MeterUsageOutput"),
+    id = id.from(_N, "MeterUsageResult"),
     type = "structure",
     members = {
         MeteringRecordId = schema.new({
@@ -535,7 +535,7 @@ M.PlatformNotSupportedException = schema.new({
 })
 
 M.RegisterUsageInput = schema.new({
-    id = id.from(_N, "RegisterUsageInput"),
+    id = id.from(_N, "RegisterUsageRequest"),
     type = "structure",
     members = {
         ProductCode = schema.new({
@@ -566,7 +566,7 @@ M.RegisterUsageInput = schema.new({
 })
 
 M.RegisterUsageOutput = schema.new({
-    id = id.from(_N, "RegisterUsageOutput"),
+    id = id.from(_N, "RegisterUsageResult"),
     type = "structure",
     members = {
         PublicKeyRotationTimestamp = schema.new({
@@ -617,7 +617,7 @@ M.InvalidTokenException = schema.new({
 })
 
 M.ResolveCustomerInput = schema.new({
-    id = id.from(_N, "ResolveCustomerInput"),
+    id = id.from(_N, "ResolveCustomerRequest"),
     type = "structure",
     members = {
         RegistrationToken = schema.new({
@@ -633,7 +633,7 @@ M.ResolveCustomerInput = schema.new({
 })
 
 M.ResolveCustomerOutput = schema.new({
-    id = id.from(_N, "ResolveCustomerOutput"),
+    id = id.from(_N, "ResolveCustomerResult"),
     type = "structure",
     members = {
         CustomerIdentifier = schema.new({
@@ -662,5 +662,19 @@ M.ResolveCustomerOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

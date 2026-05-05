@@ -40,7 +40,7 @@ M.Channel = schema.new({
 })
 
 M.AddNotificationChannelsInput = schema.new({
-    id = id.from(_N, "AddNotificationChannelsInput"),
+    id = id.from(_N, "AddNotificationChannelsRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -81,7 +81,7 @@ M.NotificationConfiguration = schema.new({
 })
 
 M.AddNotificationChannelsOutput = schema.new({
-    id = id.from(_N, "AddNotificationChannelsOutput"),
+    id = id.from(_N, "AddNotificationChannelsResponse"),
     type = "structure",
     members = {
         notificationConfiguration = schema.new({
@@ -447,7 +447,7 @@ M.FrameMetric = schema.new({
 })
 
 M.BatchGetFrameMetricDataInput = schema.new({
-    id = id.from(_N, "BatchGetFrameMetricDataInput"),
+    id = id.from(_N, "BatchGetFrameMetricDataRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -562,7 +562,7 @@ M.FrameMetricDatum = schema.new({
 })
 
 M.BatchGetFrameMetricDataOutput = schema.new({
-    id = id.from(_N, "BatchGetFrameMetricDataOutput"),
+    id = id.from(_N, "BatchGetFrameMetricDataResponse"),
     type = "structure",
     members = {
         startTime = schema.new({
@@ -616,7 +616,7 @@ M.BatchGetFrameMetricDataOutput = schema.new({
             name = "unprocessedEndTimes",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.TimestampStructure }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -635,7 +635,7 @@ M.BatchGetFrameMetricDataOutput = schema.new({
 })
 
 M.GetFindingsReportAccountSummaryInput = schema.new({
-    id = id.from(_N, "GetFindingsReportAccountSummaryInput"),
+    id = id.from(_N, "GetFindingsReportAccountSummaryRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -712,7 +712,7 @@ M.FindingsReportSummary = schema.new({
 })
 
 M.GetFindingsReportAccountSummaryOutput = schema.new({
-    id = id.from(_N, "GetFindingsReportAccountSummaryOutput"),
+    id = id.from(_N, "GetFindingsReportAccountSummaryResponse"),
     type = "structure",
     members = {
         reportSummaries = schema.new({
@@ -735,7 +735,7 @@ M.GetFindingsReportAccountSummaryOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -752,7 +752,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -767,7 +767,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ConfigureAgentInput = schema.new({
-    id = id.from(_N, "ConfigureAgentInput"),
+    id = id.from(_N, "ConfigureAgentRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -798,7 +798,7 @@ M.ConfigureAgentInput = schema.new({
 })
 
 M.ConfigureAgentOutput = schema.new({
-    id = id.from(_N, "ConfigureAgentOutput"),
+    id = id.from(_N, "ConfigureAgentResponse"),
     type = "structure",
     members = {
         configuration = schema.new({
@@ -816,7 +816,7 @@ M.ConfigureAgentOutput = schema.new({
 })
 
 M.CreateProfilingGroupInput = schema.new({
-    id = id.from(_N, "CreateProfilingGroupInput"),
+    id = id.from(_N, "CreateProfilingGroupRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -961,7 +961,7 @@ M.ProfilingGroupDescription = schema.new({
 })
 
 M.CreateProfilingGroupOutput = schema.new({
-    id = id.from(_N, "CreateProfilingGroupOutput"),
+    id = id.from(_N, "CreateProfilingGroupResponse"),
     type = "structure",
     members = {
         profilingGroup = schema.new({
@@ -979,7 +979,7 @@ M.CreateProfilingGroupOutput = schema.new({
 })
 
 M.DeleteProfilingGroupInput = schema.new({
-    id = id.from(_N, "DeleteProfilingGroupInput"),
+    id = id.from(_N, "DeleteProfilingGroupRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -996,12 +996,12 @@ M.DeleteProfilingGroupInput = schema.new({
 })
 
 M.DeleteProfilingGroupOutput = schema.new({
-    id = id.from(_N, "DeleteProfilingGroupOutput"),
+    id = id.from(_N, "DeleteProfilingGroupResponse"),
     type = "structure",
 })
 
 M.DescribeProfilingGroupInput = schema.new({
-    id = id.from(_N, "DescribeProfilingGroupInput"),
+    id = id.from(_N, "DescribeProfilingGroupRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -1018,7 +1018,7 @@ M.DescribeProfilingGroupInput = schema.new({
 })
 
 M.DescribeProfilingGroupOutput = schema.new({
-    id = id.from(_N, "DescribeProfilingGroupOutput"),
+    id = id.from(_N, "DescribeProfilingGroupResponse"),
     type = "structure",
     members = {
         profilingGroup = schema.new({
@@ -1036,7 +1036,7 @@ M.DescribeProfilingGroupOutput = schema.new({
 })
 
 M.GetNotificationConfigurationInput = schema.new({
-    id = id.from(_N, "GetNotificationConfigurationInput"),
+    id = id.from(_N, "GetNotificationConfigurationRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -1053,7 +1053,7 @@ M.GetNotificationConfigurationInput = schema.new({
 })
 
 M.GetNotificationConfigurationOutput = schema.new({
-    id = id.from(_N, "GetNotificationConfigurationOutput"),
+    id = id.from(_N, "GetNotificationConfigurationResponse"),
     type = "structure",
     members = {
         notificationConfiguration = schema.new({
@@ -1070,7 +1070,7 @@ M.GetNotificationConfigurationOutput = schema.new({
 })
 
 M.GetPolicyInput = schema.new({
-    id = id.from(_N, "GetPolicyInput"),
+    id = id.from(_N, "GetPolicyRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -1087,7 +1087,7 @@ M.GetPolicyInput = schema.new({
 })
 
 M.GetPolicyOutput = schema.new({
-    id = id.from(_N, "GetPolicyOutput"),
+    id = id.from(_N, "GetPolicyResponse"),
     type = "structure",
     members = {
         policy = schema.new({
@@ -1112,7 +1112,7 @@ M.GetPolicyOutput = schema.new({
 })
 
 M.GetProfileInput = schema.new({
-    id = id.from(_N, "GetProfileInput"),
+    id = id.from(_N, "GetProfileRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -1182,7 +1182,7 @@ M.GetProfileInput = schema.new({
 })
 
 M.GetProfileOutput = schema.new({
-    id = id.from(_N, "GetProfileOutput"),
+    id = id.from(_N, "GetProfileResponse"),
     type = "structure",
     members = {
         profile = schema.new({
@@ -1218,7 +1218,7 @@ M.GetProfileOutput = schema.new({
 })
 
 M.GetRecommendationsInput = schema.new({
-    id = id.from(_N, "GetRecommendationsInput"),
+    id = id.from(_N, "GetRecommendationsRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -1306,7 +1306,7 @@ M.Pattern = schema.new({
             type = "list",
             name = "targetFrames",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.String }),
         }),
         thresholdPercent = schema.new({
             id = id.from(_N, "Pattern", "thresholdPercent"),
@@ -1424,7 +1424,7 @@ M.Recommendation = schema.new({
 })
 
 M.GetRecommendationsOutput = schema.new({
-    id = id.from(_N, "GetRecommendationsOutput"),
+    id = id.from(_N, "GetRecommendationsResponse"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -1486,7 +1486,7 @@ M.GetRecommendationsOutput = schema.new({
 })
 
 M.ListFindingsReportsInput = schema.new({
-    id = id.from(_N, "ListFindingsReportsInput"),
+    id = id.from(_N, "ListFindingsReportsRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -1560,7 +1560,7 @@ M.ListFindingsReportsInput = schema.new({
 })
 
 M.ListFindingsReportsOutput = schema.new({
-    id = id.from(_N, "ListFindingsReportsOutput"),
+    id = id.from(_N, "ListFindingsReportsResponse"),
     type = "structure",
     members = {
         findingsReportSummaries = schema.new({
@@ -1583,7 +1583,7 @@ M.ListFindingsReportsOutput = schema.new({
 })
 
 M.ListProfileTimesInput = schema.new({
-    id = id.from(_N, "ListProfileTimesInput"),
+    id = id.from(_N, "ListProfileTimesRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -1683,7 +1683,7 @@ M.ProfileTime = schema.new({
 })
 
 M.ListProfileTimesOutput = schema.new({
-    id = id.from(_N, "ListProfileTimesOutput"),
+    id = id.from(_N, "ListProfileTimesResponse"),
     type = "structure",
     members = {
         profileTimes = schema.new({
@@ -1706,7 +1706,7 @@ M.ListProfileTimesOutput = schema.new({
 })
 
 M.ListProfilingGroupsInput = schema.new({
-    id = id.from(_N, "ListProfilingGroupsInput"),
+    id = id.from(_N, "ListProfilingGroupsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1740,7 +1740,7 @@ M.ListProfilingGroupsInput = schema.new({
 })
 
 M.ListProfilingGroupsOutput = schema.new({
-    id = id.from(_N, "ListProfilingGroupsOutput"),
+    id = id.from(_N, "ListProfilingGroupsResponse"),
     type = "structure",
     members = {
         profilingGroupNames = schema.new({
@@ -1770,7 +1770,7 @@ M.ListProfilingGroupsOutput = schema.new({
 })
 
 M.PostAgentProfileInput = schema.new({
-    id = id.from(_N, "PostAgentProfileInput"),
+    id = id.from(_N, "PostAgentProfileRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -1817,12 +1817,12 @@ M.PostAgentProfileInput = schema.new({
 })
 
 M.PostAgentProfileOutput = schema.new({
-    id = id.from(_N, "PostAgentProfileOutput"),
+    id = id.from(_N, "PostAgentProfileResponse"),
     type = "structure",
 })
 
 M.PutPermissionInput = schema.new({
-    id = id.from(_N, "PutPermissionInput"),
+    id = id.from(_N, "PutPermissionRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -1865,7 +1865,7 @@ M.PutPermissionInput = schema.new({
 })
 
 M.PutPermissionOutput = schema.new({
-    id = id.from(_N, "PutPermissionOutput"),
+    id = id.from(_N, "PutPermissionResponse"),
     type = "structure",
     members = {
         policy = schema.new({
@@ -1890,7 +1890,7 @@ M.PutPermissionOutput = schema.new({
 })
 
 M.RemoveNotificationChannelInput = schema.new({
-    id = id.from(_N, "RemoveNotificationChannelInput"),
+    id = id.from(_N, "RemoveNotificationChannelRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -1917,7 +1917,7 @@ M.RemoveNotificationChannelInput = schema.new({
 })
 
 M.RemoveNotificationChannelOutput = schema.new({
-    id = id.from(_N, "RemoveNotificationChannelOutput"),
+    id = id.from(_N, "RemoveNotificationChannelResponse"),
     type = "structure",
     members = {
         notificationConfiguration = schema.new({
@@ -1931,7 +1931,7 @@ M.RemoveNotificationChannelOutput = schema.new({
 })
 
 M.RemovePermissionInput = schema.new({
-    id = id.from(_N, "RemovePermissionInput"),
+    id = id.from(_N, "RemovePermissionRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -1968,7 +1968,7 @@ M.RemovePermissionInput = schema.new({
 })
 
 M.RemovePermissionOutput = schema.new({
-    id = id.from(_N, "RemovePermissionOutput"),
+    id = id.from(_N, "RemovePermissionResponse"),
     type = "structure",
     members = {
         policy = schema.new({
@@ -1993,7 +1993,7 @@ M.RemovePermissionOutput = schema.new({
 })
 
 M.SubmitFeedbackInput = schema.new({
-    id = id.from(_N, "SubmitFeedbackInput"),
+    id = id.from(_N, "SubmitFeedbackRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -2035,12 +2035,12 @@ M.SubmitFeedbackInput = schema.new({
 })
 
 M.SubmitFeedbackOutput = schema.new({
-    id = id.from(_N, "SubmitFeedbackOutput"),
+    id = id.from(_N, "SubmitFeedbackResponse"),
     type = "structure",
 })
 
 M.UpdateProfilingGroupInput = schema.new({
-    id = id.from(_N, "UpdateProfilingGroupInput"),
+    id = id.from(_N, "UpdateProfilingGroupRequest"),
     type = "structure",
     members = {
         profilingGroupName = schema.new({
@@ -2067,7 +2067,7 @@ M.UpdateProfilingGroupInput = schema.new({
 })
 
 M.UpdateProfilingGroupOutput = schema.new({
-    id = id.from(_N, "UpdateProfilingGroupOutput"),
+    id = id.from(_N, "UpdateProfilingGroupResponse"),
     type = "structure",
     members = {
         profilingGroup = schema.new({
@@ -2085,7 +2085,7 @@ M.UpdateProfilingGroupOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2113,12 +2113,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2146,8 +2146,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

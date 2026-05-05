@@ -40,7 +40,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateSlackChannelConfigurationInput = schema.new({
-    id = id.from(_N, "CreateSlackChannelConfigurationInput"),
+    id = id.from(_N, "CreateSlackChannelConfigurationRequest"),
     type = "structure",
     members = {
         teamId = schema.new({
@@ -107,7 +107,7 @@ M.CreateSlackChannelConfigurationInput = schema.new({
 })
 
 M.CreateSlackChannelConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateSlackChannelConfigurationOutput"),
+    id = id.from(_N, "CreateSlackChannelConfigurationResult"),
     type = "structure",
 })
 
@@ -160,12 +160,12 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteAccountAliasInput = schema.new({
-    id = id.from(_N, "DeleteAccountAliasInput"),
+    id = id.from(_N, "DeleteAccountAliasRequest"),
     type = "structure",
 })
 
 M.DeleteAccountAliasOutput = schema.new({
-    id = id.from(_N, "DeleteAccountAliasOutput"),
+    id = id.from(_N, "DeleteAccountAliasResult"),
     type = "structure",
 })
 
@@ -186,7 +186,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DeleteSlackChannelConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteSlackChannelConfigurationInput"),
+    id = id.from(_N, "DeleteSlackChannelConfigurationRequest"),
     type = "structure",
     members = {
         teamId = schema.new({
@@ -211,12 +211,12 @@ M.DeleteSlackChannelConfigurationInput = schema.new({
 })
 
 M.DeleteSlackChannelConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteSlackChannelConfigurationOutput"),
+    id = id.from(_N, "DeleteSlackChannelConfigurationResult"),
     type = "structure",
 })
 
 M.DeleteSlackWorkspaceConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteSlackWorkspaceConfigurationInput"),
+    id = id.from(_N, "DeleteSlackWorkspaceConfigurationRequest"),
     type = "structure",
     members = {
         teamId = schema.new({
@@ -232,17 +232,17 @@ M.DeleteSlackWorkspaceConfigurationInput = schema.new({
 })
 
 M.DeleteSlackWorkspaceConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteSlackWorkspaceConfigurationOutput"),
+    id = id.from(_N, "DeleteSlackWorkspaceConfigurationResult"),
     type = "structure",
 })
 
 M.GetAccountAliasInput = schema.new({
-    id = id.from(_N, "GetAccountAliasInput"),
+    id = id.from(_N, "GetAccountAliasRequest"),
     type = "structure",
 })
 
 M.GetAccountAliasOutput = schema.new({
-    id = id.from(_N, "GetAccountAliasOutput"),
+    id = id.from(_N, "GetAccountAliasResult"),
     type = "structure",
     members = {
         accountAlias = schema.new({
@@ -255,7 +255,7 @@ M.GetAccountAliasOutput = schema.new({
 })
 
 M.ListSlackChannelConfigurationsInput = schema.new({
-    id = id.from(_N, "ListSlackChannelConfigurationsInput"),
+    id = id.from(_N, "ListSlackChannelConfigurationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -329,7 +329,7 @@ M.SlackChannelConfiguration = schema.new({
 })
 
 M.ListSlackChannelConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListSlackChannelConfigurationsOutput"),
+    id = id.from(_N, "ListSlackChannelConfigurationsResult"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -352,7 +352,7 @@ M.ListSlackChannelConfigurationsOutput = schema.new({
 })
 
 M.ListSlackWorkspaceConfigurationsInput = schema.new({
-    id = id.from(_N, "ListSlackWorkspaceConfigurationsInput"),
+    id = id.from(_N, "ListSlackWorkspaceConfigurationsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -393,7 +393,7 @@ M.SlackWorkspaceConfiguration = schema.new({
 })
 
 M.ListSlackWorkspaceConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListSlackWorkspaceConfigurationsOutput"),
+    id = id.from(_N, "ListSlackWorkspaceConfigurationsResult"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -413,7 +413,7 @@ M.ListSlackWorkspaceConfigurationsOutput = schema.new({
 })
 
 M.PutAccountAliasInput = schema.new({
-    id = id.from(_N, "PutAccountAliasInput"),
+    id = id.from(_N, "PutAccountAliasRequest"),
     type = "structure",
     members = {
         accountAlias = schema.new({
@@ -429,12 +429,12 @@ M.PutAccountAliasInput = schema.new({
 })
 
 M.PutAccountAliasOutput = schema.new({
-    id = id.from(_N, "PutAccountAliasOutput"),
+    id = id.from(_N, "PutAccountAliasResult"),
     type = "structure",
 })
 
 M.RegisterSlackWorkspaceForOrganizationInput = schema.new({
-    id = id.from(_N, "RegisterSlackWorkspaceForOrganizationInput"),
+    id = id.from(_N, "RegisterSlackWorkspaceForOrganizationRequest"),
     type = "structure",
     members = {
         teamId = schema.new({
@@ -450,7 +450,7 @@ M.RegisterSlackWorkspaceForOrganizationInput = schema.new({
 })
 
 M.RegisterSlackWorkspaceForOrganizationOutput = schema.new({
-    id = id.from(_N, "RegisterSlackWorkspaceForOrganizationOutput"),
+    id = id.from(_N, "RegisterSlackWorkspaceForOrganizationResult"),
     type = "structure",
     members = {
         teamId = schema.new({
@@ -475,7 +475,7 @@ M.RegisterSlackWorkspaceForOrganizationOutput = schema.new({
 })
 
 M.UpdateSlackChannelConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateSlackChannelConfigurationInput"),
+    id = id.from(_N, "UpdateSlackChannelConfigurationRequest"),
     type = "structure",
     members = {
         teamId = schema.new({
@@ -536,7 +536,7 @@ M.UpdateSlackChannelConfigurationInput = schema.new({
 })
 
 M.UpdateSlackChannelConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateSlackChannelConfigurationOutput"),
+    id = id.from(_N, "UpdateSlackChannelConfigurationResult"),
     type = "structure",
     members = {
         teamId = schema.new({
@@ -589,5 +589,19 @@ M.UpdateSlackChannelConfigurationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

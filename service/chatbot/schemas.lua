@@ -27,7 +27,7 @@ M.AccountPreferences = schema.new({
 })
 
 M.AssociateToConfigurationInput = schema.new({
-    id = id.from(_N, "AssociateToConfigurationInput"),
+    id = id.from(_N, "AssociateToConfigurationRequest"),
     type = "structure",
     members = {
         Resource = schema.new({
@@ -52,7 +52,7 @@ M.AssociateToConfigurationInput = schema.new({
 })
 
 M.AssociateToConfigurationOutput = schema.new({
-    id = id.from(_N, "AssociateToConfigurationOutput"),
+    id = id.from(_N, "AssociateToConfigurationResult"),
     type = "structure",
 })
 
@@ -296,7 +296,7 @@ M.CreateChimeWebhookConfigurationException = schema.new({
 })
 
 M.CreateChimeWebhookConfigurationInput = schema.new({
-    id = id.from(_N, "CreateChimeWebhookConfigurationInput"),
+    id = id.from(_N, "CreateChimeWebhookConfigurationRequest"),
     type = "structure",
     members = {
         WebhookDescription = schema.new({
@@ -362,7 +362,7 @@ M.CreateChimeWebhookConfigurationInput = schema.new({
 })
 
 M.CreateChimeWebhookConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateChimeWebhookConfigurationOutput"),
+    id = id.from(_N, "CreateChimeWebhookConfigurationResult"),
     type = "structure",
     members = {
         WebhookConfiguration = schema.new({
@@ -489,7 +489,7 @@ M.CustomActionDefinition = schema.new({
 })
 
 M.CreateCustomActionInput = schema.new({
-    id = id.from(_N, "CreateCustomActionInput"),
+    id = id.from(_N, "CreateCustomActionRequest"),
     type = "structure",
     members = {
         Definition = schema.new({
@@ -544,7 +544,7 @@ M.CreateCustomActionInput = schema.new({
 })
 
 M.CreateCustomActionOutput = schema.new({
-    id = id.from(_N, "CreateCustomActionOutput"),
+    id = id.from(_N, "CreateCustomActionResult"),
     type = "structure",
     members = {
         CustomActionArn = schema.new({
@@ -560,7 +560,7 @@ M.CreateCustomActionOutput = schema.new({
 })
 
 M.CreateMicrosoftTeamsChannelConfigurationInput = schema.new({
-    id = id.from(_N, "CreateMicrosoftTeamsChannelConfigurationInput"),
+    id = id.from(_N, "CreateTeamsChannelConfigurationRequest"),
     type = "structure",
     members = {
         ChannelId = schema.new({
@@ -775,7 +775,7 @@ M.TeamsChannelConfiguration = schema.new({
 })
 
 M.CreateMicrosoftTeamsChannelConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateMicrosoftTeamsChannelConfigurationOutput"),
+    id = id.from(_N, "CreateTeamsChannelConfigurationResult"),
     type = "structure",
     members = {
         ChannelConfiguration = schema.new({
@@ -821,7 +821,7 @@ M.CreateSlackChannelConfigurationException = schema.new({
 })
 
 M.CreateSlackChannelConfigurationInput = schema.new({
-    id = id.from(_N, "CreateSlackChannelConfigurationInput"),
+    id = id.from(_N, "CreateSlackChannelConfigurationRequest"),
     type = "structure",
     members = {
         SlackTeamId = schema.new({
@@ -1018,7 +1018,7 @@ M.SlackChannelConfiguration = schema.new({
 })
 
 M.CreateSlackChannelConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateSlackChannelConfigurationOutput"),
+    id = id.from(_N, "CreateSlackChannelConfigurationResult"),
     type = "structure",
     members = {
         ChannelConfiguration = schema.new({
@@ -1077,7 +1077,7 @@ M.CustomAction = schema.new({
 })
 
 M.DeleteCustomActionInput = schema.new({
-    id = id.from(_N, "DeleteCustomActionInput"),
+    id = id.from(_N, "DeleteCustomActionRequest"),
     type = "structure",
     members = {
         CustomActionArn = schema.new({
@@ -1093,7 +1093,7 @@ M.DeleteCustomActionInput = schema.new({
 })
 
 M.DeleteCustomActionOutput = schema.new({
-    id = id.from(_N, "DeleteCustomActionOutput"),
+    id = id.from(_N, "DeleteCustomActionResult"),
     type = "structure",
 })
 
@@ -1114,7 +1114,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.GetCustomActionInput = schema.new({
-    id = id.from(_N, "GetCustomActionInput"),
+    id = id.from(_N, "GetCustomActionRequest"),
     type = "structure",
     members = {
         CustomActionArn = schema.new({
@@ -1130,7 +1130,7 @@ M.GetCustomActionInput = schema.new({
 })
 
 M.GetCustomActionOutput = schema.new({
-    id = id.from(_N, "GetCustomActionOutput"),
+    id = id.from(_N, "GetCustomActionResult"),
     type = "structure",
     members = {
         CustomAction = schema.new({
@@ -1144,7 +1144,7 @@ M.GetCustomActionOutput = schema.new({
 })
 
 M.ListCustomActionsInput = schema.new({
-    id = id.from(_N, "ListCustomActionsInput"),
+    id = id.from(_N, "ListCustomActionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1163,7 +1163,7 @@ M.ListCustomActionsInput = schema.new({
 })
 
 M.ListCustomActionsOutput = schema.new({
-    id = id.from(_N, "ListCustomActionsOutput"),
+    id = id.from(_N, "ListCustomActionsResult"),
     type = "structure",
     members = {
         CustomActions = schema.new({
@@ -1186,7 +1186,7 @@ M.ListCustomActionsOutput = schema.new({
 })
 
 M.UpdateCustomActionInput = schema.new({
-    id = id.from(_N, "UpdateCustomActionInput"),
+    id = id.from(_N, "UpdateCustomActionRequest"),
     type = "structure",
     members = {
         CustomActionArn = schema.new({
@@ -1225,7 +1225,7 @@ M.UpdateCustomActionInput = schema.new({
 })
 
 M.UpdateCustomActionOutput = schema.new({
-    id = id.from(_N, "UpdateCustomActionOutput"),
+    id = id.from(_N, "UpdateCustomActionResult"),
     type = "structure",
     members = {
         CustomActionArn = schema.new({
@@ -1257,7 +1257,7 @@ M.DeleteChimeWebhookConfigurationException = schema.new({
 })
 
 M.DeleteChimeWebhookConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteChimeWebhookConfigurationInput"),
+    id = id.from(_N, "DeleteChimeWebhookConfigurationRequest"),
     type = "structure",
     members = {
         ChatConfigurationArn = schema.new({
@@ -1273,12 +1273,12 @@ M.DeleteChimeWebhookConfigurationInput = schema.new({
 })
 
 M.DeleteChimeWebhookConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteChimeWebhookConfigurationOutput"),
+    id = id.from(_N, "DeleteChimeWebhookConfigurationResult"),
     type = "structure",
 })
 
 M.DeleteMicrosoftTeamsChannelConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteMicrosoftTeamsChannelConfigurationInput"),
+    id = id.from(_N, "DeleteTeamsChannelConfigurationRequest"),
     type = "structure",
     members = {
         ChatConfigurationArn = schema.new({
@@ -1294,7 +1294,7 @@ M.DeleteMicrosoftTeamsChannelConfigurationInput = schema.new({
 })
 
 M.DeleteMicrosoftTeamsChannelConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteMicrosoftTeamsChannelConfigurationOutput"),
+    id = id.from(_N, "DeleteTeamsChannelConfigurationResult"),
     type = "structure",
 })
 
@@ -1315,7 +1315,7 @@ M.DeleteTeamsChannelConfigurationException = schema.new({
 })
 
 M.DeleteMicrosoftTeamsConfiguredTeamInput = schema.new({
-    id = id.from(_N, "DeleteMicrosoftTeamsConfiguredTeamInput"),
+    id = id.from(_N, "DeleteTeamsConfiguredTeamRequest"),
     type = "structure",
     members = {
         TeamId = schema.new({
@@ -1331,7 +1331,7 @@ M.DeleteMicrosoftTeamsConfiguredTeamInput = schema.new({
 })
 
 M.DeleteMicrosoftTeamsConfiguredTeamOutput = schema.new({
-    id = id.from(_N, "DeleteMicrosoftTeamsConfiguredTeamOutput"),
+    id = id.from(_N, "DeleteTeamsConfiguredTeamResult"),
     type = "structure",
 })
 
@@ -1368,7 +1368,7 @@ M.DeleteMicrosoftTeamsUserIdentityException = schema.new({
 })
 
 M.DeleteMicrosoftTeamsUserIdentityInput = schema.new({
-    id = id.from(_N, "DeleteMicrosoftTeamsUserIdentityInput"),
+    id = id.from(_N, "DeleteMicrosoftTeamsUserIdentityRequest"),
     type = "structure",
     members = {
         ChatConfigurationArn = schema.new({
@@ -1393,7 +1393,7 @@ M.DeleteMicrosoftTeamsUserIdentityInput = schema.new({
 })
 
 M.DeleteMicrosoftTeamsUserIdentityOutput = schema.new({
-    id = id.from(_N, "DeleteMicrosoftTeamsUserIdentityOutput"),
+    id = id.from(_N, "DeleteMicrosoftTeamsUserIdentityResult"),
     type = "structure",
 })
 
@@ -1414,7 +1414,7 @@ M.DeleteSlackChannelConfigurationException = schema.new({
 })
 
 M.DeleteSlackChannelConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteSlackChannelConfigurationInput"),
+    id = id.from(_N, "DeleteSlackChannelConfigurationRequest"),
     type = "structure",
     members = {
         ChatConfigurationArn = schema.new({
@@ -1430,7 +1430,7 @@ M.DeleteSlackChannelConfigurationInput = schema.new({
 })
 
 M.DeleteSlackChannelConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteSlackChannelConfigurationOutput"),
+    id = id.from(_N, "DeleteSlackChannelConfigurationResult"),
     type = "structure",
 })
 
@@ -1451,7 +1451,7 @@ M.DeleteSlackUserIdentityException = schema.new({
 })
 
 M.DeleteSlackUserIdentityInput = schema.new({
-    id = id.from(_N, "DeleteSlackUserIdentityInput"),
+    id = id.from(_N, "DeleteSlackUserIdentityRequest"),
     type = "structure",
     members = {
         ChatConfigurationArn = schema.new({
@@ -1485,7 +1485,7 @@ M.DeleteSlackUserIdentityInput = schema.new({
 })
 
 M.DeleteSlackUserIdentityOutput = schema.new({
-    id = id.from(_N, "DeleteSlackUserIdentityOutput"),
+    id = id.from(_N, "DeleteSlackUserIdentityResult"),
     type = "structure",
 })
 
@@ -1506,7 +1506,7 @@ M.DeleteSlackWorkspaceAuthorizationFault = schema.new({
 })
 
 M.DeleteSlackWorkspaceAuthorizationInput = schema.new({
-    id = id.from(_N, "DeleteSlackWorkspaceAuthorizationInput"),
+    id = id.from(_N, "DeleteSlackWorkspaceAuthorizationRequest"),
     type = "structure",
     members = {
         SlackTeamId = schema.new({
@@ -1522,7 +1522,7 @@ M.DeleteSlackWorkspaceAuthorizationInput = schema.new({
 })
 
 M.DeleteSlackWorkspaceAuthorizationOutput = schema.new({
-    id = id.from(_N, "DeleteSlackWorkspaceAuthorizationOutput"),
+    id = id.from(_N, "DeleteSlackWorkspaceAuthorizationResult"),
     type = "structure",
 })
 
@@ -1543,7 +1543,7 @@ M.DescribeChimeWebhookConfigurationsException = schema.new({
 })
 
 M.DescribeChimeWebhookConfigurationsInput = schema.new({
-    id = id.from(_N, "DescribeChimeWebhookConfigurationsInput"),
+    id = id.from(_N, "DescribeChimeWebhookConfigurationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1568,7 +1568,7 @@ M.DescribeChimeWebhookConfigurationsInput = schema.new({
 })
 
 M.DescribeChimeWebhookConfigurationsOutput = schema.new({
-    id = id.from(_N, "DescribeChimeWebhookConfigurationsOutput"),
+    id = id.from(_N, "DescribeChimeWebhookConfigurationsResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1604,7 +1604,7 @@ M.DescribeSlackChannelConfigurationsException = schema.new({
 })
 
 M.DescribeSlackChannelConfigurationsInput = schema.new({
-    id = id.from(_N, "DescribeSlackChannelConfigurationsInput"),
+    id = id.from(_N, "DescribeSlackChannelConfigurationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1629,7 +1629,7 @@ M.DescribeSlackChannelConfigurationsInput = schema.new({
 })
 
 M.DescribeSlackChannelConfigurationsOutput = schema.new({
-    id = id.from(_N, "DescribeSlackChannelConfigurationsOutput"),
+    id = id.from(_N, "DescribeSlackChannelConfigurationsResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1665,7 +1665,7 @@ M.DescribeSlackUserIdentitiesException = schema.new({
 })
 
 M.DescribeSlackUserIdentitiesInput = schema.new({
-    id = id.from(_N, "DescribeSlackUserIdentitiesInput"),
+    id = id.from(_N, "DescribeSlackUserIdentitiesRequest"),
     type = "structure",
     members = {
         ChatConfigurationArn = schema.new({
@@ -1739,7 +1739,7 @@ M.SlackUserIdentity = schema.new({
 })
 
 M.DescribeSlackUserIdentitiesOutput = schema.new({
-    id = id.from(_N, "DescribeSlackUserIdentitiesOutput"),
+    id = id.from(_N, "DescribeSlackUserIdentitiesResult"),
     type = "structure",
     members = {
         SlackUserIdentities = schema.new({
@@ -1775,7 +1775,7 @@ M.DescribeSlackWorkspacesException = schema.new({
 })
 
 M.DescribeSlackWorkspacesInput = schema.new({
-    id = id.from(_N, "DescribeSlackWorkspacesInput"),
+    id = id.from(_N, "DescribeSlackWorkspacesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1831,7 +1831,7 @@ M.SlackWorkspace = schema.new({
 })
 
 M.DescribeSlackWorkspacesOutput = schema.new({
-    id = id.from(_N, "DescribeSlackWorkspacesOutput"),
+    id = id.from(_N, "DescribeSlackWorkspacesResult"),
     type = "structure",
     members = {
         SlackWorkspaces = schema.new({
@@ -1851,7 +1851,7 @@ M.DescribeSlackWorkspacesOutput = schema.new({
 })
 
 M.DisassociateFromConfigurationInput = schema.new({
-    id = id.from(_N, "DisassociateFromConfigurationInput"),
+    id = id.from(_N, "DisassociateFromConfigurationRequest"),
     type = "structure",
     members = {
         Resource = schema.new({
@@ -1876,7 +1876,7 @@ M.DisassociateFromConfigurationInput = schema.new({
 })
 
 M.DisassociateFromConfigurationOutput = schema.new({
-    id = id.from(_N, "DisassociateFromConfigurationOutput"),
+    id = id.from(_N, "DisassociateFromConfigurationResult"),
     type = "structure",
 })
 
@@ -1897,12 +1897,12 @@ M.GetAccountPreferencesException = schema.new({
 })
 
 M.GetAccountPreferencesInput = schema.new({
-    id = id.from(_N, "GetAccountPreferencesInput"),
+    id = id.from(_N, "GetAccountPreferencesRequest"),
     type = "structure",
 })
 
 M.GetAccountPreferencesOutput = schema.new({
-    id = id.from(_N, "GetAccountPreferencesOutput"),
+    id = id.from(_N, "GetAccountPreferencesResult"),
     type = "structure",
     members = {
         AccountPreferences = schema.new({
@@ -1916,7 +1916,7 @@ M.GetAccountPreferencesOutput = schema.new({
 })
 
 M.GetMicrosoftTeamsChannelConfigurationInput = schema.new({
-    id = id.from(_N, "GetMicrosoftTeamsChannelConfigurationInput"),
+    id = id.from(_N, "GetTeamsChannelConfigurationRequest"),
     type = "structure",
     members = {
         ChatConfigurationArn = schema.new({
@@ -1932,7 +1932,7 @@ M.GetMicrosoftTeamsChannelConfigurationInput = schema.new({
 })
 
 M.GetMicrosoftTeamsChannelConfigurationOutput = schema.new({
-    id = id.from(_N, "GetMicrosoftTeamsChannelConfigurationOutput"),
+    id = id.from(_N, "GetTeamsChannelConfigurationResult"),
     type = "structure",
     members = {
         ChannelConfiguration = schema.new({
@@ -1962,7 +1962,7 @@ M.GetTeamsChannelConfigurationException = schema.new({
 })
 
 M.ListAssociationsInput = schema.new({
-    id = id.from(_N, "ListAssociationsInput"),
+    id = id.from(_N, "ListAssociationsRequest"),
     type = "structure",
     members = {
         ChatConfiguration = schema.new({
@@ -1990,7 +1990,7 @@ M.ListAssociationsInput = schema.new({
 })
 
 M.ListAssociationsOutput = schema.new({
-    id = id.from(_N, "ListAssociationsOutput"),
+    id = id.from(_N, "ListAssociationsResult"),
     type = "structure",
     members = {
         Associations = schema.new({
@@ -2013,7 +2013,7 @@ M.ListAssociationsOutput = schema.new({
 })
 
 M.ListMicrosoftTeamsChannelConfigurationsInput = schema.new({
-    id = id.from(_N, "ListMicrosoftTeamsChannelConfigurationsInput"),
+    id = id.from(_N, "ListTeamsChannelConfigurationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2038,7 +2038,7 @@ M.ListMicrosoftTeamsChannelConfigurationsInput = schema.new({
 })
 
 M.ListMicrosoftTeamsChannelConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListMicrosoftTeamsChannelConfigurationsOutput"),
+    id = id.from(_N, "ListTeamsChannelConfigurationsResult"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2090,7 +2090,7 @@ M.ListMicrosoftTeamsConfiguredTeamsException = schema.new({
 })
 
 M.ListMicrosoftTeamsConfiguredTeamsInput = schema.new({
-    id = id.from(_N, "ListMicrosoftTeamsConfiguredTeamsInput"),
+    id = id.from(_N, "ListMicrosoftTeamsConfiguredTeamsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2109,7 +2109,7 @@ M.ListMicrosoftTeamsConfiguredTeamsInput = schema.new({
 })
 
 M.ListMicrosoftTeamsConfiguredTeamsOutput = schema.new({
-    id = id.from(_N, "ListMicrosoftTeamsConfiguredTeamsOutput"),
+    id = id.from(_N, "ListMicrosoftTeamsConfiguredTeamsResult"),
     type = "structure",
     members = {
         ConfiguredTeams = schema.new({
@@ -2145,7 +2145,7 @@ M.ListMicrosoftTeamsUserIdentitiesException = schema.new({
 })
 
 M.ListMicrosoftTeamsUserIdentitiesInput = schema.new({
-    id = id.from(_N, "ListMicrosoftTeamsUserIdentitiesInput"),
+    id = id.from(_N, "ListMicrosoftTeamsUserIdentitiesRequest"),
     type = "structure",
     members = {
         ChatConfigurationArn = schema.new({
@@ -2228,7 +2228,7 @@ M.TeamsUserIdentity = schema.new({
 })
 
 M.ListMicrosoftTeamsUserIdentitiesOutput = schema.new({
-    id = id.from(_N, "ListMicrosoftTeamsUserIdentitiesOutput"),
+    id = id.from(_N, "ListMicrosoftTeamsUserIdentitiesResult"),
     type = "structure",
     members = {
         TeamsUserIdentities = schema.new({
@@ -2248,7 +2248,7 @@ M.ListMicrosoftTeamsUserIdentitiesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2264,7 +2264,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2294,7 +2294,7 @@ M.ServiceUnavailableException = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2320,7 +2320,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -2341,7 +2341,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2367,7 +2367,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -2388,7 +2388,7 @@ M.UpdateAccountPreferencesException = schema.new({
 })
 
 M.UpdateAccountPreferencesInput = schema.new({
-    id = id.from(_N, "UpdateAccountPreferencesInput"),
+    id = id.from(_N, "UpdateAccountPreferencesRequest"),
     type = "structure",
     members = {
         UserAuthorizationRequired = schema.new({
@@ -2407,7 +2407,7 @@ M.UpdateAccountPreferencesInput = schema.new({
 })
 
 M.UpdateAccountPreferencesOutput = schema.new({
-    id = id.from(_N, "UpdateAccountPreferencesOutput"),
+    id = id.from(_N, "UpdateAccountPreferencesResult"),
     type = "structure",
     members = {
         AccountPreferences = schema.new({
@@ -2437,7 +2437,7 @@ M.UpdateChimeWebhookConfigurationException = schema.new({
 })
 
 M.UpdateChimeWebhookConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateChimeWebhookConfigurationInput"),
+    id = id.from(_N, "UpdateChimeWebhookConfigurationRequest"),
     type = "structure",
     members = {
         ChatConfigurationArn = schema.new({
@@ -2484,7 +2484,7 @@ M.UpdateChimeWebhookConfigurationInput = schema.new({
 })
 
 M.UpdateChimeWebhookConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateChimeWebhookConfigurationOutput"),
+    id = id.from(_N, "UpdateChimeWebhookConfigurationResult"),
     type = "structure",
     members = {
         WebhookConfiguration = schema.new({
@@ -2498,7 +2498,7 @@ M.UpdateChimeWebhookConfigurationOutput = schema.new({
 })
 
 M.UpdateMicrosoftTeamsChannelConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateMicrosoftTeamsChannelConfigurationInput"),
+    id = id.from(_N, "UpdateTeamsChannelConfigurationRequest"),
     type = "structure",
     members = {
         ChatConfigurationArn = schema.new({
@@ -2561,7 +2561,7 @@ M.UpdateMicrosoftTeamsChannelConfigurationInput = schema.new({
 })
 
 M.UpdateMicrosoftTeamsChannelConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateMicrosoftTeamsChannelConfigurationOutput"),
+    id = id.from(_N, "UpdateTeamsChannelConfigurationResult"),
     type = "structure",
     members = {
         ChannelConfiguration = schema.new({
@@ -2607,7 +2607,7 @@ M.UpdateSlackChannelConfigurationException = schema.new({
 })
 
 M.UpdateSlackChannelConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateSlackChannelConfigurationInput"),
+    id = id.from(_N, "UpdateSlackChannelConfigurationRequest"),
     type = "structure",
     members = {
         ChatConfigurationArn = schema.new({
@@ -2670,7 +2670,7 @@ M.UpdateSlackChannelConfigurationInput = schema.new({
 })
 
 M.UpdateSlackChannelConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateSlackChannelConfigurationOutput"),
+    id = id.from(_N, "UpdateSlackChannelConfigurationResult"),
     type = "structure",
     members = {
         ChannelConfiguration = schema.new({
@@ -2682,5 +2682,19 @@ M.UpdateSlackChannelConfigurationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

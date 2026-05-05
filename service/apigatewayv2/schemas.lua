@@ -883,7 +883,7 @@ M.Integration = schema.new({
             name = "ResponseParameters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
             traits = {
                 [traits.JSON_NAME] = { name = "responseParameters" },
             },
@@ -2637,7 +2637,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateApiInput = schema.new({
-    id = id.from(_N, "CreateApiInput"),
+    id = id.from(_N, "CreateApiRequest"),
     type = "structure",
     members = {
         ApiKeySelectionExpression = schema.new({
@@ -2775,7 +2775,7 @@ M.CreateApiInput = schema.new({
 })
 
 M.CreateApiOutput = schema.new({
-    id = id.from(_N, "CreateApiOutput"),
+    id = id.from(_N, "CreateApiResponse"),
     type = "structure",
     members = {
         ApiEndpoint = schema.new({
@@ -3000,7 +3000,7 @@ M.TooManyRequestsException = schema.new({
 })
 
 M.CreateApiMappingInput = schema.new({
-    id = id.from(_N, "CreateApiMappingInput"),
+    id = id.from(_N, "CreateApiMappingRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -3046,7 +3046,7 @@ M.CreateApiMappingInput = schema.new({
 })
 
 M.CreateApiMappingOutput = schema.new({
-    id = id.from(_N, "CreateApiMappingOutput"),
+    id = id.from(_N, "CreateApiMappingResponse"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -3089,7 +3089,7 @@ M.CreateApiMappingOutput = schema.new({
 })
 
 M.CreateAuthorizerInput = schema.new({
-    id = id.from(_N, "CreateAuthorizerInput"),
+    id = id.from(_N, "CreateAuthorizerRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -3201,7 +3201,7 @@ M.CreateAuthorizerInput = schema.new({
 })
 
 M.CreateAuthorizerOutput = schema.new({
-    id = id.from(_N, "CreateAuthorizerOutput"),
+    id = id.from(_N, "CreateAuthorizerResponse"),
     type = "structure",
     members = {
         AuthorizerCredentialsArn = schema.new({
@@ -3309,7 +3309,7 @@ M.CreateAuthorizerOutput = schema.new({
 })
 
 M.CreateDeploymentInput = schema.new({
-    id = id.from(_N, "CreateDeploymentInput"),
+    id = id.from(_N, "CreateDeploymentRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -3344,7 +3344,7 @@ M.CreateDeploymentInput = schema.new({
 })
 
 M.CreateDeploymentOutput = schema.new({
-    id = id.from(_N, "CreateDeploymentOutput"),
+    id = id.from(_N, "CreateDeploymentResponse"),
     type = "structure",
     members = {
         AutoDeployed = schema.new({
@@ -3434,7 +3434,7 @@ M.MutualTlsAuthenticationInput = schema.new({
 })
 
 M.CreateDomainNameInput = schema.new({
-    id = id.from(_N, "CreateDomainNameInput"),
+    id = id.from(_N, "CreateDomainNameRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -3491,7 +3491,7 @@ M.CreateDomainNameInput = schema.new({
 })
 
 M.CreateDomainNameOutput = schema.new({
-    id = id.from(_N, "CreateDomainNameOutput"),
+    id = id.from(_N, "CreateDomainNameResponse"),
     type = "structure",
     members = {
         ApiMappingSelectionExpression = schema.new({
@@ -3581,7 +3581,7 @@ M.TlsConfigInput = schema.new({
 })
 
 M.CreateIntegrationInput = schema.new({
-    id = id.from(_N, "CreateIntegrationInput"),
+    id = id.from(_N, "CreateIntegrationRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -3722,7 +3722,7 @@ M.CreateIntegrationInput = schema.new({
             name = "ResponseParameters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
             traits = {
                 [traits.JSON_NAME] = { name = "responseParameters" },
             },
@@ -3759,7 +3759,7 @@ M.CreateIntegrationInput = schema.new({
 })
 
 M.CreateIntegrationOutput = schema.new({
-    id = id.from(_N, "CreateIntegrationOutput"),
+    id = id.from(_N, "CreateIntegrationResult"),
     type = "structure",
     members = {
         ApiGatewayManaged = schema.new({
@@ -3916,7 +3916,7 @@ M.CreateIntegrationOutput = schema.new({
             name = "ResponseParameters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
             traits = {
                 [traits.JSON_NAME] = { name = "responseParameters" },
             },
@@ -3953,7 +3953,7 @@ M.CreateIntegrationOutput = schema.new({
 })
 
 M.CreateIntegrationResponseInput = schema.new({
-    id = id.from(_N, "CreateIntegrationResponseInput"),
+    id = id.from(_N, "CreateIntegrationResponseRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -4030,7 +4030,7 @@ M.CreateIntegrationResponseInput = schema.new({
 })
 
 M.CreateIntegrationResponseOutput = schema.new({
-    id = id.from(_N, "CreateIntegrationResponseOutput"),
+    id = id.from(_N, "CreateIntegrationResponseResponse"),
     type = "structure",
     members = {
         ContentHandlingStrategy = schema.new({
@@ -4095,7 +4095,7 @@ M.CreateIntegrationResponseOutput = schema.new({
 })
 
 M.CreateModelInput = schema.new({
-    id = id.from(_N, "CreateModelInput"),
+    id = id.from(_N, "CreateModelRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -4150,7 +4150,7 @@ M.CreateModelInput = schema.new({
 })
 
 M.CreateModelOutput = schema.new({
-    id = id.from(_N, "CreateModelOutput"),
+    id = id.from(_N, "CreateModelResponse"),
     type = "structure",
     members = {
         ContentType = schema.new({
@@ -4229,7 +4229,7 @@ M.EndpointConfigurationRequest = schema.new({
 })
 
 M.CreatePortalInput = schema.new({
-    id = id.from(_N, "CreatePortalInput"),
+    id = id.from(_N, "CreatePortalRequest"),
     type = "structure",
     members = {
         Authorization = schema.new({
@@ -4308,7 +4308,7 @@ M.CreatePortalInput = schema.new({
 })
 
 M.CreatePortalOutput = schema.new({
-    id = id.from(_N, "CreatePortalOutput"),
+    id = id.from(_N, "CreatePortalResponse"),
     type = "structure",
     members = {
         Authorization = schema.new({
@@ -4447,7 +4447,7 @@ M.CreatePortalOutput = schema.new({
 })
 
 M.CreatePortalProductInput = schema.new({
-    id = id.from(_N, "CreatePortalProductInput"),
+    id = id.from(_N, "CreatePortalProductRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -4520,7 +4520,7 @@ M.DisplayOrder = schema.new({
 })
 
 M.CreatePortalProductOutput = schema.new({
-    id = id.from(_N, "CreatePortalProductOutput"),
+    id = id.from(_N, "CreatePortalProductResponse"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -4624,7 +4624,7 @@ M.DisplayContent = schema.new({
 })
 
 M.CreateProductPageInput = schema.new({
-    id = id.from(_N, "CreateProductPageInput"),
+    id = id.from(_N, "CreateProductPageRequest"),
     type = "structure",
     members = {
         DisplayContent = schema.new({
@@ -4652,7 +4652,7 @@ M.CreateProductPageInput = schema.new({
 })
 
 M.CreateProductPageOutput = schema.new({
-    id = id.from(_N, "CreateProductPageOutput"),
+    id = id.from(_N, "CreateProductPageResponse"),
     type = "structure",
     members = {
         DisplayContent = schema.new({
@@ -4761,7 +4761,7 @@ M.EndpointDisplayContent = schema.new({
 })
 
 M.CreateProductRestEndpointPageInput = schema.new({
-    id = id.from(_N, "CreateProductRestEndpointPageInput"),
+    id = id.from(_N, "CreateProductRestEndpointPageRequest"),
     type = "structure",
     members = {
         DisplayContent = schema.new({
@@ -4843,7 +4843,7 @@ M.EndpointDisplayContentResponse = schema.new({
 })
 
 M.CreateProductRestEndpointPageOutput = schema.new({
-    id = id.from(_N, "CreateProductRestEndpointPageOutput"),
+    id = id.from(_N, "CreateProductRestEndpointPageResponse"),
     type = "structure",
     members = {
         DisplayContent = schema.new({
@@ -4929,7 +4929,7 @@ M.CreateProductRestEndpointPageOutput = schema.new({
 })
 
 M.CreateRouteInput = schema.new({
-    id = id.from(_N, "CreateRouteInput"),
+    id = id.from(_N, "CreateRouteRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -5051,7 +5051,7 @@ M.CreateRouteInput = schema.new({
 })
 
 M.CreateRouteOutput = schema.new({
-    id = id.from(_N, "CreateRouteOutput"),
+    id = id.from(_N, "CreateRouteResult"),
     type = "structure",
     members = {
         ApiGatewayManaged = schema.new({
@@ -5180,7 +5180,7 @@ M.CreateRouteOutput = schema.new({
 })
 
 M.CreateRouteResponseInput = schema.new({
-    id = id.from(_N, "CreateRouteResponseInput"),
+    id = id.from(_N, "CreateRouteResponseRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -5248,7 +5248,7 @@ M.CreateRouteResponseInput = schema.new({
 })
 
 M.CreateRouteResponseOutput = schema.new({
-    id = id.from(_N, "CreateRouteResponseOutput"),
+    id = id.from(_N, "CreateRouteResponseResponse"),
     type = "structure",
     members = {
         ModelSelectionExpression = schema.new({
@@ -5304,7 +5304,7 @@ M.CreateRouteResponseOutput = schema.new({
 })
 
 M.CreateRoutingRuleInput = schema.new({
-    id = id.from(_N, "CreateRoutingRuleInput"),
+    id = id.from(_N, "CreateRoutingRuleRequest"),
     type = "structure",
     members = {
         Actions = schema.new({
@@ -5362,7 +5362,7 @@ M.CreateRoutingRuleInput = schema.new({
 })
 
 M.CreateRoutingRuleOutput = schema.new({
-    id = id.from(_N, "CreateRoutingRuleOutput"),
+    id = id.from(_N, "CreateRoutingRuleResponse"),
     type = "structure",
     members = {
         Actions = schema.new({
@@ -5416,7 +5416,7 @@ M.CreateRoutingRuleOutput = schema.new({
 })
 
 M.CreateStageInput = schema.new({
-    id = id.from(_N, "CreateStageInput"),
+    id = id.from(_N, "CreateStageRequest"),
     type = "structure",
     members = {
         AccessLogSettings = schema.new({
@@ -5532,7 +5532,7 @@ M.CreateStageInput = schema.new({
 })
 
 M.CreateStageOutput = schema.new({
-    id = id.from(_N, "CreateStageOutput"),
+    id = id.from(_N, "CreateStageResponse"),
     type = "structure",
     members = {
         AccessLogSettings = schema.new({
@@ -5681,7 +5681,7 @@ M.CreateStageOutput = schema.new({
 })
 
 M.CreateVpcLinkInput = schema.new({
-    id = id.from(_N, "CreateVpcLinkInput"),
+    id = id.from(_N, "CreateVpcLinkRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -5730,7 +5730,7 @@ M.CreateVpcLinkInput = schema.new({
 })
 
 M.CreateVpcLinkOutput = schema.new({
-    id = id.from(_N, "CreateVpcLinkOutput"),
+    id = id.from(_N, "CreateVpcLinkResponse"),
     type = "structure",
     members = {
         CreatedDate = schema.new({
@@ -5826,7 +5826,7 @@ M.CreateVpcLinkOutput = schema.new({
 })
 
 M.DeleteAccessLogSettingsInput = schema.new({
-    id = id.from(_N, "DeleteAccessLogSettingsInput"),
+    id = id.from(_N, "DeleteAccessLogSettingsRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -5853,12 +5853,12 @@ M.DeleteAccessLogSettingsInput = schema.new({
 })
 
 M.DeleteAccessLogSettingsOutput = schema.new({
-    id = id.from(_N, "DeleteAccessLogSettingsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteApiInput = schema.new({
-    id = id.from(_N, "DeleteApiInput"),
+    id = id.from(_N, "DeleteApiRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -5875,12 +5875,12 @@ M.DeleteApiInput = schema.new({
 })
 
 M.DeleteApiOutput = schema.new({
-    id = id.from(_N, "DeleteApiOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteApiMappingInput = schema.new({
-    id = id.from(_N, "DeleteApiMappingInput"),
+    id = id.from(_N, "DeleteApiMappingRequest"),
     type = "structure",
     members = {
         ApiMappingId = schema.new({
@@ -5907,12 +5907,12 @@ M.DeleteApiMappingInput = schema.new({
 })
 
 M.DeleteApiMappingOutput = schema.new({
-    id = id.from(_N, "DeleteApiMappingOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAuthorizerInput = schema.new({
-    id = id.from(_N, "DeleteAuthorizerInput"),
+    id = id.from(_N, "DeleteAuthorizerRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -5939,12 +5939,12 @@ M.DeleteAuthorizerInput = schema.new({
 })
 
 M.DeleteAuthorizerOutput = schema.new({
-    id = id.from(_N, "DeleteAuthorizerOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteCorsConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteCorsConfigurationInput"),
+    id = id.from(_N, "DeleteCorsConfigurationRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -5961,12 +5961,12 @@ M.DeleteCorsConfigurationInput = schema.new({
 })
 
 M.DeleteCorsConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteCorsConfigurationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDeploymentInput = schema.new({
-    id = id.from(_N, "DeleteDeploymentInput"),
+    id = id.from(_N, "DeleteDeploymentRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -5993,12 +5993,12 @@ M.DeleteDeploymentInput = schema.new({
 })
 
 M.DeleteDeploymentOutput = schema.new({
-    id = id.from(_N, "DeleteDeploymentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDomainNameInput = schema.new({
-    id = id.from(_N, "DeleteDomainNameInput"),
+    id = id.from(_N, "DeleteDomainNameRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -6015,12 +6015,12 @@ M.DeleteDomainNameInput = schema.new({
 })
 
 M.DeleteDomainNameOutput = schema.new({
-    id = id.from(_N, "DeleteDomainNameOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteIntegrationInput = schema.new({
-    id = id.from(_N, "DeleteIntegrationInput"),
+    id = id.from(_N, "DeleteIntegrationRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -6047,12 +6047,12 @@ M.DeleteIntegrationInput = schema.new({
 })
 
 M.DeleteIntegrationOutput = schema.new({
-    id = id.from(_N, "DeleteIntegrationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteIntegrationResponseInput = schema.new({
-    id = id.from(_N, "DeleteIntegrationResponseInput"),
+    id = id.from(_N, "DeleteIntegrationResponseRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -6089,12 +6089,12 @@ M.DeleteIntegrationResponseInput = schema.new({
 })
 
 M.DeleteIntegrationResponseOutput = schema.new({
-    id = id.from(_N, "DeleteIntegrationResponseOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteModelInput = schema.new({
-    id = id.from(_N, "DeleteModelInput"),
+    id = id.from(_N, "DeleteModelRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -6121,12 +6121,12 @@ M.DeleteModelInput = schema.new({
 })
 
 M.DeleteModelOutput = schema.new({
-    id = id.from(_N, "DeleteModelOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeletePortalInput = schema.new({
-    id = id.from(_N, "DeletePortalInput"),
+    id = id.from(_N, "DeletePortalRequest"),
     type = "structure",
     members = {
         PortalId = schema.new({
@@ -6143,12 +6143,12 @@ M.DeletePortalInput = schema.new({
 })
 
 M.DeletePortalOutput = schema.new({
-    id = id.from(_N, "DeletePortalOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeletePortalProductInput = schema.new({
-    id = id.from(_N, "DeletePortalProductInput"),
+    id = id.from(_N, "DeletePortalProductRequest"),
     type = "structure",
     members = {
         PortalProductId = schema.new({
@@ -6165,12 +6165,12 @@ M.DeletePortalProductInput = schema.new({
 })
 
 M.DeletePortalProductOutput = schema.new({
-    id = id.from(_N, "DeletePortalProductOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeletePortalProductSharingPolicyInput = schema.new({
-    id = id.from(_N, "DeletePortalProductSharingPolicyInput"),
+    id = id.from(_N, "DeletePortalProductSharingPolicyRequest"),
     type = "structure",
     members = {
         PortalProductId = schema.new({
@@ -6187,12 +6187,12 @@ M.DeletePortalProductSharingPolicyInput = schema.new({
 })
 
 M.DeletePortalProductSharingPolicyOutput = schema.new({
-    id = id.from(_N, "DeletePortalProductSharingPolicyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteProductPageInput = schema.new({
-    id = id.from(_N, "DeleteProductPageInput"),
+    id = id.from(_N, "DeleteProductPageRequest"),
     type = "structure",
     members = {
         PortalProductId = schema.new({
@@ -6219,12 +6219,12 @@ M.DeleteProductPageInput = schema.new({
 })
 
 M.DeleteProductPageOutput = schema.new({
-    id = id.from(_N, "DeleteProductPageOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteProductRestEndpointPageInput = schema.new({
-    id = id.from(_N, "DeleteProductRestEndpointPageInput"),
+    id = id.from(_N, "DeleteProductRestEndpointPageRequest"),
     type = "structure",
     members = {
         PortalProductId = schema.new({
@@ -6251,12 +6251,12 @@ M.DeleteProductRestEndpointPageInput = schema.new({
 })
 
 M.DeleteProductRestEndpointPageOutput = schema.new({
-    id = id.from(_N, "DeleteProductRestEndpointPageOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRouteInput = schema.new({
-    id = id.from(_N, "DeleteRouteInput"),
+    id = id.from(_N, "DeleteRouteRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -6283,12 +6283,12 @@ M.DeleteRouteInput = schema.new({
 })
 
 M.DeleteRouteOutput = schema.new({
-    id = id.from(_N, "DeleteRouteOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRouteRequestParameterInput = schema.new({
-    id = id.from(_N, "DeleteRouteRequestParameterInput"),
+    id = id.from(_N, "DeleteRouteRequestParameterRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -6325,12 +6325,12 @@ M.DeleteRouteRequestParameterInput = schema.new({
 })
 
 M.DeleteRouteRequestParameterOutput = schema.new({
-    id = id.from(_N, "DeleteRouteRequestParameterOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRouteResponseInput = schema.new({
-    id = id.from(_N, "DeleteRouteResponseInput"),
+    id = id.from(_N, "DeleteRouteResponseRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -6367,12 +6367,12 @@ M.DeleteRouteResponseInput = schema.new({
 })
 
 M.DeleteRouteResponseOutput = schema.new({
-    id = id.from(_N, "DeleteRouteResponseOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRouteSettingsInput = schema.new({
-    id = id.from(_N, "DeleteRouteSettingsInput"),
+    id = id.from(_N, "DeleteRouteSettingsRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -6409,12 +6409,12 @@ M.DeleteRouteSettingsInput = schema.new({
 })
 
 M.DeleteRouteSettingsOutput = schema.new({
-    id = id.from(_N, "DeleteRouteSettingsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRoutingRuleInput = schema.new({
-    id = id.from(_N, "DeleteRoutingRuleInput"),
+    id = id.from(_N, "DeleteRoutingRuleRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -6450,12 +6450,12 @@ M.DeleteRoutingRuleInput = schema.new({
 })
 
 M.DeleteRoutingRuleOutput = schema.new({
-    id = id.from(_N, "DeleteRoutingRuleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteStageInput = schema.new({
-    id = id.from(_N, "DeleteStageInput"),
+    id = id.from(_N, "DeleteStageRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -6482,12 +6482,12 @@ M.DeleteStageInput = schema.new({
 })
 
 M.DeleteStageOutput = schema.new({
-    id = id.from(_N, "DeleteStageOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteVpcLinkInput = schema.new({
-    id = id.from(_N, "DeleteVpcLinkInput"),
+    id = id.from(_N, "DeleteVpcLinkRequest"),
     type = "structure",
     members = {
         VpcLinkId = schema.new({
@@ -6504,12 +6504,12 @@ M.DeleteVpcLinkInput = schema.new({
 })
 
 M.DeleteVpcLinkOutput = schema.new({
-    id = id.from(_N, "DeleteVpcLinkOutput"),
+    id = id.from(_N, "DeleteVpcLinkResponse"),
     type = "structure",
 })
 
 M.DisablePortalInput = schema.new({
-    id = id.from(_N, "DisablePortalInput"),
+    id = id.from(_N, "DisablePortalRequest"),
     type = "structure",
     members = {
         PortalId = schema.new({
@@ -6526,12 +6526,12 @@ M.DisablePortalInput = schema.new({
 })
 
 M.DisablePortalOutput = schema.new({
-    id = id.from(_N, "DisablePortalOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ExportApiInput = schema.new({
-    id = id.from(_N, "ExportApiInput"),
+    id = id.from(_N, "ExportApiRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -6595,7 +6595,7 @@ M.ExportApiInput = schema.new({
 })
 
 M.ExportApiOutput = schema.new({
-    id = id.from(_N, "ExportApiOutput"),
+    id = id.from(_N, "ExportApiResponse"),
     type = "structure",
     members = {
         body = schema.new({
@@ -6611,7 +6611,7 @@ M.ExportApiOutput = schema.new({
 })
 
 M.GetApiInput = schema.new({
-    id = id.from(_N, "GetApiInput"),
+    id = id.from(_N, "GetApiRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -6628,7 +6628,7 @@ M.GetApiInput = schema.new({
 })
 
 M.GetApiOutput = schema.new({
-    id = id.from(_N, "GetApiOutput"),
+    id = id.from(_N, "GetApiResponse"),
     type = "structure",
     members = {
         ApiEndpoint = schema.new({
@@ -6797,7 +6797,7 @@ M.GetApiOutput = schema.new({
 })
 
 M.GetApiMappingInput = schema.new({
-    id = id.from(_N, "GetApiMappingInput"),
+    id = id.from(_N, "GetApiMappingRequest"),
     type = "structure",
     members = {
         ApiMappingId = schema.new({
@@ -6824,7 +6824,7 @@ M.GetApiMappingInput = schema.new({
 })
 
 M.GetApiMappingOutput = schema.new({
-    id = id.from(_N, "GetApiMappingOutput"),
+    id = id.from(_N, "GetApiMappingResponse"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -6867,7 +6867,7 @@ M.GetApiMappingOutput = schema.new({
 })
 
 M.GetApiMappingsInput = schema.new({
-    id = id.from(_N, "GetApiMappingsInput"),
+    id = id.from(_N, "GetApiMappingsRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -6902,7 +6902,7 @@ M.GetApiMappingsInput = schema.new({
 })
 
 M.GetApiMappingsOutput = schema.new({
-    id = id.from(_N, "GetApiMappingsOutput"),
+    id = id.from(_N, "GetApiMappingsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -6928,7 +6928,7 @@ M.GetApiMappingsOutput = schema.new({
 })
 
 M.GetApisInput = schema.new({
-    id = id.from(_N, "GetApisInput"),
+    id = id.from(_N, "GetApisRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -6953,7 +6953,7 @@ M.GetApisInput = schema.new({
 })
 
 M.GetApisOutput = schema.new({
-    id = id.from(_N, "GetApisOutput"),
+    id = id.from(_N, "GetApisResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -6979,7 +6979,7 @@ M.GetApisOutput = schema.new({
 })
 
 M.GetAuthorizerInput = schema.new({
-    id = id.from(_N, "GetAuthorizerInput"),
+    id = id.from(_N, "GetAuthorizerRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -7006,7 +7006,7 @@ M.GetAuthorizerInput = schema.new({
 })
 
 M.GetAuthorizerOutput = schema.new({
-    id = id.from(_N, "GetAuthorizerOutput"),
+    id = id.from(_N, "GetAuthorizerResponse"),
     type = "structure",
     members = {
         AuthorizerCredentialsArn = schema.new({
@@ -7114,7 +7114,7 @@ M.GetAuthorizerOutput = schema.new({
 })
 
 M.GetAuthorizersInput = schema.new({
-    id = id.from(_N, "GetAuthorizersInput"),
+    id = id.from(_N, "GetAuthorizersRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -7149,7 +7149,7 @@ M.GetAuthorizersInput = schema.new({
 })
 
 M.GetAuthorizersOutput = schema.new({
-    id = id.from(_N, "GetAuthorizersOutput"),
+    id = id.from(_N, "GetAuthorizersResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -7175,7 +7175,7 @@ M.GetAuthorizersOutput = schema.new({
 })
 
 M.GetDeploymentInput = schema.new({
-    id = id.from(_N, "GetDeploymentInput"),
+    id = id.from(_N, "GetDeploymentRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -7202,7 +7202,7 @@ M.GetDeploymentInput = schema.new({
 })
 
 M.GetDeploymentOutput = schema.new({
-    id = id.from(_N, "GetDeploymentOutput"),
+    id = id.from(_N, "GetDeploymentResponse"),
     type = "structure",
     members = {
         AutoDeployed = schema.new({
@@ -7267,7 +7267,7 @@ M.GetDeploymentOutput = schema.new({
 })
 
 M.GetDeploymentsInput = schema.new({
-    id = id.from(_N, "GetDeploymentsInput"),
+    id = id.from(_N, "GetDeploymentsRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -7302,7 +7302,7 @@ M.GetDeploymentsInput = schema.new({
 })
 
 M.GetDeploymentsOutput = schema.new({
-    id = id.from(_N, "GetDeploymentsOutput"),
+    id = id.from(_N, "GetDeploymentsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -7328,7 +7328,7 @@ M.GetDeploymentsOutput = schema.new({
 })
 
 M.GetDomainNameInput = schema.new({
-    id = id.from(_N, "GetDomainNameInput"),
+    id = id.from(_N, "GetDomainNameRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -7345,7 +7345,7 @@ M.GetDomainNameInput = schema.new({
 })
 
 M.GetDomainNameOutput = schema.new({
-    id = id.from(_N, "GetDomainNameOutput"),
+    id = id.from(_N, "GetDomainNameResponse"),
     type = "structure",
     members = {
         ApiMappingSelectionExpression = schema.new({
@@ -7419,7 +7419,7 @@ M.GetDomainNameOutput = schema.new({
 })
 
 M.GetDomainNamesInput = schema.new({
-    id = id.from(_N, "GetDomainNamesInput"),
+    id = id.from(_N, "GetDomainNamesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -7444,7 +7444,7 @@ M.GetDomainNamesInput = schema.new({
 })
 
 M.GetDomainNamesOutput = schema.new({
-    id = id.from(_N, "GetDomainNamesOutput"),
+    id = id.from(_N, "GetDomainNamesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -7470,7 +7470,7 @@ M.GetDomainNamesOutput = schema.new({
 })
 
 M.GetIntegrationInput = schema.new({
-    id = id.from(_N, "GetIntegrationInput"),
+    id = id.from(_N, "GetIntegrationRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -7497,7 +7497,7 @@ M.GetIntegrationInput = schema.new({
 })
 
 M.GetIntegrationOutput = schema.new({
-    id = id.from(_N, "GetIntegrationOutput"),
+    id = id.from(_N, "GetIntegrationResult"),
     type = "structure",
     members = {
         ApiGatewayManaged = schema.new({
@@ -7654,7 +7654,7 @@ M.GetIntegrationOutput = schema.new({
             name = "ResponseParameters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
             traits = {
                 [traits.JSON_NAME] = { name = "responseParameters" },
             },
@@ -7691,7 +7691,7 @@ M.GetIntegrationOutput = schema.new({
 })
 
 M.GetIntegrationResponseInput = schema.new({
-    id = id.from(_N, "GetIntegrationResponseInput"),
+    id = id.from(_N, "GetIntegrationResponseRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -7728,7 +7728,7 @@ M.GetIntegrationResponseInput = schema.new({
 })
 
 M.GetIntegrationResponseOutput = schema.new({
-    id = id.from(_N, "GetIntegrationResponseOutput"),
+    id = id.from(_N, "GetIntegrationResponseResponse"),
     type = "structure",
     members = {
         ContentHandlingStrategy = schema.new({
@@ -7793,7 +7793,7 @@ M.GetIntegrationResponseOutput = schema.new({
 })
 
 M.GetIntegrationResponsesInput = schema.new({
-    id = id.from(_N, "GetIntegrationResponsesInput"),
+    id = id.from(_N, "GetIntegrationResponsesRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -7838,7 +7838,7 @@ M.GetIntegrationResponsesInput = schema.new({
 })
 
 M.GetIntegrationResponsesOutput = schema.new({
-    id = id.from(_N, "GetIntegrationResponsesOutput"),
+    id = id.from(_N, "GetIntegrationResponsesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -7864,7 +7864,7 @@ M.GetIntegrationResponsesOutput = schema.new({
 })
 
 M.GetIntegrationsInput = schema.new({
-    id = id.from(_N, "GetIntegrationsInput"),
+    id = id.from(_N, "GetIntegrationsRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -7899,7 +7899,7 @@ M.GetIntegrationsInput = schema.new({
 })
 
 M.GetIntegrationsOutput = schema.new({
-    id = id.from(_N, "GetIntegrationsOutput"),
+    id = id.from(_N, "GetIntegrationsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -7925,7 +7925,7 @@ M.GetIntegrationsOutput = schema.new({
 })
 
 M.GetModelInput = schema.new({
-    id = id.from(_N, "GetModelInput"),
+    id = id.from(_N, "GetModelRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -7952,7 +7952,7 @@ M.GetModelInput = schema.new({
 })
 
 M.GetModelOutput = schema.new({
-    id = id.from(_N, "GetModelOutput"),
+    id = id.from(_N, "GetModelResponse"),
     type = "structure",
     members = {
         ContentType = schema.new({
@@ -8004,7 +8004,7 @@ M.GetModelOutput = schema.new({
 })
 
 M.GetModelsInput = schema.new({
-    id = id.from(_N, "GetModelsInput"),
+    id = id.from(_N, "GetModelsRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -8039,7 +8039,7 @@ M.GetModelsInput = schema.new({
 })
 
 M.GetModelsOutput = schema.new({
-    id = id.from(_N, "GetModelsOutput"),
+    id = id.from(_N, "GetModelsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -8065,7 +8065,7 @@ M.GetModelsOutput = schema.new({
 })
 
 M.GetModelTemplateInput = schema.new({
-    id = id.from(_N, "GetModelTemplateInput"),
+    id = id.from(_N, "GetModelTemplateRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -8092,7 +8092,7 @@ M.GetModelTemplateInput = schema.new({
 })
 
 M.GetModelTemplateOutput = schema.new({
-    id = id.from(_N, "GetModelTemplateOutput"),
+    id = id.from(_N, "GetModelTemplateResponse"),
     type = "structure",
     members = {
         Value = schema.new({
@@ -8108,7 +8108,7 @@ M.GetModelTemplateOutput = schema.new({
 })
 
 M.GetPortalInput = schema.new({
-    id = id.from(_N, "GetPortalInput"),
+    id = id.from(_N, "GetPortalRequest"),
     type = "structure",
     members = {
         PortalId = schema.new({
@@ -8125,7 +8125,7 @@ M.GetPortalInput = schema.new({
 })
 
 M.GetPortalOutput = schema.new({
-    id = id.from(_N, "GetPortalOutput"),
+    id = id.from(_N, "GetPortalResponse"),
     type = "structure",
     members = {
         Authorization = schema.new({
@@ -8274,7 +8274,7 @@ M.GetPortalOutput = schema.new({
 })
 
 M.GetPortalProductInput = schema.new({
-    id = id.from(_N, "GetPortalProductInput"),
+    id = id.from(_N, "GetPortalProductRequest"),
     type = "structure",
     members = {
         PortalProductId = schema.new({
@@ -8300,7 +8300,7 @@ M.GetPortalProductInput = schema.new({
 })
 
 M.GetPortalProductOutput = schema.new({
-    id = id.from(_N, "GetPortalProductOutput"),
+    id = id.from(_N, "GetPortalProductResponse"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -8377,7 +8377,7 @@ M.GetPortalProductOutput = schema.new({
 })
 
 M.GetPortalProductSharingPolicyInput = schema.new({
-    id = id.from(_N, "GetPortalProductSharingPolicyInput"),
+    id = id.from(_N, "GetPortalProductSharingPolicyRequest"),
     type = "structure",
     members = {
         PortalProductId = schema.new({
@@ -8394,7 +8394,7 @@ M.GetPortalProductSharingPolicyInput = schema.new({
 })
 
 M.GetPortalProductSharingPolicyOutput = schema.new({
-    id = id.from(_N, "GetPortalProductSharingPolicyOutput"),
+    id = id.from(_N, "GetPortalProductSharingPolicyResponse"),
     type = "structure",
     members = {
         PolicyDocument = schema.new({
@@ -8419,7 +8419,7 @@ M.GetPortalProductSharingPolicyOutput = schema.new({
 })
 
 M.GetProductPageInput = schema.new({
-    id = id.from(_N, "GetProductPageInput"),
+    id = id.from(_N, "GetProductPageRequest"),
     type = "structure",
     members = {
         PortalProductId = schema.new({
@@ -8455,7 +8455,7 @@ M.GetProductPageInput = schema.new({
 })
 
 M.GetProductPageOutput = schema.new({
-    id = id.from(_N, "GetProductPageOutput"),
+    id = id.from(_N, "GetProductPageResponse"),
     type = "structure",
     members = {
         DisplayContent = schema.new({
@@ -8503,7 +8503,7 @@ M.GetProductPageOutput = schema.new({
 })
 
 M.GetProductRestEndpointPageInput = schema.new({
-    id = id.from(_N, "GetProductRestEndpointPageInput"),
+    id = id.from(_N, "GetProductRestEndpointPageRequest"),
     type = "structure",
     members = {
         IncludeRawDisplayContent = schema.new({
@@ -8548,7 +8548,7 @@ M.GetProductRestEndpointPageInput = schema.new({
 })
 
 M.GetProductRestEndpointPageOutput = schema.new({
-    id = id.from(_N, "GetProductRestEndpointPageOutput"),
+    id = id.from(_N, "GetProductRestEndpointPageResponse"),
     type = "structure",
     members = {
         DisplayContent = schema.new({
@@ -8643,7 +8643,7 @@ M.GetProductRestEndpointPageOutput = schema.new({
 })
 
 M.GetRouteInput = schema.new({
-    id = id.from(_N, "GetRouteInput"),
+    id = id.from(_N, "GetRouteRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -8670,7 +8670,7 @@ M.GetRouteInput = schema.new({
 })
 
 M.GetRouteOutput = schema.new({
-    id = id.from(_N, "GetRouteOutput"),
+    id = id.from(_N, "GetRouteResult"),
     type = "structure",
     members = {
         ApiGatewayManaged = schema.new({
@@ -8799,7 +8799,7 @@ M.GetRouteOutput = schema.new({
 })
 
 M.GetRouteResponseInput = schema.new({
-    id = id.from(_N, "GetRouteResponseInput"),
+    id = id.from(_N, "GetRouteResponseRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -8836,7 +8836,7 @@ M.GetRouteResponseInput = schema.new({
 })
 
 M.GetRouteResponseOutput = schema.new({
-    id = id.from(_N, "GetRouteResponseOutput"),
+    id = id.from(_N, "GetRouteResponseResponse"),
     type = "structure",
     members = {
         ModelSelectionExpression = schema.new({
@@ -8892,7 +8892,7 @@ M.GetRouteResponseOutput = schema.new({
 })
 
 M.GetRouteResponsesInput = schema.new({
-    id = id.from(_N, "GetRouteResponsesInput"),
+    id = id.from(_N, "GetRouteResponsesRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -8937,7 +8937,7 @@ M.GetRouteResponsesInput = schema.new({
 })
 
 M.GetRouteResponsesOutput = schema.new({
-    id = id.from(_N, "GetRouteResponsesOutput"),
+    id = id.from(_N, "GetRouteResponsesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -8963,7 +8963,7 @@ M.GetRouteResponsesOutput = schema.new({
 })
 
 M.GetRoutesInput = schema.new({
-    id = id.from(_N, "GetRoutesInput"),
+    id = id.from(_N, "GetRoutesRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -8998,7 +8998,7 @@ M.GetRoutesInput = schema.new({
 })
 
 M.GetRoutesOutput = schema.new({
-    id = id.from(_N, "GetRoutesOutput"),
+    id = id.from(_N, "GetRoutesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -9024,7 +9024,7 @@ M.GetRoutesOutput = schema.new({
 })
 
 M.GetRoutingRuleInput = schema.new({
-    id = id.from(_N, "GetRoutingRuleInput"),
+    id = id.from(_N, "GetRoutingRuleRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -9060,7 +9060,7 @@ M.GetRoutingRuleInput = schema.new({
 })
 
 M.GetRoutingRuleOutput = schema.new({
-    id = id.from(_N, "GetRoutingRuleOutput"),
+    id = id.from(_N, "GetRoutingRuleResponse"),
     type = "structure",
     members = {
         Actions = schema.new({
@@ -9114,7 +9114,7 @@ M.GetRoutingRuleOutput = schema.new({
 })
 
 M.GetStageInput = schema.new({
-    id = id.from(_N, "GetStageInput"),
+    id = id.from(_N, "GetStageRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -9141,7 +9141,7 @@ M.GetStageInput = schema.new({
 })
 
 M.GetStageOutput = schema.new({
-    id = id.from(_N, "GetStageOutput"),
+    id = id.from(_N, "GetStageResponse"),
     type = "structure",
     members = {
         AccessLogSettings = schema.new({
@@ -9290,7 +9290,7 @@ M.GetStageOutput = schema.new({
 })
 
 M.GetStagesInput = schema.new({
-    id = id.from(_N, "GetStagesInput"),
+    id = id.from(_N, "GetStagesRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -9325,7 +9325,7 @@ M.GetStagesInput = schema.new({
 })
 
 M.GetStagesOutput = schema.new({
-    id = id.from(_N, "GetStagesOutput"),
+    id = id.from(_N, "GetStagesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -9351,7 +9351,7 @@ M.GetStagesOutput = schema.new({
 })
 
 M.GetTagsInput = schema.new({
-    id = id.from(_N, "GetTagsInput"),
+    id = id.from(_N, "GetTagsRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -9368,7 +9368,7 @@ M.GetTagsInput = schema.new({
 })
 
 M.GetTagsOutput = schema.new({
-    id = id.from(_N, "GetTagsOutput"),
+    id = id.from(_N, "GetTagsResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -9386,7 +9386,7 @@ M.GetTagsOutput = schema.new({
 })
 
 M.GetVpcLinkInput = schema.new({
-    id = id.from(_N, "GetVpcLinkInput"),
+    id = id.from(_N, "GetVpcLinkRequest"),
     type = "structure",
     members = {
         VpcLinkId = schema.new({
@@ -9403,7 +9403,7 @@ M.GetVpcLinkInput = schema.new({
 })
 
 M.GetVpcLinkOutput = schema.new({
-    id = id.from(_N, "GetVpcLinkOutput"),
+    id = id.from(_N, "GetVpcLinkResponse"),
     type = "structure",
     members = {
         CreatedDate = schema.new({
@@ -9499,7 +9499,7 @@ M.GetVpcLinkOutput = schema.new({
 })
 
 M.GetVpcLinksInput = schema.new({
-    id = id.from(_N, "GetVpcLinksInput"),
+    id = id.from(_N, "GetVpcLinksRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -9524,7 +9524,7 @@ M.GetVpcLinksInput = schema.new({
 })
 
 M.GetVpcLinksOutput = schema.new({
-    id = id.from(_N, "GetVpcLinksOutput"),
+    id = id.from(_N, "GetVpcLinksResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -9550,7 +9550,7 @@ M.GetVpcLinksOutput = schema.new({
 })
 
 M.ImportApiInput = schema.new({
-    id = id.from(_N, "ImportApiInput"),
+    id = id.from(_N, "ImportApiRequest"),
     type = "structure",
     members = {
         Basepath = schema.new({
@@ -9585,7 +9585,7 @@ M.ImportApiInput = schema.new({
 })
 
 M.ImportApiOutput = schema.new({
-    id = id.from(_N, "ImportApiOutput"),
+    id = id.from(_N, "ImportApiResponse"),
     type = "structure",
     members = {
         ApiEndpoint = schema.new({
@@ -9754,7 +9754,7 @@ M.ImportApiOutput = schema.new({
 })
 
 M.ListPortalProductsInput = schema.new({
-    id = id.from(_N, "ListPortalProductsInput"),
+    id = id.from(_N, "ListPortalProductsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -9788,7 +9788,7 @@ M.ListPortalProductsInput = schema.new({
 })
 
 M.ListPortalProductsOutput = schema.new({
-    id = id.from(_N, "ListPortalProductsOutput"),
+    id = id.from(_N, "ListPortalProductsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -9814,7 +9814,7 @@ M.ListPortalProductsOutput = schema.new({
 })
 
 M.ListPortalsInput = schema.new({
-    id = id.from(_N, "ListPortalsInput"),
+    id = id.from(_N, "ListPortalsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -9839,7 +9839,7 @@ M.ListPortalsInput = schema.new({
 })
 
 M.ListPortalsOutput = schema.new({
-    id = id.from(_N, "ListPortalsOutput"),
+    id = id.from(_N, "ListPortalsResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -9865,7 +9865,7 @@ M.ListPortalsOutput = schema.new({
 })
 
 M.ListProductPagesInput = schema.new({
-    id = id.from(_N, "ListProductPagesInput"),
+    id = id.from(_N, "ListProductPagesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -9909,7 +9909,7 @@ M.ListProductPagesInput = schema.new({
 })
 
 M.ListProductPagesOutput = schema.new({
-    id = id.from(_N, "ListProductPagesOutput"),
+    id = id.from(_N, "ListProductPagesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -9935,7 +9935,7 @@ M.ListProductPagesOutput = schema.new({
 })
 
 M.ListProductRestEndpointPagesInput = schema.new({
-    id = id.from(_N, "ListProductRestEndpointPagesInput"),
+    id = id.from(_N, "ListProductRestEndpointPagesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -9979,7 +9979,7 @@ M.ListProductRestEndpointPagesInput = schema.new({
 })
 
 M.ListProductRestEndpointPagesOutput = schema.new({
-    id = id.from(_N, "ListProductRestEndpointPagesOutput"),
+    id = id.from(_N, "ListProductRestEndpointPagesResponse"),
     type = "structure",
     members = {
         Items = schema.new({
@@ -10005,7 +10005,7 @@ M.ListProductRestEndpointPagesOutput = schema.new({
 })
 
 M.ListRoutingRulesInput = schema.new({
-    id = id.from(_N, "ListRoutingRulesInput"),
+    id = id.from(_N, "ListRoutingRulesRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -10049,7 +10049,7 @@ M.ListRoutingRulesInput = schema.new({
 })
 
 M.ListRoutingRulesOutput = schema.new({
-    id = id.from(_N, "ListRoutingRulesOutput"),
+    id = id.from(_N, "ListRoutingRulesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -10075,7 +10075,7 @@ M.ListRoutingRulesOutput = schema.new({
 })
 
 M.PreviewPortalInput = schema.new({
-    id = id.from(_N, "PreviewPortalInput"),
+    id = id.from(_N, "PreviewPortalRequest"),
     type = "structure",
     members = {
         PortalId = schema.new({
@@ -10092,12 +10092,12 @@ M.PreviewPortalInput = schema.new({
 })
 
 M.PreviewPortalOutput = schema.new({
-    id = id.from(_N, "PreviewPortalOutput"),
+    id = id.from(_N, "PreviewPortalResponse"),
     type = "structure",
 })
 
 M.PublishPortalInput = schema.new({
-    id = id.from(_N, "PublishPortalInput"),
+    id = id.from(_N, "PublishPortalRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -10123,12 +10123,12 @@ M.PublishPortalInput = schema.new({
 })
 
 M.PublishPortalOutput = schema.new({
-    id = id.from(_N, "PublishPortalOutput"),
+    id = id.from(_N, "PublishPortalResponse"),
     type = "structure",
 })
 
 M.PutPortalProductSharingPolicyInput = schema.new({
-    id = id.from(_N, "PutPortalProductSharingPolicyInput"),
+    id = id.from(_N, "PutPortalProductSharingPolicyRequest"),
     type = "structure",
     members = {
         PolicyDocument = schema.new({
@@ -10155,12 +10155,12 @@ M.PutPortalProductSharingPolicyInput = schema.new({
 })
 
 M.PutPortalProductSharingPolicyOutput = schema.new({
-    id = id.from(_N, "PutPortalProductSharingPolicyOutput"),
+    id = id.from(_N, "PutPortalProductSharingPolicyResponse"),
     type = "structure",
 })
 
 M.PutRoutingRuleInput = schema.new({
-    id = id.from(_N, "PutRoutingRuleInput"),
+    id = id.from(_N, "PutRoutingRuleRequest"),
     type = "structure",
     members = {
         Actions = schema.new({
@@ -10228,7 +10228,7 @@ M.PutRoutingRuleInput = schema.new({
 })
 
 M.PutRoutingRuleOutput = schema.new({
-    id = id.from(_N, "PutRoutingRuleOutput"),
+    id = id.from(_N, "PutRoutingRuleResponse"),
     type = "structure",
     members = {
         Actions = schema.new({
@@ -10282,7 +10282,7 @@ M.PutRoutingRuleOutput = schema.new({
 })
 
 M.ReimportApiInput = schema.new({
-    id = id.from(_N, "ReimportApiInput"),
+    id = id.from(_N, "ReimportApiRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -10327,7 +10327,7 @@ M.ReimportApiInput = schema.new({
 })
 
 M.ReimportApiOutput = schema.new({
-    id = id.from(_N, "ReimportApiOutput"),
+    id = id.from(_N, "ReimportApiResponse"),
     type = "structure",
     members = {
         ApiEndpoint = schema.new({
@@ -10496,7 +10496,7 @@ M.ReimportApiOutput = schema.new({
 })
 
 M.ResetAuthorizersCacheInput = schema.new({
-    id = id.from(_N, "ResetAuthorizersCacheInput"),
+    id = id.from(_N, "ResetAuthorizersCacheRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -10523,12 +10523,12 @@ M.ResetAuthorizersCacheInput = schema.new({
 })
 
 M.ResetAuthorizersCacheOutput = schema.new({
-    id = id.from(_N, "ResetAuthorizersCacheOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -10556,12 +10556,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -10589,12 +10589,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateApiInput = schema.new({
-    id = id.from(_N, "UpdateApiInput"),
+    id = id.from(_N, "UpdateApiRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -10720,7 +10720,7 @@ M.UpdateApiInput = schema.new({
 })
 
 M.UpdateApiOutput = schema.new({
-    id = id.from(_N, "UpdateApiOutput"),
+    id = id.from(_N, "UpdateApiResponse"),
     type = "structure",
     members = {
         ApiEndpoint = schema.new({
@@ -10889,7 +10889,7 @@ M.UpdateApiOutput = schema.new({
 })
 
 M.UpdateApiMappingInput = schema.new({
-    id = id.from(_N, "UpdateApiMappingInput"),
+    id = id.from(_N, "UpdateApiMappingRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -10944,7 +10944,7 @@ M.UpdateApiMappingInput = schema.new({
 })
 
 M.UpdateApiMappingOutput = schema.new({
-    id = id.from(_N, "UpdateApiMappingOutput"),
+    id = id.from(_N, "UpdateApiMappingResponse"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -10987,7 +10987,7 @@ M.UpdateApiMappingOutput = schema.new({
 })
 
 M.UpdateAuthorizerInput = schema.new({
-    id = id.from(_N, "UpdateAuthorizerInput"),
+    id = id.from(_N, "UpdateAuthorizerRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -11106,7 +11106,7 @@ M.UpdateAuthorizerInput = schema.new({
 })
 
 M.UpdateAuthorizerOutput = schema.new({
-    id = id.from(_N, "UpdateAuthorizerOutput"),
+    id = id.from(_N, "UpdateAuthorizerResponse"),
     type = "structure",
     members = {
         AuthorizerCredentialsArn = schema.new({
@@ -11214,7 +11214,7 @@ M.UpdateAuthorizerOutput = schema.new({
 })
 
 M.UpdateDeploymentInput = schema.new({
-    id = id.from(_N, "UpdateDeploymentInput"),
+    id = id.from(_N, "UpdateDeploymentRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -11250,7 +11250,7 @@ M.UpdateDeploymentInput = schema.new({
 })
 
 M.UpdateDeploymentOutput = schema.new({
-    id = id.from(_N, "UpdateDeploymentOutput"),
+    id = id.from(_N, "UpdateDeploymentResponse"),
     type = "structure",
     members = {
         AutoDeployed = schema.new({
@@ -11315,7 +11315,7 @@ M.UpdateDeploymentOutput = schema.new({
 })
 
 M.UpdateDomainNameInput = schema.new({
-    id = id.from(_N, "UpdateDomainNameInput"),
+    id = id.from(_N, "UpdateDomainNameRequest"),
     type = "structure",
     members = {
         DomainName = schema.new({
@@ -11361,7 +11361,7 @@ M.UpdateDomainNameInput = schema.new({
 })
 
 M.UpdateDomainNameOutput = schema.new({
-    id = id.from(_N, "UpdateDomainNameOutput"),
+    id = id.from(_N, "UpdateDomainNameResponse"),
     type = "structure",
     members = {
         ApiMappingSelectionExpression = schema.new({
@@ -11435,7 +11435,7 @@ M.UpdateDomainNameOutput = schema.new({
 })
 
 M.UpdateIntegrationInput = schema.new({
-    id = id.from(_N, "UpdateIntegrationInput"),
+    id = id.from(_N, "UpdateIntegrationRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -11585,7 +11585,7 @@ M.UpdateIntegrationInput = schema.new({
             name = "ResponseParameters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
             traits = {
                 [traits.JSON_NAME] = { name = "responseParameters" },
             },
@@ -11622,7 +11622,7 @@ M.UpdateIntegrationInput = schema.new({
 })
 
 M.UpdateIntegrationOutput = schema.new({
-    id = id.from(_N, "UpdateIntegrationOutput"),
+    id = id.from(_N, "UpdateIntegrationResult"),
     type = "structure",
     members = {
         ApiGatewayManaged = schema.new({
@@ -11779,7 +11779,7 @@ M.UpdateIntegrationOutput = schema.new({
             name = "ResponseParameters",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
             traits = {
                 [traits.JSON_NAME] = { name = "responseParameters" },
             },
@@ -11816,7 +11816,7 @@ M.UpdateIntegrationOutput = schema.new({
 })
 
 M.UpdateIntegrationResponseInput = schema.new({
-    id = id.from(_N, "UpdateIntegrationResponseInput"),
+    id = id.from(_N, "UpdateIntegrationResponseRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -11902,7 +11902,7 @@ M.UpdateIntegrationResponseInput = schema.new({
 })
 
 M.UpdateIntegrationResponseOutput = schema.new({
-    id = id.from(_N, "UpdateIntegrationResponseOutput"),
+    id = id.from(_N, "UpdateIntegrationResponseResponse"),
     type = "structure",
     members = {
         ContentHandlingStrategy = schema.new({
@@ -11967,7 +11967,7 @@ M.UpdateIntegrationResponseOutput = schema.new({
 })
 
 M.UpdateModelInput = schema.new({
-    id = id.from(_N, "UpdateModelInput"),
+    id = id.from(_N, "UpdateModelRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -12030,7 +12030,7 @@ M.UpdateModelInput = schema.new({
 })
 
 M.UpdateModelOutput = schema.new({
-    id = id.from(_N, "UpdateModelOutput"),
+    id = id.from(_N, "UpdateModelResponse"),
     type = "structure",
     members = {
         ContentType = schema.new({
@@ -12082,7 +12082,7 @@ M.UpdateModelOutput = schema.new({
 })
 
 M.UpdatePortalInput = schema.new({
-    id = id.from(_N, "UpdatePortalInput"),
+    id = id.from(_N, "UpdatePortalRequest"),
     type = "structure",
     members = {
         Authorization = schema.new({
@@ -12157,7 +12157,7 @@ M.UpdatePortalInput = schema.new({
 })
 
 M.UpdatePortalOutput = schema.new({
-    id = id.from(_N, "UpdatePortalOutput"),
+    id = id.from(_N, "UpdatePortalResponse"),
     type = "structure",
     members = {
         Authorization = schema.new({
@@ -12306,7 +12306,7 @@ M.UpdatePortalOutput = schema.new({
 })
 
 M.UpdatePortalProductInput = schema.new({
-    id = id.from(_N, "UpdatePortalProductInput"),
+    id = id.from(_N, "UpdatePortalProductRequest"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -12351,7 +12351,7 @@ M.UpdatePortalProductInput = schema.new({
 })
 
 M.UpdatePortalProductOutput = schema.new({
-    id = id.from(_N, "UpdatePortalProductOutput"),
+    id = id.from(_N, "UpdatePortalProductResponse"),
     type = "structure",
     members = {
         Description = schema.new({
@@ -12428,7 +12428,7 @@ M.UpdatePortalProductOutput = schema.new({
 })
 
 M.UpdateProductPageInput = schema.new({
-    id = id.from(_N, "UpdateProductPageInput"),
+    id = id.from(_N, "UpdateProductPageRequest"),
     type = "structure",
     members = {
         DisplayContent = schema.new({
@@ -12465,7 +12465,7 @@ M.UpdateProductPageInput = schema.new({
 })
 
 M.UpdateProductPageOutput = schema.new({
-    id = id.from(_N, "UpdateProductPageOutput"),
+    id = id.from(_N, "UpdateProductPageResponse"),
     type = "structure",
     members = {
         DisplayContent = schema.new({
@@ -12513,7 +12513,7 @@ M.UpdateProductPageOutput = schema.new({
 })
 
 M.UpdateProductRestEndpointPageInput = schema.new({
-    id = id.from(_N, "UpdateProductRestEndpointPageInput"),
+    id = id.from(_N, "UpdateProductRestEndpointPageRequest"),
     type = "structure",
     members = {
         DisplayContent = schema.new({
@@ -12559,7 +12559,7 @@ M.UpdateProductRestEndpointPageInput = schema.new({
 })
 
 M.UpdateProductRestEndpointPageOutput = schema.new({
-    id = id.from(_N, "UpdateProductRestEndpointPageOutput"),
+    id = id.from(_N, "UpdateProductRestEndpointPageResponse"),
     type = "structure",
     members = {
         DisplayContent = schema.new({
@@ -12645,7 +12645,7 @@ M.UpdateProductRestEndpointPageOutput = schema.new({
 })
 
 M.UpdateRouteInput = schema.new({
-    id = id.from(_N, "UpdateRouteInput"),
+    id = id.from(_N, "UpdateRouteRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -12776,7 +12776,7 @@ M.UpdateRouteInput = schema.new({
 })
 
 M.UpdateRouteOutput = schema.new({
-    id = id.from(_N, "UpdateRouteOutput"),
+    id = id.from(_N, "UpdateRouteResult"),
     type = "structure",
     members = {
         ApiGatewayManaged = schema.new({
@@ -12905,7 +12905,7 @@ M.UpdateRouteOutput = schema.new({
 })
 
 M.UpdateRouteResponseInput = schema.new({
-    id = id.from(_N, "UpdateRouteResponseInput"),
+    id = id.from(_N, "UpdateRouteResponseRequest"),
     type = "structure",
     members = {
         ApiId = schema.new({
@@ -12982,7 +12982,7 @@ M.UpdateRouteResponseInput = schema.new({
 })
 
 M.UpdateRouteResponseOutput = schema.new({
-    id = id.from(_N, "UpdateRouteResponseOutput"),
+    id = id.from(_N, "UpdateRouteResponseResponse"),
     type = "structure",
     members = {
         ModelSelectionExpression = schema.new({
@@ -13038,7 +13038,7 @@ M.UpdateRouteResponseOutput = schema.new({
 })
 
 M.UpdateStageInput = schema.new({
-    id = id.from(_N, "UpdateStageInput"),
+    id = id.from(_N, "UpdateStageRequest"),
     type = "structure",
     members = {
         AccessLogSettings = schema.new({
@@ -13143,7 +13143,7 @@ M.UpdateStageInput = schema.new({
 })
 
 M.UpdateStageOutput = schema.new({
-    id = id.from(_N, "UpdateStageOutput"),
+    id = id.from(_N, "UpdateStageResponse"),
     type = "structure",
     members = {
         AccessLogSettings = schema.new({
@@ -13292,7 +13292,7 @@ M.UpdateStageOutput = schema.new({
 })
 
 M.UpdateVpcLinkInput = schema.new({
-    id = id.from(_N, "UpdateVpcLinkInput"),
+    id = id.from(_N, "UpdateVpcLinkRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -13318,7 +13318,7 @@ M.UpdateVpcLinkInput = schema.new({
 })
 
 M.UpdateVpcLinkOutput = schema.new({
-    id = id.from(_N, "UpdateVpcLinkOutput"),
+    id = id.from(_N, "UpdateVpcLinkResponse"),
     type = "structure",
     members = {
         CreatedDate = schema.new({
@@ -13412,5 +13412,19 @@ M.UpdateVpcLinkOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

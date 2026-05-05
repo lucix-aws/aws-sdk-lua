@@ -73,7 +73,7 @@ M.AccountInfo = schema.new({
 })
 
 M.AssociateAccountsInput = schema.new({
-    id = id.from(_N, "AssociateAccountsInput"),
+    id = id.from(_N, "AssociateAccountsRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -99,7 +99,7 @@ M.AssociateAccountsInput = schema.new({
 })
 
 M.AssociateAccountsOutput = schema.new({
-    id = id.from(_N, "AssociateAccountsOutput"),
+    id = id.from(_N, "AssociateAccountsResponse"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -898,7 +898,7 @@ M.Tag = schema.new({
 })
 
 M.CreateAutomationRuleInput = schema.new({
-    id = id.from(_N, "CreateAutomationRuleInput"),
+    id = id.from(_N, "CreateAutomationRuleRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -994,7 +994,7 @@ M.CreateAutomationRuleInput = schema.new({
 })
 
 M.CreateAutomationRuleOutput = schema.new({
-    id = id.from(_N, "CreateAutomationRuleOutput"),
+    id = id.from(_N, "CreateAutomationRuleResponse"),
     type = "structure",
     members = {
         ruleArn = schema.new({
@@ -1122,7 +1122,7 @@ M.ServiceQuotaExceededException = schema.new({
 })
 
 M.DeleteAutomationRuleInput = schema.new({
-    id = id.from(_N, "DeleteAutomationRuleInput"),
+    id = id.from(_N, "DeleteAutomationRuleRequest"),
     type = "structure",
     members = {
         ruleArn = schema.new({
@@ -1156,12 +1156,12 @@ M.DeleteAutomationRuleInput = schema.new({
 })
 
 M.DeleteAutomationRuleOutput = schema.new({
-    id = id.from(_N, "DeleteAutomationRuleOutput"),
+    id = id.from(_N, "DeleteAutomationRuleResponse"),
     type = "structure",
 })
 
 M.DisassociateAccountsInput = schema.new({
-    id = id.from(_N, "DisassociateAccountsInput"),
+    id = id.from(_N, "DisassociateAccountsRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -1187,7 +1187,7 @@ M.DisassociateAccountsInput = schema.new({
 })
 
 M.DisassociateAccountsOutput = schema.new({
-    id = id.from(_N, "DisassociateAccountsOutput"),
+    id = id.from(_N, "DisassociateAccountsResponse"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -1208,7 +1208,7 @@ M.DisassociateAccountsOutput = schema.new({
 })
 
 M.GetAutomationEventInput = schema.new({
-    id = id.from(_N, "GetAutomationEventInput"),
+    id = id.from(_N, "GetAutomationEventRequest"),
     type = "structure",
     members = {
         eventId = schema.new({
@@ -1224,7 +1224,7 @@ M.GetAutomationEventInput = schema.new({
 })
 
 M.GetAutomationEventOutput = schema.new({
-    id = id.from(_N, "GetAutomationEventOutput"),
+    id = id.from(_N, "GetAutomationEventResponse"),
     type = "structure",
     members = {
         eventId = schema.new({
@@ -1322,7 +1322,7 @@ M.GetAutomationEventOutput = schema.new({
 })
 
 M.GetAutomationRuleInput = schema.new({
-    id = id.from(_N, "GetAutomationRuleInput"),
+    id = id.from(_N, "GetAutomationRuleRequest"),
     type = "structure",
     members = {
         ruleArn = schema.new({
@@ -1338,7 +1338,7 @@ M.GetAutomationRuleInput = schema.new({
 })
 
 M.GetAutomationRuleOutput = schema.new({
-    id = id.from(_N, "GetAutomationRuleOutput"),
+    id = id.from(_N, "GetAutomationRuleResponse"),
     type = "structure",
     members = {
         ruleArn = schema.new({
@@ -1446,12 +1446,12 @@ M.GetAutomationRuleOutput = schema.new({
 })
 
 M.GetEnrollmentConfigurationInput = schema.new({
-    id = id.from(_N, "GetEnrollmentConfigurationInput"),
+    id = id.from(_N, "GetEnrollmentConfigurationRequest"),
     type = "structure",
 })
 
 M.GetEnrollmentConfigurationOutput = schema.new({
-    id = id.from(_N, "GetEnrollmentConfigurationOutput"),
+    id = id.from(_N, "GetEnrollmentConfigurationResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -1485,7 +1485,7 @@ M.GetEnrollmentConfigurationOutput = schema.new({
 })
 
 M.ListAccountsInput = schema.new({
-    id = id.from(_N, "ListAccountsInput"),
+    id = id.from(_N, "ListAccountsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -1504,7 +1504,7 @@ M.ListAccountsInput = schema.new({
 })
 
 M.ListAccountsOutput = schema.new({
-    id = id.from(_N, "ListAccountsOutput"),
+    id = id.from(_N, "ListAccountsResponse"),
     type = "structure",
     members = {
         accounts = schema.new({
@@ -1527,7 +1527,7 @@ M.ListAccountsOutput = schema.new({
 })
 
 M.ListAutomationEventsInput = schema.new({
-    id = id.from(_N, "ListAutomationEventsInput"),
+    id = id.from(_N, "ListAutomationEventsRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -1565,7 +1565,7 @@ M.ListAutomationEventsInput = schema.new({
 })
 
 M.ListAutomationEventsOutput = schema.new({
-    id = id.from(_N, "ListAutomationEventsOutput"),
+    id = id.from(_N, "ListAutomationEventsResponse"),
     type = "structure",
     members = {
         automationEvents = schema.new({
@@ -1585,7 +1585,7 @@ M.ListAutomationEventsOutput = schema.new({
 })
 
 M.ListAutomationEventStepsInput = schema.new({
-    id = id.from(_N, "ListAutomationEventStepsInput"),
+    id = id.from(_N, "ListAutomationEventStepsRequest"),
     type = "structure",
     members = {
         eventId = schema.new({
@@ -1613,7 +1613,7 @@ M.ListAutomationEventStepsInput = schema.new({
 })
 
 M.ListAutomationEventStepsOutput = schema.new({
-    id = id.from(_N, "ListAutomationEventStepsOutput"),
+    id = id.from(_N, "ListAutomationEventStepsResponse"),
     type = "structure",
     members = {
         automationEventSteps = schema.new({
@@ -1633,7 +1633,7 @@ M.ListAutomationEventStepsOutput = schema.new({
 })
 
 M.ListAutomationEventSummariesInput = schema.new({
-    id = id.from(_N, "ListAutomationEventSummariesInput"),
+    id = id.from(_N, "ListAutomationEventSummariesRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -1671,7 +1671,7 @@ M.ListAutomationEventSummariesInput = schema.new({
 })
 
 M.ListAutomationEventSummariesOutput = schema.new({
-    id = id.from(_N, "ListAutomationEventSummariesOutput"),
+    id = id.from(_N, "ListAutomationEventSummariesResponse"),
     type = "structure",
     members = {
         automationEventSummaries = schema.new({
@@ -1705,7 +1705,7 @@ M.OrganizationScope = schema.new({
 })
 
 M.ListAutomationRulePreviewInput = schema.new({
-    id = id.from(_N, "ListAutomationRulePreviewInput"),
+    id = id.from(_N, "ListAutomationRulePreviewRequest"),
     type = "structure",
     members = {
         ruleType = schema.new({
@@ -1917,7 +1917,7 @@ M.PreviewResult = schema.new({
 })
 
 M.ListAutomationRulePreviewOutput = schema.new({
-    id = id.from(_N, "ListAutomationRulePreviewOutput"),
+    id = id.from(_N, "ListAutomationRulePreviewResponse"),
     type = "structure",
     members = {
         previewResults = schema.new({
@@ -1937,7 +1937,7 @@ M.ListAutomationRulePreviewOutput = schema.new({
 })
 
 M.ListAutomationRulePreviewSummariesInput = schema.new({
-    id = id.from(_N, "ListAutomationRulePreviewSummariesInput"),
+    id = id.from(_N, "ListAutomationRulePreviewSummariesRequest"),
     type = "structure",
     members = {
         ruleType = schema.new({
@@ -2041,7 +2041,7 @@ M.PreviewResultSummary = schema.new({
 })
 
 M.ListAutomationRulePreviewSummariesOutput = schema.new({
-    id = id.from(_N, "ListAutomationRulePreviewSummariesOutput"),
+    id = id.from(_N, "ListAutomationRulePreviewSummariesResponse"),
     type = "structure",
     members = {
         previewResultSummaries = schema.new({
@@ -2087,7 +2087,7 @@ M.Filter = schema.new({
 })
 
 M.ListAutomationRulesInput = schema.new({
-    id = id.from(_N, "ListAutomationRulesInput"),
+    id = id.from(_N, "ListAutomationRulesRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -2113,7 +2113,7 @@ M.ListAutomationRulesInput = schema.new({
 })
 
 M.ListAutomationRulesOutput = schema.new({
-    id = id.from(_N, "ListAutomationRulesOutput"),
+    id = id.from(_N, "ListAutomationRulesResponse"),
     type = "structure",
     members = {
         automationRules = schema.new({
@@ -2159,7 +2159,7 @@ M.RecommendedActionFilter = schema.new({
 })
 
 M.ListRecommendedActionsInput = schema.new({
-    id = id.from(_N, "ListRecommendedActionsInput"),
+    id = id.from(_N, "ListRecommendedActionsRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -2286,7 +2286,7 @@ M.RecommendedAction = schema.new({
 })
 
 M.ListRecommendedActionsOutput = schema.new({
-    id = id.from(_N, "ListRecommendedActionsOutput"),
+    id = id.from(_N, "ListRecommendedActionsResponse"),
     type = "structure",
     members = {
         recommendedActions = schema.new({
@@ -2306,7 +2306,7 @@ M.ListRecommendedActionsOutput = schema.new({
 })
 
 M.ListRecommendedActionSummariesInput = schema.new({
-    id = id.from(_N, "ListRecommendedActionSummariesInput"),
+    id = id.from(_N, "ListRecommendedActionSummariesRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -2384,7 +2384,7 @@ M.RecommendedActionSummary = schema.new({
 })
 
 M.ListRecommendedActionSummariesOutput = schema.new({
-    id = id.from(_N, "ListRecommendedActionSummariesOutput"),
+    id = id.from(_N, "ListRecommendedActionSummariesResponse"),
     type = "structure",
     members = {
         recommendedActionSummaries = schema.new({
@@ -2404,7 +2404,7 @@ M.ListRecommendedActionSummariesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2420,7 +2420,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2434,7 +2434,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.RollbackAutomationEventInput = schema.new({
-    id = id.from(_N, "RollbackAutomationEventInput"),
+    id = id.from(_N, "RollbackAutomationEventRequest"),
     type = "structure",
     members = {
         eventId = schema.new({
@@ -2459,7 +2459,7 @@ M.RollbackAutomationEventInput = schema.new({
 })
 
 M.RollbackAutomationEventOutput = schema.new({
-    id = id.from(_N, "RollbackAutomationEventOutput"),
+    id = id.from(_N, "RollbackAutomationEventResponse"),
     type = "structure",
     members = {
         eventId = schema.new({
@@ -2478,7 +2478,7 @@ M.RollbackAutomationEventOutput = schema.new({
 })
 
 M.StartAutomationEventInput = schema.new({
-    id = id.from(_N, "StartAutomationEventInput"),
+    id = id.from(_N, "StartAutomationEventRequest"),
     type = "structure",
     members = {
         recommendedActionId = schema.new({
@@ -2503,7 +2503,7 @@ M.StartAutomationEventInput = schema.new({
 })
 
 M.StartAutomationEventOutput = schema.new({
-    id = id.from(_N, "StartAutomationEventOutput"),
+    id = id.from(_N, "StartAutomationEventResponse"),
     type = "structure",
     members = {
         recommendedActionId = schema.new({
@@ -2528,7 +2528,7 @@ M.StartAutomationEventOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2572,12 +2572,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2621,12 +2621,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAutomationRuleInput = schema.new({
-    id = id.from(_N, "UpdateAutomationRuleInput"),
+    id = id.from(_N, "UpdateAutomationRuleRequest"),
     type = "structure",
     members = {
         ruleArn = schema.new({
@@ -2718,7 +2718,7 @@ M.UpdateAutomationRuleInput = schema.new({
 })
 
 M.UpdateAutomationRuleOutput = schema.new({
-    id = id.from(_N, "UpdateAutomationRuleOutput"),
+    id = id.from(_N, "UpdateAutomationRuleResponse"),
     type = "structure",
     members = {
         ruleArn = schema.new({
@@ -2807,7 +2807,7 @@ M.UpdateAutomationRuleOutput = schema.new({
 })
 
 M.UpdateEnrollmentConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateEnrollmentConfigurationInput"),
+    id = id.from(_N, "UpdateEnrollmentConfigurationRequest"),
     type = "structure",
     members = {
         status = schema.new({
@@ -2832,7 +2832,7 @@ M.UpdateEnrollmentConfigurationInput = schema.new({
 })
 
 M.UpdateEnrollmentConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateEnrollmentConfigurationOutput"),
+    id = id.from(_N, "UpdateEnrollmentConfigurationResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -2861,5 +2861,19 @@ M.UpdateEnrollmentConfigurationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

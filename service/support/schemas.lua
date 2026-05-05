@@ -27,7 +27,7 @@ M.Attachment = schema.new({
 })
 
 M.AddAttachmentsToSetInput = schema.new({
-    id = id.from(_N, "AddAttachmentsToSetInput"),
+    id = id.from(_N, "AddAttachmentsToSetRequest"),
     type = "structure",
     members = {
         attachmentSetId = schema.new({
@@ -50,7 +50,7 @@ M.AddAttachmentsToSetInput = schema.new({
 })
 
 M.AddAttachmentsToSetOutput = schema.new({
-    id = id.from(_N, "AddAttachmentsToSetOutput"),
+    id = id.from(_N, "AddAttachmentsToSetResponse"),
     type = "structure",
     members = {
         attachmentSetId = schema.new({
@@ -149,7 +149,7 @@ M.InternalServerError = schema.new({
 })
 
 M.AddCommunicationToCaseInput = schema.new({
-    id = id.from(_N, "AddCommunicationToCaseInput"),
+    id = id.from(_N, "AddCommunicationToCaseRequest"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -184,7 +184,7 @@ M.AddCommunicationToCaseInput = schema.new({
 })
 
 M.AddCommunicationToCaseOutput = schema.new({
-    id = id.from(_N, "AddCommunicationToCaseOutput"),
+    id = id.from(_N, "AddCommunicationToCaseResponse"),
     type = "structure",
     members = {
         result = schema.new({
@@ -267,7 +267,7 @@ M.CaseCreationLimitExceeded = schema.new({
 })
 
 M.CreateCaseInput = schema.new({
-    id = id.from(_N, "CreateCaseInput"),
+    id = id.from(_N, "CreateCaseRequest"),
     type = "structure",
     members = {
         subject = schema.new({
@@ -335,7 +335,7 @@ M.CreateCaseInput = schema.new({
 })
 
 M.CreateCaseOutput = schema.new({
-    id = id.from(_N, "CreateCaseOutput"),
+    id = id.from(_N, "CreateCaseResponse"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -348,7 +348,7 @@ M.CreateCaseOutput = schema.new({
 })
 
 M.DescribeAttachmentInput = schema.new({
-    id = id.from(_N, "DescribeAttachmentInput"),
+    id = id.from(_N, "DescribeAttachmentRequest"),
     type = "structure",
     members = {
         attachmentId = schema.new({
@@ -380,7 +380,7 @@ M.DescribeAttachmentLimitExceeded = schema.new({
 })
 
 M.DescribeAttachmentOutput = schema.new({
-    id = id.from(_N, "DescribeAttachmentOutput"),
+    id = id.from(_N, "DescribeAttachmentResponse"),
     type = "structure",
     members = {
         attachment = schema.new({
@@ -394,7 +394,7 @@ M.DescribeAttachmentOutput = schema.new({
 })
 
 M.DescribeCasesInput = schema.new({
-    id = id.from(_N, "DescribeCasesInput"),
+    id = id.from(_N, "DescribeCasesRequest"),
     type = "structure",
     members = {
         caseIdList = schema.new({
@@ -598,7 +598,7 @@ M.CaseDetails = schema.new({
 })
 
 M.DescribeCasesOutput = schema.new({
-    id = id.from(_N, "DescribeCasesOutput"),
+    id = id.from(_N, "DescribeCasesResponse"),
     type = "structure",
     members = {
         cases = schema.new({
@@ -618,7 +618,7 @@ M.DescribeCasesOutput = schema.new({
 })
 
 M.DescribeCommunicationsInput = schema.new({
-    id = id.from(_N, "DescribeCommunicationsInput"),
+    id = id.from(_N, "DescribeCommunicationsRequest"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -658,7 +658,7 @@ M.DescribeCommunicationsInput = schema.new({
 })
 
 M.DescribeCommunicationsOutput = schema.new({
-    id = id.from(_N, "DescribeCommunicationsOutput"),
+    id = id.from(_N, "DescribeCommunicationsResponse"),
     type = "structure",
     members = {
         communications = schema.new({
@@ -678,7 +678,7 @@ M.DescribeCommunicationsOutput = schema.new({
 })
 
 M.DescribeCreateCaseOptionsInput = schema.new({
-    id = id.from(_N, "DescribeCreateCaseOptionsInput"),
+    id = id.from(_N, "DescribeCreateCaseOptionsRequest"),
     type = "structure",
     members = {
         issueType = schema.new({
@@ -786,7 +786,7 @@ M.CommunicationTypeOptions = schema.new({
 })
 
 M.DescribeCreateCaseOptionsOutput = schema.new({
-    id = id.from(_N, "DescribeCreateCaseOptionsOutput"),
+    id = id.from(_N, "DescribeCreateCaseOptionsResponse"),
     type = "structure",
     members = {
         languageAvailability = schema.new({
@@ -822,7 +822,7 @@ M.ThrottlingException = schema.new({
 })
 
 M.DescribeServicesInput = schema.new({
-    id = id.from(_N, "DescribeServicesInput"),
+    id = id.from(_N, "DescribeServicesRequest"),
     type = "structure",
     members = {
         serviceCodeList = schema.new({
@@ -887,7 +887,7 @@ M.Service = schema.new({
 })
 
 M.DescribeServicesOutput = schema.new({
-    id = id.from(_N, "DescribeServicesOutput"),
+    id = id.from(_N, "DescribeServicesResponse"),
     type = "structure",
     members = {
         services = schema.new({
@@ -901,7 +901,7 @@ M.DescribeServicesOutput = schema.new({
 })
 
 M.DescribeSeverityLevelsInput = schema.new({
-    id = id.from(_N, "DescribeSeverityLevelsInput"),
+    id = id.from(_N, "DescribeSeverityLevelsRequest"),
     type = "structure",
     members = {
         language = schema.new({
@@ -933,7 +933,7 @@ M.SeverityLevel = schema.new({
 })
 
 M.DescribeSeverityLevelsOutput = schema.new({
-    id = id.from(_N, "DescribeSeverityLevelsOutput"),
+    id = id.from(_N, "DescribeSeverityLevelsResponse"),
     type = "structure",
     members = {
         severityLevels = schema.new({
@@ -947,7 +947,7 @@ M.DescribeSeverityLevelsOutput = schema.new({
 })
 
 M.DescribeSupportedLanguagesInput = schema.new({
-    id = id.from(_N, "DescribeSupportedLanguagesInput"),
+    id = id.from(_N, "DescribeSupportedLanguagesRequest"),
     type = "structure",
     members = {
         issueType = schema.new({
@@ -1006,7 +1006,7 @@ M.SupportedLanguage = schema.new({
 })
 
 M.DescribeSupportedLanguagesOutput = schema.new({
-    id = id.from(_N, "DescribeSupportedLanguagesOutput"),
+    id = id.from(_N, "DescribeSupportedLanguagesResponse"),
     type = "structure",
     members = {
         supportedLanguages = schema.new({
@@ -1020,7 +1020,7 @@ M.DescribeSupportedLanguagesOutput = schema.new({
 })
 
 M.DescribeTrustedAdvisorCheckRefreshStatusesInput = schema.new({
-    id = id.from(_N, "DescribeTrustedAdvisorCheckRefreshStatusesInput"),
+    id = id.from(_N, "DescribeTrustedAdvisorCheckRefreshStatusesRequest"),
     type = "structure",
     members = {
         checkIds = schema.new({
@@ -1072,7 +1072,7 @@ M.TrustedAdvisorCheckRefreshStatus = schema.new({
 })
 
 M.DescribeTrustedAdvisorCheckRefreshStatusesOutput = schema.new({
-    id = id.from(_N, "DescribeTrustedAdvisorCheckRefreshStatusesOutput"),
+    id = id.from(_N, "DescribeTrustedAdvisorCheckRefreshStatusesResponse"),
     type = "structure",
     members = {
         statuses = schema.new({
@@ -1089,7 +1089,7 @@ M.DescribeTrustedAdvisorCheckRefreshStatusesOutput = schema.new({
 })
 
 M.DescribeTrustedAdvisorCheckResultInput = schema.new({
-    id = id.from(_N, "DescribeTrustedAdvisorCheckResultInput"),
+    id = id.from(_N, "DescribeTrustedAdvisorCheckResultRequest"),
     type = "structure",
     members = {
         checkId = schema.new({
@@ -1313,7 +1313,7 @@ M.TrustedAdvisorCheckResult = schema.new({
 })
 
 M.DescribeTrustedAdvisorCheckResultOutput = schema.new({
-    id = id.from(_N, "DescribeTrustedAdvisorCheckResultOutput"),
+    id = id.from(_N, "DescribeTrustedAdvisorCheckResultResponse"),
     type = "structure",
     members = {
         result = schema.new({
@@ -1327,7 +1327,7 @@ M.DescribeTrustedAdvisorCheckResultOutput = schema.new({
 })
 
 M.DescribeTrustedAdvisorChecksInput = schema.new({
-    id = id.from(_N, "DescribeTrustedAdvisorChecksInput"),
+    id = id.from(_N, "DescribeTrustedAdvisorChecksRequest"),
     type = "structure",
     members = {
         language = schema.new({
@@ -1396,7 +1396,7 @@ M.TrustedAdvisorCheckDescription = schema.new({
 })
 
 M.DescribeTrustedAdvisorChecksOutput = schema.new({
-    id = id.from(_N, "DescribeTrustedAdvisorChecksOutput"),
+    id = id.from(_N, "DescribeTrustedAdvisorChecksResponse"),
     type = "structure",
     members = {
         checks = schema.new({
@@ -1413,7 +1413,7 @@ M.DescribeTrustedAdvisorChecksOutput = schema.new({
 })
 
 M.DescribeTrustedAdvisorCheckSummariesInput = schema.new({
-    id = id.from(_N, "DescribeTrustedAdvisorCheckSummariesInput"),
+    id = id.from(_N, "DescribeTrustedAdvisorCheckSummariesRequest"),
     type = "structure",
     members = {
         checkIds = schema.new({
@@ -1493,7 +1493,7 @@ M.TrustedAdvisorCheckSummary = schema.new({
 })
 
 M.DescribeTrustedAdvisorCheckSummariesOutput = schema.new({
-    id = id.from(_N, "DescribeTrustedAdvisorCheckSummariesOutput"),
+    id = id.from(_N, "DescribeTrustedAdvisorCheckSummariesResponse"),
     type = "structure",
     members = {
         summaries = schema.new({
@@ -1510,7 +1510,7 @@ M.DescribeTrustedAdvisorCheckSummariesOutput = schema.new({
 })
 
 M.RefreshTrustedAdvisorCheckInput = schema.new({
-    id = id.from(_N, "RefreshTrustedAdvisorCheckInput"),
+    id = id.from(_N, "RefreshTrustedAdvisorCheckRequest"),
     type = "structure",
     members = {
         checkId = schema.new({
@@ -1526,7 +1526,7 @@ M.RefreshTrustedAdvisorCheckInput = schema.new({
 })
 
 M.RefreshTrustedAdvisorCheckOutput = schema.new({
-    id = id.from(_N, "RefreshTrustedAdvisorCheckOutput"),
+    id = id.from(_N, "RefreshTrustedAdvisorCheckResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -1543,7 +1543,7 @@ M.RefreshTrustedAdvisorCheckOutput = schema.new({
 })
 
 M.ResolveCaseInput = schema.new({
-    id = id.from(_N, "ResolveCaseInput"),
+    id = id.from(_N, "ResolveCaseRequest"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -1556,7 +1556,7 @@ M.ResolveCaseInput = schema.new({
 })
 
 M.ResolveCaseOutput = schema.new({
-    id = id.from(_N, "ResolveCaseOutput"),
+    id = id.from(_N, "ResolveCaseResponse"),
     type = "structure",
     members = {
         initialCaseStatus = schema.new({
@@ -1573,5 +1573,19 @@ M.ResolveCaseOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

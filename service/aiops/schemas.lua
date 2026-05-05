@@ -159,7 +159,7 @@ M.CreateInvestigationGroupInput = schema.new({
             name = "chatbotNotificationChannel",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         isCloudTrailEventHistoryEnabled = schema.new({
             id = id.from(_N, "CreateInvestigationGroupInput", "isCloudTrailEventHistoryEnabled"),
@@ -279,7 +279,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteInvestigationGroupInput = schema.new({
-    id = id.from(_N, "DeleteInvestigationGroupInput"),
+    id = id.from(_N, "DeleteInvestigationGroupRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -296,12 +296,12 @@ M.DeleteInvestigationGroupInput = schema.new({
 })
 
 M.DeleteInvestigationGroupOutput = schema.new({
-    id = id.from(_N, "DeleteInvestigationGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetInvestigationGroupInput = schema.new({
-    id = id.from(_N, "GetInvestigationGroupInput"),
+    id = id.from(_N, "GetInvestigationGroupRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -318,7 +318,7 @@ M.GetInvestigationGroupInput = schema.new({
 })
 
 M.GetInvestigationGroupOutput = schema.new({
-    id = id.from(_N, "GetInvestigationGroupOutput"),
+    id = id.from(_N, "GetInvestigationGroupResponse"),
     type = "structure",
     members = {
         createdBy = schema.new({
@@ -382,7 +382,7 @@ M.GetInvestigationGroupOutput = schema.new({
             name = "chatbotNotificationChannel",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         tagKeyBoundaries = schema.new({
             id = id.from(_N, "GetInvestigationGroupOutput", "tagKeyBoundaries"),
@@ -472,7 +472,7 @@ M.ListInvestigationGroupsOutput = schema.new({
 })
 
 M.UpdateInvestigationGroupInput = schema.new({
-    id = id.from(_N, "UpdateInvestigationGroupInput"),
+    id = id.from(_N, "UpdateInvestigationGroupRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -511,7 +511,7 @@ M.UpdateInvestigationGroupInput = schema.new({
             name = "chatbotNotificationChannel",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         isCloudTrailEventHistoryEnabled = schema.new({
             id = id.from(_N, "UpdateInvestigationGroupInput", "isCloudTrailEventHistoryEnabled"),
@@ -535,7 +535,7 @@ M.UpdateInvestigationGroupOutput = schema.new({
 })
 
 M.DeleteInvestigationGroupPolicyInput = schema.new({
-    id = id.from(_N, "DeleteInvestigationGroupPolicyInput"),
+    id = id.from(_N, "DeleteInvestigationGroupPolicyRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -557,7 +557,7 @@ M.DeleteInvestigationGroupPolicyOutput = schema.new({
 })
 
 M.GetInvestigationGroupPolicyInput = schema.new({
-    id = id.from(_N, "GetInvestigationGroupPolicyInput"),
+    id = id.from(_N, "GetInvestigationGroupPolicyRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -574,7 +574,7 @@ M.GetInvestigationGroupPolicyInput = schema.new({
 })
 
 M.GetInvestigationGroupPolicyOutput = schema.new({
-    id = id.from(_N, "GetInvestigationGroupPolicyOutput"),
+    id = id.from(_N, "GetInvestigationGroupPolicyResponse"),
     type = "structure",
     members = {
         investigationGroupArn = schema.new({
@@ -593,7 +593,7 @@ M.GetInvestigationGroupPolicyOutput = schema.new({
 })
 
 M.PutInvestigationGroupPolicyInput = schema.new({
-    id = id.from(_N, "PutInvestigationGroupPolicyInput"),
+    id = id.from(_N, "PutInvestigationGroupPolicyRequest"),
     type = "structure",
     members = {
         identifier = schema.new({
@@ -619,7 +619,7 @@ M.PutInvestigationGroupPolicyInput = schema.new({
 })
 
 M.PutInvestigationGroupPolicyOutput = schema.new({
-    id = id.from(_N, "PutInvestigationGroupPolicyOutput"),
+    id = id.from(_N, "PutInvestigationGroupPolicyResponse"),
     type = "structure",
     members = {
         investigationGroupArn = schema.new({
@@ -632,7 +632,7 @@ M.PutInvestigationGroupPolicyOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -664,7 +664,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -692,12 +692,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -725,8 +725,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

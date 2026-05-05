@@ -8,7 +8,7 @@ local _N = "com.amazonaws.sagemakera2iruntime"
 local M = {}
 
 M.DeleteHumanLoopInput = schema.new({
-    id = id.from(_N, "DeleteHumanLoopInput"),
+    id = id.from(_N, "DeleteHumanLoopRequest"),
     type = "structure",
     members = {
         HumanLoopName = schema.new({
@@ -25,7 +25,7 @@ M.DeleteHumanLoopInput = schema.new({
 })
 
 M.DeleteHumanLoopOutput = schema.new({
-    id = id.from(_N, "DeleteHumanLoopOutput"),
+    id = id.from(_N, "DeleteHumanLoopResponse"),
     type = "structure",
 })
 
@@ -94,7 +94,7 @@ M.ValidationException = schema.new({
 })
 
 M.DescribeHumanLoopInput = schema.new({
-    id = id.from(_N, "DescribeHumanLoopInput"),
+    id = id.from(_N, "DescribeHumanLoopRequest"),
     type = "structure",
     members = {
         HumanLoopName = schema.new({
@@ -127,7 +127,7 @@ M.HumanLoopOutput = schema.new({
 })
 
 M.DescribeHumanLoopOutput = schema.new({
-    id = id.from(_N, "DescribeHumanLoopOutput"),
+    id = id.from(_N, "DescribeHumanLoopResponse"),
     type = "structure",
     members = {
         CreationTime = schema.new({
@@ -202,7 +202,7 @@ M.DescribeHumanLoopOutput = schema.new({
 })
 
 M.ListHumanLoopsInput = schema.new({
-    id = id.from(_N, "ListHumanLoopsInput"),
+    id = id.from(_N, "ListHumanLoopsRequest"),
     type = "structure",
     members = {
         CreationTimeAfter = schema.new({
@@ -312,7 +312,7 @@ M.HumanLoopSummary = schema.new({
 })
 
 M.ListHumanLoopsOutput = schema.new({
-    id = id.from(_N, "ListHumanLoopsOutput"),
+    id = id.from(_N, "ListHumanLoopsResponse"),
     type = "structure",
     members = {
         HumanLoopSummaries = schema.new({
@@ -400,7 +400,7 @@ M.HumanLoopInput = schema.new({
 })
 
 M.StartHumanLoopInput = schema.new({
-    id = id.from(_N, "StartHumanLoopInput"),
+    id = id.from(_N, "StartHumanLoopRequest"),
     type = "structure",
     members = {
         HumanLoopName = schema.new({
@@ -442,7 +442,7 @@ M.StartHumanLoopInput = schema.new({
 })
 
 M.StartHumanLoopOutput = schema.new({
-    id = id.from(_N, "StartHumanLoopOutput"),
+    id = id.from(_N, "StartHumanLoopResponse"),
     type = "structure",
     members = {
         HumanLoopArn = schema.new({
@@ -455,7 +455,7 @@ M.StartHumanLoopOutput = schema.new({
 })
 
 M.StopHumanLoopInput = schema.new({
-    id = id.from(_N, "StopHumanLoopInput"),
+    id = id.from(_N, "StopHumanLoopRequest"),
     type = "structure",
     members = {
         HumanLoopName = schema.new({
@@ -471,8 +471,22 @@ M.StopHumanLoopInput = schema.new({
 })
 
 M.StopHumanLoopOutput = schema.new({
-    id = id.from(_N, "StopHumanLoopOutput"),
+    id = id.from(_N, "StopHumanLoopResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

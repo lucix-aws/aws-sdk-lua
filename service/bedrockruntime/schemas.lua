@@ -24,7 +24,7 @@ M.AccessDeniedException = schema.new({
 })
 
 M.GetAsyncInvokeInput = schema.new({
-    id = id.from(_N, "GetAsyncInvokeInput"),
+    id = id.from(_N, "GetAsyncInvokeRequest"),
     type = "structure",
     members = {
         invocationArn = schema.new({
@@ -83,7 +83,7 @@ M.AsyncInvokeOutputDataConfig = schema.new({
 })
 
 M.GetAsyncInvokeOutput = schema.new({
-    id = id.from(_N, "GetAsyncInvokeOutput"),
+    id = id.from(_N, "GetAsyncInvokeResponse"),
     type = "structure",
     members = {
         invocationArn = schema.new({
@@ -218,7 +218,7 @@ M.ValidationException = schema.new({
 })
 
 M.ListAsyncInvokesInput = schema.new({
-    id = id.from(_N, "ListAsyncInvokesInput"),
+    id = id.from(_N, "ListAsyncInvokesRequest"),
     type = "structure",
     members = {
         submitTimeAfter = schema.new({
@@ -382,7 +382,7 @@ M.AsyncInvokeSummary = schema.new({
 })
 
 M.ListAsyncInvokesOutput = schema.new({
-    id = id.from(_N, "ListAsyncInvokesOutput"),
+    id = id.from(_N, "ListAsyncInvokesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -491,7 +491,7 @@ M.Tag = schema.new({
 })
 
 M.StartAsyncInvokeInput = schema.new({
-    id = id.from(_N, "StartAsyncInvokeInput"),
+    id = id.from(_N, "StartAsyncInvokeRequest"),
     type = "structure",
     members = {
         clientRequestToken = schema.new({
@@ -542,7 +542,7 @@ M.StartAsyncInvokeInput = schema.new({
 })
 
 M.StartAsyncInvokeOutput = schema.new({
-    id = id.from(_N, "StartAsyncInvokeOutput"),
+    id = id.from(_N, "StartAsyncInvokeResponse"),
     type = "structure",
     members = {
         invocationArn = schema.new({
@@ -641,7 +641,7 @@ M.GuardrailContentBlock = schema.new({
 })
 
 M.ApplyGuardrailInput = schema.new({
-    id = id.from(_N, "ApplyGuardrailInput"),
+    id = id.from(_N, "ApplyGuardrailRequest"),
     type = "structure",
     members = {
         guardrailIdentifier = schema.new({
@@ -1734,7 +1734,7 @@ M.GuardrailOutputContent = schema.new({
 })
 
 M.ApplyGuardrailOutput = schema.new({
-    id = id.from(_N, "ApplyGuardrailOutput"),
+    id = id.from(_N, "ApplyGuardrailResponse"),
     type = "structure",
     members = {
         usage = schema.new({
@@ -3170,7 +3170,7 @@ M.ToolConfiguration = schema.new({
 })
 
 M.ConverseInput = schema.new({
-    id = id.from(_N, "ConverseInput"),
+    id = id.from(_N, "ConverseRequest"),
     type = "structure",
     members = {
         modelId = schema.new({
@@ -3326,7 +3326,7 @@ M.GuardrailTraceAssessment = schema.new({
             name = "outputAssessments",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.GuardrailAssessment }),
         }),
         actionReason = schema.new({
             id = id.from(_N, "GuardrailTraceAssessment", "actionReason"),
@@ -3450,7 +3450,7 @@ M.TokenUsage = schema.new({
 })
 
 M.ConverseOperationOutput = schema.new({
-    id = id.from(_N, "ConverseOperationOutput"),
+    id = id.from(_N, "ConverseResponse"),
     type = "structure",
     members = {
         output = schema.new({
@@ -3626,7 +3626,7 @@ M.GuardrailStreamConfiguration = schema.new({
 })
 
 M.ConverseStreamInput = schema.new({
-    id = id.from(_N, "ConverseStreamInput"),
+    id = id.from(_N, "ConverseStreamRequest"),
     type = "structure",
     members = {
         modelId = schema.new({
@@ -4309,7 +4309,7 @@ M.ConverseStreamOutput = schema.new({
 })
 
 M.ConverseStreamOperationOutput = schema.new({
-    id = id.from(_N, "ConverseStreamOperationOutput"),
+    id = id.from(_N, "ConverseStreamResponse"),
     type = "structure",
     members = {
         stream = schema.new({
@@ -4326,7 +4326,7 @@ M.ConverseStreamOperationOutput = schema.new({
 })
 
 M.InvokeModelInput = schema.new({
-    id = id.from(_N, "InvokeModelInput"),
+    id = id.from(_N, "InvokeModelRequest"),
     type = "structure",
     members = {
         body = schema.new({
@@ -4416,7 +4416,7 @@ M.InvokeModelInput = schema.new({
 })
 
 M.InvokeModelOutput = schema.new({
-    id = id.from(_N, "InvokeModelOutput"),
+    id = id.from(_N, "InvokeModelResponse"),
     type = "structure",
     members = {
         body = schema.new({
@@ -4488,7 +4488,7 @@ M.InvokeModelWithBidirectionalStreamInput = schema.new({
 })
 
 M.InvokeModelWithBidirectionalStreamOperationInput = schema.new({
-    id = id.from(_N, "InvokeModelWithBidirectionalStreamOperationInput"),
+    id = id.from(_N, "InvokeModelWithBidirectionalStreamRequest"),
     type = "structure",
     members = {
         modelId = schema.new({
@@ -4585,7 +4585,7 @@ M.InvokeModelWithBidirectionalStreamOutput = schema.new({
 })
 
 M.InvokeModelWithBidirectionalStreamOperationOutput = schema.new({
-    id = id.from(_N, "InvokeModelWithBidirectionalStreamOperationOutput"),
+    id = id.from(_N, "InvokeModelWithBidirectionalStreamResponse"),
     type = "structure",
     members = {
         body = schema.new({
@@ -4603,7 +4603,7 @@ M.InvokeModelWithBidirectionalStreamOperationOutput = schema.new({
 })
 
 M.InvokeModelWithResponseStreamInput = schema.new({
-    id = id.from(_N, "InvokeModelWithResponseStreamInput"),
+    id = id.from(_N, "InvokeModelWithResponseStreamRequest"),
     type = "structure",
     members = {
         body = schema.new({
@@ -4762,7 +4762,7 @@ M.ResponseStream = schema.new({
 })
 
 M.InvokeModelWithResponseStreamOutput = schema.new({
-    id = id.from(_N, "InvokeModelWithResponseStreamOutput"),
+    id = id.from(_N, "InvokeModelWithResponseStreamResponse"),
     type = "structure",
     members = {
         body = schema.new({
@@ -4879,7 +4879,7 @@ M.CountTokensInput = schema.new({
 })
 
 M.CountTokensOperationInput = schema.new({
-    id = id.from(_N, "CountTokensOperationInput"),
+    id = id.from(_N, "CountTokensRequest"),
     type = "structure",
     members = {
         modelId = schema.new({
@@ -4906,7 +4906,7 @@ M.CountTokensOperationInput = schema.new({
 })
 
 M.CountTokensOutput = schema.new({
-    id = id.from(_N, "CountTokensOutput"),
+    id = id.from(_N, "CountTokensResponse"),
     type = "structure",
     members = {
         inputTokens = schema.new({
@@ -4920,5 +4920,19 @@ M.CountTokensOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -363,7 +363,7 @@ M.AlarmSummary = schema.new({
 })
 
 M.BatchAcknowledgeAlarmInput = schema.new({
-    id = id.from(_N, "BatchAcknowledgeAlarmInput"),
+    id = id.from(_N, "BatchAcknowledgeAlarmRequest"),
     type = "structure",
     members = {
         acknowledgeActionRequests = schema.new({
@@ -405,7 +405,7 @@ M.BatchAlarmActionErrorEntry = schema.new({
 })
 
 M.BatchAcknowledgeAlarmOutput = schema.new({
-    id = id.from(_N, "BatchAcknowledgeAlarmOutput"),
+    id = id.from(_N, "BatchAcknowledgeAlarmResponse"),
     type = "structure",
     members = {
         errorEntries = schema.new({
@@ -514,7 +514,7 @@ M.DeleteDetectorRequest = schema.new({
 })
 
 M.BatchDeleteDetectorInput = schema.new({
-    id = id.from(_N, "BatchDeleteDetectorInput"),
+    id = id.from(_N, "BatchDeleteDetectorRequest"),
     type = "structure",
     members = {
         detectors = schema.new({
@@ -556,7 +556,7 @@ M.BatchDeleteDetectorErrorEntry = schema.new({
 })
 
 M.BatchDeleteDetectorOutput = schema.new({
-    id = id.from(_N, "BatchDeleteDetectorOutput"),
+    id = id.from(_N, "BatchDeleteDetectorResponse"),
     type = "structure",
     members = {
         batchDeleteDetectorErrorEntries = schema.new({
@@ -607,7 +607,7 @@ M.DisableAlarmActionRequest = schema.new({
 })
 
 M.BatchDisableAlarmInput = schema.new({
-    id = id.from(_N, "BatchDisableAlarmInput"),
+    id = id.from(_N, "BatchDisableAlarmRequest"),
     type = "structure",
     members = {
         disableActionRequests = schema.new({
@@ -624,7 +624,7 @@ M.BatchDisableAlarmInput = schema.new({
 })
 
 M.BatchDisableAlarmOutput = schema.new({
-    id = id.from(_N, "BatchDisableAlarmOutput"),
+    id = id.from(_N, "BatchDisableAlarmResponse"),
     type = "structure",
     members = {
         errorEntries = schema.new({
@@ -675,7 +675,7 @@ M.EnableAlarmActionRequest = schema.new({
 })
 
 M.BatchEnableAlarmInput = schema.new({
-    id = id.from(_N, "BatchEnableAlarmInput"),
+    id = id.from(_N, "BatchEnableAlarmRequest"),
     type = "structure",
     members = {
         enableActionRequests = schema.new({
@@ -692,7 +692,7 @@ M.BatchEnableAlarmInput = schema.new({
 })
 
 M.BatchEnableAlarmOutput = schema.new({
-    id = id.from(_N, "BatchEnableAlarmOutput"),
+    id = id.from(_N, "BatchEnableAlarmResponse"),
     type = "structure",
     members = {
         errorEntries = schema.new({
@@ -760,7 +760,7 @@ M.Message = schema.new({
 })
 
 M.BatchPutMessageInput = schema.new({
-    id = id.from(_N, "BatchPutMessageInput"),
+    id = id.from(_N, "BatchPutMessageRequest"),
     type = "structure",
     members = {
         messages = schema.new({
@@ -802,7 +802,7 @@ M.BatchPutMessageErrorEntry = schema.new({
 })
 
 M.BatchPutMessageOutput = schema.new({
-    id = id.from(_N, "BatchPutMessageOutput"),
+    id = id.from(_N, "BatchPutMessageResponse"),
     type = "structure",
     members = {
         BatchPutMessageErrorEntries = schema.new({
@@ -853,7 +853,7 @@ M.ResetAlarmActionRequest = schema.new({
 })
 
 M.BatchResetAlarmInput = schema.new({
-    id = id.from(_N, "BatchResetAlarmInput"),
+    id = id.from(_N, "BatchResetAlarmRequest"),
     type = "structure",
     members = {
         resetActionRequests = schema.new({
@@ -870,7 +870,7 @@ M.BatchResetAlarmInput = schema.new({
 })
 
 M.BatchResetAlarmOutput = schema.new({
-    id = id.from(_N, "BatchResetAlarmOutput"),
+    id = id.from(_N, "BatchResetAlarmResponse"),
     type = "structure",
     members = {
         errorEntries = schema.new({
@@ -930,7 +930,7 @@ M.SnoozeAlarmActionRequest = schema.new({
 })
 
 M.BatchSnoozeAlarmInput = schema.new({
-    id = id.from(_N, "BatchSnoozeAlarmInput"),
+    id = id.from(_N, "BatchSnoozeAlarmRequest"),
     type = "structure",
     members = {
         snoozeActionRequests = schema.new({
@@ -947,7 +947,7 @@ M.BatchSnoozeAlarmInput = schema.new({
 })
 
 M.BatchSnoozeAlarmOutput = schema.new({
-    id = id.from(_N, "BatchSnoozeAlarmOutput"),
+    id = id.from(_N, "BatchSnoozeAlarmResponse"),
     type = "structure",
     members = {
         errorEntries = schema.new({
@@ -1088,7 +1088,7 @@ M.UpdateDetectorRequest = schema.new({
 })
 
 M.BatchUpdateDetectorInput = schema.new({
-    id = id.from(_N, "BatchUpdateDetectorInput"),
+    id = id.from(_N, "BatchUpdateDetectorRequest"),
     type = "structure",
     members = {
         detectors = schema.new({
@@ -1130,7 +1130,7 @@ M.BatchUpdateDetectorErrorEntry = schema.new({
 })
 
 M.BatchUpdateDetectorOutput = schema.new({
-    id = id.from(_N, "BatchUpdateDetectorOutput"),
+    id = id.from(_N, "BatchUpdateDetectorResponse"),
     type = "structure",
     members = {
         batchUpdateDetectorErrorEntries = schema.new({
@@ -1144,7 +1144,7 @@ M.BatchUpdateDetectorOutput = schema.new({
 })
 
 M.DescribeAlarmInput = schema.new({
-    id = id.from(_N, "DescribeAlarmInput"),
+    id = id.from(_N, "DescribeAlarmRequest"),
     type = "structure",
     members = {
         alarmModelName = schema.new({
@@ -1170,7 +1170,7 @@ M.DescribeAlarmInput = schema.new({
 })
 
 M.DescribeAlarmOutput = schema.new({
-    id = id.from(_N, "DescribeAlarmOutput"),
+    id = id.from(_N, "DescribeAlarmResponse"),
     type = "structure",
     members = {
         alarm = schema.new({
@@ -1200,7 +1200,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DescribeDetectorInput = schema.new({
-    id = id.from(_N, "DescribeDetectorInput"),
+    id = id.from(_N, "DescribeDetectorRequest"),
     type = "structure",
     members = {
         detectorModelName = schema.new({
@@ -1356,7 +1356,7 @@ M.Detector = schema.new({
 })
 
 M.DescribeDetectorOutput = schema.new({
-    id = id.from(_N, "DescribeDetectorOutput"),
+    id = id.from(_N, "DescribeDetectorResponse"),
     type = "structure",
     members = {
         detector = schema.new({
@@ -1427,7 +1427,7 @@ M.DetectorSummary = schema.new({
 })
 
 M.ListAlarmsInput = schema.new({
-    id = id.from(_N, "ListAlarmsInput"),
+    id = id.from(_N, "ListAlarmsRequest"),
     type = "structure",
     members = {
         alarmModelName = schema.new({
@@ -1462,7 +1462,7 @@ M.ListAlarmsInput = schema.new({
 })
 
 M.ListAlarmsOutput = schema.new({
-    id = id.from(_N, "ListAlarmsOutput"),
+    id = id.from(_N, "ListAlarmsResponse"),
     type = "structure",
     members = {
         alarmSummaries = schema.new({
@@ -1482,7 +1482,7 @@ M.ListAlarmsOutput = schema.new({
 })
 
 M.ListDetectorsInput = schema.new({
-    id = id.from(_N, "ListDetectorsInput"),
+    id = id.from(_N, "ListDetectorsRequest"),
     type = "structure",
     members = {
         detectorModelName = schema.new({
@@ -1526,7 +1526,7 @@ M.ListDetectorsInput = schema.new({
 })
 
 M.ListDetectorsOutput = schema.new({
-    id = id.from(_N, "ListDetectorsOutput"),
+    id = id.from(_N, "ListDetectorsResponse"),
     type = "structure",
     members = {
         detectorSummaries = schema.new({
@@ -1544,5 +1544,19 @@ M.ListDetectorsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

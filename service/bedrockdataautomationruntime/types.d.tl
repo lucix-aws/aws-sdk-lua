@@ -191,9 +191,9 @@ local record ValidationException
     message: string
 end
 
-local type SemanticModality = "DOCUMENT" | "IMAGE" | "AUDIO" | "VIDEO"
-
 local type AutomationJobStatus = "Created" | "InProgress" | "Success" | "ServiceError" | "ClientError"
+
+local type SemanticModality = "DOCUMENT" | "IMAGE" | "AUDIO" | "VIDEO"
 
 local record M
     GetDataAutomationStatusInput: GetDataAutomationStatusInput

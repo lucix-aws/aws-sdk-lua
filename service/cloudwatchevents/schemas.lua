@@ -8,7 +8,7 @@ local _N = "com.amazonaws.cloudwatchevents"
 local M = {}
 
 M.ActivateEventSourceInput = schema.new({
-    id = id.from(_N, "ActivateEventSourceInput"),
+    id = id.from(_N, "ActivateEventSourceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -24,7 +24,7 @@ M.ActivateEventSourceInput = schema.new({
 })
 
 M.ActivateEventSourceOutput = schema.new({
-    id = id.from(_N, "ActivateEventSourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -231,7 +231,7 @@ M.Archive = schema.new({
 })
 
 M.CancelReplayInput = schema.new({
-    id = id.from(_N, "CancelReplayInput"),
+    id = id.from(_N, "CancelReplayRequest"),
     type = "structure",
     members = {
         ReplayName = schema.new({
@@ -247,7 +247,7 @@ M.CancelReplayInput = schema.new({
 })
 
 M.CancelReplayOutput = schema.new({
-    id = id.from(_N, "CancelReplayOutput"),
+    id = id.from(_N, "CancelReplayResponse"),
     type = "structure",
     members = {
         ReplayArn = schema.new({
@@ -288,7 +288,7 @@ M.IllegalStatusException = schema.new({
 })
 
 M.CreateApiDestinationInput = schema.new({
-    id = id.from(_N, "CreateApiDestinationInput"),
+    id = id.from(_N, "CreateApiDestinationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -343,7 +343,7 @@ M.CreateApiDestinationInput = schema.new({
 })
 
 M.CreateApiDestinationOutput = schema.new({
-    id = id.from(_N, "CreateApiDestinationOutput"),
+    id = id.from(_N, "CreateApiDestinationResponse"),
     type = "structure",
     members = {
         ApiDestinationArn = schema.new({
@@ -406,7 +406,7 @@ M.ResourceAlreadyExistsException = schema.new({
 })
 
 M.CreateArchiveInput = schema.new({
-    id = id.from(_N, "CreateArchiveInput"),
+    id = id.from(_N, "CreateArchiveRequest"),
     type = "structure",
     members = {
         ArchiveName = schema.new({
@@ -449,7 +449,7 @@ M.CreateArchiveInput = schema.new({
 })
 
 M.CreateArchiveOutput = schema.new({
-    id = id.from(_N, "CreateArchiveOutput"),
+    id = id.from(_N, "CreateArchiveResponse"),
     type = "structure",
     members = {
         ArchiveArn = schema.new({
@@ -760,7 +760,7 @@ M.CreateConnectionAuthRequestParameters = schema.new({
 })
 
 M.CreateConnectionInput = schema.new({
-    id = id.from(_N, "CreateConnectionInput"),
+    id = id.from(_N, "CreateConnectionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -801,7 +801,7 @@ M.CreateConnectionInput = schema.new({
 })
 
 M.CreateConnectionOutput = schema.new({
-    id = id.from(_N, "CreateConnectionOutput"),
+    id = id.from(_N, "CreateConnectionResponse"),
     type = "structure",
     members = {
         ConnectionArn = schema.new({
@@ -857,7 +857,7 @@ M.Tag = schema.new({
 })
 
 M.CreateEventBusInput = schema.new({
-    id = id.from(_N, "CreateEventBusInput"),
+    id = id.from(_N, "CreateEventBusRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -886,7 +886,7 @@ M.CreateEventBusInput = schema.new({
 })
 
 M.CreateEventBusOutput = schema.new({
-    id = id.from(_N, "CreateEventBusOutput"),
+    id = id.from(_N, "CreateEventBusResponse"),
     type = "structure",
     members = {
         EventBusArn = schema.new({
@@ -899,7 +899,7 @@ M.CreateEventBusOutput = schema.new({
 })
 
 M.CreatePartnerEventSourceInput = schema.new({
-    id = id.from(_N, "CreatePartnerEventSourceInput"),
+    id = id.from(_N, "CreatePartnerEventSourceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -924,7 +924,7 @@ M.CreatePartnerEventSourceInput = schema.new({
 })
 
 M.CreatePartnerEventSourceOutput = schema.new({
-    id = id.from(_N, "CreatePartnerEventSourceOutput"),
+    id = id.from(_N, "CreatePartnerEventSourceResponse"),
     type = "structure",
     members = {
         EventSourceArn = schema.new({
@@ -937,7 +937,7 @@ M.CreatePartnerEventSourceOutput = schema.new({
 })
 
 M.DeactivateEventSourceInput = schema.new({
-    id = id.from(_N, "DeactivateEventSourceInput"),
+    id = id.from(_N, "DeactivateEventSourceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -953,12 +953,12 @@ M.DeactivateEventSourceInput = schema.new({
 })
 
 M.DeactivateEventSourceOutput = schema.new({
-    id = id.from(_N, "DeactivateEventSourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeauthorizeConnectionInput = schema.new({
-    id = id.from(_N, "DeauthorizeConnectionInput"),
+    id = id.from(_N, "DeauthorizeConnectionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -974,7 +974,7 @@ M.DeauthorizeConnectionInput = schema.new({
 })
 
 M.DeauthorizeConnectionOutput = schema.new({
-    id = id.from(_N, "DeauthorizeConnectionOutput"),
+    id = id.from(_N, "DeauthorizeConnectionResponse"),
     type = "structure",
     members = {
         ConnectionArn = schema.new({
@@ -1011,7 +1011,7 @@ M.DeauthorizeConnectionOutput = schema.new({
 })
 
 M.DeleteApiDestinationInput = schema.new({
-    id = id.from(_N, "DeleteApiDestinationInput"),
+    id = id.from(_N, "DeleteApiDestinationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1027,12 +1027,12 @@ M.DeleteApiDestinationInput = schema.new({
 })
 
 M.DeleteApiDestinationOutput = schema.new({
-    id = id.from(_N, "DeleteApiDestinationOutput"),
+    id = id.from(_N, "DeleteApiDestinationResponse"),
     type = "structure",
 })
 
 M.DeleteArchiveInput = schema.new({
-    id = id.from(_N, "DeleteArchiveInput"),
+    id = id.from(_N, "DeleteArchiveRequest"),
     type = "structure",
     members = {
         ArchiveName = schema.new({
@@ -1048,12 +1048,12 @@ M.DeleteArchiveInput = schema.new({
 })
 
 M.DeleteArchiveOutput = schema.new({
-    id = id.from(_N, "DeleteArchiveOutput"),
+    id = id.from(_N, "DeleteArchiveResponse"),
     type = "structure",
 })
 
 M.DeleteConnectionInput = schema.new({
-    id = id.from(_N, "DeleteConnectionInput"),
+    id = id.from(_N, "DeleteConnectionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1069,7 +1069,7 @@ M.DeleteConnectionInput = schema.new({
 })
 
 M.DeleteConnectionOutput = schema.new({
-    id = id.from(_N, "DeleteConnectionOutput"),
+    id = id.from(_N, "DeleteConnectionResponse"),
     type = "structure",
     members = {
         ConnectionArn = schema.new({
@@ -1106,7 +1106,7 @@ M.DeleteConnectionOutput = schema.new({
 })
 
 M.DeleteEventBusInput = schema.new({
-    id = id.from(_N, "DeleteEventBusInput"),
+    id = id.from(_N, "DeleteEventBusRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1122,12 +1122,12 @@ M.DeleteEventBusInput = schema.new({
 })
 
 M.DeleteEventBusOutput = schema.new({
-    id = id.from(_N, "DeleteEventBusOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeletePartnerEventSourceInput = schema.new({
-    id = id.from(_N, "DeletePartnerEventSourceInput"),
+    id = id.from(_N, "DeletePartnerEventSourceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1152,12 +1152,12 @@ M.DeletePartnerEventSourceInput = schema.new({
 })
 
 M.DeletePartnerEventSourceOutput = schema.new({
-    id = id.from(_N, "DeletePartnerEventSourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRuleInput = schema.new({
-    id = id.from(_N, "DeleteRuleInput"),
+    id = id.from(_N, "DeleteRuleRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1188,7 +1188,7 @@ M.DeleteRuleInput = schema.new({
 })
 
 M.DeleteRuleOutput = schema.new({
-    id = id.from(_N, "DeleteRuleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1209,7 +1209,7 @@ M.ManagedRuleException = schema.new({
 })
 
 M.DescribeApiDestinationInput = schema.new({
-    id = id.from(_N, "DescribeApiDestinationInput"),
+    id = id.from(_N, "DescribeApiDestinationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1225,7 +1225,7 @@ M.DescribeApiDestinationInput = schema.new({
 })
 
 M.DescribeApiDestinationOutput = schema.new({
-    id = id.from(_N, "DescribeApiDestinationOutput"),
+    id = id.from(_N, "DescribeApiDestinationResponse"),
     type = "structure",
     members = {
         ApiDestinationArn = schema.new({
@@ -1292,7 +1292,7 @@ M.DescribeApiDestinationOutput = schema.new({
 })
 
 M.DescribeArchiveInput = schema.new({
-    id = id.from(_N, "DescribeArchiveInput"),
+    id = id.from(_N, "DescribeArchiveRequest"),
     type = "structure",
     members = {
         ArchiveName = schema.new({
@@ -1308,7 +1308,7 @@ M.DescribeArchiveInput = schema.new({
 })
 
 M.DescribeArchiveOutput = schema.new({
-    id = id.from(_N, "DescribeArchiveOutput"),
+    id = id.from(_N, "DescribeArchiveResponse"),
     type = "structure",
     members = {
         ArchiveArn = schema.new({
@@ -1387,7 +1387,7 @@ M.DescribeArchiveOutput = schema.new({
 })
 
 M.DescribeConnectionInput = schema.new({
-    id = id.from(_N, "DescribeConnectionInput"),
+    id = id.from(_N, "DescribeConnectionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1510,7 +1510,7 @@ M.ConnectionAuthResponseParameters = schema.new({
 })
 
 M.DescribeConnectionOutput = schema.new({
-    id = id.from(_N, "DescribeConnectionOutput"),
+    id = id.from(_N, "DescribeConnectionResponse"),
     type = "structure",
     members = {
         ConnectionArn = schema.new({
@@ -1584,7 +1584,7 @@ M.DescribeConnectionOutput = schema.new({
 })
 
 M.DescribeEventBusInput = schema.new({
-    id = id.from(_N, "DescribeEventBusInput"),
+    id = id.from(_N, "DescribeEventBusRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1597,7 +1597,7 @@ M.DescribeEventBusInput = schema.new({
 })
 
 M.DescribeEventBusOutput = schema.new({
-    id = id.from(_N, "DescribeEventBusOutput"),
+    id = id.from(_N, "DescribeEventBusResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1622,7 +1622,7 @@ M.DescribeEventBusOutput = schema.new({
 })
 
 M.DescribeEventSourceInput = schema.new({
-    id = id.from(_N, "DescribeEventSourceInput"),
+    id = id.from(_N, "DescribeEventSourceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1638,7 +1638,7 @@ M.DescribeEventSourceInput = schema.new({
 })
 
 M.DescribeEventSourceOutput = schema.new({
-    id = id.from(_N, "DescribeEventSourceOutput"),
+    id = id.from(_N, "DescribeEventSourceResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1681,7 +1681,7 @@ M.DescribeEventSourceOutput = schema.new({
 })
 
 M.DescribePartnerEventSourceInput = schema.new({
-    id = id.from(_N, "DescribePartnerEventSourceInput"),
+    id = id.from(_N, "DescribePartnerEventSourceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1697,7 +1697,7 @@ M.DescribePartnerEventSourceInput = schema.new({
 })
 
 M.DescribePartnerEventSourceOutput = schema.new({
-    id = id.from(_N, "DescribePartnerEventSourceOutput"),
+    id = id.from(_N, "DescribePartnerEventSourceResponse"),
     type = "structure",
     members = {
         Arn = schema.new({
@@ -1716,7 +1716,7 @@ M.DescribePartnerEventSourceOutput = schema.new({
 })
 
 M.DescribeReplayInput = schema.new({
-    id = id.from(_N, "DescribeReplayInput"),
+    id = id.from(_N, "DescribeReplayRequest"),
     type = "structure",
     members = {
         ReplayName = schema.new({
@@ -1755,7 +1755,7 @@ M.ReplayDestination = schema.new({
 })
 
 M.DescribeReplayOutput = schema.new({
-    id = id.from(_N, "DescribeReplayOutput"),
+    id = id.from(_N, "DescribeReplayResponse"),
     type = "structure",
     members = {
         ReplayName = schema.new({
@@ -1835,7 +1835,7 @@ M.DescribeReplayOutput = schema.new({
 })
 
 M.DescribeRuleInput = schema.new({
-    id = id.from(_N, "DescribeRuleInput"),
+    id = id.from(_N, "DescribeRuleRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1857,7 +1857,7 @@ M.DescribeRuleInput = schema.new({
 })
 
 M.DescribeRuleOutput = schema.new({
-    id = id.from(_N, "DescribeRuleOutput"),
+    id = id.from(_N, "DescribeRuleResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1924,7 +1924,7 @@ M.DescribeRuleOutput = schema.new({
 })
 
 M.DisableRuleInput = schema.new({
-    id = id.from(_N, "DisableRuleInput"),
+    id = id.from(_N, "DisableRuleRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1946,12 +1946,12 @@ M.DisableRuleInput = schema.new({
 })
 
 M.DisableRuleOutput = schema.new({
-    id = id.from(_N, "DisableRuleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.EnableRuleInput = schema.new({
-    id = id.from(_N, "EnableRuleInput"),
+    id = id.from(_N, "EnableRuleRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1973,12 +1973,12 @@ M.EnableRuleInput = schema.new({
 })
 
 M.EnableRuleOutput = schema.new({
-    id = id.from(_N, "EnableRuleOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ListApiDestinationsInput = schema.new({
-    id = id.from(_N, "ListApiDestinationsInput"),
+    id = id.from(_N, "ListApiDestinationsRequest"),
     type = "structure",
     members = {
         NamePrefix = schema.new({
@@ -2009,7 +2009,7 @@ M.ListApiDestinationsInput = schema.new({
 })
 
 M.ListApiDestinationsOutput = schema.new({
-    id = id.from(_N, "ListApiDestinationsOutput"),
+    id = id.from(_N, "ListApiDestinationsResponse"),
     type = "structure",
     members = {
         ApiDestinations = schema.new({
@@ -2029,7 +2029,7 @@ M.ListApiDestinationsOutput = schema.new({
 })
 
 M.ListArchivesInput = schema.new({
-    id = id.from(_N, "ListArchivesInput"),
+    id = id.from(_N, "ListArchivesRequest"),
     type = "structure",
     members = {
         NamePrefix = schema.new({
@@ -2066,7 +2066,7 @@ M.ListArchivesInput = schema.new({
 })
 
 M.ListArchivesOutput = schema.new({
-    id = id.from(_N, "ListArchivesOutput"),
+    id = id.from(_N, "ListArchivesResponse"),
     type = "structure",
     members = {
         Archives = schema.new({
@@ -2086,7 +2086,7 @@ M.ListArchivesOutput = schema.new({
 })
 
 M.ListConnectionsInput = schema.new({
-    id = id.from(_N, "ListConnectionsInput"),
+    id = id.from(_N, "ListConnectionsRequest"),
     type = "structure",
     members = {
         NamePrefix = schema.new({
@@ -2172,7 +2172,7 @@ M.Connection = schema.new({
 })
 
 M.ListConnectionsOutput = schema.new({
-    id = id.from(_N, "ListConnectionsOutput"),
+    id = id.from(_N, "ListConnectionsResponse"),
     type = "structure",
     members = {
         Connections = schema.new({
@@ -2192,7 +2192,7 @@ M.ListConnectionsOutput = schema.new({
 })
 
 M.ListEventBusesInput = schema.new({
-    id = id.from(_N, "ListEventBusesInput"),
+    id = id.from(_N, "ListEventBusesRequest"),
     type = "structure",
     members = {
         NamePrefix = schema.new({
@@ -2242,7 +2242,7 @@ M.EventBus = schema.new({
 })
 
 M.ListEventBusesOutput = schema.new({
-    id = id.from(_N, "ListEventBusesOutput"),
+    id = id.from(_N, "ListEventBusesResponse"),
     type = "structure",
     members = {
         EventBuses = schema.new({
@@ -2262,7 +2262,7 @@ M.ListEventBusesOutput = schema.new({
 })
 
 M.ListEventSourcesInput = schema.new({
-    id = id.from(_N, "ListEventSourcesInput"),
+    id = id.from(_N, "ListEventSourcesRequest"),
     type = "structure",
     members = {
         NamePrefix = schema.new({
@@ -2330,7 +2330,7 @@ M.EventSource = schema.new({
 })
 
 M.ListEventSourcesOutput = schema.new({
-    id = id.from(_N, "ListEventSourcesOutput"),
+    id = id.from(_N, "ListEventSourcesResponse"),
     type = "structure",
     members = {
         EventSources = schema.new({
@@ -2350,7 +2350,7 @@ M.ListEventSourcesOutput = schema.new({
 })
 
 M.ListPartnerEventSourceAccountsInput = schema.new({
-    id = id.from(_N, "ListPartnerEventSourceAccountsInput"),
+    id = id.from(_N, "ListPartnerEventSourceAccountsRequest"),
     type = "structure",
     members = {
         EventSourceName = schema.new({
@@ -2409,7 +2409,7 @@ M.PartnerEventSourceAccount = schema.new({
 })
 
 M.ListPartnerEventSourceAccountsOutput = schema.new({
-    id = id.from(_N, "ListPartnerEventSourceAccountsOutput"),
+    id = id.from(_N, "ListPartnerEventSourceAccountsResponse"),
     type = "structure",
     members = {
         PartnerEventSourceAccounts = schema.new({
@@ -2429,7 +2429,7 @@ M.ListPartnerEventSourceAccountsOutput = schema.new({
 })
 
 M.ListPartnerEventSourcesInput = schema.new({
-    id = id.from(_N, "ListPartnerEventSourcesInput"),
+    id = id.from(_N, "ListPartnerEventSourcesRequest"),
     type = "structure",
     members = {
         NamePrefix = schema.new({
@@ -2476,7 +2476,7 @@ M.PartnerEventSource = schema.new({
 })
 
 M.ListPartnerEventSourcesOutput = schema.new({
-    id = id.from(_N, "ListPartnerEventSourcesOutput"),
+    id = id.from(_N, "ListPartnerEventSourcesResponse"),
     type = "structure",
     members = {
         PartnerEventSources = schema.new({
@@ -2496,7 +2496,7 @@ M.ListPartnerEventSourcesOutput = schema.new({
 })
 
 M.ListReplaysInput = schema.new({
-    id = id.from(_N, "ListReplaysInput"),
+    id = id.from(_N, "ListReplaysRequest"),
     type = "structure",
     members = {
         NamePrefix = schema.new({
@@ -2594,7 +2594,7 @@ M.Replay = schema.new({
 })
 
 M.ListReplaysOutput = schema.new({
-    id = id.from(_N, "ListReplaysOutput"),
+    id = id.from(_N, "ListReplaysResponse"),
     type = "structure",
     members = {
         Replays = schema.new({
@@ -2614,7 +2614,7 @@ M.ListReplaysOutput = schema.new({
 })
 
 M.ListRuleNamesByTargetInput = schema.new({
-    id = id.from(_N, "ListRuleNamesByTargetInput"),
+    id = id.from(_N, "ListRuleNamesByTargetRequest"),
     type = "structure",
     members = {
         TargetArn = schema.new({
@@ -2648,7 +2648,7 @@ M.ListRuleNamesByTargetInput = schema.new({
 })
 
 M.ListRuleNamesByTargetOutput = schema.new({
-    id = id.from(_N, "ListRuleNamesByTargetOutput"),
+    id = id.from(_N, "ListRuleNamesByTargetResponse"),
     type = "structure",
     members = {
         RuleNames = schema.new({
@@ -2668,7 +2668,7 @@ M.ListRuleNamesByTargetOutput = schema.new({
 })
 
 M.ListRulesInput = schema.new({
-    id = id.from(_N, "ListRulesInput"),
+    id = id.from(_N, "ListRulesRequest"),
     type = "structure",
     members = {
         NamePrefix = schema.new({
@@ -2760,7 +2760,7 @@ M.Rule = schema.new({
 })
 
 M.ListRulesOutput = schema.new({
-    id = id.from(_N, "ListRulesOutput"),
+    id = id.from(_N, "ListRulesResponse"),
     type = "structure",
     members = {
         Rules = schema.new({
@@ -2780,7 +2780,7 @@ M.ListRulesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2796,7 +2796,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2810,7 +2810,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTargetsByRuleInput = schema.new({
-    id = id.from(_N, "ListTargetsByRuleInput"),
+    id = id.from(_N, "ListTargetsByRuleRequest"),
     type = "structure",
     members = {
         Rule = schema.new({
@@ -3505,7 +3505,7 @@ M.Target = schema.new({
 })
 
 M.ListTargetsByRuleOutput = schema.new({
-    id = id.from(_N, "ListTargetsByRuleOutput"),
+    id = id.from(_N, "ListTargetsByRuleResponse"),
     type = "structure",
     members = {
         Targets = schema.new({
@@ -3575,7 +3575,7 @@ M.PutEventsRequestEntry = schema.new({
 })
 
 M.PutEventsInput = schema.new({
-    id = id.from(_N, "PutEventsInput"),
+    id = id.from(_N, "PutEventsRequest"),
     type = "structure",
     members = {
         Entries = schema.new({
@@ -3617,7 +3617,7 @@ M.PutEventsResultEntry = schema.new({
 })
 
 M.PutEventsOutput = schema.new({
-    id = id.from(_N, "PutEventsOutput"),
+    id = id.from(_N, "PutEventsResponse"),
     type = "structure",
     members = {
         FailedEntryCount = schema.new({
@@ -3678,7 +3678,7 @@ M.PutPartnerEventsRequestEntry = schema.new({
 })
 
 M.PutPartnerEventsInput = schema.new({
-    id = id.from(_N, "PutPartnerEventsInput"),
+    id = id.from(_N, "PutPartnerEventsRequest"),
     type = "structure",
     members = {
         Entries = schema.new({
@@ -3720,7 +3720,7 @@ M.PutPartnerEventsResultEntry = schema.new({
 })
 
 M.PutPartnerEventsOutput = schema.new({
-    id = id.from(_N, "PutPartnerEventsOutput"),
+    id = id.from(_N, "PutPartnerEventsResponse"),
     type = "structure",
     members = {
         FailedEntryCount = schema.new({
@@ -3793,7 +3793,7 @@ M.Condition = schema.new({
 })
 
 M.PutPermissionInput = schema.new({
-    id = id.from(_N, "PutPermissionInput"),
+    id = id.from(_N, "PutPermissionRequest"),
     type = "structure",
     members = {
         EventBusName = schema.new({
@@ -3837,12 +3837,12 @@ M.PutPermissionInput = schema.new({
 })
 
 M.PutPermissionOutput = schema.new({
-    id = id.from(_N, "PutPermissionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.PutRuleInput = schema.new({
-    id = id.from(_N, "PutRuleInput"),
+    id = id.from(_N, "PutRuleRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3901,7 +3901,7 @@ M.PutRuleInput = schema.new({
 })
 
 M.PutRuleOutput = schema.new({
-    id = id.from(_N, "PutRuleOutput"),
+    id = id.from(_N, "PutRuleResponse"),
     type = "structure",
     members = {
         RuleArn = schema.new({
@@ -3914,7 +3914,7 @@ M.PutRuleOutput = schema.new({
 })
 
 M.PutTargetsInput = schema.new({
-    id = id.from(_N, "PutTargetsInput"),
+    id = id.from(_N, "PutTargetsRequest"),
     type = "structure",
     members = {
         Rule = schema.new({
@@ -3971,7 +3971,7 @@ M.PutTargetsResultEntry = schema.new({
 })
 
 M.PutTargetsOutput = schema.new({
-    id = id.from(_N, "PutTargetsOutput"),
+    id = id.from(_N, "PutTargetsResponse"),
     type = "structure",
     members = {
         FailedEntryCount = schema.new({
@@ -3994,7 +3994,7 @@ M.PutTargetsOutput = schema.new({
 })
 
 M.RemovePermissionInput = schema.new({
-    id = id.from(_N, "RemovePermissionInput"),
+    id = id.from(_N, "RemovePermissionRequest"),
     type = "structure",
     members = {
         StatementId = schema.new({
@@ -4022,12 +4022,12 @@ M.RemovePermissionInput = schema.new({
 })
 
 M.RemovePermissionOutput = schema.new({
-    id = id.from(_N, "RemovePermissionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.RemoveTargetsInput = schema.new({
-    id = id.from(_N, "RemoveTargetsInput"),
+    id = id.from(_N, "RemoveTargetsRequest"),
     type = "structure",
     members = {
         Rule = schema.new({
@@ -4093,7 +4093,7 @@ M.RemoveTargetsResultEntry = schema.new({
 })
 
 M.RemoveTargetsOutput = schema.new({
-    id = id.from(_N, "RemoveTargetsOutput"),
+    id = id.from(_N, "RemoveTargetsResponse"),
     type = "structure",
     members = {
         FailedEntryCount = schema.new({
@@ -4116,7 +4116,7 @@ M.RemoveTargetsOutput = schema.new({
 })
 
 M.StartReplayInput = schema.new({
-    id = id.from(_N, "StartReplayInput"),
+    id = id.from(_N, "StartReplayRequest"),
     type = "structure",
     members = {
         ReplayName = schema.new({
@@ -4175,7 +4175,7 @@ M.StartReplayInput = schema.new({
 })
 
 M.StartReplayOutput = schema.new({
-    id = id.from(_N, "StartReplayOutput"),
+    id = id.from(_N, "StartReplayResponse"),
     type = "structure",
     members = {
         ReplayArn = schema.new({
@@ -4206,7 +4206,7 @@ M.StartReplayOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -4232,12 +4232,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.TestEventPatternInput = schema.new({
-    id = id.from(_N, "TestEventPatternInput"),
+    id = id.from(_N, "TestEventPatternRequest"),
     type = "structure",
     members = {
         EventPattern = schema.new({
@@ -4262,7 +4262,7 @@ M.TestEventPatternInput = schema.new({
 })
 
 M.TestEventPatternOutput = schema.new({
-    id = id.from(_N, "TestEventPatternOutput"),
+    id = id.from(_N, "TestEventPatternResponse"),
     type = "structure",
     members = {
         Result = schema.new({
@@ -4278,7 +4278,7 @@ M.TestEventPatternOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -4304,12 +4304,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateApiDestinationInput = schema.new({
-    id = id.from(_N, "UpdateApiDestinationInput"),
+    id = id.from(_N, "UpdateApiDestinationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4355,7 +4355,7 @@ M.UpdateApiDestinationInput = schema.new({
 })
 
 M.UpdateApiDestinationOutput = schema.new({
-    id = id.from(_N, "UpdateApiDestinationOutput"),
+    id = id.from(_N, "UpdateApiDestinationResponse"),
     type = "structure",
     members = {
         ApiDestinationArn = schema.new({
@@ -4386,7 +4386,7 @@ M.UpdateApiDestinationOutput = schema.new({
 })
 
 M.UpdateArchiveInput = schema.new({
-    id = id.from(_N, "UpdateArchiveInput"),
+    id = id.from(_N, "UpdateArchiveRequest"),
     type = "structure",
     members = {
         ArchiveName = schema.new({
@@ -4420,7 +4420,7 @@ M.UpdateArchiveInput = schema.new({
 })
 
 M.UpdateArchiveOutput = schema.new({
-    id = id.from(_N, "UpdateArchiveOutput"),
+    id = id.from(_N, "UpdateArchiveResponse"),
     type = "structure",
     members = {
         ArchiveArn = schema.new({
@@ -4576,7 +4576,7 @@ M.UpdateConnectionAuthRequestParameters = schema.new({
 })
 
 M.UpdateConnectionInput = schema.new({
-    id = id.from(_N, "UpdateConnectionInput"),
+    id = id.from(_N, "UpdateConnectionRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4611,7 +4611,7 @@ M.UpdateConnectionInput = schema.new({
 })
 
 M.UpdateConnectionOutput = schema.new({
-    id = id.from(_N, "UpdateConnectionOutput"),
+    id = id.from(_N, "UpdateConnectionResponse"),
     type = "structure",
     members = {
         ConnectionArn = schema.new({
@@ -4646,5 +4646,19 @@ M.UpdateConnectionOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

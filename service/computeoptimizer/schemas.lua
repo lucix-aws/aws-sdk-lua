@@ -615,7 +615,7 @@ M.Scope = schema.new({
 })
 
 M.DeleteRecommendationPreferencesInput = schema.new({
-    id = id.from(_N, "DeleteRecommendationPreferencesInput"),
+    id = id.from(_N, "DeleteRecommendationPreferencesRequest"),
     type = "structure",
     members = {
         resourceType = schema.new({
@@ -648,7 +648,7 @@ M.DeleteRecommendationPreferencesInput = schema.new({
 })
 
 M.DeleteRecommendationPreferencesOutput = schema.new({
-    id = id.from(_N, "DeleteRecommendationPreferencesOutput"),
+    id = id.from(_N, "DeleteRecommendationPreferencesResponse"),
     type = "structure",
 })
 
@@ -788,7 +788,7 @@ M.JobFilter = schema.new({
 })
 
 M.DescribeRecommendationExportJobsInput = schema.new({
-    id = id.from(_N, "DescribeRecommendationExportJobsInput"),
+    id = id.from(_N, "DescribeRecommendationExportJobsRequest"),
     type = "structure",
     members = {
         jobIds = schema.new({
@@ -910,7 +910,7 @@ M.RecommendationExportJob = schema.new({
 })
 
 M.DescribeRecommendationExportJobsOutput = schema.new({
-    id = id.from(_N, "DescribeRecommendationExportJobsOutput"),
+    id = id.from(_N, "DescribeRecommendationExportJobsResponse"),
     type = "structure",
     members = {
         recommendationExportJobs = schema.new({
@@ -983,7 +983,7 @@ M.S3DestinationConfig = schema.new({
 })
 
 M.ExportAutoScalingGroupRecommendationsInput = schema.new({
-    id = id.from(_N, "ExportAutoScalingGroupRecommendationsInput"),
+    id = id.from(_N, "ExportAutoScalingGroupRecommendationsRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -1043,7 +1043,7 @@ M.ExportAutoScalingGroupRecommendationsInput = schema.new({
 })
 
 M.ExportAutoScalingGroupRecommendationsOutput = schema.new({
-    id = id.from(_N, "ExportAutoScalingGroupRecommendationsOutput"),
+    id = id.from(_N, "ExportAutoScalingGroupRecommendationsResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -1099,7 +1099,7 @@ M.EBSFilter = schema.new({
 })
 
 M.ExportEBSVolumeRecommendationsInput = schema.new({
-    id = id.from(_N, "ExportEBSVolumeRecommendationsInput"),
+    id = id.from(_N, "ExportEBSVolumeRecommendationsRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -1152,7 +1152,7 @@ M.ExportEBSVolumeRecommendationsInput = schema.new({
 })
 
 M.ExportEBSVolumeRecommendationsOutput = schema.new({
-    id = id.from(_N, "ExportEBSVolumeRecommendationsOutput"),
+    id = id.from(_N, "ExportEBSVolumeRecommendationsResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -1172,7 +1172,7 @@ M.ExportEBSVolumeRecommendationsOutput = schema.new({
 })
 
 M.ExportEC2InstanceRecommendationsInput = schema.new({
-    id = id.from(_N, "ExportEC2InstanceRecommendationsInput"),
+    id = id.from(_N, "ExportEC2InstanceRecommendationsRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -1232,7 +1232,7 @@ M.ExportEC2InstanceRecommendationsInput = schema.new({
 })
 
 M.ExportEC2InstanceRecommendationsOutput = schema.new({
-    id = id.from(_N, "ExportEC2InstanceRecommendationsOutput"),
+    id = id.from(_N, "ExportEC2InstanceRecommendationsResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -1272,7 +1272,7 @@ M.ECSServiceRecommendationFilter = schema.new({
 })
 
 M.ExportECSServiceRecommendationsInput = schema.new({
-    id = id.from(_N, "ExportECSServiceRecommendationsInput"),
+    id = id.from(_N, "ExportECSServiceRecommendationsRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -1325,7 +1325,7 @@ M.ExportECSServiceRecommendationsInput = schema.new({
 })
 
 M.ExportECSServiceRecommendationsOutput = schema.new({
-    id = id.from(_N, "ExportECSServiceRecommendationsOutput"),
+    id = id.from(_N, "ExportECSServiceRecommendationsResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -1365,7 +1365,7 @@ M.IdleRecommendationFilter = schema.new({
 })
 
 M.ExportIdleRecommendationsInput = schema.new({
-    id = id.from(_N, "ExportIdleRecommendationsInput"),
+    id = id.from(_N, "ExportIdleRecommendationsRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -1418,7 +1418,7 @@ M.ExportIdleRecommendationsInput = schema.new({
 })
 
 M.ExportIdleRecommendationsOutput = schema.new({
-    id = id.from(_N, "ExportIdleRecommendationsOutput"),
+    id = id.from(_N, "ExportIdleRecommendationsResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -1458,7 +1458,7 @@ M.LambdaFunctionRecommendationFilter = schema.new({
 })
 
 M.ExportLambdaFunctionRecommendationsInput = schema.new({
-    id = id.from(_N, "ExportLambdaFunctionRecommendationsInput"),
+    id = id.from(_N, "ExportLambdaFunctionRecommendationsRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -1511,7 +1511,7 @@ M.ExportLambdaFunctionRecommendationsInput = schema.new({
 })
 
 M.ExportLambdaFunctionRecommendationsOutput = schema.new({
-    id = id.from(_N, "ExportLambdaFunctionRecommendationsOutput"),
+    id = id.from(_N, "ExportLambdaFunctionRecommendationsResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -1551,7 +1551,7 @@ M.LicenseRecommendationFilter = schema.new({
 })
 
 M.ExportLicenseRecommendationsInput = schema.new({
-    id = id.from(_N, "ExportLicenseRecommendationsInput"),
+    id = id.from(_N, "ExportLicenseRecommendationsRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -1604,7 +1604,7 @@ M.ExportLicenseRecommendationsInput = schema.new({
 })
 
 M.ExportLicenseRecommendationsOutput = schema.new({
-    id = id.from(_N, "ExportLicenseRecommendationsOutput"),
+    id = id.from(_N, "ExportLicenseRecommendationsResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -1644,7 +1644,7 @@ M.RDSDBRecommendationFilter = schema.new({
 })
 
 M.ExportRDSDatabaseRecommendationsInput = schema.new({
-    id = id.from(_N, "ExportRDSDatabaseRecommendationsInput"),
+    id = id.from(_N, "ExportRDSDatabaseRecommendationsRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -1704,7 +1704,7 @@ M.ExportRDSDatabaseRecommendationsInput = schema.new({
 })
 
 M.ExportRDSDatabaseRecommendationsOutput = schema.new({
-    id = id.from(_N, "ExportRDSDatabaseRecommendationsOutput"),
+    id = id.from(_N, "ExportRDSDatabaseRecommendationsResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -1724,7 +1724,7 @@ M.ExportRDSDatabaseRecommendationsOutput = schema.new({
 })
 
 M.GetAutoScalingGroupRecommendationsInput = schema.new({
-    id = id.from(_N, "GetAutoScalingGroupRecommendationsInput"),
+    id = id.from(_N, "GetAutoScalingGroupRecommendationsRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -1796,7 +1796,7 @@ M.GetRecommendationError = schema.new({
 })
 
 M.GetAutoScalingGroupRecommendationsOutput = schema.new({
-    id = id.from(_N, "GetAutoScalingGroupRecommendationsOutput"),
+    id = id.from(_N, "GetAutoScalingGroupRecommendationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1823,7 +1823,7 @@ M.GetAutoScalingGroupRecommendationsOutput = schema.new({
 })
 
 M.GetEBSVolumeRecommendationsInput = schema.new({
-    id = id.from(_N, "GetEBSVolumeRecommendationsInput"),
+    id = id.from(_N, "GetEBSVolumeRecommendationsRequest"),
     type = "structure",
     members = {
         volumeArns = schema.new({
@@ -2173,7 +2173,7 @@ M.VolumeRecommendation = schema.new({
 })
 
 M.GetEBSVolumeRecommendationsOutput = schema.new({
-    id = id.from(_N, "GetEBSVolumeRecommendationsOutput"),
+    id = id.from(_N, "GetEBSVolumeRecommendationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2200,7 +2200,7 @@ M.GetEBSVolumeRecommendationsOutput = schema.new({
 })
 
 M.GetEC2InstanceRecommendationsInput = schema.new({
-    id = id.from(_N, "GetEC2InstanceRecommendationsInput"),
+    id = id.from(_N, "GetEC2InstanceRecommendationsRequest"),
     type = "structure",
     members = {
         instanceArns = schema.new({
@@ -2535,7 +2535,7 @@ M.InstanceRecommendation = schema.new({
 })
 
 M.GetEC2InstanceRecommendationsOutput = schema.new({
-    id = id.from(_N, "GetEC2InstanceRecommendationsOutput"),
+    id = id.from(_N, "GetEC2InstanceRecommendationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2562,7 +2562,7 @@ M.GetEC2InstanceRecommendationsOutput = schema.new({
 })
 
 M.GetEC2RecommendationProjectedMetricsInput = schema.new({
-    id = id.from(_N, "GetEC2RecommendationProjectedMetricsInput"),
+    id = id.from(_N, "GetEC2RecommendationProjectedMetricsRequest"),
     type = "structure",
     members = {
         instanceArn = schema.new({
@@ -2678,7 +2678,7 @@ M.RecommendedOptionProjectedMetric = schema.new({
 })
 
 M.GetEC2RecommendationProjectedMetricsOutput = schema.new({
-    id = id.from(_N, "GetEC2RecommendationProjectedMetricsOutput"),
+    id = id.from(_N, "GetEC2RecommendationProjectedMetricsResponse"),
     type = "structure",
     members = {
         recommendedOptionProjectedMetrics = schema.new({
@@ -2692,7 +2692,7 @@ M.GetEC2RecommendationProjectedMetricsOutput = schema.new({
 })
 
 M.GetECSServiceRecommendationProjectedMetricsInput = schema.new({
-    id = id.from(_N, "GetECSServiceRecommendationProjectedMetricsInput"),
+    id = id.from(_N, "GetECSServiceRecommendationProjectedMetricsRequest"),
     type = "structure",
     members = {
         serviceArn = schema.new({
@@ -2811,7 +2811,7 @@ M.ECSServiceRecommendedOptionProjectedMetric = schema.new({
 })
 
 M.GetECSServiceRecommendationProjectedMetricsOutput = schema.new({
-    id = id.from(_N, "GetECSServiceRecommendationProjectedMetricsOutput"),
+    id = id.from(_N, "GetECSServiceRecommendationProjectedMetricsResponse"),
     type = "structure",
     members = {
         recommendedOptionProjectedMetrics = schema.new({
@@ -2825,7 +2825,7 @@ M.GetECSServiceRecommendationProjectedMetricsOutput = schema.new({
 })
 
 M.GetECSServiceRecommendationsInput = schema.new({
-    id = id.from(_N, "GetECSServiceRecommendationsInput"),
+    id = id.from(_N, "GetECSServiceRecommendationsRequest"),
     type = "structure",
     members = {
         serviceArns = schema.new({
@@ -3252,7 +3252,7 @@ M.ECSServiceRecommendation = schema.new({
 })
 
 M.GetECSServiceRecommendationsOutput = schema.new({
-    id = id.from(_N, "GetECSServiceRecommendationsOutput"),
+    id = id.from(_N, "GetECSServiceRecommendationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3279,7 +3279,7 @@ M.GetECSServiceRecommendationsOutput = schema.new({
 })
 
 M.GetEffectiveRecommendationPreferencesInput = schema.new({
-    id = id.from(_N, "GetEffectiveRecommendationPreferencesInput"),
+    id = id.from(_N, "GetEffectiveRecommendationPreferencesRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3295,7 +3295,7 @@ M.GetEffectiveRecommendationPreferencesInput = schema.new({
 })
 
 M.GetEffectiveRecommendationPreferencesOutput = schema.new({
-    id = id.from(_N, "GetEffectiveRecommendationPreferencesOutput"),
+    id = id.from(_N, "GetEffectiveRecommendationPreferencesResponse"),
     type = "structure",
     members = {
         enhancedInfrastructureMetrics = schema.new({
@@ -3335,12 +3335,12 @@ M.GetEffectiveRecommendationPreferencesOutput = schema.new({
 })
 
 M.GetEnrollmentStatusInput = schema.new({
-    id = id.from(_N, "GetEnrollmentStatusInput"),
+    id = id.from(_N, "GetEnrollmentStatusRequest"),
     type = "structure",
 })
 
 M.GetEnrollmentStatusOutput = schema.new({
-    id = id.from(_N, "GetEnrollmentStatusOutput"),
+    id = id.from(_N, "GetEnrollmentStatusResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -3400,7 +3400,7 @@ M.EnrollmentFilter = schema.new({
 })
 
 M.GetEnrollmentStatusesForOrganizationInput = schema.new({
-    id = id.from(_N, "GetEnrollmentStatusesForOrganizationInput"),
+    id = id.from(_N, "GetEnrollmentStatusesForOrganizationRequest"),
     type = "structure",
     members = {
         filters = schema.new({
@@ -3426,7 +3426,7 @@ M.GetEnrollmentStatusesForOrganizationInput = schema.new({
 })
 
 M.GetEnrollmentStatusesForOrganizationOutput = schema.new({
-    id = id.from(_N, "GetEnrollmentStatusesForOrganizationOutput"),
+    id = id.from(_N, "GetEnrollmentStatusesForOrganizationResponse"),
     type = "structure",
     members = {
         accountEnrollmentStatuses = schema.new({
@@ -3465,7 +3465,7 @@ M.OrderBy = schema.new({
 })
 
 M.GetIdleRecommendationsInput = schema.new({
-    id = id.from(_N, "GetIdleRecommendationsInput"),
+    id = id.from(_N, "GetIdleRecommendationsRequest"),
     type = "structure",
     members = {
         resourceArns = schema.new({
@@ -3725,7 +3725,7 @@ M.IdleRecommendation = schema.new({
 })
 
 M.GetIdleRecommendationsOutput = schema.new({
-    id = id.from(_N, "GetIdleRecommendationsOutput"),
+    id = id.from(_N, "GetIdleRecommendationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3752,7 +3752,7 @@ M.GetIdleRecommendationsOutput = schema.new({
 })
 
 M.GetLambdaFunctionRecommendationsInput = schema.new({
-    id = id.from(_N, "GetLambdaFunctionRecommendationsInput"),
+    id = id.from(_N, "GetLambdaFunctionRecommendationsRequest"),
     type = "structure",
     members = {
         functionArns = schema.new({
@@ -4071,7 +4071,7 @@ M.LambdaFunctionRecommendation = schema.new({
 })
 
 M.GetLambdaFunctionRecommendationsOutput = schema.new({
-    id = id.from(_N, "GetLambdaFunctionRecommendationsOutput"),
+    id = id.from(_N, "GetLambdaFunctionRecommendationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4091,7 +4091,7 @@ M.GetLambdaFunctionRecommendationsOutput = schema.new({
 })
 
 M.GetLicenseRecommendationsInput = schema.new({
-    id = id.from(_N, "GetLicenseRecommendationsInput"),
+    id = id.from(_N, "GetLicenseRecommendationsRequest"),
     type = "structure",
     members = {
         resourceArns = schema.new({
@@ -4318,7 +4318,7 @@ M.LicenseRecommendation = schema.new({
 })
 
 M.GetLicenseRecommendationsOutput = schema.new({
-    id = id.from(_N, "GetLicenseRecommendationsOutput"),
+    id = id.from(_N, "GetLicenseRecommendationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4345,7 +4345,7 @@ M.GetLicenseRecommendationsOutput = schema.new({
 })
 
 M.GetRDSDatabaseRecommendationProjectedMetricsInput = schema.new({
-    id = id.from(_N, "GetRDSDatabaseRecommendationProjectedMetricsInput"),
+    id = id.from(_N, "GetRDSDatabaseRecommendationProjectedMetricsRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4461,7 +4461,7 @@ M.RDSDatabaseRecommendedOptionProjectedMetric = schema.new({
 })
 
 M.GetRDSDatabaseRecommendationProjectedMetricsOutput = schema.new({
-    id = id.from(_N, "GetRDSDatabaseRecommendationProjectedMetricsOutput"),
+    id = id.from(_N, "GetRDSDatabaseRecommendationProjectedMetricsResponse"),
     type = "structure",
     members = {
         recommendedOptionProjectedMetrics = schema.new({
@@ -4475,7 +4475,7 @@ M.GetRDSDatabaseRecommendationProjectedMetricsOutput = schema.new({
 })
 
 M.GetRDSDatabaseRecommendationsInput = schema.new({
-    id = id.from(_N, "GetRDSDatabaseRecommendationsInput"),
+    id = id.from(_N, "GetRDSDatabaseRecommendationsRequest"),
     type = "structure",
     members = {
         resourceArns = schema.new({
@@ -4971,7 +4971,7 @@ M.RDSDBRecommendation = schema.new({
 })
 
 M.GetRDSDatabaseRecommendationsOutput = schema.new({
-    id = id.from(_N, "GetRDSDatabaseRecommendationsOutput"),
+    id = id.from(_N, "GetRDSDatabaseRecommendationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4998,7 +4998,7 @@ M.GetRDSDatabaseRecommendationsOutput = schema.new({
 })
 
 M.GetRecommendationPreferencesInput = schema.new({
-    id = id.from(_N, "GetRecommendationPreferencesInput"),
+    id = id.from(_N, "GetRecommendationPreferencesRequest"),
     type = "structure",
     members = {
         resourceType = schema.new({
@@ -5098,7 +5098,7 @@ M.RecommendationPreferencesDetail = schema.new({
 })
 
 M.GetRecommendationPreferencesOutput = schema.new({
-    id = id.from(_N, "GetRecommendationPreferencesOutput"),
+    id = id.from(_N, "GetRecommendationPreferencesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5118,7 +5118,7 @@ M.GetRecommendationPreferencesOutput = schema.new({
 })
 
 M.GetRecommendationSummariesInput = schema.new({
-    id = id.from(_N, "GetRecommendationSummariesInput"),
+    id = id.from(_N, "GetRecommendationSummariesRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -5349,7 +5349,7 @@ M.RecommendationSummary = schema.new({
 })
 
 M.GetRecommendationSummariesOutput = schema.new({
-    id = id.from(_N, "GetRecommendationSummariesOutput"),
+    id = id.from(_N, "GetRecommendationSummariesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5396,7 +5396,7 @@ M.PreferredResource = schema.new({
 })
 
 M.PutRecommendationPreferencesInput = schema.new({
-    id = id.from(_N, "PutRecommendationPreferencesInput"),
+    id = id.from(_N, "PutRecommendationPreferencesRequest"),
     type = "structure",
     members = {
         resourceType = schema.new({
@@ -5464,12 +5464,12 @@ M.PutRecommendationPreferencesInput = schema.new({
 })
 
 M.PutRecommendationPreferencesOutput = schema.new({
-    id = id.from(_N, "PutRecommendationPreferencesOutput"),
+    id = id.from(_N, "PutRecommendationPreferencesResponse"),
     type = "structure",
 })
 
 M.UpdateEnrollmentStatusInput = schema.new({
-    id = id.from(_N, "UpdateEnrollmentStatusInput"),
+    id = id.from(_N, "UpdateEnrollmentStatusRequest"),
     type = "structure",
     members = {
         status = schema.new({
@@ -5494,7 +5494,7 @@ M.UpdateEnrollmentStatusInput = schema.new({
 })
 
 M.UpdateEnrollmentStatusOutput = schema.new({
-    id = id.from(_N, "UpdateEnrollmentStatusOutput"),
+    id = id.from(_N, "UpdateEnrollmentStatusResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -5511,5 +5511,19 @@ M.UpdateEnrollmentStatusOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -588,7 +588,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateBatchLoadTaskInput = schema.new({
-    id = id.from(_N, "CreateBatchLoadTaskInput"),
+    id = id.from(_N, "CreateBatchLoadTaskRequest"),
     type = "structure",
     members = {
         ClientToken = schema.new({
@@ -658,7 +658,7 @@ M.CreateBatchLoadTaskInput = schema.new({
 })
 
 M.CreateBatchLoadTaskOutput = schema.new({
-    id = id.from(_N, "CreateBatchLoadTaskOutput"),
+    id = id.from(_N, "CreateBatchLoadTaskResponse"),
     type = "structure",
     members = {
         TaskId = schema.new({
@@ -804,7 +804,7 @@ M.Tag = schema.new({
 })
 
 M.CreateDatabaseInput = schema.new({
-    id = id.from(_N, "CreateDatabaseInput"),
+    id = id.from(_N, "CreateDatabaseRequest"),
     type = "structure",
     members = {
         DatabaseName = schema.new({
@@ -879,7 +879,7 @@ M.Database = schema.new({
 })
 
 M.CreateDatabaseOutput = schema.new({
-    id = id.from(_N, "CreateDatabaseOutput"),
+    id = id.from(_N, "CreateDatabaseResponse"),
     type = "structure",
     members = {
         Database = schema.new({
@@ -1028,7 +1028,7 @@ M.Schema = schema.new({
 })
 
 M.CreateTableInput = schema.new({
-    id = id.from(_N, "CreateTableInput"),
+    id = id.from(_N, "CreateTableRequest"),
     type = "structure",
     members = {
         DatabaseName = schema.new({
@@ -1145,7 +1145,7 @@ M.Table = schema.new({
 })
 
 M.CreateTableOutput = schema.new({
-    id = id.from(_N, "CreateTableOutput"),
+    id = id.from(_N, "CreateTableResponse"),
     type = "structure",
     members = {
         Table = schema.new({
@@ -1159,7 +1159,7 @@ M.CreateTableOutput = schema.new({
 })
 
 M.DeleteDatabaseInput = schema.new({
-    id = id.from(_N, "DeleteDatabaseInput"),
+    id = id.from(_N, "DeleteDatabaseRequest"),
     type = "structure",
     members = {
         DatabaseName = schema.new({
@@ -1175,12 +1175,12 @@ M.DeleteDatabaseInput = schema.new({
 })
 
 M.DeleteDatabaseOutput = schema.new({
-    id = id.from(_N, "DeleteDatabaseOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteTableInput = schema.new({
-    id = id.from(_N, "DeleteTableInput"),
+    id = id.from(_N, "DeleteTableRequest"),
     type = "structure",
     members = {
         DatabaseName = schema.new({
@@ -1205,12 +1205,12 @@ M.DeleteTableInput = schema.new({
 })
 
 M.DeleteTableOutput = schema.new({
-    id = id.from(_N, "DeleteTableOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeBatchLoadTaskInput = schema.new({
-    id = id.from(_N, "DescribeBatchLoadTaskInput"),
+    id = id.from(_N, "DescribeBatchLoadTaskRequest"),
     type = "structure",
     members = {
         TaskId = schema.new({
@@ -1226,7 +1226,7 @@ M.DescribeBatchLoadTaskInput = schema.new({
 })
 
 M.DescribeBatchLoadTaskOutput = schema.new({
-    id = id.from(_N, "DescribeBatchLoadTaskOutput"),
+    id = id.from(_N, "DescribeBatchLoadTaskResponse"),
     type = "structure",
     members = {
         BatchLoadTaskDescription = schema.new({
@@ -1243,7 +1243,7 @@ M.DescribeBatchLoadTaskOutput = schema.new({
 })
 
 M.DescribeDatabaseInput = schema.new({
-    id = id.from(_N, "DescribeDatabaseInput"),
+    id = id.from(_N, "DescribeDatabaseRequest"),
     type = "structure",
     members = {
         DatabaseName = schema.new({
@@ -1259,7 +1259,7 @@ M.DescribeDatabaseInput = schema.new({
 })
 
 M.DescribeDatabaseOutput = schema.new({
-    id = id.from(_N, "DescribeDatabaseOutput"),
+    id = id.from(_N, "DescribeDatabaseResponse"),
     type = "structure",
     members = {
         Database = schema.new({
@@ -1273,7 +1273,7 @@ M.DescribeDatabaseOutput = schema.new({
 })
 
 M.DescribeEndpointsInput = schema.new({
-    id = id.from(_N, "DescribeEndpointsInput"),
+    id = id.from(_N, "DescribeEndpointsRequest"),
     type = "structure",
 })
 
@@ -1304,7 +1304,7 @@ M.Endpoint = schema.new({
 })
 
 M.DescribeEndpointsOutput = schema.new({
-    id = id.from(_N, "DescribeEndpointsOutput"),
+    id = id.from(_N, "DescribeEndpointsResponse"),
     type = "structure",
     members = {
         Endpoints = schema.new({
@@ -1321,7 +1321,7 @@ M.DescribeEndpointsOutput = schema.new({
 })
 
 M.DescribeTableInput = schema.new({
-    id = id.from(_N, "DescribeTableInput"),
+    id = id.from(_N, "DescribeTableRequest"),
     type = "structure",
     members = {
         DatabaseName = schema.new({
@@ -1346,7 +1346,7 @@ M.DescribeTableInput = schema.new({
 })
 
 M.DescribeTableOutput = schema.new({
-    id = id.from(_N, "DescribeTableOutput"),
+    id = id.from(_N, "DescribeTableResponse"),
     type = "structure",
     members = {
         Table = schema.new({
@@ -1391,7 +1391,7 @@ M.Dimension = schema.new({
 })
 
 M.ListBatchLoadTasksInput = schema.new({
-    id = id.from(_N, "ListBatchLoadTasksInput"),
+    id = id.from(_N, "ListBatchLoadTasksRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1416,7 +1416,7 @@ M.ListBatchLoadTasksInput = schema.new({
 })
 
 M.ListBatchLoadTasksOutput = schema.new({
-    id = id.from(_N, "ListBatchLoadTasksOutput"),
+    id = id.from(_N, "ListBatchLoadTasksResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1436,7 +1436,7 @@ M.ListBatchLoadTasksOutput = schema.new({
 })
 
 M.ListDatabasesInput = schema.new({
-    id = id.from(_N, "ListDatabasesInput"),
+    id = id.from(_N, "ListDatabasesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1455,7 +1455,7 @@ M.ListDatabasesInput = schema.new({
 })
 
 M.ListDatabasesOutput = schema.new({
-    id = id.from(_N, "ListDatabasesOutput"),
+    id = id.from(_N, "ListDatabasesResponse"),
     type = "structure",
     members = {
         Databases = schema.new({
@@ -1475,7 +1475,7 @@ M.ListDatabasesOutput = schema.new({
 })
 
 M.ListTablesInput = schema.new({
-    id = id.from(_N, "ListTablesInput"),
+    id = id.from(_N, "ListTablesRequest"),
     type = "structure",
     members = {
         DatabaseName = schema.new({
@@ -1500,7 +1500,7 @@ M.ListTablesInput = schema.new({
 })
 
 M.ListTablesOutput = schema.new({
-    id = id.from(_N, "ListTablesOutput"),
+    id = id.from(_N, "ListTablesResponse"),
     type = "structure",
     members = {
         Tables = schema.new({
@@ -1520,7 +1520,7 @@ M.ListTablesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1536,7 +1536,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1732,7 +1732,7 @@ M.RejectedRecordsException = schema.new({
 })
 
 M.ResumeBatchLoadTaskInput = schema.new({
-    id = id.from(_N, "ResumeBatchLoadTaskInput"),
+    id = id.from(_N, "ResumeBatchLoadTaskRequest"),
     type = "structure",
     members = {
         TaskId = schema.new({
@@ -1748,12 +1748,12 @@ M.ResumeBatchLoadTaskInput = schema.new({
 })
 
 M.ResumeBatchLoadTaskOutput = schema.new({
-    id = id.from(_N, "ResumeBatchLoadTaskOutput"),
+    id = id.from(_N, "ResumeBatchLoadTaskResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1779,12 +1779,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1810,12 +1810,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateDatabaseInput = schema.new({
-    id = id.from(_N, "UpdateDatabaseInput"),
+    id = id.from(_N, "UpdateDatabaseRequest"),
     type = "structure",
     members = {
         DatabaseName = schema.new({
@@ -1840,7 +1840,7 @@ M.UpdateDatabaseInput = schema.new({
 })
 
 M.UpdateDatabaseOutput = schema.new({
-    id = id.from(_N, "UpdateDatabaseOutput"),
+    id = id.from(_N, "UpdateDatabaseResponse"),
     type = "structure",
     members = {
         Database = schema.new({
@@ -1854,7 +1854,7 @@ M.UpdateDatabaseOutput = schema.new({
 })
 
 M.UpdateTableInput = schema.new({
-    id = id.from(_N, "UpdateTableInput"),
+    id = id.from(_N, "UpdateTableRequest"),
     type = "structure",
     members = {
         DatabaseName = schema.new({
@@ -1900,7 +1900,7 @@ M.UpdateTableInput = schema.new({
 })
 
 M.UpdateTableOutput = schema.new({
-    id = id.from(_N, "UpdateTableOutput"),
+    id = id.from(_N, "UpdateTableResponse"),
     type = "structure",
     members = {
         Table = schema.new({
@@ -1914,7 +1914,7 @@ M.UpdateTableOutput = schema.new({
 })
 
 M.WriteRecordsInput = schema.new({
-    id = id.from(_N, "WriteRecordsInput"),
+    id = id.from(_N, "WriteRecordsRequest"),
     type = "structure",
     members = {
         DatabaseName = schema.new({
@@ -1956,7 +1956,7 @@ M.WriteRecordsInput = schema.new({
 })
 
 M.WriteRecordsOutput = schema.new({
-    id = id.from(_N, "WriteRecordsOutput"),
+    id = id.from(_N, "WriteRecordsResponse"),
     type = "structure",
     members = {
         RecordsIngested = schema.new({
@@ -1968,5 +1968,19 @@ M.WriteRecordsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

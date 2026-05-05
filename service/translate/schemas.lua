@@ -148,7 +148,7 @@ M.Tag = schema.new({
 })
 
 M.CreateParallelDataInput = schema.new({
-    id = id.from(_N, "CreateParallelDataInput"),
+    id = id.from(_N, "CreateParallelDataRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -204,7 +204,7 @@ M.CreateParallelDataInput = schema.new({
 })
 
 M.CreateParallelDataOutput = schema.new({
-    id = id.from(_N, "CreateParallelDataOutput"),
+    id = id.from(_N, "CreateParallelDataResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -325,7 +325,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.DeleteParallelDataInput = schema.new({
-    id = id.from(_N, "DeleteParallelDataInput"),
+    id = id.from(_N, "DeleteParallelDataRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -341,7 +341,7 @@ M.DeleteParallelDataInput = schema.new({
 })
 
 M.DeleteParallelDataOutput = schema.new({
-    id = id.from(_N, "DeleteParallelDataOutput"),
+    id = id.from(_N, "DeleteParallelDataResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -376,7 +376,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DeleteTerminologyInput = schema.new({
-    id = id.from(_N, "DeleteTerminologyInput"),
+    id = id.from(_N, "DeleteTerminologyRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -392,12 +392,12 @@ M.DeleteTerminologyInput = schema.new({
 })
 
 M.DeleteTerminologyOutput = schema.new({
-    id = id.from(_N, "DeleteTerminologyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeTextTranslationJobInput = schema.new({
-    id = id.from(_N, "DescribeTextTranslationJobInput"),
+    id = id.from(_N, "DescribeTextTranslationJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -615,7 +615,7 @@ M.TextTranslationJobProperties = schema.new({
 })
 
 M.DescribeTextTranslationJobOutput = schema.new({
-    id = id.from(_N, "DescribeTextTranslationJobOutput"),
+    id = id.from(_N, "DescribeTextTranslationJobResponse"),
     type = "structure",
     members = {
         TextTranslationJobProperties = schema.new({
@@ -629,7 +629,7 @@ M.DescribeTextTranslationJobOutput = schema.new({
 })
 
 M.GetParallelDataInput = schema.new({
-    id = id.from(_N, "GetParallelDataInput"),
+    id = id.from(_N, "GetParallelDataRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -782,7 +782,7 @@ M.ParallelDataProperties = schema.new({
 })
 
 M.GetParallelDataOutput = schema.new({
-    id = id.from(_N, "GetParallelDataOutput"),
+    id = id.from(_N, "GetParallelDataResponse"),
     type = "structure",
     members = {
         ParallelDataProperties = schema.new({
@@ -817,7 +817,7 @@ M.GetParallelDataOutput = schema.new({
 })
 
 M.GetTerminologyInput = schema.new({
-    id = id.from(_N, "GetTerminologyInput"),
+    id = id.from(_N, "GetTerminologyRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -957,7 +957,7 @@ M.TerminologyProperties = schema.new({
 })
 
 M.GetTerminologyOutput = schema.new({
-    id = id.from(_N, "GetTerminologyOutput"),
+    id = id.from(_N, "GetTerminologyResponse"),
     type = "structure",
     members = {
         TerminologyProperties = schema.new({
@@ -1016,7 +1016,7 @@ M.TerminologyData = schema.new({
 })
 
 M.ImportTerminologyInput = schema.new({
-    id = id.from(_N, "ImportTerminologyInput"),
+    id = id.from(_N, "ImportTerminologyRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1071,7 +1071,7 @@ M.ImportTerminologyInput = schema.new({
 })
 
 M.ImportTerminologyOutput = schema.new({
-    id = id.from(_N, "ImportTerminologyOutput"),
+    id = id.from(_N, "ImportTerminologyResponse"),
     type = "structure",
     members = {
         TerminologyProperties = schema.new({
@@ -1092,7 +1092,7 @@ M.ImportTerminologyOutput = schema.new({
 })
 
 M.ListLanguagesInput = schema.new({
-    id = id.from(_N, "ListLanguagesInput"),
+    id = id.from(_N, "ListLanguagesRequest"),
     type = "structure",
     members = {
         DisplayLanguageCode = schema.new({
@@ -1142,7 +1142,7 @@ M.Language = schema.new({
 })
 
 M.ListLanguagesOutput = schema.new({
-    id = id.from(_N, "ListLanguagesOutput"),
+    id = id.from(_N, "ListLanguagesResponse"),
     type = "structure",
     members = {
         Languages = schema.new({
@@ -1190,7 +1190,7 @@ M.UnsupportedDisplayLanguageCodeException = schema.new({
 })
 
 M.ListParallelDataInput = schema.new({
-    id = id.from(_N, "ListParallelDataInput"),
+    id = id.from(_N, "ListParallelDataRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1209,7 +1209,7 @@ M.ListParallelDataInput = schema.new({
 })
 
 M.ListParallelDataOutput = schema.new({
-    id = id.from(_N, "ListParallelDataOutput"),
+    id = id.from(_N, "ListParallelDataResponse"),
     type = "structure",
     members = {
         ParallelDataPropertiesList = schema.new({
@@ -1229,7 +1229,7 @@ M.ListParallelDataOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1245,7 +1245,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1259,7 +1259,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTerminologiesInput = schema.new({
-    id = id.from(_N, "ListTerminologiesInput"),
+    id = id.from(_N, "ListTerminologiesRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1278,7 +1278,7 @@ M.ListTerminologiesInput = schema.new({
 })
 
 M.ListTerminologiesOutput = schema.new({
-    id = id.from(_N, "ListTerminologiesOutput"),
+    id = id.from(_N, "ListTerminologiesResponse"),
     type = "structure",
     members = {
         TerminologyPropertiesList = schema.new({
@@ -1345,7 +1345,7 @@ M.TextTranslationJobFilter = schema.new({
 })
 
 M.ListTextTranslationJobsInput = schema.new({
-    id = id.from(_N, "ListTextTranslationJobsInput"),
+    id = id.from(_N, "ListTextTranslationJobsRequest"),
     type = "structure",
     members = {
         Filter = schema.new({
@@ -1371,7 +1371,7 @@ M.ListTextTranslationJobsInput = schema.new({
 })
 
 M.ListTextTranslationJobsOutput = schema.new({
-    id = id.from(_N, "ListTextTranslationJobsOutput"),
+    id = id.from(_N, "ListTextTranslationJobsResponse"),
     type = "structure",
     members = {
         TextTranslationJobPropertiesList = schema.new({
@@ -1391,7 +1391,7 @@ M.ListTextTranslationJobsOutput = schema.new({
 })
 
 M.StartTextTranslationJobInput = schema.new({
-    id = id.from(_N, "StartTextTranslationJobInput"),
+    id = id.from(_N, "StartTextTranslationJobRequest"),
     type = "structure",
     members = {
         JobName = schema.new({
@@ -1483,7 +1483,7 @@ M.StartTextTranslationJobInput = schema.new({
 })
 
 M.StartTextTranslationJobOutput = schema.new({
-    id = id.from(_N, "StartTextTranslationJobOutput"),
+    id = id.from(_N, "StartTextTranslationJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1530,7 +1530,7 @@ M.UnsupportedLanguagePairException = schema.new({
 })
 
 M.StopTextTranslationJobInput = schema.new({
-    id = id.from(_N, "StopTextTranslationJobInput"),
+    id = id.from(_N, "StopTextTranslationJobRequest"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1546,7 +1546,7 @@ M.StopTextTranslationJobInput = schema.new({
 })
 
 M.StopTextTranslationJobOutput = schema.new({
-    id = id.from(_N, "StopTextTranslationJobOutput"),
+    id = id.from(_N, "StopTextTranslationJobResponse"),
     type = "structure",
     members = {
         JobId = schema.new({
@@ -1565,7 +1565,7 @@ M.StopTextTranslationJobOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1591,7 +1591,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -1637,7 +1637,7 @@ M.Document = schema.new({
 })
 
 M.TranslateDocumentInput = schema.new({
-    id = id.from(_N, "TranslateDocumentInput"),
+    id = id.from(_N, "TranslateDocumentRequest"),
     type = "structure",
     members = {
         Document = schema.new({
@@ -1702,7 +1702,7 @@ M.TranslatedDocument = schema.new({
 })
 
 M.TranslateDocumentOutput = schema.new({
-    id = id.from(_N, "TranslateDocumentOutput"),
+    id = id.from(_N, "TranslateDocumentResponse"),
     type = "structure",
     members = {
         TranslatedDocument = schema.new({
@@ -1789,7 +1789,7 @@ M.TextSizeLimitExceededException = schema.new({
 })
 
 M.TranslateTextInput = schema.new({
-    id = id.from(_N, "TranslateTextInput"),
+    id = id.from(_N, "TranslateTextRequest"),
     type = "structure",
     members = {
         Text = schema.new({
@@ -1837,7 +1837,7 @@ M.TranslateTextInput = schema.new({
 })
 
 M.TranslateTextOutput = schema.new({
-    id = id.from(_N, "TranslateTextOutput"),
+    id = id.from(_N, "TranslateTextResponse"),
     type = "structure",
     members = {
         TranslatedText = schema.new({
@@ -1885,7 +1885,7 @@ M.TranslateTextOutput = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1911,12 +1911,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateParallelDataInput = schema.new({
-    id = id.from(_N, "UpdateParallelDataInput"),
+    id = id.from(_N, "UpdateParallelDataRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1958,7 +1958,7 @@ M.UpdateParallelDataInput = schema.new({
 })
 
 M.UpdateParallelDataOutput = schema.new({
-    id = id.from(_N, "UpdateParallelDataOutput"),
+    id = id.from(_N, "UpdateParallelDataResponse"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1987,5 +1987,19 @@ M.UpdateParallelDataOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

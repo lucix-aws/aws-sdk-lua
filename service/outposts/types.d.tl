@@ -1080,37 +1080,37 @@ end
 
 local type PowerPhase = "SINGLE_PHASE" | "THREE_PHASE"
 
+local type AddressType = "SHIPPING_ADDRESS" | "OPERATING_ADDRESS"
+
 local type PricingResult = "PRICED" | "UNABLE_TO_PRICE"
 
 local type PaymentOption = "ALL_UPFRONT" | "NO_UPFRONT" | "PARTIAL_UPFRONT"
 
-local type AddressType = "SHIPPING_ADDRESS" | "OPERATING_ADDRESS"
+local type FiberOpticCableType = "SINGLE_MODE" | "MULTI_MODE"
+
+local type DecommissionRequestStatus = "SKIPPED" | "BLOCKED" | "REQUESTED"
+
+local type MaximumSupportedWeightLbs = "NO_LIMIT" | "MAX_1400_LBS" | "MAX_1600_LBS" | "MAX_1800_LBS" | "MAX_2000_LBS"
+
+local type PowerDrawKva = "POWER_5_KVA" | "POWER_10_KVA" | "POWER_15_KVA" | "POWER_30_KVA"
+
+local type PaymentTerm = "THREE_YEARS" | "ONE_YEAR" | "FIVE_YEARS"
 
 local type PowerConnector = "L6_30P" | "IEC309" | "AH530P7W" | "AH532P6W" | "CS8365C"
+
+local type TaskActionOnBlockingInstances = "WAIT_FOR_EVACUATION" | "FAIL_TASK"
+
+local type UplinkGbps = "UPLINK_1G" | "UPLINK_10G" | "UPLINK_40G" | "UPLINK_100G"
+
+local type PowerFeedDrop = "ABOVE_RACK" | "BELOW_RACK"
+
+local type OpticalStandard = "OPTIC_10GBASE_SR" | "OPTIC_10GBASE_IR" | "OPTIC_10GBASE_LR" | "OPTIC_40GBASE_SR" | "OPTIC_40GBASE_ESR" | "OPTIC_40GBASE_IR4_LR4L" | "OPTIC_40GBASE_LR4" | "OPTIC_100GBASE_SR4" | "OPTIC_100GBASE_CWDM4" | "OPTIC_100GBASE_LR4" | "OPTIC_100G_PSM4_MSA" | "OPTIC_1000BASE_LX" | "OPTIC_1000BASE_SX"
 
 local type CapacityTaskStatus = "REQUESTED" | "IN_PROGRESS" | "FAILED" | "COMPLETED" | "WAITING_FOR_EVACUATION" | "CANCELLATION_IN_PROGRESS" | "CANCELLED"
 
 local type UplinkCount = "UPLINK_COUNT_1" | "UPLINK_COUNT_2" | "UPLINK_COUNT_3" | "UPLINK_COUNT_4" | "UPLINK_COUNT_5" | "UPLINK_COUNT_6" | "UPLINK_COUNT_7" | "UPLINK_COUNT_8" | "UPLINK_COUNT_12" | "UPLINK_COUNT_16"
 
-local type MaximumSupportedWeightLbs = "NO_LIMIT" | "MAX_1400_LBS" | "MAX_1600_LBS" | "MAX_1800_LBS" | "MAX_2000_LBS"
-
 local type SupportedHardwareType = "RACK" | "SERVER"
-
-local type PaymentTerm = "THREE_YEARS" | "ONE_YEAR" | "FIVE_YEARS"
-
-local type PowerFeedDrop = "ABOVE_RACK" | "BELOW_RACK"
-
-local type UplinkGbps = "UPLINK_1G" | "UPLINK_10G" | "UPLINK_40G" | "UPLINK_100G"
-
-local type PowerDrawKva = "POWER_5_KVA" | "POWER_10_KVA" | "POWER_15_KVA" | "POWER_30_KVA"
-
-local type OpticalStandard = "OPTIC_10GBASE_SR" | "OPTIC_10GBASE_IR" | "OPTIC_10GBASE_LR" | "OPTIC_40GBASE_SR" | "OPTIC_40GBASE_ESR" | "OPTIC_40GBASE_IR4_LR4L" | "OPTIC_40GBASE_LR4" | "OPTIC_100GBASE_SR4" | "OPTIC_100GBASE_CWDM4" | "OPTIC_100GBASE_LR4" | "OPTIC_100G_PSM4_MSA" | "OPTIC_1000BASE_LX" | "OPTIC_1000BASE_SX"
-
-local type TaskActionOnBlockingInstances = "WAIT_FOR_EVACUATION" | "FAIL_TASK"
-
-local type FiberOpticCableType = "SINGLE_MODE" | "MULTI_MODE"
-
-local type DecommissionRequestStatus = "SKIPPED" | "BLOCKED" | "REQUESTED"
 
 local record M
     CancelCapacityTaskInput: CancelCapacityTaskInput

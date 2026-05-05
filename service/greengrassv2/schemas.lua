@@ -87,7 +87,7 @@ M.AssociatedClientDevice = schema.new({
 })
 
 M.AssociateServiceRoleToAccountInput = schema.new({
-    id = id.from(_N, "AssociateServiceRoleToAccountInput"),
+    id = id.from(_N, "AssociateServiceRoleToAccountRequest"),
     type = "structure",
     members = {
         roleArn = schema.new({
@@ -104,7 +104,7 @@ M.AssociateServiceRoleToAccountInput = schema.new({
 })
 
 M.AssociateServiceRoleToAccountOutput = schema.new({
-    id = id.from(_N, "AssociateServiceRoleToAccountOutput"),
+    id = id.from(_N, "AssociateServiceRoleToAccountResponse"),
     type = "structure",
     members = {
         associatedAt = schema.new({
@@ -206,7 +206,7 @@ M.ValidationException = schema.new({
 })
 
 M.BatchAssociateClientDeviceWithCoreDeviceInput = schema.new({
-    id = id.from(_N, "BatchAssociateClientDeviceWithCoreDeviceInput"),
+    id = id.from(_N, "BatchAssociateClientDeviceWithCoreDeviceRequest"),
     type = "structure",
     members = {
         entries = schema.new({
@@ -230,7 +230,7 @@ M.BatchAssociateClientDeviceWithCoreDeviceInput = schema.new({
 })
 
 M.BatchAssociateClientDeviceWithCoreDeviceOutput = schema.new({
-    id = id.from(_N, "BatchAssociateClientDeviceWithCoreDeviceOutput"),
+    id = id.from(_N, "BatchAssociateClientDeviceWithCoreDeviceResponse"),
     type = "structure",
     members = {
         errorEntries = schema.new({
@@ -338,7 +338,7 @@ M.DisassociateClientDeviceFromCoreDeviceEntry = schema.new({
 })
 
 M.BatchDisassociateClientDeviceFromCoreDeviceInput = schema.new({
-    id = id.from(_N, "BatchDisassociateClientDeviceFromCoreDeviceInput"),
+    id = id.from(_N, "BatchDisassociateClientDeviceFromCoreDeviceRequest"),
     type = "structure",
     members = {
         entries = schema.new({
@@ -387,7 +387,7 @@ M.DisassociateClientDeviceFromCoreDeviceErrorEntry = schema.new({
 })
 
 M.BatchDisassociateClientDeviceFromCoreDeviceOutput = schema.new({
-    id = id.from(_N, "BatchDisassociateClientDeviceFromCoreDeviceOutput"),
+    id = id.from(_N, "BatchDisassociateClientDeviceFromCoreDeviceResponse"),
     type = "structure",
     members = {
         errorEntries = schema.new({
@@ -401,7 +401,7 @@ M.BatchDisassociateClientDeviceFromCoreDeviceOutput = schema.new({
 })
 
 M.CancelDeploymentInput = schema.new({
-    id = id.from(_N, "CancelDeploymentInput"),
+    id = id.from(_N, "CancelDeploymentRequest"),
     type = "structure",
     members = {
         deploymentId = schema.new({
@@ -418,7 +418,7 @@ M.CancelDeploymentInput = schema.new({
 })
 
 M.CancelDeploymentOutput = schema.new({
-    id = id.from(_N, "CancelDeploymentOutput"),
+    id = id.from(_N, "CancelDeploymentResponse"),
     type = "structure",
     members = {
         message = schema.new({
@@ -1158,7 +1158,7 @@ M.LambdaFunctionRecipeSource = schema.new({
 })
 
 M.CreateComponentVersionInput = schema.new({
-    id = id.from(_N, "CreateComponentVersionInput"),
+    id = id.from(_N, "CreateComponentVersionRequest"),
     type = "structure",
     members = {
         inlineRecipe = schema.new({
@@ -1195,7 +1195,7 @@ M.CreateComponentVersionInput = schema.new({
 })
 
 M.CreateComponentVersionOutput = schema.new({
-    id = id.from(_N, "CreateComponentVersionOutput"),
+    id = id.from(_N, "CreateComponentVersionResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1557,7 +1557,7 @@ M.DeploymentIoTJobConfiguration = schema.new({
 })
 
 M.CreateDeploymentInput = schema.new({
-    id = id.from(_N, "CreateDeploymentInput"),
+    id = id.from(_N, "CreateDeploymentRequest"),
     type = "structure",
     members = {
         targetArn = schema.new({
@@ -1624,7 +1624,7 @@ M.CreateDeploymentInput = schema.new({
 })
 
 M.CreateDeploymentOutput = schema.new({
-    id = id.from(_N, "CreateDeploymentOutput"),
+    id = id.from(_N, "CreateDeploymentResponse"),
     type = "structure",
     members = {
         deploymentId = schema.new({
@@ -1649,7 +1649,7 @@ M.CreateDeploymentOutput = schema.new({
 })
 
 M.DeleteComponentInput = schema.new({
-    id = id.from(_N, "DeleteComponentInput"),
+    id = id.from(_N, "DeleteComponentRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1666,12 +1666,12 @@ M.DeleteComponentInput = schema.new({
 })
 
 M.DeleteComponentOutput = schema.new({
-    id = id.from(_N, "DeleteComponentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteCoreDeviceInput = schema.new({
-    id = id.from(_N, "DeleteCoreDeviceInput"),
+    id = id.from(_N, "DeleteCoreDeviceRequest"),
     type = "structure",
     members = {
         coreDeviceThingName = schema.new({
@@ -1688,12 +1688,12 @@ M.DeleteCoreDeviceInput = schema.new({
 })
 
 M.DeleteCoreDeviceOutput = schema.new({
-    id = id.from(_N, "DeleteCoreDeviceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteDeploymentInput = schema.new({
-    id = id.from(_N, "DeleteDeploymentInput"),
+    id = id.from(_N, "DeleteDeploymentRequest"),
     type = "structure",
     members = {
         deploymentId = schema.new({
@@ -1710,7 +1710,7 @@ M.DeleteDeploymentInput = schema.new({
 })
 
 M.DeleteDeploymentOutput = schema.new({
-    id = id.from(_N, "DeleteDeploymentOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1773,7 +1773,7 @@ M.Deployment = schema.new({
 })
 
 M.DescribeComponentInput = schema.new({
-    id = id.from(_N, "DescribeComponentInput"),
+    id = id.from(_N, "DescribeComponentRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1790,7 +1790,7 @@ M.DescribeComponentInput = schema.new({
 })
 
 M.DescribeComponentOutput = schema.new({
-    id = id.from(_N, "DescribeComponentOutput"),
+    id = id.from(_N, "DescribeComponentResponse"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1855,12 +1855,12 @@ M.DescribeComponentOutput = schema.new({
 })
 
 M.DisassociateServiceRoleFromAccountInput = schema.new({
-    id = id.from(_N, "DisassociateServiceRoleFromAccountInput"),
+    id = id.from(_N, "DisassociateServiceRoleFromAccountRequest"),
     type = "structure",
 })
 
 M.DisassociateServiceRoleFromAccountOutput = schema.new({
-    id = id.from(_N, "DisassociateServiceRoleFromAccountOutput"),
+    id = id.from(_N, "DisassociateServiceRoleFromAccountResponse"),
     type = "structure",
     members = {
         disassociatedAt = schema.new({
@@ -1989,7 +1989,7 @@ M.EffectiveDeployment = schema.new({
 })
 
 M.GetComponentInput = schema.new({
-    id = id.from(_N, "GetComponentInput"),
+    id = id.from(_N, "GetComponentRequest"),
     type = "structure",
     members = {
         recipeOutputFormat = schema.new({
@@ -2015,7 +2015,7 @@ M.GetComponentInput = schema.new({
 })
 
 M.GetComponentOutput = schema.new({
-    id = id.from(_N, "GetComponentOutput"),
+    id = id.from(_N, "GetComponentResponse"),
     type = "structure",
     members = {
         recipeOutputFormat = schema.new({
@@ -2048,7 +2048,7 @@ M.GetComponentOutput = schema.new({
 })
 
 M.GetComponentVersionArtifactInput = schema.new({
-    id = id.from(_N, "GetComponentVersionArtifactInput"),
+    id = id.from(_N, "GetComponentVersionArtifactRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2093,7 +2093,7 @@ M.GetComponentVersionArtifactInput = schema.new({
 })
 
 M.GetComponentVersionArtifactOutput = schema.new({
-    id = id.from(_N, "GetComponentVersionArtifactOutput"),
+    id = id.from(_N, "GetComponentVersionArtifactResponse"),
     type = "structure",
     members = {
         preSignedUrl = schema.new({
@@ -2109,7 +2109,7 @@ M.GetComponentVersionArtifactOutput = schema.new({
 })
 
 M.GetConnectivityInfoInput = schema.new({
-    id = id.from(_N, "GetConnectivityInfoInput"),
+    id = id.from(_N, "GetConnectivityInfoRequest"),
     type = "structure",
     members = {
         thingName = schema.new({
@@ -2126,7 +2126,7 @@ M.GetConnectivityInfoInput = schema.new({
 })
 
 M.GetConnectivityInfoOutput = schema.new({
-    id = id.from(_N, "GetConnectivityInfoOutput"),
+    id = id.from(_N, "GetConnectivityInfoResponse"),
     type = "structure",
     members = {
         connectivityInfo = schema.new({
@@ -2152,7 +2152,7 @@ M.GetConnectivityInfoOutput = schema.new({
 })
 
 M.GetCoreDeviceInput = schema.new({
-    id = id.from(_N, "GetCoreDeviceInput"),
+    id = id.from(_N, "GetCoreDeviceRequest"),
     type = "structure",
     members = {
         coreDeviceThingName = schema.new({
@@ -2169,7 +2169,7 @@ M.GetCoreDeviceInput = schema.new({
 })
 
 M.GetCoreDeviceOutput = schema.new({
-    id = id.from(_N, "GetCoreDeviceOutput"),
+    id = id.from(_N, "GetCoreDeviceResponse"),
     type = "structure",
     members = {
         coreDeviceThingName = schema.new({
@@ -2226,7 +2226,7 @@ M.GetCoreDeviceOutput = schema.new({
 })
 
 M.GetDeploymentInput = schema.new({
-    id = id.from(_N, "GetDeploymentInput"),
+    id = id.from(_N, "GetDeploymentRequest"),
     type = "structure",
     members = {
         deploymentId = schema.new({
@@ -2243,7 +2243,7 @@ M.GetDeploymentInput = schema.new({
 })
 
 M.GetDeploymentOutput = schema.new({
-    id = id.from(_N, "GetDeploymentOutput"),
+    id = id.from(_N, "GetDeploymentResponse"),
     type = "structure",
     members = {
         targetArn = schema.new({
@@ -2343,12 +2343,12 @@ M.GetDeploymentOutput = schema.new({
 })
 
 M.GetServiceRoleForAccountInput = schema.new({
-    id = id.from(_N, "GetServiceRoleForAccountInput"),
+    id = id.from(_N, "GetServiceRoleForAccountRequest"),
     type = "structure",
 })
 
 M.GetServiceRoleForAccountOutput = schema.new({
-    id = id.from(_N, "GetServiceRoleForAccountOutput"),
+    id = id.from(_N, "GetServiceRoleForAccountResponse"),
     type = "structure",
     members = {
         associatedAt = schema.new({
@@ -2373,7 +2373,7 @@ M.GetServiceRoleForAccountOutput = schema.new({
 })
 
 M.ListClientDevicesAssociatedWithCoreDeviceInput = schema.new({
-    id = id.from(_N, "ListClientDevicesAssociatedWithCoreDeviceInput"),
+    id = id.from(_N, "ListClientDevicesAssociatedWithCoreDeviceRequest"),
     type = "structure",
     members = {
         coreDeviceThingName = schema.new({
@@ -2408,7 +2408,7 @@ M.ListClientDevicesAssociatedWithCoreDeviceInput = schema.new({
 })
 
 M.ListClientDevicesAssociatedWithCoreDeviceOutput = schema.new({
-    id = id.from(_N, "ListClientDevicesAssociatedWithCoreDeviceOutput"),
+    id = id.from(_N, "ListClientDevicesAssociatedWithCoreDeviceResponse"),
     type = "structure",
     members = {
         associatedClientDevices = schema.new({
@@ -2428,7 +2428,7 @@ M.ListClientDevicesAssociatedWithCoreDeviceOutput = schema.new({
 })
 
 M.ListComponentsInput = schema.new({
-    id = id.from(_N, "ListComponentsInput"),
+    id = id.from(_N, "ListComponentsRequest"),
     type = "structure",
     members = {
         scope = schema.new({
@@ -2462,7 +2462,7 @@ M.ListComponentsInput = schema.new({
 })
 
 M.ListComponentsOutput = schema.new({
-    id = id.from(_N, "ListComponentsOutput"),
+    id = id.from(_N, "ListComponentsResponse"),
     type = "structure",
     members = {
         components = schema.new({
@@ -2482,7 +2482,7 @@ M.ListComponentsOutput = schema.new({
 })
 
 M.ListComponentVersionsInput = schema.new({
-    id = id.from(_N, "ListComponentVersionsInput"),
+    id = id.from(_N, "ListComponentVersionsRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2517,7 +2517,7 @@ M.ListComponentVersionsInput = schema.new({
 })
 
 M.ListComponentVersionsOutput = schema.new({
-    id = id.from(_N, "ListComponentVersionsOutput"),
+    id = id.from(_N, "ListComponentVersionsResponse"),
     type = "structure",
     members = {
         componentVersions = schema.new({
@@ -2537,7 +2537,7 @@ M.ListComponentVersionsOutput = schema.new({
 })
 
 M.ListCoreDevicesInput = schema.new({
-    id = id.from(_N, "ListCoreDevicesInput"),
+    id = id.from(_N, "ListCoreDevicesRequest"),
     type = "structure",
     members = {
         thingGroupArn = schema.new({
@@ -2589,7 +2589,7 @@ M.ListCoreDevicesInput = schema.new({
 })
 
 M.ListCoreDevicesOutput = schema.new({
-    id = id.from(_N, "ListCoreDevicesOutput"),
+    id = id.from(_N, "ListCoreDevicesResponse"),
     type = "structure",
     members = {
         coreDevices = schema.new({
@@ -2609,7 +2609,7 @@ M.ListCoreDevicesOutput = schema.new({
 })
 
 M.ListDeploymentsInput = schema.new({
-    id = id.from(_N, "ListDeploymentsInput"),
+    id = id.from(_N, "ListDeploymentsRequest"),
     type = "structure",
     members = {
         targetArn = schema.new({
@@ -2661,7 +2661,7 @@ M.ListDeploymentsInput = schema.new({
 })
 
 M.ListDeploymentsOutput = schema.new({
-    id = id.from(_N, "ListDeploymentsOutput"),
+    id = id.from(_N, "ListDeploymentsResponse"),
     type = "structure",
     members = {
         deployments = schema.new({
@@ -2681,7 +2681,7 @@ M.ListDeploymentsOutput = schema.new({
 })
 
 M.ListEffectiveDeploymentsInput = schema.new({
-    id = id.from(_N, "ListEffectiveDeploymentsInput"),
+    id = id.from(_N, "ListEffectiveDeploymentsRequest"),
     type = "structure",
     members = {
         coreDeviceThingName = schema.new({
@@ -2716,7 +2716,7 @@ M.ListEffectiveDeploymentsInput = schema.new({
 })
 
 M.ListEffectiveDeploymentsOutput = schema.new({
-    id = id.from(_N, "ListEffectiveDeploymentsOutput"),
+    id = id.from(_N, "ListEffectiveDeploymentsResponse"),
     type = "structure",
     members = {
         effectiveDeployments = schema.new({
@@ -2736,7 +2736,7 @@ M.ListEffectiveDeploymentsOutput = schema.new({
 })
 
 M.ListInstalledComponentsInput = schema.new({
-    id = id.from(_N, "ListInstalledComponentsInput"),
+    id = id.from(_N, "ListInstalledComponentsRequest"),
     type = "structure",
     members = {
         coreDeviceThingName = schema.new({
@@ -2845,7 +2845,7 @@ M.InstalledComponent = schema.new({
 })
 
 M.ListInstalledComponentsOutput = schema.new({
-    id = id.from(_N, "ListInstalledComponentsOutput"),
+    id = id.from(_N, "ListInstalledComponentsResponse"),
     type = "structure",
     members = {
         installedComponents = schema.new({
@@ -2865,7 +2865,7 @@ M.ListInstalledComponentsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2882,7 +2882,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2897,7 +2897,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ResolveComponentCandidatesInput = schema.new({
-    id = id.from(_N, "ResolveComponentCandidatesInput"),
+    id = id.from(_N, "ResolveComponentCandidatesRequest"),
     type = "structure",
     members = {
         platform = schema.new({
@@ -2961,7 +2961,7 @@ M.ResolvedComponentVersion = schema.new({
 })
 
 M.ResolveComponentCandidatesOutput = schema.new({
-    id = id.from(_N, "ResolveComponentCandidatesOutput"),
+    id = id.from(_N, "ResolveComponentCandidatesResponse"),
     type = "structure",
     members = {
         resolvedComponentVersions = schema.new({
@@ -2975,7 +2975,7 @@ M.ResolveComponentCandidatesOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3003,12 +3003,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -3036,12 +3036,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateConnectivityInfoInput = schema.new({
-    id = id.from(_N, "UpdateConnectivityInfoInput"),
+    id = id.from(_N, "UpdateConnectivityInfoRequest"),
     type = "structure",
     members = {
         thingName = schema.new({
@@ -3070,7 +3070,7 @@ M.UpdateConnectivityInfoInput = schema.new({
 })
 
 M.UpdateConnectivityInfoOutput = schema.new({
-    id = id.from(_N, "UpdateConnectivityInfoOutput"),
+    id = id.from(_N, "UpdateConnectivityInfoResponse"),
     type = "structure",
     members = {
         version = schema.new({
@@ -3093,5 +3093,19 @@ M.UpdateConnectivityInfoOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

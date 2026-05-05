@@ -1156,7 +1156,7 @@ M.CountClosedWorkflowExecutionsInput = schema.new({
 })
 
 M.CountClosedWorkflowExecutionsOutput = schema.new({
-    id = id.from(_N, "CountClosedWorkflowExecutionsOutput"),
+    id = id.from(_N, "WorkflowExecutionCount"),
     type = "structure",
     members = {
         count = schema.new({
@@ -1261,7 +1261,7 @@ M.CountOpenWorkflowExecutionsInput = schema.new({
 })
 
 M.CountOpenWorkflowExecutionsOutput = schema.new({
-    id = id.from(_N, "CountOpenWorkflowExecutionsOutput"),
+    id = id.from(_N, "WorkflowExecutionCount"),
     type = "structure",
     members = {
         count = schema.new({
@@ -1313,7 +1313,7 @@ M.CountPendingActivityTasksInput = schema.new({
 })
 
 M.CountPendingActivityTasksOutput = schema.new({
-    id = id.from(_N, "CountPendingActivityTasksOutput"),
+    id = id.from(_N, "PendingTaskCount"),
     type = "structure",
     members = {
         count = schema.new({
@@ -1365,7 +1365,7 @@ M.CountPendingDecisionTasksInput = schema.new({
 })
 
 M.CountPendingDecisionTasksOutput = schema.new({
-    id = id.from(_N, "CountPendingDecisionTasksOutput"),
+    id = id.from(_N, "PendingTaskCount"),
     type = "structure",
     members = {
         count = schema.new({
@@ -2039,7 +2039,7 @@ M.DeleteActivityTypeInput = schema.new({
 })
 
 M.DeleteActivityTypeOutput = schema.new({
-    id = id.from(_N, "DeleteActivityTypeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2086,7 +2086,7 @@ M.DeleteWorkflowTypeInput = schema.new({
 })
 
 M.DeleteWorkflowTypeOutput = schema.new({
-    id = id.from(_N, "DeleteWorkflowTypeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2117,7 +2117,7 @@ M.DeprecateActivityTypeInput = schema.new({
 })
 
 M.DeprecateActivityTypeOutput = schema.new({
-    id = id.from(_N, "DeprecateActivityTypeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2154,7 +2154,7 @@ M.DeprecateDomainInput = schema.new({
 })
 
 M.DeprecateDomainOutput = schema.new({
-    id = id.from(_N, "DeprecateDomainOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2201,7 +2201,7 @@ M.DeprecateWorkflowTypeInput = schema.new({
 })
 
 M.DeprecateWorkflowTypeOutput = schema.new({
-    id = id.from(_N, "DeprecateWorkflowTypeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2232,7 +2232,7 @@ M.DescribeActivityTypeInput = schema.new({
 })
 
 M.DescribeActivityTypeOutput = schema.new({
-    id = id.from(_N, "DescribeActivityTypeOutput"),
+    id = id.from(_N, "ActivityTypeDetail"),
     type = "structure",
     members = {
         typeInfo = schema.new({
@@ -2328,7 +2328,7 @@ M.DomainInfo = schema.new({
 })
 
 M.DescribeDomainOutput = schema.new({
-    id = id.from(_N, "DescribeDomainOutput"),
+    id = id.from(_N, "DomainDetail"),
     type = "structure",
     members = {
         domainInfo = schema.new({
@@ -2573,7 +2573,7 @@ M.WorkflowExecutionOpenCounts = schema.new({
 })
 
 M.DescribeWorkflowExecutionOutput = schema.new({
-    id = id.from(_N, "DescribeWorkflowExecutionOutput"),
+    id = id.from(_N, "WorkflowExecutionDetail"),
     type = "structure",
     members = {
         executionInfo = schema.new({
@@ -2739,7 +2739,7 @@ M.WorkflowTypeInfo = schema.new({
 })
 
 M.DescribeWorkflowTypeOutput = schema.new({
-    id = id.from(_N, "DescribeWorkflowTypeOutput"),
+    id = id.from(_N, "WorkflowTypeDetail"),
     type = "structure",
     members = {
         typeInfo = schema.new({
@@ -4609,7 +4609,7 @@ M.HistoryEvent = schema.new({
 })
 
 M.GetWorkflowExecutionHistoryOutput = schema.new({
-    id = id.from(_N, "GetWorkflowExecutionHistoryOutput"),
+    id = id.from(_N, "History"),
     type = "structure",
     members = {
         events = schema.new({
@@ -4703,7 +4703,7 @@ M.ListActivityTypesInput = schema.new({
 })
 
 M.ListActivityTypesOutput = schema.new({
-    id = id.from(_N, "ListActivityTypesOutput"),
+    id = id.from(_N, "ActivityTypeInfos"),
     type = "structure",
     members = {
         typeInfos = schema.new({
@@ -4808,7 +4808,7 @@ M.ListClosedWorkflowExecutionsInput = schema.new({
 })
 
 M.ListClosedWorkflowExecutionsOutput = schema.new({
-    id = id.from(_N, "ListClosedWorkflowExecutionsOutput"),
+    id = id.from(_N, "WorkflowExecutionInfos"),
     type = "structure",
     members = {
         executionInfos = schema.new({
@@ -4871,7 +4871,7 @@ M.ListDomainsInput = schema.new({
 })
 
 M.ListDomainsOutput = schema.new({
-    id = id.from(_N, "ListDomainsOutput"),
+    id = id.from(_N, "DomainInfos"),
     type = "structure",
     members = {
         domainInfos = schema.new({
@@ -4965,7 +4965,7 @@ M.ListOpenWorkflowExecutionsInput = schema.new({
 })
 
 M.ListOpenWorkflowExecutionsOutput = schema.new({
-    id = id.from(_N, "ListOpenWorkflowExecutionsOutput"),
+    id = id.from(_N, "WorkflowExecutionInfos"),
     type = "structure",
     members = {
         executionInfos = schema.new({
@@ -5095,7 +5095,7 @@ M.ListWorkflowTypesInput = schema.new({
 })
 
 M.ListWorkflowTypesOutput = schema.new({
-    id = id.from(_N, "ListWorkflowTypesOutput"),
+    id = id.from(_N, "WorkflowTypeInfos"),
     type = "structure",
     members = {
         typeInfos = schema.new({
@@ -5150,7 +5150,7 @@ M.PollForActivityTaskInput = schema.new({
 })
 
 M.PollForActivityTaskOutput = schema.new({
-    id = id.from(_N, "PollForActivityTaskOutput"),
+    id = id.from(_N, "ActivityTask"),
     type = "structure",
     members = {
         taskToken = schema.new({
@@ -5276,7 +5276,7 @@ M.PollForDecisionTaskInput = schema.new({
 })
 
 M.PollForDecisionTaskOutput = schema.new({
-    id = id.from(_N, "PollForDecisionTaskOutput"),
+    id = id.from(_N, "DecisionTask"),
     type = "structure",
     members = {
         taskToken = schema.new({
@@ -5369,7 +5369,7 @@ M.RecordActivityTaskHeartbeatInput = schema.new({
 })
 
 M.RecordActivityTaskHeartbeatOutput = schema.new({
-    id = id.from(_N, "RecordActivityTaskHeartbeatOutput"),
+    id = id.from(_N, "ActivityTaskStatus"),
     type = "structure",
     members = {
         cancelRequested = schema.new({
@@ -5463,7 +5463,7 @@ M.RegisterActivityTypeInput = schema.new({
 })
 
 M.RegisterActivityTypeOutput = schema.new({
-    id = id.from(_N, "RegisterActivityTypeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5522,7 +5522,7 @@ M.RegisterDomainInput = schema.new({
 })
 
 M.RegisterDomainOutput = schema.new({
-    id = id.from(_N, "RegisterDomainOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5620,7 +5620,7 @@ M.RegisterWorkflowTypeInput = schema.new({
 })
 
 M.RegisterWorkflowTypeOutput = schema.new({
-    id = id.from(_N, "RegisterWorkflowTypeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5656,7 +5656,7 @@ M.RequestCancelWorkflowExecutionInput = schema.new({
 })
 
 M.RequestCancelWorkflowExecutionOutput = schema.new({
-    id = id.from(_N, "RequestCancelWorkflowExecutionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5683,7 +5683,7 @@ M.RespondActivityTaskCanceledInput = schema.new({
 })
 
 M.RespondActivityTaskCanceledOutput = schema.new({
-    id = id.from(_N, "RespondActivityTaskCanceledOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5710,7 +5710,7 @@ M.RespondActivityTaskCompletedInput = schema.new({
 })
 
 M.RespondActivityTaskCompletedOutput = schema.new({
-    id = id.from(_N, "RespondActivityTaskCompletedOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5743,7 +5743,7 @@ M.RespondActivityTaskFailedInput = schema.new({
 })
 
 M.RespondActivityTaskFailedOutput = schema.new({
-    id = id.from(_N, "RespondActivityTaskFailedOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5790,7 +5790,7 @@ M.RespondDecisionTaskCompletedInput = schema.new({
 })
 
 M.RespondDecisionTaskCompletedOutput = schema.new({
-    id = id.from(_N, "RespondDecisionTaskCompletedOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5841,7 +5841,7 @@ M.SignalWorkflowExecutionInput = schema.new({
 })
 
 M.SignalWorkflowExecutionOutput = schema.new({
-    id = id.from(_N, "SignalWorkflowExecutionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5931,7 +5931,7 @@ M.StartWorkflowExecutionInput = schema.new({
 })
 
 M.StartWorkflowExecutionOutput = schema.new({
-    id = id.from(_N, "StartWorkflowExecutionOutput"),
+    id = id.from(_N, "Run"),
     type = "structure",
     members = {
         runId = schema.new({
@@ -5986,7 +5986,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -6040,7 +6040,7 @@ M.TerminateWorkflowExecutionInput = schema.new({
 })
 
 M.TerminateWorkflowExecutionOutput = schema.new({
-    id = id.from(_N, "TerminateWorkflowExecutionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -6071,7 +6071,7 @@ M.UndeprecateActivityTypeInput = schema.new({
 })
 
 M.UndeprecateActivityTypeOutput = schema.new({
-    id = id.from(_N, "UndeprecateActivityTypeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -6092,7 +6092,7 @@ M.UndeprecateDomainInput = schema.new({
 })
 
 M.UndeprecateDomainOutput = schema.new({
-    id = id.from(_N, "UndeprecateDomainOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -6123,7 +6123,7 @@ M.UndeprecateWorkflowTypeInput = schema.new({
 })
 
 M.UndeprecateWorkflowTypeOutput = schema.new({
-    id = id.from(_N, "UndeprecateWorkflowTypeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -6154,8 +6154,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

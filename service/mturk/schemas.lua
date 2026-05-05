@@ -8,7 +8,7 @@ local _N = "com.amazonaws.mturk"
 local M = {}
 
 M.AcceptQualificationRequestInput = schema.new({
-    id = id.from(_N, "AcceptQualificationRequestInput"),
+    id = id.from(_N, "AcceptQualificationRequestRequest"),
     type = "structure",
     members = {
         QualificationRequestId = schema.new({
@@ -30,7 +30,7 @@ M.AcceptQualificationRequestInput = schema.new({
 })
 
 M.AcceptQualificationRequestOutput = schema.new({
-    id = id.from(_N, "AcceptQualificationRequestOutput"),
+    id = id.from(_N, "AcceptQualificationRequestResponse"),
     type = "structure",
 })
 
@@ -79,7 +79,7 @@ M.ServiceFault = schema.new({
 })
 
 M.ApproveAssignmentInput = schema.new({
-    id = id.from(_N, "ApproveAssignmentInput"),
+    id = id.from(_N, "ApproveAssignmentRequest"),
     type = "structure",
     members = {
         AssignmentId = schema.new({
@@ -107,7 +107,7 @@ M.ApproveAssignmentInput = schema.new({
 })
 
 M.ApproveAssignmentOutput = schema.new({
-    id = id.from(_N, "ApproveAssignmentOutput"),
+    id = id.from(_N, "ApproveAssignmentResponse"),
     type = "structure",
 })
 
@@ -191,7 +191,7 @@ M.Assignment = schema.new({
 })
 
 M.AssociateQualificationWithWorkerInput = schema.new({
-    id = id.from(_N, "AssociateQualificationWithWorkerInput"),
+    id = id.from(_N, "AssociateQualificationWithWorkerRequest"),
     type = "structure",
     members = {
         QualificationTypeId = schema.new({
@@ -228,7 +228,7 @@ M.AssociateQualificationWithWorkerInput = schema.new({
 })
 
 M.AssociateQualificationWithWorkerOutput = schema.new({
-    id = id.from(_N, "AssociateQualificationWithWorkerOutput"),
+    id = id.from(_N, "AssociateQualificationWithWorkerResponse"),
     type = "structure",
 })
 
@@ -270,7 +270,7 @@ M.BonusPayment = schema.new({
 })
 
 M.CreateAdditionalAssignmentsForHITInput = schema.new({
-    id = id.from(_N, "CreateAdditionalAssignmentsForHITInput"),
+    id = id.from(_N, "CreateAdditionalAssignmentsForHITRequest"),
     type = "structure",
     members = {
         HITId = schema.new({
@@ -301,7 +301,7 @@ M.CreateAdditionalAssignmentsForHITInput = schema.new({
 })
 
 M.CreateAdditionalAssignmentsForHITOutput = schema.new({
-    id = id.from(_N, "CreateAdditionalAssignmentsForHITOutput"),
+    id = id.from(_N, "CreateAdditionalAssignmentsForHITResponse"),
     type = "structure",
 })
 
@@ -474,7 +474,7 @@ M.QualificationRequirement = schema.new({
 })
 
 M.CreateHITInput = schema.new({
-    id = id.from(_N, "CreateHITInput"),
+    id = id.from(_N, "CreateHITRequest"),
     type = "structure",
     members = {
         MaxAssignments = schema.new({
@@ -730,7 +730,7 @@ M.HIT = schema.new({
 })
 
 M.CreateHITOutput = schema.new({
-    id = id.from(_N, "CreateHITOutput"),
+    id = id.from(_N, "CreateHITResponse"),
     type = "structure",
     members = {
         HIT = schema.new({
@@ -744,7 +744,7 @@ M.CreateHITOutput = schema.new({
 })
 
 M.CreateHITTypeInput = schema.new({
-    id = id.from(_N, "CreateHITTypeInput"),
+    id = id.from(_N, "CreateHITTypeRequest"),
     type = "structure",
     members = {
         AutoApprovalDelayInSeconds = schema.new({
@@ -806,7 +806,7 @@ M.CreateHITTypeInput = schema.new({
 })
 
 M.CreateHITTypeOutput = schema.new({
-    id = id.from(_N, "CreateHITTypeOutput"),
+    id = id.from(_N, "CreateHITTypeResponse"),
     type = "structure",
     members = {
         HITTypeId = schema.new({
@@ -819,7 +819,7 @@ M.CreateHITTypeOutput = schema.new({
 })
 
 M.CreateHITWithHITTypeInput = schema.new({
-    id = id.from(_N, "CreateHITWithHITTypeInput"),
+    id = id.from(_N, "CreateHITWithHITTypeRequest"),
     type = "structure",
     members = {
         HITTypeId = schema.new({
@@ -895,7 +895,7 @@ M.CreateHITWithHITTypeInput = schema.new({
 })
 
 M.CreateHITWithHITTypeOutput = schema.new({
-    id = id.from(_N, "CreateHITWithHITTypeOutput"),
+    id = id.from(_N, "CreateHITWithHITTypeResponse"),
     type = "structure",
     members = {
         HIT = schema.new({
@@ -909,7 +909,7 @@ M.CreateHITWithHITTypeOutput = schema.new({
 })
 
 M.CreateQualificationTypeInput = schema.new({
-    id = id.from(_N, "CreateQualificationTypeInput"),
+    id = id.from(_N, "CreateQualificationTypeRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1070,7 +1070,7 @@ M.QualificationType = schema.new({
 })
 
 M.CreateQualificationTypeOutput = schema.new({
-    id = id.from(_N, "CreateQualificationTypeOutput"),
+    id = id.from(_N, "CreateQualificationTypeResponse"),
     type = "structure",
     members = {
         QualificationType = schema.new({
@@ -1084,7 +1084,7 @@ M.CreateQualificationTypeOutput = schema.new({
 })
 
 M.CreateWorkerBlockInput = schema.new({
-    id = id.from(_N, "CreateWorkerBlockInput"),
+    id = id.from(_N, "CreateWorkerBlockRequest"),
     type = "structure",
     members = {
         WorkerId = schema.new({
@@ -1109,12 +1109,12 @@ M.CreateWorkerBlockInput = schema.new({
 })
 
 M.CreateWorkerBlockOutput = schema.new({
-    id = id.from(_N, "CreateWorkerBlockOutput"),
+    id = id.from(_N, "CreateWorkerBlockResponse"),
     type = "structure",
 })
 
 M.DeleteHITInput = schema.new({
-    id = id.from(_N, "DeleteHITInput"),
+    id = id.from(_N, "DeleteHITRequest"),
     type = "structure",
     members = {
         HITId = schema.new({
@@ -1130,12 +1130,12 @@ M.DeleteHITInput = schema.new({
 })
 
 M.DeleteHITOutput = schema.new({
-    id = id.from(_N, "DeleteHITOutput"),
+    id = id.from(_N, "DeleteHITResponse"),
     type = "structure",
 })
 
 M.DeleteQualificationTypeInput = schema.new({
-    id = id.from(_N, "DeleteQualificationTypeInput"),
+    id = id.from(_N, "DeleteQualificationTypeRequest"),
     type = "structure",
     members = {
         QualificationTypeId = schema.new({
@@ -1151,12 +1151,12 @@ M.DeleteQualificationTypeInput = schema.new({
 })
 
 M.DeleteQualificationTypeOutput = schema.new({
-    id = id.from(_N, "DeleteQualificationTypeOutput"),
+    id = id.from(_N, "DeleteQualificationTypeResponse"),
     type = "structure",
 })
 
 M.DeleteWorkerBlockInput = schema.new({
-    id = id.from(_N, "DeleteWorkerBlockInput"),
+    id = id.from(_N, "DeleteWorkerBlockRequest"),
     type = "structure",
     members = {
         WorkerId = schema.new({
@@ -1178,12 +1178,12 @@ M.DeleteWorkerBlockInput = schema.new({
 })
 
 M.DeleteWorkerBlockOutput = schema.new({
-    id = id.from(_N, "DeleteWorkerBlockOutput"),
+    id = id.from(_N, "DeleteWorkerBlockResponse"),
     type = "structure",
 })
 
 M.DisassociateQualificationFromWorkerInput = schema.new({
-    id = id.from(_N, "DisassociateQualificationFromWorkerInput"),
+    id = id.from(_N, "DisassociateQualificationFromWorkerRequest"),
     type = "structure",
     members = {
         WorkerId = schema.new({
@@ -1214,17 +1214,17 @@ M.DisassociateQualificationFromWorkerInput = schema.new({
 })
 
 M.DisassociateQualificationFromWorkerOutput = schema.new({
-    id = id.from(_N, "DisassociateQualificationFromWorkerOutput"),
+    id = id.from(_N, "DisassociateQualificationFromWorkerResponse"),
     type = "structure",
 })
 
 M.GetAccountBalanceInput = schema.new({
-    id = id.from(_N, "GetAccountBalanceInput"),
+    id = id.from(_N, "GetAccountBalanceRequest"),
     type = "structure",
 })
 
 M.GetAccountBalanceOutput = schema.new({
-    id = id.from(_N, "GetAccountBalanceOutput"),
+    id = id.from(_N, "GetAccountBalanceResponse"),
     type = "structure",
     members = {
         AvailableBalance = schema.new({
@@ -1243,7 +1243,7 @@ M.GetAccountBalanceOutput = schema.new({
 })
 
 M.GetAssignmentInput = schema.new({
-    id = id.from(_N, "GetAssignmentInput"),
+    id = id.from(_N, "GetAssignmentRequest"),
     type = "structure",
     members = {
         AssignmentId = schema.new({
@@ -1259,7 +1259,7 @@ M.GetAssignmentInput = schema.new({
 })
 
 M.GetAssignmentOutput = schema.new({
-    id = id.from(_N, "GetAssignmentOutput"),
+    id = id.from(_N, "GetAssignmentResponse"),
     type = "structure",
     members = {
         Assignment = schema.new({
@@ -1280,7 +1280,7 @@ M.GetAssignmentOutput = schema.new({
 })
 
 M.GetFileUploadURLInput = schema.new({
-    id = id.from(_N, "GetFileUploadURLInput"),
+    id = id.from(_N, "GetFileUploadURLRequest"),
     type = "structure",
     members = {
         AssignmentId = schema.new({
@@ -1305,7 +1305,7 @@ M.GetFileUploadURLInput = schema.new({
 })
 
 M.GetFileUploadURLOutput = schema.new({
-    id = id.from(_N, "GetFileUploadURLOutput"),
+    id = id.from(_N, "GetFileUploadURLResponse"),
     type = "structure",
     members = {
         FileUploadURL = schema.new({
@@ -1318,7 +1318,7 @@ M.GetFileUploadURLOutput = schema.new({
 })
 
 M.GetHITInput = schema.new({
-    id = id.from(_N, "GetHITInput"),
+    id = id.from(_N, "GetHITRequest"),
     type = "structure",
     members = {
         HITId = schema.new({
@@ -1334,7 +1334,7 @@ M.GetHITInput = schema.new({
 })
 
 M.GetHITOutput = schema.new({
-    id = id.from(_N, "GetHITOutput"),
+    id = id.from(_N, "GetHITResponse"),
     type = "structure",
     members = {
         HIT = schema.new({
@@ -1348,7 +1348,7 @@ M.GetHITOutput = schema.new({
 })
 
 M.GetQualificationScoreInput = schema.new({
-    id = id.from(_N, "GetQualificationScoreInput"),
+    id = id.from(_N, "GetQualificationScoreRequest"),
     type = "structure",
     members = {
         QualificationTypeId = schema.new({
@@ -1417,7 +1417,7 @@ M.Qualification = schema.new({
 })
 
 M.GetQualificationScoreOutput = schema.new({
-    id = id.from(_N, "GetQualificationScoreOutput"),
+    id = id.from(_N, "GetQualificationScoreResponse"),
     type = "structure",
     members = {
         Qualification = schema.new({
@@ -1431,7 +1431,7 @@ M.GetQualificationScoreOutput = schema.new({
 })
 
 M.GetQualificationTypeInput = schema.new({
-    id = id.from(_N, "GetQualificationTypeInput"),
+    id = id.from(_N, "GetQualificationTypeRequest"),
     type = "structure",
     members = {
         QualificationTypeId = schema.new({
@@ -1447,7 +1447,7 @@ M.GetQualificationTypeInput = schema.new({
 })
 
 M.GetQualificationTypeOutput = schema.new({
-    id = id.from(_N, "GetQualificationTypeOutput"),
+    id = id.from(_N, "GetQualificationTypeResponse"),
     type = "structure",
     members = {
         QualificationType = schema.new({
@@ -1461,7 +1461,7 @@ M.GetQualificationTypeOutput = schema.new({
 })
 
 M.ListAssignmentsForHITInput = schema.new({
-    id = id.from(_N, "ListAssignmentsForHITInput"),
+    id = id.from(_N, "ListAssignmentsForHITRequest"),
     type = "structure",
     members = {
         HITId = schema.new({
@@ -1496,7 +1496,7 @@ M.ListAssignmentsForHITInput = schema.new({
 })
 
 M.ListAssignmentsForHITOutput = schema.new({
-    id = id.from(_N, "ListAssignmentsForHITOutput"),
+    id = id.from(_N, "ListAssignmentsForHITResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1522,7 +1522,7 @@ M.ListAssignmentsForHITOutput = schema.new({
 })
 
 M.ListBonusPaymentsInput = schema.new({
-    id = id.from(_N, "ListBonusPaymentsInput"),
+    id = id.from(_N, "ListBonusPaymentsRequest"),
     type = "structure",
     members = {
         HITId = schema.new({
@@ -1553,7 +1553,7 @@ M.ListBonusPaymentsInput = schema.new({
 })
 
 M.ListBonusPaymentsOutput = schema.new({
-    id = id.from(_N, "ListBonusPaymentsOutput"),
+    id = id.from(_N, "ListBonusPaymentsResponse"),
     type = "structure",
     members = {
         NumResults = schema.new({
@@ -1579,7 +1579,7 @@ M.ListBonusPaymentsOutput = schema.new({
 })
 
 M.ListHITsInput = schema.new({
-    id = id.from(_N, "ListHITsInput"),
+    id = id.from(_N, "ListHITsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1598,7 +1598,7 @@ M.ListHITsInput = schema.new({
 })
 
 M.ListHITsOutput = schema.new({
-    id = id.from(_N, "ListHITsOutput"),
+    id = id.from(_N, "ListHITsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1624,7 +1624,7 @@ M.ListHITsOutput = schema.new({
 })
 
 M.ListHITsForQualificationTypeInput = schema.new({
-    id = id.from(_N, "ListHITsForQualificationTypeInput"),
+    id = id.from(_N, "ListHITsForQualificationTypeRequest"),
     type = "structure",
     members = {
         QualificationTypeId = schema.new({
@@ -1652,7 +1652,7 @@ M.ListHITsForQualificationTypeInput = schema.new({
 })
 
 M.ListHITsForQualificationTypeOutput = schema.new({
-    id = id.from(_N, "ListHITsForQualificationTypeOutput"),
+    id = id.from(_N, "ListHITsForQualificationTypeResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1678,7 +1678,7 @@ M.ListHITsForQualificationTypeOutput = schema.new({
 })
 
 M.ListQualificationRequestsInput = schema.new({
-    id = id.from(_N, "ListQualificationRequestsInput"),
+    id = id.from(_N, "ListQualificationRequestsRequest"),
     type = "structure",
     members = {
         QualificationTypeId = schema.new({
@@ -1746,7 +1746,7 @@ M.QualificationRequest = schema.new({
 })
 
 M.ListQualificationRequestsOutput = schema.new({
-    id = id.from(_N, "ListQualificationRequestsOutput"),
+    id = id.from(_N, "ListQualificationRequestsResponse"),
     type = "structure",
     members = {
         NumResults = schema.new({
@@ -1772,7 +1772,7 @@ M.ListQualificationRequestsOutput = schema.new({
 })
 
 M.ListQualificationTypesInput = schema.new({
-    id = id.from(_N, "ListQualificationTypesInput"),
+    id = id.from(_N, "ListQualificationTypesRequest"),
     type = "structure",
     members = {
         Query = schema.new({
@@ -1812,7 +1812,7 @@ M.ListQualificationTypesInput = schema.new({
 })
 
 M.ListQualificationTypesOutput = schema.new({
-    id = id.from(_N, "ListQualificationTypesOutput"),
+    id = id.from(_N, "ListQualificationTypesResponse"),
     type = "structure",
     members = {
         NumResults = schema.new({
@@ -1838,7 +1838,7 @@ M.ListQualificationTypesOutput = schema.new({
 })
 
 M.ListReviewableHITsInput = schema.new({
-    id = id.from(_N, "ListReviewableHITsInput"),
+    id = id.from(_N, "ListReviewableHITsRequest"),
     type = "structure",
     members = {
         HITTypeId = schema.new({
@@ -1869,7 +1869,7 @@ M.ListReviewableHITsInput = schema.new({
 })
 
 M.ListReviewableHITsOutput = schema.new({
-    id = id.from(_N, "ListReviewableHITsOutput"),
+    id = id.from(_N, "ListReviewableHITsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1895,7 +1895,7 @@ M.ListReviewableHITsOutput = schema.new({
 })
 
 M.ListReviewPolicyResultsForHITInput = schema.new({
-    id = id.from(_N, "ListReviewPolicyResultsForHITInput"),
+    id = id.from(_N, "ListReviewPolicyResultsForHITRequest"),
     type = "structure",
     members = {
         HITId = schema.new({
@@ -2061,7 +2061,7 @@ M.ReviewReport = schema.new({
 })
 
 M.ListReviewPolicyResultsForHITOutput = schema.new({
-    id = id.from(_N, "ListReviewPolicyResultsForHITOutput"),
+    id = id.from(_N, "ListReviewPolicyResultsForHITResponse"),
     type = "structure",
     members = {
         HITId = schema.new({
@@ -2108,7 +2108,7 @@ M.ListReviewPolicyResultsForHITOutput = schema.new({
 })
 
 M.ListWorkerBlocksInput = schema.new({
-    id = id.from(_N, "ListWorkerBlocksInput"),
+    id = id.from(_N, "ListWorkerBlocksRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2146,7 +2146,7 @@ M.WorkerBlock = schema.new({
 })
 
 M.ListWorkerBlocksOutput = schema.new({
-    id = id.from(_N, "ListWorkerBlocksOutput"),
+    id = id.from(_N, "ListWorkerBlocksResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2172,7 +2172,7 @@ M.ListWorkerBlocksOutput = schema.new({
 })
 
 M.ListWorkersWithQualificationTypeInput = schema.new({
-    id = id.from(_N, "ListWorkersWithQualificationTypeInput"),
+    id = id.from(_N, "ListWorkersWithQualificationTypeRequest"),
     type = "structure",
     members = {
         QualificationTypeId = schema.new({
@@ -2206,7 +2206,7 @@ M.ListWorkersWithQualificationTypeInput = schema.new({
 })
 
 M.ListWorkersWithQualificationTypeOutput = schema.new({
-    id = id.from(_N, "ListWorkersWithQualificationTypeOutput"),
+    id = id.from(_N, "ListWorkersWithQualificationTypeResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2232,7 +2232,7 @@ M.ListWorkersWithQualificationTypeOutput = schema.new({
 })
 
 M.NotifyWorkersInput = schema.new({
-    id = id.from(_N, "NotifyWorkersInput"),
+    id = id.from(_N, "NotifyWorkersRequest"),
     type = "structure",
     members = {
         Subject = schema.new({
@@ -2292,7 +2292,7 @@ M.NotifyWorkersFailureStatus = schema.new({
 })
 
 M.NotifyWorkersOutput = schema.new({
-    id = id.from(_N, "NotifyWorkersOutput"),
+    id = id.from(_N, "NotifyWorkersResponse"),
     type = "structure",
     members = {
         NotifyWorkersFailureStatuses = schema.new({
@@ -2306,7 +2306,7 @@ M.NotifyWorkersOutput = schema.new({
 })
 
 M.RejectAssignmentInput = schema.new({
-    id = id.from(_N, "RejectAssignmentInput"),
+    id = id.from(_N, "RejectAssignmentRequest"),
     type = "structure",
     members = {
         AssignmentId = schema.new({
@@ -2331,12 +2331,12 @@ M.RejectAssignmentInput = schema.new({
 })
 
 M.RejectAssignmentOutput = schema.new({
-    id = id.from(_N, "RejectAssignmentOutput"),
+    id = id.from(_N, "RejectAssignmentResponse"),
     type = "structure",
 })
 
 M.RejectQualificationRequestInput = schema.new({
-    id = id.from(_N, "RejectQualificationRequestInput"),
+    id = id.from(_N, "RejectQualificationRequestRequest"),
     type = "structure",
     members = {
         QualificationRequestId = schema.new({
@@ -2358,12 +2358,12 @@ M.RejectQualificationRequestInput = schema.new({
 })
 
 M.RejectQualificationRequestOutput = schema.new({
-    id = id.from(_N, "RejectQualificationRequestOutput"),
+    id = id.from(_N, "RejectQualificationRequestResponse"),
     type = "structure",
 })
 
 M.SendBonusInput = schema.new({
-    id = id.from(_N, "SendBonusInput"),
+    id = id.from(_N, "SendBonusRequest"),
     type = "structure",
     members = {
         WorkerId = schema.new({
@@ -2412,7 +2412,7 @@ M.SendBonusInput = schema.new({
 })
 
 M.SendBonusOutput = schema.new({
-    id = id.from(_N, "SendBonusOutput"),
+    id = id.from(_N, "SendBonusResponse"),
     type = "structure",
 })
 
@@ -2461,7 +2461,7 @@ M.NotificationSpecification = schema.new({
 })
 
 M.SendTestEventNotificationInput = schema.new({
-    id = id.from(_N, "SendTestEventNotificationInput"),
+    id = id.from(_N, "SendTestEventNotificationRequest"),
     type = "structure",
     members = {
         Notification = schema.new({
@@ -2487,12 +2487,12 @@ M.SendTestEventNotificationInput = schema.new({
 })
 
 M.SendTestEventNotificationOutput = schema.new({
-    id = id.from(_N, "SendTestEventNotificationOutput"),
+    id = id.from(_N, "SendTestEventNotificationResponse"),
     type = "structure",
 })
 
 M.UpdateExpirationForHITInput = schema.new({
-    id = id.from(_N, "UpdateExpirationForHITInput"),
+    id = id.from(_N, "UpdateExpirationForHITRequest"),
     type = "structure",
     members = {
         HITId = schema.new({
@@ -2517,12 +2517,12 @@ M.UpdateExpirationForHITInput = schema.new({
 })
 
 M.UpdateExpirationForHITOutput = schema.new({
-    id = id.from(_N, "UpdateExpirationForHITOutput"),
+    id = id.from(_N, "UpdateExpirationForHITResponse"),
     type = "structure",
 })
 
 M.UpdateHITReviewStatusInput = schema.new({
-    id = id.from(_N, "UpdateHITReviewStatusInput"),
+    id = id.from(_N, "UpdateHITReviewStatusRequest"),
     type = "structure",
     members = {
         HITId = schema.new({
@@ -2544,12 +2544,12 @@ M.UpdateHITReviewStatusInput = schema.new({
 })
 
 M.UpdateHITReviewStatusOutput = schema.new({
-    id = id.from(_N, "UpdateHITReviewStatusOutput"),
+    id = id.from(_N, "UpdateHITReviewStatusResponse"),
     type = "structure",
 })
 
 M.UpdateHITTypeOfHITInput = schema.new({
-    id = id.from(_N, "UpdateHITTypeOfHITInput"),
+    id = id.from(_N, "UpdateHITTypeOfHITRequest"),
     type = "structure",
     members = {
         HITId = schema.new({
@@ -2574,12 +2574,12 @@ M.UpdateHITTypeOfHITInput = schema.new({
 })
 
 M.UpdateHITTypeOfHITOutput = schema.new({
-    id = id.from(_N, "UpdateHITTypeOfHITOutput"),
+    id = id.from(_N, "UpdateHITTypeOfHITResponse"),
     type = "structure",
 })
 
 M.UpdateNotificationSettingsInput = schema.new({
-    id = id.from(_N, "UpdateNotificationSettingsInput"),
+    id = id.from(_N, "UpdateNotificationSettingsRequest"),
     type = "structure",
     members = {
         HITTypeId = schema.new({
@@ -2608,12 +2608,12 @@ M.UpdateNotificationSettingsInput = schema.new({
 })
 
 M.UpdateNotificationSettingsOutput = schema.new({
-    id = id.from(_N, "UpdateNotificationSettingsOutput"),
+    id = id.from(_N, "UpdateNotificationSettingsResponse"),
     type = "structure",
 })
 
 M.UpdateQualificationTypeInput = schema.new({
-    id = id.from(_N, "UpdateQualificationTypeInput"),
+    id = id.from(_N, "UpdateQualificationTypeRequest"),
     type = "structure",
     members = {
         QualificationTypeId = schema.new({
@@ -2677,7 +2677,7 @@ M.UpdateQualificationTypeInput = schema.new({
 })
 
 M.UpdateQualificationTypeOutput = schema.new({
-    id = id.from(_N, "UpdateQualificationTypeOutput"),
+    id = id.from(_N, "UpdateQualificationTypeResponse"),
     type = "structure",
     members = {
         QualificationType = schema.new({
@@ -2689,5 +2689,19 @@ M.UpdateQualificationTypeOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

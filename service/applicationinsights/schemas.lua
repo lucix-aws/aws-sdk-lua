@@ -49,7 +49,7 @@ M.WorkloadConfiguration = schema.new({
 })
 
 M.AddWorkloadInput = schema.new({
-    id = id.from(_N, "AddWorkloadInput"),
+    id = id.from(_N, "AddWorkloadRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -84,7 +84,7 @@ M.AddWorkloadInput = schema.new({
 })
 
 M.AddWorkloadOutput = schema.new({
-    id = id.from(_N, "AddWorkloadOutput"),
+    id = id.from(_N, "AddWorkloadResponse"),
     type = "structure",
     members = {
         WorkloadId = schema.new({
@@ -213,7 +213,7 @@ M.ApplicationComponent = schema.new({
             name = "DetectedWorkload",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
     },
 })
@@ -388,7 +388,7 @@ M.Tag = schema.new({
 })
 
 M.CreateApplicationInput = schema.new({
-    id = id.from(_N, "CreateApplicationInput"),
+    id = id.from(_N, "CreateApplicationRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -456,7 +456,7 @@ M.CreateApplicationInput = schema.new({
 })
 
 M.CreateApplicationOutput = schema.new({
-    id = id.from(_N, "CreateApplicationOutput"),
+    id = id.from(_N, "CreateApplicationResponse"),
     type = "structure",
     members = {
         ApplicationInfo = schema.new({
@@ -486,7 +486,7 @@ M.TagsAlreadyExistException = schema.new({
 })
 
 M.CreateComponentInput = schema.new({
-    id = id.from(_N, "CreateComponentInput"),
+    id = id.from(_N, "CreateComponentRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -521,12 +521,12 @@ M.CreateComponentInput = schema.new({
 })
 
 M.CreateComponentOutput = schema.new({
-    id = id.from(_N, "CreateComponentOutput"),
+    id = id.from(_N, "CreateComponentResponse"),
     type = "structure",
 })
 
 M.CreateLogPatternInput = schema.new({
-    id = id.from(_N, "CreateLogPatternInput"),
+    id = id.from(_N, "CreateLogPatternRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -613,7 +613,7 @@ M.LogPattern = schema.new({
 })
 
 M.CreateLogPatternOutput = schema.new({
-    id = id.from(_N, "CreateLogPatternOutput"),
+    id = id.from(_N, "CreateLogPatternResponse"),
     type = "structure",
     members = {
         LogPattern = schema.new({
@@ -633,7 +633,7 @@ M.CreateLogPatternOutput = schema.new({
 })
 
 M.DeleteApplicationInput = schema.new({
-    id = id.from(_N, "DeleteApplicationInput"),
+    id = id.from(_N, "DeleteApplicationRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -649,12 +649,12 @@ M.DeleteApplicationInput = schema.new({
 })
 
 M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationOutput"),
+    id = id.from(_N, "DeleteApplicationResponse"),
     type = "structure",
 })
 
 M.DeleteComponentInput = schema.new({
-    id = id.from(_N, "DeleteComponentInput"),
+    id = id.from(_N, "DeleteComponentRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -679,12 +679,12 @@ M.DeleteComponentInput = schema.new({
 })
 
 M.DeleteComponentOutput = schema.new({
-    id = id.from(_N, "DeleteComponentOutput"),
+    id = id.from(_N, "DeleteComponentResponse"),
     type = "structure",
 })
 
 M.DeleteLogPatternInput = schema.new({
-    id = id.from(_N, "DeleteLogPatternInput"),
+    id = id.from(_N, "DeleteLogPatternRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -718,12 +718,12 @@ M.DeleteLogPatternInput = schema.new({
 })
 
 M.DeleteLogPatternOutput = schema.new({
-    id = id.from(_N, "DeleteLogPatternOutput"),
+    id = id.from(_N, "DeleteLogPatternResponse"),
     type = "structure",
 })
 
 M.DescribeApplicationInput = schema.new({
-    id = id.from(_N, "DescribeApplicationInput"),
+    id = id.from(_N, "DescribeApplicationRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -745,7 +745,7 @@ M.DescribeApplicationInput = schema.new({
 })
 
 M.DescribeApplicationOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationOutput"),
+    id = id.from(_N, "DescribeApplicationResponse"),
     type = "structure",
     members = {
         ApplicationInfo = schema.new({
@@ -759,7 +759,7 @@ M.DescribeApplicationOutput = schema.new({
 })
 
 M.DescribeComponentInput = schema.new({
-    id = id.from(_N, "DescribeComponentInput"),
+    id = id.from(_N, "DescribeComponentRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -790,7 +790,7 @@ M.DescribeComponentInput = schema.new({
 })
 
 M.DescribeComponentOutput = schema.new({
-    id = id.from(_N, "DescribeComponentOutput"),
+    id = id.from(_N, "DescribeComponentResponse"),
     type = "structure",
     members = {
         ApplicationComponent = schema.new({
@@ -811,7 +811,7 @@ M.DescribeComponentOutput = schema.new({
 })
 
 M.DescribeComponentConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeComponentConfigurationInput"),
+    id = id.from(_N, "DescribeComponentConfigurationRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -842,7 +842,7 @@ M.DescribeComponentConfigurationInput = schema.new({
 })
 
 M.DescribeComponentConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeComponentConfigurationOutput"),
+    id = id.from(_N, "DescribeComponentConfigurationResponse"),
     type = "structure",
     members = {
         Monitor = schema.new({
@@ -867,7 +867,7 @@ M.DescribeComponentConfigurationOutput = schema.new({
 })
 
 M.DescribeComponentConfigurationRecommendationInput = schema.new({
-    id = id.from(_N, "DescribeComponentConfigurationRecommendationInput"),
+    id = id.from(_N, "DescribeComponentConfigurationRecommendationRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -913,7 +913,7 @@ M.DescribeComponentConfigurationRecommendationInput = schema.new({
 })
 
 M.DescribeComponentConfigurationRecommendationOutput = schema.new({
-    id = id.from(_N, "DescribeComponentConfigurationRecommendationOutput"),
+    id = id.from(_N, "DescribeComponentConfigurationRecommendationResponse"),
     type = "structure",
     members = {
         ComponentConfiguration = schema.new({
@@ -926,7 +926,7 @@ M.DescribeComponentConfigurationRecommendationOutput = schema.new({
 })
 
 M.DescribeLogPatternInput = schema.new({
-    id = id.from(_N, "DescribeLogPatternInput"),
+    id = id.from(_N, "DescribeLogPatternRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -966,7 +966,7 @@ M.DescribeLogPatternInput = schema.new({
 })
 
 M.DescribeLogPatternOutput = schema.new({
-    id = id.from(_N, "DescribeLogPatternOutput"),
+    id = id.from(_N, "DescribeLogPatternResponse"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -992,7 +992,7 @@ M.DescribeLogPatternOutput = schema.new({
 })
 
 M.DescribeObservationInput = schema.new({
-    id = id.from(_N, "DescribeObservationInput"),
+    id = id.from(_N, "DescribeObservationRequest"),
     type = "structure",
     members = {
         ObservationId = schema.new({
@@ -1291,7 +1291,7 @@ M.Observation = schema.new({
 })
 
 M.DescribeObservationOutput = schema.new({
-    id = id.from(_N, "DescribeObservationOutput"),
+    id = id.from(_N, "DescribeObservationResponse"),
     type = "structure",
     members = {
         Observation = schema.new({
@@ -1305,7 +1305,7 @@ M.DescribeObservationOutput = schema.new({
 })
 
 M.DescribeProblemInput = schema.new({
-    id = id.from(_N, "DescribeProblemInput"),
+    id = id.from(_N, "DescribeProblemRequest"),
     type = "structure",
     members = {
         ProblemId = schema.new({
@@ -1432,7 +1432,7 @@ M.Problem = schema.new({
 })
 
 M.DescribeProblemOutput = schema.new({
-    id = id.from(_N, "DescribeProblemOutput"),
+    id = id.from(_N, "DescribeProblemResponse"),
     type = "structure",
     members = {
         Problem = schema.new({
@@ -1452,7 +1452,7 @@ M.DescribeProblemOutput = schema.new({
 })
 
 M.DescribeProblemObservationsInput = schema.new({
-    id = id.from(_N, "DescribeProblemObservationsInput"),
+    id = id.from(_N, "DescribeProblemObservationsRequest"),
     type = "structure",
     members = {
         ProblemId = schema.new({
@@ -1488,7 +1488,7 @@ M.RelatedObservations = schema.new({
 })
 
 M.DescribeProblemObservationsOutput = schema.new({
-    id = id.from(_N, "DescribeProblemObservationsOutput"),
+    id = id.from(_N, "DescribeProblemObservationsResponse"),
     type = "structure",
     members = {
         RelatedObservations = schema.new({
@@ -1502,7 +1502,7 @@ M.DescribeProblemObservationsOutput = schema.new({
 })
 
 M.DescribeWorkloadInput = schema.new({
-    id = id.from(_N, "DescribeWorkloadInput"),
+    id = id.from(_N, "DescribeWorkloadRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -1542,7 +1542,7 @@ M.DescribeWorkloadInput = schema.new({
 })
 
 M.DescribeWorkloadOutput = schema.new({
-    id = id.from(_N, "DescribeWorkloadOutput"),
+    id = id.from(_N, "DescribeWorkloadResponse"),
     type = "structure",
     members = {
         WorkloadId = schema.new({
@@ -1568,7 +1568,7 @@ M.DescribeWorkloadOutput = schema.new({
 })
 
 M.ListApplicationsInput = schema.new({
-    id = id.from(_N, "ListApplicationsInput"),
+    id = id.from(_N, "ListApplicationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1593,7 +1593,7 @@ M.ListApplicationsInput = schema.new({
 })
 
 M.ListApplicationsOutput = schema.new({
-    id = id.from(_N, "ListApplicationsOutput"),
+    id = id.from(_N, "ListApplicationsResponse"),
     type = "structure",
     members = {
         ApplicationInfoList = schema.new({
@@ -1613,7 +1613,7 @@ M.ListApplicationsOutput = schema.new({
 })
 
 M.ListComponentsInput = schema.new({
-    id = id.from(_N, "ListComponentsInput"),
+    id = id.from(_N, "ListComponentsRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -1647,7 +1647,7 @@ M.ListComponentsInput = schema.new({
 })
 
 M.ListComponentsOutput = schema.new({
-    id = id.from(_N, "ListComponentsOutput"),
+    id = id.from(_N, "ListComponentsResponse"),
     type = "structure",
     members = {
         ApplicationComponentList = schema.new({
@@ -1667,7 +1667,7 @@ M.ListComponentsOutput = schema.new({
 })
 
 M.ListConfigurationHistoryInput = schema.new({
-    id = id.from(_N, "ListConfigurationHistoryInput"),
+    id = id.from(_N, "ListConfigurationHistoryRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -1716,7 +1716,7 @@ M.ListConfigurationHistoryInput = schema.new({
 })
 
 M.ListConfigurationHistoryOutput = schema.new({
-    id = id.from(_N, "ListConfigurationHistoryOutput"),
+    id = id.from(_N, "ListConfigurationHistoryResponse"),
     type = "structure",
     members = {
         EventList = schema.new({
@@ -1736,7 +1736,7 @@ M.ListConfigurationHistoryOutput = schema.new({
 })
 
 M.ListLogPatternsInput = schema.new({
-    id = id.from(_N, "ListLogPatternsInput"),
+    id = id.from(_N, "ListLogPatternsRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -1776,7 +1776,7 @@ M.ListLogPatternsInput = schema.new({
 })
 
 M.ListLogPatternsOutput = schema.new({
-    id = id.from(_N, "ListLogPatternsOutput"),
+    id = id.from(_N, "ListLogPatternsResponse"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -1808,7 +1808,7 @@ M.ListLogPatternsOutput = schema.new({
 })
 
 M.ListLogPatternSetsInput = schema.new({
-    id = id.from(_N, "ListLogPatternSetsInput"),
+    id = id.from(_N, "ListLogPatternSetsRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -1842,7 +1842,7 @@ M.ListLogPatternSetsInput = schema.new({
 })
 
 M.ListLogPatternSetsOutput = schema.new({
-    id = id.from(_N, "ListLogPatternSetsOutput"),
+    id = id.from(_N, "ListLogPatternSetsResponse"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -1874,7 +1874,7 @@ M.ListLogPatternSetsOutput = schema.new({
 })
 
 M.ListProblemsInput = schema.new({
-    id = id.from(_N, "ListProblemsInput"),
+    id = id.from(_N, "ListProblemsRequest"),
     type = "structure",
     members = {
         AccountId = schema.new({
@@ -1929,7 +1929,7 @@ M.ListProblemsInput = schema.new({
 })
 
 M.ListProblemsOutput = schema.new({
-    id = id.from(_N, "ListProblemsOutput"),
+    id = id.from(_N, "ListProblemsResponse"),
     type = "structure",
     members = {
         ProblemList = schema.new({
@@ -1961,7 +1961,7 @@ M.ListProblemsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1977,7 +1977,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1991,7 +1991,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListWorkloadsInput = schema.new({
-    id = id.from(_N, "ListWorkloadsInput"),
+    id = id.from(_N, "ListWorkloadsRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -2077,7 +2077,7 @@ M.Workload = schema.new({
 })
 
 M.ListWorkloadsOutput = schema.new({
-    id = id.from(_N, "ListWorkloadsOutput"),
+    id = id.from(_N, "ListWorkloadsResponse"),
     type = "structure",
     members = {
         WorkloadList = schema.new({
@@ -2097,7 +2097,7 @@ M.ListWorkloadsOutput = schema.new({
 })
 
 M.RemoveWorkloadInput = schema.new({
-    id = id.from(_N, "RemoveWorkloadInput"),
+    id = id.from(_N, "RemoveWorkloadRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -2131,12 +2131,12 @@ M.RemoveWorkloadInput = schema.new({
 })
 
 M.RemoveWorkloadOutput = schema.new({
-    id = id.from(_N, "RemoveWorkloadOutput"),
+    id = id.from(_N, "RemoveWorkloadResponse"),
     type = "structure",
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2162,7 +2162,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -2189,7 +2189,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -2215,12 +2215,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateApplicationInput = schema.new({
-    id = id.from(_N, "UpdateApplicationInput"),
+    id = id.from(_N, "UpdateApplicationRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -2278,7 +2278,7 @@ M.UpdateApplicationInput = schema.new({
 })
 
 M.UpdateApplicationOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationOutput"),
+    id = id.from(_N, "UpdateApplicationResponse"),
     type = "structure",
     members = {
         ApplicationInfo = schema.new({
@@ -2292,7 +2292,7 @@ M.UpdateApplicationOutput = schema.new({
 })
 
 M.UpdateComponentInput = schema.new({
-    id = id.from(_N, "UpdateComponentInput"),
+    id = id.from(_N, "UpdateComponentRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -2330,12 +2330,12 @@ M.UpdateComponentInput = schema.new({
 })
 
 M.UpdateComponentOutput = schema.new({
-    id = id.from(_N, "UpdateComponentOutput"),
+    id = id.from(_N, "UpdateComponentResponse"),
     type = "structure",
 })
 
 M.UpdateComponentConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateComponentConfigurationInput"),
+    id = id.from(_N, "UpdateComponentConfigurationRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -2384,12 +2384,12 @@ M.UpdateComponentConfigurationInput = schema.new({
 })
 
 M.UpdateComponentConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateComponentConfigurationOutput"),
+    id = id.from(_N, "UpdateComponentConfigurationResponse"),
     type = "structure",
 })
 
 M.UpdateLogPatternInput = schema.new({
-    id = id.from(_N, "UpdateLogPatternInput"),
+    id = id.from(_N, "UpdateLogPatternRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -2438,7 +2438,7 @@ M.UpdateLogPatternInput = schema.new({
 })
 
 M.UpdateLogPatternOutput = schema.new({
-    id = id.from(_N, "UpdateLogPatternOutput"),
+    id = id.from(_N, "UpdateLogPatternResponse"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -2458,7 +2458,7 @@ M.UpdateLogPatternOutput = schema.new({
 })
 
 M.UpdateProblemInput = schema.new({
-    id = id.from(_N, "UpdateProblemInput"),
+    id = id.from(_N, "UpdateProblemRequest"),
     type = "structure",
     members = {
         ProblemId = schema.new({
@@ -2486,12 +2486,12 @@ M.UpdateProblemInput = schema.new({
 })
 
 M.UpdateProblemOutput = schema.new({
-    id = id.from(_N, "UpdateProblemOutput"),
+    id = id.from(_N, "UpdateProblemResponse"),
     type = "structure",
 })
 
 M.UpdateWorkloadInput = schema.new({
-    id = id.from(_N, "UpdateWorkloadInput"),
+    id = id.from(_N, "UpdateWorkloadRequest"),
     type = "structure",
     members = {
         ResourceGroupName = schema.new({
@@ -2532,7 +2532,7 @@ M.UpdateWorkloadInput = schema.new({
 })
 
 M.UpdateWorkloadOutput = schema.new({
-    id = id.from(_N, "UpdateWorkloadOutput"),
+    id = id.from(_N, "UpdateWorkloadResponse"),
     type = "structure",
     members = {
         WorkloadId = schema.new({
@@ -2550,5 +2550,19 @@ M.UpdateWorkloadOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

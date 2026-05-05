@@ -103,7 +103,7 @@ M.AffectedEntity = schema.new({
 })
 
 M.DescribeAffectedAccountsForOrganizationInput = schema.new({
-    id = id.from(_N, "DescribeAffectedAccountsForOrganizationInput"),
+    id = id.from(_N, "DescribeAffectedAccountsForOrganizationRequest"),
     type = "structure",
     members = {
         eventArn = schema.new({
@@ -131,7 +131,7 @@ M.DescribeAffectedAccountsForOrganizationInput = schema.new({
 })
 
 M.DescribeAffectedAccountsForOrganizationOutput = schema.new({
-    id = id.from(_N, "DescribeAffectedAccountsForOrganizationOutput"),
+    id = id.from(_N, "DescribeAffectedAccountsForOrganizationResponse"),
     type = "structure",
     members = {
         affectedAccounts = schema.new({
@@ -244,7 +244,7 @@ M.EntityFilter = schema.new({
 })
 
 M.DescribeAffectedEntitiesInput = schema.new({
-    id = id.from(_N, "DescribeAffectedEntitiesInput"),
+    id = id.from(_N, "DescribeAffectedEntitiesRequest"),
     type = "structure",
     members = {
         filter = schema.new({
@@ -279,7 +279,7 @@ M.DescribeAffectedEntitiesInput = schema.new({
 })
 
 M.DescribeAffectedEntitiesOutput = schema.new({
-    id = id.from(_N, "DescribeAffectedEntitiesOutput"),
+    id = id.from(_N, "DescribeAffectedEntitiesResponse"),
     type = "structure",
     members = {
         entities = schema.new({
@@ -366,7 +366,7 @@ M.EventAccountFilter = schema.new({
 })
 
 M.DescribeAffectedEntitiesForOrganizationInput = schema.new({
-    id = id.from(_N, "DescribeAffectedEntitiesForOrganizationInput"),
+    id = id.from(_N, "DescribeAffectedEntitiesForOrganizationRequest"),
     type = "structure",
     members = {
         organizationEntityFilters = schema.new({
@@ -436,7 +436,7 @@ M.OrganizationAffectedEntitiesErrorItem = schema.new({
 })
 
 M.DescribeAffectedEntitiesForOrganizationOutput = schema.new({
-    id = id.from(_N, "DescribeAffectedEntitiesForOrganizationOutput"),
+    id = id.from(_N, "DescribeAffectedEntitiesForOrganizationResponse"),
     type = "structure",
     members = {
         entities = schema.new({
@@ -463,7 +463,7 @@ M.DescribeAffectedEntitiesForOrganizationOutput = schema.new({
 })
 
 M.DescribeEntityAggregatesInput = schema.new({
-    id = id.from(_N, "DescribeEntityAggregatesInput"),
+    id = id.from(_N, "DescribeEntityAggregatesRequest"),
     type = "structure",
     members = {
         eventArns = schema.new({
@@ -507,7 +507,7 @@ M.EntityAggregate = schema.new({
 })
 
 M.DescribeEntityAggregatesOutput = schema.new({
-    id = id.from(_N, "DescribeEntityAggregatesOutput"),
+    id = id.from(_N, "DescribeEntityAggregatesResponse"),
     type = "structure",
     members = {
         entityAggregates = schema.new({
@@ -521,7 +521,7 @@ M.DescribeEntityAggregatesOutput = schema.new({
 })
 
 M.DescribeEntityAggregatesForOrganizationInput = schema.new({
-    id = id.from(_N, "DescribeEntityAggregatesForOrganizationInput"),
+    id = id.from(_N, "DescribeEntityAggregatesForOrganizationRequest"),
     type = "structure",
     members = {
         eventArns = schema.new({
@@ -582,7 +582,7 @@ M.OrganizationEntityAggregate = schema.new({
 })
 
 M.DescribeEntityAggregatesForOrganizationOutput = schema.new({
-    id = id.from(_N, "DescribeEntityAggregatesForOrganizationOutput"),
+    id = id.from(_N, "DescribeEntityAggregatesForOrganizationResponse"),
     type = "structure",
     members = {
         organizationEntityAggregates = schema.new({
@@ -708,7 +708,7 @@ M.EventFilter = schema.new({
 })
 
 M.DescribeEventAggregatesInput = schema.new({
-    id = id.from(_N, "DescribeEventAggregatesInput"),
+    id = id.from(_N, "DescribeEventAggregatesRequest"),
     type = "structure",
     members = {
         filter = schema.new({
@@ -765,7 +765,7 @@ M.EventAggregate = schema.new({
 })
 
 M.DescribeEventAggregatesOutput = schema.new({
-    id = id.from(_N, "DescribeEventAggregatesOutput"),
+    id = id.from(_N, "DescribeEventAggregatesResponse"),
     type = "structure",
     members = {
         eventAggregates = schema.new({
@@ -785,7 +785,7 @@ M.DescribeEventAggregatesOutput = schema.new({
 })
 
 M.DescribeEventDetailsInput = schema.new({
-    id = id.from(_N, "DescribeEventDetailsInput"),
+    id = id.from(_N, "DescribeEventDetailsRequest"),
     type = "structure",
     members = {
         eventArns = schema.new({
@@ -961,7 +961,7 @@ M.EventDetails = schema.new({
 })
 
 M.DescribeEventDetailsOutput = schema.new({
-    id = id.from(_N, "DescribeEventDetailsOutput"),
+    id = id.from(_N, "DescribeEventDetailsResponse"),
     type = "structure",
     members = {
         successfulSet = schema.new({
@@ -982,7 +982,7 @@ M.DescribeEventDetailsOutput = schema.new({
 })
 
 M.DescribeEventDetailsForOrganizationInput = schema.new({
-    id = id.from(_N, "DescribeEventDetailsForOrganizationInput"),
+    id = id.from(_N, "DescribeEventDetailsForOrganizationRequest"),
     type = "structure",
     members = {
         organizationEventDetailFilters = schema.new({
@@ -1071,7 +1071,7 @@ M.OrganizationEventDetails = schema.new({
 })
 
 M.DescribeEventDetailsForOrganizationOutput = schema.new({
-    id = id.from(_N, "DescribeEventDetailsForOrganizationOutput"),
+    id = id.from(_N, "DescribeEventDetailsForOrganizationResponse"),
     type = "structure",
     members = {
         successfulSet = schema.new({
@@ -1092,7 +1092,7 @@ M.DescribeEventDetailsForOrganizationOutput = schema.new({
 })
 
 M.DescribeEventsInput = schema.new({
-    id = id.from(_N, "DescribeEventsInput"),
+    id = id.from(_N, "DescribeEventsRequest"),
     type = "structure",
     members = {
         filter = schema.new({
@@ -1124,7 +1124,7 @@ M.DescribeEventsInput = schema.new({
 })
 
 M.DescribeEventsOutput = schema.new({
-    id = id.from(_N, "DescribeEventsOutput"),
+    id = id.from(_N, "DescribeEventsResponse"),
     type = "structure",
     members = {
         events = schema.new({
@@ -1242,7 +1242,7 @@ M.OrganizationEventFilter = schema.new({
 })
 
 M.DescribeEventsForOrganizationInput = schema.new({
-    id = id.from(_N, "DescribeEventsForOrganizationInput"),
+    id = id.from(_N, "DescribeEventsForOrganizationRequest"),
     type = "structure",
     members = {
         filter = schema.new({
@@ -1354,7 +1354,7 @@ M.OrganizationEvent = schema.new({
 })
 
 M.DescribeEventsForOrganizationOutput = schema.new({
-    id = id.from(_N, "DescribeEventsForOrganizationOutput"),
+    id = id.from(_N, "DescribeEventsForOrganizationResponse"),
     type = "structure",
     members = {
         events = schema.new({
@@ -1416,7 +1416,7 @@ M.EventTypeFilter = schema.new({
 })
 
 M.DescribeEventTypesInput = schema.new({
-    id = id.from(_N, "DescribeEventTypesInput"),
+    id = id.from(_N, "DescribeEventTypesRequest"),
     type = "structure",
     members = {
         filter = schema.new({
@@ -1486,7 +1486,7 @@ M.EventType = schema.new({
 })
 
 M.DescribeEventTypesOutput = schema.new({
-    id = id.from(_N, "DescribeEventTypesOutput"),
+    id = id.from(_N, "DescribeEventTypesResponse"),
     type = "structure",
     members = {
         eventTypes = schema.new({
@@ -1506,12 +1506,12 @@ M.DescribeEventTypesOutput = schema.new({
 })
 
 M.DescribeHealthServiceStatusForOrganizationInput = schema.new({
-    id = id.from(_N, "DescribeHealthServiceStatusForOrganizationInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeHealthServiceStatusForOrganizationOutput = schema.new({
-    id = id.from(_N, "DescribeHealthServiceStatusForOrganizationOutput"),
+    id = id.from(_N, "DescribeHealthServiceStatusForOrganizationResponse"),
     type = "structure",
     members = {
         healthServiceAccessStatusForOrganization = schema.new({
@@ -1540,23 +1540,37 @@ M.ConcurrentModificationException = schema.new({
 })
 
 M.DisableHealthServiceAccessForOrganizationInput = schema.new({
-    id = id.from(_N, "DisableHealthServiceAccessForOrganizationInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DisableHealthServiceAccessForOrganizationOutput = schema.new({
-    id = id.from(_N, "DisableHealthServiceAccessForOrganizationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.EnableHealthServiceAccessForOrganizationInput = schema.new({
-    id = id.from(_N, "EnableHealthServiceAccessForOrganizationInput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.EnableHealthServiceAccessForOrganizationOutput = schema.new({
-    id = id.from(_N, "EnableHealthServiceAccessForOrganizationOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

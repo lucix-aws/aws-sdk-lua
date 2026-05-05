@@ -1096,7 +1096,7 @@ M.Authority = schema.new({
 })
 
 M.BatchDeleteTaxRegistrationInput = schema.new({
-    id = id.from(_N, "BatchDeleteTaxRegistrationInput"),
+    id = id.from(_N, "BatchDeleteTaxRegistrationRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -1144,7 +1144,7 @@ M.BatchDeleteTaxRegistrationError = schema.new({
 })
 
 M.BatchDeleteTaxRegistrationOutput = schema.new({
-    id = id.from(_N, "BatchDeleteTaxRegistrationOutput"),
+    id = id.from(_N, "BatchDeleteTaxRegistrationResponse"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -1268,7 +1268,7 @@ M.ValidationException = schema.new({
 })
 
 M.BatchGetTaxExemptionsInput = schema.new({
-    id = id.from(_N, "BatchGetTaxExemptionsInput"),
+    id = id.from(_N, "BatchGetTaxExemptionsRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -1394,7 +1394,7 @@ M.TaxExemptionDetails = schema.new({
 })
 
 M.BatchGetTaxExemptionsOutput = schema.new({
-    id = id.from(_N, "BatchGetTaxExemptionsOutput"),
+    id = id.from(_N, "BatchGetTaxExemptionsResponse"),
     type = "structure",
     members = {
         taxExemptionDetailsMap = schema.new({
@@ -1599,7 +1599,7 @@ M.TaxRegistrationEntry = schema.new({
 })
 
 M.BatchPutTaxRegistrationInput = schema.new({
-    id = id.from(_N, "BatchPutTaxRegistrationInput"),
+    id = id.from(_N, "BatchPutTaxRegistrationRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -1657,7 +1657,7 @@ M.BatchPutTaxRegistrationError = schema.new({
 })
 
 M.BatchPutTaxRegistrationOutput = schema.new({
-    id = id.from(_N, "BatchPutTaxRegistrationOutput"),
+    id = id.from(_N, "BatchPutTaxRegistrationResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -1699,7 +1699,7 @@ M.CaseCreationLimitExceededException = schema.new({
 })
 
 M.DeleteSupplementalTaxRegistrationInput = schema.new({
-    id = id.from(_N, "DeleteSupplementalTaxRegistrationInput"),
+    id = id.from(_N, "DeleteSupplementalTaxRegistrationRequest"),
     type = "structure",
     members = {
         authorityId = schema.new({
@@ -1715,12 +1715,12 @@ M.DeleteSupplementalTaxRegistrationInput = schema.new({
 })
 
 M.DeleteSupplementalTaxRegistrationOutput = schema.new({
-    id = id.from(_N, "DeleteSupplementalTaxRegistrationOutput"),
+    id = id.from(_N, "DeleteSupplementalTaxRegistrationResponse"),
     type = "structure",
 })
 
 M.DeleteTaxRegistrationInput = schema.new({
-    id = id.from(_N, "DeleteTaxRegistrationInput"),
+    id = id.from(_N, "DeleteTaxRegistrationRequest"),
     type = "structure",
     members = {
         accountId = schema.new({
@@ -1733,7 +1733,7 @@ M.DeleteTaxRegistrationInput = schema.new({
 })
 
 M.DeleteTaxRegistrationOutput = schema.new({
-    id = id.from(_N, "DeleteTaxRegistrationOutput"),
+    id = id.from(_N, "DeleteTaxRegistrationResponse"),
     type = "structure",
 })
 
@@ -1785,12 +1785,12 @@ M.ExemptionCertificate = schema.new({
 })
 
 M.GetTaxExemptionTypesInput = schema.new({
-    id = id.from(_N, "GetTaxExemptionTypesInput"),
+    id = id.from(_N, "GetTaxExemptionTypesRequest"),
     type = "structure",
 })
 
 M.GetTaxExemptionTypesOutput = schema.new({
-    id = id.from(_N, "GetTaxExemptionTypesOutput"),
+    id = id.from(_N, "GetTaxExemptionTypesResponse"),
     type = "structure",
     members = {
         taxExemptionTypes = schema.new({
@@ -1804,12 +1804,12 @@ M.GetTaxExemptionTypesOutput = schema.new({
 })
 
 M.GetTaxInheritanceInput = schema.new({
-    id = id.from(_N, "GetTaxInheritanceInput"),
+    id = id.from(_N, "GetTaxInheritanceRequest"),
     type = "structure",
 })
 
 M.GetTaxInheritanceOutput = schema.new({
-    id = id.from(_N, "GetTaxInheritanceOutput"),
+    id = id.from(_N, "GetTaxInheritanceResponse"),
     type = "structure",
     members = {
         heritageStatus = schema.new({
@@ -1822,7 +1822,7 @@ M.GetTaxInheritanceOutput = schema.new({
 })
 
 M.GetTaxRegistrationInput = schema.new({
-    id = id.from(_N, "GetTaxRegistrationInput"),
+    id = id.from(_N, "GetTaxRegistrationRequest"),
     type = "structure",
     members = {
         accountId = schema.new({
@@ -1914,7 +1914,7 @@ M.TaxRegistration = schema.new({
 })
 
 M.GetTaxRegistrationOutput = schema.new({
-    id = id.from(_N, "GetTaxRegistrationOutput"),
+    id = id.from(_N, "GetTaxRegistrationResponse"),
     type = "structure",
     members = {
         taxRegistration = schema.new({
@@ -1928,7 +1928,7 @@ M.GetTaxRegistrationOutput = schema.new({
 })
 
 M.GetTaxRegistrationDocumentInput = schema.new({
-    id = id.from(_N, "GetTaxRegistrationDocumentInput"),
+    id = id.from(_N, "GetTaxRegistrationDocumentRequest"),
     type = "structure",
     members = {
         destinationS3Location = schema.new({
@@ -1952,7 +1952,7 @@ M.GetTaxRegistrationDocumentInput = schema.new({
 })
 
 M.GetTaxRegistrationDocumentOutput = schema.new({
-    id = id.from(_N, "GetTaxRegistrationDocumentOutput"),
+    id = id.from(_N, "GetTaxRegistrationDocumentResponse"),
     type = "structure",
     members = {
         destinationFilePath = schema.new({
@@ -1971,7 +1971,7 @@ M.GetTaxRegistrationDocumentOutput = schema.new({
 })
 
 M.ListSupplementalTaxRegistrationsInput = schema.new({
-    id = id.from(_N, "ListSupplementalTaxRegistrationsInput"),
+    id = id.from(_N, "ListSupplementalTaxRegistrationsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2052,7 +2052,7 @@ M.SupplementalTaxRegistration = schema.new({
 })
 
 M.ListSupplementalTaxRegistrationsOutput = schema.new({
-    id = id.from(_N, "ListSupplementalTaxRegistrationsOutput"),
+    id = id.from(_N, "ListSupplementalTaxRegistrationsResponse"),
     type = "structure",
     members = {
         taxRegistrations = schema.new({
@@ -2075,7 +2075,7 @@ M.ListSupplementalTaxRegistrationsOutput = schema.new({
 })
 
 M.ListTaxExemptionsInput = schema.new({
-    id = id.from(_N, "ListTaxExemptionsInput"),
+    id = id.from(_N, "ListTaxExemptionsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2094,7 +2094,7 @@ M.ListTaxExemptionsInput = schema.new({
 })
 
 M.ListTaxExemptionsOutput = schema.new({
-    id = id.from(_N, "ListTaxExemptionsOutput"),
+    id = id.from(_N, "ListTaxExemptionsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2115,7 +2115,7 @@ M.ListTaxExemptionsOutput = schema.new({
 })
 
 M.ListTaxRegistrationsInput = schema.new({
-    id = id.from(_N, "ListTaxRegistrationsInput"),
+    id = id.from(_N, "ListTaxRegistrationsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2134,7 +2134,7 @@ M.ListTaxRegistrationsInput = schema.new({
 })
 
 M.ListTaxRegistrationsOutput = schema.new({
-    id = id.from(_N, "ListTaxRegistrationsOutput"),
+    id = id.from(_N, "ListTaxRegistrationsResponse"),
     type = "structure",
     members = {
         accountDetails = schema.new({
@@ -2201,7 +2201,7 @@ M.SupplementalTaxRegistrationEntry = schema.new({
 })
 
 M.PutSupplementalTaxRegistrationInput = schema.new({
-    id = id.from(_N, "PutSupplementalTaxRegistrationInput"),
+    id = id.from(_N, "PutSupplementalTaxRegistrationRequest"),
     type = "structure",
     members = {
         taxRegistrationEntry = schema.new({
@@ -2218,7 +2218,7 @@ M.PutSupplementalTaxRegistrationInput = schema.new({
 })
 
 M.PutSupplementalTaxRegistrationOutput = schema.new({
-    id = id.from(_N, "PutSupplementalTaxRegistrationOutput"),
+    id = id.from(_N, "PutSupplementalTaxRegistrationResponse"),
     type = "structure",
     members = {
         authorityId = schema.new({
@@ -2243,7 +2243,7 @@ M.PutSupplementalTaxRegistrationOutput = schema.new({
 })
 
 M.PutTaxExemptionInput = schema.new({
-    id = id.from(_N, "PutTaxExemptionInput"),
+    id = id.from(_N, "PutTaxExemptionRequest"),
     type = "structure",
     members = {
         accountIds = schema.new({
@@ -2289,7 +2289,7 @@ M.PutTaxExemptionInput = schema.new({
 })
 
 M.PutTaxExemptionOutput = schema.new({
-    id = id.from(_N, "PutTaxExemptionOutput"),
+    id = id.from(_N, "PutTaxExemptionResponse"),
     type = "structure",
     members = {
         caseId = schema.new({
@@ -2302,7 +2302,7 @@ M.PutTaxExemptionOutput = schema.new({
 })
 
 M.PutTaxInheritanceInput = schema.new({
-    id = id.from(_N, "PutTaxInheritanceInput"),
+    id = id.from(_N, "PutTaxInheritanceRequest"),
     type = "structure",
     members = {
         heritageStatus = schema.new({
@@ -2315,12 +2315,12 @@ M.PutTaxInheritanceInput = schema.new({
 })
 
 M.PutTaxInheritanceOutput = schema.new({
-    id = id.from(_N, "PutTaxInheritanceOutput"),
+    id = id.from(_N, "PutTaxInheritanceResponse"),
     type = "structure",
 })
 
 M.PutTaxRegistrationInput = schema.new({
-    id = id.from(_N, "PutTaxRegistrationInput"),
+    id = id.from(_N, "PutTaxRegistrationRequest"),
     type = "structure",
     members = {
         accountId = schema.new({
@@ -2343,7 +2343,7 @@ M.PutTaxRegistrationInput = schema.new({
 })
 
 M.PutTaxRegistrationOutput = schema.new({
-    id = id.from(_N, "PutTaxRegistrationOutput"),
+    id = id.from(_N, "PutTaxRegistrationResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -2354,5 +2354,19 @@ M.PutTaxRegistrationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

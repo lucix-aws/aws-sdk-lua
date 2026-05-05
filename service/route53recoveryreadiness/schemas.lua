@@ -625,7 +625,7 @@ M.ConflictException = schema.new({
 })
 
 M.CreateCellInput = schema.new({
-    id = id.from(_N, "CreateCellInput"),
+    id = id.from(_N, "CreateCellRequest"),
     type = "structure",
     members = {
         CellName = schema.new({
@@ -663,7 +663,7 @@ M.CreateCellInput = schema.new({
 })
 
 M.CreateCellOutput = schema.new({
-    id = id.from(_N, "CreateCellOutput"),
+    id = id.from(_N, "CreateCellResponse"),
     type = "structure",
     members = {
         CellArn = schema.new({
@@ -776,7 +776,7 @@ M.ValidationException = schema.new({
 })
 
 M.CreateCrossAccountAuthorizationInput = schema.new({
-    id = id.from(_N, "CreateCrossAccountAuthorizationInput"),
+    id = id.from(_N, "CreateCrossAccountAuthorizationRequest"),
     type = "structure",
     members = {
         CrossAccountAuthorization = schema.new({
@@ -793,7 +793,7 @@ M.CreateCrossAccountAuthorizationInput = schema.new({
 })
 
 M.CreateCrossAccountAuthorizationOutput = schema.new({
-    id = id.from(_N, "CreateCrossAccountAuthorizationOutput"),
+    id = id.from(_N, "CreateCrossAccountAuthorizationResponse"),
     type = "structure",
     members = {
         CrossAccountAuthorization = schema.new({
@@ -809,7 +809,7 @@ M.CreateCrossAccountAuthorizationOutput = schema.new({
 })
 
 M.CreateReadinessCheckInput = schema.new({
-    id = id.from(_N, "CreateReadinessCheckInput"),
+    id = id.from(_N, "CreateReadinessCheckRequest"),
     type = "structure",
     members = {
         ReadinessCheckName = schema.new({
@@ -847,7 +847,7 @@ M.CreateReadinessCheckInput = schema.new({
 })
 
 M.CreateReadinessCheckOutput = schema.new({
-    id = id.from(_N, "CreateReadinessCheckOutput"),
+    id = id.from(_N, "CreateReadinessCheckResponse"),
     type = "structure",
     members = {
         ReadinessCheckArn = schema.new({
@@ -892,7 +892,7 @@ M.CreateReadinessCheckOutput = schema.new({
 })
 
 M.CreateRecoveryGroupInput = schema.new({
-    id = id.from(_N, "CreateRecoveryGroupInput"),
+    id = id.from(_N, "CreateRecoveryGroupRequest"),
     type = "structure",
     members = {
         Cells = schema.new({
@@ -930,7 +930,7 @@ M.CreateRecoveryGroupInput = schema.new({
 })
 
 M.CreateRecoveryGroupOutput = schema.new({
-    id = id.from(_N, "CreateRecoveryGroupOutput"),
+    id = id.from(_N, "CreateRecoveryGroupResponse"),
     type = "structure",
     members = {
         Cells = schema.new({
@@ -976,7 +976,7 @@ M.CreateRecoveryGroupOutput = schema.new({
 })
 
 M.CreateResourceSetInput = schema.new({
-    id = id.from(_N, "CreateResourceSetInput"),
+    id = id.from(_N, "CreateResourceSetRequest"),
     type = "structure",
     members = {
         ResourceSetName = schema.new({
@@ -1025,7 +1025,7 @@ M.CreateResourceSetInput = schema.new({
 })
 
 M.CreateResourceSetOutput = schema.new({
-    id = id.from(_N, "CreateResourceSetOutput"),
+    id = id.from(_N, "CreateResourceSetResponse"),
     type = "structure",
     members = {
         ResourceSetArn = schema.new({
@@ -1080,7 +1080,7 @@ M.CreateResourceSetOutput = schema.new({
 })
 
 M.DeleteCellInput = schema.new({
-    id = id.from(_N, "DeleteCellInput"),
+    id = id.from(_N, "DeleteCellRequest"),
     type = "structure",
     members = {
         CellName = schema.new({
@@ -1097,7 +1097,7 @@ M.DeleteCellInput = schema.new({
 })
 
 M.DeleteCellOutput = schema.new({
-    id = id.from(_N, "DeleteCellOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -1121,7 +1121,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DeleteCrossAccountAuthorizationInput = schema.new({
-    id = id.from(_N, "DeleteCrossAccountAuthorizationInput"),
+    id = id.from(_N, "DeleteCrossAccountAuthorizationRequest"),
     type = "structure",
     members = {
         CrossAccountAuthorization = schema.new({
@@ -1138,12 +1138,12 @@ M.DeleteCrossAccountAuthorizationInput = schema.new({
 })
 
 M.DeleteCrossAccountAuthorizationOutput = schema.new({
-    id = id.from(_N, "DeleteCrossAccountAuthorizationOutput"),
+    id = id.from(_N, "DeleteCrossAccountAuthorizationResponse"),
     type = "structure",
 })
 
 M.DeleteReadinessCheckInput = schema.new({
-    id = id.from(_N, "DeleteReadinessCheckInput"),
+    id = id.from(_N, "DeleteReadinessCheckRequest"),
     type = "structure",
     members = {
         ReadinessCheckName = schema.new({
@@ -1160,12 +1160,12 @@ M.DeleteReadinessCheckInput = schema.new({
 })
 
 M.DeleteReadinessCheckOutput = schema.new({
-    id = id.from(_N, "DeleteReadinessCheckOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteRecoveryGroupInput = schema.new({
-    id = id.from(_N, "DeleteRecoveryGroupInput"),
+    id = id.from(_N, "DeleteRecoveryGroupRequest"),
     type = "structure",
     members = {
         RecoveryGroupName = schema.new({
@@ -1182,12 +1182,12 @@ M.DeleteRecoveryGroupInput = schema.new({
 })
 
 M.DeleteRecoveryGroupOutput = schema.new({
-    id = id.from(_N, "DeleteRecoveryGroupOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteResourceSetInput = schema.new({
-    id = id.from(_N, "DeleteResourceSetInput"),
+    id = id.from(_N, "DeleteResourceSetRequest"),
     type = "structure",
     members = {
         ResourceSetName = schema.new({
@@ -1204,12 +1204,12 @@ M.DeleteResourceSetInput = schema.new({
 })
 
 M.DeleteResourceSetOutput = schema.new({
-    id = id.from(_N, "DeleteResourceSetOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.GetArchitectureRecommendationsInput = schema.new({
-    id = id.from(_N, "GetArchitectureRecommendationsInput"),
+    id = id.from(_N, "GetArchitectureRecommendationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1244,7 +1244,7 @@ M.GetArchitectureRecommendationsInput = schema.new({
 })
 
 M.GetArchitectureRecommendationsOutput = schema.new({
-    id = id.from(_N, "GetArchitectureRecommendationsOutput"),
+    id = id.from(_N, "GetArchitectureRecommendationsResponse"),
     type = "structure",
     members = {
         LastAuditTimestamp = schema.new({
@@ -1283,7 +1283,7 @@ M.GetArchitectureRecommendationsOutput = schema.new({
 })
 
 M.GetCellInput = schema.new({
-    id = id.from(_N, "GetCellInput"),
+    id = id.from(_N, "GetCellRequest"),
     type = "structure",
     members = {
         CellName = schema.new({
@@ -1300,7 +1300,7 @@ M.GetCellInput = schema.new({
 })
 
 M.GetCellOutput = schema.new({
-    id = id.from(_N, "GetCellOutput"),
+    id = id.from(_N, "GetCellResponse"),
     type = "structure",
     members = {
         CellArn = schema.new({
@@ -1356,7 +1356,7 @@ M.GetCellOutput = schema.new({
 })
 
 M.GetCellReadinessSummaryInput = schema.new({
-    id = id.from(_N, "GetCellReadinessSummaryInput"),
+    id = id.from(_N, "GetCellReadinessSummaryRequest"),
     type = "structure",
     members = {
         CellName = schema.new({
@@ -1391,7 +1391,7 @@ M.GetCellReadinessSummaryInput = schema.new({
 })
 
 M.GetCellReadinessSummaryOutput = schema.new({
-    id = id.from(_N, "GetCellReadinessSummaryOutput"),
+    id = id.from(_N, "GetCellReadinessSummaryResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1426,7 +1426,7 @@ M.GetCellReadinessSummaryOutput = schema.new({
 })
 
 M.GetReadinessCheckInput = schema.new({
-    id = id.from(_N, "GetReadinessCheckInput"),
+    id = id.from(_N, "GetReadinessCheckRequest"),
     type = "structure",
     members = {
         ReadinessCheckName = schema.new({
@@ -1443,7 +1443,7 @@ M.GetReadinessCheckInput = schema.new({
 })
 
 M.GetReadinessCheckOutput = schema.new({
-    id = id.from(_N, "GetReadinessCheckOutput"),
+    id = id.from(_N, "GetReadinessCheckResponse"),
     type = "structure",
     members = {
         ReadinessCheckArn = schema.new({
@@ -1488,7 +1488,7 @@ M.GetReadinessCheckOutput = schema.new({
 })
 
 M.GetReadinessCheckResourceStatusInput = schema.new({
-    id = id.from(_N, "GetReadinessCheckResourceStatusInput"),
+    id = id.from(_N, "GetReadinessCheckResourceStatusRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1533,7 +1533,7 @@ M.GetReadinessCheckResourceStatusInput = schema.new({
 })
 
 M.GetReadinessCheckResourceStatusOutput = schema.new({
-    id = id.from(_N, "GetReadinessCheckResourceStatusOutput"),
+    id = id.from(_N, "GetReadinessCheckResourceStatusResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1568,7 +1568,7 @@ M.GetReadinessCheckResourceStatusOutput = schema.new({
 })
 
 M.GetReadinessCheckStatusInput = schema.new({
-    id = id.from(_N, "GetReadinessCheckStatusInput"),
+    id = id.from(_N, "GetReadinessCheckStatusRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1603,7 +1603,7 @@ M.GetReadinessCheckStatusInput = schema.new({
 })
 
 M.GetReadinessCheckStatusOutput = schema.new({
-    id = id.from(_N, "GetReadinessCheckStatusOutput"),
+    id = id.from(_N, "GetReadinessCheckStatusResponse"),
     type = "structure",
     members = {
         Messages = schema.new({
@@ -1648,7 +1648,7 @@ M.GetReadinessCheckStatusOutput = schema.new({
 })
 
 M.GetRecoveryGroupInput = schema.new({
-    id = id.from(_N, "GetRecoveryGroupInput"),
+    id = id.from(_N, "GetRecoveryGroupRequest"),
     type = "structure",
     members = {
         RecoveryGroupName = schema.new({
@@ -1665,7 +1665,7 @@ M.GetRecoveryGroupInput = schema.new({
 })
 
 M.GetRecoveryGroupOutput = schema.new({
-    id = id.from(_N, "GetRecoveryGroupOutput"),
+    id = id.from(_N, "GetRecoveryGroupResponse"),
     type = "structure",
     members = {
         Cells = schema.new({
@@ -1711,7 +1711,7 @@ M.GetRecoveryGroupOutput = schema.new({
 })
 
 M.GetRecoveryGroupReadinessSummaryInput = schema.new({
-    id = id.from(_N, "GetRecoveryGroupReadinessSummaryInput"),
+    id = id.from(_N, "GetRecoveryGroupReadinessSummaryRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1746,7 +1746,7 @@ M.GetRecoveryGroupReadinessSummaryInput = schema.new({
 })
 
 M.GetRecoveryGroupReadinessSummaryOutput = schema.new({
-    id = id.from(_N, "GetRecoveryGroupReadinessSummaryOutput"),
+    id = id.from(_N, "GetRecoveryGroupReadinessSummaryResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -1781,7 +1781,7 @@ M.GetRecoveryGroupReadinessSummaryOutput = schema.new({
 })
 
 M.GetResourceSetInput = schema.new({
-    id = id.from(_N, "GetResourceSetInput"),
+    id = id.from(_N, "GetResourceSetRequest"),
     type = "structure",
     members = {
         ResourceSetName = schema.new({
@@ -1798,7 +1798,7 @@ M.GetResourceSetInput = schema.new({
 })
 
 M.GetResourceSetOutput = schema.new({
-    id = id.from(_N, "GetResourceSetOutput"),
+    id = id.from(_N, "GetResourceSetResponse"),
     type = "structure",
     members = {
         ResourceSetArn = schema.new({
@@ -1853,7 +1853,7 @@ M.GetResourceSetOutput = schema.new({
 })
 
 M.ListCellsInput = schema.new({
-    id = id.from(_N, "ListCellsInput"),
+    id = id.from(_N, "ListCellsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1878,7 +1878,7 @@ M.ListCellsInput = schema.new({
 })
 
 M.ListCellsOutput = schema.new({
-    id = id.from(_N, "ListCellsOutput"),
+    id = id.from(_N, "ListCellsResponse"),
     type = "structure",
     members = {
         Cells = schema.new({
@@ -1904,7 +1904,7 @@ M.ListCellsOutput = schema.new({
 })
 
 M.ListCrossAccountAuthorizationsInput = schema.new({
-    id = id.from(_N, "ListCrossAccountAuthorizationsInput"),
+    id = id.from(_N, "ListCrossAccountAuthorizationsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1929,7 +1929,7 @@ M.ListCrossAccountAuthorizationsInput = schema.new({
 })
 
 M.ListCrossAccountAuthorizationsOutput = schema.new({
-    id = id.from(_N, "ListCrossAccountAuthorizationsOutput"),
+    id = id.from(_N, "ListCrossAccountAuthorizationsResponse"),
     type = "structure",
     members = {
         CrossAccountAuthorizations = schema.new({
@@ -1955,7 +1955,7 @@ M.ListCrossAccountAuthorizationsOutput = schema.new({
 })
 
 M.ListReadinessChecksInput = schema.new({
-    id = id.from(_N, "ListReadinessChecksInput"),
+    id = id.from(_N, "ListReadinessChecksRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1980,7 +1980,7 @@ M.ListReadinessChecksInput = schema.new({
 })
 
 M.ListReadinessChecksOutput = schema.new({
-    id = id.from(_N, "ListReadinessChecksOutput"),
+    id = id.from(_N, "ListReadinessChecksResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2006,7 +2006,7 @@ M.ListReadinessChecksOutput = schema.new({
 })
 
 M.ListRecoveryGroupsInput = schema.new({
-    id = id.from(_N, "ListRecoveryGroupsInput"),
+    id = id.from(_N, "ListRecoveryGroupsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2031,7 +2031,7 @@ M.ListRecoveryGroupsInput = schema.new({
 })
 
 M.ListRecoveryGroupsOutput = schema.new({
-    id = id.from(_N, "ListRecoveryGroupsOutput"),
+    id = id.from(_N, "ListRecoveryGroupsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2057,7 +2057,7 @@ M.ListRecoveryGroupsOutput = schema.new({
 })
 
 M.ListResourceSetsInput = schema.new({
-    id = id.from(_N, "ListResourceSetsInput"),
+    id = id.from(_N, "ListResourceSetsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2082,7 +2082,7 @@ M.ListResourceSetsInput = schema.new({
 })
 
 M.ListResourceSetsOutput = schema.new({
-    id = id.from(_N, "ListResourceSetsOutput"),
+    id = id.from(_N, "ListResourceSetsResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2108,7 +2108,7 @@ M.ListResourceSetsOutput = schema.new({
 })
 
 M.ListRulesInput = schema.new({
-    id = id.from(_N, "ListRulesInput"),
+    id = id.from(_N, "ListRulesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -2142,7 +2142,7 @@ M.ListRulesInput = schema.new({
 })
 
 M.ListRulesOperationOutput = schema.new({
-    id = id.from(_N, "ListRulesOperationOutput"),
+    id = id.from(_N, "ListRulesResponse"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -2168,7 +2168,7 @@ M.ListRulesOperationOutput = schema.new({
 })
 
 M.ListTagsForResourcesInput = schema.new({
-    id = id.from(_N, "ListTagsForResourcesInput"),
+    id = id.from(_N, "ListTagsForResourcesRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2185,7 +2185,7 @@ M.ListTagsForResourcesInput = schema.new({
 })
 
 M.ListTagsForResourcesOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourcesOutput"),
+    id = id.from(_N, "ListTagsForResourcesResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -2203,7 +2203,7 @@ M.ListTagsForResourcesOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2232,12 +2232,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -2265,12 +2265,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateCellInput = schema.new({
-    id = id.from(_N, "UpdateCellInput"),
+    id = id.from(_N, "UpdateCellRequest"),
     type = "structure",
     members = {
         CellName = schema.new({
@@ -2298,7 +2298,7 @@ M.UpdateCellInput = schema.new({
 })
 
 M.UpdateCellOutput = schema.new({
-    id = id.from(_N, "UpdateCellOutput"),
+    id = id.from(_N, "UpdateCellResponse"),
     type = "structure",
     members = {
         CellArn = schema.new({
@@ -2354,7 +2354,7 @@ M.UpdateCellOutput = schema.new({
 })
 
 M.UpdateReadinessCheckInput = schema.new({
-    id = id.from(_N, "UpdateReadinessCheckInput"),
+    id = id.from(_N, "UpdateReadinessCheckRequest"),
     type = "structure",
     members = {
         ReadinessCheckName = schema.new({
@@ -2381,7 +2381,7 @@ M.UpdateReadinessCheckInput = schema.new({
 })
 
 M.UpdateReadinessCheckOutput = schema.new({
-    id = id.from(_N, "UpdateReadinessCheckOutput"),
+    id = id.from(_N, "UpdateReadinessCheckResponse"),
     type = "structure",
     members = {
         ReadinessCheckArn = schema.new({
@@ -2426,7 +2426,7 @@ M.UpdateReadinessCheckOutput = schema.new({
 })
 
 M.UpdateRecoveryGroupInput = schema.new({
-    id = id.from(_N, "UpdateRecoveryGroupInput"),
+    id = id.from(_N, "UpdateRecoveryGroupRequest"),
     type = "structure",
     members = {
         Cells = schema.new({
@@ -2454,7 +2454,7 @@ M.UpdateRecoveryGroupInput = schema.new({
 })
 
 M.UpdateRecoveryGroupOutput = schema.new({
-    id = id.from(_N, "UpdateRecoveryGroupOutput"),
+    id = id.from(_N, "UpdateRecoveryGroupResponse"),
     type = "structure",
     members = {
         Cells = schema.new({
@@ -2500,7 +2500,7 @@ M.UpdateRecoveryGroupOutput = schema.new({
 })
 
 M.UpdateResourceSetInput = schema.new({
-    id = id.from(_N, "UpdateResourceSetInput"),
+    id = id.from(_N, "UpdateResourceSetRequest"),
     type = "structure",
     members = {
         ResourceSetName = schema.new({
@@ -2538,7 +2538,7 @@ M.UpdateResourceSetInput = schema.new({
 })
 
 M.UpdateResourceSetOutput = schema.new({
-    id = id.from(_N, "UpdateResourceSetOutput"),
+    id = id.from(_N, "UpdateResourceSetResponse"),
     type = "structure",
     members = {
         ResourceSetArn = schema.new({
@@ -2591,5 +2591,19 @@ M.UpdateResourceSetOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

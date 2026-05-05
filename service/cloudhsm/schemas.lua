@@ -33,7 +33,7 @@ M.Tag = schema.new({
 })
 
 M.AddTagsToResourceInput = schema.new({
-    id = id.from(_N, "AddTagsToResourceInput"),
+    id = id.from(_N, "AddTagsToResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -59,7 +59,7 @@ M.AddTagsToResourceInput = schema.new({
 })
 
 M.AddTagsToResourceOutput = schema.new({
-    id = id.from(_N, "AddTagsToResourceOutput"),
+    id = id.from(_N, "AddTagsToResourceResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -150,7 +150,7 @@ M.InvalidRequestException = schema.new({
 })
 
 M.CreateHapgInput = schema.new({
-    id = id.from(_N, "CreateHapgInput"),
+    id = id.from(_N, "CreateHapgRequest"),
     type = "structure",
     members = {
         Label = schema.new({
@@ -166,7 +166,7 @@ M.CreateHapgInput = schema.new({
 })
 
 M.CreateHapgOutput = schema.new({
-    id = id.from(_N, "CreateHapgOutput"),
+    id = id.from(_N, "CreateHapgResponse"),
     type = "structure",
     members = {
         HapgArn = schema.new({
@@ -179,7 +179,7 @@ M.CreateHapgOutput = schema.new({
 })
 
 M.CreateHsmInput = schema.new({
-    id = id.from(_N, "CreateHsmInput"),
+    id = id.from(_N, "CreateHsmRequest"),
     type = "structure",
     traits = {
         [traits.XML_NAME] = { name = "CreateHsmRequest" },
@@ -265,7 +265,7 @@ M.CreateHsmInput = schema.new({
 })
 
 M.CreateHsmOutput = schema.new({
-    id = id.from(_N, "CreateHsmOutput"),
+    id = id.from(_N, "CreateHsmResponse"),
     type = "structure",
     members = {
         HsmArn = schema.new({
@@ -278,7 +278,7 @@ M.CreateHsmOutput = schema.new({
 })
 
 M.CreateLunaClientInput = schema.new({
-    id = id.from(_N, "CreateLunaClientInput"),
+    id = id.from(_N, "CreateLunaClientRequest"),
     type = "structure",
     members = {
         Label = schema.new({
@@ -300,7 +300,7 @@ M.CreateLunaClientInput = schema.new({
 })
 
 M.CreateLunaClientOutput = schema.new({
-    id = id.from(_N, "CreateLunaClientOutput"),
+    id = id.from(_N, "CreateLunaClientResponse"),
     type = "structure",
     members = {
         ClientArn = schema.new({
@@ -313,7 +313,7 @@ M.CreateLunaClientOutput = schema.new({
 })
 
 M.DeleteHapgInput = schema.new({
-    id = id.from(_N, "DeleteHapgInput"),
+    id = id.from(_N, "DeleteHapgRequest"),
     type = "structure",
     members = {
         HapgArn = schema.new({
@@ -329,7 +329,7 @@ M.DeleteHapgInput = schema.new({
 })
 
 M.DeleteHapgOutput = schema.new({
-    id = id.from(_N, "DeleteHapgOutput"),
+    id = id.from(_N, "DeleteHapgResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -345,7 +345,7 @@ M.DeleteHapgOutput = schema.new({
 })
 
 M.DeleteHsmInput = schema.new({
-    id = id.from(_N, "DeleteHsmInput"),
+    id = id.from(_N, "DeleteHsmRequest"),
     type = "structure",
     traits = {
         [traits.XML_NAME] = { name = "DeleteHsmRequest" },
@@ -365,7 +365,7 @@ M.DeleteHsmInput = schema.new({
 })
 
 M.DeleteHsmOutput = schema.new({
-    id = id.from(_N, "DeleteHsmOutput"),
+    id = id.from(_N, "DeleteHsmResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -381,7 +381,7 @@ M.DeleteHsmOutput = schema.new({
 })
 
 M.DeleteLunaClientInput = schema.new({
-    id = id.from(_N, "DeleteLunaClientInput"),
+    id = id.from(_N, "DeleteLunaClientRequest"),
     type = "structure",
     members = {
         ClientArn = schema.new({
@@ -397,7 +397,7 @@ M.DeleteLunaClientInput = schema.new({
 })
 
 M.DeleteLunaClientOutput = schema.new({
-    id = id.from(_N, "DeleteLunaClientOutput"),
+    id = id.from(_N, "DeleteLunaClientResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -413,7 +413,7 @@ M.DeleteLunaClientOutput = schema.new({
 })
 
 M.DescribeHapgInput = schema.new({
-    id = id.from(_N, "DescribeHapgInput"),
+    id = id.from(_N, "DescribeHapgRequest"),
     type = "structure",
     members = {
         HapgArn = schema.new({
@@ -429,7 +429,7 @@ M.DescribeHapgInput = schema.new({
 })
 
 M.DescribeHapgOutput = schema.new({
-    id = id.from(_N, "DescribeHapgOutput"),
+    id = id.from(_N, "DescribeHapgResponse"),
     type = "structure",
     members = {
         HapgArn = schema.new({
@@ -494,7 +494,7 @@ M.DescribeHapgOutput = schema.new({
 })
 
 M.DescribeHsmInput = schema.new({
-    id = id.from(_N, "DescribeHsmInput"),
+    id = id.from(_N, "DescribeHsmRequest"),
     type = "structure",
     members = {
         HsmArn = schema.new({
@@ -513,7 +513,7 @@ M.DescribeHsmInput = schema.new({
 })
 
 M.DescribeHsmOutput = schema.new({
-    id = id.from(_N, "DescribeHsmOutput"),
+    id = id.from(_N, "DescribeHsmResponse"),
     type = "structure",
     members = {
         HsmArn = schema.new({
@@ -647,7 +647,7 @@ M.DescribeHsmOutput = schema.new({
 })
 
 M.DescribeLunaClientInput = schema.new({
-    id = id.from(_N, "DescribeLunaClientInput"),
+    id = id.from(_N, "DescribeLunaClientRequest"),
     type = "structure",
     members = {
         ClientArn = schema.new({
@@ -666,7 +666,7 @@ M.DescribeLunaClientInput = schema.new({
 })
 
 M.DescribeLunaClientOutput = schema.new({
-    id = id.from(_N, "DescribeLunaClientOutput"),
+    id = id.from(_N, "DescribeLunaClientResponse"),
     type = "structure",
     members = {
         ClientArn = schema.new({
@@ -703,7 +703,7 @@ M.DescribeLunaClientOutput = schema.new({
 })
 
 M.GetConfigInput = schema.new({
-    id = id.from(_N, "GetConfigInput"),
+    id = id.from(_N, "GetConfigRequest"),
     type = "structure",
     members = {
         ClientArn = schema.new({
@@ -738,7 +738,7 @@ M.GetConfigInput = schema.new({
 })
 
 M.GetConfigOutput = schema.new({
-    id = id.from(_N, "GetConfigOutput"),
+    id = id.from(_N, "GetConfigResponse"),
     type = "structure",
     members = {
         ConfigType = schema.new({
@@ -763,12 +763,12 @@ M.GetConfigOutput = schema.new({
 })
 
 M.ListAvailableZonesInput = schema.new({
-    id = id.from(_N, "ListAvailableZonesInput"),
+    id = id.from(_N, "ListAvailableZonesRequest"),
     type = "structure",
 })
 
 M.ListAvailableZonesOutput = schema.new({
-    id = id.from(_N, "ListAvailableZonesOutput"),
+    id = id.from(_N, "ListAvailableZonesResponse"),
     type = "structure",
     members = {
         AZList = schema.new({
@@ -782,7 +782,7 @@ M.ListAvailableZonesOutput = schema.new({
 })
 
 M.ListHapgsInput = schema.new({
-    id = id.from(_N, "ListHapgsInput"),
+    id = id.from(_N, "ListHapgsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -795,7 +795,7 @@ M.ListHapgsInput = schema.new({
 })
 
 M.ListHapgsOutput = schema.new({
-    id = id.from(_N, "ListHapgsOutput"),
+    id = id.from(_N, "ListHapgsResponse"),
     type = "structure",
     members = {
         HapgList = schema.new({
@@ -818,7 +818,7 @@ M.ListHapgsOutput = schema.new({
 })
 
 M.ListHsmsInput = schema.new({
-    id = id.from(_N, "ListHsmsInput"),
+    id = id.from(_N, "ListHsmsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -831,7 +831,7 @@ M.ListHsmsInput = schema.new({
 })
 
 M.ListHsmsOutput = schema.new({
-    id = id.from(_N, "ListHsmsOutput"),
+    id = id.from(_N, "ListHsmsResponse"),
     type = "structure",
     members = {
         HsmList = schema.new({
@@ -851,7 +851,7 @@ M.ListHsmsOutput = schema.new({
 })
 
 M.ListLunaClientsInput = schema.new({
-    id = id.from(_N, "ListLunaClientsInput"),
+    id = id.from(_N, "ListLunaClientsRequest"),
     type = "structure",
     members = {
         NextToken = schema.new({
@@ -864,7 +864,7 @@ M.ListLunaClientsInput = schema.new({
 })
 
 M.ListLunaClientsOutput = schema.new({
-    id = id.from(_N, "ListLunaClientsOutput"),
+    id = id.from(_N, "ListLunaClientsResponse"),
     type = "structure",
     members = {
         ClientList = schema.new({
@@ -887,7 +887,7 @@ M.ListLunaClientsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -903,7 +903,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         TagList = schema.new({
@@ -920,7 +920,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ModifyHapgInput = schema.new({
-    id = id.from(_N, "ModifyHapgInput"),
+    id = id.from(_N, "ModifyHapgRequest"),
     type = "structure",
     members = {
         HapgArn = schema.new({
@@ -949,7 +949,7 @@ M.ModifyHapgInput = schema.new({
 })
 
 M.ModifyHapgOutput = schema.new({
-    id = id.from(_N, "ModifyHapgOutput"),
+    id = id.from(_N, "ModifyHapgResponse"),
     type = "structure",
     members = {
         HapgArn = schema.new({
@@ -962,7 +962,7 @@ M.ModifyHapgOutput = schema.new({
 })
 
 M.ModifyHsmInput = schema.new({
-    id = id.from(_N, "ModifyHsmInput"),
+    id = id.from(_N, "ModifyHsmRequest"),
     type = "structure",
     traits = {
         [traits.XML_NAME] = { name = "ModifyHsmRequest" },
@@ -1027,7 +1027,7 @@ M.ModifyHsmInput = schema.new({
 })
 
 M.ModifyHsmOutput = schema.new({
-    id = id.from(_N, "ModifyHsmOutput"),
+    id = id.from(_N, "ModifyHsmResponse"),
     type = "structure",
     members = {
         HsmArn = schema.new({
@@ -1040,7 +1040,7 @@ M.ModifyHsmOutput = schema.new({
 })
 
 M.ModifyLunaClientInput = schema.new({
-    id = id.from(_N, "ModifyLunaClientInput"),
+    id = id.from(_N, "ModifyLunaClientRequest"),
     type = "structure",
     members = {
         ClientArn = schema.new({
@@ -1065,7 +1065,7 @@ M.ModifyLunaClientInput = schema.new({
 })
 
 M.ModifyLunaClientOutput = schema.new({
-    id = id.from(_N, "ModifyLunaClientOutput"),
+    id = id.from(_N, "ModifyLunaClientResponse"),
     type = "structure",
     members = {
         ClientArn = schema.new({
@@ -1078,7 +1078,7 @@ M.ModifyLunaClientOutput = schema.new({
 })
 
 M.RemoveTagsFromResourceInput = schema.new({
-    id = id.from(_N, "RemoveTagsFromResourceInput"),
+    id = id.from(_N, "RemoveTagsFromResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -1104,7 +1104,7 @@ M.RemoveTagsFromResourceInput = schema.new({
 })
 
 M.RemoveTagsFromResourceOutput = schema.new({
-    id = id.from(_N, "RemoveTagsFromResourceOutput"),
+    id = id.from(_N, "RemoveTagsFromResourceResponse"),
     type = "structure",
     members = {
         Status = schema.new({
@@ -1118,5 +1118,19 @@ M.RemoveTagsFromResourceOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

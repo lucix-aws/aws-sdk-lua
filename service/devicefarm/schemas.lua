@@ -257,7 +257,7 @@ M.Rule = schema.new({
 })
 
 M.CreateDevicePoolInput = schema.new({
-    id = id.from(_N, "CreateDevicePoolInput"),
+    id = id.from(_N, "CreateDevicePoolRequest"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -348,7 +348,7 @@ M.DevicePool = schema.new({
 })
 
 M.CreateDevicePoolOutput = schema.new({
-    id = id.from(_N, "CreateDevicePoolOutput"),
+    id = id.from(_N, "CreateDevicePoolResult"),
     type = "structure",
     members = {
         devicePool = schema.new({
@@ -410,7 +410,7 @@ M.ServiceAccountException = schema.new({
 })
 
 M.CreateInstanceProfileInput = schema.new({
-    id = id.from(_N, "CreateInstanceProfileInput"),
+    id = id.from(_N, "CreateInstanceProfileRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -495,7 +495,7 @@ M.InstanceProfile = schema.new({
 })
 
 M.CreateInstanceProfileOutput = schema.new({
-    id = id.from(_N, "CreateInstanceProfileOutput"),
+    id = id.from(_N, "CreateInstanceProfileResult"),
     type = "structure",
     members = {
         instanceProfile = schema.new({
@@ -509,7 +509,7 @@ M.CreateInstanceProfileOutput = schema.new({
 })
 
 M.CreateNetworkProfileInput = schema.new({
-    id = id.from(_N, "CreateNetworkProfileInput"),
+    id = id.from(_N, "CreateNetworkProfileRequest"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -685,7 +685,7 @@ M.NetworkProfile = schema.new({
 })
 
 M.CreateNetworkProfileOutput = schema.new({
-    id = id.from(_N, "CreateNetworkProfileOutput"),
+    id = id.from(_N, "CreateNetworkProfileResult"),
     type = "structure",
     members = {
         networkProfile = schema.new({
@@ -760,7 +760,7 @@ M.VpcConfig = schema.new({
 })
 
 M.CreateProjectInput = schema.new({
-    id = id.from(_N, "CreateProjectInput"),
+    id = id.from(_N, "CreateProjectRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -853,7 +853,7 @@ M.Project = schema.new({
 })
 
 M.CreateProjectOutput = schema.new({
-    id = id.from(_N, "CreateProjectOutput"),
+    id = id.from(_N, "CreateProjectResult"),
     type = "structure",
     members = {
         project = schema.new({
@@ -949,7 +949,7 @@ M.CreateRemoteAccessSessionConfiguration = schema.new({
 })
 
 M.CreateRemoteAccessSessionInput = schema.new({
-    id = id.from(_N, "CreateRemoteAccessSessionInput"),
+    id = id.from(_N, "CreateRemoteAccessSessionRequest"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -1387,7 +1387,7 @@ M.RemoteAccessSession = schema.new({
 })
 
 M.CreateRemoteAccessSessionOutput = schema.new({
-    id = id.from(_N, "CreateRemoteAccessSessionOutput"),
+    id = id.from(_N, "CreateRemoteAccessSessionResult"),
     type = "structure",
     members = {
         remoteAccessSession = schema.new({
@@ -1437,7 +1437,7 @@ M.TestGridVpcConfig = schema.new({
 })
 
 M.CreateTestGridProjectInput = schema.new({
-    id = id.from(_N, "CreateTestGridProjectInput"),
+    id = id.from(_N, "CreateTestGridProjectRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1504,7 +1504,7 @@ M.TestGridProject = schema.new({
 })
 
 M.CreateTestGridProjectOutput = schema.new({
-    id = id.from(_N, "CreateTestGridProjectOutput"),
+    id = id.from(_N, "CreateTestGridProjectResult"),
     type = "structure",
     members = {
         testGridProject = schema.new({
@@ -1534,7 +1534,7 @@ M.InternalServiceException = schema.new({
 })
 
 M.CreateTestGridUrlInput = schema.new({
-    id = id.from(_N, "CreateTestGridUrlInput"),
+    id = id.from(_N, "CreateTestGridUrlRequest"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -1559,7 +1559,7 @@ M.CreateTestGridUrlInput = schema.new({
 })
 
 M.CreateTestGridUrlOutput = schema.new({
-    id = id.from(_N, "CreateTestGridUrlOutput"),
+    id = id.from(_N, "CreateTestGridUrlResult"),
     type = "structure",
     members = {
         url = schema.new({
@@ -1578,7 +1578,7 @@ M.CreateTestGridUrlOutput = schema.new({
 })
 
 M.CreateUploadInput = schema.new({
-    id = id.from(_N, "CreateUploadInput"),
+    id = id.from(_N, "CreateUploadRequest"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -1685,7 +1685,7 @@ M.Upload = schema.new({
 })
 
 M.CreateUploadOutput = schema.new({
-    id = id.from(_N, "CreateUploadOutput"),
+    id = id.from(_N, "CreateUploadResult"),
     type = "structure",
     members = {
         upload = schema.new({
@@ -1699,7 +1699,7 @@ M.CreateUploadOutput = schema.new({
 })
 
 M.CreateVPCEConfigurationInput = schema.new({
-    id = id.from(_N, "CreateVPCEConfigurationInput"),
+    id = id.from(_N, "CreateVPCEConfigurationRequest"),
     type = "structure",
     members = {
         vpceConfigurationName = schema.new({
@@ -1776,7 +1776,7 @@ M.VPCEConfiguration = schema.new({
 })
 
 M.CreateVPCEConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateVPCEConfigurationOutput"),
+    id = id.from(_N, "CreateVPCEConfigurationResult"),
     type = "structure",
     members = {
         vpceConfiguration = schema.new({
@@ -1818,7 +1818,7 @@ M.CustomerArtifactPaths = schema.new({
 })
 
 M.DeleteDevicePoolInput = schema.new({
-    id = id.from(_N, "DeleteDevicePoolInput"),
+    id = id.from(_N, "DeleteDevicePoolRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1834,12 +1834,12 @@ M.DeleteDevicePoolInput = schema.new({
 })
 
 M.DeleteDevicePoolOutput = schema.new({
-    id = id.from(_N, "DeleteDevicePoolOutput"),
+    id = id.from(_N, "DeleteDevicePoolResult"),
     type = "structure",
 })
 
 M.DeleteInstanceProfileInput = schema.new({
-    id = id.from(_N, "DeleteInstanceProfileInput"),
+    id = id.from(_N, "DeleteInstanceProfileRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1855,12 +1855,12 @@ M.DeleteInstanceProfileInput = schema.new({
 })
 
 M.DeleteInstanceProfileOutput = schema.new({
-    id = id.from(_N, "DeleteInstanceProfileOutput"),
+    id = id.from(_N, "DeleteInstanceProfileResult"),
     type = "structure",
 })
 
 M.DeleteNetworkProfileInput = schema.new({
-    id = id.from(_N, "DeleteNetworkProfileInput"),
+    id = id.from(_N, "DeleteNetworkProfileRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1876,12 +1876,12 @@ M.DeleteNetworkProfileInput = schema.new({
 })
 
 M.DeleteNetworkProfileOutput = schema.new({
-    id = id.from(_N, "DeleteNetworkProfileOutput"),
+    id = id.from(_N, "DeleteNetworkProfileResult"),
     type = "structure",
 })
 
 M.DeleteProjectInput = schema.new({
-    id = id.from(_N, "DeleteProjectInput"),
+    id = id.from(_N, "DeleteProjectRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1897,12 +1897,12 @@ M.DeleteProjectInput = schema.new({
 })
 
 M.DeleteProjectOutput = schema.new({
-    id = id.from(_N, "DeleteProjectOutput"),
+    id = id.from(_N, "DeleteProjectResult"),
     type = "structure",
 })
 
 M.DeleteRemoteAccessSessionInput = schema.new({
-    id = id.from(_N, "DeleteRemoteAccessSessionInput"),
+    id = id.from(_N, "DeleteRemoteAccessSessionRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1918,12 +1918,12 @@ M.DeleteRemoteAccessSessionInput = schema.new({
 })
 
 M.DeleteRemoteAccessSessionOutput = schema.new({
-    id = id.from(_N, "DeleteRemoteAccessSessionOutput"),
+    id = id.from(_N, "DeleteRemoteAccessSessionResult"),
     type = "structure",
 })
 
 M.DeleteRunInput = schema.new({
-    id = id.from(_N, "DeleteRunInput"),
+    id = id.from(_N, "DeleteRunRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1939,12 +1939,12 @@ M.DeleteRunInput = schema.new({
 })
 
 M.DeleteRunOutput = schema.new({
-    id = id.from(_N, "DeleteRunOutput"),
+    id = id.from(_N, "DeleteRunResult"),
     type = "structure",
 })
 
 M.DeleteTestGridProjectInput = schema.new({
-    id = id.from(_N, "DeleteTestGridProjectInput"),
+    id = id.from(_N, "DeleteTestGridProjectRequest"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -1960,12 +1960,12 @@ M.DeleteTestGridProjectInput = schema.new({
 })
 
 M.DeleteTestGridProjectOutput = schema.new({
-    id = id.from(_N, "DeleteTestGridProjectOutput"),
+    id = id.from(_N, "DeleteTestGridProjectResult"),
     type = "structure",
 })
 
 M.DeleteUploadInput = schema.new({
-    id = id.from(_N, "DeleteUploadInput"),
+    id = id.from(_N, "DeleteUploadRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -1981,12 +1981,12 @@ M.DeleteUploadInput = schema.new({
 })
 
 M.DeleteUploadOutput = schema.new({
-    id = id.from(_N, "DeleteUploadOutput"),
+    id = id.from(_N, "DeleteUploadResult"),
     type = "structure",
 })
 
 M.DeleteVPCEConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteVPCEConfigurationInput"),
+    id = id.from(_N, "DeleteVPCEConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2002,7 +2002,7 @@ M.DeleteVPCEConfigurationInput = schema.new({
 })
 
 M.DeleteVPCEConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteVPCEConfigurationOutput"),
+    id = id.from(_N, "DeleteVPCEConfigurationResult"),
     type = "structure",
 })
 
@@ -2023,12 +2023,12 @@ M.InvalidOperationException = schema.new({
 })
 
 M.GetAccountSettingsInput = schema.new({
-    id = id.from(_N, "GetAccountSettingsInput"),
+    id = id.from(_N, "GetAccountSettingsRequest"),
     type = "structure",
 })
 
 M.GetAccountSettingsOutput = schema.new({
-    id = id.from(_N, "GetAccountSettingsOutput"),
+    id = id.from(_N, "GetAccountSettingsResult"),
     type = "structure",
     members = {
         accountSettings = schema.new({
@@ -2042,7 +2042,7 @@ M.GetAccountSettingsOutput = schema.new({
 })
 
 M.GetDeviceInput = schema.new({
-    id = id.from(_N, "GetDeviceInput"),
+    id = id.from(_N, "GetDeviceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2058,7 +2058,7 @@ M.GetDeviceInput = schema.new({
 })
 
 M.GetDeviceOutput = schema.new({
-    id = id.from(_N, "GetDeviceOutput"),
+    id = id.from(_N, "GetDeviceResult"),
     type = "structure",
     members = {
         device = schema.new({
@@ -2072,7 +2072,7 @@ M.GetDeviceOutput = schema.new({
 })
 
 M.GetDeviceInstanceInput = schema.new({
-    id = id.from(_N, "GetDeviceInstanceInput"),
+    id = id.from(_N, "GetDeviceInstanceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2088,7 +2088,7 @@ M.GetDeviceInstanceInput = schema.new({
 })
 
 M.GetDeviceInstanceOutput = schema.new({
-    id = id.from(_N, "GetDeviceInstanceOutput"),
+    id = id.from(_N, "GetDeviceInstanceResult"),
     type = "structure",
     members = {
         deviceInstance = schema.new({
@@ -2102,7 +2102,7 @@ M.GetDeviceInstanceOutput = schema.new({
 })
 
 M.GetDevicePoolInput = schema.new({
-    id = id.from(_N, "GetDevicePoolInput"),
+    id = id.from(_N, "GetDevicePoolRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2118,7 +2118,7 @@ M.GetDevicePoolInput = schema.new({
 })
 
 M.GetDevicePoolOutput = schema.new({
-    id = id.from(_N, "GetDevicePoolOutput"),
+    id = id.from(_N, "GetDevicePoolResult"),
     type = "structure",
     members = {
         devicePool = schema.new({
@@ -2316,7 +2316,7 @@ M.ScheduleRunTest = schema.new({
 })
 
 M.GetDevicePoolCompatibilityInput = schema.new({
-    id = id.from(_N, "GetDevicePoolCompatibilityInput"),
+    id = id.from(_N, "GetDevicePoolCompatibilityRequest"),
     type = "structure",
     members = {
         devicePoolArn = schema.new({
@@ -2410,7 +2410,7 @@ M.DevicePoolCompatibilityResult = schema.new({
 })
 
 M.GetDevicePoolCompatibilityOutput = schema.new({
-    id = id.from(_N, "GetDevicePoolCompatibilityOutput"),
+    id = id.from(_N, "GetDevicePoolCompatibilityResult"),
     type = "structure",
     members = {
         compatibleDevices = schema.new({
@@ -2431,7 +2431,7 @@ M.GetDevicePoolCompatibilityOutput = schema.new({
 })
 
 M.GetInstanceProfileInput = schema.new({
-    id = id.from(_N, "GetInstanceProfileInput"),
+    id = id.from(_N, "GetInstanceProfileRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2447,7 +2447,7 @@ M.GetInstanceProfileInput = schema.new({
 })
 
 M.GetInstanceProfileOutput = schema.new({
-    id = id.from(_N, "GetInstanceProfileOutput"),
+    id = id.from(_N, "GetInstanceProfileResult"),
     type = "structure",
     members = {
         instanceProfile = schema.new({
@@ -2461,7 +2461,7 @@ M.GetInstanceProfileOutput = schema.new({
 })
 
 M.GetJobInput = schema.new({
-    id = id.from(_N, "GetJobInput"),
+    id = id.from(_N, "GetJobRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2577,7 +2577,7 @@ M.Job = schema.new({
 })
 
 M.GetJobOutput = schema.new({
-    id = id.from(_N, "GetJobOutput"),
+    id = id.from(_N, "GetJobResult"),
     type = "structure",
     members = {
         job = schema.new({
@@ -2591,7 +2591,7 @@ M.GetJobOutput = schema.new({
 })
 
 M.GetNetworkProfileInput = schema.new({
-    id = id.from(_N, "GetNetworkProfileInput"),
+    id = id.from(_N, "GetNetworkProfileRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2607,7 +2607,7 @@ M.GetNetworkProfileInput = schema.new({
 })
 
 M.GetNetworkProfileOutput = schema.new({
-    id = id.from(_N, "GetNetworkProfileOutput"),
+    id = id.from(_N, "GetNetworkProfileResult"),
     type = "structure",
     members = {
         networkProfile = schema.new({
@@ -2621,7 +2621,7 @@ M.GetNetworkProfileOutput = schema.new({
 })
 
 M.GetOfferingStatusInput = schema.new({
-    id = id.from(_N, "GetOfferingStatusInput"),
+    id = id.from(_N, "GetOfferingStatusRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2743,7 +2743,7 @@ M.OfferingStatus = schema.new({
 })
 
 M.GetOfferingStatusOutput = schema.new({
-    id = id.from(_N, "GetOfferingStatusOutput"),
+    id = id.from(_N, "GetOfferingStatusResult"),
     type = "structure",
     members = {
         current = schema.new({
@@ -2788,7 +2788,7 @@ M.NotEligibleException = schema.new({
 })
 
 M.GetProjectInput = schema.new({
-    id = id.from(_N, "GetProjectInput"),
+    id = id.from(_N, "GetProjectRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2804,7 +2804,7 @@ M.GetProjectInput = schema.new({
 })
 
 M.GetProjectOutput = schema.new({
-    id = id.from(_N, "GetProjectOutput"),
+    id = id.from(_N, "GetProjectResult"),
     type = "structure",
     members = {
         project = schema.new({
@@ -2818,7 +2818,7 @@ M.GetProjectOutput = schema.new({
 })
 
 M.GetRemoteAccessSessionInput = schema.new({
-    id = id.from(_N, "GetRemoteAccessSessionInput"),
+    id = id.from(_N, "GetRemoteAccessSessionRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -2834,7 +2834,7 @@ M.GetRemoteAccessSessionInput = schema.new({
 })
 
 M.GetRemoteAccessSessionOutput = schema.new({
-    id = id.from(_N, "GetRemoteAccessSessionOutput"),
+    id = id.from(_N, "GetRemoteAccessSessionResult"),
     type = "structure",
     members = {
         remoteAccessSession = schema.new({
@@ -2848,7 +2848,7 @@ M.GetRemoteAccessSessionOutput = schema.new({
 })
 
 M.GetRunInput = schema.new({
-    id = id.from(_N, "GetRunInput"),
+    id = id.from(_N, "GetRunRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3152,7 +3152,7 @@ M.Run = schema.new({
 })
 
 M.GetRunOutput = schema.new({
-    id = id.from(_N, "GetRunOutput"),
+    id = id.from(_N, "GetRunResult"),
     type = "structure",
     members = {
         run = schema.new({
@@ -3166,7 +3166,7 @@ M.GetRunOutput = schema.new({
 })
 
 M.GetSuiteInput = schema.new({
-    id = id.from(_N, "GetSuiteInput"),
+    id = id.from(_N, "GetSuiteRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3257,7 +3257,7 @@ M.Suite = schema.new({
 })
 
 M.GetSuiteOutput = schema.new({
-    id = id.from(_N, "GetSuiteOutput"),
+    id = id.from(_N, "GetSuiteResult"),
     type = "structure",
     members = {
         suite = schema.new({
@@ -3271,7 +3271,7 @@ M.GetSuiteOutput = schema.new({
 })
 
 M.GetTestInput = schema.new({
-    id = id.from(_N, "GetTestInput"),
+    id = id.from(_N, "GetTestRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3362,7 +3362,7 @@ M.Test = schema.new({
 })
 
 M.GetTestOutput = schema.new({
-    id = id.from(_N, "GetTestOutput"),
+    id = id.from(_N, "GetTestResult"),
     type = "structure",
     members = {
         test = schema.new({
@@ -3376,7 +3376,7 @@ M.GetTestOutput = schema.new({
 })
 
 M.GetTestGridProjectInput = schema.new({
-    id = id.from(_N, "GetTestGridProjectInput"),
+    id = id.from(_N, "GetTestGridProjectRequest"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -3392,7 +3392,7 @@ M.GetTestGridProjectInput = schema.new({
 })
 
 M.GetTestGridProjectOutput = schema.new({
-    id = id.from(_N, "GetTestGridProjectOutput"),
+    id = id.from(_N, "GetTestGridProjectResult"),
     type = "structure",
     members = {
         testGridProject = schema.new({
@@ -3406,7 +3406,7 @@ M.GetTestGridProjectOutput = schema.new({
 })
 
 M.GetTestGridSessionInput = schema.new({
-    id = id.from(_N, "GetTestGridSessionInput"),
+    id = id.from(_N, "GetTestGridSessionRequest"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -3474,7 +3474,7 @@ M.TestGridSession = schema.new({
 })
 
 M.GetTestGridSessionOutput = schema.new({
-    id = id.from(_N, "GetTestGridSessionOutput"),
+    id = id.from(_N, "GetTestGridSessionResult"),
     type = "structure",
     members = {
         testGridSession = schema.new({
@@ -3488,7 +3488,7 @@ M.GetTestGridSessionOutput = schema.new({
 })
 
 M.GetUploadInput = schema.new({
-    id = id.from(_N, "GetUploadInput"),
+    id = id.from(_N, "GetUploadRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3504,7 +3504,7 @@ M.GetUploadInput = schema.new({
 })
 
 M.GetUploadOutput = schema.new({
-    id = id.from(_N, "GetUploadOutput"),
+    id = id.from(_N, "GetUploadResult"),
     type = "structure",
     members = {
         upload = schema.new({
@@ -3518,7 +3518,7 @@ M.GetUploadOutput = schema.new({
 })
 
 M.GetVPCEConfigurationInput = schema.new({
-    id = id.from(_N, "GetVPCEConfigurationInput"),
+    id = id.from(_N, "GetVPCEConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3534,7 +3534,7 @@ M.GetVPCEConfigurationInput = schema.new({
 })
 
 M.GetVPCEConfigurationOutput = schema.new({
-    id = id.from(_N, "GetVPCEConfigurationOutput"),
+    id = id.from(_N, "GetVPCEConfigurationResult"),
     type = "structure",
     members = {
         vpceConfiguration = schema.new({
@@ -3548,7 +3548,7 @@ M.GetVPCEConfigurationOutput = schema.new({
 })
 
 M.InstallToRemoteAccessSessionInput = schema.new({
-    id = id.from(_N, "InstallToRemoteAccessSessionInput"),
+    id = id.from(_N, "InstallToRemoteAccessSessionRequest"),
     type = "structure",
     members = {
         remoteAccessSessionArn = schema.new({
@@ -3573,7 +3573,7 @@ M.InstallToRemoteAccessSessionInput = schema.new({
 })
 
 M.InstallToRemoteAccessSessionOutput = schema.new({
-    id = id.from(_N, "InstallToRemoteAccessSessionOutput"),
+    id = id.from(_N, "InstallToRemoteAccessSessionResult"),
     type = "structure",
     members = {
         appUpload = schema.new({
@@ -3587,7 +3587,7 @@ M.InstallToRemoteAccessSessionOutput = schema.new({
 })
 
 M.ListArtifactsInput = schema.new({
-    id = id.from(_N, "ListArtifactsInput"),
+    id = id.from(_N, "ListArtifactsRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3618,7 +3618,7 @@ M.ListArtifactsInput = schema.new({
 })
 
 M.ListArtifactsOutput = schema.new({
-    id = id.from(_N, "ListArtifactsOutput"),
+    id = id.from(_N, "ListArtifactsResult"),
     type = "structure",
     members = {
         artifacts = schema.new({
@@ -3638,7 +3638,7 @@ M.ListArtifactsOutput = schema.new({
 })
 
 M.ListDeviceInstancesInput = schema.new({
-    id = id.from(_N, "ListDeviceInstancesInput"),
+    id = id.from(_N, "ListDeviceInstancesRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -3657,7 +3657,7 @@ M.ListDeviceInstancesInput = schema.new({
 })
 
 M.ListDeviceInstancesOutput = schema.new({
-    id = id.from(_N, "ListDeviceInstancesOutput"),
+    id = id.from(_N, "ListDeviceInstancesResult"),
     type = "structure",
     members = {
         deviceInstances = schema.new({
@@ -3677,7 +3677,7 @@ M.ListDeviceInstancesOutput = schema.new({
 })
 
 M.ListDevicePoolsInput = schema.new({
-    id = id.from(_N, "ListDevicePoolsInput"),
+    id = id.from(_N, "ListDevicePoolsRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3705,7 +3705,7 @@ M.ListDevicePoolsInput = schema.new({
 })
 
 M.ListDevicePoolsOutput = schema.new({
-    id = id.from(_N, "ListDevicePoolsOutput"),
+    id = id.from(_N, "ListDevicePoolsResult"),
     type = "structure",
     members = {
         devicePools = schema.new({
@@ -3725,7 +3725,7 @@ M.ListDevicePoolsOutput = schema.new({
 })
 
 M.ListDevicesInput = schema.new({
-    id = id.from(_N, "ListDevicesInput"),
+    id = id.from(_N, "ListDevicesRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3751,7 +3751,7 @@ M.ListDevicesInput = schema.new({
 })
 
 M.ListDevicesOutput = schema.new({
-    id = id.from(_N, "ListDevicesOutput"),
+    id = id.from(_N, "ListDevicesResult"),
     type = "structure",
     members = {
         devices = schema.new({
@@ -3771,7 +3771,7 @@ M.ListDevicesOutput = schema.new({
 })
 
 M.ListInstanceProfilesInput = schema.new({
-    id = id.from(_N, "ListInstanceProfilesInput"),
+    id = id.from(_N, "ListInstanceProfilesRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -3790,7 +3790,7 @@ M.ListInstanceProfilesInput = schema.new({
 })
 
 M.ListInstanceProfilesOutput = schema.new({
-    id = id.from(_N, "ListInstanceProfilesOutput"),
+    id = id.from(_N, "ListInstanceProfilesResult"),
     type = "structure",
     members = {
         instanceProfiles = schema.new({
@@ -3810,7 +3810,7 @@ M.ListInstanceProfilesOutput = schema.new({
 })
 
 M.ListJobsInput = schema.new({
-    id = id.from(_N, "ListJobsInput"),
+    id = id.from(_N, "ListJobsRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3832,7 +3832,7 @@ M.ListJobsInput = schema.new({
 })
 
 M.ListJobsOutput = schema.new({
-    id = id.from(_N, "ListJobsOutput"),
+    id = id.from(_N, "ListJobsResult"),
     type = "structure",
     members = {
         jobs = schema.new({
@@ -3852,7 +3852,7 @@ M.ListJobsOutput = schema.new({
 })
 
 M.ListNetworkProfilesInput = schema.new({
-    id = id.from(_N, "ListNetworkProfilesInput"),
+    id = id.from(_N, "ListNetworkProfilesRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -3880,7 +3880,7 @@ M.ListNetworkProfilesInput = schema.new({
 })
 
 M.ListNetworkProfilesOutput = schema.new({
-    id = id.from(_N, "ListNetworkProfilesOutput"),
+    id = id.from(_N, "ListNetworkProfilesResult"),
     type = "structure",
     members = {
         networkProfiles = schema.new({
@@ -3900,7 +3900,7 @@ M.ListNetworkProfilesOutput = schema.new({
 })
 
 M.ListOfferingPromotionsInput = schema.new({
-    id = id.from(_N, "ListOfferingPromotionsInput"),
+    id = id.from(_N, "ListOfferingPromotionsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3932,7 +3932,7 @@ M.OfferingPromotion = schema.new({
 })
 
 M.ListOfferingPromotionsOutput = schema.new({
-    id = id.from(_N, "ListOfferingPromotionsOutput"),
+    id = id.from(_N, "ListOfferingPromotionsResult"),
     type = "structure",
     members = {
         offeringPromotions = schema.new({
@@ -3952,7 +3952,7 @@ M.ListOfferingPromotionsOutput = schema.new({
 })
 
 M.ListOfferingsInput = schema.new({
-    id = id.from(_N, "ListOfferingsInput"),
+    id = id.from(_N, "ListOfferingsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3965,7 +3965,7 @@ M.ListOfferingsInput = schema.new({
 })
 
 M.ListOfferingsOutput = schema.new({
-    id = id.from(_N, "ListOfferingsOutput"),
+    id = id.from(_N, "ListOfferingsResult"),
     type = "structure",
     members = {
         offerings = schema.new({
@@ -3985,7 +3985,7 @@ M.ListOfferingsOutput = schema.new({
 })
 
 M.ListOfferingTransactionsInput = schema.new({
-    id = id.from(_N, "ListOfferingTransactionsInput"),
+    id = id.from(_N, "ListOfferingTransactionsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4037,7 +4037,7 @@ M.OfferingTransaction = schema.new({
 })
 
 M.ListOfferingTransactionsOutput = schema.new({
-    id = id.from(_N, "ListOfferingTransactionsOutput"),
+    id = id.from(_N, "ListOfferingTransactionsResult"),
     type = "structure",
     members = {
         offeringTransactions = schema.new({
@@ -4057,7 +4057,7 @@ M.ListOfferingTransactionsOutput = schema.new({
 })
 
 M.ListProjectsInput = schema.new({
-    id = id.from(_N, "ListProjectsInput"),
+    id = id.from(_N, "ListProjectsRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4076,7 +4076,7 @@ M.ListProjectsInput = schema.new({
 })
 
 M.ListProjectsOutput = schema.new({
-    id = id.from(_N, "ListProjectsOutput"),
+    id = id.from(_N, "ListProjectsResult"),
     type = "structure",
     members = {
         projects = schema.new({
@@ -4096,7 +4096,7 @@ M.ListProjectsOutput = schema.new({
 })
 
 M.ListRemoteAccessSessionsInput = schema.new({
-    id = id.from(_N, "ListRemoteAccessSessionsInput"),
+    id = id.from(_N, "ListRemoteAccessSessionsRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4118,7 +4118,7 @@ M.ListRemoteAccessSessionsInput = schema.new({
 })
 
 M.ListRemoteAccessSessionsOutput = schema.new({
-    id = id.from(_N, "ListRemoteAccessSessionsOutput"),
+    id = id.from(_N, "ListRemoteAccessSessionsResult"),
     type = "structure",
     members = {
         remoteAccessSessions = schema.new({
@@ -4138,7 +4138,7 @@ M.ListRemoteAccessSessionsOutput = schema.new({
 })
 
 M.ListRunsInput = schema.new({
-    id = id.from(_N, "ListRunsInput"),
+    id = id.from(_N, "ListRunsRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4160,7 +4160,7 @@ M.ListRunsInput = schema.new({
 })
 
 M.ListRunsOutput = schema.new({
-    id = id.from(_N, "ListRunsOutput"),
+    id = id.from(_N, "ListRunsResult"),
     type = "structure",
     members = {
         runs = schema.new({
@@ -4180,7 +4180,7 @@ M.ListRunsOutput = schema.new({
 })
 
 M.ListSamplesInput = schema.new({
-    id = id.from(_N, "ListSamplesInput"),
+    id = id.from(_N, "ListSamplesRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4227,7 +4227,7 @@ M.Sample = schema.new({
 })
 
 M.ListSamplesOutput = schema.new({
-    id = id.from(_N, "ListSamplesOutput"),
+    id = id.from(_N, "ListSamplesResult"),
     type = "structure",
     members = {
         samples = schema.new({
@@ -4247,7 +4247,7 @@ M.ListSamplesOutput = schema.new({
 })
 
 M.ListSuitesInput = schema.new({
-    id = id.from(_N, "ListSuitesInput"),
+    id = id.from(_N, "ListSuitesRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4269,7 +4269,7 @@ M.ListSuitesInput = schema.new({
 })
 
 M.ListSuitesOutput = schema.new({
-    id = id.from(_N, "ListSuitesOutput"),
+    id = id.from(_N, "ListSuitesResult"),
     type = "structure",
     members = {
         suites = schema.new({
@@ -4289,7 +4289,7 @@ M.ListSuitesOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -4330,7 +4330,7 @@ M.Tag = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -4344,7 +4344,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListTestGridProjectsInput = schema.new({
-    id = id.from(_N, "ListTestGridProjectsInput"),
+    id = id.from(_N, "ListTestGridProjectsRequest"),
     type = "structure",
     members = {
         maxResult = schema.new({
@@ -4363,7 +4363,7 @@ M.ListTestGridProjectsInput = schema.new({
 })
 
 M.ListTestGridProjectsOutput = schema.new({
-    id = id.from(_N, "ListTestGridProjectsOutput"),
+    id = id.from(_N, "ListTestGridProjectsResult"),
     type = "structure",
     members = {
         testGridProjects = schema.new({
@@ -4383,7 +4383,7 @@ M.ListTestGridProjectsOutput = schema.new({
 })
 
 M.ListTestGridSessionActionsInput = schema.new({
-    id = id.from(_N, "ListTestGridSessionActionsInput"),
+    id = id.from(_N, "ListTestGridSessionActionsRequest"),
     type = "structure",
     members = {
         sessionArn = schema.new({
@@ -4448,7 +4448,7 @@ M.TestGridSessionAction = schema.new({
 })
 
 M.ListTestGridSessionActionsOutput = schema.new({
-    id = id.from(_N, "ListTestGridSessionActionsOutput"),
+    id = id.from(_N, "ListTestGridSessionActionsResult"),
     type = "structure",
     members = {
         actions = schema.new({
@@ -4468,7 +4468,7 @@ M.ListTestGridSessionActionsOutput = schema.new({
 })
 
 M.ListTestGridSessionArtifactsInput = schema.new({
-    id = id.from(_N, "ListTestGridSessionArtifactsInput"),
+    id = id.from(_N, "ListTestGridSessionArtifactsRequest"),
     type = "structure",
     members = {
         sessionArn = schema.new({
@@ -4527,7 +4527,7 @@ M.TestGridSessionArtifact = schema.new({
 })
 
 M.ListTestGridSessionArtifactsOutput = schema.new({
-    id = id.from(_N, "ListTestGridSessionArtifactsOutput"),
+    id = id.from(_N, "ListTestGridSessionArtifactsResult"),
     type = "structure",
     members = {
         artifacts = schema.new({
@@ -4547,7 +4547,7 @@ M.ListTestGridSessionArtifactsOutput = schema.new({
 })
 
 M.ListTestGridSessionsInput = schema.new({
-    id = id.from(_N, "ListTestGridSessionsInput"),
+    id = id.from(_N, "ListTestGridSessionsRequest"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -4605,7 +4605,7 @@ M.ListTestGridSessionsInput = schema.new({
 })
 
 M.ListTestGridSessionsOutput = schema.new({
-    id = id.from(_N, "ListTestGridSessionsOutput"),
+    id = id.from(_N, "ListTestGridSessionsResult"),
     type = "structure",
     members = {
         testGridSessions = schema.new({
@@ -4625,7 +4625,7 @@ M.ListTestGridSessionsOutput = schema.new({
 })
 
 M.ListTestsInput = schema.new({
-    id = id.from(_N, "ListTestsInput"),
+    id = id.from(_N, "ListTestsRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4647,7 +4647,7 @@ M.ListTestsInput = schema.new({
 })
 
 M.ListTestsOutput = schema.new({
-    id = id.from(_N, "ListTestsOutput"),
+    id = id.from(_N, "ListTestsResult"),
     type = "structure",
     members = {
         tests = schema.new({
@@ -4667,7 +4667,7 @@ M.ListTestsOutput = schema.new({
 })
 
 M.ListUniqueProblemsInput = schema.new({
-    id = id.from(_N, "ListUniqueProblemsInput"),
+    id = id.from(_N, "ListUniqueProblemsRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4782,7 +4782,7 @@ M.UniqueProblem = schema.new({
 })
 
 M.ListUniqueProblemsOutput = schema.new({
-    id = id.from(_N, "ListUniqueProblemsOutput"),
+    id = id.from(_N, "ListUniqueProblemsResult"),
     type = "structure",
     members = {
         uniqueProblems = schema.new({
@@ -4791,7 +4791,7 @@ M.ListUniqueProblemsOutput = schema.new({
             name = "uniqueProblems",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = M.UniqueProblem }),
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListUniqueProblemsOutput", "nextToken"),
@@ -4803,7 +4803,7 @@ M.ListUniqueProblemsOutput = schema.new({
 })
 
 M.ListUploadsInput = schema.new({
-    id = id.from(_N, "ListUploadsInput"),
+    id = id.from(_N, "ListUploadsRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -4831,7 +4831,7 @@ M.ListUploadsInput = schema.new({
 })
 
 M.ListUploadsOutput = schema.new({
-    id = id.from(_N, "ListUploadsOutput"),
+    id = id.from(_N, "ListUploadsResult"),
     type = "structure",
     members = {
         uploads = schema.new({
@@ -4851,7 +4851,7 @@ M.ListUploadsOutput = schema.new({
 })
 
 M.ListVPCEConfigurationsInput = schema.new({
-    id = id.from(_N, "ListVPCEConfigurationsInput"),
+    id = id.from(_N, "ListVPCEConfigurationsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -4870,7 +4870,7 @@ M.ListVPCEConfigurationsInput = schema.new({
 })
 
 M.ListVPCEConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListVPCEConfigurationsOutput"),
+    id = id.from(_N, "ListVPCEConfigurationsResult"),
     type = "structure",
     members = {
         vpceConfigurations = schema.new({
@@ -4890,7 +4890,7 @@ M.ListVPCEConfigurationsOutput = schema.new({
 })
 
 M.PurchaseOfferingInput = schema.new({
-    id = id.from(_N, "PurchaseOfferingInput"),
+    id = id.from(_N, "PurchaseOfferingRequest"),
     type = "structure",
     members = {
         offeringId = schema.new({
@@ -4921,7 +4921,7 @@ M.PurchaseOfferingInput = schema.new({
 })
 
 M.PurchaseOfferingOutput = schema.new({
-    id = id.from(_N, "PurchaseOfferingOutput"),
+    id = id.from(_N, "PurchaseOfferingResult"),
     type = "structure",
     members = {
         offeringTransaction = schema.new({
@@ -4935,7 +4935,7 @@ M.PurchaseOfferingOutput = schema.new({
 })
 
 M.RenewOfferingInput = schema.new({
-    id = id.from(_N, "RenewOfferingInput"),
+    id = id.from(_N, "RenewOfferingRequest"),
     type = "structure",
     members = {
         offeringId = schema.new({
@@ -4960,7 +4960,7 @@ M.RenewOfferingInput = schema.new({
 })
 
 M.RenewOfferingOutput = schema.new({
-    id = id.from(_N, "RenewOfferingOutput"),
+    id = id.from(_N, "RenewOfferingResult"),
     type = "structure",
     members = {
         offeringTransaction = schema.new({
@@ -5053,7 +5053,7 @@ M.ExecutionConfiguration = schema.new({
 })
 
 M.ScheduleRunInput = schema.new({
-    id = id.from(_N, "ScheduleRunInput"),
+    id = id.from(_N, "ScheduleRunRequest"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -5118,7 +5118,7 @@ M.ScheduleRunInput = schema.new({
 })
 
 M.ScheduleRunOutput = schema.new({
-    id = id.from(_N, "ScheduleRunOutput"),
+    id = id.from(_N, "ScheduleRunResult"),
     type = "structure",
     members = {
         run = schema.new({
@@ -5132,7 +5132,7 @@ M.ScheduleRunOutput = schema.new({
 })
 
 M.StopJobInput = schema.new({
-    id = id.from(_N, "StopJobInput"),
+    id = id.from(_N, "StopJobRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -5148,7 +5148,7 @@ M.StopJobInput = schema.new({
 })
 
 M.StopJobOutput = schema.new({
-    id = id.from(_N, "StopJobOutput"),
+    id = id.from(_N, "StopJobResult"),
     type = "structure",
     members = {
         job = schema.new({
@@ -5162,7 +5162,7 @@ M.StopJobOutput = schema.new({
 })
 
 M.StopRemoteAccessSessionInput = schema.new({
-    id = id.from(_N, "StopRemoteAccessSessionInput"),
+    id = id.from(_N, "StopRemoteAccessSessionRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -5178,7 +5178,7 @@ M.StopRemoteAccessSessionInput = schema.new({
 })
 
 M.StopRemoteAccessSessionOutput = schema.new({
-    id = id.from(_N, "StopRemoteAccessSessionOutput"),
+    id = id.from(_N, "StopRemoteAccessSessionResult"),
     type = "structure",
     members = {
         remoteAccessSession = schema.new({
@@ -5192,7 +5192,7 @@ M.StopRemoteAccessSessionOutput = schema.new({
 })
 
 M.StopRunInput = schema.new({
-    id = id.from(_N, "StopRunInput"),
+    id = id.from(_N, "StopRunRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -5208,7 +5208,7 @@ M.StopRunInput = schema.new({
 })
 
 M.StopRunOutput = schema.new({
-    id = id.from(_N, "StopRunOutput"),
+    id = id.from(_N, "StopRunResult"),
     type = "structure",
     members = {
         run = schema.new({
@@ -5244,7 +5244,7 @@ M.TagPolicyException = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -5270,7 +5270,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -5297,7 +5297,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -5323,12 +5323,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateDeviceInstanceInput = schema.new({
-    id = id.from(_N, "UpdateDeviceInstanceInput"),
+    id = id.from(_N, "UpdateDeviceInstanceRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -5357,7 +5357,7 @@ M.UpdateDeviceInstanceInput = schema.new({
 })
 
 M.UpdateDeviceInstanceOutput = schema.new({
-    id = id.from(_N, "UpdateDeviceInstanceOutput"),
+    id = id.from(_N, "UpdateDeviceInstanceResult"),
     type = "structure",
     members = {
         deviceInstance = schema.new({
@@ -5371,7 +5371,7 @@ M.UpdateDeviceInstanceOutput = schema.new({
 })
 
 M.UpdateDevicePoolInput = schema.new({
-    id = id.from(_N, "UpdateDevicePoolInput"),
+    id = id.from(_N, "UpdateDevicePoolRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -5418,7 +5418,7 @@ M.UpdateDevicePoolInput = schema.new({
 })
 
 M.UpdateDevicePoolOutput = schema.new({
-    id = id.from(_N, "UpdateDevicePoolOutput"),
+    id = id.from(_N, "UpdateDevicePoolResult"),
     type = "structure",
     members = {
         devicePool = schema.new({
@@ -5432,7 +5432,7 @@ M.UpdateDevicePoolOutput = schema.new({
 })
 
 M.UpdateInstanceProfileInput = schema.new({
-    id = id.from(_N, "UpdateInstanceProfileInput"),
+    id = id.from(_N, "UpdateInstanceProfileRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -5479,7 +5479,7 @@ M.UpdateInstanceProfileInput = schema.new({
 })
 
 M.UpdateInstanceProfileOutput = schema.new({
-    id = id.from(_N, "UpdateInstanceProfileOutput"),
+    id = id.from(_N, "UpdateInstanceProfileResult"),
     type = "structure",
     members = {
         instanceProfile = schema.new({
@@ -5493,7 +5493,7 @@ M.UpdateInstanceProfileOutput = schema.new({
 })
 
 M.UpdateNetworkProfileInput = schema.new({
-    id = id.from(_N, "UpdateNetworkProfileInput"),
+    id = id.from(_N, "UpdateNetworkProfileRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -5581,7 +5581,7 @@ M.UpdateNetworkProfileInput = schema.new({
 })
 
 M.UpdateNetworkProfileOutput = schema.new({
-    id = id.from(_N, "UpdateNetworkProfileOutput"),
+    id = id.from(_N, "UpdateNetworkProfileResult"),
     type = "structure",
     members = {
         networkProfile = schema.new({
@@ -5595,7 +5595,7 @@ M.UpdateNetworkProfileOutput = schema.new({
 })
 
 M.UpdateProjectInput = schema.new({
-    id = id.from(_N, "UpdateProjectInput"),
+    id = id.from(_N, "UpdateProjectRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -5643,7 +5643,7 @@ M.UpdateProjectInput = schema.new({
 })
 
 M.UpdateProjectOutput = schema.new({
-    id = id.from(_N, "UpdateProjectOutput"),
+    id = id.from(_N, "UpdateProjectResult"),
     type = "structure",
     members = {
         project = schema.new({
@@ -5657,7 +5657,7 @@ M.UpdateProjectOutput = schema.new({
 })
 
 M.UpdateTestGridProjectInput = schema.new({
-    id = id.from(_N, "UpdateTestGridProjectInput"),
+    id = id.from(_N, "UpdateTestGridProjectRequest"),
     type = "structure",
     members = {
         projectArn = schema.new({
@@ -5692,7 +5692,7 @@ M.UpdateTestGridProjectInput = schema.new({
 })
 
 M.UpdateTestGridProjectOutput = schema.new({
-    id = id.from(_N, "UpdateTestGridProjectOutput"),
+    id = id.from(_N, "UpdateTestGridProjectResult"),
     type = "structure",
     members = {
         testGridProject = schema.new({
@@ -5706,7 +5706,7 @@ M.UpdateTestGridProjectOutput = schema.new({
 })
 
 M.UpdateUploadInput = schema.new({
-    id = id.from(_N, "UpdateUploadInput"),
+    id = id.from(_N, "UpdateUploadRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -5740,7 +5740,7 @@ M.UpdateUploadInput = schema.new({
 })
 
 M.UpdateUploadOutput = schema.new({
-    id = id.from(_N, "UpdateUploadOutput"),
+    id = id.from(_N, "UpdateUploadResult"),
     type = "structure",
     members = {
         upload = schema.new({
@@ -5754,7 +5754,7 @@ M.UpdateUploadOutput = schema.new({
 })
 
 M.UpdateVPCEConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateVPCEConfigurationInput"),
+    id = id.from(_N, "UpdateVPCEConfigurationRequest"),
     type = "structure",
     members = {
         arn = schema.new({
@@ -5794,7 +5794,7 @@ M.UpdateVPCEConfigurationInput = schema.new({
 })
 
 M.UpdateVPCEConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateVPCEConfigurationOutput"),
+    id = id.from(_N, "UpdateVPCEConfigurationResult"),
     type = "structure",
     members = {
         vpceConfiguration = schema.new({
@@ -5806,5 +5806,19 @@ M.UpdateVPCEConfigurationOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

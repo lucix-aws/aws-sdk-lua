@@ -8,7 +8,7 @@ local _N = "com.amazonaws.marketplacecommerceanalytics"
 local M = {}
 
 M.GenerateDataSetInput = schema.new({
-    id = id.from(_N, "GenerateDataSetInput"),
+    id = id.from(_N, "GenerateDataSetRequest"),
     type = "structure",
     members = {
         dataSetType = schema.new({
@@ -74,7 +74,7 @@ M.GenerateDataSetInput = schema.new({
 })
 
 M.GenerateDataSetOutput = schema.new({
-    id = id.from(_N, "GenerateDataSetOutput"),
+    id = id.from(_N, "GenerateDataSetResult"),
     type = "structure",
     members = {
         dataSetRequestId = schema.new({
@@ -103,7 +103,7 @@ M.MarketplaceCommerceAnalyticsException = schema.new({
 })
 
 M.StartSupportDataExportInput = schema.new({
-    id = id.from(_N, "StartSupportDataExportInput"),
+    id = id.from(_N, "StartSupportDataExportRequest"),
     type = "structure",
     members = {
         dataSetType = schema.new({
@@ -169,7 +169,7 @@ M.StartSupportDataExportInput = schema.new({
 })
 
 M.StartSupportDataExportOutput = schema.new({
-    id = id.from(_N, "StartSupportDataExportOutput"),
+    id = id.from(_N, "StartSupportDataExportResult"),
     type = "structure",
     members = {
         dataSetRequestId = schema.new({
@@ -180,5 +180,19 @@ M.StartSupportDataExportOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -30,7 +30,7 @@ M.DependencyException = schema.new({
 })
 
 M.GetAgentConfigurationInput = schema.new({
-    id = id.from(_N, "GetAgentConfigurationInput"),
+    id = id.from(_N, "GetAgentConfigurationRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -47,7 +47,7 @@ M.GetAgentConfigurationInput = schema.new({
 })
 
 M.GetAgentConfigurationOutput = schema.new({
-    id = id.from(_N, "GetAgentConfigurationOutput"),
+    id = id.from(_N, "GetAgentConfigurationResponse"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -225,7 +225,7 @@ M.DiscoveryData = schema.new({
 })
 
 M.RegisterAgentInput = schema.new({
-    id = id.from(_N, "RegisterAgentInput"),
+    id = id.from(_N, "RegisterAgentRequest"),
     type = "structure",
     members = {
         discoveryData = schema.new({
@@ -260,7 +260,7 @@ M.RegisterAgentInput = schema.new({
 })
 
 M.RegisterAgentOutput = schema.new({
-    id = id.from(_N, "RegisterAgentOutput"),
+    id = id.from(_N, "RegisterAgentResponse"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -358,7 +358,7 @@ M.ComponentStatusData = schema.new({
 })
 
 M.UpdateAgentStatusInput = schema.new({
-    id = id.from(_N, "UpdateAgentStatusInput"),
+    id = id.from(_N, "UpdateAgentStatusRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -404,7 +404,7 @@ M.UpdateAgentStatusInput = schema.new({
 })
 
 M.UpdateAgentStatusOutput = schema.new({
-    id = id.from(_N, "UpdateAgentStatusOutput"),
+    id = id.from(_N, "UpdateAgentStatusResponse"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -1115,7 +1115,7 @@ M.AzElProgramTrackSettings = schema.new({
 })
 
 M.CancelContactInput = schema.new({
-    id = id.from(_N, "CancelContactInput"),
+    id = id.from(_N, "CancelContactRequest"),
     type = "structure",
     members = {
         contactId = schema.new({
@@ -1132,7 +1132,7 @@ M.CancelContactInput = schema.new({
 })
 
 M.CancelContactOutput = schema.new({
-    id = id.from(_N, "CancelContactOutput"),
+    id = id.from(_N, "ContactIdResponse"),
     type = "structure",
     members = {
         contactId = schema.new({
@@ -1373,7 +1373,7 @@ M.ConfigTypeData = schema.new({
 })
 
 M.CreateConfigInput = schema.new({
-    id = id.from(_N, "CreateConfigInput"),
+    id = id.from(_N, "CreateConfigRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -1407,7 +1407,7 @@ M.CreateConfigInput = schema.new({
 })
 
 M.CreateConfigOutput = schema.new({
-    id = id.from(_N, "CreateConfigOutput"),
+    id = id.from(_N, "ConfigIdResponse"),
     type = "structure",
     members = {
         configId = schema.new({
@@ -1454,7 +1454,7 @@ M.ResourceLimitExceededException = schema.new({
 })
 
 M.DeleteConfigInput = schema.new({
-    id = id.from(_N, "DeleteConfigInput"),
+    id = id.from(_N, "DeleteConfigRequest"),
     type = "structure",
     members = {
         configId = schema.new({
@@ -1481,7 +1481,7 @@ M.DeleteConfigInput = schema.new({
 })
 
 M.DeleteConfigOutput = schema.new({
-    id = id.from(_N, "DeleteConfigOutput"),
+    id = id.from(_N, "ConfigIdResponse"),
     type = "structure",
     members = {
         configId = schema.new({
@@ -1506,7 +1506,7 @@ M.DeleteConfigOutput = schema.new({
 })
 
 M.GetConfigInput = schema.new({
-    id = id.from(_N, "GetConfigInput"),
+    id = id.from(_N, "GetConfigRequest"),
     type = "structure",
     members = {
         configId = schema.new({
@@ -1533,7 +1533,7 @@ M.GetConfigInput = schema.new({
 })
 
 M.GetConfigOutput = schema.new({
-    id = id.from(_N, "GetConfigOutput"),
+    id = id.from(_N, "GetConfigResponse"),
     type = "structure",
     members = {
         configId = schema.new({
@@ -1591,7 +1591,7 @@ M.GetConfigOutput = schema.new({
 })
 
 M.ListConfigsInput = schema.new({
-    id = id.from(_N, "ListConfigsInput"),
+    id = id.from(_N, "ListConfigsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -1647,7 +1647,7 @@ M.ConfigListItem = schema.new({
 })
 
 M.ListConfigsOutput = schema.new({
-    id = id.from(_N, "ListConfigsOutput"),
+    id = id.from(_N, "ListConfigsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -1667,7 +1667,7 @@ M.ListConfigsOutput = schema.new({
 })
 
 M.UpdateConfigInput = schema.new({
-    id = id.from(_N, "UpdateConfigInput"),
+    id = id.from(_N, "UpdateConfigRequest"),
     type = "structure",
     members = {
         configId = schema.new({
@@ -1713,7 +1713,7 @@ M.UpdateConfigInput = schema.new({
 })
 
 M.UpdateConfigOutput = schema.new({
-    id = id.from(_N, "UpdateConfigOutput"),
+    id = id.from(_N, "ConfigIdResponse"),
     type = "structure",
     members = {
         configId = schema.new({
@@ -2066,7 +2066,7 @@ M.ConfigDetails = schema.new({
 })
 
 M.DescribeContactInput = schema.new({
-    id = id.from(_N, "DescribeContactInput"),
+    id = id.from(_N, "DescribeContactRequest"),
     type = "structure",
     members = {
         contactId = schema.new({
@@ -2351,7 +2351,7 @@ M.ContactVersion = schema.new({
 })
 
 M.DescribeContactOutput = schema.new({
-    id = id.from(_N, "DescribeContactOutput"),
+    id = id.from(_N, "DescribeContactResponse"),
     type = "structure",
     members = {
         contactId = schema.new({
@@ -2479,7 +2479,7 @@ M.DescribeContactOutput = schema.new({
 })
 
 M.DescribeContactVersionInput = schema.new({
-    id = id.from(_N, "DescribeContactVersionInput"),
+    id = id.from(_N, "DescribeContactVersionRequest"),
     type = "structure",
     members = {
         contactId = schema.new({
@@ -2506,7 +2506,7 @@ M.DescribeContactVersionInput = schema.new({
 })
 
 M.DescribeContactVersionOutput = schema.new({
-    id = id.from(_N, "DescribeContactVersionOutput"),
+    id = id.from(_N, "DescribeContactVersionResponse"),
     type = "structure",
     members = {
         contactId = schema.new({
@@ -2648,7 +2648,7 @@ M.EphemerisFilter = schema.new({
 })
 
 M.ListContactsInput = schema.new({
-    id = id.from(_N, "ListContactsInput"),
+    id = id.from(_N, "ListContactsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -2834,7 +2834,7 @@ M.ContactData = schema.new({
 })
 
 M.ListContactsOutput = schema.new({
-    id = id.from(_N, "ListContactsOutput"),
+    id = id.from(_N, "ListContactsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2854,7 +2854,7 @@ M.ListContactsOutput = schema.new({
 })
 
 M.ListContactVersionsInput = schema.new({
-    id = id.from(_N, "ListContactVersionsInput"),
+    id = id.from(_N, "ListContactVersionsRequest"),
     type = "structure",
     members = {
         contactId = schema.new({
@@ -2889,7 +2889,7 @@ M.ListContactVersionsInput = schema.new({
 })
 
 M.ListContactVersionsOutput = schema.new({
-    id = id.from(_N, "ListContactVersionsOutput"),
+    id = id.from(_N, "ListContactVersionsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2909,7 +2909,7 @@ M.ListContactVersionsOutput = schema.new({
 })
 
 M.ReserveContactInput = schema.new({
-    id = id.from(_N, "ReserveContactInput"),
+    id = id.from(_N, "ReserveContactRequest"),
     type = "structure",
     members = {
         missionProfileArn = schema.new({
@@ -2973,7 +2973,7 @@ M.ReserveContactInput = schema.new({
 })
 
 M.ReserveContactOutput = schema.new({
-    id = id.from(_N, "ReserveContactOutput"),
+    id = id.from(_N, "ContactIdResponse"),
     type = "structure",
     members = {
         contactId = schema.new({
@@ -2992,7 +2992,7 @@ M.ReserveContactOutput = schema.new({
 })
 
 M.UpdateContactInput = schema.new({
-    id = id.from(_N, "UpdateContactInput"),
+    id = id.from(_N, "UpdateContactRequest"),
     type = "structure",
     members = {
         contactId = schema.new({
@@ -3031,7 +3031,7 @@ M.UpdateContactInput = schema.new({
 })
 
 M.UpdateContactOutput = schema.new({
-    id = id.from(_N, "UpdateContactOutput"),
+    id = id.from(_N, "UpdateContactResponse"),
     type = "structure",
     members = {
         contactId = schema.new({
@@ -3063,7 +3063,7 @@ M.ContactReservationDetails = schema.new({
 })
 
 M.CreateDataflowEndpointGroupInput = schema.new({
-    id = id.from(_N, "CreateDataflowEndpointGroupInput"),
+    id = id.from(_N, "CreateDataflowEndpointGroupRequest"),
     type = "structure",
     members = {
         endpointDetails = schema.new({
@@ -3100,7 +3100,7 @@ M.CreateDataflowEndpointGroupInput = schema.new({
 })
 
 M.CreateDataflowEndpointGroupOutput = schema.new({
-    id = id.from(_N, "CreateDataflowEndpointGroupOutput"),
+    id = id.from(_N, "DataflowEndpointGroupIdResponse"),
     type = "structure",
     members = {
         dataflowEndpointGroupId = schema.new({
@@ -3186,7 +3186,7 @@ M.CreateEndpointDetails = schema.new({
 })
 
 M.CreateDataflowEndpointGroupV2Input = schema.new({
-    id = id.from(_N, "CreateDataflowEndpointGroupV2Input"),
+    id = id.from(_N, "CreateDataflowEndpointGroupV2Request"),
     type = "structure",
     members = {
         endpoints = schema.new({
@@ -3223,7 +3223,7 @@ M.CreateDataflowEndpointGroupV2Input = schema.new({
 })
 
 M.CreateDataflowEndpointGroupV2Output = schema.new({
-    id = id.from(_N, "CreateDataflowEndpointGroupV2Output"),
+    id = id.from(_N, "CreateDataflowEndpointGroupV2Response"),
     type = "structure",
     members = {
         dataflowEndpointGroupId = schema.new({
@@ -3387,7 +3387,7 @@ M.EphemerisData = schema.new({
 })
 
 M.CreateEphemerisInput = schema.new({
-    id = id.from(_N, "CreateEphemerisInput"),
+    id = id.from(_N, "CreateEphemerisRequest"),
     type = "structure",
     members = {
         satelliteId = schema.new({
@@ -3448,7 +3448,7 @@ M.CreateEphemerisInput = schema.new({
 })
 
 M.CreateEphemerisOutput = schema.new({
-    id = id.from(_N, "CreateEphemerisOutput"),
+    id = id.from(_N, "EphemerisIdResponse"),
     type = "structure",
     members = {
         ephemerisId = schema.new({
@@ -3486,7 +3486,7 @@ M.KmsKey = schema.new({
 })
 
 M.CreateMissionProfileInput = schema.new({
-    id = id.from(_N, "CreateMissionProfileInput"),
+    id = id.from(_N, "CreateMissionProfileRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -3524,7 +3524,7 @@ M.CreateMissionProfileInput = schema.new({
             type = "list",
             name = "dataflowEdges",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.String }),
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -3569,7 +3569,7 @@ M.CreateMissionProfileInput = schema.new({
 })
 
 M.CreateMissionProfileOutput = schema.new({
-    id = id.from(_N, "CreateMissionProfileOutput"),
+    id = id.from(_N, "MissionProfileIdResponse"),
     type = "structure",
     members = {
         missionProfileId = schema.new({
@@ -3582,7 +3582,7 @@ M.CreateMissionProfileOutput = schema.new({
 })
 
 M.DeleteDataflowEndpointGroupInput = schema.new({
-    id = id.from(_N, "DeleteDataflowEndpointGroupInput"),
+    id = id.from(_N, "DeleteDataflowEndpointGroupRequest"),
     type = "structure",
     members = {
         dataflowEndpointGroupId = schema.new({
@@ -3599,7 +3599,7 @@ M.DeleteDataflowEndpointGroupInput = schema.new({
 })
 
 M.DeleteDataflowEndpointGroupOutput = schema.new({
-    id = id.from(_N, "DeleteDataflowEndpointGroupOutput"),
+    id = id.from(_N, "DataflowEndpointGroupIdResponse"),
     type = "structure",
     members = {
         dataflowEndpointGroupId = schema.new({
@@ -3612,7 +3612,7 @@ M.DeleteDataflowEndpointGroupOutput = schema.new({
 })
 
 M.GetDataflowEndpointGroupInput = schema.new({
-    id = id.from(_N, "GetDataflowEndpointGroupInput"),
+    id = id.from(_N, "GetDataflowEndpointGroupRequest"),
     type = "structure",
     members = {
         dataflowEndpointGroupId = schema.new({
@@ -3629,7 +3629,7 @@ M.GetDataflowEndpointGroupInput = schema.new({
 })
 
 M.GetDataflowEndpointGroupOutput = schema.new({
-    id = id.from(_N, "GetDataflowEndpointGroupOutput"),
+    id = id.from(_N, "GetDataflowEndpointGroupResponse"),
     type = "structure",
     members = {
         dataflowEndpointGroupId = schema.new({
@@ -3675,7 +3675,7 @@ M.GetDataflowEndpointGroupOutput = schema.new({
 })
 
 M.ListDataflowEndpointGroupsInput = schema.new({
-    id = id.from(_N, "ListDataflowEndpointGroupsInput"),
+    id = id.from(_N, "ListDataflowEndpointGroupsRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -3719,7 +3719,7 @@ M.DataflowEndpointListItem = schema.new({
 })
 
 M.ListDataflowEndpointGroupsOutput = schema.new({
-    id = id.from(_N, "ListDataflowEndpointGroupsOutput"),
+    id = id.from(_N, "ListDataflowEndpointGroupsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -3739,7 +3739,7 @@ M.ListDataflowEndpointGroupsOutput = schema.new({
 })
 
 M.DeleteEphemerisInput = schema.new({
-    id = id.from(_N, "DeleteEphemerisInput"),
+    id = id.from(_N, "DeleteEphemerisRequest"),
     type = "structure",
     members = {
         ephemerisId = schema.new({
@@ -3756,7 +3756,7 @@ M.DeleteEphemerisInput = schema.new({
 })
 
 M.DeleteEphemerisOutput = schema.new({
-    id = id.from(_N, "DeleteEphemerisOutput"),
+    id = id.from(_N, "EphemerisIdResponse"),
     type = "structure",
     members = {
         ephemerisId = schema.new({
@@ -3785,7 +3785,7 @@ M.ResourceInUseException = schema.new({
 })
 
 M.DeleteMissionProfileInput = schema.new({
-    id = id.from(_N, "DeleteMissionProfileInput"),
+    id = id.from(_N, "DeleteMissionProfileRequest"),
     type = "structure",
     members = {
         missionProfileId = schema.new({
@@ -3802,7 +3802,7 @@ M.DeleteMissionProfileInput = schema.new({
 })
 
 M.DeleteMissionProfileOutput = schema.new({
-    id = id.from(_N, "DeleteMissionProfileOutput"),
+    id = id.from(_N, "MissionProfileIdResponse"),
     type = "structure",
     members = {
         missionProfileId = schema.new({
@@ -3815,7 +3815,7 @@ M.DeleteMissionProfileOutput = schema.new({
 })
 
 M.DescribeEphemerisInput = schema.new({
-    id = id.from(_N, "DescribeEphemerisInput"),
+    id = id.from(_N, "DescribeEphemerisRequest"),
     type = "structure",
     members = {
         ephemerisId = schema.new({
@@ -3905,7 +3905,7 @@ M.EphemerisTypeDescription = schema.new({
 })
 
 M.DescribeEphemerisOutput = schema.new({
-    id = id.from(_N, "DescribeEphemerisOutput"),
+    id = id.from(_N, "DescribeEphemerisResponse"),
     type = "structure",
     members = {
         ephemerisId = schema.new({
@@ -4038,7 +4038,7 @@ M.EphemerisItem = schema.new({
 })
 
 M.ListEphemeridesInput = schema.new({
-    id = id.from(_N, "ListEphemeridesInput"),
+    id = id.from(_N, "ListEphemeridesRequest"),
     type = "structure",
     members = {
         satelliteId = schema.new({
@@ -4100,7 +4100,7 @@ M.ListEphemeridesInput = schema.new({
 })
 
 M.ListEphemeridesOutput = schema.new({
-    id = id.from(_N, "ListEphemeridesOutput"),
+    id = id.from(_N, "ListEphemeridesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4120,7 +4120,7 @@ M.ListEphemeridesOutput = schema.new({
 })
 
 M.UpdateEphemerisInput = schema.new({
-    id = id.from(_N, "UpdateEphemerisInput"),
+    id = id.from(_N, "UpdateEphemerisRequest"),
     type = "structure",
     members = {
         ephemerisId = schema.new({
@@ -4158,7 +4158,7 @@ M.UpdateEphemerisInput = schema.new({
 })
 
 M.UpdateEphemerisOutput = schema.new({
-    id = id.from(_N, "UpdateEphemerisOutput"),
+    id = id.from(_N, "EphemerisIdResponse"),
     type = "structure",
     members = {
         ephemerisId = schema.new({
@@ -4205,7 +4205,7 @@ M.EphemerisMetaData = schema.new({
 })
 
 M.GetAgentTaskResponseUrlInput = schema.new({
-    id = id.from(_N, "GetAgentTaskResponseUrlInput"),
+    id = id.from(_N, "GetAgentTaskResponseUrlRequest"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -4232,7 +4232,7 @@ M.GetAgentTaskResponseUrlInput = schema.new({
 })
 
 M.GetAgentTaskResponseUrlOutput = schema.new({
-    id = id.from(_N, "GetAgentTaskResponseUrlOutput"),
+    id = id.from(_N, "GetAgentTaskResponseUrlResponse"),
     type = "structure",
     members = {
         agentId = schema.new({
@@ -4266,7 +4266,7 @@ M.GetAgentTaskResponseUrlOutput = schema.new({
 })
 
 M.GetMinuteUsageInput = schema.new({
-    id = id.from(_N, "GetMinuteUsageInput"),
+    id = id.from(_N, "GetMinuteUsageRequest"),
     type = "structure",
     members = {
         month = schema.new({
@@ -4291,7 +4291,7 @@ M.GetMinuteUsageInput = schema.new({
 })
 
 M.GetMinuteUsageOutput = schema.new({
-    id = id.from(_N, "GetMinuteUsageOutput"),
+    id = id.from(_N, "GetMinuteUsageResponse"),
     type = "structure",
     members = {
         isReservedMinutesCustomer = schema.new({
@@ -4328,7 +4328,7 @@ M.GetMinuteUsageOutput = schema.new({
 })
 
 M.GetMissionProfileInput = schema.new({
-    id = id.from(_N, "GetMissionProfileInput"),
+    id = id.from(_N, "GetMissionProfileRequest"),
     type = "structure",
     members = {
         missionProfileId = schema.new({
@@ -4345,7 +4345,7 @@ M.GetMissionProfileInput = schema.new({
 })
 
 M.GetMissionProfileOutput = schema.new({
-    id = id.from(_N, "GetMissionProfileOutput"),
+    id = id.from(_N, "GetMissionProfileResponse"),
     type = "structure",
     members = {
         missionProfileId = schema.new({
@@ -4395,7 +4395,7 @@ M.GetMissionProfileOutput = schema.new({
             type = "list",
             name = "dataflowEdges",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.String }),
         }),
         trackingConfigArn = schema.new({
             id = id.from(_N, "GetMissionProfileOutput", "trackingConfigArn"),
@@ -4434,7 +4434,7 @@ M.GetMissionProfileOutput = schema.new({
 })
 
 M.GetSatelliteInput = schema.new({
-    id = id.from(_N, "GetSatelliteInput"),
+    id = id.from(_N, "GetSatelliteRequest"),
     type = "structure",
     members = {
         satelliteId = schema.new({
@@ -4451,7 +4451,7 @@ M.GetSatelliteInput = schema.new({
 })
 
 M.GetSatelliteOutput = schema.new({
-    id = id.from(_N, "GetSatelliteOutput"),
+    id = id.from(_N, "GetSatelliteResponse"),
     type = "structure",
     members = {
         satelliteId = schema.new({
@@ -4493,7 +4493,7 @@ M.GetSatelliteOutput = schema.new({
 })
 
 M.ListAntennasInput = schema.new({
-    id = id.from(_N, "ListAntennasInput"),
+    id = id.from(_N, "ListAntennasRequest"),
     type = "structure",
     members = {
         groundStationId = schema.new({
@@ -4528,7 +4528,7 @@ M.ListAntennasInput = schema.new({
 })
 
 M.ListAntennasOutput = schema.new({
-    id = id.from(_N, "ListAntennasOutput"),
+    id = id.from(_N, "ListAntennasResponse"),
     type = "structure",
     members = {
         antennaList = schema.new({
@@ -4551,7 +4551,7 @@ M.ListAntennasOutput = schema.new({
 })
 
 M.ListGroundStationReservationsInput = schema.new({
-    id = id.from(_N, "ListGroundStationReservationsInput"),
+    id = id.from(_N, "ListGroundStationReservationsRequest"),
     type = "structure",
     members = {
         groundStationId = schema.new({
@@ -4717,7 +4717,7 @@ M.GroundStationReservationListItem = schema.new({
 })
 
 M.ListGroundStationReservationsOutput = schema.new({
-    id = id.from(_N, "ListGroundStationReservationsOutput"),
+    id = id.from(_N, "ListGroundStationReservationsResponse"),
     type = "structure",
     members = {
         reservationList = schema.new({
@@ -4740,7 +4740,7 @@ M.ListGroundStationReservationsOutput = schema.new({
 })
 
 M.ListGroundStationsInput = schema.new({
-    id = id.from(_N, "ListGroundStationsInput"),
+    id = id.from(_N, "ListGroundStationsRequest"),
     type = "structure",
     members = {
         satelliteId = schema.new({
@@ -4799,7 +4799,7 @@ M.GroundStationData = schema.new({
 })
 
 M.ListGroundStationsOutput = schema.new({
-    id = id.from(_N, "ListGroundStationsOutput"),
+    id = id.from(_N, "ListGroundStationsResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4819,7 +4819,7 @@ M.ListGroundStationsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -4836,7 +4836,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -4851,7 +4851,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListMissionProfilesInput = schema.new({
-    id = id.from(_N, "ListMissionProfilesInput"),
+    id = id.from(_N, "ListMissionProfilesRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -4907,7 +4907,7 @@ M.MissionProfileListItem = schema.new({
 })
 
 M.ListMissionProfilesOutput = schema.new({
-    id = id.from(_N, "ListMissionProfilesOutput"),
+    id = id.from(_N, "ListMissionProfilesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -4927,7 +4927,7 @@ M.ListMissionProfilesOutput = schema.new({
 })
 
 M.UpdateMissionProfileInput = schema.new({
-    id = id.from(_N, "UpdateMissionProfileInput"),
+    id = id.from(_N, "UpdateMissionProfileRequest"),
     type = "structure",
     members = {
         missionProfileId = schema.new({
@@ -4969,7 +4969,7 @@ M.UpdateMissionProfileInput = schema.new({
             type = "list",
             name = "dataflowEdges",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = prelude.String }),
         }),
         trackingConfigArn = schema.new({
             id = id.from(_N, "UpdateMissionProfileInput", "trackingConfigArn"),
@@ -5000,7 +5000,7 @@ M.UpdateMissionProfileInput = schema.new({
 })
 
 M.UpdateMissionProfileOutput = schema.new({
-    id = id.from(_N, "UpdateMissionProfileOutput"),
+    id = id.from(_N, "MissionProfileIdResponse"),
     type = "structure",
     members = {
         missionProfileId = schema.new({
@@ -5013,7 +5013,7 @@ M.UpdateMissionProfileOutput = schema.new({
 })
 
 M.ListSatellitesInput = schema.new({
-    id = id.from(_N, "ListSatellitesInput"),
+    id = id.from(_N, "ListSatellitesRequest"),
     type = "structure",
     members = {
         maxResults = schema.new({
@@ -5080,7 +5080,7 @@ M.SatelliteListItem = schema.new({
 })
 
 M.ListSatellitesOutput = schema.new({
-    id = id.from(_N, "ListSatellitesOutput"),
+    id = id.from(_N, "ListSatellitesResponse"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -5100,7 +5100,7 @@ M.ListSatellitesOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5128,12 +5128,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -5161,8 +5161,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

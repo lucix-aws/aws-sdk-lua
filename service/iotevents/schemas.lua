@@ -1125,7 +1125,7 @@ M.Tag = schema.new({
 })
 
 M.CreateAlarmModelInput = schema.new({
-    id = id.from(_N, "CreateAlarmModelInput"),
+    id = id.from(_N, "CreateAlarmModelRequest"),
     type = "structure",
     members = {
         alarmModelName = schema.new({
@@ -1206,7 +1206,7 @@ M.CreateAlarmModelInput = schema.new({
 })
 
 M.CreateAlarmModelOutput = schema.new({
-    id = id.from(_N, "CreateAlarmModelOutput"),
+    id = id.from(_N, "CreateAlarmModelResponse"),
     type = "structure",
     members = {
         creationTime = schema.new({
@@ -1549,7 +1549,7 @@ M.DetectorModelDefinition = schema.new({
 })
 
 M.CreateDetectorModelInput = schema.new({
-    id = id.from(_N, "CreateDetectorModelInput"),
+    id = id.from(_N, "CreateDetectorModelRequest"),
     type = "structure",
     members = {
         detectorModelName = schema.new({
@@ -1676,7 +1676,7 @@ M.DetectorModelConfiguration = schema.new({
 })
 
 M.CreateDetectorModelOutput = schema.new({
-    id = id.from(_N, "CreateDetectorModelOutput"),
+    id = id.from(_N, "CreateDetectorModelResponse"),
     type = "structure",
     members = {
         detectorModelConfiguration = schema.new({
@@ -1707,7 +1707,7 @@ M.InputDefinition = schema.new({
 })
 
 M.CreateInputInput = schema.new({
-    id = id.from(_N, "CreateInputInput"),
+    id = id.from(_N, "CreateInputRequest"),
     type = "structure",
     members = {
         inputName = schema.new({
@@ -1804,7 +1804,7 @@ M.InputConfiguration = schema.new({
 })
 
 M.CreateInputOutput = schema.new({
-    id = id.from(_N, "CreateInputOutput"),
+    id = id.from(_N, "CreateInputResponse"),
     type = "structure",
     members = {
         inputConfiguration = schema.new({
@@ -1818,7 +1818,7 @@ M.CreateInputOutput = schema.new({
 })
 
 M.DeleteAlarmModelInput = schema.new({
-    id = id.from(_N, "DeleteAlarmModelInput"),
+    id = id.from(_N, "DeleteAlarmModelRequest"),
     type = "structure",
     members = {
         alarmModelName = schema.new({
@@ -1835,7 +1835,7 @@ M.DeleteAlarmModelInput = schema.new({
 })
 
 M.DeleteAlarmModelOutput = schema.new({
-    id = id.from(_N, "DeleteAlarmModelOutput"),
+    id = id.from(_N, "DeleteAlarmModelResponse"),
     type = "structure",
 })
 
@@ -1856,7 +1856,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.DeleteDetectorModelInput = schema.new({
-    id = id.from(_N, "DeleteDetectorModelInput"),
+    id = id.from(_N, "DeleteDetectorModelRequest"),
     type = "structure",
     members = {
         detectorModelName = schema.new({
@@ -1873,12 +1873,12 @@ M.DeleteDetectorModelInput = schema.new({
 })
 
 M.DeleteDetectorModelOutput = schema.new({
-    id = id.from(_N, "DeleteDetectorModelOutput"),
+    id = id.from(_N, "DeleteDetectorModelResponse"),
     type = "structure",
 })
 
 M.DeleteInputInput = schema.new({
-    id = id.from(_N, "DeleteInputInput"),
+    id = id.from(_N, "DeleteInputRequest"),
     type = "structure",
     members = {
         inputName = schema.new({
@@ -1895,12 +1895,12 @@ M.DeleteInputInput = schema.new({
 })
 
 M.DeleteInputOutput = schema.new({
-    id = id.from(_N, "DeleteInputOutput"),
+    id = id.from(_N, "DeleteInputResponse"),
     type = "structure",
 })
 
 M.DescribeAlarmModelInput = schema.new({
-    id = id.from(_N, "DescribeAlarmModelInput"),
+    id = id.from(_N, "DescribeAlarmModelRequest"),
     type = "structure",
     members = {
         alarmModelName = schema.new({
@@ -1926,7 +1926,7 @@ M.DescribeAlarmModelInput = schema.new({
 })
 
 M.DescribeAlarmModelOutput = schema.new({
-    id = id.from(_N, "DescribeAlarmModelOutput"),
+    id = id.from(_N, "DescribeAlarmModelResponse"),
     type = "structure",
     members = {
         creationTime = schema.new({
@@ -2027,7 +2027,7 @@ M.DescribeAlarmModelOutput = schema.new({
 })
 
 M.DescribeDetectorModelInput = schema.new({
-    id = id.from(_N, "DescribeDetectorModelInput"),
+    id = id.from(_N, "DescribeDetectorModelRequest"),
     type = "structure",
     members = {
         detectorModelName = schema.new({
@@ -2074,7 +2074,7 @@ M.DetectorModel = schema.new({
 })
 
 M.DescribeDetectorModelOutput = schema.new({
-    id = id.from(_N, "DescribeDetectorModelOutput"),
+    id = id.from(_N, "DescribeDetectorModelResponse"),
     type = "structure",
     members = {
         detectorModel = schema.new({
@@ -2088,7 +2088,7 @@ M.DescribeDetectorModelOutput = schema.new({
 })
 
 M.DescribeDetectorModelAnalysisInput = schema.new({
-    id = id.from(_N, "DescribeDetectorModelAnalysisInput"),
+    id = id.from(_N, "DescribeDetectorModelAnalysisRequest"),
     type = "structure",
     members = {
         analysisId = schema.new({
@@ -2105,7 +2105,7 @@ M.DescribeDetectorModelAnalysisInput = schema.new({
 })
 
 M.DescribeDetectorModelAnalysisOutput = schema.new({
-    id = id.from(_N, "DescribeDetectorModelAnalysisOutput"),
+    id = id.from(_N, "DescribeDetectorModelAnalysisResponse"),
     type = "structure",
     members = {
         status = schema.new({
@@ -2118,7 +2118,7 @@ M.DescribeDetectorModelAnalysisOutput = schema.new({
 })
 
 M.DescribeInputInput = schema.new({
-    id = id.from(_N, "DescribeInputInput"),
+    id = id.from(_N, "DescribeInputRequest"),
     type = "structure",
     members = {
         inputName = schema.new({
@@ -2156,7 +2156,7 @@ M.Input = schema.new({
 })
 
 M.DescribeInputOutput = schema.new({
-    id = id.from(_N, "DescribeInputOutput"),
+    id = id.from(_N, "DescribeInputResponse"),
     type = "structure",
     members = {
         input = schema.new({
@@ -2170,7 +2170,7 @@ M.DescribeInputOutput = schema.new({
 })
 
 M.DescribeLoggingOptionsInput = schema.new({
-    id = id.from(_N, "DescribeLoggingOptionsInput"),
+    id = id.from(_N, "DescribeLoggingOptionsRequest"),
     type = "structure",
 })
 
@@ -2239,7 +2239,7 @@ M.LoggingOptions = schema.new({
 })
 
 M.DescribeLoggingOptionsOutput = schema.new({
-    id = id.from(_N, "DescribeLoggingOptionsOutput"),
+    id = id.from(_N, "DescribeLoggingOptionsResponse"),
     type = "structure",
     members = {
         loggingOptions = schema.new({
@@ -2349,7 +2349,7 @@ M.DetectorModelVersionSummary = schema.new({
 })
 
 M.GetDetectorModelAnalysisResultsInput = schema.new({
-    id = id.from(_N, "GetDetectorModelAnalysisResultsInput"),
+    id = id.from(_N, "GetDetectorModelAnalysisResultsRequest"),
     type = "structure",
     members = {
         analysisId = schema.new({
@@ -2384,7 +2384,7 @@ M.GetDetectorModelAnalysisResultsInput = schema.new({
 })
 
 M.GetDetectorModelAnalysisResultsOutput = schema.new({
-    id = id.from(_N, "GetDetectorModelAnalysisResultsOutput"),
+    id = id.from(_N, "GetDetectorModelAnalysisResultsResponse"),
     type = "structure",
     members = {
         analysisResults = schema.new({
@@ -2523,7 +2523,7 @@ M.InputSummary = schema.new({
 })
 
 M.ListAlarmModelsInput = schema.new({
-    id = id.from(_N, "ListAlarmModelsInput"),
+    id = id.from(_N, "ListAlarmModelsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2548,7 +2548,7 @@ M.ListAlarmModelsInput = schema.new({
 })
 
 M.ListAlarmModelsOutput = schema.new({
-    id = id.from(_N, "ListAlarmModelsOutput"),
+    id = id.from(_N, "ListAlarmModelsResponse"),
     type = "structure",
     members = {
         alarmModelSummaries = schema.new({
@@ -2568,7 +2568,7 @@ M.ListAlarmModelsOutput = schema.new({
 })
 
 M.ListAlarmModelVersionsInput = schema.new({
-    id = id.from(_N, "ListAlarmModelVersionsInput"),
+    id = id.from(_N, "ListAlarmModelVersionsRequest"),
     type = "structure",
     members = {
         alarmModelName = schema.new({
@@ -2603,7 +2603,7 @@ M.ListAlarmModelVersionsInput = schema.new({
 })
 
 M.ListAlarmModelVersionsOutput = schema.new({
-    id = id.from(_N, "ListAlarmModelVersionsOutput"),
+    id = id.from(_N, "ListAlarmModelVersionsResponse"),
     type = "structure",
     members = {
         alarmModelVersionSummaries = schema.new({
@@ -2623,7 +2623,7 @@ M.ListAlarmModelVersionsOutput = schema.new({
 })
 
 M.ListDetectorModelsInput = schema.new({
-    id = id.from(_N, "ListDetectorModelsInput"),
+    id = id.from(_N, "ListDetectorModelsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2648,7 +2648,7 @@ M.ListDetectorModelsInput = schema.new({
 })
 
 M.ListDetectorModelsOutput = schema.new({
-    id = id.from(_N, "ListDetectorModelsOutput"),
+    id = id.from(_N, "ListDetectorModelsResponse"),
     type = "structure",
     members = {
         detectorModelSummaries = schema.new({
@@ -2668,7 +2668,7 @@ M.ListDetectorModelsOutput = schema.new({
 })
 
 M.ListDetectorModelVersionsInput = schema.new({
-    id = id.from(_N, "ListDetectorModelVersionsInput"),
+    id = id.from(_N, "ListDetectorModelVersionsRequest"),
     type = "structure",
     members = {
         detectorModelName = schema.new({
@@ -2703,7 +2703,7 @@ M.ListDetectorModelVersionsInput = schema.new({
 })
 
 M.ListDetectorModelVersionsOutput = schema.new({
-    id = id.from(_N, "ListDetectorModelVersionsOutput"),
+    id = id.from(_N, "ListDetectorModelVersionsResponse"),
     type = "structure",
     members = {
         detectorModelVersionSummaries = schema.new({
@@ -2723,7 +2723,7 @@ M.ListDetectorModelVersionsOutput = schema.new({
 })
 
 M.ListInputRoutingsInput = schema.new({
-    id = id.from(_N, "ListInputRoutingsInput"),
+    id = id.from(_N, "ListInputRoutingsRequest"),
     type = "structure",
     members = {
         inputIdentifier = schema.new({
@@ -2771,7 +2771,7 @@ M.RoutedResource = schema.new({
 })
 
 M.ListInputRoutingsOutput = schema.new({
-    id = id.from(_N, "ListInputRoutingsOutput"),
+    id = id.from(_N, "ListInputRoutingsResponse"),
     type = "structure",
     members = {
         routedResources = schema.new({
@@ -2791,7 +2791,7 @@ M.ListInputRoutingsOutput = schema.new({
 })
 
 M.ListInputsInput = schema.new({
-    id = id.from(_N, "ListInputsInput"),
+    id = id.from(_N, "ListInputsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -2816,7 +2816,7 @@ M.ListInputsInput = schema.new({
 })
 
 M.ListInputsOutput = schema.new({
-    id = id.from(_N, "ListInputsOutput"),
+    id = id.from(_N, "ListInputsResponse"),
     type = "structure",
     members = {
         inputSummaries = schema.new({
@@ -2836,7 +2836,7 @@ M.ListInputsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2853,7 +2853,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -2867,7 +2867,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutLoggingOptionsInput = schema.new({
-    id = id.from(_N, "PutLoggingOptionsInput"),
+    id = id.from(_N, "PutLoggingOptionsRequest"),
     type = "structure",
     members = {
         loggingOptions = schema.new({
@@ -2884,12 +2884,12 @@ M.PutLoggingOptionsInput = schema.new({
 })
 
 M.PutLoggingOptionsOutput = schema.new({
-    id = id.from(_N, "PutLoggingOptionsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.StartDetectorModelAnalysisInput = schema.new({
-    id = id.from(_N, "StartDetectorModelAnalysisInput"),
+    id = id.from(_N, "StartDetectorModelAnalysisRequest"),
     type = "structure",
     members = {
         detectorModelDefinition = schema.new({
@@ -2906,7 +2906,7 @@ M.StartDetectorModelAnalysisInput = schema.new({
 })
 
 M.StartDetectorModelAnalysisOutput = schema.new({
-    id = id.from(_N, "StartDetectorModelAnalysisOutput"),
+    id = id.from(_N, "StartDetectorModelAnalysisResponse"),
     type = "structure",
     members = {
         analysisId = schema.new({
@@ -2919,7 +2919,7 @@ M.StartDetectorModelAnalysisOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2946,12 +2946,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -2979,12 +2979,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAlarmModelInput = schema.new({
-    id = id.from(_N, "UpdateAlarmModelInput"),
+    id = id.from(_N, "UpdateAlarmModelRequest"),
     type = "structure",
     members = {
         alarmModelName = schema.new({
@@ -3053,7 +3053,7 @@ M.UpdateAlarmModelInput = schema.new({
 })
 
 M.UpdateAlarmModelOutput = schema.new({
-    id = id.from(_N, "UpdateAlarmModelOutput"),
+    id = id.from(_N, "UpdateAlarmModelResponse"),
     type = "structure",
     members = {
         creationTime = schema.new({
@@ -3090,7 +3090,7 @@ M.UpdateAlarmModelOutput = schema.new({
 })
 
 M.UpdateDetectorModelInput = schema.new({
-    id = id.from(_N, "UpdateDetectorModelInput"),
+    id = id.from(_N, "UpdateDetectorModelRequest"),
     type = "structure",
     members = {
         detectorModelName = schema.new({
@@ -3138,7 +3138,7 @@ M.UpdateDetectorModelInput = schema.new({
 })
 
 M.UpdateDetectorModelOutput = schema.new({
-    id = id.from(_N, "UpdateDetectorModelOutput"),
+    id = id.from(_N, "UpdateDetectorModelResponse"),
     type = "structure",
     members = {
         detectorModelConfiguration = schema.new({
@@ -3152,7 +3152,7 @@ M.UpdateDetectorModelOutput = schema.new({
 })
 
 M.UpdateInputInput = schema.new({
-    id = id.from(_N, "UpdateInputInput"),
+    id = id.from(_N, "UpdateInputRequest"),
     type = "structure",
     members = {
         inputName = schema.new({
@@ -3185,7 +3185,7 @@ M.UpdateInputInput = schema.new({
 })
 
 M.UpdateInputOutput = schema.new({
-    id = id.from(_N, "UpdateInputOutput"),
+    id = id.from(_N, "UpdateInputResponse"),
     type = "structure",
     members = {
         inputConfiguration = schema.new({
@@ -3197,5 +3197,19 @@ M.UpdateInputOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

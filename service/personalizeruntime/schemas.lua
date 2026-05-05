@@ -27,7 +27,7 @@ M.PredictedAction = schema.new({
 })
 
 M.GetActionRecommendationsInput = schema.new({
-    id = id.from(_N, "GetActionRecommendationsInput"),
+    id = id.from(_N, "GetActionRecommendationsRequest"),
     type = "structure",
     members = {
         campaignArn = schema.new({
@@ -69,7 +69,7 @@ M.GetActionRecommendationsInput = schema.new({
 })
 
 M.GetActionRecommendationsOutput = schema.new({
-    id = id.from(_N, "GetActionRecommendationsOutput"),
+    id = id.from(_N, "GetActionRecommendationsResponse"),
     type = "structure",
     members = {
         actionList = schema.new({
@@ -121,7 +121,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.GetPersonalizedRankingInput = schema.new({
-    id = id.from(_N, "GetPersonalizedRankingInput"),
+    id = id.from(_N, "GetPersonalizedRankingRequest"),
     type = "structure",
     members = {
         campaignArn = schema.new({
@@ -180,7 +180,7 @@ M.GetPersonalizedRankingInput = schema.new({
             name = "metadataColumns",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -226,7 +226,7 @@ M.PredictedItem = schema.new({
 })
 
 M.GetPersonalizedRankingOutput = schema.new({
-    id = id.from(_N, "GetPersonalizedRankingOutput"),
+    id = id.from(_N, "GetPersonalizedRankingResponse"),
     type = "structure",
     members = {
         personalizedRanking = schema.new({
@@ -279,7 +279,7 @@ M.Promotion = schema.new({
 })
 
 M.GetRecommendationsInput = schema.new({
-    id = id.from(_N, "GetRecommendationsInput"),
+    id = id.from(_N, "GetRecommendationsRequest"),
     type = "structure",
     members = {
         campaignArn = schema.new({
@@ -350,13 +350,13 @@ M.GetRecommendationsInput = schema.new({
             name = "metadataColumns",
             target_id = prelude.Document.id,
             map_key = prelude.String,
-            map_value = prelude.Document,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
 
 M.GetRecommendationsOutput = schema.new({
-    id = id.from(_N, "GetRecommendationsOutput"),
+    id = id.from(_N, "GetRecommendationsResponse"),
     type = "structure",
     members = {
         itemList = schema.new({
@@ -374,5 +374,19 @@ M.GetRecommendationsOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

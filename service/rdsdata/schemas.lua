@@ -233,7 +233,7 @@ M.TransactionNotFoundException = schema.new({
 })
 
 M.BeginTransactionInput = schema.new({
-    id = id.from(_N, "BeginTransactionInput"),
+    id = id.from(_N, "BeginTransactionRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -270,7 +270,7 @@ M.BeginTransactionInput = schema.new({
 })
 
 M.BeginTransactionOutput = schema.new({
-    id = id.from(_N, "BeginTransactionOutput"),
+    id = id.from(_N, "BeginTransactionResponse"),
     type = "structure",
     members = {
         transactionId = schema.new({
@@ -401,7 +401,7 @@ M.ColumnMetadata = schema.new({
 })
 
 M.CommitTransactionInput = schema.new({
-    id = id.from(_N, "CommitTransactionInput"),
+    id = id.from(_N, "CommitTransactionRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -435,7 +435,7 @@ M.CommitTransactionInput = schema.new({
 })
 
 M.CommitTransactionOutput = schema.new({
-    id = id.from(_N, "CommitTransactionOutput"),
+    id = id.from(_N, "CommitTransactionResponse"),
     type = "structure",
     members = {
         transactionStatus = schema.new({
@@ -464,7 +464,7 @@ M.NotFoundException = schema.new({
 })
 
 M.ExecuteSqlInput = schema.new({
-    id = id.from(_N, "ExecuteSqlInput"),
+    id = id.from(_N, "ExecuteSqlRequest"),
     type = "structure",
     members = {
         dbClusterOrInstanceArn = schema.new({
@@ -568,7 +568,7 @@ M.UnsupportedResultException = schema.new({
 })
 
 M.RollbackTransactionInput = schema.new({
-    id = id.from(_N, "RollbackTransactionInput"),
+    id = id.from(_N, "RollbackTransactionRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -602,7 +602,7 @@ M.RollbackTransactionInput = schema.new({
 })
 
 M.RollbackTransactionOutput = schema.new({
-    id = id.from(_N, "RollbackTransactionOutput"),
+    id = id.from(_N, "RollbackTransactionResponse"),
     type = "structure",
     members = {
         transactionStatus = schema.new({
@@ -816,7 +816,7 @@ M.Value = schema.new({
 })
 
 M.ExecuteStatementInput = schema.new({
-    id = id.from(_N, "ExecuteStatementInput"),
+    id = id.from(_N, "ExecuteStatementRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -920,7 +920,7 @@ M.StructValue = schema.new({
 })
 
 M.BatchExecuteStatementInput = schema.new({
-    id = id.from(_N, "BatchExecuteStatementInput"),
+    id = id.from(_N, "BatchExecuteStatementRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -967,7 +967,7 @@ M.BatchExecuteStatementInput = schema.new({
             type = "list",
             name = "parameterSets",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = M.SqlParameter }),
         }),
         transactionId = schema.new({
             id = id.from(_N, "BatchExecuteStatementInput", "transactionId"),
@@ -979,7 +979,7 @@ M.BatchExecuteStatementInput = schema.new({
 })
 
 M.BatchExecuteStatementOutput = schema.new({
-    id = id.from(_N, "BatchExecuteStatementOutput"),
+    id = id.from(_N, "BatchExecuteStatementResponse"),
     type = "structure",
     members = {
         updateResults = schema.new({
@@ -1007,7 +1007,7 @@ M.Record = schema.new({
 })
 
 M.ExecuteStatementOutput = schema.new({
-    id = id.from(_N, "ExecuteStatementOutput"),
+    id = id.from(_N, "ExecuteStatementResponse"),
     type = "structure",
     members = {
         records = schema.new({
@@ -1015,7 +1015,7 @@ M.ExecuteStatementOutput = schema.new({
             type = "list",
             name = "records",
             target_id = prelude.Document.id,
-            list_member = prelude.Document,
+            list_member = schema.new({ type = "list", list_member = M.Field }),
         }),
         columnMetadata = schema.new({
             id = id.from(_N, "ExecuteStatementOutput", "columnMetadata"),
@@ -1094,7 +1094,7 @@ M.SqlStatementResult = schema.new({
 })
 
 M.ExecuteSqlOutput = schema.new({
-    id = id.from(_N, "ExecuteSqlOutput"),
+    id = id.from(_N, "ExecuteSqlResponse"),
     type = "structure",
     members = {
         sqlStatementResults = schema.new({
@@ -1106,5 +1106,19 @@ M.ExecuteSqlOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

@@ -631,7 +631,7 @@ M.Tag = schema.new({
 })
 
 M.CreateAppInstanceInput = schema.new({
-    id = id.from(_N, "CreateAppInstanceInput"),
+    id = id.from(_N, "CreateAppInstanceRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -670,7 +670,7 @@ M.CreateAppInstanceInput = schema.new({
 })
 
 M.CreateAppInstanceOutput = schema.new({
-    id = id.from(_N, "CreateAppInstanceOutput"),
+    id = id.from(_N, "CreateAppInstanceResponse"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -815,7 +815,7 @@ M.UnauthorizedClientException = schema.new({
 })
 
 M.CreateAppInstanceAdminInput = schema.new({
-    id = id.from(_N, "CreateAppInstanceAdminInput"),
+    id = id.from(_N, "CreateAppInstanceAdminRequest"),
     type = "structure",
     members = {
         AppInstanceAdminArn = schema.new({
@@ -841,7 +841,7 @@ M.CreateAppInstanceAdminInput = schema.new({
 })
 
 M.CreateAppInstanceAdminOutput = schema.new({
-    id = id.from(_N, "CreateAppInstanceAdminOutput"),
+    id = id.from(_N, "CreateAppInstanceAdminResponse"),
     type = "structure",
     members = {
         AppInstanceAdmin = schema.new({
@@ -861,7 +861,7 @@ M.CreateAppInstanceAdminOutput = schema.new({
 })
 
 M.CreateAppInstanceBotInput = schema.new({
-    id = id.from(_N, "CreateAppInstanceBotInput"),
+    id = id.from(_N, "CreateAppInstanceBotRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -916,7 +916,7 @@ M.CreateAppInstanceBotInput = schema.new({
 })
 
 M.CreateAppInstanceBotOutput = schema.new({
-    id = id.from(_N, "CreateAppInstanceBotOutput"),
+    id = id.from(_N, "CreateAppInstanceBotResponse"),
     type = "structure",
     members = {
         AppInstanceBotArn = schema.new({
@@ -929,7 +929,7 @@ M.CreateAppInstanceBotOutput = schema.new({
 })
 
 M.CreateAppInstanceUserInput = schema.new({
-    id = id.from(_N, "CreateAppInstanceUserInput"),
+    id = id.from(_N, "CreateAppInstanceUserRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -993,7 +993,7 @@ M.CreateAppInstanceUserInput = schema.new({
 })
 
 M.CreateAppInstanceUserOutput = schema.new({
-    id = id.from(_N, "CreateAppInstanceUserOutput"),
+    id = id.from(_N, "CreateAppInstanceUserResponse"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -1006,7 +1006,7 @@ M.CreateAppInstanceUserOutput = schema.new({
 })
 
 M.DeleteAppInstanceInput = schema.new({
-    id = id.from(_N, "DeleteAppInstanceInput"),
+    id = id.from(_N, "DeleteAppInstanceRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -1023,12 +1023,12 @@ M.DeleteAppInstanceInput = schema.new({
 })
 
 M.DeleteAppInstanceOutput = schema.new({
-    id = id.from(_N, "DeleteAppInstanceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAppInstanceAdminInput = schema.new({
-    id = id.from(_N, "DeleteAppInstanceAdminInput"),
+    id = id.from(_N, "DeleteAppInstanceAdminRequest"),
     type = "structure",
     members = {
         AppInstanceAdminArn = schema.new({
@@ -1055,12 +1055,12 @@ M.DeleteAppInstanceAdminInput = schema.new({
 })
 
 M.DeleteAppInstanceAdminOutput = schema.new({
-    id = id.from(_N, "DeleteAppInstanceAdminOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAppInstanceBotInput = schema.new({
-    id = id.from(_N, "DeleteAppInstanceBotInput"),
+    id = id.from(_N, "DeleteAppInstanceBotRequest"),
     type = "structure",
     members = {
         AppInstanceBotArn = schema.new({
@@ -1077,12 +1077,12 @@ M.DeleteAppInstanceBotInput = schema.new({
 })
 
 M.DeleteAppInstanceBotOutput = schema.new({
-    id = id.from(_N, "DeleteAppInstanceBotOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeleteAppInstanceUserInput = schema.new({
-    id = id.from(_N, "DeleteAppInstanceUserInput"),
+    id = id.from(_N, "DeleteAppInstanceUserRequest"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -1099,12 +1099,12 @@ M.DeleteAppInstanceUserInput = schema.new({
 })
 
 M.DeleteAppInstanceUserOutput = schema.new({
-    id = id.from(_N, "DeleteAppInstanceUserOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeregisterAppInstanceUserEndpointInput = schema.new({
-    id = id.from(_N, "DeregisterAppInstanceUserEndpointInput"),
+    id = id.from(_N, "DeregisterAppInstanceUserEndpointRequest"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -1131,12 +1131,12 @@ M.DeregisterAppInstanceUserEndpointInput = schema.new({
 })
 
 M.DeregisterAppInstanceUserEndpointOutput = schema.new({
-    id = id.from(_N, "DeregisterAppInstanceUserEndpointOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeAppInstanceInput = schema.new({
-    id = id.from(_N, "DescribeAppInstanceInput"),
+    id = id.from(_N, "DescribeAppInstanceRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -1153,7 +1153,7 @@ M.DescribeAppInstanceInput = schema.new({
 })
 
 M.DescribeAppInstanceOutput = schema.new({
-    id = id.from(_N, "DescribeAppInstanceOutput"),
+    id = id.from(_N, "DescribeAppInstanceResponse"),
     type = "structure",
     members = {
         AppInstance = schema.new({
@@ -1167,7 +1167,7 @@ M.DescribeAppInstanceOutput = schema.new({
 })
 
 M.DescribeAppInstanceAdminInput = schema.new({
-    id = id.from(_N, "DescribeAppInstanceAdminInput"),
+    id = id.from(_N, "DescribeAppInstanceAdminRequest"),
     type = "structure",
     members = {
         AppInstanceAdminArn = schema.new({
@@ -1194,7 +1194,7 @@ M.DescribeAppInstanceAdminInput = schema.new({
 })
 
 M.DescribeAppInstanceAdminOutput = schema.new({
-    id = id.from(_N, "DescribeAppInstanceAdminOutput"),
+    id = id.from(_N, "DescribeAppInstanceAdminResponse"),
     type = "structure",
     members = {
         AppInstanceAdmin = schema.new({
@@ -1208,7 +1208,7 @@ M.DescribeAppInstanceAdminOutput = schema.new({
 })
 
 M.DescribeAppInstanceBotInput = schema.new({
-    id = id.from(_N, "DescribeAppInstanceBotInput"),
+    id = id.from(_N, "DescribeAppInstanceBotRequest"),
     type = "structure",
     members = {
         AppInstanceBotArn = schema.new({
@@ -1225,7 +1225,7 @@ M.DescribeAppInstanceBotInput = schema.new({
 })
 
 M.DescribeAppInstanceBotOutput = schema.new({
-    id = id.from(_N, "DescribeAppInstanceBotOutput"),
+    id = id.from(_N, "DescribeAppInstanceBotResponse"),
     type = "structure",
     members = {
         AppInstanceBot = schema.new({
@@ -1261,7 +1261,7 @@ M.NotFoundException = schema.new({
 })
 
 M.DescribeAppInstanceUserInput = schema.new({
-    id = id.from(_N, "DescribeAppInstanceUserInput"),
+    id = id.from(_N, "DescribeAppInstanceUserRequest"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -1278,7 +1278,7 @@ M.DescribeAppInstanceUserInput = schema.new({
 })
 
 M.DescribeAppInstanceUserOutput = schema.new({
-    id = id.from(_N, "DescribeAppInstanceUserOutput"),
+    id = id.from(_N, "DescribeAppInstanceUserResponse"),
     type = "structure",
     members = {
         AppInstanceUser = schema.new({
@@ -1292,7 +1292,7 @@ M.DescribeAppInstanceUserOutput = schema.new({
 })
 
 M.DescribeAppInstanceUserEndpointInput = schema.new({
-    id = id.from(_N, "DescribeAppInstanceUserEndpointInput"),
+    id = id.from(_N, "DescribeAppInstanceUserEndpointRequest"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -1319,7 +1319,7 @@ M.DescribeAppInstanceUserEndpointInput = schema.new({
 })
 
 M.DescribeAppInstanceUserEndpointOutput = schema.new({
-    id = id.from(_N, "DescribeAppInstanceUserEndpointOutput"),
+    id = id.from(_N, "DescribeAppInstanceUserEndpointResponse"),
     type = "structure",
     members = {
         AppInstanceUserEndpoint = schema.new({
@@ -1333,7 +1333,7 @@ M.DescribeAppInstanceUserEndpointOutput = schema.new({
 })
 
 M.GetAppInstanceRetentionSettingsInput = schema.new({
-    id = id.from(_N, "GetAppInstanceRetentionSettingsInput"),
+    id = id.from(_N, "GetAppInstanceRetentionSettingsRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -1350,7 +1350,7 @@ M.GetAppInstanceRetentionSettingsInput = schema.new({
 })
 
 M.GetAppInstanceRetentionSettingsOutput = schema.new({
-    id = id.from(_N, "GetAppInstanceRetentionSettingsOutput"),
+    id = id.from(_N, "GetAppInstanceRetentionSettingsResponse"),
     type = "structure",
     members = {
         AppInstanceRetentionSettings = schema.new({
@@ -1370,7 +1370,7 @@ M.GetAppInstanceRetentionSettingsOutput = schema.new({
 })
 
 M.ListAppInstanceAdminsInput = schema.new({
-    id = id.from(_N, "ListAppInstanceAdminsInput"),
+    id = id.from(_N, "ListAppInstanceAdminsRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -1405,7 +1405,7 @@ M.ListAppInstanceAdminsInput = schema.new({
 })
 
 M.ListAppInstanceAdminsOutput = schema.new({
-    id = id.from(_N, "ListAppInstanceAdminsOutput"),
+    id = id.from(_N, "ListAppInstanceAdminsResponse"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -1431,7 +1431,7 @@ M.ListAppInstanceAdminsOutput = schema.new({
 })
 
 M.ListAppInstanceBotsInput = schema.new({
-    id = id.from(_N, "ListAppInstanceBotsInput"),
+    id = id.from(_N, "ListAppInstanceBotsRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -1466,7 +1466,7 @@ M.ListAppInstanceBotsInput = schema.new({
 })
 
 M.ListAppInstanceBotsOutput = schema.new({
-    id = id.from(_N, "ListAppInstanceBotsOutput"),
+    id = id.from(_N, "ListAppInstanceBotsResponse"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -1492,7 +1492,7 @@ M.ListAppInstanceBotsOutput = schema.new({
 })
 
 M.ListAppInstancesInput = schema.new({
-    id = id.from(_N, "ListAppInstancesInput"),
+    id = id.from(_N, "ListAppInstancesRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -1517,7 +1517,7 @@ M.ListAppInstancesInput = schema.new({
 })
 
 M.ListAppInstancesOutput = schema.new({
-    id = id.from(_N, "ListAppInstancesOutput"),
+    id = id.from(_N, "ListAppInstancesResponse"),
     type = "structure",
     members = {
         AppInstances = schema.new({
@@ -1537,7 +1537,7 @@ M.ListAppInstancesOutput = schema.new({
 })
 
 M.ListAppInstanceUserEndpointsInput = schema.new({
-    id = id.from(_N, "ListAppInstanceUserEndpointsInput"),
+    id = id.from(_N, "ListAppInstanceUserEndpointsRequest"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -1572,7 +1572,7 @@ M.ListAppInstanceUserEndpointsInput = schema.new({
 })
 
 M.ListAppInstanceUserEndpointsOutput = schema.new({
-    id = id.from(_N, "ListAppInstanceUserEndpointsOutput"),
+    id = id.from(_N, "ListAppInstanceUserEndpointsResponse"),
     type = "structure",
     members = {
         AppInstanceUserEndpoints = schema.new({
@@ -1592,7 +1592,7 @@ M.ListAppInstanceUserEndpointsOutput = schema.new({
 })
 
 M.ListAppInstanceUsersInput = schema.new({
-    id = id.from(_N, "ListAppInstanceUsersInput"),
+    id = id.from(_N, "ListAppInstanceUsersRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -1627,7 +1627,7 @@ M.ListAppInstanceUsersInput = schema.new({
 })
 
 M.ListAppInstanceUsersOutput = schema.new({
-    id = id.from(_N, "ListAppInstanceUsersOutput"),
+    id = id.from(_N, "ListAppInstanceUsersResponse"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -1653,7 +1653,7 @@ M.ListAppInstanceUsersOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1670,7 +1670,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -1684,7 +1684,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.PutAppInstanceRetentionSettingsInput = schema.new({
-    id = id.from(_N, "PutAppInstanceRetentionSettingsInput"),
+    id = id.from(_N, "PutAppInstanceRetentionSettingsRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -1711,7 +1711,7 @@ M.PutAppInstanceRetentionSettingsInput = schema.new({
 })
 
 M.PutAppInstanceRetentionSettingsOutput = schema.new({
-    id = id.from(_N, "PutAppInstanceRetentionSettingsOutput"),
+    id = id.from(_N, "PutAppInstanceRetentionSettingsResponse"),
     type = "structure",
     members = {
         AppInstanceRetentionSettings = schema.new({
@@ -1731,7 +1731,7 @@ M.PutAppInstanceRetentionSettingsOutput = schema.new({
 })
 
 M.PutAppInstanceUserExpirationSettingsInput = schema.new({
-    id = id.from(_N, "PutAppInstanceUserExpirationSettingsInput"),
+    id = id.from(_N, "PutAppInstanceUserExpirationSettingsRequest"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -1755,7 +1755,7 @@ M.PutAppInstanceUserExpirationSettingsInput = schema.new({
 })
 
 M.PutAppInstanceUserExpirationSettingsOutput = schema.new({
-    id = id.from(_N, "PutAppInstanceUserExpirationSettingsOutput"),
+    id = id.from(_N, "PutAppInstanceUserExpirationSettingsResponse"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -1775,7 +1775,7 @@ M.PutAppInstanceUserExpirationSettingsOutput = schema.new({
 })
 
 M.RegisterAppInstanceUserEndpointInput = schema.new({
-    id = id.from(_N, "RegisterAppInstanceUserEndpointInput"),
+    id = id.from(_N, "RegisterAppInstanceUserEndpointRequest"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -1842,7 +1842,7 @@ M.RegisterAppInstanceUserEndpointInput = schema.new({
 })
 
 M.RegisterAppInstanceUserEndpointOutput = schema.new({
-    id = id.from(_N, "RegisterAppInstanceUserEndpointOutput"),
+    id = id.from(_N, "RegisterAppInstanceUserEndpointResponse"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -1861,7 +1861,7 @@ M.RegisterAppInstanceUserEndpointOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1887,12 +1887,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceARN = schema.new({
@@ -1918,12 +1918,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateAppInstanceInput = schema.new({
-    id = id.from(_N, "UpdateAppInstanceInput"),
+    id = id.from(_N, "UpdateAppInstanceRequest"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -1958,7 +1958,7 @@ M.UpdateAppInstanceInput = schema.new({
 })
 
 M.UpdateAppInstanceOutput = schema.new({
-    id = id.from(_N, "UpdateAppInstanceOutput"),
+    id = id.from(_N, "UpdateAppInstanceResponse"),
     type = "structure",
     members = {
         AppInstanceArn = schema.new({
@@ -1971,7 +1971,7 @@ M.UpdateAppInstanceOutput = schema.new({
 })
 
 M.UpdateAppInstanceBotInput = schema.new({
-    id = id.from(_N, "UpdateAppInstanceBotInput"),
+    id = id.from(_N, "UpdateAppInstanceBotRequest"),
     type = "structure",
     members = {
         AppInstanceBotArn = schema.new({
@@ -2013,7 +2013,7 @@ M.UpdateAppInstanceBotInput = schema.new({
 })
 
 M.UpdateAppInstanceBotOutput = schema.new({
-    id = id.from(_N, "UpdateAppInstanceBotOutput"),
+    id = id.from(_N, "UpdateAppInstanceBotResponse"),
     type = "structure",
     members = {
         AppInstanceBotArn = schema.new({
@@ -2026,7 +2026,7 @@ M.UpdateAppInstanceBotOutput = schema.new({
 })
 
 M.UpdateAppInstanceUserInput = schema.new({
-    id = id.from(_N, "UpdateAppInstanceUserInput"),
+    id = id.from(_N, "UpdateAppInstanceUserRequest"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -2061,7 +2061,7 @@ M.UpdateAppInstanceUserInput = schema.new({
 })
 
 M.UpdateAppInstanceUserOutput = schema.new({
-    id = id.from(_N, "UpdateAppInstanceUserOutput"),
+    id = id.from(_N, "UpdateAppInstanceUserResponse"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -2074,7 +2074,7 @@ M.UpdateAppInstanceUserOutput = schema.new({
 })
 
 M.UpdateAppInstanceUserEndpointInput = schema.new({
-    id = id.from(_N, "UpdateAppInstanceUserEndpointInput"),
+    id = id.from(_N, "UpdateAppInstanceUserEndpointRequest"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -2113,7 +2113,7 @@ M.UpdateAppInstanceUserEndpointInput = schema.new({
 })
 
 M.UpdateAppInstanceUserEndpointOutput = schema.new({
-    id = id.from(_N, "UpdateAppInstanceUserEndpointOutput"),
+    id = id.from(_N, "UpdateAppInstanceUserEndpointResponse"),
     type = "structure",
     members = {
         AppInstanceUserArn = schema.new({
@@ -2130,5 +2130,19 @@ M.UpdateAppInstanceUserEndpointOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

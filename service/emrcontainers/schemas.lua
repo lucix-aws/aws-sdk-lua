@@ -127,7 +127,7 @@ M.AuthorizationConfiguration = schema.new({
 })
 
 M.CancelJobRunInput = schema.new({
-    id = id.from(_N, "CancelJobRunInput"),
+    id = id.from(_N, "CancelJobRunRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -154,7 +154,7 @@ M.CancelJobRunInput = schema.new({
 })
 
 M.CancelJobRunOutput = schema.new({
-    id = id.from(_N, "CancelJobRunOutput"),
+    id = id.from(_N, "CancelJobRunResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -352,7 +352,7 @@ M.TemplateParameterConfiguration = schema.new({
 })
 
 M.CreateJobTemplateOutput = schema.new({
-    id = id.from(_N, "CreateJobTemplateOutput"),
+    id = id.from(_N, "CreateJobTemplateResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -525,7 +525,7 @@ M.MonitoringConfiguration = schema.new({
 })
 
 M.CreateManagedEndpointOutput = schema.new({
-    id = id.from(_N, "CreateManagedEndpointOutput"),
+    id = id.from(_N, "CreateManagedEndpointResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -635,7 +635,7 @@ M.SecurityConfigurationData = schema.new({
 })
 
 M.CreateSecurityConfigurationInput = schema.new({
-    id = id.from(_N, "CreateSecurityConfigurationInput"),
+    id = id.from(_N, "CreateSecurityConfigurationRequest"),
     type = "structure",
     members = {
         clientToken = schema.new({
@@ -686,7 +686,7 @@ M.CreateSecurityConfigurationInput = schema.new({
 })
 
 M.CreateSecurityConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateSecurityConfigurationOutput"),
+    id = id.from(_N, "CreateSecurityConfigurationResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -711,7 +711,7 @@ M.CreateSecurityConfigurationOutput = schema.new({
 })
 
 M.CreateVirtualClusterInput = schema.new({
-    id = id.from(_N, "CreateVirtualClusterInput"),
+    id = id.from(_N, "CreateVirtualClusterRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -761,7 +761,7 @@ M.CreateVirtualClusterInput = schema.new({
 })
 
 M.CreateVirtualClusterOutput = schema.new({
-    id = id.from(_N, "CreateVirtualClusterOutput"),
+    id = id.from(_N, "CreateVirtualClusterResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -802,7 +802,7 @@ M.EKSRequestThrottledException = schema.new({
 })
 
 M.DeleteJobTemplateInput = schema.new({
-    id = id.from(_N, "DeleteJobTemplateInput"),
+    id = id.from(_N, "DeleteJobTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -819,7 +819,7 @@ M.DeleteJobTemplateInput = schema.new({
 })
 
 M.DeleteJobTemplateOutput = schema.new({
-    id = id.from(_N, "DeleteJobTemplateOutput"),
+    id = id.from(_N, "DeleteJobTemplateResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -832,7 +832,7 @@ M.DeleteJobTemplateOutput = schema.new({
 })
 
 M.DeleteManagedEndpointInput = schema.new({
-    id = id.from(_N, "DeleteManagedEndpointInput"),
+    id = id.from(_N, "DeleteManagedEndpointRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -859,7 +859,7 @@ M.DeleteManagedEndpointInput = schema.new({
 })
 
 M.DeleteManagedEndpointOutput = schema.new({
-    id = id.from(_N, "DeleteManagedEndpointOutput"),
+    id = id.from(_N, "DeleteManagedEndpointResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -878,7 +878,7 @@ M.DeleteManagedEndpointOutput = schema.new({
 })
 
 M.DeleteVirtualClusterInput = schema.new({
-    id = id.from(_N, "DeleteVirtualClusterInput"),
+    id = id.from(_N, "DeleteVirtualClusterRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -895,7 +895,7 @@ M.DeleteVirtualClusterInput = schema.new({
 })
 
 M.DeleteVirtualClusterOutput = schema.new({
-    id = id.from(_N, "DeleteVirtualClusterOutput"),
+    id = id.from(_N, "DeleteVirtualClusterResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -908,7 +908,7 @@ M.DeleteVirtualClusterOutput = schema.new({
 })
 
 M.DescribeJobRunInput = schema.new({
-    id = id.from(_N, "DescribeJobRunInput"),
+    id = id.from(_N, "DescribeJobRunRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -967,7 +967,7 @@ M.RetryPolicyExecution = schema.new({
 })
 
 M.DescribeJobTemplateInput = schema.new({
-    id = id.from(_N, "DescribeJobTemplateInput"),
+    id = id.from(_N, "DescribeJobTemplateRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -984,7 +984,7 @@ M.DescribeJobTemplateInput = schema.new({
 })
 
 M.DescribeManagedEndpointInput = schema.new({
-    id = id.from(_N, "DescribeManagedEndpointInput"),
+    id = id.from(_N, "DescribeManagedEndpointRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1030,7 +1030,7 @@ M.Certificate = schema.new({
 })
 
 M.DescribeSecurityConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeSecurityConfigurationInput"),
+    id = id.from(_N, "DescribeSecurityConfigurationRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1102,7 +1102,7 @@ M.SecurityConfiguration = schema.new({
 })
 
 M.DescribeSecurityConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeSecurityConfigurationOutput"),
+    id = id.from(_N, "DescribeSecurityConfigurationResponse"),
     type = "structure",
     members = {
         securityConfiguration = schema.new({
@@ -1116,7 +1116,7 @@ M.DescribeSecurityConfigurationOutput = schema.new({
 })
 
 M.DescribeVirtualClusterInput = schema.new({
-    id = id.from(_N, "DescribeVirtualClusterInput"),
+    id = id.from(_N, "DescribeVirtualClusterRequest"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1194,7 +1194,7 @@ M.VirtualCluster = schema.new({
 })
 
 M.DescribeVirtualClusterOutput = schema.new({
-    id = id.from(_N, "DescribeVirtualClusterOutput"),
+    id = id.from(_N, "DescribeVirtualClusterResponse"),
     type = "structure",
     members = {
         virtualCluster = schema.new({
@@ -1208,7 +1208,7 @@ M.DescribeVirtualClusterOutput = schema.new({
 })
 
 M.GetManagedEndpointSessionCredentialsInput = schema.new({
-    id = id.from(_N, "GetManagedEndpointSessionCredentialsInput"),
+    id = id.from(_N, "GetManagedEndpointSessionCredentialsRequest"),
     type = "structure",
     members = {
         endpointIdentifier = schema.new({
@@ -1287,7 +1287,7 @@ M.Credentials = schema.new({
 })
 
 M.GetManagedEndpointSessionCredentialsOutput = schema.new({
-    id = id.from(_N, "GetManagedEndpointSessionCredentialsOutput"),
+    id = id.from(_N, "GetManagedEndpointSessionCredentialsResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1332,7 +1332,7 @@ M.RequestThrottledException = schema.new({
 })
 
 M.ListJobRunsInput = schema.new({
-    id = id.from(_N, "ListJobRunsInput"),
+    id = id.from(_N, "ListJobRunsRequest"),
     type = "structure",
     members = {
         virtualClusterId = schema.new({
@@ -1412,7 +1412,7 @@ M.ListJobRunsInput = schema.new({
 })
 
 M.ListJobTemplatesInput = schema.new({
-    id = id.from(_N, "ListJobTemplatesInput"),
+    id = id.from(_N, "ListJobTemplatesRequest"),
     type = "structure",
     members = {
         createdAfter = schema.new({
@@ -1463,7 +1463,7 @@ M.ListJobTemplatesInput = schema.new({
 })
 
 M.ListManagedEndpointsInput = schema.new({
-    id = id.from(_N, "ListManagedEndpointsInput"),
+    id = id.from(_N, "ListManagedEndpointsRequest"),
     type = "structure",
     members = {
         virtualClusterId = schema.new({
@@ -1544,7 +1544,7 @@ M.ListManagedEndpointsInput = schema.new({
 })
 
 M.ListSecurityConfigurationsInput = schema.new({
-    id = id.from(_N, "ListSecurityConfigurationsInput"),
+    id = id.from(_N, "ListSecurityConfigurationsRequest"),
     type = "structure",
     members = {
         createdAfter = schema.new({
@@ -1595,7 +1595,7 @@ M.ListSecurityConfigurationsInput = schema.new({
 })
 
 M.ListSecurityConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListSecurityConfigurationsOutput"),
+    id = id.from(_N, "ListSecurityConfigurationsResponse"),
     type = "structure",
     members = {
         securityConfigurations = schema.new({
@@ -1615,7 +1615,7 @@ M.ListSecurityConfigurationsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1632,7 +1632,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1647,7 +1647,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ListVirtualClustersInput = schema.new({
-    id = id.from(_N, "ListVirtualClustersInput"),
+    id = id.from(_N, "ListVirtualClustersRequest"),
     type = "structure",
     members = {
         containerProviderId = schema.new({
@@ -1735,7 +1735,7 @@ M.ListVirtualClustersInput = schema.new({
 })
 
 M.ListVirtualClustersOutput = schema.new({
-    id = id.from(_N, "ListVirtualClustersOutput"),
+    id = id.from(_N, "ListVirtualClustersResponse"),
     type = "structure",
     members = {
         virtualClusters = schema.new({
@@ -1755,7 +1755,7 @@ M.ListVirtualClustersOutput = schema.new({
 })
 
 M.StartJobRunOutput = schema.new({
-    id = id.from(_N, "StartJobRunOutput"),
+    id = id.from(_N, "StartJobRunResponse"),
     type = "structure",
     members = {
         id = schema.new({
@@ -1786,7 +1786,7 @@ M.StartJobRunOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1814,12 +1814,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1847,7 +1847,7 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
@@ -1925,7 +1925,7 @@ M.ParametricConfigurationOverrides = schema.new({
 })
 
 M.CreateManagedEndpointInput = schema.new({
-    id = id.from(_N, "CreateManagedEndpointInput"),
+    id = id.from(_N, "CreateManagedEndpointRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2317,7 +2317,7 @@ M.JobTemplateData = schema.new({
 })
 
 M.StartJobRunInput = schema.new({
-    id = id.from(_N, "StartJobRunInput"),
+    id = id.from(_N, "StartJobRunRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2405,7 +2405,7 @@ M.StartJobRunInput = schema.new({
 })
 
 M.CreateJobTemplateInput = schema.new({
-    id = id.from(_N, "CreateJobTemplateInput"),
+    id = id.from(_N, "CreateJobTemplateRequest"),
     type = "structure",
     members = {
         name = schema.new({
@@ -2455,7 +2455,7 @@ M.CreateJobTemplateInput = schema.new({
 })
 
 M.DescribeJobRunOutput = schema.new({
-    id = id.from(_N, "DescribeJobRunOutput"),
+    id = id.from(_N, "DescribeJobRunResponse"),
     type = "structure",
     members = {
         jobRun = schema.new({
@@ -2469,7 +2469,7 @@ M.DescribeJobRunOutput = schema.new({
 })
 
 M.DescribeManagedEndpointOutput = schema.new({
-    id = id.from(_N, "DescribeManagedEndpointOutput"),
+    id = id.from(_N, "DescribeManagedEndpointResponse"),
     type = "structure",
     members = {
         endpoint = schema.new({
@@ -2553,7 +2553,7 @@ M.JobTemplate = schema.new({
 })
 
 M.DescribeJobTemplateOutput = schema.new({
-    id = id.from(_N, "DescribeJobTemplateOutput"),
+    id = id.from(_N, "DescribeJobTemplateResponse"),
     type = "structure",
     members = {
         jobTemplate = schema.new({
@@ -2567,7 +2567,7 @@ M.DescribeJobTemplateOutput = schema.new({
 })
 
 M.ListJobRunsOutput = schema.new({
-    id = id.from(_N, "ListJobRunsOutput"),
+    id = id.from(_N, "ListJobRunsResponse"),
     type = "structure",
     members = {
         jobRuns = schema.new({
@@ -2587,7 +2587,7 @@ M.ListJobRunsOutput = schema.new({
 })
 
 M.ListManagedEndpointsOutput = schema.new({
-    id = id.from(_N, "ListManagedEndpointsOutput"),
+    id = id.from(_N, "ListManagedEndpointsResponse"),
     type = "structure",
     members = {
         endpoints = schema.new({
@@ -2607,7 +2607,7 @@ M.ListManagedEndpointsOutput = schema.new({
 })
 
 M.ListJobTemplatesOutput = schema.new({
-    id = id.from(_N, "ListJobTemplatesOutput"),
+    id = id.from(_N, "ListJobTemplatesResponse"),
     type = "structure",
     members = {
         templates = schema.new({
@@ -2625,5 +2625,19 @@ M.ListJobTemplatesOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

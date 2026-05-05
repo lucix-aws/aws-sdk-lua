@@ -2171,7 +2171,7 @@ M.AssetSummary = schema.new({
 })
 
 M.AssociateAssetsInput = schema.new({
-    id = id.from(_N, "AssociateAssetsInput"),
+    id = id.from(_N, "AssociateAssetsRequest"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -2215,7 +2215,7 @@ M.AssociateAssetsInput = schema.new({
 })
 
 M.AssociateAssetsOutput = schema.new({
-    id = id.from(_N, "AssociateAssetsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2482,7 +2482,7 @@ M.AssociatedAssetsSummary = schema.new({
 })
 
 M.AssociateTimeSeriesToAssetPropertyInput = schema.new({
-    id = id.from(_N, "AssociateTimeSeriesToAssetPropertyInput"),
+    id = id.from(_N, "AssociateTimeSeriesToAssetPropertyRequest"),
     type = "structure",
     members = {
         alias = schema.new({
@@ -2528,12 +2528,12 @@ M.AssociateTimeSeriesToAssetPropertyInput = schema.new({
 })
 
 M.AssociateTimeSeriesToAssetPropertyOutput = schema.new({
-    id = id.from(_N, "AssociateTimeSeriesToAssetPropertyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.BatchAssociateProjectAssetsInput = schema.new({
-    id = id.from(_N, "BatchAssociateProjectAssetsInput"),
+    id = id.from(_N, "BatchAssociateProjectAssetsRequest"),
     type = "structure",
     members = {
         projectId = schema.new({
@@ -2569,7 +2569,7 @@ M.BatchAssociateProjectAssetsInput = schema.new({
 })
 
 M.BatchAssociateProjectAssetsOutput = schema.new({
-    id = id.from(_N, "BatchAssociateProjectAssetsOutput"),
+    id = id.from(_N, "BatchAssociateProjectAssetsResponse"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -2583,7 +2583,7 @@ M.BatchAssociateProjectAssetsOutput = schema.new({
 })
 
 M.BatchDisassociateProjectAssetsInput = schema.new({
-    id = id.from(_N, "BatchDisassociateProjectAssetsInput"),
+    id = id.from(_N, "BatchDisassociateProjectAssetsRequest"),
     type = "structure",
     members = {
         projectId = schema.new({
@@ -2619,7 +2619,7 @@ M.BatchDisassociateProjectAssetsInput = schema.new({
 })
 
 M.BatchDisassociateProjectAssetsOutput = schema.new({
-    id = id.from(_N, "BatchDisassociateProjectAssetsOutput"),
+    id = id.from(_N, "BatchDisassociateProjectAssetsResponse"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -2717,7 +2717,7 @@ M.BatchGetAssetPropertyAggregatesEntry = schema.new({
 })
 
 M.BatchGetAssetPropertyAggregatesInput = schema.new({
-    id = id.from(_N, "BatchGetAssetPropertyAggregatesInput"),
+    id = id.from(_N, "BatchGetAssetPropertyAggregatesRequest"),
     type = "structure",
     members = {
         entries = schema.new({
@@ -2863,7 +2863,7 @@ M.BatchGetAssetPropertyAggregatesSuccessEntry = schema.new({
 })
 
 M.BatchGetAssetPropertyAggregatesOutput = schema.new({
-    id = id.from(_N, "BatchGetAssetPropertyAggregatesOutput"),
+    id = id.from(_N, "BatchGetAssetPropertyAggregatesResponse"),
     type = "structure",
     members = {
         errorEntries = schema.new({
@@ -2959,7 +2959,7 @@ M.BatchGetAssetPropertyValueEntry = schema.new({
 })
 
 M.BatchGetAssetPropertyValueInput = schema.new({
-    id = id.from(_N, "BatchGetAssetPropertyValueInput"),
+    id = id.from(_N, "BatchGetAssetPropertyValueRequest"),
     type = "structure",
     members = {
         entries = schema.new({
@@ -3096,7 +3096,7 @@ M.BatchGetAssetPropertyValueSuccessEntry = schema.new({
 })
 
 M.BatchGetAssetPropertyValueOutput = schema.new({
-    id = id.from(_N, "BatchGetAssetPropertyValueOutput"),
+    id = id.from(_N, "BatchGetAssetPropertyValueResponse"),
     type = "structure",
     members = {
         errorEntries = schema.new({
@@ -3198,7 +3198,7 @@ M.BatchGetAssetPropertyValueHistoryEntry = schema.new({
 })
 
 M.BatchGetAssetPropertyValueHistoryInput = schema.new({
-    id = id.from(_N, "BatchGetAssetPropertyValueHistoryInput"),
+    id = id.from(_N, "BatchGetAssetPropertyValueHistoryRequest"),
     type = "structure",
     members = {
         entries = schema.new({
@@ -3344,7 +3344,7 @@ M.BatchGetAssetPropertyValueHistorySuccessEntry = schema.new({
 })
 
 M.BatchGetAssetPropertyValueHistoryOutput = schema.new({
-    id = id.from(_N, "BatchGetAssetPropertyValueHistoryOutput"),
+    id = id.from(_N, "BatchGetAssetPropertyValueHistoryResponse"),
     type = "structure",
     members = {
         errorEntries = schema.new({
@@ -3431,7 +3431,7 @@ M.PutAssetPropertyValueEntry = schema.new({
 })
 
 M.BatchPutAssetPropertyValueInput = schema.new({
-    id = id.from(_N, "BatchPutAssetPropertyValueInput"),
+    id = id.from(_N, "BatchPutAssetPropertyValueRequest"),
     type = "structure",
     members = {
         enablePartialEntryProcessing = schema.new({
@@ -3515,7 +3515,7 @@ M.BatchPutAssetPropertyErrorEntry = schema.new({
 })
 
 M.BatchPutAssetPropertyValueOutput = schema.new({
-    id = id.from(_N, "BatchPutAssetPropertyValueOutput"),
+    id = id.from(_N, "BatchPutAssetPropertyValueResponse"),
     type = "structure",
     members = {
         errorEntries = schema.new({
@@ -3532,7 +3532,7 @@ M.BatchPutAssetPropertyValueOutput = schema.new({
 })
 
 M.CreateAccessPolicyInput = schema.new({
-    id = id.from(_N, "CreateAccessPolicyInput"),
+    id = id.from(_N, "CreateAccessPolicyRequest"),
     type = "structure",
     members = {
         accessPolicyIdentity = schema.new({
@@ -3585,7 +3585,7 @@ M.CreateAccessPolicyInput = schema.new({
 })
 
 M.CreateAccessPolicyOutput = schema.new({
-    id = id.from(_N, "CreateAccessPolicyOutput"),
+    id = id.from(_N, "CreateAccessPolicyResponse"),
     type = "structure",
     members = {
         accessPolicyId = schema.new({
@@ -3610,7 +3610,7 @@ M.CreateAccessPolicyOutput = schema.new({
 })
 
 M.CreateAssetInput = schema.new({
-    id = id.from(_N, "CreateAssetInput"),
+    id = id.from(_N, "CreateAssetRequest"),
     type = "structure",
     members = {
         assetName = schema.new({
@@ -3670,7 +3670,7 @@ M.CreateAssetInput = schema.new({
 })
 
 M.CreateAssetOutput = schema.new({
-    id = id.from(_N, "CreateAssetOutput"),
+    id = id.from(_N, "CreateAssetResponse"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -3705,7 +3705,7 @@ M.CreateAssetOutput = schema.new({
 })
 
 M.CreateAssetModelInput = schema.new({
-    id = id.from(_N, "CreateAssetModelInput"),
+    id = id.from(_N, "CreateAssetModelRequest"),
     type = "structure",
     members = {
         assetModelName = schema.new({
@@ -3783,7 +3783,7 @@ M.CreateAssetModelInput = schema.new({
 })
 
 M.CreateAssetModelOutput = schema.new({
-    id = id.from(_N, "CreateAssetModelOutput"),
+    id = id.from(_N, "CreateAssetModelResponse"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -3818,7 +3818,7 @@ M.CreateAssetModelOutput = schema.new({
 })
 
 M.CreateAssetModelCompositeModelInput = schema.new({
-    id = id.from(_N, "CreateAssetModelCompositeModelInput"),
+    id = id.from(_N, "CreateAssetModelCompositeModelRequest"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -3926,7 +3926,7 @@ M.CreateAssetModelCompositeModelInput = schema.new({
 })
 
 M.CreateAssetModelCompositeModelOutput = schema.new({
-    id = id.from(_N, "CreateAssetModelCompositeModelOutput"),
+    id = id.from(_N, "CreateAssetModelCompositeModelResponse"),
     type = "structure",
     members = {
         assetModelCompositeModelId = schema.new({
@@ -4115,7 +4115,7 @@ M.JobConfiguration = schema.new({
 })
 
 M.CreateBulkImportJobInput = schema.new({
-    id = id.from(_N, "CreateBulkImportJobInput"),
+    id = id.from(_N, "CreateBulkImportJobRequest"),
     type = "structure",
     members = {
         jobName = schema.new({
@@ -4182,7 +4182,7 @@ M.CreateBulkImportJobInput = schema.new({
 })
 
 M.CreateBulkImportJobOutput = schema.new({
-    id = id.from(_N, "CreateBulkImportJobOutput"),
+    id = id.from(_N, "CreateBulkImportJobResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -4278,7 +4278,7 @@ M.ComputationModelStatus = schema.new({
 })
 
 M.CreateComputationModelOutput = schema.new({
-    id = id.from(_N, "CreateComputationModelOutput"),
+    id = id.from(_N, "CreateComputationModelResponse"),
     type = "structure",
     members = {
         computationModelId = schema.new({
@@ -4313,7 +4313,7 @@ M.CreateComputationModelOutput = schema.new({
 })
 
 M.CreateDashboardInput = schema.new({
-    id = id.from(_N, "CreateDashboardInput"),
+    id = id.from(_N, "CreateDashboardRequest"),
     type = "structure",
     members = {
         projectId = schema.new({
@@ -4370,7 +4370,7 @@ M.CreateDashboardInput = schema.new({
 })
 
 M.CreateDashboardOutput = schema.new({
-    id = id.from(_N, "CreateDashboardOutput"),
+    id = id.from(_N, "CreateDashboardResponse"),
     type = "structure",
     members = {
         dashboardId = schema.new({
@@ -4466,7 +4466,7 @@ M.DatasetSource = schema.new({
 })
 
 M.CreateDatasetInput = schema.new({
-    id = id.from(_N, "CreateDatasetInput"),
+    id = id.from(_N, "CreateDatasetRequest"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -4544,7 +4544,7 @@ M.DatasetStatus = schema.new({
 })
 
 M.CreateDatasetOutput = schema.new({
-    id = id.from(_N, "CreateDatasetOutput"),
+    id = id.from(_N, "CreateDatasetResponse"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -4661,7 +4661,7 @@ M.GatewayPlatform = schema.new({
 })
 
 M.CreateGatewayInput = schema.new({
-    id = id.from(_N, "CreateGatewayInput"),
+    id = id.from(_N, "CreateGatewayRequest"),
     type = "structure",
     members = {
         gatewayName = schema.new({
@@ -4701,7 +4701,7 @@ M.CreateGatewayInput = schema.new({
 })
 
 M.CreateGatewayOutput = schema.new({
-    id = id.from(_N, "CreateGatewayOutput"),
+    id = id.from(_N, "CreateGatewayResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -4765,7 +4765,7 @@ M.PortalTypeEntry = schema.new({
 })
 
 M.CreatePortalInput = schema.new({
-    id = id.from(_N, "CreatePortalInput"),
+    id = id.from(_N, "CreatePortalRequest"),
     type = "structure",
     members = {
         portalName = schema.new({
@@ -4904,7 +4904,7 @@ M.PortalStatus = schema.new({
 })
 
 M.CreatePortalOutput = schema.new({
-    id = id.from(_N, "CreatePortalOutput"),
+    id = id.from(_N, "CreatePortalResponse"),
     type = "structure",
     members = {
         portalId = schema.new({
@@ -4957,7 +4957,7 @@ M.CreatePortalOutput = schema.new({
 })
 
 M.CreateProjectInput = schema.new({
-    id = id.from(_N, "CreateProjectInput"),
+    id = id.from(_N, "CreateProjectRequest"),
     type = "structure",
     members = {
         portalId = schema.new({
@@ -5005,7 +5005,7 @@ M.CreateProjectInput = schema.new({
 })
 
 M.CreateProjectOutput = schema.new({
-    id = id.from(_N, "CreateProjectOutput"),
+    id = id.from(_N, "CreateProjectResponse"),
     type = "structure",
     members = {
         projectId = schema.new({
@@ -5030,7 +5030,7 @@ M.CreateProjectOutput = schema.new({
 })
 
 M.DeleteAccessPolicyInput = schema.new({
-    id = id.from(_N, "DeleteAccessPolicyInput"),
+    id = id.from(_N, "DeleteAccessPolicyRequest"),
     type = "structure",
     members = {
         accessPolicyId = schema.new({
@@ -5057,12 +5057,12 @@ M.DeleteAccessPolicyInput = schema.new({
 })
 
 M.DeleteAccessPolicyOutput = schema.new({
-    id = id.from(_N, "DeleteAccessPolicyOutput"),
+    id = id.from(_N, "DeleteAccessPolicyResponse"),
     type = "structure",
 })
 
 M.DeleteAssetInput = schema.new({
-    id = id.from(_N, "DeleteAssetInput"),
+    id = id.from(_N, "DeleteAssetRequest"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -5089,7 +5089,7 @@ M.DeleteAssetInput = schema.new({
 })
 
 M.DeleteAssetOutput = schema.new({
-    id = id.from(_N, "DeleteAssetOutput"),
+    id = id.from(_N, "DeleteAssetResponse"),
     type = "structure",
     members = {
         assetStatus = schema.new({
@@ -5106,7 +5106,7 @@ M.DeleteAssetOutput = schema.new({
 })
 
 M.DeleteAssetModelInput = schema.new({
-    id = id.from(_N, "DeleteAssetModelInput"),
+    id = id.from(_N, "DeleteAssetModelRequest"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -5160,7 +5160,7 @@ M.DeleteAssetModelInput = schema.new({
 })
 
 M.DeleteAssetModelOutput = schema.new({
-    id = id.from(_N, "DeleteAssetModelOutput"),
+    id = id.from(_N, "DeleteAssetModelResponse"),
     type = "structure",
     members = {
         assetModelStatus = schema.new({
@@ -5177,7 +5177,7 @@ M.DeleteAssetModelOutput = schema.new({
 })
 
 M.DeleteAssetModelCompositeModelInput = schema.new({
-    id = id.from(_N, "DeleteAssetModelCompositeModelInput"),
+    id = id.from(_N, "DeleteAssetModelCompositeModelRequest"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -5241,7 +5241,7 @@ M.DeleteAssetModelCompositeModelInput = schema.new({
 })
 
 M.DeleteAssetModelCompositeModelOutput = schema.new({
-    id = id.from(_N, "DeleteAssetModelCompositeModelOutput"),
+    id = id.from(_N, "DeleteAssetModelCompositeModelResponse"),
     type = "structure",
     members = {
         assetModelStatus = schema.new({
@@ -5258,7 +5258,7 @@ M.DeleteAssetModelCompositeModelOutput = schema.new({
 })
 
 M.DeleteAssetModelInterfaceRelationshipInput = schema.new({
-    id = id.from(_N, "DeleteAssetModelInterfaceRelationshipInput"),
+    id = id.from(_N, "DeleteAssetModelInterfaceRelationshipRequest"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -5295,7 +5295,7 @@ M.DeleteAssetModelInterfaceRelationshipInput = schema.new({
 })
 
 M.DeleteAssetModelInterfaceRelationshipOutput = schema.new({
-    id = id.from(_N, "DeleteAssetModelInterfaceRelationshipOutput"),
+    id = id.from(_N, "DeleteAssetModelInterfaceRelationshipResponse"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -5339,7 +5339,7 @@ M.DeleteAssetModelInterfaceRelationshipOutput = schema.new({
 })
 
 M.DeleteComputationModelInput = schema.new({
-    id = id.from(_N, "DeleteComputationModelInput"),
+    id = id.from(_N, "DeleteComputationModelRequest"),
     type = "structure",
     members = {
         computationModelId = schema.new({
@@ -5366,7 +5366,7 @@ M.DeleteComputationModelInput = schema.new({
 })
 
 M.DeleteComputationModelOutput = schema.new({
-    id = id.from(_N, "DeleteComputationModelOutput"),
+    id = id.from(_N, "DeleteComputationModelResponse"),
     type = "structure",
     members = {
         computationModelStatus = schema.new({
@@ -5383,7 +5383,7 @@ M.DeleteComputationModelOutput = schema.new({
 })
 
 M.DeleteDashboardInput = schema.new({
-    id = id.from(_N, "DeleteDashboardInput"),
+    id = id.from(_N, "DeleteDashboardRequest"),
     type = "structure",
     members = {
         dashboardId = schema.new({
@@ -5410,12 +5410,12 @@ M.DeleteDashboardInput = schema.new({
 })
 
 M.DeleteDashboardOutput = schema.new({
-    id = id.from(_N, "DeleteDashboardOutput"),
+    id = id.from(_N, "DeleteDashboardResponse"),
     type = "structure",
 })
 
 M.DeleteDatasetInput = schema.new({
-    id = id.from(_N, "DeleteDatasetInput"),
+    id = id.from(_N, "DeleteDatasetRequest"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -5442,7 +5442,7 @@ M.DeleteDatasetInput = schema.new({
 })
 
 M.DeleteDatasetOutput = schema.new({
-    id = id.from(_N, "DeleteDatasetOutput"),
+    id = id.from(_N, "DeleteDatasetResponse"),
     type = "structure",
     members = {
         datasetStatus = schema.new({
@@ -5459,7 +5459,7 @@ M.DeleteDatasetOutput = schema.new({
 })
 
 M.DeleteGatewayInput = schema.new({
-    id = id.from(_N, "DeleteGatewayInput"),
+    id = id.from(_N, "DeleteGatewayRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -5476,12 +5476,12 @@ M.DeleteGatewayInput = schema.new({
 })
 
 M.DeleteGatewayOutput = schema.new({
-    id = id.from(_N, "DeleteGatewayOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DeletePortalInput = schema.new({
-    id = id.from(_N, "DeletePortalInput"),
+    id = id.from(_N, "DeletePortalRequest"),
     type = "structure",
     members = {
         portalId = schema.new({
@@ -5508,7 +5508,7 @@ M.DeletePortalInput = schema.new({
 })
 
 M.DeletePortalOutput = schema.new({
-    id = id.from(_N, "DeletePortalOutput"),
+    id = id.from(_N, "DeletePortalResponse"),
     type = "structure",
     members = {
         portalStatus = schema.new({
@@ -5525,7 +5525,7 @@ M.DeletePortalOutput = schema.new({
 })
 
 M.DeleteProjectInput = schema.new({
-    id = id.from(_N, "DeleteProjectInput"),
+    id = id.from(_N, "DeleteProjectRequest"),
     type = "structure",
     members = {
         projectId = schema.new({
@@ -5552,12 +5552,12 @@ M.DeleteProjectInput = schema.new({
 })
 
 M.DeleteProjectOutput = schema.new({
-    id = id.from(_N, "DeleteProjectOutput"),
+    id = id.from(_N, "DeleteProjectResponse"),
     type = "structure",
 })
 
 M.DeleteTimeSeriesInput = schema.new({
-    id = id.from(_N, "DeleteTimeSeriesInput"),
+    id = id.from(_N, "DeleteTimeSeriesRequest"),
     type = "structure",
     members = {
         alias = schema.new({
@@ -5600,12 +5600,12 @@ M.DeleteTimeSeriesInput = schema.new({
 })
 
 M.DeleteTimeSeriesOutput = schema.new({
-    id = id.from(_N, "DeleteTimeSeriesOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DescribeAccessPolicyInput = schema.new({
-    id = id.from(_N, "DescribeAccessPolicyInput"),
+    id = id.from(_N, "DescribeAccessPolicyRequest"),
     type = "structure",
     members = {
         accessPolicyId = schema.new({
@@ -5622,7 +5622,7 @@ M.DescribeAccessPolicyInput = schema.new({
 })
 
 M.DescribeAccessPolicyOutput = schema.new({
-    id = id.from(_N, "DescribeAccessPolicyOutput"),
+    id = id.from(_N, "DescribeAccessPolicyResponse"),
     type = "structure",
     members = {
         accessPolicyId = schema.new({
@@ -5694,7 +5694,7 @@ M.DescribeAccessPolicyOutput = schema.new({
 })
 
 M.DescribeActionInput = schema.new({
-    id = id.from(_N, "DescribeActionInput"),
+    id = id.from(_N, "DescribeActionRequest"),
     type = "structure",
     members = {
         actionId = schema.new({
@@ -5711,7 +5711,7 @@ M.DescribeActionInput = schema.new({
 })
 
 M.DescribeActionOutput = schema.new({
-    id = id.from(_N, "DescribeActionOutput"),
+    id = id.from(_N, "DescribeActionResponse"),
     type = "structure",
     members = {
         actionId = schema.new({
@@ -5772,7 +5772,7 @@ M.DescribeActionOutput = schema.new({
 })
 
 M.DescribeAssetInput = schema.new({
-    id = id.from(_N, "DescribeAssetInput"),
+    id = id.from(_N, "DescribeAssetRequest"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -5799,7 +5799,7 @@ M.DescribeAssetInput = schema.new({
 })
 
 M.DescribeAssetOutput = schema.new({
-    id = id.from(_N, "DescribeAssetOutput"),
+    id = id.from(_N, "DescribeAssetResponse"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -5916,7 +5916,7 @@ M.DescribeAssetOutput = schema.new({
 })
 
 M.DescribeAssetCompositeModelInput = schema.new({
-    id = id.from(_N, "DescribeAssetCompositeModelInput"),
+    id = id.from(_N, "DescribeAssetCompositeModelRequest"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -5943,7 +5943,7 @@ M.DescribeAssetCompositeModelInput = schema.new({
 })
 
 M.DescribeAssetCompositeModelOutput = schema.new({
-    id = id.from(_N, "DescribeAssetCompositeModelOutput"),
+    id = id.from(_N, "DescribeAssetCompositeModelResponse"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -6038,7 +6038,7 @@ M.DescribeAssetCompositeModelOutput = schema.new({
 })
 
 M.DescribeAssetModelInput = schema.new({
-    id = id.from(_N, "DescribeAssetModelInput"),
+    id = id.from(_N, "DescribeAssetModelRequest"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -6090,7 +6090,7 @@ M.InterfaceRelationship = schema.new({
 })
 
 M.DescribeAssetModelOutput = schema.new({
-    id = id.from(_N, "DescribeAssetModelOutput"),
+    id = id.from(_N, "DescribeAssetModelResponse"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -6229,7 +6229,7 @@ M.DescribeAssetModelOutput = schema.new({
 })
 
 M.DescribeAssetModelCompositeModelInput = schema.new({
-    id = id.from(_N, "DescribeAssetModelCompositeModelInput"),
+    id = id.from(_N, "DescribeAssetModelCompositeModelRequest"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -6292,7 +6292,7 @@ M.CompositionDetails = schema.new({
 })
 
 M.DescribeAssetModelCompositeModelOutput = schema.new({
-    id = id.from(_N, "DescribeAssetModelCompositeModelOutput"),
+    id = id.from(_N, "DescribeAssetModelCompositeModelResponse"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -6394,7 +6394,7 @@ M.DescribeAssetModelCompositeModelOutput = schema.new({
 })
 
 M.DescribeAssetModelInterfaceRelationshipInput = schema.new({
-    id = id.from(_N, "DescribeAssetModelInterfaceRelationshipInput"),
+    id = id.from(_N, "DescribeAssetModelInterfaceRelationshipRequest"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -6471,7 +6471,7 @@ M.PropertyMapping = schema.new({
 })
 
 M.DescribeAssetModelInterfaceRelationshipOutput = schema.new({
-    id = id.from(_N, "DescribeAssetModelInterfaceRelationshipOutput"),
+    id = id.from(_N, "DescribeAssetModelInterfaceRelationshipResponse"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -6516,7 +6516,7 @@ M.DescribeAssetModelInterfaceRelationshipOutput = schema.new({
 })
 
 M.DescribeAssetPropertyInput = schema.new({
-    id = id.from(_N, "DescribeAssetPropertyInput"),
+    id = id.from(_N, "DescribeAssetPropertyRequest"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -6663,7 +6663,7 @@ M.CompositeModelProperty = schema.new({
 })
 
 M.DescribeAssetPropertyOutput = schema.new({
-    id = id.from(_N, "DescribeAssetPropertyOutput"),
+    id = id.from(_N, "DescribeAssetPropertyResponse"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -6717,7 +6717,7 @@ M.DescribeAssetPropertyOutput = schema.new({
 })
 
 M.DescribeBulkImportJobInput = schema.new({
-    id = id.from(_N, "DescribeBulkImportJobInput"),
+    id = id.from(_N, "DescribeBulkImportJobRequest"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -6734,7 +6734,7 @@ M.DescribeBulkImportJobInput = schema.new({
 })
 
 M.DescribeBulkImportJobOutput = schema.new({
-    id = id.from(_N, "DescribeBulkImportJobOutput"),
+    id = id.from(_N, "DescribeBulkImportJobResponse"),
     type = "structure",
     members = {
         jobId = schema.new({
@@ -6837,7 +6837,7 @@ M.DescribeBulkImportJobOutput = schema.new({
 })
 
 M.DescribeComputationModelInput = schema.new({
-    id = id.from(_N, "DescribeComputationModelInput"),
+    id = id.from(_N, "DescribeComputationModelRequest"),
     type = "structure",
     members = {
         computationModelId = schema.new({
@@ -6863,7 +6863,7 @@ M.DescribeComputationModelInput = schema.new({
 })
 
 M.DescribeComputationModelExecutionSummaryInput = schema.new({
-    id = id.from(_N, "DescribeComputationModelExecutionSummaryInput"),
+    id = id.from(_N, "DescribeComputationModelExecutionSummaryRequest"),
     type = "structure",
     members = {
         computationModelId = schema.new({
@@ -6898,7 +6898,7 @@ M.DescribeComputationModelExecutionSummaryInput = schema.new({
 })
 
 M.DescribeComputationModelExecutionSummaryOutput = schema.new({
-    id = id.from(_N, "DescribeComputationModelExecutionSummaryOutput"),
+    id = id.from(_N, "DescribeComputationModelExecutionSummaryResponse"),
     type = "structure",
     members = {
         computationModelId = schema.new({
@@ -6932,7 +6932,7 @@ M.DescribeComputationModelExecutionSummaryOutput = schema.new({
 })
 
 M.DescribeDashboardInput = schema.new({
-    id = id.from(_N, "DescribeDashboardInput"),
+    id = id.from(_N, "DescribeDashboardRequest"),
     type = "structure",
     members = {
         dashboardId = schema.new({
@@ -6949,7 +6949,7 @@ M.DescribeDashboardInput = schema.new({
 })
 
 M.DescribeDashboardOutput = schema.new({
-    id = id.from(_N, "DescribeDashboardOutput"),
+    id = id.from(_N, "DescribeDashboardResponse"),
     type = "structure",
     members = {
         dashboardId = schema.new({
@@ -7025,7 +7025,7 @@ M.DescribeDashboardOutput = schema.new({
 })
 
 M.DescribeDatasetInput = schema.new({
-    id = id.from(_N, "DescribeDatasetInput"),
+    id = id.from(_N, "DescribeDatasetRequest"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -7042,7 +7042,7 @@ M.DescribeDatasetInput = schema.new({
 })
 
 M.DescribeDatasetOutput = schema.new({
-    id = id.from(_N, "DescribeDatasetOutput"),
+    id = id.from(_N, "DescribeDatasetResponse"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -7129,7 +7129,7 @@ M.DescribeDatasetOutput = schema.new({
 })
 
 M.DescribeDefaultEncryptionConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeDefaultEncryptionConfigurationInput"),
+    id = id.from(_N, "DescribeDefaultEncryptionConfigurationRequest"),
     type = "structure",
 })
 
@@ -7182,7 +7182,7 @@ M.ConfigurationStatus = schema.new({
 })
 
 M.DescribeDefaultEncryptionConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeDefaultEncryptionConfigurationOutput"),
+    id = id.from(_N, "DescribeDefaultEncryptionConfigurationResponse"),
     type = "structure",
     members = {
         encryptionType = schema.new({
@@ -7214,7 +7214,7 @@ M.DescribeDefaultEncryptionConfigurationOutput = schema.new({
 })
 
 M.DescribeExecutionInput = schema.new({
-    id = id.from(_N, "DescribeExecutionInput"),
+    id = id.from(_N, "DescribeExecutionRequest"),
     type = "structure",
     members = {
         executionId = schema.new({
@@ -7247,7 +7247,7 @@ M.ExecutionStatus = schema.new({
 })
 
 M.DescribeExecutionOutput = schema.new({
-    id = id.from(_N, "DescribeExecutionOutput"),
+    id = id.from(_N, "DescribeExecutionResponse"),
     type = "structure",
     members = {
         executionId = schema.new({
@@ -7342,7 +7342,7 @@ M.DescribeExecutionOutput = schema.new({
 })
 
 M.DescribeGatewayInput = schema.new({
-    id = id.from(_N, "DescribeGatewayInput"),
+    id = id.from(_N, "DescribeGatewayRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -7384,7 +7384,7 @@ M.GatewayCapabilitySummary = schema.new({
 })
 
 M.DescribeGatewayOutput = schema.new({
-    id = id.from(_N, "DescribeGatewayOutput"),
+    id = id.from(_N, "DescribeGatewayResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -7459,7 +7459,7 @@ M.DescribeGatewayOutput = schema.new({
 })
 
 M.DescribeGatewayCapabilityConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeGatewayCapabilityConfigurationInput"),
+    id = id.from(_N, "DescribeGatewayCapabilityConfigurationRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -7486,7 +7486,7 @@ M.DescribeGatewayCapabilityConfigurationInput = schema.new({
 })
 
 M.DescribeGatewayCapabilityConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeGatewayCapabilityConfigurationOutput"),
+    id = id.from(_N, "DescribeGatewayCapabilityConfigurationResponse"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -7529,7 +7529,7 @@ M.DescribeGatewayCapabilityConfigurationOutput = schema.new({
 })
 
 M.DescribeLoggingOptionsInput = schema.new({
-    id = id.from(_N, "DescribeLoggingOptionsInput"),
+    id = id.from(_N, "DescribeLoggingOptionsRequest"),
     type = "structure",
 })
 
@@ -7550,7 +7550,7 @@ M.LoggingOptions = schema.new({
 })
 
 M.DescribeLoggingOptionsOutput = schema.new({
-    id = id.from(_N, "DescribeLoggingOptionsOutput"),
+    id = id.from(_N, "DescribeLoggingOptionsResponse"),
     type = "structure",
     members = {
         loggingOptions = schema.new({
@@ -7567,7 +7567,7 @@ M.DescribeLoggingOptionsOutput = schema.new({
 })
 
 M.DescribePortalInput = schema.new({
-    id = id.from(_N, "DescribePortalInput"),
+    id = id.from(_N, "DescribePortalRequest"),
     type = "structure",
     members = {
         portalId = schema.new({
@@ -7609,7 +7609,7 @@ M.ImageLocation = schema.new({
 })
 
 M.DescribePortalOutput = schema.new({
-    id = id.from(_N, "DescribePortalOutput"),
+    id = id.from(_N, "DescribePortalResponse"),
     type = "structure",
     members = {
         portalId = schema.new({
@@ -7750,7 +7750,7 @@ M.DescribePortalOutput = schema.new({
 })
 
 M.DescribeProjectInput = schema.new({
-    id = id.from(_N, "DescribeProjectInput"),
+    id = id.from(_N, "DescribeProjectRequest"),
     type = "structure",
     members = {
         projectId = schema.new({
@@ -7767,7 +7767,7 @@ M.DescribeProjectInput = schema.new({
 })
 
 M.DescribeProjectOutput = schema.new({
-    id = id.from(_N, "DescribeProjectOutput"),
+    id = id.from(_N, "DescribeProjectResponse"),
     type = "structure",
     members = {
         projectId = schema.new({
@@ -7834,7 +7834,7 @@ M.DescribeProjectOutput = schema.new({
 })
 
 M.DescribeStorageConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeStorageConfigurationInput"),
+    id = id.from(_N, "DescribeStorageConfigurationRequest"),
     type = "structure",
 })
 
@@ -7919,7 +7919,7 @@ M.WarmTierRetentionPeriod = schema.new({
 })
 
 M.DescribeStorageConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeStorageConfigurationOutput"),
+    id = id.from(_N, "DescribeStorageConfigurationResponse"),
     type = "structure",
     members = {
         storageType = schema.new({
@@ -7990,7 +7990,7 @@ M.DescribeStorageConfigurationOutput = schema.new({
 })
 
 M.DescribeTimeSeriesInput = schema.new({
-    id = id.from(_N, "DescribeTimeSeriesInput"),
+    id = id.from(_N, "DescribeTimeSeriesRequest"),
     type = "structure",
     members = {
         alias = schema.new({
@@ -8024,7 +8024,7 @@ M.DescribeTimeSeriesInput = schema.new({
 })
 
 M.DescribeTimeSeriesOutput = schema.new({
-    id = id.from(_N, "DescribeTimeSeriesOutput"),
+    id = id.from(_N, "DescribeTimeSeriesResponse"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -8100,7 +8100,7 @@ M.DescribeTimeSeriesOutput = schema.new({
 })
 
 M.DisassociateAssetsInput = schema.new({
-    id = id.from(_N, "DisassociateAssetsInput"),
+    id = id.from(_N, "DisassociateAssetsRequest"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -8144,12 +8144,12 @@ M.DisassociateAssetsInput = schema.new({
 })
 
 M.DisassociateAssetsOutput = schema.new({
-    id = id.from(_N, "DisassociateAssetsOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.DisassociateTimeSeriesFromAssetPropertyInput = schema.new({
-    id = id.from(_N, "DisassociateTimeSeriesFromAssetPropertyInput"),
+    id = id.from(_N, "DisassociateTimeSeriesFromAssetPropertyRequest"),
     type = "structure",
     members = {
         alias = schema.new({
@@ -8195,12 +8195,12 @@ M.DisassociateTimeSeriesFromAssetPropertyInput = schema.new({
 })
 
 M.DisassociateTimeSeriesFromAssetPropertyOutput = schema.new({
-    id = id.from(_N, "DisassociateTimeSeriesFromAssetPropertyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.ExecuteActionInput = schema.new({
-    id = id.from(_N, "ExecuteActionInput"),
+    id = id.from(_N, "ExecuteActionRequest"),
     type = "structure",
     members = {
         targetResource = schema.new({
@@ -8249,7 +8249,7 @@ M.ExecuteActionInput = schema.new({
 })
 
 M.ExecuteActionOutput = schema.new({
-    id = id.from(_N, "ExecuteActionOutput"),
+    id = id.from(_N, "ExecuteActionResponse"),
     type = "structure",
     members = {
         actionId = schema.new({
@@ -8265,7 +8265,7 @@ M.ExecuteActionOutput = schema.new({
 })
 
 M.ExecuteQueryInput = schema.new({
-    id = id.from(_N, "ExecuteQueryInput"),
+    id = id.from(_N, "ExecuteQueryRequest"),
     type = "structure",
     members = {
         queryStatement = schema.new({
@@ -8367,7 +8367,7 @@ M.ValidationException = schema.new({
 })
 
 M.GetAssetPropertyAggregatesInput = schema.new({
-    id = id.from(_N, "GetAssetPropertyAggregatesInput"),
+    id = id.from(_N, "GetAssetPropertyAggregatesRequest"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -8479,7 +8479,7 @@ M.GetAssetPropertyAggregatesInput = schema.new({
 })
 
 M.GetAssetPropertyAggregatesOutput = schema.new({
-    id = id.from(_N, "GetAssetPropertyAggregatesOutput"),
+    id = id.from(_N, "GetAssetPropertyAggregatesResponse"),
     type = "structure",
     members = {
         aggregatedValues = schema.new({
@@ -8502,7 +8502,7 @@ M.GetAssetPropertyAggregatesOutput = schema.new({
 })
 
 M.GetAssetPropertyValueInput = schema.new({
-    id = id.from(_N, "GetAssetPropertyValueInput"),
+    id = id.from(_N, "GetAssetPropertyValueRequest"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -8536,7 +8536,7 @@ M.GetAssetPropertyValueInput = schema.new({
 })
 
 M.GetAssetPropertyValueOutput = schema.new({
-    id = id.from(_N, "GetAssetPropertyValueOutput"),
+    id = id.from(_N, "GetAssetPropertyValueResponse"),
     type = "structure",
     members = {
         propertyValue = schema.new({
@@ -8550,7 +8550,7 @@ M.GetAssetPropertyValueOutput = schema.new({
 })
 
 M.GetAssetPropertyValueHistoryInput = schema.new({
-    id = id.from(_N, "GetAssetPropertyValueHistoryInput"),
+    id = id.from(_N, "GetAssetPropertyValueHistoryRequest"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -8639,7 +8639,7 @@ M.GetAssetPropertyValueHistoryInput = schema.new({
 })
 
 M.GetAssetPropertyValueHistoryOutput = schema.new({
-    id = id.from(_N, "GetAssetPropertyValueHistoryOutput"),
+    id = id.from(_N, "GetAssetPropertyValueHistoryResponse"),
     type = "structure",
     members = {
         assetPropertyValueHistory = schema.new({
@@ -8662,7 +8662,7 @@ M.GetAssetPropertyValueHistoryOutput = schema.new({
 })
 
 M.GetInterpolatedAssetPropertyValuesInput = schema.new({
-    id = id.from(_N, "GetInterpolatedAssetPropertyValuesInput"),
+    id = id.from(_N, "GetInterpolatedAssetPropertyValuesRequest"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -8818,7 +8818,7 @@ M.InterpolatedAssetPropertyValue = schema.new({
 })
 
 M.GetInterpolatedAssetPropertyValuesOutput = schema.new({
-    id = id.from(_N, "GetInterpolatedAssetPropertyValuesOutput"),
+    id = id.from(_N, "GetInterpolatedAssetPropertyValuesResponse"),
     type = "structure",
     members = {
         interpolatedAssetPropertyValues = schema.new({
@@ -8841,7 +8841,7 @@ M.GetInterpolatedAssetPropertyValuesOutput = schema.new({
 })
 
 M.InvokeAssistantInput = schema.new({
-    id = id.from(_N, "InvokeAssistantInput"),
+    id = id.from(_N, "InvokeAssistantRequest"),
     type = "structure",
     members = {
         conversationId = schema.new({
@@ -9076,7 +9076,7 @@ M.ResponseStream = schema.new({
 })
 
 M.InvokeAssistantOutput = schema.new({
-    id = id.from(_N, "InvokeAssistantOutput"),
+    id = id.from(_N, "InvokeAssistantResponse"),
     type = "structure",
     members = {
         body = schema.new({
@@ -9104,7 +9104,7 @@ M.InvokeAssistantOutput = schema.new({
 })
 
 M.ListAccessPoliciesInput = schema.new({
-    id = id.from(_N, "ListAccessPoliciesInput"),
+    id = id.from(_N, "ListAccessPoliciesRequest"),
     type = "structure",
     members = {
         identityType = schema.new({
@@ -9174,7 +9174,7 @@ M.ListAccessPoliciesInput = schema.new({
 })
 
 M.ListAccessPoliciesOutput = schema.new({
-    id = id.from(_N, "ListAccessPoliciesOutput"),
+    id = id.from(_N, "ListAccessPoliciesResponse"),
     type = "structure",
     members = {
         accessPolicySummaries = schema.new({
@@ -9197,7 +9197,7 @@ M.ListAccessPoliciesOutput = schema.new({
 })
 
 M.ListActionsInput = schema.new({
-    id = id.from(_N, "ListActionsInput"),
+    id = id.from(_N, "ListActionsRequest"),
     type = "structure",
     members = {
         targetResourceType = schema.new({
@@ -9260,7 +9260,7 @@ M.ListActionsInput = schema.new({
 })
 
 M.ListActionsOutput = schema.new({
-    id = id.from(_N, "ListActionsOutput"),
+    id = id.from(_N, "ListActionsResponse"),
     type = "structure",
     members = {
         actionSummaries = schema.new({
@@ -9286,7 +9286,7 @@ M.ListActionsOutput = schema.new({
 })
 
 M.ListAssetModelCompositeModelsInput = schema.new({
-    id = id.from(_N, "ListAssetModelCompositeModelsInput"),
+    id = id.from(_N, "ListAssetModelCompositeModelsRequest"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -9330,7 +9330,7 @@ M.ListAssetModelCompositeModelsInput = schema.new({
 })
 
 M.ListAssetModelCompositeModelsOutput = schema.new({
-    id = id.from(_N, "ListAssetModelCompositeModelsOutput"),
+    id = id.from(_N, "ListAssetModelCompositeModelsResponse"),
     type = "structure",
     members = {
         assetModelCompositeModelSummaries = schema.new({
@@ -9353,7 +9353,7 @@ M.ListAssetModelCompositeModelsOutput = schema.new({
 })
 
 M.ListAssetModelPropertiesInput = schema.new({
-    id = id.from(_N, "ListAssetModelPropertiesInput"),
+    id = id.from(_N, "ListAssetModelPropertiesRequest"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -9406,7 +9406,7 @@ M.ListAssetModelPropertiesInput = schema.new({
 })
 
 M.ListAssetModelPropertiesOutput = schema.new({
-    id = id.from(_N, "ListAssetModelPropertiesOutput"),
+    id = id.from(_N, "ListAssetModelPropertiesResponse"),
     type = "structure",
     members = {
         assetModelPropertySummaries = schema.new({
@@ -9429,7 +9429,7 @@ M.ListAssetModelPropertiesOutput = schema.new({
 })
 
 M.ListAssetModelsInput = schema.new({
-    id = id.from(_N, "ListAssetModelsInput"),
+    id = id.from(_N, "ListAssetModelsRequest"),
     type = "structure",
     members = {
         assetModelTypes = schema.new({
@@ -9473,7 +9473,7 @@ M.ListAssetModelsInput = schema.new({
 })
 
 M.ListAssetModelsOutput = schema.new({
-    id = id.from(_N, "ListAssetModelsOutput"),
+    id = id.from(_N, "ListAssetModelsResponse"),
     type = "structure",
     members = {
         assetModelSummaries = schema.new({
@@ -9496,7 +9496,7 @@ M.ListAssetModelsOutput = schema.new({
 })
 
 M.ListAssetPropertiesInput = schema.new({
-    id = id.from(_N, "ListAssetPropertiesInput"),
+    id = id.from(_N, "ListAssetPropertiesRequest"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -9540,7 +9540,7 @@ M.ListAssetPropertiesInput = schema.new({
 })
 
 M.ListAssetPropertiesOutput = schema.new({
-    id = id.from(_N, "ListAssetPropertiesOutput"),
+    id = id.from(_N, "ListAssetPropertiesResponse"),
     type = "structure",
     members = {
         assetPropertySummaries = schema.new({
@@ -9563,7 +9563,7 @@ M.ListAssetPropertiesOutput = schema.new({
 })
 
 M.ListAssetRelationshipsInput = schema.new({
-    id = id.from(_N, "ListAssetRelationshipsInput"),
+    id = id.from(_N, "ListAssetRelationshipsRequest"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -9608,7 +9608,7 @@ M.ListAssetRelationshipsInput = schema.new({
 })
 
 M.ListAssetRelationshipsOutput = schema.new({
-    id = id.from(_N, "ListAssetRelationshipsOutput"),
+    id = id.from(_N, "ListAssetRelationshipsResponse"),
     type = "structure",
     members = {
         assetRelationshipSummaries = schema.new({
@@ -9631,7 +9631,7 @@ M.ListAssetRelationshipsOutput = schema.new({
 })
 
 M.ListAssetsInput = schema.new({
-    id = id.from(_N, "ListAssetsInput"),
+    id = id.from(_N, "ListAssetsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -9674,7 +9674,7 @@ M.ListAssetsInput = schema.new({
 })
 
 M.ListAssetsOutput = schema.new({
-    id = id.from(_N, "ListAssetsOutput"),
+    id = id.from(_N, "ListAssetsResponse"),
     type = "structure",
     members = {
         assetSummaries = schema.new({
@@ -9697,7 +9697,7 @@ M.ListAssetsOutput = schema.new({
 })
 
 M.ListAssociatedAssetsInput = schema.new({
-    id = id.from(_N, "ListAssociatedAssetsInput"),
+    id = id.from(_N, "ListAssociatedAssetsRequest"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -9750,7 +9750,7 @@ M.ListAssociatedAssetsInput = schema.new({
 })
 
 M.ListAssociatedAssetsOutput = schema.new({
-    id = id.from(_N, "ListAssociatedAssetsOutput"),
+    id = id.from(_N, "ListAssociatedAssetsResponse"),
     type = "structure",
     members = {
         assetSummaries = schema.new({
@@ -9773,7 +9773,7 @@ M.ListAssociatedAssetsOutput = schema.new({
 })
 
 M.ListBulkImportJobsInput = schema.new({
-    id = id.from(_N, "ListBulkImportJobsInput"),
+    id = id.from(_N, "ListBulkImportJobsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -9841,7 +9841,7 @@ M.JobSummary = schema.new({
 })
 
 M.ListBulkImportJobsOutput = schema.new({
-    id = id.from(_N, "ListBulkImportJobsOutput"),
+    id = id.from(_N, "ListBulkImportJobsResponse"),
     type = "structure",
     members = {
         jobSummaries = schema.new({
@@ -9864,7 +9864,7 @@ M.ListBulkImportJobsOutput = schema.new({
 })
 
 M.ListCompositionRelationshipsInput = schema.new({
-    id = id.from(_N, "ListCompositionRelationshipsInput"),
+    id = id.from(_N, "ListCompositionRelationshipsRequest"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -9933,7 +9933,7 @@ M.CompositionRelationshipSummary = schema.new({
 })
 
 M.ListCompositionRelationshipsOutput = schema.new({
-    id = id.from(_N, "ListCompositionRelationshipsOutput"),
+    id = id.from(_N, "ListCompositionRelationshipsResponse"),
     type = "structure",
     members = {
         compositionRelationshipSummaries = schema.new({
@@ -9991,7 +9991,7 @@ M.DataBindingValueFilter = schema.new({
 })
 
 M.ListComputationModelDataBindingUsagesInput = schema.new({
-    id = id.from(_N, "ListComputationModelDataBindingUsagesInput"),
+    id = id.from(_N, "ListComputationModelDataBindingUsagesRequest"),
     type = "structure",
     members = {
         dataBindingValueFilter = schema.new({
@@ -10085,7 +10085,7 @@ M.ComputationModelDataBindingUsageSummary = schema.new({
 })
 
 M.ListComputationModelDataBindingUsagesOutput = schema.new({
-    id = id.from(_N, "ListComputationModelDataBindingUsagesOutput"),
+    id = id.from(_N, "ListComputationModelDataBindingUsagesResponse"),
     type = "structure",
     members = {
         dataBindingUsageSummaries = schema.new({
@@ -10108,7 +10108,7 @@ M.ListComputationModelDataBindingUsagesOutput = schema.new({
 })
 
 M.ListComputationModelResolveToResourcesInput = schema.new({
-    id = id.from(_N, "ListComputationModelResolveToResourcesInput"),
+    id = id.from(_N, "ListComputationModelResolveToResourcesRequest"),
     type = "structure",
     members = {
         computationModelId = schema.new({
@@ -10157,7 +10157,7 @@ M.ComputationModelResolveToResourceSummary = schema.new({
 })
 
 M.ListComputationModelResolveToResourcesOutput = schema.new({
-    id = id.from(_N, "ListComputationModelResolveToResourcesOutput"),
+    id = id.from(_N, "ListComputationModelResolveToResourcesResponse"),
     type = "structure",
     members = {
         computationModelResolveToResourceSummaries = schema.new({
@@ -10180,7 +10180,7 @@ M.ListComputationModelResolveToResourcesOutput = schema.new({
 })
 
 M.ListComputationModelsInput = schema.new({
-    id = id.from(_N, "ListComputationModelsInput"),
+    id = id.from(_N, "ListComputationModelsRequest"),
     type = "structure",
     members = {
         computationModelType = schema.new({
@@ -10300,7 +10300,7 @@ M.ComputationModelSummary = schema.new({
 })
 
 M.ListComputationModelsOutput = schema.new({
-    id = id.from(_N, "ListComputationModelsOutput"),
+    id = id.from(_N, "ListComputationModelsResponse"),
     type = "structure",
     members = {
         computationModelSummaries = schema.new({
@@ -10323,7 +10323,7 @@ M.ListComputationModelsOutput = schema.new({
 })
 
 M.ListDashboardsInput = schema.new({
-    id = id.from(_N, "ListDashboardsInput"),
+    id = id.from(_N, "ListDashboardsRequest"),
     type = "structure",
     members = {
         projectId = schema.new({
@@ -10401,7 +10401,7 @@ M.DashboardSummary = schema.new({
 })
 
 M.ListDashboardsOutput = schema.new({
-    id = id.from(_N, "ListDashboardsOutput"),
+    id = id.from(_N, "ListDashboardsResponse"),
     type = "structure",
     members = {
         dashboardSummaries = schema.new({
@@ -10424,7 +10424,7 @@ M.ListDashboardsOutput = schema.new({
 })
 
 M.ListDatasetsInput = schema.new({
-    id = id.from(_N, "ListDatasetsInput"),
+    id = id.from(_N, "ListDatasetsRequest"),
     type = "structure",
     members = {
         sourceType = schema.new({
@@ -10530,7 +10530,7 @@ M.DatasetSummary = schema.new({
 })
 
 M.ListDatasetsOutput = schema.new({
-    id = id.from(_N, "ListDatasetsOutput"),
+    id = id.from(_N, "ListDatasetsResponse"),
     type = "structure",
     members = {
         datasetSummaries = schema.new({
@@ -10553,7 +10553,7 @@ M.ListDatasetsOutput = schema.new({
 })
 
 M.ListExecutionsInput = schema.new({
-    id = id.from(_N, "ListExecutionsInput"),
+    id = id.from(_N, "ListExecutionsRequest"),
     type = "structure",
     members = {
         targetResourceType = schema.new({
@@ -10704,7 +10704,7 @@ M.ExecutionSummary = schema.new({
 })
 
 M.ListExecutionsOutput = schema.new({
-    id = id.from(_N, "ListExecutionsOutput"),
+    id = id.from(_N, "ListExecutionsResponse"),
     type = "structure",
     members = {
         executionSummaries = schema.new({
@@ -10727,7 +10727,7 @@ M.ListExecutionsOutput = schema.new({
 })
 
 M.ListGatewaysInput = schema.new({
-    id = id.from(_N, "ListGatewaysInput"),
+    id = id.from(_N, "ListGatewaysRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -10815,7 +10815,7 @@ M.GatewaySummary = schema.new({
 })
 
 M.ListGatewaysOutput = schema.new({
-    id = id.from(_N, "ListGatewaysOutput"),
+    id = id.from(_N, "ListGatewaysResponse"),
     type = "structure",
     members = {
         gatewaySummaries = schema.new({
@@ -10838,7 +10838,7 @@ M.ListGatewaysOutput = schema.new({
 })
 
 M.ListInterfaceRelationshipsInput = schema.new({
-    id = id.from(_N, "ListInterfaceRelationshipsInput"),
+    id = id.from(_N, "ListInterfaceRelationshipsRequest"),
     type = "structure",
     members = {
         interfaceAssetModelId = schema.new({
@@ -10889,7 +10889,7 @@ M.InterfaceRelationshipSummary = schema.new({
 })
 
 M.ListInterfaceRelationshipsOutput = schema.new({
-    id = id.from(_N, "ListInterfaceRelationshipsOutput"),
+    id = id.from(_N, "ListInterfaceRelationshipsResponse"),
     type = "structure",
     members = {
         interfaceRelationshipSummaries = schema.new({
@@ -10912,7 +10912,7 @@ M.ListInterfaceRelationshipsOutput = schema.new({
 })
 
 M.ListPortalsInput = schema.new({
-    id = id.from(_N, "ListPortalsInput"),
+    id = id.from(_N, "ListPortalsRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -11011,7 +11011,7 @@ M.PortalSummary = schema.new({
 })
 
 M.ListPortalsOutput = schema.new({
-    id = id.from(_N, "ListPortalsOutput"),
+    id = id.from(_N, "ListPortalsResponse"),
     type = "structure",
     members = {
         portalSummaries = schema.new({
@@ -11031,7 +11031,7 @@ M.ListPortalsOutput = schema.new({
 })
 
 M.ListProjectAssetsInput = schema.new({
-    id = id.from(_N, "ListProjectAssetsInput"),
+    id = id.from(_N, "ListProjectAssetsRequest"),
     type = "structure",
     members = {
         projectId = schema.new({
@@ -11066,7 +11066,7 @@ M.ListProjectAssetsInput = schema.new({
 })
 
 M.ListProjectAssetsOutput = schema.new({
-    id = id.from(_N, "ListProjectAssetsOutput"),
+    id = id.from(_N, "ListProjectAssetsResponse"),
     type = "structure",
     members = {
         assetIds = schema.new({
@@ -11089,7 +11089,7 @@ M.ListProjectAssetsOutput = schema.new({
 })
 
 M.ListProjectsInput = schema.new({
-    id = id.from(_N, "ListProjectsInput"),
+    id = id.from(_N, "ListProjectsRequest"),
     type = "structure",
     members = {
         portalId = schema.new({
@@ -11167,7 +11167,7 @@ M.ProjectSummary = schema.new({
 })
 
 M.ListProjectsOutput = schema.new({
-    id = id.from(_N, "ListProjectsOutput"),
+    id = id.from(_N, "ListProjectsResponse"),
     type = "structure",
     members = {
         projectSummaries = schema.new({
@@ -11190,7 +11190,7 @@ M.ListProjectsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -11207,7 +11207,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -11241,7 +11241,7 @@ M.UnauthorizedException = schema.new({
 })
 
 M.ListTimeSeriesInput = schema.new({
-    id = id.from(_N, "ListTimeSeriesInput"),
+    id = id.from(_N, "ListTimeSeriesRequest"),
     type = "structure",
     members = {
         nextToken = schema.new({
@@ -11369,7 +11369,7 @@ M.TimeSeriesSummary = schema.new({
 })
 
 M.ListTimeSeriesOutput = schema.new({
-    id = id.from(_N, "ListTimeSeriesOutput"),
+    id = id.from(_N, "ListTimeSeriesResponse"),
     type = "structure",
     members = {
         TimeSeriesSummaries = schema.new({
@@ -11424,7 +11424,7 @@ M.PropertyMappingConfiguration = schema.new({
 })
 
 M.PutAssetModelInterfaceRelationshipInput = schema.new({
-    id = id.from(_N, "PutAssetModelInterfaceRelationshipInput"),
+    id = id.from(_N, "PutAssetModelInterfaceRelationshipRequest"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -11470,7 +11470,7 @@ M.PutAssetModelInterfaceRelationshipInput = schema.new({
 })
 
 M.PutAssetModelInterfaceRelationshipOutput = schema.new({
-    id = id.from(_N, "PutAssetModelInterfaceRelationshipOutput"),
+    id = id.from(_N, "PutAssetModelInterfaceRelationshipResponse"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -11514,7 +11514,7 @@ M.PutAssetModelInterfaceRelationshipOutput = schema.new({
 })
 
 M.PutDefaultEncryptionConfigurationInput = schema.new({
-    id = id.from(_N, "PutDefaultEncryptionConfigurationInput"),
+    id = id.from(_N, "PutDefaultEncryptionConfigurationRequest"),
     type = "structure",
     members = {
         encryptionType = schema.new({
@@ -11536,7 +11536,7 @@ M.PutDefaultEncryptionConfigurationInput = schema.new({
 })
 
 M.PutDefaultEncryptionConfigurationOutput = schema.new({
-    id = id.from(_N, "PutDefaultEncryptionConfigurationOutput"),
+    id = id.from(_N, "PutDefaultEncryptionConfigurationResponse"),
     type = "structure",
     members = {
         encryptionType = schema.new({
@@ -11568,7 +11568,7 @@ M.PutDefaultEncryptionConfigurationOutput = schema.new({
 })
 
 M.PutLoggingOptionsInput = schema.new({
-    id = id.from(_N, "PutLoggingOptionsInput"),
+    id = id.from(_N, "PutLoggingOptionsRequest"),
     type = "structure",
     members = {
         loggingOptions = schema.new({
@@ -11585,12 +11585,12 @@ M.PutLoggingOptionsInput = schema.new({
 })
 
 M.PutLoggingOptionsOutput = schema.new({
-    id = id.from(_N, "PutLoggingOptionsOutput"),
+    id = id.from(_N, "PutLoggingOptionsResponse"),
     type = "structure",
 })
 
 M.PutStorageConfigurationInput = schema.new({
-    id = id.from(_N, "PutStorageConfigurationInput"),
+    id = id.from(_N, "PutStorageConfigurationRequest"),
     type = "structure",
     members = {
         storageType = schema.new({
@@ -11645,7 +11645,7 @@ M.PutStorageConfigurationInput = schema.new({
 })
 
 M.PutStorageConfigurationOutput = schema.new({
-    id = id.from(_N, "PutStorageConfigurationOutput"),
+    id = id.from(_N, "PutStorageConfigurationResponse"),
     type = "structure",
     members = {
         storageType = schema.new({
@@ -11710,7 +11710,7 @@ M.PutStorageConfigurationOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -11738,7 +11738,7 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
@@ -11765,7 +11765,7 @@ M.TooManyTagsException = schema.new({
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -11793,12 +11793,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAccessPolicyInput = schema.new({
-    id = id.from(_N, "UpdateAccessPolicyInput"),
+    id = id.from(_N, "UpdateAccessPolicyRequest"),
     type = "structure",
     members = {
         accessPolicyId = schema.new({
@@ -11853,12 +11853,12 @@ M.UpdateAccessPolicyInput = schema.new({
 })
 
 M.UpdateAccessPolicyOutput = schema.new({
-    id = id.from(_N, "UpdateAccessPolicyOutput"),
+    id = id.from(_N, "UpdateAccessPolicyResponse"),
     type = "structure",
 })
 
 M.UpdateAssetInput = schema.new({
-    id = id.from(_N, "UpdateAssetInput"),
+    id = id.from(_N, "UpdateAssetRequest"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -11905,7 +11905,7 @@ M.UpdateAssetInput = schema.new({
 })
 
 M.UpdateAssetOutput = schema.new({
-    id = id.from(_N, "UpdateAssetOutput"),
+    id = id.from(_N, "UpdateAssetResponse"),
     type = "structure",
     members = {
         assetStatus = schema.new({
@@ -11922,7 +11922,7 @@ M.UpdateAssetOutput = schema.new({
 })
 
 M.UpdateAssetModelInput = schema.new({
-    id = id.from(_N, "UpdateAssetModelInput"),
+    id = id.from(_N, "UpdateAssetModelRequest"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -12017,7 +12017,7 @@ M.UpdateAssetModelInput = schema.new({
 })
 
 M.UpdateAssetModelOutput = schema.new({
-    id = id.from(_N, "UpdateAssetModelOutput"),
+    id = id.from(_N, "UpdateAssetModelResponse"),
     type = "structure",
     members = {
         assetModelStatus = schema.new({
@@ -12034,7 +12034,7 @@ M.UpdateAssetModelOutput = schema.new({
 })
 
 M.UpdateAssetModelCompositeModelInput = schema.new({
-    id = id.from(_N, "UpdateAssetModelCompositeModelInput"),
+    id = id.from(_N, "UpdateAssetModelCompositeModelRequest"),
     type = "structure",
     members = {
         assetModelId = schema.new({
@@ -12125,7 +12125,7 @@ M.UpdateAssetModelCompositeModelInput = schema.new({
 })
 
 M.UpdateAssetModelCompositeModelOutput = schema.new({
-    id = id.from(_N, "UpdateAssetModelCompositeModelOutput"),
+    id = id.from(_N, "UpdateAssetModelCompositeModelResponse"),
     type = "structure",
     members = {
         assetModelCompositeModelPath = schema.new({
@@ -12152,7 +12152,7 @@ M.UpdateAssetModelCompositeModelOutput = schema.new({
 })
 
 M.UpdateAssetPropertyInput = schema.new({
-    id = id.from(_N, "UpdateAssetPropertyInput"),
+    id = id.from(_N, "UpdateAssetPropertyRequest"),
     type = "structure",
     members = {
         assetId = schema.new({
@@ -12206,12 +12206,12 @@ M.UpdateAssetPropertyInput = schema.new({
 })
 
 M.UpdateAssetPropertyOutput = schema.new({
-    id = id.from(_N, "UpdateAssetPropertyOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateComputationModelOutput = schema.new({
-    id = id.from(_N, "UpdateComputationModelOutput"),
+    id = id.from(_N, "UpdateComputationModelResponse"),
     type = "structure",
     members = {
         computationModelStatus = schema.new({
@@ -12228,7 +12228,7 @@ M.UpdateComputationModelOutput = schema.new({
 })
 
 M.UpdateDashboardInput = schema.new({
-    id = id.from(_N, "UpdateDashboardInput"),
+    id = id.from(_N, "UpdateDashboardRequest"),
     type = "structure",
     members = {
         dashboardId = schema.new({
@@ -12278,12 +12278,12 @@ M.UpdateDashboardInput = schema.new({
 })
 
 M.UpdateDashboardOutput = schema.new({
-    id = id.from(_N, "UpdateDashboardOutput"),
+    id = id.from(_N, "UpdateDashboardResponse"),
     type = "structure",
 })
 
 M.UpdateDatasetInput = schema.new({
-    id = id.from(_N, "UpdateDatasetInput"),
+    id = id.from(_N, "UpdateDatasetRequest"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -12334,7 +12334,7 @@ M.UpdateDatasetInput = schema.new({
 })
 
 M.UpdateDatasetOutput = schema.new({
-    id = id.from(_N, "UpdateDatasetOutput"),
+    id = id.from(_N, "UpdateDatasetResponse"),
     type = "structure",
     members = {
         datasetId = schema.new({
@@ -12360,7 +12360,7 @@ M.UpdateDatasetOutput = schema.new({
 })
 
 M.UpdateGatewayInput = schema.new({
-    id = id.from(_N, "UpdateGatewayInput"),
+    id = id.from(_N, "UpdateGatewayRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -12386,12 +12386,12 @@ M.UpdateGatewayInput = schema.new({
 })
 
 M.UpdateGatewayOutput = schema.new({
-    id = id.from(_N, "UpdateGatewayOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
 M.UpdateGatewayCapabilityConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateGatewayCapabilityConfigurationInput"),
+    id = id.from(_N, "UpdateGatewayCapabilityConfigurationRequest"),
     type = "structure",
     members = {
         gatewayId = schema.new({
@@ -12426,7 +12426,7 @@ M.UpdateGatewayCapabilityConfigurationInput = schema.new({
 })
 
 M.UpdateGatewayCapabilityConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateGatewayCapabilityConfigurationOutput"),
+    id = id.from(_N, "UpdateGatewayCapabilityConfigurationResponse"),
     type = "structure",
     members = {
         capabilityNamespace = schema.new({
@@ -12471,7 +12471,7 @@ M.Image = schema.new({
 })
 
 M.UpdatePortalInput = schema.new({
-    id = id.from(_N, "UpdatePortalInput"),
+    id = id.from(_N, "UpdatePortalRequest"),
     type = "structure",
     members = {
         portalId = schema.new({
@@ -12564,7 +12564,7 @@ M.UpdatePortalInput = schema.new({
 })
 
 M.UpdatePortalOutput = schema.new({
-    id = id.from(_N, "UpdatePortalOutput"),
+    id = id.from(_N, "UpdatePortalResponse"),
     type = "structure",
     members = {
         portalStatus = schema.new({
@@ -12581,7 +12581,7 @@ M.UpdatePortalOutput = schema.new({
 })
 
 M.UpdateProjectInput = schema.new({
-    id = id.from(_N, "UpdateProjectInput"),
+    id = id.from(_N, "UpdateProjectRequest"),
     type = "structure",
     members = {
         projectId = schema.new({
@@ -12622,7 +12622,7 @@ M.UpdateProjectInput = schema.new({
 })
 
 M.UpdateProjectOutput = schema.new({
-    id = id.from(_N, "UpdateProjectOutput"),
+    id = id.from(_N, "UpdateProjectResponse"),
     type = "structure",
 })
 
@@ -12655,7 +12655,7 @@ M.ComputationModelDataBindingValue = schema.new({
 })
 
 M.CreateComputationModelInput = schema.new({
-    id = id.from(_N, "CreateComputationModelInput"),
+    id = id.from(_N, "CreateComputationModelRequest"),
     type = "structure",
     members = {
         computationModelName = schema.new({
@@ -12715,7 +12715,7 @@ M.CreateComputationModelInput = schema.new({
 })
 
 M.DescribeComputationModelOutput = schema.new({
-    id = id.from(_N, "DescribeComputationModelOutput"),
+    id = id.from(_N, "DescribeComputationModelResponse"),
     type = "structure",
     members = {
         computationModelId = schema.new({
@@ -12823,7 +12823,7 @@ M.DescribeComputationModelOutput = schema.new({
 })
 
 M.UpdateComputationModelInput = schema.new({
-    id = id.from(_N, "UpdateComputationModelInput"),
+    id = id.from(_N, "UpdateComputationModelRequest"),
     type = "structure",
     members = {
         computationModelId = schema.new({
@@ -12935,7 +12935,7 @@ M.Row = schema.new({
 })
 
 M.ExecuteQueryOutput = schema.new({
-    id = id.from(_N, "ExecuteQueryOutput"),
+    id = id.from(_N, "ExecuteQueryResponse"),
     type = "structure",
     members = {
         columns = schema.new({
@@ -12960,5 +12960,19 @@ M.ExecuteQueryOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

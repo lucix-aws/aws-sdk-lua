@@ -8,7 +8,7 @@ local _N = "com.amazonaws.savingsplans"
 local M = {}
 
 M.CreateSavingsPlanInput = schema.new({
-    id = id.from(_N, "CreateSavingsPlanInput"),
+    id = id.from(_N, "CreateSavingsPlanRequest"),
     type = "structure",
     members = {
         savingsPlanOfferingId = schema.new({
@@ -62,7 +62,7 @@ M.CreateSavingsPlanInput = schema.new({
 })
 
 M.CreateSavingsPlanOutput = schema.new({
-    id = id.from(_N, "CreateSavingsPlanOutput"),
+    id = id.from(_N, "CreateSavingsPlanResponse"),
     type = "structure",
     members = {
         savingsPlanId = schema.new({
@@ -151,7 +151,7 @@ M.ValidationException = schema.new({
 })
 
 M.DeleteQueuedSavingsPlanInput = schema.new({
-    id = id.from(_N, "DeleteQueuedSavingsPlanInput"),
+    id = id.from(_N, "DeleteQueuedSavingsPlanRequest"),
     type = "structure",
     members = {
         savingsPlanId = schema.new({
@@ -167,7 +167,7 @@ M.DeleteQueuedSavingsPlanInput = schema.new({
 })
 
 M.DeleteQueuedSavingsPlanOutput = schema.new({
-    id = id.from(_N, "DeleteQueuedSavingsPlanOutput"),
+    id = id.from(_N, "DeleteQueuedSavingsPlanResponse"),
     type = "structure",
 })
 
@@ -192,7 +192,7 @@ M.SavingsPlanRateFilter = schema.new({
 })
 
 M.DescribeSavingsPlanRatesInput = schema.new({
-    id = id.from(_N, "DescribeSavingsPlanRatesInput"),
+    id = id.from(_N, "DescribeSavingsPlanRatesRequest"),
     type = "structure",
     members = {
         savingsPlanId = schema.new({
@@ -302,7 +302,7 @@ M.SavingsPlanRate = schema.new({
 })
 
 M.DescribeSavingsPlanRatesOutput = schema.new({
-    id = id.from(_N, "DescribeSavingsPlanRatesOutput"),
+    id = id.from(_N, "DescribeSavingsPlanRatesResponse"),
     type = "structure",
     members = {
         savingsPlanId = schema.new({
@@ -348,7 +348,7 @@ M.SavingsPlanFilter = schema.new({
 })
 
 M.DescribeSavingsPlansInput = schema.new({
-    id = id.from(_N, "DescribeSavingsPlansInput"),
+    id = id.from(_N, "DescribeSavingsPlansRequest"),
     type = "structure",
     members = {
         savingsPlanArns = schema.new({
@@ -522,7 +522,7 @@ M.SavingsPlan = schema.new({
 })
 
 M.DescribeSavingsPlansOutput = schema.new({
-    id = id.from(_N, "DescribeSavingsPlansOutput"),
+    id = id.from(_N, "DescribeSavingsPlansResponse"),
     type = "structure",
     members = {
         savingsPlans = schema.new({
@@ -562,7 +562,7 @@ M.SavingsPlanOfferingRateFilterElement = schema.new({
 })
 
 M.DescribeSavingsPlansOfferingRatesInput = schema.new({
-    id = id.from(_N, "DescribeSavingsPlansOfferingRatesInput"),
+    id = id.from(_N, "DescribeSavingsPlansOfferingRatesRequest"),
     type = "structure",
     members = {
         savingsPlanOfferingIds = schema.new({
@@ -762,7 +762,7 @@ M.SavingsPlanOfferingRate = schema.new({
 })
 
 M.DescribeSavingsPlansOfferingRatesOutput = schema.new({
-    id = id.from(_N, "DescribeSavingsPlansOfferingRatesOutput"),
+    id = id.from(_N, "DescribeSavingsPlansOfferingRatesResponse"),
     type = "structure",
     members = {
         searchResults = schema.new({
@@ -802,7 +802,7 @@ M.SavingsPlanOfferingFilterElement = schema.new({
 })
 
 M.DescribeSavingsPlansOfferingsInput = schema.new({
-    id = id.from(_N, "DescribeSavingsPlansOfferingsInput"),
+    id = id.from(_N, "DescribeSavingsPlansOfferingsRequest"),
     type = "structure",
     members = {
         offeringIds = schema.new({
@@ -997,7 +997,7 @@ M.SavingsPlanOffering = schema.new({
 })
 
 M.DescribeSavingsPlansOfferingsOutput = schema.new({
-    id = id.from(_N, "DescribeSavingsPlansOfferingsOutput"),
+    id = id.from(_N, "DescribeSavingsPlansOfferingsResponse"),
     type = "structure",
     members = {
         searchResults = schema.new({
@@ -1017,7 +1017,7 @@ M.DescribeSavingsPlansOfferingsOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1033,7 +1033,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         tags = schema.new({
@@ -1048,7 +1048,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.ReturnSavingsPlanInput = schema.new({
-    id = id.from(_N, "ReturnSavingsPlanInput"),
+    id = id.from(_N, "ReturnSavingsPlanRequest"),
     type = "structure",
     members = {
         savingsPlanId = schema.new({
@@ -1073,7 +1073,7 @@ M.ReturnSavingsPlanInput = schema.new({
 })
 
 M.ReturnSavingsPlanOutput = schema.new({
-    id = id.from(_N, "ReturnSavingsPlanOutput"),
+    id = id.from(_N, "ReturnSavingsPlanResponse"),
     type = "structure",
     members = {
         savingsPlanId = schema.new({
@@ -1086,7 +1086,7 @@ M.ReturnSavingsPlanOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1113,12 +1113,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         resourceArn = schema.new({
@@ -1144,8 +1144,22 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

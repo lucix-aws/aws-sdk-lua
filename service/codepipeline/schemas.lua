@@ -2577,7 +2577,7 @@ M.DeleteCustomActionTypeInput = schema.new({
 })
 
 M.DeleteCustomActionTypeOutput = schema.new({
-    id = id.from(_N, "DeleteCustomActionTypeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2598,7 +2598,7 @@ M.DeletePipelineInput = schema.new({
 })
 
 M.DeletePipelineOutput = schema.new({
-    id = id.from(_N, "DeletePipelineOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2693,7 +2693,7 @@ M.DisableStageTransitionInput = schema.new({
 })
 
 M.DisableStageTransitionOutput = schema.new({
-    id = id.from(_N, "DisableStageTransitionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -2764,7 +2764,7 @@ M.EnableStageTransitionInput = schema.new({
 })
 
 M.EnableStageTransitionOutput = schema.new({
-    id = id.from(_N, "EnableStageTransitionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5249,7 +5249,7 @@ M.OverrideStageConditionInput = schema.new({
 })
 
 M.OverrideStageConditionOutput = schema.new({
-    id = id.from(_N, "OverrideStageConditionOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5608,7 +5608,7 @@ M.PutJobFailureResultInput = schema.new({
 })
 
 M.PutJobFailureResultOutput = schema.new({
-    id = id.from(_N, "PutJobFailureResultOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5735,7 +5735,7 @@ M.PutJobSuccessResultInput = schema.new({
 })
 
 M.PutJobSuccessResultOutput = schema.new({
-    id = id.from(_N, "PutJobSuccessResultOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5775,7 +5775,7 @@ M.PutThirdPartyJobFailureResultInput = schema.new({
 })
 
 M.PutThirdPartyJobFailureResultOutput = schema.new({
-    id = id.from(_N, "PutThirdPartyJobFailureResultOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -5825,7 +5825,7 @@ M.PutThirdPartyJobSuccessResultInput = schema.new({
 })
 
 M.PutThirdPartyJobSuccessResultOutput = schema.new({
-    id = id.from(_N, "PutThirdPartyJobSuccessResultOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -6363,7 +6363,7 @@ M.UpdateActionTypeInput = schema.new({
 })
 
 M.UpdateActionTypeOutput = schema.new({
-    id = id.from(_N, "UpdateActionTypeOutput"),
+    id = id.from(_N, "Unit"),
     type = "structure",
 })
 
@@ -6397,5 +6397,19 @@ M.UpdatePipelineOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

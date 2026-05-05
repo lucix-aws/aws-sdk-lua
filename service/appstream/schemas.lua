@@ -813,7 +813,7 @@ M.ApplicationSettingsResponse = schema.new({
 })
 
 M.AssociateAppBlockBuilderAppBlockInput = schema.new({
-    id = id.from(_N, "AssociateAppBlockBuilderAppBlockInput"),
+    id = id.from(_N, "AssociateAppBlockBuilderAppBlockRequest"),
     type = "structure",
     members = {
         AppBlockArn = schema.new({
@@ -838,7 +838,7 @@ M.AssociateAppBlockBuilderAppBlockInput = schema.new({
 })
 
 M.AssociateAppBlockBuilderAppBlockOutput = schema.new({
-    id = id.from(_N, "AssociateAppBlockBuilderAppBlockOutput"),
+    id = id.from(_N, "AssociateAppBlockBuilderAppBlockResult"),
     type = "structure",
     members = {
         AppBlockBuilderAppBlockAssociation = schema.new({
@@ -932,7 +932,7 @@ M.ResourceNotFoundException = schema.new({
 })
 
 M.AssociateApplicationFleetInput = schema.new({
-    id = id.from(_N, "AssociateApplicationFleetInput"),
+    id = id.from(_N, "AssociateApplicationFleetRequest"),
     type = "structure",
     members = {
         FleetName = schema.new({
@@ -957,7 +957,7 @@ M.AssociateApplicationFleetInput = schema.new({
 })
 
 M.AssociateApplicationFleetOutput = schema.new({
-    id = id.from(_N, "AssociateApplicationFleetOutput"),
+    id = id.from(_N, "AssociateApplicationFleetResult"),
     type = "structure",
     members = {
         ApplicationFleetAssociation = schema.new({
@@ -971,7 +971,7 @@ M.AssociateApplicationFleetOutput = schema.new({
 })
 
 M.AssociateApplicationToEntitlementInput = schema.new({
-    id = id.from(_N, "AssociateApplicationToEntitlementInput"),
+    id = id.from(_N, "AssociateApplicationToEntitlementRequest"),
     type = "structure",
     members = {
         StackName = schema.new({
@@ -1005,7 +1005,7 @@ M.AssociateApplicationToEntitlementInput = schema.new({
 })
 
 M.AssociateApplicationToEntitlementOutput = schema.new({
-    id = id.from(_N, "AssociateApplicationToEntitlementOutput"),
+    id = id.from(_N, "AssociateApplicationToEntitlementResult"),
     type = "structure",
 })
 
@@ -1026,7 +1026,7 @@ M.EntitlementNotFoundException = schema.new({
 })
 
 M.AssociateFleetInput = schema.new({
-    id = id.from(_N, "AssociateFleetInput"),
+    id = id.from(_N, "AssociateFleetRequest"),
     type = "structure",
     members = {
         FleetName = schema.new({
@@ -1051,7 +1051,7 @@ M.AssociateFleetInput = schema.new({
 })
 
 M.AssociateFleetOutput = schema.new({
-    id = id.from(_N, "AssociateFleetOutput"),
+    id = id.from(_N, "AssociateFleetResult"),
     type = "structure",
 })
 
@@ -1088,7 +1088,7 @@ M.InvalidAccountStatusException = schema.new({
 })
 
 M.AssociateSoftwareToImageBuilderInput = schema.new({
-    id = id.from(_N, "AssociateSoftwareToImageBuilderInput"),
+    id = id.from(_N, "AssociateSoftwareToImageBuilderRequest"),
     type = "structure",
     members = {
         ImageBuilderName = schema.new({
@@ -1114,7 +1114,7 @@ M.AssociateSoftwareToImageBuilderInput = schema.new({
 })
 
 M.AssociateSoftwareToImageBuilderOutput = schema.new({
-    id = id.from(_N, "AssociateSoftwareToImageBuilderOutput"),
+    id = id.from(_N, "AssociateSoftwareToImageBuilderResult"),
     type = "structure",
 })
 
@@ -1159,7 +1159,7 @@ M.UserStackAssociation = schema.new({
 })
 
 M.BatchAssociateUserStackInput = schema.new({
-    id = id.from(_N, "BatchAssociateUserStackInput"),
+    id = id.from(_N, "BatchAssociateUserStackRequest"),
     type = "structure",
     members = {
         UserStackAssociations = schema.new({
@@ -1202,7 +1202,7 @@ M.UserStackAssociationError = schema.new({
 })
 
 M.BatchAssociateUserStackOutput = schema.new({
-    id = id.from(_N, "BatchAssociateUserStackOutput"),
+    id = id.from(_N, "BatchAssociateUserStackResult"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -1216,7 +1216,7 @@ M.BatchAssociateUserStackOutput = schema.new({
 })
 
 M.BatchDisassociateUserStackInput = schema.new({
-    id = id.from(_N, "BatchDisassociateUserStackInput"),
+    id = id.from(_N, "BatchDisassociateUserStackRequest"),
     type = "structure",
     members = {
         UserStackAssociations = schema.new({
@@ -1233,7 +1233,7 @@ M.BatchDisassociateUserStackInput = schema.new({
 })
 
 M.BatchDisassociateUserStackOutput = schema.new({
-    id = id.from(_N, "BatchDisassociateUserStackOutput"),
+    id = id.from(_N, "BatchDisassociateUserStackResult"),
     type = "structure",
     members = {
         errors = schema.new({
@@ -1405,7 +1405,7 @@ M.ContentRedirection = schema.new({
 })
 
 M.CopyImageInput = schema.new({
-    id = id.from(_N, "CopyImageInput"),
+    id = id.from(_N, "CopyImageRequest"),
     type = "structure",
     members = {
         SourceImageName = schema.new({
@@ -1445,7 +1445,7 @@ M.CopyImageInput = schema.new({
 })
 
 M.CopyImageOutput = schema.new({
-    id = id.from(_N, "CopyImageOutput"),
+    id = id.from(_N, "CopyImageResponse"),
     type = "structure",
     members = {
         DestinationImageName = schema.new({
@@ -1490,7 +1490,7 @@ M.ResourceNotAvailableException = schema.new({
 })
 
 M.CreateAppBlockInput = schema.new({
-    id = id.from(_N, "CreateAppBlockInput"),
+    id = id.from(_N, "CreateAppBlockRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1556,7 +1556,7 @@ M.CreateAppBlockInput = schema.new({
 })
 
 M.CreateAppBlockOutput = schema.new({
-    id = id.from(_N, "CreateAppBlockOutput"),
+    id = id.from(_N, "CreateAppBlockResult"),
     type = "structure",
     members = {
         AppBlock = schema.new({
@@ -1570,7 +1570,7 @@ M.CreateAppBlockOutput = schema.new({
 })
 
 M.CreateAppBlockBuilderInput = schema.new({
-    id = id.from(_N, "CreateAppBlockBuilderInput"),
+    id = id.from(_N, "CreateAppBlockBuilderRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1659,7 +1659,7 @@ M.CreateAppBlockBuilderInput = schema.new({
 })
 
 M.CreateAppBlockBuilderOutput = schema.new({
-    id = id.from(_N, "CreateAppBlockBuilderOutput"),
+    id = id.from(_N, "CreateAppBlockBuilderResult"),
     type = "structure",
     members = {
         AppBlockBuilder = schema.new({
@@ -1705,7 +1705,7 @@ M.RequestLimitExceededException = schema.new({
 })
 
 M.CreateAppBlockBuilderStreamingURLInput = schema.new({
-    id = id.from(_N, "CreateAppBlockBuilderStreamingURLInput"),
+    id = id.from(_N, "CreateAppBlockBuilderStreamingURLRequest"),
     type = "structure",
     members = {
         AppBlockBuilderName = schema.new({
@@ -1727,7 +1727,7 @@ M.CreateAppBlockBuilderStreamingURLInput = schema.new({
 })
 
 M.CreateAppBlockBuilderStreamingURLOutput = schema.new({
-    id = id.from(_N, "CreateAppBlockBuilderStreamingURLOutput"),
+    id = id.from(_N, "CreateAppBlockBuilderStreamingURLResult"),
     type = "structure",
     members = {
         StreamingURL = schema.new({
@@ -1746,7 +1746,7 @@ M.CreateAppBlockBuilderStreamingURLOutput = schema.new({
 })
 
 M.CreateApplicationInput = schema.new({
-    id = id.from(_N, "CreateApplicationInput"),
+    id = id.from(_N, "CreateApplicationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -1842,7 +1842,7 @@ M.CreateApplicationInput = schema.new({
 })
 
 M.CreateApplicationOutput = schema.new({
-    id = id.from(_N, "CreateApplicationOutput"),
+    id = id.from(_N, "CreateApplicationResult"),
     type = "structure",
     members = {
         Application = schema.new({
@@ -1881,7 +1881,7 @@ M.ServiceAccountCredentials = schema.new({
 })
 
 M.CreateDirectoryConfigInput = schema.new({
-    id = id.from(_N, "CreateDirectoryConfigInput"),
+    id = id.from(_N, "CreateDirectoryConfigRequest"),
     type = "structure",
     members = {
         DirectoryName = schema.new({
@@ -1964,7 +1964,7 @@ M.DirectoryConfig = schema.new({
 })
 
 M.CreateDirectoryConfigOutput = schema.new({
-    id = id.from(_N, "CreateDirectoryConfigOutput"),
+    id = id.from(_N, "CreateDirectoryConfigResult"),
     type = "structure",
     members = {
         DirectoryConfig = schema.new({
@@ -2003,7 +2003,7 @@ M.EntitlementAttribute = schema.new({
 })
 
 M.CreateEntitlementInput = schema.new({
-    id = id.from(_N, "CreateEntitlementInput"),
+    id = id.from(_N, "CreateEntitlementRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2115,7 +2115,7 @@ M.Entitlement = schema.new({
 })
 
 M.CreateEntitlementOutput = schema.new({
-    id = id.from(_N, "CreateEntitlementOutput"),
+    id = id.from(_N, "CreateEntitlementResult"),
     type = "structure",
     members = {
         Entitlement = schema.new({
@@ -2145,7 +2145,7 @@ M.EntitlementAlreadyExistsException = schema.new({
 })
 
 M.CreateExportImageTaskInput = schema.new({
-    id = id.from(_N, "CreateExportImageTaskInput"),
+    id = id.from(_N, "CreateExportImageTaskRequest"),
     type = "structure",
     members = {
         ImageName = schema.new({
@@ -2269,7 +2269,7 @@ M.ExportImageTask = schema.new({
 })
 
 M.CreateExportImageTaskOutput = schema.new({
-    id = id.from(_N, "CreateExportImageTaskOutput"),
+    id = id.from(_N, "CreateExportImageTaskResult"),
     type = "structure",
     members = {
         ExportImageTask = schema.new({
@@ -2315,7 +2315,7 @@ M.VolumeConfig = schema.new({
 })
 
 M.CreateFleetInput = schema.new({
-    id = id.from(_N, "CreateFleetInput"),
+    id = id.from(_N, "CreateFleetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -2690,7 +2690,7 @@ M.Fleet = schema.new({
 })
 
 M.CreateFleetOutput = schema.new({
-    id = id.from(_N, "CreateFleetOutput"),
+    id = id.from(_N, "CreateFleetResult"),
     type = "structure",
     members = {
         Fleet = schema.new({
@@ -2704,7 +2704,7 @@ M.CreateFleetOutput = schema.new({
 })
 
 M.CreateImageBuilderInput = schema.new({
-    id = id.from(_N, "CreateImageBuilderInput"),
+    id = id.from(_N, "CreateImageBuilderRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3015,7 +3015,7 @@ M.ImageBuilder = schema.new({
 })
 
 M.CreateImageBuilderOutput = schema.new({
-    id = id.from(_N, "CreateImageBuilderOutput"),
+    id = id.from(_N, "CreateImageBuilderResult"),
     type = "structure",
     members = {
         ImageBuilder = schema.new({
@@ -3029,7 +3029,7 @@ M.CreateImageBuilderOutput = schema.new({
 })
 
 M.CreateImageBuilderStreamingURLInput = schema.new({
-    id = id.from(_N, "CreateImageBuilderStreamingURLInput"),
+    id = id.from(_N, "CreateImageBuilderStreamingURLRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3051,7 +3051,7 @@ M.CreateImageBuilderStreamingURLInput = schema.new({
 })
 
 M.CreateImageBuilderStreamingURLOutput = schema.new({
-    id = id.from(_N, "CreateImageBuilderStreamingURLOutput"),
+    id = id.from(_N, "CreateImageBuilderStreamingURLResult"),
     type = "structure",
     members = {
         StreamingURL = schema.new({
@@ -3083,7 +3083,7 @@ M.RuntimeValidationConfig = schema.new({
 })
 
 M.CreateImportedImageInput = schema.new({
-    id = id.from(_N, "CreateImportedImageInput"),
+    id = id.from(_N, "CreateImportedImageRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3354,7 +3354,7 @@ M.Image = schema.new({
 })
 
 M.CreateImportedImageOutput = schema.new({
-    id = id.from(_N, "CreateImportedImageOutput"),
+    id = id.from(_N, "CreateImportedImageResult"),
     type = "structure",
     members = {
         Image = schema.new({
@@ -3464,7 +3464,7 @@ M.UserSetting = schema.new({
 })
 
 M.CreateStackInput = schema.new({
-    id = id.from(_N, "CreateStackInput"),
+    id = id.from(_N, "CreateStackRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -3702,7 +3702,7 @@ M.Stack = schema.new({
 })
 
 M.CreateStackOutput = schema.new({
-    id = id.from(_N, "CreateStackOutput"),
+    id = id.from(_N, "CreateStackResult"),
     type = "structure",
     members = {
         Stack = schema.new({
@@ -3716,7 +3716,7 @@ M.CreateStackOutput = schema.new({
 })
 
 M.CreateStreamingURLInput = schema.new({
-    id = id.from(_N, "CreateStreamingURLInput"),
+    id = id.from(_N, "CreateStreamingURLRequest"),
     type = "structure",
     members = {
         StackName = schema.new({
@@ -3768,7 +3768,7 @@ M.CreateStreamingURLInput = schema.new({
 })
 
 M.CreateStreamingURLOutput = schema.new({
-    id = id.from(_N, "CreateStreamingURLOutput"),
+    id = id.from(_N, "CreateStreamingURLResult"),
     type = "structure",
     members = {
         StreamingURL = schema.new({
@@ -3806,7 +3806,7 @@ M.ThemeFooterLink = schema.new({
 })
 
 M.CreateThemeForStackInput = schema.new({
-    id = id.from(_N, "CreateThemeForStackInput"),
+    id = id.from(_N, "CreateThemeForStackRequest"),
     type = "structure",
     members = {
         StackName = schema.new({
@@ -3923,7 +3923,7 @@ M.Theme = schema.new({
 })
 
 M.CreateThemeForStackOutput = schema.new({
-    id = id.from(_N, "CreateThemeForStackOutput"),
+    id = id.from(_N, "CreateThemeForStackResult"),
     type = "structure",
     members = {
         Theme = schema.new({
@@ -3937,7 +3937,7 @@ M.CreateThemeForStackOutput = schema.new({
 })
 
 M.CreateUpdatedImageInput = schema.new({
-    id = id.from(_N, "CreateUpdatedImageInput"),
+    id = id.from(_N, "CreateUpdatedImageRequest"),
     type = "structure",
     members = {
         existingImageName = schema.new({
@@ -3988,7 +3988,7 @@ M.CreateUpdatedImageInput = schema.new({
 })
 
 M.CreateUpdatedImageOutput = schema.new({
-    id = id.from(_N, "CreateUpdatedImageOutput"),
+    id = id.from(_N, "CreateUpdatedImageResult"),
     type = "structure",
     members = {
         image = schema.new({
@@ -4008,12 +4008,12 @@ M.CreateUpdatedImageOutput = schema.new({
 })
 
 M.CreateUsageReportSubscriptionInput = schema.new({
-    id = id.from(_N, "CreateUsageReportSubscriptionInput"),
+    id = id.from(_N, "CreateUsageReportSubscriptionRequest"),
     type = "structure",
 })
 
 M.CreateUsageReportSubscriptionOutput = schema.new({
-    id = id.from(_N, "CreateUsageReportSubscriptionOutput"),
+    id = id.from(_N, "CreateUsageReportSubscriptionResult"),
     type = "structure",
     members = {
         S3BucketName = schema.new({
@@ -4032,7 +4032,7 @@ M.CreateUsageReportSubscriptionOutput = schema.new({
 })
 
 M.CreateUserInput = schema.new({
-    id = id.from(_N, "CreateUserInput"),
+    id = id.from(_N, "CreateUserRequest"),
     type = "structure",
     members = {
         UserName = schema.new({
@@ -4075,12 +4075,12 @@ M.CreateUserInput = schema.new({
 })
 
 M.CreateUserOutput = schema.new({
-    id = id.from(_N, "CreateUserOutput"),
+    id = id.from(_N, "CreateUserResult"),
     type = "structure",
 })
 
 M.DeleteAppBlockInput = schema.new({
-    id = id.from(_N, "DeleteAppBlockInput"),
+    id = id.from(_N, "DeleteAppBlockRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4096,7 +4096,7 @@ M.DeleteAppBlockInput = schema.new({
 })
 
 M.DeleteAppBlockOutput = schema.new({
-    id = id.from(_N, "DeleteAppBlockOutput"),
+    id = id.from(_N, "DeleteAppBlockResult"),
     type = "structure",
 })
 
@@ -4117,7 +4117,7 @@ M.ResourceInUseException = schema.new({
 })
 
 M.DeleteAppBlockBuilderInput = schema.new({
-    id = id.from(_N, "DeleteAppBlockBuilderInput"),
+    id = id.from(_N, "DeleteAppBlockBuilderRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4133,12 +4133,12 @@ M.DeleteAppBlockBuilderInput = schema.new({
 })
 
 M.DeleteAppBlockBuilderOutput = schema.new({
-    id = id.from(_N, "DeleteAppBlockBuilderOutput"),
+    id = id.from(_N, "DeleteAppBlockBuilderResult"),
     type = "structure",
 })
 
 M.DeleteApplicationInput = schema.new({
-    id = id.from(_N, "DeleteApplicationInput"),
+    id = id.from(_N, "DeleteApplicationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4154,12 +4154,12 @@ M.DeleteApplicationInput = schema.new({
 })
 
 M.DeleteApplicationOutput = schema.new({
-    id = id.from(_N, "DeleteApplicationOutput"),
+    id = id.from(_N, "DeleteApplicationResult"),
     type = "structure",
 })
 
 M.DeleteDirectoryConfigInput = schema.new({
-    id = id.from(_N, "DeleteDirectoryConfigInput"),
+    id = id.from(_N, "DeleteDirectoryConfigRequest"),
     type = "structure",
     members = {
         DirectoryName = schema.new({
@@ -4175,12 +4175,12 @@ M.DeleteDirectoryConfigInput = schema.new({
 })
 
 M.DeleteDirectoryConfigOutput = schema.new({
-    id = id.from(_N, "DeleteDirectoryConfigOutput"),
+    id = id.from(_N, "DeleteDirectoryConfigResult"),
     type = "structure",
 })
 
 M.DeleteEntitlementInput = schema.new({
-    id = id.from(_N, "DeleteEntitlementInput"),
+    id = id.from(_N, "DeleteEntitlementRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4205,12 +4205,12 @@ M.DeleteEntitlementInput = schema.new({
 })
 
 M.DeleteEntitlementOutput = schema.new({
-    id = id.from(_N, "DeleteEntitlementOutput"),
+    id = id.from(_N, "DeleteEntitlementResult"),
     type = "structure",
 })
 
 M.DeleteFleetInput = schema.new({
-    id = id.from(_N, "DeleteFleetInput"),
+    id = id.from(_N, "DeleteFleetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4226,12 +4226,12 @@ M.DeleteFleetInput = schema.new({
 })
 
 M.DeleteFleetOutput = schema.new({
-    id = id.from(_N, "DeleteFleetOutput"),
+    id = id.from(_N, "DeleteFleetResult"),
     type = "structure",
 })
 
 M.DeleteImageInput = schema.new({
-    id = id.from(_N, "DeleteImageInput"),
+    id = id.from(_N, "DeleteImageRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4247,7 +4247,7 @@ M.DeleteImageInput = schema.new({
 })
 
 M.DeleteImageOutput = schema.new({
-    id = id.from(_N, "DeleteImageOutput"),
+    id = id.from(_N, "DeleteImageResult"),
     type = "structure",
     members = {
         Image = schema.new({
@@ -4261,7 +4261,7 @@ M.DeleteImageOutput = schema.new({
 })
 
 M.DeleteImageBuilderInput = schema.new({
-    id = id.from(_N, "DeleteImageBuilderInput"),
+    id = id.from(_N, "DeleteImageBuilderRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4277,7 +4277,7 @@ M.DeleteImageBuilderInput = schema.new({
 })
 
 M.DeleteImageBuilderOutput = schema.new({
-    id = id.from(_N, "DeleteImageBuilderOutput"),
+    id = id.from(_N, "DeleteImageBuilderResult"),
     type = "structure",
     members = {
         ImageBuilder = schema.new({
@@ -4291,7 +4291,7 @@ M.DeleteImageBuilderOutput = schema.new({
 })
 
 M.DeleteImagePermissionsInput = schema.new({
-    id = id.from(_N, "DeleteImagePermissionsInput"),
+    id = id.from(_N, "DeleteImagePermissionsRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4316,12 +4316,12 @@ M.DeleteImagePermissionsInput = schema.new({
 })
 
 M.DeleteImagePermissionsOutput = schema.new({
-    id = id.from(_N, "DeleteImagePermissionsOutput"),
+    id = id.from(_N, "DeleteImagePermissionsResult"),
     type = "structure",
 })
 
 M.DeleteStackInput = schema.new({
-    id = id.from(_N, "DeleteStackInput"),
+    id = id.from(_N, "DeleteStackRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4337,12 +4337,12 @@ M.DeleteStackInput = schema.new({
 })
 
 M.DeleteStackOutput = schema.new({
-    id = id.from(_N, "DeleteStackOutput"),
+    id = id.from(_N, "DeleteStackResult"),
     type = "structure",
 })
 
 M.DeleteThemeForStackInput = schema.new({
-    id = id.from(_N, "DeleteThemeForStackInput"),
+    id = id.from(_N, "DeleteThemeForStackRequest"),
     type = "structure",
     members = {
         StackName = schema.new({
@@ -4358,22 +4358,22 @@ M.DeleteThemeForStackInput = schema.new({
 })
 
 M.DeleteThemeForStackOutput = schema.new({
-    id = id.from(_N, "DeleteThemeForStackOutput"),
+    id = id.from(_N, "DeleteThemeForStackResult"),
     type = "structure",
 })
 
 M.DeleteUsageReportSubscriptionInput = schema.new({
-    id = id.from(_N, "DeleteUsageReportSubscriptionInput"),
+    id = id.from(_N, "DeleteUsageReportSubscriptionRequest"),
     type = "structure",
 })
 
 M.DeleteUsageReportSubscriptionOutput = schema.new({
-    id = id.from(_N, "DeleteUsageReportSubscriptionOutput"),
+    id = id.from(_N, "DeleteUsageReportSubscriptionResult"),
     type = "structure",
 })
 
 M.DeleteUserInput = schema.new({
-    id = id.from(_N, "DeleteUserInput"),
+    id = id.from(_N, "DeleteUserRequest"),
     type = "structure",
     members = {
         UserName = schema.new({
@@ -4398,12 +4398,12 @@ M.DeleteUserInput = schema.new({
 })
 
 M.DeleteUserOutput = schema.new({
-    id = id.from(_N, "DeleteUserOutput"),
+    id = id.from(_N, "DeleteUserResult"),
     type = "structure",
 })
 
 M.DescribeAppBlockBuilderAppBlockAssociationsInput = schema.new({
-    id = id.from(_N, "DescribeAppBlockBuilderAppBlockAssociationsInput"),
+    id = id.from(_N, "DescribeAppBlockBuilderAppBlockAssociationsRequest"),
     type = "structure",
     members = {
         AppBlockArn = schema.new({
@@ -4434,7 +4434,7 @@ M.DescribeAppBlockBuilderAppBlockAssociationsInput = schema.new({
 })
 
 M.DescribeAppBlockBuilderAppBlockAssociationsOutput = schema.new({
-    id = id.from(_N, "DescribeAppBlockBuilderAppBlockAssociationsOutput"),
+    id = id.from(_N, "DescribeAppBlockBuilderAppBlockAssociationsResult"),
     type = "structure",
     members = {
         AppBlockBuilderAppBlockAssociations = schema.new({
@@ -4454,7 +4454,7 @@ M.DescribeAppBlockBuilderAppBlockAssociationsOutput = schema.new({
 })
 
 M.DescribeAppBlockBuildersInput = schema.new({
-    id = id.from(_N, "DescribeAppBlockBuildersInput"),
+    id = id.from(_N, "DescribeAppBlockBuildersRequest"),
     type = "structure",
     members = {
         Names = schema.new({
@@ -4480,7 +4480,7 @@ M.DescribeAppBlockBuildersInput = schema.new({
 })
 
 M.DescribeAppBlockBuildersOutput = schema.new({
-    id = id.from(_N, "DescribeAppBlockBuildersOutput"),
+    id = id.from(_N, "DescribeAppBlockBuildersResult"),
     type = "structure",
     members = {
         AppBlockBuilders = schema.new({
@@ -4500,7 +4500,7 @@ M.DescribeAppBlockBuildersOutput = schema.new({
 })
 
 M.DescribeAppBlocksInput = schema.new({
-    id = id.from(_N, "DescribeAppBlocksInput"),
+    id = id.from(_N, "DescribeAppBlocksRequest"),
     type = "structure",
     members = {
         Arns = schema.new({
@@ -4526,7 +4526,7 @@ M.DescribeAppBlocksInput = schema.new({
 })
 
 M.DescribeAppBlocksOutput = schema.new({
-    id = id.from(_N, "DescribeAppBlocksOutput"),
+    id = id.from(_N, "DescribeAppBlocksResult"),
     type = "structure",
     members = {
         AppBlocks = schema.new({
@@ -4546,7 +4546,7 @@ M.DescribeAppBlocksOutput = schema.new({
 })
 
 M.DescribeApplicationFleetAssociationsInput = schema.new({
-    id = id.from(_N, "DescribeApplicationFleetAssociationsInput"),
+    id = id.from(_N, "DescribeApplicationFleetAssociationsRequest"),
     type = "structure",
     members = {
         FleetName = schema.new({
@@ -4577,7 +4577,7 @@ M.DescribeApplicationFleetAssociationsInput = schema.new({
 })
 
 M.DescribeApplicationFleetAssociationsOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationFleetAssociationsOutput"),
+    id = id.from(_N, "DescribeApplicationFleetAssociationsResult"),
     type = "structure",
     members = {
         ApplicationFleetAssociations = schema.new({
@@ -4597,7 +4597,7 @@ M.DescribeApplicationFleetAssociationsOutput = schema.new({
 })
 
 M.DescribeApplicationsInput = schema.new({
-    id = id.from(_N, "DescribeApplicationsInput"),
+    id = id.from(_N, "DescribeApplicationsRequest"),
     type = "structure",
     members = {
         Arns = schema.new({
@@ -4623,7 +4623,7 @@ M.DescribeApplicationsInput = schema.new({
 })
 
 M.DescribeApplicationsOutput = schema.new({
-    id = id.from(_N, "DescribeApplicationsOutput"),
+    id = id.from(_N, "DescribeApplicationsResult"),
     type = "structure",
     members = {
         Applications = schema.new({
@@ -4643,7 +4643,7 @@ M.DescribeApplicationsOutput = schema.new({
 })
 
 M.DescribeAppLicenseUsageInput = schema.new({
-    id = id.from(_N, "DescribeAppLicenseUsageInput"),
+    id = id.from(_N, "DescribeAppLicenseUsageRequest"),
     type = "structure",
     members = {
         BillingPeriod = schema.new({
@@ -4671,7 +4671,7 @@ M.DescribeAppLicenseUsageInput = schema.new({
 })
 
 M.DescribeAppLicenseUsageOutput = schema.new({
-    id = id.from(_N, "DescribeAppLicenseUsageOutput"),
+    id = id.from(_N, "DescribeAppLicenseUsageResult"),
     type = "structure",
     members = {
         AppLicenseUsages = schema.new({
@@ -4691,7 +4691,7 @@ M.DescribeAppLicenseUsageOutput = schema.new({
 })
 
 M.DescribeDirectoryConfigsInput = schema.new({
-    id = id.from(_N, "DescribeDirectoryConfigsInput"),
+    id = id.from(_N, "DescribeDirectoryConfigsRequest"),
     type = "structure",
     members = {
         DirectoryNames = schema.new({
@@ -4717,7 +4717,7 @@ M.DescribeDirectoryConfigsInput = schema.new({
 })
 
 M.DescribeDirectoryConfigsOutput = schema.new({
-    id = id.from(_N, "DescribeDirectoryConfigsOutput"),
+    id = id.from(_N, "DescribeDirectoryConfigsResult"),
     type = "structure",
     members = {
         DirectoryConfigs = schema.new({
@@ -4737,7 +4737,7 @@ M.DescribeDirectoryConfigsOutput = schema.new({
 })
 
 M.DescribeEntitlementsInput = schema.new({
-    id = id.from(_N, "DescribeEntitlementsInput"),
+    id = id.from(_N, "DescribeEntitlementsRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4771,7 +4771,7 @@ M.DescribeEntitlementsInput = schema.new({
 })
 
 M.DescribeEntitlementsOutput = schema.new({
-    id = id.from(_N, "DescribeEntitlementsOutput"),
+    id = id.from(_N, "DescribeEntitlementsResult"),
     type = "structure",
     members = {
         Entitlements = schema.new({
@@ -4791,7 +4791,7 @@ M.DescribeEntitlementsOutput = schema.new({
 })
 
 M.DescribeFleetsInput = schema.new({
-    id = id.from(_N, "DescribeFleetsInput"),
+    id = id.from(_N, "DescribeFleetsRequest"),
     type = "structure",
     members = {
         Names = schema.new({
@@ -4811,7 +4811,7 @@ M.DescribeFleetsInput = schema.new({
 })
 
 M.DescribeFleetsOutput = schema.new({
-    id = id.from(_N, "DescribeFleetsOutput"),
+    id = id.from(_N, "DescribeFleetsResult"),
     type = "structure",
     members = {
         Fleets = schema.new({
@@ -4831,7 +4831,7 @@ M.DescribeFleetsOutput = schema.new({
 })
 
 M.DescribeImageBuildersInput = schema.new({
-    id = id.from(_N, "DescribeImageBuildersInput"),
+    id = id.from(_N, "DescribeImageBuildersRequest"),
     type = "structure",
     members = {
         Names = schema.new({
@@ -4857,7 +4857,7 @@ M.DescribeImageBuildersInput = schema.new({
 })
 
 M.DescribeImageBuildersOutput = schema.new({
-    id = id.from(_N, "DescribeImageBuildersOutput"),
+    id = id.from(_N, "DescribeImageBuildersResult"),
     type = "structure",
     members = {
         ImageBuilders = schema.new({
@@ -4877,7 +4877,7 @@ M.DescribeImageBuildersOutput = schema.new({
 })
 
 M.DescribeImagePermissionsInput = schema.new({
-    id = id.from(_N, "DescribeImagePermissionsInput"),
+    id = id.from(_N, "DescribeImagePermissionsRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4938,7 +4938,7 @@ M.SharedImagePermissions = schema.new({
 })
 
 M.DescribeImagePermissionsOutput = schema.new({
-    id = id.from(_N, "DescribeImagePermissionsOutput"),
+    id = id.from(_N, "DescribeImagePermissionsResult"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -4964,7 +4964,7 @@ M.DescribeImagePermissionsOutput = schema.new({
 })
 
 M.DescribeImagesInput = schema.new({
-    id = id.from(_N, "DescribeImagesInput"),
+    id = id.from(_N, "DescribeImagesRequest"),
     type = "structure",
     members = {
         Names = schema.new({
@@ -5003,7 +5003,7 @@ M.DescribeImagesInput = schema.new({
 })
 
 M.DescribeImagesOutput = schema.new({
-    id = id.from(_N, "DescribeImagesOutput"),
+    id = id.from(_N, "DescribeImagesResult"),
     type = "structure",
     members = {
         Images = schema.new({
@@ -5023,7 +5023,7 @@ M.DescribeImagesOutput = schema.new({
 })
 
 M.DescribeSessionsInput = schema.new({
-    id = id.from(_N, "DescribeSessionsInput"),
+    id = id.from(_N, "DescribeSessionsRequest"),
     type = "structure",
     members = {
         StackName = schema.new({
@@ -5173,7 +5173,7 @@ M.Session = schema.new({
 })
 
 M.DescribeSessionsOutput = schema.new({
-    id = id.from(_N, "DescribeSessionsOutput"),
+    id = id.from(_N, "DescribeSessionsResult"),
     type = "structure",
     members = {
         Sessions = schema.new({
@@ -5193,7 +5193,7 @@ M.DescribeSessionsOutput = schema.new({
 })
 
 M.DescribeSoftwareAssociationsInput = schema.new({
-    id = id.from(_N, "DescribeSoftwareAssociationsInput"),
+    id = id.from(_N, "DescribeSoftwareAssociationsRequest"),
     type = "structure",
     members = {
         AssociatedResource = schema.new({
@@ -5247,7 +5247,7 @@ M.SoftwareAssociations = schema.new({
 })
 
 M.DescribeSoftwareAssociationsOutput = schema.new({
-    id = id.from(_N, "DescribeSoftwareAssociationsOutput"),
+    id = id.from(_N, "DescribeSoftwareAssociationsResult"),
     type = "structure",
     members = {
         AssociatedResource = schema.new({
@@ -5273,7 +5273,7 @@ M.DescribeSoftwareAssociationsOutput = schema.new({
 })
 
 M.DescribeStacksInput = schema.new({
-    id = id.from(_N, "DescribeStacksInput"),
+    id = id.from(_N, "DescribeStacksRequest"),
     type = "structure",
     members = {
         Names = schema.new({
@@ -5293,7 +5293,7 @@ M.DescribeStacksInput = schema.new({
 })
 
 M.DescribeStacksOutput = schema.new({
-    id = id.from(_N, "DescribeStacksOutput"),
+    id = id.from(_N, "DescribeStacksResult"),
     type = "structure",
     members = {
         Stacks = schema.new({
@@ -5313,7 +5313,7 @@ M.DescribeStacksOutput = schema.new({
 })
 
 M.DescribeThemeForStackInput = schema.new({
-    id = id.from(_N, "DescribeThemeForStackInput"),
+    id = id.from(_N, "DescribeThemeForStackRequest"),
     type = "structure",
     members = {
         StackName = schema.new({
@@ -5329,7 +5329,7 @@ M.DescribeThemeForStackInput = schema.new({
 })
 
 M.DescribeThemeForStackOutput = schema.new({
-    id = id.from(_N, "DescribeThemeForStackOutput"),
+    id = id.from(_N, "DescribeThemeForStackResult"),
     type = "structure",
     members = {
         Theme = schema.new({
@@ -5343,7 +5343,7 @@ M.DescribeThemeForStackOutput = schema.new({
 })
 
 M.DescribeUsageReportSubscriptionsInput = schema.new({
-    id = id.from(_N, "DescribeUsageReportSubscriptionsInput"),
+    id = id.from(_N, "DescribeUsageReportSubscriptionsRequest"),
     type = "structure",
     members = {
         MaxResults = schema.new({
@@ -5413,7 +5413,7 @@ M.UsageReportSubscription = schema.new({
 })
 
 M.DescribeUsageReportSubscriptionsOutput = schema.new({
-    id = id.from(_N, "DescribeUsageReportSubscriptionsOutput"),
+    id = id.from(_N, "DescribeUsageReportSubscriptionsResult"),
     type = "structure",
     members = {
         UsageReportSubscriptions = schema.new({
@@ -5433,7 +5433,7 @@ M.DescribeUsageReportSubscriptionsOutput = schema.new({
 })
 
 M.DescribeUsersInput = schema.new({
-    id = id.from(_N, "DescribeUsersInput"),
+    id = id.from(_N, "DescribeUsersRequest"),
     type = "structure",
     members = {
         AuthenticationType = schema.new({
@@ -5519,7 +5519,7 @@ M.User = schema.new({
 })
 
 M.DescribeUsersOutput = schema.new({
-    id = id.from(_N, "DescribeUsersOutput"),
+    id = id.from(_N, "DescribeUsersResult"),
     type = "structure",
     members = {
         Users = schema.new({
@@ -5539,7 +5539,7 @@ M.DescribeUsersOutput = schema.new({
 })
 
 M.DescribeUserStackAssociationsInput = schema.new({
-    id = id.from(_N, "DescribeUserStackAssociationsInput"),
+    id = id.from(_N, "DescribeUserStackAssociationsRequest"),
     type = "structure",
     members = {
         StackName = schema.new({
@@ -5576,7 +5576,7 @@ M.DescribeUserStackAssociationsInput = schema.new({
 })
 
 M.DescribeUserStackAssociationsOutput = schema.new({
-    id = id.from(_N, "DescribeUserStackAssociationsOutput"),
+    id = id.from(_N, "DescribeUserStackAssociationsResult"),
     type = "structure",
     members = {
         UserStackAssociations = schema.new({
@@ -5596,7 +5596,7 @@ M.DescribeUserStackAssociationsOutput = schema.new({
 })
 
 M.DisableUserInput = schema.new({
-    id = id.from(_N, "DisableUserInput"),
+    id = id.from(_N, "DisableUserRequest"),
     type = "structure",
     members = {
         UserName = schema.new({
@@ -5621,12 +5621,12 @@ M.DisableUserInput = schema.new({
 })
 
 M.DisableUserOutput = schema.new({
-    id = id.from(_N, "DisableUserOutput"),
+    id = id.from(_N, "DisableUserResult"),
     type = "structure",
 })
 
 M.DisassociateAppBlockBuilderAppBlockInput = schema.new({
-    id = id.from(_N, "DisassociateAppBlockBuilderAppBlockInput"),
+    id = id.from(_N, "DisassociateAppBlockBuilderAppBlockRequest"),
     type = "structure",
     members = {
         AppBlockArn = schema.new({
@@ -5651,12 +5651,12 @@ M.DisassociateAppBlockBuilderAppBlockInput = schema.new({
 })
 
 M.DisassociateAppBlockBuilderAppBlockOutput = schema.new({
-    id = id.from(_N, "DisassociateAppBlockBuilderAppBlockOutput"),
+    id = id.from(_N, "DisassociateAppBlockBuilderAppBlockResult"),
     type = "structure",
 })
 
 M.DisassociateApplicationFleetInput = schema.new({
-    id = id.from(_N, "DisassociateApplicationFleetInput"),
+    id = id.from(_N, "DisassociateApplicationFleetRequest"),
     type = "structure",
     members = {
         FleetName = schema.new({
@@ -5681,12 +5681,12 @@ M.DisassociateApplicationFleetInput = schema.new({
 })
 
 M.DisassociateApplicationFleetOutput = schema.new({
-    id = id.from(_N, "DisassociateApplicationFleetOutput"),
+    id = id.from(_N, "DisassociateApplicationFleetResult"),
     type = "structure",
 })
 
 M.DisassociateApplicationFromEntitlementInput = schema.new({
-    id = id.from(_N, "DisassociateApplicationFromEntitlementInput"),
+    id = id.from(_N, "DisassociateApplicationFromEntitlementRequest"),
     type = "structure",
     members = {
         StackName = schema.new({
@@ -5720,12 +5720,12 @@ M.DisassociateApplicationFromEntitlementInput = schema.new({
 })
 
 M.DisassociateApplicationFromEntitlementOutput = schema.new({
-    id = id.from(_N, "DisassociateApplicationFromEntitlementOutput"),
+    id = id.from(_N, "DisassociateApplicationFromEntitlementResult"),
     type = "structure",
 })
 
 M.DisassociateFleetInput = schema.new({
-    id = id.from(_N, "DisassociateFleetInput"),
+    id = id.from(_N, "DisassociateFleetRequest"),
     type = "structure",
     members = {
         FleetName = schema.new({
@@ -5750,12 +5750,12 @@ M.DisassociateFleetInput = schema.new({
 })
 
 M.DisassociateFleetOutput = schema.new({
-    id = id.from(_N, "DisassociateFleetOutput"),
+    id = id.from(_N, "DisassociateFleetResult"),
     type = "structure",
 })
 
 M.DisassociateSoftwareFromImageBuilderInput = schema.new({
-    id = id.from(_N, "DisassociateSoftwareFromImageBuilderInput"),
+    id = id.from(_N, "DisassociateSoftwareFromImageBuilderRequest"),
     type = "structure",
     members = {
         ImageBuilderName = schema.new({
@@ -5781,12 +5781,12 @@ M.DisassociateSoftwareFromImageBuilderInput = schema.new({
 })
 
 M.DisassociateSoftwareFromImageBuilderOutput = schema.new({
-    id = id.from(_N, "DisassociateSoftwareFromImageBuilderOutput"),
+    id = id.from(_N, "DisassociateSoftwareFromImageBuilderResult"),
     type = "structure",
 })
 
 M.DrainSessionInstanceInput = schema.new({
-    id = id.from(_N, "DrainSessionInstanceInput"),
+    id = id.from(_N, "DrainSessionInstanceRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -5802,12 +5802,12 @@ M.DrainSessionInstanceInput = schema.new({
 })
 
 M.DrainSessionInstanceOutput = schema.new({
-    id = id.from(_N, "DrainSessionInstanceOutput"),
+    id = id.from(_N, "DrainSessionInstanceResult"),
     type = "structure",
 })
 
 M.EnableUserInput = schema.new({
-    id = id.from(_N, "EnableUserInput"),
+    id = id.from(_N, "EnableUserRequest"),
     type = "structure",
     members = {
         UserName = schema.new({
@@ -5832,7 +5832,7 @@ M.EnableUserInput = schema.new({
 })
 
 M.EnableUserOutput = schema.new({
-    id = id.from(_N, "EnableUserOutput"),
+    id = id.from(_N, "EnableUserResult"),
     type = "structure",
 })
 
@@ -5853,7 +5853,7 @@ M.EntitledApplication = schema.new({
 })
 
 M.ExpireSessionInput = schema.new({
-    id = id.from(_N, "ExpireSessionInput"),
+    id = id.from(_N, "ExpireSessionRequest"),
     type = "structure",
     members = {
         SessionId = schema.new({
@@ -5869,7 +5869,7 @@ M.ExpireSessionInput = schema.new({
 })
 
 M.ExpireSessionOutput = schema.new({
-    id = id.from(_N, "ExpireSessionOutput"),
+    id = id.from(_N, "ExpireSessionResult"),
     type = "structure",
 })
 
@@ -5900,7 +5900,7 @@ M.Filter = schema.new({
 })
 
 M.GetExportImageTaskInput = schema.new({
-    id = id.from(_N, "GetExportImageTaskInput"),
+    id = id.from(_N, "GetExportImageTaskRequest"),
     type = "structure",
     members = {
         TaskId = schema.new({
@@ -5913,7 +5913,7 @@ M.GetExportImageTaskInput = schema.new({
 })
 
 M.GetExportImageTaskOutput = schema.new({
-    id = id.from(_N, "GetExportImageTaskOutput"),
+    id = id.from(_N, "GetExportImageTaskResult"),
     type = "structure",
     members = {
         ExportImageTask = schema.new({
@@ -5927,7 +5927,7 @@ M.GetExportImageTaskOutput = schema.new({
 })
 
 M.ListAssociatedFleetsInput = schema.new({
-    id = id.from(_N, "ListAssociatedFleetsInput"),
+    id = id.from(_N, "ListAssociatedFleetsRequest"),
     type = "structure",
     members = {
         StackName = schema.new({
@@ -5949,7 +5949,7 @@ M.ListAssociatedFleetsInput = schema.new({
 })
 
 M.ListAssociatedFleetsOutput = schema.new({
-    id = id.from(_N, "ListAssociatedFleetsOutput"),
+    id = id.from(_N, "ListAssociatedFleetsResult"),
     type = "structure",
     members = {
         Names = schema.new({
@@ -5969,7 +5969,7 @@ M.ListAssociatedFleetsOutput = schema.new({
 })
 
 M.ListAssociatedStacksInput = schema.new({
-    id = id.from(_N, "ListAssociatedStacksInput"),
+    id = id.from(_N, "ListAssociatedStacksRequest"),
     type = "structure",
     members = {
         FleetName = schema.new({
@@ -5991,7 +5991,7 @@ M.ListAssociatedStacksInput = schema.new({
 })
 
 M.ListAssociatedStacksOutput = schema.new({
-    id = id.from(_N, "ListAssociatedStacksOutput"),
+    id = id.from(_N, "ListAssociatedStacksResult"),
     type = "structure",
     members = {
         Names = schema.new({
@@ -6011,7 +6011,7 @@ M.ListAssociatedStacksOutput = schema.new({
 })
 
 M.ListEntitledApplicationsInput = schema.new({
-    id = id.from(_N, "ListEntitledApplicationsInput"),
+    id = id.from(_N, "ListEntitledApplicationsRequest"),
     type = "structure",
     members = {
         StackName = schema.new({
@@ -6048,7 +6048,7 @@ M.ListEntitledApplicationsInput = schema.new({
 })
 
 M.ListEntitledApplicationsOutput = schema.new({
-    id = id.from(_N, "ListEntitledApplicationsOutput"),
+    id = id.from(_N, "ListEntitledApplicationsResult"),
     type = "structure",
     members = {
         EntitledApplications = schema.new({
@@ -6068,7 +6068,7 @@ M.ListEntitledApplicationsOutput = schema.new({
 })
 
 M.ListExportImageTasksInput = schema.new({
-    id = id.from(_N, "ListExportImageTasksInput"),
+    id = id.from(_N, "ListExportImageTasksRequest"),
     type = "structure",
     members = {
         Filters = schema.new({
@@ -6094,7 +6094,7 @@ M.ListExportImageTasksInput = schema.new({
 })
 
 M.ListExportImageTasksOutput = schema.new({
-    id = id.from(_N, "ListExportImageTasksOutput"),
+    id = id.from(_N, "ListExportImageTasksResult"),
     type = "structure",
     members = {
         ExportImageTasks = schema.new({
@@ -6114,7 +6114,7 @@ M.ListExportImageTasksOutput = schema.new({
 })
 
 M.ListTagsForResourceInput = schema.new({
-    id = id.from(_N, "ListTagsForResourceInput"),
+    id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6130,7 +6130,7 @@ M.ListTagsForResourceInput = schema.new({
 })
 
 M.ListTagsForResourceOutput = schema.new({
-    id = id.from(_N, "ListTagsForResourceOutput"),
+    id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
     members = {
         Tags = schema.new({
@@ -6145,7 +6145,7 @@ M.ListTagsForResourceOutput = schema.new({
 })
 
 M.StartAppBlockBuilderInput = schema.new({
-    id = id.from(_N, "StartAppBlockBuilderInput"),
+    id = id.from(_N, "StartAppBlockBuilderRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6161,7 +6161,7 @@ M.StartAppBlockBuilderInput = schema.new({
 })
 
 M.StartAppBlockBuilderOutput = schema.new({
-    id = id.from(_N, "StartAppBlockBuilderOutput"),
+    id = id.from(_N, "StartAppBlockBuilderResult"),
     type = "structure",
     members = {
         AppBlockBuilder = schema.new({
@@ -6175,7 +6175,7 @@ M.StartAppBlockBuilderOutput = schema.new({
 })
 
 M.StartFleetInput = schema.new({
-    id = id.from(_N, "StartFleetInput"),
+    id = id.from(_N, "StartFleetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6191,12 +6191,12 @@ M.StartFleetInput = schema.new({
 })
 
 M.StartFleetOutput = schema.new({
-    id = id.from(_N, "StartFleetOutput"),
+    id = id.from(_N, "StartFleetResult"),
     type = "structure",
 })
 
 M.StartImageBuilderInput = schema.new({
-    id = id.from(_N, "StartImageBuilderInput"),
+    id = id.from(_N, "StartImageBuilderRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6218,7 +6218,7 @@ M.StartImageBuilderInput = schema.new({
 })
 
 M.StartImageBuilderOutput = schema.new({
-    id = id.from(_N, "StartImageBuilderOutput"),
+    id = id.from(_N, "StartImageBuilderResult"),
     type = "structure",
     members = {
         ImageBuilder = schema.new({
@@ -6232,7 +6232,7 @@ M.StartImageBuilderOutput = schema.new({
 })
 
 M.StartSoftwareDeploymentToImageBuilderInput = schema.new({
-    id = id.from(_N, "StartSoftwareDeploymentToImageBuilderInput"),
+    id = id.from(_N, "StartSoftwareDeploymentToImageBuilderRequest"),
     type = "structure",
     members = {
         ImageBuilderName = schema.new({
@@ -6254,12 +6254,12 @@ M.StartSoftwareDeploymentToImageBuilderInput = schema.new({
 })
 
 M.StartSoftwareDeploymentToImageBuilderOutput = schema.new({
-    id = id.from(_N, "StartSoftwareDeploymentToImageBuilderOutput"),
+    id = id.from(_N, "StartSoftwareDeploymentToImageBuilderResult"),
     type = "structure",
 })
 
 M.StopAppBlockBuilderInput = schema.new({
-    id = id.from(_N, "StopAppBlockBuilderInput"),
+    id = id.from(_N, "StopAppBlockBuilderRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6275,7 +6275,7 @@ M.StopAppBlockBuilderInput = schema.new({
 })
 
 M.StopAppBlockBuilderOutput = schema.new({
-    id = id.from(_N, "StopAppBlockBuilderOutput"),
+    id = id.from(_N, "StopAppBlockBuilderResult"),
     type = "structure",
     members = {
         AppBlockBuilder = schema.new({
@@ -6289,7 +6289,7 @@ M.StopAppBlockBuilderOutput = schema.new({
 })
 
 M.StopFleetInput = schema.new({
-    id = id.from(_N, "StopFleetInput"),
+    id = id.from(_N, "StopFleetRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6305,12 +6305,12 @@ M.StopFleetInput = schema.new({
 })
 
 M.StopFleetOutput = schema.new({
-    id = id.from(_N, "StopFleetOutput"),
+    id = id.from(_N, "StopFleetResult"),
     type = "structure",
 })
 
 M.StopImageBuilderInput = schema.new({
-    id = id.from(_N, "StopImageBuilderInput"),
+    id = id.from(_N, "StopImageBuilderRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6326,7 +6326,7 @@ M.StopImageBuilderInput = schema.new({
 })
 
 M.StopImageBuilderOutput = schema.new({
-    id = id.from(_N, "StopImageBuilderOutput"),
+    id = id.from(_N, "StopImageBuilderResult"),
     type = "structure",
     members = {
         ImageBuilder = schema.new({
@@ -6340,7 +6340,7 @@ M.StopImageBuilderOutput = schema.new({
 })
 
 M.TagResourceInput = schema.new({
-    id = id.from(_N, "TagResourceInput"),
+    id = id.from(_N, "TagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6367,12 +6367,12 @@ M.TagResourceInput = schema.new({
 })
 
 M.TagResourceOutput = schema.new({
-    id = id.from(_N, "TagResourceOutput"),
+    id = id.from(_N, "TagResourceResponse"),
     type = "structure",
 })
 
 M.UntagResourceInput = schema.new({
-    id = id.from(_N, "UntagResourceInput"),
+    id = id.from(_N, "UntagResourceRequest"),
     type = "structure",
     members = {
         ResourceArn = schema.new({
@@ -6398,12 +6398,12 @@ M.UntagResourceInput = schema.new({
 })
 
 M.UntagResourceOutput = schema.new({
-    id = id.from(_N, "UntagResourceOutput"),
+    id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
 })
 
 M.UpdateAppBlockBuilderInput = schema.new({
-    id = id.from(_N, "UpdateAppBlockBuilderInput"),
+    id = id.from(_N, "UpdateAppBlockBuilderRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6482,7 +6482,7 @@ M.UpdateAppBlockBuilderInput = schema.new({
 })
 
 M.UpdateAppBlockBuilderOutput = schema.new({
-    id = id.from(_N, "UpdateAppBlockBuilderOutput"),
+    id = id.from(_N, "UpdateAppBlockBuilderResult"),
     type = "structure",
     members = {
         AppBlockBuilder = schema.new({
@@ -6496,7 +6496,7 @@ M.UpdateAppBlockBuilderOutput = schema.new({
 })
 
 M.UpdateApplicationInput = schema.new({
-    id = id.from(_N, "UpdateApplicationInput"),
+    id = id.from(_N, "UpdateApplicationRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6562,7 +6562,7 @@ M.UpdateApplicationInput = schema.new({
 })
 
 M.UpdateApplicationOutput = schema.new({
-    id = id.from(_N, "UpdateApplicationOutput"),
+    id = id.from(_N, "UpdateApplicationResult"),
     type = "structure",
     members = {
         Application = schema.new({
@@ -6576,7 +6576,7 @@ M.UpdateApplicationOutput = schema.new({
 })
 
 M.UpdateDirectoryConfigInput = schema.new({
-    id = id.from(_N, "UpdateDirectoryConfigInput"),
+    id = id.from(_N, "UpdateDirectoryConfigRequest"),
     type = "structure",
     members = {
         DirectoryName = schema.new({
@@ -6613,7 +6613,7 @@ M.UpdateDirectoryConfigInput = schema.new({
 })
 
 M.UpdateDirectoryConfigOutput = schema.new({
-    id = id.from(_N, "UpdateDirectoryConfigOutput"),
+    id = id.from(_N, "UpdateDirectoryConfigResult"),
     type = "structure",
     members = {
         DirectoryConfig = schema.new({
@@ -6627,7 +6627,7 @@ M.UpdateDirectoryConfigOutput = schema.new({
 })
 
 M.UpdateEntitlementInput = schema.new({
-    id = id.from(_N, "UpdateEntitlementInput"),
+    id = id.from(_N, "UpdateEntitlementRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6671,7 +6671,7 @@ M.UpdateEntitlementInput = schema.new({
 })
 
 M.UpdateEntitlementOutput = schema.new({
-    id = id.from(_N, "UpdateEntitlementOutput"),
+    id = id.from(_N, "UpdateEntitlementResult"),
     type = "structure",
     members = {
         Entitlement = schema.new({
@@ -6685,7 +6685,7 @@ M.UpdateEntitlementOutput = schema.new({
 })
 
 M.UpdateFleetInput = schema.new({
-    id = id.from(_N, "UpdateFleetInput"),
+    id = id.from(_N, "UpdateFleetRequest"),
     type = "structure",
     members = {
         ImageName = schema.new({
@@ -6843,7 +6843,7 @@ M.UpdateFleetInput = schema.new({
 })
 
 M.UpdateFleetOutput = schema.new({
-    id = id.from(_N, "UpdateFleetOutput"),
+    id = id.from(_N, "UpdateFleetResult"),
     type = "structure",
     members = {
         Fleet = schema.new({
@@ -6857,7 +6857,7 @@ M.UpdateFleetOutput = schema.new({
 })
 
 M.UpdateImagePermissionsInput = schema.new({
-    id = id.from(_N, "UpdateImagePermissionsInput"),
+    id = id.from(_N, "UpdateImagePermissionsRequest"),
     type = "structure",
     members = {
         Name = schema.new({
@@ -6892,12 +6892,12 @@ M.UpdateImagePermissionsInput = schema.new({
 })
 
 M.UpdateImagePermissionsOutput = schema.new({
-    id = id.from(_N, "UpdateImagePermissionsOutput"),
+    id = id.from(_N, "UpdateImagePermissionsResult"),
     type = "structure",
 })
 
 M.UpdateStackInput = schema.new({
-    id = id.from(_N, "UpdateStackInput"),
+    id = id.from(_N, "UpdateStackRequest"),
     type = "structure",
     members = {
         DisplayName = schema.new({
@@ -7006,7 +7006,7 @@ M.UpdateStackInput = schema.new({
 })
 
 M.UpdateStackOutput = schema.new({
-    id = id.from(_N, "UpdateStackOutput"),
+    id = id.from(_N, "UpdateStackResult"),
     type = "structure",
     members = {
         Stack = schema.new({
@@ -7020,7 +7020,7 @@ M.UpdateStackOutput = schema.new({
 })
 
 M.UpdateThemeForStackInput = schema.new({
-    id = id.from(_N, "UpdateThemeForStackInput"),
+    id = id.from(_N, "UpdateThemeForStackRequest"),
     type = "structure",
     members = {
         StackName = schema.new({
@@ -7082,7 +7082,7 @@ M.UpdateThemeForStackInput = schema.new({
 })
 
 M.UpdateThemeForStackOutput = schema.new({
-    id = id.from(_N, "UpdateThemeForStackOutput"),
+    id = id.from(_N, "UpdateThemeForStackResult"),
     type = "structure",
     members = {
         Theme = schema.new({
@@ -7094,5 +7094,19 @@ M.UpdateThemeForStackOutput = schema.new({
         }),
     },
 })
+
+-- Fix forward references for recursive schemas
+for _, s in pairs(M) do
+    if type(s) == "table" and (s.type == "structure" or s.type == "union") then
+        local members = rawget(s, "_members")
+        if members then
+            for _, ms in pairs(members) do
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
+                    rawset(ms, "_target", M[ms.target_id.name])
+                end
+            end
+        end
+    end
+end
 
 return M

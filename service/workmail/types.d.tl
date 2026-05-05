@@ -2759,25 +2759,25 @@ local record UnsupportedOperationException
     Message: string
 end
 
-local type MobileDeviceAccessRuleEffect = "ALLOW" | "DENY"
-
-local type MailboxExportJobState = "RUNNING" | "COMPLETED" | "FAILED" | "CANCELLED"
+local type IdentityProviderAuthenticationMode = "IDENTITY_PROVIDER_ONLY" | "IDENTITY_PROVIDER_AND_DIRECTORY"
 
 local type EntityState = "ENABLED" | "DISABLED" | "DELETED"
 
 local type EntityType = "GROUP" | "USER" | "RESOURCE"
 
-local type DnsRecordVerificationStatus = "PENDING" | "VERIFIED" | "FAILED"
-
-local type AccessEffect = "ALLOW" | "DENY"
-
-local type ImpersonationRoleType = "FULL_ACCESS" | "READ_ONLY"
-
-local type UserRole = "USER" | "RESOURCE" | "SYSTEM_USER" | "REMOTE_USER"
+local type MailboxExportJobState = "RUNNING" | "COMPLETED" | "FAILED" | "CANCELLED"
 
 local type ResourceType = "ROOM" | "EQUIPMENT"
 
-local type IdentityProviderAuthenticationMode = "IDENTITY_PROVIDER_ONLY" | "IDENTITY_PROVIDER_AND_DIRECTORY"
+local type UserRole = "USER" | "RESOURCE" | "SYSTEM_USER" | "REMOTE_USER"
+
+local type DnsRecordVerificationStatus = "PENDING" | "VERIFIED" | "FAILED"
+
+local type ImpersonationRoleType = "FULL_ACCESS" | "READ_ONLY"
+
+local type MobileDeviceAccessRuleEffect = "ALLOW" | "DENY"
+
+local type AccessEffect = "ALLOW" | "DENY"
 
 local type AccessControlRuleEffect = "ALLOW" | "DENY"
 
